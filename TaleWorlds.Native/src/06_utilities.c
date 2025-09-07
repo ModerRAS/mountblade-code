@@ -2150,6 +2150,22 @@
 // 功能：清理系统资源，遍历并释放内存块
 #define ResourceCleanupA0 Unwind_18090b7d0
 
+// 原始函数名：Unwind_1809079b0 - 异常上下文初始化函数A0
+// 功能：初始化异常处理上下文，设置异常处理器和状态标志
+#define ExceptionContextInitializerA0 Unwind_1809079b0
+
+// 原始函数名：Unwind_1809079c0 - 异常上下文初始化函数A1
+// 功能：初始化异常处理上下文，设置异常处理器和状态标志
+#define ExceptionContextInitializerA1 Unwind_1809079c0
+
+// 原始函数名：Unwind_1809079d0 - 资源引用计数管理函数A0
+// 功能：管理资源的引用计数，处理资源的释放和清理
+#define ResourceReferenceManagerA0 Unwind_1809079d0
+
+// 原始函数名：Unwind_1809079e0 - 资源引用计数管理函数A1
+// 功能：管理资源的引用计数，处理资源的释放和清理
+#define ResourceReferenceManagerA1 Unwind_1809079e0
+
 // 原始函数名：FUN_180943140 - 线程本地存储初始化函数A5
 // 功能：初始化线程本地存储A5
 #define InitializeThreadLocalStorageA5 FUN_180943140
@@ -3235,6 +3251,10 @@
 // 原始变量名：ExceptionContextPtr - 异常上下文指针
 // 功能：存储异常处理的上下文指针信息
 #define ExceptionContextPtr ExceptionContextPtr
+
+// 原始变量名：_DAT_180c821d0 - 系统重置标志
+// 功能：控制系统重置操作的状态标志
+#define SystemResetFlag _DAT_180c821d0
 
 // 原始变量名：_DAT_180d49140 - 异常状态标志A0
 // 功能：存储异常处理的状态标志信息
@@ -8177,8 +8197,8 @@ uint8_t SystemSecurityValidationFlagA106;   // UNK_180a39fb0
 uint8_t SystemSecurityValidationFlagA107;   // UNK_180a39fc0
 uint8_t SystemSecurityValidationFlagA108;   // UNK_180a39fe0
 uint8_t SystemSecurityValidationFlagA109;   // UNK_180a39ff8
-uint8_t UNK_180a3a018;
-uint8_t UNK_180a3a038;
+uint8_t SystemSecurityValidationFlagA110;   // UNK_180a3a018
+uint8_t SystemSecurityValidationFlagA111;   // UNK_180a3a038
 uint8_t UNK_180a3a048;
 uint8_t UNK_180a3a058;
 uint8_t UNK_180a3a068;
@@ -49878,6 +49898,20 @@ void Unwind_180905290(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 设置默认异常处理器B到指定偏移位置
+ * 
+ * 该函数用于在数据缓冲区的指定偏移位置（0x168）设置默认异常处理器B。
+ * 这是一个异常处理清理函数，用于确保系统在异常情况下能够正确处理。
+ * 
+ * @param operationBase 操作基础地址，当前未使用
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是Unwind类型的异常处理函数，用于系统异常恢复
+ * @see DefaultExceptionHandlerB
+ */
 void Unwind_1809052a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -49887,6 +49921,20 @@ void Unwind_1809052a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 设置默认异常处理器B到指定偏移位置（变体）
+ * 
+ * 该函数用于在数据缓冲区的指定偏移位置（0x1e8）设置默认异常处理器B。
+ * 这是Unwind_1809052a0函数的变体，用于不同的偏移位置。
+ * 
+ * @param operationBase 操作基础地址，当前未使用
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是Unwind类型的异常处理函数，用于系统异常恢复
+ * @see DefaultExceptionHandlerB, Unwind_1809052a0
+ */
 void Unwind_1809052b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -49896,6 +49944,20 @@ void Unwind_1809052b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理标志位为1的资源处理器
+ * 
+ * 该函数检查数据缓冲区的标志位，如果第0位为1，则清除该标志位并调用资源清理函数。
+ * 用于系统异常恢复时的资源清理工作。
+ * 
+ * @param operationBase 操作基础地址，当前未使用
+ * @param dataBuffer 数据缓冲区指针，包含标志位和资源数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是Unwind类型的异常处理函数，用于系统异常恢复时的资源清理
+ * @see CleanupResourceHandler
+ */
 void Unwind_1809052c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -49908,6 +49970,20 @@ void Unwind_1809052c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理标志位为2的资源处理器
+ * 
+ * 该函数检查数据缓冲区的标志位，如果第1位为1，则清除该标志位并调用资源清理函数。
+ * 这是Unwind_1809052c0函数的变体，用于处理不同的标志位。
+ * 
+ * @param operationBase 操作基础地址，当前未使用
+ * @param dataBuffer 数据缓冲区指针，包含标志位和资源数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是Unwind类型的异常处理函数，用于系统异常恢复时的资源清理
+ * @see CleanupResourceHandler, Unwind_1809052c0
+ */
 void Unwind_1809052f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -49920,6 +49996,20 @@ void Unwind_1809052f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理标志位为1的资源处理器（变体）
+ * 
+ * 该函数检查数据缓冲区的标志位，如果第0位为1，则清除该标志位并调用资源清理函数。
+ * 这是Unwind_1809052c0函数的变体，使用不同的偏移位置进行资源清理。
+ * 
+ * @param operationBase 操作基础地址，当前未使用
+ * @param dataBuffer 数据缓冲区指针，包含标志位和资源数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是Unwind类型的异常处理函数，用于系统异常恢复时的资源清理
+ * @see CleanupResourceHandler, Unwind_1809052c0
+ */
 void Unwind_180905320(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -49932,6 +50022,21 @@ void Unwind_180905320(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 设置临时异常处理器并验证异常状态
+ * 
+ * 该函数用于设置临时异常处理器，并验证异常数据缓冲区的状态。
+ * 如果异常数据缓冲区的第二个元素不为0，则调用系统终止函数。
+ * 
+ * @param operationBase 操作基础地址，当前未使用
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是Unwind类型的异常处理函数，用于系统异常恢复
+ * @warning 如果异常数据缓冲区状态异常，会调用TerminateSystemE0()终止系统
+ * @see TemporaryExceptionHandler, DefaultExceptionHandlerB, TerminateSystemE0
+ */
 void Unwind_180905350(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -49951,6 +50056,21 @@ void Unwind_180905350(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 设置临时异常处理器并验证异常状态（变体）
+ * 
+ * 该函数用于在指定偏移位置设置临时异常处理器，并验证异常状态。
+ * 如果异常状态不为0，则调用系统终止函数。完成后将临时异常处理器替换为默认异常处理器。
+ * 
+ * @param operationBase 操作基础地址，当前未使用
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是Unwind类型的异常处理函数，用于系统异常恢复
+ * @warning 如果异常状态不为0，会调用TerminateSystemE0()终止系统
+ * @see TemporaryExceptionHandler, DefaultExceptionHandlerB, TerminateSystemE0
+ */
 void Unwind_180905360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -49967,6 +50087,20 @@ void Unwind_180905360(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 设置默认异常处理器B到指定偏移位置
+ * 
+ * 该函数用于在数据缓冲区的指定偏移位置（0x108）设置默认异常处理器B。
+ * 这是一个简化的异常处理清理函数。
+ * 
+ * @param operationBase 操作基础地址，当前未使用
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是Unwind类型的异常处理函数，用于系统异常恢复
+ * @see DefaultExceptionHandlerB
+ */
 void Unwind_180905370(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -60007,7 +60141,17 @@ void Unwind_1809079a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809079b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文初始化函数A0
+ * 
+ * 初始化异常处理上下文，设置临时异常处理器并检查系统状态。
+ * 如果系统状态异常，则终止系统；否则重置状态并设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_1809079b0
+ */
+void ExceptionContextInitializerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -60026,7 +60170,17 @@ void Unwind_1809079b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809079c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文初始化函数A1
+ * 
+ * 初始化异常处理上下文，设置临时异常处理器并检查系统状态。
+ * 如果系统状态异常，则终止系统；否则重置状态并设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_1809079c0
+ */
+void ExceptionContextInitializerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -60045,7 +60199,7 @@ void Unwind_1809079c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809079d0(DataBuffer operationBase,int64_t dataBuffer)
+void ResourceReferenceManagerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -60088,7 +60242,7 @@ void Unwind_1809079d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809079e0(DataBuffer operationBase,int64_t dataBuffer)
+void ResourceReferenceManagerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -94798,14 +94952,14 @@ DataWord UNK_180d49260;
 void UtilityProcessParameter1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  char cVar1;
+  char statusFlag;
   int operationResult;
   
-  cVar1 = *(char *)(dataBuffer + 0x40);
+  statusFlag = *(char *)(dataBuffer + 0x40);
   operationResult = CheckOperationResult();
-  if ((operationResult != 0) && (cVar1 == '\0')) {
+  if ((operationResult != 0) && (statusFlag == '\0')) {
     LOCK();
-    _DAT_180c821d0 = 0;
+    SystemResetFlag = 0;
     UNLOCK();
   }
   return;
@@ -94831,7 +94985,7 @@ void UtilityProcessParameter2(DataBuffer operationBase,int64_t dataBuffer)
   systemCheckResult = CheckOperationResult();
   if ((systemCheckResult != 0) && (statusFlag == '\0')) {
     LOCK();
-    _DAT_180c821d0 = 0;
+    SystemResetFlag = 0;
     UNLOCK();
   }
   return;
