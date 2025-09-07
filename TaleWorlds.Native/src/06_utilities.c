@@ -54015,10 +54015,10 @@ void Unwind_1809065a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809065b0(DataBuffer operationBase,int64_t dataBuffer)
+void SetTemporaryExceptionHandlerReference(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x40) = &UNK_1809ffa18;
+  **(DataBuffer **)(dataBuffer + 0x40) = &TemporaryExceptionHandler;
   return;
 }
 
