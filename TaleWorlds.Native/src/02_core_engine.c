@@ -50,6 +50,9 @@
 #define ProcessSystemFinalization FUN_180137ef1               // 处理系统最终化
 #define ProcessUtf8BufferFinalization FUN_180137f90          // 处理UTF-8缓冲区最终化
 #define ValidateSystemConfiguration FUN_18012eff0              // 验证系统配置
+#define ProcessUtf8InputBuffer FUN_180174340                 // 处理UTF-8输入缓冲区
+#define ManageUtf8BufferSize FUN_18014d6f0                    // 管理UTF-8缓冲区大小
+#define ConvertUtf16Encoding FUN_180183e30                    // 转换UTF-16编码
 #define ProcessSystemDataTableValidation FUN_18011aad0         // 处理系统数据表验证
 #define ProcessCharacterBufferInitialization FUN_18011aea0     // 处理字符缓冲区初始化
 #define ProcessStringDataConversion FUN_18011c360              // 处理字符串数据转换
@@ -178851,7 +178854,17 @@ LAB_18014ccc0:
 
 
 
-long long FUN_18014d6f0(long long CharacterCode,unsigned long long Utf8BufferSize
+/**
+ * @brief UTF-8缓冲区大小管理器
+ * 
+ * 该函数负责管理UTF-8缓冲区的大小和内存分配，根据缓冲区大小标志
+ * 执行不同的内存管理操作，包括内存块初始化和释放。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小标志位
+ * @return 处理后的字符代码指针
+ */
+long long ManageUtf8BufferSize(long long CharacterCode,unsigned long long Utf8BufferSize)
 {
   if ((Utf8BufferSize & 2) != 0) {
     InitializeSystemMemoryBlock(CharacterCode,0x20,*(void *)(CharacterCode + -8),FUN_1806d84a0,0xfffffffffffffffe);
@@ -202868,7 +202881,18 @@ LAB_1801741dc:
 
 
 
-74340(void **Utf8InputBuffer,void **Utf8InputBufferSize,long long Utf8SourcePointervoid FUN_180174340(void **Utf8InputBuffer,void **Utf8InputBufferSize,long long Utf8SourcePointer
+/**
+ * @brief UTF-8输入缓冲区处理器
+ * 
+ * 该函数负责处理UTF-8编码的输入缓冲区，包括字符解码、验证和转换操作。
+ * 这是游戏引擎中字符串处理系统的核心组件，用于处理多语言字符和Unicode转换。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针的指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针的指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return 处理结果状态码
+ */
+void ProcessUtf8InputBuffer(void **Utf8InputBuffer,void **Utf8InputBufferSize,long long Utf8SourcePointer)
 {
   uint32_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
@@ -211921,7 +211945,19 @@ FUN_1801839a0(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
 
 
 
-83e30(long long CharacterCode,long long *Utf8InputBufferSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180183e30(long long CharacterCode,long long *Utf8InputBufferSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief UTF-16编码转换器
+ * 
+ * 该函数负责处理UTF-16编码的转换操作，包括字符编码转换、内存管理
+ * 和缓冲区处理。这是游戏引擎中多语言文本处理的核心组件。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 转换结果状态码
+ */
+void ConvertUtf16Encoding(long long CharacterCode,long long *Utf8InputBufferSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   long long *BufferAllocationStatus;
