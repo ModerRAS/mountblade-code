@@ -20029,10 +20029,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   DataWord StackDataWordK;
   DataWord StackDataWordL;
   DataWord StackDataWordM;
-  DataWord uStack_120;
-  DataWord uStack_11c;
-  DataWord uStack_118;
-  DataWord uStack_114;
+  DataWord StackDataWordN;
+  DataWord StackDataWordO;
+  DataWord StackDataWordP;
+  DataWord StackDataWordQ;
   uint8_t *psecurityCheckValueA8;
   DataWord securityCheckValueA0;
   DataWord uStack_f8;
@@ -20115,8 +20115,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               uStack_150 = 0;
               uStack_120 = *(DataWord *)(dataContext + 0x58);
               uStack_11c = *(DataWord *)(dataContext + 0x5c);
-              uStack_118 = *(DataWord *)(dataContext + 0x60);
-              uStack_114 = *(DataWord *)(dataContext + 100);
+              StackDataWordP = *(DataWord *)(dataContext + 0x60);
+              StackDataWordQ = *(DataWord *)(dataContext + 100);
               uStack_148 = StackDataWordA;
               iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_158);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
@@ -44251,7 +44251,21 @@ void ConfigureExceptionHandlerB40(DataBuffer operationBase, int64_t dataBuffer, 
 
 
 
-void Unwind_180903b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器配置函数B60
+ * 
+ * 该函数负责配置异常处理器。它会获取验证上下文，调用相关函数，
+ * 设置临时异常处理器，检查数据缓冲区状态，清除相关标志位，
+ * 并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * @param operationFlagA 操作标志A，用于控制处理流程
+ * @param operationFlagB 操作标志B，用于控制处理流程
+ * 
+ * @note 原始函数名：Unwind_180903b60
+ */
+void ConfigureExceptionHandlerB60(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -44281,7 +44295,21 @@ void Unwind_180903b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器配置函数B80
+ * 
+ * 该函数负责配置异常处理器。它会获取验证上下文，调用相关函数，
+ * 设置临时异常处理器，检查数据缓冲区状态，清除相关标志位，
+ * 并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * @param operationFlagA 操作标志A，用于控制处理流程
+ * @param operationFlagB 操作标志B，用于控制处理流程
+ * 
+ * @note 原始函数名：Unwind_180903b80
+ */
+void ConfigureExceptionHandlerB80(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -44311,7 +44339,21 @@ void Unwind_180903b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器配置函数Ba0
+ * 
+ * 该函数负责配置异常处理器。它会获取验证上下文，调用相关函数，
+ * 设置临时异常处理器，检查数据缓冲区状态，清除相关标志位，
+ * 并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * @param operationFlagA 操作标志A，用于控制处理流程
+ * @param operationFlagB 操作标志B，用于控制处理流程
+ * 
+ * @note 原始函数名：Unwind_180903ba0
+ */
+void ConfigureExceptionHandlerBa0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -44341,7 +44383,21 @@ void Unwind_180903ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器配置函数Bc0
+ * 
+ * 该函数负责配置异常处理器。它会获取验证上下文，调用相关函数，
+ * 设置临时异常处理器，检查数据缓冲区状态，清除相关标志位，
+ * 并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * @param operationFlagA 操作标志A，用于控制处理流程
+ * @param operationFlagB 操作标志B，用于控制处理流程
+ * 
+ * @note 原始函数名：Unwind_180903bc0
+ */
+void ConfigureExceptionHandlerBc0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -69984,7 +70040,7 @@ void Unwind_18090a6e0(void)
 
 
 
-void Unwind_18090a6f0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceHandlerAtOffsetB8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
@@ -69996,7 +70052,7 @@ void Unwind_18090a6f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a720(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceHandlerAtOffset78(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 4) != 0) {
@@ -70008,7 +70064,7 @@ void Unwind_18090a720(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a750(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceHandlerAtOffset58(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 8) != 0) {
@@ -98012,7 +98068,7 @@ void CleanupSystemResourceManagerB(DataBuffer operationBase, DataBuffer dataBuff
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942580(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupSystemResourceManagerC(DataBuffer operationBase, DataBuffer dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 /**
  * @brief 清理系统资源管理器C
  * 
@@ -101101,13 +101157,13 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordO uStack_11c
 
-// 原始变量名：uStack_118 - 栈数据字P
+// 原始变量名：StackDataWordP - 栈数据字P
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordP uStack_118
+#define StackDataWordP StackDataWordP
 
-// 原始变量名：uStack_114 - 栈数据字Q
+// 原始变量名：StackDataWordQ - 栈数据字Q
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordQ uStack_114
+#define StackDataWordQ StackDataWordQ
 
 // 原始变量名：uStack_f8 - 栈数据字R
 // 功能：存储数据处理过程中的临时数据字
