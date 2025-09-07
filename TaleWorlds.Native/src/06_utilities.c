@@ -8156,7 +8156,7 @@ void* GlobalDataPointerExtendedQuinary;
 // 
 // 返回值:
 //   void* - 数据处理结果
-void* UtilityProcessDataA0;
+void* UtilityProcessDataPrimary;
 // 全局数据指针A38相关变量
 void* GlobalDataPointerA38Storage;    // DAT_180bfa230
 void* GlobalDataPointerA38Status;     // DAT_180bfa238
@@ -67745,7 +67745,17 @@ void SetDefaultExceptionHandlerAtOffset298(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_180907c50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量0x258
+ * 
+ * 在数据缓冲区的偏移量0x258处设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907c50
+ */
+void SetDefaultExceptionHandlerAtOffset258(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 600) = &DefaultExceptionHandlerB;
