@@ -144,6 +144,11 @@
 #define RESOURCE_CONTEXT_OFFSET 3                // 资源上下文偏移量
 #define RESOURCE_DATA_OFFSET 4                   // 资源数据偏移量
 
+// 上下文偏移量常量定义
+#define CONTEXT_DATA_OFFSET_90 0x90              // 上下文数据偏移量90
+#define CONTEXT_POINTER_OFFSET_50 0x50           // 上下文指针偏移量50
+#define DATA_STRUCTURE_OFFSET_EXCEPTION_HANDLER 0x10  // 数据结构异常处理器偏移量
+
 // 异常处理相关常量定义
 #define ExceptionCallbackOffset 0xb0
 #define ModuleResourceAllocationStatus 0x1e
