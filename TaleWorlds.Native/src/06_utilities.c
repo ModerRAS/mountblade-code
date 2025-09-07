@@ -14165,19 +14165,19 @@ void ValidateAndProcessUtilityData(int64_t dataContext,int64_t systemContext)
   int validationResult;
   
   validationResult = ValidateSystemDataA1(*(DataBuffer *)(systemContext + SystemContextValidationOffset),*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset10),
-                        dataContext + 0x14,dataContext + 0x20,dataContext + 0x2c,dataContext + 0x38);
+                        dataContext + SystemDataHandleOffset,dataContext + SystemOperationDataOffset,dataContext + SystemOperationRequestOffset,dataContext + SystemTertiaryDataOffset);
   if ((validationResult == 0) &&
-     (validationResult = ValidateDataAndReturnA0((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * 0x44 +
-                                  *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,dataContext + 0x14), validationResult == 0)
+     (validationResult = ValidateDataAndReturnA0((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * DataProcessingMultiplier +
+                                  *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,dataContext + SystemDataHandleOffset), validationResult == 0)
      ) {
-    if ((*(char *)(dataContext + 0x50) != '\0') &&
-       (validationResult = ValidateDataAndReturnA1((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * 0x44 +
-                                    *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,dataContext + 0x44),
+    if ((*(char *)(dataContext + SystemContextDataOffset) != '\0') &&
+       (validationResult = ValidateDataAndReturnA1((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * DataProcessingMultiplier +
+                                    *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,dataContext + SystemSecondaryDataOffset),
        validationResult != 0)) {
       return;
     }
-    ProcessDataAndExecute((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * 0x44 +
-                        *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,*(ByteFlag *)(dataContext + 0x50));
+    ProcessDataAndExecute((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * DataProcessingMultiplier +
+                        *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,*(ByteFlag *)(dataContext + SystemContextDataOffset));
   }
   return;
 }
@@ -100003,42 +100003,72 @@ void Unwind_18090f510(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f530(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数530
+ * 
+ * 该函数负责调用偏移量0x458处的异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090f530
+ * @note 这是一个异常处理器调用函数，用于调用特定偏移量的异常处理器
+ */
+void InvokeExceptionHandlerAtOffset458(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x60) + 0x458);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerTertiaryOffset458);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset38))();
   }
   return;
 }
 
 
 
-void Unwind_18090f550(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数550
+ * 
+ * 该函数负责调用偏移量0x460处的异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090f550
+ * @note 这是一个异常处理器调用函数，用于调用特定偏移量的异常处理器
+ */
+void InvokeExceptionHandlerAtOffset460(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x60) + 0x460);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerQuaternaryOffset460);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset38))();
   }
   return;
 }
 
 
 
-void Unwind_18090f570(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数570
+ * 
+ * 该函数负责调用偏移量0x468处的异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090f570
+ * @note 这是一个异常处理器调用函数，用于调用特定偏移量的异常处理器
+ */
+void InvokeExceptionHandlerAtOffset468(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x60) + 0x468);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerQuinaryOffset468);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset38))();
   }
   return;
 }
