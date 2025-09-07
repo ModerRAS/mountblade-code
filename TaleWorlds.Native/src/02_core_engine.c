@@ -158560,7 +158560,19 @@ void ConfigureSystemRenderingParameters(void
 
 
 
-34f9f(voidvoid FUN_180134f9f(void
+/**
+ * @brief 处理系统上下文和字节缓冲区的函数
+ * 
+ * 该函数负责处理系统上下文和字节缓冲区的简单操作。
+ * 主要功能包括：
+ * - 系统上下文的初始化
+ * - 字节处理缓冲区的管理
+ * - 栈帧指针的操作
+ * - 浮点数计算和存储
+ * 
+ * @note 原始函数名：FUN_180134f9f
+ */
+void ProcessSystemContextAndByteBuffer(void)
 {
   long long SystemContext;
   long long StackFramePointer;
@@ -158577,7 +158589,19 @@ void ConfigureSystemRenderingParameters(void
 
 
 
-34fb8(voidvoid FUN_180134fb8(void
+/**
+ * @brief 处理系统上下文和字节缓冲区的辅助函数
+ * 
+ * 该函数负责处理系统上下文和字节缓冲区的辅助操作。
+ * 主要功能包括：
+ * - 系统上下文的初始化和管理
+ * - 字节处理缓冲区的操作
+ * - 栈帧指针的设置
+ * - 浮点数计算和缓冲区管理
+ * 
+ * @note 原始函数名：FUN_180134fb8
+ */
+void ProcessSystemContextAndByteBufferAux(void)
 {
   long long SystemContext;
   long long StackFramePointer;
@@ -158620,7 +158644,19 @@ void ConfigureSystemRenderingParameters(void
 
 
 
-35090(voidvoid ValidateSystemComponentsA0(void
+/**
+ * @brief 验证系统组件A0的函数
+ * 
+ * 该函数负责验证系统组件A0的状态和配置。
+ * 主要功能包括：
+ * - 缓冲区状态的初始化和验证
+ * - 系统配置的设置和管理
+ * - 内存池的处理和验证
+ * - 系统组件的初始化
+ * 
+ * @note 原始函数名：ValidateSystemComponentsA0
+ */
+void ValidateSystemComponentsA0(void)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
@@ -158922,7 +158958,21 @@ uint64_t * InitializeUtf8InputBuffer(uint64_t *Utf8InputBuffer)
 
  (ram,0x00018013b12c (ram,0x00018013b14a (ram,0x00018013b320 (ram,0x00018013b1a7 (ram,0x00018013b1b2 (ram,0x00018013b1bb (ram,0x00018013b1c0 (ram,0x00018013b1cc (ram,0x00018013b1ce (ram,0x00018013b1f0 (ram,0x00018013b209 (ram,0x00018013b210 (ram,0x00018013b21b (ram,0x00018013b21f (ram,0x00018013b43a (ram,0x00018013b444 (ram,0x00018013b230
 
-356a0(long long CharacterCodevoid FUN_1801356a0(long long CharacterCode
+/**
+ * @brief 处理字符编码和内存分配的函数
+ * 
+ * 该函数负责处理字符编码相关的内存分配和引用计数管理。
+ * 主要功能包括：
+ * - 引用计数的管理和维护
+ * - 缓冲区分配状态的处理
+ * - 内存地址掩码的计算
+ * - 编码转换结果的处理
+ * - Unicode字符码的处理
+ * 
+ * @param CharacterCode 字符编码参数
+ * @note 原始函数名：FUN_1801356a0
+ */
+void ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   long long *BufferAllocationStatus;

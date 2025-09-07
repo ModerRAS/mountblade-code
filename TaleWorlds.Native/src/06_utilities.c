@@ -71210,7 +71210,17 @@ void Unwind_180908780(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908790(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常状态
+ * 
+ * 该函数负责重置异常状态，清理异常处理上下文。
+ * 它将数据缓冲区中的异常处理器设置为默认异常处理器。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ * @return 无返回值
+ */
+void ResetExceptionState(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x180) = &DefaultExceptionHandlerB;
@@ -71219,7 +71229,17 @@ void Unwind_180908790(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809087a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证系统状态
+ * 
+ * 该函数负责验证系统状态的一致性和完整性。
+ * 它将数据缓冲区中的状态验证处理器设置为默认异常处理器。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含系统状态信息
+ * @return 无返回值
+ */
+void ValidateSystemState(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1e0) = &DefaultExceptionHandlerB;
@@ -71228,7 +71248,17 @@ void Unwind_1809087a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809087b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理系统数据
+ * 
+ * 该函数负责清理系统数据，释放数据缓冲区。
+ * 它会检查数据缓冲区中的数据指针，如果存在则执行相应的清理回调。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含系统数据信息
+ * @return 无返回值
+ */
+void CleanupSystemData(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xf0) != (int64_t *)0x0) {
