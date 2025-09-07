@@ -1,9 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// CONCAT函数语义化宏定义
-#define CONCAT44(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
-#define CONCAT71(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
-
 // 系统常量定义
 #define DefaultSystemDataAddress 0x18
 #define ComponentHandleOffset 0x10
