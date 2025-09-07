@@ -94,6 +94,10 @@
 #define CriticalExceptionHandlerOffset 0x6f0
 #define TemporaryExceptionHandlerOffset 0x218
 #define ExceptionHandlerOffset170 0x170
+#define ResourceCleanupOffset190 0x1b0
+#define MemoryReferenceCleanupOffset1D0 0x1d0
+#define MemoryReferenceCleanupOffset1F0 0x1f0
+#define MemoryReferenceCleanupOffset210 0x210
 
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
@@ -90106,7 +90110,7 @@ void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x1b0);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceCleanupOffset190);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -90153,7 +90157,7 @@ void CleanupMemoryReferenceCounterB0(DataBuffer operationBase,int64_t dataBuffer
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x1d0);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset1D0);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -90200,7 +90204,7 @@ void CleanupMemoryReferenceCounterB1(DataBuffer operationBase,int64_t dataBuffer
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x1f0);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset1F0);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -90228,7 +90232,7 @@ void CleanupMemoryReferenceCounterB1(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_18090d0a0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupMemoryReferenceCounterB2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -90236,7 +90240,7 @@ void Unwind_18090d0a0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x210);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset210);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
