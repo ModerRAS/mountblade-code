@@ -72817,7 +72817,16 @@ void ProcessMemoryResourceReferenceCountAtOffset3E0(DataBuffer operationBase,int
 
 
 
-void Unwind_180908b20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到指定偏移量0x118
+ * 
+ * 将默认异常处理器B的地址设置到数据缓冲区的指定偏移量0x118处，
+ * 用于后续的异常处理调用。
+ * 
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ */
+void SetDefaultExceptionHandlerBOffset118(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x118) = &DefaultExceptionHandlerB;
@@ -72826,7 +72835,16 @@ void Unwind_180908b20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908b30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量0x110处的异常处理器回调
+ * 
+ * 检查数据缓冲区偏移量0x110处是否存在有效的异常处理器指针，
+ * 如果存在则执行该异常处理器的回调函数（偏移量0x38处）。
+ * 
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ */
+void ExecuteExceptionHandlerCallbackOffset110(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x110) != (int64_t *)0x0) {
@@ -72837,7 +72855,16 @@ void Unwind_180908b30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908b40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量0x88处的异常处理器回调
+ * 
+ * 检查数据缓冲区偏移量0x88处是否存在有效的异常处理器指针，
+ * 如果存在则执行该异常处理器的回调函数（偏移量0x38处）。
+ * 
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ */
+void ExecuteExceptionHandlerCallbackOffset88(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x88) != (int64_t *)0x0) {
