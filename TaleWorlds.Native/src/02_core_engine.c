@@ -15062,7 +15062,7 @@ void FileSystemProcessorInitialize(void
   void *PreviousNode;
   void *NextNode;
   void *TemporaryStackPointer;
-  void *RegisterX18TempPointer;
+  void *ReservedRegisterPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
@@ -16819,7 +16819,7 @@ void CoreEngineInitializeSystemConnectionTemplateG(void
   void *PreviousNode;
   void *NextNode;
   void *TemporaryStackPointer;
-  void *RegisterX18TempPointer;
+  void *ReservedRegisterPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
@@ -17194,7 +17194,7 @@ void CoreEngineInitializePhysicsManager(void
   void *PreviousNode;
   void *NextNode;
   void *TemporaryStackPointer;
-  void *RegisterX18TempPointer;
+  void *ReservedRegisterPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
