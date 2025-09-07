@@ -6307,9 +6307,33 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define SystemCalculationBaseAddress SystemCalculationBaseAddress    // 系统计算基础地址
 
 // 系统初始化和重置函数宏定义
-#define InitializeSystemB0 FUN_180296b70    // 初始化系统B0
-#define ResetSystemB0 FUN_180291610        // 重置系统B0
-#define ExecuteMemoryOperationB0 FUN_1808fc5ac    // 执行内存操作B0
+
+/**
+ * @brief 初始化系统B0
+ * 
+ * 该函数负责初始化系统的B0模块，设置初始状态和参数
+ * 
+ * @note 原始函数名：FUN_180296b70
+ */
+#define InitializeSystemB0 FUN_180296b70
+
+/**
+ * @brief 重置系统B0
+ * 
+ * 该函数负责重置系统的B0模块，清理状态并恢复到初始状态
+ * 
+ * @note 原始函数名：FUN_180291610
+ */
+#define ResetSystemB0 FUN_180291610
+
+/**
+ * @brief 执行内存操作B0
+ * 
+ * 该函数负责执行系统B0模块的内存操作，包括内存分配、访问和释放
+ * 
+ * @note 原始函数名：FUN_1808fc5ac
+ */
+#define ExecuteMemoryOperationB0 FUN_1808fc5ac
 
 // 栈变量语义化宏定义
 #define StackFloatRegisterA StackFloatRegisterValueA    // 栈浮点寄存器A
@@ -9919,15 +9943,15 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   int64_t SystemContextHandle;
   int32_t componentBufferSize;
   uint64_t SystemQueryStatus;
-  uint64_t componentProcessResult;
-  int64_t *currentComponentPointer;
+  uint64_t ComponentProcessStatus;
+  int64_t *CurrentComponentContext;
   int32_t CurrentComponentCount;
   uint64_t ComponentLoopCounter;
   int32_t componentListCapacity;
-  uint64_t componentSearchIterator;
+  uint64_t ComponentSearchCounter;
   int64_t *ComponentListContext;
   int64_t systemContextBuffer;
-  int8_t componentValidationBuffer [DataValidationBufferSize];
+  int8_t ComponentValidationBuffer [DataValidationBufferSize];
   
   SystemQueryStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
   if ((int)SystemQueryStatus != 0) {
@@ -9942,33 +9966,33 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
     return ComponentDataValidationFailure;
   }
   if (*(int32_t *)(SystemContextHandle + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
-    SystemQueryStatus = ProcessInputData(SystemContextHandle,componentValidationBuffer);
+    SystemQueryStatus = ProcessInputData(SystemContextHandle,ComponentValidationBuffer);
     if ((int32_t)SystemQueryStatus != 0) {
       return SystemQueryStatus;
     }
-    componentProcessResult = ValidateInputData(componentValidationBuffer);
-    if ((int32_t)componentProcessResult != 0) {
-      return componentProcessResult;
+    ComponentProcessStatus = ValidateInputData(ComponentValidationBuffer);
+    if ((int32_t)ComponentProcessStatus != 0) {
+      return ComponentProcessStatus;
     }
-    if ((int8_t)SystemQueryStatus == (int8_t)componentProcessResult) {
-      if (componentValidationBuffer[0] == (int8_t)componentProcessResult) {
+    if ((int8_t)SystemQueryStatus == (int8_t)ComponentProcessStatus) {
+      if (ComponentValidationBuffer[0] == (int8_t)ComponentProcessStatus) {
         ComponentListContext = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
-        componentSearchIterator = 0;
+        ComponentSearchCounter = 0;
         CurrentComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
         if (0 < CurrentComponentCount) {
-          currentComponentPointer = (int64_t *)*ComponentListContext;
-          ComponentLoopCounter = componentSearchIterator;
+          CurrentComponentContext = (int64_t *)*ComponentListContext;
+          ComponentLoopCounter = ComponentSearchCounter;
           do {
-            if (*currentComponentPointer == componentValidationBuffer) {
+            if (*CurrentComponentContext == ComponentValidationBuffer) {
               if (ComponentInactiveStatus < (int32_t)ComponentLoopCounter) {
                 return 0;
               }
               break;
             }
             ComponentLoopCounter = (uint64_t)((int32_t)ComponentLoopCounter + 1);
-            componentSearchIterator = componentSearchIterator + 1;
-            currentComponentPointer = currentComponentPointer + 1;
-          } while ((int64_t)componentSearchIterator < (int64_t)CurrentComponentCount);
+            ComponentSearchCounter = ComponentSearchCounter + 1;
+            CurrentComponentContext = CurrentComponentContext + 1;
+          } while ((int64_t)ComponentSearchCounter < (int64_t)CurrentComponentCount);
         }
         CurrentComponentCount = CurrentComponentCount + 1;
         if (*(int32_t *)(componentDataContext + COMPONENT_CAPACITY_OFFSET) < CurrentComponentCount) {
@@ -9988,12 +10012,12 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
             return 0;
           }
         }
-        *(int64_t *)(*ComponentListContext + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * 8) = componentValidationBuffer;
+        *(int64_t *)(*ComponentListContext + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * 8) = ComponentValidationBuffer;
         *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) + 1;
         *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
-        SystemQueryStatus = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,componentValidationBuffer);
+        SystemQueryStatus = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,ComponentValidationBuffer);
         if ((int32_t)SystemQueryStatus != 0) {
           return SystemQueryStatus;
         }
@@ -54680,7 +54704,7 @@ void ExecuteDataValidationAndProcessingB(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_1809058a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionDataBufferA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
