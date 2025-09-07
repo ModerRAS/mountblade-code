@@ -82242,7 +82242,16 @@ void Unwind_18090b470(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b490(void)
+/**
+ * @brief 销毁系统互斥锁
+ * 
+ * 销毁系统中的互斥锁对象，释放相关资源。
+ * 这是一个简单的包装函数，调用标准的互斥锁销毁函数。
+ * 
+ * @note 函数直接调用_Mtx_destroy_in_situ()进行互斥锁销毁
+ * @note 这是异常处理和资源清理的一部分
+ */
+void DestroySystemMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -82251,7 +82260,19 @@ void Unwind_18090b490(void)
 
 
 
-void Unwind_18090b4b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器上下文A
+ * 
+ * 清理异常处理器上下文和相关数据结构，释放系统资源。
+ * 该函数会遍历异常处理器上下文中的所有数据项，调用相应的清理函数。
+ * 
+ * @param operationBase 操作基础指针，包含操作相关信息
+ * @param dataBuffer 数据缓冲区指针，包含需要清理的数据
+ * 
+ * @note 函数会调用TerminateSystemE0()进行系统终止操作
+ * @note 这是一个异常处理和资源清理的关键函数
+ */
+void CleanupExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -82332,7 +82353,19 @@ void Unwind_18090b4d0(void)
 
 
 
-void Unwind_18090b4e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 销毁指定位置的互斥锁
+ * 
+ * 销毁位于数据缓冲区指定偏移位置的互斥锁对象。
+ * 这是一个针对性的互斥锁销毁函数，用于清理特定位置的互斥锁。
+ * 
+ * @param operationBase 操作基础指针，包含操作相关信息
+ * @param dataBuffer 数据缓冲区指针，包含互斥锁的位置信息
+ * 
+ * @note 函数从dataBuffer + ExceptionHandlerContextOffset58位置获取互斥锁并销毁
+ * @note 这是异常处理和资源清理的一部分
+ */
+void DestroyMutexAtContextOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset58));
@@ -116893,6 +116926,18 @@ uint8_t SystemExceptionHandlerStateTable;
 // 原始函数名：Unwind_180908ed0 - 异常数据缓冲区清理函数
 // 功能：清理异常数据缓冲区，设置系统异常数据缓冲区并销毁异常对象
 #define CleanupExceptionDataBufferAtOffset38 Unwind_180908ed0
+
+// 原始函数名：Unwind_18090a5e0 - 互斥锁销毁函数
+// 功能：销毁互斥锁资源，释放系统资源
+#define DestroyMutexResourceA5E0 Unwind_18090a5e0
+
+// 原始函数名：Unwind_18090a5f0 - 异常数据处理器A5F0
+// 功能：处理异常数据，调用异常数据处理函数
+#define ProcessExceptionDataA5F0 Unwind_18090a5f0
+
+// 原始函数名：Unwind_18090a600 - 异常数据处理器A600
+// 功能：处理异常数据，调用异常数据处理函数
+#define ProcessExceptionDataA600 Unwind_18090a600
 
 // 原始函数名：Unwind_180908f90 - 系统监控处理函数A0
 // 功能：处理系统监控操作，包括异常检查和资源清理
