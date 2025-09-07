@@ -70669,8 +70669,7 @@ void ProcessUIDataWrite(longlong *uiContext,int dataSource,int targetBuffer)
 
 
 
- void FUN_180705210(longlong *uiContext)
-void FUN_180705210(longlong *uiContext)
+ void InitializeUIContext(longlong *uiContext)
 
 {
   longlong *pallocatedMemory;
@@ -70815,8 +70814,7 @@ LAB_1807053b0:
 
 
 
- void FUN_1807054a0(longlong *uiContext,int dataSource,longlong targetBuffer,byte bufferSize)
-void FUN_1807054a0(longlong *uiContext,int dataSource,longlong targetBuffer,byte bufferSize)
+ void ProcessUIDataRead(longlong *uiContext,int dataSource,longlong targetBuffer,byte bufferSize)
 
 {
   longlong *pallocatedMemory;
@@ -70889,8 +70887,7 @@ void FUN_1807054a0(longlong *uiContext,int dataSource,longlong targetBuffer,byte
 
 
 
- void FUN_180705530(longlong *uiContext)
-void FUN_180705530(longlong *uiContext)
+ void UpdateUIState(longlong *uiContext)
 
 {
   longlong *pallocatedMemory;
@@ -70951,8 +70948,7 @@ void FUN_180705530(longlong *uiContext)
 
 
 
- void FUN_180705545(longlong *uiContext,undefined8 dataSource,undefined8 targetBuffer,uint bufferSize)
-void FUN_180705545(longlong *uiContext,undefined8 dataSource,undefined8 targetBuffer,uint bufferSize)
+ void ProcessUIBufferOperation(longlong *uiContext,undefined8 dataSource,undefined8 targetBuffer,uint bufferSize)
 
 {
   longlong *pallocatedMemory;
@@ -71009,8 +71005,7 @@ void FUN_180705545(longlong *uiContext,undefined8 dataSource,undefined8 targetBu
 
 
 
- void FUN_180705616(void)
-void FUN_180705616(void)
+ void ValidateUISystem(void)
 
 {
   return;
@@ -71019,8 +71014,7 @@ void FUN_180705616(void)
 
 
 
- void FUN_1807056b0(longlong *uiContext,uint dataSource)
-void FUN_1807056b0(longlong *uiContext,uint dataSource)
+ void GetUIData(longlong *uiContext,uint dataSource)
 
 {
                      WARNING: Subroutine does not return
@@ -71032,8 +71026,7 @@ void FUN_1807056b0(longlong *uiContext,uint dataSource)
 
 
 
- void FUN_1807056f0(longlong *uiContext,uint dataSource,uint targetBuffer)
-void FUN_1807056f0(longlong *uiContext,uint dataSource,uint targetBuffer)
+ void SetUIData(longlong *uiContext,uint dataSource,uint targetBuffer)
 
 {
   int uiOperationResult;
@@ -71153,8 +71146,7 @@ void FUN_1807056f0(longlong *uiContext,uint dataSource,uint targetBuffer)
 
 
 
- void FUN_180705870(longlong *uiContext,int dataSource,int targetBuffer,byte bufferSize)
-void FUN_180705870(longlong *uiContext,int dataSource,int targetBuffer,byte bufferSize)
+ void ProcessUIRenderData(longlong *uiContext,int dataSource,int targetBuffer,byte bufferSize)
 
 {
   longlong *pallocatedMemory;
@@ -71231,8 +71223,7 @@ void FUN_180705870(longlong *uiContext,int dataSource,int targetBuffer,byte buff
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1807058d0(void)
-void FUN_1807058d0(void)
+ void CleanupUIResources(void)
 
 {
   int *puiOperationResult;
@@ -71269,8 +71260,7 @@ void FUN_1807058d0(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180705980(undefined8 *uiContext,undefined4 *dataSource,undefined8 targetBuffer,int bufferSize,
-void FUN_180705980(undefined8 *uiContext,undefined4 *dataSource,undefined8 targetBuffer,int bufferSize,
+ void ProcessUIComponentData(undefined8 *uiContext,undefined4 *dataSource,undefined8 targetBuffer,int bufferSize,
                   undefined8 resultPointer,undefined8 param_6,int param_7)
 
 {
@@ -71471,8 +71461,7 @@ LAB_180706998:
 
 
 
- void FUN_1807069e0(undefined8 uiContext)
-void FUN_1807069e0(undefined8 uiContext)
+ void ProcessUIEvent(undefined8 uiContext)
 
 {
                      WARNING: Subroutine does not return
@@ -71484,8 +71473,7 @@ void FUN_1807069e0(undefined8 uiContext)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180706b30(longlong uiContext,int dataSource,int targetBuffer)
-void FUN_180706b30(longlong uiContext,int dataSource,int targetBuffer)
+ void ProcessUIEventBuffer(longlong uiContext,int dataSource,int targetBuffer)
 
 {
   undefined1 astackUInt258 [68];
@@ -71505,8 +71493,7 @@ void FUN_180706b30(longlong uiContext,int dataSource,int targetBuffer)
 
 
 
- void FUN_180706b61(longlong uiContext)
-void FUN_180706b61(longlong uiContext)
+ void UpdateUIEventState(longlong uiContext)
 
 {
   longlong unmodifiedRSI;
@@ -71521,8 +71508,7 @@ void FUN_180706b61(longlong uiContext)
 
 
 
- void FUN_180706ba7(void)
-void FUN_180706ba7(void)
+ void InitializeUIEventSystem(void)
 
 {
   undefined4 uStack0000000000000030;

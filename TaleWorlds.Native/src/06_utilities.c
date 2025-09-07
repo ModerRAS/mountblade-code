@@ -176,6 +176,18 @@
 #define CONTEXT_POINTER_OFFSET_50 0x50           // 上下文指针偏移量50
 #define DATA_STRUCTURE_OFFSET_EXCEPTION_HANDLER 0x10  // 数据结构异常处理器偏移量
 
+// 系统内存地址常量定义
+#define FloatValidationDataAddress 0x180985054          // 浮点数验证数据地址
+#define SystemMutexObjectAddress 0x180c91970            // 系统互斥对象地址
+#define ExceptionCriticalSectionAddress 0x180c82210      // 异常临界区地址
+
+// 系统数据偏移量常量定义
+#define SystemContextDataOffset 0x18                    // 系统上下文数据偏移量
+#define SystemContextOperationOffset 0x20               // 系统上下文操作偏移量
+#define SystemContextConversionOffset 0x24              // 系统上下文转换偏移量
+#define SystemContextValidationOffset 0x78              // 系统上下文验证偏移量
+#define SystemContextPointerOffset 0x50                // 系统上下文指针偏移量
+
 // 数据处理偏移量常量定义
 #define DATA_CONTEXT_OFFSET_18 0x18              // 数据上下文偏移量18
 #define DATA_BUFFER_OFFSET_24 0x24               // 数据缓冲区偏移量24
@@ -1445,6 +1457,87 @@
 
 // 原始函数名：Unwind_180906d30 - 异常处理器调用函数D30
 // 功能：在偏移量0x40处调用异常处理器
+#define InvokeExceptionHandlerAtOffset40D30 Unwind_180906d30
+
+// 原始函数名：Unwind_1809092e0 - 异常上下文清理函数A0
+// 功能：清理异常上下文数据，重置异常处理器状态
+#define CleanupExceptionContextA0 Unwind_1809092e0
+
+// 原始函数名：Unwind_1809092f0 - 异常上下文清理函数A1
+// 功能：清理异常上下文数据，重置异常处理器状态
+#define CleanupExceptionContextA1 Unwind_1809092f0
+
+// 原始函数名：Unwind_180909400 - 异常处理器重置函数A0
+// 功能：重置异常处理器状态，清理异常处理上下文
+#define ResetExceptionHandlerA0 Unwind_180909400
+
+// 原始函数名：Unwind_1809094a0 - 异常数据清理函数A0
+// 功能：清理异常数据，重置异常处理状态
+#define CleanupExceptionDataA0 Unwind_1809094a0
+
+// 原始函数名：Unwind_1809094b0 - 异常数据清理函数A1
+// 功能：清理异常数据，重置异常处理状态
+#define CleanupExceptionDataA1 Unwind_1809094b0
+
+// 原始函数名：Unwind_180909500 - 异常状态重置函数A0
+// 功能：重置异常状态标志，清理异常处理状态
+#define ResetExceptionStatusA0 Unwind_180909500
+
+// 原始函数名：Unwind_180909510 - 异常状态重置函数A1
+// 功能：重置异常状态标志，清理异常处理状态
+#define ResetExceptionStatusA1 Unwind_180909510
+
+// 原始函数名：Unwind_180909520 - 异常状态重置函数A2
+// 功能：重置异常状态标志，清理异常处理状态
+#define ResetExceptionStatusA2 Unwind_180909520
+
+// 原始函数名：Unwind_180909530 - 异常状态重置函数A3
+// 功能：重置异常状态标志，清理异常处理状态
+#define ResetExceptionStatusA3 Unwind_180909530
+
+// 原始函数名：Unwind_180909540 - 异常状态重置函数A4
+// 功能：重置异常状态标志，清理异常处理状态
+#define ResetExceptionStatusA4 Unwind_180909540
+
+// 原始函数名：Unwind_180909550 - 异常状态重置函数A5
+// 功能：重置异常状态标志，清理异常处理状态
+#define ResetExceptionStatusA5 Unwind_180909550
+
+// 原始函数名：Unwind_1809095c0 - 异常处理器初始化函数A0
+// 功能：初始化异常处理器，设置异常处理上下文
+#define InitializeExceptionHandlerA0 Unwind_1809095c0
+
+// 原始函数名：Unwind_1809095d0 - 异常处理器初始化函数A1
+// 功能：初始化异常处理器，设置异常处理上下文
+#define InitializeExceptionHandlerA1 Unwind_1809095d0
+
+// 原始函数名：Unwind_180909600 - 异常处理器配置函数A0
+// 功能：配置异常处理器参数，设置异常处理选项
+#define ConfigureExceptionHandlerA0 Unwind_180909600
+
+// 原始函数名：Unwind_180909610 - 异常处理器配置函数A1
+// 功能：配置异常处理器参数，设置异常处理选项
+#define ConfigureExceptionHandlerA1 Unwind_180909610
+
+// 原始函数名：Unwind_180909620 - 异常处理器验证函数A0
+// 功能：验证异常处理器配置，检查异常处理状态
+#define ValidateExceptionHandlerA0 Unwind_180909620
+
+// 原始函数名：Unwind_180909630 - 异常处理器验证函数A1
+// 功能：验证异常处理器配置，检查异常处理状态
+#define ValidateExceptionHandlerA1 Unwind_180909630
+
+// 原始函数名：Unwind_180909640 - 内存资源清理函数A0
+// 功能：清理内存资源，释放内存分配
+#define CleanupMemoryResourceA0 Unwind_180909640
+
+// 原始函数名：Unwind_180909690 - 内存资源清理函数A1
+// 功能：清理内存资源，释放内存分配
+#define CleanupMemoryResourceA1 Unwind_180909690
+
+// 原始函数名：Unwind_1809096a0 - 内存资源清理函数A2
+// 功能：清理内存资源，释放内存分配
+#define CleanupMemoryResourceA2 Unwind_1809096a0
 #define InvokeExceptionHandlerAtOffset40 Unwind_180906d30
 
 // 原始函数名：Unwind_180906ec0 - 异常上下文重置函数EC0
@@ -13173,7 +13266,7 @@ void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
   
   processingStatus[0] = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataHandle + ExceptionHandlerCallbackOffset10),&resultBuffer);
   if (processingStatus[0] == 0) {
-    dataOffset = dataHandle + 0x18;
+    dataOffset = dataHandle + SystemContextDataOffset;
     ProcessDataRequest(requestInfo,processingStatus,*(DataWord *)(dataHandle + 0x14),resultBuffer);
   }
   return;
@@ -13204,7 +13297,7 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
   int64_t contextData;
   int DataCount;
   
-  conversionStatus = InitializeConversionContext(*(DataWord *)(contextHandle + 0x24),&systemContextBuffer);
+  conversionStatus = InitializeConversionContext(*(DataWord *)(contextHandle + SystemContextConversionOffset),&systemContextBuffer);
   if ((int)conversionStatus == 0) {
     DataCount = *(int *)(contextHandle + 0x18);
     if ((0 < DataCount) && (*(uint *)(contextHandle + ResourceDescriptorValidationOffset) < 2)) {
@@ -13218,7 +13311,7 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
         contextData = *(int64_t *)(contextHandle + ComponentHandleOffset);
         operationParams[0] = 2;
       }
-      operationResult = ExecuteDataConversion(operationHandle,operationParams,*(DataWord *)(contextHandle + 0x20),systemContextBuffer);
+      operationResult = ExecuteDataConversion(operationHandle,operationParams,*(DataWord *)(contextHandle + SystemContextOperationOffset),systemContextBuffer);
       conversionStatus = (uint64_t)operationResult;
       if (operationResult == 0) {
         conversionStatus = 0;
@@ -13338,7 +13431,7 @@ void ValidateAndProcessUtilityData(int64_t dataContext,int64_t systemContext)
 {
   int validationResult;
   
-  validationResult = ValidateSystemDataA1(*(DataBuffer *)(systemContext + 0x78),*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset10),
+  validationResult = ValidateSystemDataA1(*(DataBuffer *)(systemContext + SystemContextValidationOffset),*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset10),
                         dataContext + 0x14,dataContext + 0x20,dataContext + 0x2c,dataContext + 0x38);
   if ((validationResult == 0) &&
      (validationResult = ValidateDataAndReturnA0((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * 0x44 +
@@ -13386,7 +13479,7 @@ void ExecuteUtilitySystemCleanup(int64_t systemHandle, int64_t cleanupContext)
 {
   int cleanupStatus;
   
-  cleanupStatus = CleanupSystemResourceA1(*(DataBuffer *)(cleanupContext + 0x78),*(DataWord *)(systemHandle + ExceptionHandlerCallbackOffset10));
+  cleanupStatus = CleanupSystemResourceA1(*(DataBuffer *)(cleanupContext + SystemContextValidationOffset),*(DataWord *)(systemHandle + ExceptionHandlerCallbackOffset10));
   if (cleanupStatus == 0) {
     ExecuteCleanupOperation(*(DataBuffer *)(cleanupContext + 0x90),*(DataWord *)(systemHandle + ExceptionHandlerCallbackOffset10));
   }
@@ -13430,7 +13523,7 @@ DataBuffer ValidateDataIntegrity(int64_t dataStructure,int64_t exceptionHandlerC
   int elementIndex;
   
   elementIndex = 0;
-  validationFlagPointer = (DataWord *)(dataStructure + 0x18 + (int64_t)*(int *)(dataStructure + ExceptionHandlerCallbackOffset10) * 8);
+  validationFlagPointer = (DataWord *)(dataStructure + SystemContextDataOffset + (int64_t)*(int *)(dataStructure + ExceptionHandlerCallbackOffset10) * 8);
   DataElementContext = (int *)(dataStructure + 0x18);
   if (0 < *(int *)(dataStructure + ExceptionHandlerCallbackOffset10)) {
     do {
@@ -13482,7 +13575,7 @@ void ProcessUtilityDataStructure(int64_t dataStructurePointer,int64_t contextPoi
         break;
       }
       nextNodePointer = dataNodePointer;
-      if (dataNodePointer != (int64_t *)(contextPointer + 0x50)) {
+      if (dataNodePointer != (int64_t *)(contextPointer + SystemContextPointerOffset)) {
         previousNodePointer = (int64_t *)(*dataNodePointer + -8);
         if (*dataNodePointer == 0) {
           previousNodePointer = currentNodePointer;
@@ -22192,7 +22285,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               floatArrayPointer = (float *)&FloatValidationArray;
               loopCounter = 0.0;
               do {
-                floatValue = *(float *)(dataContext + -0x180985054 + (int64_t)floatArrayPointer);
+                floatValue = *(float *)(dataContext - FloatValidationDataAddress + (int64_t)floatArrayPointer);
                 if (floatValue != *floatArrayPointer) {
                   TemporaryDataWordC = StackDataWordA;
                   TemporaryDataWordB = 0;
@@ -22451,7 +22544,7 @@ ProcessDataSecurityValidation:
             floatDataPointer = (float *)&SystemValidationDataTableA2;
             floatLoopCounter = dataPointerD;
             do {
-              floatCurrentValue = *(float *)(contextPointer + -0x180985054 + (int64_t)floatDataPointer);
+              floatCurrentValue = *(float *)(contextPointer - FloatValidationDataAddress + (int64_t)floatDataPointer);
               if (floatCurrentValue != *floatDataPointer) {
                 operationResult = SystemOperationResult;
                 StackInputParameterC = &SystemValidationDataTableA3;
@@ -22697,7 +22790,7 @@ ValidateDataSecurity:
         pcalculatedFloatValue = (float *)&FloatValidationArray;
         loopCounterFloat = dataPointerD;
         do {
-          floatValidationValue = *(float *)(contextPointer + -0x180985054 + (int64_t)pcalculatedFloatValue);
+          floatValidationValue = *(float *)(contextPointer - FloatValidationDataAddress + (int64_t)pcalculatedFloatValue);
           if (floatValidationValue != *pcalculatedFloatValue) {
             operationResult = SystemOperationResult;
             StackValidationParameterA = &DataProcessingContextA0;
@@ -22859,7 +22952,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     FloatArrayPointer = (float *)&FloatValidationArray;
     LoopCounterFloat = dataPointerD;
     do {
-      ValidationFloatValue = *(float *)(contextPointer + -0x180985054 + (int64_t)FloatArrayPointer);
+      ValidationFloatValue = *(float *)(contextPointer - FloatValidationDataAddress + (int64_t)FloatArrayPointer);
       if (ValidationFloatValue != *FloatArrayPointer) {
         operationResult = SystemOperationResult;
         StackValidationParameterA = &DataProcessingContextA0;
@@ -37385,7 +37478,7 @@ void ExceptionUnwindHandlerA4(DataBuffer exceptionContext, int64_t unwindParam)
   int mutexUnlockResult;
   
   ExceptionContextPtr = *(DataBuffer *)(unwindParam + 0x40);
-  mutexUnlockResult = _Mtx_unlock(0x180c91970);
+  mutexUnlockResult = _Mtx_unlock(SystemMutexObjectAddress);
   if (mutexUnlockResult != 0) {
     __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
@@ -37511,7 +37604,7 @@ void SetExceptionContextAndUnlock(DataBuffer exceptionContext, int64_t contextDa
   ExceptionContext = *(DataBuffer *)(contextData + 0x88);
   
   // 解锁互斥锁
-  unlockResult = _Mtx_unlock(0x180c91970);
+  unlockResult = _Mtx_unlock(SystemMutexObjectAddress);
   if (unlockResult != 0) {
     // 如果解锁失败，抛出C标准错误
     __Throw_C_error_std__YAXH_Z(unlockResult);
@@ -62739,9 +62832,9 @@ void ResetSystemEventState(void)
 {
   byte encryptionShiftBits;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA2 = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetEvent();
                           ResetEvent(ExceptionEventHandle);
@@ -65157,9 +65250,9 @@ void ResetSystemStatusFlag(void)
 {
   byte encryptionShiftBitCount;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(ExceptionCriticalSectionAddress);
   SystemStatusFlag = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetEvent();
                           ResetEvent(ExceptionEventHandle);
@@ -70298,9 +70391,9 @@ void ResetSystemStatusFlags(void)
 {
   byte encryptionShiftBitCount;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA3 = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetEvent();
                           ResetEvent(ExceptionEventHandle);
@@ -72792,7 +72885,7 @@ void CleanupSystemMutexA(void)
 void CleanupSystemMutexB(void)
 
 {
-  _Mtx_destroy_in_situ(0x180c91970);
+  _Mtx_destroy_in_situ(SystemMutexObjectAddress);
   return;
 }
 
@@ -72815,7 +72908,7 @@ void ReleaseSystemMutexA10(DataBuffer exceptionContext, int64_t stackFrame)
   int mutexUnlockResult;
   
   ExceptionContextPtr = *(DataBuffer *)(stackFrame + 0x70);
-  mutexUnlockResult = _Mtx_unlock(0x180c91970);
+  mutexUnlockResult = _Mtx_unlock(SystemMutexObjectAddress);
   if (mutexUnlockResult != 0) {
     __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
@@ -74070,9 +74163,9 @@ void ResetExceptionStatusAndTriggerEvent(void)
 {
   byte encryptionShiftBitCount;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA4 = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetEvent();
                           ResetEvent(ExceptionEventHandle);
@@ -79508,9 +79601,9 @@ void Unwind_18090a6e0(void)
 {
   byte encryptionShiftBitCount;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA5 = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetEvent();
                           ResetEvent(ExceptionEventHandle);
@@ -108866,9 +108959,9 @@ void HandleResourceCleanupExceptionAtOffset7d0(void)
 {
   byte encryptionShiftBitCount;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(ExceptionCriticalSectionAddress);
   SystemCriticalSectionFlag = 0;
-  LeaveCriticalSection(0x180c82210);
+  LeaveCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetEvent();
                           ResetEvent(ExceptionEventHandle);
@@ -109830,7 +109923,7 @@ void SetDefaultExceptionHandlerA1(void)
 void DestroyMutexA0(void)
 
 {
-       _Mtx_destroy_in_situ(0x180c91970);
+       _Mtx_destroy_in_situ(SystemMutexObjectAddress);
   return;
 }
 
