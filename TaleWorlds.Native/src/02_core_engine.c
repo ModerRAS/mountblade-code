@@ -125603,6 +125603,18 @@ void ProcessSystemStatusBuffer(void)
 
 
 
+/**
+ * @brief 处理系统内存清理和验证
+ * 
+ * 该函数负责清理和验证系统内存中的数据结构，包括：
+ * - 验证数据节点完整性
+ * - 清理状态缓冲区
+ * - 处理内存分配和释放
+ * - 更新引用计数
+ * - 执行系统数据结构初始化
+ * 
+ * @note 原始函数名：FUN_18012786d
+ */
 void ProcessSystemMemoryCleanupAndValidation(void)
 {
   int *ReferenceCountPointer;
@@ -125802,13 +125814,19 @@ void ProcessSystemMemoryCleanupAndValidation(void)
 
 
 
-7c43(voidvoid FUN_180127c43(void
+/**
+ * @brief 执行系统跳转表处理
+ * 
+ * 该函数负责处理系统跳转表，执行相应的代码跳转操作
+ * 
+ * @note 原始函数名：FUN_180127c43
+ */
+void ProcessSystemJumpTableHandling(void)
 {
   long long DataNodeIndex;
   
   if (*(code **)(DataNodeIndex + 0x110) != (code *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x000180127c54. Too many branches
-                    // WARNING: Treating indirect jump as call
+    // 执行跳转表中的代码
     (**(code **)(DataNodeIndex + 0x110))();
     return;
   }
