@@ -50561,7 +50561,7 @@ uint8_t WaitAndProcessMemoryAllocationStatus(void
  * @note 此函数用于3D图形渲染和物理计算中的边界处理
  * @note 涉及复杂的数学计算和线程同步机制
  */
-float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure
+float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
 {
   float *PrimaryFloatPointer;
   byte ProcessingFlag;
@@ -70553,7 +70553,7 @@ MemoryAllocationComplete: // 原始标签：LAB_180093e1b
  * @return uint8_t* 返回目标数据结构指针
  180094010，CopyByteDataStructure
  */
-uint8_t *CopyByteDataStructure(uint8_t *Utf8InputBuffer, uint8_t *Utf8InputBufferSize
+uint8_t *CopyByteDataStructure(uint8_t *Utf8InputBuffer, uint8_t *Utf8InputBufferSize)
 {
   uint64_t dataPointer;
   
@@ -252633,8 +252633,8 @@ int ValidateUtf8StringEncoding(long long CharacterCode,long long Utf8BufferSize)
   long long *Utf8BufferPointer;
   
   MemoryBlockHandle = FUN_18020fa10(*(void *)(CharacterCode + 0x1f8));
-  if (MemoryBlockIndex != 0) {
-    return *(int *)(MemoryBlockIndex + 0x54);
+  if (MemoryBlockHandle != 0) {
+    return *(int *)(MemoryBlockHandle + 0x54);
   }
   ComputedResult = 0;
   ValidationResult = (int)((*(long long *)(CharacterCode + 0x268) - *(long long *)(CharacterCode + 0x260)) / 0x98);
