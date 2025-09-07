@@ -11382,10 +11382,10 @@ DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
     validationStatus = ValidateResourceAccess(adjustedResourcePointer, resourceDescriptor + ResourceDescriptorPrimaryOffset, contextData);
     if ((int)validationStatus == 0) {
       if (contextData[0] != 0) {
-        if (*(int64_t *)(contextData[0] + 8) == 0) {
+        if (*(int64_t *)(contextData[0] + PointerDataOffset) == 0) {
           return ResourceInvalidErrorCode;
         }
-        validationStatus = ProcessResourceData(*(int64_t *)(contextData[0] + 8),*(DataWord *)(resourceDescriptor + ResourceDescriptorSecondaryOffset),
+        validationStatus = ProcessResourceData(*(int64_t *)(contextData[0] + PointerDataOffset),*(DataWord *)(resourceDescriptor + ResourceDescriptorSecondaryOffset),
                                        *(ByteFlag *)(resourceDescriptor + ResourceDescriptorTertiaryOffset));
         if ((int)validationStatus != 0) {
           return validationStatus;
@@ -11416,16 +11416,16 @@ DataBuffer ValidateResourcePointerAccess(int64_t resourceDescriptor)
       resourceInfo[0] = 0;
     }
     else {
-      resourceInfo[0] = resourceInfo[0] + -8;
+      resourceInfo[0] = resourceInfo[0] + ResourcePointerAdjustment;
     }
     accessInfo[0] = 0;
     validationStatus = ValidateResourceAccess(resourceInfo[0],resourceDescriptor + ResourceDescriptorSecondaryOffset,accessInfo);
     if ((int)validationStatus == 0) {
       if (accessInfo[0] != 0) {
-        if (*(int64_t *)(accessInfo[0] + 8) == 0) {
+        if (*(int64_t *)(accessInfo[0] + PointerDataOffset) == 0) {
           return ResourceInvalidErrorCode;
         }
-        validationStatus = ProcessResourceData(*(int64_t *)(accessInfo[0] + 8),*(DataWord *)(resourceDescriptor + ResourceDescriptorPrimaryOffset),
+        validationStatus = ProcessResourceData(*(int64_t *)(accessInfo[0] + PointerDataOffset),*(DataWord *)(resourceDescriptor + ResourceDescriptorPrimaryOffset),
                               *(ByteFlag *)(resourceDescriptor + ResourceDescriptorQuaternaryOffset));
         if ((int)validationStatus != 0) {
           return validationStatus;
@@ -11487,7 +11487,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
   }
   
   // 获取验证上下文
-  exceptionHandlerContext = *(int64_t *)(systemContextBuffer + 8);
+  exceptionHandlerContext = *(int64_t *)(systemContextBuffer + PointerDataOffset);
   if (exceptionHandlerContext != 0) {
     inputFloatValue = *(float *)(resourceDescriptor + ResourceDescriptorDataOffset);
     
@@ -11495,7 +11495,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
     for (ArrayElementContext = *(uint64_t **)(exceptionHandlerContext + ExceptionHandlerContextArrayOffset);
         (*(uint64_t **)(exceptionHandlerContext + ExceptionHandlerContextArrayOffset) <= ArrayElementContext &&
         (ArrayElementContext < *(uint64_t **)(exceptionHandlerContext + ExceptionHandlerContextOffset) + *(int32_t *)(exceptionHandlerContext + ExceptionDataOffset))); 
-        ArrayElementContext = ArrayElementContext + 1) {
+        ArrayElementContext = ArrayElementContext + ArrayElementIncrement) {
       operationResult = ProcessFloatingPointDataValidationA0(*ArrayElementContext, inputFloatValue, 0);
       if ((int32_t)operationResult != 0) {
         return operationResult;
@@ -11517,7 +11517,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
           // 使用SIMD指令处理浮点数转换
           simdRegister = 0;
           *(float *)&simdRegister = processedFloatValue;
-          *(float *)((uint8_t *)&simdRegister + 4) = processedFloatValue;
+          *(float *)((uint8_t *)&simdRegister + FloatDataSecondaryOffset) = processedFloatValue;
           statusFlags = movmskps(validationFlags, simdRegister);
           processedFloatValue = (float)(int32_t)(integerConversionValue - (statusFlags & 1));
         }
