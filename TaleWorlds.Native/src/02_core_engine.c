@@ -120731,7 +120731,7 @@ LAB_180124eff:
 
 
 
-5434(voidvoid FUN_180125434(void
+5434(voidvoid EmptySystemStatusFunction(void
 {
   return;
 }
@@ -120740,7 +120740,7 @@ LAB_180124eff:
 
 
 
-5440(voidvoid FUN_180125440(void
+5440(voidvoid ProcessSystemStatusAndConfiguration(void
 {
   double ConfigurationParamA;
   char SystemCheckResult;
@@ -121432,7 +121432,7 @@ LAB_180125a82:
 
 
 
-5ff8(voidvoid FUN_180125ff8(void
+5ff8(voidvoid ManageSystemMemoryAndLocks(void
 {
   int LockResult;
   long long BufferStatus;
