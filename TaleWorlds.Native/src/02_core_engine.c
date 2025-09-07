@@ -148,6 +148,7 @@
 #define ProcessSystemCharacterEncodingConversion FUN_18014f980 // 处理系统字符编码转换
 #define ProcessCharacterCodeWithSystemBufferManagement FUN_18014b7f0 // 处理字符代码和系统缓冲区管理
 #define ProcessCharacterCodeWithUtf8BufferValidation FUN_18014c430 // 处理字符代码和UTF8缓冲区验证
+#define ProcessCharacterCodeWithMemoryAllocation FUN_18014cb90 // 处理字符代码和内存分配
 
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
@@ -180234,7 +180235,7 @@ void CalculateAndUpdateMemoryPoolSize(uint64_t CharacterCode, long long SystemBu
 
 
 
-4cb90(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t *Utf8SourcePointer,uint8_t Utf16EndPointervoid FUN_18014cb90(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t *Utf8SourcePointer,uint8_t Utf16EndPointer
+void FUN_18014cb90(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t *Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
   float SystemContextPrimaryFloat;
   unsigned long long MemoryAllocationIndex;
