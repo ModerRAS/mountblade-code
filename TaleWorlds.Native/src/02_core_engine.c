@@ -182122,24 +182122,24 @@ void SystemPlaceholderFunction(void)
  */
 void ProcessSystemStatusUpdate(long long *CharacterCode, unsigned long long SystemBufferSize)
 {
-  long long PrimaryDataSize;
-  long long BufferStatus;
+  long long AllocationSize;
+  long long CurrentBufferStart;
   
-  BufferStatus = *CharacterCode;
-  if ((unsigned long long)(CharacterCode[2] - BufferStatus >> 2) < SystemBufferSize) {
+  CurrentBufferStart = *CharacterCode;
+  if ((unsigned long long)(CharacterCode[2] - CurrentBufferStart >> 2) < SystemBufferSize) {
     if (SystemBufferSize == 0) {
       CharacterTablePointer = 0;
     }
     else {
-      CharacterTablePointer = BufferAllocate(MemoryPoolManager,SystemBufferSize * 4,(char)CharacterCode[3]);
-      BufferStatus = *CharacterCode;
+      CharacterTablePointer = BufferAllocate(MemoryPoolManager, SystemBufferSize * 4, (char)CharacterCode[3]);
+      CurrentBufferStart = *CharacterCode;
     }
-    if (BufferStatus != CharacterCode[1]) {
-                    // WARNING: Subroutine does not return
-      memmove(LoopCounter,BufferStatus,CharacterCode[1] - BufferStatus);
+    if (CurrentBufferStart != CharacterCode[1]) {
+      // WARNING: Subroutine does not return
+      memmove(LoopCounter, CurrentBufferStart, CharacterCode[1] - CurrentBufferStart);
     }
-    if (BufferStatus != 0) {
-                    // WARNING: Subroutine does not return
+    if (CurrentBufferStart != 0) {
+      // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
     *CharacterCode = LoopCounter;
@@ -182153,22 +182153,36 @@ void ProcessSystemStatusUpdate(long long *CharacterCode, unsigned long long Syst
 
 
 
-4e8d3(long long CharacterCode,long long SystemBufferSizevoid FUN_18014e8d3(long long CharacterCode,long long SystemBufferSize
+/**
+ * @brief 处理系统数据复制和重新分配
+ * 
+ * 该函数负责处理系统数据的复制和重新分配，包括：
+ * - 分配新的缓冲区
+ * - 复制现有数据
+ * - 更新系统上下文指针
+ * - 清理旧的内存分配
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18014e8d3
+ */
+void ProcessSystemDataReallocation(long long CharacterCode, long long SystemBufferSize)
 {
-  long long PrimaryDataSize;
+  long long DataCopySize;
   long long *SystemContext;
-  long long PatternMatchStatus;
+  long long SourceDataEnd;
   
   if (SystemBufferSize == 0) {
     CharacterTablePointer = 0;
   }
   else {
-    CharacterTablePointer = BufferAllocate(MemoryPoolManager,SystemBufferSize * 4,(char)SystemContext[3]);
+    CharacterTablePointer = BufferAllocate(MemoryPoolManager, SystemBufferSize * 4, (char)SystemContext[3]);
     CharacterCode = *SystemContext;
   }
   if (CharacterCode == SystemContext[1]) {
     if (CharacterCode != 0) {
-                    // WARNING: Subroutine does not return
+      // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
     *SystemContext = LoopCounter;
@@ -182176,14 +182190,26 @@ void ProcessSystemStatusUpdate(long long *CharacterCode, unsigned long long Syst
     SystemContext[2] = CharacterTablePointer + PatternIndex * 4;
     return;
   }
-                    // WARNING: Subroutine does not return
-  memmove(LoopCounter,CharacterCode,SystemContext[1] - CharacterCode);
+  // WARNING: Subroutine does not return
+  memmove(LoopCounter, CharacterCode, SystemContext[1] - CharacterCode);
 }
 
 
 
 
-4e952(voidvoid FUN_18014e952(void
+/**
+ * @brief 系统状态检查函数
+ * 
+ * 该函数用于检查系统状态，可能用于：
+ * - 验证系统完整性
+ * - 检查资源状态
+ * - 确认系统配置
+ * 
+ * 目前是空函数，可能用于未来扩展或保持API兼容性。
+ * 
+ * @note 原始函数名：FUN_18014e952
+ */
+void SystemStatusCheckFunction(void)
 {
   return;
 }
