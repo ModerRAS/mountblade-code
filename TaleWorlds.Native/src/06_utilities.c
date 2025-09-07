@@ -15077,7 +15077,7 @@ DataBuffer ManageResourceState(int64_t resourceManager,int64_t systemParams)
     }
     *(int *)(resourceContext + ResourceCounterOffset) = resourceCounter + -1;
     if (resourceCounter == 1) {
-        CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + SystemEventOffset),operationBase);
+        CleanupSystemEventA0(*(DataBuffer *)(systemParams + SystemEventOffset),resourceManager);
     }
     operationResult = 0;
   }
@@ -15145,7 +15145,7 @@ DataBuffer ProcessSystemRequest(int64_t contextHandle,int64_t systemParameters)
     return 0x4e;
   }
   *(ByteFlag *)(requestContext + 0x2c) = 1;
-    CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + SystemEventOffset),operationBase);
+    CleanupSystemEventA0(*(DataBuffer *)(systemParameters + SystemEventOffset),contextHandle);
 }
 
 
@@ -27045,32 +27045,41 @@ void UtilityNoOperationL(void)
 
 
 
-// 函数: void ProcessUtilityDataOperation(int64_t operationHandle, uint *operationData)
-// 
-// 处理工具数据操作
-// 根据操作数据的值进行不同的处理，包括数据验证和转换
-// 
-// 参数:
-//   operationHandle - 操作句柄，指向操作相关的数据结构
-//   operationData - 操作数据指针，包含需要处理的数据
-// 
-// 返回值:
-//   无
+/**
+ * @brief 处理工具数据操作
+ * 
+ * 该函数负责处理工具系统中的数据操作，包括数据验证、转换和模式选择。
+ * 函数根据输入数据的范围选择不同的处理模式，并调用相应的系统函数进行处理。
+ * 
+ * 处理逻辑：
+ * - 如果数据值在正常范围内（systemDataBuffer + 0x4000 < 0x8000），使用模式2处理
+ * - 如果数据值超出正常范围，使用模式4处理并进行数据转换
+ * - 处理完成后，如果操作成功，会调用参数验证函数进行进一步验证
+ * 
+ * @param operationHandle 操作句柄，指向操作相关的数据结构和函数表
+ * @param operationData 操作数据指针，包含需要处理的数据值
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数包含数据范围检查和模式选择逻辑
+ * @warning 函数内部使用了函数指针调用，确保operationHandle指向有效的函数表
+ * @see ValidateParametersA1
+ */
 void ProcessUtilityDataOperation(int64_t operationHandle, uint *operationData)
 
 {
-  uint systemDataBuffer;
+  uint rawDataValue;
   int operationResult;
   DataBuffer processingMode;
   DataWord processedData;
   
-  systemDataBuffer = *operationData;
-  if (systemDataBuffer + 0x4000 < 0x8000) {
-    processedData = CONCAT22(processedData._2_2_,(short)systemDataBuffer) & 0xffff7fff;
+  rawDataValue = *operationData;
+  if (rawDataValue + 0x4000 < 0x8000) {
+    processedData = CONCAT22(processedData._2_2_,(short)rawDataValue) & 0xffff7fff;
     processingMode = 2;
   }
   else {
-    processedData = (systemDataBuffer & 0xffffc000 | 0x4000) * 2 | systemDataBuffer & 0x7fff;
+    processedData = (rawDataValue & 0xffffc000 | 0x4000) * 2 | rawDataValue & 0x7fff;
     processingMode = 4;
   }
   operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationHandle + 8))

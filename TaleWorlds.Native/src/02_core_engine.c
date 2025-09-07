@@ -4048,6 +4048,34 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 功能：处理系统函数表和调用配置
 #define ProcessSystemFunctionTable ProcessSystemFunctionTable
 
+// 缺失的FUN_函数语义化定义
+/**
+ * @brief 处理系统数据验证
+ * 
+ * 该函数负责处理系统数据的验证操作，包括数据完整性和一致性检查
+ * 
+ * @note 原始函数名：FUN_1801210b0
+ */
+#define ProcessSystemDataValidation FUN_1801210b0
+
+/**
+ * @brief 重置字符处理系统
+ * 
+ * 该函数负责重置字符处理系统的状态和配置
+ * 
+ * @note 原始函数名：FUN_18013ce40
+ */
+#define ResetCharacterProcessingSystem FUN_18013ce40
+
+/**
+ * @brief 获取文件句柄
+ * 
+ * 该函数负责根据字符代码和配置路径获取文件句柄
+ * 
+ * @note 原始函数名：FUN_180121300
+ */
+#define GetFileHandle FUN_180121300
+
 // 原始函数名：CleanupSystemResourcesA0 - 系统清理函数A0
 // 功能：清理系统资源和临时数据
 #define CleanupSystemResourcesA0 CleanupSystemResourcesA0
@@ -168605,17 +168633,17 @@ LAB_18013c174:
     if (0 < CharacterCode) {
       EncodingValidationResult = CharacterCode;
     }
-    FUN_18013da40(CharacterLimit + 8,EncodingValidationResult);
+    ProcessSystemDataAllocation(CharacterLimit + 8,EncodingValidationResult);
   }
   CharacterLimit[8] = 0;
-  FUN_18013da40(CharacterLimit + 8,*CharacterLimit);
+  ProcessSystemDataAllocation(CharacterLimit + 8,*CharacterLimit);
   EncodingValidationResult = 0;
   if (0 < *CharacterLimit) {
     MemoryBoundaryEnd = 0;
     do {
       BufferStatus = *(long long *)(MemoryBoundaryEnd + 8 + *(long long *)(CharacterLimit + 2));
       if ((BufferStatus != 0) && (*(long long *)(BufferStatus + 8) == 0)) {
-        FUN_18013c380();
+        ProcessSystemDataValidation();
       }
       EncodingValidationResult = EncodingValidationResult + 1;
       MemoryBoundaryEnd = MemoryBoundaryEnd + 0x10;
