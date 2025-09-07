@@ -2173,6 +2173,7 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 
 // UTF-8到UTF-16字符编码转换函数
 #define ProcessUtf8ToUtf16CharacterEncodingEx FUN_180168590
+#define ProcessUtf8InputBufferAndCharacterEncodingConversion FUN_180228730
 #define ProcessUtf8ToUtf16CharacterEncodingEx2 FUN_180168670
 #define ProcessUtf8ToUtf16CharacterEncodingEx3 FUN_180168840
 #define ProcessUtf8ToUtf16CharacterEncodingEx4 FUN_180168960
@@ -269055,7 +269056,7 @@ void ProcessUtf8InputBufferAndCharacterEncodingConversion(uint32_t *Utf8InputBuf
   uint32_t CalculatedCodePoint;
   char *CharacterPointer;
   uint8_t *StringProcessingStatus;
-  uint32_t *StringProcessingStatus;
+  uint32_t *StringProcessingStatusPtr;
   unsigned long long MemoryAllocationLoopCounter;
   int IntegerValue0;
   unsigned long long ProcessStringBuffer;
