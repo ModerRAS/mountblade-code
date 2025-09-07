@@ -103,7 +103,7 @@
 
 // 数据合并函数定义
 #define CONCAT44(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
-#define CONCAT71(mask, condition) ((mask) | ((condition) ? 1 : 0))
+#define SetBitFlag(mask, condition) ((mask) | ((condition) ? 1 : 0))
 
 // 联合体成员访问宏定义
 #define DataBufferHighWord(dataBuffer) ((dataBuffer)._4_4_)
@@ -71544,7 +71544,17 @@ void SetDefaultExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908820(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 扩展数据缓冲区回调执行函数
+ * 
+ * 该函数负责从数据缓冲区的扩展偏移量获取回调函数指针并执行
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908820
+ */
+void ExecuteExtendedDataBufferCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xe8) != (int64_t *)0x0) {
@@ -71555,7 +71565,22 @@ void Unwind_180908820(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908830(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源指针清理函数
+ * 
+ * 该函数负责清理内存资源指针，包括：
+ * - 获取内存资源指针
+ * - 计算内存区域基址
+ * - 处理内存块偏移量
+ * - 管理资源引用计数
+ * - 执行异常处理或内存管理
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908830
+ */
+void CleanupMemoryResourcePointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -71640,7 +71665,17 @@ void CleanupExceptionHandlerResourcesOnUnwind(DataBuffer operationBase, int64_t 
 
 
 
-void Unwind_180908850(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 高级数据缓冲区回调执行函数
+ * 
+ * 该函数负责从数据缓冲区的高级偏移量获取回调函数指针并执行
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908850
+ */
+void ExecuteAdvancedDataBufferCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xf8) != (int64_t *)0x0) {
@@ -71651,7 +71686,21 @@ void Unwind_180908850(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908860(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文回调处理器
+ * 
+ * 该函数负责处理异常上下文中的回调函数，包括：
+ * - 获取异常上下文指针范围
+ * - 遍历数据上下文指针
+ * - 执行有效的回调函数
+ * - 检查系统终止条件
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908860
+ */
+void ProcessExceptionContextCallbacks(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
