@@ -7166,9 +7166,9 @@ uint8_t UtilityDestroyMemoryHeap;
 uint8_t UtilityDestroyHeapPrimaryData;
 uint8_t UtilityDestroyHeapSecondaryData;
 uint8_t UtilityDestroyHeapPrimaryPointer;
-uint8_t UtilityDestroyHeapData3;
-uint8_t UtilityDestroyHeapData4;
-uint8_t UtilityDestroyHeapData5;
+uint8_t UtilityDestroyHeapTertiaryData;
+uint8_t UtilityDestroyHeapQuaternaryData;
+uint8_t UtilityDestroyHeapQuinaryData;
 
 // 函数: uint8_t UtilityResizeMemoryHeap;
 // 
