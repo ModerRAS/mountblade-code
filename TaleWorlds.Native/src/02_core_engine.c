@@ -162965,10 +162965,10 @@ LAB_18013c174:
   while( true ) {
     ProcessStringBuffer = *Utf8BufferSize;
     if (*(uint32_t **)(Utf8BufferSize + 2) == (uint32_t *)0x0) {
-      uStack_44 = 0;
+      UnsignedStack10 = 0;
     }
     else {
-      uStack_44 = **(uint32_t **)(Utf8BufferSize + 2);
+      UnsignedStack10 = **(uint32_t **)(Utf8BufferSize + 2);
     }
     SystemStatusCode = Utf8BufferSize[0x26];
     if (*(long long *)(Utf8BufferSize + 4) == 0) {
@@ -162979,8 +162979,8 @@ LAB_18013c174:
     }
     CurrentByteValue0 = *(byte *)(Utf8BufferSize + 0x28);
     IntegerValue4 = *(int *)(SystemContextPointer + 0x24);
-    uStack_3c._0_2_ = CONCAT11((char)Utf16InputPointer,SystemVariable9);
-    uStack_3c = CONCAT13(CurrentByteValue0 >> 5,CONCAT12(CurrentByteValue0 >> 4,(uint16_t)uStack_3c)) & 0x101ffff;
+    UnsignedStack11._0_2_ = CONCAT11((char)Utf16InputPointer,SystemVariable9);
+    UnsignedStack11 = CONCAT13(CurrentByteValue0 >> 5,CONCAT12(CurrentByteValue0 >> 4,(uint16_t)UnsignedStack11)) & 0x101ffff;
     CalculatedFilterValue = (float)Utf8BufferSize[0xe];
     FloatVariable4 = (float)Utf8BufferSize[0xf];
     FloatVariable5 = (float)Utf8BufferSize[0x10];
@@ -163005,14 +163005,14 @@ LAB_18013c174:
     SystemDataTablePointer = *(long long *)(SystemContextPointer + 0x28);
     StatusBuffer = (uint32_t *)((long long)IntegerValue5 * 0x20 + SystemDataTablePointer);
     *StatusBuffer = ProcessStringBuffer;
-    StatusBuffer[1] = uStack_44;
+    StatusBuffer[1] = UnsignedStack10;
     StatusBuffer[2] = SystemStatusCode;
-    StatusBuffer[3] = uStack_3c;
+    StatusBuffer[3] = UnsignedStack11;
     PrimaryProcessingStatusFlag = (uint *)((long long)IntegerValue5 * 0x20 + 0x10 + SystemDataTablePointer);
-    *PrimaryProcessingStatusFlag = CONCAT22((short)(int)FloatValue3,CONCAT11(uStack_37,CurrentByteValue0 >> 6)) & 0xffffff01;
+    *PrimaryProcessingStatusFlag = CONCAT22((short)(int)FloatValue3,CONCAT11(UnsignedStack12,CurrentByteValue0 >> 6)) & 0xffffff01;
     PrimaryProcessingStatusFlag[1] = CONCAT22((short)(int)FloatVariable5,(short)(int)FloatVariable4);
     PrimaryProcessingStatusFlag[2] = CONCAT22((short)(int)FloatVariable7,(short)(int)CalculatedDistance);
-    PrimaryProcessingStatusFlag[3] = CONCAT22(uStack_2a,(short)(int)FloatValue8);
+    PrimaryProcessingStatusFlag[3] = CONCAT22(UnsignedStack13,(short)(int)FloatValue8);
     *(int *)(SystemContextPointer + 0x20) = *(int *)(SystemContextPointer + 0x20) + 1;
     if (*(long long *)(Utf8BufferSize + 4) != 0) {
       FUN_18013c380(SystemContextPointer,*(long long *)(Utf8BufferSize + 4),Utf16InputPointer + 1);
