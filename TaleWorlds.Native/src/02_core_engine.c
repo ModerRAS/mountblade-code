@@ -207720,8 +207720,21 @@ LAB_18017931c:
 
 
 uint32_t
-FUN_180179410(uint64_t CharacterCode,long long *Utf8InputBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer,
-             uint64_t *AdditionalParameter1
+/**
+ * @brief UTF-8到UTF-16字符编码转换器
+ * 
+ * 该函数将UTF-8编码的字符转换为UTF-16编码格式，并更新系统状态。
+ * 主要用于多语言文本处理和字符编码转换操作。
+ * 
+ * @param CharacterCode 输入的字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数指针
+ * @return uint32_t 转换后的UTF-16字符
+ */
+uint32_t ConvertUtf8ToUtf16Character(uint64_t CharacterCode,long long *Utf8InputBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer,
+             uint64_t *AdditionalParameter1)
 {
   uint32_t Utf16Char;
   
