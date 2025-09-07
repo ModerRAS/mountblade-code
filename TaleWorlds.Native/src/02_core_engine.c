@@ -181977,7 +181977,21 @@ uint64_t * AllocateCharacterSystemMemory(uint64_t *CharacterCode, long long Syst
 
 
 
-4e7d0(long long *CharacterCode,unsigned long long SystemBufferSizevoid FUN_18014e7d0(long long *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 处理系统缓冲区初始化
+ * 
+ * 该函数负责初始化系统缓冲区，包括：
+ * - 分配内存缓冲区
+ * - 复制字符表数据
+ * - 管理系统数据注册表
+ * - 清理旧的内存分配
+ * 
+ * @param CharacterCode 字符代码指针数组
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18014e7d0
+ */
+void ProcessSystemBufferInitialization(long long *CharacterCode, unsigned long long SystemBufferSize)
 {
   long long PrimaryDataSize;
   uint32_t *PrimaryProcessingStatusFlag;
