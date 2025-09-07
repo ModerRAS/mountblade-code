@@ -172193,7 +172193,16 @@ void ProcessUtf8ToUtf16Conversion(uint64_t *Utf8InputBuffer, uint64_t Utf8Buffer
 
 
 
-3da40(int *Utf8InputBuffer,int Utf8BufferSizevoid FUN_18013da40(int *Utf8InputBuffer,int Utf8BufferSize
+/**
+ * 处理UTF-8输入缓冲区并分配内存
+ * 
+ * 该函数接收UTF-8输入缓冲区和缓冲区大小，执行系统内存分配操作，
+ * 并更新相关的系统配置和字符代码数据。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ */
+void ProcessUtf8InputBufferAllocation(int *Utf8InputBuffer, int Utf8BufferSize)
 {
   uint64_t Utf16Char;
   
@@ -172216,7 +172225,13 @@ void ProcessUtf8ToUtf16Conversion(uint64_t *Utf8InputBuffer, uint64_t Utf8Buffer
 
 
 
-3da5c(voidvoid FUN_18013da5c(void
+/**
+ * 处理系统上下文和内存分配
+ * 
+ * 该函数处理系统上下文相关的内存分配操作，包括数据节点的处理
+ * 和UTF-16字符的内存管理。
+ */
+void ProcessSystemContextAndMemoryAllocation(void)
 {
   long long ProcessingResult;
   uint64_t Utf16Char;
@@ -172239,7 +172254,12 @@ void ProcessUtf8ToUtf16Conversion(uint64_t *Utf8InputBuffer, uint64_t Utf8Buffer
 
 
 
-3dacd(voidvoid FUN_18013dacd(void
+/**
+ * 空操作函数
+ * 
+ * 该函数不执行任何操作，仅用于填充或占位。
+ */
+void NoOperationFunction(void)
 {
   return;
 }
@@ -226156,7 +226176,19 @@ LAB_1801945bb:
 
 
 
-float * FUN_180194940(float *Utf8InputBuffer,float *Utf8InputBufferSize,float *Utf8SourcePointer
+/**
+ * @brief UTF-8输入缓冲区矩阵变换处理函数
+ * 
+ * 对UTF-8输入缓冲区进行矩阵变换和滤波处理，计算各种浮点参数值。
+ * 该函数处理缓冲区中的浮点数据，应用矩阵变换算法，并返回处理后的结果。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return 处理后的浮点结果指针
+ * @note 原始函数名：FUN_180194940
+ */
+float * ProcessUtf8InputBufferMatrixTransform(float *Utf8InputBuffer,float *Utf8InputBufferSize,float *Utf8SourcePointer
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -251075,7 +251107,18 @@ uint32_t FUN_180214cf0(long long CharacterCode
 
 
 
-float FUN_1802150c0(uint64_t CharacterCode,uint64_t Utf8BufferSize
+/**
+ * @brief 字符代码和UTF-8缓冲区大小处理函数
+ * 
+ * 根据字符代码和UTF-8缓冲区大小进行相应的处理和计算。
+ * 该函数用于处理字符编码相关的计算和转换操作。
+ * 
+ * @param CharacterCode 字符代码值
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return 处理结果的浮点值
+ * @note 原始函数名：FUN_1802150c0
+ */
+float ProcessCharacterCodeAndUtf8BufferSize(uint64_t CharacterCode,uint64_t Utf8BufferSize
 {
   long long PrimaryDataSize;
   int aiStackX_18 [4];
