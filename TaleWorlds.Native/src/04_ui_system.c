@@ -200020,19 +200020,33 @@ void FUN_18078c746(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18078c760(longlong uiContext,int dataSource)
-void FUN_18078c760(longlong uiContext,int dataSource)
+ // 原始函数名：FUN_18078c760 - UI颜色缓冲区数据处理函数
+#define ProcessUIColorBufferData FUN_18078c760
+
+/**
+ * @brief 处理UI颜色缓冲区数据
+ * 
+ * 该函数负责处理UI系统的颜色缓冲区数据，包括：
+ * - 颜色缓冲区的遍历和处理
+ * - 颜色值的插值和更新
+ * - UI上下文状态的管理
+ * - 缓冲区数据的同步操作
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ */
+void ProcessUIColorBufferData(longlong uiContext,int dataSource)
 
 {
-  float floatResult;
+  float colorValueResult;
   longlong *colorBufferPointer;
-  longlong *pstringCompareIndex;
-  longlong *plocalLong4;
-  longlong localLong5;
-  longlong *pcontextData;
-  bool bVar7;
-  float localFloat8;
-  int aiStackX_8 [2];
+  longlong *stringCompareIndex;
+  longlong *uiElementPointer;
+  longlong bufferDataValue;
+  longlong *contextData;
+  bool needsColorUpdate;
+  float currentColorValue;
+  int colorProcessingFlags [2];
   
   CleanupUIContextState(*(undefined8 *)(_DAT_180be12f0 + 0x120));
   colorBufferPointer = *(longlong **)(uiContext + 0x11728);
