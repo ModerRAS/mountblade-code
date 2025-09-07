@@ -1846,9 +1846,17 @@
 // 功能：销毁互斥锁C，释放相关资源
 #define DestroyMutexC FUN_180943070
 
-// 原始函数名：FUN_180627b90 - 资源清理处理函数
+// 原始函数名：CleanupResourceHandler - 资源清理处理函数
 // 功能：清理和释放系统资源
-#define CleanupResourceHandler FUN_180627b90
+#define CleanupResourceHandler CleanupResourceHandler
+
+// 原始函数名：ValidateDataHandler - 数据验证处理函数
+// 功能：验证数据的有效性和完整性
+#define ValidateDataHandler ValidateDataHandler
+
+// 原始函数名：CleanupBufferHandler - 缓冲区清理处理函数
+// 功能：清理数据缓冲区，释放内存资源
+#define CleanupBufferHandler CleanupBufferHandler
 
 // 原始函数名：UNK_180a3c3e0 - 临时异常处理器
 // 功能：临时异常处理程序，用于系统初始化期间
@@ -4097,6 +4105,14 @@
 // 原始函数名：FUN_18005cb60 - 系统清理函数
 // 功能：清理系统资源并重置状态
 #define CleanupSystemResourcesAndReset FUN_18005cb60
+
+// 原始函数名：FUN_1801fef10 - 系统数据流处理函数
+// 功能：处理系统数据流并执行验证
+#define ProcessSystemDataFlowAndValidate FUN_1801fef10
+
+// 原始函数名：FUN_1800582b0 - 系统资源分配函数
+// 功能：分配系统资源并初始化
+#define AllocateSystemResourcesAndInitialize FUN_1800582b0
 
 // 原始函数名：FUN_1800adb30 - 系统验证函数
 // 功能：验证系统组件并执行检查
@@ -17003,7 +17019,7 @@ MemoryCopyLabel:
   }
 ExecuteSecurityValidation:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(inputDataWord ^ (uint64_t)auStack_738);
+  ExecuteSecurityCheck(inputDataWord ^ (uint64_t)SecurityCheckBufferA);
 }
 
 
@@ -18463,7 +18479,7 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   int loopIndex;
   uint8_t **ppdataFlags;
   int calculatedValue;
-  ByteFlag auStack_328 [32];
+  ByteFlag EncryptionKeyBufferA [32];
   DataWord uStack_308;
   float afStack_304 [3];
   uint8_t *puStack_2f8;
@@ -18491,10 +18507,10 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   DataWord uStack_270;
   uint uStack_268;
   DataWord uStack_264;
-  ByteFlag auStack_260 [520];
+  ByteFlag DataProcessingBufferA [520];
   uint64_t colorDataWord;
   
-  colorDataWord = ExceptionEncryptionKey ^ (uint64_t)auStack_328;
+  colorDataWord = ExceptionEncryptionKey ^ (uint64_t)EncryptionKeyBufferA;
   loopIndex = 0;
   if (operationFlagA != 0) {
     operationStatus = *(int *)(dataBuffer + 0x220);
@@ -18781,7 +18797,7 @@ SecurityValidationLabel:
   }
 ExecuteSystemSecurityCheck:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(colorDataWord ^ (uint64_t)auStack_328);
+  ExecuteSecurityCheck(colorDataWord ^ (uint64_t)EncryptionKeyBufferA);
 }
 
 
@@ -19118,14 +19134,14 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
 {
   int64_t validationContext;
   int operationResult;
-  ByteFlag auStack_248 [32];
-  ByteFlag auStack_228 [512];
+  ByteFlag EncryptionKeyBufferB [32];
+  ByteFlag DataProcessingBufferB [512];
   uint64_t uStack_28;
   
-  uStack_28 = ExceptionEncryptionKey ^ (uint64_t)auStack_248;
+  uStack_28 = ExceptionEncryptionKey ^ (uint64_t)EncryptionKeyBufferB;
   validationContext = operationBase[4];
   if (((char)validationContext != '\0') || (operationResult = ValidateSystemDataA0(operationBase,1), operationResult == 0)) {
-    operationResult = (**(FunctionPointer**)(*dataBuffer + 0x10))(dataBuffer,auStack_228,0x200);
+    operationResult = (**(FunctionPointer**)(*dataBuffer + 0x10))(dataBuffer,DataProcessingBufferB,0x200);
     ProcessData(auStack_228 + operationResult,0x200 - operationResult,10);
     operationResult = (**(FunctionPointer**)(*operationBase + 8))(operationBase,auStack_228);
     if ((operationResult == 0) &&
@@ -34938,7 +34954,7 @@ void SetDefaultExceptionHandlerAtOffsetF0(DataBuffer operationBase, int64_t data
 void SetDefaultExceptionHandlerAtOffset138(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x138) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x138) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x140) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -34964,7 +34980,7 @@ void SetDefaultExceptionHandlerAtOffset138(DataBuffer operationBase, int64_t dat
 void SetDefaultExceptionHandlerAtOffset1A0(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
-  *(DataBuffer *)(targetObjectPointer + 0x1a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(targetObjectPointer + 0x1a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(targetObjectPointer + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -35011,7 +35027,7 @@ void ClearStateFlagAndExecuteCallback(DataBuffer unusedParameter,int64_t targetO
 void SetDefaultExceptionHandlerAtOffset180(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
-  *(DataBuffer *)(targetObjectPointer + 0x180) = &UNK_180a3c3e0;
+  *(DataBuffer *)(targetObjectPointer + 0x180) = &TemporaryExceptionHandler;
   if (*(int64_t *)(targetObjectPointer + 0x188) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -35505,7 +35521,7 @@ void CleanupResourceReference(DataBuffer exceptionContext, int64_t resourceManag
 void InitializeExceptionHandler78(DataBuffer exceptionContext, int64_t handlerTable)
 
 {
-  *(DataBuffer *)(handlerTable + 0x78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(handlerTable + 0x78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(handlerTable + 0x80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -35572,7 +35588,7 @@ void SetExceptionHandlerOffset150(DataBuffer exceptionContext, int64_t handlerTa
 void InitializeExceptionHandlerA8(DataBuffer exceptionContext, int64_t handlerTable)
 
 {
-  *(DataBuffer *)(handlerTable + 0xa8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(handlerTable + 0xa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(handlerTable + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -35599,7 +35615,7 @@ void InitializeExceptionHandlerA8(DataBuffer exceptionContext, int64_t handlerTa
 void ExceptionRecoveryHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0xd0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0xd0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xd8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -35627,7 +35643,7 @@ void ExceptionRecoveryHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionRecoveryHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -35791,7 +35807,7 @@ void ExceptionRecoveryHandlerB7(DataBuffer operationBase,int64_t dataBuffer,Data
 void ExceptionRecoveryHandlerB8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x100) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x100) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -35818,7 +35834,7 @@ void ExceptionRecoveryHandlerB8(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionRecoveryHandlerB9(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x88) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x90) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -36060,13 +36076,13 @@ void ExceptionContextCleanupHandlerB16(DataBuffer ExceptionContext, int64_t Cont
   DataBuffer *exceptionHandlerArray;
   
   exceptionHandlerArray = *(DataBuffer **)(ContextPointer + 0x78);
-  *exceptionHandlerArray = &UNK_180a3cf50;
+  *exceptionHandlerArray = &ExceptionHandlerA;
   if (*(char *)((int64_t)exceptionHandlerArray + 0xb1) != '\0') {
-    FUN_180639250();
+    ResetSystemStateE0();
   }
   _Mtx_destroy_in_situ();
-  *exceptionHandlerArray = &UNK_180a30778;
-  exceptionHandlerArray[7] = &UNK_180a3c3e0;
+  *exceptionHandlerArray = &ExceptionHandlerB;
+  exceptionHandlerArray[7] = &TemporaryExceptionHandler;
   if (exceptionHandlerArray[8] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -36074,7 +36090,7 @@ void ExceptionContextCleanupHandlerB16(DataBuffer ExceptionContext, int64_t Cont
   exceptionHandlerArray[8] = 0;
   *(DataWord *)(exceptionHandlerArray + 10) = 0;
   exceptionHandlerArray[7] = &DefaultExceptionHandlerB;
-  exceptionHandlerArray[1] = &UNK_180a3c3e0;
+  exceptionHandlerArray[1] = &TemporaryExceptionHandler;
   if (exceptionHandlerArray[2] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -36108,8 +36124,8 @@ void ExceptionRecoveryHandlerB22(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerPointer = *(DataBuffer **)(dataBuffer + 0x78);
   _Mtx_destroy_in_situ();
-  *exceptionHandlerPointer = &UNK_180a30778;
-  exceptionHandlerPointer[7] = &UNK_180a3c3e0;
+  *exceptionHandlerPointer = &ExceptionHandlerB;
+  exceptionHandlerPointer[7] = &TemporaryExceptionHandler;
   if (exceptionHandlerPointer[8] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -36117,7 +36133,7 @@ void ExceptionRecoveryHandlerB22(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerPointer[8] = 0;
   *(DataWord *)(exceptionHandlerPointer + 10) = 0;
   exceptionHandlerPointer[7] = &DefaultExceptionHandlerB;
-  exceptionHandlerPointer[1] = &UNK_180a3c3e0;
+  exceptionHandlerPointer[1] = &TemporaryExceptionHandler;
   if (exceptionHandlerPointer[2] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -36145,7 +36161,7 @@ void ExceptionRecoveryHandlerB22(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionRecoveryHandlerB23(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -36166,7 +36182,7 @@ void ExceptionRecoveryHandlerB23(DataBuffer operationBase,int64_t dataBuffer,Dat
 void HandleExceptionRecoveryA0(DataBuffer context, int64_t exceptionData, DataBuffer recoveryParameter, DataBuffer additionalData)
 
 {
-  FUN_180058370(*(int64_t *)(exceptionData + 0x78),*(DataBuffer *)(*(int64_t *)(exceptionData + 0x78) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(exceptionData + 0x78),*(DataBuffer *)(*(int64_t *)(exceptionData + 0x78) + 0x10),
                 recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
   return;
 }
@@ -36187,7 +36203,7 @@ void HandleExceptionRecoveryA0(DataBuffer context, int64_t exceptionData, DataBu
 void HandleExceptionRecoveryB0(DataBuffer context, int64_t exceptionData, DataBuffer recoveryParameter, DataBuffer additionalData)
 
 {
-  FUN_180058370(*(int64_t *)(exceptionData + 0x78),*(DataBuffer *)(*(int64_t *)(exceptionData + 0x78) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(exceptionData + 0x78),*(DataBuffer *)(*(int64_t *)(exceptionData + 0x78) + 0x10),
                 recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
   return;
 }
@@ -36680,9 +36696,9 @@ void HandleExceptionRecoveryF0(DataBuffer context, int64_t exceptionData, DataBu
   
   pExceptionHandler = *(DataBuffer **)(*(int64_t *)(exceptionData + 0x70) + 0x10);
   if (pExceptionHandler != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(exceptionData + 0x70), *pExceptionHandler, recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(exceptionData + 0x70), *pExceptionHandler, recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pExceptionHandler);
+    TerminateSystemE0(pExceptionHandler);
   }
   return;
 }
@@ -36716,9 +36732,9 @@ void CallCleanupFunctionForOffset78WithCheck(DataBuffer operationBase, int64_t d
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x78),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x78),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -36743,9 +36759,9 @@ void HandleExceptionRecoveryG0(DataBuffer context, int64_t exceptionData, DataBu
   
   pExceptionHandler = *(DataBuffer **)(*(int64_t *)(exceptionData + 0x78) + 0x10);
   if (pExceptionHandler != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(exceptionData + 0x78), *pExceptionHandler, recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(exceptionData + 0x78), *pExceptionHandler, recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pExceptionHandler);
+    TerminateSystemE0(pExceptionHandler);
   }
   return;
 }
@@ -36977,7 +36993,7 @@ void CleanupExceptionAtOffset120(DataBuffer operationBase,int64_t dataBuffer,Dat
     FUN_1800587d0(*(int64_t *)(dataBuffer + 0x78),*resourcePointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(resourcePointer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(resourcePointer);
+    TerminateSystemE0(resourcePointer);
   }
   return;
 }
@@ -36994,7 +37010,7 @@ void CleanupExceptionAtOffset120(DataBuffer operationBase,int64_t dataBuffer,Dat
 void CleanupExceptionAtOffset112(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x70) + 0x18,
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x70) + 0x18,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x28),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -37078,7 +37094,7 @@ void ExceptionCleanupHandler840(DataBuffer operationBase,int64_t dataBuffer,Data
 void ExceptionCleanupHandler850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -37100,7 +37116,7 @@ void ExceptionCleanupHandler850(DataBuffer operationBase,int64_t dataBuffer,Data
 void ExceptionCleanupHandler860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -37501,7 +37517,7 @@ void ExceptionCleanupHandlerDataContext(DataBuffer operationBase,int64_t dataBuf
       dataContext = *(int64_t *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
@@ -37567,7 +37583,7 @@ void ExceptionCleanupHandlerDataContext2(DataBuffer operationBase,int64_t dataBu
       dataContext = *(int64_t *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
@@ -37714,7 +37730,7 @@ void ExceptionCleanupHandlerDataContext3(DataBuffer operationBase,int64_t dataBu
       dataContext = *(int64_t *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
@@ -37780,7 +37796,7 @@ void ExceptionCleanupHandlerDataContext4(DataBuffer operationBase,int64_t dataBu
       dataContext = *(int64_t *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
@@ -37879,7 +37895,7 @@ void ExceptionCleanupHandlerMemoryContext(DataBuffer operationBase,int64_t dataB
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 0x10) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(validationContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -37928,7 +37944,7 @@ void ExceptionCleanupHandlerMemoryContext2(DataBuffer operationBase,int64_t data
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 0x10) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(validationContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -37977,7 +37993,7 @@ void ExceptionCleanupHandlerMemoryContext3(DataBuffer operationBase,int64_t data
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 0x10) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(validationContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -38080,7 +38096,7 @@ void ExceptionCleanupHandlerResourceRef2(DataBuffer operationBase,int64_t dataBu
 void SystemCallHandlerCleanupFunc5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x70) + 0x50,
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x70) + 0x50,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x60),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -38270,7 +38286,7 @@ void InitializeExceptionHandlerContext(DataBuffer exceptionContext, int64_t thre
   int64_t validationContext;
   
   validationContext = *(int64_t *)(threadContext + 0x40);
-  *(DataBuffer *)(validationContext + 8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -38300,7 +38316,7 @@ void SetupSecondaryExceptionHandler(DataBuffer exceptionContext, int64_t threadC
   int64_t validationContext;
   
   validationContext = *(int64_t *)(threadContext + 0x80);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -38635,7 +38651,7 @@ void CleanupThreadResource(DataBuffer operationBase,int64_t dataBuffer)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
   *exceptionDataBuffer = &UNK_18098bdc8;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -38713,7 +38729,7 @@ void CleanupExceptionStack(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x38);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -38905,10 +38921,10 @@ void CleanupObjectMemory(DataBuffer operationBase,int64_t dataBuffer)
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   operationResult = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
-  FUN_1808fc8a8(validationContext + 0x3e0,0x20,0x20,FUN_180627b90,operationResult);
+  ExecuteMemoryOperation(validationContext + 0x3e0,0x20,0x20,CleanupResourceHandler,operationResult);
   FUN_18005d580();
-  FUN_1808fc8a8(validationContext + 0x138,8,0x20,FUN_180045af0);
-  FUN_1808fc8a8(validationContext + 0x38,8,0x20,FUN_180045af0);
+  ExecuteMemoryOperation(validationContext + 0x138,8,0x20,ValidateDataHandler);
+  ExecuteMemoryOperation(validationContext + 0x38,8,0x20,ValidateDataHandler);
   return;
 }
 
@@ -38935,8 +38951,8 @@ void Unwind_CleanupClassMemory(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataContext + 0x15d0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataContext + 0x15d0) + 0x38))();
   }
-  FUN_1808fc8a8(dataContext + 0x8e0,0x20,0x50,FUN_180627b90,validationStatus);
-  FUN_1808fc8a8(dataContext + 0x8b8,8,4,FUN_180045af0);
+  ExecuteMemoryOperation(dataContext + 0x8e0,0x20,0x50,CleanupResourceHandler,validationStatus);
+  ExecuteMemoryOperation(dataContext + 0x8b8,8,4,ValidateDataHandler);
   validationContextPointer = *(int64_t **)(dataContext + 0x8b0);
   if (validationContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*validationContextPointer + 0x38))();
@@ -39063,7 +39079,7 @@ void Unwind_CleanupReadOnlyMemory(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x50);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -39233,7 +39249,7 @@ void Unwind_CleanupFunctionFrame(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(validationContext + 0x148) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -39527,7 +39543,7 @@ void CleanupResourceReference(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupSystemResource(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x40) + 0x8e8,
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x40) + 0x8e8,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x8f8),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -39541,7 +39557,7 @@ void ResetSystemHandler(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(validationContext + 0x918) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x918) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x920) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -39564,7 +39580,7 @@ void CleanupDataResourceA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
     FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40) + 0x938,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -39581,7 +39597,7 @@ void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
     FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40) + 0x968,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -39598,7 +39614,7 @@ void ExceptionDataProcessorA1(DataBuffer operationBase,int64_t dataBuffer,DataBu
     FUN_1800587d0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -39615,7 +39631,7 @@ void ExceptionDataProcessorA2(DataBuffer operationBase,int64_t dataBuffer,DataBu
     FUN_1800587d0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -39625,7 +39641,7 @@ void ExceptionDataProcessorA2(DataBuffer operationBase,int64_t dataBuffer,DataBu
 void CleanupDataResourceE(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -39635,7 +39651,7 @@ void CleanupDataResourceE(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
 void CleanupDataResourceF(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -39692,7 +39708,7 @@ void CleanupExceptionDataBufferWithValidation(DataBuffer operationBase,int64_t d
     FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -39721,7 +39737,7 @@ void CleanupDataValuePointer(DataBuffer operationBase,int64_t dataBuffer,DataBuf
     // 调用一系列清理函数处理8位数据值指针
     FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40),*DataValuePointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(DataValuePointer);
-    FUN_18064e900(DataValuePointer);
+    TerminateSystemE0(DataValuePointer);
   }
   return;
 }
@@ -39796,7 +39812,7 @@ void CleanupMemoryResourcesF0(DataBuffer operationBase,int64_t dataBuffer)
   
   validationContext = *(int64_t *)(dataBuffer + 0x68);
   FUN_180058db0(validationContext + 0x40);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -39818,9 +39834,9 @@ void CleanupSystemResources100(DataBuffer operationBase,int64_t dataBuffer,DataB
   validationContext = *(int64_t *)(dataBuffer + 0x70);
   operationResult = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
-  FUN_180058370(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
-  FUN_180058370(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
+  ProcessSystemParametersWithValidation(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
+  ProcessSystemParametersWithValidation(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
+  ProcessSystemParametersWithValidation(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
   ValidateSystemDataBufferAndProcess(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
   CleanupSystemResourcesAndMemory(validationContext + 0x50,*(DataBuffer *)(validationContext + 0x60));
   ValidateSystemDataBufferAndProcess(validationContext + 0x20,*(DataBuffer *)(validationContext + 0x30));
@@ -39835,7 +39851,7 @@ void ResetMemoryState110(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x68);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -39858,7 +39874,7 @@ void CleanupThreadResources120(DataBuffer operationBase,int64_t dataBuffer)
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -39953,7 +39969,7 @@ void CleanupThreadMemory150(DataBuffer operationBase,int64_t dataBuffer)
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -40012,7 +40028,7 @@ void CleanupResourceState170(DataBuffer operationBase,int64_t dataBuffer)
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -40031,7 +40047,7 @@ void ResetResourcePointer180(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x48);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -40145,9 +40161,9 @@ void CleanupSystemMemoryWithFunctionCall(DataBuffer operationBase,int64_t dataBu
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   operationResult = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
-  FUN_180058370(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
-  FUN_180058370(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
+  ProcessSystemParametersWithValidation(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
+  ProcessSystemParametersWithValidation(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
+  ProcessSystemParametersWithValidation(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
   ValidateSystemDataBufferAndProcess(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
   CleanupSystemResourcesAndMemory(validationContext + 0x50,*(DataBuffer *)(validationContext + 0x60));
   ValidateSystemDataBufferAndProcess(validationContext + 0x20,*(DataBuffer *)(validationContext + 0x30));
@@ -40324,7 +40340,7 @@ void ExecuteSystemCleanupC(DataBuffer dataBuffer, int64_t executionContext, Data
 void ExecuteSystemCleanupD(DataBuffer dataBuffer, int64_t executionContext, DataBuffer cleanupParam, DataBuffer cleanupParamB)
 
 {
-  FUN_180058370(*(int64_t *)(executionContext + 0x40) + 0x90,
+  ProcessSystemParametersWithValidation(*(int64_t *)(executionContext + 0x40) + 0x90,
                 *(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + 0xa0),cleanupParam,cleanupParamB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -40345,7 +40361,7 @@ void ExecuteSystemCleanupD(DataBuffer dataBuffer, int64_t executionContext, Data
 void ExecuteSystemCleanupE(DataBuffer dataBuffer, int64_t executionContext, DataBuffer cleanupParam, DataBuffer cleanupParamB)
 
 {
-  FUN_180058370(*(int64_t *)(executionContext + 0x40) + 0xc0,
+  ProcessSystemParametersWithValidation(*(int64_t *)(executionContext + 0x40) + 0xc0,
                 *(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + 0xd0),cleanupParam,cleanupParamB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -40366,7 +40382,7 @@ void ExecuteSystemCleanupE(DataBuffer dataBuffer, int64_t executionContext, Data
 void ExecuteSystemCleanupF(DataBuffer dataBuffer, int64_t executionContext, DataBuffer cleanupParam, DataBuffer cleanupParamB)
 
 {
-  FUN_180058370(*(int64_t *)(executionContext + 0x40) + 0xf0,
+  ProcessSystemParametersWithValidation(*(int64_t *)(executionContext + 0x40) + 0xf0,
                 *(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + 0x100),cleanupParam,cleanupParamB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -40481,7 +40497,7 @@ void Unwind_180903320(DataBuffer operationBase,int64_t dataBuffer)
   
   validationContext = *(int64_t *)(dataBuffer + 0x78);
   FUN_18004b730();
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -40501,9 +40517,9 @@ void Unwind_180903330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x80) + 0x30);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x80) + 0x20,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x80) + 0x20,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -40517,9 +40533,9 @@ void Unwind_180903340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x88) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x88),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x88),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -41036,7 +41052,7 @@ void Unwind_180903510(DataBuffer operationBase,int64_t dataBuffer)
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
@@ -41185,7 +41201,7 @@ void Unwind_180903580(DataBuffer operationBase,int64_t dataBuffer)
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
@@ -41413,7 +41429,7 @@ void InitializeExceptionHandler(DataBuffer contextHandle,int64_t contextOffset,D
   
   exceptionDataBuffer = *(DataBuffer **)(contextOffset + 0x40);
   *exceptionDataBuffer = &UNK_180a02968;
-  exceptionDataBuffer[0x18] = &UNK_180a3c3e0;
+  exceptionDataBuffer[0x18] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[0x19] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41452,7 +41468,7 @@ void Unwind_180903620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x140) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x140))(validationContext + 0x130,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x108) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41460,7 +41476,7 @@ void Unwind_180903620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x110) = 0;
   *(DataWord *)(validationContext + 0x120) = 0;
   *(DataBuffer *)(validationContext + 0x108) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41482,7 +41498,7 @@ void Unwind_180903640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1b0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1b0))(validationContext + 0x1a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x178) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x178) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x180) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41490,7 +41506,7 @@ void Unwind_180903640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x180) = 0;
   *(DataWord *)(validationContext + 400) = 0;
   *(DataBuffer *)(validationContext + 0x178) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x158) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x158) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x160) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41512,7 +41528,7 @@ void Unwind_180903660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x220) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x220))(validationContext + 0x210,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41520,7 +41536,7 @@ void Unwind_180903660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1f0) = 0;
   *(DataWord *)(validationContext + 0x200) = 0;
   *(DataBuffer *)(validationContext + 0x1e8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41542,7 +41558,7 @@ void Unwind_180903680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x290) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x290))(validationContext + 0x280,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 600) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 600) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41550,7 +41566,7 @@ void Unwind_180903680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x260) = 0;
   *(DataWord *)(validationContext + 0x270) = 0;
   *(DataBuffer *)(validationContext + 600) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x238) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x238) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x240) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41572,7 +41588,7 @@ void Unwind_1809036a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x300) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x300))(validationContext + 0x2f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41580,7 +41596,7 @@ void Unwind_1809036a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2d0) = 0;
   *(DataWord *)(validationContext + 0x2e0) = 0;
   *(DataBuffer *)(validationContext + 0x2c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41602,7 +41618,7 @@ void Unwind_1809036c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x370) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x370))(validationContext + 0x360,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x338) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x338) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x340) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41610,7 +41626,7 @@ void Unwind_1809036c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x340) = 0;
   *(DataWord *)(validationContext + 0x350) = 0;
   *(DataBuffer *)(validationContext + 0x338) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x318) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x318) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 800) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41632,7 +41648,7 @@ void Unwind_1809036e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x3e0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x3e0))(validationContext + 0x3d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x3a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x3a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41640,7 +41656,7 @@ void Unwind_1809036e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x3b0) = 0;
   *(DataWord *)(validationContext + 0x3c0) = 0;
   *(DataBuffer *)(validationContext + 0x3a8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x388) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x388) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41662,7 +41678,7 @@ void Unwind_180903700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x450) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x450))(validationContext + 0x440,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x418) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x418) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x420) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41670,7 +41686,7 @@ void Unwind_180903700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x420) = 0;
   *(DataWord *)(validationContext + 0x430) = 0;
   *(DataBuffer *)(validationContext + 0x418) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x3f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x3f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x400) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41692,7 +41708,7 @@ void Unwind_180903720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x510) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x510))(validationContext + 0x500,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41700,7 +41716,7 @@ void Unwind_180903720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x4e8) = 0;
   *(DataWord *)(validationContext + 0x4f8) = 0;
   *(DataBuffer *)(validationContext + 0x4e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41708,7 +41724,7 @@ void Unwind_180903720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x4c8) = 0;
   *(DataWord *)(validationContext + 0x4d8) = 0;
   *(DataBuffer *)(validationContext + 0x4c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41716,7 +41732,7 @@ void Unwind_180903720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x4a8) = 0;
   *(DataWord *)(validationContext + 0x4b8) = 0;
   *(DataBuffer *)(validationContext + 0x4a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x480) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x480) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x488) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41724,7 +41740,7 @@ void Unwind_180903720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x488) = 0;
   *(DataWord *)(validationContext + 0x498) = 0;
   *(DataBuffer *)(validationContext + 0x480) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x460) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x460) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41746,7 +41762,7 @@ void Unwind_180903740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x580) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x580))(validationContext + 0x570,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x548) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x548) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41754,7 +41770,7 @@ void Unwind_180903740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x550) = 0;
   *(DataWord *)(validationContext + 0x560) = 0;
   *(DataBuffer *)(validationContext + 0x548) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x528) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x528) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x530) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41774,7 +41790,7 @@ void Unwind_180903760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x80);
   *exceptionDataBuffer = &UNK_180a02968;
-  exceptionDataBuffer[0x18] = &UNK_180a3c3e0;
+  exceptionDataBuffer[0x18] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[0x19] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41813,7 +41829,7 @@ void Unwind_180903770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x140) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x140))(validationContext + 0x130,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x108) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41821,7 +41837,7 @@ void Unwind_180903770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x110) = 0;
   *(DataWord *)(validationContext + 0x120) = 0;
   *(DataBuffer *)(validationContext + 0x108) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41843,7 +41859,7 @@ void Unwind_180903790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1b0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1b0))(validationContext + 0x1a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x178) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x178) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x180) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41851,7 +41867,7 @@ void Unwind_180903790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x180) = 0;
   *(DataWord *)(validationContext + 400) = 0;
   *(DataBuffer *)(validationContext + 0x178) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x158) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x158) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x160) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41873,7 +41889,7 @@ void Unwind_1809037b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x220) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x220))(validationContext + 0x210,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41881,7 +41897,7 @@ void Unwind_1809037b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1f0) = 0;
   *(DataWord *)(validationContext + 0x200) = 0;
   *(DataBuffer *)(validationContext + 0x1e8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41903,7 +41919,7 @@ void Unwind_1809037d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x290) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x290))(validationContext + 0x280,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 600) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 600) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41911,7 +41927,7 @@ void Unwind_1809037d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x260) = 0;
   *(DataWord *)(validationContext + 0x270) = 0;
   *(DataBuffer *)(validationContext + 600) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x238) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x238) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x240) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41933,7 +41949,7 @@ void Unwind_1809037f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x300) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x300))(validationContext + 0x2f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41941,7 +41957,7 @@ void Unwind_1809037f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2d0) = 0;
   *(DataWord *)(validationContext + 0x2e0) = 0;
   *(DataBuffer *)(validationContext + 0x2c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41963,7 +41979,7 @@ void Unwind_180903810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x370) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x370))(validationContext + 0x360,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x338) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x338) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x340) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41971,7 +41987,7 @@ void Unwind_180903810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x340) = 0;
   *(DataWord *)(validationContext + 0x350) = 0;
   *(DataBuffer *)(validationContext + 0x338) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x318) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x318) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 800) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41993,7 +42009,7 @@ void Unwind_180903830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x3e0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x3e0))(validationContext + 0x3d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x3a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x3a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42001,7 +42017,7 @@ void Unwind_180903830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x3b0) = 0;
   *(DataWord *)(validationContext + 0x3c0) = 0;
   *(DataBuffer *)(validationContext + 0x3a8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x388) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x388) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42023,7 +42039,7 @@ void Unwind_180903850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x450) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x450))(validationContext + 0x440,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x418) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x418) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x420) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42031,7 +42047,7 @@ void Unwind_180903850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x420) = 0;
   *(DataWord *)(validationContext + 0x430) = 0;
   *(DataBuffer *)(validationContext + 0x418) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x3f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x3f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x400) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42053,7 +42069,7 @@ void Unwind_180903870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x510) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x510))(validationContext + 0x500,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42061,7 +42077,7 @@ void Unwind_180903870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x4e8) = 0;
   *(DataWord *)(validationContext + 0x4f8) = 0;
   *(DataBuffer *)(validationContext + 0x4e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42069,7 +42085,7 @@ void Unwind_180903870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x4c8) = 0;
   *(DataWord *)(validationContext + 0x4d8) = 0;
   *(DataBuffer *)(validationContext + 0x4c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42077,7 +42093,7 @@ void Unwind_180903870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x4a8) = 0;
   *(DataWord *)(validationContext + 0x4b8) = 0;
   *(DataBuffer *)(validationContext + 0x4a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x480) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x480) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x488) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42085,7 +42101,7 @@ void Unwind_180903870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x488) = 0;
   *(DataWord *)(validationContext + 0x498) = 0;
   *(DataBuffer *)(validationContext + 0x480) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x460) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x460) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42107,7 +42123,7 @@ void Unwind_180903890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x580) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x580))(validationContext + 0x570,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x548) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x548) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42115,7 +42131,7 @@ void Unwind_180903890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x550) = 0;
   *(DataWord *)(validationContext + 0x560) = 0;
   *(DataBuffer *)(validationContext + 0x548) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x528) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x528) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x530) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42134,7 +42150,7 @@ void Unwind_1809038b0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x88);
-  *(DataBuffer *)(validationContext + 8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42153,7 +42169,7 @@ void Unwind_1809038c0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x88);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42203,7 +42219,7 @@ void Unwind_1809038f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x4c0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x4c0))(validationContext + 0x4b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x488) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x488) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x490) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42211,7 +42227,7 @@ void Unwind_1809038f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x490) = 0;
   *(DataWord *)(validationContext + 0x4a0) = 0;
   *(DataBuffer *)(validationContext + 0x488) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x468) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x468) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x470) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42233,7 +42249,7 @@ void Unwind_180903910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x530) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x530))(validationContext + 0x520,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x4f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x500) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42241,7 +42257,7 @@ void Unwind_180903910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x500) = 0;
   *(DataWord *)(validationContext + 0x510) = 0;
   *(DataBuffer *)(validationContext + 0x4f8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42263,7 +42279,7 @@ void Unwind_180903930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x5a0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x5a0))(validationContext + 0x590,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x568) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x568) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x570) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42271,7 +42287,7 @@ void Unwind_180903930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x570) = 0;
   *(DataWord *)(validationContext + 0x580) = 0;
   *(DataBuffer *)(validationContext + 0x568) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x548) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x548) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42293,7 +42309,7 @@ void Unwind_180903950(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x610) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x5d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x5d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x5e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42301,7 +42317,7 @@ void Unwind_180903950(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x5e0) = 0;
   *(DataWord *)(validationContext + 0x5f0) = 0;
   *(DataBuffer *)(validationContext + 0x5d8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x5b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x5b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42323,7 +42339,7 @@ void Unwind_180903970(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x680) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x680))(validationContext + 0x670,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x648) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x648) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x650) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42331,7 +42347,7 @@ void Unwind_180903970(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x650) = 0;
   *(DataWord *)(validationContext + 0x660) = 0;
   *(DataBuffer *)(validationContext + 0x648) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x628) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x628) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x630) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42353,7 +42369,7 @@ void Unwind_180903990(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x6f0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x6f0))(validationContext + 0x6e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x6b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x6b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x6c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42361,7 +42377,7 @@ void Unwind_180903990(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x6c0) = 0;
   *(DataWord *)(validationContext + 0x6d0) = 0;
   *(DataBuffer *)(validationContext + 0x6b8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x698) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x698) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42391,7 +42407,7 @@ void ValidateExceptionContextA0(DataBuffer exceptionContext, int64_t contextPoin
   if (*(FunctionPointer**)(validationContext + 0x760) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x760))(validationContext + 0x750,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x728) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x728) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x730) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42399,7 +42415,7 @@ void ValidateExceptionContextA0(DataBuffer exceptionContext, int64_t contextPoin
   *(DataBuffer *)(validationContext + 0x730) = 0;
   *(DataWord *)(validationContext + 0x740) = 0;
   *(DataBuffer *)(validationContext + 0x728) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x708) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x708) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x710) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42421,7 +42437,7 @@ void Unwind_1809039d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 2000) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 2000))(validationContext + 0x7c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x798) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x798) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x7a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42429,7 +42445,7 @@ void Unwind_1809039d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x7a0) = 0;
   *(DataWord *)(validationContext + 0x7b0) = 0;
   *(DataBuffer *)(validationContext + 0x798) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x778) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x778) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x780) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42451,7 +42467,7 @@ void Unwind_1809039f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x840) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x840))(validationContext + 0x830,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x808) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x808) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x810) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42459,7 +42475,7 @@ void Unwind_1809039f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x810) = 0;
   *(DataWord *)(validationContext + 0x820) = 0;
   *(DataBuffer *)(validationContext + 0x808) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x7e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x7e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42481,7 +42497,7 @@ void Unwind_180903a10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x8b0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x8b0))(validationContext + 0x8a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x878) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x878) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x880) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42489,7 +42505,7 @@ void Unwind_180903a10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x880) = 0;
   *(DataWord *)(validationContext + 0x890) = 0;
   *(DataBuffer *)(validationContext + 0x878) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x858) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x858) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x860) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42511,7 +42527,7 @@ void Unwind_180903a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x920) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x920))(validationContext + 0x910,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x8e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x8e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42519,7 +42535,7 @@ void Unwind_180903a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x8f0) = 0;
   *(DataWord *)(validationContext + 0x900) = 0;
   *(DataBuffer *)(validationContext + 0x8e8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x8c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x8c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42541,7 +42557,7 @@ void Unwind_180903a50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x990) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x990))(validationContext + 0x980,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x958) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x958) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x960) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42549,7 +42565,7 @@ void Unwind_180903a50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x960) = 0;
   *(DataWord *)(validationContext + 0x970) = 0;
   *(DataBuffer *)(validationContext + 0x958) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x938) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x938) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x940) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42571,7 +42587,7 @@ void Unwind_180903a70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xa08) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xa08))(validationContext + 0x9f8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x9d0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9d0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9d8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42579,7 +42595,7 @@ void Unwind_180903a70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x9d8) = 0;
   *(DataWord *)(validationContext + 0x9e8) = 0;
   *(DataBuffer *)(validationContext + 0x9d0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x9b0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9b0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42601,7 +42617,7 @@ void Unwind_180903a90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xa80) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xa80))(validationContext + 0xa70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xa48) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42609,7 +42625,7 @@ void Unwind_180903a90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa50) = 0;
   *(DataWord *)(validationContext + 0xa60) = 0;
   *(DataBuffer *)(validationContext + 0xa48) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42642,7 +42658,7 @@ void Unwind_180903ac0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x50);
-  *(DataBuffer *)(validationContext + 0x10) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x10) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x18) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42661,7 +42677,7 @@ void Unwind_180903ad0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x50);
-  *(DataBuffer *)(validationContext + 0x30) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42711,7 +42727,7 @@ void Unwind_180903b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x4c0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x4c0))(validationContext + 0x4b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x488) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x488) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x490) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42719,7 +42735,7 @@ void Unwind_180903b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x490) = 0;
   *(DataWord *)(validationContext + 0x4a0) = 0;
   *(DataBuffer *)(validationContext + 0x488) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x468) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x468) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x470) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42741,7 +42757,7 @@ void Unwind_180903b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x530) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x530))(validationContext + 0x520,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x4f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x500) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42749,7 +42765,7 @@ void Unwind_180903b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x500) = 0;
   *(DataWord *)(validationContext + 0x510) = 0;
   *(DataBuffer *)(validationContext + 0x4f8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42771,7 +42787,7 @@ void Unwind_180903b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x5a0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x5a0))(validationContext + 0x590,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x568) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x568) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x570) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42779,7 +42795,7 @@ void Unwind_180903b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x570) = 0;
   *(DataWord *)(validationContext + 0x580) = 0;
   *(DataBuffer *)(validationContext + 0x568) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x548) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x548) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42801,7 +42817,7 @@ void Unwind_180903b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x610) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x5d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x5d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x5e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42809,7 +42825,7 @@ void Unwind_180903b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x5e0) = 0;
   *(DataWord *)(validationContext + 0x5f0) = 0;
   *(DataBuffer *)(validationContext + 0x5d8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x5b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x5b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42831,7 +42847,7 @@ void Unwind_180903b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x680) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x680))(validationContext + 0x670,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x648) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x648) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x650) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42839,7 +42855,7 @@ void Unwind_180903b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x650) = 0;
   *(DataWord *)(validationContext + 0x660) = 0;
   *(DataBuffer *)(validationContext + 0x648) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x628) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x628) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x630) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42861,7 +42877,7 @@ void Unwind_180903ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x6f0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x6f0))(validationContext + 0x6e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x6b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x6b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x6c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42869,7 +42885,7 @@ void Unwind_180903ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x6c0) = 0;
   *(DataWord *)(validationContext + 0x6d0) = 0;
   *(DataBuffer *)(validationContext + 0x6b8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x698) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x698) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42891,7 +42907,7 @@ void Unwind_180903bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x760) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x760))(validationContext + 0x750,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x728) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x728) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x730) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42899,7 +42915,7 @@ void Unwind_180903bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x730) = 0;
   *(DataWord *)(validationContext + 0x740) = 0;
   *(DataBuffer *)(validationContext + 0x728) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x708) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x708) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x710) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42921,7 +42937,7 @@ void Unwind_180903be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 2000) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 2000))(validationContext + 0x7c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x798) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x798) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x7a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42929,7 +42945,7 @@ void Unwind_180903be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x7a0) = 0;
   *(DataWord *)(validationContext + 0x7b0) = 0;
   *(DataBuffer *)(validationContext + 0x798) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x778) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x778) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x780) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42951,7 +42967,7 @@ void Unwind_180903c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x840) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x840))(validationContext + 0x830,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x808) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x808) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x810) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42959,7 +42975,7 @@ void Unwind_180903c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x810) = 0;
   *(DataWord *)(validationContext + 0x820) = 0;
   *(DataBuffer *)(validationContext + 0x808) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x7e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x7e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42981,7 +42997,7 @@ void Unwind_180903c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x8b0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x8b0))(validationContext + 0x8a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x878) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x878) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x880) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -42989,7 +43005,7 @@ void Unwind_180903c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x880) = 0;
   *(DataWord *)(validationContext + 0x890) = 0;
   *(DataBuffer *)(validationContext + 0x878) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x858) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x858) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x860) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43011,7 +43027,7 @@ void Unwind_180903c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x920) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x920))(validationContext + 0x910,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x8e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x8e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43019,7 +43035,7 @@ void Unwind_180903c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x8f0) = 0;
   *(DataWord *)(validationContext + 0x900) = 0;
   *(DataBuffer *)(validationContext + 0x8e8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x8c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x8c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43041,7 +43057,7 @@ void Unwind_180903c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x990) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x990))(validationContext + 0x980,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x958) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x958) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x960) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43049,7 +43065,7 @@ void Unwind_180903c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x960) = 0;
   *(DataWord *)(validationContext + 0x970) = 0;
   *(DataBuffer *)(validationContext + 0x958) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x938) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x938) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x940) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43071,7 +43087,7 @@ void Unwind_180903c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xa08) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xa08))(validationContext + 0x9f8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x9d0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9d0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9d8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43079,7 +43095,7 @@ void Unwind_180903c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x9d8) = 0;
   *(DataWord *)(validationContext + 0x9e8) = 0;
   *(DataBuffer *)(validationContext + 0x9d0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x9b0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9b0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43101,7 +43117,7 @@ void Unwind_180903ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xa80) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xa80))(validationContext + 0xa70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xa48) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43109,7 +43125,7 @@ void Unwind_180903ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa50) = 0;
   *(DataWord *)(validationContext + 0xa60) = 0;
   *(DataBuffer *)(validationContext + 0xa48) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43128,7 +43144,7 @@ void Unwind_180903cc0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x88);
-  *(DataBuffer *)(validationContext + 0x10) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x10) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x18) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43147,7 +43163,7 @@ void Unwind_180903cd0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x88);
-  *(DataBuffer *)(validationContext + 0x30) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43183,7 +43199,7 @@ void Unwind_180903cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 400) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 400))(validationContext + 0x180,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x160) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x160) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43191,7 +43207,7 @@ void Unwind_180903cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x168) = 0;
   *(DataWord *)(validationContext + 0x178) = 0;
   *(DataBuffer *)(validationContext + 0x160) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x140) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x140) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x148) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43199,7 +43215,7 @@ void Unwind_180903cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x148) = 0;
   *(DataWord *)(validationContext + 0x158) = 0;
   *(DataBuffer *)(validationContext + 0x140) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x120) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x120) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x128) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43207,7 +43223,7 @@ void Unwind_180903cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x128) = 0;
   *(DataWord *)(validationContext + 0x138) = 0;
   *(DataBuffer *)(validationContext + 0x120) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x100) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x100) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43215,7 +43231,7 @@ void Unwind_180903cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x108) = 0;
   *(DataWord *)(validationContext + 0x118) = 0;
   *(DataBuffer *)(validationContext + 0x100) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43237,7 +43253,7 @@ void Unwind_180903d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x250) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x250))(validationContext + 0x240,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x220) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x220) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x228) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43245,7 +43261,7 @@ void Unwind_180903d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x228) = 0;
   *(DataWord *)(validationContext + 0x238) = 0;
   *(DataBuffer *)(validationContext + 0x220) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x200) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x208) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43253,7 +43269,7 @@ void Unwind_180903d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x208) = 0;
   *(DataWord *)(validationContext + 0x218) = 0;
   *(DataBuffer *)(validationContext + 0x200) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43261,7 +43277,7 @@ void Unwind_180903d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1e8) = 0;
   *(DataWord *)(validationContext + 0x1f8) = 0;
   *(DataBuffer *)(validationContext + 0x1e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43269,7 +43285,7 @@ void Unwind_180903d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1c8) = 0;
   *(DataWord *)(validationContext + 0x1d8) = 0;
   *(DataBuffer *)(validationContext + 0x1c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43291,7 +43307,7 @@ void Unwind_180903d30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x310) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x310))(validationContext + 0x300,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43299,7 +43315,7 @@ void Unwind_180903d30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2e8) = 0;
   *(DataWord *)(validationContext + 0x2f8) = 0;
   *(DataBuffer *)(validationContext + 0x2e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43307,7 +43323,7 @@ void Unwind_180903d30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2c8) = 0;
   *(DataWord *)(validationContext + 0x2d8) = 0;
   *(DataBuffer *)(validationContext + 0x2c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43315,7 +43331,7 @@ void Unwind_180903d30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2a8) = 0;
   *(DataWord *)(validationContext + 0x2b8) = 0;
   *(DataBuffer *)(validationContext + 0x2a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x280) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x280) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x288) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43323,7 +43339,7 @@ void Unwind_180903d30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x288) = 0;
   *(DataWord *)(validationContext + 0x298) = 0;
   *(DataBuffer *)(validationContext + 0x280) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x260) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x260) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x268) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43345,7 +43361,7 @@ void Unwind_180903d50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x3d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x3d0))(validationContext + 0x3c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x3a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x3a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x3a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43353,7 +43369,7 @@ void Unwind_180903d50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x3a8) = 0;
   *(DataWord *)(validationContext + 0x3b8) = 0;
   *(DataBuffer *)(validationContext + 0x3a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x380) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x380) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x388) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43361,7 +43377,7 @@ void Unwind_180903d50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x388) = 0;
   *(DataWord *)(validationContext + 0x398) = 0;
   *(DataBuffer *)(validationContext + 0x380) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x360) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x360) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x368) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43369,7 +43385,7 @@ void Unwind_180903d50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x368) = 0;
   *(DataWord *)(validationContext + 0x378) = 0;
   *(DataBuffer *)(validationContext + 0x360) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x340) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x340) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x348) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43377,7 +43393,7 @@ void Unwind_180903d50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x348) = 0;
   *(DataWord *)(validationContext + 0x358) = 0;
   *(DataBuffer *)(validationContext + 0x340) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 800) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 800) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x328) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43399,7 +43415,7 @@ void Unwind_180903d70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x490) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x490))(validationContext + 0x480,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x460) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x460) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43407,7 +43423,7 @@ void Unwind_180903d70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x468) = 0;
   *(DataWord *)(validationContext + 0x478) = 0;
   *(DataBuffer *)(validationContext + 0x460) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x440) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x440) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x448) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43415,7 +43431,7 @@ void Unwind_180903d70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x448) = 0;
   *(DataWord *)(validationContext + 0x458) = 0;
   *(DataBuffer *)(validationContext + 0x440) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x420) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x420) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x428) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43423,7 +43439,7 @@ void Unwind_180903d70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x428) = 0;
   *(DataWord *)(validationContext + 0x438) = 0;
   *(DataBuffer *)(validationContext + 0x420) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x400) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x400) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x408) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43431,7 +43447,7 @@ void Unwind_180903d70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x408) = 0;
   *(DataWord *)(validationContext + 0x418) = 0;
   *(DataBuffer *)(validationContext + 0x400) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x3e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x3e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 1000) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43453,7 +43469,7 @@ void Unwind_180903d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x550) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x550))(validationContext + 0x540,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x520) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x520) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x528) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43461,7 +43477,7 @@ void Unwind_180903d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x528) = 0;
   *(DataWord *)(validationContext + 0x538) = 0;
   *(DataBuffer *)(validationContext + 0x520) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x500) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x500) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x508) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43469,7 +43485,7 @@ void Unwind_180903d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x508) = 0;
   *(DataWord *)(validationContext + 0x518) = 0;
   *(DataBuffer *)(validationContext + 0x500) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43477,7 +43493,7 @@ void Unwind_180903d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x4e8) = 0;
   *(DataWord *)(validationContext + 0x4f8) = 0;
   *(DataBuffer *)(validationContext + 0x4e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43485,7 +43501,7 @@ void Unwind_180903d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x4c8) = 0;
   *(DataWord *)(validationContext + 0x4d8) = 0;
   *(DataBuffer *)(validationContext + 0x4c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43507,7 +43523,7 @@ void Unwind_180903db0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x610) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x5e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x5e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x5e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43515,7 +43531,7 @@ void Unwind_180903db0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x5e8) = 0;
   *(DataWord *)(validationContext + 0x5f8) = 0;
   *(DataBuffer *)(validationContext + 0x5e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x5c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x5c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43523,7 +43539,7 @@ void Unwind_180903db0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x5c8) = 0;
   *(DataWord *)(validationContext + 0x5d8) = 0;
   *(DataBuffer *)(validationContext + 0x5c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x5a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x5a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43531,7 +43547,7 @@ void Unwind_180903db0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x5a8) = 0;
   *(DataWord *)(validationContext + 0x5b8) = 0;
   *(DataBuffer *)(validationContext + 0x5a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x580) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x580) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x588) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43539,7 +43555,7 @@ void Unwind_180903db0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x588) = 0;
   *(DataWord *)(validationContext + 0x598) = 0;
   *(DataBuffer *)(validationContext + 0x580) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x560) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x560) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43561,7 +43577,7 @@ void Unwind_180903dd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x6d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x6d0))(validationContext + 0x6c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x6a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x6a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x6a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43569,7 +43585,7 @@ void Unwind_180903dd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x6a8) = 0;
   *(DataWord *)(validationContext + 0x6b8) = 0;
   *(DataBuffer *)(validationContext + 0x6a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x680) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x680) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x688) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43577,7 +43593,7 @@ void Unwind_180903dd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x688) = 0;
   *(DataWord *)(validationContext + 0x698) = 0;
   *(DataBuffer *)(validationContext + 0x680) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x660) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x660) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x668) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43585,7 +43601,7 @@ void Unwind_180903dd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x668) = 0;
   *(DataWord *)(validationContext + 0x678) = 0;
   *(DataBuffer *)(validationContext + 0x660) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x640) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x640) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x648) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43593,7 +43609,7 @@ void Unwind_180903dd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x648) = 0;
   *(DataWord *)(validationContext + 0x658) = 0;
   *(DataBuffer *)(validationContext + 0x640) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x620) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x620) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x628) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43615,7 +43631,7 @@ void Unwind_180903df0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x790) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x790))(validationContext + 0x780,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x760) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x760) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x768) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43623,7 +43639,7 @@ void Unwind_180903df0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x768) = 0;
   *(DataWord *)(validationContext + 0x778) = 0;
   *(DataBuffer *)(validationContext + 0x760) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x740) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x740) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x748) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43631,7 +43647,7 @@ void Unwind_180903df0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x748) = 0;
   *(DataWord *)(validationContext + 0x758) = 0;
   *(DataBuffer *)(validationContext + 0x740) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x720) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x720) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x728) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43639,7 +43655,7 @@ void Unwind_180903df0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x728) = 0;
   *(DataWord *)(validationContext + 0x738) = 0;
   *(DataBuffer *)(validationContext + 0x720) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x700) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x700) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x708) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43647,7 +43663,7 @@ void Unwind_180903df0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x708) = 0;
   *(DataWord *)(validationContext + 0x718) = 0;
   *(DataBuffer *)(validationContext + 0x700) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x6e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x6e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43669,7 +43685,7 @@ void Unwind_180903e10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x850) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x850))(validationContext + 0x840,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x820) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x820) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x828) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43677,7 +43693,7 @@ void Unwind_180903e10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x828) = 0;
   *(DataWord *)(validationContext + 0x838) = 0;
   *(DataBuffer *)(validationContext + 0x820) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x800) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x800) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x808) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43685,7 +43701,7 @@ void Unwind_180903e10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x808) = 0;
   *(DataWord *)(validationContext + 0x818) = 0;
   *(DataBuffer *)(validationContext + 0x800) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x7e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x7e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43693,7 +43709,7 @@ void Unwind_180903e10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x7e8) = 0;
   *(DataWord *)(validationContext + 0x7f8) = 0;
   *(DataBuffer *)(validationContext + 0x7e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x7c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x7c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43701,7 +43717,7 @@ void Unwind_180903e10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x7c8) = 0;
   *(DataWord *)(validationContext + 0x7d8) = 0;
   *(DataBuffer *)(validationContext + 0x7c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x7a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x7a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43723,7 +43739,7 @@ void Unwind_180903e30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x910) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x910))(validationContext + 0x900,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x8e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x8e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43731,7 +43747,7 @@ void Unwind_180903e30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x8e8) = 0;
   *(DataWord *)(validationContext + 0x8f8) = 0;
   *(DataBuffer *)(validationContext + 0x8e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x8c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x8c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43739,7 +43755,7 @@ void Unwind_180903e30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x8c8) = 0;
   *(DataWord *)(validationContext + 0x8d8) = 0;
   *(DataBuffer *)(validationContext + 0x8c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x8a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x8a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43747,7 +43763,7 @@ void Unwind_180903e30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x8a8) = 0;
   *(DataWord *)(validationContext + 0x8b8) = 0;
   *(DataBuffer *)(validationContext + 0x8a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x880) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x880) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x888) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43755,7 +43771,7 @@ void Unwind_180903e30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x888) = 0;
   *(DataWord *)(validationContext + 0x898) = 0;
   *(DataBuffer *)(validationContext + 0x880) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x860) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x860) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x868) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43777,7 +43793,7 @@ void Unwind_180903e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x9d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x9d0))(validationContext + 0x9c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x9a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43785,7 +43801,7 @@ void Unwind_180903e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x9a8) = 0;
   *(DataWord *)(validationContext + 0x9b8) = 0;
   *(DataBuffer *)(validationContext + 0x9a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x980) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x980) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x988) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43793,7 +43809,7 @@ void Unwind_180903e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x988) = 0;
   *(DataWord *)(validationContext + 0x998) = 0;
   *(DataBuffer *)(validationContext + 0x980) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x960) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x960) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x968) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43801,7 +43817,7 @@ void Unwind_180903e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x968) = 0;
   *(DataWord *)(validationContext + 0x978) = 0;
   *(DataBuffer *)(validationContext + 0x960) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x940) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x940) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x948) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43809,7 +43825,7 @@ void Unwind_180903e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x948) = 0;
   *(DataWord *)(validationContext + 0x958) = 0;
   *(DataBuffer *)(validationContext + 0x940) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x920) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x920) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x928) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43831,7 +43847,7 @@ void Unwind_180903e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xa90) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xa90))(validationContext + 0xa80,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xa60) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43839,7 +43855,7 @@ void Unwind_180903e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa68) = 0;
   *(DataWord *)(validationContext + 0xa78) = 0;
   *(DataBuffer *)(validationContext + 0xa60) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa40) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43847,7 +43863,7 @@ void Unwind_180903e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa48) = 0;
   *(DataWord *)(validationContext + 0xa58) = 0;
   *(DataBuffer *)(validationContext + 0xa40) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43855,7 +43871,7 @@ void Unwind_180903e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa28) = 0;
   *(DataWord *)(validationContext + 0xa38) = 0;
   *(DataBuffer *)(validationContext + 0xa20) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa00) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa00) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43863,7 +43879,7 @@ void Unwind_180903e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa08) = 0;
   *(DataWord *)(validationContext + 0xa18) = 0;
   *(DataBuffer *)(validationContext + 0xa00) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x9e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43885,7 +43901,7 @@ void Unwind_180903e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xb50) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xb20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43893,7 +43909,7 @@ void Unwind_180903e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xb28) = 0;
   *(DataWord *)(validationContext + 0xb38) = 0;
   *(DataBuffer *)(validationContext + 0xb20) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xb00) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb00) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43901,7 +43917,7 @@ void Unwind_180903e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xb08) = 0;
   *(DataWord *)(validationContext + 0xb18) = 0;
   *(DataBuffer *)(validationContext + 0xb00) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xae0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xae0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43909,7 +43925,7 @@ void Unwind_180903e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xae8) = 0;
   *(DataWord *)(validationContext + 0xaf8) = 0;
   *(DataBuffer *)(validationContext + 0xae0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xac0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xac0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43917,7 +43933,7 @@ void Unwind_180903e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xac8) = 0;
   *(DataWord *)(validationContext + 0xad8) = 0;
   *(DataBuffer *)(validationContext + 0xac0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xaa0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xaa0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43939,7 +43955,7 @@ void Unwind_180903eb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xc10) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xc10))(validationContext + 0xc00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xbe0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xbe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xbe8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43947,7 +43963,7 @@ void Unwind_180903eb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xbe8) = 0;
   *(DataWord *)(validationContext + 0xbf8) = 0;
   *(DataBuffer *)(validationContext + 0xbe0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xbc0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xbc0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43955,7 +43971,7 @@ void Unwind_180903eb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xbc8) = 0;
   *(DataWord *)(validationContext + 0xbd8) = 0;
   *(DataBuffer *)(validationContext + 0xbc0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xba0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xba0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43963,7 +43979,7 @@ void Unwind_180903eb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xba8) = 0;
   *(DataWord *)(validationContext + 3000) = 0;
   *(DataBuffer *)(validationContext + 0xba0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xb80) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb80) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43971,7 +43987,7 @@ void Unwind_180903eb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xb88) = 0;
   *(DataWord *)(validationContext + 0xb98) = 0;
   *(DataBuffer *)(validationContext + 0xb80) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xb60) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -43993,7 +44009,7 @@ void Unwind_180903ed0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xcd0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xcd0))(validationContext + 0xcc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xca0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xca0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xca8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44001,7 +44017,7 @@ void Unwind_180903ed0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xca8) = 0;
   *(DataWord *)(validationContext + 0xcb8) = 0;
   *(DataBuffer *)(validationContext + 0xca0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xc80) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc80) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44009,7 +44025,7 @@ void Unwind_180903ed0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xc88) = 0;
   *(DataWord *)(validationContext + 0xc98) = 0;
   *(DataBuffer *)(validationContext + 0xc80) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xc60) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44017,7 +44033,7 @@ void Unwind_180903ed0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xc68) = 0;
   *(DataWord *)(validationContext + 0xc78) = 0;
   *(DataBuffer *)(validationContext + 0xc60) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xc40) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44025,7 +44041,7 @@ void Unwind_180903ed0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xc48) = 0;
   *(DataWord *)(validationContext + 0xc58) = 0;
   *(DataBuffer *)(validationContext + 0xc40) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xc20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44047,7 +44063,7 @@ void Unwind_180903ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xd40) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xd40))(validationContext + 0xd30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xd08) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xd10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44055,7 +44071,7 @@ void Unwind_180903ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xd10) = 0;
   *(DataWord *)(validationContext + 0xd20) = 0;
   *(DataBuffer *)(validationContext + 0xd08) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xce8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xce8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44077,7 +44093,7 @@ void Unwind_180903f10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xdb0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xdb0))(validationContext + 0xda0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xd78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xd80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44085,7 +44101,7 @@ void Unwind_180903f10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xd80) = 0;
   *(DataWord *)(validationContext + 0xd90) = 0;
   *(DataBuffer *)(validationContext + 0xd78) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xd58) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44107,7 +44123,7 @@ void Unwind_180903f30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xe20) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xe20))(validationContext + 0xe10,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xde8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xde8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xdf0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44115,7 +44131,7 @@ void Unwind_180903f30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xdf0) = 0;
   *(DataWord *)(validationContext + 0xe00) = 0;
   *(DataBuffer *)(validationContext + 0xde8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xdc8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xdc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44137,7 +44153,7 @@ void Unwind_180903f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xee0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xee0))(validationContext + 0xed0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xeb0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xeb0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xeb8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44145,7 +44161,7 @@ void Unwind_180903f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xeb8) = 0;
   *(DataWord *)(validationContext + 0xec8) = 0;
   *(DataBuffer *)(validationContext + 0xeb0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe90) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe90) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44153,7 +44169,7 @@ void Unwind_180903f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xe98) = 0;
   *(DataWord *)(validationContext + 0xea8) = 0;
   *(DataBuffer *)(validationContext + 0xe90) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe70) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe70) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44161,7 +44177,7 @@ void Unwind_180903f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xe78) = 0;
   *(DataWord *)(validationContext + 0xe88) = 0;
   *(DataBuffer *)(validationContext + 0xe70) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe50) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe50) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44169,7 +44185,7 @@ void Unwind_180903f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xe58) = 0;
   *(DataWord *)(validationContext + 0xe68) = 0;
   *(DataBuffer *)(validationContext + 0xe50) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe30) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44191,7 +44207,7 @@ void Unwind_180903f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 4000) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 4000))(validationContext + 0xf90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xf70) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf70) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf78) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44199,7 +44215,7 @@ void Unwind_180903f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf78) = 0;
   *(DataWord *)(validationContext + 0xf88) = 0;
   *(DataBuffer *)(validationContext + 0xf70) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xf50) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf50) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44207,7 +44223,7 @@ void Unwind_180903f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf58) = 0;
   *(DataWord *)(validationContext + 0xf68) = 0;
   *(DataBuffer *)(validationContext + 0xf50) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xf30) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44215,7 +44231,7 @@ void Unwind_180903f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf38) = 0;
   *(DataWord *)(validationContext + 0xf48) = 0;
   *(DataBuffer *)(validationContext + 0xf30) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xf10) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf10) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44223,7 +44239,7 @@ void Unwind_180903f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf18) = 0;
   *(DataWord *)(validationContext + 0xf28) = 0;
   *(DataBuffer *)(validationContext + 0xf10) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xef0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xef0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44245,7 +44261,7 @@ void Unwind_180903f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1060) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1060))(validationContext + 0x1050,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1030) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1030) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1038) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44253,7 +44269,7 @@ void Unwind_180903f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1038) = 0;
   *(DataWord *)(validationContext + 0x1048) = 0;
   *(DataBuffer *)(validationContext + 0x1030) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1010) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1010) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44261,7 +44277,7 @@ void Unwind_180903f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1018) = 0;
   *(DataWord *)(validationContext + 0x1028) = 0;
   *(DataBuffer *)(validationContext + 0x1010) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xff0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xff0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44269,7 +44285,7 @@ void Unwind_180903f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xff8) = 0;
   *(DataWord *)(validationContext + 0x1008) = 0;
   *(DataBuffer *)(validationContext + 0xff0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xfd0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xfd0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44277,7 +44293,7 @@ void Unwind_180903f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xfd8) = 0;
   *(DataWord *)(validationContext + 0xfe8) = 0;
   *(DataBuffer *)(validationContext + 0xfd0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xfb0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xfb0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44299,7 +44315,7 @@ void Unwind_180903fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x10d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x10d0))(validationContext + 0x10c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1098) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1098) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44307,7 +44323,7 @@ void Unwind_180903fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x10a0) = 0;
   *(DataWord *)(validationContext + 0x10b0) = 0;
   *(DataBuffer *)(validationContext + 0x1098) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1078) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1078) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44329,7 +44345,7 @@ void Unwind_180903fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1140) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1140))(validationContext + 0x1130,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1108) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1110) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44337,7 +44353,7 @@ void Unwind_180903fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1110) = 0;
   *(DataWord *)(validationContext + 0x1120) = 0;
   *(DataBuffer *)(validationContext + 0x1108) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x10e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x10e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44359,7 +44375,7 @@ void Unwind_180903ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x11b0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x11b0))(validationContext + 0x11a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1178) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1178) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1180) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44367,7 +44383,7 @@ void Unwind_180903ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1180) = 0;
   *(DataWord *)(validationContext + 0x1190) = 0;
   *(DataBuffer *)(validationContext + 0x1178) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1158) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1158) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44389,7 +44405,7 @@ void Unwind_180904010(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1220) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1220))(validationContext + 0x1210,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x11e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x11e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x11f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44397,7 +44413,7 @@ void Unwind_180904010(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x11f0) = 0;
   *(DataWord *)(validationContext + 0x1200) = 0;
   *(DataBuffer *)(validationContext + 0x11e8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x11c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x11c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44419,7 +44435,7 @@ void Unwind_180904030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1290) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1290))(validationContext + 0x1280,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1258) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1258) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1260) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44427,7 +44443,7 @@ void Unwind_180904030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1260) = 0;
   *(DataWord *)(validationContext + 0x1270) = 0;
   *(DataBuffer *)(validationContext + 0x1258) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1238) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1238) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44449,7 +44465,7 @@ void Unwind_180904050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1300) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1300))(validationContext + 0x12f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x12c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x12c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x12d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44457,7 +44473,7 @@ void Unwind_180904050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x12d0) = 0;
   *(DataWord *)(validationContext + 0x12e0) = 0;
   *(DataBuffer *)(validationContext + 0x12c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x12a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x12a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44479,7 +44495,7 @@ void Unwind_180904070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1370) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1370))(validationContext + 0x1360,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1338) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1338) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1340) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44487,7 +44503,7 @@ void Unwind_180904070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1340) = 0;
   *(DataWord *)(validationContext + 0x1350) = 0;
   *(DataBuffer *)(validationContext + 0x1338) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1318) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1318) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44552,7 +44568,7 @@ void Unwind_1809040d0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x20);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44599,7 +44615,7 @@ void Unwind_180904100(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x50);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44632,7 +44648,7 @@ void Unwind_180904120(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x20);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44651,7 +44667,7 @@ void Unwind_180904130(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x20);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44670,7 +44686,7 @@ void Unwind_180904140(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x20);
-  *(DataBuffer *)(validationContext + 0x40) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44689,7 +44705,7 @@ void Unwind_180904150(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x20);
-  *(DataBuffer *)(validationContext + 0x60) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x68) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44708,7 +44724,7 @@ void Unwind_180904160(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x20);
-  *(DataBuffer *)(validationContext + 0x80) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x80) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x88) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44741,7 +44757,7 @@ void Unwind_1809041a0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x50);
-  *(DataBuffer *)(validationContext + 0x60) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x68) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44777,7 +44793,7 @@ void Unwind_1809041d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 400) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 400))(validationContext + 0x180,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x160) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x160) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44785,7 +44801,7 @@ void Unwind_1809041d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x168) = 0;
   *(DataWord *)(validationContext + 0x178) = 0;
   *(DataBuffer *)(validationContext + 0x160) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x140) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x140) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x148) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44793,7 +44809,7 @@ void Unwind_1809041d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x148) = 0;
   *(DataWord *)(validationContext + 0x158) = 0;
   *(DataBuffer *)(validationContext + 0x140) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x120) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x120) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x128) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44801,7 +44817,7 @@ void Unwind_1809041d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x128) = 0;
   *(DataWord *)(validationContext + 0x138) = 0;
   *(DataBuffer *)(validationContext + 0x120) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x100) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x100) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44809,7 +44825,7 @@ void Unwind_1809041d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x108) = 0;
   *(DataWord *)(validationContext + 0x118) = 0;
   *(DataBuffer *)(validationContext + 0x100) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44831,7 +44847,7 @@ void Unwind_1809041f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x250) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x250))(validationContext + 0x240,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x220) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x220) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x228) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44839,7 +44855,7 @@ void Unwind_1809041f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x228) = 0;
   *(DataWord *)(validationContext + 0x238) = 0;
   *(DataBuffer *)(validationContext + 0x220) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x200) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x208) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44847,7 +44863,7 @@ void Unwind_1809041f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x208) = 0;
   *(DataWord *)(validationContext + 0x218) = 0;
   *(DataBuffer *)(validationContext + 0x200) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44855,7 +44871,7 @@ void Unwind_1809041f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1e8) = 0;
   *(DataWord *)(validationContext + 0x1f8) = 0;
   *(DataBuffer *)(validationContext + 0x1e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44863,7 +44879,7 @@ void Unwind_1809041f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1c8) = 0;
   *(DataWord *)(validationContext + 0x1d8) = 0;
   *(DataBuffer *)(validationContext + 0x1c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44885,7 +44901,7 @@ void Unwind_180904210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x310) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x310))(validationContext + 0x300,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44893,7 +44909,7 @@ void Unwind_180904210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2e8) = 0;
   *(DataWord *)(validationContext + 0x2f8) = 0;
   *(DataBuffer *)(validationContext + 0x2e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44901,7 +44917,7 @@ void Unwind_180904210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2c8) = 0;
   *(DataWord *)(validationContext + 0x2d8) = 0;
   *(DataBuffer *)(validationContext + 0x2c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44909,7 +44925,7 @@ void Unwind_180904210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2a8) = 0;
   *(DataWord *)(validationContext + 0x2b8) = 0;
   *(DataBuffer *)(validationContext + 0x2a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x280) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x280) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x288) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44917,7 +44933,7 @@ void Unwind_180904210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x288) = 0;
   *(DataWord *)(validationContext + 0x298) = 0;
   *(DataBuffer *)(validationContext + 0x280) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x260) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x260) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x268) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44939,7 +44955,7 @@ void Unwind_180904230(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x3d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x3d0))(validationContext + 0x3c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x3a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x3a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x3a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44947,7 +44963,7 @@ void Unwind_180904230(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x3a8) = 0;
   *(DataWord *)(validationContext + 0x3b8) = 0;
   *(DataBuffer *)(validationContext + 0x3a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x380) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x380) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x388) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44955,7 +44971,7 @@ void Unwind_180904230(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x388) = 0;
   *(DataWord *)(validationContext + 0x398) = 0;
   *(DataBuffer *)(validationContext + 0x380) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x360) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x360) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x368) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44963,7 +44979,7 @@ void Unwind_180904230(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x368) = 0;
   *(DataWord *)(validationContext + 0x378) = 0;
   *(DataBuffer *)(validationContext + 0x360) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x340) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x340) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x348) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44971,7 +44987,7 @@ void Unwind_180904230(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x348) = 0;
   *(DataWord *)(validationContext + 0x358) = 0;
   *(DataBuffer *)(validationContext + 0x340) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 800) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 800) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x328) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -44993,7 +45009,7 @@ void Unwind_180904250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x490) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x490))(validationContext + 0x480,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x460) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x460) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45001,7 +45017,7 @@ void Unwind_180904250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x468) = 0;
   *(DataWord *)(validationContext + 0x478) = 0;
   *(DataBuffer *)(validationContext + 0x460) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x440) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x440) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x448) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45009,7 +45025,7 @@ void Unwind_180904250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x448) = 0;
   *(DataWord *)(validationContext + 0x458) = 0;
   *(DataBuffer *)(validationContext + 0x440) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x420) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x420) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x428) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45017,7 +45033,7 @@ void Unwind_180904250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x428) = 0;
   *(DataWord *)(validationContext + 0x438) = 0;
   *(DataBuffer *)(validationContext + 0x420) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x400) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x400) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x408) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45025,7 +45041,7 @@ void Unwind_180904250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x408) = 0;
   *(DataWord *)(validationContext + 0x418) = 0;
   *(DataBuffer *)(validationContext + 0x400) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x3e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x3e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 1000) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45047,7 +45063,7 @@ void Unwind_180904270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x550) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x550))(validationContext + 0x540,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x520) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x520) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x528) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45055,7 +45071,7 @@ void Unwind_180904270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x528) = 0;
   *(DataWord *)(validationContext + 0x538) = 0;
   *(DataBuffer *)(validationContext + 0x520) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x500) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x500) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x508) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45063,7 +45079,7 @@ void Unwind_180904270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x508) = 0;
   *(DataWord *)(validationContext + 0x518) = 0;
   *(DataBuffer *)(validationContext + 0x500) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45071,7 +45087,7 @@ void Unwind_180904270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x4e8) = 0;
   *(DataWord *)(validationContext + 0x4f8) = 0;
   *(DataBuffer *)(validationContext + 0x4e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45079,7 +45095,7 @@ void Unwind_180904270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x4c8) = 0;
   *(DataWord *)(validationContext + 0x4d8) = 0;
   *(DataBuffer *)(validationContext + 0x4c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45101,7 +45117,7 @@ void Unwind_180904290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x610) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x5e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x5e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x5e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45109,7 +45125,7 @@ void Unwind_180904290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x5e8) = 0;
   *(DataWord *)(validationContext + 0x5f8) = 0;
   *(DataBuffer *)(validationContext + 0x5e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x5c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x5c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45117,7 +45133,7 @@ void Unwind_180904290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x5c8) = 0;
   *(DataWord *)(validationContext + 0x5d8) = 0;
   *(DataBuffer *)(validationContext + 0x5c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x5a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x5a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45125,7 +45141,7 @@ void Unwind_180904290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x5a8) = 0;
   *(DataWord *)(validationContext + 0x5b8) = 0;
   *(DataBuffer *)(validationContext + 0x5a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x580) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x580) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x588) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45133,7 +45149,7 @@ void Unwind_180904290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x588) = 0;
   *(DataWord *)(validationContext + 0x598) = 0;
   *(DataBuffer *)(validationContext + 0x580) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x560) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x560) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45155,7 +45171,7 @@ void Unwind_1809042b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x6d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x6d0))(validationContext + 0x6c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x6a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x6a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x6a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45163,7 +45179,7 @@ void Unwind_1809042b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x6a8) = 0;
   *(DataWord *)(validationContext + 0x6b8) = 0;
   *(DataBuffer *)(validationContext + 0x6a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x680) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x680) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x688) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45171,7 +45187,7 @@ void Unwind_1809042b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x688) = 0;
   *(DataWord *)(validationContext + 0x698) = 0;
   *(DataBuffer *)(validationContext + 0x680) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x660) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x660) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x668) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45179,7 +45195,7 @@ void Unwind_1809042b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x668) = 0;
   *(DataWord *)(validationContext + 0x678) = 0;
   *(DataBuffer *)(validationContext + 0x660) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x640) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x640) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x648) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45187,7 +45203,7 @@ void Unwind_1809042b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x648) = 0;
   *(DataWord *)(validationContext + 0x658) = 0;
   *(DataBuffer *)(validationContext + 0x640) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x620) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x620) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x628) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45209,7 +45225,7 @@ void Unwind_1809042d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x790) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x790))(validationContext + 0x780,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x760) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x760) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x768) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45217,7 +45233,7 @@ void Unwind_1809042d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x768) = 0;
   *(DataWord *)(validationContext + 0x778) = 0;
   *(DataBuffer *)(validationContext + 0x760) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x740) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x740) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x748) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45225,7 +45241,7 @@ void Unwind_1809042d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x748) = 0;
   *(DataWord *)(validationContext + 0x758) = 0;
   *(DataBuffer *)(validationContext + 0x740) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x720) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x720) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x728) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45233,7 +45249,7 @@ void Unwind_1809042d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x728) = 0;
   *(DataWord *)(validationContext + 0x738) = 0;
   *(DataBuffer *)(validationContext + 0x720) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x700) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x700) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x708) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45241,7 +45257,7 @@ void Unwind_1809042d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x708) = 0;
   *(DataWord *)(validationContext + 0x718) = 0;
   *(DataBuffer *)(validationContext + 0x700) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x6e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x6e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45263,7 +45279,7 @@ void Unwind_1809042f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x850) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x850))(validationContext + 0x840,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x820) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x820) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x828) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45271,7 +45287,7 @@ void Unwind_1809042f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x828) = 0;
   *(DataWord *)(validationContext + 0x838) = 0;
   *(DataBuffer *)(validationContext + 0x820) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x800) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x800) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x808) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45279,7 +45295,7 @@ void Unwind_1809042f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x808) = 0;
   *(DataWord *)(validationContext + 0x818) = 0;
   *(DataBuffer *)(validationContext + 0x800) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x7e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x7e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45287,7 +45303,7 @@ void Unwind_1809042f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x7e8) = 0;
   *(DataWord *)(validationContext + 0x7f8) = 0;
   *(DataBuffer *)(validationContext + 0x7e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x7c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x7c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45295,7 +45311,7 @@ void Unwind_1809042f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x7c8) = 0;
   *(DataWord *)(validationContext + 0x7d8) = 0;
   *(DataBuffer *)(validationContext + 0x7c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x7a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x7a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45334,7 +45350,7 @@ void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext
   if (*(FunctionPointer**)(validationContext + 0x910) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x910))(validationContext + 0x900,0,0,systemFlag,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x8e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x8e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45342,7 +45358,7 @@ void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext
   *(DataBuffer *)(validationContext + 0x8e8) = 0;
   *(DataWord *)(validationContext + 0x8f8) = 0;
   *(DataBuffer *)(validationContext + 0x8e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x8c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x8c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45350,7 +45366,7 @@ void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext
   *(DataBuffer *)(validationContext + 0x8c8) = 0;
   *(DataWord *)(validationContext + 0x8d8) = 0;
   *(DataBuffer *)(validationContext + 0x8c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x8a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x8a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45358,7 +45374,7 @@ void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext
   *(DataBuffer *)(validationContext + 0x8a8) = 0;
   *(DataWord *)(validationContext + 0x8b8) = 0;
   *(DataBuffer *)(validationContext + 0x8a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x880) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x880) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x888) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45366,7 +45382,7 @@ void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext
   *(DataBuffer *)(validationContext + 0x888) = 0;
   *(DataWord *)(validationContext + 0x898) = 0;
   *(DataBuffer *)(validationContext + 0x880) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x860) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x860) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x868) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45405,7 +45421,7 @@ void ExceptionUnwindHandlerE1(DataBuffer exceptionContext, int64_t unwindContext
   if (*(FunctionPointer**)(validationContext + 0x9d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x9d0))(validationContext + 0x9c0,0,0,systemFlag,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x9a0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45413,7 +45429,7 @@ void ExceptionUnwindHandlerE1(DataBuffer exceptionContext, int64_t unwindContext
   *(DataBuffer *)(validationContext + 0x9a8) = 0;
   *(DataWord *)(validationContext + 0x9b8) = 0;
   *(DataBuffer *)(validationContext + 0x9a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x980) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x980) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x988) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45421,7 +45437,7 @@ void ExceptionUnwindHandlerE1(DataBuffer exceptionContext, int64_t unwindContext
   *(DataBuffer *)(validationContext + 0x988) = 0;
   *(DataWord *)(validationContext + 0x998) = 0;
   *(DataBuffer *)(validationContext + 0x980) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x960) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x960) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x968) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45429,7 +45445,7 @@ void ExceptionUnwindHandlerE1(DataBuffer exceptionContext, int64_t unwindContext
   *(DataBuffer *)(validationContext + 0x968) = 0;
   *(DataWord *)(validationContext + 0x978) = 0;
   *(DataBuffer *)(validationContext + 0x960) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x940) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x940) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x948) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45437,7 +45453,7 @@ void ExceptionUnwindHandlerE1(DataBuffer exceptionContext, int64_t unwindContext
   *(DataBuffer *)(validationContext + 0x948) = 0;
   *(DataWord *)(validationContext + 0x958) = 0;
   *(DataBuffer *)(validationContext + 0x940) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x920) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x920) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x928) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45459,7 +45475,7 @@ void Unwind_180904350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xa90) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xa90))(validationContext + 0xa80,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xa60) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45467,7 +45483,7 @@ void Unwind_180904350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa68) = 0;
   *(DataWord *)(validationContext + 0xa78) = 0;
   *(DataBuffer *)(validationContext + 0xa60) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa40) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45475,7 +45491,7 @@ void Unwind_180904350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa48) = 0;
   *(DataWord *)(validationContext + 0xa58) = 0;
   *(DataBuffer *)(validationContext + 0xa40) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45483,7 +45499,7 @@ void Unwind_180904350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa28) = 0;
   *(DataWord *)(validationContext + 0xa38) = 0;
   *(DataBuffer *)(validationContext + 0xa20) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa00) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa00) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45491,7 +45507,7 @@ void Unwind_180904350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa08) = 0;
   *(DataWord *)(validationContext + 0xa18) = 0;
   *(DataBuffer *)(validationContext + 0xa00) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x9e0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45513,7 +45529,7 @@ void Unwind_180904370(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xb50) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xb20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45521,7 +45537,7 @@ void Unwind_180904370(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xb28) = 0;
   *(DataWord *)(validationContext + 0xb38) = 0;
   *(DataBuffer *)(validationContext + 0xb20) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xb00) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb00) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45529,7 +45545,7 @@ void Unwind_180904370(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xb08) = 0;
   *(DataWord *)(validationContext + 0xb18) = 0;
   *(DataBuffer *)(validationContext + 0xb00) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xae0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xae0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45537,7 +45553,7 @@ void Unwind_180904370(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xae8) = 0;
   *(DataWord *)(validationContext + 0xaf8) = 0;
   *(DataBuffer *)(validationContext + 0xae0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xac0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xac0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45545,7 +45561,7 @@ void Unwind_180904370(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xac8) = 0;
   *(DataWord *)(validationContext + 0xad8) = 0;
   *(DataBuffer *)(validationContext + 0xac0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xaa0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xaa0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45567,7 +45583,7 @@ void Unwind_180904390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xc10) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xc10))(validationContext + 0xc00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xbe0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xbe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xbe8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45575,7 +45591,7 @@ void Unwind_180904390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xbe8) = 0;
   *(DataWord *)(validationContext + 0xbf8) = 0;
   *(DataBuffer *)(validationContext + 0xbe0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xbc0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xbc0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45583,7 +45599,7 @@ void Unwind_180904390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xbc8) = 0;
   *(DataWord *)(validationContext + 0xbd8) = 0;
   *(DataBuffer *)(validationContext + 0xbc0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xba0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xba0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45591,7 +45607,7 @@ void Unwind_180904390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xba8) = 0;
   *(DataWord *)(validationContext + 3000) = 0;
   *(DataBuffer *)(validationContext + 0xba0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xb80) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb80) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45599,7 +45615,7 @@ void Unwind_180904390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xb88) = 0;
   *(DataWord *)(validationContext + 0xb98) = 0;
   *(DataBuffer *)(validationContext + 0xb80) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xb60) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45621,7 +45637,7 @@ void Unwind_1809043b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xcd0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xcd0))(validationContext + 0xcc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xca0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xca0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xca8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45629,7 +45645,7 @@ void Unwind_1809043b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xca8) = 0;
   *(DataWord *)(validationContext + 0xcb8) = 0;
   *(DataBuffer *)(validationContext + 0xca0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xc80) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc80) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45637,7 +45653,7 @@ void Unwind_1809043b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xc88) = 0;
   *(DataWord *)(validationContext + 0xc98) = 0;
   *(DataBuffer *)(validationContext + 0xc80) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xc60) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45645,7 +45661,7 @@ void Unwind_1809043b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xc68) = 0;
   *(DataWord *)(validationContext + 0xc78) = 0;
   *(DataBuffer *)(validationContext + 0xc60) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xc40) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45653,7 +45669,7 @@ void Unwind_1809043b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xc48) = 0;
   *(DataWord *)(validationContext + 0xc58) = 0;
   *(DataBuffer *)(validationContext + 0xc40) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xc20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45675,7 +45691,7 @@ void Unwind_1809043d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xd40) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xd40))(validationContext + 0xd30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xd08) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xd10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45683,7 +45699,7 @@ void Unwind_1809043d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xd10) = 0;
   *(DataWord *)(validationContext + 0xd20) = 0;
   *(DataBuffer *)(validationContext + 0xd08) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xce8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xce8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45705,7 +45721,7 @@ void Unwind_1809043f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xdb0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xdb0))(validationContext + 0xda0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xd78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xd80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45713,7 +45729,7 @@ void Unwind_1809043f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xd80) = 0;
   *(DataWord *)(validationContext + 0xd90) = 0;
   *(DataBuffer *)(validationContext + 0xd78) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xd58) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45735,7 +45751,7 @@ void Unwind_180904410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xe20) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xe20))(validationContext + 0xe10,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xde8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xde8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xdf0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45743,7 +45759,7 @@ void Unwind_180904410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xdf0) = 0;
   *(DataWord *)(validationContext + 0xe00) = 0;
   *(DataBuffer *)(validationContext + 0xde8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xdc8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xdc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45765,7 +45781,7 @@ void Unwind_180904430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xee0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xee0))(validationContext + 0xed0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xeb0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xeb0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xeb8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45773,7 +45789,7 @@ void Unwind_180904430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xeb8) = 0;
   *(DataWord *)(validationContext + 0xec8) = 0;
   *(DataBuffer *)(validationContext + 0xeb0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe90) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe90) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45781,7 +45797,7 @@ void Unwind_180904430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xe98) = 0;
   *(DataWord *)(validationContext + 0xea8) = 0;
   *(DataBuffer *)(validationContext + 0xe90) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe70) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe70) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45789,7 +45805,7 @@ void Unwind_180904430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xe78) = 0;
   *(DataWord *)(validationContext + 0xe88) = 0;
   *(DataBuffer *)(validationContext + 0xe70) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe50) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe50) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45797,7 +45813,7 @@ void Unwind_180904430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xe58) = 0;
   *(DataWord *)(validationContext + 0xe68) = 0;
   *(DataBuffer *)(validationContext + 0xe50) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe30) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45819,7 +45835,7 @@ void Unwind_180904450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 4000) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 4000))(validationContext + 0xf90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xf70) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf70) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf78) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45827,7 +45843,7 @@ void Unwind_180904450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf78) = 0;
   *(DataWord *)(validationContext + 0xf88) = 0;
   *(DataBuffer *)(validationContext + 0xf70) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xf50) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf50) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45835,7 +45851,7 @@ void Unwind_180904450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf58) = 0;
   *(DataWord *)(validationContext + 0xf68) = 0;
   *(DataBuffer *)(validationContext + 0xf50) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xf30) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45843,7 +45859,7 @@ void Unwind_180904450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf38) = 0;
   *(DataWord *)(validationContext + 0xf48) = 0;
   *(DataBuffer *)(validationContext + 0xf30) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xf10) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf10) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45851,7 +45867,7 @@ void Unwind_180904450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf18) = 0;
   *(DataWord *)(validationContext + 0xf28) = 0;
   *(DataBuffer *)(validationContext + 0xf10) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xef0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xef0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45873,7 +45889,7 @@ void Unwind_180904470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1060) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1060))(validationContext + 0x1050,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1030) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1030) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1038) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45881,7 +45897,7 @@ void Unwind_180904470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1038) = 0;
   *(DataWord *)(validationContext + 0x1048) = 0;
   *(DataBuffer *)(validationContext + 0x1030) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1010) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1010) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45889,7 +45905,7 @@ void Unwind_180904470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1018) = 0;
   *(DataWord *)(validationContext + 0x1028) = 0;
   *(DataBuffer *)(validationContext + 0x1010) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xff0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xff0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45897,7 +45913,7 @@ void Unwind_180904470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xff8) = 0;
   *(DataWord *)(validationContext + 0x1008) = 0;
   *(DataBuffer *)(validationContext + 0xff0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xfd0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xfd0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45905,7 +45921,7 @@ void Unwind_180904470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xfd8) = 0;
   *(DataWord *)(validationContext + 0xfe8) = 0;
   *(DataBuffer *)(validationContext + 0xfd0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xfb0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xfb0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45927,7 +45943,7 @@ void Unwind_180904490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x10d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x10d0))(validationContext + 0x10c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1098) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1098) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45935,7 +45951,7 @@ void Unwind_180904490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x10a0) = 0;
   *(DataWord *)(validationContext + 0x10b0) = 0;
   *(DataBuffer *)(validationContext + 0x1098) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1078) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1078) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45957,7 +45973,7 @@ void Unwind_1809044b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1140) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1140))(validationContext + 0x1130,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1108) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1110) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45965,7 +45981,7 @@ void Unwind_1809044b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1110) = 0;
   *(DataWord *)(validationContext + 0x1120) = 0;
   *(DataBuffer *)(validationContext + 0x1108) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x10e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x10e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45987,7 +46003,7 @@ void Unwind_1809044d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x11b0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x11b0))(validationContext + 0x11a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1178) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1178) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1180) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -45995,7 +46011,7 @@ void Unwind_1809044d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1180) = 0;
   *(DataWord *)(validationContext + 0x1190) = 0;
   *(DataBuffer *)(validationContext + 0x1178) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1158) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1158) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46017,7 +46033,7 @@ void Unwind_1809044f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1220) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1220))(validationContext + 0x1210,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x11e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x11e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x11f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46025,7 +46041,7 @@ void Unwind_1809044f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x11f0) = 0;
   *(DataWord *)(validationContext + 0x1200) = 0;
   *(DataBuffer *)(validationContext + 0x11e8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x11c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x11c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46047,7 +46063,7 @@ void Unwind_180904510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1290) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1290))(validationContext + 0x1280,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1258) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1258) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1260) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46055,7 +46071,7 @@ void Unwind_180904510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1260) = 0;
   *(DataWord *)(validationContext + 0x1270) = 0;
   *(DataBuffer *)(validationContext + 0x1258) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1238) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1238) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46077,7 +46093,7 @@ void Unwind_180904530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1300) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1300))(validationContext + 0x12f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x12c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x12c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x12d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46085,7 +46101,7 @@ void Unwind_180904530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x12d0) = 0;
   *(DataWord *)(validationContext + 0x12e0) = 0;
   *(DataBuffer *)(validationContext + 0x12c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x12a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x12a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46107,7 +46123,7 @@ void Unwind_180904550(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1370) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1370))(validationContext + 0x1360,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1338) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1338) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1340) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46115,7 +46131,7 @@ void Unwind_180904550(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1340) = 0;
   *(DataWord *)(validationContext + 0x1350) = 0;
   *(DataBuffer *)(validationContext + 0x1338) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1318) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1318) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46300,7 +46316,7 @@ void Unwind_180904680(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x50);
   *exceptionDataBuffer = &UNK_18098bdc8;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -46327,7 +46343,7 @@ void Unwind_1809046a0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x50);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -46349,7 +46365,7 @@ void Unwind_1809046c0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(validationContext + 0x18) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46368,7 +46384,7 @@ void Unwind_1809046d0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x60);
-  *(DataBuffer *)(validationContext + 0x18) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46578,7 +46594,7 @@ void Unwind_180904810(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x60);
-  *(DataBuffer *)(validationContext + 0x40) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46586,7 +46602,7 @@ void Unwind_180904810(DataBuffer operationBase,int64_t dataBuffer)
   *(DataBuffer *)(validationContext + 0x48) = 0;
   *(DataWord *)(validationContext + 0x58) = 0;
   *(DataBuffer *)(validationContext + 0x40) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46605,7 +46621,7 @@ void Unwind_180904820(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x60);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46642,7 +46658,7 @@ void Unwind_180904840(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180904870(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x50) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x50) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x58) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46680,7 +46696,7 @@ void Unwind_1809048a0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x20);
   *exceptionDataBuffer = &UNK_18098bdc8;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -46725,7 +46741,7 @@ void Unwind_1809048e0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x48);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46744,7 +46760,7 @@ void Unwind_1809048f0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x68);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -46885,7 +46901,7 @@ void Unwind_180904960(DataBuffer operationBase,int64_t dataBuffer)
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xa8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xa8) + 0x10) != 0)
      ) {
@@ -46947,7 +46963,7 @@ void Unwind_180904970(DataBuffer operationBase,int64_t dataBuffer)
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x310) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x310) + 0x10) != 0)) {
@@ -47009,7 +47025,7 @@ void Unwind_180904990(DataBuffer operationBase,int64_t dataBuffer)
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x578) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x578) + 0x10) != 0)) {
@@ -47215,7 +47231,7 @@ void Unwind_180904a20(DataBuffer operationBase,int64_t dataBuffer)
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xa8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xa8) + 0x10) != 0)
      ) {
@@ -47277,7 +47293,7 @@ void Unwind_180904a30(DataBuffer operationBase,int64_t dataBuffer)
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x310) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x310) + 0x10) != 0)) {
@@ -47354,7 +47370,7 @@ void ExceptionUnwindHandlerF0(DataBuffer exceptionContext, int64_t unwindContext
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x578) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x578) + 0x10) != 0)) {
@@ -47782,13 +47798,13 @@ void Unwind_180904dd0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x40);
-  *exceptionDataBuffer = &UNK_180a3cf50;
+  *exceptionDataBuffer = &ExceptionHandlerA;
   if (*(char *)((int64_t)exceptionDataBuffer + 0xb1) != '\0') {
-    FUN_180639250();
+    ResetSystemStateE0();
   }
   _Mtx_destroy_in_situ();
-  *exceptionDataBuffer = &UNK_180a30778;
-  exceptionDataBuffer[7] = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &ExceptionHandlerB;
+  exceptionDataBuffer[7] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[8] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -47796,7 +47812,7 @@ void Unwind_180904dd0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer[8] = 0;
   *(DataWord *)(exceptionDataBuffer + 10) = 0;
   exceptionDataBuffer[7] = &DefaultExceptionHandlerB;
-  exceptionDataBuffer[1] = &UNK_180a3c3e0;
+  exceptionDataBuffer[1] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[2] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -47816,8 +47832,8 @@ void Unwind_180904de0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x40);
   _Mtx_destroy_in_situ();
-  *exceptionDataBuffer = &UNK_180a30778;
-  exceptionDataBuffer[7] = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &ExceptionHandlerB;
+  exceptionDataBuffer[7] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[8] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -47825,7 +47841,7 @@ void Unwind_180904de0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer[8] = 0;
   *(DataWord *)(exceptionDataBuffer + 10) = 0;
   exceptionDataBuffer[7] = &DefaultExceptionHandlerB;
-  exceptionDataBuffer[1] = &UNK_180a3c3e0;
+  exceptionDataBuffer[1] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[2] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -47844,8 +47860,8 @@ void Unwind_180904df0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x40);
-  *exceptionDataBuffer = &UNK_180a30778;
-  exceptionDataBuffer[7] = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &ExceptionHandlerB;
+  exceptionDataBuffer[7] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[8] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -47853,7 +47869,7 @@ void Unwind_180904df0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer[8] = 0;
   *(DataWord *)(exceptionDataBuffer + 10) = 0;
   exceptionDataBuffer[7] = &DefaultExceptionHandlerB;
-  exceptionDataBuffer[1] = &UNK_180a3c3e0;
+  exceptionDataBuffer[1] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[2] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48151,7 +48167,7 @@ void Unwind_180904f70(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(validationContext + 0x30) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48170,7 +48186,7 @@ void Unwind_180904f80(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xa8);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48264,7 +48280,7 @@ void Unwind_180904fb0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180904fc0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0xb8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0xb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48318,7 +48334,7 @@ void Unwind_180904fe0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180904ff0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0xd8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0xd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48351,7 +48367,7 @@ void Unwind_180905000(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180905010(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0xf8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0xf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x100) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48520,7 +48536,7 @@ void Unwind_180905090(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809050c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x1e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x1e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48553,7 +48569,7 @@ void Unwind_1809050d0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809050e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x168) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x168) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x170) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48569,7 +48585,7 @@ void Unwind_1809050e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809050f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x1a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x1a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x1b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48585,7 +48601,7 @@ void Unwind_1809050f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180905100(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x188) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x188) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 400) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48661,7 +48677,7 @@ void Unwind_180905140(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180905150(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x128) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x128) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x130) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48719,7 +48735,7 @@ void Unwind_180905170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905180(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 200) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -48735,7 +48751,7 @@ void Unwind_180905180(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180905190(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x1c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x1c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -49119,7 +49135,7 @@ void Unwind_180905350(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -49135,7 +49151,7 @@ void Unwind_180905350(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180905360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x108) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -49449,7 +49465,7 @@ void Unwind_1809054b0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809054c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x90) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x90) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x98) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -49465,7 +49481,7 @@ void Unwind_1809054c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809054d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x90) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x90) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x98) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -49900,7 +49916,7 @@ void Unwind_180905780(DataBuffer operationBase,uint *dataBuffer)
 {
   if ((*dataBuffer & 1) != 0) {
     *dataBuffer = *dataBuffer & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 10));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 10));
   }
   return;
 }
@@ -50360,7 +50376,7 @@ void Unwind_180905890(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = *(int64_t **)(dataBuffer + 0x2e0);
   validationContext = pdataContext[1];
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x28) {
-    *(DataBuffer *)(calculatedOffset + 8) = &UNK_180a3c3e0;
+    *(DataBuffer *)(calculatedOffset + 8) = &TemporaryExceptionHandler;
     if (*(int64_t *)(calculatedOffset + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
@@ -50434,7 +50450,7 @@ void Unwind_1809058c0(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = *(int64_t **)(dataBuffer + 0x2e8);
   validationContext = pdataContext[1];
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x28) {
-    *(DataBuffer *)(calculatedOffset + 8) = &UNK_180a3c3e0;
+    *(DataBuffer *)(calculatedOffset + 8) = &TemporaryExceptionHandler;
     if (*(int64_t *)(calculatedOffset + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
@@ -50455,7 +50471,7 @@ void Unwind_1809058c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809058d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x200) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x208) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -50839,7 +50855,7 @@ void Unwind_180905980(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x2e8) + 0x280);
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x2e8) + 0x288);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 5) {
-    *validationStatusPointer = &UNK_180a3c3e0;
+    *validationStatusPointer = &TemporaryExceptionHandler;
     if (validationStatusPointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
@@ -51047,7 +51063,7 @@ void ExecuteSystemCallbackFunction(DataBuffer SystemContext, int64_t ExecutionCo
 void ResetExceptionHandlerA(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
-  *(DataBuffer *)(ExecutionContext + 0x68) = &UNK_180a3c3e0;
+  *(DataBuffer *)(ExecutionContext + 0x68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(ExecutionContext + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -51071,7 +51087,7 @@ void ResetExceptionHandlerA(DataBuffer SystemContext, int64_t ExecutionContext)
 void ResetExceptionHandlerB(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
-  *(DataBuffer *)(ExecutionContext + 0x98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(ExecutionContext + 0x98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(ExecutionContext + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -51095,7 +51111,7 @@ void ResetExceptionHandlerB(DataBuffer SystemContext, int64_t ExecutionContext)
 void ResetExceptionHandlerC(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
-  *(DataBuffer *)(ExecutionContext + 0xb8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(ExecutionContext + 0xb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(ExecutionContext + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -51119,7 +51135,7 @@ void ResetExceptionHandlerC(DataBuffer SystemContext, int64_t ExecutionContext)
 void ResetExceptionHandlerD(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
-  *(DataBuffer *)(ExecutionContext + 0xe0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(ExecutionContext + 0xe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(ExecutionContext + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -51211,7 +51227,7 @@ void ResetValidationContextExceptionHandler(DataBuffer SystemContext, int64_t Ex
   int64_t validationContext;
   
   validationContext = *(int64_t *)(ExecutionContext + 0x40);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -51278,7 +51294,7 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x40) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0x40) + 0x10) != 0)
      ) {
@@ -51642,7 +51658,7 @@ void Unwind_180905c50(DataBuffer operationBase,int64_t dataBuffer)
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x40) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0x40) + 0x10) != 0)
      ) {
@@ -51812,7 +51828,7 @@ void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t thread
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
@@ -52243,7 +52259,7 @@ void Unwind_180905ea0(DataBuffer operationBase,int64_t dataBuffer)
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xf8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xf8) + 0x10) != 0)
      ) {
@@ -52563,7 +52579,7 @@ void Unwind_180905f90(DataBuffer operationBase,int64_t dataBuffer)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
   *exceptionDataBuffer = &UNK_18098bdc8;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -52590,7 +52606,7 @@ void Unwind_180905fa0(DataBuffer operationBase,int64_t dataBuffer)
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xf8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xf8) + 0x10) != 0)
      ) {
@@ -52673,7 +52689,7 @@ void Unwind_180905fe0(DataBuffer operationBase,int64_t dataBuffer)
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    TerminateSystemE0(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
@@ -52803,7 +52819,7 @@ void ExceptionCleanupWithMutexDestructionA(DataBuffer exceptionHandlerContext,in
   validationContextPointer = (int64_t *)*dataContextPointer;
   if (validationContextPointer != dataContextPointer) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationContextPointer);
+    TerminateSystemE0(validationContextPointer);
   }
   return;
 }
@@ -52831,7 +52847,7 @@ void ExceptionCleanupWithMutexDestructionB(DataBuffer exceptionHandlerContext,in
   validationContextPointer = (int64_t *)*dataContextPointer;
   if (validationContextPointer != dataContextPointer) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationContextPointer);
+    TerminateSystemE0(validationContextPointer);
   }
   return;
 }
@@ -52849,7 +52865,7 @@ void Unwind_180906090(DataBuffer operationBase,int64_t dataBuffer)
   validationContextPointer = (int64_t *)*pdataContext;
   if (validationContextPointer != pdataContext) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationContextPointer);
+    TerminateSystemE0(validationContextPointer);
   }
   return;
 }
@@ -52864,7 +52880,7 @@ void Unwind_1809060b0(DataBuffer operationBase,int64_t dataBuffer)
   validationContextPointer = (int64_t *)**(int64_t **)(dataBuffer + 0x68);
   if (validationContextPointer != *(int64_t **)(dataBuffer + 0x68)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationContextPointer);
+    TerminateSystemE0(validationContextPointer);
   }
   return;
 }
@@ -52888,7 +52904,7 @@ void Unwind_1809060d0(DataBuffer operationBase,int64_t dataBuffer)
   validationContextPointer = (int64_t *)**(int64_t **)(dataBuffer + 0x70);
   if (validationContextPointer != *(int64_t **)(dataBuffer + 0x70)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationContextPointer);
+    TerminateSystemE0(validationContextPointer);
   }
   return;
 }
@@ -52935,7 +52951,7 @@ void Unwind_180906110(DataBuffer operationBase,int64_t dataBuffer)
   validationContextPointer = (int64_t *)**(int64_t **)(dataBuffer + 0x40);
   if (validationContextPointer != *(int64_t **)(dataBuffer + 0x40)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationContextPointer);
+    TerminateSystemE0(validationContextPointer);
   }
   return;
 }
@@ -52959,7 +52975,7 @@ void Unwind_180906130(DataBuffer operationBase,int64_t dataBuffer)
   validationContextPointer = (int64_t *)**(int64_t **)(dataBuffer + 0x40);
   if (validationContextPointer != *(int64_t **)(dataBuffer + 0x40)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationContextPointer);
+    TerminateSystemE0(validationContextPointer);
   }
   return;
 }
@@ -53608,7 +53624,7 @@ void Unwind_180906480(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 0x78) = 0;
   FUN_180074a80();
-  *(DataBuffer *)(dataBuffer + 0x30) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -53929,7 +53945,7 @@ void Unwind_180906530(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x48);
   *exceptionDataBuffer = &UNK_180a02e68;
   exceptionDataBuffer[2] = &DefaultExceptionHandlerB;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -54356,7 +54372,7 @@ void Unwind_180906780(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xa0);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -54387,7 +54403,7 @@ void Unwind_1809067b0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x48);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -54408,7 +54424,7 @@ void Unwind_1809067c0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x50);
   *exceptionDataBuffer = &UNK_180a02e68;
   exceptionDataBuffer[2] = &DefaultExceptionHandlerB;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -54554,7 +54570,7 @@ void Unwind_1809068f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180906910(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x28),0x18,0x10,FUN_18007bb70);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x28),0x18,0x10,CleanupBufferHandler);
   return;
 }
 
@@ -54833,7 +54849,7 @@ void Unwind_180906a90(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x58));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x58));
   }
   return;
 }
@@ -54920,7 +54936,7 @@ void Unwind_180906b10(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x90);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x88); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 6) {
-    *resourcePointer = &UNK_180a3c3e0;
+    *resourcePointer = &TemporaryExceptionHandler;
     if (resourcePointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
@@ -54968,7 +54984,7 @@ void Unwind_180906b40(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x90);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x88); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 6) {
-    *resourcePointer = &UNK_180a3c3e0;
+    *resourcePointer = &TemporaryExceptionHandler;
     if (resourcePointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
@@ -55032,7 +55048,7 @@ void Unwind_180906b60(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = *(int64_t **)(dataBuffer + 0x40);
   exceptionDataBuffer = (DataBuffer *)pdataContext[1];
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 6) {
-    *validationStatusPointer = &UNK_180a3c3e0;
+    *validationStatusPointer = &TemporaryExceptionHandler;
     if (validationStatusPointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
@@ -55213,7 +55229,7 @@ void CleanupExceptionHandlingResourcesAlternative(DataBuffer exceptionContext, i
  */
 void CleanupExceptionResources(DataBuffer exceptionContext, int64_t cleanupContext)
 {
-  FUN_1808fc8a8(*(int64_t *)(cleanupContext + 0x40) + 8, 8, 7, FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(cleanupContext + 0x40) + 8, 8, 7, ValidateDataHandler);
   return;
 }
 
@@ -55234,7 +55250,7 @@ void ResetSystemEventState(void)
   EnterCriticalSection(0x180c82210);
   ExceptionStatusFlagA2 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (ExceptionEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -56315,7 +56331,7 @@ void Unwind_180906e70(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x178);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -56567,7 +56583,7 @@ void Unwind_180906f80(DataBuffer operationBase,int64_t dataBuffer)
 void UnwindResourceCleanupA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x50),0x18,0x10,FUN_18007bb70);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x50),0x18,0x10,CleanupBufferHandler);
   return;
 }
 
@@ -56587,7 +56603,7 @@ void UnwindResourceCleanupA0(DataBuffer operationBase,int64_t dataBuffer)
 void UnwindResourceCleanupA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x50),0x18,0x10,FUN_18007bb70);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x50),0x18,0x10,CleanupBufferHandler);
   return;
 }
 
@@ -56999,7 +57015,7 @@ void Unwind_180907130(void)
   EnterCriticalSection(0x180c82210);
   uRam0000000180d49150 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (ExceptionEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -57021,7 +57037,7 @@ void Unwind_180907140(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0x178);
+    ValidateDataHandler(dataBuffer + 0x178);
   }
   return;
 }
@@ -57589,7 +57605,7 @@ void Unwind_180907400(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x30));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x30));
   }
   return;
 }
@@ -57610,7 +57626,7 @@ void Unwind_180907440(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffd;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x30));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x30));
   }
   return;
 }
@@ -57622,7 +57638,7 @@ void Unwind_180907470(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0x28);
+    ValidateDataHandler(dataBuffer + 0x28);
   }
   return;
 }
@@ -57634,7 +57650,7 @@ void Unwind_1809074a0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffd;
-    FUN_180045af0(dataBuffer + 0x28);
+    ValidateDataHandler(dataBuffer + 0x28);
   }
   return;
 }
@@ -57754,7 +57770,7 @@ void Unwind_180907500(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x78));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x78));
   }
   return;
 }
@@ -57767,7 +57783,7 @@ void Unwind_180907530(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x30);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -57780,7 +57796,7 @@ void Unwind_180907540(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x30);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -57841,7 +57857,7 @@ void Unwind_180907590(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x40);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -57991,7 +58007,7 @@ void Unwind_180907630(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180907640(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x18,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x18,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -58000,7 +58016,7 @@ void Unwind_180907640(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180907670(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x50) + 0x18,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0x18,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -58012,7 +58028,7 @@ void Unwind_1809076a0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x38);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -58082,7 +58098,7 @@ void Unwind_180907700(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -58110,7 +58126,7 @@ void Unwind_180907710(DataBuffer operationBase,int64_t dataBuffer)
     (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,0);
     if (calculatedOffset != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(calculatedOffset);
+      TerminateSystemE0(calculatedOffset);
     }
   }
   resourcePointer[0x11] = 0;
@@ -58118,7 +58134,7 @@ void Unwind_180907710(DataBuffer operationBase,int64_t dataBuffer)
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  resourcePointer[0xd] = &UNK_180a3c3e0;
+  resourcePointer[0xd] = &TemporaryExceptionHandler;
   if (resourcePointer[0xe] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -58162,7 +58178,7 @@ void Unwind_180907740(DataBuffer operationBase,int64_t dataBuffer)
     (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,0);
     if (calculatedOffset != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(calculatedOffset);
+      TerminateSystemE0(calculatedOffset);
     }
   }
   resourcePointer[0x11] = 0;
@@ -58170,7 +58186,7 @@ void Unwind_180907740(DataBuffer operationBase,int64_t dataBuffer)
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  resourcePointer[0xd] = &UNK_180a3c3e0;
+  resourcePointer[0xd] = &TemporaryExceptionHandler;
   if (resourcePointer[0xe] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -58371,9 +58387,9 @@ void Unwind_180907840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0xc0);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20) + 0xb0,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x20) + 0xb0,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -58387,9 +58403,9 @@ void Unwind_180907860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0xf0);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20) + 0xe0,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x20) + 0xe0,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -58584,9 +58600,9 @@ void Unwind_180907900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x28),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x28),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -58600,9 +58616,9 @@ void Unwind_180907910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x28),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x28),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -58656,7 +58672,7 @@ void Unwind_180907950(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xb8);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -58675,7 +58691,7 @@ void Unwind_180907960(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xb0);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -58732,7 +58748,7 @@ void Unwind_1809079a0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
-  *(DataBuffer *)(validationContext + 0x18) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -58751,7 +58767,7 @@ void Unwind_1809079b0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
-  *(DataBuffer *)(validationContext + 0x38) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -58770,7 +58786,7 @@ void Unwind_1809079c0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
-  *(DataBuffer *)(validationContext + 0x58) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -59055,7 +59071,7 @@ void Unwind_180907a90(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x28);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -59211,7 +59227,7 @@ void Unwind_180907b70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x50) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(dataBuffer + 0x30) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -59281,7 +59297,7 @@ void Unwind_180907c10(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 600);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -59521,7 +59537,7 @@ void Unwind_180907ce0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180907cf0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x1c0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x1c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -59540,7 +59556,7 @@ void Unwind_180907d00(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x1e8);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -60085,7 +60101,7 @@ void Unwind_180907f80(DataBuffer cleanupContext, int64_t pointerContext)
     TerminateSystemE0();
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(pointerToCheck);
+  TerminateSystemE0(pointerToCheck);
 }
 
 
@@ -60100,7 +60116,7 @@ void Unwind_180907f80(DataBuffer cleanupContext, int64_t pointerContext)
 void Unwind_180907f90(DataBuffer resetContext, int64_t resourceContext)
 
 {
-  *(DataBuffer *)(resourceContext + 0xa0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(resourceContext + 0xa0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(resourceContext + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -60116,7 +60132,7 @@ void Unwind_180907f90(DataBuffer resetContext, int64_t resourceContext)
 void Unwind_180907fa0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0xa0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0xa0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -60157,9 +60173,9 @@ void Unwind_180907ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x78);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(dataBuffer + 0x68,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(dataBuffer + 0x68,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -60308,7 +60324,7 @@ void Unwind_180908040(void)
   EnterCriticalSection(0x180c82210);
   ExceptionStatusFlagA3 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (ExceptionEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -60466,9 +60482,9 @@ void Unwind_1809080c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x78),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x78),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -60478,7 +60494,7 @@ void Unwind_1809080c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809080d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x78) + 0x30,
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x78) + 0x30,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x40),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -60493,9 +60509,9 @@ void Unwind_1809080e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x78) + 0x70);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x78) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x78) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -60505,7 +60521,7 @@ void Unwind_1809080e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809080f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x30),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x30) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x30),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x30) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -60515,7 +60531,7 @@ void Unwind_1809080f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180908100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x30),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x30) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x30),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x30) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -60529,9 +60545,9 @@ void Unwind_180908110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -60545,9 +60561,9 @@ void Unwind_180908120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -60560,7 +60576,7 @@ void Unwind_180908130(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x98);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -60601,12 +60617,12 @@ void Unwind_180908160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   dataContext = *(int64_t *)(dataBuffer + 0x80);
   validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
-  FUN_180058370(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),operationFlagA,operationFlagB,validationStatus);
+  ProcessSystemParametersWithValidation(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),operationFlagA,operationFlagB,validationStatus);
   exceptionDataBuffer = *(DataBuffer **)(dataContext + 0x20);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(dataContext + 0x10,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -60620,9 +60636,9 @@ void Unwind_180908170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x60),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x60),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -60632,7 +60648,7 @@ void Unwind_180908170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180908180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x60) + 0x30,
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x60) + 0x30,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x40),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -60647,9 +60663,9 @@ void Unwind_180908190(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0x70);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x60) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x60) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -60659,7 +60675,7 @@ void Unwind_180908190(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809081a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -60669,7 +60685,7 @@ void Unwind_1809081a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809081b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -60686,12 +60702,12 @@ void Unwind_1809081c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   dataContext = *(int64_t *)(dataBuffer + 0x40);
   validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
-  FUN_180058370(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),operationFlagA,operationFlagB,validationStatus);
+  ProcessSystemParametersWithValidation(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),operationFlagA,operationFlagB,validationStatus);
   exceptionDataBuffer = *(DataBuffer **)(dataContext + 0x20);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(dataContext + 0x10,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -60705,9 +60721,9 @@ void Unwind_1809081d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -60717,7 +60733,7 @@ void Unwind_1809081d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809081e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x40) + 0x30,
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x40) + 0x30,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x40),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -60732,9 +60748,9 @@ void Unwind_1809081f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x70);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x40) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -60812,7 +60828,7 @@ void Catch_180908290(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809082c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x80) + 8,8,0x20,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x80) + 8,8,0x20,ValidateDataHandler);
   return;
 }
 
@@ -60821,7 +60837,7 @@ void Unwind_1809082c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908300(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x80) + 0x108,8,0x20,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x80) + 0x108,8,0x20,ValidateDataHandler);
   return;
 }
 
@@ -60853,7 +60869,7 @@ void Unwind_180908340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180908360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x80) + 0x3b0,0x20,0x20,FUN_180627b90,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x80) + 0x3b0,0x20,0x20,CleanupResourceHandler,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -60871,7 +60887,7 @@ void Unwind_180908380(void)
 void Unwind_1809083a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x88) + 8,0x20,0x20,FUN_180627b90);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x88) + 8,0x20,0x20,CleanupResourceHandler);
   return;
 }
 
@@ -60894,7 +60910,7 @@ void Unwind_1809083e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809083f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 8,8,0x20,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,8,0x20,ValidateDataHandler);
   return;
 }
 
@@ -60903,7 +60919,7 @@ void Unwind_1809083f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908420(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x108,8,0x20,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x108,8,0x20,ValidateDataHandler);
   return;
 }
 
@@ -60935,7 +60951,7 @@ void Unwind_180908460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180908480(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x3b0,0x20,0x20,FUN_180627b90,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x3b0,0x20,0x20,CleanupResourceHandler,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -60953,7 +60969,7 @@ void Unwind_1809084a0(void)
 void Unwind_1809084c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x48) + 8,0x20,0x20,FUN_180627b90);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x48) + 8,0x20,0x20,CleanupResourceHandler);
   return;
 }
 
@@ -60962,7 +60978,7 @@ void Unwind_1809084c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809084f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 8,8,4,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,8,4,ValidateDataHandler);
   return;
 }
 
@@ -60971,7 +60987,7 @@ void Unwind_1809084f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908520(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x30,0x20,0x50,FUN_180627b90);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x30,0x20,0x50,CleanupResourceHandler);
   return;
 }
 
@@ -60994,7 +61010,7 @@ void Unwind_180908550(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908570(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 8,0x20,0x20,FUN_180627b90);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,0x20,0x20,CleanupResourceHandler);
   return;
 }
 
@@ -61039,7 +61055,7 @@ void Unwind_1809085c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809085d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x50) + 8,8,4,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 8,8,4,ValidateDataHandler);
   return;
 }
 
@@ -61048,7 +61064,7 @@ void Unwind_1809085d0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908600(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x50) + 0x30,0x20,0x50,FUN_180627b90);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0x30,0x20,0x50,CleanupResourceHandler);
   return;
 }
 
@@ -61113,10 +61129,10 @@ void Unwind_180908660(DataBuffer operationBase,int64_t dataBuffer)
   validationContext = *(int64_t *)(dataBuffer + 0x50);
   operationResult = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
-  FUN_1808fc8a8(validationContext + 0x3e0,0x20,0x20,FUN_180627b90,operationResult);
+  ExecuteMemoryOperation(validationContext + 0x3e0,0x20,0x20,CleanupResourceHandler,operationResult);
   FUN_18005d580();
-  FUN_1808fc8a8(validationContext + 0x138,8,0x20,FUN_180045af0);
-  FUN_1808fc8a8(validationContext + 0x38,8,0x20,FUN_180045af0);
+  ExecuteMemoryOperation(validationContext + 0x138,8,0x20,ValidateDataHandler);
+  ExecuteMemoryOperation(validationContext + 0x38,8,0x20,ValidateDataHandler);
   return;
 }
 
@@ -61154,8 +61170,8 @@ void CleanupExceptionResourcesA2(DataBuffer exceptionContext,int64_t unwindInfo)
   if (*(int64_t **)(contextBase + 0x15d0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(contextBase + 0x15d0) + 0x38))();
   }
-  FUN_1808fc8a8(contextBase + 0x8e0,0x20,0x50,FUN_180627b90,cleanupFlag);
-  FUN_1808fc8a8(contextBase + 0x8b8,8,4,FUN_180045af0);
+  ExecuteMemoryOperation(contextBase + 0x8e0,0x20,0x50,CleanupResourceHandler,cleanupFlag);
+  ExecuteMemoryOperation(contextBase + 0x8b8,8,4,ValidateDataHandler);
   resourcePointer = *(int64_t **)(contextBase + 0x8b0);
   if (resourcePointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*resourcePointer + 0x38))();
@@ -61628,7 +61644,7 @@ void Unwind_1809088a0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x48));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x48));
   }
   return;
 }
@@ -61642,7 +61658,7 @@ void Unwind_1809088d0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x28);
   *exceptionDataBuffer = &UNK_18098bdc8;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -61655,7 +61671,7 @@ void Unwind_1809088e0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x28);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -62387,7 +62403,7 @@ void Unwind_180908b00(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x30);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -62537,7 +62553,7 @@ void Unwind_180908ba0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0xd8) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xd8) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0xa8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0xa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -62699,7 +62715,7 @@ void Unwind_180908c20(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908c30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x48) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -62743,7 +62759,7 @@ void Unwind_180908c60(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x1b8);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -62782,7 +62798,7 @@ void Unwind_180908c80(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908c90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(dataBuffer + 0xc0,8,0x10,FUN_180045af0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(dataBuffer + 0xc0,8,0x10,ValidateDataHandler,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62791,7 +62807,7 @@ void Unwind_180908c90(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908ca0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(dataBuffer + 0xc0,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(dataBuffer + 0xc0,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -62800,7 +62816,7 @@ void Unwind_180908ca0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908cd0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(dataBuffer + 0xc0,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(dataBuffer + 0xc0,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -62809,7 +62825,7 @@ void Unwind_180908cd0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908d00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x40),8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -62825,7 +62841,7 @@ void Unwind_180908d30(void)
   EnterCriticalSection(0x180c82210);
   ExceptionStatusFlagA4 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (ExceptionEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -62898,7 +62914,7 @@ void Unwind_180908db0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x108);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -62917,7 +62933,7 @@ void Unwind_180908dc0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x108);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -63052,7 +63068,7 @@ void Unwind_180908e10(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x88));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x88));
   }
   return;
 }
@@ -63066,9 +63082,9 @@ void Unwind_180908e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0x30);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x60) + 0x20,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x60) + 0x20,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -63192,9 +63208,9 @@ void Unwind_180908e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   validationContext = *(int64_t *)(dataBuffer + 0x60);
   operationResult = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
-  FUN_180058370(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
-  FUN_180058370(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
+  ProcessSystemParametersWithValidation(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
+  ProcessSystemParametersWithValidation(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
+  ProcessSystemParametersWithValidation(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
   ValidateSystemDataBufferAndProcess(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
   CleanupSystemResourcesAndMemory(validationContext + 0x50,*(DataBuffer *)(validationContext + 0x60));
   ValidateSystemDataBufferAndProcess(validationContext + 0x20,*(DataBuffer *)(validationContext + 0x30));
@@ -63209,7 +63225,7 @@ void Unwind_180908e90(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -64068,7 +64084,7 @@ void Unwind_180909320(DataBuffer operationBase,int64_t dataBuffer)
         }
         *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(resourcePointer);
+        TerminateSystemE0(resourcePointer);
       }
       *(DataBuffer *)(dataFlags * 8 + *validationContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
@@ -64081,17 +64097,17 @@ void Unwind_180909320(DataBuffer operationBase,int64_t dataBuffer)
     FUN_1800f74f0(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(resourcePointer);
+    TerminateSystemE0(resourcePointer);
   }
-  FUN_180058370(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
-  FUN_180058370(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
-  FUN_180058370(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
-  FUN_1808fc8a8(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
+  ProcessSystemParametersWithValidation(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
+  ProcessSystemParametersWithValidation(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
+  ProcessSystemParametersWithValidation(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
+  ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1808fc8a8(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
   calculatedIndex = validationStatusPointer[0xffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     FUN_180152b00(resourceIterator);
@@ -64216,7 +64232,7 @@ void Unwind_1809093b0(DataBuffer operationBase,int64_t dataBuffer)
         }
         *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(resourcePointer);
+        TerminateSystemE0(resourcePointer);
       }
       *(DataBuffer *)(dataFlags * 8 + *validationContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
@@ -64229,17 +64245,17 @@ void Unwind_1809093b0(DataBuffer operationBase,int64_t dataBuffer)
     FUN_1800f74f0(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(resourcePointer);
+    TerminateSystemE0(resourcePointer);
   }
-  FUN_180058370(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
-  FUN_180058370(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
-  FUN_180058370(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
-  FUN_1808fc8a8(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
+  ProcessSystemParametersWithValidation(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
+  ProcessSystemParametersWithValidation(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
+  ProcessSystemParametersWithValidation(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
+  ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1808fc8a8(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
   calculatedIndex = validationStatusPointer[0xffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     FUN_180152b00(resourceIterator);
@@ -64293,7 +64309,7 @@ void Unwind_1809093c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
         }
         *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(resourcePointer);
+        TerminateSystemE0(resourcePointer);
       }
       *(DataBuffer *)(dataFlags * 8 + *validationContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
@@ -64306,17 +64322,17 @@ void Unwind_1809093c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     FUN_1800f74f0(calculatedOffset + 0x8208,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(resourcePointer);
+    TerminateSystemE0(resourcePointer);
   }
-  FUN_180058370(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-  FUN_180058370(calculatedOffset + 0x81a8,*(DataBuffer *)(calculatedOffset + 0x81b8));
-  FUN_180058370(calculatedOffset + 0x8178,*(DataBuffer *)(calculatedOffset + 0x8188));
-  FUN_1808fc8a8(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
+  ProcessSystemParametersWithValidation(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  ProcessSystemParametersWithValidation(calculatedOffset + 0x81a8,*(DataBuffer *)(calculatedOffset + 0x81b8));
+  ProcessSystemParametersWithValidation(calculatedOffset + 0x8178,*(DataBuffer *)(calculatedOffset + 0x8188));
+  ExecuteMemoryOperation(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1808fc8a8(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
   calculatedIndex = *(int64_t *)(calculatedOffset + 0x7fd0);
   for (resourceIterator = *(int64_t *)(calculatedOffset + 0x7fc8); resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     FUN_180152b00(resourceIterator);
@@ -64552,7 +64568,7 @@ void Unwind_1809094e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809094f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x218) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x218) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x220) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -64568,7 +64584,7 @@ void Unwind_1809094f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180909500(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x298) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x298) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x2a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -64593,7 +64609,7 @@ void Unwind_180909510(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180909520(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x278) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x278) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x280) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -64836,7 +64852,7 @@ void Unwind_180909600(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180909610(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x2f0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x2f0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x2f8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -65119,7 +65135,7 @@ void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
         }
         *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(resourcePointer);
+        TerminateSystemE0(resourcePointer);
       }
       *(DataBuffer *)(dataFlags * 8 + *validationContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
@@ -65132,17 +65148,17 @@ void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
     FUN_1800f74f0(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(resourcePointer);
+    TerminateSystemE0(resourcePointer);
   }
-  FUN_180058370(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
-  FUN_180058370(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
-  FUN_180058370(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
-  FUN_1808fc8a8(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
+  ProcessSystemParametersWithValidation(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
+  ProcessSystemParametersWithValidation(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
+  ProcessSystemParametersWithValidation(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
+  ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1808fc8a8(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
   calculatedIndex = validationStatusPointer[0xffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     FUN_180152b00(resourceIterator);
@@ -65196,7 +65212,7 @@ void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
         }
         *resourcePointer = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-        FUN_18064e900(resourcePointer);
+        TerminateSystemE0(resourcePointer);
       }
       *(DataBuffer *)(dataFlags * 8 + *validationContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
@@ -65209,17 +65225,17 @@ void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     FUN_1800f74f0(calculatedOffset + 0x8208,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(resourcePointer);
+    TerminateSystemE0(resourcePointer);
   }
-  FUN_180058370(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-  FUN_180058370(calculatedOffset + 0x81a8,*(DataBuffer *)(calculatedOffset + 0x81b8));
-  FUN_180058370(calculatedOffset + 0x8178,*(DataBuffer *)(calculatedOffset + 0x8188));
-  FUN_1808fc8a8(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
+  ProcessSystemParametersWithValidation(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+  ProcessSystemParametersWithValidation(calculatedOffset + 0x81a8,*(DataBuffer *)(calculatedOffset + 0x81b8));
+  ProcessSystemParametersWithValidation(calculatedOffset + 0x8178,*(DataBuffer *)(calculatedOffset + 0x8188));
+  ExecuteMemoryOperation(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1808fc8a8(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
   calculatedIndex = *(int64_t *)(calculatedOffset + 0x7fd0);
   for (resourceIterator = *(int64_t *)(calculatedOffset + 0x7fc8); resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     FUN_180152b00(resourceIterator);
@@ -65289,7 +65305,7 @@ void Unwind_180909740(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(validationContext + 0x58) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -65305,7 +65321,7 @@ void Unwind_180909740(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180909750(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -65333,7 +65349,7 @@ void Unwind_180909770(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x78);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -65352,7 +65368,7 @@ void Unwind_180909780(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
-  *(DataBuffer *)(validationContext + 8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -65392,9 +65408,9 @@ void Unwind_1809097b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x20),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -65408,9 +65424,9 @@ void Unwind_1809097c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x20),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -65420,7 +65436,7 @@ void Unwind_1809097c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809097d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -65454,9 +65470,9 @@ void Unwind_180909800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 200);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40) + 0xb8,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x40) + 0xb8,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -65470,9 +65486,9 @@ void Unwind_180909820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0xf8);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40) + 0xe8,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x40) + 0xe8,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -65591,7 +65607,7 @@ void Unwind_1809098d0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x40) & 1) != 0) {
     *(uint *)(dataBuffer + 0x40) = *(uint *)(dataBuffer + 0x40) & 0xfffffffe;
-    FUN_180627b90(*(DataBuffer *)(dataBuffer + 0x50));
+    CleanupResourceHandler(*(DataBuffer *)(dataBuffer + 0x50));
   }
   return;
 }
@@ -65603,7 +65619,7 @@ void Unwind_180909900(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x88));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x88));
   }
   return;
 }
@@ -65615,7 +65631,7 @@ void Unwind_180909930(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x5c) & 1) != 0) {
     *(uint *)(dataBuffer + 0x5c) = *(uint *)(dataBuffer + 0x5c) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 200));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 200));
   }
   return;
 }
@@ -65660,7 +65676,7 @@ void Unwind_180909990(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xe0);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -65699,7 +65715,7 @@ void Unwind_1809099d0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x58) & 1) != 0) {
     *(uint *)(dataBuffer + 0x58) = *(uint *)(dataBuffer + 0x58) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0xd0));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0xd0));
   }
   return;
 }
@@ -65860,7 +65876,7 @@ void Unwind_180909a70(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x38) & 1) != 0) {
     *(uint *)(dataBuffer + 0x38) = *(uint *)(dataBuffer + 0x38) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0xb8));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0xb8));
   }
   return;
 }
@@ -65917,7 +65933,7 @@ void Unwind_180909af0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x70));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x70));
   }
   return;
 }
@@ -65999,7 +66015,7 @@ void Unwind_180909b70(DataBuffer operationBase,int64_t dataBuffer)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
   *exceptionDataBuffer = &UNK_18098bdc8;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -66039,7 +66055,7 @@ void Unwind_180909bb0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0xa8));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0xa8));
   }
   return;
 }
@@ -66065,7 +66081,7 @@ void Unwind_180909bf0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0xb8));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0xb8));
   }
   return;
 }
@@ -66199,7 +66215,7 @@ void Unwind_180909ca0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180909cb0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 8,0x98,9,FUN_1802ab7f0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,0x98,9,FUN_1802ab7f0);
   return;
 }
 
@@ -66211,7 +66227,7 @@ void Unwind_180909ce0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(validationContext + 0x560) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x560) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -66250,7 +66266,7 @@ void Unwind_180909d00(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180909d20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x5a0,0x20,9,FUN_18004c030);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x5a0,0x20,9,FUN_18004c030);
   return;
 }
 
@@ -66459,7 +66475,7 @@ void Unwind_180909f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40) + 0xa90,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -66532,7 +66548,7 @@ void Unwind_180909fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180909fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x40) + 0xbd8,
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x40) + 0xbd8,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0xbe8),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -66543,7 +66559,7 @@ void Unwind_180909fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180909fe0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0xc08,8,10,FUN_180045af0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xc08,8,10,ValidateDataHandler,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -66566,7 +66582,7 @@ void Unwind_18090a000(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090a020(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0xc60,8,0x14,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xc60,8,0x14,ValidateDataHandler);
   return;
 }
 
@@ -66598,7 +66614,7 @@ void Unwind_18090a060(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090a080(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x48),8,10,FUN_180045af0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),8,10,ValidateDataHandler);
   return;
 }
 
@@ -66634,7 +66650,7 @@ void Unwind_18090a0d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     FUN_1800b9210(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -66651,7 +66667,7 @@ void Unwind_18090a0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     FUN_1800b9210(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -66708,7 +66724,7 @@ void Unwind_18090a130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -66725,7 +66741,7 @@ void Unwind_18090a140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -66755,7 +66771,7 @@ void Unwind_18090a160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a170(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x40),8,10,FUN_180045af0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),8,10,ValidateDataHandler);
   return;
 }
 
@@ -66764,7 +66780,7 @@ void Unwind_18090a170(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090a1a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x60) + 8,0x98,9,FUN_1802ab7f0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 8,0x98,9,FUN_1802ab7f0);
   return;
 }
 
@@ -66776,7 +66792,7 @@ void Unwind_18090a1d0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x60);
-  *(DataBuffer *)(validationContext + 0x560) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x560) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -66815,7 +66831,7 @@ void Unwind_18090a1f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090a210(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x60) + 0x5a0,0x20,9,FUN_18004c030);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 0x5a0,0x20,9,FUN_18004c030);
   return;
 }
 
@@ -67024,7 +67040,7 @@ void Unwind_18090a430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     FUN_1800b9210(*(int64_t *)(dataBuffer + 0x60) + 0xa90,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67097,7 +67113,7 @@ void Unwind_18090a490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a4b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x60) + 0xbd8,
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x60) + 0xbd8,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0xbe8),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -67108,7 +67124,7 @@ void Unwind_18090a4b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a4d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x60) + 0xc08,8,10,FUN_180045af0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 0xc08,8,10,ValidateDataHandler,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67141,7 +67157,7 @@ void Unwind_18090a4f0(DataBuffer operationBase,int64_t dataBuffer)
 void CleanupSystemValidationResourcesF0(DataBuffer systemHandle, int64_t validationContext)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(validationContext + 0x60) + 0xc60, 8, 0x14, FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(validationContext + 0x60) + 0xc60, 8, 0x14, ValidateDataHandler);
   return;
 }
 
@@ -67245,7 +67261,7 @@ void Unwind_18090a5a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     FUN_1800b9210(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67262,7 +67278,7 @@ void Unwind_18090a5b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     FUN_1800b9210(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67373,7 +67389,7 @@ void Unwind_18090a600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a610(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x68),8,10,FUN_180045af0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x68),8,10,ValidateDataHandler);
   return;
 }
 
@@ -67420,7 +67436,7 @@ void Unwind_18090a670(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x60));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x60));
   }
   return;
 }
@@ -67432,7 +67448,7 @@ void Unwind_18090a6a0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffd;
-    FUN_180045af0(dataBuffer + 0x50);
+    ValidateDataHandler(dataBuffer + 0x50);
   }
   return;
 }
@@ -67460,7 +67476,7 @@ void Unwind_18090a6e0(void)
   EnterCriticalSection(0x180c82210);
   ExceptionStatusFlagA5 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (ExceptionEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -67482,7 +67498,7 @@ void Unwind_18090a6f0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180627b90(dataBuffer + 0xb8);
+    CleanupResourceHandler(dataBuffer + 0xb8);
   }
   return;
 }
@@ -67605,7 +67621,7 @@ void Unwind_18090a7b0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0x48) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x48) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -67635,7 +67651,7 @@ void Unwind_18090a7d0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xa0);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -67688,7 +67704,7 @@ void Unwind_18090a800(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x68));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x68));
   }
   return;
 }
@@ -67721,7 +67737,7 @@ void Unwind_18090a840(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffd;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x68));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x68));
   }
   return;
 }
@@ -67966,7 +67982,7 @@ void Unwind_18090a910(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x40) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x40) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -68225,7 +68241,7 @@ void Unwind_18090a9b0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180627b90(*(DataBuffer *)(dataBuffer + 0x40));
+    CleanupResourceHandler(*(DataBuffer *)(dataBuffer + 0x40));
   }
   return;
 }
@@ -68237,7 +68253,7 @@ void Unwind_18090a9e0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x60) & 1) != 0) {
     *(uint *)(dataBuffer + 0x60) = *(uint *)(dataBuffer + 0x60) & 0xfffffffe;
-    FUN_180627b90(*(DataBuffer *)(dataBuffer + 0x70));
+    CleanupResourceHandler(*(DataBuffer *)(dataBuffer + 0x70));
   }
   return;
 }
@@ -68258,7 +68274,7 @@ void Unwind_18090aa20(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffd;
-    FUN_180627b90(dataBuffer + 0x80);
+    CleanupResourceHandler(dataBuffer + 0x80);
   }
   return;
 }
@@ -68294,7 +68310,7 @@ void Unwind_18090aab0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180627b90(*(DataBuffer *)(dataBuffer + 0x120));
+    CleanupResourceHandler(*(DataBuffer *)(dataBuffer + 0x120));
   }
   return;
 }
@@ -68304,7 +68320,7 @@ void Unwind_18090aab0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090aae0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -68322,7 +68338,7 @@ void Unwind_18090aaf0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x60) & 1) != 0) {
     *(uint *)(dataBuffer + 0x60) = *(uint *)(dataBuffer + 0x60) & 0xfffffffe;
-    FUN_180627b90(*(DataBuffer *)(dataBuffer + 0x90));
+    CleanupResourceHandler(*(DataBuffer *)(dataBuffer + 0x90));
   }
   return;
 }
@@ -68346,7 +68362,7 @@ void Unwind_18090ab50(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180627b90(*(DataBuffer *)(dataBuffer + 0x70));
+    CleanupResourceHandler(*(DataBuffer *)(dataBuffer + 0x70));
   }
   return;
 }
@@ -68720,7 +68736,7 @@ void Unwind_18090add0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090adf0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x50) + 0xf0,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0xf0,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -68729,7 +68745,7 @@ void Unwind_18090adf0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ae30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x50) + 0x170,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0x170,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -68738,7 +68754,7 @@ void Unwind_18090ae30(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ae70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x50) + 0x1f0,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0x1f0,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -68849,7 +68865,7 @@ void Unwind_18090af70(DataBuffer operationBase,int64_t dataBuffer)
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(validationContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -69456,7 +69472,7 @@ void Unwind_18090b4b0(DataBuffer operationBase,int64_t dataBuffer)
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(validationContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -69494,7 +69510,7 @@ void Unwind_18090b4c0(DataBuffer operationBase,int64_t dataBuffer)
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(validationContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -69550,7 +69566,7 @@ void Unwind_18090b4f0(DataBuffer operationBase,int64_t dataBuffer)
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(validationContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -69588,7 +69604,7 @@ void Unwind_18090b500(DataBuffer operationBase,int64_t dataBuffer)
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(validationContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -69762,7 +69778,7 @@ void Unwind_18090b630(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090b650(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0xf0,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xf0,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -69771,7 +69787,7 @@ void Unwind_18090b650(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090b690(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x170,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x170,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -69780,7 +69796,7 @@ void Unwind_18090b690(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090b6d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x1f0,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x1f0,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -69891,7 +69907,7 @@ void Unwind_18090b7d0(DataBuffer operationBase,int64_t dataBuffer)
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(validationContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -70498,7 +70514,7 @@ void Unwind_18090bd10(DataBuffer operationBase,int64_t dataBuffer)
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(validationContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -70536,7 +70552,7 @@ void Unwind_18090bd20(DataBuffer operationBase,int64_t dataBuffer)
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
+        TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(validationContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -70639,7 +70655,7 @@ void Unwind_18090bd90(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 200));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 200));
   }
   return;
 }
@@ -70712,7 +70728,7 @@ void Unwind_18090be00(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0xd8));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0xd8));
   }
   return;
 }
@@ -70747,7 +70763,7 @@ void Unwind_18090be50(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0x90);
+    ValidateDataHandler(dataBuffer + 0x90);
   }
   return;
 }
@@ -70759,7 +70775,7 @@ void Unwind_18090be80(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffd;
-    FUN_180045af0(dataBuffer + 0x90);
+    ValidateDataHandler(dataBuffer + 0x90);
   }
   return;
 }
@@ -70771,7 +70787,7 @@ void Unwind_18090beb0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x48) & 1) != 0) {
     *(uint *)(dataBuffer + 0x48) = *(uint *)(dataBuffer + 0x48) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x98));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x98));
   }
   return;
 }
@@ -70783,7 +70799,7 @@ void Unwind_18090bee0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x38));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x38));
   }
   return;
 }
@@ -70795,7 +70811,7 @@ void Unwind_18090bf10(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x98));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x98));
   }
   return;
 }
@@ -70971,7 +70987,7 @@ void Unwind_18090bfe0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090c000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058370(*(int64_t *)(dataBuffer + 0x20) + 0xa0,
+  ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x20) + 0xa0,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0xb0),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -71232,7 +71248,7 @@ void Unwind_18090c150(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x40) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x40) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -71268,7 +71284,7 @@ void Unwind_18090c170(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x40) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x40) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -71685,7 +71701,7 @@ void Unwind_18090c310(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x78);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -72003,7 +72019,7 @@ void ComplexExceptionHandlerAndReset(DataBuffer operationBase,int64_t dataBuffer
   if (*(int64_t **)(dataBuffer + 0x108) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x108) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0xd8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0xd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -72036,7 +72052,7 @@ void ComplexValidationContextCleanup(DataBuffer operationBase,int64_t dataBuffer
   if (*(int64_t **)(validationContext + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x58) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -72091,7 +72107,7 @@ void ValidateAndExecuteContextCallback(DataBuffer operationBase,int64_t dataBuff
 void Unwind_18090c4e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0xd8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0xd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -72143,7 +72159,7 @@ void Unwind_18090c510(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x118);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -72791,7 +72807,7 @@ void Unwind_18090c700(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0x178);
+    ValidateDataHandler(dataBuffer + 0x178);
   }
   return;
 }
@@ -72867,7 +72883,7 @@ void Unwind_18090c780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090c790(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x148) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -73191,7 +73207,7 @@ void Unwind_18090c9a0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0x38);
+    ValidateDataHandler(dataBuffer + 0x38);
   }
   return;
 }
@@ -73203,7 +73219,7 @@ void Unwind_18090c9d0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffd;
-    FUN_180045af0(dataBuffer + 0x38);
+    ValidateDataHandler(dataBuffer + 0x38);
   }
   return;
 }
@@ -74170,7 +74186,7 @@ void Unwind_18090cd00(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffd;
-    FUN_180627b90(dataBuffer + 0x88);
+    CleanupResourceHandler(dataBuffer + 0x88);
   }
   return;
 }
@@ -74182,7 +74198,7 @@ void Unwind_18090cd30(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 8) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffff7;
-    FUN_180627b90(dataBuffer + 0x68);
+    CleanupResourceHandler(dataBuffer + 0x68);
   }
   return;
 }
@@ -74206,7 +74222,7 @@ void Unwind_18090cd90(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 0x20) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xffffffdf;
-    FUN_180627b90(dataBuffer + 0x68);
+    CleanupResourceHandler(dataBuffer + 0x68);
   }
   return;
 }
@@ -74231,7 +74247,7 @@ void Unwind_18090cdf0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0x178) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x178) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0x148) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74256,7 +74272,7 @@ void Unwind_18090ce00(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x58) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74278,7 +74294,7 @@ void Unwind_18090ce10(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0x388) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x388) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0x358) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x358) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x360) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74303,7 +74319,7 @@ void Unwind_18090ce20(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x58) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74325,7 +74341,7 @@ void Unwind_18090ce30(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0x228) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x228) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0x1f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x1f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74347,7 +74363,7 @@ void Unwind_18090ce40(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0x288) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x288) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 600) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 600) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74369,7 +74385,7 @@ void Unwind_18090ce50(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0x2e8) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x2e8) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0x2b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x2b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x2c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74391,7 +74407,7 @@ void Unwind_18090ce60(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 1000) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 1000) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0x3b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x3b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x3c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74416,7 +74432,7 @@ void Unwind_18090ce70(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x58) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74446,7 +74462,7 @@ void Unwind_18090ce80(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ce90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x148) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74490,7 +74506,7 @@ void Unwind_18090cec0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x38);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74531,7 +74547,7 @@ void Unwind_18090cee0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090cef0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x358) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x358) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x360) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74569,7 +74585,7 @@ void Unwind_18090cf10(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090cf20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x1f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x1f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74607,7 +74623,7 @@ void Unwind_18090cf40(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090cf50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 600) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 600) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74645,7 +74661,7 @@ void Unwind_18090cf70(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090cf80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x2b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x2b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x2c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -74683,7 +74699,7 @@ void Unwind_18090cfa0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090cfb0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x3b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x3b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x3c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -77584,7 +77600,7 @@ void Unwind_18090d530(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x58) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -77629,7 +77645,7 @@ void Unwind_18090d560(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x130);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -77662,7 +77678,7 @@ void Unwind_18090d580(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0xb8) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xb8) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0x88) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x90) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -77687,7 +77703,7 @@ void Unwind_18090d590(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x58) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -77717,7 +77733,7 @@ void Unwind_18090d5a0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090d5b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x88) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x90) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -77847,19 +77863,19 @@ void Unwind_18090d660(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0xed0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0xed0) + 0x38))();
   }
-  FUN_1808fc8a8(validationContext + 0xec0,8,2,FUN_180045af0,operationResult);
+  ExecuteMemoryOperation(validationContext + 0xec0,8,2,ValidateDataHandler,operationResult);
   if (*(int64_t **)(validationContext + 0xeb8) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0xeb8) + 0x38))();
   }
   if (*(int64_t **)(validationContext + 0xeb0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0xeb0) + 0x38))();
   }
-  FUN_1808fc8a8(validationContext + 0xea0,8,2,FUN_180045af0,operationResult);
-  FUN_1808fc8a8(validationContext + 0xe90,8,2,FUN_180045af0);
-  FUN_1808fc8a8(validationContext + 0xe80,8,2,FUN_180045af0);
-  FUN_1808fc8a8(validationContext + 0xc28,0x128,2,FUN_1801b9690);
-  FUN_1808fc8a8(validationContext + 0x9d0,0x128,2,FUN_1801b9690);
-  FUN_1808fc8a8(validationContext + 0xb8,0x488,2,FUN_1800e7ca0);
+  ExecuteMemoryOperation(validationContext + 0xea0,8,2,ValidateDataHandler,operationResult);
+  ExecuteMemoryOperation(validationContext + 0xe90,8,2,ValidateDataHandler);
+  ExecuteMemoryOperation(validationContext + 0xe80,8,2,ValidateDataHandler);
+  ExecuteMemoryOperation(validationContext + 0xc28,0x128,2,FUN_1801b9690);
+  ExecuteMemoryOperation(validationContext + 0x9d0,0x128,2,FUN_1801b9690);
+  ExecuteMemoryOperation(validationContext + 0xb8,0x488,2,FUN_1800e7ca0);
   return;
 }
 
@@ -77868,7 +77884,7 @@ void Unwind_18090d660(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090d680(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0xee8,0x18,2,FUN_1800e7f20,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xee8,0x18,2,FUN_1800e7f20,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -77877,7 +77893,7 @@ void Unwind_18090d680(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090d6a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0xf20,0x20,0x1d,FUN_180627b90);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xf20,0x20,0x1d,CleanupResourceHandler);
   return;
 }
 
@@ -78156,7 +78172,7 @@ void Unwind_18090d8e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090d900(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x1558,8,2,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x1558,8,2,ValidateDataHandler);
   return;
 }
 
@@ -78165,7 +78181,7 @@ void Unwind_18090d900(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090d940(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x1568,8,2,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x1568,8,2,ValidateDataHandler);
   return;
 }
 
@@ -78174,7 +78190,7 @@ void Unwind_18090d940(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090d980(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x1578,8,2,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x1578,8,2,ValidateDataHandler);
   return;
 }
 
@@ -78197,7 +78213,7 @@ void Unwind_18090d9c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090d9e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x1598,0x238,2,FUN_180051d00);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x1598,0x238,2,FUN_180051d00);
   return;
 }
 
@@ -78206,7 +78222,7 @@ void Unwind_18090d9e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090da20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x1a18,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x1a18,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78215,7 +78231,7 @@ void Unwind_18090da20(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090da40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x2378,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x2378,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78224,7 +78240,7 @@ void Unwind_18090da40(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090da60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x2810,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x2810,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78247,7 +78263,7 @@ void Unwind_18090da80(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090daa0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x3d38,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x3d38,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78256,7 +78272,7 @@ void Unwind_18090daa0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dac0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 18000,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 18000,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78265,7 +78281,7 @@ void Unwind_18090dac0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dae0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x5868,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x5868,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78274,7 +78290,7 @@ void Unwind_18090dae0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090db00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x6a80,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x6a80,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78283,7 +78299,7 @@ void Unwind_18090db00(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090db20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x6b28,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x6b28,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78292,7 +78308,7 @@ void Unwind_18090db20(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090db40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x7440,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x7440,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78301,7 +78317,7 @@ void Unwind_18090db40(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090db60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x74e8,0x98,2,FUN_1800e7be0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x74e8,0x98,2,FUN_1800e7be0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78310,7 +78326,7 @@ void Unwind_18090db60(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090db80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x7620,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x7620,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78319,7 +78335,7 @@ void Unwind_18090db80(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dba0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x48),0x248,2,FUN_1800e7b80);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x248,2,FUN_1800e7b80);
   return;
 }
 
@@ -78328,7 +78344,7 @@ void Unwind_18090dba0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dbd0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x48),0x98,2,FUN_1800e7be0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x98,2,FUN_1800e7be0);
   return;
 }
 
@@ -78337,7 +78353,7 @@ void Unwind_18090dbd0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dc00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x48),0x50,2,FUN_1800e7c40);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x50,2,FUN_1800e7c40);
   return;
 }
 
@@ -78346,7 +78362,7 @@ void Unwind_18090dc00(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dc30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x48),0x488,2,FUN_1800e7ca0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x488,2,FUN_1800e7ca0);
   return;
 }
 
@@ -78355,7 +78371,7 @@ void Unwind_18090dc30(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dc60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x48),0x908,2,FUN_1800e7d00);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x908,2,FUN_1800e7d00);
   return;
 }
 
@@ -78378,7 +78394,7 @@ void Unwind_18090dc90(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dca0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x48) + 8,0x18,2,FUN_1800e7f20);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x48) + 8,0x18,2,FUN_1800e7f20);
   return;
 }
 
@@ -78387,7 +78403,7 @@ void Unwind_18090dca0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dcd0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 8,0x18,2,FUN_1800e7f20);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,0x18,2,FUN_1800e7f20);
   return;
 }
 
@@ -78403,7 +78419,7 @@ void Unwind_18090dd00(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x48);
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x50);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 6) {
-    *validationStatusPointer = &UNK_180a3c3e0;
+    *validationStatusPointer = &TemporaryExceptionHandler;
     if (validationStatusPointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
@@ -78431,7 +78447,7 @@ void Unwind_18090dd10(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = *(int64_t **)(dataBuffer + 0x48);
   exceptionDataBuffer = (DataBuffer *)pdataContext[1];
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 6) {
-    *validationStatusPointer = &UNK_180a3c3e0;
+    *validationStatusPointer = &TemporaryExceptionHandler;
     if (validationStatusPointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
@@ -78452,7 +78468,7 @@ void Unwind_18090dd10(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dd20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x40),0x488,2,FUN_1800e7ca0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),0x488,2,FUN_1800e7ca0);
   return;
 }
 
@@ -78461,7 +78477,7 @@ void Unwind_18090dd20(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dd50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x40),0x248,2,FUN_1800e7b80);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),0x248,2,FUN_1800e7b80);
   return;
 }
 
@@ -78470,7 +78486,7 @@ void Unwind_18090dd50(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dd80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x40),0x908,2,FUN_1800e7d00);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),0x908,2,FUN_1800e7d00);
   return;
 }
 
@@ -78479,7 +78495,7 @@ void Unwind_18090dd80(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ddb0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x40),0x50,2,FUN_1800e7c40);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),0x50,2,FUN_1800e7c40);
   return;
 }
 
@@ -78488,7 +78504,7 @@ void Unwind_18090ddb0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dde0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x40),0x98,2,FUN_1800e7be0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),0x98,2,FUN_1800e7be0);
   return;
 }
 
@@ -78621,19 +78637,19 @@ void Unwind_18090de80(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0xed0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0xed0) + 0x38))();
   }
-  FUN_1808fc8a8(validationContext + 0xec0,8,2,FUN_180045af0,operationResult);
+  ExecuteMemoryOperation(validationContext + 0xec0,8,2,ValidateDataHandler,operationResult);
   if (*(int64_t **)(validationContext + 0xeb8) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0xeb8) + 0x38))();
   }
   if (*(int64_t **)(validationContext + 0xeb0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0xeb0) + 0x38))();
   }
-  FUN_1808fc8a8(validationContext + 0xea0,8,2,FUN_180045af0,operationResult);
-  FUN_1808fc8a8(validationContext + 0xe90,8,2,FUN_180045af0);
-  FUN_1808fc8a8(validationContext + 0xe80,8,2,FUN_180045af0);
-  FUN_1808fc8a8(validationContext + 0xc28,0x128,2,FUN_1801b9690);
-  FUN_1808fc8a8(validationContext + 0x9d0,0x128,2,FUN_1801b9690);
-  FUN_1808fc8a8(validationContext + 0xb8,0x488,2,FUN_1800e7ca0);
+  ExecuteMemoryOperation(validationContext + 0xea0,8,2,ValidateDataHandler,operationResult);
+  ExecuteMemoryOperation(validationContext + 0xe90,8,2,ValidateDataHandler);
+  ExecuteMemoryOperation(validationContext + 0xe80,8,2,ValidateDataHandler);
+  ExecuteMemoryOperation(validationContext + 0xc28,0x128,2,FUN_1801b9690);
+  ExecuteMemoryOperation(validationContext + 0x9d0,0x128,2,FUN_1801b9690);
+  ExecuteMemoryOperation(validationContext + 0xb8,0x488,2,FUN_1800e7ca0);
   return;
 }
 
@@ -78642,7 +78658,7 @@ void Unwind_18090de80(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dea0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0xee8,0x18,2,FUN_1800e7f20,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0xee8,0x18,2,FUN_1800e7f20,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78651,7 +78667,7 @@ void Unwind_18090dea0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090dec0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0xf20,0x20,0x1d,FUN_180627b90);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0xf20,0x20,0x1d,CleanupResourceHandler);
   return;
 }
 
@@ -78930,7 +78946,7 @@ void Unwind_18090e100(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e120(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x1558,8,2,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x1558,8,2,ValidateDataHandler);
   return;
 }
 
@@ -78939,7 +78955,7 @@ void Unwind_18090e120(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e160(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x1568,8,2,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x1568,8,2,ValidateDataHandler);
   return;
 }
 
@@ -78948,7 +78964,7 @@ void Unwind_18090e160(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e1a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x1578,8,2,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x1578,8,2,ValidateDataHandler);
   return;
 }
 
@@ -78971,7 +78987,7 @@ void Unwind_18090e1e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e200(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x1598,0x238,2,FUN_180051d00);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x1598,0x238,2,FUN_180051d00);
   return;
 }
 
@@ -78980,7 +78996,7 @@ void Unwind_18090e200(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e240(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x1a18,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x1a18,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78989,7 +79005,7 @@ void Unwind_18090e240(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e260(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x2378,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x2378,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78998,7 +79014,7 @@ void Unwind_18090e260(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e280(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x2810,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x2810,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79021,7 +79037,7 @@ void Unwind_18090e2a0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e2c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x3d38,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x3d38,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79030,7 +79046,7 @@ void Unwind_18090e2c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e2e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 18000,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 18000,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79039,7 +79055,7 @@ void Unwind_18090e2e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e300(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x5868,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x5868,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79048,7 +79064,7 @@ void Unwind_18090e300(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e320(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x6a80,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x6a80,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79057,7 +79073,7 @@ void Unwind_18090e320(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e340(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x6b28,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x6b28,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79066,7 +79082,7 @@ void Unwind_18090e340(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x7440,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x7440,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79075,7 +79091,7 @@ void Unwind_18090e360(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e380(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x74e8,0x98,2,FUN_1800e7be0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x74e8,0x98,2,FUN_1800e7be0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79084,7 +79100,7 @@ void Unwind_18090e380(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e3a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0xe0) + 0x7620,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x7620,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79206,7 +79222,7 @@ void Unwind_18090e400(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e410(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x30),0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x30),0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79215,7 +79231,7 @@ void Unwind_18090e410(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e420(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x30) + 0x918,0x128,2,FUN_1801b9690,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0x918,0x128,2,FUN_1801b9690,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79224,7 +79240,7 @@ void Unwind_18090e420(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e440(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x30) + 0xb70,0x128,2,FUN_1801b9690,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xb70,0x128,2,FUN_1801b9690,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79233,7 +79249,7 @@ void Unwind_18090e440(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e460(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x30) + 0xdc8,8,2,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xdc8,8,2,ValidateDataHandler);
   return;
 }
 
@@ -79242,7 +79258,7 @@ void Unwind_18090e460(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e4a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x30) + 0xdd8,8,2,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xdd8,8,2,ValidateDataHandler);
   return;
 }
 
@@ -79251,7 +79267,7 @@ void Unwind_18090e4a0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e4e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x30) + 0xde8,8,2,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xde8,8,2,ValidateDataHandler);
   return;
 }
 
@@ -79288,7 +79304,7 @@ void Unwind_18090e540(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e560(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x30) + 0xe08,8,2,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xe08,8,2,ValidateDataHandler);
   return;
 }
 
@@ -79311,7 +79327,7 @@ void Unwind_18090e5a0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e5c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0xe8),0x488,2,FUN_1800e7ca0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x488,2,FUN_1800e7ca0);
   return;
 }
 
@@ -79320,7 +79336,7 @@ void Unwind_18090e5c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e5f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0xe8),0x128,2,FUN_1801b9690);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x128,2,FUN_1801b9690);
   return;
 }
 
@@ -79329,7 +79345,7 @@ void Unwind_18090e5f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e620(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x30) + 8,0x18,2,FUN_1800e7f20);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 8,0x18,2,FUN_1800e7f20);
   return;
 }
 
@@ -79366,7 +79382,7 @@ void Unwind_18090e660(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e670(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0xe8),0x248,2,FUN_1800e7b80);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x248,2,FUN_1800e7b80);
   return;
 }
 
@@ -79375,7 +79391,7 @@ void Unwind_18090e670(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e6a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0xe8),0x908,2,FUN_1800e7d00);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x908,2,FUN_1800e7d00);
   return;
 }
 
@@ -79384,7 +79400,7 @@ void Unwind_18090e6a0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e6d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0xe8),0x50,2,FUN_1800e7c40);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x50,2,FUN_1800e7c40);
   return;
 }
 
@@ -79393,7 +79409,7 @@ void Unwind_18090e6d0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e700(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0xe8),0x98,2,FUN_1800e7be0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x98,2,FUN_1800e7be0);
   return;
 }
 
@@ -79404,7 +79420,7 @@ void Unwind_18090e730(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0x30);
+    ValidateDataHandler(dataBuffer + 0x30);
   }
   return;
 }
@@ -79462,7 +79478,7 @@ void Unwind_18090e770(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x34) & 1) != 0) {
     *(uint *)(dataBuffer + 0x34) = *(uint *)(dataBuffer + 0x34) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0x70);
+    ValidateDataHandler(dataBuffer + 0x70);
   }
   return;
 }
@@ -80028,7 +80044,7 @@ void Unwind_18090e8d0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0x98) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x98) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0x68) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80053,7 +80069,7 @@ void Unwind_18090e8e0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x58) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80075,7 +80091,7 @@ void Unwind_18090e8f0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0x128) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x128) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0xf8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0xf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x100) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80114,7 +80130,7 @@ void Unwind_18090e910(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e920(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x68) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80158,7 +80174,7 @@ void Unwind_18090e950(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x28);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80199,7 +80215,7 @@ void Unwind_18090e970(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e980(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0xf8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0xf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x100) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80422,7 +80438,7 @@ void Unwind_18090eb20(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x58) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80467,7 +80483,7 @@ void Unwind_18090eb50(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x108);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80497,7 +80513,7 @@ void Unwind_18090eb60(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090eb70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(dataBuffer + 0xa0,8,0x10,FUN_180045af0,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(dataBuffer + 0xa0,8,0x10,ValidateDataHandler,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -80515,7 +80531,7 @@ void Unwind_18090eb80(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090eb90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(dataBuffer + 0xa0,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(dataBuffer + 0xa0,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -80524,7 +80540,7 @@ void Unwind_18090eb90(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ebc0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(dataBuffer + 0xa0,8,0x10,FUN_180045af0);
+  ExecuteMemoryOperation(dataBuffer + 0xa0,8,0x10,ValidateDataHandler);
   return;
 }
 
@@ -80536,7 +80552,7 @@ void Unwind_18090ebf0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 200) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 200) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 0x98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80561,7 +80577,7 @@ void Unwind_18090ec00(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x58) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80591,7 +80607,7 @@ void Unwind_18090ec10(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ec20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 0x98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80621,7 +80637,7 @@ void Unwind_18090ec40(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x30);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80697,7 +80713,7 @@ void Unwind_18090eca0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0xd0) & 1) != 0) {
     *(uint *)(dataBuffer + 0xd0) = *(uint *)(dataBuffer + 0xd0) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(dataBuffer + 0x198));
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x198));
   }
   return;
 }
@@ -80774,7 +80790,7 @@ void Unwind_18090ed20(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0xf8) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xf8) + 0x38))();
   }
-  *(DataBuffer *)(dataBuffer + 200) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80799,7 +80815,7 @@ void Unwind_18090ed30(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x58) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80829,7 +80845,7 @@ void Unwind_18090ed40(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ed50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 200) = &UNK_180a3c3e0;
+  *(DataBuffer *)(dataBuffer + 200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80859,7 +80875,7 @@ void Unwind_18090ed70(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x60);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -80920,7 +80936,7 @@ void Unwind_18090edb0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -80943,7 +80959,7 @@ void Unwind_18090edd0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x88);
   *exceptionDataBuffer = &UNK_18098bdc8;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -80984,7 +81000,7 @@ void Unwind_18090ee00(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x88);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -81021,7 +81037,7 @@ void Unwind_18090ee30(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x98);
   *exceptionDataBuffer = &UNK_18098bdc8;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -81062,7 +81078,7 @@ void Unwind_18090ee60(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x98);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -81372,7 +81388,7 @@ void Unwind_18090ef80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090ef90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x70) + 0x30,0x30,0xe,FUN_1800edc10);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x70) + 0x30,0x30,0xe,FUN_1800edc10);
   return;
 }
 
@@ -81827,7 +81843,7 @@ void Unwind_18090f140(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x78);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -81846,7 +81862,7 @@ void Unwind_18090f150(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
-  *(DataBuffer *)(validationContext + 8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -81865,7 +81881,7 @@ void Unwind_18090f160(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x78);
-  *(DataBuffer *)(validationContext + 8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -81912,7 +81928,7 @@ void Unwind_18090f190(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(validationContext + 8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -82422,7 +82438,7 @@ void Unwind_18090f3b0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(validationContext + 0x370) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x370) + 0x38))();
   }
-  FUN_1808fc8a8(validationContext + 0x308,8,0xd,FUN_180045af0);
+  ExecuteMemoryOperation(validationContext + 0x308,8,0xd,ValidateDataHandler);
   return;
 }
 
@@ -82431,7 +82447,7 @@ void Unwind_18090f3b0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090f3d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x60) + 0x3a8,8,0xd,FUN_180045af0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 0x3a8,8,0xd,ValidateDataHandler);
   return;
 }
 
@@ -82686,7 +82702,7 @@ void Unwind_18090f650(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x60);
-  *(DataBuffer *)(validationContext + 0x4140) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4140) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4148) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -82705,7 +82721,7 @@ void Unwind_18090f670(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x60);
-  *(DataBuffer *)(validationContext + 0x4190) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x4190) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4198) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -82762,7 +82778,7 @@ void Unwind_18090f6b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f6c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x68),8,0xd,FUN_180045af0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x68),8,0xd,ValidateDataHandler);
   return;
 }
 
@@ -82956,7 +82972,7 @@ void Unwind_18090f800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f810(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x40),8,0xd,FUN_180045af0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),8,0xd,ValidateDataHandler);
   return;
 }
 
@@ -83101,7 +83117,7 @@ void Unwind_18090f900(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x24) & 1) != 0) {
     *(uint *)(dataBuffer + 0x24) = *(uint *)(dataBuffer + 0x24) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0xb8);
+    ValidateDataHandler(dataBuffer + 0xb8);
   }
   return;
 }
@@ -83113,7 +83129,7 @@ void Unwind_18090f930(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x24) & 2) != 0) {
     *(uint *)(dataBuffer + 0x24) = *(uint *)(dataBuffer + 0x24) & 0xfffffffd;
-    FUN_180045af0(dataBuffer + 0xc0);
+    ValidateDataHandler(dataBuffer + 0xc0);
   }
   return;
 }
@@ -83295,7 +83311,7 @@ void Unwind_18090fa20(DataBuffer operationBase,int64_t dataBuffer)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
   *exceptionDataBuffer = &UNK_18098bdc8;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -83398,7 +83414,7 @@ void CleanupExceptionHandlers18090fac0(DataBuffer exceptionContext,int64_t syste
   if (*(int64_t **)(validationContext + 0x58) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x58) + 0x38))();
   }
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -83443,7 +83459,7 @@ void Unwind_18090faf0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x120);
-  *(DataBuffer *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -83530,7 +83546,7 @@ void Unwind_18090fb70(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xd0);
-  *exceptionDataBuffer = &UNK_180a3c3e0;
+  *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -83588,7 +83604,7 @@ void Unwind_18090fbc0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x60) & 1) != 0) {
     *(uint *)(dataBuffer + 0x60) = *(uint *)(dataBuffer + 0x60) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0x70);
+    ValidateDataHandler(dataBuffer + 0x70);
   }
   return;
 }
@@ -83631,7 +83647,7 @@ void Unwind_18090fc20(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x60) & 1) != 0) {
     *(uint *)(dataBuffer + 0x60) = *(uint *)(dataBuffer + 0x60) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0x68);
+    ValidateDataHandler(dataBuffer + 0x68);
   }
   return;
 }
@@ -83643,7 +83659,7 @@ void Unwind_18090fc50(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x60) & 2) != 0) {
     *(uint *)(dataBuffer + 0x60) = *(uint *)(dataBuffer + 0x60) & 0xfffffffd;
-    FUN_180045af0(dataBuffer + 0x68);
+    ValidateDataHandler(dataBuffer + 0x68);
   }
   return;
 }
@@ -83737,7 +83753,7 @@ void Unwind_18090fd00(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0x98);
+    ValidateDataHandler(dataBuffer + 0x98);
   }
   return;
 }
@@ -83749,7 +83765,7 @@ void Unwind_18090fd30(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffd;
-    FUN_180045af0(dataBuffer + 0xf8);
+    ValidateDataHandler(dataBuffer + 0xf8);
   }
   return;
 }
@@ -83761,7 +83777,7 @@ void Unwind_18090fd60(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 4) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffb;
-    FUN_180045af0(dataBuffer + 0xf8);
+    ValidateDataHandler(dataBuffer + 0xf8);
   }
   return;
 }
@@ -83773,7 +83789,7 @@ void Unwind_18090fd90(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 8) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffff7;
-    FUN_180045af0(dataBuffer + 0x100);
+    ValidateDataHandler(dataBuffer + 0x100);
   }
   return;
 }
@@ -83785,7 +83801,7 @@ void Unwind_18090fdc0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 0x10) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xffffffef;
-    FUN_180045af0(dataBuffer + 0x108);
+    ValidateDataHandler(dataBuffer + 0x108);
   }
   return;
 }
@@ -83978,7 +83994,7 @@ void Unwind_18090ff00(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x100);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -84118,7 +84134,7 @@ void Unwind_18090ffb0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 4) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffb;
-    FUN_180627b90(dataBuffer + 0x60);
+    CleanupResourceHandler(dataBuffer + 0x60);
   }
   return;
 }
@@ -84563,7 +84579,7 @@ void Unwind_180910110(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x60);
-  *(DataBuffer *)(validationContext + 0x108) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -84582,7 +84598,7 @@ void Unwind_180910130(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x50);
-  *(DataBuffer *)(validationContext + 0x108) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -84619,7 +84635,7 @@ void Unwind_180910150(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910160(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0x18,0x20,2,FUN_180627b90);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x18,0x20,2,CleanupResourceHandler);
   return;
 }
 
@@ -84628,7 +84644,7 @@ void Unwind_180910160(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910190(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x40),0x58,2,FUN_1800f88f0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),0x58,2,FUN_1800f88f0);
   return;
 }
 
@@ -84640,7 +84656,7 @@ void Unwind_1809101c0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(validationContext + 0x108) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -84843,7 +84859,7 @@ void Unwind_1809102b0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x40) & 1) != 0) {
     *(uint *)(dataBuffer + 0x40) = *(uint *)(dataBuffer + 0x40) & 0xfffffffe;
-    FUN_180627b90(*(DataBuffer *)(dataBuffer + 0x140));
+    CleanupResourceHandler(*(DataBuffer *)(dataBuffer + 0x140));
   }
   return;
 }
@@ -85070,7 +85086,7 @@ void Unwind_180910360(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180627b90(*(DataBuffer *)(dataBuffer + 0x38));
+    CleanupResourceHandler(*(DataBuffer *)(dataBuffer + 0x38));
   }
   return;
 }
@@ -85174,7 +85190,7 @@ void Unwind_180910400(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x60);
   *exceptionDataBuffer = &UNK_18098bdc8;
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -85187,7 +85203,7 @@ void Unwind_180910410(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x60);
-  *exceptionDataBuffer = &UNK_180a21720;
+  *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &UNK_180a21690;
   return;
 }
@@ -85705,7 +85721,7 @@ void Unwind_1809106f0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffe;
-    FUN_180045af0(dataBuffer + 0x38);
+    ValidateDataHandler(dataBuffer + 0x38);
   }
   return;
 }
@@ -85717,7 +85733,7 @@ void Unwind_180910720(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
     *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffd;
-    FUN_180045af0(dataBuffer + 0x38);
+    ValidateDataHandler(dataBuffer + 0x38);
   }
   return;
 }
@@ -85899,7 +85915,7 @@ void Unwind_1809107a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xa00) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xa00))(validationContext + 0x9f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x9c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -85907,7 +85923,7 @@ void Unwind_1809107a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x9d0) = 0;
   *(DataWord *)(validationContext + 0x9e0) = 0;
   *(DataBuffer *)(validationContext + 0x9c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x9a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -85929,7 +85945,7 @@ void Unwind_1809107c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xa70) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xa70))(validationContext + 0xa60,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xa38) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa40) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -85937,7 +85953,7 @@ void Unwind_1809107c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa40) = 0;
   *(DataWord *)(validationContext + 0xa50) = 0;
   *(DataBuffer *)(validationContext + 0xa38) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa18) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -85959,7 +85975,7 @@ void Unwind_1809107e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xae0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xae0))(validationContext + 0xad0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xaa8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xaa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xab0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -85967,7 +85983,7 @@ void Unwind_1809107e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xab0) = 0;
   *(DataWord *)(validationContext + 0xac0) = 0;
   *(DataBuffer *)(validationContext + 0xaa8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa88) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -85989,7 +86005,7 @@ void Unwind_180910800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xb50) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xb18) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -85997,7 +86013,7 @@ void Unwind_180910800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xb20) = 0;
   *(DataWord *)(validationContext + 0xb30) = 0;
   *(DataBuffer *)(validationContext + 0xb18) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xaf8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xaf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86019,7 +86035,7 @@ void Unwind_180910820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xbc0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xbc0))(validationContext + 0xbb0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xb88) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb90) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86027,7 +86043,7 @@ void Unwind_180910820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xb90) = 0;
   *(DataWord *)(validationContext + 0xba0) = 0;
   *(DataBuffer *)(validationContext + 0xb88) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xb68) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86049,7 +86065,7 @@ void Unwind_180910840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xc30) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xc30))(validationContext + 0xc20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xbf8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xbf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc00) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86057,7 +86073,7 @@ void Unwind_180910840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xc00) = 0;
   *(DataWord *)(validationContext + 0xc10) = 0;
   *(DataBuffer *)(validationContext + 0xbf8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xbd8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xbd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86079,7 +86095,7 @@ void Unwind_180910860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xca0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xca0))(validationContext + 0xc90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xc68) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc70) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86087,7 +86103,7 @@ void Unwind_180910860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xc70) = 0;
   *(DataWord *)(validationContext + 0xc80) = 0;
   *(DataBuffer *)(validationContext + 0xc68) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xc48) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86109,7 +86125,7 @@ void Unwind_180910880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xd10) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xd10))(validationContext + 0xd00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xcd8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xcd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xce0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86117,7 +86133,7 @@ void Unwind_180910880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xce0) = 0;
   *(DataWord *)(validationContext + 0xcf0) = 0;
   *(DataBuffer *)(validationContext + 0xcd8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xcb8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xcb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86139,7 +86155,7 @@ void Unwind_1809108a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xd80) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xd80))(validationContext + 0xd70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xd48) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xd50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86147,7 +86163,7 @@ void Unwind_1809108a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xd50) = 0;
   *(DataWord *)(validationContext + 0xd60) = 0;
   *(DataBuffer *)(validationContext + 0xd48) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xd28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86169,7 +86185,7 @@ void Unwind_1809108c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xdf0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xdf0))(validationContext + 0xde0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xdb8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xdb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xdc0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86177,7 +86193,7 @@ void Unwind_1809108c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xdc0) = 0;
   *(DataWord *)(validationContext + 0xdd0) = 0;
   *(DataBuffer *)(validationContext + 0xdb8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xd98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86199,7 +86215,7 @@ void Unwind_1809108e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xe60) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xe60))(validationContext + 0xe50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xe28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86207,7 +86223,7 @@ void Unwind_1809108e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xe30) = 0;
   *(DataWord *)(validationContext + 0xe40) = 0;
   *(DataBuffer *)(validationContext + 0xe28) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe08) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86229,7 +86245,7 @@ void Unwind_180910900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xed0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xed0))(validationContext + 0xec0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xe98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xea0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86237,7 +86253,7 @@ void Unwind_180910900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xea0) = 0;
   *(DataWord *)(validationContext + 0xeb0) = 0;
   *(DataBuffer *)(validationContext + 0xe98) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86259,7 +86275,7 @@ void Unwind_180910920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xf40) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xf40))(validationContext + 0xf30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xf08) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86267,7 +86283,7 @@ void Unwind_180910920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf10) = 0;
   *(DataWord *)(validationContext + 0xf20) = 0;
   *(DataBuffer *)(validationContext + 0xf08) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xee8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xee8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86289,7 +86305,7 @@ void Unwind_180910940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xfb0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xfb0))(validationContext + 4000,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xf78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86297,7 +86313,7 @@ void Unwind_180910940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf80) = 0;
   *(DataWord *)(validationContext + 0xf90) = 0;
   *(DataBuffer *)(validationContext + 0xf78) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xf58) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86319,7 +86335,7 @@ void Unwind_180910960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1020) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1020))(validationContext + 0x1010,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xfe8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xfe8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xff0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86327,7 +86343,7 @@ void Unwind_180910960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xff0) = 0;
   *(DataWord *)(validationContext + 0x1000) = 0;
   *(DataBuffer *)(validationContext + 0xfe8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xfc8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xfc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86349,7 +86365,7 @@ void Unwind_180910980(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1090) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1090))(validationContext + 0x1080,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1058) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1058) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1060) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86357,7 +86373,7 @@ void Unwind_180910980(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1060) = 0;
   *(DataWord *)(validationContext + 0x1070) = 0;
   *(DataBuffer *)(validationContext + 0x1058) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1038) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1038) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86379,7 +86395,7 @@ void Unwind_1809109a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1100) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1100))(validationContext + 0x10f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x10c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x10c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86387,7 +86403,7 @@ void Unwind_1809109a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x10d0) = 0;
   *(DataWord *)(validationContext + 0x10e0) = 0;
   *(DataBuffer *)(validationContext + 0x10c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x10a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x10a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86409,7 +86425,7 @@ void Unwind_1809109c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1170) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1170))(validationContext + 0x1160,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1138) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1138) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1140) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86417,7 +86433,7 @@ void Unwind_1809109c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1140) = 0;
   *(DataWord *)(validationContext + 0x1150) = 0;
   *(DataBuffer *)(validationContext + 0x1138) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1118) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1118) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86439,7 +86455,7 @@ void Unwind_1809109e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x11e0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x11e0))(validationContext + 0x11d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x11a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x11a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x11b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86447,7 +86463,7 @@ void Unwind_1809109e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x11b0) = 0;
   *(DataWord *)(validationContext + 0x11c0) = 0;
   *(DataBuffer *)(validationContext + 0x11a8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1188) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1188) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86469,7 +86485,7 @@ void Unwind_180910a00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1250) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1250))(validationContext + 0x1240,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1218) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1218) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1220) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86477,7 +86493,7 @@ void Unwind_180910a00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1220) = 0;
   *(DataWord *)(validationContext + 0x1230) = 0;
   *(DataBuffer *)(validationContext + 0x1218) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x11f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x11f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86499,7 +86515,7 @@ void Unwind_180910a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x12c0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x12c0))(validationContext + 0x12b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1288) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1288) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1290) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86507,7 +86523,7 @@ void Unwind_180910a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1290) = 0;
   *(DataWord *)(validationContext + 0x12a0) = 0;
   *(DataBuffer *)(validationContext + 0x1288) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1268) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1268) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86529,7 +86545,7 @@ void Unwind_180910a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1330) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1330))(validationContext + 0x1320,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x12f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x12f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1300) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86537,7 +86553,7 @@ void Unwind_180910a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1300) = 0;
   *(DataWord *)(validationContext + 0x1310) = 0;
   *(DataBuffer *)(validationContext + 0x12f8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x12d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x12d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86559,7 +86575,7 @@ void Unwind_180910a60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x13a0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x13a0))(validationContext + 0x1390,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1368) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1368) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1370) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86567,7 +86583,7 @@ void Unwind_180910a60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1370) = 0;
   *(DataWord *)(validationContext + 0x1380) = 0;
   *(DataBuffer *)(validationContext + 0x1368) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1348) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1348) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86589,7 +86605,7 @@ void Unwind_180910a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1410) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1410))(validationContext + 0x1400,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x13d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x13d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x13e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86597,7 +86613,7 @@ void Unwind_180910a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x13e0) = 0;
   *(DataWord *)(validationContext + 0x13f0) = 0;
   *(DataBuffer *)(validationContext + 0x13d8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x13b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x13b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86619,7 +86635,7 @@ void Unwind_180910aa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1480) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1480))(validationContext + 0x1470,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1448) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1448) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1450) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86627,7 +86643,7 @@ void Unwind_180910aa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1450) = 0;
   *(DataWord *)(validationContext + 0x1460) = 0;
   *(DataBuffer *)(validationContext + 0x1448) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1428) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1428) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86649,7 +86665,7 @@ void Unwind_180910ac0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x14f0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x14f0))(validationContext + 0x14e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x14b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x14b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x14c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86657,7 +86673,7 @@ void Unwind_180910ac0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x14c0) = 0;
   *(DataWord *)(validationContext + 0x14d0) = 0;
   *(DataBuffer *)(validationContext + 0x14b8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1498) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1498) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86679,7 +86695,7 @@ void Unwind_180910ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1560) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1560))(validationContext + 0x1550,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1528) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1528) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1530) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86687,7 +86703,7 @@ void Unwind_180910ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1530) = 0;
   *(DataWord *)(validationContext + 0x1540) = 0;
   *(DataBuffer *)(validationContext + 0x1528) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1508) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1508) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86709,7 +86725,7 @@ void Unwind_180910b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x15d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x15d0))(validationContext + 0x15c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1598) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1598) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x15a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86717,7 +86733,7 @@ void Unwind_180910b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x15a0) = 0;
   *(DataWord *)(validationContext + 0x15b0) = 0;
   *(DataBuffer *)(validationContext + 0x1598) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1578) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1578) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86739,7 +86755,7 @@ void Unwind_180910b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1640) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1640))(validationContext + 0x1630,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1608) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1608) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86747,7 +86763,7 @@ void Unwind_180910b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1610) = 0;
   *(DataWord *)(validationContext + 0x1620) = 0;
   *(DataBuffer *)(validationContext + 0x1608) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x15e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x15e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86769,7 +86785,7 @@ void Unwind_180910b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x16b0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x16b0))(validationContext + 0x16a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1678) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1678) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1680) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86777,7 +86793,7 @@ void Unwind_180910b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1680) = 0;
   *(DataWord *)(validationContext + 0x1690) = 0;
   *(DataBuffer *)(validationContext + 0x1678) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1658) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1658) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86799,7 +86815,7 @@ void Unwind_180910b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1720) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1720))(validationContext + 0x1710,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x16e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x16e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x16f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86807,7 +86823,7 @@ void Unwind_180910b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x16f0) = 0;
   *(DataWord *)(validationContext + 0x1700) = 0;
   *(DataBuffer *)(validationContext + 0x16e8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x16c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x16c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86829,7 +86845,7 @@ void Unwind_180910b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1790) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1790))(validationContext + 0x1780,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1758) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1758) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1760) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86837,7 +86853,7 @@ void Unwind_180910b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1760) = 0;
   *(DataWord *)(validationContext + 6000) = 0;
   *(DataBuffer *)(validationContext + 0x1758) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1738) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1738) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86859,7 +86875,7 @@ void Unwind_180910ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1800) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1800))(validationContext + 0x17f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x17c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x17c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x17d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86867,7 +86883,7 @@ void Unwind_180910ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x17d0) = 0;
   *(DataWord *)(validationContext + 0x17e0) = 0;
   *(DataBuffer *)(validationContext + 0x17c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x17a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x17a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86889,7 +86905,7 @@ void Unwind_180910bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1870) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1870))(validationContext + 0x1860,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1838) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1838) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1840) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86897,7 +86913,7 @@ void Unwind_180910bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1840) = 0;
   *(DataWord *)(validationContext + 0x1850) = 0;
   *(DataBuffer *)(validationContext + 0x1838) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1818) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1818) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86919,7 +86935,7 @@ void Unwind_180910be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x18e0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x18e0))(validationContext + 0x18d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x18a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x18a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x18b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86927,7 +86943,7 @@ void Unwind_180910be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x18b0) = 0;
   *(DataWord *)(validationContext + 0x18c0) = 0;
   *(DataBuffer *)(validationContext + 0x18a8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1888) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1888) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86949,7 +86965,7 @@ void Unwind_180910c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1950) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1950))(validationContext + 0x1940,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1918) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1918) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1920) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86957,7 +86973,7 @@ void Unwind_180910c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1920) = 0;
   *(DataWord *)(validationContext + 0x1930) = 0;
   *(DataBuffer *)(validationContext + 0x1918) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x18f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x18f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86979,7 +86995,7 @@ void Unwind_180910c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x19c0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x19c0))(validationContext + 0x19b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1988) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1988) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1990) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -86987,7 +87003,7 @@ void Unwind_180910c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1990) = 0;
   *(DataWord *)(validationContext + 0x19a0) = 0;
   *(DataBuffer *)(validationContext + 0x1988) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1968) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1968) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87009,7 +87025,7 @@ void Unwind_180910c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1a30) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1a30))(validationContext + 0x1a20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x19f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x19f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1a00) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87017,7 +87033,7 @@ void Unwind_180910c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1a00) = 0;
   *(DataWord *)(validationContext + 0x1a10) = 0;
   *(DataBuffer *)(validationContext + 0x19f8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x19d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x19d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87039,7 +87055,7 @@ void Unwind_180910c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1aa0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1aa0))(validationContext + 0x1a90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1a68) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1a68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1a70) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87047,7 +87063,7 @@ void Unwind_180910c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1a70) = 0;
   *(DataWord *)(validationContext + 0x1a80) = 0;
   *(DataBuffer *)(validationContext + 0x1a68) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1a48) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1a48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87069,7 +87085,7 @@ void Unwind_180910c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1b10) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1b10))(validationContext + 0x1b00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1ad8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ad8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1ae0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87077,7 +87093,7 @@ void Unwind_180910c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1ae0) = 0;
   *(DataWord *)(validationContext + 0x1af0) = 0;
   *(DataBuffer *)(validationContext + 0x1ad8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1ab8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ab8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87099,7 +87115,7 @@ void Unwind_180910ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1b80) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1b80))(validationContext + 0x1b70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1b48) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1b48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1b50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87107,7 +87123,7 @@ void Unwind_180910ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1b50) = 0;
   *(DataWord *)(validationContext + 0x1b60) = 0;
   *(DataBuffer *)(validationContext + 0x1b48) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1b28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1b28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87129,7 +87145,7 @@ void Unwind_180910cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1bf0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1bf0))(validationContext + 0x1be0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1bb8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1bb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1bc0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87137,7 +87153,7 @@ void Unwind_180910cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1bc0) = 0;
   *(DataWord *)(validationContext + 0x1bd0) = 0;
   *(DataBuffer *)(validationContext + 0x1bb8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1b98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1b98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87159,7 +87175,7 @@ void Unwind_180910ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1c60) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1c60))(validationContext + 0x1c50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1c28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1c30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87167,7 +87183,7 @@ void Unwind_180910ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1c30) = 0;
   *(DataWord *)(validationContext + 0x1c40) = 0;
   *(DataBuffer *)(validationContext + 0x1c28) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1c08) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87189,7 +87205,7 @@ void Unwind_180910d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1cd0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1cd0))(validationContext + 0x1cc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1c98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1ca0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87197,7 +87213,7 @@ void Unwind_180910d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1ca0) = 0;
   *(DataWord *)(validationContext + 0x1cb0) = 0;
   *(DataBuffer *)(validationContext + 0x1c98) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1c78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87219,7 +87235,7 @@ void Unwind_180910d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1d40) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1d40))(validationContext + 0x1d30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1d08) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1d08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1d10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87227,7 +87243,7 @@ void Unwind_180910d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1d10) = 0;
   *(DataWord *)(validationContext + 0x1d20) = 0;
   *(DataBuffer *)(validationContext + 0x1d08) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1ce8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ce8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87249,7 +87265,7 @@ void Unwind_180910d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1db0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1db0))(validationContext + 0x1da0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1d78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1d78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1d80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87257,7 +87273,7 @@ void Unwind_180910d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1d80) = 0;
   *(DataWord *)(validationContext + 0x1d90) = 0;
   *(DataBuffer *)(validationContext + 0x1d78) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1d58) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1d58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87279,7 +87295,7 @@ void Unwind_180910d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1e20) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1e20))(validationContext + 0x1e10,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1de8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1de8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1df0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87287,7 +87303,7 @@ void Unwind_180910d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1df0) = 0;
   *(DataWord *)(validationContext + 0x1e00) = 0;
   *(DataBuffer *)(validationContext + 0x1de8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1dc8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1dc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87309,7 +87325,7 @@ void Unwind_180910d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1e90) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1e90))(validationContext + 0x1e80,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1e58) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1e58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1e60) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87317,7 +87333,7 @@ void Unwind_180910d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1e60) = 0;
   *(DataWord *)(validationContext + 0x1e70) = 0;
   *(DataBuffer *)(validationContext + 0x1e58) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1e38) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1e38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87339,7 +87355,7 @@ void Unwind_180910da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1f00) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1f00))(validationContext + 0x1ef0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1ec8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ec8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1ed0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87347,7 +87363,7 @@ void Unwind_180910da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1ed0) = 0;
   *(DataWord *)(validationContext + 0x1ee0) = 0;
   *(DataBuffer *)(validationContext + 0x1ec8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1ea8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ea8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87369,7 +87385,7 @@ void Unwind_180910dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1f70) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1f70))(validationContext + 0x1f60,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1f38) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1f38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 8000) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87377,7 +87393,7 @@ void Unwind_180910dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 8000) = 0;
   *(DataWord *)(validationContext + 0x1f50) = 0;
   *(DataBuffer *)(validationContext + 0x1f38) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1f18) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1f18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87399,7 +87415,7 @@ void Unwind_180910de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1fe0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1fe0))(validationContext + 0x1fd0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1fa8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1fa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1fb0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87407,7 +87423,7 @@ void Unwind_180910de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1fb0) = 0;
   *(DataWord *)(validationContext + 0x1fc0) = 0;
   *(DataBuffer *)(validationContext + 0x1fa8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1f88) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1f88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87429,7 +87445,7 @@ void Unwind_180910e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2050) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2050))(validationContext + 0x2040,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2018) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2018) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2020) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87437,7 +87453,7 @@ void Unwind_180910e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2020) = 0;
   *(DataWord *)(validationContext + 0x2030) = 0;
   *(DataBuffer *)(validationContext + 0x2018) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1ff8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ff8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87459,7 +87475,7 @@ void Unwind_180910e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x20c0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x20c0))(validationContext + 0x20b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2088) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2088) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2090) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87467,7 +87483,7 @@ void Unwind_180910e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2090) = 0;
   *(DataWord *)(validationContext + 0x20a0) = 0;
   *(DataBuffer *)(validationContext + 0x2088) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2068) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2068) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87489,7 +87505,7 @@ void Unwind_180910e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2130) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2130))(validationContext + 0x2120,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x20f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2100) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87497,7 +87513,7 @@ void Unwind_180910e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2100) = 0;
   *(DataWord *)(validationContext + 0x2110) = 0;
   *(DataBuffer *)(validationContext + 0x20f8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x20d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87519,7 +87535,7 @@ void Unwind_180910e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x21a0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x21a0))(validationContext + 0x2190,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2168) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2168) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2170) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87527,7 +87543,7 @@ void Unwind_180910e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2170) = 0;
   *(DataWord *)(validationContext + 0x2180) = 0;
   *(DataBuffer *)(validationContext + 0x2168) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2148) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87549,7 +87565,7 @@ void Unwind_180910e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2210) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2210))(validationContext + 0x2200,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x21d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x21d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x21e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87557,7 +87573,7 @@ void Unwind_180910e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x21e0) = 0;
   *(DataWord *)(validationContext + 0x21f0) = 0;
   *(DataBuffer *)(validationContext + 0x21d8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x21b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x21b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87579,7 +87595,7 @@ void Unwind_180910ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2280) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2280))(validationContext + 0x2270,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2248) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2248) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2250) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87587,7 +87603,7 @@ void Unwind_180910ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2250) = 0;
   *(DataWord *)(validationContext + 0x2260) = 0;
   *(DataBuffer *)(validationContext + 0x2248) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2228) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2228) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87609,7 +87625,7 @@ void Unwind_180910ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x22f0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x22f0))(validationContext + 0x22e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x22b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x22b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x22c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87617,7 +87633,7 @@ void Unwind_180910ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x22c0) = 0;
   *(DataWord *)(validationContext + 0x22d0) = 0;
   *(DataBuffer *)(validationContext + 0x22b8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2298) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2298) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87639,7 +87655,7 @@ void Unwind_180910ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2360) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2360))(validationContext + 0x2350,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 9000) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 9000) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2330) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87647,7 +87663,7 @@ void Unwind_180910ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2330) = 0;
   *(DataWord *)(validationContext + 0x2340) = 0;
   *(DataBuffer *)(validationContext + 9000) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2308) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2308) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87669,7 +87685,7 @@ void Unwind_180910f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x23d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x23d0))(validationContext + 0x23c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2398) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2398) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x23a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87677,7 +87693,7 @@ void Unwind_180910f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x23a0) = 0;
   *(DataWord *)(validationContext + 0x23b0) = 0;
   *(DataBuffer *)(validationContext + 0x2398) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2378) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2378) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87699,7 +87715,7 @@ void Unwind_180910f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2440) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2440))(validationContext + 0x2430,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2408) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2408) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2410) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87707,7 +87723,7 @@ void Unwind_180910f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2410) = 0;
   *(DataWord *)(validationContext + 0x2420) = 0;
   *(DataBuffer *)(validationContext + 0x2408) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x23e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x23e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87729,7 +87745,7 @@ void Unwind_180910f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x24b0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x24b0))(validationContext + 0x24a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2478) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2478) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2480) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87737,7 +87753,7 @@ void Unwind_180910f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2480) = 0;
   *(DataWord *)(validationContext + 0x2490) = 0;
   *(DataBuffer *)(validationContext + 0x2478) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2458) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2458) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87759,7 +87775,7 @@ void Unwind_180910f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2520) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2520))(validationContext + 0x2510,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x24e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x24e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x24f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87767,7 +87783,7 @@ void Unwind_180910f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x24f0) = 0;
   *(DataWord *)(validationContext + 0x2500) = 0;
   *(DataBuffer *)(validationContext + 0x24e8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x24c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x24c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87789,7 +87805,7 @@ void Unwind_180910f80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2590) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2590))(validationContext + 0x2580,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2558) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2558) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2560) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87797,7 +87813,7 @@ void Unwind_180910f80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2560) = 0;
   *(DataWord *)(validationContext + 0x2570) = 0;
   *(DataBuffer *)(validationContext + 0x2558) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2538) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2538) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87819,7 +87835,7 @@ void Unwind_180910fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2600) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2600))(validationContext + 0x25f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x25c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x25c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x25d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87827,7 +87843,7 @@ void Unwind_180910fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x25d0) = 0;
   *(DataWord *)(validationContext + 0x25e0) = 0;
   *(DataBuffer *)(validationContext + 0x25c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x25a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x25a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87895,7 +87911,7 @@ void Unwind_180911000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xa00) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xa00))(validationContext + 0x9f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x9c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87903,7 +87919,7 @@ void Unwind_180911000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x9d0) = 0;
   *(DataWord *)(validationContext + 0x9e0) = 0;
   *(DataBuffer *)(validationContext + 0x9c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x9a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x9a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87925,7 +87941,7 @@ void Unwind_180911020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xa70) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xa70))(validationContext + 0xa60,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xa38) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa40) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87933,7 +87949,7 @@ void Unwind_180911020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xa40) = 0;
   *(DataWord *)(validationContext + 0xa50) = 0;
   *(DataBuffer *)(validationContext + 0xa38) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa18) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87955,7 +87971,7 @@ void Unwind_180911040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xae0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xae0))(validationContext + 0xad0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xaa8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xaa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xab0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87963,7 +87979,7 @@ void Unwind_180911040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xab0) = 0;
   *(DataWord *)(validationContext + 0xac0) = 0;
   *(DataBuffer *)(validationContext + 0xaa8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xa88) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xa88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87985,7 +88001,7 @@ void Unwind_180911060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xb50) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xb18) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -87993,7 +88009,7 @@ void Unwind_180911060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xb20) = 0;
   *(DataWord *)(validationContext + 0xb30) = 0;
   *(DataBuffer *)(validationContext + 0xb18) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xaf8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xaf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88015,7 +88031,7 @@ void Unwind_180911080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xbc0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xbc0))(validationContext + 0xbb0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xb88) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb90) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88023,7 +88039,7 @@ void Unwind_180911080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xb90) = 0;
   *(DataWord *)(validationContext + 0xba0) = 0;
   *(DataBuffer *)(validationContext + 0xb88) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xb68) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xb68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88045,7 +88061,7 @@ void Unwind_1809110a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xc30) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xc30))(validationContext + 0xc20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xbf8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xbf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc00) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88053,7 +88069,7 @@ void Unwind_1809110a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xc00) = 0;
   *(DataWord *)(validationContext + 0xc10) = 0;
   *(DataBuffer *)(validationContext + 0xbf8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xbd8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xbd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88075,7 +88091,7 @@ void Unwind_1809110c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xca0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xca0))(validationContext + 0xc90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xc68) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc70) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88083,7 +88099,7 @@ void Unwind_1809110c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xc70) = 0;
   *(DataWord *)(validationContext + 0xc80) = 0;
   *(DataBuffer *)(validationContext + 0xc68) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xc48) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xc48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88105,7 +88121,7 @@ void Unwind_1809110e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xd10) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xd10))(validationContext + 0xd00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xcd8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xcd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xce0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88113,7 +88129,7 @@ void Unwind_1809110e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xce0) = 0;
   *(DataWord *)(validationContext + 0xcf0) = 0;
   *(DataBuffer *)(validationContext + 0xcd8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xcb8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xcb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88135,7 +88151,7 @@ void Unwind_180911100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xd80) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xd80))(validationContext + 0xd70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xd48) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xd50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88143,7 +88159,7 @@ void Unwind_180911100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xd50) = 0;
   *(DataWord *)(validationContext + 0xd60) = 0;
   *(DataBuffer *)(validationContext + 0xd48) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xd28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88165,7 +88181,7 @@ void Unwind_180911120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xdf0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xdf0))(validationContext + 0xde0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xdb8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xdb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xdc0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88173,7 +88189,7 @@ void Unwind_180911120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xdc0) = 0;
   *(DataWord *)(validationContext + 0xdd0) = 0;
   *(DataBuffer *)(validationContext + 0xdb8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xd98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xd98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88195,7 +88211,7 @@ void Unwind_180911140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xe60) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xe60))(validationContext + 0xe50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xe28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88203,7 +88219,7 @@ void Unwind_180911140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xe30) = 0;
   *(DataWord *)(validationContext + 0xe40) = 0;
   *(DataBuffer *)(validationContext + 0xe28) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe08) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88225,7 +88241,7 @@ void Unwind_180911160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xed0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xed0))(validationContext + 0xec0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xe98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xea0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88233,7 +88249,7 @@ void Unwind_180911160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xea0) = 0;
   *(DataWord *)(validationContext + 0xeb0) = 0;
   *(DataBuffer *)(validationContext + 0xe98) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xe78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xe78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88255,7 +88271,7 @@ void Unwind_180911180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xf40) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xf40))(validationContext + 0xf30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xf08) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88263,7 +88279,7 @@ void Unwind_180911180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf10) = 0;
   *(DataWord *)(validationContext + 0xf20) = 0;
   *(DataBuffer *)(validationContext + 0xf08) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xee8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xee8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88285,7 +88301,7 @@ void Unwind_1809111a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0xfb0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0xfb0))(validationContext + 4000,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xf78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88293,7 +88309,7 @@ void Unwind_1809111a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xf80) = 0;
   *(DataWord *)(validationContext + 0xf90) = 0;
   *(DataBuffer *)(validationContext + 0xf78) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xf58) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xf58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88315,7 +88331,7 @@ void Unwind_1809111c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1020) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1020))(validationContext + 0x1010,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0xfe8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xfe8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xff0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88323,7 +88339,7 @@ void Unwind_1809111c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0xff0) = 0;
   *(DataWord *)(validationContext + 0x1000) = 0;
   *(DataBuffer *)(validationContext + 0xfe8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0xfc8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0xfc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88345,7 +88361,7 @@ void Unwind_1809111e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1090) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1090))(validationContext + 0x1080,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1058) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1058) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1060) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88353,7 +88369,7 @@ void Unwind_1809111e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1060) = 0;
   *(DataWord *)(validationContext + 0x1070) = 0;
   *(DataBuffer *)(validationContext + 0x1058) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1038) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1038) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88375,7 +88391,7 @@ void Unwind_180911200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1100) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1100))(validationContext + 0x10f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x10c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x10c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88383,7 +88399,7 @@ void Unwind_180911200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x10d0) = 0;
   *(DataWord *)(validationContext + 0x10e0) = 0;
   *(DataBuffer *)(validationContext + 0x10c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x10a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x10a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88405,7 +88421,7 @@ void Unwind_180911220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1170) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1170))(validationContext + 0x1160,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1138) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1138) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1140) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88413,7 +88429,7 @@ void Unwind_180911220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1140) = 0;
   *(DataWord *)(validationContext + 0x1150) = 0;
   *(DataBuffer *)(validationContext + 0x1138) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1118) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1118) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88435,7 +88451,7 @@ void Unwind_180911240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x11e0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x11e0))(validationContext + 0x11d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x11a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x11a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x11b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88443,7 +88459,7 @@ void Unwind_180911240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x11b0) = 0;
   *(DataWord *)(validationContext + 0x11c0) = 0;
   *(DataBuffer *)(validationContext + 0x11a8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1188) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1188) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88465,7 +88481,7 @@ void Unwind_180911260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1250) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1250))(validationContext + 0x1240,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1218) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1218) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1220) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88473,7 +88489,7 @@ void Unwind_180911260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1220) = 0;
   *(DataWord *)(validationContext + 0x1230) = 0;
   *(DataBuffer *)(validationContext + 0x1218) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x11f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x11f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88495,7 +88511,7 @@ void Unwind_180911280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x12c0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x12c0))(validationContext + 0x12b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1288) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1288) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1290) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88503,7 +88519,7 @@ void Unwind_180911280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1290) = 0;
   *(DataWord *)(validationContext + 0x12a0) = 0;
   *(DataBuffer *)(validationContext + 0x1288) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1268) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1268) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88525,7 +88541,7 @@ void Unwind_1809112a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1330) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1330))(validationContext + 0x1320,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x12f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x12f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1300) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88533,7 +88549,7 @@ void Unwind_1809112a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1300) = 0;
   *(DataWord *)(validationContext + 0x1310) = 0;
   *(DataBuffer *)(validationContext + 0x12f8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x12d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x12d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88555,7 +88571,7 @@ void Unwind_1809112c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x13a0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x13a0))(validationContext + 0x1390,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1368) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1368) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1370) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88563,7 +88579,7 @@ void Unwind_1809112c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1370) = 0;
   *(DataWord *)(validationContext + 0x1380) = 0;
   *(DataBuffer *)(validationContext + 0x1368) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1348) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1348) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88585,7 +88601,7 @@ void Unwind_1809112e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1410) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1410))(validationContext + 0x1400,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x13d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x13d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x13e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88593,7 +88609,7 @@ void Unwind_1809112e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x13e0) = 0;
   *(DataWord *)(validationContext + 0x13f0) = 0;
   *(DataBuffer *)(validationContext + 0x13d8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x13b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x13b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88615,7 +88631,7 @@ void Unwind_180911300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1480) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1480))(validationContext + 0x1470,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1448) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1448) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1450) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88623,7 +88639,7 @@ void Unwind_180911300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1450) = 0;
   *(DataWord *)(validationContext + 0x1460) = 0;
   *(DataBuffer *)(validationContext + 0x1448) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1428) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1428) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88645,7 +88661,7 @@ void Unwind_180911320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x14f0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x14f0))(validationContext + 0x14e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x14b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x14b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x14c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88653,7 +88669,7 @@ void Unwind_180911320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x14c0) = 0;
   *(DataWord *)(validationContext + 0x14d0) = 0;
   *(DataBuffer *)(validationContext + 0x14b8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1498) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1498) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88675,7 +88691,7 @@ void Unwind_180911340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1560) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1560))(validationContext + 0x1550,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1528) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1528) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1530) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88683,7 +88699,7 @@ void Unwind_180911340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1530) = 0;
   *(DataWord *)(validationContext + 0x1540) = 0;
   *(DataBuffer *)(validationContext + 0x1528) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1508) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1508) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88705,7 +88721,7 @@ void Unwind_180911360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x15d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x15d0))(validationContext + 0x15c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1598) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1598) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x15a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88713,7 +88729,7 @@ void Unwind_180911360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x15a0) = 0;
   *(DataWord *)(validationContext + 0x15b0) = 0;
   *(DataBuffer *)(validationContext + 0x1598) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1578) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1578) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88735,7 +88751,7 @@ void Unwind_180911380(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1640) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1640))(validationContext + 0x1630,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1608) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1608) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88743,7 +88759,7 @@ void Unwind_180911380(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1610) = 0;
   *(DataWord *)(validationContext + 0x1620) = 0;
   *(DataBuffer *)(validationContext + 0x1608) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x15e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x15e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88765,7 +88781,7 @@ void Unwind_1809113a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x16b0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x16b0))(validationContext + 0x16a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1678) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1678) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1680) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88773,7 +88789,7 @@ void Unwind_1809113a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1680) = 0;
   *(DataWord *)(validationContext + 0x1690) = 0;
   *(DataBuffer *)(validationContext + 0x1678) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1658) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1658) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88795,7 +88811,7 @@ void Unwind_1809113c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1720) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1720))(validationContext + 0x1710,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x16e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x16e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x16f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88803,7 +88819,7 @@ void Unwind_1809113c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x16f0) = 0;
   *(DataWord *)(validationContext + 0x1700) = 0;
   *(DataBuffer *)(validationContext + 0x16e8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x16c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x16c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88825,7 +88841,7 @@ void Unwind_1809113e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1790) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1790))(validationContext + 0x1780,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1758) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1758) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1760) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88833,7 +88849,7 @@ void Unwind_1809113e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1760) = 0;
   *(DataWord *)(validationContext + 6000) = 0;
   *(DataBuffer *)(validationContext + 0x1758) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1738) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1738) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88855,7 +88871,7 @@ void Unwind_180911400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1800) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1800))(validationContext + 0x17f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x17c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x17c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x17d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88863,7 +88879,7 @@ void Unwind_180911400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x17d0) = 0;
   *(DataWord *)(validationContext + 0x17e0) = 0;
   *(DataBuffer *)(validationContext + 0x17c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x17a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x17a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88885,7 +88901,7 @@ void Unwind_180911420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1870) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1870))(validationContext + 0x1860,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1838) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1838) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1840) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88893,7 +88909,7 @@ void Unwind_180911420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1840) = 0;
   *(DataWord *)(validationContext + 0x1850) = 0;
   *(DataBuffer *)(validationContext + 0x1838) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1818) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1818) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88915,7 +88931,7 @@ void Unwind_180911440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x18e0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x18e0))(validationContext + 0x18d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x18a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x18a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x18b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88923,7 +88939,7 @@ void Unwind_180911440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x18b0) = 0;
   *(DataWord *)(validationContext + 0x18c0) = 0;
   *(DataBuffer *)(validationContext + 0x18a8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1888) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1888) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88945,7 +88961,7 @@ void Unwind_180911460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1950) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1950))(validationContext + 0x1940,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1918) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1918) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1920) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88953,7 +88969,7 @@ void Unwind_180911460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1920) = 0;
   *(DataWord *)(validationContext + 0x1930) = 0;
   *(DataBuffer *)(validationContext + 0x1918) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x18f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x18f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88975,7 +88991,7 @@ void Unwind_180911480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x19c0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x19c0))(validationContext + 0x19b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1988) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1988) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1990) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -88983,7 +88999,7 @@ void Unwind_180911480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1990) = 0;
   *(DataWord *)(validationContext + 0x19a0) = 0;
   *(DataBuffer *)(validationContext + 0x1988) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1968) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1968) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89005,7 +89021,7 @@ void Unwind_1809114a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1a30) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1a30))(validationContext + 0x1a20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x19f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x19f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1a00) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89013,7 +89029,7 @@ void Unwind_1809114a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1a00) = 0;
   *(DataWord *)(validationContext + 0x1a10) = 0;
   *(DataBuffer *)(validationContext + 0x19f8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x19d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x19d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89035,7 +89051,7 @@ void Unwind_1809114c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1aa0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1aa0))(validationContext + 0x1a90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1a68) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1a68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1a70) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89043,7 +89059,7 @@ void Unwind_1809114c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1a70) = 0;
   *(DataWord *)(validationContext + 0x1a80) = 0;
   *(DataBuffer *)(validationContext + 0x1a68) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1a48) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1a48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89065,7 +89081,7 @@ void Unwind_1809114e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1b10) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1b10))(validationContext + 0x1b00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1ad8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ad8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1ae0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89073,7 +89089,7 @@ void Unwind_1809114e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1ae0) = 0;
   *(DataWord *)(validationContext + 0x1af0) = 0;
   *(DataBuffer *)(validationContext + 0x1ad8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1ab8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ab8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89095,7 +89111,7 @@ void Unwind_180911500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1b80) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1b80))(validationContext + 0x1b70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1b48) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1b48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1b50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89103,7 +89119,7 @@ void Unwind_180911500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1b50) = 0;
   *(DataWord *)(validationContext + 0x1b60) = 0;
   *(DataBuffer *)(validationContext + 0x1b48) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1b28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1b28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89125,7 +89141,7 @@ void Unwind_180911520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1bf0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1bf0))(validationContext + 0x1be0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1bb8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1bb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1bc0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89133,7 +89149,7 @@ void Unwind_180911520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1bc0) = 0;
   *(DataWord *)(validationContext + 0x1bd0) = 0;
   *(DataBuffer *)(validationContext + 0x1bb8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1b98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1b98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89155,7 +89171,7 @@ void Unwind_180911540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1c60) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1c60))(validationContext + 0x1c50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1c28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1c30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89163,7 +89179,7 @@ void Unwind_180911540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1c30) = 0;
   *(DataWord *)(validationContext + 0x1c40) = 0;
   *(DataBuffer *)(validationContext + 0x1c28) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1c08) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89185,7 +89201,7 @@ void Unwind_180911560(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1cd0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1cd0))(validationContext + 0x1cc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1c98) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1ca0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89193,7 +89209,7 @@ void Unwind_180911560(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1ca0) = 0;
   *(DataWord *)(validationContext + 0x1cb0) = 0;
   *(DataBuffer *)(validationContext + 0x1c98) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1c78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1c78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89215,7 +89231,7 @@ void Unwind_180911580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1d40) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1d40))(validationContext + 0x1d30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1d08) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1d08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1d10) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89223,7 +89239,7 @@ void Unwind_180911580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1d10) = 0;
   *(DataWord *)(validationContext + 0x1d20) = 0;
   *(DataBuffer *)(validationContext + 0x1d08) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1ce8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ce8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89245,7 +89261,7 @@ void Unwind_1809115a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1db0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1db0))(validationContext + 0x1da0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1d78) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1d78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1d80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89253,7 +89269,7 @@ void Unwind_1809115a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1d80) = 0;
   *(DataWord *)(validationContext + 0x1d90) = 0;
   *(DataBuffer *)(validationContext + 0x1d78) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1d58) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1d58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89275,7 +89291,7 @@ void Unwind_1809115c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1e20) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1e20))(validationContext + 0x1e10,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1de8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1de8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1df0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89283,7 +89299,7 @@ void Unwind_1809115c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1df0) = 0;
   *(DataWord *)(validationContext + 0x1e00) = 0;
   *(DataBuffer *)(validationContext + 0x1de8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1dc8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1dc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89305,7 +89321,7 @@ void Unwind_1809115e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1e90) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1e90))(validationContext + 0x1e80,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1e58) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1e58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1e60) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89313,7 +89329,7 @@ void Unwind_1809115e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1e60) = 0;
   *(DataWord *)(validationContext + 0x1e70) = 0;
   *(DataBuffer *)(validationContext + 0x1e58) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1e38) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1e38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89335,7 +89351,7 @@ void Unwind_180911600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1f00) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1f00))(validationContext + 0x1ef0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1ec8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ec8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1ed0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89343,7 +89359,7 @@ void Unwind_180911600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1ed0) = 0;
   *(DataWord *)(validationContext + 0x1ee0) = 0;
   *(DataBuffer *)(validationContext + 0x1ec8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1ea8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ea8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89365,7 +89381,7 @@ void Unwind_180911620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1f70) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1f70))(validationContext + 0x1f60,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1f38) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1f38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 8000) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89373,7 +89389,7 @@ void Unwind_180911620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 8000) = 0;
   *(DataWord *)(validationContext + 0x1f50) = 0;
   *(DataBuffer *)(validationContext + 0x1f38) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1f18) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1f18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89395,7 +89411,7 @@ void Unwind_180911640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x1fe0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x1fe0))(validationContext + 0x1fd0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x1fa8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1fa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1fb0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89403,7 +89419,7 @@ void Unwind_180911640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x1fb0) = 0;
   *(DataWord *)(validationContext + 0x1fc0) = 0;
   *(DataBuffer *)(validationContext + 0x1fa8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1f88) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1f88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89425,7 +89441,7 @@ void Unwind_180911660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2050) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2050))(validationContext + 0x2040,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2018) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2018) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2020) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89433,7 +89449,7 @@ void Unwind_180911660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2020) = 0;
   *(DataWord *)(validationContext + 0x2030) = 0;
   *(DataBuffer *)(validationContext + 0x2018) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1ff8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1ff8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89455,7 +89471,7 @@ void Unwind_180911680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x20c0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x20c0))(validationContext + 0x20b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2088) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2088) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2090) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89463,7 +89479,7 @@ void Unwind_180911680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2090) = 0;
   *(DataWord *)(validationContext + 0x20a0) = 0;
   *(DataBuffer *)(validationContext + 0x2088) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2068) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2068) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89485,7 +89501,7 @@ void Unwind_1809116a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2130) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2130))(validationContext + 0x2120,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x20f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2100) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89493,7 +89509,7 @@ void Unwind_1809116a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2100) = 0;
   *(DataWord *)(validationContext + 0x2110) = 0;
   *(DataBuffer *)(validationContext + 0x20f8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x20d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x20d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89515,7 +89531,7 @@ void Unwind_1809116c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x21a0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x21a0))(validationContext + 0x2190,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2168) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2168) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2170) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89523,7 +89539,7 @@ void Unwind_1809116c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2170) = 0;
   *(DataWord *)(validationContext + 0x2180) = 0;
   *(DataBuffer *)(validationContext + 0x2168) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2148) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89545,7 +89561,7 @@ void Unwind_1809116e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2210) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2210))(validationContext + 0x2200,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x21d8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x21d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x21e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89553,7 +89569,7 @@ void Unwind_1809116e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x21e0) = 0;
   *(DataWord *)(validationContext + 0x21f0) = 0;
   *(DataBuffer *)(validationContext + 0x21d8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x21b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x21b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89575,7 +89591,7 @@ void Unwind_180911700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2280) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2280))(validationContext + 0x2270,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2248) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2248) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2250) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89583,7 +89599,7 @@ void Unwind_180911700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2250) = 0;
   *(DataWord *)(validationContext + 0x2260) = 0;
   *(DataBuffer *)(validationContext + 0x2248) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2228) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2228) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89605,7 +89621,7 @@ void Unwind_180911720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x22f0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x22f0))(validationContext + 0x22e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x22b8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x22b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x22c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89613,7 +89629,7 @@ void Unwind_180911720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x22c0) = 0;
   *(DataWord *)(validationContext + 0x22d0) = 0;
   *(DataBuffer *)(validationContext + 0x22b8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2298) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2298) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89635,7 +89651,7 @@ void Unwind_180911740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2360) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2360))(validationContext + 0x2350,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 9000) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 9000) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2330) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89643,7 +89659,7 @@ void Unwind_180911740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2330) = 0;
   *(DataWord *)(validationContext + 0x2340) = 0;
   *(DataBuffer *)(validationContext + 9000) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2308) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2308) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89665,7 +89681,7 @@ void Unwind_180911760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x23d0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x23d0))(validationContext + 0x23c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2398) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2398) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x23a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89673,7 +89689,7 @@ void Unwind_180911760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x23a0) = 0;
   *(DataWord *)(validationContext + 0x23b0) = 0;
   *(DataBuffer *)(validationContext + 0x2398) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2378) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2378) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89695,7 +89711,7 @@ void Unwind_180911780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2440) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2440))(validationContext + 0x2430,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2408) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2408) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2410) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89703,7 +89719,7 @@ void Unwind_180911780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2410) = 0;
   *(DataWord *)(validationContext + 0x2420) = 0;
   *(DataBuffer *)(validationContext + 0x2408) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x23e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x23e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89725,7 +89741,7 @@ void Unwind_1809117a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x24b0) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x24b0))(validationContext + 0x24a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2478) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2478) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2480) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89733,7 +89749,7 @@ void Unwind_1809117a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2480) = 0;
   *(DataWord *)(validationContext + 0x2490) = 0;
   *(DataBuffer *)(validationContext + 0x2478) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2458) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2458) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89755,7 +89771,7 @@ void Unwind_1809117c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2520) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2520))(validationContext + 0x2510,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x24e8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x24e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x24f0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89763,7 +89779,7 @@ void Unwind_1809117c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x24f0) = 0;
   *(DataWord *)(validationContext + 0x2500) = 0;
   *(DataBuffer *)(validationContext + 0x24e8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x24c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x24c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89785,7 +89801,7 @@ void Unwind_1809117e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2590) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2590))(validationContext + 0x2580,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x2558) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2558) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2560) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89793,7 +89809,7 @@ void Unwind_1809117e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x2560) = 0;
   *(DataWord *)(validationContext + 0x2570) = 0;
   *(DataBuffer *)(validationContext + 0x2558) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x2538) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x2538) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89815,7 +89831,7 @@ void Unwind_180911800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(FunctionPointer**)(validationContext + 0x2600) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x2600))(validationContext + 0x25f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
-  *(DataBuffer *)(validationContext + 0x25c8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x25c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x25d0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -89823,7 +89839,7 @@ void Unwind_180911800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *(DataBuffer *)(validationContext + 0x25d0) = 0;
   *(DataWord *)(validationContext + 0x25e0) = 0;
   *(DataBuffer *)(validationContext + 0x25c8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x25a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x25a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -90642,7 +90658,7 @@ void Unwind_180911b90(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180911bb0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x50) + 0xb8,0x10,2,FUN_18011d900,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x50) + 0xb8,0x10,2,FUN_18011d900,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -90651,7 +90667,7 @@ void Unwind_180911bb0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180911bd0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x58),0x10,2,FUN_18011d900);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x58),0x10,2,FUN_18011d900);
   return;
 }
 
@@ -90660,7 +90676,7 @@ void Unwind_180911bd0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180911c00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x40),0x10,2,FUN_18011d900);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),0x10,2,FUN_18011d900);
   return;
 }
 
@@ -92911,7 +92927,7 @@ void Unwind_180912710(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180912740(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(dataBuffer + 0x98,0x10,2,FUN_18011d900);
+  ExecuteMemoryOperation(dataBuffer + 0x98,0x10,2,FUN_18011d900);
   return;
 }
 
@@ -93078,7 +93094,7 @@ void Unwind_1809127d0(void)
   EnterCriticalSection(0x180c82210);
   _DAT_180d49270 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (ExceptionEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -93175,7 +93191,7 @@ void Unwind_180912810(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180912830(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(dataBuffer + 0x40) + 0xb8,0x10,2,FUN_18011d900,SystemCleanupFlagfffffffe);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xb8,0x10,2,FUN_18011d900,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -93184,7 +93200,7 @@ void Unwind_180912830(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180912850(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x48),0x10,2,FUN_18011d900);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x10,2,FUN_18011d900);
   return;
 }
 
@@ -93222,7 +93238,7 @@ void Unwind_1809128b0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffd;
-    FUN_180627b90(dataBuffer + 0x60);
+    CleanupResourceHandler(dataBuffer + 0x60);
   }
   return;
 }
@@ -93232,7 +93248,7 @@ void Unwind_1809128b0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809128e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(dataBuffer + 0x80),0x48,7,FUN_1800596a0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x80),0x48,7,FUN_1800596a0);
   return;
 }
 
@@ -93244,7 +93260,7 @@ void Unwind_180912910(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
-  *(DataBuffer *)(validationContext + 0x218) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x218) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x220) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -93252,7 +93268,7 @@ void Unwind_180912910(DataBuffer operationBase,int64_t dataBuffer)
   *(DataBuffer *)(validationContext + 0x220) = 0;
   *(DataWord *)(validationContext + 0x230) = 0;
   *(DataBuffer *)(validationContext + 0x218) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x1f8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x1f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -93307,7 +93323,7 @@ void Unwind_180912950(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
-  *(DataBuffer *)(validationContext + 0x388) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x388) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -93326,7 +93342,7 @@ void Unwind_180912970(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
-  *(DataBuffer *)(validationContext + 0x3a8) = &UNK_180a3c3e0;
+  *(DataBuffer *)(validationContext + 0x3a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -94008,7 +94024,7 @@ void DestroyMutexA0(void)
 void TerminateAndResetSystemA0(void)
 
 {
-  GlobalExceptionHandlerPointerA1 = &UNK_180a3c3e0;
+  GlobalExceptionHandlerPointerA1 = &TemporaryExceptionHandler;
   if (_DAT_180d49220 != 0) {
     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -95588,7 +95604,7 @@ void InitializeExceptionHandlerTableA0(DataBuffer operationBase,DataBuffer dataB
   FUN_18005d260(&DAT_180bfaec0,_DAT_180bfaed0,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   exceptionTableEnd = _DAT_180bfaea8;
   for (exceptionTableIterator = _DAT_180bfaea0; exceptionTableIterator != exceptionTableEnd; exceptionTableIterator = exceptionTableIterator + 7) {
-    *exceptionTableIterator = &UNK_180a3c3e0;
+    *exceptionTableIterator = &TemporaryExceptionHandler;
     if (exceptionTableIterator[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
