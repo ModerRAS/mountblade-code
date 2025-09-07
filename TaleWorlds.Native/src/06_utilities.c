@@ -3850,39 +3850,39 @@
 uint8_t SystemResetFlag;           // _DAT_180c821d0 - 系统重置标志
 
 // 系统数据字变量声明
-uint32_t SystemDataWord;            // UNK_180d49260 - 系统数据字
+uint32_t SystemDataWord;
 
 // 异常状态标志变量声明
 uint8_t ExceptionStatusFlagA0;       // _DAT_180d49140 - 异常状态标志A0
 uint8_t ExceptionStatusFlagA1;       // _DAT_180d49148 - 异常状态标志A1
 
 // 浮点数验证数组变量声明
-float FloatValidationArray[16];         // UNK_1809850f8 - 浮点数验证数组
+float FloatValidationArray[16];
 
 // 数据处理上下文变量声明
-void* DataProcessingContextA0;         // UNK_180983950 - 数据处理上下文A0
+void* DataProcessingContextA0;
 
 // 验证上下文变量声明
-void* ValidationContextA0;              // UNK_180983738 - 验证上下文A0
+void* ValidationContextA0;
 
 // 异常数据表地址变量声明
-void* ExceptionDataTableAddress;        // UNK_1809ff498 - 异常数据表地址
+void* ExceptionDataTableAddress;
 
-// 原始变量名：UNK_1809837c0 - 验证上下文A1
+// 验证上下文A1
 // 功能：存储验证操作的上下文信息
-#define ValidationContextA1 UNK_1809837c0
+#define ValidationContextA1 ValidationContextA1
 
-// 原始变量名：UNK_180982378 - 数据缓冲区A0
+// 数据缓冲区A0
 // 功能：存储数据缓冲区信息
-#define DataBufferA0 UNK_180982378
+#define DataBufferA0 DataBufferA0
 
-// 原始变量名：UNK_1809823f8 - 数据缓冲区A1
+// 数据缓冲区A1
 // 功能：存储数据缓冲区信息
-#define DataBufferA1 UNK_1809823f8
+#define DataBufferA1 DataBufferA1
 
-// 原始变量名：UNK_180982260 - 数据缓冲区A2
+// 数据缓冲区A2
 // 功能：存储数据缓冲区信息
-#define DataBufferA2 UNK_180982260
+#define DataBufferA2 DataBufferA2
 
 // 原始变量名：_DAT_180c82240 - 异常事件句柄
 // 功能：存储异常处理的事件句柄信息
