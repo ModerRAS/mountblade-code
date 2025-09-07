@@ -72588,7 +72588,7 @@ void Unwind_18090c3d0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090c3e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1800ed380(*(int64_t *)(dataBuffer + 0x70) + 0x80);
+  ProcessDataBufferA2(*(int64_t *)(dataBuffer + 0x70) + 0x80);
   return;
 }
 
@@ -72723,7 +72723,7 @@ void Unwind_18090c490(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -72986,7 +72986,7 @@ void Unwind_18090c540(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -73032,7 +73032,7 @@ void Unwind_18090c550(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -73108,7 +73108,7 @@ void Unwind_18090c590(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -73175,7 +73175,7 @@ void Unwind_18090c5c0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -73221,7 +73221,7 @@ void Unwind_18090c5d0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -73279,7 +73279,7 @@ void Unwind_18090c5f0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -73325,7 +73325,7 @@ void Unwind_18090c600(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74014,7 +74014,7 @@ void Unwind_18090ca20(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74072,7 +74072,7 @@ void Unwind_18090ca40(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74142,7 +74142,7 @@ void Unwind_18090ca70(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74209,7 +74209,7 @@ void Unwind_18090caa0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74276,7 +74276,7 @@ void Unwind_18090cad0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74343,7 +74343,7 @@ void Unwind_18090cb00(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74398,7 +74398,7 @@ void Unwind_18090cb20(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74453,7 +74453,7 @@ void Unwind_18090cb40(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74511,7 +74511,7 @@ void Unwind_18090cb60(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74566,7 +74566,7 @@ void Unwind_18090cb80(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74657,7 +74657,7 @@ void Unwind_18090cbd0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74724,7 +74724,7 @@ void Unwind_18090cc00(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -74890,7 +74890,7 @@ void Unwind_18090cce0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -80191,7 +80191,7 @@ void Unwind_18090e760(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -80249,7 +80249,7 @@ void Unwind_18090e7a0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -80295,7 +80295,7 @@ void Unwind_18090e7b0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -80341,7 +80341,7 @@ void Unwind_18090e7c0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -80387,7 +80387,7 @@ void Unwind_18090e7d0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -80433,7 +80433,7 @@ void Unwind_18090e7e0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -80479,7 +80479,7 @@ void Unwind_18090e7f0(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -80525,7 +80525,7 @@ void Unwind_18090e800(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -80583,7 +80583,7 @@ void Unwind_18090e820(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -80641,7 +80641,7 @@ void Unwind_18090e840(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -80699,7 +80699,7 @@ void Unwind_18090e860(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -81138,7 +81138,7 @@ void Unwind_18090eb00(DataBuffer operationBase,int64_t dataBuffer)
       contextPointer = (int64_t *)(resourceIterator + 0x80d8 + (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20);
       validationContext = *contextPointer;
       validationContext = *(int64_t *)(validationContext + ((int64_t)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
-      FUN_180057340();
+      ProcessSystemOperationsA0();
       if (*(int64_t *)(validationContext + 0x68) == 0) {
         *(int64_t *)(resourceIterator + 0x80b0 + (int64_t)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
@@ -81925,7 +81925,7 @@ void Unwind_18090eeb0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090eec0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1800ed380(*(int64_t *)(dataBuffer + 0x88) + 0x80);
+  ProcessDataBufferA2(*(int64_t *)(dataBuffer + 0x88) + 0x80);
   return;
 }
 
