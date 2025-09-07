@@ -166502,7 +166502,16 @@ long long FUN_18013aed0(long long CharacterCode
 
 
 
-long long FUN_18013af10(long long CharacterCode,uint64_t Utf8BufferSize
+/**
+ * @brief 验证字符代码的UTF-8缓冲区大小
+ * 
+ * 验证字符代码的UTF-8缓冲区大小是否在有效范围内，用于字符编码转换验证
+ * 
+ * @param CharacterCode 字符代码，包含字符的编码信息
+ * @param Utf8BufferSize UTF-8缓冲区大小，用于验证字符编码的有效性
+ * @return long long 验证结果，非0表示验证成功，0表示验证失败
+ */
+long long ValidateCharacterUtf8BufferSize(long long CharacterCode, uint64_t Utf8BufferSize)
 {
   long long PrimaryDataSize;
   float ContextSecondaryFloat;
@@ -166520,11 +166529,11 @@ long long FUN_18013af10(long long CharacterCode,uint64_t Utf8BufferSize
       if (*(long long *)(CharacterCode + 0x10) == 0) {
         return CharacterCode;
       }
-      CharacterTablePointer = FUN_18013af10(*(long long *)(CharacterCode + 0x10),Utf8BufferSize);
+      CharacterTablePointer = ValidateCharacterUtf8BufferSize(*(long long *)(CharacterCode + 0x10), Utf8BufferSize);
       if (CharacterTablePointer != 0) {
         return LoopCounter;
       }
-      CharacterTablePointer = FUN_18013af10(*(void *)(CharacterCode + 0x18),Utf8BufferSize);
+      CharacterTablePointer = ValidateCharacterUtf8BufferSize(*(void *)(CharacterCode + 0x18), Utf8BufferSize);
       if (CharacterTablePointer != 0) {
         return LoopCounter;
       }
@@ -166535,11 +166544,11 @@ long long FUN_18013af10(long long CharacterCode,uint64_t Utf8BufferSize
         if (*(long long *)(CharacterCode + 0x10) == 0) {
           return CharacterCode;
         }
-        CharacterTablePointer = FUN_18013aed0();
+        CharacterTablePointer = FindNextCharacterCode();
         if (CharacterTablePointer != 0) {
           return LoopCounter;
         }
-        CharacterTablePointer = FUN_18013aed0(*(void *)(CharacterCode + 0x18));
+        CharacterTablePointer = FindNextCharacterCode(*(void *)(CharacterCode + 0x18));
         return LoopCounter;
       }
     }
@@ -166872,7 +166881,14 @@ LAB_18013b1d6:
 
 
 
-3b4f0(long long CharacterCodevoid FUN_18013b4f0(long long CharacterCode
+/**
+ * @brief 处理字符代码的UTF-8输入缓冲区
+ * 
+ * 处理字符代码的UTF-8输入缓冲区数据，包括缓冲区状态检查和内存数据传输
+ * 
+ * @param CharacterCode 字符代码，包含字符的编码信息
+ */
+void ProcessCharacterUtf8InputBuffer(long long CharacterCode)
 {
   long long *Utf8InputBuffer;
   long long BufferStatus;
@@ -166895,7 +166911,7 @@ LAB_18013b1d6:
       if (CharacterLimitB == '\0') {
         MemoryAddressMask = (unsigned long long)*(uint *)(BufferStatus + 0x418);
       }
-      ProcessMemoryDataTransfer(*(long long *)(BufferStatus + 0x408),BufferStatus,MemoryAddressMask);
+      ProcessMemoryDataTransfer(*(long long *)(BufferStatus + 0x408), BufferStatus, MemoryAddressMask);
       CharacterCode = SystemConfigurationHandle;
     }
     *(byte *)(BufferStatus + 0x432) = *(byte *)(BufferStatus + 0x432) & 0xfc;
