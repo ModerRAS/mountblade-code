@@ -7058,34 +7058,34 @@ uint8_t UtilityUnlockMemoryHeap;
 uint8_t UtilityUnlockHeapPrimaryData;
 uint8_t UtilityUnlockHeapSecondaryData;
 uint8_t UtilityUnlockHeapTertiaryData;
-uint8_t UtilityUnlockHeapData4;
-uint8_t UtilityUnlockHeapStatus1;
+uint8_t UtilityUnlockHeapQuaternaryData;
+uint8_t UtilityUnlockHeapPrimaryStatus;
 
 // 函数: uint8_t UtilityAllocateMemoryBlock;
 // 分配内存块，返回指定大小的内存空间
 uint8_t UtilityAllocateMemoryBlock;
 // 工具系统分配内存块数据变量
-uint8_t UtilityAllocateBlockData1;
-uint8_t UtilityAllocateBlockData2;
-uint8_t UtilityAllocateBlockData3;
-uint8_t UtilityAllocateBlockData4;
-uint8_t UtilityAllocateBlockStatus1;
+uint8_t UtilityAllocateBlockPrimaryData;
+uint8_t UtilityAllocateBlockSecondaryData;
+uint8_t UtilityAllocateBlockTertiaryData;
+uint8_t UtilityAllocateBlockQuaternaryData;
+uint8_t UtilityAllocateBlockPrimaryStatus;
 
 // 函数: uint8_t UtilityFreeMemoryBlock;
 // 释放内存块，回收内存资源
 uint8_t UtilityFreeMemoryBlock;
 // 工具系统释放内存块数据变量
-uint8_t UtilityFreeBlockData1;
-uint8_t UtilityFreeBlockData2;
-uint8_t UtilityFreeBlockData3;
-uint8_t UtilityFreeBlockData4;
-uint8_t UtilityFreeBlockStatus1;
+uint8_t UtilityFreeBlockPrimaryData;
+uint8_t UtilityFreeBlockSecondaryData;
+uint8_t UtilityFreeBlockTertiaryData;
+uint8_t UtilityFreeBlockQuaternaryData;
+uint8_t UtilityFreeBlockPrimaryStatus;
 
 // 函数: uint8_t UtilityReallocateMemoryBlock;
 // 重新分配内存块，调整已分配内存的大小
 uint8_t UtilityReallocateMemoryBlock;
 // 工具系统重新分配内存块数据变量
-uint8_t UtilityReallocateBlockData1;
+uint8_t UtilityReallocateBlockPrimaryData;
 uint8_t UtilityReallocateBlockData2;
 uint8_t UtilityReallocateBlockData3;
 uint8_t UtilityReallocateBlockData4;
@@ -105198,6 +105198,10 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordAF uStack_88
 
+// 原始变量名：puStack_88 - 栈指针字AF
+// 功能：存储数据处理过程中的临时指针
+#define StackPointerWordAF puStack_88
+
 // 原始变量名：uStack_278 - 栈数据字AG
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordAG uStack_278
@@ -105758,3 +105762,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：uStack_208 - 数据缓冲区指针T
 // 功能：存储数据缓冲区的指针
 #define DataBufferPointerT uStack_208
+
+// 原始变量名：uStack_a4 - 内存分配计数器
+// 功能：存储内存分配操作的计数器
+#define MemoryAllocationCounter uStack_a4
