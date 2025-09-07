@@ -64171,7 +64171,24 @@ void FUN_180699f40(longlong uiContext)
 
 
 
-ulonglong FUN_18069a100(longlong uiContext,longlong dataSource,ulonglong targetBuffer,byte *bufferSize,
+/**
+ * @brief UI数据处理与缓冲区管理器
+ * 
+ * 该函数负责处理UI系统中的数据转换和缓冲区管理操作。
+ * 主要功能包括数据源验证、缓冲区大小检查、数据处理和结果返回。
+ * 适用于复杂的UI数据处理场景，包括数据转换和内存管理。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小指针
+ * @param resultPointer 结果指针
+ * @param param_6 处理参数6
+ * @param param_7 处理参数7
+ * @return ulonglong 返回处理结果状态码
+ * @note 原始函数名: FUN_18069a100
+ */
+ulonglong ProcessUIDataAndBufferManager(longlong uiContext,longlong dataSource,ulonglong targetBuffer,byte *bufferSize,
                        ulonglong resultPointer,int param_6,int param_7)
 
 {
@@ -72158,7 +72175,24 @@ undefined8 ProcessUIContextDataCopy(byte *uiContext,byte *dataSource,int targetB
 
 
 
-ulonglong FUN_180706d00(byte *uiContext,int dataSource,int targetBuffer,byte *bufferSize,int resultPointer,int param_6,
+/**
+ * @brief UI缓冲区数据复制处理器
+ * 
+ * 该函数负责处理UI系统中的缓冲区数据复制操作。
+ * 主要功能包括数据源和目标缓冲区的验证、数据复制操作、内存管理等。
+ * 适用于UI系统中的批量数据处理和内存复制场景。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区标识符
+ * @param bufferSize 缓冲区大小指针
+ * @param resultPointer 结果指针
+ * @param param_6 处理参数6
+ * @param param_7 处理参数7
+ * @return ulonglong 返回复制操作结果状态码
+ * @note 原始函数名: FUN_180706d00
+ */
+ulonglong ProcessUIBufferCopyOperation(byte *uiContext,int dataSource,int targetBuffer,byte *bufferSize,int resultPointer,int param_6,
                        int param_7)
 
 {

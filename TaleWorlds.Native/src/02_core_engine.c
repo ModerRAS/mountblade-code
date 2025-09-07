@@ -272179,8 +272179,8 @@ uint64_t CalculateAudioSignalAverage(int CharacterCode,uint64_t CharacterCodeSiz
  */
 int ProcessAudioSignalWithWeights(int AudioSignalData,int SignalBufferSize,char *CharacterCode,float *ResultPointer
 {
-  float SystemContextPrimaryFloat;
-  float ContextSecondaryFloat;
+  float SignalAmplitude;
+  float BackgroundNoiseLevel;
   float CalculatedFilterValue;
   long long DataStructureCounter;
   int RemainingSpace;
@@ -272190,18 +272190,18 @@ int ProcessAudioSignalWithWeights(int AudioSignalData,int SignalBufferSize,char 
   uint SystemMemoryAllocationResult;
   uint MemoryAllocationIndex;
   long long SystemStringIndex;
-  int IntegerValue2;
-  int IntegerValue3;
-  uint Utf16Char4;
-  unsigned long long Utf16CharacterCode5;
+  int AudioSampleIndex;
+  int FilterCoefficient;
+  uint AudioSampleValue;
+  unsigned long long ProcessedAudioData;
   long long MemoryAllocationOffset;
   unsigned long long UnicodeCharacterCode;
   unsigned long long MemoryAllocationHandle;
-  float ContextPrimaryFloat9;
-  float ContextSecondaryFloat0;
-  float ContextSecondaryFloat1;
-  float ContextSecondaryFloat2;
-  uint32_t uStackX_10;
+  float PrimaryWeightFactor;
+  float SecondaryWeightFactor;
+  float TertiaryWeightFactor;
+  float QuaternaryWeightFactor;
+  uint32_t SampleCounter;
   
   ProcessingStatusFlag = (unsigned long long)CharacterCodeSize;
   uStackX_10 = 1;
