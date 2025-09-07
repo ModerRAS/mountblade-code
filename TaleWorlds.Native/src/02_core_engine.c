@@ -150956,46 +150956,58 @@ float * ApplySourcePointerScalingToUtf16Data(uint64_t CharacterCode, float Utf8B
 
 
 
-31d90(voidvoid FUN_180131d90(void
+/**
+ * @brief 验证系统数据完整性
+ * 
+ * 该函数负责验证系统数据的完整性，包括内存池配置、系统状态检查和数据验证。
+ * 主要功能包括：
+ * - 检查系统配置状态和内存池块配置
+ * - 验证系统数据的完整性和一致性
+ * - 处理系统状态的初始化和更新
+ * - 设置系统配置参数
+ * 
+ * @note 原始函数名：FUN_180131d90
+ */
+void ValidateSystemData(void)
 {
-  byte *pCurrentByteValue;
+  byte *SystemStatusPointer;
   void *SystemContext;
   uint32_t UnicodeCodePoint;
-  int validationResult;
-  bool shouldReturnSource;
-  bool BooleanStringBuffer6;
-  long long MemoryPoolBlockSize;
+  int ValidationErrorCode;
+  bool ShouldReturnSourceData;
+  bool SystemDataStatusFlag;
+  long long SystemMemoryPool;
   char SystemStatusChar;
-  uint8_t SystemMemoryAllocationResult;
-  int IntegerValue0;
-  uint32_t ProcessStringBuffer;
-  int IntegerValue2;
+  uint8_t MemoryAllocationStatus;
+  int SystemParameter0;
+  uint32_t StringBufferIndex;
+  int SystemParameter2;
   unsigned long long ValidationResult;
-  uint32_t *ConfigurationString;
-  long long CharacterTablePointer5;
-  uint PrimaryReturnCode;
+  uint32_t *ConfigurationData;
+  long long CharacterTablePointer;
+  uint SystemReturnCode;
   unsigned long long UnicodeCharacterCode;
-  byte CurrentByteValue8;
-  long long StringIndexCounter;
-  float ContextSecondaryFloat0;
-  float ContextSecondaryFloat1;
-  float ContextSecondaryFloat2;
+  byte SystemByteFlag;
+  long long StringProcessingIndex;
+  float SystemFloatValue0;
+  float SystemFloatValue1;
+  float SystemFloatValue2;
   uint64_t MemoryAllocationSize;
-  uint64_t MemoryAllocationBase;
-  float ContextSecondaryFloat5;
-  float ContextSecondaryFloat6;
-  float ContextSecondaryFloat7;
-  float ContextSecondaryFloat8;
-  float ContextSecondaryFloat9;
-  float FilterInputValue0;
-  float PrimaryScalingFactor;
-  float SecondaryScalingFactor;
-  uint64_t StackUnsigned78;
-  uint64_t StackVariable70;
+  uint64_t MemoryBaseAddress;
+  float SystemFloatValue5;
+  float SystemFloatValue6;
+  float SystemFloatValue7;
+  float SystemFloatValue8;
+  float SystemFloatValue9;
+  float InputFilterValue;
+  float PrimaryScaleFactor;
+  float SecondaryScaleFactor;
+  uint64_t SystemParameter78;
+  uint64_t SystemParameter70;
   
-  MemoryPoolBlockSize = SystemConfigurationHandle;
-  CurrentByteValue8 = *(byte *)(SystemConfigurationHandle + 8) & 1;
-  pCurrentByteValue = (byte *)(SystemConfigurationHandle + 8);
+  SystemMemoryPool = SystemConfigurationHandle;
+  SystemByteFlag = *(byte *)(SystemConfigurationHandle + 8) & 1;
+  SystemStatusPointer = (byte *)(SystemConfigurationHandle + 8);
   *(uint8_t *)(SystemConfigurationHandle + 0x38f) = 0;
   if (((*pCurrentByteValue & 2) == 0) || ((*(byte *)(MemoryPoolBlockSize + 0xc) & 1) == 0)) {
     shouldReturnSource = false;
