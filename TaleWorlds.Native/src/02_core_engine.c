@@ -10012,13 +10012,21 @@ void CoreEngineInitializeUIManager(void
 
 
 
- void CoreEngineInitializeFileSystem(void/**
+ /**
+ * @brief 初始化核心引擎文件系统
+ * 
+ * 该函数负责初始化核心引擎的文件系统，设置文件操作和存储的
+ * 基本配置。用于管理引擎的文件系统。
+ */
+void CoreEngineInitializeFileSystem(void)
+
+/**
  * @brief 初始化核心引擎网络管理器
  * 
  * 该函数负责初始化核心引擎的网络管理器，设置网络通信和连接的
  * 基本配置。用于管理引擎的网络系统。
  */
-void CoreEngineInitializeNetworkManager(void
+void CoreEngineInitializeNetworkManager(void)
 {
   char NetworkManagerStringBuffer;
   void* NetworkCharacterCode;
@@ -10066,13 +10074,21 @@ void CoreEngineInitializeNetworkManager(void
 
 
 
- void CoreEngineInitializeConsole(void/**
+ /**
+ * @brief 初始化核心引擎控制台
+ * 
+ * 该函数负责初始化核心引擎的控制台，设置控制台输出和输入的
+ * 基本配置。用于管理引擎的控制台系统。
+ */
+void CoreEngineInitializeConsole(void)
+
+/**
  * @brief 初始化核心引擎场景管理器
  * 
  * 该函数负责初始化核心引擎的场景管理器，设置场景加载和管理的
  * 基本配置。用于管理引擎的场景系统。
  */
-void CoreEngineInitializeSceneManager(void
+void CoreEngineInitializeSceneManager(void)
 {
   char SceneManagerStringBuffer;
   void* SceneCharacterCode;
