@@ -119046,7 +119046,7 @@ uint64_t * FUN_180123460(uint64_t *CharacterCode,long long CharacterCodeSize,byt
   CharacterCode[0x58] = 0;
   CharacterCode[0x59] = 0;
   CharacterCode[0x5a] = 0;
-  FUN_18011fa30(CharacterCode + 0x5e,CharacterCodeSize + 0x1a00);
+  ProcessSystemDataAndValidation(CharacterCode + 0x5e,CharacterCodeSize + 0x1a00);
   SecondaryProcessingStatusFlag = CharacterCode + 0x7a;
   AllocatedMemorySize = 2;
   do {
@@ -119751,7 +119751,7 @@ uint64_t ExecuteMemoryBufferCommands(long long CharacterCode,uint64_t CharacterC
     pStackConfigurationFlag = aSystemRegisterFlagX8;
     PerformanceCounterValue = lStackX_10;
     if (lStackX_10 != 0) {
-      BufferStatus = FUN_18011fa30(lStackX_10,loopCounter + 0x1a00);
+      BufferStatus = ProcessSystemDataAndValidation(lStackX_10,loopCounter + 0x1a00);
     }
     *(long long *)(CharacterCode + 0x80) = BufferStatus;
     *(void **)(BufferStatus + 0x40) = &SystemDataTableSenary;

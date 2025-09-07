@@ -49501,7 +49501,17 @@ void ResetBasicExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809046d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文重置函数（偏移量0x18）
+ * 
+ * 重置异常上下文处理器的状态，包括设置临时异常处理器、清理状态标志
+ * 并最终设置默认异常处理器B。这是异常处理过程中的关键清理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_1809046d0
+ */
+void ResetExceptionContextOffset18(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -49651,7 +49661,17 @@ void ExecuteExceptionHandlerCallbackF(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180904750(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 同步资源清理函数
+ * 
+ * 在异常处理过程中清理互斥锁和条件变量等同步资源，确保系统异常时
+ * 能正确释放同步原语，避免资源泄漏和死锁。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含条件变量资源
+ * @note 原始函数名：Unwind_180904750
+ */
+void CleanupSynchronizationPrimitives(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ();
@@ -49661,7 +49681,19 @@ void Unwind_180904750(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数
+ * 
+ * 执行异常处理器的回调函数，传递相关参数和系统清理标志。通过查找
+ * 数据缓冲区中的回调函数指针并执行，实现异常处理的回调机制。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含回调函数信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180904760
+ */
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -49675,7 +49707,17 @@ void Unwind_180904760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904770(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器执行函数
+ * 
+ * 执行异常处理器的回调函数，通过间接调用机制。检查异常上下文
+ * 中的回调函数指针并执行，用于处理异常情况下的清理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @note 原始函数名：Unwind_180904770
+ */
+void ExecuteExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x60) != (int64_t *)0x0) {
