@@ -7570,11 +7570,11 @@ uint8_t UtilityCompressionStatus;
 #define DecompressUtilityDataA1 FUN_1809422c0
 
 uint8_t DecompressUtilityDataA0;
-uint8_t UtilityDecompressionBufferA;
-uint8_t UtilityDecompressionBufferB;
-uint8_t UtilityDecompressionBufferC;
-uint8_t UtilityDecompressionBufferD;
-uint8_t UtilityDecompressionStatusA;
+uint8_t UtilityDecompressionPrimaryBuffer;
+uint8_t UtilityDecompressionSecondaryBuffer;
+uint8_t UtilityDecompressionTertiaryBuffer;
+uint8_t UtilityDecompressionQuaternaryBuffer;
+uint8_t UtilityDecompressionStatus;
 
 // 原始函数名：FUN_1809422e0 - 数据加密函数A1
 // 功能：加密工具数据以确保安全性
