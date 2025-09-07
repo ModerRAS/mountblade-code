@@ -87027,7 +87027,18 @@ void ExecuteExceptionHandlerCallbackECD0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090ece0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调函数ECE0
+ * 
+ * 该函数处理异常处理器回调，从0x58偏移量的0x28处获取异常上下文指针
+ * 并执行相应的回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_18090ece0
+ */
+void ExecuteExceptionHandlerCallbackECE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -87041,7 +87052,18 @@ void Unwind_18090ece0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ecf0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调函数ECF0
+ * 
+ * 该函数处理异常处理器回调，从0x90偏移量获取异常上下文指针
+ * 并执行相应的回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_18090ecf0
+ */
+void ExecuteExceptionHandlerCallbackECF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x90) != (int64_t *)0x0) {
@@ -87052,7 +87074,20 @@ void Unwind_18090ecf0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ed00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调函数ED00
+ * 
+ * 该函数处理异常处理器回调，从0x80偏移量的0x10处获取回调函数指针
+ * 并执行相应的回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090ed00
+ */
+void ExecuteExceptionHandlerCallbackED00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
