@@ -29917,39 +29917,48 @@ void UtilityNoOperationV(void)
 
 
 
+/**
+ * @brief 数据格式验证函数A1
+ * 
+ * 该函数负责验证数据格式，执行多层安全检查和内存分配操作
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * @return DataBuffer 验证状态结果
+ */
 DataBuffer ValidateDataFormatA1(DataBuffer operationBase,int64_t *dataBuffer)
 
 {
   int64_t *validationContextPointer;
   int64_t dataContext;
   DataBuffer validationStatus;
-  int aiStackX_18 [2];
-  uint stackByteBuffer [2];
-  DataWord auStack_68 [2];
-  int64_t lStack_60;
-  ByteFlag acolorDataWord [32];
-  ByteFlag systemBufferA [32];
+  int ValidationFlags [2];
+  uint MemoryAllocationBuffer [2];
+  DataWord DataProcessingBuffer [2];
+  int64_t ProcessedDataSize;
+  ByteFlag SecurityValidationBuffer [32];
+  ByteFlag SystemSecurityBuffer [32];
   
-  validationStatus = ExecuteSecurityValidation(dataBuffer,systemBufferA,1,0x53505250);
+  validationStatus = ExecuteSecurityValidation(dataBuffer,SystemSecurityBuffer,1,0x53505250);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  aiStackX_18[0] = 0;
-  validationStatus = ValidateDataSecurityA0(dataBuffer,aiStackX_18);
+  ValidationFlags[0] = 0;
+  validationStatus = ValidateDataSecurityA0(dataBuffer,ValidationFlags);
   if ((int)validationStatus == 0x12) {
 ValidationDataHandler:
                     // WARNING: Subroutine does not return
-    ExecutePortControlOperation(dataBuffer,systemBufferA);
+    ExecutePortControlOperation(dataBuffer,SystemSecurityBuffer);
   }
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  if (aiStackX_18[0] < 1) goto ProcessCheckpointValidationData;
-  validationStatus = ExecuteSecurityValidation(dataBuffer,acolorDataWord,0,0x504f5250);
+  if (ValidationFlags[0] < 1) goto ProcessCheckpointValidationData;
+  validationStatus = ExecuteSecurityValidation(dataBuffer,SecurityValidationBuffer,0,0x504f5250);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  auStack_68[0] = 0;
+  DataProcessingBuffer[0] = 0;
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
     return 0x1c;
   }
@@ -29959,28 +29968,28 @@ ValidationDataHandler:
   }
   else {
     if (validationContextPointer[2] != 0) {
-      stackByteBuffer[0] = 0;
-      validationStatus = AllocateMemory(*validationContextPointer,stackByteBuffer);
+      MemoryAllocationBuffer[0] = 0;
+      validationStatus = AllocateMemory(*validationContextPointer,MemoryAllocationBuffer);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      if ((uint64_t)validationContextPointer[2] < (uint64_t)stackByteBuffer[0] + 4) {
+      if ((uint64_t)validationContextPointer[2] < (uint64_t)MemoryAllocationBuffer[0] + 4) {
         validationStatus = 0x11;
         goto ProcessCheckpointValidationError3;
       }
     }
-    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,auStack_68,1,4,0);
+    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,DataProcessingBuffer,1,4,0);
   }
 ValidationErrorHandler4:
   if ((int)validationStatus == 0) {
-    lStack_60 = 0;
-    validationStatus = ProcessDataWithSecurityA0(operationBase,auStack_68[0],&lStack_60);
-    dataContext = lStack_60;
+    ProcessedDataSize = 0;
+    validationStatus = ProcessDataWithSecurityA0(operationBase,DataProcessingBuffer[0],&ProcessedDataSize);
+    dataContext = ProcessedDataSize;
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
-      validationStatus = OperateDataO0(*dataBuffer,lStack_60 + 0x48,2);
+      validationStatus = OperateDataO0(*dataBuffer,ProcessedDataSize + 0x48,2);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -30013,7 +30022,7 @@ ValidationErrorHandler4:
     if ((int)validationStatus == 0) {
 ValidationStateUpdate2:
                     // WARNING: Subroutine does not return
-      CleanupSystemResourcesA0(dataBuffer,colorDataBuffer);
+      CleanupSystemResourcesA0(dataBuffer,SecurityValidationBuffer);
     }
   }
   return validationStatus;
@@ -30021,6 +30030,13 @@ ValidationStateUpdate2:
 
 
 
+/**
+ * @brief 获取系统状态A2
+ * 
+ * 该函数负责获取系统状态信息，执行多层安全检查和内存分配操作
+ * 
+ * @return DataBuffer 系统状态结果
+ */
 DataBuffer GetSystemStatusA2(void)
 
 {
@@ -30030,10 +30046,10 @@ DataBuffer GetSystemStatusA2(void)
   int64_t *registerContext;
   DataWord InputParam30;
   int64_t StackParameter38;
-  int iStack00000000000000b0;
-  unsigned int stackSystemStatus;
+  int SystemStatusFlag;
+  unsigned int SystemStatusValue;
   
-  iStack00000000000000b0 = 0;
+  SystemStatusFlag = 0;
   validationStatus = ValidateDataSecurityA0();
   if ((int)validationStatus == 0x12) {
 ValidationDataHandler:
@@ -30043,12 +30059,12 @@ ValidationDataHandler:
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  if (iStack00000000000000b0 < 1) goto ProcessCheckpointValidationData;
+  if (SystemStatusFlag < 1) goto ProcessCheckpointValidationData;
   validationStatus = ExecuteSecurityValidation();
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  StackBuffer30 = 0;
+  StackParameter38 = 0;
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
@@ -30058,17 +30074,17 @@ ValidationDataHandler:
   }
   else {
     if (validationContextPointer[2] != 0) {
-      in_stack_000000b8 = 0;
-      validationStatus = AllocateMemory(*validationContextPointer,&stack0x000000b8);
+      SystemStatusValue = 0;
+      validationStatus = AllocateMemory(*validationContextPointer,&SystemStatusValue);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      if ((uint64_t)validationContextPointer[2] < (uint64_t)in_stack_000000b8 + 4) {
+      if ((uint64_t)validationContextPointer[2] < (uint64_t)SystemStatusValue + 4) {
         validationStatus = 0x11;
         goto ProcessCheckpointValidationError3;
       }
     }
-    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&StackBuffer30,1,4,0);
+    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&StackParameter38,1,4,0);
   }
 ValidationErrorHandler4:
   if ((int)validationStatus == 0) {
@@ -53184,7 +53200,7 @@ void Unwind_180906220(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x40) & 1) != 0) {
     *(uint *)(dataBuffer + 0x40) = *(uint *)(dataBuffer + 0x40) & 0xfffffffe;
-    FUN_180627b90(dataBuffer + 0xa8);
+    CleanupResourceHandler(dataBuffer + 0xa8);
   }
   return;
 }
@@ -53205,7 +53221,7 @@ void Unwind_180906250(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x44) & 1) != 0) {
     *(uint *)(dataBuffer + 0x44) = *(uint *)(dataBuffer + 0x44) & 0xfffffffe;
-    FUN_180627b90(dataBuffer + 200);
+    CleanupResourceHandler(dataBuffer + 200);
   }
   return;
 }
@@ -53403,7 +53419,7 @@ void Unwind_1809063c0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x54) & 4) != 0) {
     *(uint *)(dataBuffer + 0x54) = *(uint *)(dataBuffer + 0x54) & 0xfffffffb;
-    FUN_180627b90(dataBuffer + 0x58);
+    CleanupResourceHandler(dataBuffer + 0x58);
   }
   return;
 }
@@ -62742,7 +62758,7 @@ void Unwind_180908d80(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    FUN_180627b90(dataBuffer + 0x58);
+    CleanupResourceHandler(dataBuffer + 0x58);
   }
   return;
 }
@@ -67363,7 +67379,7 @@ void Unwind_18090a750(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 8) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffff7;
-    FUN_180627b90(dataBuffer + 0x58);
+    CleanupResourceHandler(dataBuffer + 0x58);
   }
   return;
 }
@@ -80148,7 +80164,7 @@ void Unwind_18090e9e0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffd;
-    FUN_180627b90(dataBuffer + 200);
+    CleanupResourceHandler(dataBuffer + 200);
   }
   return;
 }
@@ -80160,7 +80176,7 @@ void Unwind_18090ea10(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 8) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffff7;
-    FUN_180627b90(dataBuffer + 200);
+    CleanupResourceHandler(dataBuffer + 200);
   }
   return;
 }
@@ -80184,7 +80200,7 @@ void Unwind_18090ea70(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 0x20) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xffffffdf;
-    FUN_180627b90(dataBuffer + 200);
+    CleanupResourceHandler(dataBuffer + 200);
   }
   return;
 }
@@ -80208,7 +80224,7 @@ void Unwind_18090ead0(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 0x80) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xffffff7f;
-    FUN_180627b90(dataBuffer + 200);
+    CleanupResourceHandler(dataBuffer + 200);
   }
   return;
 }
