@@ -288,8 +288,8 @@
 #define MaximumMemoryBufferSize 0x3ffffffe
 
 // 异常处理相关地址常量
-#define ExceptionHandlerAddress1 0x0001808d7494
-#define ExceptionHandlerAddress2 0x0001808d74a4
+#define PrimaryExceptionHandlerAddress 0x0001808d7494
+#define SecondaryExceptionHandlerAddress 0x0001808d74a4
 #define ExceptionHandlerAddress3 0x0001808d74b1
 
 // 系统函数地址常量
@@ -10954,8 +10954,8 @@ DataBuffer ValidateResourcePointerAccess(int64_t resourceDescriptor)
 
 
 
- (ram,ExceptionHandlerAddress1)
- (ram,ExceptionHandlerAddress2)
+ (ram,PrimaryExceptionHandlerAddress)
+ (ram,SecondaryExceptionHandlerAddress)
  (ram,ExceptionHandlerAddress3)
 
 /**
