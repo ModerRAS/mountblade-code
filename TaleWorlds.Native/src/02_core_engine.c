@@ -3097,6 +3097,21 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 // 原始函数名：FUN_180291c70 - 系统数据表处理函数
 #define ProcessSystemDataTable FUN_180291c70
 
+// 缺失的FUN_函数宏定义 - 需要替换的函数调用
+#define ManageSystemDataReferenceCount FUN_18011dae0
+#define ValidateSystemDataAndCheckStatus FUN_180115400
+#define ProcessSystemAudio FUN_180115490
+#define ProcessSystemFlagsData FUN_180116470
+#define ProcessSystemIntegerData FUN_180116200
+#define ProcessSystemCollision FUN_180115200
+#define ReleaseSystemResource FUN_180116060
+#define CalculateSystemFloatValue FUN_180123c00
+#define ConfigureSystemParameters FUN_180127c60
+#define AllocateSystemBufferEx FUN_180128850
+#define ManageSystemMemory FUN_1801285e0
+#define ProcessSystemMemoryAddress FUN_18012d7c0
+#define CheckSystemStatus FUN_1801243a0
+
 // 原始函数名：FUN_1802921e0 - 系统配置和数据处理函数
 #define ProcessSystemConfigurationAndDataOperation FUN_1802921e0
 
@@ -99999,7 +100014,7 @@ ProcessSystemDataStructureConfiguration_ExitPoint:
     else if (validationResult < RemainingSpace) {
       RemainingSpace = validationResult;
     }
-    FUN_18011dae0(SystemContextPointer + 8,IntegerValue + 1 + RemainingSpace);
+    ManageSystemDataReferenceCount(SystemContextPointer + 8,IntegerValue + 1 + RemainingSpace);
   }
   bufferAllocationStatus = *(long long *)(SystemContextPointer + 0x10);
   if (Utf8BufferSize != IntegerValue) {
@@ -100373,13 +100388,13 @@ void ProcessSystemContextUtf8Buffer(long long SystemContextPointer,int *Utf8Buff
   }
   if (StringComparisonResult != ValidationCode) {
     if (StringComparisonResult < ValidationCode) {
-      FUN_180115400(SystemContextPointer,Utf8BufferSize,StringComparisonResult,ValidationCode - StringComparisonResult);
+      ValidateSystemDataAndCheckStatus(SystemContextPointer,Utf8BufferSize,StringComparisonResult,ValidationCode - StringComparisonResult);
       Utf8BufferSize[2] = Utf8BufferSize[1];
       *Utf8BufferSize = Utf8BufferSize[1];
       *(uint8_t *)((long long)Utf8BufferSize + 0xf) = 0;
       return;
     }
-    FUN_180115400(SystemContextPointer,Utf8BufferSize,ValidationCode,StringComparisonResult - ValidationCode);
+    ValidateSystemDataAndCheckStatus(SystemContextPointer,Utf8BufferSize,ValidationCode,StringComparisonResult - ValidationCode);
     Utf8BufferSize[1] = Utf8BufferSize[2];
     *Utf8BufferSize = Utf8BufferSize[2];
     *(uint8_t *)((long long)Utf8BufferSize + 0xf) = 0;
@@ -100428,7 +100443,7 @@ uint64_t ProcessDataStructureValidation(long long SystemContextPointer,int *Utf8
   if (CurrentValue < *Utf8BufferSize) {
     *Utf8BufferSize = CurrentValue;
   }
-  FUN_180115490(SystemContextPointer,Utf8BufferSize);
+  ProcessSystemAudio(SystemContextPointer,Utf8BufferSize);
   ValidationStatus = ValidateFloatDataCamera(SystemContextPointer,*Utf8BufferSize,Utf16InputPointer,Utf16EndPointer);
   if (ValidationStatus == '\0') {
     if (*(short *)((long long)Utf8BufferSize + 0xe16) != 0) {
@@ -100437,7 +100452,7 @@ uint64_t ProcessDataStructureValidation(long long SystemContextPointer,int *Utf8
     OperationResult = 0;
   }
   else {
-    FUN_180116470(Utf8BufferSize,*Utf8BufferSize,Utf16EndPointer);
+    ProcessSystemFlagsData(Utf8BufferSize,*Utf8BufferSize,Utf16EndPointer);
     *Utf8BufferSize = *Utf8BufferSize + Utf16EndPointer;
     OperationResult = 1;
     *(uint8_t *)((long long)Utf8BufferSize + 0xf) = 0;
@@ -100624,7 +100639,7 @@ code_r0x000180115670:
     case 0x10009:
       goto code_r0x000180115cd0;
     case 0x1000a:
-      FUN_180116200(SystemContextPointer,Utf8BufferSize);
+      ProcessSystemIntegerData(SystemContextPointer,Utf8BufferSize);
       goto LAB_180115fd1;
     case 0x1000b:
       if ((short)Utf8BufferSize[0x386] != 99) {
@@ -100743,7 +100758,7 @@ code_r0x000180115b8c:
         *Utf8BufferSize = MutexLockResult;
       }
       TransformObjectData(SystemContextPointer,Utf8BufferSize);
-      FUN_180115200(aSystemTimeoutCounter,SystemContextPointer,*Utf8BufferSize,(char)Utf8BufferSize[4]);
+      ProcessSystemCollision(aSystemTimeoutCounter,SystemContextPointer,*Utf8BufferSize,(char)Utf8BufferSize[4]);
       if (iStack_44 == aSystemTimeoutCounter.High32Part) {
         return;
       }
@@ -100781,7 +100796,7 @@ code_r0x0001801156b8:
       *Utf8BufferSize = MutexLockResult;
     }
     TransformObjectData(SystemContextPointer,Utf8BufferSize);
-    FUN_180115200(aSystemTimeoutCounter,SystemContextPointer,*Utf8BufferSize,(char)Utf8BufferSize[4]);
+    ProcessSystemCollision(aSystemTimeoutCounter,SystemContextPointer,*Utf8BufferSize,(char)Utf8BufferSize[4]);
     if (iStack_48 == 0) {
       return;
     }
@@ -100901,7 +100916,7 @@ code_r0x0001801156b8:
 code_r0x000180115ca5:
     if (Utf8BufferSize[1] == Utf8BufferSize[2]) {
       if (*Utf8BufferSize < *(int *)(SystemContextPointer + 0x3c)) {
-        FUN_180115400(SystemContextPointer,Utf8BufferSize,*Utf8BufferSize,1);
+        ValidateSystemDataAndCheckStatus(SystemContextPointer,Utf8BufferSize,*Utf8BufferSize,1);
       }
       goto LAB_180115fd1;
     }
@@ -100916,7 +100931,7 @@ code_r0x000180115cd0:
         IntegerValue4 = MutexLockResult;
       }
       if (0 < IntegerValue4) {
-        FUN_180115400(SystemContextPointer,Utf8BufferSize,IntegerValue4 + -1,1);
+        ValidateSystemDataAndCheckStatus(SystemContextPointer,Utf8BufferSize,IntegerValue4 + -1,1);
         *Utf8BufferSize = *Utf8BufferSize + -1;
       }
       goto LAB_180115fd1;
@@ -100941,11 +100956,11 @@ LAB_180115e74:
         *(uint16_t *)(Utf8BufferSize + 0x386) = 99;
         Utf8BufferSize[0x388] = 999;
         if (*(short *)((long long)Utf8BufferSize + 0xe16) == 99) {
-          FUN_180116060(ReferenceCountPointer9);
+          ReleaseSystemResource(ReferenceCountPointer9);
         }
         if (999 < Utf8BufferSize[0x387] + 1) {
           do {
-            FUN_180116060(ReferenceCountPointer9);
+            ReleaseSystemResource(ReferenceCountPointer9);
           } while (0x3e6 < Utf8BufferSize[0x387]);
         }
         SystemShortValue2 = *(short *)((long long)Utf8BufferSize + 0xe16);
@@ -100974,12 +100989,12 @@ LAB_180115fd1:
         return;
       }
     }
-    FUN_180115490(SystemContextPointer,Utf8BufferSize);
+    ProcessSystemAudio(SystemContextPointer,Utf8BufferSize);
     OperationStatus = ValidateFloatDataCamera(SystemContextPointer,*Utf8BufferSize,aStackConfigurationFlag,1);
     if (OperationStatus == '\0') {
       return;
     }
-    FUN_180116470(Utf8BufferSize,*Utf8BufferSize,1);
+    ProcessSystemFlagsData(Utf8BufferSize,*Utf8BufferSize,1);
     goto LAB_180115fcf;
   case 0x3000c:
     if (Utf8BufferSize[1] == Utf8BufferSize[2]) {
@@ -101000,7 +101015,7 @@ code_r0x000180115c4b:
     TransformObjectData(SystemContextPointer,Utf8BufferSize);
     return;
   }
-  FUN_180115490(SystemContextPointer,Utf8BufferSize);
+  ProcessSystemAudio(SystemContextPointer,Utf8BufferSize);
   goto LAB_180115fd1;
 code_r0x0001801156c2:
   Utf16InputPointer = Utf16InputPointer & 0x20000 | 0x10001;
@@ -101482,11 +101497,11 @@ void SystemStatusResetter(void)
   *(uint16_t *)(SystemContextPointer + 0xe18) = 99;
   *(uint32_t *)(SystemContextPointer + 0xe20) = 999;
   if (*(short *)(SystemContextPointer + 0xe16) == 99) {
-    FUN_180116060(loopCounter);
+    ReleaseSystemResource(loopCounter);
   }
   ValidationCode = *(int *)(SystemContextPointer + 0xe1c);
   while (999 < ValidationCode) {
-    FUN_180116060(loopCounter);
+    ReleaseSystemResource(loopCounter);
     ValidationCode = *(int *)(SystemContextPointer + 0xe1c);
   }
   SystemShortValue2 = *(short *)(SystemContextPointer + 0xe16);
@@ -101745,11 +101760,11 @@ LAB_1801168eb:
   if ((MemoryAddressMask1 & 1) != 0) {
     ProcessSystemSecondaryEventHandle();
   }
-  SystemContextFloat19 = (float)FUN_180123c00(pSystemShortValue5,SystemContextPointer,0);
+  SystemContextFloat19 = (float)CalculateSystemFloatValue(pSystemShortValue5,SystemContextPointer,0);
   pcStack_1f8 = (char *)CONCAT44(pcStack_1f8.HighPart,0xbf800000);
   ValidationValuePointer3 = (void *)CONCAT44(MemoryAllocationIndex1,0xbf800000);
   fStack_244 = SystemContextFloat19;
-  FUN_180127c60(afStack_1a0,SystemContextPointer,0,1,ValidationValuePointer3);
+  ConfigureSystemParameters(afStack_1a0,SystemContextPointer,0,1,ValidationValuePointer3);
   InitializeSystemMemory();
   ProcessSystemDataStructure(&fStack_208,*Utf16EndPointer);
   fStack_218 = *(float *)(pSystemShortValue5 + 0x80);
@@ -101777,10 +101792,10 @@ LAB_1801168eb:
   else {
     ValidateSystemData(&fStack_150,SystemContextFloat19,&fStack_218);
     MemoryAllocationIndex6 = AllocateVertexBuffer(&fStack_218,&uStack_1b0);
-    StringBuffer7 = FUN_180128850(SystemContextFloat19,MemoryAllocationIndex6,0);
+    StringBuffer7 = AllocateSystemBufferEx(SystemContextFloat19,MemoryAllocationIndex6,0);
     bufferAllocationStatus8 = SystemDataConfiguration;
     if (StringBuffer7 == '\0') {
-      FUN_1801285e0();
+      ManageSystemMemory();
       MemoryAllocationIndex7 = ProcessSystemTertiaryEventHandle();
       goto LAB_1801168eb;
     }
@@ -101789,7 +101804,7 @@ LAB_1801168eb:
     *(uint *)(psStack_238 + 0xbc) = *(uint *)(psStack_238 + 0xbc) | *(uint *)(psStack_238 + 0xb8);
     fStack_208 = fStack_208 - *(float *)(psStack_238 + 0x52);
   }
-  StringBuffer7 = FUN_1801243a0(&fStack_218,SystemContextFloat19);
+  StringBuffer7 = CheckSystemStatus(&fStack_218,SystemContextFloat19);
   if (StringBuffer7 != '\0') {
     *(uint32_t *)(MemoryBlockIndex9 + 0x1dcc) = 1;
   }
@@ -101803,7 +101818,7 @@ LAB_1801168eb:
     *(void *)(MemoryBlockIndex9 + 0x2d88) = *(void *)(*(long long *)(MemoryBlockIndex9 + 0x19f0) + 0x58);
     *(long long *)(MemoryBlockIndex9 + 0x2d70) = bufferAllocationStatus8;
     *(uint32_t *)(MemoryBlockIndex9 + 0x2d78) = *(uint32_t *)(bufferAllocationStatus8 + 4);
-    FUN_18012d7c0((uint32_t *)(MemoryBlockIndex9 + 0x2d30));
+    ProcessSystemMemoryAddress((uint32_t *)(MemoryBlockIndex9 + 0x2d30));
   }
   StringBuffer8 = ProcessSystemCharacterStatus(pSystemShortValue5,SystemContextFloat19,(AdditionalParameter1 & 0x440) == 0);
   if ((StringBuffer7 == '\0') || (*(char *)(MemoryBlockIndex9 + 0x410) == '\0')) {
@@ -101845,7 +101860,7 @@ LAB_1801168eb:
       do {
         bufferAllocationStatus8 = bufferAllocationStatus8 + 1;
       } while (Utf8BufferSize[bufferAllocationStatus8] != '\0');
-      FUN_18011dae0(MemoryBlockIndex9 + 0x1eb0,Utf16InputPointer + 1);
+      ManageSystemDataReferenceCount(MemoryBlockIndex9 + 0x1eb0,Utf16InputPointer + 1);
       StringComparisonResult0 = (int)bufferAllocationStatus8 + 1;
       FUN_18011da90(MemoryBlockIndex9 + 0x1ec0,StringComparisonResult0);
                     // WARNING: Subroutine does not return
@@ -101866,7 +101881,7 @@ LAB_1801168eb:
   fStack_250 = 0.0;
   if (*(float *)(MemoryBlockIndex9 + 0x1b2c) == FloatVariable51) {
     if ((bStack_260 == 0) && (*(char *)(MemoryBlockIndex9 + 0x1b3c) == '\0')) {
-      FUN_18011dae0((uint32_t *)(MemoryBlockIndex9 + 0x1eb0),Utf16InputPointer + 1);
+      ManageSystemDataReferenceCount((uint32_t *)(MemoryBlockIndex9 + 0x1eb0),Utf16InputPointer + 1);
       ValidationValuePointer3 = &uStack_1b0;
       uStack_1b0 = 0;
       MemoryAllocationIndex1 = FUN_180121740(*(void *)(MemoryBlockIndex9 + 0x1eb8),*(uint32_t *)(MemoryBlockIndex9 + 0x1eb0),
@@ -101947,7 +101962,7 @@ LAB_180116f58:
           FloatVariable51 = fStack_244;
         } while ((int)UnicodeCodePoint6 < *ReferenceCountPointer);
       }
-      FUN_18011dae0(ReferenceCountPointer,0);
+      ManageSystemDataReferenceCount(ReferenceCountPointer,0);
     }
   }
   MemoryAllocationIndex5 = (uint32_t)((unsigned long long)ValidationValuePointer3 >> 0x20);
@@ -102889,7 +102904,7 @@ LAB_1801180e1:
   if ((MemoryAddressMask1 & 1) != 0) {
     SystemValue1c8 = (short *)CONCAT44(FloatVariable50 + *(float *)(MemoryBlockIndex9 + 0x19f8),FloatVariable52);
     FUN_1801120e0(&SystemValue1c8);
-    FUN_1801285e0();
+    ManageSystemMemory();
     ProcessSystemTertiaryEventHandle();
   }
 LAB_18011890c:
@@ -103185,7 +103200,7 @@ LAB_180116f4a:
           FloatVariable51 = fStack0000000000000074;
         } while ((int)UnicodeCodePoint3 < *ReferenceCountPointer);
       }
-      FUN_18011dae0(ReferenceCountPointer,0);
+      ManageSystemDataReferenceCount(ReferenceCountPointer,0);
     }
   }
   MemoryAllocationIndex0 = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
@@ -104165,7 +104180,7 @@ LAB_1801180e1:
     RegisterFramePointer[-4] = SystemContextFloat22;
     RegisterFramePointer[-3] = FloatVariable50 + FloatVariable43;
     FUN_1801120e0(RegisterFramePointer + -4);
-    FUN_1801285e0();
+    ManageSystemMemory();
     ProcessSystemTertiaryEventHandle();
   }
 LAB_18011890c:
@@ -104523,7 +104538,7 @@ char InitializeSystemResourceStructure(uint32_t SystemContextPointer, int Utf8Bu
     *(float *)(RegisterFramePointer + -0x10) = unaff_XMM15_Da;
     *(float *)(RegisterFramePointer + -0xc) = unaff_XMM12_Da + SystemContextFloat23;
     FUN_1801120e0(RegisterFramePointer + -0x10);
-    FUN_1801285e0();
+    ManageSystemMemory();
     ProcessSystemTertiaryEventHandle();
   }
   StringBuffer0 = (char)*(uint32_t *)(RegisterFramePointer + -0x68);
@@ -104644,7 +104659,7 @@ char ProcessSystemFloatOperationsAndMemoryConfiguration(void)
     *(uint32_t *)(RegisterFramePointer + -0x10) = unaff_XMM15_Da;
     *(float *)(RegisterFramePointer + -0xc) = unaff_XMM12_Da + FloatValue3;
     FUN_1801120e0(RegisterFramePointer + -0x10);
-    FUN_1801285e0();
+    ManageSystemMemory();
     ProcessSystemTertiaryEventHandle();
   }
   // 检查字符状态并执行相应操作
@@ -189803,7 +189818,7 @@ LAB_18016c134:
     }
     ReferenceCountPointer = (int *)(CurrentMemoryBlockAddress + 0x1b90);
     *ReferenceCountPointer = *ReferenceCountPointer + -1;
-    FUN_1801285e0();
+    ManageSystemMemory();
     pppSystemPointerX8 = (long long ****)0x0;
     CharacterStatus1 = FUN_1801166f0(&SystemEventBufferQuinary,(long long)SystemContextPointer + 0x74,0x400,&pppSystemPointerX8,0x3e0,
                           &SystemEventCallbackHandler,SystemContextPointer);
