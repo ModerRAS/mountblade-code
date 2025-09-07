@@ -478,9 +478,16 @@
 #define ProcessCharacterWithSystemNullOperation FUN_18014e28c
 #define ProcessCharacterWithSystemBufferEx2 FUN_18014e2a0
 #define ProcessCharacterWithSystemDataEx FUN_18014e330
-#define ProcessCharacterWithSystemMemoryEx FUN_18014ece0
-#define ProcessCharacterWithSystemBufferEx3 FUN_18014e400
-#define ProcessCharacterWithSystemBufferEx4 FUN_18014e470
+
+// 内存管理相关函数
+#define AllocateMemoryAndManageBuffer FUN_18014b470      // 分配内存并管理缓冲区
+#define ProcessCharacterWithMemoryAllocation FUN_18014b7f0 // 处理字符内存分配
+#define ProcessSystemMemoryDataAllocation FUN_18014c430   // 处理系统内存数据分配
+#define ProcessMemoryBlockWithValidation FUN_18014c7d0    // 处理内存块验证
+#define ProcessCharacterWithBufferSize FUN_18014c9e0      // 处理字符缓冲区大小
+#define ProcessCharacterWithValidationEx FUN_18014cb90     // 处理字符验证扩展
+#define ProcessCharacterWithEncodingConversion FUN_18014f980 // 处理字符编码转换
+#define ProcessCharacterWithSystemCleanup FUN_18014ccf0   // 处理系统清理
 #define ProcessCharacterWithSystemBufferEx5 FUN_18014e4d0
 #define ProcessCharacterWithSystemBufferEx6 FUN_18014e570
 #define ProcessCharacterWithSystemBufferEx7 FUN_18014e610
@@ -180423,7 +180430,7 @@ void ProcessSystemCharacterEncoding(long long *CharacterCode,long long SystemBuf
   ProcessingStatusFlag = CharacterCode[5] - *CharacterCode >> 5;
   pSystemEventFlag0 = CharacterCode;
   if (ProcessingStatusFlag < ValidationResult) {
-    FUN_18014eb80(CharacterCode,ValidationResult - ProcessingStatusFlag);
+    ProcessCharacterWithAdvancedValidation(CharacterCode,ValidationResult - ProcessingStatusFlag);
   }
   else {
     CharacterCode[5] = ValidationResult * 0x20 + *CharacterCode;
@@ -180443,7 +180450,7 @@ void ProcessSystemCharacterEncoding(long long *CharacterCode,long long SystemBuf
       uStack_2cc = *(uint32_t *)(SystemContextValue + 0x10);
       CharacterTablePointer = *(uint32_t *)(SystemContextValue + 0x14);
       *(long long *)(SystemBufferSize + 8) = SystemContextValue + 0x18;
-      FUN_180260830(LoopCounter,SystemBufferSize,&uStack_2c4);
+      ProcessCharacterWithSecondaryValidationEx(LoopCounter,SystemBufferSize,&uStack_2c4);
       DataSize = **(uint **)(SystemBufferSize + 8);
       PrimaryProcessingStatusFlag = *(uint **)(SystemBufferSize + 8) + 1;
       *(uint **)(SystemBufferSize + 8) = PrimaryProcessingStatusFlag;
@@ -180489,7 +180496,7 @@ void ProcessSystemCharacterEncoding(long long *CharacterCode,long long SystemBuf
   SystemStringIndex = SystemStringIndex / 6 + (SystemStringIndex >> 0x3f);
   ProcessingStatusFlag = (SystemStringIndex >> 3) - (SystemStringIndex >> 0x3f);
   if (ProcessingStatusFlag < ValidationResult) {
-    FUN_18014e9d0(CharacterCode,ValidationResult - ProcessingStatusFlag);
+    ProcessCharacterWithSystemValidation(CharacterCode,ValidationResult - ProcessingStatusFlag);
   }
   else {
     CharacterCode[1] = ValidationResult * 0x30 + *CharacterCode;
@@ -180512,7 +180519,7 @@ void ProcessSystemCharacterEncoding(long long *CharacterCode,long long SystemBuf
       CalculatedCodePoint = *(uint32_t *)(SystemStringIndex + 0x24);
       SystemValue2b8 = CONCAT44(SystemValue2b8.HighPart,CalculatedCodePoint);
       *(long long *)(SystemBufferSize + 8) = SystemStringIndex + 0x28;
-      FUN_180260830(CalculatedCodePoint,SystemBufferSize,(long long)&SystemValue2b8 + 4);
+      ProcessCharacterWithSecondaryValidationEx(CalculatedCodePoint,SystemBufferSize,(long long)&SystemValue2b8 + 4);
       DataSize = **(uint **)(SystemBufferSize + 8);
       PrimaryProcessingStatusFlag = *(uint **)(SystemBufferSize + 8) + 1;
       *(uint **)(SystemBufferSize + 8) = PrimaryProcessingStatusFlag;
@@ -180559,7 +180566,7 @@ void ProcessSystemCharacterEncoding(long long *CharacterCode,long long SystemBuf
   CharacterCode = CharacterCode + 8;
   pSystemCharacterStatusBufferPointer = (void **)CharacterCode;
   lStack_278 = SystemStringIndex;
-  FUN_18014e330(CharacterCode,SystemStringIndex);
+  ProcessCharacterWithDataPointer(CharacterCode,SystemStringIndex);
   if (SystemStringIndex < 1) {
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)ProcessingBuffer8);
@@ -180712,7 +180719,7 @@ long long ManageSystemBufferSize(long long CharacterCode,unsigned long long Syst
     CharacterCode = CharacterCode + 4;
     MemoryAllocationIndex = CharacterCode[5] - *CharacterCode >> 5;
     if (MemoryAllocationIndex < MemoryAllocationIndexPrimary) {
-      FUN_18014eb80(CharacterCode,MemoryAllocationIndexPrimary - MemoryAllocationIndex);
+      ProcessCharacterWithAdvancedValidation(CharacterCode,MemoryAllocationIndexPrimary - MemoryAllocationIndex);
     }
     else {
       CharacterCode[5] = MemoryAllocationIndexPrimary * 0x20 + *CharacterCode;
@@ -180738,7 +180745,7 @@ long long ManageSystemBufferSize(long long CharacterCode,unsigned long long Syst
         Utf8SourcePointer[1] = (long long)(SecondaryProcessingStatusFlag + 4);
         StackValidationData = SecondaryProcessingStatusFlag[4];
         Utf8SourcePointer[1] = (long long)(SecondaryProcessingStatusFlag + 5);
-        FUN_180260830(StackValidationData,Utf8SourcePointer,&uStack_84);
+        ProcessCharacterWithSecondaryValidationEx(StackValidationData,Utf8SourcePointer,&uStack_84);
         Utf16Char9 = *(uint *)Utf8SourcePointer[1];
         PrimaryProcessingStatusFlag = (uint *)Utf8SourcePointer[1] + 1;
         Utf8SourcePointer[1] = (long long)PrimaryProcessingStatusFlag;
@@ -180781,7 +180788,7 @@ long long ManageSystemBufferSize(long long CharacterCode,unsigned long long Syst
     SystemDataTablePointer = SystemDataTablePointer / 6 + (SystemDataTablePointer >> 0x3f);
     MemoryAllocationIndex = (SystemDataTablePointer >> 3) - (SystemDataTablePointer >> 0x3f);
     if (MemoryAllocationIndex < MemoryAllocationIndexPrimary) {
-      FUN_18014e9d0(CharacterCode,MemoryAllocationIndexPrimary - MemoryAllocationIndex);
+      ProcessCharacterWithSystemValidation(CharacterCode,MemoryAllocationIndexPrimary - MemoryAllocationIndex);
     }
     else {
       CharacterCode[1] = MemoryAllocationIndexPrimary * 0x30 + *CharacterCode;
@@ -180815,7 +180822,7 @@ long long ManageSystemBufferSize(long long CharacterCode,unsigned long long Syst
         UnicodeCodePoint = SecondaryProcessingStatusFlag[8];
         StackProcessingUnsignedValue78 = CONCAT44(StackProcessingUnsignedValue78.HighPart,UnicodeCodePoint);
         Utf8SourcePointer[1] = (long long)(SecondaryProcessingStatusFlag + 9);
-        FUN_180260830(UnicodeCodePoint,Utf8SourcePointer,(long long)&StackProcessingUnsignedValue78 + 4);
+        ProcessCharacterWithSecondaryValidationEx(UnicodeCodePoint,Utf8SourcePointer,(long long)&StackProcessingUnsignedValue78 + 4);
         Utf16Char9 = *(uint *)Utf8SourcePointer[1];
         PrimaryProcessingStatusFlag = (uint *)Utf8SourcePointer[1] + 1;
         Utf8SourcePointer[1] = (long long)PrimaryProcessingStatusFlag;

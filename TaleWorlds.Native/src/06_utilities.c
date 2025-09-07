@@ -27173,6 +27173,17 @@ void ProcessDataBufferWithValidation(int64_t systemContext, DataWord *dataBuffer
 
 
 // 函数: void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
+/**
+ * @brief 处理复杂数据结构
+ * 
+ * 该函数负责处理复杂的数据结构，包括数据验证、缓冲区管理和系统操作
+ * 主要用于处理多层数据结构和复杂的系统调用
+ * 
+ * @param systemContext 系统上下文，包含系统状态和配置信息
+ * @param dataBuffer 数据缓冲区指针，包含需要处理的数据
+ * 
+ * @note 原始函数名：FUN_1800f8930
+ */
 void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
 
 {
@@ -27181,6 +27192,13 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
   int validationStatus;
   DataBuffer dataLength;
   DataBuffer workingBuffer;
+  DataBuffer operationBase;          // 操作基础数据
+  DataWord stackDataBuffer;          // 栈数据缓冲区
+  int operationStatus;               // 操作状态
+  uint systemDataBuffer;             // 系统数据缓冲区
+  int memoryRegionBase;             // 内存区域基础
+  DataBuffer validationFlags;        // 验证标志
+  DataBuffer processedData;          // 已处理数据
   
   workingBuffer = CONCAT44(workingBuffer._4_4_,*dataBuffer);
   operationResult = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))(*(DataBuffer **)(systemContext + 8),&workingBuffer,4);
@@ -27188,7 +27206,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
     workingBuffer = *(DataBuffer *)(dataBuffer + 2);
     operationResult = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))(*(DataBuffer **)(systemContext + 8),&workingBuffer,8);
     if (operationResult == 0) {
-      uStackX_8 = SetBitFlag(uStackX_8.byteFlags,*(ByteFlag *)(dataBuffer + 0x68));
+      validationFlags = SetBitFlag(validationFlags.byteFlags,*(ByteFlag *)(dataBuffer + 0x68));
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                         (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,1);
       if (operationResult == 0) {
@@ -27259,15 +27277,15 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
                         operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                           (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                         if (operationResult == 0) {
-                          uStackX_8 = *(DataBuffer *)(dataBuffer + 0x70);
+                          processedData = *(DataBuffer *)(dataBuffer + 0x70);
                           operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                             (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                           if (operationResult == 0) {
-                            uStackX_8 = *(DataBuffer *)(dataBuffer + 0x72);
+                            processedData = *(DataBuffer *)(dataBuffer + 0x72);
                             operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                               (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                             if (operationResult == 0) {
-                              uStackX_8 = *(DataBuffer *)(dataBuffer + 0x74);
+                              processedData = *(DataBuffer *)(dataBuffer + 0x74);
                               operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                                 (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                               if (operationResult == 0) {
@@ -27321,20 +27339,22 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
   int64_t registerContext;
   int64_t systemStackFramePointer;
   int64_t calculatedIndex;
-  int64_t DestinationContext;
+  int64_t destinationContext;
   DataBuffer operationResult;
   int iterationCount;
+  DataWord operationBase;
   DataWord floatResultA;
   DataWord calculatedFloatValue;
   DataWord normalizedFloatValue;
   DataWord interpolatedFloatValue;
   DataWord validationFloatValue;
   DataWord accumulatedFloatValue;
+  int64_t stackFrameContext;
   
   iterationCount = 0;
-  if (0 < *(int *)(DestinationContext + 0x1a0)) {
+  if (0 < *(int *)(destinationContext + 0x1a0)) {
     do {
-      calculatedIndex = (int64_t)iterationCount * 0x30 + DestinationContext;
+      calculatedIndex = (int64_t)iterationCount * 0x30 + destinationContext;
       operationStatus = ValidateAndExecuteOperationsA1(operationBase,calculatedIndex + ExceptionHandlerCallbackOffset10);
       if (operationStatus != 0) {
         return;
@@ -27353,19 +27373,19 @@ void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
       }
       iterationCount = iterationCount + 1;
       operationBase = interpolatedFloatValue;
-    } while (iterationCount < *(int *)(DestinationContext + 0x1a0));
+    } while (iterationCount < *(int *)(destinationContext + 0x1a0));
   }
-  systemDataBuffer = *(uint *)(DestinationContext + 400);
+  systemDataBuffer = *(uint *)(destinationContext + 400);
   memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
   if (systemDataBuffer < 0x8000) {
-    *(short *)(StackFrameContext + ArrayDataOffset) = (short)systemDataBuffer;
+    *(short *)(stackFrameContext + ArrayDataOffset) = (short)systemDataBuffer;
     operationResult = 2;
   }
   else {
     operationResult = 4;
-    *(uint *)(StackFrameContext + ArrayDataOffset) = (systemDataBuffer & 0xffffc000 | 0x4000) * 2 | systemDataBuffer & 0x7fff;
+    *(uint *)(stackFrameContext + ArrayDataOffset) = (systemDataBuffer & 0xffffc000 | 0x4000) * 2 | systemDataBuffer & 0x7fff;
   }
-  iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,StackFrameContext + ArrayDataOffset,operationResult);
+  iterationCount = (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,stackFrameContext + ArrayDataOffset,operationResult);
   if (iterationCount == 0) {
     memoryResourcePointer = *(DataBuffer **)(registerContext + 8);
     *(DataWord *)(StackFrameContext + ArrayDataOffset) = *(DataWord *)(DestinationContext + 0x194);
@@ -82604,7 +82624,7 @@ void Unwind_18090a7f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 系统展开处理函数A4
+ * @brief 处理内存指针标志位和数据验证
  * 
  * 执行系统展开操作，检查内存指针状态并执行数据验证。
  * 该函数负责在展开过程中处理内存指针的标志位和数据验证工作。
@@ -82615,7 +82635,7 @@ void Unwind_18090a7f0(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_18090a800
  * @note 该函数在异常展开过程中被调用，用于处理内存指针的状态和验证
  */
-void Unwind_18090a800(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessMemoryPointerFlagsAndValidateData(DataBuffer operationBase,int64_t dataBuffer)
 {
   // 检查内存指针标志位
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
@@ -82670,10 +82690,10 @@ void Unwind_18090a830(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 系统展开处理函数A6
+ * @brief 处理第二个内存指针标志位和数据验证
  * 
  * 执行系统展开操作，检查内存指针状态并执行数据验证。
- * 该函数负责在展开过程中处理内存指针的标志位和数据验证工作。
+ * 该函数负责在展开过程中处理内存指针的第二个标志位和数据验证工作。
  * 
  * @param operationBase 操作基础地址，用于展开处理的上下文
  * @param dataBuffer 数据缓冲区指针，包含内存指针和数据验证信息
@@ -82681,7 +82701,7 @@ void Unwind_18090a830(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_18090a840
  * @note 该函数在异常展开过程中被调用，用于处理内存指针的状态和验证
  */
-void Unwind_18090a840(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessSecondaryMemoryPointerFlagsAndValidateData(DataBuffer operationBase,int64_t dataBuffer)
 {
   // 检查内存指针标志位
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 2) != 0) {
@@ -82697,12 +82717,27 @@ void Unwind_18090a840(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a870(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理上下文回调函数
+ * 
+ * 获取异常处理上下文指针并执行相应的回调函数。
+ * 该函数在系统展开过程中被调用，用于处理特定上下文的清理工作。
+ * 
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090a870
+ * @note 该函数负责执行异常处理上下文的回调函数
+ */
+void ExecuteExceptionHandlerContextCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取异常处理上下文指针
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x70) + 0x28);
+  
+  // 执行回调函数
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
@@ -82711,7 +82746,19 @@ void Unwind_18090a870(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a880(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理内存资源引用计数和清理
+ * 
+ * 处理内存资源的引用计数管理和清理工作。
+ * 该函数负责在系统展开过程中处理内存资源的释放和引用计数更新。
+ * 
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090a880
+ * @note 该函数负责管理内存资源的引用计数和清理工作
+ */
+void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -82719,25 +82766,35 @@ void Unwind_18090a880(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
+  // 获取内存资源指针
   memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x50) + 8);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
+  
+  // 计算内存区域基地址
   memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
   if (memoryRegionBase != 0) {
+    // 计算内存块偏移量
     memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> 0x10) * MemoryBlockMultiplier;
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+    
+    // 检查异常列表和内存状态
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+      // 更新内存资源指针和引用计数
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
+      
+      // 检查引用计数是否为零
       if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
       }
     }
     else {
+      // 管理内存资源
       ManageMemory(memoryRegionBase,SetBitFlag(0xff000000,*(void ***)(memoryRegionBase + 0x70) == &ExceptionList),
                           memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
     }
