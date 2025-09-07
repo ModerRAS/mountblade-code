@@ -63376,7 +63376,7 @@ void FUN_18069a490(longlong uiContext)
     if (cVar14 != '\0') {
       functionResult5 = FUN_18069bbd0(allocatedMemory,0x80);
       *(undefined1 *)(uiContext + 0xf63) = functionResult5;
-      piStack_78 = (int *)&UNK_1809495b0;
+      piStack_78 = (int *)&UIStateDataTable;
       *(undefined8 *)(uiContext + 0xf67) = 0;
       alStack_48[0] = uiContext + -0x180948649;
       do {
@@ -63999,7 +63999,7 @@ void FUN_18069a490(longlong uiContext)
   functionResult7 = 1;
 LAB_18069b66c:
   *(undefined4 *)(lVar31 + 0x192c) = functionResult7;
-  puVar36 = &UNK_180949110;
+  puVar36 = &UIResourceTable;
   *(undefined4 *)(lVar34 + 0x4424) = 1;
   piStack_78 = (int *)(lVar31 + -0x18094733b);
   lVar31 = lVar31 + -0x180947346;
@@ -65725,7 +65725,7 @@ ulonglong DecodeUIStateData(longlong uiContext,longlong dataSource,int targetBuf
             iVar6 = FUN_18069bbd0(uiContext,puVar9[(longlong)iVar5 + 9]);
             sVar11 = 0;
             iVar6 = iVar6 + iVar5 * 2;
-            pcVar3 = *(char **)(&UNK_180948d98 + (longlong)iVar6 * 8);
+            pcVar3 = *(char **)(&UITextureDataArray + (longlong)iVar6 * 8);
             cVar2 = *pcVar3;
             while (cVar2 != '\0') {
               sVar4 = FUN_18069bbd0(uiContext,cVar2);

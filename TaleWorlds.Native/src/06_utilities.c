@@ -105480,3 +105480,71 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：uStack_29c - 验证状态指针C
 // 功能：存储验证状态指针的第三个数据
 #define ValidationStatusPointerC uStack_29c
+
+// 原始变量名：uStack_298 - 验证状态指针D
+// 功能：存储验证状态指针的第四个数据
+#define ValidationStatusPointerD uStack_298
+
+// 原始变量名：uStack_294 - 验证状态指针E
+// 功能：存储验证状态指针的第五个数据
+#define ValidationStatusPointerE uStack_294
+
+// 原始变量名：uStack_290 - 验证状态指针F
+// 功能：存储验证状态指针的第六个数据
+#define ValidationStatusPointerF uStack_290
+
+// 原始变量名：uStack_28c - 验证状态指针G
+// 功能：存储验证状态指针的第七个数据
+#define ValidationStatusPointerG uStack_28c
+
+// 原始变量名：uStack_288 - 验证状态指针H
+// 功能：存储验证状态指针的第八个数据
+#define ValidationStatusPointerH uStack_288
+
+// 原始变量名：uStack_284 - 验证状态指针I
+// 功能：存储验证状态指针的第九个数据
+#define ValidationStatusPointerI uStack_284
+
+// 原始变量名：uStack_280 - 验证状态指针J
+// 功能：存储验证状态指针的第十个数据
+#define ValidationStatusPointerJ uStack_280
+
+// 原始变量名：uStack_27c - 验证状态指针K
+// 功能：存储验证状态指针的第11个数据
+#define ValidationStatusPointerK uStack_27c
+
+// 原始变量名：uStack_278 - 验证状态指针L
+// 功能：存储验证状态指针的第12个数据
+#define ValidationStatusPointerL uStack_278
+
+// 原始变量名：uStack_274 - 验证状态指针M
+// 功能：存储验证状态指针的第13个数据
+#define ValidationStatusPointerM uStack_274
+
+// 原始变量名：uStack_270 - 验证状态指针N
+// 功能：存储验证状态指针的第14个数据
+#define ValidationStatusPointerN uStack_270
+
+// 原始变量名：uStack_26c - 验证状态指针O
+// 功能：存储验证状态指针的第15个数据
+#define ValidationStatusPointerO uStack_26c
+
+// 原始变量名：uStack_268 - 验证状态指针P
+// 功能：存储验证状态指针的第16个数据
+#define ValidationStatusPointerP uStack_268
+
+// 原始变量名：uStack_264 - 验证状态指针Q
+// 功能：存储验证状态指针的第17个数据
+#define ValidationStatusPointerQ uStack_264
+
+// 原始变量名：uStack_260 - 验证状态指针R
+// 功能：存储验证状态指针的第18个数据
+#define ValidationStatusPointerR uStack_260
+
+// 原始变量名：uStack_25c - 验证状态指针S
+// 功能：存储验证状态指针的第19个数据
+#define ValidationStatusPointerS uStack_25c
+
+// 原始变量名：uStack_258 - 验证状态指针T
+// 功能：存储验证状态指针的第20个数据
+#define ValidationStatusPointerT uStack_258
