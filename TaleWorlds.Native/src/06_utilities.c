@@ -96916,7 +96916,7 @@ void SetDefaultExceptionHandler11(void)
 void SetDefaultExceptionHandler12(void)
 
 {
-  _DAT_180bf9ff0 = &DefaultExceptionHandlerB;
+  SystemExceptionHandlerPointerTableA3 = &DefaultExceptionHandlerB;
   return;
 }
 

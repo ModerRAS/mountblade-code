@@ -200028,7 +200028,7 @@ void CleanupSystemContextData(unsigned long long *SystemContextPointer
 
 
 
-7a060(long long SystemContextPointer// 系统内存引用计数处理函数
+// 系统内存引用计数处理函数
 // 处理系统内存的引用计数，管理内存资源的生命周期
 void ProcessMemoryReferenceCount(long long SystemContextPointer
 {
@@ -200066,7 +200066,7 @@ void ProcessMemoryReferenceCount(long long SystemContextPointer
 
 
 uint64_t *
-FUN_18017a0a0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+ProcessUtf16ToUtf8ConversionBuffer(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   *SystemContextPointer = &SystemContextBufferTertiary;
   *SystemContextPointer = &SystemContextBufferQuaternary;
