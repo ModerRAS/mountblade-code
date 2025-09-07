@@ -77033,7 +77033,21 @@ void SetDefaultExceptionHandlerBOffset4B0(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_1809095d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证和清理内存资源A0
+ * 
+ * 该函数负责验证数据缓冲区的状态，并在必要时清理内存资源。
+ * 主要功能包括：
+ * 1. 检查数据缓冲区的状态标志
+ * 2. 清理状态标志位
+ * 3. 验证数据缓冲区的内容
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809095d0
+ */
+void ValidateAndCleanupMemoryResourceA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 400) & 1) != 0) {
@@ -77335,7 +77349,22 @@ void CleanupResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180909690(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理带引用计数的内存资源A0
+ * 
+ * 该函数负责清理具有引用计数的内存资源，包括：
+ * 1. 获取内存资源指针
+ * 2. 计算内存区域基址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数归零时处理异常
+ * 5. 执行内存管理操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909690
+ */
+void CleanupMemoryResourceWithReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
