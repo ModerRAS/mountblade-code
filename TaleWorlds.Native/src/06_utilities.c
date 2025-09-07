@@ -66448,7 +66448,21 @@ void InvokeExceptionHandlerWithParamsD(DataBuffer exceptionContext, int64_t hand
 
 
 
-void Unwind_180907900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统资源清理A3
+ * 
+ * 该函数处理系统资源的清理操作，检查异常数据缓冲区是否存在，
+ * 如果存在则调用ProcessSystemResourcesWithCleanup函数进行资源清理。
+ * 确保系统资源的正确释放和异常状态的处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907900
+ */
+void ProcessSystemResourceCleanupA3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -66463,7 +66477,21 @@ void Unwind_180907900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统资源清理A4
+ * 
+ * 该函数处理系统资源的清理操作，检查异常数据缓冲区是否存在，
+ * 如果存在则调用ProcessSystemResourcesWithCleanup函数进行资源清理。
+ * 确保系统资源的正确释放和异常状态的处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907910
+ */
+void ProcessSystemResourceCleanupA4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -66478,7 +66506,18 @@ void Unwind_180907910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907920(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统状态更新A2
+ * 
+ * 该函数遍历异常处理上下文并更新系统状态。通过循环处理数据上下文中的异常处理器，
+ * 确保系统状态的一致性和正确性。如果数据上下文为空，则直接返回。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180907920
+ */
+void ProcessSystemStatusUpdateA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
