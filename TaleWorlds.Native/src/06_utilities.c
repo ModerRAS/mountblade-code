@@ -97428,7 +97428,7 @@ void InitializeExceptionHandlerTableA0(DataBuffer operationBase,DataBuffer dataB
 void SetDefaultExceptionHandlerA0(void)
 
 {
-  _DAT_180c92050 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerPointerA0 = &DefaultExceptionHandlerB;
                     // WARNING: Could not recover jumptable at 0x0001809427c7. Too many branches
                     // WARNING: Treating indirect jump as call
   _Mtx_destroy_in_situ();
