@@ -117620,23 +117620,23 @@ void ProcessSystemContextFloatCalculationAndValidation(void)
     }
   }
   else {
-    PrimaryReturnCode = ValidateSystemData(RegisterFramePointer + -0x59);
-    if ((PrimaryReturnCode & 0xff000000) != 0) {
-      if (SystemContext == 0) {
-        loopCounter8 = -1;
+    OperationResultCode = ValidateSystemData(FramePointerRegister + -0x59);
+    if ((OperationResultCode & 0xff000000) != 0) {
+      if (SystemContextHandle == 0) {
+        IteratorIndex = -1;
         do {
-          loopCounter8 = loopCounter8 + 1;
-        } while (*(char *)(DataNodeIndex + loopCounter8) != '\0');
-        SystemContext = loopCounter8 + DataNodeIndex;
+          IteratorIndex = IteratorIndex + 1;
+        } while (*(char *)(DataNodeIndex + IteratorIndex) != '\0');
+        SystemContextHandle = IteratorIndex + DataNodeIndex;
       }
-      if (DataNodeIndex != SystemContext) {
-        StatusBuffer = (uint32_t *                 (*(long long *)(RegisterValueR13 + 0x68) + -0x10 +
-                 (long long)*(int *)(RegisterValueR13 + 0x60) * 0x10);
-        SystemByteValue = StatusBuffer[1];
-        ProcessingStatusFlag = StatusBuffer[2];
-        QuaternaryReturnCode = StatusBuffer[3];
-        DataSize = *(void *)(*(long long *)(RegisterValueR13 + 0x38) + 8);
-        *(uint32_t *)(RegisterFramePointer + -0x59) = *StatusBuffer;
+      if (DataNodeIndex != SystemContextHandle) {
+        ValidationStatusBuffer = (uint32_t *                 (*(long long *)(RegisterR13Value + 0x68) + -0x10 +
+                 (long long)*(int *)(RegisterR13Value + 0x60) * 0x10);
+        SystemStatusCode = ValidationStatusBuffer[1];
+        ProcessingStateFlag = ValidationStatusBuffer[2];
+        ValidationResultCode = ValidationStatusBuffer[3];
+        DataStructureSize = *(void *)(*(long long *)(RegisterR13Value + 0x38) + 8);
+        *(uint32_t *)(FramePointerRegister + -0x59) = *ValidationStatusBuffer;
         *(uint32_t *)(RegisterFramePointer + -0x55) = SystemByteValue;
         *(uint32_t *)(RegisterFramePointer + -0x51) = ProcessingStatusFlag;
         *(uint32_t *)(RegisterFramePointer + -0x4d) = QuaternaryReturnCode;
