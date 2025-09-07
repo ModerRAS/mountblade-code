@@ -129726,7 +129726,7 @@ LAB_18012b82d:
       ProcessSystemDataAndConfigure(pSystemMemoryOffset238[0x5d],&fStack_180,&NormalizationResult,SystemMemoryAllocationResult);
     }
     if ((MemoryAllocationIndex9 >> 10 & 1) != 0) {
-      FUN_18010e7f0(pSystemMemoryOffset238,&fStack_198);
+      ProcessSystemFloatData(pSystemMemoryOffset238,&fStack_198);
       QuaternaryReturnCode = GetSystemFloatArray(pSystemMemoryOffset238,&uStack_1d8);
       ProcessFloatCalculation(&fStack_198,QuaternaryReturnCode);
       SystemContextValue = pSystemMemoryOffset238[0x5d];
@@ -129768,7 +129768,7 @@ LAB_18012b82d:
       fStack_1ec = (float)(int)(*(float *)(DataStructureCounter + 0x19f8) * 0.55);
       fStack_1f0 = fStack_1f8 + fStack_1ec;
       fStack_1ec = fStack_1f4 + fStack_1ec;
-      SystemMemoryAllocationResult = FUN_180123c00(pSystemMemoryOffset238,SystemDataTablePointerC0,0);
+      SystemMemoryAllocationResult = CalculateSystemFloatValue(pSystemMemoryOffset238,SystemDataTablePointerC0,0);
       pfStack_258.LowPart = 0x20;
       CharacterStatus1 = ProcessSystemParameters(&fStack_1f8,SystemMemoryAllocationResult,acStack_21f,&cStack_220);
       if (CharacterStatus1 != '\0') {
