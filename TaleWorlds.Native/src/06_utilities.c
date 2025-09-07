@@ -48921,7 +48921,7 @@ void CleanupExceptionHandlersLevel10(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_1809044f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionHandlersLevel11(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -48951,7 +48951,7 @@ void Unwind_1809044f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionHandlersLevel12(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -48981,7 +48981,7 @@ void Unwind_180904510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionHandlersLevel13(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -50172,7 +50172,18 @@ void Unwind_1809049f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904a00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * 关闭句柄的异常处理函数
+ * 
+ * 该函数在异常处理过程中关闭系统句柄，确保资源被正确释放
+ * 从数据缓冲区的0x70偏移量处获取句柄信息进行关闭
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要关闭的句柄信息
+ * 
+ * @note 原始函数名：Unwind_180904a00
+ */
+void CloseHandleOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x68));
@@ -50181,7 +50192,18 @@ void Unwind_180904a00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904a10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * 关闭句柄的异常处理函数（偏移量0x70）
+ * 
+ * 该函数在异常处理过程中关闭系统句柄，确保资源被正确释放
+ * 从数据缓冲区的0x70偏移量处的0x70偏移量获取句柄信息进行关闭
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要关闭的句柄信息
+ * 
+ * @note 原始函数名：Unwind_180904a10
+ */
+void CloseHandleOffset70OnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x70));
@@ -60000,7 +60022,22 @@ void Unwind_180906d90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906da0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理函数A0
+ * 
+ * 该函数负责清理系统资源，包括引用计数管理和内存释放。
+ * 主要功能包括：
+ * - 检查资源指针有效性
+ * - 计算内存基地址和偏移量
+ * - 管理引用计数
+ * - 处理异常情况
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906da0
+ */
+void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
