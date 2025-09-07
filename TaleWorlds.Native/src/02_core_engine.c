@@ -170450,7 +170450,20 @@ long long FUN_18013cf04(void
 
 
 
-uint64_t * FUN_18013cf40(uint64_t CharacterCode,uint64_t Utf8BufferSize,byte *Utf8SourcePointer
+/**
+ * @brief 处理字符代码验证和系统数据管理
+ * 
+ * 该函数负责验证字符代码，管理系统数据，并处理UTF-8编码的字符数据。
+ * 它通过XOR数据表进行字符验证，管理字符状态缓冲区，并处理系统内存分配。
+ * 
+ * @param CharacterCode 要处理的字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return uint64_t* 返回处理后的字符状态缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18013cf40
+ */
+uint64_t * ProcessCharacterCodeValidation(uint64_t CharacterCode,uint64_t Utf8BufferSize,byte *Utf8SourcePointer)
 {
   uint32_t *CharacterStatusBuffer;
   byte SystemHighByte;
@@ -170468,7 +170481,7 @@ uint64_t * FUN_18013cf40(uint64_t CharacterCode,uint64_t Utf8BufferSize,byte *Ut
   int IntegerValue4;
   uint64_t *CharacterStatusBuffer5;
   unsigned long long PrimaryReturnCode;
-  uint8_t uStack_15[5];
+  uint8_t StackValidationBuffer[5];
   
   MemoryBoundaryEnd = SystemConfigurationHandle;
   SystemMemoryAllocationResult = SystemMemoryPoolBase;
@@ -170537,7 +170550,7 @@ uint64_t * FUN_18013cf40(uint64_t CharacterCode,uint64_t Utf8BufferSize,byte *Ut
   CharacterStatusBuffer[1] = 0;
   CharacterStatusBuffer[2] = 0;
   CharacterStatusBuffer[3] = 0;
-  *(unsigned long long *)(SystemStringIndex + 0x30 + SystemDataRegistry) = CONCAT53(uStack_15,0xffff);
+  *(unsigned long long *)(SystemStringIndex + 0x30 + SystemDataRegistry) = CONCAT53(StackValidationBuffer,0xffff);
   DataStringLength = *(int *)(MemoryBoundaryEnd + 0x2e28);
   *(int *)(MemoryBoundaryEnd + 0x2e28) = DataStringLength + 1;
   CharacterStatusBuffer5 = (void *)((long long)DataStringLength * 0x38 + *(long long *)(MemoryBoundaryEnd + 0x2e30));
