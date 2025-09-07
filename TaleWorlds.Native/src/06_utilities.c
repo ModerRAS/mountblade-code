@@ -101012,6 +101012,21 @@ void Unwind_180910590(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 系统清理处理器A0
+ * 
+ * 该函数负责处理系统清理操作，包括：
+ * - 设置异常处理上下文
+ * - 配置系统执行缓冲区
+ * - 执行系统命令
+ * - 销毁基本流和I/O对象
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含系统清理上下文
+ * 
+ * @note 原始函数名：SystemCleanupHandlerA0
+ * @note 这是一个系统清理处理器函数，用于执行系统资源清理操作
+ */
 void SystemCleanupHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -101529,7 +101544,19 @@ void ReleaseMemoryResourceAtOffset30(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180910780(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源释放函数780
+ * 
+ * 该函数负责释放偏移量30处的内存资源，并管理引用计数。
+ * 这是内存资源管理的变体实现，用于处理不同位置的内存资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源上下文
+ * 
+ * @note 原始函数名：Unwind_180910780
+ * @note 这是一个内存资源管理函数，用于释放特定位置的内存资源
+ */
+void ReleaseMemoryResourceAtOffset30Variant(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -101565,7 +101592,19 @@ void Unwind_180910780(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910790(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文内存资源释放函数790
+ * 
+ * 该函数负责释放异常上下文中的内存资源，并管理引用计数。
+ * 它从异常上下文的特定偏移量获取内存资源指针，并执行释放操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180910790
+ * @note 这是一个异常上下文内存资源管理函数，用于处理异常相关的内存资源
+ */
+void ReleaseExceptionContextMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;

@@ -199070,6 +199070,18 @@ uint64_t FUN_18016ecb0(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long 
 
 
 
+/**
+ * @brief 初始UTF-8到UTF-16转换处理函数
+ * 
+ * 该函数负责初始化UTF-8到UTF-16的转换过程，设置必要的缓冲区和状态。
+ * 这是字符编码转换的第一个步骤，为后续的转换操作做准备。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回处理后的字符代码指针
+ */
 uint64_t *
 ProcessUtf8ToUtf16ConversionInitial(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
@@ -199097,6 +199109,18 @@ ProcessUtf8ToUtf16ConversionInitial(uint64_t *Utf8InputBuffer,uint64_t Utf8Buffe
 
 
 
+/**
+ * @brief 扩展UTF-8到UTF-16转换处理函数
+ * 
+ * 该函数提供扩展的UTF-8到UTF-16转换功能，处理更复杂的编码场景。
+ * 在初始转换的基础上，提供更多的编码选项和错误处理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回处理后的字符代码指针
+ */
 uint64_t *
 ProcessUtf8ToUtf16ConversionExtended(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
@@ -199256,7 +199280,7 @@ ValidateUtf8EncodingEx(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_
 
 
 uint64_t *
-FUN_18016f4f0(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+CleanupUtf8EncodingBuffer(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint32_t *CharacterStatusBuffer;
   long long BufferStatus;
