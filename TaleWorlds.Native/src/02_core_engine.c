@@ -59986,8 +59986,8 @@ LAB_180087f16:
         LOCK();
         SystemReferenceCounter = SystemReferenceCounter + -1;
         UNLOCK();
-        CloseHandle(alStack_108[0]);
-        alStack_108[0] = -1;
+        CloseHandle(SystemMemoryCommandBuffer[0]);
+        SystemMemoryCommandBuffer[0] = -1;
       }
       pBufferInitializationFlag = &SystemNullTemplate;
       if (pDataProcessingFlags != (uint8_t *)0x0) {
@@ -60006,8 +60006,8 @@ LAB_180087f16:
         LOCK();
         SystemReferenceCounter = SystemReferenceCounter + -1;
         UNLOCK();
-        CloseHandle(alStack_108[0]);
-        alStack_108[0] = -1;
+        CloseHandle(SystemMemoryCommandBuffer[0]);
+        SystemMemoryCommandBuffer[0] = -1;
       }
       pBufferInitializationFlag = &SystemNullTemplate;
       if (pDataProcessingFlags != (uint8_t *)0x0) {
