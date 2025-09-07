@@ -6900,7 +6900,7 @@ uint8_t UtilityProcessDataPrimaryPointer;
 // 
 // 返回值:
 //   uint8_t - 处理结果状态
-uint8_t UtilityProcessData1;
+uint8_t UtilityProcessPrimaryData;
 // 工具系统处理数据1相关变量
 uint8_t UtilityProcessData1Status;
 uint8_t UtilityProcessData1Context;
@@ -104744,6 +104744,107 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：stack_0000000000000010 - 栈验证缓冲区
 // 功能：存储栈验证操作的缓冲区
 #define StackValidationBuffer stack_0000000000000010
+
+// 异常处理器资源释放函数宏定义补充
+/**
+ * @brief 释放异常处理器资源A0
+ * 
+ * 该函数负责释放异常处理器A0的资源，包括引用计数管理和内存释放
+ * 主要用于系统资源清理和异常处理机制的重置
+ * 
+ * @note 原始函数名：Unwind_180904920
+ */
+#define ReleaseExceptionHandlerResourceA0 Unwind_180904920
+
+/**
+ * @brief 释放异常处理器资源A1
+ * 
+ * 该函数负责释放异常处理器A1的资源，包括引用计数管理和内存释放
+ * 主要用于系统资源清理和异常处理机制的重置
+ * 
+ * @note 原始函数名：Unwind_180904930
+ */
+#define ReleaseExceptionHandlerResourceA1 Unwind_180904930
+
+/**
+ * @brief 释放异常处理器资源A2
+ * 
+ * 该函数负责释放异常处理器A2的资源，包括引用计数管理和内存释放
+ * 主要用于系统资源清理和异常处理机制的重置
+ * 
+ * @note 原始函数名：Unwind_180904940
+ */
+#define ReleaseExceptionHandlerResourceA2 Unwind_180904940
+
+/**
+ * @brief 释放异常处理器资源A3
+ * 
+ * 该函数负责释放异常处理器A3的资源，包括引用计数管理和内存释放
+ * 主要用于系统资源清理和异常处理机制的重置
+ * 
+ * @note 原始函数名：Unwind_180904950
+ */
+#define ReleaseExceptionHandlerResourceA3 Unwind_180904950
+
+/**
+ * @brief 释放异常处理器资源A4
+ * 
+ * 该函数负责释放异常处理器A4的资源，包括引用计数管理和内存释放
+ * 主要用于系统资源清理和异常处理机制的重置
+ * 
+ * @note 原始函数名：Unwind_180904960
+ */
+#define ReleaseExceptionHandlerResourceA4 Unwind_180904960
+
+/**
+ * @brief 释放异常处理器资源A5
+ * 
+ * 该函数负责释放异常处理器A5的资源，包括引用计数管理和内存释放
+ * 主要用于系统资源清理和异常处理机制的重置
+ * 
+ * @note 原始函数名：Unwind_180904970
+ */
+#define ReleaseExceptionHandlerResourceA5 Unwind_180904970
+
+/**
+ * @brief 释放异常处理器资源A6
+ * 
+ * 该函数负责释放异常处理器A6的资源，包括引用计数管理和内存释放
+ * 主要用于系统资源清理和异常处理机制的重置
+ * 
+ * @note 原始函数名：Unwind_180904990
+ */
+#define ReleaseExceptionHandlerResourceA6 Unwind_180904990
+
+/**
+ * @brief 释放异常处理器资源A7
+ * 
+ * 该函数负责释放异常处理器A7的资源，包括引用计数管理和内存释放
+ * 主要用于系统资源清理和异常处理机制的重置
+ * 
+ * @note 原始函数名：Unwind_1809049c0
+ */
+#define ReleaseExceptionHandlerResourceA7 Unwind_1809049c0
+
+/**
+ * @brief 释放异常处理器资源A8
+ * 
+ * 该函数负责释放异常处理器A8的资源，包括引用计数管理和内存释放
+ * 主要用于系统资源清理和异常处理机制的重置
+ * 
+ * @note 原始函数名：Unwind_1809049d0
+ */
+#define ReleaseExceptionHandlerResourceA8 Unwind_1809049d0
+
+/**
+ * @brief 释放异常处理器资源A9
+ * 
+ * 该函数负责释放异常处理器A9的资源，包括引用计数管理和内存释放
+ * 主要用于系统资源清理和异常处理机制的重置
+ * 
+ * @note 原始函数名：Unwind_1809049e0
+ */
+#define ReleaseExceptionHandlerResourceA9 Unwind_1809049e0
 
 // 栈变量宏定义 - 美化更多栈变量
 // 原始变量名：uStack_1c8 - 栈数据字A
