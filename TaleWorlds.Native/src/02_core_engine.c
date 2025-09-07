@@ -20017,7 +20017,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
 
 
 
- void CoreEngineInitializeStatusBuffers(long long *OutputBuffervoid CoreEngineInitializeStatusBuffers(long long *OutputBuffer
+ void CoreEngineInitializeStatusBuffers(long long *OutputBuffer)
 {
   uint64_t *StatusBuffer;
   void *SystemContext;
@@ -20043,7 +20043,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
 
 
 
- void CoreEngineProcessSystemProcessingStatusFlags(unsigned long long *OutputBuffervoid CoreEngineProcessSystemProcessingStatusFlags(unsigned long long *OutputBuffer
+ void CoreEngineProcessSystemProcessingStatusFlags(unsigned long long *OutputBuffer)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -20080,7 +20080,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
 
 
 
- void CoreEngineValidateMemoryPointer(long long OutputBuffervoid CoreEngineValidateMemoryPointer(long long OutputBuffer
+ void CoreEngineValidateMemoryPointer(long long OutputBuffer)
 {
   if (OutputBuffer != 0) {
     if (*(long long *)(OutputBuffer + 8) != 0) {
