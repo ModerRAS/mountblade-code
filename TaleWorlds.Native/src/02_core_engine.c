@@ -2368,7 +2368,8 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ProcessSystemCharacterEncodingEx FUN_18013cac6
 #define ProcessSystemBufferProcessing FUN_18013cb34
 #define ProcessUtf8CharacterDataCopy FUN_18013cb34
-#define ProcessSystemDataSynchronize FUN_18013cbab
+// 函数实现已语义化，原始宏定义保留以供参考
+// #define ProcessSystemDataSynchronize FUN_18013cbab
 #define ProcessSystemMemoryComplete FUN_18013cd49
 #define ProcessSystemDataComplete FUN_18013cd62
 #define ProcessSystemBufferComplete FUN_18013cdb3
