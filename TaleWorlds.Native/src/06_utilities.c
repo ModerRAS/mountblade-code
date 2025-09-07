@@ -731,7 +731,7 @@
  * 
  * @note 原始函数名：FUN_180893e69
  */
-#define UpdateSystemStatus UpdateSystemStatus
+#define UpdateSystemStatusA0 FUN_180893e69
 
 /**
  * @brief 带安全检查的数据块处理
@@ -741,7 +741,7 @@
  * 
  * @note 原始函数名：FUN_180897d20
  */
-#define ProcessDataBlockWithSecurityCheck ProcessDataBlockWithSecurityCheck
+#define ProcessDataBlockWithSecurityCheck FUN_180897d20
 
 /**
  * @brief 验证和处理数据
@@ -750,7 +750,7 @@
  * 
  * @note 原始函数名：FUN_180899040
  */
-#define ValidateAndProcessData ValidateAndProcessData
+#define ValidateAndProcessData FUN_180899040
 
 /**
  * @brief 处理数据块
@@ -759,7 +759,7 @@
  * 
  * @note 原始函数名：FUN_180899090
  */
-#define ProcessDataBlocks ProcessDataBlocks
+#define ProcessDataBlocks FUN_180899090
 
 /**
  * @brief 验证并执行操作
@@ -768,7 +768,7 @@
  * 
  * @note 原始函数名：FUN_180899100
  */
-#define ValidateAndExecuteOperations ValidateAndExecuteOperations
+#define ValidateAndExecuteOperations FUN_180899100
 
 /**
  * @brief 初始化系统组件A0
@@ -22527,7 +22527,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
   DataWord *dataPointer;
   ByteFlag charValue;
   uint systemDataBuffer;
-  uint3 nodeData;
+  uint3 nodeDataArray;
   DataWord fieldIndex2;
   DataWord fieldIndex3;
   uint nodeIndex;
