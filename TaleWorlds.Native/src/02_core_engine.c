@@ -248242,17 +248242,29 @@ LAB_180215cc5:
 
 
 
-int FUN_180215d00(long long CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理UTF-8字符编码转换和内存验证
+ * 
+ * 该函数负责处理UTF-8字符的编码转换操作，验证内存地址，
+ * 并管理字符编码转换的相关工作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return int 处理结果，成功返回非负值，失败返回-1
+ * 
+ * @note 原始函数名：FUN_180215d00
+ */
+int ProcessUtf8CharacterEncodingAndMemoryValidation(long long CharacterCode,long long Utf8BufferSize
 {
-  byte *pCurrentByteValue;
+  byte *CurrentBytePointer;
   int CharacterByteCount;
-  byte *pLowByte;
+  byte *LowBytePointer;
   void *MemoryAddressMask;
   int RemainingSpace;
   int ValidationResult;
   int ProcessIterationCount;
   long long secondaryLoopCounter;
-  long long *pCurrentMemoryBlockAddress;
+  long long *CurrentMemoryBlockAddress;
   long long EncodingConversionResult;
   
   MutexLockResult = 0;
@@ -248260,18 +248272,18 @@ int FUN_180215d00(long long CharacterCode,long long Utf8BufferSize
   if (0 < RemainingSpace) {
     CharacterByteCount = *(int *)(Utf8BufferSize + 0x10);
     EncodingConversionResult = 0;
-    pCurrentMemoryBlockAddress = (long long *)(*(long long *)(CharacterCode + 0x3d8) + 8);
+    CurrentMemoryBlockAddress = (long long *)(*(long long *)(CharacterCode + 0x3d8) + 8);
     do {
-      ValidationResult = (int)pCurrentMemoryBlockAddress[1];
+      ValidationResult = (int)CurrentMemoryBlockAddress[1];
       if (CharacterByteCount == ValidationResult) {
         if (CharacterByteCount != 0) {
-          pLowByte = *(byte **)(Utf8BufferSize + 8);
-          SystemDataTablePointer = *pCurrentMemoryBlockAddress - (long long)pLowByte;
+          LowBytePointer = *(byte **)(Utf8BufferSize + 8);
+          SystemDataTablePointer = *CurrentMemoryBlockAddress - (long long)LowBytePointer;
           do {
-            pCurrentByteValue = pLowByte + SystemDataTablePointer;
-            ValidationResult = (uint)*pLowByte - (uint)*pCurrentByteValue;
+            CurrentBytePointer = LowBytePointer + SystemDataTablePointer;
+            ValidationResult = (uint)*LowBytePointer - (uint)*CurrentBytePointer;
             if (CharacterComparisonResult != 0) break;
-            pLowByte = pLowByte + 1;
+            LowBytePointer = LowBytePointer + 1;
           } while (*CurrentBytePointer != 0);
         }
 LAB_180215d8e:
@@ -248282,7 +248294,7 @@ LAB_180215d8e:
       else if (CharacterByteCount == 0) goto LAB_180215d8e;
       MutexLockResult = MutexLockResult + 1;
       EncodingConversionResult = EncodingConversionResult + 1;
-      pCurrentMemoryBlockAddress = pCurrentMemoryBlockAddress + 5;
+      CurrentMemoryBlockAddress = CurrentMemoryBlockAddress + 5;
     } while (EncodingConversionResult < RemainingSpace);
   }
   pMemoryAddressMask = &CoreEngineDataTemplate;
