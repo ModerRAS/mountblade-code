@@ -162,6 +162,8 @@
 #define ProcessCharacterCodeMapping FUN_180214c90                  // 处理字符代码映射
 #define ProcessCharacterCodeRangeValidation FUN_180214cf0          // 处理字符代码范围验证
 #define ProcessCharacterBufferAllocation FUN_1802161d0             // 处理字符缓冲区分配
+#define ProcessSystemFinalizationCleanup FUN_1806d84a0             // 处理系统最终化清理
+#define ProcessCharacterSystemDataExchange FUN_18014ece0            // 处理字符系统数据交换
 #define ProcessCharacterMemoryManagement FUN_180216210            // 处理字符内存管理
 #define ProcessSystemFinalizationEx FUN_18021aef5                  // 处理系统最终化扩展
 #define GetSystemErrorCode FUN_180225472                           // 获取系统错误代码
@@ -180829,7 +180831,7 @@ long long ManageSystemBufferSize(long long CharacterCode,unsigned long long Syst
     }
     return CharacterCode + -8;
   }
-  FUN_1806d84a0();
+  ProcessSystemFinalizationCleanup();
   if ((SystemBufferSize & 1) != 0) {
     free(CharacterCode,0x20);
   }
@@ -181707,7 +181709,7 @@ void ProcessCharacterCodeMemoryAllocation(long long *CharacterCode, unsigned lon
   MemoryAllocationIndex = ((long long)CharacterCode - AllocatedMemorySize) / 0x38;
   if (MemoryAllocationIndex < SystemBufferSize) {
     SystemDataRegistry = SystemBufferSize - MemoryAllocationIndex;
-    FUN_18014ece0(CharacterCode,SystemDataRegistry,(long long)CharacterCode - AllocatedMemorySize,SystemDataRegistry,0xfffffffffffffffe);
+    ProcessCharacterSystemDataExchange(CharacterCode,SystemDataRegistry,(long long)CharacterCode - AllocatedMemorySize,SystemDataRegistry,0xfffffffffffffffe);
   }
   else {
     MemoryBlockIndex = (long long *)(SystemBufferSize * 0x38 + AllocatedMemorySize);
@@ -182001,7 +182003,22 @@ uint64_t * AllocateCharacterSystemMemory(uint64_t *CharacterCode, long long Syst
 
 
 
-4e80d(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointervoid FUN_18014e80d(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer
+/**
+ * @brief 处理字符编码转换
+ * 
+ * 该函数负责处理字符编码的转换操作，包括：
+ * - UTF-8到UTF-16的转换
+ * - 字符代码的处理
+ * - 系统缓冲区的管理
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18014e80d
+ */
+void ProcessCharacterEncodingConversion(long long CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, long long Utf16EndPointer)
 {
   long long PrimaryDataSize;
   uint32_t *PrimaryProcessingStatusFlag;
