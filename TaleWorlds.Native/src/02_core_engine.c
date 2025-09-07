@@ -10149,6 +10149,11 @@ void InitializeNetworkConnectionNode(void)
   void *nextNode;
   void *tempStackPointer;
   code *functionCallback;
+  long long *systemContextPtr;
+  uint64_t *connectionPrimaryNode;
+  void *connectionSecondaryNode;
+  void *connectionTargetNode;
+  void *temporaryBuffer;
   
   systemContextPtr = (long long *)CoreEngineGetSystemContext();
   connectionPrimaryNode = (uint64_t *)*systemContextPtr;
@@ -10159,11 +10164,11 @@ void InitializeNetworkConnectionNode(void)
   while (statusBuffer == '\0') {
     memoryMatchResult = memcmp(connectionSecondaryNode + 4, &SystemComparisonDataTertiary, 0x10);
     if (memoryMatchResult < 0) {
-      nextNode = (void *)currentNode[2];
+      nextNode = (void *)connectionTargetNode[2];
       connectionSecondaryNode = connectionTargetNode;
     }
     else {
-      nextNode = (void *)*currentNode;
+      nextNode = (void *)*connectionSecondaryNode;
     }
     connectionTargetNode = connectionSecondaryNode;
     currentNode = nextNode;
