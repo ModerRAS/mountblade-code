@@ -127013,7 +127013,7 @@ uint8_t ProcessMemoryAllocationFlags(uint32_t CharacterCode,uint64_t CharacterCo
   StackUnsigned20 = *(uint32_t *)(SystemConfigurationHandle + 0x16fc);
   uStack_1c = *(uint32_t *)(SystemConfigurationHandle + 0x1700);
   uStack_18 = *(uint32_t *)(SystemConfigurationHandle + 0x1704);
-  FUN_18013e100(SystemConfigurationHandle + 0x1b80,&uStack_28);
+  ProcessSystemMemoryManagement(SystemConfigurationHandle + 0x1b80,&uStack_28);
   *(uint32_t *)(DataStructureCounter + 0x16f8) = *(uint32_t *)(DataStructureCounter + 0x1738);
   *(uint32_t *)(DataStructureCounter + 0x16fc) = *(uint32_t *)(DataStructureCounter + 0x173c);
   *(uint32_t *)(DataStructureCounter + 0x1700) = *(uint32_t *)(DataStructureCounter + 0x1740);
@@ -190159,8 +190159,21 @@ ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t CharacterCode,uint64_t *C
 
 
 
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换的验证阶段
+ * 
+ * 该函数负责处理字符编码转换的验证阶段，包括数据验证和错误处理
+ * 
+ * @param CharacterCode 输入的字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 转换后的字符编码指针
+ * 
+ * @note 原始函数名：FUN_180168430
+ */
 uint64_t *
-FUN_180168430(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingValidation(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
 {
   long long PrimaryDataSize;
   void *SystemContext;
