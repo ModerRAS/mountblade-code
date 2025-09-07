@@ -99588,11 +99588,11 @@ uint8_t CalculateSystemDistanceAndProcessStatus(void
   
   ContextSecondaryFloat = FloatingPointRegisterA + *(float *)(SystemContext + 0x166c);
   StackUintValue6c = 0x3f000000;
-  fStack0000000000000040 = AuxiliaryFloat9;
+  CalculatedFloatBoundary = AuxiliaryFloat9;
   if ((AuxiliaryFloat9 <= ContextSecondaryFloat) &&
-     (fStack0000000000000040 = (BaseFloatValue - Utf8BufferSize) - *(float *)(SystemContext + 0x1674),
-     ContextSecondaryFloat <= fStack0000000000000040)) {
-    fStack0000000000000040 = ContextSecondaryFloat;
+     (CalculatedFloatBoundary = (BaseFloatValue - Utf8BufferSize) - *(float *)(SystemContext + 0x1674),
+     ContextSecondaryFloat <= CalculatedFloatBoundary)) {
+    CalculatedFloatBoundary = ContextSecondaryFloat;
   }
   StringBuffer = &MemoryAllocationStackBuffer;
   if (&StackBaseAddress != (uint8_t *)0xffffffffffffff8f) {
@@ -164442,7 +164442,7 @@ LAB_180138724:
           if (*(char *)((long long)StringProcessingStatus + 0xb7) == '\0') {
             ReferenceCountPointer7 = ReferenceCountPointer9;
           }
-          FUN_18011c360(pCharacterByteCount3,*StringProcessingStatus,ReferenceCountPointer7,Utf16Char4,StringProcessingStatus);
+          ProcessStringDataConversion(pCharacterByteCount3,*StringProcessingStatus,ReferenceCountPointer7,Utf16Char4,StringProcessingStatus);
           if ((char)StackProcessingConfigurationFlag == '\0') {
             Utf8InputBuffer[0x27] = *(int *)(StringProcessingStatus + 1);
           }
@@ -164648,7 +164648,7 @@ LAB_180138724:
         ReferenceCountPointer8 = ReferenceCountPointer8 + 10;
       } while ((int)Utf16Char4 < *pCharacterByteCount3);
     }
-    FUN_18011b190();
+    ProcessCharacterTableReset();
     ReferenceCountPointer9 = (int *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x218);
     *ReferenceCountPointer9 = *ReferenceCountPointer9 + -1;
     if ((*(byte *)(CharacterCode + 0x28) & 0x10) == 0) {
@@ -165032,7 +165032,7 @@ char ProcessSystemDataStructureMemory(long long CharacterCode, long long Utf8Buf
         SystemStackFlag = *(void *)(Utf16EndPointer + 0x38);
         fStack_40 = *(float *)(Utf16EndPointer + 0x38) + *(float *)(Utf16EndPointer + 0x40);
         fStack_3c = *(float *)(Utf16EndPointer + 0x3c) + *(float *)(Utf16EndPointer + 0x44);
-        CharacterValidationResult = FUN_180139060(&SystemStackFlag,fStack_3c,((long long)(MatchCounter + 1) + 0xc) * 0x10 + Utf16EndPointer);
+        CharacterValidationResult = ProcessCharacterValidationEx(&SystemStackFlag,fStack_3c,((long long)(MatchCounter + 1) + 0xc) * 0x10 + Utf16EndPointer);
         if (CharacterValidationResult != '\0') {
           *(int *)(Utf16EndPointer + 0xb8) = MatchCounter;
           *(uint8_t *)(Utf16EndPointer + 0xab) = 1;
@@ -165412,7 +165412,7 @@ LAB_180139b2f:
   LoopIndex = lStackX_10;
   if ((((CharacterVariable5 != '\0') && (CurrentByteValue)) && (*(int *)(PerformanceCounterValue + 0xb8) == -1)) &&
      (*(char *)(PerformanceCounterValue + 0xa9) != '\0')) {
-    FUN_180138fc0(&uStack_138,PerformanceCounterValue);
+    ProcessPerformanceCounterUpdate(&uStack_138,PerformanceCounterValue);
     LoopIndex = lStackX_10;
     ContextSecondaryFloat2 = (float)uStack_138;
     if ((lStackX_10 == 0) || (*(long long *)(lStackX_10 + 0x30) == 0)) {
