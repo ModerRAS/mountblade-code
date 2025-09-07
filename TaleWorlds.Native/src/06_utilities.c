@@ -61815,7 +61815,13 @@ void Unwind_180907ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180908000(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源指针清理函数 - 处理偏移量0x48的资源指针清理
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180908000
+ */
+void CleanupResourcePointer(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -62418,65 +62424,109 @@ void Unwind_180908210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Catch_180908220(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理函数 - 处理偏移量0x58的异常
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Catch_180908220
+ */
+void HandleExceptionAtOffset58(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  func_0x00018008d310(operationBase,*(DataBuffer *)(dataBuffer + 0x58));
+  HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + 0x58));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
 
 
 
-void Catch_180908240(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理函数 - 处理偏移量0x90的异常
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Catch_180908240
+ */
+void HandleExceptionAtOffset90(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  func_0x00018008d310(operationBase,*(DataBuffer *)(dataBuffer + 0x90));
+  HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + 0x90));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
 
 
 
-void Catch_180908270(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理函数 - 处理偏移量0x40的异常
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Catch_180908270
+ */
+void HandleExceptionAtOffset40(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  func_0x00018008d310(operationBase,*(DataBuffer *)(dataBuffer + 0x40));
+  HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + 0x40));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
 
 
 
-void Catch_180908290(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理函数 - 处理偏移量0xa0的异常
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Catch_180908290
+ */
+void HandleExceptionAtOffsetA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  func_0x00018008d310(operationBase,*(DataBuffer *)(dataBuffer + 0xa0));
+  HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + 0xa0));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
 
 
 
-void Unwind_1809082c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存展开清理函数 - 处理偏移量0x80的内存操作
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809082c0
+ */
+void CleanupMemoryAtOffset80(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x80) + 8,8,0x20,ValidateDataHandler);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x80) + 8, 8, 0x20, ValidateDataHandler);
   return;
 }
 
 
 
-void Unwind_180908300(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存展开清理函数 - 处理偏移量0x108的内存操作
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180908300
+ */
+void CleanupMemoryAtOffset108(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x80) + 0x108,8,0x20,ValidateDataHandler);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x80) + 0x108, 8, 0x20, ValidateDataHandler);
   return;
 }
 
 
 
-void Unwind_180908340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区清理函数 - 处理偏移量0x388和0x390的异常数据
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180908340
+ */
+void CleanupExceptionDataBuffer(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -62488,7 +62538,7 @@ void Unwind_180908340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   memoryBaseAddress = SystemCleanupFlagAlternative;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x80) + 0x390);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer, 0, operationFlagA, operationFlagB, memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -65004,12 +65054,19 @@ void Unwind_180908f30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-uint8_t * Catch_180908f50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 字符串状态设置异常处理函数 - 处理偏移量0x70的字符串状态设置
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @return 返回系统字符串常量A的地址
+ * @note 原始函数名：Catch_180908f50
+ */
+uint8_t * HandleStringStateException(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             ((int64_t)*(int *)(**(int64_t **)(dataBuffer + 0x70) + 4) +
-             (int64_t)*(int64_t **)(dataBuffer + 0x70),4,1);
+             (int64_t)*(int64_t **)(dataBuffer + 0x70), 4, 1);
   return &SystemStringConstantA;
 }
 
