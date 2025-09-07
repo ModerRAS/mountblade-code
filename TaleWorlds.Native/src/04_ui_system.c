@@ -2774,7 +2774,6 @@ void* RenderUIText;
 void* RenderUIImage;
 
  void InitializeUIComponent(void);
-void InitializeUIComponent(void);
 void* UIComponentFactory;
 void* UIComponentRegistry;
 void* UIComponentTemplate;
