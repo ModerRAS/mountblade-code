@@ -176863,7 +176863,13 @@ void ProcessCharacterCodeSizeAndSystemFlagBuffer(long long CharacterCode, uint8_
 
 
 
-49eb0(long long *CharacterCodevoid FUN_180149eb0(long long *CharacterCode
+/**
+ * 处理字符代码的缓冲区分配状态
+ * 执行字符代码处理和缓冲区分配状态管理
+ * 
+ * @param CharacterCode 字符代码指针
+ */
+void ProcessCharacterCodeBufferAllocationStatus(long long *CharacterCode)
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
@@ -176894,7 +176900,15 @@ void ProcessCharacterCodeSizeAndSystemFlagBuffer(long long CharacterCode, uint8_
 
 
 
-49ed0(long long CharacterCode,uint8_t *CharacterCodeSize,float *Utf8SourcePointervoid FUN_180149ed0(long long CharacterCode,uint8_t *CharacterCodeSize,float *Utf8SourcePointer
+/**
+ * 处理字符代码的编码验证和浮点数据
+ * 执行字符代码处理、编码验证和浮点数据管理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ */
+void ProcessCharacterCodeEncodingValidationAndFloatData(long long CharacterCode, uint8_t *CharacterCodeSize, float *Utf8SourcePointer)
 {
   int *ReferenceCountPointer;
   long long *BufferAllocationStatus;
@@ -177084,7 +177098,15 @@ uint64_t *InitializeUtf16ToUtf8Converter(uint64_t *CharacterCode,unsigned long l
 
 
 
-4a370(long long CharacterCode,char SystemBufferSize,uint8_t *Utf8SourcePointervoid FUN_18014a370(long long CharacterCode,char SystemBufferSize,uint8_t *Utf8SourcePointer
+/**
+ * 处理字符代码的系统检查和数据注册
+ * 执行字符代码处理、系统检查和数据注册操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ */
+void ProcessCharacterCodeSystemCheckAndDataRegistry(long long CharacterCode, char SystemBufferSize, uint8_t *Utf8SourcePointer)
 {
   long long *CharacterCode;
   char SystemCheckResult;
@@ -177197,12 +177219,15 @@ uint64_t *InitializeUtf16ToUtf8Converter(uint64_t *CharacterCode,unsigned long l
 
 
 
-4a720(voidvoid FUN_18014a720(void
+/**
+ * 分配并初始化UTF-16字符缓冲区
+ * 分配内存并初始化UTF-16字符缓冲区
+ */
+void AllocateAndInitializeUtf16CharacterBuffer(void)
 {
   uint64_t Utf16Char;
   
   Utf16Char = MemoryAllocate(MemoryPoolManager,0x130,8,3);
-                    // WARNING: Subroutine does not return
   memset(Utf16Char,0,0x130);
 }
 
