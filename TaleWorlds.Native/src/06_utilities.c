@@ -72,6 +72,14 @@
 #define SystemSuccessStatus 0
 #define SystemErrorStatus 2
 
+// 系统组件管理常量
+#define SystemComponentListStartOffset 0x140
+#define SystemComponentListEndOffset 0x148
+#define SystemComponentSize 0x78
+
+// 异常处理器配置常量
+#define HighPriorityExceptionHandlerOffset 0x6a0
+
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
 #define SystemComponentDataOffset 0x38
@@ -75745,17 +75753,29 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180909480(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统组件初始化处理器
+ * 
+ * 该函数负责初始化系统组件，遍历数据缓冲区中的系统组件列表
+ * 并调用初始化函数进行系统组件的初始化操作。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909480
+ * @note 这是一个系统初始化函数，用于初始化系统中的各个组件
+ */
+void InitializeSystemComponentsProcessor(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t exceptionHandlerContext;
-  int64_t dataContext;
+  int64_t componentContextEnd;
+  int64_t componentContextStart;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x148);
-  for (dataContext = *(int64_t *)(dataBuffer + 0x140); dataContext != exceptionHandlerContext; dataContext = dataContext + 0x78) {
-    InitializeSystemComponents(dataContext);
+  componentContextEnd = *(int64_t *)(dataBuffer + SystemComponentListEndOffset);
+  for (componentContextStart = *(int64_t *)(dataBuffer + SystemComponentListStartOffset); componentContextStart != componentContextEnd; componentContextStart = componentContextStart + SystemComponentSize) {
+    InitializeSystemComponents(componentContextStart);
   }
-  if (*(int64_t *)(dataBuffer + 0x140) == 0) {
+  if (*(int64_t *)(dataBuffer + SystemComponentListStartOffset) == 0) {
     return;
   }
     TerminateSystemE0();
@@ -75763,10 +75783,22 @@ void Unwind_180909480(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909490(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到高优先级位置
+ * 
+ * 该函数将默认异常处理器B设置到数据缓冲区的高优先级位置(0x6a0)，
+ * 用于处理高优先级的异常情况。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909490
+ * @note 这是一个异常处理器配置函数，用于设置高优先级的异常处理回调
+ */
+void SetDefaultExceptionHandlerBToHighPriority(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x6a0) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + HighPriorityExceptionHandlerOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -97989,7 +98021,17 @@ void CleanupExceptionMemoryBlocksA3(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910070(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理上下文内存块A4
+ * 
+ * 该函数负责清理异常处理上下文中的多个内存块，处理不同偏移量的内存块清理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180910070
+ */
+void CleanupExceptionMemoryBlocksA4(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -100023,7 +100065,19 @@ void Unwind_1809108e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常处理上下文内存块A60
+ * 
+ * 该函数负责清理异常处理上下文中的内存块，处理异常处理器的设置和清理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910900
+ */
+void CleanupExceptionMemoryBlocksA60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100051,7 +100105,19 @@ void Unwind_180910900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理异常处理上下文内存块A61
+ * 
+ * 该函数负责清理异常处理上下文中的内存块，处理异常处理器的设置和清理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910920
+ */
+void CleanupExceptionMemoryBlocksA61(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
