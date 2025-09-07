@@ -78330,36 +78330,81 @@ void ProcessExceptionDataBufferD7(DataBuffer operationBase, int64_t dataBuffer, 
 
 
 
-void Unwind_180909820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统资源清理的异常展开函数
+ * 
+ * 在异常展开过程中处理系统资源清理，包括：
+ * - 从数据缓冲区中获取异常数据缓冲区指针
+ * - 调用系统资源清理函数进行清理
+ * - 终止异常数据缓冲区的使用
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180909820
+ */
+void ProcessSystemResourcesCleanupInUnwind(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0xf8);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x40) + 0xe8,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-      TerminateSystemE0(exceptionDataBuffer);
+    ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x40) + 0xe8, *exceptionDataBuffer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
+    TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
 
 
 
-void Unwind_180909840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理数据缓冲区A0的异常展开函数
+ * 
+ * 在异常展开过程中处理数据缓冲区A0，包括：
+ * - 从数据缓冲区中获取处理地址
+ * - 调用数据缓冲区处理函数
+ * - 使用系统清理标志进行安全处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180909840
+ */
+void ProcessDataBufferA0InUnwind(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
-  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
-                operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x48), *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
+                operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   return;
 }
 
 
 
-void Unwind_180909850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理数据缓冲区A1的异常展开函数
+ * 
+ * 在异常展开过程中处理数据缓冲区A1，包括：
+ * - 从数据缓冲区中获取处理地址
+ * - 调用数据缓冲区处理函数
+ * - 使用系统清理标志进行安全处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180909850
+ */
+void ProcessDataBufferA1InUnwind(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
-  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
-                operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x48), *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
+                operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   return;
 }
 
@@ -80133,16 +80178,42 @@ void ValidateSystemParametersInUnwind(DataBuffer operationBase, int64_t dataBuff
 
 
 
-void Unwind_18090a4d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作的异常展开函数
+ * 
+ * 在异常展开过程中执行内存操作，包括：
+ * - 从数据缓冲区中获取内存操作地址
+ * - 执行内存操作（8字节大小，10字节对齐）
+ * - 使用数据验证处理器进行安全处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a4d0
+ */
+void ExecuteMemoryOperationInUnwind(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 0xc08,8,10,ValidateDataHandler,SystemCleanupFlagAlternative);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 0xc08, 8, 10, ValidateDataHandler, SystemCleanupFlagAlternative);
   return;
 }
 
 
 
-void Unwind_18090a4f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调的异常展开函数
+ * 
+ * 在异常展开过程中执行异常处理器回调，包括：
+ * - 从数据缓冲区中获取异常上下文指针
+ * - 检查异常上下文指针的有效性
+ * - 调用异常处理器回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a4f0
+ */
+void ExecuteExceptionHandlerCallbackInUnwind(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
