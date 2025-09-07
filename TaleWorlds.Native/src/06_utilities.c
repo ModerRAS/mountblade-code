@@ -211,55 +211,80 @@
 
 /**
  * @brief 数据掩码处理函数
- * 
- * 使用指定的掩码对数据进行处理，常用于数据加密、解密或格式转换操作。
- * 该函数会根据提供的掩码值对输入数据进行位运算处理。
- * 
  * @note 原始函数名：FUN_180069530
  */
 #define ProcessDataWithMask FUN_180069530
 
 /**
  * @brief 系统初始化函数A0
- * 
- * 执行系统的初始化操作，包括内存分配、组件初始化、系统参数设置等。
- * 该函数是系统启动过程中的关键函数，确保系统处于可用状态。
- * 
  * @note 原始函数名：FUN_180074a80
  */
 #define InitializeSystemA0 FUN_180074a80
 
-// 原始函数名：FUN_180080060 - 系统终止函数A0
+/**
+ * @brief 系统终止函数A0
+ * @note 原始函数名：FUN_180080060
+ */
 #define TerminateSystemA0 FUN_180080060
 
-// 原始函数名：FUN_1800809a0 - 系统清理函数A0
+/**
+ * @brief 系统清理函数A0
+ * @note 原始函数名：FUN_1800809a0
+ */
 #define CleanupSystemA0 FUN_1800809a0
 
-// 原始函数名：FUN_180080870 - 系统重置函数A0
+/**
+ * @brief 系统重置函数A0
+ * @note 原始函数名：FUN_180080870
+ */
 #define ResetSystemA0 FUN_180080870
 
-// 原始函数名：FUN_18007f840 - 系统数据处理函数A0
+/**
+ * @brief 系统数据处理函数A0
+ * @note 原始函数名：FUN_18007f840
+ */
 #define ProcessSystemDataA1 FUN_18007f840
 
-// 原始函数名：FUN_18007f6a0 - 系统资源处理函数A0
+/**
+ * @brief 系统资源处理函数A0
+ * @note 原始函数名：FUN_18007f6a0
+ */
 #define ProcessSystemResourcesA1 FUN_18007f6a0
 
-// 原始函数名：FUN_18013ea00 - 数据缓冲区清理函数
+/**
+ * @brief 数据缓冲区清理函数
+ * @note 原始函数名：FUN_18013ea00
+ */
 #define CleanupDataBuffer FUN_18013ea00
 
-// 原始函数名：FUN_1808fc5ac - 系统状态检查函数
+/**
+ * @brief 系统状态检查函数
+ * @note 原始函数名：FUN_1808fc5ac
+ */
 #define CheckSystemStatus FUN_1808fc5ac
 
-// 原始函数名：FUN_1808fc51c - 工具操作执行函数
+/**
+ * @brief 工具操作执行函数
+ * @note 原始函数名：FUN_1808fc51c
+ */
 #define ExecuteUtilityOperationWithParams FUN_1808fc51c
 
-// 原始函数名：FUN_1808fc914 - 数据验证处理函数
+/**
+ * @brief 数据验证处理函数
+ * @note 原始函数名：FUN_1808fc914
+ */
 #define ValidateDataWithParams FUN_1808fc914
 
-// 原始函数名：FUN_1808fc074 - 系统验证处理函数
+/**
+ * @brief 系统验证处理函数
+ * @note 原始函数名：FUN_1808fc074
+ */
 #define ProcessSystemValidation FUN_1808fc074
 
-// 原始函数名：FUN_1803f33b0 - 内存访问处理函数
+/**
+ * @brief 内存访问处理函数
+ * @note 原始函数名：FUN_1803f33b0
+ */
 #define ProcessMemoryAccess FUN_1803f33b0
 
 // 原始函数名：FUN_180085530 - 系统状态验证函数A0
@@ -74045,6 +74070,14 @@ void Unwind_18090c450(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常处理器清理函数A0
+ * 
+ * 该函数负责在异常处理过程中清理上下文，设置默认异常处理器B
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ */
 void Unwind_18090c460(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -97743,7 +97776,7 @@ void CleanupSystemMemoryBufferB(void)
   
   // 检查缓冲区大小是否超过阈值
   if (0xf < SystemMemoryCapacityTable) {
-    memoryContext = CONCAT71(SecondaryMemoryContextHighByte, DAT_180bfc100);
+    memoryContext = CONCAT71(SecondaryMemoryContextHighByte, SystemMemoryPointerTable);
     memoryPointer = memoryContext;
     
     // 检查内存块大小是否过大
@@ -98324,7 +98357,7 @@ void FreeSystemMemoryBuffer(void)
   int64_t memoryPointer;
   
   if (0xf < SystemMemoryContextExtendedTable) {
-    memoryContext = CONCAT71(uRam0000000180bfc171,DAT_180bfc170);
+    memoryContext = CONCAT71(uRam0000000180bfc171,SystemMemoryPointerTable);
     memoryPointer = memoryContext;
     if (0xfff < SystemMemoryContextExtendedTable + 1) {
       memoryPointer = *(int64_t *)(memoryContext + -8);
