@@ -38723,7 +38723,7 @@ void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
   *exceptionDataBuffer = &UNK_180a10098;
   characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
+    characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
@@ -40477,7 +40477,20 @@ void ExecuteSystemCleanupG(DataBuffer dataBuffer, int64_t executionContext, Data
 
 
 
-void Unwind_1809032e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常资源清理处理器E0
+ * 
+ * 该函数负责清理偏移量0x48处的异常资源，调用系统验证和数据处理函数
+ * 确保在异常处理过程中正确释放和清理相关资源
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常状态信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809032e0
+ */
+void CleanupExceptionResourceAtOffset48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateSystemDataBufferAndProcess(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
@@ -40487,7 +40500,20 @@ void Unwind_1809032e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809032f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常资源清理处理器E1
+ * 
+ * 该函数负责清理偏移量0x40处的异常资源，调用系统验证和数据处理函数
+ * 确保在异常处理过程中正确释放和清理相关资源
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常状态信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809032f0
+ */
+void CleanupExceptionResourceAtOffset40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateSystemDataBufferAndProcess(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
@@ -40497,7 +40523,20 @@ void Unwind_1809032f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常资源清理处理器E2
+ * 
+ * 该函数负责清理偏移量0x40处的异常资源，调用系统验证和数据处理函数
+ * 确保在异常处理过程中正确释放和清理相关资源
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常状态信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903300
+ */
+void CleanupExceptionResourceAtOffset40B(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateSystemDataBufferAndProcess(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
@@ -40507,7 +40546,18 @@ void Unwind_180903300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903310(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常引用计数管理器
+ * 
+ * 该函数负责管理异常资源的引用计数，包括内存分配、引用计数更新和资源释放
+ * 当引用计数降为0时，会调用异常处理函数进行清理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常状态信息
+ * 
+ * @note 原始函数名：Unwind_180903310
+ */
+void ManageExceptionReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -47569,7 +47619,7 @@ void Unwind_180904ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *exceptionDataBuffer = &UNK_180a10098;
   characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
+    characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
@@ -47637,7 +47687,7 @@ void Unwind_180904af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *exceptionDataBuffer = &UNK_180a10098;
   characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
+    characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
@@ -47985,7 +48035,7 @@ void Unwind_180904e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   *exceptionDataBuffer = &UNK_180a10098;
   characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
+    characterFlag = ProcessCharacterDataA0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
