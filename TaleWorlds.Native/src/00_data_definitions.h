@@ -12795,7 +12795,7 @@ MemoryAllocationReset:
     MemoryAllocationResult = 1;
   }
   StringProcessingResultPointer = (uint *)GetStringProcessingResult();
-  StackVariable20 = 0;
+  MemoryOffset = 0;
   StackVariable10 = StackVariable10 & SystemBufferSizeMask;
   NetworkDataBuffer[0] = *StringProcessingResultPointer;
   NetworkRequestResult = ProcessNetworkRequest(ConfigurationArrayPointer,*(uint64_t *)(ConfigurationIndex + 0x10),NetworkDataBuffer,&MemoryOffset,&MemoryAlignmentMask);

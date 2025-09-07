@@ -50027,7 +50027,15 @@ void Unwind_180905030(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行资源回调清理函数
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180905040
+ */
+void ExecuteResourceCallbackCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
