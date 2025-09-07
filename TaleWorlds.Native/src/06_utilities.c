@@ -1032,8 +1032,8 @@
  */
 #define ValidateSystemContext ValidateSystemContextAndState
 
-#define InitializeSystemValidation FUN_18004b730
-#define ProcessSystemDataValidation FUN_180058370
+#define InitializeSystemValidation InitializeSystemValidationAndSecurity
+#define ProcessSystemDataValidation ProcessSystemDataValidationAndIntegrity
 
 /**
  * @brief 系统数据缓冲区验证函数
@@ -11241,7 +11241,7 @@ uint64_t ProcessResourceAllocation(int64_t ResourceConfiguration, int64_t Resour
     LocalResourceBuffer[ResourceHandleArrayIndex] = 0;
     AllocationStatus = ValidateResourceHandle(LocalResourceBuffer);
     if (AllocationStatus == 0) {
-      AllocationStatus = ExecuteResourceOperation(AllocatedResourceHandle, *(uint64_t *)(AllocatedResourceHandle + 8), *(uint64_t *)(ResourceData + ResourcePrimaryDataOffset),
+      AllocationStatus = ExecuteResourceOperation(AllocatedResourceHandle, *(uint64_t *)(AllocatedResourceHandle + ResourceDataOffset), *(uint64_t *)(ResourceData + ResourcePrimaryDataOffset),
                             *(uint64_t *)(ResourceData + ResourceSecondaryDataOffset));
       if (AllocationStatus == 0) {
         ReleaseSystemResources(LocalResourceBuffer);
@@ -82374,7 +82374,19 @@ void DestroyMutexAtContextOffset(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b4f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器上下文B
+ * 
+ * 清理异常处理器上下文和相关数据结构，释放系统资源。
+ * 该函数与CleanupExceptionHandlerContextA类似，但从不同的偏移位置获取数据。
+ * 
+ * @param operationBase 操作基础指针，包含操作相关信息
+ * @param dataBuffer 数据缓冲区指针，包含需要清理的数据
+ * 
+ * @note 函数从dataBuffer + 0x40位置获取内存块偏移
+ * @note 这是一个异常处理和资源清理的关键函数
+ */
+void CleanupExceptionHandlerContextB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
