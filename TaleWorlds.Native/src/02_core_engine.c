@@ -3730,6 +3730,33 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 // 原始函数名：FUN_180291a50 - 系统数据表清理函数
 #define CleanupSystemDataTable FUN_180291a50
 
+// 原始函数名：FUN_180125180 - 系统初始化函数
+#define InitializeSystemCore FUN_180125180
+
+// 原始函数名：FUN_1801251b1 - 系统数据处理函数
+#define ProcessSystemDataAndMemory FUN_1801251b1
+
+// 原始函数名：FUN_18012524a - 系统浮点数处理函数
+#define ProcessSystemFloatAndParameters FUN_18012524a
+
+// 原始函数名：FUN_18012533c - 系统内存操作函数
+#define OperateSystemMemoryAndData FUN_18012533c
+
+// 原始函数名：FUN_180125434 - 系统状态验证函数
+#define ValidateSystemState FUN_180125434
+
+// 原始函数名：FUN_180125440 - 系统配置检查函数
+#define CheckSystemConfiguration FUN_180125440
+
+// 原始函数名：FUN_180125793 - 系统资源分配函数
+#define AllocateSystemResources FUN_180125793
+
+// 原始函数名：FUN_180125eb9 - 系统参数处理函数
+#define ProcessSystemParameters FUN_180125eb9
+
+// 原始函数名：FUN_180125ff8 - 系统清理函数
+#define CleanupSystemOperations FUN_180125ff8
+
 // 原始函数名：FUN_180128280 - 系统时间处理函数
 #define ProcessSystemTimeOperation FUN_180128280
 
@@ -101107,7 +101134,21 @@ uint64_t ProcessDataStructureValidation(long long CharacterCode,int *CharacterCo
 
 
 
-5640(long long CharacterCode,int *CharacterCodeSize,uint Utf8InputPointervoid CoreEngineConvertUtf16ToUtf8(long long CharacterCode,int *CharacterCodeSize,uint Utf8InputPointer
+/**
+ * @brief 核心引擎UTF16到UTF8转换函数
+ * 
+ * 该函数负责将UTF16编码的字符串转换为UTF8编码，处理各种字符编码
+ * 转换和验证操作。这是系统核心引擎的重要文本处理函数。
+ * 
+ * @param CharacterCode 目标数据结构指针，用于存储转换结果
+ * @param CharacterCodeSize 源数据指针，包含UTF16字符串和相关配置
+ * @param Utf8InputPointer 转换模式和控制参数
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180115640
+ * @warning 此函数涉及底层编码转换，调用时需确保参数有效性
+ */
+void CoreEngineConvertUtf16ToUtf8(long long CharacterCode,int *CharacterCodeSize,uint Utf8InputPointer)
 {
   uint16_t *StatusBuffer;
   short SystemShortValue2;
@@ -101129,12 +101170,12 @@ uint64_t ProcessDataStructureValidation(long long CharacterCode,int *CharacterCo
   float SystemContextPrimaryFloat8;
   uint16_t StackConfigurationFlag [4];
   uint8_t SystemTimeoutCounter [16];
-  int iStack_48;
-  int iStack_44;
-  float afStack_40 [5];
-  uint uStack_2c;
+  int StackIntegerValue1;
+  int StackIntegerValue2;
+  float StackFloatArray [5];
+  uint StackUnsignedValue;
   
-code_r0x000180115670:
+// 函数入口点 - UTF16到UTF8转换处理开始
   if ((int)Utf8InputPointer < 0x30001) {
     if (Utf8InputPointer == 0x30000) {
       TransformObjectData(CharacterCode,CharacterCodeSize);
@@ -101149,7 +101190,7 @@ code_r0x000180115670:
         CharacterCodeSize[2] = MutexLockResult;
       }
       *CharacterCodeSize = MutexLockResult;
-      goto LAB_180115fd1;
+      goto FunctionExitHandler;
     }
     switch(Utf8InputPointer) {
     case 0x10000:
@@ -101162,7 +101203,7 @@ code_r0x000180115670:
         if (0 < *CharacterCodeSize) {
           *CharacterCodeSize = *CharacterCodeSize + -1;
         }
-        goto LAB_180115fd1;
+        goto FunctionExitHandler;
       }
       break;
     case 0x10001:
@@ -101174,11 +101215,11 @@ code_r0x000180115670:
         RotateObjectData(CharacterCode,CharacterCodeSize);
         TransformObjectData(CharacterCode);
       }
-      goto LAB_180115fd1;
+      goto FunctionExitHandler;
     case 0x10002:
-      goto code_r0x0001801156d0;
+      goto ProcessStringEncodingHandler;
     case 0x10003:
-      goto code_r0x0001801156b8;
+      goto ProcessStringValidationHandler;
     case 0x10004:
       MutexLockResult = CharacterCodeSize[1];
       IntegerValue4 = CharacterCodeSize[2];
@@ -101221,7 +101262,7 @@ code_r0x000180115670:
       else {
         *CharacterCodeSize = 0;
       }
-      goto LAB_180115fd1;
+      goto FunctionExitHandler;
     case 0x10005:
       MutexLockResult = CharacterCodeSize[1];
       IntegerValue4 = CharacterCodeSize[2];
@@ -101264,7 +101305,7 @@ code_r0x000180115670:
       else {
         *CharacterCodeSize = IntegerValue1;
       }
-      goto LAB_180115fd1;
+      goto FunctionExitHandler;
     case 0x10006:
       CharacterCodeSize[1] = 0;
       CharacterCodeSize[2] = 0;
@@ -101284,7 +101325,7 @@ code_r0x000180115670:
       goto code_r0x000180115cd0;
     case 0x1000a:
       ProcessSystemIntegerData(CharacterCode,CharacterCodeSize);
-      goto LAB_180115fd1;
+      goto FunctionExitHandler;
     case 0x1000b:
       if ((short)CharacterCodeSize[0x386] != 99) {
         pSystemOperationResult = CharacterCodeSize + (long long)*(short *)((long long)CharacterCodeSize + 0xe16) * 4 + 6;
@@ -101328,7 +101369,7 @@ code_r0x000180115670:
         *(short *)((long long)CharacterCodeSize + 0xe16) = *(short *)((long long)CharacterCodeSize + 0xe16) + 1;
         *(short *)(CharacterCodeSize + 0x386) = (short)CharacterCodeSize[0x386] + 1;
       }
-      goto LAB_180115fd1;
+      goto FunctionExitHandler;
     case 0x1000c:
       MutexLockResult = CharacterCodeSize[1];
       IntegerValue4 = CharacterCodeSize[2];
@@ -101352,7 +101393,7 @@ code_r0x000180115670:
       TransformObjectData(CharacterCode,CharacterCodeSize);
       return;
     default:
-      goto LAB_180115e74;
+      goto DefaultCaseHandler;
     }
     if (!CurrentByteValue2 && CurrentByteValue3 == IntegerValue1 < 0) {
       CharacterCodeSize[1] = IntegerValue4;
@@ -101360,7 +101401,7 @@ code_r0x000180115670:
     }
     *CharacterCodeSize = MutexLockResult;
     CharacterCodeSize[2] = MutexLockResult;
-    goto LAB_180115fd1;
+    goto FunctionExitHandler;
   }
   switch(Utf8InputPointer) {
   case 0x30001:
@@ -101375,7 +101416,7 @@ code_r0x000180115670:
     CharacterCodeSize[2] = MutexLockResult + 1;
     TransformObjectData(CharacterCode,CharacterCodeSize);
     *CharacterCodeSize = CharacterCodeSize[2];
-    goto LAB_180115fd1;
+    goto FunctionExitHandler;
   case 0x30002:
 code_r0x0001801156d0:
     if ((char)CharacterCodeSize[4] == '\0') {
@@ -101489,7 +101530,7 @@ code_r0x0001801156b8:
       *CharacterCodeSize = 0;
       CharacterCodeSize[2] = 0;
     }
-    goto LAB_180115fd1;
+    goto FunctionExitHandler;
   case 0x30005:
     IntegerValue4 = CharacterCodeSize[1];
     MutexLockResult = CharacterCodeSize[2];
@@ -101532,7 +101573,7 @@ code_r0x0001801156b8:
       *CharacterCodeSize = IntegerValue1;
       CharacterCodeSize[2] = IntegerValue1;
     }
-    goto LAB_180115fd1;
+    goto FunctionExitHandler;
   case 0x30006:
     if (CharacterCodeSize[1] == CharacterCodeSize[2]) {
       CharacterCodeSize[1] = *CharacterCodeSize;
@@ -101555,14 +101596,14 @@ code_r0x0001801156b8:
       CharacterCodeSize[2] = MutexLockResult;
       *CharacterCodeSize = MutexLockResult;
     }
-    goto LAB_180115fd1;
+    goto FunctionExitHandler;
   case 0x30008:
 code_r0x000180115ca5:
     if (CharacterCodeSize[1] == CharacterCodeSize[2]) {
       if (*CharacterCodeSize < *(int *)(CharacterCode + 0x3c)) {
         ValidateSystemDataAndCheckStatus(CharacterCode,CharacterCodeSize,*CharacterCodeSize,1);
       }
-      goto LAB_180115fd1;
+      goto FunctionExitHandler;
     }
     break;
   case 0x30009:
@@ -101578,11 +101619,11 @@ code_r0x000180115cd0:
         ValidateSystemDataAndCheckStatus(CharacterCode,CharacterCodeSize,IntegerValue4 + -1,1);
         *CharacterCodeSize = *CharacterCodeSize + -1;
       }
-      goto LAB_180115fd1;
+      goto FunctionExitHandler;
     }
     break;
   default:
-LAB_180115e74:
+DefaultCaseHandler:
     if (0xffff < (int)Utf8InputPointer) {
       Utf8InputPointer = 0;
     }
@@ -101626,9 +101667,9 @@ LAB_180115e74:
         if (OperationStatus == '\0') {
           return;
         }
-LAB_180115fcf:
+FunctionCleanupHandler:
         *CharacterCodeSize = *CharacterCodeSize + 1;
-LAB_180115fd1:
+FunctionExitHandler:
         *(uint8_t *)((long long)CharacterCodeSize + 0xf) = 0;
         return;
       }
@@ -101660,7 +101701,7 @@ code_r0x000180115c4b:
     return;
   }
   ProcessSystemAudio(CharacterCode,CharacterCodeSize);
-  goto LAB_180115fd1;
+  goto FunctionExitHandler;
 code_r0x0001801156c2:
   Utf8InputPointer = Utf8InputPointer & 0x20000 | 0x10001;
   goto code_r0x000180115670;
@@ -118345,7 +118386,19 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t CharacterCod
 
 
 
-30e0(float *CharacterCode,uint CharacterCodeSize,long long Utf8InputPointervoid ProcessMemoryLock(float *CharacterCode,uint CharacterCodeSize,long long Utf8InputPointer
+/**
+ * @brief 处理内存锁定操作
+ * 
+ * 该函数负责管理系统内存的锁定和解锁操作，确保内存访问的安全性和一致性。
+ * 函数会检查内存状态，处理浮点数计算，并管理内存块的分配和释放。
+ * 
+ * @param CharacterCode 字符代码指针，包含要处理的数据
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF8输入指针，指向输入数据缓冲区
+ * 
+ * @note 原始函数名：FUN_1801230e0
+ */
+void ProcessMemoryLock(float *CharacterCode,uint CharacterCodeSize,long long Utf8InputPointer)
 {
   int *ReferenceCountPointer;
   float SystemContextSecondaryFloat;
@@ -119004,7 +119057,15 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t CharacterCod
 
 
 
-331b(voidvoid FUN_18012331b(void
+/**
+ * @brief 验证系统参数并初始化系统状态
+ * 
+ * 该函数负责验证系统的各项参数，确保系统配置的正确性，并执行必要的初始化操作。
+ * 函数会管理引用计数，处理系统状态重置，并根据数据节点索引执行相应的配置操作。
+ * 
+ * @note 原始函数名：FUN_18012331b
+ */
+void ValidateSystemParametersAndInitialize(void)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -243037,7 +243098,7 @@ LAB_180214378:
   fStack_80 = 0.0;
   FUN_180846210(*(void *)(CharacterCode + 0x368),&UNK_180a10710,&fStack_80,0);
   fStack_7c = 0.0;
-  FUN_180846210(*(void *)(CharacterCode + 0x368),&UNK_180a10720,&fStack_7c,0);
+  FUN_180846210(*(void *)(CharacterCode + 0x368),&SystemEventQueueDataTableQuattuordecenary,&fStack_7c,0);
   fStack_78 = 0.0;
   FUN_180846210(*(void *)(CharacterCode + 0x368),&DefaultSystemString,&fStack_78,0);
   fStack_74 = 0.0;

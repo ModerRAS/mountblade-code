@@ -5200,11 +5200,13 @@
 #define UtilityNoOperationI FUN_180896027
 
 // 原始函数名：FUN_180896064 - 数据验证函数A5
-// 功能：验证数据有效性
+// 功能：验证数据有效性，检查数据格式、范围和完整性
+// 支持多种数据类型的验证，包括基本类型和复杂数据结构
 #define ValidateDataA1 FUN_180896064
 
 // 原始函数名：FUN_18089611f - 空操作函数J
-// 功能：空操作函数
+// 功能：空操作函数，用作占位符或桩函数
+// 在条件分支和异常处理中作为默认操作使用，确保程序流程完整性
 #define UtilityNoOperationJ FUN_18089611f
 
 // 原始函数名：FUN_1808aff40 - 参数验证函数A1
@@ -50159,7 +50161,19 @@ void UnlockMutexAndHandleError(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809048e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常上下文处理器（偏移量0x48）
+ * 
+ * 该函数重置位于偏移量0x48处的异常上下文处理器。它首先设置临时异常处理器，
+ * 然后检查并清理异常状态，最后恢复默认的异常处理器B。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809048e0
+ * @warning 如果异常上下文状态异常，会调用系统终止函数
+ */
+void ResetExceptionContextOffset48(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -50178,7 +50192,19 @@ void Unwind_1809048e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809048f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常上下文处理器（偏移量0x68）
+ * 
+ * 该函数重置位于偏移量0x68处的异常上下文处理器。它与ResetExceptionContextOffset48
+ * 函数功能相同，但操作不同的偏移量位置。这个函数负责清理和重置异常处理状态。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809048f0
+ * @warning 如果异常上下文状态异常，会调用系统终止函数
+ */
+void ResetExceptionContextOffset68(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
