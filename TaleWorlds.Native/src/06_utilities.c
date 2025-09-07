@@ -24048,9 +24048,25 @@ DataBuffer ProcessDataCollectionA0(int64_t collectionContext,int64_t *dataPointe
 
 /**
  * @brief 处理系统数据操作
- * @param systemContext 系统上下文句柄
- * @param operationData 操作数据指针
- * @return 处理结果状态码
+ * 
+ * 该函数用于处理系统数据操作，包括数据验证、内存管理和安全检查。
+ * 函数会执行一系列的系统级数据操作，确保数据的完整性和安全性。
+ * 
+ * 处理流程：
+ * 1. 初始化操作参数和缓冲区
+ * 2. 执行数据验证和安全检查
+ * 3. 处理内存地址和数据标志
+ * 4. 遍历并处理数据项
+ * 5. 执行系统级清理和验证
+ * 
+ * @param systemContext 系统上下文句柄，包含系统状态和配置信息
+ * @param operationData 操作数据指针，指向待处理的操作数据
+ * 
+ * @note 该函数使用临时数据缓冲区进行数据处理
+ * @note 函数包含多层验证机制确保数据安全
+ * @note 使用0x6c和0x10等偏移量进行内存访问
+ * @warning 如果任何验证步骤失败，函数会提前返回
+ * @see ValidateDataParametersA0, ProcessDataPointerA0, ValidateSystemMemoryBlock
  */
 void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
 
