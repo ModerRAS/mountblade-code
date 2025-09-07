@@ -249893,7 +249893,7 @@ long long FUN_180213410(void
 
 
  (ram,0x000180213594
-uint64_t FUN_180213440(long long CharacterCode,long long Utf8BufferSize,char Utf8SourcePointer
+uint64_t ProcessCharacterCodeTableLookup(long long CharacterCode,long long Utf8BufferSize,char Utf8SourcePointer
 {
   uint Utf16Char;
   int StringComparisonResult;
@@ -250202,7 +250202,7 @@ LAB_180213d0d:
   EncodingBuffer = &ThreadLocalStorageTemplate;
 LAB_180213d73:
   UnicodeCodePoint = FUN_180213700(CharacterCode,Utf8BufferSize,0);
-  IntegerValue = FUN_180840490(UnicodeCodePoint,&SystemRegisterFlagX8);
+  IntegerValue = ProcessUtf16CharacterConversion(UnicodeCodePoint,&SystemRegisterFlagX8);
   FUN_180211a30(IntegerValue,&CoreEngineDataTemplate);
   UnicodeCodePoint = SystemRegisterFlagX8;
   if (LockResult != 0) {
@@ -251507,7 +251507,7 @@ FUN_180215110(long long CharacterCode,long long *Utf8InputBufferSize,int *Utf8So
     return Utf8BufferSize;
   }
   if (*Utf8SourcePointer != 1) {
-    AllocatedMemorySize = FUN_180213440(CharacterCode,Utf8SourcePointer + 2,1);
+    AllocatedMemorySize = ProcessCharacterCodeTableLookup(CharacterCode,Utf8SourcePointer + 2,1);
     if (AdditionalParameter1 == 0) goto LAB_1802158ec;
     if (AllocatedMemorySize != 0) goto LAB_1802158f5;
     CoreEngineValue148 = &SystemNullTemplate;
@@ -252016,15 +252016,15 @@ unsigned long long ProcessCharacterEncodingAndBuffer(long long CharacterCode,lon
     if ((*(long long *)(CharacterCode + 0x18) != 0) && (0 < *(int *)(Utf8BufferSize + 0x10))) {
       (**(code **)(CharacterCode + 0x20))(Utf8BufferSize,Utf8SourcePointer,AdditionalParameter1,CharacterCode + 8);
     }
-    BufferStatus = FUN_180213440(CharacterCode,Utf8BufferSize,0);
+    BufferStatus = ProcessCharacterCodeTableLookup(CharacterCode,Utf8BufferSize,0);
     if (BufferStatus != 0) {
-      Utf16Char = FUN_180840490(BufferStatus,&lStackX_8);
+      Utf16Char = ProcessUtf16CharacterConversion(BufferStatus,&lStackX_8);
       FUN_180211a30(Utf16Char,&CoreEngineDataTemplate);
       if (lStackX_8 != 0) {
-        FUN_180407630(lStackX_8,Utf8SourcePointer,&SystemUnknownProcessingStatusFlagR);
-        FUN_1802164f0();
-        FUN_18084a280(lStackX_8,*Utf16EndPointer);
-        UnicodeCodePoint = FUN_180406800(lStackX_8);
+        ProcessCharacterDataBufferManagement(lStackX_8,Utf8SourcePointer,&SystemUnknownProcessingStatusFlagR);
+        ProcessSystemMemoryCleanup();
+        ProcessCharacterDataFinalization(lStackX_8,*Utf16EndPointer);
+        UnicodeCodePoint = ProcessCharacterCodeRetrieval(lStackX_8);
         return UnicodeCodePoint;
       }
     }
@@ -252059,16 +252059,16 @@ unsigned long long ProcessSystemUnicodeValidation(void
   uint32_t *NullPointerValue;
   long long DataStorageValue;
   
-  BufferStatus = FUN_180213440();
+  BufferStatus = ProcessCharacterCodeTableLookup();
   if (BufferStatus != 0) {
-    Utf16Char = FUN_180840490(BufferStatus,&TertiaryDataBuffer);
+    Utf16Char = ProcessUtf16CharacterConversion(BufferStatus,&TertiaryDataBuffer);
     FUN_180211a30(Utf16Char,&CoreEngineDataTemplate);
     BufferStatus = DataStorageValue;
     if (DataStorageValue != 0) {
-      FUN_180407630(DataStorageValue);
-      FUN_1802164f0();
-      FUN_18084a280(BufferStatus,*NullPointerValue);
-      UnicodeCodePoint = FUN_180406800(BufferStatus);
+      ProcessCharacterDataBufferManagement(DataStorageValue);
+      ProcessSystemMemoryCleanup();
+      ProcessCharacterDataFinalization(BufferStatus,*NullPointerValue);
+      UnicodeCodePoint = ProcessCharacterCodeRetrieval(BufferStatus);
       return UnicodeCodePoint;
     }
   }
@@ -252159,13 +252159,13 @@ FUN_180216030(long long CharacterCode,int Utf8BufferSize,uint64_t Utf8SourcePoin
         }
       }
       MemoryAddressMask = FUN_180213700(CharacterCode,Utf8BufferSize,0);
-      UnicodeCodePoint = FUN_180840490(MemoryAddressMask,&SystemContextRegister);
+      UnicodeCodePoint = ProcessUtf16CharacterConversion(MemoryAddressMask,&SystemContextRegister);
       FUN_180211a30(UnicodeCodePoint,&CoreEngineDataTemplate);
       CharacterCode = SystemContextRegister;
-      FUN_180407630(SystemContextRegister,Utf8SourcePointer,&SystemUnknownProcessingStatusFlagR);
-      FUN_1802164f0();
-      FUN_18084a280(CharacterCode,*Utf16EndPointer);
-      MemoryAddressMask = FUN_180406800(CharacterCode);
+      ProcessCharacterDataBufferManagement(SystemContextRegister,Utf8SourcePointer,&SystemUnknownProcessingStatusFlagR);
+      ProcessSystemMemoryCleanup();
+      ProcessCharacterDataFinalization(CharacterCode,*Utf16EndPointer);
+      MemoryAddressMask = ProcessCharacterCodeRetrieval(CharacterCode);
     }
     else {
       FUN_1801582f0(CharacterCode,&SystemContextRegister,
@@ -252194,7 +252194,7 @@ uint32_t FUN_1802161d0(uint64_t CharacterCode,uint64_t Utf8BufferSize
   uint32_t aStackProcessingConfigurationFlag [2];
   uint8_t auStackX_20 [8];
   
-  CharacterTablePointer = FUN_180213440(CharacterCode,Utf8BufferSize,0);
+  CharacterTablePointer = ProcessCharacterCodeTableLookup(CharacterCode,Utf8BufferSize,0);
   if (CharacterTablePointer != 0) {
     FUN_180846050(LoopCounter,auStackX_20,aStackProcessingConfigurationFlag);
     return aStackProcessingConfigurationFlag[0];
