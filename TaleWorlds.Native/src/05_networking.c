@@ -380,13 +380,13 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkMemoryValidationMagicValue 0xCAFEBABE            // 内存验证魔数，用于调试内存检查
 
 // 魔数别名定义，用于保持代码一致性
-#define NetworkMagicLiveConnectionAlias NetworkMagicLiveConnection     // 活跃连接魔数别名
-#define NetworkMagicValidationAlias NetworkMagicValidation             // 验证魔数别名
-#define NetworkMagicBinaryDataAlias NetworkMagicBinaryData             // 二进制数据魔数别名
-#define NetworkMagicMemoryValidationAlias NetworkMemoryValidationMagic   // 内存验证魔数别名
-#define NetworkMagicEventDataAlias NetworkMagicEventData                 // 事件数据魔数别名
-#define NetworkMagicBatchDataAlias NetworkMagicBatchData         // 批处理数据魔数别名
-#define NetworkMagicInvalidAlias NetworkMagicInvalid             // 无效数据包魔数别名
+#define NetworkMagicLiveConnectionAlias NetworkMagicLiveConnectionIdentifier     // 活跃连接魔数别名
+#define NetworkMagicValidationAlias NetworkMagicValidationIdentifier             // 验证魔数别名
+#define NetworkMagicBinaryDataAlias NetworkMagicBinaryDataIdentifier             // 二进制数据魔数别名
+#define NetworkMagicMemoryValidationAlias NetworkMemoryValidationMagicValue   // 内存验证魔数别名
+#define NetworkMagicEventDataAlias NetworkMagicEventIdentifier                 // 事件数据魔数别名
+#define NetworkMagicBatchDataAlias NetworkMagicBatchDataIdentifier         // 批处理数据魔数别名
+#define NetworkMagicInvalidAlias NetworkMagicInvalidIdentifier             // 无效数据包魔数别名
 /**
  * @brief 调试验证魔数
  * 
@@ -681,7 +681,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 
 // 网络连接状态常量
 #define NetworkProcessingStatusActiveFlag 0x01                // 处理状态活跃
-#define NetworkConnectionIdMaskValue 0xFFFF                   // 连接ID掩码
+#define NetworkConnectionIdentifierMaskValue 0xFFFF                   // 连接ID掩码
 #define NetworkSecurityValidationPendingValue 0x00            // 安全验证待处理
 #define NetworkSecurityValidationSuccessValue 0x01            // 安全验证成功
 #define NetworkValidationBasicMode 0x01                       // 基本验证模式
@@ -3630,9 +3630,9 @@ NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t Con
   NetworkByte PacketEncryptionBuffer[32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkHandle SecurityValidationResult = DecodeNetworkPacketData(PacketData, PacketEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
+  NetworkHandle SecurityValidationResult = DecodeNetworkPacketData(PacketData, PacketEncryptionBuffer, 1, NetworkMagicLiveConnectionIdentifier, NetworkMagicValidationIdentifier);
   if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodeNetworkPacketData(PacketData, PacketValidationBuffer, 0, NetworkMagicBinaryData, NetworkMemoryValidationMagic), (int)SecurityValidationResult == 0)) {
+     (SecurityValidationResult = DecodeNetworkPacketData(PacketData, PacketValidationBuffer, 0, NetworkMagicBinaryDataIdentifier, NetworkMemoryValidationMagicValue), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
@@ -3777,9 +3777,9 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t NetworkConnectionContext, Ne
   NetworkByte NetworkConnectionEncryptionBuffer[32];                     // 连接加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkPacketValidationResult = DecodeNetworkPacketData(PacketData, NetworkConnectionEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
+  NetworkPacketValidationResult = DecodeNetworkPacketData(PacketData, NetworkConnectionEncryptionBuffer, 1, NetworkMagicLiveConnectionIdentifier, NetworkMagicValidationIdentifier);
   if (((int)NetworkPacketValidationResult == 0) &&
-     (NetworkPacketValidationResult = DecodeNetworkPacketData(PacketData, NetworkConnectionSecurityBuffer, 0, NetworkMagicBinaryData, NetworkMemoryValidationMagic), (int)NetworkPacketValidationResult == 0)) {
+     (NetworkPacketValidationResult = DecodeNetworkPacketData(PacketData, NetworkConnectionSecurityBuffer, 0, NetworkMagicBinaryDataIdentifier, NetworkMemoryValidationMagicValue), (int)NetworkPacketValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
@@ -3848,10 +3848,10 @@ NetworkHandle HandleNetworkConnectionPacket(NetworkHandle ConnectionContext, int
   }
   else {
     // 处理状态限制外的数据包，需要解码处理
-    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkMagicLiveConnection, NetworkMagicEventData);
+    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkMagicLiveConnectionIdentifier, NetworkMagicEventIdentifier);
     if ((int)PacketProcessingResult == 0) {
       // 验证数据包头部
-      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkMagicBinaryData);
+      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkMagicBinaryDataIdentifier);
       if ((int)PacketProcessingResult == 0) {
         // 处理连接数据
         NetworkHandle ConnectionDataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
@@ -4099,12 +4099,12 @@ NetworkHandle DecodeNetworkPacketData(NetworkHandle *PacketData, NetworkByte *Ou
   // 验证数据包魔数
   if (PacketData && *PacketData != 0) {
     // 验证主魔数
-    if (PrimaryMagicNumber == NetworkMagicLiveConnection || PrimaryMagicNumber == NetworkMagicValidation) {
+    if (PrimaryMagicNumber == NetworkMagicLiveConnectionIdentifier || PrimaryMagicNumber == NetworkMagicValidationIdentifier) {
       MagicNumberValidationResult |= NetworkPacketFirstMagicValidMask;
     }
     
     // 验证次魔数
-    if (SecondaryMagicNumber == NetworkMagicBinaryData || SecondaryMagicNumber == NetworkMemoryValidationMagic) {
+    if (SecondaryMagicNumber == NetworkMagicBinaryDataIdentifier || SecondaryMagicNumber == NetworkMemoryValidationMagicValue) {
       MagicNumberValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
@@ -4204,7 +4204,7 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
  *
  * @note 这是简化实现，仅返回成功状态
  * @warning 实际应用中需要实现完整的头部验证逻辑
- * @see NetworkMagicLiveConnection, NetworkMagicValidation
+ * @see NetworkMagicLiveConnectionIdentifier, NetworkMagicValidationIdentifier
  */
 NetworkHandle ValidatePacketHeaderSecurity(int64_t ConnectionContext, int64_t PacketData, uint32_t HeaderMagicNumber)
 {

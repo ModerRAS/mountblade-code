@@ -7150,7 +7150,7 @@ uint8_t UtilityProcessSecondaryContext;
 uint8_t UtilityProcessSecondaryBuffer;
 uint8_t UtilityProcessSecondaryResult;
 uint8_t UtilityProcessSecondaryPointer;
-int UtilityDataProcessingErrorCode;
+int UtilityDataProcessingErrorCode;          // 工具系统数据处理错误代码
 
 // 函数: uint8_t UtilityCreateMemoryHeap;
 // 
@@ -7447,7 +7447,7 @@ uint32_t UtilityQueuePriority;
 // 
 // 返回值:
 //   无
-void ConfigureUtilityThreadPool;
+void ConfigureUtilityThreadPool;             // 配置工具系统线程池
 // 工具系统线程池配置变量
 uint32_t UtilityThreadPoolSize;
 uint32_t UtilityThreadPoolStatus;
@@ -8045,31 +8045,31 @@ void* UtilitySystemValidationPointer70;
 
 // 函数: void InitializeUtilitySystemBuffers();
 #define InitializeUtilitySystemBuffers FUN_180942810
-void InitializeUtilitySystemBuffers;
+void InitializeUtilitySystemBuffers;          // 初始化工具系统缓冲区
 void* UtilitySystemConfigBufferA;
 uint8_t UtilitySystemStatusFlagA;
 
 // 函数: void ConfigureUtilitySystemBufferA();
 #define ConfigureUtilitySystemBufferA FUN_180942890
-void ConfigureUtilitySystemBufferA;
+void ConfigureUtilitySystemBufferA;           // 配置工具系统缓冲区A
 void* UtilitySystemConfigBufferB;
 
 // 函数: void ConfigureUtilitySystemBufferB();
 #define ConfigureUtilitySystemBufferB FUN_1809428e0
-void ConfigureUtilitySystemBufferB;
+void ConfigureUtilitySystemBufferB;           // 配置工具系统缓冲区B
 void* UtilitySystemConfigBufferC;
 
 // 函数: void ConfigureUtilitySystemBufferC();
 #define ConfigureUtilitySystemBufferC FUN_180942930
-void ConfigureUtilitySystemBufferC;
+void ConfigureUtilitySystemBufferC;           // 配置工具系统缓冲区C
 
 // 函数: void ProcessUtilitySystemData();
 #define ProcessUtilitySystemData FUN_180942a20
-void ProcessUtilitySystemData;
+void ProcessUtilitySystemData;                // 处理工具系统数据
 
 // 函数: void ValidateUtilitySystemData();
 #define ValidateUtilitySystemData FUN_1809429f0
-void ValidateUtilitySystemData;
+void ValidateUtilitySystemData;               // 验证工具系统数据
 void* UtilitySystemValidateData1;
 void* UtilitySystemValidateDataPointer1;
 void* UtilitySystemValidateData2;
@@ -8085,7 +8085,7 @@ void* UtilitySystemProcessData4;
 
 // 函数: void ConfigureUtilitySystemCallbacks();
 #define ConfigureUtilitySystemCallbacks FUN_180942a60
-void ConfigureUtilitySystemCallbacks;
+void ConfigureUtilitySystemCallbacks;         // 配置工具系统回调函数
 void* UtilitySystemCallbackData1;
 void* UtilitySystemCallbackData2;
 void* UtilitySystemCallbackData3;
@@ -8093,7 +8093,7 @@ void* UtilitySystemCallbackData4;
 
 // 函数: void SetupUtilitySystemConfiguration();
 #define SetupUtilitySystemConfiguration FUN_180942a80
-void SetupUtilitySystemConfiguration;
+void SetupUtilitySystemConfiguration;          // 设置工具系统配置
 void* UtilitySystemConfigData1;
 uint8_t UtilitySystemConfigStatus1;
 void* UtilitySystemConfigData2;
@@ -8104,7 +8104,7 @@ void* UtilitySystemThreadData3;
 
 // 函数: void ProcessUtilitySystemFlags();
 #define ProcessUtilitySystemFlags FUN_180942fa0
-void ProcessUtilitySystemFlags;
+void ProcessUtilitySystemFlags;               // 处理工具系统标志
 void* UtilitySystemFlagData1;
 void* UtilitySystemFlagData2;
 void* UtilitySystemFlagData3;
@@ -8112,7 +8112,7 @@ void* UtilitySystemFlagData4;
 
 // 函数: void ValidateUtilitySystemFlags();
 #define ValidateUtilitySystemFlags FUN_180942fc0
-void ValidateUtilitySystemFlags;
+void ValidateUtilitySystemFlags;               // 验证工具系统标志
 void* UtilitySystemCleanupData1;
 uint8_t UtilitySystemCleanupStatus1;
 
@@ -8238,7 +8238,7 @@ uint8_t SystemConfigDataTableB;
 // 系统缓存数据表A
 uint8_t SystemCacheDataTableA;
 // 系统状态标志变量A
-char SystemStatusFlagA;
+char SystemStatusFlagA;                      // 系统状态标志A
 // 网络连接数据管理器
 uint8_t NetworkConnectionDataManager;
 // 网络状态监控器
