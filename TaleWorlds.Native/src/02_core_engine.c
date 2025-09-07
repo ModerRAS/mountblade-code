@@ -176319,7 +176319,14 @@ LAB_1801479b7:
 
 
 
-49590(long long CharacterCode,long long SystemBufferSizevoid FUN_180149590(long long CharacterCode,long long SystemBufferSize
+/**
+ * 处理字符代码的立方体贴图纹理管理
+ * 执行字符代码处理和立方体贴图纹理管理操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ */
+void ProcessCharacterCodeCubemapTextureManagement(long long CharacterCode, long long SystemBufferSize)
 {
   uint64_t Utf16Char;
   long long *BufferAllocationStatus;
@@ -176479,7 +176486,13 @@ uint64_t * ProcessSystemDataValidation(uint64_t *CharacterCode,unsigned long lon
 
 
 
-49b00(long long CharacterCodevoid FUN_180149b00(long long CharacterCode
+/**
+ * 处理字符代码的内存分配和编码验证
+ * 执行字符代码处理、内存分配和编码验证操作
+ * 
+ * @param CharacterCode 字符代码指针
+ */
+void ProcessCharacterCodeMemoryAllocationAndEncodingValidation(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   ushort MemoryAllocationIndex;
@@ -176556,7 +176569,14 @@ uint64_t * ProcessSystemDataValidation(uint64_t *CharacterCode,unsigned long lon
 
 
 
-49b31(long long CharacterCode,long long SystemBufferSizevoid FUN_180149b31(long long CharacterCode,long long SystemBufferSize
+/**
+ * 处理字符代码的内存匹配和地址掩码
+ * 执行字符代码处理、内存匹配和地址掩码操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ */
+void ProcessCharacterCodeMemoryMatchingAndAddressMask(long long CharacterCode, long long SystemBufferSize)
 {
   int *ReferenceCountPointer;
   ushort MemoryAllocationIndex;
