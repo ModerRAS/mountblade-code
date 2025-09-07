@@ -181063,7 +181063,15 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
 
 
 
-4e2a0(long long *CharacterCodevoid FUN_18014e2a0(long long *CharacterCode
+/**
+ * 处理字符系统缓冲区重置
+ * 
+ * 该函数负责重置字符系统缓冲区，遍历缓冲区分配状态，
+ * 清理相关数据，并确保系统状态一致性。
+ * 
+ * @param CharacterCode 字符代码指针，包含缓冲区重置信息
+ */
+void ProcessCharacterSystemBufferReset(long long *CharacterCode)
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
@@ -182196,7 +182204,22 @@ long long FUN_18014f3f0(long long *CharacterCode,long long *CharacterCodeSize,in
 
 
 
-long long FUN_18014f520(long long *CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * 处理UTF-8编码流
+ * 
+ * 该函数负责处理UTF-8编码流，根据不同的操作类型执行相应的处理：
+ * - 类型3：返回系统常量地址
+ * - 类型4：返回字符代码指针
+ * - 类型0：处理字符表指针和系统数据
+ * - 类型2：重置字符代码和大小
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针，指定操作类型
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long 返回处理结果或系统地址
+ */
+long long ProcessUtf8EncodingStream(long long *CharacterCode, long long *CharacterCodeSize, int Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
@@ -191360,12 +191383,12 @@ void ProcessCharacterEncodingAndBufferManagement(long long CharacterCode, int Sy
         ReferenceCountPointer2 = (int *)&MemoryAllocationIndexTable;
         IntegerValue4 = 0;
         do {
-          if (*ReferenceCountPointer3 == *ReferenceCountPointer2) goto LAB_180160234;
+          if (*ReferenceCountPointer3 == *ReferenceCountPointer2) goto CharacterValidationFound;
           IntegerValue4 = IntegerValue4 + 1;
           ReferenceCountPointer2 = ReferenceCountPointer2 + 1;
         } while ((long long)ReferenceCountPointer2 < 0x18098d77c);
         IntegerValue4 = -1;
-LAB_180160234:
+CharacterValidationFound:
         ArrayIndex = IntegerValue5 + 1;
         if (IntegerValue4 < 0) {
           ArrayIndex = IntegerValue5;
@@ -191381,7 +191404,7 @@ LAB_180160234:
   ReferenceCountPointer3 = Utf8SourcePointer;
   if (0 < (int)MemoryAllocationOffset) {
     do {
-      if (*ReferenceCountPointer3 == 0x38) goto LAB_18016028e;
+      if (*ReferenceCountPointer3 == 0x38) goto SpecialCharacterFound;
       IntegerValue5 = IntegerValue5 + 1;
       ReferenceCountPointer3 = ReferenceCountPointer3 + 1;
     } while (IntegerValue5 < (int)MemoryAllocationOffset);
@@ -191390,7 +191413,7 @@ LAB_180160234:
   Utf8SourcePointer[(long long)pStringComparisonResult3 + 6] = 3;
   MemoryAllocationOffset = MemoryAllocationOffset + 1;
   pStringComparisonResult3 = (int *)((long long)pStringComparisonResult3 + 1);
-LAB_18016028e:
+SpecialCharacterFound:
   IntegerValue5 = Utf8SourcePointer[0xc];
   IsSystemContextValid = false;
   StringComparisonResult0 = 0;
