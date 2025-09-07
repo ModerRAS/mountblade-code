@@ -134,6 +134,24 @@
 #define ProcessSystemDataValidation FUN_180122890
 
 /**
+ * @brief 清理系统事件处理
+ * 
+ * 该函数负责清理系统事件处理的资源和状态
+ * 
+ * @note 原始函数名：FUN_180126e40
+ */
+#define CleanupSystemEventProcessing FUN_180126e40
+
+/**
+ * @brief 清理系统内存分配
+ * 
+ * 该函数负责清理系统内存分配的相关资源
+ * 
+ * @note 原始函数名：FUN_180133e10
+ */
+#define CleanupSystemMemoryAllocation FUN_180133e10
+
+/**
  * @brief 处理UTF-8到UTF-16字符编码转换
  * 
  * 该函数负责处理UTF-8到UTF-16的字符编码转换操作
@@ -124508,9 +124526,9 @@ void FUN_180127440(void)
     *(uint8_t *)(DataStructureCounter + 0xaf) = 0;
   }
   FinalizeSystemEventQueue();
-  FUN_180126e40();
+  CleanupSystemEventProcessing();
   if (*(long long *)(SystemOffsetValue + 0x1cd8) != 0) {
-    FUN_180133e10();
+    CleanupSystemMemoryAllocation();
   }
   DataStructureCounter = SystemDataConfiguration;
   if (*(long long *)(SystemDataConfiguration + 0x1c78) != 0) {
@@ -245858,7 +245876,7 @@ bool FUN_180216464(void
   FUN_1802164f0(VectorRegisterDa,MemoryBlockIndex);
   if (MemoryBlockIndex == 0) {
     puStack_8 = (void *)0x1802164c4;
-    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10a20);
+    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,SystemConfigurationTemplateSenary);
     return false;
   }
   if (*(int *)(SystemConfigData + 0x9a0) == 0) goto LAB_18040698e;
@@ -245911,7 +245929,7 @@ unsigned long long ValidateSystemUtf16Configuration(void
 {
   unsigned long long Utf16Char;
   
-  Utf16Char = ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10a20);
+  Utf16Char = ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,SystemConfigurationTemplateSenary);
   return Utf16Char & 0xffffffffffffff00;
 }
 

@@ -20093,10 +20093,10 @@ SecurityValidationLabel:
     operationStatus = *(int *)(*(int64_t *)(dataBuffer + 0x2e8) + 0x2c);
     if (0 < operationStatus) {
       do {
-        StackEncryptionIndex = 0;
-        StackEncryptionPointer = &DataEncryptionTable;
-        StackEncryptionData = CONCAT44(StackEncryptionData._4_4_,operationFlagA);
-        arrayIndex = ValidateDataIntegrityA0(operationBase,&StackEncryptionPointer);
+        EncryptionIndex = 0;
+        EncryptionPointer = &DataEncryptionTable;
+        EncryptionData = CONCAT44(EncryptionData._4_4_,operationFlagA);
+        arrayIndex = ValidateDataIntegrityA0(operationBase,&EncryptionPointer);
         if (arrayIndex != 0) GOTO_SecurityCheckFailed;
         calculatedValue = calculatedValue + 1;
       } while (calculatedValue < operationStatus);
@@ -20108,26 +20108,26 @@ SecurityValidationLabel:
       exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + (int64_t)operationStatus * 8);
       dataContext = *(int64_t *)(exceptionHandlerContext + 0x68);
       if (((*(byte *)(exceptionHandlerContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
-        StackDataWordT = 0;
-        calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&StackDataWordT);
+        ContextDataWordT = 0;
+        calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&ContextDataWordT);
         if (calculatedValue != 0) GOTO_SecurityCheckFailed;
-        StackDataWordW = *(DataWord *)(exceptionHandlerContext + 0x10);
-        StackDataWordX = *(uint *)(exceptionHandlerContext + 0x14);
-        StackDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
-        StackDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
-        StackPointerBufferG = &SystemDataTableReference;
+        ContextDataWordW = *(DataWord *)(exceptionHandlerContext + 0x10);
+        ContextDataWordX = *(uint *)(exceptionHandlerContext + 0x14);
+        ContextDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
+        ContextDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
+        TablePointerG = &SystemDataTableReference;
         arrayIndex = loopIndex + 1;
-        StackDataWordAA = StackDataWordT;
+        ContextDataWordAA = ContextDataWordT;
         StackIntegerD = calculatedValue;
-        StackDataWordAB = operationFlagA;
+        ContextDataWordAB = operationFlagA;
         StackIntegerE = loopIndex;
-        loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferG);
-        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,StackFloatArrayC), loopIndex != 0))
+        loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerG);
+        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), loopIndex != 0))
         GOTO_SecurityCheckFailed;
-        if (StackFloatArrayC[0] != 1.0) {
-          StackDataWordU = CONCAT44(StackDataWordU._4_4_,StackFloatArrayC[0]);
+        if (ValidationFloatArrayC[0] != 1.0) {
+          ContextDataWordU = CONCAT44(ContextDataWordU._4_4_,ValidationFloatArrayC[0]);
           StackPointerBufferH = &SystemValidationDataTableA1;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
           StackIntegerF = loopIndex;
           loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (loopIndex != 0) GOTO_SecurityCheckFailed;
@@ -20135,8 +20135,8 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x28) != '\0') {
           StackIntegerF = 0;
           StackPointerBufferH = &SystemValidationDataTableA4;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
-          StackDataWordU = CONCAT71(StackDataWordU._1_7_,1);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
+          ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
@@ -20144,8 +20144,8 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x29) != '\0') {
           StackIntegerF = 0;
           StackPointerBufferH = &SystemValidationDataTableA5;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
-          StackDataWordU = CONCAT71(StackDataWordU._1_7_,1);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
+          ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         }
@@ -20155,26 +20155,26 @@ SecurityValidationLabel:
       exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x50) + (int64_t)operationStatus * 8);
       dataContext = *(int64_t *)(exceptionHandlerContext + 0x68);
       if (((*(byte *)(exceptionHandlerContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
-        StackDataWordT = 0;
-        calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&StackDataWordT);
+        ContextDataWordT = 0;
+        calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&ContextDataWordT);
         if (calculatedValue != 0) GOTO_SecurityCheckFailed;
-        StackDataWordW = *(DataWord *)(exceptionHandlerContext + 0x10);
-        StackDataWordX = *(uint *)(exceptionHandlerContext + 0x14);
-        StackDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
-        StackDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
-        StackPointerBufferG = &SystemDataTableReference;
+        ContextDataWordW = *(DataWord *)(exceptionHandlerContext + 0x10);
+        ContextDataWordX = *(uint *)(exceptionHandlerContext + 0x14);
+        ContextDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
+        ContextDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
+        TablePointerG = &SystemDataTableReference;
         arrayIndex = loopIndex + 1;
-        StackDataWordAA = StackDataWordT;
+        ContextDataWordAA = ContextDataWordT;
         StackIntegerD = calculatedValue;
-        StackDataWordAB = operationFlagA;
+        ContextDataWordAB = operationFlagA;
         StackIntegerE = loopIndex;
-        loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferG);
-        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,StackFloatArrayC), loopIndex != 0))
+        loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerG);
+        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), loopIndex != 0))
         GOTO_SecurityCheckFailed;
-        if (StackFloatArrayC[0] != 1.0) {
-          StackDataWordU = CONCAT44(StackDataWordU._4_4_,StackFloatArrayC[0]);
+        if (ValidationFloatArrayC[0] != 1.0) {
+          ContextDataWordU = CONCAT44(ContextDataWordU._4_4_,ValidationFloatArrayC[0]);
           StackPointerBufferH = &SystemValidationDataTableA1;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
           StackIntegerF = loopIndex;
           loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (loopIndex != 0) GOTO_SecurityCheckFailed;
@@ -20182,8 +20182,8 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x28) != '\0') {
           StackIntegerF = 0;
           StackPointerBufferH = &SystemValidationDataTableA4;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
-          StackDataWordU = CONCAT71(StackDataWordU._1_7_,1);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
+          ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
@@ -20191,8 +20191,8 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x29) != '\0') {
           StackIntegerF = 0;
           StackPointerBufferH = &SystemValidationDataTableA5;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
-          StackDataWordU = CONCAT71(StackDataWordU._1_7_,1);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
+          ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         }
@@ -20202,26 +20202,26 @@ SecurityValidationLabel:
       exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x60) + (int64_t)operationStatus * 8);
       dataContext = *(int64_t *)(exceptionHandlerContext + 0x68);
       if (((*(byte *)(exceptionHandlerContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
-        StackDataWordT = 0;
-        calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&StackDataWordT);
+        ContextDataWordT = 0;
+        calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&ContextDataWordT);
         if (calculatedValue != 0) GOTO_SecurityCheckFailed;
-        StackDataWordW = *(DataWord *)(exceptionHandlerContext + 0x10);
-        StackDataWordX = *(uint *)(exceptionHandlerContext + 0x14);
-        StackDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
-        StackDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
-        StackPointerBufferG = &SystemDataTableReference;
+        ContextDataWordW = *(DataWord *)(exceptionHandlerContext + 0x10);
+        ContextDataWordX = *(uint *)(exceptionHandlerContext + 0x14);
+        ContextDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
+        ContextDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
+        TablePointerG = &SystemDataTableReference;
         arrayIndex = loopIndex + 1;
-        StackDataWordAA = StackDataWordT;
+        ContextDataWordAA = ContextDataWordT;
         StackIntegerD = calculatedValue;
-        StackDataWordAB = operationFlagA;
+        ContextDataWordAB = operationFlagA;
         StackIntegerE = loopIndex;
-        loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferG);
-        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,StackFloatArrayC), loopIndex != 0))
+        loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerG);
+        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), loopIndex != 0))
         GOTO_SecurityCheckFailed;
-        if (StackFloatArrayC[0] != 1.0) {
-          StackDataWordU = CONCAT44(StackDataWordU._4_4_,StackFloatArrayC[0]);
+        if (ValidationFloatArrayC[0] != 1.0) {
+          ContextDataWordU = CONCAT44(ContextDataWordU._4_4_,ValidationFloatArrayC[0]);
           StackPointerBufferH = &SystemValidationDataTableA1;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
           StackIntegerF = loopIndex;
           loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (loopIndex != 0) GOTO_SecurityCheckFailed;
@@ -20229,8 +20229,8 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x28) != '\0') {
           StackIntegerF = 0;
           StackPointerBufferH = &SystemValidationDataTableA4;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
-          StackDataWordU = CONCAT71(StackDataWordU._1_7_,1);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
+          ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
@@ -20238,8 +20238,8 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x29) != '\0') {
           StackIntegerF = 0;
           StackPointerBufferH = &SystemValidationDataTableA5;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
-          StackDataWordU = CONCAT71(StackDataWordU._1_7_,1);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
+          ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         }
@@ -20249,26 +20249,26 @@ SecurityValidationLabel:
       exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x70) + (int64_t)operationStatus * 8);
       dataContext = *(int64_t *)(exceptionHandlerContext + 0x68);
       if (((*(byte *)(exceptionHandlerContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
-        StackDataWordT = 0;
-        calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&StackDataWordT);
+        ContextDataWordT = 0;
+        calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&ContextDataWordT);
         if (calculatedValue != 0) GOTO_SecurityCheckFailed;
-        StackDataWordW = *(DataWord *)(exceptionHandlerContext + 0x10);
-        StackDataWordX = *(uint *)(exceptionHandlerContext + 0x14);
-        StackDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
-        StackDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
-        StackPointerBufferG = &SystemDataTableReference;
+        ContextDataWordW = *(DataWord *)(exceptionHandlerContext + 0x10);
+        ContextDataWordX = *(uint *)(exceptionHandlerContext + 0x14);
+        ContextDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
+        ContextDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
+        TablePointerG = &SystemDataTableReference;
         arrayIndex = loopIndex + 1;
-        StackDataWordAA = StackDataWordT;
+        ContextDataWordAA = ContextDataWordT;
         StackIntegerD = calculatedValue;
-        StackDataWordAB = operationFlagA;
+        ContextDataWordAB = operationFlagA;
         StackIntegerE = loopIndex;
-        loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferG);
-        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,StackFloatArrayC), loopIndex != 0))
+        loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerG);
+        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,ValidationFloatArrayC), loopIndex != 0))
         GOTO_SecurityCheckFailed;
-        if (StackFloatArrayC[0] != 1.0) {
-          StackDataWordU = CONCAT44(StackDataWordU._4_4_,StackFloatArrayC[0]);
+        if (ValidationFloatArrayC[0] != 1.0) {
+          ContextDataWordU = CONCAT44(ContextDataWordU._4_4_,ValidationFloatArrayC[0]);
           StackPointerBufferH = &SystemValidationDataTableA1;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
           StackIntegerF = loopIndex;
           loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (loopIndex != 0) GOTO_SecurityCheckFailed;
@@ -20276,8 +20276,8 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x28) != '\0') {
           StackIntegerF = 0;
           StackPointerBufferH = &SystemValidationDataTableA4;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
-          StackDataWordU = CONCAT71(StackDataWordU._1_7_,1);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
+          ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
@@ -20285,8 +20285,8 @@ SecurityValidationLabel:
         if (*(char *)(dataContext + 0x29) != '\0') {
           StackIntegerF = 0;
           StackPointerBufferH = &SystemValidationDataTableA5;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
-          StackDataWordU = CONCAT71(StackDataWordU._1_7_,1);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
+          ContextDataWordU = CONCAT71(ContextDataWordU._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         }
@@ -20299,26 +20299,26 @@ SecurityValidationLabel:
       exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0xc0) + (int64_t)operationStatus * 8);
       dataContext = *(int64_t *)(exceptionHandlerContext + 0x48);
       if (dataContext != 0) {
-        StackDataWordT = 0;
-        calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&StackDataWordT);
+        ContextDataWordT = 0;
+        calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&ContextDataWordT);
         if (calculatedValue != 0) break;
-        StackDataWordW = *(DataWord *)(exceptionHandlerContext + 0x10);
-        StackDataWordX = *(uint *)(exceptionHandlerContext + 0x14);
-        StackDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
-        StackDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
-        StackPointerBufferG = &SystemDataValidationReference;
+        ContextDataWordW = *(DataWord *)(exceptionHandlerContext + 0x10);
+        ContextDataWordX = *(uint *)(exceptionHandlerContext + 0x14);
+        ContextDataWordY = *(DataWord *)(exceptionHandlerContext + 0x18);
+        ContextDataWordZ = *(DataWord *)(exceptionHandlerContext + 0x1c);
+        TablePointerG = &SystemDataValidationReference;
         arrayIndex = loopIndex + 1;
-        StackDataWordAA = StackDataWordT;
+        ContextDataWordAA = ContextDataWordT;
         StackIntegerD = calculatedValue;
-        StackDataWordAB = operationFlagA;
+        ContextDataWordAB = operationFlagA;
         StackIntegerE = loopIndex;
-        loopIndex = ValidateDataIntegrityA0(operationBase,&StackPointerBufferG);
-        if ((loopIndex != 0) || (calculatedValue = ValidateDataA2(dataContext,StackFloatArrayC,0), calculatedValue != 0)) break;
+        loopIndex = ValidateDataIntegrityA0(operationBase,&TablePointerG);
+        if ((loopIndex != 0) || (calculatedValue = ValidateDataA2(dataContext,ValidationFloatArrayC,0), calculatedValue != 0)) break;
         loopIndex = arrayIndex;
-        if (StackFloatArrayC[0] != 1.0) {
-          StackDataWordU = CONCAT44(StackDataWordU._4_4_,StackFloatArrayC[0]);
+        if (ValidationFloatArrayC[0] != 1.0) {
+          ContextDataWordU = CONCAT44(ContextDataWordU._4_4_,ValidationFloatArrayC[0]);
           StackPointerBufferH = &SystemValidationDataTableA7;
-          StackDataWordV = CONCAT44(StackDataWordV._4_4_,StackDataWordT);
+          ContextDataWordV = CONCAT44(ContextDataWordV._4_4_,ContextDataWordT);
           StackIntegerF = calculatedValue;
           calculatedValue = ValidateDataIntegrityA0(operationBase,&StackPointerBufferH);
           if (calculatedValue != 0) break;
@@ -21773,11 +21773,11 @@ OperationFailedLabel:
         do {
           stackDataBuffer278 = 0;
           dataContext = operationBase[4];
-          pStackDataWordZ = &SystemProcessingBuffer;
+          pContextDataWordZ = &SystemProcessingBuffer;
           stackDataBuffer270 = StackDataBufferA[0];
           if (((char)dataContext == '\0') && (operationStatus = ValidateSystemDataA0(operationBase,1), operationStatus != 0))
           goto ProcessCheckpointResourceValidation;
-          operationStatus = (**(FunctionPointer**)(pStackDataWordZ + 0x10))(&pStackDataWordZ,DataTransferBufferA,0x200);
+          operationStatus = (**(FunctionPointer**)(pContextDataWordZ + 0x10))(&pContextDataWordZ,DataTransferBufferA,0x200);
           ProcessData((int64_t)DataTransferBufferA + (int64_t)operationStatus,0x200 - operationStatus,10);
           operationStatus = (**(FunctionPointer**)(*operationBase + 8))(operationBase,DataTransferBufferA);
           if (operationStatus != 0) goto ProcessCheckpointResourceValidation;
@@ -22146,18 +22146,18 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           ValidationStatusPointerA = *validationStatusPointer;
           ValidationStatusPointerB = validationStatusPointer[1];
           ValidationStatusPointerC = validationStatusPointer[2];
-          StackDataWordAB = validationStatusPointer[3];
+          ContextDataWordAB = validationStatusPointer[3];
           lStack_294 = *(int64_t *)(exceptionHandlerContext5 + 0x260 + (int64_t)exceptionHandlerContextPointer9);
-          StackDataWordW = *(uint *)(exceptionHandlerContext5 + 0x268 + (int64_t)exceptionHandlerContextPointer9);
+          ContextDataWordW = *(uint *)(exceptionHandlerContext5 + 0x268 + (int64_t)exceptionHandlerContextPointer9);
           exceptionHandlerContext1 = exceptionHandlerContext1 - lStack_294;
           if (exceptionHandlerContext1 == 0) {
-            exceptionHandlerContext1 = (statusCounter & SystemCleanupFlag) - (uint64_t)StackDataWordW;
+            exceptionHandlerContext1 = (statusCounter & SystemCleanupFlag) - (uint64_t)ContextDataWordW;
           }
           exceptionHandlerContext5 = operationBase[4];
-          StackDataWordX = exceptionHandlerContext1 == 0;
+          ContextDataWordX = exceptionHandlerContext1 == 0;
           fStack_2c8 = ValidationFloatValue8;
           if (((char)exceptionHandlerContext5 == '\0') &&
-             (iterationCount = ValidateSystemDataA0(operationBase,CONCAT71((uint7)(uint3)(StackDataWordW >> 8),1)), iterationCount != 0
+             (iterationCount = ValidateSystemDataA0(operationBase,CONCAT71((uint7)(uint3)(ContextDataWordW >> 8),1)), iterationCount != 0
              )) goto ProcessCheckpointBufferValidation;
           iterationCount = (**(FunctionPointer**)(StackPointerVariableE + 0x10))(&StackPointerVariableE,DataTransferBufferA,0x200);
           ProcessData(DataTransferBufferA + iterationCount,0x200 - iterationCount,10);
@@ -22200,8 +22200,8 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             exceptionHandlerContext1 = operationBase[4];
             if ((char)exceptionHandlerContext1 == '\0') {
               *(ByteFlag *)(operationBase + 4) = 1;
-              calculatedValue = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + 0x78),aStackDataWordV);
-              if (((calculatedValue != 0) || (calculatedValue = ProcessDataBufferA0(aStackDataWordV[0],&StackLongIntegerC,0), calculatedValue != 0)
+              calculatedValue = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + 0x78),aContextDataWordV);
+              if (((calculatedValue != 0) || (calculatedValue = ProcessDataBufferA0(aContextDataWordV[0],&StackLongIntegerC,0), calculatedValue != 0)
                   ) || (calculatedValue = (**(FunctionPointer**)(*operationBase + 0x10))(operationBase), calculatedValue != 0))
               goto ProcessCheckpointBufferValidation;
               statusCounter = (uint64_t)(StackLongIntegerC * 48000) /
@@ -33189,13 +33189,13 @@ uint64_t ValidateAndProcessDataOperation(int64_t operationBase,DataBuffer *dataB
     if ((((int)memoryBaseAddress == 0) && (memoryBaseAddress = ValidateSystemOperationA0(dataBuffer,operationBase + 0x38,0), (int)memoryBaseAddress == 0)) &&
        (memoryBaseAddress = ValidateSystemOperationA0(dataBuffer,operationBase + 0x48,0), (int)memoryBaseAddress == 0)) {
       if (*(uint *)(dataBuffer + 8) < 0x84) {
-        StackPointerBufferG = (DataWord *)0x0;
+        TablePointerG = (DataWord *)0x0;
         StackIntegerD = 0;
-        validationStatus = InitializeSystemComponentA0(dataBuffer,&StackPointerBufferG,0);
+        validationStatus = InitializeSystemComponentA0(dataBuffer,&TablePointerG,0);
         memoryBaseAddress = (uint64_t)validationStatus;
         if (validationStatus != 0) {
 ValidationErrorHandler5:
-          CleanupSystemResourcesA0(&StackPointerBufferG);
+          CleanupSystemResourcesA0(&TablePointerG);
           return memoryBaseAddress;
         }
         operationResultPointer = StackPointerWordAF;
@@ -105005,9 +105005,9 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：存储无符号整型联合体的栈数据
 #define StackUnsignedIntegerUnionB auStack_238
 
-// 原始变量名：aStackDataWordV - 栈数据字数组V
+// 原始变量名：aContextDataWordV - 栈数据字数组V
 // 功能：存储数据字数组的栈变量
-#define StackDataWordArrayV aStackDataWordV
+#define StackDataWordArrayV aContextDataWordV
 
 // 原始变量名：uStack_150 - 栈数据字H
 // 功能：存储系统状态的存储数据字
@@ -105073,45 +105073,45 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferC uStack_e4
 
-// 原始变量名：StackDataWordT - 栈数据字T
+// 原始变量名：ContextDataWordT - 栈数据字T
 // 功能：存储资源分配过程中的临时数据字
-#define StackDataWordT StackResourceAllocationTemp
+#define ContextDataWordT StackResourceAllocationTemp
 
 // 原始变量名：uStack_2e0 - 栈数据字U
 // 功能：存储浮点数据处理过程中的临时数据字
-#define StackDataWordU StackFloatProcessingData
+#define ContextDataWordU StackFloatProcessingData
 
 // 原始变量名：uStack_2e8 - 栈数据字V
 // 功能：存储数据验证过程中的临时数据字
-#define StackDataWordV StackDataValidationTemp2
+#define ContextDataWordV StackDataValidationTemp2
 
 // 原始变量名：uStack_28c - 栈数据字W
 // 功能：存储异常上下文标志数据字
-#define StackDataWordW StackExceptionContextFlag1
+#define ContextDataWordW StackExceptionContextFlag1
 
 // 原始变量名：uStack_288 - 栈数据字X
 // 功能：存储异常上下文标志数据字
-#define StackDataWordX StackExceptionContextFlag2
+#define ContextDataWordX StackExceptionContextFlag2
 
 // 原始变量名：uStack_284 - 栈数据字Y
 // 功能：存储异常上下文数据字
-#define StackDataWordY StackExceptionContextData9
+#define ContextDataWordY StackExceptionContextData9
 
 // 原始变量名：uStack_280 - 栈数据字Z
 // 功能：存储异常上下文数据字
-#define StackDataWordZ StackExceptionContextData10
+#define ContextDataWordZ StackExceptionContextData10
 
 // 原始变量名：uStack_27c - 栈数据字AA
 // 功能：存储资源分配结果数据字
-#define StackDataWordAA StackResourceAllocationResult
+#define ContextDataWordAA StackResourceAllocationResult
 
 // 原始变量名：uStack_298 - 栈数据字AB
 // 功能：存储操作状态标志数据字
-#define StackDataWordAB StackOperationStatusFlag
+#define ContextDataWordAB StackOperationStatusFlag
 
 // 原始变量名：puStack_2a8 - 栈指针缓冲区G
 // 功能：存储系统表指针的栈缓冲区
-#define StackPointerBufferG StackSystemTablePointer
+#define TablePointerG StackSystemTablePointer
 
 // 原始变量名：iStack_2a0 - 栈整型D
 // 功能：存储验证结果的栈变量
@@ -105131,7 +105131,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 原始变量名：afStack_304 - 栈浮点数组C
 // 功能：存储同步浮点数组的栈数据
-#define StackFloatArrayC StackSynchronizationArray
+#define ValidationFloatArrayC StackSynchronizationArray
 
 // 原始变量名：piStack_6f0 - 栈整型指针C
 // 功能：存储数组索引指针的栈变量
