@@ -220501,7 +220501,7 @@ long long * FUN_180198890(uint64_t SystemContextPointer,long long *Utf8BufferSiz
     (**(code **)(*BufferAllocationStatus + 0x28))(BufferAllocationStatus);
   }
   if (*Utf8BufferSize == 0) {
-    FUN_180626ee0(&UNK_180a0b200);
+    FUN_180626ee0(&SystemEventTemplateSecondary);
   }
   pPerformanceCounterValue = (long long *)*Utf8BufferSize;
   if (pPerformanceCounterValue != (long long *)0x0) {
@@ -220592,7 +220592,7 @@ void FUN_180198980(long long SystemContextPointer,long long *Utf8BufferSize,uint
     }
   }
   else {
-    InitializeSystemEvent(&UNK_180a0b258);
+    InitializeSystemEvent(&SystemEventTemplateTertiary);
   }
                     // WARNING: Could not recover jumptable at 0x000180198b86. Too many branches
                     // WARNING: Treating indirect jump as call
