@@ -3227,6 +3227,16 @@ const void* const SystemDataTablePointerFileSystem = (void*)0x180a06700;
 const void* const SystemDataTablePointerAudioSystem = (void*)0x180a06730;
 const void* const SystemDataTablePointerInputSystem = (void*)0x180a06720;
 const void* const SystemDataTablePointerDatabaseConnection = (void*)0x180a06758;
+
+// 标签语义化定义
+// 原始标签：LAB_180077fcf - 字符串缓冲区处理标签
+#define StringProcessingComplete LAB_180077fcf
+
+// 原始标签：LAB_1800782d4 - 系统内存分配检查标签
+#define SystemMemoryCheck LAB_1800782d4
+
+// 原始标签：LAB_1800782e0 - 字符变量设置标签
+#define CharacterVariableSet LAB_1800782e0
 const void* const SystemDataTablePointerNetworkProtocol = (void*)0x180a06740;
 const void* const SystemDataTablePointerVideoSystem = (void*)0x180a06794;
 const void* const SystemDataTablePointerPhysicsEngine = (void*)0x180a06788;
@@ -47557,10 +47567,10 @@ unsigned long long Process3DTransformMatrixAndVectorCalculation(long long Charac
       if (MemoryFlagD == 0) {
         BufferIndex = GetMemoryBlockData(*(void *)(CharacterCode + 0x1b0));
       }
-      if (*(int *)(BufferIndex + 0x1fc) * 3 != 0) goto LAB_180077fcf;
+      if (*(int *)(BufferIndex + 0x1fc) * 3 != 0) goto StringProcessingComplete;
     }
     if ((*(byte *)(CharacterCode + 0x100) & 4) != 0) {
-LAB_180077fcf:
+StringProcessingComplete:
       MemoryBufferC = *(long long *)(CharacterCode + 0x1b8);
       StringBuffer = *(char *)(MemoryBufferC + 0x38c);
       if (StringBuffer == '\t') {
@@ -47628,7 +47638,7 @@ LAB_180077fcf:
     if (*(char *)(MemoryBufferC + 0x38c) == '\t') {
       ProcessingResult = GetSystemStringBuffer(MemoryBufferC);
       *(char *)(MemoryBufferC + 0x38c) = (char)ProcessingResult;
-      if ((char)ProcessingResult == '\t') goto LAB_180077fcf;
+      if ((char)ProcessingResult == '\t') goto StringProcessingComplete;
     }
   }
   return ProcessingResult & 0xffffffffffffff00;
@@ -47832,7 +47842,7 @@ void ProcessCharacterCodeMemoryManagement(long long CharacterCode
                                *(float *)(CharacterTablePointer + 0x98) < 0.0);
   }
   if (*(long long *)(SystemDataTablePointer + 0x1b8) == 0) {
-LAB_1800782d4:
+SystemMemoryCheck:
     CurrentByteValue0 = (*(byte *)(CharacterCode + 0xfd) & 2) != 0;
   }
   else {
@@ -47946,7 +47956,7 @@ void InitializeCharacterCodeMemoryManagement(long long CharacterCode
                                *(float *)(CharacterTablePointer + 0x98) < 0.0);
   }
   if (*(long long *)(CharacterCode + 0x1b8) == 0) {
-LAB_1800782d4:
+SystemMemoryCheck:
     IsSystemContextValid = (*(byte *)(SystemContext + 0xfd) & 2) != 0;
   }
   else {
@@ -48061,7 +48071,7 @@ void ProcessFloatDataStructureAndParameterCalculationWithFloats(float CharacterC
                              (in_XMM5_Da * Utf16EndPointer - *(float *)(ProcessingResult + 0x74) * in_XMM4_Da) *
                              *(float *)(ProcessingResult + 0x98) < SecondaryFloatValue);
   if (*(long long *)(in_RCX + 0x1b8) == 0) {
-LAB_1800782d4:
+SystemMemoryCheck:
     IsSystemContextValid = (*(byte *)(SystemContext + 0xfd) & 2) != 0;
   }
   else {
@@ -48163,7 +48173,7 @@ void ProcessDataContextManagementAndFloatValidation(long long CharacterCode
   float SecondaryFloatValue;
   
   if (*(long long *)(CharacterCode + 0x1b8) == 0) {
-LAB_1800782d4:
+SystemMemoryCheck:
     IsSystemContextValid = (*(byte *)(SystemContext + 0xfd) & 2) != 0;
   }
   else {

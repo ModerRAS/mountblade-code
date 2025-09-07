@@ -8976,19 +8976,19 @@ uint8_t SystemExceptionHandlerStatusA3;
 uint8_t SystemPerformanceCounterA;
 // 异常处理列表
 void *ExceptionHandlerList;
-// 系统内存管理表A0
-uint8_t SystemMemoryManagementTableA0;
-// 系统资源管理表A0
-uint8_t SystemResourceManagerTableA0;
+// 系统内存管理表主索引
+uint8_t SystemMemoryManagementTablePrimaryIndex;
+// 系统资源管理表主索引
+uint8_t SystemResourceManagerTablePrimaryIndex;
 uint8_t SystemPerformanceCounterB;
 uint8_t SystemExceptionCounterA;
 uint8_t SystemExceptionCounterB;
 uint8_t SystemExceptionCounterC;
 uint8_t NetworkConnectionStatus;
-// 系统内存管理表A1
-uint8_t SystemMemoryManagementTableA1;
-// 系统资源管理表A1
-uint8_t SystemResourceManagerTableA1;
+// 系统内存管理表次索引
+uint8_t SystemMemoryManagementTableSecondaryIndex;
+// 系统资源管理表次索引
+uint8_t SystemResourceManagerTableSecondaryIndex;
 // 系统配置管理表A0
 uint8_t SystemConfigurationManagementTableA0;
 // 系统状态管理表A0
@@ -9005,11 +9005,11 @@ uint8_t SystemExceptionStatusA;
 uint8_t SystemExceptionStatusB;
 uint8_t SystemExceptionStatusC;
 uint8_t SystemExceptionStatusD;
-// 系统内存管理表A2
-uint8_t SystemMemoryManagementTableA2;
+// 系统内存管理表第三索引
+uint8_t SystemMemoryManagementTableTertiaryIndex;
 uint8_t SystemDataBufferB;
-// 系统资源管理表A2
-uint8_t SystemResourceManagerTableA2;
+// 系统资源管理表第三索引
+uint8_t SystemResourceManagerTableTertiaryIndex;
 // 系统配置管理表A1
 uint8_t SystemConfigurationManagementTableA1;
 // 系统状态管理表A1
@@ -73662,7 +73662,7 @@ void CleanupSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908de0(DataBuffer operationBase,int64_t dataBuffer)
+void ResetSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x110) = &DefaultExceptionHandlerB;
@@ -73671,7 +73671,7 @@ void Unwind_180908de0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908df0(DataBuffer operationBase,int64_t dataBuffer)
+void UpdateSystemConfigurationB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -73756,7 +73756,7 @@ void ProcessMemoryResourceReferenceCountAtOffsetA0(DataBuffer operationBase,int6
 
 
 
-void Unwind_180908e10(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateDataHandlerStateB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
@@ -73768,7 +73768,7 @@ void Unwind_180908e10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteSystemCallbacksB0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -73832,7 +73832,7 @@ void CleanupExceptionResourceReferenceCountE50(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_180908e60(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -73868,7 +73868,7 @@ void Unwind_180908e60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908e70(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupSystemResourceDataB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -100013,6 +100013,21 @@ void Unwind_180910b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 重置异常处理器上下文层1
+ * 
+ * 该函数负责重置异常处理器的第一层上下文，包括清理处理器状态、
+ * 重置处理器指针，并确保异常处理链的正确性。它会处理多层异常
+ * 处理嵌套情况，确保每一层的异常处理器都能正确重置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，用于传递清理标志
+ * 
+ * @note 原始函数名：Unwind_180910b40
+ * @note 这是一个异常展开（unwind）处理函数，用于多层异常处理
+ */
 void ResetExceptionHandlerContextLayer1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
