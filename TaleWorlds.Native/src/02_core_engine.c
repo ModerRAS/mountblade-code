@@ -159297,7 +159297,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode)
 
 
 
-356dc(long long CharacterCodevoid FUN_1801356dc(long long CharacterCode
+void FUN_1801356dc(long long CharacterCode
 {
   int *ReferenceCountPointer;
   long long *BufferAllocationStatus;
@@ -159394,7 +159394,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode)
 
 
 
-35748(voidvoid FUN_180135748(void
+void FUN_180135748(void
 {
   int *ReferenceCountPointer;
   long long *BufferAllocationStatus;
@@ -199998,41 +199998,49 @@ LAB_1801732ce:
 
 
 
-72cd8(voidvoid FUN_180172cd8(void
+/**
+ * @brief 处理Unicode字符点和内存管理操作
+ * 
+ * 该函数负责处理Unicode字符点的内存管理操作，包括字符验证、
+ * 内存分配和系统资源清理。函数处理鼠标移动点和字符编码转换。
+ * 
+ * @note 原始函数名：FUN_180172cd8
+ */
+void ProcessUnicodeCharacterAndMemoryManagement(void
 {
-  int *ReferenceCountPointer;
+  int *CharacterReferencePointer;
   int CharacterByteCount;
   uint64_t UnicodeCodePoint;
-  uint32_t MemoryAddressMask;
-  int RemainingSpace;
-  int *pValidationResult;
-  long long StackFramePointer;
-  long long SourceIndex;
-  int ProcessIterationCount;
-  int ComputedResult;
-  int IntegerValue9;
-  uint32_t UnsignedStackParameter3C;
-  uint32_t SystemParameter2;
+  uint32_t SystemMemoryMask;
+  int AvailableSpace;
+  int *ValidationResultPointer;
+  long long SystemStackPointer;
+  long long DataSourceIndex;
+  int ProcessingIterationCount;
+  int CalculatedResult;
+  int SystemIntegerValue;
+  uint32_t StackParameter;
+  uint32_t SystemParameter;
   uint32_t PrimaryDataStorage;
-  int StackOffset5C;
+  int StackOffset;
   
-  ComputedResult = 0;
-  MemoryAddressMask = GetMessageTime();
-  UnicodeCodePoint = *(void *)(SourceIndex + 0xa4);
+  CalculatedResult = 0;
+  SystemMemoryMask = GetMessageTime();
+  UnicodeCodePoint = *(void *)(DataSourceIndex + 0xa4);
   ClientToScreen();
   uStack000000000000003c = PrimaryDataStorage;
-  *(unsigned long long *)(SourceIndex + 0xa4) = CONCAT44(PrimaryDataStorage,SystemParameter2);
+  *(unsigned long long *)(DataSourceIndex + 0xa4) = CONCAT44(PrimaryDataStorage,SystemParameter);
   ClientToScreen();
-  *(uint32_t *)(StackFramePointer + 0x164) = uStack000000000000003c;
-  *(uint32_t *)(StackFramePointer + 0x168) = MemoryAddressMask;
-  *(uint32_t *)(StackFramePointer + 0x160) = SystemParameter2;
-  *(void *)(StackFramePointer + 0x170) = 0;
-  RemainingSpace = GetMouseMovePointsEx(0x18,StackFramePointer + 0x160,StackFramePointer + 0x180,0x40,1);
-  if ((1 < RemainingSpace) && (0 < RemainingSpace + -1)) {
-    pValidationResult = (int *)(StackFramePointer + 0x19c);
+  *(uint32_t *)(SystemStackPointer + 0x164) = uStack000000000000003c;
+  *(uint32_t *)(SystemStackPointer + 0x168) = SystemMemoryMask;
+  *(uint32_t *)(SystemStackPointer + 0x160) = SystemParameter;
+  *(void *)(SystemStackPointer + 0x170) = 0;
+  AvailableSpace = GetMouseMovePointsEx(0x18,SystemStackPointer + 0x160,SystemStackPointer + 0x180,0x40,1);
+  if ((1 < AvailableSpace) && (0 < AvailableSpace + -1)) {
+    ValidationResultPointer = (int *)(SystemStackPointer + 0x19c);
     iStack000000000000005c = (int)((unsigned long long)UnicodeCodePoint >> 0x20);
-    StringLength = ComputedResult;
-    SystemOperationResult = ComputedResult;
+    StringLength = CalculatedResult;
+    SystemOperationResult = CalculatedResult;
     do {
       if (((uint)pValidationResult[-5] < *(uint *)(SourceIndex + 0xa0)) ||
          (((pValidationResult[-5] == *(uint *)(SourceIndex + 0xa0) && (pValidationResult[-7] == (int)UnicodeCodePoint)) &&
