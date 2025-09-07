@@ -72,6 +72,13 @@
 #define ResourceDescriptorQuaternaryOffset 0x1c
 #define SystemContextBufferOffset 8
 
+// 组件偏移量常量定义
+#define COMPONENT_DATA_OFFSET 3                 // 组件数据偏移量
+#define COMPONENT_STATUS_OFFSET 0xe4             // 组件状态偏移量
+#define COMPONENT_LIST_OFFSET 0x4d8             // 组件列表偏移量
+#define COMPONENT_COUNT_OFFSET 0x4e4            // 组件计数偏移量
+#define COMPONENT_CAPACITY_OFFSET 0x4e8          // 组件容量偏移量
+
 // 异常处理相关常量定义
 #define ExceptionCallbackOffset 0xb0
 #define ExceptionContextOffset 0xa0
@@ -105370,3 +105377,20 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始函数名：Unwind_1809092b0 - 系统优化函数
 // 功能：优化系统性能，调整系统参数
 #define OptimizeSystemA Unwind_1809092b0
+
+// 栈变量语义化宏定义
+// 原始变量名：auStack_28 - 安全验证缓冲区A
+// 功能：用于安全验证操作的数据缓冲区
+#define SecurityValidationBufferA auStack_28
+
+// 原始变量名：auStack_80 - 安全验证缓冲区B
+// 功能：用于安全验证操作的数据缓冲区
+#define SecurityValidationBufferB auStack_80
+
+// 原始变量名：auStack_a0 - 安全验证缓冲区C
+// 功能：用于安全验证操作的数据缓冲区
+#define SecurityValidationBufferC auStack_a0
+
+// 原始变量名：auStack_2f0 - 数据处理结构体
+// 功能：用于处理数据操作的结构体变量
+#define DataProcessingStruct auStack_2f0
