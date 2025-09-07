@@ -66414,53 +66414,88 @@ void ProcessUIDataBuffer(longlong uiContext,undefined1 *dataSource,int targetBuf
                         code *param_6)
 
 {
-  ushort functionResult;
-  longlong componentIndex;
-  undefined1 *puVar3;
-  undefined1 *bufferPtr;
-  uint uVar5;
+  ushort alignmentFlags;
+  longlong dataBlockIndex;
+  undefined1 *sourceBufferPtr;
+  undefined1 *targetDataPtr;
+  uint bufferAlignmentMask;
   
-  uVar5 = (uint)*(short *)(uiContext + 0x30);
-  functionResult = *(ushort *)(uiContext + 0x32);
-  puVar3 = (undefined1 *)
-           ((longlong)*(int *)(bufferData + 0x20) +
-           ((longlong)(short)functionResult >> 3) + bufferSize + (longlong)(((int)uVar5 >> 3) * resultPointer));
-  if (((uVar5 & 7) == 0) && (((longlong)(short)functionResult & 7U) == 0)) {
-    componentIndex = (longlong)resultPointer;
-    *dataSource = *puVar3;
-    dataSource[1] = puVar3[1];
-    dataSource[2] = puVar3[2];
-    bufferPtr = puVar3 + componentIndex;
-    dataSource[3] = puVar3[3];
+  // 获取缓冲区对齐标志
+  bufferAlignmentMask = (uint)*(short *)(uiContext + 0x30);
+  alignmentFlags = *(ushort *)(uiContext + 0x32);
+  // 计算源缓冲区指针位置
+  sourceBufferPtr = (undefined1 *)
+                   ((longlong)*(int *)(bufferData + 0x20) +
+                   ((longlong)(short)alignmentFlags >> 3) + bufferSize + 
+                   (longlong)(((int)bufferAlignmentMask >> 3) * resultPointer));
+  
+  // 检查对齐条件
+  if (((bufferAlignmentMask & 7) == 0) && (((longlong)(short)alignmentFlags & 7U) == 0)) {
+    dataBlockIndex = (longlong)resultPointer;
+    
+    // 复制第一个数据块
+    *dataSource = *sourceBufferPtr;
+    dataSource[1] = sourceBufferPtr[1];
+    dataSource[2] = sourceBufferPtr[2];
+    targetDataPtr = sourceBufferPtr + dataBlockIndex;
+    dataSource[3] = sourceBufferPtr[3];
+    
+    // 移动到下一个目标位置
     dataSource = dataSource + targetBuffer;
-    *dataSource = *bufferPtr;
-    dataSource[1] = bufferPtr[1];
-    dataSource[2] = bufferPtr[2];
-    puVar3 = bufferPtr + componentIndex;
-    dataSource[3] = bufferPtr[3];
+    
+    // 复制第二个数据块
+    *dataSource = *targetDataPtr;
+    dataSource[1] = targetDataPtr[1];
+    dataSource[2] = targetDataPtr[2];
+    sourceBufferPtr = targetDataPtr + dataBlockIndex;
+    dataSource[3] = targetDataPtr[3];
+    
+    // 移动到下一个目标位置
     dataSource = dataSource + targetBuffer;
-    *dataSource = *puVar3;
-    dataSource[1] = puVar3[1];
-    dataSource[2] = puVar3[2];
-    dataSource[3] = puVar3[3];
+    
+    // 复制第三个数据块
+    *dataSource = *sourceBufferPtr;
+    dataSource[1] = sourceBufferPtr[1];
+    dataSource[2] = sourceBufferPtr[2];
+    dataSource[3] = sourceBufferPtr[3];
+    
+    // 移动到下一个目标位置
     dataSource = dataSource + targetBuffer;
-    puVar3 = puVar3 + componentIndex;
-    *dataSource = *puVar3;
-    dataSource[1] = puVar3[1];
-    dataSource[2] = puVar3[2];
-    dataSource[3] = puVar3[3];
+    sourceBufferPtr = sourceBufferPtr + dataBlockIndex;
+    
+    // 复制第四个数据块
+    *dataSource = *sourceBufferPtr;
+    dataSource[1] = sourceBufferPtr[1];
+    dataSource[2] = sourceBufferPtr[2];
+    dataSource[3] = sourceBufferPtr[3];
     return;
   }
-  (*param_6)(puVar3,resultPointer,functionResult & 7,uVar5 & 7,dataSource,targetBuffer);
+  
+  // 如果对齐条件不满足，调用回调函数处理
+  (*param_6)(sourceBufferPtr,resultPointer,alignmentFlags & 7,bufferAlignmentMask & 7,dataSource,targetBuffer);
   return;
 }
 
 
 
 
- void FUN_18069dc30(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
-void FUN_18069dc30(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
-                  undefined4 resultPointer,undefined4 param_6)
+ /**
+ * @brief UI系统内存数据传输函数
+ * 
+ * 该函数负责在UI系统中传输内存数据，包括内存分配、数据复制和同步操作。
+ * 主要用于UI组件之间的内存数据传输和资源共享。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 附加参数
+ * 
+ * @note 原始函数名：FUN_18069dc30
+ */
+void TransferUIMemoryData(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+                         undefined4 resultPointer,undefined4 param_6)
 
 {
   longlong allocatedMemory;
