@@ -115206,7 +115206,21 @@ void ProcessStringEncodingConversionB(long long OutputBuffer,uint64_t OutputBuff
 
 
 
-0a30(long long OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180120a30(long long OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 执行系统验证和内存池初始化
+ * 
+ * 该函数负责执行系统验证操作，并根据需要初始化内存池。
+ * 用于系统启动时的验证和资源分配。
+ * 
+ * @param OutputBuffer 输出缓冲区指针
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 此函数在系统验证失败时会调用内存池初始化
+ * @note 包含引用计数管理和资源清理
+ */
+void ExecuteSystemValidationAndInitializeMemoryPool(long long OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
@@ -115225,7 +115239,22 @@ void ProcessStringEncodingConversionB(long long OutputBuffer,uint64_t OutputBuff
 
 
 
-0a70(long long OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180120a70(long long OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统数据传输和多级内存池初始化
+ * 
+ * 该函数负责处理系统数据传输操作，并在多个层级初始化内存池。
+ * 用于系统数据传输过程中的资源管理和内存分配。
+ * 
+ * @param OutputBuffer 输出缓冲区指针
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @note 此函数会检查多个内存位置并初始化相应的内存池
+ * @note 包含三级内存池的初始化过程
+ * @note 每个层级都有独立的引用计数管理
+ */
+void HandleSystemDataTransferAndInitializeMemoryPools(long long OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
@@ -115388,7 +115417,19 @@ void CleanupSystemContextMemory(long long OutputBuffer, uint64_t OutputBufferSiz
 
 
 
-10b0(long long OutputBuffervoid FUN_1801210b0(long long OutputBuffer
+/**
+ * @brief 初始化系统组件和字符串处理
+ * 
+ * 该函数负责初始化系统组件，处理字符串长度计算和内存分配。
+ * 用于系统启动时的组件初始化和字符串管理。
+ * 
+ * @param OutputBuffer 输出缓冲区指针，包含要处理的字符串
+ * 
+ * @note 此函数会计算字符串长度并分配相应的内存
+ * @note 包含系统调用和内存复制操作
+ * @note 用于系统组件的初始化过程
+ */
+void InitializeSystemComponentsAndProcessString(long long OutputBuffer)
 {
   long long PrimaryDataSize;
   long long bufferAllocationStatus;
