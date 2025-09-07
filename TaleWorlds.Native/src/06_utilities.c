@@ -76801,7 +76801,20 @@ void SetDefaultExceptionHandlerBToExtendedPosition(DataBuffer operationBase,int6
 
 
 
-void Unwind_180909540(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 关闭文件句柄并更新资源计数器
+ * 
+ * 该函数负责关闭文件句柄，重置相关指针，并更新资源计数器。
+ * 这是一个文件资源清理函数，用于安全地释放文件资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含文件句柄信息
+ * 
+ * @note 原始函数名：Unwind_180909540
+ * @note 该函数用于文件资源的清理和释放
+ * @note 使用LOCK/UNLOCK机制确保资源计数器的线程安全
+ */
+void CloseFileHandleAndUpdateResourceCounter(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x268) != 0) {
@@ -76817,18 +76830,32 @@ void Unwind_180909540(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909550(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 关闭系统句柄并更新次要资源计数器
+ * 
+ * 该函数负责关闭系统句柄，重置相关指针，并更新次要资源计数器。
+ * 这是一个系统资源清理函数，用于安全地释放系统句柄资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含系统句柄信息
+ * 
+ * @note 原始函数名：Unwind_180909550
+ * @note 该函数用于系统句柄资源的清理和释放
+ * @note 使用LOCK/UNLOCK机制确保次要资源计数器的线程安全
+ * @note 句柄值为-1表示无效句柄
+ */
+void CloseSystemHandleAndUpdateSecondaryResourceCounter(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *systemHandlePointer;
   
-  exceptionHandlerContextPointer = (int64_t *)(dataBuffer + 0x1e8);
-  if (*exceptionHandlerContextPointer != -1) {
+  systemHandlePointer = (int64_t *)(dataBuffer + 0x1e8);
+  if (*systemHandlePointer != -1) {
     LOCK();
     SecondaryResourceCounter = SecondaryResourceCounter + -1;
     UNLOCK();
-    CloseHandle(*exceptionHandlerContextPointer);
-    *exceptionHandlerContextPointer = -1;
+    CloseHandle(*systemHandlePointer);
+    *systemHandlePointer = -1;
   }
   return;
 }
