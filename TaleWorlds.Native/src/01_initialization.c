@@ -9604,7 +9604,7 @@ void InitializeSystemConfigurationManager(void)
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigProcessBuffer;
   SystemConfigProcessBuffer[0] = 0;
-  SystemConfigurationValue = 0xc;
+  SystemConfigurationValue = 0xc; // 配置缓冲区大小 (12字节)
   strcpy_s(SystemConfigProcessBuffer,SystemConfigurationValue,&SystemConfigurationTemplateB,SystemParameter,InvalidHandleValue);
   SystemMemoryAllocationPrimaryEntry = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
@@ -9645,7 +9645,7 @@ void InitializeSystemExtensionManager(void)
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigProcessBuffer;
   SystemConfigProcessBuffer[0] = 0;
-  SystemConfigurationValue = 0x16;
+  SystemConfigurationValue = 0x16; // 配置缓冲区大小 (22字节)
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantA,SystemRegisterValue,InvalidHandleValue);
   SystemMemoryAllocationSecondaryEntry = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
@@ -10120,7 +10120,7 @@ void InitializeSystemPerformanceNode(void)
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigProcessBuffer;
   SystemConfigProcessBuffer[0] = 0;
-  SystemConfigurationValue = 0x1c;
+  SystemConfigurationValue = 0x1c; // 配置缓冲区大小 (28字节)
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemInitializationStringTemplate,SystemRegisterValue,InvalidHandleValue);
   SystemMemoryAllocationTableEntryQuaternary = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
