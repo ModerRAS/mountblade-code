@@ -65748,7 +65748,18 @@ void Unwind_180907740(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907750(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器B
+ * 
+ * 该函数用于调用异常上下文中的处理器函数，执行异常处理操作
+ * 与CallExceptionContextHandler类似，但从不同的偏移量获取处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907750
+ */
+void CallExceptionContextHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
