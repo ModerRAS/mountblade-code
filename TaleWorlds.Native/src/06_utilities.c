@@ -106518,14 +106518,11 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define StackFloatRegisterC fStack000000000000004a    
 #define StackFloatRegisterD StackFloatRegisterValueD
 
-// 栈变量宏定义 - 美化lStack变量
-// 原始变量名：lStack_0000000000000008 - 栈循环计数器
-// 功能：存储循环操作的栈计数器
+// 栈变量宏定义
+// 栈循环计数器定义
 #define StackLoopCounter lStack_0000000000000008
 
-// 栈变量宏定义 - 美化stack变量
-// 原始变量名：stack_0000000000000010 - 栈验证缓冲区
-// 功能：存储栈验证操作的缓冲区
+// 栈验证缓冲区定义
 #define StackValidationBuffer stack_0000000000000010
 
 // 异常处理器资源释放函数宏定义补充
