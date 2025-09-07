@@ -21709,7 +21709,6 @@ void ExecuteNoOperationA0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-898040(int64_t *operationBase)
 /**
  * @brief 浮点数据处理函数A1
  * 
@@ -100336,7 +100335,6 @@ void SetDefaultExceptionHandler05(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942300(void)
 /**
  * @brief 设置默认异常处理器06
  * 
@@ -100357,7 +100355,6 @@ void SetDefaultExceptionHandler06(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942320(void)
 /**
  * @brief 设置默认异常处理器07
  * 
@@ -100378,7 +100375,6 @@ void SetDefaultExceptionHandler07(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942340(void)
 /**
  * @brief 设置默认异常处理器08
  * 
@@ -100399,7 +100395,6 @@ void SetDefaultExceptionHandler08(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942360(void)
 /**
  * @brief 设置默认异常处理器09
  * 
@@ -100420,7 +100415,6 @@ void SetDefaultExceptionHandler09(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942380(void)
 /**
  * @brief 设置默认异常处理器10
  * 
@@ -100780,7 +100774,6 @@ void DestroyMutexD(void)
 
 
 
-942660(void)
 /**
  * @brief 清理系统内存缓冲区A
  * 
@@ -100834,7 +100827,6 @@ void CleanupSystemMemoryBufferA(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942690(void)
 /**
  * @brief 清理系统内存缓冲区B
  * 
@@ -100877,7 +100869,6 @@ void CleanupSystemMemoryBufferB(void)
   SystemMemoryBaseTable = 0;
   SystemMemoryCapacityTable = 0xf;
 
-942700(void)
 /**
  * @brief 清理系统内存缓冲区C
  * 
@@ -100926,7 +100917,6 @@ void CleanupSystemMemoryBufferC(void)
 
 
 
-942720(void)
 /**
  * @brief 清理数据缓冲区D
  * 
@@ -101095,7 +101085,6 @@ void ConfigureExceptionHandlerC(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942890(void)
 /**
  * @brief 释放引用计数器资源
  * 
@@ -101293,7 +101282,6 @@ void ReleaseSystemResourceReference(void)
 
 
 
-942928(void)
 /**
  * @brief 空操作清理函数
  * 
@@ -101401,7 +101389,6 @@ void ReleaseSystemResourceReferenceEx(void)
 
 
 
-942978(void)
 /**
  * @brief 空操作内存管理函数
  * 
