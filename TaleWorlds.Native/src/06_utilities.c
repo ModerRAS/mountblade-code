@@ -106936,3 +106936,35 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 原始函数名：Unwind_180904e80 - 异常状态验证函数e80
 // 功能：验证异常处理状态
 #define ValidateExceptionStatusE80 Unwind_180904e80
+
+// 原始函数名：Unwind_180904f80 - 异常处理器设置函数f80
+// 功能：设置异常数据缓冲区的处理器
+#define SetupExceptionHandlerF80 Unwind_180904f80
+
+// 原始函数名：Unwind_180904f90 - 异常处理配置函数f90
+// 功能：配置异常处理的操作标志
+#define ConfigureExceptionHandlingF90 Unwind_180904f90
+
+// 原始函数名：Unwind_180904fa0 - 异常处理初始化函数fa0
+// 功能：初始化异常处理的相关参数
+#define InitializeExceptionHandlingFA0 Unwind_180904fa0
+
+// 原始函数名：Unwind_180904fb0 - 异常数据缓冲区清理函数fb0
+// 功能：清理异常数据缓冲区
+#define ClearExceptionDataBufferFB0 Unwind_180904fb0
+
+// 原始函数名：Unwind_180904fc0 - 异常处理器重置函数fc0
+// 功能：重置异常处理器到默认状态
+#define ResetExceptionHandlerFC0 Unwind_180904fc0
+
+// 原始函数名：Unwind_180904fd0 - 异常处理状态更新函数fd0
+// 功能：更新异常处理的状态信息
+#define UpdateExceptionHandlingStateFD0 Unwind_180904fd0
+
+// 原始函数名：Unwind_180904fe0 - 异常处理器配置函数fe0
+// 功能：配置异常处理器的参数
+#define ConfigureExceptionHandlerFE0 Unwind_180904fe0
+
+// 原始函数名：Unwind_180904ff0 - 异常处理完成函数ff0
+// 功能：完成异常处理操作
+#define FinalizeExceptionHandlingFF0 Unwind_180904ff0
