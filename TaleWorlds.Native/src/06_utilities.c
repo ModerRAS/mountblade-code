@@ -6144,42 +6144,72 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define SystemResourceDataBufferA0 GlobalSystemResourceDataBufferA0         // 系统资源数据缓冲区A0
 
 // 系统验证相关变量宏定义
-#define SystemValidationContextPointerA0 _DAT_180c95f18   // 系统验证上下文指针A0
-#define SystemValidationCleanupFlagA0 DAT_180c95f28       // 系统验证清理标志A0
-#define SystemValidationContextCleanupA0 _DAT_180c95f20   // 系统验证上下文清理A0
-#define SystemValidationTerminationFlagA0 _DAT_180c95ef8  // 系统验证终止标志A0
-#define SystemValidationCleanupFlagA1 DAT_180c95fe8       // 系统验证清理标志A1
-#define SystemValidationTerminationFlagA1 _DAT_180c95fc8  // 系统验证终止标志A1
-#define SystemValidationCleanupFlagA2 DAT_180c96210       // 系统验证清理标志A2
+// 原始变量名：_DAT_180c95f18 - 系统验证上下文指针A0
+#define SystemValidationContextPointerA0 GlobalSystemValidationContextPointerA0   // 系统验证上下文指针A0
+// 原始变量名：DAT_180c95f28 - 系统验证清理标志A0
+#define SystemValidationCleanupFlagA0 GlobalSystemValidationCleanupFlagA0       // 系统验证清理标志A0
+// 原始变量名：_DAT_180c95f20 - 系统验证上下文清理A0
+#define SystemValidationContextCleanupA0 GlobalSystemValidationContextCleanupA0   // 系统验证上下文清理A0
+// 原始变量名：_DAT_180c95ef8 - 系统验证终止标志A0
+#define SystemValidationTerminationFlagA0 GlobalSystemValidationTerminationFlagA0  // 系统验证终止标志A0
+// 原始变量名：DAT_180c95fe8 - 系统验证清理标志A1
+#define SystemValidationCleanupFlagA1 GlobalSystemValidationCleanupFlagA1       // 系统验证清理标志A1
+// 原始变量名：_DAT_180c95fc8 - 系统验证终止标志A1
+#define SystemValidationTerminationFlagA1 GlobalSystemValidationTerminationFlagA1  // 系统验证终止标志A1
+// 原始变量名：DAT_180c96210 - 系统验证清理标志A2
+#define SystemValidationCleanupFlagA2 GlobalSystemValidationCleanupFlagA2       // 系统验证清理标志A2
 
 // 系统数据缓冲区相关变量宏定义
-#define SystemDataBufferA DAT_180a06434               // 系统数据缓冲区A
-#define SystemDataBufferB UNK_180986298                // 系统数据缓冲区B
-#define SystemDataBufferC UNK_180984010                // 系统数据缓冲区C
-#define SystemDataBufferD UNK_180982240                // 系统数据缓冲区D
-#define DefaultExceptionHandlerBPointer _DAT_180bf64f8     // 默认异常处理器B指针
+// 原始变量名：DAT_180a06434 - 系统数据缓冲区A
+#define SystemDataBufferA GlobalSystemDataBufferA               // 系统数据缓冲区A
+// 原始变量名：UNK_180986298 - 系统数据缓冲区B
+#define SystemDataBufferB GlobalSystemDataBufferB                // 系统数据缓冲区B
+// 原始变量名：UNK_180984010 - 系统数据缓冲区C
+#define SystemDataBufferC GlobalSystemDataBufferC                // 系统数据缓冲区C
+// 原始变量名：UNK_180982240 - 系统数据缓冲区D
+#define SystemDataBufferD GlobalSystemDataBufferD                // 系统数据缓冲区D
+// 原始变量名：_DAT_180bf64f8 - 默认异常处理器B指针
+#define DefaultExceptionHandlerBPointer GlobalDefaultExceptionHandlerBPointer     // 默认异常处理器B指针
 
 // 异常处理器指针变量宏定义
-#define ExceptionHandlerPointerA _DAT_180bf90b0         // 异常处理器指针A
-#define ExceptionHandlerPointerB _DAT_180bf7310         // 异常处理器指针B
-#define ExceptionHandlerPointerC _DAT_180bf92d0         // 异常处理器指针C
-#define ExceptionHandlerPointerD _DAT_180bf9330         // 异常处理器指针D
-#define ExceptionHandlerPointerE _DAT_180bf9510         // 异常处理器指针E
-#define ExceptionHandlerPointerF _DAT_180bf9570         // 异常处理器指针F
-#define ExceptionHandlerPointerG _DAT_180bf96f0         // 异常处理器指针G
-#define ExceptionHandlerPointerH _DAT_180bf9750         // 异常处理器指针H
-#define ExceptionHandlerPointerI _DAT_180bf97b0         // 异常处理器指针I
-#define ExceptionHandlerPointerJ _DAT_180bf9810         // 异常处理器指针J
-#define ExceptionHandlerPointerK _DAT_180bf9870         // 异常处理器指针K
-#define ExceptionHandlerPointerL _DAT_180bf98d0         // 异常处理器指针L
+// 原始变量名：_DAT_180bf90b0 - 异常处理器指针A
+#define ExceptionHandlerPointerA GlobalExceptionHandlerPointerA         // 异常处理器指针A
+// 原始变量名：_DAT_180bf7310 - 异常处理器指针B
+#define ExceptionHandlerPointerB GlobalExceptionHandlerPointerB         // 异常处理器指针B
+// 原始变量名：_DAT_180bf92d0 - 异常处理器指针C
+#define ExceptionHandlerPointerC GlobalExceptionHandlerPointerC         // 异常处理器指针C
+// 原始变量名：_DAT_180bf9330 - 异常处理器指针D
+#define ExceptionHandlerPointerD GlobalExceptionHandlerPointerD         // 异常处理器指针D
+// 原始变量名：_DAT_180bf9510 - 异常处理器指针E
+#define ExceptionHandlerPointerE GlobalExceptionHandlerPointerE         // 异常处理器指针E
+// 原始变量名：_DAT_180bf9570 - 异常处理器指针F
+#define ExceptionHandlerPointerF GlobalExceptionHandlerPointerF         // 异常处理器指针F
+// 原始变量名：_DAT_180bf96f0 - 异常处理器指针G
+#define ExceptionHandlerPointerG GlobalExceptionHandlerPointerG         // 异常处理器指针G
+// 原始变量名：_DAT_180bf9750 - 异常处理器指针H
+#define ExceptionHandlerPointerH GlobalExceptionHandlerPointerH         // 异常处理器指针H
+// 原始变量名：_DAT_180bf97b0 - 异常处理器指针I
+#define ExceptionHandlerPointerI GlobalExceptionHandlerPointerI         // 异常处理器指针I
+// 原始变量名：_DAT_180bf9810 - 异常处理器指针J
+#define ExceptionHandlerPointerJ GlobalExceptionHandlerPointerJ         // 异常处理器指针J
+// 原始变量名：_DAT_180bf9870 - 异常处理器指针K
+#define ExceptionHandlerPointerK GlobalExceptionHandlerPointerK         // 异常处理器指针K
+// 原始变量名：_DAT_180bf98d0 - 异常处理器指针L
+#define ExceptionHandlerPointerL GlobalExceptionHandlerPointerL         // 异常处理器指针L
 
 // 系统函数表指针宏定义
-#define SystemFunctionTablePointer _DAT_180c86968       // 系统函数表指针
-#define ExceptionHandlerPointerM _DAT_180bf9930         // 异常处理器指针M
-#define ExceptionHandlerPointerN _DAT_180bf9990         // 异常处理器指针N
-#define ExceptionHandlerPointerO _DAT_180bf99f0         // 异常处理器指针O
-#define ExceptionHandlerPointerP _DAT_180bf9a50         // 异常处理器指针P
-#define ExceptionHandlerPointerQ _DAT_180bf9ab0         // 异常处理器指针Q
+// 原始变量名：_DAT_180c86968 - 系统函数表指针
+#define SystemFunctionTablePointer GlobalSystemFunctionTablePointer       // 系统函数表指针
+// 原始变量名：_DAT_180bf9930 - 异常处理器指针M
+#define ExceptionHandlerPointerM GlobalExceptionHandlerPointerM         // 异常处理器指针M
+// 原始变量名：_DAT_180bf9990 - 异常处理器指针N
+#define ExceptionHandlerPointerN GlobalExceptionHandlerPointerN         // 异常处理器指针N
+// 原始变量名：_DAT_180bf99f0 - 异常处理器指针O
+#define ExceptionHandlerPointerO GlobalExceptionHandlerPointerO         // 异常处理器指针O
+// 原始变量名：_DAT_180bf9a50 - 异常处理器指针P
+#define ExceptionHandlerPointerP GlobalExceptionHandlerPointerP         // 异常处理器指针P
+// 原始变量名：_DAT_180bf9ab0 - 异常处理器指针Q
+#define ExceptionHandlerPointerQ GlobalExceptionHandlerPointerQ         // 异常处理器指针Q
 #define ExceptionHandlerPointerR _DAT_180bf9b10         // 异常处理器指针R
 #define ExceptionHandlerPointerS _DAT_180bf9b70         // 异常处理器指针S
 #define ExceptionHandlerPointerT _DAT_180bf9bd0         // 异常处理器指针T
@@ -50435,7 +50465,7 @@ void ProcessExceptionDataWithOffset40Duplicate(DataBuffer operationBase,int64_t 
  * @note 原始函数名：Unwind_180904920
  * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的资源清理
  */
-void Unwind_180904920(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionResourceReferenceCount920(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -50485,7 +50515,7 @@ void Unwind_180904920(DataBuffer operationBase,int64_t dataBuffer)
  * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的资源清理
  * @note 该函数操作偏移量0x48处的资源指针，与920函数的0x28不同
  */
-void Unwind_180904930(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionResourceReferenceCount930(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -50521,7 +50551,7 @@ void Unwind_180904930(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904940(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionResourceReferenceCount940(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x68));
@@ -50530,7 +50560,7 @@ void Unwind_180904940(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904950(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionResourceReferenceCount950(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CloseHandle(*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x70));
@@ -98418,7 +98448,7 @@ void CleanupExceptionAtOffset1530(DataBuffer operationBase,int64_t dataBuffer,Da
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleDataBufferExceptionAtOffset40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -98438,7 +98468,7 @@ void Unwind_180912040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleDataBufferExceptionAtOffsetE0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
