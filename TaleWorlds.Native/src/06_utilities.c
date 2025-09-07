@@ -25652,6 +25652,16 @@ ProcessCheckpointDataFlowControl:
 
 
 
+/**
+ * @brief 清理数据资源A0
+ * 
+ * 该函数负责清理和释放系统中的数据资源，包括内存分配、数据验证和资源释放。
+ * 函数会根据不同的条件分支执行相应的清理操作，确保系统资源的正确释放。
+ * 
+ * @return DataBuffer 清理操作状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 原始函数名：FUN_1808909e0
+ */
 DataBuffer CleanupDataResourcesA0(void)
 
 {
@@ -25730,6 +25740,16 @@ ProcessCheckpointDataFlowControl:
 
 
 
+/**
+ * @brief 重置数据处理器A1
+ * 
+ * 该函数负责重置数据处理器到初始状态，执行数据验证、内存分配和状态重置操作。
+ * 函数会检查系统状态，分配必要的内存资源，并执行相应的验证流程。
+ * 
+ * @return DataBuffer 重置操作状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 原始函数名：FUN_1808909f0
+ */
 DataBuffer ResetDataProcessorA1(void)
 
 {
