@@ -5297,6 +5297,9 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define ExceptionHandlerPointerJ _DAT_180bf9810         // 异常处理器指针J
 #define ExceptionHandlerPointerK _DAT_180bf9870         // 异常处理器指针K
 #define ExceptionHandlerPointerL _DAT_180bf98d0         // 异常处理器指针L
+
+// 系统函数表指针宏定义
+#define SystemFunctionTablePointer _DAT_180c86968       // 系统函数表指针
 #define ExceptionHandlerPointerM _DAT_180bf9930         // 异常处理器指针M
 #define ExceptionHandlerPointerN _DAT_180bf9990         // 异常处理器指针N
 #define ExceptionHandlerPointerO _DAT_180bf99f0         // 异常处理器指针O
@@ -73750,7 +73753,7 @@ void Unwind_18090c480(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -74126,7 +74129,7 @@ void Unwind_18090c570(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -74202,7 +74205,7 @@ void Unwind_18090c5b0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -74306,7 +74309,7 @@ void Unwind_18090c5e0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75029,7 +75032,7 @@ void Unwind_18090ca00(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75041,7 +75044,7 @@ void Unwind_18090ca10(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75099,7 +75102,7 @@ void Unwind_18090ca30(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75157,7 +75160,7 @@ void Unwind_18090ca50(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75169,7 +75172,7 @@ void Unwind_18090ca60(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75236,7 +75239,7 @@ void Unwind_18090ca90(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75303,7 +75306,7 @@ void Unwind_18090cac0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75370,7 +75373,7 @@ void Unwind_18090caf0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75538,7 +75541,7 @@ void Unwind_18090cb50(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75651,7 +75654,7 @@ void Unwind_18090cb90(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75672,7 +75675,7 @@ void Unwind_18090cbb0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75684,7 +75687,7 @@ void Unwind_18090cbc0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75751,7 +75754,7 @@ void Unwind_18090cbf0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -75917,7 +75920,7 @@ void Unwind_18090ccd0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -81638,7 +81641,7 @@ void Unwind_18090e810(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -81696,7 +81699,7 @@ void Unwind_18090e830(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -81754,7 +81757,7 @@ void Unwind_18090e850(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -81812,7 +81815,7 @@ void Unwind_18090e870(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
@@ -82079,7 +82082,7 @@ void Unwind_18090e9b0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
-  (**(FunctionPointer**)(*_DAT_180c86968 + 0x20))();
+  (**(FunctionPointer**)(*SystemFunctionTablePointer + 0x20))();
   return;
 }
 
