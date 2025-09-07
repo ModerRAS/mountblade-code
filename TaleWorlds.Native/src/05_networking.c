@@ -1438,32 +1438,32 @@ uint32_t NetworkSocketFileDescriptor;                         // 网络套接字
 uint32_t NetworkSocketCategory;                                // 网络套接字类别
 
 /**
- * @brief 网络套接字协议类型
+ * @brief 网络套接字协议类型标识符
  * 
- * 定义网络套接字使用的协议类型，如TCP、UDP等
+ * 定义网络套接字使用的协议类型标识符，如TCP、UDP等
  */
-uint32_t NetworkSocketProtocolType;
+uint32_t NetworkSocketProtocolTypeId;
 
 /**
- * @brief 网络套接字类型
+ * @brief 网络套接字类型标识符
  * 
- * 定义网络套接字的类型，如流式套接字、数据报套接字等
+ * 定义网络套接字的类型标识符，如流式套接字、数据报套接字等
  */
-uint32_t NetworkSocketType;
+uint32_t NetworkSocketTypeId;
 
 /**
- * @brief 网络套接字协议
+ * @brief 网络套接字协议实例
  * 
- * 存储网络套接字使用的具体协议信息
+ * 存储网络套接字使用的具体协议实例信息
  */
-uint32_t NetworkSocketProtocol;
+uint32_t NetworkSocketProtocolInstance;
 
 /**
- * @brief 网络连接优先级
+ * @brief 网络连接优先级级别
  * 
- * 定义网络连接的优先级，用于调度和资源分配
+ * 定义网络连接的优先级级别，用于调度和资源分配
  */
-uint32_t NetworkConnectionPriority;
+uint32_t NetworkConnectionPriorityLevelValue;
 
 /**
  * @brief 网络套接字结构体大小
@@ -1529,11 +1529,11 @@ uint32_t NetworkSocketRuntimeContextPointer;
 uint32_t NetworkProtocolVersion;
 
 /**
- * @brief 网络连接模式
+ * @brief 网络连接工作模式
  * 
- * 定义网络连接的模式，如客户端模式、服务器模式等
+ * 定义网络连接的工作模式，如客户端模式、服务器模式等
  */
-uint32_t NetworkConnectionMode;
+uint32_t NetworkConnectionWorkMode;
 
 /**
  * @brief 网络连接优先级级别
@@ -1557,11 +1557,11 @@ uint32_t NetworkConnectionContextSize;
 uint32_t NetworkConnectionQualityLevel;
 
 /**
- * @brief 网络连接质量
+ * @brief 网络连接质量指标
  * 
  * 存储网络连接的质量指标，包括丢包率、延迟等
  */
-uint32_t NetworkConnectionQuality;
+uint32_t NetworkConnectionQualityMetrics;
 
 /**
  * @brief 网络连接带宽
@@ -1578,11 +1578,11 @@ uint32_t NetworkConnectionBandwidth;
 uint32_t NetworkConnectionLatency;
 
 /**
- * @brief 网络连接延迟（毫秒）
+ * @brief 网络连接延迟时间
  * 
  * 存储网络连接的延迟时间，单位为毫秒
  */
-uint32_t NetworkConnectionLatencyMs;
+uint32_t NetworkConnectionLatencyTime;
 
 /**
  * @brief 网络连接可靠性级别
@@ -1599,60 +1599,60 @@ uint32_t NetworkConnectionReliabilityLevel;
 uint32_t NetworkSecurityLevel;
 
 /**
- * @brief 网络认证类型
+ * @brief 网络认证类型标识符
  * 
- * 定义网络连接使用的认证类型，如密码认证、证书认证等
+ * 定义网络连接使用的认证类型标识符，如密码认证、证书认证等
  */
-uint32_t NetworkAuthenticationType;
+uint32_t NetworkAuthenticationTypeId;
 
 /**
- * @brief 网络系统认证类型
+ * @brief 网络系统认证类型标识符
  * 
- * 定义网络系统使用的认证类型，用于系统级别的认证
+ * 定义网络系统使用的认证类型标识符，用于系统级别的认证
  */
-uint32_t NetworkSystemAuthenticationType;
+uint32_t NetworkSystemAuthenticationTypeId;
 
 /**
- * @brief 网络加密算法类型
+ * @brief 网络加密算法类型标识符
  * 
- * 定义网络连接使用的加密算法类型，如对称加密、非对称加密等
+ * 定义网络连接使用的加密算法类型标识符，如对称加密、非对称加密等
  */
-uint32_t NetworkEncryptionAlgorithmType;
+uint32_t NetworkEncryptionAlgorithmTypeId;
 
 /**
- * @brief 网络加密算法
+ * @brief 网络加密算法实例
  * 
- * 存储网络连接使用的具体加密算法，如AES、RSA等
+ * 存储网络连接使用的具体加密算法实例，如AES、RSA等
  */
-uint32_t NetworkEncryptionAlgorithm;
+uint32_t NetworkEncryptionAlgorithmInstance;
 
 /**
- * @brief 网络系统加密算法
+ * @brief 网络系统加密算法实例
  * 
- * 存储网络系统使用的加密算法，用于系统级别的加密
+ * 存储网络系统使用的加密算法实例，用于系统级别的加密
  */
-uint32_t NetworkSystemEncryptionAlgorithm;
+uint32_t NetworkSystemEncryptionAlgorithmInstance;
 
 /**
- * @brief 网络压缩方法类型
+ * @brief 网络压缩方法类型标识符
  * 
- * 定义网络数据压缩的方法类型，如无损压缩、有损压缩等
+ * 定义网络数据压缩的方法类型标识符，如无损压缩、有损压缩等
  */
-uint32_t NetworkCompressionMethodType;
+uint32_t NetworkCompressionMethodTypeId;
 
 /**
- * @brief 网络压缩方法
+ * @brief 网络压缩方法实例
  * 
- * 存储网络数据使用的具体压缩方法，如ZLIB、GZIP等
+ * 存储网络数据使用的具体压缩方法实例，如ZLIB、GZIP等
  */
-uint32_t NetworkCompressionMethod;
+uint32_t NetworkCompressionMethodInstance;
 
 /**
- * @brief 网络系统压缩方法
+ * @brief 网络系统压缩方法实例
  * 
- * 存储网络系统使用的压缩方法，用于系统级别的数据压缩
+ * 存储网络系统使用的压缩方法实例，用于系统级别的数据压缩
  */
-uint32_t NetworkSystemCompressionMethod;
+uint32_t NetworkSystemCompressionMethodInstance;
 
 /**
  * @brief 网络会话超时持续时间
@@ -2286,8 +2286,8 @@ void InitializeNetworkSocket(void)
   NetworkSocketSize = NetworkSocketCompactSize;          // 使用紧凑套接字大小
   
   // 初始化套接字配置
-  NetworkSocketType = TcpSocketCategory;  // TCP套接字类别
-  NetworkSocketProtocol = NetworkTcpProtocol;
+  NetworkSocketTypeId = TcpSocketCategory;  // TCP套接字类别
+  NetworkSocketProtocolInstance = NetworkTcpProtocol;
   
   // 初始化套接字数据缓冲区
   NetworkSocketOperatingData = 0;
@@ -2295,8 +2295,8 @@ void InitializeNetworkSocket(void)
   
   // 初始化网络配置
   NetworkProtocolVersion = NetworkProtocolVersionOne;
-  NetworkConnectionMode = NetworkConnectionModeClient;
-  NetworkConnectionPriority = NetworkConnectionPriorityMedium;
+  NetworkConnectionWorkMode = NetworkConnectionModeClient;
+  NetworkConnectionPriorityLevelValue = NetworkConnectionPriorityMedium;
 }
 
 /**
