@@ -80002,7 +80002,17 @@ void Unwind_18090a5a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a5b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据清理A0
+ * 
+ * 该函数负责处理异常数据的清理操作，释放相关资源
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ProcessExceptionCleanupA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -80018,7 +80028,15 @@ void Unwind_18090a5b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a5c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源引用A0
+ * 
+ * 该函数负责释放内存资源的引用，减少引用计数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ */
+void ReleaseMemoryResourceReferenceA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -80054,7 +80072,16 @@ void Unwind_18090a5c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a5d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源引用A1
+ * 
+ * 该函数负责释放内存资源的引用，减少引用计数
+ * 与A0版本类似，但使用不同的偏移量
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ */
+void ReleaseMemoryResourceReferenceA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -80090,7 +80117,12 @@ void Unwind_18090a5d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a5e0(void)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁系统互斥锁，清理相关资源
+ */
+void DestroyMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -80099,7 +80131,17 @@ void Unwind_18090a5e0(void)
 
 
 
-void Unwind_18090a5f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据清理A1
+ * 
+ * 该函数负责处理异常数据的清理操作，调用异常数据处理函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ProcessExceptionCleanupA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionDataA1(*(int64_t *)(dataBuffer + DataContextOffset68),*(DataBuffer *)(*(int64_t *)(dataBuffer + DataContextOffset68) + ExceptionHandlerCallbackOffset10),
@@ -80109,7 +80151,18 @@ void Unwind_18090a5f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据清理A2
+ * 
+ * 该函数负责处理异常数据的清理操作，调用异常数据处理函数
+ * 与A1版本功能相同
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ProcessExceptionCleanupA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionDataA1(*(int64_t *)(dataBuffer + DataContextOffset68),*(DataBuffer *)(*(int64_t *)(dataBuffer + DataContextOffset68) + ExceptionHandlerCallbackOffset10),
@@ -80119,7 +80172,15 @@ void Unwind_18090a600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a610(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作A0
+ * 
+ * 该函数负责执行内存操作，处理内存相关任务
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ */
+void ExecuteMemoryOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x68),8,10,ValidateDataHandler);
@@ -80128,7 +80189,17 @@ void Unwind_18090a610(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行函数指针回调A0
+ * 
+ * 该函数负责执行函数指针回调，调用特定的回调函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ExecuteFunctionPointerCallbackA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x38) != (code *)0x0) {
@@ -80139,7 +80210,18 @@ void Unwind_18090a640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行函数指针回调A1
+ * 
+ * 该函数负责执行函数指针回调，调用特定的回调函数
+ * 与A0版本功能相同
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ExecuteFunctionPointerCallbackA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x38) != (code *)0x0) {
@@ -80150,7 +80232,15 @@ void Unwind_18090a650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a660(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 解锁互斥锁A0
+ * 
+ * 该函数负责解锁互斥锁，处理解锁错误情况
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ */
+void UnlockMutexA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int inputParameter;
