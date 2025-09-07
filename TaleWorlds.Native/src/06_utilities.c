@@ -42340,7 +42340,20 @@ void ExceptionHandlerCleanupOperationFlags(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_1809036e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 验证上下文异常处理器配置函数
+ * 
+ * 配置验证上下文的异常处理器，设置临时和默认异常处理器，
+ * 并处理验证相关的异常清理工作
+ * 
+ * @param exceptionContext 异常上下文数据，包含异常处理所需的状态信息
+ * @param memoryBuffer 内存缓冲区指针，指向需要清理的内存区域
+ * @param cleanupFlagA 清理标志A，用于控制清理行为的标志位
+ * @param cleanupFlagB 清理标志B，用于控制清理行为的标志位
+ * 
+ * @note 原始函数名：Unwind_1809036e0
+ */
+void ConfigureValidationContextExceptionHandler(DataBuffer exceptionContext,int64_t memoryBuffer,DataBuffer cleanupFlagA,DataBuffer cleanupFlagB)
 
 {
   int64_t validationContext;
