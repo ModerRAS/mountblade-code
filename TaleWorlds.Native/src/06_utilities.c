@@ -96997,7 +96997,7 @@ void SetDefaultExceptionHandler18(void)
 void SetDefaultExceptionHandler19(void)
 
 {
-  _DAT_180bfa290 = &DefaultExceptionHandlerB;
+  SystemExceptionHandlerPointerTableA4 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -97414,7 +97414,7 @@ void SetDefaultExceptionHandlerA0(void)
 void SetDefaultExceptionHandlerA1(void)
 
 {
-  _DAT_180bfaef0 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerPointerA1 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -97614,10 +97614,10 @@ void ReleaseSystemReferenceCount(void)
   int64_t referenceValue;
   int64_t *systemResourcePointer;
   
-  systemResourcePointer = _DAT_180c92498;
-  if (_DAT_180c92498 != (int64_t *)0x0) {
+  systemResourcePointer = SystemResourceDataTable;
+  if (SystemResourceDataTable != (int64_t *)0x0) {
     LOCK();
-    referenceContextPointer = _DAT_180c92498 + 1;
+    referenceContextPointer = SystemResourceDataTable + 1;
     referenceValue = *referenceContextPointer;
     *(int *)referenceContextPointer = (int)*referenceContextPointer + -1;
     UNLOCK();
@@ -97719,10 +97719,10 @@ void CleanupSystemResourceHandle(void)
   int64_t referenceCount;
   int64_t *systemResourcePointer;
   
-  systemResourcePointer = _DAT_180c92488;
-  if (_DAT_180c92488 != (int64_t *)0x0) {
+  systemResourcePointer = SystemResourceDataTableA1;
+  if (SystemResourceDataTableA1 != (int64_t *)0x0) {
     LOCK();
-    resourceContextPointer = _DAT_180c92488 + 1;
+    resourceContextPointer = SystemResourceDataTableA1 + 1;
     referenceCount = *resourceContextPointer;
     *(int *)resourceContextPointer = (int)*resourceContextPointer + -1;
     UNLOCK();
