@@ -19035,23 +19035,32 @@ CallbackTableInitializationComplete:
 
 
 /**
- * 初始化引擎模块A
- * 设置引擎初始化参数和配置
+ * 初始化引擎模块D
+ * 设置引擎模块D的内存缓存和参数配置
+ * 
+ * 该函数负责初始化引擎模块D的内存缓存系统，包括：
+ * - 设置系统参数栈指针
+ * - 配置字符串缓冲区
+ * - 分配内存区域缓存
+ * 
+ * @note 使用SystemDataBufferMainTemplateA作为模板数据
+ * @note 字符串缓冲区大小为0x17(23)字节
+ * @note 使用SystemStringConstantBufferTemplateD作为字符串常量
  */
-void InitializeEngineMemoryCacheD(void)
+void InitializeEngineModuleD(void)
 
 {
-  uint64_t SystemRegisterR9Parameter;
+  uint64_t SystemRegisterParameter;
   void *SystemParameterStackPointer;
-  uint8_t *SystemBufferReference;
-  uint32_t SystemStringBufferSize;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemBufferSize;
   uint8_t SystemStringBuffer [136];
   
   SystemParameterStackPointer = &SystemDataBufferMainTemplateA;
-  SystemBufferReference = SystemStringBuffer;
+  SystemBufferPointer = SystemStringBuffer;
   SystemStringBuffer[0] = 0;
-  SystemStringBufferSize = 0x17;
-  strcpy_s(SystemStringBuffer,SystemStringBufferSize,&SystemStringConstantBufferTemplateD,SystemRegisterR9Parameter,InvalidHandleValue);
+  SystemBufferSize = 0x17;
+  strcpy_s(SystemStringBuffer, SystemBufferSize, &SystemStringConstantBufferTemplateD, SystemRegisterParameter, InvalidHandleValue);
   SystemMemoryRegionCacheD = SystemMemoryAllocationFunction(&SystemParameterStackPointer);
   return;
 }
@@ -19061,23 +19070,32 @@ void InitializeEngineMemoryCacheD(void)
 
 
 /**
- * 初始化引擎模块B
- * 设置引擎初始化参数和配置
+ * 初始化引擎模块E
+ * 设置引擎模块E的内存缓存和参数配置
+ * 
+ * 该函数负责初始化引擎模块E的内存缓存系统，包括：
+ * - 设置系统参数栈指针
+ * - 配置字符串缓冲区
+ * - 分配内存区域缓存
+ * 
+ * @note 使用SystemDataBufferMainTemplateA作为模板数据
+ * @note 字符串缓冲区大小为0x11(17)字节
+ * @note 使用SystemStringConstantBufferCapacityValueE作为字符串常量
  */
-void InitializeEngineMemoryCacheE(void)
+void InitializeEngineModuleE(void)
 
 {
-  uint64_t SystemRegisterR9Parameter;
+  uint64_t SystemRegisterParameter;
   void *SystemParameterStackPointer;
-  uint8_t *SystemBufferReference;
-  uint32_t SystemStringBufferSize;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemBufferSize;
   uint8_t SystemStringBuffer [136];
   
   SystemParameterStackPointer = &SystemDataBufferMainTemplateA;
-  SystemBufferReference = SystemStringBuffer;
+  SystemBufferPointer = SystemStringBuffer;
   SystemStringBuffer[0] = 0;
-  SystemStringBufferSize = 0x11;
-  strcpy_s(SystemStringBuffer,SystemStringBufferSize,&SystemStringConstantBufferCapacityValueE,SystemRegisterR9Parameter,InvalidHandleValue);
+  SystemBufferSize = 0x11;
+  strcpy_s(SystemStringBuffer, SystemBufferSize, &SystemStringConstantBufferCapacityValueE, SystemRegisterParameter, InvalidHandleValue);
   SystemMemoryRegionCacheE = SystemMemoryAllocationFunction(&SystemParameterStackPointer);
   return;
 }

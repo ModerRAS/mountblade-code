@@ -12808,9 +12808,9 @@ Label_1807c2a43:
  * 系统安全验证函数
  * 
  * 该函数负责执行系统安全检查，验证内存地址的完整性。
- * 主要用于系统运行时的安全验证和保护。
+ * 主要用于系统运行时的安全验证和保护，通过异或操作确保栈指针的安全性。
  * 
- * @param securityContext 安全上下文参数
+ * @param SecurityContext 安全上下文参数，包含需要验证的安全信息
  * 
  * 原始函数名为FUN_1807c3d8b，现已重命名为SystemSecurityValidationFunction
  */
@@ -12825,6 +12825,21 @@ void SystemSecurityValidationFunction(uint64_t SecurityContext)
   }
   return &SystemConfigurationDataBuffer;
 }
+/**
+ * 系统参数配置函数
+ * 
+ * 该函数负责配置系统参数，包括内存分配、网络请求处理和系统缓冲区管理。
+ * 主要用于系统初始化和运行时参数调整。
+ * 
+ * @param ConfigurationArrayPointer 配置数组指针，包含系统配置信息
+ * @param ConfigurationIndex 配置索引，指定要配置的参数位置
+ * @param ConfigurationFlag1 配置标志1，控制第一阶段的配置行为
+ * @param ConfigurationFlag2 配置标志2，控制第二阶段的配置行为
+ * 
+ * @return 返回配置结果，成功返回0，失败返回错误代码
+ * 
+ * 原始函数名经过美化处理，现在使用语义化命名
+ */
 uint64_t SystemConfigureParameters(uint64_t *ConfigurationArrayPointer,longlong ConfigurationIndex,char ConfigurationFlag1,char ConfigurationFlag2)
 {
   int LoopCounter;
@@ -12834,7 +12849,7 @@ uint64_t SystemConfigureParameters(uint64_t *ConfigurationArrayPointer,longlong 
   uint8_t MemoryAllocationResult;
   ulonglong MemoryAlignmentMask;
   uint NetworkDataBuffer [2];
-  ulonglong AudioProcessingBuffer;
+  ulonglong AudioFormatBuffer;
   if (*(int *)(ConfigurationIndex + 0x18) < *(int *)(*(longlong *)(ConfigurationIndex + 0x10) + 0xb4)) {
 MemoryAllocationReset:
     MemoryAllocationResult = 0;
@@ -13038,7 +13053,7 @@ uint64_t SystemAudioCreateBuffer(uint32_t BufferSizeParameter,uint *AudioFormatP
   uint16_t *pUnsignedIndex;
   uint16_t *pUnsignedSize;
   byte LoopCounterBuffer [8];
-  longlong AudioProcessingBuffer;
+  longlong AudioFormatBuffer;
   if (SystemProcessingEnabledFlag == '\0') {
     return 0x80920005;
   }
@@ -13562,21 +13577,21 @@ bool SystemAudioIsInitialized(void)
             do {
               LongAddress = LongLoop;
               LongLoop = LongAddress + 1;
-              LongOffset = LongAddress;
+              PathCharacterOffset = LongAddress;
             } while (*(short *)(SystemContextPointer + 2 + LongAddress * 2) != RegisterValue);
             while( true ) {
               LongLoop = SystemRegister12;
-              if (((LongOffset == 0) || (PathCharacter = *(short *)(SystemStateValue + LongOffset * 2), PathCharacter == 0x2f)) ||
+              if (((PathCharacterOffset == 0) || (PathCharacter = *(short *)(SystemStateValue + PathCharacterOffset * 2), PathCharacter == 0x2f)) ||
                  (PathCharacter == 0x5c)) goto Label_1808fbdeb;
               if (PathCharacter == 0x2e) break;
-              LongOffset = LongOffset + -1;
+              PathCharacterOffset = PathCharacterOffset + -1;
             }
-            *(short *)(SystemStateValue + LongOffset * 2) = RegisterValue;
-            LongLoop = SystemStateValue + 2 + LongOffset * 2;
+            *(short *)(SystemStateValue + PathCharacterOffset * 2) = RegisterValue;
+            LongLoop = SystemStateValue + 2 + PathCharacterOffset * 2;
 Label_1808fbdeb:
             LongAddress = LongAddress + 9;
-            LongOffset = malloc(LongAddress * 2);
-            if (LongOffset == 0) {
+            PathBufferPointer = malloc(LongAddress * 2);
+            if (PathBufferPointer == 0) {
               free(SystemStateValue);
               return false;
             }
@@ -13585,12 +13600,12 @@ Label_1808fbdeb:
             do {
               FileSystemHandle = LongCounter;
               if (LongLoop == 0) {
-                ExecuteSystemCommand(LongOffset,LongAddress,&SystemCommandBuffer05,SystemStateValue,IntegerResult);
+                ExecuteSystemCommand(PathBufferPointer,LongAddress,&SystemCommandBuffer05,SystemStateValue,IntegerResult);
               }
               else {
-                ExecuteSystemCommand(LongOffset,LongAddress,&SystemCommandBuffer06,SystemStateValue,IntegerResult);
+                ExecuteSystemCommand(PathBufferPointer,LongAddress,&SystemCommandBuffer06,SystemStateValue,IntegerResult);
               }
-              FileSystemHandle = _wfsopen(LongOffset,pMemoryAddress1,0x20);
+              FileSystemHandle = _wfsopen(PathBufferPointer,pMemoryAddress1,0x20);
               if (FileSystemHandle != 0) {
                 pMemoryAddress1 = &SystemCommandBuffer07;
                 SystemBufferParameter = 0xeb;
@@ -13604,7 +13619,7 @@ Label_1808fbdeb:
 Label_1808fbebe:
             ProcessSystemBuffer(&SystemBufferPointer,SystemBufferParameter,&SystemBufferPointer,pMemoryAddress1);
             free(SystemStateValue);
-            free(LongOffset);
+            free(PathBufferPointer);
           }
           CharValue2 = FileSystemHandle != SystemRegister12;
         }
