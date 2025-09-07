@@ -50031,7 +50031,7 @@ void ExecuteSystemResourceManager(void
 
 
 
-0610(uint64_t *SystemContextPointer/**
+/**
  * @brief 处理数据结构释放操作
  * 
  * 该函数负责处理数据结构的释放操作，包括：
