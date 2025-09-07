@@ -173889,7 +173889,15 @@ void FinalizeUtf8BufferProcessing(void)
 
 
 
-3e8e6(voidvoid FUN_18013e8e6(void
+/**
+ * @brief 初始化系统上下文寄存器
+ * 
+ * 该函数负责初始化系统上下文寄存器，设置系统状态值。
+ * 在核心引擎启动时用于初始化基本的系统上下文。
+ * 
+ * @note 原始函数名：FUN_18013e8e6
+ */
+void InitializeSystemContextRegister(void)
 {
   uint32_t *SystemContext;
   uint32_t RegisterValueEDI;
@@ -174346,7 +174354,21 @@ uint64_t *ProcessSystemEventHandling(long long CharacterCode,uint64_t *Utf8Input
 
 
 
-3f6f0(long long CharacterCodevoid FUN_18013f6f0(long long CharacterCode
+/**
+ * @brief 处理字符编码数据转换
+ * 
+ * 该函数负责处理字符编码数据的转换操作，包括：
+ * - 获取内存分配信息
+ * - 设置UTF-8输入缓冲区
+ * - 处理字符串模板和内存分配
+ * - 执行数据传输和内存操作
+ * 
+ * @param CharacterCode 字符代码参数
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18013f6f0
+ */
+void ProcessCharacterEncodingDataConversion(long long CharacterCode)
 {
   long long PrimaryDataSize;
   int StringComparisonResult;
