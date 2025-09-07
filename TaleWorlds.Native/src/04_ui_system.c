@@ -68467,7 +68467,17 @@ void InitializeUIEventSystem(longlong uiContext)
  * 
  * @note 原始函数名: FUN_18069f51a
  */
- void FUN_18069f51a(void)
+ /**
+ * @brief 处理UI组件内存分配
+ * 
+ * 该函数负责UI组件的内存分配和管理，包括：
+ * - 分配UI组件内存块
+ * - 初始化内存分配状态
+ * - 设置内存管理参数
+ * - 执行内存分配验证
+ * 
+ * @note 原始函数名: FUN_18069f51a
+ */
 void ProcessUIComponentMemoryAllocation(void)
 
 {
@@ -68478,15 +68488,15 @@ void ProcessUIComponentMemoryAllocation(void)
   longlong context;
   uint bitFieldResult;
   uint characterIndex;
-  longlong unmodifiedR13;
-  undefined1 unmodifiedR14B;
-  longlong localLong7;
-  bool bVar8;
+  longlong uiContextPointer;
+  undefined1 registerValueB;
+  longlong loopCounter;
+  bool isConditionMet;
   
-  *(undefined1 *)(unmodifiedR13 + 0x4416) = unmodifiedR14B;
+  *(undefined1 *)(uiContextPointer + 0x4416) = registerValueB;
   uiValidationResult = AllocateUIComponentMemory();
   if (uiValidationResult != 0) {
-    localLong7 = 0;
+    loopCounter = 0;
     do {
       LoopCounter = 0;
       uiValidationResult = 7;
@@ -68497,25 +68507,25 @@ void ProcessUIComponentMemoryAllocation(void)
         }
         ProcessingStatus = *(ulonglong *)(context + 0x10);
         EventTypeCode = (ulonglong)MaxProcessingCount << 0x38;
-        bVar8 = EventTypeCode <= ProcessingStatus;
-        if (bVar8) {
+        isConditionMet = EventTypeCode <= ProcessingStatus;
+        if (isConditionMet) {
           MaxProcessingCount = *(int *)(context + 0x1c) - MaxProcessingCount;
           ProcessingStatus = ProcessingStatus - EventTypeCode;
         }
         isCharacterMatch = (&g_uiStateTable)[MaxProcessingCount];
         *(int *)(context + 0x18) = *(int *)(context + 0x18) - (uint)isCharacterMatch;
-        LoopCounter = LoopCounter | (uint)bVar8 << ((byte)uiValidationResult & 0x1f);
+        LoopCounter = LoopCounter | (uint)isConditionMet << ((byte)uiValidationResult & 0x1f);
         *(ulonglong *)(context + 0x10) = ProcessingStatus << (isCharacterMatch & 0x3f);
         uiValidationResult = uiValidationResult + -1;
         *(uint *)(context + 0x1c) = MaxProcessingCount << (isCharacterMatch & 0x1f);
       } while (-1 < uiValidationResult);
-      *(char *)(localLong7 + 0x308b + unmodifiedR13) = (char)LoopCounter;
-      localLong7 = localLong7 + 1;
-    } while (localLong7 < 4);
+      *(char *)(loopCounter + 0x308b + uiContextPointer) = (char)LoopCounter;
+      loopCounter = loopCounter + 1;
+    } while (loopCounter < 4);
   }
   uiValidationResult = AllocateUIComponentMemory();
   if (uiValidationResult != 0) {
-    localLong7 = 0;
+    loopCounter = 0;
     do {
       LoopCounter = 0;
       uiValidationResult = 7;
@@ -68526,21 +68536,21 @@ void ProcessUIComponentMemoryAllocation(void)
         }
         ProcessingStatus = *(ulonglong *)(context + 0x10);
         EventTypeCode = (ulonglong)MaxProcessingCount << 0x38;
-        bVar8 = EventTypeCode <= ProcessingStatus;
-        if (bVar8) {
+        isConditionMet = EventTypeCode <= ProcessingStatus;
+        if (isConditionMet) {
           MaxProcessingCount = *(int *)(context + 0x1c) - MaxProcessingCount;
           ProcessingStatus = ProcessingStatus - EventTypeCode;
         }
         isCharacterMatch = (&g_uiStateTable)[MaxProcessingCount];
         *(int *)(context + 0x18) = *(int *)(context + 0x18) - (uint)isCharacterMatch;
-        LoopCounter = LoopCounter | (uint)bVar8 << ((byte)uiValidationResult & 0x1f);
+        LoopCounter = LoopCounter | (uint)isConditionMet << ((byte)uiValidationResult & 0x1f);
         *(ulonglong *)(context + 0x10) = ProcessingStatus << (isCharacterMatch & 0x3f);
         uiValidationResult = uiValidationResult + -1;
         *(uint *)(context + 0x1c) = MaxProcessingCount << (isCharacterMatch & 0x1f);
       } while (-1 < uiValidationResult);
-      *(char *)(localLong7 + 0x308f + unmodifiedR13) = (char)LoopCounter;
-      localLong7 = localLong7 + 1;
-    } while (localLong7 < 3);
+      *(char *)(loopCounter + 0x308f + uiContextPointer) = (char)LoopCounter;
+      loopCounter = loopCounter + 1;
+    } while (loopCounter < 3);
   }
   FUN_1806a0150();
   return;
@@ -80560,8 +80570,12 @@ void FUN_180712b71(int uiContext,undefined8 dataSource,int targetBuffer,int buff
 
 
 
- void FUN_180712bf0(void)
-void FUN_180712bf0(void)
+ /**
+ * UI系统空操作函数2
+ * 用作另一个占位符或默认操作处理器
+ */
+void UINoOperationHandler2(void)
+void UINoOperationHandler2(void)
 
 {
   return;
