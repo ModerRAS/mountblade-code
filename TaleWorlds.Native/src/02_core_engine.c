@@ -153804,7 +153804,15 @@ uint64_t AllocateSystemMemoryBlock(int CharacterCode,int Utf8BufferSize,int Utf8
 
 
 
-33680(int CharacterCodevoid FUN_180133680(int CharacterCode
+/**
+ * @brief 字符编码处理函数680
+ * 
+ * 该函数负责处理字符编码相关的操作
+ * 
+ * @param CharacterCode 字符编码
+ * @note 原始函数名：FUN_180133680
+ */
+void ProcessCharacterEncoding680(int CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
