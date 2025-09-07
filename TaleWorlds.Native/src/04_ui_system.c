@@ -394262,8 +394262,26 @@ undefined8 ProcessUIStatusCodeReturn(void)
 
 
 
- void FUN_18089f31e(void)
-void FUN_18089f31e(void)
+ /**
+ * @brief 处理UI缓冲区操作
+ * 
+ * 该函数负责处理UI缓冲区的操作，包括缓冲区大小检查、验证和处理
+ * 
+ * @note 原始函数名：FUN_18089f31e
+ */
+#define ProcessUIBufferOperation FUN_18089f31e
+
+void ProcessUIBufferOperation(void)
+/**
+ * @brief 处理UI缓冲区操作
+ * 
+ * 该函数负责处理UI缓冲区的操作，包括缓冲区大小检查、验证和处理
+ * 
+ * @note 原始函数名：FUN_18089f31e
+ */
+#define ProcessUIBufferOperation FUN_18089f31e
+
+void ProcessUIBufferOperation(void)
 
 {
   int bufferSize;

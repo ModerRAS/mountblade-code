@@ -137342,7 +137342,7 @@ LAB_18012b510:
   *(uint32_t *)((long long)SystemParameter2 + 0x134) = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x25) = 0;
   *(uint8_t *)((long long)SystemParameter2 + 0x17c) = 0;
-  ContextSecondaryFloat7 = (float)FUN_1801293c0(SystemParameter2);
+  ContextSecondaryFloat7 = (float)CalculateSystemFloatValue(SystemParameter2);
   *(bool *)((long long)SystemParameter2 + 0x17d) = AuxiliaryFloat13 < ContextSecondaryFloat7;
   *(int *)((long long)SystemParameter2 + 0x174) = (int)SystemParameter2[0x2f];
   *(uint32_t *)(eventDataStructurePointer + 0x2f) = 0;
@@ -139031,7 +139031,7 @@ LAB_18012b465:
   *(uint32_t *)((long long)SystemParameter2 + 0x134) = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x25) = 0;
   *(uint8_t *)((long long)SystemParameter2 + 0x17c) = 0;
-  ContextSecondaryFloat7 = (float)FUN_1801293c0(SystemParameter2);
+  ContextSecondaryFloat7 = (float)CalculateSystemFloatValue(SystemParameter2);
   *(bool *)((long long)SystemParameter2 + 0x17d) = AuxiliaryFloat13 < ContextSecondaryFloat7;
   *(int *)((long long)SystemParameter2 + 0x174) = (int)SystemParameter2[0x2f];
   *(uint32_t *)(eventDataStructurePointer + 0x2f) = 0;
@@ -140605,7 +140605,7 @@ LAB_18012b510:
   *(uint32_t *)(eventDataStructurePointer + 0x134) = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x128) = 0;
   *(uint8_t *)(SystemParameter2 + 0x17c) = 0;
-  ContextSecondaryFloat5 = (float)FUN_1801293c0(SystemParameter2);
+  ContextSecondaryFloat5 = (float)CalculateSystemFloatValue(SystemParameter2);
   *(bool *)(SystemParameter2 + 0x17d) = AuxiliaryFloat13 < ContextSecondaryFloat5;
   *(uint32_t *)(eventDataStructurePointer + 0x174) = *(uint32_t *)(eventDataStructurePointer + 0x178);
   *(uint32_t *)(eventDataStructurePointer + 0x178) = 0;
@@ -142527,7 +142527,7 @@ void ExecuteSystemCoreDataProcessing(void)
   *(uint32_t *)(eventDataStructurePointer + 0x134) = DataSize;
   *(uint32_t *)(eventDataStructurePointer + 0x128) = DataSize;
   *(uint8_t *)(SystemParameter2 + 0x17c) = 0;
-  ContextSecondaryFloat6 = (float)FUN_1801293c0(SystemParameter2);
+  ContextSecondaryFloat6 = (float)CalculateSystemFloatValue(SystemParameter2);
   *(bool *)(SystemParameter2 + 0x17d) = AuxiliaryFloat13 < ContextSecondaryFloat6;
   *(uint32_t *)(eventDataStructurePointer + 0x174) = *(uint32_t *)(eventDataStructurePointer + 0x178);
   *(uint32_t *)(eventDataStructurePointer + 0x178) = DataSize;
