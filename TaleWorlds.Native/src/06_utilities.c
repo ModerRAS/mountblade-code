@@ -80076,7 +80076,7 @@ void Unwind_18090e400(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e410(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x30),0x488,2,FUN_1800e7ca0,SystemCleanupFlagAlternative);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x30),0x488,2,ProcessMemoryOperationA0,SystemCleanupFlagAlternative);
   return;
 }
 
@@ -80085,7 +80085,7 @@ void Unwind_18090e410(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e420(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0x918,0x128,2,FUN_1801b9690,SystemCleanupFlagAlternative);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0x918,0x128,2,ProcessMemoryOperationA1,SystemCleanupFlagAlternative);
   return;
 }
 
@@ -80094,7 +80094,7 @@ void Unwind_18090e420(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e440(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xb70,0x128,2,FUN_1801b9690,SystemCleanupFlagAlternative);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xb70,0x128,2,ProcessMemoryOperationA1,SystemCleanupFlagAlternative);
   return;
 }
 
@@ -80181,7 +80181,7 @@ void Unwind_18090e5a0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e5c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x488,2,FUN_1800e7ca0);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x488,2,ProcessMemoryOperationA0);
   return;
 }
 
@@ -80190,7 +80190,7 @@ void Unwind_18090e5c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e5f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x128,2,FUN_1801b9690);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0xe8),0x128,2,ProcessMemoryOperationA1);
   return;
 }
 
@@ -80199,7 +80199,7 @@ void Unwind_18090e5f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090e620(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 8,0x18,2,FUN_1800e7f20);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 8,0x18,2,ProcessMemoryOperationA2);
   return;
 }
 
