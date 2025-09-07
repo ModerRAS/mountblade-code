@@ -200159,7 +200159,7 @@ uint64_t * ProcessSecondarySystemContextBuffer(uint64_t *SystemContextPointer,un
 // 处理UTF-16编码和系统事件的协调操作，管理编码过程中的事件触发
 void ProcessUtf16EncodingAndSystemEvent(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
-  FUN_18017b400(SystemContextPointer,*(void *)(SystemContextPointer + 0x10),Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
+  ConvertUtf16ToUtf8MainProcessor(SystemContextPointer,*(void *)(SystemContextPointer + 0x10),Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
 }
 
@@ -200187,7 +200187,7 @@ void ProcessUtf16EncodingAndSystemEvent(long long SystemContextPointer,uint64_t 
 
 7a290(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_18017a290(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
-  FUN_18017b400(SystemContextPointer,*(void *)(SystemContextPointer + 0x10),Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
+  ConvertUtf16ToUtf8MainProcessor(SystemContextPointer,*(void *)(SystemContextPointer + 0x10),Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
 }
 
@@ -201085,7 +201085,7 @@ long long * FUN_18017b240(long long *SystemContextPointer,long long *Utf8BufferS
 
 7b380(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_18017b380(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
-  FUN_18017b400(SystemContextPointer,*(void *)(SystemContextPointer + 0x10),Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
+  ConvertUtf16ToUtf8MainProcessor(SystemContextPointer,*(void *)(SystemContextPointer + 0x10),Utf16InputPointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
 }
 

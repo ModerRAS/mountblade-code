@@ -25587,7 +25587,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
        (operationResult = OperateDataO0(validationContext,operationBase + 0x66,2), (int)operationResult == 0)) {
       operationResult = OperateDataO0(validationContext,operationBase + 0x68,8);
     }
-    in_stack_00000008 = register_BPL;
+    stackValidationParameter = registerBPL;
     if ((int)operationResult != 0) {
       return operationResult;
     }
