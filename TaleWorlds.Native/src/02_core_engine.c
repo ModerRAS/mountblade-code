@@ -48013,12 +48013,12 @@ void CoreEngineProcessSystemContext(void
  * @note 这是一个复杂的浮点数处理函数，涉及大量的数学计算
  * @note 用于核心引擎的数据处理和过滤功能
  */
-void ProcessFloatCalculationAndDataFiltering(void
+void ProcessFloatCalculationAndDataFiltering(void)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   int ValidationResult;
   uint32_t SystemChecksum;
@@ -48291,7 +48291,7 @@ void ExecuteFloatDataProcessingAndContextManagement(void
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   int ValidationResult;
   float FloatVariable7;
@@ -48456,7 +48456,7 @@ void ExecuteSystemStatusCheckAndDataProcessing(void
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   int ValidationResult;
   float FloatVariable7;
@@ -48898,7 +48898,7 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -49974,7 +49974,7 @@ void ProcessFloatDataNormalization(long long CharacterCode
   float *pSystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -57888,7 +57888,7 @@ void CalculateAndTransformFloatData(float *Utf8InputBuffer,float *Utf8InputBuffe
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -58057,7 +58057,7 @@ void InitializeIdentityMatrixAndTransform(float *Utf8InputBuffer,float *Utf8Inpu
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   
   Utf8InputBuffer[0] = 1.0;
   Utf8InputBuffer[1] = 0.0;
@@ -70688,7 +70688,7 @@ void SetSystemFloatParameter(float targetValue, long long sourceData, float para
   long long SystemContext;
   int StringComparisonResult;
   long long MemoryOffset;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   
   StringComparisonResult = 0;
   if (ProcessingResult >> 3 != 0) {
@@ -70733,7 +70733,7 @@ void ProcessSystemDataTransfer(uint64_t targetDataStructure, long long sourceDat
   uint CharacterTablePointer;
   unsigned long long MemoryAllocationIndex;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   
   MemoryAllocationIndex = (unsigned long long)LoopCounter;
   do {
@@ -72050,7 +72050,7 @@ void ProcessFloatMatrixTransformation(float *Utf8InputBuffer,float *Utf8InputBuf
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -72166,7 +72166,7 @@ float * ExecuteFloatMatrixMultiplication(float *Utf8InputBuffer,float *Utf8Input
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -94797,7 +94797,7 @@ void CheckSystemStatusAndValidate(void
   long long PatternIndex;
   long long MemoryOffset;
   uint64_t RegisterR12Value;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatingPointRegisterA;
   float FloatVariable5;
   float AuxiliaryFloatValue11;
@@ -98288,7 +98288,7 @@ unsigned long long ProcessSystemContextAndMemoryManagement(void
   int *ReferenceCountPointer;
   void *SystemContext;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   uint32_t *Utf8InputBufferPointer;
   long long MemoryBoundaryEnd;
   bool BooleanValidationFlag7;
@@ -98730,7 +98730,7 @@ unsigned long long ProcessCharacterVariableAndCharacterStatusBuffer(char *Utf8In
   uint *CharacterStatusBuffer;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float *pFloatVariable5;
   uint64_t DataSize;
   long long MemoryPoolBlockSize;
@@ -98918,7 +98918,7 @@ unsigned long long ProcessDataStructureAndSystemConfiguration(uint64_t Character
   uint *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float *FloatProcessingStatusFlag;
   uint64_t SystemChecksum;
@@ -103256,7 +103256,7 @@ void FinalizeFloatDataTexture(void)
   uint UnicodeCodePoint;
   char *RegisterR12Value;
   long long CharacterLimit;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   uint64_t SystemParameter1;
@@ -104369,7 +104369,7 @@ void ProcessFloatSystemContextUtf16String(float *Utf8InputBuffer,long long Utf8B
   ushort Utf16Char;
   float *pContextSecondaryFloat;
   long long MemoryOffset;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -114563,7 +114563,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t CharacterCode
   uint *CharacterStatusBuffer;
   void *SystemContext;
   uint32_t *systemEventTemplatePointer;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   uint32_t CalculatedCodePoint;
   uint64_t DataSize;
   int ProcessIterationCount;
@@ -120559,7 +120559,7 @@ void ValidateSystemDataStructure(long long CharacterCode,float *Utf8InputBufferS
   uint64_t *CharacterStatusBuffer;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   bool shouldReturnSource;
   byte BooleanByteFlag6;
   long long MemoryPoolBlockSize;
@@ -121227,7 +121227,7 @@ void ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode, uint64_
   uint32_t *CharacterStatusBuffer;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float *pFloatVariable5;
   uint64_t DataSize;
   uint32_t SystemChecksum;
@@ -121380,7 +121380,7 @@ void ProcessCharacterCodeFloatCalculation(uint64_t CharacterCode, float *Utf8Inp
   float *pSystemContextPrimaryFloat;
   uint32_t *PrimaryProcessingStatusFlag;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   uint64_t DataSize;
   uint32_t SystemChecksum;
@@ -121524,7 +121524,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, float *Utf8I
   float *pSystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -121597,7 +121597,7 @@ void ProcessUtf8CharacterEncodingWithDistance(uint64_t CharacterCode, float *Utf
   float *pSystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -121840,7 +121840,7 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t Utf8BufferSi
   float SystemContextPrimaryFloat;
   uint32_t MemoryAllocationIndex;
   long long MemoryOffset;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -121946,7 +121946,7 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t Utf8BufferSi
   long long PrimaryDataSize;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float fStackX_20;
   float fStackX_24;
@@ -121995,7 +121995,7 @@ void ProcessMemoryLock(float *Utf8InputBuffer,uint Utf8BufferSize,long long Utf8
   int *ReferenceCountPointer;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   long long AllocatedMemorySize;
   bool BooleanInputStringBuffer6;
   uint SystemChecksum;
@@ -122133,7 +122133,7 @@ void ProcessCharacterCodeWithUtf8Input(float *Utf8InputBuffer, uint64_t Utf8Buff
   int *ReferenceCountPointer;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   long long AllocatedMemorySize;
   uint32_t DataSize;
   uint32_t SystemChecksum;
@@ -122281,7 +122281,7 @@ void ProcessCharacterCodeWithUtf8Validation(float *Utf8InputBuffer, uint64_t Utf
   int *ReferenceCountPointer;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   long long AllocatedMemorySize;
   uint32_t DataSize;
   uint32_t SystemChecksum;
@@ -123157,7 +123157,7 @@ uint64_t * InitializeUtf8ToUtf16Converter(uint64_t *Utf8InputBuffer,long long Ut
   float *pSystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -123419,7 +123419,7 @@ ExecuteMemoryAllocationAndDataProcessing(uint64_t *Utf8InputBuffer,uint64_t Utf8
   int LockResult;
   long long BufferStatus;
   long long MemoryOffset;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   uint64_t CalculatedCodePoint;
   int ValidationResult;
   float FloatVariable7;
@@ -129137,7 +129137,7 @@ ExecuteCharacterDataProcessing(uint64_t *Utf8InputBuffer,char *Utf8InputBufferSi
   float fStack_64;
   float fStack_60;
   float fStack_5c;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   
   MemoryPoolBlockSize = SystemConfigurationHandle;
   EncodingConversionResult = 0;
@@ -129281,7 +129281,7 @@ void ProcessSystemFloatDataAndMemoryAllocation(void)
   float SecondaryScalingFactor;
   float StackFloat1;
   float StackFloatVariable2;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   
   *(void *)(ProcessingResult + 0x18) = StackFrameAddressPointer;
   StringOffset = 0;
@@ -129733,7 +129733,7 @@ unsigned long long ValidateAndProcessSystemFlags(uint64_t *Utf8InputBuffer,uint6
   float *ProcessingResult;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float StackFloatValue58;
   float StackFloatValue54;
   float DistanceThreshold;
@@ -129935,7 +129935,7 @@ void ProcessSystemStringAndEncodingConversion(void)
   char *InputStringBuffer;
   int *pStringComparisonResult;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   long long AllocatedMemorySize;
   char CharacterDataStringLength;
   uint SystemChecksum;
@@ -130559,7 +130559,7 @@ uint64_t * ManageSystemMemoryPointers(uint64_t *Utf8InputBuffer,long long Utf8Bu
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
   long long MemoryOffset;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -130683,7 +130683,7 @@ uint64_t * HandleFloatMemoryOperations(uint64_t *Utf8InputBuffer,long long Utf8B
   float SystemContextPrimaryFloat;
   int StringComparisonResult;
   long long MemoryOffset;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float SecondaryScalingFactor;
@@ -130753,7 +130753,7 @@ float * ProcessFloatMemoryBuffers(float *Utf8InputBuffer,long long Utf8BufferSiz
   char InputStringBuffer;
   long long BufferStatus;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -130841,7 +130841,7 @@ float * ManageFloatMemoryAllocation(float *Utf8InputBuffer,long long Utf8BufferS
   char OperationStatus;
   long long ProcessingResult;
   char in_R8B;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float in_XMM5_Da;
@@ -130913,7 +130913,7 @@ float * HandleUnicodeFloatMemory(float *Utf8InputBuffer,long long Utf8BufferSize
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   char OperationStatus;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   
@@ -130971,7 +130971,7 @@ void ProcessFloatDataCalculation(long long CharacterCode,float *Utf8InputBufferS
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float PrimaryScalingFactor;
@@ -131004,7 +131004,7 @@ float * ProcessSystemFloatDataAndInitializeBuffer(float *Utf8InputBuffer,long lo
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   
   SystemContextPrimaryFloat = *(float *)(Utf8BufferSize + 0x40);
   ContextSecondaryFloat = *(float *)(Utf8BufferSize + 0x44);
@@ -147142,7 +147142,7 @@ void HandleSystemError(void)
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -148618,7 +148618,7 @@ void InitializeSystemCharacterStatusBuffer(void)
   int *ReferenceCountPointer;
   char *SystemValidationFunction;
   uint32_t *systemEventTemplatePointer;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   int RemainingSpace;
   int ValidationResult;
   long long MemoryPoolBlockSize;
@@ -149147,7 +149147,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long Ut
   long long StackFrameAddressPointer;
   long long SystemRegisterR10;
   uint32_t UnicodeCodePoint;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatingPointRegisterA;
@@ -149230,7 +149230,7 @@ void ProcessUtf8InputBuffer(uint64_t *Utf8InputBuffer, long long Utf8BufferSize)
   long long in_R11;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   
   if ((in_EAX >> 0x1a & 1) == 0) {
@@ -149315,7 +149315,7 @@ void EmptyOperation2(void)
   long long in_R11;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   
   FloatVariable5 = *(float *)(SystemRegisterR10 + 0x16bc);
@@ -149383,7 +149383,7 @@ void ProcessSystemDataFiltering(float FilterInputValue)
   long long in_R11;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   
   FloatVariable5 = *(float *)(SystemRegisterR10 + 0x16bc);
@@ -151278,7 +151278,7 @@ unsigned long long ProcessUtf8InputBufferAndMatchCharacter(float *Utf8InputBuffe
   long long PrimaryDataSize;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   uint CalculatedCodePoint;
   unsigned long long DataSize;
   unsigned long long SystemChecksum;
@@ -152084,7 +152084,7 @@ uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t U
   float *pSystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   uint CalculatedCodePoint;
   char CharacterDataStringLength;
   uint SystemChecksum;
@@ -152389,7 +152389,7 @@ void ProcessUtf8DataEncodingAndSourcePointer(uint64_t CharacterCode,uint64_t Utf
   uint32_t *CharacterStatusBuffer;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   char SystemCharacterCode;
   long long SystemContext;
   int RegisterEBPValue;
@@ -152490,7 +152490,7 @@ void ProcessUtf8CharacterEncoding(uint64_t CharacterCode,uint64_t Utf8BufferSize
   float *pSystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   
   if (Utf8BufferSize == 0) {
     return;
@@ -152553,7 +152553,7 @@ float * ProcessSystemFloatContext(float *Utf8InputBuffer,uint Utf8BufferSize,uin
   long long PrimaryDataSize;
   unsigned long long MemoryAllocationIndex;
   unsigned long long UnicodeCodePoint;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -154788,7 +154788,7 @@ void ProcessSystemValidationEC4(void)
   long long SystemContext;
   long long DataNodePointer;
   uint32_t CharacterLimitD;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -154900,7 +154900,7 @@ void ProcessSystemValidationFDB(void)
   long long MemoryOffset;
   long long SystemContext;
   uint32_t CharacterLimitD;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -154968,7 +154968,7 @@ void ProcessCharacterEncodingConversionFFD(long long CharacterCode)
   long long SystemContext;
   uint32_t CharacterLimitD;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float BaseFloatValue;
@@ -157350,7 +157350,7 @@ void CoreEngineProcessSystemMemoryAllocation(void)
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   uint CalculatedCodePoint;
   void *CurrentNode;
   long long MemoryPoolBlockSize;
@@ -157487,7 +157487,7 @@ void CoreEngineProcessSystemFloatFilter(void)
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   uint CalculatedCodePoint;
   void *CurrentNode;
   long long MemoryPoolBlockSize;
@@ -157620,7 +157620,7 @@ void CoreEngineProcessSystemFloatValidator(void)
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   uint CalculatedCodePoint;
   void *CurrentNode;
   long long MemoryPoolBlockSize;
@@ -164237,7 +164237,7 @@ void ProcessCharacterDataConversion(uint32_t CharacterCode,uint64_t Utf8BufferSi
   uint32_t CharacterLimitD;
   uint32_t in_XMM4_Da;
   uint32_t in_XMM4_Db;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   
   SystemContextPrimaryFloat = *(float *)(DataNodePointer + 0x38);
@@ -168917,7 +168917,7 @@ void ProcessUtf8CharacterEncodingValidationAndConversion(long long CharacterCode
   uint32_t *CharacterStatusBuffer;
   uint *PrimaryProcessingStatusFlag;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -176813,7 +176813,7 @@ long long * FUN_18014acf0(long long CharacterCode,long long *Utf8InputBufferSize
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   long long AllocatedMemorySize;
   long long MemoryBoundaryEnd;
   float *pFloatVariable7;
@@ -186829,7 +186829,7 @@ long long * FUN_1801582f0(uint64_t CharacterCode,long long *Utf8InputBufferSize,
   long long *Utf8InputBuffer;
   long long BufferStatus;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   long long *pPerformanceCounterValue;
   
   CalculatedFilterValue = *(float *)(Utf8SourcePointer + 0x40);
@@ -197780,7 +197780,7 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long Utf8BufferSiz
   int *ReferenceCountPointer;
   void *SystemContext;
   uint64_t *systemEventTemplatePointer;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   int ProcessIterationCount;
@@ -202457,7 +202457,7 @@ void ProcessUnicodeCharacterAndMemoryManagement(void
   long long in_RCX;
   unsigned long long MemoryAllocationIndex;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   uint64_t uStackX_10;
   uint64_t aStackProcessingConfigurationFlag [2];
   uint32_t FunctionAddress;
@@ -202589,7 +202589,7 @@ LAB_1801736de:
   long long SystemContext;
   long long StackFrameAddressPointer;
   bool in_ZF;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   
   if (in_ZF) {
@@ -225631,7 +225631,7 @@ float * FUN_180194940(float *Utf8InputBuffer,float *Utf8InputBufferSize,float *U
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -233299,7 +233299,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   long long *MemoryBlockIndex;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -233899,7 +233899,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   long long *Utf8InputBuffer;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -273053,7 +273053,7 @@ FUN_18022a810(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
   uint64_t *CharacterStatusBuffer;
   float *pContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   char CharacterStatus2;
@@ -273167,7 +273167,7 @@ long long FUN_18022a8cd(void
   uint64_t *CharacterStatusBuffer;
   float *pContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   char CharacterStatus2;
@@ -273590,7 +273590,7 @@ float * FUN_18022b050(long long CharacterCode,float *Utf8InputBufferSize,int Utf
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
   unsigned long long UnicodeCodePoint;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -273692,7 +273692,7 @@ float * FUN_18022b050(long long CharacterCode,float *Utf8InputBufferSize,int Utf
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -276727,7 +276727,7 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
   float *pSystemContextPrimaryFloat;
   char SystemCheckResult;
   float CalculatedFilterValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   float FloatVariable7;
@@ -276836,7 +276836,7 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
   float *pFilterInputValue;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   float CalculatedDistance;
   uint SystemChecksum;
@@ -277892,7 +277892,7 @@ uint64_t CalculateAudioSignalAverage(int CharacterCode,uint64_t Utf8BufferSize,u
   int SystemParameterD;
   float *in_R11;
   float FloatingPointRegisterA;
-  float FloatVariable4;
+  float MatrixTransformMultiplier1;
   float FloatVariable5;
   
   if (CharacterCode < SystemParameterD) {
