@@ -1,5 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
 
+/**
+ * @file 06_utilities.c
+ * @brief 工具系统和实用函数模块
+ * 
+ * 本模块提供了TaleWorlds引擎的核心工具函数和实用程序，包括：
+ * - 系统初始化和配置管理
+ * - 内存管理和资源分配
+ * - 异常处理和错误恢复
+ * - 数据验证和安全检查
+ * - 线程管理和同步机制
+ * 
+ * @note 本文件已经过语义化美化，将Ghidra逆向生成的变量名和函数名
+ *       替换为具有语义的名称，提高了代码的可读性和维护性。
+ */
+
 // 系统常量定义
 #define DefaultSystemDataAddress 0x18
 #define ComponentHandleOffset 0x10
