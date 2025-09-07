@@ -50092,7 +50092,26 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904a90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理内存引用计数（变体B）
+ * 
+ * 该函数是ManageMemoryReferenceCount的变体版本，功能完全相同。
+ * 负责管理内存资源的引用计数，当引用计数降为0时触发异常处理。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含资源指针和内存管理信息
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区中获取资源指针
+ * 2. 计算内存基地址和偏移量
+ * 3. 检查内存有效性并管理引用计数
+ * 4. 当引用计数降为0时触发异常处理
+ * 5. 对于异常情况调用通用内存管理函数
+ * 
+ * @note 原始函数名：Unwind_180904a90
+ * @warning 此函数不返回，最后会调用异常处理或内存管理函数
+ */
+void ManageMemoryReferenceCountVariantB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -50128,7 +50147,22 @@ void Unwind_180904a90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904aa0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B
+ * 
+ * 该函数负责设置默认异常处理器B到指定的数据缓冲区位置。
+ * 这是一个简单的设置函数，用于配置异常处理机制。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，用于设置异常处理器
+ * 
+ * 功能说明：
+ * 1. 将DefaultExceptionHandlerB的地址设置到数据缓冲区的指定偏移量位置
+ * 2. 偏移量0xb0用于存储异常处理器指针
+ * 
+ * @note 原始函数名：Unwind_180904aa0
+ */
+void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0xb0) = &DefaultExceptionHandlerB;

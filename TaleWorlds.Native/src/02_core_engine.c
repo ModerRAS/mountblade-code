@@ -38040,14 +38040,14 @@ SystemEventValidationLabel:
     FunctionAddress80 = MemoryAllocationIndex;
     SystemEventPointer = (uint8_t *)BufferAllocate(MemoryPoolManager,0x15,0x13);
     *SystemEventPointer = 0;
-LAB_180071c93:
+SystemEventProcessingComplete:
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
   else if ((uint)StackUnsigned78 < 0x15) {
     FunctionAddress80 = MemoryAllocationIndex;
     SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,0x15,0x10,0x13);
-    goto LAB_180071c93;
+    goto SystemEventProcessingComplete;
   }
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 0x3a;
   FunctionAddress80 = 0x14;
