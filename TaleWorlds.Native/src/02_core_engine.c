@@ -4106,6 +4106,183 @@ const void* const SystemDataTablePointerSecondary = (void*)0x180a064a8;
 
 // FUN_18013baf0 - 处理字符编码和系统清理
 #define ProcessCharacterEncodingAndCleanup FUN_18013baf0
+
+// 缺失的FUN_函数语义化定义
+/**
+ * @brief 处理字符编码转换
+ * 
+ * 该函数负责处理字符编码的转换操作，包括UTF-8到UTF-16的转换
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18013a860
+ */
+#define ProcessCharacterEncodingConversion FUN_18013a860
+
+/**
+ * @brief 处理系统数据查找
+ * 
+ * 该函数负责在系统数据表中查找指定数据
+ * 
+ * @param SystemDataTablePointer 系统数据表指针
+ * @note 原始函数名：FUN_18012e350
+ */
+#define ProcessSystemDataLookup FUN_18012e350
+
+/**
+ * @brief 处理系统字符验证
+ * 
+ * 该函数负责验证系统字符的有效性和完整性
+ * 
+ * @note 原始函数名：FUN_180112630
+ */
+#define ProcessSystemCharacterValidation FUN_180112630
+
+/**
+ * @brief 遍历字符代码
+ * 
+ * 该函数负责遍历字符代码表并执行相应操作
+ * 
+ * @param CharacterCode 字符代码
+ * @note 原始函数名：FUN_18013aed0
+ */
+#define TraverseCharacterCodes FUN_18013aed0
+
+/**
+ * @brief 处理UTF-8系统完成
+ * 
+ * 该函数负责处理UTF-8编码系统的完成操作
+ * 
+ * @note 原始函数名：FUN_18013b88a
+ */
+#define ProcessUtf8SystemComplete FUN_18013b88a
+
+/**
+ * @brief 处理UTF-8数据处理
+ * 
+ * 该函数负责处理UTF-8编码数据的处理操作
+ * 
+ * @note 原始函数名：FUN_18013b9df
+ */
+#define ProcessUtf8DataProcessing FUN_18013b9df
+
+/**
+ * @brief 处理UTF-8系统刷新
+ * 
+ * 该函数负责刷新UTF-8编码系统的缓冲区和状态
+ * 
+ * @note 原始函数名：FUN_18013b9eb
+ */
+#define ProcessUtf8SystemFlush FUN_18013b9eb
+
+/**
+ * @brief 处理UTF-8字符处理
+ * 
+ * 该函数负责处理UTF-8字符的编码和解码操作
+ * 
+ * @param CharacterCode 字符代码
+ * @note 原始函数名：FUN_18013ba30
+ */
+#define ProcessUtf8CharacterProcessing FUN_18013ba30
+
+/**
+ * @brief 处理系统字符数据
+ * 
+ * 该函数负责处理系统字符数据的操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18013c020
+ */
+#define ProcessSystemCharacterData FUN_18013c020
+
+/**
+ * @brief 处理系统数据验证
+ * 
+ * 该函数负责验证系统数据的完整性和一致性
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @note 原始函数名：FUN_18013c380
+ */
+#define ProcessSystemDataValidation FUN_18013c380
+
+/**
+ * @brief 处理系统数据传输
+ * 
+ * 该函数负责处理系统数据的传输操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @note 原始函数名：FUN_18013c4e0
+ */
+#define ProcessSystemDataTransfer FUN_18013c4e0
+
+/**
+ * @brief 处理系统字符限制
+ * 
+ * 该函数负责处理系统字符的限制和边界检查
+ * 
+ * @param CharacterCode 字符代码
+ * @note 原始函数名：FUN_18013c504
+ */
+#define ProcessSystemCharacterLimit FUN_18013c504
+
+/**
+ * @brief 处理系统编码扩展
+ * 
+ * 该函数负责处理系统编码的扩展操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小
+ * @note 原始函数名：FUN_18013e800
+ */
+#define ProcessSystemEncodingExtension FUN_18013e800
+
+/**
+ * @brief 处理系统编码配置
+ * 
+ * 该函数负责处理系统编码的配置操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param RemainingSpace 剩余空间
+ * @note 原始函数名：FUN_18013e620
+ */
+#define ProcessSystemEncodingConfiguration FUN_18013e620
+
+/**
+ * @brief 处理系统内存分配和验证
+ * 
+ * 该函数负责处理系统内存分配和验证操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param MemoryBlockListHead 内存块链表头
+ * @param SystemMemoryAllocationResult 系统内存分配结果
+ * @param AdditionalParameter1 额外参数1
+ * @note 原始函数名：FUN_18013f4b0
+ */
+#define ProcessSystemMemoryAllocationAndValidation FUN_18013f4b0
+
+/**
+ * @brief 获取系统上下文指针
+ * 
+ * 该函数负责获取系统上下文的指针
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemRegisterFlagBuffer 系统寄存器标志缓冲区
+ * @param StringProcessingStatus 字符串处理状态
+ * @param TemporaryBuffer 临时缓冲区
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @note 原始函数名：FUN_18013f220
+ */
+#define GetSystemContextPointer FUN_18013f220
 const void* const SystemDataTablePointerTertiary = (void*)0x180a064b0;
 const void* const SystemDataTablePointerQuaternary = (void*)0x180a064c0;
 const void* const SystemDataTablePointerQuinary = (void*)0x180a064d0;
@@ -169510,7 +169687,7 @@ void WriteSystemConfigurationHandle(long long CharacterCode)
   *(uint32_t *)(SystemConfigurationHandle + 0x2e04) = 0;
   if (CharacterCode != 0) {
     DataSize = 0;
-    FileOperationResult = FUN_18013ce40(&DataSize);
+    FileOperationResult = ExecuteSystemCleanup(&DataSize);
     FileHandle = FUN_180121300(CharacterCode, SystemConfigurationHandlePath);
     if (FileHandle != 0) {
       fwrite(FileOperationResult, 1, DataSize, FileHandle);
@@ -169533,7 +169710,7 @@ void WriteSystemDefaultData(void)
   long long BufferStatus;
   uint64_t SystemStringBuffer30;
   
-  Utf16Char = FUN_18013ce40();
+  Utf16Char = ExecuteSystemCleanup();
   BufferStatus = FUN_180121300();
   if (BufferStatus != 0) {
     fwrite(Utf16Char,1,SystemStringBuffer30,BufferStatus);
@@ -170233,7 +170410,7 @@ uint64_t * FUN_18013cfa8(void
           SystemChecksum = (long long)*(int *)(pMemoryAddressMask + 0x5c) * 0x38 + *(long long *)(CharacterCode + 0x2e30);
         }
         if (SystemChecksum == 0) {
-          SystemChecksum = FUN_18013c940(*pMemoryAddressMask);
+          SystemChecksum = ProcessSystemMemoryStatus(*pMemoryAddressMask);
           *(int *)(pMemoryAddressMask + 0x5c) =
                (int)((long long)(SystemChecksum - *(long long *)(CharacterCode + 0x2e30)) / 0x38);
         }
@@ -170359,7 +170536,7 @@ uint64_t * FUN_18013cfa8(void
         SystemChecksum = (long long)*(int *)(pMemoryAddressMask + 0x5c) * 0x38 + *(long long *)(NullPointerValue + 0x2e30);
       }
       if (SystemChecksum == 0) {
-        SystemChecksum = FUN_18013c940(*pMemoryAddressMask);
+        SystemChecksum = ProcessSystemMemoryStatus(*pMemoryAddressMask);
         *(int *)(pMemoryAddressMask + 0x5c) =
              (int)((long long)(SystemChecksum - *(long long *)(NullPointerValue + 0x2e30)) / 0x38);
       }
@@ -170546,7 +170723,7 @@ code_r0x00018013d378:
     do {
       while( true ) {
         if (SystemChecksum == 0) {
-          SystemChecksum = FUN_18013c940(*SystemContext);
+          SystemChecksum = ProcessSystemMemoryStatus(*SystemContext);
           aCalculatedCodePoint = SEXT816(RegisterR13Value) *
                    SEXT816((long long)(SystemChecksum - *(long long *)(NullPointerValue + 0x2e30)));
           *(int *)(SystemContext + 0x5c) = (int)(aCalculatedCodePoint.High64Part >> 4) - (aCalculatedCodePoint.High32Part >> 0x1f);

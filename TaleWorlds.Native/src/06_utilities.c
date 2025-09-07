@@ -18054,6 +18054,15 @@ void ProcessFloatComparisonAndValidation(void)
   int64_t systemContext;
   float rangeValue;
   DataWord stackParameter;
+  int64_t dataRangeContext;
+  
+  // 初始化变量
+  registerLowPart = 0;
+  registerHighPart = 0;
+  registerContext = 0;
+  systemContext = 0;
+  stackParameter = 0;
+  dataRangeContext = 0;
   
   rangeValue = *(float *)(CONCAT44(registerHighPart,registerLowPart) + 0x38);
   inputValue = *(float *)(registerContext + 0x18);
@@ -18064,7 +18073,7 @@ void ProcessFloatComparisonAndValidation(void)
   *(float *)(registerContext + 0x18) = rangeValue;
   operationResult = ValidateOperationRangeA0(systemContext + 0x60,stackParameter,rangeValue);
   if (operationResult == 0) {
-      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),systemContext);
   }
   return;
 }
