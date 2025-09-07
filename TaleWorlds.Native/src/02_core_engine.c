@@ -211000,7 +211000,17 @@ InitializeUtf8EncodingConversion(uint64_t *Utf8InputBuffer,unsigned long long Ut
 
 
 
-7cb70(uint64_t CharacterCode,uint64_t Utf8BufferSizevoid FUN_18017cb70(uint64_t CharacterCode,uint64_t Utf8BufferSize
+/**
+ * @brief UTF-8编码转换处理函数
+ * 
+ * 该函数负责处理UTF-8编码转换的核心逻辑，包括内存分配、
+ * 系统上下文设置和转换状态管理。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return void 无返回值
+ */
+void ProcessUtf8EncodingConversion(uint64_t CharacterCode,uint64_t Utf8BufferSize
 {
   uint32_t Utf16Char;
   void *SystemContext;
