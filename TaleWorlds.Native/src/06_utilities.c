@@ -20023,12 +20023,12 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   uint8_t *puStack_158;
   DataWord StackDataWordH;
   DataWord StackDataWordI;
-  DataBuffer uStack_140;
-  DataBuffer uStack_138;
-  DataWord uStack_130;
-  DataWord uStack_12c;
-  DataWord uStack_128;
-  DataWord uStack_124;
+  DataBuffer StackDataBufferA;
+  DataBuffer StackDataBufferB;
+  DataWord StackDataWordJ;
+  DataWord StackDataWordK;
+  DataWord StackDataWordL;
+  DataWord StackDataWordM;
   DataWord uStack_120;
   DataWord uStack_11c;
   DataWord uStack_118;
@@ -44207,7 +44207,21 @@ void UnwindCleanupExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180903b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器配置函数B40
+ * 
+ * 该函数负责配置异常处理器。它会获取验证上下文，调用相关函数，
+ * 设置临时异常处理器，检查数据缓冲区状态，清除相关标志位，
+ * 并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * @param operationFlagA 操作标志A，用于控制处理流程
+ * @param operationFlagB 操作标志B，用于控制处理流程
+ * 
+ * @note 原始函数名：Unwind_180903b40
+ */
+void ConfigureExceptionHandlerB40(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -79924,7 +79938,16 @@ void Unwind_18090d4b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d4c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器A0
+ * 
+ * 该函数用于管理资源的引用计数，当引用计数为0时触发异常处理
+ * 主要用于内存管理和资源清理
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ */
+void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
