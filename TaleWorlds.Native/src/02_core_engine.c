@@ -26250,7 +26250,7 @@ void CoreEngineProcessFloatingPointOperations(long long CharacterCode,float Syst
   uint SystemDivisionCounter;
   long long secondaryLoopCounter;
   uint systemLoopCounter;
-  uint64_t in_RDX;
+  uint64_t RegisterRDXValue;
   long long EncodingConversionResult;
   uint ProcessCurrentCharacter;
   uint SystemStatusCode;
@@ -26276,7 +26276,7 @@ void CoreEngineProcessFloatingPointOperations(long long CharacterCode,float Syst
     ProcessingByte4 = false;
   }
   if (ProcessingByte4) {
-    SystemFloatValue = (float)exp2f(CoreEngineMemoryContext,in_RDX,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    SystemFloatValue = (float)exp2f(CoreEngineMemoryContext,RegisterRDXValue,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
     if (*(char *)(CharacterCode + 0x22d) == '\0') {
       SystemDataTablePointer = *(long long *)((long long)ThreadLocalStoragePointer + (unsigned long long)__tls_index * 8);
       if ((*(int *)(SystemDataTablePointer + 0x48) < _RenderParameterA) &&
@@ -48145,7 +48145,7 @@ void CoreEngineProcessSystemContext(void
   uint64_t *eventDataStructureHandle;  // 事件数据结构指针
   long long systemContextMemoryAddress178;  // 系统上下文内存地址178
   
-  if (!in_ZF) {
+  if (!ZeroFlagValidation) {
     ProcessCharacterCode();
   }
   systemEventTablePointer = CoreEngineSystemContext + 0x5868;
@@ -48727,7 +48727,7 @@ void ExecuteFloatDataProcessingAndContextManagement(void
   float MatrixCalculationResultD8;
   float MatrixCalculationResultDC;
   
-  if (!in_ZF) {
+  if (!ZeroFlagValidation) {
     FloatVariable7 = *PatternIndex;
     ProcessedFloatValue8 = PatternIndex[1];
     NormalizedParameterValue = PatternIndex[2];
@@ -174733,7 +174733,7 @@ LAB_180141f1f:
                     // WARNING: Subroutine does not return
           CoreEngineFreeSystemMemory(TemporaryBuffer);
         }
-        goto LAB_1801421be;
+        goto MemoryCleanupComplete;
       }
       if (TemporaryBuffer != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -174745,7 +174745,7 @@ LAB_180141f1f:
     } while ((long long)Utf16ConversionContext < (long long)InputDataLength);
   }
   Utf16Char4 = 0xffffffff;
-LAB_1801421be:
+MemoryCleanupComplete: // 原始标签：LAB_1801421be
   StackTempPointer = &SystemNullTemplate;
   if (pSystemOperationFlag98 != NULL) {
                     // WARNING: Subroutine does not return
