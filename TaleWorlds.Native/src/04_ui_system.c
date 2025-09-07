@@ -74613,61 +74613,62 @@ undefined8 ProcessUIContextData(undefined8 uiContext,undefined8 dataSource,undef
 
 
 
-bool FUN_18070f310(longlong uiContext,byte dataSource)
+bool ValidateUISemaphore(longlong uiContext,byte dataSource)
 
 {
-  uint functionResult;
-  uint semaphoreHandle;
-  uint uVar3;
+  uint currentValue;
+  uint semaphoreMask;
+  uint updatedValue;
   
-  functionResult = *(uint *)(uiContext + 0x24);
-  semaphoreHandle = *(uint *)(uiContext + 0x20) >> (dataSource & 0x1f);
-  if (functionResult >= semaphoreHandle) {
-    *(uint *)(uiContext + 0x24) = functionResult - semaphoreHandle;
+  // 验证UI信号量状态
+  currentValue = *(uint *)(uiContext + 0x24);
+  semaphoreMask = *(uint *)(uiContext + 0x20) >> (dataSource & 0x1f);
+  if (currentValue >= semaphoreMask) {
+    *(uint *)(uiContext + 0x24) = currentValue - semaphoreMask;
   }
-  uVar3 = semaphoreHandle;
-  if (semaphoreHandle <= functionResult) {
-    uVar3 = *(uint *)(uiContext + 0x20) - semaphoreHandle;
+  updatedValue = semaphoreMask;
+  if (semaphoreMask <= currentValue) {
+    updatedValue = *(uint *)(uiContext + 0x20) - semaphoreMask;
   }
-  *(uint *)(uiContext + 0x20) = uVar3;
+  *(uint *)(uiContext + 0x20) = updatedValue;
   FUN_18070f490(uiContext);
-  return functionResult < semaphoreHandle;
+  return currentValue < semaphoreMask;
 }
 
 
 
-uint FUN_18070f360(longlong *uiContext,uint dataSource)
+uint ProcessUIDataStream(longlong *uiContext,uint dataSource)
 
 {
-  uint functionResult;
-  uint semaphoreHandle;
-  uint uVar3;
-  uint uVar4;
-  uint uVar5;
+  uint dataValue;
+  uint semaphoreIndex;
+  uint dataOffset;
+  uint bufferIndex;
+  uint bitMask;
   
-  uVar3 = *(uint *)((longlong)uiContext + 0x14);
-  uVar5 = *(uint *)(uiContext + 2);
-  if (uVar3 < dataSource) {
-    uVar4 = *(uint *)((longlong)uiContext + 0xc);
-    semaphoreHandle = uVar3;
+  dataOffset = *(uint *)((longlong)uiContext + 0x14);
+  bitMask = *(uint *)(uiContext + 2);
+  if (dataOffset < dataSource) {
+    bufferIndex = *(uint *)((longlong)uiContext + 0xc);
+    semaphoreIndex = dataOffset;
     do {
-      if (uVar4 < *(uint *)(uiContext + 1)) {
-        uVar4 = uVar4 + 1;
-        *(uint *)((longlong)uiContext + 0xc) = uVar4;
-        functionResult = (uint)*(byte *)((ulonglong)(*(uint *)(uiContext + 1) - uVar4) + *uiContext);
+      if (bufferIndex < *(uint *)(uiContext + 1)) {
+        bufferIndex = bufferIndex + 1;
+        *(uint *)((longlong)uiContext + 0xc) = bufferIndex;
+        dataValue = (uint)*(byte *)((ulonglong)(*(uint *)(uiContext + 1) - bufferIndex) + *uiContext);
       }
       else {
-        functionResult = 0;
+        dataValue = 0;
       }
-      uVar3 = semaphoreHandle + 8;
-      uVar5 = uVar5 | functionResult << ((byte)semaphoreHandle & 0x1f);
-      semaphoreHandle = uVar3;
-    } while ((int)uVar3 < 0x19);
+      dataOffset = semaphoreIndex + 8;
+      bitMask = bitMask | dataValue << ((byte)semaphoreIndex & 0x1f);
+      semaphoreIndex = dataOffset;
+    } while ((int)dataOffset < 0x19);
   }
   *(uint *)(uiContext + 3) = (int)uiContext[3] + dataSource;
-  *(uint *)(uiContext + 2) = uVar5 >> ((byte)dataSource & 0x1f);
-  *(uint *)((longlong)uiContext + 0x14) = uVar3 - dataSource;
-  return (1 << ((byte)dataSource & 0x1f)) - 1U & uVar5;
+  *(uint *)(uiContext + 2) = bitMask >> ((byte)dataSource & 0x1f);
+  *(uint *)((longlong)uiContext + 0x14) = dataOffset - dataSource;
+  return (1 << ((byte)dataSource & 0x1f)) - 1U & bitMask;
 }
 
 
