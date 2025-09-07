@@ -66576,9 +66576,16 @@ LAB_18069dd1e:
 
 
 
- void FUN_18069de90(longlong uiContext)
-void FUN_18069de90(longlong uiContext)
-
+ /**
+ * @brief 处理UI上下文数据渲染
+ * 
+ * 处理UI上下文的渲染逻辑，包括缓冲区数据处理、内存分配和渲染状态更新
+ * 
+ * @param uiContext UI上下文指针
+ * 
+ * @note 原始函数名: FUN_18069de90
+ */
+void ProcessUIContextRendering(longlong uiContext)
 {
   ushort functionResult;
   int validationResult;
