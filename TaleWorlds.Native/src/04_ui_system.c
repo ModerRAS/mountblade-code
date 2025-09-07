@@ -66482,7 +66482,7 @@ void FUN_18069dfe0(int uiContext,int dataSource,int targetBuffer,undefined8 buff
   if (uiContext == 0x10) {
     iVar3 = (*_DAT_180d4a958)();
     uVar8 = iVar3 + 0x80U >> 8;
-    iVar3 = (*_DAT_180d4a958)(bufferSize,param_7,&UNK_180949b40,0,aiStackX_10);
+    iVar3 = (*_DAT_180d4a958)(bufferSize,param_7,&UiRenderBuffer,0,aiStackX_10);
     uStackX_18 = iVar3 + 0x80U >> 8;
     (*_DAT_180d4a958)(bufferSize,param_7,param_9,uiContext2,aiStackX_10);
     uStack_68 = aiStackX_10[0] + 0x80U >> 8;
@@ -66494,9 +66494,9 @@ void FUN_18069dfe0(int uiContext,int dataSource,int targetBuffer,undefined8 buff
     uVar5 = aiStackX_10[0] + 0x20U >> 6;
   }
   else {
-    iVar3 = FUN_180690580(param_9,uiContext2,&UNK_180949b40,0,aiStackX_10);
+    iVar3 = FUN_180690580(param_9,uiContext2,&UiRenderBuffer,0,aiStackX_10);
     uVar8 = iVar3 + 0x20U >> 6;
-    iVar3 = FUN_180690580(bufferSize,param_7,&UNK_180949b40,0,aiStackX_10);
+    iVar3 = FUN_180690580(bufferSize,param_7,&UiRenderBuffer,0,aiStackX_10);
     uStackX_18 = iVar3 + 0x20U >> 6;
     FUN_180690580(bufferSize,param_7,param_9,uiContext2,aiStackX_10);
     uStack_68 = aiStackX_10[0] + 0x20U >> 6;
@@ -67299,7 +67299,7 @@ void FUN_18069ef30(longlong uiContext,longlong dataSource,char *targetBuffer,cha
     }
     lVar3 = ((longlong)(int)(((uint)(iVar6 == 0) * 2 | (uint)(uStackX_8 == 0)) * 2) |
             (ulonglong)(uStackX_8 == iVar6)) * 3;
-    functionResult3 = ((*(int *)(bufferData + 0x1c) + -1) * (uint)(byte)(&UNK_180949f90)[lVar3] >> 8) + 1;
+    functionResult3 = ((*(int *)(bufferData + 0x1c) + -1) * (uint)(byte)(&ColorAlphaTable)[lVar3] >> 8) + 1;
     if (*(int *)(bufferData + 0x18) < 0) {
       FUN_18069ec80(uiContext);
     }
@@ -67321,7 +67321,7 @@ LAB_18069f21f:
       sVar4 = (short)uStackX_8;
     }
     else {
-      functionResult3 = ((uint)(byte)(&UNK_180949f91)[lVar3] * (operationResult4 + -1) >> 8) + 1;
+      functionResult3 = ((uint)(byte)(&ColorRedTable)[lVar3] * (operationResult4 + -1) >> 8) + 1;
       if (operationResult1 < 0) {
         FUN_18069ec80(uiContext);
       }
@@ -67342,7 +67342,7 @@ LAB_18069f21f:
       if (bVar15) goto LAB_18069f21f;
       iVar6 = 0 << (bVar1 & 0x1f);
       uStackX_8 = 0;
-      functionResult3 = ((uint)(byte)(&UNK_180949f92)[lVar3] * (operationResult1 + -1) >> 8) + 1;
+      functionResult3 = ((uint)(byte)(&ColorGreenTable)[lVar3] * (operationResult1 + -1) >> 8) + 1;
       if (operationResult4 < 0) {
         FUN_18069ec80(uiContext);
       }
@@ -67367,9 +67367,9 @@ LAB_18069f21f:
     *(byte *)(resultPointer + 10) =
          *(byte *)(resultPointer + 10) |
          (((sVar4 < uiContext0 || uiContext1 < sVar4) || iVar6 < param_8) || param_9 < iVar6);
-    functionResult3 = (uint)(byte)(&UNK_180949fa8)[iStack_68];
+    functionResult3 = (uint)(byte)(&ColorBlueTable)[iStack_68];
     pbVar7 = &g_uiTextBuffer +
-             (int)((functionResult2 & 0xff) * (uint)(byte)(&UNK_180949fa8)[iStack_68]) + lVar8;
+             (int)((functionResult2 & 0xff) * (uint)(byte)(&ColorBlueTable)[iStack_68]) + lVar8;
     do {
       bVar1 = *pbVar7;
       pbVar7 = pbVar7 + 1;
@@ -67681,7 +67681,7 @@ int FUN_18069f6a0(longlong uiContext,longlong dataSource)
     *(int *)(bufferData + 0x18) = *(int *)(bufferData + 0x18) - (uint)bVar1;
     *(ulonglong *)(uiContext + 0x10) = uVar4 << (bVar1 & 0x3f);
     *(uint *)(uiContext + 0x1c) = uVar5 << (bVar1 & 0x1f);
-    cVar2 = (&UNK_1809482e8)[(longlong)(int)(uint)bVar6 + (longlong)cVar2];
+    cVar2 = (&UICharMappingTable)[(longlong)(int)(uint)bVar6 + (longlong)cVar2];
   } while ('\0' < cVar2);
   return -(int)cVar2;
 }
@@ -67712,7 +67712,7 @@ void ProcessUIDataSource(longlong uiContext,char *dataSource)
   processingResult = *(int *)(bufferData + 0x1e7c);
   uiContext = uiContext + 0x42c0;
   dataSource[2] = '\0';
-  dataCharacter = FUN_18069f8f0(uiContext,&UNK_180948468);
+  dataCharacter = FUN_18069f8f0(uiContext,&UIFontData);
   *dataSource = dataCharacter;
   if (dataCharacter == '\x04') {
     processingIndex = 0;
@@ -67767,12 +67767,12 @@ LAB_18069f85f:
         secondaryOperation = *dataPointer;
       }
       dataPointer = dataPointer + 1;
-      operationType = FUN_18069f6a0(uiContext,&UNK_1809484b0 + ((longlong)secondaryOperation + (longlong)operationType * 10) * 9);
+      operationType = FUN_18069f6a0(uiContext,&UIOperationTable + ((longlong)secondaryOperation + (longlong)operationType * 10) * 9);
       processingIndex = processingIndex + 1;
       *dataPointer = operationType;
     } while ((int)processingIndex < 0x10);
   }
-  dataCharacter = FUN_1806a02d0(uiContext,&UNK_1809482fc);
+  dataCharacter = FUN_1806a02d0(uiContext,&UISymbolTable);
   dataSource[1] = dataCharacter;
   return;
 }

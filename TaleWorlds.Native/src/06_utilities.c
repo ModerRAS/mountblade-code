@@ -8090,8 +8090,10 @@ uint8_t SystemDataBufferB;
 uint8_t SystemResourceManagerTableA2;
 // 系统配置管理表A1
 uint8_t SystemConfigurationManagementTableA1;
-uint8_t UnknownSystemDataK;
-uint8_t UnknownSystemDataL;
+// 系统状态管理表A1
+uint8_t SystemStatusManagementTableA1;
+// 系统数据管理表A1
+uint8_t SystemDataManagementTableA1;
 
 // 函数: uint8_t UtilityConfigureMemorySettings;
 // 配置内存管理器的设置，包括内存池大小、分配策略等
@@ -22559,8 +22561,8 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
     }
     totalLength = 0;
     bufferOffset = 0;
-    nodeData = *(uint3 *)((int64_t)itemIndex * 3 + dataContext[6]);
-    while (nodeIndex = (uint)nodeData, nodeIndex != 0xffffff) {
+    nodeDataArray = *(uint3 *)((int64_t)itemIndex * 3 + dataContext[6]);
+    while (nodeIndex = (uint)nodeDataArray, nodeIndex != 0xffffff) {
       systemDataBuffer = *(uint *)(*dataContext + (uint64_t)nodeIndex * 8);
       if ((systemDataBuffer & 0xffffff) != 0xffffff) {
         stringAddress = (uint64_t)(systemDataBuffer & 0xffffff) + dataContext[4];
@@ -22659,7 +22661,7 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
   DataBuffer *dataBuffer;
   ByteFlag statusFlag;
   uint dataLength;
-  uint3 dataChunk;
+  uint3 dataChunkArray;
   DataWord operationResult;
   DataWord validationCode;
   uint processIndex;
