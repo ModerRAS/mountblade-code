@@ -64,7 +64,21 @@
 #define StackPointerD0 pcStack_d0                          // 栈指针D0
 
 // FUN_函数语义化宏定义
-#define ResetCharacterProcessingSystem FUN_18013ce40      // 重置字符处理系统
+/**
+ * @brief 重置字符处理系统
+ * 
+ * 该函数负责重置整个字符处理系统，包括：
+ * - 清理字符编码状态
+ * - 重置字符转换缓冲区
+ * - 初始化字符处理参数
+ * - 重置系统内部状态标志
+ * 
+ * 该函数通常在系统初始化或字符处理出错时调用，
+ * 用于确保字符处理系统处于已知的清洁状态。
+ * 
+ * @note 原始函数名：FUN_18013ce40
+ */
+#define ResetCharacterProcessingSystem FUN_18013ce40
 #define ProcessCharacterDataWithCode FUN_180136210        // 使用字符代码处理字符数据
 #define FinalizeCharacterProcessing FUN_180136440         // 完成字符处理
 #define ProcessCurrentCharacterData FUN_180122160             // 处理字符串缓冲区数据
@@ -270013,13 +270027,13 @@ int IdentifySystemIdentifierByPatternVariantB3(void
  * 
  * @return 返回匹配的系统标识符代码
  */
-int IdentifySystemIdentifierByPatternVariantB4(void
+int IdentifySystemIdentifierByPatternVariantB4(void)
 {
   int LockResult;
   long long BufferStatus;
   int InputDataLength;
-  long long PatternIndex;
-  long long MemoryOffset;
+  long long PatternMatchStatus;
+  long long SearchStartIndex;
   long long SystemDataNode;
   
   if (InputDataLength == 4) {
@@ -270057,11 +270071,11 @@ int IdentifySystemIdentifierByPatternVariantB4(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordNonary), LockResult == 0)) {
     return 0x26;
   }
   if ((InputDataLength == 9) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordOctonary), LockResult == 0)) {
     return 0x27;
   }
   if (InputDataLength == 6) {
@@ -270075,7 +270089,7 @@ int IdentifySystemIdentifierByPatternVariantB4(void
     }
   }
   if ((InputDataLength == 10) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSenary), LockResult == 0)) {
     return 0x31;
   }
   if (InputDataLength == 6) {
@@ -270088,15 +270102,15 @@ int IdentifySystemIdentifierByPatternVariantB4(void
     }
   }
   if ((InputDataLength == 0x11) &&
-     (IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), IntegerValue == 0)) {
+     (LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordQuaternary), LockResult == 0)) {
     return 0x2a;
   }
   if (InputDataLength == 0xe) {
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
-    if (IntegerValue == 0) {
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordTertiary);
+    if (LockResult == 0) {
       return 0x2e;
     }
-    IntegerValue = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
+    LockResult = strcmp(*(void *)(SystemDataNode + 8),&SystemKeywordSecondary);
     if (IntegerValue == 0) {
       return 0x2f;
     }
