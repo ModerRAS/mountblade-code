@@ -8782,17 +8782,17 @@ void ManageUIElements(longlong *uiContext)
                     // WARNING: Subroutine does not return
           memcpy(stackBuffer90,stackBufferB0,stackValueA8 + 1);
         }
-        if (pbStack_b0 != (undefined1 *)0x0) {
-          uStack_88 = 0;
-          if (puStack_90 != (undefined1 *)0x0) {
-            *puStack_90 = 0;
+        if (stackBufferB0 != (undefined1 *)0x0) {
+          stackValue88 = 0;
+          if (stackBuffer90 != (undefined1 *)0x0) {
+            *stackBuffer90 = 0;
           }
-          uStack_80 = uStack_80 & 0xffffffff;
+          stackValue80 = stackValue80 & 0xffffffff;
         }
-        operationResult4 = uStack_88 + 0xe;
-        AllocateUIBuffer(&puStack_98,operationResult4);
-        pfunctionResult0 = (undefined8 *)(puStack_90 + uStack_88);
-        *pfunctionResult0 = 0x75646f4d6275532f;
+        memoryOperationResult = stackValue88 + 0xe;
+        AllocateUIBuffer(&stackBuffer98,memoryOperationResult);
+        functionResult = (undefined8 *)(stackBuffer90 + stackValue88);
+        *functionResult = 0x75646f4d6275532f;
         *(undefined4 *)(pfunctionResult0 + 1) = 0x782e656c;
         *(undefined2 *)((longlong)pfunctionResult0 + 0xc) = 0x6c6d;
         *(undefined1 *)((longlong)pfunctionResult0 + 0xe) = 0;
