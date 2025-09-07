@@ -64767,7 +64767,6 @@ ulonglong ProcessUIDataAndBufferManager(longlong uiContext,longlong dataSource,u
  * @note 涉及位运算和状态标志处理
  */
 void CompareUIComponentStates(longlong uiContext,longlong dataSource)
-
 {
   byte isCharacterMatch;
   longlong componentIndex;
@@ -64879,8 +64878,22 @@ LAB_18069a35d:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18069a490(longlong uiContext)
-void FUN_18069a490(longlong uiContext)
+ /**
+ * @brief UI组件数据解析和状态设置函数
+ * 
+ * 该函数负责解析UI组件数据并设置相应的状态，包括：
+ * - 解析UI组件的数据缓冲区
+ * - 设置UI组件的状态标志
+ * - 处理UI组件的配置参数
+ * - 管理UI组件的内存分配
+ * 
+ * @param uiContext UI上下文指针，用于访问和操作UI系统数据
+ * 
+ * @note 原始函数名: FUN_18069a490
+ * @note 该函数执行复杂的UI数据解析和状态设置
+ * @note 涉及数据缓冲区处理和状态标志管理
+ */
+void ParseUIComponentDataAndSetState(longlong uiContext)
 
 {
   longlong allocatedMemory;
