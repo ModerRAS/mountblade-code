@@ -167920,7 +167920,15 @@ LAB_18013b999:
 
 
 
-3baa6(voidvoid FUN_18013baa6(void
+/**
+ * @brief 初始化UTF-8系统同步状态
+ * 
+ * 执行UTF-8系统的初始化和同步操作，包括系统事件队列处理和组件验证
+ * 负责设置系统状态标志位和初始化系统配置
+ * 
+ * @return void 无返回值
+ */
+void InitializeUtf8SystemSynchronization(void)
 {
   long long PrimaryDataSize;
   
@@ -167939,7 +167947,15 @@ LAB_18013b999:
 
 
 
-3badf(voidvoid FUN_18013badf(void
+/**
+ * @brief 执行UTF-8系统初始化
+ * 
+ * 执行UTF-8系统的基本初始化操作，当前为空实现
+ * 可能用于系统启动时的基础设置或预留的初始化接口
+ * 
+ * @return void 无返回值
+ */
+void ExecuteUtf8SystemInitialization(void)
 {
   return;
 }

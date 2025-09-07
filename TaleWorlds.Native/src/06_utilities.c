@@ -113187,14 +113187,14 @@ void ResetThreadLocalStorage(void)
 {
   int64_t threadContext;
   
-  threadContext = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
-  *(DataBuffer *)(threadContext + 0x18) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(threadContext + 0x20) != 0) {
+  ThreadContext = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
+  *(DataBuffer *)(ThreadContext + 0x18) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(ThreadContext + 0x20) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(threadContext + 0x20) = 0;
-  *(DataWord *)(threadContext + 0x30) = 0;
-  *(DataBuffer *)(threadContext + 0x18) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(ThreadContext + 0x20) = 0;
+  *(DataWord *)(ThreadContext + 0x30) = 0;
+  *(DataBuffer *)(ThreadContext + 0x18) = &DefaultExceptionHandlerB;
   return;
 }
 
