@@ -20018,11 +20018,11 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   int64_t lStack_180;
   uint8_t *puStack_178;
   DataWord StackDataWordE;
-  DataWord uStack_168;
-  DataWord uStack_160;
+  DataWord StackDataWordF;
+  DataWord StackDataWordG;
   uint8_t *puStack_158;
-  DataWord uStack_150;
-  DataWord uStack_148;
+  DataWord StackDataWordH;
+  DataWord StackDataWordI;
   DataBuffer uStack_140;
   DataBuffer uStack_138;
   DataWord uStack_130;
