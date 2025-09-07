@@ -100316,7 +100316,6 @@ void SetDefaultExceptionHandler04(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9422e0(void)
 /**
  * @brief 设置默认异常处理器05
  * 
@@ -100758,7 +100757,6 @@ void CleanupSystemResourceManagerC(DataBuffer operationBase, DataBuffer dataBuff
 
 
 
-9425e0(void)
 /**
  * @brief 销毁互斥锁D
  * 
