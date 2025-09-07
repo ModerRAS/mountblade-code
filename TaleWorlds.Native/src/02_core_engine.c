@@ -264,6 +264,20 @@ const void* const SystemKeyStringContactCaptureThreshold = (void*)0x180a0b158;
 const void* const SystemKeyStringSkinWidth = (void*)0x180a0b188;
 const void* const SystemKeyStringLinearDamping = (void*)0x180a0b178;
 
+// 系统内存和缓冲区常量 - 用于替换UNK_180a01620等变量
+const void* const SystemStringSecondaryTemplate = (void*)0x180a01620;
+const void* const SystemDataTablePrimary = (void*)0x18020f868;
+const void* const SystemBufferAllocationStatus = (void*)0x180a10008;
+const void* const SystemContextTemplate = (void*)0x180a128b0;
+const void* const SystemDataTemplateSecondary = (void*)0x180a10cd8;
+const void* const SystemEncodingDataTable = (void*)0x180211ec0;
+const void* const SystemConfigurationTemplateData = (void*)0x180a10508;
+const void* const SystemConfigurationTemplateDataSecondary = (void*)0x180a10520;
+const void* const SystemEventInitializationData = (void*)0x180a105b8;
+const void* const SystemStringTemplateData = (void*)0x180a105d8;
+const void* const SystemStringTemplateDataSecondary = (void*)0x180a10568;
+const void* const SystemEventTemplateDataPrimary = (void*)0x180a10570;
+
 // 函数语义化宏定义
 // 浮点数据处理函数
 #define CalculateFloatRangeValue FUN_18011fc80
@@ -241992,7 +242006,7 @@ LAB_180213b20:
   }
   FUN_180211a30(StringComparisonResult,SecondaryProcessingStatusFlag);
   if (StringComparisonResult != 0) {
-    ValidateSystemConfiguration(SystemConfigurationPointer,0,0,3,&UNK_180a10508,SystemRegisterFlagX8,SystemByteValue);
+    ValidateSystemConfiguration(SystemConfigurationPointer,0,0,3,&SystemConfigurationTemplatePrimary,SystemRegisterFlagX8,SystemByteValue);
     return 0;
   }
   return SystemRegisterFlagX8;
@@ -242075,7 +242089,7 @@ LAB_180213d73:
   FUN_180211a30(IntegerValue,&CoreEngineDataTemplate);
   UnicodeCodePoint = SystemRegisterFlagX8;
   if (LockResult != 0) {
-    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a10520,SystemRegisterFlagX8);
+    ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&SystemConfigurationTemplateSecondary,SystemRegisterFlagX8);
     UnicodeCodePoint = 0;
   }
   LockResult = _Mtx_unlock(SystemContextPointer + 0x318);
