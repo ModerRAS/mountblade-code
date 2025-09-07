@@ -8002,7 +8002,7 @@ LAB_180655e30:
       }
       if (stackInt40 == 0xd) {
         uiCompareResult = strcmp(pcStack_48,&UIStringTable_SubtitleFont);
-        bVar8 = uiCompareResult == 0;
+        IsFontMatchFound = uiCompareResult == 0;
         goto LAB_180655afa;
       }
     }
@@ -8051,9 +8051,9 @@ LAB_180655a80:
       goto LAB_180655685;
     }
     if (*pcStack_48 == 'u') {
-      bVar8 = pcStack_48[1] == '\0';
+      IsStringTerminated = pcStack_48[1] == '\0';
 LAB_180655afa:
-      if (bVar8) {
+      if (IsStringTerminated) {
         eventTypeCode = 0x20;
         goto LAB_180655685;
       }
@@ -8904,7 +8904,7 @@ LAB_180656abd:
   if (semaphoreHandle0 != 0) {
     do {
       result3 = 0;
-      pbVar8 = &UIDefaultResourceBuffer;
+      DefaultResourceBuffer = &UIDefaultResourceBuffer;
       contextData = *colorBufferPointer1;
       pstackUIntb8 = &PrimaryUIBuffer;
       stackUInta0 = 0;
@@ -8937,15 +8937,15 @@ LAB_180656abd:
       if (UIResourceManagerHandle == (byte *)0x0) {
 LAB_180656d5b:
         pisCharacterMatch1 = &UIDefaultResourceBuffer;
-        pbVar8 = UIResourceManagerHandle;
-        while (pbVar9 = pisCharacterMatch1, pbVar8 != (byte *)0x0) {
+        ResourceIterator = UIResourceManagerHandle;
+        while (ResourcePointer = pisCharacterMatch1, ResourceIterator != (byte *)0x0) {
           if (stackUInta8 == 0) {
-            bVar2 = false;
+            ShouldSkipResourceValidation = false;
             pisCharacterMatch9 = *(byte **)(pbVar8 + 8);
           }
           else {
             if (*(int *)(pbVar8 + 0x30) == 0) {
-              bVar2 = true;
+              ShouldSkipResourceValidation = true;
             }
             else {
               pisCharacterMatch1 = pbStack_b0;
@@ -8956,7 +8956,7 @@ LAB_180656d5b:
                 if (semaphoreHandle2 != 0) break;
                 pisCharacterMatch1 = pisCharacterMatch1 + 1;
               } while (*pisCharacterMatch9 != 0);
-              bVar2 = 0 < (int)semaphoreHandle2;
+              ShouldSkipResourceValidation = 0 < (int)semaphoreHandle2;
               if ((int)semaphoreHandle2 < 1) {
                 pisCharacterMatch9 = *(byte **)(pbVar8 + 8);
                 goto LAB_180656dbb;
@@ -8967,26 +8967,26 @@ LAB_180656d5b:
 LAB_180656dbb:
           pisCharacterMatch1 = pbVar8;
           pbVar8 = pisCharacterMatch9;
-          if (bVar2) {
+          if (ShouldSkipResourceValidation) {
             pisCharacterMatch1 = pbVar9;
           }
         }
-        if (pbVar9 == &UIDefaultResourceBuffer) {
+        if (ResourcePointer == &UIDefaultResourceBuffer) {
 LAB_180656df9:
-          ptrResult0 = (undefined8 *)ProcessUIComponentEx(&pstackUIntb8,&plStackX_8,pisCharacterMatch8,pbVar9,&pstackUIntb8);
-          pbVar9 = (byte *)*ptrResult0;
+          ComponentResult = (undefined8 *)ProcessUIComponentEx(&pstackUIntb8,&plStackX_8,pisCharacterMatch8,ResourcePointer,&pstackUIntb8);
+          ResourcePointer = (byte *)*ComponentResult;
         }
-        else if (*(int *)(pbVar9 + 0x30) != 0) {
+        else if (*(int *)(ResourcePointer + 0x30) != 0) {
           if (stackUInta8 != 0) {
-            pbVar8 = *(byte **)(pbVar9 + 0x28);
-            allocatedMemory6 = (longlong)pbStack_b0 - (longlong)pbVar8;
+            ResourceDataPointer = *(byte **)(ResourcePointer + 0x28);
+            ResourceDataOffset = (longlong)pbStack_b0 - (longlong)ResourceDataPointer;
             do {
-              pisCharacterMatch1 = pbVar8 + allocatedMemory6;
-              semaphoreHandle2 = (uint)*pbVar8 - (uint)*pisCharacterMatch1;
-              pisCharacterMatch8 = (byte *)(ulonglong)semaphoreHandle2;
-              if (semaphoreHandle2 != 0) break;
-              pbVar8 = pbVar8 + 1;
-            } while (*pisCharacterMatch1 != 0);
+              CharacterComparePointer = ResourceDataPointer + ResourceDataOffset;
+              CharacterCompareResult = (uint)*ResourceDataPointer - (uint)*CharacterComparePointer;
+              CharacterCompareResultByte = (byte *)(ulonglong)CharacterCompareResult;
+              if (CharacterCompareResult != 0) break;
+              ResourceDataPointer = ResourceDataPointer + 1;
+            } while (*CharacterComparePointer != 0);
             if ((int)semaphoreHandle2 < 1) goto LAB_180656e11;
           }
           goto LAB_180656df9;

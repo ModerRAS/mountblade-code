@@ -40,6 +40,15 @@
 #define CleanupCharacterProcessing FUN_18013643d           // 清理字符处理
 #define ResetCharacterEncoder FUN_180136457                // 重置字符编码器
 #define ProcessCharacterInputBufferValidation FUN_180137110  // 处理字符输入缓冲区验证
+#define ProcessCharacterCodeConversion FUN_180137370         // 处理字符代码转换
+#define ProcessUtf8CharacterEncodingEx FUN_1801376c9         // 扩展UTF-8字符编码处理
+#define ProcessUtf8CharacterEncodingAdvanced FUN_1801376d4  // 高级UTF-8字符编码处理
+#define ProcessCharacterCodeValidation FUN_180137a89         // 处理字符代码验证
+#define ProcessCharacterDataConversion FUN_180137d3b        // 处理字符数据转换
+#define ProcessCharacterFinalValidation FUN_180137dd7        // 处理字符最终验证
+#define ProcessSystemValidation FUN_180137e56                // 处理系统验证
+#define ProcessSystemFinalization FUN_180137ef1               // 处理系统最终化
+#define ProcessUtf8BufferFinalization FUN_180137f90          // 处理UTF-8缓冲区最终化
 
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
@@ -162356,10 +162365,10 @@ void ProcessCharacterInputBufferValidation(uint32_t *Utf8InputBuffer)
     Utf8InputBuffer[1] = *(uint32_t *)(*(long long *)(CharacterCode + 2) + 4);
   }
   if (*(long long *)(CharacterCode + 4) != 0) {
-    FUN_180137110();
+    ProcessCharacterInputBufferValidation();
   }
   if (*(long long *)(CharacterCode + 6) != 0) {
-    FUN_180137110();
+    ProcessCharacterInputBufferValidation();
   }
   StringLength = Utf8InputBuffer[8];
   ValidationResult = 0;
@@ -162520,7 +162529,7 @@ void ProcessCharacterMemoryAllocation(long long CharacterCode, uint64_t Utf8Buff
   *(void *)(CharacterCode + 0x1e) = 0;
   SystemStringIndex = MemoryPoolBlockSize;
   if (*(long long *)(CharacterCode + 2) == 0) {
-    FUN_180137110();
+    ProcessCharacterInputBufferValidation();
     CoreEngineUnsignedValueA0 = (uint32_t *)0x0;
     if (0 < (int)Utf8InputBuffer[8]) {
       CoreEngineUnsignedValueA0 = CharacterCode;
@@ -162531,10 +162540,10 @@ void ProcessCharacterMemoryAllocation(long long CharacterCode, uint64_t Utf8Buff
       SystemEventDispatcher = CharacterCode;
     }
     if (*(long long *)(CharacterCode + 4) != 0) {
-      FUN_1801370a0(*(long long *)(CharacterCode + 4),&SystemEventDispatcher);
+      ProcessCharacterBufferSizeValidation(*(long long *)(CharacterCode + 4),&SystemEventDispatcher);
     }
     if (*(long long *)(CharacterCode + 6) != 0) {
-      FUN_1801370a0(*(long long *)(CharacterCode + 6),&SystemEventDispatcher);
+      ProcessCharacterBufferSizeValidation(*(long long *)(CharacterCode + 6),&SystemEventDispatcher);
     }
     *(uint32_t **)(CharacterCode + 0x1e) = SystemEventDispatcher;
     CharacterStatusBuffer = CharacterStatusBuffer8;
@@ -162628,7 +162637,7 @@ LAB_180137566:
     *(byte *)(CharacterCode + 0x28) = *(byte *)(CharacterCode + 0x28) & 0x7c;
     Utf8InputBuffer[0x23] = *(uint32_t *)(MemoryPoolBlockSize + 0x1a90);
     if (((*(byte *)((long long)CharacterCode + 0xa1) & 8) != 0) && (Utf8InputBuffer[8] == 1)) {
-      FUN_180137370(CharacterCode,**(uint64_t **)(CharacterCode + 10));
+      ProcessCharacterCodeConversion(CharacterCode,**(uint64_t **)(CharacterCode + 10));
     }
     goto LAB_180137f18;
   }
@@ -162727,7 +162736,7 @@ LAB_180137566:
     }
     *(byte *)(CharacterCode + 0x28) = *(byte *)(CharacterCode + 0x28) & 0xfc;
     if (((*(byte *)((long long)CharacterCode + 0xa1) & 8) != 0) && (*(long long *)(CharacterCode + 0x1a) != 0)) {
-      FUN_180137370(CharacterCode);
+      ProcessCharacterCodeConversion(CharacterCode);
     }
   }
   else {
@@ -162902,7 +162911,7 @@ LAB_180137f18:
 
 
 
-376c9(float CharacterCode,byte Utf8BufferSize,int Utf8SourcePointervoid FUN_1801376c9(float CharacterCode,byte Utf8BufferSize,int Utf8SourcePointer
+void ProcessUtf8CharacterEncodingEx(float CharacterCode,byte Utf8BufferSize,int Utf8SourcePointer
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
@@ -163039,7 +163048,7 @@ LAB_180137f18:
     }
     *(byte *)(DataNodeIndex + 0x28) = *(byte *)(DataNodeIndex + 0x28) & 0xfc;
     if (((*(byte *)((long long)DataNodeIndex + 0xa1) & 8) != 0) && (*(long long *)(DataNodeIndex + 0x1a) != 0       ) {
-      CharacterCode = (float)FUN_180137370();
+      CharacterCode = (float)ProcessCharacterCodeConversion();
     }
   }
   else {
@@ -163251,7 +163260,7 @@ LAB_180137cc2:
 
 
 
-376d4(float CharacterCode,byte Utf8BufferSize,int Utf8SourcePointervoid FUN_1801376d4(float CharacterCode,byte Utf8BufferSize,int Utf8SourcePointer
+void ProcessUtf8CharacterEncodingAdvanced(float CharacterCode,byte Utf8BufferSize,int Utf8SourcePointer
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
@@ -163387,7 +163396,7 @@ LAB_180137cc2:
     }
     *(byte *)(DataNodeIndex + 0x28) = *(byte *)(DataNodeIndex + 0x28) & 0xfc;
     if (((*(byte *)((long long)DataNodeIndex + 0xa1) & 8) != 0) && (*(long long *)(DataNodeIndex + 0x1a) != 0       ) {
-      CharacterCode = (float)FUN_180137370();
+      CharacterCode = (float)ProcessCharacterCodeConversion();
     }
   }
   else {
@@ -163599,7 +163608,7 @@ LAB_180137cc2:
 
 
 
-37a89(float CharacterCodevoid FUN_180137a89(float CharacterCode
+void ProcessCharacterCodeValidation(float CharacterCode
 {
   float *pSystemContextPrimaryFloat;
   long long BufferStatus;
@@ -163795,7 +163804,7 @@ LAB_180137cc2:
 
 
 
-37d3b(uint32_t CharacterCode,uint64_t Utf8BufferSize,uint32_t Utf8SourcePointer,float Utf16EndPointervoid FUN_180137d3b(uint32_t CharacterCode,uint64_t Utf8BufferSize,uint32_t Utf8SourcePointer,float Utf16EndPointer
+void ProcessCharacterDataConversion(uint32_t CharacterCode,uint64_t Utf8BufferSize,uint32_t Utf8SourcePointer,float Utf16EndPointer
 {
   float SystemContextPrimaryFloat;
   int CharacterByteCount;
