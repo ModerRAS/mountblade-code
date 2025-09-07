@@ -129005,7 +129005,7 @@ LAB_18012aa37:
     if (*(char *)((long long)pSystemMemoryOffset238 + 0xae) == '\0') {
       if (*(char *)(pSystemMemoryOffset238[5] + 0x77) == '\0') {
         pSystemFloatValue = (float *)FUN_18011feb0(pSystemMemoryOffset238[5],&SystemFlagB);
-        pSystemContextPrimaryFloat6 = (float *)FUN_18010e720(pSystemMemoryOffset238,&fStack_1f8);
+        pSystemContextPrimaryFloat6 = (float *)GetSystemFloatArray(pSystemMemoryOffset238,&fStack_1f8);
         if (((*pSystemContextPrimaryFloat6 <= *pSystemFloatValue && *pSystemFloatValue != *pSystemContextPrimaryFloat6) ||
             (pSystemContextPrimaryFloat6[1] <= pSystemFloatValue[1] && pSystemFloatValue[1] != pSystemContextPrimaryFloat6[1])) ||
            ((pSystemFloatValue[2] < pSystemContextPrimaryFloat6[2] || (pSystemFloatValue[3] < pSystemContextPrimaryFloat6[3])))) {
@@ -129411,7 +129411,7 @@ LAB_18012b465:
     pfStack_258 = (float *)((unsigned long long)pfStack_258 & 0xffffffff00000000);
     ProcessSystemDataAndConfigure(pSystemMemoryOffset238[0x5d],&DataContentStatus,&SystemUnsignedValue160,SystemMemoryAllocationResult);
     if ((LowByte1) && (pSystemMemoryOffset238 == *(long long **)(DataStructureCounter + 0x1ce0))) {
-      FUN_18010e720(pSystemMemoryOffset238,&uStack_1d8);
+      GetSystemFloatArray(pSystemMemoryOffset238,&uStack_1d8);
       FUN_18010e610(&uStack_1d8);
       if ((float)uStack_1d8 <= (float)DataContentStatus) {
         if (((uStack_1d8.HighPart <= DataContentStatus.HighPart) && ((float)SystemUnsignedValue160 <= fStack_1d0)) &&
@@ -129506,7 +129506,7 @@ LAB_18012b82d:
                    *(float *)((long long)pSystemMemoryOffset238 + 0x44);
       fStack_128 = *(float *)(pSystemMemoryOffset238 + 9) + *(float *)(pSystemMemoryOffset238 + 8);
       SystemContextValue = pSystemMemoryOffset238[0x5d];
-      fStack_12c = (float)FUN_18010e760(pSystemMemoryOffset238);
+      fStack_12c = (float)GetSystemFloatValue(pSystemMemoryOffset238);
       fStack_12c = fStack_12c + *(float *)((long long)pSystemMemoryOffset238 + 0x44);
       fStack_130 = *(float *)(pSystemMemoryOffset238 + 8);
       SystemMemoryAllocationResult = 0xc;
@@ -129733,7 +129733,7 @@ LAB_18012b82d:
   *(float *)(pSystemMemoryOffset238 + 0x4e) =
        (*(float *)(pSystemMemoryOffset238 + 8) - *(float *)((long long)pSystemMemoryOffset238 + 0x8c)) +
        *(float *)(pSystemMemoryOffset238 + 0xe);
-  FloatValue38 = (float)FUN_18010e760(pSystemMemoryOffset238);
+  FloatValue38 = (float)GetSystemFloatValue(pSystemMemoryOffset238);
   FloatValue33 = *(float *)((long long)pSystemMemoryOffset238 + 0x44);
   FloatValue34 = *(float *)(pSystemMemoryOffset238 + 0x12);
   FloatValue36 = *(float *)((long long)pSystemMemoryOffset238 + 0x74);
@@ -129759,7 +129759,7 @@ LAB_18012b82d:
   *(uint32_t *)(pSystemMemoryOffset238 + 0x41) = 0;
   *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x20c) = 0;
   FUN_18010e7a0(pSystemMemoryOffset238);
-  FUN_18010e760(pSystemMemoryOffset238);
+  GetSystemFloatValue(pSystemMemoryOffset238);
   QuaternaryReturnCode = ValidateSystemDataStructure(&uStack_1d8,
                                *(float *)((long long)pSystemMemoryOffset238 + 0x20c) +
                                *(float *)((long long)pSystemMemoryOffset238 + 0x204));
