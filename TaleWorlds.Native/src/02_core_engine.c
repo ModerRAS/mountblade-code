@@ -21112,8 +21112,8 @@ void CoreEngineInitializeSystemInfoAndConfigurationProcessor(void
   void* SystemInfoStackAlternativePointer;
   void* SystemInfoStackSecondaryAlternativePointer;
   void* SystemInfoStackQuaternaryPointer;
-  void* SystemInfoStackQuaternaryPointer1;
-  void* SystemInfoStackQuaternaryPointer2;
+  void* RenderConfigSystemPointer;
+  void* SecurityBufferSystemPointer;
   int SystemInfoStackProcessingConfigurationFlag;
   int SystemInfoStackProcessingInitializationFlag;
   void* SystemInfoStackSecondaryPointer;
@@ -21191,7 +21191,7 @@ CheckSystemInfoBounds:
     }
     SystemInfoStackQuaternaryPointer = &SystemInfoPrimaryTemplate;
     CoreEngineApplySystemConfiguration(SystemConfigHandle,5,0xffffffffffffffff,4);
-    SystemInfoStackQuaternaryPointer1 = &RenderConfigManager;
+    RenderConfigSystemPointer = &RenderConfigManager;
     SystemInfoStackQuaternaryPointer2 = SystemInfoSecurityBuffer;
     SystemInfoStackProcessingConfigurationFlag = 0;
     SystemInfoSecurityBuffer[0] = 0;
@@ -178973,7 +178973,20 @@ void ProcessCharacterCodeValidationWithFloat(int CharacterCode,unsigned long lon
 
 
 
-4b2f5(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointervoid FUN_18014b2f5(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief UTF-8到UTF-16转换处理器
+ * 
+ * 该函数负责处理UTF-8到UTF-16的转换过程，包括字符编码转换、
+ * 内存缓冲区管理和数据验证。它处理Unicode码点的转换，
+ * 并确保转换后的数据符合UTF-16编码标准。
+ * 
+ * @param CharacterCode Unicode字符码点
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 原始函数名：FUN_18014b2f5
+ */
+void ProcessUtf8ToUtf16ConversionWithValidation(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer)
 {
   float SystemContextPrimaryFloat;
   long long BufferStatus;
