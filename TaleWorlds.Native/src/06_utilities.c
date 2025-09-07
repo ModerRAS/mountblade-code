@@ -8250,10 +8250,14 @@ uint8_t SystemMemoryDataA;
 uint8_t SystemMemoryStatusA;
 // 系统内存数据B
 uint8_t SystemMemoryDataB;
-uint8_t UtilitySystemMemoryStatus2;
-uint8_t UtilitySystemInitData1;
-uint8_t UtilitySystemInitData2;
-uint8_t UtilitySystemInitData3;
+// 系统内存状态B
+uint8_t SystemMemoryStatusB;
+// 系统初始化数据A
+uint8_t SystemInitDataA;
+// 系统初始化数据B
+uint8_t SystemInitDataB;
+// 系统初始化数据C
+uint8_t SystemInitDataC;
 uint8_t UtilitySystemInitData4;
 // 全局数据指针A39相关变量
 void* GlobalDataPointerA39Storage;    // DAT_180bfa3e8
