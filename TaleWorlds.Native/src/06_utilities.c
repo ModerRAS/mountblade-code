@@ -97,6 +97,28 @@
 // 异常处理器回调相关常量
 #define ExceptionHandlerCallbackOffset 0x310
 
+// 系统上下文偏移量常量定义
+#define SystemContextValidationOffset 0x28
+#define SystemContextOperationOffset 0x30
+#define SystemContextDataOffset 0x38
+#define SystemContextResourceOffset 0x40
+#define SystemContextSizeOffset 0x20
+#define SystemContextConfigOffset 0x4c
+#define SystemContextHandleOffset 0x18
+#define SystemMemoryManagerOffset 0x1a0
+#define OperationDataContextOffset 0x30
+#define OperationContextBufferOffset 0x98
+
+// 操作结果常量定义
+#define OperationSuccess 0
+#define OperationInvalidParameter 0x1f
+#define OperationMemoryError 0x26
+#define OperationDataProcessed 1
+#define OperationDataComplete 2
+
+// 系统内存分配常量
+#define SystemMemoryAllocationFlag 0x315
+
 // 异常处理器E0-E4相关常量
 #define ExceptionHandlerE0Offset 0x2e0
 #define ExceptionHandlerE0StatusOffset 0x2e8
@@ -16032,34 +16054,34 @@ int ValidateAndProcessSystemOperation(int64_t systemContext,int64_t operationCon
   int64_t allocatedMemory;
   int64_t operationData;
   
-  if ((((*(int64_t *)(systemContext + 0x28) != 0) && (*(int64_t *)(systemContext + 0x30) != 0)) &&
-      (*(int64_t *)(systemContext + 0x38) != 0)) && (*(int64_t *)(systemContext + 0x40) != 0)) {
-    if (*(int *)(systemContext + 0x20) < 1) {
-      operationResult = ValidateSystemOperation(operationContext,systemContext + 0x4c);
-      if ((operationResult == 0) &&
-         (operationResult = ProcessOperationData(*(DataWord *)(systemContext + 0x4c),&operationData), operationResult == 0)) {
-        if (*(int *)(operationData + 0x30) == 1) {
-          *(DataWord *)(operationData + 0x30) = 2;
+  if ((((*(int64_t *)(systemContext + SystemContextValidationOffset) != 0) && (*(int64_t *)(systemContext + SystemContextOperationOffset) != 0)) &&
+      (*(int64_t *)(systemContext + SystemContextDataOffset) != 0)) && (*(int64_t *)(systemContext + SystemContextResourceOffset) != 0)) {
+    if (*(int *)(systemContext + SystemContextSizeOffset) < 1) {
+      operationResult = ValidateSystemOperation(operationContext,systemContext + SystemContextConfigOffset);
+      if ((operationResult == OperationSuccess) &&
+         (operationResult = ProcessOperationData(*(DataWord *)(systemContext + SystemContextConfigOffset),&operationData), operationResult == OperationSuccess)) {
+        if (*(int *)(operationData + OperationDataContextOffset) == OperationDataProcessed) {
+          *(DataWord *)(operationData + OperationDataContextOffset) = OperationDataComplete;
         }
                     // WARNING: Subroutine does not return
-        ExecuteCriticalOperation(*(DataBuffer *)(operationContext + 0x98),systemContext);
+        ExecuteCriticalOperation(*(DataBuffer *)(operationContext + OperationContextBufferOffset),systemContext);
       }
     }
-    else if (*(int64_t *)(systemContext + 0x18) == 0) {
-      operationResult = 0x1f;
+    else if (*(int64_t *)(systemContext + SystemContextHandleOffset) == 0) {
+      operationResult = OperationInvalidParameter;
     }
     else {
-      allocatedMemory = AllocateSystemMemory(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int *)(systemContext + 0x20),
-                            &SystemMemoryPoolC,0x315,0,0,1);
+      allocatedMemory = AllocateSystemMemory(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset),*(int *)(systemContext + SystemContextSizeOffset),
+                            &SystemMemoryPoolC,SystemMemoryAllocationFlag,0,0,1);
       if (allocatedMemory != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(allocatedMemory,*(DataBuffer *)(systemContext + 0x18),(int64_t)*(int *)(systemContext + 0x20));
+        memcpy(allocatedMemory,*(DataBuffer *)(systemContext + SystemContextHandleOffset),(int64_t)*(int *)(systemContext + SystemContextSizeOffset));
       }
-      operationResult = 0x26;
+      operationResult = OperationMemoryError;
     }
     return operationResult;
   }
-  return 0x1f;
+  return OperationInvalidParameter;
 }
 
 
