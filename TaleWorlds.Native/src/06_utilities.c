@@ -23059,13 +23059,13 @@ DataBuffer ValidateDataBlockStatusA1(int64_t *operationBase,DataWord *dataBuffer
 
 {
   DataBuffer systemDataBuffer;
-  DataWord auStackX_8 [8];
+  DataWord parameterBuffer [8];
   
   if (*(int *)(operationBase[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_8[0] = *dataBuffer;
-  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + 8))(*(DataBuffer **)(*operationBase + 8),auStackX_8,4);
+  parameterBuffer[0] = *dataBuffer;
+  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + 8))(*(DataBuffer **)(*operationBase + 8),parameterBuffer,4);
   return systemDataBuffer;
 }
 
@@ -23096,20 +23096,20 @@ DataBuffer ProcessDataBlockOperationA1(int64_t *systemContext,DataWord *dataBuff
   int64_t exceptionHandlerContext;
   DataBuffer *resourcePointer;
   DataBuffer validationStatus;
-  DataWord auStackX_8 [2];
-  DataWord auStackX_18 [4];
+  DataWord primaryParameterBuffer [2];
+  DataWord secondaryParameterBuffer [4];
   
   if (*(int *)(systemContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  dataBufferCopy[0] = *dataBuffer;
+  primaryParameterBuffer[0] = *dataBuffer;
   exceptionHandlerContext = *systemContext;
   resourcePointer = *(DataBuffer **)(exceptionHandlerContext + 8);
-  validationStatus = (**(FunctionPointer**)*resourcePointer)(resourcePointer,auStackX_8,4);
+  validationStatus = (**(FunctionPointer**)*resourcePointer)(resourcePointer,primaryParameterBuffer,4);
   if ((int)validationStatus == 0) {
     resourcePointer = *(DataBuffer **)(exceptionHandlerContext + 8);
-    auStackX_18[0] = dataBuffer[1];
-    validationStatus = (**(FunctionPointer**)*resourcePointer)(resourcePointer,auStackX_18,4);
+    secondaryParameterBuffer[0] = dataBuffer[1];
+    validationStatus = (**(FunctionPointer**)*resourcePointer)(resourcePointer,secondaryParameterBuffer,4);
   }
   return validationStatus;
 }
