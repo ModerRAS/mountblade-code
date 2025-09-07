@@ -100691,7 +100691,20 @@ void Unwind_ExceptionDataBufferCleanupA8(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180911920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区清理器A9
+ * 
+ * 该函数负责清理异常数据缓冲区，遍历异常数据指针并执行相应的清理函数。
+ * 如果发现异常数据指针为空，则终止系统运行。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionDataBufferCleanupA9(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911920
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -100711,7 +100724,20 @@ void Unwind_180911920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区清理器A10
+ * 
+ * 该函数负责清理异常数据缓冲区，遍历异常数据指针并执行相应的清理函数。
+ * 如果发现异常数据指针为空，则终止系统运行。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionDataBufferCleanupA10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911930
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -100731,7 +100757,20 @@ void Unwind_180911930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区清理器A11
+ * 
+ * 该函数负责清理异常数据缓冲区，遍历异常数据指针并执行相应的清理函数。
+ * 如果发现异常数据指针为空，则终止系统运行。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionDataBufferCleanupA11(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911940
 
 {
   DataBuffer *exceptionDataBuffer;

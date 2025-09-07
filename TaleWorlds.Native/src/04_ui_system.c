@@ -62967,140 +62967,148 @@ void ProcessUIDataEncryption(int *uiContext,int dataSource,int targetBuffer)
 void SaveUIRegisterState(int *uiContext,int dataSource,int targetBuffer)
 
 {
-  code *pcVar1;
-  byte bVar2;
-  ulonglong uVar3;
-  int *piVar4;
-  int iVar5;
-  longlong contextData;
-  int iVar7;
-  int iVar8;
-  int iVar9;
-  undefined8 unaff_RSI;
-  char *pcVar10;
-  longlong in_R11;
-  double dVar11;
-  double dVar12;
-  undefined8 unaff_XMM6_Qa;
-  undefined8 unaff_XMM6_Qb;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
-  undefined4 unaff_XMM10_Da;
-  undefined4 unaff_XMM10_Db;
-  undefined4 unaff_XMM10_Dc;
-  undefined4 unaff_XMM10_Dd;
-  undefined4 unaff_XMM11_Da;
-  undefined4 unaff_XMM11_Db;
-  undefined4 unaff_XMM11_Dc;
-  undefined4 unaff_XMM11_Dd;
-  char acStackX_20 [8];
-  ulonglong in_stack_00000150;
+  code *exceptionHandler;
+  byte randomByte;
+  ulonglong bufferLength;
+  int *contextPointer;
+  int encryptionFactor;
+  longlong iterationCounter;
+  int charCount;
+  int charValue;
+  int totalChars;
+  undefined8 rsiRegister;
+  char *bufferPointer;
+  longlong registerContext;
+  double mathConstant;
+  double encryptionValue;
+  undefined8 xmm6RegisterQa;
+  undefined8 xmm6RegisterQb;
+  undefined4 xmm7RegisterDa;
+  undefined4 xmm7RegisterDb;
+  undefined4 xmm7RegisterDc;
+  undefined4 xmm7RegisterDd;
+  undefined4 xmm8RegisterDa;
+  undefined4 xmm8RegisterDb;
+  undefined4 xmm8RegisterDc;
+  undefined4 xmm8RegisterDd;
+  undefined4 xmm9RegisterDa;
+  undefined4 xmm9RegisterDb;
+  undefined4 xmm9RegisterDc;
+  undefined4 xmm9RegisterDd;
+  undefined4 xmm10RegisterDa;
+  undefined4 xmm10RegisterDb;
+  undefined4 xmm10RegisterDc;
+  undefined4 xmm10RegisterDd;
+  undefined4 xmm11RegisterDa;
+  undefined4 xmm11RegisterDb;
+  undefined4 xmm11RegisterDc;
+  undefined4 xmm11RegisterDd;
+  char stackBuffer [8];
+  ulonglong stackParameter;
   
-  *(undefined8 *)(in_R11 + 0x10) = unaff_RSI;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_XMM6_Qa;
-  *(undefined8 *)(in_R11 + -0x20) = unaff_XMM6_Qb;
-  *(undefined4 *)(in_R11 + -0x38) = unaff_XMM7_Da;
-  *(undefined4 *)(in_R11 + -0x34) = unaff_XMM7_Db;
-  *(undefined4 *)(in_R11 + -0x30) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_R11 + -0x2c) = unaff_XMM7_Dd;
-  *(undefined4 *)(in_R11 + -0x48) = unaff_XMM8_Da;
-  *(undefined4 *)(in_R11 + -0x44) = unaff_XMM8_Db;
-  *(undefined4 *)(in_R11 + -0x40) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_R11 + -0x3c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_R11 + -0x58) = unaff_XMM9_Da;
-  *(undefined4 *)(in_R11 + -0x54) = unaff_XMM9_Db;
-  *(undefined4 *)(in_R11 + -0x50) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_R11 + -0x4c) = unaff_XMM9_Dd;
-  *(undefined4 *)(in_R11 + -0x68) = unaff_XMM10_Da;
-  *(undefined4 *)(in_R11 + -100) = unaff_XMM10_Db;
-  *(undefined4 *)(in_R11 + -0x60) = unaff_XMM10_Dc;
-  *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM10_Dd;
-  *(undefined4 *)(in_R11 + -0x78) = unaff_XMM11_Da;
-  *(undefined4 *)(in_R11 + -0x74) = unaff_XMM11_Db;
-  *(undefined4 *)(in_R11 + -0x70) = unaff_XMM11_Dc;
-  *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM11_Dd;
+  *(undefined8 *)(registerContext + 0x10) = rsiRegister;
+  *(undefined8 *)(registerContext + -0x28) = xmm6RegisterQa;
+  *(undefined8 *)(registerContext + -0x20) = xmm6RegisterQb;
+  *(undefined4 *)(registerContext + -0x38) = xmm7RegisterDa;
+  *(undefined4 *)(registerContext + -0x34) = xmm7RegisterDb;
+  *(undefined4 *)(registerContext + -0x30) = xmm7RegisterDc;
+  *(undefined4 *)(registerContext + -0x2c) = xmm7RegisterDd;
+  *(undefined4 *)(registerContext + -0x48) = xmm8RegisterDa;
+  *(undefined4 *)(registerContext + -0x44) = xmm8RegisterDb;
+  *(undefined4 *)(registerContext + -0x40) = xmm8RegisterDc;
+  *(undefined4 *)(registerContext + -0x3c) = xmm8RegisterDd;
+  *(undefined4 *)(registerContext + -0x58) = xmm9RegisterDa;
+  *(undefined4 *)(registerContext + -0x54) = xmm9RegisterDb;
+  *(undefined4 *)(registerContext + -0x50) = xmm9RegisterDc;
+  *(undefined4 *)(registerContext + -0x4c) = xmm9RegisterDd;
+  *(undefined4 *)(registerContext + -0x68) = xmm10RegisterDa;
+  *(undefined4 *)(registerContext + -100) = xmm10RegisterDb;
+  *(undefined4 *)(registerContext + -0x60) = xmm10RegisterDc;
+  *(undefined4 *)(registerContext + -0x5c) = xmm10RegisterDd;
+  *(undefined4 *)(registerContext + -0x78) = xmm11RegisterDa;
+  *(undefined4 *)(registerContext + -0x74) = xmm11RegisterDb;
+  *(undefined4 *)(registerContext + -0x70) = xmm11RegisterDc;
+  *(undefined4 *)(registerContext + -0x6c) = xmm11RegisterDd;
   PerformUIMemoryCleanup();
-  iVar9 = 0;
-  iVar8 = -0x20;
-  dVar11 = (double)sqrt(0x401921fb53c8d4f1);
+  totalChars = 0;
+  charValue = -0x20;
+  mathConstant = (double)sqrt(0x401921fb53c8d4f1);
   do {
-    dVar12 = (double)exp();
-    iVar5 = (int)(dVar12 * (1.0 / (dVar11 * (((double)(0x3f - dataSource) * 0.6) / 63.0 +
+    encryptionValue = (double)exp();
+    encryptionFactor = (int)(encryptionValue * (1.0 / (mathConstant * (((double)(0x3f - dataSource) * 0.6) / 63.0 +
                                             (double)targetBuffer + 0.5))) * 256.0 + 0.5);
-    if (iVar5 != 0) {
-      iVar7 = 0;
-      if (0 < iVar5) {
-        pcVar10 = acStackX_20 + iVar9;
-        for (contextData = (longlong)iVar5; iVar7 = iVar5, contextData != 0; contextData = contextData + -1) {
-          *pcVar10 = (char)iVar8;
-          pcVar10 = pcVar10 + 1;
+    if (encryptionFactor != 0) {
+      charCount = 0;
+      if (0 < encryptionFactor) {
+        bufferPointer = stackBuffer + totalChars;
+        for (iterationCounter = (longlong)encryptionFactor; charCount = encryptionFactor, iterationCounter != 0; iterationCounter = iterationCounter + -1) {
+          *bufferPointer = (char)charValue;
+          bufferPointer = bufferPointer + 1;
         }
       }
-      iVar9 = iVar9 + iVar7;
+      totalChars = totalChars + charCount;
     }
-    iVar8 = iVar8 + 1;
-  } while (iVar8 < 0x20);
-  uVar3 = (ulonglong)iVar9;
+    charValue = charValue + 1;
+  } while (charValue < 0x20);
+  bufferLength = (ulonglong)totalChars;
   while( true ) {
-    if (0xff < (longlong)uVar3) {
-      contextData = 0xc00;
-      piVar4 = uiContext + 2;
+    if (0xff < (longlong)bufferLength) {
+      iterationCounter = 0xc00;
+      contextPointer = uiContext + 2;
       do {
-        bVar2 = rand();
-        *(char *)piVar4 = acStackX_20[bVar2];
-        contextData = contextData + -1;
-        piVar4 = (int *)((longlong)piVar4 + 1);
-      } while (contextData != 0);
-      piVar4 = uiContext + 0x308;
-      contextData = 0x10;
+        randomByte = rand();
+        *(char *)contextPointer = stackBuffer[randomByte];
+        iterationCounter = iterationCounter + -1;
+        contextPointer = (int *)((longlong)contextPointer + 1);
+      } while (iterationCounter != 0);
+      contextPointer = uiContext + 0x308;
+      iterationCounter = 0x10;
       do {
-        *(char *)(piVar4 + -4) = -acStackX_20[0];
-        *(char *)piVar4 = -acStackX_20[0];
-        *(char *)(piVar4 + 4) = acStackX_20[0] * -2;
-        piVar4 = (int *)((longlong)piVar4 + 1);
-        contextData = contextData + -1;
-      } while (contextData != 0);
+        *(char *)(contextPointer + -4) = -stackBuffer[0];
+        *(char *)contextPointer = -stackBuffer[0];
+        *(char *)(contextPointer + 4) = stackBuffer[0] * -2;
+        contextPointer = (int *)((longlong)contextPointer + 1);
+        iterationCounter = iterationCounter + -1;
+      } while (iterationCounter != 0);
       *uiContext = dataSource;
       uiContext[1] = targetBuffer;
                     // WARNING: Subroutine does not return
-      ExecuteUIRenderTask(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
+      ExecuteUIRenderTask(stackParameter ^ (ulonglong)&stack0x00000000);
     }
-    if (299 < uVar3) break;
-    acStackX_20[uVar3] = '\0';
-    uVar3 = uVar3 + 1;
+    if (299 < bufferLength) break;
+    stackBuffer[bufferLength] = '\0';
+    bufferLength = bufferLength + 1;
   }
   TriggerUIErrorHandler();
-  pcVar1 = (code *)swi(3);
-  (*pcVar1)();
+  exceptionHandler = (code *)swi(3);
+  (*exceptionHandler)();
   return;
 }
 
 
 
 
- void FUN_180698a50(void)
-void FUN_180698a50(void)
+ /**
+ * @brief UI系统栈操作函数
+ * 
+ * 该函数负责处理UI系统中的栈操作，包括寄存器状态保存和栈管理。
+ * 这是一个底层系统函数，用于UI系统的栈操作和状态管理。
+ * 
+ * @note 原始函数名: FUN_180698a50
+ * @warning 这是一个底层系统函数，涉及栈和寄存器操作
+ */
+void ProcessUIStackOperations(void)
 
 {
-  code *pcVar1;
-  byte bVar2;
-  ulonglong in_RAX;
-  char *pcVar3;
-  longlong lVar4;
-  undefined4 unaff_EBP;
-  undefined4 *unaff_R14;
-  undefined4 unaff_R15D;
-  char acStackX_20 [8];
+  code *exceptionHandler;
+  byte randomByte;
+  ulonglong registerValue;
+  char *bufferPointer;
+  longlong stackOffset;
+  undefined4 ebpRegister;
+  undefined4 *r14Register;
+  undefined4 r15dRegister;
+  char stackBuffer [8];
   ulonglong in_stack_00000150;
   
   do {
