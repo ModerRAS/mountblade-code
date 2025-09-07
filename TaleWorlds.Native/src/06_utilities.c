@@ -19322,10 +19322,10 @@ SecurityValidationLabel:
     operationStatus = *(int *)(*(int64_t *)(dataBuffer + 0x2e8) + 0x2c);
     if (0 < operationStatus) {
       do {
-        iStack_2f0 = 0;
-        puStack_2f8 = &DataEncryptionTable;
-        uStack_2e8 = CONCAT44(uStack_2e8._4_4_,operationFlagA);
-        arrayIndex = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
+        StackEncryptionIndex = 0;
+        StackEncryptionPointer = &DataEncryptionTable;
+        StackEncryptionData = CONCAT44(StackEncryptionData._4_4_,operationFlagA);
+        arrayIndex = ValidateDataIntegrityA0(operationBase,&StackEncryptionPointer);
         if (arrayIndex != 0) GOTO_SecurityCheckFailed;
         calculatedValue = calculatedValue + 1;
       } while (calculatedValue < operationStatus);
@@ -44039,7 +44039,18 @@ void ExceptionHandlerA9(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180903ad0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器配置函数B0
+ * 
+ * 该函数负责配置异常处理器B0。它会设置临时异常处理器，
+ * 检查系统状态，清除相关标志，然后配置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含异常处理配置信息
+ * 
+ * @note 原始函数名：Unwind_180903ad0
+ */
+void ConfigureExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -87615,7 +87626,7 @@ void Unwind_1809103d0(void)
 void Unwind_1809103e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x40) = &UNK_1809fcc88;
+  **(DataBuffer **)(dataBuffer + 0x40) = &SystemControlBuffer;
   return;
 }
 
@@ -87694,7 +87705,7 @@ void Unwind_180910450(DataBuffer operationBase,int64_t dataBuffer)
   calculatedOffset = *(int64_t *)(dataBuffer + 0x60);
   validationContext = calculatedOffset + 0x1d8;
   *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(calculatedOffset + 0x128) + 4) + -0xb0 + validationContext) =
-       &UNK_180a05168;
+       &SystemExecutionBuffer;
   operationResult = *(int *)(*(int64_t *)(calculatedOffset + 0x128) + 4);
   *(int *)((int64_t)operationResult + -0xb4 + validationContext) = operationResult + -0xb0;
   ExecuteSystemCommand(calculatedOffset + 0x138);
@@ -87899,7 +87910,7 @@ void Unwind_180910580(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910590(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x40) = &UNK_180a05240;
+  **(DataBuffer **)(dataBuffer + 0x40) = &DataBufferPointerA2;
   return;
 }
 
@@ -87915,7 +87926,7 @@ void SystemCleanupHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
   calculatedOffset = *(int64_t *)(dataBuffer + 0x40);
   validationContext = calculatedOffset + 0x1d8;
   *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(calculatedOffset + 0x128) + 4) + -0xb0 + validationContext) =
-       &UNK_180a05168;
+       &SystemExecutionBuffer;
   operationResult = *(int *)(*(int64_t *)(calculatedOffset + 0x128) + 4);
   *(int *)((int64_t)operationResult + -0xb4 + validationContext) = operationResult + -0xb0;
   ExecuteSystemCommand(calculatedOffset + 0x138);
