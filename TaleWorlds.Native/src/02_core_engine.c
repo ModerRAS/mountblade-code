@@ -149,6 +149,18 @@
 #define MemoryIndex MemoryAllocationIndex                   // 内存索引
 #define CodePointValue CalculatedCodePoint                 // 码点值
 
+// 浮点变量语义化映射
+#define FloatVariable7 PrimaryFloatCoefficient              // 主浮点系数
+#define FloatVariable5 SecondaryFloatCoefficient            // 次浮点系数  
+#define FloatVariable4 TertiaryFloatCoefficient             // 第三浮点系数
+#define ProcessedFloatValue8 CalculatedFloatResult          // 计算浮点结果
+#define fStackX_10 HorizontalOffsetValue                   // 水平偏移值
+#define fStackX_14 VerticalOffsetValue                     // 垂直偏移值
+#define fStack_48 StackPrimaryFloat                        // 栈主浮点值
+#define fStack_44 StackSecondaryFloat                      // 栈次浮点值
+#define fStack_40 StackTertiaryFloat                       // 栈第三浮点值
+#define fStack_3c StackQuaternaryFloat                     // 栈第四浮点值
+
 #define ProcessSystemResourceAllocation ProcessSystemResourceAllocation
 
 // 系统标识符识别函数语义化映射
@@ -30308,7 +30320,7 @@ void CoreEngineCleanupDataStructure(int64_t *DataStructureHandle
  * 
  180058000，ProcessSystemContextData
  */
-void ProcessSystemContextData(long long systemContext, uint64_t contextParameter2, uint64_t contextParameter3, uint64_t contextParameter4{
+void ProcessSystemContextData(long long systemContext, uint64_t contextParameter2, uint64_t contextParameter3, uint64_t contextParameter4)
   CoreEngineFreeSystemMemoryResource(systemContext, *(void *)(systemContext + 0x10), contextParameter3, contextParameter4, 0xfffffffffffffffe);
   return;
 }
