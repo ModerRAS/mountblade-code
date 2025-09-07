@@ -8225,9 +8225,9 @@ uint8_t EncryptUtilityData;
 //   uint8_t - 解密结果状态
 uint8_t DecryptUtilityData;
 
-// 函数: uint8_t CompressUtilityDataBF0;
+// 函数: uint8_t CompressUtilityData;
 // 
-// 工具数据压缩函数BF0
+// 工具数据压缩函数
 // 
 // 功能：
 // 压缩工具系统数据，减少存储空间占用
@@ -67519,7 +67519,17 @@ void ConfigureExceptionHandlerOffset50(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180907b80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量0x50
+ * 
+ * 在数据缓冲区的偏移量0x50处设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907b80
+ */
+void SetDefaultExceptionHandlerAtOffset50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x50) = &DefaultExceptionHandlerB;
@@ -67528,7 +67538,17 @@ void Unwind_180907b80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907b90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到间接偏移量0x20
+ * 
+ * 通过数据缓冲区偏移量0x20处的指针，在间接地址的偏移量0x20处设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907b90
+ */
+void SetDefaultExceptionHandlerAtIndirectOffset20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x20) + 0x20) = &DefaultExceptionHandlerB;
