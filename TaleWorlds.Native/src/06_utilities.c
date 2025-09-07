@@ -55956,7 +55956,20 @@ void ExecuteExceptionHandlerCallbackC20(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180905c30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理资源C30
+ * 
+ * 该函数清理异常处理资源，遍历异常处理上下文数组，重置资源指针，
+ * 设置默认异常处理器，并在必要时终止系统。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理资源信息
+ * 
+ * @note 原始函数名：Unwind_180905c30
+ * @note 处理数据缓冲区0x40偏移量的异常处理资源
+ * @note 使用循环清理资源指针并设置默认异常处理器
+ */
+void CleanupExceptionHandlingResourcesC30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
