@@ -65505,7 +65505,15 @@ void ExecuteMemoryOperationAtOffset50(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_1809076a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据表初始化函数 - 设置异常数据表3和6
+ * 
+ * 该函数负责初始化异常处理数据表，将异常数据表3和6
+ * 设置到指定的异常数据缓冲区中，确保异常处理系统的正确初始化。
+ * 
+ * @note 原始函数名：Unwind_1809076a0
+ */
+void InitializeExceptionDataTables(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -65518,7 +65526,15 @@ void Unwind_1809076a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809076b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常数据表设置函数 - 设置异常数据表6
+ * 
+ * 该函数负责设置异常数据表6到指定的异常数据缓冲区中，
+ * 确保异常处理系统能够正确访问和处理异常数据。
+ * 
+ * @note 原始函数名：Unwind_1809076b0
+ */
+void SetExceptionDataTable6(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x38) = &ExceptionDataTable6;
@@ -80088,7 +80104,15 @@ void ValidateAndExecuteContextCallbackD0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090c500(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器函数 - 验证上下文回调执行E0
+ * 
+ * 该函数负责验证异常处理上下文并执行相应的回调函数，
+ * 确保异常处理的完整性
+ * 
+ * @note 原始函数名：Unwind_18090c500
+ */
+void ValidateAndExecuteContextCallbackE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80102,7 +80126,15 @@ void Unwind_18090c500(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c510(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器函数 - 设置临时异常处理器F0
+ * 
+ * 该函数负责为异常处理上下文设置临时的异常处理器，
+ * 用于处理特定偏移量的异常情况
+ * 
+ * @note 原始函数名：Unwind_18090c510
+ */
+void SetTemporaryExceptionHandlerF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -80120,7 +80152,15 @@ void Unwind_18090c510(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c520(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器函数 - 验证上下文回调执行G0
+ * 
+ * 该函数负责验证异常处理上下文并执行相应的回调函数，
+ * 确保异常处理的完整性
+ * 
+ * @note 原始函数名：Unwind_18090c520
+ */
+void ValidateAndExecuteContextCallbackG0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80134,7 +80174,14 @@ void Unwind_18090c520(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c530(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器函数 - 资源引用计数管理H0
+ * 
+ * 该函数负责管理资源的引用计数，处理内存分配和释放操作
+ * 
+ * @note 原始函数名：Unwind_18090c530
+ */
+void ManageResourceReferenceCountH0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -80171,7 +80218,14 @@ void Unwind_18090c530(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c540(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器函数 - 资源上下文管理I0
+ * 
+ * 该函数负责管理资源的上下文，处理资源的分配和验证操作
+ * 
+ * @note 原始函数名：Unwind_18090c540
+ */
+void ManageResourceContextI0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -80216,7 +80270,14 @@ void Unwind_18090c540(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c550(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器函数 - 资源上下文管理J0
+ * 
+ * 该函数负责管理资源的上下文，处理资源的分配和验证操作
+ * 
+ * @note 原始函数名：Unwind_18090c550
+ */
+void ManageResourceContextJ0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -80260,7 +80321,15 @@ void Unwind_18090c550(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c560(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器函数 - 设置默认异常处理器K0
+ * 
+ * 该函数负责为异常处理上下文设置默认的异常处理器，
+ * 用于处理特定偏移量的异常情况
+ * 
+ * @note 原始函数名：Unwind_18090c560
+ */
+void SetDefaultExceptionHandlerK0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x470) = &DefaultExceptionHandlerB;
@@ -80270,7 +80339,14 @@ void Unwind_18090c560(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c570(void)
+/**
+ * @brief 异常处理器函数 - 系统资源计数器管理
+ * 
+ * 该函数负责管理系统资源计数器，执行相关函数调用
+ * 
+ * @note 原始函数名：Unwind_18090c570
+ */
+void ManageSystemResourceCounter(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;

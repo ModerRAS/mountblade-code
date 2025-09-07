@@ -2057,31 +2057,112 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  */
 #define ConvertProcessingStatusFlagAndProcessSystemVariable FUN_180066df0
 
-// 原始函数名：FUN_180103800 - 系统数据处理和向量寄存器操作函数
+/**
+ * @brief 处理系统数据和向量寄存器操作
+ * 
+ * 该函数负责处理系统数据的核心操作，包括向量寄存器的管理和数据传输。
+ * 执行系统级的数据处理和向量计算操作，确保数据的正确处理和寄存器状态维护。
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180103800
+ */
 #define ProcessSystemDataAndVectorRegister FUN_180103800
 
-// 原始函数名：FUN_180171f10 - 系统数据结构处理和上下文操作函数
+/**
+ * @brief 处理系统数据结构和上下文操作
+ * 
+ * 该函数负责处理系统数据结构的操作，包括系统上下文的管理和维护。
+ * 确保系统数据结构的正确初始化和上下文状态的一致性。
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180171f10
+ */
 #define ProcessSystemDataStructureAndContext FUN_180171f10
 
-// 原始函数名：FUN_1800aec40 - 数据结构复制和模板处理函数
+/**
+ * @brief 复制数据结构并处理模板
+ * 
+ * 该函数负责数据结构的复制操作，包括模板数据的处理和应用。
+ * 确保数据结构的正确复制和模板参数的正确应用。
+ * 
+ * @return 复制结果状态码
+ * 
+ * @note 原始函数名：FUN_1800aec40
+ */
 #define CopyDataStructureWithTemplate FUN_1800aec40
 
-// 原始函数名：FUN_18010bd10 - 系统配置和数据处理函数
+/**
+ * @brief 处理系统配置和数据
+ * 
+ * 该函数负责系统配置参数的处理，包括系统数据的验证和管理。
+ * 确保系统配置的正确性和数据的一致性。
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18010bd10
+ */
 #define ProcessSystemConfigurationAndData FUN_18010bd10
 
-// 原始函数名：FUN_180046240 - 系统标志和状态处理函数
+/**
+ * @brief 处理系统标志和状态
+ * 
+ * 该函数负责系统标志的处理，包括系统状态的监控和管理。
+ * 确保系统标志的正确设置和状态的准确反映。
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180046240
+ */
 #define ProcessSystemFlagsAndStatus FUN_180046240
 
-// 原始函数名：FUN_1800b0710 - 系统缓冲区处理函数
+/**
+ * @brief 处理系统缓冲区
+ * 
+ * 该函数负责系统缓冲区的管理和操作，包括缓冲区的分配、使用和释放。
+ * 确保系统缓冲区的正确管理和高效使用。
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_1800b0710
+ */
 #define ProcessSystemBuffer FUN_1800b0710
 
-// 原始函数名：FUN_18005c8a0 - 内存块验证和处理函数
+/**
+ * @brief 验证并处理内存块
+ * 
+ * 该函数负责内存块的验证和处理操作，包括内存块的完整性检查和数据处理。
+ * 确保内存块的有效性和数据的安全性。
+ * 
+ * @return 验证和处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18005c8a0
+ */
 #define ValidateAndProcessMemoryBlock FUN_18005c8a0
 
-// 原始函数名：FUN_1800b0680 - 内存块地址处理函数
+/**
+ * @brief 处理内存块地址
+ * 
+ * 该函数负责内存块地址的处理操作，包括地址的验证、转换和管理。
+ * 确保内存块地址的正确性和有效性。
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_1800b0680
+ */
 #define ProcessMemoryBlockAddress FUN_1800b0680
 
-// 原始函数名：FUN_180057110 - 系统上下文清理函数
+/**
+ * @brief 清理系统上下文
+ * 
+ * 该函数负责系统上下文的清理操作，包括上下文资源的释放和状态重置。
+ * 确保系统上下文的正确清理和资源的及时释放。
+ * 
+ * @return 清理结果状态码
+ * 
+ * @note 原始函数名：FUN_180057110
+ */
 #define CleanupSystemContext FUN_180057110
 
 // 原始函数名：FUN_18010cbc0 - 字符串处理和状态缓冲函数
@@ -20939,7 +21020,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
 
 
 
- void CoreEngineProcessMemoryOperations(long long *Utf8InputBuffervoid CoreEngineProcessMemoryOperations(long long *Utf8InputBuffer
+ void CoreEngineProcessMemoryOperations(long long *Utf8InputBuffer
 {
   long long MemoryOperationHandle;
   long long BufferStatus;
@@ -29296,7 +29377,7 @@ void ProcessCharacterCode(long long *Utf8InputBuffer
   uint8_t SystemStackBuffer3b8 [32];
   void *SystemTertiaryStackPointer98;
   uint8_t *StatusBufferPointer390;
-  uint32_t BufferStatus388;
+  uint32_t SystemBufferStatus388;
   unsigned long long MemoryAddress380;
   uint DataSize378;
   int CharacterTablePointer374;
@@ -29310,7 +29391,7 @@ void ProcessCharacterCode(long long *Utf8InputBuffer
   uint32_t ProcessingFlags338;
   void *Utf8InputBuffer330;
   void *StatusBufferPointer328;
-  uint32_t BufferStatus320;
+  uint32_t SystemBufferStatus320;
   unsigned long long MemoryAddress318;
   long long MemoryOffset310;
   uint64_t *ProcessingStatusFlag308;
@@ -29397,7 +29478,7 @@ void ProcessCharacterCode(long long *Utf8InputBuffer
           memcpy(SystemStatusBuffer,StatusBuffer3,CharacterByteCount0);
         }
       }
-      BufferStatus388 = 0;
+      SystemBufferStatus388 = 0;
       InitializeSystemDataTemplate(&SystemNullTemplate,&ProcessInfoPointer,&SystemTertiaryStackPointer98);
       CoreEnginePointerBuffer390 = (uint8_t *)0x0;
       StackConcatenatedValue = StackConcatenatedValue & 0xffffffff00000000;
@@ -39066,13 +39147,13 @@ StringProcessingStart:
       *SystemEventPointer = 0;
     }
     else {
-      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto LAB_180071d94;
+      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto MemoryAllocationFailureLabel;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,ProcessStringBuffer,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
-LAB_180071d94:
+MemoryAllocationFailureLabel:
   StringProcessingStatus = (void *)(SystemEventPointer + FunctionAddress80);
   *StringProcessingStatus = 0x6973736572707845;
   *(uint32_t *)(StringProcessingStatus + 1) = 0x203a6e6f;
@@ -39567,14 +39648,14 @@ BufferSizeValidation:
               *DataProcessingBuffer = 0;
             }
             else {
-              if (DataSize <= (uint)DataProcessingFlags) goto LAB_1800728ad;
+              if (DataSize <= (uint)DataProcessingFlags) goto SystemStatusValidationLabel;
               CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
               DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,DataSize,0x10);
             }
             SystemChecksumValue = GetMemoryAllocationInfo(DataProcessingBuffer);
             DataProcessingFlags = CONCAT44(DataProcessingFlags.HighPart,SystemChecksumValue);
           }
-LAB_1800728ad:
+SystemStatusValidationLabel:
                     // WARNING: Subroutine does not return
           memcpy(DataProcessingBuffer + BufferInitializationFlag,Utf16EndPointer,(long long)((int)CharacterTableIterator + 2));
         }
@@ -39590,7 +39671,7 @@ LAB_1800728ad:
           *DataProcessingBuffer = 0;
         }
         else {
-          if (ProcessingStatusFlag <= (uint)DataProcessingFlags) goto LAB_180072934;
+          if (ProcessingStatusFlag <= (uint)DataProcessingFlags) goto DataProcessingCompleteLabel;
           CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
           DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,ProcessingStatusFlag,0x10);
         }
