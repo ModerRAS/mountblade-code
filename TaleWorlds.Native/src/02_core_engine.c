@@ -100066,7 +100066,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *CharacterCode, 
 
 
 /**
- * 系统核心数据处理和浮点运算函数
+ * @brief 系统核心数据处理和浮点运算函数
  * 
  * 该函数负责处理系统核心数据结构和浮点运算，包括：
  * - 数据结构初始化和配置
@@ -100081,6 +100081,13 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *CharacterCode, 
  * 4. 验证系统状态和数据处理
  * 
  * @note 原始函数名：ProcessSystemCoreDataAndFloatOperations
+ * 
+ * 处理流程：
+ * - 初始化系统参数和寄存器
+ * - 配置矩阵变换参数
+ * - 执行浮点数运算和矩阵计算
+ * - 验证系统状态和数据处理
+ * - 更新系统配置和参数
  */
 void ProcessSystemCoreDataAndFloatOperations(void
 {
@@ -100239,19 +100246,19 @@ void ProcessSystemCoreDataAndFloatOperations(void
     ProcessFloatAndSystemConfiguration(FloatVariablePointer4,&DataStackBuffer,SystemContextPrimaryFloat2,0x7f7fffff,CONCAT44(SystemChecksum,0xbf800000));
     ProcessedFloatValue8 = SystemParameter2;
     if (0.0 < SystemParameter2) {
-      ProcessedFloatValue8 = SystemParameter2 - SystemContextPrimaryFloat2 / *FloatVariablePointer4;
+      ProcessedFloatValue8 = SystemParameter2 - SystemContextTransformFloat2 / *FloatVariablePointer4;
     }
-    CalculationBuffer = TemporaryFloatStack44;
-    fStack0000000000000058 = (float)(int)(ProcessedFloatValue8 + 0.95);
-    if (0.0 < fStack0000000000000058) {
-      SystemContextPrimaryFloat2 = (NormalizedParameterValue - PrimaryFloatValue) * SecondaryFloatValue + PrimaryFloatValue + *(float *)(SystemContext + 0x166c);
+    MatrixTransformResult = TemporaryFloatStack44;
+    MatrixCalculationBuffer58 = (float)(int)(ProcessedFloatValue8 + 0.95);
+    if (0.0 < MatrixCalculationBuffer58) {
+      SystemContextTransformFloat2 = (NormalizedParameterValue - MatrixPrimaryFloatValue) * CalculationSecondaryFloatValue + MatrixPrimaryFloatValue + *(float *)(SystemContext + 0x166c);
       StackUintValue6c = 0x3f000000;
       StackUintValue68 = 0;
-      SystemParameter2 = PrimaryFloatValue;
-      if ((PrimaryFloatValue <= SystemContextPrimaryFloat2) &&
-         (SystemParameter2 = (NormalizedParameterValue - fStack0000000000000058) - *(float *)(SystemContext + 0x1674),
-         SystemContextPrimaryFloat2 <= SystemParameter2)) {
-        SystemParameter2 = SystemContextPrimaryFloat2;
+      SystemParameter2 = MatrixPrimaryFloatValue;
+      if ((MatrixPrimaryFloatValue <= SystemContextTransformFloat2) &&
+         (SystemParameter2 = (NormalizedParameterValue - MatrixCalculationBuffer58) - *(float *)(SystemContext + 0x1674),
+         SystemContextTransformFloat2 <= SystemParameter2)) {
+        SystemParameter2 = SystemContextTransformFloat2;
       }
       pCharacterVariable5 = &MemoryAllocationStackBuffer;
       if (&StackBaseAddress != (uint8_t *)0xffffffffffffff8f) {
@@ -100260,7 +100267,7 @@ void ProcessSystemCoreDataAndFloatOperations(void
           pCharacterVariable5 = pCharacterVariable5 + 1;
         } while (pCharacterVariable5 != (char *)0xffffffffffffffff);
       }
-      TemporaryFloatStack44 = SecondaryFloatValue;
+      TemporaryFloatStack44 = CalculationSecondaryFloatValue;
       if (((int)pCharacterVariable5 != (int)&MemoryAllocationStackBuffer) &&
          (ValidateSystemDataStructure(*(void *)(*(long long *)(MemoryBoundaryEnd + 0x1af8) + 0x2e8),&DataStackBuffer,
                         &TertiaryDataBuffer,&MemoryAllocationStackBuffer,pCharacterVariable5), *(char *)(MemoryBoundaryEnd + 0x2e38) != '\0'
