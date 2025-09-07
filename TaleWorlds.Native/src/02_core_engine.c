@@ -238291,9 +238291,20 @@ LAB_180209c13:
 // WARNING: Type propagation algorithm not settling
 
 
-0a890(uint64_t CharacterCode,long long CharacterCodeSize,long long Utf8InputPointer,long long *Utf16EndPointer,
-void FUN_18020a890(uint64_t CharacterCode,long long CharacterCodeSize,long long Utf8InputPointer,long long *Utf16EndPointer,
-                  long long *AdditionalParameter1
+/**
+ * @brief 结束系统字符处理器
+ * 
+ * 该函数负责结束系统字符处理器的操作，清理资源并保存状态。
+ * 用于字符处理系统的清理和收尾工作。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1指针
+ */
+void FinalizeSystemCharacterHandler(uint64_t CharacterCode,long long CharacterCodeSize,long long Utf8InputPointer,long long *Utf16EndPointer,
+                                    long long *AdditionalParameter1
 {
   byte CurrentByteValue;
   bool HighByte;
