@@ -8112,41 +8112,41 @@ uint8_t GlobalDataPointerCacheValidationBuffer;
 // 功能：设置全局数据指针A37到指定地址
 #define SetGlobalDataPointerA37 FUN_180942420
 
-// 原始变量名：DAT_180bfa170 - 全局数据指针A37存储区
-// 功能：存储全局数据指针A37的相关信息
-#define GlobalDataPointerA37Storage DAT_180bfa170
-uint8_t GlobalDataPointerA37Storage;
+// 原始变量名：DAT_180bfa170 - 全局数据指针Final存储区
+// 功能：存储全局数据指针Final的相关信息
+#define GlobalDataPointerFinalStorage DAT_180bfa170
+uint8_t GlobalDataPointerFinalStorage;
 
-// 原始变量名：DAT_180bfa178 - 全局数据指针A37状态区
-// 功能：存储全局数据指针A37的状态信息
-#define GlobalDataPointerA37Status DAT_180bfa178
-uint8_t GlobalDataPointerA37Status;
+// 原始变量名：DAT_180bfa178 - 全局数据指针Final状态区
+// 功能：存储全局数据指针Final的状态信息
+#define GlobalDataPointerFinalStatus DAT_180bfa178
+uint8_t GlobalDataPointerFinalStatus;
 
-// 原始变量名：DAT_180bfa180 - 全局数据指针A37配置区
-// 功能：存储全局数据指针A37的配置信息
-#define GlobalDataPointerA37Config DAT_180bfa180
-uint8_t GlobalDataPointerA37Config;
+// 原始变量名：DAT_180bfa180 - 全局数据指针Final配置区
+// 功能：存储全局数据指针Final的配置信息
+#define GlobalDataPointerFinalConfig DAT_180bfa180
+uint8_t GlobalDataPointerFinalConfig;
 
-// 原始变量名：DAT_180bfa188 - 全局数据指针A37缓存区
-// 功能：存储全局数据指针A37的缓存数据
-#define GlobalDataPointerA37Cache DAT_180bfa188
-uint8_t GlobalDataPointerA37Cache;
+// 原始变量名：DAT_180bfa188 - 全局数据指针Final缓存区
+// 功能：存储全局数据指针Final的缓存数据
+#define GlobalDataPointerFinalCache DAT_180bfa188
+uint8_t GlobalDataPointerFinalCache;
 
-// 原始变量名：UNK_180a23000 - 全局数据指针A37验证缓冲区
-// 功能：存储全局数据指针A37的验证信息
-#define GlobalDataPointerA37ValidationBuffer UNK_180a23000
-uint8_t GlobalDataPointerA37ValidationBuffer;
+// 原始变量名：UNK_180a23000 - 全局数据指针Final验证缓冲区
+// 功能：存储全局数据指针Final的验证信息
+#define GlobalDataPointerFinalValidationBuffer UNK_180a23000
+uint8_t GlobalDataPointerFinalValidationBuffer;
 
-// 原始函数名：FUN_180942440 - 全局指针设置函数A38
-// 功能：设置全局数据指针A38到指定地址
-#define SetGlobalDataPointerA38 FUN_180942440
-void* GlobalDataPointerA38Primary;
-void* GlobalDataPointerA38Secondary;
-void* GlobalDataPointerA38Tertiary;
-void* GlobalDataPointerA38Quaternary;
-void* GlobalDataPointerA38Quinary;
+// 原始函数名：FUN_180942440 - 全局指针设置函数Extended
+// 功能：设置全局数据指针Extended到指定地址
+#define SetGlobalDataPointerExtended FUN_180942440
+void* GlobalDataPointerExtendedPrimary;
+void* GlobalDataPointerExtendedSecondary;
+void* GlobalDataPointerExtendedTertiary;
+void* GlobalDataPointerExtendedQuaternary;
+void* GlobalDataPointerExtendedQuinary;
 
-// 函数: void* UtilityProcessDataA0;
+// 函数: void* UtilityProcessDataPrimary;
 // 
 // 处理工具数据A0
 // 执行A0类工具数据的处理操作
