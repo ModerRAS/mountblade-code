@@ -50089,52 +50089,52 @@ void CleanupSystemBuffer(void)
             BufferAllocationStatusPointer = (long long *)((long long)SystemDataTablePointer + (long long)(BufferOperationStatus + -1) * 4);
             if ((((long long *)(AllocatedMemoryBlockSize + 0x2c) < SystemDataTablePointer) || (BufferAllocationStatusPointer < (long long *)(AllocatedMemoryBlockSize + 0x2c))) &&
                ((CharacterCodePointer < SystemDataTablePointer || (TableIterationIndex = 0, BufferAllocationStatusPointer < CharacterCodePointer)))) {
-              SystemChecksumValue = UnicodeCharacterCode & 0x8000000f;
+              SystemChecksumValue = UnicodeCharacterValue & 0x8000000f;
               if ((int)SystemChecksumValue < 0) {
                 SystemChecksumValue = (SystemChecksumValue - 1 | 0xfffffff0) + 1;
               }
-              pSystemDataTablePointer = pSystemDataTablePointer + 4;
-              IntegerValue0 = 8;
+              SystemDataTablePointer = SystemDataTablePointer + 4;
+              DataBlockOffset = 8;
               do {
-                *(int *)(pSystemDataTablePointer + -4) = IntegerValue8 + MatchCounter;
-                *(int *)((long long)pSystemDataTablePointer + -0x1c) = IntegerValue8 + 1 + MatchCounter;
-                *(int *)(pSystemDataTablePointer + -3) = IntegerValue8 + 2 + MatchCounter;
-                *(int *)((long long)pSystemDataTablePointer + -0x14) = IntegerValue8 + 3 + MatchCounter;
-                IntegerValue8 = IntegerValue8 + 0x10;
-                *(int *)(pSystemDataTablePointer + -2) = IntegerValue0 + -4 + MatchCounter;
-                *(int *)((long long)pSystemDataTablePointer + -0xc) = IntegerValue0 + -3 + MatchCounter;
-                *(int *)(pSystemDataTablePointer + -1) = IntegerValue0 + -2 + MatchCounter;
-                *(int *)((long long)pSystemDataTablePointer + -4) = IntegerValue0 + -1 + MatchCounter;
-                *(int *)pSystemDataTablePointer = IntegerValue0 + MatchCounter;
-                *(int *)((long long)pSystemDataTablePointer + 4) = IntegerValue0 + 1 + MatchCounter;
-                *(int *)(pSystemDataTablePointer + 1) = IntegerValue0 + 2 + MatchCounter;
-                *(int *)((long long)pSystemDataTablePointer + 0xc) = IntegerValue0 + 3 + MatchCounter;
-                *(int *)(pSystemDataTablePointer + 2) = IntegerValue0 + 4 + MatchCounter;
-                *(int *)((long long)pSystemDataTablePointer + 0x14) = IntegerValue0 + 5 + MatchCounter;
-                *(int *)(pSystemDataTablePointer + 3) = IntegerValue0 + 6 + MatchCounter;
-                *(int *)((long long)pSystemDataTablePointer + 0x1c) = IntegerValue0 + 7 + MatchCounter;
-                pSystemDataTablePointer = pSystemDataTablePointer + 8;
-                IntegerValue0 = IntegerValue0 + 0x10;
-                IntegerValue9 = IntegerValue8;
-              } while (IntegerValue8 < (int)(UnicodeCharacterCode - SystemChecksumValue));
+                *(int *)(SystemDataTablePointer + -4) = ArrayElementIndex + DataMatchCounter;
+                *(int *)((long long)SystemDataTablePointer + -0x1c) = ArrayElementIndex + 1 + DataMatchCounter;
+                *(int *)(SystemDataTablePointer + -3) = ArrayElementIndex + 2 + DataMatchCounter;
+                *(int *)((long long)SystemDataTablePointer + -0x14) = ArrayElementIndex + 3 + DataMatchCounter;
+                ArrayElementIndex = ArrayElementIndex + 0x10;
+                *(int *)(SystemDataTablePointer + -2) = DataBlockOffset + -4 + DataMatchCounter;
+                *(int *)((long long)SystemDataTablePointer + -0xc) = DataBlockOffset + -3 + DataMatchCounter;
+                *(int *)(SystemDataTablePointer + -1) = DataBlockOffset + -2 + DataMatchCounter;
+                *(int *)((long long)SystemDataTablePointer + -4) = DataBlockOffset + -1 + DataMatchCounter;
+                *(int *)SystemDataTablePointer = DataBlockOffset + DataMatchCounter;
+                *(int *)((long long)SystemDataTablePointer + 4) = DataBlockOffset + 1 + DataMatchCounter;
+                *(int *)(SystemDataTablePointer + 1) = DataBlockOffset + 2 + DataMatchCounter;
+                *(int *)((long long)SystemDataTablePointer + 0xc) = DataBlockOffset + 3 + DataMatchCounter;
+                *(int *)(SystemDataTablePointer + 2) = DataBlockOffset + 4 + DataMatchCounter;
+                *(int *)((long long)SystemDataTablePointer + 0x14) = DataBlockOffset + 5 + DataMatchCounter;
+                *(int *)(SystemDataTablePointer + 3) = DataBlockOffset + 6 + DataMatchCounter;
+                *(int *)((long long)SystemDataTablePointer + 0x1c) = DataBlockOffset + 7 + DataMatchCounter;
+                SystemDataTablePointer = SystemDataTablePointer + 8;
+                DataBlockOffset = DataBlockOffset + 0x10;
+                TableIterationIndex = ArrayElementIndex;
+              } while (ArrayElementIndex < (int)(UnicodeCharacterValue - SystemChecksumValue));
             }
           }
-          for (SystemContextValue = (long long)IntegerValue9; SystemContextValue < (long long)ValidationResult; SystemContextValue = SystemContextValue + 1) {
-            IntegerValue8 = *(int *)(AllocatedMemorySize + 0x2c) + IntegerValue9;
-            IntegerValue9 = IterationCounter + 1;
-            *(int *)(*Utf8InputBuffer + SystemContextValue * 4) = IntegerValue8;
+          for (SystemContextOffset = (long long)TableIterationIndex; SystemContextOffset < (long long)ValidationResult; SystemContextOffset = SystemContextOffset + 1) {
+            ArrayElementIndex = *(int *)(AllocatedMemoryBlockSize + 0x2c) + TableIterationIndex;
+            TableIterationIndex = ProcessingIterationCounter + 1;
+            *(int *)(*Utf8InputBufferPointer + SystemContextOffset * 4) = ArrayElementIndex;
           }
-          IntegerValue9 = *(int *)(AllocatedMemorySize + 0x18);
-          IntegerValue8 = 0;
-          if (0 < (long long)IntegerValue9) {
-            SystemContextValue = 0;
+          TableIterationIndex = *(int *)(AllocatedMemoryBlockSize + 0x18);
+          ArrayElementIndex = 0;
+          if (0 < (long long)TableIterationIndex) {
+            SystemContextOffset = 0;
             do {
-              MatchCounter = *(int *)(AllocatedMemorySize + 0x30) + IntegerValue8;
-              IntegerValue8 = IntegerValue8 + 1;
-              pLowByte = (byte *)(*(long long *)(AllocatedMemorySize + 0x10) + SystemContextValue);
-              SystemContextValue = SystemContextValue + 1;
-              *(int *)(*Utf8InputBuffer + (unsigned long long)*pLowByte * 4) = MatchCounter;
-            } while (SystemContextValue < IntegerValue9);
+              DataMatchCounter = *(int *)(AllocatedMemoryBlockSize + 0x30) + ArrayElementIndex;
+              ArrayElementIndex = ArrayElementIndex + 1;
+              LowBytePointer = (byte *)(*(long long *)(AllocatedMemoryBlockSize + 0x10) + SystemContextOffset);
+              SystemContextOffset = SystemContextOffset + 1;
+              *(int *)(*Utf8InputBufferPointer + (unsigned long long)*LowBytePointer * 4) = DataMatchCounter;
+            } while (SystemContextOffset < TableIterationIndex);
           }
         }
         StatusBuffer5 = (uint *)((long long)*(int *)(CoreEngineSystemContext + 0xc20) * 0x128 +

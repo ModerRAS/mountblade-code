@@ -76094,7 +76094,7 @@ void ExecuteDataBufferMemoryOperation(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void ExceptionHandlerD4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionDataWithCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
@@ -76104,7 +76104,7 @@ void ExceptionHandlerD4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
 
 
 
-void ExceptionHandlerD5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionDataWithBuffer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
