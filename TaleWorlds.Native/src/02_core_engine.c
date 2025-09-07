@@ -105723,7 +105723,7 @@ LAB_180119279:
       }
     }
     else {
-      FUN_180122e80(CONCAT44(*(float *)(MemoryBlockIndex + 0x19f8) * 0.5 + SystemContextSecondaryFloat8 + SystemContextSecondaryFloat,SystemContextSecondaryFloat1 * 0.5 + SystemContextSecondaryFloat6
+      ProcessSystemFloatDataEx(CONCAT44(*(float *)(MemoryBlockIndex + 0x19f8) * 0.5 + SystemContextSecondaryFloat8 + SystemContextSecondaryFloat,SystemContextSecondaryFloat1 * 0.5 + SystemContextSecondaryFloat6
                             ));
     }
     if (*(char *)(MemoryBlockIndex + 0x2e38) != '\0') {
