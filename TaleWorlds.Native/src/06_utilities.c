@@ -49434,7 +49434,11 @@ void Unwind_1809047a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809047b0(void)
+/**
+ * @brief 销毁互斥锁B - 简化实现
+ * @note 原始函数名：Unwind_1809047b0
+ */
+void Unwind_DestroyMutexB(void)
 
 {
   _Mtx_destroy_in_situ();

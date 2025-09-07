@@ -113761,7 +113761,7 @@ LAB_18011eba2:
   if ((9.223372e+18 <= SystemContextPrimaryFloat6) && (SystemContextPrimaryFloat6 = SystemContextPrimaryFloat6 - 9.223372e+18, SystemContextPrimaryFloat6 < 9.223372e+18)) {
     DataStructureCounter = -0x8000000000000000;
   }
-  CalculatedCodePoint = FUN_18011f5c0(AdditionalParameter3,0x5f000000,(long long)SystemContextPrimaryFloat6 + DataStructureCounter);
+  CalculatedCodePoint = ProcessSystemCharacterEncoding(AdditionalParameter3,0x5f000000,(long long)SystemContextPrimaryFloat6 + DataStructureCounter);
   if (*Utf16EndPointer != CalculatedCodePoint) {
     *Utf16EndPointer = CalculatedCodePoint;
     SystemByteValue = 1;
@@ -113885,7 +113885,7 @@ SystemConfigurationReset:
       goto SystemConfigurationReset;
     }
     if (ScalingFactors[0] == 0.0) goto CoordinateTransformationExit;
-    FUN_18011f940(ContextCoordinate,*OutputCoordinatePointer,InputCoordinate1,InputCoordinate2);
+    ProcessSystemCoordinates(ContextCoordinate,*OutputCoordinatePointer,InputCoordinate1,InputCoordinate2);
     ConfigurationStatus = ProcessValidationCheck(Parameter3);
     DistanceValue = 1.0;
     if (ConfigurationStatus < 1) {
@@ -161247,46 +161247,46 @@ void ProcessUtf8ToUtf16MemoryAllocationAndFloatCalculation(long long CharacterCo
               FloatVariable7 = SystemContextPrimaryFloat;
             }
           }
-          NormalizedParameter = FloatValue8 - FloatVariable7;
+          NormalizedParameter = TertiaryFloatValue - SecondaryFloatValue;
         }
         else {
           *(byte *)(MemoryBlockIndex + 0xa1) = *(byte *)(MemoryBlockIndex + 0xa1) & 0xfb;
           NormalizedParameter = *(float *)(MemoryBlockIndex + 0x40 + AllocatedMemorySize * 4);
-          FloatVariable7 = FloatValue8 - NormalizedParameter;
+          SecondaryFloatValue = TertiaryFloatValue - NormalizedParameter;
           *(float *)(MemoryBlockIndex + 0x48 + AllocatedMemorySize * 4) = NormalizedParameter;
-          *(float *)(BufferStatus + 0x48 + AllocatedMemorySize * 4) = FloatVariable7;
+          *(float *)(BufferStatus + 0x48 + AllocatedMemorySize * 4) = SecondaryFloatValue;
         }
       }
       else {
         *(byte *)(BufferStatus + 0xa1) = *(byte *)(BufferStatus + 0xa1) & 0xfb;
-        FloatVariable7 = *(float *)(BufferStatus + 0x40 + AllocatedMemorySize * 4);
-        NormalizedParameter = FloatValue8 - FloatVariable7;
-        *(float *)(BufferStatus + 0x48 + AllocatedMemorySize * 4) = FloatVariable7;
+        SecondaryFloatValue = *(float *)(BufferStatus + 0x40 + AllocatedMemorySize * 4);
+        NormalizedParameter = TertiaryFloatValue - SecondaryFloatValue;
+        *(float *)(BufferStatus + 0x48 + AllocatedMemorySize * 4) = SecondaryFloatValue;
         *(float *)(MemoryBlockIndex + 0x48 + AllocatedMemorySize * 4) = NormalizedParameter;
       }
 LAB_18013a7a6:
-      afStackX_20[AllocatedMemorySize] = NormalizedParameter;
-      *(float *)((long long)&stack0x00000098 + AllocatedMemorySize * 4) = FloatVariable7;
-      hasComparisonResult = *(byte *)(BufferStatus + 0xa0);
-      *(float *)((long long)&stack0x00000080 + AllocatedMemorySize * 4) =
-           FloatVariable7 + in_XMM5_Da + *(float *)((long long)&stack0x00000080 + AllocatedMemorySize * 4);
-      SystemStatusCode = (uint32_t)uStack0000000000000080;
-      QuaternaryReturnCode = (uint32_t)((unsigned long long)uStack0000000000000080 >> 0x20);
+      StackFloatArray[AllocatedMemorySize] = NormalizedParameter;
+      *(float *)((long long)&StackParameter2 + AllocatedMemorySize * 4) = SecondaryFloatValue;
+      HasComparisonResult = *(byte *)(BufferStatus + 0xa0);
+      *(float *)((long long)&StackParameter1 + AllocatedMemorySize * 4) =
+           SecondaryFloatValue + InputParameterFloat + *(float *)((long long)&StackParameter1 + AllocatedMemorySize * 4);
+      SystemStatusCode = (uint32_t)StackParameter1;
+      QuaternaryReturnCode = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
     }
-    CalculatedDistance = afStackX_20[0];
-    if ((hasComparisonResult & 4) != 0) {
-      FUN_18013a5e0(BufferStatus,CONCAT44(ProcessStringBuffer,MemoryAllocationIndex),uStack0000000000000098);
-      in_XMM5_Da = 2.0;
+    CalculatedDistance = StackFloatArray[0];
+    if ((HasComparisonResult & 4) != 0) {
+      FUN_18013a5e0(BufferStatus,CONCAT44(StringProcessingBuffer,MemoryAllocationIndex),StackParameter2);
+      InputParameterFloat = 2.0;
     }
     if ((*(byte *)(MemoryBlockIndex + 0xa0) & 4) == 0) {
       return;
     }
     *(unsigned long long *)(MemoryBlockIndex + 0x38) = CONCAT44(QuaternaryReturnCode,SystemStatusCode);
-    *(unsigned long long *)(MemoryBlockIndex + 0x40) = CONCAT44(afStackX_20[1],CalculatedDistance);
-    AdditionalParameter1 = CONCAT44(afStackX_20[1],CalculatedDistance);
+    *(unsigned long long *)(MemoryBlockIndex + 0x40) = CONCAT44(StackFloatArray[1],CalculatedDistance);
+    AdditionalParameter1 = CONCAT44(StackFloatArray[1],CalculatedDistance);
     CharacterCode = MemoryBlockIndex;
     MemoryAllocationIndex = SystemStatusCode;
-    ProcessStringBuffer = QuaternaryReturnCode;
+    StringProcessingBuffer = QuaternaryReturnCode;
     if (*(long long *)(MemoryBlockIndex + 0x10) == 0) {
       return;
     }
