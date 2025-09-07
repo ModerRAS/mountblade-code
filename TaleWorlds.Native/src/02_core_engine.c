@@ -101466,30 +101466,30 @@ void ProcessUtf16CharacterConversionAndMemoryManagement(long long SystemContextP
       SourceIndexRegister[(long long)(short)ValidationFlag * 4 + 5] = ValidationStatus - MutexLockResult;
       SourceIndexRegister[0x388] = SourceIndexRegister[0x388] - MutexLockResult;
       if (0 < MutexLockResult) {
-        MemoryAllocationSize = (long long)IntegerValue0 * 2;
+        AllocatedMemorySize = (long long)InitialIntegerValue * 2;
         do {
-          validationResult = RegisterSourceIndex[(long long)(short)ValidationResult * 4 + 5] + ComputedResult;
-          ComputedResult = ComputedResult + 1;
-          *(uint16_t *)((long long)RegisterSourceIndex + (long long)validationResult * 2 + 0x648) =
-               *(uint16_t *)(MemoryAllocationSize + *(long long *)(RegisterFramePointer + 0x10));
-          MemoryAllocationSize = MemoryAllocationSize + 2;
-        } while (ComputedResult < MutexLockResult);
+          ValidationStatus = SourceIndexRegister[(long long)(short)ValidationFlag * 4 + 5] + CalculatedResult;
+          CalculatedResult = CalculatedResult + 1;
+          *(uint16_t *)((long long)SourceIndexRegister + (long long)ValidationStatus * 2 + 0x648) =
+               *(uint16_t *)(AllocatedMemorySize + *(long long *)(FramePointerRegister + 0x10));
+          AllocatedMemorySize = AllocatedMemorySize + 2;
+        } while (CalculatedResult < MutexLockResult);
       }
     }
     else {
-      *(uint32_t *)(MemoryAllocationSize + 0xc) = 0;
+      *(uint32_t *)(AllocatedMemorySize + 0xc) = 0;
     }
-    SystemVariable9 = ProcessFloatDataCamera(SystemVariable9,IntegerValue0,MutexLockResult);
+    SystemContextData = ProcessFloatDataCamera(SystemContextData,InitialIntegerValue,MutexLockResult);
   }
   if (ValidationCode != 0) {
-    iStack000000000000002c = aUtf16Char.High32Part;
-    ValidateFloatDataCamera(SystemVariable9,IntegerValue0,(long long)RegisterSourceIndex + ((long long)iStack000000000000002c + 0x324) * 2,
+    StackOffsetValue = Utf16CharacterBuffer.High32Part;
+    ValidateFloatDataCamera(SystemContextData,InitialIntegerValue,(long long)SourceIndexRegister + ((long long)StackOffsetValue + 0x324) * 2,
                   ValidationCode);
-    RegisterSourceIndex[0x387] = RegisterSourceIndex[0x387] - ValidationCode;
+    SourceIndexRegister[0x387] = SourceIndexRegister[0x387] - ValidationCode;
   }
-  *RegisterSourceIndex = IntegerValue0 + ValidationCode;
-  *(short *)((long long)RegisterSourceIndex + 0xe16) = *(short *)((long long)RegisterSourceIndex + 0xe16) + -1;
-  *(short *)(RegisterSourceIndex + 0x386) = (short)RegisterSourceIndex[0x386] + -1;
+  *SourceIndexRegister = InitialIntegerValue + ValidationCode;
+  *(short *)((long long)SourceIndexRegister + 0xe16) = *(short *)((long long)SourceIndexRegister + 0xe16) + -1;
+  *(short *)(SourceIndexRegister + 0x386) = (short)SourceIndexRegister[0x386] + -1;
   return;
 }
 
@@ -101505,12 +101505,20 @@ void SystemStatusResetter(void)
 
 
 
-6470(long long SystemContextPointer,uint32_t Utf8BufferSize,uint32_t Utf16InputPointervoid FUN_180116470(long long SystemContextPointer,uint32_t Utf8BufferSize,uint32_t Utf16InputPointer
+/**
+ * 初始化系统内存缓冲区
+ * 为系统内存操作分配和初始化缓冲区空间
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ */
+void InitializeSystemMemoryBuffer(long long SystemContextPointer,uint32_t Utf8BufferSize,uint32_t Utf16InputPointer)
 {
-  long long PrimaryDataSize;
-  short SystemShortValue2;
-  int MemoryMatchResult;
-  uint32_t *MemoryAddressMask;
+  long long BufferSize;
+  short BufferIndex;
+  int MemoryValidationResult;
+  uint32_t *MemoryAllocationMask;
   
   loopCounter = SystemContextPointer + 0x18;
   *(uint16_t *)(SystemContextPointer + 0xe18) = 99;

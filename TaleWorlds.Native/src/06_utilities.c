@@ -18110,26 +18110,26 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
   unsigned int stackParameterBuffer [2];
   DataBuffer uStackX_18;
   ByteFlag stackByteBuffer [8];
-  uint64_t uStack_118;
-  DataBuffer uStack_110;
-  int64_t *plStack_108;
-  uint64_t securityCheckValueA0;
-  int aiStack_f8 [2];
-  uint8_t *puStack_f0;
-  DataWord uStack_e8;
-  DataWord uStack_e0;
-  uint8_t *puStack_d8;
-  DataWord uStack_d0;
-  DataWord uStack_c8;
-  DataWord uStack_c0;
-  uint8_t *puStack_b8;
-  DataWord uStack_b0;
-  DataWord uStack_a8;
-  uint colorRedHigh;
-  uint8_t *puStack_98;
-  DataWord uStack_90;
-  DataWord uStack_88;
-  ByteFlag uStack_80;
+  uint64_t memoryOperationCounter;
+  DataBuffer memoryOperationHandle;
+  int64_t *systemContextPointer;
+  uint64_t securityValidationValue;
+  int arrayIndexBuffer [2];
+  uint8_t *dataValidationContext;
+  DataWord dataProcessingWordA;
+  DataWord dataProcessingWordB;
+  uint8_t *systemConfigurationContext;
+  DataWord configurationWordA;
+  DataWord configurationWordB;
+  DataWord configurationWordC;
+  uint8_t *validationContextA;
+  DataWord validationWordA;
+  DataWord validationWordB;
+  uint colorRedValue;
+  uint8_t *securityCheckContext;
+  DataWord securityCheckWordA;
+  DataWord securityCheckWordB;
+  ByteFlag operationStatusByte;
   ByteFlag validationBuffer1 [8];
   ByteFlag validationBuffer2 [8];
   ByteFlag validationBuffer3 [40];
@@ -18139,19 +18139,19 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
   arrayIndex = 0;
   if ((securityCheckResult >> 0x1a & 1) == 0) goto ProcessCheckpointSecurityCheck;
   if ((securityCheckResult & 1) == 0) {
-    plStack_108 = (int64_t *)(operationBase + 0x70);
-    uStack_118 = 0;
+    systemContextPointer = (int64_t *)(operationBase + 0x70);
+    memoryOperationCounter = 0;
     inputParameter6 = 0;
     stackUIntBuffer[0] = 0;
-    uStack_110 = 0;
-    securityCheckValueA0 = SystemCleanupFlagffffffff;
-    aiStack_f8[0] = -1;
-    ProcessDataConversionDN0(plStack_108,&securityCheckValueA0,aiStack_f8);
-    stackIntBuffer[0] = aiStack_f8[0];
-    if (aiStack_f8[0] != -1) {
-      validationContextPointer3 = plStack_108;
+    memoryOperationHandle = 0;
+    securityValidationValue = SystemCleanupFlagffffffff;
+    arrayIndexBuffer[0] = -1;
+    ProcessDataConversionDN0(systemContextPointer,&securityValidationValue,arrayIndexBuffer);
+    stackIntBuffer[0] = arrayIndexBuffer[0];
+    if (arrayIndexBuffer[0] != -1) {
+      validationContextPointer3 = systemContextPointer;
       loopCounter = dataFlags;
-      inputParameter1 = (int)securityCheckValueA0;
+      inputParameter1 = (int)securityValidationValue;
       do {
         do {
           inputParameter6 = (int)loopCounter;
@@ -18165,9 +18165,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
             if ((arrayIndex == 0) &&
                (arrayIndex = PerformSystemValidationCheck(uStackX_18), validationContextPointer3 = plStack_108, 0 < arrayIndex)) {
               do {
-                uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
-                uStack_e8 = 0;
-                puStack_f0 = &SystemValidationDataTableA0;
+                dataProcessingWordB = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
+                dataProcessingWordA = 0;
+                dataValidationContext = &SystemValidationDataTableA0;
                 DoubleValidateAndExecuteOperation(&puStack_f0,*(DataBuffer *)(operationBase + 0x58));
                 arrayIndex = PerformSystemValidationCheck(validationStatus);
               } while (0 < arrayIndex);
