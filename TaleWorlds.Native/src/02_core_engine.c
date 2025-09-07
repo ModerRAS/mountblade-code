@@ -28289,7 +28289,7 @@ void SafeReleaseMemoryReferenceCount(void
  * 
  180057830，ProcessSystemEventQueue
  */
-void ProcessSystemEventQueue(long long *eventQueuePointer{
+void ProcessSystemEventQueue(long long *eventQueuePointer) {
   long long *eventHandlerPointer;
   long long *currentEvent;
   
@@ -28318,7 +28318,7 @@ void ProcessSystemEventQueue(long long *eventQueuePointer{
  * 
  * @note 原始函数名：FUN_1800578a0
  */
-void CleanupSystemResources(void{
+void CleanupSystemResources(void) {
   int *referenceCountPointer;
   void *SystemContext;
   long long memoryOffset;
@@ -30088,7 +30088,7 @@ void CoreEngineResetMemoryManager(uint64_t *MemoryManagerHandle{
  * @param CharacterCode 系统对象指针
  * @return 无
  */
-void CoreEngineResetSystemObjectAndProcessEvent(uint64_t *Utf8InputBuffer
+void CoreEngineResetSystemObjectAndProcessEvent(uint64_t *Utf8InputBuffer)
 {
   if (Utf8InputBuffer[4] != 0) {
                     // WARNING: Subroutine does not return
@@ -252603,9 +252603,25 @@ long long * FUN_18021ad90(long long CharacterCode,long long *Utf8InputBufferSize
 
 
 
-int FUN_18021ade0(long long CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 验证UTF8字符串编码
+ * 
+ * 该函数负责验证UTF8字符串的编码正确性，包括：
+ * - 检查字符编码格式
+ * - 验证字符串长度
+ * - 比较字符内容
+ * - 返回验证结果索引
+ * 
+ * @param CharacterCode 字符编码上下文
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @return 验证结果索引，-1表示验证失败
+ * 
+ * @note 此函数用于UTF8字符串编码验证
+ * @note 涉及内存块和字符编码处理
+ */
+int ValidateUtf8StringEncoding(long long CharacterCode,long long Utf8BufferSize)
 {
-  byte *pCurrentByteValue;
+  byte *CurrentBytePointer;
   int CharacterByteCount;
   long long MemoryOffset;
   byte *ValidationBytePointer;
@@ -252613,8 +252629,8 @@ int FUN_18021ade0(long long CharacterCode,long long Utf8BufferSize
   int ValidationResult;
   int ProcessIterationCount;
   int ComputedResult;
-  long long systemLoopCounter;
-  long long *Utf8InputBufferPointer;
+  long long SystemLoopCounter;
+  long long *Utf8BufferPointer;
   
   MemoryBlockIndex = FUN_18020fa10(*(void *)(CharacterCode + 0x1f8));
   if (MemoryBlockIndex != 0) {

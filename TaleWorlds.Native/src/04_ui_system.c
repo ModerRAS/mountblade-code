@@ -7509,115 +7509,115 @@ ulonglong UIProcessEventCallback(undefined8 uiContext,undefined8 dataSource,unde
   char cVar1;
   ulonglong semaphoreHandle;
   int compareResult;
-  longlong lVar4;
-  longlong lVar5;
-  undefined *puVar6;
+  longlong loopCounter1;
+  longlong loopCounter2;
+  undefined *eventTypePointer;
   ulonglong eventTypeCode;
   bool EventProcessingResult;  // was bVar8
-  undefined *puStack_50;
-  char *pcStack_48;
-  int iStack_40;
+  undefined *dataBufferPtr1;
+  char *eventStringPtr;
+  int stringLength;
   undefined4 uStack_38;
-  undefined *puStack_30;
-  longlong lStack_28;
-  int iStack_20;
+  undefined *dataBufferPtr2;
+  longlong eventDataPtr;
+  int eventTypeIndex;
   
-  InitializeUIDataBuffer(&puStack_30,uiContext,targetBuffer,bufferSize,0xfffffffffffffffe);
-  InitializeUIDataBuffer(&puStack_50,dataSource);
-  UILong5 = UILongStack28;
-  if (iStack_20 == 0x19) {
-    UIInt3 = strcmp(UILongStack28,&UIEventTypeClick);
+  InitializeUIDataBuffer(&dataBufferPtr2,uiContext,targetBuffer,bufferSize,0xfffffffffffffffe);
+  InitializeUIDataBuffer(&dataBufferPtr1,dataSource);
+  UILong5 = eventDataPtr;
+  if (eventTypeIndex == 0x19) {
+    UIInt3 = strcmp(eventDataPtr,&UIEventTypeClick);
     if (UIInt3 == 0) {
-      if (iStack_40 == 7) {
+      if (stringLength == 7) {
         UILong5 = 0;
         do {
           UILong4 = UILong5 + 1;
-          if (UICharPtrStack48[UILong5] != (&UIEventTypePinch)[UILong5]) break;
+          if (eventStringPtr[UILong5] != (&UIEventTypePinch)[UILong5]) break;
           UILong5 = UILong4;
-        } while (lVar4 != 8);
+        } while (loopCounter1 != 8);
       }
-      else if (iStack_40 == 9) {
-        puVar6 = &UIEventTypeSwipe;
+      else if (stringLength == 9) {
+        eventTypePointer = &UIEventTypeSwipe;
 LAB_UIEventProcessingStart:
-        compareResult = strcmp(pcStack_48,puVar6);
-        bVar8 = compareResult == 0;
+        compareResult = strcmp(eventStringPtr,eventTypePointer);
+        EventProcessingResult = compareResult == 0;
 LAB_UIEventProcessingCheck:
-        if (bVar8) {
+        if (EventProcessingResult) {
           eventTypeCode = 4;
           goto LAB_180655685;
         }
       }
     }
   }
-  else if (iStack_20 == 0x18) {
-    compareResult = strcmp(lStack_28,&UIEventTypeKey);
-    if ((compareResult == 0) && (iStack_40 == 7)) {
+  else if (eventTypeIndex == 0x18) {
+    compareResult = strcmp(eventDataPtr,&UIEventTypeKey);
+    if ((compareResult == 0) && (stringLength == 7)) {
       eventTypeCode = 8;
-      lVar5 = 0;
+      loopCounter2 = 0;
       do {
-        lVar4 = lVar5 + 1;
-        if (pcStack_48[lVar5] != (&UIEventTypeMouse)[lVar5]) {
-          lVar5 = 0;
+        loopCounter1 = loopCounter2 + 1;
+        if (eventStringPtr[loopCounter2] != (&UIEventTypeMouse)[loopCounter2]) {
+          loopCounter2 = 0;
           goto LAB_180655761;
         }
-        lVar5 = lVar4;
-      } while (lVar4 != 8);
+        loopCounter2 = loopCounter1;
+      } while (loopCounter1 != 8);
     }
   }
-  else if (iStack_20 == 0x1a) {
-    compareResult = strcmp(lStack_28,&UIEventTypeMouseMove);
-    if ((compareResult == 0) && (iStack_40 == 4)) {
-      lVar5 = 0;
+  else if (eventTypeIndex == 0x1a) {
+    compareResult = strcmp(eventDataPtr,&UIEventTypeMouseMove);
+    if ((compareResult == 0) && (stringLength == 4)) {
+      loopCounter2 = 0;
       do {
-        lVar4 = lVar5 + 1;
-        if (pcStack_48[lVar5] != (&UIEventTypeMouseDrag)[lVar5]) {
+        loopCounter1 = loopCounter2 + 1;
+        if (eventStringPtr[loopCounter2] != (&UIEventTypeMouseDrag)[loopCounter2]) {
           semaphoreHandle = 0;
           goto LAB_1806557d3;
         }
-        lVar5 = lVar4;
-      } while (lVar4 != 5);
+        loopCounter2 = loopCounter1;
+      } while (loopCounter1 != 5);
     }
   }
-  else if (iStack_20 == 0x15) {
-    compareResult = strcmp(lStack_28,&UIComponentNameTable[0]);
+  else if (eventTypeIndex == 0x15) {
+    compareResult = strcmp(eventDataPtr,&UIComponentNameTable[0]);
     if (compareResult == 0) {
-      if (iStack_40 == 0xb) {
-        strcmp(pcStack_48,&UIComponentNameTable[1]);
+      if (stringLength == 0xb) {
+        strcmp(eventStringPtr,&UIComponentNameTable[1]);
       }
-      else if ((iStack_40 == 9) && (compareResult = strcmp(pcStack_48,&UIComponentNameTable[2]), compareResult == 0)) {
+      else if ((stringLength == 9) && (compareResult = strcmp(eventStringPtr,&UIComponentNameTable[2]), compareResult == 0)) {
         eventTypeCode = 0x204;
         goto LAB_180655685;
       }
     }
   }
-  else if (iStack_20 == 0x11) {
-    compareResult = strcmp(lStack_28,&UIEventTypeFocus);
+  else if (eventTypeIndex == 0x11) {
+    compareResult = strcmp(eventDataPtr,&UIEventTypeFocus);
     if (compareResult == 0) {
-      if (iStack_40 == 6) {
-        lVar5 = 0;
+      if (stringLength == 6) {
+        loopCounter2 = 0;
         do {
-          lVar4 = lVar5 + 1;
-          if (pcStack_48[lVar5] != (&UIEventTypeBlur)[lVar5]) break;
-          lVar5 = lVar4;
-        } while (lVar4 != 7);
+          loopCounter1 = loopCounter2 + 1;
+          if (eventStringPtr[loopCounter2] != (&UIEventTypeBlur)[loopCounter2]) break;
+          loopCounter2 = loopCounter1;
+        } while (loopCounter1 != 7);
       }
-      else if (iStack_40 == 8) {
-        puVar6 = &UIEventTypeSelect;
+      else if (stringLength == 8) {
+        eventTypePointer = &UIEventTypeSelect;
 UIEventTypeSelectCheck:
-        compareResult = strcmp(pcStack_48,puVar6);
+        compareResult = strcmp(eventStringPtr,eventTypePointer);
         if (compareResult == 0) {
           eventTypeCode = 0x10;
           goto LAB_180655685;
         }
       }
-      else if (iStack_40 == 5) {
-        lVar5 = 0;
+      else if (stringLength == 5) {
+        loopCounter2 = 0;
         do {
-          lVar4 = lVar5;
-          if (pcStack_48[lVar4] != (&UIEventTypeChange)[lVar4]) goto LAB_180655683;
-          lVar5 = lVar4 + 1;
-        } while (lVar4 + 1 != 6);
-        eventTypeCode = (ulonglong)((int)lVar4 + 0x3b);
+          loopCounter1 = loopCounter2;
+          if (eventStringPtr[loopCounter1] != (&UIEventTypeChange)[loopCounter1]) goto LAB_180655683;
+          loopCounter2 = loopCounter1 + 1;
+        } while (loopCounter1 + 1 != 6);
+        eventTypeCode = (ulonglong)((int)loopCounter1 + 0x3b);
         goto LAB_180655685;
       }
     }
@@ -11556,8 +11556,8 @@ LAB_18065a2e9:
     }
     pfVar7[-10] = fVar25;
     *pfVar7 = fVar25;
-    if (2 < iVar5) {
-      if (iVar5 < 7) {
+    if (2 < uiElementCounter) {
+      if (uiElementCounter < 7) {
         floatResult7 = 1.0 - floatResult3;
       }
       else {
