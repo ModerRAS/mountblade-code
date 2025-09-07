@@ -31412,7 +31412,7 @@ void SystemInitializationFunction(void
  * 
  * @param resourceHandle 资源句柄指针，指向需要清理的资源结构
  */
-void CoreEngineCleanupResource(int64_t resourceHandle{
+void CoreEngineCleanupResource(int64_t resourceHandle)
   CoreEngineInitializeCleanupProcess();
   *(uint64_t *)(resourceHandle + 8) = &SystemResourceCleanupPointer;
   if (*(int64_t *)(resourceHandle + 0x10) != 0) {
@@ -31435,7 +31435,7 @@ void CoreEngineCleanupResource(int64_t resourceHandle{
  * 
  * @param systemHandle 系统句柄指针，指向需要重置的系统句柄结构
  */
-void CoreEngineResetSystemHandle(uint64_t *systemHandle{
+void CoreEngineResetSystemHandle(uint64_t *systemHandle)
   if ((int64_t *)systemHandle[0x13] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)systemHandle[0x13] + 0x38))();
   }
