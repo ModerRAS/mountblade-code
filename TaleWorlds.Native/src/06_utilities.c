@@ -86861,7 +86861,7 @@ void Unwind_1809103a0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809103b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x48) = &UNK_1809fcd18;
+  **(DataBuffer **)(dataBuffer + 0x48) = &SystemStateBuffer;
   return;
 }
 
