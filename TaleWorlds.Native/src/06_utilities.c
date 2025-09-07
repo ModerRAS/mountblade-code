@@ -10065,8 +10065,8 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   int64_t systemContextBuffer;
   int8_t ComponentValidationBuffer [DataValidationBufferSize];
   
-  SystemQueryStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
-  if ((int)SystemQueryStatus != 0) {
+  systemQueryStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
+  if ((int)systemQueryStatus != 0) {
     return SystemQueryStatus;
   }
   SystemContextHandle = *(int64_t *)(systemContextBuffer + SystemContextOffset);
@@ -79999,7 +79999,19 @@ void Unwind_18090c990(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c9a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除数据验证标志位0
+ * 
+ * 该函数负责清除数据缓冲区中的验证标志位0（bit 0），
+ * 并在清除标志后调用数据验证处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含标志位状态
+ * 
+ * @note 原始函数名：Unwind_18090c9a0
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的状态清理
+ */
+void ClearDataValidationFlag0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
@@ -80011,7 +80023,19 @@ void Unwind_18090c9a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c9d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除数据验证标志位1
+ * 
+ * 该函数负责清除数据缓冲区中的验证标志位1（bit 1），
+ * 并在清除标志后调用数据验证处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含标志位状态
+ * 
+ * @note 原始函数名：Unwind_18090c9d0
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的状态清理
+ */
+void ClearDataValidationFlag1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
@@ -80024,7 +80048,16 @@ void Unwind_18090c9d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ca00(void)
+/**
+ * @brief 递减系统资源计数器并调用清理函数A
+ * 
+ * 该函数负责递减系统资源计数器，并调用系统函数表中的清理函数。
+ * 这是资源管理的一部分，确保资源被正确释放。
+ * 
+ * @note 原始函数名：Unwind_18090ca00
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的资源清理
+ */
+void DecrementSystemResourceCounterAndCallCleanupA(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -80035,7 +80068,16 @@ void Unwind_18090ca00(void)
 
 
 
-void Unwind_18090ca10(void)
+/**
+ * @brief 递减系统资源计数器并调用清理函数B
+ * 
+ * 该函数负责递减系统资源计数器，并调用系统函数表中的清理函数。
+ * 这是资源管理的一部分，确保资源被正确释放。
+ * 
+ * @note 原始函数名：Unwind_18090ca10
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的资源清理
+ */
+void DecrementSystemResourceCounterAndCallCleanupB(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -80046,7 +80088,20 @@ void Unwind_18090ca10(void)
 
 
 
-void Unwind_18090ca20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文和资源清理
+ * 
+ * 该函数负责处理异常上下文，包括资源迭代器的处理、上下文指针的设置、
+ * 系统操作的调用以及数据缓冲区的验证。这是异常展开机制中的核心函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090ca20
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的复杂资源清理
+ * @note 函数涉及复杂的指针运算和资源管理逻辑
+ */
+void ProcessExceptionContextAndResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -80091,7 +80146,16 @@ void Unwind_18090ca20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ca30(void)
+/**
+ * @brief 递减系统资源计数器并调用清理函数C
+ * 
+ * 该函数负责递减系统资源计数器，并调用系统函数表中的清理函数。
+ * 这是资源管理的一部分，确保资源被正确释放。
+ * 
+ * @note 原始函数名：Unwind_18090ca30
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的资源清理
+ */
+void DecrementSystemResourceCounterAndCallCleanupC(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -100132,7 +100196,21 @@ void Unwind_1809124f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x58偏移异常上下文
+ * 
+ * 该函数负责处理数据缓冲区0x58偏移量处的异常上下文，执行异常处理操作
+ * 通过计算0x28偏移处的异常上下文地址并处理异常
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912500
+ * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
+ */
+void HandleExceptionContextAtOffset58(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;

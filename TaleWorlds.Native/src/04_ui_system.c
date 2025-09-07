@@ -104039,7 +104039,7 @@ void FUN_18072f4d0(undefined1 *uiContext,longlong dataSource,uint targetBuffer)
       lVar9 = lVar9 + 1;
       *(int *)(auStack_104 + (ulonglong)*pbVar1 * 4 + -4) =
            ((iVar7 + validationResult * -0x100) *
-            ((int)*(short *)(&UNK_180956f72 + (longlong)validationResult * 2) -
+            ((int)*(short *)(&UIDataTableA + (longlong)validationResult * 2) -
             (int)*(short *)(&DAT_180956f70 + (longlong)validationResult * 2)) +
             *(short *)(&DAT_180956f70 + (longlong)validationResult * 2) * 0x100 >> 3) + 1 >> 1;
     } while (lVar9 < lVar6);
@@ -223551,7 +223551,7 @@ void FUN_180803cf0(longlong uiContext,int dataSource,undefined8 targetBuffer,int
                                   ((longlong *)*bufferPtr,uiContext + 0x750);
                 if (-1 < validationResult) {
                   validationResult = (**(code **)(*(longlong *)*bufferPtr + 0x70))
-                                    ((longlong *)*bufferPtr,&UNK_18097edf8,uiContext + 0x730);
+                                    ((longlong *)*bufferPtr,&UIDataTableB,uiContext + 0x730);
                   if (-1 < validationResult) {
                     uStack_78 = 0;
                     validationResult = (**(code **)(**(longlong **)(uiContext + 0x730) + 0x18))
@@ -223772,7 +223772,7 @@ void FUN_180803d63(longlong *uiContext,longlong dataSource)
               (iVar7 = (**(code **)(*(longlong *)*pfunctionResult0 + 0x20))
                                  ((longlong *)*pfunctionResult0,unaff_RDI + 0x750), -1 < iVar7)) &&
              (iVar7 = (**(code **)(*(longlong *)*pfunctionResult0 + 0x70))
-                                ((longlong *)*pfunctionResult0,&UNK_18097edf8,unaff_RDI + 0x730), -1 < iVar7)
+                                ((longlong *)*pfunctionResult0,&UIDataTableB,unaff_RDI + 0x730), -1 < iVar7)
              ) {
             plVar4 = *(longlong **)(unaff_RDI + 0x730);
             semaphoreHandle = *(undefined4 *)(unaff_RDI + 0x750);
@@ -223963,7 +223963,7 @@ void FUN_180803ddf(undefined8 uiContext,undefined8 dataSource,longlong targetBuf
         (iVar6 = (**(code **)(*(longlong *)*unaff_RSI + 0x20))
                            ((longlong *)*unaff_RSI,unaff_RDI + 0x750), -1 < iVar6)) &&
        (iVar6 = (**(code **)(*(longlong *)*unaff_RSI + 0x70))
-                          ((longlong *)*unaff_RSI,&UNK_18097edf8,unaff_RDI + 0x730), -1 < iVar6)) {
+                          ((longlong *)*unaff_RSI,&UIDataTableB,unaff_RDI + 0x730), -1 < iVar6)) {
       plVar4 = *(longlong **)(unaff_RDI + 0x730);
       semaphoreHandle = *(undefined4 *)(unaff_RDI + 0x750);
       *(undefined8 **)(unaff_RBP + -0x41) = context;
@@ -277511,10 +277511,10 @@ undefined8 FUN_180839dc0(longlong *uiContext,longlong dataSource,int *targetBuff
             iRam0000000180c4ea74 = iVar7 >> 0x14;
             iRam0000000180c4ea78 = iVar8 >> 0x14;
             iRam0000000180c4ea7c = operationResult7 >> 0x14;
-            fVar2 = *(float *)(&UNK_180980dc0 + (longlong)iRam0000000180c4ea74 * 4);
-            fVar3 = *(float *)(&UNK_180980dc0 + (longlong)_DAT_180c4ea70 * 4);
-            fVar4 = *(float *)(&UNK_180980dc0 + (longlong)iRam0000000180c4ea78 * 4);
-            *pfloatResult1 = *(float *)(&UNK_180980dc0 + (longlong)iRam0000000180c4ea7c * 4) * *pfloatResult1;
+            fVar2 = *(float *)(&UIDataTableC + (longlong)iRam0000000180c4ea74 * 4);
+            fVar3 = *(float *)(&UIDataTableC + (longlong)_DAT_180c4ea70 * 4);
+            fVar4 = *(float *)(&UIDataTableC + (longlong)iRam0000000180c4ea78 * 4);
+            *pfloatResult1 = *(float *)(&UIDataTableC + (longlong)iRam0000000180c4ea7c * 4) * *pfloatResult1;
             pfloatResult1[1] = fVar4 * pfloatResult1[1];
             pfloatResult1[2] = fVar2 * pfloatResult1[2];
             pfloatResult1[3] = fVar3 * pfloatResult1[3];
@@ -277527,7 +277527,7 @@ undefined8 FUN_180839dc0(longlong *uiContext,longlong dataSource,int *targetBuff
           for (functionResult0 = semaphoreHandle1 - functionResult0 & 3; functionResult0 != 0; functionResult0 = functionResult0 - 1) {
             allocatedMemory3 = (longlong)operationResult7;
             operationResult7 = operationResult7 + iVar5;
-            *pfloatResult1 = *(float *)(&UNK_180980dc0 + (allocatedMemory3 >> 0x14) * 4) * *pfloatResult1;
+            *pfloatResult1 = *(float *)(&UIDataTableC + (allocatedMemory3 >> 0x14) * 4) * *pfloatResult1;
             pfloatResult1 = pfloatResult1 + 1;
           }
           semaphoreHandle0 = (ulonglong)uVar9;
@@ -277549,10 +277549,10 @@ undefined8 FUN_180839dc0(longlong *uiContext,longlong dataSource,int *targetBuff
         lVar23 = lVar23 + allocatedMemory4 * 4;
         pfloatResult1 = (float *)(bufferSize + 8 + allocatedMemory);
         do {
-          pfloatResult1[-2] = pfloatResult1[-2] * *(float *)(&UNK_180980dc0 + allocatedMemory9 * 4);
-          pfloatResult1[-1] = pfloatResult1[-1] * *(float *)(&UNK_180980dc0 + allocatedMemory9 * 4);
-          *pfloatResult1 = *pfloatResult1 * *(float *)(&UNK_180980dc0 + allocatedMemory9 * 4);
-          pfloatResult1[1] = pfloatResult1[1] * *(float *)(&UNK_180980dc0 + allocatedMemory9 * 4);
+          pfloatResult1[-2] = pfloatResult1[-2] * *(float *)(&UIDataTableC + allocatedMemory9 * 4);
+          pfloatResult1[-1] = pfloatResult1[-1] * *(float *)(&UIDataTableC + allocatedMemory9 * 4);
+          *pfloatResult1 = *pfloatResult1 * *(float *)(&UIDataTableC + allocatedMemory9 * 4);
+          pfloatResult1[1] = pfloatResult1[1] * *(float *)(&UIDataTableC + allocatedMemory9 * 4);
           allocatedMemory4 = allocatedMemory4 + -1;
           pfloatResult1 = pfloatResult1 + 4;
         } while (allocatedMemory4 != 0);
@@ -277560,7 +277560,7 @@ undefined8 FUN_180839dc0(longlong *uiContext,longlong dataSource,int *targetBuff
       if (lVar23 < allocatedMemory3) {
         do {
           *(float *)(bufferSize + lVar23 * 4) =
-               *(float *)(bufferSize + lVar23 * 4) * *(float *)(&UNK_180980dc0 + (longlong)operationResult7 * 4);
+               *(float *)(bufferSize + lVar23 * 4) * *(float *)(&UIDataTableC + (longlong)operationResult7 * 4);
           lVar23 = lVar23 + 1;
         } while (lVar23 < allocatedMemory3);
       }
@@ -277636,10 +277636,10 @@ undefined8 FUN_180839dfd(undefined8 uiContext,undefined8 dataSource,int *targetB
           iRam0000000180c4ea74 = iVar8 >> 0x14;
           iRam0000000180c4ea78 = iVar9 >> 0x14;
           iRam0000000180c4ea7c = operationResult7 >> 0x14;
-          fVar2 = *(float *)(&UNK_180980dc0 + (longlong)iRam0000000180c4ea74 * 4);
-          fVar3 = *(float *)(&UNK_180980dc0 + (longlong)_DAT_180c4ea70 * 4);
-          fVar4 = *(float *)(&UNK_180980dc0 + (longlong)iRam0000000180c4ea78 * 4);
-          *pfloatResult0 = *(float *)(&UNK_180980dc0 + (longlong)iRam0000000180c4ea7c * 4) * *pfloatResult0;
+          fVar2 = *(float *)(&UIDataTableC + (longlong)iRam0000000180c4ea74 * 4);
+          fVar3 = *(float *)(&UIDataTableC + (longlong)_DAT_180c4ea70 * 4);
+          fVar4 = *(float *)(&UIDataTableC + (longlong)iRam0000000180c4ea78 * 4);
+          *pfloatResult0 = *(float *)(&UIDataTableC + (longlong)iRam0000000180c4ea7c * 4) * *pfloatResult0;
           pfloatResult0[1] = fVar4 * pfloatResult0[1];
           pfloatResult0[2] = fVar2 * pfloatResult0[2];
           pfloatResult0[3] = fVar3 * pfloatResult0[3];
@@ -277654,7 +277654,7 @@ undefined8 FUN_180839dfd(undefined8 uiContext,undefined8 dataSource,int *targetB
             functionResult9 = semaphoreHandle1, in_R10D = in_stack_00000070, semaphoreHandle0 != 0; semaphoreHandle0 = semaphoreHandle0 - 1) {
           allocatedMemory2 = (longlong)operationResult7;
           operationResult7 = operationResult7 + iVar6;
-          *pfloatResult0 = *(float *)(&UNK_180980dc0 + (allocatedMemory2 >> 0x14) * 4) * *pfloatResult0;
+          *pfloatResult0 = *(float *)(&UIDataTableC + (allocatedMemory2 >> 0x14) * 4) * *pfloatResult0;
           pfloatResult0 = pfloatResult0 + 1;
         }
       }
@@ -277672,10 +277672,10 @@ undefined8 FUN_180839dfd(undefined8 uiContext,undefined8 dataSource,int *targetB
       lVar22 = lVar22 + allocatedMemory3 * 4;
       pfloatResult0 = (float *)(unaff_R14 + 8 + allocatedMemory);
       do {
-        pfloatResult0[-2] = pfloatResult0[-2] * *(float *)(&UNK_180980dc0 + allocatedMemory8 * 4);
-        pfloatResult0[-1] = pfloatResult0[-1] * *(float *)(&UNK_180980dc0 + allocatedMemory8 * 4);
-        *pfloatResult0 = *pfloatResult0 * *(float *)(&UNK_180980dc0 + allocatedMemory8 * 4);
-        pfloatResult0[1] = pfloatResult0[1] * *(float *)(&UNK_180980dc0 + allocatedMemory8 * 4);
+        pfloatResult0[-2] = pfloatResult0[-2] * *(float *)(&UIDataTableC + allocatedMemory8 * 4);
+        pfloatResult0[-1] = pfloatResult0[-1] * *(float *)(&UIDataTableC + allocatedMemory8 * 4);
+        *pfloatResult0 = *pfloatResult0 * *(float *)(&UIDataTableC + allocatedMemory8 * 4);
+        pfloatResult0[1] = pfloatResult0[1] * *(float *)(&UIDataTableC + allocatedMemory8 * 4);
         allocatedMemory3 = allocatedMemory3 + -1;
         pfloatResult0 = pfloatResult0 + 4;
       } while (allocatedMemory3 != 0);
@@ -277683,7 +277683,7 @@ undefined8 FUN_180839dfd(undefined8 uiContext,undefined8 dataSource,int *targetB
     if (lVar22 < allocatedMemory2) {
       do {
         *(float *)(unaff_R14 + lVar22 * 4) =
-             *(float *)(unaff_R14 + lVar22 * 4) * *(float *)(&UNK_180980dc0 + (longlong)operationResult6 * 4);
+             *(float *)(unaff_R14 + lVar22 * 4) * *(float *)(&UIDataTableC + (longlong)operationResult6 * 4);
         lVar22 = lVar22 + 1;
       } while (lVar22 < allocatedMemory2);
     }
@@ -277753,10 +277753,10 @@ undefined8 FUN_180839e32(undefined8 uiContext,undefined8 dataSource,longlong tar
         iRam0000000180c4ea74 = iVar8 >> 0x14;
         iRam0000000180c4ea78 = iVar9 >> 0x14;
         iRam0000000180c4ea7c = operationResult7 >> 0x14;
-        fVar2 = *(float *)(&UNK_180980dc0 + (longlong)iRam0000000180c4ea74 * 4);
-        fVar3 = *(float *)(&UNK_180980dc0 + (longlong)_DAT_180c4ea70 * 4);
-        fVar4 = *(float *)(&UNK_180980dc0 + (longlong)iRam0000000180c4ea78 * 4);
-        *pfloatResult0 = *(float *)(&UNK_180980dc0 + (longlong)iRam0000000180c4ea7c * 4) * *pfloatResult0;
+        fVar2 = *(float *)(&UIDataTableC + (longlong)iRam0000000180c4ea74 * 4);
+        fVar3 = *(float *)(&UIDataTableC + (longlong)_DAT_180c4ea70 * 4);
+        fVar4 = *(float *)(&UIDataTableC + (longlong)iRam0000000180c4ea78 * 4);
+        *pfloatResult0 = *(float *)(&UIDataTableC + (longlong)iRam0000000180c4ea7c * 4) * *pfloatResult0;
         pfloatResult0[1] = fVar4 * pfloatResult0[1];
         pfloatResult0[2] = fVar2 * pfloatResult0[2];
         pfloatResult0[3] = fVar3 * pfloatResult0[3];
@@ -277771,7 +277771,7 @@ undefined8 FUN_180839e32(undefined8 uiContext,undefined8 dataSource,longlong tar
           bufferSize = unaff_R12D, in_R10D = in_stack_00000070, functionResult4 != 0; functionResult4 = functionResult4 - 1) {
         allocatedMemory2 = (longlong)operationResult7;
         operationResult7 = operationResult7 + iVar6;
-        *pfloatResult0 = *(float *)(&UNK_180980dc0 + (allocatedMemory2 >> 0x14) * 4) * *pfloatResult0;
+        *pfloatResult0 = *(float *)(&UIDataTableC + (allocatedMemory2 >> 0x14) * 4) * *pfloatResult0;
         pfloatResult0 = pfloatResult0 + 1;
       }
     }
@@ -277788,10 +277788,10 @@ undefined8 FUN_180839e32(undefined8 uiContext,undefined8 dataSource,longlong tar
       allocatedMemory2 = allocatedMemory2 + allocatedMemory3 * 4;
       pfloatResult0 = (float *)(unaff_R14 + 8 + allocatedMemory);
       do {
-        pfloatResult0[-2] = pfloatResult0[-2] * *(float *)(&UNK_180980dc0 + allocatedMemory8 * 4);
-        pfloatResult0[-1] = pfloatResult0[-1] * *(float *)(&UNK_180980dc0 + allocatedMemory8 * 4);
-        *pfloatResult0 = *pfloatResult0 * *(float *)(&UNK_180980dc0 + allocatedMemory8 * 4);
-        pfloatResult0[1] = pfloatResult0[1] * *(float *)(&UNK_180980dc0 + allocatedMemory8 * 4);
+        pfloatResult0[-2] = pfloatResult0[-2] * *(float *)(&UIDataTableC + allocatedMemory8 * 4);
+        pfloatResult0[-1] = pfloatResult0[-1] * *(float *)(&UIDataTableC + allocatedMemory8 * 4);
+        *pfloatResult0 = *pfloatResult0 * *(float *)(&UIDataTableC + allocatedMemory8 * 4);
+        pfloatResult0[1] = pfloatResult0[1] * *(float *)(&UIDataTableC + allocatedMemory8 * 4);
         allocatedMemory3 = allocatedMemory3 + -1;
         pfloatResult0 = pfloatResult0 + 4;
       } while (allocatedMemory3 != 0);
@@ -277800,7 +277800,7 @@ undefined8 FUN_180839e32(undefined8 uiContext,undefined8 dataSource,longlong tar
       do {
         *(float *)(unaff_R14 + allocatedMemory2 * 4) =
              *(float *)(unaff_R14 + allocatedMemory2 * 4) *
-             *(float *)(&UNK_180980dc0 + (longlong)unaff_ESI * 4);
+             *(float *)(&UIDataTableC + (longlong)unaff_ESI * 4);
         allocatedMemory2 = allocatedMemory2 + 1;
       } while (allocatedMemory2 < allocatedMemory9);
     }
@@ -278519,7 +278519,7 @@ undefined8 FUN_18083aa20(longlong *uiContext,longlong dataSource,int *targetBuff
             allocatedMemory0 = (longlong)operationResult5;
             operationResult5 = operationResult5 + iVar6;
             *(float *)*pafunctionResult9 =
-                 *(float *)(&UNK_180980dc0 + (allocatedMemory0 >> 0x14) * 4) * *(float *)*pafunctionResult9;
+                 *(float *)(&UIDataTableC + (allocatedMemory0 >> 0x14) * 4) * *(float *)*pafunctionResult9;
             pafunctionResult9 = (undefined1 (*) [32])(*pafunctionResult9 + 4);
           }
         }
@@ -278537,10 +278537,10 @@ undefined8 FUN_18083aa20(longlong *uiContext,longlong dataSource,int *targetBuff
         lVar20 = lVar20 + allocatedMemory2 * 4;
         pfVar8 = (float *)(bufferSize + 8 + allocatedMemory);
         do {
-          pfVar8[-2] = *(float *)(&UNK_180980dc0 + allocatedMemory6 * 4) * pfVar8[-2];
-          pfVar8[-1] = *(float *)(&UNK_180980dc0 + allocatedMemory6 * 4) * pfVar8[-1];
-          *pfVar8 = *(float *)(&UNK_180980dc0 + allocatedMemory6 * 4) * *pfVar8;
-          pfVar8[1] = pfVar8[1] * *(float *)(&UNK_180980dc0 + allocatedMemory6 * 4);
+          pfVar8[-2] = *(float *)(&UIDataTableC + allocatedMemory6 * 4) * pfVar8[-2];
+          pfVar8[-1] = *(float *)(&UIDataTableC + allocatedMemory6 * 4) * pfVar8[-1];
+          *pfVar8 = *(float *)(&UIDataTableC + allocatedMemory6 * 4) * *pfVar8;
+          pfVar8[1] = pfVar8[1] * *(float *)(&UIDataTableC + allocatedMemory6 * 4);
           allocatedMemory2 = allocatedMemory2 + -1;
           pfVar8 = pfVar8 + 4;
         } while (allocatedMemory2 != 0);
@@ -278548,7 +278548,7 @@ undefined8 FUN_18083aa20(longlong *uiContext,longlong dataSource,int *targetBuff
       if (lVar20 < allocatedMemory0) {
         do {
           *(float *)(bufferSize + lVar20 * 4) =
-               *(float *)(&UNK_180980dc0 + (longlong)operationResult7 * 4) * *(float *)(bufferSize + lVar20 * 4);
+               *(float *)(&UIDataTableC + (longlong)operationResult7 * 4) * *(float *)(bufferSize + lVar20 * 4);
           lVar20 = lVar20 + 1;
         } while (lVar20 < allocatedMemory0);
       }
@@ -278665,14 +278665,14 @@ undefined8 FUN_18083aa68(undefined8 uiContext,uint dataSource,longlong targetBuf
           allocatedMemory0 = (longlong)operationResult4;
           operationResult4 = operationResult4 + iVar6;
           *(float *)*pafunctionResult6 =
-               *(float *)(&UNK_180980dc0 + (allocatedMemory0 >> 0x14) * 4) * *(float *)*pafunctionResult6;
+               *(float *)(&UIDataTableC + (allocatedMemory0 >> 0x14) * 4) * *(float *)*pafunctionResult6;
           pafunctionResult6 = (undefined1 (*) [32])(*pafunctionResult6 + 4);
         }
       }
       operationResult8 = operationResult8 + 1;
       allocatedMemory7 = allocatedMemory7 + 1;
     } while (operationResult8 < *(int *)(unaff_R13 + 0x34));
-    in_R11 = &UNK_180980dc0;
+    in_R11 = &UIDataTableC;
     bufferSize = in_stack_00000060;
   }
   allocatedMemory7 = (longlong)(int)dataSource;
@@ -278807,7 +278807,7 @@ undefined8 FUN_18083aa7d(undefined8 uiContext,uint dataSource,longlong targetBuf
         allocatedMemory0 = (longlong)operationResult4;
         operationResult4 = operationResult4 + iVar6;
         *(float *)*pafunctionResult7 =
-             *(float *)(&UNK_180980dc0 + (allocatedMemory0 >> 0x14) * 4) * *(float *)*pafunctionResult7;
+             *(float *)(&UIDataTableC + (allocatedMemory0 >> 0x14) * 4) * *(float *)*pafunctionResult7;
         pafunctionResult7 = (undefined1 (*) [32])(*pafunctionResult7 + 4);
       }
     }
@@ -278824,10 +278824,10 @@ undefined8 FUN_18083aa7d(undefined8 uiContext,uint dataSource,longlong targetBuf
       allocatedMemory0 = allocatedMemory0 + allocatedMemory1 * 4;
       pfVar8 = (float *)(unaff_R14 + 8 + allocatedMemory);
       do {
-        pfVar8[-2] = *(float *)(&UNK_180980dc0 + allocatedMemory5 * 4) * pfVar8[-2];
-        pfVar8[-1] = *(float *)(&UNK_180980dc0 + allocatedMemory5 * 4) * pfVar8[-1];
-        *pfVar8 = *(float *)(&UNK_180980dc0 + allocatedMemory5 * 4) * *pfVar8;
-        pfVar8[1] = pfVar8[1] * *(float *)(&UNK_180980dc0 + allocatedMemory5 * 4);
+        pfVar8[-2] = *(float *)(&UIDataTableC + allocatedMemory5 * 4) * pfVar8[-2];
+        pfVar8[-1] = *(float *)(&UIDataTableC + allocatedMemory5 * 4) * pfVar8[-1];
+        *pfVar8 = *(float *)(&UIDataTableC + allocatedMemory5 * 4) * *pfVar8;
+        pfVar8[1] = pfVar8[1] * *(float *)(&UIDataTableC + allocatedMemory5 * 4);
         allocatedMemory1 = allocatedMemory1 + -1;
         pfVar8 = pfVar8 + 4;
       } while (allocatedMemory1 != 0);
@@ -278835,7 +278835,7 @@ undefined8 FUN_18083aa7d(undefined8 uiContext,uint dataSource,longlong targetBuf
     if (allocatedMemory0 < allocatedMemory6) {
       do {
         *(float *)(unaff_R14 + allocatedMemory0 * 4) =
-             *(float *)(&UNK_180980dc0 + (longlong)in_R10D * 4) * *(float *)(unaff_R14 + allocatedMemory0 * 4)
+             *(float *)(&UIDataTableC + (longlong)in_R10D * 4) * *(float *)(unaff_R14 + allocatedMemory0 * 4)
         ;
         allocatedMemory0 = allocatedMemory0 + 1;
       } while (allocatedMemory0 < allocatedMemory6);
@@ -280888,7 +280888,7 @@ undefined8 FUN_18083c2c0(longlong uiContext,longlong dataSource,int *targetBuffe
   }
   if ((operationResult1 < validationResult) && (0xf < (uint)(validationResult - operationResult1))) {
     lVar8 = (longlong)operationResult1;
-    floatResult = *(float *)(&UNK_180981620 + (longlong)operationResult2 * 4);
+    floatResult = *(float *)(&UIDataTableD + (longlong)operationResult2 * 4);
     uVar4 = validationResult - operationResult1 & 0x8000000f;
     if ((int)uVar4 < 0) {
       uVar4 = (uVar4 - 1 | 0xfffffff0) + 1;
@@ -280919,7 +280919,7 @@ undefined8 FUN_18083c2c0(longlong uiContext,longlong dataSource,int *targetBuffe
   lVar8 = (longlong)operationResult1;
   if (lVar8 < allocatedMemory4) {
     if (3 < allocatedMemory4 - lVar8) {
-      floatResult = *(float *)(&UNK_180981620 + (longlong)operationResult2 * 4);
+      floatResult = *(float *)(&UIDataTableD + (longlong)operationResult2 * 4);
       lVar6 = ((allocatedMemory4 - lVar8) - 4U >> 2) + 1;
       lVar5 = lVar8 * 4;
       lVar8 = lVar8 + lVar6 * 4;
@@ -280934,7 +280934,7 @@ undefined8 FUN_18083c2c0(longlong uiContext,longlong dataSource,int *targetBuffe
       } while (lVar6 != 0);
     }
     if (lVar8 < allocatedMemory4) {
-      floatResult = *(float *)(&UNK_180981620 + (longlong)operationResult2 * 4);
+      floatResult = *(float *)(&UIDataTableD + (longlong)operationResult2 * 4);
       do {
         *(float *)(bufferSize + lVar8 * 4) = floatResult * *(float *)(bufferSize + lVar8 * 4);
         lVar8 = lVar8 + 1;
@@ -280991,7 +280991,7 @@ undefined8 FUN_18083c2f7(undefined8 uiContext,undefined8 dataSource,int *targetB
   }
   if ((operationResult0 < operationResult3) && (0xf < (uint)(operationResult3 - operationResult0))) {
     lVar7 = (longlong)operationResult0;
-    floatResult = *(float *)(&UNK_180981620 + (longlong)operationResult1 * 4);
+    floatResult = *(float *)(&UIDataTableD + (longlong)operationResult1 * 4);
     uVar3 = operationResult3 - operationResult0 & 0x8000000f;
     if ((int)uVar3 < 0) {
       uVar3 = (uVar3 - 1 | 0xfffffff0) + 1;
@@ -281022,7 +281022,7 @@ undefined8 FUN_18083c2f7(undefined8 uiContext,undefined8 dataSource,int *targetB
   lVar7 = (longlong)operationResult0;
   if (lVar7 < (longlong)unaff_R15) {
     if (3 < (longlong)(unaff_R15 - lVar7)) {
-      floatResult = *(float *)(&UNK_180981620 + (longlong)operationResult1 * 4);
+      floatResult = *(float *)(&UIDataTableD + (longlong)operationResult1 * 4);
       lVar5 = ((unaff_R15 - lVar7) - 4 >> 2) + 1;
       lVar4 = lVar7 * 4;
       lVar7 = lVar7 + lVar5 * 4;
@@ -281037,7 +281037,7 @@ undefined8 FUN_18083c2f7(undefined8 uiContext,undefined8 dataSource,int *targetB
       } while (lVar5 != 0);
     }
     if (lVar7 < (longlong)unaff_R15) {
-      floatResult = *(float *)(&UNK_180981620 + (longlong)operationResult1 * 4);
+      floatResult = *(float *)(&UIDataTableD + (longlong)operationResult1 * 4);
       do {
         *(float *)(unaff_RSI + lVar7 * 4) = floatResult * *(float *)(unaff_RSI + lVar7 * 4);
         lVar7 = lVar7 + 1;
@@ -281088,7 +281088,7 @@ undefined8 FUN_18083c32b(undefined8 uiContext,ulonglong dataSource,longlong targ
   iVar7 = (int)bufferSize;
   if (((int)allocationFlags < iVar9) && (0xf < iVar9 - allocationFlags)) {
     lVar4 = (longlong)(int)allocationFlags;
-    fVar2 = *(float *)(&UNK_180981620 + (longlong)iVar7 * 4);
+    fVar2 = *(float *)(&UIDataTableD + (longlong)iVar7 * 4);
     uVar6 = iVar9 - allocationFlags & 0x8000000f;
     if ((int)uVar6 < 0) {
       uVar6 = (uVar6 - 1 | 0xfffffff0) + 1;
@@ -281119,7 +281119,7 @@ undefined8 FUN_18083c32b(undefined8 uiContext,ulonglong dataSource,longlong targ
   lVar4 = (longlong)(int)allocationFlags;
   if (lVar4 < (longlong)unaff_R15) {
     if (3 < (longlong)(unaff_R15 - lVar4)) {
-      fVar2 = *(float *)(&UNK_180981620 + (longlong)iVar7 * 4);
+      fVar2 = *(float *)(&UIDataTableD + (longlong)iVar7 * 4);
       lVar5 = ((unaff_R15 - lVar4) - 4 >> 2) + 1;
       allocatedMemory = lVar4 * 4;
       lVar4 = lVar4 + lVar5 * 4;
@@ -281134,7 +281134,7 @@ undefined8 FUN_18083c32b(undefined8 uiContext,ulonglong dataSource,longlong targ
       } while (lVar5 != 0);
     }
     if (lVar4 < (longlong)unaff_R15) {
-      fVar2 = *(float *)(&UNK_180981620 + (longlong)iVar7 * 4);
+      fVar2 = *(float *)(&UIDataTableD + (longlong)iVar7 * 4);
       do {
         *(float *)(unaff_RSI + lVar4 * 4) = fVar2 * *(float *)(unaff_RSI + lVar4 * 4);
         lVar4 = lVar4 + 1;
@@ -281164,7 +281164,7 @@ undefined8 FUN_18083c39b(void)
   iVar7 = (int)unaff_R15;
   if ((allocationFlags < iVar7) && (0xf < (uint)(iVar7 - allocationFlags))) {
     lVar6 = (longlong)allocationFlags;
-    fVar2 = *(float *)(&UNK_180981620 + (longlong)in_R9D * 4);
+    fVar2 = *(float *)(&UIDataTableD + (longlong)in_R9D * 4);
     uVar4 = iVar7 - allocationFlags & 0x8000000f;
     if ((int)uVar4 < 0) {
       uVar4 = (uVar4 - 1 | 0xfffffff0) + 1;
@@ -281195,7 +281195,7 @@ undefined8 FUN_18083c39b(void)
   lVar6 = (longlong)allocationFlags;
   if (lVar6 < unaff_R15) {
     if (3 < unaff_R15 - lVar6) {
-      fVar2 = *(float *)(&UNK_180981620 + (longlong)in_R9D * 4);
+      fVar2 = *(float *)(&UIDataTableD + (longlong)in_R9D * 4);
       lVar5 = ((unaff_R15 - lVar6) - 4U >> 2) + 1;
       allocatedMemory = lVar6 * 4;
       lVar6 = lVar6 + lVar5 * 4;
@@ -281210,7 +281210,7 @@ undefined8 FUN_18083c39b(void)
       } while (lVar5 != 0);
     }
     if (lVar6 < unaff_R15) {
-      fVar2 = *(float *)(&UNK_180981620 + (longlong)in_R9D * 4);
+      fVar2 = *(float *)(&UIDataTableD + (longlong)in_R9D * 4);
       do {
         *(float *)(unaff_RSI + lVar6 * 4) = fVar2 * *(float *)(unaff_RSI + lVar6 * 4);
         lVar6 = lVar6 + 1;
@@ -281378,7 +281378,7 @@ void FUN_18083c500(int uiContext,int dataSource,int targetBuffer,uint bufferSize
   }
   if (dataSource < targetBuffer) {
     *(float *)(param_6 + (longlong)dataSource * 4) =
-         *(float *)(&UNK_180981620 + functionResult1 * 4) * *(float *)(param_6 + (longlong)dataSource * 4);
+         *(float *)(&UIDataTableD + functionResult1 * 4) * *(float *)(param_6 + (longlong)dataSource * 4);
   }
   allocatedMemory9 = (longlong)targetBuffer;
   allocatedMemory8 = (longlong)(dataSource + 1);
@@ -281404,7 +281404,7 @@ void FUN_18083c500(int uiContext,int dataSource,int targetBuffer,uint bufferSize
           iVar3 = operationResult5;
         }
         iVar3 = iVar3 + validationResult3;
-        pfloatResult6[-2] = *(float *)(&UNK_180981620 + (lVar4 + functionResult1) * 4) * pfloatResult6[-2];
+        pfloatResult6[-2] = *(float *)(&UIDataTableD + (lVar4 + functionResult1) * 4) * pfloatResult6[-2];
         lVar6 = allocatedMemory4;
         operationResult0 = operationResult;
         if (iVar9 <= iVar3) {
@@ -281423,13 +281423,13 @@ void FUN_18083c500(int uiContext,int dataSource,int targetBuffer,uint bufferSize
         if (iVar3 < iVar9) {
           iVar5 = operationResult;
         }
-        pfloatResult6[-1] = *(float *)(&UNK_180981620 + lVar6 * 4) * pfloatResult6[-1];
+        pfloatResult6[-1] = *(float *)(&UIDataTableD + lVar6 * 4) * pfloatResult6[-1];
         operationResult5 = iVar3 - iVar9;
         if (iVar3 < iVar9) {
           operationResult5 = iVar3;
         }
         operationResult5 = operationResult5 + validationResult3;
-        *pfloatResult6 = *(float *)(&UNK_180981620 + lVar4 * 4) * *pfloatResult6;
+        *pfloatResult6 = *(float *)(&UIDataTableD + lVar4 * 4) * *pfloatResult6;
         iVar3 = operationResult;
         if (iVar9 <= operationResult5) {
           operationResult5 = operationResult5 - iVar9;
@@ -281438,7 +281438,7 @@ void FUN_18083c500(int uiContext,int dataSource,int targetBuffer,uint bufferSize
         bufferSize = iVar3 + iVar5 + operationResult0 + validationResult2 + (int)functionResult2;
         functionResult2 = (ulonglong)bufferSize;
         functionResult1 = iVar3 + lVar4;
-        pfloatResult6[1] = *(float *)(&UNK_180981620 + functionResult1 * 4) * pfloatResult6[1];
+        pfloatResult6[1] = *(float *)(&UIDataTableD + functionResult1 * 4) * pfloatResult6[1];
         pfloatResult6 = pfloatResult6 + 4;
         lVar20 = lVar20 + -1;
       } while (lVar20 != 0);
@@ -281453,7 +281453,7 @@ void FUN_18083c500(int uiContext,int dataSource,int targetBuffer,uint bufferSize
         }
         allocatedMemory4 = allocatedMemory4 + operationResult5;
         *(float *)(param_6 + allocatedMemory8 * 4) =
-             *(float *)(&UNK_180981620 + allocatedMemory4 * 4) * *(float *)(param_6 + allocatedMemory8 * 4);
+             *(float *)(&UIDataTableD + allocatedMemory4 * 4) * *(float *)(param_6 + allocatedMemory8 * 4);
         allocatedMemory8 = allocatedMemory8 + 1;
         operationResult5 = validationResult2 - iVar9;
         if (validationResult2 < iVar9) {
@@ -281513,7 +281513,7 @@ void FUN_18083c5c3(longlong uiContext,longlong dataSource,int targetBuffer)
       operationResult = targetBuffer;
     }
     operationResult = operationResult + unaff_R15D;
-    pfVar7[-2] = *(float *)(&UNK_180981620 + (lVar6 + dataSource) * 4) * pfVar7[-2];
+    pfVar7[-2] = *(float *)(&UIDataTableD + (lVar6 + dataSource) * 4) * pfVar7[-2];
     lVar3 = unaff_RDI;
     iVar4 = iVar5;
     if (unaff_EBX <= operationResult) {
@@ -281532,13 +281532,13 @@ void FUN_18083c5c3(longlong uiContext,longlong dataSource,int targetBuffer)
     if (operationResult < unaff_EBX) {
       validationResult = iVar5;
     }
-    pfVar7[-1] = *(float *)(&UNK_180981620 + lVar3 * 4) * pfVar7[-1];
+    pfVar7[-1] = *(float *)(&UIDataTableD + lVar3 * 4) * pfVar7[-1];
     targetBuffer = operationResult - unaff_EBX;
     if (operationResult < unaff_EBX) {
       targetBuffer = operationResult;
     }
     targetBuffer = targetBuffer + unaff_R15D;
-    *pfVar7 = *(float *)(&UNK_180981620 + dataSource * 4) * *pfVar7;
+    *pfVar7 = *(float *)(&UIDataTableD + dataSource * 4) * *pfVar7;
     operationResult = iVar5;
     if (unaff_EBX <= targetBuffer) {
       targetBuffer = targetBuffer - unaff_EBX;
@@ -281546,7 +281546,7 @@ void FUN_18083c5c3(longlong uiContext,longlong dataSource,int targetBuffer)
     }
     unaff_EBP = operationResult + validationResult + iVar4 + operationResult1 + unaff_EBP;
     dataSource = operationResult + dataSource;
-    pfVar7[1] = *(float *)(&UNK_180981620 + dataSource * 4) * pfVar7[1];
+    pfVar7[1] = *(float *)(&UIDataTableD + dataSource * 4) * pfVar7[1];
     pfVar7 = pfVar7 + 4;
     lVar9 = lVar9 + -1;
   } while (lVar9 != 0);
@@ -281560,7 +281560,7 @@ void FUN_18083c5c3(longlong uiContext,longlong dataSource,int targetBuffer)
       }
       lVar9 = lVar9 + operationResult;
       *(float *)(in_stack_00000078 + lVar8 * 4) =
-           *(float *)(&UNK_180981620 + lVar9 * 4) * *(float *)(in_stack_00000078 + lVar8 * 4);
+           *(float *)(&UIDataTableD + lVar9 * 4) * *(float *)(in_stack_00000078 + lVar8 * 4);
       lVar8 = lVar8 + 1;
       targetBuffer = operationResult1 - unaff_EBX;
       if (operationResult1 < unaff_EBX) {
