@@ -74637,25 +74637,51 @@ void ProcessExceptionContextCallbackAndSystemOperations(DataBuffer operationBase
 
 
 
-void Unwind_1809090b0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 处理系统优化执行操作
+ * 
+ * 该函数负责执行系统优化操作，处理系统性能优化相关的内存管理任务。
+ * 主要功能包括：
+ * 1. 获取内存资源指针
+ * 2. 验证内存区域的有效性
+ * 3. 管理内存引用计数
+ * 4. 执行内存清理操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 此函数是系统优化模块的核心执行函数
+ * @warning 函数包含复杂的内存管理操作，需要谨慎处理
+ * 
+ * @see ManageMemory, HandleExceptionE0, SetBitFlag
+ */
+void ExecuteSystemOptimizationA0(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int *resourceReferenceCount;
-  DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
-  uint64_t memoryRegionBase;
+  int *resourceReferenceCount;           // 资源引用计数指针
+  DataBuffer *memoryResourcePointer;     // 内存资源指针
+  int64_t memoryBlockOffset;              // 内存块偏移量
+  uint64_t memoryRegionBase;              // 内存区域基址
   
-  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0x121c0);
+  // 获取内存资源指针
+  memoryResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + ThreadLocalStorageOffset) + ResourceSecondaryDataOffset);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryRegionBase = (uint64_t)memoryResourcePointer & MemoryRegionMask;
+  
+  // 计算内存区域基址
+  memoryRegionBase = (uint64_t)memoryResourcePointer & ResourceCleanupAlignment;
   if (memoryRegionBase != 0) {
+    // 计算内存块偏移量
     memoryBlockOffset = memoryRegionBase + MemoryBaseOffset + ((int64_t)memoryResourcePointer - memoryRegionBase >> 0x10) * MemoryBlockMultiplier;
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
+    
+    // 检查内存块状态
     if ((*(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+      // 更新内存资源指针
       *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
       *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
+      
+      // 管理引用计数
       resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
       *resourceReferenceCount = *resourceReferenceCount + -1;
       if (*resourceReferenceCount == 0) {
@@ -74664,8 +74690,9 @@ void Unwind_1809090b0(DataBuffer operationBase,int64_t dataBuffer)
       }
     }
     else {
-      ManageMemory(memoryRegionBase,SetBitFlag(0xff000000,*(void ***)(memoryRegionBase + 0x70) == &ExceptionList),
-                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+      // 执行内存管理操作
+      ManageMemory(memoryRegionBase, SetBitFlag(0xff000000, *(void ***)(memoryRegionBase + MemoryPointerTableOffset) == &ExceptionList),
+                          memoryResourcePointer, memoryRegionBase, SystemCleanupFlagAlternative);
     }
   }
   return;
@@ -74673,28 +74700,64 @@ void Unwind_1809090b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809090d0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 处理系统备份执行操作
+ * 
+ * 该函数负责执行系统备份操作，处理系统数据备份相关的异常处理任务。
+ * 主要功能包括：
+ * 1. 获取异常处理上下文指针
+ * 2. 验证上下文指针的有效性
+ * 3. 执行异常处理回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 此函数是系统备份模块的核心执行函数
+ * @warning 函数包含异常处理操作，需要确保回调函数的安全性
+ * 
+ * @see FunctionPointer, ExceptionHandlerContext
+ */
+void ExecuteSystemBackupA0(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionHandlerContextPointer;   // 异常处理上下文指针
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x60) + 0x121e0);
+  // 获取异常处理上下文指针
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ThreadLocalStorageOffset) + ResourceSecondaryDataOffset + 0x20);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    // 执行异常处理回调函数
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + SystemComponentContextOffset))();
   }
   return;
 }
 
 
 
-void Unwind_1809090f0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 处理系统恢复执行操作
+ * 
+ * 该函数负责执行系统恢复操作，处理系统数据恢复相关的异常处理任务。
+ * 主要功能包括：
+ * 1. 获取异常处理上下文指针
+ * 2. 验证上下文指针的有效性
+ * 3. 执行异常处理回调函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含系统上下文信息
+ * 
+ * @note 此函数是系统恢复模块的核心执行函数
+ * @warning 函数包含异常处理操作，需要确保回调函数的安全性
+ * 
+ * @see FunctionPointer, ExceptionHandlerContext
+ */
+void ExecuteSystemRecoveryA0(DataBuffer operationBase, int64_t dataBuffer)
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionHandlerContextPointer;   // 异常处理上下文指针
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x1c70);
+  // 获取异常处理上下文指针
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + 0x50);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    // 执行异常处理回调函数
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + SystemComponentContextOffset))();
   }
   return;
 }
