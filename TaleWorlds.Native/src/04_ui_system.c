@@ -207,6 +207,11 @@
   原始函数名: FUN_1806986d0
  #define UpdateUIRenderState FUN_1806986d0
 
+初始化UI系统
+执行UI系统的初始化操作，调用底层初始化函数
+ 原始函数名: FUN_18069f8cb
+#define InitializeUISystem FUN_18069f8cb
+
  完成UI渲染数据处理
  完成UI渲染数据的处理，进行最后的清理和优化
   renderDataPtr 渲染数据指针
@@ -2260,6 +2265,16 @@ void* UIGestureCoordinates;
 // 用于系统启动时的内存准备和资源清理
 // 原始函数名: FUN_180703200
 #define InitializeUIMemoryArea FUN_180703200
+
+// UI系统数据加密处理函数
+// 处理UI系统中的数据加密操作，使用XOR加密算法保护敏感数据
+// 包括数据大小、目标缓冲区和上下文信息的加密处理
+// uiContext UI上下文，包含系统状态信息
+// dataSource 数据源地址，包含要加密的数据
+// targetBuffer 目标缓冲区，用于存储加密结果
+// bufferSize 缓冲区大小，指定加密数据的范围
+// 原始函数名: FUN_180701920
+#define ProcessUIDataEncryption FUN_180701920
 
 // UI系统func函数宏定义
 #define CleanupUIContext func_0x0001806980f0
@@ -69511,21 +69526,21 @@ void FUN_180701330(longlong uiContext,int dataSource,longlong targetBuffer,longl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180701920(undefined8 uiContext,undefined8 dataSource,undefined4 targetBuffer,undefined4 bufferSize)
-void FUN_180701920(undefined8 uiContext,undefined8 dataSource,undefined4 targetBuffer,undefined4 bufferSize)
+ void ProcessUIDataEncryption(undefined8 uiContext,undefined8 dataSource,undefined4 targetBuffer,undefined4 bufferSize)
+void ProcessUIDataEncryption(undefined8 uiContext,undefined8 dataSource,undefined4 targetBuffer,undefined4 bufferSize)
 
 {
-  undefined4 uStack_f8;
-  undefined4 uStack_f4;
-  undefined8 uStack_e0;
-  undefined8 uStack_d0;
-  ulonglong uStack_b8;
+  undefined4 encryptedDataSize;
+  undefined4 encryptedTargetBuffer;
+  undefined8 encryptedContext;
+  undefined8 encryptionFlag;
+  ulonglong encryptedPointer;
   
-  uStack_b8 = XorEncryptionKey ^ (ulonglong)&uStack_f8;
-  uStack_d0 = 0;
-  uStack_f8 = bufferSize;
-  uStack_f4 = targetBuffer;
-  uStack_e0 = uiContext;
+  encryptedPointer = XorEncryptionKey ^ (ulonglong)&encryptedDataSize;
+  encryptionFlag = 0;
+  encryptedDataSize = bufferSize;
+  encryptedTargetBuffer = targetBuffer;
+  encryptedContext = uiContext;
                     // WARNING: Subroutine does not return
   FUN_1808fd200(0xffffffffffffff0);
 }
