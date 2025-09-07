@@ -8169,33 +8169,33 @@ void HandleUIEvent(undefined8 uiContext,undefined8 dataSource,undefined8 *target
   longlong baseRegister;
   longlong offsetRegister;
   
-  pfunctionResult = (undefined8 *)(in_RAX + 0x60 + in_R10);
-  uVar3 = *pfunctionResult;
-  uVar4 = pfunctionResult[1];
-  semaphoreHandle = *(undefined4 *)(in_RAX + 0x80 + in_R10);
-  pfunctionResult = (undefined8 *)(in_RAX + 0x70 + in_R10);
-  uVar5 = *pfunctionResult;
-  uVar6 = pfunctionResult[1];
-  eventTypeCode = ((undefined8 *)(in_RAX + in_R10))[1];
-  pfunctionResult = (undefined8 *)(in_RAX + 0x10 + in_R10);
-  uVar8 = *pfunctionResult;
-  uVar9 = pfunctionResult[1];
-  pfunctionResult = (undefined8 *)(in_RAX + 0x20 + in_R10);
+  pfunctionResult = (undefined8 *)(baseRegister + 0x60 + offsetRegister);
+  eventDataField3 = *pfunctionResult;
+  eventDataField4 = pfunctionResult[1];
+  semaphoreHandle = *(undefined4 *)(baseRegister + 0x80 + offsetRegister);
+  pfunctionResult = (undefined8 *)(baseRegister + 0x70 + offsetRegister);
+  eventDataField5 = *pfunctionResult;
+  eventDataField6 = pfunctionResult[1];
+  eventTypeCode = ((undefined8 *)(baseRegister + offsetRegister))[1];
+  pfunctionResult = (undefined8 *)(baseRegister + 0x10 + offsetRegister);
+  eventDataField8 = *pfunctionResult;
+  eventDataField9 = pfunctionResult[1];
+  pfunctionResult = (undefined8 *)(baseRegister + 0x20 + offsetRegister);
   functionResult0 = *pfunctionResult;
   functionResult1 = pfunctionResult[1];
-  pfunctionResult = (undefined8 *)(in_RAX + 0x30 + in_R10);
+  pfunctionResult = (undefined8 *)(baseRegister + 0x30 + offsetRegister);
   functionResult2 = *pfunctionResult;
   functionResult3 = pfunctionResult[1];
-  pfunctionResult = (undefined8 *)(in_RAX + 0x40 + in_R10);
+  pfunctionResult = (undefined8 *)(baseRegister + 0x40 + offsetRegister);
   functionResult4 = *pfunctionResult;
   functionResult5 = pfunctionResult[1];
-  pfunctionResult = (undefined8 *)(in_RAX + 0x50 + in_R10);
+  pfunctionResult = (undefined8 *)(baseRegister + 0x50 + offsetRegister);
   functionResult6 = *pfunctionResult;
   functionResult7 = pfunctionResult[1];
-  *targetBuffer = *(undefined8 *)(in_RAX + in_R10);
+  *targetBuffer = *(undefined8 *)(baseRegister + offsetRegister);
   targetBuffer[1] = eventTypeCode;
-  targetBuffer[2] = uVar8;
-  targetBuffer[3] = uVar9;
+  targetBuffer[2] = eventDataField8;
+  targetBuffer[3] = eventDataField9;
   targetBuffer[4] = functionResult0;
   targetBuffer[5] = functionResult1;
   targetBuffer[6] = functionResult2;
@@ -8204,10 +8204,10 @@ void HandleUIEvent(undefined8 uiContext,undefined8 dataSource,undefined8 *target
   targetBuffer[9] = functionResult5;
   targetBuffer[10] = functionResult6;
   targetBuffer[0xb] = functionResult7;
-  targetBuffer[0xc] = uVar3;
-  targetBuffer[0xd] = uVar4;
-  targetBuffer[0xe] = uVar5;
-  targetBuffer[0xf] = uVar6;
+  targetBuffer[0xc] = eventDataField3;
+  targetBuffer[0xd] = eventDataField4;
+  targetBuffer[0xe] = eventDataField5;
+  targetBuffer[0xf] = eventDataField6;
   *(undefined4 *)(targetBuffer + 0x10) = semaphoreHandle;
   return;
 }
@@ -8687,100 +8687,100 @@ void ManageUIElements(longlong *uiContext)
 
 {
   byte isCharacterMatch;
-  bool bVar2;
-  undefined8 *puVar3;
+  bool isContextValid;
+  undefined8 *uiBufferPointer;
   undefined8 *bufferPtr;
-  char cVar5;
+  char characterCode;
   longlong contextData;
-  longlong *plVar7;
-  byte *pbVar8;
-  byte *pbVar9;
-  undefined8 *pfunctionResult0;
-  byte *pisCharacterMatch1;
-  int operationResult2;
-  ulonglong functionResult3;
-  int operationResult4;
-  longlong *pallocatedMemory5;
-  longlong allocatedMemory6;
-  ulonglong functionResult7;
-  byte *pisCharacterMatch8;
-  byte *pisCharacterMatch9;
-  ulonglong semaphoreHandle0;
-  longlong *colorBufferPointer1;
-  uint semaphoreHandle2;
-  longlong componentIndex3;
-  longlong *plStackX_8;
-  undefined *puStack_b8;
-  byte *pbStack_b0;
-  uint uStack_a8;
-  ulonglong uStack_a0;
-  undefined *puStack_98;
-  undefined1 *puStack_90;
-  uint uStack_88;
-  ulonglong uStack_80;
-  longlong *plStack_78;
-  longlong *plStack_70;
-  longlong *plStack_68;
-  undefined4 uStack_60;
-  undefined8 *puStack_58;
-  undefined8 *puStack_50;
-  undefined8 uStack_48;
-  undefined4 uStack_40;
-  undefined8 uStack_38;
+  longlong *memoryAllocationPtr;
+  byte *byteBuffer1;
+  byte *byteBuffer2;
+  undefined8 *functionResult;
+  byte *characterMatchFlag1;
+  int stringOperationResult;
+  ulonglong bufferAllocationResult;
+  int memoryOperationResult;
+  longlong *allocatedMemoryPtr;
+  longlong memoryBlockAddress;
+  ulonglong resourceHandle;
+  byte *characterMatchFlag2;
+  byte *characterMatchFlag3;
+  ulonglong semaphoreHandle;
+  longlong *colorBufferPtr;
+  uint componentHandle;
+  longlong componentIndex;
+  longlong *stackFramePointer;
+  undefined *stackBufferB8;
+  byte *stackBufferB0;
+  uint stackValueA8;
+  ulonglong stackValueA0;
+  undefined *stackBuffer98;
+  undefined1 *stackBuffer90;
+  uint stackValue88;
+  ulonglong stackValue80;
+  longlong *stackPointer78;
+  longlong *stackPointer70;
+  longlong *stackPointer68;
+  undefined4 stackValue60;
+  undefined8 *stackPointer58;
+  undefined8 *stackPointer50;
+  undefined8 stackValue48;
+  undefined4 stackValue40;
+  undefined8 stackValue38;
   
-  uStack_38 = 0xfffffffffffffffe;
+  stackValue38 = 0xfffffffffffffffe;
   UIActiveContext = uiContext;
   if (uiContext != (longlong *)0x0) {
     (**(code **)(*uiContext + 8))();
   }
-  plStack_78 = (longlong *)0x0;
-  plStack_70 = (longlong *)0x0;
-  semaphoreHandle0 = 0;
-  plStack_68 = (longlong *)0x0;
-  uStack_60 = 3;
-  InitializeUIComponent(&plStack_78);
-  colorBufferPointer1 = plStack_70;
+  stackPointer78 = (longlong *)0x0;
+  stackPointer70 = (longlong *)0x0;
+  semaphoreHandle = 0;
+  stackPointer68 = (longlong *)0x0;
+  stackValue60 = 3;
+  InitializeUIComponent(&stackPointer78);
+  colorBufferPtr = stackPointer70;
   if (UIActiveContext != (longlong *)0x0) {
-    puStack_58 = (undefined8 *)0x0;
-    puStack_50 = (undefined8 *)0x0;
-    uStack_48 = 0;
-    uStack_40 = 3;
-    (**(code **)(*UIActiveContext + 0x18))(UIActiveContext,&puStack_58);
-    pfunctionResult0 = puStack_58;
-    puVar3 = puStack_50;
-    colorBufferPointer1 = plStack_70;
-    if ((longlong)puStack_50 - (longlong)puStack_58 >> 5 != 0) {
-      plStackX_8 = plStack_70;
-      pallocatedMemory5 = plStack_68;
-      functionResult3 = semaphoreHandle0;
-      plVar7 = plStack_70;
+    stackPointer58 = (undefined8 *)0x0;
+    stackPointer50 = (undefined8 *)0x0;
+    stackValue48 = 0;
+    stackValue40 = 3;
+    (**(code **)(*UIActiveContext + 0x18))(UIActiveContext,&stackPointer58);
+    functionResult = stackPointer58;
+    uiBufferPointer = stackPointer50;
+    colorBufferPtr = stackPointer70;
+    if ((longlong)stackPointer50 - (longlong)stackPointer58 >> 5 != 0) {
+      stackFramePointer = stackPointer70;
+      allocatedMemoryPtr = stackPointer68;
+      bufferAllocationResult = semaphoreHandle;
+      memoryAllocationPtr = stackPointer70;
       do {
-        pfunctionResult0 = puStack_58;
-        puStack_b8 = &PrimaryUIBuffer;
-        uStack_a0 = 0;
-        pbStack_b0 = (undefined1 *)0x0;
-        uStack_a8 = 0;
-        AllocateUIBuffer(&puStack_b8,*(undefined4 *)(semaphoreHandle0 + 0x10 + (longlong)puStack_58));
-        operationResult4 = *(int *)(semaphoreHandle0 + 0x10 + (longlong)pfunctionResult0);
-        if (operationResult4 != 0) {
+        functionResult = stackPointer58;
+        stackBufferB8 = &PrimaryUIBuffer;
+        stackValueA0 = 0;
+        stackBufferB0 = (undefined1 *)0x0;
+        stackValueA8 = 0;
+        AllocateUIBuffer(&stackBufferB8,*(undefined4 *)(semaphoreHandle + 0x10 + (longlong)stackPointer58));
+        memoryOperationResult = *(int *)(semaphoreHandle + 0x10 + (longlong)functionResult);
+        if (memoryOperationResult != 0) {
                     // WARNING: Subroutine does not return
-          memcpy(pbStack_b0,*(undefined8 *)(semaphoreHandle0 + 8 + (longlong)pfunctionResult0),operationResult4 + 1);
+          memcpy(stackBufferB0,*(undefined8 *)(semaphoreHandle + 8 + (longlong)functionResult),memoryOperationResult + 1);
         }
-        if (*(longlong *)(semaphoreHandle0 + 8 + (longlong)pfunctionResult0) != 0) {
-          uStack_a8 = 0;
-          if (pbStack_b0 != (undefined1 *)0x0) {
-            *pbStack_b0 = 0;
+        if (*(longlong *)(semaphoreHandle + 8 + (longlong)functionResult) != 0) {
+          stackValueA8 = 0;
+          if (stackBufferB0 != (undefined1 *)0x0) {
+            *stackBufferB0 = 0;
           }
-          uStack_a0 = uStack_a0 & 0xffffffff;
+          stackValueA0 = stackValueA0 & 0xffffffff;
         }
-        puStack_98 = &PrimaryUIBuffer;
-        uStack_80 = 0;
-        puStack_90 = (undefined1 *)0x0;
-        uStack_88 = 0;
-        AllocateUIBuffer(&puStack_98,uStack_a8);
-        if (uStack_a8 != 0) {
+        stackBuffer98 = &PrimaryUIBuffer;
+        stackValue80 = 0;
+        stackBuffer90 = (undefined1 *)0x0;
+        stackValue88 = 0;
+        AllocateUIBuffer(&stackBuffer98,stackValueA8);
+        if (stackValueA8 != 0) {
                     // WARNING: Subroutine does not return
-          memcpy(puStack_90,pbStack_b0,uStack_a8 + 1);
+          memcpy(stackBuffer90,stackBufferB0,stackValueA8 + 1);
         }
         if (pbStack_b0 != (undefined1 *)0x0) {
           uStack_88 = 0;
