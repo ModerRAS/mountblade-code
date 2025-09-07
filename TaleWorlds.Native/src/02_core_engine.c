@@ -127,6 +127,7 @@
 #define ProcessCharacterCodeMemoryAllocation FUN_18014acf0   // 处理字符代码内存分配
 #define ProcessCharacterCodeValidationAndMemoryManagement FUN_18013d22f // 处理字符代码验证和内存管理
 #define ProcessCharacterCodeAndBufferManagement FUN_18013d36b // 处理字符代码和缓冲区管理
+#define ProcessCharacterCodeWithUtf8BufferManagement FUN_18013d378 // 处理字符代码和UTF8缓冲区管理
 #define ProcessUtf8ToUtf16BufferConversion FUN_18014c570      // 处理UTF-8到UTF-16缓冲区转换
 #define ProcessSystemDataBufferManagement FUN_18014c850       // 处理系统数据缓冲区管理
 #define ProcessSystemMemoryDataAllocation FUN_18014e160       // 处理系统内存数据分配
@@ -171339,6 +171340,20 @@ void FUN_18013d36b(uint32_t CharacterCode)
 
 
 
+/**
+ * @brief 处理字符代码和UTF8缓冲区管理
+ * 
+ * 该函数负责处理字符代码的验证、UTF8缓冲区管理和系统上下文操作。
+ * 函数会处理UTF8缓冲区大小、字符编码转换和系统数据寄存器操作。
+ * 
+ * @param CharacterCode 要处理的字符代码，用于验证和后续处理
+ * @param Utf8BufferSize UTF8缓冲区大小，用于内存分配和管理
+ * 
+ * @note 原始函数名：FUN_18013d378
+ * @note 此函数涉及UTF8缓冲区大小管理和系统上下文操作
+ * 
+ * @see ProcessCharacterCodeAndBufferManagement, ProcessSystemMemoryBufferSetup
+ */
 void FUN_18013d378(uint64_t CharacterCode, unsigned long long Utf8BufferSize)
 {
   float SystemContextPrimaryFloat;
