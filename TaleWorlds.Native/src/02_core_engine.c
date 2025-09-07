@@ -154551,7 +154551,15 @@ void ProcessSystemOperations881(void)
 
 
 
-33893(float CharacterCodevoid FUN_180133893(float CharacterCode
+/**
+ * @brief 字符编码处理函数893
+ * 
+ * 该函数负责处理字符编码相关的操作
+ * 
+ * @param CharacterCode 字符编码
+ * @note 原始函数名：FUN_180133893
+ */
+void ProcessCharacterEncoding893(float CharacterCode)
 {
   unsigned long long *StatusBuffer;
   unsigned long long MemoryAllocationIndex;
