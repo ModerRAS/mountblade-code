@@ -15794,6 +15794,24 @@ void ProcessAlternativeContextValidation(int64_t contextHandle,int64_t operation
 // WARNING: Removing unreachable block (ram,0x000180893865)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 验证并处理系统操作
+ * 
+ * 该函数负责验证系统上下文的有效性，并根据验证结果执行相应的系统操作。
+ * 它会检查系统上下文的各个关键字段，确保所有必要的组件都已正确初始化，
+ * 然后执行系统验证和操作处理。
+ * 
+ * @param systemContext 系统上下文指针，包含系统状态和配置信息
+ * @param operationContext 操作上下文指针，包含要执行的操作信息
+ * @return int 操作结果状态码：
+ *         - 0: 操作成功完成
+ *         - 非0: 操作失败或遇到错误
+ * 
+ * @note 此函数包含系统状态验证和操作处理逻辑
+ * @warning 确保传入的上下文指针有效，否则可能导致未定义行为
+ * 
+ * @see ValidateSystemOperation, ProcessOperationData
+ */
 int ValidateAndProcessSystemOperation(int64_t systemContext,int64_t operationContext)
 
 {
