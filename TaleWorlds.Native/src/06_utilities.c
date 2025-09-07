@@ -67312,7 +67312,19 @@ void ExecuteExceptionHandlerCallbackAF0(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180907b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调B00
+ * 
+ * 该函数用于执行异常处理器回调，调用指定位置的异常处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907b00
+ */
+void ExecuteExceptionHandlerCallbackB00(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x280) != (code *)0x0) {
@@ -67346,7 +67358,17 @@ void ExecuteExceptionHandlerCallbackB10(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180907b20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B20
+ * 
+ * 该函数用于设置默认异常处理器B，将数据缓冲区中的异常处理器指针设置为默认值
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器配置信息
+ * 
+ * @note 原始函数名：Unwind_180907b20
+ */
+void SetDefaultExceptionHandlerB20(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x230) = &DefaultExceptionHandlerB;
@@ -67355,7 +67377,17 @@ void Unwind_180907b20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907b30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B30
+ * 
+ * 该函数用于设置默认异常处理器B，将数据缓冲区中的异常处理器指针设置为默认值
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器配置信息
+ * 
+ * @note 原始函数名：Unwind_180907b30
+ */
+void SetDefaultExceptionHandlerB30(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 400) = &DefaultExceptionHandlerB;
@@ -70021,7 +70053,20 @@ void Unwind_180908830(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908840(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器资源的Unwind函数（地址0x180908840）
+ * 
+ * 该函数在异常处理过程中清理资源，包括：
+ * - 释放资源指针引用
+ * - 管理内存引用计数
+ * - 调用异常处理器E0进行资源清理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_180908840
+ */
+void CleanupExceptionHandlerResourcesOnUnwind(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
