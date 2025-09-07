@@ -64041,19 +64041,26 @@ void ProcessUIIdleTasks(void)
 
 
 
- void FUN_180699508(void)
-void FUN_180699508(void)
+ /**
+ * @brief UI系统状态重置器
+ * 
+ * 该函数负责重置UI系统的状态，清理组件和缓冲区。
+ * 主要用于系统重启或状态重置时的清理工作。
+ * 
+ * @note 原始函数名: FUN_180699508
+ */
+void ResetUISystemState(void)
 
 {
-  undefined8 *pfunctionResult;
+  undefined8 *functionResultPtr;
   longlong componentIndex;
   longlong context;
-  int unaff_ESI;
-  undefined8 in_stack_00000020;
+  int statusFlag;
+  undefined8 stackParameter;
   longlong stringCompareIndex;
-  undefined4 uVar4;
+  undefined4 parameterValue;
   
-  uVar4 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
+  parameterValue = (undefined4)((ulonglong)stackParameter >> 0x20);
   CleanupUIComponentInternal();
   if (*(char *)(*(longlong *)(context + 0xf00) + 9) == '\0') {
     if (unaff_ESI != 4) {

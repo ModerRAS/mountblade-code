@@ -145136,7 +145136,15 @@ e1b0(uint64_t CharacterCodevoid CleanupSystemResources(uint64_t CharacterCode
 
 
 
-e250(uint64_t CharacterCodevoid FUN_18012e250(uint64_t CharacterCode
+/**
+ * @brief 处理系统事件
+ * 
+ * 该函数负责处理系统级别的事件和信号
+ * 
+ * @param CharacterCode 字符编码（64位）
+ * @note 原始函数名：FUN_18012e250
+ */
+void ProcessSystemEvent(uint64_t CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -145173,7 +145181,15 @@ e250(uint64_t CharacterCodevoid FUN_18012e250(uint64_t CharacterCode
 
 
 
-e2d0(int CharacterCodevoid FUN_18012e2d0(int CharacterCode
+/**
+ * @brief 处理系统迭代
+ * 
+ * 该函数负责处理系统级别的迭代操作
+ * 
+ * @param CharacterCode 字符编码
+ * @note 原始函数名：FUN_18012e2d0
+ */
+void ProcessSystemIteration(int CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -145210,7 +145226,15 @@ e2d0(int CharacterCodevoid FUN_18012e2d0(int CharacterCode
 
 
 
-e350(uint64_t CharacterCodevoid FUN_18012e350(uint64_t CharacterCode
+/**
+ * @brief 处理系统数据验证
+ * 
+ * 该函数负责处理系统数据的验证操作
+ * 
+ * @param CharacterCode 字符编码（64位）
+ * @note 原始函数名：FUN_18012e350
+ */
+void ProcessSystemDataValidation(uint64_t CharacterCode)
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
