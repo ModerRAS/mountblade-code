@@ -112590,7 +112590,7 @@ void CoreEngineInitializeSystemData(int *SystemContextPointer,int Utf8BufferSize
     if (Utf8BufferSize < IntegerValue) {
       StringComparisonResult = IntegerValue;
     }
-    FUN_18011da00(SystemContextPointer,StringComparisonResult);
+    ProcessStringComparison(SystemContextPointer,StringComparisonResult);
   }
   *SystemContextPointer = Utf8BufferSize;
   return;
@@ -116287,7 +116287,7 @@ void UpdateSystemDataTable(int *SystemContextPointer,uint Utf8BufferSize,uint Ut
       if (ValidationCode < RemainingSpace) {
         ValidationCode = RemainingSpace;
       }
-      FUN_18011da00(SystemContextPointer,ValidationCode);
+      ProcessStringComparison(SystemContextPointer,ValidationCode);
       ValidationCode = SystemContextPointer[1];
       if (ValidationCode < RemainingSpace) {
         if (ValidationCode == 0) {
@@ -116300,7 +116300,7 @@ void UpdateSystemDataTable(int *SystemContextPointer,uint Utf8BufferSize,uint Ut
         if (RemainingSpace < ValidationCode) {
           IntegerValue = ValidationCode;
         }
-        FUN_18011da00(SystemContextPointer,IntegerValue);
+        ProcessStringComparison(SystemContextPointer,IntegerValue);
       }
     }
     *SystemContextPointer = RemainingSpace;
@@ -164220,12 +164220,12 @@ long long FUN_18013ce40(long long *SystemContextPointer
     if (0 < (int)UnicodeCodePoint) {
       CalculatedCodePoint = (unsigned long long)UnicodeCodePoint;
     }
-    FUN_18011da00(ReferenceCountPointer,CalculatedCodePoint);
+    ProcessStringComparison(ReferenceCountPointer,CalculatedCodePoint);
   }
   *ReferenceCountPointer = 0;
   validationResult = MutexLockResult;
   if (*(int *)(bufferAllocationStatus + 0x2e0c) == 0) {
-    FUN_18011da00(ReferenceCountPointer,8);
+    ProcessStringComparison(ReferenceCountPointer,8);
     validationResult = *ReferenceCountPointer;
   }
   *(uint8_t *)((long long)validationResult + *(long long *)(bufferAllocationStatus + 0x2e10)) = 0;
@@ -164277,12 +164277,12 @@ long long FUN_18013ce56(long long *SystemContextPointer
     if (0 < (int)MemoryAllocationIndex) {
       CalculatedCodePoint = (unsigned long long)MemoryAllocationIndex;
     }
-    FUN_18011da00(ReferenceCountPointer,CalculatedCodePoint);
+    ProcessStringComparison(ReferenceCountPointer,CalculatedCodePoint);
   }
   *ReferenceCountPointer = MutexLockResult;
   ValidationCode = MutexLockResult;
   if (*(int *)(DataNodeIndex + 0x2e0c) == MutexLockResult) {
-    FUN_18011da00(ReferenceCountPointer,8);
+    ProcessStringComparison(ReferenceCountPointer,8);
     ValidationCode = *ReferenceCountPointer;
   }
   DataSize = RegisterSourceIndex & 0xffffffff;
@@ -164857,7 +164857,7 @@ uint64_t * FUN_18013cfa8(void
   if (*(long long *)(Utf16InputPointer + 2) != 0) {
     SystemOperationResult = *Utf16InputPointer + -1;
   }
-  FUN_18011da00(Utf16InputPointer,*(int *)(SystemContextPointer + 0x2e28) * 0x60 + IntegerValue9);
+  ProcessStringComparison(Utf16InputPointer,*(int *)(SystemContextPointer + 0x2e28) * 0x60 + IntegerValue9);
   Utf16Char4 = QuaternaryReturnCode;
   if (*(int *)(SystemContextPointer + 0x2e28) != 0) {
     do {
@@ -164983,7 +164983,7 @@ uint64_t * FUN_18013cfa8(void
       if (*(unsigned long long *)(RegisterGeneral14 + 2) != RegisterFramePointer) {
         SystemOperationResult = *RegisterGeneral14 + -1;
       }
-      FUN_18011da00(SystemContextPointer,*(int *)(RegisterValueR15 + 0x2e28) * 0x60 + IntegerValue9);
+      ProcessStringComparison(SystemContextPointer,*(int *)(RegisterValueR15 + 0x2e28) * 0x60 + IntegerValue9);
       Utf16Char4 = RegisterFramePointer;
       if (*(int *)(RegisterValueR15 + 0x2e28) != (int)RegisterFramePointer) {
         do {
@@ -165060,7 +165060,7 @@ uint64_t * FUN_18013cfa8(void
   if (*(unsigned long long *)(RegisterGeneral14 + 2) != RegisterFramePointer) {
     validationResult = *RegisterGeneral14 + -1;
   }
-  FUN_18011da00(SystemContextPointer,*(int *)(RegisterValueR15 + 0x2e28) * 0x60 + validationResult);
+  ProcessStringComparison(SystemContextPointer,*(int *)(RegisterValueR15 + 0x2e28) * 0x60 + validationResult);
   SystemByteValue = RegisterFramePointer;
   if (*(int *)(RegisterValueR15 + 0x2e28) != (int)RegisterFramePointer) {
     do {
@@ -165172,7 +165172,7 @@ code_r0x00018013d378:
             if (*(unsigned long long *)(RegisterGeneral14 + 2) != RegisterFramePointer) {
               SystemOperationResult = *RegisterGeneral14 + -1;
             }
-            FUN_18011da00(SystemStatusCode,*(int *)(RegisterValueR15 + 0x2e28) * 0x60 + IntegerValue9);
+            ProcessStringComparison(SystemStatusCode,*(int *)(RegisterValueR15 + 0x2e28) * 0x60 + IntegerValue9);
             SystemByteValue = RegisterFramePointer;
             if (*(int *)(RegisterValueR15 + 0x2e28) != (int)RegisterFramePointer) {
               do {
@@ -165261,7 +165261,7 @@ code_r0x00018013d378:
   uint32_t ProcessingStatusFlag;
   float NormalizedParameter;
   
-  FUN_18011da00(SystemContextPointer,*(int *)(RegisterValueR15 + 0x2e28) * 0x60 + (int)RegisterFramePointer);
+  ProcessStringComparison(SystemContextPointer,*(int *)(RegisterValueR15 + 0x2e28) * 0x60 + (int)RegisterFramePointer);
   SystemByteValue = RegisterFramePointer;
   if (*(int *)(RegisterValueR15 + 0x2e28) != (int)RegisterFramePointer) {
     do {
@@ -270944,6 +270944,10 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 // 系统参数处理函数
 // 原始函数名：FUN_180126d10 - 系统参数处理函数
 #define ProcessSystemParameters FUN_180126d10
+
+// 系统浮点数上下文处理函数
+// 原始函数名：FUN_180131aa0 - 系统浮点数上下文处理函数
+#define ProcessSystemFloatContext FUN_180131aa0
 
 // 系统数据验证和处理函数
 // 原始函数名：FUN_18011cf80 - 系统数据验证和处理函数
