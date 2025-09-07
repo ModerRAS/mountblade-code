@@ -164184,7 +164184,7 @@ uint8_t ProcessCharacterCodeWithSizeValidation(uint32_t *Utf8InputBuffer,float *
 LAB_180139b2f:
     EncodingConversionResult = 0;
     do {
-      ProcessSystemDataAndConfigure(alStack_108[EncodingConversionResult],&uStack_178,&fStack_170,DataSize,*(uint32_t *)(CharacterCode + 0xf                    ,0xf);
+      ProcessSystemDataAndConfigure(SystemMemoryCommandBuffer[EncodingConversionResult],&uStack_178,&fStack_170,DataSize,*(uint32_t *)(CharacterCode + 0xf                    ,0xf);
       EncodingConversionResult = EncodingConversionResult + 1;
     } while (EncodingConversionResult < CharacterTableIterator);
     CharacterVariable5 = *(char *)(PerformanceCounterValue + 0xa8);
