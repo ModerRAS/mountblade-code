@@ -28035,14 +28035,14 @@ ValidationLabelB:
       }
       for (; (inputParameter3 = (int)stackDataBuffer, stackDataPointer <= ploopCounter &&
              (ploopCounter < stackDataPointer + (int64_t)inputParameter3 * 3)); ploopCounter = ploopCounter + 3) {
-        puStackX_18 = (DataBuffer *)0x0;
-        dataFlags = ValidateDataSecurityA1(operationBase + 0x48,&puStackX_18);
+        tempDataPointer = (DataBuffer *)0x0;
+        dataFlags = ValidateDataSecurityA1(operationBase + 0x48,&tempDataPointer);
         validationOutcome = (uint64_t)dataFlags;
         if (dataFlags != 0) goto ProcessCheckpointStatusValidation;
         systemDataBuffer = ploopCounter[1];
-        *puStackX_18 = *ploopCounter;
-        puStackX_18[1] = systemDataBuffer;
-        *(DataWord *)(puStackX_18 + 2) = *(DataWord *)(ploopCounter + 2);
+        *tempDataPointer = *ploopCounter;
+        tempDataPointer[1] = systemDataBuffer;
+        *(DataWord *)(tempDataPointer + 2) = *(DataWord *)(ploopCounter + 2);
         *(float *)((int64_t)puStackX_18 + 0x14) =
              *(float *)((int64_t)ploopCounter + 0x14) + *(float *)(ploopCounter + 2);
         *(ByteFlag *)(puStackX_18 + 3) = 1;
