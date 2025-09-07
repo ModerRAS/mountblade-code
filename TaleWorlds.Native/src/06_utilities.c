@@ -19036,7 +19036,7 @@ SecurityValidationLabel:
         GOTO_SecurityCheckFailed;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &UNK_1809842e0;
+          puStack_2f8 = &SystemValidationDataTableA1;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = loopIndex;
           loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -19083,7 +19083,7 @@ SecurityValidationLabel:
         GOTO_SecurityCheckFailed;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &UNK_1809842e0;
+          puStack_2f8 = &SystemValidationDataTableA1;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = loopIndex;
           loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -19130,7 +19130,7 @@ SecurityValidationLabel:
         GOTO_SecurityCheckFailed;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &UNK_1809842e0;
+          puStack_2f8 = &SystemValidationDataTableA1;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = loopIndex;
           loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -19177,7 +19177,7 @@ SecurityValidationLabel:
         GOTO_SecurityCheckFailed;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &UNK_1809842e0;
+          puStack_2f8 = &SystemValidationDataTableA1;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = loopIndex;
           loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -19840,7 +19840,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 loopCounter = (float)((int)loopCounter + 1);
                 floatArrayPointer = floatArrayPointer + 1;
               } while ((int)loopCounter < 4);
-              floatArrayPointer = (float *)&UNK_1809850f8;
+              floatArrayPointer = (float *)&FloatValidationArray;
               loopCounter = 0.0;
               do {
                 floatValue = *(float *)(dataContext + -0x180985054 + (int64_t)floatArrayPointer);
@@ -20347,13 +20347,13 @@ ValidateDataSecurity:
           validationCounter = (float)((int)validationCounter + 1);
           pfVar21 = pfVar21 + 1;
         } while ((int)loopCounterFloat < 4);
-        pfVar21 = (float *)&UNK_1809850f8;
+        pfVar21 = (float *)&FloatValidationArray;
         loopCounterFloat = register_R13D;
         do {
           floatValidationValue = *(float *)(register_R15 + -0x180985054 + (int64_t)pfVar21);
           if (floatValidationValue != *pfVar21) {
             StackParameter38 = StackParameter20;
-            in_stack_00000028 = &UNK_180983950;
+            in_stack_00000028 = &DataProcessingContextA0;
             StackBuffer30 = register_R13D;
             fStack0000000000000040 = loopCounterFloat;
             fStack0000000000000044 = floatValidationValue;
@@ -20457,7 +20457,7 @@ void ProcessFloatingPointDataA0(float inputValue)
   float secondaryInputValue;
   
   if (inputValue != 1.0) {
-    validationContext = &UNK_180983738;
+    validationContext = &ValidationContextA0;
     contextFlags = stackFlags;
     contextValue = systemValue;
     stackInputValue = inputValue;
@@ -20469,7 +20469,7 @@ void ProcessFloatingPointDataA0(float inputValue)
   if (operationResult == 0) {
     if (secondaryInputValue != 1.0) {
       stackInputValue = secondaryInputValue;
-      validationContext = &UNK_1809837c0;
+      validationContext = &ValidationContextA1;
       contextFlags = stackFlags;
       contextValue = systemValue;
       operationResult = ValidateDataIntegrityA0(secondaryInputValue,&stack0x00000028);
@@ -20491,13 +20491,13 @@ void ProcessFloatingPointDataA0(float inputValue)
       fVar4 = (float)((int)fVar4 + 1);
       pfVar5 = pfVar5 + 1;
     } while ((int)fVar4 < 4);
-    pfVar5 = (float *)&UNK_1809850f8;
+    pfVar5 = (float *)&FloatValidationArray;
     fVar4 = register_R13D;
     do {
       fVar1 = *(float *)(register_R15 + -0x180985054 + (int64_t)pfVar5);
       if (fVar1 != *pfVar5) {
         StackParameter38 = StackParameter20;
-        in_stack_00000028 = &UNK_180983950;
+        in_stack_00000028 = &DataProcessingContextA0;
         StackBuffer30 = register_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = floatValidationValue;
@@ -20804,7 +20804,7 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
       operationResult = 0x1c;
     }
     else {
-      operationResult = (**(FunctionPointer**)(*operationBase + 8))(operationBase,&UNK_1809864dc);
+      operationResult = (**(FunctionPointer**)(*operationBase + 8))(operationBase,&DataProcessingConfigurationTableA1);
       if ((int)operationResult == 0) {
         memoryBaseAddress = 0x14;
         operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA0,2,2,0x14);
@@ -20989,7 +20989,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   contextArray300[1] = 0;
   operationResult = InitializeBufferA0(contextArray300 + 1,dataContext[1]);
   if ((operationResult == 0) && (operationResult = ValidateSystemDataA0(dataContext,1), operationResult == 0)) {
-    (**(FunctionPointer**)(*dataContext + 8))(dataContext,&UNK_180986488);
+    (**(FunctionPointer**)(*dataContext + 8))(dataContext,&DataProcessingConfigurationTableA2);
     if (((*(uint *)(dataContext + 3) & 0x1000000) == 0) ||
        (operationResult = ValidateResourceA0(dataContext,*(DataBuffer *)(dataContext[1] + 0xc0),0,1), operationResult == 0)) {
       currentResource = dataContext[1];
@@ -97544,7 +97544,7 @@ void ReleaseDataBufferResources(void)
     uRam0000000180d49d70 = 0;
     lRam0000000180d49d78 = 0;
   }
-  FUN_1803f33b0(&uRam0000000180d49d58);
+  ProcessMemoryAccess(&uRam0000000180d49d58);
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
   free(uRam0000000180d49d58,0x40);
