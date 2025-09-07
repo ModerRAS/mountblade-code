@@ -5061,48 +5061,51 @@ void InitializeSystemConfigurationManager(void)
  * @note 该函数在系统初始化阶段被调用，用于建立资源管理的基础
  */
 void InitializeSystemResourceManager(void)
-
 {
-  char NodeActiveFlag;
+  bool IsNodeActive;
   void** SystemDataTable;
-  int SystemIdentifierCompareResult;
+  int IdentifierComparisonResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
   void** CurrentNodePointer;
   void** NextNodePointer;
-  void** HashTablePointer;
-  void* *ResourceInitializationCallback;
+  void** TargetNodePointer;
+  void* ResourceInitializationCallback;
   
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
-  NodeActiveFlag = *(char*)((long long)RootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset);
-  ResourceInitializationCallback = 0;
-  HashTablePointer = RootNodeReference;
+  IsNodeActive = *(char*)((long long)RootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset) == 0;
+  ResourceInitializationCallback = NULL;
+  TargetNodePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
-  while (NodeActiveFlag == '\0') {
-    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
-    if (SystemIdentifierCompareResult < 0) {
+  
+  while (!IsNodeActive) {
+    IdentifierComparisonResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset, &SystemDataTemplateNetworkManager, SystemIdentifierSize);
+    if (IdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
-      CurrentNodePointer = HashTablePointer;
+      CurrentNodePointer = TargetNodePointer;
     }
     else {
       NextNodePointer = (void**)*CurrentNodePointer;
     }
-    HashTablePointer = CurrentNodePointer;
+    TargetNodePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    IsNodeActive = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset) == 0;
   }
-  if ((HashTablePointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + SystemNodeIdentifierOffset,0x10), SystemIdentifierCompareResult < 0)) {
+  
+  if ((TargetNodePointer == RootNodeReference) || 
+      (IdentifierComparisonResult = memcmp(&SystemDataTemplateNetworkManager, TargetNodePointer + SystemNodeIdentifierOffset, SystemIdentifierSize), IdentifierComparisonResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,SystemMemoryAllocationSize + SystemNodeAllocationExtraSize,SystemMemoryAllocationSize);
-    HashTablePointer = AllocatedSystemNode;
+    AllocateSystemMemory(SystemDataTable, &AllocatedSystemNode, TargetNodePointer, SystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemMemoryAllocationSize);
+    TargetNodePointer = AllocatedSystemNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[SystemNodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
-  HashTablePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
-  HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
+  
+  TargetNodePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  TargetNodePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
+  TargetNodePointer[SystemNodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
+  TargetNodePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
+  TargetNodePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
 }
 
