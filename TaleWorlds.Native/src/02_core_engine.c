@@ -92887,7 +92887,7 @@ uint8_t InitializeSystemMemoryAllocationStatus(void)
   uint64_t in_stack_00000058;
   char CharacterBuffer;
   
-  MemoryAllocationIndex = ProcessSystemParameters(&TertiaryDataBuffer,RegisterValueEDI,&stack0x000000c8,SystemParameterB,5);
+  MemoryAllocationIndex = ProcessSystemParameters(&TertiaryDataBuffer,RegisterValueEDI,&ParameterConfigurationStackBuffer,SystemParameterB,5);
   if ((SystemStringBuffer30 == '\0') || (in_stack_000000c8 == '\0')) {
     DataStructureCounter = (unsigned long long)(in_stack_000000c8 != '\0') + 0x15;
   }
