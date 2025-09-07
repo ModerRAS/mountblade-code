@@ -4205,77 +4205,62 @@
 // 功能：存储系统验证相关的第三级数据表和高级验证规则
 #define SystemValidationDataTableTertiary UNK_180983b68
 
-// 原始变量名：UNK_180983cf8 - 系统验证数据表A2
-// 功能：存储系统验证相关的数据表信息
+// 系统验证数据表A2-A7
+// 功能：存储系统验证相关的多级数据表和验证规则
 #define SystemValidationDataTableA2 UNK_180983cf8
-
-// 原始变量名：UNK_1809842e0 - 系统验证数据表A3
-// 功能：存储系统验证相关的数据表信息
 #define SystemValidationDataTableA3 UNK_1809842e0
-
-// 原始变量名：UNK_180984358 - 系统验证数据表A4
-// 功能：存储系统验证相关的数据表信息
 #define SystemValidationDataTableA4 UNK_180984358
-
-// 原始变量名：UNK_1809843d0 - 系统验证数据表A5
-// 功能：存储系统验证相关的数据表信息
 #define SystemValidationDataTableA5 UNK_1809843d0
-
-// 原始变量名：UNK_1809841e0 - 系统验证数据表A6
-// 功能：存储系统验证相关的数据表信息
 #define SystemValidationDataTableA6 UNK_1809841e0
-
-// 原始变量名：UNK_1809844c8 - 系统验证数据表A7
-// 功能：存储系统验证相关的数据表信息
 #define SystemValidationDataTableA7 UNK_1809844c8
 
-// 原始变量名：UNK_180982dc0 - 系统配置数据表
-// 功能：存储系统配置相关的数据表信息
+// 系统配置数据表Secondary
+// 功能：存储系统配置相关的备用数据表和配置参数
 #define SystemConfigurationDataTableSecondaryAddress UNK_180982dc0
 
-// 原始变量名：UNK_1809868b0 - 系统状态数据表
-// 功能：存储系统状态相关的数据表信息
+// 系统状态数据表
+// 功能：存储系统状态相关的数据表和状态信息
 #define SystemStatusDataTableAddress UNK_1809868b0
 
 // 工具函数宏定义
-// 原始函数名：FUN_180896140 - 数据验证和处理函数A0
+// 数据验证和处理函数A0
 // 功能：验证输入数据并执行相应的处理操作
 #define ValidateAndProcessInputDataA0 FUN_180896140
 
-// 原始函数名：FUN_180896800 - 数据块处理函数A0
+// 数据块处理函数A0
 // 功能：处理数据块并返回处理结果
 #define ProcessDataBlockA0 FUN_180896800
 
-// 原始函数名：FUN_180896830 - 数据验证函数A0
+// 数据验证函数A0
 // 功能：验证数据的有效性并返回验证结果
 #define ValidateDataBlockA0 FUN_180896830
 
-// 原始函数名：FUN_180898d84 - 系统配置处理函数A0
+// 系统配置处理函数A0
 // 功能：处理系统配置并返回处理结果
 #define ProcessSystemConfigurationA0 FUN_180898d84
 
-// 原始函数名：FUN_180898e56 - 系统状态获取函数A0
+// 系统状态获取函数A0
 // 功能：获取系统状态并返回状态信息
 #define GetSystemStateA0 FUN_180898e56
 
-// 原始函数名：ExecuteDataValidationOperation - 配置验证函数A0
+// 配置验证函数A0
 // 功能：验证配置的有效性并返回验证结果
 #define ValidateConfigurationA0 ExecuteDataValidationOperation
 
-// 原始函数名：CheckDataIntegrity - 配置处理函数A0
+// 配置处理函数A0
 // 功能：处理配置数据并返回处理结果
 #define ProcessConfigurationDataA0 CheckDataIntegrity
 
-// 原始函数名：ValidateDataStructureA1 - 配置更新函数A0
+// 配置更新函数A0
 // 功能：更新配置数据并返回更新结果
 #define UpdateConfigurationDataA0 ValidateDataStructureA1
 
-// 原始函数名：FUN_180898f40 - 配置验证函数A1
+// 配置验证函数A1
 // 功能：验证配置的有效性并返回验证结果
 #define ValidateConfigurationA1 FUN_180898f40
 
-// 原始变量名：UNK_180983be8 - 系统验证数据表A8
-// 功能：存储系统验证相关的数据表信息
+// 系统验证数据表A8
+// 功能：存储系统验证相关的第八级数据表和验证规则
 #define SystemValidationDataTableA8 UNK_180983be8
 
 
@@ -4543,72 +4528,63 @@ extern void* SystemPrimaryResourceTable;
 // 功能：配置系统并返回配置结果
 #define ConfigureSystemA0 FUN_1808998a0
 
-// 原始变量名：UNK_180986508 - 数据配置表A1
-// 功能：存储系统数据配置信息
+// 数据配置表A1-A4
+// 功能：存储系统数据配置的多级配置表和参数
 #define DataConfigurationTableA1 UNK_180986508
-
-// 原始变量名：UNK_180986550 - 数据配置表A2
-// 功能：存储系统数据配置信息
 #define DataConfigurationTableA2 UNK_180986550
-
-// 原始变量名：UNK_180986590 - 数据配置表A3
-// 功能：存储系统数据配置信息
 #define DataConfigurationTableA3 UNK_180986590
-
-// 原始变量名：UNK_1809865f0 - 数据配置表A4
-// 功能：存储系统数据配置信息
 #define DataConfigurationTableA4 UNK_1809865f0
 
 // 系统核心函数宏定义
-// 原始函数名：ValidateDataIntegrityA0 - 异常处理函数A0
+// 异常处理函数A0
 // 功能：处理系统异常和资源清理
 #define ProcessSystemExceptionA0 ValidateDataIntegrityA0
 
-// 原始函数名：FUN_1800587d0 - 系统资源处理函数A0
+// 系统资源处理函数A0
 // 功能：处理系统资源和异常状态
 #define ProcessSystemResourcesA0 FUN_1800587d0
 
-// 原始函数名：FUN_18005cb60 - 资源释放函数A0
+// 资源释放函数A0
 // 功能：释放系统资源和清理内存
 #define ReleaseSystemResourcesA1 FUN_18005cb60
 
-// 原始函数名：FUN_1801fef10 - 数据处理函数A0
+// 数据处理函数A0
 // 功能：处理数据缓冲区和异常状态
 #define ProcessDataBufferA0 FUN_1801fef10
 
-// 原始函数名：FUN_1800582b0 - 数据验证函数A0
+// 数据验证函数A0
 // 功能：验证数据完整性和安全性
 #define ValidateDataIntegrityA1 FUN_1800582b0
 
-// 原始函数名：FUN_1800f74f0 - 系统配置处理函数A0
+// 系统配置处理函数A1
 // 功能：处理系统配置和参数设置
 #define ProcessSystemConfigurationA1 FUN_1800f74f0
 
-// 原始函数名：FUN_18004bf50 - 偏移量处理函数A0
+// 偏移量处理函数A0
 // 功能：处理内存偏移量和地址计算
 #define ProcessMemoryOffsetA0 FUN_18004bf50
 
-// 原始函数名：FUN_180058420 - 数据处理函数A1
+// 数据处理函数A1
 // 功能：处理数据缓冲区和状态管理
 #define ProcessDataBufferA1 FUN_180058420
 
-// 原始函数名：FUN_18020eba0 - 字符处理函数A0
+// 字符处理函数A0
 // 功能：处理字符数据和编码转换
 #define ProcessCharacterDataA0 FUN_18020eba0
 
-// 原始函数名：FUN_18020f530 - 系统状态更新函数A0
+// 系统状态更新函数A0
 // 功能：更新系统状态和标志位
 #define UpdateSystemStatusA0 FUN_18020f530
 
-// 原始函数名：FUN_180057010 - 系统初始化函数A0
+// 系统初始化函数A0
 // 功能：初始化系统组件和资源
 #define InitializeSystemComponentsA0 FUN_180057010
 
-// 原始函数名：FUN_18005d580 - 系统清理函数A0
+// 系统清理函数A0
 // 功能：清理系统资源和状态
 #define CleanupSystemResourcesA2 FUN_18005d580
 
-// 原始函数名：FUN_180090b80 - 系统验证函数A0
+// 系统验证函数A0
 // 功能：验证系统配置和状态
 #define ValidateSystemConfigurationA0 FUN_180090b80
 
