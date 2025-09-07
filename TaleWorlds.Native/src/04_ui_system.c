@@ -392927,39 +392927,55 @@ undefined8 FUN_18089fc50(longlong uiContext,undefined8 *dataSource)
 
 
 
- 处理UI系统数据验证
- 处理UI系统数据的验证操作
-  dataSource 数据源参数
- *  contextData 上下文数据参数
-  处理结果状态码
+ /**
+ * @brief 处理UI系统数据验证
  * 
-  原始函数名: FUN_180899ef0
- #define ProcessUIDataValidation FUN_180899ef0
-
- 处理UI系统数据提取
- 处理UI系统数据的提取操作
-  dataSource 数据源参数
- *  contextData 上下文数据参数
-  处理结果状态码
+ * 处理UI系统数据的验证操作
  * 
-  原始函数名: FUN_180898eb0
- #define ProcessUIDataExtraction FUN_180898eb0
-
- 处理UI系统配置应用
- 处理UI系统配置的应用操作
-  dataSource 数据源参数
- *  contextData 上下文数据参数
- *  configId 配置标识符
-  处理结果状态码
+ * @param dataSource 数据源参数
+ * @param contextData 上下文数据参数
+ * @return 处理结果状态码
  * 
-  原始函数名: FUN_1808a7c90
- #define ProcessUIConfigurationApply FUN_1808a7c90
+ * @note 原始函数名: FUN_180899ef0
+ */
+#define ProcessUIDataValidation FUN_180899ef0
 
- 处理UI系统事件验证和配置
- 处理UI系统的事件验证逻辑，包括事件处理、配置验证和状态管理
-  context UI系统上下文参数
- *  eventDataArray 事件数据参数数组
-  处理结果状态码，0表示成功，非0表示错误
+/**
+ * @brief 处理UI系统数据提取
+ * 
+ * 处理UI系统数据的提取操作
+ * 
+ * @param dataSource 数据源参数
+ * @param contextData 上下文数据参数
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名: FUN_180898eb0
+ */
+#define ProcessUIDataExtraction FUN_180898eb0
+
+/**
+ * @brief 处理UI系统配置应用
+ * 
+ * 处理UI系统配置的应用操作
+ * 
+ * @param dataSource 数据源参数
+ * @param contextData 上下文数据参数
+ * @param configId 配置标识符
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名: FUN_1808a7c90
+ */
+#define ProcessUIConfigurationApply FUN_1808a7c90
+
+ /**
+ * @brief 处理UI系统事件验证和配置
+ * 
+ * 处理UI系统的事件验证逻辑，包括事件处理、配置验证和状态管理
+ * 
+ * @param SystemContext UI系统上下文参数
+ * @param EventDataArray 事件数据参数数组
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
  uint64_t ProcessUIEventValidationAndConfiguration(longlong SystemContext, uint64_t* EventDataArray)
 {
   uint64_t EventProcessingResult;
