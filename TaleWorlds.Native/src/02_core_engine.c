@@ -114519,7 +114519,7 @@ void ProcessStringFormatting32Bit(char *CharacterCode,uint64_t CharacterCodeSize
     if (StringBuffer == '\0') {
 LAB_18011f4b5:
       if ((StringBuffer == '%') && (CharacterCode[1] != '%')) {
-        FUN_180121200(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
+        OperateBufferAndSetParameters(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
         pSystemCheckResult = &cStack_58;
         while (cStack_58 == ' ') {
           pSystemCheckResult = pSystemCheckResult + 1;
@@ -114581,7 +114581,7 @@ void ProcessStringFormatting64Bit(char *CharacterCode,uint64_t CharacterCodeSize
     if (StringBuffer == '\0') {
 LAB_18011f555:
       if ((StringBuffer == '%') && (CharacterCode[1] != '%')) {
-        FUN_180121200(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
+        OperateBufferAndSetParameters(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
         pSystemCheckResult = &cStack_58;
         while (cStack_58 == ' ') {
           pSystemCheckResult = pSystemCheckResult + 1;
@@ -114643,7 +114643,7 @@ void ProcessStringFormatting64BitV2(char *CharacterCode,uint64_t CharacterCodeSi
     if (StringBuffer == '\0') {
 LAB_18011f5f5:
       if ((StringBuffer == '%') && (CharacterCode[1] != '%')) {
-        FUN_180121200(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
+        OperateBufferAndSetParameters(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
         pSystemCheckResult = &cStack_58;
         while (cStack_58 == ' ') {
           pSystemCheckResult = pSystemCheckResult + 1;
@@ -114756,7 +114756,7 @@ f740(char *CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointervoi
     if (StringBuffer == '\0') {
 LAB_18011f775:
       if ((StringBuffer == '%') && (CharacterCode[1] != '%')) {
-        FUN_180121200(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
+        OperateBufferAndSetParameters(&cStack_58,0x40,CharacterCode,Utf8InputPointer);
         pSystemCheckResult = &cStack_58;
         while (cStack_58 == ' ') {
           pSystemCheckResult = pSystemCheckResult + 1;
