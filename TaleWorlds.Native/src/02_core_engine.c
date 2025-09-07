@@ -40,9 +40,41 @@
 #define InitializeStringEncodingBuffer FUN_180120d00
 
 // 系统浮点数处理宏定义
+
+/**
+ * @brief 获取系统浮点数值
+ * 
+ * 该函数负责从系统上下文中获取指定的浮点数值
+ * 
+ * @note 原始函数名：FUN_18010e760
+ */
 #define GetSystemFloatValue FUN_18010e760
+
+/**
+ * @brief 处理系统浮点数据
+ * 
+ * 该函数负责处理系统中的浮点数据运算和转换
+ * 
+ * @note 原始函数名：FUN_18010e7f0
+ */
 #define ProcessSystemFloatData FUN_18010e7f0
+
+/**
+ * @brief 获取系统浮点数数组
+ * 
+ * 该函数负责从系统上下文中获取浮点数数组
+ * 
+ * @note 原始函数名：FUN_18010e720
+ */
 #define GetSystemFloatArray FUN_18010e720
+
+/**
+ * @brief 计算系统浮点数值
+ * 
+ * 该函数负责计算系统中的浮点数值，支持多种运算模式
+ * 
+ * @note 原始函数名：FUN_180123c00
+ */
 #define CalculateSystemFloatValue FUN_180123c00
 
 // 系统数据结构处理函数宏定义
@@ -2419,6 +2451,33 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 
 // 原始函数名：FUN_1801260f0 - 系统上下文处理函数
 #define ProcessSystemContextEx FUN_1801260f0
+
+// 原始函数名：FUN_18011fa30 - 系统数据处理和验证函数
+#define ProcessSystemDataAndValidation FUN_18011fa30
+
+// 原始函数名：FUN_180121420 - 系统数据结构处理函数
+#define ProcessSystemDataStructureEx FUN_180121420
+
+// 原始函数名：FUN_18013cb20 - 系统配置和处理函数
+#define ProcessSystemConfigurationAndHandling FUN_18013cb20
+
+// 原始函数名：FUN_18013cdc0 - 系统清理函数
+#define CleanupSystemEx FUN_18013cdc0
+
+// 原始函数名：FUN_180130010 - 系统初始化函数
+#define InitializeSystemEx FUN_180130010
+
+// 原始函数名：FUN_180127d70 - 系统状态检查函数
+#define CheckSystemStatusEx FUN_180127d70
+
+// 原始函数名：FUN_18012ddc0 - 系统数据复制函数
+#define CopySystemData FUN_18012ddc0
+
+// 原始函数名：FUN_18012d230 - 系统数据处理函数
+#define ProcessSystemDataEx2 FUN_18012d230
+
+// 原始函数名：FUN_18012fbd0 - 系统配置函数
+#define ConfigureSystemEx FUN_18012fbd0
 
 // 原始函数名：FUN_180126d80 - 系统数据清理函数
 #define CleanupSystemData FUN_180126d80
