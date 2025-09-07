@@ -62140,20 +62140,20 @@ void InitializeUIMemoryBuffer(longlong uiContext,int dataSource)
     registerAX = registerAX + 1;
   } while ((longlong)registerAX < 0x100);
   localLong4 = 0xc00;
-  plocalChar3 = (char *)(unmodifiedR14 + 2);
+  dataPointer = (char *)(unmodifiedR14 + 2);
   do {
     IsEventProcessingActive = rand();
-    *plocalChar3 = acStackX_20[IsEventProcessingActive];
+    *dataPointer = acStackX_20[IsEventProcessingActive];
     localLong4 = localLong4 + -1;
-    plocalChar3 = plocalChar3 + 1;
+    dataPointer = dataPointer + 1;
   } while (localLong4 != 0);
-  plocalChar3 = (char *)(unmodifiedR14 + 0x308);
+  dataPointer = (char *)(unmodifiedR14 + 0x308);
   localLong4 = 0x10;
   do {
-    plocalChar3[-0x10] = -acStackX_20[0];
-    *plocalChar3 = -acStackX_20[0];
-    plocalChar3[0x10] = acStackX_20[0] * -2;
-    plocalChar3 = plocalChar3 + 1;
+    dataPointer[-0x10] = -acStackX_20[0];
+    *dataPointer = -acStackX_20[0];
+    dataPointer[0x10] = acStackX_20[0] * -2;
+    dataPointer = dataPointer + 1;
     localLong4 = localLong4 + -1;
   } while (localLong4 != 0);
   *unmodifiedR14 = unmodifiedR15D;
@@ -63776,7 +63776,7 @@ LAB_18069a35d:
   int *puiCompareResult0;
   longlong stringCompareIndex1;
   byte *pbVar32;
-  char *plocalChar33;
+  char *dataPointer3;
   longlong stringCompareIndex4;
   uint EventTypeCode5;
   undefined *ptrLocal36;
@@ -63952,7 +63952,7 @@ LAB_18069a35d:
       *(undefined8 *)(uiContext + 0xf67) = 0;
       astackLong48[0] = uiContext + -0x180948649;
       do {
-        plocalChar33 = (char *)(astackLong48[0] + (longlong)pstackInt78);
+        dataPointer3 = (char *)(astackLong48[0] + (longlong)pstackInt78);
         stringCompareIndex4 = 4;
         puiCompareResult0 = pstackInt78;
         do {
@@ -63972,7 +63972,7 @@ LAB_18069a35d:
           *(ulonglong *)(uiContext + 0x42d0) = semaphoreHandle4 << (IsEventProcessingActive & 0x3f);
           *(uint *)(uiContext + 0x42dc) = semaphoreHandle6 << (IsEventProcessingActive & 0x1f);
           if (bVar38) {
-            *plocalChar33 = '\0';
+            *dataPointer3 = '\0';
           }
           else {
             uiOperationResult6 = *puiCompareResult0;
@@ -63998,7 +63998,7 @@ LAB_18069a35d:
               *(ulonglong *)(uiContext + 0x42d0) = semaphoreHandle0 << (IsEventProcessingActive & 0x3f);
               *(uint *)(uiContext + 0x42dc) = semaphoreHandle6 << (IsEventProcessingActive & 0x1f);
             }
-            *plocalChar33 = localChar14;
+            *dataPointer3 = localChar14;
             semaphoreHandle6 = ((uint)((*(int *)(uiBufferData + 0x42dc) + -1) * 0x80) >> 8) + 1;
             if (*(int *)(uiBufferData + 0x42d8) < 0) {
               UpdateUIContext(allocatedMemory);
@@ -64016,10 +64016,10 @@ LAB_18069a35d:
             *(uint *)(uiContext + 0x42dc) = semaphoreHandle6 << (IsEventProcessingActive & 0x1f);
             puiCompareResult0 = pstackInt78;
             if (bVar38) {
-              *plocalChar33 = -*plocalChar33;
+              *dataPointer3 = -*dataPointer3;
             }
           }
-          plocalChar33 = plocalChar33 + 1;
+          dataPointer3 = dataPointer3 + 1;
           stringCompareIndex4 = stringCompareIndex4 + -1;
         } while (stringCompareIndex4 != 0);
         pstackInt78 = puiCompareResult0 + 1;
@@ -66279,13 +66279,13 @@ void RenderUIButtonInternal(undefined8 uiContext,longlong dataSource,undefined8 
             localInt6 = AllocateUIComponentMemory(uiContext,ptrLocal9[(longlong)localInt5 + 9]);
             sVar11 = 0;
             localInt6 = localInt6 + localInt5 * 2;
-            plocalChar3 = *(char **)(&UITextureDataArray + (longlong)localInt6 * 8);
-            localChar2 = *plocalChar3;
+            dataPointer = *(char **)(&UITextureDataArray + (longlong)localInt6 * 8);
+            localChar2 = *dataPointer;
             while (localChar2 != '\0') {
               sVar4 = AllocateUIComponentMemory(uiContext,localChar2);
-              plocalChar3 = plocalChar3 + 1;
+              dataPointer = dataPointer + 1;
               sVar11 = sVar4 + sVar11 * 2;
-              localChar2 = *plocalChar3;
+              localChar2 = *dataPointer;
             }
             sVar11 = (short)(8 << ((byte)localInt6 & 0x1f)) + 3 + sVar11;
           }
@@ -68645,7 +68645,7 @@ void ProcessUIResourceSynchronization(longlong uiContext,longlong dataSource,cha
 {
   longlong allocatedMemory;
   uint semaphoreHandle;
-  char *plocalChar3;
+  char *dataPointer;
   char *plocalChar4;
   longlong EventDataIndex;
   char localChar6;
@@ -68825,7 +68825,7 @@ LAB_18069fbb4:
   else {
     uiOperationResult0 = AllocateUIComponentMemory(allocatedMemory,*(undefined4 *)(&UiRenderDataBuffer3 + (longlong)localInt9 * 0x10));
     plocalChar4 = pcStack_78;
-    plocalChar3 = pcStack_80;
+    dataPointer = pcStack_80;
     if (uiOperationResult0 != 0) {
       localInt9 = *(int *)(uiBufferData + 0xf8c) + -0x80;
       uiOperationResult3 = *(int *)(uiBufferData + 0xf90) + 0x80;
@@ -68883,7 +68883,7 @@ LAB_18069fcfe:
         pcStack_d8 = targetBuffer;
         stackIntb0 = localInt9;
         stackInta8 = uiOperationResult3;
-        FUN_18069ef30(allocatedMemory,stackLong70,plocalChar3,plocalChar4);
+        FUN_18069ef30(allocatedMemory,stackLong70,dataPointer,plocalChar4);
         *(undefined4 *)(targetBuffer + 4) = *(undefined4 *)(allocatedMemory2 + 0x48);
         *targetBuffer = '\t';
         targetBuffer[3] = '\x01';
@@ -132277,7 +132277,7 @@ void FUN_18074b093(void)
 {
   float floatResult;
   uint semaphoreHandle;
-  char *plocalChar3;
+  char *dataPointer;
   longlong localLong4;
   longlong context;
   char unmodifiedBPL;
@@ -132307,18 +132307,18 @@ void FUN_18074b093(void)
     eventTypeCode = (ulonglong)semaphoreHandle;
     do {
       localFloat8 = 16.0;
-      plocalChar3 = (char *)(context + 0x11968);
+      dataPointer = (char *)(context + 0x11968);
       localLong4 = CONCAT71(unmodified00000029,unmodifiedBPL);
       MaxProcessingCount = (ulonglong)semaphoreHandle;
       do {
-        if ((((*(int *)(plocalChar3 + -0x28) != 3) && (*plocalChar3 != unmodifiedBPL)) &&
-            (floatResult = *(float *)(plocalChar3 + -8), floatResult < localFloat8)) &&
-           ((&stack0x00000030)[*(int *)(plocalChar3 + -0x28)] == unmodifiedBPL)) {
+        if ((((*(int *)(dataPointer + -0x28) != 3) && (*dataPointer != unmodifiedBPL)) &&
+            (floatResult = *(float *)(dataPointer + -8), floatResult < localFloat8)) &&
+           ((&stack0x00000030)[*(int *)(dataPointer + -0x28)] == unmodifiedBPL)) {
           *pEventDataIndex = context + 72000 + localLong4;
           localFloat8 = floatResult;
         }
         localLong4 = localLong4 + 0x30;
-        plocalChar3 = plocalChar3 + 0x30;
+        dataPointer = dataPointer + 0x30;
         MaxProcessingCount = MaxProcessingCount - 1;
       } while (MaxProcessingCount != 0);
       if ((int *)*pEventDataIndex != (int *)0x0) {
@@ -132357,7 +132357,7 @@ void FUN_18074b200(longlong uiContext)
 {
   float floatResult;
   uint semaphoreHandle;
-  char *plocalChar3;
+  char *dataPointer;
   longlong localLong4;
   longlong *pEventDataIndex;
   ulonglong MaxProcessingCount;
@@ -132400,18 +132400,18 @@ void FUN_18074b200(longlong uiContext)
       eventTypeCode = (ulonglong)semaphoreHandle;
       do {
         localFloat8 = 16.0;
-        plocalChar3 = (char *)(uiContext + 0x11968);
+        dataPointer = (char *)(uiContext + 0x11968);
         localLong4 = 0;
         MaxProcessingCount = (ulonglong)semaphoreHandle;
         do {
-          if ((((*(int *)(plocalChar3 + -0x28) != 3) && (*plocalChar3 != '\0')) &&
-              (floatResult = *(float *)(plocalChar3 + -8), floatResult < localFloat8)) &&
-             (acStack_28[*(int *)(plocalChar3 + -0x28)] == '\0')) {
+          if ((((*(int *)(dataPointer + -0x28) != 3) && (*dataPointer != '\0')) &&
+              (floatResult = *(float *)(dataPointer + -8), floatResult < localFloat8)) &&
+             (acStack_28[*(int *)(dataPointer + -0x28)] == '\0')) {
             *pEventDataIndex = uiContext + 72000 + localLong4;
             localFloat8 = floatResult;
           }
           localLong4 = localLong4 + 0x30;
-          plocalChar3 = plocalChar3 + 0x30;
+          dataPointer = dataPointer + 0x30;
           MaxProcessingCount = MaxProcessingCount - 1;
         } while (MaxProcessingCount != 0);
         if ((int *)*pEventDataIndex != (int *)0x0) {
@@ -132437,7 +132437,7 @@ void FUN_18074b225(longlong uiContext,undefined8 dataSource,undefined8 targetBuf
 {
   float floatResult;
   uint semaphoreHandle;
-  char *plocalChar3;
+  char *dataPointer;
   longlong localLong4;
   longlong context;
   longlong *pEventDataIndex;
@@ -132465,18 +132465,18 @@ void FUN_18074b225(longlong uiContext,undefined8 dataSource,undefined8 targetBuf
     eventTypeCode = (ulonglong)semaphoreHandle;
     do {
       localFloat8 = 16.0;
-      plocalChar3 = (char *)(context + 0x11968);
+      dataPointer = (char *)(context + 0x11968);
       localLong4 = 0;
       MaxProcessingCount = (ulonglong)semaphoreHandle;
       do {
-        if ((((*(int *)(plocalChar3 + -0x28) != 3) && (*plocalChar3 != '\0')) &&
-            (floatResult = *(float *)(plocalChar3 + -8), floatResult < localFloat8)) &&
-           ((&stack0x00000020)[*(int *)(plocalChar3 + -0x28)] == '\0')) {
+        if ((((*(int *)(dataPointer + -0x28) != 3) && (*dataPointer != '\0')) &&
+            (floatResult = *(float *)(dataPointer + -8), floatResult < localFloat8)) &&
+           ((&stack0x00000020)[*(int *)(dataPointer + -0x28)] == '\0')) {
           *pEventDataIndex = context + 72000 + localLong4;
           localFloat8 = floatResult;
         }
         localLong4 = localLong4 + 0x30;
-        plocalChar3 = plocalChar3 + 0x30;
+        dataPointer = dataPointer + 0x30;
         MaxProcessingCount = MaxProcessingCount - 1;
       } while (MaxProcessingCount != 0);
       if ((int *)*pEventDataIndex != (int *)0x0) {
@@ -140342,7 +140342,7 @@ undefined8 FUN_180754360(longlong *uiContext,byte dataSource)
 {
   byte isCharacterMatch;
   undefined8 semaphoreHandle;
-  char *plocalChar3;
+  char *dataPointer;
   longlong localLong4;
   ulonglong LoopCounter;
   uint MaxProcessingCount;
@@ -140404,11 +140404,11 @@ undefined8 FUN_180754360(longlong *uiContext,byte dataSource)
       if ((*(uint *)(uiContext + 9) & 4) == 0) {
         localLong4 = (longlong)*(int *)(uiContext[1] + 0x11400);
         if (0 < localLong4) {
-          plocalChar3 = (char *)(uiContext[1] + 0x110ec);
+          dataPointer = (char *)(uiContext[1] + 0x110ec);
           do {
-            if (*plocalChar3 != '\0') goto LAB_1807544c8;
+            if (*dataPointer != '\0') goto LAB_1807544c8;
             LoopCounter = LoopCounter + 1;
-            plocalChar3 = plocalChar3 + 0x70;
+            dataPointer = dataPointer + 0x70;
           } while ((longlong)LoopCounter < localLong4);
         }
       }
@@ -144093,7 +144093,7 @@ undefined8 FUN_180758620(longlong *uiContext,undefined4 dataSource,char targetBu
 {
   uint result;
   undefined8 semaphoreHandle;
-  char *plocalChar3;
+  char *dataPointer;
   longlong localLong4;
   longlong EventDataIndex;
   char acStackX_20 [8];
@@ -144166,10 +144166,10 @@ LAB_1807586e9:
           return 0;
         }
         localLong4 = 0;
-        plocalChar3 = (char *)(uiContext[1] + 0x110ec);
-        while (*plocalChar3 == '\0') {
+        dataPointer = (char *)(uiContext[1] + 0x110ec);
+        while (*dataPointer == '\0') {
           localLong4 = localLong4 + 1;
-          plocalChar3 = plocalChar3 + 0x70;
+          dataPointer = dataPointer + 0x70;
           if (EventDataIndex <= localLong4) {
             return 0;
           }
@@ -155214,7 +155214,7 @@ void FUN_180760e8e(undefined4 uiContext)
 {
   undefined4 result;
   float localFloat2;
-  code *plocalChar3;
+  code *dataPointer;
   undefined8 *bufferPtr;
   int localInt5;
   int localInt6;
@@ -155579,8 +155579,8 @@ LAB_180760f3a:
       }
       if ((*(float *)(context + 0x1c4) == 1.0) && (*(float *)(context + 0x1d0) == 1.0)) {
         ptrResult4 = (undefined8 *)unmodifiedRBP[-0xe];
-        plocalChar3 = *(code **)(context + 0x128);
-        if (plocalChar3 != (code *)0x0) {
+        dataPointer = *(code **)(context + 0x128);
+        if (dataPointer != (code *)0x0) {
           *(undefined4 *)((longlong)unmodifiedRBP + -0x44) = *(undefined4 *)(context + 0x148);
           *(undefined4 *)(unmodifiedRBP + -9) = 0;
           unmodifiedRBP[0x5d] = (longlong)(unmodifiedRBP + -9);
@@ -155598,7 +155598,7 @@ LAB_180760f3a:
           *(int *)(unmodifiedRBP + 0x5b) = localInt6;
           *(undefined4 *)(unmodifiedRBP + 0x56) = 1;
           *(longlong *)(context + 0xb0) = context;
-          localInt5 = (*plocalChar3)((longlong *)(context + 0xb0),uStack0000000000000044,unmodifiedRBP + 0x5b,
+          localInt5 = (*dataPointer)((longlong *)(context + 0xb0),uStack0000000000000044,unmodifiedRBP + 0x5b,
                             unmodifiedRBP + 0x56,semaphoreHandle5);
           if (localInt5 == 0xb) {
             cStack0000000000000040 = '\x01';
@@ -160508,7 +160508,7 @@ undefined8 FUN_180767ad0(longlong uiContext)
 {
   undefined8 result;
   longlong componentIndex;
-  code *plocalChar3;
+  code *dataPointer;
   
   if (*(char *)(uiContext + 0x118) == '\0') {
     return 0;
@@ -160541,18 +160541,18 @@ undefined8 FUN_180767ad0(longlong uiContext)
   }
   componentIndex = *(longlong *)(uiBufferData + 0x138);
   if (allocatedMemoryPtr == 0) {
-    plocalChar3 = *(code **)(_DAT_180be12f0 + 8);
-    if ((plocalChar3 == (code *)0x0) || ((*(uint *)(_DAT_180be12f0 + 0x10) & 0x200) == 0))
+    dataPointer = *(code **)(_DAT_180be12f0 + 8);
+    if ((dataPointer == (code *)0x0) || ((*(uint *)(_DAT_180be12f0 + 0x10) & 0x200) == 0))
     goto LAB_180767bda;
     result = *(undefined8 *)(_DAT_180be12f0 + 0x18);
     componentIndex = 0;
   }
   else {
-    plocalChar3 = *(code **)(componentIndex + 0x11838);
-    if ((plocalChar3 == (code *)0x0) || ((*(uint *)(componentIndex + 0x11840) & 0x200) == 0)) goto LAB_180767bda;
+    dataPointer = *(code **)(componentIndex + 0x11838);
+    if ((dataPointer == (code *)0x0) || ((*(uint *)(componentIndex + 0x11840) & 0x200) == 0)) goto LAB_180767bda;
     result = *(undefined8 *)(componentIndex + 0x11670);
   }
-  (*plocalChar3)(componentIndex,0x200,*(undefined8 *)(uiContext + 0x108),uiContext + 8,result);
+  (*dataPointer)(componentIndex,0x200,*(undefined8 *)(uiContext + 0x108),uiContext + 8,result);
 LAB_180767bda:
   *(undefined8 *)(uiContext + 0x108) = 0;
   *(undefined8 *)(uiContext + 0x110) = 0;
@@ -160649,7 +160649,7 @@ undefined8 FUN_180767cd6(void)
   undefined8 result;
   longlong componentIndex;
   longlong context;
-  code *plocalChar3;
+  code *dataPointer;
   
   func_0x00018076b450(context + 8);
   result = FUN_1807689d0(context + 8,FUN_1807679d0);
@@ -160662,8 +160662,8 @@ undefined8 FUN_180767cd6(void)
   }
   componentIndex = *(longlong *)(context + 0x138);
   if (allocatedMemoryPtr == 0) {
-    plocalChar3 = *(code **)(_DAT_180be12f0 + 8);
-    if (plocalChar3 == (code *)0x0) {
+    dataPointer = *(code **)(_DAT_180be12f0 + 8);
+    if (dataPointer == (code *)0x0) {
       return 0;
     }
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 8) == 0) {
@@ -160673,8 +160673,8 @@ undefined8 FUN_180767cd6(void)
     componentIndex = 0;
   }
   else {
-    plocalChar3 = *(code **)(componentIndex + 0x11838);
-    if (plocalChar3 == (code *)0x0) {
+    dataPointer = *(code **)(componentIndex + 0x11838);
+    if (dataPointer == (code *)0x0) {
       return 0;
     }
     if ((*(byte *)(componentIndex + 0x11840) & 8) == 0) {
@@ -160682,7 +160682,7 @@ undefined8 FUN_180767cd6(void)
     }
     result = *(undefined8 *)(componentIndex + 0x11670);
   }
-  (*plocalChar3)(componentIndex,8,*(undefined8 *)(context + 0x108),context + 8,result);
+  (*dataPointer)(componentIndex,8,*(undefined8 *)(context + 0x108),context + 8,result);
   return 0;
 }
 
@@ -160896,7 +160896,7 @@ void FUN_180767f5c(char *uiContext,char *dataSource,undefined *targetBuffer,unde
 {
   uint *ptrResult;
   int *puiValidationResult;
-  code *plocalChar3;
+  code *dataPointer;
   code localChar4;
   byte IsValidationComplete;
   undefined8 eventTypeCode;
@@ -160979,20 +160979,20 @@ LAB_180767fd9:
       localChar4 = *unmodifiedRDI;
       *unmodifiedRDI = (code)((char)*unmodifiedRDI + localChar14);
       if (*unmodifiedRDI != (code)0x0 && SCARRY1((char)localChar4,localChar14) == (char)*unmodifiedRDI < '\0') {
-        plocalChar3 = (code *)swi(3);
-        (*plocalChar3)();
+        dataPointer = (code *)swi(3);
+        (*dataPointer)();
         return;
       }
       localChar4 = *unmodifiedRDI;
       *unmodifiedRDI = (code)((char)*unmodifiedRDI + localChar14);
       if (*unmodifiedRDI != (code)0x0 && SCARRY1((char)localChar4,localChar14) == (char)*unmodifiedRDI < '\0') {
-        plocalChar3 = (code *)swi(3);
-        (*plocalChar3)();
+        dataPointer = (code *)swi(3);
+        (*dataPointer)();
         return;
       }
 LAB_180767ff9:
-      plocalChar3 = (code *)swi(3);
-      (*plocalChar3)();
+      dataPointer = (code *)swi(3);
+      (*dataPointer)();
       return;
     }
     goto LAB_180768051;
@@ -161011,12 +161011,12 @@ LAB_180767ff9:
   unmodifiedRSI[(longlong)unmodifiedRDI * 2 + 0x76] = unmodifiedRSI[(longlong)unmodifiedRDI * 2 + 0x76] + isCharacterMatch6;
   unmodifiedRSI[(longlong)unmodifiedRDI * 2 + 0x76] = unmodifiedRSI[(longlong)unmodifiedRDI * 2 + 0x76] + isCharacterMatch6;
   unmodifiedRSI[(longlong)unmodifiedRDI * 2 + 0x76] = unmodifiedRSI[(longlong)unmodifiedRDI * 2 + 0x76] + isCharacterMatch6;
-  plocalChar3 = unmodifiedRDI + -0x40ff8982;
-  localChar4 = *plocalChar3;
-  *plocalChar3 = (code)((char)*plocalChar3 + isCharacterMatch6);
+  dataPointer = unmodifiedRDI + -0x40ff8982;
+  localChar4 = *dataPointer;
+  *dataPointer = (code)((char)*dataPointer + isCharacterMatch6);
   plocalChar13 = _DAT_180be12f0;
   plocalChar15 = uiContext;
-  if (*plocalChar3 == (code)0x0 || SCARRY1((char)localChar4,isCharacterMatch6) != (char)*plocalChar3 < '\0') {
+  if (*dataPointer == (code)0x0 || SCARRY1((char)localChar4,isCharacterMatch6) != (char)*dataPointer < '\0') {
     targetBuffer = &UNK_180958b20;
     register0x00000020 = (BADSPACEBASE *)&stackUInt8;
   }
@@ -162302,7 +162302,7 @@ undefined4 FUN_180769080(longlong *uiContext)
 {
   longlong *pallocatedMemory;
   int uiValidationResult;
-  code *plocalChar3;
+  code *dataPointer;
   undefined4 ProcessingStatus;
   
   *(undefined1 *)((longlong)uiContext + 0x3c) = 1;
@@ -162328,9 +162328,9 @@ undefined4 FUN_180769080(longlong *uiContext)
     FUN_180768400(*(undefined8 *)(uiContext[0x31] + 0x198));
   }
   ProcessingStatus = (**(code **)(*uiContext + 0x28))(uiContext);
-  if ((uiContext[0x33] != 0) && (plocalChar3 = *(code **)(uiContext[0x33] + 0x11820), plocalChar3 != (code *)0x0))
+  if ((uiContext[0x33] != 0) && (dataPointer = *(code **)(uiContext[0x33] + 0x11820), dataPointer != (code *)0x0))
   {
-    (*plocalChar3)(uiContext[6],uiContext[5]);
+    (*dataPointer)(uiContext[6],uiContext[5]);
   }
   if (uiContext[0x29] != 0) {
                      WARNING: Subroutine does not return
@@ -163210,7 +163210,7 @@ ulonglong FUN_180769f55(void)
 {
   longlong *pallocatedMemory;
   uint semaphoreHandle;
-  code *plocalChar3;
+  code *dataPointer;
   ulonglong ProcessingStatus;
   uint LoopCounter;
   uint *ptrLocal6;
@@ -163278,8 +163278,8 @@ ulonglong FUN_180769f55(void)
       *(undefined4 *)(context + 0x39) = 0;
       *(uint *)((longlong)context + 0x194) = *(uint *)((longlong)context + 0x194) & 0xfffffff7;
       if ((context[0x33] != 0) &&
-         (plocalChar3 = *(code **)(context[0x33] + 0x11828), plocalChar3 != (code *)0x0)) {
-        (*plocalChar3)(context[6],pbVar8,uStack0000000000000070,0,context[5]);
+         (dataPointer = *(code **)(context[0x33] + 0x11828), dataPointer != (code *)0x0)) {
+        (*dataPointer)(context[6],pbVar8,uStack0000000000000070,0,context[5]);
       }
       if ((allocationFlags & 0xffffffef) != 0) goto LAB_18076a329;
       register10D = 0;
@@ -164533,18 +164533,18 @@ longlong FUN_18076b802(char *uiContext)
 {
   int uiOperationResult;
   int uiValidationResult;
-  char *plocalChar3;
+  char *dataPointer;
   longlong unmodifiedRSI;
   int allocationFlags;
   bool in_ZF;
   
-  plocalChar3 = uiContext;
+  dataPointer = uiContext;
   if (!in_ZF) {
     do {
-      plocalChar3 = plocalChar3 + 1;
-    } while (*plocalChar3 != '\0');
+      dataPointer = dataPointer + 1;
+    } while (*dataPointer != '\0');
   }
-  uiValidationResult = (int)plocalChar3 - (int)uiContext;
+  uiValidationResult = (int)dataPointer - (int)uiContext;
   while( true ) {
     if (uiValidationResult < allocationFlags) {
       return 0;
@@ -176646,7 +176646,7 @@ ulonglong FUN_180774090(longlong uiContext,uint dataSource,int targetBuffer)
 {
   uint *ptrResult;
   longlong componentIndex;
-  code *plocalChar3;
+  code *dataPointer;
   uint ProcessingStatus;
   uint LoopCounter;
   ulonglong MaxProcessingCount;
@@ -176721,8 +176721,8 @@ ulonglong FUN_180774090(longlong uiContext,uint dataSource,int targetBuffer)
       }
     }
     if ((*(longlong *)(uiBufferData + 0x180) != 0) &&
-       (plocalChar3 = *(code **)(*(longlong *)(uiBufferData + 0x180) + 0x150), plocalChar3 != (code *)0x0)) {
-      (*plocalChar3)(*(undefined8 *)(uiContext + 0x158),*(undefined4 *)(uiBufferData + 0xc0),auStackX_10[0],
+       (dataPointer = *(code **)(*(longlong *)(uiBufferData + 0x180) + 0x150), dataPointer != (code *)0x0)) {
+      (*dataPointer)(*(undefined8 *)(uiContext + 0x158),*(undefined4 *)(uiBufferData + 0xc0),auStackX_10[0],
                 targetBuffer);
     }
     if (((targetBuffer - 1U & 0xfffffffc) == 0) && (targetBuffer != 3)) {
@@ -222827,7 +222827,7 @@ undefined8 FUN_1808030a0(longlong uiContext)
 {
   int uiOperationResult;
   longlong *colorBufferPointer;
-  char *plocalChar3;
+  char *dataPointer;
   undefined1 *bufferPtr;
   
   colorBufferPointer = (longlong *)(uiContext + 0x448);
@@ -222835,11 +222835,11 @@ undefined8 FUN_1808030a0(longlong uiContext)
     colorBufferPointer = (longlong *)0x450;
   }
   if ((longlong *)*colorBufferPointer != (longlong *)0x0) {
-    plocalChar3 = (char *)(uiContext + 0x459);
+    dataPointer = (char *)(uiContext + 0x459);
     if (uiContext == 0) {
-      plocalChar3 = (char *)0x461;
+      dataPointer = (char *)0x461;
     }
-    if (*plocalChar3 != '\0') {
+    if (*dataPointer != '\0') {
       uiOperationResult = (**(code **)(*(longlong *)*colorBufferPointer + 0x40))();
       if (uiOperationResult != 0) {
         return 0x31;
@@ -229563,7 +229563,7 @@ undefined8 FUN_18080ac80(undefined8 uiContext,longlong *dataSource,ulonglong tar
 {
   longlong allocatedMemory;
   int *puiValidationResult;
-  code *plocalChar3;
+  code *dataPointer;
   bool bVar4;
   undefined8 *componentContextPtr;
   int *ptrLocalInt6;
@@ -229762,10 +229762,10 @@ IndexBufferSetup:
   else {
     bVar4 = false;
     if (puiOperationResult8 < puiOperationResult1) goto LAB_18080af9f;
-    plocalChar3 = *(code **)(allocatedMemory + 0x10);
+    dataPointer = *(code **)(allocatedMemory + 0x10);
     if (piStackX_20 < puiOperationResult8) {
-      if (((plocalChar3 == (code *)0x0) ||
-          (uiOperationResult6 = (*plocalChar3)(dataSource,&stackUInt68,*(undefined8 *)(allocatedMemory + 0x68)), uiOperationResult6 != 0)) ||
+      if (((dataPointer == (code *)0x0) ||
+          (uiOperationResult6 = (*dataPointer)(dataSource,&stackUInt68,*(undefined8 *)(allocatedMemory + 0x68)), uiOperationResult6 != 0)) ||
          (uiOperationResult6 = func_0x000180824bc0(*(undefined8 *)(dataSource[1] + 0x78)), uiOperationResult6 == 0))
       goto LAB_18080af9f;
       result4 = func_0x000180824a70(*(undefined8 *)(dataSource[1] + 0x78));
@@ -229775,8 +229775,8 @@ IndexBufferSetup:
       stackUInt68 = result7;
     }
     else {
-      if (((plocalChar3 == (code *)0x0) ||
-          (uiOperationResult6 = (*plocalChar3)(dataSource,astackUInt60,*(undefined8 *)(allocatedMemory + 0x68)), uiOperationResult6 != 0)) ||
+      if (((dataPointer == (code *)0x0) ||
+          (uiOperationResult6 = (*dataPointer)(dataSource,astackUInt60,*(undefined8 *)(allocatedMemory + 0x68)), uiOperationResult6 != 0)) ||
          (uiOperationResult6 = func_0x000180824bc0(*(undefined8 *)(dataSource[1] + 0x78)), uiOperationResult6 == 0))
       goto LAB_18080af9f;
       result4 = func_0x000180824a70(*(undefined8 *)(dataSource[1] + 0x78));
@@ -245349,7 +245349,7 @@ void FUN_18081bd90(longlong uiContext,char dataSource,char targetBuffer,undefine
 {
   undefined8 result;
   longlong *colorBufferPointer;
-  char *plocalChar3;
+  char *dataPointer;
   ulonglong ProcessingStatus;
   uint LoopCounter;
   
@@ -245357,16 +245357,16 @@ void FUN_18081bd90(longlong uiContext,char dataSource,char targetBuffer,undefine
   CleanupUIContextState(result);
   if (*(char *)(uiContext + 0x2d0) == '\0') {
     LoopCounter = 0;
-    plocalChar3 = (char *)(uiContext + 0x2d5);
+    dataPointer = (char *)(uiContext + 0x2d5);
     do {
-      if ((plocalChar3[-1] == dataSource) && (*plocalChar3 == targetBuffer)) goto LAB_18081be5a;
+      if ((dataPointer[-1] == dataSource) && (*dataPointer == targetBuffer)) goto LAB_18081be5a;
       LoopCounter = LoopCounter + 1;
-      plocalChar3 = plocalChar3 + 0x10;
+      dataPointer = dataPointer + 0x10;
     } while (LoopCounter < 0x20);
     ProcessingStatus = 0;
-    plocalChar3 = (char *)(uiContext + 0x2d4);
+    dataPointer = (char *)(uiContext + 0x2d4);
     do {
-      if (*plocalChar3 == -1) {
+      if (*dataPointer == -1) {
         *(char *)(uiContext + 0x2d4 + ProcessingStatus * 0x10) = dataSource;
         *(char *)(uiContext + 0x2d5 + ProcessingStatus * 0x10) = targetBuffer;
         *(undefined4 *)(uiBufferData + 0x2d8 + ProcessingStatus * 0x10) = bufferSize;
@@ -245379,7 +245379,7 @@ void FUN_18081bd90(longlong uiContext,char dataSource,char targetBuffer,undefine
       }
       LoopCounter = (int)ProcessingStatus + 1;
       ProcessingStatus = (ulonglong)LoopCounter;
-      plocalChar3 = plocalChar3 + 0x10;
+      dataPointer = dataPointer + 0x10;
     } while (LoopCounter < 0x20);
   }
 LAB_18081be5a:
@@ -370229,13 +370229,13 @@ undefined8 ValidateUIData(undefined8 uiContext,float *dataSource)
       validationFlag = *dataPointer;
       contextData = FUN_18076b7c0(dataPointer,&UNK_180986240);
       if (contextData == 0) {
-        contextData = FUN_18076b7c0(plocalChar3,&UNK_180986244);
+        contextData = FUN_18076b7c0(dataPointer,&UNK_180986244);
         if (contextData == 0) {
-          contextData = FUN_18076b7c0(plocalChar3,&UNK_180986248);
+          contextData = FUN_18076b7c0(dataPointer,&UNK_180986248);
           if (contextData == 0) {
-            contextData = FUN_18076b7c0(plocalChar3,&UNK_18098624c);
+            contextData = FUN_18076b7c0(dataPointer,&UNK_18098624c);
             if (contextData == 0) {
-              contextData = FUN_18076b7c0(plocalChar3,&UNK_180986250);
+              contextData = FUN_18076b7c0(dataPointer,&UNK_180986250);
               if (contextData == 0) {
                 return 0x13;
               }

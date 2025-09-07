@@ -79898,14 +79898,24 @@ void ManageMemoryPointerStateBB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909be0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 互斥体解锁函数BE0
+ * 
+ * 该函数负责解锁系统互斥体，如果解锁失败则抛出异常
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180909be0
+ * @note 这是一个互斥体解锁函数，用于解锁系统互斥体资源
+ */
+void UnlockSystemMutexBE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x30));
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemOperationStatusOffset));
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
   return;
 }
