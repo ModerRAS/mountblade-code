@@ -180225,7 +180225,7 @@ uint64_t * ManageCharacterCode(uint64_t *CharacterCode,uint64_t *CharacterCodeSi
   FunctionAddress = SystemBufferSize;
   ProcessingFlags = SystemStatusCode;
   StackValidationFlag28 = SystemChecksum;
-  EncodingConversionResult = FUN_18014f980(GlobalSystemMemoryBlock,&SystemRegisterFlagX8,&BufferOffset);
+  EncodingConversionResult = ProcessSystemEncodingConversion(GlobalSystemMemoryBlock,&SystemRegisterFlagX8,&BufferOffset);
   if ((char)SystemRegisterFlagX8 == '\0') {
     return;
   }
