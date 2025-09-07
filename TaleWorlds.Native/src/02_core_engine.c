@@ -272047,7 +272047,7 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
     CoreEngineValueA8 = &AdditionalParameter1;
     piStack_a0 = aiStackX_18;
     SystemFlagF = FUN_180239530;
-    SystemFlagG = (uint32_t *)&UNK_180239520;
+    SystemFlagG = (uint32_t *)&SystemFlagConstantPrimary;
     plStack_c0 = CharacterCode;
     pCoreEngineSignedValueE8 = (long long *                 MemoryAllocate(MemoryPoolManager,0x28,8,MemoryAllocationFlags,MemoryAllocationHandle,pCharacterCode9,&pCoreEngineSignedValueE8);
     *pCoreEngineSignedValueE8 = (long long)plStack_c0;
