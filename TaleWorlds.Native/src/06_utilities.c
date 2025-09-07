@@ -73,6 +73,14 @@
 #define AllBitsSet 0xffffffff                    // 全部位设置常量
 #define AllocationAlignmentMask 0xfffffff0       // 分配对齐掩码
 #define MemoryRegionMask 0xffc00000              // 内存区域掩码
+#define MemoryAlignmentPadding 0xf               // 内存对齐填充值
+#define EncryptionKeyOffset 0x20                  // 加密密钥偏移量
+#define ExceptionHandlerContextOffset 0x48         // 异常处理上下文偏移量
+#define ExceptionDataOffset 0x50                   // 异常数据偏移量
+#define StatusRegisterOffset 0x34                  // 状态寄存器偏移量
+#define ResourceDataOffset 0x20                     // 资源数据偏移量
+#define ArrayElementSize 0x18                       // 数组元素大小
+#define DataPointerOffset 0x20                     // 数据指针偏移量
 
 // 数据合并函数定义
 #define CONCAT44(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
@@ -10982,7 +10990,7 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
     // 遍历浮点数组并进行验证
     for (ArrayElementContext = *(uint64_t **)(exceptionHandlerContext + 0x48);
         (*(uint64_t **)(exceptionHandlerContext + 0x48) <= ArrayElementContext &&
-        (ArrayElementContext < *(uint64_t **)(exceptionHandlerContext + 0x48) + *(int32_t *)(exceptionHandlerContext + 0x50))); 
+        (ArrayElementContext < *(uint64_t **)(exceptionHandlerContext + ExceptionHandlerContextOffset) + *(int32_t *)(exceptionHandlerContext + ExceptionDataOffset))); 
         ArrayElementContext = ArrayElementContext + 1) {
       operationResult = ProcessFloatingPointDataValidationA0(*ArrayElementContext, inputFloatValue, 0);
       if ((int32_t)operationResult != 0) {
@@ -11070,7 +11078,7 @@ uint64_t ProcessBatchDataOperations(int64_t batchDataDescriptor)
     }
     
     // 设置数据指针数组
-    dataPointerArray = (uint32_t *)(batchDataDescriptor + 0x20 + (int64_t)*(int32_t *)(batchDataDescriptor + 0x18) * 4);
+    dataPointerArray = (uint32_t *)(batchDataDescriptor + DataPointerOffset + (int64_t)*(int32_t *)(batchDataDescriptor + 0x18) * 4);
     if (0 < *(int32_t *)(batchDataDescriptor + 0x18)) {
       baseAddress = (batchDataDescriptor + 0x20) - (int64_t)dataPointerArray;
       
@@ -11078,7 +11086,7 @@ uint64_t ProcessBatchDataOperations(int64_t batchDataDescriptor)
       do {
         operationResult = *(int32_t *)(baseAddress + (int64_t)dataPointerArray);
         if (operationResult != -1) {
-          exceptionHandlerContext = *(int64_t *)(contextPointer + 0x20) + (int64_t)operationResult * 0x18;
+          exceptionHandlerContext = *(int64_t *)(contextPointer + DataPointerOffset) + (int64_t)operationResult * ArrayElementSize;
           if ((exceptionHandlerContext == 0) || (exceptionHandlerContext = *(int64_t *)(exceptionHandlerContext + 8), exceptionHandlerContext == 0)) {
             return ResourceInvalidErrorCode;
           }
@@ -11133,13 +11141,13 @@ uint64_t ProcessUtilitySystemInitialization(void)
   if (systemContext == 0) {
     baseAddress = loopCounter;
   }
-  dataPointer = (DataWord *)(registryPointer + 0x20 + (int64_t)*(int *)(registryPointer + 0x18) * 4);
+  dataPointer = (DataWord *)(registryPointer + DataPointerOffset + (int64_t)*(int *)(registryPointer + 0x18) * 4);
   if (0 < *(int *)(registryPointer + 0x18)) {
     offsetDelta = (registryPointer + 0x20) - (int64_t)dataPointer;
     do {
       entryIndex = *(int *)(offsetDelta + (int64_t)dataPointer);
       if (entryIndex != -1) {
-        resourceHandle = *(int64_t *)(baseAddress + 0x20) + (int64_t)entryIndex * 0x18;
+        resourceHandle = *(int64_t *)(baseAddress + DataPointerOffset) + (int64_t)entryIndex * ArrayElementSize;
         if ((resourceHandle == 0) || (resourceHandle = *(int64_t *)(resourceHandle + 8), resourceHandle == 0)) {
           return ResourceInvalidErrorCode;
         }
@@ -11232,7 +11240,7 @@ uint64_t ValidateDataArray(int64_t arrayDescriptor)
     if (dataBuffer == 0) {
       AdjustedMemoryAddress = LoopCounter;
     }
-    ValidationDataContext = (uint32_t *)(arrayDescriptor + 0x20 + (int64_t)*(int *)(arrayDescriptor + 0x18) * 8);
+    ValidationDataContext = (uint32_t *)(arrayDescriptor + DataPointerOffset + (int64_t)*(int *)(arrayDescriptor + 0x18) * 8);
     DataComparisonContext = (int *)(arrayDescriptor + 0x20);
     if (0 < *(int *)(arrayDescriptor + 0x18)) {
       do {
@@ -11300,7 +11308,7 @@ DataBuffer ValidateUtilitySystemState(void)
   if (inputParameterAccumulator == 0) {
     SystemMemoryContext = DataAddressContext;
   }
-  DataValidationContext = (DataWord *)(StackFrameContext + 0x20 + (int64_t)*(int *)(StackFrameContext + 0x18) * 8);
+  DataValidationContext = (DataWord *)(StackFrameContext + DataPointerOffset + (int64_t)*(int *)(StackFrameContext + 0x18) * 8);
   DataOperationContext = (int *)(StackFrameContext + 0x20);
   if (0 < *(int *)(StackFrameContext + 0x18)) {
     do {
@@ -16064,7 +16072,7 @@ void InitializeResourceContext(int64_t contextDescriptor, DataBuffer initializat
       resourceBuffer[0] = 0;
     }
     resourceCount = (int64_t)*(int *)(contextDescriptor + 0x18);
-    allocationSize = resourceCount * 4 + 0xf;
+    allocationSize = resourceCount * 4 + MemoryAlignmentPadding;
     resourceDataPointer = contextDescriptor + 0x20 + resourceCount * 8;
     if (allocationSize <= (uint64_t)(resourceCount * 4)) {
       allocationSize = AllocationAlignmentMask;
@@ -17569,7 +17577,7 @@ int ProcessUtilityDataWithCallback(int64_t *callbackContext,int64_t dataBuffer,i
   processedBytes = ProcessSystemBufferDataA0(dataBuffer,dataSize,&SystemDataBufferB);
   operationResult = ProcessSystemBufferDataA0(dataBuffer + processedBytes,dataSize - processedBytes,&SystemDataBufferA);
   processedBytes = processedBytes + operationResult;
-  operationResult = ProcessSystemDataWithEncryption(processedBytes + dataBuffer,dataSize - processedBytes,(int)callbackContext[3] * 8 + 0x20);
+  operationResult = ProcessSystemDataWithEncryption(processedBytes + dataBuffer,dataSize - processedBytes,(int)callbackContext[3] * 8 + EncryptionKeyOffset);
   processedBytes = processedBytes + operationResult;
   operationResult = ProcessSystemBufferDataA0(processedBytes + dataBuffer,dataSize - processedBytes,&SystemDataBufferA);
   processedBytes = processedBytes + operationResult;
