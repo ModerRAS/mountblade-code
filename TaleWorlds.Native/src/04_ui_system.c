@@ -547,6 +547,61 @@ void* UIRenderQueue;
 void* UIFontDatabase;
 // UI动画系统
 void* UIAnimationSystem;
+
+// 新增UI系统函数宏定义
+// 原始函数名：FUN_18076b520 - 字符串比较索引函数
+#define GetUIStringCompareIndex FUN_18076b520
+
+// 原始函数名：UNK_18095af38 - UI字符串常量
+#define UIStringConstant UNK_18095af38
+
+// 原始函数名：FUN_180752f00 - UI上下文验证函数
+#define ValidateUIContext FUN_180752f00
+
+// 原始函数名：FUN_180786990 - UI状态检查函数
+#define CheckUIState FUN_180786990
+
+// 原始函数名：FUN_180758220 - UI数据处理函数
+#define ProcessUIDataInternal FUN_180758220
+
+// 原始函数名：func_0x000180753860 - UI内存释放函数
+#define FreeUIMemory func_0x000180753860
+
+// 原始函数名：ExecuteUIRenderTask - UI渲染任务执行函数
+#define ExecuteUIRenderTask ExecuteUIRenderTask
+
+// 原始函数名：FUN_18078cde0 - UI数据缓冲区处理函数
+#define ProcessUIDataBuffer FUN_18078cde0
+
+// 原始函数名：FUN_18070f060 - UI数据获取函数
+#define GetUIDataValue FUN_18070f060
+
+// 原始函数名：FUN_18070f198 - UI上下文数据处理函数
+#define ProcessUIContextData FUN_18070f198
+
+// 原始函数名：FUN_180712260 - UI目标缓冲区处理函数
+#define ProcessUITargetBuffer FUN_180712260
+
+// 原始函数名：FUN_18071c1b0 - UI数据源处理函数
+#define ProcessUIDataSource FUN_18071c1b0
+
+// 原始函数名：FUN_18071c23f - UI数据转换函数
+#define ConvertUIData FUN_18071c23f
+
+// 原始函数名：FUN_1807388f6 - UI系统配置函数
+#define ConfigureUISystem FUN_1807388f6
+
+// 原始函数名：FUN_1807389a0 - UI系统初始化函数
+#define InitializeUISystemInternal FUN_1807389a0
+
+// 原始函数名：FUN_180741b80 - UI上下文管理函数
+#define ManageUIContext FUN_180741b80
+
+// 原始函数名：FUN_180741c20 - UI状态管理函数
+#define ManageUIState FUN_180741c20
+
+// 原始函数名：FUN_180742070 - UI缓冲区管理函数
+#define ManageUIBuffer FUN_180742070
 // UI主题管理器
 void* UIThemeManager;
 // UI样式数据库
@@ -1079,6 +1134,18 @@ void* UIGestureCoordinates;
 
 // 原始函数名：FUN_18069d460 - UI系统渲染管道处理函数
 #define ProcessUIRenderPipelineHandler FUN_18069d460
+
+// 原始函数名：FUN_18069d940 - UI系统数据块复制函数
+#define CopyUIDataBlock FUN_18069d940
+
+// 原始函数名：FUN_18069d9e0 - UI系统数据缓冲区处理函数
+#define ProcessUIDataBuffer FUN_18069d9e0
+
+// 原始函数名：FUN_18069dc30 - UI系统内存数据传输函数
+#define TransferUIMemoryData FUN_18069dc30
+
+// 原始函数名：FUN_18069de90 - UI系统缓冲区清理函数
+#define CleanupUIBuffers FUN_18069de90
 
 // 原始函数名：FUN_1806782c0 - UI系统默认处理器函数
 #define ProcessUIDefaultHandler FUN_1806782c0
@@ -62883,99 +62950,132 @@ uint ProcessUIDataValidation(longlong uiContext,uint dataSource,undefined4 *targ
 
 
 
-uint FUN_180699e38(longlong uiContext,uint dataSource,undefined4 *targetBuffer)
+/**
+ * @brief 验证UI系统状态标志
+ * 
+ * 该函数负责验证UI系统的状态标志，检查系统状态的有效性
+ * 并根据验证结果设置相应的标志位。它通过迭代处理UI上下文数据，
+ * 确保UI资源数据的完整性和一致性。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，用于验证数据来源
+ * @param targetBuffer 目标缓冲区指针，用于存储验证结果
+ * @return uint 返回验证状态码，0表示验证成功，非0表示验证失败
+ * 
+ * @note 原始函数名: FUN_180699e38
+ * @note 该函数使用位运算处理状态标志，支持多轮验证
+ * @note 涉及UI上下文数据的深度处理和状态同步
+ */
+uint ValidateUISystemStateFlags(longlong uiContext, uint dataSource, undefined4 *targetBuffer)
 
 {
   byte isCharacterMatch;
   int validationResult;
-  ulonglong uVar3;
-  ulonglong uVar4;
-  uint uVar5;
-  uint uVar6;
-  bool bVar7;
+  ulonglong contextDataValue;
+  ulonglong contextDataOffset;
+  uint processingIndex;
+  uint statusFlags;
+  bool comparisonResult;
   
-  uVar6 = 0;
-  validationResult = ValidateUIResourceData(uiContext,0x80);
+  statusFlags = 0;
+  validationResult = ValidateUIResourceData(uiContext, 0x80);
   if (validationResult != 0) {
-    uVar6 = 0;
+    statusFlags = 0;
     validationResult = 3;
     do {
-      uVar5 = ((uint)((*(int *)(bufferData + 0x1c) + -1) * 0x80) >> 8) + 1;
+      processingIndex = ((uint)((*(int *)(bufferData + 0x1c) + -1) * 0x80) >> 8) + 1;
       if (*(int *)(bufferData + 0x18) < 0) {
         UpdateUIContext(uiContext);
       }
-      uVar4 = *(ulonglong *)(uiContext + 0x10);
-      uVar3 = (ulonglong)uVar5 << 0x38;
-      bVar7 = uVar3 <= uVar4;
-      if (bVar7) {
-        uVar5 = *(int *)(bufferData + 0x1c) - uVar5;
-        uVar4 = uVar4 - uVar3;
+      contextDataOffset = *(ulonglong *)(uiContext + 0x10);
+      contextDataValue = (ulonglong)processingIndex << 0x38;
+      comparisonResult = contextDataValue <= contextDataOffset;
+      if (comparisonResult) {
+        processingIndex = *(int *)(bufferData + 0x1c) - processingIndex;
+        contextDataOffset = contextDataOffset - contextDataValue;
       }
-      isCharacterMatch = (&g_uiStateTable)[uVar5];
+      isCharacterMatch = (&g_uiStateTable)[processingIndex];
       *(int *)(bufferData + 0x18) = *(int *)(bufferData + 0x18) - (uint)isCharacterMatch;
-      uVar6 = uVar6 | (uint)bVar7 << ((byte)validationResult & 0x1f);
-      *(ulonglong *)(uiContext + 0x10) = uVar4 << (isCharacterMatch & 0x3f);
+      statusFlags = statusFlags | (uint)comparisonResult << ((byte)validationResult & 0x1f);
+      *(ulonglong *)(uiContext + 0x10) = contextDataOffset << (isCharacterMatch & 0x3f);
       validationResult = validationResult + -1;
-      *(uint *)(uiContext + 0x1c) = uVar5 << (isCharacterMatch & 0x1f);
+      *(uint *)(uiContext + 0x1c) = processingIndex << (isCharacterMatch & 0x1f);
     } while (-1 < validationResult);
-    validationResult = ValidateUIResourceData(uiContext,0x80);
+    validationResult = ValidateUIResourceData(uiContext, 0x80);
     if (validationResult != 0) {
-      uVar6 = -uVar6;
+      statusFlags = -statusFlags;
     }
   }
-  if (uVar6 != dataSource) {
+  if (statusFlags != dataSource) {
     *targetBuffer = 1;
   }
-  return uVar6;
+  return statusFlags;
 }
 
 
 
-uint FUN_180699e5f(void)
+// 原始函数名: FUN_180699e5f - UI系统状态同步器
+#define SynchronizeUISystemState FUN_180699e5f
+
+/**
+ * @brief 同步UI系统状态
+ * 
+ * 该函数负责同步UI系统的状态，确保UI上下文数据的一致性。
+ * 它通过处理信号量和状态标志，协调UI系统的各个组件，
+ * 维护系统的稳定运行。
+ * 
+ * @return uint 返回同步状态码，0表示同步成功，非0表示同步失败
+ * 
+ * @note 原始函数名: FUN_180699e5f
+ * @note 该函数使用信号量机制处理状态同步
+ * @note 涉及UI上下文数据的深度处理和状态协调
+ * @note 使用寄存器变量进行高效的状态管理
+ */
+uint SynchronizeUISystemState(void)
 
 {
   byte isCharacterMatch;
   ulonglong semaphoreHandle;
-  ulonglong uVar3;
-  uint uVar4;
-  uint uVar5;
-  uint unaff_ESI;
-  longlong unaff_RDI;
-  undefined4 *unaff_R12;
-  uint unaff_R13D;
-  uint uVar6;
-  int iVar7;
+  ulonglong contextDataValue;
+  uint processingIndex;
+  uint syncStatus;
+  uint iterationCount;
+  longlong uiContext;
+  undefined4 *statusBuffer;
+  uint expectedStatus;
+  uint syncResult;
+  int validationLoop;
   
-  iVar7 = unaff_ESI + 3;
-  uVar6 = unaff_ESI;
+  validationLoop = iterationCount + 3;
+  syncResult = iterationCount;
   do {
-    uVar4 = ((uint)((*(int *)(unaff_RDI + 0x1c) + -1) * 0x80) >> 8) + 1;
-    if (*(int *)(unaff_RDI + 0x18) < (int)unaff_ESI) {
+    processingIndex = ((uint)((*(int *)(uiContext + 0x1c) + -1) * 0x80) >> 8) + 1;
+    if (*(int *)(uiContext + 0x18) < (int)iterationCount) {
       UpdateUIContext();
     }
-    uVar3 = *(ulonglong *)(unaff_RDI + 0x10);
-    semaphoreHandle = (ulonglong)uVar4;
-    uVar5 = unaff_ESI;
-    if (semaphoreHandle << 0x38 <= uVar3) {
-      uVar5 = 1;
-      uVar4 = *(int *)(unaff_RDI + 0x1c) - uVar4;
-      uVar3 = uVar3 - (semaphoreHandle << 0x38);
+    contextDataValue = *(ulonglong *)(uiContext + 0x10);
+    semaphoreHandle = (ulonglong)processingIndex;
+    syncStatus = iterationCount;
+    if (semaphoreHandle << 0x38 <= contextDataValue) {
+      syncStatus = 1;
+      processingIndex = *(int *)(uiContext + 0x1c) - processingIndex;
+      contextDataValue = contextDataValue - (semaphoreHandle << 0x38);
     }
-    isCharacterMatch = (&g_uiStateTable)[uVar4];
-    *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) - (uint)isCharacterMatch;
-    uVar6 = uVar6 | uVar5 << ((byte)iVar7 & 0x1f);
-    *(ulonglong *)(unaff_RDI + 0x10) = uVar3 << (isCharacterMatch & 0x3f);
-    iVar7 = iVar7 + -1;
-    *(uint *)(unaff_RDI + 0x1c) = uVar4 << (isCharacterMatch & 0x1f);
-  } while (-1 < iVar7);
-  iVar7 = ValidateUIResourceData();
-  if (iVar7 != 0) {
-    uVar6 = -uVar6;
+    isCharacterMatch = (&g_uiStateTable)[processingIndex];
+    *(int *)(uiContext + 0x18) = *(int *)(uiContext + 0x18) - (uint)isCharacterMatch;
+    syncResult = syncResult | syncStatus << ((byte)validationLoop & 0x1f);
+    *(ulonglong *)(uiContext + 0x10) = contextDataValue << (isCharacterMatch & 0x3f);
+    validationLoop = validationLoop + -1;
+    *(uint *)(uiContext + 0x1c) = processingIndex << (isCharacterMatch & 0x1f);
+  } while (-1 < validationLoop);
+  validationLoop = ValidateUIResourceData();
+  if (validationLoop != 0) {
+    syncResult = -syncResult;
   }
-  if (uVar6 != unaff_R13D) {
-    *unaff_R12 = 1;
+  if (syncResult != expectedStatus) {
+    *statusBuffer = 1;
   }
-  return uVar6;
+  return syncResult;
 }
 
 
@@ -66295,9 +66395,23 @@ void ProcessUIEventDataExtended(longlong UiContext,longlong DataSource,undefined
 
 
 
- void FUN_18069d9e0(longlong uiContext,undefined1 *dataSource,int targetBuffer,longlong bufferSize,int resultPointer,
-void FUN_18069d9e0(longlong uiContext,undefined1 *dataSource,int targetBuffer,longlong bufferSize,int resultPointer,
-                  code *param_6)
+ /**
+ * @brief UI系统数据缓冲区处理函数
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区，包括数据复制、缓冲区管理和内存操作。
+ * 主要用于UI组件之间的数据传输和缓冲区维护。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 回调函数指针
+ * 
+ * @note 原始函数名：FUN_18069d9e0
+ */
+void ProcessUIDataBuffer(longlong uiContext,undefined1 *dataSource,int targetBuffer,longlong bufferSize,int resultPointer,
+                        code *param_6)
 
 {
   ushort functionResult;
@@ -67288,14 +67402,18 @@ void FUN_18069e7c0(undefined4 uiContext,longlong dataSource,longlong targetBuffe
 
 
 
- void FUN_18069ec52(void)
-void FUN_18069ec52(void)
-
+ /**
+ * 执行UI渲染任务启动函数
+ * 启动UI渲染任务执行流程，该函数不会返回
+ * 
+ * 原始函数名: FUN_18069ec52
+ */
+void ExecuteUIRenderTaskStartup(void)
 {
-  ulonglong in_stack_000000e8;
+  ulonglong renderTaskParameter;
   
-                    // WARNING: Subroutine does not return
-  ExecuteUIRenderTask(in_stack_000000e8 ^ (ulonglong)&stack0x00000000);
+  // WARNING: 此函数不会返回
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
