@@ -101071,8 +101071,19 @@ void SetExceptionDataTableF70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ff80(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 系统操作迭代处理函数
+ * 
+ * 该函数负责迭代处理系统操作，遍历内存块并执行相应的系统操作。
+ * 它会遍历数据上下文中的内存块，对每个内存块执行系统操作处理。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ff80
+ * @note 这是一个系统操作迭代处理函数，用于批量处理系统操作
+ */
+void ProcessSystemOperationsIteratively(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t exceptionHandlerContext;
   int64_t *dataContext;
