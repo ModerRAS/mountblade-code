@@ -201440,8 +201440,20 @@ FUN_180179b7a:
 
 
 
-79c00(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,uint64_t Utf16EndPointer,
-void FUN_180179c00(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,uint64_t Utf16EndPointer,
+/**
+ * @brief 转换系统字符数据
+ * 
+ * 该函数负责转换系统中的字符数据，包括编码转换和数据格式化
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param CharacterCodeSize 字符编码数据大小
+ * @param Utf8InputPointer UTF8输入数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外的转换参数
+ * 
+ * @note 原始函数名：FUN_180179c00
+ */
+void ConvertSystemCharacterData(long long CharacterCode, uint64_t CharacterCodeSize, long long Utf8InputPointer, uint64_t Utf16EndPointer,
                   unsigned long long *AdditionalParameter1
 {
   long long PrimaryDataSize;
@@ -201469,8 +201481,20 @@ void FUN_180179c00(long long CharacterCode,uint64_t CharacterCodeSize,long long 
 
 
 
-79cd0(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,char Utf16EndPointer,
-void FUN_180179cd0(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,char Utf16EndPointer,
+/**
+ * @brief 转换系统字符数据并进行变换
+ * 
+ * 该函数负责转换系统中的字符数据并进行相应的变换操作
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param CharacterCodeSize 字符编码数据大小
+ * @param Utf8InputPointer UTF8输入数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外的变换参数
+ * 
+ * @note 原始函数名：FUN_180179cd0
+ */
+void TransformSystemCharacterData(long long CharacterCode, uint64_t CharacterCodeSize, long long Utf8InputPointer, char Utf16EndPointer,
                   uint32_t *AdditionalParameter1
 {
   uint32_t Utf16Char;
