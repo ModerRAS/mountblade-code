@@ -17820,16 +17820,16 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
     calculatedOffset = (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x288))(exceptionHandlerContextPointer, &inputDataWord, 1);
     if (calculatedOffset == 0) {
       // 颜色分量提取和处理
-      stackRedComponentHigh = inputComponent2 >> 0x18;
-      blueAlphaComponents = inputComponent3 >> 0x18;
-      stackGreenComponentHigh = inputComponent1 >> 0x10;
-      colorDataWord = inputComponent3 >> 0x10 & 0xff;
-      stackBlueComponentMid = inputComponent3 >> 8 & 0xff;
-      stackBlueComponentLow = inputComponent3 & 0xff;
-      stackGreenComponentMid = inputComponent2 >> 0x10 & 0xff;
-      stackGreenComponentLow = inputComponent2 >> 8 & 0xff;
-      stackGreenComponentLowWord = inputComponent2 & 0xff;
-      stackBlueAlphaHigh = inputComponent1 & 0xffff;
+      stackRedComponentHigh = inputGreenComponent >> 0x18;
+      blueAlphaComponents = inputBlueComponent >> 0x18;
+      stackGreenComponentHigh = inputRedComponent >> 0x10;
+      colorDataWord = inputBlueComponent >> 0x10 & 0xff;
+      stackBlueComponentMid = inputBlueComponent >> 8 & 0xff;
+      stackBlueComponentLow = inputBlueComponent & 0xff;
+      stackGreenComponentMid = inputGreenComponent >> 0x10 & 0xff;
+      stackGreenComponentLow = inputGreenComponent >> 8 & 0xff;
+      stackGreenComponentLowWord = inputGreenComponent & 0xff;
+      stackBlueAlphaHigh = inputRedComponent & 0xffff;
       
       // 初始化系统缓冲区
       InitializeSystemBufferA0(systemBufferA, 0x27, &SystemBufferConfiguration, inputDataWord);
@@ -17911,8 +17911,8 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
   uint colorGreenLow;
   uint colorBlueMid;
   uint colorAlphaHigh;
-  uint colorBlueLow2;
-  uint colorBlueMid2;
+  uint colorBlueComponentLow;
+  uint colorBlueComponentMid;
   uint colorBlueHigh;
   uint alphaComponent;
   DataWord colorDataWord;
@@ -20158,15 +20158,15 @@ int ProcessStringData(int64_t stringContext, int64_t dataBuffer, int bufferSize)
 
 {
   DataWord formatFlag;
-  int processedBytes1;
-  int processedBytes2;
+  int encryptedBytesCount;
+  int processedBytesCount;
   
   formatFlag = *(DataWord *)(stringContext + 0x14);
-  processedBytes1 = EncryptSystemData(dataBuffer,bufferSize,*(DataWord *)(stringContext + ExceptionHandlerCallbackOffset10));
-  processedBytes2 = ProcessSystemBufferDataA0(dataBuffer + processedBytes1,bufferSize - processedBytes1,&SystemDataBufferA);
-  processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = ProcessSystemDataWithValidation(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag);
-  return processedBytes2 + processedBytes1;
+  encryptedBytesCount = EncryptSystemData(dataBuffer,bufferSize,*(DataWord *)(stringContext + ExceptionHandlerCallbackOffset10));
+  processedBytesCount = ProcessSystemBufferDataA0(dataBuffer + encryptedBytesCount,bufferSize - encryptedBytesCount,&SystemDataBufferA);
+  encryptedBytesCount = encryptedBytesCount + processedBytesCount;
+  processedBytesCount = ProcessSystemDataWithValidation(encryptedBytesCount + dataBuffer,bufferSize - encryptedBytesCount,formatFlag);
+  return processedBytesCount + encryptedBytesCount;
 }
 
 
@@ -20187,15 +20187,15 @@ int ProcessEncodedData(int64_t encodingContext, int64_t dataBuffer, int bufferSi
 
 {
   DataBuffer encodingKey;
-  int processedBytes1;
-  int processedBytes2;
+  int initialProcessedBytes;
+  int secondaryProcessedBytes;
   
   encodingKey = *(DataBuffer *)(encodingContext + ExceptionHandlerCallbackOffset10);
-  processedBytes1 = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&DataProcessingStatusTableA0);
-  processedBytes2 = ProcessSystemBufferDataA0(dataBuffer + processedBytes1,bufferSize - processedBytes1,&SystemDataBufferA);
-  processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = EncryptData(processedBytes1 + dataBuffer,bufferSize - processedBytes1,encodingKey);
-  return processedBytes2 + processedBytes1;
+  initialProcessedBytes = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&DataProcessingStatusTableA0);
+  secondaryProcessedBytes = ProcessSystemBufferDataA0(dataBuffer + initialProcessedBytes,bufferSize - initialProcessedBytes,&SystemDataBufferA);
+  initialProcessedBytes = initialProcessedBytes + secondaryProcessedBytes;
+  secondaryProcessedBytes = EncryptData(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,encodingKey);
+  return secondaryProcessedBytes + initialProcessedBytes;
 }
 
 
@@ -20215,22 +20215,22 @@ int ProcessEncodedData(int64_t encodingContext, int64_t dataBuffer, int bufferSi
 int ProcessComplexData(int64_t complexContext, int64_t dataBuffer, int bufferSize)
 
 {
-  DataWord formatFlag1;
-  DataWord formatFlag2;
-  int processedBytes1;
-  int processedBytes2;
+  DataWord primaryFormatFlag;
+  DataWord secondaryFormatFlag;
+  int initialProcessedBytes;
+  int secondaryProcessedBytes;
   
-  formatFlag1 = *(DataWord *)(complexContext + 0x14);
-  formatFlag2 = *(DataWord *)(complexContext + ExceptionHandlerCallbackOffset10);
-  processedBytes1 = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&DataProcessingStatusTableA1);
-  processedBytes2 = ProcessSystemBufferDataA0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&SystemDataBufferA);
-  processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = EncryptSystemData(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag2);
-  processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = ProcessSystemBufferDataA0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&SystemDataBufferA);
-  processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = ProcessSystemDataWithValidation(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag1);
-  return processedBytes2 + processedBytes1;
+  primaryFormatFlag = *(DataWord *)(complexContext + 0x14);
+  secondaryFormatFlag = *(DataWord *)(complexContext + ExceptionHandlerCallbackOffset10);
+  initialProcessedBytes = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&DataProcessingStatusTableA1);
+  secondaryProcessedBytes = ProcessSystemBufferDataA0(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,&SystemDataBufferA);
+  initialProcessedBytes = initialProcessedBytes + secondaryProcessedBytes;
+  secondaryProcessedBytes = EncryptSystemData(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,secondaryFormatFlag);
+  initialProcessedBytes = initialProcessedBytes + secondaryProcessedBytes;
+  secondaryProcessedBytes = ProcessSystemBufferDataA0(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,&SystemDataBufferA);
+  initialProcessedBytes = initialProcessedBytes + secondaryProcessedBytes;
+  secondaryProcessedBytes = ProcessSystemDataWithValidation(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,primaryFormatFlag);
+  return secondaryProcessedBytes + initialProcessedBytes;
 }
 
 
@@ -20619,7 +20619,7 @@ void ProcessFloatingPointDataA0(void)
   int ValidationErrorCode;
   DataWord SystemRegisterEBX;
   int64_t SystemStackFramePointer;
-  int SystemRegisterR12D;
+  int SystemRegisterR12;
   int64_t DataContextPointer;
   char SystemRegisterR15B;
   float FloatResultA;
@@ -21268,8 +21268,8 @@ ProcessDataSecurityValidation:
   DataWord loopCounter;
   DataWord systemDataBuffer1;
   char statusChar;
-  int inputParameter3;
-  uint systemDataBuffer4;
+  int validationResult;
+  uint systemDataBufferSize;
   DataBuffer *inputAccumulatorRegister;
   int64_t exceptionHandlerContext5;
   DataBuffer systemDataBuffer6;
@@ -35343,14 +35343,14 @@ uint64_t ProcessDataWithPointerOperation(int64_t operationBase,int64_t *dataBuff
   DataWord blueAlphaComponents;
   DataWord colorPackedData;
   DataWord inputDataWord;
-  DataWord inputComponent1;
+  DataWord inputAlphaComponent;
   ByteFlag systemConfigBuffer [40];
   
   validationStatusPointer = (DataWord *)ExecuteSystemResourceOperation();
   blueAlphaComponents = *validationStatusPointer;
   colorPackedData = validationStatusPointer[1];
   inputDataWord = validationStatusPointer[2];
-  inputComponent1 = validationStatusPointer[3];
+  inputAlphaComponent = validationStatusPointer[3];
   memoryBaseAddress = ExecuteDataBufferOperation(dataBuffer,systemConfigBuffer,0,0x4c525443,0);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;

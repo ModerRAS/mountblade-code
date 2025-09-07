@@ -4098,6 +4098,64 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 // 原始函数名：FUN_180293190 - 系统内存块处理和验证函数
 #define ProcessSystemMemoryBlockAndValidation FUN_180293190
 
+/**
+ * @brief 处理系统字符编码和浮点数据
+ * 
+ * 该函数负责处理系统中的字符编码转换和浮点数据运算。
+ * 主要功能包括：
+ * - 字符编码的转换和处理
+ * - 浮点数据的计算和验证
+ * - 内存分配和数据结构管理
+ * - 系统状态的监控和调整
+ * 
+ * @param CharacterCode 字符编码参数
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_1801299d3
+ */
+#define ProcessSystemCharacterEncodingAndFloatData FUN_1801299d3
+
+/**
+ * @brief 处理系统字符编码
+ * 
+ * 该函数负责处理系统中的字符编码转换和数据管理。
+ * 主要功能包括：
+ * - 字符编码的转换和验证
+ * - 内存分配和数据结构管理
+ * - 系统状态的监控和调整
+ * - 字符数据的处理和存储
+ * 
+ * @param CharacterCode 字符编码参数
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_1801299e9
+ */
+#define ProcessSystemCharacterEncoding FUN_1801299e9
+
+// 原始函数名：FUN_180129dbb - 系统数据清理函数
+#define CleanupSystemData FUN_180129dbb
+
+// 原始函数名：FUN_180129e9e - 系统字符编码处理函数
+#define ProcessCharacterEncodingData FUN_180129e9e
+
+// 原始函数名：FUN_18012a023 - 系统字符编码和内存处理函数
+#define ProcessCharacterEncodingAndMemory FUN_18012a023
+
+// 原始函数名：FUN_18012ae5a - 系统浮点数据转换函数
+#define ConvertSystemFloatData FUN_18012ae5a
+
+// 原始函数名：FUN_18012ce2e - 系统资源清理函数
+#define CleanupSystemResources FUN_18012ce2e
+
+// 原始函数名：FUN_18012ce5d - 系统内存管理函数
+#define ManageSystemMemory FUN_18012ce5d
+
+// 原始函数名：FUN_18012cf49 - 系统字符编码验证函数
+#define ValidateCharacterEncoding FUN_18012cf49
+
 // 原始函数名：FUN_180291c70 - 系统数据表处理函数
 #define ProcessSystemDataTable FUN_180291c70
 
@@ -26925,7 +26983,7 @@ void ProcessSystemEventQueue(long long *eventQueuePointer{
  * 该函数负责清理系统资源，包括网络连接、内存管理器和事件处理器
  * 执行系统关闭时的资源释放和清理工作
  * 
- 1800578a0，CleanupSystemResources
+ * @note 原始函数名：FUN_1800578a0
  */
 void CleanupSystemResources(void{
   int *referenceCountPointer;
@@ -36002,7 +36060,7 @@ void SynchronizeDataStructures(long long CharacterCode,long long Utf8BufferSize
   unsigned long long LoopCounter;
   uint32_t MemoryBlockCount;
   uint64_t SystemValue2b8;
-  long long lStack_2a8;
+  long long StackLongValue2a8;
   uint64_t SystemStackOffset2A0;
   long long SystemEventFlag8 [4];
   void *pMemoryCopyBuffer;
@@ -44276,7 +44334,7 @@ uint64_t ProcessCoreEngineSystemConfiguration(long long CharacterCode,long long 
   uint32_t StackVariable70;
   uint32_t SystemUnsignedValue6C;
   uint16_t StackUnsigned68;
-  uint8_t uStack_66;
+  uint8_t StackUnsignedValue66;
   uint32_t SystemUnsignedValue64;
   uint8_t StackUnsigned60;
   uint64_t BufferOffset;
@@ -49257,7 +49315,7 @@ float *ProcessFloatDataBoundaryCalculation(float *Utf8InputBuffer
           MatrixElementK = Utf8InputBuffer[0x9f];
         }
         *(unsigned long long *)pSystemContextPrimaryFloat = CONCAT44(MatrixElementJ,MatrixElementI);
-        *(unsigned long long *)(CharacterCode + 0x9f) = CONCAT44(uStack_9c,MatrixElementK);
+        *(unsigned long long *)(CharacterCode + 0x9f) = CONCAT44(StackUnsignedValue9c,MatrixElementK);
         MatrixElementE = *pFloatVariable7;
         if (MatrixElementE < Utf8InputBuffer[0xa1]) {
           MatrixElementE = Utf8InputBuffer[0xa1];
@@ -49283,7 +49341,7 @@ float *ProcessFloatDataBoundaryCalculation(float *Utf8InputBuffer
       StackUnsigned60 = *(void *)(CharacterCode + 0x4e);
       pBufferOffset = *(void **)(CharacterCode + 0x50);
       StackFloat50 = Utf8InputBuffer[0x52];
-      fStack_4c = Utf8InputBuffer[0x53];
+      StackFloatValue4c = Utf8InputBuffer[0x53];
       QuaternaryStackPointer8 = *(void **)(CharacterCode + 0x54);
       SystemPriorityLevel = *(void *)(CharacterCode + 0x56);
       InitializeStackUnsignedData(&StackUnsigned78);
@@ -49296,7 +49354,7 @@ float *ProcessFloatDataBoundaryCalculation(float *Utf8InputBuffer
         StackUnsigned60 = *(void *)(CharacterCode + 0x4e);
         pBufferOffset = *(void **)(CharacterCode + 0x50);
         StackFloat50 = Utf8InputBuffer[0x52];
-        fStack_4c = Utf8InputBuffer[0x53];
+        StackFloatValue4c = Utf8InputBuffer[0x53];
         QuaternaryStackPointer8 = *(void **)(CharacterCode + 0x54);
         SystemPriorityLevel = *(void *)(CharacterCode + 0x56);
         ConvertAngleToRadians(&StackUnsigned78,0x3fc90fdb);
@@ -49307,7 +49365,7 @@ float *ProcessFloatDataBoundaryCalculation(float *Utf8InputBuffer
         StackUnsigned60 = *(void *)(CharacterCode + 0x4e);
         pBufferOffset = *(void **)(CharacterCode + 0x50);
         StackFloat50 = Utf8InputBuffer[0x52];
-        fStack_4c = Utf8InputBuffer[0x53];
+        StackFloatValue4c = Utf8InputBuffer[0x53];
         QuaternaryStackPointer8 = *(void **)(CharacterCode + 0x54);
         SystemPriorityLevel = *(void *)(CharacterCode + 0x56);
         NormalizeFloatValue(&StackUnsigned78);
@@ -200013,8 +200071,22 @@ uint64_t * FUN_1801754b0(uint64_t *Utf8InputBuffer
 
 
 
+/**
+ * @brief 初始化UTF-8输入缓冲区并处理内存分配
+ * 
+ * 该函数负责初始化UTF-8输入缓冲区，设置系统上下文缓冲区，
+ * 并根据缓冲区大小条件释放内存。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 字符代码指针
+ * 
+ * @note 原始函数名：FUN_180175ee0
+ */
 uint64_t *
-FUN_180175ee0(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+InitializeUtf8InputBuffer(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   *Utf8InputBuffer = &SystemContextBufferPrimary;
   if ((Utf8BufferSize & 1) != 0) {
@@ -200070,7 +200142,17 @@ long long InitializeSystemDataTemplate(uint64_t CharacterCode,long long Utf8Buff
 
 
 
-76060(long long CharacterCodevoid FUN_180176060(long long CharacterCode
+/**
+ * @brief 处理系统互斥锁和线程同步操作
+ * 
+ * 该函数负责管理系统互斥锁的加锁和解锁操作，
+ * 确保线程安全地访问共享资源。
+ * 
+ * @param CharacterCode 字符代码参数，用于标识系统上下文
+ * 
+ * @note 原始函数名：FUN_180176060
+ */
+void ProcessSystemMutexLock(long long CharacterCode)
 {
   int LockResult;
   
@@ -200090,7 +200172,20 @@ long long InitializeSystemDataTemplate(uint64_t CharacterCode,long long Utf8Buff
 
 
 
-760d0(long long CharacterCode,long long *Utf8InputBufferSize,uint32_t Utf8SourcePointer,int Utf16EndPointervoid FUN_1801760d0(long long CharacterCode,long long *Utf8InputBufferSize,uint32_t Utf8SourcePointer,int Utf16EndPointer
+/**
+ * @brief 处理UTF-8输入缓冲区和编码转换
+ * 
+ * 该函数负责处理UTF-8输入缓冲区的管理和编码转换操作，
+ * 包括系统状态检查、缓冲区验证和内存管理。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_1801760d0
+ */
+void ProcessUtf8InputBufferAndEncoding(long long CharacterCode,long long *Utf8InputBufferSize,uint32_t Utf8SourcePointer,int Utf16EndPointer
 {
   uint64_t *StatusBuffer;
   void *SystemContext;
@@ -200126,12 +200221,12 @@ long long InitializeSystemDataTemplate(uint64_t CharacterCode,long long Utf8Buff
   }
   if ((CharacterCodePointer == StatusBuffer) || (iStack_4c < *(int *)(CharacterCodePointer + 4))) {
     piStack_88 = aiStack_78;
-    CharacterCodePointer = (void *)FUN_180179aa0(StatusBuffer,aStackUnsigned68,iStack_4c,CharacterCodePointer);
+    CharacterCodePointer = (void *)ProcessSystemStatusBuffer(StatusBuffer,aStackUnsigned68,iStack_4c,CharacterCodePointer);
     CharacterCodePointer = (void *)*Utf8InputBufferPointer;
   }
   if (CharacterCodePointer[5] == 0) {
     if (validationResult != 0) {
-      FUN_180626ee0(SystemEventCallbackPointerPrimary);
+      ProcessSystemEventCallback(SystemEventCallbackPointerPrimary);
     }
     validationResult = (**(code **)(**(long long **)(CharacterCode + 0xe8) + 0x118)                      (*(long long **)(CharacterCode + 0xe8),aiStack_60,&CoreEngineSignedValue70);
     if ((CoreEngineSignedValue70 == 0) || (validationResult != 0)) {
