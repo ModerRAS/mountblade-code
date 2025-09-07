@@ -6952,11 +6952,11 @@ int UtilityDataProcessingErrorCode;
 uint8_t UtilityCreateMemoryHeap;
 // 工具系统内存堆数据
 uint8_t UtilityHeapPrimaryData;
-uint8_t UtilityHeapData2;
-uint8_t UtilityHeapData3;
-uint8_t UtilityHeapPtr1;
-uint8_t UtilityHeapData4;
-uint8_t UtilityHeapData5;
+uint8_t UtilityHeapSecondaryData;
+uint8_t UtilityHeapTertiaryData;
+uint8_t UtilityHeapPrimaryPointer;
+uint8_t UtilityHeapQuaternaryData;
+uint8_t UtilityHeapQuinaryData;
 
 // 函数: uint8_t UtilityDestroyMemoryHeap;
 // 
