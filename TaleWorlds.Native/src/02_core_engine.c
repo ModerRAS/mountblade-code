@@ -237190,7 +237190,7 @@ void FUN_18020a890(uint64_t SystemContextPointer,long long Utf8BufferSize,long l
     __0__basic_iostream_DU__char_traits_D_std___std__QEAA_PEAV__basic_streambuf_DU__char_traits_D_std___1__Z
               (apuStack_418,aSystemPriorityLevel0,0);
     *(void **)((long long)apuStack_418 + (long long)*(int *)(apuStack_418[0] + 4)) =
-         &UNK_180a03ad8;
+         &SystemStringTertiaryTemplate;
     *(int *)((long long)apuStack_418 + (long long)*(int *)(apuStack_418[0] + 4) + -4) =
          *(int *)(apuStack_418[0] + 4) + -0xb8;
     FUN_18009ec20(aSystemPriorityLevel0);
@@ -237314,7 +237314,7 @@ LAB_18020ada0:
     }
     plStack_490 = alStack_360;
     *(void **)((long long)apuStack_418 + (long long)*(int *)(apuStack_418[0] + 4)) =
-         &UNK_180a03ad8;
+         &SystemStringTertiaryTemplate;
     *(int *)((long long)apuStack_418 + (long long)*(int *)(apuStack_418[0] + 4) + -4) =
          *(int *)(apuStack_418[0] + 4) + -0xb8;
     ProcessSystemDataAndCleanupSecondary(aSystemPriorityLevel0);
@@ -237354,7 +237354,7 @@ LAB_18020ada0:
   StatusBuffer4[0xc] = TertiaryProcessingStatusFlag;
   StatusBuffer4[0xd] = (unsigned long long)(-(int)TertiaryProcessingStatusFlag & 7) + (long long)TertiaryProcessingStatusFlag;
   StatusBuffer4[0xe] = StatusBuffer4 + 0x60f;
-  StatusBuffer4[0x60f] = &UNK_180059b80;
+  StatusBuffer4[0x60f] = &SystemStatusDataTemplate;
   StatusBuffer4[0x610] = InitializeSystemMemoryPool;
   TertiaryProcessingStatusFlag = (void *)Utf16EndPointer[1];
   plStack_490 = StatusBuffer4;

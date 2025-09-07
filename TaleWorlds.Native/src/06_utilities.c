@@ -20278,7 +20278,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
     *(ByteFlag *)(destinationIndexRegister + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(StackParameter220 ^ (uint64_t)&securityBuffer);
+  ExecuteSecurityCheck(securityParameter ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -20298,7 +20298,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
     *(ByteFlag *)(destinationIndexRegister + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(StackParameter220 ^ (uint64_t)&securityBuffer);
+  ExecuteSecurityCheck(securityParameter ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -20423,7 +20423,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               StackDataWordR = StackDataWordA;
               securityCheckValueA0 = 0;
               dataPointer = (**(FunctionPointer**)*StackPointerBufferB)(StackPointerBufferB);
-              uStack_e8 = *(DataBuffer *)(*(int64_t *)(dataPointer + 0x90) + bufferPointer * 8);
+              StackDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + 0x90) + bufferPointer * 8);
               StackByteFlagA = 0;
               if (*(int *)(calculatedOffset + 0x58) < 1) {
                 exceptionDataBuffer2 = &SystemResourceDataBuffer;
@@ -60088,7 +60088,22 @@ void ExecuteValidatorAtOffset18(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907100(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量18和10处的验证器
+ * 
+ * 该函数从数据缓冲区的偏移量28处获取上下文指针，
+ * 然后分别从偏移量18和10处获取验证器指针并执行。
+ * 
+ * @param operationBase 系统句柄
+ * @param dataBuffer 数据缓冲区，包含验证器指针
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于系统验证和清理操作
+ * @warning 确保验证器指针有效，避免空指针访问
+ * @see ExecuteValidatorAtOffset10, ExecuteValidatorAtOffset18
+ */
+void ExecuteValidatorAtOffset18And10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
