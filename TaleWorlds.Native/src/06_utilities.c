@@ -44713,6 +44713,16 @@ void Unwind_180903ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 设置临时异常处理器并终止系统
+ * 
+ * 该函数设置临时异常处理器，并在特定条件下终止系统运行。
+ * 这是异常处理清理流程的一部分，确保系统在异常情况下能够安全终止。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
 void Unwind_180903cc0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -60027,6 +60037,16 @@ void Unwind_1809074d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理资源引用计数和内存管理
+ * 
+ * 该函数负责清理资源的引用计数，管理内存块的释放。
+ * 当资源引用计数为0时，触发异常处理。这是系统资源清理的重要组成部分。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
 void Unwind_1809074e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -79784,6 +79804,15 @@ void Unwind_18090d410(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 资源引用计数管理器D0
+ * 
+ * 该函数用于管理资源的引用计数，使用0x350偏移量
+ * 主要用于内存管理和资源清理
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ */
 void Unwind_18090d420(DataBuffer operationBase,int64_t dataBuffer)
 
 {
