@@ -100061,13 +100061,13 @@ int ValidateBufferAllocationStatus(uint64_t SystemContextPointer,int Utf8BufferS
 // 系统无符号数据处理函数
 uint32_t ProcessSystemUnsignedData(uint64_t SystemContextPointer,uint32_t Utf8BufferSize
 {
-  uint32_t in_R10D;
-  bool in_ZF;
-  char in_SF;
-  char in_OF;
+  uint32_t RegisterR10D;
+  bool ZeroFlag;
+  char SignFlag;
+  char OverflowFlag;
   
-  if (!in_ZF && in_OF == in_SF) {
-    Utf8BufferSize = in_R10D;
+  if (!ZeroFlag && OverflowFlag == SignFlag) {
+    Utf8BufferSize = RegisterR10D;
   }
   return Utf8BufferSize;
 }
