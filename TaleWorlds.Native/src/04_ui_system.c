@@ -182,6 +182,7 @@ typedef enum {
 #define localChar9 SystemStatus
 #define localFloat20 AnimationTime
 #define localFloat21 AnimationDelta
+#define bVar3 IsTransformationValid
 #define ProcessUIRenderOperation FUN_180690580
 #define ProcessUIDataTransfer ProcessUIComponentBlend
 #define InitializeUILayoutSystem FUN_180707a56
@@ -1281,6 +1282,12 @@ void* UIGestureCoordinates;
 #define UIFunctionResultTableI UNK_180954840
 #define UIFunctionResultTableJ UNK_180954848
 #define UIFunctionResultTableK UNK_1809535d4
+#define UIFunctionDispatchTable UNK_180954ae0
+#define UIFunctionResultTableL UNK_180954814
+#define UIFunctionResultTableM UNK_180954828
+#define UIFunctionResultTableN UNK_180954818
+#define UIFunctionResultTableO UNK_1809547f0
+#define UIFloatDataTable UNK_180953730
 #define UIFunctionResultTableL UNK_1809535b8
 
  // UI系统验证数据表宏定义
@@ -87586,7 +87593,7 @@ void FUN_18071c7f0(longlong uiContext,undefined8 dataSource,int targetBuffer,int
   plocalChar8 = plocalChar9;
   if (1 < *(int *)(uiBufferData + 0x11e0)) {
     do {
-      FUN_1807054a0(dataSource,(int)plocalChar8[1],&UNK_180954788,8);
+      FUN_1807054a0(dataSource,(int)plocalChar8[1],&UIFunctionResultTableC,8);
       uiOperationResult0 = uiOperationResult0 + 1;
       plocalChar8 = plocalChar8 + 1;
     } while (uiOperationResult0 < *(int *)(uiBufferData + 0x11e0));
@@ -87638,7 +87645,7 @@ void FUN_18071c7f0(longlong uiContext,undefined8 dataSource,int targetBuffer,int
     if (0x13 < LoopCounter) {
       uiOperationResult3 = 0;
     }
-    FUN_1807054a0(dataSource,uiOperationResult3,&UNK_1809547d8,8);
+    FUN_1807054a0(dataSource,uiOperationResult3,&UIFunctionResultTableG,8);
     if (0x13 < LoopCounter) goto LAB_18071ca80;
   }
   else {
@@ -87663,7 +87670,7 @@ LAB_18071ca80:
     } while (uiOperationResult0 < *(int *)(uiBufferData + 0x11e0));
   }
   if (resultPointer == 0) {
-    FUN_1807054a0(dataSource,(int)plocalChar9[0x21],&UNK_1809535d4,8);
+    FUN_1807054a0(dataSource,(int)plocalChar9[0x21],&UIFunctionResultTableK,8);
   }
 LAB_18071cb6a:
   *(int *)(uiBufferData + 0x1690) = (int)plocalChar9[0x1d];
