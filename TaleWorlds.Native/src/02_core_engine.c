@@ -146039,72 +146039,100 @@ LAB_18012f4b4:
 
 
 
-float * FUN_18012f580(float *Utf8InputBuffer,long long Utf8BufferSize
+/**
+ * @brief 处理UTF-8输入缓冲区并返回字符编码数据
+ * 
+ * 该函数接收UTF-8输入缓冲区和缓冲区大小，执行字符编码处理，
+ * 并返回处理后的字符编码数据指针。函数会根据不同的条件
+ * 执行不同的字符编码处理路径。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return float* 返回处理后的字符编码数据指针
+ * 
+ * @note 此函数处理UTF-8字符编码转换和缓冲区操作
+ * @warning 函数包含复杂的浮点数运算和内存操作
+ */
+float * ProcessUtf8CharacterEncoding(float *Utf8InputBuffer, long long Utf8BufferSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
   long long MemoryOffset;
-  float FloatVariable4;
-  float FloatVariable5;
+  float HorizontalAdjustment;
+  float VerticalAdjustment;
   
   BufferStatus = SystemConfigurationHandle;
   *Utf8InputBuffer = 3.4028235e+38;
   Utf8InputBuffer[1] = 3.4028235e+38;
   Utf8InputBuffer[2] = -3.4028235e+38;
   Utf8InputBuffer[3] = -3.4028235e+38;
-  MemoryBlockIndex = (long long)*(int *)(Utf8BufferSize + 0x3c);
+  CharacterIndex = (long long)*(int *)(Utf8BufferSize + 0x3c);
   if (*(int *)(Utf8BufferSize + 0x3c) < 0) {
     *(void *)CharacterCode = *(void *)(*(long long *)(Utf8BufferSize + 0x28) + 8);
-    MemoryBlockIndex = *(long long *)(Utf8BufferSize + 0x28);
-    FloatVariable5 = *(float *)(MemoryBlockIndex + 8) + *(float *)(MemoryBlockIndex + 0x10);
-    FloatVariable4 = *(float *)(MemoryBlockIndex + 0xc) + *(float *)(MemoryBlockIndex + 0x14);
+    CharacterIndex = *(long long *)(Utf8BufferSize + 0x28);
+    VerticalAdjustment = *(float *)(CharacterIndex + 8) + *(float *)(CharacterIndex + 0x10);
+    HorizontalAdjustment = *(float *)(CharacterIndex + 0xc) + *(float *)(CharacterIndex + 0x14);
   }
   else {
     CharacterTablePointer = *(long long *)(BufferStatus + 0x1608);
-    *(void *)CharacterCode = *(void *)(ThreadLocalStorageData + 0x10 + MemoryBlockIndex * 0x24);
-    FloatVariable5 = *(float *)(CharacterTablePointer + 0x18 + MemoryBlockIndex * 0x24) + *(float *)(CharacterTablePointer + 0x10 + MemoryBlockIndex * 0x24);
-    FloatVariable4 = *(float *)(CharacterTablePointer + 0x1c + MemoryBlockIndex * 0x24) + *(float *)(CharacterTablePointer + 0x14 + MemoryBlockIndex * 0x24);
+    *(void *)CharacterCode = *(void *)(ThreadLocalStorageData + 0x10 + CharacterIndex * 0x24);
+    VerticalAdjustment = *(float *)(CharacterTablePointer + 0x18 + CharacterIndex * 0x24) + *(float *)(CharacterTablePointer + 0x10 + CharacterIndex * 0x24);
+    HorizontalAdjustment = *(float *)(CharacterTablePointer + 0x1c + CharacterIndex * 0x24) + *(float *)(CharacterTablePointer + 0x14 + CharacterIndex * 0x24);
   }
-  *(unsigned long long *)(CharacterCode + 2) = CONCAT44(FloatVariable4,FloatVariable5);
-  FloatVariable4 = *(float *)(BufferStatus + 0x16b8);
-  FloatVariable5 = *(float *)(BufferStatus + 0x16b4);
-  if (Utf8InputBuffer[3] - Utf8InputBuffer[1] <= FloatVariable4 + FloatVariable4) {
-    FloatVariable4 = 0.0;
-  }
-  else {
-    FloatVariable4 = -FloatVariable4;
-  }
-  if (Utf8InputBuffer[2] - *Utf8InputBuffer <= FloatVariable5 + FloatVariable5) {
-    FloatVariable5 = 0.0;
+  *(unsigned long long *)(CharacterCode + 2) = CONCAT44(HorizontalAdjustment, VerticalAdjustment);
+  HorizontalAdjustment = *(float *)(BufferStatus + 0x16b8);
+  VerticalAdjustment = *(float *)(BufferStatus + 0x16b4);
+  if (Utf8InputBuffer[3] - Utf8InputBuffer[1] <= HorizontalAdjustment + HorizontalAdjustment) {
+    HorizontalAdjustment = 0.0;
   }
   else {
-    FloatVariable5 = -FloatVariable5;
+    HorizontalAdjustment = -HorizontalAdjustment;
   }
-  Utf8InputBuffer[1] = Utf8InputBuffer[1] - FloatVariable4;
-  Utf8InputBuffer[3] = Utf8InputBuffer[3] + FloatVariable4;
-  *Utf8InputBuffer = *Utf8InputBuffer - FloatVariable5;
-  Utf8InputBuffer[2] = Utf8InputBuffer[2] + FloatVariable5;
+  if (Utf8InputBuffer[2] - *Utf8InputBuffer <= VerticalAdjustment + VerticalAdjustment) {
+    VerticalAdjustment = 0.0;
+  }
+  else {
+    VerticalAdjustment = -VerticalAdjustment;
+  }
+  Utf8InputBuffer[1] = Utf8InputBuffer[1] - HorizontalAdjustment;
+  Utf8InputBuffer[3] = Utf8InputBuffer[3] + HorizontalAdjustment;
+  *Utf8InputBuffer = *Utf8InputBuffer - VerticalAdjustment;
+  Utf8InputBuffer[2] = Utf8InputBuffer[2] + VerticalAdjustment;
   return CharacterCode;
 }
 
 
 
 
-uint64_t * FUN_18012f6d0(uint64_t *Utf8InputBuffer,long long Utf8BufferSize
+/**
+ * @brief 处理UTF-16字符编码并返回编码数据指针
+ * 
+ * 该函数接收UTF-8输入缓冲区和缓冲区大小，处理UTF-16字符编码，
+ * 并返回处理后的编码数据指针。函数会根据不同的字符编码类型
+ * 执行不同的处理逻辑。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return uint64_t* 返回处理后的编码数据指针
+ * 
+ * @note 此函数处理UTF-16字符编码转换和缓冲区操作
+ * @warning 函数包含复杂的浮点数运算和内存操作
+ */
+uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Utf8BufferSize)
 {
   uint Utf16Char;
   long long BufferStatus;
   long long MemoryOffset;
-  int *pvalidationResult;
-  float FloatVariable5;
-  float fStackX_10;
-  float fStackX_14;
+  int *ValidationResult;
+  float CharacterScaleFactor;
+  float HorizontalOffset;
+  float VerticalOffset;
   uint64_t ReservedStackSpace;
   float StackFloat58;
   float StackFloat54;
   float StackFloat50;
-  float fStack_4c;
-  uint8_t aSystemStackFlag [64];
+  float StackVerticalAdjustment;
+  uint8_t SystemStackFlag [64];
   
   Utf16Char = *(uint *)(Utf8BufferSize + 0xc);
   if ((Utf16Char >> 0x1c & 1) == 0) {

@@ -62213,7 +62213,19 @@ undefined8 GetUISystemErrorCode(void)
 // WARNING: Removing unreachable block (ram,0x00018069818a)
 // WARNING: Removing unreachable block (ram,0x000180698174)
 
-uint FUN_180698140(longlong uiContext)
+/**
+ * @brief 检测CPU特性并设置UI处理器标志
+ * 
+ * 该函数负责检测CPU的特性支持情况，包括SSE、AVX等指令集，
+ * 并根据检测结果设置UI系统的处理器特性标志。这些标志用于
+ * 优化UI渲染和数据处理性能。
+ * 
+ * @param uiContext UI上下文指针，用于存储CPU特性标志
+ * @return uint 返回CPU特性检测结果
+ * 
+ * @note 原始函数名: FUN_180698140
+ */
+uint DetectCPUFeaturesAndSetUIProcessorFlags(longlong uiContext)
 
 {
   uint *pfunctionResult;
