@@ -52593,20 +52593,20 @@ SystemDataRelease:
     SystemStackData = (unsigned long long)*(ushort *)(CharacterCode + 0xc0);
     StackProcessingConfigurationFlag = -1;
     do {
-      piStack_218 = (int *)0x0;
-      piStack_210 = (int *)0x0;
-      pCoreEngineLoopCounter08 = (int *)0x0;
+      ProcessBufferPointer = (int *)0x0;
+      ValidationBufferPointer = (int *)0x0;
+      LoopCounterPointer = (int *)0x0;
       ProcessingCounter0 = 3;
       if (BufferStatus1 == 0) {
         ExecuteSystemCleanupA(0);
-        piStack_210 = piStack_218;
+        ValidationBufferPointer = ProcessBufferPointer;
       }
       else {
-        ProcessSystemBufferAllocation(&piStack_218,BufferStatus1);
+        ProcessSystemBufferAllocation(&ProcessBufferPointer,BufferStatus1);
       }
       MemoryBlockIndex9 = (long long *)((StackProcessingConfigurationFlag + 1) * 0x20 + StackDataBuffer150.Low64Part);
       BufferStatus3 = 0;
-      piStack_1f0 = (int *)0x0;
+      MemoryBlockPointer = (int *)0x0;
       if (0 < (long long)MemoryAllocationIndex8) {
         piStack_1f8 = (int *)0x0;
         do {
