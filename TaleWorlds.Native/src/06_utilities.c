@@ -3984,11 +3984,11 @@ extern uint64_t ExceptionOffsetValue;
 // 功能：存储工具系统的异常处理器指针5
 #define UtilitySystemExceptionHandlerPointer5 _DAT_180bf5c30
 
-// 原始变量名：_DAT_180bf6080 - 工具系统异常处理器指针6
+// 工具系统异常处理器指针6
 // 功能：存储工具系统的异常处理器指针6
 #define UtilitySystemExceptionHandlerPointer6 _DAT_180bf6080
 
-// 原始变量名：_DAT_180c91900 - 系统句柄指针
+// 系统句柄指针
 // 功能：存储系统句柄的指针
 #define SystemHandlePointer _DAT_180c91900
 
@@ -101084,7 +101084,7 @@ void InitializeUtilityModule(void)
  * 
  * @note 原始函数名：ResetUtilityPointers1
  */
-void ResetUtilityPointers1(void)
+void ResetSystemExceptionHandlerPointers(void)
 
 {
   UtilitySystemPointer1 = &DefaultExceptionHandler;
