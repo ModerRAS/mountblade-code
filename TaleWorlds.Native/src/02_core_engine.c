@@ -170903,50 +170903,50 @@ void ProcessSystemConfigurationData(uint64_t CharacterCode, uint64_t Utf8BufferS
     *(float *)(Utf8SourcePointer + 0x10) = SecondaryFloatValue;
     return;
   }
-  IntegerValue = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemConfigurationPath,&fStack_18,&fStack_14);
-  if (IntegerValue == 2) {
-    if (fStack_18 <= *(float *)(SystemConfigurationHandle + 0x163c)) {
-      fStack_18 = *(float *)(SystemConfigurationHandle + 0x163c);
+  ProcessingResult = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemConfigurationPath,&PrimaryFloatValue,&SecondaryFloatValue);
+  if (ProcessingResult == 2) {
+    if (PrimaryFloatValue <= *(float *)(SystemConfigurationHandle + 0x163c)) {
+      PrimaryFloatValue = *(float *)(SystemConfigurationHandle + 0x163c);
     }
-    ContextSecondaryFloat = *(float *)(SystemConfigurationHandle + 0x1640);
-    if (*(float *)(SystemConfigurationHandle + 0x1640) <= fStack_14) {
-      ContextSecondaryFloat = fStack_14;
+    SecondaryConfigurationValue = *(float *)(SystemConfigurationHandle + 0x1640);
+    if (*(float *)(SystemConfigurationHandle + 0x1640) <= SecondaryFloatValue) {
+      SecondaryConfigurationValue = SecondaryFloatValue;
     }
-    *(float *)(Utf8SourcePointer + 0x14) = fStack_18;
-    *(float *)(Utf8SourcePointer + 0x18) = ContextSecondaryFloat;
+    *(float *)(Utf8SourcePointer + 0x14) = PrimaryFloatValue;
+    *(float *)(Utf8SourcePointer + 0x18) = SecondaryConfigurationValue;
     return;
   }
-  IntegerValue = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemValidationPath,aStackProcessingConfigurationFlag);
-  if (IntegerValue == 1) {
-    *(uint32_t *)(Utf8SourcePointer + 0x24) = aStackProcessingConfigurationFlag[0];
+  ProcessingResult = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemValidationPath,ConfigurationFlags);
+  if (ProcessingResult == 1) {
+    *(uint32_t *)(Utf8SourcePointer + 0x24) = ConfigurationFlags[0];
     return;
   }
-  IntegerValue = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemSecondaryConfigurationPath,&fStack_18,&fStack_14);
-  if (IntegerValue == 2) {
-    *(float *)(Utf8SourcePointer + 0x1c) = fStack_18;
-    *(float *)(Utf8SourcePointer + 0x20) = fStack_14;
+  ProcessingResult = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemSecondaryConfigurationPath,&PrimaryFloatValue,&SecondaryFloatValue);
+  if (ProcessingResult == 2) {
+    *(float *)(Utf8SourcePointer + 0x1c) = PrimaryFloatValue;
+    *(float *)(Utf8SourcePointer + 0x20) = SecondaryFloatValue;
     return;
   }
-  IntegerValue = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemTertiaryConfigurationPath,aiStack_10);
-  if (IntegerValue == 1) {
-    *(bool *)(Utf8SourcePointer + 0x32) = aiStack_10[0] != 0;
+  ProcessingResult = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemTertiaryConfigurationPath,TertiaryConfigurationValues);
+  if (ProcessingResult == 1) {
+    *(bool *)(Utf8SourcePointer + 0x32) = TertiaryConfigurationValues[0] != 0;
     return;
   }
-  IntegerValue = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemQuaternaryConfigurationPath,aStackProcessingConfigurationFlag,aiStack_10);
-  if (IntegerValue == 2) {
-    *(uint32_t *)(Utf8SourcePointer + 0x28) = aStackProcessingConfigurationFlag[0];
-    *(uint16_t *)(Utf8SourcePointer + 0x30) = (uint16_t)aiStack_10[0];
+  ProcessingResult = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemQuaternaryConfigurationPath,ConfigurationFlags,TertiaryConfigurationValues);
+  if (ProcessingResult == 2) {
+    *(uint32_t *)(Utf8SourcePointer + 0x28) = ConfigurationFlags[0];
+    *(uint16_t *)(Utf8SourcePointer + 0x30) = (uint16_t)TertiaryConfigurationValues[0];
     return;
   }
-  IntegerValue = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemQuinaryConfigurationPath,aStackProcessingConfigurationFlag);
-  if (IntegerValue == 1) {
-    *(uint32_t *)(Utf8SourcePointer + 0x28) = aStackProcessingConfigurationFlag[0];
+  ProcessingResult = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemQuinaryConfigurationPath,ConfigurationFlags);
+  if (ProcessingResult == 1) {
+    *(uint32_t *)(Utf8SourcePointer + 0x28) = ConfigurationFlags[0];
     *(uint16_t *)(Utf8SourcePointer + 0x30) = 0xffff;
     return;
   }
-  IntegerValue = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemSenaryConfigurationPath,aStackProcessingConfigurationFlag);
-  if (IntegerValue == 1) {
-    *(uint32_t *)(Utf8SourcePointer + 0x2c) = aStackProcessingConfigurationFlag[0];
+  ProcessingResult = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemSenaryConfigurationPath,ConfigurationFlags);
+  if (ProcessingResult == 1) {
+    *(uint32_t *)(Utf8SourcePointer + 0x2c) = ConfigurationFlags[0];
   }
   return;
 }
@@ -170955,7 +170955,15 @@ void ProcessSystemConfigurationData(uint64_t CharacterCode, uint64_t Utf8BufferS
 
 
 
-3d200(long long CharacterCode,uint64_t *Utf8InputBufferSize,int *Utf8SourcePointervoid FUN_18013d200(long long CharacterCode,uint64_t *Utf8InputBufferSize,int *Utf8SourcePointer
+/**
+ * 处理UTF-8输入缓冲区大小
+ * 根据字符代码处理UTF-8输入缓冲区的大小和源指针
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ */
+void ProcessUtf8InputBufferSize(long long CharacterCode, uint64_t *Utf8InputBufferSize, int *Utf8SourcePointer)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
