@@ -5938,6 +5938,17 @@ void InitializeUtilityModule(void);
 #define CheckSystemTerminationA3 Unwind_180907200
 
 /**
+ * @brief 资源引用计数清理函数A0
+ * 
+ * 该函数负责清理资源引用计数，管理内存资源释放。
+ * 它会检查资源指针的有效性，计算内存偏移量，并减少引用计数。
+ * 如果引用计数为0，则调用异常处理函数。
+ * 
+ * @note 原始函数名：Unwind_180904920
+ */
+#define CleanupResourceReferenceCountA0 Unwind_180904920
+
+/**
  * @brief 工具模块配置参数
  */
 uint32_t UtilityPrimaryModuleConfig;
