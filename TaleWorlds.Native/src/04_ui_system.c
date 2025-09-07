@@ -9997,21 +9997,21 @@ void UpdateUILayoutEx(longlong *layout_data, longlong *component_data, longlong 
   undefined4 functionResult;
   undefined4 semaphoreHandle;
   undefined8 *puVar3;
-  int iVar4;
-  longlong lVar5;
+  int layoutCalculationResult;
+  longlong dataSourceValue;
   longlong contextData;
   undefined8 *peventTypeCode;
-  undefined8 *puVar8;
-  undefined8 *puVar9;
+  undefined8 *contextPointer;
+  undefined8 *tempPointer;
   undefined8 *pfunctionResult0;
   undefined8 *pfunctionResult1;
   uint functionResult2;
-  longlong lStackX_8;
+  longlong bufferSize;
   undefined8 uStackX_18;
   undefined8 functionResult3;
-  undefined8 *puStack_60;
-  undefined8 *puStack_58;
-  undefined8 *puStack_50;
+  undefined8 *contextManager;
+  undefined8 *contextBuffer;
+  undefined8 *bufferEnd;
   undefined4 uStack_48;
   
   functionResult3 = 0xfffffffffffffffe;
@@ -62450,8 +62450,7 @@ void ProcessUIDataTransferHandler(longlong uiContext,longlong dataSource,int tar
 
 
 
- void FUN_180698440(longlong uiContext)
-/**
+ /**
  * @brief 重置UI系统状态
  * 
  * 该函数负责重置UI系统的状态，清除缓冲区数据并重新初始化相关组件
@@ -62473,20 +62472,36 @@ void ResetUISystemState(longlong uiContext)
 
 
  void FUN_1806984b0(longlong uiContext,byte *dataSource,int targetBuffer,undefined4 bufferSize,undefined4 resultPointer,
-void FUN_1806984b0(longlong uiContext,byte *dataSource,int targetBuffer,undefined4 bufferSize,undefined4 resultPointer,
-                  longlong param_6,longlong param_7,longlong param_8)
+/**
+ * @brief 渲染UI组件
+ * 
+ * 该函数负责渲染各种UI组件，包括按钮、文本、图像和面板
+ * 根据数据源和目标缓冲区的不同配置来调用相应的渲染函数
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针，包含UI组件的数据
+ * @param targetBuffer 目标缓冲区，指定渲染目标
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，用于返回渲染结果
+ * @param param_6 渲染参数6
+ * @param param_7 渲染参数7
+ * @param param_8 渲染参数8
+ * @note 原始函数名: FUN_1806984b0
+ */
+void RenderUIComponents(longlong uiContext,byte *dataSource,int targetBuffer,undefined4 bufferSize,undefined4 resultPointer,
+                       longlong param_6,longlong param_7,longlong param_8)
 
 {
   longlong allocatedMemory;
-  byte bVar2;
+  byte componentType;
   int compareResult;
-  bool bVar4;
-  ulonglong uVar5;
-  int iVar6;
-  longlong lStack_58;
-  longlong lStack_50;
-  longlong lStack_48;
-  longlong lStack_40;
+  bool shouldRenderText;
+  ulonglong componentIndex;
+  int renderCount;
+  longlong buttonBuffer;
+  longlong textBuffer;
+  longlong imageBuffer;
+  longlong panelBuffer;
   
   iVar6 = 0;
   allocatedMemory = uiContext + 0xc10;
