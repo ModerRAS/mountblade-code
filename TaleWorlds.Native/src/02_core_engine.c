@@ -157227,24 +157227,24 @@ void ProcessUtf8CharacterEncodingAndMemoryAllocation(uint64_t CharacterCode,int 
   if (CurrentIndex == 0) {
     CurrentIndex = Utf8BufferSize + 1;
     ProcessSystemValueCalculation(SystemDataTablePointer + 0x30,CurrentIndex);
-    if (0 < IntegerValue0) {
+    if (0 < CurrentIndex) {
       SystemOperationResult = *(int *)(SystemDataTablePointer + 0x30);
-      Utf16ConversionContext = MemoryAllocationHandle;
+      ConversionContext = AllocationHandle;
       do {
-        IntegerValue2 = *(int *)(SystemDataTablePointer + 0x34);
-        IntegerValue7 = (int)Utf16ConversionContext;
-        if (SystemOperationResult == IntegerValue2) {
-          if (IntegerValue2 == 0) {
-            IntegerValue2 = 8;
+        TemporalValue = *(int *)(SystemDataTablePointer + 0x34);
+        ProcessingStatus = (int)ConversionContext;
+        if (SystemOperationResult == TemporalValue) {
+          if (TemporalValue == 0) {
+            TemporalValue = 8;
           }
           else {
-            IntegerValue2 = IntegerValue2 / 2 + IntegerValue2;
+            TemporalValue = TemporalValue / 2 + TemporalValue;
           }
-          ComputedResult = IterationCounter + 1;
-          if (IterationCounter + 1 < IntegerValue2) {
-            ComputedResult = IntegerValue2;
+          ComputedSize = IterationCounter + 1;
+          if (IterationCounter + 1 < TemporalValue) {
+            ComputedSize = TemporalValue;
           }
-          ProcessSystemValueCalculation(SystemDataTablePointer + 0x30,ComputedResult);
+          ProcessSystemValueCalculation(SystemDataTablePointer + 0x30,ComputedSize);
           SystemOperationResult = *(int *)(SystemDataTablePointer + 0x30);
         }
         MemoryBoundaryEnd = *(long long *)(SystemDataTablePointer + 0x38);
@@ -181517,58 +181517,72 @@ uint64_t CleanupSystemMemoryAndReturnCharacterCode(uint64_t CharacterCode,unsign
 
 
 
-uint64_t FUN_180153ab0(long long CharacterCode,long long Utf8BufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理系统字符编码配置
+ * 
+ * 该函数负责处理系统字符编码配置，包括UTF-8缓冲区大小和源指针的处理。
+ * 函数验证系统配置参数，并根据不同的配置类型执行相应的处理逻辑。
+ * 
+ * @param SystemContext 系统上下文指针，包含系统状态和配置信息
+ * @param Utf8BufferSize UTF-8缓冲区大小，用于存储编码后的数据
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待处理的源数据
+ * @return uint64_t 处理结果，1表示成功，0表示失败
+ * 
+ * @note 原始函数名：FUN_180153ab0
+ * @warning 此函数包含复杂的系统配置逻辑，修改时需要谨慎
+ */
+uint64_t ProcessSystemCharacterEncodingConfiguration(long long SystemContext, long long Utf8BufferSize, long long Utf8SourcePointer)
 {
   long long PrimaryDataSize;
   char SystemCheckResult;
   int MemoryMatchResult;
   void *MemoryAddressMask;
-  uint auStackX_10 [2];
+  uint ConfigurationStackBuffer [2];
   
   if ((*(int *)(Utf8BufferSize + 0x10) == 0x15) &&
-     (MemoryAllocationSize = strcmp(*(void *)(Utf8BufferSize + 8),&SystemRenderConfigParameterS), MemoryAllocationSize == 0)) {
-    pMemoryAddressMask = &CoreEngineDataTemplate;
+     (MemoryMatchResult = strcmp(*(void *)(Utf8BufferSize + 8),&SystemRenderConfigParameterS), MemoryMatchResult == 0)) {
+    MemoryAddressMask = &CoreEngineDataTemplate;
     if (*(void **)(Utf8SourcePointer + 8) != NULL) {
-      pMemoryAddressMask = *(void **)(Utf8SourcePointer + 8);
+      MemoryAddressMask = *(void **)(Utf8SourcePointer + 8);
     }
-    auStackX_10[0] = atoi(pMemoryAddressMask);
+    ConfigurationStackBuffer[0] = atoi(MemoryAddressMask);
     CharacterTablePointer = SystemContextManager;
     if ((*(long long *)(SystemContextManager + 0x530) != 0) &&
-       (SystemCheckResult = (**(code **)(SystemContextManager + 0x538))(auStackX_10), SystemCheckResult == '\0')) {
+       (SystemCheckResult = (**(code **)(SystemContextManager + 0x538))(ConfigurationStackBuffer), SystemCheckResult == '\0')) {
       if (CoreEngineThreadStatus == '\0') {
-        pMemoryAddressMask = &CoreEngineDataTemplate;
+        MemoryAddressMask = &CoreEngineDataTemplate;
         if (*(void **)(CharacterTablePointer + 0x4e0) != NULL) {
-          pMemoryAddressMask = *(void **)(CharacterTablePointer + 0x4e0);
+          MemoryAddressMask = *(void **)(CharacterTablePointer + 0x4e0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,pMemoryAddressMask);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,MemoryAddressMask);
       }
       *(uint32_t *)(ThreadLocalStorageData + 0x4d0) = *(uint32_t *)(ThreadLocalStorageData + 0x518);
       return 1;
     }
-    *(uint *)(CharacterTablePointer + 0x4d0) = auStackX_10[0];
+    *(uint *)(CharacterTablePointer + 0x4d0) = ConfigurationStackBuffer[0];
     return 1;
   }
   if ((*(int *)(Utf8BufferSize + 0x10) == 0x12) &&
-     (MemoryAllocationSize = strcmp(*(void *)(Utf8BufferSize + 8),&SystemStringComparisonTemplate), MemoryAllocationSize == 0)) {
-    pMemoryAddressMask = &CoreEngineDataTemplate;
+     (MemoryMatchResult = strcmp(*(void *)(Utf8BufferSize + 8),&SystemStringComparisonTemplate), MemoryMatchResult == 0)) {
+    MemoryAddressMask = &CoreEngineDataTemplate;
     if (*(void **)(Utf8SourcePointer + 8) != NULL) {
-      pMemoryAddressMask = *(void **)(Utf8SourcePointer + 8);
+      MemoryAddressMask = *(void **)(Utf8SourcePointer + 8);
     }
-    MemoryAllocationSize = atoi(pMemoryAddressMask);
-    auStackX_10[0] = (uint)(MemoryAllocationSize != 0);
-    if ((*(long long *)(CharacterCode + 0xa00) != 0) &&
-       (SystemCheckResult = (**(code **)(CharacterCode + 0xa08))(auStackX_10), SystemCheckResult == '\0')) {
+    MemoryMatchResult = atoi(MemoryAddressMask);
+    ConfigurationStackBuffer[0] = (uint)(MemoryMatchResult != 0);
+    if ((*(long long *)(SystemContext + 0xa00) != 0) &&
+       (SystemCheckResult = (**(code **)(SystemContext + 0xa08))(ConfigurationStackBuffer), SystemCheckResult == '\0')) {
       if (CoreEngineThreadStatus == '\0') {
-        pMemoryAddressMask = &CoreEngineDataTemplate;
-        if (*(void **)(CharacterCode + 0x9b0) != NULL) {
-          pMemoryAddressMask = *(void **)(CharacterCode + 0x9b0);
+        MemoryAddressMask = &CoreEngineDataTemplate;
+        if (*(void **)(SystemContext + 0x9b0) != NULL) {
+          MemoryAddressMask = *(void **)(SystemContext + 0x9b0);
         }
-        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,pMemoryAddressMask);
+        InitializeSystemEvent(&SystemUnknownProcessingStatusFlagEvent,MemoryAddressMask);
       }
-      *(uint32_t *)(CharacterCode + 0x9a0) = *(uint32_t *)(CharacterCode + 0x9e8);
+      *(uint32_t *)(SystemContext + 0x9a0) = *(uint32_t *)(SystemContext + 0x9e8);
       return 0;
     }
-    *(uint *)(CharacterCode + 0x9a0) = auStackX_10[0];
+    *(uint *)(SystemContext + 0x9a0) = ConfigurationStackBuffer[0];
   }
   return 0;
 }
