@@ -1217,42 +1217,42 @@
  * @note 原始函数名：func_0x00018074be80
  * 功能：使用AES算法加密敏感数据
  */
-#define EncryptData PerformAESEncryption
+#define EncryptSensitiveDataWithAES PerformAESEncryption
 
 /**
  * @brief 数据验证处理函数
  * @note 原始函数名：ValidateData
  * 功能：验证数据的完整性和有效性
  */
-#define ValidateData PerformDataIntegrityCheck
+#define ValidateDataIntegrity PerformDataIntegrityCheck
 
 /**
  * @brief 内存分配处理函数
  * @note 原始函数名：AllocateMemory
  * 功能：为系统分配内存池
  */
-#define AllocateMemoryPool CreateSystemMemoryPool
+#define AllocateSystemMemoryPool CreateSystemMemoryPool
 
 /**
  * @brief 内存初始化函数
  * @note 原始函数名：func_0x00018076b450
  * 功能：初始化系统内存池
  */
-#define InitializeMemoryPool SetupSystemMemoryPool
+#define InitializeSystemMemoryPool SetupSystemMemoryPool
 
 /**
  * @brief 数据处理函数
  * @note 原始函数名：ProcessData
  * 功能：处理数据缓冲区并验证数据
  */
-#define ProcessDataBuffer ProcessDataWithValidation
+#define ProcessDataBufferWithValidation ProcessDataWithValidation
 
 /**
  * @brief 系统状态检查函数
  * @note 原始函数名：CheckSystemStatus
  * 功能：验证系统状态和健康状态
  */
-#define ValidateSystemStatus CheckSystemHealthAndStatus
+#define CheckSystemHealthAndStatus CheckSystemHealthAndStatus
 
 /**
  * @brief 系统初始化函数
@@ -6645,35 +6645,35 @@ extern void* SystemPrimaryResourceTable;
 
 // 原始函数名：FUN_1808c44f0 - 系统操作函数A0
 // 功能：执行系统操作和状态检查
-#define ExecuteSystemOperationA0 FUN_1808c44f0
+#define ExecuteSystemOperationWithStatusCheck FUN_1808c44f0
 
 // 原始函数名：FUN_180894860 - 上下文验证函数A0
 // 功能：验证操作上下文有效性
-#define ValidateOperationContextA0 FUN_180894860
+#define ValidateSystemOperationContext FUN_180894860
 
 // 原始函数名：FUN_1808949c0 - 操作执行函数A0
 // 功能：执行系统操作
-#define ExecuteSystemOperationB0 FUN_1808949c0
+#define ExecuteSystemCoreOperation FUN_1808949c0
 
 // 原始函数名：ProcessSystemEventB0 - 事件处理函数A0
 // 功能：处理系统事件
-#define ProcessSystemEventB0 ProcessSystemEventB0
+#define ProcessSystemCoreEvent ProcessSystemEventB0
 
 // 原始函数名：FUN_1808deb90 - 数据处理函数A0
 // 功能：处理数据操作
-#define ProcessDataOperationA0 FUN_1808deb90
+#define ProcessSystemDataOperation FUN_1808deb90
 
 // 原始函数名：FUN_180894b00 - 数据查询函数A0
 // 功能：查询系统数据
-#define QuerySystemDataA0 FUN_180894b00
+#define QuerySystemDataWithValidation FUN_180894b00
 
 // 原始函数名：CleanupSystemEventA0 - 事件清理函数A0
 // 功能：清理系统事件
-#define CleanupSystemEventA0 CleanupSystemEventA0
+#define CleanupSystemEventResources CleanupSystemEventA0
 
 // 原始函数名：InitializeSystemEventA0 - 事件初始化函数A0
 // 功能：初始化系统事件
-#define InitializeSystemEventA0 InitializeSystemEventA0
+#define InitializeSystemEventManager InitializeSystemEventA0
 
 // 原始函数名：ProcessSystemEventDataA0 - 事件处理函数A1
 // 功能：处理系统事件
