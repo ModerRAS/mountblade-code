@@ -200090,26 +200090,35 @@ unsigned long long ProcessUnicodeCharacterConversion(long long CharacterCode,lon
 
 
 
-uint32_t FUN_1801791c0(void
+/**
+ * @brief 处理系统事件模板
+ * 
+ * 该函数负责处理系统事件模板的创建和管理
+ * 
+ * @return uint32_t 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_1801791c0
+ */
+uint32_t ProcessSystemEventTemplate(void)
 {
   uint64_t *StatusBuffer;
   void *SystemContext;
-  uint64_t *systemEventTemplatePointer;
-  long long *SystemContext;
-  long long RegisterFramePointer;
-  uint32_t LoopCounter;
-  long long *RegisterGeneral14;
+  uint64_t *EventTemplatePointer;
+  long long *SystemContextData;
+  long long FrameRegisterPointer;
+  uint32_t EventLoopCounter;
+  long long *GeneralRegister14;
   uint64_t StackParameter2;
   uint32_t PrimaryDataStorage;
   long long StackParameter6;
   
   if (StackParameter6 != 0) {
-    loopCounter = (**(code **)(*RegisterGeneral14 + 0x38))();
-    StatusBuffer = (void *)(RegisterFramePointer + 8);
+    EventLoopCounter = (**(code **)(*GeneralRegister14 + 0x38))();
+    StatusBuffer = (void *)(FrameRegisterPointer + 8);
     StackParameter2 = 0;
     PrimaryDataStorage = *(uint32_t *)(StackParameter6 + 8);
-    systemEventTemplatePointer = StatusBuffer;
-    PrimaryProcessingStatusFlag = *(uint64_t **)(RegisterFramePointer + 0x18);
+    EventTemplatePointer = StatusBuffer;
+    SystemProcessingStatusFlag = *(uint64_t **)(FrameRegisterPointer + 0x18);
     while (PrimaryProcessingStatusFlag != NULL) {
       if ((long long *)PrimaryProcessingStatusFlag[4] < SystemContext) {
         PrimaryProcessingStatusFlag = (void *)*PrimaryProcessingStatusFlag;
