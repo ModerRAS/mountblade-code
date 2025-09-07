@@ -119808,3 +119808,26 @@ uint8_t SystemExceptionHandlerStateTable;
  * - 更新了相应的宏定义，确保函数名与宏定义保持一致
  * - 为每个函数添加了详细的功能描述、参数说明和注意事项
  */
+
+// 额外的Unwind_函数语义化定义
+// 互斥锁解锁和错误处理函数
+#define UnlockMutexAndHandleErrorB20 Unwind_180909b20
+#define ProcessExceptionHandlerContextB30 Unwind_180909b30
+#define CleanupExceptionResourcesB40 Unwind_180909b40
+#define ValidateExceptionStateB50 Unwind_180909b50
+#define ReleaseExceptionLockB60 Unwind_180909b60
+#define ResetExceptionContextB70 Unwind_180909b70
+#define CleanupExceptionHandlersB80 Unwind_180909b80
+#define ProcessExceptionCleanupBA0 Unwind_180909ba0
+#define ValidateExceptionRecoveryBB0 Unwind_180909bb0
+#define ExecuteExceptionRecoveryBE0 Unwind_180909be0
+#define ProcessExceptionFinalizationBF0 Unwind_180909bf0
+#define CleanupSystemResourcesD00 Unwind_180909d00
+#define ProcessSystemShutdownD20 Unwind_180909d20
+#define ExecuteSystemCleanupD60 Unwind_180909d60
+#define ValidateSystemStateD80 Unwind_180909d80
+#define ProcessSystemRecoveryDA0 Unwind_180909da0
+#define ExecuteSystemRecoveryDC0 Unwind_180909dc0
+#define HandleSystemExceptionDE0 Unwind_180909de0
+#define ProcessSystemCleanupF20 Unwind_180909f20
+#define ValidateSystemResources130 Unwind_18090a130
