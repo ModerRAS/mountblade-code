@@ -10130,8 +10130,8 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
       }
       else {
         systemQueryStatus = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,ComponentValidationBuffer);
-        if ((int32_t)SystemQueryStatus != 0) {
-          return SystemQueryStatus;
+        if ((int32_t)systemQueryStatus != 0) {
+          return systemQueryStatus;
         }
       }
     }
@@ -10202,7 +10202,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
         ResourceInfoContext = baseValidationContext;
       }
       ContextDataContext = baseValidationContext;
-      ComponentDataContext = baseValidationContext;
+      componentDataContext = baseValidationContext;
       ComponentInfoContext = baseValidationContext;
       if (ResourceInfoContext != (int64_t *)0x0) {
         ContextDataContext = ResourceInfoContext + RESOURCE_CONTEXT_OFFSET;
@@ -10235,7 +10235,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
         if (ResourceInfoContext != (int64_t *)0x0) {
           ContextDataContext = ResourceInfoContext + RESOURCE_CONTEXT_OFFSET;
         }
-        ComponentDataContext = ComponentDataContext + COMPONENT_DATA_OFFSET;
+        componentDataContext = componentDataContext + COMPONENT_DATA_OFFSET;
         ComponentInfoContext = (int64_t *)(uint64_t)((int32_t)ComponentInfoContext + 1);
       }
       return ResourceInvalidErrorCode;
