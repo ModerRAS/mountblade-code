@@ -90011,7 +90011,18 @@ void Unwind_18090d150(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d160(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器A0
+ * 
+ * 该函数负责管理系统资源的引用计数，当引用计数降为0时触发异常处理
+ * 主要用于内存管理和资源清理操作
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090d160
+ */
+void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -90047,7 +90058,18 @@ void Unwind_18090d160(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d170(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器A1
+ * 
+ * 该函数负责管理系统资源的引用计数，当引用计数降为0时触发异常处理
+ * 主要用于内存管理和资源清理操作
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090d170
+ */
+void ManageResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
