@@ -111253,6 +111253,17 @@ ce11(voidvoid CoreEngineInitializeAudio(void
 
 
 
+/**
+ * @brief 处理系统缩放计算
+ * 
+ * 该函数负责处理系统的缩放计算，包括字符串解析、浮点数计算
+ * 和距离计算等操作。主要用于游戏引擎中的图形渲染和物理计算。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @param Utf16InputPointer UTF16输入指针
+ * @return 返回计算后的系统上下文指针
+ */
 float * ProcessSystemScalingCalculation(float *SystemContextPointer,char *Utf8BufferSize,char Utf16InputPointer
 {
   float *systemContextFloat;
@@ -111306,25 +111317,36 @@ float * ProcessSystemScalingCalculation(float *SystemContextPointer,char *Utf8Bu
 
 
 
-cf80(long long SystemContextPointer,float *Utf8BufferSize,uint Utf16InputPointer,uint32_t Utf16EndPointervoid CoreEngineProcessFloatData(long long SystemContextPointer,float *Utf8BufferSize,uint Utf16InputPointer,uint32_t Utf16EndPointer
+/**
+ * @brief 核心引擎处理浮点数据
+ * 
+ * 该函数负责处理核心引擎中的浮点数据，包括数据验证、内存分配
+ * 和浮点数计算等操作。用于游戏引擎的物理模拟和渲染计算。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @param Utf16InputPointer UTF16输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ */
+void CoreEngineProcessFloatData(long long SystemContextPointer,float *Utf8BufferSize,uint Utf16InputPointer,uint32_t Utf16EndPointer
 {
-  int *ReferenceCountPointer;
-  int StringComparisonResult;
-  long long MemoryOffset;
-  int validationResult;
-  int RemainingSpace;
-  uint32_t DataSize;
-  int ProcessIterationCount;
-  float FloatValue8;
-  float SystemFloatParameter1;
-  float SystemContextFloat10;
-  float PrimaryScalingFactor;
-  float SecondaryScalingFactor;
-  uint ProcessStringBuffer;
-  uint32_t StackUnsigned68;
-  uint32_t SystemUnsignedValue64;
-  uint32_t StackUnsigned60;
-  float fStack_5c;
+  int *referenceCount;
+  int stringCompareResult;
+  long long memoryOffset;
+  int validationStatus;
+  int remainingSpace;
+  uint32_t dataSize;
+  int processIterations;
+  float calculatedFloatValue;
+  float systemParameter1;
+  float systemContextFloat;
+  float primaryScale;
+  float secondaryScale;
+  uint stringBuffer;
+  uint32_t stackValue68;
+  uint32_t systemValue64;
+  uint32_t stackValue60;
+  float stackValue5c;
   
   MemoryBlockIndex = SystemDataConfiguration;
   PrimaryScalingFactor = *Utf8BufferSize;
