@@ -20163,21 +20163,21 @@ ProcessDataSecurityValidation:
           StackFloatValueB = register_XMM6_Dc;
           if (StackFloatRegisterD != 1.0) {
             StackFloatRegisterB = StackFloatRegisterD;
-            in_stack_00000028 = &FloatingPointValidationErrorA;
+            StackInputParameterC = &FloatingPointValidationErrorA;
             StackParameter38 = SystemOperationResult;
             ValidationDataBuffer = register_R13D;
-            inputParameter3 = ValidateDataIntegrityA0(fStack000000000000004c,&stack0x00000028);
-            fStack000000000000004c = floatResultA_03;
+            inputParameter3 = ValidateDataIntegrityA0(StackFloatRegisterD,&StackInputParameterC);
+            StackFloatRegisterD = floatResultA_03;
             if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
           }
-          inputParameter3 = ValidateDataA3(fStack000000000000004c,&systemContextBuffer50,0);
+          inputParameter3 = ValidateDataA3(StackFloatRegisterD,&systemContextBuffer50,0);
           if (inputParameter3 == 0) {
-            if (in_stack_00000050 != 1.0) {
-              fStack0000000000000040 = in_stack_00000050;
-              in_stack_00000028 = &FloatingPointValidationErrorB;
+            if (StackInputParameterB != 1.0) {
+              StackFloatRegisterB = StackInputParameterB;
+              StackInputParameterC = &FloatingPointValidationErrorB;
               StackParameter38 = SystemOperationResult;
               ValidationDataBuffer = register_R13D;
-              inputParameter3 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
+              inputParameter3 = ValidateDataIntegrityA0(StackInputParameterB,&StackInputParameterC);
               if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
             }
             floatDataPointer = (float *)(register_R15 + 0x94);
@@ -20186,9 +20186,9 @@ ProcessDataSecurityValidation:
               floatCurrentValue = *floatDataPointer;
               if (floatCurrentValue != 0.0) {
                 StackParameter38 = SystemOperationResult;
-                in_stack_00000028 = &SystemValidationDataTableA1;
+                StackInputParameterC = &SystemValidationDataTableA1;
                 ValidationDataBuffer = register_R13D;
-                fStack0000000000000040 = floatLoopCounter;
+                StackFloatRegisterB = floatLoopCounter;
                 fStack0000000000000044 = floatCurrentValue;
                 inputParameter3 = ValidateDataIntegrityA0(floatCurrentValue,&stack0x00000028);
                 if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
@@ -20204,7 +20204,7 @@ ProcessDataSecurityValidation:
                 StackParameter38 = SystemOperationResult;
                 in_stack_00000028 = &SystemValidationDataTableA3;
                 ValidationDataBuffer = register_R13D;
-                fStack0000000000000040 = floatLoopCounter;
+                StackFloatRegisterB = floatLoopCounter;
                 fStack0000000000000044 = floatCurrentValue;
                 inputParameter3 = ValidateDataIntegrityA0(floatCurrentValue,&stack0x00000028);
                 if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
@@ -20410,7 +20410,7 @@ ValidateDataSecurity:
       StackFloatValueB = register_XMM6_Dc;
       if (ProcessedFloatValue._4_4_ != 1.0) {
         fStack0000000000000040 = ProcessedFloatValue._4_4_;
-        in_stack_00000028 = &FloatingPointValidationErrorA;
+        StackInputParameterC = &FloatingPointValidationErrorA;
         StackParameter38 = SystemOperationResult;
         ValidationDataBuffer = register_R13D;
         inputParameter3 = ValidateDataIntegrityA0(ProcessedFloatValue._4_4_,&stack0x00000028);
@@ -20419,12 +20419,12 @@ ValidateDataSecurity:
       }
       inputParameter3 = ValidateDataA3(ProcessedFloatValue._4_4_,&systemContextBuffer50,0);
       if (inputParameter3 == 0) {
-        if (in_stack_00000050 != 1.0) {
-          fStack0000000000000040 = in_stack_00000050;
-          in_stack_00000028 = &FloatingPointValidationErrorB;
+        if (StackInputParameterB != 1.0) {
+          StackFloatRegisterB = StackInputParameterB;
+          StackInputParameterC = &FloatingPointValidationErrorB;
           StackParameter38 = SystemOperationResult;
           ValidationDataBuffer = register_R13D;
-          inputParameter3 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
+          inputParameter3 = ValidateDataIntegrityA0(StackInputParameterB,&StackInputParameterC);
           if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
         floatArrayPointer = (float *)(register_R15 + 0x94);
