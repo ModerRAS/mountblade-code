@@ -15836,9 +15836,9 @@ void InitializeResourceContext(int64_t contextDescriptor, DataBuffer initializat
     allocationSize = resourceCount * 4 + 0xf;
     resourceDataPointer = contextDescriptor + 0x20 + resourceCount * 8;
     if (allocationSize <= (uint64_t)(resourceCount * 4)) {
-      allocationSize = SystemCleanupFlagffffff0;
+      allocationSize = AllocationAlignmentMask;
     }
-      AllocateSystemResourcesA0(resourceCount,allocationSize & SystemCleanupFlagfffffff0);
+      AllocateSystemResourcesA0(resourceCount,allocationSize & AllocationAlignmentMask);
   }
     ExecuteSecurityCheck(securityToken ^ (uint64_t)resourceBuffer);
 }
@@ -28406,7 +28406,7 @@ ValidationLabelB:
           statusCounter = stackDataBuffer._4_4_;
         }
       }
-      stackDataBuffer = stackDataBuffer & SystemCleanupFlag00000000;
+      stackDataBuffer = stackDataBuffer & ZeroValue;
       if ((int)statusCounter < 0) {
         statusCounter = -statusCounter;
       }
@@ -28477,7 +28477,7 @@ ValidationLabelB:
         statusCounter = stackDataBuffer._4_4_;
       }
     }
-    stackDataBuffer = stackDataBuffer & SystemCleanupFlag00000000;
+    stackDataBuffer = stackDataBuffer & ZeroValue;
     if ((int)statusCounter < 0) {
       statusCounter = -statusCounter;
     }
@@ -37040,7 +37040,7 @@ void CleanupResourceReference(DataBuffer exceptionContext, int64_t resourceManag
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -37453,7 +37453,7 @@ void ExceptionRecoveryHandlerB11(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -37834,7 +37834,7 @@ void ExceptionUnwindHandlerA31(DataBuffer exceptionContext,int64_t unwindParam)
   if (exceptionTable == (DataBuffer *)0x0) {
     return;
   }
-  exceptionAddress = (uint64_t)exceptionTable & SystemCleanupFlagffc00000;
+  exceptionAddress = (uint64_t)exceptionTable & MemoryRegionMask;
   if (exceptionAddress != 0) {
     exceptionHandler = exceptionAddress + 0x80 + ((int64_t)exceptionTable - exceptionAddress >> 0x10) * 0x50;
     exceptionHandler = exceptionHandler - (uint64_t)*(uint *)(exceptionHandler + 4);
@@ -38687,7 +38687,7 @@ void ResourceReferenceManager880(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -38750,7 +38750,7 @@ void ResourceManager_ReferenceCountCleanup(DataBuffer operationBase,int64_t data
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -38862,7 +38862,7 @@ void CleanupResourceReferenceCount(DataBuffer exceptionContext,int64_t systemCon
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -38909,7 +38909,7 @@ void ExceptionCleanupHandlerResourceRef(DataBuffer operationBase,int64_t dataBuf
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -39561,7 +39561,7 @@ void ExceptionCleanupHandlerResourceRef2(DataBuffer operationBase,int64_t dataBu
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -39844,7 +39844,7 @@ void HandleResourceCleanupException(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -39955,7 +39955,7 @@ void CleanupResourceReference(DataBuffer resourceBuffer,int64_t contextOffset)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -40001,7 +40001,7 @@ void CleanupResourcePointer(DataBuffer resourceBuffer,int64_t contextOffset)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -40049,7 +40049,7 @@ void CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandle
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -40106,7 +40106,7 @@ void CleanupMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -40142,7 +40142,7 @@ void CleanupMemoryBlock(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -40305,7 +40305,7 @@ void CleanupTempStorage(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -40341,7 +40341,7 @@ void CleanupHeapMemory(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -40622,7 +40622,7 @@ void CleanupCodeMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -40658,7 +40658,7 @@ void CleanupDataMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -40694,7 +40694,7 @@ void CleanupBssMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -41033,7 +41033,7 @@ void CleanupResourceReference(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -41405,7 +41405,7 @@ void CleanupExceptionHandlers130(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -41441,7 +41441,7 @@ void CleanupExceptionPointers140(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -41509,7 +41509,7 @@ void CleanupExceptionStack160(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -41584,7 +41584,7 @@ void CleanupExceptionTable190(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -41694,7 +41694,7 @@ void CleanupSystemMemoryResource(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -41730,7 +41730,7 @@ void CleanupSystemMemoryDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -42025,7 +42025,7 @@ void ManageExceptionReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -42420,7 +42420,7 @@ void ProcessExceptionCleanupAtOffset40(DataBuffer operationBase,int64_t dataBuff
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -42466,7 +42466,7 @@ void ProcessExceptionCleanupAtOffset48(DataBuffer operationBase,int64_t dataBuff
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -42512,7 +42512,7 @@ void ManageResourceReferenceCount4D0(DataBuffer operationBase,int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -42558,7 +42558,7 @@ void ManageResourceReferenceCount4E0(DataBuffer operationBase,int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -42604,7 +42604,7 @@ void ManageResourceReferenceCount4F0(DataBuffer operationBase,int64_t dataBuffer
   CleanupSystemDataA0();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -42652,7 +42652,7 @@ void ManageResourceReferenceCount500(DataBuffer operationBase,int64_t dataBuffer
   CleanupSystemDataA0();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -42771,7 +42771,7 @@ void CleanupSystemResourcePointer(DataBuffer operationBase, int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -42841,7 +42841,7 @@ void CleanupSystemDataWithReferenceCount(DataBuffer operationBase, int64_t dataB
   CleanupSystemDataA0();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x340)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 0x338), resourcePointer != (DataBuffer *)0x0)) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -43006,7 +43006,7 @@ void ReleaseResourceWithCondition(DataBuffer contextHandle,int64_t contextOffset
   CleanupSystemDataA0();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -43054,7 +43054,7 @@ void ReleaseResourceWithMutex(DataBuffer contextHandle,int64_t contextOffset)
   CleanupSystemDataA0();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -48866,7 +48866,7 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -49855,7 +49855,7 @@ void CleanupExceptionResourceReferenceCount920(DataBuffer operationBase,int64_t 
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -49905,7 +49905,7 @@ void CleanupExceptionResourceReferenceCount930(DataBuffer operationBase,int64_t 
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -50209,7 +50209,7 @@ void CleanupResourceReferenceCount9d0(DataBuffer operationBase,int64_t dataBuffe
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -50256,7 +50256,7 @@ void CleanupResourceReferenceCount9e0(DataBuffer operationBase,int64_t dataBuffe
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -50304,7 +50304,7 @@ void CleanupResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -50637,7 +50637,7 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -50692,7 +50692,7 @@ void ManageMemoryReferenceCountVariantB(DataBuffer operationBase,int64_t dataBuf
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -51409,7 +51409,7 @@ void SystemExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -51573,7 +51573,7 @@ void ProcessResourceReferenceCountAndMemory(DataBuffer operationBase,int64_t dat
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -51773,7 +51773,7 @@ void ManageMemoryResourceReferenceCountA(DataBuffer operationBase,int64_t dataBu
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -51978,7 +51978,7 @@ void CleanupResourceReferenceCountAtOffset30(DataBuffer operationBase,int64_t da
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -52048,7 +52048,7 @@ void ReleaseResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -52695,7 +52695,7 @@ void CleanupExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -52751,7 +52751,7 @@ void CleanupExceptionHandlerF(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -53034,7 +53034,7 @@ void CleanupResourceAtOffset380(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -53567,7 +53567,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -53656,7 +53656,7 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -53701,7 +53701,7 @@ void ManageResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -54616,7 +54616,7 @@ void ManageResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -57479,7 +57479,7 @@ void Unwind_180906160(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -57515,7 +57515,7 @@ void Unwind_180906180(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -57551,7 +57551,7 @@ void Unwind_180906190(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -57688,7 +57688,7 @@ void Unwind_1809061f0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -58043,7 +58043,7 @@ void Unwind_180906470(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -59585,7 +59585,7 @@ void Unwind_180906b50(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -59718,7 +59718,7 @@ void CleanupExceptionHandlingResources(DataBuffer exceptionContext, int64_t clea
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -59764,7 +59764,7 @@ void CleanupExceptionHandlingResourcesAlternative(DataBuffer exceptionContext, i
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60028,7 +60028,7 @@ void CleanupResourceReferenceCount6c80(DataBuffer operationBase, int64_t dataBuf
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60079,7 +60079,7 @@ void CleanupResourceReferenceCount6c90(DataBuffer operationBase, int64_t dataBuf
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60130,7 +60130,7 @@ void CleanupResourceReferenceCount6ca0(DataBuffer operationBase, int64_t dataBuf
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60214,7 +60214,7 @@ void CleanupResourceReferenceCount6cc0(DataBuffer operationBase, int64_t dataBuf
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60250,7 +60250,7 @@ void Unwind_180906cd0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60305,7 +60305,7 @@ void Unwind_180906cf0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60341,7 +60341,7 @@ void Unwind_180906d00(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60377,7 +60377,7 @@ void Unwind_180906d10(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60432,7 +60432,7 @@ void Unwind_180906d30(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60617,7 +60617,7 @@ void CleanupSystemResourceE0(DataBuffer operationBase, int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60668,7 +60668,7 @@ void CleanupSystemResourceE1(DataBuffer operationBase, int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60719,7 +60719,7 @@ void CleanupSystemResourceE2(DataBuffer operationBase, int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60770,7 +60770,7 @@ void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -60870,7 +60870,7 @@ void CleanupSystemResourceA1(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -62623,7 +62623,7 @@ void CleanupResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -62672,7 +62672,7 @@ void CleanupResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -62721,7 +62721,7 @@ void CleanupResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -63005,7 +63005,7 @@ void Unwind_1809074d0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -63051,7 +63051,7 @@ void Unwind_1809074e0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -63097,7 +63097,7 @@ void InitializeExceptionHandlerPointerA0(DataBuffer operationBase,int64_t dataBu
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -63952,7 +63952,7 @@ void ManageResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -64352,7 +64352,7 @@ void ResourceReferenceManagerA0(DataBuffer operationBase,int64_t dataBuffer)
   CalculateSystemValue(calculatedOffset + 0x78);
   if ((1 < *(uint64_t *)(calculatedOffset + 0x88)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 0x80), resourcePointer != (DataBuffer *)0x0)) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -64390,7 +64390,7 @@ void ResourceReferenceManagerA1(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -64443,7 +64443,7 @@ void Unwind_180907a10(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -64522,7 +64522,7 @@ void Unwind_180907a50(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -64558,7 +64558,7 @@ void Unwind_180907a60(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -64854,7 +64854,7 @@ void Unwind_180907c20(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -64934,7 +64934,7 @@ void Unwind_180907c70(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -64970,7 +64970,7 @@ void Unwind_180907c80(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -65186,7 +65186,7 @@ void Unwind_180907d30(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -65368,7 +65368,7 @@ void Unwind_180907e90(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -65404,7 +65404,7 @@ void Unwind_180907ea0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -65440,7 +65440,7 @@ void Unwind_180907eb0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -65476,7 +65476,7 @@ void Unwind_180907ec0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -65512,7 +65512,7 @@ void Unwind_180907ed0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -65760,7 +65760,7 @@ void CleanupResourcePointer(DataBuffer operationBase, int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -65854,7 +65854,7 @@ void HandleExceptionA3(DataBuffer ContextParameter, int64_t SystemContext)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -66858,7 +66858,7 @@ void Unwind_180908650(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -67148,7 +67148,7 @@ void Unwind_1809087c0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -67257,7 +67257,7 @@ void Unwind_180908830(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -67293,7 +67293,7 @@ void Unwind_180908840(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -67360,7 +67360,7 @@ void Unwind_180908870(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -67756,7 +67756,7 @@ void Unwind_180908a20(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -67792,7 +67792,7 @@ void Unwind_180908a30(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -67828,7 +67828,7 @@ void Unwind_180908a40(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -67864,7 +67864,7 @@ void Unwind_180908a50(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -67900,7 +67900,7 @@ void Unwind_180908a60(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -67936,7 +67936,7 @@ void Unwind_180908a70(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -67972,7 +67972,7 @@ void Unwind_180908a80(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -68008,7 +68008,7 @@ void Unwind_180908a90(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -68053,7 +68053,7 @@ void Unwind_180908ab0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -68089,7 +68089,7 @@ void Unwind_180908ac0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -68125,7 +68125,7 @@ void Unwind_180908ad0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -68197,7 +68197,7 @@ void Unwind_180908b10(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -68715,7 +68715,7 @@ void Unwind_180908dd0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -68760,7 +68760,7 @@ void Unwind_180908df0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -68796,7 +68796,7 @@ void Unwind_180908e00(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -68859,7 +68859,7 @@ void Unwind_180908e50(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -68895,7 +68895,7 @@ void Unwind_180908e60(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -68931,7 +68931,7 @@ void Unwind_180908e70(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -69367,7 +69367,7 @@ void Unwind_180909090(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -69458,7 +69458,7 @@ void Unwind_1809090b0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -70784,7 +70784,7 @@ void CleanupSystemResourceA2(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -70835,7 +70835,7 @@ void CleanupSystemResourceA3(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -70871,7 +70871,7 @@ void Unwind_180909680(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -70907,7 +70907,7 @@ void Unwind_180909690(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -70943,7 +70943,7 @@ void Unwind_1809096a0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -71387,7 +71387,7 @@ void Unwind_180909860(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -71594,7 +71594,7 @@ void Unwind_180909a00(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -71662,7 +71662,7 @@ void Unwind_180909a40(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -71698,7 +71698,7 @@ void Unwind_180909a50(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -71960,7 +71960,7 @@ void CleanupResourceReferenceCountAtOffset00(DataBuffer operationBase,int64_t da
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     memoryCalculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     memoryCalculatedOffset = memoryCalculatedOffset - (uint64_t)*(uint *)(memoryCalculatedOffset + MemoryOffsetAdjustment);
@@ -72350,7 +72350,7 @@ void Unwind_180909f60(DataBuffer operationBase,int64_t dataBuffer)
   }
   resourcePointer = *(DataBuffer **)(calculatedOffset + 0xac0);
   if (resourcePointer != (DataBuffer *)0x0) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -72918,7 +72918,7 @@ void Unwind_18090a450(DataBuffer operationBase,int64_t dataBuffer)
   }
   resourcePointer = *(DataBuffer **)(calculatedOffset + 0xac0);
   if (resourcePointer != (DataBuffer *)0x0) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -73147,7 +73147,7 @@ void Unwind_18090a5c0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -73183,7 +73183,7 @@ void Unwind_18090a5d0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -73387,7 +73387,7 @@ void Unwind_18090a780(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -73437,7 +73437,7 @@ void Unwind_18090a7a0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -73612,7 +73612,7 @@ void Unwind_18090a880(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -73648,7 +73648,7 @@ void Unwind_18090a890(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -73865,7 +73865,7 @@ void ExceptionHandlerC7(DataBuffer operationBase,int64_t dataBuffer)
   CalculateSystemValue();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -73903,7 +73903,7 @@ void ExceptionHandlerC8(DataBuffer operationBase,int64_t dataBuffer)
   CalculateSystemValue();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -73941,7 +73941,7 @@ void Unwind_18090a950(DataBuffer operationBase,int64_t dataBuffer)
   CalculateSystemValue();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -73979,7 +73979,7 @@ void Unwind_18090a960(DataBuffer operationBase,int64_t dataBuffer)
   CalculateSystemValue();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -74017,7 +74017,7 @@ void Unwind_18090a970(DataBuffer operationBase,int64_t dataBuffer)
   CalculateSystemValue();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
-    memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+    memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -77039,7 +77039,7 @@ void Unwind_18090c140(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -77182,7 +77182,7 @@ void Unwind_18090c1c0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -77362,7 +77362,7 @@ void Unwind_18090c280(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -77434,7 +77434,7 @@ void Unwind_18090c2d0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -77470,7 +77470,7 @@ void Unwind_18090c2e0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -77615,7 +77615,7 @@ void Unwind_18090c3b0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -77674,7 +77674,7 @@ void Unwind_18090c400(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -78021,7 +78021,7 @@ void Unwind_18090c530(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -78432,7 +78432,7 @@ void Unwind_18090c610(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -78468,7 +78468,7 @@ void Unwind_18090c620(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -80754,7 +80754,7 @@ void CleanupResourceAtOffsetB0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -80800,7 +80800,7 @@ void CleanupResourceAtOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -80846,7 +80846,7 @@ void CleanupResourceAtOffsetF0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -80892,7 +80892,7 @@ void CleanupResourceAtOffset110(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -80942,7 +80942,7 @@ void CleanupExceptionAtOffset210(DataBuffer ExceptionContext,int64_t ExceptionOf
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -80992,7 +80992,7 @@ void CleanupExceptionAtOffset220(DataBuffer ExceptionContext,int64_t ExceptionOf
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81038,7 +81038,7 @@ void CleanupResourceAtOffset170(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81084,7 +81084,7 @@ void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81131,7 +81131,7 @@ void CleanupMemoryReferenceCounterB0(DataBuffer operationBase,int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81178,7 +81178,7 @@ void CleanupMemoryReferenceCounterB1(DataBuffer operationBase,int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81214,7 +81214,7 @@ void Unwind_18090d0a0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81267,7 +81267,7 @@ void CleanupResourceA0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81321,7 +81321,7 @@ void CleanupResourceA1(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81357,7 +81357,7 @@ void Unwind_18090d0d0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81412,7 +81412,7 @@ void ManageMemoryReferenceCountAtOffset490(DataBuffer operationBase,int64_t data
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81467,7 +81467,7 @@ void ManageMemoryReferenceCountAtOffset2F0(DataBuffer operationBase,int64_t data
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81522,7 +81522,7 @@ void ManageMemoryReferenceCountAtOffset310(DataBuffer operationBase,int64_t data
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81577,7 +81577,7 @@ void ManageMemoryReferenceCountAtOffset330(DataBuffer operationBase,int64_t data
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81632,7 +81632,7 @@ void ManageMemoryReferenceCountAtOffset350(DataBuffer operationBase,int64_t data
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81687,7 +81687,7 @@ void ManageMemoryReferenceCountAtOffset470(DataBuffer operationBase,int64_t data
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81723,7 +81723,7 @@ void Unwind_18090d140(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81759,7 +81759,7 @@ void Unwind_18090d150(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81795,7 +81795,7 @@ void Unwind_18090d160(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81831,7 +81831,7 @@ void Unwind_18090d170(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81867,7 +81867,7 @@ void Unwind_18090d180(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81914,7 +81914,7 @@ void Unwind_18090d1a0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81961,7 +81961,7 @@ void ManageResourceReferenceCountC0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -81997,7 +81997,7 @@ void Unwind_18090d1c0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82044,7 +82044,7 @@ void ManageResourceReferenceCountC1(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82080,7 +82080,7 @@ void Unwind_18090d1e0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82127,7 +82127,7 @@ void CleanupMemoryReferenceCounterA0(DataBuffer operationBase,int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82174,7 +82174,7 @@ void CleanupMemoryReferenceCounterA1(DataBuffer operationBase,int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82221,7 +82221,7 @@ void CleanupMemoryReferenceCounterA2(DataBuffer operationBase,int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82268,7 +82268,7 @@ void ManageResourceReferenceCountC3(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82304,7 +82304,7 @@ void Unwind_18090d230(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82340,7 +82340,7 @@ void Unwind_18090d240(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82376,7 +82376,7 @@ void Unwind_18090d250(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82412,7 +82412,7 @@ void Unwind_18090d260(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82448,7 +82448,7 @@ void Unwind_18090d270(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82484,7 +82484,7 @@ void Unwind_18090d280(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82520,7 +82520,7 @@ void Unwind_18090d290(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82556,7 +82556,7 @@ void Unwind_18090d2a0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82592,7 +82592,7 @@ void Unwind_18090d2b0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82628,7 +82628,7 @@ void Unwind_18090d2c0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82664,7 +82664,7 @@ void Unwind_18090d2d0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82700,7 +82700,7 @@ void Unwind_18090d2e0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82736,7 +82736,7 @@ void Unwind_18090d2f0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82772,7 +82772,7 @@ void Unwind_18090d300(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82808,7 +82808,7 @@ void Unwind_18090d310(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82913,7 +82913,7 @@ void Unwind_18090d360(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82949,7 +82949,7 @@ void Unwind_18090d370(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -82985,7 +82985,7 @@ void Unwind_18090d380(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83021,7 +83021,7 @@ void Unwind_18090d390(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83057,7 +83057,7 @@ void Unwind_18090d3a0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83093,7 +83093,7 @@ void Unwind_18090d3b0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83129,7 +83129,7 @@ void Unwind_18090d3c0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83165,7 +83165,7 @@ void Unwind_18090d3d0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83201,7 +83201,7 @@ void Unwind_18090d3e0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83237,7 +83237,7 @@ void Unwind_18090d3f0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83282,7 +83282,7 @@ void ManageResourceReferenceCountB0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83327,7 +83327,7 @@ void Unwind_18090d410(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83372,7 +83372,7 @@ void Unwind_18090d420(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83417,7 +83417,7 @@ void Unwind_18090d430(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83453,7 +83453,7 @@ void Unwind_18090d440(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83489,7 +83489,7 @@ void Unwind_18090d450(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83525,7 +83525,7 @@ void Unwind_18090d460(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83561,7 +83561,7 @@ void Unwind_18090d470(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83597,7 +83597,7 @@ void Unwind_18090d480(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83633,7 +83633,7 @@ void Unwind_18090d490(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83669,7 +83669,7 @@ void Unwind_18090d4a0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83705,7 +83705,7 @@ void Unwind_18090d4b0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83750,7 +83750,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83786,7 +83786,7 @@ void Unwind_18090d4d0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83822,7 +83822,7 @@ void Unwind_18090d4e0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -83858,7 +83858,7 @@ void Unwind_18090d4f0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -84352,7 +84352,7 @@ void Unwind_18090d7e0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -84871,7 +84871,7 @@ void Unwind_18090de40(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -85120,7 +85120,7 @@ void Unwind_18090e000(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -85519,7 +85519,7 @@ void Unwind_18090e3c0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -85555,7 +85555,7 @@ void Unwind_18090e3d0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -87651,7 +87651,7 @@ void Unwind_18090eeb0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -87696,7 +87696,7 @@ void Unwind_18090eee0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -87746,7 +87746,7 @@ void Unwind_18090ef20(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -87796,7 +87796,7 @@ void Unwind_18090ef50(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -87832,7 +87832,7 @@ void Unwind_18090ef60(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -88449,7 +88449,7 @@ void Unwind_18090f1b0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -88485,7 +88485,7 @@ void Unwind_18090f1d0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -88542,7 +88542,7 @@ void Unwind_18090f210(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -88578,7 +88578,7 @@ void Unwind_18090f230(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -88614,7 +88614,7 @@ void Unwind_18090f250(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -88650,7 +88650,7 @@ void Unwind_18090f270(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -88686,7 +88686,7 @@ void Unwind_18090f290(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -88722,7 +88722,7 @@ void Unwind_18090f2b0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -88778,7 +88778,7 @@ void Unwind_18090f2f0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -90813,7 +90813,7 @@ void Unwind_18090ff90(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -91731,7 +91731,7 @@ void Unwind_180910320(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -91787,7 +91787,7 @@ void Unwind_180910340(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -91823,7 +91823,7 @@ void Unwind_180910350(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -91898,7 +91898,7 @@ void Unwind_1809103c0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -92101,7 +92101,7 @@ void Unwind_1809104f0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -92137,7 +92137,7 @@ void Unwind_180910510(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -92318,7 +92318,7 @@ void Unwind_180910640(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -92354,7 +92354,7 @@ void Unwind_180910660(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -92450,7 +92450,7 @@ void Unwind_1809106e0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -92510,7 +92510,7 @@ void Unwind_180910750(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -92566,7 +92566,7 @@ void Unwind_180910770(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -92602,7 +92602,7 @@ void Unwind_180910780(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -92638,7 +92638,7 @@ void Unwind_180910790(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -96614,7 +96614,7 @@ void ManageResourceReferenceCountZ0(DataBuffer operationBase, int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedMemoryOffset = memoryBaseAddress + 0x80 + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedMemoryOffset = calculatedMemoryOffset - (uint64_t)*(uint *)(calculatedMemoryOffset + 4);
@@ -96713,7 +96713,7 @@ void ManageResourceReferenceCountZ1(DataBuffer operationBase, int64_t dataBuffer
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedMemoryOffset = memoryBaseAddress + 0x80 + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedMemoryOffset = calculatedMemoryOffset - (uint64_t)*(uint *)(calculatedMemoryOffset + 4);
@@ -96849,7 +96849,7 @@ void Unwind_180911950(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
@@ -99819,7 +99819,7 @@ void Unwind_180912930(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)resourcePointer & MemoryRegionMask;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
     calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
