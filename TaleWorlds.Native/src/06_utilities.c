@@ -106385,19 +106385,22 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define SystemResourceDataTableA1 _DAT_180c92488
 #define DefaultExceptionHandlerBPointerTable _DAT_180bf6558
 #define SystemExceptionHandlerStateTable _DAT_180d49f80
+// 系统配置数据表定义
 #define SystemConfigurationDataTableA0 _DAT_180d49ff8
 #define SystemConfigurationDataTableA1 _DAT_180c92510
 #define SystemFlagA0 _DAT_180bf66d8
 #define SystemDataTableA1 _DAT_180c96858
+// 系统缓冲区数据表定义
 #define SystemBufferDataTableA0 _DAT_180bfbf64
 #define SystemBufferDataTableA1 _DAT_180bfbf7c
 #define SystemBufferDataTableA2 _DAT_180bfbf60
 #define SystemConfigurationDataTableA2 _DAT_180bf7308
 #define SystemBufferDataTableA3 _DAT_180bfbf78
 #define SystemConfigurationDataTableA3 _DAT_180bf72a8
+// 系统管理数据表定义
 #define SystemManagementDataTableA0 _DAT_180bfbd80
 
-// 异常处理函数宏定义 - 美化Unwind_函数
+// 异常处理执行函数定义
 #define ExecuteExceptionHandlerA0 Unwind_180911160
 #define ExecuteExceptionHandlerA1 Unwind_180911180
 #define ExecuteExceptionHandlerA2 Unwind_1809111a0

@@ -272251,9 +272251,9 @@ int ProcessAudioSignalWithWeights(int AudioSignalData,int SignalBufferSize,char 
   DataSize = RemainingSpace / 2;
   if (0 < (int)SignalBufferSize) {
     do {
-      IntegerValue3 = 0;
-      if (0 < (int)uStackX_10) {
-        UnicodeCharacterCode = (unsigned long long)uStackX_10;
+      FilterCoefficient = 0;
+      if (0 < (int)SampleCounter) {
+        UnicodeCharacterCode = (unsigned long long)SampleCounter;
         do {
           SystemChecksumValue = (long long)IntegerValue3 / (long long)(int)DataSize & 0xffffffff;
           MemoryAllocationIndex = 0;
