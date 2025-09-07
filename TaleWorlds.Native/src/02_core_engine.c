@@ -111062,7 +111062,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t OutputBuffer,
   int *ReferenceCountPointer8;
   
   pCharacterByteCount7 = (int *)(Utf8InputPointer & 0xffffffffffffff00);
-  UnicodeCharacterValue = FUN_18011ce30(RegisterFramePointer + 0x70);
+  UnicodeCharacterValue = InitializeSystemData(RegisterFramePointer + 0x70);
   pCharacterByteCount9 = (int *)0x0;
   CharacterByteCount5 = (int)DataNodeIndex;
   if ((CharacterByteCount5 != 0) && (0 < *SystemContext)) {
@@ -114374,7 +114374,7 @@ LabelSystemDataConfiguration:
     ProcessingStatusFlag = 1;
   }
 LabelUtfEncodingProcessing:
-  NormalizedParameter = (float)FUN_18011f9b0(RegisterXMM0Value,*Utf16EndPointer,SystemContextSecondaryFloat,SystemStatusCode);
+  NormalizedParameter = (float)ProcessSystemFloatEx(RegisterXMM0Value,*Utf16EndPointer,SystemContextSecondaryFloat,SystemStatusCode);
   SystemContextSecondaryFloat = OutputBuffer[3];
   SystemContextPrimaryFloat0 = OutputBuffer[1];
   SystemContextPrimaryFloat3 = (((SystemContextPrimaryFloat - 2.0) - SystemContextPrimaryFloat4) - SystemContextPrimaryFloat3) * NormalizedParameter + SystemContextPrimaryFloat3;
