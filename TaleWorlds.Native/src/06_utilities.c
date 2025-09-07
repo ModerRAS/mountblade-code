@@ -7332,7 +7332,7 @@ uint8_t UtilityProcessSecondaryResult;
 uint8_t UtilityProcessSecondaryPointer;
 int UtilityDataProcessingErrorCode;          // 工具系统数据处理错误代码
 
-// 函数: uint8_t UtilityCreateMemoryHeap;
+// 函数: uint8_t UtilityCreateMemoryHeap(void);
 // 
 // 创建内存堆
 // 初始化和配置内存堆结构
@@ -7342,7 +7342,7 @@ int UtilityDataProcessingErrorCode;          // 工具系统数据处理错误�
 // 
 // 返回值:
 //   uint8_t - 创建结果状态
-uint8_t UtilityCreateMemoryHeap;
+uint8_t UtilityCreateMemoryHeap(void);
 // 工具系统内存堆数据
 uint8_t UtilityHeapPrimaryData;
 uint8_t UtilityHeapSecondaryData;
@@ -7351,7 +7351,7 @@ uint8_t UtilityHeapPrimaryPointer;
 uint8_t UtilityHeapQuaternaryData;
 uint8_t UtilityHeapQuinaryData;
 
-// 函数: uint8_t UtilityDestroyMemoryHeap;
+// 函数: uint8_t UtilityDestroyMemoryHeap(void);
 // 
 // 销毁内存堆
 // 清理和释放内存堆资源
@@ -7361,7 +7361,7 @@ uint8_t UtilityHeapQuinaryData;
 // 
 // 返回值:
 //   uint8_t - 销毁结果状态
-uint8_t UtilityDestroyMemoryHeap;
+uint8_t UtilityDestroyMemoryHeap(void);
 // 工具系统销毁堆数据
 uint8_t UtilityDestroyHeapPrimaryData;
 uint8_t UtilityDestroyHeapSecondaryData;

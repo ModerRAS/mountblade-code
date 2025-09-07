@@ -58393,16 +58393,25 @@ int CalculateUIRenderBufferSize(void)
 
 
 
-longlong FUN_180695870(void)
+/**
+ * @brief UI图像差异计算器（基础模式）
+ * 
+ * 该函数负责计算UI图像的差异值，使用基础计算模式
+ * 主要用于简单的图像差异计算和质量评估
+ * 
+ * @return 计算得到的差异值
+ * @note 原始函数名: FUN_180695870
+ */
+longlong CalculateUIImageDifferenceBasic(void)
 
 {
-  int iStack0000000000000028;
-  int iStack_18;
+  int calculationResult;
+  int validationParameter;
   
-  *_iStack0000000000000028 = 0;
+  calculationResult = 0;
   CalculateUIImageSquareDifferenceSumAVX2();
-  *_iStack0000000000000028 = *_iStack0000000000000028 + iStack0000000000000028;
-  return (ulonglong)*_iStack0000000000000028 - ((longlong)iStack_18 * (longlong)iStack_18 >> 9);
+  calculationResult = calculationResult + calculationResult;
+  return (ulonglong)calculationResult - ((longlong)validationParameter * (longlong)validationParameter >> 9);
 }
 
 
