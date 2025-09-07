@@ -46446,12 +46446,20 @@ void ResetSystemExceptionHandlerHierarchyB1(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_180903f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理函数A0 - 处理多层级异常处理器重置
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180903f70
+ */
+void ResetExceptionHandlersA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t validationContext;
+  int64_t exceptionHandlerContext;
   
-  validationContext = *(int64_t *)(dataBuffer + 0x40);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 4000) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 4000))(validationContext + 0xf90,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
