@@ -168687,7 +168687,22 @@ LAB_18013bf0b:
 
 
 
-3c020(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,char *Utf16EndPointervoid FUN_18013c020(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,char *Utf16EndPointer
+/**
+ * @brief 处理字符编码和缓冲区管理
+ * 
+ * 该函数负责处理字符编码和缓冲区管理操作，包括：
+ * - 初始化字符状态缓冲区
+ * - 处理内存分配和状态管理
+ * - 执行字符编码转换
+ * - 管理系统优先级和处理标志
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18013c020
+ */
+void ProcessCharacterEncodingAndBufferManagement(long long CharacterCode, uint64_t Utf8BufferSize, uint64_t Utf8SourcePointer, char *Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
