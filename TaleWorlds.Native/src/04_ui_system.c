@@ -7670,11 +7670,11 @@ LAB_UIMemoryCopyStart:
     uStack_2a0 = CONCAT44(uStack_2a0._4_4_,semaphoreHandle);
   }
 LAB_UIComponentWriteHeader:
-  puVar5 = (undefined4 *)(puVar7 + functionResult1);
-  *puVar5 = 0x366e6957;
-  puVar5[1] = 0x68535f34;
-  puVar5[2] = 0x69707069;
-  puVar5[3] = 0x435f676e;
+  componentContextPointer = (undefined4 *)(puVar7 + functionResult1);
+  *componentContextPointer = 0x366e6957;
+  componentContextPointer[1] = 0x68535f34;
+  componentContextPointer[2] = 0x69707069;
+  componentContextPointer[3] = 0x435f676e;
   *(undefined4 *)(puVar7 + functionResult1 + 0x10) = 0x6e65696c;
   *(undefined2 *)(puVar7 + functionResult1 + 0x14) = 0x74;
   puStack_2f8 = &PrimaryUIBuffer;
