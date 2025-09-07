@@ -3207,6 +3207,13 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 系统数据表常量定义
 const void* const SystemDataTablePointerPrimary = (void*)0x180a064a0;
 const void* const SystemDataTablePointerSecondary = (void*)0x180a064a8;
+
+// 未美化函数宏定义 - 基于功能分析
+// FUN_180137f90 - 处理UTF8输入缓冲区和系统状态
+#define ProcessUtf8InputBufferAndSystemStatus FUN_180137f90
+
+// FUN_18013baf0 - 处理字符编码和系统清理
+#define ProcessCharacterEncodingAndCleanup FUN_18013baf0
 const void* const SystemDataTablePointerTertiary = (void*)0x180a064b0;
 const void* const SystemDataTablePointerQuaternary = (void*)0x180a064c0;
 const void* const SystemDataTablePointerQuinary = (void*)0x180a064d0;
@@ -161956,7 +161963,7 @@ LAB_180137c29:
     }
   }
   else {
-    FUN_180137f90(CharacterCode,StatusBuffer8);
+    ProcessUtf8InputBufferAndSystemStatus(CharacterCode,StatusBuffer8);
     if (*(int *)(*(long long *)(CharacterCode + 0xc) + 0x14) != 0) {
       Utf8InputBuffer[0x26] = *(int *)(*(long long *)(CharacterCode + 0xc) + 0x14);
     }
@@ -161965,7 +161972,7 @@ LAB_180137c29:
       (*(long long *)(CharacterCode + 2) == 0)) &&
      ((*(long long *)(MemoryPoolBlockSize + 0x1b78) == 0 ||
       (*(uint32_t **)(*(long long *)(MemoryPoolBlockSize + 0x1b78) + 0x3a0) != StatusBuffer8)))) {
-    FUN_18013baf0(StatusBuffer8);
+    ProcessCharacterEncodingAndCleanup(StatusBuffer8);
   }
   Utf8InputBuffer[0x23] = *(uint32_t *)(MemoryPoolBlockSize + 0x1a90);
   if (StatusBuffer8 != (uint32_t *)0x0) {
@@ -162306,7 +162313,7 @@ LAB_180137cc2:
     }
   }
   else {
-    FUN_180137f90(CharacterCode,PrimaryReturnCode);
+    ProcessUtf8InputBufferAndSystemStatus(CharacterCode,PrimaryReturnCode);
     if (*(int *)(*(long long *)(DataNodeIndex + 0xc) + 0x14) != 0) {
       DataNodeIndex[0x26] = *(int *)(*(long long *)(DataNodeIndex + 0xc) + 0x14);
     }
@@ -162654,7 +162661,7 @@ LAB_180137cc2:
     }
   }
   else {
-    FUN_180137f90(CharacterCode,PrimaryReturnCode);
+    ProcessUtf8InputBufferAndSystemStatus(CharacterCode,PrimaryReturnCode);
     if (*(int *)(*(long long *)(DataNodeIndex + 0xc) + 0x14) != 0) {
       DataNodeIndex[0x26] = *(int *)(*(long long *)(DataNodeIndex + 0xc) + 0x14);
     }
@@ -162850,7 +162857,7 @@ LAB_180137cc2:
     }
   }
   else {
-    FUN_180137f90();
+    ProcessUtf8InputBufferAndSystemStatus();
     ValidationResult = *(int *)(*(long long *)(DataNodeIndex + 0x30) + 0x14);
     if (ValidationResult != 0) {
       *(int *)(DataNodeIndex + 0x98) = ValidationResult;
@@ -162927,7 +162934,7 @@ LAB_180137cc2:
     }
   }
   else {
-    FUN_180137f90();
+    ProcessUtf8InputBufferAndSystemStatus();
     CharacterByteCount = *(int *)(*(long long *)(DataNodeIndex + 0x30) + 0x14);
     if (CharacterByteCount != 0) {
       *(int *)(DataNodeIndex + 0x98) = CharacterByteCount;
@@ -163029,7 +163036,7 @@ LAB_180137cc2:
     }
   }
   else {
-    FUN_180137f90();
+    ProcessUtf8InputBufferAndSystemStatus();
     EncodingValidationResult = *(int *)(*(long long *)(DataNodeIndex + 0x30) + 0x14);
     if (EncodingValidationResult != 0) {
       *(int *)(DataNodeIndex + 0x98) = EncodingValidationResult;
@@ -163078,7 +163085,7 @@ LAB_180137cc2:
     }
   }
   else {
-    FUN_180137f90();
+    ProcessUtf8InputBufferAndSystemStatus();
     IntegerValue = *(int *)(*(long long *)(DataNodeIndex + 0x30) + 0x14);
     if (LockResult != 0) {
       *(int *)(DataNodeIndex + 0x98) = IntegerValue;
