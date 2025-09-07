@@ -47221,8 +47221,8 @@ LAB_180077fcf:
         StackVariable70.LowPart = (float)*(void *)(Utf16EndPointer + 6);
         StackUnsigned68 = *(void *)(Utf16EndPointer + 8);
         StackUnsigned60.LowPart = (float)*(void *)(Utf16EndPointer + 10);
-        StackFloat58 = Utf16EndPointer[0xc];
-        StackFloat54 = Utf16EndPointer[0xd];
+        PrimaryFloatValue = Utf16EndPointer[0xc];
+        SecondaryFloatValue = Utf16EndPointer[0xd];
         DistanceThreshold = Utf16EndPointer[0xe];
       }
       else {
@@ -47256,8 +47256,8 @@ LAB_180077fcf:
                              FilterInputValue * ContextPrimaryFloat0 + FloatVariable7 * SystemContextPrimaryFloat3 + ProcessedFloatValue8 * SystemContextPrimaryFloat6);
         StackUnsigned68 = CONCAT44(FloatVariable4 * ContextPrimaryFloat1 + NormalizedParameterValue * SystemContextPrimaryFloat4 + SystemContextPrimaryFloat * SecondaryFloatValue,
                              FloatVariable4 * ContextPrimaryFloat0 + NormalizedParameterValue * SystemContextPrimaryFloat3 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6);
-        StackFloat58 = FloatVariable5 * ContextPrimaryFloat0 + ContextSecondaryFloat * SystemContextPrimaryFloat3 + CalculatedDistance * SystemContextPrimaryFloat6 + Utf16EndPointer[0xc];
-        StackFloat54 = FloatVariable5 * ContextPrimaryFloat1 + ContextSecondaryFloat * SystemContextPrimaryFloat4 + CalculatedDistance * SecondaryFloatValue + Utf16EndPointer[0xd];
+        PrimaryFloatValue = FloatVariable5 * ContextPrimaryFloat0 + ContextSecondaryFloat * SystemContextPrimaryFloat3 + CalculatedDistance * SystemContextPrimaryFloat6 + Utf16EndPointer[0xc];
+        SecondaryFloatValue = FloatVariable5 * ContextPrimaryFloat1 + ContextSecondaryFloat * SystemContextPrimaryFloat4 + CalculatedDistance * SecondaryFloatValue + Utf16EndPointer[0xd];
         DistanceThreshold = FloatVariable5 * SystemContextPrimaryFloat2 + ContextSecondaryFloat * SystemFloatValue + CalculatedDistance * SystemContextPrimaryFloat8 + Utf16EndPointer[0xe];
       }
       StackUnsigned4C = 0x3f800000;
@@ -153394,7 +153394,7 @@ void ProcessSystemConfigurationUpdate(void
       StackFloat54 = ContextPrimaryFloat0;
       DistanceThreshold = ContextPrimaryFloat1;
       fStack_4c = SystemContextPrimaryFloat2;
-      FUN_180131c60(SystemDataTablePointer,&StackFloat58);
+      FUN_180131c60(SystemDataTablePointer,&PrimaryFloatValue);
       SystemDataTablePointer = *(long long *)(MutexLockResult + 2);
       FUN_1801293e0(&PrimaryScalingFactor,SystemDataTablePointer,0);
       PrimaryScalingFactor = *(float *)(SystemDataTablePointer + 0x8c) - PrimaryScalingFactor;

@@ -137,6 +137,12 @@
 #define ResourceHandleArrayIndex 0
 #define ResourceHandleDataOffset 8
 #define ResourceCountThreshold 1
+
+// 数据集合处理常量定义
+#define DataCollectionItemSize 0x14               // 数据集合中每个项目的大小
+#define DataCollectionContextOffset 8             // 数据集合上下文偏移量
+#define DataProcessingBufferSize 4                 // 数据处理缓冲区大小
+#define ExceptionHandlerCallbackOffset10 0x10     // 异常处理回调偏移量10
 #define ExceptionHandlerDataOffsetA8 0xa8
 #define ExceptionHandlerCallbackOffset38 0x38
 #define ExceptionHandlerContextOffsetA0 0xa0
@@ -8537,15 +8543,15 @@ uint8_t SystemDataBufferOctonary;
 // 函数: uint8_t InitializeUtilitySystemControl;
 #define InitializeUtilitySystemControl FUN_180942660
 void* InitializeUtilitySystemControl;
-void* SystemDataBuffer150;
+void* SystemDataBufferConfig;
 uint8_t SystemStatusFlagPrimary;
-void* SystemDataBuffer160;
-void* SystemDataBuffer168;
-uint64_t UtilitySystemControlPointer158;
-void* SystemDataBufferAEC0;
-void* SystemDataBufferAEC8;
-void* SystemDataBufferAED0;
-void* SystemDataBufferAED8;
+void* SystemDataBufferState;
+void* SystemDataBufferStatus;
+uint64_t UtilitySystemControlPointerConfig;
+void* SystemDataBufferException00;
+void* SystemDataBufferException08;
+void* SystemDataBufferException10;
+void* SystemDataBufferException18;
 
 // 函数: void* ConfigureUtilitySystemBuffers;
 #define ConfigureUtilitySystemBuffers FUN_180942750
@@ -24714,7 +24720,7 @@ DataBuffer ProcessDataCollectionA0(int64_t collectionContext,int64_t *dataPointe
   
   itemCount = (int)dataPointer[1];
   itemProcessingBuffer[0] = itemCount;
-  processResult = (**(FunctionPointer**)**(DataBuffer **)(collectionContext + 8))(*(DataBuffer **)(collectionContext + 8),itemProcessingBuffer,4);
+  processResult = (**(FunctionPointer**)**(DataBuffer **)(collectionContext + DataCollectionContextOffset))(*(DataBuffer **)(collectionContext + DataCollectionContextOffset),itemProcessingBuffer,DataProcessingBufferSize);
   if ((int)processResult == 0) {
     if (0 < itemCount) {
       itemIndex = 0;
@@ -24726,13 +24732,13 @@ DataBuffer ProcessDataCollectionA0(int64_t collectionContext,int64_t *dataPointe
           return processResult;
         }
         itemProcessingBuffer[0] = *(int *)(baseAddress + currentOffset + ExceptionHandlerCallbackOffset10);
-        processResult = (**(FunctionPointer**)**(DataBuffer **)(collectionContext + 8))
-                          (*(DataBuffer **)(collectionContext + 8),itemProcessingBuffer,4);
+        processResult = (**(FunctionPointer**)**(DataBuffer **)(collectionContext + DataCollectionContextOffset))
+                          (*(DataBuffer **)(collectionContext + DataCollectionContextOffset),itemProcessingBuffer,DataProcessingBufferSize);
         if ((int)processResult != 0) {
           return processResult;
         }
         itemIndex = itemIndex + 1;
-        currentOffset = currentOffset + 0x14;
+        currentOffset = currentOffset + DataCollectionItemSize;
       } while (itemIndex < itemCount);
     }
     processResult = 0;
@@ -90000,7 +90006,16 @@ void Unwind_18090e420(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e440(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作函数A0
+ * 
+ * 该函数负责执行内存操作，调用ExecuteMemoryOperation函数处理特定的内存地址
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e440
+ */
+void ExecuteMemoryOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xb70,0x128,2,ProcessMemoryOperationA1,SystemCleanupFlagAlternative);
@@ -90009,7 +90024,17 @@ void Unwind_18090e440(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e460(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作函数A1
+ * 
+ * 该函数负责执行内存操作，调用ExecuteMemoryOperation函数处理特定的内存地址
+ * 使用不同的偏移地址和参数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e460
+ */
+void ExecuteMemoryOperationA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xdc8,8,2,ValidateDataHandler);
@@ -90018,7 +90043,17 @@ void Unwind_18090e460(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e4a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作函数A2
+ * 
+ * 该函数负责执行内存操作，调用ExecuteMemoryOperation函数处理特定的内存地址
+ * 使用不同的偏移地址和参数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e4a0
+ */
+void ExecuteMemoryOperationA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xdd8,8,2,ValidateDataHandler);
@@ -90027,7 +90062,17 @@ void Unwind_18090e4a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e4e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作函数A3
+ * 
+ * 该函数负责执行内存操作，调用ExecuteMemoryOperation函数处理特定的内存地址
+ * 使用不同的偏移地址和参数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e4e0
+ */
+void ExecuteMemoryOperationA3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0xde8,8,2,ValidateDataHandler);
