@@ -9986,12 +9986,12 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
       uStack_15c = 0x7f7fffff;
       uStack_150 = 0;
       uStack_14c = 0x7f7fffff;
-      uStackX_8 = uiContext;
+      uiContextPointer = uiContext;
       lStack_1a8 = lStack_1a0;
-      fVar29 = fStackX_18;
-      fVar31 = fStackX_1c;
-      fVar33 = fStackX_10;
-      fVar20 = fStackX_14;
+      fVar29 = rotationAngleX;
+      fVar31 = rotationAngleY;
+      fVar33 = transformX;
+      fVar20 = transformY;
       do {
         uStack_198 = *(undefined4 *)((componentIndex3 - lVar4) + -4 + (longlong)pfunctionResult9);
         uStack_194 = *(undefined4 *)((componentIndex3 - lVar4) + (longlong)pfunctionResult9);
@@ -10025,15 +10025,15 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
         lStack_1a8 = lStack_1a8 + -1;
       } while (lStack_1a8 != 0);
       lStack_1a8 = 0;
-      uiContext = uStackX_8;
-      fStackX_18 = fVar29;
-      fStackX_1c = fVar31;
-      fStackX_10 = fVar33;
-      fStackX_14 = fVar20;
+      uiContext = uiContextPointer;
+      rotationAngleX = fVar29;
+      rotationAngleY = fVar31;
+      transformX = fVar33;
+      transformY = fVar20;
     }
-    pfloatResult3 = pfStackX_20;
-    fVar29 = fStackX_14;
-    fVar28 = fStackX_10;
+    pfloatResult3 = bufferPointer;
+    fVar29 = transformY;
+    fVar28 = transformX;
     componentIndex3 = 0;
     bVar5 = true;
     validationResult4 = 0;
