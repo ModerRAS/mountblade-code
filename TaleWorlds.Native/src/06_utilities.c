@@ -10004,14 +10004,12 @@ uint8_t SystemConfigurationDataTableA0;
 char SystemMainCacheStatusFlag;               // 系统主缓存状态标志
 // 系统状态指针A0
 // 功能：指向系统状态数据
-// 系统状态指针A0
 void* SystemStatusPointerA0;
-uint8_t SystemStatusPointerA0;
 
 // 系统数据处理函数A0
 // 功能：处理系统数据操作
 #define ProcessSystemDataA0 FUN_1809430e0
-uint8_t SystemDataProcessingFunction;
+void* SystemDataProcessingFunction;
 // 系统标志变量A0
 // 功能：存储系统状态标志
 #define SystemFlagA0 DAT_180bf66d8
@@ -10019,15 +10017,15 @@ ByteFlag SystemFlagA0;
 // 系统数据表A1
 // 功能：存储系统数据表信息
 #define SystemDataTableA1 DAT_180c96858
-uint8_t SystemDataTableStorageA1;
+uint8_t SystemDataTableA1;
 // 系统缓冲区数据表A0
 // 功能：存储系统缓冲区数据表信息
 #define SystemBufferDataTableA0 DAT_180bfbf64
-uint8_t SystemBufferDataTableStorageA0;
+uint8_t SystemBufferDataTableA0;
 // 系统缓冲区数据表A1
 // 功能：存储系统缓冲区数据表信息
 #define SystemBufferDataTableA1 DAT_180bfbf7c
-uint8_t SystemBufferDataTableStorageA1;
+uint8_t SystemBufferDataTableA1;
 // 系统缓冲区数据表A2
 // 功能：存储系统缓冲区数据表信息
 #define SystemBufferDataTableA2 DAT_180bfbf60
@@ -10048,26 +10046,22 @@ uint8_t SystemConfigurationDataTableA2;
 char SystemSecondaryCacheStatusFlag;
 // 系统验证指针A0
 // 功能：指向系统验证数据
-// 系统验证指针A0
 void* SystemValidationPointerA0;
-uint8_t SystemValidationPointerA0;
 // 系统控制指针A0
 // 功能：指向系统控制数据
-// 系统控制指针A0
 void* SystemControlPointerA0;
-uint8_t SystemControlPointerA0;
 // 系统处理指针A0
 // 功能：指向系统处理数据
 #define SystemProcessingPointerA0 UNK_180a3c908
-uint8_t SystemProcessingPointerA0;
+void* SystemProcessingPointerA0;
 // 系统接口指针A0
 // 功能：指向系统接口数据
 #define SystemInterfacePointerA0 UNK_180a3d970
-uint8_t SystemInterfacePointerA0;
+void* SystemInterfacePointerA0;
 // 系统服务指针A0
 // 功能：指向系统服务数据
 #define SystemServicePointerA0 UNK_180a3db60
-uint8_t SystemServicePointerA0;
+void* SystemServicePointerA0;
 // 系统管理数据表A0
 // 功能：存储系统管理数据表信息
 #define SystemManagementDataTableA0 DAT_180bfbd80
@@ -41316,17 +41310,17 @@ void CleanupStackMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t *pdataContext;
-  int64_t *pcalculatedOffset;
+  int64_t *dataContextPointer;
+  int64_t *stackFrameIterator;
   
-  pdataContext = *(int64_t **)(dataBuffer + 0x20);
-  exceptionHandlerContextPointer = (int64_t *)pdataContext[1];
-  for (pcalculatedOffset = (int64_t *)*pdataContext; pcalculatedOffset != exceptionHandlerContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
-    if ((int64_t *)*pcalculatedOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*pcalculatedOffset + 0x38))();
+  dataContextPointer = *(int64_t **)(dataBuffer + 0x20);
+  exceptionHandlerContextPointer = (int64_t *)dataContextPointer[1];
+  for (stackFrameIterator = (int64_t *)*dataContextPointer; stackFrameIterator != exceptionHandlerContextPointer; stackFrameIterator = stackFrameIterator + 1) {
+    if ((int64_t *)*stackFrameIterator != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*stackFrameIterator + 0x38))();
     }
   }
-  if (*pdataContext == 0) {
+  if (*dataContextPointer == 0) {
     return;
   }
     TerminateSystemE0();
@@ -41499,17 +41493,17 @@ void CleanupStaticMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t *pdataContext;
-  int64_t *pcalculatedOffset;
+  int64_t *staticMemoryContext;
+  int64_t *staticMemoryIterator;
   
-  pdataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x1868);
+  staticMemoryContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x1868);
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x1870);
-  for (pcalculatedOffset = (int64_t *)*pdataContext; pcalculatedOffset != exceptionHandlerContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
-    if ((int64_t *)*pcalculatedOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*pcalculatedOffset + 0x38))();
+  for (staticMemoryIterator = (int64_t *)*staticMemoryContext; staticMemoryIterator != exceptionHandlerContextPointer; staticMemoryIterator = staticMemoryIterator + 1) {
+    if ((int64_t *)*staticMemoryIterator != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*staticMemoryIterator + 0x38))();
     }
   }
-  if (*pdataContext == 0) {
+  if (*staticMemoryContext == 0) {
     return;
   }
     TerminateSystemE0();
@@ -41521,17 +41515,17 @@ void CleanupConstantMemoryOnException(DataBuffer operationBase,int64_t dataBuffe
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t *pdataContext;
-  int64_t *pcalculatedOffset;
+  int64_t *constantMemoryContext;
+  int64_t *constantMemoryIterator;
   
-  pdataContext = *(int64_t **)(dataBuffer + 0x48);
-  exceptionHandlerContextPointer = (int64_t *)pdataContext[1];
-  for (pcalculatedOffset = (int64_t *)*pdataContext; pcalculatedOffset != exceptionHandlerContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
-    if ((int64_t *)*pcalculatedOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*pcalculatedOffset + 0x38))();
+  constantMemoryContext = *(int64_t **)(dataBuffer + 0x48);
+  exceptionHandlerContextPointer = (int64_t *)constantMemoryContext[1];
+  for (constantMemoryIterator = (int64_t *)*constantMemoryContext; constantMemoryIterator != exceptionHandlerContextPointer; constantMemoryIterator = constantMemoryIterator + 1) {
+    if ((int64_t *)*constantMemoryIterator != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*constantMemoryIterator + 0x38))();
     }
   }
-  if (*pdataContext == 0) {
+  if (*constantMemoryContext == 0) {
     return;
   }
     TerminateSystemE0();
@@ -60008,10 +60002,10 @@ void InitializeExceptionDataTables(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x48);
-  *exceptionDataBuffer = &SystemExceptionDataTable;
-  exceptionDataBuffer[2] = &DefaultExceptionHandlerB;
-  *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &ExceptionDataTable6;
+  exceptionDataBuffer[0] = &SystemExceptionDataTable;
+  exceptionDataBuffer[1] = &DefaultExceptionHandlerB;
+  exceptionDataBuffer[2] = &ExceptionDataTable3;
+  exceptionDataBuffer[3] = &ExceptionDataTable6;
   return;
 }
 
@@ -66808,15 +66802,15 @@ void ProcessSystemStatusUpdateA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
-  int64_t *pdataContext;
-  int64_t calculatedOffset;
+  int64_t *systemContextPointer;
+  int64_t contextIterator;
   
-  pdataContext = *(int64_t **)(dataBuffer + 0x40);
-  exceptionHandlerContext = pdataContext[1];
-  for (calculatedOffset = *pdataContext; calculatedOffset != exceptionHandlerContext; calculatedOffset = calculatedOffset + 0x60) {
-    UpdateSystemStatusA0(calculatedOffset);
+  systemContextPointer = *(int64_t **)(dataBuffer + 0x40);
+  exceptionHandlerContext = systemContextPointer[1];
+  for (contextIterator = *systemContextPointer; contextIterator != exceptionHandlerContext; contextIterator = contextIterator + 0x60) {
+    UpdateSystemStatusA0(contextIterator);
   }
-  if (*pdataContext == 0) {
+  if (*systemContextPointer == 0) {
     return;
   }
     TerminateSystemE0();
