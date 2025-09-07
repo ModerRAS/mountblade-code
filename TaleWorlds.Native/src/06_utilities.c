@@ -9948,6 +9948,14 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   uint32_t DataProcessingFlags;
   uint8_t WorkingDataBuffer[512];
   
+  // 初始化操作状态
+  OperationStatus = 0;
+  ResourceIdentifier = 0;
+  ResourceArrayIterator = 0;
+  ProcessedResourceCount = 0;
+  ResourceProcessingLoopCounter = 0;
+  DataProcessingFlags = 0;
+  
   // 栈保护变量
   uint64_t StackGuardValue;
   

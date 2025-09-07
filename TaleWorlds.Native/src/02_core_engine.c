@@ -65367,7 +65367,7 @@ void ProcessEventTemplateData(void
     if (1 < CharacterTablePointer) {
       BufferStatus = (CharacterTablePointer + -2 >> 1) + 1;
       do {
-        uStack0000000000000060 = RegisterR15Value[BufferStatus + -1];
+        EventTemplateData = RegisterR15Value[BufferStatus + -1];
         BufferStatus = BufferStatus + -1;
         ProcessSystemDataStructureAllocation();
       } while (BufferStatus != 0);
