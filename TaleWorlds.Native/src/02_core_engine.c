@@ -21557,6 +21557,15 @@ void SetThreadLocalStoragePointer(long long ThreadLocalStoragePointer
  * @note 此函数直接设置指针为线程本地存储模板
  * @note 用于线程本地存储系统的配置
  */
+/**
+ * @brief 设置线程本地存储模板
+ * 
+ * 该函数负责设置线程本地存储的模板指针，将指定的线程存储指针指向预定义的线程本地存储模板
+ * 
+ * @param threadStoragePointer 线程存储指针，用于指向线程本地存储模板
+ * 
+ * @note 该函数用于初始化线程本地存储机制，确保每个线程都有正确的存储模板
+ */
 void SetThreadLocalStorageTemplate(uint64_t *threadStoragePointer) {
   *threadStoragePointer = &ThreadLocalStorageTemplate;
   return;
