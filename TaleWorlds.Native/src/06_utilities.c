@@ -226,56 +226,56 @@
 #define SystemContextHandleOffset 0x18                   // 系统上下文句柄偏移量 - 系统句柄的存储位置
 #define SystemMemoryManagerOffset 0x1a0                  // 系统内存管理器偏移量 - 系统内存管理器的存储位置
 #define OperationDataContextOffset 0x30                  // 操作数据上下文偏移量 - 操作数据相关上下文信息的存储位置
-#define OperationContextBufferOffset 0x98
-#define SYSTEM_CONTEXT_OFFSET 0x8              // 系统上下文偏移量
+#define OperationContextBufferOffset 0x98                  // 操作上下文缓冲区偏移量 - 操作上下文缓冲区的存储位置
+#define SYSTEM_CONTEXT_OFFSET 0x8                          // 系统上下文偏移量 - 系统上下文的基础偏移位置
 
 // 操作结果常量定义
-#define OperationSuccess 0
-#define OperationInvalidParameter 0x1f
-#define OperationMemoryError 0x26
-#define OperationDataProcessed 1
-#define OperationDataComplete 2
+#define OperationSuccess 0                                  // 操作成功 - 表示操作正常完成的返回值
+#define OperationInvalidParameter 0x1f                       // 操作无效参数 - 表示传入参数无效的返回值
+#define OperationMemoryError 0x26                           // 操作内存错误 - 表示内存分配或访问失败的返回值
+#define OperationDataProcessed 1                            // 操作数据处理完成 - 表示数据已成功处理的返回值
+#define OperationDataComplete 2                              // 操作数据完成 - 表示数据操作完全完成的返回值
 
 // 系统状态码常量
-#define SystemContextValidationFailure 0x1c
-#define ComponentDataValidationFailure 0x1f
+#define SystemContextValidationFailure 0x1c                  // 系统上下文验证失败 - 表示系统上下文验证失败的错误码
+#define ComponentDataValidationFailure 0x1f                  // 组件数据验证失败 - 表示组件数据验证失败的错误码
 
 // 系统错误代码常量
-#define SystemOperationFailure 0x2e
-#define ResourceAccessDenied 0x4c
-#define SystemResourceBusy 0x4e
-#define SecurityValidationFailed 0x1d
-#define SystemConfigurationError 0x4f
-#define ComponentRegistrationFailed 0x1e
+#define SystemOperationFailure 0x2e                          // 系统操作失败 - 表示系统操作失败的错误码
+#define ResourceAccessDenied 0x4c                             // 资源访问被拒绝 - 表示资源访问权限不足的错误码
+#define SystemResourceBusy 0x4e                               // 系统资源繁忙 - 表示系统资源正在使用中的错误码
+#define SecurityValidationFailed 0x1d                         // 安全验证失败 - 表示安全检查未通过的错误码
+#define SystemConfigurationError 0x4f                         // 系统配置错误 - 表示系统配置参数有误的错误码
+#define ComponentRegistrationFailed 0x1e                     // 组件注册失败 - 表示组件注册过程失败的错误码
 
 // 组件状态常量
-#define ComponentInactiveStatus -1
+#define ComponentInactiveStatus -1                           // 组件非活动状态 - 表示组件当前处于非活动状态的状态值
 
 // 容量增长因子常量
-#define ComponentCapacityGrowthFactor 1.5
+#define ComponentCapacityGrowthFactor 1.5                     // 组件容量增长因子 - 组件容量扩展时的增长倍数
 
 // 数据验证缓冲区大小常量
-#define DataValidationBufferSize 16
+#define DataValidationBufferSize 16                            // 数据验证缓冲区大小 - 数据验证操作使用的缓冲区大小（字节）
 
 // 异常处理和状态寄存器相关常量
-#define ExceptionHandlerContextOffset 0x18    // 异常处理上下文偏移量
-#define StatusRegisterOffset 0x34            // 状态寄存器偏移量
-#define ProcessingFlagsShift 4                // 处理标志位移量
-#define ValidationFlagShift 1                 // 验证标志位移量
-#define SystemStateFlagShift 7                // 系统状态标志位移量
-#define FloatValidationMask 0x7f800000       // 浮点数验证掩码
-#define IntegerMinValue -0x80000000           // 整数最小值
+#define ExceptionHandlerContextOffset 0x18                     // 异常处理上下文偏移量 - 异常处理上下文信息的存储位置
+#define StatusRegisterOffset 0x34                                 // 状态寄存器偏移量 - CPU状态寄存器信息的存储位置
+#define ProcessingFlagsShift 4                                  // 处理标志位移量 - 处理状态标志位的位移量
+#define ValidationFlagShift 1                                   // 验证标志位移量 - 验证状态标志位的位移量
+#define SystemStateFlagShift 7                                  // 系统状态标志位移量 - 系统状态标志位的位移量
+#define FloatValidationMask 0x7f800000                         // 浮点数验证掩码 - 用于验证浮点数有效性的位掩码
+#define IntegerMinValue -0x80000000                              // 整数最小值 - 32位有符号整数的最小值
 
 // 数据处理相关常量
-#define DataConfigurationOffset 0x10          // 数据配置偏移量
-#define ComponentValidationBufferSize 16     // 组件验证缓冲区大小
-#define SystemContextBufferOffset 0x78       // 系统上下文缓冲区偏移量
+#define DataConfigurationOffset 0x10                             // 数据配置偏移量 - 数据配置信息的存储位置
+#define ComponentValidationBufferSize 16                          // 组件验证缓冲区大小 - 组件验证操作使用的缓冲区大小（字节）
+#define SystemContextBufferOffset 0x78                            // 系统上下文缓冲区偏移量 - 系统上下文缓冲区的存储位置
 
 // 系统内存分配常量
-#define SystemMemoryAllocationFlag 0x315
+#define SystemMemoryAllocationFlag 0x315                          // 系统内存分配标志 - 系统内存分配操作的标志值
 
 // 异常处理器E0-E4相关常量
-#define ExceptionHandlerE0Offset 0x2e0
+#define ExceptionHandlerE0Offset 0x2e0                            // 异常处理器E0偏移量 - E0类型异常处理器的存储位置
 #define ExceptionHandlerE0StatusOffset 0x2e8
 #define ExceptionHandlerE0StateOffset 0x2f8
 #define ExceptionHandlerE1Offset 0x2c0
