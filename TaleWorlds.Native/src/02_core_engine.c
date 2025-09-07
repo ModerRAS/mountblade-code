@@ -175704,7 +175704,7 @@ uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsi
 {
   *Utf8InputBuffer = SystemTargetDataSecondary;
   if (*(char*)SystemMemoryCurrentCharacter == '\0') {
-    FUN_180143430();
+    ProcessCharacterWithSystemContext();
   }
   Utf8InputBuffer[100] = &SystemNullTemplate;
   if (Utf8InputBuffer[0x65] != 0) {
