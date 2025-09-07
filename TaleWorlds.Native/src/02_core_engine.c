@@ -159803,7 +159803,15 @@ void ProcessCharacterCodeConversion(void
 
 
 
-35811(voidvoid FUN_180135811(void
+/**
+ * @brief 处理系统内存管理和缓冲区状态
+ * 
+ * 该函数负责管理系统内存分配、缓冲区状态检查和字符表处理
+ * 执行内存地址掩码计算、数据传输和缓冲区清理操作
+ * 
+ * @note 原始函数名：FUN_180135811
+ */
+void ProcessSystemMemoryManagementAndBufferStatus(void)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -159852,14 +159860,31 @@ void ProcessCharacterCodeConversion(void
 
 
 
-358b4(voidvoid ProcessCharacterBufferCleanup(void
+/**
+ * @brief 清理字符缓冲区
+ * 
+ * 该函数负责清理和释放字符缓冲区资源
+ * 
+ * @note 原始函数名：ProcessCharacterBufferCleanup
+ */
+void CleanCharacterBufferResources(void)
 {
   return;
 }
 
 
 
-uint GetMemoryAddressMask(long long CharacterCode
+/**
+ * @brief 计算内存地址掩码
+ * 
+ * 该函数根据字符代码计算内存地址掩码，用于内存地址计算和数据访问
+ * 
+ * @param CharacterCode 字符代码，用于计算地址掩码
+ * @return uint 计算得到的地址掩码值
+ * 
+ * @note 原始函数名：GetMemoryAddressMask
+ */
+uint CalculateMemoryAddressMask(long long CharacterCode)
 {
   int LockResult;
   uint *PrimaryProcessingStatusFlag;
@@ -161059,7 +161084,18 @@ LAB_180136c0c:
 
 
 
-36f60(long long CharacterCode,long long Utf8BufferSizevoid ProcessStringCopyOperation(long long CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理字符串复制操作
+ * 
+ * 该函数负责执行字符串复制操作，管理缓冲区状态和内存块索引
+ * 处理引用计数、内存边界和系统校验和计算
+ * 
+ * @param CharacterCode 字符代码，用于字符串处理
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * 
+ * @note 原始函数名：ProcessStringCopyOperation
+ */
+void HandleStringCopyOperation(long long CharacterCode, long long Utf8BufferSize)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
