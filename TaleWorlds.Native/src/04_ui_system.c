@@ -60634,7 +60634,7 @@ void ProcessUIFilterOperation(void)
  void TriggerUIUpdateSequence(void)
 
 {
-  FUN_1806979e0();
+  TriggerUIRenderingUpdate();
   return;
 }
 
