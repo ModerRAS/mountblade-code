@@ -103285,7 +103285,7 @@ LAB_180116f4a:
         }
       }
       else if (StringBuffer7 != '\0') {
-        FUN_180115130(bufferAllocationStatus4,RegisterSourceIndex + 0x1ef0);
+        ProcessSystemAnimation(bufferAllocationStatus4,RegisterSourceIndex + 0x1ef0);
         *(uint32_t *)(RegisterSourceIndex + 0x2d14) = 0xbe99999a;
         goto LAB_180116f4a;
       }
@@ -103634,7 +103634,7 @@ LAB_1801177f4:
             }
             *(uint8_t *)(RegisterSourceIndex + 0x2d18) = 1;
             if (*(int *)(RegisterSourceIndex + 0x1ef4) != *(int *)(RegisterSourceIndex + 0x1ef8)) {
-              FUN_180115490(pFloatValue31,RegisterSourceIndex + 0x1ef0);
+              ProcessSystemAudio(pFloatValue31,RegisterSourceIndex + 0x1ef0);
               *(uint8_t *)(RegisterSourceIndex + 0x1eff) = 0;
             }
           }
