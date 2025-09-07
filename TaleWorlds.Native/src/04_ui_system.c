@@ -70655,17 +70655,17 @@ void InitializeUIContext(longlong *uiContext)
   else {
     if (*(int *)((longlong)uiContext + 0xc) + *(uint *)((longlong)uiContext + 0x1c) <
         *(uint *)(uiContext + 1)) {
-      *(char *)((ulonglong)*(uint *)((longlong)uiContext + 0x1c) + *uiContext) = (char)uVar6;
+      *(char *)((ulonglong)*(uint *)((longlong)uiContext + 0x1c) + *uiContext) = (char)contextFlags;
       *(int *)((longlong)uiContext + 0x1c) = *(int *)((longlong)uiContext + 0x1c) + 1;
-      uVar6 = 0;
+      contextFlags = 0;
     }
     else {
-      uVar6 = 0xffffffff;
+      contextFlags = 0xffffffff;
     }
-    *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | uVar6;
-    compareResult = (int)uiContext[5];
+    *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | contextFlags;
+    bitPosition = (int)uiContext[5];
   }
-  while (compareResult != 0) {
+  while (bitPosition != 0) {
     if (*(int *)((longlong)uiContext + 0xc) + *(uint *)((longlong)uiContext + 0x1c) <
         *(uint *)(uiContext + 1)) {
       *(undefined1 *)((ulonglong)*(uint *)((longlong)uiContext + 0x1c) + *uiContext) = 0xff;
