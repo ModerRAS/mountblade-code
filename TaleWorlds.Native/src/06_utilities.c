@@ -74966,56 +74966,72 @@ void UnwindExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809091b0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_1809091b0 - 异常处理函数B1
+// 功能：在指定偏移量处调用异常处理器
+void UnwindExceptionHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionHandlerContextPointer;   // 异常处理上下文指针
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x1ca0);
+  // 获取异常处理上下文指针
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + 0xa0);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    // 执行异常处理回调函数
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + SystemComponentContextOffset))();
   }
   return;
 }
 
 
 
-void Unwind_1809091d0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_1809091d0 - 异常处理函数B2
+// 功能：在指定偏移量处调用异常处理器
+void UnwindExceptionHandlerB2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionHandlerContextPointer;   // 异常处理上下文指针
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x1ca8);
+  // 获取异常处理上下文指针
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + 0xa8);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    // 执行异常处理回调函数
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + SystemComponentContextOffset))();
   }
   return;
 }
 
 
 
-void Unwind_1809091f0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_1809091f0 - 异常处理函数B3
+// 功能：在指定偏移量处调用异常处理器
+void UnwindExceptionHandlerB3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionHandlerContextPointer;   // 异常处理上下文指针
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x1cb0);
+  // 获取异常处理上下文指针
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + 0xb0);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    // 执行异常处理回调函数
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + SystemComponentContextOffset))();
   }
   return;
 }
 
 
 
-void Unwind_180909210(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_180909210 - 异常处理函数B4
+// 功能：在指定偏移量处调用异常处理器
+void UnwindExceptionHandlerB4(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t *exceptionHandlerContextPointer;
+  int64_t *exceptionHandlerContextPointer;   // 异常处理上下文指针
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x1cb8);
+  // 获取异常处理上下文指针
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + 0xb8);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    // 执行异常处理回调函数
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + SystemComponentContextOffset))();
   }
   return;
 }
@@ -75091,28 +75107,39 @@ void CallExceptionHandlerWithContextOffset1cd0(DataBuffer operationBase, int64_t
 
 
 
-void Unwind_180909290(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_180909290 - 内存资源清理和异常处理函数
+// 功能：清理内存资源，处理异常回调，管理资源引用计数
+void CleanupMemoryResourcesAndHandleExceptions(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int *resourceReferenceCount;
-  DataBuffer *memoryResourcePointer;
-  int64_t memoryBlockOffset;
-  uint64_t *memoryRegionBase;
-  uint64_t operationResult;
-  uint64_t dataFlags;
+  int *resourceReferenceCount;               // 资源引用计数指针
+  DataBuffer *memoryResourcePointer;         // 内存资源指针
+  int64_t memoryBlockOffset;                 // 内存块偏移量
+  uint64_t *memoryRegionBase;                // 内存区域基址
+  uint64_t operationResult;                  // 操作结果
+  uint64_t dataFlags;                        // 数据标志位
   
-  memoryRegionBase = (uint64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x1d20);
-  dataFlags = *(uint64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x1d28);
-  for (operationResult = *memoryRegionBase; operationResult != dataFlags; operationResult = operationResult + 0xd0) {
+  // 获取内存区域基址和数据标志位
+  memoryRegionBase = (uint64_t *)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + 0x120);
+  dataFlags = *(uint64_t *)(*(int64_t *)(dataBuffer + SystemContextBufferOffset) + ResourceSecondaryDataOffset + 0x128);
+  
+  // 遍历内存区域，设置默认异常处理器
+  for (operationResult = *memoryRegionBase; operationResult != dataFlags; operationResult = operationResult + MemoryBlockSizeD0) {
     *(uint8_t **)(operationResult + ExceptionHandlerCallbackOffset10) = &DefaultExceptionHandlerB;
   }
+  
+  // 处理内存资源
   memoryResourcePointer = (DataBuffer *)*memoryRegionBase;
   if (memoryResourcePointer != (DataBuffer *)0x0) {
     dataFlags = (uint64_t)memoryResourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
-      memoryBlockOffset = dataFlags + 0x80 + ((int64_t)memoryResourcePointer - dataFlags >> 0x10) * 0x50;
+      // 计算内存块偏移量
+      memoryBlockOffset = dataFlags + MemoryBaseOffset + ((int64_t)memoryResourcePointer - dataFlags >> 0x10) * MemoryBlockMultiplier;
       memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + 0xe) == '\0')) {
+      
+      // 检查异常列表和内存状态
+      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(memoryBlockOffset + MemoryExceptionCheckOffset) == '\0')) {
+        // 更新内存资源指针和引用计数
         *memoryResourcePointer = *(DataBuffer *)(memoryBlockOffset + MemoryDataOffset);
         *(DataBuffer **)(memoryBlockOffset + MemoryDataOffset) = memoryResourcePointer;
         resourceReferenceCount = (int *)(memoryBlockOffset + MemoryReferenceOffset);
@@ -75123,6 +75150,7 @@ void Unwind_180909290(DataBuffer operationBase,int64_t dataBuffer)
         }
       }
       else {
+        // 管理内存操作
         ManageMemory(dataFlags,SetBitFlag(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                             memoryResourcePointer,dataFlags,SystemCleanupFlagAlternative);
       }
