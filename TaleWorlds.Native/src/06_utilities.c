@@ -32,7 +32,7 @@
 #define NegativeZeroFloat 0x80000000
 #define SecurityValidationMask 0x40000000
 #define ThreadLocalStorageOffset 0x17c
-#define ThreadLocalStorageBase 0x180c4f450
+#define ThreadLocalStorageBaseAddressAddress 0x180c4f450
 #define ResourceCleanupAlignment 0xfffffff0
 #define DataProcessingMultiplier 0xc
 #define OperationFlagMask 0x10000000
@@ -131,8 +131,8 @@
 #define ResourceHandleArrayIndex 0
 #define ResourceHandleDataOffset 8
 #define ResourceCountThreshold 1
-#define ExceptionCriticalSectionA0 0x180c82210
-#define ExceptionProcessParameterA0 0x180c82238
+#define ExceptionCriticalSectionAddress 0x180c82210
+#define ExceptionProcessParameterAddress 0x180c82238
 #define ExceptionHandlerDataOffsetA8 0xa8
 #define ExceptionHandlerCallbackOffset38 0x38
 #define ExceptionHandlerContextOffsetA0 0xa0
@@ -282,7 +282,7 @@
 
 // 线程本地存储相关常量
 #define ThreadLocalStorageOffset 0x17c
-#define ThreadLocalStorageBase 0x180c4f450
+#define ThreadLocalStorageBaseAddressAddress 0x180c4f450
 
 // 内存对齐和掩码常量
 #define MemoryAlignmentValue 0xf
@@ -14956,7 +14956,7 @@ uint64_t ValidateSystemDataIndexAndProcessResource(int64_t systemContext, int64_
   if ((*(int *)(systemDataPtr + 0x180) != 0) || (*(int *)(systemDataPtr + 0x184) != 0)) {
     bufferPtr = 0;
     InitializeSystemContextA0(&bufferPtr);
-    if (bufferPtr == *(int64_t *)((int64_t)*(int *)(systemDataPtr + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
+    if (bufferPtr == *(int64_t *)((int64_t)*(int *)(systemDataPtr + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
       operationStatus = ProcessSystemDataEC0(systemDataPtr, systemContext);
       goto OperationComplete;
     }
@@ -15243,7 +15243,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     if ((*(int *)(dataBufferPtr + 0x180) != 0) || (*(int *)(dataBufferPtr + 0x184) != 0)) {
       systemContextBuffer[0] = 0;
       InitializeSystemContextA0(systemContextBuffer);
-      if (systemContextBuffer[0] == *(int64_t *)((int64_t)*(int *)(dataBufferPtr + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
+      if (systemContextBuffer[0] == *(int64_t *)((int64_t)*(int *)(dataBufferPtr + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
         result = ProcessSystemDataEC0(dataBufferPtr,dataPtr);
         if ((int)result == 0) {
           return 0;
@@ -15837,7 +15837,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
     if ((*(int *)(dataStructurePointer + 0x180) != 0) || (*(int *)(dataStructurePointer + 0x184) != 0)) {
       stackBuffer = 0;
       InitializeSystemContextA0(&stackBuffer,DataStructureHandle,ResourceDescriptor,OperationFlags,systemContext);
-      if (stackBuffer == *(int64_t *)((int64_t)*(int *)(dataStructurePointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
+      if (stackBuffer == *(int64_t *)((int64_t)*(int *)(dataStructurePointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
         validationStatus = ProcessSystemDataEC0(dataStructurePointer,DataStructureHandle);
         if ((int)validationStatus == 0) {
           return 0;
@@ -16161,7 +16161,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
   if ((*(int *)(resultPointer + 0x180) != 0) || (*(int *)(resultPointer + 0x184) != 0)) {
     stackValue = 0;
     InitializeSystemContextA0(&stackValue,valueContext,exceptionHandlerContext,processingContext,DestinationContext);
-    if (stackValue == *(int64_t *)((int64_t)*(int *)(resultPointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
+    if (stackValue == *(int64_t *)((int64_t)*(int *)(resultPointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
       operationResult = ProcessSystemDataEC0(resultPointer,valueContext);
       if ((int)operationResult == 0) {
         return 0;
@@ -16230,7 +16230,7 @@ RangeValidationSuccess:
   if ((*(int *)(calculatedOffset + 0x180) != 0) || (*(int *)(calculatedOffset + 0x184) != 0)) {
     LocalStackOffset = 0;
     InitializeSystemContextA0(&LocalStackOffset);
-    if (LocalStackOffset == *(int64_t *)((int64_t)*(int *)(calculatedOffset + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
+    if (LocalStackOffset == *(int64_t *)((int64_t)*(int *)(calculatedOffset + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
       operationResult = ProcessSystemDataEC0(calculatedOffset,operationBase);
       if ((int)operationResult == 0) {
         return 0;
@@ -16279,7 +16279,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
   if ((*(int *)(dataContext + 0x180) != 0) || (*(int *)(dataContext + 0x184) != 0)) {
     transferSize = 0;
     InitializeSystemContextA0(&transferSize);
-    if (transferSize == *(int64_t *)((int64_t)*(int *)(dataContext + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
+    if (transferSize == *(int64_t *)((int64_t)*(int *)(dataContext + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
       operationResult = ProcessSystemDataEC0(dataContext,dataDescriptor);
       if ((int)operationResult == 0) {
         return 0;
@@ -16485,7 +16485,7 @@ DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
   if (*(int *)(exceptionHandlerContext + 0x200) != 0) {
     if (((*(int *)(exceptionHandlerContext + 0x180) == 0) && (*(int *)(exceptionHandlerContext + 0x184) == 0)) ||
        (InitializeSystemContextA0(&stackBufferSmall),
-       *(int64_t *)((int64_t)*(int *)(exceptionHandlerContext + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase) != 0)) {
+       *(int64_t *)((int64_t)*(int *)(exceptionHandlerContext + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress) != 0)) {
       *(uint *)(memoryDescriptor + 8) = *(int *)(memoryDescriptor + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
       operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(exceptionHandlerContext + 0x1e0));
     }
@@ -36669,9 +36669,9 @@ void ExceptionHandlerA0(void)
 {
   byte shiftBitCount;
   
-  EnterCriticalSection(ExceptionCriticalSectionA0);
+  EnterCriticalSection(ExceptionCriticalSectionAddress);
   ExceptionStatusFlagA1 = 0;
-  LeaveCriticalSection(ExceptionCriticalSectionA0);
+  LeaveCriticalSection(ExceptionCriticalSectionAddress);
   if (ExceptionEventHandle != 0) {
     SetEvent();
                           ResetEvent(ExceptionEventHandle);
@@ -36679,7 +36679,7 @@ void ExceptionHandlerA0(void)
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                           (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterA0);
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -61100,7 +61100,7 @@ void ResetSystemEventState(void)
   }
   shiftBits = (byte)ExceptionEncryptionKey & 0x3f;
                           (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBits |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBits))(ExceptionProcessParameterA0);
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBits))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -63360,7 +63360,7 @@ void ResetSystemStatusFlag(void)
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                           (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterA0);
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -67208,7 +67208,7 @@ void Unwind_180908040(void)
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                           (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterA0);
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -69941,7 +69941,7 @@ void Unwind_180908d30(void)
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                           (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterA0);
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -74664,7 +74664,7 @@ void Unwind_18090a6e0(void)
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                           (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterA0);
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -101595,7 +101595,7 @@ void HandleResourceCleanupExceptionAtOffset7d0(void)
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                           (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterA0);
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
