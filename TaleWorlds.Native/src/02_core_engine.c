@@ -103,6 +103,12 @@
 #define ProcessCharacterEncodingData FUN_180212e40                // 处理字符编码数据
 #define ProcessCharacterEncodingValidation FUN_180212e60            // 处理字符编码验证
 #define ProcessCharacterCodeLookupEx FUN_180214c50                // 处理字符代码查找扩展
+#define ProcessCharacterCodeMapping FUN_180214c90                  // 处理字符代码映射
+#define ProcessCharacterCodeRangeValidation FUN_180214cf0          // 处理字符代码范围验证
+#define ProcessCharacterBufferAllocation FUN_1802161d0             // 处理字符缓冲区分配
+#define ProcessCharacterMemoryManagement FUN_180216210            // 处理字符内存管理
+#define ProcessSystemFinalizationEx FUN_18021aef5                  // 处理系统最终化扩展
+#define GetSystemErrorCode FUN_180225472                           // 获取系统错误代码
 #define GetMemoryBoundaryEnd FUN_18014e960                       // 获取内存边界结束
 #define GetProcessingPointerC0 FUN_18014f6a0                    // 获取处理指针C0
 
@@ -168977,7 +168983,17 @@ void ProcessUtf8CharacterEncodingValidationAndConversion(long long CharacterCode
 
 
 
-3c4e0(long long CharacterCode,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointervoid FUN_18013c4e0(long long CharacterCode,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码验证和转换
+ * 
+ * 该函数负责验证UTF-8字符编码的正确性，并进行必要的转换操作。
+ * 处理字符数据的格式化和验证，确保数据完整性。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ */
+void ProcessUtf8CharacterEncodingValidation(long long CharacterCode, uint64_t *Utf8InputBufferSize, uint64_t Utf8SourcePointer)
 {
   char InputStringBuffer;
   int *pStringComparisonResult;
@@ -169083,7 +169099,15 @@ void ProcessUtf8CharacterEncodingValidationAndConversion(long long CharacterCode
 
 
 
-3c504(int CharacterCodevoid FUN_18013c504(int CharacterCode
+/**
+ * @brief 验证字符代码范围和处理状态
+ * 
+ * 该函数负责验证字符代码的范围是否有效，并处理相关的状态信息。
+ * 执行字符数据的验证和系统资源的分配操作。
+ * 
+ * @param CharacterCode 字符代码
+ */
+void ValidateCharacterCodeRange(int CharacterCode)
 {
   char InputStringBuffer;
   long long BufferStatus;
@@ -231085,6 +231109,23 @@ uint32_t FUN_18019c480(long long CharacterCode
 
 
 
+/**
+ * @brief 处理字符代码转换扩展
+ * 
+ * 该函数负责处理字符代码的扩展转换操作，包括：
+ * - UTF-8到UTF-16的字符编码转换
+ * - 缓冲区大小和指针的管理
+ * - 字符数据的内存分配和释放
+ * - 数据处理器的初始化
+ * 
+ * @param CharacterCode 字符代码，用于标识要处理的字符
+ * @param Utf8BufferSize UTF-8缓冲区大小，指定输入数据的长度
+ * @param Utf8SourcePointer UTF-8源指针，指向输入数据的起始位置
+ * @param Utf16EndPointer UTF-16结束指针，指向输出数据的结束位置
+ * @return uint64_t 返回处理后的字符代码
+ * 
+ * @note 原始函数名: FUN_18019c560
+ */
 uint64_t FUN_18019c560(uint64_t CharacterCode,unsigned long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t Utf16Char;
