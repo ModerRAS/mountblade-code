@@ -68240,7 +68240,17 @@ void SetDefaultExceptionHandlerAtOffset360(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_180907ce0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到偏移量0x240
+ * 
+ * 该函数将默认异常处理器B设置到数据缓冲区的0x240偏移量位置。
+ * 这是一个简单的异常处理器设置函数，用于初始化异常处理链。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907ce0
+ */
+void SetDefaultExceptionHandlerBOffset240(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x240) = &DefaultExceptionHandlerB;
@@ -68249,7 +68259,18 @@ void Unwind_180907ce0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907cf0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器偏移量0x1c0
+ * 
+ * 该函数重置数据缓冲区偏移量0x1c0处的异常处理器。
+ * 首先设置临时异常处理器，检查异常状态，清理状态标志，
+ * 最后设置默认异常处理器B。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907cf0
+ */
+void ResetExceptionHandlerOffset1C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x1c0) = &TemporaryExceptionHandler;
@@ -68264,7 +68285,18 @@ void Unwind_180907cf0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907d00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器偏移量0x1e8
+ * 
+ * 该函数重置数据缓冲区偏移量0x1e8处的异常处理器。
+ * 通过指针间接访问异常处理器，设置临时处理器，
+ * 检查异常状态，清理状态标志，最后设置默认异常处理器B。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907d00
+ */
+void ResetExceptionHandlerOffset1E8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;

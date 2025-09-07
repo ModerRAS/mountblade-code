@@ -50552,13 +50552,13 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   bool SystemOperationFlag;
   float FloatVariable45;
   float FloatVariable46;
-  uint8_t aMemoryAddressMask7 [16];
-  float FloatVariable48;
-  float FloatVariable49;
-  float FloatVariable50;
-  float FloatVariable51;
-  float FloatVariable52;
-  float FloatVariable53;
+  uint8_t MemoryAddressMask7 [16];
+  float FloatValue48;
+  float FloatValue49;
+  float FloatValue50;
+  float FloatValue51;
+  float FloatValue52;
+  float FloatValue53;
   int iStackX_10;
   unsigned long long StackConfigurationFlag;
   unsigned long long uStackX_20;
@@ -148001,7 +148001,7 @@ long long ValidateSystemConfiguration(uint64_t CharacterCode
         fStack_74 = *(float *)(SystemStringIndex + 0xc);
         fStack_70 = fStack_78 + *(float *)(SystemStringIndex + 0x10);
         fStack_6c = fStack_74 + *(float *)(SystemStringIndex + 0x14);
-        SystemChecksumValue = FUN_180130ec0(&fStack_78);
+        SystemChecksumValue = ProcessUtf8InputBufferAndMatchCharacter(&fStack_78);
         *(uint16_t *)(SystemStringIndex + 0x74) = SystemChecksumValue;
       }
       *(uint32_t *)(SystemStringIndex + 0x6c) = 0x3f800000;
@@ -148332,7 +148332,7 @@ void ProcessSystemBufferStatus(void)
         StackVariable34 = *(float *)(CharacterTablePointer6 + 0xc);
         StackVariable38 = fStack0000000000000030 + *(float *)(CharacterTablePointer6 + 0x10);
         StackVariable3c = StackVariable34 + *(float *)(CharacterTablePointer6 + 0x14);
-        SystemStatusCode = FUN_180130ec0(&SystemStackBuffer);
+        SystemStatusCode = ProcessUtf8InputBufferAndMatchCharacter(&SystemStackBuffer);
         *(uint16_t *)(CharacterTablePointer6 + 0x74) = SystemStatusCode;
       }
       *(uint32_t *)(CharacterTablePointer6 + 0x6c) = 0x3f800000;
@@ -148584,7 +148584,7 @@ void ProcessSystemBufferStatusAndCharacterEncoding(void)
       StackVariable34 = *(float *)(BufferStatus + 0xc);
       StackVariable38 = fStack0000000000000030 + *(float *)(BufferStatus + 0x10);
       StackVariable3c = StackVariable34 + *(float *)(BufferStatus + 0x14);
-      CalculatedCodePoint = FUN_180130ec0(&SystemStackBuffer);
+      CalculatedCodePoint = ProcessUtf8InputBufferAndMatchCharacter(&SystemStackBuffer);
       *(uint16_t *)(BufferStatus + 0x74) = CalculatedCodePoint;
     }
     *(uint32_t *)(BufferStatus + 0x6c) = 0x3f800000;
@@ -148932,7 +148932,7 @@ LAB_1801308eb:
     fStack_30 = (float)pRemainingSpace[2] + (float)pRemainingSpace[4];
     fStack_2c = (float)pRemainingSpace[3] + (float)pRemainingSpace[5];
     piStackX_8 = pRemainingSpace;
-    MemoryAddressMask = FUN_180130ec0(&piStack_38);
+    MemoryAddressMask = ProcessUtf8InputBufferAndMatchCharacter(&piStack_38);
     *(uint16_t *)(pRemainingSpace + 0x1d) = MemoryAddressMask;
     ProcessSystemDataTable(MemoryBlockIndex + 0x1c68,&piStackX_8);
     ProcessedFloatValue8 = (float)pRemainingSpace[4] + (float)pRemainingSpace[2];
