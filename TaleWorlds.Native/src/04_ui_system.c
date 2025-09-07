@@ -200059,55 +200059,55 @@ void FUN_18078c188(float uiContext)
   } while (uiEventResult == 0);
   goto LAB_18078c6fc;
   while( true ) {
-    uVar8 = (int)result0 + 1;
-    result0 = (ulonglong)uVar8;
-    result1 = result1 + 0x38;
-    if (*(int *)(context + 0x694) <= (int)uVar8) break;
+    loopCounter = (int)eventIndex + 1;
+    eventIndex = (ulonglong)loopCounter;
+    eventOffset = eventOffset + 0x38;
+    if (*(int *)(context + 0x694) <= (int)loopCounter) break;
 LAB_18078c440:
-    contextData = *(longlong *)(*(longlong *)(context + 0x6a0) + 0x30 + result1);
-    if (((contextData != 0) && (*(char *)(contextData + 0x31) != '\0')) &&
-       (localInt5 = FUN_180748290(result2,result0), result2 = extraout_XMM0_Da_03, localInt5 != 0))
+    uiContextData = *(longlong *)(*(longlong *)(context + 0x6a0) + 0x30 + eventOffset);
+    if (((uiContextData != 0) && (*(char *)(uiContextData + 0x31) != '\0')) &&
+       (uiEventResult = FUN_180748290(operationResult,eventIndex), operationResult = xmm0ParameterD, uiEventResult != 0))
     goto LAB_18078c6fc;
   }
 LAB_18078c477:
-  if (((unmodifiedR13B != '\0') && (*(longlong *)(context + 0x11838) != 0)) &&
+  if (((eventFlag != '\0') && (*(longlong *)(context + 0x11838) != 0)) &&
      (((*(uint *)(context + 0x11840) & 0x1000) != 0 &&
-      (localInt5 = FUN_1807499f0(), result2 = extraout_XMM0_Da_04, localInt5 != 0x39)))) {
-    if (localInt5 != 0) goto LAB_18078c6fc;
+      (uiEventResult = FUN_1807499f0(), operationResult = xmm0ParameterE, uiEventResult != 0x39)))) {
+    if (uiEventResult != 0) goto LAB_18078c6fc;
     if (*(char *)(context + 0x6a8) != '\0') {
       *(undefined1 *)(context + 0x6a8) = 0;
-      result2 = (**(code **)(context + 0x11838))
-                         (extraout_XMM0_Da_04,0x1000,0,0,*(undefined8 *)(context + 0x11670));
+      operationResult = (**(code **)(context + 0x11838))
+                         (xmm0ParameterE,0x1000,0,0,*(undefined8 *)(context + 0x11670));
     }
   }
   if (0 < *(int *)(context + 0x11400)) {
-    contextData = context + 0x110ed;
+    uiContextData = context + 0x110ed;
     do {
-      *(undefined2 *)(contextData + -1) = 0;
-      contextData = contextData + 0x70;
-      uVar8 = (int)eventTypeCode + 1;
-      eventTypeCode = (ulonglong)uVar8;
-    } while ((int)uVar8 < *(int *)(context + 0x11400));
+      *(undefined2 *)(uiContextData + -1) = 0;
+      uiContextData = uiContextData + 0x70;
+      loopCounter = (int)uiEventType + 1;
+      uiEventType = (ulonglong)loopCounter;
+    } while ((int)loopCounter < *(int *)(context + 0x11400));
   }
   *(undefined1 *)(context + 0x12440) = 0;
   if ((*(byte *)(context + 0x78) & 1) != 0) {
-    result2 = FUN_18078c950();
+    operationResult = FUN_18078c950();
   }
-  contextData = *(longlong *)(context + 0x670);
-  if ((contextData != 0) && (0 < *(int *)(context + 0x10f70))) {
+  uiContextData = *(longlong *)(context + 0x670);
+  if ((uiContextData != 0) && (0 < *(int *)(context + 0x10f70))) {
     if (context != 0) {
-      result2 = func_0x000180743c20(result2,7);
-      contextData = *(longlong *)(context + 0x670);
+      operationResult = func_0x000180743c20(operationResult,7);
+      uiContextData = *(longlong *)(context + 0x670);
     }
-    semaphoreHandle = *(undefined4 *)(contextData + 0x318);
-    for (bufferPtr = *(undefined8 **)(context + 0x10f58);
-        bufferPtr != (undefined8 *)(context + 0x10f58); bufferPtr = (undefined8 *)*bufferPtr) {
-      contextData = bufferPtr[2];
-      if (*(char *)(contextData + 0x212) != '\0') {
-        result2 = FUN_18075a370(contextData,semaphoreHandle);
+    semaphoreHandle = *(undefined4 *)(uiContextData + 0x318);
+    for (uiBufferPtr = *(undefined8 **)(context + 0x10f58);
+        uiBufferPtr != (undefined8 *)(context + 0x10f58); uiBufferPtr = (undefined8 *)*uiBufferPtr) {
+      uiContextData = uiBufferPtr[2];
+      if (*(char *)(uiContextData + 0x212) != '\0') {
+        operationResult = FUN_18075a370(uiContextData,semaphoreHandle);
       }
-      if (*(char *)(contextData + 0x426) != '\0') {
-        result2 = FUN_18075a370(contextData + 0x214,semaphoreHandle);
+      if (*(char *)(uiContextData + 0x426) != '\0') {
+        operationResult = FUN_18075a370(uiContextData + 0x214,semaphoreHandle);
       }
     }
     if (context != 0) {
