@@ -2157,6 +2157,69 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define HandleSystemCharacterDataProcessing FUN_18016bdb0
 #define ValidateSystemCharacterData FUN_1801727d0
 #define ProcessSystemCharacterBuffer FUN_180173720
+
+// 字符表处理和内存管理函数
+#define ProcessCharacterTableCleanup FUN_180136f68
+#define ProcessCharacterDataValidation FUN_180136fa8
+#define ResetSystemCharacterState FUN_18013701d
+#define ProcessCharacterCodeValidation FUN_180137030
+#define ProcessCharacterBufferReset FUN_180137068
+#define ProcessCharacterBufferSizeValidation FUN_1801370a0
+#define ProcessCharacterInputBufferValidation FUN_180137110
+#define ProcessCharacterMemoryAllocation FUN_180137370
+#define ProcessCharacterFloatValidation FUN_1801376c9
+#define ProcessCharacterFloatProcessing FUN_1801376d4
+#define ProcessCharacterCodeCalculation FUN_180137a89
+#define ProcessCharacterEncodingConversion FUN_180137d3b
+#define ProcessCharacterStatusUpdate FUN_180137dd7
+#define ProcessCharacterSystemReset FUN_180137e56
+#define ProcessCharacterBufferFinalize FUN_180137ef1
+#define ProcessCharacterInputProcessing FUN_180137f90
+
+// UTF-8处理和转换函数
+#define ProcessUtf8StringDataConversion FUN_18013a3d0
+#define ProcessUtf8SystemReset FUN_18013a851
+#define ProcessUtf8CharacterEncoding FUN_18013a860
+#define ProcessUtf8CharacterTable FUN_18013aed0
+#define ProcessUtf8BufferValidation FUN_18013af10
+#define ProcessUtf8MemoryAddress FUN_18013b4f0
+#define ProcessUtf8SystemCleanup FUN_18013b58d
+#define ProcessUtf8InputBufferProcessing FUN_18013b5a0
+#define ProcessUtf8SystemFinalize FUN_18013b5f5
+#define ProcessUtf8CharacterData FUN_18013b670
+#define ProcessUtf8BufferCleanup FUN_18013b704
+#define ProcessUtf8SystemValidation FUN_18013b7f6
+#define ProcessUtf8MemoryManagement FUN_18013b86d
+#define ProcessUtf8SystemComplete FUN_18013b88a
+#define ProcessUtf8DataProcessing FUN_18013b9df
+#define ProcessUtf8SystemFlush FUN_18013b9eb
+#define ProcessUtf8CharacterProcessing FUN_18013ba30
+#define ProcessUtf8SystemSynchronize FUN_18013baa6
+#define ProcessUtf8SystemExecute FUN_18013badf
+#define ProcessUtf8BufferDataEx FUN_18013baf0
+
+// 系统验证和内存管理函数
+#define ValidateSystemMemoryAllocation FUN_18013bf40
+#define ProcessSystemCharacterData FUN_18013c020
+#define ProcessSystemDataValidation FUN_18013c380
+#define ProcessSystemDataTransfer FUN_18013c4e0
+#define ProcessSystemCharacterLimit FUN_18013c504
+#define ProcessSystemBufferReset FUN_18013c5c1
+#define ProcessSystemMemoryReset FUN_18013c732
+#define ProcessSystemDataReset FUN_18013c750
+#define ProcessSystemCharacterDataEx FUN_18013c78b
+#define ProcessSystemMemoryDataEx FUN_18013c7cf
+#define ProcessSystemBufferFinalize FUN_18013c7eb
+#define ProcessSystemMemoryStatus FUN_18013c940
+#define ProcessSystemMemoryStatusEx FUN_18013c94a
+#define ProcessSystemMemoryDataSize FUN_18013c9d9
+#define ProcessSystemMemoryAllocationEx FUN_18013ca47
+#define ProcessSystemCharacterEncodingEx FUN_18013cac6
+#define ProcessSystemBufferProcessing FUN_18013cb34
+#define ProcessSystemDataSynchronize FUN_18013cbab
+#define ProcessSystemMemoryComplete FUN_18013cd49
+#define ProcessSystemDataComplete FUN_18013cd62
+#define ProcessSystemBufferComplete FUN_18013cdb3
 #define ConvertSystemCharacterData FUN_180179c00
 #define TransformSystemCharacterData FUN_180179cd0
 #define CalculateSystemCharacterMetrics FUN_180181a80
