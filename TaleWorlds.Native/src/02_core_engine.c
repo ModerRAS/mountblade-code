@@ -224298,7 +224298,7 @@ LAB_18019d50f:
     if ((void *)SystemContextPointer[0xc0f1] != NULL) {
       TemporaryBuffer = (void *)SystemContextPointer[0xc0f1];
     }
-    FUN_1801166f0(&UNK_180a0b5d8,TemporaryBuffer,*(uint32_t *)(SystemContextPointer + 0xc0f2),&uStackX_10,0x104400,0,0);
+    FUN_1801166f0(&SystemEventQueueI,TemporaryBuffer,*(uint32_t *)(SystemContextPointer + 0xc0f2),&uStackX_10,0x104400,0,0);
     if ((char)pSystemFlagX8 == '\0') {
       *(uint8_t *)(SystemContextPointer + 0xc0f4) = 0;
     }
