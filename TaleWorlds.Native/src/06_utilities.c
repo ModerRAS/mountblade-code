@@ -353,6 +353,8 @@
 #define ExceptionStateSecondaryOffset 0x1a                         // 异常状态次偏移量
 #define ExceptionHandlerContextPointerOffset 0x50                  // 异常处理上下文指针偏移量
 #define ExceptionHandlerContextPointerSecondaryOffset 0x60         // 异常处理上下文指针次偏移量
+#define TemporaryExceptionHandlerReferenceOffset 0x40              // 临时异常处理器引用偏移量
+#define DefaultExceptionHandlerBReferenceOffset 0xd0               // 默认异常处理器B引用偏移量
 
 // 内存对齐和掩码常量
 #define MemoryAlignmentPadding 0xf
@@ -23251,7 +23253,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
   DataWord *dataItemPointer;
   ByteFlag charValue;
   uint dataBufferValue;
-  uint3 nodeDescriptorArray;
+  uint32_t nodeDescriptorArray;
   DataWord fieldData2;
   DataWord fieldData3;
   uint currentNodeIndex;
@@ -23379,7 +23381,7 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
   DataBuffer *dataProcessingBuffer;
   ByteFlag validationStatus;
   uint dataProcessingLength;
-  uint3 dataChunkDescriptor;
+  uint32_t dataChunkDescriptor;
   DataWord operationResult;
   DataWord validationResult;
   uint processingIndex;
@@ -60083,15 +60085,15 @@ void ResetExceptionHandlerState(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x50);
-  if (*(int64_t *)(exceptionHandlerContext + 0x12) != 0) {
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextPointerOffset);
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionStatePrimaryOffset) != 0) {
       TerminateSystemE0();
   }
-  *(int64_t *)(exceptionHandlerContext + 0x12) = 0;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1a) != 0) {
+  *(int64_t *)(exceptionHandlerContext + ExceptionStatePrimaryOffset) = 0;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionStateSecondaryOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1a) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionStateSecondaryOffset) = 0;
   return;
 }
 
@@ -60114,7 +60116,7 @@ void CleanupExceptionHandlerStateA(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x60);
+  exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + ExceptionHandlerContextPointerSecondaryOffset);
   if (*exceptionHandlerContextPointer != 0) {
       TerminateSystemE0();
   }
@@ -60146,15 +60148,15 @@ void CleanupExceptionHandlerState5A0(DataBuffer operationBase,int64_t dataBuffer
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
-  if (*(int64_t *)(exceptionHandlerContext + 0x12) != 0) {
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextPointerSecondaryOffset);
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionStatePrimaryOffset) != 0) {
       TerminateSystemE0();
   }
-  *(int64_t *)(exceptionHandlerContext + 0x12) = 0;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1a) != 0) {
+  *(int64_t *)(exceptionHandlerContext + ExceptionStatePrimaryOffset) = 0;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionStateSecondaryOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1a) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionStateSecondaryOffset) = 0;
   return;
 }
 
@@ -60174,7 +60176,7 @@ void CleanupExceptionHandlerState5A0(DataBuffer operationBase,int64_t dataBuffer
 void SetTemporaryExceptionHandlerReference(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x40) = &TemporaryExceptionHandler;
+  **(DataBuffer **)(dataBuffer + TemporaryExceptionHandlerReferenceOffset) = &TemporaryExceptionHandler;
   return;
 }
 
@@ -60208,7 +60210,7 @@ void DestroyMutexInPlace(void)
 void DestroySystemMutex(void)
 
 {
-  _Mtx_destroy_in_situ(0x180c91910);
+  _Mtx_destroy_in_situ(MutexObjectPtr);
   return;
 }
 
@@ -110457,46 +110459,25 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  */
 #define InitializeSystemComponentA0 FUN_1807d3e20
 
-// 数据验证错误信息常量定义
-// 原始变量名：UNK_1809832b8 - 数据验证基础错误信息
-// 功能：基础数据验证失败时的错误信息
-#define DataValidationErrorBase UNK_1809832b8
+// 系统数据验证基础错误信息常量
+#define SystemDataValidationErrorBase UNK_1809832b8
 
-// 原始变量名：UNK_180983738 - 浮点数据验证错误信息A
-// 功能：浮点数据验证失败时的错误信息
-#define FloatingPointValidationErrorA UNK_180983738
+// 浮点数验证错误信息常量
+#define FloatingPointValidationErrorCodeA UNK_180983738
+#define FloatingPointValidationErrorCodeB UNK_1809837c0
 
-// 原始变量名：UNK_1809837c0 - 浮点数据验证错误信息B
-// 功能：浮点数据验证失败时的错误信息
-#define FloatingPointValidationErrorB UNK_1809837c0
+// 数据处理验证错误信息常量
+#define DataProcessingValidationErrorCode UNK_1809839d8
 
-// 原始变量名：UNK_1809839d8 - 数据处理验证错误信息
-// 功能：数据处理验证失败时的错误信息
-#define DataProcessingValidationError UNK_1809839d8
+// 系统状态验证错误信息常量
+#define SystemStatusValidationErrorCode UNK_180983950
 
-// 原始变量名：UNK_180983950 - 系统状态验证错误信息
-// 功能：系统状态验证失败时的错误信息
-#define SystemStatusValidationError UNK_180983950
-
-// 原始变量名：UNK_180983be8 - 数据完整性验证错误信息A
-// 功能：数据完整性验证失败时的错误信息
-#define DataIntegrityValidationErrorA UNK_180983be8
-
-// 原始变量名：UNK_180983a60 - 数据完整性验证错误信息B
-// 功能：数据完整性验证失败时的错误信息
-#define DataIntegrityValidationErrorB UNK_180983a60
-
-// 原始变量名：UNK_180983ae8 - 数据完整性验证错误信息C
-// 功能：数据完整性验证失败时的错误信息
-#define DataIntegrityValidationErrorC UNK_180983ae8
-
-// 原始变量名：UNK_180983b68 - 数据完整性验证错误信息D
-// 功能：数据完整性验证失败时的错误信息
-#define DataIntegrityValidationErrorD UNK_180983b68
-
-// 原始变量名：UNK_180983cf8 - 数据完整性验证错误信息E
-// 功能：数据完整性验证失败时的错误信息
-#define DataIntegrityValidationErrorE UNK_180983cf8
+// 数据完整性验证错误信息常量
+#define DataIntegrityValidationErrorCodeA UNK_180983be8
+#define DataIntegrityValidationErrorCodeB UNK_180983a60
+#define DataIntegrityValidationErrorCodeC UNK_180983ae8
+#define DataIntegrityValidationErrorCodeD UNK_180983b68
+#define DataIntegrityValidationErrorCodeE UNK_180983cf8
 
 // 缺失的FUN_函数宏定义
 // 原始函数名：FUN_1800596a0 - 数据验证处理函数
