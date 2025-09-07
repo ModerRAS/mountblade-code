@@ -73319,7 +73319,16 @@ void ExecuteMemoryOperationAndValidateDataHandlerOffsetC0(DataBuffer operationBa
 
 
 
-void Unwind_180908ca0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作并验证数据处理器偏移量0xc0（无清理标志）
+ * 
+ * 该函数负责执行内存操作并验证数据处理器，不使用系统清理标志
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908ca0
+ */
+void ExecuteMemoryOperationAndValidateDataHandlerOffsetC0NoCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(dataBuffer + 0xc0,8,0x10,ValidateDataHandler);
@@ -73328,7 +73337,17 @@ void Unwind_180908ca0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908cd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作并验证数据处理器偏移量0xc0（重复函数）
+ * 
+ * 该函数负责执行内存操作并验证数据处理器，不使用系统清理标志
+ * 与Unwind_180908ca0功能相同
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908cd0
+ */
+void ExecuteMemoryOperationAndValidateDataHandlerOffsetC0Duplicate(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(dataBuffer + 0xc0,8,0x10,ValidateDataHandler);
