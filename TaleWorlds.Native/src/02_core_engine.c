@@ -2362,6 +2362,7 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ProcessSystemBufferFinalize FUN_18013c7eb
 #define ProcessSystemMemoryStatus FUN_18013c940
 #define ProcessSystemMemoryStatusEx FUN_18013c94a
+#define ProcessUtf8ToUtf16EncodingConversion FUN_18013cac6
 #define ProcessSystemMemoryDataSize FUN_18013c9d9
 #define ProcessSystemMemoryAllocationEx FUN_18013ca47
 #define ProcessSystemCharacterEncodingEx FUN_18013cac6
@@ -169792,7 +169793,21 @@ uint64_t * GetCharacterStatusBufferByCode(int CharacterCode)
 
 
 
-3cac6(byte CharacterCode,uint64_t Utf8BufferSize,uint Utf8SourcePointer,byte *Utf16EndPointervoid FUN_18013cac6(byte CharacterCode,uint64_t Utf8BufferSize,uint Utf8SourcePointer,byte *Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16的字符编码转换
+ * 
+ * 该函数负责将UTF-8编码的字符数据转换为UTF-16编码格式，
+ * 支持复杂的字符编码转换和数据处理操作。
+ * 
+ * @param CharacterCode 输入的字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16目标数据指针
+ * 
+ * @note 函数使用XOR加密表进行数据处理
+ * @warning 涉及系统级编码转换，需要确保参数有效性
+ */
+void ProcessUtf8ToUtf16EncodingConversion(byte CharacterCode, uint64_t Utf8BufferSize, uint Utf8SourcePointer, byte *Utf16EndPointer)
 {
   long long DataNodePointer;
   uint SystemRegisterR10D;
