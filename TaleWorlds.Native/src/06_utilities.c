@@ -2082,19 +2082,19 @@
 
 // 原始函数名：Unwind_180902100 - 异常清理函数A1
 // 功能：清理异常状态和资源
-#define ExceptionCleanupA1 Unwind_180902100
+#define ExceptionCleanupA1 ExceptionCleanupA1
 
 // 原始函数名：Unwind_180902110 - 异常处理函数A0
 // 功能：处理多参数异常情况
-#define ExceptionHandlerA0 Unwind_180902110
+#define ExceptionHandlerA0 ExceptionHandlerA0
 
 // 原始函数名：Unwind_180902120 - 异常处理函数A1
 // 功能：处理双参数异常情况
-#define ExceptionHandlerA1 Unwind_180902120
+#define ExceptionHandlerA1 ExceptionHandlerA1
 
 // 原始函数名：Unwind_180902130 - 异常处理函数A2
 // 功能：处理多参数异常情况
-#define ExceptionHandlerA2 Unwind_180902130
+#define ExceptionHandlerA2 ExceptionHandlerA2
 
 // 原始函数名：Unwind_180902140 - 异常处理函数A3
 // 功能：处理双参数异常情况
@@ -42842,7 +42842,19 @@ void CleanupExceptionDataA1(DataBuffer operationBase,int64_t dataBuffer,DataBuff
  * @param operationFlagB 操作标志B
  * @note 原始函数名：Unwind_180903790
  */
-void Unwind_180903790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据清理函数A2
+ * 
+ * 该函数负责清理异常数据和验证上下文，处理异常处理器的设置，
+ * 并在必要时终止系统运行
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180903790
+ */
+void CleanupExceptionDataA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
