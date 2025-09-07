@@ -378,9 +378,9 @@
  * 
  * 该函数负责清理系统资源，包括内存释放和状态重置
  * 
- * @note 原始函数名：FUN_18013b490
+ * @note 原始函数名：CleanupSystemResources
  */
-#define CleanupSystemResources FUN_18013b490
+#define CleanupSystemResources CleanupSystemResources
 
 /**
  * @brief 字符表处理函数
@@ -159249,7 +159249,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode)
   ValidationResultPointer = *(int **)(CharacterCode + 0x2df8);
   if ((*(byte *)(CharacterCode + 8) & 0x40) == 0) {
     if ((0 < *ValidationResultPointer) || (0 < ValidationResultPointer[4])) {
-      FUN_18013b490();
+      CleanupSystemResources();
       CharacterTablePointer5 = SystemConfigurationHandle;
       ValidationResultPointer = *(int **)(SystemConfigurationHandle + 0x2df8);
       SystemStatusContext = NULL;
@@ -159905,7 +159905,7 @@ uint32_t * ProcessUtf8ToUtf16ConversionStatus(long long CharacterCode,int Utf8Bu
 
 
 
-359f0(long long CharacterCode,uint64_t *Utf8InputBufferSize,char Utf8SourcePointervoid FUN_1801359f0(long long CharacterCode,uint64_t *Utf8InputBufferSize,char Utf8SourcePointer
+359f0(long long CharacterCode,uint64_t *Utf8InputBufferSize,char Utf8SourcePointervoid ProcessUtf8StringConversion(long long CharacterCode,uint64_t *Utf8InputBufferSize,char Utf8SourcePointer
 {
   int *ReferenceCountPointer;
   uint32_t MemoryAllocationIndex;
@@ -165729,7 +165729,7 @@ LAB_18013b1d6:
 
 
 
-3b490(uint64_t CharacterCode,char Utf8BufferSizevoid FUN_18013b490(uint64_t CharacterCode,char Utf8BufferSize
+3b490(uint64_t CharacterCode,char Utf8BufferSizevoid CleanupSystemResources(uint64_t CharacterCode,char Utf8BufferSize
 {
   int *ReferenceCountPointer;
   long long *BufferAllocationStatus;
@@ -170198,7 +170198,7 @@ long long FUN_18013d540(void
 
 
 
-3de90(int *Utf8InputBuffer,int Utf8BufferSizevoid FUN_18013de90(int *Utf8InputBuffer,int Utf8BufferSize
+void FUN_18013de90(int *Utf8InputBuffer,int Utf8BufferSize
 {
   int LockResult;
   int CharacterByteCount;
@@ -276970,9 +276970,9 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * 该函数负责处理系统缓冲区的各种操作，包括缓冲区的管理。
  * 在核心引擎中用于缓冲区操作处理。
  * 
- * @note 原始函数名：FUN_18013b490
+ * @note 原始函数名：CleanupSystemResources
  */
-#define ProcessSystemBufferOperation FUN_18013b490
+#define ProcessSystemBufferOperation CleanupSystemResources
 
 /**
  * @brief 处理系统内存分配
