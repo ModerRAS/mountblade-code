@@ -11952,9 +11952,19 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 // 功能：验证系统组件和配置
 #define ValidateSystemConfigurationC1 FUN_18089ee87
 
-// 数据操作函数宏定义 (O系列 - Operation系列)
-// 原始函数名：FUN_1808aed00 - 数据操作函数O0
-// 功能：执行数据操作，包括读取、写入和验证
+/**
+ * @brief 数据操作函数O0
+ * 
+ * 执行基本的数据操作，包括数据读取、写入和验证操作。
+ * 该函数是系统中数据操作的核心函数，支持多种数据类型和操作模式。
+ * 
+ * @param dataContext 数据上下文指针
+ * @param operationBuffer 操作缓冲区
+ * @param operationSize 操作大小
+ * @return DataBuffer 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_1808aed00
+ */
 #define OperateDataO0 FUN_1808aed00
 
 // 原始函数名：FUN_1808a5a90 - 系统验证函数A0
