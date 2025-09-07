@@ -103561,7 +103561,19 @@ void HandleResourceCleanupExceptionAtOffset7d0(void)
 
 
 
-void Unwind_1809127e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器初始化函数7E0
+ * 
+ * 该函数用于初始化异常处理器，从指定偏移量获取异常处理上下文并处理系统异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809127e0
+ */
+void InitializeExceptionHandler7E0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
