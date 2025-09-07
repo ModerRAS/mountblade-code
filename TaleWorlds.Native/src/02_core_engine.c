@@ -130717,7 +130717,7 @@ LAB_18012ce0f:
          CONCAT44(FloatValue33 - (*(float *)(CharacterTablePointer5 + 0x16b8) + *(float *)(CharacterTablePointer5 + 0x16b8)),
                   FloatValue32 - (*(float *)(CharacterTablePointer5 + 0x16b4) + *(float *)(CharacterTablePointer5 + 0x16b4)));
     StatusBuffer9 = (void *)ProcessSystemBuffer(FrameRegisterPointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
-    FUN_18011fc80(&DataTransferStackBuffer,pBufferIndex + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer9);
+    TransferBufferData(&DataTransferStackBuffer,pBufferIndex + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer9);
     FUN_180128fd0(FrameRegisterPointer + 2,pBufferIndex,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
     if (((FrameRegisterPointer[2] < *(float *)(pBufferIndex + 0xc)) &&
         ((*(uint *)((long long)pBufferIndex + 0xc) & 8) == 0)) &&
@@ -130977,7 +130977,7 @@ LAB_18012aa45:
   }
   FUN_18011feb0(StackParameter2[5],FrameRegisterPointer + 4);
   if ((((SystemStatusChar == '\0') && (FloatValue32 == 0.0)) && (*(int *)((long long)StackParameter2 + 0xc4) < 1)     && ((int)StackParameter2[0x19] < 1)) {
-    FUN_18011fc50(&DataTransferStackBuffer,MemoryPoolBlockSize + 0x16ac,MemoryPoolBlockSize + 0x16b4);
+    ProcessSystemBuffer(&DataTransferStackBuffer,MemoryPoolBlockSize + 0x16ac,MemoryPoolBlockSize + 0x16b4);
     if (*(char *)((long long)StackParameter2 + 0xae) == '\0') {
       if ((0.0 < FrameRegisterPointer[6] - FrameRegisterPointer[4]) && (0.0 < FrameRegisterPointer[7] - FrameRegisterPointer[5])) {
         pSecondaryFloatValue = FrameRegisterPointer + 4;
@@ -132817,7 +132817,7 @@ LAB_18012aa45:
   }
   FUN_18011feb0(StackParameter2[5],FrameRegisterPointer + 4);
   if ((((CharacterStatus2 == '\0') && (FloatValue31 == 0.0)) && (*(int *)((long long)StackParameter2 + 0xc4) < 1)     && ((int)StackParameter2[0x19] < 1)) {
-    FUN_18011fc50(&DataTransferStackBuffer,RegisterSourceIndex + 0x16ac,RegisterSourceIndex + 0x16b4);
+    ProcessSystemBuffer(&DataTransferStackBuffer,RegisterSourceIndex + 0x16ac,RegisterSourceIndex + 0x16b4);
     if (*(char *)((long long)StackParameter2 + 0xae) == '\0') {
       if ((0.0 < FrameRegisterPointer[6] - FrameRegisterPointer[4]) && (0.0 < FrameRegisterPointer[7] - FrameRegisterPointer[5])) {
         pSystemContextPrimaryFloat6 = FrameRegisterPointer + 4;
@@ -134509,7 +134509,7 @@ LAB_18012aa45:
   }
   FUN_18011feb0(StackParameter2[5],FrameRegisterPointer + 4);
   if ((((CharacterStatus1 == '\0') && (ContextSecondaryFloat9 == 0.0)) && (*(int *)((long long)StackParameter2 + 0xc4) < 1)     && ((int)StackParameter2[0x19] < 1)) {
-    FUN_18011fc50(&DataTransferStackBuffer,RegisterSourceIndex + 0x16ac,RegisterSourceIndex + 0x16b4);
+    ProcessSystemBuffer(&DataTransferStackBuffer,RegisterSourceIndex + 0x16ac,RegisterSourceIndex + 0x16b4);
     if (*(char *)((long long)StackParameter2 + 0xae) == '\0') {
       if ((AuxiliaryFloat13 < FrameRegisterPointer[6] - FrameRegisterPointer[4]) &&
          (AuxiliaryFloat13 < FrameRegisterPointer[7] - FrameRegisterPointer[5])) {
@@ -136122,7 +136122,7 @@ LAB_18012aa45:
   }
   FUN_18011feb0(StackParameter2[5],FrameRegisterPointer + 4);
   if ((((CharacterStatus1 == '\0') && (ContextSecondaryFloat7 == 0.0)) && (*(int *)((long long)StackParameter2 + 0xc4) < 1)     && ((int)StackParameter2[0x19] < 1)) {
-    FUN_18011fc50(&DataTransferStackBuffer,RegisterSourceIndex + 0x16ac,RegisterSourceIndex + 0x16b4);
+    ProcessSystemBuffer(&DataTransferStackBuffer,RegisterSourceIndex + 0x16ac,RegisterSourceIndex + 0x16b4);
     if (*(char *)((long long)StackParameter2 + 0xae) == '\0') {
       if ((AuxiliaryFloat13 < FrameRegisterPointer[6] - FrameRegisterPointer[4]) &&
          (AuxiliaryFloat13 < FrameRegisterPointer[7] - FrameRegisterPointer[5])) {
@@ -137809,7 +137809,7 @@ LAB_18012aa45:
   }
   FUN_18011feb0(StackParameter2[5],FrameRegisterPointer + 4);
   if ((((CharacterStatus1 == '\0') && (ContextSecondaryFloat7 == 0.0)) && (*(int *)((long long)StackParameter2 + 0xc4) < 1)     && ((int)StackParameter2[0x19] < 1)) {
-    FUN_18011fc50(&DataTransferStackBuffer,RegisterSourceIndex + 0x16ac,RegisterSourceIndex + 0x16b4);
+    ProcessSystemBuffer(&DataTransferStackBuffer,RegisterSourceIndex + 0x16ac,RegisterSourceIndex + 0x16b4);
     if (*(char *)((long long)StackParameter2 + 0xae) == '\0') {
       if ((AuxiliaryFloat13 < FrameRegisterPointer[6] - FrameRegisterPointer[4]) &&
          (AuxiliaryFloat13 < FrameRegisterPointer[7] - FrameRegisterPointer[5])) {
@@ -139386,7 +139386,7 @@ LAB_18012aa45:
   FUN_18011feb0(*(void *)(StackParameter2 + 0x28),FrameRegisterPointer + 4);
   if ((((CharacterStatus1 == '\0') && (ContextSecondaryFloat5 == 0.0)) && (*(int *)(StackParameter2 + 0xc4) < 1)) &&
      (*(int *)(StackParameter2 + 200) < 1)) {
-    FUN_18011fc50(&DataTransferStackBuffer,RegisterSourceIndex + 0x16ac,RegisterSourceIndex + 0x16b4);
+    ProcessSystemBuffer(&DataTransferStackBuffer,RegisterSourceIndex + 0x16ac,RegisterSourceIndex + 0x16b4);
     if (*(char *)(StackParameter2 + 0xae) == '\0') {
       if ((AuxiliaryFloat13 < FrameRegisterPointer[6] - FrameRegisterPointer[4]) &&
          (AuxiliaryFloat13 < FrameRegisterPointer[7] - FrameRegisterPointer[5])) {
