@@ -117498,116 +117498,124 @@ void ProcessSystemFloatParameters(uint64_t SystemContextPointer,float *Utf8Buffe
 
 
 
-25c7(voidvoid FUN_1801225c7(void
+/**
+ * @brief 处理系统上下文浮点数计算和验证
+ * 
+ * 该函数负责处理系统上下文中的浮点数计算、验证和数据转换操作
+ * 主要包括浮点数比较、数据验证、上下文状态更新等功能
+ * 
+ * @note 原始函数名：FUN_1801225c7
+ */
+void ProcessSystemContextFloatCalculationAndValidation(void)
 {
-  uint32_t *StatusBuffer;
-  float SystemContextSecondaryFloat;
-  float CalculatedFilterValue;
-  float FloatVariable4;
-  float *pFloatVariable5;
-  uint64_t DataSize;
-  uint32_t SystemByteValue;
-  uint32_t ProcessingStatusFlag;
-  float NormalizedParameter;
-  float SystemContextPrimaryFloat0;
-  float SystemContextPrimaryFloat1;
-  float SystemContextPrimaryFloat2;
-  uint32_t QuaternaryReturnCode;
-  bool CurrentByteValue4;
-  byte CurrentByteValue5;
-  uint PrimaryReturnCode;
-  float *pSecondaryFloatValue;
-  long long SystemContext;
-  long long loopCounter8;
-  long long RegisterFramePointer;
+  uint32_t *ValidationStatusBuffer;
+  float SecondarySystemContextValue;
+  float FilteredResultValue;
+  float TemporaryFloatVariable;
+  float *pPrimaryFloatPointer;
+  uint64_t DataStructureSize;
+  uint32_t SystemStatusCode;
+  uint32_t ProcessingStateFlag;
+  float NormalizedParameterValue;
+  float PrimaryContextFloat0;
+  float PrimaryContextFloat1;
+  float PrimaryContextFloat2;
+  uint32_t ValidationResultCode;
+  bool ComparisonResult1;
+  byte ComparisonResult2;
+  uint OperationResultCode;
+  float *pSecondaryFloatPointer;
+  long long SystemContextHandle;
+  long long IteratorIndex;
+  long long FramePointerRegister;
   long long DataNodeIndex;
-  float *pSystemContextPrimaryFloat9;
-  float *RegisterValueR12;
-  long long RegisterValueR13;
-  float *RegisterGeneral14;
-  long long RegisterValueR15;
-  float SystemContextSecondaryFloat0;
-  float AuxiliaryFloat10;
+  float *pContextFloatArray9;
+  float *RegisterR12Value;
+  long long RegisterR13Value;
+  float *RegisterR14Value;
+  long long RegisterR15Value;
+  float SecondaryContextFloat0;
+  float AuxiliaryFloatValue;
   
-  pFloatVariable5 = *(float **)(RegisterFramePointer + 0x7f);
-  pSecondaryFloatValue = pFloatVariable5;
-  if (pFloatVariable5 == (float *)0x0) {
-    pSecondaryFloatValue = RegisterGeneral14;
+  pPrimaryFloatPointer = *(float **)(FramePointerRegister + 0x7f);
+  pSecondaryFloatPointer = pPrimaryFloatPointer;
+  if (pPrimaryFloatPointer == (float *)0x0) {
+    pSecondaryFloatPointer = RegisterR14Value;
   }
-  pSystemContextPrimaryFloat9 = pFloatVariable5 + 2;
-  if (pFloatVariable5 == (float *)0x0) {
-    pSystemContextPrimaryFloat9 = RegisterValueR12;
+  pContextFloatArray9 = pPrimaryFloatPointer + 2;
+  if (pPrimaryFloatPointer == (float *)0x0) {
+    pContextFloatArray9 = RegisterR12Value;
   }
-  SystemContextSecondaryFloat = *(float *)(RegisterFramePointer + 0x4f);
-  CalculatedFilterValue = *pSystemContextPrimaryFloat9;
-  if ((FloatValue3 <= *(float *)(RegisterFramePointer + 0x6f) + SystemContextSecondaryFloat) ||
-     (pSystemContextPrimaryFloat9[1] <= *(float *)(RegisterFramePointer + 0x73) + *(float *)(RegisterFramePointer + 0x53))) {
-    CurrentByteValue4 = true;
+  SecondarySystemContextValue = *(float *)(FramePointerRegister + 0x4f);
+  FilteredResultValue = *pContextFloatArray9;
+  if ((FloatValue3 <= *(float *)(FramePointerRegister + 0x6f) + SecondarySystemContextValue) ||
+     (pContextFloatArray9[1] <= *(float *)(FramePointerRegister + 0x73) + *(float *)(FramePointerRegister + 0x53))) {
+    ComparisonResult1 = true;
   }
   else {
-    CurrentByteValue4 = false;
+    ComparisonResult1 = false;
   }
-  if (pFloatVariable5 != (float *)0x0) {
-    if ((SystemContextSecondaryFloat < *pSecondaryFloatValue) || (*(float *)(RegisterFramePointer + 0x53) < pSecondaryFloatValue[1])) {
-      CurrentByteValue5 = 1;
+  if (pPrimaryFloatPointer != (float *)0x0) {
+    if ((SecondarySystemContextValue < *pSecondaryFloatPointer) || (*(float *)(FramePointerRegister + 0x53) < pSecondaryFloatPointer[1])) {
+      ComparisonResult2 = 1;
     }
     else {
-      CurrentByteValue5 = 0;
+      ComparisonResult2 = 0;
     }
-    CurrentByteValue4 = (bool)(CurrentByteValue4 | CurrentByteValue5);
+    ComparisonResult1 = (bool)(ComparisonResult1 | ComparisonResult2);
   }
-  if ((AuxiliaryFloat10 < **(float **)(RegisterFramePointer + 0x77)) &&
-     (SystemContextSecondaryFloat0 = ((*RegisterValueR12 - SystemContextSecondaryFloat) - *(float *)(RegisterFramePointer + 0x6f)) *
-               **(float **)(RegisterFramePointer + 0x77) + SystemContextSecondaryFloat, SystemContextSecondaryFloat < SystemContextSecondaryFloat0)) {
-    *(unsigned long long *)(RegisterFramePointer + 0x4f) =
-         CONCAT44((int)((unsigned long long)*(void *)(RegisterFramePointer + 0x4f) >> 0x20),SystemContextSecondaryFloat0);
+  if ((AuxiliaryFloatValue < **(float **)(FramePointerRegister + 0x77)) &&
+     (SecondaryContextFloat0 = ((*RegisterR12Value - SecondarySystemContextValue) - *(float *)(FramePointerRegister + 0x6f)) *
+               **(float **)(FramePointerRegister + 0x77) + SecondarySystemContextValue, SecondarySystemContextValue < SecondaryContextFloat0)) {
+    *(unsigned long long *)(FramePointerRegister + 0x4f) =
+         CONCAT44((int)((unsigned long long)*(void *)(FramePointerRegister + 0x4f) >> 0x20),SecondaryContextFloat0);
   }
-  SystemByteValue = *(uint32_t *)(RegisterValueR15 + 0x16cc);
-  ProcessingStatusFlag = *(uint32_t *)(RegisterValueR15 + 0x16d0);
-  SystemContextSecondaryFloat = *(float *)(RegisterValueR15 + 0x16d4);
-  *(uint32_t *)(RegisterFramePointer + -0x59) = *(uint32_t *)(RegisterValueR15 + 0x16c8);
-  *(uint32_t *)(RegisterFramePointer + -0x55) = SystemByteValue;
-  *(uint32_t *)(RegisterFramePointer + -0x51) = ProcessingStatusFlag;
-  *(float *)(RegisterFramePointer + -0x4d) = SystemContextSecondaryFloat;
-  *(float *)(RegisterFramePointer + -0x4d) = SystemContextSecondaryFloat * *(float *)(RegisterValueR15 + 0x1628);
-  if (CurrentByteValue4) {
-    SystemContextSecondaryFloat = pSecondaryFloatValue[1];
-    SystemContextSecondaryFloat0 = pSystemContextPrimaryFloat9[1];
-    FloatVariable4 = *pSecondaryFloatValue;
-    PrimaryReturnCode = ValidateSystemData(RegisterFramePointer + -0x59);
-    if ((PrimaryReturnCode & 0xff000000) != 0) {
-      if (SystemContext == 0) {
-        loopCounter8 = -1;
+  SystemStatusCode = *(uint32_t *)(RegisterR15Value + 0x16cc);
+  ProcessingStateFlag = *(uint32_t *)(RegisterR15Value + 0x16d0);
+  SecondarySystemContextValue = *(float *)(RegisterR15Value + 0x16d4);
+  *(uint32_t *)(FramePointerRegister + -0x59) = *(uint32_t *)(RegisterR15Value + 0x16c8);
+  *(uint32_t *)(FramePointerRegister + -0x55) = SystemStatusCode;
+  *(uint32_t *)(FramePointerRegister + -0x51) = ProcessingStateFlag;
+  *(float *)(FramePointerRegister + -0x4d) = SecondarySystemContextValue;
+  *(float *)(FramePointerRegister + -0x4d) = SecondarySystemContextValue * *(float *)(RegisterR15Value + 0x1628);
+  if (ComparisonResult1) {
+    SecondarySystemContextValue = pSecondaryFloatPointer[1];
+    SecondaryContextFloat0 = pContextFloatArray9[1];
+    TemporaryFloatVariable = *pSecondaryFloatPointer;
+    OperationResultCode = ValidateSystemData(FramePointerRegister + -0x59);
+    if ((OperationResultCode & 0xff000000) != 0) {
+      if (SystemContextHandle == 0) {
+        IteratorIndex = -1;
         do {
-          loopCounter8 = loopCounter8 + 1;
-        } while (*(char *)(DataNodeIndex + loopCounter8) != '\0');
-        SystemContext = loopCounter8 + DataNodeIndex;
+          IteratorIndex = IteratorIndex + 1;
+        } while (*(char *)(DataNodeIndex + IteratorIndex) != '\0');
+        SystemContextHandle = IteratorIndex + DataNodeIndex;
       }
-      if (DataNodeIndex != SystemContext) {
-        loopCounter8 = *(long long *)(RegisterValueR13 + 0x38);
-        pFloatVariable5 = (float *)(*(long long *)(RegisterValueR13 + 0x68) + -0x10 +
-                          (long long)*(int *)(RegisterValueR13 + 0x60) * 0x10);
-        NormalizedParameter = *pFloatVariable5;
-        SystemContextPrimaryFloat0 = pFloatVariable5[1];
-        SystemContextPrimaryFloat1 = pFloatVariable5[2];
-        SystemContextPrimaryFloat2 = pFloatVariable5[3];
-        *(float *)(RegisterFramePointer + -0x59) = NormalizedParameter;
-        *(float *)(RegisterFramePointer + -0x55) = SystemContextPrimaryFloat0;
-        *(float *)(RegisterFramePointer + -0x51) = SystemContextPrimaryFloat1;
-        *(float *)(RegisterFramePointer + -0x4d) = SystemContextPrimaryFloat2;
-        if (NormalizedParameter < FloatVariable4) {
-          *(float *)(RegisterFramePointer + -0x59) = FloatVariable4;
+      if (DataNodeIndex != SystemContextHandle) {
+        IteratorIndex = *(long long *)(RegisterR13Value + 0x38);
+        pPrimaryFloatPointer = (float *)(*(long long *)(RegisterR13Value + 0x68) + -0x10 +
+                          (long long)*(int *)(RegisterR13Value + 0x60) * 0x10);
+        NormalizedParameterValue = *pPrimaryFloatPointer;
+        PrimaryContextFloat0 = pPrimaryFloatPointer[1];
+        PrimaryContextFloat1 = pPrimaryFloatPointer[2];
+        PrimaryContextFloat2 = pPrimaryFloatPointer[3];
+        *(float *)(FramePointerRegister + -0x59) = NormalizedParameterValue;
+        *(float *)(FramePointerRegister + -0x55) = PrimaryContextFloat0;
+        *(float *)(FramePointerRegister + -0x51) = PrimaryContextFloat1;
+        *(float *)(FramePointerRegister + -0x4d) = PrimaryContextFloat2;
+        if (NormalizedParameterValue < TemporaryFloatVariable) {
+          *(float *)(FramePointerRegister + -0x59) = TemporaryFloatVariable;
         }
-        if (*(float *)(RegisterFramePointer + -0x55) < SystemContextSecondaryFloat) {
-          *(float *)(RegisterFramePointer + -0x55) = SystemContextSecondaryFloat;
+        if (*(float *)(FramePointerRegister + -0x55) < SecondarySystemContextValue) {
+          *(float *)(FramePointerRegister + -0x55) = SecondarySystemContextValue;
         }
-        if (FloatValue3 <= *(float *)(RegisterFramePointer + -0x51)) {
-          *(float *)(RegisterFramePointer + -0x51) = FloatValue3;
+        if (FloatValue3 <= *(float *)(FramePointerRegister + -0x51)) {
+          *(float *)(FramePointerRegister + -0x51) = FloatValue3;
         }
-        if (SystemContextSecondaryFloat0 <= *(float *)(RegisterFramePointer + -0x4d)) {
-          *(float *)(RegisterFramePointer + -0x4d) = SystemContextSecondaryFloat0;
+        if (SecondaryContextFloat0 <= *(float *)(FramePointerRegister + -0x4d)) {
+          *(float *)(FramePointerRegister + -0x4d) = SecondaryContextFloat0;
         }
-        ProcessMemoryAllocationAndData(*(void *)(loopCounter8 + 8));
+        ProcessMemoryAllocationAndData(*(void *)(IteratorIndex + 8));
       }
     }
   }

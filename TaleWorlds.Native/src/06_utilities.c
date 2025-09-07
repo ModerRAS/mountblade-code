@@ -9402,7 +9402,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   if ((int)queryResult != 0) {
     return queryResult;
   }
-  systemHandle = *(int64_t *)(systemContextBuffer + 8);
+  systemHandle = *(int64_t *)(systemContextBuffer + SystemContextOffset);
   if ((systemHandle == 0) || (*(int64_t *)(systemHandle + SYSTEM_CONTEXT_OFFSET) != systemContextBuffer)) {
     return 0x1c;
   }
@@ -9531,13 +9531,13 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
     initializationStatus = (int32_t)systemOperationResult;
     if (initializationStatus == 0) {
       localStackMemoryContext = 0;
-      messageProcessingResult = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(tempStackContext + 8) + MODULE_DATA_OFFSET_3,
+      messageProcessingResult = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(tempStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
                             &localStackMemoryContext);
       if (messageProcessingResult != 0) {
         CleanupSystemDataStructures(moduleDataPtr);
         return (uint64_t)messageProcessingResult;
       }
-      if (((*(uint32_t *)(*(int64_t *)(tempStackContext + 8) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
+      if (((*(uint32_t *)(*(int64_t *)(tempStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
          (systemOperationResult = ValidateSystemOperationContextA0(localStackMemoryContext), (int32_t)systemOperationResult != 0)) {
         return systemOperationResult;
       }
