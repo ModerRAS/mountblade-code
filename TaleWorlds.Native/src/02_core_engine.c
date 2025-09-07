@@ -38543,7 +38543,7 @@ void ManageBufferIndexllocation(long long *Utf8InputBuffer
   MemoryOffsetValue = *(void *)(MemoryBlockIndex + 0x140);
   CoreEngineSignedValueC8 = (long long)IntegerValue9 + *(long long *)(MemoryBlockIndex + 0x1f0);
   SystemStackRegisterFlagB0 = 1;
-  lStack_c0 = CoreEngineSignedValueC8;
+  LocalStackValueC0 = CoreEngineSignedValueC8;
   (**(code **)(MemoryBlockIndex + 0x180))(&CoreEngineSignedValueC8,*(long long *)(MemoryBlockIndex + 0x1f8) + 8);
   if (((char)SystemStackRegisterFlagB0 == '\0') && (CoreEngineSignedValueC8 != 0)) {
                     // WARNING: Subroutine does not return
@@ -261910,6 +261910,16 @@ int FUN_180225446(void
 
 
 
+/**
+ * @brief 系统标识符识别和分类函数（变体I）
+ * 
+ * 根据输入的数据字符串模式和长度，识别并返回对应的系统标识符。
+ * 该函数是IdentifySystemIdentifierByPattern的变体版本，用于处理
+ * 不同类型的系统组件识别和分类。
+ * 
+ * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
+ * @note 原始函数名：FUN_180225472
+ */
 int FUN_180225472(void
 {
   char *InputStringBuffer;
