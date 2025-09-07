@@ -181448,8 +181448,20 @@ InitializeSystemContext(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,ui
 
 
 
+/**
+ * 配置系统参数
+ * 原始函数名: FUN_180159870
+ * 
+ * 配置系统的运行参数，设置系统的工作模式和配置选项。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t 返回配置状态码
+ */
 uint64_t
-FUN_180159870(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+ConfigureSystemParameters(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   uint64_t Utf16Char;
   
@@ -181842,8 +181854,20 @@ LAB_18015b087:
 
 
 
+/**
+ * 设置系统环境
+ * 原始函数名: FUN_18015b2b0
+ * 
+ * 设置系统的运行环境，初始化系统所需的各项资源和环境变量。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return unsigned long long* 返回环境设置状态指针
+ */
 unsigned long long *
-FUN_18015b2b0(unsigned long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+SetupSystemEnvironment(unsigned long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   unsigned long long *StatusBuffer;
   unsigned long long *PrimaryProcessingStatusFlag;
@@ -182586,8 +182610,20 @@ uint64_t FUN_18015c270(uint64_t SystemContextPointer,unsigned long long Utf8Buff
 
 
 
+/**
+ * 转换UTF16到UTF8编码
+ * 原始函数名: FUN_18015c2b0
+ * 
+ * 将UTF-16编码的字符串转换为UTF-8编码格式。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint32_t* 返回转换结果指针
+ */
 uint32_t *
-FUN_18015c2b0(uint32_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+ConvertUtf16ToUtf8(uint32_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   long long *SystemContextPointer;
   
@@ -185437,8 +185473,20 @@ FUN_180160af0(long long SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t U
 
 
 
+/**
+ * 更新系统状态
+ * 原始函数名: FUN_180160d20
+ * 
+ * 更新系统的运行状态，处理状态变化和状态同步。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回状态更新结果指针
+ */
 uint64_t *
-FUN_180160d20(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,long long *Utf16InputPointer,uint64_t Utf16EndPointer
+UpdateSystemStatus(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,long long *Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   uint Utf16Char;
   long long bufferAllocationStatus;
@@ -185631,8 +185679,20 @@ FUN_180160d20(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,long long *
 
 
 
+/**
+ * 验证系统状态
+ * 原始函数名: FUN_180161170
+ * 
+ * 验证系统的当前状态是否有效，检查系统完整性。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 返回验证结果指针
+ */
 uint64_t *
-FUN_180161170(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,long long *Utf16InputPointer,uint64_t Utf16EndPointer
+ValidateSystemState(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,long long *Utf16InputPointer,uint64_t Utf16EndPointer)
 {
   uint Utf16Char;
   long long bufferAllocationStatus;
