@@ -145031,7 +145031,14 @@ unsigned long long CheckSystemInternalStatus(void
 
 
 
-e060(voidvoid FUN_18012e060(void
+/**
+ * @brief 处理系统错误
+ * 
+ * 该函数负责处理系统级别的错误和异常
+ * 
+ * @note 原始函数名：FUN_18012e060
+ */
+void HandleSystemError(void)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;

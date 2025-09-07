@@ -63938,27 +63938,34 @@ void ProcessUIDataSource(undefined8 uiContext,longlong dataSource)
 
 
 
- void FUN_1806993a0(void)
-void FUN_1806993a0(void)
+ /**
+ * @brief UI系统空闲任务处理器
+ * 
+ * 该函数负责处理UI系统的空闲任务，包括组件管理、缓冲区操作和内存清理。
+ * 主要用于系统空闲时的资源管理和优化。
+ * 
+ * @note 原始函数名: FUN_1806993a0
+ */
+void ProcessUIIdleTasks(void)
 
 {
   int operationResult;
-  longlong in_RAX;
+  longlong stringPointer;
   longlong componentIndex;
   longlong stringCompareIndex;
   longlong context;
   undefined8 *bufferPtr;
-  longlong lVar5;
+  longlong tempPointer;
   longlong contextData;
-  char *pcVar7;
-  longlong lVar8;
-  undefined8 uVar9;
-  undefined4 functionResult0;
-  undefined1 uStack0000000000000030;
-  int in_stack_00000088;
+  char *charPointer;
+  longlong addressPointer;
+  undefined8 dataValue;
+  undefined4 functionResult;
+  undefined1 stackValue;
+  int stackParameter;
   
   operationResult = *(int *)(context + 0xe80);
-  if (*(char *)(in_RAX + 9) != '\0') {
+  if (*(char *)(stringPointer + 9) != '\0') {
     *(undefined8 *)(context + 0x7c0) = 0;
     *(undefined8 *)(context + 0x7c8) = 0;
     *(undefined8 *)(context + 2000) = 0;
