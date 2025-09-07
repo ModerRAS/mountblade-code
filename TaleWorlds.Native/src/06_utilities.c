@@ -3884,9 +3884,9 @@ void* ExceptionDataTableAddress;
 // 功能：存储数据缓冲区信息
 #define DataBufferA2 DataBufferA2
 
-// 原始变量名：_DAT_180c82240 - 异常事件句柄
+// 异常事件句柄
 // 功能：存储异常处理的事件句柄信息
-#define ExceptionEventHandle _DAT_180c82240
+#define ExceptionEventHandle ExceptionEventHandle
 
 // 异常加密密钥变量
 // 功能：存储异常处理的加密密钥信息
@@ -3896,9 +3896,9 @@ extern uint64_t ExceptionEncryptionKey;
 // 功能：存储异常处理的偏移量信息
 extern uint64_t ExceptionOffsetValue;
 
-// 原始变量名：UNK_1809ff498 - 异常数据初始化表
+// 异常数据初始化表
 // 功能：存储异常数据的初始化信息
-#define ExceptionDataInitializationTable UNK_1809ff498
+#define ExceptionDataInitializationTable ExceptionDataInitializationTable
 
 // 原始变量名：UNK_18009ee10 - 主默认异常处理器
 // 功能：系统主要的默认异常处理器入口点
@@ -106891,3 +106891,27 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 原始函数名：Unwind_180906590 - 异常处理器设置函数590
 // 功能：设置异常数据缓冲区的默认异常处理器B
 #define SetupExceptionHandler590 Unwind_180906590
+
+// 原始函数名：Unwind_180906640 - 异常处理器设置函数640
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler640 Unwind_180906640
+
+// 原始函数名：Unwind_180906660 - 异常处理器设置函数660
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler660 Unwind_180906660
+
+// 原始函数名：Unwind_180906680 - 异常处理器设置函数680
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler680 Unwind_180906680
+
+// 原始函数名：Unwind_1809066a0 - 异常处理器设置函数6A0
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler6A0 Unwind_1809066a0
+
+// 原始函数名：Unwind_1809066c0 - 异常处理器设置函数6C0
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler6C0 Unwind_1809066c0
+
+// 原始函数名：Unwind_1809066e0 - 异常处理器设置函数6E0
+// 功能：设置异常数据缓冲区的默认异常处理器B
+#define SetupExceptionHandler6E0 Unwind_1809066e0
