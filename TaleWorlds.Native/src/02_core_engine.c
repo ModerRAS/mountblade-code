@@ -157364,29 +157364,36 @@ void ProcessUtf8CharacterEncodingAndMemoryAllocation(uint64_t CharacterCode,int 
 
 
 
-34826(voidvoid FUN_180134826(void
+/**
+ * @brief 系统上下文和内存管理初始化函数
+ * 
+ * 该函数负责初始化系统上下文和管理内存分配，包括编码转换和状态验证
+ * 
+ * @note 原始函数名：FUN_180134826
+ */
+void InitializeSystemContextAndMemoryManagement(void)
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
   long long MemoryOffset;
-  int validationResult;
+  int ValidationStatus;
   uint64_t CalculatedCodePoint;
-  int ValidationResult;
-  int in_EAX;
-  int ProcessIterationCount;
-  uint ProcessingStatusFlag;
-  int *ReferenceCountPointer9;
-  long long EncodingConversionResult;
-  long long SystemStringIndex;
-  int RegisterEBPValue;
-  long long SourceIndex;
+  int ConversionResult;
+  int RegisterEAX;
+  int IterationCount;
+  uint ProcessingFlags;
+  int *ReferenceCounter;
+  long long EncodingResult;
+  long long StringIndex;
+  int RegisterEBP;
+  long long SourceDataIndex;
   unsigned long long DataNodeIndex;
-  unsigned long long SystemStatusCode;
-  uint ValidationResult;
-  int RegisterR13ValueD;
+  unsigned long long SystemStatus;
+  uint ValidationCode;
+  int RegisterR13D;
   long long CharacterLimit;
   int NullPointerD;
-  float SystemContextPrimaryFloat4;
+  float ContextFloatValue4;
   float SystemFloatValue;
   float SystemContextPrimaryFloat6;
   float SecondaryFloatValue;
