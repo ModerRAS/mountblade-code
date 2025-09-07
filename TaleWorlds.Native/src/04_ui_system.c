@@ -6062,7 +6062,7 @@ LAB_UIContextCreation:
   *(ulonglong *)(CreatedUIContext + 0x20) = *resultPointer;
   CleanupUIResources(CreatedUIContext + 0x28);
                     // WARNING: Subroutine does not return
-  ConfigureUIContext(CreatedUIContext,puVar5,&UIComponentHead,UseDefaultConfiguration);
+  ConfigureUIContext(CreatedUIContext,componentContextPtr,&UIComponentHead,UseDefaultConfiguration);
 }
 
 
@@ -7174,7 +7174,7 @@ void SetupUIMemoryAllocator(void)
  * - 配置UI上下文和事件处理
  * 
  * @note 该函数在UI系统启动时调用，确保所有纹理相关资源正确初始化
- * @note 原始变量名已语义化：puVar6->ptextureData, puVar5->pstringBuffer等
+ * @note 原始变量名已语义化：puVar6->ptextureData, componentContextPtr->pstringBuffer等
  */
 void InitializeUITextureSystem(void)
 
@@ -16429,18 +16429,18 @@ void ValidateUIElementState(longlong uiContext)
   longlong componentIndex;
   longlong stringCompareIndex;
   undefined8 *bufferPtr;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   longlong lVar6;
   
-  puVar5 = (undefined8 *)(uiContext + 0x1398);
+  componentContextPtr = (undefined8 *)(uiContext + 0x1398);
   componentIndex = 4;
   do {
-    *(undefined4 *)(puVar5 + -0x266) = 0xffffffff;
-    bufferPtr = puVar5 + -0x264;
-    *(undefined4 *)((longlong)puVar5 + -0x132c) = 0x3f800000;
+    *(undefined4 *)(componentContextPtr + -0x266) = 0xffffffff;
+    bufferPtr = componentContextPtr + -0x264;
+    *(undefined4 *)((longlong)componentContextPtr + -0x132c) = 0x3f800000;
     lVar6 = 0x12;
-    puVar5[-0x265] = 0x3f800000;
-    puVar5[-0x1b] = 0;
+    componentContextPtr[-0x265] = 0x3f800000;
+    componentContextPtr[-0x1b] = 0;
     do {
       *(undefined4 *)(bufferPtr + 0x20) = 0xffffffff;
       stringCompareIndex = 4;
@@ -16460,51 +16460,51 @@ void ValidateUIElementState(longlong uiContext)
       bufferPtr = (undefined8 *)((longlong)bufferPtr + 0x104);
       lVar6 = lVar6 + -1;
     } while (lVar6 != 0);
-    puVar5[-0x1a] = 0;
-    puVar5[-0x19] = 0;
-    *(undefined4 *)(puVar5 + -0x17) = 0x7149f2ca;
-    *(undefined4 *)((longlong)puVar5 + -0xb4) = 0x7149f2ca;
-    *(undefined4 *)(puVar5 + -0x16) = 0x7149f2ca;
-    *(undefined4 *)((longlong)puVar5 + -0xac) = 0x7f7fffff;
-    puVar5[-0x18] = 0x7149f2ca7149f2ca;
-    *(undefined4 *)(puVar5 + -0x15) = 0x7149f2ca;
-    *(undefined4 *)((longlong)puVar5 + -0xa4) = 0x7149f2ca;
-    *(undefined4 *)(puVar5 + -0x14) = 0x7149f2ca;
-    *(undefined4 *)((longlong)puVar5 + -0x9c) = 0x7f7fffff;
-    *(undefined2 *)(puVar5 + -0x13) = 0;
-    *(undefined8 *)((longlong)puVar5 + -0x94) = 0;
-    *(undefined8 *)((longlong)puVar5 + -0x8c) = 0;
-    *(undefined8 *)((longlong)puVar5 + -0x84) = 0;
-    *(undefined8 *)((longlong)puVar5 + -0x7c) = 0;
-    *(undefined4 *)((longlong)puVar5 + -0x74) = 0;
-    *(undefined1 *)(puVar5 + -0xe) = 0;
-    *(undefined8 *)((longlong)puVar5 + -0x6c) = 0;
-    *(undefined8 *)((longlong)puVar5 + -100) = 0;
-    *(undefined4 *)((longlong)puVar5 + -0x54) = 0x7149f2ca;
-    *(undefined4 *)(puVar5 + -10) = 0x7149f2ca;
-    *(undefined4 *)((longlong)puVar5 + -0x4c) = 0x7149f2ca;
-    *(undefined4 *)(puVar5 + -9) = 0x7f7fffff;
-    *(undefined8 *)((longlong)puVar5 + -0x5c) = 0x7149f2ca7149f2ca;
-    *(undefined4 *)((longlong)puVar5 + -0x44) = 0x7149f2ca;
-    *(undefined4 *)(puVar5 + -8) = 0x7149f2ca;
-    *(undefined4 *)((longlong)puVar5 + -0x3c) = 0x7149f2ca;
-    *(undefined4 *)(puVar5 + -7) = 0x7f7fffff;
-    *(undefined2 *)((longlong)puVar5 + -0x34) = 0;
-    puVar5[-6] = 0;
-    puVar5[-5] = 0;
-    puVar5[-4] = 0;
-    puVar5[-3] = 0;
-    *(undefined4 *)(puVar5 + -2) = 0;
-    *(undefined1 *)((longlong)puVar5 + -0xc) = 0;
-    puVar5[-1] = 0;
-    *puVar5 = 0;
-    *(undefined4 *)(puVar5 + 1) = 0;
-    *(undefined4 *)((longlong)puVar5 + 0xc) = 0x1010000;
-    puVar5[2] = 0;
-    puVar5[3] = 0;
-    *(undefined4 *)(puVar5 + 4) = 0;
-    *(undefined4 *)((longlong)puVar5 + 0x24) = 0x1010000;
-    puVar5 = puVar5 + 0x26b;
+    componentContextPtr[-0x1a] = 0;
+    componentContextPtr[-0x19] = 0;
+    *(undefined4 *)(componentContextPtr + -0x17) = 0x7149f2ca;
+    *(undefined4 *)((longlong)componentContextPtr + -0xb4) = 0x7149f2ca;
+    *(undefined4 *)(componentContextPtr + -0x16) = 0x7149f2ca;
+    *(undefined4 *)((longlong)componentContextPtr + -0xac) = 0x7f7fffff;
+    componentContextPtr[-0x18] = 0x7149f2ca7149f2ca;
+    *(undefined4 *)(componentContextPtr + -0x15) = 0x7149f2ca;
+    *(undefined4 *)((longlong)componentContextPtr + -0xa4) = 0x7149f2ca;
+    *(undefined4 *)(componentContextPtr + -0x14) = 0x7149f2ca;
+    *(undefined4 *)((longlong)componentContextPtr + -0x9c) = 0x7f7fffff;
+    *(undefined2 *)(componentContextPtr + -0x13) = 0;
+    *(undefined8 *)((longlong)componentContextPtr + -0x94) = 0;
+    *(undefined8 *)((longlong)componentContextPtr + -0x8c) = 0;
+    *(undefined8 *)((longlong)componentContextPtr + -0x84) = 0;
+    *(undefined8 *)((longlong)componentContextPtr + -0x7c) = 0;
+    *(undefined4 *)((longlong)componentContextPtr + -0x74) = 0;
+    *(undefined1 *)(componentContextPtr + -0xe) = 0;
+    *(undefined8 *)((longlong)componentContextPtr + -0x6c) = 0;
+    *(undefined8 *)((longlong)componentContextPtr + -100) = 0;
+    *(undefined4 *)((longlong)componentContextPtr + -0x54) = 0x7149f2ca;
+    *(undefined4 *)(componentContextPtr + -10) = 0x7149f2ca;
+    *(undefined4 *)((longlong)componentContextPtr + -0x4c) = 0x7149f2ca;
+    *(undefined4 *)(componentContextPtr + -9) = 0x7f7fffff;
+    *(undefined8 *)((longlong)componentContextPtr + -0x5c) = 0x7149f2ca7149f2ca;
+    *(undefined4 *)((longlong)componentContextPtr + -0x44) = 0x7149f2ca;
+    *(undefined4 *)(componentContextPtr + -8) = 0x7149f2ca;
+    *(undefined4 *)((longlong)componentContextPtr + -0x3c) = 0x7149f2ca;
+    *(undefined4 *)(componentContextPtr + -7) = 0x7f7fffff;
+    *(undefined2 *)((longlong)componentContextPtr + -0x34) = 0;
+    componentContextPtr[-6] = 0;
+    componentContextPtr[-5] = 0;
+    componentContextPtr[-4] = 0;
+    componentContextPtr[-3] = 0;
+    *(undefined4 *)(componentContextPtr + -2) = 0;
+    *(undefined1 *)((longlong)componentContextPtr + -0xc) = 0;
+    componentContextPtr[-1] = 0;
+    *componentContextPtr = 0;
+    *(undefined4 *)(componentContextPtr + 1) = 0;
+    *(undefined4 *)((longlong)componentContextPtr + 0xc) = 0x1010000;
+    componentContextPtr[2] = 0;
+    componentContextPtr[3] = 0;
+    *(undefined4 *)(componentContextPtr + 4) = 0;
+    *(undefined4 *)((longlong)componentContextPtr + 0x24) = 0x1010000;
+    componentContextPtr = componentContextPtr + 0x26b;
     componentIndex = componentIndex + -1;
   } while (componentIndex != 0);
   ResetUIComponentState(uiContext + 0x4dc8);
@@ -55237,7 +55237,7 @@ void InitializeUIRenderDataProcessor(undefined8 *uiContext,int dataSource,undefi
   undefined8 *psemaphoreHandle;
   undefined8 *puVar3;
   undefined8 *bufferPtr;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   undefined8 uVar6;
   undefined8 eventTypeCode;
   undefined8 uVar8;
@@ -56233,7 +56233,7 @@ void InitializeUIRenderDataProcessor(undefined8 *uiContext,int dataSource,undefi
   asemaphoreHandle3._1_13_ = SUB1613(auVar55 << 0x20,3);
   asemaphoreHandle3[0] = (char)((ulonglong)functionResult4 >> 8);
   semaphoreHandle10 = (ushort)(byte)functionResult4;
-  puVar5 = (undefined8 *)((longlong)(dataSource * 6) + (longlong)uiContext);
+  componentContextPtr = (undefined8 *)((longlong)(dataSource * 6) + (longlong)uiContext);
   isCharacterMatch71 = (byte)((ulonglong)uVar6 >> 0x38);
   uVar360 = (ushort)isCharacterMatch71;
   aeventTypeCode5[0xd] = 0;
@@ -56266,7 +56266,7 @@ void InitializeUIRenderDataProcessor(undefined8 *uiContext,int dataSource,undefi
   uVar320 = (ushort)(byte)uVar6;
   pfunctionResult15 = (undefined8 *)((longlong)uiContext - (longlong)(dataSource * 7));
   uVar6 = *pfunctionResult15;
-  functionResult4 = *puVar5;
+  functionResult4 = *componentContextPtr;
   auVar301._8_8_ = functionResult4;
   auVar301._0_8_ = uVar6;
   functionResult7 = *(undefined8 *)((longlong)uiContext - (longlong)(dataSource * 8));
@@ -57089,7 +57089,7 @@ void InitializeUIRenderDataProcessor(undefined8 *uiContext,int dataSource,undefi
   asemaphoreHandle28[0xf] = (functionResult70 != 0) * (functionResult70 < 0x100) * (char)functionResult70 - (0xff < functionResult70);
   auVar402 = asemaphoreHandle28 & asemaphoreHandle89 | ~asemaphoreHandle89 & auVar301;
   *pfunctionResult15 = auVar402._0_8_;
-  *puVar5 = auVar402._8_8_;
+  *componentContextPtr = auVar402._8_8_;
   auVar346[1] = (uVar348 != 0) * (uVar348 < 0x100) * (char)uVar348 - (0xff < uVar348);
   auVar346[0] = (uVar372 != 0) * (uVar372 < 0x100) * (char)uVar372 - (0xff < uVar372);
   auVar346[2] = (uVar350 != 0) * (uVar350 < 0x100) * (char)uVar350 - (0xff < uVar350);
@@ -58653,7 +58653,7 @@ void InitializeUIPixelProcessor(longlong uiContext,longlong dataSource,int targe
   short *psVar2;
   short *psVar3;
   short sVar4;
-  ushort *puVar5;
+  ushort *componentContextPtr;
   undefined1 (*pauVar6) [16];
   longlong lVar7;
   longlong lVar8;
@@ -58792,15 +58792,15 @@ void InitializeUIPixelProcessor(longlong uiContext,longlong dataSource,int targe
     semaphoreHandle5 = auVar46._10_2_ - auVar41._10_2_ & -(ushort)(sVar61 < auVar32._10_2_);
     semaphoreHandle7 = auVar46._12_2_ - auVar41._12_2_ & -(ushort)(sVar62 < auVar32._12_2_);
     semaphoreHandle9 = auVar46._14_2_ - auVar41._14_2_ & -(ushort)(sVar63 < auVar32._14_2_);
-    puVar5 = (ushort *)(param_8 + dataSource * -2);
-    *puVar5 = functionResult5;
-    puVar5[1] = functionResult7;
-    puVar5[2] = functionResult9;
-    puVar5[3] = semaphoreHandle1;
-    puVar5[4] = semaphoreHandle3;
-    puVar5[5] = semaphoreHandle5;
-    puVar5[6] = semaphoreHandle7;
-    puVar5[7] = semaphoreHandle9;
+    componentContextPtr = (ushort *)(param_8 + dataSource * -2);
+    *componentContextPtr = functionResult5;
+    componentContextPtr[1] = functionResult7;
+    componentContextPtr[2] = functionResult9;
+    componentContextPtr[3] = semaphoreHandle1;
+    componentContextPtr[4] = semaphoreHandle3;
+    componentContextPtr[5] = semaphoreHandle5;
+    componentContextPtr[6] = semaphoreHandle7;
+    componentContextPtr[7] = semaphoreHandle9;
     sVar44 = functionResult5 * sVar44;
     sVar48 = functionResult7 * sVar48;
     sVar49 = functionResult9 * sVar49;
@@ -58818,15 +58818,15 @@ void InitializeUIPixelProcessor(longlong uiContext,longlong dataSource,int targe
     semaphoreHandle5 = auVar31._10_2_ - auVar43._10_2_ & -(ushort)(sVar61 < auVar42._10_2_);
     semaphoreHandle7 = auVar31._12_2_ - auVar43._12_2_ & -(ushort)(sVar62 < auVar42._12_2_);
     semaphoreHandle9 = auVar31._14_2_ - auVar43._14_2_ & -(ushort)(sVar63 < auVar42._14_2_);
-    puVar5 = (ushort *)(param_8 + 0x10 + dataSource * -2);
-    *puVar5 = functionResult5;
-    puVar5[1] = functionResult7;
-    puVar5[2] = functionResult9;
-    puVar5[3] = semaphoreHandle1;
-    puVar5[4] = semaphoreHandle3;
-    puVar5[5] = semaphoreHandle5;
-    puVar5[6] = semaphoreHandle7;
-    puVar5[7] = semaphoreHandle9;
+    componentContextPtr = (ushort *)(param_8 + 0x10 + dataSource * -2);
+    *componentContextPtr = functionResult5;
+    componentContextPtr[1] = functionResult7;
+    componentContextPtr[2] = functionResult9;
+    componentContextPtr[3] = semaphoreHandle1;
+    componentContextPtr[4] = semaphoreHandle3;
+    componentContextPtr[5] = semaphoreHandle5;
+    componentContextPtr[6] = semaphoreHandle7;
+    componentContextPtr[7] = semaphoreHandle9;
     psVar2 = (short *)(param_9 + dataSource * -2);
     *psVar2 = sVar44;
     psVar2[1] = sVar48;
@@ -58906,12 +58906,12 @@ void InitializeUIPixelProcessor(longlong uiContext,longlong dataSource,int targe
     if (lVar8 + 0x10 < 0) {
       uiContext = uiContext - param_8;
       lVar7 = (-(lVar8 + 0x10) - 1U >> 4) + 1;
-      puVar5 = (ushort *)(param_8 + (lVar8 + 0x18) * 2);
+      componentContextPtr = (ushort *)(param_8 + (lVar8 + 0x18) * 2);
       auVar32 = auVar31;
       do {
-        pfunctionResult = puVar5 + 0x10;
-        auVar42 = psraw(*(undefined1 (*) [16])(uiContext + -0x10 + (longlong)puVar5),0xf);
-        auVar46 = psraw(*(undefined1 (*) [16])(uiContext + (longlong)puVar5),0xf);
+        pfunctionResult = componentContextPtr + 0x10;
+        auVar42 = psraw(*(undefined1 (*) [16])(uiContext + -0x10 + (longlong)componentContextPtr),0xf);
+        auVar46 = psraw(*(undefined1 (*) [16])(uiContext + (longlong)componentContextPtr),0xf);
         auVar31 = auVar42 ^ *(undefined1 (*) [16])(uiContext + -0x30 + (longlong)pfunctionResult);
         auVar40 = auVar46 ^ *(undefined1 (*) [16])(uiContext + -0x20 + (longlong)pfunctionResult);
         auVar45._0_2_ = auVar31._0_2_ - auVar42._0_2_;
@@ -58961,14 +58961,14 @@ void InitializeUIPixelProcessor(longlong uiContext,longlong dataSource,int targe
         semaphoreHandle5 = auVar47._10_2_ - auVar42._10_2_ & -(ushort)(sVar61 < auVar45._10_2_);
         semaphoreHandle7 = auVar47._12_2_ - auVar42._12_2_ & -(ushort)(sVar62 < auVar45._12_2_);
         semaphoreHandle9 = auVar47._14_2_ - auVar42._14_2_ & -(ushort)(sVar63 < auVar45._14_2_);
-        puVar5[-8] = functionResult5;
-        puVar5[-7] = functionResult7;
-        puVar5[-6] = functionResult9;
-        puVar5[-5] = semaphoreHandle1;
-        puVar5[-4] = semaphoreHandle3;
-        puVar5[-3] = semaphoreHandle5;
-        puVar5[-2] = semaphoreHandle7;
-        puVar5[-1] = semaphoreHandle9;
+        componentContextPtr[-8] = functionResult5;
+        componentContextPtr[-7] = functionResult7;
+        componentContextPtr[-6] = functionResult9;
+        componentContextPtr[-5] = semaphoreHandle1;
+        componentContextPtr[-4] = semaphoreHandle3;
+        componentContextPtr[-3] = semaphoreHandle5;
+        componentContextPtr[-2] = semaphoreHandle7;
+        componentContextPtr[-1] = semaphoreHandle9;
         sVar36 = functionResult5 * sVar55;
         sVar37 = functionResult7 * sVar58;
         sVar38 = functionResult9 * sVar59;
@@ -58986,14 +58986,14 @@ void InitializeUIPixelProcessor(longlong uiContext,longlong dataSource,int targe
         semaphoreHandle5 = auVar31._10_2_ - auVar46._10_2_ & -(ushort)(sVar61 < auVar43._10_2_);
         semaphoreHandle7 = auVar31._12_2_ - auVar46._12_2_ & -(ushort)(sVar62 < auVar43._12_2_);
         semaphoreHandle9 = auVar31._14_2_ - auVar46._14_2_ & -(ushort)(sVar63 < auVar43._14_2_);
-        *puVar5 = functionResult5;
-        puVar5[1] = functionResult7;
-        puVar5[2] = functionResult9;
-        puVar5[3] = semaphoreHandle1;
-        puVar5[4] = semaphoreHandle3;
-        puVar5[5] = semaphoreHandle5;
-        puVar5[6] = semaphoreHandle7;
-        puVar5[7] = semaphoreHandle9;
+        *componentContextPtr = functionResult5;
+        componentContextPtr[1] = functionResult7;
+        componentContextPtr[2] = functionResult9;
+        componentContextPtr[3] = semaphoreHandle1;
+        componentContextPtr[4] = semaphoreHandle3;
+        componentContextPtr[5] = semaphoreHandle5;
+        componentContextPtr[6] = semaphoreHandle7;
+        componentContextPtr[7] = semaphoreHandle9;
         psVar2 = (short *)((param_9 - param_8) + -0x30 + (longlong)pfunctionResult);
         *psVar2 = sVar36;
         psVar2[1] = sVar37;
@@ -59095,7 +59095,7 @@ void InitializeUIPixelProcessor(longlong uiContext,longlong dataSource,int targe
         auVar31._14_2_ =
              (sVar48 < (short)semaphoreHandle9) * semaphoreHandle9 | (ushort)(sVar48 >= (short)semaphoreHandle9) * sVar48;
         lVar7 = lVar7 + -1;
-        puVar5 = pfunctionResult;
+        componentContextPtr = pfunctionResult;
         auVar32 = auVar31;
       } while (lVar7 != 0);
     }
@@ -59196,7 +59196,7 @@ void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,und
   short *psVar3;
   short sVar4;
   undefined1 (*in_RAX) [16];
-  ushort *puVar5;
+  ushort *componentContextPtr;
   longlong lVar6;
   longlong context;
   longlong lVar7;
@@ -59349,15 +59349,15 @@ void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,und
   semaphoreHandle4 = auVar45._10_2_ - auVar40._10_2_ & -(ushort)(sVar68 < auVar31._10_2_);
   semaphoreHandle6 = auVar45._12_2_ - auVar40._12_2_ & -(ushort)(sVar69 < auVar31._12_2_);
   semaphoreHandle8 = auVar45._14_2_ - auVar40._14_2_ & -(ushort)(sVar70 < auVar31._14_2_);
-  puVar5 = (ushort *)(in_R11 + dataSource * 2);
-  *puVar5 = functionResult4;
-  puVar5[1] = functionResult6;
-  puVar5[2] = functionResult8;
-  puVar5[3] = semaphoreHandle0;
-  puVar5[4] = semaphoreHandle2;
-  puVar5[5] = semaphoreHandle4;
-  puVar5[6] = semaphoreHandle6;
-  puVar5[7] = semaphoreHandle8;
+  componentContextPtr = (ushort *)(in_R11 + dataSource * 2);
+  *componentContextPtr = functionResult4;
+  componentContextPtr[1] = functionResult6;
+  componentContextPtr[2] = functionResult8;
+  componentContextPtr[3] = semaphoreHandle0;
+  componentContextPtr[4] = semaphoreHandle2;
+  componentContextPtr[5] = semaphoreHandle4;
+  componentContextPtr[6] = semaphoreHandle6;
+  componentContextPtr[7] = semaphoreHandle8;
   sVar43 = functionResult4 * sVar43;
   sVar47 = functionResult6 * sVar47;
   sVar48 = functionResult8 * sVar48;
@@ -59375,15 +59375,15 @@ void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,und
   semaphoreHandle4 = auVar30._10_2_ - auVar42._10_2_ & -(ushort)(sVar68 < auVar41._10_2_);
   semaphoreHandle6 = auVar30._12_2_ - auVar42._12_2_ & -(ushort)(sVar69 < auVar41._12_2_);
   semaphoreHandle8 = auVar30._14_2_ - auVar42._14_2_ & -(ushort)(sVar70 < auVar41._14_2_);
-  puVar5 = (ushort *)(in_R11 + 0x10 + dataSource * 2);
-  *puVar5 = functionResult4;
-  puVar5[1] = functionResult6;
-  puVar5[2] = functionResult8;
-  puVar5[3] = semaphoreHandle0;
-  puVar5[4] = semaphoreHandle2;
-  puVar5[5] = semaphoreHandle4;
-  puVar5[6] = semaphoreHandle6;
-  puVar5[7] = semaphoreHandle8;
+  componentContextPtr = (ushort *)(in_R11 + 0x10 + dataSource * 2);
+  *componentContextPtr = functionResult4;
+  componentContextPtr[1] = functionResult6;
+  componentContextPtr[2] = functionResult8;
+  componentContextPtr[3] = semaphoreHandle0;
+  componentContextPtr[4] = semaphoreHandle2;
+  componentContextPtr[5] = semaphoreHandle4;
+  componentContextPtr[6] = semaphoreHandle6;
+  componentContextPtr[7] = semaphoreHandle8;
   psVar2 = (short *)(in_R10 + dataSource * 2);
   *psVar2 = sVar43;
   psVar2[1] = sVar47;
@@ -59470,12 +59470,12 @@ void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,und
   if (dataSource + 0x10 < 0) {
     lVar7 = context - in_R11;
     lVar6 = (-(dataSource + 0x10) - 1U >> 4) + 1;
-    puVar5 = (ushort *)(in_R11 + (dataSource + 0x18) * 2);
+    componentContextPtr = (ushort *)(in_R11 + (dataSource + 0x18) * 2);
     auVar31 = auVar30;
     do {
-      pfunctionResult = puVar5 + 0x10;
-      auVar41 = psraw(*(undefined1 (*) [16])(lVar7 + -0x10 + (longlong)puVar5),0xf);
-      auVar45 = psraw(*(undefined1 (*) [16])(lVar7 + (longlong)puVar5),0xf);
+      pfunctionResult = componentContextPtr + 0x10;
+      auVar41 = psraw(*(undefined1 (*) [16])(lVar7 + -0x10 + (longlong)componentContextPtr),0xf);
+      auVar45 = psraw(*(undefined1 (*) [16])(lVar7 + (longlong)componentContextPtr),0xf);
       auVar30 = auVar41 ^ *(undefined1 (*) [16])(lVar7 + -0x30 + (longlong)pfunctionResult);
       auVar39 = auVar45 ^ *(undefined1 (*) [16])(lVar7 + -0x20 + (longlong)pfunctionResult);
       auVar44._0_2_ = auVar30._0_2_ - auVar41._0_2_;
@@ -59525,14 +59525,14 @@ void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,und
       semaphoreHandle4 = auVar46._10_2_ - auVar41._10_2_ & -(ushort)(sVar68 < auVar44._10_2_);
       semaphoreHandle6 = auVar46._12_2_ - auVar41._12_2_ & -(ushort)(sVar69 < auVar44._12_2_);
       semaphoreHandle8 = auVar46._14_2_ - auVar41._14_2_ & -(ushort)(sVar70 < auVar44._14_2_);
-      puVar5[-8] = functionResult4;
-      puVar5[-7] = functionResult6;
-      puVar5[-6] = functionResult8;
-      puVar5[-5] = semaphoreHandle0;
-      puVar5[-4] = semaphoreHandle2;
-      puVar5[-3] = semaphoreHandle4;
-      puVar5[-2] = semaphoreHandle6;
-      puVar5[-1] = semaphoreHandle8;
+      componentContextPtr[-8] = functionResult4;
+      componentContextPtr[-7] = functionResult6;
+      componentContextPtr[-6] = functionResult8;
+      componentContextPtr[-5] = semaphoreHandle0;
+      componentContextPtr[-4] = semaphoreHandle2;
+      componentContextPtr[-3] = semaphoreHandle4;
+      componentContextPtr[-2] = semaphoreHandle6;
+      componentContextPtr[-1] = semaphoreHandle8;
       sVar35 = functionResult4 * sVar62;
       sVar36 = functionResult6 * sVar65;
       sVar37 = functionResult8 * sVar66;
@@ -59550,14 +59550,14 @@ void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,und
       semaphoreHandle4 = auVar30._10_2_ - auVar45._10_2_ & -(ushort)(sVar68 < auVar42._10_2_);
       semaphoreHandle6 = auVar30._12_2_ - auVar45._12_2_ & -(ushort)(sVar69 < auVar42._12_2_);
       semaphoreHandle8 = auVar30._14_2_ - auVar45._14_2_ & -(ushort)(sVar70 < auVar42._14_2_);
-      *puVar5 = functionResult4;
-      puVar5[1] = functionResult6;
-      puVar5[2] = functionResult8;
-      puVar5[3] = semaphoreHandle0;
-      puVar5[4] = semaphoreHandle2;
-      puVar5[5] = semaphoreHandle4;
-      puVar5[6] = semaphoreHandle6;
-      puVar5[7] = semaphoreHandle8;
+      *componentContextPtr = functionResult4;
+      componentContextPtr[1] = functionResult6;
+      componentContextPtr[2] = functionResult8;
+      componentContextPtr[3] = semaphoreHandle0;
+      componentContextPtr[4] = semaphoreHandle2;
+      componentContextPtr[5] = semaphoreHandle4;
+      componentContextPtr[6] = semaphoreHandle6;
+      componentContextPtr[7] = semaphoreHandle8;
       psVar2 = (short *)((in_R10 - in_R11) + -0x30 + (longlong)pfunctionResult);
       *psVar2 = sVar35;
       psVar2[1] = sVar36;
@@ -59651,7 +59651,7 @@ void InitializeUIImageDataProcessor(undefined8 uiContext,longlong dataSource,und
       auVar30._14_2_ =
            (sVar47 < (short)semaphoreHandle8) * semaphoreHandle8 | (ushort)(sVar47 >= (short)semaphoreHandle8) * sVar47;
       lVar6 = lVar6 + -1;
-      puVar5 = pfunctionResult;
+      componentContextPtr = pfunctionResult;
       auVar31 = auVar30;
     } while (lVar6 != 0);
   }
@@ -60346,7 +60346,7 @@ void ProcessUIUnsignedPixelData(uint *uiContext,int dataSource,uint *targetBuffe
   ulonglong semaphoreHandle;
   uint uVar3;
   uint uVar4;
-  uint *puVar5;
+  uint *componentContextPtr;
   int iVar6;
   int iVar7;
   int iVar8;
@@ -60374,14 +60374,14 @@ void ProcessUIUnsignedPixelData(uint *uiContext,int dataSource,uint *targetBuffe
     operationResult6 = 0;
     operationResult7 = 0;
     allocatedMemory2 = 4;
-    puVar5 = uiContext;
+    componentContextPtr = uiContext;
     pfunctionResult1 = puStackX_18;
     do {
       semaphoreHandle = 0;
       if (1 < operationResult) {
         semaphoreHandle = 4;
-        afunctionResult8 = pmovzxbd(in_XMM2,ZEXT416(*puVar5));
-        afunctionResult3 = pmovzxbd(ZEXT416(*puVar5),ZEXT416(*pfunctionResult1));
+        afunctionResult8 = pmovzxbd(in_XMM2,ZEXT416(*componentContextPtr));
+        afunctionResult3 = pmovzxbd(ZEXT416(*componentContextPtr),ZEXT416(*pfunctionResult1));
         in_XMM2._0_4_ = afunctionResult8._0_4_ - afunctionResult3._0_4_;
         in_XMM2._4_4_ = afunctionResult8._4_4_ - afunctionResult3._4_4_;
         in_XMM2._8_4_ = afunctionResult8._8_4_ - afunctionResult3._8_4_;
@@ -60400,11 +60400,11 @@ void ProcessUIUnsignedPixelData(uint *uiContext,int dataSource,uint *targetBuffe
           lVar9 = (2 - semaphoreHandle >> 1) + 1;
           semaphoreHandle = semaphoreHandle + lVar9 * 2;
           do {
-            uVar3 = (int)((uint)pisCharacterMatch0[(longlong)puVar5 - (longlong)pfunctionResult1] - (uint)*pisCharacterMatch0) >>
+            uVar3 = (int)((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)pfunctionResult1] - (uint)*pisCharacterMatch0) >>
                     0x1f;
-            iVar8 = iVar8 + (((uint)pisCharacterMatch0[(longlong)puVar5 - (longlong)pfunctionResult1] - (uint)*pisCharacterMatch0 ^
+            iVar8 = iVar8 + (((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)pfunctionResult1] - (uint)*pisCharacterMatch0 ^
                              uVar3) - uVar3);
-            uVar3 = (uint)(pisCharacterMatch0 + 2)[((longlong)puVar5 - (longlong)pfunctionResult1) + -1] -
+            uVar3 = (uint)(pisCharacterMatch0 + 2)[((longlong)componentContextPtr - (longlong)pfunctionResult1) + -1] -
                     (uint)pisCharacterMatch0[1];
             uVar4 = (int)uVar3 >> 0x1f;
             iVar7 = iVar7 + ((uVar3 ^ uVar4) - uVar4);
@@ -60413,14 +60413,14 @@ void ProcessUIUnsignedPixelData(uint *uiContext,int dataSource,uint *targetBuffe
           } while (lVar9 != 0);
         }
         if ((longlong)semaphoreHandle < 4) {
-          uVar3 = (uint)*(byte *)(semaphoreHandle + (longlong)puVar5) -
+          uVar3 = (uint)*(byte *)(semaphoreHandle + (longlong)componentContextPtr) -
                   (uint)*(byte *)(semaphoreHandle + (longlong)pfunctionResult1);
           uVar4 = (int)uVar3 >> 0x1f;
           iVar6 = iVar6 + ((uVar3 ^ uVar4) - uVar4);
         }
         iVar6 = iVar6 + iVar7 + iVar8;
       }
-      puVar5 = (uint *)((longlong)puVar5 + (longlong)dataSource);
+      componentContextPtr = (uint *)((longlong)componentContextPtr + (longlong)dataSource);
       pfunctionResult1 = (uint *)((longlong)pfunctionResult1 + (longlong)bufferSize);
       allocatedMemory2 = allocatedMemory2 + -1;
     } while (allocatedMemory2 != 0);
@@ -60491,8 +60491,8 @@ void CalculateImageWeightedAbsoluteDifferenceOptimized(uint *uiContext,int dataS
       semaphoreHandle = 0;
       if (1 < operationResult) {
         semaphoreHandle = 4;
-        afunctionResult8 = pmovzxbd(in_XMM2,ZEXT416(*puVar5));
-        afunctionResult3 = pmovzxbd(ZEXT416(*puVar5),ZEXT416(*pfunctionResult1));
+        afunctionResult8 = pmovzxbd(in_XMM2,ZEXT416(*componentContextPtr));
+        afunctionResult3 = pmovzxbd(ZEXT416(*componentContextPtr),ZEXT416(*pfunctionResult1));
         in_XMM2._0_4_ = afunctionResult8._0_4_ - afunctionResult3._0_4_;
         in_XMM2._4_4_ = afunctionResult8._4_4_ - afunctionResult3._4_4_;
         in_XMM2._8_4_ = afunctionResult8._8_4_ - afunctionResult3._8_4_;
@@ -60511,11 +60511,11 @@ void CalculateImageWeightedAbsoluteDifferenceOptimized(uint *uiContext,int dataS
           lVar9 = (2 - semaphoreHandle >> 1) + 1;
           semaphoreHandle = semaphoreHandle + lVar9 * 2;
           do {
-            uVar3 = (int)((uint)pisCharacterMatch0[(longlong)puVar5 - (longlong)pfunctionResult1] - (uint)*pisCharacterMatch0) >>
+            uVar3 = (int)((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)pfunctionResult1] - (uint)*pisCharacterMatch0) >>
                     0x1f;
-            iVar8 = iVar8 + (((uint)pisCharacterMatch0[(longlong)puVar5 - (longlong)pfunctionResult1] - (uint)*pisCharacterMatch0 ^
+            iVar8 = iVar8 + (((uint)pisCharacterMatch0[(longlong)componentContextPtr - (longlong)pfunctionResult1] - (uint)*pisCharacterMatch0 ^
                              uVar3) - uVar3);
-            uVar3 = (uint)(pisCharacterMatch0 + 2)[((longlong)puVar5 - (longlong)pfunctionResult1) + -1] -
+            uVar3 = (uint)(pisCharacterMatch0 + 2)[((longlong)componentContextPtr - (longlong)pfunctionResult1) + -1] -
                     (uint)pisCharacterMatch0[1];
             uVar4 = (int)uVar3 >> 0x1f;
             iVar7 = iVar7 + ((uVar3 ^ uVar4) - uVar4);
@@ -60524,14 +60524,14 @@ void CalculateImageWeightedAbsoluteDifferenceOptimized(uint *uiContext,int dataS
           } while (lVar9 != 0);
         }
         if ((longlong)semaphoreHandle < 4) {
-          uVar3 = (uint)*(byte *)(semaphoreHandle + (longlong)puVar5) -
+          uVar3 = (uint)*(byte *)(semaphoreHandle + (longlong)componentContextPtr) -
                   (uint)*(byte *)(semaphoreHandle + (longlong)pfunctionResult1);
           uVar4 = (int)uVar3 >> 0x1f;
           iVar6 = iVar6 + ((uVar3 ^ uVar4) - uVar4);
         }
         iVar6 = iVar6 + iVar7 + iVar8;
       }
-      puVar5 = (uint *)((longlong)puVar5 + (longlong)dataSource);
+      componentContextPtr = (uint *)((longlong)componentContextPtr + (longlong)dataSource);
       pfunctionResult1 = (uint *)((longlong)pfunctionResult1 + (longlong)bufferSize);
       allocatedMemory2 = allocatedMemory2 + -1;
     } while (allocatedMemory2 != 0);
@@ -62322,7 +62322,7 @@ void ProcessUIDataTransferHandler(longlong uiContext,longlong dataSource,int tar
   undefined1 semaphoreHandle;
   int compareResult;
   undefined1 *bufferPtr;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   undefined1 *puVar6;
   longlong lVar7;
   longlong lVar8;
@@ -62337,10 +62337,10 @@ void ProcessUIDataTransferHandler(longlong uiContext,longlong dataSource,int tar
   }
   lVar7 = 0;
   pfunctionResult1 = (undefined1 *)(uiContext + 0x1857);
-  puVar5 = (undefined1 *)(uiContext + 0x1850);
+  componentContextPtr = (undefined1 *)(uiContext + 0x1850);
   allocatedMemory2 = 4;
   operationResult0 = 0x3f;
-  puVar6 = puVar5;
+  puVar6 = componentContextPtr;
   do {
     iVar9 = targetBuffer;
     if ((*(char *)(dataSource + 0xf60) != '\0') &&
@@ -62355,7 +62355,7 @@ void ProcessUIDataTransferHandler(longlong uiContext,longlong dataSource,int tar
     }
     if (*(char *)(dataSource + 0xf6f) == '\0') {
                     // WARNING: Subroutine does not return
-      memset(puVar5,iVar9,0x10);
+      memset(componentContextPtr,iVar9,0x10);
     }
     operationResult = *(char *)(dataSource + 0xf75) + iVar9;
     compareResult = *(char *)(dataSource + 0xf7d) + operationResult;
@@ -62419,7 +62419,7 @@ void ProcessUIDataTransferHandler(longlong uiContext,longlong dataSource,int tar
       lVar8 = lVar8 + 1;
       bufferPtr = bufferPtr + 4;
     } while (lVar8 < 4);
-    puVar5 = puVar5 + 0x10;
+    componentContextPtr = componentContextPtr + 0x10;
     lVar7 = lVar7 + 1;
     puVar6 = puVar6 + 0x10;
     pfunctionResult1 = pfunctionResult1 + 0x10;
@@ -63505,7 +63505,7 @@ void ProcessUIDataSource(undefined8 uiContext,longlong dataSource)
   int validationResult;
   longlong stringCompareIndex;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   longlong lVar6;
   longlong lVar7;
   char *pcVar8;
@@ -63544,7 +63544,7 @@ void ProcessUIDataSource(undefined8 uiContext,longlong dataSource)
       lVar4 = *(longlong *)(dataSource + 0xf18);
       pcVar8 = (char *)(dataSource + 0x7c0);
       stringCompareIndex = (longlong)*(int *)(dataSource + 0xe80);
-      puVar5 = (undefined8 *)(dataSource + 0x860);
+      componentContextPtr = (undefined8 *)(dataSource + 0x860);
       lVar9 = 0xc;
       lVar6 = *(longlong *)(dataSource + 0xea8) - stringCompareIndex;
       lVar7 = 0x10;
@@ -63552,7 +63552,7 @@ void ProcessUIDataSource(undefined8 uiContext,longlong dataSource)
       *(undefined4 *)(lVar6 + 0x10 + stringCompareIndex * 8) = *(undefined4 *)(lVar4 + 0x10);
       *(undefined4 *)(lVar6 + 0x10 + stringCompareIndex * 0xc) = *(undefined4 *)(lVar4 + 0x10);
       do {
-        stringCompareIndex = (longlong)*(int *)(puVar5 + 4) + *(longlong *)(dataSource + 0xea8);
+        stringCompareIndex = (longlong)*(int *)(componentContextPtr + 4) + *(longlong *)(dataSource + 0xea8);
         lVar4 = stringCompareIndex;
         UpdateUIComponentData(stringCompareIndex - validationResult,stringCompareIndex + -1,validationResult,
                       *(undefined4 *)(lVar9 + *(longlong *)(dataSource + 0xf00)),stringCompareIndex,validationResult,
@@ -63561,17 +63561,17 @@ void ProcessUIDataSource(undefined8 uiContext,longlong dataSource)
         if (*pcVar8 != '\0') {
           if (*pcVar8 < '\x02') {
             functionResult0 = CONCAT44(functionResult1,validationResult);
-            func_0x00018001a59e((int)*(short *)*puVar5 * (int)*(short *)(dataSource + 0x7e0),stringCompareIndex,
+            func_0x00018001a59e((int)*(short *)*componentContextPtr * (int)*(short *)(dataSource + 0x7e0),stringCompareIndex,
                                 validationResult,stringCompareIndex,functionResult0);
             functionResult1 = (undefined4)((ulonglong)functionResult0 >> 0x20);
-            *(undefined4 *)*puVar5 = 0;
+            *(undefined4 *)*componentContextPtr = 0;
           }
           else {
-            func_0x00018001a682(*puVar5,dataSource + 0x7e0,stringCompareIndex,validationResult);
+            func_0x00018001a682(*componentContextPtr,dataSource + 0x7e0,stringCompareIndex,validationResult);
           }
         }
         lVar9 = lVar9 + 4;
-        puVar5 = puVar5 + 7;
+        componentContextPtr = componentContextPtr + 7;
         pcVar8 = pcVar8 + 1;
         lVar7 = lVar7 + -1;
       } while (lVar7 != 0);
@@ -63590,20 +63590,20 @@ void ProcessUIDataSource(undefined8 uiContext,longlong dataSource)
     if (cVar1 != '\x04') {
       lVar4 = dataSource + 0x7e0;
       if (cVar1 != '\t') {
-        puVar5 = (undefined8 *)(dataSource + 0xda0);
+        componentContextPtr = (undefined8 *)(dataSource + 0xda0);
         if (*(char *)(dataSource + 0x7d8) < '\x02') {
-          **(short **)(dataSource + 0xda8) = *(short *)(dataSource + 0x820) * *(short *)*puVar5;
+          **(short **)(dataSource + 0xda8) = *(short *)(dataSource + 0x820) * *(short *)*componentContextPtr;
           func_0x00018069cbb0(*(undefined8 *)(dataSource + 0xda8),dataSource + 0x180);
-          *(undefined4 *)*puVar5 = 0;
+          *(undefined4 *)*componentContextPtr = 0;
         }
         else {
-          func_0x00018069c8f0(puVar5,dataSource + 0x820);
+          func_0x00018069c8f0(componentContextPtr,dataSource + 0x820);
           ProcessUIComponentRenderTask3(*(undefined8 *)(dataSource + 0xda8),dataSource + 0x180);
-          puVar5 = (undefined8 *)*puVar5;
-          *puVar5 = 0;
-          puVar5[1] = 0;
-          puVar5[2] = 0;
-          puVar5[3] = 0;
+          componentContextPtr = (undefined8 *)*componentContextPtr;
+          *componentContextPtr = 0;
+          componentContextPtr[1] = 0;
+          componentContextPtr[2] = 0;
+          componentContextPtr[3] = 0;
         }
         lVar4 = dataSource + 0x800;
       }
@@ -63778,7 +63778,7 @@ void FUN_180699620(longlong uiContext)
   byte bVar2;
   undefined8 *puVar3;
   undefined1 *bufferPtr;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   undefined1 *puVar6;
   ulonglong eventTypeCode;
   longlong lVar8;
@@ -63899,7 +63899,7 @@ void FUN_180699620(longlong uiContext)
       *(longlong *)(bufferData + 0xf38) = *(longlong *)(bufferData + 0xf20) + -1;
       bufferPtr = *(undefined1 **)(uiContext + 0xf38);
       *(longlong *)(bufferData + 0xf40) = *(longlong *)(bufferData + 0xf28) + -1;
-      puVar5 = *(undefined1 **)(uiContext + 0xf40);
+      componentContextPtr = *(undefined1 **)(uiContext + 0xf40);
       *(longlong *)(bufferData + 0xf18) =
            *(longlong *)(bufferData + 0xf18) - (longlong)*(int *)(bufferData + 0xe80);
       lVar8 = 0x10;
@@ -63925,15 +63925,15 @@ void FUN_180699620(longlong uiContext)
       bufferPtr[allocatedMemory2 * 5] = 0x81;
       bufferPtr[allocatedMemory2 * 6] = 0x81;
       bufferPtr[allocatedMemory2 * 7] = 0x81;
-      *puVar5 = 0x81;
-      puVar5[allocatedMemory2] = 0x81;
-      puVar5[allocatedMemory2 * 2] = 0x81;
-      puVar5[allocatedMemory2 * 3] = 0x81;
-      puVar5[allocatedMemory2 * 4] = 0x81;
-      puVar5[allocatedMemory2 * 5] = 0x81;
-      puVar5[allocatedMemory2 * 6] = 0x81;
+      *componentContextPtr = 0x81;
+      componentContextPtr[allocatedMemory2] = 0x81;
+      componentContextPtr[allocatedMemory2 * 2] = 0x81;
+      componentContextPtr[allocatedMemory2 * 3] = 0x81;
+      componentContextPtr[allocatedMemory2 * 4] = 0x81;
+      componentContextPtr[allocatedMemory2 * 5] = 0x81;
+      componentContextPtr[allocatedMemory2 * 6] = 0x81;
       operationResult0 = 0;
-      puVar5[allocatedMemory2 * 7] = 0x81;
+      componentContextPtr[allocatedMemory2 * 7] = 0x81;
       operationResult5 = iStack_108;
       operationResult4 = iStack_fc;
       operationResult6 = iStack_100;
@@ -68333,7 +68333,7 @@ void FUN_18069e7c0(undefined4 uiContext,longlong dataSource,longlong targetBuffe
   undefined4 unaff_EBX;
   longlong unaff_RBP;
   longlong unaff_RSI;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   longlong unaff_RDI;
   undefined4 *puVar6;
   longlong in_R10;
@@ -68400,7 +68400,7 @@ void FUN_18069e7c0(undefined4 uiContext,longlong dataSource,longlong targetBuffe
             do {
               if (*piVar7 == 0) {
                 lVar4 = (longlong)((*(int *)(dataSource + 0x24) * iVar8 + compareResult) * 4);
-                puVar5 = (undefined4 *)(lVar4 + targetBuffer);
+                componentContextPtr = (undefined4 *)(lVar4 + targetBuffer);
                 pfunctionResult0 = (undefined4 *)(lVar4 + bufferSize);
                 lVar4 = (longlong)((iVar8 * *(int *)(unaff_RBP + 0xa94) + compareResult) * 4);
                 puVar6 = (undefined4 *)(unaff_RDI + lVar4);
@@ -68409,29 +68409,29 @@ void FUN_18069e7c0(undefined4 uiContext,longlong dataSource,longlong targetBuffe
                                     *(int *)(dataSource + 0x10),
                                     (*(int *)(unaff_RBP + 0xa80) * iVar8 + compareResult) * 8 + in_R11);
                 *puVar6 = *pfunctionResult0;
-                *puVar9 = *puVar5;
+                *puVar9 = *componentContextPtr;
                 puVar6 = (undefined4 *)((longlong)puVar6 + (longlong)*(int *)(unaff_RBP + 0xa94));
                 puVar9 = (undefined4 *)((longlong)puVar9 + (longlong)*(int *)(unaff_RBP + 0xa94));
                 pfunctionResult0 = (undefined4 *)
                           ((longlong)pfunctionResult0 + (longlong)*(int *)(in_stack_00000098 + 0x24));
-                puVar5 = (undefined4 *)
-                         ((longlong)puVar5 + (longlong)*(int *)(in_stack_00000098 + 0x24));
+                componentContextPtr = (undefined4 *)
+                         ((longlong)componentContextPtr + (longlong)*(int *)(in_stack_00000098 + 0x24));
                 *puVar6 = *pfunctionResult0;
-                *puVar9 = *puVar5;
+                *puVar9 = *componentContextPtr;
                 puVar6 = (undefined4 *)((longlong)puVar6 + (longlong)*(int *)(unaff_RBP + 0xa94));
                 puVar9 = (undefined4 *)((longlong)puVar9 + (longlong)*(int *)(unaff_RBP + 0xa94));
                 pfunctionResult0 = (undefined4 *)
                           ((longlong)pfunctionResult0 + (longlong)*(int *)(in_stack_00000098 + 0x24));
-                puVar5 = (undefined4 *)
-                         ((longlong)puVar5 + (longlong)*(int *)(in_stack_00000098 + 0x24));
+                componentContextPtr = (undefined4 *)
+                         ((longlong)componentContextPtr + (longlong)*(int *)(in_stack_00000098 + 0x24));
                 *puVar6 = *pfunctionResult0;
-                *puVar9 = *puVar5;
+                *puVar9 = *componentContextPtr;
                 operationResult = *(int *)(in_stack_00000098 + 0x24);
                 validationResult = *(int *)(unaff_RBP + 0xa94);
                 *(undefined4 *)((longlong)validationResult + (longlong)puVar6) =
                      *(undefined4 *)((longlong)operationResult + (longlong)pfunctionResult0);
                 *(undefined4 *)((longlong)puVar9 + (longlong)validationResult) =
-                     *(undefined4 *)((longlong)puVar5 + (longlong)operationResult);
+                     *(undefined4 *)((longlong)componentContextPtr + (longlong)operationResult);
               }
               else {
                 FUN_18069dfe0(8,uStack0000000000000070,uStack0000000000000074,
@@ -95139,26 +95139,26 @@ void FUN_1807248c0(short *uiContext,longlong dataSource,longlong targetBuffer,in
   int validationResult;
   int compareResult;
   byte *pbVar4;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   
   validationResult = 0;
   pbVar4 = (byte *)((longlong)((*(short *)(targetBuffer + 2) * bufferSize) / 2) +
                    *(longlong *)(targetBuffer + 0x28));
   if (0 < *(short *)(targetBuffer + 2)) {
-    puVar5 = (undefined1 *)(dataSource + 1);
+    componentContextPtr = (undefined1 *)(dataSource + 1);
     do {
       isCharacterMatch = *pbVar4;
       pbVar4 = pbVar4 + 1;
       *uiContext = (ushort)(isCharacterMatch >> 1 & 7) * 9;
-      puVar5[-1] = *(undefined1 *)
+      componentContextPtr[-1] = *(undefined1 *)
                     ((longlong)(int)((*(short *)(targetBuffer + 2) + -1) * (isCharacterMatch & 1) + validationResult) +
                     *(longlong *)(targetBuffer + 0x20));
       uiContext[1] = (ushort)(isCharacterMatch >> 5) * 9;
       compareResult = (isCharacterMatch >> 4 & 1) * (*(short *)(targetBuffer + 2) + -1) + validationResult;
       validationResult = validationResult + 2;
-      *puVar5 = *(undefined1 *)((longlong)compareResult + 1 + *(longlong *)(targetBuffer + 0x20));
+      *componentContextPtr = *(undefined1 *)((longlong)compareResult + 1 + *(longlong *)(targetBuffer + 0x20));
       uiContext = uiContext + 2;
-      puVar5 = puVar5 + 2;
+      componentContextPtr = componentContextPtr + 2;
     } while (validationResult < *(short *)(targetBuffer + 2));
   }
   return;
@@ -97133,7 +97133,7 @@ void FUN_1807263f2(longlong uiContext,longlong dataSource,undefined8 targetBuffe
   uint semaphoreHandle;
   int compareResult;
   ulonglong uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   int iVar6;
   longlong unaff_RSI;
   undefined1 *peventTypeCode;
@@ -97201,10 +97201,10 @@ void FUN_1807263f2(longlong uiContext,longlong dataSource,undefined8 targetBuffe
   bufferSize = bufferSize + (longlong)*(int *)(unaff_RSI + 0x121c) * -4;
   if (0 < (int)semaphoreHandle) {
     compareResult = *(int *)(unaff_RSI + 0x121c) + *(int *)(unaff_RSI + 0x11e8);
-    puVar5 = (undefined4 *)&stack0x00000050;
+    componentContextPtr = (undefined4 *)&stack0x00000050;
     do {
-      FUN_18072e4b0(peventTypeCode,bufferSize,*puVar5,compareResult);
-      puVar5 = puVar5 + 1;
+      FUN_18072e4b0(peventTypeCode,bufferSize,*componentContextPtr,compareResult);
+      componentContextPtr = componentContextPtr + 1;
       iVar6 = iVar6 + 1;
       compareResult = *(int *)(unaff_RSI + 0x121c) + *(int *)(unaff_RSI + 0x11e8);
       bufferSize = bufferSize + (longlong)*(int *)(unaff_RSI + 0x11e8) * 4;
@@ -97535,7 +97535,7 @@ void FUN_180726c40(longlong uiContext,longlong dataSource,longlong targetBuffer,
   float fVar2;
   int compareResult;
   int iVar4;
-  undefined2 *puVar5;
+  undefined2 *componentContextPtr;
   float *pfVar6;
   float *pfVar7;
   longlong lVar8;
@@ -97583,14 +97583,14 @@ void FUN_180726c40(longlong uiContext,longlong dataSource,longlong targetBuffer,
     pfVar6 = (float *)(dataSource + 0xf4);
     allocatedMemory2 = lVar8;
     do {
-      puVar5 = pfunctionResult1;
+      componentContextPtr = pfunctionResult1;
       pfVar7 = pfVar6;
       lVar9 = (longlong)iVar4;
       if (0 < (longlong)iVar4) {
         do {
-          *puVar5 = (short)(int)ROUND(*pfVar7 * 8192.0);
+          *componentContextPtr = (short)(int)ROUND(*pfVar7 * 8192.0);
           lVar9 = lVar9 + -1;
-          puVar5 = puVar5 + 1;
+          componentContextPtr = componentContextPtr + 1;
           pfVar7 = pfVar7 + 1;
         } while (lVar9 != 0);
       }
@@ -97629,14 +97629,14 @@ void FUN_180726c40(longlong uiContext,longlong dataSource,longlong targetBuffer,
   lVar9 = 2;
   pfunctionResult1 = puStack_4b0;
   do {
-    puVar5 = pfunctionResult1;
+    componentContextPtr = pfunctionResult1;
     pfVar7 = pfVar6;
     allocatedMemory0 = (longlong)compareResult;
     if (0 < (longlong)compareResult) {
       do {
-        *puVar5 = (short)(int)ROUND(*pfVar7 * 4096.0);
+        *componentContextPtr = (short)(int)ROUND(*pfVar7 * 4096.0);
         allocatedMemory0 = allocatedMemory0 + -1;
-        puVar5 = puVar5 + 1;
+        componentContextPtr = componentContextPtr + 1;
         pfVar7 = pfVar7 + 1;
       } while (allocatedMemory0 != 0);
     }
@@ -100015,7 +100015,7 @@ ulonglong FUN_18072ab70(longlong uiContext,longlong dataSource,uint targetBuffer
   short *psVar2;
   byte bVar3;
   uint uVar4;
-  ulonglong *puVar5;
+  ulonglong *componentContextPtr;
   ulonglong uVar6;
   ulonglong eventTypeCode;
   longlong lVar8;
@@ -100059,20 +100059,20 @@ ulonglong FUN_18072ab70(longlong uiContext,longlong dataSource,uint targetBuffer
     if ((int)uVar4 < 0) {
       uVar4 = (uVar4 - 1 | 0xfffffff8) + 1;
     }
-    puVar5 = (ulonglong *)(uiContext + 8);
+    componentContextPtr = (ulonglong *)(uiContext + 8);
     uVar6 = eventTypeCode;
     functionResult0 = eventTypeCode;
     do {
       afunctionResult6._8_8_ = 0;
-      afunctionResult6._0_8_ = *(ulonglong *)((dataSource - uiContext) + -8 + (longlong)puVar5);
+      afunctionResult6._0_8_ = *(ulonglong *)((dataSource - uiContext) + -8 + (longlong)componentContextPtr);
       uVar9 = (int)functionResult0 + 8;
       functionResult0 = (ulonglong)uVar9;
       asemaphoreHandle4._8_8_ = 0;
-      asemaphoreHandle4._0_8_ = puVar5[-1];
+      asemaphoreHandle4._0_8_ = componentContextPtr[-1];
       asemaphoreHandle6 = pmovsxwd(in_XMM2,afunctionResult6);
       afunctionResult6 = pmovsxwd(afunctionResult6,asemaphoreHandle4);
       asemaphoreHandle5._8_8_ = 0;
-      asemaphoreHandle5._0_8_ = *puVar5;
+      asemaphoreHandle5._0_8_ = *componentContextPtr;
       uVar6 = uVar6 + 8;
       afunctionResult6 = pmulld(afunctionResult6,asemaphoreHandle6);
       operationResult4 = (afunctionResult6._0_4_ >> asemaphoreHandle7) + operationResult4;
@@ -100080,7 +100080,7 @@ ulonglong FUN_18072ab70(longlong uiContext,longlong dataSource,uint targetBuffer
       validationResult0 = (afunctionResult6._8_4_ >> asemaphoreHandle7) + validationResult0;
       validationResult2 = (afunctionResult6._12_4_ >> asemaphoreHandle7) + validationResult2;
       afunctionResult7._8_8_ = 0;
-      afunctionResult7._0_8_ = *(ulonglong *)((dataSource - uiContext) + -0x10 + (longlong)(puVar5 + 2));
+      afunctionResult7._0_8_ = *(ulonglong *)((dataSource - uiContext) + -0x10 + (longlong)(componentContextPtr + 2));
       in_XMM2 = pmovsxwd(asemaphoreHandle6,afunctionResult7);
       afunctionResult6 = pmovsxwd(afunctionResult7,asemaphoreHandle5);
       afunctionResult6 = pmulld(afunctionResult6,in_XMM2);
@@ -100088,7 +100088,7 @@ ulonglong FUN_18072ab70(longlong uiContext,longlong dataSource,uint targetBuffer
       operationResult9 = (afunctionResult6._4_4_ >> asemaphoreHandle7) + operationResult9;
       validationResult1 = (afunctionResult6._8_4_ >> asemaphoreHandle7) + validationResult1;
       validationResult3 = (afunctionResult6._12_4_ >> asemaphoreHandle7) + validationResult3;
-      puVar5 = puVar5 + 2;
+      componentContextPtr = componentContextPtr + 2;
     } while ((longlong)uVar6 < (longlong)(int)(bufferSize - uVar4));
     uVar6 = (ulonglong)(uint)(operationResult5 + operationResult4 + validationResult1 + validationResult0 + operationResult9 + operationResult8 + validationResult3 + validationResult2)
     ;
@@ -100980,7 +100980,7 @@ void FUN_18072b930(longlong uiContext,longlong dataSource,int targetBuffer,ulong
   undefined4 semaphoreHandle;
   longlong stringCompareIndex;
   longlong lVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined4 *puVar6;
   int iVar7;
   longlong lVar8;
@@ -101038,24 +101038,24 @@ void FUN_18072b930(longlong uiContext,longlong dataSource,int targetBuffer,ulong
         if (3 < lVar4 + 1) {
           lVar8 = ((stringCompareIndex - lVar9) - 3U >> 2) + 1;
           lVar9 = lVar9 + lVar8 * 4;
-          puVar5 = auStack_c0 + lVar4;
+          componentContextPtr = auStack_c0 + lVar4;
           do {
-            auStack_118[allocatedMemory1] = puVar5[2];
-            auStack_118[allocatedMemory1 + 1] = puVar5[1];
-            auStack_118[allocatedMemory1 + 2] = *puVar5;
-            auStack_118[allocatedMemory1 + 3] = puVar5[-1];
+            auStack_118[allocatedMemory1] = componentContextPtr[2];
+            auStack_118[allocatedMemory1 + 1] = componentContextPtr[1];
+            auStack_118[allocatedMemory1 + 2] = *componentContextPtr;
+            auStack_118[allocatedMemory1 + 3] = componentContextPtr[-1];
             allocatedMemory1 = allocatedMemory1 + 4;
             lVar8 = lVar8 + -1;
-            puVar5 = puVar5 + -4;
+            componentContextPtr = componentContextPtr + -4;
           } while (lVar8 != 0);
         }
         if (lVar9 <= stringCompareIndex) {
           puVar6 = auStack_118 + allocatedMemory1;
           allocatedMemory1 = (stringCompareIndex - lVar9) + 1;
-          puVar5 = auStack_c0 + (stringCompareIndex - lVar9) + 2;
+          componentContextPtr = auStack_c0 + (stringCompareIndex - lVar9) + 2;
           do {
-            semaphoreHandle = *puVar5;
-            puVar5 = puVar5 + -1;
+            semaphoreHandle = *componentContextPtr;
+            componentContextPtr = componentContextPtr + -1;
             *puVar6 = semaphoreHandle;
             puVar6 = puVar6 + 1;
             allocatedMemory1 = allocatedMemory1 + -1;
@@ -101063,19 +101063,19 @@ void FUN_18072b930(longlong uiContext,longlong dataSource,int targetBuffer,ulong
         }
       }
       cVar1 = *pcVar10;
-      puVar5 = pfunctionResult4;
+      componentContextPtr = pfunctionResult4;
       lVar9 = lStack_138;
       operationResult2 = iVar7;
       if (0 < lStack_138) {
         do {
           stringCompareIndex = (longlong)((int)(char)pfunctionResult3[operationResult2] - (int)cVar1);
-          puVar5[-2] = auStack_118[stringCompareIndex];
-          puVar5[-1] = auStack_118[stringCompareIndex + 1];
-          *puVar5 = auStack_118[stringCompareIndex + 2];
-          puVar5[1] = auStack_118[stringCompareIndex + 3];
-          puVar5[2] = auStack_118[stringCompareIndex + 4];
+          componentContextPtr[-2] = auStack_118[stringCompareIndex];
+          componentContextPtr[-1] = auStack_118[stringCompareIndex + 1];
+          *componentContextPtr = auStack_118[stringCompareIndex + 2];
+          componentContextPtr[1] = auStack_118[stringCompareIndex + 3];
+          componentContextPtr[2] = auStack_118[stringCompareIndex + 4];
           lVar9 = lVar9 + -1;
-          puVar5 = puVar5 + 5;
+          componentContextPtr = componentContextPtr + 5;
           operationResult2 = operationResult2 + 1;
         } while (lVar9 != 0);
       }
@@ -101104,7 +101104,7 @@ void FUN_18072b9d4(undefined8 uiContext,undefined8 dataSource,int targetBuffer,u
   undefined4 semaphoreHandle;
   longlong stringCompareIndex;
   longlong lVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined4 *puVar6;
   longlong lVar7;
   longlong context;
@@ -101140,24 +101140,24 @@ void FUN_18072b9d4(undefined8 uiContext,undefined8 dataSource,int targetBuffer,u
       if (3 < lVar4 + 1) {
         lVar7 = ((stringCompareIndex - lVar8) - 3U >> 2) + 1;
         lVar8 = lVar8 + lVar7 * 4;
-        puVar5 = (undefined4 *)(&stack0x000000b8 + lVar4 * 4);
+        componentContextPtr = (undefined4 *)(&stack0x000000b8 + lVar4 * 4);
         do {
-          *(undefined4 *)(&stack0x00000060 + lVar9 * 4) = puVar5[2];
-          *(undefined4 *)(&stack0x00000064 + lVar9 * 4) = puVar5[1];
-          *(undefined4 *)(&stack0x00000068 + lVar9 * 4) = *puVar5;
-          *(undefined4 *)(&stack0x0000006c + lVar9 * 4) = puVar5[-1];
+          *(undefined4 *)(&stack0x00000060 + lVar9 * 4) = componentContextPtr[2];
+          *(undefined4 *)(&stack0x00000064 + lVar9 * 4) = componentContextPtr[1];
+          *(undefined4 *)(&stack0x00000068 + lVar9 * 4) = *componentContextPtr;
+          *(undefined4 *)(&stack0x0000006c + lVar9 * 4) = componentContextPtr[-1];
           lVar9 = lVar9 + 4;
           lVar7 = lVar7 + -1;
-          puVar5 = puVar5 + -4;
+          componentContextPtr = componentContextPtr + -4;
         } while (lVar7 != 0);
       }
       if (lVar8 <= stringCompareIndex) {
         puVar6 = (undefined4 *)(&stack0x00000060 + lVar9 * 4);
         lVar9 = (stringCompareIndex - lVar8) + 1;
-        puVar5 = (undefined4 *)(&stack0x000000c0 + (stringCompareIndex - lVar8) * 4);
+        componentContextPtr = (undefined4 *)(&stack0x000000c0 + (stringCompareIndex - lVar8) * 4);
         do {
-          semaphoreHandle = *puVar5;
-          puVar5 = puVar5 + -1;
+          semaphoreHandle = *componentContextPtr;
+          componentContextPtr = componentContextPtr + -1;
           *puVar6 = semaphoreHandle;
           puVar6 = puVar6 + 1;
           lVar9 = lVar9 + -1;
@@ -101165,19 +101165,19 @@ void FUN_18072b9d4(undefined8 uiContext,undefined8 dataSource,int targetBuffer,u
       }
     }
     cVar1 = *unaff_RBP;
-    puVar5 = pfunctionResult2;
+    componentContextPtr = pfunctionResult2;
     lVar8 = param_8;
     operationResult0 = operationResult1;
     if (0 < param_8) {
       do {
         stringCompareIndex = (longlong)((int)*(char *)(operationResult0 + unaff_R13) - (int)cVar1);
-        puVar5[-2] = *(undefined4 *)(&stack0x00000060 + stringCompareIndex * 4);
-        puVar5[-1] = *(undefined4 *)(&stack0x00000064 + stringCompareIndex * 4);
-        *puVar5 = *(undefined4 *)(&stack0x00000068 + stringCompareIndex * 4);
-        puVar5[1] = *(undefined4 *)(&stack0x0000006c + stringCompareIndex * 4);
-        puVar5[2] = *(undefined4 *)(&stack0x00000070 + stringCompareIndex * 4);
+        componentContextPtr[-2] = *(undefined4 *)(&stack0x00000060 + stringCompareIndex * 4);
+        componentContextPtr[-1] = *(undefined4 *)(&stack0x00000064 + stringCompareIndex * 4);
+        *componentContextPtr = *(undefined4 *)(&stack0x00000068 + stringCompareIndex * 4);
+        componentContextPtr[1] = *(undefined4 *)(&stack0x0000006c + stringCompareIndex * 4);
+        componentContextPtr[2] = *(undefined4 *)(&stack0x00000070 + stringCompareIndex * 4);
         lVar8 = lVar8 + -1;
-        puVar5 = puVar5 + 5;
+        componentContextPtr = componentContextPtr + 5;
         operationResult0 = operationResult0 + 1;
       } while (lVar8 != 0);
     }
@@ -101598,7 +101598,7 @@ void FUN_18072cb40(int uiContext)
   float *pfVar2;
   float *pfVar3;
   char cVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   uint uVar6;
   int iVar7;
   int iVar8;
@@ -101941,9 +101941,9 @@ LAB_18072cb78:
       goto LAB_18072d1b4;
     }
   }
-  puVar5 = *(undefined8 **)(unaff_RBP + -0x80);
-  *puVar5 = 0;
-  puVar5[1] = 0;
+  componentContextPtr = *(undefined8 **)(unaff_RBP + -0x80);
+  *componentContextPtr = 0;
+  componentContextPtr[1] = 0;
   **(undefined4 **)(unaff_RBP + -0x78) = CONCAT22(unaff_000000b2,unaff_R14W);
   **(undefined2 **)(unaff_RBP + -0x58) = unaff_R14W;
   **(undefined1 **)(unaff_RBP + -0x50) = 0;
@@ -101963,7 +101963,7 @@ void FUN_18072cc1b(void)
   float *pfVar2;
   float *pfVar3;
   char cVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   uint uVar6;
   int iVar7;
   int iVar8;
@@ -102088,9 +102088,9 @@ void FUN_18072cc1b(void)
     puStack0000000000000070 = unaff_RSI;
   } while ((longlong)unaff_RSI < *(longlong *)(unaff_RBP + -0x40));
   if (in_stack_00000040 == -1) {
-    puVar5 = *(undefined8 **)(unaff_RBP + -0x80);
-    *puVar5 = 0;
-    puVar5[1] = 0;
+    componentContextPtr = *(undefined8 **)(unaff_RBP + -0x80);
+    *componentContextPtr = 0;
+    componentContextPtr[1] = 0;
     **(undefined4 **)(unaff_RBP + -0x78) = CONCAT22(unaff_000000b2,unaff_R14W);
     **(undefined2 **)(unaff_RBP + -0x58) = unaff_R14W;
     **(undefined1 **)(unaff_RBP + -0x50) = 0;
@@ -105045,7 +105045,7 @@ void FUN_18072f890(short *uiContext,char *dataSource,char *targetBuffer,int *buf
   int validationResult;
   int compareResult;
   longlong lVar4;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   int iVar6;
   ulonglong eventTypeCode;
   longlong lVar8;
@@ -105079,7 +105079,7 @@ void FUN_18072f890(short *uiContext,char *dataSource,char *targetBuffer,int *buf
     uStack_58 = *(undefined8 *)(&UNK_180954890 + lStack_68);
     iStack_84 = (int)*pcStack_70;
     if (0 < (int)param_9) {
-      puVar5 = auStack_78;
+      componentContextPtr = auStack_78;
       eventTypeCode = (ulonglong)param_9;
       lVar4 = param_6;
       lVar8 = param_7;
@@ -105087,7 +105087,7 @@ void FUN_18072f890(short *uiContext,char *dataSource,char *targetBuffer,int *buf
       compareResult = 0;
       do {
         validationResult = func_0x00018070b9e0(0x1855 - iVar6);
-        FUN_180736dc0(puVar5,&iStack_80,&iStack_7c,&iStack_94,lVar4,lVar8,uStack_50,uStack_58,
+        FUN_180736dc0(componentContextPtr,&iStack_80,&iStack_7c,&iStack_94,lVar4,lVar8,uStack_50,uStack_58,
                       uStack_60,param_8,validationResult + -0x33,iStack_84);
         iVar9 = iVar9 + iStack_80;
         if (iVar9 < 0) {
@@ -105107,7 +105107,7 @@ void FUN_18072f890(short *uiContext,char *dataSource,char *targetBuffer,int *buf
         }
         lVar4 = lVar4 + 100;
         lVar8 = lVar8 + 0x14;
-        puVar5 = puVar5 + 1;
+        componentContextPtr = componentContextPtr + 1;
         eventTypeCode = eventTypeCode - 1;
         validationResult = iStack_8c;
       } while (eventTypeCode != 0);
@@ -139959,7 +139959,7 @@ undefined8 FUN_180753680(longlong uiContext,char *dataSource)
   int validationResult;
   undefined8 uVar3;
   int iVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   int iVar6;
   int iVar7;
   longlong *plStackX_10;
@@ -139988,27 +139988,27 @@ undefined8 FUN_180753680(longlong uiContext,char *dataSource)
   }
   pfunctionResult = (undefined8 *)(uiContext + 400);
   iVar7 = 0;
-  for (puVar5 = (undefined8 *)*pfunctionResult; puVar5 != pfunctionResult; puVar5 = (undefined8 *)*puVar5) {
+  for (componentContextPtr = (undefined8 *)*pfunctionResult; componentContextPtr != pfunctionResult; componentContextPtr = (undefined8 *)*componentContextPtr) {
     iVar7 = iVar7 + 1;
   }
   iVar6 = 0;
   if (0 < iVar7) {
     do {
       iVar4 = 0;
-      for (puVar5 = (undefined8 *)*pfunctionResult; puVar5 != pfunctionResult; puVar5 = (undefined8 *)*puVar5) {
+      for (componentContextPtr = (undefined8 *)*pfunctionResult; componentContextPtr != pfunctionResult; componentContextPtr = (undefined8 *)*componentContextPtr) {
         iVar4 = iVar4 + 1;
       }
       if ((iVar6 < 0) || (iVar4 <= iVar6)) {
         return 0x1f;
       }
-      puVar5 = (undefined8 *)*pfunctionResult;
+      componentContextPtr = (undefined8 *)*pfunctionResult;
       validationResult = 0;
       if (0 < iVar4) {
         do {
           if (validationResult == iVar6) {
-            plStackX_10 = (longlong *)puVar5[2];
+            plStackX_10 = (longlong *)componentContextPtr[2];
           }
-          puVar5 = (undefined8 *)*puVar5;
+          componentContextPtr = (undefined8 *)*componentContextPtr;
           validationResult = validationResult + 1;
         } while (validationResult < iVar4);
       }
@@ -140368,7 +140368,7 @@ void FUN_1807539dc(void)
   longlong *colorBufferPointer;
   longlong stringCompareIndex;
   undefined8 *bufferPtr;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   int iVar6;
   int unaff_EBX;
   undefined8 unaff_RBP;
@@ -140430,11 +140430,11 @@ void FUN_1807539dc(void)
     if (*(longlong *)(uiContext + 0x10) == 0) {
       stringCompareIndex = *(longlong *)(*(longlong *)(uiContext + 8) + 0x116e0);
       if ((stringCompareIndex != 0) && (unaff_RDI != stringCompareIndex)) {
-        puVar5 = *(undefined8 **)(unaff_RDI + 400);
-        while (puVar5 != (undefined8 *)(unaff_RDI + 400)) {
-          bufferPtr = (undefined8 *)*puVar5;
-          FUN_180752f00(*(undefined8 *)(*(longlong *)(uiContext + 8) + 0x116e0),puVar5[2],1,0);
-          puVar5 = bufferPtr;
+        componentContextPtr = *(undefined8 **)(unaff_RDI + 400);
+        while (componentContextPtr != (undefined8 *)(unaff_RDI + 400)) {
+          bufferPtr = (undefined8 *)*componentContextPtr;
+          FUN_180752f00(*(undefined8 *)(*(longlong *)(uiContext + 8) + 0x116e0),componentContextPtr[2],1,0);
+          componentContextPtr = bufferPtr;
         }
       }
       colorBufferPointer = (longlong *)(unaff_RDI + 0x178);
@@ -140468,7 +140468,7 @@ void FUN_180753aa9(void)
   longlong *colorBufferPointer;
   longlong stringCompareIndex;
   undefined8 *bufferPtr;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   int iVar6;
   undefined8 unaff_RBP;
   longlong unaff_RDI;
@@ -140511,11 +140511,11 @@ void FUN_180753aa9(void)
   if (*(longlong *)(uiContext + 0x10) == 0) {
     stringCompareIndex = *(longlong *)(*(longlong *)(uiContext + 8) + 0x116e0);
     if ((stringCompareIndex != 0) && (unaff_RDI != stringCompareIndex)) {
-      puVar5 = *(undefined8 **)(unaff_RDI + 400);
-      while (puVar5 != (undefined8 *)(unaff_RDI + 400)) {
-        bufferPtr = (undefined8 *)*puVar5;
-        FUN_180752f00(*(undefined8 *)(*(longlong *)(uiContext + 8) + 0x116e0),puVar5[2],1,0);
-        puVar5 = bufferPtr;
+      componentContextPtr = *(undefined8 **)(unaff_RDI + 400);
+      while (componentContextPtr != (undefined8 *)(unaff_RDI + 400)) {
+        bufferPtr = (undefined8 *)*componentContextPtr;
+        FUN_180752f00(*(undefined8 *)(*(longlong *)(uiContext + 8) + 0x116e0),componentContextPtr[2],1,0);
+        componentContextPtr = bufferPtr;
       }
     }
     colorBufferPointer = (longlong *)(unaff_RDI + 0x178);
@@ -150342,7 +150342,7 @@ undefined8 FUN_18075d62d(longlong uiContext)
   int validationResult;
   undefined8 uVar3;
   longlong *plVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   longlong context;
   char unaff_BPL;
   char unaff_DIL;
@@ -150357,14 +150357,14 @@ undefined8 FUN_18075d62d(longlong uiContext)
         if (*(short *)(context + 0x1a8) < 1) {
           return 9;
         }
-        puVar5 = *(undefined8 **)(context + 0x78);
-        if (puVar5 == (undefined8 *)(context + 0x78)) {
+        componentContextPtr = *(undefined8 **)(context + 0x78);
+        if (componentContextPtr == (undefined8 *)(context + 0x78)) {
           return 0x1c;
         }
         for (validationResult = 0; validationResult < 0; validationResult = validationResult + 1) {
-          puVar5 = (undefined8 *)*puVar5;
+          componentContextPtr = (undefined8 *)*componentContextPtr;
         }
-        if (puVar5[2] == 0) {
+        if (componentContextPtr[2] == 0) {
           return 9;
         }
         uStack0000000000000028 = 4;
@@ -151772,7 +151772,7 @@ undefined8 FUN_18075e890(longlong *uiContext,int *dataSource,longlong targetBuff
   longlong componentIndex;
   longlong stringCompareIndex;
   undefined8 *bufferPtr;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   int iVar6;
   
   if ((((uiContext != (longlong *)0x0) && (dataSource != (int *)0x0)) && (targetBuffer != 0)) &&
@@ -151788,16 +151788,16 @@ undefined8 FUN_18075e890(longlong *uiContext,int *dataSource,longlong targetBuff
     *dataSource = operationResult;
     if (0 < operationResult) {
       bufferPtr = (undefined8 *)(targetBuffer + 0x18);
-      puVar5 = (undefined8 *)(stringCompareIndex + 0x11098);
+      componentContextPtr = (undefined8 *)(stringCompareIndex + 0x11098);
       do {
-        bufferPtr[-3] = puVar5[-3];
-        *(undefined4 *)(bufferPtr + -2) = *(undefined4 *)(puVar5 + -2);
-        *(undefined8 *)((longlong)bufferPtr + -0xc) = *puVar5;
-        *(undefined4 *)((longlong)bufferPtr + -4) = *(undefined4 *)(puVar5 + 1);
-        *bufferPtr = puVar5[6];
-        *(undefined4 *)(bufferPtr + 1) = *(undefined4 *)(puVar5 + 7);
-        *(undefined8 *)((longlong)bufferPtr + 0xc) = puVar5[3];
-        *(undefined4 *)((longlong)bufferPtr + 0x14) = *(undefined4 *)(puVar5 + 4);
+        bufferPtr[-3] = componentContextPtr[-3];
+        *(undefined4 *)(bufferPtr + -2) = *(undefined4 *)(componentContextPtr + -2);
+        *(undefined8 *)((longlong)bufferPtr + -0xc) = *componentContextPtr;
+        *(undefined4 *)((longlong)bufferPtr + -4) = *(undefined4 *)(componentContextPtr + 1);
+        *bufferPtr = componentContextPtr[6];
+        *(undefined4 *)(bufferPtr + 1) = *(undefined4 *)(componentContextPtr + 7);
+        *(undefined8 *)((longlong)bufferPtr + 0xc) = componentContextPtr[3];
+        *(undefined4 *)((longlong)bufferPtr + 0x14) = *(undefined4 *)(componentContextPtr + 4);
         if (((*(byte *)(stringCompareIndex + 0x78) & 4) != 0) && (0x6c < **(uint **)(componentIndex + 0xe8))) {
           *(uint *)(bufferPtr + -2) = *(uint *)(bufferPtr + -2) ^ 0x80000000;
           *(uint *)((longlong)bufferPtr + -4) = *(uint *)((longlong)bufferPtr + -4) ^ 0x80000000;
@@ -151805,7 +151805,7 @@ undefined8 FUN_18075e890(longlong *uiContext,int *dataSource,longlong targetBuff
           *(uint *)((longlong)bufferPtr + 0x14) = *(uint *)((longlong)bufferPtr + 0x14) ^ 0x80000000;
         }
         iVar6 = iVar6 + 1;
-        puVar5 = puVar5 + 0xe;
+        componentContextPtr = componentContextPtr + 0xe;
         bufferPtr = bufferPtr + 6;
       } while (iVar6 < *dataSource);
     }
@@ -163564,7 +163564,7 @@ ulonglong FUN_180769f12(longlong uiContext,int dataSource)
   uint bufferSize;
   ulonglong uVar3;
   uint uVar4;
-  uint *puVar5;
+  uint *componentContextPtr;
   int iVar6;
   longlong *context;
   byte *pbVar7;
@@ -163666,21 +163666,21 @@ LAB_18076a1af:
   if (unaff_R12D == 2) {
     if (((*(uint *)((longlong)context + 0x194) & 4) != 0) && (uVar4 >> 1 != 0)) {
       uVar3 = (ulonglong)(uVar4 >> 1);
-      puVar5 = unaff_R15;
+      componentContextPtr = unaff_R15;
       do {
-        *(ushort *)puVar5 = (ushort)*puVar5 << 8 | (ushort)*puVar5 >> 8;
+        *(ushort *)componentContextPtr = (ushort)*componentContextPtr << 8 | (ushort)*componentContextPtr >> 8;
         uVar3 = uVar3 - 1;
-        puVar5 = (uint *)((longlong)puVar5 + 2);
+        componentContextPtr = (uint *)((longlong)componentContextPtr + 2);
       } while (uVar3 != 0);
     }
   }
   else if (((unaff_R12D == 4) && ((*(uint *)((longlong)context + 0x194) & 4) != 0)) &&
-          (uVar3 = unaff_R14 >> 2 & 0x3fffffff, puVar5 = unaff_R15, (int)uVar3 != 0)) {
+          (uVar3 = unaff_R14 >> 2 & 0x3fffffff, componentContextPtr = unaff_R15, (int)uVar3 != 0)) {
     do {
-      uVar9 = *puVar5;
-      *puVar5 = (uVar9 & 0xff0000 | uVar9 >> 0x10) >> 8 | (uVar9 << 0x10 | uVar9 & 0xff00) << 8;
+      uVar9 = *componentContextPtr;
+      *componentContextPtr = (uVar9 & 0xff0000 | uVar9 >> 0x10) >> 8 | (uVar9 << 0x10 | uVar9 & 0xff00) << 8;
       uVar3 = uVar3 - 1;
-      puVar5 = puVar5 + 1;
+      componentContextPtr = componentContextPtr + 1;
     } while (uVar3 != 0);
   }
   if (((int)context[0x2a] != 0) && (uVar4 != 0)) {
@@ -165502,7 +165502,7 @@ void FUN_18076c260(uint *uiContext,longlong dataSource)
   undefined8 *psemaphoreHandle;
   ulonglong uVar3;
   ulonglong *bufferPtr;
-  uint *puVar5;
+  uint *componentContextPtr;
   ulonglong uVar6;
   ulonglong eventTypeCode;
   longlong lVar8;
@@ -165523,19 +165523,19 @@ void FUN_18076c260(uint *uiContext,longlong dataSource)
   if (dataSource == 0) {
     return;
   }
-  puVar5 = uiContext + 0xe2;
+  componentContextPtr = uiContext + 0xe2;
   isCharacterMatch1 = 0;
   pfunctionResult7 = (ulonglong *)(dataSource + -0x10);
   uVar9 = 0;
-  if ((puVar5 != (uint *)0x0) && (*(longlong *)(bufferData + 0xe4) == 0)) {
+  if ((componentContextPtr != (uint *)0x0) && (*(longlong *)(bufferData + 0xe4) == 0)) {
     uiContext[0xe8] = 0xffffffff;
     uiContext[0xe9] = 0xffffffff;
     uiContext[0xea] = 0xffffffff;
     uiContext[0xeb] = 0xffffffff;
     uiContext[0xec] = 0;
-    if (*(longlong *)puVar5 == 0) {
-      puVar5[0] = 0x58585858;
-      puVar5[1] = 0;
+    if (*(longlong *)componentContextPtr == 0) {
+      componentContextPtr[0] = 0x58585858;
+      componentContextPtr[1] = 0;
       _DAT_180c0cab0 = 0;
     }
     uiContext[0xe4] = 0x1000;
@@ -165691,18 +165691,18 @@ LAB_18076c495:
   }
   semaphoreHandle0 = semaphoreHandle0 + (uVar3 & 0xfffffffffffffffc);
   if (uVar3 >> 3 < 0x20) {
-    puVar5 = (uint *)pfunctionResult[2];
+    componentContextPtr = (uint *)pfunctionResult[2];
     pfunctionResult6 = (uint *)pfunctionResult[3];
     functionResult2 = (uint)(uVar3 >> 3);
-    if (puVar5 == pfunctionResult6) {
+    if (componentContextPtr == pfunctionResult6) {
       *uiContext = *uiContext & ~(1 << (functionResult2 & 0x1f));
     }
-    else if (((puVar5 == uiContext + ((ulonglong)(functionResult2 * 2) + 8) * 2) ||
-             (*(uint **)(uiContext + 6) <= puVar5)) &&
+    else if (((componentContextPtr == uiContext + ((ulonglong)(functionResult2 * 2) + 8) * 2) ||
+             (*(uint **)(uiContext + 6) <= componentContextPtr)) &&
             ((pfunctionResult6 == uiContext + ((ulonglong)(functionResult2 * 2) + 8) * 2 ||
              (*(uint **)(uiContext + 6) <= pfunctionResult6)))) {
-      *(uint **)(puVar5 + 6) = pfunctionResult6;
-      *(uint **)(pfunctionResult6 + 4) = puVar5;
+      *(uint **)(componentContextPtr + 6) = pfunctionResult6;
+      *(uint **)(pfunctionResult6 + 4) = componentContextPtr;
     }
   }
   else {
@@ -165784,18 +165784,18 @@ LAB_18076c66b:
 LAB_18076c6e6:
   if (semaphoreHandle0 >> 3 < 0x20) {
     uVar9 = (uint)(semaphoreHandle0 >> 3);
-    puVar5 = uiContext + ((ulonglong)(uVar9 * 2) + 8) * 2;
-    pfunctionResult6 = puVar5;
+    componentContextPtr = uiContext + ((ulonglong)(uVar9 * 2) + 8) * 2;
+    pfunctionResult6 = componentContextPtr;
     if ((*uiContext >> (uVar9 & 0x1f) & 1) == 0) {
       *uiContext = *uiContext | 1 << (uVar9 & 0x1f);
     }
-    else if (*(uint **)(uiContext + 6) <= *(uint **)(puVar5 + 4)) {
-      pfunctionResult6 = *(uint **)(puVar5 + 4);
+    else if (*(uint **)(uiContext + 6) <= *(uint **)(componentContextPtr + 4)) {
+      pfunctionResult6 = *(uint **)(componentContextPtr + 4);
     }
-    *(ulonglong **)(puVar5 + 4) = pfunctionResult7;
+    *(ulonglong **)(componentContextPtr + 4) = pfunctionResult7;
     *(ulonglong **)(pfunctionResult6 + 6) = pfunctionResult7;
     pfunctionResult7[2] = (ulonglong)pfunctionResult6;
-    pfunctionResult7[3] = (ulonglong)puVar5;
+    pfunctionResult7[3] = (ulonglong)componentContextPtr;
     return;
   }
   if (semaphoreHandle0 >> 8 != 0) {
@@ -165874,7 +165874,7 @@ void FUN_18076c270(longlong uiContext,longlong dataSource,uint *targetBuffer)
   ulonglong *psemaphoreHandle;
   undefined8 *puVar3;
   ulonglong uVar4;
-  ulonglong *puVar5;
+  ulonglong *componentContextPtr;
   uint *puVar6;
   ulonglong eventTypeCode;
   ulonglong uVar8;
@@ -165936,39 +165936,39 @@ void FUN_18076c270(longlong uiContext,longlong dataSource,uint *targetBuffer)
     }
     else if (uVar4 >> 3 < 0x20) {
       pfunctionResult5 = (ulonglong *)pfunctionResult8[2];
-      puVar5 = (ulonglong *)pfunctionResult8[3];
+      componentContextPtr = (ulonglong *)pfunctionResult8[3];
       functionResult3 = (uint)(uVar4 >> 3);
-      if (pfunctionResult5 == puVar5) {
+      if (pfunctionResult5 == componentContextPtr) {
         *targetBuffer = *targetBuffer & ~(1 << (functionResult3 & 0x1f));
       }
       else if (((pfunctionResult5 == (ulonglong *)(targetBuffer + ((ulonglong)(functionResult3 * 2) + 8) * 2)) ||
                (pfunctionResult6 <= pfunctionResult5)) &&
-              ((puVar5 == (ulonglong *)(targetBuffer + ((ulonglong)(functionResult3 * 2) + 8) * 2) ||
-               (pfunctionResult6 <= puVar5)))) {
-        pfunctionResult5[3] = (ulonglong)puVar5;
-        puVar5[2] = (ulonglong)pfunctionResult5;
+              ((componentContextPtr == (ulonglong *)(targetBuffer + ((ulonglong)(functionResult3 * 2) + 8) * 2) ||
+               (pfunctionResult6 <= componentContextPtr)))) {
+        pfunctionResult5[3] = (ulonglong)componentContextPtr;
+        componentContextPtr[2] = (ulonglong)pfunctionResult5;
       }
     }
     else {
       pfunctionResult5 = (ulonglong *)pfunctionResult8[3];
       uVar4 = pfunctionResult8[6];
       if (pfunctionResult5 == pfunctionResult8) {
-        puVar5 = (ulonglong *)pfunctionResult8[5];
+        componentContextPtr = (ulonglong *)pfunctionResult8[5];
         psemaphoreHandle0 = pfunctionResult8 + 5;
         if ((ulonglong *)pfunctionResult8[5] == (ulonglong *)0x0) {
           pfunctionResult5 = (ulonglong *)pfunctionResult8[4];
-          puVar5 = pfunctionResult5;
+          componentContextPtr = pfunctionResult5;
           psemaphoreHandle0 = pfunctionResult8 + 4;
           if (pfunctionResult5 == (ulonglong *)0x0) goto LAB_18076c3da;
         }
         do {
           do {
             pfunctionResult9 = psemaphoreHandle0;
-            pfunctionResult5 = puVar5;
-            puVar5 = (ulonglong *)pfunctionResult5[5];
+            pfunctionResult5 = componentContextPtr;
+            componentContextPtr = (ulonglong *)pfunctionResult5[5];
             psemaphoreHandle0 = pfunctionResult5 + 5;
           } while ((ulonglong *)pfunctionResult5[5] != (ulonglong *)0x0);
-          puVar5 = (ulonglong *)pfunctionResult5[4];
+          componentContextPtr = (ulonglong *)pfunctionResult5[4];
           psemaphoreHandle0 = pfunctionResult5 + 4;
         } while ((ulonglong *)pfunctionResult5[4] != (ulonglong *)0x0);
         if (pfunctionResult6 <= pfunctionResult9) {
@@ -165976,10 +165976,10 @@ void FUN_18076c270(longlong uiContext,longlong dataSource,uint *targetBuffer)
         }
       }
       else {
-        puVar5 = (ulonglong *)pfunctionResult8[2];
-        if (pfunctionResult6 <= puVar5) {
-          puVar5[3] = (ulonglong)pfunctionResult5;
-          pfunctionResult5[2] = (ulonglong)puVar5;
+        componentContextPtr = (ulonglong *)pfunctionResult8[2];
+        if (pfunctionResult6 <= componentContextPtr) {
+          componentContextPtr[3] = (ulonglong)pfunctionResult5;
+          pfunctionResult5[2] = (ulonglong)componentContextPtr;
         }
       }
 LAB_18076c3da:
@@ -166075,22 +166075,22 @@ LAB_18076c495:
     uVar4 = psemaphoreHandle[6];
     if (pfunctionResult6 == psemaphoreHandle) {
       pfunctionResult5 = (ulonglong *)psemaphoreHandle[5];
-      puVar5 = psemaphoreHandle + 5;
+      componentContextPtr = psemaphoreHandle + 5;
       if ((ulonglong *)psemaphoreHandle[5] == (ulonglong *)0x0) {
         pfunctionResult6 = (ulonglong *)psemaphoreHandle[4];
         pfunctionResult5 = pfunctionResult6;
-        puVar5 = psemaphoreHandle + 4;
+        componentContextPtr = psemaphoreHandle + 4;
         if (pfunctionResult6 == (ulonglong *)0x0) goto LAB_18076c61b;
       }
       do {
         do {
-          psemaphoreHandle0 = puVar5;
+          psemaphoreHandle0 = componentContextPtr;
           pfunctionResult6 = pfunctionResult5;
           pfunctionResult5 = (ulonglong *)pfunctionResult6[5];
-          puVar5 = pfunctionResult6 + 5;
+          componentContextPtr = pfunctionResult6 + 5;
         } while ((ulonglong *)pfunctionResult6[5] != (ulonglong *)0x0);
         pfunctionResult5 = (ulonglong *)pfunctionResult6[4];
-        puVar5 = pfunctionResult6 + 4;
+        componentContextPtr = pfunctionResult6 + 4;
       } while ((ulonglong *)pfunctionResult6[4] != (ulonglong *)0x0);
       if (*(ulonglong **)(targetBuffer + 6) <= psemaphoreHandle0) {
         *psemaphoreHandle0 = 0;
@@ -169333,7 +169333,7 @@ longlong FUN_18076d040(longlong uiContext,ulonglong dataSource)
   ulonglong semaphoreHandle;
   ulonglong uVar3;
   longlong lVar4;
-  ulonglong *puVar5;
+  ulonglong *componentContextPtr;
   ulonglong uVar6;
   ulonglong *peventTypeCode;
   ulonglong *puVar8;
@@ -169361,28 +169361,28 @@ longlong FUN_18076d040(longlong uiContext,ulonglong dataSource)
     semaphoreHandle = *(ulonglong *)(uiContext + 0x28);
     peventTypeCode = puVar8;
     if (semaphoreHandle != 0) {
-      puVar5 = (ulonglong *)(uiContext + 0x368);
+      componentContextPtr = (ulonglong *)(uiContext + 0x368);
       do {
-        if ((*puVar5 <= semaphoreHandle) && (peventTypeCode = puVar5, semaphoreHandle < *puVar5 + puVar5[1])) break;
-        puVar5 = (ulonglong *)puVar5[2];
+        if ((*componentContextPtr <= semaphoreHandle) && (peventTypeCode = componentContextPtr, semaphoreHandle < *componentContextPtr + componentContextPtr[1])) break;
+        componentContextPtr = (ulonglong *)componentContextPtr[2];
         peventTypeCode = puVar8;
-      } while (puVar5 != (ulonglong *)0x0);
+      } while (componentContextPtr != (ulonglong *)0x0);
     }
     if (peventTypeCode == (ulonglong *)0x0) {
       semaphoreHandle = (**(code **)(uiContext + 0x3b8))(0);
       if (semaphoreHandle != 0xffffffffffffffff) {
-        puVar5 = (ulonglong *)
+        componentContextPtr = (ulonglong *)
                  (dataSource + 0x51 + *(longlong *)(bufferData + 0x398) &
                  ~(*(longlong *)(bufferData + 0x398) - 1U));
         uVar3 = *(longlong *)(bufferData + 0x390) - 1;
         if ((semaphoreHandle & uVar3) != 0) {
-          puVar5 = (ulonglong *)
-                   ((longlong)puVar5 + ((*(longlong *)(bufferData + 0x390) + semaphoreHandle & ~uVar3) - semaphoreHandle));
+          componentContextPtr = (ulonglong *)
+                   ((longlong)componentContextPtr + ((*(longlong *)(bufferData + 0x390) + semaphoreHandle & ~uVar3) - semaphoreHandle));
         }
         pfunctionResult1 = pfunctionResult0;
-        if (puVar5 < (ulonglong *)0x7fffffffffffffff) {
-          iVar9 = (int)puVar5;
-          uVar3 = (**(code **)(uiContext + 0x3b8))((ulonglong)puVar5 & 0xffffffff);
+        if (componentContextPtr < (ulonglong *)0x7fffffffffffffff) {
+          iVar9 = (int)componentContextPtr;
+          uVar3 = (**(code **)(uiContext + 0x3b8))((ulonglong)componentContextPtr & 0xffffffff);
           pfunctionResult0 = puVar8;
           if (uVar3 == semaphoreHandle) goto LAB_18076d1cc;
           goto LAB_18076d1d9;
@@ -169392,34 +169392,34 @@ LAB_18076d25f:
       *(uint *)(uiContext + 0x360) = *(uint *)(uiContext + 0x360) | 4;
       goto LAB_18076d266;
     }
-    puVar5 = (ulonglong *)
+    componentContextPtr = (ulonglong *)
              (dataSource + 0x51 + (*(longlong *)(bufferData + 0x398) - *(longlong *)(bufferData + 0x10)) &
              ~(*(longlong *)(bufferData + 0x398) - 1U));
     pfunctionResult1 = pfunctionResult0;
-    if ((ulonglong *)0x7ffffffffffffffe < puVar5) goto LAB_18076d25f;
-    iVar9 = (int)puVar5;
-    semaphoreHandle = (**(code **)(uiContext + 0x3b8))((ulonglong)puVar5 & 0xffffffff);
+    if ((ulonglong *)0x7ffffffffffffffe < componentContextPtr) goto LAB_18076d25f;
+    iVar9 = (int)componentContextPtr;
+    semaphoreHandle = (**(code **)(uiContext + 0x3b8))((ulonglong)componentContextPtr & 0xffffffff);
     uVar3 = semaphoreHandle;
     if (semaphoreHandle == peventTypeCode[1] + *peventTypeCode) {
 LAB_18076d1cc:
-      iVar9 = (int)puVar5;
+      iVar9 = (int)componentContextPtr;
       uVar6 = semaphoreHandle;
-      pfunctionResult0 = puVar5;
+      pfunctionResult0 = componentContextPtr;
       if (semaphoreHandle != 0xffffffffffffffff) goto LAB_18076d2e5;
     }
 LAB_18076d1d9:
     semaphoreHandle = uVar3;
     pfunctionResult1 = pfunctionResult0;
     if (semaphoreHandle == 0xffffffffffffffff) goto LAB_18076d25f;
-    if ((puVar5 < (ulonglong *)(dataSource + 0x51)) &&
-       (uVar3 = dataSource + 0x51 + (*(longlong *)(bufferData + 0x398) - (longlong)puVar5) &
+    if ((componentContextPtr < (ulonglong *)(dataSource + 0x51)) &&
+       (uVar3 = dataSource + 0x51 + (*(longlong *)(bufferData + 0x398) - (longlong)componentContextPtr) &
                 ~(*(longlong *)(bufferData + 0x398) - 1U), uVar3 < 0x7fffffffffffffff)) {
       lVar4 = (**(code **)(uiContext + 0x3b8))(uVar3 & 0xffffffff,*(undefined8 *)(uiContext + 0x3c0));
       if (lVar4 == -1) {
         (**(code **)(uiContext + 0x3b8))(-iVar9);
         goto LAB_18076d25f;
       }
-      puVar5 = (ulonglong *)((longlong)puVar5 + uVar3);
+      componentContextPtr = (ulonglong *)((longlong)componentContextPtr + uVar3);
     }
   }
   else {
@@ -169427,14 +169427,14 @@ LAB_18076d266:
     lVar4 = (*(ulonglong *)(uiContext + 0x390) - dataSource % *(ulonglong *)(uiContext + 0x390)) + dataSource;
     uVar3 = ~(*(longlong *)(bufferData + 0x398) - 1U) & *(longlong *)(bufferData + 0x398) + 0x51 + lVar4;
     semaphoreHandle = uVar6;
-    puVar5 = pfunctionResult1;
+    componentContextPtr = pfunctionResult1;
     if (uVar3 < 0x7fffffffffffffff) {
       uVar6 = (**(code **)(uiContext + 0x3b8))(uVar3,*(undefined8 *)(uiContext + 0x3c0));
       uVar3 = (**(code **)(uiContext + 0x3b8))(0,*(undefined8 *)(uiContext + 0x3c0));
       if ((((uVar6 != 0xffffffffffffffff) && (uVar3 != 0xffffffffffffffff)) && (uVar6 < uVar3)) &&
          ((ulonglong *)(lVar4 + 0x50U) < (ulonglong *)(uVar3 - uVar6))) {
         semaphoreHandle = uVar6;
-        puVar5 = (ulonglong *)(uVar3 - uVar6);
+        componentContextPtr = (ulonglong *)(uVar3 - uVar6);
       }
     }
   }
@@ -169442,7 +169442,7 @@ LAB_18076d266:
     return 0;
   }
 LAB_18076d2e5:
-  uVar6 = *(longlong *)(bufferData + 0x350) + (longlong)puVar5;
+  uVar6 = *(longlong *)(bufferData + 0x350) + (longlong)componentContextPtr;
   *(ulonglong *)(uiContext + 0x350) = uVar6;
   if (*(ulonglong *)(uiContext + 0x358) < uVar6) {
     *(ulonglong *)(uiContext + 0x358) = uVar6;
@@ -169454,15 +169454,15 @@ LAB_18076d2e5:
     *pfunctionResult0 = semaphoreHandle;
     *(longlong *)(bufferData + 0x38) = *pallocatedMemory;
     *(ulonglong *)(uiContext + 0x18) = semaphoreHandle;
-    *(ulonglong **)(uiContext + 0x370) = puVar5;
+    *(ulonglong **)(uiContext + 0x370) = componentContextPtr;
     *(undefined4 *)(bufferData + 0x380) = 0;
     func_0x00018076be80(uiContext);
     if (uiContext == 0x180c0c750) {
-      func_0x00018076c060(0x180c0c750,semaphoreHandle,puVar5 + -10);
+      func_0x00018076c060(0x180c0c750,semaphoreHandle,componentContextPtr + -10);
     }
     else {
       lVar4 = uiContext + -0x10 + (*(ulonglong *)(uiContext + -8) & 0xfffffffffffffffc);
-      func_0x00018076c060(uiContext,lVar4,(longlong)puVar5 + (semaphoreHandle - lVar4) + -0x50);
+      func_0x00018076c060(uiContext,lVar4,(longlong)componentContextPtr + (semaphoreHandle - lVar4) + -0x50);
     }
   }
   else {
@@ -169470,9 +169470,9 @@ LAB_18076d2e5:
       uVar3 = *puVar8 + puVar8[1];
       if (semaphoreHandle == uVar3) {
         if ((((puVar8[3] & 8) == 0) && (*puVar8 <= uVar6)) && (uVar6 < uVar3)) {
-          puVar8[1] = puVar8[1] + (longlong)puVar5;
+          puVar8[1] = puVar8[1] + (longlong)componentContextPtr;
           func_0x00018076c060(uiContext,*(undefined8 *)(uiContext + 0x28),
-                              *(longlong *)(bufferData + 0x10) + (longlong)puVar5);
+                              *(longlong *)(bufferData + 0x10) + (longlong)componentContextPtr);
           goto LAB_18076d3e2;
         }
         break;
@@ -169484,9 +169484,9 @@ LAB_18076d2e5:
     if (pfunctionResult0 != (ulonglong *)0x0) {
       do {
         uVar6 = *pfunctionResult0;
-        if (uVar6 == (longlong)puVar5 + semaphoreHandle) {
+        if (uVar6 == (longlong)componentContextPtr + semaphoreHandle) {
           if ((pfunctionResult0[3] & 8) == 0) {
-            pfunctionResult0[1] = pfunctionResult0[1] + (longlong)puVar5;
+            pfunctionResult0[1] = pfunctionResult0[1] + (longlong)componentContextPtr;
             *pfunctionResult0 = semaphoreHandle;
             lVar4 = FUN_18076cc50(uiContext,semaphoreHandle,uVar6,dataSource);
             return lVar4;
@@ -169496,7 +169496,7 @@ LAB_18076d2e5:
         pfunctionResult0 = (ulonglong *)pfunctionResult0[2];
       } while (pfunctionResult0 != (ulonglong *)0x0);
     }
-    FUN_18076b9d0(uiContext,semaphoreHandle,puVar5,0);
+    FUN_18076b9d0(uiContext,semaphoreHandle,componentContextPtr,0);
   }
 LAB_18076d3e2:
   if (*(ulonglong *)(uiContext + 0x10) <= dataSource) {
@@ -169805,7 +169805,7 @@ longlong FUN_18076d990(uint *uiContext,ulonglong dataSource)
   ulonglong *psemaphoreHandle;
   ulonglong uVar3;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   uint uVar6;
   ulonglong eventTypeCode;
   uint uVar8;
@@ -169858,22 +169858,22 @@ longlong FUN_18076d990(uint *uiContext,ulonglong dataSource)
   functionResult2 = *(ulonglong *)(functionResult6 + 0x30);
   if (eventTypeCode == functionResult6) {
     uVar3 = *(ulonglong *)(functionResult6 + 0x28);
-    puVar5 = (undefined8 *)(functionResult6 + 0x28);
+    componentContextPtr = (undefined8 *)(functionResult6 + 0x28);
     if (*(ulonglong *)(functionResult6 + 0x28) == 0) {
       eventTypeCode = *(ulonglong *)(functionResult6 + 0x20);
       uVar3 = eventTypeCode;
-      puVar5 = (undefined8 *)(functionResult6 + 0x20);
+      componentContextPtr = (undefined8 *)(functionResult6 + 0x20);
       if (eventTypeCode == 0) goto LAB_18076dacf;
     }
     do {
       do {
-        pfunctionResult8 = puVar5;
+        pfunctionResult8 = componentContextPtr;
         eventTypeCode = uVar3;
         uVar3 = *(ulonglong *)(eventTypeCode + 0x28);
-        puVar5 = (undefined8 *)(eventTypeCode + 0x28);
+        componentContextPtr = (undefined8 *)(eventTypeCode + 0x28);
       } while (*(ulonglong *)(eventTypeCode + 0x28) != 0);
       uVar3 = *(ulonglong *)(eventTypeCode + 0x20);
-      puVar5 = (undefined8 *)(eventTypeCode + 0x20);
+      componentContextPtr = (undefined8 *)(eventTypeCode + 0x20);
     } while (*(ulonglong *)(eventTypeCode + 0x20) != 0);
     if (*(undefined8 **)(uiContext + 6) <= pfunctionResult8) {
       *pfunctionResult8 = 0;
@@ -171632,7 +171632,7 @@ int FUN_18076f660(longlong uiContext)
   longlong componentIndex;
   longlong *pstringCompareIndex;
   ulonglong uVar4;
-  ulonglong *puVar5;
+  ulonglong *componentContextPtr;
   bool bVar6;
   uint eventTypeCode;
   int iVar8;
@@ -171751,11 +171751,11 @@ int FUN_18076f660(longlong uiContext)
   }
   if ((iVar8 == 0) && (bVar6)) {
     if ((floatResult8 == *(float *)(uiContext + 0x230)) && (floatResult8 != floatResult9)) {
-      puVar5 = *(ulonglong **)(uiContext + 0x228);
-      eventTypeCode = *(uint *)((longlong)puVar5 + 0x24);
+      componentContextPtr = *(ulonglong **)(uiContext + 0x228);
+      eventTypeCode = *(uint *)((longlong)componentContextPtr + 0x24);
       functionResult4 = *(ulonglong *)(uiContext + 0x18);
-      if (*(ulonglong *)(uiContext + 0x18) <= *puVar5) {
-        functionResult4 = *puVar5;
+      if (*(ulonglong *)(uiContext + 0x18) <= *componentContextPtr) {
+        functionResult4 = *componentContextPtr;
       }
       iVar8 = FUN_18076e380(uiContext,functionResult4);
       if (((iVar8 != 0) ||
@@ -172252,7 +172252,7 @@ ulonglong FUN_18076f7ef(float uiContext,undefined8 dataSource,float targetBuffer
   ulonglong *psemaphoreHandle;
   uint uVar3;
   uint uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   longlong lVar6;
   ulonglong eventTypeCode;
   longlong context;
@@ -172295,12 +172295,12 @@ ulonglong FUN_18076f7ef(float uiContext,undefined8 dataSource,float targetBuffer
   }
   lVar6 = (longlong)unaff_R14D;
   if (lVar6 < 4) {
-    puVar5 = (undefined4 *)((lVar6 + 0x26) * 0x10 + context);
+    componentContextPtr = (undefined4 *)((lVar6 + 0x26) * 0x10 + context);
     lVar6 = 4 - lVar6;
     do {
-      *(ulonglong *)(puVar5 + -2) = in_R10;
-      *puVar5 = uVar9;
-      puVar5 = puVar5 + 4;
+      *(ulonglong *)(componentContextPtr + -2) = in_R10;
+      *componentContextPtr = uVar9;
+      componentContextPtr = componentContextPtr + 4;
       lVar6 = lVar6 + -1;
     } while (lVar6 != 0);
   }
@@ -172751,7 +172751,7 @@ undefined8 FUN_180770102(void)
   int validationResult;
   int compareResult;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   int iVar6;
   longlong lVar7;
   uint *puVar8;
@@ -172801,9 +172801,9 @@ FUN_180770229:
           return uVar4;
         }
       }
-      puVar5 = (undefined8 *)((longlong)(int)context[3] * 0x10 + context[2]);
-      *puVar5 = CONCAT44(0xffffffff,functionResult);
-      puVar5[1] = uStack0000000000000028;
+      componentContextPtr = (undefined8 *)((longlong)(int)context[3] * 0x10 + context[2]);
+      *componentContextPtr = CONCAT44(0xffffffff,functionResult);
+      componentContextPtr[1] = uStack0000000000000028;
       *(int *)(context + 3) = (int)context[3] + 1;
     }
     else {
@@ -172829,7 +172829,7 @@ undefined8 FUN_18077014d(undefined8 uiContext,undefined4 dataSource)
   undefined8 semaphoreHandle;
   undefined8 *puVar3;
   int iVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   uint uVar6;
   longlong context;
   int unaff_EBP;
@@ -172868,11 +172868,11 @@ undefined8 FUN_18077014d(undefined8 uiContext,undefined4 dataSource)
     *(int *)(context + 0x18) = *(int *)(context + 0x18) + 1;
   }
   else {
-    puVar5 = (undefined4 *)((longlong)iVar8 * 0x10 + *(longlong *)(context + 0x10));
-    *(undefined4 *)(context + 0x20) = puVar5[1];
-    puVar5[1] = 0xffffffff;
-    *puVar5 = *unaff_R15;
-    *(undefined8 *)(puVar5 + 2) = *unaff_R12;
+    componentContextPtr = (undefined4 *)((longlong)iVar8 * 0x10 + *(longlong *)(context + 0x10));
+    *(undefined4 *)(context + 0x20) = componentContextPtr[1];
+    componentContextPtr[1] = 0xffffffff;
+    *componentContextPtr = *unaff_R15;
+    *(undefined8 *)(componentContextPtr + 2) = *unaff_R12;
   }
   *unaff_RDI = iVar8;
   *(int *)(context + 0x24) = *(int *)(context + 0x24) + 1;
@@ -179523,7 +179523,7 @@ undefined8 FUN_180776362(int uiContext,undefined8 dataSource,undefined8 targetBu
   undefined2 semaphoreHandle;
   uint uVar3;
   uint uVar4;
-  undefined2 *puVar5;
+  undefined2 *componentContextPtr;
   short *psVar6;
   uint eventTypeCode;
   ulonglong uVar8;
@@ -179581,7 +179581,7 @@ undefined8 FUN_180776362(int uiContext,undefined8 dataSource,undefined8 targetBu
       eventTypeCode = functionResult;
     }
     psVar6 = (short *)(in_stack_000000e8 + (ulonglong)(uint)(unaff_ESI * unaff_R15D) * 2);
-    puVar5 = (undefined2 *)(in_stack_000000e8 + (ulonglong)(uint)(unaff_R14D * unaff_R15D) * 2);
+    componentContextPtr = (undefined2 *)(in_stack_000000e8 + (ulonglong)(uint)(unaff_R14D * unaff_R15D) * 2);
     psVar10 = (short *)(in_stack_000000e8 + (ulonglong)(uint)(allocationFlags * unaff_R15D) * 2);
     if (eventTypeCode != 0) {
       functionResult1 = (ulonglong)eventTypeCode;
@@ -179608,7 +179608,7 @@ undefined8 FUN_180776362(int uiContext,undefined8 dataSource,undefined8 targetBu
             else {
               semaphoreHandle = 0x7fff;
             }
-            *puVar5 = semaphoreHandle;
+            *componentContextPtr = semaphoreHandle;
             floatResult2 = ((float)(int)psVar6[1] * floatResult4 + (float)(int)psVar10[1] * floatResult5) *
                      3.051851e-05;
             floatResult3 = floatResult2 * in_stack_00000118 + in_R10[1];
@@ -179624,7 +179624,7 @@ undefined8 FUN_180776362(int uiContext,undefined8 dataSource,undefined8 targetBu
             else {
               semaphoreHandle = 0x7fff;
             }
-            puVar5[1] = semaphoreHandle;
+            componentContextPtr[1] = semaphoreHandle;
             floatResult2 = ((float)(int)psVar6[2] * floatResult4 + (float)(int)psVar10[2] * floatResult5) *
                      3.051851e-05;
             floatResult3 = floatResult2 * in_stack_00000118 + in_R10[2];
@@ -179640,7 +179640,7 @@ undefined8 FUN_180776362(int uiContext,undefined8 dataSource,undefined8 targetBu
             else {
               semaphoreHandle = 0x7fff;
             }
-            puVar5[2] = semaphoreHandle;
+            componentContextPtr[2] = semaphoreHandle;
             floatResult2 = ((float)(int)psVar6[3] * floatResult4 + (float)(int)psVar10[3] * floatResult5) *
                      3.051851e-05;
             floatResult3 = floatResult2 * in_stack_00000118 + in_R10[3];
@@ -179656,9 +179656,9 @@ undefined8 FUN_180776362(int uiContext,undefined8 dataSource,undefined8 targetBu
             else {
               semaphoreHandle = 0x7fff;
             }
-            puVar5[3] = semaphoreHandle;
+            componentContextPtr[3] = semaphoreHandle;
             psVar10 = psVar10 + 4;
-            puVar5 = puVar5 + 4;
+            componentContextPtr = componentContextPtr + 4;
             psVar6 = psVar6 + 4;
             in_R11 = in_R11 + 4;
             in_R10 = in_R10 + 4;
@@ -179684,9 +179684,9 @@ undefined8 FUN_180776362(int uiContext,undefined8 dataSource,undefined8 targetBu
             else {
               semaphoreHandle = 0x7fff;
             }
-            *puVar5 = semaphoreHandle;
+            *componentContextPtr = semaphoreHandle;
             psVar10 = psVar10 + 1;
-            puVar5 = puVar5 + 1;
+            componentContextPtr = componentContextPtr + 1;
             psVar6 = psVar6 + 1;
             in_R11 = in_R11 + 1;
             in_R10 = in_R10 + 1;
@@ -195947,7 +195947,7 @@ undefined8 FUN_1807889e0(longlong uiContext,longlong dataSource)
   undefined8 semaphoreHandle;
   undefined8 *puVar3;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   undefined8 *puVar6;
   ulonglong uStack_68;
   undefined4 uStack_60;
@@ -195973,16 +195973,16 @@ undefined8 FUN_1807889e0(longlong uiContext,longlong dataSource)
   if (*(int *)(dataSource + 0x20) != *(int *)(*(longlong *)(dataSource + 0x40) + 0x68)) {
     puVar3 = (undefined8 *)
              FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),200,&UNK_18095ac80,0x1da,0);
-    puVar5 = puVar6;
+    componentContextPtr = puVar6;
     if (puVar3 != (undefined8 *)0x0) {
-      puVar5 = puVar3 + 4;
+      componentContextPtr = puVar3 + 4;
       *puVar3 = &UNK_180957fe8;
-      puVar3[5] = puVar5;
-      *puVar5 = puVar5;
+      puVar3[5] = componentContextPtr;
+      *componentContextPtr = componentContextPtr;
       puVar3[6] = 0;
-      puVar5 = puVar3 + 7;
-      puVar3[8] = puVar5;
-      *puVar5 = puVar5;
+      componentContextPtr = puVar3 + 7;
+      puVar3[8] = componentContextPtr;
+      *componentContextPtr = componentContextPtr;
       puVar3[9] = 0;
       puVar3[0xb] = 0;
       *(undefined4 *)(puVar3 + 10) = 0;
@@ -195993,14 +195993,14 @@ undefined8 FUN_1807889e0(longlong uiContext,longlong dataSource)
       puVar3[3] = 0;
       puVar3[0xe] = 0;
       puVar3[0xf] = 0;
-      puVar5 = puVar3;
+      componentContextPtr = puVar3;
     }
-    *(undefined8 **)(dataSource + 0x50) = puVar5;
-    if (puVar5 == (undefined8 *)0x0) {
+    *(undefined8 **)(dataSource + 0x50) = componentContextPtr;
+    if (componentContextPtr == (undefined8 *)0x0) {
       return 0x26;
     }
-    semaphoreHandle = (**(code **)*puVar5)
-                      (puVar5,*(undefined8 *)(uiContext + 0x48),0,0,9,*(undefined4 *)(dataSource + 0x20),
+    semaphoreHandle = (**(code **)*componentContextPtr)
+                      (componentContextPtr,*(undefined8 *)(uiContext + 0x48),0,0,9,*(undefined4 *)(dataSource + 0x20),
                        9,*(undefined4 *)(*(longlong *)(dataSource + 0x40) + 0x68),0);
     if ((int)semaphoreHandle != 0) {
       return semaphoreHandle;
@@ -196024,15 +196024,15 @@ undefined8 FUN_1807889e0(longlong uiContext,longlong dataSource)
     uStack_68 = 0;
     uStack_60 = 0;
     uStack_5c = 1;
-    puVar5 = (undefined8 *)func_0x0001807e5100();
-    uStack_58 = *puVar5;
-    uStack_50 = puVar5[1];
-    uStack_48 = puVar5[2];
-    uStack_40 = puVar5[3];
-    uStack_30 = *(undefined4 *)(puVar5 + 5);
-    uStack_2c = *(undefined4 *)((longlong)puVar5 + 0x2c);
-    uStack_28 = puVar5[6];
-    uStack_20 = puVar5[7];
+    componentContextPtr = (undefined8 *)func_0x0001807e5100();
+    uStack_58 = *componentContextPtr;
+    uStack_50 = componentContextPtr[1];
+    uStack_48 = componentContextPtr[2];
+    uStack_40 = componentContextPtr[3];
+    uStack_30 = *(undefined4 *)(componentContextPtr + 5);
+    uStack_2c = *(undefined4 *)((longlong)componentContextPtr + 0x2c);
+    uStack_28 = componentContextPtr[6];
+    uStack_20 = componentContextPtr[7];
     puStack_38 = &uStack_68;
     uStack_68 = CONCAT44(*(undefined4 *)(*(longlong *)(dataSource + 0x40) + 0x68),
                          (int)((float)operationResult * 0.01)) & 0xfffffffffffffff0;
@@ -196072,7 +196072,7 @@ undefined8 FUN_180788a27(void)
   undefined8 *psemaphoreHandle;
   undefined8 uVar3;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   undefined8 *puVar6;
   longlong unaff_RSI;
   longlong unaff_RDI;
@@ -196093,16 +196093,16 @@ undefined8 FUN_180788a27(void)
   if (*(int *)(unaff_RDI + 0x20) != *(int *)(in_RAX + 0x68)) {
     psemaphoreHandle = (undefined8 *)
              FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),200,&UNK_18095ac80,0x1da,0);
-    puVar5 = puVar6;
+    componentContextPtr = puVar6;
     if (psemaphoreHandle != (undefined8 *)0x0) {
-      puVar5 = psemaphoreHandle + 4;
+      componentContextPtr = psemaphoreHandle + 4;
       *psemaphoreHandle = &UNK_180957fe8;
-      psemaphoreHandle[5] = puVar5;
-      *puVar5 = puVar5;
+      psemaphoreHandle[5] = componentContextPtr;
+      *componentContextPtr = componentContextPtr;
       psemaphoreHandle[6] = 0;
-      puVar5 = psemaphoreHandle + 7;
-      psemaphoreHandle[8] = puVar5;
-      *puVar5 = puVar5;
+      componentContextPtr = psemaphoreHandle + 7;
+      psemaphoreHandle[8] = componentContextPtr;
+      *componentContextPtr = componentContextPtr;
       psemaphoreHandle[9] = 0;
       psemaphoreHandle[0xb] = 0;
       *(undefined4 *)(psemaphoreHandle + 10) = 0;
@@ -196113,13 +196113,13 @@ undefined8 FUN_180788a27(void)
       psemaphoreHandle[3] = 0;
       psemaphoreHandle[0xe] = 0;
       psemaphoreHandle[0xf] = 0;
-      puVar5 = psemaphoreHandle;
+      componentContextPtr = psemaphoreHandle;
     }
-    *(undefined8 **)(unaff_RDI + 0x50) = puVar5;
-    if (puVar5 == (undefined8 *)0x0) {
+    *(undefined8 **)(unaff_RDI + 0x50) = componentContextPtr;
+    if (componentContextPtr == (undefined8 *)0x0) {
       return 0x26;
     }
-    uVar3 = (**(code **)*puVar5)(puVar5,*(undefined8 *)(unaff_RSI + 0x48),0,0,9);
+    uVar3 = (**(code **)*componentContextPtr)(componentContextPtr,*(undefined8 *)(unaff_RSI + 0x48),0,0,9);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -196142,15 +196142,15 @@ undefined8 FUN_180788a27(void)
     in_stack_00000050 = 0;
     in_stack_00000058 = 0;
     uStack000000000000005c = 1;
-    puVar5 = (undefined8 *)func_0x0001807e5100();
-    in_stack_00000060 = *puVar5;
-    in_stack_00000068 = puVar5[1];
-    in_stack_00000070 = puVar5[2];
-    in_stack_00000078 = puVar5[3];
-    in_stack_00000088 = *(undefined4 *)(puVar5 + 5);
-    uStack000000000000008c = *(undefined4 *)((longlong)puVar5 + 0x2c);
-    in_stack_00000090 = puVar5[6];
-    in_stack_00000098 = puVar5[7];
+    componentContextPtr = (undefined8 *)func_0x0001807e5100();
+    in_stack_00000060 = *componentContextPtr;
+    in_stack_00000068 = componentContextPtr[1];
+    in_stack_00000070 = componentContextPtr[2];
+    in_stack_00000078 = componentContextPtr[3];
+    in_stack_00000088 = *(undefined4 *)(componentContextPtr + 5);
+    uStack000000000000008c = *(undefined4 *)((longlong)componentContextPtr + 0x2c);
+    in_stack_00000090 = componentContextPtr[6];
+    in_stack_00000098 = componentContextPtr[7];
     in_stack_00000080 = &stack0x00000050;
     in_stack_00000050 =
          CONCAT44(*(undefined4 *)(*(longlong *)(uiContext + 0x40) + 0x68),(int)((float)operationResult * 0.01)
@@ -199209,19 +199209,19 @@ undefined8 FUN_18078ae40(longlong uiContext,int dataSource,int targetBuffer)
   int validationResult;
   int compareResult;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   undefined4 uVar6;
   int aiStackX_8 [2];
   int aiStackX_10 [4];
   undefined4 auStackX_20 [2];
   longlong alStack_38 [2];
   
-  puVar5 = *(undefined8 **)(uiContext + 0x670);
+  componentContextPtr = *(undefined8 **)(uiContext + 0x670);
   alStack_38[0] = 0;
   compareResult = 0;
   uVar6 = 1;
   aiStackX_10[0] = dataSource;
-  if (puVar5 != (undefined8 *)0x0) {
+  if (componentContextPtr != (undefined8 *)0x0) {
     if (dataSource == *(int *)(bufferData + 0x678)) {
       return 0;
     }
@@ -199230,10 +199230,10 @@ undefined8 FUN_18078ae40(longlong uiContext,int dataSource,int targetBuffer)
     }
     if (*(char *)(uiContext + 8) != '\0') {
       FUN_18078b6a0(uiContext);
-      puVar5 = *(undefined8 **)(uiContext + 0x670);
+      componentContextPtr = *(undefined8 **)(uiContext + 0x670);
     }
-    uVar6 = *(undefined4 *)(puVar5 + 99);
-    (**(code **)*puVar5)();
+    uVar6 = *(undefined4 *)(componentContextPtr + 99);
+    (**(code **)*componentContextPtr)();
     *(undefined8 *)(uiContext + 0x670) = 0;
     *(undefined8 *)(uiContext + 0x678) = 0;
   }
@@ -204969,7 +204969,7 @@ undefined8 FUN_1807906f0(longlong uiContext)
   int *pvalidationResult;
   longlong stringCompareIndex;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   undefined8 uVar6;
   int iVar7;
   ulonglong uVar8;
@@ -204980,24 +204980,24 @@ undefined8 FUN_1807906f0(longlong uiContext)
   uVar6 = *(undefined8 *)(_DAT_180be12f0 + 0x160 + (longlong)*(int *)(bufferData + 0x30) * 8);
   lVar4 = FUN_180791040();
   uVar8 = 0;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x40,&UNK_18095b780,0x24c,0,0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     uVar6 = 0x26;
   }
   else {
-    *puVar5 = &UNK_18095b6b8;
-    *(undefined4 *)(puVar5 + 2) = 0;
-    *(undefined1 *)((longlong)puVar5 + 0x14) = 1;
-    puVar5[3] = 2;
-    puVar5[4] = 0x3f800000;
-    puVar5[5] = 0x3f800000;
-    puVar5[6] = 0;
-    puVar5[7] = 0;
-    puVar5[1] = uVar6;
+    *componentContextPtr = &UNK_18095b6b8;
+    *(undefined4 *)(componentContextPtr + 2) = 0;
+    *(undefined1 *)((longlong)componentContextPtr + 0x14) = 1;
+    componentContextPtr[3] = 2;
+    componentContextPtr[4] = 0x3f800000;
+    componentContextPtr[5] = 0x3f800000;
+    componentContextPtr[6] = 0;
+    componentContextPtr[7] = 0;
+    componentContextPtr[1] = uVar6;
     func_0x000180746360(uVar6,auStackX_8,0);
-    *(undefined4 *)(puVar5 + 2) = auStackX_8[0];
-    *(undefined8 **)(uiContext + 8) = puVar5;
+    *(undefined4 *)(componentContextPtr + 2) = auStackX_8[0];
+    *(undefined8 **)(uiContext + 8) = componentContextPtr;
     uVar9 = uVar8;
     if (0 < *(int *)(lVar4 + 0x60)) {
       do {
@@ -206258,7 +206258,7 @@ void FUN_180791615(undefined8 *uiContext,undefined8 dataSource,undefined8 target
   ulonglong semaphoreHandle;
   int compareResult;
   int iVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   undefined8 *puVar6;
   longlong context;
   int iVar7;
@@ -206317,24 +206317,24 @@ void FUN_180791615(undefined8 *uiContext,undefined8 dataSource,undefined8 target
       }
       puVar6 = unaff_RDI;
       if ((iVar9 == 0) || (unaff_R14[2] == 0)) {
-        puVar5 = (undefined8 *)
+        componentContextPtr = (undefined8 *)
                  FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x88,&UNK_18095b780,0x12d);
-        if (puVar5 != (undefined8 *)0x0) {
-          *puVar5 = &UNK_18095b638;
-          puVar6 = puVar5;
+        if (componentContextPtr != (undefined8 *)0x0) {
+          *componentContextPtr = &UNK_18095b638;
+          puVar6 = componentContextPtr;
         }
       }
       else {
-        puVar5 = (undefined8 *)
+        componentContextPtr = (undefined8 *)
                  FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0xb0,&UNK_18095b780,0x132);
-        if (puVar5 != (undefined8 *)0x0) {
-          puVar6 = puVar5 + 0x12;
-          *puVar5 = &UNK_18095b678;
-          *(undefined4 *)(puVar5 + 0x11) = 0;
-          puVar5[0x13] = puVar6;
+        if (componentContextPtr != (undefined8 *)0x0) {
+          puVar6 = componentContextPtr + 0x12;
+          *componentContextPtr = &UNK_18095b678;
+          *(undefined4 *)(componentContextPtr + 0x11) = 0;
+          componentContextPtr[0x13] = puVar6;
           *puVar6 = puVar6;
-          puVar5[0x14] = unaff_RDI;
-          puVar6 = puVar5;
+          componentContextPtr[0x14] = unaff_RDI;
+          puVar6 = componentContextPtr;
         }
       }
       *(undefined8 **)
@@ -217828,18 +217828,18 @@ undefined8 FUN_18079df60(longlong *uiContext)
   longlong componentIndex;
   undefined8 uVar3;
   int iVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   longlong lVar6;
   undefined4 eventTypeCode;
   
   allocatedMemory = *uiContext;
   iVar4 = 0;
-  puVar5 = (undefined4 *)(allocatedMemory + 0x218);
+  componentContextPtr = (undefined4 *)(allocatedMemory + 0x218);
   do {
     eventTypeCode = cosf((float)iVar4 * 0.0001917476);
     iVar4 = iVar4 + 1;
-    *puVar5 = eventTypeCode;
-    puVar5 = puVar5 + 1;
+    *componentContextPtr = eventTypeCode;
+    componentContextPtr = componentContextPtr + 1;
   } while (iVar4 < 0x2000);
   componentIndex = *(longlong *)(allocatedMemory + 0xe8);
   iVar4 = 0;
@@ -223233,7 +223233,7 @@ undefined4 FUN_180802ecf(void)
   int *pvalidationResult;
   longlong stringCompareIndex;
   longlong *plVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   longlong context;
   undefined4 unaff_EBP;
   longlong unaff_RSI;
@@ -223263,11 +223263,11 @@ undefined4 FUN_180802ecf(void)
   if (stringCompareIndex == 0) {
     return 0x26;
   }
-  puVar5 = (undefined4 *)(context + 0x4b8);
+  componentContextPtr = (undefined4 *)(context + 0x4b8);
   if (context == 0) {
-    puVar5 = (undefined4 *)0x4c0;
+    componentContextPtr = (undefined4 *)0x4c0;
   }
-  *puVar5 = unaff_EBP;
+  *componentContextPtr = unaff_EBP;
   plVar4 = (longlong *)(context + 0x4a8);
   if (context == 0) {
     plVar4 = (longlong *)0x4b0;
@@ -224343,7 +224343,7 @@ void FUN_180803d63(longlong *uiContext,longlong dataSource)
   undefined4 semaphoreHandle;
   undefined8 uVar3;
   longlong *plVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   ushort uVar6;
   int iVar7;
   int iVar8;
@@ -224413,14 +224413,14 @@ void FUN_180803d63(longlong *uiContext,longlong dataSource)
         if (((ulonglong)pfunctionResult4 & 0x20) == 0) {
           functionResult = functionResult1;
         }
-        puVar5 = *(undefined4 **)(unaff_RBP + -0x51);
+        componentContextPtr = *(undefined4 **)(unaff_RBP + -0x51);
         functionResult1 = functionResult | 8;
         if (((ulonglong)pfunctionResult4 & 0x100) == 0) {
           functionResult1 = functionResult;
         }
         functionResult2 = 5;
         *(uint *)(unaff_RDI + 0x60) = functionResult1;
-        *puVar5 = 5;
+        *componentContextPtr = 5;
         switch(*(undefined2 *)(lVar9 + 2)) {
         case 1:
           functionResult2 = 2;
@@ -224817,7 +224817,7 @@ void FUN_1808043c0(undefined8 uiContext,longlong dataSource,undefined4 *targetBu
   undefined2 semaphoreHandle;
   undefined4 uVar3;
   longlong lVar4;
-  uint *puVar5;
+  uint *componentContextPtr;
   undefined1 auStack_58 [32];
   ulonglong uStack_38;
   undefined8 uStack_30;
@@ -224850,15 +224850,15 @@ void FUN_1808043c0(undefined8 uiContext,longlong dataSource,undefined4 *targetBu
   uStack_38 = (ulonglong)*(uint *)(dataSource + 0x4e);
   functionResult = wcstoul(&uStack_38,0,0x10);
   *(undefined1 *)((longlong)targetBuffer + 9) = functionResult;
-  puVar5 = (uint *)(dataSource + 0x54);
+  componentContextPtr = (uint *)(dataSource + 0x54);
   lVar4 = 2;
   do {
     uStack_30 = 0;
     uStack_28 = 0;
-    uStack_38 = (ulonglong)*puVar5;
+    uStack_38 = (ulonglong)*componentContextPtr;
     functionResult = wcstoul(&uStack_38,0,0x10);
     *(undefined1 *)((longlong)(targetBuffer + 2) + lVar4) = functionResult;
-    puVar5 = puVar5 + 1;
+    componentContextPtr = componentContextPtr + 1;
     lVar4 = lVar4 + 1;
   } while (lVar4 < 8);
                     // WARNING: Subroutine does not return
@@ -225393,7 +225393,7 @@ FUN_180804c50(undefined8 uiContext,longlong *dataSource,longlong *targetBuffer,l
   int validationResult;
   int compareResult;
   longlong lVar4;
-  undefined *puVar5;
+  undefined *componentContextPtr;
   int aiStackX_20 [2];
   ulonglong uVar6;
   uint eventTypeCode;
@@ -225437,16 +225437,16 @@ FUN_180804c50(undefined8 uiContext,longlong *dataSource,longlong *targetBuffer,l
     uStack_38 = 0;
     validationResult = (**(code **)(*plStack_60 + 0x28))(plStack_60,&UNK_18098b9b8,&uStack_48);
     if (-1 < validationResult) {
-      puVar5 = &UNK_18097ed50;
+      componentContextPtr = &UNK_18097ed50;
       if ((short)uStack_48 == 0x1f) {
-        puVar5 = puStack_40;
+        componentContextPtr = puStack_40;
       }
       if (isCharacterMatch) {
         compareResult = func_0x00018076b690(&UNK_18097ed40);
       }
       eventTypeCode = 0;
       uVar6 = 0;
-      validationResult = WideCharToMultiByte(0xfde9,0,puVar5,0xffffffff,0,0,0,0);
+      validationResult = WideCharToMultiByte(0xfde9,0,componentContextPtr,0xffffffff,0,0,0,0);
       compareResult = compareResult + validationResult;
       lVar4 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),compareResult,&UNK_18097ed60,0xe2,
                             uVar6 & 0xffffffff00000000,eventTypeCode & 0xffffff00,1);
@@ -225454,7 +225454,7 @@ FUN_180804c50(undefined8 uiContext,longlong *dataSource,longlong *targetBuffer,l
       if (lVar4 == 0) {
         return 0x26;
       }
-      WideCharToMultiByte(0xfde9,0,puVar5,0xffffffff,lVar4,compareResult,0,0);
+      WideCharToMultiByte(0xfde9,0,componentContextPtr,0xffffffff,lVar4,compareResult,0,0);
       if (isCharacterMatch) {
         FUN_18076b3b0(targetBuffer[1],&UNK_18097ed40,compareResult);
       }
@@ -225796,7 +225796,7 @@ undefined8 FUN_1808051c0(longlong *uiContext)
   int validationResult;
   undefined8 uVar3;
   longlong lVar4;
-  undefined *puVar5;
+  undefined *componentContextPtr;
   longlong lVar6;
   uint eventTypeCode;
   longlong *plVar9;
@@ -225880,11 +225880,11 @@ undefined8 FUN_1808051c0(longlong *uiContext)
               uStack_48 = 0;
               validationResult = (**(code **)(*plStack_68 + 0x28))(plStack_68,&UNK_18098b9b8,&uStack_58);
               if (-1 < validationResult) {
-                puVar5 = &UNK_18097ed50;
+                componentContextPtr = &UNK_18097ed50;
                 if ((short)uStack_58 == 0x1f) {
-                  puVar5 = puStack_50;
+                  componentContextPtr = puStack_50;
                 }
-                lVar4 = FUN_1807f7db0(puVar5);
+                lVar4 = FUN_1807f7db0(componentContextPtr);
                 *plVar9 = lVar4;
                 if ((lVar4 != 0) && (validationResult = PropVariantClear(&uStack_58), -1 < validationResult)) {
                   (**(code **)(*plStack_68 + 0x10))();
@@ -226799,7 +226799,7 @@ undefined8 FUN_180805fe0(longlong *uiContext)
   int validationResult;
   uint uVar3;
   uint uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   uint auStackX_8 [2];
   longlong *plStackX_10;
   undefined8 uStackX_18;
@@ -226808,12 +226808,12 @@ undefined8 FUN_180805fe0(longlong *uiContext)
   allocatedMemory = *uiContext;
   uVar4 = 0;
   if (0 < *(int *)(allocatedMemory + 0x2d0)) {
-    puVar5 = (undefined8 *)(allocatedMemory + 0x2d8);
+    componentContextPtr = (undefined8 *)(allocatedMemory + 0x2d8);
     uVar3 = uVar4;
     do {
-      CoTaskMemFree(*puVar5);
+      CoTaskMemFree(*componentContextPtr);
       uVar3 = uVar3 + 1;
-      puVar5 = puVar5 + 1;
+      componentContextPtr = componentContextPtr + 1;
     } while ((int)uVar3 < *(int *)(allocatedMemory + 0x2d0));
   }
   *(undefined4 *)(allocatedMemory + 0x2d0) = 0;
@@ -226883,7 +226883,7 @@ undefined8 FUN_180805fed(void)
   uint semaphoreHandle;
   ulonglong uVar3;
   uint uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   uint in_stack_00000050;
   longlong *in_stack_00000058;
   longlong *in_stack_00000060;
@@ -226892,12 +226892,12 @@ undefined8 FUN_180805fed(void)
   uVar4 = (uint)unaff_RBP;
   uVar3 = (ulonglong)unaff_RBP & 0xffffffff;
   if ((int)uVar4 < *(int *)(context + 0x2d0)) {
-    puVar5 = (undefined8 *)(context + 0x2d8);
+    componentContextPtr = (undefined8 *)(context + 0x2d8);
     do {
-      CoTaskMemFree(*puVar5);
+      CoTaskMemFree(*componentContextPtr);
       semaphoreHandle = (int)uVar3 + 1;
       uVar3 = (ulonglong)semaphoreHandle;
-      puVar5 = puVar5 + 1;
+      componentContextPtr = componentContextPtr + 1;
     } while ((int)semaphoreHandle < *(int *)(context + 0x2d0));
   }
   *(uint *)(context + 0x2d0) = uVar4;
@@ -230100,7 +230100,7 @@ undefined8 FUN_18080ac80(undefined8 uiContext,longlong *dataSource,ulonglong tar
   int *pvalidationResult;
   code *pcVar3;
   bool bVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   int *piVar6;
   int iVar7;
   undefined4 uVar8;
@@ -230165,12 +230165,12 @@ undefined8 FUN_18080ac80(undefined8 uiContext,longlong *dataSource,ulonglong tar
     uStackX_18 = 0;
     operationResult6 = iVar7 + -1;
     if (-1 < operationResult6) {
-      puVar5 = (undefined8 *)(*(longlong *)(poperationResult8 + 2) + (longlong)operationResult6 * 0x18);
+      componentContextPtr = (undefined8 *)(*(longlong *)(poperationResult8 + 2) + (longlong)operationResult6 * 0x18);
       do {
-        poperationResult1 = (int *)*puVar5;
-        if ((((poperationResult1 != (int *)0xffffffffffffffff) && (*(int *)(puVar5 + 2) != 0)) &&
+        poperationResult1 = (int *)*componentContextPtr;
+        if ((((poperationResult1 != (int *)0xffffffffffffffff) && (*(int *)(componentContextPtr + 2) != 0)) &&
             ((poperationResult2 == (int *)0x0 || (poperationResult1 < poperationResult2)))) && (poperationResult1 <= bufferSize)) break;
-        puVar5 = puVar5 + -3;
+        componentContextPtr = componentContextPtr + -3;
         operationResult6 = operationResult6 + -1;
       } while (-1 < operationResult6);
     }
@@ -230184,13 +230184,13 @@ undefined8 FUN_18080ac80(undefined8 uiContext,longlong *dataSource,ulonglong tar
     }
     operationResult6 = 0;
     if (0 < iVar7) {
-      puVar5 = *(undefined8 **)(poperationResult8 + 2);
+      componentContextPtr = *(undefined8 **)(poperationResult8 + 2);
       do {
-        pvalidationResult = (int *)*puVar5;
-        if ((((pvalidationResult != (int *)0xffffffffffffffff) && (*(int *)(puVar5 + 2) != 0)) &&
+        pvalidationResult = (int *)*componentContextPtr;
+        if ((((pvalidationResult != (int *)0xffffffffffffffff) && (*(int *)(componentContextPtr + 2) != 0)) &&
             ((poperationResult2 == (int *)0x0 || (pvalidationResult < poperationResult2)))) && (bufferSize < pvalidationResult)) break;
         operationResult6 = operationResult6 + 1;
-        puVar5 = puVar5 + 3;
+        componentContextPtr = componentContextPtr + 3;
       } while (operationResult6 < iVar7);
     }
     if (operationResult6 < iVar7) {
@@ -232132,7 +232132,7 @@ undefined8 FUN_18080d083(void)
   int compareResult;
   uint uVar4;
   longlong unaff_RDI;
-  uint *puVar5;
+  uint *componentContextPtr;
   char unaff_R12B;
   float fVar6;
   
@@ -232148,9 +232148,9 @@ undefined8 FUN_18080d083(void)
   if (unaff_R12B != '\0') {
     componentIndex = *(longlong *)(uiContext + 0x20);
     *(undefined4 *)(unaff_RDI + 0x85c) = 1;
-    puVar5 = (uint *)(componentIndex + 0x117d8);
-    uVar4 = *puVar5 << 0xb ^ *puVar5;
-    *puVar5 = *(uint *)(componentIndex + 0x117dc);
+    componentContextPtr = (uint *)(componentIndex + 0x117d8);
+    uVar4 = *componentContextPtr << 0xb ^ *componentContextPtr;
+    *componentContextPtr = *(uint *)(componentIndex + 0x117dc);
     *(undefined4 *)(componentIndex + 0x117dc) = *(undefined4 *)(componentIndex + 0x117e0);
     functionResult = *(uint *)(componentIndex + 0x117e4);
     *(uint *)(componentIndex + 0x117e0) = functionResult;
@@ -233550,7 +233550,7 @@ void FUN_18080e440(void)
   float fVar2;
   undefined1 uVar3;
   undefined1 uVar4;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   ulonglong uVar6;
   float *pfVar7;
   uint uVar8;
@@ -233630,7 +233630,7 @@ void FUN_18080e440(void)
   uVar9 = functionResult4;
   do {
     allocatedMemory1 = (longlong)aiStack_178[uVar9];
-    puVar5 = (undefined1 *)auStack_168[uVar9];
+    componentContextPtr = (undefined1 *)auStack_168[uVar9];
     functionResult0 = functionResult4;
     if (0 < allocatedMemory1) {
       do {
@@ -233642,10 +233642,10 @@ void FUN_18080e440(void)
           do {
             pfunctionResult = (undefined1 *)((longlong)pfunctionResult2 + uVar6);
             uVar6 = uVar6 + 1;
-            *puVar5 = *pfunctionResult;
-            puVar5[1] = uVar4;
-            puVar5[2] = uVar3;
-            puVar5 = puVar5 + 3;
+            *componentContextPtr = *pfunctionResult;
+            componentContextPtr[1] = uVar4;
+            componentContextPtr[2] = uVar3;
+            componentContextPtr = componentContextPtr + 3;
           } while ((longlong)uVar6 < allocatedMemory1);
           functionResult3 = functionResult3 + 1;
         } while ((longlong)functionResult3 < allocatedMemory1);
@@ -236460,7 +236460,7 @@ undefined8 FUN_1808108e0(undefined8 uiContext,undefined8 *dataSource,uint *targe
   byte bVar2;
   uint uVar3;
   undefined4 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   int iVar6;
   int iVar7;
   
@@ -236490,14 +236490,14 @@ undefined8 FUN_1808108e0(undefined8 uiContext,undefined8 *dataSource,uint *targe
       iVar6 = iVar6 + -1;
     } while (iVar6 != 0);
     do {
-      puVar5 = dataSource;
+      componentContextPtr = dataSource;
       uVar4 = func_0x000180815b30(uiContext,bVar2);
       *(undefined4 *)parrayIndex = bufferIndex;
       iVar7 = iVar7 + -1;
-      dataSource = (undefined8 *)((longlong)puVar5 + 4);
+      dataSource = (undefined8 *)((longlong)componentContextPtr + 4);
     } while (iVar7 != 0);
-    *(undefined8 *)((longlong)puVar5 + 4) = 0;
-    *(undefined4 *)((longlong)puVar5 + 0xc) = 0;
+    *(undefined8 *)((longlong)componentContextPtr + 4) = 0;
+    *(undefined4 *)((longlong)componentContextPtr + 0xc) = 0;
   }
   else {
     uVar3 = *targetBuffer;
@@ -240870,7 +240870,7 @@ void FUN_18081720e(void)
   undefined1 semaphoreHandle;
   byte bVar3;
   int iVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   int *unaff_RSI;
   int iVar6;
   longlong unaff_R12;
@@ -240882,14 +240882,14 @@ void FUN_18081720e(void)
   
   func_0x00018082d920();
   iVar4 = FUN_18082d7f0(auStackX_20,8);
-  puVar5 = &stack0x00000040;
+  componentContextPtr = &stack0x00000040;
   in_stack_00000040 = 0;
   sStack0000000000000044 = 0;
   iVar6 = 6;
   do {
     semaphoreHandle = FUN_18082d7f0(auStackX_20,8);
-    *(undefined1 *)puVar5 = semaphoreHandle;
-    puVar5 = (undefined4 *)((longlong)puVar5 + 1);
+    *(undefined1 *)componentContextPtr = semaphoreHandle;
+    componentContextPtr = (undefined4 *)((longlong)componentContextPtr + 1);
     iVar6 = iVar6 + -1;
   } while (iVar6 != 0);
   if ((in_stack_00000040 == 0x62726f76) && (sStack0000000000000044 == 0x7369)) {
@@ -245473,20 +245473,20 @@ void FUN_18081b670(longlong uiContext)
   longlong *colorBufferPointer;
   int compareResult;
   uint uVar4;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   
   functionResult = *(undefined8 *)(uiContext + 0x28);
   FUN_180768360(functionResult);
   if (*(char *)(uiContext + 0x2d0) == '\0') {
     uVar4 = 0;
-    puVar5 = (undefined1 *)(uiContext + 0x2d5);
+    componentContextPtr = (undefined1 *)(uiContext + 0x2d5);
     do {
-      if (((puVar5[-1] != -1) &&
+      if (((componentContextPtr[-1] != -1) &&
           (colorBufferPointer = *(longlong **)(uiContext + 0x18), colorBufferPointer != (longlong *)0x0)) &&
-         (compareResult = (**(code **)(*colorBufferPointer + 0x40))(colorBufferPointer,uiContext,puVar5[-1],*puVar5), compareResult != 0))
+         (compareResult = (**(code **)(*colorBufferPointer + 0x40))(colorBufferPointer,uiContext,componentContextPtr[-1],*componentContextPtr), compareResult != 0))
       goto FUN_18081b7ac;
       uVar4 = uVar4 + 1;
-      puVar5 = puVar5 + 0x10;
+      componentContextPtr = componentContextPtr + 0x10;
     } while (uVar4 < 0x20);
     *(undefined1 *)(uiContext + 0x2d0) = 1;
     compareResult = FUN_1807ff260(*(undefined8 *)(uiContext + 0x20));
@@ -245790,7 +245790,7 @@ undefined8 FUN_18081bc60(longlong uiContext)
   int validationResult;
   undefined8 uVar3;
   uint uVar4;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   
   uVar3 = FUN_18081b980();
   if ((int)uVar3 == 0) {
@@ -245800,14 +245800,14 @@ undefined8 FUN_18081bc60(longlong uiContext)
   FUN_180768360(uVar3);
   if (*(char *)(uiContext + 0x2d0) == '\0') {
     uVar4 = 0;
-    puVar5 = (undefined1 *)(uiContext + 0x2d5);
+    componentContextPtr = (undefined1 *)(uiContext + 0x2d5);
     do {
-      if (((puVar5[-1] != -1) &&
+      if (((componentContextPtr[-1] != -1) &&
           (pallocatedMemory = *(longlong **)(uiContext + 0x18), pallocatedMemory != (longlong *)0x0)) &&
-         (validationResult = (**(code **)(*pallocatedMemory + 0x40))(pallocatedMemory,uiContext,puVar5[-1],*puVar5), validationResult != 0))
+         (validationResult = (**(code **)(*pallocatedMemory + 0x40))(pallocatedMemory,uiContext,componentContextPtr[-1],*componentContextPtr), validationResult != 0))
       goto FUN_18081b7ac;
       uVar4 = uVar4 + 1;
-      puVar5 = puVar5 + 0x10;
+      componentContextPtr = componentContextPtr + 0x10;
     } while (uVar4 < 0x20);
     *(undefined1 *)(uiContext + 0x2d0) = 1;
     validationResult = FUN_1807ff260(*(undefined8 *)(uiContext + 0x20));
@@ -245964,7 +245964,7 @@ undefined8 FUN_18081c0c0(longlong uiContext)
   int validationResult;
   undefined8 uVar3;
   uint uVar4;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   
   uVar3 = FUN_18081be80();
   if ((int)uVar3 == 0) {
@@ -245974,14 +245974,14 @@ undefined8 FUN_18081c0c0(longlong uiContext)
   FUN_180768360(uVar3);
   if (*(char *)(uiContext + 0x2d0) == '\0') {
     uVar4 = 0;
-    puVar5 = (undefined1 *)(uiContext + 0x2d5);
+    componentContextPtr = (undefined1 *)(uiContext + 0x2d5);
     do {
-      if (((puVar5[-1] != -1) &&
+      if (((componentContextPtr[-1] != -1) &&
           (pallocatedMemory = *(longlong **)(uiContext + 0x18), pallocatedMemory != (longlong *)0x0)) &&
-         (validationResult = (**(code **)(*pallocatedMemory + 0x40))(pallocatedMemory,uiContext,puVar5[-1],*puVar5), validationResult != 0))
+         (validationResult = (**(code **)(*pallocatedMemory + 0x40))(pallocatedMemory,uiContext,componentContextPtr[-1],*componentContextPtr), validationResult != 0))
       goto FUN_18081b7ac;
       uVar4 = uVar4 + 1;
-      puVar5 = puVar5 + 0x10;
+      componentContextPtr = componentContextPtr + 0x10;
     } while (uVar4 < 0x20);
     *(undefined1 *)(uiContext + 0x2d0) = 1;
     validationResult = FUN_1807ff260(*(undefined8 *)(uiContext + 0x20));
@@ -256740,7 +256740,7 @@ int FUN_180828010(longlong uiContext,longlong *dataSource)
   longlong componentIndex;
   uint uVar3;
   uint uVar4;
-  uint *puVar5;
+  uint *componentContextPtr;
   uint uVar6;
   uint eventTypeCode;
   uint uVar8;
@@ -256760,26 +256760,26 @@ int FUN_180828010(longlong uiContext,longlong *dataSource)
     uVar3 = (uVar3 >> 2 ^ uVar3 * 4) & 0x33333333 ^ uVar3 * 4;
     uVar6 = eventTypeCode - uVar4;
     uVar8 = (uVar3 >> 1 ^ uVar3 * 2) & 0x55555555 ^ uVar3 * 2;
-    puVar5 = (uint *)(componentIndex + (ulonglong)uVar4 * 4);
+    componentContextPtr = (uint *)(componentIndex + (ulonglong)uVar4 * 4);
     for (uVar3 = uVar6 >> 2; uVar3 != 0; uVar3 = uVar3 - 1) {
-      if (uVar8 < *puVar5) goto LAB_180828188;
-      if (uVar8 < puVar5[1]) {
-        eventTypeCode = (uint)((longlong)puVar5 + (4 - componentIndex) >> 2);
+      if (uVar8 < *componentContextPtr) goto LAB_180828188;
+      if (uVar8 < componentContextPtr[1]) {
+        eventTypeCode = (uint)((longlong)componentContextPtr + (4 - componentIndex) >> 2);
         goto FUN_180828129;
       }
-      if (uVar8 < puVar5[2]) {
-        eventTypeCode = (uint)((longlong)puVar5 + (8 - componentIndex) >> 2);
+      if (uVar8 < componentContextPtr[2]) {
+        eventTypeCode = (uint)((longlong)componentContextPtr + (8 - componentIndex) >> 2);
         goto FUN_180828129;
       }
-      if (uVar8 < puVar5[3]) {
-        eventTypeCode = (uint)((longlong)puVar5 + (0xc - componentIndex) >> 2);
+      if (uVar8 < componentContextPtr[3]) {
+        eventTypeCode = (uint)((longlong)componentContextPtr + (0xc - componentIndex) >> 2);
         goto FUN_180828129;
       }
-      puVar5 = puVar5 + 4;
+      componentContextPtr = componentContextPtr + 4;
     }
     for (uVar6 = uVar6 & 3; uVar6 != 0; uVar6 = uVar6 - 1) {
-      if (uVar8 < *puVar5) goto LAB_180828188;
-      puVar5 = puVar5 + 1;
+      if (uVar8 < *componentContextPtr) goto LAB_180828188;
+      componentContextPtr = componentContextPtr + 1;
     }
   }
 FUN_180828129:
@@ -256789,7 +256789,7 @@ FUN_180828129:
   *dataSource = ((longlong)(int)uVar3 >> 3) + *dataSource;
   return (int)*(short *)(*(longlong *)(bufferData + 0x50) + (ulonglong)(eventTypeCode - 1) * 2);
 LAB_180828188:
-  eventTypeCode = (uint)((longlong)puVar5 - componentIndex >> 2);
+  eventTypeCode = (uint)((longlong)componentContextPtr - componentIndex >> 2);
   goto FUN_180828129;
 }
 
@@ -282457,7 +282457,7 @@ undefined4 * FUN_18083c870(undefined8 uiContext,longlong dataSource,undefined8 t
   undefined4 semaphoreHandle;
   int compareResult;
   uint uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   uint uVar6;
   int *piVar8;
   ulonglong uVar9;
@@ -282469,25 +282469,25 @@ undefined4 * FUN_18083c870(undefined8 uiContext,longlong dataSource,undefined8 t
   
   operationResult0 = 1;
   functionResult1 = 0;
-  puVar5 = (undefined4 *)FUN_1807c4170(uiContext,1,0x714);
+  componentContextPtr = (undefined4 *)FUN_1807c4170(uiContext,1,0x714);
   allocatedMemory = *(longlong *)(dataSource + 0x20);
-  if (puVar5 == (undefined4 *)0x0) {
+  if (componentContextPtr == (undefined4 *)0x0) {
     return (undefined4 *)0x0;
   }
   semaphoreHandle = FUN_18082d7f0(targetBuffer,0x18);
-  *puVar5 = semaphoreHandle;
+  *componentContextPtr = semaphoreHandle;
   semaphoreHandle = FUN_18082d7f0(targetBuffer,0x18);
-  puVar5[1] = semaphoreHandle;
+  componentContextPtr[1] = semaphoreHandle;
   compareResult = FUN_18082d7f0(targetBuffer,0x18);
-  puVar5[2] = compareResult + 1;
+  componentContextPtr[2] = compareResult + 1;
   compareResult = FUN_18082d7f0(targetBuffer,6);
-  puVar5[3] = compareResult + 1;
+  componentContextPtr[3] = compareResult + 1;
   compareResult = FUN_18082d7f0(targetBuffer,8);
-  puVar5[4] = compareResult;
+  componentContextPtr[4] = compareResult;
   if (-1 < compareResult) {
     uVar6 = 0;
-    if (0 < (int)puVar5[3]) {
-      pfunctionResult3 = puVar5 + 5;
+    if (0 < (int)componentContextPtr[3]) {
+      pfunctionResult3 = componentContextPtr + 5;
       uVar9 = functionResult1;
       functionResult2 = functionResult1;
       do {
@@ -282511,10 +282511,10 @@ undefined4 * FUN_18083c870(undefined8 uiContext,longlong dataSource,undefined8 t
         uVar4 = (int)uVar9 + 1;
         uVar9 = (ulonglong)uVar4;
         pfunctionResult3 = pfunctionResult3 + 1;
-      } while ((int)uVar4 < (int)puVar5[3]);
+      } while ((int)uVar4 < (int)componentContextPtr[3]);
     }
     if (0 < (int)uVar6) {
-      piVar8 = puVar5 + 0x45;
+      piVar8 = componentContextPtr + 0x45;
       uVar9 = functionResult1;
       do {
         compareResult = FUN_18082d7f0(targetBuffer,8);
@@ -282524,9 +282524,9 @@ undefined4 * FUN_18083c870(undefined8 uiContext,longlong dataSource,undefined8 t
         piVar8 = piVar8 + 1;
       } while ((longlong)uVar9 < (longlong)(int)uVar6);
     }
-    if ((int)puVar5[4] < *(int *)(allocatedMemory + 0x18)) {
+    if ((int)componentContextPtr[4] < *(int *)(allocatedMemory + 0x18)) {
       if (0 < (int)uVar6) {
-        piVar8 = puVar5 + 0x45;
+        piVar8 = componentContextPtr + 0x45;
         do {
           if ((*(int *)(allocatedMemory + 0x18) <= *piVar8) ||
              (*(int *)(*(longlong *)(allocatedMemory + 0xb20 + (longlong)*piVar8 * 8) + 0x10) == 0))
@@ -282535,22 +282535,22 @@ undefined4 * FUN_18083c870(undefined8 uiContext,longlong dataSource,undefined8 t
           piVar8 = piVar8 + 1;
         } while ((longlong)functionResult1 < (longlong)(int)uVar6);
       }
-      piVar8 = *(int **)(allocatedMemory + 0xb20 + (longlong)(int)puVar5[4] * 8);
+      piVar8 = *(int **)(allocatedMemory + 0xb20 + (longlong)(int)componentContextPtr[4] * 8);
       compareResult = *piVar8;
       if (compareResult < 1) {
-        return puVar5;
+        return componentContextPtr;
       }
-      while (operationResult0 = operationResult0 * puVar5[3], operationResult0 <= piVar8[1]) {
+      while (operationResult0 = operationResult0 * componentContextPtr[3], operationResult0 <= piVar8[1]) {
         compareResult = compareResult + -1;
         if (compareResult < 1) {
-          return puVar5;
+          return componentContextPtr;
         }
       }
     }
   }
 LAB_18083ca29:
                     // WARNING: Subroutine does not return
-  memset(puVar5,0,0x714);
+  memset(componentContextPtr,0,0x714);
 }
 
 
@@ -282765,18 +282765,18 @@ FUN_18083ccea(undefined8 uiContext,longlong dataSource,undefined8 *targetBuffer,
   ulonglong uVar3;
   longlong context;
   int iVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   uint in_R11D;
   longlong in_stack_00000060;
   code *pcStack0000000000000068;
   
   uVar3 = (ulonglong)in_R11D;
-  puVar5 = bufferSize;
+  componentContextPtr = bufferSize;
   do {
     if (*(int *)(in_stack_00000060 + uVar3 * 4) != 0) {
       in_R11D = in_R11D + 1;
-      *puVar5 = bufferSize[uVar3];
-      puVar5 = puVar5 + 1;
+      *componentContextPtr = bufferSize[uVar3];
+      componentContextPtr = componentContextPtr + 1;
     }
     uVar3 = uVar3 + 1;
   } while ((longlong)uVar3 < context);
@@ -282908,18 +282908,18 @@ FUN_18083cd7a(undefined8 uiContext,longlong dataSource,undefined8 *targetBuffer,
   ulonglong uVar3;
   longlong context;
   int iVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   uint in_R11D;
   longlong in_stack_00000060;
   code *pcStack0000000000000068;
   
   uVar3 = (ulonglong)in_R11D;
-  puVar5 = bufferSize;
+  componentContextPtr = bufferSize;
   do {
     if (*(int *)(in_stack_00000060 + uVar3 * 4) != 0) {
       in_R11D = in_R11D + 1;
-      *puVar5 = bufferSize[uVar3];
-      puVar5 = puVar5 + 1;
+      *componentContextPtr = bufferSize[uVar3];
+      componentContextPtr = componentContextPtr + 1;
     }
     uVar3 = uVar3 + 1;
   } while ((longlong)uVar3 < context);
@@ -285567,7 +285567,7 @@ undefined4 FUN_180840790(undefined4 uiContext,longlong dataSource,undefined8 *ta
   undefined8 *psemaphoreHandle;
   int compareResult;
   undefined *bufferPtr;
-  undefined *puVar5;
+  undefined *componentContextPtr;
   longlong alStackX_18 [2];
   undefined8 uStack_38;
   undefined8 uStack_30;
@@ -285594,7 +285594,7 @@ undefined4 FUN_180840790(undefined4 uiContext,longlong dataSource,undefined8 *ta
   }
   else if (compareResult != 0) goto LAB_1808408dd;
   pfunctionResult = (undefined8 *)(lStack_28 + 0xb0);
-  puVar5 = &UIDefaultDataBuffer;
+  componentContextPtr = &UIDefaultDataBuffer;
   for (psemaphoreHandle = (undefined8 *)*pfunctionResult; psemaphoreHandle != pfunctionResult; psemaphoreHandle = (undefined8 *)*psemaphoreHandle) {
     if (*(int *)(psemaphoreHandle + 3) < 1) {
       bufferPtr = &UIDefaultDataBuffer;
@@ -285605,9 +285605,9 @@ undefined4 FUN_180840790(undefined4 uiContext,longlong dataSource,undefined8 *ta
     compareResult = func_0x00018076b420(bufferPtr,dataSource);
     if (compareResult == 0) {
       if (0 < *(int *)(psemaphoreHandle + 3)) {
-        puVar5 = (undefined *)psemaphoreHandle[2];
+        componentContextPtr = (undefined *)psemaphoreHandle[2];
       }
-      *targetBuffer = puVar5;
+      *targetBuffer = componentContextPtr;
       *(undefined4 *)(targetBuffer + 1) = 2;
       *(undefined4 *)(targetBuffer + 2) = *(undefined4 *)(psemaphoreHandle + 4);
       goto LAB_1808408dd;
@@ -285633,9 +285633,9 @@ undefined4 FUN_180840790(undefined4 uiContext,longlong dataSource,undefined8 *ta
       *targetBuffer = bufferPtr;
       *(undefined4 *)(targetBuffer + 1) = 3;
       if (0 < *(int *)(psemaphoreHandle + 5)) {
-        puVar5 = (undefined *)psemaphoreHandle[4];
+        componentContextPtr = (undefined *)psemaphoreHandle[4];
       }
-      targetBuffer[2] = puVar5;
+      targetBuffer[2] = componentContextPtr;
       break;
     }
     if (psemaphoreHandle == pfunctionResult) break;
@@ -285658,7 +285658,7 @@ void FUN_1808407ce(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   undefined *bufferPtr;
   undefined8 in_RCX;
   undefined8 *context;
-  undefined *puVar5;
+  undefined *componentContextPtr;
   undefined4 unaff_ESI;
   undefined8 in_XMM0_Qb;
   undefined8 uStack0000000000000028;
@@ -285674,7 +285674,7 @@ void FUN_1808407ce(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
   }
   else if (compareResult != 0) goto LAB_1808408dd;
   pfunctionResult = (undefined8 *)(lStack0000000000000030 + 0xb0);
-  puVar5 = &UIDefaultDataBuffer;
+  componentContextPtr = &UIDefaultDataBuffer;
   for (psemaphoreHandle = (undefined8 *)*pfunctionResult; psemaphoreHandle != pfunctionResult; psemaphoreHandle = (undefined8 *)*psemaphoreHandle) {
     if (*(int *)(psemaphoreHandle + 3) < 1) {
       bufferPtr = &UIDefaultDataBuffer;
@@ -285685,9 +285685,9 @@ void FUN_1808407ce(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
     compareResult = func_0x00018076b420(bufferPtr);
     if (compareResult == 0) {
       if (0 < *(int *)(psemaphoreHandle + 3)) {
-        puVar5 = (undefined *)psemaphoreHandle[2];
+        componentContextPtr = (undefined *)psemaphoreHandle[2];
       }
-      *context = puVar5;
+      *context = componentContextPtr;
       *(undefined4 *)(context + 1) = 2;
       *(undefined4 *)(context + 2) = *(undefined4 *)(psemaphoreHandle + 4);
       goto LAB_1808408dd;
@@ -285713,9 +285713,9 @@ void FUN_1808407ce(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
       *context = bufferPtr;
       *(undefined4 *)(context + 1) = 3;
       if (0 < *(int *)(psemaphoreHandle + 5)) {
-        puVar5 = (undefined *)psemaphoreHandle[4];
+        componentContextPtr = (undefined *)psemaphoreHandle[4];
       }
-      context[2] = puVar5;
+      context[2] = componentContextPtr;
       break;
     }
     if (psemaphoreHandle == pfunctionResult) break;
@@ -293908,7 +293908,7 @@ undefined8 FUN_18084c470(longlong *uiContext,int dataSource)
   longlong componentIndex;
   undefined4 *puVar3;
   longlong lVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   
   if (dataSource < (int)uiContext[1]) {
     return 0x1c;
@@ -293923,10 +293923,10 @@ undefined8 FUN_18084c470(longlong *uiContext,int dataSource)
         operationResult = (int)uiContext[1];
         lVar4 = (longlong)operationResult;
         if ((operationResult != 0) && (componentIndex = *uiContext, 0 < operationResult)) {
-          puVar5 = puVar3;
+          componentContextPtr = puVar3;
           do {
-            *puVar5 = *(undefined4 *)((componentIndex - (longlong)puVar3) + (longlong)puVar5);
-            puVar5 = puVar5 + 1;
+            *componentContextPtr = *(undefined4 *)((componentIndex - (longlong)puVar3) + (longlong)componentContextPtr);
+            componentContextPtr = componentContextPtr + 1;
             lVar4 = lVar4 + -1;
           } while (lVar4 != 0);
         }
@@ -293956,7 +293956,7 @@ undefined8 FUN_18084c494(undefined8 uiContext,int dataSource)
   longlong componentIndex;
   undefined4 *puVar3;
   longlong lVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   longlong *context;
   int allocationFlags;
   
@@ -293979,10 +293979,10 @@ LAB_18084c510:
       operationResult = (int)context[1];
       lVar4 = (longlong)operationResult;
       if ((operationResult != 0) && (componentIndex = *context, 0 < operationResult)) {
-        puVar5 = puVar3;
+        componentContextPtr = puVar3;
         do {
-          *puVar5 = *(undefined4 *)((componentIndex - (longlong)puVar3) + (longlong)puVar5);
-          puVar5 = puVar5 + 1;
+          *componentContextPtr = *(undefined4 *)((componentIndex - (longlong)puVar3) + (longlong)componentContextPtr);
+          componentContextPtr = componentContextPtr + 1;
           lVar4 = lVar4 + -1;
         } while (lVar4 != 0);
       }
@@ -294013,7 +294013,7 @@ void FUN_18084c5a0(longlong *uiContext)
   undefined4 semaphoreHandle;
   undefined4 uVar3;
   undefined4 uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   longlong lVar6;
   longlong lVar7;
   uint uVar8;
@@ -294037,11 +294037,11 @@ void FUN_18084c5a0(longlong *uiContext)
     if (operationResult < 0) {
       lVar6 = *uiContext + 0x14 + (longlong)operationResult * 0x18;
       do {
-        puVar5 = (undefined4 *)FUN_180847820();
-        semaphoreHandle = puVar5[1];
-        uVar3 = puVar5[2];
-        uVar4 = puVar5[3];
-        *(undefined4 *)(lVar6 + -0x14) = *puVar5;
+        componentContextPtr = (undefined4 *)FUN_180847820();
+        semaphoreHandle = componentContextPtr[1];
+        uVar3 = componentContextPtr[2];
+        uVar4 = componentContextPtr[3];
+        *(undefined4 *)(lVar6 + -0x14) = *componentContextPtr;
         *(undefined4 *)(lVar6 + -0x10) = semaphoreHandle;
         *(undefined4 *)(lVar6 + -0xc) = uVar3;
         *(undefined4 *)(lVar6 + -8) = uVar4;
@@ -294115,7 +294115,7 @@ void FUN_18084c61e(longlong uiContext)
   undefined4 uVar3;
   undefined4 uVar4;
   longlong in_RAX;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   uint uVar6;
   longlong lVar7;
   undefined8 unaff_RBP;
@@ -294124,11 +294124,11 @@ void FUN_18084c61e(longlong uiContext)
   
   lVar7 = in_RAX + 0x14 + uiContext * 8;
   do {
-    puVar5 = (undefined4 *)FUN_180847820();
-    functionResult = *puVar5;
-    semaphoreHandle = puVar5[1];
-    uVar3 = puVar5[2];
-    uVar4 = puVar5[3];
+    componentContextPtr = (undefined4 *)FUN_180847820();
+    functionResult = *componentContextPtr;
+    semaphoreHandle = componentContextPtr[1];
+    uVar3 = componentContextPtr[2];
+    uVar4 = componentContextPtr[3];
     *(undefined4 *)(lVar7 + -0x14) = functionResult;
     *(undefined4 *)(lVar7 + -0x10) = semaphoreHandle;
     *(undefined4 *)(lVar7 + -0xc) = uVar3;
@@ -295117,7 +295117,7 @@ undefined4 FUN_18084cbf0(longlong uiContext,uint dataSource,double targetBuffer,
   uint semaphoreHandle;
   undefined4 *puVar3;
   uint uVar4;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   undefined1 *puVar6;
   undefined1 *peventTypeCode;
   uint uVar8;
@@ -295139,25 +295139,25 @@ undefined4 FUN_18084cbf0(longlong uiContext,uint dataSource,double targetBuffer,
     uStack_3c = 0x42f00000;
     uStack_40 = *puVar3;
     puVar6 = pfunctionResult;
-    puVar5 = (undefined1 *)0x0;
+    componentContextPtr = (undefined1 *)0x0;
     while (((peventTypeCode = puVar6, puVar6 = (undefined1 *)0x0, operationResult1 = 0, pfunctionResult <= peventTypeCode &&
             (peventTypeCode < pfunctionResult + (longlong)*(int *)(bufferData + 0x90) * 0x20)) &&
            (puVar6 = peventTypeCode, operationResult1 = operationResult0, *(uint *)(peventTypeCode + 0x18) <= dataSource))) {
       operationResult0 = operationResult0 + 1;
-      puVar5 = peventTypeCode;
+      componentContextPtr = peventTypeCode;
       puVar6 = peventTypeCode + 0x20;
     }
-    if ((puVar5 == (undefined1 *)0x0) &&
-       ((*(int *)(bufferData + 0x90) == 0 || (puVar5 = puVar6, puVar6 == (undefined1 *)0x0)))) {
-      puVar5 = auStack_58;
+    if ((componentContextPtr == (undefined1 *)0x0) &&
+       ((*(int *)(bufferData + 0x90) == 0 || (componentContextPtr = puVar6, puVar6 == (undefined1 *)0x0)))) {
+      componentContextPtr = auStack_58;
     }
     operationResult0 = 0;
     if (0.0 < targetBuffer) {
       do {
         peventTypeCode = (undefined1 *)0x0;
         dVar12 = 2880000.0 /
-                 (((double)*(float *)(puVar5 + 0x1c) * (double)*(int *)(puVar5 + 0x10)) /
-                 (double)*(int *)(puVar5 + 0x14));
+                 (((double)*(float *)(componentContextPtr + 0x1c) * (double)*(int *)(componentContextPtr + 0x10)) /
+                 (double)*(int *)(componentContextPtr + 0x14));
         uVar8 = (uint)(longlong)(dVar12 * targetBuffer);
         uVar4 = uVar8;
         if (puVar6 != (undefined1 *)0x0) {
@@ -295176,7 +295176,7 @@ undefined4 FUN_18084cbf0(longlong uiContext,uint dataSource,double targetBuffer,
         }
         operationResult0 = operationResult0 + uVar9;
         targetBuffer = (double)semaphoreHandle / dVar12;
-        puVar5 = puVar6;
+        componentContextPtr = puVar6;
         puVar6 = peventTypeCode;
       } while (0.0 < targetBuffer);
     }
@@ -295196,7 +295196,7 @@ undefined8 FUN_18084cc23(void)
   uint uVar3;
   longlong unaff_RBP;
   undefined1 *bufferPtr;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   undefined1 *puVar6;
   uint eventTypeCode;
   uint uVar8;
@@ -295218,17 +295218,17 @@ undefined8 FUN_18084cc23(void)
   iVar9 = 0;
   pfunctionResult = *(undefined1 **)(unaff_RBP + 0x88);
   uStack000000000000003c = 0x42f00000;
-  puVar5 = pfunctionResult;
+  componentContextPtr = pfunctionResult;
   bufferPtr = (undefined1 *)0x0;
-  while (((puVar6 = puVar5, puVar5 = (undefined1 *)0x0, operationResult0 = 0, pfunctionResult <= puVar6 &&
+  while (((puVar6 = componentContextPtr, componentContextPtr = (undefined1 *)0x0, operationResult0 = 0, pfunctionResult <= puVar6 &&
           (puVar6 < pfunctionResult + (longlong)*(int *)(unaff_RBP + 0x90) * 0x20)) &&
-         (puVar5 = puVar6, operationResult0 = iVar9, *(uint *)(puVar6 + 0x18) <= unaff_R15D))) {
+         (componentContextPtr = puVar6, operationResult0 = iVar9, *(uint *)(puVar6 + 0x18) <= unaff_R15D))) {
     iVar9 = iVar9 + 1;
     bufferPtr = puVar6;
-    puVar5 = puVar6 + 0x20;
+    componentContextPtr = puVar6 + 0x20;
   }
   if ((bufferPtr == (undefined1 *)0x0) &&
-     ((*(int *)(unaff_RBP + 0x90) == 0 || (bufferPtr = puVar5, puVar5 == (undefined1 *)0x0)))) {
+     ((*(int *)(unaff_RBP + 0x90) == 0 || (bufferPtr = componentContextPtr, componentContextPtr == (undefined1 *)0x0)))) {
     bufferPtr = auStackX_20;
   }
   iVar9 = 0;
@@ -295240,9 +295240,9 @@ undefined8 FUN_18084cc23(void)
                (double)*(int *)(bufferPtr + 0x14));
       eventTypeCode = (uint)(longlong)(dVar11 * unaff_XMM6_Qa);
       uVar3 = eventTypeCode;
-      if (puVar5 != (undefined1 *)0x0) {
-        uVar3 = *(int *)(puVar5 + 0x18) - unaff_R15D;
-        unaff_R15D = *(uint *)(puVar5 + 0x18);
+      if (componentContextPtr != (undefined1 *)0x0) {
+        uVar3 = *(int *)(componentContextPtr + 0x18) - unaff_R15D;
+        unaff_R15D = *(uint *)(componentContextPtr + 0x18);
         operationResult0 = operationResult0 + 1;
         if (operationResult0 < *(int *)(unaff_RBP + 0x90)) {
           puVar6 = pfunctionResult + (longlong)operationResult0 * 0x20;
@@ -295256,8 +295256,8 @@ undefined8 FUN_18084cc23(void)
       }
       iVar9 = iVar9 + uVar8;
       unaff_XMM6_Qa = (double)semaphoreHandle / dVar11;
-      bufferPtr = puVar5;
-      puVar5 = puVar6;
+      bufferPtr = componentContextPtr;
+      componentContextPtr = puVar6;
     } while (0.0 < unaff_XMM6_Qa);
   }
   *unaff_R12 = iVar9;
@@ -295789,7 +295789,7 @@ void FUN_18084d068(void)
   longlong *colorBufferPointer;
   uint uVar3;
   uint uVar4;
-  uint *puVar5;
+  uint *componentContextPtr;
   uint uVar6;
   ulonglong eventTypeCode;
   undefined8 *context;
@@ -295826,11 +295826,11 @@ void FUN_18084d068(void)
              ) {
             in_stack_00000050 = *(uint *)(plVar9 + 4) + *(uint *)(context + 0x15);
           }
-          puVar5 = &stack0x00000050;
+          componentContextPtr = &stack0x00000050;
           if (in_stack_00000050 < *unaff_RDI) {
-            puVar5 = unaff_RDI;
+            componentContextPtr = unaff_RDI;
           }
-          *unaff_RDI = *puVar5;
+          *unaff_RDI = *componentContextPtr;
         }
       }
 LAB_18084cfd9:
@@ -296093,7 +296093,7 @@ undefined8 FUN_18084d1d0(undefined1 *uiContext,undefined8 dataSource,undefined1 
   uint semaphoreHandle;
   bool bVar3;
   uint uVar4;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   uint uVar6;
   uint unaff_EBX;
   undefined1 *unaff_RBP;
@@ -296108,12 +296108,12 @@ undefined8 FUN_18084d1d0(undefined1 *uiContext,undefined8 dataSource,undefined1 
   uint *unaff_R15;
   undefined1 auStackX_20 [8];
   
-  while (((puVar5 = uiContext, peventTypeCode = unaff_RBP, in_R10 <= targetBuffer &&
+  while (((componentContextPtr = uiContext, peventTypeCode = unaff_RBP, in_R10 <= targetBuffer &&
           (targetBuffer < in_R10 + (longlong)*(int *)(unaff_R14 + 0x90) * 0x20)) &&
-         (peventTypeCode = puVar5, *(uint *)(puVar5 + 0x18) <= unaff_EBX))) {
-    targetBuffer = puVar5 + 0x20;
-    unaff_RSI = puVar5;
-    in_R11 = puVar5;
+         (peventTypeCode = componentContextPtr, *(uint *)(componentContextPtr + 0x18) <= unaff_EBX))) {
+    targetBuffer = componentContextPtr + 0x20;
+    unaff_RSI = componentContextPtr;
+    in_R11 = componentContextPtr;
     uiContext = targetBuffer;
   }
   if (in_R11 == (undefined1 *)0x0) {
@@ -296735,7 +296735,7 @@ undefined8 FUN_18084d86d(void)
   uint uVar3;
   uint uVar4;
   uint unaff_EBP;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   undefined1 *puVar6;
   undefined1 *peventTypeCode;
   int iVar8;
@@ -296758,17 +296758,17 @@ undefined8 FUN_18084d86d(void)
   pfunctionResult = *(undefined1 **)(unaff_R15 + 0x88);
   uStack000000000000003c = 0x42f00000;
   puVar6 = pfunctionResult;
-  puVar5 = (undefined1 *)0x0;
+  componentContextPtr = (undefined1 *)0x0;
   while (((peventTypeCode = puVar6, puVar6 = (undefined1 *)0x0, iVar9 = 0, pfunctionResult <= peventTypeCode &&
           (peventTypeCode < pfunctionResult + (longlong)*(int *)(unaff_R15 + 0x90) * 0x20)) &&
          (puVar6 = peventTypeCode, iVar9 = iVar8, *(uint *)(peventTypeCode + 0x18) <= unaff_R12D))) {
     iVar8 = iVar8 + 1;
-    puVar5 = peventTypeCode;
+    componentContextPtr = peventTypeCode;
     puVar6 = peventTypeCode + 0x20;
   }
-  if ((puVar5 == (undefined1 *)0x0) &&
-     ((*(int *)(unaff_R15 + 0x90) == 0 || (puVar5 = puVar6, puVar6 == (undefined1 *)0x0)))) {
-    puVar5 = auStackX_20;
+  if ((componentContextPtr == (undefined1 *)0x0) &&
+     ((*(int *)(unaff_R15 + 0x90) == 0 || (componentContextPtr = puVar6, puVar6 == (undefined1 *)0x0)))) {
+    componentContextPtr = auStackX_20;
   }
   dVar11 = 0.0;
   if (unaff_EBP != 0) {
@@ -296794,9 +296794,9 @@ undefined8 FUN_18084d86d(void)
         unaff_EBP = uVar3;
       }
       dVar11 = dVar11 + (double)semaphoreHandle *
-                        (((double)*(float *)(puVar5 + 0x1c) * (double)*(int *)(puVar5 + 0x10)) /
-                        (double)*(int *)(puVar5 + 0x14)) * 3.4722222222222224e-07;
-      puVar5 = puVar6;
+                        (((double)*(float *)(componentContextPtr + 0x1c) * (double)*(int *)(componentContextPtr + 0x10)) /
+                        (double)*(int *)(componentContextPtr + 0x14)) * 3.4722222222222224e-07;
+      componentContextPtr = puVar6;
       puVar6 = peventTypeCode;
     } while (unaff_EBP != 0);
   }
@@ -296815,7 +296815,7 @@ undefined8 FUN_18084d93b(undefined8 uiContext,int dataSource)
   uint unaff_EBP;
   undefined1 *bufferPtr;
   undefined1 *unaff_RDI;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   longlong in_R11;
   int unaff_R12D;
   double *unaff_R13;
@@ -296832,14 +296832,14 @@ undefined8 FUN_18084d93b(undefined8 uiContext,int dataSource)
   dVar7 = 0.0;
   if (unaff_EBP != 0) {
     do {
-      puVar5 = (undefined1 *)0x0;
+      componentContextPtr = (undefined1 *)0x0;
       uVar3 = unaff_EBP;
       if (unaff_RDI != (undefined1 *)0x0) {
         uVar3 = *(int *)(unaff_RDI + 0x18) - unaff_R12D;
         unaff_R12D = *(int *)(unaff_RDI + 0x18);
         unaff_R14D = unaff_R14D + 1;
         if (unaff_R14D < *(int *)(unaff_R15 + 0x90)) {
-          puVar5 = (undefined1 *)((longlong)unaff_R14D * 0x20 + in_R11);
+          componentContextPtr = (undefined1 *)((longlong)unaff_R14D * 0x20 + in_R11);
         }
       }
       semaphoreHandle = unaff_EBP - uVar3;
@@ -296856,7 +296856,7 @@ undefined8 FUN_18084d93b(undefined8 uiContext,int dataSource)
                       (((double)*(float *)(bufferPtr + 0x1c) * (double)*(int *)(bufferPtr + 0x10)) /
                       (double)*(int *)(bufferPtr + 0x14)) * 3.4722222222222224e-07;
       bufferPtr = unaff_RDI;
-      unaff_RDI = puVar5;
+      unaff_RDI = componentContextPtr;
     } while (unaff_EBP != 0);
   }
   *unaff_R13 = dVar7;
@@ -297094,7 +297094,7 @@ undefined8 FUN_18084def0(longlong *uiContext,int dataSource)
   longlong componentIndex;
   longlong stringCompareIndex;
   longlong lVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   int iVar6;
   longlong lVar7;
   
@@ -297114,19 +297114,19 @@ undefined8 FUN_18084def0(longlong *uiContext,int dataSource)
       iVar6 = 0;
       componentIndex = *uiContext;
       if (0 < operationResult) {
-        puVar5 = (undefined4 *)(stringCompareIndex + 0xc);
+        componentContextPtr = (undefined4 *)(stringCompareIndex + 0xc);
         lVar7 = componentIndex - stringCompareIndex;
         do {
-          *(undefined8 *)(puVar5 + -3) = 0;
-          *(undefined8 *)(puVar5 + -1) = 0;
-          *(undefined8 *)(puVar5 + -3) = *(undefined8 *)(lVar7 + -0xc + (longlong)puVar5);
-          puVar5[-1] = *(undefined4 *)(lVar7 + -4 + (longlong)puVar5);
-          *puVar5 = *(undefined4 *)(lVar7 + (longlong)puVar5);
-          *(undefined8 *)(lVar7 + -0xc + (longlong)puVar5) = 0;
-          *(undefined8 *)(lVar7 + -4 + (longlong)puVar5) = 0;
+          *(undefined8 *)(componentContextPtr + -3) = 0;
+          *(undefined8 *)(componentContextPtr + -1) = 0;
+          *(undefined8 *)(componentContextPtr + -3) = *(undefined8 *)(lVar7 + -0xc + (longlong)componentContextPtr);
+          componentContextPtr[-1] = *(undefined4 *)(lVar7 + -4 + (longlong)componentContextPtr);
+          *componentContextPtr = *(undefined4 *)(lVar7 + (longlong)componentContextPtr);
+          *(undefined8 *)(lVar7 + -0xc + (longlong)componentContextPtr) = 0;
+          *(undefined8 *)(lVar7 + -4 + (longlong)componentContextPtr) = 0;
           FUN_180840270((longlong)iVar6 * 0x10 + componentIndex);
           iVar6 = iVar6 + 1;
-          puVar5 = puVar5 + 4;
+          componentContextPtr = componentContextPtr + 4;
           lVar4 = lVar4 + -1;
         } while (lVar4 != 0);
       }
@@ -297152,7 +297152,7 @@ undefined8 FUN_18084df0d(undefined8 uiContext,int dataSource)
   longlong componentIndex;
   longlong stringCompareIndex;
   longlong lVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   int unaff_ESI;
   longlong *unaff_RDI;
   int iVar6;
@@ -297171,19 +297171,19 @@ undefined8 FUN_18084df0d(undefined8 uiContext,int dataSource)
       iVar6 = 0;
       componentIndex = *unaff_RDI;
       if (0 < operationResult) {
-        puVar5 = (undefined4 *)(stringCompareIndex + 0xc);
+        componentContextPtr = (undefined4 *)(stringCompareIndex + 0xc);
         lVar7 = componentIndex - stringCompareIndex;
         do {
-          *(undefined8 *)(puVar5 + -3) = 0;
-          *(undefined8 *)(puVar5 + -1) = 0;
-          *(undefined8 *)(puVar5 + -3) = *(undefined8 *)(lVar7 + -0xc + (longlong)puVar5);
-          puVar5[-1] = *(undefined4 *)(lVar7 + -4 + (longlong)puVar5);
-          *puVar5 = *(undefined4 *)(lVar7 + (longlong)puVar5);
-          *(undefined8 *)(lVar7 + -0xc + (longlong)puVar5) = 0;
-          *(undefined8 *)(lVar7 + -4 + (longlong)puVar5) = 0;
+          *(undefined8 *)(componentContextPtr + -3) = 0;
+          *(undefined8 *)(componentContextPtr + -1) = 0;
+          *(undefined8 *)(componentContextPtr + -3) = *(undefined8 *)(lVar7 + -0xc + (longlong)componentContextPtr);
+          componentContextPtr[-1] = *(undefined4 *)(lVar7 + -4 + (longlong)componentContextPtr);
+          *componentContextPtr = *(undefined4 *)(lVar7 + (longlong)componentContextPtr);
+          *(undefined8 *)(lVar7 + -0xc + (longlong)componentContextPtr) = 0;
+          *(undefined8 *)(lVar7 + -4 + (longlong)componentContextPtr) = 0;
           FUN_180840270((longlong)iVar6 * 0x10 + componentIndex);
           iVar6 = iVar6 + 1;
-          puVar5 = puVar5 + 4;
+          componentContextPtr = componentContextPtr + 4;
           lVar4 = lVar4 + -1;
         } while (lVar4 != 0);
       }
@@ -297810,7 +297810,7 @@ undefined8 FUN_18084ec10(longlong uiContext)
   char cVar2;
   undefined8 uVar3;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   undefined8 uVar6;
   undefined4 uStack_18;
   undefined4 uStack_14;
@@ -297846,36 +297846,36 @@ undefined8 FUN_18084ec10(longlong uiContext)
   }
   uVar4 = 1;
 LAB_180853ee2:
-  for (puVar5 = *(undefined8 **)(uiContext + 0x80);
-      (*(undefined8 **)(uiContext + 0x80) <= puVar5 &&
-      (puVar5 < *(undefined8 **)(uiContext + 0x80) + *(int *)(bufferData + 0x88))); puVar5 = puVar5 + 1)
+  for (componentContextPtr = *(undefined8 **)(uiContext + 0x80);
+      (*(undefined8 **)(uiContext + 0x80) <= componentContextPtr &&
+      (componentContextPtr < *(undefined8 **)(uiContext + 0x80) + *(int *)(bufferData + 0x88))); componentContextPtr = componentContextPtr + 1)
   {
-    uVar3 = FUN_1808b5de0(*puVar5,uVar4);
+    uVar3 = FUN_1808b5de0(*componentContextPtr,uVar4);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
   }
-  for (puVar5 = *(undefined8 **)(uiContext + 0x90);
-      (*(undefined8 **)(uiContext + 0x90) <= puVar5 &&
-      (puVar5 < *(undefined8 **)(uiContext + 0x90) + *(int *)(bufferData + 0x98))); puVar5 = puVar5 + 1)
+  for (componentContextPtr = *(undefined8 **)(uiContext + 0x90);
+      (*(undefined8 **)(uiContext + 0x90) <= componentContextPtr &&
+      (componentContextPtr < *(undefined8 **)(uiContext + 0x90) + *(int *)(bufferData + 0x98))); componentContextPtr = componentContextPtr + 1)
   {
-    uVar3 = FUN_1808b5de0(*puVar5,uVar4);
+    uVar3 = FUN_1808b5de0(*componentContextPtr,uVar4);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
   }
   FUN_18073d7c0(*(undefined8 *)(uiContext + 0x78),uVar4);
-  puVar5 = *(undefined8 **)(uiContext + 0x50);
+  componentContextPtr = *(undefined8 **)(uiContext + 0x50);
   while( true ) {
-    if (puVar5 == (undefined8 *)(uiContext + 0x50)) {
+    if (componentContextPtr == (undefined8 *)(uiContext + 0x50)) {
       return 0;
     }
-    uVar4 = FUN_180853e80(puVar5[2],uVar6);
+    uVar4 = FUN_180853e80(componentContextPtr[2],uVar6);
     if ((int)uVar4 != 0) break;
-    if (puVar5 == (undefined8 *)(uiContext + 0x50)) {
+    if (componentContextPtr == (undefined8 *)(uiContext + 0x50)) {
       return 0;
     }
-    puVar5 = (undefined8 *)*puVar5;
+    componentContextPtr = (undefined8 *)*componentContextPtr;
   }
   return uVar4;
 }
@@ -303044,7 +303044,7 @@ void FUN_18085219c(void)
   short sVar2;
   int compareResult;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   longlong lVar6;
   undefined8 *peventTypeCode;
   int iVar8;
@@ -303137,9 +303137,9 @@ LAB_180852302:
     compareResult = FUN_18084ec10();
     if (compareResult != 0) goto LAB_180852a9a;
     if ((undefined8 *)unaff_R15[0xc] == (undefined8 *)0x0) {
-      puVar5 = (undefined8 *)FUN_180847820();
-      in_stack_00000070 = (undefined8 *)*puVar5;
-      _iStack0000000000000078 = puVar5[1];
+      componentContextPtr = (undefined8 *)FUN_180847820();
+      in_stack_00000070 = (undefined8 *)*componentContextPtr;
+      _iStack0000000000000078 = componentContextPtr[1];
     }
     else {
       lVar4 = (*(code *)**(undefined8 **)unaff_R15[0xc])();
@@ -303161,17 +303161,17 @@ LAB_180852302:
     }
     sVar2 = func_0x00018084c3d0(lVar4);
     if ((sVar2 != 4) || (compareResult = FUN_18084edf0(), compareResult == 0)) {
-      puVar5 = unaff_R15 + 0x16;
-      pfunctionResult1 = (undefined8 *)*puVar5;
+      componentContextPtr = unaff_R15 + 0x16;
+      pfunctionResult1 = (undefined8 *)*componentContextPtr;
 joined_r0x0001808523af:
       do {
-        if (pfunctionResult1 == puVar5) {
+        if (pfunctionResult1 == componentContextPtr) {
           lVar4 = unaff_R15[8];
           pfunctionResult1 = *(undefined8 **)(lVar4 + 0x38);
           goto LAB_18085243e;
         }
         peventTypeCode = (undefined8 *)pfunctionResult1[2];
-        if (pfunctionResult1 != puVar5) {
+        if (pfunctionResult1 != componentContextPtr) {
           pfunctionResult1 = (undefined8 *)*pfunctionResult1;
         }
         lVar4 = (**(code **)*peventTypeCode)(peventTypeCode);
@@ -303199,12 +303199,12 @@ LAB_18085243e:
   goto LAB_180852518;
   in_stack_00000070 = (undefined8 *)*pfunctionResult1;
   _iStack0000000000000078 = pfunctionResult1[1];
-  peventTypeCode = (undefined8 *)*puVar5;
-  if (peventTypeCode != puVar5) {
+  peventTypeCode = (undefined8 *)*componentContextPtr;
+  if (peventTypeCode != componentContextPtr) {
     while ((lVar6 = (*(code *)**(undefined8 **)peventTypeCode[2])(),
            in_stack_00000070 != *(undefined8 **)(lVar6 + 0x10) ||
            (_iStack0000000000000078 != *(ulonglong *)(lVar6 + 0x18)))) {
-      if ((peventTypeCode == puVar5) || (peventTypeCode = (undefined8 *)*peventTypeCode, peventTypeCode == puVar5))
+      if ((peventTypeCode == componentContextPtr) || (peventTypeCode = (undefined8 *)*peventTypeCode, peventTypeCode == componentContextPtr))
       goto LAB_1808524b7;
     }
     peventTypeCode = (undefined8 *)FUN_180847820();
@@ -303475,7 +303475,7 @@ undefined8 FUN_180852b00(longlong *uiContext,uint *dataSource,undefined8 *target
   undefined8 semaphoreHandle;
   int compareResult;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   undefined8 uVar6;
   longlong lVar7;
   int iVar8;
@@ -303529,21 +303529,21 @@ undefined8 FUN_180852b00(longlong *uiContext,uint *dataSource,undefined8 *target
         return uVar4;
       }
     }
-    puVar5 = (undefined8 *)((longlong)(int)uiContext[3] * 0x20 + uiContext[2]);
-    *puVar5 = functionResult;
-    puVar5[1] = semaphoreHandle;
-    puVar5[2] = CONCAT44(uStack_24,0xffffffff);
-    puVar5[3] = uVar6;
+    componentContextPtr = (undefined8 *)((longlong)(int)uiContext[3] * 0x20 + uiContext[2]);
+    *componentContextPtr = functionResult;
+    componentContextPtr[1] = semaphoreHandle;
+    componentContextPtr[2] = CONCAT44(uStack_24,0xffffffff);
+    componentContextPtr[3] = uVar6;
     *(int *)(bufferData + 3) = (int)uiContext[3] + 1;
   }
   else {
-    puVar5 = (undefined8 *)((longlong)operationResult1 * 0x20 + uiContext[2]);
-    *(undefined4 *)(bufferData + 4) = *(undefined4 *)(puVar5 + 2);
-    *(undefined4 *)(puVar5 + 2) = 0xffffffff;
+    componentContextPtr = (undefined8 *)((longlong)operationResult1 * 0x20 + uiContext[2]);
+    *(undefined4 *)(bufferData + 4) = *(undefined4 *)(componentContextPtr + 2);
+    *(undefined4 *)(componentContextPtr + 2) = 0xffffffff;
     uVar6 = *(undefined8 *)(dataSource + 2);
-    *puVar5 = *(undefined8 *)dataSource;
-    puVar5[1] = uVar6;
-    puVar5[3] = *targetBuffer;
+    *componentContextPtr = *(undefined8 *)dataSource;
+    componentContextPtr[1] = uVar6;
+    componentContextPtr[3] = *targetBuffer;
   }
   *poperationResult2 = operationResult1;
   *(int *)((longlong)uiContext + 0x24) = *(int *)((longlong)uiContext + 0x24) + 1;
@@ -304732,7 +304732,7 @@ undefined8 FUN_180853c50(longlong uiContext,uint dataSource)
   char cVar2;
   undefined8 uVar3;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   undefined8 uVar6;
   uint eventTypeCode;
   undefined4 uStack_18;
@@ -304770,36 +304770,36 @@ undefined8 FUN_180853c50(longlong uiContext,uint dataSource)
   }
   uVar4 = 1;
 LAB_180853ee2:
-  for (puVar5 = *(undefined8 **)(uiContext + 0x80);
-      (*(undefined8 **)(uiContext + 0x80) <= puVar5 &&
-      (puVar5 < *(undefined8 **)(uiContext + 0x80) + *(int *)(bufferData + 0x88))); puVar5 = puVar5 + 1)
+  for (componentContextPtr = *(undefined8 **)(uiContext + 0x80);
+      (*(undefined8 **)(uiContext + 0x80) <= componentContextPtr &&
+      (componentContextPtr < *(undefined8 **)(uiContext + 0x80) + *(int *)(bufferData + 0x88))); componentContextPtr = componentContextPtr + 1)
   {
-    uVar3 = FUN_1808b5de0(*puVar5,uVar4);
+    uVar3 = FUN_1808b5de0(*componentContextPtr,uVar4);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
   }
-  for (puVar5 = *(undefined8 **)(uiContext + 0x90);
-      (*(undefined8 **)(uiContext + 0x90) <= puVar5 &&
-      (puVar5 < *(undefined8 **)(uiContext + 0x90) + *(int *)(bufferData + 0x98))); puVar5 = puVar5 + 1)
+  for (componentContextPtr = *(undefined8 **)(uiContext + 0x90);
+      (*(undefined8 **)(uiContext + 0x90) <= componentContextPtr &&
+      (componentContextPtr < *(undefined8 **)(uiContext + 0x90) + *(int *)(bufferData + 0x98))); componentContextPtr = componentContextPtr + 1)
   {
-    uVar3 = FUN_1808b5de0(*puVar5,uVar4);
+    uVar3 = FUN_1808b5de0(*componentContextPtr,uVar4);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
   }
   FUN_18073d7c0(*(undefined8 *)(uiContext + 0x78),uVar4);
-  puVar5 = *(undefined8 **)(uiContext + 0x50);
+  componentContextPtr = *(undefined8 **)(uiContext + 0x50);
   while( true ) {
-    if (puVar5 == (undefined8 *)(uiContext + 0x50)) {
+    if (componentContextPtr == (undefined8 *)(uiContext + 0x50)) {
       return 0;
     }
-    uVar4 = FUN_180853e80(puVar5[2],uVar6);
+    uVar4 = FUN_180853e80(componentContextPtr[2],uVar6);
     if ((int)uVar4 != 0) break;
-    if (puVar5 == (undefined8 *)(uiContext + 0x50)) {
+    if (componentContextPtr == (undefined8 *)(uiContext + 0x50)) {
       return 0;
     }
-    puVar5 = (undefined8 *)*puVar5;
+    componentContextPtr = (undefined8 *)*componentContextPtr;
   }
   return uVar4;
 }
@@ -304890,7 +304890,7 @@ undefined8 FUN_180853e80(longlong uiContext,char dataSource)
   char cVar2;
   undefined8 uVar3;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   undefined8 uVar6;
   undefined4 uStack_18;
   undefined4 uStack_14;
@@ -304918,36 +304918,36 @@ undefined8 FUN_180853e80(longlong uiContext,char dataSource)
   }
   uVar4 = 1;
 LAB_180853ee2:
-  for (puVar5 = *(undefined8 **)(uiContext + 0x80);
-      (*(undefined8 **)(uiContext + 0x80) <= puVar5 &&
-      (puVar5 < *(undefined8 **)(uiContext + 0x80) + *(int *)(bufferData + 0x88))); puVar5 = puVar5 + 1)
+  for (componentContextPtr = *(undefined8 **)(uiContext + 0x80);
+      (*(undefined8 **)(uiContext + 0x80) <= componentContextPtr &&
+      (componentContextPtr < *(undefined8 **)(uiContext + 0x80) + *(int *)(bufferData + 0x88))); componentContextPtr = componentContextPtr + 1)
   {
-    uVar3 = FUN_1808b5de0(*puVar5,uVar4);
+    uVar3 = FUN_1808b5de0(*componentContextPtr,uVar4);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
   }
-  for (puVar5 = *(undefined8 **)(uiContext + 0x90);
-      (*(undefined8 **)(uiContext + 0x90) <= puVar5 &&
-      (puVar5 < *(undefined8 **)(uiContext + 0x90) + *(int *)(bufferData + 0x98))); puVar5 = puVar5 + 1)
+  for (componentContextPtr = *(undefined8 **)(uiContext + 0x90);
+      (*(undefined8 **)(uiContext + 0x90) <= componentContextPtr &&
+      (componentContextPtr < *(undefined8 **)(uiContext + 0x90) + *(int *)(bufferData + 0x98))); componentContextPtr = componentContextPtr + 1)
   {
-    uVar3 = FUN_1808b5de0(*puVar5,uVar4);
+    uVar3 = FUN_1808b5de0(*componentContextPtr,uVar4);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
   }
   FUN_18073d7c0(*(undefined8 *)(uiContext + 0x78),uVar4);
-  puVar5 = *(undefined8 **)(uiContext + 0x50);
+  componentContextPtr = *(undefined8 **)(uiContext + 0x50);
   while( true ) {
-    if (puVar5 == (undefined8 *)(uiContext + 0x50)) {
+    if (componentContextPtr == (undefined8 *)(uiContext + 0x50)) {
       return 0;
     }
-    uVar4 = FUN_180853e80(puVar5[2],uVar6);
+    uVar4 = FUN_180853e80(componentContextPtr[2],uVar6);
     if ((int)uVar4 != 0) break;
-    if (puVar5 == (undefined8 *)(uiContext + 0x50)) {
+    if (componentContextPtr == (undefined8 *)(uiContext + 0x50)) {
       return 0;
     }
-    puVar5 = (undefined8 *)*puVar5;
+    componentContextPtr = (undefined8 *)*componentContextPtr;
   }
   return uVar4;
 }
@@ -305542,7 +305542,7 @@ undefined4 FUN_18085461a(longlong uiContext,ulonglong dataSource,undefined4 targ
   ulonglong semaphoreHandle;
   undefined8 *puVar3;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   undefined4 uVar6;
   undefined4 uStack0000000000000040;
   undefined4 uStack0000000000000044;
@@ -305564,30 +305564,30 @@ undefined4 FUN_18085461a(longlong uiContext,ulonglong dataSource,undefined4 targ
     uVar6 = 0x1c;
   }
   else {
-    puVar5 = (undefined8 *)(uiContext + 0x80);
-    puVar3 = (undefined8 *)*puVar5;
+    componentContextPtr = (undefined8 *)(uiContext + 0x80);
+    puVar3 = (undefined8 *)*componentContextPtr;
     uStack0000000000000040 = (undefined4)dataSource;
     uStack0000000000000044 = (undefined4)(dataSource >> 0x20);
-    for (; puVar3 != puVar5; puVar3 = (undefined8 *)*puVar3) {
+    for (; puVar3 != componentContextPtr; puVar3 = (undefined8 *)*puVar3) {
       if (dataSource < (ulonglong)puVar3[2]) {
         uVar6 = 0;
-        puVar5 = (undefined8 *)
+        componentContextPtr = (undefined8 *)
                  FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180984b50,0xbf,0);
-        if (puVar5 == (undefined8 *)0x0) goto LAB_1808547b7;
-        *puVar5 = puVar5;
-        *(undefined4 *)(puVar5 + 2) = uStack0000000000000040;
-        *(undefined4 *)((longlong)puVar5 + 0x14) = uStack0000000000000044;
-        *(undefined4 *)(puVar5 + 3) = targetBuffer;
-        *(undefined4 *)((longlong)puVar5 + 0x1c) = bufferSize;
-        puVar5[1] = puVar5;
-        puVar5[4] = CONCAT44(in_stack_00000098,in_stack_00000090);
-        puVar5[1] = puVar3[1];
-        *puVar5 = puVar3;
-        puVar3[1] = puVar5;
-        *(undefined8 **)puVar5[1] = puVar5;
+        if (componentContextPtr == (undefined8 *)0x0) goto LAB_1808547b7;
+        *componentContextPtr = componentContextPtr;
+        *(undefined4 *)(componentContextPtr + 2) = uStack0000000000000040;
+        *(undefined4 *)((longlong)componentContextPtr + 0x14) = uStack0000000000000044;
+        *(undefined4 *)(componentContextPtr + 3) = targetBuffer;
+        *(undefined4 *)((longlong)componentContextPtr + 0x1c) = bufferSize;
+        componentContextPtr[1] = componentContextPtr;
+        componentContextPtr[4] = CONCAT44(in_stack_00000098,in_stack_00000090);
+        componentContextPtr[1] = puVar3[1];
+        *componentContextPtr = puVar3;
+        puVar3[1] = componentContextPtr;
+        *(undefined8 **)componentContextPtr[1] = componentContextPtr;
         goto LAB_1808547bc;
       }
-      if (puVar3 == puVar5) break;
+      if (puVar3 == componentContextPtr) break;
     }
     uVar6 = 0;
     puVar3 = (undefined8 *)
@@ -305605,7 +305605,7 @@ LAB_1808547b7:
       puVar3[1] = puVar3;
       puVar3[4] = CONCAT44(in_stack_00000098,in_stack_00000090);
       puVar3[1] = *(undefined8 *)(uiContext + 0x88);
-      *puVar3 = puVar5;
+      *puVar3 = componentContextPtr;
       *(undefined8 **)(uiContext + 0x88) = puVar3;
       *(undefined8 **)puVar3[1] = puVar3;
     }
@@ -305653,7 +305653,7 @@ int FUN_180854810(longlong uiContext,ulonglong dataSource,undefined4 targetBuffe
   int *pvalidationResult;
   int compareResult;
   ulonglong uVar4;
-  ulonglong *puVar5;
+  ulonglong *componentContextPtr;
   longlong lVar6;
   undefined4 eventTypeCode;
   longlong lStackX_8;
@@ -305694,12 +305694,12 @@ int FUN_180854810(longlong uiContext,ulonglong dataSource,undefined4 targetBuffe
   uStack_3c = eventTypeCode;
   lStack_38 = lStackX_8;
   if ((((longlong *)*pallocatedMemory == pallocatedMemory) && (*(longlong **)(uiContext + 0x78) == pallocatedMemory)) ||
-     (puVar5 = (ulonglong *)(*(longlong *)(bufferData + 0x78) + 0x10), dataSource != *puVar5)) {
+     (componentContextPtr = (ulonglong *)(*(longlong *)(bufferData + 0x78) + 0x10), dataSource != *componentContextPtr)) {
     compareResult = FUN_180859210(pallocatedMemory,&uStack_48);
     if (compareResult == 0) goto LAB_180854920;
   }
   else {
-    FUN_1808c6d60(puVar5,&uStack_48);
+    FUN_1808c6d60(componentContextPtr,&uStack_48);
 LAB_180854920:
     compareResult = 0;
   }
@@ -305736,7 +305736,7 @@ int FUN_180854818(longlong uiContext,ulonglong dataSource,undefined4 targetBuffe
   int compareResult;
   longlong in_RAX;
   ulonglong uVar4;
-  ulonglong *puVar5;
+  ulonglong *componentContextPtr;
   undefined8 context;
   undefined8 unaff_RBP;
   longlong lVar6;
@@ -305781,12 +305781,12 @@ int FUN_180854818(longlong uiContext,ulonglong dataSource,undefined4 targetBuffe
   param_7._4_4_ = eventTypeCode;
   param_8 = in_stack_00000080;
   if ((((longlong *)*pallocatedMemory == pallocatedMemory) && (*(longlong **)(uiContext + 0x78) == pallocatedMemory)) ||
-     (puVar5 = (ulonglong *)(*(longlong *)(bufferData + 0x78) + 0x10), dataSource != *puVar5)) {
+     (componentContextPtr = (ulonglong *)(*(longlong *)(bufferData + 0x78) + 0x10), dataSource != *componentContextPtr)) {
     compareResult = FUN_180859210(pallocatedMemory,&param_6);
     if (compareResult == 0) goto LAB_180854920;
   }
   else {
-    FUN_1808c6d60(puVar5,&param_6);
+    FUN_1808c6d60(componentContextPtr,&param_6);
 LAB_180854920:
     compareResult = 0;
   }
@@ -305976,7 +305976,7 @@ FUN_180854ce0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
   double dVar2;
   uint uVar3;
   uint uVar4;
-  uint *puVar5;
+  uint *componentContextPtr;
   undefined8 uVar6;
   longlong lVar7;
   longlong lVar8;
@@ -306024,11 +306024,11 @@ LAB_180854d65:
         FUN_18084da10();
         if (0 < *(int *)(lVar8 + 0x90)) {
           lVar7 = 0;
-          puVar5 = (uint *)(*(longlong *)(lVar8 + 0x88) + 0x18);
+          componentContextPtr = (uint *)(*(longlong *)(lVar8 + 0x88) + 0x18);
           do {
-            if ((*puVar5 < *pfunctionResult0) && (*puVar5 <= bufferSize)) break;
+            if ((*componentContextPtr < *pfunctionResult0) && (*componentContextPtr <= bufferSize)) break;
             lVar7 = lVar7 + 1;
-            puVar5 = puVar5 + 8;
+            componentContextPtr = componentContextPtr + 8;
           } while (lVar7 < *(int *)(lVar8 + 0x90));
         }
         if (*(int *)(targetBuffer + 0x24) != 0) {
@@ -306066,10 +306066,10 @@ LAB_180854d65:
     }
   }
   else {
-    puVar5 = *(uint **)(*(longlong *)(bufferData + 0x110) + 0x78);
-    for (pfunctionResult0 = puVar5 + 8;
-        (puVar5 <= pfunctionResult0 + -8 &&
-        (pfunctionResult0 + -8 < puVar5 + (longlong)*(int *)(*(longlong *)(bufferData + 0x110) + 0x80) * 10));
+    componentContextPtr = *(uint **)(*(longlong *)(bufferData + 0x110) + 0x78);
+    for (pfunctionResult0 = componentContextPtr + 8;
+        (componentContextPtr <= pfunctionResult0 + -8 &&
+        (pfunctionResult0 + -8 < componentContextPtr + (longlong)*(int *)(*(longlong *)(bufferData + 0x110) + 0x80) * 10));
         pfunctionResult0 = pfunctionResult0 + 10) {
       uVar4 = *pfunctionResult0;
       if (uVar4 <= bufferSize) {
@@ -306094,7 +306094,7 @@ undefined8 FUN_180854d7d(void)
   double dVar2;
   uint uVar3;
   uint uVar4;
-  uint *puVar5;
+  uint *componentContextPtr;
   undefined8 uVar6;
   longlong lVar7;
   longlong lVar8;
@@ -306144,11 +306144,11 @@ undefined8 FUN_180854d7d(void)
     FUN_18084da10();
     if (0 < *(int *)(lVar8 + 0x90)) {
       lVar7 = 0;
-      puVar5 = (uint *)(*(longlong *)(lVar8 + 0x88) + 0x18);
+      componentContextPtr = (uint *)(*(longlong *)(lVar8 + 0x88) + 0x18);
       do {
-        if ((*puVar5 < *unaff_RDI) && (*puVar5 <= unaff_EBX)) break;
+        if ((*componentContextPtr < *unaff_RDI) && (*componentContextPtr <= unaff_EBX)) break;
         lVar7 = lVar7 + 1;
-        puVar5 = puVar5 + 8;
+        componentContextPtr = componentContextPtr + 8;
       } while (lVar7 < *(int *)(lVar8 + 0x90));
     }
     if (*(int *)(unaff_RBP + 0x24) != 0) {
@@ -306172,15 +306172,15 @@ undefined8 FUN_180854d7d(void)
         dStack0000000000000068 = dStackX_20 - dStack0000000000000068;
       }
     }
-    puVar5 = in_stack_00000080;
+    componentContextPtr = in_stack_00000080;
     uVar6 = FUN_18084cbf0(*(undefined8 *)(unaff_R15 + 0x110),*(undefined4 *)(unaff_RBP + 0x20),
                           dStack0000000000000068,in_stack_00000080);
     if ((int)uVar6 != 0) {
       return uVar6;
     }
     uVar4 = *(uint *)(unaff_RBP + 0x24);
-    if ((*puVar5 == uVar4) && (uVar4 != 0)) {
-      *puVar5 = uVar4 - 1;
+    if ((*componentContextPtr == uVar4) && (uVar4 != 0)) {
+      *componentContextPtr = uVar4 - 1;
     }
   }
   return 0;
@@ -306625,7 +306625,7 @@ undefined8 FUN_1808553b0(longlong *uiContext)
   undefined4 semaphoreHandle;
   undefined4 uVar3;
   undefined4 uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined8 uVar6;
   uint eventTypeCode;
   undefined4 *puVar8;
@@ -306650,11 +306650,11 @@ undefined8 FUN_1808553b0(longlong *uiContext)
     if (operationResult < 0) {
       puVar8 = (undefined4 *)((longlong)operationResult * 0x1c + 0x10 + *uiContext);
       do {
-        puVar5 = (undefined4 *)FUN_180847820();
-        semaphoreHandle = puVar5[1];
-        uVar3 = puVar5[2];
-        uVar4 = puVar5[3];
-        puVar8[-4] = *puVar5;
+        componentContextPtr = (undefined4 *)FUN_180847820();
+        semaphoreHandle = componentContextPtr[1];
+        uVar3 = componentContextPtr[2];
+        uVar4 = componentContextPtr[3];
+        puVar8[-4] = *componentContextPtr;
         puVar8[-3] = semaphoreHandle;
         puVar8[-2] = uVar3;
         puVar8[-1] = uVar4;
@@ -306748,7 +306748,7 @@ undefined8 FUN_1808554a0(longlong *uiContext)
   undefined4 semaphoreHandle;
   undefined4 uVar3;
   undefined4 uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined8 uVar6;
   undefined4 *peventTypeCode;
   longlong lVar8;
@@ -306773,11 +306773,11 @@ undefined8 FUN_1808554a0(longlong *uiContext)
     if (operationResult < 0) {
       peventTypeCode = (undefined4 *)(*uiContext + 0x14 + (longlong)operationResult * 0x18);
       do {
-        puVar5 = (undefined4 *)FUN_180847820();
-        semaphoreHandle = puVar5[1];
-        uVar3 = puVar5[2];
-        uVar4 = puVar5[3];
-        peventTypeCode[-5] = *puVar5;
+        componentContextPtr = (undefined4 *)FUN_180847820();
+        semaphoreHandle = componentContextPtr[1];
+        uVar3 = componentContextPtr[2];
+        uVar4 = componentContextPtr[3];
+        peventTypeCode[-5] = *componentContextPtr;
         peventTypeCode[-4] = semaphoreHandle;
         peventTypeCode[-3] = uVar3;
         peventTypeCode[-2] = uVar4;
@@ -306852,7 +306852,7 @@ undefined8 FUN_18085551e(longlong uiContext)
   undefined4 uVar3;
   undefined4 uVar4;
   longlong in_RAX;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined8 uVar6;
   uint eventTypeCode;
   undefined4 *puVar8;
@@ -306862,11 +306862,11 @@ undefined8 FUN_18085551e(longlong uiContext)
   
   puVar8 = (undefined4 *)(in_RAX + 0x14 + uiContext * 8);
   do {
-    puVar5 = (undefined4 *)FUN_180847820();
-    functionResult = *puVar5;
-    semaphoreHandle = puVar5[1];
-    uVar3 = puVar5[2];
-    uVar4 = puVar5[3];
+    componentContextPtr = (undefined4 *)FUN_180847820();
+    functionResult = *componentContextPtr;
+    semaphoreHandle = componentContextPtr[1];
+    uVar3 = componentContextPtr[2];
+    uVar4 = componentContextPtr[3];
     puVar8[-5] = functionResult;
     puVar8[-4] = semaphoreHandle;
     puVar8[-3] = uVar3;
@@ -306930,7 +306930,7 @@ undefined8 FUN_1808555a0(longlong *uiContext)
   undefined4 semaphoreHandle;
   undefined4 uVar3;
   undefined4 uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined8 uVar6;
   undefined1 *peventTypeCode;
   longlong lVar8;
@@ -306955,11 +306955,11 @@ undefined8 FUN_1808555a0(longlong *uiContext)
     if (operationResult < 0) {
       peventTypeCode = (undefined1 *)(*uiContext + 0x14 + (longlong)operationResult * 0x18);
       do {
-        puVar5 = (undefined4 *)FUN_180847820();
-        semaphoreHandle = puVar5[1];
-        uVar3 = puVar5[2];
-        uVar4 = puVar5[3];
-        *(undefined4 *)(peventTypeCode + -0x14) = *puVar5;
+        componentContextPtr = (undefined4 *)FUN_180847820();
+        semaphoreHandle = componentContextPtr[1];
+        uVar3 = componentContextPtr[2];
+        uVar4 = componentContextPtr[3];
+        *(undefined4 *)(peventTypeCode + -0x14) = *componentContextPtr;
         *(undefined4 *)(peventTypeCode + -0x10) = semaphoreHandle;
         *(undefined4 *)(peventTypeCode + -0xc) = uVar3;
         *(undefined4 *)(peventTypeCode + -8) = uVar4;
@@ -307033,7 +307033,7 @@ undefined8 FUN_180855621(longlong uiContext)
   undefined4 uVar3;
   undefined4 uVar4;
   longlong in_RAX;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined8 uVar6;
   uint eventTypeCode;
   undefined1 *puVar8;
@@ -307042,11 +307042,11 @@ undefined8 FUN_180855621(longlong uiContext)
   
   puVar8 = (undefined1 *)(in_RAX + 0x14 + uiContext * 8);
   do {
-    puVar5 = (undefined4 *)FUN_180847820();
-    functionResult = *puVar5;
-    semaphoreHandle = puVar5[1];
-    uVar3 = puVar5[2];
-    uVar4 = puVar5[3];
+    componentContextPtr = (undefined4 *)FUN_180847820();
+    functionResult = *componentContextPtr;
+    semaphoreHandle = componentContextPtr[1];
+    uVar3 = componentContextPtr[2];
+    uVar4 = componentContextPtr[3];
     *(undefined4 *)(puVar8 + -0x14) = functionResult;
     *(undefined4 *)(puVar8 + -0x10) = semaphoreHandle;
     *(undefined4 *)(puVar8 + -0xc) = uVar3;
@@ -308656,7 +308656,7 @@ FUN_180856830(longlong uiContext,uint *dataSource,undefined4 targetBuffer,char b
   uint semaphoreHandle;
   char cVar3;
   int iVar4;
-  uint *puVar5;
+  uint *componentContextPtr;
   longlong lVar6;
   longlong lVar7;
   longlong lVar8;
@@ -308681,12 +308681,12 @@ FUN_180856830(longlong uiContext,uint *dataSource,undefined4 targetBuffer,char b
   uint uStack_44;
   longlong *plStack_40;
   
-  puVar5 = (uint *)FUN_180857df0();
+  componentContextPtr = (uint *)FUN_180857df0();
   pallocatedMemory1 = (longlong *)0x0;
   pallocatedMemory3 = (longlong *)0x0;
   plStack_60 = (longlong *)0x0;
   plStack_58 = (longlong *)0x0;
-  functionResult5 = *puVar5;
+  functionResult5 = *componentContextPtr;
   plStack_40 = (longlong *)(*(longlong *)(bufferData + 0x110) + 0x68);
   pallocatedMemory4 = (longlong *)*plStack_40;
   if (pallocatedMemory4 != plStack_40) {
@@ -308800,11 +308800,11 @@ LAB_180856a99:
               uStack_64 = 0;
               acStack_67[0] = '\0';
               cStack_68 = '\0';
-              puVar5 = dataSource;
+              componentContextPtr = dataSource;
               if (((*(uint *)(pallocatedMemory4 + 7) >> 4 & 1) == 0) ||
                  ((semaphoreHandle = *dataSource, functionResult2 < semaphoreHandle || (dataSource[1] < functionResult7)))) {
 LAB_180856b7a:
-                uVar9 = FUN_180855130(uiContext,pallocatedMemory4,puVar5,targetBuffer,isCharacterMatch8,&uStack_64,acStack_67,
+                uVar9 = FUN_180855130(uiContext,pallocatedMemory4,componentContextPtr,targetBuffer,isCharacterMatch8,&uStack_64,acStack_67,
                                       &cStack_68);
                 if ((int)uVar9 != 0) {
                   return uVar9;
@@ -308841,7 +308841,7 @@ LAB_180856b58:
                   pallocatedMemory1 = plStack_60;
                   pallocatedMemory3 = plStack_58;
                   if (dataSource[1] <= functionResult2) goto LAB_180856a59;
-                  puVar5 = &uStack_48;
+                  componentContextPtr = &uStack_48;
                   uStack_48 = functionResult2;
                   uStack_44 = dataSource[1];
                   goto LAB_180856b7a;
@@ -308922,7 +308922,7 @@ undefined8 FUN_180856d20(longlong uiContext,undefined8 *dataSource,undefined8 ta
   int *pvalidationResult;
   longlong stringCompareIndex;
   int iVar4;
-  uint *puVar5;
+  uint *componentContextPtr;
   uint uVar6;
   ulonglong eventTypeCode;
   uint uStackX_8;
@@ -308953,8 +308953,8 @@ undefined8 FUN_180856d20(longlong uiContext,undefined8 *dataSource,undefined8 ta
     eventTypeCode = (longlong)iVar4 + *(longlong *)(bufferData + 0x10);
     if (uStack_28 < eventTypeCode) {
       if (eventTypeCode < uStack_28) {
-        puVar5 = (uint *)FUN_18084da10();
-        uStackX_8 = *puVar5;
+        componentContextPtr = (uint *)FUN_18084da10();
+        uStackX_8 = *componentContextPtr;
       }
       else {
         uStackX_8 = uStack_20;
@@ -314541,7 +314541,7 @@ longlong * FUN_18085bb20(longlong uiContext,longlong *dataSource,undefined8 targ
   undefined8 semaphoreHandle;
   longlong stringCompareIndex;
   longlong lVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined4 uStack_38;
   undefined4 uStack_34;
   undefined4 uStack_2c;
@@ -314550,10 +314550,10 @@ longlong * FUN_18085bb20(longlong uiContext,longlong *dataSource,undefined8 targ
   functionResult = *(undefined4 *)(bufferData + 0x20);
   stringCompareIndex = *(longlong *)(bufferData + 0x160);
   lVar4 = (**(code **)(*(longlong *)(stringCompareIndex + 8) + 0x30))();
-  puVar5 = (undefined4 *)FUN_18084da10();
+  componentContextPtr = (undefined4 *)FUN_18084da10();
   uStack_38 = (undefined4)semaphoreHandle;
   uStack_34 = (undefined4)((ulonglong)semaphoreHandle >> 0x20);
-  *(undefined4 *)((longlong)dataSource + 0xc) = *puVar5;
+  *(undefined4 *)((longlong)dataSource + 0xc) = *componentContextPtr;
   dataSource[4] = 0;
   dataSource[5] = stringCompareIndex + 0x3f8;
   dataSource[6] = stringCompareIndex + 0x378;
@@ -317400,25 +317400,25 @@ undefined8 FUN_18085f0e0(longlong uiContext,char dataSource)
   longlong componentIndex;
   undefined4 uVar3;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   
   uVar4 = FUN_1808ca6f0(uiContext + 0x378);
   if (((int)uVar4 == 0) && (uVar4 = FUN_1808ca6f0(uiContext + 0x3f8), (int)uVar4 == 0)) {
-    puVar5 = (undefined8 *)(uiContext + 0x490);
-    for (pfunctionResult = (undefined8 *)*puVar5; pfunctionResult != puVar5; pfunctionResult = (undefined8 *)*pfunctionResult) {
+    componentContextPtr = (undefined8 *)(uiContext + 0x490);
+    for (pfunctionResult = (undefined8 *)*componentContextPtr; pfunctionResult != componentContextPtr; pfunctionResult = (undefined8 *)*pfunctionResult) {
       *(uint *)((longlong)pfunctionResult + 0x1c) = *(uint *)((longlong)pfunctionResult + 0x1c) & 0x33;
       pfunctionResult[4] = 0;
       pfunctionResult[5] = 0;
       *(undefined4 *)(pfunctionResult + 3) = 0;
-      if (pfunctionResult == puVar5) break;
+      if (pfunctionResult == componentContextPtr) break;
     }
     uVar4 = FUN_18085f670(uiContext);
     if ((int)uVar4 == 0) {
-      for (puVar5 = *(undefined8 **)(uiContext + 0x4d0);
-          (*(undefined8 **)(uiContext + 0x4d0) <= puVar5 &&
-          (puVar5 < *(undefined8 **)(uiContext + 0x4d0) + *(int *)(bufferData + 0x4d8)));
-          puVar5 = puVar5 + 1) {
-        func_0x0001808cded0(*puVar5);
+      for (componentContextPtr = *(undefined8 **)(uiContext + 0x4d0);
+          (*(undefined8 **)(uiContext + 0x4d0) <= componentContextPtr &&
+          (componentContextPtr < *(undefined8 **)(uiContext + 0x4d0) + *(int *)(bufferData + 0x4d8)));
+          componentContextPtr = componentContextPtr + 1) {
+        func_0x0001808cded0(*componentContextPtr);
       }
       uVar4 = FUN_180853980(*(undefined8 *)(uiContext + 0x2b0));
       if ((((int)uVar4 == 0) &&
@@ -317441,8 +317441,8 @@ undefined8 FUN_18085f0e0(longlong uiContext,char dataSource)
             *(undefined4 *)(componentIndex + 0x80) = uVar3;
           }
           if ((dataSource != '\0') ||
-             (((puVar5 = *(undefined8 **)(uiContext + 0x480), puVar5 == (undefined8 *)0x0 ||
-               (uVar4 = (**(code **)*puVar5)(puVar5,uiContext,0x20), (int)uVar4 == 0)) &&
+             (((componentContextPtr = *(undefined8 **)(uiContext + 0x480), componentContextPtr == (undefined8 *)0x0 ||
+               (uVar4 = (**(code **)*componentContextPtr)(componentContextPtr,uiContext,0x20), (int)uVar4 == 0)) &&
               (((*(uint *)(uiContext + 0x2d8) >> 3 & 1) == 0 ||
                (uVar4 = FUN_18085fb30(uiContext), (int)uVar4 == 0)))))) {
             *(undefined4 *)(bufferData + 0x488) = 0;
@@ -318075,7 +318075,7 @@ undefined8 * FUN_18085fa90(longlong *uiContext,undefined8 *dataSource)
   longlong componentIndex;
   longlong stringCompareIndex;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   
   componentIndex = *uiContext;
   stringCompareIndex = uiContext[1];
@@ -318089,14 +318089,14 @@ undefined8 * FUN_18085fa90(longlong *uiContext,undefined8 *dataSource)
     if (pfunctionResult == dataSource) {
       return (undefined8 *)0x0;
     }
-    puVar5 = (undefined8 *)FUN_18085fa90(uiContext,pfunctionResult[2]);
-    if (puVar5 != (undefined8 *)0x0) break;
+    componentContextPtr = (undefined8 *)FUN_18085fa90(uiContext,pfunctionResult[2]);
+    if (componentContextPtr != (undefined8 *)0x0) break;
     if (pfunctionResult == dataSource) {
       return (undefined8 *)0x0;
     }
     pfunctionResult = (undefined8 *)*pfunctionResult;
   }
-  return puVar5;
+  return componentContextPtr;
 }
 
 
@@ -321659,7 +321659,7 @@ undefined8 FUN_180861ef0(longlong *uiContext,int dataSource)
   longlong componentIndex;
   undefined4 *puVar3;
   longlong lVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   
   if (dataSource < (int)uiContext[1]) {
     return 0x1c;
@@ -321674,10 +321674,10 @@ undefined8 FUN_180861ef0(longlong *uiContext,int dataSource)
         operationResult = (int)uiContext[1];
         lVar4 = (longlong)operationResult;
         if ((operationResult != 0) && (componentIndex = *uiContext, 0 < operationResult)) {
-          puVar5 = puVar3;
+          componentContextPtr = puVar3;
           do {
-            *puVar5 = *(undefined4 *)((componentIndex - (longlong)puVar3) + (longlong)puVar5);
-            puVar5 = puVar5 + 1;
+            *componentContextPtr = *(undefined4 *)((componentIndex - (longlong)puVar3) + (longlong)componentContextPtr);
+            componentContextPtr = componentContextPtr + 1;
             lVar4 = lVar4 + -1;
           } while (lVar4 != 0);
         }
@@ -321707,7 +321707,7 @@ undefined8 FUN_180861f14(undefined8 uiContext,int dataSource)
   longlong componentIndex;
   undefined4 *puVar3;
   longlong lVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   longlong *context;
   int allocationFlags;
   
@@ -321730,10 +321730,10 @@ LAB_180861f94:
       operationResult = (int)context[1];
       lVar4 = (longlong)operationResult;
       if ((operationResult != 0) && (componentIndex = *context, 0 < operationResult)) {
-        puVar5 = puVar3;
+        componentContextPtr = puVar3;
         do {
-          *puVar5 = *(undefined4 *)((componentIndex - (longlong)puVar3) + (longlong)puVar5);
-          puVar5 = puVar5 + 1;
+          *componentContextPtr = *(undefined4 *)((componentIndex - (longlong)puVar3) + (longlong)componentContextPtr);
+          componentContextPtr = componentContextPtr + 1;
           lVar4 = lVar4 + -1;
         } while (lVar4 != 0);
       }
@@ -324030,7 +324030,7 @@ void FUN_180863d75(undefined4 uiContext,int dataSource,undefined8 targetBuffer)
   longlong stringCompareIndex;
   ulonglong in_RCX;
   float *pfVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   uint uVar6;
   longlong context;
   longlong unaff_RBP;
@@ -324133,21 +324133,21 @@ void FUN_180863d75(undefined4 uiContext,int dataSource,undefined8 targetBuffer)
     in_stack_00000048 = CONCAT44(in_stack_00000048._4_4_,SQRT(fVar9));
   }
   uStack0000000000000070 = uiContext;
-  for (puVar5 = *(undefined8 **)(context + 0x4c0);
-      (*(undefined8 **)(context + 0x4c0) <= puVar5 &&
-      (puVar5 < *(undefined8 **)(context + 0x4c0) + *(int *)(context + 0x4c8)));
-      puVar5 = puVar5 + 1) {
-    validationResult = FUN_1808b5060(*puVar5,&stack0x00000040,unaff_RBP + -0x60);
+  for (componentContextPtr = *(undefined8 **)(context + 0x4c0);
+      (*(undefined8 **)(context + 0x4c0) <= componentContextPtr &&
+      (componentContextPtr < *(undefined8 **)(context + 0x4c0) + *(int *)(context + 0x4c8)));
+      componentContextPtr = componentContextPtr + 1) {
+    validationResult = FUN_1808b5060(*componentContextPtr,&stack0x00000040,unaff_RBP + -0x60);
     if (validationResult != 0) goto LAB_180864019;
   }
   validationResult = FUN_180864850();
   if (validationResult == 0) {
     *(undefined4 *)(context + 0x2f0) = 0xbf800000;
-    for (puVar5 = *(undefined8 **)(context + 0x270);
-        (*(undefined8 **)(context + 0x270) <= puVar5 &&
-        (puVar5 < *(undefined8 **)(context + 0x270) + *(int *)(context + 0x278)));
-        puVar5 = puVar5 + 1) {
-      validationResult = FUN_1808d6e30(*puVar5);
+    for (componentContextPtr = *(undefined8 **)(context + 0x270);
+        (*(undefined8 **)(context + 0x270) <= componentContextPtr &&
+        (componentContextPtr < *(undefined8 **)(context + 0x270) + *(int *)(context + 0x278)));
+        componentContextPtr = componentContextPtr + 1) {
+      validationResult = FUN_1808d6e30(*componentContextPtr);
       if (validationResult != 0) goto LAB_180864019;
     }
     validationResult = FUN_1808d15f0(context + 0x378);
@@ -326749,7 +326749,7 @@ undefined8 * FUN_180865b00(undefined8 *uiContext)
   undefined4 semaphoreHandle;
   undefined4 uVar3;
   undefined8 uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined8 *puVar6;
   
   puVar6 = uiContext + 1;
@@ -326776,11 +326776,11 @@ undefined8 * FUN_180865b00(undefined8 *uiContext)
   *(undefined4 *)(bufferData + 0x10) = 0;
   uiContext[0x11] = 0;
   uiContext[0x12] = 0;
-  puVar5 = (undefined4 *)FUN_180847820();
-  functionResult = puVar5[1];
-  semaphoreHandle = puVar5[2];
-  uVar3 = puVar5[3];
-  *(undefined4 *)(bufferData + 0x15) = *puVar5;
+  componentContextPtr = (undefined4 *)FUN_180847820();
+  functionResult = componentContextPtr[1];
+  semaphoreHandle = componentContextPtr[2];
+  uVar3 = componentContextPtr[3];
+  *(undefined4 *)(bufferData + 0x15) = *componentContextPtr;
   *(undefined4 *)((longlong)uiContext + 0xac) = functionResult;
   *(undefined4 *)(bufferData + 0x16) = semaphoreHandle;
   *(undefined4 *)((longlong)uiContext + 0xb4) = uVar3;
@@ -329577,7 +329577,7 @@ void FUN_180868a80(char uiContext,undefined8 dataSource,longlong *targetBuffer,l
   longlong componentIndex;
   longlong stringCompareIndex;
   longlong lVar4;
-  ulonglong *puVar5;
+  ulonglong *componentContextPtr;
   longlong *plVar6;
   ulonglong eventTypeCode;
   char cVar8;
@@ -329643,13 +329643,13 @@ LAB_180868b10:
               functionResult3 = func_0x0001808c6500(componentIndex,floatResult2 + floatResult);
               *(undefined4 *)(eventTypeCode + 4) = functionResult3;
             }
-            puVar5 = (ulonglong *)func_0x000180851be0(dataSource,plVar6[4]);
+            componentContextPtr = (ulonglong *)func_0x000180851be0(dataSource,plVar6[4]);
             cVar9 = cStack_97;
             cVar8 = cStack_98;
-            if (puVar5 != (ulonglong *)0x0) {
-              for (pallocatedMemory1 = (longlong *)*puVar5;
+            if (componentContextPtr != (ulonglong *)0x0) {
+              for (pallocatedMemory1 = (longlong *)*componentContextPtr;
                   (dataSource = uStack_88, cVar9 = cStack_97, cVar8 = cStack_98,
-                  (longlong *)*puVar5 <= pallocatedMemory1 && (pallocatedMemory1 < (longlong *)*puVar5 + (int)puVar5[1])
+                  (longlong *)*componentContextPtr <= pallocatedMemory1 && (pallocatedMemory1 < (longlong *)*componentContextPtr + (int)componentContextPtr[1])
                   ); pallocatedMemory1 = pallocatedMemory1 + 1) {
                 lVar4 = *pallocatedMemory1;
                 for (eventTypeCode = *(ulonglong *)(lVar4 + 0x30);
@@ -343245,7 +343245,7 @@ undefined8 FUN_180874670(longlong *uiContext)
   undefined4 semaphoreHandle;
   undefined4 uVar3;
   undefined4 uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined8 uVar6;
   uint eventTypeCode;
   longlong lVar8;
@@ -343270,11 +343270,11 @@ undefined8 FUN_180874670(longlong *uiContext)
     if (operationResult < 0) {
       lVar8 = (longlong)operationResult * 0x1c + 0x14 + *uiContext;
       do {
-        puVar5 = (undefined4 *)FUN_180847820();
-        semaphoreHandle = puVar5[1];
-        uVar3 = puVar5[2];
-        uVar4 = puVar5[3];
-        *(undefined4 *)(lVar8 + -0x14) = *puVar5;
+        componentContextPtr = (undefined4 *)FUN_180847820();
+        semaphoreHandle = componentContextPtr[1];
+        uVar3 = componentContextPtr[2];
+        uVar4 = componentContextPtr[3];
+        *(undefined4 *)(lVar8 + -0x14) = *componentContextPtr;
         *(undefined4 *)(lVar8 + -0x10) = semaphoreHandle;
         *(undefined4 *)(lVar8 + -0xc) = uVar3;
         *(undefined4 *)(lVar8 + -8) = uVar4;
@@ -344440,7 +344440,7 @@ ulonglong FUN_180875569(longlong uiContext,undefined8 dataSource,undefined8 targ
   longlong componentIndex;
   longlong stringCompareIndex;
   longlong *plVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   uint uVar6;
   ulonglong eventTypeCode;
   undefined1 uVar8;
@@ -344471,22 +344471,22 @@ ulonglong FUN_180875569(longlong uiContext,undefined8 dataSource,undefined8 targ
       plVar4 = (longlong *)FUN_180865b00(stringCompareIndex);
       uStack0000000000000030 = 1;
       uStack0000000000000028 = uVar8;
-      puVar5 = (undefined8 *)
+      componentContextPtr = (undefined8 *)
                FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar9 + 0x10,&UNK_180985b90,
                              0xc0,unaff_RDI & 0xffffffff);
-      if (puVar5 != (undefined8 *)0x0) {
-        puVar5[1] = unaff_RDI;
-        *puVar5 = &UNK_180985738;
+      if (componentContextPtr != (undefined8 *)0x0) {
+        componentContextPtr[1] = unaff_RDI;
+        *componentContextPtr = &UNK_180985738;
         uStack0000000000000030 = 1;
         uStack0000000000000028 = uVar8;
         stringCompareIndex = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0xc40,&UNK_180985b90,0xc4,
                               unaff_RDI & 0xffffffff);
         if (stringCompareIndex == 0) {
-          (**(code **)*puVar5)(puVar5,0);
+          (**(code **)*componentContextPtr)(componentContextPtr,0);
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar5,&UNK_18095b500,0xc6,1);
+          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),componentContextPtr,&UNK_18095b500,0xc6,1);
         }
-        componentIndex = FUN_1808719a0(stringCompareIndex,in_stack_00000070,componentIndex,plVar4,puVar5);
+        componentIndex = FUN_1808719a0(stringCompareIndex,in_stack_00000070,componentIndex,plVar4,componentContextPtr);
         eventTypeCode = unaff_RDI & 0xffffffff;
         functionResult = _DAT_180c4eaf0;
         while( true ) {
@@ -346802,7 +346802,7 @@ void FUN_180877f00(longlong uiContext,longlong *dataSource)
   int validationResult;
   longlong stringCompareIndex;
   int iVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined1 auStack_c8 [32];
   uint uStack_a8;
   uint uStack_a0;
@@ -346818,27 +346818,27 @@ void FUN_180877f00(longlong uiContext,longlong *dataSource)
   ulonglong uStack_30;
   
   uStack_30 = XorEncryptionKey ^ (ulonglong)auStack_c8;
-  puVar5 = *(undefined4 **)(uiContext + 0x80);
-  while ((*(undefined4 **)(uiContext + 0x80) <= puVar5 &&
-         (puVar5 < *(undefined4 **)(uiContext + 0x80) + (longlong)*(int *)(bufferData + 0x88) * 4))) {
-    stringCompareIndex = (**(code **)(*dataSource + 0x270))(dataSource,puVar5,1);
+  componentContextPtr = *(undefined4 **)(uiContext + 0x80);
+  while ((*(undefined4 **)(uiContext + 0x80) <= componentContextPtr &&
+         (componentContextPtr < *(undefined4 **)(uiContext + 0x80) + (longlong)*(int *)(bufferData + 0x88) * 4))) {
+    stringCompareIndex = (**(code **)(*dataSource + 0x270))(dataSource,componentContextPtr,1);
     if (stringCompareIndex == 0) {
-      uStack_60 = (uint)*(byte *)((longlong)puVar5 + 0xf);
-      uStack_68 = (uint)*(byte *)((longlong)puVar5 + 0xe);
-      uStack_70 = (uint)*(byte *)((longlong)puVar5 + 0xd);
-      uStack_78 = (uint)*(byte *)(puVar5 + 3);
-      uStack_80 = (uint)*(byte *)((longlong)puVar5 + 0xb);
-      uStack_88 = (uint)*(byte *)((longlong)puVar5 + 10);
-      uStack_90 = (uint)*(byte *)((longlong)puVar5 + 9);
-      uStack_98 = (uint)*(byte *)(puVar5 + 2);
-      uStack_a0 = (uint)*(ushort *)((longlong)puVar5 + 6);
-      uStack_a8 = (uint)*(ushort *)(puVar5 + 1);
+      uStack_60 = (uint)*(byte *)((longlong)componentContextPtr + 0xf);
+      uStack_68 = (uint)*(byte *)((longlong)componentContextPtr + 0xe);
+      uStack_70 = (uint)*(byte *)((longlong)componentContextPtr + 0xd);
+      uStack_78 = (uint)*(byte *)(componentContextPtr + 3);
+      uStack_80 = (uint)*(byte *)((longlong)componentContextPtr + 0xb);
+      uStack_88 = (uint)*(byte *)((longlong)componentContextPtr + 10);
+      uStack_90 = (uint)*(byte *)((longlong)componentContextPtr + 9);
+      uStack_98 = (uint)*(byte *)(componentContextPtr + 2);
+      uStack_a0 = (uint)*(ushort *)((longlong)componentContextPtr + 6);
+      uStack_a8 = (uint)*(ushort *)(componentContextPtr + 1);
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_58,0x27,&UNK_180958180,*puVar5);
+      FUN_18076b390(auStack_58,0x27,&UNK_180958180,*componentContextPtr);
     }
     stringCompareIndex = (**(code **)(*dataSource + 0x278))(dataSource,stringCompareIndex + 0x38,1);
     if (stringCompareIndex == 0) {
-      validationResult = (int)((longlong)puVar5 - *(longlong *)(bufferData + 0x80) >> 4);
+      validationResult = (int)((longlong)componentContextPtr - *(longlong *)(bufferData + 0x80) >> 4);
       if ((validationResult < 0) || (operationResult = *(int *)(bufferData + 0x88), operationResult <= validationResult)) break;
       iVar4 = (operationResult - validationResult) + -1;
       if (0 < iVar4) {
@@ -346849,7 +346849,7 @@ void FUN_180877f00(longlong uiContext,longlong *dataSource)
       *(int *)(bufferData + 0x88) = operationResult + -1;
     }
     else {
-      puVar5 = puVar5 + 4;
+      componentContextPtr = componentContextPtr + 4;
     }
   }
                     // WARNING: Subroutine does not return
@@ -347598,7 +347598,7 @@ void FUN_1808787d0(longlong uiContext,longlong *dataSource,undefined8 *targetBuf
   uint *psemaphoreHandle;
   longlong stringCompareIndex;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   char cVar6;
   int iVar7;
   int iVar8;
@@ -347900,10 +347900,10 @@ LAB_1808788de:
                   stringCompareIndex = *(longlong *)(*(longlong *)(bufferData + 0x1c0) + (longlong)iStack_c8 * 8);
                   pfunctionResult9 = *(undefined8 **)(stringCompareIndex + 0x48);
                   lStack_98 = stringCompareIndex;
-                  while ((puVar5 = *(undefined8 **)(stringCompareIndex + 0x48), puStack_a0 = pfunctionResult9,
-                         puVar5 <= pfunctionResult9 &&
+                  while ((componentContextPtr = *(undefined8 **)(stringCompareIndex + 0x48), puStack_a0 = pfunctionResult9,
+                         componentContextPtr <= pfunctionResult9 &&
                          (pfunctionResult9 < (undefined8 *)
-                                    ((longlong)*(int *)(stringCompareIndex + 0x50) * 0x1c + (longlong)puVar5))))
+                                    ((longlong)*(int *)(stringCompareIndex + 0x50) * 0x1c + (longlong)componentContextPtr))))
                   {
                     uStack_c0 = (longlong *)*pfunctionResult9;
                     uStack_b8 = pfunctionResult9[1];
@@ -347930,7 +347930,7 @@ LAB_1808788de:
                                   *(undefined4 *)((longlong)pfunctionResult9 + 0x14));
                     pfunctionResult9 = (undefined8 *)((longlong)puStack_a0 + 0x1c);
                   }
-                  FUN_180874670((undefined8 *)(stringCompareIndex + 0x48),puVar5,pfunctionResult9);
+                  FUN_180874670((undefined8 *)(stringCompareIndex + 0x48),componentContextPtr,pfunctionResult9);
                   uiContext = lStack_88;
                   functionResult0 = (ulonglong)(iStack_c8 + 1);
                 }
@@ -347971,7 +347971,7 @@ void FUN_1808789b7(float uiContext)
   uint *psemaphoreHandle;
   longlong stringCompareIndex;
   undefined8 uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   undefined4 uVar6;
   undefined4 eventTypeCode;
   undefined4 uVar8;
@@ -348195,10 +348195,10 @@ void FUN_1808789b7(float uiContext)
                   pfunctionResult9 = *(undefined4 **)(stringCompareIndex + 0x48);
                   *(longlong *)(unaff_RBP + -0x51) = stringCompareIndex;
                   while( true ) {
-                    puVar5 = *(undefined4 **)(stringCompareIndex + 0x48);
+                    componentContextPtr = *(undefined4 **)(stringCompareIndex + 0x48);
                     *(undefined4 **)(unaff_RBP + -0x59) = pfunctionResult9;
-                    if ((pfunctionResult9 < puVar5) ||
-                       (puVar5 + (longlong)*(int *)(stringCompareIndex + 0x50) * 7 <= pfunctionResult9)) break;
+                    if ((pfunctionResult9 < componentContextPtr) ||
+                       (componentContextPtr + (longlong)*(int *)(stringCompareIndex + 0x50) * 7 <= pfunctionResult9)) break;
                     functionResult5 = *pfunctionResult9;
                     uVar6 = pfunctionResult9[1];
                     eventTypeCode = pfunctionResult9[2];
@@ -348222,7 +348222,7 @@ void FUN_1808789b7(float uiContext)
                                   pfunctionResult9[5],*(undefined1 *)(pfunctionResult9 + 6));
                     pfunctionResult9 = (undefined4 *)(*(longlong *)(unaff_RBP + -0x59) + 0x1c);
                   }
-                  FUN_180874670((ulonglong *)(stringCompareIndex + 0x48),puVar5,pfunctionResult9);
+                  FUN_180874670((ulonglong *)(stringCompareIndex + 0x48),componentContextPtr,pfunctionResult9);
                   unaff_R12 = *(longlong *)(unaff_RBP + -0x41);
                   functionResult3 = (ulonglong)(operationResult0 + 1);
                 }
@@ -353795,7 +353795,7 @@ int FUN_18087cbd0(longlong uiContext,undefined4 dataSource,ulonglong targetBuffe
   undefined8 semaphoreHandle;
   undefined8 uVar3;
   int iVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   longlong lVar6;
   undefined8 eventTypeCode;
   longlong lVar8;
@@ -353841,256 +353841,256 @@ int FUN_18087cbd0(longlong uiContext,undefined4 dataSource,ulonglong targetBuffe
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   functionResult1 = 0;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180985b90,0x27c,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x358;
-  puVar5[2] = eventTypeCode;
-  puVar5[3] = &UNK_18020f868;
-  puVar5[4] = uiContext;
-  *puVar5 = &UNK_180985578;
-  *(undefined8 **)(uiContext + 0x8d0) = puVar5;
+  componentContextPtr[1] = uiContext + 0x358;
+  componentContextPtr[2] = eventTypeCode;
+  componentContextPtr[3] = &UNK_18020f868;
+  componentContextPtr[4] = uiContext;
+  *componentContextPtr = &UNK_180985578;
+  *(undefined8 **)(uiContext + 0x8d0) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180985b90,0x27d,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x388;
-  puVar5[2] = eventTypeCode;
-  puVar5[3] = &UNK_180873e5c;
-  puVar5[4] = uiContext;
-  *puVar5 = &UNK_180985578;
-  *(undefined8 **)(uiContext + 0x8d8) = puVar5;
+  componentContextPtr[1] = uiContext + 0x388;
+  componentContextPtr[2] = eventTypeCode;
+  componentContextPtr[3] = &UNK_180873e5c;
+  componentContextPtr[4] = uiContext;
+  *componentContextPtr = &UNK_180985578;
+  *(undefined8 **)(uiContext + 0x8d8) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180985b90,0x27e,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x3b8;
-  puVar5[2] = eventTypeCode;
-  puVar5[3] = &UNK_180873e54;
-  puVar5[4] = uiContext;
-  *puVar5 = &UNK_1809855a0;
-  *(undefined8 **)(uiContext + 0x8e0) = puVar5;
+  componentContextPtr[1] = uiContext + 0x3b8;
+  componentContextPtr[2] = eventTypeCode;
+  componentContextPtr[3] = &UNK_180873e54;
+  componentContextPtr[4] = uiContext;
+  *componentContextPtr = &UNK_1809855a0;
+  *(undefined8 **)(uiContext + 0x8e0) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180985b90,0x27f,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 1000;
-  puVar5[2] = eventTypeCode;
-  puVar5[3] = &UNK_180873e64;
-  puVar5[4] = uiContext;
-  *puVar5 = &UNK_180985578;
-  *(undefined8 **)(uiContext + 0x8e8) = puVar5;
+  componentContextPtr[1] = uiContext + 1000;
+  componentContextPtr[2] = eventTypeCode;
+  componentContextPtr[3] = &UNK_180873e64;
+  componentContextPtr[4] = uiContext;
+  *componentContextPtr = &UNK_180985578;
+  *(undefined8 **)(uiContext + 0x8e8) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180985b90,0x280,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x78);
   functionResult = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x418;
-  puVar5[3] = &UNK_180873e6c;
-  puVar5[4] = eventTypeCode;
-  *puVar5 = &UNK_1809855d0;
-  puVar5[2] = functionResult;
-  *(undefined8 **)(uiContext + 0x8f0) = puVar5;
+  componentContextPtr[1] = uiContext + 0x418;
+  componentContextPtr[3] = &UNK_180873e6c;
+  componentContextPtr[4] = eventTypeCode;
+  *componentContextPtr = &UNK_1809855d0;
+  componentContextPtr[2] = functionResult;
+  *(undefined8 **)(uiContext + 0x8f0) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180985b90,0x281,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x78);
   functionResult = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x448;
-  puVar5[3] = &UISystemDataPointer3;
-  puVar5[4] = eventTypeCode;
-  *puVar5 = &UISystemGlobalDataPointer;
-  puVar5[2] = functionResult;
-  *(undefined8 **)(uiContext + 0x8f8) = puVar5;
+  componentContextPtr[1] = uiContext + 0x448;
+  componentContextPtr[3] = &UISystemDataPointer3;
+  componentContextPtr[4] = eventTypeCode;
+  *componentContextPtr = &UISystemGlobalDataPointer;
+  componentContextPtr[2] = functionResult;
+  *(undefined8 **)(uiContext + 0x8f8) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180985b90,0x282,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x478;
-  puVar5[2] = eventTypeCode;
-  puVar5[3] = &UNK_180873e74;
-  *puVar5 = &UISystemGlobalDataPointer;
-  *(undefined8 **)(uiContext + 0x900) = puVar5;
+  componentContextPtr[1] = uiContext + 0x478;
+  componentContextPtr[2] = eventTypeCode;
+  componentContextPtr[3] = &UNK_180873e74;
+  *componentContextPtr = &UISystemGlobalDataPointer;
+  *(undefined8 **)(uiContext + 0x900) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180985b90,0x283,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x4a8;
-  puVar5[2] = eventTypeCode;
-  puVar5[3] = &UNK_180873e7c;
-  *puVar5 = &UISystemGlobalDataPointer;
-  *(undefined8 **)(uiContext + 0x908) = puVar5;
+  componentContextPtr[1] = uiContext + 0x4a8;
+  componentContextPtr[2] = eventTypeCode;
+  componentContextPtr[3] = &UNK_180873e7c;
+  *componentContextPtr = &UISystemGlobalDataPointer;
+  *(undefined8 **)(uiContext + 0x908) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180985b90,0x284,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x4d8;
-  puVar5[2] = eventTypeCode;
-  puVar5[3] = &UNK_180873e84;
-  puVar5[4] = uiContext;
-  *puVar5 = &UNK_180985620;
-  *(undefined8 **)(uiContext + 0x910) = puVar5;
+  componentContextPtr[1] = uiContext + 0x4d8;
+  componentContextPtr[2] = eventTypeCode;
+  componentContextPtr[3] = &UNK_180873e84;
+  componentContextPtr[4] = uiContext;
+  *componentContextPtr = &UNK_180985620;
+  *(undefined8 **)(uiContext + 0x910) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180985b90,0x285,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x328;
-  puVar5[2] = eventTypeCode;
-  puVar5[3] = &UNK_180873e4c;
-  *puVar5 = &UNK_180985548;
-  *(undefined8 **)(uiContext + 0x8c8) = puVar5;
+  componentContextPtr[1] = uiContext + 0x328;
+  componentContextPtr[2] = eventTypeCode;
+  componentContextPtr[3] = &UNK_180873e4c;
+  *componentContextPtr = &UNK_180985548;
+  *(undefined8 **)(uiContext + 0x8c8) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180985b90,0x286,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
-  puVar5[2] = 0;
-  puVar5[1] = uiContext + 0x838;
-  puVar5[3] = 0;
-  *puVar5 = &UNK_180985648;
-  *(undefined8 **)(uiContext + 0xa88) = puVar5;
+  componentContextPtr[2] = 0;
+  componentContextPtr[1] = uiContext + 0x838;
+  componentContextPtr[3] = 0;
+  *componentContextPtr = &UNK_180985648;
+  *(undefined8 **)(uiContext + 0xa88) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180985b90,0x287,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0xa88);
-  puVar5[1] = uiContext + 0x508;
-  puVar5[2] = 0;
-  *puVar5 = &UNK_180985648;
-  puVar5[3] = 0;
-  puVar5[4] = eventTypeCode;
-  *(undefined8 **)(uiContext + 0x918) = puVar5;
+  componentContextPtr[1] = uiContext + 0x508;
+  componentContextPtr[2] = 0;
+  *componentContextPtr = &UNK_180985648;
+  componentContextPtr[3] = 0;
+  componentContextPtr[4] = eventTypeCode;
+  *(undefined8 **)(uiContext + 0x918) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180985b90,0x288,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
-  puVar5[2] = 0;
-  puVar5[1] = uiContext + 0x868;
-  puVar5[3] = 0;
-  *puVar5 = &UISystemGlobalDataPointer;
-  *(undefined8 **)(uiContext + 0xa90) = puVar5;
+  componentContextPtr[2] = 0;
+  componentContextPtr[1] = uiContext + 0x868;
+  componentContextPtr[3] = 0;
+  *componentContextPtr = &UISystemGlobalDataPointer;
+  *(undefined8 **)(uiContext + 0xa90) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180985b90,0x289,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
-  puVar5[2] = 0;
-  puVar5[1] = uiContext + 0x748;
-  puVar5[3] = 0;
-  *puVar5 = &UISystemGlobalDataPointer;
-  *(undefined8 **)(uiContext + 0xa98) = puVar5;
+  componentContextPtr[2] = 0;
+  componentContextPtr[1] = uiContext + 0x748;
+  componentContextPtr[3] = 0;
+  *componentContextPtr = &UISystemGlobalDataPointer;
+  *(undefined8 **)(uiContext + 0xa98) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x18,&UNK_180985b90,0x28a,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
-  puVar5[2] = uiContext;
-  *puVar5 = &UNK_1809856f0;
-  puVar5[1] = uiContext + 0x898;
-  *(undefined8 **)(uiContext + 0xaa0) = puVar5;
+  componentContextPtr[2] = uiContext;
+  *componentContextPtr = &UNK_1809856f0;
+  componentContextPtr[1] = uiContext + 0x898;
+  *(undefined8 **)(uiContext + 0xaa0) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180985b90,0x28b,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0xa88);
-  puVar5[1] = uiContext + 0x718;
-  puVar5[2] = 0;
-  *puVar5 = &UISystemGlobalDataPointer;
-  puVar5[3] = 0;
-  puVar5[4] = eventTypeCode;
-  *(undefined8 **)(uiContext + 0xa70) = puVar5;
+  componentContextPtr[1] = uiContext + 0x718;
+  componentContextPtr[2] = 0;
+  *componentContextPtr = &UISystemGlobalDataPointer;
+  componentContextPtr[3] = 0;
+  componentContextPtr[4] = eventTypeCode;
+  *(undefined8 **)(uiContext + 0xa70) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x40,&UNK_180985b90,0x28d,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
@@ -354098,60 +354098,60 @@ int FUN_18087cbd0(longlong uiContext,undefined4 dataSource,ulonglong targetBuffe
   functionResult = *(undefined8 *)(uiContext + 0x8c8);
   semaphoreHandle = *(undefined8 *)(uiContext + 0x918);
   uVar3 = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x778;
-  puVar5[3] = &UNK_180873e9c;
-  puVar5[4] = functionResult;
-  puVar5[5] = semaphoreHandle;
-  puVar5[6] = eventTypeCode;
-  *puVar5 = &UNK_1809856c8;
-  puVar5[2] = uVar3;
-  puVar5[7] = uiContext;
-  *(undefined8 **)(uiContext + 0xa60) = puVar5;
+  componentContextPtr[1] = uiContext + 0x778;
+  componentContextPtr[3] = &UNK_180873e9c;
+  componentContextPtr[4] = functionResult;
+  componentContextPtr[5] = semaphoreHandle;
+  componentContextPtr[6] = eventTypeCode;
+  *componentContextPtr = &UNK_1809856c8;
+  componentContextPtr[2] = uVar3;
+  componentContextPtr[7] = uiContext;
+  *(undefined8 **)(uiContext + 0xa60) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180985b90,0x28e,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x7a8;
-  puVar5[2] = eventTypeCode;
-  puVar5[3] = &UNK_180873ea4;
-  *puVar5 = &UISystemGlobalDataPointer;
-  *(undefined8 **)(uiContext + 0xa68) = puVar5;
+  componentContextPtr[1] = uiContext + 0x7a8;
+  componentContextPtr[2] = eventTypeCode;
+  componentContextPtr[3] = &UNK_180873ea4;
+  *componentContextPtr = &UISystemGlobalDataPointer;
+  *(undefined8 **)(uiContext + 0xa68) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180985b90,0x28f,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x7d8;
-  puVar5[2] = eventTypeCode;
-  puVar5[3] = &UNK_180873eac;
-  *puVar5 = &UISystemGlobalDataPointer;
-  *(undefined8 **)(uiContext + 0xa78) = puVar5;
+  componentContextPtr[1] = uiContext + 0x7d8;
+  componentContextPtr[2] = eventTypeCode;
+  componentContextPtr[3] = &UNK_180873eac;
+  *componentContextPtr = &UISystemGlobalDataPointer;
+  *(undefined8 **)(uiContext + 0xa78) = componentContextPtr;
   in_stack_ffffffffffffffa0 = in_stack_ffffffffffffffa0 & 0xffffffffffffff00;
   in_stack_ffffffffffffff98 = in_stack_ffffffffffffff98 & 0xffffffff00000000;
-  puVar5 = (undefined8 *)
+  componentContextPtr = (undefined8 *)
            FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180985b90,0x290,
                          in_stack_ffffffffffffff98,in_stack_ffffffffffffffa0,1);
-  if (puVar5 == (undefined8 *)0x0) {
+  if (componentContextPtr == (undefined8 *)0x0) {
     iVar4 = 0x26;
     goto LAB_18087dbb3;
   }
   eventTypeCode = *(undefined8 *)(uiContext + 0x90);
-  puVar5[1] = uiContext + 0x808;
-  puVar5[3] = &UNK_180873eb4;
-  *puVar5 = &UISystemGlobalDataPointer;
-  puVar5[2] = eventTypeCode;
-  *(undefined8 **)(uiContext + 0xa80) = puVar5;
+  componentContextPtr[1] = uiContext + 0x808;
+  componentContextPtr[3] = &UNK_180873eb4;
+  *componentContextPtr = &UISystemGlobalDataPointer;
+  componentContextPtr[2] = eventTypeCode;
+  *(undefined8 **)(uiContext + 0xa80) = componentContextPtr;
   *(longlong *)(*(longlong *)(bufferData + 800) + 8) = uiContext;
   if ((functionResult2 & 0x10000) != 0) {
     alStack_38[0] = 0;
@@ -354233,14 +354233,14 @@ LAB_18087d6e3:
                   ))) {
                 functionResult0 = uiContext + 0x104;
                 functionResult6 = uiContext + 0xf8;
-                puVar5 = (undefined8 *)(uiContext + 0xe0);
+                componentContextPtr = (undefined8 *)(uiContext + 0xe0);
                 lVar8 = 0;
-                iVar4 = FUN_180739420(*(undefined8 *)(uiContext + 0x78),0,puVar5,uiContext + 0xec,functionResult6
+                iVar4 = FUN_180739420(*(undefined8 *)(uiContext + 0x78),0,componentContextPtr,uiContext + 0xec,functionResult6
                                       ,functionResult0);
                 if (iVar4 == 0) {
-                  *(undefined8 *)(uiContext + 0x260) = *puVar5;
+                  *(undefined8 *)(uiContext + 0x260) = *componentContextPtr;
                   *(undefined4 *)(bufferData + 0x268) = *(undefined4 *)(bufferData + 0xe8);
-                  *(undefined8 *)(uiContext + 0x110) = *puVar5;
+                  *(undefined8 *)(uiContext + 0x110) = *componentContextPtr;
                   *(undefined8 *)(uiContext + 0x118) = *(undefined8 *)(uiContext + 0xe8);
                   *(undefined8 *)(uiContext + 0x120) = *(undefined8 *)(uiContext + 0xf0);
                   *(undefined8 *)(uiContext + 0x128) = *(undefined8 *)(uiContext + 0xf8);
@@ -354248,7 +354248,7 @@ LAB_18087d6e3:
                   *(undefined8 *)(uiContext + 0x138) = *(undefined8 *)(uiContext + 0x108);
                   *(undefined8 *)(uiContext + 0x26c) = *(undefined8 *)(uiContext + 0x260);
                   *(undefined4 *)(bufferData + 0x274) = *(undefined4 *)(bufferData + 0x268);
-                  *(undefined8 *)(uiContext + 0x140) = *puVar5;
+                  *(undefined8 *)(uiContext + 0x140) = *componentContextPtr;
                   *(undefined8 *)(uiContext + 0x148) = *(undefined8 *)(uiContext + 0xe8);
                   *(undefined8 *)(uiContext + 0x150) = *(undefined8 *)(uiContext + 0xf0);
                   *(undefined8 *)(uiContext + 0x158) = *(undefined8 *)(uiContext + 0xf8);
@@ -354256,7 +354256,7 @@ LAB_18087d6e3:
                   *(undefined8 *)(uiContext + 0x168) = *(undefined8 *)(uiContext + 0x108);
                   *(undefined8 *)(uiContext + 0x278) = *(undefined8 *)(uiContext + 0x260);
                   *(undefined4 *)(bufferData + 0x280) = *(undefined4 *)(bufferData + 0x268);
-                  *(undefined8 *)(uiContext + 0x170) = *puVar5;
+                  *(undefined8 *)(uiContext + 0x170) = *componentContextPtr;
                   *(undefined8 *)(uiContext + 0x178) = *(undefined8 *)(uiContext + 0xe8);
                   *(undefined8 *)(uiContext + 0x180) = *(undefined8 *)(uiContext + 0xf0);
                   *(undefined8 *)(uiContext + 0x188) = *(undefined8 *)(uiContext + 0xf8);
@@ -354264,7 +354264,7 @@ LAB_18087d6e3:
                   *(undefined8 *)(uiContext + 0x198) = *(undefined8 *)(uiContext + 0x108);
                   *(undefined8 *)(uiContext + 0x284) = *(undefined8 *)(uiContext + 0x260);
                   *(undefined4 *)(bufferData + 0x28c) = *(undefined4 *)(bufferData + 0x268);
-                  *(undefined8 *)(uiContext + 0x1a0) = *puVar5;
+                  *(undefined8 *)(uiContext + 0x1a0) = *componentContextPtr;
                   *(undefined8 *)(uiContext + 0x1a8) = *(undefined8 *)(uiContext + 0xe8);
                   *(undefined8 *)(uiContext + 0x1b0) = *(undefined8 *)(uiContext + 0xf0);
                   *(undefined8 *)(uiContext + 0x1b8) = *(undefined8 *)(uiContext + 0xf8);
@@ -354272,7 +354272,7 @@ LAB_18087d6e3:
                   *(undefined8 *)(uiContext + 0x1c8) = *(undefined8 *)(uiContext + 0x108);
                   *(undefined8 *)(uiContext + 0x290) = *(undefined8 *)(uiContext + 0x260);
                   *(undefined4 *)(bufferData + 0x298) = *(undefined4 *)(bufferData + 0x268);
-                  *(undefined8 *)(uiContext + 0x1d0) = *puVar5;
+                  *(undefined8 *)(uiContext + 0x1d0) = *componentContextPtr;
                   *(undefined8 *)(uiContext + 0x1d8) = *(undefined8 *)(uiContext + 0xe8);
                   *(undefined8 *)(uiContext + 0x1e0) = *(undefined8 *)(uiContext + 0xf0);
                   *(undefined8 *)(uiContext + 0x1e8) = *(undefined8 *)(uiContext + 0xf8);
@@ -354280,7 +354280,7 @@ LAB_18087d6e3:
                   *(undefined8 *)(uiContext + 0x1f8) = *(undefined8 *)(uiContext + 0x108);
                   *(undefined8 *)(uiContext + 0x29c) = *(undefined8 *)(uiContext + 0x260);
                   *(undefined4 *)(bufferData + 0x2a4) = *(undefined4 *)(bufferData + 0x268);
-                  *(undefined8 *)(uiContext + 0x200) = *puVar5;
+                  *(undefined8 *)(uiContext + 0x200) = *componentContextPtr;
                   *(undefined8 *)(uiContext + 0x208) = *(undefined8 *)(uiContext + 0xe8);
                   *(undefined8 *)(uiContext + 0x210) = *(undefined8 *)(uiContext + 0xf0);
                   *(undefined8 *)(uiContext + 0x218) = *(undefined8 *)(uiContext + 0xf8);
@@ -354288,7 +354288,7 @@ LAB_18087d6e3:
                   *(undefined8 *)(uiContext + 0x228) = *(undefined8 *)(uiContext + 0x108);
                   *(undefined8 *)(uiContext + 0x2a8) = *(undefined8 *)(uiContext + 0x260);
                   *(undefined4 *)(bufferData + 0x2b0) = *(undefined4 *)(bufferData + 0x268);
-                  *(undefined8 *)(uiContext + 0x230) = *puVar5;
+                  *(undefined8 *)(uiContext + 0x230) = *componentContextPtr;
                   *(undefined8 *)(uiContext + 0x238) = *(undefined8 *)(uiContext + 0xe8);
                   *(undefined4 *)(bufferData + 0x240) = *(undefined4 *)(bufferData + 0xf0);
                   *(undefined4 *)(bufferData + 0x244) = *(undefined4 *)(bufferData + 0xf4);
@@ -358303,7 +358303,7 @@ undefined8 FUN_180882610(longlong uiContext,ulonglong *dataSource)
   longlong componentIndex;
   undefined8 uVar3;
   longlong lVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   longlong lVar6;
   undefined1 auStackX_8 [8];
   undefined4 uStack_38;
@@ -358316,23 +358316,23 @@ undefined8 FUN_180882610(longlong uiContext,ulonglong *dataSource)
   if (componentIndex != 0) {
     FUN_180768360(uVar3);
   }
-  puVar5 = (undefined4 *)*dataSource;
+  componentContextPtr = (undefined4 *)*dataSource;
   lVar6 = 0;
   do {
-    if ((puVar5 < (undefined4 *)*dataSource) ||
-       ((undefined4 *)*dataSource + (longlong)(int)dataSource[1] * 5 <= puVar5)) {
+    if ((componentContextPtr < (undefined4 *)*dataSource) ||
+       ((undefined4 *)*dataSource + (longlong)(int)dataSource[1] * 5 <= componentContextPtr)) {
       if (componentIndex != 0) {
                     // WARNING: Subroutine does not return
-        FUN_180768400(uVar3,puVar5);
+        FUN_180768400(uVar3,componentContextPtr);
       }
       return 0;
     }
-    sVar1 = *(short *)(puVar5 + 4);
+    sVar1 = *(short *)(componentContextPtr + 4);
     if (sVar1 == 8) {
-      uStack_38 = *puVar5;
-      uStack_34 = puVar5[1];
-      uStack_30 = puVar5[2];
-      uStack_2c = puVar5[3];
+      uStack_38 = *componentContextPtr;
+      uStack_34 = componentContextPtr[1];
+      uStack_30 = componentContextPtr[2];
+      uStack_2c = componentContextPtr[3];
       lVar4 = uiContext + 0xb00;
       if (uiContext == -0xad8) {
         lVar4 = lVar6;
@@ -358350,10 +358350,10 @@ LAB_180882a0d:
     }
     else {
       if (sVar1 == 0x14) {
-        uStack_38 = *puVar5;
-        uStack_34 = puVar5[1];
-        uStack_30 = puVar5[2];
-        uStack_2c = puVar5[3];
+        uStack_38 = *componentContextPtr;
+        uStack_34 = componentContextPtr[1];
+        uStack_30 = componentContextPtr[2];
+        uStack_2c = componentContextPtr[3];
         if (uiContext + 0xad8 != 0) {
           auStackX_8[0] = 1;
           FUN_180879610(uiContext + 0xad8,&uStack_38,auStackX_8);
@@ -358363,10 +358363,10 @@ LAB_180882a0d:
         goto LAB_180882a0d;
       }
       if (sVar1 == 0x15) {
-        uStack_38 = *puVar5;
-        uStack_34 = puVar5[1];
-        uStack_30 = puVar5[2];
-        uStack_2c = puVar5[3];
+        uStack_38 = *componentContextPtr;
+        uStack_34 = componentContextPtr[1];
+        uStack_30 = componentContextPtr[2];
+        uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xb28;
         if (uiContext == -0xad8) {
           lVar4 = lVar6;
@@ -358380,10 +358380,10 @@ LAB_180882a0d:
         goto LAB_180882a0d;
       }
       if (sVar1 == 0) {
-        uStack_38 = *puVar5;
-        uStack_34 = puVar5[1];
-        uStack_30 = puVar5[2];
-        uStack_2c = puVar5[3];
+        uStack_38 = *componentContextPtr;
+        uStack_34 = componentContextPtr[1];
+        uStack_30 = componentContextPtr[2];
+        uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xb50;
         if (uiContext == -0xad8) {
           lVar4 = lVar6;
@@ -358397,10 +358397,10 @@ LAB_180882a0d:
         goto LAB_180882a0d;
       }
       if (sVar1 == 1) {
-        uStack_38 = *puVar5;
-        uStack_34 = puVar5[1];
-        uStack_30 = puVar5[2];
-        uStack_2c = puVar5[3];
+        uStack_38 = *componentContextPtr;
+        uStack_34 = componentContextPtr[1];
+        uStack_30 = componentContextPtr[2];
+        uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xb78;
         if (uiContext == -0xad8) {
           lVar4 = lVar6;
@@ -358414,10 +358414,10 @@ LAB_180882a0d:
         goto LAB_180882a0d;
       }
       if (sVar1 == 2) {
-        uStack_38 = *puVar5;
-        uStack_34 = puVar5[1];
-        uStack_30 = puVar5[2];
-        uStack_2c = puVar5[3];
+        uStack_38 = *componentContextPtr;
+        uStack_34 = componentContextPtr[1];
+        uStack_30 = componentContextPtr[2];
+        uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xba0;
         if (uiContext == -0xad8) {
           lVar4 = lVar6;
@@ -358431,10 +358431,10 @@ LAB_180882a0d:
         goto LAB_180882a0d;
       }
       if (sVar1 == 3) {
-        uStack_38 = *puVar5;
-        uStack_34 = puVar5[1];
-        uStack_30 = puVar5[2];
-        uStack_2c = puVar5[3];
+        uStack_38 = *componentContextPtr;
+        uStack_34 = componentContextPtr[1];
+        uStack_30 = componentContextPtr[2];
+        uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xbc8;
         if (uiContext == -0xad8) {
           lVar4 = lVar6;
@@ -358448,10 +358448,10 @@ LAB_180882a0d:
         goto LAB_180882a0d;
       }
       if (sVar1 == 0x1e) {
-        uStack_38 = *puVar5;
-        uStack_34 = puVar5[1];
-        uStack_30 = puVar5[2];
-        uStack_2c = puVar5[3];
+        uStack_38 = *componentContextPtr;
+        uStack_34 = componentContextPtr[1];
+        uStack_30 = componentContextPtr[2];
+        uStack_2c = componentContextPtr[3];
         lVar4 = func_0x00018086dc30(uiContext + 0xad8);
         if (lVar4 != 0) {
           auStackX_8[0] = 1;
@@ -358462,10 +358462,10 @@ LAB_180882a0d:
         goto LAB_180882a0d;
       }
       if (sVar1 == 0xe) {
-        uStack_38 = *puVar5;
-        uStack_34 = puVar5[1];
-        uStack_30 = puVar5[2];
-        uStack_2c = puVar5[3];
+        uStack_38 = *componentContextPtr;
+        uStack_34 = componentContextPtr[1];
+        uStack_30 = componentContextPtr[2];
+        uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xbf0;
         if (uiContext == -0xad8) {
           lVar4 = lVar6;
@@ -358479,10 +358479,10 @@ LAB_180882a0d:
         goto LAB_180882a0d;
       }
       if (sVar1 == 0x17) {
-        uStack_38 = *puVar5;
-        uStack_34 = puVar5[1];
-        uStack_30 = puVar5[2];
-        uStack_2c = puVar5[3];
+        uStack_38 = *componentContextPtr;
+        uStack_34 = componentContextPtr[1];
+        uStack_30 = componentContextPtr[2];
+        uStack_2c = componentContextPtr[3];
         lVar4 = uiContext + 0xc18;
         if (uiContext == -0xad8) {
           lVar4 = lVar6;
@@ -358496,10 +358496,10 @@ LAB_180882a0d:
         goto LAB_180882a0d;
       }
       if (sVar1 == 7) {
-        uStack_38 = *puVar5;
-        uStack_34 = puVar5[1];
-        uStack_30 = puVar5[2];
-        uStack_2c = puVar5[3];
+        uStack_38 = *componentContextPtr;
+        uStack_34 = componentContextPtr[1];
+        uStack_30 = componentContextPtr[2];
+        uStack_2c = componentContextPtr[3];
         lVar4 = func_0x00018086dc30(uiContext + 0xad8);
         if (lVar4 != 0) {
           auStackX_8[0] = 1;
@@ -358510,7 +358510,7 @@ LAB_180882a0d:
         goto LAB_180882a0d;
       }
     }
-    puVar5 = puVar5 + 5;
+    componentContextPtr = componentContextPtr + 5;
   } while( true );
 }
 
@@ -358673,7 +358673,7 @@ undefined8 FUN_180882c70(longlong *uiContext,int dataSource)
   undefined8 *psemaphoreHandle;
   int compareResult;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   longlong lVar6;
   undefined8 *peventTypeCode;
   longlong lVar8;
@@ -358681,18 +358681,18 @@ undefined8 FUN_180882c70(longlong *uiContext,int dataSource)
   if (dataSource < (int)uiContext[1]) {
     return 0x1c;
   }
-  puVar5 = (undefined8 *)0x0;
+  componentContextPtr = (undefined8 *)0x0;
   if (dataSource != 0) {
     if (dataSource * 0x6c - 1U < 0x3fffffff) {
-      puVar5 = (undefined8 *)
+      componentContextPtr = (undefined8 *)
                FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),dataSource * 0x6c,&UNK_180957f70,
                              0xf4,0,0,1);
-      if (puVar5 != (undefined8 *)0x0) {
+      if (componentContextPtr != (undefined8 *)0x0) {
         compareResult = (int)uiContext[1];
         lVar6 = (longlong)compareResult;
         if ((compareResult != 0) && (0 < compareResult)) {
-          lVar8 = *uiContext - (longlong)puVar5;
-          peventTypeCode = puVar5;
+          lVar8 = *uiContext - (longlong)componentContextPtr;
+          peventTypeCode = componentContextPtr;
           do {
             uVar4 = ((undefined8 *)(lVar8 + (longlong)peventTypeCode))[1];
             pfunctionResult = (undefined8 *)((longlong)peventTypeCode + 0x6c);
@@ -358734,7 +358734,7 @@ LAB_180882d69:
                     // WARNING: Subroutine does not return
     FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*uiContext,&UNK_180957f70,0x100,1);
   }
-  *uiContext = (longlong)puVar5;
+  *uiContext = (longlong)componentContextPtr;
   *(int *)((longlong)uiContext + 0xc) = dataSource;
   return 0;
 }
@@ -358750,34 +358750,34 @@ undefined8 FUN_180882c94(void)
   undefined8 *psemaphoreHandle;
   int compareResult;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   longlong lVar6;
   undefined8 *peventTypeCode;
   longlong *context;
   int unaff_ESI;
   longlong lVar8;
   
-  puVar5 = (undefined8 *)0x0;
+  componentContextPtr = (undefined8 *)0x0;
   if (unaff_ESI == 0) {
 LAB_180882d69:
     if ((0 < *(int *)((longlong)context + 0xc)) && (*context != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*context,&UNK_180957f70,0x100,1);
     }
-    *context = (longlong)puVar5;
+    *context = (longlong)componentContextPtr;
     *(int *)((longlong)context + 0xc) = unaff_ESI;
     return 0;
   }
   if (unaff_ESI * 0x6c - 1U < 0x3fffffff) {
-    puVar5 = (undefined8 *)
+    componentContextPtr = (undefined8 *)
              FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),unaff_ESI * 0x6c,&UNK_180957f70,
                            0xf4,0);
-    if (puVar5 != (undefined8 *)0x0) {
+    if (componentContextPtr != (undefined8 *)0x0) {
       compareResult = (int)context[1];
       lVar6 = (longlong)compareResult;
       if ((compareResult != 0) && (0 < compareResult)) {
-        lVar8 = *context - (longlong)puVar5;
-        peventTypeCode = puVar5;
+        lVar8 = *context - (longlong)componentContextPtr;
+        peventTypeCode = componentContextPtr;
         do {
           uVar4 = ((undefined8 *)(lVar8 + (longlong)peventTypeCode))[1];
           pfunctionResult = (undefined8 *)((longlong)peventTypeCode + 0x6c);
@@ -358834,7 +358834,7 @@ undefined8 FUN_180882dd0(longlong *uiContext,int dataSource)
   undefined8 *psemaphoreHandle;
   int compareResult;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   longlong lVar6;
   undefined8 *peventTypeCode;
   longlong lVar8;
@@ -358842,18 +358842,18 @@ undefined8 FUN_180882dd0(longlong *uiContext,int dataSource)
   if (dataSource < (int)uiContext[1]) {
     return 0x1c;
   }
-  puVar5 = (undefined8 *)0x0;
+  componentContextPtr = (undefined8 *)0x0;
   if (dataSource != 0) {
     if (dataSource * 0x28 - 1U < 0x3fffffff) {
-      puVar5 = (undefined8 *)
+      componentContextPtr = (undefined8 *)
                FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),dataSource * 0x28,&UNK_180957f70,
                              0xf4,0,0,1);
-      if (puVar5 != (undefined8 *)0x0) {
+      if (componentContextPtr != (undefined8 *)0x0) {
         compareResult = (int)uiContext[1];
         lVar6 = (longlong)compareResult;
         if ((compareResult != 0) && (0 < compareResult)) {
-          lVar8 = *uiContext - (longlong)puVar5;
-          peventTypeCode = puVar5;
+          lVar8 = *uiContext - (longlong)componentContextPtr;
+          peventTypeCode = componentContextPtr;
           do {
             uVar4 = ((undefined8 *)(lVar8 + (longlong)peventTypeCode))[1];
             pfunctionResult = peventTypeCode + 5;
@@ -358878,7 +358878,7 @@ LAB_180882e99:
                     // WARNING: Subroutine does not return
     FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*uiContext,&UNK_180957f70,0x100,1);
   }
-  *uiContext = (longlong)puVar5;
+  *uiContext = (longlong)componentContextPtr;
   *(int *)((longlong)uiContext + 0xc) = dataSource;
   return 0;
 }
@@ -358894,34 +358894,34 @@ undefined8 FUN_180882df4(undefined8 uiContext,int dataSource)
   undefined8 *psemaphoreHandle;
   int compareResult;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   longlong lVar6;
   undefined8 *peventTypeCode;
   longlong *context;
   int allocationFlags;
   longlong lVar8;
   
-  puVar5 = (undefined8 *)0x0;
+  componentContextPtr = (undefined8 *)0x0;
   if (allocationFlags == 0) {
 LAB_180882e99:
     if ((0 < *(int *)((longlong)context + 0xc)) && (*context != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*context,&UNK_180957f70,0x100,1);
     }
-    *context = (longlong)puVar5;
+    *context = (longlong)componentContextPtr;
     *(int *)((longlong)context + 0xc) = allocationFlags;
     return 0;
   }
   if (dataSource * 0x28 - 1U < 0x3fffffff) {
-    puVar5 = (undefined8 *)
+    componentContextPtr = (undefined8 *)
              FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),dataSource * 0x28,&UNK_180957f70,
                            0xf4,0);
-    if (puVar5 != (undefined8 *)0x0) {
+    if (componentContextPtr != (undefined8 *)0x0) {
       compareResult = (int)context[1];
       lVar6 = (longlong)compareResult;
       if ((compareResult != 0) && (0 < compareResult)) {
-        lVar8 = *context - (longlong)puVar5;
-        peventTypeCode = puVar5;
+        lVar8 = *context - (longlong)componentContextPtr;
+        peventTypeCode = componentContextPtr;
         do {
           uVar4 = ((undefined8 *)(lVar8 + (longlong)peventTypeCode))[1];
           pfunctionResult = peventTypeCode + 5;
@@ -358961,7 +358961,7 @@ undefined8 FUN_180882f00(longlong *uiContext,int dataSource)
   longlong componentIndex;
   undefined8 *puVar3;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   
   if (dataSource < (int)uiContext[1]) {
     return 0x1c;
@@ -358976,10 +358976,10 @@ undefined8 FUN_180882f00(longlong *uiContext,int dataSource)
         operationResult = (int)uiContext[1];
         lVar4 = (longlong)operationResult;
         if ((operationResult != 0) && (componentIndex = *uiContext, 0 < operationResult)) {
-          puVar5 = puVar3;
+          componentContextPtr = puVar3;
           do {
-            *puVar5 = *(undefined8 *)((componentIndex - (longlong)puVar3) + (longlong)puVar5);
-            puVar5 = puVar5 + 1;
+            *componentContextPtr = *(undefined8 *)((componentIndex - (longlong)puVar3) + (longlong)componentContextPtr);
+            componentContextPtr = componentContextPtr + 1;
             lVar4 = lVar4 + -1;
           } while (lVar4 != 0);
         }
@@ -359009,7 +359009,7 @@ undefined8 FUN_180882f24(undefined8 uiContext,int dataSource)
   longlong componentIndex;
   undefined8 *puVar3;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   longlong *context;
   int allocationFlags;
   
@@ -359032,10 +359032,10 @@ LAB_180882fa1:
       operationResult = (int)context[1];
       lVar4 = (longlong)operationResult;
       if ((operationResult != 0) && (componentIndex = *context, 0 < operationResult)) {
-        puVar5 = puVar3;
+        componentContextPtr = puVar3;
         do {
-          *puVar5 = *(undefined8 *)((componentIndex - (longlong)puVar3) + (longlong)puVar5);
-          puVar5 = puVar5 + 1;
+          *componentContextPtr = *(undefined8 *)((componentIndex - (longlong)puVar3) + (longlong)componentContextPtr);
+          componentContextPtr = componentContextPtr + 1;
           lVar4 = lVar4 + -1;
         } while (lVar4 != 0);
       }
@@ -366455,7 +366455,7 @@ undefined4 FUN_180889eb2(void)
   undefined4 semaphoreHandle;
   undefined4 uVar3;
   undefined4 uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   longlong unaff_RBP;
   longlong unaff_RSI;
   longlong unaff_RDI;
@@ -366464,12 +366464,12 @@ undefined4 FUN_180889eb2(void)
                     // WARNING: Subroutine does not return
     FUN_180768400();
   }
-  puVar5 = (undefined4 *)FUN_180847820();
+  componentContextPtr = (undefined4 *)FUN_180847820();
   functionResult = *(undefined8 *)(unaff_RSI + 0x80);
-  uVar4 = puVar5[1];
-  semaphoreHandle = puVar5[2];
-  uVar3 = puVar5[3];
-  *(undefined4 *)(unaff_RBP + -0x48) = *puVar5;
+  uVar4 = componentContextPtr[1];
+  semaphoreHandle = componentContextPtr[2];
+  uVar3 = componentContextPtr[3];
+  *(undefined4 *)(unaff_RBP + -0x48) = *componentContextPtr;
   *(undefined4 *)(unaff_RBP + -0x44) = uVar4;
   *(undefined4 *)(unaff_RBP + -0x40) = semaphoreHandle;
   *(undefined4 *)(unaff_RBP + -0x3c) = uVar3;
@@ -367635,7 +367635,7 @@ void FUN_18088afd0(void)
   undefined8 semaphoreHandle;
   undefined8 *puVar3;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   int iVar6;
   longlong unaff_RBP;
   longlong unaff_RDI;
@@ -367663,20 +367663,20 @@ void FUN_18088afd0(void)
     *(int *)(unaff_RBP + 0x130) = operationResult;
     if (0 < operationResult) {
       puVar3 = (undefined8 *)(unaff_RBP + -0x60);
-      puVar5 = (undefined8 *)(lVar4 + 0x554);
+      componentContextPtr = (undefined8 *)(lVar4 + 0x554);
       do {
-        semaphoreHandle = puVar5[1];
+        semaphoreHandle = componentContextPtr[1];
         iVar6 = iVar6 + 1;
-        *puVar3 = *puVar5;
+        *puVar3 = *componentContextPtr;
         puVar3[1] = semaphoreHandle;
-        semaphoreHandle = puVar5[3];
-        puVar3[2] = puVar5[2];
+        semaphoreHandle = componentContextPtr[3];
+        puVar3[2] = componentContextPtr[2];
         puVar3[3] = semaphoreHandle;
-        semaphoreHandle = puVar5[5];
-        puVar3[4] = puVar5[4];
+        semaphoreHandle = componentContextPtr[5];
+        puVar3[4] = componentContextPtr[4];
         puVar3[5] = semaphoreHandle;
         puVar3 = puVar3 + 6;
-        puVar5 = (undefined8 *)((longlong)puVar5 + 0x44);
+        componentContextPtr = (undefined8 *)((longlong)componentContextPtr + 0x44);
       } while (iVar6 < *(int *)(unaff_RBP + 0x130));
     }
     *(undefined4 *)(unaff_RBP + 0x120) = 0;
@@ -373800,7 +373800,7 @@ undefined8 FUN_1808908b0(longlong uiContext)
   uint semaphoreHandle;
   uint uVar3;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   int iVar6;
   float fVar7;
   undefined1 auVar8 [16];
@@ -373813,10 +373813,10 @@ undefined8 FUN_1808908b0(longlong uiContext)
   allocatedMemory = *(longlong *)(lStackX_8 + 8);
   if (allocatedMemory != 0) {
     fVar7 = *(float *)(uiContext + 0x20);
-    for (puVar5 = *(undefined8 **)(allocatedMemory + 0x48);
-        (*(undefined8 **)(allocatedMemory + 0x48) <= puVar5 &&
-        (puVar5 < *(undefined8 **)(allocatedMemory + 0x48) + *(int *)(allocatedMemory + 0x50))); puVar5 = puVar5 + 1) {
-      uVar4 = FUN_1808d73b0(*puVar5,fVar7,0);
+    for (componentContextPtr = *(undefined8 **)(allocatedMemory + 0x48);
+        (*(undefined8 **)(allocatedMemory + 0x48) <= componentContextPtr &&
+        (componentContextPtr < *(undefined8 **)(allocatedMemory + 0x48) + *(int *)(allocatedMemory + 0x50))); componentContextPtr = componentContextPtr + 1) {
+      uVar4 = FUN_1808d73b0(*componentContextPtr,fVar7,0);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -374657,7 +374657,7 @@ undefined8 FUN_180891210(longlong uiContext)
   uint semaphoreHandle;
   uint uVar3;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   int iVar6;
   float fVar7;
   undefined1 auVar8 [16];
@@ -374670,10 +374670,10 @@ undefined8 FUN_180891210(longlong uiContext)
   allocatedMemory = *(longlong *)(lStackX_8 + 8);
   if (allocatedMemory != 0) {
     fVar7 = *(float *)(uiContext + 0x14);
-    for (puVar5 = *(undefined8 **)(allocatedMemory + 0x48);
-        (*(undefined8 **)(allocatedMemory + 0x48) <= puVar5 &&
-        (puVar5 < *(undefined8 **)(allocatedMemory + 0x48) + *(int *)(allocatedMemory + 0x50))); puVar5 = puVar5 + 1) {
-      uVar4 = FUN_1808d73b0(*puVar5,fVar7,0);
+    for (componentContextPtr = *(undefined8 **)(allocatedMemory + 0x48);
+        (*(undefined8 **)(allocatedMemory + 0x48) <= componentContextPtr &&
+        (componentContextPtr < *(undefined8 **)(allocatedMemory + 0x48) + *(int *)(allocatedMemory + 0x50))); componentContextPtr = componentContextPtr + 1) {
+      uVar4 = FUN_1808d73b0(*componentContextPtr,fVar7,0);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -379463,7 +379463,7 @@ undefined8 FUN_180895d62(undefined8 uiContext,int dataSource)
   int validationResult;
   int compareResult;
   undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   int iVar6;
   longlong lVar7;
   undefined4 *puVar8;
@@ -379513,9 +379513,9 @@ undefined8 FUN_180895d62(undefined8 uiContext,int dataSource)
         return uVar4;
       }
     }
-    puVar5 = (undefined8 *)((longlong)(int)unaff_RDI[3] * 0x10 + unaff_RDI[2]);
-    *puVar5 = CONCAT44(0xffffffff,dataSource);
-    puVar5[1] = uStack0000000000000028;
+    componentContextPtr = (undefined8 *)((longlong)(int)unaff_RDI[3] * 0x10 + unaff_RDI[2]);
+    *componentContextPtr = CONCAT44(0xffffffff,dataSource);
+    componentContextPtr[1] = uStack0000000000000028;
     *(int *)(unaff_RDI + 3) = (int)unaff_RDI[3] + 1;
   }
   else {
@@ -379539,7 +379539,7 @@ undefined8 FUN_180895d9c(undefined8 uiContext,undefined4 dataSource)
   undefined8 semaphoreHandle;
   undefined8 *puVar3;
   int iVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   uint uVar6;
   int iVar7;
   int *context;
@@ -379580,11 +379580,11 @@ undefined8 FUN_180895d9c(undefined8 uiContext,undefined4 dataSource)
     *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) + 1;
   }
   else {
-    puVar5 = (undefined4 *)((longlong)iVar8 * 0x10 + *(longlong *)(uiContext + 0x10));
-    *(undefined4 *)(unaff_RDI + 0x20) = puVar5[1];
-    puVar5[1] = 0xffffffff;
-    *puVar5 = *unaff_R15;
-    *(undefined8 *)(puVar5 + 2) = *unaff_R14;
+    componentContextPtr = (undefined4 *)((longlong)iVar8 * 0x10 + *(longlong *)(uiContext + 0x10));
+    *(undefined4 *)(unaff_RDI + 0x20) = componentContextPtr[1];
+    componentContextPtr[1] = 0xffffffff;
+    *componentContextPtr = *unaff_R15;
+    *(undefined8 *)(componentContextPtr + 2) = *unaff_R14;
   }
   *context = iVar8;
   *(int *)(unaff_RDI + 0x24) = *(int *)(unaff_RDI + 0x24) + 1;
@@ -379669,7 +379669,7 @@ undefined8 FUN_180895f20(longlong *uiContext,int dataSource)
   longlong componentIndex;
   undefined8 *puVar3;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   
   if (dataSource < (int)uiContext[1]) {
     return 0x1c;
@@ -379684,12 +379684,12 @@ undefined8 FUN_180895f20(longlong *uiContext,int dataSource)
         operationResult = (int)uiContext[1];
         lVar4 = (longlong)operationResult;
         if ((operationResult != 0) && (componentIndex = *uiContext, 0 < operationResult)) {
-          puVar5 = puVar3;
+          componentContextPtr = puVar3;
           do {
-            *puVar5 = *(undefined8 *)((componentIndex - (longlong)puVar3) + (longlong)puVar5);
-            *(undefined4 *)(puVar5 + 1) =
-                 *(undefined4 *)((componentIndex - (longlong)puVar3) + 8 + (longlong)puVar5);
-            puVar5 = (undefined8 *)((longlong)puVar5 + 0xc);
+            *componentContextPtr = *(undefined8 *)((componentIndex - (longlong)puVar3) + (longlong)componentContextPtr);
+            *(undefined4 *)(componentContextPtr + 1) =
+                 *(undefined4 *)((componentIndex - (longlong)puVar3) + 8 + (longlong)componentContextPtr);
+            componentContextPtr = (undefined8 *)((longlong)componentContextPtr + 0xc);
             lVar4 = lVar4 + -1;
           } while (lVar4 != 0);
         }
@@ -379719,7 +379719,7 @@ undefined8 FUN_180895f44(undefined8 uiContext,int dataSource)
   longlong componentIndex;
   undefined8 *puVar3;
   longlong lVar4;
-  undefined8 *puVar5;
+  undefined8 *componentContextPtr;
   longlong *context;
   int allocationFlags;
   
@@ -379742,12 +379742,12 @@ LAB_180895fdc:
       operationResult = (int)context[1];
       lVar4 = (longlong)operationResult;
       if ((operationResult != 0) && (componentIndex = *context, 0 < operationResult)) {
-        puVar5 = puVar3;
+        componentContextPtr = puVar3;
         do {
-          *puVar5 = *(undefined8 *)((componentIndex - (longlong)puVar3) + (longlong)puVar5);
-          *(undefined4 *)(puVar5 + 1) =
-               *(undefined4 *)((componentIndex - (longlong)puVar3) + 8 + (longlong)puVar5);
-          puVar5 = (undefined8 *)((longlong)puVar5 + 0xc);
+          *componentContextPtr = *(undefined8 *)((componentIndex - (longlong)puVar3) + (longlong)componentContextPtr);
+          *(undefined4 *)(componentContextPtr + 1) =
+               *(undefined4 *)((componentIndex - (longlong)puVar3) + 8 + (longlong)componentContextPtr);
+          componentContextPtr = (undefined8 *)((longlong)componentContextPtr + 0xc);
           lVar4 = lVar4 + -1;
         } while (lVar4 != 0);
       }
@@ -383053,7 +383053,7 @@ undefined4 FUN_180898bc0(undefined8 uiContext,ulonglong dataSource)
   int validationResult;
   int compareResult;
   uint uVar4;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   undefined1 *puVar6;
   uint unaff_EBX;
   int iVar7;
@@ -383083,13 +383083,13 @@ undefined4 FUN_180898bc0(undefined8 uiContext,ulonglong dataSource)
           }
           operationResult0 = operationResult0 - compareResult;
           if (compareResult != 0) {
-            puVar5 = unaff_RSI + (int)unaff_EBX;
+            componentContextPtr = unaff_RSI + (int)unaff_EBX;
             unaff_EBX = unaff_EBX + compareResult;
             do {
               functionResult = *puVar9;
               puVar9 = puVar9 + -1;
-              *puVar5 = functionResult;
-              puVar5 = puVar5 + 1;
+              *componentContextPtr = functionResult;
+              componentContextPtr = componentContextPtr + 1;
               compareResult = compareResult + -1;
             } while (compareResult != 0);
           }
@@ -383103,8 +383103,8 @@ undefined4 FUN_180898bc0(undefined8 uiContext,ulonglong dataSource)
   } while (uVar4 != 0xffffff);
   if (iVar7 != 0) {
     if (unaff_R15D < iVar7) {
-      puVar5 = unaff_RSI + unaff_R15D;
-      puVar9 = puVar5 + -1;
+      componentContextPtr = unaff_RSI + unaff_R15D;
+      puVar9 = componentContextPtr + -1;
       if (unaff_RSI < puVar9) {
         do {
           functionResult = *unaff_RSI;
@@ -383114,20 +383114,20 @@ undefined4 FUN_180898bc0(undefined8 uiContext,ulonglong dataSource)
           puVar9 = puVar9 + -1;
         } while (unaff_RSI < puVar9);
       }
-      *puVar5 = (char)unaff_R13D;
+      *componentContextPtr = (char)unaff_R13D;
     }
     else {
       puVar6 = unaff_RSI + (int)unaff_EBX;
       puVar9 = puVar6 + -1;
-      puVar5 = unaff_RSI;
+      componentContextPtr = unaff_RSI;
       if (unaff_RSI < puVar9) {
         do {
-          functionResult = *puVar5;
-          *puVar5 = *puVar9;
-          puVar5 = puVar5 + 1;
+          functionResult = *componentContextPtr;
+          *componentContextPtr = *puVar9;
+          componentContextPtr = componentContextPtr + 1;
           *puVar9 = functionResult;
           puVar9 = puVar9 + -1;
-        } while (puVar5 < puVar9);
+        } while (componentContextPtr < puVar9);
       }
       puVar9 = puVar6 + (longlong)(int)(iVar7 - unaff_EBX) + -1;
       if (puVar6 < puVar9) {
@@ -383161,7 +383161,7 @@ undefined4 FUN_180898c86(void)
   int iVar4;
   longlong unaff_RBP;
   undefined1 *unaff_RSI;
-  undefined1 *puVar5;
+  undefined1 *componentContextPtr;
   undefined4 unaff_R13D;
   int unaff_R15D;
   int *in_stack_00000078;
@@ -383169,8 +383169,8 @@ undefined4 FUN_180898c86(void)
   iVar4 = (int)unaff_RBP;
   if (iVar4 != 0) {
     if (unaff_R15D < iVar4) {
-      puVar5 = unaff_RSI + unaff_R15D;
-      psemaphoreHandle = puVar5 + -1;
+      componentContextPtr = unaff_RSI + unaff_R15D;
+      psemaphoreHandle = componentContextPtr + -1;
       if (unaff_RSI < psemaphoreHandle) {
         do {
           functionResult = *unaff_RSI;
@@ -383180,20 +383180,20 @@ undefined4 FUN_180898c86(void)
           psemaphoreHandle = psemaphoreHandle + -1;
         } while (unaff_RSI < psemaphoreHandle);
       }
-      *puVar5 = (char)unaff_R13D;
+      *componentContextPtr = (char)unaff_R13D;
     }
     else {
       puVar3 = unaff_RSI + unaff_EBX;
       psemaphoreHandle = puVar3 + -1;
-      puVar5 = unaff_RSI;
+      componentContextPtr = unaff_RSI;
       if (unaff_RSI < psemaphoreHandle) {
         do {
-          functionResult = *puVar5;
-          *puVar5 = *psemaphoreHandle;
-          puVar5 = puVar5 + 1;
+          functionResult = *componentContextPtr;
+          *componentContextPtr = *psemaphoreHandle;
+          componentContextPtr = componentContextPtr + 1;
           *psemaphoreHandle = functionResult;
           psemaphoreHandle = psemaphoreHandle + -1;
-        } while (puVar5 < psemaphoreHandle);
+        } while (componentContextPtr < psemaphoreHandle);
       }
       psemaphoreHandle = puVar3 + (longlong)(iVar4 - unaff_EBX) + -1;
       if (puVar3 < psemaphoreHandle) {
@@ -383246,7 +383246,7 @@ undefined8 FUN_180898d60(longlong *uiContext,int dataSource)
   longlong componentIndex;
   undefined2 *puVar3;
   longlong lVar4;
-  undefined2 *puVar5;
+  undefined2 *componentContextPtr;
   
   if (dataSource < (int)uiContext[1]) {
     return 0x1c;
@@ -383261,12 +383261,12 @@ undefined8 FUN_180898d60(longlong *uiContext,int dataSource)
         operationResult = (int)uiContext[1];
         lVar4 = (longlong)operationResult;
         if ((operationResult != 0) && (componentIndex = *uiContext, 0 < operationResult)) {
-          puVar5 = puVar3;
+          componentContextPtr = puVar3;
           do {
-            *puVar5 = *(undefined2 *)((componentIndex - (longlong)puVar3) + (longlong)puVar5);
-            *(undefined1 *)(puVar5 + 1) =
-                 *(undefined1 *)((componentIndex - (longlong)puVar3) + 2 + (longlong)puVar5);
-            puVar5 = (undefined2 *)((longlong)puVar5 + 3);
+            *componentContextPtr = *(undefined2 *)((componentIndex - (longlong)puVar3) + (longlong)componentContextPtr);
+            *(undefined1 *)(componentContextPtr + 1) =
+                 *(undefined1 *)((componentIndex - (longlong)puVar3) + 2 + (longlong)componentContextPtr);
+            componentContextPtr = (undefined2 *)((longlong)componentContextPtr + 3);
             lVar4 = lVar4 + -1;
           } while (lVar4 != 0);
         }
@@ -383296,7 +383296,7 @@ undefined8 FUN_180898d84(undefined8 uiContext,int dataSource)
   longlong componentIndex;
   undefined2 *puVar3;
   longlong lVar4;
-  undefined2 *puVar5;
+  undefined2 *componentContextPtr;
   longlong *context;
   int allocationFlags;
   
@@ -383319,12 +383319,12 @@ LAB_180898e0b:
       operationResult = (int)context[1];
       lVar4 = (longlong)operationResult;
       if ((operationResult != 0) && (componentIndex = *context, 0 < operationResult)) {
-        puVar5 = puVar3;
+        componentContextPtr = puVar3;
         do {
-          *puVar5 = *(undefined2 *)((componentIndex - (longlong)puVar3) + (longlong)puVar5);
-          *(undefined1 *)(puVar5 + 1) =
-               *(undefined1 *)((componentIndex - (longlong)puVar3) + 2 + (longlong)puVar5);
-          puVar5 = (undefined2 *)((longlong)puVar5 + 3);
+          *componentContextPtr = *(undefined2 *)((componentIndex - (longlong)puVar3) + (longlong)componentContextPtr);
+          *(undefined1 *)(componentContextPtr + 1) =
+               *(undefined1 *)((componentIndex - (longlong)puVar3) + 2 + (longlong)componentContextPtr);
+          componentContextPtr = (undefined2 *)((longlong)componentContextPtr + 3);
           lVar4 = lVar4 + -1;
         } while (lVar4 != 0);
       }
@@ -385357,7 +385357,7 @@ ulonglong FUN_18089a880(longlong uiContext,undefined8 *dataSource)
   longlong componentIndex;
   int compareResult;
   int iVar4;
-  uint *puVar5;
+  uint *componentContextPtr;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
   uint auStackX_18 [2];
@@ -385368,15 +385368,15 @@ ulonglong FUN_18089a880(longlong uiContext,undefined8 *dataSource)
   aiStackX_8[0] = iVar4;
   functionResult = (**(code **)**(undefined8 **)(uiContext + 8))(*(undefined8 **)(uiContext + 8),aiStackX_8,4);
   if ((int)functionResult == 0) {
-    puVar5 = (uint *)*dataSource;
+    componentContextPtr = (uint *)*dataSource;
     for (; 0 < iVar4; iVar4 = iVar4 + compareResult) {
-      auStackX_10[0] = *puVar5;
+      auStackX_10[0] = *componentContextPtr;
       functionResult = (**(code **)**(undefined8 **)(uiContext + 8))
                         (*(undefined8 **)(uiContext + 8),auStackX_10,4);
       if ((int)functionResult != 0) {
         return functionResult;
       }
-      switch(*puVar5 & 0xff) {
+      switch(*componentContextPtr & 0xff) {
       case 0:
       case 1:
       case 2:
@@ -385389,7 +385389,7 @@ ulonglong FUN_18089a880(longlong uiContext,undefined8 *dataSource)
       default:
         return 0x1c;
       case 0x10:
-        auStackX_18[0] = puVar5[1];
+        auStackX_18[0] = componentContextPtr[1];
         functionResult = (**(code **)**(undefined8 **)(uiContext + 8))
                           (*(undefined8 **)(uiContext + 8),auStackX_18,4);
         if ((int)functionResult != 0) {
@@ -385399,7 +385399,7 @@ ulonglong FUN_18089a880(longlong uiContext,undefined8 *dataSource)
         compareResult = -8;
         break;
       case 0x11:
-        functionResult = FUN_180899ef0(uiContext,puVar5 + 1);
+        functionResult = FUN_180899ef0(uiContext,componentContextPtr + 1);
         if ((int)functionResult != 0) {
           return functionResult;
         }
@@ -385407,13 +385407,13 @@ ulonglong FUN_18089a880(longlong uiContext,undefined8 *dataSource)
         compareResult = -0x14;
         break;
       case 0x20:
-        auStackX_20[0] = puVar5[1];
+        auStackX_20[0] = componentContextPtr[1];
         functionResult = (**(code **)**(undefined8 **)(uiContext + 8))
                           (*(undefined8 **)(uiContext + 8),auStackX_20,4);
         if ((int)functionResult != 0) {
           return functionResult;
         }
-        auStack_38[0] = puVar5[2];
+        auStack_38[0] = componentContextPtr[2];
         functionResult = (**(code **)**(undefined8 **)(uiContext + 8))
                           (*(undefined8 **)(uiContext + 8),auStack_38,4);
         if ((int)functionResult != 0) {
@@ -385422,7 +385422,7 @@ ulonglong FUN_18089a880(longlong uiContext,undefined8 *dataSource)
         componentIndex = 0xc;
         compareResult = -0xc;
       }
-      puVar5 = (uint *)((longlong)puVar5 + componentIndex);
+      componentContextPtr = (uint *)((longlong)componentContextPtr + componentIndex);
     }
     functionResult = (ulonglong)(-(uint)(iVar4 != 0) & 0x1c);
   }
@@ -392456,7 +392456,7 @@ ulonglong FUN_18089e4f0(longlong uiContext,undefined8 *dataSource)
   undefined8 semaphoreHandle;
   uint uVar3;
   ulonglong uVar4;
-  undefined4 *puVar5;
+  undefined4 *componentContextPtr;
   longlong lVar6;
   undefined4 *puStack_88;
   undefined8 uStack_80;
@@ -392471,12 +392471,12 @@ ulonglong FUN_18089e4f0(longlong uiContext,undefined8 *dataSource)
   if ((((int)uVar4 == 0) &&
       (uVar4 = FUN_1808ddc20(dataSource,auStack_58,0,0x424e4c54), (int)uVar4 == 0)) &&
      (uVar4 = FUN_180899360(dataSource,uiContext + 0x10), (int)uVar4 == 0)) {
-    puVar5 = (undefined4 *)FUN_180847820();
+    componentContextPtr = (undefined4 *)FUN_180847820();
     uVar4 = 0;
-    uStack_78 = *puVar5;
-    uStack_74 = puVar5[1];
-    uStack_70 = puVar5[2];
-    uStack_6c = puVar5[3];
+    uStack_78 = *componentContextPtr;
+    uStack_74 = componentContextPtr[1];
+    uStack_70 = componentContextPtr[2];
+    uStack_6c = componentContextPtr[3];
     if (*(uint *)(dataSource + 8) < 0x6d) {
       if (*(int *)(dataSource[1] + 0x18) == 0) {
         semaphoreHandle = *dataSource;
@@ -392510,17 +392510,17 @@ LAB_18089e70b:
           FUN_18084c150(&puStack_88);
           return uVar4;
         }
-        puVar5 = puStack_88;
+        componentContextPtr = puStack_88;
         if ((int)uStack_80 != 0) {
-          for (; (puStack_88 <= puVar5 && (puVar5 < puStack_88 + (int)uStack_80));
-              puVar5 = puVar5 + 1) {
+          for (; (puStack_88 <= componentContextPtr && (componentContextPtr < puStack_88 + (int)uStack_80));
+              componentContextPtr = componentContextPtr + 1) {
             lVar6 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,
                                   0,0,1);
             if (lVar6 == 0) {
               uVar4 = 0x26;
               goto LAB_18089e70b;
             }
-            functionResult = *puVar5;
+            functionResult = *componentContextPtr;
             *(longlong *)lVar6 = lVar6;
             *(longlong *)(lVar6 + 8) = lVar6;
             *(undefined4 *)(lVar6 + 0x10) = functionResult;
