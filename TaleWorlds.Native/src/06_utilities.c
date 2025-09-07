@@ -78129,7 +78129,17 @@ void Unwind_18090cff0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d000(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理偏移量0xB0处的资源
+ * 
+ * 该函数负责清理指定偏移量处的资源指针，处理内存引用计数和异常情况
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090d000
+ */
+void CleanupResourceAtOffsetB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
