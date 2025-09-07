@@ -30,7 +30,9 @@
 #define SystemCleanupFlag 0x80000000
 #define SystemCleanupFlagAlternative 0xfffffffe
 #define NegativeZeroFloat 0x80000000
+#define InvalidMemoryOffset -0x8000000000000000
 #define SecurityValidationMask 0x40000000
+#define MemoryOperationFlag 0x4000000
 #define ThreadLocalStorageOffset 0x17c
 #define ThreadLocalStorageBaseAddressAddress 0x180c4f450
 #define ResourceCleanupAlignment 0xfffffff0
@@ -18671,7 +18673,7 @@ uint32_t ProcessSystemRequestWithValidation(int64_t requestContext,DataBuffer re
   operationResult = InitializeTemporaryContext(temporaryContext,requestContext);
   if (operationResult == 0) {
     operationResultData = 0;
-    processedOperationFlags = operationFlags | 0x10000000;
+    processedOperationFlags = operationFlags | OperationFlagMask;
     if ((requestFlags & 1) == 0) {
       processedOperationFlags = operationFlags;
     }
@@ -19216,7 +19218,7 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
       memoryOffset = 0;
       processedFloatValue = (float)*(uint *)(operationBase + 0x68) * floatValue;
       if ((9.223372e+18 <= processedFloatValue) && (processedFloatValue = processedFloatValue - 9.223372e+18, processedFloatValue < 9.223372e+18)) {
-        memoryOffset = -0x8000000000000000;
+        memoryOffset = InvalidMemoryOffset;
       }
       dataContext = *(int64_t *)(operationBase + 0xa0);
       memoryPointer = *(int64_t *)(operationBase + 0x98);
@@ -19224,7 +19226,7 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
         floatCalculatedValue = (float)*(uint *)(operationBase + 0x68) * floatCalculatedValue;
         memoryPointer = 0;
         if ((9.223372e+18 <= floatCalculatedValue) && (floatCalculatedValue = floatCalculatedValue - 9.223372e+18, floatCalculatedValue < 9.223372e+18)) {
-          memoryPointer = -0x8000000000000000;
+          memoryPointer = InvalidMemoryOffset;
         }
         memoryPointer = dataContext - ((int64_t)floatCalculatedValue + memoryPointer);
         *(int64_t *)(operationBase + 0x98) = memoryPointer;
@@ -19276,7 +19278,7 @@ MemoryCopyLabel:
   }
   else {
     *(uint *)(operationBase + 0x6c) = *(uint *)(operationBase + 0x6c) & SecurityValidationMask;
-    *(uint *)(operationBase + 0x6c) = *(uint *)(operationBase + 0x6c) | 0x4000000;
+    *(uint *)(operationBase + 0x6c) = *(uint *)(operationBase + 0x6c) | MemoryOperationFlag;
     *dataBuffer = 0;
   }
 ExecuteSecurityValidation:
@@ -19334,7 +19336,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
     arrayIndex = 0;
     floatValue = (float)*(uint *)(systemContext + 0x68) * floatValue;
     if ((9.223372e+18 <= floatValue) && (floatValue = floatValue - 9.223372e+18, floatValue < 9.223372e+18)) {
-      arrayIndex = -0x8000000000000000;
+      arrayIndex = InvalidMemoryOffset;
     }
     dataOffset = *(int64_t *)(systemContext + 0xa0);
     systemDataBuffer = *(int64_t *)(systemContext + 0x98);
@@ -19342,7 +19344,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
       normalizedValue = (float)*(uint *)(systemContext + 0x68) * normalizedValue;
       systemDataBuffer = 0;
       if ((9.223372e+18 <= normalizedValue) && (normalizedValue = normalizedValue - 9.223372e+18, normalizedValue < 9.223372e+18)) {
-        systemDataBuffer = -0x8000000000000000;
+        systemDataBuffer = InvalidMemoryOffset;
       }
       systemDataBuffer = dataOffset - ((int64_t)normalizedValue + systemDataBuffer);
       *(int64_t *)(dataIterator + 0x98) = systemDataBuffer;
@@ -102060,7 +102062,24 @@ void ExceptionContextProcessorA5(DataBuffer operationBase,int64_t dataBuffer,Dat
 
 
 
-void Unwind_180911580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文处理器A6
+ * 
+ * 该函数负责处理异常上下文的清理和重置操作，包括：
+ * - 执行异常处理回调函数
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911580
+ */
+void ExceptionContextProcessorA6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -102088,7 +102107,24 @@ void Unwind_180911580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809115a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文处理器A7
+ * 
+ * 该函数负责处理异常上下文的清理和重置操作，包括：
+ * - 执行异常处理回调函数
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809115a0
+ */
+void ExceptionContextProcessorA7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
