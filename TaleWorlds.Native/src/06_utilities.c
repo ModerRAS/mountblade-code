@@ -76540,26 +76540,51 @@ void SetDefaultExceptionHandlerBToHighPriority(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_1809094a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到高优先级位置
+ * 
+ * 该函数将默认异常处理器B设置到数据缓冲区的高优先级位置(0x6a0)，
+ * 用于处理高优先级的异常情况。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_1809094a0
+ * @note 该函数用于系统高优先级异常处理机制的配置
+ */
+void SetDefaultExceptionHandlerBToHighPriorityPosition(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x6a0) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + HighPriorityExceptionHandlerOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_1809094b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统组件初始化处理器B
+ * 
+ * 该函数负责初始化系统组件，通过遍历数据缓冲区中的组件列表，
+ * 并调用InitializeSystemComponents函数进行系统组件的初始化操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含系统组件列表信息
+ * 
+ * @note 原始函数名：Unwind_1809094b0
+ * @note 该函数用于系统初始化阶段的组件初始化
+ * @warning 如果组件列表起始地址为0，会调用TerminateSystemE0终止系统
+ */
+void InitializeSystemComponentsProcessorB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t exceptionHandlerContext;
-  int64_t dataContext;
+  int64_t componentListEnd;
+  int64_t componentListStart;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x148);
-  for (dataContext = *(int64_t *)(dataBuffer + 0x140); dataContext != exceptionHandlerContext; dataContext = dataContext + 0x78) {
-    InitializeSystemComponents(dataContext);
+  componentListEnd = *(int64_t *)(dataBuffer + SystemComponentListEndOffset);
+  for (componentListStart = *(int64_t *)(dataBuffer + SystemComponentListStartOffset); componentListStart != componentListEnd; componentListStart = componentListStart + SystemComponentSize) {
+    InitializeSystemComponents(componentListStart);
   }
-  if (*(int64_t *)(dataBuffer + 0x140) == 0) {
+  if (*(int64_t *)(dataBuffer + SystemComponentListStartOffset) == 0) {
     return;
   }
     TerminateSystemE0();
