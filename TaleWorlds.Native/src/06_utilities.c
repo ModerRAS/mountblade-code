@@ -592,6 +592,30 @@
 // 系统内存分配常量
 #define SystemMemoryAllocationFlag 0x315                          // 系统内存分配标志 - 系统内存分配操作的标志值
 
+// 数据处理相关常量
+#define SystemStatusByteOffset 0x162                            // 系统状态字节偏移量
+#define SystemDataContextOffset 0x1a                             // 系统数据上下文偏移量
+#define SystemDataBufferSizeOffset 8                             // 系统数据缓冲区大小偏移量
+#define SystemDataTargetOffset 10                                // 系统数据目标偏移量
+#define SystemDataCapacityOffset 9                               // 系统数据容量偏移量
+#define SystemDataDefaultSize 0x18                               // 系统数据默认大小
+#define SystemDataValidationOffset 0x5c                          // 系统数据验证偏移量
+#define SystemDataShiftAmount 0x20                               // 系统数据位移量
+#define SystemDataNextPointerOffset 4                           // 系统数据下一指针偏移量
+#define SystemContextProcessingOffset 6                          // 系统上下文处理偏移量
+#define SystemMemoryBlockOffset 0x2d                             // 系统内存块偏移量
+#define SystemContextArrayOffset 0x2e                            // 系统上下文数组偏移量
+#define SystemFunctionCallbackOffset 0x38                        // 系统函数回调偏移量
+#define SystemMemoryRegionOffset 0x44                            // 系统内存区域偏移量
+#define SystemOperationOffset 0x4a                                // 系统操作偏移量
+#define SystemCleanupOffset 0x3d                                 // 系统清理偏移量
+#define SystemValidationOffset 0x16                              // 系统验证偏移量
+#define SystemMutexOffset 0xc                                     // 系统互斥锁偏移量
+
+// 数据验证相关常量
+#define ValidationResultOffset 0x28                               // 验证结果偏移量
+#define ValidationStatusPointerOffset 0x13                        // 验证状态指针偏移量
+
 // 异常处理器E0-E4相关常量
 #define ExceptionHandlerE0Offset 0x2e0                            // 异常处理器E0偏移量 - E0类型异常处理器的存储位置
 #define ExceptionHandlerE0StatusOffset 0x2e8
@@ -56080,7 +56104,7 @@ void ExecuteExceptionHandling(DataBuffer operationBase,int64_t dataBuffer,DataBu
   dataContext = *(int64_t **)(dataBuffer + ValidationResultOffset);
   memoryRegionBase = SystemCleanupFlagAlternative;
   exceptionDataBuffer = (DataBuffer *)dataContext[1];
-  for (validationStatusPointer = (DataBuffer *)*dataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 0x13) {
+  for (validationStatusPointer = (DataBuffer *)*dataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + ValidationStatusPointerOffset) {
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryRegionBase);
   }
   if (*dataContext == 0) {
@@ -56118,11 +56142,20 @@ void ProcessDataValidationFlag(DataBuffer operationBase,uint *dataBuffer)
  * @brief 执行系统数据处理和验证
  * 
  * 该函数用于执行复杂的数据处理和验证操作，包括线程锁定、
- * 数据遍历、内存分配和系统状态更新
+ * 数据遍历、内存分配和系统状态更新。该函数是系统数据处理的核心函数，
+ * 负责协调多个数据操作和资源管理任务。
  * 
- * @param operationBase 操作基础地址
- * @param dataBuffer 数据缓冲区指针
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含系统上下文和操作数据
+ * 
  * @note 原始函数名：Unwind_1809057b0
+ * @note 该函数执行以下主要操作：
+ *       1. 初始化操作结果缓冲区
+ *       2. 获取数据上下文并锁定线程
+ *       3. 遍历和处理系统数据
+ *       4. 执行内存管理和资源清理
+ *       5. 验证系统状态并解锁线程
+ * @warning 函数中包含复杂的内存操作和线程同步，错误的调用可能导致系统不稳定
  */
 void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -56143,10 +56176,10 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
   int64_t *stackVariable20;
   uint64_t loopCounter;
   
-  operationResult = *(DataBuffer **)(dataBuffer + 0x40);
+  operationResult = *(DataBuffer **)(dataBuffer + SystemContextPointerOffset);
   *operationResult = &OperationResultBuffer;
-  *(ByteFlag *)((int64_t)operationResult + 0x162) = 1;
-  dataContext = operationResult + 0x1a;
+  *(ByteFlag *)((int64_t)operationResult + SystemStatusByteOffset) = 1;
+  dataContext = operationResult + SystemDataContextOffset;
   stackVariable20 = dataContext;
   iterationCount = _Mtx_lock(dataContext);
   if (iterationCount != 0) {
@@ -56156,28 +56189,28 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
   systemDataBuffer1 = loopCounter;
   if (operationResult[9] != 0) {
     do {
-      systemDataBuffer2 = systemDataBuffer1 % (uint64_t)*(uint *)(operationResult + 8);
+      systemDataBuffer2 = systemDataBuffer1 % (uint64_t)*(uint *)(operationResult + SystemDataBufferSizeOffset);
       iterationCount = (int)loopCounter;
       for (calculatedValue = *(int **)(operationResult[7] + systemDataBuffer2 * 8); calculatedValue != (int *)0x0;
-          calculatedValue = *(int **)(calculatedValue + 4)) {
+          calculatedValue = *(int **)(calculatedValue + SystemDataNextPointerOffset)) {
         if (iterationCount == *calculatedValue) {
           if (calculatedValue != (int *)0x0) goto ProcessCheckpointValidationData3;
           break;
         }
       }
-      ConvertDataTypeA0(operationResult + 10,&stackVariable10,(uint64_t)*(uint *)(operationResult + 8),
-                    *(DataWord *)(operationResult + 9),1);
-      calculatedValue = (int *)CalculateSystemValue(SystemCalculationBaseAddress,0x18,*(ByteFlag *)((int64_t)operationResult + 0x5c));
+      ConvertDataTypeA0(operationResult + SystemDataTargetOffset,&stackVariable10,(uint64_t)*(uint *)(operationResult + SystemDataBufferSizeOffset),
+                    *(DataWord *)(operationResult + SystemDataCapacityOffset),1);
+      calculatedValue = (int *)CalculateSystemValue(SystemCalculationBaseAddress,SystemDataDefaultSize,*(ByteFlag *)((int64_t)operationResult + SystemDataValidationOffset));
       *calculatedValue = iterationCount;
       calculatedValue[2] = 0;
       calculatedValue[3] = 0;
       calculatedValue[4] = 0;
       calculatedValue[5] = 0;
       if ((char)stackVariable10 != '\0') {
-        systemDataBuffer2 = systemDataBuffer1 % ((uint64_t)stackVariable10 >> 0x20);
-        ProcessContextA0(operationResult + 6);
+        systemDataBuffer2 = systemDataBuffer1 % ((uint64_t)stackVariable10 >> SystemDataShiftAmount);
+        ProcessContextA0(operationResult + SystemContextProcessingOffset);
       }
-      *(DataBuffer *)(calculatedValue + 4) = *(DataBuffer *)(operationResult[7] + systemDataBuffer2 * 8);
+      *(DataBuffer *)(calculatedValue + SystemDataNextPointerOffset) = *(DataBuffer *)(operationResult[7] + systemDataBuffer2 * 8);
       *(int **)(operationResult[7] + systemDataBuffer2 * 8) = calculatedValue;
       operationResult[9] = operationResult[9] + 1;
 ProcessCheckpointValidationData3:
@@ -56185,54 +56218,54 @@ ProcessCheckpointValidationData3:
       calculatedValue[2] = 0;
       calculatedValue[3] = 0;
       if (stackVariable18 != (int64_t *)0x0) {
-        (**(FunctionPointer**)(*stackVariable18 + 0x38))();
+        (**(FunctionPointer**)(*stackVariable18 + SystemFunctionCallbackOffset))();
       }
       statusCounter = iterationCount + 1;
       loopCounter = (uint64_t)statusCounter;
       systemDataBuffer1 = (int64_t)(int)statusCounter;
     } while ((uint64_t)(int64_t)(int)statusCounter < (uint64_t)operationResult[9]);
   }
-  exceptionHandlerContextPointer = operationResult + 6;
+  exceptionHandlerContextPointer = operationResult + SystemContextProcessingOffset;
   ValidateProcessingA0(exceptionHandlerContextPointer);
-  memoryBlockOffset = operationResult + 0x2d;
-  contextPointer = (int64_t *)operationResult[0x2e];
+  memoryBlockOffset = operationResult + SystemMemoryBlockOffset;
+  contextPointer = (int64_t *)operationResult[SystemContextArrayOffset];
   bufferPointer = (int64_t *)*memoryBlockOffset;
   if (bufferPointer != contextPointer) {
     do {
       if ((int64_t *)*bufferPointer != (int64_t *)0x0) {
-        (**(FunctionPointer**)(*(int64_t *)*bufferPointer + 0x38))();
+        (**(FunctionPointer**)(*(int64_t *)*bufferPointer + SystemFunctionCallbackOffset))();
       }
       bufferPointer = bufferPointer + 1;
     } while (bufferPointer != contextPointer);
     bufferPointer = (int64_t *)*memoryBlockOffset;
   }
-  operationResult[0x2e] = bufferPointer;
+  operationResult[SystemContextArrayOffset] = bufferPointer;
   iterationCount = _Mtx_unlock(dataContext);
   if (iterationCount != 0) {
     __Throw_C_error_std__YAXH_Z(iterationCount);
   }
-  if (operationResult[0x4a] != 0) {
+  if (operationResult[SystemOperationOffset] != 0) {
     free();
-    operationResult[0x4a] = 0;
+    operationResult[SystemOperationOffset] = 0;
   }
-  stackVariable10 = operationResult + 0x44;
+  stackVariable10 = operationResult + SystemMemoryRegionOffset;
   ExecuteSystemOperationA0();
-  if ((int64_t *)operationResult[0x3d] != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*(int64_t *)operationResult[0x3d] + 0x38))();
+  if ((int64_t *)operationResult[SystemCleanupOffset] != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*(int64_t *)operationResult[SystemCleanupOffset] + SystemFunctionCallbackOffset))();
   }
   stackVariable10 = memoryBlockOffset;
   ManageMemoryA0(memoryBlockOffset);
-  stackVariable10 = operationResult + 0x28;
+  stackVariable10 = operationResult + DataConfigurationOffset;
   CleanupResourcesA0();
   stackVariable10 = operationResult + 0x24;
   CleanupResourcesA0();
   stackVariable10 = dataContext;
   _Mtx_destroy_in_situ(dataContext);
-  stackVariable10 = operationResult + 0x16;
+  stackVariable10 = operationResult + SystemValidationOffset;
   if (*stackVariable10 != 0) {
       TerminateSystemE0();
   }
-  stackVariable10 = operationResult + 0xc;
+  stackVariable10 = operationResult + SystemMutexOffset;
   _Mtx_destroy_in_situ();
   stackVariable10 = exceptionHandlerContextPointer;
   ValidateProcessingA0(exceptionHandlerContextPointer);
