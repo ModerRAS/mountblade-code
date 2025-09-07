@@ -95504,9 +95504,9 @@ uint8_t ProcessDataStructureWithMemory(uint32_t CharacterCode,float *Utf8InputBu
   uint32_t XMM9RegisterC;
   uint32_t unaff_XMM9_Dd;
   uint32_t AuxiliaryFloat10;
-  uint32_t unaff_XMM10_Db;
-  uint32_t unaff_XMM10_Dc;
-  uint32_t unaff_XMM10_Dd;
+  uint32_t XMM10RegisterB;
+  uint32_t XMM10RegisterC;
+  uint32_t XMM10RegisterD;
   float fStack0000000000000030;
   float StackVariable34;
   float StackVariable38;
@@ -95522,9 +95522,9 @@ uint8_t ProcessDataStructureWithMemory(uint32_t CharacterCode,float *Utf8InputBu
   *(uint32_t *)(ProcessingResult + -0x70) = XMM9RegisterC;
   *(uint32_t *)(ProcessingResult + -0x6c) = unaff_XMM9_Dd;
   *(uint32_t *)(ProcessingResult + -0x88) = AuxiliaryFloat10;
-  *(uint32_t *)(ProcessingResult + -0x84) = unaff_XMM10_Db;
-  *(uint32_t *)(ProcessingResult + -0x80) = unaff_XMM10_Dc;
-  *(uint32_t *)(ProcessingResult + -0x7c) = unaff_XMM10_Dd;
+  *(uint32_t *)(ProcessingResult + -0x84) = XMM10RegisterB;
+  *(uint32_t *)(ProcessingResult + -0x80) = XMM10RegisterC;
+  *(uint32_t *)(ProcessingResult + -0x7c) = XMM10RegisterD;
   long long AllocatedMemorySize = *(long long *)(MemoryPoolBlockSize + 0x1af8);
   StackVariable38 =
        *(float *)(MemoryPoolBlockSize + 0x165c) + *(float *)(MemoryPoolBlockSize + 0x165c) +
@@ -98136,7 +98136,7 @@ void ProcessSystemCoreDataAndFloatOperations(void
   uint32_t XMM9RegisterC;
   uint32_t unaff_XMM9_Dd;
   uint32_t AuxiliaryFloat10;
-  uint32_t unaff_XMM10_Dc;
+  uint32_t XMM10RegisterC;
   uint32_t AuxiliaryFloatValue11;
   float SecondaryFloatValue;
   uint32_t Xmm11RegisterDb;
@@ -98213,7 +98213,7 @@ void ProcessSystemCoreDataAndFloatOperations(void
        (*(float *)(CharacterTablePointer + 0x228) <= NormalizedParameterValue && NormalizedParameterValue != *(float *)(CharacterTablePointer + 0x228))) &&
       (PrimaryFloatValue < *(float *)(CharacterTablePointer + 0x230))) || (*(char *)(SystemContext + 0x2e38) != '\0')) {
     StackParameterC0 = AuxiliaryFloat10;
-    StackParameterC8 = unaff_XMM10_Dc;
+    StackParameterC8 = XMM10RegisterC;
     SystemCheckResult = ValidateAndProcessSystemFlags(&SecondaryDataBuffer,&TertiaryDataBuffer,1);
     if (SystemCheckResult != '\0') {
       *(uint *)(MemoryBoundaryEnd + 0x148) = *(uint *)(MemoryBoundaryEnd + 0x148) | 1;
@@ -98824,9 +98824,9 @@ void SystemDataValidationAndProcessing(void)
   *(uint32_t *)(in_R11 + -0x40) = XMM9RegisterC;
   *(uint32_t *)(in_R11 + -0x3c) = unaff_XMM9_Dd;
   *(uint32_t *)(in_R11 + -0x58) = AuxiliaryFloat10;
-  *(uint32_t *)(in_R11 + -0x54) = unaff_XMM10_Db;
-  *(uint32_t *)(in_R11 + -0x50) = unaff_XMM10_Dc;
-  *(uint32_t *)(in_R11 + -0x4c) = unaff_XMM10_Dd;
+  *(uint32_t *)(in_R11 + -0x54) = XMM10RegisterB;
+  *(uint32_t *)(in_R11 + -0x50) = XMM10RegisterC;
+  *(uint32_t *)(in_R11 + -0x4c) = XMM10RegisterD;
   if (in_ZF) {
     *(uint8_t *)(SystemContext + 0xb1) = 1;
     CurrentMemoryBlockAddress = *(long long *)(SystemRegisterR10 + 0x1af8);
@@ -108995,9 +108995,9 @@ unsigned long long ProcessSystemContextWithUint32Parameters(uint32_t CharacterCo
   uint32_t XMM9RegisterC;
   uint32_t unaff_XMM9_Dd;
   uint32_t AuxiliaryFloat10;
-  uint32_t unaff_XMM10_Db;
-  uint32_t unaff_XMM10_Dc;
-  uint32_t unaff_XMM10_Dd;
+  uint32_t XMM10RegisterB;
+  uint32_t XMM10RegisterC;
+  uint32_t XMM10RegisterD;
   uint32_t AuxiliaryFloatValue11;
   uint32_t Xmm11RegisterDb;
   uint32_t unaff_XMM11_Dc;
@@ -109017,9 +109017,9 @@ unsigned long long ProcessSystemContextWithUint32Parameters(uint32_t CharacterCo
   *(uint32_t *)(in_R11 + -0x70) = XMM9RegisterC;
   *(uint32_t *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
   *(uint32_t *)(in_R11 + -0x88) = AuxiliaryFloat10;
-  *(uint32_t *)(in_R11 + -0x84) = unaff_XMM10_Db;
-  *(uint32_t *)(in_R11 + -0x80) = unaff_XMM10_Dc;
-  *(uint32_t *)(in_R11 + -0x7c) = unaff_XMM10_Dd;
+  *(uint32_t *)(in_R11 + -0x84) = XMM10RegisterB;
+  *(uint32_t *)(in_R11 + -0x80) = XMM10RegisterC;
+  *(uint32_t *)(in_R11 + -0x7c) = XMM10RegisterD;
   *(uint32_t *)(in_R11 + -0x98) = AuxiliaryFloatValue11;
   *(uint32_t *)(in_R11 + -0x94) = Xmm11RegisterDb;
   *(uint32_t *)(in_R11 + -0x90) = unaff_XMM11_Dc;
@@ -109682,9 +109682,9 @@ void SetupIntegerDataNetwork(uint64_t CharacterCode,char *Utf8InputBufferSize,ui
   uint32_t XMM8RegisterC;
   uint32_t XMM8RegisterD;
   uint32_t AuxiliaryFloat10;
-  uint32_t unaff_XMM10_Db;
-  uint32_t unaff_XMM10_Dc;
-  uint32_t unaff_XMM10_Dd;
+  uint32_t XMM10RegisterB;
+  uint32_t XMM10RegisterC;
+  uint32_t XMM10RegisterD;
   uint32_t AuxiliaryFloatValue11;
   uint32_t Xmm11RegisterDb;
   uint32_t unaff_XMM11_Dc;
@@ -109738,9 +109738,9 @@ void SetupIntegerDataNetwork(uint64_t CharacterCode,char *Utf8InputBufferSize,ui
   *(uint32_t *)(in_R11 + -0x70) = XMM8RegisterC;
   *(uint32_t *)(in_R11 + -0x6c) = XMM8RegisterD;
   *(uint32_t *)(in_R11 + -0x98) = AuxiliaryFloat10;
-  *(uint32_t *)(in_R11 + -0x94) = unaff_XMM10_Db;
-  *(uint32_t *)(in_R11 + -0x90) = unaff_XMM10_Dc;
-  *(uint32_t *)(in_R11 + -0x8c) = unaff_XMM10_Dd;
+  *(uint32_t *)(in_R11 + -0x94) = XMM10RegisterB;
+  *(uint32_t *)(in_R11 + -0x90) = XMM10RegisterC;
+  *(uint32_t *)(in_R11 + -0x8c) = XMM10RegisterD;
   *(uint32_t *)(in_R11 + -0xa8) = AuxiliaryFloatValue11;
   *(uint32_t *)(in_R11 + -0xa4) = Xmm11RegisterDb;
   *(uint32_t *)(in_R11 + -0xa0) = unaff_XMM11_Dc;
@@ -116525,7 +116525,7 @@ LAB_18011f1e4:
     }
   }
   CharacterCode = (double)ProcessSystemFloatCalculation(in_stack_00000100,Utf8BufferSize,
-                                  SUB84(((double)CONCAT44(unaff_XMM10_Db,AuxiliaryFloat10) -
+                                  SUB84(((double)CONCAT44(XMM10RegisterB,AuxiliaryFloat10) -
                                         (double)CONCAT44(XMMRegister8_Db,SecondaryFloatValue)) *
                                         (double)FloatVariable4 +
                                         (double)CONCAT44(XMMRegister8_Db,SecondaryFloatValue),0));
@@ -131252,7 +131252,7 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
   uint64_t unaff_XMM9_Qa;
   uint64_t unaff_XMM9_Qb;
   uint32_t AuxiliaryFloat10;
-  uint32_t unaff_XMM10_Dc;
+  uint32_t XMM10RegisterC;
   uint32_t AuxiliaryFloatValue11;
   uint32_t unaff_XMM11_Dc;
   uint64_t unaff_XMM12_Qa;
@@ -131487,7 +131487,7 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
   in_stack_000001e0 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;
   in_stack_000001f0 = AuxiliaryFloat10;
-  in_stack_000001f8 = unaff_XMM10_Dc;
+  in_stack_000001f8 = XMM10RegisterC;
   in_stack_00000210 = SecondaryFloatValue;
   in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,FilterInputValue4,*(void *)(StackFramePointer + 8));
@@ -133092,7 +133092,7 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
   uint64_t unaff_XMM9_Qa;
   uint64_t unaff_XMM9_Qb;
   uint32_t AuxiliaryFloat10;
-  uint32_t unaff_XMM10_Dc;
+  uint32_t XMM10RegisterC;
   uint32_t AuxiliaryFloatValue11;
   uint32_t unaff_XMM11_Dc;
   uint64_t unaff_XMM12_Qa;
@@ -133325,7 +133325,7 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
   in_stack_000001e0 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;
   in_stack_000001f0 = AuxiliaryFloat10;
-  in_stack_000001f8 = unaff_XMM10_Dc;
+  in_stack_000001f8 = XMM10RegisterC;
   in_stack_00000210 = SecondaryFloatValue;
   in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,ScalingFactor,*(void *)(StackFramePointer + 8));
@@ -134933,7 +134933,7 @@ void InitializeSystemStringProcessing(void)
   uint64_t unaff_XMM9_Qa;
   uint64_t unaff_XMM9_Qb;
   uint32_t AuxiliaryFloat10;
-  uint32_t unaff_XMM10_Dc;
+  uint32_t XMM10RegisterC;
   uint32_t AuxiliaryFloatValue11;
   uint32_t unaff_XMM11_Dc;
   uint64_t unaff_XMM12_Qa;
@@ -135022,7 +135022,7 @@ void InitializeSystemStringProcessing(void)
   in_stack_000001e0 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;
   in_stack_000001f0 = AuxiliaryFloat10;
-  in_stack_000001f8 = unaff_XMM10_Dc;
+  in_stack_000001f8 = XMM10RegisterC;
   in_stack_00000210 = SecondaryFloatValue;
   in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,NullPointerD,*(void *)(StackFramePointer + 8));
@@ -138245,7 +138245,7 @@ void ProcessSystemStatusAndValidation(void
   uint64_t unaff_XMM9_Qa;
   uint64_t unaff_XMM9_Qb;
   uint32_t AuxiliaryFloat10;
-  uint32_t unaff_XMM10_Dc;
+  uint32_t XMM10RegisterC;
   uint32_t AuxiliaryFloatValue11;
   uint32_t unaff_XMM11_Dc;
   uint64_t unaff_XMM12_Qa;
@@ -138322,7 +138322,7 @@ void ProcessSystemStatusAndValidation(void
   in_stack_000001e0 = AuxiliaryFloatValue11;
   in_stack_000001e8 = unaff_XMM11_Dc;
   in_stack_000001f0 = AuxiliaryFloat10;
-  in_stack_000001f8 = unaff_XMM10_Dc;
+  in_stack_000001f8 = XMM10RegisterC;
   in_stack_00000210 = SecondaryFloatValue;
   in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,NullPointerD,*(void *)(StackFramePointer + 8));
@@ -231367,11 +231367,11 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   uint32_t unaff_XMM9_Dd;
   uint32_t AuxiliaryFloat10;
   float FloatVariable44;
-  uint32_t unaff_XMM10_Db;
+  uint32_t XMM10RegisterB;
   float FloatVariable45;
-  uint32_t unaff_XMM10_Dc;
+  uint32_t XMM10RegisterC;
   float FloatVariable46;
-  uint32_t unaff_XMM10_Dd;
+  uint32_t XMM10RegisterD;
   uint32_t AuxiliaryFloatValue11;
   float FloatVariable47;
   uint32_t Xmm11RegisterDb;
@@ -231428,9 +231428,9 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   *(uint32_t *)(in_R11 + -0x80) = XMM9RegisterC;
   *(uint32_t *)(in_R11 + -0x7c) = unaff_XMM9_Dd;
   *(uint32_t *)(in_R11 + -0x98) = AuxiliaryFloat10;
-  *(uint32_t *)(in_R11 + -0x94) = unaff_XMM10_Db;
-  *(uint32_t *)(in_R11 + -0x90) = unaff_XMM10_Dc;
-  *(uint32_t *)(in_R11 + -0x8c) = unaff_XMM10_Dd;
+  *(uint32_t *)(in_R11 + -0x94) = XMM10RegisterB;
+  *(uint32_t *)(in_R11 + -0x90) = XMM10RegisterC;
+  *(uint32_t *)(in_R11 + -0x8c) = XMM10RegisterD;
   *(uint32_t *)(in_R11 + -0xa8) = AuxiliaryFloatValue11;
   *(uint32_t *)(in_R11 + -0xa4) = Xmm11RegisterDb;
   *(uint32_t *)(in_R11 + -0xa0) = unaff_XMM11_Dc;
@@ -233741,7 +233741,7 @@ LAB_180201f5b:
   double unaff_XMM7_Qa;
   double unaff_XMM9_Qa;
   uint32_t AuxiliaryFloat10;
-  uint32_t unaff_XMM10_Db;
+  uint32_t XMM10RegisterB;
   double unaff_XMM11_Qa;
   unsigned long long ProcessStringBuffer;
   
@@ -233781,19 +233781,19 @@ LAB_180201f5b:
   *(int *)(CharacterLimit + 0xdc) = MemoryAllocationSize + 1;
   *(double *)(CharacterLimit + 0x108) =
        (unaff_XMM9_Qa * *(double *)(CharacterLimit + 0x108) + unaff_XMM11_Qa * Utf16EndPointer) *
-       (double)CONCAT44(unaff_XMM10_Db,AuxiliaryFloat10);
+       (double)CONCAT44(XMM10RegisterB,AuxiliaryFloat10);
   *(double *)(CharacterLimit + 0x110) =
        (unaff_XMM9_Qa * *(double *)(CharacterLimit + 0x110) + in_XMM4_Qa / XMMRegister6_Qa) *
-       (double)CONCAT44(unaff_XMM10_Db,AuxiliaryFloat10);
+       (double)CONCAT44(XMM10RegisterB,AuxiliaryFloat10);
   *(double *)(CharacterLimit + 0x118) =
        (unaff_XMM9_Qa * *(double *)(CharacterLimit + 0x118) + in_XMM5_Qa / unaff_XMM7_Qa) *
-       (double)CONCAT44(unaff_XMM10_Db,AuxiliaryFloat10);
+       (double)CONCAT44(XMM10RegisterB,AuxiliaryFloat10);
   *(double *)(CharacterLimit + 0xe0) =
        (unaff_XMM9_Qa * *(double *)(CharacterLimit + 0xe0) + *(double *)(CharacterLimit + 0xc0)) *
-       (double)CONCAT44(unaff_XMM10_Db,AuxiliaryFloat10);
+       (double)CONCAT44(XMM10RegisterB,AuxiliaryFloat10);
   *(double *)(CharacterLimit + 0xe8) =
        (unaff_XMM9_Qa * *(double *)(CharacterLimit + 0xe8) + *(double *)(CharacterLimit + 0xb8)) *
-       (double)CONCAT44(unaff_XMM10_Db,AuxiliaryFloat10);
+       (double)CONCAT44(XMM10RegisterB,AuxiliaryFloat10);
   return;
 }
 
