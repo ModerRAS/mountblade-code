@@ -126628,7 +126628,7 @@ uint8_t CheckMemorySystemStatus(void
   *(uint32_t *)(MemoryBoundaryEnd + 0x1bd4) = 1;
   if (CharacterCode == 0) {
     lStack_168 = CONCAT44(lStack_168.HighPart,CharacterCodeSize);
-    FUN_180121200(aCoreEngineUnsignedValue,0x100,SystemDataTablePointerA8,*systemEventTemplatePointer);
+    OperateBufferAndSetParameters(aCoreEngineUnsignedValue,0x100,SystemDataTablePointerA8,*systemEventTemplatePointer);
   }
   else {
     lStack_168 = CharacterCode;
@@ -126647,7 +126647,7 @@ uint8_t CheckMemorySystemStatus(void
   if (((*(int *)(MemoryBoundaryEnd + 0x1ca4) == CharacterCodeSize) && ((AdditionalParameter1 & 0x800000) == 0)) &&
      ((*(int *)(DataStructureCounter + 0x174) != 0 || (*(char *)(DataStructureCounter + 0x17d) != '\0')))) {
     ProcessSystemLoop(DataStructureCounter);
-    FUN_180131810(DataStructureCounter,0);
+    InitializeSystemAndConfigure(DataStructureCounter,0);
     ProcessMemoryOperation(CharacterCodeSize + 1,DataStructureCounter);
     *(uint32_t *)(MemoryBoundaryEnd + 0x1b60) = 2;
   }
@@ -128012,7 +128012,7 @@ float * FUN_1801296e0(float *CharacterCode,long long CharacterCodeSize,int Utf8I
     plStack_238[0xd] = *(long long *)(DataStructureCounter + 0x1c0c);
     if (*(float *)((long long)plStack_238 + 0x6c) != 0.0) {
       FloatValue33 = (float)GetSystemTime();
-      FloatValue34 = (float)FUN_18010e760(plStack_238);
+      FloatValue34 = (float)GetSystemFloatValue(plStack_238);
       *(float *)((long long)plStack_238 + 0x6c) =
            FloatValue33 + FloatValue34 + *(float *)((long long)plStack_238 + 0x6c);
     }
@@ -189076,8 +189076,21 @@ LAB_180166808:
 
 
 
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换的初始化函数
+ * 
+ * 该函数负责处理UTF-8到UTF-16字符编码转换的初始化阶段，包括状态缓冲区设置和数据结构计数
+ * 
+ * @param CharacterCode 输入的字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 转换后的字符编码指针
+ * 
+ * @note 原始函数名：FUN_180166950
+ */
 uint64_t *
-FUN_180166950(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingInitialize(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
 {
   uint32_t *StatusBuffer;
   int CharacterByteCount;
@@ -189514,8 +189527,21 @@ LAB_180166c0c:
 
 
 
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换的内存分配阶段
+ * 
+ * 该函数负责处理字符编码转换的内存分配阶段，包括状态缓冲区、内存地址掩码和系统事件处理
+ * 
+ * @param CharacterCode 输入的字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 转换后的字符编码指针
+ * 
+ * @note 原始函数名：FUN_1801672e0
+ */
 uint64_t *
-FUN_1801672e0(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
 {
   uint64_t *StatusBuffer;
   uint32_t MemoryAllocationIndex;
@@ -189999,8 +190025,21 @@ ProcessUtf8ToUtf16CharacterEncodingStage5(uint64_t CharacterCode,uint64_t *Chara
 
 
 
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换的线程同步阶段
+ * 
+ * 该函数负责处理字符编码转换的线程同步阶段，包括锁处理、Unicode码点转换和内存地址掩码操作
+ * 
+ * @param CharacterCode 输入的字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 转换后的字符编码指针
+ * 
+ * @note 原始函数名：FUN_1801681e0
+ */
 uint64_t *
-FUN_1801681e0(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
 {
   int LockResult;
   void *PrimaryProcessingStatusFlag;

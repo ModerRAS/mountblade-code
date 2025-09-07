@@ -8535,7 +8535,7 @@ undefined4 * CreateUIColorBuffer(undefined4 *uiContext)
   undefined4 uStack_1c;
   undefined4 uStack_14;
   
-  plVar2 = (longlong *)AllocateUIMemory(UIContextManager,0x30,8,3,0xfffffffffffffffe);
+  colorBufferPointer = (longlong *)AllocateUIMemory(UIContextManager,0x30,8,3,0xfffffffffffffffe);
   plVar2[1] = 0;
   plVar2[2] = 0;
   plVar2[3] = 0;
