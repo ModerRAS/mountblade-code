@@ -67768,8 +67768,26 @@ undefined4
 
 
 
- void FUN_18069ef30(longlong uiContext,longlong dataSource,char *targetBuffer,char *bufferSize,longlong resultPointer,
-void FUN_18069ef30(longlong uiContext,longlong dataSource,char *targetBuffer,char *bufferSize,longlong resultPointer,
+ /**
+ * @brief 处理UI组件数据缓冲区
+ * 
+ * 处理UI组件的数据缓冲区操作，包括数据读写和状态管理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小指针
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7
+ * @param param_8 参数8
+ * @param param_9 参数9
+ * @param uiContext0 UI上下文0
+ * @param uiContext1 UI上下文1
+ * 
+ * @note 原始函数名: FUN_18069ef30
+ */
+void ProcessUIComponentDataBuffer(longlong uiContext,longlong dataSource,char *targetBuffer,char *bufferSize,longlong resultPointer,
                   undefined8 param_6,longlong param_7,int param_8,int param_9,int uiContext0,
                   int uiContext1)
 

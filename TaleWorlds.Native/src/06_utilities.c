@@ -16694,7 +16694,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
       }
     }
     *(uint *)(DataStructureHandle + 8) = *(int *)(DataStructureHandle + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
-    validationStatus = GetSystemCurrentStateA0(*(DataBuffer *)(dataStructurePointer + 0x1e0));
+    validationStatus = GetSystemCurrentStateA0(*(DataBuffer *)(dataStructurePointer + SystemConfigTertiaryOffset));
     if ((int)validationStatus == 0) {
       return 0;
     }
@@ -17006,7 +17006,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
   }
   *(DataWord *)(resultPointer + 0x90) = *(DataWord *)(valueContext + 0x18);
   resultPointer = *(int64_t *)(operationContext + 0x98);
-  if ((*(int *)(resultPointer + 0x180) != 0) || (*(int *)(resultPointer + 0x184) != 0)) {
+  if ((*(int *)(resultPointer + SystemConfigPrimaryOffset) != 0) || (*(int *)(resultPointer + SystemConfigSecondaryOffset) != 0)) {
     stackValue = 0;
     InitializeSystemContextA0(&stackValue,valueContext,exceptionHandlerContext,processingContext,DestinationContext);
     if (stackValue == *(int64_t *)((int64_t)*(int *)(resultPointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress)) {
@@ -17018,7 +17018,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
     }
   }
   *(uint *)(valueContext + ValueContextOffset8) = *(int *)(valueContext + ValueContextOffset8) + 0xfU & 0xfffffff0;
-  operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(resultPointer + 0x1e0));
+  operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(resultPointer + SystemConfigTertiaryOffset));
   if ((int)operationResult == 0) {
     return 0;
   }
