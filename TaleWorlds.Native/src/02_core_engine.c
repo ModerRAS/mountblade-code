@@ -188740,19 +188740,19 @@ ProcessAdvancedCharacterEncodingConversion(uint64_t CharacterCode,uint64_t *Char
   long long *EngineContext;
   uint CalculatedCodePoint;
   long long MemoryBoundaryEnd;
-  void *TertiaryProcessingStatusFlag;
-  void *TertiaryProcessingStatusFlag;
+  void *PrimaryProcessingStatusFlag;
+  void *SecondaryProcessingStatusFlag;
   uint SystemMemoryAllocationResult;
   long long *CharacterCodePointer;
   int MatchCounter;
   void *StackPointer;
-  uint8_t *CoreEnginePointerBuffer60;
-  uint SystemTimeoutCounter;
+  uint8_t *EncodingBuffer;
+  uint BufferOffset;
   uint64_t SystemKeyPointer;
-  long long *pCoreEngineSignedValue48;
-  long long *plStack_40;
+  long long *ProcessingContextPointer;
+  long long *SecondaryContextPointer;
   uint64_t FunctionAddress;
-  uint32_t CoreEngineUnsignedValue30;
+  uint32_t ProcessingFlags;
   
   MatchCounter = 0;
   CharacterTablePointer = *Utf16EndPointer;
