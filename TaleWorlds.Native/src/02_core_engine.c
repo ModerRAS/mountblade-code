@@ -176649,7 +176649,16 @@ void ProcessCharacterCodeMemoryMatchingAndAddressMask(long long CharacterCode, l
 
 
 
-49b76(uint64_t CharacterCode,uint SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t *Utf16EndPointervoid FUN_180149b76(uint64_t CharacterCode,uint SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t *Utf16EndPointer
+/**
+ * 处理UTF-8到UTF-16的编码转换和引用计数
+ * 执行UTF-8到UTF-16的编码转换，管理引用计数和系统数据注册
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ */
+void ProcessUtf8ToUtf16EncodingConversionAndReferenceCounting(uint64_t CharacterCode, uint SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t *Utf16EndPointer)
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
@@ -176705,7 +176714,11 @@ void ProcessCharacterCodeMemoryMatchingAndAddressMask(long long CharacterCode, l
 
 
 
-49bac(voidvoid FUN_180149bac(void
+/**
+ * 处理系统参数的引用计数和缓冲区状态
+ * 执行系统参数处理、引用计数管理和缓冲区状态检查
+ */
+void ProcessSystemParameterReferenceCountingAndBufferStatus(void)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -176738,7 +176751,14 @@ void ProcessCharacterCodeMemoryMatchingAndAddressMask(long long CharacterCode, l
 
 
 
-49bd0(long long CharacterCode,uint8_t *CharacterCodeSizevoid FUN_180149bd0(long long CharacterCode,uint8_t *CharacterCodeSize
+/**
+ * 处理字符代码的大小和系统标志缓冲区
+ * 执行字符代码大小处理和系统标志缓冲区管理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ */
+void ProcessCharacterCodeSizeAndSystemFlagBuffer(long long CharacterCode, uint8_t *CharacterCodeSize)
 {
   long long *CharacterCode;
   code *SystemValidationFunction;
