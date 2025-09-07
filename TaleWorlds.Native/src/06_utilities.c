@@ -7998,12 +7998,11 @@ void* GlobalDataPointerA38Quinary;
 // 返回值:
 //   void* - 数据处理结果
 void* UtilityProcessDataA0;
-// 全局数据指针A38存储区
+// 全局数据指针A38相关变量
 void* GlobalDataPointerA38Storage;    // DAT_180bfa230
 void* GlobalDataPointerA38Status;     // DAT_180bfa238
 void* GlobalDataPointerA38Config;     // DAT_180bfa240
 void* GlobalDataPointerA38Cache;      // DAT_180bfa248
-// 全局数据指针A38验证缓冲区
 void* GlobalDataPointerA38ValidationBuffer;  // DAT_180a22fa8
 
 // 函数: uint8_t ProcessUtilityDataBB0;
@@ -9360,36 +9359,36 @@ uint8_t SystemSecurityValidationFlagA6;     // UNK_180a39688
 uint8_t SystemSecurityValidationFlagA7;     // UNK_180a396b0
 uint8_t SystemSecurityValidationFlagA8;     // UNK_180a396c8
 uint8_t SystemSecurityValidationFlagA9;     // UNK_180a396f0
-uint8_t SecurityValidationFlagA10;    // UNK_180a39710
-uint8_t SecurityValidationFlagA11;    // UNK_180a39728
-uint8_t SecurityValidationFlagA12;    // UNK_180a39740
-uint8_t SecurityValidationFlagA13;    // UNK_180a39758
-uint8_t SecurityValidationFlagA14;    // UNK_180a39768
-uint8_t SecurityValidationFlagA15;    // UNK_180a39788
-uint8_t SecurityValidationFlagA16;    // UNK_180a397a8
-uint8_t SecurityValidationFlagA17;    // UNK_180a397c8
-uint8_t SecurityValidationFlagA18;    // UNK_180a397d8
-uint8_t SecurityValidationFlagA19;    // UNK_180a397e8
-uint8_t SecurityValidationFlagA20;    // UNK_180a397f8
-uint8_t SecurityValidationFlagA21;    // UNK_180a39820
-uint8_t SecurityValidationFlagA22;    // UNK_180a39850
-uint8_t SecurityValidationFlagA23;    // UNK_180a39864
-uint8_t SecurityValidationFlagA24;    // UNK_180a39870
-uint8_t SecurityValidationFlagA25;    // UNK_180a39888
-uint8_t SecurityValidationFlagA26;    // UNK_180a398a8
-uint8_t SecurityValidationFlagA27;    // UNK_180a398b8
-uint8_t SecurityValidationFlagA28;    // UNK_180a398d8
-uint8_t SecurityValidationFlagA29;    // UNK_180a398f0
-uint8_t SecurityValidationFlagA30;    // UNK_180a39910
-uint8_t SecurityValidationFlagA31;    // UNK_180a39920
-uint8_t SecurityValidationFlagA32;    // UNK_180a39940
-uint8_t SecurityValidationFlagA33;    // UNK_180a39970
-uint8_t SecurityValidationFlagA34;    // UNK_180a39988
-uint8_t SecurityValidationFlagA35;    // UNK_180a399a8
-uint8_t SecurityValidationFlagA36;    // UNK_180a399c0
-uint8_t SecurityValidationFlagA37;    // UNK_180a399e0
-uint8_t SecurityValidationFlagA38;    // UNK_180a399f0
-uint8_t SecurityValidationFlagA39;    // UNK_180a39a18
+uint8_t SecurityValidationFlagA10;    // 系统安全验证标志A10
+uint8_t SecurityValidationFlagA11;    // 系统安全验证标志A11
+uint8_t SecurityValidationFlagA12;    // 系统安全验证标志A12
+uint8_t SecurityValidationFlagA13;    // 系统安全验证标志A13
+uint8_t SecurityValidationFlagA14;    // 系统安全验证标志A14
+uint8_t SecurityValidationFlagA15;    // 系统安全验证标志A15
+uint8_t SecurityValidationFlagA16;    // 系统安全验证标志A16
+uint8_t SecurityValidationFlagA17;    // 系统安全验证标志A17
+uint8_t SecurityValidationFlagA18;    // 系统安全验证标志A18
+uint8_t SecurityValidationFlagA19;    // 系统安全验证标志A19
+uint8_t SecurityValidationFlagA20;    // 系统安全验证标志A20
+uint8_t SecurityValidationFlagA21;    // 系统安全验证标志A21
+uint8_t SecurityValidationFlagA22;    // 系统安全验证标志A22
+uint8_t SecurityValidationFlagA23;    // 系统安全验证标志A23
+uint8_t SecurityValidationFlagA24;    // 系统安全验证标志A24
+uint8_t SecurityValidationFlagA25;    // 系统安全验证标志A25
+uint8_t SecurityValidationFlagA26;    // 系统安全验证标志A26
+uint8_t SecurityValidationFlagA27;    // 系统安全验证标志A27
+uint8_t SecurityValidationFlagA28;    // 系统安全验证标志A28
+uint8_t SecurityValidationFlagA29;    // 系统安全验证标志A29
+uint8_t SecurityValidationFlagA30;    // 系统安全验证标志A30
+uint8_t SecurityValidationFlagA31;    // 系统安全验证标志A31
+uint8_t SecurityValidationFlagA32;    // 系统安全验证标志A32
+uint8_t SecurityValidationFlagA33;    // 系统安全验证标志A33
+uint8_t SecurityValidationFlagA34;    // 系统安全验证标志A34
+uint8_t SecurityValidationFlagA35;    // 系统安全验证标志A35
+uint8_t SecurityValidationFlagA36;    // 系统安全验证标志A36
+uint8_t SecurityValidationFlagA37;    // 系统安全验证标志A37
+uint8_t SecurityValidationFlagA38;    // 系统安全验证标志A38
+uint8_t SecurityValidationFlagA39;    // 系统安全验证标志A39
 uint8_t SecurityValidationFlagA40;    // UNK_180a39a28
 uint8_t SecurityValidationFlagA41;    // UNK_180a39a40
 uint8_t SecurityValidationFlagA42;    // UNK_180a39a60
