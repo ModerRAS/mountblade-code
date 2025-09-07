@@ -22921,10 +22921,10 @@ SystemCheckpointB:
 
 
 DataBuffer
-// 函数: DataBuffer BinarySearchAndProcessData(int64_t searchContext,uint *searchKey,DataBuffer processData,DataWord searchFlags,DataBuffer additionalData)
+// 函数: DataBuffer BinarySearchAndProcessData(int64_t SearchContext,uint *SearchKeyPointer,DataBuffer ProcessData,DataWord SearchFlags,DataBuffer AdditionalData)
 // 功能：使用二分查找算法在数据结构中搜索匹配的键值，并处理找到的数据
-// 参数：searchContext - 搜索上下文，searchKey - 搜索键值指针，processData - 处理数据
-//      searchFlags - 搜索标志，additionalData - 附加数据
+// 参数：SearchContext - 搜索上下文，SearchKeyPointer - 搜索键值指针，ProcessData - 处理数据
+//      SearchFlags - 搜索标志，AdditionalData - 附加数据
 // 返回值：成功返回处理结果，失败返回0x4a
 DataBuffer BinarySearchAndProcessData(int64_t SearchContext,uint *SearchKeyPointer,DataBuffer ProcessData,DataWord SearchFlags,DataBuffer AdditionalData)
 
@@ -22940,19 +22940,19 @@ DataBuffer BinarySearchAndProcessData(int64_t SearchContext,uint *SearchKeyPoint
   int RightBoundary;
   
   LeftBoundary = 0;
-  RightBoundary = *(int *)(searchContext + 0x18) + -1;
+  RightBoundary = *(int *)(SearchContext + 0x18) + -1;
   if (-1 < RightBoundary) {
-    DataArrayPointer = *(int64_t *)(searchContext + ExceptionHandlerCallbackOffset10);
-    TargetSearchValue = *searchKey;
+    DataArrayPointer = *(int64_t *)(SearchContext + ExceptionHandlerCallbackOffset10);
+    TargetSearchValue = *SearchKeyPointer;
     do {
       MiddleIndex = RightBoundary + LeftBoundary >> 1;
       CurrentItemPointer = (uint *)((int64_t)MiddleIndex * 0x10 + DataArrayPointer);
       if (TargetSearchValue == *CurrentItemPointer) {
-        MatchResult = (uint)(ushort)searchKey[1] - (uint)(ushort)CurrentItemPointer[1];
+        MatchResult = (uint)(ushort)SearchKeyPointer[1] - (uint)(ushort)CurrentItemPointer[1];
         if ((MatchResult == 0) &&
-           (MatchResult = (uint)*(ushort *)((int64_t)searchKey + 6) -
+           (MatchResult = (uint)*(ushort *)((int64_t)SearchKeyPointer + 6) -
                     (uint)*(ushort *)((int64_t)CurrentItemPointer + 6), MatchResult == 0)) {
-          MatchResult = memcmp(searchKey + 2,CurrentItemPointer + 2,8);
+          MatchResult = memcmp(SearchKeyPointer + 2,CurrentItemPointer + 2,8);
         }
       }
       else {
@@ -22965,7 +22965,7 @@ DataBuffer BinarySearchAndProcessData(int64_t SearchContext,uint *SearchKeyPoint
         if (MiddleIndex < 0) {
           return 0x4a;
         }
-        ProcessingResult = ProcessDataItem(searchContext,MiddleIndex,0,processData,searchFlags,additionalData);
+        ProcessingResult = ProcessDataItem(SearchContext,MiddleIndex,0,ProcessData,SearchFlags,AdditionalData);
         return ProcessingResult;
       }
       ComparisonResult = MiddleIndex + -1;
