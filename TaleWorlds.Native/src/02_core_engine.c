@@ -143913,7 +143913,7 @@ void ProcessSystemCharacterValidation2(int CharacterCode)
 
 
 
-d5bc(voidvoid FUN_18012d5bc(void
+void InitializeSystemCharacterProcessor(void)
 {
   int in_EAX;
   uint MemoryAllocationSize;

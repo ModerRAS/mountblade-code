@@ -62680,7 +62680,21 @@ void FUN_1806986b7(void)
 
 
 
- void ProcessUIComponentRendering(longlong uiContext,byte *componentData,int renderTarget,undefined4 renderBufferSize,undefined8 renderResultPointer,
+ /**
+ * @brief 处理UI组件渲染
+ * 
+ * 该函数负责处理UI组件的渲染流程，包括滑块和复选框的渲染。
+ * 根据组件类型和渲染条件，调用相应的渲染函数进行绘制。
+ * 
+ * @param uiContext UI上下文指针
+ * @param componentData 组件数据指针
+ * @param renderTarget 渲染目标
+ * @param renderBufferSize 渲染缓冲区大小
+ * @param renderResultPointer 渲染结果指针
+ * @param renderContext 渲染上下文
+ * @note 原始函数名: FUN_1806986d0
+ */
+void ProcessUIComponentRendering(longlong uiContext,byte *componentData,int renderTarget,undefined4 renderBufferSize,undefined8 renderResultPointer,
 void ProcessUIComponentRendering(longlong uiContext,byte *componentData,int renderTarget,undefined4 renderBufferSize,undefined8 renderResultPointer,
                   longlong renderContext)
 
