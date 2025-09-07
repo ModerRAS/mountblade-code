@@ -198,6 +198,54 @@ const void* const SystemKeyStringContactOffset = (void*)0x180a0b168;
 const void* const SystemKeyStringContactCaptureThreshold = (void*)0x180a0b158;
 const void* const SystemKeyStringSkinWidth = (void*)0x180a0b188;
 const void* const SystemKeyStringLinearDamping = (void*)0x180a0b178;
+
+// 函数语义化宏定义
+// 浮点数据处理函数
+#define CalculateFloatRangeValue FUN_18011fc80
+#define ProcessSystemContextData FUN_18011fd90
+#define ValidateSystemParameters FUN_18011fef0
+#define InitializeSystemContext FUN_18011ff20
+#define ProcessSystemDataFlow FUN_18011ff60
+#define ValidateSystemMemory FUN_180120960
+#define ProcessSystemMemoryOperation FUN_1801209b0
+#define ExecuteSystemValidation FUN_180120a30
+#define HandleSystemDataTransfer FUN_180120a70
+#define ProcessSystemContextData FUN_180120b10
+#define CleanupSystemResources FUN_180120d00
+#define InitializeSystemComponents FUN_1801210b0
+#define ProcessSystemEvents FUN_180121300
+#define ValidateSystemDataIntegrity FUN_180121742
+#define ProcessSystemBuffers FUN_180121761
+#define ExecuteSystemOperations FUN_18012198e
+#define HandleSystemConfiguration FUN_1801219a3
+#define ProcessSystemSecurityValidation FUN_180122160
+#define ExecuteSystemMemoryOperation FUN_180122210
+#define ValidateSystemStatus FUN_180122240
+#define ProcessSystemThreadOperation FUN_18012227a
+#define InitializeSystemThread FUN_180122310
+#define ProcessSystemFloatData FUN_180122503
+#define CalculateSystemParameters FUN_18012250a
+#define HandleSystemDataConversion FUN_180122537
+#define CleanupSystemMemory FUN_1801225c7
+#define InitializeSystemData FUN_1801225f0
+#define ProcessSystemVectors FUN_1801226e4
+#define ValidateSystemVectors FUN_1801226e9
+#define FinalizeSystemOperations FUN_1801227d7
+#define ExecuteSystemCleanup FUN_180122906
+#define ValidateSystemCleanup FUN_180122938
+#define ProcessSystemIntegerData FUN_180122b10
+#define CalculateSystemValue FUN_180122e80
+#define ProcessSystemScaling FUN_180123105
+#define ValidateSystemScaling FUN_180123121
+#define ProcessSystemTransformation FUN_1801231cf
+#define InitializeSystemTransform FUN_1801231dc
+#define CleanupSystemTransform FUN_1801232da
+#define FinalizeSystemTransform FUN_18012331b
+#define ProcessSystemMemoryData FUN_18012344d
+#define ValidateSystemMemoryData FUN_180123455
+#define HandleSystemDataValidation FUN_180123460
+#define ProcessSystemDataArray FUN_180123960
+#define ValidateSystemDataArray FUN_180123a60
 const void* const SystemKeyStringAngularDamping = (void*)0x180a0b198;
 
 // 系统事件和配置常量 - 用于替换UNK_180a07xxx变量
