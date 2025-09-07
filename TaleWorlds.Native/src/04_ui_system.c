@@ -63290,8 +63290,17 @@ void ProcessUIStackOperations(void)
 
 
 
- void FUN_180698b00(undefined4 *uiContext,int dataSource)
-void FUN_180698b00(undefined4 *uiContext,int dataSource)
+ /**
+ * @brief UI资源加载器
+ * 
+ * 该函数负责加载UI系统资源，根据数据源计算资源参数并调用相应的加载函数。
+ * 主要用于UI初始化和动态资源加载。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @note 原始函数名: FUN_180698b00
+ */
+void LoadUIResource(undefined4 *uiContext,int dataSource)
 
 {
   int operationResult;
@@ -63323,8 +63332,8 @@ void FUN_180698b00(undefined4 *uiContext,int dataSource)
 
 
 
- void FUN_180698bb0(longlong uiContext,undefined4 *dataSource,longlong targetBuffer,int bufferSize)
-void FUN_180698bb0(longlong uiContext,undefined4 *dataSource,longlong targetBuffer,int bufferSize)
+ void ProcessUIDataStream(longlong uiContext,undefined4 *dataSource,longlong targetBuffer,int bufferSize)
+void ProcessUIDataStream(longlong uiContext,undefined4 *dataSource,longlong targetBuffer,int bufferSize)
 
 {
   longlong allocatedMemory;
@@ -63381,8 +63390,8 @@ void FUN_180698bb0(longlong uiContext,undefined4 *dataSource,longlong targetBuff
 
 
 
- void FUN_180698c64(undefined8 uiContext)
-void FUN_180698c64(undefined8 uiContext)
+ void CleanupUIContext(undefined8 uiContext)
+void CleanupUIContext(undefined8 uiContext)
 
 {
   undefined4 *context;
@@ -63533,13 +63542,13 @@ undefined8 ProcessUIRendererData(longlong uiContext,undefined8 *dataSource,uint 
           ProcessUIComponentQueue(*(undefined8 *)(uiContext + 0x778),uiContext + 0xa70);
         }
         else {
-          FUN_180698bb0(uiContext,*(undefined8 *)(uiContext + 0x778),uiContext + 0xa70,iVar6,
+          ProcessUIDataStream(uiContext,*(undefined8 *)(uiContext + 0x778),uiContext + 0xa70,iVar6,
                         CONCAT44(uVar8,1),0);
         }
       }
       else {
         iVar7 = iVar6 + (semaphoreHandle - 5) * 10;
-        FUN_180698bb0(uiContext,*(undefined8 *)(uiContext + 0x778),uiContext + 0xa70,iVar7,
+        ProcessUIDataStream(uiContext,*(undefined8 *)(uiContext + 0x778),uiContext + 0xa70,iVar7,
                       CONCAT44(uVar8,1),0);
         FUN_180698b00(uiContext + 0xa70,iVar7);
       }
@@ -63551,12 +63560,12 @@ undefined8 ProcessUIRendererData(longlong uiContext,undefined8 *dataSource,uint 
         ProcessUIComponentQueue(uiContext + 0xa70,uiContext + 0xb00);
         if ((functionResult & 2) == 0) {
           if ((functionResult & 1) != 0) {
-            FUN_180698bb0(uiContext,uiContext + 0xb00,uiContext + 0xa70,iVar6,CONCAT44(uVar8,1),0);
+            ProcessUIDataStream(uiContext,uiContext + 0xb00,uiContext + 0xa70,iVar6,CONCAT44(uVar8,1),0);
           }
         }
         else {
           iVar7 = iVar6 + (semaphoreHandle - 5) * 10;
-          FUN_180698bb0(uiContext,uiContext + 0xb00,uiContext + 0xa70,iVar7,CONCAT44(uVar8,1),0);
+          ProcessUIDataStream(uiContext,uiContext + 0xb00,uiContext + 0xa70,iVar7,CONCAT44(uVar8,1),0);
           FUN_180698b00(uiContext + 0xa70,iVar7);
         }
       }
@@ -63655,13 +63664,13 @@ undefined8 InitializeUIRendererContext(longlong uiContext)
         ProcessUIComponentQueue(*(undefined8 *)(unaff_RSI + 0x778),unaff_RSI + 0xa70);
       }
       else {
-        FUN_180698bb0(uVar3,*(undefined8 *)(unaff_RSI + 0x778),unaff_RSI + 0xa70,unaff_R15D,
+        ProcessUIDataStream(uVar3,*(undefined8 *)(unaff_RSI + 0x778),unaff_RSI + 0xa70,unaff_R15D,
                       CONCAT44(uVar4,1));
       }
     }
     else {
       validationResult = unaff_R15D + (allocationFlags + -5) * 10;
-      FUN_180698bb0(uVar3,*(undefined8 *)(unaff_RSI + 0x778),unaff_RSI + 0xa70,validationResult,
+      ProcessUIDataStream(uVar3,*(undefined8 *)(unaff_RSI + 0x778),unaff_RSI + 0xa70,validationResult,
                     CONCAT44(uVar4,1));
       FUN_180698b00(unaff_RSI + 0xa70,validationResult);
     }
@@ -63673,12 +63682,12 @@ undefined8 InitializeUIRendererContext(longlong uiContext)
       uVar3 = ProcessUIComponentQueue(unaff_RSI + 0xa70,unaff_RSI + 0xb00);
       if ((unaff_EBP & 2) == 0) {
         if ((unaff_EBP & 1) != 0) {
-          FUN_180698bb0(uVar3,unaff_RSI + 0xb00,unaff_RSI + 0xa70,unaff_R15D,CONCAT44(uVar4,1));
+          ProcessUIDataStream(uVar3,unaff_RSI + 0xb00,unaff_RSI + 0xa70,unaff_R15D,CONCAT44(uVar4,1));
         }
       }
       else {
         validationResult = unaff_R15D + (allocationFlags + -5) * 10;
-        FUN_180698bb0(uVar3,unaff_RSI + 0xb00,unaff_RSI + 0xa70,validationResult,CONCAT44(uVar4,1));
+        ProcessUIDataStream(uVar3,unaff_RSI + 0xb00,unaff_RSI + 0xa70,validationResult,CONCAT44(uVar4,1));
         FUN_180698b00(unaff_RSI + 0xa70,validationResult);
       }
     }
