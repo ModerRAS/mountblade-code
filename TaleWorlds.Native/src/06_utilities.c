@@ -9600,22 +9600,6 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
 
 
 /**
- * @brief 处理资源分配和计数器管理
- * 
- * 该函数负责管理系统资源的分配状态，维护资源计数器，并在特定条件满足时
- * 触发资源释放操作。函数会更新资源的引用计数，当计数器达到特定阈值时，
- * 会执行资源验证和清理操作。
- * 
- * @param resourceConfig 资源配置指针，包含资源配置信息和参数
- * @param resourceData 资源数据指针，包含资源运行时数据
- * @return DataBuffer 操作结果状态码：
- *         - 0: 操作成功完成
- *         - 其他值: 具体的错误代码
- * 
- * @note 该函数会修改资源计数器状态，并在特定条件下触发资源释放
- * @warning 资源释放操作是不可逆的，调用前需确保资源可以安全释放
- */
-/**
  * @brief 处理资源分配操作
  * 
  * 该函数负责处理系统资源的分配操作，包括资源验证、计数器管理和状态检查。
@@ -9638,7 +9622,7 @@ uint64_t ProcessResourceAllocation(int64_t ResourceConfiguration, int64_t Resour
   uint64_t ValidationResult;
   int64_t LocalResourceBuffer[2];
   
-  ValidationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ResourceConfiguration + 0x10), LocalResourceBuffer);
+  ValidationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ResourceConfiguration + ComponentHandleOffset), LocalResourceBuffer);
   AllocatedResourceHandle = LocalResourceBuffer[0];
   if ((int32_t)ValidationResult != 0) {
     return ValidationResult;
