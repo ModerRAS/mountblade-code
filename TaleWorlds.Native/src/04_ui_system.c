@@ -5133,7 +5133,20 @@ LAB_RenderJobCallbackHandler:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void UpdateUIConditions(int *uiContext)
+ /**
+ * @brief 更新UI系统条件
+ * 
+ * 该函数负责更新UI系统的条件设置，通过读取环境变量来配置UI系统的行为。
+ * 它会处理路径组合、环境变量读取、字符串处理和数值转换等操作。
+ * 
+ * @param uiContext UI上下文指针，用于存储和传递UI系统的状态信息
+ * 
+ * @note 该函数会读取环境变量并进行字符串处理，支持K、M、G等单位的数值转换
+ * @note 函数内部包含错误处理机制，在出现问题时会调用错误处理器
+ * @note 处理完成后会执行UI渲染任务
+ * 
+ * @see ValidateUIData, TriggerUIErrorHandler, ExecuteUIRenderTask
+ */
 void UpdateUIConditions(int *uiContext)
 
 {
@@ -5311,20 +5324,20 @@ LAB_UIStringCacheFound:
         }
       }
       if (*unitSuffixPointer != '\0') {
-        ValidateUIData(&UIValidationData,*(undefined8 *)(unmodifiedRSI + 4),unmodifiedRBP + -0x59);
-        unmodifiedRSI[1] = 1;
+        ValidateUIData(&UIValidationData,*(undefined8 *)(resultPointer + 4),stackPointer + -0x59);
+        resultPointer[1] = 1;
         goto LAB_UIRenderTaskExecution;
       }
-      *unmodifiedRSI = ParsedNumericValue;
+      *resultPointer = parsedNumericValue;
     }
     else {
-      *unmodifiedRSI = 0;
+      *resultPointer = 0;
     }
   }
-  unmodifiedRSI[1] = 2;
+  resultPointer[1] = 2;
 LAB_UIRenderTaskExecution:
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(unmodifiedRBP + 0x47) ^ (ulonglong)UIStackBufferBase);
+  ExecuteUIRenderTask(0);
 }
 
 
