@@ -74546,7 +74546,20 @@ void ReleaseMemoryResourceAndUpdateReferenceCount(DataBuffer operationBase, int6
 
 
 
-void Unwind_1809090a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文回调并执行系统操作
+ * 
+ * 该函数在异常处理过程中处理异常上下文回调，并执行系统操作
+ * 从数据缓冲区的0x60偏移量处获取异常上下文，检查特定回调函数并执行
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809090a0
+ * @note 内存偏移量：使用0x60获取异常上下文，0x1d50获取回调函数指针
+ * @note 这是一个异常处理函数，用于处理异常上下文回调并执行系统操作
+ */
+void ProcessExceptionContextCallbackAndSystemOperations(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
