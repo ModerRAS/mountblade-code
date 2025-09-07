@@ -247661,7 +247661,7 @@ uint32_t FUN_180216210(uint64_t CharacterCode,uint64_t Utf8BufferSize
 
 
 
-bool FUN_180216360(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer
+bool ValidateCharacterEncodingDataAndProcessBuffer(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer
 {
   uint Utf16Char;
   long long BufferStatus;
@@ -247745,8 +247745,7 @@ LAB_18040698e:
 
 
 
- (ram,0x000180406901
-bool FUN_180216391(void
+ bool CheckCharacterEncodingSystemStatus(void
 {
   uint Utf16Char;
   int CharacterByteCount;
