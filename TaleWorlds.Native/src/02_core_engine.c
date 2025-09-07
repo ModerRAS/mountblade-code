@@ -119,6 +119,8 @@
 #define ProcessCharacterEncodingAndSystemInitialization FUN_18014a9d0  // 处理字符编码和系统初始化
 #define ProcessCharacterCodeWithSecondarySystemValidation FUN_18014aae0  // 处理字符代码的二级系统验证
 #define ProcessCharacterCodeWithQuaternaryValidation FUN_18014ab00  // 处理字符代码的四元验证
+#define ProcessCharacterCodeBufferResetAndValidation FUN_18014ab20  // 处理字符代码的缓冲区重置和验证
+#define ProcessCharacterCodeBufferCompactResetAndValidation FUN_18014ab40  // 处理字符代码的缓冲区精简重置和验证
 
 // 系统函数指针映射
 #define ExecuteSystemFunctionCodeExecution FUN_18013cf40      // 执行系统函数代码执行
@@ -177414,7 +177416,21 @@ void ProcessCharacterCodeWithQuaternaryValidation(long long *CharacterCode)
 
 
 
-4ab20(long long *CharacterCodevoid FUN_18014ab20(long long *CharacterCode
+/**
+ * @brief 处理字符代码的缓冲区重置和验证
+ * 
+ * 该函数负责处理字符代码的缓冲区重置和验证操作，通过遍历字符表指针
+ * 并对每个缓冲区进行重置和验证。函数会设置缓冲区的各种指针和状态，
+ * 并在必要时触发系统事件处理。
+ * 
+ * @param CharacterCode 字符代码指针，包含字符表和缓冲区信息
+ * @return void 无返回值
+ * 
+ * @note 此函数使用0x48作为步长遍历缓冲区
+ * @note 函数会重置缓冲区的0x28、0x30、0x40偏移量的数据
+ * @note 如果字符代码[0]不为0，会触发系统事件处理（不返回）
+ */
+void ProcessCharacterCodeBufferResetAndValidation(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -177440,7 +177456,21 @@ void ProcessCharacterCodeWithQuaternaryValidation(long long *CharacterCode)
 
 
 
-4ab40(long long *CharacterCodevoid FUN_18014ab40(long long *CharacterCode
+/**
+ * @brief 处理字符代码的缓冲区精简重置和验证
+ * 
+ * 该函数负责处理字符代码的缓冲区精简重置和验证操作，通过遍历字符表指针
+ * 并对每个缓冲区进行精简重置和验证。函数会设置缓冲区的各种指针和状态，
+ * 并在必要时触发系统事件处理。
+ * 
+ * @param CharacterCode 字符代码指针，包含字符表和缓冲区信息
+ * @return void 无返回值
+ * 
+ * @note 此函数使用0x38作为步长遍历缓冲区
+ * @note 函数会重置缓冲区的0x18、0x20、0x30偏移量的数据
+ * @note 如果字符代码[0]不为0，会触发系统事件处理（不返回）
+ */
+void ProcessCharacterCodeBufferCompactResetAndValidation(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;

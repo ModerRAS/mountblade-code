@@ -81088,7 +81088,17 @@ void ExecuteMemoryWriteOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a250(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作执行函数A1
+ * 
+ * 该函数在指定内存位置执行内存操作，操作类型为读取。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a250
+ */
+void ExecuteMemoryReadOperationA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -81110,7 +81120,17 @@ void Unwind_18090a250(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a270(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作执行函数A2
+ * 
+ * 该函数在指定内存位置执行内存操作，操作类型为验证。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a270
+ */
+void ExecuteMemoryValidationOperationA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -81132,7 +81152,17 @@ void Unwind_18090a270(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a290(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作执行函数A3
+ * 
+ * 该函数在指定内存位置执行内存操作，操作类型为清理。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a290
+ */
+void ExecuteMemoryCleanupOperationA3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -81154,7 +81184,17 @@ void Unwind_18090a290(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a2b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作执行函数A4
+ * 
+ * 该函数在指定内存位置执行内存操作，操作类型为初始化。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a2b0
+ */
+void ExecuteMemoryInitializationOperationA4(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -81176,7 +81216,19 @@ void Unwind_18090a2b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a2d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统配置处理函数A0
+ * 
+ * 该函数处理系统配置数据，调用系统配置处理函数来执行配置操作。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090a2d0
+ */
+void ProcessSystemConfigurationA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x60) + 0x740,
