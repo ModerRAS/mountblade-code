@@ -114069,8 +114069,21 @@ StringFormattingComplete:
 
 
 
-f480(char *SystemContextPointer,uint64_t Utf8BufferSize,uint32_t Utf16InputPointervoid FUN_18011f480(char *SystemContextPointer,uint64_t Utf8BufferSize,uint32_t Utf16InputPointer
-{
+/**
+ * @brief 处理字符串格式化和编码转换（32位版本）
+ * 
+ * 该函数处理字符串的格式化操作，包括特殊字符处理、编码转换
+ * 和格式化字符串解析。它使用32位UTF-16输入指针。
+ * 
+ * @param SystemContextPointer 系统上下文指针，包含字符串数据
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针（32位）
+ * @return void
+ * 
+ * @note 函数处理百分比格式化和字符串编码
+ * @note 使用CoreEngineExecuteUtilityFunction进行实际处理
+ */
+void ProcessStringFormatting32Bit(char *SystemContextPointer,uint64_t Utf8BufferSize,uint32_t Utf16InputPointer) {
   char StringBuffer;
   char *pSystemCheckResult;
   bool IsHighByteSet;
@@ -114118,8 +114131,21 @@ LAB_18011f4b5:
 
 
 
-f520(char *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointervoid FUN_18011f520(char *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer
-{
+/**
+ * @brief 处理字符串格式化和编码转换（64位版本）
+ * 
+ * 该函数处理字符串的格式化操作，包括特殊字符处理、编码转换
+ * 和格式化字符串解析。它使用64位UTF-16输入指针。
+ * 
+ * @param SystemContextPointer 系统上下文指针，包含字符串数据
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针（64位）
+ * @return void
+ * 
+ * @note 函数处理百分比格式化和字符串编码
+ * @note 使用CoreEngineExecuteUtilityFunction进行实际处理
+ */
+void ProcessStringFormatting64Bit(char *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer) {
   char StringBuffer;
   char *pSystemCheckResult;
   bool IsHighByteSet;
@@ -114167,8 +114193,21 @@ LAB_18011f555:
 
 
 
-f5c0(char *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointervoid FUN_18011f5c0(char *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer
-{
+/**
+ * @brief 处理字符串格式化和编码转换（64位版本2）
+ * 
+ * 该函数处理字符串的格式化操作，包括特殊字符处理、编码转换
+ * 和格式化字符串解析。这是第二个64位UTF-16输入指针版本。
+ * 
+ * @param SystemContextPointer 系统上下文指针，包含字符串数据
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针（64位）
+ * @return void
+ * 
+ * @note 函数处理百分比格式化和字符串编码
+ * @note 使用CoreEngineExecuteUtilityFunction进行实际处理
+ */
+void ProcessStringFormatting64BitV2(char *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer) {
   char StringBuffer;
   char *pSystemCheckResult;
   bool IsHighByteSet;
@@ -114216,8 +114255,22 @@ LAB_18011f5f5:
 
 
 
-f690(char *SystemContextPointer,uint64_t Utf8BufferSize,float Utf16InputPointervoid FUN_18011f690(char *SystemContextPointer,uint64_t Utf8BufferSize,float Utf16InputPointer
-{
+/**
+ * @brief 处理字符串格式化和编码转换（浮点数版本）
+ * 
+ * 该函数处理字符串的格式化操作，包括特殊字符处理、编码转换
+ * 和格式化字符串解析。它使用浮点数作为输入参数。
+ * 
+ * @param SystemContextPointer 系统上下文指针，包含字符串数据
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针（浮点数）
+ * @return void
+ * 
+ * @note 函数处理百分比格式化和字符串编码
+ * @note 使用CoreEngineExecuteUtilityFunction进行实际处理
+ * @note 支持浮点数参数转换
+ */
+void ProcessStringFormattingFloat(char *SystemContextPointer,uint64_t Utf8BufferSize,float Utf16InputPointer) {
   double ConfigurationParamA;
   char SystemCheckResult;
   char *FunctionPointer;
