@@ -200062,123 +200062,140 @@ undefined8 * FUN_18078d220(undefined8 *uiContext,ulonglong dataSource)
 // WARNING: Type propagation algorithm not settling
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 处理UI数据操作
+ * 
+ * 该函数负责处理UI系统的数据操作，包括验证、缓冲区管理和数据处理
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7指针
+ * @param param_8 参数8指针
+ * @param param_9 参数9指针
+ * @return 操作结果状态码
+ * @note 原始函数名: FUN_18078d250
+ */
 ulonglong ProcessUIDataOperation(longlong uiContext,undefined8 dataSource,uint targetBuffer,undefined4 bufferSize,
                                  longlong *resultPointer,longlong param_6,longlong *param_7,int *param_8,
                                  int *param_9)
 
 {
-  undefined8 *pfunctionResult;
+  undefined8 *operationResultPtr;
   int validationResult;
-  uint uVar3;
-  uint uVar4;
-  ulonglong uVar5;
-  undefined8 uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  ulonglong uVar9;
-  undefined4 functionResult0;
-  int operationResult1;
-  longlong allocatedMemory2;
-  int operationResult3;
-  uint functionResult4;
-  bool bVar15;
-  uint auStackX_8 [2];
-  ulonglong in_stack_ffffffffffffff28;
-  longlong lStack_b8;
-  undefined4 auStack_b0 [2];
-  undefined8 uStack_a8;
-  undefined8 uStack_a0;
-  undefined8 uStack_98;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined8 uStack_80;
-  undefined8 uStack_78;
-  undefined4 auStack_70 [2];
-  longlong alStack_68 [2];
-  undefined8 uStack_58;
-  int iStack_54;
-  undefined8 uStack_50;
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
+  uint operationStatus;
+  uint bufferIndex;
+  ulonglong processResult;
+  undefined8 tempData;
+  ulonglong sizeValue;
+  longlong contextHandle;
+  ulonglong offsetValue;
+  undefined4 initialResult;
+  int secondaryOperationResult;
+  longlong memoryAllocation;
+  int tertiaryOperationResult;
+  uint processedResult;
+  bool isValidFlag;
+  uint tempBufferArray [2];
+  ulonglong stackParameter;
+  longlong bufferContext;
+  undefined4 bufferPair [2];
+  undefined8 dataField1;
+  undefined8 dataField2;
+  undefined8 dataField3;
+  undefined8 dataField4;
+  undefined8 dataField5;
+  undefined8 dataField6;
+  undefined8 dataField7;
+  undefined4 contextBuffer [2];
+  longlong contextArray [2];
+  undefined8 tempStorage1;
+  int stackIndex;
+  undefined8 tempStorage2;
+  undefined8 tempStorage3;
+  undefined8 tempStorage4;
+  undefined8 tempStorage5;
+  undefined8 tempStorage6;
   
-  functionResult0 = 0;
-  lStack_b8 = 0;
+  initialResult = 0;
+  bufferContext = 0;
   *param_7 = 0;
   *param_8 = 0;
   *param_9 = 0;
-  validationResult = func_0x000180771c10(*(undefined8 *)(uiContext + 0x11418),dataSource,auStack_70);
+  validationResult = func_0x000180771c10(*(undefined8 *)(uiContext + 0x11418),dataSource,contextBuffer);
   if (validationResult != 0) {
     return 0x13;
   }
-  validationResult = func_0x000180771bd0(*(undefined8 *)(uiContext + 0x11418),auStack_70[0],alStack_68);
+  validationResult = func_0x000180771bd0(*(undefined8 *)(uiContext + 0x11418),contextBuffer[0],contextArray);
   if (validationResult != 0) {
     return 0x13;
   }
   if ((targetBuffer >> 0xc & 1) == 0) {
     if ((targetBuffer >> 10 & 1) != 0) {
-      bVar15 = *(int *)(alStack_68[0] + 0x80) == 0xe;
+      isValidFlag = *(int *)(contextArray[0] + 0x80) == 0xe;
       goto LAB_18078d2d6;
     }
-    if ((*(int *)(alStack_68[0] + 0x80) - 0xcU & 0xfffffffd) == 0) {
+    if ((*(int *)(contextArray[0] + 0x80) - 0xcU & 0xfffffffd) == 0) {
       return 0x13;
     }
   }
   else {
-    bVar15 = *(int *)(alStack_68[0] + 0x80) == 0xc;
+    isValidFlag = *(int *)(contextArray[0] + 0x80) == 0xc;
 LAB_18078d2d6:
-    if (!bVar15) {
+    if (!isValidFlag) {
       return 0x13;
     }
   }
-  uVar5 = FUN_180771560(*(undefined8 *)(uiContext + 0x11418),alStack_68[0] + 0x20,&lStack_b8);
-  if ((int)uVar5 != 0) {
-    if ((int)uVar5 != 0x26) {
+  processResult = FUN_180771560(*(undefined8 *)(uiContext + 0x11418),contextArray[0] + 0x20,&bufferContext);
+  if ((int)processResult != 0) {
+    if ((int)processResult != 0x26) {
       return 0x13;
     }
-    return uVar5;
+    return processResult;
   }
-  *(longlong **)(lStack_b8 + 0x170) = resultPointer;
-  *(uint *)(lStack_b8 + 0x160) = targetBuffer;
-  *(undefined4 *)(lStack_b8 + 0x164) = bufferSize;
-  *(longlong *)(lStack_b8 + 0x20) = uiContext;
-  *(uint *)(lStack_b8 + 0x2c) = *(uint *)(lStack_b8 + 0x2c) | 1;
-  uVar5 = FUN_18076a440(*(undefined8 *)(lStack_b8 + 0x170),0,0);
-  if ((int)uVar5 != 0) {
-    return uVar5;
+  *(longlong **)(bufferContext + 0x170) = resultPointer;
+  *(uint *)(bufferContext + 0x160) = targetBuffer;
+  *(undefined4 *)(bufferContext + 0x164) = bufferSize;
+  *(longlong *)(bufferContext + 0x20) = uiContext;
+  *(uint *)(bufferContext + 0x2c) = *(uint *)(bufferContext + 0x2c) | 1;
+  processResult = FUN_18076a440(*(undefined8 *)(bufferContext + 0x170),0,0);
+  if ((int)processResult != 0) {
+    return processResult;
   }
-  uVar3 = (**(code **)(lStack_b8 + 0x50))(lStack_b8,targetBuffer,param_6);
-  if (uVar3 != 0) {
-    *(undefined8 *)(lStack_b8 + 0x170) = 0;
-    *(undefined8 *)(lStack_b8 + 0x168) = 0;
-    FUN_180773410(lStack_b8,1);
-    if (uVar3 == 0x10) {
-      uVar3 = 0x13;
+  operationStatus = (**(code **)(bufferContext + 0x50))(bufferContext,targetBuffer,param_6);
+  if (operationStatus != 0) {
+    *(undefined8 *)(bufferContext + 0x170) = 0;
+    *(undefined8 *)(bufferContext + 0x168) = 0;
+    FUN_180773410(bufferContext,1);
+    if (operationStatus == 0x10) {
+      operationStatus = 0x13;
     }
-    return (ulonglong)uVar3;
+    return (ulonglong)operationStatus;
   }
-  uVar3 = *(uint *)(lStack_b8 + 0x160);
-  uStack_a8 = 0;
-  uStack_a0 = 0;
-  uStack_98 = 0;
-  uStack_90 = 0;
-  uStack_88 = 0;
-  uStack_80 = 0;
-  uStack_78 = 0;
+  operationStatus = *(uint *)(bufferContext + 0x160);
+  dataField1 = 0;
+  dataField2 = 0;
+  dataField3 = 0;
+  dataField4 = 0;
+  dataField5 = 0;
+  dataField6 = 0;
+  dataField7 = 0;
   if (param_6 != 0) {
-    functionResult0 = *(undefined4 *)(param_6 + 0x1c);
+    initialResult = *(undefined4 *)(param_6 + 0x1c);
   }
-  uVar5 = (**(code **)(lStack_b8 + 0x88))(lStack_b8,functionResult0,&uStack_a8);
-  if ((int)uVar5 != 0) {
-    return uVar5;
+  processResult = (**(code **)(bufferContext + 0x88))(bufferContext,initialResult,&dataField1);
+  if ((int)processResult != 0) {
+    return processResult;
   }
-  if ((*(int *)(lStack_b8 + 0x28) != 0xb) &&
-     (((((int)uStack_a0 == 0 || (uStack_a0._4_4_ == 0)) ||
-       (((int)uStack_90 == 0 && ((uVar3 >> 10 & 1) == 0)))) || ((int)uStack_98 == 0)))) {
+  if ((*(int *)(bufferContext + 0x28) != 0xb) &&
+     (((((int)dataField2 == 0 || (dataField2._4_4_ == 0)) ||
+       (((int)dataField4 == 0 && ((operationStatus >> 10 & 1) == 0)))) || ((int)dataField3 == 0)))) {
     return 0x35;
   }
-  uVar5 = 0x20;
+  processResult = 0x20;
   if ((uVar3 >> 10 & 1) != 0) {
     functionResult4 = *(uint *)(param_6 + 0xc);
     validationResult = *(int *)(param_6 + 0x14);
