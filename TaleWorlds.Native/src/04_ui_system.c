@@ -101,6 +101,7 @@
 #define CalculateUILayoutMetrics FUN_18069ccd0
 #define SynchronizeUIResources FUN_18069d8a0
 #define ProcessUIResourceUpdate FUN_18069d9e0
+#define ProcessUIComponentSync FUN_18069d940
 #define InitializeUILayoutSystem FUN_180707a56
 
 // UI系统函数宏定义 - 验证UI布局
@@ -66793,9 +66794,9 @@ void ProcessUIContextRendering(longlong uiContext)
     }
     CopyUIDataBlock(uiContext,uiContext + 0x860,*(int *)(bufferData + 0x880) + stringCompareIndex,functionResult3,uVar4,
                  CONCAT44(functionResult5,functionResult3));
-    FUN_18069d940(uiContext,uiContext + 0x8d0,*(int *)(bufferData + 0x8f0) + stringCompareIndex,functionResult3,uVar4,functionResult3);
-    FUN_18069d940(uiContext,uiContext + 0xa20,*(int *)(bufferData + 0xa40) + stringCompareIndex,functionResult3,uVar4,functionResult3);
-    FUN_18069d940(uiContext,uiContext + 0xa90,*(int *)(bufferData + 0xab0) + stringCompareIndex,functionResult3,uVar4,functionResult3);
+    ProcessUIComponentSync(uiContext,uiContext + 0x8d0,*(int *)(bufferData + 0x8f0) + stringCompareIndex,functionResult3,uVar4,functionResult3);
+    ProcessUIComponentSync(uiContext,uiContext + 0xa20,*(int *)(bufferData + 0xa40) + stringCompareIndex,functionResult3,uVar4,functionResult3);
+    ProcessUIComponentSync(uiContext,uiContext + 0xa90,*(int *)(bufferData + 0xab0) + stringCompareIndex,functionResult3,uVar4,functionResult3);
   }
   else {
     contextData = 0x10;
@@ -66819,11 +66820,11 @@ void ProcessUIContextRendering(longlong uiContext)
       }
       else {
         functionResult2 = CONCAT44(functionResult3,functionResult5);
-        FUN_18069d9e0(piVar7 + -8,*piVar7 + stringCompareIndex,functionResult5,uVar4,functionResult2,
+        ProcessUIResourceUpdate(piVar7 + -8,*piVar7 + stringCompareIndex,functionResult5,uVar4,functionResult2,
                       *(undefined8 *)(uiContext + 0xf98));
         in_stack_ffffffffffffffd0 = *(undefined8 *)(uiContext + 0xf98);
         in_stack_ffffffffffffffc8 = CONCAT44((int)((ulonglong)functionResult2 >> 0x20),functionResult5);
-        FUN_18069d9e0(piVar7 + 6,piVar7[0xe] + stringCompareIndex,functionResult5,uVar4,in_stack_ffffffffffffffc8,
+        ProcessUIResourceUpdate(piVar7 + 6,piVar7[0xe] + stringCompareIndex,functionResult5,uVar4,in_stack_ffffffffffffffc8,
                       in_stack_ffffffffffffffd0);
       }
       lVar5 = lVar5 + 0x70;
