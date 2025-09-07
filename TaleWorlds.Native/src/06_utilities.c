@@ -98,6 +98,22 @@
 
 // 异常处理相关常量定义
 #define ExceptionCallbackOffset 0xb0
+
+// 异常资源清理函数E0相关常量
+#define ExceptionResourceCountOffset 0x50
+#define ResourceIteratorTableOffset 0x1cd8
+#define ResourceValidationFlag1 0x12e3
+#define ResourceValidationFlag2 0x12dd
+#define ResourceContextArrayOffset 0x80d8
+#define ResourceContextIndexOffset 0x8088
+#define ResourceContextSize 0x20
+#define ExceptionHandlerContextStatusOffset 0x68
+#define ResourceStatusArrayOffset 0x80b0
+#define ResourceHandlerContextOffset 200
+#define ResourceContextBaseOffset 0x7f20
+#define ResourceValidationOffset 0xd0
+#define ResourceActiveFlagOffset 0x60
+#define ExceptionHandlerOffset 0x40
 #define ExceptionContextOffset 0xa0
 #define ExceptionHandlerContextOffset 0x80
 #define ExceptionHandlerPointerOffset 400
