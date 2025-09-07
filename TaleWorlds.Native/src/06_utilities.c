@@ -194,6 +194,66 @@
 #define ProcessSystemOperations ProcessSystemOperations
 #define ProcessSystemA0 ProcessSystemOperations
 
+// 原始函数名：FUN_180069530 - 数据掩码处理函数
+#define ProcessDataWithMask FUN_180069530
+
+// 原始函数名：FUN_180074a80 - 系统初始化函数A0
+#define InitializeSystemA0 FUN_180074a80
+
+// 原始函数名：FUN_180080060 - 系统终止函数A0
+#define TerminateSystemA0 FUN_180080060
+
+// 原始函数名：FUN_1800809a0 - 系统清理函数A0
+#define CleanupSystemA0 FUN_1800809a0
+
+// 原始函数名：FUN_180080870 - 系统重置函数A0
+#define ResetSystemA0 FUN_180080870
+
+// 原始函数名：FUN_18007f840 - 系统数据处理函数A0
+#define ProcessSystemDataA1 FUN_18007f840
+
+// 原始函数名：FUN_18007f6a0 - 系统资源处理函数A0
+#define ProcessSystemResourcesA1 FUN_18007f6a0
+
+// 原始函数名：FUN_180085530 - 系统状态验证函数A0
+#define ValidateSystemStatusA0 FUN_180085530
+
+// 原始函数名：FUN_180089640 - 系统状态更新函数A0
+#define UpdateSystemStatusA0 FUN_180089640
+
+// 原始函数名：FUN_1800ba100 - 系统值计算函数
+#define CalculateSystemValue FUN_1800ba100
+
+// 原始函数名：FUN_180047e40 - 系统参数验证函数A0
+#define ValidateSystemParametersA0 FUN_180047e40
+
+// 原始函数名：FUN_18008d1f0 - 系统数据处理函数A0
+#define ProcessSystemDataA0 FUN_18008d1f0
+
+// 原始函数名：FUN_180090b80 - 系统上下文验证函数A0
+#define ValidateSystemContextA0 FUN_180090b80
+
+// 原始函数名：FUN_180057010 - 数据数组处理函数A0
+#define ProcessDataArrayA0 FUN_180057010
+
+// 原始函数名：FUN_1800a19c0 - 数据缓冲区初始化函数
+#define InitializeDataBuffer FUN_1800a19c0
+
+// 原始函数名：FUN_18009fb60 - 系统命令执行函数
+#define ExecuteSystemCommand FUN_18009fb60
+
+// 原始函数名：FUN_1800ad6f0 - 系统操作处理函数
+#define ProcessSystemOperations FUN_1800ad6f0
+
+// 原始函数名：FUN_1800f74f0 - 验证和处理数据函数
+#define ValidateAndProcessData FUN_1800f74f0
+
+// 原始函数名：FUN_18005d560 - 验证和执行操作函数A1
+#define ValidateAndExecuteOperationsA1 FUN_18005d560
+
+// 原始函数名：FUN_1800adb30 - 系统组件初始化函数
+#define InitializeSystemComponents FUN_1800adb30
+
 /**
  * @brief 异常数据缓冲区创建函数
  * 
@@ -21073,15 +21133,15 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
 DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuffer *operationFlagA)
 
 {
-  char *pcVar1;
+  char *characterPointer;
   DataBuffer *resourcePointer;
-  byte bVar3;
+  byte validationFlag;
   DataBuffer memoryBaseAddress;
   char currentChar;
   char processedChar;
   int calculatedValue;
   uint securityCheckResult;
-  char *pcVar9;
+  char *stringProcessingPointer;
   int primaryInputParameter;
   uint *exceptionDataBuffer1;
   
@@ -21090,51 +21150,51 @@ DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuff
     inputParameter0 = 0;
     currentChar = *dataBuffer;
     while (currentChar != '\0') {
-      bVar3 = *(byte *)((int64_t)exceptionDataBuffer1 + 7);
-      if (bVar3 == 0) {
+      validationFlag = *(byte *)((int64_t)exceptionDataBuffer1 + 7);
+      if (validationFlag == 0) {
         return 0x4a;
       }
       currentChar = ProcessCharacterDataA0(currentChar);
       exceptionDataBuffer1 = (uint *)(*operationBase + (uint64_t)(exceptionDataBuffer1[1] & 0xffffff) * 8);
       calculatedValue = 0;
-      if (bVar3 == 0) {
+      if (validationFlag == 0) {
         return 0x4a;
       }
       while (*(char *)((int64_t)exceptionDataBuffer1 + 3) != currentChar) {
         calculatedValue = calculatedValue + 1;
         exceptionDataBuffer1 = exceptionDataBuffer1 + 2;
-        if ((int)(uint)bVar3 <= calculatedValue) {
+        if ((int)(uint)validationFlag <= calculatedValue) {
           return 0x4a;
         }
       }
       dataBuffer = dataBuffer + 1;
-      pcVar9 = (char *)(operationBase[4] + 1 + (uint64_t)(*exceptionDataBuffer1 & 0xffffff));
+      stringProcessingPointer = (char *)(operationBase[4] + 1 + (uint64_t)(*exceptionDataBuffer1 & 0xffffff));
       currentChar = *dataBuffer;
       while (currentChar != '\0') {
-        if (*pcVar9 == '\0') goto ProcessCheckpointStringValidation;
+        if (*stringProcessingPointer == '\0') goto ProcessCheckpointStringValidation;
         currentChar = ProcessCharacterDataA0(currentChar);
-        processedChar = ProcessCharacterDataA0(*pcVar9);
+        processedChar = ProcessCharacterDataA0(*stringProcessingPointer);
         if (currentChar != processedChar) break;
-        pcVar1 = dataBuffer + 1;
+        exceptionHandlerCallback = dataBuffer + 1;
         dataBuffer = dataBuffer + 1;
-        pcVar9 = pcVar9 + 1;
-        currentChar = *pcVar1;
+        stringProcessingPointer = stringProcessingPointer + 1;
+        currentChar = *characterPointer;
       }
-      if (*pcVar9 != '\0') {
+      if (*stringProcessingPointer != '\0') {
         return 0x4a;
       }
 SystemCheckpointA:
       currentChar = *dataBuffer;
     }
-    bVar3 = *(byte *)((int64_t)exceptionDataBuffer1 + 7);
-    if (bVar3 != 0) {
+    validationFlag = *(byte *)((int64_t)exceptionDataBuffer1 + 7);
+    if (validationFlag != 0) {
       exceptionDataBuffer1 = (uint *)(*operationBase + (uint64_t)(exceptionDataBuffer1[1] & 0xffffff) * 8);
-      if (bVar3 != 0) {
+      if (validationFlag != 0) {
         do {
           if (*(char *)((int64_t)exceptionDataBuffer1 + 3) == '\0') goto ProcessCheckpointExceptionHandling;
           inputParameter0 = inputParameter0 + 1;
           exceptionDataBuffer1 = exceptionDataBuffer1 + 2;
-        } while (inputParameter0 < (int)(uint)bVar3);
+        } while (inputParameter0 < (int)(uint)validationFlag);
       }
       return 0x4a;
     }
@@ -24144,7 +24204,7 @@ DataBuffer ValidateDataSynchronizationA0(void)
 void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
 
 {
-  char *pcVar1;
+  char *sourceCharacterPointer;
   code *validationFlag;
   char validationResult;
   DataWord in_EAX;
@@ -24170,8 +24230,8 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
        *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + validationResult;
   loopIndex = CONCAT31(dataFlags,validationResult + '\x18');
   *dataBuffer = *dataBuffer + loopIndex;
-  pcVar1 = (char *)((int64_t)&piStack_8 + CONCAT44(in_register_00000004,loopIndex));
-  *pcVar1 = *pcVar1 + validationResult + '\x18';
+  exceptionHandlerCallback = (char *)((int64_t)&piStack_8 + CONCAT44(in_register_00000004,loopIndex));
+  *exceptionHandlerCallback = *sourceCharacterPointer + validationResult + '\x18';
   validationFlag = (code *)swi(3);
   (*validationFlag)();
   return;
@@ -34984,11 +35044,11 @@ void ExceptionHandlerA0(void)
 void ExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa0) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa0),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa0) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0xa0),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -35019,11 +35079,11 @@ void ExceptionUnwindHandlerA20(DataBuffer ExceptionContext, int64_t ExceptionHan
 void ExceptionUnwindHandlerA21(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa0) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa0),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa0) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0xa0),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -38838,11 +38898,11 @@ void CleanupSyncObject(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
 void CleanupMutexLock(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x60) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x60),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x60) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x60),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -42458,11 +42518,11 @@ void Unwind_1809038c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809038d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x88) + 0x60);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x88) + 0x50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x88) + 0x60);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x88) + 0x50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -42472,11 +42532,11 @@ void Unwind_1809038d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809038e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x90) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x90),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x90) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x90),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -42914,11 +42974,11 @@ void Unwind_180903a90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180903ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x40),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -42966,11 +43026,11 @@ void Unwind_180903ad0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180903ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x68);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x58,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x68);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x50) + 0x58,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -42980,11 +43040,11 @@ void Unwind_180903ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180903af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x58) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x58),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x58) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x58),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43452,11 +43512,11 @@ void Unwind_180903cd0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180903ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x88) + 0x68);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x88) + 0x58,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x88) + 0x68);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x88) + 0x58,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -44857,11 +44917,11 @@ void Unwind_1809040d0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809040e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x60);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0x50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x60);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x20) + 0x50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -44871,11 +44931,11 @@ void Unwind_1809040e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809040f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x28),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x28),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -44904,11 +44964,11 @@ void Unwind_180904100(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180904110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x60);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x60);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x50) + 0x50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -45013,11 +45073,11 @@ void Unwind_180904160(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180904180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0xb0);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0xa0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0xb0);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x20) + 0xa0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -45046,11 +45106,11 @@ void Unwind_1809041a0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809041b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0xb0);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0xa0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0xb0);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x50) + 0xa0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46558,11 +46618,11 @@ void Unwind_180904630(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180904650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x30);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x30);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x40) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46572,11 +46632,11 @@ void Unwind_180904650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180904660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x50),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46586,11 +46646,11 @@ void Unwind_180904660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180904670(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x58) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x58),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x58) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x58),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46614,11 +46674,11 @@ void Unwind_180904680(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180904690(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x30);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x30);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x50) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46688,11 +46748,11 @@ void Unwind_1809046d0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809046e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0xd0);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0xc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0xd0);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x40) + 0xc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46702,11 +46762,11 @@ void Unwind_1809046e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180904700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x68),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x68),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46716,11 +46776,11 @@ void Unwind_180904700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180904710(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x60) + 0xd0);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x60) + 0xc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x60) + 0xd0);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x60) + 0xc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46730,11 +46790,11 @@ void Unwind_180904710(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180904730(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x70),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46744,11 +46804,11 @@ void Unwind_180904730(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180904740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x68),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x68),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46768,11 +46828,11 @@ void Unwind_180904750(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180904760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x20),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46838,11 +46898,11 @@ void Unwind_1809047c0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809047d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x20),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -49617,11 +49677,11 @@ void ExecuteExceptionHandlerAtOffsetF8Alt(DataBuffer context,int64_t exceptionCo
 void Unwind_180905420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xf0) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xf0),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xf0) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0xf0),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -49631,11 +49691,11 @@ void Unwind_180905420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x100) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x100),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x100) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x100),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -49645,11 +49705,11 @@ void Unwind_180905430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x108) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x108),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x108) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x108),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -49659,11 +49719,11 @@ void Unwind_180905440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x100) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x100),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x100) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x100),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -49673,11 +49733,11 @@ void Unwind_180905450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x108) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x108),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x108) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x108),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -49687,11 +49747,11 @@ void Unwind_180905460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa8) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa8) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0xa8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -49701,11 +49761,11 @@ void Unwind_180905470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xf8) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xf8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xf8) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0xf8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -49715,11 +49775,11 @@ void Unwind_180905480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x40),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -50052,11 +50112,11 @@ void Unwind_180905650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x158);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x158);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x20) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -50066,11 +50126,11 @@ void Unwind_180905660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x178);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0x168,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x178);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x20) + 0x168,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -50098,11 +50158,11 @@ void Unwind_1809056b0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809056c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x158);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x158);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x40) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -50112,11 +50172,11 @@ void Unwind_1809056c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809056e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x178);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x168,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x178);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x40) + 0x168,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -50126,11 +50186,11 @@ void Unwind_1809056e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x48),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x48),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -50326,7 +50386,7 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
           break;
         }
       }
-      FUN_18066c220(poperationResult + 10,&plStackX_10,(uint64_t)*(uint *)(poperationResult + 8),
+      ConvertDataTypeA0(poperationResult + 10,&plStackX_10,(uint64_t)*(uint *)(poperationResult + 8),
                     *(DataWord *)(poperationResult + 9),1);
       pcalculatedValue = (int *)CalculateSystemValue(SystemCalculationBaseAddress,0x18,*(ByteFlag *)((int64_t)poperationResult + 0x5c));
       *pcalculatedValue = iterationCount;
@@ -50336,7 +50396,7 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
       pcalculatedValue[5] = 0;
       if ((char)plStackX_10 != '\0') {
         systemDataBuffer2 = systemDataBuffer1 % ((uint64_t)plStackX_10 >> 0x20);
-        FUN_18015bdc0(poperationResult + 6);
+        ProcessContextA0(poperationResult + 6);
       }
       *(DataBuffer *)(pcalculatedValue + 4) = *(DataBuffer *)(poperationResult[7] + systemDataBuffer2 * 8);
       *(int **)(poperationResult[7] + systemDataBuffer2 * 8) = pcalculatedValue;
@@ -50354,7 +50414,7 @@ ProcessCheckpointValidationData3:
     } while ((uint64_t)(int64_t)(int)statusCounter < (uint64_t)poperationResult[9]);
   }
   validationContextPointer = poperationResult + 6;
-  FUN_18015b450(validationContextPointer);
+  ValidateProcessingA0(validationContextPointer);
   pcalculatedOffset = poperationResult + 0x2d;
   contextPointer = (int64_t *)poperationResult[0x2e];
   pbufferPointer = (int64_t *)*pcalculatedOffset;
@@ -50377,16 +50437,16 @@ ProcessCheckpointValidationData3:
     poperationResult[0x4a] = 0;
   }
   plStackX_10 = poperationResult + 0x44;
-  FUN_18015b4f0();
+  ExecuteSystemOperationA0();
   if ((int64_t *)poperationResult[0x3d] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)poperationResult[0x3d] + 0x38))();
   }
   plStackX_10 = pcalculatedOffset;
-  FUN_180057830(pcalculatedOffset);
+  ManageMemoryA0(pcalculatedOffset);
   plStackX_10 = poperationResult + 0x28;
-  FUN_180048980();
+  CleanupResourcesA0();
   plStackX_10 = poperationResult + 0x24;
-  FUN_180048980();
+  CleanupResourcesA0();
   plStackX_10 = pdataContext;
   _Mtx_destroy_in_situ(pdataContext);
   plStackX_10 = poperationResult + 0x16;
@@ -50397,7 +50457,7 @@ ProcessCheckpointValidationData3:
   plStackX_10 = poperationResult + 0xc;
   _Mtx_destroy_in_situ();
   plStackX_10 = validationContextPointer;
-  FUN_18015b450(validationContextPointer);
+  ValidateProcessingA0(validationContextPointer);
   if ((1 < (uint64_t)poperationResult[8]) && (poperationResult[7] != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -51080,7 +51140,7 @@ void Unwind_180905950(DataBuffer operationBase,int64_t dataBuffer)
           break;
         }
       }
-      FUN_18066c220(poperationResult + 10,&plStackX_10,(uint64_t)*(uint *)(poperationResult + 8),
+      ConvertDataTypeA0(poperationResult + 10,&plStackX_10,(uint64_t)*(uint *)(poperationResult + 8),
                     *(DataWord *)(poperationResult + 9),1);
       pcalculatedValue = (int *)CalculateSystemValue(SystemCalculationBaseAddress,0x18,*(ByteFlag *)((int64_t)poperationResult + 0x5c));
       *pcalculatedValue = iterationCount;
@@ -51090,7 +51150,7 @@ void Unwind_180905950(DataBuffer operationBase,int64_t dataBuffer)
       pcalculatedValue[5] = 0;
       if ((char)plStackX_10 != '\0') {
         systemDataBuffer2 = systemDataBuffer1 % ((uint64_t)plStackX_10 >> 0x20);
-        FUN_18015bdc0(poperationResult + 6);
+        ProcessContextA0(poperationResult + 6);
       }
       *(DataBuffer *)(pcalculatedValue + 4) = *(DataBuffer *)(poperationResult[7] + systemDataBuffer2 * 8);
       *(int **)(poperationResult[7] + systemDataBuffer2 * 8) = pcalculatedValue;
@@ -51108,7 +51168,7 @@ ProcessCheckpointValidationData3:
     } while ((uint64_t)(int64_t)(int)statusCounter < (uint64_t)poperationResult[9]);
   }
   validationContextPointer = poperationResult + 6;
-  FUN_18015b450(validationContextPointer);
+  ValidateProcessingA0(validationContextPointer);
   pcalculatedOffset = poperationResult + 0x2d;
   contextPointer = (int64_t *)poperationResult[0x2e];
   pbufferPointer = (int64_t *)*pcalculatedOffset;
@@ -51131,16 +51191,16 @@ ProcessCheckpointValidationData3:
     poperationResult[0x4a] = 0;
   }
   plStackX_10 = poperationResult + 0x44;
-  FUN_18015b4f0();
+  ExecuteSystemOperationA0();
   if ((int64_t *)poperationResult[0x3d] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)poperationResult[0x3d] + 0x38))();
   }
   plStackX_10 = pcalculatedOffset;
-  FUN_180057830(pcalculatedOffset);
+  ManageMemoryA0(pcalculatedOffset);
   plStackX_10 = poperationResult + 0x28;
-  FUN_180048980();
+  CleanupResourcesA0();
   plStackX_10 = poperationResult + 0x24;
-  FUN_180048980();
+  CleanupResourcesA0();
   plStackX_10 = pdataContext;
   _Mtx_destroy_in_situ(pdataContext);
   plStackX_10 = poperationResult + 0x16;
@@ -51151,7 +51211,7 @@ ProcessCheckpointValidationData3:
   plStackX_10 = poperationResult + 0xc;
   _Mtx_destroy_in_situ();
   plStackX_10 = validationContextPointer;
-  FUN_18015b450(validationContextPointer);
+  ValidateProcessingA0(validationContextPointer);
   if ((1 < (uint64_t)poperationResult[8]) && (poperationResult[7] != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -51279,11 +51339,11 @@ void Unwind_1809059a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809059b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x2e8) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x2e8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x2e8) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x2e8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -52289,11 +52349,11 @@ void Unwind_180905d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x30) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x30),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x30) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x30),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -52346,11 +52406,11 @@ void Unwind_180905d80(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180905d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x158);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x158);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x50) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -52459,7 +52519,7 @@ void ProcessDataWithMaskAndOffset(DataBuffer systemContext,int64_t processData)
   
   maskValue = *(uint *)(processData + 0x30) & 0x1f;
   calculatedOffset = (uint64_t)maskValue * 0x1a8 + *(int64_t *)(processData + 0x28);
-  FUN_180069530(calculatedOffset);
+  ProcessSystemConfigurationA0(calculatedOffset);
   *(ByteFlag *)((*(int64_t *)(processData + 0x28) - (uint64_t)maskValue) + 0x352f) = 1;
   return;
 }
@@ -52511,7 +52571,7 @@ void Unwind_180905e40(DataBuffer operationBase,int64_t dataBuffer)
   bool isPointerMatch;
   
   pcalculatedOffset = (int64_t *)(dataBuffer + 0x28);
-  FUN_180069530((uint64_t)(*(uint *)(dataBuffer + 0x30) & 0x1f) * 0x1a8 + *pcalculatedOffset);
+  ProcessSystemConfigurationA0((uint64_t)(*(uint *)(dataBuffer + 0x30) & 0x1f) * 0x1a8 + *pcalculatedOffset);
   LOCK();
   validationContextPointer = (int64_t *)(*pcalculatedOffset + 0x3508);
   resourceIterator = *validationContextPointer;
@@ -52560,11 +52620,11 @@ void Unwind_180905e40(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180905e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x158);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x158);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x70) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -52574,11 +52634,11 @@ void Unwind_180905e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x178);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70) + 0x168,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x178);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x70) + 0x168,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -52588,11 +52648,11 @@ void Unwind_180905e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180905e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x78),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x78),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -52673,7 +52733,7 @@ void UnwindProcessDataValidation(DataBuffer exceptionContext, int64_t validation
   pdataContext = (int64_t *)(*(int64_t *)(validationContext + 0x50) + 0x3c8);
   contextIterator = *(int64_t *)(*(int64_t *)(validationContext + 0x50) + 0x3d0);
   for (calculatedOffset = *pdataContext; calculatedOffset != contextIterator; calculatedOffset = calculatedOffset + 0x1a8) {
-    FUN_180069530(calculatedOffset);
+    ProcessSystemConfigurationA0(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -52694,7 +52754,7 @@ void UnwindValidateMemoryAccess(DataBuffer exceptionContext, int64_t memoryConte
   pdataContext = *(int64_t **)(memoryContext + 0x60);
   validationContext = pdataContext[1];
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x1a8) {
-    FUN_180069530(calculatedOffset);
+    ProcessSystemConfigurationA0(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -53020,7 +53080,7 @@ void Unwind_180905fc0(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x70) + 0x3c8);
   validationContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x70) + 0x3d0);
   for (calculatedOffset = *pdataContext; calculatedOffset != contextIterator; calculatedOffset = calculatedOffset + 0x1a8) {
-    FUN_180069530(calculatedOffset);
+    ProcessSystemConfigurationA0(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -53149,7 +53209,7 @@ void Unwind_180906060(DataBuffer operationBase,int64_t dataBuffer)
   validationContext = pdataContext[1];
   contextIterator = *(int64_t *)(*(int64_t *)(validationContext + 0x50) + 0x3d0);
   for (calculatedOffset = *pdataContext; calculatedOffset != contextIterator; calculatedOffset = calculatedOffset + 0x1a8) {
-    FUN_180069530(calculatedOffset);
+    ProcessSystemConfigurationA0(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -53985,7 +54045,7 @@ void Unwind_180906480(DataBuffer operationBase,int64_t dataBuffer)
     TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x78) = 0;
-  FUN_180074a80();
+  ProcessSystemOperationA0();
   *(DataBuffer *)(dataBuffer + 0x30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x38) != 0) {
                     // WARNING: Subroutine does not return
@@ -54652,7 +54712,7 @@ void Unwind_1809066c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0xa0) + 0x1e8) != 0) {
-    FUN_180080060();
+    InitializeSystemMemoryA0();
   }
   return;
 }
@@ -54713,7 +54773,7 @@ void Unwind_180906720(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180906740(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1800809a0(*(int64_t *)(dataBuffer + 0xa0) + 0x2e0);
+  InitializeSystemMemoryA1(*(int64_t *)(dataBuffer + 0xa0) + 0x2e0);
   return;
 }
 
@@ -54722,7 +54782,7 @@ void Unwind_180906740(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180906760(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_180080870(*(int64_t *)(dataBuffer + 0xa0) + 0x2f0);
+  InitializeSystemMemoryA2(*(int64_t *)(dataBuffer + 0xa0) + 0x2f0);
   return;
 }
 
@@ -54853,7 +54913,7 @@ void Unwind_180906850(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x50) + 0x1e8) != 0) {
-    FUN_180080060();
+    InitializeSystemMemoryA0();
   }
   return;
 }
@@ -54914,7 +54974,7 @@ void Unwind_1809068b0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_1809068d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  FUN_1800809a0(*(int64_t *)(dataBuffer + 0x50) + 0x2e0);
+  InitializeSystemMemoryA1(*(int64_t *)(dataBuffer + 0x50) + 0x2e0);
   return;
 }
 
@@ -56665,11 +56725,11 @@ void Unwind_180906e40(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180906e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x170) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x170),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x170) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x170),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56796,11 +56856,11 @@ void Unwind_180906ee0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180906ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x170) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x170),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x170) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x170),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -59560,11 +59620,11 @@ void Unwind_180907b40(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180907b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x50);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x40,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x50);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x40) + 0x40,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -59574,11 +59634,11 @@ void Unwind_180907b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180907b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x70);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x60,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x70);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x40) + 0x60,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -60403,11 +60463,11 @@ void Unwind_180907f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180907f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x18);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x18);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x40) + 8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -61122,11 +61182,11 @@ void Unwind_1809081f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180908200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x58) + 0x18);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x58) + 8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x58) + 0x18);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x58) + 8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -61136,11 +61196,11 @@ void Unwind_180908200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180908210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x18);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x18);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x50) + 8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -64525,11 +64585,11 @@ void Unwind_180909360(DataBuffer operationBase,uint *dataBuffer)
 void Unwind_180909390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x98) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x98),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x98) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x98),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -64539,11 +64599,11 @@ void Unwind_180909390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809093a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x98) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x98),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x98) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x98),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -64725,11 +64785,11 @@ void Unwind_1809093e0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180909400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x48),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x48),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -64811,11 +64871,11 @@ void Unwind_180909460(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180909470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x70),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -76936,11 +76996,11 @@ void Unwind_18090d310(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090d320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa88) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa88),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa88) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0xa88),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -76950,11 +77010,11 @@ void Unwind_18090d320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090d330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa88) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa88),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa88) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0xa88),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -76964,11 +77024,11 @@ void Unwind_18090d330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090d340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa80) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa80) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0xa80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -76978,11 +77038,11 @@ void Unwind_18090d340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090d350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa80) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa80) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0xa80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -77928,11 +77988,11 @@ void Unwind_18090d4f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090d500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x28),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x28),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -77942,11 +78002,11 @@ void Unwind_18090d500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090d510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xe8) + 0xd0);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xe8) + 0xc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xe8) + 0xd0);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0xe8) + 0xc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81121,11 +81181,11 @@ void Unwind_18090ecf0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ed00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x80) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x80) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81135,11 +81195,11 @@ void Unwind_18090ed00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090ed10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x80) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x80) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81267,11 +81327,11 @@ void Unwind_18090ed80(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ed90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x178) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x178),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x178) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x178),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81281,11 +81341,11 @@ void Unwind_18090ed90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090eda0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x150) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x150),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x150) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x150),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81331,11 +81391,11 @@ void Unwind_18090edd0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ede0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x88) + 0x30);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x88) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x88) + 0x30);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x88) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81381,11 +81441,11 @@ void Unwind_18090ee10(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ee20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x150) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x150),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x150) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x150),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81409,11 +81469,11 @@ void Unwind_18090ee30(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ee40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x98) + 0x30);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x98) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x98) + 0x30);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x98) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81459,11 +81519,11 @@ void Unwind_18090ee70(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ee80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xe8) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xe8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xe8) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0xe8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81473,11 +81533,11 @@ void Unwind_18090ee80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090ee90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x178) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x178),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x178) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x178),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81736,11 +81796,11 @@ void Unwind_18090ef70(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090ef80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x78),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x78),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -82107,11 +82167,11 @@ void Unwind_18090f0d0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090f0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *exceptionHandlerCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x68);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x58,0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x68);
+  if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x40) + 0x58,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -98174,5 +98234,71 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 
 // 原始函数名：FUN_180069530 - 系统配置处理函数
 #define ProcessSystemConfigurationA0 FUN_180069530
+
+// 原始函数名：FUN_180074a80 - 系统操作处理函数
+#define ProcessSystemOperationA0 FUN_180074a80
+
+// 原始函数名：FUN_180080060 - 系统内存初始化函数A0
+#define InitializeSystemMemoryA0 FUN_180080060
+
+// 原始函数名：FUN_1800809a0 - 系统内存初始化函数A1
+#define InitializeSystemMemoryA1 FUN_1800809a0
+
+// 原始函数名：FUN_180080870 - 系统内存初始化函数A2
+#define InitializeSystemMemoryA2 FUN_180080870
+
+// 原始函数名：FUN_18007f840 - 数据缓冲区处理函数A0
+#define ProcessDataBufferA0 FUN_18007f840
+
+// 原始函数名：FUN_18007f6a0 - 数据缓冲区处理函数A1
+#define ProcessDataBufferA1 FUN_18007f6a0
+
+// 原始函数名：FUN_18022f390 - 数据操作处理函数A0
+#define ProcessDataOperationA0 FUN_18022f390
+
+// 原始函数名：FUN_180085530 - 系统状态验证函数A0
+#define ValidateSystemStatusA0 FUN_180085530
+
+// 原始函数名：FUN_180179f00 - 资源处理函数A0
+#define ProcessResourceA0 FUN_180179f00
+
+// 原始函数名：FUN_180089640 - 系统状态更新函数A0
+#define UpdateSystemStatusA0 FUN_180089640
+
+// 原始函数名：FUN_1800ba100 - 系统值计算函数
+#define CalculateSystemValue FUN_1800ba100
+
+// 原始函数名：FUN_180047e40 - 系统参数验证函数A0
+#define ValidateSystemParametersA0 FUN_180047e40
+
+// 原始函数名：FUN_18008d1f0 - 系统数据处理函数A0
+#define ProcessSystemDataA0 FUN_18008d1f0
+
+// 原始函数名：FUN_180090b80 - 系统上下文验证函数A0
+#define ValidateSystemContextA0 FUN_180090b80
+
+// 原始函数名：FUN_180057010 - 数据数组处理函数A0
+#define ProcessDataArrayA0 FUN_180057010
+
+// 原始函数名：FUN_1800a19c0 - 数据缓冲区初始化函数
+#define InitializeDataBuffer FUN_1800a19c0
+
+// 原始函数名：FUN_18009fb60 - 系统命令执行函数
+#define ExecuteSystemCommand FUN_18009fb60
+
+// 原始函数名：FUN_1800ad6f0 - 系统操作处理函数
+#define ProcessSystemOperations FUN_1800ad6f0
+
+// 原始函数名：FUN_1800f74f0 - 验证和处理数据函数
+#define ValidateAndProcessData FUN_1800f74f0
+
+// 原始函数名：FUN_180152b00 - 数据块处理函数
+#define ProcessDataBlocks FUN_180152b00
+
+// 原始函数名：FUN_18005d560 - 验证和执行操作函数A1
+#define ValidateAndExecuteOperationsA1 FUN_18005d560
+
+// 原始函数名：FUN_1800adb30 - 系统组件初始化函数
+#define InitializeSystemComponents FUN_1800adb30
 
 
