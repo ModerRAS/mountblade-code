@@ -181174,24 +181174,50 @@ undefined8 FUN_1807793f0(void)
 }
 
 
-undefined UNK_180959e90;
+// 原始变量名：UNK_180959e90 - UI系统主控制器
+#define UISystemMainController UNK_180959e90
+undefined UISystemMainController;
 undefined UISystemConfigData;
 undefined UIComponentRegistry;
-undefined UNK_18095a310;
-undefined UNK_18095a384;
-undefined UNK_18095a598;
-undefined UNK_18095a5a0;
-undefined UNK_18095a618;
-undefined UNK_18095a628;
-undefined UNK_18095a638;
-undefined UNK_18095a648;
-undefined UNK_18095a650;
-undefined UNK_18095a658;
-undefined UNK_18095a668;
-undefined UNK_180a215c0;
+// 原始变量名：UNK_18095a310 - UI系统事件处理器
+#define UISystemEventHandler UNK_18095a310
+undefined UISystemEventHandler;
+// 原始变量名：UNK_18095a384 - UI系统渲染管理器
+#define UISystemRenderManager UNK_18095a384
+undefined UISystemRenderManager;
+// 原始变量名：UNK_18095a598 - UI系统布局管理器
+#define UISystemLayoutManager UNK_18095a598
+undefined UISystemLayoutManager;
+// 原始变量名：UNK_18095a5a0 - UI系统动画管理器
+#define UISystemAnimationManager UNK_18095a5a0
+undefined UISystemAnimationManager;
+// 原始变量名：UNK_18095a618 - UI系统输入管理器
+#define UISystemInputManager UNK_18095a618
+undefined UISystemInputManager;
+// 原始变量名：UNK_18095a628 - UI系统状态管理器
+#define UISystemStateManager UNK_18095a628
+undefined UISystemStateManager;
+// 原始变量名：UNK_18095a638 - UI系统资源管理器
+#define UISystemResourceManager UNK_18095a638
+undefined UISystemResourceManager;
+// 原始变量名：UNK_18095a648 - UI系统内存管理器
+#define UISystemMemoryManager UNK_18095a648
+undefined UISystemMemoryManager;
+// 原始变量名：UNK_18095a650 - UI系统线程管理器
+#define UISystemThreadManager UNK_18095a650
+undefined UISystemThreadManager;
+// 原始变量名：UNK_18095a658 - UI系统同步管理器
+#define UISystemSyncManager UNK_18095a658
+undefined UISystemSyncManager;
+// 原始变量名：UNK_18095a668 - UI系统调试管理器
+#define UISystemDebugManager UNK_18095a668
+undefined UISystemDebugManager;
+// 原始变量名：UNK_180a215c0 - UI系统性能监控器
+#define UISystemPerformanceMonitor UNK_180a215c0
+undefined UISystemPerformanceMonitor;
 
- 简化实现：UI系统重置函数
- 原本实现：可能包含更复杂的重置逻辑
+// 简化实现：UI系统重置函数
+// 原本实现：可能包含更复杂的重置逻辑
 undefined UIResetSystem;
 undefined UIRenderQueueData;
 undefined UIRenderQueueIndex;

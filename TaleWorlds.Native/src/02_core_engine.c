@@ -168065,30 +168065,47 @@ void ProcessUtf8DataProcessing(void)
 
 
 
-3b9eb(voidvoid FUN_18013b9eb(void
+/**
+ * @brief 处理UTF-8系统刷新
+ * 
+ * 该函数负责刷新UTF-8编码系统的缓冲区和状态，包括字符编码处理、内存分配和状态管理。
+ * 函数执行系统的刷新操作，确保缓冲区数据的正确性和系统状态的一致性。
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的系统刷新逻辑
+ * @warning 简化实现仅执行基本的刷新操作，不进行实际的系统刷新工作
+ */
+void ProcessUtf8SystemFlush(void)
 {
-  uint16_t Utf16Char;
-  uint32_t MemoryAllocationIndex;
-  uint64_t *SystemContext;
-  int RegisterEBPValue;
-  long long SourceIndex;
-  long long SystemParameter;
-  uint8_t *StackProcessingParameter58;
+  uint16_t Utf16CharacterCode;
+  uint32_t SystemMemoryAllocationIndex;
+  uint64_t *SystemContextPointer;
+  int SystemRegisterValue;
+  long long DataSourceIndex;
+  long long SystemConfigurationParameter;
+  uint8_t *StackProcessingBuffer;
   
-  if ((long long)RegisterEBPValue * 0x28 + SystemParameter == 0) {
-    Utf16Char = 0xffff;
+  // 计算UTF-16字符代码
+  if ((long long)SystemRegisterValue * 0x28 + SystemConfigurationParameter == 0) {
+    Utf16CharacterCode = 0xffff;
   }
   else {
-    Utf16Char = (uint16_t)(((long long)RegisterEBPValue * 0x28) / 0x28);
+    Utf16CharacterCode = (uint16_t)(((long long)SystemRegisterValue * 0x28) / 0x28);
   }
-  *(uint16_t *)(SystemContext + 0x86) = Utf16Char;
-  if ((((*(byte *)(SourceIndex + 0xa1) & 2) != 0) ||
-      (*(int *)(SourceIndex + 0x9c) == *(int *)(SystemContext + 1))) &&
-     (StackProcessingParameter58 != (uint8_t *)0x0)) {
+  
+  // 设置系统上下文中的字符代码
+  *(uint16_t *)(SystemContextPointer + 0x86) = Utf16CharacterCode;
+  
+  // 检查数据源状态并处理输入缓冲区
+  if ((((*(byte *)(DataSourceIndex + 0xa1) & 2) != 0) ||
+      (*(int *)(DataSourceIndex + 0x9c) == *(int *)(SystemContextPointer + 1))) &&
+     (StackProcessingBuffer != (uint8_t *)0x0)) {
     *InputDataBuffer = 0;
   }
-  MemoryAllocationIndex = AllocateSystemMemory(*(void *)(SystemContext[0x81] + 0x68),*SystemContext);
-  *(uint32_t *)(SystemContext + 0x11) = MemoryAllocationIndex;
+  
+  // 分配系统内存并设置内存分配索引
+  SystemMemoryAllocationIndex = AllocateSystemMemory(*(void *)(SystemContextPointer[0x81] + 0x68),*SystemContextPointer);
+  *(uint32_t *)(SystemContextPointer + 0x11) = SystemMemoryAllocationIndex;
+  
   return;
 }
 
@@ -168096,24 +168113,38 @@ void ProcessUtf8DataProcessing(void)
 
 
 
-3ba30(long long CharacterCodevoid FUN_18013ba30(long long CharacterCode
+/**
+ * @brief 处理UTF-8字符处理
+ * 
+ * 该函数负责处理UTF-8字符的编码和处理操作，包括字符表管理、系统验证和内存分配。
+ * 函数执行字符处理的核心逻辑，确保字符编码的正确性和系统状态的完整性。
+ * 
+ * @param CharacterCode 字符代码，包含字符的编码信息和处理参数
+ * @note 这是简化实现，实际应用中需要实现完整的字符处理逻辑
+ * @warning 简化实现仅执行基本的字符处理操作，不进行实际的字符编码工作
+ */
+void ProcessUtf8CharacterProcessing(long long CharacterCode)
 {
   long long PrimaryDataSize;
-  char SystemCheckResult;
-  uint32_t VectorRegisterDa;
-  long long alStackX_8 [4];
+  char SystemValidationResult;
+  uint32_t SystemVectorRegister;
+  long long SystemStackBuffer[4];
   
+  // 设置字符表指针和数据拷贝
   CharacterTablePointer = SystemConfigurationHandle;
   *(uint32_t *)(CharacterCode + 0x144) = *(uint32_t *)(CharacterCode + 0x84);
-  alStackX_8[0] = *(long long *)(CharacterCode + 0x3a0);
+  SystemStackBuffer[0] = *(long long *)(CharacterCode + 0x3a0);
+  
+  // 验证字符表状态
   if (*(char *)(CharacterTablePointer + 0xc1) == '\0') {
+    // 检查系统浮点参数有效性
     if (*(float *)(CharacterTablePointer + 0x1b48) < 0.0) {
       return;
     }
     if (*(float *)(CharacterTablePointer + 0x1b4c) < 0.0) {
       return;
     }
-    if (*(float *)(alStackX_8[0] + 0x50) <= *(float *)(CharacterTablePointer + 0x1b48)) {
+    if (*(float *)(SystemStackBuffer[0] + 0x50) <= *(float *)(CharacterTablePointer + 0x1b48)) {
       return;
     }
     if (*(float *)(CharacterTablePointer + 0x1660) + *(float *)(CharacterTablePointer + 0x1660) + *(float *)(CharacterTablePointer + 0x19f8) <=
@@ -168121,18 +168152,28 @@ void ProcessUtf8DataProcessing(void)
       return;
     }
   }
-  SystemCheckResult = ValidateSystemComponentsAndInitialize();
-  if (SystemCheckResult != '\0') {
-    AllocateSystemMemoryPool(VectorRegisterDa,alStackX_8);
+  
+  // 验证系统组件并初始化
+  SystemValidationResult = ValidateSystemComponentsAndInitialize();
+  if (SystemValidationResult != '\0') {
+    // 分配系统内存池
+    AllocateSystemMemoryPool(SystemVectorRegister, SystemStackBuffer);
     CharacterTablePointer = SystemConfigurationHandle;
+    
+    // 处理系统事件队列
     if ((*(byte *)(SystemConfigurationHandle + 0x1dd4) & 1) == 0) {
       FinalizeSystemEventQueue();
     }
+    
+    // 验证系统组件
     if (*(int *)(CharacterTablePointer + 0x1df4) == -1) {
       ValidateSystemComponentsA0();
     }
+    
+    // 重置系统状态标志
     *(uint8_t *)(CharacterTablePointer + 0x1dd1) = 0;
   }
+  
   return;
 }
 

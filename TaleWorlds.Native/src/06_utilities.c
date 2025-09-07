@@ -15373,12 +15373,12 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
     memoryBlockOffset = memoryResourcePointer;
   }
   operationResult = ValidateAndProcessSystemResourceA0(memoryBlockOffset,systemContext + DATA_PROCESSING_CONTEXT_OFFSET);
-  if (validationResult != 0) {
+  if (operationResult != 0) {
     return;
   }
-  allocationCount = (int)*(uint *)(resourceDataBuffer + ValidationDataOffset) >> 0x1f;
-  allocationCount = (*(uint *)(resourceDataBuffer + ValidationDataOffset) ^ allocationCount) - allocationCount;
-  requiredCapacity = *(int *)(resourceDataBuffer + ValidationResultOffset) + 1;
+  allocationCount = (int)*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) >> 0x1f;
+  allocationCount = (*(uint *)(queueInfo + QUEUE_CAPACITY_OFFSET) ^ allocationCount) - allocationCount;
+  requiredCapacity = *(int *)(queueInfo + QUEUE_SIZE_OFFSET) + 1;
   if (allocationCount < requiredCapacity) {
     allocationCount = (int)((float)allocationCount * 1.5);
     if (requiredCapacity <= allocationCount) {
@@ -15387,23 +15387,23 @@ void OptimizeUtilitySystem(DataBuffer systemHandle,DataBuffer optimizationFlags)
     if (requiredCapacity < 8) {
       requiredCapacity = 8;
     }
-    if (requiredCapacity < *(int *)(resourceDataBuffer + ValidationResultOffset)) goto ErrorHandlingLabel;
+    if (requiredCapacity < *(int *)(queueInfo + QUEUE_SIZE_OFFSET)) goto ErrorHandlingLabel;
     if (requiredCapacity != 0) {
       if ((MaximumMemoryBufferSize < requiredCapacity * 8 - 1U) ||
-         (allocatedMemory = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),requiredCapacity * 8,&SystemMemoryPoolB,
-                                0xf4,0), allocatedMemory == 0)) goto ErrorHandlingLabel;
-      if (*(int *)(resourceDataBuffer + ValidationResultOffset) != 0) {
-          memcpy(allocatedMemory,*(DataBuffer *)(resourceDataBuffer + MemoryPointerOffset),
-               (int64_t)*(int *)(resourceDataBuffer + ValidationResultOffset) << 3);
+         (memoryResourcePointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),requiredCapacity * 8,&SystemMemoryPoolB,
+                                0xf4,0), memoryResourcePointer == 0)) goto ErrorHandlingLabel;
+      if (*(int *)(queueInfo + QUEUE_SIZE_OFFSET) != 0) {
+          memcpy(memoryResourcePointer,*(DataBuffer *)(queueInfo + QUEUE_DATA_POINTER_OFFSET),
+               (int64_t)*(int *)(queueInfo + QUEUE_SIZE_OFFSET) << 3);
       }
     }
-    if ((0 < *(int *)(resourceDataBuffer + ValidationDataOffset)) && (*(int64_t *)(resourceDataBuffer + MemoryPointerOffset) != 0))
+    if ((0 < *(int *)(queueInfo + QUEUE_CAPACITY_OFFSET)) && (*(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) != 0))
     {
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(resourceDataBuffer + MemoryPointerOffset),
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET),
                     &SystemMemoryPoolB,0x100,1);
     }
-    *(int64_t *)(resourceDataBuffer + MemoryPointerOffset) = allocatedMemory;
-    *(int *)(resourceDataBuffer + ValidationDataOffset) = requiredCapacity;
+    *(int64_t *)(queueInfo + QUEUE_DATA_POINTER_OFFSET) = memoryResourcePointer;
+    *(int *)(queueInfo + QUEUE_CAPACITY_OFFSET) = requiredCapacity;
   }
   *(int64_t *)
    (*(int64_t *)(resourceDataBuffer + MemoryPointerOffset) + (int64_t)*(int *)(resourceDataBuffer + ValidationResultOffset) * 8) =
