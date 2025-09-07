@@ -114089,7 +114089,7 @@ uint8_t ProcessFloatingPointFilterAndVectorCalculation(uint64_t CharacterCode)
   float VectorRegisterX13;
   float *CharacterCode;
   
-  CalculatedFilterValue = (float)FUN_18011f940(CharacterCode,*ProcessingStatusFlag);
+  CalculatedFilterValue = (float)ProcessSystemCoordinates(CharacterCode,*ProcessingStatusFlag);
   FloatValue1 = *(float *)(RegisterGeneral14 + 0xc);
   FloatValue2 = *(float *)(RegisterGeneral14 + 4);
   CalculatedFilterValue = (VectorRegisterX9 - VectorRegisterX11) * FloatValue3 + VectorRegisterX11;
@@ -114368,7 +114368,7 @@ LAB_18011f1e4:
       FloatVariable4 = 1.0;
     }
   }
-  CharacterCode = (double)FUN_18011f740(in_stack_00000100,CharacterCodeSize,
+  CharacterCode = (double)ProcessSystemFloatCalculation(in_stack_00000100,CharacterCodeSize,
                                   SUB84(((double)CONCAT44(unaff_XMM10_Db,AuxiliaryFloat10) -
                                         (double)CONCAT44(XMMRegister8_Db,SecondaryFloatValue)) *
                                         (double)FloatVariable4 +
@@ -118878,7 +118878,7 @@ uint64_t * FUN_180123460(uint64_t *CharacterCode,long long CharacterCodeSize,byt
   *(uint32_t *)((long long)CharacterCode + 0x424) = 0x7f7fffff;
   *(uint32_t *)(CharacterCode + 0x85) = 0xff7fffff;
   *(uint32_t *)((long long)CharacterCode + 0x42c) = 0xff7fffff;
-  MemoryAddressMask = FUN_1801210b0(Utf8InputPointer);
+  MemoryAddressMask = InitializeSystemComponents(Utf8InputPointer);
   *CharacterCode = MemoryAddressMask;
   SystemByteValue = 0xffffffff;
   CurrentByteValue = *Utf8InputPointer;
