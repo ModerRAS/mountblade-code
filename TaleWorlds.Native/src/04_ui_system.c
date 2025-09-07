@@ -100157,10 +100157,19 @@ void FUN_18072c8e6(void)
 
 
 
- void FUN_18072cb40(int uiContext)
-void FUN_18072cb40(int uiContext)
-
-{
+ /**
+ * @brief 计算UI组件布局优化
+ * 
+ * 该函数负责计算和优化UI组件的布局参数，包括：
+ * - 组件尺寸和位置计算
+ * - 布局约束和优化算法
+ * - 渲染任务调度
+ * - 内存管理和资源分配
+ * 
+ * @param uiContext UI上下文句柄
+ * @note 原始函数名：FUN_18072cb40
+ */
+void CalculateUIComponentLayoutOptimization(int uiContext)
   float *pfloatResult;
   float *pfVar2;
   float *pfVar3;
