@@ -9983,34 +9983,34 @@ void InitializeNetworkSessionNode(void)
   uint64_t reservedStackSpace;
   
   systemContextPtr = (long long *)CoreEngineGetSystemContext();
-  primaryProcessingStatusFlag = (uint64_t *)*systemContextPtr;
-  statusBuffer = *(char *)((long long)primaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
-  stackConfigurationFlag = 0;
-  tertiaryProcessingStatusFlag = primaryProcessingStatusFlag;
-  secondaryProcessingStatusFlag = (void *)primaryProcessingStatusFlag[1];
+  sessionPrimaryNode = (uint64_t *)*systemContextPtr;
+  statusBuffer = *(char *)((long long)sessionPrimaryNode[1] + SystemNodeStatusOffset);
+  sessionCallbackFlag = 0;
+  sessionTargetNode = sessionPrimaryNode;
+  sessionSecondaryNode = (void *)sessionPrimaryNode[1];
   while (statusBuffer == '\0') {
-    memoryMatchResult = memcmp(secondaryProcessingStatusFlag + 4, &SystemFileSystemComparisonData, 0x10);
+    memoryMatchResult = memcmp(sessionSecondaryNode + 4, &SystemFileSystemComparisonData, 0x10);
     if (memoryMatchResult < 0) {
       nextNode = (void *)currentNode[2];
-      secondaryProcessingStatusFlag = tertiaryProcessingStatusFlag;
+      sessionSecondaryNode = sessionTargetNode;
     }
     else {
       nextNode = (void *)*currentNode;
     }
-    tertiaryProcessingStatusFlag = secondaryProcessingStatusFlag;
+    sessionTargetNode = sessionSecondaryNode;
     currentNode = nextNode;
     statusBuffer = *(char *)((long long)nextNode + SystemNodeStatusOffset);
   }
-  if ((tertiaryProcessingStatusFlag == primaryProcessingStatusFlag) || (memoryMatchResult = memcmp(&SystemFileSystemComparisonData, tertiaryProcessingStatusFlag + 4, 0x10), memoryMatchResult < 0)) {
+  if ((sessionTargetNode == sessionPrimaryNode) || (memoryMatchResult = memcmp(&SystemFileSystemComparisonData, sessionTargetNode + 4, 0x10), memoryMatchResult < 0)) {
     memoryAllocationSize = CoreEngineAllocateMemory(systemContextPtr);
-    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, tertiaryProcessingStatusFlag, memoryAllocationSize + 0x20, memoryAllocationSize);
-    tertiaryProcessingStatusFlag = temporaryBuffer;
+    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, sessionTargetNode, memoryAllocationSize + 0x20, memoryAllocationSize);
+    sessionTargetNode = temporaryBuffer;
   }
-  tertiaryProcessingStatusFlag[6] = 0x42bea5b911d9c4bf;
-  tertiaryProcessingStatusFlag[7] = 0x1aa83fc0020dc1b6;
-  tertiaryProcessingStatusFlag[8] = &SystemDataTemplateC;
-  tertiaryProcessingStatusFlag[9] = 0;
-  tertiaryProcessingStatusFlag[10] = stackConfigurationFlag;
+  sessionTargetNode[6] = 0x42bea5b911d9c4bf;
+  sessionTargetNode[7] = 0x1aa83fc0020dc1b6;
+  sessionTargetNode[8] = &SystemDataTemplateC;
+  sessionTargetNode[9] = 0;
+  sessionTargetNode[10] = sessionCallbackFlag;
   return;
 }
 
@@ -10038,34 +10038,34 @@ void InitializeNetworkStatusNode(void)
   code *functionCallback;
   
   systemContextPtr = (long long *)CoreEngineGetSystemContext();
-  primaryProcessingStatusFlag = (uint64_t *)*systemContextPtr;
-  statusBuffer = *(char *)((long long)primaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  statusPrimaryNode = (uint64_t *)*systemContextPtr;
+  statusBuffer = *(char *)((long long)statusPrimaryNode[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
-  tertiaryProcessingStatusFlag = primaryProcessingStatusFlag;
-  secondaryProcessingStatusFlag = (void *)primaryProcessingStatusFlag[1];
+  statusTargetNode = statusPrimaryNode;
+  statusSecondaryNode = (void *)statusPrimaryNode[1];
   while (statusBuffer == '\0') {
-    memoryMatchResult = memcmp(secondaryProcessingStatusFlag + 4, &SystemComparisonDataSecondary, 0x10);
+    memoryMatchResult = memcmp(statusSecondaryNode + 4, &SystemComparisonDataSecondary, 0x10);
     if (memoryMatchResult < 0) {
       nextNode = (void *)currentNode[2];
-      secondaryProcessingStatusFlag = tertiaryProcessingStatusFlag;
+      statusSecondaryNode = statusTargetNode;
     }
     else {
       nextNode = (void *)*currentNode;
     }
-    tertiaryProcessingStatusFlag = secondaryProcessingStatusFlag;
+    statusTargetNode = statusSecondaryNode;
     currentNode = nextNode;
     statusBuffer = *(char *)((long long)nextNode + SystemNodeStatusOffset);
   }
-  if ((tertiaryProcessingStatusFlag == primaryProcessingStatusFlag) || (memoryMatchResult = memcmp(&SystemComparisonDataSecondary, tertiaryProcessingStatusFlag + 4, 0x10), memoryMatchResult < 0)) {
+  if ((statusTargetNode == statusPrimaryNode) || (memoryMatchResult = memcmp(&SystemComparisonDataSecondary, statusTargetNode + 4, 0x10), memoryMatchResult < 0)) {
     memoryAllocationSize = CoreEngineAllocateMemory(systemContextPtr);
-    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, tertiaryProcessingStatusFlag, memoryAllocationSize + 0x20, memoryAllocationSize);
-    tertiaryProcessingStatusFlag = temporaryBuffer;
+    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, statusTargetNode, memoryAllocationSize + 0x20, memoryAllocationSize);
+    statusTargetNode = temporaryBuffer;
   }
-  tertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
-  tertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  tertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
-  tertiaryProcessingStatusFlag[9] = 1;
-  tertiaryProcessingStatusFlag[10] = functionCallback;
+  statusTargetNode[6] = 0x43330a43fcdb3653;
+  statusTargetNode[7] = 0xdcfdc333a769ec93;
+  statusTargetNode[8] = &SystemDataTemplateN;
+  statusTargetNode[9] = 1;
+  statusTargetNode[10] = functionCallback;
   return;
 }
 
@@ -10093,34 +10093,34 @@ void InitializeNetworkConnectionNode(void)
   code *functionCallback;
   
   systemContextPtr = (long long *)CoreEngineGetSystemContext();
-  primaryProcessingStatusFlag = (uint64_t *)*systemContextPtr;
-  statusBuffer = *(char *)((long long)primaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  connectionPrimaryNode = (uint64_t *)*systemContextPtr;
+  statusBuffer = *(char *)((long long)connectionPrimaryNode[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
-  tertiaryProcessingStatusFlag = primaryProcessingStatusFlag;
-  secondaryProcessingStatusFlag = (void *)primaryProcessingStatusFlag[1];
+  connectionTargetNode = connectionPrimaryNode;
+  connectionSecondaryNode = (void *)connectionPrimaryNode[1];
   while (statusBuffer == '\0') {
-    memoryMatchResult = memcmp(secondaryProcessingStatusFlag + 4, &SystemComparisonDataTertiary, 0x10);
+    memoryMatchResult = memcmp(connectionSecondaryNode + 4, &SystemComparisonDataTertiary, 0x10);
     if (memoryMatchResult < 0) {
       nextNode = (void *)currentNode[2];
-      secondaryProcessingStatusFlag = tertiaryProcessingStatusFlag;
+      connectionSecondaryNode = connectionTargetNode;
     }
     else {
       nextNode = (void *)*currentNode;
     }
-    tertiaryProcessingStatusFlag = secondaryProcessingStatusFlag;
+    connectionTargetNode = connectionSecondaryNode;
     currentNode = nextNode;
     statusBuffer = *(char *)((long long)nextNode + SystemNodeStatusOffset);
   }
-  if ((tertiaryProcessingStatusFlag == primaryProcessingStatusFlag) || (memoryMatchResult = memcmp(&SystemComparisonDataTertiary, tertiaryProcessingStatusFlag + 4, 0x10), memoryMatchResult < 0)) {
+  if ((connectionTargetNode == connectionPrimaryNode) || (memoryMatchResult = memcmp(&SystemComparisonDataTertiary, connectionTargetNode + 4, 0x10), memoryMatchResult < 0)) {
     memoryAllocationSize = CoreEngineAllocateMemory(systemContextPtr);
-    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, tertiaryProcessingStatusFlag, memoryAllocationSize + 0x20, memoryAllocationSize);
-    tertiaryProcessingStatusFlag = temporaryBuffer;
+    CoreEngineSetupMemoryNode(systemContextPtr, &temporaryBuffer, connectionTargetNode, memoryAllocationSize + 0x20, memoryAllocationSize);
+    connectionTargetNode = temporaryBuffer;
   }
-  tertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
-  tertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  tertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
-  tertiaryProcessingStatusFlag[9] = 4;
-  tertiaryProcessingStatusFlag[10] = functionCallback;
+  connectionTargetNode[6] = 0x431d7c8d7c475be2;
+  connectionTargetNode[7] = 0xb97f048d2153e1b0;
+  connectionTargetNode[8] = &SystemDataTemplateO;
+  connectionTargetNode[9] = 4;
+  connectionTargetNode[10] = functionCallback;
   return;
 }
 
