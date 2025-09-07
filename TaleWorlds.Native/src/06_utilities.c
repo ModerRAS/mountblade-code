@@ -10494,20 +10494,20 @@ DataBuffer ReleaseUtilityResource(int64_t resourceHandle)
 DataBuffer CheckNullPointerAccess(void)
 
 {
-  int64_t systemRegisterValue;
-  int64_t resourcePointer;
+  int64_t systemRegisterValue = 0;
+  int64_t calculatedResourcePointer;
   int64_t* resourceDataPointer;
   
   // 根据系统寄存器值计算资源指针
   if (systemRegisterValue == 0) {
-    resourcePointer = 0;
+    calculatedResourcePointer = 0;
   }
   else {
-    resourcePointer = systemRegisterValue - 8;
+    calculatedResourcePointer = systemRegisterValue - 8;
   }
   
   // 检查资源数据指针
-  resourceDataPointer = (int64_t *)(resourcePointer + ResourceDataOffset);
+  resourceDataPointer = (int64_t *)(calculatedResourcePointer + ResourceDataOffset);
   if (*resourceDataPointer != 0) {
     // 调用资源释放函数（注意：此函数不会返回）
     ReleaseResource(*resourceDataPointer, 1);
@@ -10641,20 +10641,20 @@ DataBuffer ForceResourceRelease(int64_t resourceDescriptor)
 DataWord ReleaseStackResource(void)
 
 {
-  int64_t processorRegisterValue;
-  int64_t stackResourcePointer;
+  int64_t processorRegisterValue = 0;
+  int64_t calculatedStackResourcePointer;
   int64_t* stackDataPointer;
   
   // 根据处理器寄存器值计算栈资源指针
   if (processorRegisterValue == 0) {
-    stackResourcePointer = 0;
+    calculatedStackResourcePointer = 0;
   }
   else {
-    stackResourcePointer = processorRegisterValue - 8;
+    calculatedStackResourcePointer = processorRegisterValue - 8;
   }
   
   // 检查栈数据指针
-  stackDataPointer = (int64_t *)(stackResourcePointer + 0x10);
+  stackDataPointer = (int64_t *)(calculatedStackResourcePointer + 0x10);
   if (*stackDataPointer == 0) {
     return ResourceInvalidErrorCode;  // 返回资源无效错误代码
   }
@@ -10719,23 +10719,23 @@ void SystemReturnEmptyFunction(void)
 DataBuffer ValidateMemoryAccess(int64_t memoryContext)
 
 {
-  DataBuffer ValidationStatus;
-  int64_t MemoryAccessPointer;
+  DataBuffer memoryValidationStatus;
+  int64_t calculatedMemoryAccessPointer;
   
-  ValidationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryContext + 0x10),&MemoryAccessPointer);
-  if ((int)ValidationStatus != 0) {
-    return ValidationStatus;
+  memoryValidationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryContext + 0x10),&calculatedMemoryAccessPointer);
+  if ((int)memoryValidationStatus != 0) {
+    return memoryValidationStatus;
   }
-  if (MemoryAccessPointer == 0) {
-    MemoryAccessPointer = 0;
+  if (calculatedMemoryAccessPointer == 0) {
+    calculatedMemoryAccessPointer = 0;
   }
   else {
-    MemoryAccessPointer = MemoryAccessPointer + -8;
+    calculatedMemoryAccessPointer = calculatedMemoryAccessPointer + -8;
   }
-  if (*(int64_t *)(MemoryAccessPointer + 0x10) == 0) {
+  if (*(int64_t *)(calculatedMemoryAccessPointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-    ReleaseResource(*(int64_t *)(MemoryAccessPointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(calculatedMemoryAccessPointer + 0x10),1);
 }
 
 
