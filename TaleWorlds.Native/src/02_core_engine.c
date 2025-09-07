@@ -208,6 +208,16 @@
 #define ProcessSystemStatusUpdate FUN_18014e8b0            // 处理系统状态更新
 #define ProcessSystemDataValidation FUN_18014e020          // 处理系统数据验证
 #define ProcessCharacterCodeWithFlags FUN_18014a370        // 处理带标志的字符代码
+#define ProcessSystemMemoryManagement FUN_18014b470         // 处理系统内存管理
+#define ProcessSystemBufferCleanup FUN_18014b7f0             // 处理系统缓冲区清理
+#define ProcessSystemDataTransfer FUN_18014c430              // 处理系统数据传输
+#define ProcessSystemResourceRelease FUN_18014c7d0           // 处理系统资源释放
+#define ProcessSystemBufferReset FUN_18014c9e0                // 处理系统缓冲区重置
+#define ProcessSystemCharacterEncoding FUN_18014cb90         // 处理系统字符编码
+#define ProcessSystemEncodingConversion FUN_18014f980         // 处理系统编码转换
+#define ProcessSystemCleanup FUN_18014ccf0                    // 处理系统清理
+#define ProcessCharacterWithSystemData FUN_180149ed0         // 处理字符和系统数据
+#define ProcessCharacterBufferReset FUN_180149bd0             // 处理字符缓冲区重置
 #define fStackX_24 SecondaryTransformComponent             // 次变换组件
 #define fStack_48 StackPrimaryFloat                        // 栈主浮点值
 #define fStack_44 StackSecondaryFloat                      // 栈次浮点值
