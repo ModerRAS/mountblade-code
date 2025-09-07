@@ -39128,18 +39128,18 @@ void ManageBufferIndexllocation(long long *CharacterCode
   if (SystemDataRegistry != 0) {
     CalculatedCodePoint = *(void *)(MemoryBlockIndex + 0x158);
     DataSize = *(void *)(MemoryBlockIndex + 0x1e0);
-    lStackX_8 = *(long long *)(MemoryBlockIndex + 0x140);
+    StackMemoryOffset = *(long long *)(MemoryBlockIndex + 0x140);
     MemoryBlockIndex = *(long long *)(MemoryBlockIndex + 0x1f0);
     if (SystemDataRegistry - 2U < 2) {
       SystemDataTablePointer = (long long *)MemoryAllocate(MemoryPoolManager,0x10,8,3);
       *SystemDataTablePointer = (long long)&SystemDataTablePointerA;
       *(bool *)(SystemDataTablePointer + 1) = SystemDataRegistry == 3;
     }
-    (**(code **)(*SystemDataTablePointer + 0x18))(SystemDataTablePointer,aStackValidationData,SystemOperationResult + MemoryBlockIndex,lStackX_8,DataSize,CalculatedCodePoint);
+    (**(code **)(*SystemDataTablePointer + 0x18))(SystemDataTablePointer,aStackValidationData,SystemOperationResult + MemoryBlockIndex,StackMemoryOffset,DataSize,CalculatedCodePoint);
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(SystemDataTablePointer);
   }
-  SystemUnsignedValueAE = 3;
+  SystemOperationType = 3;
   MemoryBlockIndex = CharacterCode[1];
   MemoryOffsetValue = *(void *)(MemoryBlockIndex + 0x140);
   CoreEngineSignedValueC8 = (long long)IntegerValue9 + *(long long *)(MemoryBlockIndex + 0x1f0);
