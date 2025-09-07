@@ -4590,21 +4590,21 @@ extern void* SystemPrimaryResourceTable;
 // 功能：存储数据处理配置信息
 #define DataProcessingConfigurationTableA1 DataProcessingConfigurationTableSecond
 
-// 原始变量名：UNK_180986488 - 数据处理配置表A2
+// 数据处理配置表A2
 // 功能：存储数据处理配置信息
-#define DataProcessingConfigurationTableA2 UNK_180986488
+#define DataProcessingConfigurationTableA2 DataProcessingConfigurationTableThird
 
-// 原始变量名：UNK_180986390 - 数据处理缓冲区A0
+// 数据处理缓冲区A0
 // 功能：存储数据处理缓冲区
-#define DataBufferA0 UNK_180986390
+#define DataBufferA0 DataProcessingBufferFirst
 
-// 原始变量名：UNK_1809864b0 - 数据处理缓冲区A1
+// 数据处理缓冲区A1
 // 功能：存储数据处理缓冲区
-#define DataBufferA1 UNK_1809864b0
+#define DataBufferA1 DataProcessingBufferSecond
 
-// 原始变量名：UNK_180986940 - 数据验证表A0
+// 数据验证表A0
 // 功能：存储数据验证信息
-#define DataValidationTableA0 UNK_180986940
+#define DataValidationTableA0 DataValidationTablePrimary
 
 // FUN_1809414xx函数语义化宏定义
 // 原始函数名：FUN_180941445 - 数据结构初始化函数A0
