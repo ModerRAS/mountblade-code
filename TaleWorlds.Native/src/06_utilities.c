@@ -80057,7 +80057,25 @@ void CleanupResourceA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d0c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源清理函数A1
+ * 
+ * 该函数负责清理指定数据缓冲区中的资源，主要执行以下操作：
+ * - 从数据缓冲区中获取资源指针（偏移量0x390）
+ * - 验证内存基地址的有效性
+ * - 计算资源在内存中的偏移量
+ * - 减少资源的引用计数
+ * - 当引用计数为0时，触发异常处理
+ * 
+ * @param operationBase 操作基地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含要清理的资源信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090d0c0
+ * @note 这是一个资源清理函数，用于释放和清理系统资源
+ * @note 与CleanupResourceA0类似，但资源指针的偏移量不同
+ */
+void CleanupResourceA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -89984,7 +90002,22 @@ void Unwind_180910240(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910250(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器A0
+ * 
+ * 该函数负责处理异常上下文，主要执行以下操作：
+ * - 从数据缓冲区中获取异常上下文指针（偏移量0x28和0x50）
+ * - 验证异常上下文指针的有效性
+ * - 调用异常处理回调函数
+ * 
+ * @param operationBase 操作基地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180910250
+ * @note 这是一个异常处理函数，用于管理系统异常情况
+ */
+void ExceptionContextHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100021,7 +100054,6 @@ void SetDefaultExceptionHandlerC3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942140(void)
 /**
  * @brief 设置默认异常处理器04
  * 
@@ -100042,7 +100074,6 @@ void SetDefaultExceptionHandler04(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942160(void)
 /**
  * @brief 设置默认异常处理器05
  * 
@@ -100063,7 +100094,6 @@ void SetDefaultExceptionHandler05(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942180(void)
 /**
  * @brief 设置默认异常处理器06
  * 
@@ -100084,7 +100114,14 @@ void SetDefaultExceptionHandler06(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9421a0(void)
+/**
+ * @brief 设置异常处理器B到全局变量A
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_1809421a0
+ */
 void SetExceptionHandlerBToGlobalA(void)
 
 {
@@ -100097,7 +100134,14 @@ void SetExceptionHandlerBToGlobalA(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9421c0(void)
+/**
+ * @brief 设置异常处理器B到全局变量B
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_1809421c0
+ */
 void SetExceptionHandlerBToGlobalB(void)
 
 {
@@ -100110,7 +100154,14 @@ void SetExceptionHandlerBToGlobalB(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9421e0(void)
+/**
+ * @brief 设置异常处理器B到全局变量C
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_1809421e0
+ */
 void SetExceptionHandlerBToGlobalC(void)
 
 {
@@ -100123,7 +100174,6 @@ void SetExceptionHandlerBToGlobalC(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942200(void)
 /**
  * @brief 设置默认异常处理器07
  * 
@@ -100144,7 +100194,6 @@ void SetDefaultExceptionHandler07(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942220(void)
 /**
  * @brief 设置默认异常处理器08
  * 
@@ -100165,7 +100214,6 @@ void SetDefaultExceptionHandler08(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942240(void)
 /**
  * @brief 设置默认异常处理器09
  * 
@@ -100186,7 +100234,6 @@ void SetDefaultExceptionHandler09(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942260(void)
 /**
  * @brief 设置默认异常处理器01
  * 
@@ -100207,7 +100254,6 @@ void SetDefaultExceptionHandler01(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942280(void)
 /**
  * @brief 设置默认异常处理器02
  * 
@@ -100558,7 +100604,6 @@ void SetDefaultExceptionHandler18(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9424a0(void)
 /**
  * @brief 设置默认异常处理器19
  * 
@@ -100579,7 +100624,6 @@ void SetDefaultExceptionHandler19(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9424c0(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 /**
  * @brief 清理系统资源管理器A
  * 
@@ -100625,7 +100669,6 @@ void CleanupSystemResourceManagerA(DataBuffer operationBase, DataBuffer dataBuff
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942520(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 /**
  * @brief 清理系统资源管理器B
  * 
