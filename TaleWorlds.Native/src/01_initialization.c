@@ -4213,8 +4213,40 @@ void InitializeConfigurationManager(void)
 
 
 
-// 函数: 初始化事件系统
-// 负责设置和管理系统的事件处理机制
+/**
+ * @brief 初始化事件系统
+ * 
+ * 该函数负责初始化系统的事件处理机制，建立事件队列、事件分发器
+ * 和事件处理器的基础设施。事件系统是引擎的核心组件，用于处理
+ * 用户输入、系统状态变化、网络消息等各种事件。
+ * 
+ * 事件系统的主要功能：
+ * - 事件队列管理和调度
+ * - 事件分发和路由
+ * - 事件处理器注册和管理
+ * - 事件优先级处理
+ * - 异步事件处理
+ * - 事件过滤和验证
+ * 
+ * 工作流程：
+ * 1. 获取系统根表和数据表引用
+ * 2. 在哈希表中查找或创建文件系统节点
+ * 3. 设置事件系统的标识符和回调函数
+ * 4. 建立事件处理的基础架构
+ * 
+ * @note 该函数在系统初始化阶段调用，确保事件系统的正常运行
+ * @note 事件系统使用SystemDataTemplateFileSystem作为节点模板
+ * @note 事件系统支持同步和异步两种事件处理模式
+ * 
+ * @warning 事件系统的初始化必须在其他需要事件处理的组件之前完成
+ * @warning 错误的事件系统配置可能导致系统响应异常
+ * 
+ * @see AllocateSystemMemory, GetSystemRootTable, GetSystemMemorySize
+ * @see SystemDataTemplateFileSystem, GetSystemSearchFunctionF
+ * 
+ * @param 无参数
+ * @return 无返回值
+ */
 void InitializeEventSystem(void)
 
 {
@@ -4268,7 +4300,33 @@ void InitializeEventSystem(void)
  * @brief 初始化系统内存管理器
  * 
  * 该函数负责初始化系统的内存管理器，设置内存分配策略
- * 和内存池管理结构，确保系统内存的有效利用
+ * 和内存池管理结构，确保系统内存的有效利用。
+ * 
+ * 内存管理器是系统的核心组件，负责：
+ * - 内存块的分配和释放
+ * - 内存池的管理和优化
+ * - 内存碎片整理
+ * - 内存使用监控
+ * - 内存泄漏检测
+ * 
+ * 工作流程：
+ * 1. 获取系统根表和数据表引用
+ * 2. 在哈希表中查找或创建日志组件节点
+ * 3. 设置节点的标识符和回调函数
+ * 4. 建立内存管理的基础结构
+ * 
+ * @note 该函数在系统初始化的早期阶段调用
+ * @note 使用SystemDataTemplateLoggingComponent作为节点模板
+ * @note 内存管理器采用分层管理策略，包括基础内存池和高级缓存
+ * 
+ * @warning 内存管理器的初始化必须在其他内存分配操作之前完成
+ * @warning 错误的内存管理器配置可能导致系统不稳定
+ * 
+ * @see AllocateSystemMemory, GetSystemRootTable, GetSystemMemorySize
+ * @see SystemDataTemplateLoggingComponent, GetSystemSearchFunctionC
+ * 
+ * @param 无参数
+ * @return 无返回值
  */
 void InitializeSystemMemoryManager(void)
 

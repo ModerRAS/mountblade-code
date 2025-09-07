@@ -100068,7 +100068,18 @@ void ReleaseSrwLockExclusiveUnwind(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fc20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理数据验证标志的Unwind函数
+ * 
+ * 该函数负责清理数据缓冲区中的验证标志，当第一位标志被设置时，
+ * 清除该标志并调用数据验证处理器进行后续处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含验证标志信息
+ * 
+ * @note 原始函数名：Unwind_18090fc20
+ */
+void ClearDataValidationFlag(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x60) & 1) != 0) {
