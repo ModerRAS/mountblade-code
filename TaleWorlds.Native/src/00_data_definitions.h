@@ -5176,7 +5176,7 @@ Label_ModuleInitializationComplete:
     (**(code **)(*ModuleInitializationResult + 0x38))(ModuleInitializationResult);
   }
   if (SystemStackDataStart == 0) {
-    StackPointer_1b0 = &StackBufferPointer;
+    SystemModuleInitializer = &StackBufferPointer;
     StackBufferPointer = &SystemBufferTemplate;
     SystemSecurityCheck(StackCounter3 ^ (ulonglong)aStackParameter8);
   }
@@ -8519,7 +8519,7 @@ NetworkConnectRequestHandler:
       }
       goto NetworkValidationFailureHandler;
     }
-    if (iStack_20 == 4) {
+    if (SystemInputCharacter == 4) {
       LongIndex = 0;
       do {
         LongCounter = LongIndex + 1;
@@ -8529,8 +8529,8 @@ NetworkConnectRequestHandler:
       LoopCounter = 200;
       goto NetworkRequestProcessingComplete;
     }
-    if (iStack_20 == 10) goto NetworkConfigData2Handler;
-    if (iStack_20 == 0x12) {
+    if (SystemInputCharacter == 10) goto NetworkConfigData2Handler;
+    if (SystemInputCharacter == 0x12) {
       LoopCounter = strcmp(lStack_28,&NetworkRequestStringConnect);
       if (LoopCounter == 0) {
         LoopCounter = 0x58;
@@ -8642,13 +8642,13 @@ Label_180608e99:
             }
             if (iStack_20 == 0x1f) goto NetworkAuthRequestHandler;
             if (iStack_20 == 0xd) goto NetworkDisconnectRequestHandler;
-            if (iStack_20 == 0x21) {
+            if (SystemInputCharacter == 0x21) {
               pNetworkRequestResult = &NetworkRequestResultSystem;
               goto Label_180608fc1;
             }
-            if (iStack_20 == 0x23) goto Label_180608e99;
-            if (iStack_20 == 0xf) goto NetworkTertiaryAuthHandler;
-            if (iStack_20 == 0xb) {
+            if (SystemInputCharacter == 0x23) goto Label_180608e99;
+            if (SystemInputCharacter == 0xf) goto NetworkTertiaryAuthHandler;
+            if (SystemInputCharacter == 0xb) {
               LoopCounter = strcmp(lStack_28,&SystemValidationDuodenary);
               if (LoopCounter == 0) {
                 LoopCounter = 0x248;
