@@ -7095,10 +7095,10 @@ uint8_t UtilityReallocateBlockPtr1;
 // 复制内存块，将源内存内容复制到目标内存
 uint8_t UtilityCopyMemoryBlock;
 // 工具系统复制内存块数据变量
-uint8_t UtilityCopyBlockData1;
+uint8_t UtilityCopyBlockPrimaryData;
 uint8_t UtilityCopyBlockData2;
-uint8_t UtilityCopyBlockData3;
-uint8_t UtilityCopyBlockData4;
+uint8_t UtilityCopyBlockTertiaryData;
+uint8_t UtilityCopyBlockQuaternaryData;
 uint8_t UtilityCopyBlockStatus1;
 
 // 函数: void InitializeUtilitySystem(void)
@@ -89999,7 +89999,18 @@ void Unwind_18090fcd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fce0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除独占锁资源
+ * 
+ * 该函数用于清除独占锁资源。当指定位置的字符不为空时，
+ * 会释放指定的SRW独占锁资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁资源信息
+ * 
+ * @note 原始函数名：Unwind_18090fce0
+ */
+void ClearExclusiveLockResource(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0xc0) != '\0') {
@@ -90010,7 +90021,18 @@ void Unwind_18090fce0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fcf0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行函数指针回调
+ * 
+ * 该函数通过双重指针解引用获取函数指针并执行回调。
+ * 用于处理复杂的函数指针调用机制。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含函数指针信息
+ * 
+ * @note 原始函数名：Unwind_18090fcf0
+ */
+void ExecuteFunctionPointerCallback(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x158) != (int64_t *)0x0) {
@@ -90021,7 +90043,18 @@ void Unwind_18090fcf0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fd00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据验证标志位1
+ * 
+ * 该函数检查并清除数据缓冲区状态标志的第1位。
+ * 如果该位被设置，则清除标志并调用数据验证处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含状态标志
+ * 
+ * @note 原始函数名：Unwind_18090fd00
+ */
+void ProcessDataValidationFlag1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
@@ -90033,7 +90066,18 @@ void Unwind_18090fd00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fd30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据验证标志位2
+ * 
+ * 该函数检查并清除数据缓冲区状态标志的第2位。
+ * 如果该位被设置，则清除标志并调用数据验证处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含状态标志
+ * 
+ * @note 原始函数名：Unwind_18090fd30
+ */
+void ProcessDataValidationFlag2(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
@@ -90045,7 +90089,18 @@ void Unwind_18090fd30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fd60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据验证标志位3
+ * 
+ * 该函数检查并清除数据缓冲区状态标志的第3位。
+ * 如果该位被设置，则清除标志并调用数据验证处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含状态标志
+ * 
+ * @note 原始函数名：Unwind_18090fd60
+ */
+void ProcessDataValidationFlag3(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 4) != 0) {
