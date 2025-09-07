@@ -125061,7 +125061,14 @@ void ProcessSystemEventQueue(void)
 
 
 
-// 原始函数名：FUN_180127648 - 系统内存块处理函数
+/**
+ * @brief 处理系统内存块
+ * 
+ * 该函数负责管理系统内存块的分配、释放和验证。通过复杂的算法
+ * 确保内存使用的效率和安全性，包括内存边界检查和数据完整性验证。
+ * 
+ * @note 原始函数名：FUN_180127648
+ */
 #define ProcessSystemMemoryBlock FUN_180127648
 void ProcessSystemMemoryBlock(void)
 {

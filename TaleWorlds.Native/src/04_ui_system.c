@@ -48563,17 +48563,17 @@ int CalculateUIImageBlockDifference(undefined1 (*uiContext) [32],int dataSource,
           tempVector5 = vpsraw_avx2(tempVector5,4);
           tempVector9 = vpunpckhbw_avx2(tempVector9,zeroVector);
           tempVector4 = vpsubw_avx2(tempVector5,tempVector9);
-          auVar9 = vpaddw_avx2(auVar6,afunctionResult0._0_32_);
-          auVar5 = vpmaddwd_avx2(auVar6,auVar6);
-          auVar9 = vpaddw_avx2(auVar9,auVar4);
-          afunctionResult0 = ZEXT3264(auVar9);
-          auVar5 = vpaddd_avx2(auVar5,afunctionResult1._0_32_);
-          auVar6 = vpmaddwd_avx2(auVar4,auVar4);
-          auVar5 = vpaddd_avx2(auVar5,auVar6);
-          afunctionResult1 = ZEXT3264(auVar5);
-          functionResult = functionResult - 1;
-          auVar6 = asemaphoreHandle;
-        } while (functionResult != 0);
+          tempVector9 = vpaddw_avx2(tempVector6,sumResult0._0_32_);
+          tempVector5 = vpmaddwd_avx2(tempVector6,tempVector6);
+          tempVector9 = vpaddw_avx2(tempVector9,tempVector4);
+          sumResult0 = ZEXT3264(tempVector9);
+          tempVector5 = vpaddd_avx2(tempVector5,sumResult1._0_32_);
+          tempVector6 = vpmaddwd_avx2(tempVector4,tempVector4);
+          tempVector5 = vpaddd_avx2(tempVector5,tempVector6);
+          sumResult1 = ZEXT3264(tempVector5);
+          pixelCount = pixelCount - 1;
+          tempVector6 = tempVector1;
+        } while (pixelCount != 0);
       }
     }
   }

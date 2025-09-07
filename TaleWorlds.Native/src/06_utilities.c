@@ -55042,8 +55042,7 @@ void ValidateExceptionHandling920(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = (DataBuffer *)**(int64_t **)(dataBuffer + 0x40);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-                     0x00018009f9c0. Too many branches
-                        (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
+                            (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
     return;
   }
   return;
@@ -55066,8 +55065,7 @@ void InitializeExceptionHandling930(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 8);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-                     0x00018009f9c0. Too many branches
-                        (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
+                            (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
     return;
   }
   return;
@@ -66480,8 +66478,7 @@ void Unwind_180908050(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer 
   *ValidationContextPointerArray = (int64_t)exceptionHandlerContextPointer;
   ValidationContextPointerArray[2] = (int64_t)exceptionHandlerContextPointer;
   ValidationContextStatusFlag = 0;
-                     0x0001808ffc83. Too many branches
-                      free(ValidationContextPointerArray,0x58);
+                        free(ValidationContextPointerArray,0x58);
   return;
 }
 
@@ -66498,8 +66495,7 @@ void Unwind_180908050(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer 
 void CleanupValidationContext(void)
 
 {
-                     0x0001808ffc83. Too many branches
-                      free(ValidationContextPointerArray,0x58);
+                        free(ValidationContextPointerArray,0x58);
   return;
 }
 
@@ -66510,8 +66506,7 @@ void CleanupValidationContext(void)
 void FreeValidationContextPointerArray(void)
 
 {
-                     0x0001808ffc83. Too many branches
-                      free(ValidationContextPointerArray,0x58);
+                        free(ValidationContextPointerArray,0x58);
   return;
 }
 
@@ -69582,8 +69577,7 @@ void Unwind_180908e90(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908ea0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                     0x000180908ea7. Too many branches
-                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(*(DataBuffer *)(dataBuffer + 0x40));
+                          __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(*(DataBuffer *)(dataBuffer + 0x40));
   return;
 }
 
@@ -69597,8 +69591,7 @@ void Unwind_180908eb0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0x30) != (int64_t *)0x0) {
     exceptionDataBuffer = (DataBuffer *)(**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x30) + 0x10))();
     if (exceptionDataBuffer != (DataBuffer *)0x0) {
-                     0x00018009fb51. Too many branches
-                          (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
+                                (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
       return;
     }
   }
@@ -69645,8 +69638,7 @@ void Unwind_180908ee0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908ef0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                     0x000180908ef7. Too many branches
-                      __1_Lockit_std__QEAA_XZ(dataBuffer + 0x60);
+                             __1_Lockit_std__QEAA_XZ(dataBuffer + 0x60);
   return;
 }
 
@@ -69659,8 +69651,7 @@ void Unwind_180908f00(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x70);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-                     0x00018009f9c0. Too many branches
-                        (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
+                            (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
     return;
   }
   return;
@@ -69671,8 +69662,7 @@ void Unwind_180908f00(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908f10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                     0x000180908f22. Too many branches
-                      __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
+                               __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
   return;
 }
 
@@ -69699,8 +69689,7 @@ void Unwind_180908f30(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
     InitializeDataBuffer(pmemoryBaseAddress);
   }
-                     0x00018009fbce. Too many branches
-                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
+                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -69867,8 +69856,7 @@ void SystemValidationContextHandler(DataBuffer operationBase, int64_t dataBuffer
   *(int *)((int64_t)operationResult + -0xac + exceptionHandlerContext) = operationResult + -0xa8;
   ExecuteSystemCommand(dataBuffer + 0x88);
   BasicOStreamFlush(dataBuffer + 0x90);
-                     0x00018009fc52. Too many branches
-                      BasicIoStreamCleanup(exceptionHandlerContext);
+                                    BasicIoStreamCleanup(exceptionHandlerContext);
   return;
 }
 
@@ -69907,8 +69895,7 @@ void SystemStatusFlagCleanup(DataBuffer operationBase, int64_t dataBuffer)
  */
 void SystemOutputStreamCleanup(DataBuffer operationBase, int64_t dataBuffer)
 {
-                     0x00018090906b. Too many branches
-                      BasicOStreamFlush(dataBuffer + 0x90);
+                                       BasicOStreamFlush(dataBuffer + 0x90);
   return;
 }
 
@@ -69934,8 +69921,7 @@ void Unwind_180909080(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(dataBuffer + 0x104) != '\0') {
     InitializeDataBuffer(validationStatusPointer);
   }
-                     0x00018009fbce. Too many branches
-                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(validationStatusPointer);
+                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(validationStatusPointer);
   return;
 }
 
@@ -77813,8 +77799,7 @@ void ExceptionRecoveryHandlerC0(DataBuffer exceptionContext, int64_t recoveryCon
   *(int *)((int64_t)cleanupResult + -0xbc + streamContext) = cleanupResult + -0xb8;
   CleanupStreamResources(recoveryContext + 0x98);
   DestroyBasicIoStream(recoveryContext + 0xa0);
-                     0x0001800c3c62. Too many branches
-                      DestroyBasicIoStream(streamContext);
+                           DestroyBasicIoStream(streamContext);
   return;
 }
 
@@ -77833,8 +77818,7 @@ void ExceptionRecoveryHandlerC0(DataBuffer exceptionContext, int64_t recoveryCon
 void ExceptionRecoveryHandlerC1(DataBuffer exceptionContext, int64_t streamContext)
 
 {
-                     0x00018090c1f2. Too many branches
-                      DestroyBasicIoStream(*(int64_t *)(streamContext + 0x70) + -0x98);
+                             DestroyBasicIoStream(*(int64_t *)(streamContext + 0x70) + -0x98);
   return;
 }
 
@@ -77871,8 +77855,7 @@ void ExceptionRecoveryHandlerC2(DataBuffer exceptionContext, int64_t bufferConte
   if (*(char *)(bufferOffset + -0x24) != '\0') {
     CleanupStreamBuffer(bufferPointer);
   }
-                     0x00018009fbce. Too many branches
-                      DestroyBasicStreamBuffer(bufferPointer);
+                                DestroyBasicStreamBuffer(bufferPointer);
   return;
 }
 
@@ -77881,8 +77864,7 @@ void ExceptionRecoveryHandlerC2(DataBuffer exceptionContext, int64_t bufferConte
 void Unwind_18090c220(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                     0x00018090c232. Too many branches
-                      __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
+                                __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
   return;
 }
 
@@ -77909,8 +77891,7 @@ void Unwind_18090c240(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
     InitializeDataBuffer(pmemoryBaseAddress);
   }
-                     0x00018009fbce. Too many branches
-                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
+                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -78138,8 +78119,7 @@ void Unwind_18090c330(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090c360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                     0x00018090c36b. Too many branches
-                      __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + 0x20);
+                                      __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + 0x20);
   return;
 }
 
@@ -78166,8 +78146,7 @@ void Unwind_18090c380(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(calculatedOffset + 0x94) != '\0') {
     InitializeDataBuffer(pmemoryBaseAddress);
   }
-                     0x00018009fbce. Too many branches
-                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
+                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -92745,8 +92724,7 @@ void Unwind_180910450(DataBuffer operationBase,int64_t dataBuffer)
   *(int *)((int64_t)operationResult + -0xb4 + exceptionHandlerContext) = operationResult + -0xb0;
   ExecuteSystemCommand(calculatedOffset + 0x138);
   __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(calculatedOffset + 0x140);
-                     0x0001800fd4a2. Too many branches
-                      __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(exceptionHandlerContext);
+                             __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(exceptionHandlerContext);
   return;
 }
 
@@ -92903,8 +92881,7 @@ void Unwind_180910530(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910560(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                     0x00018091056b. Too many branches
-                      __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x68) + 0x18);
+                                 __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x68) + 0x18);
   return;
 }
 
@@ -92931,8 +92908,7 @@ void Unwind_180910580(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(calculatedOffset + 0x8c) != '\0') {
     InitializeDataBuffer(pmemoryBaseAddress);
   }
-                     0x00018009fbce. Too many branches
-                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
+                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -92962,8 +92938,7 @@ void SystemCleanupHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
   *(int *)((int64_t)operationResult + -0xb4 + exceptionHandlerContext) = operationResult + -0xb0;
   ExecuteSystemCommand(calculatedOffset + 0x138);
   __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(calculatedOffset + 0x140);
-                     0x0001800fd4a2. Too many branches
-                      __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(exceptionHandlerContext);
+                             __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(exceptionHandlerContext);
   return;
 }
 
@@ -93108,8 +93083,7 @@ void Unwind_180910660(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910680(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                     0x000180910692. Too many branches
-                      __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
+                                        __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
   return;
 }
 
@@ -93136,8 +93110,7 @@ void Unwind_1809106a0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
     InitializeDataBuffer(pmemoryBaseAddress);
   }
-                     0x00018009fbce. Too many branches
-                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
+                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -100924,8 +100897,7 @@ void DestroyMutexAndCondition(void)
 
 {
   _Mtx_destroy_in_situ();
-                     0x000180941680. Too many branches
-                      _Cnd_destroy_in_situ();
+                          _Cnd_destroy_in_situ();
   return;
 }
 
@@ -100944,8 +100916,7 @@ void CleanupThreadSyncResources(void)
 
 {
   _Mtx_destroy_in_situ();
-                     0x0001809416c0. Too many branches
-                      _Cnd_destroy_in_situ();
+                            _Cnd_destroy_in_situ();
   return;
 }
 
@@ -101021,8 +100992,7 @@ void CloseSystemHandle(void)
 void DestroyMutex(void)
 
 {
-                     0x0001809417d8. Too many branches
-                      _Mtx_destroy_in_situ(MutexObjectPointer);
+                            _Mtx_destroy_in_situ(MutexObjectPointer);
   return;
 }
 
@@ -101188,8 +101158,7 @@ void ProcessValidationContextA0(DataBuffer operationBase,DataBuffer dataBuffer,D
   *ValidationContextPointerArray = (int64_t)exceptionHandlerContextPointer;
   ValidationContextPointerArray[2] = (int64_t)exceptionHandlerContextPointer;
   ValidationContextStatusFlag = 0;
-                     0x0001808ffc83. Too many branches
-                      free(ValidationContextPointerArray,0x58);
+                        free(ValidationContextPointerArray,0x58);
   return;
 }
 
