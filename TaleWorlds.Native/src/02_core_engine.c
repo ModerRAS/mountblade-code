@@ -38962,7 +38962,7 @@ SystemMemoryValidationComplete:
     BufferInitializationFlag = CONCAT44(BufferInitializationFlag.HighPart,SystemChecksumValue);
   }
 SystemMemoryAllocationComplete: // 原始标签：LAB_180071000
-LAB_ProcessSystemStatusBuffer:
+ProcessSystemStatusBuffer:
   CharacterTablePointer5 = lStack_88;
   SystemStatusBuffer = (void *)(memoryAllocationBuffer + BufferOffset);
   *SystemStatusBuffer = 0x6973736572707845;
@@ -38994,7 +38994,7 @@ LAB_ProcessSystemStatusBuffer:
         BufferInitializationFlag = CONCAT44(BufferInitializationFlag.HighPart,SystemChecksumValue);
       }
 SystemStringCopyComplete: // 原始标签：LAB_1800710b8
-LAB_CopyMemoryData:
+CopyMemoryData:
                     // WARNING: Subroutine does not return
       memcpy(memoryAllocationBuffer + BufferOffset,CharacterTablePointer5,(long long)((int)CharacterTableIterator + 2));
     }
@@ -39179,7 +39179,7 @@ BufferIndexllocationComplete: // 原始标签：LAB_18007113f
         return;
       }
     }
-    else if (validationResult == 3) goto LAB_1800715eb;
+    else if (validationResult == 3) goto SystemConfigurationValidation;
     if (CoreEngineSystemContext == 0) {
       OperationStatus = '\x01';
     }
@@ -132245,7 +132245,7 @@ LAB_18012b465:
   CharacterCodePointer = *(uint8_t **)(RegisterFramePointer + 10);
   if ((((CharacterCodePointer != (uint8_t *)0x0) &&
        (BufferStatus4 = SystemParameter2[5], *(char *)(BufferStatus4 + 0x48) != '\0')) &&
-      (MemoryBlockHandle = FUN_18012fae0(), BufferStatus4 != MemoryBlockHandle)) &&
+      (MemoryBlockHandle = ProcessSystemMemoryAllocation(), BufferStatus4 != MemoryBlockHandle)) &&
      (((*(byte *)((long long)SystemParameter2 + 0x432) & 1) == 0 ||
       ((*(byte *)((long long)SystemParameter2 + 0x432) & 2) != 0)))) {
     *(uint8_t *)(BufferStatus4 + 0x48) = 0;
@@ -134088,7 +134088,7 @@ LAB_18012b465:
   CharacterCodePointer = *(uint8_t **)(RegisterFramePointer + 10);
   if ((((CharacterCodePointer != (uint8_t *)0x0) &&
        (BufferStatus3 = SystemParameter2[5], *(char *)(BufferStatus3 + 0x48) != '\0')) &&
-      (BufferStatus9 = FUN_18012fae0(), BufferStatus3 != BufferStatus9)) &&
+      (BufferStatus9 = ProcessSystemMemoryAllocation(), BufferStatus3 != BufferStatus9)) &&
      (((*(byte *)((long long)SystemParameter2 + 0x432) & 1) == 0 ||
       ((*(byte *)((long long)SystemParameter2 + 0x432) & 2) != 0)))) {
     *(uint8_t *)(BufferStatus3 + 0x48) = 0;
@@ -135781,7 +135781,7 @@ LAB_18012b465:
   CharacterCodePointer = *(uint8_t **)(RegisterFramePointer + 10);
   if ((((CharacterCodePointer != (uint8_t *)0x0) &&
        (MemoryBufferC = SystemParameter2[5], *(char *)(MemoryBufferC + 0x48) != '\0')) &&
-      (BufferValidationStatus = FUN_18012fae0(), MemoryBufferC != BufferValidationStatus)) &&
+      (BufferValidationStatus = ProcessSystemMemoryAllocation(), MemoryBufferC != BufferValidationStatus)) &&
      (((*(byte *)((long long)SystemParameter2 + 0x432) & 1) == 0 ||
       ((*(byte *)((long long)SystemParameter2 + 0x432) & 2) != 0)))) {
     *(uint8_t *)(MemoryBufferC + 0x48) = 0;
@@ -137392,7 +137392,7 @@ LAB_18012b510:
   CharacterCodePointer = *(uint8_t **)(RegisterFramePointer + 10);
   if ((((CharacterCodePointer != (uint8_t *)0x0) &&
        (BufferStatus8 = SystemParameter2[5], *(char *)(BufferStatus8 + 0x48) != '\0')) &&
-      (StringIndexCounter = FUN_18012fae0(), BufferStatus8 != StringIndexCounter)) &&
+      (StringIndexCounter = ProcessSystemMemoryAllocation(), BufferStatus8 != StringIndexCounter)) &&
      (((*(byte *)((long long)SystemParameter2 + 0x432) & 1) == 0 ||
       ((*(byte *)((long long)SystemParameter2 + 0x432) & 2) != 0)))) {
     *(uint8_t *)(BufferStatus8 + 0x48) = 0;
@@ -139081,7 +139081,7 @@ LAB_18012b465:
   CharacterCodePointer = *(uint8_t **)(RegisterFramePointer + 10);
   if ((((CharacterCodePointer != (uint8_t *)0x0) &&
        (MemoryBufferC = SystemParameter2[5], *(char *)(MemoryBufferC + 0x48) != '\0')) &&
-      (BufferStatus8 = FUN_18012fae0(), MemoryBufferC != BufferStatus8)) &&
+      (BufferStatus8 = ProcessSystemMemoryAllocation(), MemoryBufferC != BufferStatus8)) &&
      (((*(byte *)((long long)SystemParameter2 + 0x432) & 1) == 0 ||
       ((*(byte *)((long long)SystemParameter2 + 0x432) & 2) != 0)))) {
     *(uint8_t *)(MemoryBufferC + 0x48) = 0;
