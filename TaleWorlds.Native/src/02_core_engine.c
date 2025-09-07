@@ -157082,7 +157082,7 @@ int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,u
   }
   ReferenceCountPointer6 = (int *)(*(long long *)(LoopIndex + 0x1af8) + 0x218);
   *ReferenceCountPointer6 = *ReferenceCountPointer6 + -1;
-  LoopIndex = FUN_180134480(AllocatedMemorySize);
+  LoopIndex = GetMemoryAllocationInfo(AllocatedMemorySize);
   *(uint32_t *)(LoopIndex + 0xc) = 0;
   *(int *)(LoopIndex + 0x10) = Utf8BufferSize;
   *(uint32_t *)(LoopIndex + 4) = Utf8SourcePointer;
@@ -158885,7 +158885,7 @@ void ValidateSystemComponentsA0(void)
 
 
 
-unsigned long long FUN_180135160(void
+unsigned long long CalculateCharacterProcessingResult(void
 {
   int LockResult;
   uint32_t MemoryAllocationIndex;
@@ -159486,7 +159486,7 @@ void ProcessCharacterDataValidation(long long CharacterCode
 
 
 
-void FUN_180135748(void
+void ProcessCharacterCodeConversion(void
 {
   int *ReferenceCountPointer;
   long long *BufferAllocationStatus;
@@ -159568,7 +159568,7 @@ void FUN_180135748(void
 
 
 
-35772(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_180135772(uint64_t CharacterCode,long long Utf8BufferSize
+35772(uint64_t CharacterCode,long long Utf8BufferSizevoid ProcessUtf8CharacterConversion(uint64_t CharacterCode,long long Utf8BufferSize
 {
   long long *Utf8InputBuffer;
   long long BufferStatus;
