@@ -20030,13 +20030,13 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   float fStack_19c;
   float afStack_198 [2];
   DataBuffer *StackPointerBufferB;
-  int64_t lStack_188;
-  int64_t lStack_180;
+  int64_t StackLongIntegerA;
+  int64_t StackLongIntegerB;
   uint8_t *StackPointerBufferC;
   DataWord StackDataWordE;
   DataWord StackDataWordF;
   DataWord StackDataWordG;
-  uint8_t *puStack_158;
+  uint8_t *StackPointerBufferD;
   DataWord StackDataWordH;
   DataWord StackDataWordI;
   DataBuffer StackDataBufferA;
@@ -20066,7 +20066,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   if (dataContext == 0) {
     bufferPointer = validationContext4;
   }
-  lStack_180 = dataBuffer;
+  StackLongIntegerB = dataBuffer;
   iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&StackDataWordA);
   if (iterationCount == 0) {
     exceptionDataBuffer6 = (DataBuffer *)(dataBuffer + 8);
@@ -20081,9 +20081,9 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
       StackDataWordF = StackDataWordD;
       iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferC);
       if (iterationCount == 0) {
-        lStack_188 = (int64_t)*(int *)(dataContext + 0x28);
+        StackLongIntegerA = (int64_t)*(int *)(dataContext + 0x28);
         bufferPointer = validationContext4;
-        if (0 < lStack_188) {
+        if (0 < StackLongIntegerA) {
           do {
             dataPointer = *(int64_t *)(dataContext + 0x20);
             calculatedOffset = *(int64_t *)(validationContext4 + 0x10 + dataPointer);
@@ -20110,8 +20110,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
             }
             bufferPointer = bufferPointer + 1;
             validationContext4 = validationContext4 + 0x18;
-            dataBuffer = lStack_180;
-          } while (bufferPointer < lStack_188);
+            dataBuffer = StackLongIntegerB;
+          } while (bufferPointer < StackLongIntegerA);
         }
         systemDataBuffer1 = *(DataBuffer *)(*(int64_t *)(operationBase + 8) + 800);
         loopCounter = (**(FunctionPointer**)*exceptionDataBuffer6)(exceptionDataBuffer6);
@@ -20127,14 +20127,14 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               uStack_12c = *(DataWord *)(dataContext + 0x4c);
               uStack_128 = *(DataWord *)(dataContext + 0x50);
               uStack_124 = *(DataWord *)(dataContext + 0x54);
-              puStack_158 = &SystemSecurityCheckReference;
+              StackPointerBufferD = &SystemSecurityCheckReference;
               uStack_150 = 0;
               uStack_120 = *(DataWord *)(dataContext + 0x58);
               uStack_11c = *(DataWord *)(dataContext + 0x5c);
               StackDataWordP = *(DataWord *)(dataContext + 0x60);
               StackDataWordQ = *(DataWord *)(dataContext + 100);
               uStack_148 = StackDataWordA;
-              iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_158);
+              iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferD);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
           }
@@ -101174,13 +101174,13 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储指针数据的栈缓冲区
 #define StackPointerBufferB StackPointerBufferB
 
-// 原始变量名：lStack_188 - 栈长整型A
+// 原始变量名：StackLongIntegerA - 栈长整型A
 // 功能：存储长整型数据的栈变量
-#define StackLongIntegerA lStack_188
+#define StackLongIntegerA StackLongIntegerA
 
-// 原始变量名：lStack_180 - 栈长整型B
+// 原始变量名：StackLongIntegerB - 栈长整型B
 // 功能：存储长整型数据的栈变量
-#define StackLongIntegerB lStack_180
+#define StackLongIntegerB StackLongIntegerB
 
 // 原始变量名：StackPointerBufferC - 栈指针缓冲区C
 // 功能：存储指针数据的栈缓冲区
@@ -101198,9 +101198,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordG uStack_160
 
-// 原始变量名：puStack_158 - 栈指针缓冲区D
+// 原始变量名：StackPointerBufferD - 栈指针缓冲区D
 // 功能：存储指针数据的栈缓冲区
-#define StackPointerBufferD puStack_158
+#define StackPointerBufferD StackPointerBufferD
 
 // 原始变量名：uStack_150 - 栈数据字H
 // 功能：存储数据处理过程中的临时数据字
