@@ -40989,22 +40989,22 @@ void ProcessDataStructureWithSource(uint64_t CharacterCode,long long Utf8BufferS
     *(void *)(SystemDataStructureRegistry + 0x18) = 0;
     SystemTemplatePointer = &SystemNullTemplate;
     EnginePointerBuffer = TemporaryBuffer;
-    if (CoreEngineSignedValue48 != 0) {
+    if (CoreEngineSignedValue != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
-    CoreEngineSignedValue48 = 0;
+    CoreEngineSignedValue = 0;
     FunctionAddress = 0;
     SystemTemplatePointer = &ThreadLocalStorageTemplate;
   }
   pSystemOperation90 = &SystemNullTemplate;
-  StackProcessingUnsignedValue78 = 0;
+  StackProcessingExtendedValue = 0;
   SystemEventPointer = (uint8_t *)0x0;
   CalculationFunctionAddress = 0;
   SystemEventPointer = (uint8_t *)BufferAllocate(MemoryPoolManager,0x12,0x13);
   *SystemEventPointer = 0;
   MemoryAllocationIndex = GetMemoryAllocationInfo(SystemEventPointer);
-  StackProcessingUnsignedValue78 = CONCAT44(StackProcessingUnsignedValue78.HighPart,MemoryAllocationIndex);
+  StackProcessingExtendedValue = CONCAT44(StackProcessingExtendedValue.HighPart,MemoryAllocationIndex);
   SecondaryProcessingStatusFlag = (uint32_t *)(SystemEventPointer + CalculationFunctionAddress);
   *SecondaryProcessingStatusFlag = 0x65737341;
   SecondaryProcessingStatusFlag[1] = 0x6f697472;
@@ -41287,17 +41287,17 @@ void ProcessSystemDataStructureValidation(uint64_t CharacterCode,long long Utf8B
   uint32_t SystemFlagF;
   void *pSystemFlagG;
   uint64_t *SystemCharacterStatusBufferPointer;
-  uint32_t CoreEngineValueC0;
+  uint32_t CoreEngineValue;
   unsigned long long MemoryOffsetValue;
-  uint32_t SystemStackRegisterFlagB0;
+  uint32_t SystemStackRegisterFlag;
   void *SystemEventDispatcher;
   void *SystemConfigurationStackPointer;
   uint32_t configurationFlag;
   long long SystemStringBufferPointer;
   void *pCalculationFunctionAddress;
-  long long CoreEngineSignedValue78;
-  uint32_t StackProcessingUnsignedValue68;
-  uint64_t StackProcessingUnsignedValue60;
+  long long CoreEngineSignedValue;
+  uint32_t StackProcessingSecondaryValue;
+  uint64_t StackProcessingValue;
   uint64_t BufferOffset;
   uint64_t SystemKeyPointer;
   unsigned long long SystemStackFlag;
@@ -168863,7 +168863,16 @@ LAB_18013c174:
 
 
 
-uint64_t * FUN_18013c940(byte *Utf8InputBuffer
+/**
+ * @brief 处理UTF-8输入缓冲区并创建字符状态缓冲区
+ * 
+ * 该函数处理UTF-8输入缓冲区，分配内存并创建字符状态缓冲区，
+ * 用于字符编码转换和验证。包含内存分配、数据初始化和校验和计算。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @return uint64_t* 新创建的字符状态缓冲区指针
+ */
+uint64_t * ProcessUtf8InputBufferAndCreateCharacterStatus(byte *Utf8InputBuffer)
 {
   uint32_t *CharacterStatusBuffer;
   byte SystemHighByte;
@@ -168873,7 +168882,7 @@ uint64_t * FUN_18013c940(byte *Utf8InputBuffer
   long long MemoryBoundaryEnd;
   int ProcessIterationCount;
   uint64_t ProcessingStatusFlag;
-  int IntegerValue9;
+  int ArrayIndex;
   long long EncodingConversionResult;
   int MatchCounter;
   uint64_t *CharacterStatusBuffer2;
