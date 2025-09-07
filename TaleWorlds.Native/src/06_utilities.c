@@ -5290,6 +5290,27 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define ResetSystemB0 FUN_180291610        // 重置系统B0
 #define ExecuteMemoryOperationB0 FUN_1808fc5ac    // 执行内存操作B0
 
+// 栈变量语义化宏定义
+#define StackFloatRegisterA fStack0000000000000048    // 栈浮点寄存器A
+#define StackFloatRegisterB fStack0000000000000040    // 栈浮点寄存器B
+#define StackFloatRegisterC fStack0000000000000044    // 栈浮点寄存器C
+#define StackFloatRegisterD fStack000000000000004c    // 栈浮点寄存器D
+#define StackPointerRegisterA puStack0000000000000058    // 栈指针寄存器A
+#define StackInputParameterA in_stack_00000068    // 栈输入参数A
+#define StackInputParameterB in_stack_00000050    // 栈输入参数B
+#define StackInputParameterC in_stack_00000028    // 栈输入参数C
+#define StackInputParameterD in_stack_00000058    // 栈输入参数D
+#define StackInputParameterE in_stack_00000008    // 栈输入参数E
+#define StackFloatValueA in_stack_000001a0    // 栈浮点值A
+#define StackFloatValueB in_stack_000001a8    // 栈浮点值B
+#define StackDataBufferA in_stack_00000088    // 栈数据缓冲区A
+#define StackDataBufferB in_stack_00000080    // 栈数据缓冲区B
+#define StackDataBufferC in_stack_000000b8    // 栈数据缓冲区C
+#define StackDataBufferD in_stack_000000b0    // 栈数据缓冲区D
+#define StackDataBufferE in_stack_000000d0    // 栈数据缓冲区E
+#define StackDataBufferF in_stack_000000a0    // 栈数据缓冲区F
+#define StackDataBufferG in_stack_000000a8    // 栈数据缓冲区G
+
 // 异常处理系统全局变量
 void* ExceptionHandlerTablePointer;        // 异常处理器表指针
 int SystemExceptionHandlerState;          // 系统异常处理状态
