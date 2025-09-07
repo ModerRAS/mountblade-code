@@ -45480,71 +45480,135 @@ longlong ProcessUIDataOperationTypeL(longlong uiContext,int dataSource,ulonglong
 
 
 
-longlong FUN_18068f060(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
-                      longlong resultPointer,int param_6,uint *param_7)
+/**
+ * @brief UI数据差异计算器A0
+ * 
+ * 该函数计算UI数据的差异值，通过双重验证操作确保数据准确性
+ * 使用0x20操作码进行数据处理，并返回基于操作结果的差异值
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定数据来源
+ * @param targetBuffer 目标缓冲区，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，存储操作结果的位置
+ * @param param_6 参数6，具体用途待定
+ * @param param_7 参数7指针，返回计算结果的指针
+ * @return longlong 返回计算出的差异值
+ * @note 原始函数名：FUN_18068f060
+ */
+longlong CalculateUIDataDifferenceA0(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
+                           longlong resultPointer,int param_6,uint *param_7)
 
 {
-  int operationResult;
-  int validationResult;
-  longlong lVar3;
-  int aiStackX_10 [2];
+  int primaryOperationResult;
+  int secondaryOperationResult;
+  longlong operationParameter;
+  int stackBuffer [2];
   
-  lVar3 = (longlong)param_6;
-  operationResult = func_0x000180024290(uiContext,(longlong)dataSource,targetBuffer,bufferSize,resultPointer,lVar3,0x20,&param_6,
-                              0,0);
-  validationResult = func_0x000180024290(uiContext + 0x10,(longlong)dataSource,targetBuffer & 0xffffffff,
-                              bufferSize & 0xffffffff,resultPointer + 0x10,lVar3,0x20,aiStackX_10,0,0);
-  *param_7 = param_6 + aiStackX_10[0];
-  return (ulonglong)(uint)(param_6 + aiStackX_10[0]) -
-         ((longlong)(operationResult + validationResult) * (longlong)(operationResult + validationResult) >> 10);
+  operationParameter = (longlong)param_6;
+  primaryOperationResult = func_0x000180024290(uiContext,(longlong)dataSource,targetBuffer,bufferSize,resultPointer,operationParameter,0x20,&param_6,
+                                    0,0);
+  secondaryOperationResult = func_0x000180024290(uiContext + 0x10,(longlong)dataSource,targetBuffer & 0xffffffff,
+                                        bufferSize & 0xffffffff,resultPointer + 0x10,operationParameter,0x20,stackBuffer,0,0);
+  *param_7 = param_6 + stackBuffer[0];
+  return (ulonglong)(uint)(param_6 + stackBuffer[0]) -
+         ((longlong)(primaryOperationResult + secondaryOperationResult) * (longlong)(primaryOperationResult + secondaryOperationResult) >> 10);
 }
 
 
 
-longlong FUN_18068f150(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
-                      longlong resultPointer,int param_6,uint *param_7)
+/**
+ * @brief UI数据差异计算器A1
+ * 
+ * 该函数计算UI数据的差异值，通过双重验证操作确保数据准确性
+ * 使用0x40操作码进行数据处理，并返回基于操作结果的差异值
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定数据来源
+ * @param targetBuffer 目标缓冲区，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，存储操作结果的位置
+ * @param param_6 参数6，具体用途待定
+ * @param param_7 参数7指针，返回计算结果的指针
+ * @return longlong 返回计算出的差异值
+ * @note 原始函数名：FUN_18068f150
+ */
+longlong CalculateUIDataDifferenceA1(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
+                           longlong resultPointer,int param_6,uint *param_7)
 
 {
-  int operationResult;
-  int validationResult;
-  longlong lVar3;
-  int aiStackX_10 [2];
+  int primaryOperationResult;
+  int secondaryOperationResult;
+  longlong operationParameter;
+  int stackBuffer [2];
   
-  lVar3 = (longlong)param_6;
-  operationResult = func_0x000180022810(uiContext,(longlong)dataSource,targetBuffer,bufferSize,resultPointer,lVar3,0x40,&param_6,
-                              0,0);
-  validationResult = func_0x000180022810(uiContext + 0x10,(longlong)dataSource,targetBuffer & 0xffffffff,
-                              bufferSize & 0xffffffff,resultPointer + 0x10,lVar3,0x40,aiStackX_10,0,0);
-  *param_7 = param_6 + aiStackX_10[0];
-  return (ulonglong)(uint)(param_6 + aiStackX_10[0]) -
-         ((longlong)(operationResult + validationResult) * (longlong)(operationResult + validationResult) >> 0xb);
+  operationParameter = (longlong)param_6;
+  primaryOperationResult = func_0x000180022810(uiContext,(longlong)dataSource,targetBuffer,bufferSize,resultPointer,operationParameter,0x40,&param_6,
+                                    0,0);
+  secondaryOperationResult = func_0x000180022810(uiContext + 0x10,(longlong)dataSource,targetBuffer & 0xffffffff,
+                                        bufferSize & 0xffffffff,resultPointer + 0x10,operationParameter,0x40,stackBuffer,0,0);
+  *param_7 = param_6 + stackBuffer[0];
+  return (ulonglong)(uint)(param_6 + stackBuffer[0]) -
+         ((longlong)(primaryOperationResult + secondaryOperationResult) * (longlong)(primaryOperationResult + secondaryOperationResult) >> 0xb);
 }
 
 
 
-longlong FUN_18068f240(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
-                      longlong resultPointer,int param_6,uint *param_7)
+/**
+ * @brief UI数据差异计算器A2
+ * 
+ * 该函数计算UI数据的差异值，通过双重验证操作确保数据准确性
+ * 使用0x20操作码进行数据处理，并返回基于操作结果的差异值
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定数据来源
+ * @param targetBuffer 目标缓冲区，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，存储操作结果的位置
+ * @param param_6 参数6，具体用途待定
+ * @param param_7 参数7指针，返回计算结果的指针
+ * @return longlong 返回计算出的差异值
+ * @note 原始函数名：FUN_18068f240
+ */
+longlong CalculateUIDataDifferenceA2(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
+                           longlong resultPointer,int param_6,uint *param_7)
 
 {
-  int operationResult;
-  int validationResult;
-  longlong lVar3;
-  int aiStackX_10 [2];
+  int primaryOperationResult;
+  int secondaryOperationResult;
+  longlong operationParameter;
+  int stackBuffer [2];
   
-  lVar3 = (longlong)param_6;
-  operationResult = func_0x000180024290(uiContext,(longlong)dataSource,targetBuffer,bufferSize,resultPointer,lVar3,0x40,&param_6,
-                              0,0);
-  validationResult = func_0x000180024290(uiContext + 0x10,(longlong)dataSource,targetBuffer & 0xffffffff,
-                              bufferSize & 0xffffffff,resultPointer + 0x10,lVar3,0x40,aiStackX_10,0,0);
-  *param_7 = param_6 + aiStackX_10[0];
-  return (ulonglong)(uint)(param_6 + aiStackX_10[0]) -
-         ((longlong)(operationResult + validationResult) * (longlong)(operationResult + validationResult) >> 0xb);
+  operationParameter = (longlong)param_6;
+  primaryOperationResult = func_0x000180024290(uiContext,(longlong)dataSource,targetBuffer,bufferSize,resultPointer,operationParameter,0x40,&param_6,
+                                    0,0);
+  secondaryOperationResult = func_0x000180024290(uiContext + 0x10,(longlong)dataSource,targetBuffer & 0xffffffff,
+                                        bufferSize & 0xffffffff,resultPointer + 0x10,operationParameter,0x40,stackBuffer,0,0);
+  *param_7 = param_6 + stackBuffer[0];
+  return (ulonglong)(uint)(param_6 + stackBuffer[0]) -
+         ((longlong)(primaryOperationResult + secondaryOperationResult) * (longlong)(primaryOperationResult + secondaryOperationResult) >> 0xb);
 }
 
 
 
-int FUN_18068f330(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
-                 undefined8 resultPointer,int param_6,int *param_7)
+/**
+ * @brief UI数据差异计算器A3
+ * 
+ * 该函数计算UI数据的差异值，通过单一验证操作确保数据准确性
+ * 使用4字节操作码进行数据处理，并返回基于操作结果的差异值
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定数据来源
+ * @param targetBuffer 目标缓冲区，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，存储操作结果的位置
+ * @param param_6 参数6，具体用途待定
+ * @param param_7 参数7指针，返回计算结果的指针
+ * @return int 返回计算出的差异值
+ * @note 原始函数名：FUN_18068f330
+ */
+int CalculateUIDataDifferenceA3(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+                             undefined8 resultPointer,int param_6,int *param_7)
 
 {
   int operationResult;
@@ -45557,8 +45621,24 @@ int FUN_18068f330(undefined8 uiContext,int dataSource,undefined8 targetBuffer,un
 
 
 
-int FUN_18068f3a0(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
-                 undefined8 resultPointer,int param_6,int *param_7)
+/**
+ * @brief UI数据差异计算器A4
+ * 
+ * 该函数计算UI数据的差异值，通过单一验证操作确保数据准确性
+ * 使用4字节操作码进行数据处理，并返回基于操作结果的差异值
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定数据来源
+ * @param targetBuffer 目标缓冲区，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，存储操作结果的位置
+ * @param param_6 参数6，具体用途待定
+ * @param param_7 参数7指针，返回计算结果的指针
+ * @return int 返回计算出的差异值
+ * @note 原始函数名：FUN_18068f3a0
+ */
+int CalculateUIDataDifferenceA4(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+                             undefined8 resultPointer,int param_6,int *param_7)
 
 {
   int operationResult;
@@ -45571,8 +45651,24 @@ int FUN_18068f3a0(undefined8 uiContext,int dataSource,undefined8 targetBuffer,un
 
 
 
-int FUN_18068f410(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
-                 undefined8 resultPointer,int param_6,int *param_7)
+/**
+ * @brief UI数据差异计算器A5
+ * 
+ * 该函数计算UI数据的差异值，通过单一验证操作确保数据准确性
+ * 使用8字节操作码进行数据处理，并返回基于操作结果的差异值
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定数据来源
+ * @param targetBuffer 目标缓冲区，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，存储操作结果的位置
+ * @param param_6 参数6，具体用途待定
+ * @param param_7 参数7指针，返回计算结果的指针
+ * @return int 返回计算出的差异值
+ * @note 原始函数名：FUN_18068f410
+ */
+int CalculateUIDataDifferenceA5(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+                             undefined8 resultPointer,int param_6,int *param_7)
 
 {
   int operationResult;
@@ -45585,8 +45681,24 @@ int FUN_18068f410(undefined8 uiContext,int dataSource,undefined8 targetBuffer,un
 
 
 
-int FUN_18068f480(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
-                 undefined8 resultPointer,int param_6,int *param_7)
+/**
+ * @brief UI数据差异计算器A6
+ * 
+ * 该函数计算UI数据的差异值，通过单一验证操作确保数据准确性
+ * 使用8字节操作码进行数据处理，并返回基于操作结果的差异值
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定数据来源
+ * @param targetBuffer 目标缓冲区，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，存储操作结果的位置
+ * @param param_6 参数6，具体用途待定
+ * @param param_7 参数7指针，返回计算结果的指针
+ * @return int 返回计算出的差异值
+ * @note 原始函数名：FUN_18068f480
+ */
+int CalculateUIDataDifferenceA6(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+                             undefined8 resultPointer,int param_6,int *param_7)
 
 {
   int operationResult;
@@ -45599,8 +45711,24 @@ int FUN_18068f480(undefined8 uiContext,int dataSource,undefined8 targetBuffer,un
 
 
 
-longlong FUN_18068f4f0(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
-                      longlong resultPointer,int param_6,uint *param_7)
+/**
+ * @brief UI数据差异计算器A7
+ * 
+ * 该函数计算UI数据的差异值，通过四重验证操作确保数据准确性
+ * 使用0x20操作码进行数据处理，并返回基于操作结果的差异值
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定数据来源
+ * @param targetBuffer 目标缓冲区，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，存储操作结果的位置
+ * @param param_6 参数6，具体用途待定
+ * @param param_7 参数7指针，返回计算结果的指针
+ * @return longlong 返回计算出的差异值
+ * @note 原始函数名：FUN_18068f4f0
+ */
+longlong CalculateUIDataDifferenceA7(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
+                           longlong resultPointer,int param_6,uint *param_7)
 
 {
   int operationResult;
@@ -45629,8 +45757,24 @@ longlong FUN_18068f4f0(longlong uiContext,int dataSource,ulonglong targetBuffer,
 
 
 
-longlong FUN_18068f680(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
-                      longlong resultPointer,int param_6,uint *param_7)
+/**
+ * @brief UI数据差异计算器A8
+ * 
+ * 该函数计算UI数据的差异值，通过四重验证操作确保数据准确性
+ * 使用0x20操作码进行数据处理，并返回基于操作结果的差异值
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源标识符，指定数据来源
+ * @param targetBuffer 目标缓冲区，存储处理后的数据
+ * @param bufferSize 缓冲区大小，限制数据处理的范围
+ * @param resultPointer 结果指针，存储操作结果的位置
+ * @param param_6 参数6，具体用途待定
+ * @param param_7 参数7指针，返回计算结果的指针
+ * @return longlong 返回计算出的差异值
+ * @note 原始函数名：FUN_18068f680
+ */
+longlong CalculateUIDataDifferenceA8(longlong uiContext,int dataSource,ulonglong targetBuffer,ulonglong bufferSize,
+                           longlong resultPointer,int param_6,uint *param_7)
 
 {
   int operationResult;

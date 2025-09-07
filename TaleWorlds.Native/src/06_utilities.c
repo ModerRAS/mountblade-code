@@ -19346,7 +19346,7 @@ MemoryAllocationLabel:
     resourceIterator = (int64_t)(inputParameter6 + -1);
     if (-1 < inputParameter6 + -1) {
       do {
-        securityCheckValueA0 = securityCheckValueA0 & SystemCleanupFlag00000000;
+        SecurityCheckValue = SecurityCheckValue & SystemCleanupFlag00000000;
         systemContextPointer = (int64_t *)&SystemConfigurationDataTable;
         arrayIndexBuffer[0] = *(int *)(dataFlags + resourceIterator * 4);
         ResetSystemStateA1(&systemContextPointer,*(DataBuffer *)(operationBase + 0x58));
@@ -20469,8 +20469,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   DataWord StackDataWordO;
   DataWord StackDataWordP;
   DataWord StackDataWordQ;
-  uint8_t *psecurityCheckValueA8;
-  DataWord securityCheckValueA0;
+  uint8_t *SecurityValidationBuffer;
+  DataWord SecurityCheckValue;
   DataWord StackDataWordR;
   DataWord StackDataWordS;
   ByteFlag StackByteFlagA;
@@ -20512,9 +20512,9 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
             exceptionDataBuffer6 = StackPointerBufferB;
             if ((statusFlag == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(calculatedIndex + 0x28))) {
               StackDataWordS = *(DataWord *)(exceptionHandlerContext4 + 4 + dataPointer);
-              psecurityCheckValueA8 = &SystemMemoryInitializationReference;
+              SecurityValidationBuffer = &SystemMemoryInitializationReference;
               StackDataWordR = StackDataWordA;
-              securityCheckValueA0 = 0;
+              SecurityCheckValue = 0;
               dataPointer = (**(FunctionPointer**)*StackPointerBufferB)(StackPointerBufferB);
               StackDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + 0x90) + bufferPointer * 8);
               StackByteFlagA = 0;
@@ -20525,7 +20525,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
                 exceptionDataBuffer2 = *(uint8_t **)(calculatedOffset + 0x50);
               }
               InitializeMemory(ExceptionDataBufferA,exceptionDataBuffer2,0x80);
-              iterationCount = ValidateDataIntegrityA0(operationBase,&psecurityCheckValueA8);
+              iterationCount = ValidateDataIntegrityA0(operationBase,&SecurityValidationBuffer);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
             bufferPointer = bufferPointer + 1;
@@ -23017,7 +23017,20 @@ void ProcessMultiSegmentDataA0(DataBuffer SystemContext,int64_t DataBuffer)
 
 
 
-899040(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据块操作A0
+ * 
+ * 处理数据块并执行相关操作，按照特定的偏移量处理数据块。
+ * 此函数会依次尝试在不同的偏移量处处理数据，直到成功为止。
+ * 
+ * @param operationBase 操作基础地址，包含操作上下文信息
+ * @param dataBuffer 数据缓冲区指针，指向待处理的数据
+ * 
+ * @note 此函数使用0xc、0x18、0x24等偏移量进行数据处理
+ * @warning 如果数据处理失败，函数会尝试下一个偏移量
+ * @see ProcessDataBlockOperationA1, ValidateSystemDataD0
+ */
+void ProcessDataBlockOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 /**
  * @brief 处理系统数据D0
  * 
