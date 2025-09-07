@@ -87,6 +87,17 @@
 #define SetUIComponentState SetUIComponentState
 
 /**
+ * @brief 计算字体度量数据
+ * 
+ * 该函数负责根据字体度量表计算字符的位置和尺寸信息
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源指针，用于存储计算结果
+ * @note 原始函数名: FUN_180722370
+ */
+#define CalculateFontMetricData FUN_180722370
+
+/**
  * @brief 计算UI组件边界
  * 
  * 该函数负责计算UI组件的边界框和尺寸信息
@@ -907,6 +918,28 @@ void* UIGestureCoordinates;
 #define UIGlobalStatusFlag22 _DAT_180d4a8c0
 // 原始变量名：_DAT_180d4a8a8 - UI系统全局状态标志23
 #define UIGlobalStatusFlag23 _DAT_180d4a8a8
+
+// UI系统向量操作掩码和常数定义
+// 原始变量名：_DAT_180946ec0 - UI向量操作掩码0
+#define UIVectorOperationMask0 _DAT_180946ec0
+// 原始变量名：_DAT_180946ed0 - UI向量操作掩码1
+#define UIVectorOperationMask1 _DAT_180946ed0
+// 原始变量名：_DAT_180946ee0 - UI向量操作掩码2
+#define UIVectorOperationMask2 _DAT_180946ee0
+// 原始变量名：_DAT_180946ef0 - UI向量操作掩码3
+#define UIVectorOperationMask3 _DAT_180946ef0
+// 原始变量名：_DAT_180946f00 - UI向量操作掩码4
+#define UIVectorOperationMask4 _DAT_180946f00
+// 原始变量名：_DAT_180946f10 - UI向量操作掩码5
+#define UIVectorOperationMask5 _DAT_180946f10
+// 原始变量名：_DAT_180946f20 - UI向量操作掩码6
+#define UIVectorOperationMask6 _DAT_180946f20
+// 原始变量名：_DAT_180946f50 - UI向量洗牌掩码0
+#define UIVectorShuffleMask0 _DAT_180946f50
+// 原始变量名：_DAT_180946f60 - UI向量洗牌掩码1
+#define UIVectorShuffleMask1 _DAT_180946f60
+// 原始变量名：_DAT_180946f80 - UI向量洗牌掩码2
+#define UIVectorShuffleMask2 _DAT_180946f80
 
 // UI系统未知函数表宏定义
 #define UIUnknownFunctionTable1 UIUnknownFunctionTable1
@@ -46067,14 +46100,19 @@ int FUN_18068fd60(undefined8 uiContext,int dataSource,undefined8 targetBuffer,un
 
 
 
-int FUN_18068fdd0(void)
+/**
+ * @brief 执行UI系统初始化检查并返回状态值
+ * @return 系统状态检查结果
+ * @note 原始函数名: FUN_18068fdd0
+ */
+int PerformUIInitializationCheck(void)
 
 {
-  int *in_stack_00000028;
-  undefined4 uStack_18;
+  int *stackParameter;
+  uint stackValue;
   
   FUN_18068d2b0();
-  return *in_stack_00000028 - ((uint)(uStack_18 * uStack_18) >> 8);
+  return *stackParameter - ((uint)(stackValue * stackValue) >> 8);
 }
 
 
@@ -76407,7 +76445,7 @@ LAB_180710f7f:
           do {
             if (pvalidationResult4[1] != 0) {
               if (((operationResult6 == 2) && (operationResult1 == 0)) &&
-                 (FUN_180722370(uStack_318,&uStack_300), *pvalidationResult1 == 0)) {
+                 (CalculateFontMetricData(uStack_318,&uStack_300), *pvalidationResult1 == 0)) {
                 FUN_180722340(uStack_318,&iStack_32c);
               }
               if ((validationResult3 < 1) || (operationResult6 = 2, *pvalidationResult4 == 0)) {
@@ -99811,18 +99849,18 @@ void ProcessUIRenderDataProcessor(undefined8 uiContext,undefined8 dataSource,int
   ulonglong stackParameter3;
   undefined4 localBuffer[239];
   
-  operationResult0 = 0;
-  pfunctionResult6 = (undefined4 *)(unaff_R14 + 8);
+  operationIndex = 0;
+  pRenderBuffer = (undefined4 *)(contextOffset + 8);
   param_6 = (longlong)bufferSize * 4;
   do {
-    lVar9 = unaff_R15 + (longlong)(*unaff_RDI + targetBuffer) * -4;
-    dVar17 = (double)FUN_18072b3a0(lVar9,bufferSize);
-    cVar4 = *unaff_RDI;
-    lVar6 = 1;
-    dVar17 = dVar17 + 0.001;
-    lVar8 = (longlong)(((int)unaff_RDI[1] - (int)cVar4) + 1);
-    allocatedMemory5 = 1;
-    param_8 = (float)dVar17;
+    positionValue = baseAddress + (longlong)(*pDataPointer + targetBuffer) * -4;
+    calculatedDouble = (double)FUN_18072b3a0(positionValue,bufferSize);
+    dataChar = *pDataPointer;
+    indexCounter = 1;
+    calculatedDouble = calculatedDouble + 0.001;
+    loopCounter = (longlong)(((int)pDataPointer[1] - (int)dataChar) + 1);
+    allocatedSize = 1;
+    param_8 = (float)calculatedDouble;
     if (1 < lVar8) {
       if (4 < lVar8) {
         pfloatResult1 = (float *)(lVar9 + -0xc);
