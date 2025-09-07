@@ -208157,48 +208157,52 @@ ProcessInsertion:
   if ((long long *)Utf8InputBuffer[2] != (long long *)0x0) {
     SystemContextPtr = (long long *)Utf8InputBuffer[2];
     do {
-      MemoryBlockIndex = SystemContextPtr;
-      CurrentByteValue = *AdditionalParameter1 < (int)MemoryBlockIndex[4];
-      if (*AdditionalParameter1 < (int)MemoryBlockIndex[4]) {
-        SystemContextPtr = (long long *)MemoryBlockIndex[1];
+      CurrentMemoryBlock = SystemContextPtr;
+      ShouldInsertBefore = *AdditionalParameter1 < (int)CurrentMemoryBlock[4];
+      if (*AdditionalParameter1 < (int)CurrentMemoryBlock[4]) {
+        SystemContextPtr = (long long *)CurrentMemoryBlock[1];
       }
       else {
-        SystemContextPtr = (long long *)*MemoryBlockIndex;
+        SystemContextPtr = (long long *)*CurrentMemoryBlock;
       }
     } while (SystemContextPtr != (long long *)0x0);
   }
-  SystemContextPtr = MemoryBlockIndex;
-  if (CurrentByteValue) {
-    if (MemoryBlockIndex == (long long *)Utf8InputBuffer[1]) {
-      StringComparisonResult = *AdditionalParameter1;
-      goto FUN_180179b7a;
+  SystemContextPtr = CurrentMemoryBlock;
+  if (ShouldInsertBefore) {
+    if (CurrentMemoryBlock == (long long *)Utf8InputBuffer[1]) {
+      ComparisonValue = *AdditionalParameter1;
+      goto FinalizeInsertion;
     }
-    SystemContextPtr = (long long *)GetPreviousMemoryBlockIndex(MemoryBlockIndex);
+    SystemContextPtr = (long long *)GetPreviousMemoryBlockIndex(CurrentMemoryBlock);
   }
-  StringComparisonResult = *AdditionalParameter1;
-  if (StringComparisonResult <= (int)SystemContextPtr[4]) {
+  ComparisonValue = *AdditionalParameter1;
+  if (ComparisonValue <= (int)SystemContextPtr[4]) {
     *Utf8InputBufferSize = SystemContextPtr;
     return Utf8BufferSize;
   }
-FUN_180179b7a:
-  if ((MemoryBlockIndex == CharacterCode) || (StringComparisonResult < (int)MemoryBlockIndex[4])) {
-    DataSize = 0;
+FinalizeInsertion:
+  if ((CurrentMemoryBlock == InvalidMemoryMarker) || (ComparisonValue < (int)CurrentMemoryBlock[4])) {
+    InsertPosition = 0;
   }
   else {
-    DataSize = 1;
+    InsertPosition = 1;
   }
   AllocatedMemorySize = BufferAllocate(MemoryPoolManager,0x30,(char)Utf8InputBuffer[5]);
   *(int *)(AllocatedMemorySize + 0x20) = *AdditionalParameter1;
   *(void *)(AllocatedMemorySize + 0x28) = 0;
                     // WARNING: Subroutine does not return
-  AllocateMemoryWithFlags(AllocatedMemorySize,MemoryBlockIndex,CharacterCode,DataSize);
+  AllocateMemoryWithFlags(AllocatedMemorySize,CurrentMemoryBlock,InvalidMemoryMarker,InsertPosition);
 }
 
 
 
 
 
-79b7a(voidvoid FUN_180179b7a(void
+/**
+ * 分配并初始化字符表指针
+ * 分配内存块并设置字符表的基本结构
+ */
+void AllocateAndInitializeCharacterTable(void)
 {
   long long PrimaryDataSize;
   uint32_t *PatternIndex;
