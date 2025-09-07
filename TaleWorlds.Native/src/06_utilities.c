@@ -90034,17 +90034,17 @@ void CleanupExceptionContextAndResourceIterator(DataBuffer operationBase, int64_
       }
       memoryBlockOffset = (int64_t)*(int *)(resourceIterator + 0x8088) * 0x20;
       exceptionHandlerContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
-      if (-1 < operationResult) {
-        resourceIterator = (int64_t)operationResult;
+      validationStatus = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      if (-1 < validationStatus) {
+        resourceIterator = (int64_t)validationStatus;
         do {
           if (*(char *)(*(int64_t *)(exceptionHandlerContext + resourceIterator * 8) + 0x60) == '\x01') {
-            if (operationResult != -1) {
-              ValidateDataBufferA2(*(DataBuffer *)(exceptionHandlerContext + (int64_t)operationResult * 8));
+            if (validationStatus != -1) {
+              ValidateDataBufferA2(*(DataBuffer *)(exceptionHandlerContext + (int64_t)validationStatus * 8));
             }
             break;
           }
-          operationResult = operationResult + -1;
+          validationStatus = validationStatus + -1;
           resourceIterator = resourceIterator + -1;
         } while (-1 < resourceIterator);
       }
