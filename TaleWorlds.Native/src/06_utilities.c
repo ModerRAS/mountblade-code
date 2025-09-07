@@ -493,16 +493,40 @@
  */
 #define ProcessMemoryAccess FUN_1803f33b0
 
-// 原始函数名：FUN_180085530 - 系统状态验证函数A0
+/**
+ * @brief 系统状态验证函数A0
+ * 
+ * 该函数负责验证系统的当前状态，确保系统参数和配置的有效性
+ * 
+ * @note 原始函数名：FUN_180085530
+ */
 #define ValidateSystemStatusA0 FUN_180085530
 
-// 原始函数名：FUN_180089640 - 系统状态更新函数A0
+/**
+ * @brief 系统状态更新函数A0
+ * 
+ * 该函数负责更新系统的状态信息，维护系统运行时的状态数据
+ * 
+ * @note 原始函数名：FUN_180089640
+ */
 #define UpdateSystemStatusA0 FUN_180089640
 
-// 原始函数名：FUN_1800ba100 - 系统值计算函数
+/**
+ * @brief 系统值计算函数
+ * 
+ * 该函数负责计算系统相关的数值，包括性能指标和状态参数
+ * 
+ * @note 原始函数名：FUN_1800ba100
+ */
 #define CalculateSystemValue FUN_1800ba100
 
-// 原始函数名：FUN_180047e40 - 系统参数验证函数A0
+/**
+ * @brief 系统参数验证函数A0
+ * 
+ * 该函数负责验证系统参数的有效性，确保参数在可接受范围内
+ * 
+ * @note 原始函数名：FUN_180047e40
+ */
 #define ValidateSystemParametersA0 FUN_180047e40
 
 // 原始函数名：ProcessSystemDataA0 - 系统数据处理函数A0
@@ -66313,6 +66337,17 @@ void Unwind_1809081d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 处理系统参数验证
+ * 
+ * 该函数负责处理系统参数的验证操作，通过调用ProcessSystemParametersWithValidation函数
+ * 来验证系统参数的有效性。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
 void Unwind_1809081e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -66324,6 +66359,17 @@ void Unwind_1809081e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 处理异常数据缓冲区清理
+ * 
+ * 该函数负责处理异常数据缓冲区的清理操作，通过调用ProcessSystemResourcesWithCleanup函数
+ * 来清理系统资源并处理异常状态。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
 void Unwind_1809081f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
