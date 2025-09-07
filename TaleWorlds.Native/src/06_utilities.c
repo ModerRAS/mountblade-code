@@ -77775,7 +77775,19 @@ void ProcessExceptionContextCleanupA2(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180909700(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文清理函数A3
+ * 
+ * 处理异常上下文的清理工作，简化版本：
+ * - 重置验证状态指针
+ * - 清理内存资源
+ * - 调用异常处理器回调
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含待处理的异常上下文数据
+ * @return void 无返回值
+ */
+void ProcessExceptionContextCleanupA3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x90) + ExceptionHandlerCallbackOffset10) = &DefaultExceptionHandlerB;
