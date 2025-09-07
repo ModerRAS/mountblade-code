@@ -83478,7 +83478,7 @@ uint64_t InitializeSystemDataStructure(long long *CharacterCode
     else {
       SystemContextPrimaryFloat0 = 100.0;
     }
-    if ((SystemContextPrimaryFloat0 == 100.0) || (*(float *)(DataStructureCounter + 0x20d0) == *(float *)(DataStructureCounter + 0x20d4))    goto LAB_180103c39;
+    if ((SystemContextPrimaryFloat0 == 100.0) || (*(float *)(DataStructureCounter + 0x20d0) == *(float *)(DataStructureCounter + 0x20d4))    goto SystemFloatValueCheckComplete;
   }
   if (*(int *)(DataStructureCounter + 0x4d0) == 0) {
     LocalProcessingStatusFlag = (void *)0x180103c36;
@@ -191482,70 +191482,84 @@ uint64_t FUN_18016bb80(long long CharacterCode,int *CharacterCodeSize
 // WARNING: Type propagation algorithm not settling
 
 
-6bdb0(long long ***CharacterCode,long long CharacterCodeSize,uint64_t *Utf8InputPointer,uint64_t *Utf16EndPointer,
-void FUN_18016bdb0(long long ***CharacterCode,long long CharacterCodeSize,uint64_t *Utf8InputPointer,uint64_t *Utf16EndPointer,
-                  uint64_t AdditionalParameter1
+/**
+ * @brief 处理字符编码转换和系统上下文管理
+ * 
+ * 该函数负责处理字符编码转换、系统上下文管理以及内存分配操作。
+ * 主要功能包括UTF-8到UTF-16的转换、系统状态验证、内存分配和释放。
+ * 
+ * @param CharacterCode 字符代码指针数组
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @return 处理状态码
+ * 
+ * @note 原始函数名：FUN_18016bdb0
+ */
+void ProcessCharacterEncodingAndSystemContext(long long ***CharacterCode,long long CharacterCodeSize,uint64_t *Utf8InputPointer,uint64_t *Utf16EndPointer,
+                                            uint64_t AdditionalParameter1
 {
   int *ReferenceCountPointer;
   void *SystemContext;
   uint UnicodeCodePoint;
-  long long ***ppSystemContextPtr;
-  code *pCharacterVariable5;
+  long long ***SystemContextTriplePtr;
+  code *CharacterVariablePtr;
   char CharacterValidationCode;
   int ProcessIterationCount;
   uint64_t ProcessingStatusFlag;
-  long long systemLoopCounter;
+  long long SystemLoopCounter;
   long long SystemOffsetValue;
   long long SystemStringIndex;
-  long long ****pppCharacterCode2;
+  long long ****CharacterCodeQuadPtr;
   uint64_t *StatusBuffer3;
   void *SystemStatusBuffer;
   void *SecondaryStatusBuffer;
-  long long ***ppCharacterCode6;
-  long long LoopCounter7;
+  long long ***CharacterCodeTriplePtr;
+  long long LoopCounter;
   unsigned long long MemoryAllocationHandle;
-  int IntegerValue9;
-  long long **ppMemoryBufferA;
-  long long *BufferAllocationStatus1;
-  long long ****pppSystemRegisterPointerX8;
-  long long ****pppSystemRegisterPointerX10;
-  uint64_t *pStackConfigurationFlag;
-  uint64_t *puStackX_20;
+  int IntegerValue;
+  long long **MemoryBufferDoublePtr;
+  long long *BufferAllocationStatus;
+  long long ****SystemRegisterX8QuadPtr;
+  long long ****SystemRegisterX10QuadPtr;
+  uint64_t *StackConfigurationFlag;
+  uint64_t *StackX20Pointer;
   uint32_t MemoryAllocationOffset;
   uint64_t SystemFlagF;
   uint32_t SystemFlagG;
-  uint32_t uStack_cc;
+  uint32_t StackCCValue;
   void *SystemStatusBufferPointer;
-  long long StackMemoryBufferC0;
-  int iStack_b8;
-  uint64_t SystemStackRegisterFlagB0;
+  long long StackMemoryBuffer;
+  int StackB8Value;
+  uint64_t SystemStackRegisterFlag;
   uint32_t CoreEngineValueA8;
-  uint32_t uStack_a4;
-  uint32_t CoreEngineUnsignedValueA0;
-  uint32_t uStack_9c;
-  uint32_t SystemOperationFlag98;
-  uint32_t configurationFlag;
-  long long ****pppplStack_88;
-  uint64_t FunctionAddress80;
+  uint32_t StackA4Value;
+  uint32_t CoreEngineUnsignedValue;
+  uint32_t Stack9CValue;
+  uint32_t SystemOperationFlag;
+  uint32_t ConfigurationFlag;
+  long long ****CoreEngineSignedValue78Ptr;
+  uint64_t FunctionAddress;
   long long ****ppppCoreEngineSignedValue78;
   
-  FunctionAddress80 = 0xfffffffffffffffe;
-  pStackConfigurationFlag = Utf8InputPointer;
-  puStackX_20 = Utf16EndPointer;
+  FunctionAddress = 0xfffffffffffffffe;
+  StackConfigurationFlag = Utf8InputPointer;
+  StackX20Pointer = Utf16EndPointer;
   ProcessingStatusFlag = CoreEngineGetSystemContext();
   CoreEngineExecuteSystemEvent(&SystemStatusBufferPointer,ProcessingStatusFlag);
-  LoopCounter7 = SystemDataConfiguration;
-  CharacterStatus1 = *(char *)(CharacterCode + 0xc);
+  LoopCounter = SystemDataConfiguration;
+  char CharacterStatus = *(char *)(CharacterCode + 0xc);
   *(uint32_t *)(SystemDataConfiguration + 0x1c04) = 0x44200000;
-  *(uint32_t *)(LoopCounter7 + 0x1c08) = 0x43f00000;
-  *(uint32_t *)(LoopCounter7 + 0x1bd4) = 4;
-  StatusBuffer4 = &CoreEngineDataTemplate;
+  *(uint32_t *)(LoopCounter + 0x1c08) = 0x43f00000;
+  *(uint32_t *)(LoopCounter + 0x1bd4) = 4;
+  void *StatusBuffer = &CoreEngineDataTemplate;
   if (*(void **)(CharacterCodeSize + 8) != NULL) {
-    StatusBuffer4 = *(void **)(CharacterCodeSize + 8);
+    StatusBuffer = *(void **)(CharacterCodeSize + 8);
   }
-  CharacterStatus1 = InitializeSystemStatusBuffer(StatusBuffer4,&SystemCharacterTableAddress,-(uint)(CharacterStatus1 != '\0') & 0x2020);
-  LoopCounter7 = SystemDataConfiguration;
-  IntegerValue9 = 0;
+  CharacterStatus = InitializeSystemStatusBuffer(StatusBuffer,&SystemCharacterTableAddress,-(uint)(CharacterStatus != '\0') & 0x2020);
+  LoopCounter = SystemDataConfiguration;
+  IntegerValue = 0;
   if (CharacterStatus1 == '\0') {
     FinalizeSystemEventQueue();
   }
@@ -243312,7 +243326,7 @@ LAB_180214378:
   ProcessSystemEventQueueData(&SystemEventQueueDataTableSexdecenary,(double)fStack_80);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableSeptendecenary,(double)fStack_7c);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableOctodecenary,(double)fStack_78);
-  ProcessSystemEventQueueData(&UNK_180a107d8,(double)fStack_74);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableNovemdecenary,(double)fStack_74);
   ProcessSystemEventQueueData(&UNK_180a10850,(double)fStack_70);
   ProcessSystemEventQueueData(&UNK_180a10860,(double)fStack_6c);
   ProcessSystemEventQueueData(&UNK_180a10820,(double)fStack_68);

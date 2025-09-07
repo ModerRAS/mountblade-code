@@ -29881,8 +29881,8 @@ uint64_t ProcessSystemDataD0(void)
   uint dataFlags;
   uint securityCheckResult;
   int64_t dataPointer;
-  uint systemContextD;
-  float floatResultA;
+  uint systemSecurityContext;
+  float primaryFloatResult;
   float calculatedFloatValue;
   float normalizedFloatValue;
   float interpolatedFloatValue;
