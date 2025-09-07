@@ -4083,7 +4083,7 @@ uint8_t SystemResetFlag;           // 系统重置标志
 uint32_t SystemDataWord;
 
 // 异常状态标志变量声明
-uint8_t ExceptionStatusFlagA0;       // 异常状态标志A0
+uint8_t ExceptionStatusFlagPrimary;       // 异常状态标志Primary
 uint8_t ExceptionStatusFlagA1;       // 异常状态标志A1
 
 // 浮点数验证数组变量声明
