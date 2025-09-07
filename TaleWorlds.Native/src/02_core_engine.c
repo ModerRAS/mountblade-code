@@ -313,6 +313,7 @@ const void* const SystemEventQueueDataTableDuotrigesimal = (void*)0x180a10838;
 const void* const SystemEventQueueDataTableTrigesimal = (void*)0x180a10898;
 const void* const SystemEventQueueDataTableSeptenary = (void*)0x180a10628;
 const void* const SystemEventQueueDataTableOctonary = (void*)0x180a10640;
+const void* const SystemEventQueueDataTableNonary = (void*)0x180a106c0;
 
 // 系统内存池和数据结构常量
 const void* const SystemMemoryPoolTemplate = (void*)0x180a104d0;
@@ -113217,7 +113218,7 @@ ProcessFloatVectorCalculation(float *SystemContextPointer,int Utf8BufferSize,uin
   }
   else {
     if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto LAB_18011e08c;
-    ProcessingStatusFlag = FUN_180131aa0(afStackX_20,3,5,0,0);
+    ProcessingStatusFlag = AllocateSystemMemory(afStackX_20,3,5,0,0);
     if ((*(int *)(MemoryBlockIndex + 0x1cac) == Utf8BufferSize) && (*(char *)(MemoryBlockIndex + 0x1b3c) == '\0')) {
       *(bool *)(MemoryBlockIndex + 0x1b3c) = *(int *)(MemoryBlockIndex + 0x1b2c) != 0;
       if (*(int *)(MemoryBlockIndex + 0x1b2c) != 0) {
@@ -113258,7 +113259,7 @@ ProcessFloatVectorCalculation(float *SystemContextPointer,int Utf8BufferSize,uin
     }
     if (((1.0 <= VectorRegisterDa) && (0.0 < NormalizedParameter)) || ((VectorRegisterDa <= 0.0 && (NormalizedParameter < 0.0))       ) goto LAB_18011e08c;
   }
-  validationResult = FUN_18011f3e0(AdditionalParameter3);
+  validationResult = ProcessValidationCheck(AdditionalParameter3);
   if (*Utf16EndPointer != validationResult) {
     *Utf16EndPointer = validationResult;
     DataSize = 1;
@@ -113364,7 +113365,7 @@ ProcessUnsignedIntegerVectorConversion(float *SystemContextPointer,int Utf8Buffe
   }
   else {
     if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto LAB_18011e43d;
-    MemoryAllocationIndex = FUN_180131aa0(afStackX_20,3,5,0,0);
+    MemoryAllocationIndex = AllocateSystemMemory(afStackX_20,3,5,0,0);
     if ((*(int *)(DataStructureCounter + 0x1cac) == Utf8BufferSize) && (*(char *)(DataStructureCounter + 0x1b3c) == '\0')) {
       *(bool *)(DataStructureCounter + 0x1b3c) = *(int *)(DataStructureCounter + 0x1b2c) != 0;
       if (*(int *)(DataStructureCounter + 0x1b2c) != 0) {
@@ -113378,7 +113379,7 @@ ProcessUnsignedIntegerVectorConversion(float *SystemContextPointer,int Utf8Buffe
       goto LAB_18011e43d;
     }
     if (afStackX_20[0] == 0.0) goto LAB_18011e43d;
-    FUN_18011f830(MemoryAllocationIndex,*Utf16EndPointer,AdditionalParameter1,AdditionalParameter2);
+    ProcessDataOperation(MemoryAllocationIndex,*Utf16EndPointer,AdditionalParameter1,AdditionalParameter2);
     RemainingSpace = ProcessValidationCheck(AdditionalParameter3);
     if (RemainingSpace < 1) {
       SystemContextPrimaryFloat1 = (float)ValidationCode;
@@ -113406,7 +113407,7 @@ ProcessUnsignedIntegerVectorConversion(float *SystemContextPointer,int Utf8Buffe
     if (((1.0 <= VectorRegisterDa) && (0.0 < SystemContextPrimaryFloat1)) ||
        ((VectorRegisterDa <= 0.0 && (SystemContextPrimaryFloat1 < 0.0)))) goto LAB_18011e43d;
   }
-  DataSize = FUN_18011f480(AdditionalParameter3);
+  DataSize = ProcessDataSizeCalculation(AdditionalParameter3);
   if (*Utf16EndPointer != DataSize) {
     *Utf16EndPointer = DataSize;
     ProcessingStatusFlag = 1;
@@ -242563,10 +242564,10 @@ LAB_180214378:
   ProcessSystemEventQueueData(&SystemEventQueueDataTableQuinary,(double)StackFloat50);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableSenary,(double)fStack_5c);
   FUN_180845090(*(void *)(SystemContextPointer + 0x368),aSystemPriorityLevel);
-  ProcessSystemEventQueueData(&UNK_180a10628,uStack_2c);
-  ProcessSystemEventQueueData(&UNK_180a10640,uStack_24);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableSeptenary,uStack_2c);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableOctonary,uStack_24);
   ProcessSystemEventQueueData(&SystemPriorityLevelData,aSystemPriorityLevel[0]);
-  ProcessSystemEventQueueData(&UNK_180a106c0,FunctionAddress);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableNonary,FunctionAddress);
   fStack_88 = 0.0;
   FUN_180846210(*(void *)(SystemContextPointer + 0x368),&UNK_180a10678,&fStack_88,0);
   fStack_84 = 0.0;
