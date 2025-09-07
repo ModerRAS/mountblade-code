@@ -2773,7 +2773,14 @@ void* RenderUIText;
 // UI图像渲染函数
 void* RenderUIImage;
 
- void InitializeUIComponent(void);
+ /**
+ * @brief 初始化UI组件
+ * 
+ * 初始化UI系统的基础组件，设置初始状态和参数
+ * 
+ * @note 原始函数名: 未指定
+ */
+void InitializeUIComponent(void);
 void* UIComponentFactory;
 void* UIComponentRegistry;
 void* UIComponentTemplate;
@@ -2781,13 +2788,40 @@ uint8_t UIComponentFlag;
 void* UIComponentInstance;
 void* UIComponentData;
 
- void CreateUIElement(void);
+ /**
+ * @brief 创建UI元素
+ * 
+ * 创建UI系统中的元素对象，初始化其属性和状态
+ * 
+ * @note 原始函数名: 未指定
+ */
+void CreateUIElement(void);
 
- void DestroyUIElement(void);
+ /**
+ * @brief 销毁UI元素
+ * 
+ * 销毁UI系统中的元素对象，释放相关资源
+ * 
+ * @note 原始函数名: 未指定
+ */
+void DestroyUIElement(void);
 
- void UpdateUIElement(void);
+ /**
+ * @brief 更新UI元素
+ * 
+ * 更新UI系统中的元素状态和属性
+ * 
+ * @note 原始函数名: 未指定
+ */
+void UpdateUIElement(void);
 
- void RenderUIElement(void);
+ /**
+ * @brief 渲染UI元素
+ * 
+ * 渲染UI系统中的元素到屏幕上
+ * 
+ * @note 原始函数名: 未指定
+ */
 void RenderUIElement(void);
 void* UIGlobalState;
 void* UITextureManager;
