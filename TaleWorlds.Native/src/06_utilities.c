@@ -80,6 +80,11 @@
 // 异常处理器配置常量
 #define HighPriorityExceptionHandlerOffset 0x6a0
 
+// 系统上下文管理常量
+#define SystemContextPointerOffset 0x40
+#define ExtendedComponentListStartOffset 0x1b8
+#define ExtendedComponentListEndOffset 0x1c0
+
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
 #define SystemComponentDataOffset 0x38
@@ -20009,19 +20014,21 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
 DataBuffer ProcessAndValidateDataBlock(DataBuffer dataBuffer,DataWord validationFlags)
 
 {
-  int inputParameter;
-  DataBuffer operationResult;
-  DataBuffer *validationStatusPointer;
-  int arrayIndex;
-  DataWord *operationResult;
-  uint dataFlags;
-  int calculatedValue;
-  int *registerContext;
-  int calculatedSize;
-  int64_t DestinationContext;
-  DataBuffer *systemContext;
-  DataWord *contextPointer;
-  DataBuffer systemContextBuffer;
+  // 输入参数和结果变量
+  int inputParameterCount;                  // 输入参数数量
+  DataBuffer operationResult;               // 操作结果
+  DataBuffer *validationStatusPointer;     // 验证状态指针
+  int arrayElementIndex;                    // 数组元素索引
+  DataWord *operationDataPointer;          // 操作数据指针
+  // 数据处理和计算变量
+  uint dataProcessingFlags;                 // 数据处理标志
+  int calculatedBufferSize;                 // 计算的缓冲区大小
+  int *registerContextPointer;             // 寄存器上下文指针
+  int allocatedMemorySize;                  // 分配的内存大小
+  int64_t destinationContext;              // 目标上下文
+  DataBuffer *systemContextPointer;        // 系统上下文指针
+  DataWord *contextDataPointer;            // 上下文数据指针
+  DataBuffer systemContextBuffer;           // 系统上下文缓冲区
   
   calculatedSize = *(int *)(DestinationContext + 0x20);
   if (calculatedSize == -1) {
@@ -90031,7 +90038,17 @@ void Unwind_18090d440(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d450(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源清理函数
+ * 
+ * 清理指定数据缓冲区中的内存资源，包括引用计数管理和内存释放操作。
+ * 该函数负责安全地释放内存资源，避免内存泄漏。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 包含要清理的内存资源的数据缓冲区
+ * @note 原始函数名：Unwind_18090d450
+ */
+void CleanupMemoryResourceAtOffset470(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -90067,7 +90084,17 @@ void Unwind_18090d450(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d460(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源清理函数
+ * 
+ * 清理指定数据缓冲区中的内存资源，包括引用计数管理和内存释放操作。
+ * 该函数负责安全地释放内存资源，避免内存泄漏。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 包含要清理的内存资源的数据缓冲区
+ * @note 原始函数名：Unwind_18090d460
+ */
+void CleanupMemoryResourceAtOffset370(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
