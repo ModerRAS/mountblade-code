@@ -252,8 +252,8 @@
 #define IdentifySystemIdentifierByPatternVariantP FUN_1802256a7
 #define IdentifySystemIdentifierByPatternVariantQ FUN_1802256e7
 #define IdentifySystemIdentifierByPatternVariantR FUN_180225727
-#define IdentifySystemIdentifierByPatternVariantS FUN_180225767
-#define IdentifySystemIdentifierByPatternVariantT FUN_1802257a7
+#define IdentifySystemIdentifierByPatternVariantS FUN_180225767  // 识别系统标识符模式S (长度3和5的字符串模式匹配)
+#define IdentifySystemIdentifierByPatternVariantT FUN_1802257a7  // 识别系统标识符模式T (长度3、5、4和特定长度的字符串模式匹配)
 #define IdentifySystemIdentifierByPatternVariantU FUN_1802257e7
 #define IdentifySystemIdentifierByPatternVariantV FUN_180225827
 #define IdentifySystemIdentifierByPatternVariantW FUN_180225867
@@ -266973,7 +266973,17 @@ int CheckSystemStatusPatternMatchVariantE(void)
 
 
 
-int FUN_180225767(void
+/**
+ * @brief 识别系统标识符模式S (长度3和5的字符串模式匹配)
+ * 
+ * 该函数根据输入数据长度进行模式匹配：
+ * - 长度为3：匹配SystemStatusValueQuattuordecenary、Tredecenary、Duodenary模式
+ * - 长度为5：匹配SystemStatusValueUndenary模式
+ * 
+ * @return int 匹配成功返回对应的标识符代码，失败返回0
+ * @note 原始函数名：FUN_180225767
+ */
+int IdentifySystemIdentifierByPatternVariantS(void
 {
   int LockResult;
   long long BufferStatus;
@@ -267180,7 +267190,21 @@ int FUN_180225767(void
 
 
 
-int FUN_1802257a7(void
+/**
+ * @brief 识别系统标识符模式T (长度3、5、4和特定长度的字符串模式匹配)
+ * 
+ * 该函数根据输入数据长度进行多种模式匹配：
+ * - 长度为3：匹配SystemStatusValueTredecenary、Duodenary、Nonary、Octonary、Septenary模式
+ * - 长度为5：匹配SystemStatusValueUndenary、Denary模式
+ * - 长度为0xd：匹配SystemStatusValueSenary模式
+ * - 长度为0x11：匹配SystemStatusValueQuinary模式
+ * - 长度为0x12：匹配SystemKeywordOctodecenary模式
+ * - 长度为4：匹配SystemKeywordSeptendecenary模式
+ * 
+ * @return int 匹配成功返回对应的标识符代码，失败返回0
+ * @note 原始函数名：FUN_1802257a7
+ */
+int IdentifySystemIdentifierByPatternVariantT(void
 {
   int LockResult;
   long long BufferStatus;
@@ -269835,7 +269859,18 @@ int FUN_180225c85(void
 
 
 
-uint32_t FUN_180225cc6(void
+/**
+ * @brief 获取系统状态寄存器值
+ * 
+ * 该函数根据输入数据长度匹配系统关键字并返回对应的寄存器状态值：
+ * - 长度为0x11：匹配SystemKeywordQuaternary，返回0x2a
+ * - 长度为0xe：匹配SystemKeywordTertiary(0x2e)和SystemKeywordSecondary(0x2f)
+ * - 长度为0xb：匹配SystemKeywordPrimary，返回0x33
+ * 
+ * @return uint32_t 匹配成功返回对应的寄存器状态值，失败返回0
+ * @note 原始函数名：FUN_180225cc6
+ */
+uint32_t GetSystemStatusRegister(void
 {
   int LockResult;
   int InputDataLength;
@@ -269864,7 +269899,17 @@ uint32_t FUN_180225cc6(void
 
 
 
-uint32_t FUN_180225cf2(void
+/**
+ * @brief 获取系统控制寄存器值
+ * 
+ * 该函数根据输入数据长度匹配系统关键字并返回对应的控制寄存器值：
+ * - 长度为0xe：匹配SystemKeywordTertiary(0x2e)和SystemKeywordSecondary(0x2f)
+ * - 长度为0xb：匹配SystemKeywordPrimary，返回0x33
+ * 
+ * @return uint32_t 匹配成功返回对应的控制寄存器值，失败返回0
+ * @note 原始函数名：FUN_180225cf2
+ */
+uint32_t GetSystemControlRegister(void
 {
   int LockResult;
   int InputDataLength;
@@ -269889,7 +269934,17 @@ uint32_t FUN_180225cf2(void
 
 
 
-uint32_t FUN_180225d1e(void
+/**
+ * @brief 获取系统中断寄存器值
+ * 
+ * 该函数根据输入数据长度匹配系统关键字并返回对应的中断寄存器值：
+ * - 长度为0xe：匹配SystemKeywordSecondary，返回0x2f
+ * - 长度为0xb：匹配SystemKeywordPrimary，返回0x33
+ * 
+ * @return uint32_t 匹配成功返回对应的中断寄存器值，失败返回0
+ * @note 原始函数名：FUN_180225d1e
+ */
+uint32_t GetSystemInterruptRegister(void
 {
   int LockResult;
   int InputDataLength;
@@ -269912,7 +269967,16 @@ uint32_t FUN_180225d1e(void
 
 
 
-uint32_t FUN_180225d4a(void
+/**
+ * @brief 获取系统错误寄存器值
+ * 
+ * 该函数根据输入数据长度匹配系统关键字并返回对应的错误寄存器值：
+ * - 长度为0xb：匹配SystemKeywordPrimary，返回0x33
+ * 
+ * @return uint32_t 匹配成功返回对应的错误寄存器值，失败返回0
+ * @note 原始函数名：FUN_180225d4a
+ */
+uint32_t GetSystemErrorRegister(void
 {
   int LockResult;
   int InputDataLength;
