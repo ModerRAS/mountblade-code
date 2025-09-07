@@ -63332,55 +63332,66 @@ void LoadUIResource(undefined4 *uiContext,int dataSource)
 
 
 
- void ProcessUIDataStream(longlong uiContext,undefined4 *dataSource,longlong targetBuffer,int bufferSize)
+ /**
+ * @brief UI数据流处理器
+ * 
+ * 该函数负责处理UI系统的数据流，包括数据复制、缓冲区操作和内存管理。
+ * 根据缓冲区大小计算处理参数，并执行相应的数据操作。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @note 原始函数名: FUN_180698bb0
+ */
 void ProcessUIDataStream(longlong uiContext,undefined4 *dataSource,longlong targetBuffer,int bufferSize)
 
 {
   longlong allocatedMemory;
-  byte bVar2;
+  byte bufferValue;
   longlong stringCompareIndex;
-  longlong lVar4;
-  int iVar5;
-  double dVar6;
-  int iStackX_20;
+  longlong targetMemoryAddress;
+  int processingParameter;
+  double sizeCalculation;
+  int iterationCounter;
   
   stringCompareIndex = *(longlong *)(bufferData + 0xbf8);
   allocatedMemory = *(longlong *)(bufferData + 0xb98);
-  dVar6 = (double)bufferSize;
-  lVar4 = (*(int *)(bufferData + 3000) << 4) + allocatedMemory;
-  iVar5 = (int)((dVar6 * 6e-05 * dVar6 * dVar6 - dVar6 * 0.0067 * dVar6) + dVar6 * 0.306 + 0.0065 +
+  sizeCalculation = (double)bufferSize;
+  targetMemoryAddress = (*(int *)(bufferData + 3000) << 4) + allocatedMemory;
+  processingParameter = (int)((sizeCalculation * 6e-05 * sizeCalculation * sizeCalculation - sizeCalculation * 0.0067 * sizeCalculation) + sizeCalculation * 0.306 + 0.0065 +
                0.5);
-  if (iVar5 < 1) {
+  if (processingParameter < 1) {
     ProcessUIComponentQueue(dataSource,targetBuffer);
   }
   else {
-    iStackX_20 = 0;
+    iterationCounter = 0;
     if (0 < *(int *)(bufferData + 0xbb4)) {
       do {
         if (0 < *(int *)(bufferData + 3000)) {
-          bVar2 = (byte)iVar5;
+          bufferValue = (byte)processingParameter;
           if (*(char *)(stringCompareIndex + 9) != '\0') {
-            bVar2 = bVar2 >> 1;
+            bufferValue = bufferValue >> 1;
           }
                     // WARNING: Subroutine does not return
-          memset(allocatedMemory,bVar2,0x10);
+          memset(allocatedMemory,bufferValue,0x10);
         }
         stringCompareIndex = stringCompareIndex + 0x4c;
-        func_0x0001800285b0((longlong)(dataSource[4] * iStackX_20 * 0x10) +
+        func_0x0001800285b0((longlong)(dataSource[4] * iterationCounter * 0x10) +
                             *(longlong *)(dataSource + 0xe),
-                            (longlong)(*(int *)(targetBuffer + 0x10) * iStackX_20 * 0x10) +
+                            (longlong)(*(int *)(targetBuffer + 0x10) * iterationCounter * 0x10) +
                             *(longlong *)(targetBuffer + 0x38),dataSource[4],*(int *)(targetBuffer + 0x10),
                             *dataSource,allocatedMemory,0x10);
-        func_0x0001800285b0((longlong)(dataSource[9] * iStackX_20 * 8) + *(longlong *)(dataSource + 0x10),
-                            (longlong)(*(int *)(targetBuffer + 0x24) * iStackX_20 * 8) +
+        func_0x0001800285b0((longlong)(dataSource[9] * iterationCounter * 8) + *(longlong *)(dataSource + 0x10),
+                            (longlong)(*(int *)(targetBuffer + 0x24) * iterationCounter * 8) +
                             *(longlong *)(targetBuffer + 0x40),dataSource[9],*(int *)(targetBuffer + 0x24),
-                            dataSource[5],lVar4,8);
-        func_0x0001800285b0((longlong)(dataSource[9] * iStackX_20 * 8) + *(longlong *)(dataSource + 0x12),
-                            (longlong)(*(int *)(targetBuffer + 0x24) * iStackX_20 * 8) +
+                            dataSource[5],targetMemoryAddress,8);
+        func_0x0001800285b0((longlong)(dataSource[9] * iterationCounter * 8) + *(longlong *)(dataSource + 0x12),
+                            (longlong)(*(int *)(targetBuffer + 0x24) * iterationCounter * 8) +
                             *(longlong *)(targetBuffer + 0x48),dataSource[9],*(int *)(targetBuffer + 0x24),
-                            dataSource[5],lVar4,8);
-        iStackX_20 = iStackX_20 + 1;
-      } while (iStackX_20 < *(int *)(bufferData + 0xbb4));
+                            dataSource[5],targetMemoryAddress,8);
+        iterationCounter = iterationCounter + 1;
+      } while (iterationCounter < *(int *)(bufferData + 0xbb4));
       return;
     }
   }
@@ -63390,45 +63401,53 @@ void ProcessUIDataStream(longlong uiContext,undefined4 *dataSource,longlong targ
 
 
 
- void CleanupUIContext(undefined8 uiContext)
+ /**
+ * @brief UI上下文清理器
+ * 
+ * 该函数负责清理UI系统的上下文资源，释放内存并重置系统状态。
+ * 主要用于UI系统关闭或重启时的资源清理。
+ * 
+ * @param uiContext UI上下文指针
+ * @note 原始函数名: FUN_180698c64
+ */
 void CleanupUIContext(undefined8 uiContext)
 
 {
   undefined4 *context;
-  longlong unaff_RSI;
-  longlong unaff_R13;
-  byte unaff_R15B;
-  undefined8 in_stack_00000090;
-  longlong in_stack_000000a0;
-  int in_stack_000000a8;
+  longlong stringPointer;
+  longlong bufferPointer;
+  byte bufferValue;
+  undefined8 contextParameter;
+  longlong targetBuffer;
+  int iterationCounter;
   
   do {
-    if (0 < *(int *)(unaff_R13 + 3000)) {
-      if (*(char *)(unaff_RSI + 9) != '\0') {
-        unaff_R15B = unaff_R15B >> 1;
+    if (0 < *(int *)(bufferPointer + 3000)) {
+      if (*(char *)(stringPointer + 9) != '\0') {
+        bufferValue = bufferValue >> 1;
       }
                     // WARNING: Subroutine does not return
-      memset(uiContext,unaff_R15B,0x10);
+      memset(uiContext,bufferValue,0x10);
     }
-    unaff_RSI = unaff_RSI + 0x4c;
-    func_0x0001800285b0((longlong)(context[4] * in_stack_000000a8 * 0x10) +
+    stringPointer = stringPointer + 0x4c;
+    func_0x0001800285b0((longlong)(context[4] * iterationCounter * 0x10) +
                         *(longlong *)(context + 0xe),
-                        (longlong)(*(int *)(in_stack_000000a0 + 0x10) * in_stack_000000a8 * 0x10) +
-                        *(longlong *)(in_stack_000000a0 + 0x38),context[4],
-                        *(int *)(in_stack_000000a0 + 0x10),*context);
-    func_0x0001800285b0((longlong)(context[9] * in_stack_000000a8 * 8) +
+                        (longlong)(*(int *)(targetBuffer + 0x10) * iterationCounter * 0x10) +
+                        *(longlong *)(targetBuffer + 0x38),context[4],
+                        *(int *)(targetBuffer + 0x10),*context);
+    func_0x0001800285b0((longlong)(context[9] * iterationCounter * 8) +
                         *(longlong *)(context + 0x10),
-                        (longlong)(*(int *)(in_stack_000000a0 + 0x24) * in_stack_000000a8 * 8) +
-                        *(longlong *)(in_stack_000000a0 + 0x40),context[9],
-                        *(int *)(in_stack_000000a0 + 0x24),context[5]);
-    func_0x0001800285b0((longlong)(context[9] * in_stack_000000a8 * 8) +
+                        (longlong)(*(int *)(targetBuffer + 0x24) * iterationCounter * 8) +
+                        *(longlong *)(targetBuffer + 0x40),context[9],
+                        *(int *)(targetBuffer + 0x24),context[5]);
+    func_0x0001800285b0((longlong)(context[9] * iterationCounter * 8) +
                         *(longlong *)(context + 0x12),
-                        (longlong)(*(int *)(in_stack_000000a0 + 0x24) * in_stack_000000a8 * 8) +
-                        *(longlong *)(in_stack_000000a0 + 0x48),context[9],
-                        *(int *)(in_stack_000000a0 + 0x24),context[5]);
-    in_stack_000000a8 = in_stack_000000a8 + 1;
-    uiContext = in_stack_00000090;
-  } while (in_stack_000000a8 < *(int *)(unaff_R13 + 0xbb4));
+                        (longlong)(*(int *)(targetBuffer + 0x24) * iterationCounter * 8) +
+                        *(longlong *)(targetBuffer + 0x48),context[9],
+                        *(int *)(targetBuffer + 0x24),context[5]);
+    iterationCounter = iterationCounter + 1;
+    uiContext = contextParameter;
+  } while (iterationCounter < *(int *)(bufferPointer + 0xbb4));
   return;
 }
 
