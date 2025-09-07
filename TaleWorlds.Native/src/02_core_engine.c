@@ -487,6 +487,7 @@
  * @note 原始函数名：FUN_1801359f0
  */
 #define ProcessCharacterTable FUN_1801359f0
+#define AllocateSystemMemoryPool FUN_180135260
 
 /**
  * @brief 内存地址掩码处理函数
@@ -167903,7 +167904,7 @@ LAB_18013b999:
   }
   SystemCheckResult = ValidateSystemComponentsAndInitialize();
   if (SystemCheckResult != '\0') {
-    FUN_180135260(VectorRegisterDa,alStackX_8);
+    AllocateSystemMemoryPool(VectorRegisterDa,alStackX_8);
     CharacterTablePointer = SystemConfigurationHandle;
     if ((*(byte *)(SystemConfigurationHandle + 0x1dd4) & 1) == 0) {
       FinalizeSystemEventQueue();
@@ -167932,7 +167933,7 @@ void InitializeUtf8SystemSynchronization(void)
 {
   long long PrimaryDataSize;
   
-  FUN_180135260();
+  AllocateSystemMemoryPool();
   CharacterTablePointer = SystemConfigurationHandle;
   if ((*(byte *)(SystemConfigurationHandle + 0x1dd4) & 1) == 0) {
     FinalizeSystemEventQueue();
@@ -168052,7 +168053,7 @@ LAB_18013bc9b:
                               *(float *)(CharacterCode + 0x40) + *(float *)(CharacterCode + 0x48));
       }
       else {
-        SystemDataTablePointer = FUN_18013af10(*(long long *)(CharacterCode + 0x410),*(void *)(CharacterTablePointer5 + 0x118));
+        SystemDataTablePointer = ProcessCharacterCode(*(long long *)(CharacterCode + 0x410),*(void *)(CharacterTablePointer5 + 0x118));
 LAB_18013bc7c:
         SystemContextValue = SystemDataTablePointer;
         IsSystemContextValid = false;
