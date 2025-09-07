@@ -148,6 +148,9 @@
 // UI系统函数宏定义 - 更新UI渲染
 #define UpdateUIRendering FUN_1807808b0
 
+// UI系统函数宏定义 - 处理UI上下文数据缓冲区管理
+#define ProcessUIContextDataBufferManagement FUN_180723131
+
 // UI系统函数宏定义 - 清理UI内存
 #define CleanupUIMemory FUN_180780a6e
 
@@ -93526,68 +93529,68 @@ LAB_18072312c:
 void ProcessUIContextDataBufferManagement(undefined8 uiContext, int dataSource, int targetBuffer)
 
 {
-  longlong *pallocatedMemory;
-  char localChar2;
-  uint EventTypeCode;
-  uint ProcessingStatus;
-  longlong *unmodifiedRDI;
-  uint LoopCounter;
+  longlong *MemoryAllocationPointer;
+  char SignExtensionChar;
+  uint EventStatusCode;
+  uint ContextProcessingStatus;
+  longlong *UIContextPointer;
+  uint ContextLoopCounter;
   
-  LoopCounter = *(uint *)(unmodifiedRDI + 4);
-  ProcessingStatus = LoopCounter >> 0xf;
+  ContextLoopCounter = *(uint *)(UIContextPointer + 4);
+  ContextProcessingStatus = ContextLoopCounter >> 0xf;
   if (dataSource == 0) {
-    *(uint *)(unmodifiedRDI + 4) = LoopCounter - (0x8000 - (targetBuffer + dataSource)) * ProcessingStatus;
+    *(uint *)(UIContextPointer + 4) = ContextLoopCounter - (0x8000 - (targetBuffer + dataSource)) * ContextProcessingStatus;
   }
   else {
-    *(int *)((longlong)unmodifiedRDI + 0x24) =
-         *(int *)((longlong)unmodifiedRDI + 0x24) + (LoopCounter - (0x8000 - dataSource) * ProcessingStatus);
-    *(uint *)(unmodifiedRDI + 4) = ((targetBuffer + dataSource) - dataSource) * ProcessingStatus;
+    *(int *)((longlong)UIContextPointer + 0x24) =
+         *(int *)((longlong)UIContextPointer + 0x24) + (ContextLoopCounter - (0x8000 - dataSource) * ContextProcessingStatus);
+    *(uint *)(UIContextPointer + 4) = ((targetBuffer + dataSource) - dataSource) * ContextProcessingStatus;
   }
-  if (*(uint *)(unmodifiedRDI + 4) < 0x800001) {
-    LoopCounter = *(uint *)((longlong)unmodifiedRDI + 0x24);
+  if (*(uint *)(UIContextPointer + 4) < 0x800001) {
+    ContextLoopCounter = *(uint *)((longlong)UIContextPointer + 0x24);
     do {
-      if (LoopCounter >> 0x17 == 0xff) {
-        *(int *)(unmodifiedRDI + 5) = (int)unmodifiedRDI[5] + 1;
+      if (ContextLoopCounter >> 0x17 == 0xff) {
+        *(int *)(UIContextPointer + 5) = (int)UIContextPointer[5] + 1;
       }
       else {
-        localChar2 = (char)((int)LoopCounter >> 0x1f);
-        if (-1 < *(int *)((longlong)unmodifiedRDI + 0x2c)) {
-          if (*(int *)((longlong)unmodifiedRDI + 0xc) + *(uint *)((longlong)unmodifiedRDI + 0x1c) <
-              *(uint *)(unmodifiedRDI + 1)) {
-            *(char *)((ulonglong)*(uint *)((longlong)unmodifiedRDI + 0x1c) + *unmodifiedRDI) =
-                 (char)*(int *)((longlong)unmodifiedRDI + 0x2c) - localChar2;
-            *(int *)((longlong)unmodifiedRDI + 0x1c) = *(int *)((longlong)unmodifiedRDI + 0x1c) + 1;
-            ProcessingStatus = 0;
+        SignExtensionChar = (char)((int)ContextLoopCounter >> 0x1f);
+        if (-1 < *(int *)((longlong)UIContextPointer + 0x2c)) {
+          if (*(int *)((longlong)UIContextPointer + 0xc) + *(uint *)((longlong)UIContextPointer + 0x1c) <
+              *(uint *)(UIContextPointer + 1)) {
+            *(char *)((ulonglong)*(uint *)((longlong)UIContextPointer + 0x1c) + *UIContextPointer) =
+                 (char)*(int *)((longlong)UIContextPointer + 0x2c) - SignExtensionChar;
+            *(int *)((longlong)UIContextPointer + 0x1c) = *(int *)((longlong)UIContextPointer + 0x1c) + 1;
+            ContextProcessingStatus = 0;
           }
           else {
-            ProcessingStatus = 0xffffffff;
+            ContextProcessingStatus = 0xffffffff;
           }
-          *(uint *)(unmodifiedRDI + 6) = *(uint *)(unmodifiedRDI + 6) | ProcessingStatus;
+          *(uint *)(UIContextPointer + 6) = *(uint *)(UIContextPointer + 6) | ContextProcessingStatus;
         }
-        if ((int)unmodifiedRDI[5] != 0) {
-          ProcessingStatus = *(uint *)((longlong)unmodifiedRDI + 0x1c);
+        if ((int)UIContextPointer[5] != 0) {
+          ContextProcessingStatus = *(uint *)((longlong)UIContextPointer + 0x1c);
           do {
-            if (*(int *)((longlong)unmodifiedRDI + 0xc) + ProcessingStatus < *(uint *)(unmodifiedRDI + 1)) {
-              *(char *)((ulonglong)ProcessingStatus + *unmodifiedRDI) = -1 - localChar2;
-              *(int *)((longlong)unmodifiedRDI + 0x1c) = *(int *)((longlong)unmodifiedRDI + 0x1c) + 1;
-              ProcessingStatus = *(uint *)((longlong)unmodifiedRDI + 0x1c);
-              EventTypeCode = 0;
+            if (*(int *)((longlong)UIContextPointer + 0xc) + ContextProcessingStatus < *(uint *)(UIContextPointer + 1)) {
+              *(char *)((ulonglong)ContextProcessingStatus + *UIContextPointer) = -1 - SignExtensionChar;
+              *(int *)((longlong)UIContextPointer + 0x1c) = *(int *)((longlong)UIContextPointer + 0x1c) + 1;
+              ContextProcessingStatus = *(uint *)((longlong)UIContextPointer + 0x1c);
+              EventStatusCode = 0;
             }
             else {
-              EventTypeCode = 0xffffffff;
+              EventStatusCode = 0xffffffff;
             }
-            *(uint *)(unmodifiedRDI + 6) = *(uint *)(unmodifiedRDI + 6) | EventTypeCode;
-            pallocatedMemory = unmodifiedRDI + 5;
-            *(int *)pallocatedMemory = (int)*pallocatedMemory + -1;
-          } while ((int)*pallocatedMemory != 0);
+            *(uint *)(UIContextPointer + 6) = *(uint *)(UIContextPointer + 6) | EventStatusCode;
+            MemoryAllocationPointer = UIContextPointer + 5;
+            *(int *)MemoryAllocationPointer = (int)*MemoryAllocationPointer + -1;
+          } while ((int)*MemoryAllocationPointer != 0);
         }
-        *(uint *)((longlong)unmodifiedRDI + 0x2c) = LoopCounter >> 0x17 & 0xff;
+        *(uint *)((longlong)UIContextPointer + 0x2c) = ContextLoopCounter >> 0x17 & 0xff;
       }
-      *(int *)(unmodifiedRDI + 4) = (int)unmodifiedRDI[4] << 8;
-      *(int *)(unmodifiedRDI + 3) = (int)unmodifiedRDI[3] + 8;
-      LoopCounter = (*(uint *)((longlong)unmodifiedRDI + 0x24) & 0x7fffff) << 8;
-      *(uint *)((longlong)unmodifiedRDI + 0x24) = LoopCounter;
-    } while (*(uint *)(unmodifiedRDI + 4) < 0x800001);
+      *(int *)(UIContextPointer + 4) = (int)UIContextPointer[4] << 8;
+      *(int *)(UIContextPointer + 3) = (int)UIContextPointer[3] + 8;
+      ContextLoopCounter = (*(uint *)((longlong)UIContextPointer + 0x24) & 0x7fffff) << 8;
+      *(uint *)((longlong)UIContextPointer + 0x24) = ContextLoopCounter;
+    } while (*(uint *)(UIContextPointer + 4) < 0x800001);
   }
   return;
 }
