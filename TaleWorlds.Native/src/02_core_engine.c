@@ -121898,7 +121898,7 @@ LAB_180125a82:
   pcStack_68 = FUN_18013cf40;
   pcStack_60 = FUN_18013d010;
   pcStack_58 = FUN_18013d200;
-  FUN_18013dc40(CharacterCode + 0x2e18,&CoreEnginePointerBuffer78,pIsSystemContextValid,MemoryAllocationIndex,0xfffffffffffffffe);
+  ProcessCharacterEncodingBuffer(CharacterCode + 0x2e18,&CoreEnginePointerBuffer78,pIsSystemContextValid,MemoryAllocationIndex,0xfffffffffffffffe);
   if (SystemDataConfiguration != 0) {
     *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + 1;
   }
@@ -167042,7 +167042,7 @@ long long FUN_18013d540(void
 
 
 
-3dc40(int *CharacterCode,uint64_t *CharacterCodeSizevoid FUN_18013dc40(int *CharacterCode,uint64_t *CharacterCodeSize
+3dc40(int *CharacterCode,uint64_t *CharacterCodeSizevoid ProcessCharacterEncodingBuffer(int *CharacterCode,uint64_t *CharacterCodeSize
 {
   uint64_t *StatusBuffer;
   int CharacterByteCount;
@@ -243927,7 +243927,7 @@ LAB_180214378:
           ProcessingStatus = 0;
           cStack_180 = OperationStatus;
           cStack_178 = OperationStatus;
-          MemoryPoolBlockSizePointer = (long long *)FUN_1801580f0(CharacterCode,&pLocalDataStructure160,&UNK_180a104d0,*pSystemDataTablePointer + 0x18);
+          MemoryPoolBlockSizePointer = (long long *)FUN_1801580f0(CharacterCode,&pLocalDataStructure160,&SystemDataBufferPointerPrimary,*pSystemDataTablePointer + 0x18);
           loopCounter = *MemoryPoolBlockSizePointer;
           *MemoryPoolBlockSizePointer = 0;
           plStack_158 = (long long *)*pSystemDataTablePointer;
@@ -243947,7 +243947,7 @@ LAB_180214378:
     } while (SystemStringIndex != 0);
   }
   if (-1 < *(int *)(*(long long *)(SystemDataTabled0 + 0x2018) + 0x330)) {
-    FUN_1808451c0(CharacterCode[0x6d],&UNK_180a108b0,&plStack_150);
+    FUN_1808451c0(CharacterCode[0x6d],&SystemDataBufferPointerQuaternary,&plStack_150);
     FUN_1808453c0(plStack_150,&plStack_158);
     if (plStack_158 == (long long *)0x0) {
       *(uint8_t *)((long long)CharacterCode + 0x401) = 1;
@@ -244005,7 +244005,7 @@ LAB_180214378:
   }
   if (*(char *)(CharacterCode + 0x42) == '\0') {
     DataSize = FUN_18084b410(CharacterCode[0x6d]);
-    FUN_180211a30(DataSize,&UNK_180a10878);
+    FUN_180211a30(DataSize,&SystemDataBufferPointerTertiary);
   }
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)aSystemValue1a8);
@@ -270009,7 +270009,16 @@ long long FUN_18022e5f7(void
 
 
 
-uint8_t FUN_18022e79c(char CharacterCode
+/**
+ * @brief 验证字符代码有效性
+ * 
+ * 该函数用于验证字符代码是否有效，检查字符是否为空字符。
+ * 这是一个基础的字符验证函数，用于确保字符数据的有效性。
+ * 
+ * @param CharacterCode 要验证的字符代码
+ * @return uint8_t 返回1表示字符有效，0表示字符无效（空字符）
+ */
+uint8_t ValidateCharacterCode(char CharacterCode)
 {
   if (CharacterCode != '\0') {
     return 1;
@@ -270020,7 +270029,16 @@ uint8_t FUN_18022e79c(char CharacterCode
 
 
 
-2e7d0(unsigned long long *CharacterCode,long long CharacterCodeSizevoid FUN_18022e7d0(unsigned long long *CharacterCode,long long CharacterCodeSize
+/**
+ * @brief 处理字符代码哈希计算
+ * 
+ * 该函数负责处理字符代码的哈希计算，使用多重哈希算法来确保数据的唯一性。
+ * 这个函数主要用于系统数据的安全性和完整性验证。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小
+ */
+void ProcessCharacterCodeHash(unsigned long long *CharacterCode,long long CharacterCodeSize
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryAllocationIndex;
@@ -272505,5 +272523,15 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_1801609be
  */
 #define ProcessUtf16EncodingData FUN_1801609be
+
+/**
+ * @brief 处理字符编码数据缓冲区
+ * 
+ * 该函数负责处理字符编码数据的缓冲区管理，
+ * 包括内存分配、数据复制和缓冲区扩展。
+ * 
+ * @note 原始函数名：FUN_18013dc40
+ */
+#define ProcessCharacterEncodingBuffer FUN_18013dc40
 
 
