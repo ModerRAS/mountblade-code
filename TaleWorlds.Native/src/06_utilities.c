@@ -4290,33 +4290,33 @@ extern uint32_t SystemIntegrityValidationFlag;
 // 功能：存储系统主要资源分配表
 extern void* SystemPrimaryResourceTable;
 
-// 全局异常处理器指针A1
+// 系统异常处理器指针A1
 // 功能：存储全局异常处理器A1的指针
-#define GlobalExceptionHandlerPointerA1 DAT_180bf9390
+#define SystemGlobalExceptionHandlerA1 DAT_180bf9390
 
-// 全局异常处理器指针A2
+// 系统异常处理器指针A2
 // 功能：存储全局异常处理器A2的指针
-#define GlobalExceptionHandlerPointerA2 DAT_180bf93f0
+#define SystemGlobalExceptionHandlerA2 DAT_180bf93f0
 
-// 全局异常处理器指针A3
+// 系统异常处理器指针A3
 // 功能：存储全局异常处理器A3的指针
-#define GlobalExceptionHandlerPointerA3 DAT_180bf9450
+#define SystemGlobalExceptionHandlerA3 DAT_180bf9450
 
-// 全局异常处理器指针A4
+// 系统异常处理器指针A4
 // 功能：存储全局异常处理器A4的指针
-#define GlobalExceptionHandlerPointerA4 DAT_180bf94b0
+#define SystemGlobalExceptionHandlerA4 DAT_180bf94b0
 
-// 全局异常处理器指针A5
+// 系统异常处理器指针A5
 // 功能：存储全局异常处理器A5的指针
-#define GlobalExceptionHandlerPointerA5 DAT_180bf9510
+#define SystemGlobalExceptionHandlerA5 DAT_180bf9510
 
-// 全局异常处理器指针A6
+// 系统异常处理器指针A6
 // 功能：存储全局异常处理器A6的指针
-#define GlobalExceptionHandlerPointerA6 DAT_180bf9570
+#define SystemGlobalExceptionHandlerA6 DAT_180bf9570
 
-// 全局异常处理器指针A7
+// 系统异常处理器指针A7
 // 功能：存储全局异常处理器A7的指针
-#define GlobalExceptionHandlerPointerA7 DAT_180bf95d0
+#define SystemGlobalExceptionHandlerA7 DAT_180bf95d0
 
 // 全局异常处理器指针A8
 // 功能：存储全局异常处理器A8的指针
@@ -4356,15 +4356,15 @@ extern void* SystemPrimaryResourceTable;
 
 // 工具系统异常处理器指针5
 // 功能：存储工具系统的异常处理器指针5
-#define UtilitySystemExceptionHandlerPointer5 DAT_180bf5c30
+#define SystemUtilityExceptionHandlerA5 DAT_180bf5c30
 
 // 工具系统异常处理器指针6
 // 功能：存储工具系统的异常处理器指针6
-#define UtilitySystemExceptionHandlerPointer6 DAT_180bf6080
+#define SystemUtilityExceptionHandlerA6 DAT_180bf6080
 
 // 系统句柄指针
 // 功能：存储系统句柄的指针
-#define SystemHandlePointer DAT_180c91900
+#define SystemGlobalHandlePointer DAT_180c91900
 
 // 原始函数名：Unwind_180906dd0 - 系统验证清理函数A0
 // 功能：清理系统验证相关的数据和资源
@@ -9479,7 +9479,7 @@ uint8_t SystemDataProcessingAreaA2;
 // 功能：用于处理系统数据的区域
 uint8_t SystemDataProcessingAreaA3;
 // 系统配置数据存储
-#define SystemConfigurationDataStorage DAT_180c91d14
+#define SystemGlobalConfigurationData DAT_180c91d14
 uint8_t SystemConfigurationDataStorage;  
 // 系统清理处理器数据存储
 uint8_t SystemCleanupHandlerDataStore;
