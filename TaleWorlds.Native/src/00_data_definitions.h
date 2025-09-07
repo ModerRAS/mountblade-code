@@ -4714,7 +4714,7 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
     }
   }
   InitializePhysicsSystem();
-  LongCounter = SystemEngineContext;
+  SystemEngineContextCounter = SystemEngineContext;
   if (SystemEngineContext != 0) {
     InitializeFileSystem(SystemEngineContext);
     SystemBufferValidate(LongCounter);
@@ -12064,16 +12064,16 @@ uint64_t SystemMemoryAllocate(uint64_t MemorySize)
 }
 uint64_t SystemMemoryResize(uint64_t MemoryAddress, uint64_t NewSize)
 {
-  int64_t ModuleInitializationResult;
+  int64_t MemoryValidationResult;
   uint64_t BufferSize;
-  ModuleInitializationResult = MemoryValidateEx();
-  BufferSize = ResizeSystemBuffer(SystemMemoryAllocator,memoryAddress,newSize,0x19);
+  MemoryValidationResult = MemoryValidateEx(MemoryAddress);
+  BufferSize = ResizeSystemBuffer(SystemMemoryAllocator,MemoryAddress,NewSize,0x19);
   LOCK();
-  SystemInitializationCounter = SystemInitializationCounter - ModuleInitializationResult;
+  SystemInitializationCounter = SystemInitializationCounter - MemoryValidationResult;
   UNLOCK();
-  ModuleInitializationResult = MemoryValidateEx(BufferSize);
+  MemoryValidationResult = MemoryValidateEx(BufferSize);
   LOCK();
-  SystemInitializationCounter = SystemInitializationCounter + ModuleInitializationResult;
+  SystemInitializationCounter = SystemInitializationCounter + MemoryValidationResult;
   UNLOCK();
   return BufferSize;
 }
