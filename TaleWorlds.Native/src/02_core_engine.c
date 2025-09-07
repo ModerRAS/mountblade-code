@@ -3589,6 +3589,10 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define SetupMemoryValidation FUN_180110c4b
 #define ConfigureMemoryFlags FUN_180110c5d
 
+// 系统内存池管理函数
+#define ManageSystemMemoryPool FUN_18022dd60
+#define ProcessSystemMemoryAllocation FUN_18022dfe0
+
 // 系统内存上下文处理函数
 #define ProcessSystemMemoryContext FUN_18005ca20
 #define ProcessSystemMemoryAddressMask FUN_18006b4c0
@@ -126464,7 +126468,15 @@ LAB_180127fd0:
 
 
 
-7e4e(voidvoid FUN_180127e4e(void
+/**
+ * @brief 处理字符表数据筛选
+ * 
+ * 该函数负责从字符表中筛选符合条件的数据节点
+ * 根据字符属性和帧寄存器指针进行条件判断
+ * 
+ * @note 原始函数名：FUN_180127e4e
+ */
+void ProcessCharacterTableDataFiltering(void)
 {
   long long PrimaryDataSize;
   long long ProcessingResult;
@@ -126554,7 +126566,15 @@ LAB_180127fd0:
 
 
 
-7fe8(voidvoid FUN_180127fe8(void
+/**
+ * @brief 更新系统寄存器状态
+ * 
+ * 该函数负责更新系统寄存器的状态信息
+ * 处理帧指针、数据节点和通用寄存器的数据更新
+ * 
+ * @note 原始函数名：FUN_180127fe8
+ */
+void UpdateSystemRegisterStatus(void)
 {
   uint64_t FrameRegisterPointer;
   uint64_t DataNodeIndex;
@@ -126563,6 +126583,7 @@ LAB_180127fd0:
   long long in_R11;
   uint64_t GeneralRegister14;
   
+  // 更新系统参数到寄存器
   *(long long *)(SystemRegisterR10 + 0x1b00) = SystemParameter;
   if (SystemParameter != 0) {
     FrameRegisterPointer = *(void *)(SystemParameter + 0x3a0);
@@ -252321,7 +252342,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
   else {
     FUN_180226020(Utf8BufferSize,&CoreEngineValue148);
   }
-  (**(code **)(CoreEngineValue148 + 0x10))(&CoreEngineValue148,&UNK_180a13320);
+  (**(code **)(CoreEngineValue148 + 0x10))(&CoreEngineValue148,&SystemProcessingParameterA);
   (**(code **)(OperationStatus + 0x10))(&OperationStatus,&DataReferencePointerA);
   PrimaryProcessingStatusFlag = (void **)Utf8BufferSize[1];
   if (PrimaryProcessingStatusFlag < (void **)Utf8BufferSize[2]) {
@@ -270017,7 +270038,7 @@ LAB_18022d7ef:
 
 
 
-long long FUN_18022dd60(long long CharacterCode
+long long ManageSystemMemoryPool(long long CharacterCode
 {
   unsigned long long *StatusBuffer;
   void *PrimaryProcessingStatusFlag;
@@ -270124,7 +270145,7 @@ LAB_18022de69:
 
 
 
-2dfe0(long long CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointervoid FUN_18022dfe0(long long CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer
+long long ProcessSystemMemoryAllocation(long long CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer
 {
   uint Utf16Char;
   uint64_t MemoryAllocationIndex;
@@ -273140,6 +273161,21 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_18013dc40
  */
 #define ProcessCharacterEncodingBuffer FUN_18013dc40
+
+/**
+ * @brief 处理系统浮点运算和矩阵变换
+ * 
+ * 该函数负责处理系统中的浮点数运算、矩阵变换和内存管理操作。
+ * 主要功能包括：
+ * - 系统上下文浮点参数的初始化和更新
+ * - 矩阵变换的计算和应用
+ * - 内存分配和数据结构管理
+ * - 系统状态的监控和调整
+ * - 字符编码和转换处理
+ * 
+ * @note 原始函数名：FUN_180131dad
+ */
+#define ProcessSystemFloatingPointOperationsAndMatrixTransformations FUN_180131dad
 
 /**
  * @brief 处理高级字符编码转换
