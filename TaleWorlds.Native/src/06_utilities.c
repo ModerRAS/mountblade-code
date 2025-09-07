@@ -27670,7 +27670,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
         arrayIndex = 0;
         if (validationStatus >> 1 != 0) {
           do {
-            loopIndex = ExecuteSystemInitializationOperation(dataBuffer,auStackX_18[0]);
+            loopIndex = ExecuteSystemInitializationOperation(dataBuffer,securityValidationBuffer[0]);
             if (loopIndex != 0) {
               return;
             }
@@ -27689,7 +27689,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
             if (loopIndex != 0) {
               return;
             }
-            loopIndex = ExecuteSystemCleanupOperation(dataBuffer,auStackX_18);
+            loopIndex = ExecuteSystemCleanupOperation(dataBuffer,securityValidationBuffer);
             if (loopIndex != 0) {
               return;
             }
