@@ -6495,13 +6495,13 @@ void* SystemCalculationBaseAddress;    // 系统计算基础地址
 #define StackInputParameterValidation StackInputParameterE    // 栈输入参数验证变量
 #define StackFloatValuePrimary StackFloatValueA    // 栈浮点值主变量
 #define StackFloatValueSecondary StackFloatValueB    // 栈浮点值次变量
-#define StackDataBufferA StackDataBufferA    // 栈数据缓冲区A
-#define StackDataBufferB StackDataBufferB    // 栈数据缓冲区B
-#define StackDataBufferC StackDataBufferC    // 栈数据缓冲区C
-#define StackDataBufferD StackDataBufferD    // 栈数据缓冲区D
-#define StackDataBufferE StackDataBufferE    // 栈数据缓冲区E
-#define StackDataBufferF StackDataBufferF    // 栈数据缓冲区F
-#define StackDataBufferG StackDataBufferG    // 栈数据缓冲区G
+#define StackDataBufferPrimary StackDataBufferA    // 栈数据缓冲区主变量
+#define StackDataBufferSecondary StackDataBufferB    // 栈数据缓冲区次变量
+#define StackDataBufferTertiary StackDataBufferC    // 栈数据缓冲区第三变量
+#define StackDataBufferQuaternary StackDataBufferD    // 栈数据缓冲区第四变量
+#define StackDataBufferQuinary StackDataBufferE    // 栈数据缓冲区第五变量
+#define StackDataBufferSenary StackDataBufferF    // 栈数据缓冲区第六变量
+#define StackDataBufferSeptenary StackDataBufferG    // 栈数据缓冲区第七变量
 
 // 异常处理系统全局变量
 void* ExceptionHandlerTablePointer;        // 异常处理器表指针

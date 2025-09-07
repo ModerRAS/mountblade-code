@@ -1057,6 +1057,38 @@ const void* const SystemPhysicsFunctionPointerB = (void*)0x180a0cb40;
 const void* const SystemEventBufferPrimary = (void*)0x180a08850;
 const void* const SystemEventBufferSecondary = (void*)0x180a08868;
 const void* const SystemEventBufferTertiary = (void*)0x180a08898;
+
+// 系统配置数据模板常量 - 用于替换UNK_180a02158等变量
+const void* const SystemConfigurationDataTemplateA = (void*)0x180a02158;
+const void* const SystemConfigurationDataTemplateB = (void*)0x180a02060;
+const void* const SystemConfigurationDataTemplateC = (void*)0x180a13340;
+const void* const SystemConfigurationDataTemplateD = (void*)0x180a132f0;
+const void* const SystemConfigurationDataTemplateE = (void*)0x180a13308;
+const void* const SystemConfigurationDataTemplateF = (void*)0x180a133a0;
+const void* const SystemConfigurationDataTemplateG = (void*)0x180a133b0;
+const void* const SystemConfigurationDataTemplateH = (void*)0x180a13360;
+const void* const SystemConfigurationDataTemplateI = (void*)0x180a13378;
+const void* const SystemConfigurationDataTemplateJ = (void*)0x180a133f8;
+const void* const SystemConfigurationDataTemplateK = (void*)0x180a13410;
+const void* const SystemConfigurationDataTemplateL = (void*)0x180a133c8;
+const void* const SystemConfigurationDataTemplateM = (void*)0x180a133e0;
+const void* const SystemConfigurationDataTemplateN = (void*)0x180a13470;
+const void* const SystemConfigurationDataTemplateO = (void*)0x180a13488;
+const void* const SystemConfigurationDataTemplateP = (void*)0x180a13430;
+const void* const SystemConfigurationDataTemplateQ = (void*)0x180a13450;
+const void* const SystemConfigurationDataTemplateR = (void*)0x180a135b8;
+
+// 系统处理状态标志常量 - 用于替换UNK_180a0d1e8等变量
+const void* const SystemSecondaryProcessingStatusFlagA = (void*)0x180a0d1e8;
+const void* const SystemSecondaryProcessingStatusFlagB = (void*)0x180a0d1a0;
+const void* const SystemSecondaryProcessingStatusFlagC = (void*)0x180a0d1b8;
+const void* const SystemSecondaryProcessingStatusFlagD = (void*)0x180a0d238;
+const void* const SystemSecondaryProcessingStatusFlagE = (void*)0x180a0d280;
+const void* const SystemSecondaryProcessingStatusFlagF = (void*)0x180a0d200;
+const void* const SystemSecondaryProcessingStatusFlagG = (void*)0x180a0d218;
+
+// 系统字符串常量 - 用于替换UNK_180a0d530等变量
+const char* const SystemFunctionAddressString = (const char*)0x180a0d530;
 const void* const SystemEventBufferQuaternary = (void*)0x180a088d8;
 const void* const SystemEventBufferQuinary = (void*)0x180a088ec;
 const void* const SystemEventBufferSenary = (void*)0x180a088f4;
@@ -252401,7 +252433,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
   CoreEngineSignedValueE8 = 0;
   SystemFlagE = 0;
   CoreEnginePointerBuffer158 = Utf8BufferSize;
-  FUN_180049bf0(&CoreEngineValue148,&UNK_180a02158);
+  CopyAndInitializeSystemDataStructure(&CoreEngineValue148,SystemConfigurationDataTemplateA);
   (**(code **)(OperationStatus + 0x10))(&OperationStatus,&DataReferencePointerA);
   PrimaryProcessingStatusFlag = (void **)Utf8BufferSize[1];
   if (PrimaryProcessingStatusFlag < (void **)Utf8BufferSize[2]) {
