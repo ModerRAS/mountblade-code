@@ -147321,11 +147321,12 @@ void EmptyOperation2(void)
  * 该函数负责处理系统数据过滤，包括浮点数计算和滤波处理。
  * 在核心引擎中用于数据过滤操作。
  * 
+ * @param FilterInputValue 输入的过滤值
  * @note 原始函数名：FUN_18012f94a
  */
 #define ProcessSystemDataFiltering FUN_18012f94a
 
-void ProcessSystemDataFiltering(void)
+void ProcessSystemDataFiltering(float FilterInputValue)
 {
   long long RegisterFramePointer;
   uint64_t *DataNodeIndex;
