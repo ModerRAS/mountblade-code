@@ -80113,47 +80113,96 @@ void Unwind_18090a7d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 系统展开处理函数A2
+ * 
+ * 执行系统展开操作，通过异常处理上下文指针执行相应的回调函数。
+ * 该函数负责在展开过程中调用特定上下文的清理函数。
+ * 
+ * @param operationBase 操作基础地址，用于展开处理的上下文
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090a7e0
+ * @note 该函数在异常展开过程中被调用，用于执行上下文相关的清理操作
+ */
 void Unwind_18090a7e0(DataBuffer operationBase,int64_t dataBuffer)
-
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取异常处理上下文指针
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffsetA0) + 0x20);
+  
+  // 检查并执行上下文回调函数
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
+  
   return;
 }
 
 
 
+/**
+ * @brief 系统展开处理函数A3
+ * 
+ * 执行系统展开操作，遍历数据上下文并执行相应的回调函数。
+ * 该函数负责在展开过程中处理多个数据上下文的清理工作。
+ * 
+ * @param operationBase 操作基础地址，用于展开处理的上下文
+ * @param dataBuffer 数据缓冲区指针，包含数据上下文和异常处理信息
+ * 
+ * @note 原始函数名：Unwind_18090a7f0
+ * @note 该函数在异常展开过程中被调用，用于批量处理数据上下文的清理操作
+ */
 void Unwind_18090a7f0(DataBuffer operationBase,int64_t dataBuffer)
-
 {
   int64_t *exceptionHandlerContextPointer;
   int64_t *dataContext;
   
+  // 获取异常处理上下文指针
   exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x38);
+  
+  // 遍历数据上下文并执行回调函数
   for (dataContext = *(int64_t **)(dataBuffer + 0x30); dataContext != exceptionHandlerContextPointer; dataContext = dataContext + 1) {
     if ((int64_t *)*dataContext != (int64_t *)0x0) {
       (**(FunctionPointer**)(*(int64_t *)*dataContext + 0x38))();
     }
   }
+  
+  // 检查数据上下文状态
   if (*(int64_t *)(dataBuffer + 0x30) == 0) {
     return;
   }
-    TerminateSystemE0();
+  
+  // 终止系统执行
+  TerminateSystemE0();
 }
 
 
 
+/**
+ * @brief 系统展开处理函数A4
+ * 
+ * 执行系统展开操作，检查内存指针状态并执行数据验证。
+ * 该函数负责在展开过程中处理内存指针的标志位和数据验证工作。
+ * 
+ * @param operationBase 操作基础地址，用于展开处理的上下文
+ * @param dataBuffer 数据缓冲区指针，包含内存指针和数据验证信息
+ * 
+ * @note 原始函数名：Unwind_18090a800
+ * @note 该函数在异常展开过程中被调用，用于处理内存指针的状态和验证
+ */
 void Unwind_18090a800(DataBuffer operationBase,int64_t dataBuffer)
-
 {
+  // 检查内存指针标志位
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
+    // 清除内存指针标志位
     *(uint *)(dataBuffer + MemoryPointerOffset) = *(uint *)(dataBuffer + MemoryPointerOffset) & 0xfffffffe;
+    
+    // 执行数据验证处理
     ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x68));
   }
+  
   return;
 }
 
