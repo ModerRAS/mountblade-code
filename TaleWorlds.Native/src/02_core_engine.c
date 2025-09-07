@@ -39200,12 +39200,12 @@ void ManageBufferIndexllocation(long long *CharacterCode
   SystemDataRegistry = *CharacterCode;
   StringProcessingStatus = (void *)CharacterCode[1];
   MemoryBlockIndex = SystemDataRegistry + 0x200380;
-  SystemPriorityLevel = 0x180068808;
-  lStackX_8 = MemoryBlockIndex;
+  SystemErrorAddress = 0x180068808;
+  StackMemoryOffset = MemoryBlockIndex;
   TemporaryBuffer = StringProcessingStatus;
   SystemOperationResult = _Mtx_lock(MemoryBlockIndex);
   if (IntegerValue9 != 0) {
-    SystemPriorityLevel = 0x180068815;
+    SystemErrorAddress = 0x180068815;
     __Throw_C_error_std__YAXH_Z(IntegerValue9);
   }
   SystemPriorityLevel = 0x18006881f;
