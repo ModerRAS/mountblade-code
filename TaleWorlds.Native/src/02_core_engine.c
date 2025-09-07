@@ -42726,7 +42726,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t CharacterCode,uint64_t *
   FinalizeSystemConfiguration();
   SystemDataRegistry = CoreEngineSystemContext;
   if (CoreEngineSystemContext == 0) {
-    cStackX_10 = '\0';
+    SystemCharacterDelimiter = '\0';
     CoreEnginePointerBuffer110 = &SystemNullTemplate;
     SystemFlagB = 0;
     pProcessingCounter = NULL;
@@ -42753,7 +42753,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t CharacterCode,uint64_t *
     CharacterCodeTablePointer = SystemEventDispatcher;
   }
   else {
-    cStackX_10 = *(char *)(CoreEngineSystemContext + 0x141);
+    SystemCharacterDelimiter = *(char *)(CoreEngineSystemContext + 0x141);
     pSystemStackRegisterFlagB0 = &SystemNullTemplate;
     SystemOperationFlag98 = 0;
     SystemEventDispatcher = NULL;
