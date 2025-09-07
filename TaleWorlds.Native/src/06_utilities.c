@@ -66909,7 +66909,16 @@ void ManageResourceReferenceCountA(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数A
+ * @details 处理异常数据，使用操作标志A和B进行数据操作
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名: Unwind_180907a20
+ */
+void ProcessExceptionDataA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionData(dataBuffer + 0xe8,*(DataBuffer *)(dataBuffer + 0xf8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
@@ -68343,6 +68352,23 @@ void Unwind_180908040(void)
 
 
 
+/**
+ * @brief 验证上下文处理器函数
+ * 
+ * 该函数负责处理验证上下文，执行系统数据验证并清理验证上下文数组。
+ * 它会保存当前的异常处理上下文指针，处理系统数据验证，然后重置验证上下文数组。
+ * 最后设置验证上下文状态标志为0，并释放验证上下文指针数组的内存。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180908050
+ * @warning 此函数会释放内存，调用者需确保参数有效性
+ * 
+ * @see ProcessSystemDataA0, free
+ */
 void Unwind_180908050(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -68464,6 +68490,23 @@ void ProcessDataBufferA1(DataBuffer contextParameter, int64_t systemContext, Dat
 
 
 
+/**
+ * @brief 异常数据缓冲区清理函数
+ * 
+ * 该函数负责清理异常数据缓冲区，处理系统资源清理和终止操作。
+ * 它会从数据缓冲区的偏移量0x78处获取异常数据缓冲区指针，如果指针有效，
+ * 则调用系统资源清理函数处理异常数据，然后终止系统。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809080c0
+ * @warning 此函数会调用终止系统函数，调用者需确保参数有效性
+ * 
+ * @see ProcessSystemResourcesWithCleanup, TerminateSystemE0
+ */
 void Unwind_1809080c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -68479,6 +68522,23 @@ void Unwind_1809080c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 系统参数验证处理器函数
+ * 
+ * 该函数负责验证系统参数，处理异常数据和资源清理。
+ * 它会从数据缓冲区的偏移量0x78处获取系统参数，并调用系统参数验证函数
+ * 来处理这些参数，使用系统清理标志的替代值进行验证。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809080d0
+ * @warning 此函数会调用系统参数验证函数，调用者需确保参数有效性
+ * 
+ * @see ProcessSystemParametersWithValidation
+ */
 void Unwind_1809080d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -68490,6 +68550,23 @@ void Unwind_1809080d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 异常处理器E0偏移量0x78函数
+ * 
+ * 该函数负责处理偏移量0x78处的异常，执行系统资源清理。
+ * 它会从数据缓冲区的偏移量0x78处获取异常数据缓冲区指针，如果指针有效，
+ * 则调用系统资源清理函数处理偏移量0x60处的异常数据，然后终止系统。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809080e0
+ * @warning 此函数会调用终止系统函数，调用者需确保参数有效性
+ * 
+ * @see ProcessSystemResourcesWithCleanup, TerminateSystemE0
+ */
 void Unwind_1809080e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
