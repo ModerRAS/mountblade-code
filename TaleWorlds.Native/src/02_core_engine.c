@@ -200144,7 +200144,16 @@ void TerminateSystemA0(void)
 
 
 
-73ae6(voidvoid FUN_180173ae6(void
+/**
+ * @brief 剪贴板数据处理函数A0
+ * 
+ * 该函数负责处理剪贴板数据，包括获取、锁定和转换剪贴板内容
+ * 
+ * @note 原始函数名：FUN_180173ae6
+ */
+#define ProcessClipboardDataA0 FUN_180173ae6
+
+void ProcessClipboardDataA0(void)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
@@ -200170,7 +200179,16 @@ void TerminateSystemA0(void)
 
 
 
-73b1a(voidvoid FUN_180173b1a(void
+/**
+ * @brief 字符编码转换函数A0
+ * 
+ * 该函数负责进行字符编码转换，包括宽字符到多字节的转换
+ * 
+ * @note 原始函数名：FUN_180173b1a
+ */
+#define ConvertCharacterEncodingA0 FUN_180173b1a
+
+void ConvertCharacterEncodingA0(void)
 {
   long long *SystemContext;
   uint32_t UnsignedSystemParameter28;
