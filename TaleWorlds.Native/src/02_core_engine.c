@@ -50581,12 +50581,12 @@ LAB_180079fb3:
                 uStack_1d8 = (long long)pCharacterByteCount6 - (long long)pCharacterByteCount5;
                 if ((long long)uStack_1d8 >> 2 == 0) {
                   BufferStatus1 = 1;
-LAB_18007a203:
+ReferenceCountBufferAllocation:
                   ReferenceCountPointer6 = (int *)BufferAllocate(MemoryPoolManager,BufferStatus1 * 4,3);
                 }
                 else {
                   BufferStatus1 = ((long long)uStack_1d8 >> 2) * 2;
-                  if (BufferStatus1 != 0) goto LAB_18007a203;
+                  if (BufferStatus1 != 0) goto ReferenceCountBufferAllocation;
                 }
                 if (pCharacterByteCount5 != pCharacterByteCount6) {
                     // WARNING: Subroutine does not return
