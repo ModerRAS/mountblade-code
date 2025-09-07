@@ -251369,7 +251369,7 @@ FUN_18021f7f0(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8Sou
   pSystemFlagE = aSystemFlagG;
   aSystemFlagG[0] = 0;
   SystemFlagF = 0x1a;
-  strcpy_s(aSystemFlagG,0x40,&UNK_180a13000);
+  strcpy_s(aSystemFlagG,0x40,&SystemInitializationString);
   uStack_110 = 1;
   uStack_118 = 0;
   DataProcessingFlags = 0;
@@ -252414,7 +252414,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     SecondaryProcessingStatusFlag = &SystemUnknownProcessingStatusFlagH;
   }
   else {
-    SecondaryProcessingStatusFlag = &UNK_180a135f0;
+    SecondaryProcessingStatusFlag = &SystemStatusFlagA;
   }
   (**(code **)(CoreEngineValue148 + 0x10))(&CoreEngineValue148,SecondaryProcessingStatusFlag);
   (**(code **)(OperationStatus + 0x10))(&OperationStatus,&DataReferencePointerA);
