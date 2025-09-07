@@ -137,6 +137,7 @@ const void* const SystemEventTemplateQuinary = (void*)0x180a0b290;
 const void* const SystemConfigurationTemplateQuinary = (void*)0x180a0c460;
 const void* const SystemConfigurationTemplateSenary = (void*)0x180a0c480;
 const void* const SystemEventTemplateSenary = (void*)0x180a0b2b4;
+const void* const SystemEventInitializationTemplate = (void*)0x180a0fec0;
 const void* const SystemFloatParameterTemplate = (void*)0x180993550;
 const void* const SystemConfigurationData = (void*)0x180a013c0;
 const void* const SystemStatusValidationData = (void*)0x180a08a00;
@@ -1640,6 +1641,7 @@ const void* const SystemMemoryBlockIndexTertiary = (void*)0x18098d188;
 // 系统字符串常量定义
 const void* const SystemStringConstantPrimary = (void*)0x180a063e8;
 const void* const SystemStringConstantSecondary = (void*)0x180a06400;
+const void* const SystemStringConstantTertiary = (void*)0x180a0ff38;
 
 // 系统函数指针常量定义
 const void* const SystemFunctionPointerRenderInitialize = (void*)0x180135af0;
@@ -228190,7 +228192,7 @@ LAB_1802016f7:
           pSystemStatusValue = &SystemStatusValueSecondary;
         }
       }
-      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0fb80,pSystemStatusValue);
+      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueVigintenary,pSystemStatusValue);
       MutexLockResult = FUN_1802033f0();
       if (MutexLockResult == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
@@ -228217,7 +228219,7 @@ LAB_1802016f7:
           PrimaryProcessingStatusFlag8 = &SystemStatusValueTertiary;
         }
         else if (MutexLockResult == 2) {
-          PrimaryProcessingStatusFlag8 = &UNK_180a0f7fc;
+          PrimaryProcessingStatusFlag8 = &SystemStatusValuePrimary;
         }
         else if (MutexLockResult == 3) {
           PrimaryProcessingStatusFlag8 = &SystemQuaternaryProcessingStatusFlag;
@@ -228229,7 +228231,7 @@ LAB_1802016f7:
           }
         }
       }
-      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0fb50,PrimaryProcessingStatusFlag8);
+      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueOctodenary,PrimaryProcessingStatusFlag8);
       SystemStringIndex = *(long long *)(AllocatedMemorySize + 0x70);
       bufferAllocationStatus7 = *(long long *)(AllocatedMemorySize + 0x68);
       Utf16Char8 = uStack_1f8 + 0x10;
@@ -234734,7 +234736,7 @@ void FUN_180208160(uint64_t SystemContextPointer,long long *Utf8BufferSize,uint6
                   else {
                     CharacterVariable5 = FUN_1801ef300(loopCounter6,SystemOffsetValue,SystemDataTablePointer);
                     if (CharacterVariable5 == '\0') {
-                      InitializeSystemEvent(&UNK_180a0fec0);
+                      InitializeSystemEvent(&SystemEventInitializationTemplate);
                       IntegerValue4 = *(int *)(MemoryBufferA + CoreEngineSignedValue48);
                       Utf16Char9 = StackUnsigned68;
                       goto LAB_180208aa2;
@@ -234951,7 +234953,7 @@ void FUN_1802089d7(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,long lo
             else {
               CharacterStatus1 = FUN_1801ef300(loopCounter4,CurrentMemoryBlockAddress,DataStructureCounter);
               if (CharacterStatus1 == '\0') {
-                InitializeSystemEvent(&UNK_180a0fec0);
+                InitializeSystemEvent(&SystemEventInitializationTemplate);
                 IntegerValue5 = *(int *)(SystemStringIndex + MemoryAllocationIndex7);
                 Utf16InputPointer = AdditionalParameter5;
                 Utf16Char8 = (uint)AdditionalParameter2;

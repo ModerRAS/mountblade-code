@@ -45749,7 +45749,18 @@ void HandleExceptionE8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
 
 
 
-void Unwind_180903e10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器设置和清理函数A0
+ * 
+ * 该函数负责设置临时异常处理器，清理系统状态，
+ * 并在完成后恢复默认异常处理器。处理多个内存偏移量的异常处理。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void SetupAndCleanupExceptionHandlersA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -45803,7 +45814,18 @@ void Unwind_180903e10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903e30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器设置和清理函数A1
+ * 
+ * 该函数负责设置临时异常处理器，清理系统状态，
+ * 并在完成后恢复默认异常处理器。处理多个内存偏移量的异常处理。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void SetupAndCleanupExceptionHandlersA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -45857,7 +45879,18 @@ void Unwind_180903e30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器设置和清理函数A2
+ * 
+ * 该函数负责设置临时异常处理器，清理系统状态，
+ * 并在完成后恢复默认异常处理器。处理多个内存偏移量的异常处理。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void SetupAndCleanupExceptionHandlersA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -60069,7 +60102,20 @@ void ValidateSystemStatusOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907270(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证系统状态偏移量18
+ * 
+ * 在异常处理时验证系统状态的特定偏移量(0x18)，确保系统能够安全地恢复状态。
+ * 该函数检查数据缓冲区中的系统状态，如果状态异常则终止系统执行。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含系统状态信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907270
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void ValidateSystemStatusOffset18(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x18) != 0) {
@@ -60081,7 +60127,20 @@ void Unwind_180907270(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907280(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证系统状态偏移量40
+ * 
+ * 在异常处理时验证系统状态的特定偏移量(0x40)，确保系统能够安全地恢复状态。
+ * 该函数检查数据缓冲区中的系统状态，如果状态异常则终止系统执行。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含系统状态信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907280
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void ValidateSystemStatusOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x40) != 0) {
@@ -60093,7 +60152,20 @@ void Unwind_180907280(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907290(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证系统状态偏移量68
+ * 
+ * 在异常处理时验证系统状态的特定偏移量(0x68)，确保系统能够安全地恢复状态。
+ * 该函数检查数据缓冲区中的系统状态，如果状态异常则终止系统执行。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含系统状态信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907290
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void ValidateSystemStatusOffset68(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x68) != 0) {
@@ -60105,7 +60177,20 @@ void Unwind_180907290(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809072a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证系统状态偏移量90A
+ * 
+ * 在异常处理时验证系统状态的特定偏移量(0x90)，确保系统能够安全地恢复状态。
+ * 该函数检查数据缓冲区中的系统状态，如果状态异常则终止系统执行。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含系统状态信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_1809072a0
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void ValidateSystemStatusOffset90A(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x90) != 0) {
@@ -60117,7 +60202,20 @@ void Unwind_1809072a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809072c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证并重置系统状态上下文A
+ * 
+ * 在异常处理时验证并重置系统状态上下文，确保系统能够安全地恢复状态。
+ * 该函数检查验证上下文中的系统状态，验证后重置状态并清理相关资源。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含验证上下文信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_1809072c0
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void ValidateAndResetSystemContextA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -60135,7 +60233,20 @@ void Unwind_1809072c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809072e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证系统状态偏移量D0A
+ * 
+ * 在异常处理时验证系统状态的特定偏移量(0xd0)，确保系统能够安全地恢复状态。
+ * 该函数检查数据缓冲区中的系统状态，如果状态异常则终止系统执行。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含系统状态信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_1809072e0
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void ValidateSystemStatusOffsetD0A(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0xd0) != 0) {
