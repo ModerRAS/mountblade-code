@@ -47239,14 +47239,27 @@ void ResetExceptionHandlerC0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809041b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调函数执行器A0
+ * 
+ * 该函数负责执行异常处理器的回调函数，用于处理系统异常情况
+ * 通过调用预注册的异常处理回调来执行相应的异常处理逻辑
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809041b0
+ */
+void ExecuteExceptionHandlerCallbackA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
   
-  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0xb0);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + SystemContextOffset) + ExceptionCallbackOffset);
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x50) + 0xa0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + SystemContextOffset) + ExceptionContextOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
