@@ -47551,7 +47551,28 @@ void ResetExceptionHandlersState(DataBuffer operationBase,int64_t dataBuffer,Dat
 
 
 
-void Unwind_180904230(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 配置异常处理器链
+ * 
+ * 该函数负责配置异常处理器链，设置多个异常处理器的临时和默认处理器。
+ * 这是一个系统初始化函数，确保异常处理机制的正确配置。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区获取异常处理上下文
+ * 2. 执行异常处理函数（如果存在）
+ * 3. 设置多个异常处理器的临时和默认处理器
+ * 4. 清理异常处理状态和标志
+ * 5. 确保系统异常处理机制的完整性
+ * 
+ * @note 原始函数名：Unwind_180904230
+ * @warning 此函数包含系统终止调用，在配置失败时会终止系统
+ */
+void ConfigureExceptionHandlerChain(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
