@@ -10287,16 +10287,14 @@ void TerminateProcessWithError(void)
 
 
 
-// 函数: void SystemReturnEmptyFunction(void)
-// 
-// 空返回函数
-// 不执行任何操作直接返回的函数
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 系统空返回函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作，直接返回。通常用作系统初始化过程中的占位符，
+ * 或者在需要函数指针但不执行实际操作的场景中使用。
+ * 
+ * @note 原始函数名：SystemReturnEmptyFunction
+ */
 void SystemReturnEmptyFunction(void)
 
 {
@@ -10305,16 +10303,18 @@ void SystemReturnEmptyFunction(void)
 
 
 
-// 函数: DataBuffer ValidateResourceAccessChain(int64_t resourceHandle)
-// 
-// 资源访问链验证函数
-// 验证资源访问链的完整性和有效性，确保资源访问路径正确
-// 
-// 参数:
-//   resourceHandle - 资源句柄
-// 
-// 返回值:
-//   成功返回0，失败返回错误代码
+/**
+ * @brief 验证资源访问链
+ * 
+ * 该函数负责验证资源访问链的完整性和有效性。它会检查资源访问路径是否正确，
+ * 确保资源可以被安全地访问。函数会查询系统数据来获取访问链信息，并进行验证。
+ * 
+ * @param resourceHandle 资源句柄，用于标识要验证的资源
+ * @return DataBuffer 验证结果状态，成功返回0，失败返回相应的错误代码
+ * 
+ * @note 原始函数名：ValidateResourceAccessChain
+ * @see QueryAndRetrieveSystemDataA0
+ */
 DataBuffer ValidateResourceAccessChain(int64_t resourceHandle)
 
 {
