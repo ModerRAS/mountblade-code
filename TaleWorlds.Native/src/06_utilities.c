@@ -54744,7 +54744,18 @@ void ManageExceptionHandlingResources8D0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_1809058e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理缓冲区清理函数8E0
+ * 
+ * 该函数清理异常处理的缓冲区，将异常处理器指针重置为默认值。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含缓冲区清理信息
+ * 
+ * @note 原始函数名：Unwind_1809058e0
+ * @note 重置数据缓冲区0x200偏移量的异常处理器指针
+ */
+void ClearExceptionHandlingBuffer8E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x200) = &DefaultExceptionHandlerB;
@@ -54754,7 +54765,19 @@ void Unwind_1809058e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809058f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理状态检查函数8F0
+ * 
+ * 该函数检查异常处理的当前状态，如果发现打开的文件句柄，
+ * 则关闭文件并减少资源计数器。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含状态检查信息
+ * 
+ * @note 原始函数名：Unwind_1809058f0
+ * @note 检查数据缓冲区0x148偏移量的文件句柄状态
+ */
+void CheckExceptionHandlingStatus8F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x148) != 0) {
@@ -54781,7 +54804,7 @@ void Unwind_1809058f0(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180905900
  */
-void Unwind_180905900(DataBuffer operationBase,int64_t dataBuffer)
+void ResetExceptionHandling900(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x48) = &ResourceValidationBuffer;
@@ -54804,7 +54827,7 @@ void Unwind_180905900(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180905910
  */
-void Unwind_180905910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallback910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -54834,7 +54857,7 @@ void Unwind_180905910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
  * @note 原始函数名：Unwind_180905920 - 异常状态重置函数G2
  * 功能：重置异常状态并清理相关资源
  */
-void Unwind_180905920(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateExceptionHandling920(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -54858,7 +54881,7 @@ void Unwind_180905920(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_180905930 - 异常验证函数G3
  * 功能：验证异常状态并执行相应的异常处理回调
  */
-void Unwind_180905930(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeExceptionHandling930(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -54882,7 +54905,7 @@ void Unwind_180905930(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_180905940 - 异常清理函数G4
  * 功能：清理异常处理进程并重置相关资源状态
  */
-void Unwind_180905940(DataBuffer operationBase,int64_t dataBuffer)
+void ConfigureExceptionHandling940(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -54934,7 +54957,7 @@ void Unwind_180905940(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_180905950 - 异常处理函数G5
  * 功能：处理异常恢复流程并清理系统资源
  */
-void Unwind_180905950(DataBuffer operationBase,int64_t dataBuffer)
+void FinalizeExceptionHandling950(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -55067,7 +55090,7 @@ ProcessCheckpointValidationData3:
  * @note 原始函数名：Unwind_180905960 - 异常回调处理函数G6
  * 功能：处理异常回调并管理系统状态
  */
-void Unwind_180905960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallback960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -55097,7 +55120,7 @@ void Unwind_180905960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
  * @note 原始函数名：Unwind_180905980 - 异常数据重置函数G7
  * 功能：重置异常数据并清理相关状态
  */
-void Unwind_180905980(DataBuffer operationBase,int64_t dataBuffer)
+void ReleaseExceptionHandlingResources980(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -55133,7 +55156,7 @@ void Unwind_180905980(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_1809059a0 - 异常处理函数G8
  * 功能：处理异常并执行回调操作
  */
-void Unwind_1809059a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallback9A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -55165,7 +55188,7 @@ void Unwind_1809059a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
  * @note 原始函数名：Unwind_1809059b0 - 异常处理函数G9
  * 功能：处理异常系统调用并执行相关操作
  */
-void Unwind_1809059b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallback9B0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -55187,7 +55210,7 @@ void Unwind_1809059b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
  * @note 原始函数名：Unwind_1809059c0 - 异常状态验证函数G10
  * 功能：验证异常状态并重置相关标志
  */
-void Unwind_1809059c0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionHandling9C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (**(int64_t **)(dataBuffer + 0x40) != 0) {
@@ -55269,7 +55292,18 @@ void CallExceptionHandlerContextB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905a30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调函数A30
+ * 
+ * 该函数执行异常处理器的回调函数，从数据缓冲区的0xe0偏移量获取异常处理器指针。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * 
+ * @note 原始函数名：Unwind_180905a30
+ * @note 从数据缓冲区的0x40偏移量获取异常上下文指针
+ */
+void ExecuteExceptionHandlerCallbackA30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -55610,7 +55644,19 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
 
 
 
-void Unwind_180905b70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调函数B70
+ * 
+ * 该函数处理异常处理器回调，遍历异常上下文中的资源指针，
+ * 设置默认异常处理器并终止系统。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ * 
+ * @note 原始函数名：Unwind_180905b70
+ * @note 从数据缓冲区的0x58偏移量获取异常上下文
+ */
+void ExecuteExceptionHandlerCallbackB70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -55795,7 +55841,19 @@ void UnwindCleanupPointerArray(DataBuffer exceptionContext,int64_t unwindContext
 
 
 
-void Unwind_180905c20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调函数C20
+ * 
+ * 该函数处理异常处理器回调，清理异常上下文中的资源指针，
+ * 设置默认异常处理器并终止系统。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ * 
+ * @note 原始函数名：Unwind_180905c20
+ * @note 从数据缓冲区的0x58偏移量获取异常上下文
+ */
+void ExecuteExceptionHandlerCallbackC20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
