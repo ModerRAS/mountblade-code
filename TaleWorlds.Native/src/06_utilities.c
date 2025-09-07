@@ -22065,8 +22065,8 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           exceptionHandlerContext1 = GetSystemContextHandle(exceptionHandlerContext5,exceptionHandlerContextPointer4);
           systemStatusChar = CheckSystemStatus(exceptionHandlerContext1,0);
           if ((systemStatusChar == '\0') && (afStack_348[0] != *(float *)(exceptionHandlerContext1 + 0x4c))) {
-            uStack_2c0 = auStack_2f0._0_4_;
-            uStack_2bc = auStack_2f0._4_4_;
+            uStack_2c0 = DataProcessingStruct._0_4_;
+            uStack_2bc = DataProcessingStruct._4_4_;
             fStack_2c8 = afStack_348[0];
             uStack_2d0 = 0;
             StackPointerVariableE = &ValidationContextBuffer;
@@ -26156,7 +26156,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
   uStack_34 = resourcePointer[1];
   uStack_30 = resourcePointer[2];
   uStack_2c = resourcePointer[3];
-  validationStatus = ExecuteSecurityValidation(dataBuffer,auStack_28,0,0x4c525443);
+  validationStatus = ExecuteSecurityValidation(dataBuffer,SecurityValidationBufferA,0,0x4c525443);
   if ((((int)validationStatus == 0) && (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + 0x10), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + 0x20), (int)validationStatus == 0)) {
     memoryBaseAddress = 0x1c;
@@ -26185,7 +26185,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
         if ((*(int *)(dataBuffer[1] + 0x18) == 0) &&
            (memoryBaseAddress = OperateDataO0(*dataBuffer,operationBase + 0x40,4), memoryBaseAddress == 0)) {
                     // WARNING: Subroutine does not return
-          ExecutePortControlOperation(dataBuffer,auStack_28);
+          ExecutePortControlOperation(dataBuffer,SecurityValidationBufferA);
         }
       }
       return (uint64_t)memoryBaseAddress;
@@ -29526,7 +29526,7 @@ ValidationRetryHandler:
     if (operationResult < 0x8b) {
 DataProcessingHandler:
                     // WARNING: Subroutine does not return
-      ExecutePortControlOperation(dataBuffer,auStack_80);
+      ExecutePortControlOperation(dataBuffer,SecurityValidationBufferB);
     }
     stackByteBuffer[0] = 0;
     validationStatus = ExecuteDataValidationOperation(*dataBuffer,stackByteBuffer);
@@ -32566,10 +32566,10 @@ DataBuffer ProcessDataStreamA1(int64_t operationBase,DataBuffer *dataBuffer)
 {
   DataBuffer systemDataBuffer;
   ByteFlag ainputDataWord [32];
-  ByteFlag auStack_28 [32];
+  ByteFlag SecurityValidationBufferA [32];
   
   if ((0x87 < *(uint *)(dataBuffer + 8)) &&
-     (systemDataBuffer = ExecuteSecurityValidation(dataBuffer,auStack_28,1,0x46464353), (int)systemDataBuffer != 0)) {
+     (systemDataBuffer = ExecuteSecurityValidation(dataBuffer,SecurityValidationBufferA,1,0x46464353), (int)systemDataBuffer != 0)) {
     return systemDataBuffer;
   }
   systemDataBuffer = ExecuteSecurityValidation(dataBuffer,ainputDataWord,0,0x46454353);
@@ -33467,7 +33467,7 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t exceptionHandlerContex
   }
   else if (pdataContext[2] == 0) {
 ValidationStartHandler:
-    memoryBaseAddress = ValidateDataAndReturnStatusO3(*pdataContext,auStack_a0,1,4,0);
+    memoryBaseAddress = ValidateDataAndReturnStatusO3(*pdataContext,SecurityValidationBufferC,1,4,0);
   }
   else {
     auStackX_18[0] = 0;
@@ -34322,9 +34322,9 @@ DataBuffer ProcessDataCollectionA1(int64_t operationBase,DataBuffer *dataBuffer)
   DataBuffer systemDataBuffer;
   DataBuffer operationResult;
   ByteFlag ainputDataWord [32];
-  ByteFlag auStack_28 [32];
+  ByteFlag SecurityValidationBufferA [32];
   
-  operationResult = ExecuteSecurityValidation(dataBuffer,auStack_28,1,0x54494157);
+  operationResult = ExecuteSecurityValidation(dataBuffer,SecurityValidationBufferA,1,0x54494157);
   if (((((int)operationResult == 0) &&
        (operationResult = ExecuteSecurityValidation(dataBuffer,ainputDataWord,0,0x42494157), (int)operationResult == 0)) &&
       (operationResult = ValidatePortControlRequest(dataBuffer,operationBase + 0x10), (int)operationResult == 0)) &&
@@ -34484,9 +34484,9 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
   DataBuffer systemDataBuffer;
   DataWord auStackX_18 [2];
   ByteFlag validationBuffer3 [64];
-  ByteFlag auStack_28 [32];
+  ByteFlag SecurityValidationBufferA [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,auStack_28,1,0x5453494c,0x46464542);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,0x5453494c,0x46464542);
   if (((int)systemDataBuffer == 0) &&
      (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,validationBuffer3,0,0x42464542,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
@@ -34959,9 +34959,9 @@ DataBuffer ProcessDataConversionA1(int64_t operationBase,int64_t *dataBuffer)
   DataBuffer systemDataBuffer;
   DataWord auStackX_18 [4];
   ByteFlag ainputDataWord [32];
-  ByteFlag auStack_28 [32];
+  ByteFlag SecurityValidationBufferA [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,auStack_28,1,0x5453494c,0x49444d43);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,0x5453494c,0x49444d43);
   if (((int)systemDataBuffer == 0) &&
      (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,0x42444d43,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
@@ -35437,9 +35437,9 @@ DataBuffer ValidateDataSynchronizationA1(int64_t operationBase,DataBuffer *dataB
 
 {
   DataBuffer systemDataBuffer;
-  ByteFlag auStack_28 [32];
+  ByteFlag SecurityValidationBufferA [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,auStack_28,0,0x56525543,0);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,0,0x56525543,0);
   if ((int)systemDataBuffer == 0) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
       return 0x1c;
@@ -35453,7 +35453,7 @@ DataBuffer ValidateDataSynchronizationA1(int64_t operationBase,DataBuffer *dataB
       if (((int)systemDataBuffer == 0) && (systemDataBuffer = ProcessDataValidationWithFlags(dataBuffer,operationBase + 0x30,1,0), (int)systemDataBuffer == 0))
       {
                     // WARNING: Subroutine does not return
-        ExecuteSystemCleanupRoutine(dataBuffer,auStack_28);
+        ExecuteSystemCleanupRoutine(dataBuffer,SecurityValidationBufferA);
       }
     }
   }
@@ -35467,9 +35467,9 @@ DataBuffer ExecuteDataCleanupA1(int64_t operationBase,DataBuffer *dataBuffer)
 {
   DataBuffer systemDataBuffer;
   ByteFlag ainputDataWord [32];
-  ByteFlag auStack_28 [32];
+  ByteFlag SecurityValidationBufferA [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,auStack_28,1,0x5453494c,0x54494645);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,0x5453494c,0x54494645);
   if (((int)systemDataBuffer == 0) &&
      (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,0x42494645,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
@@ -35577,9 +35577,9 @@ DataBuffer ProcessDataCacheA1(int64_t operationBase,DataBuffer *dataBuffer)
 {
   DataBuffer systemDataBuffer;
   ByteFlag ainputDataWord [32];
-  ByteFlag auStack_28 [32];
+  ByteFlag SecurityValidationBufferA [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,auStack_28,1,0x5453494c,0x54495645);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,0x5453494c,0x54495645);
   if (((int)systemDataBuffer == 0) &&
      (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,0x42495645,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
@@ -35607,7 +35607,7 @@ DataBuffer CleanupDataCacheA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
-  ByteFlag auStack_28 [32];
+  ByteFlag SecurityValidationBufferA [32];
   
   if (*(uint *)(dataBuffer + 0x40) < 0x31) {
     systemDataBuffer = ProcessDataConversionOperation(operationBase,dataBuffer,0x544e5645);
@@ -35616,14 +35616,14 @@ DataBuffer CleanupDataCacheA1(DataBuffer operationBase,int64_t dataBuffer)
     }
   }
   else {
-    systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,auStack_28,1,0x5453494c,0x544e5645);
+    systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,0x5453494c,0x544e5645);
     if ((int)systemDataBuffer == 0) {
       systemDataBuffer = ProcessDataConversionOperation(operationBase,dataBuffer,0x42545645);
       if ((int)systemDataBuffer == 0) {
         systemDataBuffer = ValidateSystemMemoryAccess(operationBase,dataBuffer);
         if ((int)systemDataBuffer == 0) {
                     // WARNING: Subroutine does not return
-          ExecuteSystemCleanupRoutine(dataBuffer,auStack_28);
+          ExecuteSystemCleanupRoutine(dataBuffer,SecurityValidationBufferA);
         }
       }
     }
@@ -104999,9 +104999,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储长整型数组的栈数据
 #define StackLongIntegerArrayA alStack_300
 
-// 原始变量名：auStack_2f0 - 栈无符号整型联合体A
+// 原始变量名：DataProcessingStruct - 栈无符号整型联合体A
 // 功能：存储无符号整型联合体的栈数据
-#define StackUnsignedIntegerUnionA auStack_2f0
+#define StackUnsignedIntegerUnionA DataProcessingStruct
 
 // 原始变量名：aplStack_330 - 栈长整型指针数组A
 // 功能：存储长整型指针数组的栈数据
@@ -105379,18 +105379,18 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define OptimizeSystemA Unwind_1809092b0
 
 // 栈变量语义化宏定义
-// 原始变量名：auStack_28 - 安全验证缓冲区A
+// 原始变量名：SecurityValidationBufferA - 安全验证缓冲区A
 // 功能：用于安全验证操作的数据缓冲区
-#define SecurityValidationBufferA auStack_28
+#define SecurityValidationBufferA SecurityValidationBufferA
 
-// 原始变量名：auStack_80 - 安全验证缓冲区B
+// 原始变量名：SecurityValidationBufferB - 安全验证缓冲区B
 // 功能：用于安全验证操作的数据缓冲区
-#define SecurityValidationBufferB auStack_80
+#define SecurityValidationBufferB SecurityValidationBufferB
 
-// 原始变量名：auStack_a0 - 安全验证缓冲区C
+// 原始变量名：SecurityValidationBufferC - 安全验证缓冲区C
 // 功能：用于安全验证操作的数据缓冲区
-#define SecurityValidationBufferC auStack_a0
+#define SecurityValidationBufferC SecurityValidationBufferC
 
-// 原始变量名：auStack_2f0 - 数据处理结构体
+// 原始变量名：DataProcessingStruct - 数据处理结构体
 // 功能：用于处理数据操作的结构体变量
-#define DataProcessingStruct auStack_2f0
+#define DataProcessingStruct DataProcessingStruct
