@@ -5801,7 +5801,14 @@ uint32_t UtilityEventDataPrimary;
 uint32_t UtilityEventDataSecondary;
 uint32_t UtilityEventDataTertiary;
 
-// 函数: void UtilityHandleEventSecond(void);
+/**
+ * @brief 处理工具系统事件
+ * 
+ * 该函数负责处理工具系统中的第二级事件。它会检查事件状态，处理事件数据，
+ * 并执行相应的事件处理逻辑。这是工具系统事件处理机制的重要组成部分。
+ * 
+ * @note 原始函数名：UtilityHandleEventSecond
+ */
 void UtilityHandleEventSecond(void);
 // 工具系统事件处理相关变量
 uint32_t EventStatus;
@@ -5811,16 +5818,14 @@ void* EventData;
 int32_t EventResult;
 int32_t EventError;
 
-// 函数: void UtilityProcessMemoryBlock(void);
-// 
-// 处理内存块操作
-// 执行内存块的分配、释放或修改操作
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   void - 无返回值
+/**
+ * @brief 处理内存块操作
+ * 
+ * 该函数负责执行内存块的相关操作，包括内存块的分配、释放或修改。
+ * 它是工具系统内存管理的核心函数之一，确保内存资源得到合理的管理和使用。
+ * 
+ * @note 原始函数名：UtilityProcessMemoryBlock
+ */
 void UtilityProcessMemoryBlock(void);
 // 工具系统内存处理相关变量
 void* MemoryPointerPrimary;
@@ -5829,16 +5834,16 @@ uint32_t MemoryDataSecondary;
 uint32_t MemoryDataTertiary;
 uint32_t MemoryDataQuaternary;
 
-// 函数: bool UtilityValidateMemoryAccess(void);
-// 
-// 验证内存访问权限
-// 检查指定内存区域的访问权限和有效性
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   bool - 验证结果状态
+/**
+ * @brief 验证内存访问权限
+ * 
+ * 该函数负责验证指定内存区域的访问权限和有效性。它会检查内存区域是否可访问，
+ * 确保内存操作的安全性。这是工具系统内存安全机制的重要组成部分。
+ * 
+ * @return bool 验证结果状态，true表示验证通过，false表示验证失败
+ * 
+ * @note 原始函数名：UtilityValidateMemoryAccess
+ */
 bool UtilityValidateMemoryAccess(void);
 // 工具系统内存验证相关变量
 void *UtilityMemoryPointerSecondary;
@@ -5890,10 +5895,10 @@ uint8_t UtilityMemoryManagementQuindenaryFlag;
 uint8_t UtilityMemoryManagementSexdenaryFlag;
 uint8_t UtilityMemoryManagementSeptendenaryFlag;
 // 工具系统内存管理数据块 - 缓存和临时数据
-uint8_t UtilityMemoryManagementCacheData1;
-uint8_t UtilityMemoryManagementCacheData2;
-uint8_t UtilityMemoryManagementCacheData3;
-uint8_t UtilityMemoryManagementCacheData4;
+uint8_t UtilityMemoryManagementPrimaryCache;
+uint8_t UtilityMemoryManagementSecondaryCache;
+uint8_t UtilityMemoryManagementTertiaryCache;
+uint8_t UtilityMemoryManagementQuaternaryCache;
 uint8_t UtilityMemoryManagementCacheData5;
 uint8_t UtilityMemoryManagementCacheData6;
 uint8_t UtilityMemoryManagementCacheData7;
@@ -10601,16 +10606,14 @@ void TerminateProcessWithSystemError(void)
 
 
 
-// 函数: void ReturnEmptyFunctionD(void)
-// 
-// 空返回函数D
-// 不执行任何操作直接返回的函数
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 空返回函数D
+ * 
+ * 该函数是一个空操作函数，不执行任何操作，直接返回。用作系统初始化过程中的占位符，
+ * 或者在需要函数指针但不执行实际操作的场景中使用。
+ * 
+ * @note 原始函数名：ReturnEmptyFunctionD
+ */
 void ReturnEmptyFunctionD(void)
 
 {
@@ -64950,7 +64953,7 @@ void Unwind_180908f30(DataBuffer operationBase,int64_t dataBuffer)
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x40);
   pmemoryBaseAddress = (DataBuffer *)(calculatedOffset + -0xa0);
-  *pmemoryBaseAddress = &UNK_180a01668;
+  *pmemoryBaseAddress = &SystemMemoryBaseAddress;
   if ((*(int64_t *)(calculatedOffset + -0x20) != 0) && (**(int64_t **)(calculatedOffset + -0x88) == calculatedOffset + -0x30)) {
     systemDataBuffer = *(DataBuffer *)(calculatedOffset + -0x10);
     dataContext = *(int64_t *)(calculatedOffset + -0x18);
@@ -64975,7 +64978,7 @@ uint8_t * Catch_180908f50(DataBuffer operationBase,int64_t dataBuffer)
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             ((int64_t)*(int *)(**(int64_t **)(dataBuffer + 0x70) + 4) +
              (int64_t)*(int64_t **)(dataBuffer + 0x70),4,1);
-  return &UNK_1800a0f67;
+  return &SystemStringConstantA;
 }
 
 
@@ -64993,7 +64996,7 @@ void Unwind_180908f90(DataBuffer operationBase,int64_t dataBuffer)
   validationContextPointer = *(int64_t **)(dataBuffer + 0x38);
   validationContextPointer = *(int64_t **)((int64_t)*(int *)(*validationContextPointer + 4) + 0x48 + (int64_t)validationContextPointer);
   if (validationContextPointer != (int64_t *)0x0) {
-    if (*(FunctionPointer**)(*validationContextPointer + 0x10) != (code *)&UNK_18009ee10) {
+    if (*(FunctionPointer**)(*validationContextPointer + 0x10) != (code *)&SystemValidationFunctionPointer) {
       (**(FunctionPointer**)(*validationContextPointer + 0x10))();
       return;
     }
@@ -65016,7 +65019,7 @@ void Unwind_180908fa0(DataBuffer operationBase,int64_t dataBuffer)
             ((int64_t)*(int *)(**(int64_t **)(dataBuffer + 0x38) + 4) + 0x48 +
             (int64_t)*(int64_t **)(dataBuffer + 0x38));
   if (validationContextPointer != (int64_t *)0x0) {
-    if (*(FunctionPointer**)(*validationContextPointer + 0x10) != (code *)&UNK_18009ee10) {
+    if (*(FunctionPointer**)(*validationContextPointer + 0x10) != (code *)&SystemValidationFunctionPointer) {
       (**(FunctionPointer**)(*validationContextPointer + 0x10))();
       return;
     }
@@ -73179,7 +73182,7 @@ void Unwind_18090c240(DataBuffer operationBase,int64_t dataBuffer)
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x40);
   pmemoryBaseAddress = (DataBuffer *)(calculatedOffset + -0xa0);
-  *pmemoryBaseAddress = &UNK_180a01668;
+  *pmemoryBaseAddress = &SystemMemoryBaseAddress;
   if ((*(int64_t *)(calculatedOffset + -0x20) != 0) && (**(int64_t **)(calculatedOffset + -0x88) == calculatedOffset + -0x30)) {
     systemDataBuffer = *(DataBuffer *)(calculatedOffset + -0x10);
     dataContext = *(int64_t *)(calculatedOffset + -0x18);
@@ -73439,7 +73442,7 @@ void Unwind_18090c380(DataBuffer operationBase,int64_t dataBuffer)
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x40);
   pmemoryBaseAddress = (DataBuffer *)(calculatedOffset + 0x18);
-  *pmemoryBaseAddress = &UNK_180a01668;
+  *pmemoryBaseAddress = &SystemMemoryBaseAddress;
   if ((*(int64_t *)(calculatedOffset + 0x98) != 0) && (**(int64_t **)(calculatedOffset + 0x30) == calculatedOffset + 0x88)) {
     systemDataBuffer = *(DataBuffer *)(calculatedOffset + 0xa8);
     dataContext = *(int64_t *)(calculatedOffset + 0xa0);
@@ -87174,7 +87177,7 @@ void Unwind_180910580(DataBuffer operationBase,int64_t dataBuffer)
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x68);
   pmemoryBaseAddress = (DataBuffer *)(calculatedOffset + 0x10);
-  *pmemoryBaseAddress = &UNK_180a01668;
+  *pmemoryBaseAddress = &SystemMemoryBaseAddress;
   if ((*(int64_t *)(calculatedOffset + 0x90) != 0) && (**(int64_t **)(calculatedOffset + 0x28) == calculatedOffset + 0x80)) {
     systemDataBuffer = *(DataBuffer *)(calculatedOffset + 0xa0);
     dataContext = *(int64_t *)(calculatedOffset + 0x98);
@@ -87383,7 +87386,7 @@ void Unwind_1809106a0(DataBuffer operationBase,int64_t dataBuffer)
   
   calculatedOffset = *(int64_t *)(dataBuffer + 0x40);
   pmemoryBaseAddress = (DataBuffer *)(calculatedOffset + -0xa0);
-  *pmemoryBaseAddress = &UNK_180a01668;
+  *pmemoryBaseAddress = &SystemMemoryBaseAddress;
   if ((*(int64_t *)(calculatedOffset + -0x20) != 0) && (**(int64_t **)(calculatedOffset + -0x88) == calculatedOffset + -0x30)) {
     systemDataBuffer = *(DataBuffer *)(calculatedOffset + -0x10);
     dataContext = *(int64_t *)(calculatedOffset + -0x18);
