@@ -18711,26 +18711,26 @@ SecurityValidationLabel:
       operationStatus = ValidateDataIntegrityA0(operationBase,ppdataFlags);
     }
     else {
-      iStack_2f0 = 0;
+      cleanupStepIndex = 0;
       if (1 < operationStatus - 1U) {
-        puStack_2f8 = &UNK_180982608;
-        ppdataFlags = &puStack_2f8;
-        uStack_2b0 = 0;
-        uStack_2e8 = 0;
-        uStack_2e0 = 0;
-        lStack_2d8 = 0;
-        uStack_2d0 = 0;
-        uStack_2c8 = 0;
-        uStack_2c0 = 0;
-        uStack_2b8 = 0;
-        uStack_2ac = operationFlagA;
+        securityValidationContext = &SecurityValidationConfigurationTableB;
+        ppdataFlags = securityValidationContext;
+        memoryOperationBufferH = 0;
+        memoryOperationBufferA = 0;
+        memoryOperationBufferB = 0;
+        memoryOperationBufferC = 0;
+        memoryOperationBufferD = 0;
+        memoryOperationBufferE = 0;
+        memoryOperationBufferF = 0;
+        memoryOperationBufferG = 0;
+        memoryOperationBufferI = operationFlagA;
         goto ProcessCheckpointSystemCleanup;
       }
-      puStack_2f8 = &UNK_180982588;
-      lStack_2d8 = (uint64_t)operationFlagA << 0x20;
-      uStack_2e8 = *(DataBuffer *)(dataBuffer + 0x228);
-      uStack_2e0 = (uint64_t)CONCAT14(operationStatus != 1,*(DataWord *)(dataBuffer + 0x230));
-      operationStatus = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
+      securityValidationContext = &SecurityValidationConfigurationTableC;
+      memoryOperationBufferC = (uint64_t)operationFlagA << 0x20;
+      memoryOperationBufferA = *(DataBuffer *)(dataBuffer + 0x228);
+      memoryOperationBufferB = (uint64_t)CONCAT14(operationStatus != 1,*(DataWord *)(dataBuffer + 0x230));
+      operationStatus = ValidateDataIntegrityA0(operationBase,securityValidationContext);
     }
     if (operationStatus != 0) GOTO_SecurityCheckFailed;
     uStack_298 = *(uint *)(dataBuffer + 0x10);
