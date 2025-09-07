@@ -9852,16 +9852,16 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
   float fStack_120;
   float fStack_118;
   float fStack_114;
-  float fStack_110;
-  float fStack_10c;
-  float fStack_108;
-  float fStack_104;
-  float fStack_100;
-  float fStack_fc;
-  float fStack_f8;
-  float fStack_f4;
-  float fStack_f0;
-  float fStack_ec;
+  float matrixRow3_Z;
+  float matrixRow3_W;
+  float matrixRow2_X;
+  float matrixRow2_Y;
+  float matrixRow2_Z;
+  float matrixRow2_W;
+  float matrixRow1_X;
+  float matrixRow1_Y;
+  float matrixRow1_Z;
+  float matrixRow1_W;
   
   fVar31 = *dataSource;
   fVar32 = dataSource[1];
