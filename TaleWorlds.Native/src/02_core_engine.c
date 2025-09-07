@@ -200230,7 +200230,7 @@ void ProcessUtf8InputBufferAndEncoding(long long CharacterCode,long long *Utf8In
     }
     validationResult = (**(code **)(**(long long **)(CharacterCode + 0xe8) + 0x118)                      (*(long long **)(CharacterCode + 0xe8),aiStack_60,&CoreEngineSignedValue70);
     if ((CoreEngineSignedValue70 == 0) || (validationResult != 0)) {
-      FUN_180626ee0(SystemEventCallbackPointerSecondary);
+      ProcessSystemEventCallback(SystemEventCallbackPointerSecondary);
     }
     MemoryBlockIndex = CoreEngineSignedValue70;
     aiStack_78[0] = iStack_4c;
