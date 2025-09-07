@@ -21125,33 +21125,42 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
 
 
 
-// 原始函数名：FUN_180895d62 - 数据结构验证和处理函数
-// 功能：验证数据结构的完整性，处理数据项的插入和更新
-#define ValidateAndProcessDataStructure FUN_180895d62
+/**
+ * @brief 验证和处理数据结构
+ * 
+ * 该函数负责验证数据结构的完整性，处理数据项的插入和更新操作。
+ * 函数会检查数据结构的状态，并在需要时进行扩容或重新分配内存。
+ * 
+ * @param inputData 输入数据，包含要处理的数据信息
+ * @param processingMode 处理模式，指定数据处理的方式
+ * @return DataBuffer 操作结果，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名：FUN_180895d62
+ */
 DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMode)
 
 {
   int64_t exceptionHandlerContext;
-  int InputAccumulator;
+  int inputAccumulator;
   int operationResult;
   int operationStatus;
   DataBuffer memoryRegionBase;
-  DataBuffer *operationResult;
+  DataBuffer *operationResultPointer;
   int iterationCount;
   int64_t memoryOffset;
-  DataWord *psecurityCheckResult;
+  DataWord *securityCheckResultPointer;
   uint statusCounter;
   int primaryInputParameter;
-  int *resourceReferenceCount1;
-  int64_t *DestinationContext;
+  int *resourceReferencePointer;
+  int64_t *destinationContext;
   DataBuffer *systemContext;
-  DataWord *contextPointer;
+  DataWord *contextDataPointer;
   DataBuffer systemContextBuffer;
   
-  resourceReferenceCount1 = (int *)(*DestinationContext + (int64_t)InputAccumulator * 4);
-  operationResult = *(int *)(*DestinationContext + (int64_t)InputAccumulator * 4);
+  resourceReferencePointer = (int *)(*destinationContext + (int64_t)inputAccumulator * 4);
+  operationResult = *(int *)(*destinationContext + (int64_t)inputAccumulator * 4);
   if (operationResult != -1) {
-    exceptionHandlerContext = DestinationContext[2];
+    exceptionHandlerContext = destinationContext[2];
     do {
       memoryOffset = (int64_t)operationResult;
       if (*(int *)(exceptionHandlerContext + memoryOffset * 0x10) == dataBuffer) {
@@ -21159,16 +21168,16 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
         return 0;
       }
       operationResult = *(int *)(exceptionHandlerContext + 4 + memoryOffset * 0x10);
-      resourceReferenceCount1 = (int *)(exceptionHandlerContext + 4 + memoryOffset * 0x10);
+      resourceReferencePointer = (int *)(exceptionHandlerContext + 4 + memoryOffset * 0x10);
     } while (operationResult != -1);
   }
-  operationResult = (int)DestinationContext[4];
+  operationResult = (int)destinationContext[4];
   if (operationResult == -1) {
     systemContextBuffer = *systemContext;
-    operationResult = (int)DestinationContext[3];
+    operationResult = (int)destinationContext[3];
     iterationCount = operationResult + 1;
-    statusCounter = (int)*(uint *)((int64_t)DestinationContext + 0x1c) >> 0x1f;
-    operationStatus = (*(uint *)((int64_t)DestinationContext + 0x1c) ^ statusCounter) - statusCounter;
+    statusCounter = (int)*(uint *)((int64_t)destinationContext + 0x1c) >> 0x1f;
+    operationStatus = (*(uint *)((int64_t)destinationContext + 0x1c) ^ statusCounter) - statusCounter;
     if (operationStatus < iterationCount) {
       primaryInputParameter = (int)((float)operationStatus * 1.5);
       operationStatus = iterationCount;
@@ -21181,25 +21190,25 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
       else if (primaryInputParameter < iterationCount) {
         primaryInputParameter = iterationCount;
       }
-      memoryRegionBase = CheckSystemDataA0(DestinationContext + 2,validationParameter0);
+      memoryRegionBase = CheckSystemDataA0(destinationContext + 2,primaryInputParameter);
       if ((int)memoryRegionBase != 0) {
         return memoryRegionBase;
       }
     }
-    operationResult = (DataBuffer *)((int64_t)(int)DestinationContext[3] * 0x10 + DestinationContext[2]);
-    *operationResult = CONCAT44(SystemCleanupFlag,dataBuffer);
-    operationResult[1] = systemContextBuffer;
-    *(int *)(DestinationContext + 3) = (int)DestinationContext[3] + 1;
+    operationResultPointer = (DataBuffer *)((int64_t)(int)destinationContext[3] * 0x10 + destinationContext[2]);
+    *operationResultPointer = CONCAT44(SystemCleanupFlag,dataBuffer);
+    operationResultPointer[1] = systemContextBuffer;
+    *(int *)(destinationContext + 3) = (int)destinationContext[3] + 1;
   }
   else {
-    psecurityCheckResult = (DataWord *)((int64_t)operationResult * 0x10 + DestinationContext[2]);
-    *(DataWord *)(DestinationContext + 4) = psecurityCheckResult[1];
-    psecurityCheckResult[1] = SystemCleanupFlag;
-    *psecurityCheckResult = *contextPointer;
-    *(DataBuffer *)(psecurityCheckResult + 2) = *systemContext;
+    securityCheckResultPointer = (DataWord *)((int64_t)operationResult * 0x10 + destinationContext[2]);
+    *(DataWord *)(destinationContext + 4) = securityCheckResultPointer[1];
+    securityCheckResultPointer[1] = SystemCleanupFlag;
+    *securityCheckResultPointer = *contextDataPointer;
+    *(DataBuffer *)(securityCheckResultPointer + 2) = *systemContext;
   }
-  *resourceReferenceCount1 = operationResult;
-  *(int *)((int64_t)DestinationContext + 0x24) = *(int *)((int64_t)DestinationContext + 0x24) + 1;
+  *resourceReferencePointer = operationResult;
+  *(int *)((int64_t)destinationContext + 0x24) = *(int *)((int64_t)destinationContext + 0x24) + 1;
   return 0;
 }
 
