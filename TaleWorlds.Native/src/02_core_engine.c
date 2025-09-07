@@ -169322,10 +169322,10 @@ void CharacterCodeProcessorAndSystemContextManager(long long CharacterCode)
   
   *(void *)(ProcessingResult + -0x10) = PatternIndex;
   *(void *)(ProcessingResult + -0x18) = DataNodePointer;
-  CharacterTablePointer = *(long long *)(CharacterCode + 0x2e40);
+  SystemLong* CharacterTablePointer = *(SystemLong**)(CharacterCode + 0x2e40);
   if (CharacterTablePointer != 0) {
-    PrimaryProcessingStatusFlag = (void *)GetSystemMemoryInfo();
-    __stdio_common_vfprintf(*PrimaryProcessingStatusFlag,CharacterTablePointer);
+    SystemPointer* PrimaryProcessingStatusFlag = (SystemPointer*)GetSystemMemoryInfo();
+    __stdio_common_vfprintf(*PrimaryProcessingStatusFlag, CharacterTablePointer);
     return;
   }
   ValidateSystemStatus(CharacterCode + 0x2e48);
@@ -169335,7 +169335,15 @@ void CharacterCodeProcessorAndSystemContextManager(long long CharacterCode)
 
 
 
-3c7cf(long long CharacterCodevoid FUN_18013c7cf(long long CharacterCode
+/**
+ * @brief 验证系统配置状态
+ * 
+ * 该函数负责验证系统配置的正确性和完整性，
+ * 确保系统配置参数符合预期要求。
+ * 
+ * @param CharacterCode 字符代码，用于标识系统配置的特定状态
+ */
+void ValidateSystemConfigurationStatus(long long CharacterCode)
 {
   ValidateSystemStatus(CharacterCode + 0x2e48);
   return;
@@ -169359,7 +169367,23 @@ void FinalizeSystemBufferProcessing(void)
 
 
 
-3c800(long long CharacterCode,char *Utf8InputBufferSize,char *Utf8SourcePointervoid ProcessSystemConfigurationAndTarget(long long CharacterCode,char *Utf8InputBufferSize,char *Utf8SourcePointer
+/**
+ * @brief 系统配置和目标处理器
+ * 
+ * 该函数处理系统配置和目标设置，包括：
+ * - UTF-8编码处理和验证
+ * - 系统配置管理
+ * - 内存分配和数据处理
+ * - 字符串操作和状态检查
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * 
+ * @note 函数会进行复杂的编码处理和系统配置操作
+ * @warning 涉及系统级内存操作，调用时需确保参数有效性
+ */
+void ProcessSystemConfigurationAndTarget(long long CharacterCode, char* Utf8InputBufferSize, char* Utf8SourcePointer)
 {
   long long PrimaryDataSize;
   bool HighByte;
