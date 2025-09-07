@@ -57187,8 +57187,21 @@ void ProcessUIMainRenderer(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180694040(undefined1 (*uiContext) [16],int dataSource,undefined1 *targetBuffer,undefined1 *bufferSize,
-void FUN_180694040(undefined1 (*uiContext) [16],int dataSource,undefined1 *targetBuffer,undefined1 *bufferSize,
+ /**
+ * UI系统缓冲区管理器初始化函数
+ * 
+ * 该函数负责初始化UI系统的缓冲区管理器，设置缓冲区的处理参数和管理策略。
+ * 主要用于处理UI缓冲区的分配、释放和管理操作。
+ * 
+ * @param uiContext UI上下文数组，包含UI系统的状态信息
+ * @param dataSource 数据源，包含缓冲区管理所需的数据
+ * @param targetBuffer 目标缓冲区指针，用于存储处理结果
+ * @param bufferSize 缓冲区大小指针，用于指定处理缓冲区的大小
+ * @param resultPointer 结果指针，用于存储处理结果
+ * 
+ * @note 原始函数名：FUN_180694040
+ */
+void InitializeUIBufferManager(undefined1 (*uiContext) [16],int dataSource,undefined1 *targetBuffer,undefined1 *bufferSize,
                   undefined1 *resultPointer)
 
 {

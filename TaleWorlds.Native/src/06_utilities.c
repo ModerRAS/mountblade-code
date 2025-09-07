@@ -59823,7 +59823,7 @@ void ResetExceptionDataBufferAtOffset780(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180906790(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerAtOffset790(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0xa0) + 0x10) = &DefaultExceptionHandlerB;
@@ -59832,7 +59832,7 @@ void Unwind_180906790(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809067a0(DataBuffer operationBase,int64_t dataBuffer)
+void SetExceptionDataTableAtOffset7a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0xa0) = &ExceptionDataTable6;
