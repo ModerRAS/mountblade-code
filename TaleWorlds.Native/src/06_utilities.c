@@ -100211,7 +100211,20 @@ void Unwind_180911800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区清理器A2
+ * 
+ * 该函数负责清理异常数据缓冲区，遍历异常数据指针并执行相应的清理函数。
+ * 如果发现异常数据指针为空，则终止系统运行。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionDataBufferCleanupA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911820
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -100233,7 +100246,20 @@ void Unwind_180911820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区清理器A3
+ * 
+ * 该函数负责清理异常数据缓冲区，遍历异常数据指针并执行相应的清理函数。
+ * 如果发现异常数据指针为空，则终止系统运行。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionDataBufferCleanupA3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911840
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -100255,7 +100281,20 @@ void Unwind_180911840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区清理器A4
+ * 
+ * 该函数负责清理异常数据缓冲区，遍历异常数据指针并执行相应的清理函数。
+ * 如果发现异常数据指针为空，则终止系统运行。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionDataBufferCleanupA4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911860
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -100275,7 +100314,20 @@ void Unwind_180911860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区清理器A5
+ * 
+ * 该函数负责清理异常数据缓冲区，遍历异常数据指针并执行相应的清理函数。
+ * 如果发现异常数据指针为空，则终止系统运行。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionDataBufferCleanupA5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911870
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -100295,7 +100347,20 @@ void Unwind_180911870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区清理器A6
+ * 
+ * 该函数负责清理异常数据缓冲区，遍历异常数据指针并执行相应的清理函数。
+ * 如果发现异常数据指针为空，则终止系统运行。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionDataBufferCleanupA6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911880
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -100560,7 +100625,20 @@ void ManageResourceReferenceCountZ1(DataBuffer operationBase, int64_t dataBuffer
 
 
 
-void Unwind_180911900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区清理器A7
+ * 
+ * 该函数负责清理异常数据缓冲区，遍历异常数据指针并执行相应的清理函数。
+ * 如果发现异常数据指针为空，则终止系统运行。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionDataBufferCleanupA7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911900
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -100580,7 +100658,20 @@ void Unwind_180911900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区清理器A8
+ * 
+ * 该函数负责清理异常数据缓冲区，遍历异常数据指针并执行相应的清理函数。
+ * 如果发现异常数据指针为空，则终止系统运行。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @return void
+ */
+void Unwind_ExceptionDataBufferCleanupA8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+// 原始函数名: Unwind_180911910
 
 {
   DataBuffer *exceptionDataBuffer;
