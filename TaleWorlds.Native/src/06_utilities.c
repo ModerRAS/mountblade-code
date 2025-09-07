@@ -80002,7 +80002,18 @@ void Unwind_18090c870(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c880(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用600偏移量的函数指针
+ * 
+ * 该函数检查数据缓冲区600偏移量处的函数指针是否有效，如果有效则调用该函数。
+ * 这是一个通用的函数指针调用包装器，用于执行系统回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含函数指针
+ * 
+ * @note 原始函数名：Unwind_18090c880
+ */
+void InvokeFunctionPointerAtOffset600(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 600) != (int64_t *)0x0) {
@@ -80013,7 +80024,18 @@ void Unwind_18090c880(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c890(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用0x240偏移量的函数指针
+ * 
+ * 该函数检查数据缓冲区0x240偏移量处的函数指针是否有效，如果有效则调用该函数。
+ * 这是一个通用的函数指针调用包装器，用于执行系统回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含函数指针
+ * 
+ * @note 原始函数名：Unwind_18090c890
+ */
+void InvokeFunctionPointerAtOffset240(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x240) != (int64_t *)0x0) {
@@ -80024,7 +80046,18 @@ void Unwind_18090c890(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c8a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置0x148偏移量的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的0x148偏移量处设置默认异常处理器B的函数指针，
+ * 用于处理特定偏移量的异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c8a0
+ */
+void SetDefaultExceptionHandlerBAtOffset148(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x148) = &DefaultExceptionHandlerB;
@@ -80033,7 +80066,18 @@ void Unwind_18090c8a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c8b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置0x430偏移量的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的0x430偏移量处设置默认异常处理器B的函数指针，
+ * 用于处理特定偏移量的异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c8b0
+ */
+void SetDefaultExceptionHandlerBAtOffset430(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x430) = &DefaultExceptionHandlerB;
@@ -80042,7 +80086,18 @@ void Unwind_18090c8b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c8c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置0x570偏移量的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的0x570偏移量处设置默认异常处理器B的函数指针，
+ * 用于处理特定偏移量的异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c8c0
+ */
+void SetDefaultExceptionHandlerBAtOffset570(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x570) = &DefaultExceptionHandlerB;
@@ -80051,7 +80106,18 @@ void Unwind_18090c8c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c8d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置0x610偏移量的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的0x610偏移量处设置默认异常处理器B的函数指针，
+ * 用于处理特定偏移量的异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c8d0
+ */
+void SetDefaultExceptionHandlerBAtOffset610(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x610) = &DefaultExceptionHandlerB;
@@ -80080,7 +80146,18 @@ void SetDefaultExceptionHandlerBAtOffset6B0(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_18090c8f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置0x750偏移量的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的0x750偏移量处设置默认异常处理器B的函数指针，
+ * 用于处理特定偏移量的异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c8f0
+ */
+void SetDefaultExceptionHandlerBAtOffset750(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x750) = &DefaultExceptionHandlerB;

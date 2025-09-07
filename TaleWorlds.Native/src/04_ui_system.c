@@ -2707,6 +2707,30 @@ void* UIGestureCoordinates;
 
 // UI系统事件队列处理器初始化函数
 // 原始函数名: FUN_1806979e0
+
+// UI数据处理与缓冲区管理器
+// 原始函数名: FUN_18069a100
+#define ProcessUIDataAndBufferManager FUN_18069a100
+
+// UI缓冲区数据复制处理器
+// 原始函数名: FUN_180706d00
+#define ProcessUIBufferCopyOperation FUN_180706d00
+
+// UI数据源查询与状态检查器
+// 原始函数名: FUN_180706d32
+#define QueryUIDataSourceStatus FUN_180706d32
+
+// UI组件属性查询与设置器
+// 原始函数名: FUN_18070f060
+#define QueryAndSetUIComponentProperties FUN_18070f060
+
+// UI上下文数据读取器
+// 原始函数名: FUN_18070f198
+#define ReadUIContextData FUN_18070f198
+
+// UI系统数据编码处理器
+// 原始函数名: FUN_18070f860
+#define ProcessUIDataEncoding FUN_18070f860
 #define InitializeUIEventQueueProcessor FUN_1806979e0
 
 // UI系统资源验证函数
