@@ -1041,12 +1041,9 @@ void* UIGestureCoordinates;
 #define UIXOREncryptionKey _DAT_180a40580
 
  UI系统渲染参数表宏定义
- UNK_18094e25c - UI渲染参数表0
-#define UIRenderParameterTable0 UNK_18094e25c
- UNK_18094e26c - UI渲染参数表1
-#define UIRenderParameterTable1 UNK_18094e26c
- UNK_18094e270 - UI渲染参数表2
-#define UIRenderParameterTable2 UNK_18094e270
+ #define UIRenderParameterTable0 UNK_18094e25c
+ #define UIRenderParameterTable1 UNK_18094e26c
+ #define UIRenderParameterTable2 UNK_18094e270
  UNK_18094e274 - UI渲染参数表3
 #define UIRenderParameterTable3 UNK_18094e274
  UNK_18094e27c - UI渲染参数表4
