@@ -32,15 +32,15 @@
 #define ProcessSystemContextManagement HandleSystemContextManagementAndMaintenance
 
 // UTF8到UTF16转换处理宏定义
-#define ProcessUtf8ToUtf16Conversion FUN_18013a1b0
-#define GetMemoryAddressMask FUN_1801358c0
-#define AllocateValidationMemory FUN_180136a10
-#define ProcessSystemValidation FUN_180122160
-#define ProcessStringConversion FUN_180136f60
+#define ConvertUtf8StringToUtf16 FUN_18013a1b0
+#define CalculateMemoryAddressMask FUN_1801358c0
+#define AllocateSystemValidationMemory FUN_180136a10
+#define ExecuteSystemValidationProcess FUN_180122160
+#define ConvertStringEncoding FUN_180136f60
 #define InitializeStringEncodingBuffer FUN_180120d00
 
 // 系统浮点数计算处理函数宏定义
-#define CalculateSystemFloatVector FUN_1801296e0
+#define ComputeSystemFloatVector FUN_1801296e0
 
 // 系统数据结构处理函数宏定义
 
@@ -519,6 +519,7 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ProcessSystemCharacterValidation FUN_18010fd40
 #define HandleSystemDatabaseOperation FUN_18011dbd0
 #define ProcessSystemDataComparison FUN_18011da00
+#define ProcessSystemDataStructureOperation FUN_18005ee30
 
 // 系统内存分配和数据处理函数
 #define AllocateSystemMemoryBuffer FUN_180131aa0
@@ -37816,7 +37817,7 @@ MemoryBufferAllocationComplete: // 原始标签：LAB_18007113f
         return;
       }
     }
-    else if (validationResult == 3) goto LAB_1800715eb;
+    else if (validationResult == 3) goto SystemConfigurationValidation;
     if (CoreEngineSystemContext == 0) {
       OperationStatus = '\x01';
     }
@@ -37981,7 +37982,7 @@ SystemEventMemoryAllocationLabel:
   else if (MemoryAllocationIndex < 0x13) {
     FunctionAddress80 = 0x11;
     SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,0x13,0x10,0x13);
-    goto LAB_180071af3;
+    goto SystemEventProcessingLabel;
   }
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   FunctionAddress80 = 0x12;
@@ -38070,7 +38071,7 @@ SystemEventProcessingComplete:
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
-LAB_180071d1f:
+SystemStatusCodeProcessing:
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   SystemStatusCode = MemoryAllocationIndex + 0xd;
   FunctionAddress80 = ProcessStringBuffer;
@@ -38084,13 +38085,13 @@ LAB_180071d1f:
       *SystemEventPointer = 0;
     }
     else {
-      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto LAB_180071d94;
+      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto SystemStringBufferProcessing;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,ProcessStringBuffer,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
-LAB_180071d94:
+SystemStringBufferProcessing:
   TertiaryProcessingStatusFlag = (void *)(SystemEventPointer + FunctionAddress80);
   *TertiaryProcessingStatusFlag = 0x6973736572707845;
   *(uint32_t *)(TertiaryProcessingStatusFlag + 1) = 0x203a6e6f;
@@ -240390,7 +240391,7 @@ long long FUN_18020dd10(long long *OutputBuffer,long long *OutputBufferSize,int 
   OutputBuffer[0xc] = Utf16EndPointer;
   OutputBuffer[0xd] = 0;
   StackConfigurationFlag = Utf8InputPointer;
-  MemoryBlockIndex = FUN_18005ee30(Utf16EndPointer,1,&TemporaryBuffer,Utf16EndPointer,0xfffffffffffffffe);
+  MemoryBlockIndex = ProcessSystemDataStructureOperation(Utf16EndPointer,1,&TemporaryBuffer,Utf16EndPointer,0xfffffffffffffffe);
   if (MemoryBlockIndex != 0) {
     DataStructureCounter = MemoryBlockIndex + 8;
   }
@@ -240585,7 +240586,7 @@ void FUN_18020e410(uint64_t *OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf
   *(uint32_t *)(OutputBuffer + 9) = 0;
   OutputBuffer[0xc] = AdditionalParameter1;
   OutputBuffer[0xd] = AdditionalParameter2;
-  DataStructureCounter = FUN_18005ee30(AdditionalParameter1,1,&AdditionalParameter1,Utf16EndPointer,0xfffffffffffffffe);
+  DataStructureCounter = ProcessSystemDataStructureOperation(AdditionalParameter1,1,&AdditionalParameter1,Utf16EndPointer,0xfffffffffffffffe);
   if (DataStructureCounter != 0) {
     AllocatedMemorySize = DataStructureCounter + 8;
   }
