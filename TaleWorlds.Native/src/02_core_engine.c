@@ -6010,6 +6010,30 @@ const char* const SystemKeywordSexdecenary = (const char*)0x180a13238;
 const char* const SystemKeywordSeptendecenary = (const char*)0x180a131ec;
 const char* const SystemKeywordOctodecenary = (const char*)0x180a131d8;
 
+// 系统数据缓冲区常量 - 用于替换UNK_180a104d0等变量
+const void* const SystemDataBufferPointerPrimary = (void*)0x180a104d0;
+const void* const SystemDataBufferPointerSecondary = (void*)0x180a10500;
+const void* const SystemDataBufferPointerTertiary = (void*)0x180a10878;
+const void* const SystemDataBufferPointerQuaternary = (void*)0x180a108b0;
+const void* const SystemDataBufferPointerQuinary = (void*)0x180a108d0;
+const void* const SystemDataBufferPointerSenary = (void*)0x180a10938;
+const void* const SystemDataBufferPointerSeptenary = (void*)0x180a10960;
+const void* const SystemDataBufferPointerOctonary = (void*)0x180a10988;
+const void* const SystemDataBufferPointerNonary = (void*)0x180a109b8;
+const void* const SystemDataBufferPointerDenary = (void*)0x180a10a20;
+const void* const SystemDataBufferPointerUndenary = (void*)0x180a10a48;
+const void* const SystemDataBufferPointerDuodenary = (void*)0x180a10a10;
+const void* const SystemDataBufferPointerTredecenary = (void*)0x180a10aa0;
+const void* const SystemDataBufferPointerQuattuordecenary = (void*)0x180a10a58;
+const void* const SystemDataBufferPointerQuindecenary = (void*)0x180a10a90;
+const void* const SystemDataBufferPointerSexdecenary = (void*)0x180a10b88;
+const void* const SystemDataBufferPointerSeptendecenary = (void*)0x180a10bc0;
+const void* const SystemDataBufferPointerOctodecenary = (void*)0x180a10ae0;
+const void* const SystemDataBufferPointerNovemdecenary = (void*)0x180a10af0;
+const void* const SystemDataBufferPointerVigintenary = (void*)0x180a10be0;
+const void* const SystemDataBufferPointerUnvigintenary = (void*)0x180a10bf0;
+const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
+
 /**
  * @brief 初始化核心引擎数据结构
  * 
@@ -117443,6 +117467,17 @@ void ProcessFloatDataEncodingConversion(uint64_t CharacterCode, float *Character
 
 
 
+/**
+ * @brief 处理字符编码和系统上下文
+ * 
+ * 该函数负责处理字符编码转换和系统上下文管理，包括浮点数计算、
+ * 状态缓冲区管理和代码点处理。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * 
+ * @note 原始函数名：FUN_18012250a
+ */
 250a(uint64_t CharacterCode,float *CharacterCodeSizevoid ProcessCharacterEncodingAndSystemContext(uint64_t CharacterCode,float *CharacterCodeSize
 {
   uint64_t *StatusBuffer;
@@ -117608,6 +117643,18 @@ void ProcessFloatDataEncodingConversion(uint64_t CharacterCode, float *Character
 
 
 
+/**
+ * @brief 处理字符编码和缓冲区管理
+ * 
+ * 该函数负责处理字符编码转换和缓冲区管理，包括状态缓冲区处理、
+ * 浮点数计算和UTF8输入指针管理。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * 
+ * @note 原始函数名：FUN_180122537
+ */
 2537(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointervoid ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer
 {
   uint64_t *StatusBuffer;
@@ -117763,6 +117810,14 @@ void ProcessFloatDataEncodingConversion(uint64_t CharacterCode, float *Character
 
 
 
+/**
+ * @brief 初始化系统数据验证
+ * 
+ * 该函数负责初始化系统数据验证过程，包括状态缓冲区处理、
+ * 浮点数计算和系统上下文管理。
+ * 
+ * @note 原始函数名：FUN_1801225c7
+ */
 25c7(voidvoid InitializeSystemDataValidation(void
 {
   uint32_t *StatusBuffer;
@@ -118297,7 +118352,7 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t CharacterCod
 
 
 
-2b10(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint32_t Utf8InputPointervoid FUN_180122b10(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint32_t Utf8InputPointer
+2b10(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint32_t Utf8InputPointervoid ProcessCharacterEncodingAndValidation(uint64_t CharacterCode,uint64_t CharacterCodeSize,uint32_t Utf8InputPointer
 {
   float SystemContextPrimaryFloat;
   long long BufferStatus;
@@ -118422,7 +118477,7 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t CharacterCod
 
 
 
-2e80(uint64_t CharacterCodevoid FUN_180122e80(uint64_t CharacterCode
+2e80(uint64_t CharacterCodevoid ProcessCharacterCodeAndMemory(uint64_t CharacterCode
 {
   long long PrimaryDataSize;
   uint MemoryAllocationIndex;
@@ -196135,8 +196190,20 @@ void InitializeSystemContextAndConfigureData(long long CharacterCode, uint32_t C
 
 
 
-727d0(long long CharacterCode,uint64_t CharacterCodeSize,uint Utf8InputPointer,long long Utf16EndPointer,
-void FUN_1801727d0(long long CharacterCode,uint64_t CharacterCodeSize,uint Utf8InputPointer,long long Utf16EndPointer,
+/**
+ * @brief 验证系统字符数据
+ * 
+ * 该函数负责验证系统中的字符数据，包括字符编码验证和数据处理
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * 
+ * @note 原始函数名：FUN_1801727d0
+ */
+void ValidateSystemCharacterData(long long CharacterCode, uint64_t CharacterCodeSize, uint Utf8InputPointer, long long Utf16EndPointer,
                   unsigned long long AdditionalParameter1
 {
   int *ReferenceCountPointer;
@@ -197072,8 +197139,21 @@ LAB_1801736de:
 
 
 
-73720(long long CharacterCode,int CharacterCodeSize,int Utf8InputPointer,byte Utf16EndPointer,int *AdditionalParameter1,
-void FUN_180173720(long long CharacterCode,int CharacterCodeSize,int Utf8InputPointer,byte Utf16EndPointer,int *AdditionalParameter1,
+/**
+ * @brief 处理系统字符缓冲区
+ * 
+ * 该函数负责处理系统中的字符缓冲区操作，包括字符编码转换和缓冲区管理
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2
+ * 
+ * @note 原始函数名：FUN_180173720
+ */
+void ProcessSystemCharacterBuffer(long long CharacterCode, int CharacterCodeSize, int Utf8InputPointer, byte Utf16EndPointer, int *AdditionalParameter1,
                   long long *AdditionalParameter2
 {
   int LockResult;
