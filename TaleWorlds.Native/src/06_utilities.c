@@ -79996,7 +79996,13 @@ void Unwind_18090bbf0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bc10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数3D8 - 处理偏移量0x3D8的异常上下文
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090bc10
+ */
+void ProcessExceptionContextAtOffset3D8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80010,7 +80016,13 @@ void Unwind_18090bc10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bc30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数3E0 - 处理偏移量0x3E0的异常上下文
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090bc30
+ */
+void ProcessExceptionContextAtOffset3E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80024,7 +80036,13 @@ void Unwind_18090bc30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bc50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数3F0 - 处理偏移量0x3F0的异常上下文
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090bc50
+ */
+void ProcessExceptionContextAtOffset3F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80038,7 +80056,13 @@ void Unwind_18090bc50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bc70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数3F8 - 处理偏移量0x3F8的异常上下文
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090bc70
+ */
+void ProcessExceptionContextAtOffset3F8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80052,7 +80076,13 @@ void Unwind_18090bc70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bc90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数400 - 处理偏移量0x400的异常上下文
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090bc90
+ */
+void ProcessExceptionContextAtOffset400(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80066,7 +80096,13 @@ void Unwind_18090bc90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bcb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数408 - 处理偏移量0x408的异常上下文
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090bcb0
+ */
+void ProcessExceptionContextAtOffset408(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80080,7 +80116,13 @@ void Unwind_18090bcb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bcd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器函数410 - 处理偏移量0x410的异常上下文
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090bcd0
+ */
+void ProcessExceptionContextAtOffset410(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80094,7 +80136,11 @@ void Unwind_18090bcd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bcf0(void)
+/**
+ * @brief 互斥锁销毁函数 - 销毁互斥锁资源
+ * @note 原始函数名：Unwind_18090bcf0
+ */
+void DestroyMutexLock(void)
 
 {
   _Mtx_destroy_in_situ();

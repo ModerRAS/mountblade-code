@@ -97910,9 +97910,9 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *Utf8InputBuffer
                                     *(float *)(MemoryBlockIndex + 0x19f8));
     ContextPrimaryFloat0 = ContextPrimaryFloat1 + *pFloatVariable5;
     SystemContextPrimaryFloat3 = SystemContextPrimaryFloat2 + pFloatVariable5[1];
-    fStack_e8 = ContextPrimaryFloat0 - ContextPrimaryFloat1;
-    fStack_e4 = SystemContextPrimaryFloat3 - SystemContextPrimaryFloat2;
-    ProcessSystemBuffer(&fStack_e8);
+    ContextDifferenceFloat1 = ContextPrimaryFloat0 - ContextPrimaryFloat1;
+    ContextDifferenceFloat2 = SystemContextPrimaryFloat3 - SystemContextPrimaryFloat2;
+    ProcessSystemBuffer(&ContextDifferenceFloat1);
     MemoryPoolBlockSize = *(long long *)(MemoryBlockIndex + 0x1af8);
     *(void *)(MemoryPoolBlockSize + 0x144) = 0;
     *(float *)(MemoryPoolBlockSize + 0x14c) = ContextPrimaryFloat1;
@@ -97920,15 +97920,15 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *Utf8InputBuffer
     *(float *)(MemoryPoolBlockSize + 0x154) = ContextPrimaryFloat0;
     *(float *)(MemoryPoolBlockSize + 0x158) = SystemContextPrimaryFloat3;
     BufferStatus = *(long long *)(MemoryBlockIndex + 0x1af8);
-    fStack_e0 = ContextPrimaryFloat1;
-    fStack_dc = SystemContextPrimaryFloat2;
-    fStack_d8 = ContextPrimaryFloat0;
-    fStack_d4 = SystemContextPrimaryFloat3;
+    ContextFloat1 = ContextPrimaryFloat1;
+    ContextFloat2 = SystemContextPrimaryFloat2;
+    ContextFloat3 = ContextPrimaryFloat0;
+    ContextFloat4 = SystemContextPrimaryFloat3;
     if (((((*(float *)(BufferStatus + 0x22c) <= SystemContextPrimaryFloat3 && SystemContextPrimaryFloat3 != *(float *)(BufferStatus + 0x22c)) &&
           (SystemContextPrimaryFloat2 < *(float *)(BufferStatus + 0x234))) &&
          (*(float *)(BufferStatus + 0x228) <= ContextPrimaryFloat0 && ContextPrimaryFloat0 != *(float *)(BufferStatus + 0x228))) &&
         (ContextPrimaryFloat1 < *(float *)(BufferStatus + 0x230))) || (*(char *)(MemoryBlockIndex + 0x2e38) != '\0')) {
-      OperationStatus = ValidateAndProcessSystemFlags(&fStack_e0,&fStack_d8,1);
+      OperationStatus = ValidateAndProcessSystemFlags(&ContextFloat1,&ContextFloat3,1);
       if (OperationStatus != '\0') {
         *(uint *)(MemoryPoolBlockSize + 0x148) = *(uint *)(MemoryPoolBlockSize + 0x148) | 1;
       }
@@ -97940,11 +97940,11 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *Utf8InputBuffer
       else {
         CharacterCode = 0.0;
       }
-      fStack_d0 = *(float *)(MemoryBlockIndex + 0x1738);
-      fStack_cc = *(float *)(MemoryBlockIndex + 0x173c);
+      SystemFloat1 = *(float *)(MemoryBlockIndex + 0x1738);
+      SystemFloat2 = *(float *)(MemoryBlockIndex + 0x173c);
       SystemFlagH = *(uint32_t *)(MemoryBlockIndex + 0x1740);
       MatrixElementB = *(float *)(MemoryBlockIndex + 0x1744) * *(float *)(MemoryBlockIndex + 0x1628);
-      ProcessingStatusFlag = ValidateSystemData(&fStack_d0);
+      ProcessingStatusFlag = ValidateSystemData(&SystemFloat1);
       pcStack_108.LowPart = *(uint32_t *)(MemoryBlockIndex + 0x1664);
       ProcessSystemDataConcatenation(CONCAT44(fStack_dc,fStack_e0),CONCAT44(fStack_d4,fStack_d8),ProcessingStatusFlag,1);
       NormalizedParameterValue = -*(float *)(MemoryBlockIndex + 0x1668);
