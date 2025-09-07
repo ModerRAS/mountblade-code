@@ -98,6 +98,7 @@
 #define GetCharacterBuffer80 FUN_18014f810                       // 获取字符缓冲区80
 #define GetProcessingPointer88 FUN_18014f840                     // 获取处理指针88
 #define ProcessCharacterCodeData FUN_18019c480                    // 处理字符代码数据
+#define ProcessCharacterEncodingAndStringFormatting FUN_18013d22f  // 处理字符编码和字符串格式化
 #define ProcessCharacterCodeConversionEx FUN_18019c560            // 处理字符代码转换扩展
 #define ProcessCharacterCodeValidationEx FUN_18019c5b0            // 处理字符代码验证扩展
 #define ProcessCharacterEncodingData FUN_180212e40                // 处理字符编码数据
@@ -171290,7 +171291,7 @@ void ProcessUtf8InputBufferSize(long long CharacterCode, uint64_t *Utf8InputBuff
  * 
  * @see ProcessCharacterCodeMemoryAllocation, ProcessSystemMemoryBufferSetup
  */
-void FUN_18013d22f(uint64_t CharacterCode)
+void ProcessCharacterEncodingAndStringFormatting(uint64_t CharacterCode)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
