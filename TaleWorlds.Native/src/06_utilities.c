@@ -5332,14 +5332,14 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 
 // 栈变量语义化宏定义
 #define StackFloatRegisterA fStack0000000000000048    // 栈浮点寄存器A
-#define StackFloatRegisterB fStack0000000000000040    // 栈浮点寄存器B
-#define StackFloatRegisterC fStack0000000000000044    // 栈浮点寄存器C
+#define StackFloatRegisterB StackFloatRegisterB    // 栈浮点寄存器B
+#define StackFloatRegisterC StackFloatRegisterC    // 栈浮点寄存器C
 #define StackFloatRegisterD fStack000000000000004c    // 栈浮点寄存器D
 #define StackPointerRegisterA puStack0000000000000058    // 栈指针寄存器A
 #define StackInputParameterA in_stack_00000068    // 栈输入参数A
 #define StackInputParameterB in_stack_00000050    // 栈输入参数B
 #define StackInputParameterC StackValidationParameterA    // 栈输入参数C
-#define StackInputParameterD in_stack_00000058    // 栈输入参数D
+#define StackInputParameterD StackMemoryBasePointer    // 栈输入参数D
 #define StackInputParameterE in_stack_00000008    // 栈输入参数E
 #define StackFloatValueA in_stack_000001a0    // 栈浮点值A
 #define StackFloatValueB in_stack_000001a8    // 栈浮点值B
@@ -10340,16 +10340,18 @@ DataBuffer ValidateResourceAccessChain(int64_t resourceHandle)
 
 
 
-// 函数: DataWord ValidateResourceHandleAndRelease(void)
-// 
-// 资源句柄验证和释放函数
-// 验证资源句柄的有效性，并在验证通过后释放相关资源
-// 
-// 参数:
-//   无 (通过RAX寄存器传递资源句柄)
-// 
-// 返回值:
-//   成功返回0x1c，失败时调用资源释放函数
+/**
+ * @brief 验证资源句柄并释放资源
+ * 
+ * 该函数负责验证资源句柄的有效性，并在验证通过后释放相关资源。
+ * 资源句柄通过RAX寄存器传递，函数会检查句柄的有效性，然后执行资源释放操作。
+ * 
+ * @return DataWord 验证结果，成功返回0x1c，失败时调用资源释放函数
+ * 
+ * @note 原始函数名：ValidateResourceHandleAndRelease
+ * @note 资源句柄通过RAX寄存器传递
+ * @warning 失败时会调用资源释放函数，可能导致进程终止
+ */
 DataWord ValidateResourceHandleAndRelease(void)
 
 {
@@ -20281,7 +20283,7 @@ ProcessDataSecurityValidation:
               StackValidationParameterA = &DataIntegrityValidationErrorE;
               StackParameter38 = SystemOperationResult;
               ValidationDataBuffer = register_R13D;
-              ValidateDataIntegrityA0(operationResult4,&stack0x00000028);
+              ValidateDataIntegrityA0(operationResult4,&StackValidationBuffer);
             }
           }
         }
@@ -20360,21 +20362,21 @@ ValidateDataSecurity:
   if (0 < inputAccumulatorRegister) {
     operationResult2 = (uint64_t)(uint)register_R13D;
     operationResult0 = (uint64_t)(uint)register_R13D;
-    lStack0000000000000060 = inputAccumulatorRegister;
+    StackLoopCounter = inputAccumulatorRegister;
     do {
       validationContext5 = *(int64_t *)(register_R15 + 0x20);
       dataContext = *(int64_t *)(operationResult0 + 0x10 + validationContext5);
       calculatedOffset = *(int64_t *)(operationResult0 + 8 + validationContext5);
       charSystemStatus = CheckSystemStatus(dataContext,1);
-      register_R12 = in_stack_00000058;
+      register_R12 = StackMemoryBasePointer;
       if ((charSystemStatus == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
         operationResult3 = *(DataWord *)(operationResult0 + 4 + validationContext5);
         stackFramePointer[-4] = &SystemMemoryInitializationReference;
         *(DataWord *)(stackFramePointer + -2) = SystemOperationResult;
-        pmemoryBaseAddress = (DataBuffer *)*in_stack_00000058;
+        pmemoryBaseAddress = (DataBuffer *)*StackMemoryBasePointer;
         *(DataWord *)(stackFramePointer + -1) = operationResult3;
         *(DataWord *)(stackFramePointer + -3) = 0;
-        validationContext5 = (*(code *)*pmemoryBaseAddress)(in_stack_00000058);
+        validationContext5 = (*(code *)*pmemoryBaseAddress)(StackMemoryBasePointer);
         *stackFramePointer = *(DataBuffer *)(*(int64_t *)(validationContext5 + 0x90) + operationResult2 * 8);
         *(ByteFlag *)((int64_t)stackFramePointer + -4) = 0;
         if (*(int *)(dataContext + 0x58) < 1) {
@@ -20391,7 +20393,7 @@ ValidateDataSecurity:
       operationResult2 = operationResult2 + 1;
       operationResult0 = operationResult0 + 0x18;
       systemContext = StackInputParameterA;
-    } while ((int64_t)operationResult2 < lStack0000000000000060);
+    } while ((int64_t)operationResult2 < StackLoopCounter);
   }
   systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
   systemDataBuffer6 = (**(FunctionPointer**)*register_R12)(register_R12);
@@ -20436,11 +20438,11 @@ ValidateDataSecurity:
       StackFloatValueA = register_XMM6_Da;
       StackFloatValueB = register_XMM6_Dc;
       if (ProcessedFloatValue._4_4_ != 1.0) {
-        fStack0000000000000040 = ProcessedFloatValue._4_4_;
+        StackFloatRegisterB = ProcessedFloatValue._4_4_;
         StackInputParameterC = &FloatingPointValidationErrorA;
         StackParameter38 = SystemOperationResult;
         ValidationDataBuffer = register_R13D;
-        inputParameter3 = ValidateDataIntegrityA0(ProcessedFloatValue._4_4_,&stack0x00000028);
+        inputParameter3 = ValidateDataIntegrityA0(ProcessedFloatValue._4_4_,&StackValidationBuffer);
         ProcessedFloatValue._4_4_ = floatResultA_02;
         if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
       }
@@ -20462,9 +20464,9 @@ ValidateDataSecurity:
             StackParameter38 = SystemOperationResult;
             StackValidationParameterA = &DataProcessingValidationError;
             ValidationDataBuffer = register_R13D;
-            fStack0000000000000040 = loopCounterFloat;
-            fStack0000000000000044 = floatValidationValue;
-            inputParameter3 = ValidateDataIntegrityA0(floatValidationValue,&stack0x00000028);
+            StackFloatRegisterB = loopCounterFloat;
+            StackFloatRegisterC = floatValidationValue;
+            inputParameter3 = ValidateDataIntegrityA0(floatValidationValue,&StackValidationBuffer);
             if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
           }
           validationCounter = (float)((int)validationCounter + 1);
@@ -20478,9 +20480,9 @@ ValidateDataSecurity:
             StackParameter38 = SystemOperationResult;
             StackValidationParameterA = &DataProcessingContextA0;
             ValidationDataBuffer = register_R13D;
-            fStack0000000000000040 = loopCounterFloat;
-            fStack0000000000000044 = floatValidationValue;
-            inputParameter3 = ValidateDataIntegrityA0(floatValidationValue,&stack0x00000028);
+            StackFloatRegisterB = loopCounterFloat;
+            StackFloatRegisterC = floatValidationValue;
+            inputParameter3 = ValidateDataIntegrityA0(floatValidationValue,&StackValidationBuffer);
             if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
           }
           validationCounter = (float)((int)validationCounter + 1);
@@ -20493,7 +20495,7 @@ ValidateDataSecurity:
           StackParameter38 = SystemOperationResult;
           ValidationDataBuffer = register_R13D;
           StackFloatRegisterB = (float)(systemDataBuffer4 / 0x30);
-          inputParameter3 = ValidateDataIntegrityA0(floatResultA_03,&stack0x00000028);
+          inputParameter3 = ValidateDataIntegrityA0(floatResultA_03,&StackValidationBuffer);
           operationResult3 = floatResultA_04;
           if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
@@ -20502,7 +20504,7 @@ ValidateDataSecurity:
           StackParameter38 = SystemOperationResult;
           StackFloatRegisterB = (float)CONCAT31(StackFloatRegisterB._1_3_,1);
           ValidationDataBuffer = register_R13D;
-          inputParameter3 = ValidateDataIntegrityA0(operationResult3,&stack0x00000028);
+          inputParameter3 = ValidateDataIntegrityA0(operationResult3,&StackValidationBuffer);
           if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
         inputParameter3 = ProcessUtilityOperation(systemContext);
@@ -20510,7 +20512,7 @@ ValidateDataSecurity:
           StackInputParameterC = &DataIntegrityValidationErrorC;
           StackParameter38 = SystemOperationResult;
           ValidationDataBuffer = register_R13D;
-          inputParameter3 = ValidateDataIntegrityA0(floatResultA_05,&stack0x00000028);
+          inputParameter3 = ValidateDataIntegrityA0(floatResultA_05,&StackValidationBuffer);
           if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
         inputParameter3 = ProcessUtilityOperation(systemContext);
@@ -20528,7 +20530,7 @@ ValidateDataSecurity:
           StackValidationParameterA = &DataIntegrityValidationErrorE;
           StackParameter38 = SystemOperationResult;
           ValidationDataBuffer = register_R13D;
-          ValidateDataIntegrityA0(operationResult3,&stack0x00000028);
+          ValidateDataIntegrityA0(operationResult3,&StackValidationBuffer);
         }
       }
     }
@@ -20592,7 +20594,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     contextFlags = stackFlags;
     contextValue = systemValue;
     stackInputValue = inputValue;
-    operationResult = ValidateDataIntegrityA0(inputValue,&stack0x00000028);
+    operationResult = ValidateDataIntegrityA0(inputValue,&StackValidationBuffer);
     inputValue = floatResultA;
     if (operationResult != 0) GOTO_ValidationFailure;
   }
@@ -20603,7 +20605,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       validationContext = &ValidationContextA1;
       contextFlags = stackFlags;
       contextValue = systemValue;
-      operationResult = ValidateDataIntegrityA0(secondaryInputValue,&stack0x00000028);
+      operationResult = ValidateDataIntegrityA0(secondaryInputValue,&StackValidationBuffer);
       if (operationResult != 0) GOTO_ValidationFailure;
     }
     dataPointer = (float *)(dataBase + 0x94);
@@ -20614,9 +20616,9 @@ void ProcessFloatingPointDataA0(float inputValue)
         StackParameter38 = SystemOperationResult;
         StackValidationParameterA = &DataProcessingValidationError;
         ValidationDataBuffer = register_R13D;
-        fStack0000000000000040 = fVar4;
-        fStack0000000000000044 = floatValidationValue;
-        operationResult = ValidateDataIntegrityA0(ValidationFloatValue,&stack0x00000028);
+        StackFloatRegisterB = fVar4;
+        StackFloatRegisterC = floatValidationValue;
+        operationResult = ValidateDataIntegrityA0(ValidationFloatValue,&StackValidationBuffer);
         if (operationResult != 0) GOTO_ValidationFailure;
       }
       fVar4 = (float)((int)fVar4 + 1);
@@ -20630,9 +20632,9 @@ void ProcessFloatingPointDataA0(float inputValue)
         StackParameter38 = SystemOperationResult;
         StackValidationParameterA = &DataProcessingContextA0;
         ValidationDataBuffer = register_R13D;
-        fStack0000000000000040 = fVar4;
-        fStack0000000000000044 = floatValidationValue;
-        operationResult = ValidateDataIntegrityA0(ValidationFloatValue,&stack0x00000028);
+        StackFloatRegisterB = fVar4;
+        StackFloatRegisterC = floatValidationValue;
+        operationResult = ValidateDataIntegrityA0(ValidationFloatValue,&StackValidationBuffer);
         if (operationResult != 0) GOTO_ValidationFailure;
       }
       fVar4 = (float)((int)fVar4 + 1);
@@ -20644,8 +20646,8 @@ void ProcessFloatingPointDataA0(float inputValue)
       StackInputParameterC = &SystemValidationDataTableA8;
       StackParameter38 = SystemOperationResult;
       ValidationDataBuffer = register_R13D;
-      fStack0000000000000040 = (float)(validationStatus / 0x30);
-      operationResult = ValidateDataIntegrityA0(floatResultA_00,&stack0x00000028);
+      StackFloatRegisterB = (float)(validationStatus / 0x30);
+      operationResult = ValidateDataIntegrityA0(floatResultA_00,&StackValidationBuffer);
       dataFlags = floatResultA_01;
       if (operationResult != 0) GOTO_ValidationFailure;
     }
@@ -20654,7 +20656,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       StackParameter38 = SystemOperationResult;
       StackFloatRegisterB = (float)CONCAT31(StackFloatRegisterB._1_3_,1);
       ValidationDataBuffer = register_R13D;
-      operationResult = ValidateDataIntegrityA0(dataFlags,&stack0x00000028);
+      operationResult = ValidateDataIntegrityA0(dataFlags,&StackValidationBuffer);
       if (operationResult != 0) GOTO_ValidationFailure;
     }
     operationResult = ProcessUtilityOperation();
@@ -20662,7 +20664,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       StackInputParameterC = &DataIntegrityValidationErrorC;
       StackParameter38 = SystemOperationResult;
       ValidationDataBuffer = register_R13D;
-      operationResult = ValidateDataIntegrityA0(floatResultA_02,&stack0x00000028);
+      operationResult = ValidateDataIntegrityA0(floatResultA_02,&StackValidationBuffer);
       if (operationResult != 0) GOTO_ValidationFailure;
     }
     operationResult = ProcessUtilityOperation();
@@ -20672,7 +20674,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       StackParameter38 = SystemOperationResult;
       ValidationDataBuffer = register_R13D;
       StackFloatRegisterB = register_R13D;
-      operationResult = ValidateDataIntegrityA0(floatResultA_03,&stack0x00000028);
+      operationResult = ValidateDataIntegrityA0(floatResultA_03,&StackValidationBuffer);
       dataFlags = floatResultA_04;
       if (operationResult != 0) GOTO_ValidationFailure;
     }
@@ -20680,7 +20682,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       StackValidationParameterA = &DataIntegrityValidationErrorE;
       StackParameter38 = SystemOperationResult;
       ValidationDataBuffer = register_R13D;
-      ValidateDataIntegrityA0(dataFlags,&stack0x00000028);
+      ValidateDataIntegrityA0(dataFlags,&StackValidationBuffer);
     }
   }
 ValidationFailedLabel:
@@ -55433,7 +55435,7 @@ void Unwind_180906510(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180906520(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x48) = &UNK_1809ffa18;
+  **(DataBuffer **)(dataBuffer + 0x48) = &SystemExceptionHandlerTable;
   return;
 }
 
@@ -55445,7 +55447,7 @@ void Unwind_180906530(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x48);
-  *exceptionDataBuffer = &UNK_180a02e68;
+  *exceptionDataBuffer = &SystemExceptionDataTable;
   exceptionDataBuffer[2] = &DefaultExceptionHandlerB;
   *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &ExceptionDataTable6;
@@ -55924,7 +55926,7 @@ void Unwind_1809067c0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x50);
-  *exceptionDataBuffer = &UNK_180a02e68;
+  *exceptionDataBuffer = &SystemExceptionDataTable;
   exceptionDataBuffer[2] = &DefaultExceptionHandlerB;
   *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &ExceptionDataTable6;
@@ -59695,7 +59697,7 @@ void Unwind_180907710(DataBuffer operationBase,int64_t dataBuffer)
   int64_t calculatedOffset;
   
   resourcePointer = *(DataBuffer **)(dataBuffer + 0x50);
-  *resourcePointer = &UNK_180a14bb8;
+  *resourcePointer = &SystemResourcePointerA;
   exceptionDataBuffer = (DataBuffer *)resourcePointer[0x11];
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     calculatedOffset = __RTCastToVoid(exceptionDataBuffer);
@@ -59719,7 +59721,7 @@ void Unwind_180907710(DataBuffer operationBase,int64_t dataBuffer)
   *(DataWord *)(resourcePointer + 0x10) = 0;
   resourcePointer[0xd] = &DefaultExceptionHandlerB;
   ProcessResourceA0(resourcePointer + 7,resourcePointer[9]);
-  *resourcePointer = &UNK_180a14c60;
+  *resourcePointer = &SystemResourcePointerB;
   return;
 }
 
@@ -59747,7 +59749,7 @@ void Unwind_180907740(DataBuffer operationBase,int64_t dataBuffer)
   int64_t calculatedOffset;
   
   resourcePointer = *(DataBuffer **)(dataBuffer + 0x40);
-  *resourcePointer = &UNK_180a14bb8;
+  *resourcePointer = &SystemResourcePointerA;
   exceptionDataBuffer = (DataBuffer *)resourcePointer[0x11];
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     calculatedOffset = __RTCastToVoid(exceptionDataBuffer);
@@ -59771,7 +59773,7 @@ void Unwind_180907740(DataBuffer operationBase,int64_t dataBuffer)
   *(DataWord *)(resourcePointer + 0x10) = 0;
   resourcePointer[0xd] = &DefaultExceptionHandlerB;
   ProcessResourceA0(resourcePointer + 7,resourcePointer[9]);
-  *resourcePointer = &UNK_180a14c60;
+  *resourcePointer = &SystemResourcePointerB;
   return;
 }
 
@@ -60480,7 +60482,7 @@ void Unwind_180907a00(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x70);
-  *exceptionDataBuffer = &UNK_180a14d00;
+  *exceptionDataBuffer = &SystemExceptionDataBufferA;
   if (exceptionDataBuffer[3] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -64879,7 +64881,7 @@ void Unwind_180908ed0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x20);
-  *exceptionDataBuffer = &UNK_18098b928;
+  *exceptionDataBuffer = &SystemExceptionDataBufferB;
   __std_exception_destroy(exceptionDataBuffer + 1);
   return;
 }
@@ -64892,7 +64894,7 @@ void Unwind_180908ee0(DataBuffer operationBase,int64_t dataBuffer)
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x40);
-  *exceptionDataBuffer = &UNK_18098b928;
+  *exceptionDataBuffer = &SystemExceptionDataBufferB;
   __std_exception_destroy(exceptionDataBuffer + 1);
   return;
 }
@@ -100031,15 +100033,15 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 
 // 栈变量宏定义 - 美化fStack变量
 #define StackFloatRegisterA fStack0000000000000048    // 栈浮点寄存器A
-#define StackFloatRegisterB fStack0000000000000040    // 栈浮点寄存器B
-#define StackFloatRegisterC fStack0000000000000044    // 栈浮点寄存器C
+#define StackFloatRegisterB StackFloatRegisterB    // 栈浮点寄存器B
+#define StackFloatRegisterC StackFloatRegisterC    // 栈浮点寄存器C
 #define StackFloatRegisterD fStack000000000000004c    // 栈浮点寄存器D
 
 // 栈变量宏定义 - 美化lStack变量
-#define StackLoopCounter lStack0000000000000060    // 栈循环计数器
+#define StackLoopCounter StackLoopCounter    // 栈循环计数器
 
 // 栈变量宏定义 - 美化stack变量
-#define StackValidationBuffer stack0x00000028    // 栈验证缓冲区
+#define StackValidationBuffer StackValidationBuffer    // 栈验证缓冲区
 
 // 栈变量宏定义 - 美化acStack变量
 #define StackSystemStatus acStackX_24    // 栈系统状态
