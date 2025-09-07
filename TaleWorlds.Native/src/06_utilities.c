@@ -8486,7 +8486,7 @@ void ValidateUtilitySystemFlags;               // 验证工具系统标志
 void* UtilitySystemCleanupData1;
 uint8_t UtilitySystemCleanupStatus1;
 
-943070;
+// 原始函数名：FUN_180943070 - 工具系统本地数据初始化函数
 #define InitializeUtilitySystemLocalData FUN_180943070
 uint8_t InitializeUtilitySystemLocalData;
 uint8_t UtilitySystemLocalData1;
@@ -8494,7 +8494,7 @@ uint8_t UtilitySystemLocalStatus1;
 uint8_t UtilitySystemLocalData2;
 uint8_t UtilitySystemLocalStatus2;
 
-943140;
+// 原始函数名：FUN_180943140 - 工具系统存储配置函数
 #define ConfigureUtilitySystemStorage FUN_180943140
 uint8_t ConfigureUtilitySystemStorage;
 
@@ -67764,7 +67764,17 @@ void SetDefaultExceptionHandlerAtOffset258(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_180907c60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量0x2c0
+ * 
+ * 在数据缓冲区的偏移量0x2c0处设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907c60
+ */
+void SetDefaultExceptionHandlerAtOffset2C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x2c0) = &DefaultExceptionHandlerB;
@@ -67773,7 +67783,17 @@ void Unwind_180907c60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907c70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源A0
+ * 
+ * 释放数据缓冲区中的内存资源，处理引用计数和内存管理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907c70
+ */
+void ReleaseMemoryResourceA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -67809,7 +67829,18 @@ void Unwind_180907c70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907c80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源A1
+ * 
+ * 释放数据缓冲区中的内存资源，处理引用计数和内存管理
+ * 与ReleaseMemoryResourceA0功能类似但实现细节不同
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907c80
+ */
+void ReleaseMemoryResourceA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -67845,7 +67876,19 @@ void Unwind_180907c80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907c90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行清理操作A0
+ * 
+ * 在数据缓冲区的偏移量0x1d0处执行清理操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907c90
+ */
+void ExecuteCleanupOperationA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1d0) != (code *)0x0) {
@@ -67856,7 +67899,19 @@ void Unwind_180907c90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行清理操作A1
+ * 
+ * 在数据缓冲区的偏移量0x1f0处执行清理操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907ca0
+ */
+void ExecuteCleanupOperationA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1f0) != (code *)0x0) {
