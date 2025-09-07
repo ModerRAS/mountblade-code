@@ -12798,7 +12798,7 @@ MemoryAllocationReset:
   StackVariable20 = 0;
   StackVariable10 = StackVariable10 & SystemBufferSizeMask;
   NetworkDataBuffer[0] = *StringProcessingResultPointer;
-  NetworkRequestResult = ProcessNetworkRequest(ConfigurationArrayPointer,*(uint64_t *)(ConfigurationIndex + 0x10),NetworkDataBuffer,&StackVariable20,&StackVariable10);
+  NetworkRequestResult = ProcessNetworkRequest(ConfigurationArrayPointer,*(uint64_t *)(ConfigurationIndex + 0x10),NetworkDataBuffer,&MemoryOffset,&MemoryAlignmentMask);
   if ((int)NetworkRequestResult != 0) {
     return NetworkRequestResult;
   }
@@ -12821,7 +12821,7 @@ MemoryAllocationReset:
   }
   GetStringProcessingResult();
   if (ConfigurationFlag1 != '\0') {
-    NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x20,&StackVariable20,&StackVariable10,MemoryAllocationResult,0);
+    NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x20,&MemoryOffset,&MemoryAlignmentMask,MemoryAllocationResult,0);
     if ((int)NetworkRequestResult != 0) {
       return NetworkRequestResult;
     }
@@ -12844,7 +12844,7 @@ MemoryAllocationReset:
     MemoryAllocationResult = 0;
   }
 Label_1808c73b4:
-  NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x28,&StackVariable20,&StackVariable10,MemoryAllocationResult,1);
+  NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x28,&MemoryOffset,&MemoryAlignmentMask,MemoryAllocationResult,1);
   if ((int)NetworkRequestResult == 0) {
     *(int *)(ConfigurationIndex + 0x18) = *(int *)(ConfigurationIndex + 0x18) + 1;
     return 0;
@@ -13002,7 +13002,7 @@ uint64_t SystemAudioCreateBuffer(uint32_t BufferSizeParameter,uint *AudioFormatP
     return 0x80920003;
   }
   ProcessSystemTask(AudioFormatPointer);
-  LoopCounterValue = CalculateLoopValue(BufferSizeParameter,&StackVariable20);
+  LoopCounterValue = CalculateLoopValue(BufferSizeParameter,&MemoryOffset);
   if (LoopCounterValue == 0) {
     FinalizeLoopCounter(BufferSizeParameter,StackBuffer18);
     if (*(longlong *)(StackVariable20 + 0x160) != 0) {
