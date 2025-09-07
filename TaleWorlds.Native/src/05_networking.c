@@ -1508,6 +1508,34 @@ uint32_t NetworkSocketRuntimeData;
 uint32_t NetworkSocketRuntimeContextPointer;
 
 /**
+ * @brief 网络套接字描述符
+ * 
+ * 存储网络套接字的描述符，用于标识和管理套接字资源
+ */
+uint32_t NetworkSocketDescriptor;
+
+/**
+ * @brief 网络套接字运行时数据
+ * 
+ * 存储网络套接字运行时的动态数据和状态信息
+ */
+uint32_t NetworkSocketOperatingData;
+
+/**
+ * @brief 网络套接字上下文数据
+ * 
+ * 存储网络套接字的上下文数据和配置信息
+ */
+uint32_t NetworkSocketContextData;
+
+/**
+ * @brief 网络服务器端口号
+ * 
+ * 存储网络服务器的端口号，用于网络服务监听
+ */
+uint32_t NetworkServerPortNumber;
+
+/**
  * @brief 网络协议版本
  * 
  * 定义网络协议的版本信息，用于协议兼容性检查
@@ -2045,6 +2073,27 @@ uint32_t NetworkConnectionTable;
  * @brief 网络套接字绑定状态
  */
 uint32_t NetworkSocketBindingStatus;
+
+/**
+ * @brief 网络连接池当前槽位
+ * 
+ * 表示网络连接池中当前正在使用的槽位索引
+ */
+uint32_t NetworkConnectionPoolCurrentSlot;
+
+/**
+ * @brief 网络连接池性能指标
+ * 
+ * 存储网络连接池的性能监控数据，包括吞吐量、延迟等指标
+ */
+uint32_t NetworkConnectionPoolPerformanceMetrics;
+
+/**
+ * @brief 网络连接池统计数据
+ * 
+ * 存储网络连接池的统计信息，用于性能分析和监控
+ */
+uint32_t NetworkConnectionPoolStatisticsData;
 
 /**
  * @brief 网络连接池和套接字管理函数
