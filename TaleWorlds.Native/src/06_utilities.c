@@ -55097,7 +55097,13 @@ void ProcessDataBufferOffset28(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906980(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用数据缓冲区回调函数
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180906980
+ */
+void InvokeDataBufferCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x58) != (int64_t *)0x0) {
@@ -55108,7 +55114,13 @@ void Unwind_180906980(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906990(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据缓冲区A1函数
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180906990
+ */
+void ProcessDataBufferOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataBufferA0(dataBuffer + 0x40);
@@ -55117,7 +55129,13 @@ void Unwind_180906990(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809069a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用扩展数据缓冲区回调函数
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809069a0
+ */
+void InvokeExtendedDataBufferCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xe0) != (int64_t *)0x0) {
