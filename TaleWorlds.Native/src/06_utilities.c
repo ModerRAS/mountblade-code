@@ -97086,7 +97086,7 @@ void CleanupSystemResourceManagerB(DataBuffer operationBase, DataBuffer dataBuff
       currentResource = currentResource + 0xb;
     } while (currentResource != resourceListEnd);
   }
-  if (_DAT_180bfa308 == (DataBuffer *)0x0) {
+  if (SystemResourceCurrentTableA1 == (DataBuffer *)0x0) {
     return;
   }
   // 如果资源链表不为空但起始指针为空，触发系统终止
@@ -97123,16 +97123,16 @@ void CleanupSystemResourceManagerC(DataBuffer operationBase, DataBuffer dataBuff
   DataBuffer *currentResource;
   DataBuffer cleanupFlag;
   
-  resourceListEnd = _DAT_180bfa330;
+  resourceListEnd = SystemResourceListEndTableA2;
   cleanupFlag = SystemCleanupFlagAlternative;
-  currentResource = _DAT_180bfa328;
-  if (_DAT_180bfa328 != _DAT_180bfa330) {
+  currentResource = SystemResourceCurrentTableA2;
+  if (SystemResourceCurrentTableA2 != SystemResourceListEndTableA2) {
     do {
       (**(FunctionPointer**)*currentResource)(currentResource, 0, operationFlagA, operationFlagB, cleanupFlag);
       currentResource = currentResource + 0xb;
     } while (currentResource != resourceListEnd);
   }
-  if (_DAT_180bfa328 == (DataBuffer *)0x0) {
+  if (SystemResourceCurrentTableA2 == (DataBuffer *)0x0) {
     return;
   }
   // 如果资源链表不为空但起始指针为空，触发系统终止
