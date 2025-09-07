@@ -7009,7 +7009,7 @@ uint8_t UtilityResizeHeapQuinaryData;
 uint8_t UtilityCompactMemoryHeap;
 // 工具系统压缩内存堆状态变量
 uint8_t UtilityCompactHeapPrimaryStatus;
-uint8_t UtilityCompactHeapData1;
+uint8_t UtilityCompactHeapPrimaryData;
 uint8_t UtilityCompactHeapData2;
 uint8_t UtilityCompactHeapData3;
 uint8_t UtilityCompactHeapData4;
