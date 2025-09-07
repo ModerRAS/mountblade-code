@@ -180348,12 +180348,12 @@ LAB_18014ccc0:
       EnginePointerBuffer = &SystemEnginePointerBuffer;
       EncodingBuffer = &SystemCoreEnginePointerBuffer;
       apiStack_78[0] = StackIntegerArray;
-      FUN_180149ed0(Utf16Char,apiStack_78,&CoreEngineValueA8);
+      ProcessCharacterWithSystemData(Utf16Char,apiStack_78,&CoreEngineValueA8);
       ppiStackX_18 = apStringComparisonMode;
       ContextDataPointer = &SystemEnginePointerBuffer;
       pSystemPriorityLevel = &SystemCoreEnginePointerBuffer;
       apStringComparisonMode[0] = StackIntegerArray;
-      FUN_180149bd0(Utf16Char);
+      ProcessCharacterBufferReset(Utf16Char);
     }
     AllocatedMemorySize = GetNextMemoryBlockIndex(AllocatedMemorySize);
     StringComparisonResult = EncodingValidationResult;

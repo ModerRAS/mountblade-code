@@ -81585,7 +81585,22 @@ void ProcessExceptionDataA1(DataBuffer operationBase,int64_t dataBuffer,DataBuff
 
 
 
-void Unwind_18090a450(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源清理和引用计数管理函数
+ * 
+ * 该函数负责清理内存资源并管理引用计数。主要功能包括：
+ * - 更新系统状态
+ * - 销毁互斥锁
+ * - 检查系统终止条件
+ * - 处理内存资源的引用计数
+ * - 管理内存块的释放和重用
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a450
+ */
+void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
