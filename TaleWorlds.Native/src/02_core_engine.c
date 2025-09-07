@@ -114859,7 +114859,22 @@ uint64_t * InitializeSystemContextStructure(uint64_t *SystemContextPointer
 
 
 
-0d00(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid FUN_180120d00(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 清理系统上下文内存
+ * 
+ * 该函数负责清理系统上下文内存，重置各个内存块的值。
+ * 通过循环调用内存清理函数并最终使用memset清空整个内存区域。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 此函数用于系统关闭或重置时的内存清理
+ * @note 会清理多个内存块并最终清空整个上下文区域
+ * @note 函数执行后不会返回（调用了不返回的memset）
+ */
+void CleanupSystemContextMemory(long long SystemContextPointer, uint64_t Utf8BufferSize, uint64_t Utf16InputPointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   long long bufferAllocationStatus;

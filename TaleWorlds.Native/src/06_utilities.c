@@ -44069,7 +44069,20 @@ void ConfigureExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180903ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数A
+ * 
+ * 该函数负责执行异常处理器回调函数A。它会检查并执行
+ * 指定的异常处理回调函数。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含异常处理配置信息
+ * @param operationFlagA 操作标志A，用于控制处理行为
+ * @param operationFlagB 操作标志B，用于控制处理行为
+ * 
+ * @note 原始函数名：Unwind_180903ae0
+ */
+void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -44083,7 +44096,20 @@ void Unwind_180903ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数B
+ * 
+ * 该函数负责执行异常处理器回调函数B。它会检查并执行
+ * 指定的异常处理回调函数。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含异常处理配置信息
+ * @param operationFlagA 操作标志A，用于控制处理行为
+ * @param operationFlagB 操作标志B，用于控制处理行为
+ * 
+ * @note 原始函数名：Unwind_180903af0
+ */
+void ExecuteExceptionHandlerCallbackB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
