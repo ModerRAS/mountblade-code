@@ -90,6 +90,16 @@
 #define ProcessCharacterEncodingConversionAndValidation FUN_180170ba0 // 处理字符编码转换和验证
 #define ProcessThreadLocalStorageSetup FUN_18006b6f0                  // 处理线程本地存储设置
 
+// 新增的FUN_函数语义化宏定义
+#define GetSystemCharacterData FUN_1801210b0                     // 获取系统字符数据
+#define GetSystemConfigurationHandle FUN_180121300               // 获取系统配置句柄
+#define GetSystemStringIndex FUN_180624c70                       // 获取系统字符串索引
+#define ProcessSystemDataTable FUN_180627ce0                     // 处理系统数据表
+#define GetCharacterBuffer80 FUN_18014f810                       // 获取字符缓冲区80
+#define GetProcessingPointer88 FUN_18014f840                     // 获取处理指针88
+#define GetMemoryBoundaryEnd FUN_18014e960                       // 获取内存边界结束
+#define GetProcessingPointerC0 FUN_18014f6a0                    // 获取处理指针C0
+
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
 #define ProcessUtf8ToUtf16ConversionEx FUN_18016ef90       // 扩展UTF-8到UTF-16转换处理
@@ -199061,7 +199071,7 @@ uint64_t FUN_18016ecb0(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long 
 
 
 uint64_t *
-FUN_18016eeb0(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ProcessUtf8ToUtf16ConversionInitial(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint32_t *CharacterStatusBuffer;
   
@@ -199088,7 +199098,7 @@ FUN_18016eeb0(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8Sou
 
 
 uint64_t *
-FUN_18016ef90(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ProcessUtf8ToUtf16ConversionExtended(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint32_t *CharacterStatusBuffer;
   void *puStack_28;
@@ -199125,7 +199135,7 @@ FUN_18016ef90(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8Sou
 
 
 uint64_t *
-FUN_18016f090(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
+ProcessUtf8ToUtf16ConversionAdvanced(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
