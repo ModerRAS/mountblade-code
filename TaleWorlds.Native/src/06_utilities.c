@@ -22982,18 +22982,30 @@ void ExecuteSecurityCheckAndTerminateA3(void)
 
 
 
-// 函数: void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,uint32_t operationFlags)
-//
-// 系统资源批量处理函数
-// 批量处理系统资源，包括资源验证、数据处理和状态更新
-// 
-// 参数:
-//   contextHandle - 上下文句柄指针
-//   resourceManager - 资源管理器句柄
-//   operationFlags - 操作标志位
-// 
-// 返回值:
-//   无 - 函数执行安全检查后终止
+/**
+ * @brief 系统资源批量处理函数
+ * 
+ * 该函数负责批量处理系统资源，包括资源验证、数据处理和状态更新。它会
+ * 根据操作标志对指定的资源进行批量处理，包括资源验证、数据转换和
+ * 状态更新操作。
+ * 
+ * @details 函数执行流程：
+ * 1. 初始化资源处理所需的缓冲区和变量
+ * 2. 根据操作标志设置处理参数
+ * 3. 批量验证资源的有效性
+ * 4. 对验证通过的资源进行数据处理
+ * 5. 更新资源状态
+ * 6. 执行安全检查
+ * 
+ * @param contextHandle 上下文句柄指针，包含处理的上下文信息
+ * @param resourceManager 资源管理器句柄，用于管理资源操作
+ * @param operationFlags 操作标志位，指定处理的类型和方式
+ * @return void 无返回值，函数执行安全检查后可能会终止
+ * 
+ * @warning 此函数在安全检查失败时会终止程序执行
+ * @note 此函数会批量处理多个系统资源
+ * @see ValidateSystemResource, ProcessResourceData, UpdateResourceStatus
+ */
 void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,uint32_t operationFlags)
 
 {
