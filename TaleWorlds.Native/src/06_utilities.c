@@ -99781,7 +99781,25 @@ void ProcessExceptionCleanupAtOffset1809110e0(DataBuffer operationBase,int64_t d
 
 
 
-void Unwind_180911100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 在偏移量180911100处理异常清理
+ * 
+ * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
+ * 它执行以下操作：
+ * - 获取异常处理上下文
+ * - 调用异常处理回调函数（如果存在）
+ * - 设置临时异常处理器
+ * - 清理异常状态和资源
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911100
+ */
+void ProcessExceptionCleanupAtOffset180911100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -99809,7 +99827,25 @@ void Unwind_180911100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 在偏移量180911120处理异常清理
+ * 
+ * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
+ * 它执行以下操作：
+ * - 获取异常处理上下文
+ * - 调用异常处理回调函数（如果存在）
+ * - 设置临时异常处理器
+ * - 清理异常状态和资源
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911120
+ */
+void ProcessExceptionCleanupAtOffset180911120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -99837,7 +99873,25 @@ void Unwind_180911120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 在偏移量180911140处理异常清理
+ * 
+ * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
+ * 它执行以下操作：
+ * - 获取异常处理上下文
+ * - 调用异常处理回调函数（如果存在）
+ * - 设置临时异常处理器
+ * - 清理异常状态和资源
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911140
+ */
+void ProcessExceptionCleanupAtOffset180911140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -99865,7 +99919,25 @@ void Unwind_180911140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 在偏移量180911160处理异常清理
+ * 
+ * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
+ * 它执行以下操作：
+ * - 获取异常处理上下文
+ * - 调用异常处理回调函数（如果存在）
+ * - 设置临时异常处理器
+ * - 清理异常状态和资源
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911160
+ */
+void ProcessExceptionCleanupAtOffset180911160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -99893,7 +99965,25 @@ void Unwind_180911160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 在偏移量180911180处理异常清理
+ * 
+ * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
+ * 它执行以下操作：
+ * - 获取异常处理上下文
+ * - 调用异常处理回调函数（如果存在）
+ * - 设置临时异常处理器
+ * - 清理异常状态和资源
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911180
+ */
+void ProcessExceptionCleanupAtOffset180911180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
