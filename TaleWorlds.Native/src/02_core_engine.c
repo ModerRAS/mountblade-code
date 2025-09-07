@@ -2752,6 +2752,9 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define CalculateSystemDataSize FUN_180118ba0
 // 原始函数名：FUN_18011dbd0 - 系统引用计数管理函数
 #define ManageSystemReferenceCount FUN_18011dbd0
+// 原始函数名：FUN_180122e80 - 系统浮点数处理函数
+#define ProcessSystemFloatDataEx FUN_180122e80
+
 // 原始函数名：FUN_18012d910 - 系统事件配置函数
 #define ConfigureSystemEvent FUN_18012d910
 // 原始函数名：FUN_18012ee20 - 系统事件处理函数
