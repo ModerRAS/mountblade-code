@@ -54815,7 +54815,20 @@ void ProcessExceptionDataBufferA0(DataBuffer operationBase,int64_t dataBuffer,Da
 
 
 
-void Unwind_1809058b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据缓冲区函数
+ * 
+ * 该函数负责处理异常数据缓冲区，遍历验证状态指针并调用相应的处理函数
+ * 主要用于异常处理机制中的数据缓冲区管理和验证
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809058b0
+ */
+void ProcessExceptionDataBuffer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -56868,7 +56881,22 @@ void ProcessSystemResourceQueueDuringUnwind(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_180905e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行主要上下文异常清理
+ * 
+ * 该函数在异常展开过程中执行主要上下文的异常清理回调函数，
+ * 处理数据缓冲区0x70偏移量的主要异常上下文。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含主要异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180905e50
+ * @note 处理0x70偏移量的主要异常上下文回调
+ * @note 具体处理0x158偏移量的异常处理回调
+ */
+void ExecutePrimaryContextExceptionCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -56882,7 +56910,22 @@ void Unwind_180905e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行次要上下文异常清理
+ * 
+ * 该函数在异常展开过程中执行次要上下文的异常清理回调函数，
+ * 处理数据缓冲区0x70偏移量的次要异常上下文。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含次要异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180905e70
+ * @note 处理0x70偏移量的次要异常上下文回调
+ * @note 具体处理0x178偏移量的异常处理回调
+ */
+void ExecuteSecondaryContextExceptionCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -56896,7 +56939,22 @@ void Unwind_180905e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行第三上下文异常清理
+ * 
+ * 该函数在异常展开过程中执行第三上下文的异常清理回调函数，
+ * 处理数据缓冲区0x78偏移量的第三异常上下文。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含第三异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180905e90
+ * @note 处理0x78偏移量的第三异常上下文回调
+ * @note 具体处理0x10偏移量的异常处理回调
+ */
+void ExecuteTertiaryContextExceptionCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -80030,7 +80088,15 @@ void ProcessSystemResourceExceptionAndSetCallback(DataBuffer operationBase,int64
 
 
 
-void Unwind_18090cb90(void)
+/**
+ * @brief 系统资源计数器递减函数
+ * 
+ * 该函数负责递减系统资源计数器，并调用系统函数表中的函数
+ * 主要用于系统资源管理和清理操作
+ * 
+ * @note 原始函数名：Unwind_18090cb90
+ */
+void DecrementSystemResourceCounter(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
