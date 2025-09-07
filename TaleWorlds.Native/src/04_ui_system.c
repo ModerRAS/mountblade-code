@@ -62451,10 +62451,18 @@ void ProcessUIDataTransferHandler(longlong uiContext,longlong dataSource,int tar
 
 
  void FUN_180698440(longlong uiContext)
-void FUN_180698440(longlong uiContext)
+/**
+ * @brief 重置UI系统状态
+ * 
+ * 该函数负责重置UI系统的状态，清除缓冲区数据并重新初始化相关组件
+ * 
+ * @param uiContext UI上下文指针
+ * @note 原始函数名: FUN_180698440
+ */
+void ResetUISystemState(longlong uiContext)
 
 {
-  FUN_180698800(uiContext + 0xc10,*(undefined4 *)(bufferData + 0x1928));
+  UpdateUIBufferData(uiContext + 0xc10,*(undefined4 *)(bufferData + 0x1928));
   *(undefined4 *)(bufferData + 0x1924) = *(undefined4 *)(bufferData + 0x1928);
   func_0x000180698220(uiContext + 0xc10);
                     // WARNING: Subroutine does not return
