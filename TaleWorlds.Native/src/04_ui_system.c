@@ -48824,8 +48824,7 @@ int CalculateUIImageBlockDifference(undefined1 (*uiContext) [32],int dataSource,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1806917c0(undefined1 (*uiContext) [16],ulonglong *dataSource,int targetBuffer)
-/**
+ /**
  * UI系统事件分发器初始化函数
  * 
  * 该函数负责初始化UI系统的事件分发器，设置事件处理的基本参数和状态。
@@ -49988,8 +49987,19 @@ void InitializeUIEventDispatcher(undefined1 (*uiContext) [16],ulonglong *dataSou
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180691db0(undefined1 (*uiContext) [16],ulonglong *dataSource,int targetBuffer)
-void FUN_180691db0(undefined1 (*uiContext) [16],ulonglong *dataSource,int targetBuffer)
+ /**
+ * UI系统状态更新器初始化函数
+ * 
+ * 该函数负责初始化UI系统的状态更新器，设置状态更新的参数和缓冲区。
+ * 主要用于处理UI组件的状态变化和更新机制。
+ * 
+ * @param uiContext UI上下文数组，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含状态更新所需的数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * 
+ * @note 原始函数名：FUN_180691db0
+ */
+void InitializeUIStateUpdater(undefined1 (*uiContext) [16],ulonglong *dataSource,int targetBuffer)
 
 {
   ulonglong functionResult;
@@ -51030,8 +51040,21 @@ void FUN_180691db0(undefined1 (*uiContext) [16],ulonglong *dataSource,int target
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1806922f0(undefined1 (*uiContext) [16],int dataSource,undefined1 (*targetBuffer) [16],
-void FUN_1806922f0(undefined1 (*uiContext) [16],int dataSource,undefined1 (*targetBuffer) [16],
+ /**
+ * UI系统数据流处理器初始化函数
+ * 
+ * 该函数负责初始化UI系统的数据流处理器，设置数据流的处理参数和缓冲区。
+ * 主要用于处理UI数据的流动和转换。
+ * 
+ * @param uiContext UI上下文数组，包含UI系统的状态信息
+ * @param dataSource 数据源，包含数据流处理所需的数据
+ * @param targetBuffer 目标缓冲区数组，用于存储处理结果
+ * @param bufferSize 缓冲区大小数组，用于指定处理缓冲区的大小
+ * @param resultPointer 结果指针数组，用于存储处理结果
+ * 
+ * @note 原始函数名：FUN_1806922f0
+ */
+void InitializeUIDataStreamProcessor(undefined1 (*uiContext) [16],int dataSource,undefined1 (*targetBuffer) [16],
                   undefined1 (*bufferSize) [16],undefined1 (*resultPointer) [16])
 
 {
@@ -54915,7 +54938,21 @@ void FUN_1806922f0(undefined1 (*uiContext) [16],int dataSource,undefined1 (*targ
 
 
  void FUN_1806935a0(undefined8 *uiContext,int dataSource,undefined1 (*targetBuffer) [16],
-void FUN_1806935a0(undefined8 *uiContext,int dataSource,undefined1 (*targetBuffer) [16],
+/**
+ * UI系统渲染数据处理器初始化函数
+ * 
+ * 该函数负责初始化UI系统的渲染数据处理器，设置渲染数据的处理参数和缓冲区。
+ * 主要用于处理UI渲染相关的数据和操作。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源，包含渲染数据
+ * @param targetBuffer 目标缓冲区数组，用于存储处理结果
+ * @param bufferSize 缓冲区大小数组，用于指定处理缓冲区的大小
+ * @param resultPointer 结果指针数组，用于存储处理结果
+ * 
+ * @note 原始函数名：FUN_1806935a0
+ */
+void InitializeUIRenderDataProcessor(undefined8 *uiContext,int dataSource,undefined1 (*targetBuffer) [16],
                   undefined1 (*bufferSize) [16],undefined1 (*resultPointer) [16])
 
 {
