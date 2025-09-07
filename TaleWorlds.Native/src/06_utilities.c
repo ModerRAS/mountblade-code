@@ -80117,7 +80117,15 @@ void DestroyMutexAtExceptionHandlerOffset(DataBuffer operationBase, int64_t data
 
 
 
-void DestroyMutexAtOffset80(void)
+/**
+ * @brief 在偏移量80处销毁互斥锁
+ * 
+ * 该函数负责销毁全局互斥锁。
+ * 它会调用互斥锁销毁函数来清理线程同步资源。
+ * 
+ * @note 原始函数名：DestroyMutexAtOffset80
+ */
+void DestroyMutexAtGlobalOffset(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -80126,10 +80134,21 @@ void DestroyMutexAtOffset80(void)
 
 
 
-void DestroyMutexAtOffset90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量90处销毁互斥锁
+ * 
+ * 该函数负责在数据缓冲区的指定偏移量处销毁互斥锁。
+ * 它会获取互斥锁指针并调用销毁函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含互斥锁信息
+ * 
+ * @note 原始函数名：DestroyMutexAtOffset90
+ */
+void DestroyMutexAtSystemContextOffset(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x98));
+  _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + SystemContextOffset98));
   return;
 }
 
