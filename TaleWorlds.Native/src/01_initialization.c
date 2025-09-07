@@ -2033,7 +2033,7 @@ void InitializeSystemDataTableAllocator(void)
   
   SystemMainTablePointer = (long long*)GetSystemRootTable();
   SystemRootNodeReference = (void**)*SystemMainTablePointer;
-  IsDataTableNodeActive = *(bool*)((long long)SystemRootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset);
+  IsDataTableNodeInitialized = *(bool*)((long long)SystemRootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset);
   DataTableInitializationHandler = GetDataTableSystemInitializationFunction;
   PreviousSystemNodePointer = SystemRootNodeReference;
   CurrentSystemNodePointer = (void**)SystemRootNodeReference[SystemRootNodeCurrentIndex];

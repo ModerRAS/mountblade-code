@@ -4174,42 +4174,9 @@
 
 
 
-// 系统配置数据表
-// 功能：存储系统配置参数和数据表结构信息
-#define SystemConfigurationDataTable UNK_180985a80
 
-// 数据加密表
-// 功能：存储系统数据加密的密钥表和算法参数
-#define SystemDataEncryptionTable UNK_180982cc0
 
-// 系统验证数据表Secondary
-// 功能：存储系统验证相关的备用数据表和验证规则
-#define SystemValidationDataTableSecondary UNK_1809842e0
 
-// 系统验证数据表Primary
-// 功能：存储系统验证相关的主要数据表和验证规则
-#define SystemValidationDataTablePrimary UNK_180983588
-
-// 系统验证数据表Tertiary
-// 功能：存储系统验证相关的第三级数据表和高级验证规则
-#define SystemValidationDataTableTertiary UNK_180983b68
-
-// 系统验证数据表A2-A7
-// 功能：存储系统验证相关的多级数据表和验证规则
-#define SystemValidationDataTableA2 UNK_180983cf8
-#define SystemValidationDataTableA3 UNK_1809842e0
-#define SystemValidationDataTableA4 UNK_180984358
-#define SystemValidationDataTableA5 UNK_1809843d0
-#define SystemValidationDataTableA6 UNK_1809841e0
-#define SystemValidationDataTableA7 UNK_1809844c8
-
-// 系统配置数据表Secondary
-// 功能：存储系统配置相关的备用数据表和配置参数
-#define SystemConfigurationDataTableSecondaryAddress UNK_180982dc0
-
-// 系统状态数据表
-// 功能：存储系统状态相关的数据表和状态信息
-#define SystemStatusDataTableAddress UNK_1809868b0
 
 // 工具函数宏定义
 // 数据验证和处理函数A0
@@ -99030,7 +98997,25 @@ void Unwind_180910e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 在偏移量180910e40处理异常清理
+ * 
+ * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
+ * 它执行以下操作：
+ * - 获取异常处理上下文
+ * - 调用异常处理回调函数（如果存在）
+ * - 设置临时异常处理器
+ * - 清理异常状态和资源
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910e40
+ */
+void ProcessExceptionCleanupAtOffset180910e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -99058,7 +99043,25 @@ void Unwind_180910e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 在偏移量180910e60处理异常清理
+ * 
+ * 此函数负责在异常处理过程中清理特定偏移量的异常上下文资源。
+ * 它执行以下操作：
+ * - 获取异常处理上下文
+ * - 调用异常处理回调函数（如果存在）
+ * - 设置临时异常处理器
+ * - 清理异常状态和资源
+ * - 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910e60
+ */
+void ProcessExceptionCleanupAtOffset180910e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
