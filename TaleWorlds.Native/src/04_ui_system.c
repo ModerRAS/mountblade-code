@@ -68866,7 +68866,7 @@ uint FUN_18069ff30(longlong uiContext,undefined1 *dataSource)
       *(int *)(bufferData + 0x18) = *(int *)(bufferData + 0x18) - (uint)bVar1;
       *(ulonglong *)(uiContext + 0x10) = uVar6 << (bVar1 & 0x3f);
       *(uint *)(uiContext + 0x1c) = uVar7 << (bVar1 & 0x1f);
-      cVar2 = (&UNK_180948458)[(longlong)(int)(uint)bVar10 + (longlong)cVar2];
+      cVar2 = (&g_uiCharacterMappingTableAlt)[(longlong)(int)(uint)bVar10 + (longlong)cVar2];
     } while ('\0' < cVar2);
     uVar7 = -(int)cVar2;
   }
@@ -68970,7 +68970,7 @@ uint FUN_18069ff39(longlong uiContext,undefined1 *dataSource)
       *(int *)(bufferData + 0x18) = *(int *)(bufferData + 0x18) - (uint)bVar1;
       *(ulonglong *)(uiContext + 0x10) = uVar6 << (bVar1 & 0x3f);
       *(uint *)(uiContext + 0x1c) = uVar7 << (bVar1 & 0x1f);
-      cVar2 = (&UNK_180948458)[(longlong)(int)(uint)bVar10 + (longlong)cVar2];
+      cVar2 = (&g_uiCharacterMappingTableAlt)[(longlong)(int)(uint)bVar10 + (longlong)cVar2];
     } while ('\0' < cVar2);
     uVar7 = -(int)cVar2;
   }
@@ -73787,11 +73787,11 @@ void FUN_180707df0(longlong uiContext,longlong dataSource,undefined8 targetBuffe
     puStack_6b0 = auStack_2548;
     puStack_6c0 = auStack_2908;
     puStack_6d8 = auStack_2cc8;
-    allocatedMemory3 = (longlong)&UNK_18094f184 - uiContext;
-    lStack_6e0 = (longlong)&UNK_18094f188 + -uiContext;
-    lStack_6e8 = (longlong)&UNK_18094f18c + -uiContext;
-    lStack_708 = (longlong)&UNK_18094f190 + -uiContext;
-    lStack_710 = (longlong)&UNK_18094f194 - uiContext;
+    uiRenderOffset1 = (longlong)&g_uiRenderOffsetTable1 - uiContext;
+    uiRenderOffset2 = (longlong)&g_uiRenderOffsetTable2 + -uiContext;
+    uiRenderOffset3 = (longlong)&g_uiRenderOffsetTable3 + -uiContext;
+    uiRenderOffset4 = (longlong)&g_uiRenderOffsetTable4 + -uiContext;
+    uiRenderOffset5 = (longlong)&g_uiRenderOffsetTable5 - uiContext;
     allocatedMemory4 = 0x18;
     pfVar7 = (float *)(uiContext + 0xf0c);
     pfVar9 = afStack_1640;
@@ -73799,8 +73799,8 @@ void FUN_180707df0(longlong uiContext,longlong dataSource,undefined8 targetBuffe
     pfloatResult2 = (float *)(uiContext + 0x1688);
     lStack_6f8 = allocatedMemory3;
     do {
-      fVar2 = *(float *)((longlong)pfVar7 + ((longlong)&UNK_18094e264 - uiContext));
-      fVar3 = *(float *)((longlong)pfVar7 + ((longlong)&UNK_18094e268 - uiContext));
+      fVar2 = *(float *)((longlong)pfVar7 + ((longlong)&g_uiRenderParameterTable1 - uiContext));
+      fVar3 = *(float *)((longlong)pfVar7 + ((longlong)&g_uiRenderParameterTable2 - uiContext));
       pfVar9[-2] = fVar2 * pfVar7[-0xf0];
       pfVar9[-1] = fVar2 * *pfVar7;
       pfloatResult1[-1] = fVar2 * pfloatResult2[-0xf0];
@@ -74409,7 +74409,7 @@ LAB_18070d1ad:
         }
       }
       if (*(int *)(param_6 + 0x18) - iVar9 < validationResult) {
-        uStack_16c = ReadUIData(param_6,&UNK_18094f650);
+        uStack_16c = ReadUIData(param_6,&g_uiDataTable);
       }
     }
     iVar9 = 0x1f;
@@ -81012,7 +81012,7 @@ void FUN_1807141f0(longlong uiContext,int dataSource,int targetBuffer,undefined8
   iStack_68 = 0;
   uStack_84 = 0;
   if (in_stack_00000070 == 2) {
-    bVar1 = (&UNK_1809532b0)[targetBuffer - dataSource];
+    bVar1 = (&g_uiLookupTable)[targetBuffer - dataSource];
     uStack_84 = (uint)bVar1;
     if (bVar1 == uStack_90 || (int)uStack_84 < (int)uStack_90) {
       validationResult = uStack_90 - bVar1;
@@ -81217,7 +81217,7 @@ uint FUN_1807147f0(longlong uiContext,int dataSource,uint targetBuffer,int buffe
       }
       operationResult1 = operationResult1 + uiContext3;
       if (0 < (int)uiContext3) {
-        uiContext3 = (uint)(byte)(&UNK_1809532b0)[lVar8 - functionResult5];
+        uiContext3 = (uint)(byte)(&g_uiLookupTable)[lVar8 - functionResult5];
       }
       operationResult1 = (operationResult4 - operationResult1) + uiContext3;
       operationResult4 = operationResult3;
@@ -81995,7 +81995,7 @@ void FUN_180715830(int *uiContext,uint *dataSource,undefined8 targetBuffer,longl
   functionResult6 = 1;
   if (3 < (int)uVar7) {
     functionResult6 = (ulonglong)
-             (((int)*(short *)(&UNK_180953348 + (ulonglong)(uVar7 & 7) * 2) >>
+             (((int)*(short *)(&g_uiBitShiftTable + (ulonglong)(uVar7 & 7) * 2) >>
               (0xeU - (char)((int)uVar7 >> 3) & 0x1f)) + 1U & 0xfffffffe);
   }
   if ((uiContext0 != 0) && (uiContext[5] <= operationResult5)) {
@@ -83049,8 +83049,8 @@ ulonglong FUN_180717fa0(int *uiContext,float *dataSource,uint targetBuffer,undef
         FUN_1807165a0(param_6,validationResult5,functionResult6);
       }
       functionResult6 = functionResult6 << 1 | (uint)((int)functionResult6 < 0);
-      uiContext1 = (uint)(byte)(&UNK_180953358)[(longlong)(int)uiContext1 >> 4] << 2 |
-                 (uint)(byte)(&UNK_180953358)[uiContext1 & 0xf];
+      uiContext1 = (uint)(byte)(&g_uiHexConversionTable)[(longlong)(int)uiContext1 >> 4] << 2 |
+                 (uint)(byte)(&g_uiHexConversionTable)[uiContext1 & 0xf];
       iStack_4c = iStack_4c + 1;
     } while (iStack_4c < iVar5);
   }
@@ -83108,7 +83108,7 @@ ulonglong FUN_180717fa0(int *uiContext,float *dataSource,uint targetBuffer,undef
     functionResult5 = 1;
     if (0 < iVar5) {
       do {
-        pbVar3 = &UNK_180953368 + semaphoreHandle3;
+        pbVar3 = &g_uiPointerArray + semaphoreHandle3;
         semaphoreHandle3 = (ulonglong)*pbVar3;
         functionResult6 = (uint)*pbVar3;
         FUN_1807165a0(dataSource,(int)semaphoreHandle9 >> ((byte)validationResult6 & 0x1f),functionResult5);
@@ -86419,10 +86419,10 @@ void FUN_18071ad00(longlong uiContext,int dataSource,int targetBuffer,longlong b
             iVar5 = dataSource;
           }
           uVar4 = FUN_180722f80(param_6,(ulonglong)
-                                        (byte)(&UNK_180953410)[(longlong)(iVar5 * 2) + allocatedMemory * 0x2a]
+                                        (byte)(&g_uiOffsetTable)[(longlong)(iVar5 * 2) + allocatedMemory * 0x2a]
                                         << 7,
                                 (ulonglong)
-                                (byte)(&UNK_180953410)[(longlong)(iVar5 * 2) + 1 + allocatedMemory * 0x2a] <<
+                                (byte)(&g_uiOffsetTable)[(longlong)(iVar5 * 2) + 1 + allocatedMemory * 0x2a] <<
                                 6);
         }
         fVar2 = *pfVar7;

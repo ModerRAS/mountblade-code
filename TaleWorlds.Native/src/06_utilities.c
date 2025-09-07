@@ -58708,9 +58708,20 @@ void ValidateSystemStatus(DataBuffer operationBase,int64_t dataBuffer)
   return;
 }
 
+/**
+ * @brief 异常上下文清理器函数
+ * 
+ * 该函数负责遍历和清理异常上下文数据结构，确保所有异常相关的状态都被正确重置。
+ * 它会检查每个上下文字段的状态，如果发现异常状态会终止系统运行。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180906490
+ */
+#define CleanupExceptionContext Unwind_180906490
 
-
-void Unwind_180906490(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionContext(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -58744,9 +58755,20 @@ void Unwind_180906490(DataBuffer operationBase,int64_t dataBuffer)
     TerminateSystemE0();
 }
 
+/**
+ * @brief 系统资源状态重置器函数
+ * 
+ * 该函数负责重置系统资源的状态字段，确保资源状态的一致性。
+ * 如果发现资源状态异常，会立即终止系统运行。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_1809064a0
+ */
+#define ResetSystemResourceStatus Unwind_1809064a0
 
-
-void Unwind_1809064a0(DataBuffer operationBase,int64_t dataBuffer)
+void ResetSystemResourceStatus(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x70) != 0) {
@@ -58760,9 +58782,20 @@ void Unwind_1809064a0(DataBuffer operationBase,int64_t dataBuffer)
   return;
 }
 
+/**
+ * @brief 系统操作状态验证器函数
+ * 
+ * 该函数负责验证系统操作相关的状态字段，确保操作状态的一致性。
+ * 如果发现操作状态异常，会立即终止系统运行。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_1809064b0
+ */
+#define ValidateSystemOperationStatus Unwind_1809064b0
 
-
-void Unwind_1809064b0(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateSystemOperationStatus(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x82) != 0) {
