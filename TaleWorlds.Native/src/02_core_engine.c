@@ -2367,6 +2367,7 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ProcessSystemMemoryAllocationEx FUN_18013ca47
 #define ProcessSystemCharacterEncodingEx FUN_18013cac6
 #define ProcessSystemBufferProcessing FUN_18013cb34
+#define ProcessUtf8CharacterDataCopy FUN_18013cb34
 #define ProcessSystemDataSynchronize FUN_18013cbab
 #define ProcessSystemMemoryComplete FUN_18013cd49
 #define ProcessSystemDataComplete FUN_18013cd62
@@ -169851,7 +169852,19 @@ void ProcessUtf8ToUtf16EncodingConversion(byte CharacterCode, uint64_t Utf8Buffe
 
 
 
-3cb34(long long CharacterCode,long long Utf8BufferSizevoid FUN_18013cb34(long long CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理UTF-8字符数据复制和转换
+ * 
+ * 该函数负责将UTF-8字符数据复制到新的内存位置，
+ * 并进行必要的字符编码转换处理。
+ * 
+ * @param CharacterCode 字符代码指针，指向源数据
+ * @param Utf8BufferSize UTF-8缓冲区大小，如果为0则自动计算
+ * 
+ * @note 函数会自动计算字符串长度并进行内存分配
+ * @warning 涉及系统级内存操作，调用时需确保参数有效性
+ */
+void ProcessUtf8CharacterDataCopy(long long CharacterCode, long long Utf8BufferSize)
 {
   uint64_t Utf16Char;
   long long SystemContext;
