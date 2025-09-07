@@ -20533,11 +20533,11 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
       *(int *)(operationBase + 3) = (int)operationBase[3] + 1;
     }
     else {
-      ploopCounter = (uint *)((int64_t)operationResult * 0x10 + operationBase[2]);
-      *(uint *)(operationBase + 4) = ploopCounter[1];
-      ploopCounter[1] = SystemCleanupFlag;
-      *ploopCounter = *dataBuffer;
-      *(DataBuffer *)(ploopCounter + 2) = *operationFlagA;
+      loopCounterPointer = (uint *)((int64_t)operationResult * 0x10 + operationBase[2]);
+      *(uint *)(operationBase + 4) = loopCounterPointer[1];
+      loopCounterPointer[1] = SystemCleanupFlag;
+      *loopCounterPointer = *dataBuffer;
+      *(DataBuffer *)(loopCounterPointer + 2) = *operationFlagA;
     }
     *resourceReferenceCount3 = operationResult;
     *(int *)((int64_t)operationBase + 0x24) = *(int *)((int64_t)operationBase + 0x24) + 1;
@@ -23500,10 +23500,10 @@ OperationFailedLabel:
       validationResult = processCount + 1;
       if (0 < maxIterations) {
         do {
-          stackDataBuffer278 = 0;
+          primaryDataBuffer = 0;
           dataContext = operationBase[4];
           pContextDataWordZ = &SystemProcessingBuffer;
-          stackDataBuffer270 = StackDataBufferA[0];
+          secondaryDataBuffer = StackDataBufferA[0];
           if (((char)dataContext == '\0') && (operationStatus = ValidateSystemDataA0(operationBase,1), operationStatus != 0))
           goto ProcessCheckpointResourceValidation;
           operationStatus = (**(FunctionPointer**)(pContextDataWordZ + ExceptionHandlerCallbackOffset10))(&pContextDataWordZ,DataTransferBufferA,0x200);
@@ -24558,13 +24558,13 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
           }
           inputParameter6 = inputParameter6 - validationErrorCode;
           if (validationErrorCode != 0) {
-            ploopCounter = systemContext + (int)systemDataBuffer2;
+            loopCounterPointer = systemContext + (int)systemDataBuffer2;
             systemDataBuffer2 = systemDataBuffer2 + validationErrorCode;
             do {
               operationResult = *exceptionDataBuffer5;
               exceptionDataBuffer5 = exceptionDataBuffer5 + -1;
-              *ploopCounter = operationResult;
-              ploopCounter = ploopCounter + 1;
+              *loopCounterPointer = operationResult;
+              loopCounterPointer = loopCounterPointer + 1;
               validationErrorCode = validationErrorCode + -1;
             } while (validationErrorCode != 0);
           }
@@ -24578,8 +24578,8 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
   systemDataBuffer7 = 0;
   if (inputParameter3 != 0) {
     if (inputParameter8 < inputParameter3) {
-      ploopCounter = systemContext + inputParameter8;
-      exceptionDataBuffer5 = ploopCounter + -1;
+      loopCounterPointer = systemContext + inputParameter8;
+      exceptionDataBuffer5 = loopCounterPointer + -1;
       if (systemContext < exceptionDataBuffer5) {
         do {
           operationResult = *systemContext;
@@ -24589,21 +24589,21 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
           exceptionDataBuffer5 = exceptionDataBuffer5 + -1;
         } while (systemContext < exceptionDataBuffer5);
       }
-      *ploopCounter = 0;
+      *loopCounterPointer = 0;
       systemDataBuffer7 = 0;
     }
     else {
       exceptionDataBuffer1 = systemContext + (int)systemDataBuffer2;
       exceptionDataBuffer5 = exceptionDataBuffer1 + -1;
-      ploopCounter = systemContext;
+      loopCounterPointer = systemContext;
       if (systemContext < exceptionDataBuffer5) {
         do {
-          operationResult = *ploopCounter;
-          *ploopCounter = *exceptionDataBuffer5;
-          ploopCounter = ploopCounter + 1;
+          operationResult = *loopCounterPointer;
+          *loopCounterPointer = *exceptionDataBuffer5;
+          loopCounterPointer = loopCounterPointer + 1;
           *exceptionDataBuffer5 = operationResult;
           exceptionDataBuffer5 = exceptionDataBuffer5 + -1;
-        } while (ploopCounter < exceptionDataBuffer5);
+        } while (loopCounterPointer < exceptionDataBuffer5);
       }
       exceptionDataBuffer5 = exceptionDataBuffer1 + (int64_t)(int)(inputParameter3 - systemDataBuffer2) + -1;
       if (exceptionDataBuffer1 < exceptionDataBuffer5) {
@@ -30091,8 +30091,8 @@ ValidationLabelA:
 uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityParams)
 
 {
-  DataBuffer tempValue1;
-  DataWord tempValue2;
+  DataBuffer validationBuffer;
+  DataWord memoryValidationResult;
   DataWord securityStatus;
   DataWord memoryAddress;
   uint processResult;
@@ -30104,13 +30104,13 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   int64_t primaryContext;
   int64_t secondaryContext;
   int indexCounter;
-  DataBuffer *stackPointer1;
-  DataBuffer *stackPointer2;
-  DataBuffer stackValue1;
-  DataWord securityValue1;
-  DataWord securityValue2;
-  DataWord securityValue3;
-  DataWord securityValue4;
+  DataBuffer *primaryStackPointer;
+  DataBuffer *secondaryStackPointer;
+  DataBuffer primaryStackValue;
+  DataWord primarySecurityValue;
+  DataWord secondarySecurityValue;
+  DataWord tertiarySecurityValue;
+  DataWord quaternarySecurityValue;
   ByteFlag securityBuffer1 [32];
   ByteFlag securityBuffer2 [32];
   
@@ -30135,10 +30135,10 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   }
   securityCheckPointer = (DataWord *)ExecuteSystemResourceOperation();
   validationResult = 0;
-  securityValue1 = *securityCheckPointer;
-  securityValue2 = securityCheckPointer[1];
-  securityValue3 = securityCheckPointer[2];
-  securityValue4 = securityCheckPointer[3];
+  primarySecurityValue = *securityCheckPointer;
+  secondarySecurityValue = securityCheckPointer[1];
+  tertiarySecurityValue = securityCheckPointer[2];
+  quaternarySecurityValue = securityCheckPointer[3];
   processResult = 0;
   if (*(uint *)(dataBuffer + 8) < 0x6d) {
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
@@ -79798,7 +79798,20 @@ void Unwind_18090a140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数A0
+ * 
+ * 该函数负责处理异常数据，调用异常数据处理程序A1。
+ * 主要用于系统异常处理流程中的数据传递和处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090a150
+ */
+void ProcessExceptionDataWithCallbackA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -79808,7 +79821,20 @@ void Unwind_18090a150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数A1
+ * 
+ * 该函数负责处理异常数据，调用异常数据处理程序A1。
+ * 主要用于系统异常处理流程中的数据传递和处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090a160
+ */
+void ProcessExceptionDataWithCallbackA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -79818,7 +79844,18 @@ void Unwind_18090a160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a170(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作执行函数A0
+ * 
+ * 该函数负责执行内存操作，调用内存操作处理程序。
+ * 主要用于系统内存管理和数据操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a170
+ */
+void ExecuteMemoryOperationWithValidationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),8,10,ValidateDataHandler);
@@ -80002,7 +80039,15 @@ void Unwind_18090a310(void)
 
 
 
-void Unwind_18090a330(void)
+/**
+ * @brief 异常数据清理和互斥锁销毁函数A0
+ * 
+ * 该函数负责销毁互斥锁并清理相关的异常数据。
+ * 主要用于系统资源释放和异常处理后的清理工作。
+ * 
+ * @note 原始函数名：Unwind_18090a330
+ */
+void CleanupExceptionDataAndMutexA0(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -80011,7 +80056,15 @@ void Unwind_18090a330(void)
 
 
 
-void Unwind_18090a350(void)
+/**
+ * @brief 异常数据清理和互斥锁销毁函数A1
+ * 
+ * 该函数负责销毁互斥锁并清理相关的异常数据。
+ * 主要用于系统资源释放和异常处理后的清理工作。
+ * 
+ * @note 原始函数名：Unwind_18090a350
+ */
+void CleanupExceptionDataAndMutexA1(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -80020,7 +80073,15 @@ void Unwind_18090a350(void)
 
 
 
-void Unwind_18090a370(void)
+/**
+ * @brief 异常数据清理和互斥锁销毁函数A2
+ * 
+ * 该函数负责销毁互斥锁并清理相关的异常数据。
+ * 主要用于系统资源释放和异常处理后的清理工作。
+ * 
+ * @note 原始函数名：Unwind_18090a370
+ */
+void CleanupExceptionDataAndMutexA2(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -80029,7 +80090,15 @@ void Unwind_18090a370(void)
 
 
 
-void Unwind_18090a390(void)
+/**
+ * @brief 异常数据清理和互斥锁销毁函数A3
+ * 
+ * 该函数负责销毁互斥锁并清理相关的异常数据。
+ * 主要用于系统资源释放和异常处理后的清理工作。
+ * 
+ * @note 原始函数名：Unwind_18090a390
+ */
+void CleanupExceptionDataAndMutexA3(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -80038,7 +80107,15 @@ void Unwind_18090a390(void)
 
 
 
-void Unwind_18090a3b0(void)
+/**
+ * @brief 异常数据清理和互斥锁销毁函数A4
+ * 
+ * 该函数负责销毁互斥锁并清理相关的异常数据。
+ * 主要用于系统资源释放和异常处理后的清理工作。
+ * 
+ * @note 原始函数名：Unwind_18090a3b0
+ */
+void CleanupExceptionDataAndMutexA4(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -80047,7 +80124,15 @@ void Unwind_18090a3b0(void)
 
 
 
-void Unwind_18090a3d0(void)
+/**
+ * @brief 异常数据清理和互斥锁销毁函数A5
+ * 
+ * 该函数负责销毁互斥锁并清理相关的异常数据。
+ * 主要用于系统资源释放和异常处理后的清理工作。
+ * 
+ * @note 原始函数名：Unwind_18090a3d0
+ */
+void CleanupExceptionDataAndMutexA5(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -80056,7 +80141,15 @@ void Unwind_18090a3d0(void)
 
 
 
-void Unwind_18090a3f0(void)
+/**
+ * @brief 异常数据清理和互斥锁销毁函数A6
+ * 
+ * 该函数负责销毁互斥锁并清理相关的异常数据。
+ * 主要用于系统资源释放和异常处理后的清理工作。
+ * 
+ * @note 原始函数名：Unwind_18090a3f0
+ */
+void CleanupExceptionDataAndMutexA6(void)
 
 {
   _Mtx_destroy_in_situ();
