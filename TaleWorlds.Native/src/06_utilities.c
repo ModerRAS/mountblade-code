@@ -10069,24 +10069,24 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   if ((int)systemQueryStatus != 0) {
     return SystemQueryStatus;
   }
-  SystemContextHandle = *(int64_t *)(systemContextBuffer + SystemContextOffset);
-  if ((SystemContextHandle == 0) || (*(int64_t *)(SystemContextHandle + SYSTEM_CONTEXT_OFFSET) != systemContextBuffer)) {
+  systemContextHandle = *(int64_t *)(systemContextBuffer + SystemContextOffset);
+  if ((systemContextHandle == 0) || (*(int64_t *)(systemContextHandle + SYSTEM_CONTEXT_OFFSET) != systemContextBuffer)) {
     return SystemContextValidationFailure;
   }
-  componentDataContext = *(int64_t *)(SystemContextHandle + COMPONENT_DATA_OFFSET);
-  if (SystemContextHandle == 0) {
+  componentDataContext = *(int64_t *)(systemContextHandle + COMPONENT_DATA_OFFSET);
+  if (systemContextHandle == 0) {
     return ComponentDataValidationFailure;
   }
-  if (*(int32_t *)(SystemContextHandle + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
-    SystemQueryStatus = ProcessInputData(SystemContextHandle,ComponentValidationBuffer);
-    if ((int32_t)SystemQueryStatus != 0) {
-      return SystemQueryStatus;
+  if (*(int32_t *)(systemContextHandle + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
+    systemQueryStatus = ProcessInputData(systemContextHandle,ComponentValidationBuffer);
+    if ((int32_t)systemQueryStatus != 0) {
+      return systemQueryStatus;
     }
     ComponentProcessStatus = ValidateInputData(ComponentValidationBuffer);
     if ((int32_t)ComponentProcessStatus != 0) {
       return ComponentProcessStatus;
     }
-    if ((int8_t)SystemQueryStatus == (int8_t)ComponentProcessStatus) {
+    if ((int8_t)systemQueryStatus == (int8_t)ComponentProcessStatus) {
       if (ComponentValidationBuffer[0] == (int8_t)ComponentProcessStatus) {
         ComponentListContext = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
         ComponentSearchCounter = 0;
@@ -59563,7 +59563,19 @@ void InitializeExceptionDataTable(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906640(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理函数640
+ * 
+ * 该函数负责执行异常上下文处理操作，从数据缓冲区的0xa0偏移量处获取
+ * 异常上下文指针，并调用相应的处理函数。这是异常展开机制的一部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906640
+ * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
+ */
+void ExecuteExceptionHandlerContext640(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -59577,7 +59589,19 @@ void Unwind_180906640(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906660(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理函数660
+ * 
+ * 该函数负责执行异常上下文处理操作，从数据缓冲区的0xa0偏移量处获取
+ * 异常上下文指针，并调用相应的处理函数。这是异常展开机制的一部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906660
+ * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
+ */
+void ExecuteExceptionHandlerContext660(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -59591,7 +59615,19 @@ void Unwind_180906660(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906680(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理函数680
+ * 
+ * 该函数负责执行异常上下文处理操作，从数据缓冲区的0xa0偏移量处获取
+ * 异常上下文指针，并调用相应的处理函数。这是异常展开机制的一部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906680
+ * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
+ */
+void ExecuteExceptionHandlerContext680(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -59605,7 +59641,19 @@ void Unwind_180906680(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809066a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理函数6a0
+ * 
+ * 该函数负责执行异常上下文处理操作，从数据缓冲区的0xa0偏移量处获取
+ * 异常上下文指针，并调用相应的处理函数。这是异常展开机制的一部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809066a0
+ * @note 这是一个异常展开（unwind）处理函数，用于执行特定偏移量的异常处理
+ */
+void ExecuteExceptionHandlerContext6a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -59619,7 +59667,19 @@ void Unwind_1809066a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809066c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 条件性初始化系统内存函数6c0
+ * 
+ * 该函数负责根据特定条件初始化系统内存。它会检查数据缓冲区中
+ * 特定偏移量处的值，如果该值不为零，则调用系统内存初始化函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存初始化条件信息
+ * 
+ * @note 原始函数名：Unwind_1809066c0
+ * @note 这是一个异常展开（unwind）处理函数，用于条件性的系统内存初始化
+ */
+void InitializeSystemMemoryConditionally6c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0xa0) + 0x1e8) != 0) {
@@ -59708,7 +59768,19 @@ void Unwind_180906720(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906740(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化系统内存A1函数740
+ * 
+ * 该函数负责初始化系统内存A1，从数据缓冲区的0xa0偏移量处获取内存地址，
+ * 并调用系统内存初始化函数A1进行初始化操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存初始化地址信息
+ * 
+ * @note 原始函数名：Unwind_180906740
+ * @note 这是一个异常展开（unwind）处理函数，用于系统内存初始化
+ */
+void InitializeSystemMemoryA1At740(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemMemoryA1(*(int64_t *)(dataBuffer + 0xa0) + 0x2e0);
@@ -59717,7 +59789,19 @@ void Unwind_180906740(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906760(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化系统内存A2函数760
+ * 
+ * 该函数负责初始化系统内存A2，从数据缓冲区的0xa0偏移量处获取内存地址，
+ * 并调用系统内存初始化函数A2进行初始化操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存初始化地址信息
+ * 
+ * @note 原始函数名：Unwind_180906760
+ * @note 这是一个异常展开（unwind）处理函数，用于系统内存初始化
+ */
+void InitializeSystemMemoryA2At760(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemMemoryA2(*(int64_t *)(dataBuffer + 0xa0) + 0x2f0);
