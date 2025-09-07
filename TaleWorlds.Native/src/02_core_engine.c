@@ -62289,7 +62289,20 @@ LAB_18008dde0:
 
 
 
-dfa0(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,char Utf16EndPointer,
+/**
+ * @brief 处理系统内存分配
+ * 
+ * 该函数负责处理系统内存分配操作，包括内存池管理和地址分配。
+ * 它会根据参数分配内存，并设置相应的内存管理参数。
+ * 
+ * @param CharacterCode 字符编码标识符
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 附加参数指针
+ * 
+ * @note 原始函数名：dfa0
+ */
 void ProcessSystemMemoryAllocation(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,char Utf16EndPointer,
                   uint32_t *AdditionalParameter1
 {
@@ -62317,7 +62330,20 @@ void ProcessSystemMemoryAllocation(long long CharacterCode,uint64_t CharacterCod
 
 
 
-e0f0(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,char Utf16EndPointer,
+/**
+ * @brief 处理系统内存验证
+ * 
+ * 该函数负责处理系统内存验证操作，包括内存地址验证和数据完整性检查。
+ * 它会验证内存地址的有效性，并确保数据的完整性。
+ * 
+ * @param CharacterCode 字符编码标识符
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 附加参数指针
+ * 
+ * @note 原始函数名：e0f0
+ */
 void ProcessSystemMemoryValidation(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,char Utf16EndPointer,
                   uint32_t *AdditionalParameter1
 {
@@ -116718,7 +116744,7 @@ void ExecuteSystemMemoryOperation(uint64_t CharacterCode,uint64_t CharacterCodeS
   
   StackConfigurationFlag = Utf8InputPointer;
   uStackX_20 = Utf16EndPointer;
-  FUN_180122240(CharacterCode,CharacterCodeSize,&StackConfigurationFlag);
+  ValidateSystemStatus(CharacterCode,CharacterCodeSize,&StackConfigurationFlag);
   return;
 }
 
@@ -163977,7 +164003,7 @@ LAB_18013c174:
       __stdio_common_vfprintf(*PrimaryProcessingStatusFlag,LoopCounter,CharacterCode,0,&uStackX_10);
       return;
     }
-    FUN_180122240(SystemDataConfiguration + 0x2e48,CharacterCode,&uStackX_10);
+    ValidateSystemStatus(SystemDataConfiguration + 0x2e48,CharacterCode,&uStackX_10);
   }
   return;
 }
@@ -164001,7 +164027,7 @@ LAB_18013c174:
     __stdio_common_vfprintf(*PrimaryProcessingStatusFlag,loopCounter);
     return;
   }
-  FUN_180122240(CharacterCode + 0x2e48);
+  ValidateSystemStatus(CharacterCode + 0x2e48);
   return;
 }
 
@@ -164010,7 +164036,7 @@ LAB_18013c174:
 
 3c7cf(long long CharacterCodevoid FUN_18013c7cf(long long CharacterCode
 {
-  FUN_180122240(CharacterCode + 0x2e48);
+  ValidateSystemStatus(CharacterCode + 0x2e48);
   return;
 }
 

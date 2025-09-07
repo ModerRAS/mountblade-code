@@ -78,6 +78,23 @@
 #define COMPONENT_LIST_OFFSET 0x4d8             // 组件列表偏移量
 #define COMPONENT_COUNT_OFFSET 0x4e4            // 组件计数偏移量
 #define COMPONENT_CAPACITY_OFFSET 0x4e8          // 组件容量偏移量
+#define COMPONENT_ACTIVE_OFFSET 0x4e0            // 组件活动状态偏移量
+#define COMPONENT_COMMAND_OFFSET 0x368           // 组件命令偏移量
+
+// 模块偏移量常量定义
+#define MODULE_CONFIG_OFFSET_1 0x18             // 模块配置偏移量1
+#define MODULE_CONFIG_OFFSET_2 0x10             // 模块配置偏移量2
+#define MODULE_DATA_OFFSET_1 0x90               // 模块数据偏移量1
+#define MODULE_DATA_OFFSET_2 0xf8               // 模块数据偏移量2
+#define MODULE_DATA_OFFSET_3 0x10               // 模块数据偏移量3
+#define MODULE_CONTEXT_OFFSET 0x240             // 模块上下文偏移量
+#define MODULE_RESOURCE_OFFSET -0x18            // 模块资源偏移量
+#define MODULE_COMPONENT_OFFSET 0x80             // 模块组件偏移量
+#define MODULE_VALIDATION_OFFSET 0x38           // 模块验证偏移量
+
+// 资源偏移量常量定义
+#define RESOURCE_CONTEXT_OFFSET 3                // 资源上下文偏移量
+#define RESOURCE_DATA_OFFSET 4                   // 资源数据偏移量
 
 // 异常处理相关常量定义
 #define ExceptionCallbackOffset 0xb0
