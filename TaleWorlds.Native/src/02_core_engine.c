@@ -269418,6 +269418,14 @@ uint64_t CoreEngineStatusCheck(void) {
   return 0;
 }
 
+// 系统配置和验证常量 - 用于替换UNK_变量
+const void* const SystemValidationBufferPrimary = (void*)0x1800830b0;
+const void* const SystemValidationBufferSecondary = (void*)0x1800830c0;
+const void* const SystemValidationBufferTertiary = (void*)0x180083130;
+const void* const SystemEventTemplateDataPrimary = (void*)0x180a1e220;
+const void* const SystemEventTemplateDataSecondary = (void*)0x180a1e428;
+const void* const SystemConfigurationDataPrimary = (void*)0x180a09fb8;
+
 
 
 
