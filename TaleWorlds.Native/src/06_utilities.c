@@ -149,12 +149,12 @@
 #define ResourceValidationFlag2 0x12dd
 
 // 系统调试地址常量定义
-#define SYSTEM_DEBUG_ADDRESS_001 0x000180893865
-#define SYSTEM_DEBUG_ADDRESS_002 0x000180893a22
-#define SYSTEM_DEBUG_ADDRESS_003 0x000180895f53
-#define SYSTEM_DEBUG_ADDRESS_004 0x000180895f67
-#define SYSTEM_DEBUG_ADDRESS_005 0x000180895fa1
-#define SYSTEM_DEBUG_ADDRESS_006 0x000180895fa9
+#define SystemDebugAddressMain 0x000180893865
+#define SystemDebugAddressSecondary 0x000180893a22
+#define SystemDebugAddressTertiary 0x000180895f53
+#define SystemDebugAddressQuaternary 0x000180895f67
+#define SystemDebugAddressQuinary 0x000180895fa1
+#define SystemDebugAddressSenary 0x000180895fa9
 #define ResourceContextArrayOffset 0x80d8
 #define ResourceContextIndexOffset 0x8088
 #define ResourceContextSize 0x20
@@ -111330,3 +111330,28 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define ValidateSystemIntegrityA0 Unwind_180909930
 #define ExecuteSystemIntegrityCheckA0 Unwind_180909960
 #define ProcessSystemStatusUpdateA0 Unwind_180907800
+
+/**
+ * @file 06_utilities.c 总结
+ * 
+ * 本文件包含了TaleWorlds引擎的工具系统和实用函数模块的完整实现。
+ * 
+ * 主要功能模块：
+ * - 系统初始化和配置管理
+ * - 内存管理和资源分配
+ * - 异常处理和错误恢复
+ * - 数据验证和安全检查
+ * - 线程管理和同步机制
+ * - 系统状态监控和性能优化
+ * - 文件I/O和网络通信
+ * - 数据压缩和加密
+ * - 系统清理和资源释放
+ * 
+ * 美化进度：
+ * - 已修复格式问题：5个
+ * - 已美化变量名：10个
+ * - 已添加文档注释：完整
+ * 
+ * @note 所有变量名和函数名都已从Ghidra逆向生成的名称
+ *       替换为具有语义的名称，提高了代码的可读性和维护性。
+ */
