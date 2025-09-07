@@ -6733,10 +6733,10 @@ uint8_t SystemValidationTerminationFlagA1;  // 系统验证终止标志A1
 uint8_t SystemValidationCleanupFlagA2;       // 系统验证清理标志A2
 
 // 系统数据缓冲区相关变量声明
-void* SystemDataBufferA;               // 系统数据缓冲区A
-void* SystemDataBufferB;                // 系统数据缓冲区B
-void* SystemDataBufferC;                // 系统数据缓冲区C
-void* SystemDataBufferD;                // 系统数据缓冲区D
+void* SystemDataBufferInput;           // 系统数据缓冲区输入
+void* SystemDataBufferProcessing;        // 系统数据缓冲区处理
+void* SystemDataBufferOutput;            // 系统数据缓冲区输出
+void* SystemDataBufferTemp;              // 系统数据缓冲区临时
 
 // 数据缓冲区管理相关变量声明
 void* DataBufferStartAddress;             // lRam0000000180d49d68 - 数据缓冲区起始地址

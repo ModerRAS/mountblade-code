@@ -44274,7 +44274,7 @@ float * ProcessFloatBoundaryCalculation(float *Utf8InputBuffer
         StackUnsigned68 = *(void *)(CharacterCode + 0x4c);
         StackUnsigned60 = *(void *)(CharacterCode + 0x4e);
         PrimaryFloatValue = Utf8InputBuffer[0x50];
-        StackFloat54 = Utf8InputBuffer[0x51];
+        SecondaryFloatValue = Utf8InputBuffer[0x51];
         StackFloatValue50 = Utf8InputBuffer[0x52];
         StackFloatValue4c = Utf8InputBuffer[0x53];
         StackUnsignedValue48 = *(void *)(CharacterCode + 0x54);
@@ -44286,7 +44286,7 @@ float * ProcessFloatBoundaryCalculation(float *Utf8InputBuffer
         StackUnsigned68 = *(void *)(CharacterCode + 0x4c);
         StackUnsigned60 = *(void *)(CharacterCode + 0x4e);
         PrimaryFloatValue = Utf8InputBuffer[0x50];
-        StackFloat54 = Utf8InputBuffer[0x51];
+        SecondaryFloatValue = Utf8InputBuffer[0x51];
         StackFloatValue50 = Utf8InputBuffer[0x52];
         StackFloatValue4c = Utf8InputBuffer[0x53];
         StackUnsignedValue48 = *(void *)(CharacterCode + 0x54);
