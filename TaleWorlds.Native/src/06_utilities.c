@@ -47695,7 +47695,22 @@ void InitializeTertiaryExceptionHandlers(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180904270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 清理高级异常处理器状态
+ * 
+ * 该函数负责清理多个高级异常处理器的状态，将它们设置为默认状态。
+ * 函数会检查每个异常处理器的当前状态，如果有异常状态存在，
+ * 则会调用系统终止函数，否则将异常处理器重置为默认处理器。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180904270
+ * @warning 此函数包含系统终止调用，确保在调用前系统状态稳定
+ */
+void CleanupAdvancedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -80030,7 +80045,26 @@ void Unwind_18090d0d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d0e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理内存引用计数（偏移0x490）
+ * 
+ * 该函数负责管理内存资源的引用计数，当引用计数降为0时触发异常处理。
+ * 这是一个内存管理的关键函数，确保资源的正确释放和异常处理。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含资源指针和内存管理信息
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0x490偏移处获取资源指针
+ * 2. 计算内存基地址和偏移量
+ * 3. 检查内存有效性并管理引用计数
+ * 4. 当引用计数降为0时触发异常处理
+ * 5. 对于异常情况调用通用内存管理函数
+ * 
+ * @note 原始函数名：Unwind_18090d0e0
+ * @warning 此函数不返回，最后会调用异常处理或内存管理函数
+ */
+void ManageMemoryReferenceCountAtOffset490(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -80066,7 +80100,26 @@ void Unwind_18090d0e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d0f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理内存引用计数（偏移0x2f0）
+ * 
+ * 该函数负责管理内存资源的引用计数，当引用计数降为0时触发异常处理。
+ * 这是一个内存管理的关键函数，确保资源的正确释放和异常处理。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含资源指针和内存管理信息
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0x2f0偏移处获取资源指针
+ * 2. 计算内存基地址和偏移量
+ * 3. 检查内存有效性并管理引用计数
+ * 4. 当引用计数降为0时触发异常处理
+ * 5. 对于异常情况调用通用内存管理函数
+ * 
+ * @note 原始函数名：Unwind_18090d0f0
+ * @warning 此函数不返回，最后会调用异常处理或内存管理函数
+ */
+void ManageMemoryReferenceCountAtOffset2F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -80102,7 +80155,26 @@ void Unwind_18090d0f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d100(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理内存引用计数（偏移0x310）
+ * 
+ * 该函数负责管理内存资源的引用计数，当引用计数降为0时触发异常处理。
+ * 这是一个内存管理的关键函数，确保资源的正确释放和异常处理。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含资源指针和内存管理信息
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0x310偏移处获取资源指针
+ * 2. 计算内存基地址和偏移量
+ * 3. 检查内存有效性并管理引用计数
+ * 4. 当引用计数降为0时触发异常处理
+ * 5. 对于异常情况调用通用内存管理函数
+ * 
+ * @note 原始函数名：Unwind_18090d100
+ * @warning 此函数不返回，最后会调用异常处理或内存管理函数
+ */
+void ManageMemoryReferenceCountAtOffset310(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -80138,7 +80210,26 @@ void Unwind_18090d100(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d110(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理内存引用计数（偏移0x330）
+ * 
+ * 该函数负责管理内存资源的引用计数，当引用计数降为0时触发异常处理。
+ * 这是一个内存管理的关键函数，确保资源的正确释放和异常处理。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含资源指针和内存管理信息
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区的0x330偏移处获取资源指针
+ * 2. 计算内存基地址和偏移量
+ * 3. 检查内存有效性并管理引用计数
+ * 4. 当引用计数降为0时触发异常处理
+ * 5. 对于异常情况调用通用内存管理函数
+ * 
+ * @note 原始函数名：Unwind_18090d110
+ * @warning 此函数不返回，最后会调用异常处理或内存管理函数
+ */
+void ManageMemoryReferenceCountAtOffset330(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;

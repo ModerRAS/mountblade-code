@@ -38010,7 +38010,7 @@ SystemEventProcessingLabel:
   else if ((uint)StackUnsigned78 < 0x14) {
     FunctionAddress80 = 0x12;
     SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,0x14,0x10,0x13);
-    goto LAB_180071b69;
+    goto SystemEventProcessingComplete;
   }
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   FunctionAddress80 = 0x13;
@@ -38035,7 +38035,7 @@ SystemEventProcessingLabel:
         }
         else {
           ProcessStringBuffer = FunctionAddress80;
-          if (SystemStatusCode <= (uint)StackUnsigned78) goto LAB_180071c1a;
+          if (SystemStatusCode <= (uint)StackUnsigned78) goto SystemEventValidationLabel;
           FunctionAddress80 = MemoryAllocationIndex;
           SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,SystemStatusCode,0x10,0x13);
         }
@@ -38077,7 +38077,7 @@ SystemEventProcessingComplete:
       *SystemEventPointer = 0;
     }
     else {
-      if (SystemStatusCode <= (uint)StackUnsigned78) goto LAB_180071d1f;
+      if (SystemStatusCode <= (uint)StackUnsigned78) goto SystemStatusCodeProcessing;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,SystemStatusCode,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
@@ -38127,13 +38127,13 @@ SystemStringBufferProcessing:
           *SystemEventPointer = 0;
         }
         else {
-          if (MemoryAllocationIndex <= (uint)StackUnsigned78) goto LAB_180071e34;
+          if (MemoryAllocationIndex <= (uint)StackUnsigned78) goto SystemMemoryProcessingComplete;
           SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,MemoryAllocationIndex,0x10,0x13);
         }
         UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
         StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
       }
-LAB_180071e34:
+SystemMemoryProcessingComplete:
                     // WARNING: Subroutine does not return
       memcpy(SystemEventPointer + FunctionAddress80,Utf16EndPointer,(long long)((int)SystemOffsetValue + 2));
     }
