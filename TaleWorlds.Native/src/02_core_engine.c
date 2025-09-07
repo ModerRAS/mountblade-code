@@ -44527,7 +44527,7 @@ int CopyCharacterCodeToSource(long long CharacterCode,long long *Utf8InputBuffer
   Utf16Char4 = ProcessStringBuffer % (unsigned long long)*(uint *)(CurrentMemoryBlockAddress + 0x10);
   for (StatusBuffer2 = *(unsigned long long **)(*(long long *)(CurrentMemoryBlockAddress + 8) + Utf16Char4 * 8); StatusBuffer2 != (unsigned long long *)0x0
       ; StatusBuffer2 = (unsigned long long *)StatusBuffer2[1]) {
-    if (ProcessStringBuffer == *StatusBuffer2) goto LAB_180076feb;
+    if (ProcessStringBuffer == *StatusBuffer2) goto StackCleanupLabel;
   }
   CharacterCode = *(long long **)(CurrentMemoryBlockAddress + 0x30);
   MemoryAllocationIndex = (long long)(int)Utf8InputBuffer[2] + 0xfU & 0xfffffffffffffff0;
@@ -44544,7 +44544,7 @@ int CopyCharacterCodeToSource(long long CharacterCode,long long *Utf8InputBuffer
   StatusBuffer2[1] = *(unsigned long long *)(*(long long *)(CurrentMemoryBlockAddress + 8) + Utf16Char4 * 8);
   *(unsigned long long **)(*(long long *)(CurrentMemoryBlockAddress + 8) + Utf16Char4 * 8) = StatusBuffer2;
   *(long long *)(CurrentMemoryBlockAddress + 0x18) = *(long long *)(CurrentMemoryBlockAddress + 0x18) + 1;
-LAB_180076feb:
+StackCleanupLabel:
   CleanupStackConfiguration(&StackUnsigned60);
   return RemainingSpace;
 }
@@ -65375,7 +65375,7 @@ void ProcessEventTemplateData(void
     if (1 < CharacterTablePointer) {
       systemEventTemplatePointer = (void *)(GeneralRegister14 + -8);
       do {
-        uStack0000000000000060 = *systemEventTemplatePointer;
+        EventTemplateData = *systemEventTemplatePointer;
         *systemEventTemplatePointer = *RegisterR15Value;
         ProcessSystemDataStructureAllocation();
         systemEventTemplatePointer = systemEventTemplatePointer + -1;
