@@ -42426,14 +42426,27 @@ void InitializeAdvancedValidationContextExceptionHandler(DataBuffer exceptionCon
 
 
 
-void Unwind_180903720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统资源异常处理器初始化函数
+ * 
+ * 初始化系统资源的异常处理器，设置临时和默认异常处理器，
+ * 处理系统资源相关的异常清理工作
+ * 
+ * @param exceptionContext 异常上下文数据，包含异常处理所需的状态信息
+ * @param memoryBuffer 内存缓冲区指针，指向需要清理的内存区域
+ * @param cleanupFlagA 清理标志A，用于控制清理行为的标志位
+ * @param cleanupFlagB 清理标志B，用于控制清理行为的标志位
+ * 
+ * @note 原始函数名：Unwind_180903720
+ */
+void InitializeSystemResourceExceptionHandler(DataBuffer exceptionContext,int64_t memoryBuffer,DataBuffer cleanupFlagA,DataBuffer cleanupFlagB)
 
 {
   int64_t validationContext;
   
-  validationContext = *(int64_t *)(dataBuffer + 0x40);
+  validationContext = *(int64_t *)(memoryBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x510) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x510))(validationContext + 0x500,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (**(FunctionPointer**)(validationContext + 0x510))(validationContext + 0x500,0,0,cleanupFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(validationContext + 0x4e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x4e8) != 0) {

@@ -119,6 +119,18 @@ const void* const SystemEventTemplatePrimary = (void*)0x1801b9c30;
 const void* const SystemOperationFlagPointer = (void*)0x1801bca50;
 const void* const SystemEventPointerPrimary = (void*)0x1801bca40;
 const void* const SystemStackBufferTemplate = (void*)0x1801bca00;
+
+// 系统配置和事件常量 - 用于替换UNK_180a0c118等变量
+const void* const SystemConfigurationTemplateTertiary = (void*)0x180a0c118;
+const void* const SystemConfigurationTemplateQuaternary = (void*)0x180a0c148;
+const void* const SystemEventTemplateSecondary = (void*)0x180a0b200;
+const void* const SystemEventTemplateTertiary = (void*)0x180a0b258;
+const void* const SystemEventTemplateQuaternary = (void*)0x180a0b220;
+const void* const SystemEventTemplateQuinary = (void*)0x180a0b290;
+const void* const SystemConfigurationTemplateQuinary = (void*)0x180a0c460;
+const void* const SystemConfigurationTemplateSenary = (void*)0x180a0c480;
+const void* const SystemEventTemplateSenary = (void*)0x180a0b2b4;
+const void* const SystemFloatParameterTemplate = (void*)0x180993550;
 const void* const SystemConfigurationData = (void*)0x180a013c0;
 const void* const SystemStatusValidationData = (void*)0x180a08a00;
 const void* const SystemMemoryListHeadPrimary = (void*)0x180a08d78;
@@ -220453,7 +220465,7 @@ LAB_180198827:
     pCurrentMemoryBlockAddress = (long long *)MemoryAllocate(MemoryPoolManager,0x20,8,3);
     *pCurrentMemoryBlockAddress = (long long)&SystemConfigurationTemplateSecondary;
     pCurrentMemoryBlockAddress[1] = SystemContextPointer;
-    *pCurrentMemoryBlockAddress = (long long)&UNK_180a0c118;
+    *pCurrentMemoryBlockAddress = (long long)&SystemConfigurationTemplateTertiary;
     pCurrentMemoryBlockAddress[2] = 0;
     pCurrentMemoryBlockAddress[3] = 0;
   }
