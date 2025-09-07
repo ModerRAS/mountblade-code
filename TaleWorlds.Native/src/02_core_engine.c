@@ -38308,13 +38308,13 @@ LAB_180071d94:
           *SystemEventPointer = 0;
         }
         else {
-          if (MemoryAllocationIndex <= (uint)StackUnsigned78) goto LAB_180071e34;
+          if (MemoryAllocationIndex <= (uint)StackUnsigned78) goto MemoryCopyOperationStart;
           SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,MemoryAllocationIndex,0x10,0x13);
         }
         UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
         StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
       }
-LAB_180071e34:
+MemoryCopyOperationStart:
                     // WARNING: Subroutine does not return
       memcpy(SystemEventPointer + FunctionAddress80,Utf16EndPointer,(long long)((int)SystemOffsetValue + 2));
     }
@@ -38474,7 +38474,7 @@ void ProcessSystemDataStructureValidation(uint64_t CharacterCode,long long Chara
   Utf16Char9 = (unsigned long long)DataSize;
   MemoryAddressMask = 0;
   if (*(long long *)(CurrentMemoryBlockAddress + 8) == 0) {
-LAB_180072120:
+MemoryDataCopyStart:
     PrimaryReturnCode = MemoryAddressMask;
     if (DataSize != 0) {
                     // WARNING: Subroutine does not return
@@ -38491,7 +38491,7 @@ LAB_180072120:
     pProcessingCounter = StatusBuffer;
     MemoryAddressMask = GetMemoryAllocationInfo(StatusBuffer);
     SystemFlagB = CONCAT44(SystemFlagB.HighPart,MemoryAddressMask);
-    goto LAB_180072120;
+    goto MemoryDataCopyStart;
   }
   if (StatusBuffer != (uint8_t *)0x0) {
     StatusBuffer[Utf16Char9] = 0;
@@ -124445,7 +124445,9 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-7425(voidvoid FUN_180127425(void
+// 原始函数名：FUN_180127425 - 系统状态重置函数
+#define ResetSystemStatus FUN_180127425
+void FUN_180127425(void)
 {
   return;
 }
@@ -124454,7 +124456,9 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-7440(voidvoid FUN_180127440(void
+// 原始函数名：FUN_180127440 - 系统数据结构处理函数
+#define ProcessSystemDataStructure FUN_180127440
+void FUN_180127440(void)
 {
   int *ReferenceCountPointer;
   uint *PrimaryProcessingStatusFlag;
@@ -124642,7 +124646,9 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-7466(voidvoid FUN_180127466(void
+// 原始函数名：FUN_180127466 - 系统事件队列处理函数
+#define ProcessSystemEventQueue FUN_180127466
+void FUN_180127466(void)
 {
   int *ReferenceCountPointer;
   uint *PrimaryProcessingStatusFlag;
@@ -125015,7 +125021,9 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-7648(voidvoid FUN_180127648(void
+// 原始函数名：FUN_180127648 - 系统内存块处理函数
+#define ProcessSystemMemoryBlock FUN_180127648
+void FUN_180127648(void)
 {
   int *ReferenceCountPointer;
   uint32_t MemoryAllocationIndex;
@@ -125199,7 +125207,9 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-7733(voidvoid FUN_180127733(void
+// 原始函数名：FUN_180127733 - 系统内存分配处理函数
+#define ProcessSystemMemoryAllocation FUN_180127733
+void FUN_180127733(void)
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
@@ -125258,7 +125268,9 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-780c(int CharacterCodevoid FUN_18012780c(int CharacterCode
+// 原始函数名：FUN_18012780c - 字符编码处理函数
+#define ProcessCharacterEncoding FUN_18012780c
+void FUN_18012780c(int CharacterCode)
 {
   int LockResult;
   long long SystemContext;
@@ -125278,7 +125290,9 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-784c(voidvoid FUN_18012784c(void
+// 原始函数名：FUN_18012784c - 系统空操作函数
+#define SystemNoOperation FUN_18012784c
+void FUN_18012784c(void)
 {
   return;
 }
@@ -125287,7 +125301,9 @@ void ProcessSystemRenderingAndMemoryManagement(void)
 
 
 
-7860(voidvoid FUN_180127860(void
+// 原始函数名：FUN_180127860 - 系统状态缓冲区处理函数
+#define ProcessSystemStatusBuffer FUN_180127860
+void FUN_180127860(void)
 {
   int *ReferenceCountPointer;
   unsigned long long MemoryAllocationIndex;
@@ -126309,7 +126325,9 @@ LAB_180127fd0:
 
 
 
-8031(voidvoid FUN_180128031(void
+// 原始函数名：FUN_180128031 - 系统寄存器处理函数
+#define ProcessSystemRegister FUN_180128031
+void FUN_180128031(void)
 {
   long long in_R11;
   uint64_t GeneralRegister14;
@@ -146150,7 +146168,9 @@ LAB_180130808:
 
 
 
-30027(voidvoid FUN_180130027(void
+// 原始函数名：FUN_180130027 - 系统缓冲区状态处理函数
+#define ProcessSystemBufferStatus FUN_180130027
+void FUN_180130027(void)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
@@ -245324,6 +245344,16 @@ unsigned long long ProcessCharacterEncodingAndBuffer(long long CharacterCode,lon
 
 
 
+/**
+ * @brief 处理系统Unicode验证
+ * 
+ * 该函数负责验证和处理系统中的Unicode字符数据
+ * 首先检查缓冲区状态，然后进行数据处理和验证
+ * 
+ * @return 处理后的Unicode码点，屏蔽低8位
+ * 
+ * @note 原始函数名：FUN_180215f2d
+ */
 unsigned long long ProcessSystemUnicodeValidation(void
 {
   uint32_t Utf16Char;
@@ -245352,6 +245382,16 @@ unsigned long long ProcessSystemUnicodeValidation(void
 
 
 
+/**
+ * @brief 验证系统Unicode转换
+ * 
+ * 该函数负责验证系统中的Unicode字符转换过程
+ * 根据系统上下文和数据节点索引进行验证
+ * 
+ * @return 转换后的Utf16字符，屏蔽低8位
+ * 
+ * @note 原始函数名：FUN_180215fb2
+ */
 unsigned long long ValidateSystemUnicodeConversion(void
 {
   unsigned long long Utf16Char;
