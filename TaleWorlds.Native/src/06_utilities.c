@@ -100018,16 +100018,16 @@ void Unwind_18090fe50(DataBuffer operationBase,int64_t dataBuffer)
 void ProcessSystemOperationsE60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t exceptionHandlerContext;
-  int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t systemExceptionHandlerContext;
+  int64_t *systemOperationContext;
+  int64_t operationBlockOffset;
   
-  dataContext = *(int64_t **)(dataBuffer + 0x80);
-  exceptionHandlerContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x128) {
-    ProcessSystemOperationsA1(memoryBlockOffset);
+  systemOperationContext = *(int64_t **)(dataBuffer + SystemContextDataOffset);
+  systemExceptionHandlerContext = systemOperationContext[1];
+  for (operationBlockOffset = *systemOperationContext; operationBlockOffset != systemExceptionHandlerContext; operationBlockOffset = operationBlockOffset + SystemOperationBlockSize) {
+    ProcessSystemOperationsA1(operationBlockOffset);
   }
-  if (*dataContext == 0) {
+  if (*systemOperationContext == 0) {
     return;
   }
     TerminateSystemE0();
