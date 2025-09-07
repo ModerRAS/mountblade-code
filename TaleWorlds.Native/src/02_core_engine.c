@@ -202515,20 +202515,20 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
   long long SystemOffsetValue;
   code *****SystemStringBufferPrimary;
   code ******SystemStringBufferSecondary;
-  long long DataSize13;
-  long long LoopCounter4;
-  unsigned long long Utf16Char5;
-  unsigned long long PrimaryReturnCode;
-  void *StatusBuffer7;
-  long long *SystemContextPointer8;
-  long long LoopCounter9;
-  uint MemoryAllocationIndex0;
-  uint8_t aStackVariable1B8 [32];
-  code ***pppcStack_198;
-  code *****pppppcStack_188;
-  code *****pppppcStack_180;
-  code *****pppppcStack_178;
-  code ***pppcStack_170;
+  long long SystemDataSize;
+  long long SystemLoopCounter;
+  unsigned long long SystemUtf16Char;
+  unsigned long long SystemReturnCode;
+  void *SystemStatusBuffer;
+  long long *SystemContextPointer;
+  long long SystemIterationCounter;
+  uint SystemMemoryAllocationIndex;
+  uint8_t SystemOperationBuffer [32];
+  code ***SystemCodePointerArray;
+  code *****SystemDataStructurePointerTertiary;
+  code *****SystemDataStructurePointerSecondary;
+  code *****SystemDataStructurePointerPrimary;
+  code ***SystemDataStructurePointer;
   uint32_t *pDataContentStatus;
   uint64_t SystemStackOffset160;
   uint64_t SystemStackOffset158;
@@ -202572,11 +202572,11 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
   MutexLockResult = *(int *)(SystemDataTablePointer + 0x318);
   if (MutexLockResult == 0) {
     ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
-    pppppcStack_178 = (code *****)&pppcStack_170;
+    SystemDataStructurePointerPrimary = (code *****)&SystemDataStructurePointer;
     SystemUnsignedValue160 = &SystemMemoryAddressSecondary;
     uStack_158 = &SystemMemoryAddressTertiary;
-    pppppcStack_180 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
-    pppppcStack_188 = pppppcStack_180;
+    SystemDataStructurePointerSecondary = (code *****)FUN_18006b640(ProcessingStatusFlag,&SystemDataStructurePointer);
+    SystemDataStructurePointerTertiary = SystemDataStructurePointerSecondary;
     if ((code ******)pppppcStack_180 != (code ******)0x0) {
       (*(code *)(*pppppcStack_180)[5])(pppppcStack_180);
     }
