@@ -4162,28 +4162,28 @@
 #define ExceptionStatusTableAddress UNK_1809fe100
 
 // 异常处理句柄表Primary
-// 功能：存储异常处理的句柄信息和回调函数指针
-#define ExceptionHandleTablePrimary UNK_18098bab0
+// 功能：存储异常处理的主句柄信息和回调函数指针
+#define ExceptionHandleTablePrimaryAddress UNK_18098bab0
 
 // 异常处理句柄表Secondary
 // 功能：存储异常处理的备用句柄信息和次级回调函数指针
-#define ExceptionHandleTableSecondary UNK_18098bac8
+#define ExceptionHandleTableSecondaryAddress UNK_18098bac8
 
 // 异常处理数据表Quaternary
 // 功能：存储异常处理的第四级数据表信息和详细参数
-#define ExceptionDataTableQuaternary UNK_1809fd0a0
+#define ExceptionDataTableQuaternaryAddress UNK_1809fd0a0
 
 // 数据验证标志表
 // 功能：存储系统数据验证的标志位和状态信息
-#define SystemDataValidationFlagTable UNK_180982508
+#define SystemDataValidationFlagTableAddress UNK_180982508
 
 // 数据处理状态表
 // 功能：存储系统数据处理的当前状态和进度信息
-#define SystemDataProcessingStatusTable UNK_180982608
+#define SystemDataProcessingStatusTableAddress UNK_180982608
 
 // 系统状态标志表
 // 功能：存储系统运行状态的标志位和控制信息
-#define SystemStatusFlagTable UNK_180982588
+#define SystemStatusFlagTableAddress UNK_180982588
 
 // 系统配置数据表
 // 功能：存储系统配置参数和数据表结构信息
@@ -22826,7 +22826,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
       if (0 < iterationCount) {
         do {
           ProcessSystemDataA0(exceptionHandlerContext5,ValidationDataBufferA,exceptionHandlerContextPointer4);
-          ProcessContext(exceptionHandlerContext5,exceptionHandlerContextPointer4,afStack_348,contextProcessingArray300);
+          ProcessContext(exceptionHandlerContext5,exceptionHandlerContextPointer4,StackFloatArrayE,contextProcessingArray300);
           exceptionHandlerContext1 = GetSystemContextHandle(exceptionHandlerContext5,exceptionHandlerContextPointer4);
           systemStatusChar = CheckSystemStatus(exceptionHandlerContext1,0);
           if ((systemStatusChar == '\0') && (afStack_348[0] != *(float *)(exceptionHandlerContext1 + 0x4c))) {
