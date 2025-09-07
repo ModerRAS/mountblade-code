@@ -38804,7 +38804,7 @@ void SynchronizeDataStructures(long long CharacterCode,long long Utf8BufferSize
     ValidateSystemConfiguration(SystemConfigHandle,&SystemMemoryTableB,pMemoryAddressMask);
   }
   MemoryBlockIndex = CharacterCode + 0x2133e0;
-  lStack_2a8 = MemoryBlockIndex;
+  MemoryBlockOffset = MemoryBlockIndex;
   LockResult = _Mtx_lock(MemoryBlockIndex);
   if (LockResult != 0) {
     __Throw_C_error_std__YAXH_Z(LockResult);
@@ -52608,11 +52608,11 @@ SystemDataRelease:
       BufferStatus3 = 0;
       MemoryBlockPointer = (int *)0x0;
       if (0 < (long long)MemoryAllocationIndex8) {
-        piStack_1f8 = (int *)0x0;
+        AllocationIndexPointer = (int *)0x0;
         do {
           BufferStatus1 = 0;
-          SystemUnsignedValue180 = *(long long *)(CharacterCode + 0x90) + (long long)piStack_1f8;
-          Utf16Char9 = DataProcessingBuffer[(long long)piStack_1f0];
+          SystemUnsignedValue180 = *(long long *)(CharacterCode + 0x90) + (long long)AllocationIndexPointer;
+          Utf16Char9 = DataProcessingBuffer[(long long)MemoryBlockPointer];
           if (Utf16Char9 == 0) {
             do {
               if (StackProcessingConfigurationFlag == -1) {
@@ -169536,29 +169536,38 @@ uint64_t * ProcessUtf8InputBufferWithChecksum(byte *Utf8InputBuffer)
 
 
 
-uint64_t * FUN_18013c9d9(void
+/**
+ * @brief 获取字符状态缓冲区指针
+ * 
+ * 该函数用于获取字符处理系统的状态缓冲区指针，包含字符状态、
+ * 系统字节、内存匹配结果等信息。此函数在字符编码转换和
+ * 处理过程中被调用。
+ * 
+ * @return uint64_t* 字符状态缓冲区指针，包含系统状态信息
+ */
+uint64_t * GetCharacterStatusBuffer(void)
 {
-  uint32_t *CharacterStatusBuffer;
-  byte SystemHighByte;
-  int MemoryMatchResult;
-  long long SystemDataRegistry;
-  byte *SystemBytePointer;
-  uint64_t DataSize;
-  long long MemoryPoolBlockSize;
-  long long SystemContext;
-  uint32_t RegisterValueEDI;
-  void *NextNode;
-  uint SystemMemoryAllocationResult;
-  byte *CharacterLimit;
-  uint64_t uStackX_20;
-  uint64_t in_stack_00000028;
-  uint64_t SystemInputStringBuffer30;
-  uint64_t TertiaryDataStorage;
-  uint32_t StackProcessingVariable40;
-  uint32_t StackDataBuffer1;
-  uint32_t StackProcessingVariable48;
-  uint32_t StackValue4c;
-  uint64_t DataStorageValue;
+  uint32_t *CharacterStatusBuffer;          // 字符状态缓冲区指针
+  byte SystemHighByte;                      // 系统高字节
+  int MemoryMatchResult;                    // 内存匹配结果
+  long long SystemDataRegistry;             // 系统数据寄存器
+  byte *SystemBytePointer;                  // 系统字节指针
+  uint64_t DataSize;                        // 数据大小
+  long long MemoryPoolBlockSize;            // 内存池块大小
+  long long SystemContext;                   // 系统上下文
+  uint32_t RegisterValueEDI;                // 寄存器EDI值
+  void *NextNode;                           // 下一个节点指针
+  uint SystemMemoryAllocationResult;        // 系统内存分配结果
+  byte *CharacterLimit;                     // 字符限制指针
+  uint64_t uStackX_20;                      // 栈变量X_20
+  uint64_t in_stack_00000028;               // 栈变量00000028
+  uint64_t SystemInputStringBuffer30;        // 系统输入字符串缓冲区30
+  uint64_t TertiaryDataStorage;             // 第三级数据存储
+  uint32_t StackProcessingVariable40;       // 栈处理变量40
+  uint32_t StackDataBuffer1;                // 栈数据缓冲区1
+  uint32_t StackProcessingVariable48;       // 栈处理变量48
+  uint32_t StackValue4c;                    // 栈值4c
+  uint64_t DataStorageValue;                // 数据存储值
   
   DataSize = SystemCallMemoryAccess();
   if (*(long long *)(SystemContext + 0x2e30) != 0) {
@@ -169603,26 +169612,35 @@ uint64_t * FUN_18013c9d9(void
 
 
 
-uint64_t * FUN_18013ca47(int CharacterCode
+/**
+ * @brief 根据字符代码获取字符状态缓冲区指针
+ * 
+ * 该函数根据提供的字符代码获取相应的字符状态缓冲区指针。
+ * 此函数用于字符编码处理中的状态查询和缓冲区管理。
+ * 
+ * @param CharacterCode 输入的字符代码，用于确定要获取的状态缓冲区
+ * @return uint64_t* 字符状态缓冲区指针，包含指定字符的状态信息
+ */
+uint64_t * GetCharacterStatusBufferByCode(int CharacterCode)
 {
-  uint32_t *CharacterStatusBuffer;
-  byte SystemHighByte;
-  int MemoryMatchResult;
-  long long SystemDataRegistry;
-  byte *SystemBytePointer;
-  uint64_t DataSize;
-  long long MemoryPoolBlockSize;
-  long long SystemContext;
-  void *NextNode;
-  uint SystemMemoryAllocationResult;
-  byte *CharacterLimit;
-  uint64_t uStackX_20;
-  uint64_t in_stack_00000028;
-  uint64_t SystemInputStringBuffer30;
-  uint64_t TertiaryDataStorage;
-  uint32_t StackProcessingVariable40;
-  uint32_t StackDataBuffer1;
-  uint32_t StackProcessingVariable48;
+  uint32_t *CharacterStatusBuffer;          // 字符状态缓冲区指针
+  byte SystemHighByte;                      // 系统高字节
+  int MemoryMatchResult;                    // 内存匹配结果
+  long long SystemDataRegistry;             // 系统数据寄存器
+  byte *SystemBytePointer;                  // 系统字节指针
+  uint64_t DataSize;                        // 数据大小
+  long long MemoryPoolBlockSize;            // 内存池块大小
+  long long SystemContext;                   // 系统上下文
+  void *NextNode;                           // 下一个节点指针
+  uint SystemMemoryAllocationResult;        // 系统内存分配结果
+  byte *CharacterLimit;                     // 字符限制指针
+  uint64_t uStackX_20;                      // 栈变量X_20
+  uint64_t in_stack_00000028;               // 栈变量00000028
+  uint64_t SystemInputStringBuffer30;        // 系统输入字符串缓冲区30
+  uint64_t TertiaryDataStorage;             // 第三级数据存储
+  uint32_t StackProcessingVariable40;       // 栈处理变量40
+  uint32_t StackDataBuffer1;                // 栈数据缓冲区1
+  uint32_t StackProcessingVariable48;       // 栈处理变量48
   uint32_t StackValue4c;
   uint64_t DataStorageValue;
   
