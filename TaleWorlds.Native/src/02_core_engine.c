@@ -200087,24 +200087,24 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
   unsigned long long ProcessStringBuffer;
   int IntegerValue2;
   uint8_t SystemOperationBuffer [32];
-  int iStack_78;
-  int iStack_70;
-  int iStack_68;
-  byte bStack_58;
-  int iStack_54;
-  uint64_t SystemKeyPointer;
-  int iStack_48;
-  int iStack_44;
+  int WindowPositionX;
+  int WindowPositionY;
+  int WindowStyle;
+  byte WindowUpdateFlag;
+  int WindowOffsetX;
+  uint64_t WindowRectPointer;
+  int WindowWidth;
+  int WindowHeight;
   unsigned long long SystemPriorityLevel;
   
   SystemPriorityLevel = EncodingDecodingKey ^ (unsigned long long)SystemOperationBuffer;
   IntegerValue = *(int *)(CoreEngineMemoryContext + 0x1ea0);
-  bStack_58 = Utf16EndPointer;
+  WindowUpdateFlag = Utf16EndPointer;
   if (IntegerValue != 2) {
     MemoryAllocationSize = GetSystemMetrics(0);
     validationResult = GetSystemMetrics(1);
     BufferStatus = *AdditionalParameter2;
-    iStack_54 = 0;
+    WindowOffsetX = 0;
     ProcessStringBuffer = 0;
     MemoryPoolBlockSize = AdditionalParameter2[1] - BufferStatus >> 0x3f;
     CurrentMemoryBlockAddress = (AdditionalParameter2[1] - BufferStatus) / 0x70 + MemoryPoolBlockSize;
@@ -200113,9 +200113,9 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
       do {
         if ((int)ProcessStringBuffer == *(int *)(CoreEngineMemoryContext + 0x1f10)) {
           MemoryPoolBlockSize = ProcessStringBuffer * 0x70;
-          iStack_54 = *(int *)(MemoryPoolBlockSize + 0x58 + BufferStatus);
+          WindowOffsetX = *(int *)(MemoryPoolBlockSize + 0x58 + BufferStatus);
           IntegerValue2 = *(int *)(MemoryPoolBlockSize + 0x5c + BufferStatus);
-          CalculatedCodePoint = *(int *)(MemoryPoolBlockSize + 0x60 + BufferStatus) - iStack_54;
+          CalculatedCodePoint = *(int *)(MemoryPoolBlockSize + 0x60 + BufferStatus) - WindowOffsetX;
           ProcessingStatusFlag = (int)CalculatedCodePoint >> 0x1f;
           DataSize = *(int *)(MemoryPoolBlockSize + 100 + BufferStatus) - IntegerValue2;
           MemoryAllocationSize = (CalculatedCodePoint ^ ProcessingStatusFlag) - ProcessingStatusFlag;
@@ -200128,19 +200128,19 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
       } while (ProcessStringBuffer < (unsigned long long)(CurrentMemoryBlockAddress - MemoryPoolBlockSize));
     }
     IntegerValue0 = 0;
-    SystemKeyPointer = 0;
+    WindowRectPointer = 0;
     if (IntegerValue == 1) {
       IntegerValue0 = -0x70000000;
-      iStack_48 = MemoryAllocationSize;
-      iStack_44 = validationResult;
+      WindowWidth = MemoryAllocationSize;
+      WindowHeight = validationResult;
     }
     else {
-      iStack_48 = Utf8BufferSize;
-      iStack_44 = Utf8SourcePointer;
+      WindowWidth = Utf8BufferSize;
+      WindowHeight = Utf8SourcePointer;
       if (IntegerValue == 0) {
         IntegerValue0 = 0xca0000;
         if (Utf8BufferSize <= MemoryAllocationSize) {
-          iStack_54 = (MemoryAllocationSize - Utf8BufferSize) / 2 + iStack_54;
+          WindowOffsetX = (MemoryAllocationSize - Utf8BufferSize) / 2 + WindowOffsetX;
         }
         if (Utf8SourcePointer <= validationResult) {
           IntegerValue2 = IntegerValue2 + (validationResult - Utf8SourcePointer) / 2;
@@ -200149,18 +200149,18 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
     }
     if (*AdditionalParameter1 != IntegerValue) {
       SetWindowLongPtrW(*(void *)(CharacterCode + 8),0xfffffff0,(long long)IntegerValue0);
-      iStack_68 = 0x27;
-      iStack_70 = 0;
-      iStack_78 = 0;
+      WindowStyle = 0x27;
+      WindowPositionY = 0;
+      WindowPositionX = 0;
       SetWindowPos(*(void *)(CharacterCode + 8),0,0,0);
       *AdditionalParameter1 = IntegerValue;
-      bStack_58 = 1;
+      WindowUpdateFlag = 1;
     }
-    AdjustWindowRect(&SystemKeyPointer,IntegerValue0,0);
-    iStack_78 = iStack_48 - (int)SystemKeyPointer;
-    iStack_70 = iStack_44 - SystemKeyPointer.HighPart;
-    iStack_68 = (bStack_58 ^ 1) * 2 + 0x40;
-    SetWindowPos(*(void *)(CharacterCode + 8),0,iStack_54 + (int)SystemKeyPointer,IntegerValue2);
+    AdjustWindowRect(&WindowRectPointer,IntegerValue0,0);
+    WindowPositionX = WindowWidth - (int)WindowRectPointer;
+    WindowPositionY = WindowHeight - WindowRectPointer.HighPart;
+    WindowStyle = (WindowUpdateFlag ^ 1) * 2 + 0x40;
+    SetWindowPos(*(void *)(CharacterCode + 8),0,WindowOffsetX + (int)WindowRectPointer,IntegerValue2);
   }
   *AdditionalParameter1 = IntegerValue;
                     // WARNING: Subroutine does not return
@@ -200171,7 +200171,16 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
 
 
 
-73771(voidvoid FUN_180173771(void
+/**
+ * @brief 处理字符编码和内存管理
+ * 
+ * 该函数负责处理字符编码转换和内存管理操作，包括内存分配、字符表处理
+ * 和窗口位置设置。该函数包含复杂的内存操作和窗口管理逻辑。
+ * 
+ * @note 原始函数名：FUN_180173771
+ * @note 此函数包含复杂的变量映射关系，需要进一步分析变量用途
+ */
+void ProcessCharacterEncodingAndMemoryManagement(void)
 {
   long long PrimaryDataSize;
   int CharacterByteCount;
@@ -200190,11 +200199,11 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
   long long RegisterR13Value;
   int *CharacterLimit;
   int NullPointerValueD;
-  int StackOffset44;
-  int StackOffset48;
-  int DataStorageValue;
-  int StackOffset54;
-  unsigned long long in_stack_00000058;
+  int WindowOffsetX;
+  int WindowOffsetY;
+  int WindowWidth;
+  int WindowHeight;
+  unsigned long long SystemParameterPointer;
   
   CharacterByteCount = GetSystemMetrics(0);
   MemoryAllocationSize = GetSystemMetrics(1);
