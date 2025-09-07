@@ -33952,7 +33952,7 @@ uint64_t ValidateDataStructureStatus(uint64_t *Utf8InputBuffer,long long Utf8Buf
   long long MemoryOffset;
   long long *EngineContext;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   
   if (((*(long long *)(Utf8BufferSize + 0x18) == 0) || (*(int *)(Utf8BufferSize + 4) != *(int *)(CharacterCode + 0x4c))     && (StringBuffer = CheckSystemStringBuffer(), StringBuffer == '\0')) {
     return 0;
@@ -34357,7 +34357,7 @@ void CoreEngineProcessStatusBuffer(long long *StatusBuffer
   long long MemoryOffset;
   uint64_t MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   long long *SystemRegisterPointerX8;
   long long **pSystemRegisterPointerX10;
@@ -34384,14 +34384,14 @@ void CoreEngineProcessStatusBuffer(long long *StatusBuffer
   pMemoryBoundaryEnd = (long long *)GetMemoryBlockInfo(MemoryAddressMask,4,MemoryBlockIndex);
   pPerformanceCounterValue = pMemoryBoundaryEnd;
   if (pMemoryBoundaryEnd != (long long *)0x0) {
-    (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+    (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
   }
   StatusBuffer = *(uint64_t **)(MemoryBlockIndex + 400);
   pSystemCheckResult = *(code **)*StatusBuffer;
   pSystemRegisterPointerX10 = &SystemRegisterPointerX8;
   SystemRegisterPointerX8 = pMemoryBoundaryEnd;
   if (pMemoryBoundaryEnd != (long long *)0x0) {
-    (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+    (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
   }
   (*pSystemCheckResult)(StatusBuffer,&SystemRegisterPointerX8);
   MemoryAddressMask = MemoryAllocate(MemoryPoolManager,0x70,8,3);
@@ -34415,7 +34415,7 @@ void CoreEngineProcessStatusBuffer(long long *StatusBuffer
   (*pSystemCheckResult)(StatusBuffer,&SystemRegisterPointerX8);
   ProcessSystemContextHandler(*(void *)(MemoryBlockIndex + 400));
   if (pMemoryBoundaryEnd != (long long *)0x0) {
-    (**(code **)(*pMemoryBoundaryEnd + 0x38))(pMemoryBoundaryEnd);
+    (**(code **)(*MemoryBoundaryPointer + 0x38))(pMemoryBoundaryEnd);
   }
   if (MemoryPoolBlockSizePointer != (long long *)0x0) {
     (**(code **)(*MemoryPoolBlockSizePointer + 0x38))(MemoryPoolBlockSizePointer);
@@ -34434,7 +34434,7 @@ void CoreEngineProcessStatusBuffer(long long *StatusBuffer
   long long MemoryOffset;
   uint64_t MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   long long *SystemRegisterPointerX8;
   long long **pSystemRegisterPointerX10;
@@ -34461,14 +34461,14 @@ void CoreEngineProcessStatusBuffer(long long *StatusBuffer
   pMemoryBoundaryEnd = (long long *)GetMemoryBlockInfo(MemoryAddressMask,3,MemoryBlockIndex);
   pPerformanceCounterValue = pMemoryBoundaryEnd;
   if (pMemoryBoundaryEnd != (long long *)0x0) {
-    (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+    (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
   }
   StatusBuffer = *(uint64_t **)(MemoryBlockIndex + 400);
   pSystemCheckResult = *(code **)*StatusBuffer;
   pSystemRegisterPointerX10 = &SystemRegisterPointerX8;
   SystemRegisterPointerX8 = pMemoryBoundaryEnd;
   if (pMemoryBoundaryEnd != (long long *)0x0) {
-    (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+    (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
   }
   (*pSystemCheckResult)(StatusBuffer,&SystemRegisterPointerX8);
   MemoryAddressMask = MemoryAllocate(MemoryPoolManager,0x70,8,3);
@@ -34492,7 +34492,7 @@ void CoreEngineProcessStatusBuffer(long long *StatusBuffer
   (*pSystemCheckResult)(StatusBuffer,&SystemRegisterPointerX8);
   ProcessSystemContextHandler(*(void *)(MemoryBlockIndex + 400));
   if (pMemoryBoundaryEnd != (long long *)0x0) {
-    (**(code **)(*pMemoryBoundaryEnd + 0x38))(pMemoryBoundaryEnd);
+    (**(code **)(*MemoryBoundaryPointer + 0x38))(pMemoryBoundaryEnd);
   }
   if (MemoryPoolBlockSizePointer != (long long *)0x0) {
     (**(code **)(*MemoryPoolBlockSizePointer + 0x38))(MemoryPoolBlockSizePointer);
@@ -37939,23 +37939,23 @@ void ProcessEngineIOCompletionPort(long long EngineContext{
         SystemUnsignedValue54 = SystemUnsignedValue64;
         pMemoryBoundaryEnd = (long long *)ProcessMemoryBoundaryOperation(CalculatedCodePoint,&StackProcessingUnsignedValue60);
         if (pMemoryBoundaryEnd != (long long *)0x0) {
-          (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+          (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
         }
         MemoryAddressMask = TimeoutValueStorage;
         pPerformanceCounterValue = pMemoryBoundaryEnd;
         if (*(char *)(CharacterTablePointer + 0x368) == '\0') {
           pMemoryBoundaryEnd[3] = -4;
-          (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+          (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
           ProcessPerformanceCounter(MemoryAddressMask,&pPerformanceCounterValue);
         }
         else {
           if (pMemoryBoundaryEnd != (long long *)0x0) {
-            (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+            (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
           }
           UpdatePerformanceMetrics(MemoryAddressMask,&pPerformanceCounterValue);
         }
         if (pMemoryBoundaryEnd != (long long *)0x0) {
-          (**(code **)(*pMemoryBoundaryEnd + 0x38))(pMemoryBoundaryEnd);
+          (**(code **)(*MemoryBoundaryPointer + 0x38))(pMemoryBoundaryEnd);
         }
       }
     }
@@ -38547,7 +38547,7 @@ void ReleaseSystemResources(long long CharacterCode
   long long MemoryOffset;
   char OperationStatus;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   long long *SystemRegisterPointerX8;
   
@@ -53113,7 +53113,7 @@ uint32_t GetSystemContextStatus(long long systemContext
   memoryBoundaryEndPointer = (long long *)(systemContext + 8 + registerRAX * 8);
   do {
     EncodingValidationResult = (int)SourceIndex;
-    if (*pMemoryBoundaryEnd == 0) {
+    if (*MemoryBoundaryPointer == 0) {
       BufferStatus = BufferAllocate(MemoryPoolManager,0x80000,0x25);
       CharacterCode = (long long *)(StackFrameAddressPointer + 8 + (long long)EncodingValidationResult * 8);
       LOCK();
@@ -65954,7 +65954,7 @@ void ProcessSystemMemoryAllocation(long long *Utf8InputBuffer,long long *Utf8Inp
   long long MemoryOffset;
   byte *ValidationBytePointer;
   uint CalculatedCodePoint;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long MemoryPoolBlockSize;
   long long *SystemDataTablePointer;
   long long *pStringOffset;
@@ -65964,7 +65964,7 @@ void ProcessSystemMemoryAllocation(long long *Utf8InputBuffer,long long *Utf8Inp
     if (pMemoryBoundaryEnd == Utf8BufferSize) {
       return;
     }
-    BufferStatus = *pMemoryBoundaryEnd;
+    BufferStatus = *MemoryBoundaryPointer;
     SystemDataTablePointer = pMemoryBoundaryEnd;
     pStringOffset = pMemoryBoundaryEnd;
     while (SystemDataTablePointer != CharacterCode) {
@@ -66323,7 +66323,7 @@ void CompareDataStructuresAndProcessMemoryBounds(long long *Utf8InputBuffer,long
   uint32_t UnicodeCodePoint;
   int EncodingValidationResult;
   unsigned long long CalculatedCodePoint;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   byte *ByteBufferPointer7;
   uint ProcessingStatusFlag;
   long long systemLoopCounter;
@@ -66366,7 +66366,7 @@ void CompareDataStructuresAndProcessMemoryBounds(long long *Utf8InputBuffer,long
     }
     pMemoryBoundaryEnd = (long long *             CopySystemMemoryData(CharacterCode,CharacterCode + (((long long)Utf8BufferSize - (long long)CharacterCode >> 4) -
                                               ((long long)Utf8BufferSize - (long long)CharacterCode >> 0x3f) >> 1                                             * 2,Utf8BufferSize + -2);
-    SystemEventFlag = *pMemoryBoundaryEnd;
+    SystemEventFlag = *MemoryBoundaryPointer;
     EncodingValidationResult = (int)pMemoryBoundaryEnd[1];
     lStack_20 = pMemoryBoundaryEnd[1];
     pMemoryBoundaryEnd = CharacterCode;
@@ -66376,12 +66376,12 @@ LAB_18008ebc0:
       if (*(int *)(SystemEventFlag + 0x78) == 0) {
         HighByte = false;
       }
-      else if (*(int *)(*pMemoryBoundaryEnd + 0x78) == 0) {
+      else if (*(int *)(*MemoryBoundaryPointer + 0x78) == 0) {
         HighByte = true;
       }
       else {
         BufferEndPointer = *(byte **)(SystemEventFlag + 0x70);
-        StringOffset = *(long long *)(*pMemoryBoundaryEnd + 0x70) - (long long)BufferEndPointer;
+        StringOffset = *(long long *)(*MemoryBoundaryPointer + 0x70) - (long long)BufferEndPointer;
         do {
           CurrentByteValue = *BufferEndPointer;
           ProcessingStatusFlag = (uint)BufferEndPointer[StringOffset];
@@ -66425,10 +66425,10 @@ LAB_18008ebc0:
       }
     } while (HighByte);
     if (pMemoryBoundaryEnd < CharacterCode1) {
-      StringOffset = *pMemoryBoundaryEnd;
+      StringOffset = *MemoryBoundaryPointer;
       UnicodeCodePoint = *(uint32_t *)((long long)pMemoryBoundaryEnd + 4);
       EncodingConversionResult = pMemoryBoundaryEnd[1];
-      *pMemoryBoundaryEnd = *Utf8InputBuffer1;
+      *MemoryBoundaryPointer = *Utf8InputBuffer1;
       *(int *)(pMemoryBoundaryEnd + 1) = (int)CharacterCode2[-1];
       pMemoryBoundaryEnd = pMemoryBoundaryEnd + 2;
       *(int *)CharacterCode1 = (int)StringOffset;
@@ -67188,7 +67188,7 @@ CoreEngineSetupMemoryNode(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSi
   int MemoryMatchResult;
   uint64_t *MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   bool BooleanValidationFlag7;
   uint8_t ProcessingBuffer [24];
   
@@ -67392,8 +67392,8 @@ LAB_18008f4f4:
         *(uint8_t *)(AdditionalParameter2[1] + 0x18) = 1;
         *(uint8_t *)(*(long long *)(AdditionalParameter2[1] + 8) + 0x18) = 0;
         pMemoryBoundaryEnd = *(long long **)(AdditionalParameter2[1] + 8);
-        MemoryPoolBlockSizePointer = (long long *)*pMemoryBoundaryEnd;
-        *pMemoryBoundaryEnd = MemoryPoolBlockSizePointer[2];
+        MemoryPoolBlockSizePointer = (long long *)*MemoryBoundaryPointer;
+        *MemoryBoundaryPointer = MemoryPoolBlockSizePointer[2];
         if (*(char *)(MemoryPoolBlockSizePointer[2] + SystemNodeStatusOffset) == '\0') {
           *(long long **)(MemoryPoolBlockSizePointer[2] + 8) = pMemoryBoundaryEnd;
         }
@@ -67419,7 +67419,7 @@ LAB_18008f669:
     }
     else {
       if ((char)MemoryPoolBlockSizePointer[3] != '\0') {
-        if (AdditionalParameter2 == (long long *)*pMemoryBoundaryEnd) {
+        if (AdditionalParameter2 == (long long *)*MemoryBoundaryPointer) {
           ReleaseSystemMemory(CharacterCode);
           AdditionalParameter2 = pMemoryBoundaryEnd;
         }
@@ -69386,7 +69386,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMask;
   bool shouldReturnSource;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   char *StringDataPointer;
   uint8_t ProcessingStatusFlag;
   uint32_t SystemMemoryAllocationResult;
@@ -69612,7 +69612,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
     }
   }
   else {
-    ProcessMemoryBoundaryOperation(CharacterCode,*pMemoryBoundaryEnd);
+    ProcessMemoryBoundaryOperation(CharacterCode,*MemoryBoundaryPointer);
     BufferIndex = pMemoryBoundaryEnd[0x30d];
     Utf16Char4 = MemoryAllocationIndexAdditional;
     Utf16Char9 = MemoryAllocationIndexAdditional;
@@ -69621,7 +69621,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
         CharacterCode3 = *(long long **)(Utf16Char9 + BufferIndex);
         if ((*(char *)((long long)CharacterCode3 + 0xde) == '\0') &&
            (*(char *)((long long)CharacterCode3 + 0xdd) != '\0')) {
-          (**(code **)(*Utf8InputBuffer3 + 0xe8))(CharacterCode3,*pMemoryBoundaryEnd);
+          (**(code **)(*Utf8InputBuffer3 + 0xe8))(CharacterCode3,*MemoryBoundaryPointer);
         }
         PrimaryReturnCode = (int)Utf16Char4 + 1;
         BufferIndex = pMemoryBoundaryEnd[0x30d];
@@ -69647,7 +69647,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
       do {
         BufferIndex = *(long long *)(Utf16Char9 + BufferIndex);
         if ((*(char *)(BufferIndex + 0xde) == '\0') && (*(char *)(BufferIndex + 0xdd) != '\0')) {
-          ProcessBufferIndexndValidateBoundaries(BufferIndex,*pMemoryBoundaryEnd);
+          ProcessBufferIndexndValidateBoundaries(BufferIndex,*MemoryBoundaryPointer);
         }
         PrimaryReturnCode = (int)Utf16Char4 + 1;
         BufferIndex = pMemoryBoundaryEnd[0x30d];
@@ -69679,7 +69679,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
         CharacterCode3 = *(long long **)(Utf16Char9 + BufferIndex);
         if ((*(char *)((long long)CharacterCode3 + 0xde) == '\0') &&
            (*(char *)((long long)CharacterCode3 + 0xdd) != '\0')) {
-          (**(code **)(*Utf8InputBuffer3 + 0xe0))(CharacterCode3,*pMemoryBoundaryEnd);
+          (**(code **)(*Utf8InputBuffer3 + 0xe0))(CharacterCode3,*MemoryBoundaryPointer);
         }
         PrimaryReturnCode = (int)Utf16Char4 + 1;
         BufferIndex = pMemoryBoundaryEnd[0x30d];
@@ -69877,7 +69877,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
     lStack_210 = 0;
     CoreEngineUnsignedValue208 = 0;
     ProcessingCounter0 = 3;
-    ProcessSystemMemoryConfiguration(CoreEngineSystemContext,*pMemoryBoundaryEnd,&lStack_218);
+    ProcessSystemMemoryConfiguration(CoreEngineSystemContext,*MemoryBoundaryPointer,&lStack_218);
     CharacterByteCount4 = 0;
     CharacterTablePointer5 = lStack_218;
     if (lStack_210 - lStack_218 >> 3 != 0) {
@@ -69915,7 +69915,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
     }
   }
   if ((char)pMemoryBoundaryEnd[0x2bf] == '\0') {
-    SystemStringIndex = *pMemoryBoundaryEnd;
+    SystemStringIndex = *MemoryBoundaryPointer;
     LOCK();
     ReferenceCountPointer = (int *)(SystemStringIndex + 0x11a48);
     CharacterByteCount4 = *ReferenceCountPointer;
@@ -69929,7 +69929,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
     *(uint32_t *)(BufferIndex + 0x9a38) = SystemMemoryAllocationResult;
     *(uint32_t *)(BufferIndex + 0x9a3c) = UnicodeCodePoint;
     *(uint32_t *)(BufferIndex + 0x9a40) = MemoryAddressMask;
-    HandleMemoryBoundaryProcessing(pMemoryBoundaryEnd,*pMemoryBoundaryEnd);
+    HandleMemoryBoundaryProcessing(pMemoryBoundaryEnd,*MemoryBoundaryPointer);
   }
   StringDataPointer = SystemResourceManager;
   if (*SystemResourceManager != '\0') {
@@ -69961,7 +69961,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
   StackProcessingUnsignedValue150 = 0;
   CoreEngineUnsignedValue = 0;
   SystemStatusValue = 3;
-  BufferIndex = *pMemoryBoundaryEnd;
+  BufferIndex = *MemoryBoundaryPointer;
   pCharacterCode7 = (long long **)(CoreEngineSystemContext + 0x68);
   pplStack_258 = pCharacterCode7;
   CharacterByteCount4 = _Mtx_lock(pCharacterCode7);
@@ -70038,8 +70038,8 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
     pcStack_160 = _guard_check_icall;
     SystemMemoryAllocationResult = CoreEngineExecuteConfiguration(aplStack_178);
   }
-  ProcessSystemConfigurationWithMemoryBoundary(SystemMemoryAllocationResult,*pMemoryBoundaryEnd);
-  *pMemoryBoundaryEnd = 0;
+  ProcessSystemConfigurationWithMemoryBoundary(SystemMemoryAllocationResult,*MemoryBoundaryPointer);
+  *MemoryBoundaryPointer = 0;
   *(uint8_t *)(pMemoryBoundaryEnd + 1) = 0;
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)aSystemValue2b8);
@@ -73798,7 +73798,7 @@ void InitializeCoreEngineDataStructure(long long *Utf8InputBuffer,int Utf8Buffer
   long long MemoryOffset;
   long long SystemDataStructureRegistry;
   uint64_t CalculatedCodePoint;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   long long *SystemDataTablePointer;
   float NormalizedParameterValue;
@@ -73876,7 +73876,7 @@ void InitializeCoreEngineDataStructure(long long *Utf8InputBuffer,int Utf8Buffer
   pMemoryBoundaryEnd = (long long *)ValidateUnsignedValue(CalculatedCodePoint);
   pCoreEngineSignedValue70 = pMemoryBoundaryEnd;
   if (pMemoryBoundaryEnd != (long long *)0x0) {
-    (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+    (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
   }
   *(uint32_t *)(pMemoryBoundaryEnd + 2) = 0x1fffe;
   *(uint16_t *)((long long)pMemoryBoundaryEnd + 0x14) = 0x100;
@@ -73910,7 +73910,7 @@ void InitializeCoreEngineDataStructure(long long *Utf8InputBuffer,int Utf8Buffer
   SystemDataStructureRegistry = Utf8InputBuffer[2];
   pplStack_148 = &pSystemMemoryAllocationBlock;
   pSystemMemoryAllocationBlock = pMemoryBoundaryEnd;
-  (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+  (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
   AllocateSystemMemoryResources(SystemDataStructureRegistry,&pSystemMemoryAllocationBlock);
   MemoryPoolBlockSizePointer = (long long *)MemoryAllocate(MemoryPoolManager,0x30,8,3);
   *MemoryPoolBlockSizePointer = (long long)&DataNodeTemplateA;
@@ -74031,7 +74031,7 @@ void InitializeCoreEngineDataStructure(long long *Utf8InputBuffer,int Utf8Buffer
     (**(code **)(*aplStack_120[0] + 0x38))();
   }
   (**(code **)(*MemoryPoolBlockSizePointer + 0x38))(MemoryPoolBlockSizePointer);
-  (**(code **)(*pMemoryBoundaryEnd + 0x38))(pMemoryBoundaryEnd);
+  (**(code **)(*MemoryBoundaryPointer + 0x38))(pMemoryBoundaryEnd);
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)CoreSystemStatusContext178);
 }
@@ -74877,7 +74877,7 @@ void ProcessSystemDataHandler(uint64_t CharacterCode,uint64_t Utf8BufferSize,lon
   double CalculatedDifference;
   long long *EngineContext;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   void *NextNode;
   char *pSystemValidationChar;
@@ -74925,9 +74925,9 @@ void ProcessSystemDataHandler(uint64_t CharacterCode,uint64_t Utf8BufferSize,lon
           do {
             pMemoryBoundaryEnd = MemoryPoolBlockSizePointer + -1;
             MemoryPoolBlockSizePointer = MemoryPoolBlockSizePointer + -1;
-            pTimeDifferenceInSeconds = (double *)(*pMemoryBoundaryEnd + 0x40);
+            pTimeDifferenceInSeconds = (double *)(*MemoryBoundaryPointer + 0x40);
             if (CalculatedDifference < *pTimeDifferenceInSeconds || CalculatedDifference == *pTimeDifferenceInSeconds) break;
-            *Utf8InputBuffer1 = *pMemoryBoundaryEnd;
+            *Utf8InputBuffer1 = *MemoryBoundaryPointer;
             CharacterCode1 = CharacterCode1 + -1;
           } while (MemoryPoolBlockSizePointer != CharacterCode2);
         }
@@ -81308,7 +81308,7 @@ void ProcessSystemDataStructureHeapSort(void
   long long AllocatedMemorySize;
   long long *SystemParameter;
   long long *SystemRegisterR10;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long in_R11;
   long long MemoryPoolBlockSize;
   long long CharacterLimit;
@@ -81358,9 +81358,9 @@ void ProcessSystemDataStructureHeapSort(void
     pMemoryBoundaryEnd = (long long *)(CharacterLimit + -8);
     do {
       MemoryPoolBlockSize = in_R11 + -1;
-      SystemDataStructureRegistry = *pMemoryBoundaryEnd;
+      SystemDataStructureRegistry = *MemoryBoundaryPointer;
       AllocatedMemorySize = 2;
-      *pMemoryBoundaryEnd = *SystemParameter;
+      *MemoryBoundaryPointer = *SystemParameter;
       isMemorySizeValid = MemoryPoolBlockSize == 2;
       BufferStatus = NullPointerValue;
       MemoryBlockIndex = NullPointerValue;
@@ -81415,7 +81415,7 @@ void ProcessSystemDataStructureHeapSortOptimized(void
   long long SystemDataStructureRegistry;
   long long AllocatedMemorySize;
   long long *SystemParameter;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long in_R11;
   long long MemoryPoolBlockSize;
   long long CharacterLimit;
@@ -81425,9 +81425,9 @@ void ProcessSystemDataStructureHeapSortOptimized(void
   pMemoryBoundaryEnd = (long long *)(CharacterLimit + -8);
   do {
     MemoryPoolBlockSize = in_R11 + -1;
-    BufferStatus = *pMemoryBoundaryEnd;
+    BufferStatus = *MemoryBoundaryPointer;
     AllocatedMemorySize = 2;
-    *pMemoryBoundaryEnd = *SystemParameter;
+    *MemoryBoundaryPointer = *SystemParameter;
     isMemorySizeValid = MemoryPoolBlockSize == 2;
     MemoryBlockIndex = NullPointerValue;
     SystemDataStructureRegistry = NullPointerValue;
@@ -81851,7 +81851,7 @@ void ProcessSystemDataStructureAdvancedSortAndMatch(long long CharacterCode,long
   bool IsHighByteSet;
   long long SystemDataStructureRegistry;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   byte *ByteBufferPointer8;
   uint SystemMemoryAllocationResult;
@@ -81870,7 +81870,7 @@ void ProcessSystemDataStructureAdvancedSortAndMatch(long long CharacterCode,long
     SystemStringIndex = *(long long *)(CharacterCode + -8 + SystemDataStructureRegistry * 8);
     FindMatchingDataNode(AllocatedMemorySize + 0x90,&AdditionalParameter2,EncodingConversionResult + 0x20);
     pMemoryBoundaryEnd = (long long *)FindMatchingDataNode(AllocatedMemorySize + 0x90,SystemRegisterFlagBuffer,SystemStringIndex + 0x20);
-    if (VectorRegisterDa == *(float *)(*pMemoryBoundaryEnd + 0x40)) {
+    if (VectorRegisterDa == *(float *)(*MemoryBoundaryPointer + 0x40)) {
       if (*(int *)(EncodingConversionResult + 0x30) == 0) {
         LowByte = false;
       }
@@ -81890,7 +81890,7 @@ void ProcessSystemDataStructureAdvancedSortAndMatch(long long CharacterCode,long
       }
     }
     else {
-      LowByte = *(float *)(*pMemoryBoundaryEnd + 0x40) < VectorRegisterDa;
+      LowByte = *(float *)(*MemoryBoundaryPointer + 0x40) < VectorRegisterDa;
     }
     EncodingConversionResult = CharacterTablePointer + 1;
     if (!LowByte) {
@@ -81908,7 +81908,7 @@ void ProcessSystemDataStructureAdvancedSortAndMatch(long long CharacterCode,long
   }
   if (Utf8BufferSize < Utf16EndPointer) {
     do {
-      CharacterTablePointer = *pMemoryBoundaryEnd;
+      CharacterTablePointer = *MemoryBoundaryPointer;
       EncodingConversionResult = Utf16EndPointer + -1 >> 1;
       SystemDataStructureRegistry = *(long long *)(CharacterCode + EncodingConversionResult * 8);
       FindMatchingDataNode(AllocatedMemorySize + 0x90,&lStackX_10,SystemDataStructureRegistry + 0x20);
@@ -81942,10 +81942,10 @@ void ProcessSystemDataStructureAdvancedSortAndMatch(long long CharacterCode,long
       *(long long *)(CharacterCode + Utf16EndPointer * 8) = SystemDataStructureRegistry;
       Utf16EndPointer = EncodingConversionResult;
     } while (Utf8BufferSize < EncodingConversionResult);
-    *(long long *)(CharacterCode + EncodingConversionResult * 8) = *pMemoryBoundaryEnd;
+    *(long long *)(CharacterCode + EncodingConversionResult * 8) = *MemoryBoundaryPointer;
   }
   else {
-    *(long long *)(CharacterCode + Utf16EndPointer * 8) = *pMemoryBoundaryEnd;
+    *(long long *)(CharacterCode + Utf16EndPointer * 8) = *MemoryBoundaryPointer;
   }
   return;
 }
@@ -83476,7 +83476,7 @@ void ProcessSystemDataConversion(long long *Utf8InputBuffer,long long *Utf8Input
   long long MemoryOffset;
   long long SystemDataStructureRegistry;
   uint32_t *Utf8InputBufferPointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   uint8_t *StringProcessingStatus;
   long long secondaryLoopCounter;
   unsigned long long MemoryAllocationLoopCounter;
@@ -83627,9 +83627,9 @@ LAB_18009fe7d:
         StackProcessingVariable60 = CONCAT44(Utf16ConversionContext,Utf16Char4);
         pMemoryBoundaryEnd = (long long *)ProcessSystemBoundaryAndAllocate(aBufferOffset,&StackProcessingVariable68,StringProcessingIndex,Utf16EndPointer,AdditionalParameter1 + 1);
         StringProcessingIndex = *(long long *)(StringProcessingIndex + 0x58);
-        SystemStatusCode = (uint32_t)*pMemoryBoundaryEnd;
+        SystemStatusCode = (uint32_t)*MemoryBoundaryPointer;
         ValidationResult = *(uint32_t *)((long long)pMemoryBoundaryEnd + 4);
-        StackProcessingVariable68 = *pMemoryBoundaryEnd;
+        StackProcessingVariable68 = *MemoryBoundaryPointer;
         Utf16Char4 = (uint32_t)pMemoryBoundaryEnd[1];
         Utf16ConversionContext = *(uint32_t *)((long long)pMemoryBoundaryEnd + 0xc);
         StackProcessingVariable60 = pMemoryBoundaryEnd[1];
@@ -122983,7 +122983,7 @@ uint64_t ExecuteMemoryBufferCommands(long long CharacterCode,uint64_t Utf8Buffer
   long long MemoryOffset;
   uint32_t MemoryAddressMask;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   int ProcessIterationCount;
   uint64_t DataNodeIndex;
   long long secondaryLoopCounter;
@@ -123075,7 +123075,7 @@ uint64_t ExecuteMemoryBufferCommands(long long CharacterCode,uint64_t Utf8Buffer
         AllocatedMemorySize = (long long)StringLength;
         pMemoryBoundaryEnd = (long long *)(*(long long *)(MemoryBlockIndex + 0x1ab8) + AllocatedMemorySize * 8);
         do {
-          if (*pMemoryBoundaryEnd == SystemDataTablePointer) {
+          if (*MemoryBoundaryPointer == SystemDataTablePointer) {
                     // WARNING: Subroutine does not return
             memmove(*(long long *)(MemoryBlockIndex + 0x1ab8) + (long long)StringLength * 8,
                     *(long long *)(MemoryBlockIndex + 0x1ab8) + (long long)(StringLength + 1) * 8,
@@ -123125,7 +123125,7 @@ uint64_t ExecuteMemoryBufferCommands(long long CharacterCode,uint64_t Utf8Buffer
   long long MemoryOffset;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   int ProcessIterationCount;
   long long secondaryLoopCounter;
   uint SystemMemoryAllocationResult;
@@ -123209,8 +123209,8 @@ LAB_180124d32:
               if (EncodingValidationResult <= SystemDataTablePointer) break;
               do {
                 if (CurrentByteValue2) goto LAB_18012edb4;
-                if ((*pMemoryBoundaryEnd != 0) &&
-                   (*(long long *)(*pMemoryBoundaryEnd + 0x3a0) == *(long long *)(AllocatedMemorySize + 0x3a0))) {
+                if ((*MemoryBoundaryPointer != 0) &&
+                   (*(long long *)(*MemoryBoundaryPointer + 0x3a0) == *(long long *)(AllocatedMemorySize + 0x3a0))) {
                   CurrentByteValue2 = true;
                 }
                 EncodingConversionResult = EncodingConversionResult + 1;
@@ -124035,7 +124035,7 @@ LAB_180125a82:
   long long MemoryOffset;
   int EncodingValidationResult;
   float *pFloatVariable5;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long SystemContext;
   unsigned long long SystemChecksum;
   unsigned long long ProcessingStatusFlag;
@@ -124117,7 +124117,7 @@ LAB_180125a82:
     PrimaryFloatValue = SecondaryFloatValue;
     SystemContextPrimaryFloat3 = SystemContextPrimaryFloat2;
     do {
-      BufferStatus = *pMemoryBoundaryEnd;
+      BufferStatus = *MemoryBoundaryPointer;
       pMemoryBoundaryEnd = pMemoryBoundaryEnd + 1;
       SecondaryFloatValue = *(float *)(BufferStatus + 0x10) + *(float *)(BufferStatus + 8);
       SystemContextPrimaryFloat2 = *(float *)(BufferStatus + 0x14) + *(float *)(BufferStatus + 0xc);
@@ -147678,14 +147678,14 @@ void ProcessCharacterByteCountValidation(void)
   long long DataNodeIndex;
   long long AllocatedMemorySize;
   long long in_R11;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long CharacterLimit;
   uint SystemChecksum;
   
   pMemoryBoundaryEnd = (long long *)(in_R11 + 8);
   SystemChecksum = MemoryAllocationSize + 1;
   do {
-    if ((*pMemoryBoundaryEnd != 0) && ((*(uint *)(*pMemoryBoundaryEnd + 0xc) & 0x1000000) == 0)) {
+    if ((*MemoryBoundaryPointer != 0) && ((*(uint *)(*MemoryBoundaryPointer + 0xc) & 0x1000000) == 0)) {
       MemoryAllocationIndex = 0;
       SystemContextPtr = pMemoryBoundaryEnd;
       AllocatedMemorySize = DataNodeIndex;
@@ -173465,7 +173465,7 @@ uint64_t * ProcessSystemFunctionCall(uint64_t *Utf8InputBuffer)
   long long *MemoryBlockIndex;
   long long *EngineContext;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   uint64_t SystemChecksum;
   
   *Utf8InputBuffer = SystemTargetDataPrimary;
@@ -173479,10 +173479,10 @@ uint64_t * ProcessSystemFunctionCall(uint64_t *Utf8InputBuffer)
   Utf8InputBuffer[2] = 0;
   *(uint32_t *)(CharacterCode + 3) = 0;
   pMemoryBoundaryEnd = CharacterCode + 9;
-  *pMemoryBoundaryEnd = (long long)&ThreadLocalStorageTemplate;
+  *MemoryBoundaryPointer = (long long)&ThreadLocalStorageTemplate;
   Utf8InputBuffer[10] = 0;
   *(uint32_t *)(CharacterCode + 0xb) = 0;
-  *pMemoryBoundaryEnd = (long long)&SystemNullTemplate;
+  *MemoryBoundaryPointer = (long long)&SystemNullTemplate;
   Utf8InputBuffer[0xc] = 0;
   Utf8InputBuffer[10] = 0;
   *(uint32_t *)(CharacterCode + 0xb) = 0;
@@ -173611,17 +173611,17 @@ uint64_t * ProcessSystemFunctionCall(uint64_t *Utf8InputBuffer)
   if (MemoryBlockListHead != (long long *)0x0) {
     (**(code **)(*MemoryBlockListHead + 0x38))();
   }
-  (**(code **)(*pMemoryBoundaryEnd + 0x10))(pMemoryBoundaryEnd,SystemMemoryBoundaryPrimary);
+  (**(code **)(*MemoryBoundaryPointer + 0x10))(pMemoryBoundaryEnd,SystemMemoryBoundaryPrimary);
   pMemoryBoundaryEnd = (long long *)Utf8InputBuffer[0xd];
   Utf8InputBuffer[0xd] = 0;
   if (pMemoryBoundaryEnd != (long long *)0x0) {
-    (**(code **)(*pMemoryBoundaryEnd + 0x38))();
+    (**(code **)(*MemoryBoundaryPointer + 0x38))();
   }
   (**(code **)(*BufferAllocationStatus + 0x10))(BufferAllocationStatus,SystemMemoryBoundarySecondary);
   pMemoryBoundaryEnd = (long long *)Utf8InputBuffer[0x12];
   Utf8InputBuffer[0x12] = 0;
   if (pMemoryBoundaryEnd != (long long *)0x0) {
-    (**(code **)(*pMemoryBoundaryEnd + 0x38))();
+    (**(code **)(*MemoryBoundaryPointer + 0x38))();
   }
   *(uint32_t *)(CharacterCode + 0x3d) = 0x3fa66666;
   *(uint32_t *)((long long)CharacterCode + 0x1ec) = 0xc0400000;
@@ -173633,13 +173633,13 @@ uint64_t * ProcessSystemFunctionCall(uint64_t *Utf8InputBuffer)
   pMemoryBoundaryEnd = (long long *)Utf8InputBuffer[0x4b];
   Utf8InputBuffer[0x4b] = 0;
   if (pMemoryBoundaryEnd != (long long *)0x0) {
-    (**(code **)(*pMemoryBoundaryEnd + 0x38))();
+    (**(code **)(*MemoryBoundaryPointer + 0x38))();
   }
   (**(code **)(Utf8InputBuffer[0x4c] + 0x10))(CharacterCode + 0x4c,SystemMemoryBlockQuaternary);
   pMemoryBoundaryEnd = (long long *)Utf8InputBuffer[0x50];
   Utf8InputBuffer[0x50] = 0;
   if (pMemoryBoundaryEnd != (long long *)0x0) {
-    (**(code **)(*pMemoryBoundaryEnd + 0x38))();
+    (**(code **)(*MemoryBoundaryPointer + 0x38))();
   }
   *(uint32_t *)(CharacterCode + 0x41) = 0x40400000;
   *(uint32_t *)((long long)CharacterCode + 0x20c) = 0x3f400000;
@@ -177759,7 +177759,7 @@ uint64_t * FUN_18014c850(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize
   long long MemoryOffset;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long MemoryPoolBlockSize;
   uint64_t ProcessingFlags;
   uint64_t SystemStackOffset28;
@@ -177783,14 +177783,14 @@ uint64_t * FUN_18014c850(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize
       (*pcStack_20)(&ProcessingFlags,0,0);
     }
     pMemoryBoundaryEnd = *(long long **)(Utf8BufferSize + 0xb8);
-    MemoryPoolBlockSize = ((pMemoryBoundaryEnd[1] - *pMemoryBoundaryEnd) / 0x30) * 0x30 + (pMemoryBoundaryEnd[5] - pMemoryBoundaryEnd[4] & 0xffffffffffffffe0U);
+    MemoryPoolBlockSize = ((pMemoryBoundaryEnd[1] - *MemoryBoundaryPointer) / 0x30) * 0x30 + (pMemoryBoundaryEnd[5] - pMemoryBoundaryEnd[4] & 0xffffffffffffffe0U);
     AllocatedMemorySize = pMemoryBoundaryEnd[9] - pMemoryBoundaryEnd[8];
     BufferStatus = AllocatedMemorySize >> 0x3f;
     AllocatedMemorySize = AllocatedMemorySize / 0x88 + BufferStatus;
     if (AllocatedMemorySize != BufferStatus) {
       pMemoryBoundaryEnd = (long long *)(pMemoryBoundaryEnd[8] + 0x30);
       do {
-        MemoryPoolBlockSize = MemoryPoolBlockSize + (*pMemoryBoundaryEnd - pMemoryBoundaryEnd[-1] >> 4) * 0x14 + ((pMemoryBoundaryEnd[8] - pMemoryBoundaryEnd[7]) / 0x18) * 0x18
+        MemoryPoolBlockSize = MemoryPoolBlockSize + (*MemoryBoundaryPointer - pMemoryBoundaryEnd[-1] >> 4) * 0x14 + ((pMemoryBoundaryEnd[8] - pMemoryBoundaryEnd[7]) / 0x18) * 0x18
         ;
         EncodingValidationResult = EncodingValidationResult + 1;
         pMemoryBoundaryEnd = pMemoryBoundaryEnd + 0x11;
@@ -177938,7 +177938,7 @@ LAB_18014ccc0:
   long long MemoryOffset;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   uint64_t SystemParameter;
   int StackIntegerArray [2];
   int **ppiStackX_18;
@@ -177996,7 +177996,7 @@ LAB_18014ccc0:
     AllocatedMemorySize = GetSystemSystemDataStructureRegistry(TimeoutValueStorage);
     if (AllocatedMemorySize != 0) {
       pMemoryBoundaryEnd = (long long *)GetSystemSystemDataStructureRegistry(SystemChecksum);
-      (**(code **)(*pMemoryBoundaryEnd + 0x20))(pMemoryBoundaryEnd,0);
+      (**(code **)(*MemoryBoundaryPointer + 0x20))(pMemoryBoundaryEnd,0);
     }
   }
   return;
@@ -179653,7 +179653,7 @@ long long FUN_18014e960(long long CharacterCode,long long Utf8BufferSize
   long long *MemoryBlockIndex;
   long long SystemDataStructureRegistry;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   unsigned long long ProcessingStatusFlag;
   long long *pStringOffset;
@@ -179719,7 +179719,7 @@ long long FUN_18014e960(long long CharacterCode,long long Utf8BufferSize
         pMemoryBoundaryEnd[-2] = 0;
         *(uint32_t *)((long long)pMemoryBoundaryEnd + 0x14) = 0;
         pMemoryBoundaryEnd[-1] = 0;
-        *pMemoryBoundaryEnd = 0;
+        *MemoryBoundaryPointer = 0;
         pMemoryBoundaryEnd[1] = 0;
         *(uint32_t *)(pMemoryBoundaryEnd + 2) = 3;
         pMemoryBoundaryEnd = pMemoryBoundaryEnd + 7;
@@ -179756,7 +179756,7 @@ long long FUN_18014e960(long long CharacterCode,long long Utf8BufferSize
       MemoryPoolBlockSizePointer = pMemoryBoundaryEnd + 4;
       SystemStatusCode = Utf8BufferSize;
       do {
-        *pMemoryBoundaryEnd = 0;
+        *MemoryBoundaryPointer = 0;
         pMemoryBoundaryEnd[1] = 0;
         pMemoryBoundaryEnd[2] = 0;
         pMemoryBoundaryEnd[3] = 0;
@@ -184658,7 +184658,7 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t CharacterCode,uns
   int MemoryMatchResult;
   int EncodingValidationResult;
   bool shouldReturnSource;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   byte *ByteBufferPointer7;
   int ComputedResult;
   unsigned long long MemoryAllocationLoopCounter;
@@ -184739,7 +184739,7 @@ LAB_180156d7b:
     memcpy((unsigned long long)StackProcessingUnsignedValue68 + CoreEngineSignedValue70,*(void *)(Utf8BufferSize + 8),
            (long long)(*(int *)(Utf8BufferSize + 0x10) + 1));
   }
-  (**(code **)(*pMemoryBoundaryEnd + 0x40))(pMemoryBoundaryEnd,&CoreEnginePointerBuffer78,Utf8SourcePointer);
+  (**(code **)(*MemoryBoundaryPointer + 0x40))(pMemoryBoundaryEnd,&CoreEnginePointerBuffer78,Utf8SourcePointer);
   CoreEnginePointerBuffer78 = &SystemNullTemplate;
   if (CoreEngineSignedValue70 == 0) {
     CoreEngineSignedValue70 = 0;
@@ -184767,7 +184767,7 @@ LAB_180156d7b:
   int MemoryMatchResult;
   int EncodingValidationResult;
   unsigned long long CalculatedCodePoint;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   byte *ByteBufferPointer7;
   int ComputedResult;
   long long systemLoopCounter;
@@ -184843,7 +184843,7 @@ LAB_180156f96:
     memcpy((unsigned long long)StackProcessingUnsignedValue68 + CoreEngineSignedValue70,*(void *)(Utf8BufferSize + 8),
            (long long)(*(int *)(Utf8BufferSize + 0x10) + 1));
   }
-  (**(code **)(*pMemoryBoundaryEnd + 0x40))(pMemoryBoundaryEnd,&CoreEnginePointerBuffer78,Utf8SourcePointer);
+  (**(code **)(*MemoryBoundaryPointer + 0x40))(pMemoryBoundaryEnd,&CoreEnginePointerBuffer78,Utf8SourcePointer);
   CoreEnginePointerBuffer78 = &SystemNullTemplate;
   if (CoreEngineSignedValue70 == 0) {
     CoreEngineSignedValue70 = 0;
@@ -186190,7 +186190,7 @@ LAB_180158cb6:
   long long MemoryOffset;
   char OperationStatus;
   int RemainingSpace;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   long long *SystemDataTablePointer;
   long long *pStringOffset;
@@ -186254,11 +186254,11 @@ LAB_18015906f:
             if (PerformanceCounterValue != 0) goto LAB_18015906f;
           }
           for (; MemoryPoolBlockSizePointer != pStringOffset; MemoryPoolBlockSizePointer = MemoryPoolBlockSizePointer + 1) {
-            *pMemoryBoundaryEnd = *MemoryPoolBlockSizePointer;
+            *MemoryBoundaryPointer = *MemoryPoolBlockSizePointer;
             *MemoryPoolBlockSizePointer = 0;
             pMemoryBoundaryEnd = pMemoryBoundaryEnd + 1;
           }
-          *pMemoryBoundaryEnd = (long long)BufferAllocationStatus;
+          *MemoryBoundaryPointer = (long long)BufferAllocationStatus;
           (**(code **)(*BufferAllocationStatus + 0x28))(BufferAllocationStatus);
           pMemoryBoundaryEnd = pMemoryBoundaryEnd + 1;
           for (MemoryPoolBlockSizePointer = CharacterCode3; MemoryPoolBlockSizePointer != pStringOffset; MemoryPoolBlockSizePointer = MemoryPoolBlockSizePointer + 1) {
@@ -200021,9 +200021,24 @@ uint64_t InitializeSystemMemoryWithPerformanceCounter(long long CharacterCode,ui
 
 
 
-uint64_t * FUN_180171d50(long long CharacterCode,uint64_t *Utf8InputBufferSize,int Utf8SourcePointer
+/**
+ * @brief 处理UTF8字符编码转换和缓冲区管理
+ * 
+ * 该函数负责处理UTF8字符编码的转换操作和缓冲区管理，包括：
+ * - 处理不同类型的UTF8源指针
+ * - 计算Unicode码点和内存地址掩码
+ * - 管理UTF8缓冲区的大小和数据
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF8输入缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @return uint64_t* UTF8缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180171d50
+ */
+uint64_t * ProcessUtf8CharacterEncodingConversionAndBufferManagement(long long CharacterCode,uint64_t *Utf8InputBufferSize,int Utf8SourcePointer)
 {
-  uint32_t *StatusBuffer;
+  uint32_t *CharacterStatusBuffer;
   uint MemoryAllocationIndex;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMask;
@@ -200038,21 +200053,21 @@ uint64_t * FUN_180171d50(long long CharacterCode,uint64_t *Utf8InputBufferSize,i
   Utf8BufferSize[1] = 0;
   SystemChecksum = (unsigned long long)(MemoryAllocationIndex & 1);
   if (Utf8SourcePointer == 0) {
-    StatusBuffer = (uint32_t *)(CharacterCode + 0xcc + SystemChecksum * 0x48);
-    UnicodeCodePoint = *StatusBuffer;
-    MemoryAddressMask = StatusBuffer[1];
-    CalculatedCodePoint = StatusBuffer[2];
-    DataSize = StatusBuffer[3];
+    CharacterStatusBuffer = (uint32_t *)(CharacterCode + 0xcc + SystemChecksum * 0x48);
+    UnicodeCodePoint = *CharacterStatusBuffer;
+    MemoryAddressMask = CharacterStatusBuffer[1];
+    CalculatedCodePoint = CharacterStatusBuffer[2];
+    DataSize = CharacterStatusBuffer[3];
   }
   else {
     CalculatedCodePoint = UnicodeCodePoint;
     DataSize = MemoryAddressMask;
     if (Utf8SourcePointer == 1) {
-      StatusBuffer = (uint32_t *)(CharacterCode + 0xdc + SystemChecksum * 0x48);
-      UnicodeCodePoint = *StatusBuffer;
-      MemoryAddressMask = StatusBuffer[1];
-      CalculatedCodePoint = StatusBuffer[2];
-      DataSize = StatusBuffer[3];
+      CharacterStatusBuffer = (uint32_t *)(CharacterCode + 0xdc + SystemChecksum * 0x48);
+      UnicodeCodePoint = *CharacterStatusBuffer;
+      MemoryAddressMask = CharacterStatusBuffer[1];
+      CalculatedCodePoint = CharacterStatusBuffer[2];
+      DataSize = CharacterStatusBuffer[3];
     }
   }
   *(uint32_t *)Utf8BufferSize = UnicodeCodePoint;
@@ -200066,29 +200081,44 @@ uint64_t * FUN_180171d50(long long CharacterCode,uint64_t *Utf8InputBufferSize,i
 
 
 
-71dd0(long long CharacterCode,uint32_t Utf8BufferSize,uint32_t *Utf8SourcePointervoid FUN_180171dd0(long long CharacterCode,uint32_t Utf8BufferSize,uint32_t *Utf8SourcePointer
+/**
+ * @brief 初始化UTF8字符编码处理缓冲区
+ * 
+ * 该函数负责初始化UTF8字符编码处理的缓冲区，包括：
+ * - 分配内存边界区域
+ * - 设置数据节点模板
+ * - 处理Unicode码点和内存地址掩码
+ * - 配置缓冲区参数
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * 
+ * @note 原始函数名：FUN_180171dd0
+ */
+void InitializeUtf8CharacterEncodingProcessingBuffer(long long CharacterCode,uint32_t Utf8BufferSize,uint32_t *Utf8SourcePointer)
 {
-  uint64_t *StatusBuffer;
-  code *pSystemCheckResult;
+  uint64_t *CharacterStatusBuffer;
+  code *SystemValidationFunction;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMask;
   uint32_t CalculatedCodePoint;
-  long long *pMemoryBoundaryEnd;
-  long long *SystemRegisterPointerX8;
+  long long *MemoryBoundaryPointer;
+  long long *SystemContextRegister;
   
-  pMemoryBoundaryEnd = (long long *)MemoryAllocate(MemoryPoolManager,0x48,8,3,0xfffffffffffffffe);
-  *pMemoryBoundaryEnd = (long long)&DataNodeTemplateA;
-  *pMemoryBoundaryEnd = (long long)&DataNodeTemplateB;
+  MemoryBoundaryPointer = (long long *)MemoryAllocate(MemoryPoolManager,0x48,8,3,0xfffffffffffffffe);
+  *MemoryBoundaryPointer = (long long)&DataNodeTemplateA;
+  *MemoryBoundaryPointer = (long long)&DataNodeTemplateB;
   *(uint32_t *)(pMemoryBoundaryEnd + 1) = 0;
-  *pMemoryBoundaryEnd = (long long)&DataNodeTemplateC;
+  *MemoryBoundaryPointer = (long long)&DataNodeTemplateC;
   LOCK();
   *(uint8_t *)(pMemoryBoundaryEnd + 2) = 0;
   UNLOCK();
   pMemoryBoundaryEnd[3] = -1;
-  *pMemoryBoundaryEnd = (long long)&SystemResourceArray;
+  *MemoryBoundaryPointer = (long long)&SystemResourceArray;
   *(uint32_t *)(pMemoryBoundaryEnd + 5) = 7;
   pMemoryBoundaryEnd[4] = CharacterCode;
-  (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+  (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
   *(uint32_t *)(pMemoryBoundaryEnd + 6) = Utf8BufferSize;
   UnicodeCodePoint = Utf8SourcePointer[1];
   MemoryAddressMask = Utf8SourcePointer[2];
@@ -200100,12 +200130,12 @@ uint64_t * FUN_180171d50(long long CharacterCode,uint64_t *Utf8InputBufferSize,i
   StatusBuffer = *(uint64_t **)(CharacterCode + 0x140);
   pSystemCheckResult = *(code **)*StatusBuffer;
   SystemRegisterPointerX8 = pMemoryBoundaryEnd;
-  (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+  (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
   (*pSystemCheckResult)(StatusBuffer,&SystemRegisterPointerX8);
   ProcessSystemContextHandler(*(void *)(CharacterCode + 0x140));
                     // WARNING: Could not recover jumptable at 0x000180171eb9. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*pMemoryBoundaryEnd + 0x38))(pMemoryBoundaryEnd);
+  (**(code **)(*MemoryBoundaryPointer + 0x38))(pMemoryBoundaryEnd);
   return;
 }
 
@@ -200149,26 +200179,26 @@ uint64_t ProcessSystemContextManagement(long long CharacterCode,uint32_t *Utf8In
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMask;
   uint32_t CalculatedCodePoint;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *SystemRegisterPointerX8;
   long long **pSystemRegisterPointerX10;
   long long *SystemRegisterPointerX18;
   
   pMemoryBoundaryEnd = (long long *)MemoryAllocate(MemoryPoolManager,0x48,8,3,0xfffffffffffffffe);
-  *pMemoryBoundaryEnd = (long long)&DataNodeTemplateA;
-  *pMemoryBoundaryEnd = (long long)&DataNodeTemplateB;
+  *MemoryBoundaryPointer = (long long)&DataNodeTemplateA;
+  *MemoryBoundaryPointer = (long long)&DataNodeTemplateB;
   *(uint32_t *)(pMemoryBoundaryEnd + 1) = 0;
-  *pMemoryBoundaryEnd = (long long)&DataNodeTemplateC;
+  *MemoryBoundaryPointer = (long long)&DataNodeTemplateC;
   LOCK();
   *(uint8_t *)(pMemoryBoundaryEnd + 2) = 0;
   UNLOCK();
   pMemoryBoundaryEnd[3] = -1;
-  *pMemoryBoundaryEnd = (long long)&SystemResourceArray;
+  *MemoryBoundaryPointer = (long long)&SystemResourceArray;
   *(uint32_t *)(pMemoryBoundaryEnd + 5) = 8;
   pMemoryBoundaryEnd[4] = CharacterCode;
   pSystemRegisterPointerX10 = (long long **)pMemoryBoundaryEnd;
   SystemRegisterPointerX18 = pMemoryBoundaryEnd;
-  (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+  (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
   if (Utf8BufferSize == (uint32_t *)0x0) {
     *(uint8_t *)(pMemoryBoundaryEnd + 6) = 0;
   }
@@ -200186,9 +200216,9 @@ uint64_t ProcessSystemContextManagement(long long CharacterCode,uint32_t *Utf8In
   pSystemCheckResult = *(code **)*StatusBuffer;
   pSystemRegisterPointerX10 = &SystemRegisterPointerX8;
   SystemRegisterPointerX8 = pMemoryBoundaryEnd;
-  (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+  (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
   (*pSystemCheckResult)(StatusBuffer,&SystemRegisterPointerX8);
-  (**(code **)(*pMemoryBoundaryEnd + 0x38))(pMemoryBoundaryEnd);
+  (**(code **)(*MemoryBoundaryPointer + 0x38))(pMemoryBoundaryEnd);
   return 1;
 }
 
@@ -200202,7 +200232,7 @@ uint8_t FUN_1801720a0(long long CharacterCode,uint32_t Utf8BufferSize
   uint64_t *systemEventTemplatePointer;
   code *pOperationStatus;
   int RemainingSpace;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   uint64_t SystemRegisterFlagX8;
   long long *SystemRegisterPointerX18;
   unsigned long long uStackX_20;
@@ -200213,27 +200243,27 @@ uint8_t FUN_1801720a0(long long CharacterCode,uint32_t Utf8BufferSize
   RemainingSpace = _Thrd_id();
   if (RemainingSpace != CharacterByteCount) {
     pMemoryBoundaryEnd = (long long *)MemoryAllocate(MemoryPoolManager,0x48,8,3,SystemChecksum);
-    *pMemoryBoundaryEnd = (long long)&DataNodeTemplateA;
-    *pMemoryBoundaryEnd = (long long)&DataNodeTemplateB;
+    *MemoryBoundaryPointer = (long long)&DataNodeTemplateA;
+    *MemoryBoundaryPointer = (long long)&DataNodeTemplateB;
     *(uint32_t *)(pMemoryBoundaryEnd + 1) = 0;
-    *pMemoryBoundaryEnd = (long long)&DataNodeTemplateC;
+    *MemoryBoundaryPointer = (long long)&DataNodeTemplateC;
     LOCK();
     *(uint8_t *)(pMemoryBoundaryEnd + 2) = 0;
     UNLOCK();
     pMemoryBoundaryEnd[3] = -1;
-    *pMemoryBoundaryEnd = (long long)&SystemResourceArray;
+    *MemoryBoundaryPointer = (long long)&SystemResourceArray;
     *(uint32_t *)(pMemoryBoundaryEnd + 5) = 9;
     pMemoryBoundaryEnd[4] = CharacterCode;
-    (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+    (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
     *(uint32_t *)(pMemoryBoundaryEnd + 6) = Utf8BufferSize;
     systemEventTemplatePointer = *(uint64_t **)(CharacterCode + 0x140);
     pOperationStatus = *(code **)*systemEventTemplatePointer;
     SystemRegisterFlagX8 = &SystemRegisterPointerX18;
     SystemRegisterPointerX18 = pMemoryBoundaryEnd;
-    (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+    (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
     (*pOperationStatus)(systemEventTemplatePointer,&SystemRegisterPointerX18);
     Utf16Char = *(uint8_t *)(CharacterCode + 0x168);
-    (**(code **)(*pMemoryBoundaryEnd + 0x38))(pMemoryBoundaryEnd);
+    (**(code **)(*MemoryBoundaryPointer + 0x38))(pMemoryBoundaryEnd);
     return Utf16Char;
   }
   GetCursorPos(&uStackX_20);
@@ -203181,7 +203211,7 @@ void ProcessCharacterEncodingAndBufferSize(long long CharacterCode, long long Ut
   uint UnicodeCodePoint;
   int EncodingValidationResult;
   uint32_t *Utf8InputBufferPointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   uint32_t *StringProcessingStatus;
   uint32_t SystemMemoryAllocationResult;
@@ -204750,7 +204780,7 @@ long long FUN_180177c00(long long CharacterCode,long long Utf8BufferSize,uint64_
   long long *MemoryBlockIndex;
   long long SystemDataStructureRegistry;
   char *pCharacterVariable5;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   bool BooleanValidationFlag7;
   uint32_t ProcessingStatusFlag;
   uint64_t SystemMemoryAllocationResult;
@@ -204767,7 +204797,7 @@ long long FUN_180177c00(long long CharacterCode,long long Utf8BufferSize,uint64_
       return 0;
     }
     ProcessingStatusFlag = 0;
-    SystemDataStructureRegistry = *pMemoryBoundaryEnd;
+    SystemDataStructureRegistry = *MemoryBoundaryPointer;
     ContextDataPointer = &SystemNullTemplate;
     ProcessingFlags = 0;
     ProgramCounterPointer = (char *)0x0;
@@ -205765,7 +205795,7 @@ FUN_1801798f0(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t 
   uint32_t UnicodeCodePoint;
   long long *EngineContext;
   int RemainingSpace;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long MemoryPoolBlockSize;
   uint64_t ProcessingStatusFlag;
   bool BooleanValidationFlag9;
@@ -205803,7 +205833,7 @@ LAB_180179984:
       pMemoryBoundaryEnd = (long long *)pMemoryBoundaryEnd[1];
     }
     else {
-      pMemoryBoundaryEnd = (long long *)*pMemoryBoundaryEnd;
+      pMemoryBoundaryEnd = (long long *)*MemoryBoundaryPointer;
     }
   }
   pMemoryBoundaryEnd = SystemContextPtr;
@@ -206784,7 +206814,7 @@ void CleanupSystemDataTable(long long *Utf8InputBuffer
   uint64_t *systemEventTemplatePointer;
   uint64_t MemoryAddressMask;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   long long secondaryLoopCounter;
   long long *pStringOffset;
@@ -206828,7 +206858,7 @@ void CleanupSystemDataTable(long long *Utf8InputBuffer
     AllocatedMemorySize = GetSystemSystemDataStructureRegistry(TimeoutValueStorage);
     if (AllocatedMemorySize != 0) {
       pMemoryBoundaryEnd = (long long *)GetSystemSystemDataStructureRegistry(MemoryAddressMask);
-      (**(code **)(*pMemoryBoundaryEnd + 0x20))(pMemoryBoundaryEnd,0);
+      (**(code **)(*MemoryBoundaryPointer + 0x20))(pMemoryBoundaryEnd,0);
     }
   }
   ProcessStringBuffer = 0;
@@ -206855,7 +206885,7 @@ void CleanupSystemDataTable(long long *Utf8InputBuffer
       plStack_d8 = pMemoryBoundaryEnd;
       for (pStringOffset = *(long long **)(ProcessStringBuffer + 8 + AllocatedMemorySize); pStringOffset != MemoryPoolBlockSizePointer; pStringOffset = pStringOffset + 1) {
         CharacterCodeTablePointer = (long long *)*pStringOffset;
-        *pMemoryBoundaryEnd = (long long)CharacterCodeTablePointer;
+        *MemoryBoundaryPointer = (long long)CharacterCodeTablePointer;
         if (CharacterCodeTablePointer != (long long *)0x0) {
           (**(code **)(*Utf8InputBufferPointer + 0x28))();
         }
@@ -206963,7 +206993,7 @@ void CleanupSystemDataTable(long long *Utf8InputBuffer
         pMemoryBoundaryEnd = pSystemMemoryBlock130;
         pSystemMemoryAllocationBlock = (long long *)0x0;
         if (pMemoryBoundaryEnd != (long long *)0x0) {
-          (**(code **)(*pMemoryBoundaryEnd + 0x38))();
+          (**(code **)(*MemoryBoundaryPointer + 0x38))();
         }
       }
       pPreviousContextPointer = &plStack_128;
@@ -207003,7 +207033,7 @@ void CleanupSystemDataTable(long long *Utf8InputBuffer
     pMemoryBoundaryEnd = *(long long **)(*(long long *)(AllocatedMemorySize + 0x20) + 0x210);
     *(void *)(*(long long *)(AllocatedMemorySize + 0x20) + 0x210) = 0;
     if (pMemoryBoundaryEnd != (long long *)0x0) {
-      (**(code **)(*pMemoryBoundaryEnd + 0x38))();
+      (**(code **)(*MemoryBoundaryPointer + 0x38))();
     }
   }
   systemEventTemplatePointer = *(uint64_t **)(CharacterCode + 0x10);
@@ -208366,7 +208396,7 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t Utf8BufferSize
   uint64_t *systemEventTemplatePointer;
   uint64_t *MemoryAddressMask;
   uint64_t CalculatedCodePoint;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   void *ContextDataPointer;
   uint64_t *pSystemPriorityLevel;
   uint32_t FunctionAddress;
@@ -211652,7 +211682,7 @@ FUN_180184700(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
   long long MemoryOffset;
   uint64_t *MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long MemoryPoolBlockSize;
   uint64_t ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
@@ -211746,7 +211776,7 @@ FUN_180184700(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
           }
           pMemoryBoundaryEnd = CharacterCodeTablePointer + 8;
           if (0xf < (unsigned long long)CharacterCodeTablePointer[0xb]) {
-            pMemoryBoundaryEnd = (long long *)*pMemoryBoundaryEnd;
+            pMemoryBoundaryEnd = (long long *)*MemoryBoundaryPointer;
           }
           PrimaryProcessingStatusFlag = (uint32_t *)memoryAllocationBuffer[-2];
           SystemFlagB = (uint64_t **)MemoryBlockListHead;
@@ -214173,7 +214203,7 @@ uint64_t * FUN_180187f00(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSiz
   unsigned long long UnicodeCodePoint;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   void *PreviousNode;
   void *NextNode;
   uint64_t *TemporaryBuffer;
@@ -214195,7 +214225,7 @@ uint64_t * FUN_180187f00(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSiz
       }
       ProcessStringBuffer = TemporaryBuffer[6];
       if (0xf < (unsigned long long)TemporaryBuffer[7]) {
-        pMemoryBoundaryEnd = (long long *)*pMemoryBoundaryEnd;
+        pMemoryBoundaryEnd = (long long *)*MemoryBoundaryPointer;
       }
       MemoryAllocationIndex = ProcessStringBuffer;
       if (MemoryAllocationIndex < ProcessStringBuffer) {
@@ -214220,7 +214250,7 @@ LAB_180188024:
     pMemoryBoundaryEnd = StringProcessingStatus + 4;
     MemoryAllocationIndex = StringProcessingStatus[6];
     if (0xf < (unsigned long long)StringProcessingStatus[7]) {
-      pMemoryBoundaryEnd = (long long *)*pMemoryBoundaryEnd;
+      pMemoryBoundaryEnd = (long long *)*MemoryBoundaryPointer;
     }
     UnicodeCodePoint = Utf8BufferSize[2];
     if (0xf < (unsigned long long)Utf8BufferSize[3]) {
@@ -216128,7 +216158,7 @@ FUN_18018a1c0(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,long long
   int MemoryMatchResult;
   uint64_t *MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   unsigned long long ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
@@ -216367,7 +216397,7 @@ FUN_18018a660(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,long long
   long long *MemoryBlockIndex;
   int EncodingValidationResult;
   uint64_t *Utf8InputBufferPointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   bool BooleanStringBuffer8;
   uint8_t aProcessingCounter [24];
@@ -216436,8 +216466,8 @@ FUN_18018a660(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,long long
         if (*(char *)(Utf8SourcePointer[2] + SystemNodeStatusOffset) == '\0') {
           do {
             pMemoryBoundaryEnd = MemoryBlockIndex;
-            MemoryBlockIndex = (long long *)*pMemoryBoundaryEnd;
-          } while (*(char *)(*pMemoryBoundaryEnd + SystemNodeStatusOffset) == '\0');
+            MemoryBlockIndex = (long long *)*MemoryBoundaryPointer;
+          } while (*(char *)(*MemoryBoundaryPointer + SystemNodeStatusOffset) == '\0');
         }
         else {
           do {
@@ -216540,7 +216570,7 @@ FUN_18018aa30(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,char Utf8
   code *FunctionPointer;
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   long long *SystemDataTablePointer;
   
@@ -216599,8 +216629,8 @@ LAB_18018aab4:
         *(uint8_t *)(AdditionalParameter2[1] + 0x18) = 1;
         *(uint8_t *)(*(long long *)(AdditionalParameter2[1] + 8) + 0x18) = 0;
         pMemoryBoundaryEnd = *(long long **)(AdditionalParameter2[1] + 8);
-        MemoryPoolBlockSizePointer = (long long *)*pMemoryBoundaryEnd;
-        *pMemoryBoundaryEnd = MemoryPoolBlockSizePointer[2];
+        MemoryPoolBlockSizePointer = (long long *)*MemoryBoundaryPointer;
+        *MemoryBoundaryPointer = MemoryPoolBlockSizePointer[2];
         if (*(char *)(MemoryPoolBlockSizePointer[2] + SystemNodeStatusOffset) == '\0') {
           *(long long **)(MemoryPoolBlockSizePointer[2] + 8) = pMemoryBoundaryEnd;
         }
@@ -216626,7 +216656,7 @@ LAB_18018ac29:
     }
     else {
       if ((char)MemoryPoolBlockSizePointer[3] != '\0') {
-        if (AdditionalParameter2 == (long long *)*pMemoryBoundaryEnd) {
+        if (AdditionalParameter2 == (long long *)*MemoryBoundaryPointer) {
           ReleaseSystemMemory(CharacterCode);
           AdditionalParameter2 = pMemoryBoundaryEnd;
         }
@@ -216837,7 +216867,7 @@ FUN_18018af30(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,char Utf8
   code *FunctionPointer;
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   long long *SystemDataTablePointer;
   
@@ -216896,8 +216926,8 @@ LAB_18018afb4:
         *(uint8_t *)(AdditionalParameter2[1] + 0x18) = 1;
         *(uint8_t *)(*(long long *)(AdditionalParameter2[1] + 8) + 0x18) = 0;
         pMemoryBoundaryEnd = *(long long **)(AdditionalParameter2[1] + 8);
-        MemoryPoolBlockSizePointer = (long long *)*pMemoryBoundaryEnd;
-        *pMemoryBoundaryEnd = MemoryPoolBlockSizePointer[2];
+        MemoryPoolBlockSizePointer = (long long *)*MemoryBoundaryPointer;
+        *MemoryBoundaryPointer = MemoryPoolBlockSizePointer[2];
         if (*(char *)(MemoryPoolBlockSizePointer[2] + SystemNodeStatusOffset) == '\0') {
           *(long long **)(MemoryPoolBlockSizePointer[2] + 8) = pMemoryBoundaryEnd;
         }
@@ -216923,7 +216953,7 @@ LAB_18018b129:
     }
     else {
       if ((char)MemoryPoolBlockSizePointer[3] != '\0') {
-        if (AdditionalParameter2 == (long long *)*pMemoryBoundaryEnd) {
+        if (AdditionalParameter2 == (long long *)*MemoryBoundaryPointer) {
           ReleaseSystemMemory(CharacterCode);
           AdditionalParameter2 = pMemoryBoundaryEnd;
         }
@@ -217159,7 +217189,7 @@ uint64_t * FUN_18018b4c0(uint64_t CharacterCode,long long Utf8BufferSize
   long long MemoryOffset;
   void *MemoryAddressMask;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   uint64_t SystemChecksum;
   void *StringProcessingStatus;
   int aiStackX_8 [2];
@@ -217203,7 +217233,7 @@ uint64_t * FUN_18018b4c0(uint64_t CharacterCode,long long Utf8BufferSize
   pcStack_20 = (code *)&SystemMemoryAllocationPointer;
   pcStack_18 = FUN_18018c050;
   lStack_30 = MemoryBlockIndex;
-  (**(code **)(*pMemoryBoundaryEnd + 0x60)            (pMemoryBoundaryEnd,&SystemFileSystemComparisonData,*(long long *)(MemoryBlockIndex + 0xa8) + 0xc,0,&lStack_30);
+  (**(code **)(*MemoryBoundaryPointer + 0x60)            (pMemoryBoundaryEnd,&SystemFileSystemComparisonData,*(long long *)(MemoryBlockIndex + 0xa8) + 0xc,0,&lStack_30);
   if (pcStack_20 != (code *)0x0) {
     (*pcStack_20)(&lStack_30,0,0);
   }
@@ -217276,7 +217306,7 @@ uint64_t * FUN_18018b4c0(uint64_t CharacterCode,long long Utf8BufferSize
   long long *MemoryBlockIndex;
   long long SystemDataStructureRegistry;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   
   SystemDataStructureRegistry = *(long long *)(*(long long *)(CharacterCode + 0xb0) + 0xa8);
   CharacterTablePointer = *(long long *)(SystemBufferStatusB + 8);
@@ -217316,7 +217346,7 @@ LAB_18018b93a:
                     // WARNING: Subroutine does not return
       CoreEngineFreeSystemMemory(pMemoryBoundaryEnd);
     }
-    if ((*(long long *)(SystemDataStructureRegistry + 0xc) == *pMemoryBoundaryEnd) && (*(long long *)(SystemDataStructureRegistry + 0x14) == pMemoryBoundaryEnd[1])) {
+    if ((*(long long *)(SystemDataStructureRegistry + 0xc) == *MemoryBoundaryPointer) && (*(long long *)(SystemDataStructureRegistry + 0x14) == pMemoryBoundaryEnd[1])) {
       if (pMemoryBoundaryEnd != (long long *)0x0) {
         SystemDataStructureRegistry = *(long long *)(SystemBufferStatusB + 0x10);
         goto LAB_18018b93a;
@@ -224048,7 +224078,7 @@ uint64_t * FUN_1801940f0(long long CharacterCode,uint64_t *Utf8InputBufferSize,l
   long long *MemoryBlockIndex;
   uint64_t *MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   void *PreviousNode;
   void *NextNode;
   long long systemLoopCounter;
@@ -224101,8 +224131,8 @@ LAB_1801945bb:
       if ((long long *)pMemoryBoundaryEnd[1] != (long long *)0x0) {
         (**(code **)(*(long long *)pMemoryBoundaryEnd[1] + 0x38))();
       }
-      if ((long long *)*pMemoryBoundaryEnd != (long long *)0x0) {
-        (**(code **)(*(long long *)*pMemoryBoundaryEnd + 0x38))();
+      if ((long long *)*MemoryBoundaryPointer != (long long *)0x0) {
+        (**(code **)(*(long long *)*MemoryBoundaryPointer + 0x38))();
       }
       pMemoryBoundaryEnd = pMemoryBoundaryEnd + 3;
     } while (pMemoryBoundaryEnd != BufferAllocationStatus);
@@ -237781,7 +237811,7 @@ FUN_180204b50(long long CharacterCode,uint64_t *Utf8InputBufferSize,int Utf8Sour
   uint64_t *systemEventTemplatePointer;
   long long SystemDataStructureRegistry;
   int RemainingSpace;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   long long *SystemDataTablePointer;
   int IntegerValue9;
@@ -239724,7 +239754,7 @@ LAB_1802078c3:
   int MemoryMatchResult;
   int EncodingValidationResult;
   uint CalculatedCodePoint;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long MemoryPoolBlockSize;
   uint ProcessingStatusFlag;
   long long systemLoopCounter;
@@ -239758,7 +239788,7 @@ LAB_1802078c3:
           do {
             CalculatedCodePoint = *(uint *)(pMemoryBoundaryEnd + 2);
             MemoryPoolBlockSize = MemoryPoolBlockSize + (int)CalculatedCodePoint;
-            pMemoryBoundaryEnd = (long long *)*pMemoryBoundaryEnd;
+            pMemoryBoundaryEnd = (long long *)*MemoryBoundaryPointer;
             if (CalculatedCodePoint < ProcessingStatusFlag) {
               CalculatedCodePoint = ProcessingStatusFlag;
             }
@@ -241768,7 +241798,7 @@ long long * FUN_180209720(long long *Utf8InputBuffer,long long *Utf8InputBufferS
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMask;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long MemoryPoolBlockSize;
   long long secondaryLoopCounter;
   long long systemLoopCounter;
@@ -241778,7 +241808,7 @@ long long * FUN_180209720(long long *Utf8InputBuffer,long long *Utf8InputBufferS
   if (pMemoryBoundaryEnd < (long long *)Utf8InputBuffer[2]) {
     Utf8InputBuffer[1] = (long long)(pMemoryBoundaryEnd + 0xf);
     BufferAllocationStatus = (long long *)*Utf8InputBufferSize;
-    *pMemoryBoundaryEnd = (long long)BufferAllocationStatus;
+    *MemoryBoundaryPointer = (long long)BufferAllocationStatus;
     SystemRegisterPointerX8 = pMemoryBoundaryEnd;
     if (BufferAllocationStatus != (long long *)0x0) {
       (**(code **)(*BufferAllocationStatus + 0x28))();
@@ -246036,7 +246066,7 @@ unsigned long long FUN_18020ee40(long long CharacterCode
   long long MemoryOffset;
   uint64_t *MemoryAddressMask;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   bool BooleanValidationFlag7;
   char SystemStatusChar;
   unsigned long long ProcessingResult;
@@ -246175,7 +246205,7 @@ LAB_18020f107:
                 SystemRegisterPointerX18 = pMemoryBoundaryEnd;
                 pMemoryBoundaryEnd = *(long long **)(AllocatedMemorySize + ProcessStringBuffer * 8);
                 if (pMemoryBoundaryEnd != (long long *)0x0) {
-                  (**(code **)(*pMemoryBoundaryEnd + 0x38))();
+                  (**(code **)(*MemoryBoundaryPointer + 0x38))();
                 }
                 *(uint8_t *)((AllocatedMemorySize - ProcessStringBuffer) + 0x12f) = 1;
                 isSystemContextNull = true;
@@ -252799,7 +252829,7 @@ LAB_18021963e:
   byte *LowBytePointer;
   uint MemoryAddressMask;
   long long *AllocatedMemorySizePointer;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
   long long *SystemDataTablePointer;
   long long systemLoopCounter;
@@ -252914,7 +252944,7 @@ joined_r0x000180219bf9:
         for (; Utf8BufferSize < MemoryPoolBlockSizePointer; MemoryPoolBlockSizePointer = MemoryPoolBlockSizePointer + -1) {
           pMemoryBoundaryEnd = pMemoryBoundaryEnd + -1;
           BufferStatus = *Utf8InputBuffer1;
-          EncodingConversionResult = *pMemoryBoundaryEnd;
+          EncodingConversionResult = *MemoryBoundaryPointer;
           if (*(int *)(BufferStatus + 0x10) == 0) {
 LAB_180219c49:
             if (*(int *)(EncodingConversionResult + 0x10) != 0) {
@@ -252933,7 +252963,7 @@ LAB_180219c49:
             if (CharacterCode1 != pMemoryBoundaryEnd) {
               BufferStatus = *Utf8InputBuffer1;
               *Utf8InputBuffer1 = EncodingConversionResult;
-              *pMemoryBoundaryEnd = BufferStatus;
+              *MemoryBoundaryPointer = BufferStatus;
             }
           }
           else if (*(int *)(EncodingConversionResult + 0x10) != 0) {
@@ -269058,8 +269088,8 @@ void ProcessUtf8InputBufferAndCharacterEncodingConversion(uint32_t *Utf8InputBuf
   uint8_t *StringProcessingStatus;
   uint32_t *StringProcessingStatusPtr;
   unsigned long long MemoryAllocationLoopCounter;
-  int IntegerValue0;
-  unsigned long long ProcessStringBuffer;
+  int DataBlockSize;
+  unsigned long long CharacterEncodingLoopCounter;
   int *ReferenceCountPointer2;
   long long DataSize13;
   unsigned long long Utf16Char4;
@@ -269076,13 +269106,13 @@ void ProcessUtf8InputBufferAndCharacterEncodingConversion(uint32_t *Utf8InputBuf
   FUN_180639f50(Utf8BufferSize,CharacterCode + 5);
   CharacterPointer = (char *)0x180bf7cf8;
   Utf16Char4 = 0;
-  ProcessStringBuffer = Utf16Char4;
+  CharacterEncodingLoopCounter = Utf16Char4;
   do {
     if (*CharacterPointer == *(char *)(CharacterCode + 9)) {
-      FUN_180639de0(Utf8BufferSize,*(void *)((long long)(int)ProcessStringBuffer * 0x10 + 0x180bf7cf0));
+      FUN_180639de0(Utf8BufferSize,*(void *)((long long)(int)CharacterEncodingLoopCounter * 0x10 + 0x180bf7cf0));
       break;
     }
-    ProcessStringBuffer = (unsigned long long)((int)ProcessStringBuffer + 1);
+    CharacterEncodingLoopCounter = (unsigned long long)((int)CharacterEncodingLoopCounter + 1);
     CharacterPointer = CharacterPointer + 0x10;
   } while ((long long)CharacterPointer < 0x180bf7d28);
   FUN_180639ec0(Utf8BufferSize,CharacterCode + 10);
@@ -272209,7 +272239,7 @@ uint64_t * FUN_18022b590(uint64_t *Utf8InputBuffer
   long long *MemoryBlockIndex;
   long long SystemDataStructureRegistry;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   void *PreviousNode;
   
   *Utf8InputBuffer = &DataNodeTemplateA;
@@ -272240,7 +272270,7 @@ uint64_t * FUN_18022b590(uint64_t *Utf8InputBuffer
   do {
     *(uint8_t *)StringProcessingStatus = 0;
     *PrimaryProcessingStatusFlag = 0xffffffffffffffff;
-    (**(code **)(*pMemoryBoundaryEnd + 0x10))(CharacterCode,&CoreEngineDataTemplate);
+    (**(code **)(*MemoryBoundaryPointer + 0x10))(CharacterCode,&CoreEngineDataTemplate);
     CharacterCode = CharacterCode + 7;
     StringProcessingStatus = (void *)((long long)StringProcessingStatus + 1);
     PrimaryProcessingStatusFlag = PrimaryProcessingStatusFlag + 1;
@@ -272272,7 +272302,7 @@ uint64_t * FUN_18022b590(uint64_t *Utf8InputBuffer
     pMemoryBoundaryEnd = (long long *)*Utf8InputBuffer;
     *Utf8InputBuffer = 0;
     if (pMemoryBoundaryEnd != (long long *)0x0) {
-      (**(code **)(*pMemoryBoundaryEnd + 0x38))();
+      (**(code **)(*MemoryBoundaryPointer + 0x38))();
     }
     CharacterCode = CharacterCode + 1;
     AllocatedMemorySize = AllocatedMemorySize + -1;
@@ -272583,7 +272613,7 @@ LAB_18022bda0:
   char OperationStatus;
   int EncodingValidationResult;
   long long AllocatedMemorySize;
-  long long *pMemoryBoundaryEnd;
+  long long *MemoryBoundaryPointer;
   uint64_t SystemChecksum;
   uint ProcessingStatusFlag;
   long long *pStringOffset;
@@ -272782,7 +272812,7 @@ LAB_18022c20f:
               pMemoryBoundaryEnd = (long long *)apMemoryOffsetValue[CharacterTablePointer];
               if (pMemoryBoundaryEnd != (long long *)0x0) {
                 plStack_298 = pMemoryBoundaryEnd;
-                (**(code **)(*pMemoryBoundaryEnd + 0x28))(pMemoryBoundaryEnd);
+                (**(code **)(*MemoryBoundaryPointer + 0x28))(pMemoryBoundaryEnd);
               }
               plStack_298 = (long long *)*Utf8InputBufferPointer;
               *Utf8InputBufferPointer = (long long)pMemoryBoundaryEnd;

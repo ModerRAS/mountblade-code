@@ -66854,9 +66854,9 @@ void ProcessUIContextRendering(longlong uiContext)
       }
     }
     else {
-      FUN_18069d9e0(piVar7 + -0xc,piVar7[-4] + stringCompareIndex,validationResult,lVar5,validationResult,
+      ProcessUIResourceUpdate(piVar7 + -0xc,piVar7[-4] + stringCompareIndex,validationResult,lVar5,validationResult,
                     *(undefined8 *)(uiContext + 0xf98));
-      FUN_18069d9e0(piVar7 + 2,piVar7[10] + stringCompareIndex,validationResult,lVar5,validationResult,*(undefined8 *)(uiContext + 0xf98)
+      ProcessUIResourceUpdate(piVar7 + 2,piVar7[10] + stringCompareIndex,validationResult,lVar5,validationResult,*(undefined8 *)(uiContext + 0xf98)
                    );
     }
     piVar7 = piVar7 + 0x1c;
@@ -66881,9 +66881,9 @@ void ProcessUIContextRendering(longlong uiContext)
       }
     }
     else {
-      FUN_18069d9e0(piVar7 + -0xc,piVar7[-4] + stringCompareIndex,validationResult,lVar5,validationResult,
+      ProcessUIResourceUpdate(piVar7 + -0xc,piVar7[-4] + stringCompareIndex,validationResult,lVar5,validationResult,
                     *(undefined8 *)(uiContext + 0xf98));
-      FUN_18069d9e0(piVar7 + 2,piVar7[10] + stringCompareIndex,validationResult,lVar5,validationResult,*(undefined8 *)(uiContext + 0xf98)
+      ProcessUIResourceUpdate(piVar7 + 2,piVar7[10] + stringCompareIndex,validationResult,lVar5,validationResult,*(undefined8 *)(uiContext + 0xf98)
                    );
     }
     piVar7 = piVar7 + 0x1c;
