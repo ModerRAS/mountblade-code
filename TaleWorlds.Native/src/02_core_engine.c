@@ -31,6 +31,13 @@
 // 系统上下文管理宏定义
 #define ProcessSystemContextManagement HandleSystemContextManagementAndMaintenance
 
+// UTF8到UTF16转换处理宏定义
+#define ProcessUtf8ToUtf16Conversion FUN_18013a1b0
+#define GetMemoryAddressMask FUN_1801358c0
+#define AllocateValidationMemory FUN_180136a10
+#define ProcessSystemValidation FUN_180122160
+#define ProcessStringConversion FUN_180136f60
+
 // 系统节点状态偏移量常量
 #define SystemNodeStatusOffset 0x19
 
@@ -246,6 +253,50 @@ const void* const SystemKeyStringLinearDamping = (void*)0x180a0b178;
 #define HandleSystemDataValidation FUN_180123460
 #define ProcessSystemDataArray FUN_180123960
 #define ValidateSystemDataArray FUN_180123a60
+
+// 系统缓冲区和数据处理函数
+#define ProcessSystemBufferAllocation FUN_1801242c0
+#define HandleSystemCleanupOperation FUN_1801248f0
+#define ProcessSystemShaderData FUN_18012ea30
+#define ProcessSystemEventConfiguration FUN_18013e6c0
+#define ProcessSystemMemoryManagement FUN_18013e100
+
+// 系统字符串处理函数
+#define ProcessSystemStringEncoding FUN_18011cf80
+#define ProcessSystemStringConversion FUN_18011d200
+#define ConvertSystemStringEncoding FUN_18011ce30
+#define HandleSystemStringProcessing FUN_18011d940
+#define ProcessSystemUnicodeString FUN_18010e4b0
+
+// 系统引用计数和验证函数
+#define HandleSystemReferenceCount FUN_18011dc70
+#define ProcessSystemCharacterValidation FUN_18010fd40
+#define HandleSystemDatabaseOperation FUN_18011dbd0
+#define ProcessSystemDataComparison FUN_18011da00
+
+// 系统内存分配和数据处理函数
+#define AllocateSystemMemoryBuffer FUN_180131aa0
+#define ProcessSystemMemoryAllocation FUN_18011f830
+#define HandleSystemDataSize FUN_18011f480
+#define ProcessSystemMemoryConfiguration FUN_18011f880
+#define ProcessSystemMemoryStructure FUN_18011f520
+#define ProcessSystemMemoryDataTransfer FUN_18011f8d0
+#define ProcessSystemCodePointCalculation FUN_18011f5c0
+#define ProcessSystemCoordinateCalculation FUN_18011f690
+#define ProcessSystemCoordinateTransformation FUN_18011f940
+#define ValidateSystemDataStructure FUN_18011f3e0
+
+// 系统数据结构和图形配置函数
+#define ConfigureSystemDataStructureWithGraphics FUN_18010cd70
+
+// 系统初始化和配置函数
+#define InitializeSystemDataEx FUN_1801189e0
+#define ConfigureSystemDataEx FUN_180118aa0
+#define CalculateSystemData FUN_180118ba0
+
+// 系统字符和缓冲区处理函数
+#define ProcessSystemCharacter FUN_180121f20
+#define OperateSystemBufferEx FUN_1801220b0
 const void* const SystemKeyStringAngularDamping = (void*)0x180a0b198;
 
 // 系统事件和配置常量 - 用于替换UNK_180a07xxx变量
@@ -160294,79 +160345,94 @@ PerformanceCalculationComplete:
 
 
 
-3a1b0(long long SystemContextPointer,long long Utf8BufferSize,int Utf16InputPointer,int Utf16EndPointer,float AdditionalParameter1,
-void FUN_18013a1b0(long long SystemContextPointer,long long Utf8BufferSize,int Utf16InputPointer,int Utf16EndPointer,float AdditionalParameter1,
-                  uint32_t *AdditionalParameter2
+/**
+ * @brief UTF8到UTF16字符串转换和内存分配处理函数
+ * 
+ * 该函数负责处理UTF8到UTF16的字符串转换，包括内存分配、缓冲区管理和字符编码转换。
+ * 函数会根据输入参数动态分配内存，处理字符串转换，并管理相关的内存块。
+ * 
+ * @param SystemContextPointer 系统上下文指针，用于系统级操作
+ * @param Utf8BufferSize UTF8缓冲区大小，指定输入数据的长度
+ * @param Utf16InputPointer UTF16输入指针，指向UTF16字符串数据
+ * @param Utf16EndPointer UTF16结束指针，标记字符串结束位置
+ * @param AdditionalParameter1 额外参数1，用于转换计算的浮点参数
+ * @param AdditionalParameter2 额外参数2，指向验证值的指针
+ * 
+ * @note 原始函数名：FUN_18013a1b0
+ * @warning 该函数涉及复杂的内存管理和字符编码转换，需要谨慎处理
+ */
+void ProcessUtf8ToUtf16Conversion(long long SystemContextPointer,long long Utf8BufferSize,int Utf16InputPointer,int Utf16EndPointer,float AdditionalParameter1,
+                                  uint32_t *AdditionalParameter2)
 {
   float SystemContextPrimaryFloat;
-  long long bufferAllocationStatus;
-  byte LowByte;
+  long long BufferAllocationStatus;
+  byte StatusByte;
   uint32_t MemoryAddressMask;
   uint32_t *ValidationValuePointer;
   uint32_t *SecondaryProcessingStatusFlag;
   long long MemoryPoolBlockSize;
-  long long secondaryLoopCounter;
+  long long SecondaryLoopCounter;
   uint32_t MemoryAllocationIndex;
   uint32_t ProcessStringBuffer;
-  uint8_t aSystemVariable9 [16];
+  uint8_t SystemVariableArray [16];
   uint32_t SystemStatusCode;
   float SystemContextPrimaryFloat3;
   float SystemContextPrimaryFloat4;
   float SystemFloatValue;
   float SystemContextPrimaryFloat6;
   uint32_t Utf16Char8;
-  uint8_t aUtf16Char7 [16];
+  uint8_t Utf16CharArray [16];
   uint32_t Utf16Char9;
-  uint64_t uStackX_20;
+  uint64_t StackVariableX;
   uint64_t SystemTimeoutCounter;
-  unsigned long long aSystemKeyPointer [3];
+  unsigned long long SystemKeyPointer [3];
   uint64_t FunctionAddress;
-  long long lStack_30;
+  long long StackVariable30;
   
   FunctionAddress = 0xfffffffffffffffe;
   SystemDataTablePointer = (long long)Utf16InputPointer;
   if ((AdditionalParameter2 == (uint32_t *)0x0) || (ValidationValuePointer = AdditionalParameter2, Utf16EndPointer == 0)) {
-    MemoryAddressMask = FUN_1801358c0();
+    MemoryAddressMask = GetMemoryAddressMask();
     if (SystemDataConfiguration != 0) {
       *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + 1;
     }
-    lStack_30 = SystemCallMemoryAccess(0xa8,SystemMemoryPoolBase);
-    if (lStack_30 == 0) {
+    StackVariable30 = SystemCallMemoryAccess(0xa8,SystemMemoryPoolBase);
+    if (StackVariable30 == 0) {
       ValidationValuePointer = (uint32_t *)0x0;
     }
     else {
-      ValidationValuePointer = (uint32_t *)FUN_180136a10(lStack_30,MemoryAddressMask);
+      ValidationValuePointer = (uint32_t *)AllocateValidationMemory(StackVariable30,MemoryAddressMask);
     }
     *(byte *)(ValidationValuePointer + 0x28) = *(byte *)(ValidationValuePointer + 0x28) | 3;
-    FUN_180122160(*(void *)(SystemContextPointer + 0x2df8),*ValidationValuePointer,ValidationValuePointer);
+    ProcessSystemValidation(*(void *)(SystemContextPointer + 0x2df8),*ValidationValuePointer,ValidationValuePointer);
   }
   *(long long *)(ValidationValuePointer + 2) = Utf8BufferSize;
   if ((AdditionalParameter2 == (uint32_t *)0x0) || (Utf16EndPointer == 1)) {
-    MemoryAddressMask = FUN_1801358c0(SystemContextPointer);
+    MemoryAddressMask = GetMemoryAddressMask(SystemContextPointer);
     if (SystemDataConfiguration != 0) {
       *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + 1;
     }
-    lStack_30 = SystemCallMemoryAccess(0xa8,SystemMemoryPoolBase);
-    if (lStack_30 == 0) {
+    StackVariable30 = SystemCallMemoryAccess(0xa8,SystemMemoryPoolBase);
+    if (StackVariable30 == 0) {
       AdditionalParameter2 = (uint32_t *)0x0;
     }
     else {
-      AdditionalParameter2 = (uint32_t *)FUN_180136a10(lStack_30,MemoryAddressMask);
+      AdditionalParameter2 = (uint32_t *)AllocateValidationMemory(StackVariable30,MemoryAddressMask);
     }
     *(byte *)(AdditionalParameter2 + 0x28) = *(byte *)(AdditionalParameter2 + 0x28) | 3;
-    FUN_180122160(*(void *)(SystemContextPointer + 0x2df8),*AdditionalParameter2,AdditionalParameter2);
+    ProcessSystemValidation(*(void *)(SystemContextPointer + 0x2df8),*AdditionalParameter2,AdditionalParameter2);
   }
   *(long long *)(AdditionalParameter2 + 2) = Utf8BufferSize;
   SecondaryProcessingStatusFlag = AdditionalParameter2;
   if (Utf16EndPointer == 0) {
     SecondaryProcessingStatusFlag = ValidationValuePointer;
   }
-  bufferAllocationStatus = *(long long *)(Utf8BufferSize + 0x10);
-  *(long long *)(SecondaryProcessingStatusFlag + 4) = bufferAllocationStatus;
+  BufferAllocationStatus = *(long long *)(Utf8BufferSize + 0x10);
+  *(long long *)(SecondaryProcessingStatusFlag + 4) = BufferAllocationStatus;
   MemoryPoolBlockSize = *(long long *)(Utf8BufferSize + 0x18);
   *(long long *)(SecondaryProcessingStatusFlag + 6) = MemoryPoolBlockSize;
-  if (bufferAllocationStatus != 0) {
-    *(uint32_t **)(bufferAllocationStatus + 8) = SecondaryProcessingStatusFlag;
+  if (BufferAllocationStatus != 0) {
+    *(uint32_t **)(BufferAllocationStatus + 8) = SecondaryProcessingStatusFlag;
     MemoryPoolBlockSize = *(long long *)(SecondaryProcessingStatusFlag + 6);
   }
   if (MemoryPoolBlockSize != 0) {
@@ -160390,11 +160456,11 @@ void FUN_18013a1b0(long long SystemContextPointer,long long Utf8BufferSize,int U
   SystemContextPrimaryFloat3 = (float)(int)(SystemFloatValue * AdditionalParameter1);
   ValidationValuePointer[SystemDataTablePointer + 0x12] = SystemContextPrimaryFloat3;
   AdditionalParameter2[SystemDataTablePointer + 0x12] = (float)(int)(SystemFloatValue - SystemContextPrimaryFloat3);
-  FUN_180136f60(*(void *)(Utf8BufferSize + 0x10 + (long long)Utf16EndPointer * 8),Utf8BufferSize);
-  aSystemKeyPointer[0] = *(unsigned long long *)(Utf8BufferSize + 0x40);
-  aSystemVariable9.High64Part = 0;
-  aSystemVariable9.Low64Part = aSystemKeyPointer[0];
-  aUtf16Char7.High64Part = 0;
+  ProcessStringConversion(*(void *)(Utf8BufferSize + 0x10 + (long long)Utf16EndPointer * 8),Utf8BufferSize);
+  SystemKeyPointer[0] = *(unsigned long long *)(Utf8BufferSize + 0x40);
+  SystemVariableArray.High64Part = 0;
+  SystemVariableArray.Low64Part = SystemKeyPointer[0];
+  Utf16CharArray.High64Part = 0;
   aUtf16Char7.Low64Part = *(unsigned long long *)(Utf8BufferSize + 0x38);
   *(unsigned long long *)(Utf8BufferSize + 0x38) = *(unsigned long long *)(Utf8BufferSize + 0x38);
   *(unsigned long long *)(Utf8BufferSize + 0x40) = aSystemKeyPointer[0];
