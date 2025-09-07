@@ -10513,17 +10513,17 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t *ComponentDataContext;
-  int64_t *ComponentInfoContext;
-  int32_t ModuleInitializationStatus;
-  uint32_t GameMessageProcessingStatus;
+  int64_t *componentDataContext;
+  int64_t *componentInfoContext;
+  int32_t moduleInitializationStatus;
+  uint32_t gameMessageProcessingStatus;
   uint64_t systemModuleOperationResult;
-  int64_t *ResourceInfoContext;
-  int64_t *ContextDataContext;
-  int64_t *ModuleDataContext;
+  int64_t *resourceInfoContext;
+  int64_t *contextDataContext;
+  int64_t *moduleDataContext;
   int64_t *baseValidationContext;
-  int64_t LocalStackMemoryContext;
-  int64_t TemporaryStackContext;
+  int64_t localStackMemoryContext;
+  int64_t temporaryStackContext;
   
   systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&TemporaryStackContext);
   ModuleInitializationStatus = (int32_t)systemModuleOperationResult;
@@ -68715,7 +68715,17 @@ void ProcessReferenceCountAndResourcePointers(DataBuffer operationBase,int64_t d
 
 
 
-void Unwind_180907ea0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理引用计数和资源指针（偏移量0x38）
+ * 
+ * 处理资源引用计数和资源指针的管理操作，从偏移量0x38获取资源指针。
+ * 这是一个资源管理相关的函数，涉及内存地址计算和引用计数管理。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907ea0
+ */
+void ProcessReferenceCountAndResourcePointersOffset38(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -68751,7 +68761,17 @@ void Unwind_180907ea0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907eb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理引用计数和资源指针（偏移量0x60）
+ * 
+ * 处理资源引用计数和资源指针的管理操作，从偏移量0x60获取资源指针。
+ * 这是一个资源管理相关的函数，涉及内存地址计算和引用计数管理。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907eb0
+ */
+void ProcessReferenceCountAndResourcePointersOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -68787,7 +68807,17 @@ void Unwind_180907eb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907ec0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理引用计数和资源指针（偏移量0x38，版本2）
+ * 
+ * 处理资源引用计数和资源指针的管理操作，从偏移量0x38获取资源指针。
+ * 这是第二个版本的资源管理相关函数，涉及内存地址计算和引用计数管理。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907ec0
+ */
+void ProcessReferenceCountAndResourcePointersOffset38V2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -68823,7 +68853,17 @@ void Unwind_180907ec0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907ed0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理引用计数和资源指针（偏移量0x38，版本3）
+ * 
+ * 处理资源引用计数和资源指针的管理操作，从偏移量0x38获取资源指针。
+ * 这是第三个版本的资源管理相关函数，涉及内存地址计算和引用计数管理。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907ed0
+ */
+void ProcessReferenceCountAndResourcePointersOffset38V3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -68859,7 +68899,19 @@ void Unwind_180907ed0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调（偏移量0x60）
+ * 
+ * 检查数据缓冲区中指定偏移量的函数指针，如果存在则执行该回调函数。
+ * 这是一个异常处理器回调执行函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907ee0
+ */
+void ExecuteExceptionHandlerCallbackOffset60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x60) != (code *)0x0) {
@@ -68885,7 +68937,19 @@ void Unwind_180907ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调（偏移量0x60，版本2）
+ * 
+ * 检查数据缓冲区中指定偏移量的函数指针，如果存在则执行该回调函数。
+ * 这是一个异常处理器回调执行函数的第二个版本。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907f00
+ */
+void ExecuteExceptionHandlerCallbackOffset60V2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x60) != (code *)0x0) {
@@ -68896,7 +68960,17 @@ void Unwind_180907f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907f10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B（偏移量0x90）
+ * 
+ * 在数据缓冲区的指定偏移量处设置默认异常处理器B的指针。
+ * 这是一个基础的异常处理器设置函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907f10
+ */
+void SetDefaultExceptionHandlerBOffset90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x90) = &DefaultExceptionHandlerB;
@@ -68905,7 +68979,19 @@ void Unwind_180907f10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调（偏移量0x1e8）
+ * 
+ * 检查数据缓冲区中指定偏移量的函数指针，如果存在则执行该回调函数。
+ * 这是一个异常处理器回调执行函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907f20
+ */
+void ExecuteExceptionHandlerCallbackOffset1E8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1e8) != (code *)0x0) {
@@ -68916,7 +69002,19 @@ void Unwind_180907f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调（偏移量0x208）
+ * 
+ * 检查数据缓冲区中指定偏移量的函数指针，如果存在则执行该回调函数。
+ * 这是一个异常处理器回调执行函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907f40
+ */
+void ExecuteExceptionHandlerCallbackOffset208(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x208) != (code *)0x0) {
