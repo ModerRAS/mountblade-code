@@ -123144,42 +123144,51 @@ ProcessUIContextAllocation(longlong uiContext,longlong dataSource,int targetBuff
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180742570(int uiContext,longlong dataSource)
+/**
+ * @brief 分配UI组件内存
+ * 
+ * 为UI组件分配内存资源，处理不同的分配场景和状态管理
+ * 
+ * @param uiContext UI上下文标识符
+ * @param dataSource 数据源指针
+ * @return 分配的内存地址或错误代码
+ */
+ulonglong AllocateUIComponentMemory(int uiContext,longlong dataSource)
 
 {
-  longlong *pallocatedMemory;
-  longlong componentIndex;
-  ulonglong EventTypeCode;
-  ulonglong ProcessingStatus;
-  int localInt5;
+  longlong *pAllocatedUIMemory;
+  longlong uiComponentIndex;
+  ulonglong uiEventTypeCode;
+  ulonglong uiProcessingStatus;
+  int uiComponentCount;
   
   if (uiContext == 0) {
-    EventTypeCode = *(ulonglong *)(dataSource + 0x350);
-    *(ulonglong *)(dataSource + 0x350) = EventTypeCode;
-    return EventTypeCode;
+    uiEventTypeCode = *(ulonglong *)(dataSource + 0x350);
+    *(ulonglong *)(dataSource + 0x350) = uiEventTypeCode;
+    return uiEventTypeCode;
   }
   if (-1 < uiContext) {
-    ProcessingStatus = 0;
-    pallocatedMemory = (longlong *)(dataSource + 0x10);
-    EventTypeCode = ProcessingStatus;
+    uiProcessingStatus = 0;
+    pAllocatedUIMemory = (longlong *)(dataSource + 0x10);
+    uiEventTypeCode = uiProcessingStatus;
     do {
-      localInt5 = (int)EventTypeCode;
-      if (*pallocatedMemory == 0) {
-        componentIndex = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uiContext + 0x10,&UNK_180957e20,
+      uiComponentCount = (int)uiEventTypeCode;
+      if (*pAllocatedUIMemory == 0) {
+        uiComponentIndex = CreateUIComponentResource(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uiContext + 0x10,&UNK_180957e20,
                               0x9b,*(undefined4 *)(dataSource + 0x334),0,1);
         if (allocatedMemoryPtr == 0) {
           return 0xffffffffffffffff;
         }
-        if (localInt5 == 100) {
+        if (uiComponentCount == 100) {
           return 0xffffffffffffffff;
         }
-        *(longlong *)(dataSource + 0x10 + (longlong)localInt5 * 8) = componentIndex;
-        EventTypeCode = componentIndex + 0xfU & 0xfffffffffffffff0;
-        *(ulonglong *)(dataSource + 0x350) = EventTypeCode + (longlong)uiContext;
-        return EventTypeCode;
+        *(longlong *)(dataSource + 0x10 + (longlong)uiComponentCount * 8) = uiComponentIndex;
+        uiEventTypeCode = uiComponentIndex + 0xfU & 0xfffffffffffffff0;
+        *(ulonglong *)(dataSource + 0x350) = uiEventTypeCode + (longlong)uiContext;
+        return uiEventTypeCode;
       }
-      EventTypeCode = (ulonglong)(localInt5 + 1);
-      ProcessingStatus = ProcessingStatus + 1;
+      uiEventTypeCode = (ulonglong)(uiComponentCount + 1);
+      uiProcessingStatus = uiProcessingStatus + 1;
       pallocatedMemory = pallocatedMemory + 1;
     } while ((longlong)ProcessingStatus < 100);
   }
