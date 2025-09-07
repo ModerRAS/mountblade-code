@@ -169986,11 +169986,20 @@ LAB_18013cd32:
 
 
 
-3cd49(voidvoid FUN_18013cd49(void
+/**
+ * @brief 系统资源清理函数
+ * 
+ * 该函数负责清理系统资源，包括：
+ * - 减少系统配置句柄的引用计数
+ * - 初始化系统内存池
+ * 
+ * @note 原始函数名：FUN_18013cd49
+ */
+void CleanupSystemResources(void)
 {
-  long long CharacterLimit;
+  long long ResourceReferenceCount;
   
-  if ((CharacterLimit != 0) && (SystemConfigurationHandle != 0)) {
+  if ((ResourceReferenceCount != 0) && (SystemConfigurationHandle != 0)) {
     *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
@@ -170001,7 +170010,16 @@ LAB_18013cd32:
 
 
 
-3cd62(voidvoid FUN_18013cd62(void
+/**
+ * @brief 系统内存池初始化函数
+ * 
+ * 该函数负责初始化系统内存池，包括：
+ * - 减少系统配置句柄的引用计数
+ * - 初始化系统内存池
+ * 
+ * @note 原始函数名：FUN_18013cd62
+ */
+void InitializeSystemMemoryPoolHandler(void)
 {
   if (SystemConfigurationHandle != 0) {
     *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + -1;
@@ -170014,12 +170032,23 @@ LAB_18013cd32:
 
 
 
-3cdb3(voidvoid FUN_18013cdb3(void
+/**
+ * @brief 系统配置数据处理函数
+ * 
+ * 该函数负责处理系统配置数据，包括：
+ * - 解析系统配置字符串
+ * - 验证配置数据格式
+ * - 处理字符编码转换
+ * - 管理系统配置资源
+ * 
+ * @note 原始函数名：FUN_18013cdb3
+ */
+void ProcessSystemConfigurationData(void)
 {
   char *InputStringBuffer;
   byte SystemHighByte;
-  char *FunctionPointer;
-  uint MemoryAddressMask;
+  char *LineEndPointer;
+  uint HashValue;
   uint8_t *Utf8InputBufferPointer;
   long long MemoryBoundaryEnd;
   int ProcessIterationCount;
@@ -170029,18 +170058,18 @@ LAB_18013cd32:
   long long PatternIndex;
   char *DataNodePointer;
   byte *CurrentBytePointer0;
-  char *RegisterR12Value;
+  char *BufferEndPointer;
   long long StackProcessingParameter58;
   
   do {
     DataNodePointer = DataNodePointer + 1;
-    while ((*DataNodePointer != '\n' && (FunctionPointer = DataNodePointer, *DataNodePointer != '\r'))) {
-      for (; (FunctionPointer < RegisterR12Value && ((*FunctionPointer != '\n' && (*FunctionPointer != '\r')))); FunctionPointer = FunctionPointer + 1      {
+    while ((*DataNodePointer != '\n' && (LineEndPointer = DataNodePointer, *DataNodePointer != '\r'))) {
+      for (; (LineEndPointer < BufferEndPointer && ((*LineEndPointer != '\n' && (*LineEndPointer != '\r')))); LineEndPointer = LineEndPointer + 1      {
       }
-      *FunctionPointer = '\0';
+      *LineEndPointer = '\0';
       if (*DataNodePointer != ';') {
-        if (((*DataNodePointer == '[') && (DataNodePointer < FunctionPointer)) &&
-           (InputStringBuffer = FunctionPointer + -1, FunctionPointer[-1] == ']')) {
+        if (((*DataNodePointer == '[') && (DataNodePointer < LineEndPointer)) &&
+           (InputStringBuffer = LineEndPointer + -1, LineEndPointer[-1] == ']')) {
           pIsSystemContextValid = (byte *)(DataNodePointer + 1);
           *InputStringBuffer = '\0';
           CharacterCodeTablePointer = (uint8_t *)memchr(pIsSystemContextValid,0x5d,(long long)InputStringBuffer - (long long)pIsSystemContextValid);
