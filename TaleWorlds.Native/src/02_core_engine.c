@@ -158434,7 +158434,18 @@ void FUN_180134c48(void
 
 
 
-void FUN_180134c57(void
+/**
+ * @brief 系统字符处理和状态管理函数
+ * 
+ * 该函数负责处理系统字符和状态管理，包括：
+ * - 字符表处理和迭代
+ * - 状态缓冲区管理
+ * - 内存分配和验证
+ * - 浮点数计算和参数处理
+ * 
+ * @note 原始函数名：FUN_180134c57
+ */
+void ProcessSystemCharacterAndStatusManagement(void
 {
   uint32_t *StatusBuffer;
   float ContextSecondaryFloat;
