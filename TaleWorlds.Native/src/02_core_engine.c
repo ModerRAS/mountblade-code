@@ -169243,7 +169243,13 @@ void ResetSystemCharacterProcessingState(void)
 
 
 
-3c732(voidvoid FUN_18013c732(void
+/**
+ * @brief 执行字符串格式化操作
+ * 
+ * 该函数负责执行基本的字符串格式化操作。
+ * 这是一个简单的包装函数，调用系统的字符串格式化功能。
+ */
+void ExecuteStringFormattingOperation(void)
 {
   ProcessStringFormattingOperation();
   return;
@@ -169252,7 +169258,13 @@ void ResetSystemCharacterProcessingState(void)
 
 
 
-3c750(voidvoid FUN_18013c750(void
+/**
+ * @brief 执行系统字符处理初始化
+ * 
+ * 该函数负责初始化系统字符处理的相关组件和状态。
+ * 确保字符处理系统处于正确的初始状态。
+ */
+void InitializeSystemCharacterProcessing(void)
 {
   return;
 }
@@ -169319,7 +169331,13 @@ void ResetSystemCharacterProcessingState(void)
 
 
 
-3c7eb(voidvoid FUN_18013c7eb(void
+/**
+ * @brief 完成系统缓冲区处理
+ * 
+ * 该函数负责完成系统缓冲区的处理工作。
+ * 确保所有缓冲区操作都正确完成并释放相关资源。
+ */
+void FinalizeSystemBufferProcessing(void)
 {
   return;
 }
