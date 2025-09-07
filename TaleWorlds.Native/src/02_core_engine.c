@@ -170430,7 +170430,7 @@ void WriteSystemDefaultData(void)
   uint64_t SystemInputStringBuffer30;
   
   Utf16Char = ExecuteSystemCleanup();
-  BufferStatus = FUN_180121300();
+  BufferStatus = GetFileHandle();
   if (BufferStatus != 0) {
     fwrite(Utf16Char,1,SystemInputStringBuffer30,BufferStatus);
     fclose(BufferStatus);
@@ -171858,7 +171858,7 @@ long long ProcessClipboardUtf16ToUtf8Conversion(void) {
                0x48) < SecondarySystemStatusValue) && (CheckRenderParameterStatus(SystemSecondaryStatusData), SecondarySystemStatusValue == -1)) {
     SecondarySystemDataSize = 0;
     MemoryEndAddressConstant = 0;
-    FUN_1808fc820(SystemCoreDataStructure);
+    ProcessSystemResourceAndInitialize(SystemCoreDataStructure);
     ProcessSystemResourceAndConfigure(SystemSecondaryStatusData);
   }
   ClipboardDataHandle = MemoryEndAddressConstant;
