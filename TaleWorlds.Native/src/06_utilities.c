@@ -73590,7 +73590,7 @@ void CleanupResourceHandlerState(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908db0(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -73608,7 +73608,7 @@ void Unwind_180908db0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908dc0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -73626,7 +73626,7 @@ void Unwind_180908dc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908dd0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupSystemOperationsB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
