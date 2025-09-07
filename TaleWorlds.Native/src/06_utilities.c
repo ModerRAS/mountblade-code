@@ -76000,7 +76000,7 @@ void Unwind_180909f60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909f80(void)
+void CleanupMutexResources(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -76009,7 +76009,7 @@ void Unwind_180909f80(void)
 
 
 
-void Unwind_180909fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionDataWithCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessExceptionDataA1(*(int64_t *)(dataBuffer + 0x40) + 0xba8,
@@ -76020,7 +76020,7 @@ void Unwind_180909fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180909fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessSystemParametersWithCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x40) + 0xbd8,
@@ -76031,7 +76031,7 @@ void Unwind_180909fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180909fe0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteMemoryCleanupOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xc08,8,10,ValidateDataHandler,SystemCleanupFlagAlternative);
@@ -76040,7 +76040,7 @@ void Unwind_180909fe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ExceptionHandlerD0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -76054,7 +76054,7 @@ void ExceptionHandlerD0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ExceptionHandlerD1(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionMemoryOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0xc60,8,0x14,ValidateDataHandler);
@@ -76063,21 +76063,21 @@ void ExceptionHandlerD1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ExceptionHandlerD2(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionContextCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t *pdataContext;
-  int64_t *pcalculatedOffset;
+  int64_t *dataContextPointer;
+  int64_t *currentContextOffset;
   
-  pdataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0xd00);
+  dataContextPointer = (int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0xd00);
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0xd08);
-  for (pcalculatedOffset = (int64_t *)*pdataContext; pcalculatedOffset != exceptionHandlerContextPointer; pcalculatedOffset = pcalculatedOffset + 1) {
-    if ((int64_t *)*pcalculatedOffset != (int64_t *)0x0) {
-      (**(FunctionPointer**)(*(int64_t *)*pcalculatedOffset + 0x38))();
+  for (currentContextOffset = (int64_t *)*dataContextPointer; currentContextOffset != exceptionHandlerContextPointer; currentContextOffset = currentContextOffset + 1) {
+    if ((int64_t *)*currentContextOffset != (int64_t *)0x0) {
+      (**(FunctionPointer**)(*(int64_t *)*currentContextOffset + 0x38))();
     }
   }
-  if (*pdataContext == 0) {
+  if (*dataContextPointer == 0) {
     return;
   }
     TerminateSystemE0();
@@ -76085,7 +76085,7 @@ void ExceptionHandlerD2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ExceptionHandlerD3(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteDataBufferMemoryOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),8,10,ValidateDataHandler);
@@ -100004,7 +100004,24 @@ void Unwind_180911300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器重置函数（偏移量0x14f0）
+ * 
+ * 该函数负责重置异常处理器的状态，包括：
+ * - 调用异常处理器回调函数（偏移量0x14f0）
+ * - 设置临时异常处理器
+ * - 清理状态标志
+ * - 设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180911320
+ * @note 这是异常处理系统的关键重置函数
+ */
+void ResetExceptionHandlerAtOffset14f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
