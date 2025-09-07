@@ -110124,7 +110124,24 @@ void ProcessExceptionHandlerContextCleanup(DataBuffer operationBase, int64_t dat
 
 
 
-void Unwind_180911e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常处理器上下文清理变体
+ * 
+ * 该函数在异常展开过程中处理特定偏移量的异常处理器上下文清理，包括：
+ * - 获取0x1ea0偏移量的异常处理器上下文
+ * - 处理异常上下文引用计数
+ * - 调用系统异常处理函数
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文信息
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_180911e20
+ * @note 处理0x1ea0偏移量的异常处理器上下文
+ * @note 与前一个函数类似，但处理不同的偏移量
+ */
+void ProcessExceptionHandlerContextCleanupVariant(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -110134,7 +110151,7 @@ void Unwind_180911e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -120437,4 +120454,9 @@ uint8_t SystemExceptionHandlerStateTable;
 #define ExecuteSystemRecoveryDC0 Unwind_180909dc0
 #define HandleSystemExceptionDE0 Unwind_180909de0
 #define ProcessSystemCleanupF20 Unwind_180909f20
+
+// 系统资源表清理和异常处理函数
+#define CleanupSystemResourceTableAndHandleExceptions Unwind_180911de0
+#define ProcessExceptionHandlerContextCleanup Unwind_180911e00
+#define ProcessExceptionHandlerContextCleanupVariant Unwind_180911e20
 #define ValidateSystemResources130 Unwind_18090a130
