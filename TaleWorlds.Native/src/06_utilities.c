@@ -20807,9 +20807,9 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
         }
         systemDataBuffer1 = *(DataBuffer *)(*(int64_t *)(operationBase + 8) + 800);
         loopCounter = (**(FunctionPointer**)*exceptionDataBuffer6)(exceptionDataBuffer6);
-        iterationCount = ProcessDataOperationA7(loopCounter,systemDataBuffer1,acStack_1c4);
+        iterationCount = ProcessDataOperationA7(loopCounter,systemDataBuffer1,systemNameBuffer);
         if (iterationCount == 0) {
-          if (acStack_1c4[0] != '\0') {
+          if (systemNameBuffer[0] != '\0') {
             systemDataBuffer1 = InitializeSystem();
             iterationCount = memcmp(dataContext + 0x38,systemDataBuffer1,0x30);
             if (iterationCount != 0) {
@@ -20983,7 +20983,7 @@ ProcessDataSecurityValidation:
   DataWord register_XMM6_Da;
   DataWord register_XMM6_Dc;
   DataWord SystemOperationResult;
-  char acStackX_24 [4];
+  char systemNameBufferX [4];
   uint8_t *InputParam28;
   float InputParam30;
   DataWord InputParam38;
@@ -21050,10 +21050,10 @@ ProcessDataSecurityValidation:
       }
       systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
       systemDataBuffer6 = (**(FunctionPointer**)*resourcePointer2)(resourcePointer2);
-      inputParameter3 = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,acStackX_24);
+      inputParameter3 = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,systemNameBufferX);
       if (inputParameter3 == 0) {
         operationResult4 = calculatedFloatValue;
-        if (acStackX_24[0] != '\0') {
+        if (systemNameBufferX[0] != '\0') {
           systemDataBuffer7 = InitializeSystem();
           inputParameter3 = memcmp(contextPointer + 0x38,systemDataBuffer7,0x30);
           operationResult4 = normalizedFloatValue;
@@ -21245,7 +21245,7 @@ ValidateDataSecurity:
   DataWord register_XMM6_Da;
   DataWord register_XMM6_Dc;
   DataWord SystemOperationResult;
-  char acStackX_24 [4];
+  char systemNameBufferX [4];
   uint8_t *InputParam28;
   float InputParam30;
   DataWord InputParam38;
@@ -21297,10 +21297,10 @@ ValidateDataSecurity:
   }
   systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
   systemDataBuffer6 = (**(FunctionPointer**)*register_R12)(register_R12);
-  inputParameter3 = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,acStackX_24);
+  inputParameter3 = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,systemNameBufferX);
   if (inputParameter3 == 0) {
     operationResult3 = floatResultA;
-    if (acStackX_24[0] != '\0') {
+    if (systemNameBufferX[0] != '\0') {
       systemDataBuffer7 = InitializeSystem();
       inputParameter3 = memcmp(contextPointer + 0x38,systemDataBuffer7,0x30);
       operationResult3 = calculatedFloatValue;
@@ -33589,14 +33589,14 @@ ValidationStartHandler:
 ValidationErrorHandler6:
         isValidationSuccessful = validationStatus == 0;
         if (isValidationSuccessful) {
-          dataBufferSizeValid = acStack_a8[0] != '\0';
+          dataBufferSizeValid = validationStatusBuffer[0] != '\0';
           isValidationSuccessful = true;
         }
       }
       else {
         if (pdataContext[2] == 0) {
 ValidationStateHandler2:
-          validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
+          validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,validationStatusBuffer,1,1,0);
           goto ProcessCheckpointValidationError5;
         }
         allocatedMemorySize = 0;
@@ -33631,7 +33631,7 @@ ValidationStateHandler2:
       }
       else if (pdataContext[2] == 0) {
 ValidationDataHandler2:
-        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,validationStatusBuffer,1,1,0);
       }
       else {
         allocatedMemorySize = 0;
@@ -33642,7 +33642,7 @@ ValidationDataHandler2:
         }
       }
       if (validationStatus == 0) {
-        auStackX_18[0] = CONCAT31(auStackX_18[0]._1_3_,acStack_a8[0] != '\0');
+        auStackX_18[0] = CONCAT31(auStackX_18[0]._1_3_,validationStatusBuffer[0] != '\0');
       }
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -33665,7 +33665,7 @@ ValidationDataHandler2:
       }
       else if (pdataContext[2] == 0) {
 ValidationStateHandler3:
-        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,validationStatusBuffer,1,1,0);
       }
       else {
         allocatedMemorySize = 0;
@@ -33676,7 +33676,7 @@ ValidationStateHandler3:
         }
       }
       if (validationStatus == 0) {
-        cStackX_20 = acStack_a8[0] != '\0';
+        cStackX_20 = validationStatusBuffer[0] != '\0';
       }
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -33699,7 +33699,7 @@ ValidationStateHandler3:
       }
       else if (pdataContext[2] == 0) {
 ProcessCheckpointValidationState4:
-        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,validationStatusBuffer,1,1,0);
       }
       else {
         allocatedMemorySize = 0;
@@ -33709,7 +33709,7 @@ ProcessCheckpointValidationState4:
           validationStatus = 0x11;
         }
       }
-      hasValidData = validationStatus == 0 && acStack_a8[0] != '\0';
+      hasValidData = validationStatus == 0 && validationStatusBuffer[0] != '\0';
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
         memoryBaseAddress = 0;
@@ -33731,7 +33731,7 @@ ProcessCheckpointValidationState4:
       }
       else if (pdataContext[2] == 0) {
 ProcessCheckpointValidationState5:
-        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,validationStatusBuffer,1,1,0);
       }
       else {
         allocatedMemorySize = 0;
@@ -33742,7 +33742,7 @@ ProcessCheckpointValidationState5:
         }
       }
       if (validationStatus == 0) {
-        hasValidData = acStack_a8[0] != '\0';
+        hasValidData = validationStatusBuffer[0] != '\0';
       }
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -105064,9 +105064,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储系统资源分配的基础数据字
 #define StackResourceAllocationBase uStack_1c8
 
-// 原始变量名：acStack_1c4 - 栈字符缓冲区A
+// 原始变量名：systemNameBuffer - 栈字符缓冲区A
 // 功能：存储字符数据的栈缓冲区
-#define StackCharBufferA acStack_1c4
+#define StackCharBufferA systemNameBuffer
 
 // 原始变量名：puStack_1c0 - 栈指针缓冲区A
 // 功能：存储指针数据的栈缓冲区
@@ -105097,9 +105097,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define StackFloatValueC StackFloatValueC
 
 // 栈变量宏定义 - 美化acStack变量
-// 原始变量名：acStackX_24 - 栈系统状态
+// 原始变量名：systemNameBufferX - 栈系统状态
 // 功能：存储系统状态的栈变量
-#define StackSystemStatus acStackX_24
+#define StackSystemStatus systemNameBufferX
 
 // 栈变量宏定义 - 美化stack0x变量
 // 原始变量名：StackDataBufferD - 栈数据缓冲区D
