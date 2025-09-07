@@ -9110,6 +9110,16 @@ uint8_t SystemManagementDataTableA0;
  * 
  * @note 原始函数名：ProcessObjectDataWithValidation
  */
+/**
+ * @brief 对象数据验证处理函数
+ * 
+ * 该函数用于处理对象数据并进行验证操作，包括安全检查、资源处理和数据验证
+ * 
+ * @param ObjectHandle 对象句柄，用于标识要处理的对象
+ * @param DataContext 数据上下文，包含处理所需的数据信息
+ * @return 无返回值
+ * @note 原始函数名：可能为FUN_开头的函数，已重命名为ProcessObjectDataWithValidation
+ */
 void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 {
   // 资源和操作相关变量
@@ -34723,8 +34733,8 @@ uint64_t ValidateSystemContextAndProcessData(void)
   int64_t *destinationIndexRegister;
   DataWord InputParam30;
   DataWord uStack0000000000000038;
-  BytePair uStack000000000000003c;
-  BytePair uStack000000000000003e;
+  BytePair StackBytePairA;
+  BytePair StackBytePairB;
   BytePair StackDataBufferF;
   BytePair StackDataBufferG;
   
@@ -34749,11 +34759,11 @@ uint64_t ValidateSystemContextAndProcessData(void)
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))
                           (*(DataBuffer **)(validationContext + 8),&ValidationDataBuffer,4);
         if (operationResult == 0) {
-          StackDataBufferF = uStack000000000000003c;
+          StackDataBufferF = StackBytePairA;
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))
                             (*(DataBuffer **)(validationContext + 8),&stack0x000000a0,2);
           if (operationResult == 0) {
-            StackDataBufferG = uStack000000000000003e;
+            StackDataBufferG = StackBytePairB;
             operationResult = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))
                               (*(DataBuffer **)(validationContext + 8),&stack0x000000a8,2);
             if (operationResult == 0) {
@@ -34804,8 +34814,8 @@ uint64_t ManageMemoryAndValidatePointers(void)
   int64_t *destinationIndexRegister;
   DataWord InputParam30;
   DataWord uStack0000000000000038;
-  BytePair uStack000000000000003c;
-  BytePair uStack000000000000003e;
+  BytePair StackBytePairA;
+  BytePair StackBytePairB;
   BytePair StackDataBufferF;
   BytePair StackDataBufferG;
   
@@ -34821,11 +34831,11 @@ uint64_t ManageMemoryAndValidatePointers(void)
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))
                         (*(DataBuffer **)(validationContext + 8),&ValidationDataBuffer,4);
       if (operationResult == 0) {
-        StackDataBufferF = uStack000000000000003c;
+        StackDataBufferF = StackBytePairA;
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))
                           (*(DataBuffer **)(validationContext + 8),&stack0x000000a0,2);
         if (operationResult == 0) {
-          StackDataBufferG = uStack000000000000003e;
+          StackDataBufferG = StackBytePairB;
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))
                             (*(DataBuffer **)(validationContext + 8),&stack0x000000a8,2);
           if (operationResult == 0) {
