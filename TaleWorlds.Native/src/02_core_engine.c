@@ -12004,19 +12004,18 @@ void CoreEngineInitializeGameSystem(void)
   char StringBuffer;
   void *SystemContext;
   int MemoryMatchResult;
-  long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
-  void *RegisterX18TempPointer;
+  void *FileSystemConfigurationFlag;
+  void *GameSystemNode;
   
-  SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
-  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
-  SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
-  TertiaryNode = PrimaryStatusBlock;
+  SystemContext = CoreEngineGetSystemContext();
+  PrimaryStatusBlock = (void **)*SystemContext;
+  StringBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  FileSystemConfigurationFlag = &SystemFileSystemHandler;
+  GameSystemNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
