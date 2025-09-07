@@ -19,6 +19,18 @@
 #define InitializeCharacterProcessing FUN_180136231        // 初始化字符处理
 #define CleanupCharacterProcessing FUN_18013643d           // 清理字符处理
 #define ResetCharacterEncoder FUN_180136457                // 重置字符编码器
+
+// UTF-8到UTF-16转换处理函数
+#define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
+#define ProcessUtf8ToUtf16ConversionEx FUN_18016ef90       // 扩展UTF-8到UTF-16转换处理
+#define ProcessUtf8ToUtf16ConversionAdvanced FUN_18016f090 // 高级UTF-8到UTF-16转换处理
+#define ProcessUtf8ToUtf16ConversionOptimized FUN_18016f440 // 优化UTF-8到UTF-16转换处理
+#define ProcessUtf8ToUtf16ConversionStream FUN_18016f4f0    // 流式UTF-8到UTF-16转换处理
+#define ProcessUtf8ToUtf16ConversionBuffered FUN_18016f5d0  // 缓冲UTF-8到UTF-16转换处理
+#define ProcessUtf8CharacterEncoding FUN_18016f680          // UTF-8字符编码处理
+#define ProcessUtf8ToUtf16ConversionFinal FUN_18016f720    // 最终UTF-8到UTF-16转换处理
+#define ProcessUtf8CharacterAdvancedEncoding FUN_18016f7d0  // 高级UTF-8字符编码处理
+#define ProcessUtf8ToUtf16ConversionComplete FUN_18016f9f0  // 完整UTF-8到UTF-16转换处理
 #define ProcessCharacterEncodingValidation FUN_18013a1b0   // 处理字符编码验证
 #define ReleaseCharacterTableBuffer FUN_18011bbb0           // 释放字符表缓冲区
 #define InitializeUtf8ProcessingBuffer FUN_180136a10        // 初始化UTF8处理缓冲区
