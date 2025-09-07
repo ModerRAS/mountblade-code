@@ -39109,16 +39109,16 @@ void ManageBufferIndexllocation(long long *CharacterCode
   void *PreviousNode;
   long long *SystemDataTablePointer;
   int IntegerValue9;
-  long long lStackX_8;
+  long long StackMemoryOffset;
   void *TemporaryStackPointer;
-  long long CoreEngineSignedValueC8;
-  long long StackMemoryBufferC0;
+  long long EngineContextValue;
+  long long StackBufferValue;
   uint64_t MemoryOffsetValue;
-  uint16_t StackProcessingVariableB0;
-  uint8_t SystemUnsignedValueAE;
+  uint16_t StackProcessingFlag;
+  uint8_t SystemOperationType;
   uint8_t StackValidationData [64];
-  uint64_t SystemStackOffset48;
-  uint64_t SystemPriorityLevel;
+  uint64_t SystemContextOffset;
+  uint64_t SystemErrorAddress;
   
   SystemStackFlag = 0xfffffffffffffffe;
   MemoryBlockIndex = CharacterCode[1];
