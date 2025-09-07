@@ -30074,8 +30074,15 @@ void InitializeUIBufferConfiguration(void)
 
 
 
- 验证UI缓冲区数据
-// @note 原始函数名: FUN_1806708b0
+ /**
+ * @brief 验证UI缓冲区数据
+ * 
+ * 该函数负责验证UI系统缓冲区的数据完整性和有效性
+ * 确保缓冲区数据符合预期的格式和约束
+ * 
+ * @param bufferData 缓冲区数据指针
+ * @note 原始函数名: FUN_1806708b0
+ */
 #define ValidateUIBufferData FUN_1806708b0
 void ValidateUIBufferData(longlong bufferData)
 
