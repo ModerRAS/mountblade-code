@@ -63675,7 +63675,18 @@ void CleanupSystemResourcePointer7170(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180907180(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统函数调用包装器A0
+ * 
+ * 该函数作为系统函数调用的包装器，在特定条件下调用目标函数。
+ * 通过数据缓冲区的间接引用，执行相应的系统操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含函数调用信息
+ * 
+ * @note 原始函数名：Unwind_180907180
+ */
+void SystemFunctionCallWrapperA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0xb8) != (int64_t *)0x0) {
@@ -63766,7 +63777,20 @@ void ExecuteFunctionPointerCallbackA1(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_1809071d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 函数指针回调执行器A1
+ * 
+ * 该函数执行通过函数指针注册的回调函数，传递特定的参数。
+ * 主要用于系统事件处理和异步操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含回调函数信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给回调函数）
+ * 
+ * @note 原始函数名：Unwind_1809071d0
+ */
+void ExecuteFunctionPointerCallbackA1Duplicate(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x48) != (code *)0x0) {
