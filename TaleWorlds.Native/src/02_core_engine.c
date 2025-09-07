@@ -140457,7 +140457,7 @@ LAB_18012b510:
         SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,pSystemContextPrimaryFloat3[3]);
         RegisterFramePointer[-0x14] = (FilterInputValue0 + ContextSecondaryFloat9) * *pSystemContextPrimaryFloat3 + FilterInputValue4;
         RegisterFramePointer[-0x13] = (FilterInputValue0 + ContextSecondaryFloat9) * FilterInputValue2 + FilterInputValue1;
-        FUN_180293730(SystemStatusCode,RegisterFramePointer + -0x14);
+        ConfigureSystemDataEx(SystemStatusCode,RegisterFramePointer + -0x14);
         BufferIndex = *(long long *)(SystemParameter2 + 0x2e8);
         CheckSystemStatusAndProcess(BufferIndex,*(void *)(BufferIndex + 0x88),*(uint32_t *)(BufferIndex + 0x80),
                       RegisterFramePointer[CharacterTablePointer6 + 0x20],SystemParameter1);
@@ -141529,7 +141529,7 @@ LAB_18012b510:
         SystemParameter1 = (void *)CONCAT44(DataSize,RegisterValueR12[3]);
         RegisterFramePointer[-0x14] = (ContextSecondaryFloat6 + ContextSecondaryFloat7) * *RegisterValueR12 + FilterInputValue0;
         RegisterFramePointer[-0x13] = (ContextSecondaryFloat6 + ContextSecondaryFloat7) * ContextSecondaryFloat9 + ContextSecondaryFloat8;
-        FUN_180293730(MemoryAllocationOffset,RegisterFramePointer + -0x14);
+        ConfigureSystemDataEx(MemoryAllocationOffset,RegisterFramePointer + -0x14);
         BufferIndex = *(long long *)(SystemParameter2 + 0x2e8);
         CheckSystemStatusAndProcess(BufferIndex,*(void *)(BufferIndex + 0x88),*(uint32_t *)(BufferIndex + 0x80),
                       RegisterFramePointer[SystemDataTablePointer + 0x20],SystemParameter1);

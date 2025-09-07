@@ -100883,7 +100883,18 @@ void Unwind_StatusFlagCleanupB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809119c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 状态标志清理器C
+ * 
+ * 该函数负责清理状态标志，检查并清除特定的状态位。
+ * 如果状态标志被设置，则清除该标志并调用数据验证函数。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @return void
+ */
+void Unwind_StatusFlagCleanupC(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名: Unwind_1809119c0
 
 {
   if ((*(uint *)(dataBuffer + 0x2c) & 4) != 0) {
@@ -100895,7 +100906,18 @@ void Unwind_1809119c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809119f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 状态标志清理器D
+ * 
+ * 该函数负责清理状态标志，检查并清除特定的状态位。
+ * 如果状态标志被设置，则清除该标志并调用数据验证函数。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @return void
+ */
+void Unwind_StatusFlagCleanupD(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名: Unwind_1809119f0
 
 {
   if ((*(uint *)(dataBuffer + 0x2c) & 8) != 0) {
