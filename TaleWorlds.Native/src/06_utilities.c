@@ -64531,7 +64531,18 @@ void ValidationContextHandlerA4(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809073f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理上下文调用器A0
+ * 
+ * 该函数通过异常处理上下文指针调用相应的异常处理函数。
+ * 主要用于异常恢复和清理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ * 
+ * @note 原始函数名：Unwind_1809073f0
+ */
+void ExceptionHandlerContextInvokerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
