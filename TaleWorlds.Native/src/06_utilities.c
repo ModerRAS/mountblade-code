@@ -6381,9 +6381,9 @@ uint8_t SystemValidationCleanupFlagA2;       // DAT_180c96210 - 系统验证清�
 
 // 系统数据缓冲区相关变量声明
 void* SystemDataBufferA;               // DAT_180a06434 - 系统数据缓冲区A
-void* SystemDataBufferB;                // UNK_180986298 - 系统数据缓冲区B
-void* SystemDataBufferC;                // UNK_180984010 - 系统数据缓冲区C
-void* SystemDataBufferD;                // UNK_180982240 - 系统数据缓冲区D
+void* SystemDataBufferB;                // 系统数据缓冲区B
+void* SystemDataBufferC;                // 系统数据缓冲区C
+void* SystemDataBufferD;                // 系统数据缓冲区D
 
 // 数据缓冲区管理相关变量声明
 void* DataBufferStartAddress;             // lRam0000000180d49d68 - 数据缓冲区起始地址
@@ -59902,7 +59902,7 @@ void ResetExceptionContextAtOffset7f0(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180906810(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionDataAtOffset810(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -59916,7 +59916,7 @@ void Unwind_180906810(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906830(DataBuffer operationBase,int64_t dataBuffer)
+void RestoreExceptionHandlerAtOffset830(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -59930,7 +59930,7 @@ void Unwind_180906830(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906850(DataBuffer operationBase,int64_t dataBuffer)
+void ClearExceptionFlagsAtOffset850(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x50) + 0x1e8) != 0) {
@@ -59941,7 +59941,7 @@ void Unwind_180906850(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906870(DataBuffer operationBase,int64_t dataBuffer)
+void FinalizeExceptionHandlingAtOffset870(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -59955,7 +59955,7 @@ void Unwind_180906870(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionCleanupAtOffset890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -59977,7 +59977,7 @@ void Unwind_180906890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809068b0(DataBuffer operationBase,int64_t dataBuffer)
+void ResetExceptionStateAtOffset8b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;

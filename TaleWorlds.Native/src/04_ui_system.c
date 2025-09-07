@@ -57798,8 +57798,21 @@ void InitializeUIBufferManager(undefined1 (*uiContext) [16],int dataSource,undef
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180694c40(undefined8 *uiContext,int dataSource,undefined1 *targetBuffer,undefined1 *bufferSize,
-void FUN_180694c40(undefined8 *uiContext,int dataSource,undefined1 *targetBuffer,undefined1 *bufferSize,
+ /**
+ * UI系统内存管理器初始化函数
+ * 
+ * 该函数负责初始化UI系统的内存管理器，设置内存分配和释放的参数。
+ * 主要用于处理UI系统的内存分配、释放和管理操作。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源，包含内存管理所需的数据
+ * @param targetBuffer 目标缓冲区指针，用于存储处理结果
+ * @param bufferSize 缓冲区大小指针，用于指定处理缓冲区的大小
+ * @param resultPointer 结果指针，用于存储处理结果
+ * 
+ * @note 原始函数名：FUN_180694c40
+ */
+void InitializeUIMemoryManager(undefined8 *uiContext,int dataSource,undefined1 *targetBuffer,undefined1 *bufferSize,
                   undefined1 *resultPointer)
 
 {
@@ -58496,8 +58509,29 @@ longlong FUN_180695ac0(longlong uiContext,int dataSource,longlong targetBuffer,i
 
 
 
- void FUN_180695bf0(longlong uiContext,longlong dataSource,int targetBuffer,short *bufferSize,
-void FUN_180695bf0(longlong uiContext,longlong dataSource,int targetBuffer,short *bufferSize,
+ /**
+ * UI系统像素处理器初始化函数
+ * 
+ * 该函数负责初始化UI系统的像素处理器，设置像素处理的参数和缓冲区。
+ * 主要用于处理UI图像的像素操作和颜色处理。
+ * 
+ * @param uiContext UI上下文，包含UI系统的状态信息
+ * @param dataSource 数据源，包含像素处理所需的数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小指针，用于指定处理缓冲区的大小
+ * @param resultPointer 结果指针数组，用于存储处理结果
+ * @param param_6 参数6数组，用于处理过程中的临时数据
+ * @param param_7 参数7数组，用于处理过程中的临时数据
+ * @param param_8 参数8，用于处理过程中的配置信息
+ * @param param_9 参数9，用于处理过程中的配置信息
+ * @param uiContext0 UI上下文0指针，用于处理过程中的状态信息
+ * @param uiContext1 UI上下文1指针，用于处理过程中的状态信息
+ * @param uiContext2 UI上下文2，用于处理过程中的状态信息
+ * @param uiContext3 UI上下文3，用于处理过程中的状态信息
+ * 
+ * @note 原始函数名：FUN_180695bf0
+ */
+void InitializeUIPixelProcessor(longlong uiContext,longlong dataSource,int targetBuffer,short *bufferSize,
                   undefined1 (*resultPointer) [16],undefined1 (*param_6) [16],undefined1 (*param_7) [16],
                   longlong param_8,longlong param_9,short *uiContext0,ushort *uiContext1,
                   undefined8 uiContext2,longlong uiContext3)
