@@ -354,6 +354,16 @@
 #define UnwindCleanupContextA21 Unwind_180909fe0
 #define UnwindCleanupContextA22 Unwind_18090a000
 
+// 新美化的Unwind函数宏定义
+#define ExecuteHandlerAtOffset108 Unwind_1809070d0
+#define ExecuteValidatorAtOffset10 Unwind_1809070e0
+#define ExecuteValidatorAtOffset18 Unwind_1809070f0
+#define ExecuteValidatorAtOffset18And10 Unwind_180907100
+#define ExecuteValidatorAtOffset20 Unwind_180907110
+#define ExecuteValidatorAtOffset20And18 Unwind_180907120
+#define ResetSystemStatusFlag Unwind_180907130
+#define ValidateAndProcessDataBuffer Unwind_180907140
+
 // 原始函数名：ReleaseDataBufferResource - 数据缓冲区资源释放函数
 // 功能：释放数据缓冲区资源
 #define ReleaseDataBufferResource ReleaseDataBufferResource
@@ -20479,7 +20489,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
             if (iterationCount == 0) {
               if (StackFloatArrayA[0] != 1.0) {
                 StackFloatValueA = StackFloatArrayA[0];
-                puStack_1c0 = &FloatingPointValidationErrorB;
+                StackPointerBufferI = &FloatingPointValidationErrorB;
                 StackDataWordC = StackDataWordA;
                 StackDataWordB = 0;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
@@ -20491,7 +20501,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 if (*floatArrayPointer != 0.0) {
                   StackDataWordC = StackDataWordA;
                   StackDataWordB = 0;
-                  puStack_1c0 = &DataProcessingValidationError;
+                  StackPointerBufferI = &DataProcessingValidationError;
                   StackFloatValueA = loopCounter;
                   StackFloatValueB = *floatArrayPointer;
                   iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
@@ -20507,7 +20517,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 if (floatValue != *floatArrayPointer) {
                   StackDataWordC = StackDataWordA;
                   StackDataWordB = 0;
-                  puStack_1c0 = &SystemStatusValidationError;
+                  StackPointerBufferI = &SystemStatusValidationError;
                   StackFloatValueA = loopCounter;
                   StackFloatValueB = floatValue;
                   iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
@@ -20518,7 +20528,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               } while ((int)loopCounter < 6);
               validationOutcome = ValidateParameters(dataBuffer + 200);
               if ((float)(validationOutcome / 0x30) != 0.0) {
-                puStack_1c0 = &DataIntegrityValidationErrorA;
+                StackPointerBufferI = &DataIntegrityValidationErrorA;
                 StackDataWordC = StackDataWordA;
                 StackDataWordB = 0;
                 StackFloatValueA = (float)(validationOutcome / 0x30);
@@ -20527,7 +20537,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               }
               if ((*(uint *)(dataBuffer + 0x2d8) >> 1 & 1) != 0) {
                 StackDataWordB = 0;
-                puStack_1c0 = &DataIntegrityValidationErrorB;
+                StackPointerBufferI = &DataIntegrityValidationErrorB;
                 StackDataWordC = StackDataWordA;
                 StackFloatValueA = (float)CONCAT31(StackFloatValueA._1_3_,1);
                 iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
@@ -20536,7 +20546,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               iterationCount = ProcessUtilityOperation(dataBuffer);
               if (iterationCount != 2) {
                 StackDataWordB = 0;
-                puStack_1c0 = &DataIntegrityValidationErrorC;
+                StackPointerBufferI = &DataIntegrityValidationErrorC;
                 StackDataWordC = StackDataWordA;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
@@ -20544,7 +20554,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               iterationCount = ProcessUtilityOperation(dataBuffer);
               if (iterationCount == 4) {
                 StackDataWordB = 0;
-                puStack_1c0 = &DataIntegrityValidationErrorD;
+                StackPointerBufferI = &DataIntegrityValidationErrorD;
                 StackDataWordC = StackDataWordA;
                 StackFloatValueA = 0.0;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
@@ -20552,9 +20562,9 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               }
               if ((*(uint *)(dataBuffer + 0x2d8) >> 3 & 1) != 0) {
                 StackDataWordB = 0;
-                puStack_1c0 = &DataIntegrityValidationErrorE;
+                StackPointerBufferI = &DataIntegrityValidationErrorE;
                 StackDataWordC = StackDataWordA;
-                ValidateDataIntegrityA0(operationBase,&puStack_1c0);
+                ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
               }
             }
           }
@@ -21316,6 +21326,16 @@ void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,u
   DataWord validationFlags;
   DataBuffer processingBuffer [64];
   uint64_t securityToken;
+  DataWord StackDataWordAE;
+  DataWord StackDataWordAF;
+  DataWord StackDataWordAG;
+  DataWord StackDataWordAH;
+  DataWord StackDataWordAI;
+  DataWord StackDataWordAJ;
+  DataWord StackDataWordAK;
+  DataWord StackDataWordAL;
+  DataWord StackDataWordAM;
+  DataWord StackDataWordAN;
   
   securityToken = ExceptionEncryptionKey ^ (uint64_t)securityBuffer;
   processCount = 0;
