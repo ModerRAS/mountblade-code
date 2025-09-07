@@ -38264,7 +38264,7 @@ MemoryAllocationProcessingStart:
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
     StackUnsigned78 = CONCAT44(StackUnsigned78.HighPart,UnicodeCodePoint);
   }
-LAB_180071d1f:
+StringProcessingStart:
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   SystemStatusCode = MemoryAllocationIndex + 0xd;
   FunctionAddress80 = ProcessStringBuffer;
@@ -245284,7 +245284,7 @@ LAB_180215d8e:
 
 
 
-unsigned long long FUN_180215ed0(long long CharacterCode,long long CharacterCodeSize,uint64_t Utf8InputPointer,uint32_t *Utf16EndPointer,
+unsigned long long ProcessCharacterEncodingAndBuffer(long long CharacterCode,long long CharacterCodeSize,uint64_t Utf8InputPointer,uint32_t *Utf16EndPointer,
                        uint64_t AdditionalParameter1
 {
   uint32_t Utf16Char;
@@ -245692,7 +245692,7 @@ LAB_18040698e:
 
 
 
-unsigned long long FUN_1802163c5(void
+unsigned long long GetSystemUtf16Char(void
 {
   unsigned long long Utf16Char;
   long long DataNodeIndex;
