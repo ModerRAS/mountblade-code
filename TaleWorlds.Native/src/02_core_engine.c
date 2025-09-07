@@ -22121,11 +22121,11 @@ uint64_t *ProcessEngineDataStructureComparison(long long *DataStructure, uint64_
           if (FirstByte != StringChar) break;
           StringPointer = StringPointer + 1;
         } while (StringChar != 0);
-        if ((int)(FirstByte - StringChar) < 1) goto StringComparisonComplete; // 原始标签：LAB_180048dd7
+        if ((int)(FirstByte - StringChar) < 1) goto StringComparisonComplete;
       }
-StringComparisonStart: // 原始标签：LAB_180048db7，StringComparisonStart
+StringComparisonStart:
       OperationFlag = 0;
-StringComparisonLoop: // 原始标签：LAB_180048dba，StringComparisonLoop
+StringComparisonLoop:
       if (CompareTarget != (long long *)0x0) {
         ProcessDataStructureComparison(DataStructure,ResultBuffer,CompareTarget,OperationFlag,Context);
         return ResultBuffer;
@@ -22144,7 +22144,7 @@ StringComparisonLoop: // 原始标签：LAB_180048dba，StringComparisonLoop
           if (CurrentByteValue != byteComparisonValue) break;
           StringComparePointer = StringComparePointer + 1;
         } while (UnsignedLoopControl != 0);
-        if ((int)(CurrentByteValue - UnsignedLoopControl) < 1) goto StringComparisonComplete; // 原始标签：LAB_180048dd7
+        if ((int)(CurrentByteValue - UnsignedLoopControl) < 1) goto StringComparisonComplete;
       }
       if ((int)SystemContextPtr[6] != 0) {
         StringComparePointer = (byte *)SystemContextPtr[5];
@@ -22164,7 +22164,7 @@ StringComparisonLoop: // 原始标签：LAB_180048dba，StringComparisonLoop
       }
     }
   }
-StringComparisonComplete: // 原始标签：LAB_180048dd7，StringComparisonComplete
+StringComparisonComplete:
   HighByte = true;
   SystemContextPtr = (long long *)Utf8InputBuffer[2];
   MemoryBlockIndex = CharacterCode;
@@ -22172,7 +22172,7 @@ StringComparisonComplete: // 原始标签：LAB_180048dd7，StringComparisonComp
     MemoryBlockIndex = SystemContextPtr;
     if ((int)SystemContextPtr[6] == 0) {
       HighByte = false;
-SystemContextLoopContinue: // 原始标签：LAB_180048e00，SystemContextLoopContinue
+SystemContextLoopContinue:
       SystemContextPtr = (long long *)*SystemContextPtr;
     }
     else {
@@ -22190,7 +22190,7 @@ SystemContextLoopContinue: // 原始标签：LAB_180048e00，SystemContextLoopCo
         } while (DataSize != 0);
         HighByte = 0 < (int)(CurrentByteValue - DataSize);
       }
-      if (!HighByte) goto SystemContextLoopContinue; // 原始标签：LAB_180048e00
+      if (!HighByte) goto SystemContextLoopContinue;
       SystemContextPtr = (long long *)SystemContextPtr[1];
     }
   }
@@ -22198,12 +22198,12 @@ SystemContextLoopContinue: // 原始标签：LAB_180048e00，SystemContextLoopCo
   if (HighByte) {
     if (MemoryBlockIndex != (long long *)Utf8InputBuffer[1]) {
       SystemContextPtr = (long long *)GetPreviousMemoryBlockIndex(MemoryBlockIndex);
-      goto SystemContextValidationStart; // 原始标签：LAB_180048e20
+      goto SystemContextValidationStart;
     }
   }
   else {
-SystemContextValidationStart: // 原始标签：LAB_180048e20，SystemContextValidationStart
-    if (*(int *)(AdditionalParameter1 + 0x10) == 0) goto SystemContextValidationComplete; // 原始标签：LAB_180048e74
+SystemContextValidationStart:
+    if (*(int *)(AdditionalParameter1 + 0x10) == 0) goto SystemContextValidationComplete;
     if ((int)SystemContextPtr[6] != 0) {
       SystemBytePointer = *(byte **)(AdditionalParameter1 + 8);
       MemoryPoolBlockSize = SystemContextPtr[5] - (long long)SystemBytePointer;
@@ -22213,12 +22213,12 @@ SystemContextValidationStart: // 原始标签：LAB_180048e20，SystemContextVal
         if (CurrentByteValue != byteComparisonValue) break;
         SystemBytePointer = SystemBytePointer + 1;
       } while (DataSize != 0);
-      if ((int)(CurrentByteValue - DataSize) < 1) goto SystemContextValidationComplete; // 原始标签：LAB_180048e74
+      if ((int)(CurrentByteValue - DataSize) < 1) goto SystemContextValidationComplete;
     }
   }
   ProcessDataStructureComparison(CharacterCode,&SystemRegisterPointerX8,MemoryBlockIndex,0,AdditionalParameter1);
   SystemContextPtr = SystemRegisterPointerX8;
-SystemContextValidationComplete: // 原始标签：LAB_180048e74，SystemContextValidationComplete
+SystemContextValidationComplete:
   *Utf8InputBufferSize = SystemContextPtr;
   return Utf8BufferSize;
 }
