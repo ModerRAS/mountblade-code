@@ -85025,7 +85025,18 @@ void ExecuteExceptionHandlerCallbackAt1548(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090e100(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行0x1550偏移量的异常处理回调函数
+ * 
+ * 该函数从数据缓冲区的0xe0偏移量获取基础地址，然后在0x1550偏移量处
+ * 获取异常处理上下文指针，如果指针存在则执行相应的回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090e100
+ */
+void ExecuteExceptionHandlerCallbackAt1550(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -85039,7 +85050,18 @@ void Unwind_18090e100(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e120(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行0x1558偏移量的内存操作
+ * 
+ * 该函数在数据缓冲区的0xe0偏移量获取基础地址，然后在0x1558偏移量处
+ * 执行内存操作，使用8字节大小和操作类型2，并调用数据验证处理器。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含内存操作信息
+ * 
+ * @note 原始函数名：Unwind_18090e120
+ */
+void ExecuteMemoryOperationAt1558(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x1558,8,2,ValidateDataHandler);
@@ -85048,7 +85070,18 @@ void Unwind_18090e120(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e160(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行0x1568偏移量的内存操作
+ * 
+ * 该函数在数据缓冲区的0xe0偏移量获取基础地址，然后在0x1568偏移量处
+ * 执行内存操作，使用8字节大小和操作类型2，并调用数据验证处理器。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含内存操作信息
+ * 
+ * @note 原始函数名：Unwind_18090e160
+ */
+void ExecuteMemoryOperationAt1568(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0x1568,8,2,ValidateDataHandler);

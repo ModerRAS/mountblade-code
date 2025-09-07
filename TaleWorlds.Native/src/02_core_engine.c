@@ -133,6 +133,96 @@
  */
 #define ProcessSystemDataValidation FUN_180122890
 
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换操作
+ * 
+ * @note 原始函数名：FUN_1801231cf
+ */
+#define ProcessUtf8ToUtf16CharacterEncoding FUN_1801231cf
+
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换（变体）
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换操作（变体版本）
+ * 
+ * @note 原始函数名：FUN_1801231dc
+ */
+#define ProcessUtf8ToUtf16CharacterEncodingVariant FUN_1801231dc
+
+/**
+ * @brief 处理UTF-8到UTF-16长字符编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的长字符编码转换操作
+ * 
+ * @note 原始函数名：FUN_180123960
+ */
+#define ProcessUtf8ToUtf16LongCharacterEncoding FUN_180123960
+
+/**
+ * @brief 处理UTF-8到UTF-16指针字符编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的指针字符编码转换操作
+ * 
+ * @note 原始函数名：FUN_180123a60
+ */
+#define ProcessUtf8ToUtf16PointerCharacterEncoding FUN_180123a60
+
+/**
+ * @brief 处理UTF-8到UTF-16扩展字符编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的扩展字符编码转换操作
+ * 
+ * @note 原始函数名：FUN_180123bc0
+ */
+#define ProcessUtf8ToUtf16ExtendedCharacterEncoding FUN_180123bc0
+
+/**
+ * @brief 处理字符代码系统计算
+ * 
+ * 该函数负责处理字符代码的系统计算操作
+ * 
+ * @note 原始函数名：FUN_180123c00
+ */
+#define ProcessCharacterCodeSystemCalculation FUN_180123c00
+
+/**
+ * @brief 处理长字符代码操作
+ * 
+ * 该函数负责处理长字符代码的相关操作
+ * 
+ * @note 原始函数名：FUN_1801248f0
+ */
+#define ProcessLongCharacterCodeOperation FUN_1801248f0
+
+/**
+ * @brief 处理字符代码数据转换
+ * 
+ * 该函数负责处理字符代码的数据转换操作
+ * 
+ * @note 原始函数名：FUN_1801251b1
+ */
+#define ProcessCharacterCodeDataConversion FUN_1801251b1
+
+/**
+ * @brief 处理浮点数字符代码
+ * 
+ * 该函数负责处理浮点数形式的字符代码
+ * 
+ * @note 原始函数名：FUN_18012524a
+ */
+#define ProcessFloatingPointCharacterCode FUN_18012524a
+
+/**
+ * @brief 处理长整数字符编码
+ * 
+ * 该函数负责处理长整数形式的字符编码操作
+ * 
+ * @note 原始函数名：FUN_18012533c
+ */
+#define ProcessLongIntegerCharacterEncoding FUN_18012533c
+
 // 系统节点状态偏移量常量
 #define SystemNodeStatusOffset 0x19
 
@@ -154,6 +244,33 @@ const long long SystemNodeIdentifierSeptenary = 0x4b2d79e470ee4e2c;
 const long long SystemNodeIdentifierOctonary = 0x9c552acd3ed5548d;
 const long long SystemNodeIdentifierNonary = 0x49086ba08ab981a7;
 const long long SystemNodeIdentifierUndenary = 0xa9191d34ad910696;
+
+/**
+ * @brief 处理字符字符串编码
+ * 
+ * 该函数负责处理字符字符串的编码操作
+ * 
+ * @note 原始函数名：FUN_180126380
+ */
+#define ProcessCharacterStringEncoding FUN_180126380
+
+/**
+ * @brief 处理整数字符代码指针
+ * 
+ * 该函数负责处理整数形式的字符代码指针操作
+ * 
+ * @note 原始函数名：FUN_180126b00
+ */
+#define ProcessIntegerCharacterCodePointer FUN_180126b00
+
+/**
+ * @brief 执行系统最终验证
+ * 
+ * 该函数负责执行系统的最终验证操作
+ * 
+ * @note 原始函数名：FUN_180126b5b
+ */
+#define ExecuteSystemFinalValidation FUN_180126b5b
 
 // 验证系统标识常量
 const long long SystemValidationIdentifierPrimary = 0x4e33c4803e67a08f;
@@ -119009,7 +119126,7 @@ void ProcessCharacterCodeWithUtf8Validation(float *CharacterCode, uint64_t Chara
 
 
 
-31cf(float CharacterCode,float CharacterCodeSize,float Utf8InputPointer,float Utf16EndPointervoid FUN_1801231cf(float CharacterCode,float CharacterCodeSize,float Utf8InputPointer,float Utf16EndPointer
+31cf(float CharacterCode,float CharacterCodeSize,float Utf8InputPointer,float Utf16EndPointervoid ProcessUtf8ToUtf16CharacterEncoding(float CharacterCode,float CharacterCodeSize,float Utf8InputPointer,float Utf16EndPointer
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -119104,7 +119221,7 @@ void ProcessCharacterCodeWithUtf8Validation(float *CharacterCode, uint64_t Chara
 
 
 
-31dc(float CharacterCode,float CharacterCodeSize,float Utf8InputPointer,float Utf16EndPointervoid FUN_1801231dc(float CharacterCode,float CharacterCodeSize,float Utf8InputPointer,float Utf16EndPointer
+31dc(float CharacterCode,float CharacterCodeSize,float Utf8InputPointer,float Utf16EndPointervoid ProcessUtf8ToUtf16CharacterEncodingVariant(float CharacterCode,float CharacterCodeSize,float Utf8InputPointer,float Utf16EndPointer
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -240607,9 +240724,20 @@ LAB_18020d911:
 
 
 
-0da10(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,uint64_t Utf16EndPointer,
-void FUN_18020da10(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,uint64_t Utf16EndPointer,
-                  int *AdditionalParameter1
+/**
+ * @brief 验证系统内存分配状态
+ * 
+ * 该函数负责验证系统内存分配状态，确保内存分配的正确性和有效性。
+ * 用于内存管理和资源分配的状态验证。
+ * 
+ * @param CharacterCode 内存块编码
+ * @param CharacterCodeSize 内存块大小
+ * @param Utf8InputPointer 内存输入指针
+ * @param Utf16EndPointer 内存结束指针
+ * @param AdditionalParameter1 额外参数1指针
+ */
+void ValidateSystemMemoryAllocation(long long CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,uint64_t Utf16EndPointer,
+                                    int *AdditionalParameter1
 {
   long long PrimaryDataSize;
   uint32_t MemoryAllocationIndex;
