@@ -14834,14 +14834,27 @@ void ExecuteSecurityValidation(void)
 
 
 /**
- * 验证和处理浮点数数据
+ * @brief 验证和处理浮点数数据
  * 
  * 此函数验证输入的浮点数数据的有效性，检查INF和NaN值，
  * 处理零向量情况，并执行系统数据查询和存储操作。
  * 
+ * @details 函数执行以下关键操作：
+ * - 验证多个浮点数组件是否为无穷大值
+ * - 检查向量分量是否为零向量
+ * - 查询系统数据并存储结果
+ * - 处理数据缓冲区的复制操作
+ * 
  * @param dataPtr 指向包含浮点数数据的结构体的指针
  * @param contextPtr 上下文指针，用于系统数据访问
- * @return 返回操作状态码，0表示成功，非零表示错误
+ * 
+ * @return DataBuffer 返回操作状态码，0表示成功，非零表示错误
+ *   - ComponentDataValidationFailure: 数据验证失败
+ *   - 其他错误码: 具体的系统错误状态
+ * 
+ * @note 原始函数名可能为FUN_开头，已重命名为语义化名称
+ * @warning 函数包含多个浮点数验证步骤，确保输入数据的有效性
+ * @see QueryAndRetrieveSystemDataA0, ComponentDataValidationFailure
  */
 DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPtr)
 
@@ -15019,26 +15032,33 @@ void ValidateResourceAccess(int64_t ResourceDescriptor, int64_t AccessRequest)
 
 
 
-// 函数: DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t systemDataPointer)
-// 
-// 浮点数范围验证和处理函数
-// 验证输入的浮点数是否在有效范围内，并进行相应的处理操作
-// 
-// 参数:
-//   contextPointer - 上下文指针，包含浮点数数据和相关配置信息
-//   systemDataPointer - 系统数据指针，用于查询和存储处理结果
-// 
-// 返回值:
-//   DataBuffer - 处理结果状态码，0表示成功，非零表示各种错误状态
-//     0x1d - 浮点数无效(INF或NaN)
-//     0x4a - 系统数据查询失败
-//     0x1e - 数据指针无效
-//     0x1f - 数据状态验证失败
-// 
-// 注意事项:
-//   - 函数会检查浮点数的有效性，排除INF和NaN值
-//   - 会验证数据指针的状态和权限
-//   - 处理完成后会调用系统回调函数
+/**
+ * @brief 浮点数范围验证和处理函数
+ * 
+ * 验证输入的浮点数是否在有效范围内，并进行相应的处理操作。
+ * 此函数负责确保浮点数数据的有效性，执行范围检查，并更新系统状态。
+ * 
+ * @details 函数执行以下关键操作：
+ * - 验证浮点数是否为无穷大值(INF或NaN)
+ * - 查询系统数据并获取相关配置信息
+ * - 验证数据指针的有效性和权限
+ * - 执行浮点数范围检查
+ * - 更新系统状态和回调函数
+ * 
+ * @param contextPointer 上下文指针，包含浮点数数据和相关配置信息
+ * @param systemDataPointer 系统数据指针，用于查询和存储处理结果
+ * 
+ * @return DataBuffer 处理结果状态码，0表示成功，非零表示各种错误状态
+ *   - 0x1d - 浮点数无效(INF或NaN)
+ *   - 0x4a - 系统数据查询失败
+ *   - 0x1e - 数据指针无效
+ *   - 0x1f - 数据状态验证失败
+ *   - ComponentDataValidationFailure - 组件数据验证失败
+ * 
+ * @note 原始函数名可能为FUN_开头，已重命名为语义化名称
+ * @warning 函数包含多个验证步骤，确保输入数据的有效性
+ * @see QueryAndRetrieveSystemDataA0, ValidateSystemDataRange, UpdateSystemFloatingPointValue
+ */
 DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t systemDataPointer)
 
 {
@@ -15049,6 +15069,7 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
   int64_t systemContextBuffer;
   int64_t queryBuffer [2];
   
+  // 从上下文指针中提取浮点数值并初始化系统上下文缓冲区
   systemContextBuffer = CONCAT44(systemContextBuffer._4_4_,*(uint *)(contextPointer + 0x20));
   if ((*(uint *)(contextPointer + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
@@ -64989,7 +65010,20 @@ void Unwind_180907ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907cb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理回调函数7cb0
+ * 
+ * 该函数负责处理系统异常回调，检查数据缓冲区中的函数指针是否存在，
+ * 如果存在则调用相应的异常处理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907cb0
+ */
+void ProcessSystemExceptionCallback7cb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x210) != (code *)0x0) {
