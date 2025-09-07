@@ -142381,7 +142381,7 @@ void ExecuteSystemCoreDataProcessing(void)
         SystemParameter1 = CONCAT44(SystemMemoryAllocationResult,RegisterValueR12[3]);
         RegisterFramePointer[-0x14] = (ContextSecondaryFloat5 + ContextSecondaryFloat6) * *RegisterValueR12 + ContextSecondaryFloat7;
         RegisterFramePointer[-0x13] = (ContextSecondaryFloat5 + ContextSecondaryFloat6) * ContextSecondaryFloat3 + ContextSecondaryFloat2;
-        FUN_180293730(ValidationResult,RegisterFramePointer + -0x14);
+        ConfigureSystemDataEx(ValidationResult,RegisterFramePointer + -0x14);
         StringIndexCounter = *(long long *)(SystemParameter2 + 0x2e8);
         CheckSystemStatusAndProcess(StringIndexCounter,*(void *)(StringIndexCounter + 0x88),*(uint32_t *)(StringIndexCounter + 0x80),
                       RegisterFramePointer[SystemStringIndex + 0x20],SystemParameter1);
