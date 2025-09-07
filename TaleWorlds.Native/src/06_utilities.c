@@ -21758,23 +21758,23 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
             exceptionHandlerContextPointer = systemContextPointer;
           }
           arrayIndex = (int)loopCounter;
-          inputParameter6 = (int)dataFlags;
+          validationParameter6 = (int)dataFlags;
         } while ((stackIntBuffer[0] != -1) &&
                 (stackIntBuffer[0] = *(int *)(exceptionHandlerContextPointer[2] + 4 + exceptionContextIndex * 0x10), stackIntBuffer[0] != -1));
-        calculatedValue = inputParameter1 + 1;
-        isInputParameterValid = inputParameter1 != -1;
-        inputParameter1 = 0;
+        calculatedValue = validationParameter1 + 1;
+        isInputParameterValid = validationParameter1 != -1;
+        validationParameter1 = 0;
         if (isInputParameterValid) {
-          inputParameter1 = calculatedValue;
+          validationParameter1 = calculatedValue;
         }
-        if (inputParameter1 != (int)exceptionHandlerContextPointer[1]) {
-          resourceIterator = (int64_t)inputParameter1;
+        if (validationParameter1 != (int)exceptionHandlerContextPointer[1]) {
+          resourceIterator = (int64_t)validationParameter1;
           do {
             if (*(int *)(*exceptionHandlerContextPointer + resourceIterator * 4) != -1) {
-              stackIntBuffer[0] = *(int *)(*exceptionHandlerContextPointer + (int64_t)inputParameter1 * 4);
+              stackIntBuffer[0] = *(int *)(*exceptionHandlerContextPointer + (int64_t)validationParameter1 * 4);
               goto ProcessCheckpointDataFlow;
             }
-            inputParameter1 = inputParameter1 + 1;
+            validationParameter1 = validationParameter1 + 1;
             resourceIterator = resourceIterator + 1;
           } while (resourceIterator != (int)exceptionHandlerContextPointer[1]);
         }
@@ -23220,9 +23220,9 @@ void ProcessDataTypesA0(void)
   DataWord FloatRegisterB;
   DataWord SystemOperationResult;
   char systemNameBufferX [4];
-  uint8_t *InputParam28;
-  float InputParam30;
-  DataWord InputParam38;
+  uint8_t *byteDataBuffer;
+  float floatInputValue;
+  DataWord dataWordInputValue;
   float FloatValidationValue1;
   float FloatValidationValue2;
   float FloatRegisterValue;
@@ -23231,10 +23231,10 @@ void ProcessDataTypesA0(void)
   DataBuffer *ResourceDataPointer;
   int64_t stackDataBuffer;
   int64_t stackOperationContext;
-  uint8_t *InputParam70;
-  float InputParam78;
-  DataWord InputParam1A0;
-  DataWord InputParam1A8;
+  uint8_t *byteDataBufferSecondary;
+  float floatInputValueSecondary;
+  DataWord dataWordInputValueExtended;
+  DataWord dataWordInputValueExtendedSecondary;
   
   memoryResourcePointer2 = (DataBuffer *)(systemContext + 8);
   StackFloatRegisterA = dataPointerD;
