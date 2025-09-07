@@ -87,6 +87,30 @@
 #define SetUIComponentState SetUIComponentState
 
 /**
+ * @brief 读取UI数据
+ * 
+ * 该函数负责从指定的内存地址读取UI系统数据
+ * 
+ * @param dataContext 数据上下文
+ * @param dataSource 数据源地址
+ * @param dataSize 数据大小
+ * @return 读取的数据值
+ * @note 原始函数名: ReadUIData
+ */
+#define ReadUIData ReadUIData
+
+/**
+ * @brief 获取字体渲染数据
+ * 
+ * 该函数负责从特定地址获取字体渲染所需的数据
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源指针，用于存储获取的数据
+ * @note 原始函数名: FUN_180722340
+ */
+#define GetFontRenderData FUN_180722340
+
+/**
  * @brief 计算字体度量数据
  * 
  * 该函数负责根据字体度量表计算字符的位置和尺寸信息
@@ -1334,6 +1358,150 @@ void* UIGestureCoordinates;
 #define ProcessUIBasicData8 FUN_18068d8d0
 // 原始函数名：FUN_18068d9f0 - UI系统基础数据处理函数9
 #define ProcessUIBasicData9 FUN_18068d9f0
+
+// UI系统高级数据处理函数宏定义
+// 原始函数名：FUN_18068f9a0 - UI系统批量数据处理函数
+#define ProcessUIBatchData FUN_18068f9a0
+// 原始函数名：FUN_18068fb30 - UI系统数据验证函数（版本1）
+#define ValidateUIDataVersion1 FUN_18068fb30
+// 原始函数名：FUN_18068fba0 - UI系统数据验证函数（版本2）
+#define ValidateUIDataVersion2 FUN_18068fba0
+// 原始函数名：FUN_18068fc10 - UI系统数据验证函数（版本3）
+#define ValidateUIDataVersion3 FUN_18068fc10
+// 原始函数名：FUN_18068fc80 - UI系统数据验证函数（版本4）
+#define ValidateUIDataVersion4 FUN_18068fc80
+// 原始函数名：FUN_18068fcf0 - UI系统数据验证函数（版本5）
+#define ValidateUIDataVersion5 FUN_18068fcf0
+// 原始函数名：FUN_18068fd60 - UI系统数据验证函数（版本6）
+#define ValidateUIDataVersion6 FUN_18068fd60
+// 原始函数名：FUN_18068fe10 - UI系统复杂数据处理函数
+#define ProcessUIComplexData FUN_18068fe10
+
+/**
+ * @brief 处理UI批量数据
+ * 
+ * 该函数负责处理UI系统中的批量数据操作，包括多个数据源的验证和处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 处理结果状态码
+ * @note 原始函数名: FUN_18068f9a0
+ */
+
+/**
+ * @brief 验证UI数据（版本1）
+ * 
+ * 该函数负责验证UI系统数据的完整性和有效性（版本1实现）
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 验证结果状态码
+ * @note 原始函数名: FUN_18068fb30
+ */
+
+/**
+ * @brief 验证UI数据（版本2）
+ * 
+ * 该函数负责验证UI系统数据的完整性和有效性（版本2实现）
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 验证结果状态码
+ * @note 原始函数名: FUN_18068fba0
+ */
+
+/**
+ * @brief 验证UI数据（版本3）
+ * 
+ * 该函数负责验证UI系统数据的完整性和有效性（版本3实现）
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 验证结果状态码
+ * @note 原始函数名: FUN_18068fc10
+ */
+
+/**
+ * @brief 验证UI数据（版本4）
+ * 
+ * 该函数负责验证UI系统数据的完整性和有效性（版本4实现）
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 验证结果状态码
+ * @note 原始函数名: FUN_18068fc80
+ */
+
+/**
+ * @brief 验证UI数据（版本5）
+ * 
+ * 该函数负责验证UI系统数据的完整性和有效性（版本5实现）
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 验证结果状态码
+ * @note 原始函数名: FUN_18068fcf0
+ */
+
+/**
+ * @brief 验证UI数据（版本6）
+ * 
+ * 该函数负责验证UI系统数据的完整性和有效性（版本6实现）
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 验证结果状态码
+ * @note 原始函数名: FUN_18068fd60
+ */
+
+/**
+ * @brief 处理UI复杂数据
+ * 
+ * 该函数负责处理UI系统中的复杂数据操作，包括信号量管理和内存分配
+ * 
+ * @param uiContext UI上下文指针数组
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return 处理结果状态码
+ * @note 原始函数名: FUN_18068fe10
+ */
 // 原始函数名：ProcessUIDataBufferOperation - UI系统基础数据处理函数10
 #define ProcessUIBasicData10 ProcessUIDataBufferOperation
 
@@ -41507,7 +41675,7 @@ void ProcessUIEventProcessor(longlong uiContext,undefined8 *dataSource,int targe
       asemaphoreHandle20._10_2_ = auStack_bb8._12_2_;
       asemaphoreHandle20._12_2_ = asemaphoreHandle19._14_2_;
       asemaphoreHandle20._14_2_ = auStack_bb8._14_2_;
-      asemaphoreHandle19 = pmaddwd(auVar90,_DAT_180947510);
+      asemaphoreHandle19 = pmaddwd(auVar90,UIVectorMultiplyMask30);
       afunctionResult70._0_12_ = asemaphoreHandle54._0_12_;
       afunctionResult70._12_2_ = asemaphoreHandle54._6_2_;
       afunctionResult70._14_2_ = auStack_c58._6_2_;
@@ -73852,7 +74020,7 @@ LAB_18070d1ad:
         }
       }
       if (*(int *)(param_6 + 0x18) - iVar9 < validationResult) {
-        uStack_16c = FUN_18070f3e0(param_6,&UNK_18094f650);
+        uStack_16c = ReadUIData(param_6,&UNK_18094f650);
       }
     }
     iVar9 = 0x1f;
@@ -74458,7 +74626,7 @@ uint FUN_18070f3b3(undefined8 uiContext,undefined8 dataSource,int targetBuffer)
  * @param dataSource 数据源
  * @param bitShiftParam 位移参数
  * @return 计算结果索引
- * @note 原始函数名: FUN_18070f3e0
+ * @note 原始函数名: ReadUIData
  */
 int CalculateUILayoutParameters(longlong layoutHandle, longlong dataSource, byte bitShiftParam)
 
@@ -76519,7 +76687,7 @@ LAB_180710f7f:
             pvalidationResult1[7] = 1;
           }
           else {
-            operationResult6 = FUN_18070f3e0(resultPointer,*(undefined8 *)(&UiEventQueue + (longlong)*pvalidationResult1 * 8),
+            operationResult6 = ReadUIData(resultPointer,*(undefined8 *)(&UiEventQueue + (longlong)*pvalidationResult1 * 8),
                                    8);
             if (0 < *pvalidationResult1) {
               psemaphoreHandle5 = (uint *)(pvalidationResult1 + 7);
@@ -76554,7 +76722,7 @@ LAB_180710f7f:
             if (pvalidationResult4[1] != 0) {
               if (((operationResult6 == 2) && (operationResult1 == 0)) &&
                  (CalculateFontMetricData(uStack_318,&uStack_300), *pvalidationResult1 == 0)) {
-                FUN_180722340(uStack_318,&iStack_32c);
+                GetFontRenderData(uStack_318,&iStack_32c);
               }
               if ((validationResult3 < 1) || (operationResult6 = 2, *pvalidationResult4 == 0)) {
                 operationResult6 = operationResult2;
@@ -76589,7 +76757,7 @@ LAB_180710f7f:
     validationResult6 = *(int *)(bufferData + 0x1a30 + (longlong)*pvalidationResult1 * 4);
 joined_r0x000180710ac6:
     if (validationResult6 == 0) {
-      FUN_180722340(resultPointer,&iStack_32c);
+      GetFontRenderData(resultPointer,&iStack_32c);
       goto LAB_180710a34;
     }
   }
@@ -85775,7 +85943,7 @@ void FUN_18071ad00(longlong uiContext,int dataSource,int targetBuffer,longlong b
             }
           }
           else {
-            uVar4 = FUN_18070f3e0(param_6,&UiStateBuffer,2);
+            uVar4 = ReadUIData(param_6,&UiStateBuffer,2);
             uVar4 = -(uVar4 & 1) ^ (int)uVar4 >> 1;
           }
         }
@@ -85860,7 +86028,7 @@ void FUN_18071ad94(float uiContext)
           }
         }
         else {
-          semaphoreHandle = FUN_18070f3e0(uiContext,&UiStateBuffer,2);
+          semaphoreHandle = ReadUIData(uiContext,&UiStateBuffer,2);
           semaphoreHandle = -(semaphoreHandle & 1) ^ (int)semaphoreHandle >> 1;
         }
       }
@@ -91445,7 +91613,7 @@ void FUN_180722340(undefined8 uiContext,undefined4 *dataSource)
 {
   undefined4 functionResult;
   
-  functionResult = FUN_18070f3e0(uiContext,&UNK_18095362c,8);
+  functionResult = ReadUIData(uiContext,&UNK_18095362c,8);
   *dataSource = functionResult;
   return;
 }
@@ -91474,15 +91642,15 @@ void FUN_180722370(undefined8 uiContext,int *dataSource)
   ulonglong uStack_20;
   
   uStack_20 = XorEncryptionKey ^ (ulonglong)auStack_58;
-  iStack_24 = FUN_18070f3e0(uiContext,&UiControlData,8);
+  iStack_24 = ReadUIData(uiContext,&UiControlData,8);
   psVar3 = asStack_34;
   lVar4 = 2;
   iStack_30 = iStack_24 / 5;
   iStack_24 = iStack_24 % 5;
   do {
-    functionResult = FUN_18070f3e0(uiContext,&UNK_1809535b4,8);
+    functionResult = ReadUIData(uiContext,&UNK_1809535b4,8);
     *(undefined4 *)(psVar3 + -2) = functionResult;
-    functionResult = FUN_18070f3e0(uiContext,&UNK_1809535bc,8);
+    functionResult = ReadUIData(uiContext,&UNK_1809535bc,8);
     *(undefined4 *)psVar3 = functionResult;
     psVar3 = psVar3 + 6;
     lVar4 = lVar4 + -1;
@@ -91648,36 +91816,36 @@ void FUN_180722910(longlong uiContext,undefined8 dataSource,int targetBuffer,int
   
   uStack_48 = XorEncryptionKey ^ (ulonglong)auStack_98;
   if ((bufferSize == 0) && (*(int *)(bufferData + 0x970 + (longlong)targetBuffer * 4) == 0)) {
-    iVar4 = FUN_18070f3e0(dataSource,&UNK_1809535ec,8);
+    iVar4 = ReadUIData(dataSource,&UNK_1809535ec,8);
   }
   else {
-    iVar4 = FUN_18070f3e0(dataSource,&UNK_1809535e8,8);
+    iVar4 = ReadUIData(dataSource,&UNK_1809535e8,8);
     iVar4 = iVar4 + 2;
   }
   cVar2 = (char)(iVar4 >> 1);
   *(char *)(uiContext + 0xae5) = cVar2;
   *(byte *)(uiContext + 0xae6) = (byte)iVar4 & 1;
   if (resultPointer == 2) {
-    functionResult = FUN_18070f3e0(dataSource,&UNK_180954788,8);
+    functionResult = ReadUIData(dataSource,&UNK_180954788,8);
     *(undefined1 *)(uiContext + 0xac8) = functionResult;
   }
   else {
-    cVar2 = FUN_18070f3e0(dataSource,&UNK_180954770 + (longlong)cVar2 * 8,8);
+    cVar2 = ReadUIData(dataSource,&UNK_180954770 + (longlong)cVar2 * 8,8);
     *(char *)(uiContext + 0xac8) = cVar2 << 3;
-    cVar2 = FUN_18070f3e0(dataSource,&UNK_1809535d8,8);
+    cVar2 = ReadUIData(dataSource,&UNK_1809535d8,8);
     *(char *)(uiContext + 0xac8) = *(char *)(uiContext + 0xac8) + cVar2;
   }
   iVar4 = 1;
   if (1 < *(int *)(bufferData + 0x914)) {
     puVar8 = (undefined1 *)(uiContext + 0xac9);
     do {
-      functionResult = FUN_18070f3e0(dataSource,&UNK_180954788,8);
+      functionResult = ReadUIData(dataSource,&UNK_180954788,8);
       *puVar8 = functionResult;
       puVar8 = puVar8 + 1;
       iVar4 = iVar4 + 1;
     } while (iVar4 < *(int *)(bufferData + 0x914));
   }
-  cVar2 = FUN_18070f3e0(dataSource,(longlong)
+  cVar2 = ReadUIData(dataSource,(longlong)
                                 (((int)*(char *)(uiContext + 0xae5) >> 1) *
                                 (int)**(short **)(uiContext + 0xac0)) +
                                 *(longlong *)(*(short **)(uiContext + 0xac0) + 0xc),8);
@@ -91690,13 +91858,13 @@ void FUN_180722910(longlong uiContext,undefined8 dataSource,int targetBuffer,int
     psVar7 = asStack_68;
     pcVar9 = (char *)(uiContext + 0xad1);
     do {
-      iVar5 = FUN_18070f3e0(dataSource,(longlong)*psVar7 + *(longlong *)(lVar6 + 0x30),8);
+      iVar5 = ReadUIData(dataSource,(longlong)*psVar7 + *(longlong *)(lVar6 + 0x30),8);
       if (iVar5 == 0) {
-        iVar5 = FUN_18070f3e0(dataSource,&UNK_1809535cc,8);
+        iVar5 = ReadUIData(dataSource,&UNK_1809535cc,8);
         iVar5 = -iVar5;
       }
       else if (iVar5 == 8) {
-        iVar5 = FUN_18070f3e0(dataSource,&UNK_1809535cc,8);
+        iVar5 = ReadUIData(dataSource,&UNK_1809535cc,8);
         iVar5 = iVar5 + 8;
       }
       iVar4 = iVar4 + 1;
@@ -91707,7 +91875,7 @@ void FUN_180722910(longlong uiContext,undefined8 dataSource,int targetBuffer,int
     } while (iVar4 < *(short *)(lVar6 + 2));
   }
   if (*(int *)(bufferData + 0x914) == 4) {
-    functionResult = FUN_18070f3e0(dataSource,&UNK_180953640,8);
+    functionResult = ReadUIData(dataSource,&UNK_180953640,8);
   }
   else {
     functionResult = 4;
@@ -91715,26 +91883,26 @@ void FUN_180722910(longlong uiContext,undefined8 dataSource,int targetBuffer,int
   *(undefined1 *)(uiContext + 0xae7) = functionResult;
   if (*(char *)(uiContext + 0xae5) == '\x02') {
     if (((resultPointer == 2) && (*(int *)(bufferData + 0x968) == 2)) &&
-       (sVar3 = FUN_18070f3e0(dataSource,&UNK_1809547d8,8), 0 < sVar3)) {
+       (sVar3 = ReadUIData(dataSource,&UNK_1809547d8,8), 0 < sVar3)) {
       sVar3 = *(short *)(uiContext + 0x96c) + -9 + sVar3;
       *(short *)(uiContext + 0xae2) = sVar3;
     }
     else {
-      sVar3 = FUN_18070f3e0(dataSource,&UNK_1809547b8,8);
+      sVar3 = ReadUIData(dataSource,&UNK_1809547b8,8);
       *(short *)(uiContext + 0xae2) = sVar3 * (short)(*(int *)(bufferData + 0x90c) >> 1);
-      sVar3 = FUN_18070f3e0(dataSource,*(undefined8 *)(uiContext + 0x950),8);
+      sVar3 = ReadUIData(dataSource,*(undefined8 *)(uiContext + 0x950),8);
       *(short *)(uiContext + 0xae2) = *(short *)(uiContext + 0xae2) + sVar3;
       sVar3 = *(short *)(uiContext + 0xae2);
     }
     *(short *)(uiContext + 0x96c) = sVar3;
-    functionResult = FUN_18070f3e0(dataSource,*(undefined8 *)(uiContext + 0x958),8);
+    functionResult = ReadUIData(dataSource,*(undefined8 *)(uiContext + 0x958),8);
     *(undefined1 *)(uiContext + 0xae4) = functionResult;
-    functionResult = FUN_18070f3e0(dataSource,&UNK_180954840,8);
+    functionResult = ReadUIData(dataSource,&UNK_180954840,8);
     *(undefined1 *)(uiContext + 0xae8) = functionResult;
     if (0 < *(int *)(bufferData + 0x914)) {
       puVar8 = (undefined1 *)(uiContext + 0xacc);
       do {
-        functionResult = FUN_18070f3e0(dataSource,*(undefined8 *)
+        functionResult = ReadUIData(dataSource,*(undefined8 *)
                                        (&UNK_180954848 + (longlong)*(char *)(uiContext + 0xae8) * 8),8
                              );
         *puVar8 = functionResult;
@@ -91743,7 +91911,7 @@ void FUN_180722910(longlong uiContext,undefined8 dataSource,int targetBuffer,int
       } while (operationResult0 < *(int *)(bufferData + 0x914));
     }
     if (resultPointer == 0) {
-      functionResult = FUN_18070f3e0(dataSource,&UNK_1809535d4,8);
+      functionResult = ReadUIData(dataSource,&UNK_1809535d4,8);
       *(undefined1 *)(uiContext + 0xae9) = functionResult;
     }
     else {
@@ -91751,7 +91919,7 @@ void FUN_180722910(longlong uiContext,undefined8 dataSource,int targetBuffer,int
     }
   }
   *(int *)(bufferData + 0x968) = (int)*(char *)(uiContext + 0xae5);
-  functionResult = FUN_18070f3e0(dataSource,&UNK_1809535b8,8);
+  functionResult = ReadUIData(dataSource,&UNK_1809535b8,8);
   *(undefined1 *)(uiContext + 0xaea) = functionResult;
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(uStack_48 ^ (ulonglong)auStack_98);
@@ -91779,36 +91947,36 @@ void FUN_18072292c(longlong uiContext,undefined8 dataSource,int targetBuffer,int
   int in_stack_000000c0;
   
   if ((bufferSize == 0) && (*(int *)(bufferData + 0x970 + (longlong)targetBuffer * 4) == 0)) {
-    iVar4 = FUN_18070f3e0(dataSource,&UNK_1809535ec,8);
+    iVar4 = ReadUIData(dataSource,&UNK_1809535ec,8);
   }
   else {
-    iVar4 = FUN_18070f3e0(dataSource,&UNK_1809535e8,8);
+    iVar4 = ReadUIData(dataSource,&UNK_1809535e8,8);
     iVar4 = iVar4 + 2;
   }
   cVar2 = (char)(iVar4 >> 1);
   *(char *)(uiContext + 0xae5) = cVar2;
   *(byte *)(uiContext + 0xae6) = (byte)iVar4 & 1;
   if (in_stack_000000c0 == 2) {
-    functionResult = FUN_18070f3e0(dataSource,&UNK_180954788,8);
+    functionResult = ReadUIData(dataSource,&UNK_180954788,8);
     *(undefined1 *)(uiContext + 0xac8) = functionResult;
   }
   else {
-    cVar2 = FUN_18070f3e0(dataSource,&UNK_180954770 + (longlong)cVar2 * 8,8);
+    cVar2 = ReadUIData(dataSource,&UNK_180954770 + (longlong)cVar2 * 8,8);
     *(char *)(uiContext + 0xac8) = cVar2 << 3;
-    cVar2 = FUN_18070f3e0(dataSource,&UNK_1809535d8,8);
+    cVar2 = ReadUIData(dataSource,&UNK_1809535d8,8);
     *(char *)(uiContext + 0xac8) = *(char *)(uiContext + 0xac8) + cVar2;
   }
   iVar4 = 1;
   if (1 < *(int *)(bufferData + 0x914)) {
     puVar8 = (undefined1 *)(uiContext + 0xac9);
     do {
-      functionResult = FUN_18070f3e0(dataSource,&UNK_180954788,8);
+      functionResult = ReadUIData(dataSource,&UNK_180954788,8);
       *puVar8 = functionResult;
       puVar8 = puVar8 + 1;
       iVar4 = iVar4 + 1;
     } while (iVar4 < *(int *)(bufferData + 0x914));
   }
-  cVar2 = FUN_18070f3e0(dataSource,(longlong)
+  cVar2 = ReadUIData(dataSource,(longlong)
                                 (((int)*(char *)(uiContext + 0xae5) >> 1) *
                                 (int)**(short **)(uiContext + 0xac0)) +
                                 *(longlong *)(*(short **)(uiContext + 0xac0) + 0xc),8);
@@ -91821,13 +91989,13 @@ void FUN_18072292c(longlong uiContext,undefined8 dataSource,int targetBuffer,int
     psVar7 = (short *)&stack0x00000030;
     pcVar9 = (char *)(uiContext + 0xad1);
     do {
-      iVar5 = FUN_18070f3e0(dataSource,(longlong)*psVar7 + *(longlong *)(lVar6 + 0x30),8);
+      iVar5 = ReadUIData(dataSource,(longlong)*psVar7 + *(longlong *)(lVar6 + 0x30),8);
       if (iVar5 == 0) {
-        iVar5 = FUN_18070f3e0(dataSource,&UNK_1809535cc,8);
+        iVar5 = ReadUIData(dataSource,&UNK_1809535cc,8);
         iVar5 = -iVar5;
       }
       else if (iVar5 == 8) {
-        iVar5 = FUN_18070f3e0(dataSource,&UNK_1809535cc,8);
+        iVar5 = ReadUIData(dataSource,&UNK_1809535cc,8);
         iVar5 = iVar5 + 8;
       }
       iVar4 = iVar4 + 1;
@@ -91838,7 +92006,7 @@ void FUN_18072292c(longlong uiContext,undefined8 dataSource,int targetBuffer,int
     } while (iVar4 < *(short *)(lVar6 + 2));
   }
   if (*(int *)(bufferData + 0x914) == 4) {
-    functionResult = FUN_18070f3e0(dataSource,&UNK_180953640,8);
+    functionResult = ReadUIData(dataSource,&UNK_180953640,8);
   }
   else {
     functionResult = 4;
@@ -91846,26 +92014,26 @@ void FUN_18072292c(longlong uiContext,undefined8 dataSource,int targetBuffer,int
   *(undefined1 *)(uiContext + 0xae7) = functionResult;
   if (*(char *)(uiContext + 0xae5) == '\x02') {
     if (((in_stack_000000c0 == 2) && (*(int *)(bufferData + 0x968) == 2)) &&
-       (sVar3 = FUN_18070f3e0(dataSource,&UNK_1809547d8,8), 0 < sVar3)) {
+       (sVar3 = ReadUIData(dataSource,&UNK_1809547d8,8), 0 < sVar3)) {
       sVar3 = *(short *)(uiContext + 0x96c) + -9 + sVar3;
       *(short *)(uiContext + 0xae2) = sVar3;
     }
     else {
-      sVar3 = FUN_18070f3e0(dataSource,&UNK_1809547b8,8);
+      sVar3 = ReadUIData(dataSource,&UNK_1809547b8,8);
       *(short *)(uiContext + 0xae2) = sVar3 * (short)(*(int *)(bufferData + 0x90c) >> 1);
-      sVar3 = FUN_18070f3e0(dataSource,*(undefined8 *)(uiContext + 0x950),8);
+      sVar3 = ReadUIData(dataSource,*(undefined8 *)(uiContext + 0x950),8);
       *(short *)(uiContext + 0xae2) = *(short *)(uiContext + 0xae2) + sVar3;
       sVar3 = *(short *)(uiContext + 0xae2);
     }
     *(short *)(uiContext + 0x96c) = sVar3;
-    functionResult = FUN_18070f3e0(dataSource,*(undefined8 *)(uiContext + 0x958),8);
+    functionResult = ReadUIData(dataSource,*(undefined8 *)(uiContext + 0x958),8);
     *(undefined1 *)(uiContext + 0xae4) = functionResult;
-    functionResult = FUN_18070f3e0(dataSource,&UNK_180954840,8);
+    functionResult = ReadUIData(dataSource,&UNK_180954840,8);
     *(undefined1 *)(uiContext + 0xae8) = functionResult;
     if (0 < *(int *)(bufferData + 0x914)) {
       puVar8 = (undefined1 *)(uiContext + 0xacc);
       do {
-        functionResult = FUN_18070f3e0(dataSource,*(undefined8 *)
+        functionResult = ReadUIData(dataSource,*(undefined8 *)
                                        (&UNK_180954848 + (longlong)*(char *)(uiContext + 0xae8) * 8),8
                              );
         *puVar8 = functionResult;
@@ -91874,7 +92042,7 @@ void FUN_18072292c(longlong uiContext,undefined8 dataSource,int targetBuffer,int
       } while (operationResult0 < *(int *)(bufferData + 0x914));
     }
     if (in_stack_000000c0 == 0) {
-      functionResult = FUN_18070f3e0(dataSource,&UNK_1809535d4,8);
+      functionResult = ReadUIData(dataSource,&UNK_1809535d4,8);
       *(undefined1 *)(uiContext + 0xae9) = functionResult;
     }
     else {
@@ -91882,7 +92050,7 @@ void FUN_18072292c(longlong uiContext,undefined8 dataSource,int targetBuffer,int
     }
   }
   *(int *)(bufferData + 0x968) = (int)*(char *)(uiContext + 0xae5);
-  functionResult = FUN_18070f3e0(dataSource,&UNK_1809535b8,8);
+  functionResult = ReadUIData(dataSource,&UNK_1809535b8,8);
   *(undefined1 *)(uiContext + 0xaea) = functionResult;
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -91908,13 +92076,13 @@ void FUN_180722aa9(void)
   
   pcVar5 = (char *)(context + 0xad1);
   do {
-    iVar3 = FUN_18070f3e0();
+    iVar3 = ReadUIData();
     if (iVar3 == 0) {
-      iVar3 = FUN_18070f3e0();
+      iVar3 = ReadUIData();
       iVar3 = -iVar3;
     }
     else if (iVar3 == 8) {
-      iVar3 = FUN_18070f3e0();
+      iVar3 = ReadUIData();
       iVar3 = iVar3 + 8;
     }
     unaff_EBP = unaff_EBP + 1;
@@ -91922,7 +92090,7 @@ void FUN_180722aa9(void)
     pcVar5 = pcVar5 + 1;
   } while (unaff_EBP < *(short *)(*(longlong *)(context + 0xac0) + 2));
   if (*(int *)(context + 0x914) == 4) {
-    functionResult = FUN_18070f3e0();
+    functionResult = ReadUIData();
   }
   else {
     functionResult = 4;
@@ -91930,35 +92098,35 @@ void FUN_180722aa9(void)
   *(undefined1 *)(context + 0xae7) = functionResult;
   if (*(char *)(context + 0xae5) != '\x02') goto LAB_180722ca8;
   if ((unaff_R12D == 2) && (*(int *)(context + 0x968) == 2)) {
-    sVar2 = FUN_18070f3e0();
+    sVar2 = ReadUIData();
     if (sVar2 < 1) goto LAB_180722ba9;
     sVar2 = *(short *)(context + 0x96c) + -9 + sVar2;
     *(short *)(context + 0xae2) = sVar2;
   }
   else {
 LAB_180722ba9:
-    sVar2 = FUN_18070f3e0();
+    sVar2 = ReadUIData();
     *(short *)(context + 0xae2) = sVar2 * (short)(*(int *)(context + 0x90c) >> 1);
-    sVar2 = FUN_18070f3e0();
+    sVar2 = ReadUIData();
     *(short *)(context + 0xae2) = *(short *)(context + 0xae2) + sVar2;
     sVar2 = *(short *)(context + 0xae2);
   }
   *(short *)(context + 0x96c) = sVar2;
-  functionResult = FUN_18070f3e0();
+  functionResult = ReadUIData();
   *(undefined1 *)(context + 0xae4) = functionResult;
-  functionResult = FUN_18070f3e0();
+  functionResult = ReadUIData();
   *(undefined1 *)(context + 0xae8) = functionResult;
   if (unaff_R15D < *(int *)(context + 0x914)) {
     bufferPtr = (undefined1 *)(context + 0xacc);
     do {
-      functionResult = FUN_18070f3e0();
+      functionResult = ReadUIData();
       *bufferPtr = functionResult;
       bufferPtr = bufferPtr + 1;
       unaff_R15D = unaff_R15D + 1;
     } while (unaff_R15D < *(int *)(context + 0x914));
   }
   if (unaff_R12D == 0) {
-    functionResult = FUN_18070f3e0();
+    functionResult = ReadUIData();
     *(undefined1 *)(context + 0xae9) = functionResult;
   }
   else {
@@ -91966,7 +92134,7 @@ LAB_180722ba9:
   }
 LAB_180722ca8:
   *(int *)(context + 0x968) = (int)*(char *)(context + 0xae5);
-  functionResult = FUN_18070f3e0();
+  functionResult = ReadUIData();
   *(undefined1 *)(context + 0xaea) = functionResult;
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -91988,7 +92156,7 @@ void FUN_180722b2d(void)
   ulonglong in_stack_00000050;
   
   if (*(int *)(context + 0x914) == 4) {
-    functionResult = FUN_18070f3e0();
+    functionResult = ReadUIData();
   }
   else {
     functionResult = 4;
@@ -91996,35 +92164,35 @@ void FUN_180722b2d(void)
   *(undefined1 *)(context + 0xae7) = functionResult;
   if (*(char *)(context + 0xae5) != '\x02') goto LAB_180722ca8;
   if ((unaff_R12D == 2) && (*(int *)(context + 0x968) == 2)) {
-    sVar2 = FUN_18070f3e0();
+    sVar2 = ReadUIData();
     if (sVar2 < 1) goto LAB_180722ba9;
     sVar2 = *(short *)(context + 0x96c) + -9 + sVar2;
     *(short *)(context + 0xae2) = sVar2;
   }
   else {
 LAB_180722ba9:
-    sVar2 = FUN_18070f3e0();
+    sVar2 = ReadUIData();
     *(short *)(context + 0xae2) = sVar2 * (short)(*(int *)(context + 0x90c) >> 1);
-    sVar2 = FUN_18070f3e0();
+    sVar2 = ReadUIData();
     *(short *)(context + 0xae2) = *(short *)(context + 0xae2) + sVar2;
     sVar2 = *(short *)(context + 0xae2);
   }
   *(short *)(context + 0x96c) = sVar2;
-  functionResult = FUN_18070f3e0();
+  functionResult = ReadUIData();
   *(undefined1 *)(context + 0xae4) = functionResult;
-  functionResult = FUN_18070f3e0();
+  functionResult = ReadUIData();
   *(undefined1 *)(context + 0xae8) = functionResult;
   if (unaff_R15D < *(int *)(context + 0x914)) {
     puVar3 = (undefined1 *)(context + 0xacc);
     do {
-      functionResult = FUN_18070f3e0();
+      functionResult = ReadUIData();
       *puVar3 = functionResult;
       puVar3 = puVar3 + 1;
       unaff_R15D = unaff_R15D + 1;
     } while (unaff_R15D < *(int *)(context + 0x914));
   }
   if (unaff_R12D == 0) {
-    functionResult = FUN_18070f3e0();
+    functionResult = ReadUIData();
     *(undefined1 *)(context + 0xae9) = functionResult;
   }
   else {
@@ -92032,7 +92200,7 @@ LAB_180722ba9:
   }
 LAB_180722ca8:
   *(int *)(context + 0x968) = (int)*(char *)(context + 0xae5);
-  functionResult = FUN_18070f3e0();
+  functionResult = ReadUIData();
   *(undefined1 *)(context + 0xaea) = functionResult;
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -92053,39 +92221,39 @@ void FUN_180722b3e(void)
   int unaff_R15D;
   ulonglong in_stack_00000050;
   
-  functionResult = FUN_18070f3e0();
+  functionResult = ReadUIData();
   *(undefined1 *)(context + 0xae7) = functionResult;
   if (*(char *)(context + 0xae5) != '\x02') goto LAB_180722ca8;
   if ((unaff_R12D == 2) && (*(int *)(context + 0x968) == 2)) {
-    sVar2 = FUN_18070f3e0();
+    sVar2 = ReadUIData();
     if (sVar2 < 1) goto LAB_180722ba9;
     sVar2 = *(short *)(context + 0x96c) + -9 + sVar2;
     *(short *)(context + 0xae2) = sVar2;
   }
   else {
 LAB_180722ba9:
-    sVar2 = FUN_18070f3e0();
+    sVar2 = ReadUIData();
     *(short *)(context + 0xae2) = sVar2 * (short)(*(int *)(context + 0x90c) >> 1);
-    sVar2 = FUN_18070f3e0();
+    sVar2 = ReadUIData();
     *(short *)(context + 0xae2) = *(short *)(context + 0xae2) + sVar2;
     sVar2 = *(short *)(context + 0xae2);
   }
   *(short *)(context + 0x96c) = sVar2;
-  functionResult = FUN_18070f3e0();
+  functionResult = ReadUIData();
   *(undefined1 *)(context + 0xae4) = functionResult;
-  functionResult = FUN_18070f3e0();
+  functionResult = ReadUIData();
   *(undefined1 *)(context + 0xae8) = functionResult;
   if (unaff_R15D < *(int *)(context + 0x914)) {
     puVar3 = (undefined1 *)(context + 0xacc);
     do {
-      functionResult = FUN_18070f3e0();
+      functionResult = ReadUIData();
       *puVar3 = functionResult;
       puVar3 = puVar3 + 1;
       unaff_R15D = unaff_R15D + 1;
     } while (unaff_R15D < *(int *)(context + 0x914));
   }
   if (unaff_R12D == 0) {
-    functionResult = FUN_18070f3e0();
+    functionResult = ReadUIData();
     *(undefined1 *)(context + 0xae9) = functionResult;
   }
   else {
@@ -92093,7 +92261,7 @@ LAB_180722ba9:
   }
 LAB_180722ca8:
   *(int *)(context + 0x968) = (int)*(char *)(context + 0xae5);
-  functionResult = FUN_18070f3e0();
+  functionResult = ReadUIData();
   *(undefined1 *)(context + 0xaea) = functionResult;
                     // WARNING: Subroutine does not return
   ExecuteUIRenderTask(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -92145,20 +92313,20 @@ void FUN_180722cf0(undefined8 uiContext,longlong dataSource,int targetBuffer,und
   uStack_114 = bufferSize;
   iStack_110 = targetBuffer;
   lStack_108 = dataSource;
-  iVar3 = FUN_18070f3e0(uiContext,&UNK_1809543d8 + ((longlong)targetBuffer >> 1) * 9,8);
+  iVar3 = ReadUIData(uiContext,&UNK_1809543d8 + ((longlong)targetBuffer >> 1) * 9,8);
   functionResult4 = 0;
   uVar8 = functionResult5;
   functionResult0 = functionResult4;
   if (0 < (int)functionResult3) {
     do {
       *(undefined4 *)((longlong)auStack_a8 + functionResult0) = 0;
-      iVar4 = FUN_18070f3e0(uiContext,&UNK_180954320 + (longlong)iVar3 * 0x12,8);
+      iVar4 = ReadUIData(uiContext,&UNK_180954320 + (longlong)iVar3 * 0x12,8);
       *(int *)((longlong)auStack_f8 + functionResult0) = iVar4;
       uVar7 = functionResult4;
       if (iVar4 == 0x11) {
         do {
           uVar5 = (int)uVar7 + 1;
-          iVar4 = FUN_18070f3e0(uiContext,&UNK_1809543c2 + (uVar5 == 10),8);
+          iVar4 = ReadUIData(uiContext,&UNK_1809543c2 + (uVar5 == 10),8);
           *(int *)((longlong)auStack_f8 + functionResult0) = iVar4;
           uVar7 = (ulonglong)uVar5;
         } while (iVar4 == 0x11);
@@ -92199,7 +92367,7 @@ void FUN_180722cf0(undefined8 uiContext,longlong dataSource,int targetBuffer,und
             uVar8 = (ulonglong)functionResult3;
             if (0 < (int)functionResult3) {
               do {
-                sVar2 = FUN_18070f3e0(uiContext,&UNK_1809535b0,8);
+                sVar2 = ReadUIData(uiContext,&UNK_1809535b0,8);
                 sVar6 = sVar2 + sVar6 * 2;
                 uVar8 = uVar8 - 1;
               } while (uVar8 != 0);
@@ -93349,7 +93517,7 @@ void FUN_180724090(undefined8 uiContext,longlong dataSource,int targetBuffer,sho
                     [(ulonglong)functionResult + (longlong)((short)(bufferSize * 2 + resultPointer) * 7)];
         do {
           if (0 < *(short *)(dataSource + lVar4 * 2)) {
-            sVar2 = FUN_18070f3e0(uiContext,&uStack_28,8);
+            sVar2 = ReadUIData(uiContext,&uStack_28,8);
             *(short *)(dataSource + lVar4 * 2) = *(short *)(dataSource + lVar4 * 2) * (sVar2 * 2 + -1);
           }
           lVar4 = lVar4 + 1;
@@ -93382,7 +93550,7 @@ void FUN_1807240d8(void)
       lVar2 = 0;
       do {
         if (0 < *(short *)(unaff_RDI + lVar2 * 2)) {
-          sVar1 = FUN_18070f3e0();
+          sVar1 = ReadUIData();
           *(short *)(unaff_RDI + lVar2 * 2) = *(short *)(unaff_RDI + lVar2 * 2) * (sVar1 * 2 + -1);
         }
         lVar2 = lVar2 + 1;
@@ -93510,13 +93678,13 @@ LAB_180724308:
     sVar1 = 0;
   }
   else {
-    sVar1 = FUN_18070f3e0(dataSource,&UNK_180954690 + (byte)(&UNK_180954728)[targetBuffer],8);
+    sVar1 = ReadUIData(dataSource,&UNK_180954690 + (byte)(&UNK_180954728)[targetBuffer],8);
     sVar4 = (short)targetBuffer - sVar1;
     if (sVar1 < 1) goto LAB_180724308;
-    sVar2 = FUN_18070f3e0(dataSource,&UNK_1809545f0 + (byte)(&UNK_180954728)[sVar1],8);
+    sVar2 = ReadUIData(dataSource,&UNK_1809545f0 + (byte)(&UNK_180954728)[sVar1],8);
     sVar3 = sVar1 - sVar2;
     if (sVar2 < 1) goto LAB_180724308;
-    sVar1 = FUN_18070f3e0(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar2],8);
+    sVar1 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar2],8);
     sVar5 = sVar2 - sVar1;
   }
   if (sVar1 < 1) {
@@ -93524,7 +93692,7 @@ LAB_180724308:
     sVar2 = 0;
   }
   else {
-    sVar2 = FUN_18070f3e0(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar1],8);
+    sVar2 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar1],8);
     sVar1 = sVar1 - sVar2;
   }
   *uiContext = sVar2;
@@ -93534,7 +93702,7 @@ LAB_180724308:
     sVar1 = 0;
   }
   else {
-    sVar1 = FUN_18070f3e0(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar5],8);
+    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar5],8);
     sVar5 = sVar5 - sVar1;
   }
   uiContext[2] = sVar1;
@@ -93544,7 +93712,7 @@ LAB_180724308:
     sVar5 = 0;
   }
   else {
-    sVar5 = FUN_18070f3e0(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar3],8);
+    sVar5 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar3],8);
     sVar3 = sVar3 - sVar5;
   }
   if (sVar5 < 1) {
@@ -93552,7 +93720,7 @@ LAB_180724308:
     sVar1 = 0;
   }
   else {
-    sVar1 = FUN_18070f3e0(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar5],8);
+    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar5],8);
     sVar5 = sVar5 - sVar1;
   }
   uiContext[4] = sVar1;
@@ -93562,7 +93730,7 @@ LAB_180724308:
     sVar5 = 0;
   }
   else {
-    sVar5 = FUN_18070f3e0(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar3],8);
+    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar3],8);
     sVar3 = sVar3 - sVar5;
   }
   uiContext[6] = sVar5;
@@ -93571,10 +93739,10 @@ LAB_180724308:
     sVar4 = 0;
   }
   else {
-    sVar3 = FUN_18070f3e0(dataSource,&UNK_1809545f0 + (byte)(&UNK_180954728)[sVar4],8);
+    sVar3 = ReadUIData(dataSource,&UNK_1809545f0 + (byte)(&UNK_180954728)[sVar4],8);
     sVar4 = sVar4 - sVar3;
     if (0 < sVar3) {
-      sVar5 = FUN_18070f3e0(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar3],8);
+      sVar5 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar3],8);
       sVar3 = sVar3 - sVar5;
       goto LAB_180724486;
     }
@@ -93587,7 +93755,7 @@ LAB_180724486:
     sVar1 = 0;
   }
   else {
-    sVar1 = FUN_18070f3e0(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar5],8);
+    sVar1 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar5],8);
     sVar5 = sVar5 - sVar1;
   }
   uiContext[8] = sVar1;
@@ -93597,7 +93765,7 @@ LAB_180724486:
     sVar5 = 0;
   }
   else {
-    sVar5 = FUN_18070f3e0(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar3],8);
+    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar3],8);
     sVar3 = sVar3 - sVar5;
   }
   uiContext[10] = sVar5;
@@ -93607,7 +93775,7 @@ LAB_180724486:
     sVar3 = 0;
   }
   else {
-    sVar3 = FUN_18070f3e0(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar4],8);
+    sVar3 = ReadUIData(dataSource,&UNK_180954550 + (byte)(&UNK_180954728)[sVar4],8);
     sVar4 = sVar4 - sVar3;
   }
   if (sVar3 < 1) {
@@ -93615,7 +93783,7 @@ LAB_180724486:
     sVar5 = 0;
   }
   else {
-    sVar5 = FUN_18070f3e0(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar3],8);
+    sVar5 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar3],8);
     sVar3 = sVar3 - sVar5;
   }
   uiContext[0xc] = sVar5;
@@ -93625,7 +93793,7 @@ LAB_180724486:
     uiContext[0xf] = 0;
   }
   else {
-    sVar3 = FUN_18070f3e0(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar4],8);
+    sVar3 = ReadUIData(dataSource,&UNK_1809544b0 + (byte)(&UNK_180954728)[sVar4],8);
     uiContext[0xe] = sVar3;
     uiContext[0xf] = sVar4 - sVar3;
   }
