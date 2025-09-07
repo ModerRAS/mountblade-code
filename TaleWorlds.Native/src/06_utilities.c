@@ -105039,8 +105039,8 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 
 // 栈变量宏定义 - 美化更多栈变量
 // 原始变量名：uStack_1c8 - 栈数据字A
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordA uStack_1c8
+// 功能：存储系统资源分配的基础数据字
+#define StackResourceAllocationBase uStack_1c8
 
 // 原始变量名：acStack_1c4 - 栈字符缓冲区A
 // 功能：存储字符数据的栈缓冲区
@@ -105051,12 +105051,12 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define StackPointerBufferA puStack_1c0
 
 // 原始变量名：StackDataWordB - 栈数据字B
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordB StackDataWordB
+// 功能：存储异常处理的上下文数据字
+#define StackExceptionHandlerContext StackDataWordB
 
 // 原始变量名：uStack_1b0 - 栈数据字C
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordC uStack_1b0
+// 功能：存储数据处理的临时存储数据字
+#define StackDataProcessingTemp uStack_1b0
 
 // 原始变量名：StackFloatValueA - 栈浮点值A
 // 功能：存储浮点运算的栈值
@@ -105067,8 +105067,8 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define StackFloatValueB StackFloatValueB
 
 // 原始变量名：uStack_1a0 - 栈数据字D
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordD uStack_1a0
+// 功能：存储资源清理的状态数据字
+#define StackResourceCleanupStatus uStack_1a0
 
 // 原始变量名：StackFloatValueC - 栈浮点值C
 // 功能：存储浮点运算的栈值
@@ -105155,15 +105155,15 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 
 // 原始变量名：uStack_170 - 栈数据字E
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordE uStack_170
+#define StackDataValidationTemp uStack_170
 
 // 原始变量名：uStack_168 - 栈数据字F
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordF uStack_168
+// 功能：存储数据处理的辅助数据字
+#define StackDataProcessingAux uStack_168
 
 // 原始变量名：uStack_160 - 栈数据字G
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordG uStack_160
+// 功能：存储数据验证的主数据字
+#define StackDataValidationMain uStack_160
 
 // 原始变量名：StackPointerBufferD - 栈指针缓冲区D
 // 功能：存储指针数据的栈缓冲区
@@ -105182,8 +105182,8 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define StackDataWordArrayV aStackDataWordV
 
 // 原始变量名：uStack_150 - 栈数据字H
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordH uStack_150
+// 功能：存储系统状态的存储数据字
+#define StackSystemStatusStorage uStack_150
 
 // 原始变量名：uStack_148 - 栈数据字I
 // 功能：存储数据处理过程中的临时数据字
