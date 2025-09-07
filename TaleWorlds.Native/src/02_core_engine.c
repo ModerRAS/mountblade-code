@@ -153462,7 +153462,7 @@ void ProcessSystemConfigurationUpdate(void
       fStack_4c = SystemContextPrimaryFloat2;
       ProcessSystemDataTableAndFloatValue(SystemDataTablePointer,&PrimaryFloatValue);
       SystemDataTablePointer = *(long long *)(MutexLockResult + 2);
-      FUN_1801293e0(&PrimaryScalingFactor,SystemDataTablePointer,0);
+      ProcessSystemData(&PrimaryScalingFactor,SystemDataTablePointer,0);
       PrimaryScalingFactor = *(float *)(SystemDataTablePointer + 0x8c) - PrimaryScalingFactor;
       SecondaryScalingFactor = *(float *)(SystemDataTablePointer + 0x90) - SecondaryScalingFactor;
       MutexLockResult[7] = (int)(PrimaryScalingFactor + (float)MutexLockResult[7]);
@@ -153546,7 +153546,7 @@ void ConvertUtf8ToUtf16Encoding1EB(long long CharacterCode,uint64_t Utf8BufferSi
   fStack000000000000002c = ContextPrimaryFloat1;
   ConvertUtf8ToUtf16(CharacterCode,Utf8BufferSize,Utf8SourcePointer,Utf16EndPointer,NormalizedParameterValue);
   MemoryPoolBlockSize = *(long long *)(SystemRegisterR10 + 2);
-  FUN_1801293e0(&stack0x00000080,MemoryPoolBlockSize,0);
+  ProcessSystemData(&stack0x00000080,MemoryPoolBlockSize,0);
   ProcessedFloatValue8 = *(float *)(MemoryPoolBlockSize + 0x8c) - fStack0000000000000080;
   fStack0000000000000084 = *(float *)(MemoryPoolBlockSize + 0x90) - fStack0000000000000084;
   SystemRegisterR10[7] = ProcessedFloatValue8 + (float)SystemRegisterR10[7];
