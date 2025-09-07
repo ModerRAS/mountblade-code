@@ -148968,7 +148968,7 @@ LAB_1801308eb:
     TemporaryBuffer = *(uint32_t **)(CharacterCode + 0x28);
     if (TemporaryBuffer != (uint32_t *)0x0) {
       if ((CharacterCode == *(long long *)(TemporaryBuffer + 0x1e)) && (*(int *)(AllocatedMemorySize + 0x1b2c) == 0)) {
-        FUN_18012fbd0(extraout_XMM0_Qa,**(uint64_t **)(AllocatedMemorySize + 0x1c70));
+        ConfigureSystemEx(extraout_XMM0_Qa,**(uint64_t **)(AllocatedMemorySize + 0x1c70));
         TemporaryBuffer = *(uint32_t **)(CharacterCode + 0x28);
       }
       goto LAB_180130c8e;
@@ -149000,7 +149000,7 @@ LAB_180130c8e:
       }
       if ((((*(uint *)(CharacterCode + 0xc) & 0x20000000) == 0) ||
           (*(int *)(AllocatedMemorySize + 0x1a90) <= (int)TemporaryBuffer[0x15])) || (!LowByte)) {
-        CharacterValidationResult = FUN_18012fbd0(CharacterCode,**(uint64_t **)(AllocatedMemorySize + 0x1c70));
+        CharacterValidationResult = ConfigureSystemEx(CharacterCode,**(uint64_t **)(AllocatedMemorySize + 0x1c70));
         if (CharacterValidationResult == '\0') {
           ProcessingStatusFlag = ProcessUtf8ToUtf16CharacterEncoding(CharacterCode,*(uint32_t *)(CharacterCode + 8),CharacterCode + 0x40,CharacterCode + 0x48,4
                                );
