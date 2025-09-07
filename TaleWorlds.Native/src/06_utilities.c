@@ -119536,20 +119536,40 @@ uint8_t SystemExceptionHandlerStateTable;
  */
 #define ExecuteSystemExitA0 Unwind_1809098b0
 
-// 原始函数名：Unwind_1809098c0 - 系统中止处理函数A0
-// 功能：处理系统中止操作，包括系统中止和清理
+/**
+ * @brief 系统中止处理函数A0
+ * 
+ * 处理系统中止操作，包括系统中止和清理
+ * 
+ * @note 原始函数名：Unwind_1809098c0
+ */
 #define ProcessSystemAbortA0 Unwind_1809098c0
 
-// 原始函数名：Unwind_1809098d0 - 系统中止执行函数A0
-// 功能：执行系统中止操作，处理系统中止流程
+/**
+ * @brief 系统中止执行函数A0
+ * 
+ * 执行系统中止操作，处理系统中止流程
+ * 
+ * @note 原始函数名：Unwind_1809098d0
+ */
 #define ExecuteSystemAbortA0 Unwind_1809098d0
 
-// 原始函数名：Unwind_1809098d0 - 系统内存清理函数A0
-// 功能：清理系统内存，释放内存资源
-#define CleanupSystemMemoryA0 Unwind_1809098d0
+/**
+ * @brief 系统内存清理函数A0
+ * 
+ * 清理系统内存，释放内存资源
+ * 
+ * @note 原始函数名：Unwind_1809098e0
+ */
+#define CleanupSystemMemoryA0 Unwind_1809098e0
 
-// 原始函数名：Unwind_180909900 - 系统状态重置函数A0
-// 功能：重置系统状态，恢复到初始状态
+/**
+ * @brief 系统状态重置函数A0
+ * 
+ * 重置系统状态，恢复到初始状态
+ * 
+ * @note 原始函数名：Unwind_180909900
+ */
 #define ResetSystemStateA0 Unwind_180909900
 
 // 原始函数名：Unwind_180909930 - 系统完整性验证函数A0
