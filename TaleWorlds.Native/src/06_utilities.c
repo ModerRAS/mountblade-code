@@ -41088,7 +41088,7 @@ void CleanupFunctionFrameOnException(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_CleanupCallFrame(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupCallFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -51003,17 +51003,18 @@ void CleanupResourceReferenceCount9e0(DataBuffer operationBase,int64_t dataBuffe
 
 
 /**
- * @brief 清理资源引用计数9f0
+ * @brief 清理资源引用计数
  * 
  * 该函数负责清理资源的引用计数，管理内存块的释放，
- * 并处理异常情况下的资源清理。
+ * 并处理异常情况下的资源清理。它会检查资源指针的有效性，
+ * 计算内存偏移量，并在引用计数归零时调用异常处理函数。
  * 
  * @param operationBase 操作基础数据缓冲区
  * @param dataBuffer 数据缓冲区指针，包含资源管理信息
  * 
  * @note 原始函数名：Unwind_1809049f0
  */
-void CleanupResourceReferenceCount9f0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
