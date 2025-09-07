@@ -21517,10 +21517,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               StackDataBufferB = *(DataBuffer *)(dataContext + 0x40);
               TemporaryDataWordJ = *(DataWord *)(dataContext + 0x48);
               TemporaryDataWordK = *(DataWord *)(dataContext + 0x4c);
-              StackDataWordL = *(DataWord *)(dataContext + 0x50);
+              TemporaryDataWordL = *(DataWord *)(dataContext + 0x50);
               DataContextOffset54Data = *(DataWord *)(dataContext + 0x54);
               StackPointerBufferD = &SystemSecurityCheckReference;
-              StackDataWordH = 0;
+              TemporaryDataWordH = 0;
               DataContextOffset58Data = *(DataWord *)(dataContext + 0x58);
               DataContextOffset5CData = *(DataWord *)(dataContext + 0x5c);
               DataContextOffset60Data = *(DataWord *)(dataContext + 0x60);
