@@ -69966,7 +69966,20 @@ void SystemValidationAndExceptionHandlerD1(DataBuffer operationBase, int64_t dat
 
 
 
-void Unwind_180908180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统参数验证处理函数
+ * 
+ * 该函数负责验证系统参数的有效性，处理系统配置相关的验证操作。
+ * 它会检查系统参数的完整性，并在参数无效时进行相应的处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180908180
+ */
+void ValidateSystemParametersWithCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x60) + 0x30,
@@ -69977,7 +69990,20 @@ void Unwind_180908180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180908190(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区处理函数
+ * 
+ * 该函数负责处理异常数据缓冲区的操作，包括异常数据的验证和清理。
+ * 它会检查异常数据缓冲区的有效性，并在必要时进行系统终止操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180908190
+ */
+void ProcessExceptionDataBuffer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
