@@ -106352,9 +106352,10 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define SystemValidationTableA0 UNK_180986390
 #define ValidationStatusTableA0 UNK_180986940
 
-// 系统数据表宏定义 - 美化DAT_变量
+// 系统验证基准常量定义
 #define SystemValidationBaseConstantA0 DAT_180c4eaa0
 #define SystemValidationBaseConstantA1 DAT_180c4eaa4
+// 系统资源管理表定义
 #define SystemResourceIteratorTable _DAT_180c86938
 #define SystemFunctionPointerTable _DAT_180c86968
 #define SystemInputParameterTable _DAT_180c82868
