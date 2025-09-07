@@ -179908,7 +179908,7 @@ long long * FUN_18014fe60(long long CharacterCode,long long Utf8BufferSize,long 
             MemoryBoundaryEnd = ProcessBufferStatus(SystemDataStructureRegistry,MemoryBoundaryEnd,MemoryPoolBlockSizePointer[4]);
           }
           else {
-            MemoryBoundaryEnd = FUN_180082a50(BufferStatus,MemoryBoundaryEnd);
+            MemoryBoundaryEnd = ProcessBufferStatus(BufferStatus,MemoryBoundaryEnd);
           }
           MemoryPoolBlockSizePointer[4] = MemoryBoundaryEnd;
         }
@@ -180095,7 +180095,7 @@ long long * FUN_18014fe9c(long long CharacterCode,uint64_t Utf8BufferSize,long l
           MemoryBoundaryEnd = ProcessBufferStatus(SystemDataStructureRegistry,MemoryBoundaryEnd,MemoryPoolBlockSizePointer[4]);
         }
         else {
-          MemoryBoundaryEnd = FUN_180082a50(BufferStatus,MemoryBoundaryEnd);
+          MemoryBoundaryEnd = ProcessBufferStatus(BufferStatus,MemoryBoundaryEnd);
         }
         MemoryPoolBlockSizePointer[4] = MemoryBoundaryEnd;
       }
