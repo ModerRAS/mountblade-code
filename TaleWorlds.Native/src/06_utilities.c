@@ -9575,7 +9575,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
         if (contextDataPtr == (int64_t *)0x0) {
           resourceInfoPtr = (int64_t *)MODULE_VALIDATION_OFFSET;
         }
-        *(int64_t *)(moduleDataPtr[4] + 8 + (int64_t)componentDataPtr) = *resourceInfoPtr;
+        *(int64_t *)(moduleDataPtr[4] + SystemContextOffset + (int64_t)componentDataPtr) = *resourceInfoPtr;
         if (contextDataPtr == validationContextPtr) break;
         resourceInfoPtr = (int64_t *)(*contextDataPtr + MODULE_RESOURCE_OFFSET);
         if (*contextDataPtr == 0) {
@@ -9585,7 +9585,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
         if (resourceInfoPtr != (int64_t *)0x0) {
           contextDataPtr = resourceInfoPtr + RESOURCE_CONTEXT_OFFSET;
         }
-        componentDataPtr = componentDataPtr + 3;
+        componentDataPtr = componentDataPtr + COMPONENT_DATA_OFFSET;
         componentInfoPtr = (int64_t *)(uint64_t)((int32_t)componentInfoPtr + 1);
       }
       return 0x1c;
