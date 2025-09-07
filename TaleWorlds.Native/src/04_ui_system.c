@@ -9567,9 +9567,9 @@ void UpdateUILayoutEx(longlong *layout_data, longlong *component_data, longlong 
   puVar9 = (undefined8 *)0x0;
   puStack_50 = (undefined8 *)0x0;
   uStack_48 = 3;
-  iVar4 = (int)lVar5;
-  lStackX_8 = (longlong)iVar4;
-  if (iVar4 != 0) {
+  layoutElementCount = (int)lVar5;
+  lStackX_8 = (longlong)layoutElementCount;
+  if (layoutElementCount != 0) {
     puStack_58 = (undefined8 *)
                  CreateUIContext(UIContextManager,lStackX_8 * 8,
                                CONCAT71((int7)(int3)((ulonglong)lVar5 >> 8),3),targetBuffer,
