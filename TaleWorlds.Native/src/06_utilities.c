@@ -18006,31 +18006,34 @@ DataBuffer ValidateAndProcessFloatValue(int64_t dataContext,int64_t operationCon
 uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
 
 {
-  float temperatureValue;
+  float inputValue;
   uint64_t operationResult;
   int64_t memoryBlockOffset;
   int64_t registerContext;
   int64_t systemContext;
-  float pressureValue;
+  float rangeMin;
+  float rangeMax;
   uint32_t operationRangeBuffer;
+  uint32_t stackBuffer;
+  uint32_t stackDataBuffer;
   
   stackBuffer = 0;
-  operationResult = ProcessSystemDataTransferA0(systemContext + 0x60,dataBuffer,&stackDataBuffer);
+  operationResult = ProcessSystemDataTransferA0(systemHandle + 0x60,dataHandle,&stackDataBuffer);
   if ((int)operationResult == 0) {
-    memoryBlockOffset = GetOperationRangeDataA0(systemContext + 0x60,stackBuffer);
+    memoryBlockOffset = GetOperationRangeDataA0(systemHandle + 0x60,stackBuffer);
     if ((*(uint *)(memoryBlockOffset + 0x34) >> 4 & 1) != 0) {
       return ComponentDataValidationFailure;
     }
     inputValue = *(float *)(registerContext + 0x18);
     rangeMin = *(float *)(memoryBlockOffset + 0x38);
-    if ((*(float *)(memoryBlockOffset + 0x38) <= inputValue) &&
-       (rangeMax = *(float *)(memoryBlockOffset + 0x3c), inputValue <= *(float *)(memoryBlockOffset + 0x3c))) {
+    if ((rangeMin <= inputValue) &&
+       (rangeMax = *(float *)(memoryBlockOffset + 0x3c), inputValue <= rangeMax)) {
       rangeMax = inputValue;
     }
     *(float *)(registerContext + 0x18) = rangeMax;
-    operationResult = ValidateOperationRangeA0(systemContext + 0x60,stackBuffer,rangeMax);
+    operationResult = ValidateOperationRangeA0(systemHandle + 0x60,stackBuffer,rangeMax);
     if ((int)operationResult == 0) {
-        CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+        CleanupSystemEventA0(*(DataBuffer *)(systemHandle + 0x98),systemHandle);
     }
   }
   return operationResult;
