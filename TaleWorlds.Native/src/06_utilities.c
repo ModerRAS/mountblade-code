@@ -21018,18 +21018,18 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
       systemDataBuffer1 = (int)*(uint *)((int64_t)hashTable + 0x1c) >> 0x1f;
       operationStatus = (*(uint *)((int64_t)hashTable + 0x1c) ^ systemDataBuffer1) - systemDataBuffer1;
       if (operationStatus < calculatedValue) {
-        inputParameter2 = (int)((float)operationStatus * 1.5);
+        validationParameter2 = (int)((float)operationStatus * 1.5);
         operationStatus = calculatedValue;
-        if (calculatedValue <= inputParameter2) {
-          operationStatus = inputParameter2;
+        if (calculatedValue <= validationParameter2) {
+          operationStatus = validationParameter2;
         }
         if (operationStatus < 4) {
-          inputParameter2 = 4;
+          validationParameter2 = 4;
         }
-        else if (inputParameter2 < calculatedValue) {
-          inputParameter2 = calculatedValue;
+        else if (validationParameter2 < calculatedValue) {
+          validationParameter2 = calculatedValue;
         }
-        operationResult = CheckSystemDataA0(operationBase + 2,inputParameter2);
+        operationResult = CheckSystemDataA0(operationBase + 2,validationParameter2);
         if ((int)operationResult != 0) {
           return operationResult;
         }
@@ -21111,7 +21111,7 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
       else if (primaryInputParameter < iterationCount) {
         primaryInputParameter = iterationCount;
       }
-      memoryRegionBase = CheckSystemDataA0(DestinationContext + 2,inputParameter0);
+      memoryRegionBase = CheckSystemDataA0(DestinationContext + 2,validationParameter0);
       if ((int)memoryRegionBase != 0) {
         return memoryRegionBase;
       }
@@ -21749,12 +21749,12 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
                 return dataFlags;
               }
               loopCounter = (uint64_t)StackMemoryData.lowWord;
-              inputParameter4 = (int)StackMemoryData;
+              validationParameter4 = (int)StackMemoryData;
             }
-            stackUIntBuffer[0] = inputParameter4 + 1;
+            stackUIntBuffer[0] = validationParameter4 + 1;
             dataFlags = (uint64_t)stackUIntBuffer[0];
             StackMemoryData = CONCAT44(StackMemoryData.lowWord,stackUIntBuffer[0]);
-            *(DataWord *)(StackMemoryBuffer + (int64_t)inputParameter4 * 4) = operationResult;
+            *(DataWord *)(StackMemoryBuffer + (int64_t)validationParameter4 * 4) = operationResult;
             exceptionHandlerContextPointer = systemContextPointer;
           }
           arrayIndex = (int)loopCounter;
