@@ -50070,7 +50070,16 @@ void Unwind_180904990(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809049b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 关闭句柄清理函数A
+ * 
+ * 该函数负责关闭指定数据缓冲区中的句柄，清理系统资源
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_1809049b0
+ */
+void CloseHandleCleanupA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   CloseHandle(**(DataBuffer **)(dataBuffer + 0x48));
@@ -60213,7 +60222,7 @@ void CleanupSystemResourceA1(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180906dd0
  */
-void Unwind_180906dd0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupSystemValidationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -69988,7 +69997,22 @@ void Unwind_180909640(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909650(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统组件初始化函数A0
+ * 
+ * 该函数负责初始化系统组件，遍历数据上下文并对每个组件进行初始化。
+ * 主要功能包括：
+ * - 获取异常处理上下文
+ * - 遍历数据上下文
+ * - 初始化系统组件
+ * - 处理异常情况
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180909650
+ */
+void InitializeSystemComponentsA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
