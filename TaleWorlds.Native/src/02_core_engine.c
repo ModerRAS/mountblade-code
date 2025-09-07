@@ -148921,7 +148921,7 @@ LAB_1801308eb:
       ((*(long long *)(CharacterCode + 0x398) == 0 ||
        (MemoryPoolBlockSize = *(long long *)(*(long long *)(CharacterCode + 0x398) + 0x28),
        *(long long *)(CharacterCode + 0x28) = MemoryPoolBlockSize, MemoryPoolBlockSize == 0)))) && (*(int *)(CharacterCode + 0x30) != 0)) {
-    MemoryPoolBlockSize = FUN_18012fb00();
+    MemoryPoolBlockSize = GetSystemMemoryPoolBlockSize();
     *(long long *)(CharacterCode + 0x28) = MemoryPoolBlockSize;
     if (MemoryPoolBlockSize == 0) {
       if ((*(float *)(CharacterCode + 0x34) != 3.4028235e+38) &&
@@ -149078,7 +149078,7 @@ LAB_180130e8e:
 
 
 
-30ae3(uint64_t CharacterCodevoid FUN_180130ae3(uint64_t CharacterCode
+void FUN_180130ae3(uint64_t CharacterCode)
 {
   bool CurrentByteValue;
   bool HighByte;
@@ -149118,7 +149118,7 @@ LAB_180130e8e:
       ((*(long long *)(in_RCX + 0x398) == 0 ||
        (long long AllocatedMemorySize = *(long long *)(*(long long *)(in_RCX + 0x398) + 0x28),
        *(long long *)(in_RCX + 0x28) = AllocatedMemorySize, AllocatedMemorySize == 0)))) && (*(int *)(in_RCX + 0x30) != 0)) {
-    AllocatedMemorySize = FUN_18012fb00();
+    AllocatedMemorySize = GetSystemMemoryPoolBlockSize();
     *(long long *)(SystemContext + 0x28) = AllocatedMemorySize;
     CharacterCode = extraout_XMM0_Qa;
     if (AllocatedMemorySize == 0) {
