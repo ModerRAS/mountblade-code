@@ -48814,7 +48814,7 @@ void Unwind_180905090(DataBuffer operationBase,int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x50) & 1) != 0) {
     *(uint *)(dataBuffer + 0x50) = *(uint *)(dataBuffer + 0x50) & 0xfffffffe;
-    FUN_1800670d0(dataBuffer + 0xd0);
+    ValidateSystemA0(dataBuffer + 0xd0);
   }
   return;
 }
@@ -49798,10 +49798,10 @@ void Unwind_1809054f0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x50);
   *exceptionDataBuffer = &UNK_1809ff498;
-  FUN_18006cb90();
+  InitializeSystemA0();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  FUN_180059ee0(exceptionDataBuffer + 2);
+  ProcessExceptionA0(exceptionDataBuffer + 2);
   if ((int64_t *)exceptionDataBuffer[1] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)exceptionDataBuffer[1] + 0x38))();
   }
