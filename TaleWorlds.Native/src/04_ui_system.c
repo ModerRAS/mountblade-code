@@ -111299,9 +111299,9 @@ ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong
         if (targetBuffer == 0) {
           if ((bufferSize == 0) && (resultPointer == 0)) {
             validationIndex = *(longlong *)(_DAT_180be12f0 + 0x1a0);
-            *(undefined **)(validationIndex + 0x358) = &UNK_180741cf0;
-            *(undefined **)(validationIndex + 0x360) = &UNK_180741d00;
-            *(undefined **)(validationIndex + 0x368) = &UNK_180741ce0;
+            *(undefined **)(validationIndex + 0x358) = &DefaultUIDataBufferA;
+            *(undefined **)(validationIndex + 0x360) = &DefaultUIDataBufferB;
+            *(undefined **)(validationIndex + 0x368) = &DefaultUIDataBufferC;
             return 0;
           }
         }
@@ -122355,9 +122355,9 @@ undefined8 ThunkUIDataProcess(longlong *uiContext)
     colorBufferPointer = colorBufferPointer + 1;
     stringCompareIndex = stringCompareIndex + -1;
   } while (stringCompareIndex != 0);
-  uiContext[0x6b] = (longlong)&UNK_180741cf0;
-  uiContext[0x6c] = (longlong)&UNK_180741d00;
-  uiContext[0x6d] = (longlong)&UNK_180741ce0;
+  uiContext[0x6b] = (longlong)&DefaultUIDataBufferA;
+  uiContext[0x6c] = (longlong)&DefaultUIDataBufferB;
+  uiContext[0x6d] = (longlong)&DefaultUIDataBufferC;
   functionResult = *(uint *)(uiContext + 0x66);
   *uiContext = 0;
   uiContext[1] = 0;
@@ -122544,9 +122544,9 @@ undefined8 FUN_180742070(longlong *uiContext)
     colorBufferPointer = colorBufferPointer + 1;
     stringCompareIndex = stringCompareIndex + -1;
   } while (stringCompareIndex != 0);
-  uiContext[0x6b] = (longlong)&UNK_180741cf0;
-  uiContext[0x6c] = (longlong)&UNK_180741d00;
-  uiContext[0x6d] = (longlong)&UNK_180741ce0;
+  uiContext[0x6b] = (longlong)&DefaultUIDataBufferA;
+  uiContext[0x6c] = (longlong)&DefaultUIDataBufferB;
+  uiContext[0x6d] = (longlong)&DefaultUIDataBufferC;
   functionResult = *(uint *)(uiContext + 0x66);
   *uiContext = 0;
   uiContext[1] = 0;
@@ -127681,7 +127681,7 @@ LAB_1807474ff:
           }
           if ((*(char *)(unaff_RDI + 0x12370) == (char)unaff_RSI) &&
              ((*(byte *)(unaff_RDI + 0x78) & 1) == 0)) {
-            semaphoreHandle = FUN_180767c00(unaff_RDI + 0x12220,&UNK_180958080,&UNK_18078b870);
+            semaphoreHandle = FUN_180767c00(unaff_RDI + 0x12220,&DefaultUISystemData,&DefaultUIResourceManager);
             if (semaphoreHandle != 0) goto LAB_180747287;
             *(undefined1 *)(unaff_RDI + 0x12370) = 1;
           }
