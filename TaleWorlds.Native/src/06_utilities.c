@@ -20164,9 +20164,6 @@ DataBuffer GetSystemConfigurationSize(void)
 
 
 
-// 函数: void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *resultCounter)
-// 功能：处理工具系统数据，包括数据验证、状态更新和内存管理
-// 参数：systemContext-系统上下文指针，dataBuffer-数据缓冲区，resultCounter-结果计数器
 /**
  * @brief 处理工具系统数据
  * 
@@ -20228,22 +20225,24 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
   inputProcessingDataWord = 0;
   memset(securityValidationBufferA, 0, sizeof(securityValidationBufferA));
   memset(dataCopyDestinationBuffer, 0, sizeof(dataCopyDestinationBuffer));
-  if (currentIndex < *(int *)(systemContext + 0x20)) {
-    baseAddress = *(int64_t *)(systemContext + 0x18);
-    arrayOffset = iterationCount * 3;
-    dataPointer = (int64_t)*(int *)(baseAddress + iterationCount * 0xc) + *(int64_t *)(systemContext + 8);
-    dataType = *(char *)(baseAddress + 8 + iterationCount * 0xc);
-    if (dataType == '\x01') {
-      int bufferSize = *(int *)(systemContext + 0xb0);
-      if (currentIndex < bufferSize) {
-        *(int *)(systemContext + 0xac) = currentIndex + 1;
+  // 检查当前索引是否在有效范围内
+  if (currentRecordIndex < *(int *)(systemContext + 0x20)) {
+    systemBaseAddress = *(int64_t *)(systemContext + 0x18);
+    recordArrayOffset = recordIterationCount * 3;
+    recordDataPointer = (int64_t)*(int *)(systemBaseAddress + recordIterationCount * 0xc) + *(int64_t *)(systemContext + 8);
+    recordDataType = *(char *)(systemBaseAddress + 8 + recordIterationCount * 0xc);
+    // 处理浮点数据类型
+    if (recordDataType == '\x01') {
+      int dataBufferSize = *(int *)(systemContext + 0xb0);
+      if (currentRecordIndex < dataBufferSize) {
+        *(int *)(systemContext + 0xac) = currentRecordIndex + 1;
         GOTO_ValidationFailed;
       }
-      float sourceFloatValue = *(float *)(dataPointer + 0x18);
+      float sourceFloatValue = *(float *)(recordDataPointer + 0x18);
       float processedFloatValue = sourceFloatValue;
-      if (bufferSize != -1) {
+      if (dataBufferSize != -1) {
         processedFloatValue = *(float *)(systemContext + 0xb4);
-        bufferSize = -1;
+        dataBufferSize = -1;
         *(DataWord *)(systemContext + 0xb0) = SystemCleanupFlag;
         *(DataWord *)(systemContext + 0xb4) = NegativeZeroFloat;
       }
@@ -20253,43 +20252,45 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
       if ((9.223372e+18 <= calculatedFloatValue) && (calculatedFloatValue = calculatedFloatValue - 9.223372e+18, calculatedFloatValue < 9.223372e+18)) {
         memoryOffset = InvalidMemoryOffset;
       }
-      int64_t dataContext = *(int64_t *)(systemContext + 0xa0);
-      int64_t memoryPointer = *(int64_t *)(systemContext + 0x98);
-      if (memoryPointer == 0) {
+      int64_t processingDataContext = *(int64_t *)(systemContext + 0xa0);
+      int64_t memoryManagementPointer = *(int64_t *)(systemContext + 0x98);
+      if (memoryManagementPointer == 0) {
         float memoryAdjustmentFactor = (float)*(uint *)(systemContext + 0x68) * sourceFloatValue;
-        memoryPointer = 0;
+        memoryManagementPointer = 0;
         if ((9.223372e+18 <= memoryAdjustmentFactor) && (memoryAdjustmentFactor = memoryAdjustmentFactor - 9.223372e+18, memoryAdjustmentFactor < 9.223372e+18)) {
-          memoryPointer = InvalidMemoryOffset;
+          memoryManagementPointer = InvalidMemoryOffset;
         }
-        memoryPointer = dataContext - ((int64_t)memoryAdjustmentFactor + memoryPointer);
-        *(int64_t *)(systemContext + 0x98) = memoryPointer;
+        memoryManagementPointer = processingDataContext - ((int64_t)memoryAdjustmentFactor + memoryManagementPointer);
+        *(int64_t *)(systemContext + 0x98) = memoryManagementPointer;
       }
-      byte validationFlags = *(byte *)(systemContext + OperationBaseOffset6C);
+      byte dataValidationFlags = *(byte *)(systemContext + OperationBaseOffset6C);
       if (*(int64_t *)(systemContext + 0xc0) != 0) {
-        int operationResult = CleanupAndValidateDataStructure(systemContext);
-        int resultIndex = (**(FunctionPointer**)(systemContext + 0xc0))
-                          (operationResult,currentIndex,*(DataWord *)(dataPointer + 0x18),*(DataBuffer *)(systemContext + 0xb8)
+        int cleanupOperationResult = CleanupAndValidateDataStructure(systemContext);
+        int processingResultIndex = (**(FunctionPointer**)(systemContext + 0xc0))
+                          (cleanupOperationResult, currentRecordIndex, *(DataWord *)(recordDataPointer + 0x18), *(DataBuffer *)(systemContext + 0xb8)
                           );
-        if (resultIndex != 0) GOTO_ValidationFailed;
+        if (processingResultIndex != 0) GOTO_ValidationFailed;
       }
-      if (((((validationFlags & 2) != 0 || (int64_t)sourceFloatValue + memoryOffset < dataContext - memoryPointer) &&
-           (resultIndex = *StackIntegerPointerC, *StackIntegerPointerC = resultIndex + 1, resultIndex < 10)) &&
+      if (((((dataValidationFlags & 2) != 0 || (int64_t)sourceFloatValue + memoryOffset < processingDataContext - memoryManagementPointer) &&
+           (processingResultIndex = *stackIntegerPointerC, *stackIntegerPointerC = processingResultIndex + 1, processingResultIndex < 10)) &&
           ((*(uint *)(systemContext + OperationBaseOffset6C) >> 0x18 & 1) == 0)) &&
-         (((*(uint *)(systemContext + OperationBaseOffset6C) >> 0x19 & 1) != 0 && (bufferSize == *(int *)(systemContext + 0xb0))))) {
+         (((*(uint *)(systemContext + OperationBaseOffset6C) >> 0x19 & 1) != 0 && (dataBufferSize == *(int *)(systemContext + 0xb0))))) {
 MemoryCopyLabel:
-          memcpy(dataCopyBuffer,dataPointer,(int64_t)*(int *)(dataPointer + 8));
+          memcpy(dataCopyDestinationBuffer, recordDataPointer, (int64_t)*(int *)(recordDataPointer + 8));
       }
     }
     else {
-      if (dataType == '\x06') {
-        int validationResult = ValidateSystemConfiguration(*(DataBuffer *)(systemContext + 0x58));
-        if (validationResult == '\0') goto MemoryCopyLabel;
+      // 处理配置数据类型
+      if (recordDataType == '\x06') {
+        int configurationValidationResult = ValidateSystemConfiguration(*(DataBuffer *)(systemContext + 0x58));
+        if (configurationValidationResult == '\0') goto MemoryCopyLabel;
         *dataBuffer = 0;
         GOTO_ValidationFailed;
       }
-      if (dataType == '\a') {
-        int validationResult = ValidateSystemConfiguration(*(DataBuffer *)(systemContext + 0x58));
-        if (validationResult == '\0') {
+      // 处理扩展配置数据类型
+      if (recordDataType == '\a') {
+        int extendedConfigurationValidationResult = ValidateSystemConfiguration(*(DataBuffer *)(systemContext + 0x58));
+        if (extendedConfigurationValidationResult == '\0') {
           if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(systemContext + 0x58) + 0x90) + 0x790) +
                       0x1c8) != 0) {
             *dataBuffer = 0;
@@ -20298,24 +20299,30 @@ MemoryCopyLabel:
           goto MemoryCopyLabel;
         }
       }
+      // 处理其他数据类型
       else {
-        if ((dataType != '\x02') || ((*(byte *)(systemContext + OperationBaseOffset6C) & 4) != 0)) goto MemoryCopyLabel;
-        DataWord dataProcessingBuffer = *(DataWord *)(dataPointer + 0x20);
-        int resultIndex = ValidateAndProcessDataFlags(systemContext,currentIndex,&dataProcessingBuffer);
-        if (resultIndex != 0) GOTO_ValidationFailed;
-        resultIndex = QueryAndRetrieveSystemDataA0(dataProcessingBuffer,ValidationContextBuffer);
-        if ((resultIndex != 0) || (*(int *)(ValidationContextBuffer[0] + 0x30) != 2)) goto MemoryCopyLabel;
+        if ((recordDataType != '\x02') || ((*(byte *)(systemContext + OperationBaseOffset6C) & 4) != 0)) goto MemoryCopyLabel;
+        DataWord dataProcessingBuffer = *(DataWord *)(recordDataPointer + 0x20);
+        int processingResultIndex = ValidateAndProcessDataFlags(systemContext, currentRecordIndex, &dataProcessingBuffer);
+        if (processingResultIndex != 0) GOTO_ValidationFailed;
+        processingResultIndex = QueryAndRetrieveSystemDataA0(dataProcessingBuffer, ValidationContextBuffer);
+        if ((processingResultIndex != 0) || (*(int *)(ValidationContextBuffer[0] + 0x30) != 2)) goto MemoryCopyLabel;
       }
     }
+    // 设置处理结果为成功
     *dataBuffer = 0;
   }
+  // 处理索引超出范围的情况
   else {
+    // 更新系统操作标志
     *(uint *)(systemContext + OperationBaseOffset6C) = *(uint *)(systemContext + OperationBaseOffset6C) & SecurityValidationMask;
     *(uint *)(systemContext + OperationBaseOffset6C) = *(uint *)(systemContext + OperationBaseOffset6C) | MemoryOperationFlag;
     *dataBuffer = 0;
   }
+  
+  // 执行安全验证检查
 ExecuteSecurityValidation:
-    ExecuteSecurityCheck(inputDataWord ^ (uint64_t)SecurityCheckBufferA);
+    ExecuteSecurityCheck(inputProcessingDataWord ^ (uint64_t)securityValidationBufferA);
 }
 
 
