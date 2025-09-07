@@ -4491,8 +4491,14 @@ extern void* SystemPrimaryResourceTable;
 // 数据配置表A2
 // 功能：存储系统数据配置的第二级配置表和参数
 #define DataConfigurationTableA2 DataConfigurationTableSecondLevel
-#define DataConfigurationTableA3 UNK_180986590
-#define DataConfigurationTableA4 UNK_1809865f0
+
+// 数据配置表A3
+// 功能：存储系统数据配置的第三级配置表和参数
+#define DataConfigurationTableA3 DataConfigurationTableThirdLevel
+
+// 数据配置表A4
+// 功能：存储系统数据配置的第四级配置表和参数
+#define DataConfigurationTableA4 DataConfigurationTableFourthLevel
 
 // 系统核心函数宏定义
 // 异常处理函数A0
@@ -4547,33 +4553,42 @@ extern void* SystemPrimaryResourceTable;
 // 功能：验证系统配置和状态
 #define ValidateSystemConfigurationA0 FUN_180090b80
 
-// 数据配置表A5-A8
-// 功能：存储系统数据配置的多级配置表和参数
-#define DataConfigurationTableA5 UNK_1809866c0
-#define DataConfigurationTableA6 UNK_180986730
-#define DataConfigurationTableA7 UNK_1809867b0
-#define DataConfigurationTableA8 UNK_180986850
+// 数据配置表A5
+// 功能：存储系统数据配置的第五级配置表和参数
+#define DataConfigurationTableA5 DataConfigurationTableFifthLevel
+
+// 数据配置表A6
+// 功能：存储系统数据配置的第六级配置表和参数
+#define DataConfigurationTableA6 DataConfigurationTableSixthLevel
+
+// 数据配置表A7
+// 功能：存储系统数据配置的第七级配置表和参数
+#define DataConfigurationTableA7 DataConfigurationTableSeventhLevel
+
+// 数据配置表A8
+// 功能：存储系统数据配置的第八级配置表和参数
+#define DataConfigurationTableA8 DataConfigurationTableEighthLevel
 
 // 缺失的变量定义
 // 原始变量名：SystemMemoryAllocationBuffer - 内存分配配置表
 // 功能：存储内存分配相关的配置信息
 #define MemoryAllocationConfigurationTable SystemMemoryAllocationBuffer
 
-// 原始变量名：UNK_1809863f8 - 数据处理状态表A0
+// 数据处理状态表A0
 // 功能：存储数据处理状态信息
-#define DataProcessingStatusTableA0 UNK_1809863f8
+#define DataProcessingStatusTableA0 DataProcessingStatusTableFirst
 
-// 原始变量名：UNK_180986470 - 数据处理状态表A1
+// 数据处理状态表A1
 // 功能：存储数据处理状态信息
-#define DataProcessingStatusTableA1 UNK_180986470
+#define DataProcessingStatusTableA1 DataProcessingStatusTableSecond
 
-// 原始变量名：UNK_180986408 - 数据处理配置表A0
+// 数据处理配置表A0
 // 功能：存储数据处理配置信息
-#define DataProcessingConfigurationTableA0 UNK_180986408
+#define DataProcessingConfigurationTableA0 DataProcessingConfigurationTableFirst
 
-// 原始变量名：UNK_1809864dc - 数据处理配置表A1
+// 数据处理配置表A1
 // 功能：存储数据处理配置信息
-#define DataProcessingConfigurationTableA1 UNK_1809864dc
+#define DataProcessingConfigurationTableA1 DataProcessingConfigurationTableSecond
 
 // 原始变量名：UNK_180986488 - 数据处理配置表A2
 // 功能：存储数据处理配置信息
