@@ -2611,10 +2611,28 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
  */
 #define ResetSystemStatus FUN_180290fd0
 
-// 原始函数名：FUN_180098ae0 - 状态缓冲区处理函数
+/**
+ * @brief 处理状态缓冲区
+ * 
+ * 该函数负责状态缓冲区的处理操作，包括缓冲区的管理和状态更新。
+ * 确保状态缓冲区的正确管理和状态信息的及时更新。
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180098ae0
+ */
 #define ProcessStatusBuffer FUN_180098ae0
 
-// 原始函数名：FUN_18009b3a0 - 浮点数据指针处理函数
+/**
+ * @brief 处理浮点数据指针和状态标志
+ * 
+ * 该函数负责浮点数据指针的处理操作，包括状态标志的管理和更新。
+ * 确保浮点数据指针的正确处理和状态标志的准确设置。
+ * 
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18009b3a0
+ */
 #define ProcessFloatProcessingStatusFlag FUN_18009b3a0
 
 // 原始函数名：FUN_180111070 - 字符变量处理和状态缓冲区函数
@@ -46694,6 +46712,7 @@ void ProcessSystemRenderParametersAndStatus(void
   uint32_t StackValidationFlag6c;
   uint32_t SystemStringBufferE0;
   uint32_t StackParameterE8;  // 栈参数E8，用于存储参数数据
+  uint32_t StackParameterE0;  // 栈参数E0，用于存储浮点计算参数
   
   StackDataOffset30 = *DataNodeIndex;
   StackDataOffset40 = DataNodeIndex[2];
@@ -46701,12 +46720,12 @@ void ProcessSystemRenderParametersAndStatus(void
   StackDataOffset60 = *(uint32_t *)(DataNodeIndex + 6);
   StackDataOffset64 = *(uint32_t *)((long long)DataNodeIndex + 0x34);
   StackDataOffset68 = *(uint32_t *)(DataNodeIndex + 7);
-  StackDataOffset28 = in_stack_000000e8;
+  StackDataOffset28 = StackParameterE8;
   StackValidationFlag6c = 0x3f800000;
   StackDataOffset58 = DataNodeIndex[5] & 0xffffffff;
   StackDataOffset48 = DataNodeIndex[3] & 0xffffffff;
   StackDataOffset38 = DataNodeIndex[1] & 0xffffffff;
-  CalculateFloatValue(0x3f800000,uStack0000000000000060,GeneralRegister14D,&SystemStackBuffer,in_stack_000000e0);
+  CalculateFloatValue(0x3f800000,uStack0000000000000060,GeneralRegister14D,&SystemStackBuffer,StackParameterE0);
   return;
 }
 
