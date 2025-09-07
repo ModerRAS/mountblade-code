@@ -102,6 +102,7 @@
 #define SynchronizeUIResources FUN_18069d8a0
 #define ProcessUIResourceUpdate FUN_18069d9e0
 #define ProcessUIComponentSync FUN_18069d940
+#define ProcessUIRenderOperation FUN_180690580
 #define InitializeUILayoutSystem FUN_180707a56
 
 // UI系统函数宏定义 - 验证UI布局
@@ -66957,17 +66958,17 @@ void ProcessUIContextDataValidation(int uiContext,int dataSource,int targetBuffe
     bufferValidation = compareResult + 0x80U >> 8;
     (*_DAT_180d4a958)(bufferSize,param_7,param_9,uiContext2,stackBuffer);
     stackValidation1 = stackBuffer[0] + 0x80U >> 8;
-    FUN_180690580(resultPointer,param_8,uiContext0,uiContext3,stackBuffer);
+    ProcessUIRenderOperation(resultPointer,param_8,uiContext0,uiContext3,stackBuffer);
     stackValidation2 = stackBuffer[0] + 0x20U >> 6;
     bufferPointer = stackBuffer;
-    FUN_180690580(param_6,param_8,uiContext1,uiContext3,bufferPointer);
+    ProcessUIRenderOperation(param_6,param_8,uiContext1,uiContext3,bufferPointer);
     functionResult = (undefined4)((ulonglong)bufferPointer >> 0x20);
     stackValue1 = stackBuffer[0] + 0x20U >> 6;
   }
   else {
-    compareResult = FUN_180690580(param_9,uiContext2,&UiRenderBuffer,0,stackBuffer);
+    compareResult = ProcessUIRenderOperation(param_9,uiContext2,&UiRenderBuffer,0,stackBuffer);
     validationValue = compareResult + 0x20U >> 6;
-    compareResult = FUN_180690580(bufferSize,param_7,&UiRenderBuffer,0,stackBuffer);
+    compareResult = ProcessUIRenderOperation(bufferSize,param_7,&UiRenderBuffer,0,stackBuffer);
     bufferValidation = compareResult + 0x20U >> 6;
     FUN_180690580(bufferSize,param_7,param_9,uiContext2,stackBuffer);
     stackValidation1 = stackBuffer[0] + 0x20U >> 6;

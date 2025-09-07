@@ -74187,7 +74187,7 @@ void SetupMemoryBaseAddressAtOffset40(DataBuffer operationBase,int64_t dataBuffe
   if (*(char *)(memoryBlockOffset + -0x24) != '\0') {
     InitializeDataBuffer(memoryRegionBase);
   }
-                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(memoryRegionBase);
+                                DestroyBasicStreambuf(memoryRegionBase);
   return;
 }
 
@@ -74419,7 +74419,7 @@ void Unwind_180909080(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(dataBuffer + 0x104) != '\0') {
     InitializeDataBuffer(validationStatusPointer);
   }
-                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(validationStatusPointer);
+                                DestroyBasicStreambuf(validationStatusPointer);
   return;
 }
 
@@ -83084,7 +83084,7 @@ void ExceptionRecoveryHandlerC2(DataBuffer exceptionContext, int64_t bufferConte
 void Unwind_18090c220(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                                __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
+                                DestroyBasicIostream(*(int64_t *)(dataBuffer + 0x40) + -0x98);
   return;
 }
 
@@ -83111,7 +83111,7 @@ void Unwind_18090c240(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(memoryBlockOffset + -0x24) != '\0') {
     InitializeDataBuffer(memoryRegionBase);
   }
-                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(memoryRegionBase);
+                                DestroyBasicStreambuf(memoryRegionBase);
   return;
 }
 
@@ -83366,7 +83366,7 @@ void Unwind_18090c380(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(memoryBlockOffset + 0x94) != '\0') {
     InitializeDataBuffer(memoryRegionBase);
   }
-                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(memoryRegionBase);
+                                DestroyBasicStreambuf(memoryRegionBase);
   return;
 }
 
@@ -98956,7 +98956,7 @@ void Unwind_180910580(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(memoryBlockOffset + 0x8c) != '\0') {
     InitializeDataBuffer(memoryRegionBase);
   }
-                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(memoryRegionBase);
+                                DestroyBasicStreambuf(memoryRegionBase);
   return;
 }
 
@@ -99158,7 +99158,7 @@ void Unwind_1809106a0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(memoryBlockOffset + -0x24) != '\0') {
     InitializeDataBuffer(memoryRegionBase);
   }
-                                __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(memoryRegionBase);
+                                DestroyBasicStreambuf(memoryRegionBase);
   return;
 }
 
