@@ -72965,7 +72965,17 @@ void CallExceptionHandlerOffset30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908b90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数偏移量0x1a8
+ * 
+ * 该函数负责调用异常处理器，通过偏移量0x1a8获取异常处理上下文指针
+ * 并执行相应的异常处理操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908b90
+ */
+void CallExceptionHandlerOffset1a8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x1a8) != (int64_t *)0x0) {
@@ -72976,7 +72986,21 @@ void Unwind_180908b90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908ba0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用和状态重置函数偏移量0xd8
+ * 
+ * 该函数负责调用异常处理器并重置异常处理状态：
+ * 1. 通过偏移量0xd8调用异常处理器
+ * 2. 设置临时异常处理器
+ * 3. 清理异常处理状态
+ * 4. 设置默认异常处理器
+ * 5. 通过偏移量A0再次调用异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908ba0
+ */
+void CallExceptionHandlerAndResetStateOffsetD8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xd8) != (int64_t *)0x0) {
@@ -73235,7 +73259,17 @@ void ResetExceptionHandlerStateOffset1B8(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180908c70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器调用函数偏移量0x1b8
+ * 
+ * 该函数负责调用异常处理器，通过偏移量0x1b8和0x58获取异常处理上下文指针
+ * 并执行相应的异常处理操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908c70
+ */
+void CallExceptionHandlerOffset1b8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -73249,7 +73283,16 @@ void Unwind_180908c70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908c80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B偏移量0x1a0
+ * 
+ * 该函数负责在偏移量0x1a0处设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908c80
+ */
+void SetDefaultExceptionHandlerBOffset1a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x1a0) = &DefaultExceptionHandlerB;
@@ -73258,7 +73301,16 @@ void Unwind_180908c80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908c90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作并验证数据处理器偏移量0xc0
+ * 
+ * 该函数负责执行内存操作并验证数据处理器，使用系统清理标志
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908c90
+ */
+void ExecuteMemoryOperationAndValidateDataHandlerOffsetC0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(dataBuffer + 0xc0,8,0x10,ValidateDataHandler,SystemCleanupFlagAlternative);
