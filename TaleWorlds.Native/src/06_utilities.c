@@ -43514,7 +43514,16 @@ void ConfigureExceptionHandlerContext610(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180903970(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 配置异常处理器上下文（偏移0x680）
+ * @details 从数据缓冲区获取验证上下文，设置异常处理器并调用相关回调函数
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含验证上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名: Unwind_180903970
+ */
+void ConfigureExceptionHandlerContext680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -50208,7 +50217,7 @@ void CleanupExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionHandlerE(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50229,7 +50238,7 @@ void Unwind_180905270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905280(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupExceptionHandlerF(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -57997,7 +58006,7 @@ void Unwind_180906dd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906de0(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateSystemContextH(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -58019,7 +58028,7 @@ void Unwind_180906de0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906df0(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessSystemDataWithValidationB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessSystemDataA1(dataBuffer + 0xd8);
@@ -58028,7 +58037,7 @@ void Unwind_180906df0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906e00(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteSystemCallbackA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x118) != (int64_t *)0x0) {
@@ -58039,7 +58048,7 @@ void Unwind_180906e00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906e10(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteSystemCallbackB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x120) != (int64_t *)0x0) {
