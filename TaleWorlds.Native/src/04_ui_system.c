@@ -111122,47 +111122,63 @@ int FUN_180738630(undefined4 *uiContext,undefined4 *dataSource,int targetBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief UI系统配置验证和初始化函数
+ * 
+ * 该函数负责验证UI系统的配置状态，并根据传入的参数进行相应的初始化设置。
+ * 主要用于UI系统的启动配置和参数验证。
+ * 
+ * @param uiContext UI上下文参数
+ * @param dataSource 数据源参数，包含配置标志位
+ * @param targetBuffer 目标缓冲区参数
+ * @param bufferSize 缓冲区大小参数
+ * @param resultPointer 结果指针参数
+ * @param param_6 额外配置参数
+ * @return 状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名: FUN_180738730
+ */
 undefined8
-FUN_180738730(longlong uiContext,uint dataSource,longlong targetBuffer,longlong bufferSize,longlong resultPointer,
-             undefined4 param_6)
+ValidateUIConfigurationAndInitialize(longlong uiContext,uint dataSource,longlong targetBuffer,longlong bufferSize,longlong resultPointer,
+                                     undefined4 param_6)
 
 {
-  uint functionResult;
-  longlong *plVar2;
-  undefined8 uVar3;
-  longlong lVar4;
+  uint configurationFlags;
+  longlong *validationPointers;
+  undefined8 initializationResult;
+  longlong validationIndex;
   
-  lVar4 = 0;
-  plVar2 = (longlong *)(_DAT_180be12f0 + 0x160);
+  validationIndex = 0;
+  validationPointers = (longlong *)(_DAT_180be12f0 + 0x160);
   do {
-    if (*plVar2 != 0) {
+    if (*validationPointers != 0) {
       return 0x1b;
     }
-    lVar4 = lVar4 + 1;
-    plVar2 = plVar2 + 1;
-  } while (lVar4 < 8);
-  functionResult = dataSource & 0x800000ff;
-  if ((int)functionResult < 0) {
-    functionResult = (functionResult - 1 | 0xffffff00) + 1;
+    validationIndex = validationIndex + 1;
+    validationPointers = validationPointers + 1;
+  } while (validationIndex < 8);
+  configurationFlags = dataSource & 0x800000ff;
+  if ((int)configurationFlags < 0) {
+    configurationFlags = (configurationFlags - 1 | 0xffffff00) + 1;
   }
-  if (functionResult == 0) {
+  if (configurationFlags == 0) {
     *(undefined4 *)(_DAT_180be12f0 + 0x24) = param_6;
     if (dataSource == 0) {
       if (uiContext == 0) {
         if (targetBuffer == 0) {
           if ((bufferSize == 0) && (resultPointer == 0)) {
-            lVar4 = *(longlong *)(_DAT_180be12f0 + 0x1a0);
-            *(undefined **)(lVar4 + 0x358) = &UNK_180741cf0;
-            *(undefined **)(lVar4 + 0x360) = &UNK_180741d00;
-            *(undefined **)(lVar4 + 0x368) = &UNK_180741ce0;
+            validationIndex = *(longlong *)(_DAT_180be12f0 + 0x1a0);
+            *(undefined **)(validationIndex + 0x358) = &UNK_180741cf0;
+            *(undefined **)(validationIndex + 0x360) = &UNK_180741d00;
+            *(undefined **)(validationIndex + 0x368) = &UNK_180741ce0;
             return 0;
           }
         }
         else if (resultPointer != 0) {
-          lVar4 = *(longlong *)(_DAT_180be12f0 + 0x1a0);
-          *(longlong *)(lVar4 + 0x358) = targetBuffer;
-          *(longlong *)(lVar4 + 0x360) = bufferSize;
-          *(longlong *)(lVar4 + 0x368) = resultPointer;
+          validationIndex = *(longlong *)(_DAT_180be12f0 + 0x1a0);
+          *(longlong *)(validationIndex + 0x358) = targetBuffer;
+          *(longlong *)(validationIndex + 0x360) = bufferSize;
+          *(longlong *)(validationIndex + 0x368) = resultPointer;
           return 0;
         }
       }

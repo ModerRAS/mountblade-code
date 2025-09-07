@@ -23631,52 +23631,52 @@ void ProcessEngineSystemEventQueue(void
   uint *EventFlags;
   void *RawEventData;
   uint32_t EventMask;
-  uint8_t StackBuffer178 [32];
-  void *PrimaryStackPointer58;
-  uint8_t *PrimaryStackPointer50;
-  uint StackIndexValue;
-  uint64_t StackProcessingStatusFlagValue;
-  void *PrimaryTertiaryStackPointer8;
-  uint8_t *PrimaryTertiaryStackPointer0;
-  uint StackAllocationValue;
-  unsigned long long StackMemoryValue;
-  void *PrimaryStackPointer18;
-  uint8_t *PrimaryStackPointer10;
-  uint32_t StackSizeValue;
-  unsigned long long StackBufferSizeValue;
-  int StackValuef8;
-  void *StackPointerf0;
-  uint8_t *StackPointere8;
-  uint32_t StackValuee0;
-  unsigned long long StackValued8;
-  void *StackPointerd0;
-  long long StackValuec8;
-  int StackValuec0;
-  uint32_t StackValueb8;
-  long long *StackPointera8;
-  long long StackValuea0;
-  void *StackPointer98;
-  void *StackPointer90;
-  uint32_t StackOperationValue;
-  void *StackPointer78;
-  long long StackValidationValue;
+  uint8_t EventProcessingStackBuffer [32];
+  void *PrimaryEventStackPointer58;
+  uint8_t *PrimaryEventStackPointer50;
+  uint EventStackIndexValue;
+  uint64_t EventStackProcessingStatusFlagValue;
+  void *PrimaryEventTertiaryStackPointer8;
+  uint8_t *PrimaryEventTertiaryStackPointer0;
+  uint EventStackAllocationValue;
+  unsigned long long EventStackMemoryValue;
+  void *PrimaryEventStackPointer18;
+  uint8_t *PrimaryEventStackPointer10;
+  uint32_t EventStackSizeValue;
+  unsigned long long EventStackBufferSizeValue;
+  int EventStackValuef8;
+  void *EventStackPointerf0;
+  uint8_t *EventStackPointere8;
+  uint32_t EventStackValuee0;
+  unsigned long long EventStackValued8;
+  void *EventStackPointerd0;
+  long long EventStackValuec8;
+  int EventStackValuec0;
+  uint32_t EventStackValueb8;
+  long long *EventStackPointera8;
+  long long EventStackValuea0;
+  void *EventStackPointer98;
+  void *EventStackPointer90;
+  uint32_t EventStackOperationValue;
+  void *EventStackPointer78;
+  long long EventStackValidationValue;
   int EventProcessIndex;
   int EventStringBuffer;
-  int StatusBufferIndex;
-  uint32_t StackParameterCountValue;
-  uint64_t *StackPointer58;
-  uint64_t *StackPointer50;
-  uint64_t StackEncodedValue;
-  uint32_t StackFunctionUtf16Char;
-  uint64_t StackSystemHandleValue;
-  unsigned long long StackTimeoutValue;
+  int EventStatusBufferIndex;
+  uint32_t EventStackParameterCountValue;
+  uint64_t *EventStackPointer58;
+  uint64_t *EventStackPointer50;
+  uint64_t EventStackEncodedValue;
+  uint32_t EventStackFunctionUtf16Char;
+  uint64_t EventStackSystemHandleValue;
+  unsigned long long EventStackTimeoutValue;
   
-  StackSystemHandleValue = 0xfffffffffffffffe;
-  StackTimeoutValue = EncodingDecodingKey ^ (unsigned long long)StackBuffer178;
-  StackPointera8 = CoreEngineSystemContext;
+  EventStackSystemHandleValue = 0xfffffffffffffffe;
+  EventStackTimeoutValue = EncodingDecodingKey ^ (unsigned long long)EventProcessingStackBuffer;
+  EventStackPointera8 = CoreEngineSystemContext;
   EventContext = *(long long *)(*CoreEngineSystemContext + 0x890) - *(long long *)(*CoreEngineSystemContext + 0x888) >> 5;
-  StackValuef8 = 0;
-  StackValuea0 = EventContext;
+  EventStackValuef8 = 0;
+  EventStackValuea0 = EventContext;
   if (0 < (int)loopCounter4) {
     do {
       EventProcessIndex = CoreEngineIntegerValueF8;
@@ -123252,7 +123252,15 @@ void ManageSystemMemoryAllocationAndStatus(void)
 
 
 
-6eba(voidvoid FUN_180126eba(void
+/**
+ * @brief 处理系统上下文和数据
+ * 
+ * 该函数负责处理系统上下文管理、数据验证和参数配置。
+ * 包括上下文初始化、数据处理、状态检查和系统配置。
+ * 
+ * @note 原始函数名：FUN_180126eba
+ */
+void ProcessSystemContextAndData(void)
 {
   float *pSystemContextPrimaryFloat;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -123481,7 +123489,10 @@ void ManageSystemMemoryAllocationAndStatus(void)
 
 
 
-6edf(voidvoid FUN_180126edf(void
+// 原始函数名：FUN_180126edf - 系统渲染和内存管理函数
+#define ProcessSystemRenderingAndMemoryManagement FUN_180126edf
+
+void ProcessSystemRenderingAndMemoryManagement(void)
 {
   float *pSystemContextPrimaryFloat;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -166609,7 +166620,7 @@ long long FUN_18013d540(void
     SecondarySystemDataSize = 0;
     MemoryEndAddressConstant = 0;
     FUN_1808fc820(SystemCoreDataStructure);
-    FUN_1808fcb30(SystemSecondaryStatusData);
+    ProcessSystemResourceAndConfigure(SystemSecondaryStatusData);
   }
   MemoryBoundaryEnd = MemoryEndAddressConstant;
   if (MemoryEndAddressConstant == 0) {
@@ -177705,7 +177716,7 @@ uint64_t * FUN_180150ab0(uint64_t *CharacterCode,unsigned long long CharacterCod
     NetworkConnectionRetryCount = 0;
     NetworkConnectionMaxRetries = 3;
     FUN_1808fc820(FUN_180941ad0);
-    FUN_1808fcb30(&GlobalTimeoutValue);
+    ProcessSystemResourceAndConfigure(&GlobalTimeoutValue);
   }
   NetworkConnectionStatus = NetworkConnectionState;
   ProcessSystemMemoryConfiguration(CoreEngineSystemContext,CharacterCode,&NetworkConnectionState);
@@ -205112,7 +205123,7 @@ void SystemDataProcessingFunction(void
                0x48) < SystemMemoryLimit) && (CheckRenderParameterStatus(&SystemMemoryLimit), SystemMemoryLimit == -1)) {
     SystemMemoryFlag = 0;
     FUN_1808fc820(&SystemMemoryAddressPrimary);
-    FUN_1808fcb30(&SystemMemoryParameter); /* 系统内存参数 - 用于内存管理和配置 */
+    ProcessSystemResourceAndConfigure(&SystemMemoryParameter); /* 系统内存参数 - 用于内存管理和配置 */
   }
   StackUnsignedValue150 = 0;
   MutexLockResult = *(int *)(SystemDataTablePointer + 0x318);
@@ -250019,7 +250030,7 @@ LAB_18021e424:
       BufferAllocationStatus3 = BufferAllocationStatus3 + 1;
     } while ((unsigned long long)(long long)(int)MemoryAllocationCounter < MemoryAllocationIndexAdditional);
   }
-  FUN_18020d4c0();
+  ProcessSystemMemoryCleanup();
   SystemMemoryAllocationResult = CoreEngineConfigurationData;
   MemoryAllocationIndexAdditional = *(unsigned long long *)(CoreEngineConfigurationData + 8);
   loopCounter4 = lStack_268;
@@ -250034,7 +250045,7 @@ LAB_18021e424:
         if (*(long long *)(loopCounter4 + 0x30) - *(long long *)(loopCounter4 + 0x28) >> 3 != 0) {
           MemoryBufferC = 0;
           do {
-            FUN_18020d160(*(void *)(MemoryBufferC + *(long long *)(loopCounter4 + 0x28)));
+            ReleaseSystemMemoryBlock(*(void *)(MemoryBufferC + *(long long *)(loopCounter4 + 0x28)));
             CharacterByteCount5 = CharacterByteCount5 + 1;
             MemoryBufferC = MemoryBufferC + 8;
           } while ((unsigned long long)(long long)CharacterByteCount5 <
