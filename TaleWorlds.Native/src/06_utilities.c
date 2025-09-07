@@ -43459,31 +43459,40 @@ void ConfigureExceptionHandlerContext5a0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180903950(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 配置异常处理器上下文（偏移0x610）
+ * @details 从数据缓冲区获取验证上下文，设置多个异常处理器并调用相关回调函数
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含验证上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名: Unwind_180903950
+ */
+void ConfigureExceptionHandlerContext610(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t validationContext;
+  int64_t exceptionHandlerContext;
   
-  validationContext = *(int64_t *)(dataBuffer + 0x40);
-  if (*(FunctionPointer**)(validationContext + 0x610) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
+  if (*(FunctionPointer**)(exceptionHandlerContext + 0x610) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + 0x610))(exceptionHandlerContext + 0x600,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(validationContext + 0x5d8) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x5e0) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + 0x5d8) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x5e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x5e0) = 0;
-  *(DataWord *)(validationContext + 0x5f0) = 0;
-  *(DataBuffer *)(validationContext + 0x5d8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x5b8) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x5c0) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + 0x5e0) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x5f0) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x5d8) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x5b8) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x5c0) = 0;
-  *(DataWord *)(validationContext + 0x5d0) = 0;
-  *(DataBuffer *)(validationContext + 0x5b8) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x5c0) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x5d0) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x5b8) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -66091,7 +66100,7 @@ void ReleaseDataBufferWithValidation(DataBuffer operationBase,uint *dataBuffer)
 
 
 
-void Unwind_180909390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -66105,7 +66114,7 @@ void Unwind_180909390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809093a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -66119,7 +66128,7 @@ void Unwind_1809093a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809093b0(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateSystemResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -66200,7 +66209,7 @@ void Unwind_1809093b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809093c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t *validationContextPointer;
@@ -66277,7 +66286,7 @@ void Unwind_1809093c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809093e0(DataBuffer operationBase,int64_t dataBuffer)
+void ReleaseSystemMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
