@@ -3021,7 +3021,7 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
  * 该函数负责处理系统第三级事件句柄的操作，处理更深层的事件。
  * 确保系统事件的完整处理链。
  */
-#define ProcessSystemTertiaryEventHandle FUN_18012e4e0
+#define ProcessSystemTertiaryEventHandle ProcessSystemEncoding
 
 /**
  * @brief 处理系统内存并复制数据
@@ -3779,8 +3779,8 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：ValidateSystemData - 系统状态处理函数
 #define ProcessSystemStatus ValidateSystemData
 
-// 原始函数名：FUN_18012e706 - 系统事件处理函数
-#define ProcessSystemEventEx FUN_18012e706
+// 原始函数名：InitializeSystemValidator - 系统事件处理函数
+#define ProcessSystemEventEx InitializeSystemValidator
 
 // 原始函数名：InitializeSystemComponentsEx - 系统初始化函数
 #define InitializeSystemComponentsEx InitializeSystemComponentsEx
@@ -145333,7 +145333,7 @@ void ProcessSystemSecondaryEventHandle(void)
 
 
 
-e4e0(voidvoid FUN_18012e4e0(void
+e4e0(voidvoid ProcessSystemEncoding(void
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -145628,7 +145628,7 @@ LAB_18012e732:
 
 
 
-e706(voidvoid FUN_18012e706(void
+e706(voidvoid InitializeSystemValidator(void
 {
   int in_EAX;
   long long SystemContext;
