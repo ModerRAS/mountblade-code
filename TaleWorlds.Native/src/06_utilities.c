@@ -7867,60 +7867,61 @@ uint8_t UtilityFilterBufferD;
 // 功能：设置全局数据指针A35到指定地址
 #define SetGlobalDataPointerA35 FUN_1809423e0
 
-// 原始变量名：UNK_180a22f60 - 全局数据指针A35配置缓冲区
+// 全局数据指针A35配置缓冲区
 // 功能：存储全局数据指针A35的配置信息
 #define GlobalDataPointerA35ConfigBuffer UNK_180a22f60
 uint8_t GlobalDataPointerA35ConfigBuffer;
-// 原始变量名：DAT_180bfa0b0 - 全局数据指针A35存储区
+
+// 全局数据指针A35存储区
 // 功能：存储全局数据指针A35的相关信息
 #define GlobalDataPointerA35Storage DAT_180bfa0b0
 uint8_t GlobalDataPointerA35Storage;
 
-// 原始变量名：DAT_180bfa0b8 - 全局数据指针A35状态区
+// 全局数据指针A35状态区
 // 功能：存储全局数据指针A35的状态信息
 #define GlobalDataPointerA35Status DAT_180bfa0b8
 uint8_t GlobalDataPointerA35Status;
 
-// 原始变量名：DAT_180bfa0c0 - 全局数据指针A35配置区
+// 全局数据指针A35配置区
 // 功能：存储全局数据指针A35的配置信息
 #define GlobalDataPointerA35Config DAT_180bfa0c0
 uint8_t GlobalDataPointerA35Config;
 
-// 原始变量名：DAT_180bfa0c8 - 全局数据指针A35缓存区
+// 全局数据指针A35缓存区
 // 功能：存储全局数据指针A35的缓存数据
 #define GlobalDataPointerA35Cache DAT_180bfa0c8
 uint8_t GlobalDataPointerA35Cache;
 
-// 原始函数名：FUN_180942400 - 全局指针设置函数A36
+// 全局指针设置函数A36
 // 功能：设置全局数据指针A36到指定地址
 #define SetGlobalDataPointerA36 FUN_180942400
 
-// 原始变量名：UNK_180a22f40 - 全局数据指针A36配置缓冲区
+// 全局数据指针A36配置缓冲区
 // 功能：存储全局数据指针A36的配置信息
 #define GlobalDataPointerA36ConfigBuffer UNK_180a22f40
 uint8_t GlobalDataPointerA36ConfigBuffer;
 
-// 原始变量名：DAT_180bfa110 - 全局数据指针A36存储区
+// 全局数据指针A36存储区
 // 功能：存储全局数据指针A36的相关信息
 #define GlobalDataPointerA36Storage DAT_180bfa110
 uint8_t GlobalDataPointerA36Storage;
 
-// 原始变量名：DAT_180bfa118 - 全局数据指针A36状态区
+// 全局数据指针A36状态区
 // 功能：存储全局数据指针A36的状态信息
 #define GlobalDataPointerA36Status DAT_180bfa118
 uint8_t GlobalDataPointerA36Status;
 
-// 原始变量名：DAT_180bfa120 - 全局数据指针A36配置区
+// 全局数据指针A36配置区
 // 功能：存储全局数据指针A36的配置信息
 #define GlobalDataPointerA36Config DAT_180bfa120
 uint8_t GlobalDataPointerA36Config;
 
-// 原始变量名：DAT_180bfa128 - 全局数据指针A36缓存区
+// 全局数据指针A36缓存区
 // 功能：存储全局数据指针A36的缓存数据
 #define GlobalDataPointerA36Cache DAT_180bfa128
 uint8_t GlobalDataPointerA36Cache;
 
-// 原始变量名：UNK_180a23018 - 全局数据指针A36验证缓冲区
+// 全局数据指针A36验证缓冲区
 // 功能：存储全局数据指针A36的验证信息
 #define GlobalDataPointerA36ValidationBuffer UNK_180a23018
 uint8_t GlobalDataPointerA36ValidationBuffer;
@@ -99998,7 +99999,21 @@ void Unwind_180912260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0xf0偏移量的异常上下文
+ * 
+ * 该函数处理位于数据缓冲区0xf0偏移量处的异常上下文。它会递减异常上下文
+ * 计数器，并调用系统异常处理器来处理异常。这是异常展开机制的重要组成部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_180912280
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的异常处理
+ */
+void ProcessExceptionContextAtOffsetF0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100016,7 +100031,22 @@ void Unwind_180912280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理多个偏移量的异常上下文
+ * 
+ * 该函数处理位于数据缓冲区多个偏移量处（0x1f0, 0x1e0, 0x1d0, 0x1c0, 400）的异常上下文。
+ * 它会递减异常上下文计数器，并调用系统异常处理器来处理每个异常。这是异常展开机制
+ * 的重要组成部分，用于处理多个异常上下文。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_1809122a0
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的多异常处理
+ */
+void ProcessMultipleExceptionContexts(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100064,7 +100094,21 @@ void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809122c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x220偏移量的异常上下文
+ * 
+ * 该函数处理位于数据缓冲区0x220偏移量处的异常上下文。它会递减异常上下文
+ * 计数器，并调用系统异常处理器来处理异常。这是异常展开机制的重要组成部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_1809122c0
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的异常处理
+ */
+void ProcessExceptionContextAtOffset220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100082,7 +100126,21 @@ void Unwind_1809122c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809122e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x2c0偏移量的异常上下文
+ * 
+ * 该函数处理位于数据缓冲区0x2c0偏移量处的异常上下文。它会递减异常上下文
+ * 计数器，并调用系统异常处理器来处理异常。这是异常展开机制的重要组成部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_1809122e0
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的异常处理
+ */
+void ProcessExceptionContextAtOffset2C0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -100100,7 +100158,21 @@ void Unwind_1809122e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x2d0偏移量的异常上下文
+ * 
+ * 该函数处理位于数据缓冲区0x2d0偏移量处的异常上下文。它会递减异常上下文
+ * 计数器，并调用系统异常处理器来处理异常。这是异常展开机制的重要组成部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_180912300
+ * @note 这是一个异常展开（unwind）处理函数，用于栈展开时的异常处理
+ */
+void ProcessExceptionContextAtOffset2D0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
