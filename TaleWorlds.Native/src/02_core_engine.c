@@ -102597,11 +102597,11 @@ LAB_180117c0c:
         FloatVariable51 = fStack_230;
         if (cStack_160 != '\0') {
           if (((int)fStack_250 < iStack_168) && (SUB41(fStack_230,0) != '\0')) {
-            FUN_18011dae0((int *)(MemoryBlockIndex9 + 0x1eb0),
+            ManageSystemDataReferenceCount((int *)(MemoryBlockIndex9 + 0x1eb0),
                           (iStack_168 - (int)fStack_250) + *(int *)(MemoryBlockIndex9 + 0x1eb0));
           }
           MemoryAllocationIndex5 = 0;
-          MemoryAllocationIndex3 = FUN_180121740(*(void *)(MemoryBlockIndex9 + 0x1eb8),*(uint32_t *)(MemoryBlockIndex9 + 0x1eb0),
+          MemoryAllocationIndex3 = AllocateSystemMemoryAndManage(*(void *)(MemoryBlockIndex9 + 0x1eb8),*(uint32_t *)(MemoryBlockIndex9 + 0x1eb0),
                                  uStack_170,0,0);
           *(uint32_t *)(MemoryBlockIndex9 + 0x1ee4) = MemoryAllocationIndex3;
           *(int *)(MemoryBlockIndex9 + 0x1ee0) = iStack_168;
@@ -102690,14 +102690,14 @@ LAB_180117e4a:
       if ((float)DataProcessingStatus < *pSystemContextFloat2) {
         StringBuffer7 = '\0';
 LAB_180117f26:
-        FUN_180291b40(*(void *)(bufferAllocationStatus8 + 0x2e8),DataProcessingStatus,uStack_1e0,0);
+        ProcessSystemEventEx(*(void *)(bufferAllocationStatus8 + 0x2e8),DataProcessingStatus,uStack_1e0,0);
       }
       else {
         StringBuffer7 = ValidateFloatValue(pSystemContextFloat2,&DataProcessingStatus);
         if (StringBuffer7 == '\0') goto LAB_180117f26;
       }
       MemoryAllocationIndex6 = *(void *)(bufferAllocationStatus8 + 0x2e8);
-      UnicodeCodePoint6 = FUN_180121ed0(0x2e,0x3f800000);
+      UnicodeCodePoint6 = ProcessSystemStatusUpdateAndFloatCalculation(0x2e,0x3f800000);
       fStack_250 = (float)uStack_1e0 - 1.0;
       fStack_24c = uStack_1e0.HighPart - 1.0;
       fStack_230 = (float)DataProcessingStatus + 1.0;
@@ -102705,7 +102705,7 @@ LAB_180117f26:
       if ((UnicodeCodePoint6 & 0xff000000) != 0) {
         MemoryPointerValue = CONCAT44((int)(MemoryPointerValue >> 0x20),0xf);
         CalculatedCodePoint4 = CONCAT44(MemoryAllocationIndex5,MemoryAllocationIndex3);
-        FUN_180293e80(MemoryAllocationIndex6,&fStack_230,&fStack_250,UnicodeCodePoint6,CalculatedCodePoint4,MemoryPointerValue,
+        ConfigureSystemData(MemoryAllocationIndex6,&fStack_230,&fStack_250,UnicodeCodePoint6,CalculatedCodePoint4,MemoryPointerValue,
                       CONCAT44(MemoryAllocationIndex1,0x40000000));
         MemoryAllocationIndex5 = (uint32_t)((unsigned long long)CalculatedCodePoint4 >> 0x20);
       }
