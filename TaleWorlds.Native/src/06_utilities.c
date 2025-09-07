@@ -12794,7 +12794,7 @@ int ProcessResourceCopyOperation(int64_t ResourceOperationContext)
       memcpy(ResourceDataBuffer,ResourceOperationContext + 0x10,(int64_t)CopyOperationStatus);
   }
   if (ResourceTargetPointer != 0) {
-      AllocateResourceA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),ResourceTargetPointer,&SystemMemoryPoolA,0xb8,1);
+      AllocateResourceA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),ResourceTargetPointer,&SystemMemoryPoolA,ResourceAllocationSizeB8,1);
   }
   return CopyOperationStatus;
 }
@@ -12874,7 +12874,7 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
         conversionStatus = 0;
       }
       else if (dataPointer != 0) {
-        CleanupConversionResources(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataPointer,&SystemMemoryPoolB,0xe9);
+        CleanupConversionResources(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataPointer,&SystemMemoryPoolB,ResourceAllocationSizeE9);
         return conversionStatus;
       }
       return conversionStatus;
@@ -12992,16 +12992,16 @@ void ValidateAndProcessUtilityData(int64_t dataContext,int64_t systemContext)
                         dataContext + 0x14,dataContext + 0x20,dataContext + 0x2c,dataContext + 0x38);
   if ((validationResult == 0) &&
      (validationResult = ValidateDataAndReturnA0((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * 0x44 +
-                                  *(int64_t *)(systemContext + 0x90) + 0x554,dataContext + 0x14), validationResult == 0)
+                                  *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,dataContext + 0x14), validationResult == 0)
      ) {
     if ((*(char *)(dataContext + 0x50) != '\0') &&
        (validationResult = ValidateDataAndReturnA1((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * 0x44 +
-                                    *(int64_t *)(systemContext + 0x90) + 0x554,dataContext + 0x44),
+                                    *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,dataContext + 0x44),
        validationResult != 0)) {
       return;
     }
     ProcessDataAndExecute((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * 0x44 +
-                        *(int64_t *)(systemContext + 0x90) + 0x554,*(ByteFlag *)(dataContext + 0x50));
+                        *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,*(ByteFlag *)(dataContext + 0x50));
   }
   return;
 }
@@ -15122,8 +15122,26 @@ void UtilityProcessResourceRequest(int64_t resourceHandle,int64_t requestContext
 
 
 
-// 函数: void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
-// 功能：验证上下文句柄并执行相应操作，如果验证失败则调用错误处理函数
+/**
+ * @brief 验证并执行操作
+ * 
+ * 该函数负责验证上下文句柄的有效性，并在验证通过后执行相应的操作。
+ * 如果验证失败，函数会调用错误处理函数进行相应的错误处理。
+ * 
+ * @param contextHandle 上下文句柄指针，指向要验证的上下文数据
+ * @param operationData 操作数据指针，包含要执行的操作信息
+ * 
+ * @return void 无返回值
+ * 
+ * @note 函数会先验证上下文句柄的有效性，然后执行相应的系统事件清理操作
+ * @warning 如果验证失败，函数会调用错误处理函数
+ * @warning 此函数可能不会正常返回，因为 CleanupSystemEventA0 可能会执行清理操作
+ * 
+ * @see QueryAndRetrieveSystemDataA0, CleanupSystemEventA0
+ * 
+ * @since 系统版本 1.0
+ * @security_level 中
+ */
 void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
 
 {
