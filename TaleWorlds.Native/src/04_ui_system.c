@@ -83166,18 +83166,18 @@ ulonglong ProcessUIRenderingDataUpdate(int *uiContext,float *dataSource,uint tar
       if (param_6 != 0) {
         FUN_1807165a0(param_6,UIValidationResult5,Result6);
       }
-      result6 = result6 << 1 | (uint)((int)result6 < 0);
+      Result6 = Result6 << 1 | (uint)((int)Result6 < 0);
       uiContext1 = (uint)(byte)(&g_uiHexConversionTable)[(longlong)(int)uiContext1 >> 4] << 2 |
                  (uint)(byte)(&g_uiHexConversionTable)[uiContext1 & 0xf];
-      stackInt4c = stackInt4c + 1;
-    } while (stackInt4c < localInt5);
+      StackInt4c = StackInt4c + 1;
+    } while (StackInt4c < LocalInt5);
   }
-  isCharacterMatch8 = (byte)localInt5;
-  resultPointer = (int)resultPointer >> (isCharacterMatch8 & 0x1f);
-  result6 = (int)(targetBuffer / semaphoreHandle3) << (isCharacterMatch8 & 0x1f);
-  if ((result6 & 1) == 0) {
+  IsCharacterMatch8 = (byte)LocalInt5;
+  resultPointer = (int)resultPointer >> (IsCharacterMatch8 & 0x1f);
+  Result6 = (int)(targetBuffer / SemaphoreHandle3) << (IsCharacterMatch8 & 0x1f);
+  if ((Result6 & 1) == 0) {
     do {
-      if (-1 < uiValidationResult7) break;
+      if (-1 < UIValidationResult7) break;
       if (uiValidationResult6 != 0) {
         FUN_1807165a0(dataSource,result6,resultPointer);
       }
