@@ -10089,6 +10089,11 @@ void InitializeNetworkStatusNode(void)
   void *nextNode;
   void *tempStackPointer;
   code *functionCallback;
+  long long *systemContextPtr;
+  uint64_t *statusPrimaryNode;
+  void *statusSecondaryNode;
+  void *statusTargetNode;
+  void *temporaryBuffer;
   
   systemContextPtr = (long long *)CoreEngineGetSystemContext();
   statusPrimaryNode = (uint64_t *)*systemContextPtr;
@@ -10099,11 +10104,11 @@ void InitializeNetworkStatusNode(void)
   while (statusBuffer == '\0') {
     memoryMatchResult = memcmp(statusSecondaryNode + 4, &SystemComparisonDataSecondary, 0x10);
     if (memoryMatchResult < 0) {
-      nextNode = (void *)currentNode[2];
+      nextNode = (void *)statusTargetNode[2];
       statusSecondaryNode = statusTargetNode;
     }
     else {
-      nextNode = (void *)*currentNode;
+      nextNode = (void *)*statusSecondaryNode;
     }
     statusTargetNode = statusSecondaryNode;
     currentNode = nextNode;
@@ -50006,7 +50011,7 @@ void ExecuteSystemConfigurationManager(void
 
 
 
-05f0(void/**
+/**
  * @brief 执行系统资源管理器操作
  * 
  * 该函数负责执行系统资源管理器的核心操作。
