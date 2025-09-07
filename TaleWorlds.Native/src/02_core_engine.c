@@ -33620,7 +33620,7 @@ MemoryBlockProcessing:
   MemoryPoolBlockSize = Utf8InputBuffer[8];
   if (StringOffset == MemoryPoolBlockSize) goto code_r0x000180060327;
   goto MemoryAllocationProcess;
-code_r0x000180060327:
+CheckMemoryPoolBlockSize:
   if (MemoryPoolBlockSize != 0) {
     do {
       SystemStringIndex = *(long long *)(MemoryPoolBlockSize + 0x100);
@@ -35441,7 +35441,7 @@ void ProcessSystemOperationByType(long long operationDataStructure
         } while (-1 < MemoryBoundaryEnd);
       }
       ComputedResult = -1;
-code_r0x0001800630e9:
+CheckUnderscoreCharacter:
       ProcessSystemDataTransfer(CharacterCode + 0x30,ComputedResult,&StackProcessingVariableBuffer);
       StackProcessingVariableBuffer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
@@ -104854,7 +104854,7 @@ void CoreEngineConvertUtf16ToUtf8(long long CharacterCode,int *Utf8InputBufferSi
     *Utf8InputBufferSize = Utf8BufferSize[2];
     goto FunctionExitHandler;
   case 0x30002:
-code_r0x0001801156d0:
+ValidateStringOffset:
     if ((char)Utf8BufferSize[4] == '\0') {
       StringLength = Utf8BufferSize[2];
       IntegerValue4 = Utf8BufferSize[1];
@@ -104872,7 +104872,7 @@ code_r0x0001801156d0:
       else if (IntegerValue4 == StringLength) {
         IntegerValue4 = *Utf8InputBufferSize;
         Utf8BufferSize[1] = IntegerValue4;
-code_r0x000180115b8c:
+CheckStackValue:
         Utf8BufferSize[2] = IntegerValue4;
       }
       else {
@@ -105034,7 +105034,7 @@ code_r0x0001801156b8:
     }
     goto FunctionExitHandler;
   case 0x30008:
-code_r0x000180115ca5:
+ProcessUtf8BufferSizeCase:
     if (Utf8BufferSize[1] == Utf8BufferSize[2]) {
       if (*Utf8InputBufferSize < *(int *)(CharacterCode + 0x3c)) {
         ValidateSystemDataAndCheckStatus(CharacterCode,Utf8BufferSize,*Utf8InputBufferSize,1);
@@ -105043,7 +105043,7 @@ code_r0x000180115ca5:
     }
     break;
   case 0x30009:
-code_r0x000180115cd0:
+ProcessStringBufferSizeCase:
     if (Utf8BufferSize[1] == Utf8BufferSize[2]) {
       StringLength = *(int *)(CharacterCode + 0x3c);
       IntegerValue4 = *Utf8InputBufferSize;
