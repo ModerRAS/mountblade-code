@@ -204612,8 +204612,8 @@ MemoryAddressMaskProcessing: // 原始标签：LAB_18017a342，MemoryAddressMask
       }
       pMemoryAddressMask = CharacterCodePointer;
     } while (CharacterCodePointer != NULL);
-    if ((TemporaryBuffer == CharacterCode + 6) || (Utf8BufferSize < (long long *)TemporaryBuffer[4])) goto LAB_18017a342;
-LAB_18017a372:  // 临时缓冲区验证标签
+    if ((TemporaryBuffer == CharacterCode + 6) || (Utf8BufferSize < (long long *)TemporaryBuffer[4])) goto MemoryAddressMaskProcessing; // 原始标签：LAB_18017a342
+TemporaryBufferValidation: // 原始标签：LAB_18017a372，TemporaryBufferValidation
     CurrentByteValue2 = false;
   }
   Utf16ConversionContext = 0;
