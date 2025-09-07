@@ -9504,15 +9504,15 @@ undefined8 * FindUIModuleByPath(undefined8 path_length, undefined8 *path_buffer,
 
 {
   byte isCharacterMatch;
-  bool bVar2;
-  byte *pbVar3;
-  uint uVar4;
-  int iVar5;
+  bool isPathMatching;
+  byte *pathCharacterPtr;
+  uint characterCode;
+  int characterDifference;
   longlong contextData;
-  undefined8 *peventTypeCode;
-  undefined8 *puVar8;
-  undefined8 *puVar9;
-  undefined8 *pfunctionResult0;
+  undefined8 *eventCodePtr;
+  undefined8 *modulePathPtr;
+  undefined8 *resultPtr;
+  undefined8 *functionResultPtr;
   
   if (UIResourceManagerHandle != (undefined8 *)0x0) {
     peventTypeCode = UIResourceManagerHandle;

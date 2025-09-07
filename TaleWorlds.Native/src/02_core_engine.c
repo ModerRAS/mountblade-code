@@ -274337,4 +274337,141 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define ProcessSystemFloatData FUN_18009d8a0
 
+/**
+ * @brief 初始化系统上下文
+ * 
+ * 该函数负责初始化系统上下文，包括系统状态的初始化和默认参数设置。
+ * 在核心引擎中用于系统启动时的初始化操作。
+ * 
+ * @return 初始化结果状态码
+ * 
+ * @note 原始函数名：FUN_18005cfc0
+ */
+#define InitializeSystemContext FUN_18005cfc0
+
+/**
+ * @brief 处理系统配置参数
+ * 
+ * 该函数负责处理系统配置参数，包括配置参数的读取和验证。
+ * 在核心引擎中用于配置参数的管理。
+ * 
+ * @param configPointer 配置指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18005b960
+ */
+#define ProcessSystemConfigurationParameters FUN_18005b960
+
+/**
+ * @brief 验证内存块
+ * 
+ * 该函数负责验证内存块的有效性，包括内存边界检查和数据完整性验证。
+ * 在核心引擎中用于内存块的安全验证。
+ * 
+ * @param memoryBlock 内存块指针
+ * @return 验证结果
+ * 
+ * @note 原始函数名：FUN_180057830
+ */
+#define ValidateMemoryBlock FUN_180057830
+
+/**
+ * @brief 处理系统字符串数据
+ * 
+ * 该函数负责处理系统字符串数据，包括字符串的编码转换和数据处理。
+ * 在核心引擎中用于字符串数据的处理和转换。
+ * 
+ * @param stringPointer 字符串指针
+ * @param validationPointer 验证指针
+ * @param sourcePointer 源指针
+ * @param targetPointer 目标指针
+ * @param allocationIndex 分配索引
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18005d190
+ */
+#define ProcessSystemStringData FUN_18005d190
+
+/**
+ * @brief 释放系统资源
+ * 
+ * 该函数负责释放系统资源，包括内存释放和资源清理。
+ * 在核心引擎中用于资源的回收和清理。
+ * 
+ * @param resourcePointer 资源指针
+ * @return 释放结果状态码
+ * 
+ * @note 原始函数名：FUN_180058160
+ */
+#define ReleaseSystemResource FUN_180058160
+
+/**
+ * @brief 处理超时值
+ * 
+ * 该函数负责处理超时值，包括超时计算和超时管理。
+ * 在核心引擎中用于超时相关的处理。
+ * 
+ * @param timeoutPointer 超时指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18005e630
+ */
+#define ProcessTimeoutValue FUN_18005e630
+
+/**
+ * @brief 重置系统状态
+ * 
+ * 该函数负责重置系统状态，包括状态寄存器的重置和系统状态的恢复。
+ * 在核心引擎中用于系统状态的重置操作。
+ * 
+ * @return 重置结果状态码
+ * 
+ * @note 原始函数名：FUN_1800547b0
+ */
+#define ResetSystemStatus FUN_1800547b0
+
+/**
+ * @brief 处理Unicode字符
+ * 
+ * 该函数负责处理Unicode字符，包括字符编码转换和字符验证。
+ * 在核心引擎中用于Unicode字符的处理。
+ * 
+ * @param unicodeChar Unicode字符
+ * @param floatParam 浮点参数
+ * @param processingFlag 处理标志
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180055000
+ */
+#define ProcessUnicodeCharacter FUN_180055000
+
+/**
+ * @brief 处理超时存储
+ * 
+ * 该函数负责处理超时存储，包括超时数据的存储和管理。
+ * 在核心引擎中用于超时数据的存储操作。
+ * 
+ * @param timeoutPointer 超时指针
+ * @param dataTablePointer 数据表指针
+ * @param operationFlag 操作标志
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18005e770
+ */
+#define ProcessTimeoutStorage FUN_18005e770
+
+/**
+ * @brief 处理系统状态标志
+ * 
+ * 该函数负责处理系统状态标志，包括状态标志的设置和清除。
+ * 在核心引擎中用于状态标志的管理。
+ * 
+ * @param statusPointer 状态指针
+ * @param memoryPointer 内存指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180058830
+ */
+#define ProcessSystemStatusFlag FUN_180058830
+
 
