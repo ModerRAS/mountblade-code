@@ -58863,7 +58863,20 @@ void ValidateAndCleanupExceptionContext(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_1809064d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理上下文清理函数4D0
+ * 
+ * 该函数负责清理异常处理上下文，遍历异常处理链表并重置相关指针。
+ * 与函数4C0类似，但使用不同的偏移量来访问异常处理上下文。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809064d0
+ */
+#define CleanupExceptionHandlerContext4D0 Unwind_1809064d0
+
+void CleanupExceptionHandlerContext4D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
