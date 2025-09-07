@@ -162,75 +162,132 @@
  * @brief 读取UI数据
  * 
  * 从指定的内存地址读取UI系统数据
-  dataContext 数据上下文
- *  dataSource 数据源地址
- *  dataSize 数据大小
-  读取的数据值
-  原始函数名: ReadUIData
- #define ReadUIData ReadUIData
+  * @param dataContext 数据上下文
+ * @param dataSource 数据源地址
+ * @param dataSize 数据大小
+ * @return 读取的数据值
+ * @note 原始函数名: ReadUIData
+ */
+#define ReadUIData ReadUIData
 
- 获取字体渲染数据
- 从特定地址获取字体渲染所需的数据
-  uiContext UI上下文
- *  dataSource 数据源指针，用于存储获取的数据
-  原始函数名: FUN_180722340
- #define GetFontRenderData FUN_180722340
-
- 计算字体度量数据
- 根据字体度量表计算字符的位置和尺寸信息
-  uiContext UI上下文
- *  dataSource 数据源指针，用于存储计算结果
-  原始函数名: FUN_180722370
- #define CalculateFontMetricData FUN_180722370
-
- 计算UI组件边界
- 计算UI组件的边界框和尺寸信息
-   *   *    计算结果状态码
-  原始函数名: CalculateUIComponentBounds
- #define CalculateUIComponentBounds CalculateUIComponentBounds
-
- 刷新UI组件
- 刷新UI组件的显示内容和状态
-   *   *   *  param4 参数4
-  刷新结果状态码
-  原始函数名: RefreshUIComponent
- #define RefreshUIComponent RefreshUIComponent
-
- 更新UI组件
- 更新UI组件的数据和状态
-   *   *    更新结果状态码
-  原始函数名: UpdateUIComponent
- #define UpdateUIComponent UpdateUIComponent
-
- 清理UI缓冲区
- 清理UI系统的缓冲区资源
+/**
+ * @brief 获取字体渲染数据
  * 
-  原始函数名: CleanupUIBuffers
- #define CleanupUIBuffers CleanupUIBuffers
+ * 从特定地址获取字体渲染所需的数据
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源指针，用于存储获取的数据
+ * @return 获取结果状态码
+ * @note 原始函数名: FUN_180722340
+ */
+#define GetFontRenderData FUN_180722340
 
- 处理UI组件
- 处理UI组件的通用操作
-   *   *    处理结果状态码
-  原始函数名: HandleUIComponent
- #define HandleUIComponent HandleUIComponent
+/**
+ * @brief 计算字体度量数据
+ * 
+ * 根据字体度量表计算字符的位置和尺寸信息
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源指针，用于存储计算结果
+ * @return 计算结果状态码
+ * @note 原始函数名: FUN_180722370
+ */
+#define CalculateFontMetricData FUN_180722370
 
- 释放UI内存池
- 释放UI系统的内存池资源
-  param1 可选参数，指定要释放的资源
-  原始函数名: ReleaseUIMemoryPool
- #define ReleaseUIMemoryPool ReleaseUIMemoryPool
+ /**
+ * @brief 计算UI组件边界
+ * 
+ * 计算UI组件的边界框和尺寸信息
+ * 
+ * @param componentPtr 组件指针
+ * @param boundsPtr 边界框指针
+ * @param metricsPtr 度量指针
+ * @return 计算结果状态码
+ * @note 原始函数名: CalculateUIComponentBounds
+ */
+#define CalculateUIComponentBounds CalculateUIComponentBounds
 
- 分配UI内存
- 为UI组件分配内存资源
-  size 内存大小
- *  type 内存类型
-  分配的内存指针
-  原始函数名: AllocateUIMemory
- #define AllocateUIMemory AllocateUIMemory
+/**
+ * @brief 刷新UI组件
+ * 
+ * 刷新UI组件的显示内容和状态
+ * 
+ * @param componentPtr 组件指针
+ * @param contextPtr 上下文指针
+ * @param dataPtr 数据指针
+ * @param param4 参数4
+ * @return 刷新结果状态码
+ * @note 原始函数名: RefreshUIComponent
+ */
+#define RefreshUIComponent RefreshUIComponent
 
- 重置UI组件
- 重置UI组件到初始状态
-    原始函数名: ResetUIComponent
+/**
+ * @brief 更新UI组件
+ * 
+ * 更新UI组件的数据和状态
+ * 
+ * @param componentPtr 组件指针
+ * @param dataPtr 数据指针
+ * @return 更新结果状态码
+ * @note 原始函数名: UpdateUIComponent
+ */
+#define UpdateUIComponent UpdateUIComponent
+
+ /**
+ * @brief 清理UI缓冲区
+ * 
+ * 清理UI系统的缓冲区资源
+ * 
+ * @param contextPtr 上下文指针
+ * @return 清理结果状态码
+ * @note 原始函数名: CleanupUIBuffers
+ */
+#define CleanupUIBuffers CleanupUIBuffers
+
+/**
+ * @brief 处理UI组件
+ * 
+ * 处理UI组件的通用操作
+ * 
+ * @param componentPtr 组件指针
+ * @param operationPtr 操作指针
+ * @return 处理结果状态码
+ * @note 原始函数名: HandleUIComponent
+ */
+#define HandleUIComponent HandleUIComponent
+
+/**
+ * @brief 释放UI内存池
+ * 
+ * 释放UI系统的内存池资源
+ * 
+ * @param param1 可选参数，指定要释放的资源
+ * @return 释放结果状态码
+ * @note 原始函数名: ReleaseUIMemoryPool
+ */
+#define ReleaseUIMemoryPool ReleaseUIMemoryPool
+
+/**
+ * @brief 分配UI内存
+ * 
+ * 为UI组件分配内存资源
+ * 
+ * @param size 内存大小
+ * @param type 内存类型
+ * @return 分配的内存指针
+ * @note 原始函数名: AllocateUIMemory
+ */
+#define AllocateUIMemory AllocateUIMemory
+
+/**
+ * @brief 重置UI组件
+ * 
+ * 重置UI组件到初始状态
+ * 
+ * @param componentPtr 组件指针
+ * @return 重置结果状态码
+ * @note 原始函数名: ResetUIComponent
+ */
  #define ResetUIComponent ResetUIComponent
 
  获取UI资源
