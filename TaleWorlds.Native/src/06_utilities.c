@@ -18106,7 +18106,7 @@ DataBuffer ProcessEventA0(int64_t eventContext,int64_t systemContext)
       else {
         operationResult = ValidateOperationRangeA0(systemContext + 0x60,eventDataBuffer[0]);
         if ((int)operationResult == 0) {
-            CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + SystemEventOffset),operationBase);
+            CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemEventOffset),eventContext);
         }
       }
     }
@@ -18139,6 +18139,11 @@ DataBuffer ValidateFloatRangeAndProcessSystemCall(void)
   int64_t systemContext;
   int64_t resourceDescriptor;
   DataWord validationParameter;
+  
+  // 初始化变量
+  systemContext = 0;
+  resourceDescriptor = 0;
+  validationParameter = 0;
   
   resourceHandle = GetSystemResourceHandle();
   if ((*(uint *)(resourceHandle + 0x34) >> 4 & 1) != 0) {

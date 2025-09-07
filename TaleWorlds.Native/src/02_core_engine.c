@@ -172167,7 +172167,7 @@ void HandleUtf8InputBufferSizeAdjustment(int *Utf8InputBuffer,int Utf8BufferSize
                     // WARNING: Subroutine does not return
     InitializeSystemMemoryPool(BufferStatus,SystemMemoryPoolBase);
   }
-  FUN_18013e800(CharacterCode,*Utf8InputBufferSize);
+  ProcessSystemMemoryAllocationAndInitialize(CharacterCode,*Utf8InputBufferSize);
                     // WARNING: Subroutine does not return
   memcpy(*(void *)(CharacterCode + 2),*(void *)(Utf8BufferSize + 2),(long long)*Utf8InputBuffer * 0x14);
 }
@@ -172246,7 +172246,7 @@ long long FUN_18013e4c0(int *Utf8InputBuffer,long long Utf8BufferSize,uint64_t *
     if (EncodingValidationResult + 1 < MemoryAllocationSize) {
       RemainingSpace = MemoryAllocationSize;
     }
-    FUN_18013e620(CharacterCode,RemainingSpace);
+    ProcessSystemMemoryAllocationAndConfigure(CharacterCode,RemainingSpace);
     EncodingValidationResult = *Utf8InputBuffer;
   }
   if (MemoryPoolBlockSize < EncodingValidationResult) {
