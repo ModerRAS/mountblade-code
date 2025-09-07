@@ -62470,21 +62470,21 @@ void ValidateSystemDataIntegrity(uint64_t CharacterCode,long long Utf8BufferSize
   
   StackSystemValue2b8 = 0xfffffffffffffffe;
   SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)auStack_328;
-  alStack_2f0[0] = -1;
+  StackSystemData2f0[0] = -1;
   DataStructurePointer = &CoreEngineDataTemplate;
   if (*(void **)(Utf8BufferSize + 0x60) != NULL) {
     CharacterCodePointer = *(void **)(Utf8BufferSize + 0x60);
   }
   lStack_2e0 = Utf8BufferSize;
-  StringBuffer = ValidateSystemHandlesAndStatus(alStack_2f0,CharacterCodePointer,5,0x105);
-  MemoryBoundaryEnd = alStack_2f0[0];
+  StringBuffer = ValidateSystemHandlesAndStatus(StackSystemData2f0,CharacterCodePointer,5,0x105);
+  MemoryBoundaryEnd = StackSystemData2f0[0];
   if (StringBuffer == '\0') {
-    if (alStack_2f0[0] != -1) {
+    if (StackSystemData2f0[0] != -1) {
       LOCK();
       SystemReferenceCounter = SystemReferenceCounter + -1;
       UNLOCK();
-      CloseHandle(alStack_2f0[0]);
-      alStack_2f0[0] = -1;
+      CloseHandle(StackSystemData2f0[0]);
+      StackSystemData2f0[0] = -1;
     }
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)auStack_328);
@@ -62521,7 +62521,7 @@ LAB_18008c01e:
         }
         aSystemInitializationFlags[0] = 0;
         LocalProcessingStatusFlag8 = NULL;
-        CharacterByteCount = ReadFile(alStack_2f0[0],MemoryBoundaryEnd + SystemMemoryAllocationResult,MemoryAllocationIndex,aSystemInitializationFlags);
+        CharacterByteCount = ReadFile(StackSystemData2f0[0],MemoryBoundaryEnd + SystemMemoryAllocationResult,MemoryAllocationIndex,aSystemInitializationFlags);
       } while (((CharacterByteCount != 0) && (aSystemInitializationFlags[0] != 0)) &&
               (SystemMemoryAllocationResult = SystemMemoryAllocationResult + aSystemInitializationFlags[0], SystemMemoryAllocationResult < ProcessStringBuffer));
     }
@@ -68298,7 +68298,7 @@ void InitializeSystemMemoryManager(void
   uint32_t uStack_e4;
   uint32_t SystemFlagE;
   uint32_t uStack_dc;
-  long long alStack_d8 [2];
+  long long SystemPerformanceCounter [2];
   void *SystemStatusBufferPointer;
   void *SystemMemoryPointer;
   uint32_t MemoryOffsetValue;
@@ -68306,7 +68306,7 @@ void InitializeSystemMemoryManager(void
   unsigned long long uStack_28;
   
   MemoryPoolBlockSizePointer = SystemMemoryManager;
-  alStack_d8[1] = 0xfffffffffffffffe;
+  SystemPerformanceCounter[1] = 0xfffffffffffffffe;
   uStack_28 = EncodingDecodingKey ^ (unsigned long long)auStack_158;
   if ((char)SystemMemoryManager[1] != '\x01') {
     *(uint8_t *)(SystemMemoryManager + 1) = 1;
@@ -68459,8 +68459,8 @@ void InitializeSystemMemoryManager(void
     if (EngineTimeoutFlag != '\0') {
       LoopIndex = FrameTimeCounter;
       if (FrameTimeCounter == 0) {
-        QueryPerformanceCounter(alStack_d8);
-        LoopIndex = alStack_d8[0];
+        QueryPerformanceCounter(SystemPerformanceCounter);
+        LoopIndex = SystemPerformanceCounter[0];
       }
       *(double *)(*(long long *)(CurrentMemoryBlockAddress + 0x48) + 0xc0) =
            (double)(LoopIndex - TimestampStorage) * FrameRateCalculator;

@@ -8781,7 +8781,7 @@ void LoadUIModules(ulonglong *module_list)
   undefined8 *puVar6;
   undefined8 *peventTypeCode;
   undefined8 *puVar8;
-  int iVar9;
+  int uiBufferSize;
   int *poperationResult0;
   int operationResult1;
   ulonglong functionResult2;
@@ -8820,15 +8820,15 @@ void LoadUIModules(ulonglong *module_list)
   ProcessUIString(&puStack_b0,&puStack_60);
   uStack_b8 = 0;
   puStack_60 = &SecondaryUIBuffer;
-  iVar9 = uStack_a0 + 8;
-  AllocateUIBuffer(&puStack_b0,iVar9);
+  uiBufferSize = uStack_a0 + 8;
+  AllocateUIBuffer(&puStack_b0,uiBufferSize);
   *(undefined8 *)((ulonglong)uStack_a0 + lStack_a8) = 0x2f73656c75646f4d;
   *(undefined1 *)((undefined8 *)((ulonglong)uStack_a0 + lStack_a8) + 1) = 0;
   puStack_88 = (undefined8 *)0x0;
   puStack_80 = (undefined8 *)0x0;
   uStack_78 = 0;
   uStack_70 = 3;
-  uStack_a0 = iVar9;
+  uStack_a0 = uiBufferSize;
   ApplyUIConfiguration(&puStack_b0,&puStack_88);
   functionResult2 = (longlong)puStack_80 - (longlong)puStack_88 >> 5;
   uStack_90 = functionResult2;
@@ -8870,14 +8870,14 @@ void LoadUIModules(ulonglong *module_list)
         }
         uStack_c0 = uStack_c0 & 0xffffffff;
       }
-      iVar9 = uStack_c8 + 0xe;
-      AllocateUIBuffer(&puStack_d8,iVar9);
+      uiBufferSize = uStack_c8 + 0xe;
+      AllocateUIBuffer(&puStack_d8,uiBufferSize);
       peventTypeCode = (undefined8 *)(puStack_d0 + uStack_c8);
       *peventTypeCode = 0x75646f4d6275532f;
       *(undefined4 *)(peventTypeCode + 1) = 0x782e656c;
       *(undefined2 *)((longlong)peventTypeCode + 0xc) = 0x6c6d;
       *(undefined1 *)((longlong)peventTypeCode + 0xe) = 0;
-      uStack_c8 = iVar9;
+      uStack_c8 = uiBufferSize;
       cVar3 = ValidateUIData(&puStack_d8);
       if (cVar3 != '\0') {
         uVar4 = ManageUIContext(&puStack_d8);
