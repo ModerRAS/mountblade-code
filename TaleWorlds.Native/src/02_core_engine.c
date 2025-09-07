@@ -246827,12 +246827,24 @@ LAB_18021428b:
 
 
 
-bool FUN_180214340(long long CharacterCode,int Utf8BufferSize
+/**
+ * @brief 验证UTF-8字符编码和处理缓冲区
+ * 
+ * 该函数负责验证UTF-8字符编码的正确性，处理字符缓冲区，
+ * 并管理字符表指针和回调表指针的交互操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return bool 验证成功返回true，失败返回false
+ * 
+ * @note 原始函数名：FUN_180214340
+ */
+bool ValidateUtf8CharacterEncodingAndBuffer(long long CharacterCode,int Utf8BufferSize
 {
   long long PrimaryDataSize;
-  int *pCharacterByteCount;
+  int *CharacterByteCountPointer;
   long long MemoryOffset;
-  int StackIntegerArray [6];
+  int ValidationResultArray [6];
   
   CharacterTablePointer = *(long long *)(CharacterCode + 0x38);
   CallbackTablePointer = *(int **)(ThreadLocalStorageData + ((unsigned long long)(long long)Utf8BufferSize % (unsigned long long)*(uint *)(CharacterCode + 0x40)) *
@@ -246842,17 +246854,17 @@ bool FUN_180214340(long long CharacterCode,int Utf8BufferSize
       MemoryBlockIndex = *(long long *)(CharacterCode + 0x40);
       CallbackTablePointer = *(int **)(ThreadLocalStorageData + MemoryBlockIndex * 8);
 LAB_180214378:
-      if (pCharacterByteCount == *(int **)(CharacterTablePointer + MemoryBlockIndex * 8)) {
+      if (CharacterByteCountPointer == *(int **)(CharacterTablePointer + MemoryBlockIndex * 8)) {
         return false;
       }
-      FUN_180846d30(*(void *)(*(long long *)(pCharacterByteCount + 2) + 0x78),StackIntegerArray);
-      return StackIntegerArray[0] != 2;
+      ProcessSystemDataValidation(*(void *)(*(long long *)(CharacterByteCountPointer + 2) + 0x78),ValidationResultArray);
+      return ValidationResultArray[0] != 2;
     }
-    if (Utf8BufferSize == *pCharacterByteCount) {
+    if (Utf8BufferSize == *CharacterByteCountPointer) {
       MemoryBlockIndex = *(long long *)(CharacterCode + 0x40);
       goto LAB_180214378;
     }
-    pCharacterByteCount = *(int **)(pCharacterByteCount + 4);
+    CharacterByteCountPointer = *(int **)(CharacterByteCountPointer + 4);
   } while( true );
 }
 

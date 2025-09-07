@@ -60025,7 +60025,7 @@ void CleanupExceptionContextChain(DataBuffer operationBase,int64_t dataBuffer)
 void InitializeExceptionHandlerTablePointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x48) = &SystemExceptionHandlerTable;
+  **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset48) = &SystemExceptionHandlerTable;
   return;
 }
 
