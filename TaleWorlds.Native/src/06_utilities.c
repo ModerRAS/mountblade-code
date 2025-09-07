@@ -50133,14 +50133,26 @@ void SetDefaultExceptionHandlerBOffset28(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_1809048d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 解锁互斥锁并处理错误
+ * 
+ * 该函数用于解锁互斥锁，如果解锁操作失败，则抛出C标准错误异常。
+ * 这是线程同步操作的一部分，确保资源的安全访问。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含互斥锁信息
+ * 
+ * @note 原始函数名：Unwind_1809048d0
+ * @warning 如果解锁失败，函数会抛出异常并终止
+ */
+void UnlockMutexAndHandleError(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int inputParameter;
+  int unlockResult;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x58));
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  unlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x58));
+  if (unlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(unlockResult);
   }
   return;
 }
