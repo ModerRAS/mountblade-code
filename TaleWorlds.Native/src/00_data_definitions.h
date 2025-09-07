@@ -3254,7 +3254,7 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
     SystemValidationStatus = IntegerStatus != 0xb7;
   }
   ProcessSystemStringData(SystemStringDataPointer,0,0xd,&SystemStringProcessingTemplate,SystemStringDataBufferA);
-  if (StackBuffer28 == (void *)0x0) {
+  if (SystemStringBuffer == (void *)0x0) {
     return;
   }
   CleanupSystemResources();
@@ -4661,8 +4661,8 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
     LongData = 0;
   }
   pStackCounter4 = &SystemNullPointer;
-  if (StackBuffer28 == (void *)0x0) {
-    StackBuffer28 = (void *)0x0;
+  if (SystemResourceBuffer == (void *)0x0) {
+    SystemResourceBuffer = (void *)0x0;
     StackCounter5 = 0;
     pStackCounter4 = &SystemBufferTemplate;
     if (LongData != 0) {
@@ -7439,12 +7439,12 @@ ProcessStringBufferDataOperation(uint64_t SystemContextPointer,uint64_t BufferSi
   code *pNetworkRequestStatus;
   uint32_t BufferSize;
   uint64_t StringProcessingResult;
-  void *StackBuffer28;
+  void *StringFormatBuffer;
   longlong StackCleanupFlag;
   pNetworkRequestStatus = *(code **)(*SystemModuleCallbackTable + 0x70);
-  StringProcessingResult = ProcessStringFormatData(&StackBuffer28,&SystemStringFormatPrimary,MemoryAddressParameter,OperationFlags,0,SystemMutexFlags);
+  StringProcessingResult = ProcessStringFormatData(&StringFormatBuffer,&SystemStringFormatPrimary,MemoryAddressParameter,OperationFlags,0,SystemMutexFlags);
   BufferSize = (*pNetworkRequestStatus)(SystemModuleCallbackTable,StringProcessingResult,MemoryAddressParameter,OperationFlags,1);
-  StackBuffer28 = &SystemNullPointer;
+  StringFormatBuffer = &SystemNullPointer;
   if (StackCleanupFlag != 0) {
     CleanupSystemResources();
   }
@@ -7472,12 +7472,12 @@ ProcessStringBufferSecondaryOperation(uint64_t SystemContextPointer,uint64_t Buf
   code *pNetworkRequestStatus;
   uint32_t BufferSize;
   uint64_t StringProcessingResult;
-  void *StackBuffer28;
+  void *StringFormatBuffer;
   longlong StackCleanupFlag;
   pNetworkRequestStatus = *(code **)(*SystemModuleCallbackTable + 0x70);
-  StringProcessingResult = ProcessStringFormatData(&StackBuffer28,&SystemStringFormatSecondary,MemoryAddressParameter,OperationFlags,0,SystemMutexFlags);
+  StringProcessingResult = ProcessStringFormatData(&StringFormatBuffer,&SystemStringFormatSecondary,MemoryAddressParameter,OperationFlags,0,SystemMutexFlags);
   BufferSize = (*pNetworkRequestStatus)(SystemModuleCallbackTable,StringProcessingResult,MemoryAddressParameter,OperationFlags,1);
-  StackBuffer28 = &SystemNullPointer;
+  StringFormatBuffer = &SystemNullPointer;
   if (StackCleanupFlag != 0) {
     CleanupSystemResources();
   }
@@ -12780,7 +12780,7 @@ uint64_t SystemConfigureParameters(uint64_t *ConfigurationArrayPointer,longlong 
   uint64_t NetworkRequestResult;
   uint8_t MemoryAllocationResult;
   ulonglong StackVariable10;
-  uint StackBuffer28 [2];
+  uint NetworkDataBuffer [2];
   ulonglong StackVariable20;
   if (*(int *)(ConfigurationIndex + 0x18) < *(int *)(*(longlong *)(ConfigurationIndex + 0x10) + 0xb4)) {
 MemoryAllocationReset:
@@ -12797,8 +12797,8 @@ MemoryAllocationReset:
   StringProcessingResultPointer = (uint *)GetStringProcessingResult();
   StackVariable20 = 0;
   StackVariable10 = StackVariable10 & SystemBufferSizeMask;
-  StackBuffer28[0] = *StringProcessingResultPointer;
-  NetworkRequestResult = ProcessNetworkRequest(ConfigurationArrayPointer,*(uint64_t *)(ConfigurationIndex + 0x10),StackBuffer28,&StackVariable20,&StackVariable10);
+  NetworkDataBuffer[0] = *StringProcessingResultPointer;
+  NetworkRequestResult = ProcessNetworkRequest(ConfigurationArrayPointer,*(uint64_t *)(ConfigurationIndex + 0x10),NetworkDataBuffer,&StackVariable20,&StackVariable10);
   if ((int)NetworkRequestResult != 0) {
     return NetworkRequestResult;
   }
@@ -12810,7 +12810,7 @@ MemoryAllocationReset:
   BufferSize = *(uint *)((longlong)ConfigurationArrayPointer + 0xc);
   if (((BufferSize != *StringProcessingResultPointer) && (*(uint *)(ConfigurationArrayPointer + 4) <= BufferSize)) &&
      (BufferSize < *(uint *)((longlong)ConfigurationArrayPointer + 0x24))) {
-    if (BufferSize == StackBuffer28[0]) {
+    if (BufferSize == NetworkDataBuffer[0]) {
       return 0x1c;
     }
     BufferSize = CalculateBufferSize(*ConfigurationArrayPointer,BufferSize - *(int *)(ConfigurationArrayPointer + 1));
@@ -12865,7 +12865,7 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
   longlong LongOffset;
   uint32_t UnsignedSize;
   longlong StackVariable8;
-  uint8_t StackBuffer28 [16];
+  uint8_t NetworkPacketBuffer [16];
   NetworkOperationResult = *(uint64_t *)(NetworkContextPointer + 0x28);
   pNetworkRequestResult = (uint32_t *)GetStringProcessingResult();
   LongCounter = *TimeoutParameter;
@@ -12894,9 +12894,9 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
     }
   }
   if (OperationFlag1 != '\0') {
-    (**(code **)(**(longlong **)(OperationType + 0x10) + 0x30))(*(longlong **)(OperationType + 0x10),StackBuffer28)
+    (**(code **)(**(longlong **)(OperationType + 0x10) + 0x30))(*(longlong **)(OperationType + 0x10),NetworkPacketBuffer)
     ;
-    MemoryAllocationResult = AllocateNetworkResources(NetworkOperationResult,StackBuffer28,LongOffset,
+    MemoryAllocationResult = AllocateNetworkResources(NetworkOperationResult,NetworkDataBuffer,LongOffset,
                           *(uint32_t *)(*(longlong *)(OperationType + 0x10) + 0xb4));
     if ((int)MemoryAllocationResult != 0) {
       return MemoryAllocationResult;
