@@ -7904,18 +7904,29 @@ uint8_t SystemGlobalDataPointer;
 // 系统内存管理数据块B
 uint8_t SystemMemoryManagementBlockB1;
 uint8_t SystemMemoryManagementBlockB2;
-int64_t globalSystemDataPointer;
-uint UtilitySystemHealthIndicator;
-double systemPerformanceMetricPrimary;
-double systemPerformanceMetricSecondary;
+// 全局系统数据指针
+int64_t GlobalSystemDataPointer;
+// 系统健康状态指示器
+uint SystemHealthStatusIndicator;
+// 系统性能指标主值
+double SystemPerformanceMetricPrimary;
+// 系统性能指标次值
+double SystemPerformanceMetricSecondary;
 // 工具系统错误计数器
 int UtilitySystemErrorCount;
-double systemTimingValue;
+// 系统计时值
+double SystemTimingValue;
+// 系统主状态
 uint8_t SystemStatePrimary;
+// 系统次状态
 uint8_t SystemStateSecondary;
+// 系统指针数组主值
 uint8_t SystemPointerArrayPrimary;
+// 系统指针数组次值
 uint8_t SystemPointerArraySecondary;
+// 系统指针数组第三值
 uint8_t SystemPointerArrayTertiary;
+// 系统指针数组第四值
 uint8_t SystemPointerArrayQuaternary;
 // 系统线程管理数据块
 uint8_t SystemThreadManagementBlock1;
@@ -8150,12 +8161,19 @@ void* SystemDataValidation;
 void* SystemDataOptimization;
 uint32_t SystemDataHeaderSize;
 uint32_t SystemDataFooterSize;
+// 系统数据总大小
 uint64_t SystemDataTotalSize;
+// 系统数据已使用大小
 uint64_t SystemDataUsedSize;
+// 系统数据空闲大小
 uint64_t SystemDataFreeSize;
+// 系统数据保留大小
 uint64_t SystemDataReservedSize;
+// 系统数据可用大小
 uint64_t SystemDataAvailableSize;
+// 系统数据最大大小
 uint64_t SystemDataMaximumSize;
+// 系统数据最小大小
 uint64_t SystemDataMinimumSize;
 void* SystemDataValidator;
 uint32_t SystemSecurityValidationData;
@@ -100042,7 +100060,7 @@ void ReleaseSystemReferenceCount(void)
 
 
 
-void FUN_1809428d8(void)
+void ExecuteNoOperation(void)
 /**
  * @brief 空操作函数
  * 
@@ -100051,7 +100069,6 @@ void FUN_1809428d8(void)
  * 
  * @note 原始函数名：FUN_1809428d8
  */
-void NoOperationFunction(void)
 
 {
   return;
