@@ -19619,7 +19619,7 @@ uint64_t CleanupAndResetParameterContext(int64_t *parameterContext)
       return ResourceInvalidErrorCode;
     }
     if ((0 < (int)parameterFlags) && (*parameterContext != 0)) {
-        AllocateSystemResource(*(DataBuffer *)(GlobalResourceTable + 0x1a0),*parameterContext,&ParameterCleanupBuffer,0x100,1);
+        AllocateSystemResource(*(DataBuffer *)(GlobalResourceTable + GlobalResourceTableOffset1a0),*parameterContext,&ParameterCleanupBuffer,0x100,1);
     }
     *parameterContext = 0;
     *(DataWord *)((int64_t)parameterContext + 0xc) = 0;
