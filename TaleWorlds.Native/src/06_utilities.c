@@ -338,7 +338,7 @@
  * 该函数负责处理系统上下文信息，包括上下文的创建、维护和清理。
  * 它会验证上下文的有效性，并确保上下文数据的一致性。
  * 
- * @note 原始函数名：ProcessContext
+ * @note 原始函数名：FUN_18007f840
  */
 #define ProcessSystemContext FUN_18007f840
 
@@ -348,7 +348,7 @@
  * 该函数负责在不同数据类型之间进行转换，确保数据格式的一致性和正确性。
  * 支持基本数据类型之间的转换，并会进行有效性验证。
  * 
- * @note 原始函数名：ConvertData
+ * @note 原始函数名：FUN_18007f6a0
  */
 #define ConvertDataType FUN_18007f6a0
 
@@ -358,7 +358,7 @@
  * 该函数负责管理系统内存资源，包括内存分配、释放和优化。
  * 会监控内存使用情况，并在必要时进行内存整理操作。
  * 
- * @note 原始函数名：ManageMemory
+ * @note 原始函数名：FUN_18013ea00
  */
 #define ManageSystemMemory FUN_18013ea00
 
@@ -368,7 +368,7 @@
  * 该函数负责清理系统资源，包括释放内存、关闭文件句柄和清理临时数据。
  * 确保系统资源被正确释放，避免资源泄漏。
  * 
- * @note 原始函数名：CleanupSystem
+ * @note 原始函数名：FUN_1808fc5ac
  */
 #define CleanupSystemResources FUN_1808fc5ac
 
@@ -378,16 +378,17 @@
  * 该函数负责配置系统参数，包括系统设置、环境变量和运行时配置。
  * 会验证参数的有效性，并在配置失败时提供错误信息。
  * 
- * @note 原始函数名：ConfigureSystemA0
+ * @note 原始函数名：FUN_1808fc51c
  */
 #define ConfigureSystemParameters FUN_1808fc51c
 
 /**
  * @brief 系统处理函数A0
  * 
- * 该函数用于处理系统操作
+ * 该函数用于处理系统操作，包括系统初始化、配置和清理等操作。
+ * 它会协调各个系统组件的运行，确保系统操作的有序执行。
  * 
- * @note 原始函数名：func_0x000180060c10
+ * @note 原始函数名：FUN_1808fc914
  */
 #define ProcessSystemOperations FUN_1808fc914
 #define ProcessSystemA0 FUN_1808fc914
@@ -90005,7 +90006,17 @@ void Unwind_18090fb70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fb80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B0
+ * 
+ * 该函数负责在指定的数据缓冲区位置设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090fb80
+ */
+void SetDefaultExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x88) + 0x20) = &DefaultExceptionHandlerB;
@@ -90014,7 +90025,17 @@ void Unwind_18090fb80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fb90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B1
+ * 
+ * 该函数负责在指定的数据缓冲区位置设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090fb90
+ */
+void SetDefaultExceptionHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0xa0) = &DefaultExceptionHandlerB;
