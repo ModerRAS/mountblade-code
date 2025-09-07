@@ -19037,7 +19037,7 @@ void CoreEngineInitializeMainSystem(uint64_t systemParameter
  * 
  * @param systemContext 系统上下文参数，用于初始化数据链接
  */
-void InitializeSystemDataLinkage(long long systemContext
+void InitializeSystemDataLinkage(long long systemContext)
 {
   long long SystemDataContext;
   long long *DataLinkNode;
@@ -19330,7 +19330,7 @@ CheckSystemInfoBounds:
  * @note 此函数会分配内存用于错误处理
  * @note 初始化互斥锁用于线程安全
  */
-void CoreEngineHandleSystemErrorAndInitializeErrorHandler(uint64_t errorHandlerParam, long long systemContextParam
+void CoreEngineHandleSystemErrorAndInitializeErrorHandler(uint64_t errorHandlerParam, long long systemContextParam)
 {
   long long **ErrorHandlerManager;
   int LockResult;
@@ -19750,7 +19750,7 @@ void ExecuteObjectCallback(long long *ObjectPointer
  * @note 此函数包含安全检查，防止缓冲区溢出
  * @warning 源字符串为NULL时，目标字符串将被设置为空字符串
  */
-void CoreEngineStringCopyHandler(long long stringDestination,long long stringSource
+void CoreEngineStringCopyHandler(long long stringDestination,long long stringSource)
 {
   long long stringLength;
   
@@ -20039,13 +20039,13 @@ void CoreEngineStringCopyFinalize(uint8_t* stringBuffer
 
 
 
- void CoreEngineStringCopyExtended(long long CharacterCode,long long Utf8BufferSize,long long Utf8SourcePointer/**
+ /**
  * @brief 扩展的字符串复制操作
  * 
  * 该函数负责处理更复杂的字符串复制操作
  * 支持多个参数和更复杂的复制逻辑
  */
-void CoreEngineStringCopyExtended(long long destinationBuffer,long long sourceString,long long additionalData
+void CoreEngineStringCopyExtended(long long destinationBuffer,long long sourceString,long long additionalData)
 {
   long long searchResult;
   long long sourceLength;

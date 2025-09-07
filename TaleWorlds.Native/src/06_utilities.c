@@ -69093,7 +69093,13 @@ void ExecuteExceptionHandlerCallbackOffset18(DataBuffer operationBase,int64_t da
  * @param handleContext 句柄上下文指针
  * @return 无
  */
-void Unwind_180907f70(DataBuffer exceptionContext, int64_t handleContext)
+/**
+ * @brief 资源句柄关闭函数 - 关闭指定上下文中的资源句柄
+ * @param exceptionContext 异常上下文数据缓冲区
+ * @param handleContext 句柄上下文信息
+ * @note 原始函数名：Unwind_180907f70
+ */
+void CloseResourceHandle(DataBuffer exceptionContext, int64_t handleContext)
 
 {
   int64_t *handlePointer;
@@ -69180,7 +69186,13 @@ void ResetResourceState(DataBuffer ResetContext, int64_t ResourceContext)
 
 
 
-void Unwind_180907fa0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器重置函数A0 - 重置异常处理器状态
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180907fa0
+ */
+void ResetExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffsetA0) = &TemporaryExceptionHandler;
@@ -69195,7 +69207,13 @@ void Unwind_180907fa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907fb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统参数验证函数 - 验证系统参数并重置标志
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180907fb0
+ */
+void ValidateSystemParametersAndResetFlag(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
@@ -69207,7 +69225,13 @@ void Unwind_180907fb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907fe0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数 - 设置默认异常处理器B
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180907fe0
+ */
+void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x480) = &DefaultExceptionHandlerB;
@@ -69216,7 +69240,15 @@ void Unwind_180907fe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据缓冲区处理函数 - 处理异常数据缓冲区的清理
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907ff0
+ */
+void ProcessExceptionDataBuffer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -69418,7 +69450,24 @@ void ResetSystemStatusFlags(void)
  * 
  * @see ProcessSystemDataA0, free
  */
-void Unwind_180908050(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 验证上下文处理器函数
+ * 
+ * 该函数负责处理验证上下文，执行系统数据验证并清理验证上下文数组。
+ * 它会保存当前的异常处理上下文指针，处理系统数据验证，然后重置验证上下文数组。
+ * 最后设置验证上下文状态标志为0，并释放验证上下文指针数组的内存。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180908050
+ * @warning 此函数会释放内存，调用者需确保参数有效性
+ * 
+ * @see ProcessSystemDataA0, free
+ */
+void ProcessValidationContext(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t *exceptionHandlerContextPointer;

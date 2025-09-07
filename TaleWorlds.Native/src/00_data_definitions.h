@@ -3463,26 +3463,26 @@ LabelValidateSpaceCharacter:
                 StringPointer = (char *)(StackStringBufferSecondary + BufferSize1);
                 do {
                   LoopCounterValue = (int)BufferSize1;
-                  if (*StringPointer == ' ') goto Label_FirstSpaceCharacterFound;
+                  if (*StringPointer == ' ') goto FirstSpaceCharacterFoundLabel;
                   BufferSize1 = (ulonglong)(LoopCounterValue + 1U);
                   StringPointer = StringPointer + 1;
                 } while (LoopCounterValue + 1U < StackValidationLimit);
               }
               LoopCounterValue = -1;
-Label_FirstSpaceCharacterFound:
+FirstSpaceCharacterFoundLabel:
               UnsignedIndex = LoopCounterValue + 1;
               BufferSize1 = (ulonglong)(int)systemMode;
               if (UnsignedIndex < StackValidationLimit) {
                 StringPointer = (char *)(StackStringBufferSecondary + BufferSize1);
                 do {
-                  if (*StringPointer == ' ') goto Label_SecondSpaceFound;
+                  if (*StringPointer == ' ') goto SecondSpaceFoundLabel;
                   BufferSize6 = (int)BufferSize1 + 1;
                   BufferSize1 = (ulonglong)BufferSize6;
                   StringPointer = StringPointer + 1;
                 } while (BufferSize6 < StackValidationLimit);
               }
               BufferSize1 = 0xffffffff;
-Label_SecondSpaceFound:
+SecondSpaceFoundLabel:
               if (LoopCounterValue != -1) {
                 ProcessBufferData(&StackBufferPointer5,&StackBufferPointer6,UnsignedIndex,BufferSize1);
                 LoopCounterValue = LoopCounterValue;
@@ -3539,7 +3539,7 @@ Label_SecondSpaceFound:
                   } while (UnsignedIndex < StackValidationLimit);
                 }
                 BufferSize1 = 0xffffffff;
-Label_CompatibilityModeSpaceFound:
+CompatibilityModeSpaceFoundLabel:
                 UnsignedIndex = (int)BufferSize1 + 1;
                 BufferSize8 = (ulonglong)(int)UnsignedIndex;
                 if (UnsignedIndex < StackValidationLimit) {
@@ -3552,7 +3552,7 @@ Label_CompatibilityModeSpaceFound:
                   } while (BufferSize6 < StackValidationLimit);
                 }
                 BufferSize8 = 0xffffffff;
-Label_SecondCompatibilitySpaceFound:
+SecondCompatibilitySpaceFoundLabel:
                 if ((int)BufferSize1 != -1) {
                   ProcessBufferData(&StackDataBuffer,&StackOutputBuffer,UnsignedIndex,BufferSize8);
                   FinalizeDataBuffer(&StackOutputBuffer);
@@ -3623,13 +3623,13 @@ Label_SecondCompatibilitySpaceFound:
                   if (LoopCounterValue == 0) {
                     SystemResourceStatus = 1;
                     SystemMemoryStatus = 1;
-                    goto Label_SystemModeSet;
+                    goto SystemModeSetLabel;
                   }
-Label_ModeCheckFailed:
+ModeCheckFailedLabel:
                   BooleanCondition = false;
                 }
                 else {
-                  if (UnsignedIndex != 0x12) goto Label_ModeCheckFailed;
+                  if (UnsignedIndex != 0x12) goto ModeCheckFailedLabel;
                   LoopCounterValue = strcmp(pMemoryAddress1,&SystemEncryptionModeString);
                   BooleanCondition = LoopCounterValue == 0;
                 }
@@ -3647,7 +3647,7 @@ Label_ModeCheckFailed:
                     } while (UnsignedIndex < StackValidationLimit2);
                   }
                   BufferSize1 = 0xffffffff;
-Label_EncryptionModeSpaceFound:
+EncryptionModeSpaceFoundLabel:
                   UnsignedIndex = (int)BufferSize1 + 1;
                   BufferSize8 = (ulonglong)(int)UnsignedIndex;
                   if (UnsignedIndex < StackValidationLimit2) {
@@ -3660,7 +3660,7 @@ Label_EncryptionModeSpaceFound:
                     } while (BufferSize6 < StackValidationLimit2);
                   }
                   BufferSize8 = 0xffffffff;
-Label_StringSpaceFound:
+StringSpaceFoundLabel:
                   if ((int)BufferSize1 != -1) {
                     SystemDataProcess(&StackBufferPointer9,&StackBufferPointer10,UnsignedIndex,BufferSize8);
                     SystemBufferInitialize(&StackBufferPointer10,1);
@@ -3700,13 +3700,13 @@ Label_StringSpaceFound:
                     LoopCounterValue = strcmp(pMemoryAddress1,&SystemComparisonStringA);
                     if (LoopCounterValue == 0) {
                       SystemModuleStatus = 1;
-                      goto Label_SystemDataProcessing;
+                      goto SystemDataProcessingLabel;
                     }
-Label_ModeValidationCheck:
+ModeValidationCheckLabel:
                     BooleanCondition = false;
                   }
                   else {
-                    if (UnsignedIndex != 0xb) goto Label_ModeValidationCheck;
+                    if (UnsignedIndex != 0xb) goto ModeValidationCheckLabel;
                     LoopCounterValue = strcmp(pMemoryAddress1,&SystemComparisonStringB);
                     BooleanCondition = LoopCounterValue == 0;
                   }
@@ -3813,7 +3813,7 @@ LabelStringProcessingExit:
                         } while (UnsignedIndex < StackParameter13);
                       }
                       UnsignedIndex = 0xffffffff;
-Label_PathSeparatorFound:
+PathSeparatorFoundLabel:
                       if (UnsignedIndex != 0xffffffff) {
                         SystemDataPointer = SystemDataProcess(&StackBufferPointer14,&StackDataPointer,0);
                         if (StackCharacterBuffer != (char *)0x0) {
@@ -3913,7 +3913,7 @@ Label_PathSeparatorFound:
                             StackProcessIdentifier = CONCAT44(StackProcessIdentifier._4_4_,BufferSize6);
                             pMemoryAddress1 = (uint8_t *)(ulonglong)BufferSize6;
                           }
-Label_BufferSizeMaximumLimitReached:
+BufferSizeMaximumLimitReachedLabel:
                           pMemoryAddress6[(longlong)pMemoryAddress4] = BufferSize;
                           pMemoryAddress4[BufferSize1] = 0;
                           pMemoryAddress6 = (uint8_t *)(ulonglong)BufferSize3;
@@ -3996,17 +3996,17 @@ LabelSystemOperationExit:
   SystemBufferPointer310 = &SystemBufferTemplate;
   SystemSecurityCheck(SecurityKey38 ^ (ulonglong)SecurityBuffer368);
   while (BytePointer = BytePointer + 1, UnsignedIndex != 0) {
-Label_InitializationComplete:
+InitializationCompleteLabel:
     CharValue = *BytePointer;
     UnsignedIndex = (uint)BytePointer[SystemDataPointer];
     if (CharValue != UnsignedIndex) break;
   }
   if ((int)(CharValue - UnsignedIndex) < 1) {
-Label_SystemReady:
+SystemReadyLabel:
     BufferSize7 = 1;
   }
   else {
-Label_DataTransferOperationReady:
+DataTransferOperationReadyLabel:
     BufferSize7 = 0;
   }
   SystemModuleInitialize(LongAddress,ModuleInitializationResult0,StringSearchResult,BufferSize7);
@@ -4014,7 +4014,7 @@ Label_DataTransferOperationReady:
     BufferSize8 = (ulonglong)(LoopCounterValue + 1);
     BufferSize1 = BufferSize1 + 1;
     if ((longlong)(int)(UnsignedIndex - 0xe) <= (longlong)BufferSize1) break;
-Label_BufferSizeValidationCheck:
+BufferSizeValidationCheckLabel:
     LoopCounterValue = (int)BufferSize8;
     BufferSize8 = BufferSize9;
     BufferSize5 = BufferSize9;
@@ -12838,12 +12838,12 @@ MemoryAllocationReset:
       }
       if (LoopCounter == 2) {
         MemoryAllocationResult = 1;
-        goto Label_1808c73b4;
+        goto NetworkOperationCompleteLabel;
       }
     }
     MemoryAllocationResult = 0;
   }
-Label_1808c73b4:
+NetworkOperationCompleteLabel:
   NetworkRequestResult = HandleNetworkOperation(ConfigurationArrayPointer,ConfigurationIndex,ConfigurationIndex + 0x28,&MemoryOffset,&MemoryAlignmentMask,MemoryAllocationResult,1);
   if ((int)NetworkRequestResult == 0) {
     *(int *)(ConfigurationIndex + 0x18) = *(int *)(ConfigurationIndex + 0x18) + 1;
