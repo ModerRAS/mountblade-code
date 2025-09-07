@@ -9561,7 +9561,7 @@ LAB_1806577f1:
   while (ptrLocal6 != (undefined8 *)0x0) {
     ptrLocal3 = ptrLocal6;
     if (*(int *)(ptrLocal6 + 6) == 0) {
-      bVar2 = false;
+      isProcessingComplete = false;
 LAB_180657812:
       ptrLocal6 = (undefined8 *)*ptrLocal6;
     }
@@ -9578,14 +9578,14 @@ LAB_180657812:
           if (isCharacterMatch != eventTypeCode) break;
           pbVar5 = pbVar5 + 1;
         } while (eventTypeCode != 0);
-        bVar2 = 0 < (int)(isCharacterMatch - eventTypeCode);
+        isProcessingComplete = 0 < (int)(isCharacterMatch - eventTypeCode);
       }
-      if (!bVar2) goto LAB_180657812;
+      if (!isProcessingComplete) goto LAB_180657812;
       ptrLocal6 = (undefined8 *)ptrLocal6[1];
     }
   }
   ptrLocal6 = ptrLocal3;
-  if (bVar2) {
+  if (isProcessingComplete) {
     if (ptrLocal3 != g_uiRenderContextDefault) {
       ptrLocal6 = (undefined8 *)GetUIComponentData(ptrLocal3);
       goto LAB_180657835;
