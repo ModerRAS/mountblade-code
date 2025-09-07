@@ -30088,12 +30088,12 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer SystemContext)
   float computedFloatValue;
   
   // 新增的语义化变量，用于替换原始的Ghidra生成变量名
-  float primaryFloatResult;     // 主要浮点结果，替换fVar20
-  float validationCounter;     // 验证计数器，替换fVar4
-  float secondValidationValue; // 第二验证值，替换fVar5
-  float thirdValidationValue;  // 第三验证值，替换fVar6
-  float fourthValidationValue; // 第四验证值，替换fVar7
-  float secondaryFloatResult;  // 次要浮点结果，替换fVar9
+  float calculatedFloatValue;       // 计算浮点数值，替换fVar20
+  float floatValidationIterationCount; // 浮点验证迭代计数，替换fVar4
+  float componentXFloatValue;       // X分量浮点值，替换fVar5
+  float componentYFloatValue;       // Y分量浮点值，替换fVar6
+  float componentZFloatValue;       // Z分量浮点值，替换fVar7
+  float normalizedFloatResult;     // 标准化浮点结果，替换fVar9
   float systemDataBuffer;      // 系统数据缓冲区，替换系统相关变量
   float statusCounter;         // 状态计数器，替换状态相关变量
   float loopCounter;           // 循环计数器，替换循环相关变量
