@@ -43381,31 +43381,40 @@ void ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180903910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 配置异常处理器上下文（偏移0x530）
+ * @details 从数据缓冲区获取验证上下文，设置多个异常处理器并调用相关回调函数
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含验证上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名: Unwind_180903910
+ */
+void ConfigureExceptionHandlerContext530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t validationContext;
+  int64_t exceptionHandlerContext;
   
-  validationContext = *(int64_t *)(dataBuffer + 0x40);
-  if (*(FunctionPointer**)(validationContext + 0x530) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x530))(validationContext + 0x520,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
+  if (*(FunctionPointer**)(exceptionHandlerContext + 0x530) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + 0x530))(exceptionHandlerContext + 0x520,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(validationContext + 0x4f8) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x500) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + 0x4f8) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x500) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x500) = 0;
-  *(DataWord *)(validationContext + 0x510) = 0;
-  *(DataBuffer *)(validationContext + 0x4f8) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(validationContext + 0x4d8) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x4e0) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + 0x500) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x510) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x4f8) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x4d8) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x4e0) = 0;
-  *(DataWord *)(validationContext + 0x4f0) = 0;
-  *(DataBuffer *)(validationContext + 0x4d8) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x4f0) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x4d8) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -95072,7 +95081,19 @@ void HandleDataValidationException(DataBuffer operationBase, int64_t dataBuffer,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统数据缓冲区清理器
+ * 
+ * 该函数负责清理系统数据缓冲区，处理异常上下文并释放相关资源
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含需要清理的数据信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809127a0
+ */
+void CleanupSystemDataBufferA0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -100271,6 +100292,23 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：_DAT_180d49f80 - 系统异常处理器状态表
 // 功能：存储系统异常处理器的状态信息
 #define SystemExceptionHandlerStateTable _DAT_180d49f80
+
+// 异常处理器指针初始化函数宏定义
+// 原始函数名：Unwind_1809077c0 - 异常处理器指针初始化函数A5
+// 功能：初始化异常处理器指针A5，设置为默认异常处理器
+#define InitializeExceptionHandlerPointerA5 Unwind_1809077c0
+
+// 原始函数名：Unwind_1809077d0 - 异常处理器指针初始化函数A6
+// 功能：初始化异常处理器指针A6，设置为默认异常处理器
+#define InitializeExceptionHandlerPointerA6 Unwind_1809077d0
+
+// 原始函数名：Unwind_1809077e0 - 异常处理器指针初始化函数A7
+// 功能：初始化异常处理器指针A7，设置为默认异常处理器
+#define InitializeExceptionHandlerPointerA7 Unwind_1809077e0
+
+// 原始函数名：Unwind_1809077f0 - 异常处理器指针初始化函数A8
+// 功能：初始化异常处理器指针A8，设置为默认异常处理器
+#define InitializeExceptionHandlerPointerA8 Unwind_1809077f0
 
 // 栈变量宏定义 - 美化in_stack变量（补充定义）
 // 原始变量名：in_stack_0000000000000008 - 栈验证参数A

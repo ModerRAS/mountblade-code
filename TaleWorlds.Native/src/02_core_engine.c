@@ -167536,7 +167536,19 @@ LAB_1801421be:
 
 
 
-uint32_t FUN_180142220(long long SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Utf16InputPointer,long long Utf16EndPointer
+/**
+ * @brief 处理UTF-16字符和系统缓冲区
+ * 
+ * 该函数负责UTF-16字符的处理和系统缓冲区的管理，包括字符转换、
+ * 缓冲区分配和状态验证等操作。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小指针
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 处理结果状态码
+ */
+uint32_t ProcessUtf16CharAndSystemBuffer(long long SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Utf16InputPointer,long long Utf16EndPointer)
 {
   uint32_t Utf16Char;
   long long *BufferAllocationStatus;
@@ -167837,7 +167849,17 @@ LAB_18014276d:
 
 
 
-uint32_t FUN_1801426a4(long long SystemContextPointer,long long Utf8BufferSize
+/**
+ * @brief 处理系统内存分配和状态
+ * 
+ * 该函数负责系统内存的分配和状态的处理，包括内存块的分配、
+ * 状态验证和数据同步等操作。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return 处理结果状态码
+ */
+uint32_t ProcessSystemMemoryAllocationAndStatus(long long SystemContextPointer,long long Utf8BufferSize)
 {
   uint64_t *StatusBuffer;
   byte SystemHighByte;
@@ -167926,7 +167948,19 @@ uint64_t GetSystemMaximumValue(void
 
 
 
-long long * FUN_1801427a0(long long *SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,unsigned long long Utf16EndPointer
+/**
+ * @brief 处理系统内存块链表
+ * 
+ * 该函数负责系统内存块链表的处理，包括链表的遍历、内存块的
+ * 分配和链表节点的管理等操作。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 内存块链表头指针
+ */
+long long * ProcessSystemMemoryBlockList(long long *SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,unsigned long long Utf16EndPointer)
 {
   byte CurrentByteValue;
   bool HighByte;
@@ -168109,7 +168143,19 @@ LAB_180142973:
 
 
 42a00(long long SystemContextPointer,uint64_t Utf8BufferSize,long long Utf16InputPointer,uint64_t Utf16EndPointer,
-void FUN_180142a00(long long SystemContextPointer,uint64_t Utf8BufferSize,long long Utf16InputPointer,uint64_t Utf16EndPointer,
+/**
+ * @brief 处理系统编码转换和数据
+ * 
+ * 该函数负责系统编码转换和数据的处理，包括字符编码的转换、
+ * 数据的验证和处理等操作。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ */
+void ProcessSystemEncodingAndData(long long SystemContextPointer,uint64_t Utf8BufferSize,long long Utf16InputPointer,uint64_t Utf16EndPointer,
                   long long AdditionalParameter1
 {
   byte CurrentByteValue;
@@ -219015,7 +219061,7 @@ uint64_t * InitializeSystemContext(uint64_t *SystemContextPointer,long long Utf8
   *(void *)((long long)SystemContextPointer + 0x3004) = 0;
   *(void *)((long long)SystemContextPointer + 0x300c) = 0;
   ProcessSystemFunctionCall(SystemContextPointer + 0x603);
-  FUN_180142b20(SystemContextPointer + 0x66d);
+  ProcessSystemFunctionCall(SystemContextPointer + 0x66d);
   FUN_180397660(SystemContextPointer + 0x6d6);
   SystemContextPointer[0x7ce] = 0;
   SystemContextPointer[1999] = 0;
