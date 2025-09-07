@@ -19998,41 +19998,41 @@ uint64_t * CoreEngineInitializeQueueHeader(uint64_t *QueueHeader
  * @param TargetBuffer 目标数据缓冲区的指针  
  * @param DataLength 数据长度的指针
  */
-void CoreEngineProcessStringData(long long SourceBuffer, long long TargetBuffer, long long DataLength
+void CoreEngineProcessStringData(long long SourceBuffer, long long TargetBuffer, long long DataLength)
 {
-  long long SearchResult;
-  long long SourceLength;
-  long long TargetLength;
-  uint8_t StackBufferA [32];
-  uint64_t StackSystemConfigValue;
-  uint8_t *StackBuffer80;
-  uint8_t *SystemBufferPointer;
-  uint32_t StackValidationValue;
-  uint8_t SystemStackBuffer [32];
-  unsigned long long SystemEncodedValue;
+  long long StringSearchResult;
+  long long SourceStringLength;
+  long long TargetStringLength;
+  uint8_t StringProcessingBuffer [32];
+  uint64_t StringEncodingConfig;
+  uint8_t *SecondaryStringBuffer;
+  uint8_t *BufferWritePointer;
+  uint32_t ProcessingValidationFlag;
+  uint8_t TemporaryStringBuffer [32];
+  unsigned long long EncodedStringResult;
   
-  StackSystemConfigValue = 0xfffffffffffffffe;
-  SystemEncodedValue = EncodingDecodingKey ^ (unsigned long long)StackBufferA;
+  StringEncodingConfig = 0xfffffffffffffffe;
+  EncodedStringResult = EncodingDecodingKey ^ (unsigned long long)StringProcessingBuffer;
   RenderConfigPointer = &RenderConfigManager;
-  SystemBufferPointer = SystemStackBuffer;
-  StackValidationValue = 0;
-  SystemStackBuffer[0] = 0;
+  BufferWritePointer = TemporaryStringBuffer;
+  ProcessingValidationFlag = 0;
+  TemporaryStringBuffer[0] = 0;
   StringSearchResult = strstr(*(void *)(CharacterCode + 8));
-  if (SearchResult != 0) {
-    SourceLength = -1;
-    TargetLength = -1;
+  if (StringSearchResult != 0) {
+    SourceStringLength = -1;
+    TargetStringLength = -1;
     do {
-      TargetLength = TargetLength + 1;
-    } while (*(char *)(Utf8BufferSize + TargetLength) != '\0');
+      TargetStringLength = TargetStringLength + 1;
+    } while (*(char *)(Utf8BufferSize + TargetStringLength) != '\0');
     do {
-      SourceLength = SourceLength + 1;
-    } while (*(char *)(SourceLength + Utf8SourcePointer) != '\0');
+      SourceStringLength = SourceStringLength + 1;
+    } while (*(char *)(SourceStringLength + Utf8SourcePointer) != '\0');
                     // WARNING: Subroutine does not return
-    memcpy(SystemBufferPointer,*(long long *)(CharacterCode + 8),SearchResult - *(long long *)(CharacterCode + 8));
+    memcpy(BufferWritePointer,*(long long *)(CharacterCode + 8),StringSearchResult - *(long long *)(CharacterCode + 8));
   }
   RenderConfigPointer = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
-  CoreEngineProcessEncodedSystemInfo(SystemEncodedValue ^ (unsigned long long)StackBufferA);
+  CoreEngineProcessEncodedSystemInfo(EncodedStringResult ^ (unsigned long long)StringProcessingBuffer);
 }
 
 
@@ -146916,7 +146916,7 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
         StackFloat54 = fStackX_14 - 8.0;
         StackFloat58 = fStackX_10 - 16.0;
         pvalidationResult = (int *)(Utf8BufferSize + 0xd4);
-        FUN_18012f260(&StackConfigurationFlag,&fStackX_10,Utf8BufferSize + 0x48,pvalidationResult,aSystemStackFlag,&StackFloat58,0);
+        ConvertSystemData(&StackConfigurationFlag,&fStackX_10,Utf8BufferSize + 0x48,pvalidationResult,aSystemStackFlag,&StackFloat58,0);
         if (*pvalidationResult == -1) {
           *Utf8InputBuffer = CONCAT44(fStackX_14 + 2.0,fStackX_10 + 2.0);
         }
@@ -146927,19 +146927,19 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
     }
     else {
       MemoryBlockIndex = Utf8BufferSize;
-      FUN_18012f580(aSystemStackFlag);
+      ProcessSystemBufferData(aSystemStackFlag);
       StackFloat58 = *(float *)(Utf8BufferSize + 0x40) - 1.0;
       StackFloat50 = *(float *)(Utf8BufferSize + 0x40) + 1.0;
       StackFloat54 = *(float *)(MemoryBlockIndex + 0x44) - 1.0;
       fStack_4c = *(float *)(MemoryBlockIndex + 0x44) + 1.0;
-      FUN_18012f260(CharacterCode,Utf8BufferSize + 0x40,MemoryBlockIndex + 0x48,MemoryBlockIndex + 0xd4,aSystemStackFlag,&StackFloat58,0);
+      ConvertSystemData(CharacterCode,Utf8BufferSize + 0x40,MemoryBlockIndex + 0x48,MemoryBlockIndex + 0xd4,aSystemStackFlag,&StackFloat58,0);
     }
   }
   else {
     FloatVariable5 = *(float *)(SystemConfigurationHandle + 0x166c);
     MemoryBlockIndex = *(long long *)(Utf8BufferSize + 0x398);
     BufferStatus = SystemConfigurationHandle;
-    FUN_18012f580(aSystemStackFlag);
+    ProcessSystemBufferData(aSystemStackFlag);
     if (*(char *)(MemoryBlockIndex + 0x17e) == '\0') {
       StackFloat58 = *(float *)(MemoryBlockIndex + 0x40) + FloatVariable5;
       StackFloat50 = ((*(float *)(MemoryBlockIndex + 0x40) + *(float *)(MemoryBlockIndex + 0x48)) - FloatVariable5) -
@@ -146975,7 +146975,7 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
       StackFloat58 = -3.4028235e+38;
       StackFloat50 = 3.4028235e+38;
     }
-    FUN_18012f260(CharacterCode,Utf8BufferSize + 0x40,Utf8BufferSize + 0x48,Utf8BufferSize + 0xd4,aSystemStackFlag,&StackFloat58,0);
+    ConvertSystemData(CharacterCode,Utf8BufferSize + 0x40,Utf8BufferSize + 0x48,Utf8BufferSize + 0xd4,aSystemStackFlag,&StackFloat58,0);
   }
   return CharacterCode;
 }
@@ -146996,7 +146996,7 @@ f711(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_18012f711(uint64_t 
   float FloatingPointRegisterA;
   
   CharacterTablePointer = *(long long *)(Utf8BufferSize + 0x398);
-  FUN_18012f580();
+  ProcessSystemBufferData();
   if (*(char *)(CharacterTablePointer + 0x17e) == '\0') {
     UnicodeCodePoint = 0xff7fffff;
     FloatVariable5 = *(float *)(CharacterTablePointer + 0x40) + FloatingPointRegisterA;
@@ -147044,7 +147044,7 @@ f711(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_18012f711(uint64_t 
     *(uint32_t *)(RegisterFramePointer + 0xf) = 0x7f7fffff;
     *(float *)(RegisterFramePointer + 0x13) = FloatVariable4;
   }
-  FUN_18012f260(UnicodeCodePoint,Utf8BufferSize + 0x40,Utf8BufferSize + 0x48,Utf8BufferSize + 0xd4,RegisterFramePointer + 0x17);
+  ConvertSystemData(UnicodeCodePoint,Utf8BufferSize + 0x40,Utf8BufferSize + 0x48,Utf8BufferSize + 0xd4,RegisterFramePointer + 0x17);
   return;
 }
 
@@ -147071,7 +147071,7 @@ f8b5(uint64_t *Utf8InputBuffer,long long Utf8BufferSizevoid FUN_18012f8b5(uint64
     else {
       FloatVariable5 = *(float *)(SystemRegisterR10 + 0x16bc);
       InitializeSystemConfiguration(RegisterFramePointer + 0x6f);
-      FUN_18012f580(RegisterFramePointer + 0x17,in_R11);
+      ProcessSystemBufferData(RegisterFramePointer + 0x17,in_R11);
       if (((*(char *)(SystemRegisterR10 + 0x1d06) == '\0') && (*(char *)(SystemRegisterR10 + 0x1d07) != '\0')) &&
          ((*(byte *)(SystemRegisterR10 + 8) & 4) == 0)) {
         FloatVariable4 = *(float *)(RegisterFramePointer + 0x6f);
@@ -147101,7 +147101,7 @@ f8b5(uint64_t *Utf8InputBuffer,long long Utf8BufferSizevoid FUN_18012f8b5(uint64
         *(float *)(RegisterFramePointer + 0x13) = FloatVariable5;
       }
       ReferenceCountPointer = (int *)(in_R11 + 0xd4);
-      FUN_18012f260(RegisterFramePointer + 0x77,RegisterFramePointer + 0x6f,in_R11 + 0x48,ReferenceCountPointer,RegisterFramePointer + 0x17);
+      ConvertSystemData(RegisterFramePointer + 0x77,RegisterFramePointer + 0x6f,in_R11 + 0x48,ReferenceCountPointer,RegisterFramePointer + 0x17);
       if (*ReferenceCountPointer == -1) {
         *DataNodeIndex = CONCAT44(ContextSecondaryFloat + 2.0,FloatVariable4 + 2.0);
       }
@@ -147111,7 +147111,7 @@ f8b5(uint64_t *Utf8InputBuffer,long long Utf8BufferSizevoid FUN_18012f8b5(uint64
     }
   }
   else {
-    FUN_18012f580(RegisterFramePointer + 0x17);
+    ProcessSystemBufferData(RegisterFramePointer + 0x17);
     FloatVariable5 = *(float *)(Utf8BufferSize + 0x40);
     FloatVariable4 = *(float *)(in_R11 + 0x44);
     *(float *)(RegisterFramePointer + 7) = FloatVariable5 - 1.0;
@@ -147119,7 +147119,7 @@ f8b5(uint64_t *Utf8InputBuffer,long long Utf8BufferSizevoid FUN_18012f8b5(uint64
     *(float *)(RegisterFramePointer + 0xf) = FloatVariable5 + 1.0;
     *(float *)(RegisterFramePointer + 0xb) = ContextSecondaryFloat;
     *(float *)(RegisterFramePointer + 0x13) = FloatVariable4 + 1.0;
-    FUN_18012f260(ContextSecondaryFloat,Utf8BufferSize + 0x40,in_R11 + 0x48,in_R11 + 0xd4,RegisterFramePointer + 0x17);
+    ConvertSystemData(ContextSecondaryFloat,Utf8BufferSize + 0x40,in_R11 + 0x48,in_R11 + 0xd4,RegisterFramePointer + 0x17);
   }
   return;
 }
@@ -147141,7 +147141,7 @@ f941(voidvoid FUN_18012f941(void
   
   FloatVariable5 = *(float *)(SystemRegisterR10 + 0x16bc);
   InitializeSystemConfiguration(RegisterFramePointer + 0x6f);
-  FUN_18012f580(RegisterFramePointer + 0x17,in_R11);
+  ProcessSystemBufferData(RegisterFramePointer + 0x17,in_R11);
   if (((*(char *)(SystemRegisterR10 + 0x1d06) == '\0') && (*(char *)(SystemRegisterR10 + 0x1d07) != '\0')) &&
      ((*(byte *)(SystemRegisterR10 + 8) & 4) == 0)) {
     CalculatedFilterValue = *(float *)(RegisterFramePointer + 0x6f);
@@ -147171,7 +147171,7 @@ f941(voidvoid FUN_18012f941(void
     *(float *)(RegisterFramePointer + 0x13) = FloatVariable5;
   }
   ReferenceCountPointer = (int *)(in_R11 + 0xd4);
-  FUN_18012f260(RegisterFramePointer + 0x77,RegisterFramePointer + 0x6f,in_R11 + 0x48,ReferenceCountPointer,RegisterFramePointer + 0x17);
+  ConvertSystemData(RegisterFramePointer + 0x77,RegisterFramePointer + 0x6f,in_R11 + 0x48,ReferenceCountPointer,RegisterFramePointer + 0x17);
   if (*ReferenceCountPointer == -1) {
     *DataNodeIndex = CONCAT44(FloatVariable4 + 2.0,FilterInputValue + 2.0);
   }
@@ -147198,7 +147198,7 @@ f94a(voidvoid FUN_18012f94a(void
   
   FloatVariable5 = *(float *)(SystemRegisterR10 + 0x16bc);
   InitializeSystemConfiguration();
-  FUN_18012f580(RegisterFramePointer + 0x17,in_R11);
+  ProcessSystemBufferData(RegisterFramePointer + 0x17,in_R11);
   if (((*(char *)(SystemRegisterR10 + 0x1d06) == '\0') && (*(char *)(SystemRegisterR10 + 0x1d07) != '\0')) &&
      ((*(byte *)(SystemRegisterR10 + 8) & 4) == 0)) {
     CalculatedFilterValue = *(float *)(RegisterFramePointer + 0x6f);
@@ -147228,7 +147228,7 @@ f94a(voidvoid FUN_18012f94a(void
     *(float *)(RegisterFramePointer + 0x13) = FloatVariable5;
   }
   ReferenceCountPointer = (int *)(in_R11 + 0xd4);
-  FUN_18012f260(RegisterFramePointer + 0x77,RegisterFramePointer + 0x6f,in_R11 + 0x48,ReferenceCountPointer,RegisterFramePointer + 0x17);
+  ConvertSystemData(RegisterFramePointer + 0x77,RegisterFramePointer + 0x6f,in_R11 + 0x48,ReferenceCountPointer,RegisterFramePointer + 0x17);
   if (*ReferenceCountPointer == -1) {
     *DataNodeIndex = CONCAT44(FloatVariable4 + 2.0,FilterInputValue + 2.0);
   }
