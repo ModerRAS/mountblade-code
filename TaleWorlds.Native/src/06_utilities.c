@@ -86034,7 +86034,22 @@ void Unwind_18090e7f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e800(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器资源管理函数E800
+ * 
+ * 该函数管理异常处理器的资源，包括资源迭代、上下文处理和异常状态验证。
+ * 主要功能包括：
+ * - 检查数据缓冲区状态
+ * - 处理资源迭代器
+ * - 验证异常上下文
+ * - 执行系统操作
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_18090e800
+ */
+void ManageExceptionHandlerResourcesE800(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -86990,7 +87005,18 @@ void Unwind_18090eca0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ecd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调函数ECD0
+ * 
+ * 该函数处理异常处理器回调，从0x100偏移量获取异常上下文指针
+ * 并执行相应的回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_18090ecd0
+ */
+void ExecuteExceptionHandlerCallbackECD0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x100) != (int64_t *)0x0) {
