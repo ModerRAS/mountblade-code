@@ -90505,7 +90505,7 @@ void ManageMemoryReferenceCountAtOffset490(DataBuffer operationBase,int64_t data
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x490);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryReferenceCleanupOffset490);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -95062,10 +95062,20 @@ void Unwind_18090e400(DataBuffer operationBase,int64_t dataBuffer)
 // 功能：检查系统状态和标志位
 #define CheckSystemStatusA0 FUN_1800f88f0
 
-void Unwind_18090e410(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作函数E410
+ * 
+ * 该函数负责执行内存操作，调用ExecuteMemoryOperation函数处理特定的内存地址
+ * 使用偏移量0x488和ProcessMemoryOperationA0作为处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e410
+ */
+void ExecuteMemoryOperationE410(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x30),0x488,2,ProcessMemoryOperationA0,SystemCleanupFlagAlternative);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x30), 0x488, 2, ProcessMemoryOperationA0, SystemCleanupFlagAlternative);
   return;
 }
 
