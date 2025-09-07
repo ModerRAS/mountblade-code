@@ -105276,32 +105276,32 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define StackDataWordU StackFloatProcessingData
 
 // 原始变量名：uStack_2e8 - 栈数据字V
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordV uStack_2e8
+// 功能：存储数据验证过程中的临时数据字
+#define StackDataWordV StackDataValidationTemp2
 
 // 原始变量名：uStack_28c - 栈数据字W
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordW uStack_28c
+// 功能：存储异常上下文标志数据字
+#define StackDataWordW StackExceptionContextFlag1
 
 // 原始变量名：uStack_288 - 栈数据字X
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordX uStack_288
+// 功能：存储异常上下文标志数据字
+#define StackDataWordX StackExceptionContextFlag2
 
 // 原始变量名：uStack_284 - 栈数据字Y
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordY uStack_284
+// 功能：存储异常上下文数据字
+#define StackDataWordY StackExceptionContextData9
 
 // 原始变量名：uStack_280 - 栈数据字Z
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordZ uStack_280
+// 功能：存储异常上下文数据字
+#define StackDataWordZ StackExceptionContextData10
 
 // 原始变量名：uStack_27c - 栈数据字AA
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAA uStack_27c
+// 功能：存储资源分配结果数据字
+#define StackDataWordAA StackResourceAllocationResult
 
 // 原始变量名：uStack_298 - 栈数据字AB
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordAB uStack_298
+// 功能：存储操作状态标志数据字
+#define StackDataWordAB StackOperationStatusFlag
 
 // 原始变量名：puStack_2a8 - 栈指针缓冲区G
 // 功能：存储指针数据的栈缓冲区
