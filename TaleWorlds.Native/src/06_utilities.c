@@ -49185,35 +49185,35 @@ void Unwind_1809051f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
  * @param operationBase 操作基础参数
  * @param dataBuffer 数据缓冲区
  */
-void CleanupSystemResourcesA0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupSystemResourceBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int *referenceCountPointer;
-  DataBuffer *resourcePointer;
-  int64_t calculatedOffset;
+  int *resourceReferenceCount;
+  DataBuffer *systemResourcePointer;
+  int64_t memoryCalculatedOffset;
   uint64_t memoryBaseAddress;
   
-  resourcePointer = *(DataBuffer **)(dataBuffer + 0x148);
-  if (resourcePointer == (DataBuffer *)0x0) {
+  systemResourcePointer = *(DataBuffer **)(dataBuffer + 0x148);
+  if (systemResourcePointer == (DataBuffer *)0x0) {
     return;
   }
-  memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
+  memoryBaseAddress = (uint64_t)systemResourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
-    calculatedOffset = memoryBaseAddress + 0x80 + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
-      *resourcePointer = *(DataBuffer *)(calculatedOffset + 0x20);
-      *(DataBuffer **)(calculatedOffset + 0x20) = resourcePointer;
-      referenceCountPointer = (int *)(calculatedOffset + 0x18);
-      *referenceCountPointer = *referenceCountPointer + -1;
-      if (*referenceCountPointer == 0) {
+    memoryCalculatedOffset = memoryBaseAddress + 0x80 + ((int64_t)systemResourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    memoryCalculatedOffset = memoryCalculatedOffset - (uint64_t)*(uint *)(memoryCalculatedOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(memoryCalculatedOffset + 0xe) == '\0')) {
+      *systemResourcePointer = *(DataBuffer *)(memoryCalculatedOffset + 0x20);
+      *(DataBuffer **)(memoryCalculatedOffset + 0x20) = systemResourcePointer;
+      resourceReferenceCount = (int *)(memoryCalculatedOffset + 0x18);
+      *resourceReferenceCount = *resourceReferenceCount + -1;
+      if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
       }
     }
     else {
       ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
+                          systemResourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
