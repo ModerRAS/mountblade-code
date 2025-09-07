@@ -4025,7 +4025,7 @@ BufferSizeValidationCheckLabel:
       BufferSize5 = (ulonglong)BufferSize6;
       BufferSize8 = BufferSize8 + 1;
     } while ((longlong)BufferSize8 < 0xf);
-    if (BufferSize6 == 0xf) goto Label_BufferSizeValidationConfirmed;
+    if (BufferSize6 == 0xf) goto BufferSizeValidationConfirmedLabel;
   }
 BufferSizeValidationCompleteLabel:
   LoopCounterValue = -1;
