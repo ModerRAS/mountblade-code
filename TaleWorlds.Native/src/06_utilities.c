@@ -7279,10 +7279,10 @@ uint8_t UtilityFreeBlockPrimaryStatus;
 uint8_t UtilityReallocateMemoryBlock;
 // 工具系统重新分配内存块数据变量
 uint8_t UtilityReallocateBlockPrimaryData;
-uint8_t UtilityReallocateBlockData2;
-uint8_t UtilityReallocateBlockData3;
-uint8_t UtilityReallocateBlockData4;
-uint8_t UtilityReallocateBlockPtr1;
+uint8_t UtilityReallocateBlockSecondaryData;
+uint8_t UtilityReallocateBlockTertiaryData;
+uint8_t UtilityReallocateBlockQuaternaryData;
+uint8_t UtilityReallocateBlockPrimaryPointer;
 
 // 函数: uint8_t UtilityCopyMemoryBlock;
 // 复制内存块，将源内存内容复制到目标内存
@@ -7547,7 +7547,7 @@ uint8_t CloneDataHandle;
 // 功能：验证工具数据的完整性和有效性
 #define ValidateUtilityDataA1 FUN_180942280
 
-uint8_t ValidateUtilityDataA0;
+uint8_t ValidateUtilityDataPrimary;
 uint8_t UtilityDataValidationPrimaryBuffer;
 uint8_t UtilityDataValidationSecondaryBuffer;
 uint8_t UtilityDataValidationTertiaryBuffer;
@@ -7558,7 +7558,7 @@ uint8_t UtilityValidationStatus;
 // 功能：压缩工具数据以减少存储空间
 #define CompressUtilityDataA1 FUN_1809422a0
 
-uint8_t CompressUtilityDataA0;
+uint8_t CompressUtilityDataPrimary;
 uint8_t UtilityCompressionPrimaryBuffer;
 uint8_t UtilityCompressionSecondaryBuffer;
 uint8_t UtilityCompressionTertiaryBuffer;
@@ -7569,7 +7569,7 @@ uint8_t UtilityCompressionStatus;
 // 功能：解压缩已压缩的工具数据
 #define DecompressUtilityDataA1 FUN_1809422c0
 
-uint8_t DecompressUtilityDataA0;
+uint8_t DecompressUtilityDataPrimary;
 uint8_t UtilityDecompressionPrimaryBuffer;
 uint8_t UtilityDecompressionSecondaryBuffer;
 uint8_t UtilityDecompressionTertiaryBuffer;
@@ -52153,7 +52153,19 @@ void SystemExceptionHandlerE(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904ee0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源处理器状态标志
+ * 
+ * 该函数在异常处理过程中清理资源处理器的状态标志。
+ * 当数据缓冲区的0x30偏移处的第2位被设置时，清除该标志并调用资源清理函数。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含需要清理的资源信息
+ * 
+ * @note 原始函数名：Unwind_180904ee0
+ * @note 简化实现：仅处理状态标志清理和资源清理调用
+ */
+void CleanupResourceHandlerStatusFlag(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
@@ -52165,7 +52177,21 @@ void Unwind_180904ee0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904f10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常资源清理回调
+ * 
+ * 该函数在异常处理过程中遍历资源指针数组，对每个资源执行清理回调函数。
+ * 如果资源指针数组为空，则直接返回；否则调用系统终止函数。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含资源指针数组信息
+ * @param operationFlagA 操作标志A，传递给回调函数
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180904f10
+ * @note 简化实现：遍历资源数组并执行回调，必要时终止系统
+ */
+void ProcessExceptionResourceCleanupCallbacks(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -52186,7 +52212,21 @@ void Unwind_180904f10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常资源清理回调B
+ * 
+ * 该函数在异常处理过程中遍历资源指针数组，对每个资源执行清理回调函数。
+ * 与ProcessExceptionResourceCleanupCallbacks功能相同，可能是备用实现。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含资源指针数组信息
+ * @param operationFlagA 操作标志A，传递给回调函数
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180904f20
+ * @note 简化实现：与ProcessExceptionResourceCleanupCallbacks功能相同的备用实现
+ */
+void ProcessExceptionResourceCleanupCallbacksB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -52207,7 +52247,19 @@ void Unwind_180904f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904f30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理资源引用计数和内存管理
+ * 
+ * 该函数在异常处理过程中管理资源的引用计数和内存分配。
+ * 当资源指针不为空时，计算内存基址并处理引用计数，必要时调用异常处理函数。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含资源指针信息
+ * 
+ * @note 原始函数名：Unwind_180904f30
+ * @note 简化实现：处理资源引用计数和内存管理
+ */
+void ProcessResourceReferenceCountAndMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -52243,7 +52295,19 @@ void Unwind_180904f30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904f40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源处理器状态标志B
+ * 
+ * 该函数在异常处理过程中清理资源处理器的状态标志。
+ * 当数据缓冲区的0x68偏移处的第1位被设置时，清除该标志并调用资源清理函数。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含需要清理的资源信息
+ * 
+ * @note 原始函数名：Unwind_180904f40
+ * @note 简化实现：仅处理状态标志清理和资源清理调用
+ */
+void CleanupResourceHandlerStatusFlagB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x68) & 1) != 0) {
@@ -52255,7 +52319,19 @@ void Unwind_180904f40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904f70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器上下文
+ * 
+ * 该函数在异常处理过程中配置异常处理器的上下文信息。
+ * 首先设置临时异常处理器，检查异常处理状态，然后重置相关标志并设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文信息
+ * 
+ * @note 原始函数名：Unwind_180904f70
+ * @note 简化实现：配置异常处理器上下文和状态标志
+ */
+void ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -69988,8 +70064,17 @@ void Unwind_180909210(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909230(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 调用异常上下文处理器（偏移量0x1cc0）
+ * 
+ * 该函数从数据缓冲区的特定偏移量获取异常上下文处理器指针，并调用相应的处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180909230
+ */
+void CallExceptionHandlerWithContextOffset1cc0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
@@ -99935,9 +100020,22 @@ void Unwind_1809125a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-void Unwind_1809125b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常上下文引用计数递减的异常处理函数
+ * 
+ * 该函数在异常处理过程中管理异常上下文的引用计数。当异常上下文存在时，
+ * 会递减其引用计数，并在必要时调用系统异常处理器进行最终的异常处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_1809125b0
+ * @warning 此函数调用不返回，会直接进入异常处理流程
+ * @see HandleSystemException
+ */
+void HandleExceptionContextReferenceCountDecrement(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -99955,9 +100053,22 @@ void Unwind_1809125b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-void Unwind_1809125c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理间接异常上下文引用计数递减的异常处理函数
+ * 
+ * 该函数通过间接引用获取异常上下文，并在异常处理过程中管理其引用计数。
+ * 从数据缓冲区的0xc0偏移量处获取异常上下文指针，然后递减其引用计数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息的间接引用
+ * @param operationFlagA 操作标志A，用于异常处理
+ * @param operationFlagB 操作标志B，用于异常处理
+ * 
+ * @note 原始函数名：Unwind_1809125c0
+ * @warning 此函数调用不返回，会直接进入异常处理流程
+ * @see HandleSystemException
+ */
+void HandleIndirectExceptionContextReferenceCountDecrement(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -99975,7 +100086,19 @@ void Unwind_1809125c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809125d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行函数指针调用安全检查函数A
+ * 
+ * 该函数对函数指针调用进行安全检查，确保调用目标的合法性和安全性。
+ * 检查包括目标地址验证、调用权限验证等安全措施。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要检查的函数指针信息
+ * 
+ * @note 原始函数名：Unwind_1809125d0
+ * @see _guard_check_icall
+ */
+void PerformFunctionPointerSecurityCheckA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + 0x30),**(ByteFlag **)(dataBuffer + 0x28),
