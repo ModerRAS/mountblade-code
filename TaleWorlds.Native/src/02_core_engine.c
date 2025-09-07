@@ -223011,7 +223011,7 @@ LAB_18019099c:
   return;
 LAB_1801909bf:
   FUN_18018d8f0(BufferStatus,SystemArrayBuffer368);
-  FUN_1801431d0(SystemArrayBuffer368);
+  ProcessCharacterInitializeSystem(SystemArrayBuffer368);
   SystemDataTablePointer = SystemDataTablePointer + 0x348;
   CharacterCode = CharacterCode + 0x348;
   if (SystemDataTablePointer == Utf8BufferSize) {
@@ -223232,7 +223232,7 @@ LAB_180190c1c:
         } while (CharacterStatusBuffer != CharacterCode);
       }
       FUN_18018d8f0(CharacterStatusBuffer,SystemArrayBuffer368);
-      FUN_1801431d0(SystemArrayBuffer368);
+      ProcessCharacterInitializeSystem(SystemArrayBuffer368);
     }
   }
   return;
@@ -224024,7 +224024,7 @@ LAB_180190f00:
     }
     FUN_18018e7e0(SystemArrayBuffer368,MemoryBlockIndex);
     MemoryBlockIndex = FUN_180191560(CharacterCode,Utf8BufferSize,SystemArrayBuffer368);
-    FUN_1801431d0(SystemArrayBuffer368);
+    ProcessCharacterInitializeSystem(SystemArrayBuffer368);
     Utf8SourcePointer = Utf8SourcePointer + -1;
     FUN_180190e30(MemoryBlockIndex,Utf8BufferSize,Utf8SourcePointer,Utf16EndPointer);
     PatternMatchStatus = SearchStartIndex - CharacterCode;
