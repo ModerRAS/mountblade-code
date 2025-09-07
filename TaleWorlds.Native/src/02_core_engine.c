@@ -180373,7 +180373,7 @@ void ProcessCharacterCodeWithMemoryAllocation(uint64_t CharacterCode,uint64_t Sy
         else {
           ProcessingByte4 = SystemContextPrimaryFloat == DistanceThreshold;
           ValidationByteFlag3 = SystemContextPrimaryFloat < DistanceThreshold;
-LAB_18014cc76:
+LAB_ValidationComplete:
           ProcessingByte4 = !ValidationByteFlag3 && !ProcessingByte4;
         }
         if (ProcessingByte4) goto LAB_18014ccbd;
@@ -180382,13 +180382,13 @@ LAB_18014cc76:
         SystemContextPrimaryFloat = *(float *)(EncodingConversionResult + 0x28);
         if (SystemContextPrimaryFloat == DistanceThreshold) {
           SystemContextPrimaryFloat = *(float *)(EncodingConversionResult + 0x2c);
-          if (SystemContextPrimaryFloat == fStack_4c) {
-            ProcessingByte4 = fStack_48 == *(float *)(EncodingConversionResult + 0x30);
-            ValidationByteFlag3 = fStack_48 < *(float *)(EncodingConversionResult + 0x30);
+          if (SystemContextPrimaryFloat == StackPrimaryFloat) {
+            ProcessingByte4 = StackSecondaryFloat == *(float *)(EncodingConversionResult + 0x30);
+            ValidationByteFlag3 = StackSecondaryFloat < *(float *)(EncodingConversionResult + 0x30);
           }
           else {
-            ProcessingByte4 = fStack_4c == SystemContextPrimaryFloat;
-            ValidationByteFlag3 = fStack_4c < SystemContextPrimaryFloat;
+            ProcessingByte4 = StackPrimaryFloat == SystemContextPrimaryFloat;
+            ValidationByteFlag3 = StackPrimaryFloat < SystemContextPrimaryFloat;
           }
         }
         else {
