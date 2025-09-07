@@ -167544,7 +167544,12 @@ void ResetCharacterEncodingProcessingSystem(void)
 
 
 
-3b7f6(voidvoid FUN_18013b7f6(void
+/**
+ * @brief 验证字符编码系统配置
+ * 
+ * 验证字符编码系统的配置参数和状态，确保系统正常运行
+ */
+void ValidateCharacterEncodingSystemConfiguration(void)
 {
   uint Utf16Char;
   int *pCharacterByteCount;
@@ -277282,11 +277287,11 @@ uint64_t ProcessAudioSignalFFT(void* AudioContext, void* FrequencyFactor, uint32
               ImaginaryPart2 = *(float *)(DataBuffer + FFTComplexSize * 3 + FFTComplexImagPartOffset + StartIndex * FFTComplexSize);
               RealResult = ImaginaryResult * TwiddleReal - RealPart1 * TwiddleImaginary;
               ImaginaryResult = RealPart1 * TwiddleReal + ImaginaryResult * TwiddleImaginary;
-              *(float *)(DataBuffer + 0x18 + StartIndex * 8) = RealResult + RealPart2;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + 0x1c + StartIndex * 8) = ImaginaryResult + ImaginaryPart2;
+              *(float *)(DataBuffer + FFTComplexSize * 3 + StartIndex * FFTComplexSize) = RealResult + RealPart2;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + FFTComplexSize * 3 + FFTComplexImagPartOffset + StartIndex * FFTComplexSize) = ImaginaryResult + ImaginaryPart2;
               StartIndex = StartIndex + 4;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + TempIndex * 8) = RealPart2 - RealResult;
-              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + 4 + TempIndex * 8) = ImaginaryPart2 - ImaginaryResult;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + FFTComplexRealPartOffset + TempIndex * FFTComplexSize) = RealPart2 - RealResult;
+              *(float *)(*(void **)(AudioContext + AudioContextCharacterStatusBufferOffset) + FFTComplexImagPartOffset + TempIndex * FFTComplexSize) = ImaginaryPart2 - ImaginaryResult;
               ProcessedValue = ProcessedValue + 4;
             } while (StartIndex < FFTEndIndex + -3);
           }
