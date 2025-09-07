@@ -18829,9 +18829,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
               else if (inputParameter6 < calculatedValue) {
                 inputParameter6 = calculatedValue;
               }
-              securityCheckResult = CleanupSystemResourceDW0(&uStack_118,inputParameter6);
+              securityCheckResult = CleanupSystemResourceDW0(&StackMemoryBuffer,inputParameter6);
               dataFlags = (uint64_t)securityCheckResult;
-              arrayIndex = (int)uStack_110;
+              arrayIndex = (int)StackMemoryData;
               if (securityCheckResult != 0) {
                 securityCheckResult = uStack_110._4_4_;
                 if ((int64_t)uStack_110 < 0) {
