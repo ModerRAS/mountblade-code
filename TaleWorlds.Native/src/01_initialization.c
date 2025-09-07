@@ -2040,7 +2040,7 @@ void InitializeSystemDataTableAllocator(void)
   
   while (!IsDataTableNodeInitialized) {
     DataTableIdentifierComparisonResult = memcmp(CurrentSystemNodePointer + SystemNodeIdentifierOffset, &SystemDataTableSystemIdentifier1, SystemIdentifierSize);
-    if (DataTableSystemIdentifierComparisonResult < 0) {
+    if (DataTableIdentifierComparisonResult < 0) {
       NextSystemNodePointer = (void**)CurrentSystemNodePointer[NodeNextPointerOffset];
       CurrentSystemNodePointer = PreviousSystemNodePointer;
     }
