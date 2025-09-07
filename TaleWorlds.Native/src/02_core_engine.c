@@ -100086,15 +100086,14 @@ void InitializeSystemResourceAndData(void)
   float UnaffectedXMM9Register;
   float UnaffectedXMM10Register;
   uint64_t SystemParameter2;
-  float StackFloatParameter48;
-  float StackFloatParameter50;
-  float StackFloatParameter54;
-  uint32_t StackUintParameter68;
-  uint32_t StackUintParameter6c;
-  float StackFloatParameter70;
-  uint32_t StackUintParameter74;
-  uint32_t StackUintParameter78;
-  uint32_t StackUintParameter7c;
+  float StackFloatValue50;
+  float StackFloatValue54;
+  uint32_t StackUintValue68;
+  uint32_t StackUintValue6c;
+  float StackFloatValue70;
+  uint32_t StackUintValue74;
+  uint32_t StackUintValue78;
+  uint32_t StackUintValue7c;
   
   if (*(int *)(DataNodeIndex + 0x1ca4) == CharacterLimitD) {
     if (RegisterValueR12B == '\0') {
@@ -114984,10 +114983,10 @@ void ExpandUtf8Buffer28(int *SystemContext,int BufferSize) {
  * @note 依赖ProcessingResult和DataNodeIndex寄存器值
  */
 void ExpandUtf8Buffer28NoArgs(void) {
-  long long SystemConfigurationHandle;
+  long long SystemConfigurationHandle = 0;
   uint64_t AllocatedMemoryBuffer;
-  int *SystemContext;
-  long long RequiredBufferSize;
+  int *SystemContext = NULL;
+  long long RequiredBufferSize = 0;
   
   if (SystemConfigurationHandle != 0) {
     *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;

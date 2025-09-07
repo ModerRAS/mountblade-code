@@ -3020,13 +3020,7 @@
 // 功能：清理数据缓冲区，释放内存资源
 #define CleanupBufferHandler CleanupBufferHandler
 
-// 原始函数名：UNK_180a3c3e0 - 临时异常处理器
-// 功能：临时异常处理程序，用于系统初始化期间
-#define TemporaryExceptionHandler UNK_180a3c3e0
 
-// 原始变量名：UNK_180a3cf50 - 异常处理器A
-// 功能：异常处理器的第一种状态
-#define ExceptionHandlerA UNK_180a3cf50
 
 // 原始变量名：UNK_180a30778 - 默认异常处理器B
 // 功能：默认异常处理器的第二种状态
