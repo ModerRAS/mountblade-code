@@ -176,6 +176,9 @@
 #define ExceptionHandlerCallbackOffset30 0x30    // 异常处理回调偏移量30
 #define ExceptionHandlerContextOffset58 0x58     // 异常处理上下文偏移量58
 #define ExceptionHandlerContextOffset40 0x40     // 异常处理上下文偏移量40
+#define ExceptionHandlerContextOffset60 0x60     // 异常处理上下文偏移量60
+#define ExceptionHandlerContextOffsetD0 0xd0     // 异常处理上下文偏移量d0
+#define ExceptionHandlerContextOffsetC0 0xc0     // 异常处理上下文偏移量c0
 
 // 系统上下文相关偏移量常量
 #define SystemContextDataOffset 0x18              // 系统上下文数据偏移量
@@ -184,6 +187,24 @@
 #define SystemContextOperationOffset 0xd0         // 系统上下文操作偏移量
 
 // 数据处理相关偏移量常量
+#define ResourceIteratorOffset 0x40                    // 资源迭代器偏移量
+#define ValidationStatusPointerOffset970 0x2e0         // 验证状态指针偏移量970
+#define ValidationStatusPointerOffset990 0x548         // 验证状态指针偏移量990
+#define ExceptionHandlerCheckOffset970 0x310           // 异常处理器检查偏移量970
+#define ExceptionHandlerCheckOffset990 0x578           // 异常处理器检查偏移量990
+#define CalculatedIndexOffset970 0x308                 // 计算索引偏移量970
+#define CalculatedIndexOffset990 0x570                 // 计算索引偏移量990
+#define ValidationStatusSecondaryOffset970 0x2f8      // 验证状态二级偏移量970
+#define ValidationStatusSecondaryOffset990 0x560      // 验证状态二级偏移量990
+#define ValidationFlagOffset 0x141                     // 验证标志偏移量
+#define ValidationNextIndexOffset 0x138                // 验证下一索引偏移量
+#define MemoryResourceBaseOffset 0x80                  // 内存资源基础偏移量
+#define MemoryResourceMultiplier 0x50                  // 内存资源乘数
+#define MemoryReferencePointerOffset 0x4                // 内存引用指针偏移量
+#define ExceptionListOffset 0x70                        // 异常列表偏移量
+#define ResourceValidationCheckOffset 0xe                // 资源验证检查偏移量
+#define ResourceDataPointerOffset 0x20                 // 资源数据指针偏移量
+#define ReferenceCountOffset 0x18                      // 引用计数偏移量
 #define DataContextOffset14 0x14                  // 数据上下文偏移量14
 #define DataContextOffset20 0x20                  // 数据上下文偏移量20
 #define DataContextOffset2c 0x2c                  // 数据上下文偏移量2c
@@ -39768,9 +39789,9 @@ void ExceptionCleanupHandlerDataContext(DataBuffer operationBase,int64_t dataBuf
     validationOutcome = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
       resourceIterator = validationOutcome + 0x80 + ((int64_t)validationStatusPointer - validationOutcome >> 0x10) * 0x50;
-      resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-        *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+        *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
         *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
         referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
@@ -39833,9 +39854,9 @@ void ExceptionCleanupHandlerDataContext2(DataBuffer operationBase,int64_t dataBu
     validationOutcome = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
       resourceIterator = validationOutcome + 0x80 + ((int64_t)validationStatusPointer - validationOutcome >> 0x10) * 0x50;
-      resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-        *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+        *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
         *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
         referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
@@ -39978,9 +39999,9 @@ void ExceptionCleanupHandlerDataContext3(DataBuffer operationBase,int64_t dataBu
     validationOutcome = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
       resourceIterator = validationOutcome + 0x80 + ((int64_t)validationStatusPointer - validationOutcome >> 0x10) * 0x50;
-      resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-        *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+        *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
         *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
         referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
@@ -40043,9 +40064,9 @@ void ExceptionCleanupHandlerDataContext4(DataBuffer operationBase,int64_t dataBu
     validationOutcome = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
       resourceIterator = validationOutcome + 0x80 + ((int64_t)validationStatusPointer - validationOutcome >> 0x10) * 0x50;
-      resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-        *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+        *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
         *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
         referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
@@ -41700,7 +41721,7 @@ void CleanupStackFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
     if (dataFlags != 0) {
       calculatedIndex = dataFlags + 0x80 + ((int64_t)resourcePointer - dataFlags >> 0x10) * 0x50;
       calculatedIndex = calculatedIndex - (uint64_t)*(uint *)(calculatedIndex + 4);
-      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(calculatedIndex + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(calculatedIndex + 0xe) == '\0')) {
         *resourcePointer = *(DataBuffer *)(calculatedIndex + 0x20);
         *(DataBuffer **)(calculatedIndex + 0x20) = resourcePointer;
         referenceCountPointer = (int *)(calculatedIndex + 0x18);
@@ -41711,7 +41732,7 @@ void CleanupStackFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
         }
       }
       else {
-        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagAlternative);
       }
     }
@@ -41761,7 +41782,7 @@ void CleanupCallFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
     if (dataFlags != 0) {
       calculatedOffset = dataFlags + 0x80 + ((int64_t)resourcePointer - dataFlags >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
         *resourcePointer = *(DataBuffer *)(calculatedOffset + MemoryDataOffset);
         *(DataBuffer **)(calculatedOffset + MemoryDataOffset) = resourcePointer;
         referenceCountPointer = (int *)(calculatedOffset + MemoryReferenceOffset);
@@ -41772,7 +41793,7 @@ void CleanupCallFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
         }
       }
       else {
-        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagAlternative);
       }
     }
@@ -43309,10 +43330,10 @@ void ExceptionResourceCleaner460(DataBuffer cleanupContext, int64_t resourceData
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -43322,7 +43343,7 @@ void ExceptionResourceCleaner460(DataBuffer cleanupContext, int64_t resourceData
       }
     }
     else {
-      ManageMemory(dataFlags, CONCAT71(0xff000000, *(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags, CONCAT71(0xff000000, *(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer, dataFlags, SystemCleanupFlagAlternative);
     }
   }
@@ -43688,10 +43709,10 @@ void CleanupSystemContextResources(DataBuffer operationBase, int64_t dataBuffer)
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -43701,7 +43722,7 @@ void CleanupSystemContextResources(DataBuffer operationBase, int64_t dataBuffer)
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -43874,10 +43895,10 @@ void CleanupSystemContextCompletely(DataBuffer operationBase, int64_t dataBuffer
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -43887,7 +43908,7 @@ void CleanupSystemContextCompletely(DataBuffer operationBase, int64_t dataBuffer
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -50151,9 +50172,9 @@ void ExecuteExceptionHandlerCallbackF(DataBuffer operationBase,int64_t dataBuffe
 {
   FunctionPointer *exceptionHandlerCallback;
   
-  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x60) + 0xd0);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerContextOffsetD0);
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x60) + 0xc0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerContextOffsetC0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -50951,8 +50972,8 @@ void CleanupExceptionResourceReferenceCount960(DataBuffer operationBase,int64_t 
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0xa0);
   while (calculatedIndex != 0) {
-    validationFlag = (char *)(calculatedIndex + 0x141);
-    calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
+    validationFlag = (char *)(calculatedIndex + ValidationFlagOffset);
+    calculatedIndex = *(int64_t *)(calculatedIndex + ValidationNextIndexOffset);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
     }
@@ -50963,10 +50984,10 @@ void CleanupExceptionResourceReferenceCount960(DataBuffer operationBase,int64_t 
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -50976,7 +50997,7 @@ void CleanupExceptionResourceReferenceCount960(DataBuffer operationBase,int64_t 
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -51007,8 +51028,8 @@ void CleanupExceptionResourceReferenceCount970(DataBuffer operationBase,int64_t 
   int64_t resourceIterator;
   uint64_t dataFlags;
   
-  resourceIterator = *(int64_t *)(dataBuffer + 0x40);
-  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x2e0);
+  resourceIterator = *(int64_t *)(dataBuffer + ResourceIteratorOffset);
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusPointerOffset970);
   if (validationStatusPointer != (DataBuffer *)0x0) {
     if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
       *(DataBuffer *)validationStatusPointer[3] = 0;
@@ -51016,28 +51037,28 @@ void CleanupExceptionResourceReferenceCount970(DataBuffer operationBase,int64_t 
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
       TerminateSystemE0(validationStatusPointer);
   }
-  if ((*(int64_t *)(resourceIterator + 0x310) != 0) &&
-     (*(int64_t *)(*(int64_t *)(resourceIterator + 0x310) + ExceptionHandlerCallbackOffset10) != 0)) {
+  if ((*(int64_t *)(resourceIterator + ExceptionHandlerCheckOffset970) != 0) &&
+     (*(int64_t *)(*(int64_t *)(resourceIterator + ExceptionHandlerCheckOffset970) + ExceptionHandlerCallbackOffset10) != 0)) {
       TerminateSystemE0();
   }
-  calculatedIndex = *(int64_t *)(resourceIterator + 0x308);
+  calculatedIndex = *(int64_t *)(resourceIterator + CalculatedIndexOffset970);
   while (calculatedIndex != 0) {
-    validationFlag = (char *)(calculatedIndex + 0x141);
-    calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
+    validationFlag = (char *)(calculatedIndex + ValidationFlagOffset);
+    calculatedIndex = *(int64_t *)(calculatedIndex + ValidationNextIndexOffset);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
     }
   }
-  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x2f8);
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusSecondaryOffset970);
   if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -51047,7 +51068,7 @@ void CleanupExceptionResourceReferenceCount970(DataBuffer operationBase,int64_t 
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -51067,7 +51088,7 @@ void CleanupExceptionResourceReferenceCount990(DataBuffer operationBase,int64_t 
   uint64_t dataFlags;
   
   resourceIterator = *(int64_t *)(dataBuffer + 0x40);
-  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x548);
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusPointerOffset990);
   if (validationStatusPointer != (DataBuffer *)0x0) {
     if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
       *(DataBuffer *)validationStatusPointer[3] = 0;
@@ -51075,28 +51096,28 @@ void CleanupExceptionResourceReferenceCount990(DataBuffer operationBase,int64_t 
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
       TerminateSystemE0(validationStatusPointer);
   }
-  if ((*(int64_t *)(resourceIterator + 0x578) != 0) &&
-     (*(int64_t *)(*(int64_t *)(resourceIterator + 0x578) + ExceptionHandlerCallbackOffset10) != 0)) {
+  if ((*(int64_t *)(resourceIterator + ExceptionHandlerCheckOffset990) != 0) &&
+     (*(int64_t *)(*(int64_t *)(resourceIterator + ExceptionHandlerCheckOffset990) + ExceptionHandlerCallbackOffset10) != 0)) {
       TerminateSystemE0();
   }
-  calculatedIndex = *(int64_t *)(resourceIterator + 0x570);
+  calculatedIndex = *(int64_t *)(resourceIterator + CalculatedIndexOffset990);
   while (calculatedIndex != 0) {
-    validationFlag = (char *)(calculatedIndex + 0x141);
-    calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
+    validationFlag = (char *)(calculatedIndex + ValidationFlagOffset);
+    calculatedIndex = *(int64_t *)(calculatedIndex + ValidationNextIndexOffset);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
     }
   }
-  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x560);
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusSecondaryOffset990);
   if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -51106,7 +51127,7 @@ void CleanupExceptionResourceReferenceCount990(DataBuffer operationBase,int64_t 
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -51370,8 +51391,8 @@ void CleanupExceptionResourceReferenceCountA20(DataBuffer operationBase,int64_t 
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0xa0);
   while (calculatedIndex != 0) {
-    validationFlag = (char *)(calculatedIndex + 0x141);
-    calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
+    validationFlag = (char *)(calculatedIndex + ValidationFlagOffset);
+    calculatedIndex = *(int64_t *)(calculatedIndex + ValidationNextIndexOffset);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
     }
@@ -51382,10 +51403,10 @@ void CleanupExceptionResourceReferenceCountA20(DataBuffer operationBase,int64_t 
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -51395,7 +51416,7 @@ void CleanupExceptionResourceReferenceCountA20(DataBuffer operationBase,int64_t 
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -51435,28 +51456,28 @@ void ExceptionUnwindHandlerE0(DataBuffer operationBase,int64_t dataBuffer)
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
       TerminateSystemE0(validationStatusPointer);
   }
-  if ((*(int64_t *)(resourceIterator + 0x310) != 0) &&
-     (*(int64_t *)(*(int64_t *)(resourceIterator + 0x310) + ExceptionHandlerCallbackOffset10) != 0)) {
+  if ((*(int64_t *)(resourceIterator + ExceptionHandlerCheckOffset970) != 0) &&
+     (*(int64_t *)(*(int64_t *)(resourceIterator + ExceptionHandlerCheckOffset970) + ExceptionHandlerCallbackOffset10) != 0)) {
       TerminateSystemE0();
   }
-  calculatedIndex = *(int64_t *)(resourceIterator + 0x308);
+  calculatedIndex = *(int64_t *)(resourceIterator + CalculatedIndexOffset970);
   while (calculatedIndex != 0) {
-    validationFlag = (char *)(calculatedIndex + 0x141);
-    calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
+    validationFlag = (char *)(calculatedIndex + ValidationFlagOffset);
+    calculatedIndex = *(int64_t *)(calculatedIndex + ValidationNextIndexOffset);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
     }
   }
-  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x2f8);
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusSecondaryOffset970);
   if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -51466,7 +51487,7 @@ void ExceptionUnwindHandlerE0(DataBuffer operationBase,int64_t dataBuffer)
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -51505,7 +51526,7 @@ void ExceptionUnwindHandlerF0(DataBuffer exceptionContext, int64_t unwindContext
   uint64_t dataFlags;
   
   resourceIterator = *(int64_t *)(unwindContext + 0x70);
-  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x548);
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusPointerOffset990);
   if (validationStatusPointer != (DataBuffer *)0x0) {
     if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
       *(DataBuffer *)validationStatusPointer[3] = 0;
@@ -51513,28 +51534,28 @@ void ExceptionUnwindHandlerF0(DataBuffer exceptionContext, int64_t unwindContext
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
       TerminateSystemE0(validationStatusPointer);
   }
-  if ((*(int64_t *)(resourceIterator + 0x578) != 0) &&
-     (*(int64_t *)(*(int64_t *)(resourceIterator + 0x578) + ExceptionHandlerCallbackOffset10) != 0)) {
+  if ((*(int64_t *)(resourceIterator + ExceptionHandlerCheckOffset990) != 0) &&
+     (*(int64_t *)(*(int64_t *)(resourceIterator + ExceptionHandlerCheckOffset990) + ExceptionHandlerCallbackOffset10) != 0)) {
       TerminateSystemE0();
   }
-  calculatedIndex = *(int64_t *)(resourceIterator + 0x570);
+  calculatedIndex = *(int64_t *)(resourceIterator + CalculatedIndexOffset990);
   while (calculatedIndex != 0) {
-    validationFlag = (char *)(calculatedIndex + 0x141);
-    calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
+    validationFlag = (char *)(calculatedIndex + ValidationFlagOffset);
+    calculatedIndex = *(int64_t *)(calculatedIndex + ValidationNextIndexOffset);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
     }
   }
-  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x560);
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusSecondaryOffset990);
   if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -51544,7 +51565,7 @@ void ExceptionUnwindHandlerF0(DataBuffer exceptionContext, int64_t unwindContext
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -55943,7 +55964,7 @@ void ConfigureExceptionHandling940(DataBuffer operationBase,int64_t dataBuffer)
     if (dataFlags != 0) {
       calculatedIndex = dataFlags + 0x80 + ((int64_t)resourcePointer - dataFlags >> 0x10) * 0x50;
       calculatedIndex = calculatedIndex - (uint64_t)*(uint *)(calculatedIndex + 4);
-      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(calculatedIndex + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(calculatedIndex + 0xe) == '\0')) {
         *resourcePointer = *(DataBuffer *)(calculatedIndex + 0x20);
         *(DataBuffer **)(calculatedIndex + 0x20) = resourcePointer;
         referenceCountPointer = (int *)(calculatedIndex + 0x18);
@@ -55954,7 +55975,7 @@ void ConfigureExceptionHandling940(DataBuffer operationBase,int64_t dataBuffer)
         }
       }
       else {
-        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagAlternative);
       }
     }
@@ -56627,8 +56648,8 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0x38);
   while (calculatedIndex != 0) {
-    validationFlag = (char *)(calculatedIndex + 0x141);
-    calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
+    validationFlag = (char *)(calculatedIndex + ValidationFlagOffset);
+    calculatedIndex = *(int64_t *)(calculatedIndex + ValidationNextIndexOffset);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
     }
@@ -56639,10 +56660,10 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -56652,7 +56673,7 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -56746,9 +56767,9 @@ void UnwindCleanupThreadLocalStorageAndExceptionHandlers(DataBuffer exceptionCon
   memoryRegion = (uint64_t)exceptionHandlerPointer & SystemCleanupFlagffc00000;
   if (memoryRegion != 0) {
     resourceIterator = memoryRegion + 0x80 + ((int64_t)exceptionHandlerPointer - memoryRegion >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(memoryRegion + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *exceptionHandlerPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(memoryRegion + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *exceptionHandlerPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = exceptionHandlerPointer;
       exceptionHandlerCount = (int *)(resourceIterator + 0x18);
       *exceptionHandlerCount = *exceptionHandlerCount - 1;
@@ -57041,8 +57062,8 @@ void CleanupThreadContextAndMemoryResources(DataBuffer operationBase,int64_t dat
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0x38);
   while (calculatedIndex != 0) {
-    validationFlag = (char *)(calculatedIndex + 0x141);
-    calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
+    validationFlag = (char *)(calculatedIndex + ValidationFlagOffset);
+    calculatedIndex = *(int64_t *)(calculatedIndex + ValidationNextIndexOffset);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
     }
@@ -57053,10 +57074,10 @@ void CleanupThreadContextAndMemoryResources(DataBuffer operationBase,int64_t dat
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -57066,7 +57087,7 @@ void CleanupThreadContextAndMemoryResources(DataBuffer operationBase,int64_t dat
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -57237,10 +57258,10 @@ void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t thread
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -57250,7 +57271,7 @@ void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t thread
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -57875,10 +57896,10 @@ void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase,int64_t dat
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -57888,7 +57909,7 @@ void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase,int64_t dat
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -57984,10 +58005,10 @@ void CleanupSystemResources(DataBuffer systemContext,int64_t contextHandle)
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -57997,7 +58018,7 @@ void CleanupSystemResources(DataBuffer systemContext,int64_t contextHandle)
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -58133,9 +58154,9 @@ void UnwindCleanupThreadSpecificStorageAndExceptionHandlers(DataBuffer exception
   memoryRegion = (uint64_t)exceptionHandlerPointer & SystemCleanupFlagffc00000;
   if (memoryRegion != 0) {
     resourceIterator = memoryRegion + 0x80 + ((int64_t)exceptionHandlerPointer - memoryRegion >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(memoryRegion + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *exceptionHandlerPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(memoryRegion + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *exceptionHandlerPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = exceptionHandlerPointer;
       exceptionHandlerCount = (int *)(resourceIterator + 0x18);
       *exceptionHandlerCount = *exceptionHandlerCount - 1;
@@ -58264,10 +58285,10 @@ void CleanupThreadContextWithMemoryManagementB(DataBuffer operationBase,int64_t 
   }
   dataFlags = (uint64_t)validationStatusPointer & MemoryRegionMask;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
-    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+    resourceIterator = dataFlags + MemoryResourceBaseOffset + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * MemoryResourceMultiplier;
+    resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + MemoryReferencePointerOffset);
+    if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(resourceIterator + ResourceValidationCheckOffset) == '\0')) {
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + ResourceDataPointerOffset);
       *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
@@ -58277,7 +58298,7 @@ void CleanupThreadContextWithMemoryManagementB(DataBuffer operationBase,int64_t 
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                           validationStatusPointer,dataFlags,SystemCleanupFlagAlternative);
     }
   }
@@ -73586,7 +73607,7 @@ void Unwind_180909290(DataBuffer operationBase,int64_t dataBuffer)
     if (dataFlags != 0) {
       calculatedOffset = dataFlags + 0x80 + ((int64_t)resourcePointer - dataFlags >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
-      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
         *resourcePointer = *(DataBuffer *)(calculatedOffset + MemoryDataOffset);
         *(DataBuffer **)(calculatedOffset + MemoryDataOffset) = resourcePointer;
         referenceCountPointer = (int *)(calculatedOffset + MemoryReferenceOffset);
@@ -73597,7 +73618,7 @@ void Unwind_180909290(DataBuffer operationBase,int64_t dataBuffer)
         }
       }
       else {
-        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagAlternative);
       }
     }
@@ -73643,7 +73664,7 @@ void Unwind_1809092d0(DataBuffer operationBase,int64_t dataBuffer)
     if (dataFlags != 0) {
       calculatedIndex = dataFlags + 0x80 + ((int64_t)resourcePointer - dataFlags >> 0x10) * 0x50;
       calculatedIndex = calculatedIndex - (uint64_t)*(uint *)(calculatedIndex + 4);
-      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(calculatedIndex + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(calculatedIndex + 0xe) == '\0')) {
         *resourcePointer = *(DataBuffer *)(calculatedIndex + 0x20);
         *(DataBuffer **)(calculatedIndex + 0x20) = resourcePointer;
         referenceCountPointer = (int *)(calculatedIndex + 0x18);
@@ -73654,7 +73675,7 @@ void Unwind_1809092d0(DataBuffer operationBase,int64_t dataBuffer)
         }
       }
       else {
-        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagAlternative);
       }
     }
@@ -73686,7 +73707,7 @@ void Unwind_1809092e0(DataBuffer operationBase,int64_t dataBuffer)
     if (dataFlags != 0) {
       calculatedIndex = dataFlags + 0x80 + ((int64_t)resourcePointer - dataFlags >> 0x10) * 0x50;
       calculatedIndex = calculatedIndex - (uint64_t)*(uint *)(calculatedIndex + 4);
-      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(calculatedIndex + 0xe) == '\0')) {
+      if ((*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList) && (*(char *)(calculatedIndex + 0xe) == '\0')) {
         *resourcePointer = *(DataBuffer *)(calculatedIndex + 0x20);
         *(DataBuffer **)(calculatedIndex + 0x20) = resourcePointer;
         referenceCountPointer = (int *)(calculatedIndex + 0x18);
@@ -73697,7 +73718,7 @@ void Unwind_1809092e0(DataBuffer operationBase,int64_t dataBuffer)
         }
       }
       else {
-        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + ExceptionListOffset) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagAlternative);
       }
     }
