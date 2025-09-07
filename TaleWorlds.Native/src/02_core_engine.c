@@ -60465,29 +60465,29 @@ void InitializeSystemStatusAndMemory(void
   uint64_t MemoryCopyBuffer;
   uint32_t SystemUintBuffer260;
   uint8_t uStack_25c;
-  void *aDataBufferPointer [2];
-  code *pcStack_248;
-  code *pcStack_240;
-  uint8_t aSystemUintBuffer238 [16];
-  code *pcStack_228;
-  code *pcStack_220;
-  uint8_t auStack_218 [16];
-  code *pcStack_208;
-  code *pcStack_200;
-  long long lStack_1f8;
-  long long lStack_1f0;
-  long long lStack_1e8;
-  long long lStack_1e0;
+  void *DataBufferPointer [2];
+  code *ProgramCounter248;
+  code *ProgramCounter240;
+  uint8_t SystemUintBuffer238 [16];
+  code *ProgramCounter228;
+  code *ProgramCounter220;
+  uint8_t StackBuffer218 [16];
+  code *ProgramCounter208;
+  code *ProgramCounter200;
+  long long StackOffset1f8;
+  long long StackOffset1f0;
+  long long StackOffset1e8;
+  long long StackOffset1e0;
   uint64_t SystemStackData;
   uint32_t uStack_1d0;
   uint64_t SystemValue1c8;
   void **pNullTemplatePointer;
-  uint8_t aStackVariable1B8 [16];
-  void *pSystemValue1a8;
+  uint8_t StackBufferConfiguration [16];
+  void *SystemValue1a8;
   uint8_t *ProcessingBufferPointer;
   uint32_t StackVariable;
-  uint8_t auStack_190 [16];
-  void *aSystemProcessingStatusFlag [5];
+  uint8_t StackBuffer190 [16];
+  void *SystemProcessingStatusFlag [5];
   void *CoreEnginePointerBuffer158;
   void *CharacterDataBuffer;
   int iStack_148;
@@ -204583,7 +204583,7 @@ void ProcessUtf16EncodingAndSystemEventAlt(long long CharacterCode, uint64_t Utf
   pMemoryAddressMask = (void *)Utf8InputBuffer[8];
   TemporaryBuffer = CharacterCode + 6;
   if ((void *)Utf8InputBuffer[8] == NULL) {
-LAB_18017a342:  // 内存地址掩码处理标签
+MemoryAddressMaskProcessing: // 原始标签：LAB_18017a342，MemoryAddressMaskProcessing
     pMemoryAddressMask = (void *)Utf8InputBuffer[2];
     TemporaryBuffer = CharacterCode;
     if ((void *)Utf8InputBuffer[2] != NULL) {
