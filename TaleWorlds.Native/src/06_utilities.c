@@ -1748,32 +1748,14 @@
 
 // 默认异常处理器设置函数宏定义
 
-/**
- * @brief 设置默认异常处理器A0
- * 
- * 该函数负责设置默认的异常处理器，用于处理系统异常
- * 
- * @note 原始函数名：FUN_180942060
- */
-#define SetDefaultExceptionHandlerA0 FUN_180942060
+// 原始函数名：FUN_180942060 - 模块0异常处理器配置
+#define ConfigureModuleExceptionHandler0 FUN_180942060
 
-/**
- * @brief 设置默认异常处理器A1
- * 
- * 该函数负责设置默认的异常处理器，用于处理系统异常
- * 
- * @note 原始函数名：FUN_180942080
- */
-#define SetDefaultExceptionHandlerA1 FUN_180942080
+// 原始函数名：FUN_180942080 - 模块1异常处理器配置
+#define ConfigureModuleExceptionHandler1 FUN_180942080
 
-/**
- * @brief 设置默认异常处理器A7
- * 
- * 该函数负责设置默认的异常处理器，用于处理系统异常
- * 
- * @note 原始函数名：FUN_1809420a0
- */
-#define SetDefaultExceptionHandlerA7 FUN_1809420a0
+// 原始函数名：FUN_1809420a0 - 模块2异常处理器配置
+#define ConfigureModuleExceptionHandler2 FUN_1809420a0
 
 /**
  * @brief 设置默认异常处理器A8
@@ -54037,7 +54019,21 @@ void ExecuteExceptionHandlerCallbackA1(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180905440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数440
+ * 
+ * 该函数从数据缓冲区的0x108偏移量获取异常处理回调函数指针，
+ * 如果回调函数存在，则执行该回调函数，传递相关参数。
+ * 
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理回调函数信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180905440
+ * @note 简化实现：获取并执行异常处理回调函数
+ */
+void ExecuteExceptionHandlerCallback440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -54051,7 +54047,21 @@ void Unwind_180905440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数450
+ * 
+ * 该函数从数据缓冲区的0x100偏移量获取异常处理回调函数指针，
+ * 如果回调函数存在，则执行该回调函数，传递相关参数。
+ * 
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理回调函数信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180905450
+ * @note 简化实现：获取并执行异常处理回调函数
+ */
+void ExecuteExceptionHandlerCallback450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -54065,7 +54075,21 @@ void Unwind_180905450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数460
+ * 
+ * 该函数从数据缓冲区的0x108偏移量获取异常处理回调函数指针，
+ * 如果回调函数存在，则执行该回调函数，传递相关参数。
+ * 
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理回调函数信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180905460
+ * @note 简化实现：获取并执行异常处理回调函数
+ */
+void ExecuteExceptionHandlerCallback460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -54079,7 +54103,21 @@ void Unwind_180905460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数470
+ * 
+ * 该函数从数据缓冲区的0xa8偏移量获取异常处理回调函数指针，
+ * 如果回调函数存在，则执行该回调函数，传递相关参数。
+ * 
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理回调函数信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180905470
+ * @note 简化实现：获取并执行异常处理回调函数
+ */
+void ExecuteExceptionHandlerCallback470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -107517,3 +107555,83 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 原始函数名：Unwind_18090ca50 - 异常处理验证函数a50
 // 功能：验证异常处理的状态
 #define ValidateExceptionHandlingA50 Unwind_18090ca50
+
+// 原始函数名：Unwind_180905440 - 异常处理回调函数440
+// 功能：执行异常处理回调函数，从数据缓冲区的0x108偏移量获取回调函数指针
+#define ExecuteExceptionHandlerCallback440 Unwind_180905440
+
+// 原始函数名：Unwind_180905450 - 异常处理回调函数450
+// 功能：执行异常处理回调函数，从数据缓冲区的0x100偏移量获取回调函数指针
+#define ExecuteExceptionHandlerCallback450 Unwind_180905450
+
+// 原始函数名：Unwind_180905460 - 异常处理回调函数460
+// 功能：执行异常处理回调函数，从数据缓冲区的0x110偏移量获取回调函数指针
+#define ExecuteExceptionHandlerCallback460 Unwind_180905460
+
+// 原始函数名：Unwind_180905470 - 异常处理回调函数470
+// 功能：执行异常处理回调函数，从数据缓冲区的0x118偏移量获取回调函数指针
+#define ExecuteExceptionHandlerCallback470 Unwind_180905470
+
+// 原始函数名：Unwind_1809058a0 - 异常处理回调函数8a0
+// 功能：执行异常处理回调函数，从数据缓冲区的0x120偏移量获取回调函数指针
+#define ExecuteExceptionHandlerCallback8A0 Unwind_1809058a0
+
+// 原始函数名：Unwind_1809058b0 - 异常处理回调函数8b0
+// 功能：执行异常处理回调函数，从数据缓冲区的0x128偏移量获取回调函数指针
+#define ExecuteExceptionHandlerCallback8B0 Unwind_1809058b0
+
+// 原始函数名：Unwind_1809058c0 - 异常处理清理函数8c0
+// 功能：清理异常处理相关的资源和状态
+#define CleanupExceptionHandling8C0 Unwind_1809058c0
+
+// 原始函数名：Unwind_1809058d0 - 异常处理资源管理函数8d0
+// 功能：管理异常处理的资源分配和释放
+#define ManageExceptionHandlingResources8D0 Unwind_1809058d0
+
+// 原始函数名：Unwind_1809058e0 - 异常处理缓冲区清理函数8e0
+// 功能：清理异常处理的缓冲区数据
+#define ClearExceptionHandlingBuffer8E0 Unwind_1809058e0
+
+// 原始函数名：Unwind_1809058f0 - 异常处理状态检查函数8f0
+// 功能：检查异常处理的当前状态
+#define CheckExceptionHandlingStatus8F0 Unwind_1809058f0
+
+// 原始函数名：Unwind_180905900 - 异常处理重置函数900
+// 功能：重置异常处理系统到初始状态
+#define ResetExceptionHandling900 Unwind_180905900
+
+// 原始函数名：Unwind_180905910 - 异常处理回调函数910
+// 功能：执行异常处理回调函数，从数据缓冲区的0x130偏移量获取回调函数指针
+#define ExecuteExceptionHandlerCallback910 Unwind_180905910
+
+// 原始函数名：Unwind_180905920 - 异常处理验证函数920
+// 功能：验证异常处理系统的有效性
+#define ValidateExceptionHandling920 Unwind_180905920
+
+// 原始函数名：Unwind_180905930 - 异常处理初始化函数930
+// 功能：初始化异常处理系统的参数和状态
+#define InitializeExceptionHandling930 Unwind_180905930
+
+// 原始函数名：Unwind_180905940 - 异常处理配置函数940
+// 功能：配置异常处理系统的参数
+#define ConfigureExceptionHandling940 Unwind_180905940
+
+// 原始函数名：Unwind_180905950 - 异常处理完成函数950
+// 功能：完成异常处理操作并清理资源
+#define FinalizeExceptionHandling950 Unwind_180905950
+
+// 原始函数名：Unwind_180905960 - 异常处理回调函数960
+// 功能：执行异常处理回调函数，从数据缓冲区的0x138偏移量获取回调函数指针
+#define ExecuteExceptionHandlerCallback960 Unwind_180905960
+
+// 原始函数名：Unwind_180905980 - 异常处理资源释放函数980
+// 功能：释放异常处理相关的系统资源
+#define ReleaseExceptionHandlingResources980 Unwind_180905980
+
+// 原始函数名：Unwind_1809059a0 - 异常处理回调函数9a0
+// 功能：执行异常处理回调函数，从数据缓冲区的0x140偏移量获取回调函数指针
+#define ExecuteExceptionHandlerCallback9A0 Unwind_1809059a0
+
+// 原始函数名：Unwind_1809059b0 - 异常处理回调函数9b0
+// 功能：执行异常处理回调函数，从数据缓冲区的0x148偏移量获取回调函数指针
+#define ExecuteExceptionHandlerCallback9B0 Unwind_1809059b0
