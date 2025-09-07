@@ -27629,6 +27629,7 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer SystemContext)
   DataBuffer *resourcePtr;
   uint resourceFlag;
   bool validationComplete;
+  bool securityValidationPassed;
   float resultFloatValue;
   float extraFloatValue1;
   float extraFloatValue2;
@@ -27799,7 +27800,7 @@ ValidationLabelC:
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(destinationIndexRegister + 8)) &&
-     (bVar19 = *(uint *)(destinationIndexRegister[1] + 0x18) == securityCheckResult, securityCheckResult = register_R15D, bVar19)) {
+     (securityValidationPassed = *(uint *)(destinationIndexRegister[1] + 0x18) == securityCheckResult, securityCheckResult = register_R15D, securityValidationPassed)) {
     securityCheckResult = OperateDataO0(*destinationIndexRegister,systemContext + 0x68,4);
     fVar20 = floatResultA_00;
   }
