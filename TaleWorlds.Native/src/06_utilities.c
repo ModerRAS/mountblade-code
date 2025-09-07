@@ -9683,8 +9683,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
           ResourceIdentifier = *(uint64_t *)(DataProcessingBuffer + ResourceArrayIterator);
           OperationStatus = ProcessUtilityOperation(ResourceIdentifier);
           if (OperationStatus != 2) {
-                    // WARNING: Subroutine does not return
-            ReleaseResource(ResourceIdentifier, 1);
+              ReleaseResource(ResourceIdentifier, 1);
           }
           ProcessedResourceCount = ProcessedResourceCount + 1;
           ResourceArrayIterator = ResourceArrayIterator + 8;
@@ -9696,8 +9695,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
       CleanupMemory(&DataProcessingBuffer);
     }
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(StackGuardValue ^ (uint64_t)SecurityValidationBuffer);
+    ExecuteSecurityCheck(StackGuardValue ^ (uint64_t)SecurityValidationBuffer);
 }
 
 
@@ -10004,90 +10002,90 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
 uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
 
 {
-  int64_t *exceptionHandlerContextPtr;
-  int64_t *componentDataPtr;
-  int64_t *componentInfoPtr;
-  int32_t initializationStatus;
-  uint32_t messageProcessingResult;
-  uint64_t systemOperationResult;
-  int64_t *resourceInfoPtr;
-  int64_t *contextDataPtr;
-  int64_t *moduleDataPtr;
+  int64_t *exceptionHandlerContextPointer;
+  int64_t *componentDataPointer;
+  int64_t *componentInfoPointer;
+  int32_t moduleInitializationStatus;
+  uint32_t gameMessageProcessingResult;
+  uint64_t systemModuleOperationResult;
+  int64_t *resourceInfoPointer;
+  int64_t *contextDataPointer;
+  int64_t *moduleDataPointer;
   int64_t *baseValidationContext;
   int64_t localStackMemoryContext;
   int64_t tempStackContext;
   
-  systemOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&tempStackContext);
-  initializationStatus = (int32_t)systemOperationResult;
-  if (initializationStatus == 0) {
+  systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&tempStackContext);
+  moduleInitializationStatus = (int32_t)systemModuleOperationResult;
+  if (moduleInitializationStatus == 0) {
     baseValidationContext = (int64_t *)0x0;
-    moduleDataPtr = baseValidationContext;
+    moduleDataPointer = baseValidationContext;
     if (tempStackContext != 0) {
-      moduleDataPtr = (int64_t *)(tempStackContext + -8);
+      moduleDataPointer = (int64_t *)(tempStackContext + -8);
     }
-    systemOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&tempStackContext);
-    initializationStatus = (int32_t)systemOperationResult;
-    if (initializationStatus == 0) {
+    systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&tempStackContext);
+    moduleInitializationStatus = (int32_t)systemModuleOperationResult;
+    if (moduleInitializationStatus == 0) {
       localStackMemoryContext = 0;
-      messageProcessingResult = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(tempStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
+      gameMessageProcessingResult = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(tempStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
                             &localStackMemoryContext);
-      if (messageProcessingResult != 0) {
-        CleanupSystemDataStructures(moduleDataPtr);
-        return (uint64_t)messageProcessingResult;
+      if (gameMessageProcessingResult != 0) {
+        CleanupSystemDataStructures(moduleDataPointer);
+        return (uint64_t)gameMessageProcessingResult;
       }
       if (((*(uint32_t *)(*(int64_t *)(tempStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
-         (systemOperationResult = ValidateSystemOperationContextA0(localStackMemoryContext), (int32_t)systemOperationResult != 0)) {
-        return systemOperationResult;
+         (systemModuleOperationResult = ValidateSystemOperationContextA0(localStackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
+        return systemModuleOperationResult;
       }
-      exceptionHandlerContextPtr = (int64_t *)(localStackMemoryContext + MODULE_CONTEXT_OFFSET);
-      resourceInfoPtr = (int64_t *)(*exceptionHandlerContextPtr + MODULE_RESOURCE_OFFSET);
-      if (*exceptionHandlerContextPtr == 0) {
-        resourceInfoPtr = baseValidationContext;
+      exceptionHandlerContextPointer = (int64_t *)(localStackMemoryContext + MODULE_CONTEXT_OFFSET);
+      resourceInfoPointer = (int64_t *)(*exceptionHandlerContextPointer + MODULE_RESOURCE_OFFSET);
+      if (*exceptionHandlerContextPointer == 0) {
+        resourceInfoPointer = baseValidationContext;
       }
-      contextDataPtr = baseValidationContext;
-      componentDataPtr = baseValidationContext;
-      componentInfoPtr = baseValidationContext;
-      if (resourceInfoPtr != (int64_t *)0x0) {
-        contextDataPtr = resourceInfoPtr + RESOURCE_CONTEXT_OFFSET;
+      contextDataPointer = baseValidationContext;
+      componentDataPointer = baseValidationContext;
+      componentInfoPointer = baseValidationContext;
+      if (resourceInfoPointer != (int64_t *)0x0) {
+        contextDataPointer = resourceInfoPointer + RESOURCE_CONTEXT_OFFSET;
       }
       while( true ) {
-        if (contextDataPtr == exceptionHandlerContextPtr) {
-          *(int64_t **)(localStackMemoryContext + MODULE_COMPONENT_OFFSET) = moduleDataPtr;
-          ExecuteSystemDataProcessing(localStackMemoryContext,moduleDataPtr);
-          moduleDataPtr[2] = localStackMemoryContext;
-          systemOperationResult = InitializeSystemComponent(localStackMemoryContext);
-          if ((int32_t)systemOperationResult == 0) {
+        if (contextDataPointer == exceptionHandlerContextPointer) {
+          *(int64_t **)(localStackMemoryContext + MODULE_COMPONENT_OFFSET) = moduleDataPointer;
+          ExecuteSystemDataProcessing(localStackMemoryContext,moduleDataPointer);
+          moduleDataPointer[2] = localStackMemoryContext;
+          systemModuleOperationResult = InitializeSystemComponent(localStackMemoryContext);
+          if ((int32_t)systemModuleOperationResult == 0) {
             return 0;
           }
-          return systemOperationResult;
+          return systemModuleOperationResult;
         }
-        if ((int32_t)moduleDataPtr[5] <= (int32_t)componentInfoPtr) {
+        if ((int32_t)moduleDataPointer[5] <= (int32_t)componentInfoPointer) {
           return ResourceInvalidErrorCode;
         }
-        resourceInfoPtr = contextDataPtr + RESOURCE_DATA_OFFSET;
-        if (contextDataPtr == (int64_t *)0x0) {
-          resourceInfoPtr = (int64_t *)MODULE_VALIDATION_OFFSET;
+        resourceInfoPointer = contextDataPointer + RESOURCE_DATA_OFFSET;
+        if (contextDataPointer == (int64_t *)0x0) {
+          resourceInfoPointer = (int64_t *)MODULE_VALIDATION_OFFSET;
         }
-        *(int64_t *)(moduleDataPtr[4] + SystemContextOffset + (int64_t)componentDataPtr) = *resourceInfoPtr;
-        if (contextDataPtr == exceptionHandlerContextPtr) break;
-        resourceInfoPtr = (int64_t *)(*contextDataPtr + MODULE_RESOURCE_OFFSET);
-        if (*contextDataPtr == 0) {
-          resourceInfoPtr = baseValidationContext;
+        *(int64_t *)(moduleDataPointer[4] + SystemContextOffset + (int64_t)componentDataPointer) = *resourceInfoPointer;
+        if (contextDataPointer == exceptionHandlerContextPointer) break;
+        resourceInfoPointer = (int64_t *)(*contextDataPointer + MODULE_RESOURCE_OFFSET);
+        if (*contextDataPointer == 0) {
+          resourceInfoPointer = baseValidationContext;
         }
-        contextDataPtr = baseValidationContext;
-        if (resourceInfoPtr != (int64_t *)0x0) {
-          contextDataPtr = resourceInfoPtr + RESOURCE_CONTEXT_OFFSET;
+        contextDataPointer = baseValidationContext;
+        if (resourceInfoPointer != (int64_t *)0x0) {
+          contextDataPointer = resourceInfoPointer + RESOURCE_CONTEXT_OFFSET;
         }
-        componentDataPtr = componentDataPtr + COMPONENT_DATA_OFFSET;
-        componentInfoPtr = (int64_t *)(uint64_t)((int32_t)componentInfoPtr + 1);
+        componentDataPointer = componentDataPointer + COMPONENT_DATA_OFFSET;
+        componentInfoPointer = (int64_t *)(uint64_t)((int32_t)componentInfoPointer + 1);
       }
       return ResourceInvalidErrorCode;
     }
   }
-  if (initializationStatus == 0x1e) {
+  if (moduleInitializationStatus == 0x1e) {
     return 0;
   }
-  return systemOperationResult;
+  return systemModuleOperationResult;
 }
 
 
@@ -10237,13 +10235,11 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
     if (resourceDecrementResult == 0) {
       resourceDecrementResult = ValidateSystemParameters(decrementValue);
       if (resourceDecrementResult == 0) {
-                    // WARNING: Subroutine does not return
-        ReleaseSystemResources(localResourceDecrementBuffer);
+          ReleaseSystemResources(localResourceDecrementBuffer);
       }
     }
   }
-                    // WARNING: Subroutine does not return
-  ReleaseSystemResources(localResourceDecrementBuffer);
+    ReleaseSystemResources(localResourceDecrementBuffer);
 }
 
 
@@ -10464,8 +10460,7 @@ DataBuffer ForceResourceRelease(int64_t resourceDescriptor)
   if (*(int64_t *)(systemContextPointer + ResourceDataOffset) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(systemContextPointer + ResourceDataOffset),1);
+    ReleaseResource(*(int64_t *)(systemContextPointer + ResourceDataOffset),1);
 }
 
 
@@ -10536,8 +10531,7 @@ DataWord ReleaseStackResource(void)
 void TriggerSystemShutdown(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ReleaseResource();
+    ReleaseResource();
 }
 
 
@@ -10594,8 +10588,7 @@ DataBuffer ValidateMemoryAccess(int64_t memoryContext)
   if (*(int64_t *)(MemoryAccessPointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(MemoryAccessPointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(MemoryAccessPointer + 0x10),1);
 }
 
 
@@ -10631,8 +10624,7 @@ DataWord GetSystemStatus(void)
   if (*(int64_t *)(resourcePointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(resourcePointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(resourcePointer + 0x10),1);
 }
 
 
@@ -10650,8 +10642,7 @@ DataWord GetSystemStatus(void)
 void EmergencyShutdown(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ReleaseResource();
+    ReleaseResource();
 }
 
 
@@ -10792,9 +10783,9 @@ DataBuffer ValidateResourcePointerAccess(int64_t resourceDescriptor)
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001808d7494)
-// WARNING: Removing unreachable block (ram,0x0001808d74a4)
-// WARNING: Removing unreachable block (ram,0x0001808d74b1)
+ (ram,0x0001808d7494)
+ (ram,0x0001808d74a4)
+ (ram,0x0001808d74b1)
 
 /**
  * @brief 处理浮点数组资源
@@ -11067,7 +11058,6 @@ DataBuffer ReturnErrorStatus(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 验证数据数组的有效性和完整性
@@ -11131,7 +11121,6 @@ uint64_t ValidateDataArray(int64_t arrayDescriptor)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: DataBuffer ValidateUtilitySystemState(void)
 // 
@@ -11258,8 +11247,7 @@ DataBuffer ValidateMemoryStructureA0(int64_t memoryContext)
   if (*(int64_t *)(memoryHandle + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(memoryHandle + 0x10),1);
+    ReleaseResource(*(int64_t *)(memoryHandle + 0x10),1);
 }
 
 
@@ -11285,8 +11273,7 @@ DataWord CheckMemoryStructureA0(void)
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
 }
 
 
@@ -11306,8 +11293,7 @@ DataWord CheckMemoryStructureA0(void)
 void TerminateProcessWithError(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ReleaseResource();
+    ReleaseResource();
 }
 
 
@@ -11360,8 +11346,7 @@ DataBuffer ValidateResourceAccessChain(int64_t resourceHandle)
   if (*(int64_t *)(accessChain + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(accessChain + 0x10),1);
+    ReleaseResource(*(int64_t *)(accessChain + 0x10),1);
 }
 
 
@@ -11393,8 +11378,7 @@ DataWord ValidateResourceHandleAndRelease(void)
   if (*(int64_t *)(resourcePointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(resourcePointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(resourcePointer + 0x10),1);
 }
 
 
@@ -11471,8 +11455,7 @@ DataBuffer ValidateAndTerminateProcess(int64_t contextHandle)
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
 }
 
 
@@ -11500,8 +11483,7 @@ DataWord ValidateRegisterAndTerminate(void)
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
 }
 
 
@@ -11520,8 +11502,7 @@ DataWord ValidateRegisterAndTerminate(void)
 void TerminateProcessWithSecurityError(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ReleaseResource();
+    ReleaseResource();
 }
 
 
@@ -11574,8 +11555,7 @@ DataBuffer ValidateContextAndTerminate(int64_t contextHandle)
   if (*(int64_t *)(systemContextBuffer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(systemContextBuffer + 0x10),1);
+    ReleaseResource(*(int64_t *)(systemContextBuffer + 0x10),1);
 }
 
 
@@ -11605,8 +11585,7 @@ DataWord ValidateRegisterAndTerminateB(void)
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
 }
 
 
@@ -11625,8 +11604,7 @@ DataWord ValidateRegisterAndTerminateB(void)
 void TerminateProcessWithSystemError(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ReleaseResource();
+    ReleaseResource();
 }
 
 
@@ -11677,8 +11655,7 @@ DataBuffer ProcessResourceDescriptorValidation(int64_t resourceDescriptor)
   if (*(int64_t *)(stackPointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(stackPointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(stackPointer + 0x10),1);
 }
 
 
@@ -11709,8 +11686,7 @@ DataWord ValidateResourceHandleAndReleaseAlternate(void)
   if (*(int64_t *)(resourcePointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(resourcePointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(resourcePointer + 0x10),1);
 }
 
 
@@ -11723,8 +11699,7 @@ DataWord ValidateResourceHandleAndReleaseAlternate(void)
 void TerminateSystem(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ReleaseResource();
+    ReleaseResource();
 }
 
 
@@ -11767,8 +11742,7 @@ DataBuffer ValidateResourceAndTerminate(int64_t resourceHandle)
   if (*(int64_t *)(stackPointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(stackPointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(stackPointer + 0x10),1);
 }
 
 
@@ -11793,8 +11767,7 @@ DataWord ValidateRegisterResource(void)
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(adjustedPointer + 0x10),1);
 }
 
 
@@ -11807,8 +11780,7 @@ DataWord ValidateRegisterResource(void)
 void TerminateSystemB(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ReleaseResource();
+    ReleaseResource();
 }
 
 
@@ -11855,8 +11827,7 @@ DataBuffer ValidateResourceAndTerminateB(int64_t resourceHandle)
   if (*(int64_t *)(stackPointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(stackPointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(stackPointer + 0x10),1);
 }
 
 
@@ -11876,8 +11847,7 @@ DataWord NoOperationC(void)
   if (*(int64_t *)(ResourceHandlePointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(ResourceHandlePointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(ResourceHandlePointer + 0x10),1);
 }
 
 
@@ -11896,8 +11866,7 @@ DataWord NoOperationC(void)
 void UtilityErrorHandlerD(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ReleaseResource();
+    ReleaseResource();
 }
 
 
@@ -11916,8 +11885,7 @@ void UtilityErrorHandlerD(void)
 void UtilityErrorHandlerE(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ReleaseResource();
+    ReleaseResource();
 }
 
 
@@ -11963,8 +11931,7 @@ DataBuffer ValidateResourceAndReleaseA(int64_t resourceParam)
   if (*(int64_t *)(resourceContext + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(resourceContext + 0x10),1);
+    ReleaseResource(*(int64_t *)(resourceContext + 0x10),1);
 }
 
 
@@ -11984,8 +11951,7 @@ DataWord NoOperationH(void)
   if (*(int64_t *)(ResourceHandlePointer + 0x10) == 0) {
     return ResourceInvalidErrorCode;
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(ResourceHandlePointer + 0x10),1);
+    ReleaseResource(*(int64_t *)(ResourceHandlePointer + 0x10),1);
 }
 
 
@@ -12004,8 +11970,7 @@ DataWord NoOperationH(void)
 void UtilityErrorHandlerF(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ReleaseResource();
+    ReleaseResource();
 }
 
 
@@ -12024,8 +11989,7 @@ void UtilityErrorHandlerF(void)
 void UtilityErrorHandlerG(void)
 
 {
-                    // WARNING: Subroutine does not return
-  ReleaseResource();
+    ReleaseResource();
 }
 
 
@@ -12084,9 +12048,9 @@ void ProcessUtilityOperation(int64_t operationParams,uint64_t systemContext)
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001808d7494)
-// WARNING: Removing unreachable block (ram,0x0001808d74a4)
-// WARNING: Removing unreachable block (ram,0x0001808d74b1)
+ (ram,0x0001808d7494)
+ (ram,0x0001808d74a4)
+ (ram,0x0001808d74b1)
 
 // 函数: DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
 // 
@@ -12161,7 +12125,6 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: int ProcessResourceCopyOperation(int64_t ResourceOperationContext)
 // 功能：处理资源复制操作，根据条件复制资源数据并执行相关操作
@@ -12203,12 +12166,10 @@ int ProcessResourceCopyOperation(int64_t ResourceOperationContext)
     if (0x38 < *(int *)(ResourceOperationContext + 0x10)) {
       CopyOperationStatus = 0x38;
     }
-                    // WARNING: Subroutine does not return
-    memcpy(ResourceDataBuffer,ResourceOperationContext + 0x10,(int64_t)CopyOperationStatus);
+      memcpy(ResourceDataBuffer,ResourceOperationContext + 0x10,(int64_t)CopyOperationStatus);
   }
   if (ResourceTargetPointer != 0) {
-                    // WARNING: Subroutine does not return
-    AllocateResourceA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),ResourceTargetPointer,&SystemMemoryPoolA,0xb8,1);
+      AllocateResourceA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),ResourceTargetPointer,&SystemMemoryPoolA,0xb8,1);
   }
   return CopyOperationStatus;
 }
@@ -12244,7 +12205,6 @@ void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHandle)
 // 
@@ -12300,7 +12260,6 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 工具权限检查函数G0
@@ -12460,7 +12419,6 @@ void ExecuteUtilitySystemCleanup(int64_t systemHandle, int64_t cleanupContext)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 验证数据完整性
@@ -12565,8 +12523,7 @@ void ProcessUtilityDataStructure(int64_t dataStructurePointer,int64_t contextPoi
       dataNodePointer = nextNodePointer;
     } while ((*previousNodePointer == 0) || (validationResult = CheckSystemStateCW0(contextPointer), validationResult == 0));
   }
-                    // WARNING: Subroutine does not return
-  CleanupSystemResourceCA0(systemContextBuffer);
+    CleanupSystemResourceCA0(systemContextBuffer);
 }
 
 
@@ -12610,8 +12567,7 @@ void ValidateUtilityOperation(int64_t operationPointer,int64_t contextPointer)
     return;
   }
 ValidationFailed:
-                    // WARNING: Subroutine does not return
-  ExecuteSystemResourceOperationCB0(*(DataBuffer *)(contextPointer + 0x98),operationPointer);
+    ExecuteSystemResourceOperationCB0(*(DataBuffer *)(contextPointer + 0x98),operationPointer);
 }
 
 
@@ -13673,8 +13629,7 @@ void InitializeSecondarySystemEventHandler(int64_t eventHandlerConfig,int64_t ca
     return;
   }
 ValidationCheckpoint:
-                    // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(DataBuffer *)(callbackTable + 0x98),eventHandlerConfig);
+    CleanupSystemEventA0(*(DataBuffer *)(callbackTable + 0x98),eventHandlerConfig);
 }
 
 
@@ -13696,8 +13651,7 @@ DataBuffer ValidateSystemStatusAndContext(int64_t contextHandle,int64_t eventMan
     referenceCount = *(int *)(systemContext + 0x28);
     *(int *)(systemContext + 0x28) = referenceCount + 1;
     if (referenceCount == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(eventManager + 0x98),contextHandle);
+        CleanupSystemEventA0(*(DataBuffer *)(eventManager + 0x98),contextHandle);
     }
     queryResult = 0;
   }
@@ -13739,8 +13693,7 @@ void ResetSystemStateAndCleanup(int64_t systemConfig,int64_t cleanupContext)
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemConfig + 0x10),&systemContext);
   if (operationResult == 0) {
     *(DataWord *)(systemContext + 0x30) = 0;
-                    // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(DataBuffer *)(cleanupContext + 0x98),systemConfig);
+      CleanupSystemEventA0(*(DataBuffer *)(cleanupContext + 0x98),systemConfig);
   }
   return;
 }
@@ -13786,8 +13739,7 @@ DataBuffer ManageResourceState(int64_t resourceManager,int64_t systemParams)
     }
     *(int *)(resourceContext + 0x28) = resourceCounter + -1;
     if (resourceCounter == 1) {
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),operationBase);
+        CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),operationBase);
     }
     operationResult = 0;
   }
@@ -13855,8 +13807,7 @@ DataBuffer ProcessSystemRequest(int64_t contextHandle,int64_t systemParameters)
     return 0x4e;
   }
   *(ByteFlag *)(requestContext + 0x2c) = 1;
-                    // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),operationBase);
+    CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),operationBase);
 }
 
 
@@ -13882,8 +13833,7 @@ void ProcessDataSetFlagAndCleanup(int64_t dataContext,int64_t systemContext)
   queryStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x10),&dataPointer);
   if (queryStatus == 0) {
     *(ByteFlag *)(dataPointer + 0x29) = *(ByteFlag *)(dataContext + 0x18);
-                    // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),dataContext);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),dataContext);
   }
   return;
 }
@@ -13911,8 +13861,7 @@ void ProcessDataSetFlagAndCleanupVariant(int64_t dataContext,int64_t systemConte
   operationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x10),&dataPointer);
   if (operationStatus == 0) {
     *(ByteFlag *)(dataPointer + 0x28) = *(ByteFlag *)(dataContext + 0x18);
-                    // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),dataContext);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),dataContext);
   }
   return;
 }
@@ -13933,8 +13882,7 @@ DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
   result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x10),&validationData);
   if ((int)result == 0) {
     *(DataWord *)(CONCAT44(tempValue,systemDataBuffer) + 0x24) = *(DataWord *)(dataContext + 0x18);
-                    // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),dataContext);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),dataContext);
   }
   return result;
 }
@@ -13966,13 +13914,11 @@ DataBuffer ProcessUtilityDataAndExecute(int64_t dataContext,int64_t systemContex
     return 0x4f;
   }
   *(ByteFlag *)(systemDataBuffer + 0x2c) = 0;
-                    // WARNING: Subroutine does not return
-  ExecuteSystemOperation(*(DataBuffer *)(systemContext + 0x98),dataContext);
+    ExecuteSystemOperation(*(DataBuffer *)(systemContext + 0x98),dataContext);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -14028,13 +13974,11 @@ void ProcessSystemEventA3(int64_t eventContext,int64_t systemContext)
          (newBuffer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),status * 8,&SystemMemoryPoolB,
                                 0xf4,0,0,1), newBuffer == 0)) goto ExitHandler;
       if (*(int *)(queueInfo + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(newBuffer,*(DataBuffer *)(queueInfo + 0x20),(int64_t)*(int *)(queueInfo + 0x28) << 3);
+          memcpy(newBuffer,*(DataBuffer *)(queueInfo + 0x20),(int64_t)*(int *)(queueInfo + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(queueInfo + 0x2c)) && (*(int64_t *)(queueInfo + 0x20) != 0)) {
-                    // WARNING: Subroutine does not return
-      AllocateResourceA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(queueInfo + 0x20),
+        AllocateResourceA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(queueInfo + 0x20),
                     &SystemMemoryPoolB,0x100,1);
     }
     *(int64_t *)(queueInfo + 0x20) = newBuffer;
@@ -14044,13 +13988,11 @@ void ProcessSystemEventA3(int64_t eventContext,int64_t systemContext)
        eventHandle;
   *(int *)(queueInfo + 0x28) = *(int *)(queueInfo + 0x28) + 1;
 ExitHandler:
-                    // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),eventContext);
+    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),eventContext);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void OptimizeUtilitySystemZ0(DataBuffer systemHandle,DataBuffer optimizationFlags)
@@ -14100,15 +14042,13 @@ void OptimizeUtilitySystemZ0(DataBuffer systemHandle,DataBuffer optimizationFlag
          (allocatedMemory = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),validationResult * 8,&SystemMemoryPoolB,
                                 0xf4,0), allocatedMemory == 0)) goto ErrorHandlingLabel;
       if (*(int *)(dataBuffer + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(allocatedMemory,*(DataBuffer *)(dataBuffer + 0x20),
+          memcpy(allocatedMemory,*(DataBuffer *)(dataBuffer + 0x20),
                (int64_t)*(int *)(dataBuffer + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(dataBuffer + 0x2c)) && (*(int64_t *)(dataBuffer + 0x20) != 0))
     {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(dataBuffer + 0x20),
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(dataBuffer + 0x20),
                     &SystemMemoryPoolB,0x100,1);
     }
     *(int64_t *)(dataBuffer + 0x20) = allocatedMemory;
@@ -14119,13 +14059,11 @@ void OptimizeUtilitySystemZ0(DataBuffer systemHandle,DataBuffer optimizationFlag
        dataInput;
   *(int *)(dataBuffer + 0x28) = *(int *)(dataBuffer + 0x28) + 1;
 SystemCleanupLabel:
-                    // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ResetUtilitySystemAA0(void)
@@ -14171,13 +14109,11 @@ void ResetUtilitySystemAA0(void)
       ;
       if (stackPointer == 0) goto ErrorHandlingLabel;
       if (*(int *)(registerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(stackPointer,*(DataBuffer *)(registerContext + 0x20),(int64_t)*(int *)(registerContext + 0x28) << 3);
+          memcpy(stackPointer,*(DataBuffer *)(registerContext + 0x20),(int64_t)*(int *)(registerContext + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(registerContext + 0x2c)) && (*(int64_t *)(registerContext + 0x20) != 0)) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(registerContext + 0x20),
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(registerContext + 0x20),
                     &SystemMemoryPoolB,0x100,1);
     }
     *(int64_t *)(registerContext + 0x20) = calculatedOffset;
@@ -14187,13 +14123,11 @@ void ResetUtilitySystemAA0(void)
        dataSize;
   *(int *)(registerContext + 0x28) = *(int *)(registerContext + 0x28) + 1;
 SystemCleanupLabel:
-                    // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
@@ -14228,14 +14162,12 @@ void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
                                 0xf4);
       if (systemContext == 0) goto ErrorHandlingLabel;
       if (*(int *)(registerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(systemContext,*(DataBuffer *)(registerContext + 0x20),(int64_t)*(int *)(registerContext + 0x28) << 3
+          memcpy(systemContext,*(DataBuffer *)(registerContext + 0x20),(int64_t)*(int *)(registerContext + 0x28) << 3
               );
       }
     }
     if ((0 < *(int *)(registerContext + 0x2c)) && (*(int64_t *)(registerContext + 0x20) != 0)) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(registerContext + 0x20),
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(registerContext + 0x20),
                     &SystemMemoryPoolB,0x100,1);
     }
     *(int64_t *)(registerContext + 0x20) = systemContext;
@@ -14245,8 +14177,7 @@ void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
        systemParameter;
   *(int *)(registerContext + 0x28) = *(int *)(registerContext + 0x28) + 1;
 SystemCleanupLabel:
-                    // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
 }
 
 
@@ -14409,8 +14340,7 @@ void UtilityProcessResourceRequest(int64_t resourceHandle,int64_t requestContext
   if (operationStatus == 0) {
     operationStatus = InitializeSystemBufferA0(systemContext);
     if (operationStatus == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(requestContext + 0x98),resourceHandle);
+        CleanupSystemEventA0(*(DataBuffer *)(requestContext + 0x98),resourceHandle);
     }
   }
   return;
@@ -14429,8 +14359,7 @@ void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
   
   validationStatus = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + ComponentHandleOffset), systemContextBuffer);
   if (validationStatus == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
+      CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
   }
   return;
 }
@@ -14450,8 +14379,7 @@ void DoubleValidateAndExecuteOperation(void* contextHandle, void* operationData)
   if (primaryValidationStatus == 0) {
     primaryValidationStatus = ValidateSystemDataIntegrityA0(systemValidationData);
     if (primaryValidationStatus == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
+        CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
     }
   }
   return;
@@ -14767,7 +14695,6 @@ OperationComplete:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -14868,16 +14795,13 @@ void ProcessResourcePointer(int64_t *resourceHandle, int64_t operationOffset)
   
   exceptionHandlerContext = (**(FunctionPointer**)(*resourceHandle + ResourceFunctionTableOffset))(resourceHandle,operationOffset + OperationValidationOffset);
   if (exceptionHandlerContext == 0) {
-                    // WARNING: Subroutine does not return
-    ValidateSystemDataA0(operationOffset + OperationValidationOffset,stackBuffer);
+      ValidateSystemDataA0(operationOffset + OperationValidationOffset,stackBuffer);
   }
   dataContextPointer = (int64_t *)(exceptionHandlerContext + DataContextPointerOffset);
   if (((int64_t *)*dataContextPointer == dataContextPointer) && (*(int64_t **)(exceptionHandlerContext + DataContextValidationOffset) == dataContextPointer)) {
-                    // WARNING: Subroutine does not return
-    ExecuteSecurityCheck(stackGuardValue ^ (uint64_t)stackBuffer);
+      ExecuteSecurityCheck(stackGuardValue ^ (uint64_t)stackBuffer);
   }
-                    // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(DataBuffer *)(resourceContext + ResourceCleanupEventOffset));
+    CleanupSystemEventA0(*(DataBuffer *)(resourceContext + ResourceCleanupEventOffset));
 }
 
 
@@ -14891,8 +14815,7 @@ void ExecuteSecurityValidation(void)
   ByteFlag stackBuffer [40];
   
   stackGuardValue = ExceptionEncryptionKey ^ (uint64_t)stackBuffer;
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(stackGuardValue);
+    ExecuteSecurityCheck(stackGuardValue);
 }
 
 
@@ -15071,8 +14994,7 @@ void ValidateResourceAccess(int64_t ResourceDescriptor, int64_t AccessRequest)
       ResourcePointer = SystemContext + -8;
     }
     *(DataWord *)(ResourcePointer + 0x88) = *(DataWord *)(ResourceDescriptor + 0x18);
-                    // WARNING: Subroutine does not return
-    UpdateSystemResourceState(*(DataBuffer *)(AccessRequest + 0x98),ResourceDescriptor);
+      UpdateSystemResourceState(*(DataBuffer *)(AccessRequest + 0x98),ResourceDescriptor);
   }
   return;
 }
@@ -15142,8 +15064,7 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
       }
       *(float *)(contextPointer + 0x20) = rangeValue;
       *(float *)(systemContextBuffer + 4) = rangeValue;
-                    // WARNING: Subroutine does not return
-      UpdateSystemFloatingPointValue(*(DataBuffer *)(systemDataPointer + 0x98),contextPointer);
+        UpdateSystemFloatingPointValue(*(DataBuffer *)(systemDataPointer + 0x98),contextPointer);
     }
   }
   return result;
@@ -15280,8 +15201,7 @@ DataBuffer QuerySystemStatusE0(void)
        (inputValue < *(float *)(dataContext + 0x3c) || inputValue == *(float *)(dataContext + 0x3c))) {
       validationStatus = *(DataBuffer *)(stackFramePointer + 0x98);
       *(float *)(DataProcessingOffset + 4) = inputValue;
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(validationStatus);
+        CleanupSystemEventA0(validationStatus);
     }
     validationStatus = 0x1c;
   }
@@ -15315,8 +15235,7 @@ DataBuffer InitializeSystemE0(void)
        (inputValue < *(float *)(dataContext + 0x3c) || inputValue == *(float *)(dataContext + 0x3c))) {
       validationStatus = *(DataBuffer *)(stackFramePointer + 0x98);
       *(float *)(DataProcessingOffset + 4) = inputValue;
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(validationStatus);
+        CleanupSystemEventA0(validationStatus);
     }
     validationStatus = 0x1c;
   }
@@ -15345,8 +15264,7 @@ DataBuffer ValidateParametersE0(DataWord parameterFlags)
        (floatValue < *(float *)(contextHandle + 0x3c) || floatValue == *(float *)(contextHandle + 0x3c))) {
       validationResult = *(DataBuffer *)(basePointer + 0x98);
       *(float *)(stackPointer + 4) = floatValue;
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(validationResult);
+        CleanupSystemEventA0(validationResult);
     }
     validationResult = 0x1c;
   }
@@ -15388,8 +15306,7 @@ DataBuffer ValidateParametersE1(DataWord validationFlags)
        (floatValue < *(float *)(registerContext + ContextRangeMaxOffset) || floatValue == *(float *)(registerContext + ContextRangeMaxOffset))) {
       validationResult = *(DataBuffer *)(stackFramePointer + ValidationResultOffset);
       *(float *)(DataProcessingOffset + StackParameterDataOffset) = floatValue;
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(validationResult);
+        CleanupSystemEventA0(validationResult);
     }
     validationResult = 0x1c;
   }
@@ -15480,8 +15397,7 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
       dataContext = *(int64_t *)(dataContext + 0x90);
       *(float *)(resourceIterator + 4 + (int64_t)(int)stackBuffer[0] * 0x18) = resultValue;
       *(DataBuffer *)(dataBuffer + 0x20) = *(DataBuffer *)(dataContext + (int64_t)(int)stackBuffer[0] * 8);
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),dataBuffer);
+        CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),dataBuffer);
     }
   }
   return ComponentDataValidationFailure;
@@ -15534,8 +15450,7 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
         dataContext = *(int64_t *)(dataContext + 0x90);
         *(float *)(systemContext + 4 + arrayIndex * 0x18) = floatValue;
         *(DataBuffer *)(dataParameter + 0x20) = *(DataBuffer *)(dataContext + (int64_t)operationResult[0] * 8);
-                    // WARNING: Subroutine does not return
-        CleanupSystemEventA0(*(DataBuffer *)(contextParameter + 0x98),dataParameter);
+          CleanupSystemEventA0(*(DataBuffer *)(contextParameter + 0x98),dataParameter);
       }
       return ResourceInvalidErrorCode;
     }
@@ -15726,8 +15641,7 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
       } while ((int)loopCounter < *(int *)(ArrayDescriptor + 0x18));
     }
   }
-                    // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(DataBuffer *)(SystemContext + 0x98),ArrayDescriptor);
+    CleanupSystemEventA0(*(DataBuffer *)(SystemContext + 0x98),ArrayDescriptor);
 }
 
 
@@ -15815,8 +15729,7 @@ DataBuffer GetSystemStatusA0(void)
       } while ((int)inputRegisterR9D < *(int *)(registerContext + 0x18));
     }
   }
-                    // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(DataBuffer *)(contextPointer + 0x98));
+    CleanupSystemEventA0(*(DataBuffer *)(contextPointer + 0x98));
 }
 
 
@@ -15840,7 +15753,6 @@ DataBuffer ValidateSystemConfigurationA0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeResourceContext(int64_t operationBase, DataBuffer dataBuffer)
@@ -15881,11 +15793,9 @@ void InitializeResourceContext(int64_t contextDescriptor, DataBuffer initializat
     if (allocationSize <= (uint64_t)(resourceCount * 4)) {
       allocationSize = SystemCleanupFlagffffff0;
     }
-                    // WARNING: Subroutine does not return
-    AllocateSystemResourcesA0(resourceCount,allocationSize & SystemCleanupFlagfffffff0);
+      AllocateSystemResourcesA0(resourceCount,allocationSize & SystemCleanupFlagfffffff0);
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityToken ^ (uint64_t)resourceBuffer);
+    ExecuteSecurityCheck(securityToken ^ (uint64_t)resourceBuffer);
 }
 
 
@@ -15907,8 +15817,7 @@ void ProcessUtilitySystemRequest(int64_t systemHandle,int64_t requestContext)
       systemContext = contextVariable + -8;
     }
     *(ByteFlag *)(systemContext + 0xbc) = *(ByteFlag *)(systemHandle + 0x18);
-                    // WARNING: Subroutine does not return
-    ExecuteSystemResourceOperationCB0(*(DataBuffer *)(requestContext + 0x98),systemHandle);
+      ExecuteSystemResourceOperationCB0(*(DataBuffer *)(requestContext + 0x98),systemHandle);
   }
   return;
 }
@@ -16105,8 +16014,7 @@ DataBuffer ProcessBufferA0(int64_t bufferDescriptor,int64_t systemContext)
       dataContext = CONCAT44(bufferFlags,bufferSize) + -8;
     }
     *(DataWord *)(dataContext + 0x8c) = *(DataWord *)(bufferDescriptor + 0x18);
-                    // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),bufferDescriptor);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),bufferDescriptor);
   }
   return operationResult;
 }
@@ -16135,8 +16043,7 @@ void ActivateUtilitySystemState(int64_t systemHandle,int64_t operationContext)
     }
     *(int *)(statePointer + 0x84) = *(int *)(statePointer + 0x84) + 1;
     *(ByteFlag *)(statePointer + 0xbd) = 1;
-                    // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(DataBuffer *)(operationContext + 0x98),systemHandle);
+      CleanupSystemEventA0(*(DataBuffer *)(operationContext + 0x98),systemHandle);
   }
   return;
 }
@@ -16167,8 +16074,7 @@ void DeactivateUtilitySystemState(int64_t systemHandle,int64_t operationContext)
     }
     *(int *)(statePointer + 0x84) = *(int *)(statePointer + 0x84) + 1;
     *(ByteFlag *)(statePointer + 0xbd) = 0;
-                    // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(DataBuffer *)(operationContext + 0x98),systemHandle);
+      CleanupSystemEventA0(*(DataBuffer *)(operationContext + 0x98),systemHandle);
   }
   return;
 }
@@ -16209,8 +16115,7 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
   }
   *(float *)(allocationContext + 0x14) = rangeValue;
   *(float *)(CONCAT44(stackBufferHighPart,stackBufferLowPart) + 4) = rangeValue;
-                    // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),allocationContext);
+    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),allocationContext);
 }
 
 
@@ -16303,8 +16208,7 @@ void ProcessContextValidationAndExecution(int64_t contextHandle,int64_t operatio
   if (validationResult == 0) {
     validationResult = ExecuteContextOperation(validationData,contextHandle + 0x20);
     if (validationResult == 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteCriticalOperation(*(DataBuffer *)(operationHandle + 0x98),contextHandle);
+        ExecuteCriticalOperation(*(DataBuffer *)(operationHandle + 0x98),contextHandle);
     }
   }
   return;
@@ -16344,8 +16248,7 @@ void ProcessAlternativeContextValidation(int64_t contextHandle,int64_t operation
   if (validationResult == 0) {
     validationResult = ExecuteContextOperation(validationData,contextHandle + 0x20);
     if (validationResult == 0) {
-                    // WARNING: Subroutine does not return
-      ExecuteCriticalOperation(*(DataBuffer *)(operationHandle + 0x98),contextHandle);
+        ExecuteCriticalOperation(*(DataBuffer *)(operationHandle + 0x98),contextHandle);
     }
   }
   return;
@@ -16353,8 +16256,7 @@ void ProcessAlternativeContextValidation(int64_t contextHandle,int64_t operation
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180893865)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+ (ram,0x000180893865)
 
 /**
  * @brief 验证并处理系统操作
@@ -16390,8 +16292,7 @@ int ValidateAndProcessSystemOperation(int64_t systemContext,int64_t operationCon
         if (*(int *)(operationData + OperationDataContextOffset) == OperationDataProcessed) {
           *(DataWord *)(operationData + OperationDataContextOffset) = OperationDataComplete;
         }
-                    // WARNING: Subroutine does not return
-        ExecuteCriticalOperation(*(DataBuffer *)(operationContext + OperationContextBufferOffset),systemContext);
+          ExecuteCriticalOperation(*(DataBuffer *)(operationContext + OperationContextBufferOffset),systemContext);
       }
     }
     else if (*(int64_t *)(systemContext + SystemContextHandleOffset) == 0) {
@@ -16401,8 +16302,7 @@ int ValidateAndProcessSystemOperation(int64_t systemContext,int64_t operationCon
       allocatedMemory = AllocateSystemMemory(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset),*(int *)(systemContext + SystemContextSizeOffset),
                             &SystemMemoryPoolC,SystemMemoryAllocationFlag,0,0,1);
       if (allocatedMemory != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(allocatedMemory,*(DataBuffer *)(systemContext + SystemContextHandleOffset),(int64_t)*(int *)(systemContext + SystemContextSizeOffset));
+          memcpy(allocatedMemory,*(DataBuffer *)(systemContext + SystemContextHandleOffset),(int64_t)*(int *)(systemContext + SystemContextSizeOffset));
       }
       operationResult = OperationMemoryError;
     }
@@ -16413,8 +16313,7 @@ int ValidateAndProcessSystemOperation(int64_t systemContext,int64_t operationCon
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180893865)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+ (ram,0x000180893865)
 
 // 原始函数名：FUN_18089379d - 数据验证和处理函数
 // 功能：验证参数有效性并根据条件执行相应的数据处理操作
@@ -16437,8 +16336,7 @@ int ValidateAndProcessDataOperation(int64_t dataContext,DataBuffer operationFlag
       if (*(int *)(systemContextBuffer + OperationDataContextOffset) == OperationDataProcessed) {
         *(DataWord *)(systemContextBuffer + OperationDataContextOffset) = OperationDataComplete;
       }
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(resourceHandle + OperationContextBufferOffset));
+        CleanupSystemEventA0(*(DataBuffer *)(resourceHandle + OperationContextBufferOffset));
     }
   }
   else if (*(int64_t *)(dataContext + SystemContextHandleOffset) == 0) {
@@ -16447,8 +16345,7 @@ int ValidateAndProcessDataOperation(int64_t dataContext,DataBuffer operationFlag
   else {
     allocatedBuffer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset),operationFlags,&SystemMemoryPoolC,SystemMemoryAllocationFlag,0);
     if (allocatedBuffer != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(allocatedBuffer,*(DataBuffer *)(contextHandle + SystemContextHandleOffset),(int64_t)*(int *)(contextHandle + SystemContextSizeOffset));
+        memcpy(allocatedBuffer,*(DataBuffer *)(contextHandle + SystemContextHandleOffset),(int64_t)*(int *)(contextHandle + SystemContextSizeOffset));
     }
     validationResult = OperationMemoryError;
   }
@@ -16487,8 +16384,7 @@ void ValidateContextAndUpdateState(int64_t contextHandle,int64_t operationHandle
       if (*(int *)(localBuffer + 0x30) == 1) {
         *(DataWord *)(localBuffer + 0x30) = 2;
       }
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(operationHandle + 0x98),contextHandle);
+        CleanupSystemEventA0(*(DataBuffer *)(operationHandle + 0x98),contextHandle);
     }
   }
   return;
@@ -16496,8 +16392,7 @@ void ValidateContextAndUpdateState(int64_t contextHandle,int64_t operationHandle
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180893a22)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+ (ram,0x000180893a22)
 
 // 原始函数名：FUN_180893930 - 数据状态验证和处理函数
 // 功能：验证数据状态并根据不同状态执行相应的数据处理操作
@@ -16518,8 +16413,7 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
       allocatedBuffer = AllocateSystemMemoryWithAlignmentA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int *)(dataContext + 0x18),0x20,
                             &SystemMemoryPoolB,0xdd,0,0);
       if (allocatedBuffer != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(allocatedBuffer,*(DataBuffer *)(dataContext + 0x10),(int64_t)*(int *)(dataContext + 0x18));
+          memcpy(allocatedBuffer,*(DataBuffer *)(dataContext + 0x10),(int64_t)*(int *)(dataContext + 0x18));
       }
       processResult = 0x26;
     }
@@ -16530,8 +16424,7 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
         if (*(int *)(localStackBuffer + 0x30) == 1) {
           *(DataWord *)(localStackBuffer + 0x30) = 2;
         }
-                    // WARNING: Subroutine does not return
-        CleanupSystemEventA0(*(DataBuffer *)(operationContext + 0x98),dataContext);
+          CleanupSystemEventA0(*(DataBuffer *)(operationContext + 0x98),dataContext);
       }
     }
     return processResult;
@@ -16541,8 +16434,7 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180893a22)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+ (ram,0x000180893a22)
 
 // 原始函数名：FUN_180893964 - 条件数据处理函数
 // 功能：根据输入条件执行不同的数据处理操作
@@ -16561,8 +16453,7 @@ int ProcessDataByCondition(DataBuffer inputCondition,DataBuffer dataSize)
   if (eaxRegister == 0) {
     allocatedBuffer = AllocateSystemMemoryWithAlignmentA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),dataSize,0x20,&SystemMemoryPoolB,0xdd);
     if (allocatedBuffer != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(allocatedBuffer,*(DataBuffer *)(contextHandle + ComponentHandleOffset),(int64_t)*(int *)(contextHandle + 0x18));
+        memcpy(allocatedBuffer,*(DataBuffer *)(contextHandle + ComponentHandleOffset),(int64_t)*(int *)(contextHandle + 0x18));
     }
     operationResult = 0x26;
   }
@@ -16574,8 +16465,7 @@ int ProcessDataByCondition(DataBuffer inputCondition,DataBuffer dataSize)
       if (*(int *)(systemContextBuffer + 0x30) == 1) {
         *(DataWord *)(systemContextBuffer + 0x30) = 2;
       }
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(resourceHandle + 0x98));
+        CleanupSystemEventA0(*(DataBuffer *)(resourceHandle + 0x98));
     }
   }
   return operationResult;
@@ -16657,8 +16547,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t dataContext,int64_t operationCon
     *(float *)(dataContext + 0x18) = maxValue;
     operationResult = ValidateOperationRangeA0(operationContext + 0x60,systemContextBuffer[0],maxValue);
     if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(operationContext + 0x98),dataContext);
+        CleanupSystemEventA0(*(DataBuffer *)(operationContext + 0x98),dataContext);
     }
   }
   return operationResult;
@@ -16694,8 +16583,7 @@ uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
     *(float *)(registerContext + 0x18) = rangeMax;
     operationResult = ValidateOperationRangeA0(systemContext + 0x60,stackBuffer,rangeMax);
     if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+        CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
     }
   }
   return operationResult;
@@ -16726,8 +16614,7 @@ void ProcessFloatComparisonAndValidation(void)
   *(float *)(registerContext + 0x18) = rangeValue;
   operationResult = ValidateOperationRangeA0(systemContext + 0x60,stackParameter,rangeValue);
   if (operationResult == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
   }
   return;
 }
@@ -16760,8 +16647,7 @@ DataBuffer ProcessEventA0(int64_t eventContext,int64_t systemContext)
       else {
         operationResult = ValidateOperationRangeA0(systemContext + 0x60,eventDataBuffer[0]);
         if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-          CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),operationBase);
+            CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),operationBase);
         }
       }
     }
@@ -16809,8 +16695,7 @@ DataBuffer ValidateFloatRangeAndProcessSystemCall(void)
     else {
       validationResult = ProcessSystemRequest(systemContext + 0x60,validationParameter);
       if ((int)validationResult == 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemDispatch(*(DataBuffer *)(systemContext + 0x98));
+          ExecuteSystemDispatch(*(DataBuffer *)(systemContext + 0x98));
       }
     }
   }
@@ -16855,8 +16740,7 @@ DataBuffer ValidateFloatRangeAndDispatchCall(void)
     else {
       validationResult = ProcessSystemRequest(systemContext + 0x60,processingParameter);
       if ((int)validationResult == 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemDispatch(*(DataBuffer *)(systemContext + 0x98));
+          ExecuteSystemDispatch(*(DataBuffer *)(systemContext + 0x98));
       }
     }
   }
@@ -16918,8 +16802,7 @@ DataBuffer SaveSystemConfigurationA0(int64_t configHandle,int64_t systemContext)
     if ((int)operationResult == 0) {
       memoryBaseAddress = (DataBuffer *)ProcessSystemDataA0(systemContext + 0x60,validationBuffer,securityBuffer[0]);
       *(DataBuffer *)(configHandle + 0x18) = *memoryBaseAddress;
-                    // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),configHandle);
+        CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),configHandle);
     }
   }
   return operationResult;
@@ -16955,8 +16838,7 @@ DataBuffer ValidateSystemConfigurationA0(void)
   if ((int)validationStatus == 0) {
     pmemoryBaseAddress = (DataBuffer *)ProcessSystemDataA0(destinationIndexRegister + 0x60,&stackBufferMidAddress,DataProcessingOffset);
     *(DataBuffer *)(registerContext + 0x18) = *pmemoryBaseAddress;
-                    // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(DataBuffer *)(destinationIndexRegister + 0x98));
+      CleanupSystemEventA0(*(DataBuffer *)(destinationIndexRegister + 0x98));
   }
   return validationStatus;
 }
@@ -16989,8 +16871,7 @@ void ProcessFloatRangeValidation(void)
   if (validationStatus == 0) {
     resultPointer = (DataBuffer *)ProcessFloatData(systemHandle + 0x60,&stackBufferMidAddress,DataProcessingOffset);
     *(DataBuffer *)(contextPointer + 0x18) = *resultPointer;
-                    // WARNING: Subroutine does not return
-    ExecuteCriticalOperation(*(DataBuffer *)(systemHandle + 0x98));
+      ExecuteCriticalOperation(*(DataBuffer *)(systemHandle + 0x98));
   }
   return;
 }
@@ -17037,8 +16918,7 @@ DataBuffer InitializeSystemB0(int64_t systemContext,int64_t operationContext)
         if ((int)operationResult == 0) {
           pmemoryBaseAddress = (DataBuffer *)ProcessSystemDataA0(dataBuffer + 0x60,stackBuffer,operationFlags[0]);
           *(DataBuffer *)(operationBase + 0x18) = *pmemoryBaseAddress;
-                    // WARNING: Subroutine does not return
-          CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),operationBase);
+            CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),operationBase);
         }
       }
     }
@@ -17080,8 +16960,7 @@ DataBuffer CleanupSystemB0(void)
         pmemoryBaseAddress = (DataBuffer *)
                  ProcessSystemDataA0(systemContext + 0x60,&systemDataBuffer,operationParameter);
         *(DataBuffer *)(destinationIndexRegister + 0x18) = *pmemoryBaseAddress;
-                    // WARNING: Subroutine does not return
-        CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+          CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
       }
     }
   }
@@ -17130,8 +17009,7 @@ DataBuffer ResetSystemB0(void)
         validationStatusPointer = (DataBuffer *)
                  ProcessSystemDataA0(systemContext + 0x60,&dataProcessingBuffer,SystemInputParameter);
         *(DataBuffer *)(destinationIndexRegister + 0x18) = *validationStatusPointer;
-                    // WARNING: Subroutine does not return
-        CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
+          CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
       }
     }
   }
@@ -17150,7 +17028,6 @@ void UtilityNoOperationE(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeUtilitySystemContext(int64_t contextHandle, int64_t systemData)
@@ -17168,8 +17045,7 @@ void InitializeUtilitySystemContext(int64_t contextHandle, int64_t systemData)
   contextOffset = systemData + 0x60;
   handlePointer = contextHandle + 0x18 + (int64_t)*(int *)(contextHandle + ComponentHandleOffset) * 8;
   dataPointer = systemData;
-                    // WARNING: Subroutine does not return
-  ExecuteSystemInitialization();
+    ExecuteSystemInitialization();
 }
 
 
@@ -17208,8 +17084,7 @@ DataBuffer ValidateSystemB0(int64_t exceptionHandlerContext,int64_t systemContex
   if ((int)ValidationResult == 0) {
     // 设置系统参数并执行清理操作
     *(DataWord *)(CONCAT44(StackParameterC, inputParameter) + 0x18) = *(DataWord *)(exceptionHandlerContext + 0x18);
-                    // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98), exceptionHandlerContext);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98), exceptionHandlerContext);
   }
   return ValidationResult;
 }
@@ -17488,7 +17363,6 @@ int ProcessDataBufferWithValidation(int64_t *bufferContext,int64_t dataBuffer,in
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *validationFlags,int64_t *resultPointer)
@@ -17536,8 +17410,7 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
       colorComponentGreenMid = blueAlphaComponents >> 8 & 0xff;
       colorComponentGreenLow = blueAlphaComponents & 0xff;
       colorComponentAlpha = redGreenComponents & 0xffff;
-                    // WARNING: Subroutine does not return
-      InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
+        InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
     }
     if (((*(byte *)(calculatedOffset + 0xc4) & 1) != 0) &&
        ((systemContext = *(int64_t *)(calculatedOffset + 0x68), systemContext != 0 ||
@@ -17545,8 +17418,7 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
       *operationFlagA = systemContext;
     }
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityCheckValue ^ (uint64_t)encryptionKeyBuffer);
+    ExecuteSecurityCheck(securityCheckValue ^ (uint64_t)encryptionKeyBuffer);
 }
 
 
@@ -17564,8 +17436,7 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
 void TerminateSystemA(void)
 
 {
-                    // WARNING: Subroutine does not return
-  InitializeSystemBufferA0();
+    InitializeSystemBufferA0();
 }
 
 
@@ -17581,13 +17452,11 @@ void ExecuteSecurityCheckAndTerminateA(void)
 {
   uint64_t securityParameter;
   
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityParameter ^ (uint64_t)&securityValidationBuffer);
+    ExecuteSecurityCheck(securityParameter ^ (uint64_t)&securityValidationBuffer);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17693,8 +17562,7 @@ void ExecuteSecurityValidationOperation(uint64_t securityContext)
   contextValue = securityContext;
   securityContextHandle = (**(FunctionPointer**)(systemHandler + 0x288))();
   if (securityContextHandle == 0) {
-                    // WARNING: Subroutine does not return
-    InitializeSystemBufferA0(&stackBufferHighAddress,0x27,&SystemBufferConfiguration,contextValue & SystemCleanupFlag,
+      InitializeSystemBufferA0(&stackBufferHighAddress,0x27,&SystemBufferConfiguration,contextValue & SystemCleanupFlag,
                   contextValue._4_2_);
   }
   if (**(int **)(securityContextHandle + 0xd0) == 0) {
@@ -17703,8 +17571,7 @@ void ExecuteSecurityValidationOperation(uint64_t securityContext)
   }
   *resultPointer = securityContextHandle;
 DataProcessingLabel:
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(stackGuard ^ (uint64_t)&stackBufferBaseAddress);
+    ExecuteSecurityCheck(stackGuard ^ (uint64_t)&stackBufferBaseAddress);
 }
 
 
@@ -17716,13 +17583,11 @@ void ExecuteSecurityCheckWrapper(void)
 {
   uint64_t stackGuardValue;
   
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(stackGuardValue ^ (uint64_t)&stackBufferBaseAddress);
+    ExecuteSecurityCheck(stackGuardValue ^ (uint64_t)&stackBufferBaseAddress);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17778,16 +17643,14 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
       blueMidLow = blueAlphaComponents >> 8 & 0xff;
       blueLowByte = blueAlphaComponents & 0xff;
       redGreenLow = redGreenComponents & 0xffff;
-                    // WARNING: Subroutine does not return
-      InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
+        InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
     }
     systemContext = *(int64_t *)(calculatedOffset + 0x48);
     if ((systemContext != 0) || (operationResult = ProcessSystemContextA0(operationBase,calculatedOffset,&systemContext), operationResult == 0)) {
       *operationFlagA = systemContext;
     }
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityCheckValue ^ (uint64_t)encryptionKeyBuffer);
+    ExecuteSecurityCheck(securityCheckValue ^ (uint64_t)encryptionKeyBuffer);
 }
 
 
@@ -17801,8 +17664,7 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
 void TerminateSystemB(void)
 
 {
-                    // WARNING: Subroutine does not return
-  InitializeSystemBufferA0();
+    InitializeSystemBufferA0();
 }
 
 
@@ -17830,8 +17692,7 @@ void ExecuteSecurityCheckWrapper(void)
   if ((stateValue != 0) || (validationResult = ProcessSystemContextA0(), validationResult == 0)) {
     *targetPointer = stateValue;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityContext ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(securityContext ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -18070,20 +17931,18 @@ uint32_t ProcessSystemRequestWithValidation(int64_t requestContext,DataBuffer re
     }
   }
 CleanupContextAndExit:
-                    // WARNING: Subroutine does not return
-  CleanupTemporaryContext(temporaryContext);
+    CleanupTemporaryContext(temporaryContext);
 }
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180895f53)
-// WARNING: Removing unreachable block (ram,0x000180895f67)
-// WARNING: Removing unreachable block (ram,0x000180895fa1)
-// WARNING: Removing unreachable block (ram,0x000180895fa9)
-// WARNING: Removing unreachable block (ram,0x000180895fb1)
-// WARNING: Removing unreachable block (ram,0x000180895fc0)
-// WARNING: Removing unreachable block (ram,0x000180896027)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+ (ram,0x000180895f53)
+ (ram,0x000180895f67)
+ (ram,0x000180895fa1)
+ (ram,0x000180895fa9)
+ (ram,0x000180895fb1)
+ (ram,0x000180895fc0)
+ (ram,0x000180896027)
 
 // 函数: uint CleanupAndValidateDataStructure(int64_t *operationBase)
 // 
@@ -18176,7 +18035,6 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统状态重置函数DX0
@@ -18271,7 +18129,6 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统参数配置函数DK0
@@ -18328,7 +18185,6 @@ DataBuffer ConfigureSystemParameterDK0(int64_t *parameterContext)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 清理和重置参数上下文
@@ -18358,8 +18214,7 @@ uint64_t CleanupAndResetParameterContext(int64_t *parameterContext)
       return ResourceInvalidErrorCode;
     }
     if ((0 < (int)parameterFlags) && (*parameterContext != 0)) {
-                    // WARNING: Subroutine does not return
-      AllocateSystemResource(*(DataBuffer *)(GlobalResourceTable + 0x1a0),*parameterContext,&ParameterCleanupBuffer,0x100,1);
+        AllocateSystemResource(*(DataBuffer *)(GlobalResourceTable + 0x1a0),*parameterContext,&ParameterCleanupBuffer,0x100,1);
     }
     *parameterContext = 0;
     *(DataWord *)((int64_t)parameterContext + 0xc) = 0;
@@ -18542,7 +18397,6 @@ DataBuffer GetSystemConfigurationSize(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *resultCounter)
@@ -18625,8 +18479,7 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
           ((*(uint *)(operationBase + 0x6c) >> 0x18 & 1) == 0)) &&
          (((*(uint *)(operationBase + 0x6c) >> 0x19 & 1) != 0 && (calculatedSize == *(int *)(operationBase + 0xb0))))) {
 MemoryCopyLabel:
-                    // WARNING: Subroutine does not return
-        memcpy(dataCopyBuffer,dataPointer,(int64_t)*(int *)(dataPointer + 8));
+          memcpy(dataCopyBuffer,dataPointer,(int64_t)*(int *)(dataPointer + 8));
       }
     }
     else {
@@ -18664,8 +18517,7 @@ MemoryCopyLabel:
     *dataBuffer = 0;
   }
 ExecuteSecurityValidation:
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(inputDataWord ^ (uint64_t)SecurityCheckBufferA);
+    ExecuteSecurityCheck(inputDataWord ^ (uint64_t)SecurityCheckBufferA);
 }
 
 
@@ -18749,8 +18601,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
        (((*(uint *)(destinationIndexRegister + 0x6c) >> 0x19 & 1) != 0 && (arrayIndex == *(int *)(destinationIndexRegister + 0xb0)))))
     {
 MemoryCopyLabel:
-                    // WARNING: Subroutine does not return
-      memcpy(stackFramePointer + -0x10,bufferPointer,(int64_t)*(int *)(bufferPointer + 8));
+        memcpy(stackFramePointer + -0x10,bufferPointer,(int64_t)*(int *)(bufferPointer + 8));
     }
   }
   else {
@@ -18783,8 +18634,7 @@ MemoryCopyLabel:
   }
   *dataPointer = 0;
 DataValidationLabel:
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x5f0) ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x5f0) ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -18805,8 +18655,7 @@ void ExecuteSecurityCheck(void)
   ByteFlag stackBuffer [40];
   
   securityContext = GetSecurityContext();
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(securityContext + 0x5f0) ^ (uint64_t)stackBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(securityContext + 0x5f0) ^ (uint64_t)stackBuffer);
 }
 
 
@@ -19323,7 +19172,6 @@ DataWord ValidateAndProcessSystemData(DataBuffer systemHandle)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
 // 功能：重新分配数据缓冲区并复制原有数据到新缓冲区
@@ -19367,8 +19215,7 @@ DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
   }
 CalculationLabel:
   if ((0 < *(int *)((int64_t)bufferPointer + 0xc)) && (*bufferPointer != 0)) {
-                    // WARNING: Subroutine does not return
-    FreeMemoryBlock(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*bufferPointer,&SystemMemoryPoolB,0x100,1);
+      FreeMemoryBlock(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*bufferPointer,&SystemMemoryPoolB,0x100,1);
   }
   *bufferPointer = (int64_t)newBuffer;
   *(int *)((int64_t)bufferPointer + 0xc) = bufferSize;
@@ -19377,7 +19224,6 @@ CalculationLabel:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 原始函数名：FUN_180895f44 - 内存分配和初始化函数
 // 功能：分配内存并进行初始化操作
@@ -19408,8 +19254,7 @@ DataBuffer AllocateAndInitializeMemory(DataBuffer memoryManager,int memorySize)
   if (registerValueEDI == 0) {
 CalculationLabel:
     if ((0 < *(int *)((int64_t)registerContext + 0xc)) && (*registerContext != 0)) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*registerContext,&SystemMemoryPoolB,0x100,1);
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*registerContext,&SystemMemoryPoolB,0x100,1);
     }
     *registerContext = (int64_t)validationStatusPointer;
     *(int *)((int64_t)registerContext + 0xc) = registerValueEDI;
@@ -19451,7 +19296,6 @@ DataBuffer QuerySystemStatus(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 原始函数名：FUN_180896040 - 参数验证函数
 // 功能：验证参数的有效性
@@ -19471,8 +19315,7 @@ DataBuffer ValidateParameters(int64_t *contextPointer,int validationCount)
                             0xf4,0,0,1);
       if (exceptionHandlerContext != 0) {
         if ((int)operationBase[1] != 0) {
-                    // WARNING: Subroutine does not return
-          memcpy(exceptionHandlerContext,*operationBase,(int64_t)(int)operationBase[1] * 0xc);
+            memcpy(exceptionHandlerContext,*operationBase,(int64_t)(int)operationBase[1] * 0xc);
         }
         goto ResourceReleaseLabel;
       }
@@ -19481,8 +19324,7 @@ DataBuffer ValidateParameters(int64_t *contextPointer,int validationCount)
   }
 DataTransferLabel:
   if ((0 < *(int *)((int64_t)operationBase + 0xc)) && (*operationBase != 0)) {
-                    // WARNING: Subroutine does not return
-    ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*operationBase,&SystemMemoryPoolB,0x100,1);
+      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*operationBase,&SystemMemoryPoolB,0x100,1);
   }
   *operationBase = exceptionHandlerContext;
   *(int *)((int64_t)operationBase + 0xc) = dataBuffer;
@@ -19491,7 +19333,6 @@ DataTransferLabel:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 原始函数名：FUN_180896064 - 数据处理函数
 // 功能：处理输入数据并返回处理结果
@@ -19507,8 +19348,7 @@ DataBuffer ProcessInputData(DataBuffer inputData,int processingMode)
   if (registerValueEDI == 0) {
 DataTransferLabel:
     if ((0 < *(int *)((int64_t)registerContext + 0xc)) && (*registerContext != 0)) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*registerContext,&SystemMemoryPoolB,0x100,1);
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*registerContext,&SystemMemoryPoolB,0x100,1);
     }
     *registerContext = exceptionHandlerContext;
     *(int *)((int64_t)registerContext + 0xc) = registerValueEDI;
@@ -19519,8 +19359,7 @@ DataTransferLabel:
                           0);
     if (exceptionHandlerContext != 0) {
       if ((int)registerContext[1] != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(exceptionHandlerContext,*registerContext,(int64_t)(int)registerContext[1] * 0xc);
+          memcpy(exceptionHandlerContext,*registerContext,(int64_t)(int)registerContext[1] * 0xc);
       }
       goto ResourceReleaseLabel;
     }
@@ -19541,7 +19380,6 @@ DataBuffer PerformNoOperation(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
 
@@ -19743,8 +19581,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
                     return dataFlags;
                   }
                   if ((0 < (int)StackMemoryData._4_4_) && (StackMemoryBuffer != 0)) {
-                    // WARNING: Subroutine does not return
-                    ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),StackMemoryBuffer,&SystemMemoryPoolB,
+                      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),StackMemoryBuffer,&SystemMemoryPoolB,
                                   0x100,1);
                   }
                   StackMemoryBuffer = 0;
@@ -19825,8 +19662,7 @@ MemoryAllocationLabel:
     if (inputParameter1 < 0) {
       if (0 < inputParameter6) goto ProcessCheckpointParameterValidation;
       if ((0 < arrayIndex) && (dataFlags != 0)) {
-                    // WARNING: Subroutine does not return
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),dataFlags,&SystemMemoryPoolB,0x100,1);
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),dataFlags,&SystemMemoryPoolB,0x100,1);
       }
       StackMemoryBuffer = 0;
       StackMemoryData = 0;
@@ -19957,7 +19793,6 @@ void ResetResourceState(int64_t *resourceHandle)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: DataBuffer ProcessResourceData(int64_t resourceContext)
 //
@@ -20001,8 +19836,7 @@ DataBuffer ProcessResourceData(int64_t resourceContext)
     adjustedSize = *(int64_t *)(*(int64_t *)(resourceContext + 8) + 0x90);
     dataHandle = AcquireSystemDataHandle(*(DataBuffer *)(adjustedSize + 0x4d0),*(DataWord *)(adjustedSize + 0x774));
     *(DataBuffer *)(dataBuffer + 4) = dataHandle;
-                    // WARNING: Subroutine does not return
-    memcpy(dataBuffer + 6,dataSource,(int64_t)dataSize);
+      memcpy(dataBuffer + 6,dataSource,(int64_t)dataSize);
   }
   return 0;
 }
@@ -20123,7 +19957,6 @@ DataBuffer ValidateAndProcessDataOperation(int64_t operationContext,DataBuffer i
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 原始函数名：FUN_180896c60 - 数据缓冲区处理函数A1
@@ -20456,8 +20289,7 @@ SecurityValidationLabel:
     } while( true );
   }
 ExecuteSystemSecurityCheck:
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(colorProcessingData ^ (uint64_t)PrimaryEncryptionKeyBuffer);
+    ExecuteSecurityCheck(colorProcessingData ^ (uint64_t)PrimaryEncryptionKeyBuffer);
 }
 
 
@@ -20760,8 +20592,7 @@ void ProcessFloatingPointDataA0(void)
     } while( true );
   }
 ProcessCompleteLabel:
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x1d0) ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x1d0) ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -20776,13 +20607,11 @@ void ExecuteSecurityCheckJumpA0(void)
 {
   int64_t systemStackFramePointer;
   
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x1d0) ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x1d0) ^ (uint64_t)&securityBuffer);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 原始函数名：FUN_180897520 - 数据指针处理函数A0
@@ -20809,8 +20638,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
       *(ByteFlag *)(operationBase + 4) = 0;
     }
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(EncryptionKeyXorResult ^ (uint64_t)SecondaryEncryptionKeyBuffer);
+    ExecuteSecurityCheck(EncryptionKeyXorResult ^ (uint64_t)SecondaryEncryptionKeyBuffer);
 }
 
 
@@ -20835,8 +20663,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
      (inputParameter = (**(FunctionPointer**)(*destinationIndexRegister + 0x18))(), inputParameter == 0)) {
     *(ByteFlag *)(destinationIndexRegister + 4) = 0;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityParameter ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(securityParameter ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -20855,13 +20682,11 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
   if ((systemStatus == '\0') && (inputParameter = (**(FunctionPointer**)(*destinationIndexRegister + 0x18))(), inputParameter == 0)) {
     *(ByteFlag *)(destinationIndexRegister + 4) = 0;
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityParameter ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(securityParameter ^ (uint64_t)&securityBuffer);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -21121,8 +20946,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
     }
   }
 ProcessDataSecurityValidation:
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(colorProcessingData ^ (uint64_t)TertiaryEncryptionKeyBuffer);
+    ExecuteSecurityCheck(colorProcessingData ^ (uint64_t)TertiaryEncryptionKeyBuffer);
 }
 
 
@@ -21384,8 +21208,7 @@ ProcessDataSecurityValidation:
     }
   }
 ValidateDataSecurity:
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(stackFramePointer[0x12] ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(stackFramePointer[0x12] ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -21629,8 +21452,7 @@ ValidateDataSecurity:
     }
   }
 ExecuteFloatingPointSecurityCheck:
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(stackFramePointer[0x12] ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(stackFramePointer[0x12] ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -21779,8 +21601,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     }
   }
 ValidationFailedLabel:
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -21795,8 +21616,7 @@ void ExecuteSecurityCheckAndTerminateA1(void)
 {
   int64_t systemStackFramePointer;
   
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -21811,8 +21631,7 @@ void ExecuteSecurityCheckAndTerminateA2(void)
 {
   int64_t systemStackFramePointer;
   
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -21827,13 +21646,11 @@ void ExecuteSecurityCheckAndTerminateA3(void)
 {
   int64_t systemStackFramePointer;
   
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&securityBuffer);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,uint32_t operationFlags)
@@ -21896,8 +21713,7 @@ void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,u
       validationResult = ValidateAndProcessSystemResourceA0(*(int **)(resourceEntry + 0xd0),validationBuffer);
       if (validationResult != 0) {
 OperationFailedLabel:
-                    // WARNING: Subroutine does not return
-        ExecuteSecurityCheck(securityToken ^ (uint64_t)securityBuffer);
+          ExecuteSecurityCheck(securityToken ^ (uint64_t)securityBuffer);
       }
       resourceData1 = *(DataWord *)(resourceEntry + 0x10);
       resourceData2 = *(DataWord *)(resourceEntry + 0x14);
@@ -21942,7 +21758,6 @@ OperationFailedLabel:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ProcessDataBlockWithSecurityCheck(int64_t *operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -22000,8 +21815,7 @@ void ProcessSecureDataA0(int64_t *ContextPointer, DataBuffer DataSource, DataBuf
   
   // 执行上下文处理
   (**(FunctionPointer**)(*ContextPointer + 8))(ContextPointer,DataProcessingBuffer);
-                    // WARNING: Subroutine does not return
-  
+    
   // 执行安全检查
   ExecuteSecurityCheck(SecurityChecksum ^ (uint64_t)SecurityKeyBuffer);
 }
@@ -22145,8 +21959,6 @@ void ExecuteNoOperationA0(void)
 
 
 
-// WARNING: Type propagation algorithm not settling
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -22464,8 +22276,7 @@ CalculationCheckpoint:
     }
   }
 MemoryCheckpoint:
-                    // WARNING: Subroutine does not return
-  ReleaseResourceA1(alStack_300 + 1);
+    ReleaseResourceA1(alStack_300 + 1);
 }
 
 
@@ -22519,11 +22330,9 @@ void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
   operationStatus = *(int *)(operationBase + 0x30);
   if (iterationCount <= operationStatus) {
     *(int *)(operationBase + 0x30) = iterationCount;
-                    // WARNING: Subroutine does not return
-    memcpy((int64_t)inputParameter + *(int64_t *)(operationBase + 0x28),dataBuffer,(int64_t)operationResult);
+      memcpy((int64_t)inputParameter + *(int64_t *)(operationBase + 0x28),dataBuffer,(int64_t)operationResult);
   }
-                    // WARNING: Subroutine does not return
-  memset((int64_t)operationStatus + *(int64_t *)(operationBase + 0x28),0,(int64_t)(iterationCount - operationStatus));
+    memset((int64_t)operationStatus + *(int64_t *)(operationBase + 0x28),0,(int64_t)(iterationCount - operationStatus));
 }
 
 
@@ -22558,8 +22367,7 @@ DataBuffer ProcessDataA0(int64_t *DataPointer,int ProcessingFlags)
     *(int *)(operationBase + 1) = dataBuffer;
     return 0;
   }
-                    // WARNING: Subroutine does not return
-  memset((int64_t)inputParameter + *operationBase,0,(int64_t)(dataBuffer - inputParameter));
+    memset((int64_t)inputParameter + *operationBase,0,(int64_t)(dataBuffer - inputParameter));
 }
 
 
@@ -23242,7 +23050,6 @@ DataBuffer InitializeSystemOperation(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 原始函数名：FUN_180898d60 - 数据处理函数A3
 // 功能：处理输入数据并执行相应操作
@@ -23285,8 +23092,7 @@ DataBuffer ProcessDataA3(int64_t *DataHandle,int DataSize)
   }
 ValidationCheckpoint:
   if ((0 < *(int *)((int64_t)DataHandle + 0xc)) && (*DataHandle != 0)) {
-                    // WARNING: Subroutine does not return
-    ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*DataHandle,&SystemMemoryPoolB,0x100,1);
+      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*DataHandle,&SystemMemoryPoolB,0x100,1);
   }
   *DataHandle = (int64_t)ValidationBuffer;
   *(int *)((int64_t)DataHandle + 0xc) = DataSize;
@@ -23295,7 +23101,6 @@ ValidationCheckpoint:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 验证并处理数据块转换D84
@@ -23326,8 +23131,7 @@ DataBuffer ProcessDataBufferA0(DataBuffer DataBufferHandle,int DataBufferSize)
   if (registerValueEDI == 0) {
 ValidationCheckpointA:
     if ((0 < *(int *)((int64_t)registerContext + 0xc)) && (*registerContext != 0)) {
-                    // WARNING: Subroutine does not return
-      ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*registerContext,&SystemMemoryPoolB,0x100,1);
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*registerContext,&SystemMemoryPoolB,0x100,1);
     }
     *registerContext = (int64_t)validationStatusPointer;
     *(int *)((int64_t)registerContext + 0xc) = registerValueEDI;
@@ -24108,8 +23912,7 @@ DataBuffer InitializeDataProcessorA0(DataBuffer processorContext,int64_t *dataPo
     }
     bufferSize = (int)dataPointer[1];
     if (bufferSize < requiredSize) {
-                    // WARNING: Subroutine does not return
-      memset((int64_t)bufferSize + *dataPointer,0,(int64_t)(requiredSize - bufferSize));
+        memset((int64_t)bufferSize + *dataPointer,0,(int64_t)(requiredSize - bufferSize));
     }
     *(int *)(dataPointer + 1) = requiredSize;
     initResult = ValidateSystemMemoryBlock(processorContext,*dataPointer,allocatedSize);
@@ -24152,8 +23955,7 @@ DataBuffer CleanupDataProcessorA0(void)
     }
     currentSize = (int)dataBuffer[1];
     if (currentSize < cleanupSize) {
-                    // WARNING: Subroutine does not return
-      memset((int64_t)currentSize + *dataBuffer,0,(int64_t)(cleanupSize - currentSize));
+        memset((int64_t)currentSize + *dataBuffer,0,(int64_t)(cleanupSize - currentSize));
     }
     *(int *)(dataBuffer + 1) = cleanupSize;
     cleanupResult = ValidateSystemMemoryBlock();
@@ -25931,8 +25733,7 @@ DataBuffer ProcessDataCacheA0(int64_t operationBase,DataBuffer *dataBuffer)
           systemDataBuffer = 0x1c;
         }
         if ((int)systemDataBuffer == 0) {
-                    // WARNING: Subroutine does not return
-          CleanupSystemResourcesA0(dataBuffer,colorDataBuffer);
+            CleanupSystemResourcesA0(dataBuffer,colorDataBuffer);
         }
       }
     }
@@ -25966,8 +25767,7 @@ DataBuffer CleanupDataCacheA0(void)
         systemDataBuffer = 0x1c;
       }
       if ((int)systemDataBuffer == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupSystemResourcesA0();
+          CleanupSystemResourcesA0();
       }
     }
   }
@@ -26001,15 +25801,13 @@ void ExecuteSystemStatusCheck(void)
     statusResult = 0x1c;
   }
   if (statusResult == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupSystemResourcesA0();
+      CleanupSystemResourcesA0();
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 DataBuffer ResetDataCacheA0(void)
 
@@ -26034,8 +25832,7 @@ DataBuffer ResetDataCacheA0(void)
           ValidationFloatValue = *(float *)(validationStatusPointer + 3);
           if (validationStatusPointer != (DataBuffer *)0x0) {
             (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-            ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),validationStatusPointer,&SystemMemoryPoolD,0x130,1);
+              ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),validationStatusPointer,&SystemMemoryPoolD,0x130,1);
           }
           validationStatusPointer = (DataBuffer *)
                    AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x20,&SystemMemoryPoolD,0x119);
@@ -26066,8 +25863,7 @@ DataBuffer ResetDataCacheA0(void)
     return operationResult;
   }
 DataCheckpointA:
-                    // WARNING: Subroutine does not return
-  CleanupSystemResourcesA0();
+    CleanupSystemResourcesA0();
 }
 
 
@@ -26135,8 +25931,7 @@ void ExecuteSystemDataProcessing(int64_t dataContext, DataBuffer operationHandle
     if ((dataType != '\0') && (processResult = ValidateDataIntegrityA1(dataContext + 0x48,operationHandle), processResult != 0)) {
       return;
     }
-                    // WARNING: Subroutine does not return
-    ExecuteDataProcessingOperationB0(operationHandle,dataBuffer1);
+      ExecuteDataProcessingOperationB0(operationHandle,dataBuffer1);
   }
   return;
 }
@@ -26324,8 +26119,7 @@ MemoryCheckpointA:
   }
 MemoryCheckpointB:
   if (dataFlags == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupSystemResourcesA0();
+      CleanupSystemResourcesA0();
   }
 MemoryCheckpointC:
   return (uint64_t)dataFlags;
@@ -26347,8 +26141,7 @@ int SetSystemStatusFlag(void)
   if (systemStatus != 0) {
     return systemStatus;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemOnError();
+    TerminateSystemOnError();
 }
 
 
@@ -26368,8 +26161,7 @@ int GetSystemStatusFlag(void)
   if (systemStatus != 0) {
     return systemStatus;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemOnError();
+    TerminateSystemOnError();
 }
 
 
@@ -26452,8 +26244,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
         }
         if ((*(int *)(dataBuffer[1] + 0x18) == 0) &&
            (memoryBaseAddress = OperateDataO0(*dataBuffer,operationBase + 0x40,4), memoryBaseAddress == 0)) {
-                    // WARNING: Subroutine does not return
-          ExecutePortControlOperation(dataBuffer,SecurityValidationBufferA);
+            ExecutePortControlOperation(dataBuffer,SecurityValidationBufferA);
         }
       }
       return (uint64_t)memoryBaseAddress;
@@ -26517,8 +26308,7 @@ uint64_t ProcessDataWithValidation(void)
     }
     if ((*(int *)(dataBuffer[1] + 0x18) == 0) &&
        (validationFlag = ProcessDataElement(*dataBuffer, contextPointer + 0x40, 4), validationFlag == 0)) {
-                    // WARNING: Subroutine does not return
-      ExecuteDataProcessing();
+        ExecuteDataProcessing();
     }
   }
   return (uint64_t)validationFlag;
@@ -26569,8 +26359,7 @@ uint64_t ProcessDataStream(void)
       processStatus = ProcessDataElement(*dataBuffer, contextPointer + 0x40, 4);
       dataLength = (uint64_t)processStatus;
       if (processStatus == 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteDataProcessing();
+          ExecuteDataProcessing();
       }
     }
   }
@@ -26609,8 +26398,7 @@ uint64_t ValidateAndProcessDataElement(void)
       validationResult = ProcessDataElement(*dataBuffer, contextPointer + 0x40, 4);
       dataLength = (uint64_t)validationResult;
       if (validationResult == 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteDataProcessing();
+          ExecuteDataProcessing();
       }
     }
   }
@@ -26633,8 +26421,7 @@ uint64_t ValidateAndProcessDataElement(void)
 void ExecuteSystemTermination(void)
 
 {
-                    // WARNING: Subroutine does not return
-  CleanupSystemResourcesA0();
+    CleanupSystemResourcesA0();
 }
 
 
@@ -26679,8 +26466,7 @@ void ValidateAndProcessPortControlRequest(int64_t portContext, DataBuffer contro
     // 验证端口访问权限
     validationStatus = ValidatePortAccess(controlRequest, portContext + 8);
     if (validationStatus == 0) {
-                    // WARNING: Subroutine does not return
-      ExecutePortControlOperation(controlRequest, portBuffer);
+        ExecutePortControlOperation(controlRequest, portBuffer);
     }
   }
   return;
@@ -27172,8 +26958,7 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
             systemStatusUnion[0] = systemStatusUnion[0] & -validationStatus;
           } while (operationResult < (int)memoryBaseAddress);
         }
-                    // WARNING: Subroutine does not return
-        ExecutePortControlOperation(dataBuffer,validationBuffer3);
+          ExecutePortControlOperation(dataBuffer,validationBuffer3);
       }
     }
   }
@@ -27216,8 +27001,7 @@ void SystemInitializationCheckA(void)
       inputParameter = inputParameter + 1;
     } while (inputParameter < (int)validationStatus);
   }
-                    // WARNING: Subroutine does not return
-  CleanupSystemResourcesA0();
+    CleanupSystemResourcesA0();
 }
 
 
@@ -27394,8 +27178,7 @@ DataProcessLabelA:
             if ((int)dataFlags == 0) {
               if (*(uint *)(dataBuffer + 8) < 0x82) {
 DataProcessLabelB:
-                    // WARNING: Subroutine does not return
-                ExecutePortControlOperation(dataBuffer,ainputDataWord);
+                  ExecutePortControlOperation(dataBuffer,ainputDataWord);
               }
               dataFlags = securityCheckResult;
               if (*(int *)(dataBuffer[1] + 0x18) == 0) {
@@ -27558,8 +27341,7 @@ DataProcessLabelA:
             if ((int)validationOutcome == 0) {
               if (*(uint *)(registerContext + 8) < 0x82) {
 DataProcessLabelB:
-                    // WARNING: Subroutine does not return
-                CleanupSystemResourcesA0();
+                  CleanupSystemResourcesA0();
               }
               operationResult = securityCheckResult;
               if (*(int *)(registerContext[1] + 0x18) == 0) {
@@ -27712,8 +27494,7 @@ DataProcessSectionA:
             if ((int)validationOutcome == 0) {
               if (*(uint *)(registerContext + 8) < 0x82) {
 DataProcessLabelB:
-                    // WARNING: Subroutine does not return
-                CleanupSystemResourcesA0();
+                  CleanupSystemResourcesA0();
               }
               operationResult = securityCheckResult;
               if (*(int *)(registerContext[1] + 0x18) == 0) {
@@ -27862,8 +27643,7 @@ DataProcessLabelA:
             if ((int)validationOutcome == 0) {
               if (*(uint *)(registerContext + 8) < 0x82) {
 DataProcessLabelB:
-                    // WARNING: Subroutine does not return
-                CleanupSystemResourcesA0();
+                  CleanupSystemResourcesA0();
               }
               operationResult = securityCheckResult;
               if (*(int *)(registerContext[1] + 0x18) == 0) {
@@ -27973,8 +27753,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
             securityValidationBuffer[0] = securityValidationBuffer[0] & -dataFlags;
           } while (arrayIndex < (int)validationOutcome);
         }
-                    // WARNING: Subroutine does not return
-        ExecutePortControlOperation(dataBuffer,ainputDataWord);
+          ExecutePortControlOperation(dataBuffer,ainputDataWord);
       }
     }
   }
@@ -28042,8 +27821,7 @@ void ValidateAndInitializeSystemA0(void)
           arrayIndex = arrayIndex + 1;
         } while (arrayIndex < (int)dataFlags);
       }
-                    // WARNING: Subroutine does not return
-      CleanupSystemResourcesA0();
+        CleanupSystemResourcesA0();
     }
   }
   return;
@@ -28130,8 +27908,7 @@ void ValidateAndProcessDataB0(int64_t dataContext,DataBuffer *dataPointer,int va
   }
   operationResult = *(int *)(operationBase + 0x18);
   if (operationResult < (int)operationResult) {
-                    // WARNING: Subroutine does not return
-    memset((int64_t)operationResult * 0x10 + *(int64_t *)(operationBase + 0x10),0,
+      memset((int64_t)operationResult * 0x10 + *(int64_t *)(operationBase + 0x10),0,
            (int64_t)(int)(operationResult - operationResult) << 4);
   }
   *(uint *)(operationBase + 0x18) = operationResult;
@@ -28174,8 +27951,7 @@ void ValidateAndProcessDataB0(int64_t dataContext,DataBuffer *dataPointer,int va
   }
   operationResult = *(int *)(operationBase + 0x28);
   if (operationResult < (int)systemDataBuffer) {
-                    // WARNING: Subroutine does not return
-    memset((int64_t)operationResult + *(int64_t *)(operationBase + 0x20),0,(int64_t)(int)(systemDataBuffer - operationResult));
+      memset((int64_t)operationResult + *(int64_t *)(operationBase + 0x20),0,(int64_t)(int)(systemDataBuffer - operationResult));
   }
   *(uint *)(operationBase + 0x28) = systemDataBuffer;
   if (systemDataBuffer != 0) {
@@ -28238,8 +28014,7 @@ void CheckSystemStatusB0(void)
   }
   inputParameter = *(int *)(contextPointer + 0x18);
   if (inputParameter < (int)memoryBaseAddress) {
-                    // WARNING: Subroutine does not return
-    memset((int64_t)inputParameter * 0x10 + *(int64_t *)(contextPointer + 0x10),0,
+      memset((int64_t)inputParameter * 0x10 + *(int64_t *)(contextPointer + 0x10),0,
            (int64_t)(int)(memoryBaseAddress - inputParameter) << 4);
   }
   *(uint *)(contextPointer + 0x18) = memoryBaseAddress;
@@ -28282,8 +28057,7 @@ void CheckSystemStatusB0(void)
   }
   operationResult = *(int *)(contextPointer + 0x28);
   if (operationResult < inputParameter) {
-                    // WARNING: Subroutine does not return
-    memset((int64_t)operationResult + *(int64_t *)(contextPointer + 0x20),0,(int64_t)(inputParameter - operationResult));
+      memset((int64_t)operationResult + *(int64_t *)(contextPointer + 0x20),0,(int64_t)(inputParameter - operationResult));
   }
   *(int *)(contextPointer + 0x28) = inputParameter;
   if (inputParameter != 0) {
@@ -28418,7 +28192,6 @@ ValidationLabelA:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 验证内存状态
@@ -28533,8 +28306,7 @@ ValidationLabelB:
           return validationOutcome;
         }
         if ((0 < (int)stackDataBuffer._4_4_) && (stackDataPointer != (DataBuffer *)0x0)) {
-                    // WARNING: Subroutine does not return
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),stackDataPointer,&SystemMemoryPoolB,0x100,1);
+            ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),stackDataPointer,&SystemMemoryPoolB,0x100,1);
         }
         stackDataPointer = (DataBuffer *)0x0;
         stackDataBuffer = stackDataBuffer & SystemCleanupFlag;
@@ -28605,8 +28377,7 @@ ValidationLabelB:
     if ((int)dataFlags < 0) {
       if (0 < inputParameter3) goto ProcessCheckpointParameterRangeCheck;
       if ((0 < (int)stackDataBuffer._4_4_) && (stackDataPointer != (DataBuffer *)0x0)) {
-                    // WARNING: Subroutine does not return
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),stackDataPointer,&SystemMemoryPoolB,0x100,1);
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),stackDataPointer,&SystemMemoryPoolB,0x100,1);
       }
       stackDataPointer = (DataBuffer *)0x0;
       stackDataBuffer = stackDataBuffer & SystemCleanupFlag;
@@ -28660,13 +28431,11 @@ ValidationLabelD:
   if (operationResult != 0) {
     return (uint64_t)operationResult;
   }
-                    // WARNING: Subroutine does not return
-  ExecutePortControlOperation(dataBuffer,validationBuffer3);
+    ExecutePortControlOperation(dataBuffer,validationBuffer3);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统数据验证处理函数
@@ -28781,8 +28550,7 @@ ValidationLabelB:
           return exceptionDataBuffer3;
         }
         if ((0 < (int)statusCounter) && (*(int64_t *)(stackFramePointer + -0x29) != 0)) {
-                    // WARNING: Subroutine does not return
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(stackFramePointer + -0x29),
+            ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(stackFramePointer + -0x29),
                         &SystemMemoryPoolB,0x100,1);
         }
         *(DataBuffer *)(stackFramePointer + -0x29) = 0;
@@ -28863,8 +28631,7 @@ ValidationLabelB:
     if ((int)loopCounter < 0) {
       if (0 < inputParameter9) goto ProcessCheckpointParameterRangeCheck;
       if ((0 < (int)statusCounter) && (exceptionDataBuffer3 != (DataBuffer *)0x0)) {
-                    // WARNING: Subroutine does not return
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),exceptionDataBuffer3,&SystemMemoryPoolB,0x100,1);
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),exceptionDataBuffer3,&SystemMemoryPoolB,0x100,1);
       }
       *(DataBuffer *)(stackFramePointer + -0x29) = 0;
       *(DataWord *)(stackFramePointer + -0x1d) = 0;
@@ -28922,13 +28689,11 @@ ValidationLabelD:
   if (securityCheckResult != 0) {
     return (DataBuffer *)(uint64_t)securityCheckResult;
   }
-                    // WARNING: Subroutine does not return
-  ExecutePortControlOperation(calculatedFloatValue,stackFramePointer + -9);
+    ExecutePortControlOperation(calculatedFloatValue,stackFramePointer + -9);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统数据验证处理函数
@@ -29041,8 +28806,7 @@ ValidationProcessingLabel:
           return resultPointer;
         }
         if ((0 < (int)statusCounter) && (*(int64_t *)(stackFramePointer + -0x29) != 0)) {
-                    // WARNING: Subroutine does not return
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(stackFramePointer + -0x29),
+            ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(stackFramePointer + -0x29),
                         &SystemMemoryPoolB,0x100,1);
         }
         *(DataBuffer *)(stackFramePointer + -0x29) = 0;
@@ -29123,8 +28887,7 @@ ValidationProcessingLabel:
     if ((int)loopCounter < 0) {
       if (0 < inputParameter9) goto ProcessCheckpointParameterRangeCheck;
       if ((0 < (int)statusCounter) && (exceptionDataBuffer2 != (DataBuffer *)0x0)) {
-                    // WARNING: Subroutine does not return
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),exceptionDataBuffer2,&SystemMemoryPoolB,0x100,1);
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),exceptionDataBuffer2,&SystemMemoryPoolB,0x100,1);
       }
       *(DataBuffer *)(stackFramePointer + -0x29) = 0;
       *(DataWord *)(stackFramePointer + -0x1d) = 0;
@@ -29182,13 +28945,11 @@ ValidationLabelD:
   if (securityCheckResult != 0) {
     return (DataBuffer *)(uint64_t)securityCheckResult;
   }
-                    // WARNING: Subroutine does not return
-  ExecutePortControlOperation(calculatedFloatValue,stackFramePointer + -9);
+    ExecutePortControlOperation(calculatedFloatValue,stackFramePointer + -9);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 执行系统验证和数据处理操作
@@ -29285,8 +29046,7 @@ ValidationLabelB:
           return systemDataBuffer1;
         }
         if ((0 < (int)statusCounter) && (*(int64_t *)(stackFramePointer + -0x29) != 0)) {
-                    // WARNING: Subroutine does not return
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(stackFramePointer + -0x29),
+            ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(stackFramePointer + -0x29),
                         &SystemMemoryPoolB,0x100,1);
         }
         *(DataBuffer **)(stackFramePointer + -0x29) = register_R12;
@@ -29368,8 +29128,7 @@ ValidationLabelB:
     if ((int)loopCounter < 0) {
       if (0 < inputParameter8) goto ProcessCheckpointParameterRangeCheck;
       if ((0 < (int)statusCounter) && (exceptionDataBuffer4 != (DataBuffer *)0x0)) {
-                    // WARNING: Subroutine does not return
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),exceptionDataBuffer4,&SystemMemoryPoolB,0x100,1);
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),exceptionDataBuffer4,&SystemMemoryPoolB,0x100,1);
       }
       *(DataBuffer **)(stackFramePointer + -0x29) = register_R12;
       *(uint *)(stackFramePointer + -0x1d) = securityCheckResult;
@@ -29428,8 +29187,7 @@ ValidationLabelD:
   if (securityCheckResult != 0) {
     return (uint64_t)securityCheckResult;
   }
-                    // WARNING: Subroutine does not return
-  ExecutePortControlOperation(primaryFloatResult,stackFramePointer + -9);
+    ExecutePortControlOperation(primaryFloatResult,stackFramePointer + -9);
 }
 
 
@@ -29814,8 +29572,7 @@ ValidationRetryHandler:
     }
     if (operationResult < 0x8b) {
 DataProcessingHandler:
-                    // WARNING: Subroutine does not return
-      ExecutePortControlOperation(dataBuffer,SecurityValidationBufferB);
+        ExecutePortControlOperation(dataBuffer,SecurityValidationBufferB);
     }
     stackByteBuffer[0] = 0;
     validationStatus = ExecuteDataValidationOperation(*dataBuffer,stackByteBuffer);
@@ -30227,8 +29984,7 @@ ValidationErrorHandler2:
       } while ((int)dataFlags < (int)(operationResult >> 1));
     }
   }
-                    // WARNING: Subroutine does not return
-  ExecutePortControlOperation(secondaryFloatResult,stackFramePointer + -0x21);
+    ExecutePortControlOperation(secondaryFloatResult,stackFramePointer + -0x21);
 }
 
 
@@ -30485,8 +30241,7 @@ ValidationErrorHandler2:
       } while ((int)securityCheckResult < (int)(memoryBaseAddress >> 1));
     }
   }
-                    // WARNING: Subroutine does not return
-  ExecutePortControlOperation(ValidationFloatValue2,stackFramePointer + -0x21);
+    ExecutePortControlOperation(ValidationFloatValue2,stackFramePointer + -0x21);
 }
 
 
@@ -30743,8 +30498,7 @@ ValidationErrorHandler2:
       } while ((int)securityCheckResult < (int)(memoryBaseAddress >> 1));
     }
   }
-                    // WARNING: Subroutine does not return
-  ExecutePortControlOperation(ValidationFloatValue2,stackFramePointer + -0x21);
+    ExecutePortControlOperation(ValidationFloatValue2,stackFramePointer + -0x21);
 }
 
 
@@ -30912,8 +30666,7 @@ ValidationRetryHandler:
     }
     if (memoryBaseAddress < 0x8b) {
 DataProcessingHandler:
-                    // WARNING: Subroutine does not return
-      ExecutePortControlOperation(operationBase,stackFramePointer + -0x21);
+        ExecutePortControlOperation(operationBase,stackFramePointer + -0x21);
     }
     dataContext = *registerContext;
     *(int *)(stackFramePointer + 0x7f) = validationErrorCode;
@@ -31073,8 +30826,7 @@ ValidationStateHandler:
     operationResult = GetMemoryAddressA0(*dataBuffer,operationBase + 0x5c);
   }
   if (operationResult == 0) {
-                    // WARNING: Subroutine does not return
-    ExecutePortControlOperation(dataBuffer,systemBufferA);
+      ExecutePortControlOperation(dataBuffer,systemBufferA);
   }
   return (uint64_t)operationResult;
 }
@@ -31158,8 +30910,7 @@ ValidationStateHandler:
   if (operationResult != 0) {
     return (uint64_t)operationResult;
   }
-                    // WARNING: Subroutine does not return
-  CleanupSystemResourcesA0();
+    CleanupSystemResourcesA0();
 }
 
 
@@ -31347,8 +31098,7 @@ ValidationErrorHandler3:
     *(DataWord *)(operationBase + 0x10) = 3;
   }
 ValidationExitHandler:
-                    // WARNING: Subroutine does not return
-  ExecutePortControlOperation(dataBuffer,ainputDataWord);
+    ExecutePortControlOperation(dataBuffer,ainputDataWord);
 }
 
 
@@ -31475,8 +31225,7 @@ ValidationErrorHandler3:
     *(DataWord *)(systemContext + 0x10) = 3;
   }
 ValidationExitHandler:
-                    // WARNING: Subroutine does not return
-  CleanupSystemResourcesA0();
+    CleanupSystemResourcesA0();
 }
 
 
@@ -31532,8 +31281,7 @@ ValidationErrorHandler3:
     *(DataWord *)(systemContext + 0x10) = 3;
   }
 ValidationExitHandler:
-                    // WARNING: Subroutine does not return
-  CleanupSystemResourcesA0();
+    CleanupSystemResourcesA0();
 }
 
 
@@ -31631,8 +31379,7 @@ uint64_t QuerySystemDataD(int64_t operationBase,DataBuffer *dataBuffer)
       operationResult = (uint64_t)systemDataBuffer;
     }
     if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-      ExecutePortControlOperation(dataBuffer,ainputDataWord);
+        ExecutePortControlOperation(dataBuffer,ainputDataWord);
     }
   }
   return operationResult;
@@ -31686,8 +31433,7 @@ uint64_t ValidateSystemResourceStatus(void)
       validationStatusCode = (uint64_t)resourceDataValue;
     }
     if ((int)validationStatusCode == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupSystemResourcesA0();
+        CleanupSystemResourcesA0();
     }
   }
   return validationStatusCode;
@@ -31737,8 +31483,7 @@ uint64_t ValidateSystemMemoryStatus(void)
       memoryValidationStatus = (uint64_t)memoryDataValue;
     }
     if ((int)memoryValidationStatus == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupSystemResourcesA0();
+        CleanupSystemResourcesA0();
     }
   }
   return memoryValidationStatus;
@@ -31752,8 +31497,7 @@ uint64_t ValidateSystemMemoryStatus(void)
 void TerminateSystemWithoutReturn(void)
 
 {
-  // WARNING: Subroutine does not return
-  ExecuteSystemTermination();
+    ExecuteSystemTermination();
 }
 
 
@@ -31797,8 +31541,7 @@ DataBuffer ValidateDataFormatA1(DataBuffer operationBase,int64_t *dataBuffer)
   validationStatus = ValidateDataSecurityA0(dataBuffer,ValidationFlags);
   if ((int)validationStatus == 0x12) {
 ValidationDataHandler:
-                    // WARNING: Subroutine does not return
-    ExecutePortControlOperation(dataBuffer,SystemSecurityBuffer);
+      ExecutePortControlOperation(dataBuffer,SystemSecurityBuffer);
   }
   if ((int)validationStatus != 0) {
     return validationStatus;
@@ -31871,8 +31614,7 @@ ValidationErrorHandler4:
     }
     if ((int)validationStatus == 0) {
 ValidationStateUpdate2:
-                    // WARNING: Subroutine does not return
-      CleanupSystemResourcesA0(dataBuffer,SecurityValidationBuffer);
+        CleanupSystemResourcesA0(dataBuffer,SecurityValidationBuffer);
     }
   }
   return validationStatus;
@@ -31903,8 +31645,7 @@ DataBuffer GetSystemStatusA2(void)
   validationStatus = ValidateDataSecurityA0();
   if ((int)validationStatus == 0x12) {
 ValidationDataHandler:
-                    // WARNING: Subroutine does not return
-    CleanupSystemResourcesA0();
+      CleanupSystemResourcesA0();
   }
   if ((int)validationStatus != 0) {
     return validationStatus;
@@ -31977,8 +31718,7 @@ ValidationErrorHandler4:
     }
     if ((int)validationStatus == 0) {
 ValidationStateUpdate2:
-                    // WARNING: Subroutine does not return
-      CleanupSystemResourcesA0();
+        CleanupSystemResourcesA0();
     }
   }
   return validationStatus;
@@ -32088,8 +31828,7 @@ void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
           *(DataWord *)(DataContext + 0x204) = *(DataWord *)(DataContext + 0x14);
           *(DataWord *)(DataContext + 0x208) = *(DataWord *)(DataContext + 0x18);
           *(DataWord *)(DataContext + 0x20c) = *(DataWord *)(resourceDescriptor + 0x1c);
-                    // WARNING: Subroutine does not return
-          ExecutePortControlOperation(SecurityBuffer,portControlBuffer);
+            ExecutePortControlOperation(SecurityBuffer,portControlBuffer);
         }
       }
     }
@@ -32159,8 +31898,7 @@ void CheckSystemStateC0(DataWord SystemStateParameter)
             *(DataWord *)(destinationIndexRegister + 0x204) = *(DataWord *)(destinationIndexRegister + 0x14);
             *(DataWord *)(destinationIndexRegister + 0x208) = *(DataWord *)(destinationIndexRegister + 0x18);
             *(DataWord *)(destinationIndexRegister + 0x20c) = *(DataWord *)(destinationIndexRegister + 0x1c);
-                    // WARNING: Subroutine does not return
-            ExecutePortControlOperation(*(DataWord *)(destinationIndexRegister + 0x10),&ValidationDataBuffer);
+              ExecutePortControlOperation(*(DataWord *)(destinationIndexRegister + 0x10),&ValidationDataBuffer);
           }
         }
       }
@@ -32251,8 +31989,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t operationBase,DataBuffer 
               if (((int)validationStatus == 0) &&
                  ((*(uint *)(dataBuffer + 8) < 0x85 ||
                   (validationStatus = ValidateDataSequence(dataBuffer,operationBase + 0x108), (int)validationStatus == 0)))) {
-                    // WARNING: Subroutine does not return
-                CleanupSystemResourcesA0(dataBuffer,colorDataBuffer);
+                  CleanupSystemResourcesA0(dataBuffer,colorDataBuffer);
               }
             }
           }
@@ -32339,8 +32076,7 @@ uint64_t ProcessDataAndValidationA(void)
               if (((int)validationStatus == 0) &&
                  ((*(uint *)(contextRegister + 8) < 0x85 || (validationStatus = ValidateDataSequence(), (int)validationStatus == 0))))
               {
-                    // WARNING: Subroutine does not return
-                CleanupSystemResourcesA0();
+                  CleanupSystemResourcesA0();
               }
             }
           }
@@ -32425,8 +32161,7 @@ uint64_t ProcessDataAndValidationB(void)
             }
             if (((int)validationStatus == 0) &&
                ((*(uint *)(registerContext + 8) < 0x85 || (validationStatus = ValidateDataSequence(), (int)validationStatus == 0)))) {
-                    // WARNING: Subroutine does not return
-              CleanupSystemResourcesA0();
+                CleanupSystemResourcesA0();
             }
           }
         }
@@ -32505,8 +32240,7 @@ uint64_t ValidateSystemDataStructure(void)
             }
             if (((int)validationStatus == 0) &&
                ((*(uint *)(registerContext + 8) < 0x85 || (validationStatus = ValidateDataSequence(), (int)validationStatus == 0)))) {
-                    // WARNING: Subroutine does not return
-              CleanupSystemResourcesA0();
+                CleanupSystemResourcesA0();
             }
           }
         }
@@ -32563,8 +32297,7 @@ uint64_t CheckSystemDataIntegrity(void)
         if ((0x84 < *(uint *)(registerContext + 8)) && (operationResult = ValidateDataSequence(), (int)operationResult != 0)) {
           return operationResult;
         }
-                    // WARNING: Subroutine does not return
-        CleanupSystemResourcesA0();
+          CleanupSystemResourcesA0();
       }
       operationResult = (uint64_t)registerValueEDI;
     }
@@ -32627,8 +32360,7 @@ uint64_t ValidateSystemDataAndReturnStatus(void)
     // 如果验证失败，执行系统资源清理
     if (validationRegister == 0) {
       if ((*(uint *)(registerContext + 8) < 0x85) || (validationStatus = ValidateDataSequence(), (int)validationStatus == 0)) {
-        // WARNING: Subroutine does not return
-        CleanupSystemResourcesA0();
+                CleanupSystemResourcesA0();
       }
     }
     else {
@@ -32710,8 +32442,7 @@ DataBuffer ExecuteSystemSecurityCheck(int64_t systemParameter,DataBuffer *dataBu
           validationStatus = 0x1c;
         }
         if ((int)validationStatus == 0) {
-          // WARNING: Subroutine does not return
-          ExecutePortControlOperation(dataBuffer,inputDataBuffer);
+                    ExecutePortControlOperation(dataBuffer,inputDataBuffer);
         }
       }
     }
@@ -32755,8 +32486,7 @@ DataBuffer ReturnFixedStatusCodeA1(void)
         operationResult = 0x1c;
       }
       if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupSystemResourcesA0();
+          CleanupSystemResourcesA0();
       }
     }
   }
@@ -32800,8 +32530,7 @@ DataBuffer ValidateSystemStatusA0(void)
         operationResult = 0x1c;
       }
       if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupSystemResourcesA0();
+          CleanupSystemResourcesA0();
       }
     }
   }
@@ -32832,8 +32561,7 @@ DataBuffer ExecuteDataSynchronizationA1(void)
       systemDataBuffer = 0x1c;
     }
     if ((int)systemDataBuffer == 0) {
-                    // WARNING: Subroutine does not return
-      CleanupSystemResourcesA0();
+        CleanupSystemResourcesA0();
     }
   }
   return systemDataBuffer;
@@ -32886,8 +32614,7 @@ DataBuffer ProcessDataStreamA1(int64_t operationBase,DataBuffer *dataBuffer)
         systemDataBuffer = 0x1c;
       }
       if ((int)systemDataBuffer == 0) {
-                    // WARNING: Subroutine does not return
-        ExecutePortControlOperation(dataBuffer,ainputDataWord);
+          ExecutePortControlOperation(dataBuffer,ainputDataWord);
       }
     }
   }
@@ -33012,8 +32739,7 @@ ValidationCompleteHandler2:
         operationResult = (uint64_t)validationStatus;
       }
       if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-        ExecutePortControlOperation(dataBuffer,validationBuffer3);
+          ExecutePortControlOperation(dataBuffer,validationBuffer3);
       }
     }
   }
@@ -33123,8 +32849,7 @@ ValidationCompleteHandler2:
         operationResult = (uint64_t)memoryBaseAddress;
       }
       if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupSystemResourcesA0();
+          CleanupSystemResourcesA0();
       }
     }
   }
@@ -33230,8 +32955,7 @@ ValidationCompleteHandler2:
         operationResult = (uint64_t)memoryBaseAddress;
       }
       if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupSystemResourcesA0();
+          CleanupSystemResourcesA0();
       }
     }
   }
@@ -33326,8 +33050,7 @@ ValidationCompleteHandler2:
         operationResult = (uint64_t)memoryBaseAddress;
       }
       if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-        CleanupSystemResourcesA0();
+          CleanupSystemResourcesA0();
       }
     }
   }
@@ -33345,7 +33068,6 @@ void ConfigureSystemParametersC0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t ValidateAndProcessDataOperation(int64_t operationBase,DataBuffer *dataBuffer)
 
@@ -33439,8 +33161,7 @@ ValidationErrorHandler5:
       }
       memoryBaseAddress = ValidateMemoryAllocationStatus(dataBuffer,operationBase + 0x78,0);
       if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = GetSystemParameter(dataBuffer,operationBase + 0x88,0), (int)memoryBaseAddress == 0)) {
-                    // WARNING: Subroutine does not return
-        CleanupSystemResourcesA0(dataBuffer,colorDataBuffer);
+          CleanupSystemResourcesA0(dataBuffer,colorDataBuffer);
       }
     }
   }
@@ -33449,7 +33170,6 @@ ValidationErrorHandler5:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t InitializeSystemComponentsA0(void)
 
@@ -33556,8 +33276,7 @@ ValidationErrorHandler5:
     securityCheckResult = ValidateMemoryAllocationStatus(systemDataBuffer1,contextPointer + 0x78,0);
     if (((int)securityCheckResult == 0) &&
        (securityCheckResult = GetSystemParameter(validationFloatValue,contextPointer + 0x88,0), (int)securityCheckResult == 0)) {
-                    // WARNING: Subroutine does not return
-      ExecutePortControlOperation(accumulatedFloatValue,stackFramePointer + 7);
+        ExecutePortControlOperation(accumulatedFloatValue,stackFramePointer + 7);
     }
   }
   return securityCheckResult;
@@ -33565,7 +33284,6 @@ ValidationErrorHandler5:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t ResetSystemComponents(void)
 
@@ -33624,8 +33342,7 @@ ValidationErrorHandler5:
   }
   memoryBaseAddress = ValidateMemoryAllocationStatus();
   if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = GetSystemParameter(), (int)memoryBaseAddress == 0)) {
-                    // WARNING: Subroutine does not return
-    CleanupSystemResourcesA0();
+      CleanupSystemResourcesA0();
   }
   return memoryBaseAddress;
 }
@@ -33961,8 +33678,7 @@ ProcessCheckpointValidationExit2:
     memoryBaseAddress = (uint64_t)validationStatus;
   }
   if ((int)memoryBaseAddress == 0) {
-                    // WARNING: Subroutine does not return
-    ExecutePortControlOperation(dataBuffer,validationBuffer1);
+      ExecutePortControlOperation(dataBuffer,validationBuffer1);
   }
   return memoryBaseAddress;
 }
@@ -34276,8 +33992,7 @@ ProcessCheckpointValidationExit2:
     memoryBaseAddress = (uint64_t)validationStatus;
   }
   if ((int)memoryBaseAddress == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupSystemResourcesA0();
+      CleanupSystemResourcesA0();
   }
   return memoryBaseAddress;
 }
@@ -34581,8 +34296,7 @@ ProcessCheckpointValidationExit2:
   if ((int)operationResult != 0) {
     return operationResult;
   }
-                    // WARNING: Subroutine does not return
-  CleanupSystemResourcesA0();
+    CleanupSystemResourcesA0();
 }
 
 
@@ -34629,8 +34343,7 @@ DataBuffer ProcessDataCollectionA1(int64_t operationBase,DataBuffer *dataBuffer)
       operationResult = OperateDataO0(systemDataBuffer,operationBase + 0xe4,8);
     }
     if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-      ExecutePortControlOperation(dataBuffer,ainputDataWord);
+        ExecutePortControlOperation(dataBuffer,ainputDataWord);
     }
   }
   return operationResult;
@@ -34662,8 +34375,7 @@ DataBuffer ReturnFixedStatusCodeA2(void)
     }
   }
   if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupSystemResourcesA0();
+      CleanupSystemResourcesA0();
   }
   return operationResult;
 }
@@ -34691,8 +34403,7 @@ void ValidateSystemConfigurationC1(void)
     }
   }
   if (operationResult == 0) {
-                    // WARNING: Subroutine does not return
-    CleanupSystemResourcesA0();
+      CleanupSystemResourcesA0();
   }
   return;
 }
@@ -34703,8 +34414,7 @@ void ValidateSystemConfigurationC1(void)
 void ProcessSystemOperationsC0(void)
 
 {
-                    // WARNING: Subroutine does not return
-  CleanupSystemResourcesA0();
+    CleanupSystemResourcesA0();
 }
 
 
@@ -34900,8 +34610,7 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
                             (*(DataBuffer **)(*dataBuffer + 8),systemStatusUnion,4);
           if (((int)systemDataBuffer == 0) &&
              (systemDataBuffer = ValidateDataFormatStructure(dataBuffer,operationBase + 0x40,0x3d), (int)systemDataBuffer == 0)) {
-                    // WARNING: Subroutine does not return
-            ExecuteSystemCleanupRoutine(dataBuffer,validationBuffer3);
+              ExecuteSystemCleanupRoutine(dataBuffer,validationBuffer3);
           }
         }
         else {
@@ -35047,8 +34756,7 @@ DataBuffer ReturnFixedStatusCodeA3(void)
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
                           (*(DataBuffer **)(*registerContext + 8),&StackDataBufferU,4);
         if (((int)systemDataBuffer == 0) && (systemDataBuffer = ValidateDataFormatStructure(), (int)systemDataBuffer == 0)) {
-                    // WARNING: Subroutine does not return
-          ExecuteSystemCleanupRoutine();
+            ExecuteSystemCleanupRoutine();
         }
       }
       else {
@@ -35119,16 +34827,14 @@ void ConfigureSystemOptionsC1(void)
     if (register_EBP != 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
-    ExecuteSystemCleanupRoutine();
+      ExecuteSystemCleanupRoutine();
   }
   inputParameter = ProcessSystemInitialization();
   if (inputParameter != 0) {
     return;
   }
 ProcessCheckpointValidationCase:
-                    // WARNING: Subroutine does not return
-  ExecuteSystemCleanupRoutine();
+    ExecuteSystemCleanupRoutine();
 }
 
 
@@ -35182,8 +34888,7 @@ uint64_t ValidateDataBufferOperation(int64_t operationBase,DataBuffer *dataBuffe
       operationResult = (uint64_t)systemDataBuffer;
       if ((systemDataBuffer == 0) &&
          ((operationMode == '\0' || (operationResult = ValidateDataSecurityContext(operationBase + 0x48,dataBuffer), (int)operationResult == 0)))) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemCleanupRoutine(dataBuffer,validationBuffer2);
+          ExecuteSystemCleanupRoutine(dataBuffer,validationBuffer2);
       }
     }
     else {
@@ -35219,8 +34924,7 @@ uint64_t QuerySystemStatus(void)
       if ((systemDataBuffer == 0) &&
          ((StackDataBufferE == '\0' || (operationResult = ValidateDataSecurityContext(stackFramePointer + 0x48), (int)operationResult == 0)))
          ) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemCleanupRoutine();
+          ExecuteSystemCleanupRoutine();
       }
     }
     else {
@@ -35271,8 +34975,7 @@ DataBuffer ProcessDataConversionA1(int64_t operationBase,int64_t *dataBuffer)
         systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0xdc);
         if (((int)systemDataBuffer == 0) &&
            (systemDataBuffer = ProcessDataSecurityValidation(dataBuffer,operationBase + 0xec,0x80), (int)systemDataBuffer == 0)) {
-                    // WARNING: Subroutine does not return
-          ExecuteSystemCleanupRoutine(dataBuffer,ainputDataWord);
+            ExecuteSystemCleanupRoutine(dataBuffer,ainputDataWord);
         }
       }
     }
@@ -35364,8 +35067,7 @@ uint64_t ProcessDataWithPointerOperation(int64_t operationBase,int64_t *dataBuff
             if ((int)memoryBaseAddress != 0) {
               return memoryBaseAddress;
             }
-                    // WARNING: Subroutine does not return
-            ExecuteSystemCleanupRoutine(dataBuffer,systemConfigBuffer);
+              ExecuteSystemCleanupRoutine(dataBuffer,systemConfigBuffer);
           }
         }
       }
@@ -35446,8 +35148,7 @@ uint64_t ValidateSystemContextAndProcessData(void)
         if (operationResult == 0) {
           validationStatus = ExecuteDataValidationOperation();
           if ((int)validationStatus == 0) {
-                    // WARNING: Subroutine does not return
-            ExecuteSystemCleanupRoutine();
+              ExecuteSystemCleanupRoutine();
           }
           return validationStatus;
         }
@@ -35520,8 +35221,7 @@ uint64_t ManageMemoryAndValidatePointers(void)
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-                    // WARNING: Subroutine does not return
-        ExecuteSystemCleanupRoutine();
+          ExecuteSystemCleanupRoutine();
       }
     }
   }
@@ -35576,8 +35276,7 @@ uint64_t ProcessSystemDataValidationAndCleanup(void)
     if (operationResult == 0) {
       validationStatus = ExecuteDataValidationOperation();
       if ((int)validationStatus == 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemCleanupRoutine();
+          ExecuteSystemCleanupRoutine();
       }
       return validationStatus;
     }
@@ -35614,8 +35313,7 @@ uint64_t ExecuteSystemMemoryOperations(void)
     if (systemDataBuffer == 0) {
       operationResult = ExecuteDataValidationOperation();
       if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemCleanupRoutine();
+          ExecuteSystemCleanupRoutine();
       }
       return operationResult;
     }
@@ -35648,8 +35346,7 @@ uint64_t ValidateAndProcessSystemData(void)
     if (systemDataBuffer == 0) {
       operationResult = ExecuteDataValidationOperation();
       if ((int)operationResult == 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemCleanupRoutine();
+          ExecuteSystemCleanupRoutine();
       }
       return operationResult;
     }
@@ -35668,8 +35365,7 @@ void ProcessSystemDataC1(void)
   
   inputParameter = ExecuteDataValidationOperation();
   if (inputParameter == 0) {
-                    // WARNING: Subroutine does not return
-    ExecuteSystemCleanupRoutine();
+      ExecuteSystemCleanupRoutine();
   }
   return;
 }
@@ -35713,8 +35409,7 @@ void ProcessPortControlRequestB(int64_t portContext, DataBuffer controlRequest)
     // 验证端口访问权限
     operationResult = ValidatePortAccessExtended(controlRequest, portContext + 8);
     if (operationResult == 0) {
-                    // WARNING: Subroutine does not return
-      ExecutePortControlOperationExtended(controlRequest, portBuffer);
+        ExecutePortControlOperationExtended(controlRequest, portBuffer);
     }
   }
   return;
@@ -35741,8 +35436,7 @@ DataBuffer ValidateDataSynchronizationA1(int64_t operationBase,DataBuffer *dataB
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0x20);
       if (((int)systemDataBuffer == 0) && (systemDataBuffer = ProcessDataValidationWithFlags(dataBuffer,operationBase + 0x30,1,0), (int)systemDataBuffer == 0))
       {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemCleanupRoutine(dataBuffer,SecurityValidationBufferA);
+          ExecuteSystemCleanupRoutine(dataBuffer,SecurityValidationBufferA);
       }
     }
   }
@@ -35771,8 +35465,7 @@ DataBuffer ExecuteDataCleanupA1(int64_t operationBase,DataBuffer *dataBuffer)
       }
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0xd8);
       if ((int)systemDataBuffer == 0) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemCleanupRoutine(dataBuffer,ainputDataWord);
+          ExecuteSystemCleanupRoutine(dataBuffer,ainputDataWord);
       }
     }
   }
@@ -35882,8 +35575,7 @@ DataBuffer ProcessDataCacheA1(int64_t operationBase,DataBuffer *dataBuffer)
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0xd8);
       if ((((int)systemDataBuffer == 0) && (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 0xf8), (int)systemDataBuffer == 0)) &&
          (systemDataBuffer = ExecuteDataSecurityOperation(dataBuffer,operationBase + 0xe8,1,operationBase), (int)systemDataBuffer == 0)) {
-                    // WARNING: Subroutine does not return
-        ExecuteSystemCleanupRoutine(dataBuffer,ainputDataWord);
+          ExecuteSystemCleanupRoutine(dataBuffer,ainputDataWord);
       }
     }
   }
@@ -35911,8 +35603,7 @@ DataBuffer CleanupDataCacheA1(DataBuffer operationBase,int64_t dataBuffer)
       if ((int)systemDataBuffer == 0) {
         systemDataBuffer = ValidateSystemMemoryAccess(operationBase,dataBuffer);
         if ((int)systemDataBuffer == 0) {
-                    // WARNING: Subroutine does not return
-          ExecuteSystemCleanupRoutine(dataBuffer,SecurityValidationBufferA);
+            ExecuteSystemCleanupRoutine(dataBuffer,SecurityValidationBufferA);
         }
       }
     }
@@ -36141,7 +35832,6 @@ void ExceptionUnwindHandlerA3(DataBuffer exceptionContext, int64_t unwindParamet
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: void ExceptionUnwindHandlerA4(DataBuffer operationBase,int64_t dataBuffer)
 /**
@@ -36257,7 +35947,6 @@ void ExceptionUnwindHandlerA2(DataBuffer exceptionContext,int64_t unwindParam)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 设置异常上下文并解锁互斥锁
@@ -36593,7 +36282,6 @@ void CleanupSecondaryExceptionResources(void* cleanupContext, int64_t contextDat
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 异常状态重置函数A17
@@ -36618,22 +36306,19 @@ void ExceptionUnwindHandlerA17(void)
   LeaveCriticalSection(ExceptionCriticalSection);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(ExceptionEventHandle);
+                     0x0001808fcc41. Too many branches
+                        ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBits = (byte)ExceptionEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBits |
+                     0x0001808ffe70. Too many branches
+                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBits |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBits))(ExceptionProcessParameter);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void ExceptionHandlerA0(void)
 
@@ -36645,15 +36330,13 @@ void ExceptionHandlerA0(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(ExceptionEventHandle);
+                     0x0001808fcc41. Too many branches
+                        ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                     0x0001808ffe70. Too many branches
+                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
@@ -36761,8 +36444,7 @@ void SetDefaultExceptionHandlerAtOffset138(DataBuffer operationBase, int64_t dat
 {
   *(DataBuffer *)(dataBuffer + 0x138) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x140) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x140) = 0;
   *(DataWord *)(dataBuffer + 0x150) = 0;
@@ -36787,8 +36469,7 @@ void SetDefaultExceptionHandlerAtOffset1A0(DataBuffer unusedParameter,int64_t ta
 {
   *(DataBuffer *)(targetObjectPointer + 0x1a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(targetObjectPointer + 0x1a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(targetObjectPointer + 0x1a8) = 0;
   *(DataWord *)(targetObjectPointer + 0x1b8) = 0;
@@ -36834,8 +36515,7 @@ void SetDefaultExceptionHandlerAtOffset180(DataBuffer unusedParameter,int64_t ta
 {
   *(DataBuffer *)(targetObjectPointer + 0x180) = &TemporaryExceptionHandler;
   if (*(int64_t *)(targetObjectPointer + 0x188) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(targetObjectPointer + 0x188) = 0;
   *(DataWord *)(targetObjectPointer + 0x198) = 0;
@@ -37225,8 +36905,7 @@ void ProcessResourceCleanupChain(DataBuffer exceptionContext, int64_t resourceMa
   if (*(int64_t *)(resourceManager + 0x48) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -37259,8 +36938,7 @@ void ProcessResourceCleanupChainAlt(DataBuffer exceptionContext, int64_t resourc
   if (*(int64_t *)(resourceManager + 0x48) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -37328,8 +37006,7 @@ void InitializeExceptionHandler78(DataBuffer exceptionContext, int64_t handlerTa
 {
   *(DataBuffer *)(handlerTable + 0x78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(handlerTable + 0x80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(handlerTable + 0x80) = 0;
   *(DataWord *)(handlerTable + 0x90) = 0;
@@ -37395,8 +37072,7 @@ void InitializeExceptionHandlerA8(DataBuffer exceptionContext, int64_t handlerTa
 {
   *(DataBuffer *)(handlerTable + 0xa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(handlerTable + 0xb0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(handlerTable + 0xb0) = 0;
   *(DataWord *)(handlerTable + 0xc0) = 0;
@@ -37422,8 +37098,7 @@ void ExceptionRecoveryHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0xd0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xd8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xd8) = 0;
   *(DataWord *)(dataBuffer + 0xe8) = 0;
@@ -37450,8 +37125,7 @@ void ExceptionRecoveryHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x80) = 0;
   *(DataWord *)(dataBuffer + 0x90) = 0;
@@ -37592,8 +37266,7 @@ void ExceptionRecoveryHandlerB7(DataBuffer operationBase,int64_t dataBuffer,Data
   if (*(int64_t *)(dataBuffer + 0x120) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -37614,8 +37287,7 @@ void ExceptionRecoveryHandlerB8(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x100) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x108) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x108) = 0;
   *(DataWord *)(dataBuffer + 0x118) = 0;
@@ -37641,8 +37313,7 @@ void ExceptionRecoveryHandlerB9(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x90) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x90) = 0;
   *(DataWord *)(dataBuffer + 0xa0) = 0;
@@ -37680,8 +37351,7 @@ void ExceptionRecoveryHandlerB10(DataBuffer operationBase,int64_t dataBuffer,Dat
   if (*(int64_t *)(dataBuffer + 0x120) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -37799,16 +37469,14 @@ void ExceptionContextCleanupHandlerB14(DataBuffer ExceptionContext, int64_t Vali
   *(DataBuffer *)(exceptionData + 0x20) = &ExceptionHandlerB;
   *(DataBuffer *)(exceptionData + 0x58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionData + 0x60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionData + 0x60) = 0;
   *(DataWord *)(exceptionData + 0x70) = 0;
   *(DataBuffer *)(exceptionData + 0x58) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionData + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionData + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionData + 0x30) = 0;
   *(DataWord *)(exceptionData + 0x40) = 0;
@@ -37844,16 +37512,14 @@ void ExceptionContextCleanupHandlerB15(DataBuffer ExceptionContext, int64_t Vali
   *(DataBuffer *)(exceptionData + 0xd8) = &ExceptionHandlerB;
   *(DataBuffer *)(exceptionData + 0x110) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionData + 0x118) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionData + 0x118) = 0;
   *(DataWord *)(exceptionData + 0x128) = 0;
   *(DataBuffer *)(exceptionData + 0x110) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionData + 0xe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionData + 0xe8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionData + 0xe8) = 0;
   *(DataWord *)(exceptionData + 0xf8) = 0;
@@ -37889,16 +37555,14 @@ void ExceptionContextCleanupHandlerB16(DataBuffer ExceptionContext, int64_t Cont
   *exceptionHandlerArray = &ExceptionHandlerB;
   exceptionHandlerArray[7] = &TemporaryExceptionHandler;
   if (exceptionHandlerArray[8] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionHandlerArray[8] = 0;
   *(DataWord *)(exceptionHandlerArray + 10) = 0;
   exceptionHandlerArray[7] = &DefaultExceptionHandlerB;
   exceptionHandlerArray[1] = &TemporaryExceptionHandler;
   if (exceptionHandlerArray[2] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionHandlerArray[2] = 0;
   *(DataWord *)(exceptionHandlerArray + 4) = 0;
@@ -37932,16 +37596,14 @@ void ExceptionRecoveryHandlerB22(DataBuffer operationBase,int64_t dataBuffer)
   *exceptionHandlerPointer = &ExceptionHandlerB;
   exceptionHandlerPointer[7] = &TemporaryExceptionHandler;
   if (exceptionHandlerPointer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionHandlerPointer[8] = 0;
   *(DataWord *)(exceptionHandlerPointer + 10) = 0;
   exceptionHandlerPointer[7] = &DefaultExceptionHandlerB;
   exceptionHandlerPointer[1] = &TemporaryExceptionHandler;
   if (exceptionHandlerPointer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionHandlerPointer[2] = 0;
   *(DataWord *)(exceptionHandlerPointer + 4) = 0;
@@ -38064,15 +37726,13 @@ void ExceptionRecoveryHandlerB21(DataBuffer exceptionContext,int64_t unwindParam
   for (contextEntry = *exceptionHandlerContext; contextEntry != *(int64_t *)(*(int64_t *)(unwindParam + 0x70) + 0xa8);
       contextEntry = contextEntry + 0x28) {
     if (*(int64_t *)(contextEntry + 8) != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   if (*exceptionHandlerContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -38162,15 +37822,13 @@ void ValidateAndCleanupContext(DataBuffer contextParam,int64_t validationParam)
   exceptionHandlerContext = *(int64_t **)(validationParam + 0x78);
   for (contextEntry = *exceptionHandlerContext; contextEntry != exceptionHandlerContext[1]; contextEntry = contextEntry + 0x28) {
     if (*(int64_t *)(contextEntry + 8) != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateOnError();
+        TerminateOnError();
     }
   }
   if (*exceptionHandlerContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateOnError();
+    TerminateOnError();
 }
 
 
@@ -38190,8 +37848,7 @@ void ProcessAndValidateHandlers(DataBuffer handlerParam,int64_t processParam)
   if (*handlerList == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateOnError();
+    TerminateOnError();
 }
 
 
@@ -38211,8 +37868,7 @@ void CleanupValidationContext(DataBuffer cleanupParam,int64_t contextParam)
   if (*contextList == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateOnError();
+    TerminateOnError();
 }
 
 
@@ -38237,8 +37893,7 @@ void ExecuteCleanupCallbacks(DataBuffer operationBase,int64_t dataBuffer)
   if (*callbackList == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateOnError();
+    TerminateOnError();
 }
 
 
@@ -38272,8 +37927,7 @@ void ExecuteContextCleanupCallbacks(DataBuffer operationBase,int64_t dataBuffer)
   if (*callbackList == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateOnError();
+    TerminateOnError();
 }
 
 
@@ -38302,8 +37956,7 @@ void ProcessSystemValidationAndCallbacks(DataBuffer operationBase,int64_t dataBu
       if (*systemList == 0) {
         return;
       }
-                    // WARNING: Subroutine does not return
-      TerminateOnError();
+        TerminateOnError();
     }
     if (*(int64_t **)(systemEntry + 0x40) != (int64_t *)0x0) {
       (**(FunctionPointer**)(**(int64_t **)(systemEntry + 0x40) + 0x38))();
@@ -38312,8 +37965,7 @@ void ProcessSystemValidationAndCallbacks(DataBuffer operationBase,int64_t dataBu
     CleanupSystemEntry(systemEntry);
     systemEntry = systemEntry + 0x48;
   }
-                    // WARNING: Subroutine does not return
-  TerminateOnError();
+    TerminateOnError();
 }
 
 
@@ -38342,8 +37994,7 @@ void ExecuteValidationContextCallbacks(DataBuffer operationBase,int64_t dataBuff
       if (*contextList == 0) {
         return;
       }
-                    // WARNING: Subroutine does not return
-      TerminateOnError();
+        TerminateOnError();
     }
     if (*(int64_t **)(contextEntry + 0x40) != (int64_t *)0x0) {
       (**(FunctionPointer**)(**(int64_t **)(contextEntry + 0x40) + 0x38))();
@@ -38352,8 +38003,7 @@ void ExecuteValidationContextCallbacks(DataBuffer operationBase,int64_t dataBuff
     CleanupContextEntry(contextEntry);
     contextEntry = contextEntry + 0x48;
   }
-                    // WARNING: Subroutine does not return
-  TerminateOnError();
+    TerminateOnError();
 }
 
 
@@ -38477,8 +38127,7 @@ void HandleExceptionRecoveryE0(DataBuffer context, int64_t exceptionData, DataBu
   if (*pExceptionHandlerTable == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -38502,8 +38151,7 @@ void HandleExceptionRecoveryF0(DataBuffer context, int64_t exceptionData, DataBu
   pExceptionHandler = *(DataBuffer **)(*(int64_t *)(exceptionData + 0x70) + 0x10);
   if (pExceptionHandler != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(exceptionData + 0x70), *pExceptionHandler, recoveryParameter, additionalData, SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(pExceptionHandler);
+      TerminateSystemE0(pExceptionHandler);
   }
   return;
 }
@@ -38538,8 +38186,7 @@ void CallCleanupFunctionForOffset78WithCheck(DataBuffer operationBase, int64_t d
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x78),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -38565,8 +38212,7 @@ void HandleExceptionRecoveryG0(DataBuffer context, int64_t exceptionData, DataBu
   pExceptionHandler = *(DataBuffer **)(*(int64_t *)(exceptionData + 0x78) + 0x10);
   if (pExceptionHandler != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(exceptionData + 0x78), *pExceptionHandler, recoveryParameter, additionalData, SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(pExceptionHandler);
+      TerminateSystemE0(pExceptionHandler);
   }
   return;
 }
@@ -38653,8 +38299,7 @@ void ExceptionHandler7A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   resourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x70) + 0x30);
   if (resourcePointer != (DataBuffer *)0x0) {
     ValidateSystemConfiguration(*(int64_t *)(dataBuffer + 0x70) + 0x20,*resourcePointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    ManageMemory(resourcePointer);
+      ManageMemory(resourcePointer);
   }
   return;
 }
@@ -38679,8 +38324,7 @@ void ExceptionHandler7B0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   systemResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x70) + 0x60);
   if (systemResourcePointer != (DataBuffer *)0x0) {
     ValidateSystemConfiguration(*(int64_t *)(dataBuffer + 0x70) + 0x50,*systemResourcePointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    ManageMemory(systemResourcePointer);
+      ManageMemory(systemResourcePointer);
   }
   return;
 }
@@ -38703,8 +38347,7 @@ void ExceptionHandler7C0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x70);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &ExceptionHandlerDataE0;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -38730,8 +38373,7 @@ void ExceptionHandler7D0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x70);
   *(DataBuffer *)(exceptionHandlerContext + 0x50) = &ExceptionHandlerDataE0;
   if (*(int64_t *)(exceptionHandlerContext + 0x58) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x58) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x68) = 0;
@@ -38750,8 +38392,7 @@ void ExceptionResourceCleanupA0(DataBuffer exceptionContext,int64_t resourceMana
   if (resourcePointer != (DataBuffer *)0x0) {
     ProcessResourceCleanup(*(int64_t *)(resourceManager + 0x70) + 0x70,*resourcePointer,cleanupParam1,cleanupParam2,SystemCleanupFlagAlternative);
     ReleaseResourceReference(resourcePointer);
-                    // WARNING: Subroutine does not return
-    TerminateResource(resourcePointer);
+      TerminateResource(resourcePointer);
   }
   return;
 }
@@ -38767,8 +38408,7 @@ void ExceptionResourceCleanupA1(DataBuffer exceptionContext,int64_t resourceMana
   if (resourcePointer != (DataBuffer *)0x0) {
     ProcessResourceCleanup(*(int64_t *)(resourceManager + 0x78),*resourcePointer,cleanupParam1,cleanupParam2,SystemCleanupFlagAlternative);
     ReleaseResourceReference(resourcePointer);
-                    // WARNING: Subroutine does not return
-    TerminateResource(resourcePointer);
+      TerminateResource(resourcePointer);
   }
   return;
 }
@@ -38797,8 +38437,7 @@ void CleanupExceptionAtOffset120(DataBuffer operationBase,int64_t dataBuffer,Dat
   if (resourcePointer != (DataBuffer *)0x0) {
     ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x78),*resourcePointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     ReleaseSystemResourcesA1(resourcePointer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(resourcePointer);
+      TerminateSystemE0(resourcePointer);
   }
   return;
 }
@@ -39117,8 +38756,7 @@ void InitializeExceptionHandlerA0(DataBuffer exceptionContext,int64_t systemCont
   handlerContext = *(int64_t *)(systemContext + 0x70);
   *(DataBuffer *)(handlerContext + 0x40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(handlerContext + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(handlerContext + 0x48) = 0;
   *(DataWord *)(handlerContext + 0x58) = 0;
@@ -39321,8 +38959,7 @@ void ExceptionCleanupHandlerDataContext(DataBuffer operationBase,int64_t dataBuf
     do {
       dataContext = *(int64_t *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
@@ -39387,8 +39024,7 @@ void ExceptionCleanupHandlerDataContext2(DataBuffer operationBase,int64_t dataBu
     do {
       dataContext = *(int64_t *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
@@ -39449,8 +39085,7 @@ void ExceptionCleanupHandlerValidationContext(DataBuffer operationBase,int64_t d
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -39534,8 +39169,7 @@ void ExceptionCleanupHandlerDataContext3(DataBuffer operationBase,int64_t dataBu
     do {
       dataContext = *(int64_t *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
@@ -39600,8 +39234,7 @@ void ExceptionCleanupHandlerDataContext4(DataBuffer operationBase,int64_t dataBu
     do {
       dataContext = *(int64_t *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
@@ -39662,8 +39295,7 @@ void ExceptionCleanupHandlerValidationContext2(DataBuffer operationBase,int64_t 
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -39699,8 +39331,7 @@ void ExceptionCleanupHandlerMemoryContext(DataBuffer operationBase,int64_t dataB
         if (*(int64_t **)(dataContext + 0x10) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -39709,8 +39340,7 @@ void ExceptionCleanupHandlerMemoryContext(DataBuffer operationBase,int64_t dataB
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -39748,8 +39378,7 @@ void ExceptionCleanupHandlerMemoryContext2(DataBuffer operationBase,int64_t data
         if (*(int64_t **)(dataContext + 0x10) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -39758,8 +39387,7 @@ void ExceptionCleanupHandlerMemoryContext2(DataBuffer operationBase,int64_t data
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -39797,8 +39425,7 @@ void ExceptionCleanupHandlerMemoryContext3(DataBuffer operationBase,int64_t data
         if (*(int64_t **)(dataContext + 0x10) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -39807,8 +39434,7 @@ void ExceptionCleanupHandlerMemoryContext3(DataBuffer operationBase,int64_t data
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -40093,8 +39719,7 @@ void InitializeExceptionHandlerContext(DataBuffer exceptionContext, int64_t thre
   exceptionHandlerContext = *(int64_t *)(threadContext + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x20) = 0;
@@ -40123,8 +39748,7 @@ void SetupSecondaryExceptionHandler(DataBuffer exceptionContext, int64_t threadC
   exceptionHandlerContext = *(int64_t *)(threadContext + 0x80);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -40197,8 +39821,7 @@ void ResetExceptionHandlerCleanup(DataBuffer exceptionHandler,int64_t contextOff
   exceptionHandlerPointer = *(DataBuffer **)(contextOffset + 0x90);
   *exceptionHandlerPointer = &NullExceptionHandler;
   if (exceptionHandlerPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionHandlerPointer[1] = 0;
   *(DataWord *)(exceptionHandlerPointer + 3) = 0;
@@ -40226,8 +39849,7 @@ void ResetValidationContextCleanup(DataBuffer validationBuffer,int64_t contextOf
   exceptionHandlerContext = *(int64_t *)(contextOffset + 0x90);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &NullExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -40515,11 +40137,9 @@ void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
     return;
   }
   if (*(int *)(exceptionDataBuffer[1] + 8) == 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
-                    // WARNING: Subroutine does not return
-  terminate();
+    terminate();
 }
 
 
@@ -40560,8 +40180,7 @@ void CleanupExceptionStack(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x38);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -40689,8 +40308,7 @@ void CleanupStackMemory(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -40873,8 +40491,7 @@ void CleanupStaticMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -40896,8 +40513,7 @@ void CleanupConstantMemoryOnException(DataBuffer operationBase,int64_t dataBuffe
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -40910,8 +40526,7 @@ void CleanupReadOnlyMemoryOnException(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x50);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -41080,8 +40695,7 @@ void CleanupFunctionFrameOnException(DataBuffer operationBase,int64_t dataBuffer
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 0x148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x150) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x150) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x160) = 0;
@@ -41388,8 +41002,7 @@ void ResetSystemHandler(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 0x918) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x920) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x920) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x930) = 0;
@@ -41408,8 +41021,7 @@ void CleanupDataResourceA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x40) + 0x938,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     ReleaseSystemResourcesA1(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -41425,8 +41037,7 @@ void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x40) + 0x968,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     ReleaseSystemResourcesA1(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -41442,8 +41053,7 @@ void ExceptionDataProcessorA1(DataBuffer operationBase,int64_t dataBuffer,DataBu
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     ReleaseSystemResourcesA1(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -41459,8 +41069,7 @@ void ExceptionDataProcessorA2(DataBuffer operationBase,int64_t dataBuffer,DataBu
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     ReleaseSystemResourcesA1(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -41536,8 +41145,7 @@ void CleanupExceptionDataBufferWithValidation(DataBuffer operationBase,int64_t d
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     ReleaseSystemResourcesA1(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -41588,8 +41196,7 @@ void CleanupExceptionResourceWithValidation(DataBuffer operationBase,int64_t dat
   if (*(int64_t *)(dataBuffer + 0x28) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -41643,8 +41250,7 @@ void CleanupMemoryResourcesF0(DataBuffer operationBase,int64_t dataBuffer)
   SetValidationContext(exceptionHandlerContext + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -41682,8 +41288,7 @@ void ResetMemoryState110(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x68);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -41700,13 +41305,11 @@ void CleanupThreadResources120(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x78);
   if (*(int64_t *)(exceptionHandlerContext + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -41806,13 +41409,11 @@ void CleanupThreadMemory150(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x78);
   if (*(int64_t *)(exceptionHandlerContext + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -41865,13 +41466,11 @@ void CleanupResourceState170(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x48);
   if (*(int64_t *)(exceptionHandlerContext + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -41889,8 +41488,7 @@ void ResetResourcePointer180(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x48);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -41951,8 +41549,7 @@ void CleanupMemoryPool1a0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -41972,8 +41569,7 @@ void CleanupSystemMemoryBufferA(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -42099,8 +41695,7 @@ void CleanupSystemMemoryDataResource(DataBuffer operationBase,int64_t dataBuffer
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -42400,8 +41995,7 @@ void ConfigureExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
   InitializeSystemValidation();
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -42432,8 +42026,7 @@ void CleanupExceptionResourceAtOffset80(DataBuffer operationBase,int64_t dataBuf
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x80) + 0x30);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x80) + 0x20,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -42461,8 +42054,7 @@ void CleanupExceptionResourceAtOffset88(DataBuffer operationBase,int64_t dataBuf
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x88) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x88),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -42487,8 +42079,7 @@ void ExceptionDataProcessor350(DataBuffer exceptionContext, int64_t contextOffse
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(contextOffset + 0x88) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ValidateAndCleanupExceptionData(*(int64_t *)(contextOffset + 0x88), *exceptionDataBuffer, cleanupData, cleanupFlags, SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    ReleaseExceptionBuffer(exceptionDataBuffer);
+      ReleaseExceptionBuffer(exceptionDataBuffer);
   }
   return;
 }
@@ -42511,8 +42102,7 @@ void ExceptionContextResetHandler360(DataBuffer exceptionHandler, int64_t contex
   exceptionHandlerContext = *(int64_t *)(contextPointer + 0x50);
   *(DataBuffer *)(exceptionHandlerContext + 0x40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x48) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x58) = 0;
@@ -42591,8 +42181,7 @@ void ExceptionDataCleaner430(DataBuffer cleanupContext, int64_t dataPointer, Dat
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataPointer + 0x40) + 0x30);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ValidateAndCleanupExceptionData(*(int64_t *)(dataPointer + 0x40) + 0x20, *exceptionDataBuffer, cleanupParameters, cleanupFlags, SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    ReleaseExceptionBuffer(exceptionDataBuffer);
+      ReleaseExceptionBuffer(exceptionDataBuffer);
   }
   return;
 }
@@ -42622,8 +42211,7 @@ void ExceptionContextValidator440(DataBuffer validatorContext, int64_t contextDa
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -42667,20 +42255,17 @@ void ExceptionResourceCleaner460(DataBuffer cleanupContext, int64_t resourceData
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer, 0);
-                    // WARNING: Subroutine does not return
-    ReleaseExceptionBuffer(validationStatusPointer);
+      ReleaseExceptionBuffer(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
     validationFlag = (char *)(resourceIterator + 0x141);
     resourceIterator = *(int64_t *)(resourceIterator + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = (DataBuffer *)contextPointer[3];
@@ -43049,20 +42634,17 @@ void CleanupSystemContextResources(DataBuffer operationBase, int64_t dataBuffer)
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
     validationFlag = (char *)(resourceIterator + 0x141);
     resourceIterator = *(int64_t *)(resourceIterator + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = (DataBuffer *)contextPointer[3];
@@ -43238,20 +42820,17 @@ void CleanupSystemContextCompletely(DataBuffer operationBase, int64_t dataBuffer
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
     validationFlag = (char *)(resourceIterator + 0x141);
     resourceIterator = *(int64_t *)(resourceIterator + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = (DataBuffer *)contextPointer[3];
@@ -43469,28 +43048,23 @@ void InitializeExceptionHandler(DataBuffer contextHandle,int64_t contextOffset,D
   *exceptionDataBuffer = &DefaultExceptionHandlerC;
   exceptionDataBuffer[0x18] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[0x19] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[0x19] = 0;
   *(DataWord *)(exceptionDataBuffer + 0x1b) = 0;
   exceptionDataBuffer[0x18] = &DefaultExceptionHandlerB;
   ProcessExceptionData(exceptionDataBuffer + 0x12,exceptionDataBuffer[0x14],operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   if (exceptionDataBuffer[0xd] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   if (exceptionDataBuffer[9] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   if (exceptionDataBuffer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -43518,16 +43092,14 @@ void InitializeValidationContextExceptionHandler(DataBuffer operationBase,int64_
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x110) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x120) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x108) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x100) = 0;
@@ -43560,16 +43132,14 @@ void SetupValidationContextExceptionHandler(DataBuffer operationBase, int64_t da
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x178) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x180) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x180) = 0;
   *(DataWord *)(exceptionHandlerContext + 400) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x178) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x158) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x160) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x160) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x170) = 0;
@@ -43602,16 +43172,14 @@ void ConfigureSystemContextExceptionHandler(DataBuffer operationBase, int64_t da
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x200) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1e8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1e0) = 0;
@@ -43644,16 +43212,14 @@ void InitializeAdvancedSystemContextExceptionHandler(DataBuffer operationBase, i
   }
   *(DataBuffer *)(exceptionHandlerContext + 600) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x260) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x260) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x270) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 600) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x238) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x240) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x240) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x250) = 0;
@@ -43685,16 +43251,14 @@ void ExceptionHandlerCleanupDataBuffer(DataBuffer operationBase,int64_t dataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2c0) = 0;
@@ -43726,16 +43290,14 @@ void ExceptionHandlerCleanupOperationFlags(DataBuffer operationBase,int64_t data
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x338) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x340) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x340) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x350) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x338) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x318) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 800) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 800) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x330) = 0;
@@ -43769,16 +43331,14 @@ void ConfigureValidationContextExceptionHandler(DataBuffer exceptionContext,int6
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x3a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x3b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x3b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x3c0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x3a8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x388) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x390) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x390) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x3a0) = 0;
@@ -43812,16 +43372,14 @@ void InitializeAdvancedValidationContextExceptionHandler(DataBuffer exceptionCon
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x418) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x420) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x420) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x430) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x418) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x3f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x400) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x400) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x410) = 0;
@@ -43855,40 +43413,35 @@ void InitializeSystemResourceExceptionHandler(DataBuffer exceptionContext,int64_
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x480) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x488) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x488) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x498) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x480) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x460) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x468) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x468) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x478) = 0;
@@ -43922,16 +43475,14 @@ void InitializeMemoryPoolExceptionHandler(DataBuffer exceptionContext,int64_t me
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x548) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x550) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x550) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x560) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x548) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x528) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x530) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x530) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x540) = 0;
@@ -43962,28 +43513,23 @@ void CleanupExceptionDataA0(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   *exceptionDataBuffer = &DefaultExceptionHandlerC;
   exceptionDataBuffer[0x18] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[0x19] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[0x19] = 0;
   *(DataWord *)(exceptionDataBuffer + 0x1b) = 0;
   exceptionDataBuffer[0x18] = &DefaultExceptionHandlerB;
   ProcessExceptionData(exceptionDataBuffer + 0x12,exceptionDataBuffer[0x14],operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   if (exceptionDataBuffer[0xd] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   if (exceptionDataBuffer[9] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   if (exceptionDataBuffer[5] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -44013,16 +43559,14 @@ void CleanupExceptionDataA1(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x110) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x120) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x108) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x100) = 0;
@@ -44055,16 +43599,14 @@ void CleanupExceptionDataA2(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x178) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x180) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x180) = 0;
   *(DataWord *)(exceptionHandlerContext + 400) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x178) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x158) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x160) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x160) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x170) = 0;
@@ -44097,16 +43639,14 @@ void CleanupExceptionDataA3(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x200) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1e8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1e0) = 0;
@@ -44139,16 +43679,14 @@ void CleanupExceptionDataA4(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 600) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x260) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x260) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x270) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 600) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x238) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x240) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x240) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x250) = 0;
@@ -44181,16 +43719,14 @@ void CleanupExceptionDataA5(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2c0) = 0;
@@ -44223,16 +43759,14 @@ void CleanupExceptionDataA6(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x338) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x340) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x340) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x350) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x338) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x318) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 800) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 800) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x330) = 0;
@@ -44265,16 +43799,14 @@ void CleanupExceptionDataA7(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x3a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x3b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x3b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x3c0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x3a8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x388) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x390) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x390) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x3a0) = 0;
@@ -44307,16 +43839,14 @@ void CleanupExceptionDataA8(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x418) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x420) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x420) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x430) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x418) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x3f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x400) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x400) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x410) = 0;
@@ -44351,40 +43881,35 @@ void InitializeExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x480) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x488) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x488) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x498) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x480) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x460) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x468) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x468) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x478) = 0;
@@ -44419,16 +43944,14 @@ void SetupExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(extendedHandlerContext + 0x548) = &TemporaryExceptionHandler;
   if (*(int64_t *)(extendedHandlerContext + 0x550) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(extendedHandlerContext + 0x550) = 0;
   *(DataWord *)(extendedHandlerContext + 0x560) = 0;
   *(DataBuffer *)(extendedHandlerContext + 0x548) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(extendedHandlerContext + 0x528) = &TemporaryExceptionHandler;
   if (*(int64_t *)(extendedHandlerContext + 0x530) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(extendedHandlerContext + 0x530) = 0;
   *(DataWord *)(extendedHandlerContext + 0x540) = 0;
@@ -44457,8 +43980,7 @@ void InitializeBasicExceptionHandler(DataBuffer operationBase,int64_t dataBuffer
   basicHandlerContext = *(int64_t *)(dataBuffer + 0x88);
   *(DataBuffer *)(basicHandlerContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(basicHandlerContext + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(basicHandlerContext + 0x10) = 0;
   *(DataWord *)(basicHandlerContext + 0x20) = 0;
@@ -44487,8 +44009,7 @@ void InitializeAuxiliaryExceptionHandler(DataBuffer operationBase,int64_t dataBu
   auxiliaryHandlerContext = *(int64_t *)(dataBuffer + 0x88);
   *(DataBuffer *)(auxiliaryHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(auxiliaryHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(auxiliaryHandlerContext + 0x30) = 0;
   *(DataWord *)(auxiliaryHandlerContext + 0x40) = 0;
@@ -44564,16 +44085,14 @@ void ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffe
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x488) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x490) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x490) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4a0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x488) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x468) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x470) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x470) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x480) = 0;
@@ -44603,16 +44122,14 @@ void ConfigureExceptionHandlerContext530(DataBuffer operationBase,int64_t dataBu
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x500) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x500) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x510) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4f8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4f0) = 0;
@@ -44642,16 +44159,14 @@ void ConfigureExceptionHandlerContext5a0(DataBuffer operationBase,int64_t dataBu
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x568) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x570) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x570) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x580) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x568) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x548) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x550) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x550) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x560) = 0;
@@ -44681,16 +44196,14 @@ void ConfigureExceptionHandlerContext610(DataBuffer operationBase,int64_t dataBu
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x5f0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x5d8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x5b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x5d0) = 0;
@@ -44720,16 +44233,14 @@ void ConfigureExceptionHandlerContext680(DataBuffer operationBase,int64_t dataBu
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x648) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x650) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x650) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x660) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x648) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x628) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x630) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x630) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x640) = 0;
@@ -44750,16 +44261,14 @@ void ExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x6c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x6d0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x6b8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x698) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x6a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x6b0) = 0;
@@ -44788,16 +44297,14 @@ void ValidateExceptionContextA0(DataBuffer exceptionContext, int64_t contextPoin
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x728) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x730) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x730) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x740) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x728) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x708) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x710) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x710) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x720) = 0;
@@ -44818,16 +44325,14 @@ void ExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x798) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x7a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x7a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x7b0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x798) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x778) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x780) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x780) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x790) = 0;
@@ -44848,16 +44353,14 @@ void ExceptionHandlerA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x808) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x810) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x810) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x820) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x808) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x7e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x7f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x7f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x800) = 0;
@@ -44878,16 +44381,14 @@ void ExceptionHandlerA3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x878) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x880) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x880) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x890) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x878) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x858) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x860) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x860) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x870) = 0;
@@ -44908,16 +44409,14 @@ void ExceptionHandlerA4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x8f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x900) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x8e8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x8c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x8d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x8e0) = 0;
@@ -44938,16 +44437,14 @@ void ExceptionHandlerA5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x958) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x960) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x960) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x970) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x958) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x938) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x940) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x940) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x950) = 0;
@@ -44968,16 +44465,14 @@ void ExceptionHandlerA6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9d0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9d8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9d8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9e8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x9d0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x9b0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9b8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9b8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9c8) = 0;
@@ -44998,16 +44493,14 @@ void ExceptionHandlerA7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa50) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa60) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa48) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa40) = 0;
@@ -45039,8 +44532,7 @@ void ExceptionHandlerA9(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x50);
   *(DataBuffer *)(exceptionHandlerContext + 0x10) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x18) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x28) = 0;
@@ -45069,8 +44561,7 @@ void ConfigureExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x50);
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x38) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x48) = 0;
@@ -45158,16 +44649,14 @@ void UnwindCleanupExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x488) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x490) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x490) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4a0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x488) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x468) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x470) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x470) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x480) = 0;
@@ -45201,16 +44690,14 @@ void UnwindCleanupExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x500) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x500) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x510) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4f8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4f0) = 0;
@@ -45245,16 +44732,14 @@ void ConfigureExceptionHandlerB40(DataBuffer operationBase, int64_t dataBuffer, 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x568) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x570) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x570) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x580) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x568) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x548) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x550) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x550) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x560) = 0;
@@ -45289,16 +44774,14 @@ void ConfigureExceptionHandlerB60(DataBuffer operationBase, int64_t dataBuffer, 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x5f0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x5d8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x5b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x5d0) = 0;
@@ -45333,16 +44816,14 @@ void ConfigureExceptionHandlerB80(DataBuffer operationBase, int64_t dataBuffer, 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x648) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x650) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x650) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x660) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x648) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x628) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x630) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x630) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x640) = 0;
@@ -45377,16 +44858,14 @@ void ConfigureExceptionHandlerBa0(DataBuffer operationBase, int64_t dataBuffer, 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x6c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x6d0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x6b8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x698) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x6a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x6b0) = 0;
@@ -45421,16 +44900,14 @@ void ConfigureExceptionHandlerBc0(DataBuffer operationBase, int64_t dataBuffer, 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x728) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x730) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x730) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x740) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x728) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x708) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x710) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x710) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x720) = 0;
@@ -45466,16 +44943,14 @@ void ValidateContextExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x798) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x7a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x7a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x7b0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x798) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x778) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x780) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x780) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x790) = 0;
@@ -45511,16 +44986,14 @@ void ValidateContextExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x808) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x810) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x810) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x820) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x808) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x7e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x7f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x7f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x800) = 0;
@@ -45556,16 +45029,14 @@ void ValidateContextExceptionHandlerA2(DataBuffer operationBase, int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x878) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x880) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x880) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x890) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x878) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x858) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x860) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x860) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x870) = 0;
@@ -45601,16 +45072,14 @@ void ValidateContextExceptionHandlerA3(DataBuffer operationBase, int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x8f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x900) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x8e8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x8c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x8d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x8e0) = 0;
@@ -45645,16 +45114,14 @@ void ExceptionHandlerA42(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x958) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x960) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x960) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x970) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x958) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x938) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x940) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x940) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x950) = 0;
@@ -45689,16 +45156,14 @@ void ExceptionHandlerA43(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9d0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9d8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9d8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9e8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x9d0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x9b0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9b8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9b8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9c8) = 0;
@@ -45733,16 +45198,14 @@ void ExceptionHandlerA44(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa50) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa60) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa48) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa40) = 0;
@@ -45772,8 +45235,7 @@ void ExceptionHandlerA45(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x88);
   *(DataBuffer *)(exceptionHandlerContext + 0x10) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x18) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x28) = 0;
@@ -45803,8 +45265,7 @@ void ExceptionHandlerA46(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x88);
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x38) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x48) = 0;
@@ -45866,40 +45327,35 @@ void ExceptionHandlerA48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x160) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x168) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x168) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x178) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x160) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x140) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x148) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x148) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x158) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x140) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x120) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x128) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x128) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x138) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x120) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x100) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x108) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x108) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x118) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x100) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf8) = 0;
@@ -45932,40 +45388,35 @@ void HandleExceptionE1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x220) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x228) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x228) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x238) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x220) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x208) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x208) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x218) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x200) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1b8) = 0;
@@ -45998,40 +45449,35 @@ void HandleExceptionE2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x280) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x288) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x288) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x298) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x280) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x260) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x268) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x268) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x278) = 0;
@@ -46064,40 +45510,35 @@ void HandleExceptionE3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x3a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x3a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x3a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x3b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x3a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x380) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x388) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x388) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x398) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x380) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x360) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x368) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x368) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x378) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x360) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x340) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x348) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x348) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x358) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x340) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 800) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x328) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x328) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x338) = 0;
@@ -46130,40 +45571,35 @@ void HandleExceptionE4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x460) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x468) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x468) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x478) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x460) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x440) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x448) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x448) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x458) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x440) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x420) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x428) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x428) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x438) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x420) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x400) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x408) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x408) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x418) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x400) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x3e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 1000) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 1000) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x3f8) = 0;
@@ -46196,40 +45632,35 @@ void HandleExceptionE5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x520) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x528) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x528) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x538) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x520) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x500) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x508) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x508) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x518) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x500) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4b8) = 0;
@@ -46262,40 +45693,35 @@ void HandleExceptionE6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x5f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x5e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x5c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x5d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x5c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x5a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x5b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x5a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x580) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x588) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x588) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x598) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x580) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x560) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x568) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x568) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x578) = 0;
@@ -46328,40 +45754,35 @@ void HandleExceptionE7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x6a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x6b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x6a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x680) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x688) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x688) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x698) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x680) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x660) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x668) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x668) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x678) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x660) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x640) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x648) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x648) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x658) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x640) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x620) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x628) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x628) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x638) = 0;
@@ -46394,40 +45815,35 @@ void HandleExceptionE8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer op
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x760) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x768) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x768) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x778) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x760) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x740) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x748) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x748) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x758) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x740) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x720) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x728) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x728) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x738) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x720) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x700) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x708) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x708) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x718) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x700) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x6e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x6e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x6f8) = 0;
@@ -46459,40 +45875,35 @@ void SetupAndCleanupExceptionHandlersA0(DataBuffer operationBase,int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x820) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x828) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x828) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x838) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x820) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x800) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x808) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x808) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x818) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x800) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x7e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x7e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x7e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x7f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x7e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x7c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x7c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x7c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x7d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x7c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x7a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x7a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x7a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x7b8) = 0;
@@ -46524,40 +45935,35 @@ void SetupAndCleanupExceptionHandlersA1(DataBuffer operationBase,int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x8e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x8f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x8e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x8c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x8c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x8d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x8c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x8a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x8a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x8b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x8a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x880) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x888) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x888) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x898) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x880) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x860) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x868) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x868) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x878) = 0;
@@ -46589,40 +45995,35 @@ void SetupAndCleanupExceptionHandlersA2(DataBuffer operationBase,int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x9a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x980) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x988) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x988) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x998) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x980) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x960) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x968) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x968) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x978) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x960) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x940) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x948) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x948) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x958) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x940) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x920) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x928) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x928) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x938) = 0;
@@ -46658,40 +46059,35 @@ void ResetSystemExceptionHandlerHierarchyA0(DataBuffer operationBase,int64_t dat
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa68) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa68) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa78) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa60) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa48) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa48) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa58) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa40) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa38) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa20) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa00) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa08) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa08) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa18) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa00) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x9e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9f8) = 0;
@@ -46720,40 +46116,35 @@ void InitializeSystemExceptionHandlerA(DataBuffer operationBase,int64_t dataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb38) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xb20) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xb00) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb08) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb08) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb18) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xb00) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xae0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xae8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xae8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xaf8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xae0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xac0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xac8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xac8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xad8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xac0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xaa0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xaa8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xaa8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xab8) = 0;
@@ -46782,40 +46173,35 @@ void InitializeSystemExceptionHandlerB(DataBuffer operationBase,int64_t dataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xbe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xbe8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xbe8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xbf8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xbe0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xbc0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xbc8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xbc8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xbd8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xbc0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xba0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xba8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xba8) = 0;
   *(DataWord *)(exceptionHandlerContext + 3000) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xba0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xb80) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb88) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb88) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb98) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xb80) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xb60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb68) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb68) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb78) = 0;
@@ -46844,40 +46230,35 @@ void InitializeSystemExceptionHandlerC(DataBuffer operationBase,int64_t dataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xca0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xca8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xca8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xcb8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xca0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xc80) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc88) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc88) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc98) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xc80) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xc60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc68) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc68) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc78) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xc60) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xc40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc48) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc48) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc58) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xc40) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xc20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc38) = 0;
@@ -46906,16 +46287,14 @@ void InitializeSystemExceptionHandlerD(DataBuffer operationBase,int64_t dataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xd10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd20) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xd08) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xce8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xcf0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xcf0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd00) = 0;
@@ -46944,16 +46323,14 @@ void InitializeSystemExceptionHandlerE(DataBuffer operationBase,int64_t dataBuff
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xd80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd80) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd90) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xd78) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xd58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xd60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd60) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd70) = 0;
@@ -46989,16 +46366,14 @@ void ResetSystemExceptionHandlerHierarchyB0(DataBuffer operationBase,int64_t dat
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xde8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xdf0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xdf0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe00) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xde8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xdc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xdd0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xdd0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xde0) = 0;
@@ -47034,40 +46409,35 @@ void ResetSystemExceptionHandlerHierarchyB1(DataBuffer operationBase,int64_t dat
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xeb0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xeb8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xeb8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xec8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xeb0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe90) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe98) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe98) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xea8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xe90) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe70) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe78) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe78) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe88) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xe70) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe50) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe58) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe58) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe68) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xe50) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe38) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe38) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe48) = 0;
@@ -47096,40 +46466,35 @@ void ResetExceptionHandlersA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf70) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf78) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf78) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf88) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf70) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xf50) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf58) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf58) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf68) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf50) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xf30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf38) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf38) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf48) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf30) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xf10) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf18) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf18) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf28) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf10) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xef0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xef8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xef8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf08) = 0;
@@ -47162,40 +46527,35 @@ void SetupAndCleanupExceptionHandlersA1(DataBuffer operationBase,int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1030) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1038) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1038) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1048) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1030) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1010) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1018) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1018) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1028) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1010) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xff0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xff8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xff8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1008) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xff0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xfd0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xfd8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xfd8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xfe8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xfd0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xfb0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xfb8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xfb8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xfc8) = 0;
@@ -47228,16 +46588,14 @@ void SetupAndCleanupExceptionHandlersA2(DataBuffer operationBase,int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1098) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x10b0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1098) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1078) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1080) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1080) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1090) = 0;
@@ -47270,16 +46628,14 @@ void SetupAndCleanupExceptionHandlersA4(DataBuffer operationBase,int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1110) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1110) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1120) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1108) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x10e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1100) = 0;
@@ -47312,16 +46668,14 @@ void SetupAndCleanupExceptionHandlersA5(DataBuffer operationBase,int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1178) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1180) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1180) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1190) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1178) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1158) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1160) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1160) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1170) = 0;
@@ -47353,16 +46707,14 @@ void SetupAndCleanupExceptionHandlersA3(DataBuffer operationBase,int64_t dataBuf
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x11e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x11f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x11f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1200) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x11e8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x11c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x11d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x11d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x11e0) = 0;
@@ -47383,16 +46735,14 @@ void ExceptionHandlerA74(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1258) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1260) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1260) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1270) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1258) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1238) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1240) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1240) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1250) = 0;
@@ -47413,16 +46763,14 @@ void ExceptionHandlerA75(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x12c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x12d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x12d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x12e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x12c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x12a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x12b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x12b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x12c0) = 0;
@@ -47443,16 +46791,14 @@ void ExceptionHandlerA76(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1338) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1340) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1340) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1350) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1338) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1318) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1320) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1320) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1330) = 0;
@@ -47479,8 +46825,7 @@ void ExceptionHandlerA77(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -47514,8 +46859,7 @@ void ExecuteExceptionHandlersChain(DataBuffer operationBase,int64_t dataBuffer,D
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -47538,8 +46882,7 @@ void ResetExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x20);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -47611,8 +46954,7 @@ void InitializeSystemExceptionHandlerF(DataBuffer operationBase,int64_t dataBuff
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x50);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -47658,8 +47000,7 @@ void CleanupExceptionDataBufferA(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x20);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -47683,8 +47024,7 @@ void ResetExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x20);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -47708,8 +47048,7 @@ void ResetExceptionHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x20);
   *(DataBuffer *)(exceptionHandlerContext + 0x40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x48) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x58) = 0;
@@ -47733,8 +47072,7 @@ void ResetExceptionHandlerB2(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x20);
   *(DataBuffer *)(exceptionHandlerContext + 0x60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x68) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x68) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x78) = 0;
@@ -47758,8 +47096,7 @@ void ResetExceptionHandlerB3(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x20);
   *(DataBuffer *)(exceptionHandlerContext + 0x80) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x88) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x88) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x98) = 0;
@@ -47805,8 +47142,7 @@ void ResetExceptionHandlerC0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x50);
   *(DataBuffer *)(exceptionHandlerContext + 0x60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x68) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x68) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x78) = 0;
@@ -47867,40 +47203,35 @@ void ManageExceptionHandlerStatusA0(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x160) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x168) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x168) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x178) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x160) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x140) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x148) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x148) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x158) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x140) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x120) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x128) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x128) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x138) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x120) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x100) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x108) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x108) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x118) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x100) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf8) = 0;
@@ -47936,40 +47267,35 @@ void CleanupExceptionHandlersAtMultipleOffsets(DataBuffer operationBase,int64_t 
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x220) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x228) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x228) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x238) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x220) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x208) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x208) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x218) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x200) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1b8) = 0;
@@ -48005,40 +47331,35 @@ void ResetExceptionHandlersState(DataBuffer operationBase,int64_t dataBuffer,Dat
   }
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE0Offset) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContextPointer + ExceptionHandlerE0StatusOffset) != 0) {
-    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+        TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE0StatusOffset) = 0;
   *(DataWord *)(exceptionContextPointer + ExceptionHandlerE0StateOffset) = 0;
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE0Offset) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE1Offset) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContextPointer + ExceptionHandlerE1StatusOffset) != 0) {
-    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+        TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE1StatusOffset) = 0;
   *(DataWord *)(exceptionContextPointer + ExceptionHandlerE1StateOffset) = 0;
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE1Offset) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE2Offset) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContextPointer + ExceptionHandlerE2StatusOffset) != 0) {
-    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+        TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE2StatusOffset) = 0;
   *(DataWord *)(exceptionContextPointer + ExceptionHandlerE2StateOffset) = 0;
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE2Offset) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE3Offset) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContextPointer + ExceptionHandlerE3StatusOffset) != 0) {
-    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+        TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE3StatusOffset) = 0;
   *(DataWord *)(exceptionContextPointer + ExceptionHandlerE3StateOffset) = 0;
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE3Offset) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE4Offset) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContextPointer + ExceptionHandlerE4StatusOffset) != 0) {
-    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+        TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE4StatusOffset) = 0;
   *(DataWord *)(exceptionContextPointer + ExceptionHandlerE4StateOffset) = 0;
@@ -48080,40 +47401,35 @@ void ConfigureExceptionHandlerChain(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x3a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x3a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x3a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x3b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x3a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x380) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x388) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x388) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x398) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x380) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x360) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x368) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x368) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x378) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x360) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x340) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x348) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x348) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x358) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x340) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 800) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x328) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x328) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x338) = 0;
@@ -48149,40 +47465,35 @@ void InitializeTertiaryExceptionHandlers(DataBuffer operationBase,int64_t dataBu
   }
   *(DataBuffer *)(exceptionContextPointer + 0x460) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContextPointer + 0x468) != 0) {
-    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+        TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionContextPointer + 0x468) = 0;
   *(DataWord *)(exceptionContextPointer + 0x478) = 0;
   *(DataBuffer *)(exceptionContextPointer + 0x460) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionContextPointer + 0x440) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContextPointer + 0x448) != 0) {
-    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+        TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionContextPointer + 0x448) = 0;
   *(DataWord *)(exceptionContextPointer + 0x458) = 0;
   *(DataBuffer *)(exceptionContextPointer + 0x440) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionContextPointer + 0x420) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionContextPointer + 0x428) != 0) {
-    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+        TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x428) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x438) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x420) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x400) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x408) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x408) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x418) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x400) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x3e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 1000) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 1000) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x3f8) = 0;
@@ -48218,40 +47529,35 @@ void CleanupAdvancedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffe
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x520) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x528) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x528) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x538) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x520) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x500) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x508) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x508) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x518) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x500) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x4c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x4a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4b8) = 0;
@@ -48287,40 +47593,35 @@ void ResetExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x5f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x5e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x5c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x5d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x5c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x5a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x5a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x5b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x5a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x580) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x588) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x588) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x598) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x580) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x560) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x568) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x568) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x578) = 0;
@@ -48360,40 +47661,35 @@ void InitializeExceptionHandlerContextA0(DataBuffer operationBase,int64_t dataBu
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x6a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x6b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x6a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x680) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x688) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x688) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x698) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x680) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x660) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x668) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x668) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x678) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x660) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x640) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x648) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x648) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x658) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x640) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x620) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x628) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x628) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x638) = 0;
@@ -48436,40 +47732,35 @@ void InitializeExceptionHandlerContextA1(DataBuffer operationBase,int64_t dataBu
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x760) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x768) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x768) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x778) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x760) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x740) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x748) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x748) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x758) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x740) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x720) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x728) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x728) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x738) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x720) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x700) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x708) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x708) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x718) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x700) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x6e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x6e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x6e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x6f8) = 0;
@@ -48512,40 +47803,35 @@ void InitializeExceptionHandlerContextA2(DataBuffer operationBase,int64_t dataBu
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x820) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x828) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x828) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x838) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x820) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x800) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x808) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x808) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x818) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x800) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x7e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x7e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x7e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x7f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x7e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x7c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x7c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x7c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x7d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x7c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x7a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x7a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x7a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x7b8) = 0;
@@ -48583,40 +47869,35 @@ void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x8e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x8f8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x8e0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x8c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x8c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8c8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x8d8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x8c0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x8a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x8a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x8a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x8b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x8a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x880) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x888) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x888) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x898) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x880) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x860) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x868) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x868) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x878) = 0;
@@ -48654,40 +47935,35 @@ void ExceptionUnwindHandlerE1(DataBuffer exceptionContext, int64_t unwindContext
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9a0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9a8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9a8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9b8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x9a0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x980) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x988) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x988) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x998) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x980) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x960) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x968) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x968) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x978) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x960) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x940) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x948) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x948) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x958) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x940) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x920) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x928) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x928) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x938) = 0;
@@ -48730,40 +48006,35 @@ void InitializeExceptionHandlerContextA3(DataBuffer operationBase,int64_t dataBu
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa68) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa68) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa78) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa60) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa48) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa48) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa58) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa40) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa38) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa20) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa00) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa08) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa08) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa18) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa00) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x9e0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9e8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9e8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9f8) = 0;
@@ -48801,40 +48072,35 @@ void CleanupExceptionHandlerContextA0(DataBuffer operationBase,int64_t dataBuffe
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb38) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xb20) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xb00) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb08) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb08) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb18) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xb00) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xae0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xae8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xae8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xaf8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xae0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xac0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xac8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xac8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xad8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xac0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xaa0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xaa8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xaa8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xab8) = 0;
@@ -48855,40 +48121,35 @@ void CleanupExceptionHandlersLevel0(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xbe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xbe8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xbe8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xbf8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xbe0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xbc0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xbc8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xbc8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xbd8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xbc0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xba0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xba8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xba8) = 0;
   *(DataWord *)(exceptionHandlerContext + 3000) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xba0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xb80) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb88) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb88) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb98) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xb80) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xb60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb68) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb68) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb78) = 0;
@@ -48909,40 +48170,35 @@ void CleanupExceptionHandlersLevel1(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xca0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xca8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xca8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xcb8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xca0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xc80) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc88) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc88) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc98) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xc80) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xc60) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc68) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc68) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc78) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xc60) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xc40) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc48) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc48) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc58) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xc40) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xc20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc38) = 0;
@@ -48963,16 +48219,14 @@ void CleanupExceptionHandlersLevel2(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xd10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd20) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xd08) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xce8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xcf0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xcf0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd00) = 0;
@@ -48993,16 +48247,14 @@ void CleanupExceptionHandlersLevel3(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xd80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd80) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd90) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xd78) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xd58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xd60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd60) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd70) = 0;
@@ -49023,16 +48275,14 @@ void CleanupExceptionHandlersLevel4(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xde8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xdf0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xdf0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe00) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xde8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xdc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xdd0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xdd0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xde0) = 0;
@@ -49053,40 +48303,35 @@ void CleanupExceptionHandlersLevel5(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xeb0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xeb8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xeb8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xec8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xeb0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe90) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe98) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe98) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xea8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xe90) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe70) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe78) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe78) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe88) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xe70) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe50) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe58) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe58) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe68) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xe50) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe38) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe38) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe48) = 0;
@@ -49107,40 +48352,35 @@ void CleanupExceptionHandlersLevel6(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf70) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf78) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf78) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf88) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf70) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xf50) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf58) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf58) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf68) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf50) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xf30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf38) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf38) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf48) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf30) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xf10) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf18) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf18) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf28) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf10) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xef0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xef8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xef8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf08) = 0;
@@ -49161,40 +48401,35 @@ void CleanupExceptionHandlersLevel7(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1030) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1038) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1038) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1048) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1030) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1010) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1018) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1018) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1028) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1010) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xff0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xff8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xff8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1008) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xff0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xfd0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xfd8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xfd8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xfe8) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xfd0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xfb0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xfb8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xfb8) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xfc8) = 0;
@@ -49215,16 +48450,14 @@ void CleanupExceptionHandlersLevel8(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1098) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x10b0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1098) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1078) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1080) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1080) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1090) = 0;
@@ -49245,16 +48478,14 @@ void CleanupExceptionHandlersLevel9(DataBuffer operationBase,int64_t dataBuffer,
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1110) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1110) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1120) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1108) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x10e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1100) = 0;
@@ -49275,16 +48506,14 @@ void CleanupExceptionHandlersLevel10(DataBuffer operationBase,int64_t dataBuffer
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1178) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1180) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1180) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1190) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1178) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1158) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1160) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1160) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1170) = 0;
@@ -49305,16 +48534,14 @@ void CleanupExceptionHandlersLevel11(DataBuffer operationBase,int64_t dataBuffer
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x11e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x11f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x11f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1200) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x11e8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x11c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x11d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x11d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x11e0) = 0;
@@ -49335,16 +48562,14 @@ void CleanupExceptionHandlersLevel12(DataBuffer operationBase,int64_t dataBuffer
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1258) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1260) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1260) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1270) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1258) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1238) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1240) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1240) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1250) = 0;
@@ -49365,16 +48590,14 @@ void CleanupExceptionHandlersLevel13(DataBuffer operationBase,int64_t dataBuffer
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x12c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x12d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x12d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x12e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x12c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x12a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x12b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x12b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x12c0) = 0;
@@ -49395,16 +48618,14 @@ void CleanupExceptionHandlersLevel14(DataBuffer operationBase,int64_t dataBuffer
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1338) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1340) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1340) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1350) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1338) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1318) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1320) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1320) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1330) = 0;
@@ -49443,8 +48664,7 @@ void ProcessExceptionHandlersWithValidation(DataBuffer operationBase,int64_t dat
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -49477,8 +48697,7 @@ void CleanupExceptionHandlerContextA17(DataBuffer operationBase,int64_t dataBuff
   if (*exceptionContextPointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -49511,8 +48730,7 @@ void CleanupExceptionHandlerContextA18(DataBuffer operationBase,int64_t dataBuff
   if (*exceptionContextPointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -49787,8 +49005,7 @@ void ResetBasicExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x30) = 0;
@@ -49816,8 +49033,7 @@ void ResetExceptionContextOffset18(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
   *(DataBuffer *)(exceptionHandlerContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x30) = 0;
@@ -50211,16 +49427,14 @@ void Unwind_InitializeExceptionHandlerE1(DataBuffer operationBase, int64_t dataB
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerDataOffset);
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerE1Offset) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerE1StatusOffset) != 0) {
-    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+        TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerE1StatusOffset) = 0;
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerE1DataOffset) = 0;
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerE1Offset) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerE2Offset) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerE2StatusOffset) != 0) {
-    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+        TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerE2StatusOffset) = 0;
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerE2DataOffset) = 0;
@@ -50248,8 +49462,7 @@ void ResetExceptionContextOffset20(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -50315,8 +49528,7 @@ void ResetExceptionContextOffset50(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x50) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x58) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x58) = 0;
   *(DataWord *)(dataBuffer + 0x68) = 0;
@@ -50476,8 +49688,7 @@ void ResetExceptionContextOffset48(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x48);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -50507,8 +49718,7 @@ void ResetExceptionContextOffset68(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x68);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -50694,21 +49904,18 @@ void CleanupExceptionResourceReferenceCount960(DataBuffer operationBase,int64_t 
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xa8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xa8) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0xa0);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + 0x141);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x90);
@@ -50768,21 +49975,18 @@ void CleanupExceptionResourceReferenceCount970(DataBuffer operationBase,int64_t 
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x310) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x310) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0x308);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + 0x141);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x2f8);
@@ -50830,21 +50034,18 @@ void CleanupExceptionResourceReferenceCount990(DataBuffer operationBase,int64_t 
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x578) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x578) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0x570);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + 0x141);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x560);
@@ -51122,21 +50323,18 @@ void CleanupExceptionResourceReferenceCountA20(DataBuffer operationBase,int64_t 
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xa8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xa8) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0xa0);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + 0x141);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x90);
@@ -51196,21 +50394,18 @@ void ExceptionUnwindHandlerE0(DataBuffer operationBase,int64_t dataBuffer)
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x310) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x310) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0x308);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + 0x141);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x2f8);
@@ -51277,21 +50472,18 @@ void ExceptionUnwindHandlerF0(DataBuffer exceptionContext, int64_t unwindContext
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x578) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x578) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0x570);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + 0x141);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x560);
@@ -51522,11 +50714,9 @@ void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
     return;
   }
   if (*(int *)(exceptionDataBuffer[1] + 8) == 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
-                    // WARNING: Subroutine does not return
-  terminate();
+    terminate();
 }
 
 
@@ -51643,11 +50833,9 @@ void SetExceptionHandlerAf0(DataBuffer operationBase,int64_t dataBuffer,DataBuff
     return;
   }
   if (*(int *)(exceptionDataBuffer[1] + 8) == 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
-                    // WARNING: Subroutine does not return
-  terminate();
+    terminate();
 }
 
 
@@ -51685,8 +50873,7 @@ void ExceptionCatcherA0(DataBuffer operationBase,int64_t dataBuffer)
     dataContext = *(int64_t *)(exceptionHandlerContext + 0x40);
   }
   *(int64_t *)(exceptionHandlerContext + 0x40) = dataContext;
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+    _CxxThrowException(0,0);
 }
 
 
@@ -51700,8 +50887,7 @@ void ExceptionCatcherA1(DataBuffer operationBase,int64_t dataBuffer)
   CleanupSystem(exceptionHandlerContext);
   ConfigureSystemA0(*(int64_t *)(dataBuffer + 0x60) + 8,0);
   ProcessSystemA0(*(DataBuffer *)(exceptionHandlerContext + 0x50),*(DataBuffer *)(dataBuffer + 0x68));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+    _CxxThrowException(0,0);
 }
 
 
@@ -51752,8 +50938,7 @@ void ExceptionCatcherA2(DataBuffer operationBase,int64_t dataBuffer)
     memoryOffset = *(int64_t *)(memoryOffset + 0x100);
     operationResult = dataFlags;
   }
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+    _CxxThrowException(0,0);
 }
 
 
@@ -51820,8 +51005,7 @@ void ExceptionCatcherA3(DataBuffer operationBase,int64_t dataBuffer)
   }
   InitializeData(*(DataBuffer *)(exceptionHandlerContext + 0x50),dataContext);
   *(DataBuffer *)(exceptionHandlerContext + 0x40) = *(DataBuffer *)(dataBuffer + 0xa8);
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+    _CxxThrowException(0,0);
 }
 
 
@@ -51888,16 +51072,14 @@ void ConfigureExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer)
   *exceptionDataBuffer = &ExceptionHandlerB;
   exceptionDataBuffer[7] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[8] = 0;
   *(DataWord *)(exceptionDataBuffer + 10) = 0;
   exceptionDataBuffer[7] = &DefaultExceptionHandlerB;
   exceptionDataBuffer[1] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[2] = 0;
   *(DataWord *)(exceptionDataBuffer + 4) = 0;
@@ -51927,16 +51109,14 @@ void ResetExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer)
   *exceptionDataBuffer = &ExceptionHandlerB;
   exceptionDataBuffer[7] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[8] = 0;
   *(DataWord *)(exceptionDataBuffer + 10) = 0;
   exceptionDataBuffer[7] = &DefaultExceptionHandlerB;
   exceptionDataBuffer[1] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[2] = 0;
   *(DataWord *)(exceptionDataBuffer + 4) = 0;
@@ -51965,16 +51145,14 @@ void ConfigureExceptionHandlersSimple(DataBuffer operationBase,int64_t dataBuffe
   *exceptionDataBuffer = &ExceptionHandlerB;
   exceptionDataBuffer[7] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[8] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[8] = 0;
   *(DataWord *)(exceptionDataBuffer + 10) = 0;
   exceptionDataBuffer[7] = &DefaultExceptionHandlerB;
   exceptionDataBuffer[1] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[2] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[2] = 0;
   *(DataWord *)(exceptionDataBuffer + 4) = 0;
@@ -52098,11 +51276,9 @@ void ProcessExceptionDataBufferE40(DataBuffer operationBase,int64_t dataBuffer,D
     return;
   }
   if (*(int *)(exceptionDataBuffer[1] + 8) == 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
-                    // WARNING: Subroutine does not return
-  terminate();
+    terminate();
 }
 
 
@@ -52122,8 +51298,7 @@ void SystemExceptionHandlerA(DataBuffer operationBase,int64_t dataBuffer,DataBuf
   if (*(int64_t *)(dataBuffer + 0xc0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -52143,8 +51318,7 @@ void SystemExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer,DataBuf
   if (*(int64_t *)(dataBuffer + 0xc0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -52262,8 +51436,7 @@ void ProcessExceptionResourceCleanupCallbacks(DataBuffer operationBase,int64_t d
   if (*(int64_t *)(dataBuffer + 0x90) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -52297,8 +51470,7 @@ void ProcessExceptionResourceCleanupCallbacksB(DataBuffer operationBase,int64_t 
   if (*(int64_t *)(dataBuffer + 0x90) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -52395,8 +51567,7 @@ void ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x38) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x48) = 0;
@@ -52426,8 +51597,7 @@ void SetupExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xa8);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -52466,8 +51636,7 @@ void ProcessExceptionResourceCleanupCallbacksC(DataBuffer operationBase,int64_t 
   if (*(int64_t *)(dataBuffer + 0x20) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -52501,8 +51670,7 @@ void ProcessExceptionResourceCleanupCallbacksD(DataBuffer operationBase,int64_t 
   if (*(int64_t *)(dataBuffer + 0x20) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -52572,8 +51740,7 @@ void ResetTemporaryExceptionHandlerA(DataBuffer operationBase,int64_t dataBuffer
 {
   *(DataBuffer *)(dataBuffer + 0xb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xc0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xc0) = 0;
   *(DataWord *)(dataBuffer + 0xd0) = 0;
@@ -52612,13 +51779,11 @@ void ProcessExceptionResourceCleanupCallbacksE(DataBuffer operationBase,int64_t 
   if (*(int64_t *)(dataBuffer + 0x98) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 清理文件句柄A
@@ -52666,8 +51831,7 @@ void ResetTemporaryExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer
 {
   *(DataBuffer *)(dataBuffer + 0xd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xe0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xe0) = 0;
   *(DataWord *)(dataBuffer + 0xf0) = 0;
@@ -52677,7 +51841,6 @@ void ResetTemporaryExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void CleanupFileHandleAtOffset00(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -52699,8 +51862,7 @@ void SetupExceptionHandlerAtOffset10(DataBuffer operationBase,int64_t dataBuffer
 {
   *(DataBuffer *)(dataBuffer + 0xf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x100) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x100) = 0;
   *(DataWord *)(dataBuffer + 0x110) = 0;
@@ -52725,8 +51887,7 @@ void ExecuteExceptionCallbacksAtOffset20(DataBuffer operationBase,int64_t dataBu
   if (*(int64_t *)(dataBuffer + 0x40) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -52790,8 +51951,7 @@ void ExecuteResourceCallbackCleanup(DataBuffer operationBase,int64_t dataBuffer,
   if (*(int64_t *)(dataBuffer + 0x98) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -52912,8 +52072,7 @@ void SetExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x1e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x1f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x1f0) = 0;
   *(DataWord *)(dataBuffer + 0x200) = 0;
@@ -52923,7 +52082,6 @@ void SetExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 关闭文件资源函数
@@ -52957,8 +52115,7 @@ void SetExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x168) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x170) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x170) = 0;
   *(DataWord *)(dataBuffer + 0x180) = 0;
@@ -52984,8 +52141,7 @@ void InitializeExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x1a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x1b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x1b0) = 0;
   *(DataWord *)(dataBuffer + 0x1c0) = 0;
@@ -53011,8 +52167,7 @@ void InitializeExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x188) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 400) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 400) = 0;
   *(DataWord *)(dataBuffer + 0x1a0) = 0;
@@ -53142,8 +52297,7 @@ void InitializeExceptionHandlerA2(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x128) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x130) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x130) = 0;
   *(DataWord *)(dataBuffer + 0x140) = 0;
@@ -53181,8 +52335,7 @@ void CleanupExceptionResourcesA3(DataBuffer operationBase, int64_t dataBuffer, D
   if (*(int64_t *)(dataBuffer + 0x108) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -53215,8 +52368,7 @@ void CleanupExceptionResourcesA4(DataBuffer operationBase, int64_t dataBuffer, D
   if (*(int64_t *)(dataBuffer + 0x228) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -53226,8 +52378,7 @@ void CleanupResourceAtOffset180(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xd0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xd0) = 0;
   *(DataWord *)(dataBuffer + 0xe0) = 0;
@@ -53242,8 +52393,7 @@ void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x1c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x1d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x1d0) = 0;
   *(DataWord *)(dataBuffer + 0x1e0) = 0;
@@ -53298,8 +52448,7 @@ void SetupExceptionHandlerAtOffset1F0(DataBuffer operationBase,int64_t dataBuffe
   if (*(int64_t *)(dataBuffer + 0x148) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -53373,8 +52522,7 @@ void CleanupSystemResourcesA1(DataBuffer operationBase,int64_t dataBuffer,DataBu
   if (*(int64_t *)(dataBuffer + 0x208) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -53456,8 +52604,7 @@ void CleanupExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer,DataBu
   if (*(int64_t *)(dataBuffer + 0x108) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -53513,8 +52660,7 @@ void CleanupExceptionHandlerE(DataBuffer operationBase,int64_t dataBuffer,DataBu
   if (*(int64_t *)(dataBuffer + 0x228) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -53739,8 +52885,7 @@ void SetupTemporaryExceptionHandlerAndValidate(DataBuffer operationBase,int64_t 
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -53770,8 +52915,7 @@ void CleanupResourceAtOffset360(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x110) = 0;
   *(DataWord *)(dataBuffer + 0x120) = 0;
@@ -54185,8 +53329,7 @@ void ValidateSystemStatusA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(char *)(dataBuffer + 0x48) == '\0') && (*(int64_t *)(dataBuffer + 0x30) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -54205,8 +53348,7 @@ void ValidateSystemStatusA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(char *)(dataBuffer + 0x68) == '\0') && (*(int64_t *)(dataBuffer + 0x50) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -54226,8 +53368,7 @@ void InitializeExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x90) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x98) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x98) = 0;
   *(DataWord *)(dataBuffer + 0xa8) = 0;
@@ -54250,8 +53391,7 @@ void InitializeExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x90) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x98) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x98) = 0;
   *(DataWord *)(dataBuffer + 0xa8) = 0;
@@ -54936,8 +54076,7 @@ void ExecuteExceptionHandling(DataBuffer operationBase,int64_t dataBuffer,DataBu
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -54964,7 +54103,6 @@ void ProcessDataValidationFlag(DataBuffer operationBase,uint *dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 执行系统数据处理和验证
@@ -55082,16 +54220,14 @@ ProcessCheckpointValidationData3:
   _Mtx_destroy_in_situ(pdataContext);
   plStackX_10 = poperationResult + 0x16;
   if (*plStackX_10 != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   plStackX_10 = poperationResult + 0xc;
   _Mtx_destroy_in_situ();
   plStackX_10 = exceptionHandlerContextPointer;
   ValidateProcessingA0(exceptionHandlerContextPointer);
   if ((1 < (uint64_t)poperationResult[8]) && (poperationResult[7] != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   if ((code *)poperationResult[3] != (code *)0x0) {
     (*(code *)poperationResult[3])(poperationResult + 1,0,0);
@@ -55115,8 +54251,7 @@ void CleanupExceptionResourcesA(DataBuffer exceptionContext, int64_t unwindParam
   resourcePointer = *(int64_t *)(unwindParameter + 0x40);
   *(DataBuffer *)(resourcePointer + 0xc0) = &ExceptionCleanupFlagA;
   if (*(int64_t *)(resourcePointer + 200) != 0) {
-                    // WARNING: Subroutine does not return
-    ResourceCleanupHandler();
+      ResourceCleanupHandler();
   }
   *(DataBuffer *)(resourcePointer + 200) = 0;
   *(DataWord *)(resourcePointer + 0xd8) = 0;
@@ -55143,40 +54278,35 @@ void InitializeExceptionHandlerPointers(DataBuffer exceptionContext, int64_t han
 {
   *(DataBuffer *)(handlerContext + 0x100) = &DefaultExceptionHandlerA;
   if (*(int64_t *)(handlerContext + 0x108) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(handlerContext + 0x108) = 0;
   *(DataWord *)(handlerContext + 0x118) = 0;
   *(DataBuffer *)(handlerContext + 0x100) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(handlerContext + 0xe0) = &DefaultExceptionHandlerA;
   if (*(int64_t *)(handlerContext + 0xe8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(handlerContext + 0xe8) = 0;
   *(DataWord *)(handlerContext + 0xf8) = 0;
   *(DataBuffer *)(handlerContext + 0xe0) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(handlerContext + 0xb8) = &DefaultExceptionHandlerA;
   if (*(int64_t *)(handlerContext + 0xc0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(handlerContext + 0xc0) = 0;
   *(DataWord *)(handlerContext + 0xd0) = 0;
   *(DataBuffer *)(handlerContext + 0xb8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(handlerContext + 0x98) = &DefaultExceptionHandlerA;
   if (*(int64_t *)(handlerContext + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(handlerContext + 0xa0) = 0;
   *(DataWord *)(handlerContext + 0xb0) = 0;
   *(DataBuffer *)(handlerContext + 0x98) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(handlerContext + 0x68) = &DefaultExceptionHandlerA;
   if (*(int64_t *)(handlerContext + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(handlerContext + 0x70) = 0;
   *(DataWord *)(handlerContext + 0x80) = 0;
@@ -55352,8 +54482,7 @@ void ExecuteExceptionCallbackChain(DataBuffer chainContext, int64_t callbackChai
   if (*callbackStartPointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -55387,8 +54516,7 @@ void ExecuteExceptionHandlingAndTerminateB(DataBuffer operationBase,int64_t data
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -55460,16 +54588,14 @@ void ExecuteDataValidationAndProcessingB(DataBuffer operationBase,int64_t dataBu
   for (calculatedOffset = *pdataContext; calculatedOffset != exceptionHandlerContext; calculatedOffset = calculatedOffset + 0x28) {
     *(DataBuffer *)(calculatedOffset + 8) = &TemporaryExceptionHandler;
     if (*(int64_t *)(calculatedOffset + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *(DataBuffer *)(calculatedOffset + 0x10) = 0;
     *(DataWord *)(calculatedOffset + 0x20) = 0;
     *(DataBuffer *)(calculatedOffset + 8) = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -55493,8 +54619,7 @@ void Unwind_1809058a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -55516,8 +54641,7 @@ void Unwind_1809058b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -55534,16 +54658,14 @@ void Unwind_1809058c0(DataBuffer operationBase,int64_t dataBuffer)
   for (calculatedOffset = *pdataContext; calculatedOffset != exceptionHandlerContext; calculatedOffset = calculatedOffset + 0x28) {
     *(DataBuffer *)(calculatedOffset + 8) = &TemporaryExceptionHandler;
     if (*(int64_t *)(calculatedOffset + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *(DataBuffer *)(calculatedOffset + 0x10) = 0;
     *(DataWord *)(calculatedOffset + 0x20) = 0;
     *(DataBuffer *)(calculatedOffset + 8) = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -55555,8 +54677,7 @@ void Unwind_1809058d0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x208) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x208) = 0;
   *(DataWord *)(dataBuffer + 0x218) = 0;
@@ -55575,7 +54696,6 @@ void Unwind_1809058e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809058f0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -55644,8 +54764,7 @@ void Unwind_180905910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -55665,9 +54784,8 @@ void Unwind_180905920(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = (DataBuffer *)**(int64_t **)(dataBuffer + 0x40);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x00018009f9c0. Too many branches
-                    // WARNING: Treating indirect jump as call
-    (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
+                     0x00018009f9c0. Too many branches
+                        (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
     return;
   }
   return;
@@ -55690,9 +54808,8 @@ void Unwind_180905930(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 8);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x00018009f9c0. Too many branches
-                    // WARNING: Treating indirect jump as call
-    (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
+                     0x00018009f9c0. Too many branches
+                        (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
     return;
   }
   return;
@@ -55751,7 +54868,6 @@ void Unwind_180905940(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 处理异常恢复流程并清理系统资源
@@ -55867,16 +54983,14 @@ ProcessCheckpointValidationData3:
   _Mtx_destroy_in_situ(pdataContext);
   plStackX_10 = poperationResult + 0x16;
   if (*plStackX_10 != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   plStackX_10 = poperationResult + 0xc;
   _Mtx_destroy_in_situ();
   plStackX_10 = exceptionHandlerContextPointer;
   ValidateProcessingA0(exceptionHandlerContextPointer);
   if ((1 < (uint64_t)poperationResult[8]) && (poperationResult[7] != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   if ((code *)poperationResult[3] != (code *)0x0) {
     (*(code *)poperationResult[3])(poperationResult + 1,0,0);
@@ -55913,8 +55027,7 @@ void Unwind_180905960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -55939,16 +55052,14 @@ void Unwind_180905980(DataBuffer operationBase,int64_t dataBuffer)
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 5) {
     *validationStatusPointer = &TemporaryExceptionHandler;
     if (validationStatusPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     validationStatusPointer[1] = 0;
     *(DataWord *)(validationStatusPointer + 3) = 0;
     *validationStatusPointer = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -55982,8 +55093,7 @@ void Unwind_1809059a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -56024,8 +55134,7 @@ void Unwind_1809059c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (**(int64_t **)(dataBuffer + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   **(int64_t **)(dataBuffer + 0x40) = 0;
   return;
@@ -56180,8 +55289,7 @@ void ResetExceptionHandlerA(DataBuffer SystemContext, int64_t ExecutionContext)
 {
   *(DataBuffer *)(ExecutionContext + 0x68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(ExecutionContext + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(ExecutionContext + 0x70) = 0;
   *(DataWord *)(ExecutionContext + 0x80) = 0;
@@ -56204,8 +55312,7 @@ void ResetExceptionHandlerB(DataBuffer SystemContext, int64_t ExecutionContext)
 {
   *(DataBuffer *)(ExecutionContext + 0x98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(ExecutionContext + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(ExecutionContext + 0xa0) = 0;
   *(DataWord *)(ExecutionContext + 0xb0) = 0;
@@ -56228,8 +55335,7 @@ void ResetExceptionHandlerC(DataBuffer SystemContext, int64_t ExecutionContext)
 {
   *(DataBuffer *)(ExecutionContext + 0xb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(ExecutionContext + 0xc0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(ExecutionContext + 0xc0) = 0;
   *(DataWord *)(ExecutionContext + 0xd0) = 0;
@@ -56252,8 +55358,7 @@ void ResetExceptionHandlerD(DataBuffer SystemContext, int64_t ExecutionContext)
 {
   *(DataBuffer *)(ExecutionContext + 0xe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(ExecutionContext + 0xe8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(ExecutionContext + 0xe8) = 0;
   *(DataWord *)(ExecutionContext + 0xf8) = 0;
@@ -56268,8 +55373,7 @@ void CleanupSystemExceptionHandlingA0(DataBuffer systemContext, int64_t executio
 {
   *(DataBuffer *)(executionContext + 0x100) = &TemporaryExceptionHandler;
   if (*(int64_t *)(executionContext + 0x108) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(executionContext + 0x108) = 0;
   *(DataWord *)(executionContext + 0x118) = 0;
@@ -56344,8 +55448,7 @@ void ResetValidationContextExceptionHandler(DataBuffer SystemContext, int64_t Ex
   exceptionHandlerContext = *(int64_t *)(ExecutionContext + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -56408,21 +55511,18 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x40) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0x40) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0x38);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + 0x141);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x28);
@@ -56471,8 +55571,7 @@ void Unwind_180905b70(DataBuffer operationBase,int64_t dataBuffer)
       resourcePointer = *(DataBuffer **)(exceptionHandlerContext + operationResult * 8);
       if (resourcePointer != (DataBuffer *)0x0) {
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -56481,8 +55580,7 @@ void Unwind_180905b70(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x348) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 0x338) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -56508,20 +55606,17 @@ void UnwindCleanupThreadLocalStorageAndExceptionHandlers(DataBuffer exceptionCon
       *(DataBuffer *)exceptionHandlerPointer[3] = 0;
     }
     (**(FunctionPointer**)*exceptionHandlerPointer)(exceptionHandlerPointer,0);
-                    // WARNING: Subroutine does not return
-    CleanupExceptionResources(exceptionHandlerPointer);
+      CleanupExceptionResources(exceptionHandlerPointer);
   }
   if ((threadLocalStorage[6] != 0) && (*(int64_t *)(threadLocalStorage[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemOnError();
+      TerminateSystemOnError();
   }
   resourceIterator = threadLocalStorage[5];
   while (resourceIterator != 0) {
     validationFlag = (char *)(resourceIterator + 0x141);
     resourceIterator = *(int64_t *)(resourceIterator + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemOnError();
+        TerminateSystemOnError();
     }
   }
   exceptionHandlerPointer = (DataBuffer *)threadLocalStorage[3];
@@ -56627,8 +55722,7 @@ void UnwindCleanupPointerArray(DataBuffer exceptionContext,int64_t unwindContext
       resourcePointer = *(DataBuffer **)(exceptionHandlerContext + operationResult * 8);
       if (resourcePointer != (DataBuffer *)0x0) {
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -56637,8 +55731,7 @@ void UnwindCleanupPointerArray(DataBuffer exceptionContext,int64_t unwindContext
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -56663,8 +55756,7 @@ void Unwind_180905c20(DataBuffer operationBase,int64_t dataBuffer)
       resourcePointer = *(DataBuffer **)(exceptionHandlerContext + operationResult * 8);
       if (resourcePointer != (DataBuffer *)0x0) {
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -56673,8 +55765,7 @@ void Unwind_180905c20(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -56699,8 +55790,7 @@ void Unwind_180905c30(DataBuffer operationBase,int64_t dataBuffer)
       resourcePointer = *(DataBuffer **)(exceptionHandlerContext + operationResult * 8);
       if (resourcePointer != (DataBuffer *)0x0) {
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -56709,8 +55799,7 @@ void Unwind_180905c30(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -56735,8 +55824,7 @@ void Unwind_180905c40(DataBuffer operationBase,int64_t dataBuffer)
       resourcePointer = *(DataBuffer **)(exceptionHandlerContext + operationResult * 8);
       if (resourcePointer != (DataBuffer *)0x0) {
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -56745,8 +55833,7 @@ void Unwind_180905c40(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -56772,21 +55859,18 @@ void Unwind_180905c50(DataBuffer operationBase,int64_t dataBuffer)
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x40) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0x40) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0x38);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + 0x141);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x28);
@@ -56835,8 +55919,7 @@ void Unwind_180905c60(DataBuffer operationBase,int64_t dataBuffer)
       resourcePointer = *(DataBuffer **)(exceptionHandlerContext + operationResult * 8);
       if (resourcePointer != (DataBuffer *)0x0) {
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -56845,8 +55928,7 @@ void Unwind_180905c60(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x348) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 0x338) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -56871,8 +55953,7 @@ void Unwind_180905c80(DataBuffer operationBase,int64_t dataBuffer)
       resourcePointer = *(DataBuffer **)(exceptionHandlerContext + operationResult * 8);
       if (resourcePointer != (DataBuffer *)0x0) {
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -56881,8 +55962,7 @@ void Unwind_180905c80(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -56907,8 +55987,7 @@ void CleanupExceptionHandlersDuringUnwind(DataBuffer exceptionContext, int64_t u
       resourcePointer = *(DataBuffer **)(exceptionHandlerContext + operationResult * 8);
       if (resourcePointer != (DataBuffer *)0x0) {
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -56917,8 +55996,7 @@ void CleanupExceptionHandlersDuringUnwind(DataBuffer exceptionContext, int64_t u
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -56942,20 +56020,17 @@ void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t thread
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
     validationFlag = (char *)(resourceIterator + 0x141);
     resourceIterator = *(int64_t *)(resourceIterator + 0x138);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = (DataBuffer *)contextPointer[3];
@@ -57264,8 +56339,7 @@ void HandleSystemException(DataBuffer exceptionContext,int64_t contextData)
   CleanupSystem(systemContext);
   ConfigureSystemParametersA0(*(int64_t *)(contextData + 0x70) + 8,0);
   ExecuteSystemOperation(*(DataBuffer *)(systemContext + 0x50),*(DataBuffer *)(contextData + 0x78));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+    _CxxThrowException(0,0);
 }
 
 
@@ -57391,21 +56465,18 @@ void Unwind_180905ea0(DataBuffer operationBase,int64_t dataBuffer)
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xf8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xf8) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0xf0);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + 0x3541);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x3538);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = *(DataBuffer **)(resourceIterator + 0xe0);
@@ -57451,8 +56522,7 @@ void UnwindProcessDataValidation(DataBuffer exceptionContext, int64_t exceptionH
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -57472,8 +56542,7 @@ void UnwindValidateMemoryAccess(DataBuffer exceptionContext, int64_t memoryConte
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -57506,20 +56575,17 @@ void CleanupSystemResources(DataBuffer systemContext,int64_t contextHandle)
       *(DataBuffer *)validationStatus[3] = 0;
     }
     (**(FunctionPointer**)*validationStatus)(validationStatus,0);
-                    // WARNING: Subroutine does not return
-    ReleaseSystemResources(validationStatus);
+      ReleaseSystemResources(validationStatus);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
     validationFlag = (char *)(resourceIterator + 0x3541);
     resourceIterator = *(int64_t *)(resourceIterator + 0x3538);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = (DataBuffer *)contextPointer[3];
@@ -57635,20 +56701,17 @@ void UnwindCleanupThreadSpecificStorageAndExceptionHandlers(DataBuffer exception
       *(DataBuffer *)exceptionHandlerPointer[3] = 0;
     }
     (**(FunctionPointer**)*exceptionHandlerPointer)(exceptionHandlerPointer,0);
-                    // WARNING: Subroutine does not return
-    CleanupExceptionResources(exceptionHandlerPointer);
+      CleanupExceptionResources(exceptionHandlerPointer);
   }
   if ((threadSpecificStorage[6] != 0) && (*(int64_t *)(threadSpecificStorage[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemOnError();
+      TerminateSystemOnError();
   }
   resourceIterator = threadSpecificStorage[5];
   while (resourceIterator != 0) {
     validationFlag = (char *)(resourceIterator + 0x3541);
     resourceIterator = *(int64_t *)(resourceIterator + 0x3538);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemOnError();
+        TerminateSystemOnError();
     }
   }
   exceptionHandlerPointer = (DataBuffer *)threadSpecificStorage[3];
@@ -57696,8 +56759,7 @@ void UnwindCleanupThreadResourceQueue(DataBuffer exceptionContext, int64_t threa
   if (*resourceQueue == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemOnError();
+    TerminateSystemOnError();
 }
 
 
@@ -57738,21 +56800,18 @@ void Unwind_180905fa0(DataBuffer operationBase,int64_t dataBuffer)
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xf8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xf8) + 0x10) != 0)
      ) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   calculatedIndex = *(int64_t *)(resourceIterator + 0xf0);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + 0x3541);
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x3538);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = *(DataBuffer **)(resourceIterator + 0xe0);
@@ -57798,8 +56857,7 @@ void Unwind_180905fc0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -57821,20 +56879,17 @@ void Unwind_180905fe0(DataBuffer operationBase,int64_t dataBuffer)
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(validationStatusPointer);
+      TerminateSystemE0(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
     validationFlag = (char *)(resourceIterator + 0x3541);
     resourceIterator = *(int64_t *)(resourceIterator + 0x3538);
     if (*validationFlag != '\0') {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   validationStatusPointer = (DataBuffer *)contextPointer[3];
@@ -57974,8 +57029,7 @@ void ProcessSystemConfigurationIteratorOnException(DataBuffer operationBase,int6
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -58000,8 +57054,7 @@ void ExceptionCleanupWithMutexDestructionA(DataBuffer exceptionHandlerContext,in
   _Mtx_destroy_in_situ();
   exceptionHandlerContextPointer = (int64_t *)*dataContextPointer;
   if (exceptionHandlerContextPointer != dataContextPointer) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionHandlerContextPointer);
+      TerminateSystemE0(exceptionHandlerContextPointer);
   }
   return;
 }
@@ -58028,8 +57081,7 @@ void ExceptionCleanupWithMutexDestructionB(DataBuffer exceptionHandlerContext,in
   _Mtx_destroy_in_situ();
   exceptionHandlerContextPointer = (int64_t *)*dataContextPointer;
   if (exceptionHandlerContextPointer != dataContextPointer) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionHandlerContextPointer);
+      TerminateSystemE0(exceptionHandlerContextPointer);
   }
   return;
 }
@@ -58057,8 +57109,7 @@ void ExceptionCleanupWithMutexDestructionB(DataBuffer operationBase,int64_t data
   _Mtx_destroy_in_situ();
   exceptionHandlerContextPointer = (int64_t *)*pdataContext;
   if (exceptionHandlerContextPointer != pdataContext) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionHandlerContextPointer);
+      TerminateSystemE0(exceptionHandlerContextPointer);
   }
   return;
 }
@@ -58083,8 +57134,7 @@ void ValidateExceptionContextAndTerminate(DataBuffer operationBase,int64_t dataB
   
   exceptionHandlerContextPointer = (int64_t *)**(int64_t **)(dataBuffer + 0x68);
   if (exceptionHandlerContextPointer != *(int64_t **)(dataBuffer + 0x68)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionHandlerContextPointer);
+      TerminateSystemE0(exceptionHandlerContextPointer);
   }
   return;
 }
@@ -58125,8 +57175,7 @@ void ValidateExceptionContextAndTerminateB(DataBuffer operationBase,int64_t data
   
   exceptionHandlerContextPointer = (int64_t *)**(int64_t **)(dataBuffer + 0x70);
   if (exceptionHandlerContextPointer != *(int64_t **)(dataBuffer + 0x70)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionHandlerContextPointer);
+      TerminateSystemE0(exceptionHandlerContextPointer);
   }
   return;
 }
@@ -58211,8 +57260,7 @@ void ValidateExceptionContextAndTerminateC(DataBuffer operationBase,int64_t data
   
   exceptionHandlerContextPointer = (int64_t *)**(int64_t **)(dataBuffer + 0x40);
   if (exceptionHandlerContextPointer != *(int64_t **)(dataBuffer + 0x40)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionHandlerContextPointer);
+      TerminateSystemE0(exceptionHandlerContextPointer);
   }
   return;
 }
@@ -58242,8 +57290,7 @@ void Unwind_180906130(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContextPointer = (int64_t *)**(int64_t **)(dataBuffer + 0x40);
   if (exceptionHandlerContextPointer != *(int64_t **)(dataBuffer + 0x40)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionHandlerContextPointer);
+      TerminateSystemE0(exceptionHandlerContextPointer);
   }
   return;
 }
@@ -58509,7 +57556,6 @@ void Unwind_1809061f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统句柄清理函数F0
@@ -58608,8 +57654,7 @@ void InitializeExceptionHandlerB(DataBuffer exceptionHandler,int64_t systemConte
 {
   *(DataBuffer *)(systemContext + 0xb0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(systemContext + 0xb8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(systemContext + 0xb8) = 0;
   *(DataWord *)(systemContext + 200) = 0;
@@ -58781,8 +57826,7 @@ void Unwind_1809063f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0xe0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -58826,8 +57870,7 @@ void Unwind_180906460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0xe0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -58872,30 +57915,25 @@ void Unwind_180906480(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x82) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x82) = 0;
   if (*(int64_t *)(dataBuffer + 0x8a) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x8a) = 0;
   if (*(int64_t *)(dataBuffer + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x70) = 0;
   if (*(int64_t *)(dataBuffer + 0x78) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x78) = 0;
   ProcessSystemOperationA0();
   *(DataBuffer *)(dataBuffer + 0x30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x38) = 0;
   *(DataWord *)(dataBuffer + 0x48) = 0;
@@ -58916,32 +57954,27 @@ void Unwind_180906490(DataBuffer operationBase,int64_t dataBuffer)
   while( true ) {
     if (pdataContext == exceptionHandlerContextPointer) {
       if (*(int64_t *)(dataBuffer + 0x50) != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       return;
     }
     if (*(int64_t *)((int64_t)pdataContext + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *(DataBuffer *)((int64_t)pdataContext + 0x12) = 0;
     if (*(int64_t *)((int64_t)pdataContext + 0x1a) != 0) break;
     *(DataBuffer *)((int64_t)pdataContext + 0x1a) = 0;
     if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *pdataContext = 0;
     if (pdataContext[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     pdataContext[1] = 0;
     pdataContext = (int64_t *)((int64_t)pdataContext + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -58950,13 +57983,11 @@ void Unwind_1809064a0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(int64_t *)(dataBuffer + 0x70) = 0;
   if (*(int64_t *)(dataBuffer + 0x78) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x78) = 0;
   return;
@@ -58968,13 +57999,11 @@ void Unwind_1809064b0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x82) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(int64_t *)(dataBuffer + 0x82) = 0;
   if (*(int64_t *)(dataBuffer + 0x8a) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x8a) = 0;
   return;
@@ -58995,32 +58024,27 @@ void Unwind_1809064c0(DataBuffer operationBase,int64_t dataBuffer)
   while( true ) {
     if (pcalculatedOffset == exceptionHandlerContextPointer) {
       if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       return;
     }
     if (*(int64_t *)((int64_t)pcalculatedOffset + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *(DataBuffer *)((int64_t)pcalculatedOffset + 0x12) = 0;
     if (*(int64_t *)((int64_t)pcalculatedOffset + 0x1a) != 0) break;
     *(DataBuffer *)((int64_t)pcalculatedOffset + 0x1a) = 0;
     if (*pcalculatedOffset != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *pcalculatedOffset = 0;
     if (pcalculatedOffset[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     pcalculatedOffset[1] = 0;
     pcalculatedOffset = (int64_t *)((int64_t)pcalculatedOffset + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -59038,32 +58062,27 @@ void Unwind_1809064d0(DataBuffer operationBase,int64_t dataBuffer)
   while( true ) {
     if (pcalculatedOffset == exceptionHandlerContextPointer) {
       if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       return;
     }
     if (*(int64_t *)((int64_t)pcalculatedOffset + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *(DataBuffer *)((int64_t)pcalculatedOffset + 0x12) = 0;
     if (*(int64_t *)((int64_t)pcalculatedOffset + 0x1a) != 0) break;
     *(DataBuffer *)((int64_t)pcalculatedOffset + 0x1a) = 0;
     if (*pcalculatedOffset != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *pcalculatedOffset = 0;
     if (pcalculatedOffset[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     pcalculatedOffset[1] = 0;
     pcalculatedOffset = (int64_t *)((int64_t)pcalculatedOffset + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -59075,13 +58094,11 @@ void Unwind_1809064e0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(int64_t *)(exceptionHandlerContext + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(int64_t *)(exceptionHandlerContext + 0x40) = 0;
   if (*(int64_t *)(exceptionHandlerContext + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x48) = 0;
   return;
@@ -59096,13 +58113,11 @@ void Unwind_1809064f0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(int64_t *)(exceptionHandlerContext + 0x52) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(int64_t *)(exceptionHandlerContext + 0x52) = 0;
   if (*(int64_t *)(exceptionHandlerContext + 0x5a) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x5a) = 0;
   return;
@@ -59123,32 +58138,27 @@ void Unwind_180906500(DataBuffer operationBase,int64_t dataBuffer)
   while( true ) {
     if (pcalculatedOffset == exceptionHandlerContextPointer) {
       if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       return;
     }
     if (*(int64_t *)((int64_t)pcalculatedOffset + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *(DataBuffer *)((int64_t)pcalculatedOffset + 0x12) = 0;
     if (*(int64_t *)((int64_t)pcalculatedOffset + 0x1a) != 0) break;
     *(DataBuffer *)((int64_t)pcalculatedOffset + 0x1a) = 0;
     if (*pcalculatedOffset != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *pcalculatedOffset = 0;
     if (pcalculatedOffset[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     pcalculatedOffset[1] = 0;
     pcalculatedOffset = (int64_t *)((int64_t)pcalculatedOffset + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -59166,32 +58176,27 @@ void Unwind_180906510(DataBuffer operationBase,int64_t dataBuffer)
   while( true ) {
     if (pcalculatedOffset == exceptionHandlerContextPointer) {
       if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
       return;
     }
     if (*(int64_t *)((int64_t)pcalculatedOffset + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *(DataBuffer *)((int64_t)pcalculatedOffset + 0x12) = 0;
     if (*(int64_t *)((int64_t)pcalculatedOffset + 0x1a) != 0) break;
     *(DataBuffer *)((int64_t)pcalculatedOffset + 0x1a) = 0;
     if (*pcalculatedOffset != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *pcalculatedOffset = 0;
     if (pcalculatedOffset[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     pcalculatedOffset[1] = 0;
     pcalculatedOffset = (int64_t *)((int64_t)pcalculatedOffset + 0x24);
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -59236,13 +58241,11 @@ void Unwind_180906550(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x58);
   if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *exceptionHandlerContextPointer = 0;
   if (exceptionHandlerContextPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionHandlerContextPointer[1] = 0;
   return;
@@ -59257,13 +58260,11 @@ void Unwind_180906560(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x58);
   if (*(int64_t *)(exceptionHandlerContext + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(int64_t *)(exceptionHandlerContext + 0x12) = 0;
   if (*(int64_t *)(exceptionHandlerContext + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a) = 0;
   return;
@@ -59278,13 +58279,11 @@ void Unwind_180906570(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x50);
   if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *exceptionHandlerContextPointer = 0;
   if (exceptionHandlerContextPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionHandlerContextPointer[1] = 0;
   return;
@@ -59299,13 +58298,11 @@ void Unwind_180906580(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x50);
   if (*(int64_t *)(exceptionHandlerContext + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(int64_t *)(exceptionHandlerContext + 0x12) = 0;
   if (*(int64_t *)(exceptionHandlerContext + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a) = 0;
   return;
@@ -59320,13 +58317,11 @@ void Unwind_180906590(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x60);
   if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *exceptionHandlerContextPointer = 0;
   if (exceptionHandlerContextPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionHandlerContextPointer[1] = 0;
   return;
@@ -59341,13 +58336,11 @@ void Unwind_1809065a0(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
   if (*(int64_t *)(exceptionHandlerContext + 0x12) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(int64_t *)(exceptionHandlerContext + 0x12) = 0;
   if (*(int64_t *)(exceptionHandlerContext + 0x1a) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a) = 0;
   return;
@@ -59596,8 +58589,7 @@ void Unwind_180906700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -59673,8 +58665,7 @@ void Unwind_1809067b0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x48);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -59797,8 +58788,7 @@ void Unwind_180906890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -59875,8 +58865,7 @@ void ProcessExceptionDataBuffer(DataBuffer operationBase,int64_t dataBuffer,Data
   if (*processingContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -60333,16 +59322,14 @@ void ProcessExceptionDataBufferA0(DataBuffer operationBase,int64_t dataBuffer)
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x88); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 6) {
     *resourcePointer = &TemporaryExceptionHandler;
     if (resourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     resourcePointer[1] = 0;
     *(DataWord *)(resourcePointer + 3) = 0;
     *resourcePointer = &DefaultExceptionHandlerB;
   }
   if (*(int64_t *)(dataBuffer + 0x88) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -60416,16 +59403,14 @@ void ProcessExceptionDataBufferA1(DataBuffer operationBase,int64_t dataBuffer)
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x88); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 6) {
     *resourcePointer = &TemporaryExceptionHandler;
     if (resourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     resourcePointer[1] = 0;
     *(DataWord *)(resourcePointer + 3) = 0;
     *resourcePointer = &DefaultExceptionHandlerB;
   }
   if (*(int64_t *)(dataBuffer + 0x88) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -60480,16 +59465,14 @@ void Unwind_180906b60(DataBuffer operationBase,int64_t dataBuffer)
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 6) {
     *validationStatusPointer = &TemporaryExceptionHandler;
     if (validationStatusPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     validationStatusPointer[1] = 0;
     *(DataWord *)(validationStatusPointer + 3) = 0;
     *validationStatusPointer = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -60665,7 +59648,6 @@ void CleanupExceptionResources(DataBuffer exceptionContext, int64_t cleanupConte
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 重置系统事件状态
@@ -60682,22 +59664,19 @@ void ResetSystemEventState(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(ExceptionEventHandle);
+                     0x0001808fcc41. Too many branches
+                        ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBits = (byte)ExceptionEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBits |
+                     0x0001808ffe70. Too many branches
+                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBits |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBits))(0x180c82238);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 设置默认异常处理器B
@@ -60829,15 +59808,13 @@ void ValidateContextStateA(DataBuffer exceptionHandlerContext, int64_t validatio
   for (contextPointer = *(int64_t **)(validationRange + 0xf8); contextPointer != *(int64_t **)(validationRange + 0x100);
       contextPointer = contextPointer + 4) {
     if (*contextPointer != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   if (*(int64_t *)(validationRange + 0xf8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -60857,15 +59834,13 @@ void ValidateContextStateB(DataBuffer exceptionHandlerContext, int64_t validatio
   for (contextPointer = *(int64_t **)(validationRange + 0xd8); contextPointer != *(int64_t **)(validationRange + 0xe0);
       contextPointer = contextPointer + 4) {
     if (*contextPointer != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   if (*(int64_t *)(validationRange + 0xd8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -61045,15 +60020,13 @@ void ValidateExceptionContextState6cb0(DataBuffer operationBase, int64_t dataBuf
   for (exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x30); exceptionHandlerContextPointer != *(int64_t **)(dataBuffer + 0x38);
       exceptionHandlerContextPointer = exceptionHandlerContextPointer + 4) {
     if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   if (*(int64_t *)(dataBuffer + 0x30) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -61153,15 +60126,13 @@ void Unwind_180906ce0(DataBuffer operationBase,int64_t dataBuffer)
   for (exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0xf8); exceptionHandlerContextPointer != *(int64_t **)(dataBuffer + 0x100);
       exceptionHandlerContextPointer = exceptionHandlerContextPointer + 4) {
     if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   if (*(int64_t *)(dataBuffer + 0xf8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -61282,15 +60253,13 @@ void Unwind_180906d20(DataBuffer operationBase,int64_t dataBuffer)
   for (exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0xd8); exceptionHandlerContextPointer != *(int64_t **)(dataBuffer + 0xe0);
       exceptionHandlerContextPointer = exceptionHandlerContextPointer + 4) {
     if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   if (*(int64_t *)(dataBuffer + 0xd8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -61692,15 +60661,13 @@ void ValidateSystemContextA0(DataBuffer operationBase,int64_t dataBuffer)
   for (exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x30); exceptionHandlerContextPointer != *(int64_t **)(dataBuffer + 0x38);
       exceptionHandlerContextPointer = exceptionHandlerContextPointer + 4) {
     if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   if (*(int64_t *)(dataBuffer + 0x30) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -61794,15 +60761,13 @@ void CleanupSystemValidationA0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x40);
   for (pdataContext = (int64_t *)*exceptionHandlerContextPointer; pdataContext != (int64_t *)exceptionHandlerContextPointer[1]; pdataContext = pdataContext + 4) {
     if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   if (*exceptionHandlerContextPointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -61830,15 +60795,13 @@ void ValidateSystemContextH(DataBuffer operationBase, int64_t dataBuffer)
   exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x40);
   for (pdataContext = (int64_t *)*exceptionHandlerContextPointer; pdataContext != (int64_t *)exceptionHandlerContextPointer[1]; pdataContext = pdataContext + 4) {
     if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   if (*exceptionHandlerContextPointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -62896,7 +61859,6 @@ void ExecuteValidatorAtOffset20And18(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 重置系统状态标志
@@ -62921,15 +61883,13 @@ void ResetSystemStatusFlag(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(ExceptionEventHandle);
+                     0x0001808fcc41. Too many branches
+                        ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                     0x0001808ffe70. Too many branches
+                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
@@ -62998,8 +61958,7 @@ void CheckSystemTerminationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -63090,8 +62049,7 @@ void CheckSystemTerminationA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x20) + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -63111,8 +62069,7 @@ void CheckSystemTerminationA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x20) + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -63123,8 +62080,7 @@ void Unwind_180907200(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x20) + 0x68) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -63148,8 +62104,7 @@ void ValidateSystemStatusOffset90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x20) + 0x90) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -63178,8 +62133,7 @@ void ValidateAndResetSystemContext(DataBuffer operationBase,int64_t dataBuffer)
   ValidateSystemStatusA0(*(DataBuffer *)(exceptionHandlerContext + 0xb0));
   *(DataBuffer *)(exceptionHandlerContext + 0xb0) = 0;
   if (*(int64_t *)(exceptionHandlerContext + 0xb8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb8) = 0;
   return;
@@ -63204,8 +62158,7 @@ void ValidateSystemStatusOffsetD0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x20) + 0xd0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -63229,8 +62182,7 @@ void ValidateSystemStatusOffset18(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x18) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -63254,8 +62206,7 @@ void ValidateSystemStatusOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -63279,8 +62230,7 @@ void ValidateSystemStatusOffset68(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x68) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -63304,8 +62254,7 @@ void ValidateSystemStatusOffset90A(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x90) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -63334,8 +62283,7 @@ void ValidateAndResetSystemContextA(DataBuffer operationBase,int64_t dataBuffer)
   ValidateSystemStatusA0(*(DataBuffer *)(exceptionHandlerContext + 0xb0));
   *(DataBuffer *)(exceptionHandlerContext + 0xb0) = 0;
   if (*(int64_t *)(exceptionHandlerContext + 0xb8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb8) = 0;
   return;
@@ -63360,8 +62308,7 @@ void ValidateSystemStatusOffsetD0A(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0xd0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -64410,8 +63357,7 @@ void Unwind_1809076c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x60) + 8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -64422,8 +63368,7 @@ void Unwind_1809076d0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x60) + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -64434,8 +63379,7 @@ void Unwind_1809076e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -64446,8 +63390,7 @@ void Unwind_1809076f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -64462,8 +63405,7 @@ void Unwind_180907700(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -64487,19 +63429,16 @@ void Unwind_180907710(DataBuffer operationBase,int64_t dataBuffer)
     calculatedOffset = __RTCastToVoid(exceptionDataBuffer);
     (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,0);
     if (calculatedOffset != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0(calculatedOffset);
+        TerminateSystemE0(calculatedOffset);
     }
   }
   resourcePointer[0x11] = 0;
   if (resourcePointer[0x12] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourcePointer[0xd] = &TemporaryExceptionHandler;
   if (resourcePointer[0xe] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourcePointer[0xe] = 0;
   *(DataWord *)(resourcePointer + 0x10) = 0;
@@ -64539,19 +63478,16 @@ void Unwind_180907740(DataBuffer operationBase,int64_t dataBuffer)
     calculatedOffset = __RTCastToVoid(exceptionDataBuffer);
     (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,0);
     if (calculatedOffset != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0(calculatedOffset);
+        TerminateSystemE0(calculatedOffset);
     }
   }
   resourcePointer[0x11] = 0;
   if (resourcePointer[0x12] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourcePointer[0xd] = &TemporaryExceptionHandler;
   if (resourcePointer[0xe] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourcePointer[0xe] = 0;
   *(DataWord *)(resourcePointer + 0x10) = 0;
@@ -64577,7 +63513,6 @@ void Unwind_180907750(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 设置默认异常处理器A0
@@ -64597,7 +63532,6 @@ void SetDefaultExceptionHandlerA0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 设置默认异常处理器A1
@@ -64617,7 +63551,6 @@ void SetDefaultExceptionHandlerA1(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180907790(void)
 
@@ -64628,7 +63561,6 @@ void Unwind_180907790(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809077a0(void)
 
@@ -64639,7 +63571,6 @@ void Unwind_1809077a0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809077b0(void)
 
@@ -64650,7 +63581,6 @@ void Unwind_1809077b0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化异常处理器指针A5
@@ -64670,7 +63600,6 @@ void Unwind_1809077c0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化异常处理器指针A6
@@ -64690,7 +63619,6 @@ void Unwind_1809077d0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化异常处理器指针A7
@@ -64710,7 +63638,6 @@ void Unwind_1809077e0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 初始化异常处理器指针A8
@@ -64745,8 +63672,7 @@ void Unwind_180907800(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -64768,8 +63694,7 @@ void Unwind_180907810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -64804,8 +63729,7 @@ void Unwind_180907840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0xc0);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x20) + 0xb0,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -64832,8 +63756,7 @@ void ExecuteExceptionHandlingA8(DataBuffer operationBase,int64_t dataBuffer,Data
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0xf0);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x20) + 0xe0,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -64901,8 +63824,7 @@ void Unwind_1809078a0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -64937,8 +63859,7 @@ void ProcessExceptionChainAndCleanup(DataBuffer exceptionContext, int64_t handle
   if (*handlerTablePointer == 0) {
     return;
   }
-  // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -65039,8 +63960,7 @@ void Unwind_180907900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x28),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -65055,8 +63975,7 @@ void Unwind_180907910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x28),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -65078,8 +63997,7 @@ void Unwind_180907920(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -65112,8 +64030,7 @@ void Unwind_180907950(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xb8);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -65131,8 +64048,7 @@ void Unwind_180907960(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xb0);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -65142,7 +64058,6 @@ void Unwind_180907960(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180907970(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -65188,8 +64103,7 @@ void Unwind_1809079a0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
   *(DataBuffer *)(exceptionHandlerContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x30) = 0;
@@ -65217,8 +64131,7 @@ void ExceptionContextInitializerA0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
   *(DataBuffer *)(exceptionHandlerContext + 0x38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x40) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x50) = 0;
@@ -65246,8 +64159,7 @@ void ExceptionContextInitializerA1(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
   *(DataBuffer *)(exceptionHandlerContext + 0x58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x60) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x70) = 0;
@@ -65268,8 +64180,7 @@ void ResourceReferenceManagerA0(DataBuffer operationBase,int64_t dataBuffer)
   calculatedOffset = *(int64_t *)(contextOffset + 0x80);
   *(uint8_t **)(calculatedOffset + 0xd8) = &DefaultExceptionHandlerB;
   if (*(int64_t *)(calculatedOffset + 0xa8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   CalculateSystemValue(calculatedOffset + 0x78);
   if ((1 < *(uint64_t *)(calculatedOffset + 0x88)) &&
@@ -65344,8 +64255,7 @@ void Unwind_180907a00(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x70);
   *exceptionDataBuffer = &SystemExceptionDataBufferA;
   if (exceptionDataBuffer[3] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataWord *)(exceptionDataBuffer + 4) = 0;
   exceptionDataBuffer[3] = 0;
@@ -65531,8 +64441,7 @@ void Unwind_180907a90(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x28);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -65687,8 +64596,7 @@ void Unwind_180907b70(DataBuffer operationBase,int64_t dataBuffer)
   *(uint8_t **)(dataBuffer + 0x50) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(dataBuffer + 0x30) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x38) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x38) = 0;
   *(DataWord *)(dataBuffer + 0x48) = 0;
@@ -65757,8 +64665,7 @@ void Unwind_180907c10(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 600);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -65968,8 +64875,7 @@ void Unwind_180907cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0x168) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -65997,8 +64903,7 @@ void Unwind_180907cf0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x1c0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x1c8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x1c8) = 0;
   *(DataWord *)(dataBuffer + 0x1d8) = 0;
@@ -66016,8 +64921,7 @@ void Unwind_180907d00(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x1e8);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -66059,8 +64963,7 @@ void Unwind_180907d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0x168) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -66242,8 +65145,7 @@ void Unwind_180907e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0x28) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -66510,7 +65412,6 @@ void Unwind_180907f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统句柄清理函数
@@ -66555,11 +65456,9 @@ void Unwind_180907f80(DataBuffer cleanupContext, int64_t pointerContext)
     return;
   }
   if (((char)pointerToCheck[3] == '\0') && (*pointerToCheck != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0(pointerToCheck);
+    TerminateSystemE0(pointerToCheck);
 }
 
 
@@ -66576,8 +65475,7 @@ void Unwind_180907f90(DataBuffer resetContext, int64_t resourceContext)
 {
   *(DataBuffer *)(resourceContext + 0xa0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(resourceContext + 0xa8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(resourceContext + 0xa8) = 0;
   *(DataWord *)(resourceContext + 0xb8) = 0;
@@ -66592,8 +65490,7 @@ void Unwind_180907fa0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0xa0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xa8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xa8) = 0;
   *(DataWord *)(dataBuffer + 0xb8) = 0;
@@ -66632,8 +65529,7 @@ void Unwind_180907ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x78);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(dataBuffer + 0x68,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -66700,8 +65596,7 @@ void HandleExceptionA1(DataBuffer ContextParameter, int64_t SystemContext, DataB
   ExceptionHandlerPointer = *(DataBuffer **)(SystemContext + 0x78);
   if (ExceptionHandlerPointer != (DataBuffer *)0x0) {
     ProcessSystemException(SystemContext + 0x68, *ExceptionHandlerPointer, ExceptionHandler, RecoveryHandler, SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    CleanupExceptionHandler(ExceptionHandlerPointer);
+      CleanupExceptionHandler(ExceptionHandlerPointer);
   }
   return;
 }
@@ -66726,8 +65621,7 @@ void HandleExceptionA2(DataBuffer ContextParameter, int64_t SystemContext, DataB
   ExceptionHandlerPointer = *(DataBuffer **)(SystemContext + 0x78);
   if (ExceptionHandlerPointer != (DataBuffer *)0x0) {
     ProcessSystemException(SystemContext + 0x68, *ExceptionHandlerPointer, ExceptionHandler, RecoveryHandler, SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    CleanupExceptionHandler(ExceptionHandlerPointer);
+      CleanupExceptionHandler(ExceptionHandlerPointer);
   }
   return;
 }
@@ -66778,7 +65672,6 @@ void HandleExceptionA3(DataBuffer ContextParameter, int64_t SystemContext)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180908040(void)
 
@@ -66790,22 +65683,19 @@ void Unwind_180908040(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(ExceptionEventHandle);
+                     0x0001808fcc41. Too many branches
+                        ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                     0x0001808ffe70. Too many branches
+                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180908050(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -66818,15 +65708,13 @@ void Unwind_180908050(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer 
   *ValidationContextPointerArray = (int64_t)exceptionHandlerContextPointer;
   ValidationContextPointerArray[2] = (int64_t)exceptionHandlerContextPointer;
   ValidationContextStatusFlag = 0;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(ValidationContextPointerArray,0x58);
+                     0x0001808ffc83. Too many branches
+                      free(ValidationContextPointerArray,0x58);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 验证上下文清理函数
@@ -66838,23 +65726,20 @@ void Unwind_180908050(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer 
 void CleanupValidationContext(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(ValidationContextPointerArray,0x58);
+                     0x0001808ffc83. Too many branches
+                      free(ValidationContextPointerArray,0x58);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 释放验证上下文指针数组的函数
 void FreeValidationContextPointerArray(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(ValidationContextPointerArray,0x58);
+                     0x0001808ffc83. Too many branches
+                      free(ValidationContextPointerArray,0x58);
   return;
 }
 
@@ -66865,8 +65750,7 @@ void SystemExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   HandleSystemException(operationBase,*(DataBuffer *)(dataBuffer + 0x40));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+    _CxxThrowException(0,0);
 }
 
 
@@ -66897,8 +65781,7 @@ void ProcessDataBufferA0(DataBuffer contextParameter, int64_t systemContext, Dat
   systemDataBufferPointer = *(DataBuffer **)(dataContext + 0x40);
   if (systemDataBufferPointer != (DataBuffer *)0x0) {
     ValidateSystemDataBuffer(dataContext + 0x30,*systemDataBufferPointer,dataParameter,validationParameter,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    CleanupSystemDataPointer(systemDataBufferPointer);
+      CleanupSystemDataPointer(systemDataBufferPointer);
   }
   return;
 }
@@ -66931,8 +65814,7 @@ void ProcessDataBufferA1(DataBuffer contextParameter, int64_t systemContext, Dat
   systemDataBufferPointer = *(DataBuffer **)(dataContext + 0x20);
   if (systemDataBufferPointer != (DataBuffer *)0x0) {
     ValidateSystemDataBuffer(dataContext + 0x10,*systemDataBufferPointer,dataParameter,validationParameter,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    CleanupSystemDataPointer(systemDataBufferPointer);
+      CleanupSystemDataPointer(systemDataBufferPointer);
   }
   return;
 }
@@ -66947,8 +65829,7 @@ void Unwind_1809080c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x78),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -66974,8 +65855,7 @@ void Unwind_1809080e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x78) + 0x70);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x78) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67010,8 +65890,7 @@ void Unwind_180908110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67026,8 +65905,7 @@ void Unwind_180908120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67042,8 +65920,7 @@ void Unwind_180908130(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x98);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -67085,8 +65962,7 @@ void Unwind_180908160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(dataContext + 0x20);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(dataContext + 0x10,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67101,8 +65977,7 @@ void Unwind_180908170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x60),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67128,8 +66003,7 @@ void Unwind_180908190(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0x70);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x60) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67170,8 +66044,7 @@ void Unwind_1809081c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(dataContext + 0x20);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(dataContext + 0x10,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67186,8 +66059,7 @@ void Unwind_1809081d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67213,8 +66085,7 @@ void Unwind_1809081f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x70);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x40) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -67259,8 +66130,7 @@ void HandleExceptionAtOffset58(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + 0x58));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+    _CxxThrowException(0,0);
 }
 
 
@@ -67275,8 +66145,7 @@ void HandleExceptionAtOffset90(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + 0x90));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+    _CxxThrowException(0,0);
 }
 
 
@@ -67291,8 +66160,7 @@ void HandleExceptionAtOffset40(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + 0x40));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+    _CxxThrowException(0,0);
 }
 
 
@@ -67307,8 +66175,7 @@ void HandleExceptionAtOffsetA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   HandleSystemException(operationBase, *(DataBuffer *)(dataBuffer + 0xa0));
-                    // WARNING: Subroutine does not return
-  _CxxThrowException(0,0);
+    _CxxThrowException(0,0);
 }
 
 
@@ -67368,8 +66235,7 @@ void CleanupExceptionDataBuffer(DataBuffer operationBase, int64_t dataBuffer, Da
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -67450,8 +66316,7 @@ void Unwind_180908460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -67625,7 +66490,6 @@ void CleanupResourceHandlerA2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 原始函数名：Unwind_1809085a0 - 异常处理器初始化器A0
 // 功能：初始化异常处理器指针
@@ -67648,7 +66512,6 @@ void ExceptionHandlerInitializerA0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 原始函数名：Unwind_1809085b0 - 异常处理器初始化器A1
 // 功能：初始化异常处理器指针A1
@@ -67982,8 +66845,7 @@ void Unwind_180908730(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -68023,8 +66885,7 @@ void Unwind_180908770(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -68120,8 +66981,7 @@ void Unwind_1809087d0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x160) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -68277,8 +67137,7 @@ void Unwind_180908860(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x160) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -68413,8 +67272,7 @@ void SetValidationContextA0(DataBuffer exceptionContext, int64_t stackFrame)
   exceptionHandlerContext = *(int64_t *)(stackFrame + 0x70);
   *(DataBuffer *)(exceptionHandlerContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x30) = 0;
@@ -68442,8 +67300,7 @@ void SetValidationContextA1(DataBuffer exceptionContext, int64_t stackFrame)
   exceptionHandlerContext = *(int64_t *)(stackFrame + 0x20);
   *(DataBuffer *)(exceptionHandlerContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x30) = 0;
@@ -68613,7 +67470,6 @@ void CleanupSystemMutexB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 释放系统互斥锁A10
@@ -69113,8 +67969,7 @@ void Unwind_180908b00(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x30);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -69263,8 +68118,7 @@ void Unwind_180908ba0(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 0xa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xb0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xb0) = 0;
   *(DataWord *)(dataBuffer + 0xc0) = 0;
@@ -69314,8 +68168,7 @@ void ExceptionHandlerSetupRoutine(void* handlerContext, int64_t contextData)
   }
   *(DataBuffer *)(contextData + 0x48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(contextData + 0x50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(contextData + 0x50) = 0;
   *(DataWord *)(contextData + 0x60) = 0;
@@ -69348,8 +68201,7 @@ void ExceptionHandlerContextValidator(void* validatorContext, int64_t contextDat
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -69378,8 +68230,7 @@ void ExceptionHandlerResetRoutine(void* resetContext, int64_t contextData)
 {
   *(DataBuffer *)(contextData + 0xa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(contextData + 0xb0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(contextData + 0xb0) = 0;
   *(DataWord *)(contextData + 0xc0) = 0;
@@ -69425,8 +68276,7 @@ void Unwind_180908c30(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x50) = 0;
   *(DataWord *)(dataBuffer + 0x60) = 0;
@@ -69469,8 +68319,7 @@ void Unwind_180908c60(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x1b8);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -69539,7 +68388,6 @@ void Unwind_180908d00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180908d30(void)
 
@@ -69551,22 +68399,19 @@ void Unwind_180908d30(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(ExceptionEventHandle);
+                     0x0001808fcc41. Too many branches
+                        ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                     0x0001808ffe70. Too many branches
+                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180908d40(void)
 
@@ -69624,8 +68469,7 @@ void Unwind_180908db0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x108);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -69643,8 +68487,7 @@ void Unwind_180908dc0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x108);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -69791,8 +68634,7 @@ void Unwind_180908e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0x30);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x60) + 0x20,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -69935,8 +68777,7 @@ void Unwind_180908e90(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -69949,9 +68790,8 @@ void Unwind_180908e90(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908ea0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180908ea7. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(*(DataBuffer *)(dataBuffer + 0x40));
+                     0x000180908ea7. Too many branches
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(*(DataBuffer *)(dataBuffer + 0x40));
   return;
 }
 
@@ -69965,9 +68805,8 @@ void Unwind_180908eb0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t **)(dataBuffer + 0x30) != (int64_t *)0x0) {
     exceptionDataBuffer = (DataBuffer *)(**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x30) + 0x10))();
     if (exceptionDataBuffer != (DataBuffer *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x00018009fb51. Too many branches
-                    // WARNING: Treating indirect jump as call
-      (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
+                     0x00018009fb51. Too many branches
+                          (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
       return;
     }
   }
@@ -70014,9 +68853,8 @@ void Unwind_180908ee0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908ef0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180908ef7. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1_Lockit_std__QEAA_XZ(dataBuffer + 0x60);
+                     0x000180908ef7. Too many branches
+                      __1_Lockit_std__QEAA_XZ(dataBuffer + 0x60);
   return;
 }
 
@@ -70029,9 +68867,8 @@ void Unwind_180908f00(DataBuffer operationBase,int64_t dataBuffer)
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x70);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x00018009f9c0. Too many branches
-                    // WARNING: Treating indirect jump as call
-    (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
+                     0x00018009f9c0. Too many branches
+                        (**(FunctionPointer**)*exceptionDataBuffer)(exceptionDataBuffer,1);
     return;
   }
   return;
@@ -70042,9 +68879,8 @@ void Unwind_180908f00(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908f10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180908f22. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
+                     0x000180908f22. Too many branches
+                      __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
   return;
 }
 
@@ -70071,9 +68907,8 @@ void Unwind_180908f30(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
     InitializeDataBuffer(pmemoryBaseAddress);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
+                     0x00018009fbce. Too many branches
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -70240,9 +69075,8 @@ void SystemValidationContextHandler(DataBuffer operationBase, int64_t dataBuffer
   *(int *)((int64_t)operationResult + -0xac + exceptionHandlerContext) = operationResult + -0xa8;
   ExecuteSystemCommand(dataBuffer + 0x88);
   BasicOStreamFlush(dataBuffer + 0x90);
-                    // WARNING: Could not recover jumptable at 0x00018009fc52. Too many branches
-                    // WARNING: Treating indirect jump as call
-  BasicIoStreamCleanup(exceptionHandlerContext);
+                     0x00018009fc52. Too many branches
+                      BasicIoStreamCleanup(exceptionHandlerContext);
   return;
 }
 
@@ -70281,9 +69115,8 @@ void SystemStatusFlagCleanup(DataBuffer operationBase, int64_t dataBuffer)
  */
 void SystemOutputStreamCleanup(DataBuffer operationBase, int64_t dataBuffer)
 {
-                    // WARNING: Could not recover jumptable at 0x00018090906b. Too many branches
-                    // WARNING: Treating indirect jump as call
-  BasicOStreamFlush(dataBuffer + 0x90);
+                     0x00018090906b. Too many branches
+                      BasicOStreamFlush(dataBuffer + 0x90);
   return;
 }
 
@@ -70309,9 +69142,8 @@ void Unwind_180909080(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(dataBuffer + 0x104) != '\0') {
     InitializeDataBuffer(validationStatusPointer);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(validationStatusPointer);
+                     0x00018009fbce. Too many branches
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(validationStatusPointer);
   return;
 }
 
@@ -70905,8 +69737,7 @@ void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuf
           resourcePointer[0x11] = 0;
         }
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(resourcePointer);
+          TerminateSystemE0(resourcePointer);
       }
       *(DataBuffer *)(dataFlags * 8 + *exceptionHandlerContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
@@ -70918,16 +69749,14 @@ void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuf
   if (resourcePointer != (DataBuffer *)0x0) {
     ValidateAndProcessData(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(resourcePointer);
+      TerminateSystemE0(resourcePointer);
   }
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
   ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,InitializeSystemMemoryA0);
   if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = validationStatusPointer[0xffa];
@@ -70935,8 +69764,7 @@ void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuf
     ProcessDataBlocks(resourceIterator);
   }
   if (validationStatusPointer[0xff9] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -71053,8 +69881,7 @@ void ValidateSystemResources(DataBuffer operationBase,int64_t dataBuffer)
           resourcePointer[0x11] = 0;
         }
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(resourcePointer);
+          TerminateSystemE0(resourcePointer);
       }
       *(DataBuffer *)(dataFlags * 8 + *exceptionHandlerContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
@@ -71066,16 +69893,14 @@ void ValidateSystemResources(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer != (DataBuffer *)0x0) {
     ValidateAndProcessData(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(resourcePointer);
+      TerminateSystemE0(resourcePointer);
   }
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
   ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,InitializeSystemMemoryA0);
   if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = validationStatusPointer[0xffa];
@@ -71083,8 +69908,7 @@ void ValidateSystemResources(DataBuffer operationBase,int64_t dataBuffer)
     ProcessDataBlocks(resourceIterator);
   }
   if (validationStatusPointer[0xff9] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -71130,8 +69954,7 @@ void ExecuteResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuff
           resourcePointer[0x11] = 0;
         }
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(resourcePointer);
+          TerminateSystemE0(resourcePointer);
       }
       *(DataBuffer *)(dataFlags * 8 + *exceptionHandlerContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
@@ -71143,16 +69966,14 @@ void ExecuteResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   if (resourcePointer != (DataBuffer *)0x0) {
     ValidateAndProcessData(calculatedOffset + 0x8208,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(resourcePointer);
+      TerminateSystemE0(resourcePointer);
   }
   ProcessSystemParametersWithValidation(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   ProcessSystemParametersWithValidation(calculatedOffset + 0x81a8,*(DataBuffer *)(calculatedOffset + 0x81b8));
   ProcessSystemParametersWithValidation(calculatedOffset + 0x8178,*(DataBuffer *)(calculatedOffset + 0x8188));
   ExecuteMemoryOperation(calculatedOffset + 0x80d8,0x20,5,InitializeSystemMemoryA0);
   if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   ExecuteMemoryOperation(calculatedOffset + 0x7fe8,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = *(int64_t *)(calculatedOffset + 0x7fd0);
@@ -71160,8 +69981,7 @@ void ExecuteResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuff
     ProcessDataBlocks(resourceIterator);
   }
   if (*(int64_t *)(calculatedOffset + 0x7fc8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -71256,8 +70076,7 @@ void Unwind_180909460(DataBuffer operationBase,int64_t dataBuffer)
 {
   if (*(char *)(dataBuffer + 0xb1) == '\0') {
     if ((*(char *)(dataBuffer + 0xb0) == '\0') && (*(int64_t *)(dataBuffer + 0xa0) != 0)) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *(int64_t *)(dataBuffer + 0xa0) = 0;
     *(DataBuffer *)(dataBuffer + 0xa8) = 0;
@@ -71295,8 +70114,7 @@ void Unwind_180909480(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x140) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -71332,8 +70150,7 @@ void Unwind_1809094b0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x140) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -71353,8 +70170,7 @@ void Unwind_1809094c0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -71372,8 +70188,7 @@ void Unwind_1809094d0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x1b8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -71392,8 +70207,7 @@ void Unwind_1809094f0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x218) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x220) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x220) = 0;
   *(DataWord *)(dataBuffer + 0x230) = 0;
@@ -71408,8 +70222,7 @@ void Unwind_180909500(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x298) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x2a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x2a0) = 0;
   *(DataWord *)(dataBuffer + 0x2b0) = 0;
@@ -71433,8 +70246,7 @@ void Unwind_180909520(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x278) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x280) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x280) = 0;
   *(DataWord *)(dataBuffer + 0x290) = 0;
@@ -71453,7 +70265,6 @@ void Unwind_180909530(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180909540(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -71470,7 +70281,6 @@ void Unwind_180909540(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180909550(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -71505,8 +70315,7 @@ void CleanupSystemExceptionHandlerA0(DataBuffer systemParameter, int64_t systemC
 {
   *(DataBuffer *)(systemContext + 0x1f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(systemContext + 0x200) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(systemContext + 0x200) = 0;
   *(DataWord *)(systemContext + 0x210) = 0;
@@ -71516,7 +70325,6 @@ void CleanupSystemExceptionHandlerA0(DataBuffer systemParameter, int64_t systemC
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 文件句柄清理函数A0
@@ -71558,8 +70366,7 @@ void CleanupSystemExceptionHandlerB0(DataBuffer systemParameter, int64_t systemC
 {
   *(DataBuffer *)(systemContext + 0xf0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(systemContext + 0xf8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(systemContext + 0xf8) = 0;
   *(DataWord *)(systemContext + 0x108) = 0;
@@ -71569,7 +70376,6 @@ void CleanupSystemExceptionHandlerB0(DataBuffer systemParameter, int64_t systemC
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 文件句柄清理函数B0
@@ -71611,8 +70417,7 @@ void CleanupSystemExceptionHandlerC0(DataBuffer systemParameter, int64_t systemC
 {
   *(DataBuffer *)(systemContext + 0x198) = &TemporaryExceptionHandler;
   if (*(int64_t *)(systemContext + 0x1a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(systemContext + 0x1a0) = 0;
   *(DataWord *)(systemContext + 0x1b0) = 0;
@@ -71676,8 +70481,7 @@ void Unwind_180909610(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x2f0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x2f8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x2f8) = 0;
   *(DataWord *)(dataBuffer + 0x308) = 0;
@@ -71742,8 +70546,7 @@ void InitializeSystemComponentsA0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x1b8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -72001,8 +70804,7 @@ void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
           resourcePointer[0x11] = 0;
         }
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(resourcePointer);
+          TerminateSystemE0(resourcePointer);
       }
       *(DataBuffer *)(dataFlags * 8 + *exceptionHandlerContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
@@ -72014,16 +70816,14 @@ void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
   if (resourcePointer != (DataBuffer *)0x0) {
     ValidateAndProcessData(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(resourcePointer);
+      TerminateSystemE0(resourcePointer);
   }
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
   ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,InitializeSystemMemoryA0);
   if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = validationStatusPointer[0xffa];
@@ -72031,8 +70831,7 @@ void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
     ProcessDataBlocks(resourceIterator);
   }
   if (validationStatusPointer[0xff9] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -72078,8 +70877,7 @@ void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
           resourcePointer[0x11] = 0;
         }
         *resourcePointer = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(resourcePointer);
+          TerminateSystemE0(resourcePointer);
       }
       *(DataBuffer *)(dataFlags * 8 + *exceptionHandlerContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
@@ -72091,16 +70889,14 @@ void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (resourcePointer != (DataBuffer *)0x0) {
     ValidateAndProcessData(calculatedOffset + 0x8208,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(resourcePointer);
+      TerminateSystemE0(resourcePointer);
   }
   ProcessSystemParametersWithValidation(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   ProcessSystemParametersWithValidation(calculatedOffset + 0x81a8,*(DataBuffer *)(calculatedOffset + 0x81b8));
   ProcessSystemParametersWithValidation(calculatedOffset + 0x8178,*(DataBuffer *)(calculatedOffset + 0x8188));
   ExecuteMemoryOperation(calculatedOffset + 0x80d8,0x20,5,InitializeSystemMemoryA0);
   if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   ExecuteMemoryOperation(calculatedOffset + 0x7fe8,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = *(int64_t *)(calculatedOffset + 0x7fd0);
@@ -72108,8 +70904,7 @@ void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     ProcessDataBlocks(resourceIterator);
   }
   if (*(int64_t *)(calculatedOffset + 0x7fc8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -72174,8 +70969,7 @@ void Unwind_180909740(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 0x58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x60) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x70) = 0;
@@ -72190,8 +70984,7 @@ void Unwind_180909750(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x10) = 0;
   *(DataWord *)(dataBuffer + 0x20) = 0;
@@ -72218,8 +71011,7 @@ void Unwind_180909770(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x78);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -72237,8 +71029,7 @@ void Unwind_180909780(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
   *(DataBuffer *)(exceptionHandlerContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x20) = 0;
@@ -72276,8 +71067,7 @@ void Unwind_1809097b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x20),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -72292,8 +71082,7 @@ void Unwind_1809097c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x20),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -72338,8 +71127,7 @@ void Unwind_180909800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 200);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x40) + 0xb8,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -72354,8 +71142,7 @@ void Unwind_180909820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0xf8);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessSystemResourcesWithCleanup(*(int64_t *)(dataBuffer + 0x40) + 0xe8,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -72991,7 +71778,6 @@ void CleanupResourceReferenceCountAtOffset00(DataBuffer operationBase,int64_t da
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void SetupExceptionHandlerAtOffset10(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -73096,8 +71882,7 @@ void SetupExceptionHandlerAtOffsetE0(DataBuffer operationBase,int64_t dataBuffer
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 0x560) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x568) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x568) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x578) = 0;
@@ -73124,8 +71909,7 @@ void Unwind_180909d00(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -73156,8 +71940,7 @@ void Unwind_180909d60(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -73179,8 +71962,7 @@ void Unwind_180909d80(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -73202,8 +71984,7 @@ void Unwind_180909da0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -73225,8 +72006,7 @@ void Unwind_180909dc0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -73341,8 +72121,7 @@ void Unwind_180909f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x40) + 0xa90,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     CleanupExceptionDataA0(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -73361,8 +72140,7 @@ void Unwind_180909f60(DataBuffer operationBase,int64_t dataBuffer)
   UpdateSystemStatusA2();
   _Mtx_destroy_in_situ();
   if (*(int64_t *)(calculatedOffset + 0xae0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourcePointer = *(DataBuffer **)(calculatedOffset + 0xac0);
   if (resourcePointer != (DataBuffer *)0x0) {
@@ -73472,8 +72250,7 @@ void ExceptionHandlerD2(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -73516,8 +72293,7 @@ void ExceptionHandlerD6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     CleanupExceptionDataA0(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -73533,8 +72309,7 @@ void ExceptionHandlerD7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     CleanupExceptionDataA0(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -73606,8 +72381,7 @@ void Unwind_18090a130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     CleanupExceptionDataA0(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -73623,8 +72397,7 @@ void Unwind_18090a140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     CleanupExceptionDataA0(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -73677,8 +72450,7 @@ void Unwind_18090a1d0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
   *(DataBuffer *)(exceptionHandlerContext + 0x560) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x568) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x568) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x578) = 0;
@@ -73705,8 +72477,7 @@ void Unwind_18090a1f0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -73737,8 +72508,7 @@ void Unwind_18090a250(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -73760,8 +72530,7 @@ void Unwind_18090a270(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -73783,8 +72552,7 @@ void Unwind_18090a290(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -73806,8 +72574,7 @@ void Unwind_18090a2b0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -73922,8 +72689,7 @@ void Unwind_18090a430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x60) + 0xa90,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     CleanupExceptionDataA0(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -73942,8 +72708,7 @@ void Unwind_18090a450(DataBuffer operationBase,int64_t dataBuffer)
   UpdateSystemStatusA2();
   _Mtx_destroy_in_situ();
   if (*(int64_t *)(calculatedOffset + 0xae0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourcePointer = *(DataBuffer **)(calculatedOffset + 0xac0);
   if (resourcePointer != (DataBuffer *)0x0) {
@@ -74074,8 +72839,7 @@ void ExecuteValidationContextCleanupF1(DataBuffer systemHandle, int64_t exceptio
   if (*exceptionHandlerContextStart == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -74108,8 +72872,7 @@ void ExecuteValidatorCleanupF2(DataBuffer systemHandle, int64_t validatorArray)
   if (*validatorArrayStart == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -74143,8 +72906,7 @@ void Unwind_18090a5a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     CleanupExceptionDataA0(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -74160,8 +72922,7 @@ void Unwind_18090a5b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
     ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     CleanupExceptionDataA0(exceptionDataBuffer);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(exceptionDataBuffer);
+      TerminateSystemE0(exceptionDataBuffer);
   }
   return;
 }
@@ -74338,7 +73099,6 @@ void Unwind_18090a6a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090a6d0(void)
 
@@ -74349,7 +73109,6 @@ void Unwind_18090a6d0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090a6e0(void)
 
@@ -74361,15 +73120,13 @@ void Unwind_18090a6e0(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(ExceptionEventHandle);
+                     0x0001808fcc41. Too many branches
+                        ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                     0x0001808ffe70. Too many branches
+                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
@@ -74506,8 +73263,7 @@ void ExecuteCallbackAndSetExceptionHandler(DataBuffer operationBase,int64_t data
   }
   *(DataBuffer *)(dataBuffer + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x30) = 0;
   *(DataWord *)(dataBuffer + 0x40) = 0;
@@ -74536,8 +73292,7 @@ void Unwind_18090a7d0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xa0);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -74576,8 +73331,7 @@ void Unwind_18090a7f0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x30) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -74609,8 +73363,7 @@ void Unwind_18090a830(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x30) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -74730,8 +73483,7 @@ void Unwind_18090a8a0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -74753,8 +73505,7 @@ void Unwind_18090a8b0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -74776,8 +73527,7 @@ void ExceptionHandlerC0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -74799,8 +73549,7 @@ void ExceptionHandlerC1(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -74850,8 +73599,7 @@ void Unwind_18090a900(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -74867,8 +73615,7 @@ void ExceptionHandlerC5(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -74895,8 +73642,7 @@ void ExceptionHandlerC6(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -75205,8 +73951,7 @@ void Unwind_18090aae0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xa0) = 0;
   *(DataWord *)(dataBuffer + 0xb0) = 0;
@@ -75747,8 +74492,7 @@ void Unwind_18090af70(DataBuffer operationBase,int64_t dataBuffer)
         if (*(int64_t **)(dataContext + 8) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -75757,8 +74501,7 @@ void Unwind_18090af70(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x2b8) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 0x2a8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -76366,8 +75109,7 @@ void Unwind_18090b4b0(DataBuffer operationBase,int64_t dataBuffer)
         if (*(int64_t **)(dataContext + 8) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -76376,8 +75118,7 @@ void Unwind_18090b4b0(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -76404,8 +75145,7 @@ void Unwind_18090b4c0(DataBuffer operationBase,int64_t dataBuffer)
         if (*(int64_t **)(dataContext + 8) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -76414,8 +75154,7 @@ void Unwind_18090b4c0(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -76460,8 +75199,7 @@ void Unwind_18090b4f0(DataBuffer operationBase,int64_t dataBuffer)
         if (*(int64_t **)(dataContext + 8) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -76470,8 +75208,7 @@ void Unwind_18090b4f0(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -76498,8 +75235,7 @@ void Unwind_18090b500(DataBuffer operationBase,int64_t dataBuffer)
         if (*(int64_t **)(dataContext + 8) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -76508,8 +75244,7 @@ void Unwind_18090b500(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -76801,8 +75536,7 @@ void Unwind_18090b7d0(DataBuffer operationBase,int64_t dataBuffer)
         if (*(int64_t **)(dataContext + 8) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -76811,8 +75545,7 @@ void Unwind_18090b7d0(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x2b8) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 0x2a8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -77408,8 +76141,7 @@ void Unwind_18090bd10(DataBuffer operationBase,int64_t dataBuffer)
         if (*(int64_t **)(dataContext + 8) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -77418,8 +76150,7 @@ void Unwind_18090bd10(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -77446,8 +76177,7 @@ void Unwind_18090bd20(DataBuffer operationBase,int64_t dataBuffer)
         if (*(int64_t **)(dataContext + 8) != (int64_t *)0x0) {
           (**(FunctionPointer**)(**(int64_t **)(dataContext + 8) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0(dataContext);
+          TerminateSystemE0(dataContext);
       }
       *(DataBuffer *)(exceptionHandlerContext + operationResult * 8) = 0;
       operationResult = operationResult + 1;
@@ -77456,8 +76186,7 @@ void Unwind_18090bd20(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(calculatedOffset + 0x18) = 0;
   if ((1 < memoryBaseAddress) && (*(int64_t *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -77509,8 +76238,7 @@ void Unwind_18090bd70(DataBuffer operationBase,int64_t dataBuffer)
 {
   if (*(char *)(dataBuffer + 0x51) == '\0') {
     if ((*(char *)(dataBuffer + 0x50) == '\0') && (*(int64_t *)(dataBuffer + 0x40) != 0)) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *(int64_t *)(dataBuffer + 0x40) = 0;
     *(DataBuffer *)(dataBuffer + 0x48) = 0;
@@ -77828,8 +76556,7 @@ void Unwind_18090bfb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -77873,8 +76600,7 @@ void Unwind_18090bfe0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -77947,8 +76673,7 @@ void Unwind_18090c060(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -78053,8 +76778,7 @@ void Unwind_18090c100(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x50) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -78092,8 +76816,7 @@ void Unwind_18090c130(DataBuffer operationBase,int64_t dataBuffer)
   if (*(int64_t *)(dataBuffer + 0x50) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -78145,8 +76868,7 @@ void Unwind_18090c150(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -78181,8 +76903,7 @@ void Unwind_18090c170(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -78302,9 +77023,8 @@ void ExceptionRecoveryHandlerC0(DataBuffer exceptionContext, int64_t recoveryCon
   *(int *)((int64_t)cleanupResult + -0xbc + streamContext) = cleanupResult + -0xb8;
   CleanupStreamResources(recoveryContext + 0x98);
   DestroyBasicIoStream(recoveryContext + 0xa0);
-                    // WARNING: Could not recover jumptable at 0x0001800c3c62. Too many branches
-                    // WARNING: Treating indirect jump as call
-  DestroyBasicIoStream(streamContext);
+                     0x0001800c3c62. Too many branches
+                      DestroyBasicIoStream(streamContext);
   return;
 }
 
@@ -78323,9 +77043,8 @@ void ExceptionRecoveryHandlerC0(DataBuffer exceptionContext, int64_t recoveryCon
 void ExceptionRecoveryHandlerC1(DataBuffer exceptionContext, int64_t streamContext)
 
 {
-                    // WARNING: Could not recover jumptable at 0x00018090c1f2. Too many branches
-                    // WARNING: Treating indirect jump as call
-  DestroyBasicIoStream(*(int64_t *)(streamContext + 0x70) + -0x98);
+                     0x00018090c1f2. Too many branches
+                      DestroyBasicIoStream(*(int64_t *)(streamContext + 0x70) + -0x98);
   return;
 }
 
@@ -78362,9 +77081,8 @@ void ExceptionRecoveryHandlerC2(DataBuffer exceptionContext, int64_t bufferConte
   if (*(char *)(bufferOffset + -0x24) != '\0') {
     CleanupStreamBuffer(bufferPointer);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  DestroyBasicStreamBuffer(bufferPointer);
+                     0x00018009fbce. Too many branches
+                      DestroyBasicStreamBuffer(bufferPointer);
   return;
 }
 
@@ -78373,9 +77091,8 @@ void ExceptionRecoveryHandlerC2(DataBuffer exceptionContext, int64_t bufferConte
 void Unwind_18090c220(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                    // WARNING: Could not recover jumptable at 0x00018090c232. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
+                     0x00018090c232. Too many branches
+                      __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
   return;
 }
 
@@ -78402,9 +77119,8 @@ void Unwind_18090c240(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
     InitializeDataBuffer(pmemoryBaseAddress);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
+                     0x00018009fbce. Too many branches
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -78598,8 +77314,7 @@ void Unwind_18090c310(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x78);
   *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
@@ -78633,9 +77348,8 @@ void Unwind_18090c330(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090c360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                    // WARNING: Could not recover jumptable at 0x00018090c36b. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + 0x20);
+                     0x00018090c36b. Too many branches
+                      __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + 0x20);
   return;
 }
 
@@ -78662,9 +77376,8 @@ void Unwind_18090c380(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(calculatedOffset + 0x94) != '\0') {
     InitializeDataBuffer(pmemoryBaseAddress);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
+                     0x00018009fbce. Too many branches
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -78785,8 +77498,7 @@ void Unwind_18090c420(DataBuffer operationBase,int64_t dataBuffer)
   int64_t *exceptionHandlerContextPointer;
   
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x70) + 0x1d8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x70) + 0x1b8);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
@@ -78858,7 +77570,6 @@ void Unwind_18090c470(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c480(void)
 
@@ -78870,7 +77581,6 @@ void Unwind_18090c480(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c490(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -78932,8 +77642,7 @@ void ComplexExceptionHandlerAndReset(DataBuffer operationBase,int64_t dataBuffer
   }
   *(DataBuffer *)(dataBuffer + 0xd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xe0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xe0) = 0;
   *(DataWord *)(dataBuffer + 0xf0) = 0;
@@ -78965,8 +77674,7 @@ void ComplexValidationContextCleanup(DataBuffer operationBase,int64_t dataBuffer
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -79020,8 +77728,7 @@ void Unwind_18090c4e0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0xd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xe0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xe0) = 0;
   *(DataWord *)(dataBuffer + 0xf0) = 0;
@@ -79072,8 +77779,7 @@ void Unwind_18090c510(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x118);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -79133,7 +77839,6 @@ void Unwind_18090c530(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c540(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -79179,7 +77884,6 @@ void Unwind_18090c540(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c550(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -79234,7 +77938,6 @@ void Unwind_18090c560(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c570(void)
 
@@ -79255,7 +77958,6 @@ void Unwind_18090c580(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c590(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -79310,7 +78012,6 @@ void Unwind_18090c5a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c5b0(void)
 
@@ -79322,7 +78023,6 @@ void Unwind_18090c5b0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c5c0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -79368,7 +78068,6 @@ void Unwind_18090c5c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c5d0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -79414,7 +78113,6 @@ void Unwind_18090c5d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c5e0(void)
 
@@ -79426,7 +78124,6 @@ void Unwind_18090c5e0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c5f0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -79472,7 +78169,6 @@ void Unwind_18090c5f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090c600(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -79796,8 +78492,7 @@ void Unwind_18090c790(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x150) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x150) = 0;
   *(DataWord *)(dataBuffer + 0x160) = 0;
@@ -79999,7 +78694,18 @@ void Unwind_18090c8d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c8e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置0x6b0偏移量的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的0x6b0偏移量处设置默认异常处理器B的函数指针，
+ * 用于处理特定偏移量的异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c8e0
+ */
+void SetDefaultExceptionHandlerBAtOffset6B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x6b0) = &DefaultExceptionHandlerB;
@@ -80137,7 +78843,6 @@ void Unwind_18090c9d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090ca00(void)
 
@@ -80149,7 +78854,6 @@ void Unwind_18090ca00(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090ca10(void)
 
@@ -80161,7 +78865,6 @@ void Unwind_18090ca10(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090ca20(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -80207,7 +78910,6 @@ void Unwind_18090ca20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090ca30(void)
 
@@ -80219,7 +78921,6 @@ void Unwind_18090ca30(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090ca40(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -80265,7 +78966,6 @@ void Unwind_18090ca40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090ca50(void)
 
@@ -80277,7 +78977,6 @@ void Unwind_18090ca50(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090ca60(void)
 
@@ -80289,7 +78988,6 @@ void Unwind_18090ca60(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090ca70(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -80344,7 +79042,6 @@ void Unwind_18090ca80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090ca90(void)
 
@@ -80356,7 +79053,6 @@ void Unwind_18090ca90(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090caa0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -80421,7 +79117,6 @@ void ConfigureExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统资源清理函数C0
@@ -80440,7 +79135,6 @@ void CleanupSystemResourcesC0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cad0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -80495,7 +79189,6 @@ void Unwind_18090cae0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090caf0(void)
 
@@ -80507,7 +79200,6 @@ void Unwind_18090caf0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cb00(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -80562,7 +79254,6 @@ void Unwind_18090cb10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cb20(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -80617,7 +79308,6 @@ void Unwind_18090cb30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cb40(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -80663,7 +79353,6 @@ void Unwind_18090cb40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cb50(void)
 
@@ -80675,7 +79364,6 @@ void Unwind_18090cb50(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cb60(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -80742,7 +79430,6 @@ void SetExceptionHandlerCallbackB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 处理系统资源异常并设置处理器回调
@@ -80806,7 +79493,6 @@ void ProcessSystemResourceExceptionAndSetCallback(DataBuffer operationBase,int64
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cb90(void)
 
@@ -80838,7 +79524,6 @@ void SetDefaultExceptionHandlerToBuffer(DataBuffer operationBase,int64_t dataBuf
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 减少系统资源计数器并调用清理函数
@@ -80858,7 +79543,6 @@ void DecrementSystemResourceCounterAndCleanup(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 减少系统资源计数器并调用清理函数C0
@@ -80878,7 +79562,6 @@ void DecrementSystemResourceCounterAndCleanupC0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cbd0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -80933,7 +79616,6 @@ void Unwind_18090cbe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cbf0(void)
 
@@ -80945,7 +79627,6 @@ void Unwind_18090cbf0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cc00(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -81099,7 +79780,6 @@ void Unwind_18090ccc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090ccd0(void)
 
@@ -81111,7 +79791,6 @@ void Unwind_18090ccd0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 异常资源清理函数E0 - 简化实现
@@ -81324,8 +80003,7 @@ void Unwind_18090cdf0(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 0x148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x150) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x150) = 0;
   *(DataWord *)(dataBuffer + 0x160) = 0;
@@ -81349,8 +80027,7 @@ void Unwind_18090ce00(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -81371,8 +80048,7 @@ void Unwind_18090ce10(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 0x358) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x360) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x360) = 0;
   *(DataWord *)(dataBuffer + 0x370) = 0;
@@ -81396,8 +80072,7 @@ void Unwind_18090ce20(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -81418,8 +80093,7 @@ void Unwind_18090ce30(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 0x1f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x200) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x200) = 0;
   *(DataWord *)(dataBuffer + 0x210) = 0;
@@ -81440,8 +80114,7 @@ void Unwind_18090ce40(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 600) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x260) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x260) = 0;
   *(DataWord *)(dataBuffer + 0x270) = 0;
@@ -81462,8 +80135,7 @@ void Unwind_18090ce50(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 0x2b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x2c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x2c0) = 0;
   *(DataWord *)(dataBuffer + 0x2d0) = 0;
@@ -81484,8 +80156,7 @@ void Unwind_18090ce60(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 0x3b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x3c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x3c0) = 0;
   *(DataWord *)(dataBuffer + 0x3d0) = 0;
@@ -81509,8 +80180,7 @@ void Unwind_18090ce70(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -81539,8 +80209,7 @@ void Unwind_18090ce90(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x150) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x150) = 0;
   *(DataWord *)(dataBuffer + 0x160) = 0;
@@ -81583,8 +80252,7 @@ void Unwind_18090cec0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x38);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -81624,8 +80292,7 @@ void Unwind_18090cef0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x358) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x360) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x360) = 0;
   *(DataWord *)(dataBuffer + 0x370) = 0;
@@ -81662,8 +80329,7 @@ void Unwind_18090cf20(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x1f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x200) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x200) = 0;
   *(DataWord *)(dataBuffer + 0x210) = 0;
@@ -81700,8 +80366,7 @@ void Unwind_18090cf50(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 600) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x260) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x260) = 0;
   *(DataWord *)(dataBuffer + 0x270) = 0;
@@ -81738,8 +80403,7 @@ void Unwind_18090cf80(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x2b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x2c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x2c0) = 0;
   *(DataWord *)(dataBuffer + 0x2d0) = 0;
@@ -81776,8 +80440,7 @@ void Unwind_18090cfb0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x3b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x3c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x3c0) = 0;
   *(DataWord *)(dataBuffer + 0x3d0) = 0;
@@ -81798,7 +80461,6 @@ void Unwind_18090cfc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cfd0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -81815,7 +80477,6 @@ void Unwind_18090cfd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090cfe0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -85032,8 +83693,7 @@ void Unwind_18090d530(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -85077,8 +83737,7 @@ void Unwind_18090d560(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x130);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -85110,8 +83769,7 @@ void Unwind_18090d580(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 0x88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x90) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x90) = 0;
   *(DataWord *)(dataBuffer + 0xa0) = 0;
@@ -85135,8 +83793,7 @@ void Unwind_18090d590(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -85165,8 +83822,7 @@ void Unwind_18090d5b0(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x90) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x90) = 0;
   *(DataWord *)(dataBuffer + 0xa0) = 0;
@@ -85276,8 +83932,7 @@ void Unwind_18090d650(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -85463,8 +84118,7 @@ void Unwind_18090d7e0(DataBuffer operationBase,int64_t dataBuffer)
   }
   ExecuteSystemCleanup();
   if (*(int64_t *)(calculatedOffset + 0x1480) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourcePointer = *(DataBuffer **)(calculatedOffset + 0x1460);
   if (resourcePointer == (DataBuffer *)0x0) {
@@ -85858,16 +84512,14 @@ void Unwind_18090dd00(DataBuffer operationBase,int64_t dataBuffer)
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 6) {
     *validationStatusPointer = &TemporaryExceptionHandler;
     if (validationStatusPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     validationStatusPointer[1] = 0;
     *(DataWord *)(validationStatusPointer + 3) = 0;
     *validationStatusPointer = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -85886,16 +84538,14 @@ void Unwind_18090dd10(DataBuffer operationBase,int64_t dataBuffer)
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 6) {
     *validationStatusPointer = &TemporaryExceptionHandler;
     if (validationStatusPointer[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     validationStatusPointer[1] = 0;
     *(DataWord *)(validationStatusPointer + 3) = 0;
     *validationStatusPointer = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
@@ -86034,8 +84684,7 @@ void Unwind_18090de50(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -86237,8 +84886,7 @@ void Unwind_18090e000(DataBuffer operationBase,int64_t dataBuffer)
   }
   ExecuteSystemCleanup();
   if (*(int64_t *)(calculatedOffset + 0x1480) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourcePointer = *(DataBuffer **)(calculatedOffset + 0x1460);
   if (resourcePointer == (DataBuffer *)0x0) {
@@ -86352,7 +85000,18 @@ void Unwind_18090e0c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e0e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行0x1548偏移量的异常处理回调函数
+ * 
+ * 该函数从数据缓冲区的0xe0偏移量获取基础地址，然后在0x1548偏移量处
+ * 获取异常处理上下文指针，如果指针存在则执行相应的回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090e0e0
+ */
+void ExecuteExceptionHandlerCallbackAt1548(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -86632,8 +85291,7 @@ void Unwind_18090e3e0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -86916,7 +85574,6 @@ void Unwind_18090e730(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e760(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -86974,7 +85631,6 @@ void Unwind_18090e770(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e7a0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -87020,7 +85676,6 @@ void Unwind_18090e7a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e7b0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -87066,7 +85721,6 @@ void Unwind_18090e7b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e7c0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -87112,7 +85766,6 @@ void Unwind_18090e7c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e7d0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -87158,7 +85811,6 @@ void Unwind_18090e7d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e7e0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -87204,7 +85856,6 @@ void Unwind_18090e7e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e7f0(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -87250,7 +85901,6 @@ void Unwind_18090e7f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e800(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -87296,7 +85946,6 @@ void Unwind_18090e800(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e810(void)
 
@@ -87308,7 +85957,6 @@ void Unwind_18090e810(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e820(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -87354,7 +86002,6 @@ void Unwind_18090e820(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e830(void)
 
@@ -87366,7 +86013,6 @@ void Unwind_18090e830(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e840(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -87412,7 +86058,6 @@ void Unwind_18090e840(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e850(void)
 
@@ -87424,7 +86069,6 @@ void Unwind_18090e850(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e860(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -87470,7 +86114,6 @@ void Unwind_18090e860(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e870(void)
 
@@ -87535,8 +86178,7 @@ void Unwind_18090e8d0(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 0x68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x70) = 0;
   *(DataWord *)(dataBuffer + 0x80) = 0;
@@ -87560,8 +86202,7 @@ void Unwind_18090e8e0(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -87582,8 +86223,7 @@ void Unwind_18090e8f0(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 0xf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x100) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x100) = 0;
   *(DataWord *)(dataBuffer + 0x110) = 0;
@@ -87621,8 +86261,7 @@ void Unwind_18090e920(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x70) = 0;
   *(DataWord *)(dataBuffer + 0x80) = 0;
@@ -87665,8 +86304,7 @@ void Unwind_18090e950(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x28);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -87706,8 +86344,7 @@ void Unwind_18090e980(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0xf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0x100) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0x100) = 0;
   *(DataWord *)(dataBuffer + 0x110) = 0;
@@ -87737,7 +86374,6 @@ void Unwind_18090e9a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090e9b0(void)
 
@@ -87764,8 +86400,7 @@ void Unwind_18090e9c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0x38) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -87785,8 +86420,7 @@ void Unwind_18090e9d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0x38) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -87863,7 +86497,6 @@ void Unwind_18090ead0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_18090eb00(DataBuffer operationBase,int64_t dataBuffer)
 
@@ -87929,8 +86562,7 @@ void Unwind_18090eb20(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -87974,8 +86606,7 @@ void Unwind_18090eb50(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x108);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -88054,8 +86685,7 @@ void ResetExceptionHandlersD0(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 0x98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xa0) = 0;
   *(DataWord *)(dataBuffer + 0xb0) = 0;
@@ -88090,8 +86720,7 @@ void ProcessExceptionContextD1(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -88120,8 +86749,7 @@ void Unwind_18090ec20(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 0x98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xa0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xa0) = 0;
   *(DataWord *)(dataBuffer + 0xb0) = 0;
@@ -88150,8 +86778,7 @@ void Unwind_18090ec40(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x30);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -88303,8 +86930,7 @@ void Unwind_18090ed20(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + 200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xd0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xd0) = 0;
   *(DataWord *)(dataBuffer + 0xe0) = 0;
@@ -88328,8 +86954,7 @@ void Unwind_18090ed30(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -88358,8 +86983,7 @@ void Unwind_18090ed50(DataBuffer operationBase,int64_t dataBuffer)
 {
   *(DataBuffer *)(dataBuffer + 200) = &TemporaryExceptionHandler;
   if (*(int64_t *)(dataBuffer + 0xd0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(dataBuffer + 0xd0) = 0;
   *(DataWord *)(dataBuffer + 0xe0) = 0;
@@ -88388,8 +87012,7 @@ void Unwind_18090ed70(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -88639,8 +87262,7 @@ void Unwind_18090eea0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t *exceptionHandlerContextPointer;
   
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x58) + 0x1d8) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x58) + 0x1b8);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
@@ -88947,13 +87569,11 @@ void Unwind_18090efe0(DataBuffer operationBase,int64_t dataBuffer)
       calculatedIndex = *presourceIterator;
       presourceIterator = presourceIterator + 1;
       if (calculatedIndex != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
     }
     if (*pdataContext != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *pdataContext = 0;
   }
@@ -88988,8 +87608,7 @@ void Unwind_18090f000(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -89043,13 +87662,11 @@ void Unwind_18090f040(DataBuffer operationBase,int64_t dataBuffer)
       calculatedOffset = *contextPointer;
       contextPointer = contextPointer + 1;
       if (calculatedOffset != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
     }
     if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *exceptionHandlerContextPointer = 0;
   }
@@ -89074,15 +87691,13 @@ void Unwind_18090f050(DataBuffer operationBase,int64_t dataBuffer)
         dataContext = *pcalculatedOffset;
         pcalculatedOffset = pcalculatedOffset + 1;
         if (dataContext != 0) {
-                    // WARNING: Subroutine does not return
-          TerminateSystemE0();
+            TerminateSystemE0();
         }
       } while (pcalculatedOffset < (int64_t *)(exceptionHandlerContextPointer[9] + 8));
       dataContext = *exceptionHandlerContextPointer;
     }
     if (dataContext != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *exceptionHandlerContextPointer = 0;
   }
@@ -89117,8 +87732,7 @@ void Unwind_18090f060(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -89206,13 +87820,11 @@ void Unwind_18090f0c0(DataBuffer operationBase,int64_t dataBuffer)
       calculatedOffset = *contextPointer;
       contextPointer = contextPointer + 1;
       if (calculatedOffset != 0) {
-                    // WARNING: Subroutine does not return
-        TerminateSystemE0();
+          TerminateSystemE0();
       }
     }
     if (*exceptionHandlerContextPointer != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *exceptionHandlerContextPointer = 0;
   }
@@ -89247,8 +87859,7 @@ void Unwind_18090f0d0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -89303,15 +87914,13 @@ void Unwind_18090f110(DataBuffer operationBase,int64_t dataBuffer)
         dataContext = *pcalculatedOffset;
         pcalculatedOffset = pcalculatedOffset + 1;
         if (dataContext != 0) {
-                    // WARNING: Subroutine does not return
-          TerminateSystemE0();
+            TerminateSystemE0();
         }
       } while (pcalculatedOffset < (int64_t *)(exceptionHandlerContextPointer[9] + 8));
       dataContext = *exceptionHandlerContextPointer;
     }
     if (dataContext != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     *exceptionHandlerContextPointer = 0;
   }
@@ -89356,8 +87965,7 @@ void Unwind_18090f140(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x78);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -89375,8 +87983,7 @@ void Unwind_18090f150(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
   *(DataBuffer *)(exceptionHandlerContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x20) = 0;
@@ -89394,8 +88001,7 @@ void Unwind_18090f160(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x78);
   *(DataBuffer *)(exceptionHandlerContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x20) = 0;
@@ -89441,8 +88047,7 @@ void Unwind_18090f190(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x20) = 0;
@@ -89551,8 +88156,7 @@ void Unwind_18090f200(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x60) + 0x60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   _Mtx_destroy_in_situ();
   return;
@@ -89791,8 +88395,7 @@ void Unwind_18090f2d0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -89859,8 +88462,7 @@ void Unwind_18090f330(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -89882,8 +88484,7 @@ void Unwind_18090f350(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -89901,8 +88502,7 @@ void Unwind_18090f370(DataBuffer operationBase,int64_t dataBuffer)
   contextPointer = (int64_t *)(exceptionHandlerContext + 600);
   do {
     if (*contextPointer != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     dataContext = (int64_t)(int)validationStatus;
     contextPointer = contextPointer + 1;
@@ -90215,8 +88815,7 @@ void Unwind_18090f650(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
   *(DataBuffer *)(exceptionHandlerContext + 0x4140) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4148) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4148) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x4158) = 0;
@@ -90234,8 +88833,7 @@ void Unwind_18090f670(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
   *(DataBuffer *)(exceptionHandlerContext + 0x4190) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x4198) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x4198) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x41a8) = 0;
@@ -90260,8 +88858,7 @@ void Unwind_18090f690(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -90454,8 +89051,7 @@ void Unwind_18090f7e0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -90998,8 +89594,7 @@ void CleanupExceptionHandlers18090fac0(DataBuffer exceptionContext,int64_t syste
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -91043,8 +89638,7 @@ void Unwind_18090faf0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x120);
   *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
@@ -91130,8 +89724,7 @@ void Unwind_18090fb70(DataBuffer operationBase,int64_t dataBuffer)
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xd0);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
@@ -91581,8 +90174,7 @@ void Unwind_18090fe50(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -91602,8 +90194,7 @@ void Unwind_18090fe60(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -91708,8 +90299,7 @@ void Unwind_18090ff10(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -91770,8 +90360,7 @@ void Unwind_18090ff80(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -91848,8 +90437,7 @@ void Unwind_18090ffe0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -91869,8 +90457,7 @@ void Unwind_18090fff0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -91926,8 +90513,7 @@ void ProcessSystemOperationLoopA0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -91958,8 +90544,7 @@ void ProcessSystemOperationLoopA1(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -91981,8 +90566,7 @@ void Unwind_180910030(DataBuffer operationBase,int64_t dataBuffer)
   if (*exceptionHandlerContextPointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -92004,8 +90588,7 @@ void Unwind_180910040(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -92027,8 +90610,7 @@ void Unwind_180910050(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -92196,8 +90778,7 @@ void Unwind_1809100d0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -92219,8 +90800,7 @@ void Unwind_1809100e0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -92292,8 +90872,7 @@ void Unwind_180910100(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -92306,8 +90885,7 @@ void Unwind_180910110(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
   *(DataBuffer *)(exceptionHandlerContext + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x110) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x120) = 0;
@@ -92325,8 +90903,7 @@ void Unwind_180910130(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x50);
   *(DataBuffer *)(exceptionHandlerContext + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x110) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x120) = 0;
@@ -92351,8 +90928,7 @@ void Unwind_180910150(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -92383,8 +90959,7 @@ void Unwind_1809101c0(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
   *(DataBuffer *)(exceptionHandlerContext + 0x108) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x110) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x110) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x120) = 0;
@@ -92621,8 +91196,7 @@ void Unwind_1809102e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0xe8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -92662,8 +91236,7 @@ void ExecuteExceptionCallbacksAtOffsetD0(DataBuffer operationBase,int64_t dataBu
   if (*(int64_t *)(dataBuffer + 200) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -92683,8 +91256,7 @@ void Unwind_180910300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0xe8) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -92706,8 +91278,7 @@ void Unwind_180910310(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -92763,8 +91334,7 @@ void Unwind_180910330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 200) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -93012,9 +91582,8 @@ void Unwind_180910450(DataBuffer operationBase,int64_t dataBuffer)
   *(int *)((int64_t)operationResult + -0xb4 + exceptionHandlerContext) = operationResult + -0xb0;
   ExecuteSystemCommand(calculatedOffset + 0x138);
   __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(calculatedOffset + 0x140);
-                    // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(exceptionHandlerContext);
+                     0x0001800fd4a2. Too many branches
+                      __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(exceptionHandlerContext);
   return;
 }
 
@@ -93079,8 +91648,7 @@ void Unwind_1809104d0(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -93172,9 +91740,8 @@ void Unwind_180910530(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910560(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                    // WARNING: Could not recover jumptable at 0x00018091056b. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x68) + 0x18);
+                     0x00018091056b. Too many branches
+                      __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x68) + 0x18);
   return;
 }
 
@@ -93201,9 +91768,8 @@ void Unwind_180910580(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(calculatedOffset + 0x8c) != '\0') {
     InitializeDataBuffer(pmemoryBaseAddress);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
+                     0x00018009fbce. Too many branches
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -93233,9 +91799,8 @@ void SystemCleanupHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
   *(int *)((int64_t)operationResult + -0xb4 + exceptionHandlerContext) = operationResult + -0xb0;
   ExecuteSystemCommand(calculatedOffset + 0x138);
   __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(calculatedOffset + 0x140);
-                    // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(exceptionHandlerContext);
+                     0x0001800fd4a2. Too many branches
+                      __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(exceptionHandlerContext);
   return;
 }
 
@@ -93300,8 +91865,7 @@ void Unwind_180910620(DataBuffer operationBase,int64_t dataBuffer)
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -93381,9 +91945,8 @@ void Unwind_180910660(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910680(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180910692. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
+                     0x000180910692. Too many branches
+                      __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
   return;
 }
 
@@ -93410,9 +91973,8 @@ void Unwind_1809106a0(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
     InitializeDataBuffer(pmemoryBaseAddress);
   }
-                    // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
-                    // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
+                     0x00018009fbce. Too many branches
+                      __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pmemoryBaseAddress);
   return;
 }
 
@@ -93545,15 +92107,13 @@ void Unwind_180910760(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContextPointer = *(int64_t **)(dataBuffer + 0x40);
   for (dataContext = *exceptionHandlerContextPointer; dataContext != exceptionHandlerContextPointer[1]; dataContext = dataContext + 0x28) {
     if (*(int64_t *)(dataContext + 8) != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
   if (*exceptionHandlerContextPointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -93677,16 +92237,14 @@ void Unwind_1809107a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x9c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x9a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9c0) = 0;
@@ -93707,16 +92265,14 @@ void Unwind_1809107c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa40) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa50) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa38) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa20) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa30) = 0;
@@ -93737,16 +92293,14 @@ void Unwind_1809107e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xaa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xab0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xab0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xac0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xaa8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa90) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa90) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xaa0) = 0;
@@ -93767,16 +92321,14 @@ void Unwind_180910800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb20) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb30) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xb18) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xaf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb00) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb00) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb10) = 0;
@@ -93797,16 +92349,14 @@ void Unwind_180910820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb90) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb90) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xba0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xb88) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xb68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb70) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb80) = 0;
@@ -93827,16 +92377,14 @@ void Unwind_180910840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xbf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc00) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc00) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc10) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xbf8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xbd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xbe0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xbe0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xbf0) = 0;
@@ -93857,16 +92405,14 @@ void Unwind_180910860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc70) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc80) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xc68) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xc48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc50) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc60) = 0;
@@ -93887,16 +92433,14 @@ void Unwind_180910880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xcd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xce0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xce0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xcf0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xcd8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xcb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xcc0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xcc0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xcd0) = 0;
@@ -93917,16 +92461,14 @@ void Unwind_1809108a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xd50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd50) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd60) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xd48) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xd28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xd30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd40) = 0;
@@ -93947,16 +92489,14 @@ void Unwind_1809108c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xdb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xdc0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xdc0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xdd0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xdb8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xd98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xda0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xda0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xdb0) = 0;
@@ -93977,16 +92517,14 @@ void Unwind_1809108e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe40) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xe28) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe20) = 0;
@@ -94007,16 +92545,14 @@ void Unwind_180910900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xea0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xea0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xeb0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xe98) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe80) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe90) = 0;
@@ -94037,16 +92573,14 @@ void Unwind_180910920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf20) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf08) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xee8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xef0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xef0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf00) = 0;
@@ -94067,16 +92601,14 @@ void Unwind_180910940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf80) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf90) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf78) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xf58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf60) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf70) = 0;
@@ -94097,16 +92629,14 @@ void Unwind_180910960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xfe8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xff0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xff0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1000) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xfe8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xfc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xfd0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xfd0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xfe0) = 0;
@@ -94127,16 +92657,14 @@ void Unwind_180910980(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1058) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1060) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1060) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1070) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1058) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1038) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1040) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1040) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1050) = 0;
@@ -94157,16 +92685,14 @@ void Unwind_1809109a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x10e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x10c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x10a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x10c0) = 0;
@@ -94187,16 +92713,14 @@ void Unwind_1809109c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1138) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1140) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1140) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1150) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1138) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1118) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1120) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1120) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1130) = 0;
@@ -94217,16 +92741,14 @@ void Unwind_1809109e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x11a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x11b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x11b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x11c0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x11a8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1188) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1190) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1190) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x11a0) = 0;
@@ -94247,16 +92769,14 @@ void Unwind_180910a00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1218) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1220) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1220) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1230) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1218) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x11f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1200) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1200) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1210) = 0;
@@ -94277,16 +92797,14 @@ void Unwind_180910a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1288) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1290) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1290) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x12a0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1288) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1268) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1270) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1270) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1280) = 0;
@@ -94307,16 +92825,14 @@ void Unwind_180910a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x12f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1300) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1300) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1310) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x12f8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x12d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x12e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x12e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x12f0) = 0;
@@ -94337,16 +92853,14 @@ void Unwind_180910a60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1368) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1370) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1370) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1380) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1368) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1348) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1350) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1350) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1360) = 0;
@@ -94367,16 +92881,14 @@ void Unwind_180910a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x13d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x13e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x13e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x13f0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x13d8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x13b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x13c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x13c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x13d0) = 0;
@@ -94397,16 +92909,14 @@ void Unwind_180910aa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1448) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1450) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1450) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1460) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1448) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1428) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1430) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1430) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1440) = 0;
@@ -94427,16 +92937,14 @@ void Unwind_180910ac0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x14b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x14c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x14c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x14d0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x14b8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1498) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x14a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x14a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x14b0) = 0;
@@ -94457,16 +92965,14 @@ void Unwind_180910ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1528) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1530) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1530) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1540) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1528) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1508) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1510) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1510) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1520) = 0;
@@ -94487,16 +92993,14 @@ void Unwind_180910b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1598) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x15a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x15a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x15b0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1598) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1578) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1580) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1580) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1590) = 0;
@@ -94517,16 +93021,14 @@ void Unwind_180910b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1608) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1610) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1610) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1620) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1608) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x15e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x15f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x15f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1600) = 0;
@@ -94547,16 +93049,14 @@ void Unwind_180910b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1678) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1680) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1680) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1690) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1678) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1658) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1660) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1660) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1670) = 0;
@@ -94577,16 +93077,14 @@ void Unwind_180910b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x16e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x16f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x16f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1700) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x16e8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x16c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x16d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x16d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x16e0) = 0;
@@ -94607,16 +93105,14 @@ void Unwind_180910b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1758) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1760) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1760) = 0;
   *(DataWord *)(exceptionHandlerContext + 6000) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1758) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1738) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1740) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1740) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1750) = 0;
@@ -94637,16 +93133,14 @@ void Unwind_180910ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x17c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x17d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x17d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x17e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x17c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x17a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x17b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x17b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x17c0) = 0;
@@ -94667,16 +93161,14 @@ void Unwind_180910bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1838) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1840) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1840) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1850) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1838) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1818) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1820) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1820) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1830) = 0;
@@ -94697,16 +93189,14 @@ void Unwind_180910be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x18a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x18b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x18b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x18c0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x18a8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1888) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1890) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1890) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x18a0) = 0;
@@ -94727,16 +93217,14 @@ void Unwind_180910c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1918) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1920) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1920) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1930) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1918) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x18f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1900) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1900) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1910) = 0;
@@ -94757,16 +93245,14 @@ void Unwind_180910c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1988) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1990) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1990) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x19a0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1988) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1968) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1970) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1970) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1980) = 0;
@@ -94787,16 +93273,14 @@ void Unwind_180910c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x19f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1a00) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a00) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1a10) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x19f8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x19d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x19e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x19e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x19f0) = 0;
@@ -94817,16 +93301,14 @@ void Unwind_180910c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1a70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a70) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1a80) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1a68) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1a48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1a50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a50) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1a60) = 0;
@@ -94847,16 +93329,14 @@ void Unwind_180910c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ad8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1ae0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ae0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1af0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ad8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ab8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1ac0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ac0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1ad0) = 0;
@@ -94877,16 +93357,14 @@ void Unwind_180910ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1b48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1b50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1b50) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1b60) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1b48) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1b28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1b30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1b30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1b40) = 0;
@@ -94907,16 +93385,14 @@ void Unwind_180910cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1bb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1bc0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1bc0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1bd0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1bb8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1b98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1ba0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ba0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1bb0) = 0;
@@ -94937,16 +93413,14 @@ void Unwind_180910ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1c30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1c40) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c28) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1c10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1c20) = 0;
@@ -94967,16 +93441,14 @@ void Unwind_180910d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1ca0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ca0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1cb0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c98) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1c80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c80) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1c90) = 0;
@@ -94997,16 +93469,14 @@ void Unwind_180910d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1d10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1d20) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1d08) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ce8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1cf0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1cf0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1d00) = 0;
@@ -95027,16 +93497,14 @@ void Unwind_180910d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1d80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d80) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1d90) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1d78) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1d58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1d60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d60) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1d70) = 0;
@@ -95057,16 +93525,14 @@ void Unwind_180910d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1de8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1df0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1df0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1e00) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1de8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1dc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1dd0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1dd0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1de0) = 0;
@@ -95087,16 +93553,14 @@ void Unwind_180910d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1e58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1e60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1e60) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1e70) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1e58) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1e38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1e40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1e40) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1e50) = 0;
@@ -95117,16 +93581,14 @@ void Unwind_180910da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ec8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1ed0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ed0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1ee0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ec8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ea8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1eb0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1eb0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1ec0) = 0;
@@ -95147,16 +93609,14 @@ void Unwind_180910dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1f38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 8000) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 8000) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1f50) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1f38) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1f18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1f20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1f20) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1f30) = 0;
@@ -95177,16 +93637,14 @@ void Unwind_180910de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1fa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1fb0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1fb0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1fc0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1fa8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1f88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1f90) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1f90) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1fa0) = 0;
@@ -95207,16 +93665,14 @@ void Unwind_180910e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2018) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2020) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2020) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2030) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2018) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ff8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2000) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2000) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2010) = 0;
@@ -95237,16 +93693,14 @@ void Unwind_180910e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2088) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2090) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2090) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x20a0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2088) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2068) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2070) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2070) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2080) = 0;
@@ -95267,16 +93721,14 @@ void Unwind_180910e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2100) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2100) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2110) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x20f8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x20d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x20e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x20f0) = 0;
@@ -95297,16 +93749,14 @@ void Unwind_180910e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2168) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2170) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2170) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2180) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2168) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2150) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2150) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2160) = 0;
@@ -95327,16 +93777,14 @@ void Unwind_180910e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x21d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x21e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x21e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x21f0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x21d8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x21b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x21c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x21c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x21d0) = 0;
@@ -95357,16 +93805,14 @@ void Unwind_180910ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2248) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2250) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2250) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2260) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2248) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2228) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2230) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2230) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2240) = 0;
@@ -95387,16 +93833,14 @@ void Unwind_180910ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x22b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x22c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x22c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x22d0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x22b8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2298) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x22a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x22a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x22b0) = 0;
@@ -95417,16 +93861,14 @@ void Unwind_180910ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 9000) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2330) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2330) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2340) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 9000) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2308) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2310) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2310) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2320) = 0;
@@ -95447,16 +93889,14 @@ void Unwind_180910f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2398) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x23a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x23a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x23b0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2398) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2378) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2380) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2380) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2390) = 0;
@@ -95477,16 +93917,14 @@ void Unwind_180910f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2408) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2410) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2410) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2420) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2408) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x23e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x23f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x23f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2400) = 0;
@@ -95507,16 +93945,14 @@ void Unwind_180910f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2478) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2480) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2480) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2490) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2478) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2458) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2460) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2460) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2470) = 0;
@@ -95537,16 +93973,14 @@ void Unwind_180910f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x24e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x24f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x24f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2500) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x24e8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x24c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x24d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x24d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x24e0) = 0;
@@ -95567,16 +94001,14 @@ void Unwind_180910f80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2558) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2560) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2560) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2570) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2558) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2538) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2540) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2540) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2550) = 0;
@@ -95597,16 +94029,14 @@ void Unwind_180910fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x25c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x25d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x25d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x25e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x25c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x25a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x25b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x25b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x25c0) = 0;
@@ -95633,8 +94063,7 @@ void Unwind_180910fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -95656,8 +94085,7 @@ void Unwind_180910fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -95673,16 +94101,14 @@ void Unwind_180911000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x9c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x9a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x9b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x9b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x9c0) = 0;
@@ -95703,16 +94129,14 @@ void Unwind_180911020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa40) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa50) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xa38) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa20) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xa30) = 0;
@@ -95733,16 +94157,14 @@ void Unwind_180911040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xaa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xab0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xab0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xac0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xaa8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xa88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xa90) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xa90) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xaa0) = 0;
@@ -95763,16 +94185,14 @@ void Unwind_180911060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb20) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb30) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xb18) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xaf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb00) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb00) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb10) = 0;
@@ -95793,16 +94213,14 @@ void Unwind_180911080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb90) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb90) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xba0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xb88) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xb68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xb70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xb70) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xb80) = 0;
@@ -95823,16 +94241,14 @@ void Unwind_1809110a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xbf8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc00) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc00) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc10) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xbf8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xbd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xbe0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xbe0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xbf0) = 0;
@@ -95853,16 +94269,14 @@ void Unwind_1809110c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc70) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc80) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xc68) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xc48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xc50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xc50) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xc60) = 0;
@@ -95883,16 +94297,14 @@ void Unwind_1809110e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xcd8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xce0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xce0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xcf0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xcd8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xcb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xcc0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xcc0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xcd0) = 0;
@@ -95913,16 +94325,14 @@ void Unwind_180911100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xd50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd50) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd60) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xd48) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xd28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xd30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xd30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xd40) = 0;
@@ -95943,16 +94353,14 @@ void Unwind_180911120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xdb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xdc0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xdc0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xdd0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xdb8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xd98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xda0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xda0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xdb0) = 0;
@@ -95973,16 +94381,14 @@ void Unwind_180911140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe40) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xe28) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe20) = 0;
@@ -96003,16 +94409,14 @@ void Unwind_180911160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xea0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xea0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xeb0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xe98) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xe80) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xe90) = 0;
@@ -96033,16 +94437,14 @@ void Unwind_180911180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf20) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf08) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xee8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xef0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xef0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf00) = 0;
@@ -96063,16 +94465,14 @@ void Unwind_1809111a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf80) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf90) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xf78) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xf58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xf60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xf60) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xf70) = 0;
@@ -96093,16 +94493,14 @@ void Unwind_1809111c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xfe8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xff0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xff0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1000) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xfe8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xfc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xfd0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0xfd0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0xfe0) = 0;
@@ -96123,16 +94521,14 @@ void Unwind_1809111e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1058) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1060) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1060) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1070) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1058) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1038) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1040) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1040) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1050) = 0;
@@ -96153,16 +94549,14 @@ void Unwind_180911200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x10e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x10c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x10a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x10b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x10b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x10c0) = 0;
@@ -96183,16 +94577,14 @@ void Unwind_180911220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1138) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1140) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1140) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1150) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1138) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1118) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1120) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1120) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1130) = 0;
@@ -96213,16 +94605,14 @@ void Unwind_180911240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x11a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x11b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x11b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x11c0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x11a8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1188) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1190) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1190) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x11a0) = 0;
@@ -96243,16 +94633,14 @@ void Unwind_180911260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1218) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1220) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1220) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1230) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1218) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x11f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1200) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1200) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1210) = 0;
@@ -96273,16 +94661,14 @@ void Unwind_180911280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1288) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1290) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1290) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x12a0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1288) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1268) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1270) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1270) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1280) = 0;
@@ -96303,16 +94689,14 @@ void Unwind_1809112a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x12f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1300) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1300) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1310) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x12f8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x12d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x12e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x12e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x12f0) = 0;
@@ -96333,16 +94717,14 @@ void Unwind_1809112c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1368) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1370) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1370) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1380) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1368) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1348) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1350) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1350) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1360) = 0;
@@ -96363,16 +94745,14 @@ void Unwind_1809112e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x13d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x13e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x13e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x13f0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x13d8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x13b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x13c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x13c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x13d0) = 0;
@@ -96393,16 +94773,14 @@ void Unwind_180911300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1448) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1450) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1450) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1460) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1448) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1428) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1430) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1430) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1440) = 0;
@@ -96423,16 +94801,14 @@ void Unwind_180911320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x14b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x14c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x14c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x14d0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x14b8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1498) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x14a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x14a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x14b0) = 0;
@@ -96453,16 +94829,14 @@ void Unwind_180911340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1528) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1530) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1530) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1540) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1528) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1508) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1510) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1510) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1520) = 0;
@@ -96483,16 +94857,14 @@ void Unwind_180911360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1598) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x15a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x15a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x15b0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1598) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1578) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1580) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1580) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1590) = 0;
@@ -96513,16 +94885,14 @@ void Unwind_180911380(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1608) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1610) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1610) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1620) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1608) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x15e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x15f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x15f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1600) = 0;
@@ -96543,16 +94913,14 @@ void Unwind_1809113a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1678) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1680) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1680) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1690) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1678) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1658) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1660) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1660) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1670) = 0;
@@ -96573,16 +94941,14 @@ void Unwind_1809113c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x16e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x16f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x16f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1700) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x16e8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x16c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x16d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x16d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x16e0) = 0;
@@ -96603,16 +94969,14 @@ void Unwind_1809113e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1758) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1760) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1760) = 0;
   *(DataWord *)(exceptionHandlerContext + 6000) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1758) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1738) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1740) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1740) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1750) = 0;
@@ -96633,16 +94997,14 @@ void Unwind_180911400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x17c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x17d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x17d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x17e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x17c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x17a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x17b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x17b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x17c0) = 0;
@@ -96663,16 +95025,14 @@ void Unwind_180911420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1838) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1840) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1840) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1850) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1838) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1818) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1820) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1820) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1830) = 0;
@@ -96693,16 +95053,14 @@ void Unwind_180911440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x18a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x18b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x18b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x18c0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x18a8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1888) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1890) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1890) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x18a0) = 0;
@@ -96723,16 +95081,14 @@ void Unwind_180911460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1918) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1920) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1920) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1930) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1918) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x18f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1900) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1900) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1910) = 0;
@@ -96753,16 +95109,14 @@ void Unwind_180911480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1988) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1990) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1990) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x19a0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1988) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1968) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1970) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1970) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1980) = 0;
@@ -96783,16 +95137,14 @@ void Unwind_1809114a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x19f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1a00) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a00) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1a10) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x19f8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x19d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x19e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x19e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x19f0) = 0;
@@ -96813,16 +95165,14 @@ void Unwind_1809114c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a68) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1a70) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a70) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1a80) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1a68) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1a48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1a50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1a50) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1a60) = 0;
@@ -96843,16 +95193,14 @@ void Unwind_1809114e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ad8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1ae0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ae0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1af0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ad8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ab8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1ac0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ac0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1ad0) = 0;
@@ -96873,16 +95221,14 @@ void Unwind_180911500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1b48) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1b50) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1b50) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1b60) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1b48) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1b28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1b30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1b30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1b40) = 0;
@@ -96903,16 +95249,14 @@ void Unwind_180911520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1bb8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1bc0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1bc0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1bd0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1bb8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1b98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1ba0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ba0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1bb0) = 0;
@@ -96933,16 +95277,14 @@ void Unwind_180911540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1c30) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c30) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1c40) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c28) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1c10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1c20) = 0;
@@ -96963,16 +95305,14 @@ void Unwind_180911560(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c98) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1ca0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ca0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1cb0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c98) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1c78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1c80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1c80) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1c90) = 0;
@@ -96993,16 +95333,14 @@ void Unwind_180911580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d08) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1d10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d10) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1d20) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1d08) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ce8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1cf0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1cf0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1d00) = 0;
@@ -97023,16 +95361,14 @@ void Unwind_1809115a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d78) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1d80) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d80) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1d90) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1d78) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1d58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1d60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1d60) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1d70) = 0;
@@ -97053,16 +95389,14 @@ void Unwind_1809115c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1de8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1df0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1df0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1e00) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1de8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1dc8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1dd0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1dd0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1de0) = 0;
@@ -97083,16 +95417,14 @@ void Unwind_1809115e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1e58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1e60) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1e60) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1e70) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1e58) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1e38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1e40) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1e40) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1e50) = 0;
@@ -97113,16 +95445,14 @@ void Unwind_180911600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ec8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1ed0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1ed0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1ee0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ec8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ea8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1eb0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1eb0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1ec0) = 0;
@@ -97143,16 +95473,14 @@ void Unwind_180911620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1f38) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 8000) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 8000) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1f50) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1f38) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1f18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1f20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1f20) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1f30) = 0;
@@ -97173,16 +95501,14 @@ void Unwind_180911640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1fa8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1fb0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1fb0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1fc0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x1fa8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1f88) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x1f90) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x1f90) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x1fa0) = 0;
@@ -97203,16 +95529,14 @@ void Unwind_180911660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2018) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2020) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2020) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2030) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2018) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1ff8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2000) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2000) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2010) = 0;
@@ -97233,16 +95557,14 @@ void Unwind_180911680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2088) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2090) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2090) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x20a0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2088) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2068) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2070) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2070) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2080) = 0;
@@ -97274,16 +95596,14 @@ void CleanupExceptionAtOffset2130(DataBuffer operationBase,int64_t dataBuffer,Da
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2100) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2100) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2110) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x20f8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x20d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x20e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x20e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x20f0) = 0;
@@ -97315,16 +95635,14 @@ void CleanupExceptionAtOffset21A0(DataBuffer operationBase,int64_t dataBuffer,Da
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2168) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2170) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2170) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2180) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2168) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2148) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2150) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2150) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2160) = 0;
@@ -97356,16 +95674,14 @@ void CleanupExceptionAtOffset2210(DataBuffer exceptionContext,int64_t contextPoi
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x21d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x21e0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x21e0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x21f0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x21d8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x21b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x21c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x21c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x21d0) = 0;
@@ -97386,16 +95702,14 @@ void Unwind_180911700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2248) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2250) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2250) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2260) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2248) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2228) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2230) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2230) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2240) = 0;
@@ -97427,16 +95741,14 @@ void CleanupExceptionAtOffset22F0(DataBuffer operationBase,int64_t dataBuffer,Da
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x22b8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x22c0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x22c0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x22d0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x22b8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2298) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x22a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x22a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x22b0) = 0;
@@ -97468,16 +95780,14 @@ void CleanupExceptionAtOffset2360(DataBuffer exceptionContext,int64_t contextPoi
   }
   *(DataBuffer *)(exceptionHandlerContext + 9000) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2330) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2330) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2340) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 9000) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2308) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2310) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2310) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2320) = 0;
@@ -97498,16 +95808,14 @@ void Unwind_180911760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2398) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x23a0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x23a0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x23b0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2398) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2378) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2380) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2380) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2390) = 0;
@@ -97528,16 +95836,14 @@ void Unwind_180911780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2408) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2410) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2410) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2420) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2408) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x23e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x23f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x23f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2400) = 0;
@@ -97558,16 +95864,14 @@ void Unwind_1809117a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2478) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2480) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2480) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2490) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2478) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2458) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2460) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2460) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2470) = 0;
@@ -97588,16 +95892,14 @@ void Unwind_1809117c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x24e8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x24f0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x24f0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2500) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x24e8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x24c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x24d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x24d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x24e0) = 0;
@@ -97618,16 +95920,14 @@ void Unwind_1809117e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2558) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2560) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2560) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2570) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x2558) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x2538) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2540) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x2540) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x2550) = 0;
@@ -97648,16 +95948,14 @@ void Unwind_180911800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x25c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x25d0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x25d0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x25e0) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x25c8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x25a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x25b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x25b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x25c0) = 0;
@@ -97684,8 +95982,7 @@ void Unwind_180911820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -97707,8 +96004,7 @@ void Unwind_180911840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*pdataContext == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -97728,8 +96024,7 @@ void Unwind_180911860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0x70) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -97749,8 +96044,7 @@ void Unwind_180911870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0x110) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -97770,8 +96064,7 @@ void Unwind_180911880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0xf0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -97791,8 +96084,7 @@ void Unwind_180911890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0xd0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -97825,8 +96117,7 @@ void ProcessExceptionCallbacksZ0(DataBuffer operationBase, int64_t dataBuffer, D
   if (*(int64_t *)(dataBuffer + 0xb0) == 0) {
     return;
   }
-  // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -97859,8 +96150,7 @@ void ProcessExceptionCallbacksZ1(DataBuffer operationBase, int64_t dataBuffer, D
   if (*(int64_t *)(dataBuffer + 0x130) == 0) {
     return;
   }
-  // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -97959,8 +96249,7 @@ void ProcessExceptionCallbacksZ2(DataBuffer operationBase, int64_t dataBuffer, D
   if (*(int64_t *)(dataBuffer + 0x70) == 0) {
     return;
   }
-  // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -98027,8 +96316,7 @@ void Unwind_180911900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0x110) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -98048,8 +96336,7 @@ void Unwind_180911910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0xf0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -98069,8 +96356,7 @@ void Unwind_180911920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0xd0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -98090,8 +96376,7 @@ void Unwind_180911930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0xb0) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -98111,8 +96396,7 @@ void Unwind_180911940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   if (*(int64_t *)(dataBuffer + 0x130) == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+    TerminateSystemE0();
 }
 
 
@@ -98313,7 +96597,6 @@ void Unwind_180911ad0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98325,15 +96608,13 @@ void Unwind_180911b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911b10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98345,15 +96626,13 @@ void Unwind_180911b10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98365,15 +96644,13 @@ void Unwind_180911b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98385,15 +96662,13 @@ void Unwind_180911b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98405,15 +96680,13 @@ void Unwind_180911b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98425,15 +96698,13 @@ void Unwind_180911b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911b70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98445,8 +96716,7 @@ void Unwind_180911b70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -98497,7 +96767,6 @@ void Unwind_180911c00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911c30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98509,15 +96778,13 @@ void Unwind_180911c30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98529,23 +96796,20 @@ void Unwind_180911c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x70) + 0x1608);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98557,15 +96821,13 @@ void Unwind_180911c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98577,15 +96839,13 @@ void Unwind_180911c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98597,15 +96857,13 @@ void Unwind_180911ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98617,15 +96875,13 @@ void Unwind_180911cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98637,15 +96893,13 @@ void Unwind_180911ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98657,15 +96911,13 @@ void Unwind_180911d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98677,15 +96929,13 @@ void Unwind_180911d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98697,15 +96947,13 @@ void Unwind_180911d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98717,15 +96965,13 @@ void Unwind_180911d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98737,15 +96983,13 @@ void Unwind_180911d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98757,15 +97001,13 @@ void Unwind_180911da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98777,15 +97019,13 @@ void Unwind_180911dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98811,8 +97051,7 @@ void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
         if (ExceptionContextPtr != 0) {
           *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
         }
-                    // WARNING: Subroutine does not return
-        HandleSystemException(calculatedOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+          HandleSystemException(calculatedOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
       }
       dataFlags = (int)validationOutcome + 1;
       operationResult = operationResult + 0x10;
@@ -98826,8 +97065,7 @@ void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(calculatedOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(calculatedOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   calculatedOffset = *(int64_t *)(calculatedIndex + 0x1e68);
   if (calculatedOffset == 0) {
@@ -98837,8 +97075,7 @@ void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
       if (ExceptionContextPtr != 0) {
         *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
       }
-                    // WARNING: Subroutine does not return
-      HandleSystemException(calculatedOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+        HandleSystemException(calculatedOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     }
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x1e68);
     if (calculatedIndex == 0) {
@@ -98847,20 +97084,17 @@ void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(calculatedIndex,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(calculatedIndex,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(calculatedIndex + 0x1e60) = 0;
   if (ExceptionContextPtr != 0) {
     *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
   }
-                    // WARNING: Subroutine does not return
-  HandleSystemException(calculatedOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    HandleSystemException(calculatedOffset,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98872,15 +97106,13 @@ void Unwind_180911e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98892,15 +97124,13 @@ void Unwind_180911e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98914,31 +97144,27 @@ void Unwind_180911e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1ec8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1eb8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98955,31 +97181,27 @@ void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d58);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d48);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -98991,15 +97213,13 @@ void Unwind_180911e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99011,15 +97231,13 @@ void Unwind_180911ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99031,15 +97249,13 @@ void Unwind_180911ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99051,15 +97267,13 @@ void Unwind_180911ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99071,8 +97285,7 @@ void Unwind_180911f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -99089,7 +97302,6 @@ void Unwind_180911f20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99101,15 +97313,13 @@ void Unwind_180911f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99121,15 +97331,13 @@ void Unwind_180911f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99141,15 +97349,13 @@ void Unwind_180911f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99161,15 +97367,13 @@ void Unwind_180911fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99181,15 +97385,13 @@ void Unwind_180911fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99201,15 +97403,13 @@ void Unwind_180911fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99221,15 +97421,13 @@ void Unwind_180911fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180911fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99241,15 +97439,13 @@ void Unwind_180911fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: void CleanupExceptionAtOffset48(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 // 
@@ -99274,15 +97470,13 @@ void CleanupExceptionAtOffset48(DataBuffer operationBase,int64_t dataBuffer,Data
     if (ExceptionContext != 0) {
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(resourcePointer,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(resourcePointer,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: void CleanupExceptionAtOffset58(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 // 
@@ -99307,15 +97501,13 @@ void CleanupExceptionAtOffset58(DataBuffer operationBase,int64_t dataBuffer,Data
     if (ExceptionContext != 0) {
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(resourcePointer,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(resourcePointer,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: void CleanupExceptionAtOffset68(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 // 
@@ -99340,15 +97532,13 @@ void CleanupExceptionAtOffset68(DataBuffer operationBase,int64_t dataBuffer,Data
     if (ExceptionContext != 0) {
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(resourcePointer,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(resourcePointer,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: void CleanupExceptionAtOffset1530(DataBuffer exceptionContext, int64_t resourcePointer, DataBuffer cleanupFlags, DataBuffer validationFlags)
 // 
@@ -99373,15 +97563,13 @@ void CleanupExceptionAtOffset1530(DataBuffer exceptionContext,int64_t resourcePo
     if (ExceptionContext != 0) {
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(cleanupResourcePointer,ExceptionDataPointer,cleanupFlags,validationFlags,SystemCleanupFlagAlternative);
+      HandleSystemException(cleanupResourcePointer,ExceptionDataPointer,cleanupFlags,validationFlags,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void HandleDataBufferExceptionAtOffset40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99393,15 +97581,13 @@ void HandleDataBufferExceptionAtOffset40(DataBuffer operationBase,int64_t dataBu
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void HandleDataBufferExceptionAtOffsetE0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99413,15 +97599,13 @@ void HandleDataBufferExceptionAtOffsetE0(DataBuffer operationBase,int64_t dataBu
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x080处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99434,15 +97618,13 @@ void HandleDataBufferExceptionAtOffset080(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x090处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99455,15 +97637,13 @@ void HandleDataBufferExceptionAtOffset090(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x0a0处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99476,15 +97656,13 @@ void HandleDataBufferExceptionAtOffset0a0(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x0b0处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99497,15 +97675,13 @@ void HandleDataBufferExceptionAtOffset0b0(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x0d0处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset0d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99518,15 +97694,13 @@ void HandleDataBufferExceptionAtOffset0d0(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x0f0处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99539,15 +97713,13 @@ void HandleDataBufferExceptionAtOffset0f0(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x110处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99560,15 +97732,13 @@ void HandleDataBufferExceptionAtOffset110(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x130处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99581,15 +97751,13 @@ void HandleDataBufferExceptionAtOffset130(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x150处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99602,15 +97770,13 @@ void HandleDataBufferExceptionAtOffset150(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x170处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99623,15 +97789,13 @@ void HandleDataBufferExceptionAtOffset170(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x180处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99646,47 +97810,41 @@ void HandleDataBufferExceptionAtOffset180(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1e0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1d0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1c0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 400);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x1a0处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset1a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99699,15 +97857,13 @@ void HandleDataBufferExceptionAtOffset1a0(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x1c0处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset1c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99720,15 +97876,13 @@ void HandleDataBufferExceptionAtOffset1c0(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x1e0处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset1e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99741,15 +97895,13 @@ void HandleDataBufferExceptionAtOffset1e0(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x200处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99767,63 +97919,55 @@ void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x378);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x368);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x358);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x318);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x308);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2f8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x220处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99836,15 +97980,13 @@ void HandleDataBufferExceptionAtOffset220(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 数据缓冲区异常处理函数 - 在偏移量0x240处处理数据缓冲区操作异常
 void HandleDataBufferExceptionAtOffset240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
@@ -99857,15 +97999,13 @@ void HandleDataBufferExceptionAtOffset240(DataBuffer operationBase,int64_t dataB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99877,15 +98017,13 @@ void Unwind_180912260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99897,15 +98035,13 @@ void Unwind_180912280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99919,47 +98055,41 @@ void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1e0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1d0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1c0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 400);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809122c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99971,15 +98101,13 @@ void Unwind_1809122c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809122e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -99991,15 +98119,13 @@ void Unwind_1809122e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100011,15 +98137,13 @@ void Unwind_180912300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 清理异常处理器链表A0
@@ -100070,47 +98194,41 @@ void CleanupExceptionHandlerChainA0(DataBuffer operationBase, int64_t dataBuffer
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x358);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x318);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x308);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2f8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 清理异常处理器A0
@@ -100134,15 +98252,13 @@ void CleanupExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer, Dat
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100154,15 +98270,13 @@ void Unwind_180912350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100174,8 +98288,7 @@ void Unwind_180912360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -100215,7 +98328,6 @@ void HandleSystemContextExceptionAtOffset3d0(DataBuffer operationBase,int64_t da
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100227,15 +98339,13 @@ void Unwind_180912400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100247,15 +98357,13 @@ void Unwind_180912410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100267,15 +98375,13 @@ void Unwind_180912420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100287,15 +98393,13 @@ void Unwind_180912430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100307,15 +98411,13 @@ void Unwind_180912440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100327,15 +98429,13 @@ void Unwind_180912450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100347,8 +98447,7 @@ void Unwind_180912460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -100375,7 +98474,6 @@ void Unwind_1809124a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809124d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100387,15 +98485,13 @@ void Unwind_1809124d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809124e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100407,15 +98503,13 @@ void Unwind_1809124e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809124f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100434,15 +98528,13 @@ void Unwind_1809124f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100454,15 +98546,13 @@ void Unwind_180912500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100474,15 +98564,13 @@ void Unwind_180912510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100494,15 +98582,13 @@ void Unwind_180912520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100514,15 +98600,13 @@ void Unwind_180912530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100534,8 +98618,7 @@ void Unwind_180912540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -100552,7 +98635,6 @@ void Unwind_180912550(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100564,15 +98646,13 @@ void Unwind_180912580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100585,8 +98665,7 @@ void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x48);
   if (exceptionHandlerContext != 0) {
@@ -100594,8 +98673,7 @@ void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataWord *)(dataBuffer + 0x60) = 0;
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x58);
@@ -100603,23 +98681,20 @@ void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x48);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809125a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100631,8 +98706,7 @@ void Unwind_1809125a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -100664,8 +98738,7 @@ void HandleExceptionContextReferenceCountDecrement(DataBuffer operationBase,int6
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -100697,8 +98770,7 @@ void HandleIndirectExceptionContextReferenceCountDecrement(DataBuffer operationB
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -100797,8 +98869,7 @@ void HandleIndirectExceptionContextReferenceCountDecrementB(DataBuffer operation
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -100815,7 +98886,6 @@ void Unwind_180912670(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809126a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100827,8 +98897,7 @@ void Unwind_1809126a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -100874,7 +98943,6 @@ void Unwind_180912740(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -100886,15 +98954,13 @@ void Unwind_180912770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统异常处理器重置器
@@ -100924,15 +98990,13 @@ void ResetSystemExceptionHandler(DataBuffer operationBase, int64_t dataBuffer, D
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 数据验证异常处理器
@@ -100962,15 +99026,13 @@ void HandleDataValidationException(DataBuffer operationBase, int64_t dataBuffer,
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统数据缓冲区清理器
@@ -101000,15 +99062,13 @@ void CleanupSystemDataBufferA0(DataBuffer operationBase, int64_t dataBuffer, Dat
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809127b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -101026,15 +99086,13 @@ void Unwind_1809127b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809127c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -101053,15 +99111,13 @@ void Unwind_1809127c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 资源清理异常处理函数 - 在偏移量0x7d0处处理资源清理异常
 void HandleResourceCleanupExceptionAtOffset7d0(void)
@@ -101074,22 +99130,19 @@ void HandleResourceCleanupExceptionAtOffset7d0(void)
   LeaveCriticalSection(0x180c82210);
   if (ExceptionEventHandle != 0) {
     SetEvent();
-                    // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
-                    // WARNING: Treating indirect jump as call
-    ResetEvent(ExceptionEventHandle);
+                     0x0001808fcc41. Too many branches
+                        ResetEvent(ExceptionEventHandle);
     return;
   }
   shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
-                    // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
-                    // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+                     0x0001808ffe70. Too many branches
+                      (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
             (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809127e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -101101,15 +99154,13 @@ void Unwind_1809127e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_1809127f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -101121,15 +99172,13 @@ void Unwind_1809127f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void Unwind_180912800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
@@ -101141,8 +99190,7 @@ void Unwind_180912800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
-    HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -101306,16 +99354,14 @@ void Unwind_180912910(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
   *(DataBuffer *)(exceptionHandlerContext + 0x218) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x220) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x220) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x230) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0x218) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0x1f8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x200) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x200) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x210) = 0;
@@ -101369,8 +99415,7 @@ void Unwind_180912950(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
   *(DataBuffer *)(exceptionHandlerContext + 0x388) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x390) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x390) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x3a0) = 0;
@@ -101388,8 +99433,7 @@ void Unwind_180912970(DataBuffer operationBase,int64_t dataBuffer)
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
   *(DataBuffer *)(exceptionHandlerContext + 0x3a8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x3b0) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x3b0) = 0;
   *(DataWord *)(exceptionHandlerContext + 0x3c0) = 0;
@@ -101419,7 +99463,6 @@ void UtilityProcessParameter1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void UtilityProcessParameter2(DataBuffer operationBase,int64_t dataBuffer)
@@ -101520,8 +99563,7 @@ DataWord InitializeDataStructureA0(DataBuffer operationBase,int64_t dataBuffer)
     *(DataWord *)(dataBuffer + 0x20) = 0;
     return *(DataWord *)(dataBuffer + 0x20);
   }
-                    // WARNING: Subroutine does not return
-  terminate();
+    terminate();
 }
 
 
@@ -101555,7 +99597,6 @@ void ExecuteCallbackFunction(DataBuffer *callbackContext)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -101595,7 +99636,6 @@ void InitializeUtilityModule(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -101615,7 +99655,6 @@ void ResetUtilityPointers1(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -101635,7 +99674,6 @@ void ResetUtilityPointers2(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -101655,7 +99693,6 @@ void ResetUtilityPointers3(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -101675,7 +99712,6 @@ void ResetUtilityPointerE0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -101695,7 +99731,6 @@ void UtilityResetPointer5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -101728,9 +99763,8 @@ void DestroyMutexAndCondition(void)
 
 {
   _Mtx_destroy_in_situ();
-                    // WARNING: Could not recover jumptable at 0x000180941680. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Cnd_destroy_in_situ();
+                     0x000180941680. Too many branches
+                      _Cnd_destroy_in_situ();
   return;
 }
 
@@ -101749,9 +99783,8 @@ void CleanupThreadSyncResources(void)
 
 {
   _Mtx_destroy_in_situ();
-                    // WARNING: Could not recover jumptable at 0x0001809416c0. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Cnd_destroy_in_situ();
+                     0x0001809416c0. Too many branches
+                      _Cnd_destroy_in_situ();
   return;
 }
 
@@ -101770,9 +99803,8 @@ void ReleaseMutexAndCondition(void)
 
 {
   _Mtx_destroy_in_situ();
-                    // WARNING: Could not recover jumptable at 0x000180941700. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Cnd_destroy_in_situ();
+                     0x000180941700. Too many branches
+                      _Cnd_destroy_in_situ();
   return;
 }
 
@@ -101791,15 +99823,13 @@ void CleanupThreadResources(void)
 
 {
   _Mtx_destroy_in_situ();
-                    // WARNING: Could not recover jumptable at 0x000180941740. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Cnd_destroy_in_situ();
+                     0x000180941740. Too many branches
+                      _Cnd_destroy_in_situ();
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -101813,9 +99843,8 @@ void CleanupThreadResources(void)
 void CloseSystemHandle(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
-                    // WARNING: Treating indirect jump as call
-  CloseHandle(SystemHandlePointer);
+                     0x0001809417b8. Too many branches
+                      CloseHandle(SystemHandlePointer);
   return;
 }
 
@@ -101833,15 +99862,13 @@ void CloseSystemHandle(void)
 void DestroyMutex(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(MutexObjectPointer);
+                     0x0001809417d8. Too many branches
+                      _Mtx_destroy_in_situ(MutexObjectPointer);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -101861,7 +99888,6 @@ void ResetSystemDataPointer(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -101881,7 +99907,6 @@ void SetGlobalDataPointerB0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SetGlobalDataPointerB1(void)
@@ -101897,7 +99922,6 @@ void SetGlobalDataPointerB1(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SetGlobalDataPointerB2(void)
@@ -101913,7 +99937,6 @@ void SetGlobalDataPointerB2(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SetGlobalDataPointerB3(void)
@@ -101929,7 +99952,6 @@ void SetGlobalDataPointerB3(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SetGlobalDataPointerB4(void)
@@ -101942,7 +99964,6 @@ void SetGlobalDataPointerB4(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SetGlobalDataPointerB5(void)
@@ -101955,7 +99976,6 @@ void SetGlobalDataPointerB5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void SetGlobalDataPointerB6(void)
@@ -101968,7 +99988,6 @@ void SetGlobalDataPointerB6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 异常处理器设置函数A0 - 设置默认异常处理器B到全局地址0x180bf6680
@@ -101982,7 +100001,6 @@ void SetDefaultExceptionHandlerA0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 异常处理器设置函数B0 - 设置默认异常处理器B到全局地址0x180bf66b0
@@ -101996,7 +100014,6 @@ void SetDefaultExceptionHandlerB0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 验证上下文处理函数A0 - 处理验证上下文并释放相关资源
@@ -102012,15 +100029,13 @@ void ProcessValidationContextA0(DataBuffer operationBase,DataBuffer dataBuffer,D
   *ValidationContextPointerArray = (int64_t)exceptionHandlerContextPointer;
   ValidationContextPointerArray[2] = (int64_t)exceptionHandlerContextPointer;
   ValidationContextStatusFlag = 0;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(ValidationContextPointerArray,0x58);
+                     0x0001808ffc83. Too many branches
+                      free(ValidationContextPointerArray,0x58);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102040,7 +100055,6 @@ void SetDefaultExceptionHandlerA0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102072,15 +100086,13 @@ void SetDefaultExceptionHandlerA1(void)
 void DestroyMutexA0(void)
 
 {
-  // WARNING: Could not recover jumptable at 0x0001809419d8. Too many branches
-  // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c91970);
+   0x0001809419d8. Too many branches
+    _Mtx_destroy_in_situ(0x180c91970);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102096,8 +100108,7 @@ void TerminateAndResetSystemA0(void)
 {
   GlobalExceptionHandlerPointerA1 = &TemporaryExceptionHandler;
   if (SystemTerminationFlag != 0) {
-    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+        TerminateSystemE0();
   }
   SystemTerminationFlag = 0;
   SystemResetInProgressFlag = 0;
@@ -102107,7 +100118,6 @@ void TerminateAndResetSystemA0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void InitializeExceptionHandlerSystemG0(void)
@@ -102124,8 +100134,7 @@ void InitializeExceptionHandlerSystemG0(void)
 {
   ExceptionHandlerTablePointer = &TemporaryExceptionHandler;
   if (SystemExceptionHandlerState != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   SystemExceptionHandlerState = 0;
   SystemExceptionCleanupFlag = 0;
@@ -102135,7 +100144,6 @@ void InitializeExceptionHandlerSystemG0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102181,7 +100189,6 @@ void ProcessSystemExceptionDataG1(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void UtilityHandleEventFirst(void)
@@ -102190,8 +100197,7 @@ void UtilityHandleEvent1(void)
 {
   EventHandlerPointer = &DefaultExceptionHandlerA;
   if (SystemShutdownFlag != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   SystemShutdownFlag = 0;
   SystemResetFlag = 0;
@@ -102201,7 +100207,6 @@ void UtilityHandleEvent1(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void UtilityHandleEventSecond(void)
@@ -102223,7 +100228,6 @@ void UtilityHandleEventSecond(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void UtilityInitializePointer1(void)
@@ -102245,7 +100249,6 @@ void UtilityInitializePointer1(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void UtilityInitializePointer2(void)
@@ -102267,7 +100270,6 @@ void UtilityInitializePointer2(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void CleanupSystemStateAndResourcesH0(void)
@@ -102276,15 +100278,13 @@ void CleanupSystemStateAndResourcesH0(void)
   if (SystemCleanupFlag != '\0') {
     CleanupSystemDataA0();
     if ((1 < SystemCleanupCounter) && (SystemCleanupPointer != 0)) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     if (SystemCleanupHandler != (int64_t *)0x0) {
       (**(FunctionPointer**)(*SystemCleanupHandler + 0x38))();
     }
     if (SystemCleanupStatus != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
@@ -102307,7 +100307,6 @@ void SetDefaultExceptionHandlerB1(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102327,7 +100326,6 @@ void SetDefaultExceptionHandlerB2(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102344,8 +100342,7 @@ void InitializeExceptionHandlingSystem(void)
 {
   ExceptionHandlerTable = &UnknownExceptionHandlerA0;
   if (SystemInitializationFlag != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   SystemInitializationFlag = 0;
   SystemExceptionCount = 0;
@@ -102368,15 +100365,13 @@ void InitializeExceptionHandlingSystem(void)
 void DestroyMutexResource(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180941db8. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(MutexResourceAddress);
+                     0x000180941db8. Too many branches
+                      _Mtx_destroy_in_situ(MutexResourceAddress);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102397,7 +100392,6 @@ void SetThirdExceptionHandlerB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102414,12 +100408,10 @@ void InitializeSystemExceptionHandlingAndValidate(void)
 {
   InitializeSystemExceptionA0(0x180d497e0);
   if (SystemValidationFlag1 != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   if (SystemValidationFlag2 != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   InitializeSystemExceptionB0(0x180d498a0);
   SystemExceptionHandlerLocation = &DefaultExceptionHandlerB;
@@ -102428,7 +100420,6 @@ void InitializeSystemExceptionHandlingAndValidate(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void ValidateAndCleanMemoryL0(void)
@@ -102444,8 +100435,7 @@ void ValidateAndCleanMemoryL0(void)
       memoryValidationContext = *(int64_t *)(MemoryValidationStartPointer + -8);
       memoryBlockSize = memoryBlockSize + 0x27;
       if (0x1f < (MemoryValidationStartPointer - memoryValidationContext) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn();
+          _invalid_parameter_noinfo_noreturn();
       }
     }
     free(memoryValidationContext,memoryBlockSize);
@@ -102458,7 +100448,6 @@ void ValidateAndCleanMemoryL0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102478,7 +100467,6 @@ void SetDefaultExceptionHandlerB3(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102498,7 +100486,6 @@ void SetDefaultExceptionHandlerB4(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102518,7 +100505,6 @@ void SetDefaultExceptionHandlerB5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102542,7 +100528,6 @@ void InitializeExceptionHandlerB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102566,7 +100551,6 @@ void InitializeExceptionHandlerC(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void InitializeGlobalDataPointerA1(void)
@@ -102578,7 +100562,6 @@ void InitializeGlobalDataPointerA1(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void InitializeGlobalDataPointerA2(void)
@@ -102590,7 +100573,6 @@ void InitializeGlobalDataPointerA2(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102610,7 +100592,6 @@ void InitializeGlobalDataPointerA3(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102630,7 +100611,6 @@ void InitializeGlobalDataPointerA4(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102650,7 +100630,6 @@ void InitializeGlobalDataPointerA5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102670,7 +100649,6 @@ void InitializeGlobalDataPointerA6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102690,7 +100668,6 @@ void SetDefaultExceptionHandlerA5(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102710,7 +100687,6 @@ void SetDefaultExceptionHandlerA6(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102794,7 +100770,6 @@ void SetDefaultExceptionHandlerC3(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102814,7 +100789,6 @@ void SetDefaultExceptionHandler04(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102834,7 +100808,6 @@ void SetDefaultExceptionHandler05(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102854,7 +100827,6 @@ void SetDefaultExceptionHandler06(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102874,7 +100846,6 @@ void SetExceptionHandlerBToGlobalA(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102894,7 +100865,6 @@ void SetExceptionHandlerBToGlobalB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102914,7 +100884,6 @@ void SetExceptionHandlerBToGlobalC(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102934,7 +100903,6 @@ void SetDefaultExceptionHandler07(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102954,7 +100922,6 @@ void SetDefaultExceptionHandler08(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102974,7 +100941,6 @@ void SetDefaultExceptionHandler09(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -102994,7 +100960,6 @@ void SetDefaultExceptionHandler01(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103014,7 +100979,6 @@ void SetDefaultExceptionHandler02(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 9422a0(void)
@@ -103035,7 +100999,6 @@ void SetDefaultExceptionHandler03(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 9422c0(void)
@@ -103056,7 +101019,6 @@ void SetDefaultExceptionHandler04(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103076,7 +101038,6 @@ void SetDefaultExceptionHandler05(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103096,7 +101057,6 @@ void SetDefaultExceptionHandler06(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103116,7 +101076,6 @@ void SetDefaultExceptionHandler07(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103136,7 +101095,6 @@ void SetDefaultExceptionHandler08(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103156,7 +101114,6 @@ void SetDefaultExceptionHandler09(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103176,7 +101133,6 @@ void SetDefaultExceptionHandler10(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 9423a0(void)
@@ -103197,7 +101153,6 @@ void SetDefaultExceptionHandler11(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 9423c0(void)
@@ -103218,7 +101173,6 @@ void SetDefaultExceptionHandler12(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103238,7 +101192,6 @@ void SetDefaultExceptionHandler13(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103258,7 +101211,6 @@ void SetDefaultExceptionHandler14(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103278,7 +101230,6 @@ void SetDefaultExceptionHandler15(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103298,7 +101249,6 @@ void SetDefaultExceptionHandler16(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103318,7 +101268,6 @@ void SetDefaultExceptionHandler17(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103338,7 +101287,6 @@ void SetDefaultExceptionHandler18(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103358,7 +101306,6 @@ void SetDefaultExceptionHandler19(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103403,7 +101350,6 @@ void CleanupSystemResourceManagerA(DataBuffer operationBase, DataBuffer dataBuff
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103448,7 +101394,6 @@ void CleanupSystemResourceManagerB(DataBuffer operationBase, DataBuffer dataBuff
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void CleanupSystemResourceManagerC(DataBuffer operationBase, DataBuffer dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
@@ -103568,7 +101513,6 @@ void CleanupSystemMemoryBufferA(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103708,7 +101652,6 @@ void CleanupDataBufferD(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 初始化异常处理器表A0
@@ -103723,23 +101666,20 @@ void InitializeExceptionHandlerTableA0(DataBuffer operationBase,DataBuffer dataB
   for (exceptionTableIterator = ExceptionTableStartPointer; exceptionTableIterator != exceptionTableEnd; exceptionTableIterator = exceptionTableIterator + 7) {
     *exceptionTableIterator = &TemporaryExceptionHandler;
     if (exceptionTableIterator[1] != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     exceptionTableIterator[1] = 0;
     *(DataWord *)(exceptionTableIterator + 3) = 0;
     *exceptionTableIterator = &DefaultExceptionHandlerB;
   }
   if (ExceptionTableStartPointer != (DataBuffer *)0x0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 设置默认异常处理器A0
@@ -103747,15 +101687,13 @@ void SetDefaultExceptionHandlerA0(void)
 
 {
   DefaultExceptionHandlerPointerA0 = &DefaultExceptionHandlerB;
-                    // WARNING: Could not recover jumptable at 0x0001809427c7. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ();
+                     0x0001809427c7. Too many branches
+                      _Mtx_destroy_in_situ();
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 设置默认异常处理器A1
@@ -103768,7 +101706,6 @@ void SetDefaultExceptionHandlerA1(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 设置默认异常处理器A2
@@ -103781,7 +101718,6 @@ void SetDefaultExceptionHandlerA2(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 设置默认异常处理器A3
@@ -103794,7 +101730,6 @@ void SetDefaultExceptionHandlerA3(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103810,7 +101745,6 @@ void ConfigureExceptionHandlerB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103826,7 +101760,6 @@ void ConfigureExceptionHandlerC(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -103938,7 +101871,6 @@ void ExecuteNoOperation(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ReleaseSystemReferenceCount(void)
@@ -104042,7 +101974,6 @@ void NoOperationCleanupFunction(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void CleanupSystemResourceHandle(void)
@@ -104149,7 +102080,6 @@ void NoOperationMemoryFunction(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void FreeSystemMemoryBuffer(void)
@@ -104174,8 +102104,7 @@ void FreeSystemMemoryBuffer(void)
     if (0xfff < SystemMemoryContextExtendedTable + 1) {
       memoryPointer = *(int64_t *)(memoryContext + -8);
       if (0x1f < (memoryContext - memoryPointer) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer,SystemMemoryContextExtendedTable + 0x28);
+          _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer,SystemMemoryContextExtendedTable + 0x28);
       }
     }
     free(memoryPointer);
@@ -104212,8 +102141,7 @@ void ReleaseDataBufferResources(void)
     if (0xfff < BufferSize) {
       DataBufferPointer = *(int64_t *)(lRam0000000180d49d68 + -8);
       if (0x1f < (lRam0000000180d49d68 - DataBufferPointer) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn
+          _invalid_parameter_noinfo_noreturn
                   (lRam0000000180d49d68 - DataBufferPointer,BufferSize + 0x27,DataBufferPointer,SecurityParameter,SystemCleanupFlagAlternative);
       }
     }
@@ -104223,9 +102151,8 @@ void ReleaseDataBufferResources(void)
     lRam0000000180d49d78 = 0;
   }
   ProcessMemoryAccess(&uRam0000000180d49d58);
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
-  free(uRam0000000180d49d58,0x40);
+                     0x0001808ffc83. Too many branches
+                      free(uRam0000000180d49d58,0x40);
   return;
 }
 
@@ -104254,8 +102181,7 @@ void CleanupUtilityMemoryA0(void)
     if (0xfff < memorySize) {
       exceptionHandlerContext = *(int64_t *)(MemoryPoolAddress + -8);
       if (0x1f < (MemoryPoolAddress - exceptionHandlerContext) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(MemoryPoolAddress - exceptionHandlerContext,memorySize + 0x27);
+          _invalid_parameter_noinfo_noreturn(MemoryPoolAddress - exceptionHandlerContext,memorySize + 0x27);
       }
     }
     free(exceptionHandlerContext);
@@ -104281,15 +102207,13 @@ void CleanupUtilityMemoryA0(void)
 void DestroyMutexLockA0(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180942a58. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(SystemMutexAddress);
+                     0x000180942a58. Too many branches
+                      _Mtx_destroy_in_situ(SystemMutexAddress);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 942a60(void)
@@ -104311,7 +102235,6 @@ void SetDefaultExceptionHandlerC0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -104332,7 +102255,6 @@ void SetDefaultExceptionHandlerA80(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -104357,8 +102279,7 @@ void ExecuteSystemResourceCleanup(DataBuffer operationBase,DataBuffer dataBuffer
   resourceManagerPtr = GlobalResourceManagerPointer;
   if (GlobalResourceManagerPointer != (DataBuffer *)0x0) {
     ExecuteResourceCleanupOperation(operationBase,*GlobalResourceManagerPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-                    // WARNING: Subroutine does not return
-    TerminateResourceManager(resourceManagerPtr);
+      TerminateResourceManager(resourceManagerPtr);
   }
   return;
 }
@@ -104412,8 +102333,7 @@ void CleanupSystemResourceA2(void)
 {
   if (SystemResourceCleanupFlagA2 != '\0') {
     if (SystemResourcePointerA1 != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     SystemResourcePointerA1 = 0;
   }
@@ -104522,8 +102442,7 @@ void ExecuteSystemValidationAndCleanup(void)
   systemValidationContext = SystemValidationContextPointer;
   if (SystemValidationActiveFlag != '\0') {
     if (SystemValidationTerminationFlag != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
     SystemValidationTerminationFlag = 0;
     if (SystemValidationContextPointer != 0) {
@@ -104532,8 +102451,7 @@ void ExecuteSystemValidationAndCleanup(void)
       _Cnd_destroy_in_situ();
       ReleaseSystemResources(systemValidationContext + 0x60);
       ExecuteSystemCleanupRoutine();
-                    // WARNING: Subroutine does not return
-      TerminateValidationContext(systemValidationContext);
+        TerminateValidationContext(systemValidationContext);
     }
     SystemValidationContextPointer = 0;
   }
@@ -104580,8 +102498,7 @@ void CleanupValidationContextA0(void)
       (**(FunctionPointer**)(*SystemValidationContextPointerA0 + 0x38))();
     }
     if (SystemValidationTerminationFlagA0 != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
 
 /**
@@ -104597,8 +102514,7 @@ void CleanupValidationContextA1(void)
 {
   if (SystemValidationCleanupFlagA1 != '\0') {
     if (SystemValidationTerminationFlagA1 != 0) {
-                    // WARNING: Subroutine does not return
-      TerminateSystemE0();
+        TerminateSystemE0();
     }
   }
 }
@@ -104636,7 +102552,6 @@ void SetDefaultExceptionHandlerB(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 942fc0(void)
@@ -104680,9 +102595,8 @@ void InitializeExceptionHandlerA(void)
 void DestroyMutexA(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180943038. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180d49e70);
+                     0x000180943038. Too many branches
+                      _Mtx_destroy_in_situ(0x180d49e70);
   return;
 }
 
@@ -104704,9 +102618,8 @@ void DestroyMutexA(void)
 void DestroyMutexB(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180943058. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180d49f10);
+                     0x000180943058. Too many branches
+                      _Mtx_destroy_in_situ(0x180d49f10);
   return;
 }
 
@@ -104728,15 +102641,13 @@ void DestroyMutexB(void)
 void DestroyMutexC(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180943088. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c96690);
+                     0x000180943088. Too many branches
+                      _Mtx_destroy_in_situ(0x180c96690);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 void SetDefaultExceptionHandlerToLocationC(void)
@@ -104748,7 +102659,6 @@ void SetDefaultExceptionHandlerToLocationC(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ResetUtilitySystem(void)
@@ -104763,7 +102673,6 @@ void ResetUtilitySystem(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeUtilitySystem(void)
@@ -104774,8 +102683,7 @@ void InitializeUtilitySystem(void)
 {
   UtilitySessionConfiguration = &UtilityEventQueueStatus;  // 设置会话配置为事件队列状态
   if (UtilitySessionStatus != 0) {
-                    // WARNING: Subroutine does not return
-    HandleSystemError();  // 处理系统错误
+      HandleSystemError();  // 处理系统错误
   }
   
   UtilitySessionStatus = 0;  // 重置会话状态
@@ -104793,9 +102701,8 @@ void InitializeUtilitySystem(void)
 void DestroyMutexInPlace(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180943158. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c966f0);
+                     0x000180943158. Too many branches
+                      _Mtx_destroy_in_situ(0x180c966f0);
   return;
 }
 
@@ -104808,15 +102715,13 @@ void DestroyMutexInPlace(void)
 void CleanupThreadMutex(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180943178. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c96740);
+                     0x000180943178. Too many branches
+                      _Mtx_destroy_in_situ(0x180c96740);
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,DataBuffer OperationType,DataBuffer Flags)
@@ -104832,15 +102737,13 @@ void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,Dat
   if (SystemResourceDataManager != (SystemDataPtr *)0x0) {
     ProcessSystemDataE0(&SystemResourceDataTable,*SystemResourceDataManager,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
     ReleaseSystemResourceE0(systemData + 5);
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0(systemData);
+      TerminateSystemE0(systemData);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void ResetThreadLocalStorage(void)
@@ -104854,8 +102757,7 @@ void ResetThreadLocalStorage(void)
   threadContext = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
   *(DataBuffer *)(threadContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(threadContext + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   *(DataBuffer *)(threadContext + 0x20) = 0;
   *(DataWord *)(threadContext + 0x30) = 0;
@@ -104865,7 +102767,6 @@ void ResetThreadLocalStorage(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePointer,DataBuffer CleanupType,DataBuffer Flags)
@@ -104884,14 +102785,12 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
   CleanupSystemResourceE1(&SystemResourceDataTable,*GlobalSystemResourceManagerPtr,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   resourceManager[4] = &SystemResourceBufferA0;
   if (resourceManager[5] != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+      TerminateSystemE0();
   }
   resourceManager[5] = 0;
   *(DataWord *)(resourceManager + 7) = 0;
   resourceManager[4] = &SystemResourceBufferA1;
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0(resourceManager);
+    TerminateSystemE0(resourceManager);
 }
 
 // 系统数据处理相关宏定义
