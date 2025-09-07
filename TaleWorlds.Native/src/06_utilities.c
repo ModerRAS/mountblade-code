@@ -777,7 +777,7 @@
  * 
  * @note 原始函数名：FUN_1808992c4
  */
-#define InitializeSystemComponents InitializeSystemComponents
+#define InitializeSystemComponents FUN_1808992c4
 
 /**
  * @brief 带安全检查的数据验证A2
@@ -786,7 +786,7 @@
  * 
  * @note 原始函数名：FUN_1808995c0
  */
-#define ValidateDataWithSecurityCheck ValidateDataWithSecurityCheck
+#define ValidateDataWithSecurityCheck FUN_1808995c0
 
 /**
  * @brief 清理系统资源A0
@@ -795,7 +795,7 @@
  * 
  * @note 原始函数名：FUN_180899790
  */
-#define CleanupSystemResources CleanupSystemResources
+#define CleanupSystemResources FUN_180899790
 
 /**
  * @brief 重置系统状态A0
@@ -804,7 +804,7 @@
  * 
  * @note 原始函数名：FUN_180899799
  */
-#define ResetSystemState ResetSystemState
+#define ResetSystemState FUN_180899799
 
 /**
  * @brief 同步数据A0
@@ -813,7 +813,7 @@
  * 
  * @note 原始函数名：FUN_1808997b0
  */
-#define SynchronizeData SynchronizeData
+#define SynchronizeData FUN_1808997b0
 
 /**
  * @brief 内存管理A0
@@ -822,7 +822,7 @@
  * 
  * @note 原始函数名：FUN_180899891
  */
-#define ManageMemory ManageMemory
+#define ManageMemory FUN_180899891
 
 // 高级数据处理函数宏定义 (F系列)
 
@@ -834,7 +834,7 @@
  * 
  * @note 原始函数名：FUN_180896800
  */
-#define InitializeDataBlockWithMemoryRelease InitializeDataBlockWithMemoryRelease
+#define InitializeDataBlockWithMemoryRelease FUN_180896800
 
 /**
  * @brief 初始化数据块指针A1
@@ -844,7 +844,7 @@
  * 
  * @note 原始函数名：FUN_180896830
  */
-#define InitializeDataBlockWithCleanup InitializeDataBlockWithCleanup
+#define InitializeDataBlockWithCleanup FUN_180896830
 
 /**
  * @brief 处理数据缓冲区A0
@@ -853,7 +853,7 @@
  * 
  * @note 原始函数名：FUN_180898d84
  */
-#define ProcessDataBufferWithValidation ProcessDataBufferWithValidation
+#define ProcessDataBufferWithValidation FUN_180898d84
 
 /**
  * @brief 返回固定状态码A0
@@ -862,7 +862,7 @@
  * 
  * @note 原始函数名：FUN_180898e56
  */
-#define ReturnFixedStatusA0 ReturnFixedStatusA0
+#define ReturnFixedStatusA0 FUN_180898e56
 
 /**
  * @brief 验证数据块状态A0
@@ -898,7 +898,7 @@
  * 
  * @note 原始函数名：FUN_180898f40
  */
-#define ProcessDataBlockOperationA1 ProcessDataBlockOperationA1
+#define ProcessDataBlockOperationA1 FUN_180898f40
 
 /**
  * @brief 验证数据序列A0
@@ -8098,8 +8098,10 @@ uint8_t SystemDataManagementTableA1;
 // 函数: uint8_t UtilityConfigureMemorySettings;
 // 配置内存管理器的设置，包括内存池大小、分配策略等
 uint8_t UtilityConfigureMemorySettings;
-uint8_t UnknownSystemDataM;
-uint8_t UnknownSystemDataN;
+// 系统内存管理表A3
+uint8_t SystemMemoryManagementTableA3;
+// 系统资源管理表A3
+uint8_t SystemResourceManagerTableA3;
 uint8_t UnknownSystemDataO;
 
 // 函数: uint8_t UtilitySetupMemoryRegions;
@@ -9990,7 +9992,7 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
 {
   int64_t resourceContextPtr;
   uint64_t resourceDecrementStatus;
-  int decrementOperationResult;
+  int resourceDecrementResult;
   int64_t localResourceDecrementBuffer [2];
   
   resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + 0x10),localResourceDecrementBuffer);
