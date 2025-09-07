@@ -29987,7 +29987,7 @@ long long CopySystemMemoryDataBlocks(long long sourceMemoryPointer, uint64_t res
   uint MemoryPoolBlockSize;
   long long *memoryBlockPointer;
   long long blockCounter;
-  long long destinationOffset;
+  long long TargetMemoryOffset;
   unsigned long long dataSize;
   
   memoryBlockPointer = (long long *)(sourceMemoryPointer + 8);
@@ -143941,7 +143941,7 @@ void InitializeSystemCharacterProcessor(void)
 
 
 
-d615(voidvoid FUN_18012d615(void
+void ProcessSystemFrameUpdate(void)
 {
   int in_EAX;
   long long FrameRegisterPointer;
@@ -144073,7 +144073,7 @@ d7c0(long long CharacterCodevoid ProcessSystemMemoryAddress(long long CharacterC
 
 
 
-d840(voidvoid FUN_18012d840(void
+void ProcessSystemFloatValidation(void)
 {
   int *ReferenceCountPointer;
   float *pContextSecondaryFloat;

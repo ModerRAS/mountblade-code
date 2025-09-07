@@ -62744,51 +62744,58 @@ void ProcessUIComponentRendering(longlong uiContext,byte *componentData,int rend
 
 
 
- void FUN_1806986ff(void)
-void FUN_1806986ff(void)
+ /**
+ * @brief 处理UI组件渲染的优化版本
+ * 
+ * 该函数是ProcessUIComponentRendering的优化版本，使用寄存器变量提高性能。
+ * 负责处理UI组件的渲染流程，包括滑块和复选框的渲染。
+ * 
+ * @note 原始函数名: FUN_1806986ff
+ */
+void ProcessUIComponentRenderingOptimized(void)
+void ProcessUIComponentRenderingOptimized(void)
 
 {
-  byte isCharacterMatch;
-  bool bVar2;
-  byte *context;
-  int unaff_EBP;
-  undefined4 unaff_R12D;
-  longlong unaff_R13;
-  uint uVar3;
-  longlong unaff_R15;
-  int in_stack_00000060;
-  longlong in_stack_00000078;
+  byte componentType;
+  bool shouldRender;
+  byte *componentContext;
+  int componentIndex;
+  undefined4 renderBufferSize;
+  longlong bufferData;
+  uint componentId;
+  longlong componentMemory;
+  int renderTarget;
+  longlong renderContext;
   
   do {
-    isCharacterMatch = *context;
-    if (((isCharacterMatch == 4) || (isCharacterMatch == 9)) || (context[9] == 0)) {
-      bVar2 = false;
+    componentType = *componentContext;
+    if (((componentType == 4) || (componentType == 9)) || (componentContext[9] == 0)) {
+      shouldRender = false;
     }
     else {
-      bVar2 = true;
+      shouldRender = true;
     }
-    isCharacterMatch = *(byte *)((ulonglong)*(byte *)((ulonglong)isCharacterMatch + 0xd00 + unaff_R15) + unaff_R15 + 0xc40
-                     + ((ulonglong)context[2] + (ulonglong)context[0xb] * 4) * 4);
-    if (isCharacterMatch != 0) {
-      uVar3 = (uint)isCharacterMatch;
-      if (0 < unaff_EBP) {
-        func_0x00018001c253(in_stack_00000078,unaff_R12D,(longlong)(int)uVar3 * 0x10 + unaff_R15);
+    componentType = *(byte *)((ulonglong)*(byte *)((ulonglong)componentType + 0xd00 + componentMemory) + componentMemory + 0xc40
+                     + ((ulonglong)componentContext[2] + (ulonglong)componentContext[0xb] * 4) * 4);
+    if (componentType != 0) {
+      componentId = (uint)componentType;
+      if (0 < componentIndex) {
+        func_0x00018001c253(renderContext,renderBufferSize,(longlong)(int)componentId * 0x10 + componentMemory);
       }
-      if (!bVar2) {
-        RenderUISliderInternal(in_stack_00000078,unaff_R12D,((longlong)(int)uVar3 + 0x40) * 0x10 + unaff_R15)
-        ;
+      if (!shouldRender) {
+        RenderUISliderInternal(renderContext,renderBufferSize,((longlong)(int)componentId + 0x40) * 0x10 + componentMemory);
       }
-      if (0 < in_stack_00000060) {
-        func_0x00018001c10b(in_stack_00000078,unaff_R12D,(longlong)(int)uVar3 * 0x10 + unaff_R15);
+      if (0 < renderTarget) {
+        func_0x00018001c10b(renderContext,renderBufferSize,(longlong)(int)componentId * 0x10 + componentMemory);
       }
-      if (!bVar2) {
-        RenderUICheckboxInternal(in_stack_00000078,unaff_R12D,((ulonglong)isCharacterMatch + 0x40) * 0x10 + unaff_R15);
+      if (!shouldRender) {
+        RenderUICheckboxInternal(renderContext,renderBufferSize,((ulonglong)componentType + 0x40) * 0x10 + componentMemory);
       }
     }
-    in_stack_00000078 = in_stack_00000078 + 0x10;
-    context = context + 0x4c;
-    unaff_EBP = unaff_EBP + 1;
-  } while (unaff_EBP < *(int *)(unaff_R13 + 3000));
+    renderContext = renderContext + 0x10;
+    componentContext = componentContext + 0x4c;
+    componentIndex = componentIndex + 1;
+  } while (componentIndex < *(int *)(bufferData + 3000));
   return;
 }
 
