@@ -126075,7 +126075,7 @@ float * ProcessFloatMemoryBuffers(float *SystemContextPointer,long long Utf8Buff
 
 
 
-float * ManageFloatMemoryAllocation(float *SystemContextPointer,long long Utf8BufferSize,float Utf16InputPointer,float Utf16EndPointer)
+float * ManageFloatMemoryAllocation(float *SystemContextPointer,long long Utf8BufferSize,float Utf16InputPointer,float Utf16EndPointer
 {
   float SystemContextFloat1;
   float SystemContextFloat2;
@@ -126149,7 +126149,7 @@ float * ManageFloatMemoryAllocation(float *SystemContextPointer,long long Utf8Bu
 
 
 
-float * FUN_180129529(float *SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,float Utf16EndPointer
+float * HandleUnicodeFloatMemory(float *SystemContextPointer,long long Utf8BufferSize,uint64_t Utf16InputPointer,float Utf16EndPointer
 {
   float SystemContextFloat1;
   float SystemContextFloat2;
@@ -167185,7 +167185,7 @@ uint64_t *ProcessSystemEventHandling(long long SystemContextPointer,uint64_t *Ut
   uStack_150 = 6;
   strcpy_s(aCoreEngineUnsignedValue,0x10,&SystemStringTemplate);
   StackVariable = 1;
-  FUN_180056f70(SystemContextPointer + 0x438,&SystemContextPointer);
+  ProcessSystemMemoryDataTransfer(SystemContextPointer + 0x438,&SystemContextPointer);
   StackVariable = 0;
   SystemContextPointer = &ThreadLocalStorageTemplate;
   loopCounter = -1;
@@ -167642,7 +167642,7 @@ uint32_t FUN_180142220(long long SystemContextPointer,uint64_t *Utf8BufferSize,u
     memcpy((uint8_t *)((long long)TertiaryProcessingStatusFlag + 1),StatusBuffer3,(long long)IntegerValue2);
   }
   pStackVariableBuffer = &pSystemFlagE;
-  MemoryAllocationIndex = FUN_1800babf0(&pSystemFlagE,&pSystemFlagA);
+  MemoryAllocationIndex = ProcessSystemMemoryAllocationIndex(&pSystemFlagE,&pSystemFlagA);
   ValidationResult = FUN_180142220(SystemContextPointer,MemoryAllocationIndex);
   if (*(char *)((long long)ValidationResult + *(long long *)(SystemContextPointer + 0x8c8)) == '\0') {
     CoreEngineFinalizeSystemEvent(Utf8BufferSize,Utf16InputPointer);
