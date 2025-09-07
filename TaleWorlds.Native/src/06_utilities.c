@@ -101837,10 +101837,10 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储浮点数组的栈数据
 #define StackFloatArrayC afStack_304
 
-// 原始变量名：StackIntegerPointerC - 栈整型指针C
+// 原始变量名：piStack_6f0 - 栈整型指针C
 // 功能：存储整型指针的栈变量
-#define StackIntegerPointerC StackIntegerPointerC
+#define StackIntegerPointerC piStack_6f0
 
-// 原始变量名：StackIntegerPointerD - 栈整型指针D
+// 原始变量名：piStack_8 - 栈整型指针D
 // 功能：存储整型指针的栈变量
-#define StackIntegerPointerD StackIntegerPointerD
+#define StackIntegerPointerD piStack_8
