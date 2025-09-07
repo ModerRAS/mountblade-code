@@ -15684,7 +15684,7 @@ DataBuffer ValidateSystemStatusAndContext(int64_t contextHandle,int64_t eventMan
   
   queryResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&systemContext);
   if ((int)queryResult == 0) {
-    if (*(int *)(systemContext + 0x34) != 0) {
+    if (*(int *)(systemContext + SystemContextOffset34) != 0) {
       return SystemOperationFailure;
     }
     referenceCount = *(int *)(systemContext + SystemContextOffset28);
@@ -15766,10 +15766,10 @@ DataBuffer ManageResourceState(int64_t resourceManager,int64_t systemParams)
   
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceManager + ExceptionHandlerCallbackOffset10),&resourceContext);
   if ((int)operationResult == 0) {
-    if (*(int *)(resourceContext + 0x34) != 0) {
+    if (*(int *)(resourceContext + SystemContextOffset34) != 0) {
       return SystemOperationFailure;
     }
-    resourceCounter = *(int *)(resourceContext + 0x28);
+    resourceCounter = *(int *)(resourceContext + SystemContextOffset28);
     if (resourceCounter < 0) {
       return ResourceInvalidErrorCode;
     }
@@ -15811,7 +15811,7 @@ DataBuffer HandlePermissionRequest(int64_t permissionRequestContext,int64_t syst
     if (*(int64_t *)(permissionContext + 8) == 0) {
       return ResourceAccessDenied;
     }
-    *(DataBuffer *)(permissionRequestContext + RequestDataOffset18) = *(DataBuffer *)(*(int64_t *)(permissionContext + 8) + 0x78);
+    *(DataBuffer *)(permissionRequestContext + PermissionRequestDataOffset18) = *(DataBuffer *)(*(int64_t *)(permissionContext + 8) + 0x78);
     permissionResult = ProcessSystemEventB0(*(DataBuffer *)(systemParameters + SystemEventOffset),permissionRequestContext);
   }
   return permissionResult;
@@ -15842,10 +15842,10 @@ DataBuffer ProcessSystemRequest(int64_t contextHandle,int64_t systemParameters)
   if ((int)requestResult != 0) {
     return requestResult;
   }
-  if (*(char *)(requestContext + 0x2c) != '\0') {
+  if (*(char *)(requestContext + EventHandlerConfigOffset2c) != '\0') {
     return 0x4e;
   }
-  *(ByteFlag *)(requestContext + 0x2c) = 1;
+  *(ByteFlag *)(requestContext + EventHandlerConfigOffset2c) = 1;
     CleanupSystemEventA0(*(DataBuffer *)(systemParameters + SystemEventOffset),contextHandle);
 }
 
@@ -22102,7 +22102,7 @@ DataBuffer ProcessResourceData(int64_t resourceContext)
   int dataSize;
   
   if ((*(int64_t *)(resourceContext + 8) != 0) && (dataSize = *(int *)(resourceContext + 0x30), 0 < dataSize)) {
-    dataSource = *(int64_t *)(resourceContext + 0x28);
+    dataSource = *(int64_t *)(resourceContext + SystemContextOffset28);
     if (0x40000 < dataSize) {
       adjustedSize = CalculateSystemDataSize(dataSource + DataSourceOffset40000,10);
       if (adjustedSize != 0) {
@@ -31924,7 +31924,7 @@ uint64_t ProcessSystemDataA0(int64_t systemContext, int64_t *exceptionHandlerCon
   validationStatus = dataFlags;
   if (0x6f < *(uint *)(exceptionHandlerContext + 8)) {
     if (*(int *)(exceptionHandlerContext[1] + 0x18) == 0) {
-      validationStatus = OperateDataO0(*exceptionHandlerContext,systemContext + 0x34,4);
+      validationStatus = OperateDataO0(*exceptionHandlerContext,systemContext + SystemContextOffset34,4);
     }
     else {
       validationStatus = 0x1c;
