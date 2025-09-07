@@ -251,6 +251,21 @@
 // 原始函数名：FUN_18007f6a0 - 系统资源处理函数A0
 #define ProcessSystemResourcesA1 FUN_18007f6a0
 
+// 原始函数名：FUN_18013ea00 - 数据缓冲区清理函数
+#define CleanupDataBuffer FUN_18013ea00
+
+// 原始函数名：FUN_1808fc5ac - 系统状态检查函数
+#define CheckSystemStatus FUN_1808fc5ac
+
+// 原始函数名：FUN_1808fc51c - 工具操作执行函数
+#define ExecuteUtilityOperationWithParams FUN_1808fc51c
+
+// 原始函数名：FUN_1808fc914 - 数据验证处理函数
+#define ValidateDataWithParams FUN_1808fc914
+
+// 原始函数名：FUN_1803f33b0 - 内存访问处理函数
+#define ProcessMemoryAccess FUN_1803f33b0
+
 // 原始函数名：FUN_180085530 - 系统状态验证函数A0
 #define ValidateSystemStatusA0 FUN_180085530
 
@@ -18332,7 +18347,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
   bool validationStatusFlag;
   int stackContextBuffer [2];
   unsigned int stackParameterBuffer [2];
-  DataBuffer uStackX_18;
+  DataBuffer stackValidationValue;
   ByteFlag stackByteBuffer [8];
   uint64_t memoryOperationCounter;
   DataBuffer memoryOperationHandle;
@@ -18357,6 +18372,23 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
   ByteFlag validationBuffer1 [8];
   ByteFlag validationBuffer2 [8];
   ByteFlag validationBuffer3 [40];
+  DataWord *stackDataPointer1;
+  DataWord *stackDataPointer2;
+  DataWord *stackDataPointer3;
+  DataWord *stackDataPointer4;
+  DataWord *stackDataPointer5;
+  DataWord *stackDataPointer6;
+  DataWord *stackDataPointer7;
+  DataWord stackDataOffset1;
+  DataWord stackDataOffset2;
+  DataWord stackDataOffset3;
+  DataWord stackDataOffset4;
+  DataWord stackDataOffset5;
+  DataWord stackDataOffset6;
+  DataWord stackDataOffset7;
+  DataWord stackDataOffset8;
+  DataWord stackDataOffset9;
+  DataWord stackDataOffset10;
   
   securityCheckResult = *(uint *)(operationBase + 0x6c);
   dataFlags = 0;
@@ -18383,11 +18415,11 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
           validationContext5 = (int64_t)stackIntBuffer[0];
           arrayIndex = *(int *)(resourceIterator + 8 + validationContext5 * 0x10);
           if (arrayIndex == 2) {
-            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),&uStackX_18);
-            validationStatus = uStackX_18;
+            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),&stackValidationValue);
+            validationStatus = stackValidationValue;
             validationContextPointer3 = systemContextPointer;
             if ((arrayIndex == 0) &&
-               (arrayIndex = PerformSystemValidationCheck(uStackX_18), validationContextPointer3 = plStack_108, 0 < arrayIndex)) {
+               (arrayIndex = PerformSystemValidationCheck(stackValidationValue), validationContextPointer3 = stackValidationPointer, 0 < arrayIndex)) {
               do {
                 dataProcessingWordB = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
                 dataProcessingWordA = 0;
@@ -18403,15 +18435,15 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
             arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),stackByteBuffer);
             validationContextPointer3 = systemContextPointer;
             if (arrayIndex == 0) {
-              puStack_d8 = &SystemValidationDataTableA1;
+              stackDataPointer1 = &SystemValidationDataTableA1;
               uStack_c8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 1;
-              ProcessSystemDataA2(&puStack_d8,*(DataBuffer *)(operationBase + 0x58));
-              puStack_f0 = &SystemValidationDataTableA2;
+              ProcessSystemDataA2(stackDataPointer1,*(DataBuffer *)(operationBase + 0x58));
+              stackDataPointer2 = &SystemValidationDataTableA2;
               uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
-              ValidateAndExecuteOperationA0(&puStack_f0,*(DataBuffer *)(operationBase + 0x58));
+              ValidateAndExecuteOperationA0(stackDataPointer2,*(DataBuffer *)(operationBase + 0x58));
               validationContextPointer3 = systemContextPointer;
             }
           }
@@ -18455,7 +18487,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
           }
           else if ((arrayIndex == 7) &&
                   (arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),
-                                               validationBuffer3), validationContextPointer3 = plStack_108, arrayIndex == 0)) {
+                                               validationBuffer3), validationContextPointer3 = stackValidationPointer, arrayIndex == 0)) {
             operationResult = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
             calculatedValue = (int)dataFlags + 1;
             arrayIndex = inputParameter6;
@@ -32687,10 +32719,10 @@ ValidationStartHandler:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  bVar6 = *(uint *)(destinationIndexRegister + 8) < 0x34;
+  hasValidIndex = *(uint *)(destinationIndexRegister + 8) < 0x34;
   *(char *)(stackFramePointer + 0x77) = (char)memoryBaseAddress;
   *(char *)(stackFramePointer + 0x7f) = (char)memoryBaseAddress;
-  bVar8 = false;
+  isDataReady = false;
   if (0x37 < *(uint *)(destinationIndexRegister + 8)) {
     if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
       pdataContext = (int64_t *)*destinationIndexRegister;
@@ -32698,7 +32730,7 @@ ValidationStartHandler:
       if (validationContext == 0) {
         validationStatus = 0x1c;
 ValidationErrorHandler6:
-        bVar7 = validationStatus == 0;
+        isValidationSuccess = validationStatus == 0;
         if (bVar7) {
           bVar6 = *(char *)(stackFramePointer + -0x49) != '\0';
           bVar7 = true;
@@ -32712,7 +32744,7 @@ ValidationStateHandler2:
         }
         *(DataWord *)(stackFramePointer + -0x45) = 0;
         validationStatus = AllocateMemory(validationContext,stackFramePointer + -0x45);
-        bVar7 = validationStatus == 0;
+        isValidationSuccess = validationStatus == 0;
         if (bVar7) {
           if ((uint64_t)pdataContext[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
             validationStatus = 0x11;
@@ -32958,10 +32990,10 @@ ProcessCheckpointValidationContext3:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  bVar6 = *(uint *)(destinationIndexRegister + 8) < 0x34;
+  hasValidIndex = *(uint *)(destinationIndexRegister + 8) < 0x34;
   *(char *)(stackFramePointer + 0x77) = (char)memoryBaseAddress;
   *(char *)(stackFramePointer + 0x7f) = (char)memoryBaseAddress;
-  bVar8 = false;
+  isDataReady = false;
   if (*(uint *)(destinationIndexRegister + 8) < 0x38) {
     memoryBaseAddress = operationFlagA & SystemCleanupFlag;
   }
@@ -32971,7 +33003,7 @@ ProcessCheckpointValidationContext3:
     if (dataContext == 0) {
       validationStatus = 0x1c;
 ValidationErrorHandler6:
-      bVar7 = validationStatus == 0;
+      isValidationSuccess = validationStatus == 0;
       if (bVar7) {
         bVar6 = *(char *)(stackFramePointer + -0x49) != '\0';
         bVar7 = true;
@@ -32985,7 +33017,7 @@ ValidationStateHandler2:
       }
       *(int *)(stackFramePointer + -0x45) = (int)operationFlagA;
       validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x45);
-      bVar7 = validationStatus == 0;
+      isValidationSuccess = validationStatus == 0;
       if (bVar7) {
         if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
           validationStatus = 0x11;
@@ -94353,7 +94385,7 @@ void ResetSystemExceptionHandler(DataBuffer operationBase, int64_t dataBuffer, D
   DataBuffer operationResult;
   
   operationResult = SystemCleanupFlagAlternative;
-  FUN_18013ea00(*(DataBuffer *)(dataBuffer + 0x1d0));
+  CleanupDataBuffer(*(DataBuffer *)(dataBuffer + 0x1d0));
   *(DataBuffer *)(dataBuffer + 0x1d0) = 0;
   *(DataBuffer *)(dataBuffer + 0x1b8) = 0;
   *(DataBuffer *)(dataBuffer + 0x1b0) = 0;
@@ -94417,7 +94449,7 @@ void Unwind_1809127a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   DataBuffer operationResult;
   
   operationResult = SystemCleanupFlagAlternative;
-  FUN_18013ea00(*(DataBuffer *)(dataBuffer + 0xc0));
+  CleanupDataBuffer(*(DataBuffer *)(dataBuffer + 0xc0));
   *(DataBuffer *)(dataBuffer + 0xc0) = 0;
   *(DataBuffer *)(dataBuffer + 0xa8) = 0;
   *(DataBuffer *)(dataBuffer + 0xa0) = 0;
@@ -94443,7 +94475,7 @@ void Unwind_1809127b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   DataBuffer operationResult;
   
   operationResult = SystemCleanupFlagAlternative;
-  FUN_18013ea00(*(DataBuffer *)(dataBuffer + 0x1d0));
+  CleanupDataBuffer(*(DataBuffer *)(dataBuffer + 0x1d0));
   *(DataBuffer *)(dataBuffer + 0x1d0) = 0;
   *(DataBuffer *)(dataBuffer + 0x1b8) = 0;
   *(DataBuffer *)(dataBuffer + 0x1b0) = 0;
@@ -94470,7 +94502,7 @@ void Unwind_1809127c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   operationResult = SystemCleanupFlagAlternative;
-  FUN_18013ea00(*(DataBuffer *)(validationContext + 0x30));
+  CleanupDataBuffer(*(DataBuffer *)(validationContext + 0x30));
   *(DataBuffer *)(validationContext + 0x30) = 0;
   *(DataBuffer *)(validationContext + 0x18) = 0;
   *(DataBuffer *)(validationContext + 0x10) = 0;
