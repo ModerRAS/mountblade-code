@@ -21357,7 +21357,7 @@ DataProcessingCheckpoint:
 CalculationCheckpoint:
         } while (afStack_348[0] != -NAN);
       }
-      (**(FunctionPointer**)(*operationBase + 8))(operationBase,&UNK_1809864b0);
+      (**(FunctionPointer**)(*operationBase + 8))(operationBase,&DataProcessingBufferA1);
       iterationCount = (**(FunctionPointer**)(*operationBase + 0x18))(operationBase);
       if (iterationCount == 0) {
         *(ByteFlag *)(operationBase + 4) = 0;
@@ -65725,7 +65725,7 @@ void Unwind_180909320(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t resourceIndex;
   
   presourceTable = *(DataBuffer **)(dataBuffer + 0x80);
-  *presourceTable = &UNK_180a17010;
+  *presourceTable = &SystemResourceTableA;
   if ((int64_t *)presourceTable[0x1049] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)presourceTable[0x1049] + 0x38))();
   }
@@ -65873,7 +65873,7 @@ void Unwind_1809093b0(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t dataFlags;
   
   validationStatusPointer = *(DataBuffer **)(dataBuffer + 0x90);
-  *validationStatusPointer = &UNK_180a17010;
+  *validationStatusPointer = &SystemResourceTableA;
   if ((int64_t *)validationStatusPointer[0x1049] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)validationStatusPointer[0x1049] + 0x38))();
   }
@@ -66776,7 +66776,7 @@ void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t dataFlags;
   
   validationStatusPointer = *(DataBuffer **)(dataBuffer + 0x40);
-  *validationStatusPointer = &UNK_180a17010;
+  *validationStatusPointer = &SystemResourceTableA;
   if ((int64_t *)validationStatusPointer[0x1049] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)validationStatusPointer[0x1049] + 0x38))();
   }
@@ -97487,7 +97487,7 @@ void SetDefaultExceptionHandlerA1(void)
 void SetDefaultExceptionHandlerA2(void)
 
 {
-  _DAT_180bfb310 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerPointerA2 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -97500,7 +97500,7 @@ void SetDefaultExceptionHandlerA2(void)
 void SetDefaultExceptionHandlerA3(void)
 
 {
-  _DAT_180bfb730 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerPointerA3 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -98371,7 +98371,7 @@ void SetDefaultExceptionHandlerB(void)
 void InitializeExceptionHandlerA(void)
 
 {
-  _DAT_180bf6558 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerBPointerTable = &DefaultExceptionHandlerB;
   return;
 }
 

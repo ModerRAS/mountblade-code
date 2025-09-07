@@ -200065,6 +200065,8 @@ void ProcessMemoryReferenceCount(long long SystemContextPointer
 
 
 
+// UTF-16到UTF-8编码转换缓冲区处理函数
+// 处理UTF-16到UTF-8编码转换的缓冲区操作，管理编码转换过程中的内存分配
 uint64_t *
 ProcessUtf16ToUtf8ConversionBuffer(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
@@ -200078,7 +200080,9 @@ ProcessUtf16ToUtf8ConversionBuffer(uint64_t *SystemContextPointer,unsigned long 
 
 
 
-uint64_t * FUN_18017a0f0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize
+// UTF-8编码缓冲区处理函数
+// 处理UTF-8编码的缓冲区操作，管理UTF-8字符串的内存分配和释放
+uint64_t * ProcessUtf8EncodingBuffer(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize
 {
   *SystemContextPointer = &SystemContextBufferQuaternary;
   if ((Utf8BufferSize & 1) != 0) {
@@ -200090,7 +200094,9 @@ uint64_t * FUN_18017a0f0(uint64_t *SystemContextPointer,unsigned long long Utf8B
 
 
 
-7a130(uint64_t *SystemContextPointervoid FUN_18017a130(uint64_t *SystemContextPointer
+// 系统上下文缓冲区重置函数
+// 重置系统上下文缓冲区，恢复到初始状态
+void ResetSystemContextBuffer(uint64_t *SystemContextPointer
 {
   *SystemContextPointer = &SystemContextBufferTertiary;
   *SystemContextPointer = &SystemContextBufferQuaternary;
@@ -200099,7 +200105,9 @@ uint64_t * FUN_18017a0f0(uint64_t *SystemContextPointer,unsigned long long Utf8B
 
 
 
-uint64_t * FUN_18017a160(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize
+// 系统主上下文缓冲区处理函数
+// 处理系统主上下文缓冲区的操作，管理主要上下文数据的内存分配
+uint64_t * ProcessPrimarySystemContextBuffer(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize
 {
   *SystemContextPointer = &SystemContextBufferPrimary;
   if ((Utf8BufferSize & 1) != 0) {
@@ -200111,7 +200119,9 @@ uint64_t * FUN_18017a160(uint64_t *SystemContextPointer,unsigned long long Utf8B
 
 
 
-7a1a0(uint64_t *SystemContextPointervoid FUN_18017a1a0(uint64_t *SystemContextPointer
+// 系统主上下文缓冲区设置函数
+// 设置系统主上下文缓冲区，配置主要上下文数据
+void SetPrimarySystemContextBuffer(uint64_t *SystemContextPointer
 {
   *SystemContextPointer = &SystemContextBufferPrimary;
   return;
@@ -200120,7 +200130,9 @@ uint64_t * FUN_18017a160(uint64_t *SystemContextPointer,unsigned long long Utf8B
 
 
 
-7a1c0(voidvoid FUN_18017a1c0(void
+7a1c0(void// 系统资源释放和清理函数
+// 释放系统资源并执行清理操作，确保系统资源正确释放
+void ReleaseAndCleanupSystemResources(void
 {
   CoreEngineReleaseSystemResources();
   _Mtx_destroy_in_situ();
