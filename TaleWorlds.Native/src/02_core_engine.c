@@ -162096,7 +162096,7 @@ void ProcessCharacterTableCleanup(long long CharacterCode, long long Utf8BufferS
 
 
 
-36fa8(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointervoid FUN_180136fa8(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer
+36fa8(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointervoid ProcessCharacterDataValidation(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer
 {
   int *ReferenceCountPointer;
   long long BufferStatus;

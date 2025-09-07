@@ -113548,6 +113548,10 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：存储异常上下文数据字
 #define ContextDataWordZ StackExceptionContextData10
 
+// 数据传输缓冲区A
+// 功能：存储数据传输过程中的缓冲区
+#define DataTransferBufferA StackDataTransferBuffer
+
 // 原始变量名：uStack_27c - 栈数据字AA
 // 功能：存储资源分配结果数据字
 #define ContextDataWordAA StackResourceAllocationResult
