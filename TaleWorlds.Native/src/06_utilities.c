@@ -59562,7 +59562,17 @@ void InitializeExceptionHandlerPointerA0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180907500(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证数据处理器A1
+ * 
+ * 验证数据处理器A1，用于处理数据验证操作。
+ * 当数据缓冲区的特定标志位被设置时，执行数据验证处理。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void ValidateDataHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
