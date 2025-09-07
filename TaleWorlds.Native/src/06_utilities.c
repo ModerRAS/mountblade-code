@@ -90018,12 +90018,23 @@ void ProcessExceptionCallbacksZ1(DataBuffer operationBase, int64_t dataBuffer, D
 
 
 
-void Unwind_1809118c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器Z0
+ * 
+ * 该函数负责管理资源的引用计数，处理内存地址的计算和资源的释放
+ * 当引用计数降为0时，会触发异常处理函数
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_1809118c0
+ */
+void ManageResourceReferenceCountZ0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
   DataBuffer *resourcePointer;
-  int64_t calculatedOffset;
+  int64_t calculatedMemoryOffset;
   uint64_t memoryBaseAddress;
   
   resourcePointer = *(DataBuffer **)(dataBuffer + 0x20);
@@ -90032,12 +90043,12 @@ void Unwind_1809118c0(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
-    calculatedOffset = memoryBaseAddress + 0x80 + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + 4);
-    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
-      *resourcePointer = *(DataBuffer *)(calculatedOffset + 0x20);
-      *(DataBuffer **)(calculatedOffset + 0x20) = resourcePointer;
-      referenceCountPointer = (int *)(calculatedOffset + 0x18);
+    calculatedMemoryOffset = memoryBaseAddress + 0x80 + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
+    calculatedMemoryOffset = calculatedMemoryOffset - (uint64_t)*(uint *)(calculatedMemoryOffset + 4);
+    if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(calculatedMemoryOffset + 0xe) == '\0')) {
+      *resourcePointer = *(DataBuffer *)(calculatedMemoryOffset + 0x20);
+      *(DataBuffer **)(calculatedMemoryOffset + 0x20) = resourcePointer;
+      referenceCountPointer = (int *)(calculatedMemoryOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -90045,8 +90056,8 @@ void Unwind_1809118c0(DataBuffer operationBase,int64_t dataBuffer)
       }
     }
     else {
-      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
+      ManageMemory(memoryBaseAddress, CONCAT71(0xff000000, *(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+                   resourcePointer, memoryBaseAddress, SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -90054,7 +90065,17 @@ void Unwind_1809118c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809118d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置器Z0
+ * 
+ * 该函数负责设置默认异常处理器指针到指定的数据缓冲区位置
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_1809118d0
+ */
+void SetDefaultExceptionHandlerZ0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x160) = &DefaultExceptionHandlerB;
