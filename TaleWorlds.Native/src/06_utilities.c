@@ -9462,7 +9462,7 @@ uint8_t SecurityValidationFlagA160;    // UNK_180a3a420
 uint8_t SecurityValidationFlagA161;    // UNK_180a3a438
 uint8_t SecurityValidationFlagA162;    // UNK_180a3a450
 uint8_t SecurityValidationFlagA163;    // UNK_180a3a468
-uint8_t SecurityValidationFlagA164;
+uint8_t SecurityValidationFlagA164;    // UNK_180a3a480
 uint8_t SecurityValidationFlagA165;
 uint8_t SecurityValidationFlagA166;
 uint8_t SecurityValidationFlagA167;
@@ -70018,7 +70018,7 @@ void CleanupExceptionDataBufferAtOffset40(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_180908ef0(DataBuffer operationBase,int64_t dataBuffer)
+void LockStdResourceAtOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
                              __1_Lockit_std__QEAA_XZ(dataBuffer + 0x60);
@@ -70027,7 +70027,7 @@ void Unwind_180908ef0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908f00(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionFunctionAtOffset70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -70042,7 +70042,7 @@ void Unwind_180908f00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908f10(DataBuffer operationBase,int64_t dataBuffer)
+void DestroyBasicOstreamAtOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
                                __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
