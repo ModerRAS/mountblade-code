@@ -769,19 +769,19 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  */
 uint32_t InitializeNetworkIterationContext(int64_t NetworkConnectionContext, int64_t ValidationResultData, uint32_t IterationControlFlag)
 {
-  // 迭代上下文初始化变量
-  uint32_t InitializationResult;                           // 初始化结果状态
-  uint32_t ContextValidationResult;                        // 上下文验证结果
+  // 网络迭代上下文初始化变量
+  uint32_t ContextInitializationResult;                      // 上下文初始化结果状态
+  uint32_t ConnectionValidationResult;                        // 连接验证结果
   uint32_t DataValidationResult;                           // 数据验证结果
   
   // 初始化验证结果
-  InitializationResult = NetworkValidationFailure;
-  ContextValidationResult = NetworkValidationFailure;
+  ContextInitializationResult = NetworkValidationFailure;
+  ConnectionValidationResult = NetworkValidationFailure;
   DataValidationResult = NetworkValidationFailure;
   
   // 验证连接上下文有效性
   if (NetworkConnectionContext != 0) {
-    ContextValidationResult = NetworkValidationSuccess;
+    ConnectionValidationResult = NetworkValidationSuccess;
   }
   
   // 验证结果数据有效性
@@ -792,13 +792,13 @@ uint32_t InitializeNetworkIterationContext(int64_t NetworkConnectionContext, int
   // 检查迭代控制标志
   if (IterationControlFlag != 0) {
     // 如果验证都成功，则初始化成功
-    if (ContextValidationResult == NetworkValidationSuccess && 
+    if (ConnectionValidationResult == NetworkValidationSuccess && 
         DataValidationResult == NetworkValidationSuccess) {
-      InitializationResult = NetworkValidationSuccess;
+      ContextInitializationResult = NetworkValidationSuccess;
     }
   }
   
-  return InitializationResult;
+  return ContextInitializationResult;
 }
 
 /**
