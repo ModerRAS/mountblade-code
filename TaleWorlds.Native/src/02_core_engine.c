@@ -130021,7 +130021,7 @@ LAB_18012b82d:
   CharacterCodePointer = CoreEnginePointerBuffer150;
   if ((((CoreEnginePointerBuffer150 != (uint8_t *)0x0) &&
        (LoopIterationCounter7 = pSystemMemoryOffset238[5], *(char *)(LoopIterationCounter7 + 0x48) != '\0')) &&
-      (MemoryBlockIndex0 = FUN_18012fae0(), LoopIterationCounter7 != MemoryBlockIndex0)) &&
+      (MemoryBlockIndex0 = ProcessSystemMemoryAllocation(), LoopIterationCounter7 != MemoryBlockIndex0)) &&
      (((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) == 0 ||
       ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 2) != 0)))) {
     *(uint8_t *)(LoopIterationCounter7 + 0x48) = 0;
@@ -130036,7 +130036,7 @@ LAB_18012b82d:
     if ((UnicodeCharacterValue & 0x20) == 0) {
       CharacterCode4 = pSystemMemoryOffset238 + 8;
       SystemMemoryAllocationResult = FUN_180123c00(pSystemMemoryOffset238,SystemDataTablePointerB0,0);
-      CharacterStatus1 = FUN_180110000(SystemMemoryAllocationResult,CharacterCode4,0);
+      CharacterStatus1 = ExecuteSystemCharacterStatusValidationAndProcessing(SystemMemoryAllocationResult,CharacterCode4,0);
       if (CharacterStatus1 != '\0') {
         *(uint8_t *)((long long)pSystemMemoryOffset238 + 0xb3) = 1;
       }
@@ -199456,7 +199456,19 @@ LAB_1801746f5:
 
 
 uint64_t *
-FUN_180174720(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 初始化数据节点模板
+ * 
+ * 该函数负责初始化数据节点模板，设置模板A、B、C的指针。
+ * 根据缓冲区大小的奇偶性决定是否释放内存。
+ * 
+ * @param Utf8InputBuffer UTF8输入缓冲区指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return 处理结果状态码
+ */
+#define InitializeDataNodeTemplates FUN_180174720
 {
   *Utf8InputBuffer = &DataNodeTemplateC;
   *Utf8InputBuffer = &DataNodeTemplateB;

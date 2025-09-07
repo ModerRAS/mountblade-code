@@ -22827,16 +22827,16 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
  * 该函数处理复杂的数据结构，包括字符串处理、异常数据验证和资源管理。
  * 函数通过多层次的字符处理和验证机制来确保数据的安全性和完整性。
  * 
- * @param operationBase 操作基础指针，包含操作所需的数据结构和配置信息
- * @param dataBuffer 输入数据缓冲区指针，包含待处理的字符数据
- * @param operationFlagA 操作标志指针，用于返回处理结果和资源信息
+ * @param OperationBase 操作基础指针，包含操作所需的数据结构和配置信息
+ * @param InputDataBuffer 输入数据缓冲区指针，包含待处理的字符数据
+ * @param OperationResultFlag 操作结果标志指针，用于返回处理结果和资源信息
  * 
  * @return DataBuffer 返回处理结果：0表示成功，0x1c表示参数错误，0x4a表示处理失败
  * 
  * @note 原始函数名：FUN_1808988b0
  */
 #define ProcessComplexDataA2 FUN_1808988b0
-DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuffer *operationFlagA)
+DataBuffer ProcessComplexDataA2(int64_t *OperationBase,char *InputDataBuffer,DataBuffer *OperationResultFlag)
 
 {
   char *CharacterIterator;
@@ -22852,66 +22852,66 @@ DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuff
   int CharacterProcessingCounter;
   uint *ExceptionHandlingBuffer;
   
-  exceptionDataBuffer1 = (uint *)*operationBase;
-  if (((exceptionDataBuffer1 != (uint *)0x0) && (operationBase[4] != 0)) && (operationBase[2] != 0)) {
-    inputParameter0 = 0;
-    currentChar = *dataBuffer;
-    while (currentChar != '\0') {
-      validationFlag = *(byte *)((int64_t)exceptionDataBuffer1 + 7);
-      if (validationFlag == 0) {
+  ExceptionHandlingBuffer = (uint *)*OperationBase;
+  if (((ExceptionHandlingBuffer != (uint *)0x0) && (OperationBase[4] != 0)) && (OperationBase[2] != 0)) {
+    CharacterProcessingCounter = 0;
+    CurrentCharacter = *InputDataBuffer;
+    while (CurrentCharacter != '\0') {
+      ValidationStatusFlag = *(byte *)((int64_t)ExceptionHandlingBuffer + 7);
+      if (ValidationStatusFlag == 0) {
         return 0x4a;
       }
-      currentChar = ProcessCharacterDataA0(currentChar);
-      exceptionDataBuffer1 = (uint *)(*operationBase + (uint64_t)(exceptionDataBuffer1[1] & 0xffffff) * 8);
-      calculatedValue = 0;
-      if (validationFlag == 0) {
+      CurrentCharacter = ProcessCharacterDataA0(CurrentCharacter);
+      ExceptionHandlingBuffer = (uint *)(*OperationBase + (uint64_t)(ExceptionHandlingBuffer[1] & 0xffffff) * 8);
+      CharacterMatchIndex = 0;
+      if (ValidationStatusFlag == 0) {
         return 0x4a;
       }
-      while (*(char *)((int64_t)exceptionDataBuffer1 + 3) != currentChar) {
-        calculatedValue = calculatedValue + 1;
-        exceptionDataBuffer1 = exceptionDataBuffer1 + 2;
-        if ((int)(uint)validationFlag <= calculatedValue) {
+      while (*(char *)((int64_t)ExceptionHandlingBuffer + 3) != CurrentCharacter) {
+        CharacterMatchIndex = CharacterMatchIndex + 1;
+        ExceptionHandlingBuffer = ExceptionHandlingBuffer + 2;
+        if ((int)(uint)ValidationStatusFlag <= CharacterMatchIndex) {
           return 0x4a;
         }
       }
-      dataBuffer = dataBuffer + 1;
-      stringProcessingPointer = (char *)(operationBase[4] + 1 + (uint64_t)(*exceptionDataBuffer1 & 0xffffff));
-      currentChar = *dataBuffer;
-      while (currentChar != '\0') {
-        if (*stringProcessingPointer == '\0') goto ProcessCheckpointStringValidation;
-        currentChar = ProcessCharacterDataA0(currentChar);
-        processedChar = ProcessCharacterDataA0(*stringProcessingPointer);
-        if (currentChar != processedChar) break;
-        exceptionHandlerCallback = dataBuffer + 1;
-        dataBuffer = dataBuffer + 1;
-        stringProcessingPointer = stringProcessingPointer + 1;
-        currentChar = *characterPointer;
+      InputDataBuffer = InputDataBuffer + 1;
+      StringComparisonPointer = (char *)(OperationBase[4] + 1 + (uint64_t)(*ExceptionHandlingBuffer & 0xffffff));
+      CurrentCharacter = *InputDataBuffer;
+      while (CurrentCharacter != '\0') {
+        if (*StringComparisonPointer == '\0') goto ProcessCheckpointStringValidation;
+        CurrentCharacter = ProcessCharacterDataA0(CurrentCharacter);
+        ProcessedCharacter = ProcessCharacterDataA0(*StringComparisonPointer);
+        if (CurrentCharacter != ProcessedCharacter) break;
+        exceptionHandlerCallback = InputDataBuffer + 1;
+        InputDataBuffer = InputDataBuffer + 1;
+        StringComparisonPointer = StringComparisonPointer + 1;
+        CurrentCharacter = *CharacterIterator;
       }
-      if (*stringProcessingPointer != '\0') {
+      if (*StringComparisonPointer != '\0') {
         return 0x4a;
       }
 SystemCheckpointA:
-      currentChar = *dataBuffer;
+      CurrentCharacter = *InputDataBuffer;
     }
-    validationFlag = *(byte *)((int64_t)exceptionDataBuffer1 + 7);
-    if (validationFlag != 0) {
-      exceptionDataBuffer1 = (uint *)(*operationBase + (uint64_t)(exceptionDataBuffer1[1] & 0xffffff) * 8);
-      if (validationFlag != 0) {
+    ValidationStatusFlag = *(byte *)((int64_t)ExceptionHandlingBuffer + 7);
+    if (ValidationStatusFlag != 0) {
+      ExceptionHandlingBuffer = (uint *)(*OperationBase + (uint64_t)(ExceptionHandlingBuffer[1] & 0xffffff) * 8);
+      if (ValidationStatusFlag != 0) {
         do {
-          if (*(char *)((int64_t)exceptionDataBuffer1 + 3) == '\0') goto ProcessCheckpointExceptionHandling;
-          inputParameter0 = inputParameter0 + 1;
-          exceptionDataBuffer1 = exceptionDataBuffer1 + 2;
-        } while (inputParameter0 < (int)(uint)validationFlag);
+          if (*(char *)((int64_t)ExceptionHandlingBuffer + 3) == '\0') goto ProcessCheckpointExceptionHandling;
+          CharacterProcessingCounter = CharacterProcessingCounter + 1;
+          ExceptionHandlingBuffer = ExceptionHandlingBuffer + 2;
+        } while (CharacterProcessingCounter < (int)(uint)ValidationStatusFlag);
       }
       return 0x4a;
     }
 SystemCheckpointB:
-    securityCheckResult = exceptionDataBuffer1[1] & 0xffffff;
-    if (((char)(exceptionDataBuffer1[1] >> 0x18) == '\0') && ((int)securityCheckResult < (int)operationBase[3])) {
-      resourcePointer = (DataBuffer *)(operationBase[2] + (uint64_t)securityCheckResult * 0x10);
-      memoryBaseAddress = resourcePointer[1];
-      *operationFlagA = *resourcePointer;
-      operationFlagA[1] = memoryBaseAddress;
+    SecurityValidationResult = ExceptionHandlingBuffer[1] & 0xffffff;
+    if (((char)(ExceptionHandlingBuffer[1] >> 0x18) == '\0') && ((int)SecurityValidationResult < (int)OperationBase[3])) {
+      ResourceDataPointer = (DataBuffer *)(OperationBase[2] + (uint64_t)SecurityValidationResult * 0x10);
+      MemoryBaseAddress = ResourceDataPointer[1];
+      *OperationResultFlag = *ResourceDataPointer;
+      OperationResultFlag[1] = MemoryBaseAddress;
       return 0;
     }
   }
@@ -22926,57 +22926,57 @@ DataBuffer
 // 参数：searchContext - 搜索上下文，searchKey - 搜索键值指针，processData - 处理数据
 //      searchFlags - 搜索标志，additionalData - 附加数据
 // 返回值：成功返回处理结果，失败返回0x4a
-DataBuffer BinarySearchAndProcessData(int64_t searchContext,uint *searchKey,DataBuffer processData,DataWord searchFlags,DataBuffer additionalData)
+DataBuffer BinarySearchAndProcessData(int64_t SearchContext,uint *SearchKeyPointer,DataBuffer ProcessData,DataWord SearchFlags,DataBuffer AdditionalData)
 
 {
-  uint searchValue;
-  int64_t dataArray;
-  int comparisonResult;
-  int matchResult;
-  DataBuffer processResult;
-  uint *currentItem;
-  int middleIndex;
-  int leftIndex;
-  int rightIndex;
+  uint TargetSearchValue;
+  int64_t DataArrayPointer;
+  int ComparisonResult;
+  int MatchResult;
+  DataBuffer ProcessingResult;
+  uint *CurrentItemPointer;
+  int MiddleIndex;
+  int LeftBoundary;
+  int RightBoundary;
   
-  leftIndex = 0;
-  rightIndex = *(int *)(searchContext + 0x18) + -1;
-  if (-1 < rightIndex) {
-    dataArray = *(int64_t *)(searchContext + ExceptionHandlerCallbackOffset10);
-    searchValue = *searchKey;
+  LeftBoundary = 0;
+  RightBoundary = *(int *)(searchContext + 0x18) + -1;
+  if (-1 < RightBoundary) {
+    DataArrayPointer = *(int64_t *)(searchContext + ExceptionHandlerCallbackOffset10);
+    TargetSearchValue = *searchKey;
     do {
-      middleIndex = rightIndex + leftIndex >> 1;
-      currentItem = (uint *)((int64_t)middleIndex * 0x10 + dataArray);
-      if (searchValue == *currentItem) {
-        matchResult = (uint)(ushort)searchKey[1] - (uint)(ushort)currentItem[1];
-        if ((matchResult == 0) &&
-           (matchResult = (uint)*(ushort *)((int64_t)searchKey + 6) -
-                    (uint)*(ushort *)((int64_t)currentItem + 6), matchResult == 0)) {
-          matchResult = memcmp(searchKey + 2,currentItem + 2,8);
+      MiddleIndex = RightBoundary + LeftBoundary >> 1;
+      CurrentItemPointer = (uint *)((int64_t)MiddleIndex * 0x10 + DataArrayPointer);
+      if (TargetSearchValue == *CurrentItemPointer) {
+        MatchResult = (uint)(ushort)searchKey[1] - (uint)(ushort)CurrentItemPointer[1];
+        if ((MatchResult == 0) &&
+           (MatchResult = (uint)*(ushort *)((int64_t)searchKey + 6) -
+                    (uint)*(ushort *)((int64_t)CurrentItemPointer + 6), MatchResult == 0)) {
+          MatchResult = memcmp(searchKey + 2,CurrentItemPointer + 2,8);
         }
       }
       else {
-        matchResult = 1;
-        if (searchValue < *currentItem) {
-          matchResult = -1;
+        MatchResult = 1;
+        if (TargetSearchValue < *CurrentItemPointer) {
+          MatchResult = -1;
         }
       }
-      if (matchResult == 0) {
-        if (middleIndex < 0) {
+      if (MatchResult == 0) {
+        if (MiddleIndex < 0) {
           return 0x4a;
         }
-        processResult = ProcessDataItem(searchContext,middleIndex,0,processData,searchFlags,additionalData);
-        return processResult;
+        ProcessingResult = ProcessDataItem(searchContext,MiddleIndex,0,processData,searchFlags,additionalData);
+        return ProcessingResult;
       }
-      comparisonResult = middleIndex + -1;
-      if (-1 < matchResult) {
-        comparisonResult = rightIndex;
+      ComparisonResult = MiddleIndex + -1;
+      if (-1 < MatchResult) {
+        ComparisonResult = RightBoundary;
       }
-      rightIndex = comparisonResult;
-      if (-1 < matchResult) {
-        leftIndex = middleIndex + 1;
+      RightBoundary = ComparisonResult;
+      if (-1 < MatchResult) {
+        LeftBoundary = MiddleIndex + 1;
       }
-    } while (leftIndex <= rightIndex);
+    } while (LeftBoundary <= RightBoundary);
   }
   return 0x4a;
 }
