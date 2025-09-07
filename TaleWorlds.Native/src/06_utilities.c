@@ -10163,16 +10163,16 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
   int resourceDecrementResult;
   int64_t localResourceDecrementBuffer [2];
   
-  resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + 0x10),localResourceDecrementBuffer);
+  resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + ResourceConfigurationOffset),localResourceDecrementBuffer);
   resourceContextPtr = localResourceDecrementBuffer[0];
   if ((int)resourceDecrementStatus != 0) {
     return resourceDecrementStatus;
   }
-  if (*(int *)(localResourceDecrementBuffer[0] + 0x4c) < 1) {
+  if (*(int *)(localResourceDecrementBuffer[0] + ResourceReferenceCountOffset) < 1) {
     return ResourceInvalidErrorCode;
   }
-  resourceDecrementResult = *(int *)(localResourceDecrementBuffer[0] + 0x4c) + -1;
-  *(int *)(localResourceDecrementBuffer[0] + 0x4c) = resourceDecrementResult;
+  resourceDecrementResult = *(int *)(localResourceDecrementBuffer[0] + ResourceReferenceCountOffset) + -1;
+  *(int *)(localResourceDecrementBuffer[0] + ResourceReferenceCountOffset) = resourceDecrementResult;
   if (*(int *)(localResourceDecrementBuffer[0] + 0x58) + *(int *)(localResourceDecrementBuffer[0] + 0x54) + resourceDecrementResult != 0) {
     return 0;
   }
