@@ -208138,9 +208138,22 @@ LAB_180179852:
 
 
 
+/**
+ * @brief UTF-8到UTF-16编码转换主函数
+ * 
+ * 该函数负责将UTF-8编码的字符串转换为UTF-16编码格式，处理多字节字符
+ * 和Unicode码点转换，支持完整的字符集转换功能。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1，用于字符处理
+ * @return uint64_t* 转换后的UTF-16缓冲区大小指针
+ */
 uint64_t *
-FUN_1801798f0(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
-             uint32_t *AdditionalParameter1
+ConvertUtf8ToUtf16Main(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
+             uint32_t *AdditionalParameter1)
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
@@ -208312,29 +208325,29 @@ LAB_180179b02:
       }
     } while (SystemContextPtr != (long long *)0x0);
   }
-  SystemContextPtr = MemoryBlockIndex;
-  if (CurrentByteValue) {
-    if (MemoryBlockIndex == (long long *)Utf8InputBuffer[1]) {
-      StringComparisonResult = *AdditionalParameter1;
-      goto FUN_180179b7a;
+  SystemContextPtr = MemoryBlockPointer;
+  if (IsByteValid) {
+    if (MemoryBlockPointer == (long long *)Utf8InputBuffer[1]) {
+      MemoryComparisonResult = *AdditionalParameter1;
+      goto Label_MemoryComparison_Handle;
     }
-    SystemContextPtr = (long long *)GetPreviousMemoryBlockIndex(MemoryBlockIndex);
+    SystemContextPtr = (long long *)GetPreviousMemoryBlockIndex(MemoryBlockPointer);
   }
-  StringComparisonResult = *AdditionalParameter1;
-  if (StringComparisonResult <= (int)SystemContextPtr[4]) {
+  MemoryComparisonResult = *AdditionalParameter1;
+  if (MemoryComparisonResult <= (int)SystemContextPtr[4]) {
     *Utf8InputBufferSize = SystemContextPtr;
     return Utf8BufferSize;
   }
-FUN_180179b7a:
-  if ((MemoryBlockIndex == CharacterCode) || (StringComparisonResult < (int)MemoryBlockIndex[4])) {
-    DataSize = 0;
+Label_MemoryComparison_Handle:
+  if ((MemoryBlockPointer == CharacterCode) || (MemoryComparisonResult < (int)MemoryBlockPointer[4])) {
+    ProcessedDataSize = 0;
   }
   else {
-    DataSize = 1;
+    ProcessedDataSize = 1;
   }
-  AllocatedMemorySize = BufferAllocate(MemoryPoolManager,0x30,(char)Utf8InputBuffer[5]);
-  *(int *)(AllocatedMemorySize + 0x20) = *AdditionalParameter1;
-  *(void *)(AllocatedMemorySize + 0x28) = 0;
+  AllocatedMemoryBlockSize = BufferAllocate(MemoryPoolManager,0x30,(char)Utf8InputBuffer[5]);
+  *(int *)(AllocatedMemoryBlockSize + 0x20) = *AdditionalParameter1;
+  *(void *)(AllocatedMemoryBlockSize + 0x28) = 0;
                     // WARNING: Subroutine does not return
   AllocateMemoryWithFlags(AllocatedMemorySize,MemoryBlockIndex,CharacterCode,DataSize);
 }
