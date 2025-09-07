@@ -118,6 +118,7 @@
 #define GetProcessingPointerC0 FUN_18014f6a0                    // 获取处理指针C0
 #define ProcessCharacterEncodingAndSystemInitialization FUN_18014a9d0  // 处理字符编码和系统初始化
 #define ProcessCharacterCodeWithSecondarySystemValidation FUN_18014aae0  // 处理字符代码的二级系统验证
+#define ProcessCharacterCodeWithQuaternaryValidation FUN_18014ab00  // 处理字符代码的四元验证
 
 // 系统函数指针映射
 #define ExecuteSystemFunctionCodeExecution FUN_18013cf40      // 执行系统函数代码执行
@@ -177380,7 +177381,21 @@ void ProcessCharacterCodeWithSecondarySystemValidation(long long *CharacterCode)
 
 
 
-4ab00(long long *CharacterCodevoid FUN_18014ab00(long long *CharacterCode
+/**
+ * @brief 处理字符代码的四元验证
+ * 
+ * 该函数负责处理字符代码的四元验证，通过遍历字符表指针
+ * 并对每个缓冲区状态进行四元验证处理。如果字符代码为0，
+ * 则直接返回；否则触发系统事件处理。
+ * 
+ * @param CharacterCode 字符代码指针，包含字符表和缓冲区信息
+ * @return void 无返回值
+ * 
+ * @note 此函数使用0x60作为步长遍历缓冲区
+ * @note 如果字符代码[0]为0，函数直接返回
+ * @note 否则会触发系统事件处理（不返回）
+ */
+void ProcessCharacterCodeWithQuaternaryValidation(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
