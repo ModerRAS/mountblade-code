@@ -83178,38 +83178,38 @@ ulonglong ProcessUIRenderingDataUpdate(int *uiContext,float *dataSource,uint tar
   if ((Result6 & 1) == 0) {
     do {
       if (-1 < UIValidationResult7) break;
-      if (uiValidationResult6 != 0) {
-        FUN_1807165a0(dataSource,result6,resultPointer);
+      if (UIValidationResult6 != 0) {
+        FUN_1807165a0(dataSource,Result6,resultPointer);
       }
       if (param_6 != 0) {
-        FUN_1807165a0(param_6,result6,resultPointer);
+        FUN_1807165a0(param_6,Result6,resultPointer);
       }
-      stackUInt50 = stackUInt50 + 1;
-      result6 = (int)result6 >> 1;
-      isCharacterMatch9 = (byte)resultPointer;
+      StackUInt50 = StackUInt50 + 1;
+      Result6 = (int)Result6 >> 1;
+      IsCharacterMatch9 = (byte)resultPointer;
       resultPointer = resultPointer * 2;
-      uiContext1 = uiContext1 | uiContext1 << (isCharacterMatch9 & 0x1f);
-      uiValidationResult7 = uiValidationResult7 + 1;
-    } while ((result6 & 1) == 0);
-    EventTypeCode0 = (ulonglong)targetBuffer;
+      uiContext1 = uiContext1 | uiContext1 << (IsCharacterMatch9 & 0x1f);
+      UIValidationResult7 = UIValidationResult7 + 1;
+    } while ((Result6 & 1) == 0);
+    EventTypeCode = (ulonglong)targetBuffer;
   }
   if (1 < (int)resultPointer) {
-    uiValidationResult7 = resultPointer << (isCharacterMatch8 & 0x1f);
-    uiValidationResult5 = (int)result6 >> (isCharacterMatch8 & 0x1f);
-    if (uiValidationResult6 != 0) {
-      FUN_1807160c0(dataSource,uiValidationResult5,uiValidationResult7,bVar31);
+    UIValidationResult7 = resultPointer << (IsCharacterMatch8 & 0x1f);
+    UIValidationResult5 = (int)Result6 >> (IsCharacterMatch8 & 0x1f);
+    if (UIValidationResult6 != 0) {
+      FUN_1807160c0(dataSource,UIValidationResult5,UIValidationResult7,IsNegativeFlag);
     }
     if (param_6 != 0) {
-      FUN_1807160c0(param_6,uiValidationResult5,uiValidationResult7,bVar31);
+      FUN_1807160c0(param_6,UIValidationResult5,UIValidationResult7,IsNegativeFlag);
     }
   }
-  semaphoreHandle9 = (uint)EventTypeCode0;
-  result5 = FUN_180718bd0(uiContext,dataSource,EventTypeCode0 & 0xffffffff,bufferSize,resultPointer,param_6,param_7,param_9
+  SemaphoreHandle9 = (uint)EventTypeCode;
+  Result5 = FUN_180718bd0(uiContext,dataSource,EventTypeCode & 0xffffffff,bufferSize,resultPointer,param_6,param_7,param_9
                          ,uiContext1);
-  semaphoreHandle3 = (ulonglong)result5;
+  SemaphoreHandle3 = (ulonglong)Result5;
   if (uiContext[1] != 0) {
     if (1 < (int)resultPointer) {
-      FUN_180716aa0(dataSource,(int)result6 >> (isCharacterMatch8 & 0x1f),resultPointer << (isCharacterMatch8 & 0x1f));
+      FUN_180716aa0(dataSource,(int)Result6 >> (IsCharacterMatch8 & 0x1f),resultPointer << (IsCharacterMatch8 & 0x1f));
     }
     if (0 < (int)stackUInt50) {
       EventTypeCode0 = (ulonglong)stackUInt50;
