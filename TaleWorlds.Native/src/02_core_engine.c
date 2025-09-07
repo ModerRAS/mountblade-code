@@ -3776,8 +3776,8 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_18012e63a - 字符编码和浮点处理函数
 #define ProcessCharacterEncodingAndFloat FUN_18012e63a
 
-// 原始函数名：FUN_18012e6e8 - 系统状态处理函数
-#define ProcessSystemStatus FUN_18012e6e8
+// 原始函数名：ValidateSystemData - 系统状态处理函数
+#define ProcessSystemStatus ValidateSystemData
 
 // 原始函数名：FUN_18012e706 - 系统事件处理函数
 #define ProcessSystemEventEx FUN_18012e706
@@ -145598,7 +145598,7 @@ LAB_18012e732:
 
 
 
-e6e8(voidvoid FUN_18012e6e8(void
+e6e8(voidvoid ValidateSystemData(void
 {
   int LockResult;
   long long SystemContext;
@@ -145658,7 +145658,7 @@ LAB_18012e732:
 
 
 
-e810(voidvoid FUN_18012e810(void
+e810(voidvoid ProcessSystemCleanup(void
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -145753,7 +145753,7 @@ ea30(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,u
     InitializeSystemComponentsEx(CharacterCode,1);
   }
   else {
-    FUN_18012e810();
+    ProcessSystemCleanup();
   }
   ProcessDataStructureAndStack(CharacterCode,&uStackX_10);
   FinalizeSystemEventQueue();
@@ -145764,7 +145764,7 @@ ea30(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,u
 
 
 
-eaf0(voidvoid FUN_18012eaf0(void
+eaf0(voidvoid ProcessSystemFinalization(void
 {
   int *ReferenceCountPointer;
   long long *BufferAllocationStatus;
@@ -161967,7 +161967,7 @@ LAB_18013802c:
     }
     SystemValidationChar = ExecuteSystemCharacterStatusValidationAndProcessing(IntegerValue3,&BufferInitializationFlag,CharacterCode);
     if (SystemValidationChar != '\0') {
-      FUN_18012eaf0();
+      ProcessSystemFinalization();
     }
     if ((*(int *)(SystemConfigurationHandle + 0x1b2c) != 0) &&
        (*(int *)(SystemConfigurationHandle + 0x1b2c) ==
@@ -275275,9 +275275,9 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * 该函数负责处理系统编码的转换操作，支持多种编码格式。
  * 在核心引擎中用于编码转换处理。
  * 
- * @note 原始函数名：FUN_18012e810
+ * @note 原始函数名：ProcessSystemCleanup
  */
-#define ProcessSystemEncodingConversion FUN_18012e810
+#define ProcessSystemEncodingConversion ProcessSystemCleanup
 
 /**
  * @brief 处理系统缓冲区数据
@@ -275465,9 +275465,9 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * 该函数负责处理系统地址的验证操作，确保地址有效。
  * 在核心引擎中用于地址验证处理。
  * 
- * @note 原始函数名：FUN_18012eaf0
+ * @note 原始函数名：ProcessSystemFinalization
  */
-#define ProcessSystemAddressValidation FUN_18012eaf0
+#define ProcessSystemAddressValidation ProcessSystemFinalization
 
 /**
  * @brief 处理系统错误恢复
