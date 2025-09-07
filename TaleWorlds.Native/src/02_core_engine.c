@@ -129561,7 +129561,7 @@ LAB_18012b465:
     FloatValue34 = *(float *)(pSystemMemoryOffset238 + 9) * 0.65;
   }
   *(float *)((long long)pSystemMemoryOffset238 + 0x284) = (float)(int)FloatValue34;
-  FUN_180291500(pSystemMemoryOffset238[0x5d]);
+  ManageSystemResource(pSystemMemoryOffset238[0x5d]);
   *(uint *)(pSystemMemoryOffset238[0x5d] + 0x30) =
        -(uint)(*(char *)(DataStructureCounter + 0x16c1) != '\0') & 2 | (uint)(*(char *)(DataStructureCounter + 0x16c0) != '\0');
   SystemContextValue = pSystemMemoryOffset238[0x5d];
