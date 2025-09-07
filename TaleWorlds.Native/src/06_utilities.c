@@ -55867,7 +55867,16 @@ void Unwind_1809059c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809059d0(void)
+/**
+ * @brief 销毁互斥量A
+ * 
+ * 该函数调用 _Mtx_destroy_in_situ() 来销毁互斥量。
+ * 这是一个简单的线程同步资源清理函数。
+ * 
+ * @note 原始函数名：Unwind_1809059d0
+ * @note 简化实现：销毁互斥量
+ */
+void DestroyMutexA(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -55876,7 +55885,19 @@ void Unwind_1809059d0(void)
 
 
 
-void Unwind_1809059f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器A
+ * 
+ * 该函数从异常上下文中获取处理器指针，并调用相应的处理函数。
+ * 使用0xd0偏移量获取异常上下文处理器。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809059f0
+ * @note 简化实现：调用异常上下文处理器
+ */
+void CallExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
