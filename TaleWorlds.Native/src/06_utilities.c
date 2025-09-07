@@ -19768,7 +19768,7 @@ ProcessDataSecurityValidation:
               if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
             }
             if ((*(uint *)(systemContext + 0x2d8) >> 3 & 1) != 0) {
-              in_stack_00000028 = &UNK_180983cf8;
+              in_stack_00000028 = &DataIntegrityValidationErrorE;
               StackParameter38 = StackParameter20;
               StackBuffer30 = register_R13D;
               ValidateDataIntegrityA0(operationResult4,&stack0x00000028);
@@ -19950,7 +19950,7 @@ ValidateDataSecurity:
           floatValidationValue = *floatArrayPointer;
           if (floatValidationValue != 0.0) {
             StackParameter38 = StackParameter20;
-            in_stack_00000028 = &UNK_1809839d8;
+            in_stack_00000028 = &DataProcessingValidationError;
             StackBuffer30 = register_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
@@ -20015,7 +20015,7 @@ ValidateDataSecurity:
           if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
         if ((*(uint *)(systemContext + 0x2d8) >> 3 & 1) != 0) {
-          in_stack_00000028 = &UNK_180983cf8;
+          in_stack_00000028 = &DataIntegrityValidationErrorE;
           StackParameter38 = StackParameter20;
           StackBuffer30 = register_R13D;
           ValidateDataIntegrityA0(operationResult3,&stack0x00000028);
@@ -20094,7 +20094,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       processedValue = *dataPointer;
       if (fVar1 != 0.0) {
         StackParameter38 = StackParameter20;
-        in_stack_00000028 = &UNK_1809839d8;
+        in_stack_00000028 = &DataProcessingValidationError;
         StackBuffer30 = register_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
@@ -20159,7 +20159,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       if (operationResult != 0) GOTO_ValidationFailure;
     }
     if ((*(uint *)(systemContext + 0x2d8) >> 3 & 1) != 0) {
-      in_stack_00000028 = &UNK_180983cf8;
+      in_stack_00000028 = &DataIntegrityValidationErrorE;
       StackParameter38 = StackParameter20;
       StackBuffer30 = register_R13D;
       ValidateDataIntegrityA0(dataFlags,&stack0x00000028);
@@ -50010,7 +50010,17 @@ void Unwind_180905700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905710(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B
+ * 
+ * 该函数用于设置默认的异常处理器B，将异常处理函数指针
+ * 设置到指定的数据缓冲区位置
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180905710
+ */
+void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x20) + 8) = &DefaultExceptionHandlerB;
@@ -50019,10 +50029,20 @@ void Unwind_180905710(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905720(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置未知数据缓冲区指针
+ * 
+ * 该函数用于设置未知数据缓冲区指针，将特定的内存地址
+ * 设置到指定的数据缓冲区位置
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180905720
+ */
+void SetUnknownDataBufferPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x40) = &UNK_1809feeb8;
+  **(DataBuffer **)(dataBuffer + 0x40) = &SystemUnknownDataBuffer;
   return;
 }
 

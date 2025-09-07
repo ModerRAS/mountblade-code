@@ -2997,6 +2997,17 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ProcessStringValidation FUN_18012ddc0
 #define ProcessMemoryAllocation FUN_18012ddc0
 #define FinalizeMemorySetup FUN_18012ddc0
+
+// 缺失的FUN_函数宏定义
+#define ProcessSystemContextAndCleanup FUN_18012e1b0
+#define ProcessSystemDataAndRelease FUN_18012d4c0
+#define ProcessSystemIterationAndValidate FUN_18012e2d0
+#define CalculateUtf8StringDistance FUN_180121d80
+#define ManageSystemDataReferenceCount FUN_18011dae0
+#define ProcessSystemDataAndValidateEx FUN_180115400
+#define ProcessSystemAudioData FUN_180115490
+#define ProcessSystemIntegerDataEx FUN_180116200
+#define ProcessSystemFlagsDataEx FUN_180116470
 #define ValidateSystemConfiguration FUN_18012ddc0
 #define ProcessFloatOperation FUN_18012ddc0
 #define GetFloatConstant FUN_18012ddc0
