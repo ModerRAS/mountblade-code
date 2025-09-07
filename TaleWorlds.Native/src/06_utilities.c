@@ -54679,7 +54679,19 @@ void Unwind_1809058b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809058c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理清理函数8C0
+ * 
+ * 该函数遍历异常处理上下文，为每个上下文设置临时异常处理器，
+ * 终止系统，重置状态标志，并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809058c0
+ * @note 从数据缓冲区的0x2e8偏移量获取异常处理上下文
+ */
+void CleanupExceptionHandling8C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
