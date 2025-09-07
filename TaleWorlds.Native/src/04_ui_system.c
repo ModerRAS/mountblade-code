@@ -8941,34 +8941,34 @@ LAB_180656d5b:
         while (ResourcePointer = pisCharacterMatch1, ResourceIterator != (byte *)0x0) {
           if (stackUInta8 == 0) {
             ShouldSkipResourceValidation = false;
-            pisCharacterMatch9 = *(byte **)(pbVar8 + 8);
+            ResourceNamePointer = *(byte **)(ResourceIterator + 8);
           }
           else {
-            if (*(int *)(pbVar8 + 0x30) == 0) {
+            if (*(int *)(ResourceIterator + 0x30) == 0) {
               ShouldSkipResourceValidation = true;
             }
             else {
               pisCharacterMatch1 = pbStack_b0;
               do {
-                pisCharacterMatch9 = pisCharacterMatch1 + (*(longlong *)(pbVar8 + 0x28) - (longlong)pbStack_b0);
-                semaphoreHandle2 = (uint)*pisCharacterMatch1 - (uint)*pisCharacterMatch9;
+                ResourceNamePointer = pisCharacterMatch1 + (*(longlong *)(ResourceIterator + 0x28) - (longlong)pbStack_b0);
+                semaphoreHandle2 = (uint)*pisCharacterMatch1 - (uint)*ResourceNamePointer;
                 pisCharacterMatch8 = (byte *)(ulonglong)semaphoreHandle2;
                 if (semaphoreHandle2 != 0) break;
                 pisCharacterMatch1 = pisCharacterMatch1 + 1;
-              } while (*pisCharacterMatch9 != 0);
+              } while (*ResourceNamePointer != 0);
               ShouldSkipResourceValidation = 0 < (int)semaphoreHandle2;
               if ((int)semaphoreHandle2 < 1) {
-                pisCharacterMatch9 = *(byte **)(pbVar8 + 8);
+                ResourceNamePointer = *(byte **)(ResourceIterator + 8);
                 goto LAB_180656dbb;
               }
             }
-            pisCharacterMatch9 = *(byte **)pbVar8;
+            ResourceNamePointer = *(byte **)ResourceIterator;
           }
 LAB_180656dbb:
-          pisCharacterMatch1 = pbVar8;
-          pbVar8 = pisCharacterMatch9;
+          pisCharacterMatch1 = ResourceIterator;
+          ResourceIterator = ResourceNamePointer;
           if (ShouldSkipResourceValidation) {
-            pisCharacterMatch1 = pbVar9;
+            pisCharacterMatch1 = ResourcePointer;
           }
         }
         if (ResourcePointer == &UIDefaultResourceBuffer) {
@@ -8987,12 +8987,12 @@ LAB_180656df9:
               if (CharacterCompareResult != 0) break;
               ResourceDataPointer = ResourceDataPointer + 1;
             } while (*CharacterComparePointer != 0);
-            if ((int)semaphoreHandle2 < 1) goto LAB_180656e11;
+            if ((int)CharacterCompareResult < 1) goto LAB_180656e11;
           }
           goto LAB_180656df9;
         }
 LAB_180656e11:
-        *(longlong *)(pbVar9 + 0x40) = contextData;
+        *(longlong *)(ResourcePointer + 0x40) = contextData;
       }
       else {
         do {

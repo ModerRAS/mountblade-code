@@ -49,6 +49,16 @@
 #define ProcessSystemValidation FUN_180137e56                // 处理系统验证
 #define ProcessSystemFinalization FUN_180137ef1               // 处理系统最终化
 #define ProcessUtf8BufferFinalization FUN_180137f90          // 处理UTF-8缓冲区最终化
+#define ValidateSystemConfiguration FUN_18012eff0              // 验证系统配置
+#define ProcessSystemDataTableValidation FUN_18011aad0         // 处理系统数据表验证
+#define ProcessCharacterBufferInitialization FUN_18011aea0     // 处理字符缓冲区初始化
+#define ProcessStringDataConversion FUN_18011c360              // 处理字符串数据转换
+#define ProcessCharacterTableReset FUN_18011b190               // 处理字符表重置
+#define ProcessCharacterValidationEx FUN_180139060             // 处理字符验证扩展
+#define ProcessPerformanceCounterUpdate FUN_180138fc0          // 处理性能计数器更新
+#define ProcessFloatValueConversion FUN_18011ce30              // 处理浮点值转换
+#define ProcessCharacterCodeLookup FUN_180138e60               // 处理字符代码查找
+#define ProcessCharacterDataProcessing FUN_18011cf80           // 处理字符数据处理
 
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
@@ -163882,7 +163892,7 @@ void ProcessCharacterDataConversion(uint32_t CharacterCode,uint64_t Utf8BufferSi
 
  (ram,0x000180137d0c
 
-37dd7(uint32_t CharacterCodevoid FUN_180137dd7(uint32_t CharacterCode
+void ProcessCharacterFinalValidation(uint32_t CharacterCode
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -163983,7 +163993,7 @@ LAB_180137cc2:
 
 
 
-37e56(voidvoid FUN_180137e56(void
+void ProcessSystemValidation(void
 {
   int LockResult;
   long long StackFrameAddressPointer;
@@ -164032,7 +164042,7 @@ LAB_180137cc2:
 
 
 
-37ef1(voidvoid FUN_180137ef1(void
+void ProcessSystemFinalization(void
 {
   long long StackFrameAddressPointer;
   long long DataNodeIndex;
@@ -164054,7 +164064,7 @@ LAB_180137cc2:
 
 
 
-37f90(int *Utf8InputBuffer,long long Utf8BufferSizevoid FUN_180137f90(int *Utf8InputBuffer,long long Utf8BufferSize
+void ProcessUtf8BufferFinalization(int *Utf8InputBuffer,long long Utf8BufferSize
 {
   uint *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -164222,12 +164232,12 @@ LAB_18013802c:
         *(void *)(CharacterTablePointer6 + 0x1bfc) = 0;
         *(uint32_t *)(CharacterTablePointer6 + 0x1bd0) = 1;
         *(uint8_t *)(CharacterTablePointer6 + 0x1c14) = 1;
-        SystemValidationChar = FUN_18012eff0();
+        SystemValidationChar = ValidateSystemConfiguration();
         SystemStatusCode = (uint32_t)((unsigned long long)in_stack_fffffffffffffeb8 >> 0x20);
         if (SystemValidationChar != '\0') {
           HighByte7 = true;
           if (*pCharacterByteCount3 == 1) {
-            SystemValidationChar = FUN_18011aad0(SystemDataTablePointerA8);
+            SystemValidationChar = ProcessSystemDataTableValidation(SystemDataTablePointerA8);
             if (SystemValidationChar != '\0') {
               *(byte *)((long long)CharacterCode + 0xa1) = *(byte *)((long long)CharacterCode + 0xa1) | 0x10;
               IntegerValue3 = iStack_138;
@@ -164410,7 +164420,7 @@ LAB_180138724:
     if ((*(char *)(Utf8BufferSize + 0xb2) == '\0') && (HighByte7 != false)) {
       MemoryAllocationBase = Utf16Char4 | 0xd0000b;
     }
-    FUN_18011aea0(pCharacterByteCount3,&BufferInitializationFlag,MemoryAllocationBase,CharacterCode);
+    ProcessCharacterBufferInitialization(pCharacterByteCount3,&BufferInitializationFlag,MemoryAllocationBase,CharacterCode);
     Utf8InputBuffer[0x1c] = 0;
     Utf8InputBuffer[0x1d] = 0;
     ReferenceCountPointer8 = ReferenceCountPointer9;
