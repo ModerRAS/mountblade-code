@@ -68568,7 +68568,19 @@ void SetDefaultExceptionHandlerBDoublePointerOffset1E8(DataBuffer operationBase,
 
 
 
-void Unwind_180907e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调（偏移量0x110）
+ * 
+ * 检查数据缓冲区中指定偏移量的函数指针，如果存在则执行该回调函数。
+ * 这是一个异常处理器回调执行函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907e50
+ */
+void ExecuteExceptionHandlerCallbackOffset110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x110) != (code *)0x0) {
@@ -68579,7 +68591,19 @@ void Unwind_180907e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调（偏移量0x130）
+ * 
+ * 检查数据缓冲区中指定偏移量的函数指针，如果存在则执行该回调函数。
+ * 这是一个异常处理器回调执行函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907e60
+ */
+void ExecuteExceptionHandlerCallbackOffset130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x130) != (code *)0x0) {
@@ -68590,7 +68614,19 @@ void Unwind_180907e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调（偏移量0x150）
+ * 
+ * 检查数据缓冲区中指定偏移量的函数指针，如果存在则执行该回调函数。
+ * 这是一个异常处理器回调执行函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907e70
+ */
+void ExecuteExceptionHandlerCallbackOffset150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x150) != (code *)0x0) {
@@ -68601,7 +68637,19 @@ void Unwind_180907e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 批量执行资源指针回调函数
+ * 
+ * 遍历资源指针数组，对每个资源指针执行回调函数。
+ * 如果资源指针数组为空则直接返回，否则在执行完毕后终止系统。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907e80
+ */
+void ExecuteResourcePointerCallbacksBatch(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -68621,7 +68669,17 @@ void Unwind_180907e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907e90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理引用计数和资源指针
+ * 
+ * 处理资源引用计数和资源指针的管理操作。
+ * 这是一个资源管理相关的函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907e90
+ */
+void ProcessReferenceCountAndResourcePointers(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
