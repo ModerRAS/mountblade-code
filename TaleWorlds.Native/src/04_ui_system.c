@@ -99940,153 +99940,166 @@ double FUN_18072b3a0(longlong uiContext,int dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18072b540(double *uiContext,longlong dataSource,float targetBuffer,int bufferSize,int resultPointer)
-void FUN_18072b540(double *uiContext,longlong dataSource,float targetBuffer,int bufferSize,int resultPointer)
-
+ /**
+ * @brief 处理UI数据变换和缓冲区操作
+ * 
+ * 该函数负责处理UI系统中的数据变换操作，包括数据缓冲区的初始化、
+ * 数据变换计算、以及最终的渲染任务执行。函数使用双精度浮点数进行
+ * 精确的数学计算，支持复杂的UI变换操作。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源地址，包含待处理的输入数据
+ * @param targetBuffer 目标缓冲区参数，用于变换计算
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * @param resultPointer 结果指针，用于存储处理结果
+ * 
+ * @note 该函数涉及复杂的数学计算和内存操作，是UI渲染系统的核心组件
+ * @warning 函数执行后不会返回，会直接调用渲染任务执行函数
+ */
+void ProcessUIDataTransformation(double *uiContext, longlong dataSource, float targetBuffer, int bufferSize, int resultPointer)
 {
-  double dVar1;
-  double dVar2;
-  ulonglong uVar3;
-  double *pdVar4;
-  float *plocalFloat5;
-  uint uVar6;
-  ulonglong eventTypeCode;
-  longlong localLong8;
-  longlong localLong9;
-  ulonglong result0;
-  uint result1;
-  double dVar12;
-  double dVar13;
-  double adStack_1b8 [26];
-  double adStack_e8 [26];
-  ulonglong stackUInt18;
+  double transformValue1;
+  double transformValue2;
+  ulonglong iterationCounter;
+  double *outputBufferPtr;
+  float *floatOutputPtr;
+  uint alignmentMask;
+  ulonglong dataOffset;
+  longlong loopBound1;
+  longlong loopBound2;
+  ulonglong processedCount;
+  uint totalElements;
+  double intermediateValue1;
+  double intermediateValue2;
+  double transformBuffer1 [26];
+  double transformBuffer2 [26];
+  ulonglong encryptionKey;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)adStack_1b8;
-  localLong9 = (longlong)resultPointer;
-  adStack_e8[0x11] = 0.0;
-  adStack_e8[0] = 0.0;
-  adStack_e8[1] = 0.0;
-  adStack_e8[2] = 0.0;
-  adStack_e8[3] = 0.0;
-  eventTypeCode = 0;
-  adStack_e8[4] = 0.0;
-  adStack_e8[5] = 0.0;
-  adStack_e8[6] = 0.0;
-  adStack_e8[7] = 0.0;
-  adStack_e8[8] = 0.0;
-  adStack_e8[9] = 0.0;
-  adStack_e8[0x10] = 0.0;
-  adStack_1b8[0x10] = 0.0;
-  adStack_e8[10] = 0.0;
-  adStack_e8[0xb] = 0.0;
-  adStack_e8[0xc] = 0.0;
-  adStack_e8[0xd] = 0.0;
-  adStack_e8[0xe] = 0.0;
-  adStack_e8[0xf] = 0.0;
-  adStack_e8[0x12] = 0.0;
-  adStack_e8[0x13] = 0.0;
-  adStack_e8[0x14] = 0.0;
-  adStack_e8[0x15] = 0.0;
-  adStack_e8[0x16] = 0.0;
-  adStack_e8[0x17] = 0.0;
-  adStack_e8[0x18] = 0.0;
-  adStack_1b8[0] = 0.0;
-  adStack_1b8[1] = 0.0;
-  adStack_1b8[2] = 0.0;
-  adStack_1b8[3] = 0.0;
-  adStack_1b8[4] = 0.0;
-  adStack_1b8[5] = 0.0;
-  adStack_1b8[6] = 0.0;
-  adStack_1b8[7] = 0.0;
-  adStack_1b8[8] = 0.0;
-  adStack_1b8[9] = 0.0;
-  adStack_1b8[10] = 0.0;
-  adStack_1b8[0xb] = 0.0;
-  adStack_1b8[0xc] = 0.0;
-  adStack_1b8[0xd] = 0.0;
-  adStack_1b8[0xe] = 0.0;
-  adStack_1b8[0xf] = 0.0;
-  adStack_1b8[0x11] = 0.0;
-  adStack_1b8[0x12] = 0.0;
-  adStack_1b8[0x13] = 0.0;
-  adStack_1b8[0x14] = 0.0;
-  adStack_1b8[0x15] = 0.0;
-  adStack_1b8[0x16] = 0.0;
-  adStack_1b8[0x17] = 0.0;
-  adStack_1b8[0x18] = 0.0;
-  result0 = eventTypeCode;
+  encryptionKey = XorEncryptionKey ^ (ulonglong)transformBuffer1;
+  loopBound2 = (longlong)resultPointer;
+  transformBuffer2[0x11] = 0.0;
+  transformBuffer2[0] = 0.0;
+  transformBuffer2[1] = 0.0;
+  transformBuffer2[2] = 0.0;
+  transformBuffer2[3] = 0.0;
+  dataOffset = 0;
+  transformBuffer2[4] = 0.0;
+  transformBuffer2[5] = 0.0;
+  transformBuffer2[6] = 0.0;
+  transformBuffer2[7] = 0.0;
+  transformBuffer2[8] = 0.0;
+  transformBuffer2[9] = 0.0;
+  transformBuffer2[0x10] = 0.0;
+  transformBuffer1[0x10] = 0.0;
+  transformBuffer2[10] = 0.0;
+  transformBuffer2[0xb] = 0.0;
+  transformBuffer2[0xc] = 0.0;
+  transformBuffer2[0xd] = 0.0;
+  transformBuffer2[0xe] = 0.0;
+  transformBuffer2[0xf] = 0.0;
+  transformBuffer2[0x12] = 0.0;
+  transformBuffer2[0x13] = 0.0;
+  transformBuffer2[0x14] = 0.0;
+  transformBuffer2[0x15] = 0.0;
+  transformBuffer2[0x16] = 0.0;
+  transformBuffer2[0x17] = 0.0;
+  transformBuffer2[0x18] = 0.0;
+  transformBuffer1[0] = 0.0;
+  transformBuffer1[1] = 0.0;
+  transformBuffer1[2] = 0.0;
+  transformBuffer1[3] = 0.0;
+  transformBuffer1[4] = 0.0;
+  transformBuffer1[5] = 0.0;
+  transformBuffer1[6] = 0.0;
+  transformBuffer1[7] = 0.0;
+  transformBuffer1[8] = 0.0;
+  transformBuffer1[9] = 0.0;
+  transformBuffer1[10] = 0.0;
+  transformBuffer1[0xb] = 0.0;
+  transformBuffer1[0xc] = 0.0;
+  transformBuffer1[0xd] = 0.0;
+  transformBuffer1[0xe] = 0.0;
+  transformBuffer1[0xf] = 0.0;
+  transformBuffer1[0x11] = 0.0;
+  transformBuffer1[0x12] = 0.0;
+  transformBuffer1[0x13] = 0.0;
+  transformBuffer1[0x14] = 0.0;
+  transformBuffer1[0x15] = 0.0;
+  transformBuffer1[0x16] = 0.0;
+  transformBuffer1[0x17] = 0.0;
+  transformBuffer1[0x18] = 0.0;
+  processedCount = dataOffset;
   if (0 < bufferSize) {
     do {
-      dVar13 = (double)*(float *)(dataSource + result0 * 4);
-      uVar3 = eventTypeCode;
+      intermediateValue2 = (double)*(float *)(dataSource + processedCount * 4);
+      iterationCounter = dataOffset;
       if (0 < resultPointer) {
         do {
-          dVar1 = adStack_e8[uVar3 + 1];
-          dVar12 = (dVar1 - dVar13) * (double)targetBuffer + adStack_e8[uVar3];
-          adStack_e8[uVar3] = dVar13;
-          adStack_e8[uVar3 + 1] = dVar12;
-          adStack_1b8[uVar3] = dVar13 * adStack_e8[0] + adStack_1b8[uVar3];
-          dVar13 = adStack_e8[uVar3 + 2];
-          adStack_1b8[uVar3 + 1] = dVar12 * adStack_e8[0] + adStack_1b8[uVar3 + 1];
-          uVar3 = uVar3 + 2;
-          dVar13 = (dVar13 - dVar12) * (double)targetBuffer + dVar1;
-        } while ((longlong)uVar3 < localLong9);
+          transformValue1 = transformBuffer2[iterationCounter + 1];
+          intermediateValue1 = (transformValue1 - intermediateValue2) * (double)targetBuffer + transformBuffer2[iterationCounter];
+          transformBuffer2[iterationCounter] = intermediateValue2;
+          transformBuffer2[iterationCounter + 1] = intermediateValue1;
+          transformBuffer1[iterationCounter] = intermediateValue2 * transformBuffer2[0] + transformBuffer1[iterationCounter];
+          intermediateValue2 = transformBuffer2[iterationCounter + 2];
+          transformBuffer1[iterationCounter + 1] = intermediateValue1 * transformBuffer2[0] + transformBuffer1[iterationCounter + 1];
+          iterationCounter = iterationCounter + 2;
+          intermediateValue2 = (intermediateValue2 - intermediateValue1) * (double)targetBuffer + transformValue1;
+        } while ((longlong)iterationCounter < loopBound2);
       }
-      adStack_e8[localLong9] = dVar13;
-      result0 = result0 + 1;
-      adStack_1b8[localLong9] = dVar13 * adStack_e8[0] + adStack_1b8[localLong9];
-    } while ((longlong)result0 < (longlong)bufferSize);
+      transformBuffer2[loopBound2] = intermediateValue2;
+      processedCount = processedCount + 1;
+      transformBuffer1[loopBound2] = intermediateValue2 * transformBuffer2[0] + transformBuffer1[loopBound2];
+    } while ((longlong)processedCount < (longlong)bufferSize);
   }
-  result1 = resultPointer + 1;
-  result0 = eventTypeCode;
-  if (((0 < (int)result1) && (result0 = 0, 7 < result1)) &&
-     ((adStack_1b8 + localLong9 < uiContext ||
-      ((undefined1 *)((longlong)uiContext + localLong9 * 4) < adStack_1b8)))) {
-    uVar6 = result1 & 0x80000007;
-    if ((int)uVar6 < 0) {
-      uVar6 = (uVar6 - 1 | 0xfffffff8) + 1;
+  totalElements = resultPointer + 1;
+  processedCount = dataOffset;
+  if (((0 < (int)totalElements) && (processedCount = 0, 7 < totalElements)) &&
+     ((transformBuffer1 + loopBound2 < uiContext ||
+      ((undefined1 *)((longlong)uiContext + loopBound2 * 4) < transformBuffer1)))) {
+    alignmentMask = totalElements & 0x80000007;
+    if ((int)alignmentMask < 0) {
+      alignmentMask = (alignmentMask - 1 | 0xfffffff8) + 1;
     }
-    pdVar4 = uiContext + 2;
-    result0 = eventTypeCode;
+    outputBufferPtr = uiContext + 2;
+    processedCount = dataOffset;
     do {
-      result0 = (ulonglong)((int)result0 + 8);
-      dVar13 = adStack_1b8[eventTypeCode + 2];
-      dVar1 = adStack_1b8[eventTypeCode + 3];
-      pdVar4[-2] = (double)CONCAT44((float)adStack_1b8[eventTypeCode + 1],(float)adStack_1b8[eventTypeCode]);
-      dVar12 = adStack_1b8[eventTypeCode + 4];
-      dVar2 = adStack_1b8[eventTypeCode + 5];
-      pdVar4[-1] = (double)CONCAT44((float)dVar1,(float)dVar13);
-      dVar13 = adStack_1b8[eventTypeCode + 6];
-      dVar1 = adStack_1b8[eventTypeCode + 7];
-      eventTypeCode = eventTypeCode + 8;
-      *pdVar4 = (double)CONCAT44((float)dVar2,(float)dVar12);
-      pdVar4[1] = (double)CONCAT44((float)dVar1,(float)dVar13);
-      pdVar4 = pdVar4 + 4;
-    } while ((longlong)eventTypeCode < (longlong)(int)(result1 - uVar6));
+      processedCount = (ulonglong)((int)processedCount + 8);
+      intermediateValue2 = transformBuffer1[dataOffset + 2];
+      transformValue1 = transformBuffer1[dataOffset + 3];
+      outputBufferPtr[-2] = (double)CONCAT44((float)transformBuffer1[dataOffset + 1],(float)transformBuffer1[dataOffset]);
+      intermediateValue1 = transformBuffer1[dataOffset + 4];
+      transformValue2 = transformBuffer1[dataOffset + 5];
+      outputBufferPtr[-1] = (double)CONCAT44((float)transformValue1,(float)intermediateValue2);
+      intermediateValue2 = transformBuffer1[dataOffset + 6];
+      transformValue1 = transformBuffer1[dataOffset + 7];
+      dataOffset = dataOffset + 8;
+      *outputBufferPtr = (double)CONCAT44((float)transformValue2,(float)intermediateValue1);
+      outputBufferPtr[1] = (double)CONCAT44((float)transformValue1,(float)intermediateValue2);
+      outputBufferPtr = outputBufferPtr + 4;
+    } while ((longlong)dataOffset < (longlong)(int)(totalElements - alignmentMask));
   }
-  localLong9 = (longlong)(int)result0;
-  localLong8 = (longlong)(int)result1;
-  if (localLong9 < localLong8) {
-    if (3 < localLong8 - localLong9) {
-      plocalFloat5 = (float *)((longlong)uiContext + localLong9 * 4 + 8);
+  loopBound2 = (longlong)(int)processedCount;
+  loopBound1 = (longlong)(int)totalElements;
+  if (loopBound2 < loopBound1) {
+    if (3 < loopBound1 - loopBound2) {
+      floatOutputPtr = (float *)((longlong)uiContext + loopBound2 * 4 + 8);
       do {
-        dVar13 = adStack_1b8[localLong9 + 1];
-        plocalFloat5[-2] = (float)adStack_1b8[localLong9];
-        dVar1 = adStack_1b8[localLong9 + 2];
-        plocalFloat5[-1] = (float)dVar13;
-        dVar13 = adStack_1b8[localLong9 + 3];
-        localLong9 = localLong9 + 4;
-        *plocalFloat5 = (float)dVar1;
-        plocalFloat5[1] = (float)dVar13;
-        plocalFloat5 = plocalFloat5 + 4;
-      } while (localLong9 < localLong8 + -3);
+        intermediateValue2 = transformBuffer1[loopBound2 + 1];
+        floatOutputPtr[-2] = (float)transformBuffer1[loopBound2];
+        transformValue1 = transformBuffer1[loopBound2 + 2];
+        floatOutputPtr[-1] = (float)intermediateValue2;
+        intermediateValue2 = transformBuffer1[loopBound2 + 3];
+        loopBound2 = loopBound2 + 4;
+        *floatOutputPtr = (float)transformValue1;
+        floatOutputPtr[1] = (float)intermediateValue2;
+        floatOutputPtr = floatOutputPtr + 4;
+      } while (loopBound2 < loopBound1 + -3);
     }
-    for (; localLong9 < localLong8; localLong9 = localLong9 + 1) {
-      *(float *)((longlong)uiContext + localLong9 * 4) = (float)adStack_1b8[localLong9];
+    for (; loopBound2 < loopBound1; loopBound2 = loopBound2 + 1) {
+      *(float *)((longlong)uiContext + loopBound2 * 4) = (float)transformBuffer1[loopBound2];
     }
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)adStack_1b8);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)transformBuffer1);
 }
 
 
