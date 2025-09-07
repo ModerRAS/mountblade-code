@@ -173430,7 +173430,22 @@ long long ProcessUtf8BufferAllocationAndConfiguration(int *Utf8InputBuffer,long 
 
 
 
-3e570(int *Utf8InputBuffer,int *Utf8InputBufferSizevoid ConfigureMemoryBlockExtension(int *Utf8InputBuffer,int *Utf8InputBufferSize
+/**
+ * @brief 配置内存块扩展
+ * 
+ * 该函数负责配置内存块的扩展操作，包括：
+ * - 管理内存块的引用计数
+ * - 初始化系统内存池
+ * - 验证字符串比较结果
+ * - 处理系统校验和
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名: FUN_18013e570
+ */
+void ConfigureMemoryBlockExtension(int *Utf8InputBuffer,int *Utf8InputBufferSize
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
