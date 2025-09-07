@@ -1,5 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 
+// UI系统默认数据指针定义
+#define DefaultUIDataBufferA UNK_180741cf0
+#define DefaultUIDataBufferB UNK_180741d00
+#define DefaultUIDataBufferC UNK_180741ce0
+#define DefaultUISystemData UNK_180958080
+#define DefaultUIResourceManager UNK_18078b870
+
 #define UIEventDispatchFallbackPtr (code *)&UIEventDispatchFallbackFunction
 #define UIStateUpdateFallbackPtr (code *)&UIStateUpdateFallbackFunction
 #define UIComponentSyncFallbackPtr (code *)&UIComponentSyncFallbackFunction
@@ -69449,25 +69456,40 @@ LAB_1806a011c:
 
 
  void FUN_180701330(longlong uiContext,int dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
-void FUN_180701330(longlong uiContext,int dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
-                  int param_6,int param_7,int param_8,undefined4 param_9)
+/**
+ * 处理UI数据缓冲区操作
+ * 对UI数据进行处理、混合和缩放操作，支持多种数据处理模式
+ * 
+ * @param uiContext UI上下文指针，包含UI系统状态信息
+ * @param dataSource 数据源类型，指定数据处理方式
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小，指定数据容量
+ * @param resultPointer 结果指针，用于返回操作状态
+ * @param operationMode 操作模式参数，指定数据处理模式
+ * @param shiftParam 位移参数，用于数据位移操作
+ * @param scaleFactor 缩放因子，用于数据缩放
+ * @param processingFlag 处理标志，指定特殊处理选项
+ * @return 处理完成状态
+ */
+void ProcessUIDataBufferOperation(longlong uiContext,int dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
+                                  int operationMode,int shiftParam,int scaleFactor,int processingFlag)
 
 {
-  int operationResult;
+  int bufferStride;
   longlong componentIndex;
-  ulonglong uVar3;
-  uint uVar4;
-  float *pfVar5;
-  int iVar6;
-  int iVar7;
-  longlong lVar8;
-  longlong lVar9;
-  int operationResult0;
-  longlong allocatedMemory1;
-  int operationResult2;
-  float floatResult3;
-  int stackInt58;
-  int stackInt54;
+  ulonglong loopCounter;
+  uint blockCount;
+  float *floatPointer;
+  int dataCounter;
+  int bufferOffset;
+  longlong dataPointer;
+  longlong totalElements;
+  int processedElements;
+  longlong remainingElements;
+  int elementStride;
+  float scaleValue;
+  int rowCounter;
+  int columnCounter;
   
   iVar7 = *(int *)(bufferData + 4);
   operationResult0 = *(int *)(bufferData + 0x28);
