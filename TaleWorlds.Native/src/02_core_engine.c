@@ -54962,11 +54962,11 @@ void ProcessSystemMemoryAllocation(uint64_t CharacterCode,long long *Utf8InputBu
   uint8_t *pCalculationFunctionAddress;
   uint32_t StackProcessingUnsignedValue78;
   uint8_t aStackProcessingVariable70 [72];
-  unsigned long long uStack_28;
+  unsigned long long EncodingValidationKey;
   
   Utf16Char = CoreEngineSystemState;
   CoreEngineUnsignedValueA0 = 0xfffffffffffffffe;
-  uStack_28 = EncodingDecodingKey ^ (unsigned long long)aSystemFlagH;
+  EncodingValidationKey = EncodingDecodingKey ^ (unsigned long long)aSystemFlagH;
   CoreEngineValueA8 = 0;
   Utf8SourcePointer = Utf8SourcePointer * 4;
   SystemEventPointer = &SystemInputStringBuffer;
