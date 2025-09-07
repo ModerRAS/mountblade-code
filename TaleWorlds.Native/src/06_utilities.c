@@ -7559,11 +7559,11 @@ uint8_t UtilityValidationStatus;
 #define CompressUtilityDataA1 FUN_1809422a0
 
 uint8_t CompressUtilityDataA0;
-uint8_t UtilityCompressionBufferA;
-uint8_t UtilityCompressionBufferB;
-uint8_t UtilityCompressionBufferC;
-uint8_t UtilityCompressionBufferD;
-uint8_t UtilityCompressionStatusA;
+uint8_t UtilityCompressionPrimaryBuffer;
+uint8_t UtilityCompressionSecondaryBuffer;
+uint8_t UtilityCompressionTertiaryBuffer;
+uint8_t UtilityCompressionQuaternaryBuffer;
+uint8_t UtilityCompressionStatus;
 
 // 原始函数名：FUN_1809422c0 - 数据解压缩函数A1
 // 功能：解压缩已压缩的工具数据
