@@ -1100,7 +1100,7 @@ const void* const SystemSecondaryProcessingStatusFlagE = (void*)0x180a0d280;
 const void* const SystemSecondaryProcessingStatusFlagF = (void*)0x180a0d200;
 const void* const SystemSecondaryProcessingStatusFlagG = (void*)0x180a0d218;
 
-// 系统字符串常量 - 用于替换UNK_180a0d530等变量
+// 系统字符串常量 - 用于替换SystemFunctionAddressTemplate等变量
 const char* const SystemFunctionAddressString = (const char*)0x180a0d530;
 const void* const SystemEventBufferQuaternary = (void*)0x180a088d8;
 const void* const SystemEventBufferQuinary = (void*)0x180a088ec;
@@ -1169,11 +1169,11 @@ const char* const SystemStringTemplateSeptenary = (const char*)0x180a13cac;
 const void* const SystemProcessingStatusPrimary = (void*)0x180a13c08;
 const void* const SystemProcessingStatusSecondary = (void*)0x180a13c48;
 
-// 系统内存地址常量 - 用于替换UNK_180a01170等变量
+// 系统内存地址常量 - 用于替换SystemMemoryAddressConstant等变量
 const void* const SystemMemoryAddressPrimary = (void*)0x180a01170;
 const void* const SystemMemoryAddressSecondary = (void*)0x180a03108;
 
-// 系统错误处理常量 - 用于替换UNK_180a04998等变量
+// 系统错误处理常量 - 用于替换SystemErrorHandlingConstant等变量
 const void* const SystemErrorHandlerPrimary = (void*)0x180a04998;
 
 // 系统标志常量 - 用于替换UNK_180239520等变量
@@ -270311,7 +270311,7 @@ uint GetMemoryAllocationStatus(long long CharacterCode,long long *Utf8InputBuffe
   QuaternaryStackPointer8 = aFunctionAddress;
   aFunctionAddress[0] = 0;
   SystemPriorityLevel = 0x11;
-  strcpy_s(aFunctionAddress,0x20,&UNK_180a0d530);
+  strcpy_s(aFunctionAddress,0x20,&SystemFunctionAddressTemplate);
   FUN_180240430(Utf16Char,&SystemValidationPointer,0);
   SystemTemplatePointer = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
@@ -270744,11 +270744,11 @@ long long ProcessSystemMemoryAllocation(long long CharacterCode,uint64_t Utf8Buf
     CharacterCode8 = (long long *)(Utf8SourcePointer + 0x30 + StringIndexCounter);
     if (((*Utf8InputBuffer8 != 0) || (CharacterCode8[1] != 0)) &&
        (*(int *)(*(long long *)(CharacterCode + 0x1e0) + 0x1c40 + EncodingConversionResult) != 0)) {
-      SystemStringIndex = FUN_180255f80(*(void *)(CharacterCode + 0xa8),&UNK_180a01170);
+      SystemStringIndex = FUN_180255f80(*(void *)(CharacterCode + 0xa8),&SystemMemoryAddressConstant);
       MemoryPoolBlockSize = SystemStatusBufferPointerA;
       if (SystemStringIndex == 0) {
         if (*(long long *)(SystemStatusBufferPointerA + 0x98) == 0) {
-          StatusBuffer2 = (void *)FUN_1800c1420(VectorRegisterDa,&plStack_c0,&UNK_180a03108,1);
+          StatusBuffer2 = (void *)FUN_1800c1420(VectorRegisterDa,&plStack_c0,&SystemStringConstantTemplate,1);
           MemoryAllocationIndex = *StatusBuffer2;
           *StatusBuffer2 = 0;
           pCoreEngineSignedValueC8 = *(long long **)(MemoryPoolBlockSize + 0x98);
@@ -270944,7 +270944,7 @@ unsigned long long ValidateCharacterCode(long long CharacterCode
           if (*(void **)(CharacterCode + 0x2d8) != NULL) {
             systemEventTemplatePointer = *(void **)(CharacterCode + 0x2d8);
           }
-          BufferStatus = strstr(systemEventTemplatePointer,&UNK_180a12ea0);
+          BufferStatus = strstr(systemEventTemplatePointer,&SystemEventStringTemplateG);
           if (BufferStatus == 0) {
             systemEventTemplatePointer = &CoreEngineDataTemplate;
             if (*(void **)(CharacterCode + 0x2d8) != NULL) {
@@ -270968,7 +270968,7 @@ unsigned long long ValidateCharacterCode(long long CharacterCode
                   if (*(void **)(CharacterCode + 0x2d8) != NULL) {
                     systemEventTemplatePointer = *(void **)(CharacterCode + 0x2d8);
                   }
-                  BufferStatus = strstr(systemEventTemplatePointer,&UNK_180a04998);
+                  BufferStatus = strstr(systemEventTemplatePointer,&SystemErrorHandlingConstant);
                   if (BufferStatus == 0) {
                     systemEventTemplatePointer = &CoreEngineDataTemplate;
                     if (*(void **)(CharacterCode + 0x2d8) != NULL) {
@@ -271050,7 +271050,7 @@ long long FUN_18022e5f7(void
         if (*(void **)(SystemContext + 0x2d8) != NULL) {
           CharacterCodePointer = *(void **)(SystemContext + 0x2d8);
         }
-        BufferStatus = strstr(CharacterCodePointer,&UNK_180a12ea0);
+        BufferStatus = strstr(CharacterCodePointer,&SystemEventStringTemplateG);
         if (BufferStatus == 0) {
           DataStructurePointer = &CoreEngineDataTemplate;
           if (*(void **)(SystemContext + 0x2d8) != NULL) {
@@ -271074,7 +271074,7 @@ long long FUN_18022e5f7(void
                 if (*(void **)(SystemContext + 0x2d8) != NULL) {
                   CharacterCodePointer = *(void **)(SystemContext + 0x2d8);
                 }
-                BufferStatus = strstr(CharacterCodePointer,&UNK_180a04998);
+                BufferStatus = strstr(CharacterCodePointer,&SystemErrorHandlingConstant);
                 if (BufferStatus == 0) {
                   DataStructurePointer = &CoreEngineDataTemplate;
                   if (*(void **)(SystemContext + 0x2d8) != NULL) {
