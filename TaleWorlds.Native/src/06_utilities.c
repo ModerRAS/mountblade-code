@@ -22856,8 +22856,20 @@ ProcessDataSecurityValidation:
 
 
 
-// 原始函数名：FUN_180897644 - 数据处理函数A0
-// 功能：处理浮点数据和长整型数据
+/**
+ * @brief 数据处理函数A0
+ * 
+ * 该函数负责处理浮点数据和长整型数据，执行以下主要功能：
+ * - 验证和处理系统资源
+ * - 执行浮点数计算和转换
+ * - 处理数据完整性验证
+ * - 执行安全检查和异常处理
+ * 
+ * @note 原始函数名：FUN_180897644
+ * @warning 此函数包含复杂的数据处理逻辑，需要仔细处理内存管理
+ * 
+ * @see ValidateAndProcessSystemResourceA0, ValidateDataIntegrityA0
+ */
 #define ProcessDataTypesA0 FUN_180897644
 
 void ProcessDataTypesA0(void)
@@ -24181,13 +24193,13 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           do {
             exceptionHandlerContext5 = (int64_t)(int)StackFloatArrayE[0] * 0x20;
             SystemCleanupFlagLocal2 = AllBitsSet;
-            aplStack_330[0] = (int64_t *)CONCAT44(aplStack_330[0]._4_4_,SystemCleanupFlag);
+            exceptionHandlerArray[0] = (int64_t *)CONCAT44(exceptionHandlerArray[0]._4_4_,SystemCleanupFlag);
             stackExceptionContext = *(int64_t **)(exceptionHandlerContextPointer6[2] + 0x18 + exceptionHandlerContext5);
             StackLongIntegerC = exceptionHandlerContext5;
-            ProcessDataConversionDN0(stackExceptionContext,&SystemCleanupFlagLocal2,aplStack_330);
+            ProcessDataConversionDN0(stackExceptionContext,&SystemCleanupFlagLocal2,exceptionHandlerArray);
             exceptionHandlerContextPointer4 = stackExceptionContext;
-            if ((int)aplStack_330[0] != -1) {
-              iterationCount = (int)aplStack_330[0];
+            if ((int)exceptionHandlerArray[0] != -1) {
+              iterationCount = (int)exceptionHandlerArray[0];
               calculatedValue = (int)SystemCleanupFlagLocal2;
               do {
                 do {
@@ -24220,8 +24232,8 @@ DataProcessingCheckpoint:
                 exceptionHandlerContextPointer6 = StackLongIntegerPointerA;
               } while (iterationCount != -1);
             }
-          } while ((afStack_348[0] != -NAN) &&
-                  (afStack_348[0] = *(float *)(exceptionHandlerContextPointer6[2] + 0x10 + exceptionHandlerContext5), afStack_348[0] != -NAN))
+          } while ((validationFloatArray[0] != -NAN) &&
+                  (validationFloatArray[0] = *(float *)(exceptionHandlerContextPointer6[2] + 0x10 + exceptionHandlerContext5), validationFloatArray[0] != -NAN))
           ;
           ValidationFloatValue = (float)((int)ValidationFloatValue8 + 1);
           isFloatValueValid = ValidationFloatValue8 != -NAN;
@@ -24233,17 +24245,17 @@ DataProcessingCheckpoint:
             exceptionHandlerContext5 = (int64_t)(int)ValidationFloatValue8;
             do {
               if (*(int *)(*exceptionHandlerContextPointer6 + exceptionHandlerContext5 * 4) != -1) {
-                afStack_348[0] = *(float *)(*exceptionHandlerContextPointer6 + (int64_t)(int)ValidationFloatValue8 * 4);
+                validationFloatArray[0] = *(float *)(*exceptionHandlerContextPointer6 + (int64_t)(int)ValidationFloatValue8 * 4);
                 goto ProcessCheckpointOperationResult;
               }
               ValidationFloatValue8 = (float)((int)ValidationFloatValue8 + 1);
               exceptionHandlerContext5 = exceptionHandlerContext5 + 1;
             } while (exceptionHandlerContext5 != (int)*(float *)(exceptionHandlerContextPointer6 + 1));
           }
-          afStack_348[0] = -NAN;
-          ValidationFloatValue8 = afStack_348[0];
+          validationFloatArray[0] = -NAN;
+          ValidationFloatValue8 = validationFloatArray[0];
 CalculationCheckpoint:
-        } while (afStack_348[0] != -NAN);
+        } while (validationFloatArray[0] != -NAN);
       }
       (**(FunctionPointer**)(*operationBase + OperationBaseOffset8))(operationBase,&DataBufferA1);
       iterationCount = (**(FunctionPointer**)(*operationBase + 0x18))(operationBase);
@@ -26187,7 +26199,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
                   if (0 < inputParameter) {
                     do {
                       resourceIterator = *(int64_t *)(dataBuffer + ResourceDescriptorValidationOffset);
-                      stackDataBuffer._0_4_ = *(DataWord *)(resourceIterator + dataFlags * 8);
+                      stackDataBuffer.highWord = *(DataWord *)(resourceIterator + dataFlags * 8);
                       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
                                         (*(DataBuffer **)(operationBase + DataBufferOffset8),&stackDataBuffer,DataProcessingMultiplier4);
                       if (operationResult != 0) {
@@ -26800,7 +26812,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
     workingBuffer = *(DataBuffer *)(dataBuffer + 2);
     operationResult = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))(*(DataBuffer **)(systemContext + 8),&workingBuffer,8);
     if (operationResult == 0) {
-      uStackX_8 = SetBitFlag(uStackX_8._1_7_,*(ByteFlag *)(dataBuffer + 0x68));
+      uStackX_8 = SetBitFlag(uStackX_8.byteFlags,*(ByteFlag *)(dataBuffer + 0x68));
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                         (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,1);
       if (operationResult == 0) {
@@ -26838,32 +26850,32 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                           (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,memoryRegionBase);
         if (operationResult == 0) {
-          stackDataBuffer._0_4_ = dataBuffer[0x65];
+          stackDataBuffer.highWord = dataBuffer[0x65];
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                             (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
           if (((operationResult == 0) && (operationResult = ValidateParametersA1(operationBase,dataBuffer + 0x66), operationResult == 0)) &&
              (operationResult = ValidateParametersA1(operationBase,dataBuffer + 0x67), operationResult == 0)) {
-            stackDataBuffer._0_4_ = dataBuffer[0x69];
+            stackDataBuffer.highWord = dataBuffer[0x69];
             operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                               (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
             if (operationResult == 0) {
-              stackDataBuffer._0_4_ = dataBuffer[0x6a];
+              stackDataBuffer.highWord = dataBuffer[0x6a];
               operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                 (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
               if (operationResult == 0) {
-                stackDataBuffer._0_4_ = dataBuffer[0x6b];
+                stackDataBuffer.highWord = dataBuffer[0x6b];
                 operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                   (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                 if (operationResult == 0) {
-                  stackDataBuffer._0_4_ = dataBuffer[0x6d];
+                  stackDataBuffer.highWord = dataBuffer[0x6d];
                   operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                     (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                   if (operationResult == 0) {
-                    stackDataBuffer._0_4_ = dataBuffer[0x6e];
+                    stackDataBuffer.highWord = dataBuffer[0x6e];
                     operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                       (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                     if (operationResult == 0) {
-                      stackDataBuffer._0_4_ = dataBuffer[0x6c];
+                      stackDataBuffer.highWord = dataBuffer[0x6c];
                       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                         (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                       if (operationResult == 0) {
@@ -26883,11 +26895,11 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
                               operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                                 (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                               if (operationResult == 0) {
-                                stackDataBuffer._0_4_ = dataBuffer[0x77];
+                                stackDataBuffer.highWord = dataBuffer[0x77];
                                 operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                                   (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                                 if (operationResult == 0) {
-                                  stackDataBuffer._0_4_ = dataBuffer[0x76];
+                                  stackDataBuffer.highWord = dataBuffer[0x76];
                                   operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                                     (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                                   if (operationResult == 0) {
@@ -27112,17 +27124,17 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
   }
   memoryRegionBase = ProcessDataPointerA0(operationBase);
   if ((int)memoryRegionBase == 0) {
-    aiStack_48[0] = *(int *)(dataBuffer + MemoryPointerOffset);
-    memoryRegionBase = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),aiStack_48,4);
+    memoryPointerArray[0] = *(int *)(dataBuffer + MemoryPointerOffset);
+    memoryRegionBase = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),memoryPointerArray,4);
     if ((int)memoryRegionBase == 0) {
-      aiStack_48[0] = CONCAT22(aiStack_48[0]._2_2_,operationResult);
+      memoryPointerArray[0] = CONCAT22(memoryPointerArray[0]._2_2_,operationResult);
       memoryRegionBase = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),aiStack_48,2);
+                        (*(DataBuffer **)(operationBase + OperationBaseOffset8),memoryPointerArray,2);
       if (((int)memoryRegionBase == 0) && (memoryRegionBase = CheckSystemStatusA1(operationBase,dataBuffer + 0x24), (int)memoryRegionBase == 0)) {
         if ((operationResult & 1) != 0) {
-          aiStack_48[0] = *(int *)(dataBuffer + ValidationResultOffset);
+          memoryPointerArray[0] = *(int *)(dataBuffer + ValidationResultOffset);
           memoryRegionBase = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                            (*(DataBuffer **)(operationBase + OperationBaseOffset8),aiStack_48,4);
+                            (*(DataBuffer **)(operationBase + OperationBaseOffset8),memoryPointerArray,4);
           if ((int)memoryRegionBase != 0) {
             return memoryRegionBase;
           }
@@ -27135,9 +27147,9 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
                   (memoryRegionBase = ValidateDataIntegrityA3(operationBase,dataBuffer + 0x150), (int)memoryRegionBase == 0)))) {
           if ((operationResult & 0x10) != 0) {
             operationResult = *(int *)(dataBuffer + 0x260);
-            aiStack_48[0] = operationResult;
+            memoryPointerArray[0] = operationResult;
             memoryRegionBase = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                              (*(DataBuffer **)(operationBase + OperationBaseOffset8),aiStack_48,4);
+                              (*(DataBuffer **)(operationBase + OperationBaseOffset8),memoryPointerArray,4);
             if ((int)memoryRegionBase != 0) {
               return memoryRegionBase;
             }
@@ -29117,7 +29129,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionHandle
   uint64_t dataFlags;
   uint validationOutcome;
   uint64_t securityCheckResult;
-  char acStackX_18 [8];
+  char localValidationBuffer [8];
   uint stackByteBuffer [2];
   ByteFlag ainputDataWord [32];
   
@@ -29163,7 +29175,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionHandle
     }
     else if (exceptionHandlerContextPointer[2] == 0) {
 DataProcessLabelA:
-      memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,acStackX_18,1,1,0);
+      memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,localValidationBuffer,1,1,0);
     }
     else {
       stackByteBuffer[0] = 0;
@@ -29175,8 +29187,8 @@ DataProcessLabelA:
     }
     validationOutcome = 0;
     if (memoryRegionBase == 0) {
-      validationOutcome = (uint)(acStackX_18[0] != '\0');
-      validationStatus = (uint)(acStackX_18[0] == '\0');
+      validationOutcome = (uint)(localValidationBuffer[0] != '\0');
+      validationStatus = (uint)(localValidationBuffer[0] == '\0');
       memoryRegionBase = 0;
     }
     if (memoryRegionBase != 0) {
@@ -116961,9 +116973,9 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：存储浮点数组的栈数据
 #define StackFloatArrayD afStack_308
 
-// 原始变量名：afStack_348 - 栈浮点数组E
+// 原始变量名：validationFloatArray - 栈浮点数组E
 // 功能：存储浮点数组的栈数据
-#define StackFloatArrayE afStack_348
+#define StackFloatArrayE validationFloatArray
 
 // 原始变量名：plStack_318 - 栈长整型指针A
 // 功能：存储长整型指针的栈变量
@@ -116981,9 +116993,9 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：存储无符号整型联合体的栈数据
 #define StackUnsignedIntegerUnionA DataProcessingStruct
 
-// 原始变量名：aplStack_330 - 栈长整型指针数组A
+// 原始变量名：exceptionHandlerArray - 栈长整型指针数组A
 // 功能：存储长整型指针数组的栈数据
-#define StackLongIntegerPointerArrayA aplStack_330
+#define StackLongIntegerPointerArrayA exceptionHandlerArray
 
 // 原始变量名：stackExceptionContext - 栈长整型指针B
 // 功能：存储长整型指针的栈变量
