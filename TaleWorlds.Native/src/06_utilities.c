@@ -1005,7 +1005,7 @@
  * 
  * @note 原始函数名：FUN_18089df40
  */
-#define ExecuteSystemCheckA1 FUN_18089df40
+#define ExecuteSystemComponentCheck FUN_18089df40
 
 /**
  * @brief 返回固定状态码A1
@@ -59584,7 +59584,17 @@ void ValidateDataHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907530(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常数据表A2
+ * 
+ * 初始化异常数据表A2，设置异常处理所需的数据表指针。
+ * 这个函数负责配置异常处理系统的数据表引用。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void InitializeExceptionDataTableA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -59597,7 +59607,17 @@ void Unwind_180907530(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907540(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常数据表A3
+ * 
+ * 初始化异常数据表A3，设置异常处理所需的数据表指针。
+ * 这个函数负责配置异常处理系统的数据表引用。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void InitializeExceptionDataTableA3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -59610,7 +59630,17 @@ void Unwind_180907540(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907550(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常数据表A4
+ * 
+ * 设置异常数据表A4，直接配置异常数据表的指针。
+ * 这个函数用于快速设置异常处理系统的数据表引用。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void SetExceptionDataTableA4(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x30) = &ExceptionDataTable6;
@@ -59619,7 +59649,17 @@ void Unwind_180907550(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907560(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理回调A5
+ * 
+ * 执行异常处理回调A5，调用异常处理相关的回调函数。
+ * 当数据缓冲区中的函数指针不为空时，执行相应的回调操作。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @return void 无返回值
+ */
+void ExecuteExceptionCallbackA5(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x50) != (int64_t *)0x0) {
@@ -68154,7 +68194,7 @@ void Unwind_180909c30(DataBuffer operationBase,int64_t dataBuffer)
   int inputParameter;
   int operationResult;
   
-  inputParameter = *(int *)(**(int64_t **)(_DAT_180c82868 + 8) + 0x48);
+  inputParameter = *(int *)(**(int64_t **)(SystemInputParameterTable + 8) + 0x48);
   operationResult = _Thrd_id();
   if (operationResult != inputParameter) {
     SystemStatusFlagA = *(DataWord *)(dataBuffer + 0x90);
