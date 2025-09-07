@@ -410,6 +410,48 @@
 #define ResetSystemStatusFlag Unwind_180907130
 #define ValidateAndProcessDataBuffer Unwind_180907140
 
+// 异常处理器清理函数组
+// 原始函数名：Unwind_180904370 - 异常上下文处理器清理函数A0
+#define CleanupExceptionHandlerContextA0 Unwind_180904370
+// 原始函数名：Unwind_180904390 - 异常上下文处理器清理函数A1
+#define CleanupExceptionHandlerContextA1 Unwind_180904390
+// 原始函数名：Unwind_1809043b0 - 异常上下文处理器清理函数A2
+#define CleanupExceptionHandlerContextA2 Unwind_1809043b0
+// 原始函数名：Unwind_1809043d0 - 异常上下文处理器清理函数A3
+#define CleanupExceptionHandlerContextA3 Unwind_1809043d0
+// 原始函数名：Unwind_1809043f0 - 异常上下文处理器清理函数A4
+#define CleanupExceptionHandlerContextA4 Unwind_1809043f0
+// 原始函数名：Unwind_180904410 - 异常上下文处理器清理函数A5
+#define CleanupExceptionHandlerContextA5 Unwind_180904410
+// 原始函数名：Unwind_180904430 - 异常上下文处理器清理函数A6
+#define CleanupExceptionHandlerContextA6 Unwind_180904430
+// 原始函数名：Unwind_180904450 - 异常上下文处理器清理函数A7
+#define CleanupExceptionHandlerContextA7 Unwind_180904450
+// 原始函数名：Unwind_180904470 - 异常上下文处理器清理函数A8
+#define CleanupExceptionHandlerContextA8 Unwind_180904470
+// 原始函数名：Unwind_180904490 - 异常上下文处理器清理函数A9
+#define CleanupExceptionHandlerContextA9 Unwind_180904490
+// 原始函数名：Unwind_1809044b0 - 异常上下文处理器清理函数A10
+#define CleanupExceptionHandlerContextA10 Unwind_1809044b0
+// 原始函数名：Unwind_1809044d0 - 异常上下文处理器清理函数A11
+#define CleanupExceptionHandlerContextA11 Unwind_1809044d0
+// 原始函数名：Unwind_1809044f0 - 异常上下文处理器清理函数A12
+#define CleanupExceptionHandlerContextA12 Unwind_1809044f0
+// 原始函数名：Unwind_180904510 - 异常上下文处理器清理函数A13
+#define CleanupExceptionHandlerContextA13 Unwind_180904510
+// 原始函数名：Unwind_180904530 - 异常上下文处理器清理函数A14
+#define CleanupExceptionHandlerContextA14 Unwind_180904530
+// 原始函数名：Unwind_180904550 - 异常上下文处理器清理函数A15
+#define CleanupExceptionHandlerContextA15 Unwind_180904550
+// 原始函数名：Unwind_180904570 - 异常上下文处理器清理函数A16
+#define CleanupExceptionHandlerContextA16 Unwind_180904570
+// 原始函数名：Unwind_180904590 - 异常上下文处理器清理函数A17
+#define CleanupExceptionHandlerContextA17 Unwind_180904590
+// 原始函数名：Unwind_1809045b0 - 异常上下文处理器清理函数A18
+#define CleanupExceptionHandlerContextA18 Unwind_1809045b0
+// 原始函数名：Unwind_1809045c0 - 异常上下文处理器清理函数A19
+#define CleanupExceptionHandlerContextA19 Unwind_1809045c0
+
 // 原始函数名：ReleaseDataBufferResource - 数据缓冲区资源释放函数
 // 功能：释放数据缓冲区资源
 #define ReleaseDataBufferResource ReleaseDataBufferResource
@@ -48303,7 +48345,24 @@ void InitializeExceptionHandlerContextA3(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180904370(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文处理器清理函数A0
+ * 
+ * 该函数负责清理异常上下文处理器，包括：
+ * - 调用异常处理器回调函数
+ * - 重置异常处理器状态
+ * - 清理异常处理相关的内存区域
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区，包含异常处理配置信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180904370
+ * @warning 如果系统状态无效，会调用TerminateSystemE0终止程序
+ */
+void CleanupExceptionHandlerContextA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;

@@ -113076,9 +113076,9 @@ void EmptyFunctionPlaceholder3(void) {
 
 
 
-dd10(int *CharacterCode,int CharacterCodeSizevoid ProcessSystemReferenceCountAndValidate(int *CharacterCode,int CharacterCodeSize
+void ProcessSystemReferenceCountAndValidate(int *CharacterCode,int CharacterCodeSize)
 {
-  uint64_t Utf16Char;
+  uint64_t AllocatedMemoryBuffer;
   
   if (CharacterCode[1] < CharacterCodeSize) {
     if (SystemDataConfiguration != 0) {
