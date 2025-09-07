@@ -53901,7 +53901,21 @@ void ExecuteExceptionHandlerAtOffsetF8Alt(DataBuffer context,int64_t exceptionCo
 
 
 
-void Unwind_180905420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数A0
+ * 
+ * 该函数从数据缓冲区的0xf0偏移量获取异常处理回调函数指针，
+ * 如果回调函数存在，则执行该回调函数，传递相关参数。
+ * 
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理回调函数信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180905420
+ * @note 简化实现：获取并执行异常处理回调函数
+ */
+void ExecuteExceptionHandlerCallbackA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -53915,7 +53929,21 @@ void Unwind_180905420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数A1
+ * 
+ * 该函数从数据缓冲区的0x100偏移量获取异常处理回调函数指针，
+ * 如果回调函数存在，则执行该回调函数，传递相关参数。
+ * 
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理回调函数信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180905430
+ * @note 简化实现：获取并执行异常处理回调函数
+ */
+void ExecuteExceptionHandlerCallbackA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -55937,7 +55965,19 @@ void CallExceptionHandlerContextA(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905a10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器B
+ * 
+ * 该函数从异常上下文中获取处理器指针，并调用相应的处理函数。
+ * 使用0xd8偏移量获取异常上下文处理器。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180905a10
+ * @note 简化实现：调用异常上下文处理器
+ */
+void CallExceptionHandlerContextB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -107105,3 +107145,39 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 原始函数名：Unwind_180904ff0 - 异常处理完成函数ff0
 // 功能：完成异常处理操作
 #define FinalizeExceptionHandlingFF0 Unwind_180904ff0
+
+// 原始函数名：Unwind_1809058d0 - 异常处理资源管理函数8d0
+// 功能：管理异常处理的资源
+#define ManageExceptionHandlingResources8D0 Unwind_1809058d0
+
+// 原始函数名：Unwind_1809058e0 - 异常处理缓冲区清理函数8e0
+// 功能：清理异常处理的缓冲区
+#define ClearExceptionHandlingBuffer8E0 Unwind_1809058e0
+
+// 原始函数名：Unwind_1809058f0 - 异常处理状态检查函数8f0
+// 功能：检查异常处理的状态
+#define CheckExceptionHandlingStatus8F0 Unwind_1809058f0
+
+// 原始函数名：Unwind_18090ca00 - 异常处理器配置函数a00
+// 功能：配置异常处理器的参数
+#define ConfigureExceptionHandlerA00 Unwind_18090ca00
+
+// 原始函数名：Unwind_18090ca10 - 异常处理状态重置函数a10
+// 功能：重置异常处理的状态
+#define ResetExceptionHandlingStateA10 Unwind_18090ca10
+
+// 原始函数名：Unwind_18090ca20 - 异常处理初始化函数a20
+// 功能：初始化异常处理系统
+#define InitializeExceptionHandlingA20 Unwind_18090ca20
+
+// 原始函数名：Unwind_18090ca30 - 异常处理完成函数a30
+// 功能：完成异常处理操作
+#define FinalizeExceptionHandlingA30 Unwind_18090ca30
+
+// 原始函数名：Unwind_18090ca40 - 异常处理资源分配函数a40
+// 功能：分配异常处理的资源
+#define AllocateExceptionHandlingResourcesA40 Unwind_18090ca40
+
+// 原始函数名：Unwind_18090ca50 - 异常处理验证函数a50
+// 功能：验证异常处理的状态
+#define ValidateExceptionHandlingA50 Unwind_18090ca50
