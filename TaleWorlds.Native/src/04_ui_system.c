@@ -13615,7 +13615,26 @@ LAB_18065a765:
 
 
 
- void RenderUIElement(undefined8 uiContext,uint dataSource,uint targetBuffer,undefined8 bufferSize,
+ /**
+ * @brief 渲染UI元素
+ * 
+ * 该函数负责渲染UI元素，包括变换计算、动画混合、透明度处理和布局对齐等操作
+ * 
+ * @param uiContext UI上下文，包含渲染状态和配置信息
+ * @param dataSource 数据源，包含UI元素的顶点和纹理数据
+ * @param targetBuffer 目标缓冲区，用于存储渲染结果
+ * @param bufferSize 缓冲区大小，控制渲染数据的容量
+ * @param resultPointer 结果指针，用于返回渲染状态
+ * @param param_6 渲染变换参数，控制UI元素的缩放和变换
+ * @param param_7 动画混合参数，控制动画过渡效果
+ * @param param_8 渲染透明度参数，控制UI元素的透明度
+ * @param param_9 布局对齐参数，控制UI元素的位置和对齐
+ * @param uiContext0 UI上下文扩展参数0
+ * @param uiContext1 UI上下文扩展参数1
+ * @param uiContext2 UI上下文扩展参数2
+ * @return 无返回值
+ * @note 原始函数名: 未指定
+ */
 void RenderUIElement(undefined8 uiContext,uint dataSource,uint targetBuffer,undefined8 bufferSize,
                   undefined8 resultPointer,undefined8 param_6,undefined8 param_7,undefined8 param_8,
                   undefined8 param_9,undefined8 uiContext0,undefined8 uiContext1,undefined8 uiContext2)
