@@ -7977,7 +7977,7 @@ uint8_t SystemExceptionHandlerDataO;
 uint8_t SystemExceptionHandlerDataP;
 uint8_t SystemExceptionHandlerDataQ;
 uint8_t SystemExceptionHandlerDataR;
-uint8_t UNK_180a395c0;
+uint8_t SystemSecurityValidationFlagA0;     // UNK_180a395c0
 uint8_t UNK_180a395e0;
 uint8_t UNK_180a39600;
 uint8_t UNK_180a39628;
