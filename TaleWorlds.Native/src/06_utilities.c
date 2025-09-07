@@ -3846,37 +3846,27 @@
 // 功能：存储异常处理的上下文指针信息
 #define ExceptionContextPtr ExceptionContextPtr
 
-// 原始变量名：_DAT_180c821d0 - 系统重置标志
-// 功能：控制系统重置操作的状态标志
-#define SystemResetFlag _DAT_180c821d0
+// 系统重置和异常状态变量声明
+uint8_t SystemResetFlag;           // _DAT_180c821d0 - 系统重置标志
 
-// 原始变量名：UNK_180d49260 - 系统数据字
-// 功能：存储系统操作相关的数据字信息
-#define SystemDataWord UNK_180d49260
+// 系统数据字变量声明
+uint32_t SystemDataWord;            // UNK_180d49260 - 系统数据字
 
-// 原始变量名：_DAT_180d49140 - 异常状态标志A0
-// 功能：存储异常处理的状态标志信息
-#define ExceptionStatusFlagA0 _DAT_180d49140
+// 异常状态标志变量声明
+uint8_t ExceptionStatusFlagA0;       // _DAT_180d49140 - 异常状态标志A0
+uint8_t ExceptionStatusFlagA1;       // _DAT_180d49148 - 异常状态标志A1
 
-// 原始变量名：_DAT_180d49148 - 异常状态标志A1
-// 功能：存储异常处理的状态标志信息
-#define ExceptionStatusFlagA1 _DAT_180d49148
+// 浮点数验证数组变量声明
+float FloatValidationArray[16];         // UNK_1809850f8 - 浮点数验证数组
 
-// 原始变量名：UNK_1809850f8 - 浮点数验证数组
-// 功能：存储浮点数验证的默认值数组
-#define FloatValidationArray UNK_1809850f8
+// 数据处理上下文变量声明
+void* DataProcessingContextA0;         // UNK_180983950 - 数据处理上下文A0
 
-// 原始变量名：UNK_180983950 - 数据处理上下文A0
-// 功能：存储数据处理的上下文信息
-#define DataProcessingContextA0 UNK_180983950
+// 验证上下文变量声明
+void* ValidationContextA0;              // UNK_180983738 - 验证上下文A0
 
-// 原始变量名：UNK_180983738 - 验证上下文A0
-// 功能：存储验证操作的上下文信息
-#define ValidationContextA0 UNK_180983738
-
-// 原始变量名：UNK_1809ff498 - 异常数据表地址
-// 功能：存储异常数据表的地址信息
-#define ExceptionDataTableAddress UNK_1809ff498
+// 异常数据表地址变量声明
+void* ExceptionDataTableAddress;        // UNK_1809ff498 - 异常数据表地址
 
 // 原始变量名：UNK_1809837c0 - 验证上下文A1
 // 功能：存储验证操作的上下文信息
@@ -6262,11 +6252,12 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 
 // 异常处理系统全局变量宏定义
 #define ExceptionHandlerTablePointer GlobalExceptionHandlerPointerA2     // 异常处理器表指针
-#define SystemExceptionHandlerState _DAT_180d49248      // 系统异常处理状态
-#define SystemExceptionCleanupFlag _DAT_180d49258       // 系统异常清理标志
-#define SystemTerminationFlag _DAT_180d49220           // 系统终止标志
-#define SystemResetInProgressFlag _DAT_180d49230        // 系统重置进行中标志
-#define SystemCriticalSectionFlag _DAT_180d49270       // 系统临界区标志
+// 系统异常处理状态变量声明
+uint8_t SystemExceptionHandlerState;      // _DAT_180d49248 - 系统异常处理状态
+uint8_t SystemExceptionCleanupFlag;       // _DAT_180d49258 - 系统异常清理标志
+uint8_t SystemTerminationFlag;           // _DAT_180d49220 - 系统终止标志
+uint8_t SystemResetInProgressFlag;        // _DAT_180d49230 - 系统重置进行中标志
+uint8_t SystemCriticalSectionFlag;       // _DAT_180d49270 - 系统临界区标志
 
 // 系统内存管理全局变量宏定义
 #define SystemMemoryManagerPointer GlobalSystemMemoryManager      // 系统内存管理器指针
@@ -6366,21 +6357,16 @@ void* ExceptionHandlerPointerZ;         // _DAT_180bf9e10 - 异常处理器指�
 void* ExceptionHandlerPointerAA;         // _DAT_180bf9e70 - 异常处理器指针AA
 void* ExceptionHandlerPointerBB;         // _DAT_180bf9ed0 - 异常处理器指针BB
 
-// 内存验证相关变量宏定义
-// 原始变量名：_DAT_180c91f18 - 内存验证起始指针
-#define MemoryValidationStartPointer GlobalMemoryValidationStartPointer     // 内存验证起始指针
-// 原始变量名：_DAT_180c91f28 - 内存验证结束指针
-#define MemoryValidationEndPointer GlobalMemoryValidationEndPointer       // 内存验证结束指针
-#define MemoryValidationStatus GlobalMemoryValidationStatus    // 内存验证状态
+// 内存验证相关变量声明
+void* MemoryValidationStartPointer;     // _DAT_180c91f18 - 内存验证起始指针
+void* MemoryValidationEndPointer;       // _DAT_180c91f28 - 内存验证结束指针
+uint8_t MemoryValidationStatus;    // 内存验证状态
 
-// 系统资源数据管理相关变量宏定义
-// 原始变量名：_DAT_180c967a0 - 系统资源数据管理器
-#define SystemResourceDataManager GlobalSystemResourceDataManager     // 系统资源数据管理器
-// 原始变量名：DAT_180c96790 - 系统资源数据表
-#define SystemResourceDataTable GlobalSystemResourceDataTable         // 系统资源数据表
-// 原始变量名：DAT_18098bc73 - 系统资源数据缓冲区
-#define SystemResourceDataBuffer GlobalSystemResourceDataBuffer         // 系统资源数据缓冲区
-#define SystemCalculationBaseAddress SystemCalculationBaseAddress    // 系统计算基础地址
+// 系统资源数据管理相关变量声明
+void* SystemResourceDataManager;     // _DAT_180c967a0 - 系统资源数据管理器
+void* SystemResourceDataTable;         // DAT_180c96790 - 系统资源数据表
+void* SystemResourceDataBuffer;         // DAT_18098bc73 - 系统资源数据缓冲区
+void* SystemCalculationBaseAddress;    // 系统计算基础地址
 
 // 系统初始化和重置函数宏定义
 
@@ -58598,9 +58584,23 @@ void CleanupExceptionAtOffset192(DataBuffer operationBase,int64_t dataBuffer)
   return;
 }
 
+/**
+ * @brief 资源清理执行器函数
+ * 
+ * 该函数负责遍历资源指针链表，对每个资源执行清理操作。
+ * 它会调用相应的资源清理回调函数，确保系统资源被正确释放。
+ * 如果所有资源都被清理完毕，会终止系统运行。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180906460
+ */
+#define ExecuteResourceCleanup Unwind_180906460
 
-
-void Unwind_180906460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -58618,9 +58618,20 @@ void Unwind_180906460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
     TerminateSystemE0();
 }
 
+/**
+ * @brief 内存引用计数管理器函数
+ * 
+ * 该函数负责管理内存资源的引用计数，当资源引用计数降为0时，
+ * 会触发相应的异常处理。它还会处理内存块的重新链接和清理操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180906470
+ */
+#define ManageMemoryReferenceCount Unwind_180906470
 
-
-void Unwind_180906470(DataBuffer operationBase,int64_t dataBuffer)
+void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -58654,9 +58665,20 @@ void Unwind_180906470(DataBuffer operationBase,int64_t dataBuffer)
   return;
 }
 
+/**
+ * @brief 系统状态验证器函数
+ * 
+ * 该函数负责验证系统各个关键状态字段，确保系统处于正确的状态。
+ * 如果发现任何状态异常，会立即终止系统运行。验证完成后会重置状态字段。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180906480
+ */
+#define ValidateSystemStatus Unwind_180906480
 
-
-void Unwind_180906480(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateSystemStatus(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x82) != 0) {
