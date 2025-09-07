@@ -153612,7 +153612,7 @@ LAB_1801338ca:
         ValidationResult = 1;
         SystemStatusBuffer = &SecondaryFloatStackBuffer;
 LAB_180133c1e:
-        pNormalizedParameterValue = (float *)FUN_180131aa0(SystemStatusBuffer,ValidationResult,0,0,0);
+        pNormalizedParameterValue = (float *)AllocateSystemFloatArray(SystemStatusBuffer,ValidationResult,0,0,0);
         SecondaryFloatValue = pNormalizedParameterValue[1];
         if ((*pNormalizedParameterValue != 0.0) || (SecondaryFloatValue != 0.0)) {
           ContextPrimaryFloat9 = *(float *)(SystemContext + 0xbc);
@@ -153885,7 +153885,7 @@ LAB_1801338ca:
         ValidationResult = 1;
         SystemStatusBuffer = &SecondaryFloatStackBuffer;
 LAB_180133c1e:
-        pNormalizedParameterValue = (float *)FUN_180131aa0(SystemStatusBuffer,ValidationResult,0,0);
+        pNormalizedParameterValue = (float *)AllocateSystemFloatArray(SystemStatusBuffer,ValidationResult,0,0);
         ContextPrimaryFloat9 = pNormalizedParameterValue[1];
         if ((*pNormalizedParameterValue != FloatingPointRegisterA) || (ContextPrimaryFloat9 != FloatingPointRegisterA)) {
           SystemContextPrimaryFloat8 = *(float *)(SystemContext + 0xbc);
@@ -154119,7 +154119,7 @@ LAB_180133d4a:
         SystemStatusCode = 1;
         StatusBuffer = &SecondaryFloatStackBuffer;
 LAB_180133c1e:
-        pProcessedFloatValue8 = (float *)FUN_180131aa0(StatusBuffer,SystemStatusCode,0,0);
+        pProcessedFloatValue8 = (float *)AllocateSystemFloatArray(StatusBuffer,SystemStatusCode,0,0);
         SystemContextPrimaryFloat8 = pProcessedFloatValue8[1];
         if ((*pProcessedFloatValue8 != FloatingPointRegisterA) || (SystemContextPrimaryFloat8 != FloatingPointRegisterA)) {
           SecondaryFloatValue = *(float *)(SystemContext + 0xbc);
@@ -154305,7 +154305,7 @@ LAB_180133d4a:
         SystemMemoryAllocationResult = 1;
         StringProcessingStatus = &SecondaryFloatStackBuffer;
 LAB_180133c1e:
-        pFloatVariable5 = (float *)FUN_180131aa0(StringProcessingStatus,SystemMemoryAllocationResult,0,0);
+        pFloatVariable5 = (float *)AllocateSystemFloatArray(StringProcessingStatus,SystemMemoryAllocationResult,0,0);
         SystemContextPrimaryFloat4 = pFloatVariable5[1];
         if ((*pFloatVariable5 != FloatingPointRegisterA) || (SystemContextPrimaryFloat4 != FloatingPointRegisterA)) {
           SystemFloatValue = *(float *)(SystemContext + 0xbc);
@@ -154480,7 +154480,7 @@ LAB_180133d4a:
         StringProcessingStatus = &SecondaryFloatStackBuffer;
         SystemChecksumValue = RegisterValueR12D;
 LAB_180133c1e:
-        FloatProcessingStatusFlag = (float *)FUN_180131aa0(StringProcessingStatus,SystemChecksumValue,0,0);
+        FloatProcessingStatusFlag = (float *)AllocateSystemFloatArray(StringProcessingStatus,SystemChecksumValue,0,0);
         SystemContextPrimaryFloat4 = pCalculatedDistance[1];
         if ((*pCalculatedDistance != FloatingPointRegisterA) || (SystemContextPrimaryFloat4 != FloatingPointRegisterA)) {
           SystemFloatValue = *(float *)(SystemContext + 0xbc);
