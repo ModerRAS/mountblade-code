@@ -318,6 +318,10 @@
 #define UnwindCleanupContextA21 Unwind_180909fe0
 #define UnwindCleanupContextA22 Unwind_18090a000
 
+// 原始函数名：ReleaseDataBufferResource - 数据缓冲区资源释放函数
+// 功能：释放数据缓冲区资源
+#define ReleaseDataBufferResource ReleaseDataBufferResource
+
 /**
  * @brief 异常数据缓冲区创建函数
  * 
@@ -98735,5 +98739,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define UnwindCleanupContextA20 Unwind_180909fc0
 #define UnwindCleanupContextA21 Unwind_180909fe0
 #define UnwindCleanupContextA22 Unwind_18090a000
+
+// 原始函数名：ReleaseDataBufferResource - 数据缓冲区资源释放函数
+// 功能：释放数据缓冲区资源
+#define ReleaseDataBufferResource ReleaseDataBufferResource
 
 
