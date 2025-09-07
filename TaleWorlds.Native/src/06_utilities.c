@@ -42546,7 +42546,7 @@ void ResetResourcePointer180(DataBuffer operationBase,int64_t dataBuffer)
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x48);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset48);
   *exceptionDataBuffer = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
       TerminateSystemE0();
@@ -52945,7 +52945,7 @@ void ExecuteExceptionCallbacksAtOffset20(DataBuffer operationBase,int64_t dataBu
   DataBuffer validationStatus;
   
   validationStatus = SystemCleanupFlagAlternative;
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x48);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset48);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x40); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
     (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
@@ -60051,8 +60051,8 @@ void InitializeExceptionDataTables(DataBuffer operationBase,int64_t dataBuffer)
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x48);
-  exceptionDataBuffer[0] = &SystemExceptionDataTable;
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset48);
+  exceptionDataBuffer[SystemExceptionDataTableOffset] = &SystemExceptionDataTable;
   exceptionDataBuffer[1] = &DefaultExceptionHandlerB;
   exceptionDataBuffer[2] = &ExceptionDataTable3;
   exceptionDataBuffer[3] = &ExceptionDataTable6;
