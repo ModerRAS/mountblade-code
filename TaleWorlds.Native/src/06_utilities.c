@@ -842,6 +842,87 @@
  */
 #define GetSystemContextValue FUN_1807d3e20
 
+// 异常处理器设置函数组 - 6B0-6E0系列
+// 原始函数名：Unwind_180906b80 - 异常处理器调用函数B80
+// 功能：在偏移量0x38处调用异常处理器
+#define InvokeExceptionHandlerAtOffset38 Unwind_180906b80
+
+// 原始函数名：Unwind_180906b90 - 系统资源初始化和异常处理器调用函数B90
+// 功能：初始化系统资源并在偏移量0x58处调用异常处理器
+#define InitializeSystemResourcesAndInvokeHandler Unwind_180906b90
+
+// 原始函数名：Unwind_180906d00 - 异常处理器调用函数D00
+// 功能：在偏移量0x28处调用异常处理器
+#define InvokeExceptionHandlerAtOffset28 Unwind_180906d00
+
+// 原始函数名：Unwind_180906d10 - 异常处理器调用函数D10
+// 功能：在偏移量0x30处调用异常处理器
+#define InvokeExceptionHandlerAtOffset30 Unwind_180906d10
+
+// 原始函数名：Unwind_180906d20 - 异常处理器调用函数D20
+// 功能：在偏移量0x38处调用异常处理器
+#define InvokeExceptionHandlerAtOffset38D20 Unwind_180906d20
+
+// 原始函数名：Unwind_180906d30 - 异常处理器调用函数D30
+// 功能：在偏移量0x40处调用异常处理器
+#define InvokeExceptionHandlerAtOffset40 Unwind_180906d30
+
+// 原始函数名：Unwind_180906ec0 - 异常上下文重置函数EC0
+// 功能：重置异常上下文处理器状态（偏移量0x40）
+#define ResetExceptionContextOffset40 Unwind_180906ec0
+
+// 原始函数名：Unwind_180906ed0 - 异常上下文重置函数ED0
+// 功能：重置异常上下文处理器状态（偏移量0x48）
+#define ResetExceptionContextOffset48 Unwind_180906ed0
+
+// 原始函数名：Unwind_180906ee0 - 异常上下文重置函数EE0
+// 功能：重置异常上下文处理器状态（偏移量0x50）
+#define ResetExceptionContextOffset50EE0 Unwind_180906ee0
+
+// 原始函数名：Unwind_180906ef0 - 异常处理器调用函数EF0
+// 功能：调用异常处理器并传递操作标志
+#define InvokeExceptionHandlerWithFlags Unwind_180906ef0
+
+// 原始函数名：Unwind_180906f00 - 异常上下文重置函数F00
+// 功能：重置异常上下文处理器状态（偏移量0x58）
+#define ResetExceptionContextOffset58 Unwind_180906f00
+
+// 原始函数名：Unwind_180906f10 - 异常上下文重置函数F10
+// 功能：重置异常上下文处理器状态（偏移量0x60）
+#define ResetExceptionContextOffset60 Unwind_180906f10
+
+// 原始函数名：Unwind_180906f20 - 异常上下文重置函数F20
+// 功能：重置异常上下文处理器状态（偏移量0x68）
+#define ResetExceptionContextOffset68 Unwind_180906f20
+
+// 原始函数名：Unwind_180907090 - 异常处理器调用函数090
+// 功能：调用异常处理器并传递操作标志
+#define InvokeExceptionHandlerWithFlags090 Unwind_180907090
+
+// 原始函数名：Unwind_1809070a0 - 异常处理器调用函数0A0
+// 功能：调用异常处理器并传递操作标志
+#define InvokeExceptionHandlerWithFlags0A0 Unwind_1809070a0
+
+// 原始函数名：Unwind_1809070b0 - 异常上下文重置函数0B0
+// 功能：重置异常上下文处理器状态（偏移量0x70）
+#define ResetExceptionContextOffset70 Unwind_1809070b0
+
+// 原始函数名：Unwind_1809070c0 - 异常上下文重置函数0C0
+// 功能：重置异常上下文处理器状态（偏移量0x78）
+#define ResetExceptionContextOffset78 Unwind_1809070c0
+
+// 原始函数名：Unwind_180907180 - 异常上下文重置函数180
+// 功能：重置异常上下文处理器状态（偏移量0x80）
+#define ResetExceptionContextOffset80 Unwind_180907180
+
+// 原始函数名：Unwind_1809071d0 - 异常处理器调用函数1D0
+// 功能：调用异常处理器并传递操作标志
+#define InvokeExceptionHandlerWithFlags1D0 Unwind_1809071d0
+
+// 原始函数名：Unwind_180907200 - 异常上下文重置函数200
+// 功能：重置异常上下文处理器状态（偏移量0x88）
+#define ResetExceptionContextOffset88 Unwind_180907200
+
 /**
  * @brief 系统状态处理函数A0
  * 
