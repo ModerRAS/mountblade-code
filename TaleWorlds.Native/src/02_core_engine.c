@@ -24054,16 +24054,16 @@ void CoreEngineExecuteConditionVariableTimedWait(uint64_t CharacterCode, uint64_
   else {
     SystemTicks = _Xtime_get_ticks();
     SystemTicks = (SystemTicks + *Utf8SourcePointer * 10) * 100;
-    TimeoutSeconds = MemoryBlockIndex / 1000000000;
-    TimeoutNanoseconds = (int)MemoryBlockIndex + (int)TimeoutSeconds * -1000000000;
+    TimeoutSeconds = SystemTicks / 1000000000;
+    TimeoutNanoseconds = (int)SystemTicks + (int)TimeoutSeconds * -1000000000;
   }
-  MutexOwnershipResult = _Mtx_current_owns(*Utf8InputBufferSize);
-  if (MutexOwnershipResult == 0) {
+  MutexLockStatus = _Mtx_current_owns(*Utf8InputBufferSize);
+  if (MutexLockStatus == 0) {
     __Throw_Cpp_error_std__YAXH_Z(4);
   }
-  MemoryAllocationIndex = _Cnd_timedwait(CharacterCode,*Utf8InputBufferSize,&TimeoutSeconds);
-  if ((MemoryAllocationIndex & 0xfffffffd) != 0) {
-    __Throw_C_error_std__YAXH_Z(MemoryAllocationIndex);
+  ConditionWaitResult = _Cnd_timedwait(CharacterCode,*Utf8InputBufferSize,&TimeoutSeconds);
+  if ((ConditionWaitResult & 0xfffffffd) != 0) {
+    __Throw_C_error_std__YAXH_Z(ConditionWaitResult);
   }
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(EncodedTimeoutValue ^ (unsigned long long)StackBufferOffset);
