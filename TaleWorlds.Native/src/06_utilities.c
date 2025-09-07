@@ -111969,51 +111969,51 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferB uStack_138
 
-// 原始变量名：uStack_130 - 栈数据字J
+// 栈数据字J
 // 功能：存储异常上下文的数据字1
 #define StackExceptionContextData1 uStack_130
 
-// 原始变量名：uStack_12c - 栈数据字K
+// 栈数据字K
 // 功能：存储异常上下文的数据字2
 #define StackExceptionContextData2 uStack_12c
 
-// 原始变量名：uStack_128 - 栈数据字L
+// 栈数据字L
 // 功能：存储异常上下文的数据字3
 #define StackExceptionContextData3 uStack_128
 
-// 原始变量名：uStack_124 - 数据上下文偏移54处的数据字
+// 数据上下文偏移54处的数据字
 // 功能：存储数据上下文偏移0x54处的验证数据
 #define DataContextOffset54Data uStack_124
 
-// 原始变量名：uStack_120 - 数据上下文偏移58处的数据字
+// 数据上下文偏移58处的数据字
 // 功能：存储数据上下文偏移0x58处的验证数据
 #define DataContextOffset58Data uStack_120
 
-// 原始变量名：uStack_11c - 数据上下文偏移5c处的数据字
+// 数据上下文偏移5c处的数据字
 // 功能：存储数据上下文偏移0x5c处的验证数据
 #define DataContextOffset5CData uStack_11c
 
-// 原始变量名：uStack_114 - 数据上下文偏移60处的数据字
+// 数据上下文偏移60处的数据字
 // 功能：存储数据上下文偏移0x60处的验证数据
 #define DataContextOffset60Data uStack_114
 
-// 原始变量名：uStack_f8 - 安全验证数据字Q
+// 安全验证数据字Q
 // 功能：存储数据上下文偏移100处的安全验证数据
 #define SecurityValidationDataQ uStack_f8
 
-// 原始变量名：uStack_f0 - 安全验证数据字R
+// 安全验证数据字R
 // 功能：存储安全验证的主要数据字
 #define SecurityValidationResultB uStack_f0
 
-// 原始变量名：uStack_ec - 安全验证数据字S
+// 安全验证数据字S
 // 功能：存储异常处理上下文中的安全验证数据
 #define SecurityValidationDataS uStack_ec
 
-// 原始变量名：uStack_e8 - 栈字节标志A
+// 栈字节标志A
 // 功能：存储字节标志的栈变量
 #define TemporaryByteFlagA uStack_e8
 
-// 原始变量名：uStack_e4 - 栈数据缓冲区C
+// 栈数据缓冲区C
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferC uStack_e4
 
