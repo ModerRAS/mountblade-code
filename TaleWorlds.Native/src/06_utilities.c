@@ -10801,34 +10801,34 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
 {
   int64_t resourceContextPtr;
   uint64_t resourceDecrementStatus;
-  int ResourceDecrementResult;
-  int64_t localResourceDecrementBuffer [2];
+  int resourceReleaseResult;
+  int64_t resourceDecrementBuffer [2];
   
-  resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + ResourceConfigurationOffset),localResourceDecrementBuffer);
-  resourceContextPtr = localResourceDecrementBuffer[0];
+  resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + ResourceConfigurationOffset),resourceDecrementBuffer);
+  resourceContextPtr = resourceDecrementBuffer[0];
   if ((int)resourceDecrementStatus != 0) {
     return resourceDecrementStatus;
   }
-  if (*(int *)(localResourceDecrementBuffer[0] + ResourceReferenceCountOffset) < 1) {
+  if (*(int *)(resourceDecrementBuffer[0] + ResourceReferenceCountOffset) < 1) {
     return ResourceInvalidErrorCode;
   }
-  resourceDecrementResult = *(int *)(localResourceDecrementBuffer[0] + ResourceReferenceCountOffset) + -1;
-  *(int *)(localResourceDecrementBuffer[0] + ResourceReferenceCountOffset) = resourceDecrementResult;
-  if (*(int *)(localResourceDecrementBuffer[0] + ResourceTertiaryOffset) + *(int *)(localResourceDecrementBuffer[0] + ResourceSecondaryOffset) + resourceDecrementResult != 0) {
+  resourceReleaseResult = *(int *)(resourceDecrementBuffer[0] + ResourceReferenceCountOffset) + -1;
+  *(int *)(resourceDecrementBuffer[0] + ResourceReferenceCountOffset) = resourceReleaseResult;
+  if (*(int *)(resourceDecrementBuffer[0] + ResourceTertiaryOffset) + *(int *)(resourceDecrementBuffer[0] + ResourceSecondaryOffset) + resourceReleaseResult != 0) {
     return 0;
   }
-  localResourceDecrementBuffer[0] = 0;
-  resourceDecrementResult = ValidateResourceHandle(localResourceDecrementBuffer);
-  if (resourceDecrementResult == 0) {
-    resourceDecrementResult = CleanupResourceData(resourceContextPtr,0);
-    if (resourceDecrementResult == 0) {
-      resourceDecrementResult = ValidateSystemParameters(decrementValue);
-      if (resourceDecrementResult == 0) {
-          ReleaseSystemResources(localResourceDecrementBuffer);
+  resourceDecrementBuffer[0] = 0;
+  resourceReleaseResult = ValidateResourceHandle(resourceDecrementBuffer);
+  if (resourceReleaseResult == 0) {
+    resourceReleaseResult = CleanupResourceData(resourceContextPtr,0);
+    if (resourceReleaseResult == 0) {
+      resourceReleaseResult = ValidateSystemParameters(decrementValue);
+      if (resourceReleaseResult == 0) {
+          ReleaseSystemResources(resourceDecrementBuffer);
       }
     }
   }
-    ReleaseSystemResources(localResourceDecrementBuffer);
+    ReleaseSystemResources(resourceDecrementBuffer);
 }
 
 
@@ -15011,24 +15011,24 @@ void ManageUtilitySystemConnections(int64_t connectionManager,int64_t connection
 void UtilityValidateSystemState(void)
 
 {
-  int operationResult;
+  int validationResult;
   int64_t stackFrameContext;
   int64_t systemContext;
   DataBuffer systemParameter;
   
-  operationResult = ProcessSystemBufferA0(systemParameter);
-  if (operationResult < 1) {
-    operationResult = ProcessSystemBufferA1(systemParameter);
-    *(uint *)(systemContext + 0x18) = (uint)(operationResult < 1);
+  validationResult = ProcessSystemBufferA0(systemParameter);
+  if (validationResult < 1) {
+    validationResult = ProcessSystemBufferA1(systemParameter);
+    *(uint *)(systemContext + 0x18) = (uint)(validationResult < 1);
   }
   else {
-    operationResult = ProcessSystemBufferA1(systemParameter);
-    if (operationResult < 1) {
+    validationResult = ProcessSystemBufferA1(systemParameter);
+    if (validationResult < 1) {
       *(DataWord *)(systemContext + 0x18) = 2;
     }
     else {
-      operationResult = ValidateDataIntegrityA0(systemParameter,systemContext + 0x18);
-      if (operationResult != 0) {
+      validationResult = ValidateDataIntegrityA0(systemParameter,systemContext + 0x18);
+      if (validationResult != 0) {
         return;
       }
     }
@@ -40509,8 +40509,8 @@ void ExceptionHandlerValidationContext(DataBuffer operationBase,int64_t dataBuff
  * 
  * @param exceptionContext 异常上下文
  * @param threadContext 线程上下文
- * @param param3 参数3
- * @param param4 参数4
+ * @param unwindData 解包数据
+ * @param cleanupFlag 清理标志
  * 
  * @note 原始函数名：Unwind_180902b40
  */
@@ -40525,8 +40525,8 @@ void ExceptionHandlerValidationContext(DataBuffer operationBase,int64_t dataBuff
  * 
  * @param exceptionContext 异常上下文
  * @param threadContext 线程上下文
- * @param param3 参数3
- * @param param4 参数4
+ * @param unwindData 解包数据
+ * @param cleanupFlag 清理标志
  * 
  * @note 原始函数名：Unwind_180902b50
  */
@@ -113658,7 +113658,8 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  * 
  * 美化进度：
  * - 已修复格式问题：5个
- * - 已美化变量名：10个
+ * - 已美化变量名：15个
+ * - 已美化参数名：4个
  * - 已添加文档注释：完整
  * 
  * @note 所有变量名和函数名都已从Ghidra逆向生成的名称
