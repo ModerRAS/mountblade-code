@@ -64894,7 +64894,6 @@ LAB_18069a35d:
  * @note 涉及数据缓冲区处理和状态标志管理
  */
 void ParseUIComponentDataAndSetState(longlong uiContext)
-
 {
   longlong allocatedMemory;
   byte bVar2;
@@ -65800,9 +65799,22 @@ LAB_18069b66c:
 
 
 
- void FUN_18069bb20(longlong uiContext)
-void FUN_18069bb20(longlong uiContext)
-
+ /**
+ * @brief UI系统数据表初始化函数
+ * 
+ * 该函数负责初始化UI系统的数据表，包括：
+ * - 初始化UI资源数据表
+ * - 设置UI系统的各种参数
+ * - 配置UI系统的缓冲区
+ * - 初始化UI系统的状态标志
+ * 
+ * @param uiContext UI上下文指针，用于访问和操作UI系统数据
+ * 
+ * @note 原始函数名: FUN_18069bb20
+ * @note 该函数执行UI系统数据表的初始化
+ * @note 涉及多个UI系统函数的调用和数据处理
+ */
+void InitializeUIDataTables(longlong uiContext)
 {
   undefined2 functionResult;
   int validationResult;
