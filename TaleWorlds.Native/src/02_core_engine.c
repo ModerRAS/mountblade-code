@@ -113084,12 +113084,12 @@ void ProcessSystemReferenceCountAndValidate(int *CharacterCode,int CharacterCode
     if (SystemDataConfiguration != 0) {
       *(int *)(SystemDataConfiguration + 0x3a8) = *(int *)(SystemDataConfiguration + 0x3a8) + 1;
     }
-    Utf16Char = SystemCallMemoryAccess((long long)CharacterCodeSize * 2,SystemMemoryPoolBase);
+    AllocatedMemoryBuffer = SystemCallMemoryAccess((long long)CharacterCodeSize * 2,SystemMemoryPoolBase);
     if (*(long long *)(CharacterCode + 2) != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(Utf16Char,*(long long *)(CharacterCode + 2),(long long)*CharacterCode * 2);
+      memcpy(AllocatedMemoryBuffer,*(long long *)(CharacterCode + 2),(long long)*CharacterCode * 2);
     }
-    *(void *)(CharacterCode + 2) = Utf16Char;
+    *(void *)(CharacterCode + 2) = AllocatedMemoryBuffer;
     CharacterCode[1] = CharacterCodeSize;
   }
   return;
@@ -271243,5 +271243,36 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define ProcessProcessingStatus FUN_18011f880
 // 原始函数名：FUN_18011f8d0 - 系统字符串缓冲区处理函数
 #define ProcessStringBuffer FUN_18011f8d0
+
+// UTF-8到UTF-16字符编码转换函数组
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换
+ * 
+ * 该函数负责处理UTF-8字符串到UTF-16字符串的转换，
+ * 支持多字节字符的处理和内存分配。
+ * 
+ * @note 原始函数名：FUN_180160860
+ */
+#define ConvertUtf8ToUtf16Encoding FUN_180160860
+
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换的替代实现
+ * 
+ * 该函数是UTF-8到UTF-16转换的替代实现，
+ * 提供不同的内存管理策略。
+ * 
+ * @note 原始函数名：FUN_1801608ba
+ */
+#define ConvertUtf8ToUtf16EncodingAlt FUN_1801608ba
+
+/**
+ * @brief 处理UTF-16字符编码数据
+ * 
+ * 该函数负责处理UTF-16字符编码的数据操作，
+ * 包括字符的存储和检索。
+ * 
+ * @note 原始函数名：FUN_1801609be
+ */
+#define ProcessUtf16EncodingData FUN_1801609be
 
 
