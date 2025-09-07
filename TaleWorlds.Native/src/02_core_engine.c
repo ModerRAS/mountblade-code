@@ -108083,7 +108083,7 @@ uint8_t ProcessFloatDataAndSystemConfiguration(void)
     *(float *)(systemContext + 0x1670) = secondaryFloatValue + secondaryFloatValue;
     localStatusFlag = 0;
     floatStorageValue = resultFloatValue;
-    memoryAddressMask = FUN_180119960(systemVariable,0,0x1000,&stack0x000000d8);
+    memoryAddressMask = ValidateSystemDataAndCheckStatus(systemVariable,0,0x1000,&stack0x000000d8);
     UpdateSystemStatusEx(1);
     *(float *)(dataIndex + 0x100) =
          *(float *)(dataIndex + 0x100) - (float)(int)(*(float *)(systemContext + 0x166c) * 0.5);
@@ -108097,7 +108097,7 @@ uint8_t ProcessFloatDataAndSystemConfiguration(void)
     if (resultFloatValue <= 0.0) {
       resultFloatValue = 0.0;
     }
-    memoryAddressMask = FUN_180119960(xmm0RegisterValue,0,0x3000,&stack0x000000d8);
+    memoryAddressMask = ValidateSystemDataAndCheckStatus(xmm0RegisterValue,0,0x3000,&stack0x000000d8);
     if (systemStatusFlag != '\0') {
       adjustedFloatValue = *(float *)(systemContext + 0x19f8);
       calculatedFilterValue = *(float *)(dataIndex + 0x2a0);
@@ -108145,11 +108145,11 @@ uint8_t ProcessSystemContextAndUnicode(void)
   SecondContextFloat = *(float *)(SystemContext + 0x1670);
   StackFloatValue = *(uint32_t *)(SystemContext + 0x166c);
   StackBuffer1 = *(uint32_t *)(SystemContext + 0x1670);
-  MemoryAddressMask = FUN_18013e000(SystemContext + 0x1b90,&DataStackBuffer);
+  MemoryAddressMask = AllocateSystemMemoryEx(SystemContext + 0x1b90,&DataStackBuffer);
   *(float *)(SystemContext + 0x166c) = FirstContextFloat + FirstContextFloat;
   *(float *)(SystemContext + 0x1670) = SecondContextFloat + SecondContextFloat;
   ResultStatusFlag = 0;
-  UnicodeCodePoint = FUN_180119960(MemoryAddressMask,0,0x1000,&stack0x000000d8);
+  UnicodeCodePoint = ValidateSystemDataAndCheckStatus(MemoryAddressMask,0,0x1000,&stack0x000000d8);
   UpdateSystemStatusEx(1);
   *(float *)(DataNodeIndex + 0x100) =
        *(float *)(DataNodeIndex + 0x100) - (float)(int)(*(float *)(SystemContext + 0x166c) * 0.5);
@@ -108204,7 +108204,7 @@ uint64_t ProcessDataStructureAllocation(int *SystemContextPointer,uint64_t *Utf8
   loopCounter = *(long long *)(SystemDataConfiguration + 0x1af8);
   if (*(char *)(loopCounter + 0xb4) == '\0') {
     if ((Utf16InputPointer >> 0x14 & 1) == 0) {
-      FUN_18011d940(loopCounter + 0x218,SystemContextPointer + 4);
+      ProcessSystemDataStructure(loopCounter + 0x218,SystemContextPointer + 4);
     }
     MutexLockResult = *(int *)(MemoryBlockIndex + 0x1e8c);
     if (*(int *)(MemoryBlockIndex + 0x1e88) == MutexLockResult) {
@@ -108339,7 +108339,7 @@ uint64_t ManageDataStructureMemory(long long SystemContextPointer
   uint32_t in_stack_00000058;
   
   if ((RegisterGeneral14D >> 0x14 & 1) == 0) {
-    FUN_18011d940(RegisterSourceIndex + 0x218,SystemContextPointer + 0x10);
+    ProcessSystemDataStructure(RegisterSourceIndex + 0x218,SystemContextPointer + 0x10);
   }
   ValidationResult = *(int *)(SystemContext + 0x1e8c);
   if (*(int *)(SystemContext + 0x1e88) == ValidationResult) {
@@ -108964,7 +108964,7 @@ b260(int *SystemContextPointervoid ProcessIntegerDataShader(int *SystemContextPo
       if (StringComparisonResult4 < IntegerValue4) {
         IntegerValue5 = IntegerValue4;
       }
-      FUN_18011db30(SystemContextPointer,IntegerValue5);
+      ValidateSystemParameters(SystemContextPointer,IntegerValue5);
     }
     *SystemContextPointer = StringComparisonResult4;
     IntegerValue4 = StringComparisonResult4;
@@ -109073,7 +109073,7 @@ b260(int *SystemContextPointervoid ProcessIntegerDataShader(int *SystemContextPo
         CurrentByteValue2 = true;
       }
       if (systemEventTemplatePointer != NULL) {
-        ReferenceCountPointer7 = (int *)FUN_18011ce30(aStackValidationData,*systemEventTemplatePointer,*(uint8_t *)((long long)systemEventTemplatePointer + 0xb7));
+        ReferenceCountPointer7 = (int *)ProcessSystemEventTemplate(aStackValidationData,*systemEventTemplatePointer,*(uint8_t *)((long long)systemEventTemplatePointer + 0xb7));
         ValidationResultPointer1[8] = *ReferenceCountPointer7;
       }
       IntegerValue5 = (int)ReferenceCountPointer9;
