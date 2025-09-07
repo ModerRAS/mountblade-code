@@ -243330,7 +243330,7 @@ LAB_180214378:
   ProcessSystemEventQueueData(&SystemEventQueueDataTableVigintenary,(double)fStack_70);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableUnvigintenary,(double)fStack_6c);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableDuovigintenary,(double)fStack_68);
-  ProcessSystemEventQueueData(&UNK_180a10838,(double)fStack_64);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableTrevigintenary,(double)fStack_64);
   ProcessSystemEventQueueData(&UNK_180a10898,(double)fStack_60);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableDuodecenary);
                     // WARNING: Subroutine does not return
