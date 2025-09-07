@@ -132082,7 +132082,7 @@ LAB_18012ce0f:
 
 
 
-99e9(uint64_t CharacterCode,uint64_t Utf8BufferSizevoid FUN_1801299e9(uint64_t CharacterCode,uint64_t Utf8BufferSize
+void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8BufferSize)
 {
   uint16_t *StatusBuffer;
   char SystemCheckResult;

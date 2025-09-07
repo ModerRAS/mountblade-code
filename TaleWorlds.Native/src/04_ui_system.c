@@ -9515,53 +9515,53 @@ undefined8 * FindUIModuleByPath(undefined8 path_length, undefined8 *path_buffer,
   undefined8 *functionResultPtr;
   
   if (UIResourceManagerHandle != (undefined8 *)0x0) {
-    peventTypeCode = UIResourceManagerHandle;
-    pfunctionResult0 = (undefined8 *)&UIDefaultResourceBuffer;
+    eventCodePtr = UIResourceManagerHandle;
+    functionResultPtr = (undefined8 *)&UIDefaultResourceBuffer;
     do {
       if (*(int *)(targetBuffer + 0x10) == 0) {
-        puVar8 = (undefined8 *)peventTypeCode[1];
-        bVar2 = false;
+        modulePathPtr = (undefined8 *)eventCodePtr[1];
+        isPathMatching = false;
       }
       else {
-        if (*(int *)(peventTypeCode + 6) == 0) {
-          bVar2 = true;
+        if (*(int *)(eventCodePtr + 6) == 0) {
+          isPathMatching = true;
         }
         else {
-          pbVar3 = *(byte **)(targetBuffer + 8);
-          contextData = peventTypeCode[5] - (longlong)pbVar3;
+          pathCharacterPtr = *(byte **)(targetBuffer + 8);
+          contextData = eventCodePtr[5] - (longlong)pathCharacterPtr;
           do {
-            uVar4 = (uint)pbVar3[contextData];
-            iVar5 = *pbVar3 - uVar4;
-            if (*pbVar3 != uVar4) break;
-            pbVar3 = pbVar3 + 1;
-          } while (uVar4 != 0);
-          bVar2 = 0 < iVar5;
-          if (iVar5 < 1) {
-            puVar8 = (undefined8 *)peventTypeCode[1];
+            characterCode = (uint)pathCharacterPtr[contextData];
+            characterDifference = *pathCharacterPtr - characterCode;
+            if (*pathCharacterPtr != characterCode) break;
+            pathCharacterPtr = pathCharacterPtr + 1;
+          } while (characterCode != 0);
+          isPathMatching = 0 < characterDifference;
+          if (characterDifference < 1) {
+            modulePathPtr = (undefined8 *)eventCodePtr[1];
             goto LAB_1806575b7;
           }
         }
-        puVar8 = (undefined8 *)*peventTypeCode;
+        modulePathPtr = (undefined8 *)*eventCodePtr;
       }
 LAB_1806575b7:
-      puVar9 = peventTypeCode;
-      if (bVar2) {
-        puVar9 = pfunctionResult0;
+      resultPtr = eventCodePtr;
+      if (isPathMatching) {
+        resultPtr = functionResultPtr;
       }
-      peventTypeCode = puVar8;
-      pfunctionResult0 = puVar9;
-    } while (puVar8 != (undefined8 *)0x0);
-    if (puVar9 != (undefined8 *)&UIDefaultResourceBuffer) {
-      if (*(int *)(puVar9 + 6) == 0) {
+      eventCodePtr = modulePathPtr;
+      functionResultPtr = resultPtr;
+    } while (modulePathPtr != (undefined8 *)0x0);
+    if (resultPtr != (undefined8 *)&UIDefaultResourceBuffer) {
+      if (*(int *)(resultPtr + 6) == 0) {
 LAB_1806575f7:
-        *dataSource = puVar9;
+        *dataSource = resultPtr;
         return dataSource;
       }
       if (*(int *)(targetBuffer + 0x10) != 0) {
-        pbVar3 = (byte *)puVar9[5];
-        contextData = *(longlong *)(targetBuffer + 8) - (longlong)pbVar3;
+        pathCharacterPtr = (byte *)resultPtr[5];
+        contextData = *(longlong *)(targetBuffer + 8) - (longlong)pathCharacterPtr;
         do {
-          isCharacterMatch = *pbVar3;
+          isCharacterMatch = *pathCharacterPtr;
           uVar4 = (uint)pbVar3[contextData];
           if (isCharacterMatch != uVar4) break;
           pbVar3 = pbVar3 + 1;
