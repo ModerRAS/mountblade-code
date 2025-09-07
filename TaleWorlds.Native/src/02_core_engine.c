@@ -189128,8 +189128,21 @@ FUN_180166950(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8In
 
 
 
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换的第三个阶段
+ * 
+ * 该函数负责处理字符编码转换的第三阶段，包括字符代码处理、内存块索引和系统字节指针操作
+ * 
+ * @param CharacterCode 输入的字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 转换后的字符编码指针
+ * 
+ * @note 原始函数名：FUN_180166b10
+ */
 uint64_t *
-FUN_180166b10(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingStage3(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
 {
   long long *CharacterCode;
   uint32_t *PrimaryProcessingStatusFlag;

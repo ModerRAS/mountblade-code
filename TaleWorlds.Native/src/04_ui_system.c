@@ -7394,19 +7394,19 @@ void ProcessUIEventQueue(longlong uiContext,longlong dataSource,undefined8 targe
   undefined8 unaff_RBP;
   ulonglong semaphoreHandle;
   longlong unaff_RSI;
-  ulonglong uVar3;
+  ulonglong calculatedBufferSize;
   int unaff_R12D;
   longlong *unaff_R15;
   undefined8 in_stack_00000058;
   
-  uVar3 = (uiContext - context) + bufferSize;
-  if ((ulonglong)(in_RAX - context) < uVar3) {
+  calculatedBufferSize = (uiContext - context) + bufferSize;
+  if ((ulonglong)(in_RAX - context) < calculatedBufferSize) {
     semaphoreHandle = dataSource * 2;
     if (dataSource == 0) {
       semaphoreHandle = 1;
     }
-    if (semaphoreHandle < dataSource + uVar3) {
-      semaphoreHandle = dataSource + uVar3;
+    if (semaphoreHandle < dataSource + calculatedBufferSize) {
+      semaphoreHandle = dataSource + calculatedBufferSize;
     }
     if (semaphoreHandle == 0) {
       allocatedMemory = context;
@@ -7421,9 +7421,9 @@ void ProcessUIEventQueue(longlong uiContext,longlong dataSource,undefined8 targe
                     // WARNING: Subroutine does not return
       memmove(context,uiContext,allocatedMemory - uiContext);
     }
-    if (uVar3 != 0) {
+    if (calculatedBufferSize != 0) {
                     // WARNING: Subroutine does not return
-      memset(context,0,uVar3);
+      memset(context,0,calculatedBufferSize);
     }
     if (*(longlong *)(unaff_RSI + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -7741,15 +7741,15 @@ int ProcessUIEvent(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
 
 {
   int operationResult;
-  longlong lVar2;
-  longlong lVar3;
+  longlong eventIndex;
+  longlong characterPosition;
   undefined *bufferPtr;
   undefined *puStack_30;
   longlong lStack_28;
   int iStack_20;
   
   InitializeUIDataBuffer(&puStack_30,uiContext,targetBuffer,bufferSize,0xfffffffffffffffe);
-  lVar3 = lStack_28;
+  characterPosition = lStack_28;
   if (iStack_20 == 0x19) {
     operationResult = strcmp(lStack_28,&UIStringConstant1);
     if (operationResult == 0) {
@@ -7766,7 +7766,7 @@ int ProcessUIEvent(undefined8 uiContext,undefined8 dataSource,undefined8 targetB
 LAB_UIStringCompareStart:
     bufferPtr = &UIStringConstant3;
 LAB_UIStringCompareLoop:
-    operationResult = strcmp(lVar3,bufferPtr);
+    operationResult = strcmp(characterPosition,bufferPtr);
     if (operationResult == 0) {
       operationResult = 4;
       goto LAB_1806555a8;
@@ -7779,12 +7779,12 @@ LAB_UIStringCompareLoop:
       goto LAB_1806555a8;
     }
 LAB_UIStringCompareAlternative:
-    operationResult = strcmp(lVar3,&UIStringConstant5);
+    operationResult = strcmp(characterPosition,&UIStringConstant5);
     if (operationResult == 0) {
       operationResult = 8;
       goto LAB_1806555a8;
     }
-    operationResult = strcmp(lVar3,&UIStringConstant6);
+    operationResult = strcmp(characterPosition,&UIStringConstant6);
     if (operationResult == 0) {
       operationResult = 0x10;
       goto LAB_1806555a8;

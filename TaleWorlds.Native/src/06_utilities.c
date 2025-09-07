@@ -60464,7 +60464,20 @@ void ExecuteExceptionFinalizeAtOffsetA80(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180906a90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证数据缓冲区状态并处理标志位
+ * 
+ * 该函数检查数据缓冲区0x20偏移量处的第0位标志，如果该位被设置，
+ * 则清除第0位并调用数据验证处理器来验证缓冲区中的数据。
+ * 这是一个数据状态验证和处理的辅助函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含状态标志和待验证数据
+ * 
+ * @note 原始函数名：Unwind_180906a90
+ * @note 函数操作0x20偏移量的状态标志位，并验证0x58偏移量的数据
+ */
+void ValidateDataBufferAndProcessFlags(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
