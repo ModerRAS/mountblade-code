@@ -54052,6 +54052,14 @@ void DestroyMutexInPlace(void)
 
 
 
+/**
+ * @brief 销毁系统互斥锁
+ * 
+ * 该函数负责销毁指定的系统互斥锁，释放相关资源。
+ * 用于系统级别的线程同步资源清理。
+ * 
+ * @note 原始函数名：Unwind_1809065d0
+ */
 void DestroySystemMutex(void)
 
 {
@@ -54061,6 +54069,17 @@ void DestroySystemMutex(void)
 
 
 
+/**
+ * @brief 设置默认异常处理器B
+ * 
+ * 该函数负责在指定位置设置默认异常处理器B的引用，
+ * 用于异常处理系统的配置和初始化。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器配置信息
+ * 
+ * @note 原始函数名：Unwind_1809065e0
+ */
 void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -54070,6 +54089,17 @@ void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 重置默认异常处理器B
+ * 
+ * 该函数负责重置指定位置的默认异常处理器B引用，
+ * 用于异常处理系统的重置和恢复操作。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器配置信息
+ * 
+ * @note 原始函数名：Unwind_1809065f0
+ */
 void ResetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -54079,6 +54109,17 @@ void ResetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清除操作标志并执行清理
+ * 
+ * 该函数负责检查并清除指定的操作标志，当标志被设置时，
+ * 执行相应的资源清理操作，确保系统资源的正确释放。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针，包含操作标志和资源信息
+ * 
+ * @note 原始函数名：Unwind_180906600
+ */
 void ClearOperationFlagAndCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -54091,6 +54132,17 @@ void ClearOperationFlagAndCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 初始化异常数据表
+ * 
+ * 该函数负责初始化异常处理系统的数据表结构，
+ * 设置异常处理器、系统配置表和异常数据表的引用。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针，包含异常数据表配置信息
+ * 
+ * @note 原始函数名：Unwind_180906630
+ */
 void InitializeExceptionDataTable(DataBuffer operationBase,int64_t dataBuffer)
 
 {
