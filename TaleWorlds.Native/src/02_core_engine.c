@@ -200247,7 +200247,7 @@ void ProcessUtf8InputBufferAndEncoding(long long CharacterCode,long long *Utf8In
     }
     if ((CharacterCodePointer == StatusBuffer) || (iStack_4c < *(int *)(CharacterCodePointer + 4))) {
       piStack_88 = aiStack_78;
-      CharacterCodePointer = (void *)FUN_180179aa0(StatusBuffer,aStackUnsigned68);
+      CharacterCodePointer = (void *)ProcessSystemStatusBuffer(StatusBuffer,aStackUnsigned68);
       CharacterCodePointer = (void *)*Utf8InputBufferPointer;
     }
     CharacterCodePointer[5] = MemoryBlockIndex;
@@ -200267,7 +200267,7 @@ void ProcessUtf8InputBufferAndEncoding(long long CharacterCode,long long *Utf8In
     }
     if ((CharacterCodePointer == StatusBuffer) || (iStack_4c < *(int *)(CharacterCodePointer + 4))) {
       piStack_88 = aiStack_78;
-      FUN_180179aa0(StatusBuffer,aStackUnsigned68,iStack_4c,CharacterCodePointer);
+      ProcessSystemStatusBuffer(StatusBuffer,aStackUnsigned68,iStack_4c,CharacterCodePointer);
     }
   }
                     // WARNING: Subroutine does not return
