@@ -100746,6 +100746,43 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储栈验证操作的缓冲区
 #define StackValidationBuffer stack_0000000000000010
 
+// 栈变量宏定义 - 美化更多栈变量
+// 原始变量名：uStack_1c8 - 栈数据字A
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordA uStack_1c8
+
+// 原始变量名：acStack_1c4 - 栈字符缓冲区A
+// 功能：存储字符数据的栈缓冲区
+#define StackCharBufferA acStack_1c4
+
+// 原始变量名：puStack_1c0 - 栈指针缓冲区A
+// 功能：存储指针数据的栈缓冲区
+#define StackPointerBufferA puStack_1c0
+
+// 原始变量名：uStack_1b8 - 栈数据字B
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordB uStack_1b8
+
+// 原始变量名：uStack_1b0 - 栈数据字C
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordC uStack_1b0
+
+// 原始变量名：fStack_1a8 - 栈浮点值A
+// 功能：存储浮点运算的栈值
+#define StackFloatValueA fStack_1a8
+
+// 原始变量名：fStack_1a4 - 栈浮点值B
+// 功能：存储浮点运算的栈值
+#define StackFloatValueB fStack_1a4
+
+// 原始变量名：uStack_1a0 - 栈数据字D
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordD uStack_1a0
+
+// 原始变量名：fStack_19c - 栈浮点值C
+// 功能：存储浮点运算的栈值
+#define StackFloatValueC fStack_19c
+
 // 栈变量宏定义 - 美化acStack变量
 // 原始变量名：acStackX_24 - 栈系统状态
 // 功能：存储系统状态的栈变量
