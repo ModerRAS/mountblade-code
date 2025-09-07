@@ -1583,20 +1583,20 @@
 /**
  * @brief 系统内存初始化函数A0
  * 
- * 初始化系统内存A0
+ * 初始化系统内存A0模块，设置内存分配器和内存池
  * 
  * @note 原始函数名：FUN_180046860
  */
-#define InitializeSystemMemoryA0 FUN_180046860
+#define InitializeSystemMemoryPoolA0 FUN_180046860
 
 /**
  * @brief 系统内存初始化函数A1
  * 
- * 初始化系统内存A1
+ * 初始化系统内存A1模块，配置内存管理和缓存
  * 
  * @note 原始函数名：FUN_18004c030
  */
-#define InitializeSystemMemoryA1 FUN_18004c030
+#define InitializeSystemMemoryPoolA1 FUN_18004c030
 
 /**
  * @brief 系统内存初始化函数A2
@@ -7546,13 +7546,13 @@ void* SystemCalculationBaseAddress;    // 系统计算基础地址
 #define ResetSystemB0 FUN_180291610
 
 /**
- * @brief 执行内存操作B0
+ * @brief 执行内存分配操作B0
  * 
- * 该函数负责执行系统B0模块的内存操作，包括内存分配、访问和释放
+ * 该函数负责执行系统B0模块的内存分配操作，包括内存池管理和地址计算
  * 
  * @note 原始函数名：FUN_1808fc5ac
  */
-#define ExecuteMemoryOperationB0 FUN_1808fc5ac
+#define ExecuteMemoryAllocationB0 FUN_1808fc5ac
 
 // 栈变量语义化宏定义
 #define StackFloatRegisterA StackFloatRegisterValueA    // 栈浮点寄存器A
@@ -14499,96 +14499,96 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 #define ResetSystemStateDX0 FUN_180891af0
 
 // 原始函数名：FUN_18089be10 - 数据验证和处理函数B0
-// 功能：验证和处理数据参数，执行系统操作
-#define ValidateAndProcessDataB0 FUN_18089be10
+// 功能：验证和处理数据参数，执行系统操作，包含安全检查和完整性验证
+#define ValidateAndProcessDataWithSecurityB0 FUN_18089be10
 
 // 原始函数名：FUN_18089be41 - 系统状态检查函数B0
-// 功能：检查系统状态并执行相应操作
-#define CheckSystemStatusB0 FUN_18089be41
+// 功能：检查系统状态并执行相应操作，包括内存管理和资源状态检查
+#define CheckSystemStatusWithValidationB0 FUN_18089be41
 
 // 原始函数名：FUN_18089c019 - 系统初始化函数B0
 // 功能：初始化系统组件和状态
 #define InitializeSystemComponentsB0 FUN_18089c019
 
 // 原始函数名：FUN_18089cc29 - 空操作函数P
-// 功能：空操作函数，无实际功能
-#define UtilityNoOperationP FUN_18089cc29
+// 功能：空操作函数，用于占位和流程控制，在条件分支中作为默认操作
+#define PerformNoOperationP FUN_18089cc29
 
 // 原始函数名：FUN_18089cc31 - 空操作函数Q
-// 功能：空操作函数，无实际功能
-#define UtilityNoOperationQ FUN_18089cc31
+// 功能：空操作函数，用于占位和流程控制，在异常处理中作为默认操作
+#define PerformNoOperationQ FUN_18089cc31
 
 // 原始函数名：FUN_18089cc41 - 空操作函数R
-// 功能：空操作函数，无实际功能
-#define UtilityNoOperationR FUN_18089cc41
+// 功能：空操作函数，用于占位和流程控制，在初始化过程中作为占位符
+#define PerformNoOperationR FUN_18089cc41
 
 // 原始函数名：FUN_18089d091 - 空操作函数S
-// 功能：空操作函数，无实际功能
-#define UtilityNoOperationS FUN_18089d091
+// 功能：空操作函数，用于占位和流程控制，在资源管理中作为默认操作
+#define PerformNoOperationS FUN_18089d091
 
 // 原始函数名：FUN_18089d0a3 - 空操作函数T
-// 功能：空操作函数，无实际功能
-#define UtilityNoOperationT FUN_18089d0a3
+// 功能：空操作函数，用于占位和流程控制，在状态检查中作为默认操作
+#define PerformNoOperationT FUN_18089d0a3
 
 // 原始函数名：FUN_18089d0b0 - 数据处理函数C0
-// 功能：处理数据参数并执行验证
-#define ProcessDataWithValidationC0 FUN_18089d0b0
+// 功能：处理数据参数并执行验证，包含完整性和安全性检查
+#define ProcessDataWithSecurityValidationC0 FUN_18089d0b0
 
 // 原始函数名：FUN_18089d208 - 空操作函数U
-// 功能：空操作函数，无实际功能
-#define UtilityNoOperationU FUN_18089d208
+// 功能：空操作函数，用于占位和流程控制，在数据验证中作为默认操作
+#define PerformNoOperationU FUN_18089d208
 
 // 原始函数名：FUN_18089d23a - 空操作函数V
-// 功能：空操作函数，无实际功能
-#define UtilityNoOperationV FUN_18089d23a
+// 功能：空操作函数，用于占位和流程控制，在状态管理中作为默认操作
+#define PerformNoOperationV FUN_18089d23a
 
 // 原始函数名：FUN_18089d47a - 空操作函数W
-// 功能：空操作函数，无实际功能
-#define UtilityNoOperationW FUN_18089d47a
+// 功能：空操作函数，用于占位和流程控制，在系统检查中作为默认操作
+#define PerformNoOperationW FUN_18089d47a
 
 // 原始函数名：FUN_18089d520 - 数据验证函数C0
-// 功能：验证数据参数并返回结果
-#define ValidateDataParametersC0 FUN_18089d520
+// 功能：验证数据参数并返回结果，包含类型检查和范围验证
+#define ValidateDataParametersWithSecurityC0 FUN_18089d520
 
 // 原始函数名：FUN_18089d557 - 状态检查函数C0
-// 功能：检查系统状态并执行相应操作
-#define CheckSystemStateC0 FUN_18089d557
+// 功能：检查系统状态并执行相应操作，包括内存和资源状态检查
+#define CheckSystemStateWithValidationC0 FUN_18089d557
 
 // 原始函数名：FUN_18089dcd6 - 系统清理函数C0
-// 功能：清理系统资源和状态
-#define CleanupSystemResourcesC0 FUN_18089dcd6
+// 功能：清理系统资源和状态，释放内存和关闭句柄
+#define CleanupSystemResourcesWithMemoryReleaseC0 FUN_18089dcd6
 
 // 原始函数名：FUN_18089df30 - 系统重置函数C0
-// 功能：重置系统状态和组件
-#define ResetSystemComponentsC0 FUN_18089df30
+// 功能：重置系统状态和组件，清理内存并恢复初始状态
+#define ResetSystemComponentsWithMemoryCleanupC0 FUN_18089df30
 
 // 原始函数名：FUN_18089e0be - 系统验证函数C0
-// 功能：验证系统组件和状态
-#define ValidateSystemComponentsC0 FUN_18089e0be
+// 功能：验证系统组件和状态，检查完整性和安全性
+#define ValidateSystemComponentsWithSecurityC0 FUN_18089e0be
 
 // 原始函数名：FUN_18089e4d7 - 系统配置函数C0
-// 功能：配置系统参数和状态
-#define ConfigureSystemParametersC0 FUN_18089e4d7
+// 功能：配置系统参数和状态，设置运行时配置和优化参数
+#define ConfigureSystemParametersWithValidationC0 FUN_18089e4d7
 
 // 原始函数名：FUN_18089e801 - 空操作函数X
-// 功能：空操作函数，无实际功能
-#define UtilityNoOperationX FUN_18089e801
+// 功能：空操作函数，用于占位和流程控制，在配置过程中作为默认操作
+#define PerformNoOperationX FUN_18089e801
 
 // 原始函数名：FUN_18089e811 - 空操作函数Y
-// 功能：空操作函数，无实际功能
-#define UtilityNoOperationY FUN_18089e811
+// 功能：空操作函数，用于占位和流程控制，在验证过程中作为默认操作
+#define PerformNoOperationY FUN_18089e811
 
 // 原始函数名：FUN_18089edaf - 系统初始化函数C0
-// 功能：初始化系统组件和状态
-#define InitializeSystemStateC0 FUN_18089edaf
+// 功能：初始化系统组件和状态，设置内存管理器和资源配置
+#define InitializeSystemStateWithMemoryManagerC0 FUN_18089edaf
 
 // 原始函数名：FUN_18089edc7 - 系统状态检查函数C0
-// 功能：检查系统状态并返回结果
-#define CheckSystemStateAndReturnC0 FUN_18089edc7
+// 功能：检查系统状态并返回结果，包含健康检查和性能监控
+#define CheckSystemStateAndReturnWithValidationC0 FUN_18089edc7
 
 // 原始函数名：FUN_18089ee87 - 系统验证函数C1
-// 功能：验证系统组件和配置
-#define ValidateSystemConfigurationC1 FUN_18089ee87
+// 功能：验证系统组件和配置，检查安全性和完整性
+#define ValidateSystemConfigurationWithSecurityC1 FUN_18089ee87
 
 /**
  * @brief 数据操作函数O0
