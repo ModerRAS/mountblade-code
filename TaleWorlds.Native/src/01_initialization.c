@@ -2038,8 +2038,8 @@ void InitializeSystemDataTableAllocator(void)
   PreviousSystemNodePointer = SystemRootNodeReference;
   CurrentSystemNodePointer = (void**)SystemRootNodeReference[SystemRootNodeCurrentIndex];
   
-  while (!IsDataTableNodeActive) {
-    DataTableSystemIdentifierComparisonResult = memcmp(CurrentSystemNodePointer + SystemNodeIdentifierOffset, &SystemDataTableSystemIdentifier1, SystemIdentifierSize);
+  while (!IsDataTableNodeInitialized) {
+    DataTableIdentifierComparisonResult = memcmp(CurrentSystemNodePointer + SystemNodeIdentifierOffset, &SystemDataTableSystemIdentifier1, SystemIdentifierSize);
     if (DataTableSystemIdentifierComparisonResult < 0) {
       NextSystemNodePointer = (void**)CurrentSystemNodePointer[NodeNextPointerOffset];
       CurrentSystemNodePointer = PreviousSystemNodePointer;
@@ -2049,7 +2049,7 @@ void InitializeSystemDataTableAllocator(void)
     }
     PreviousSystemNodePointer = CurrentSystemNodePointer;
     CurrentSystemNodePointer = NextSystemNodePointer;
-    IsDataTableNodeActive = *(bool*)((long long)NextSystemNodePointer + NodeActiveFlagOffset);
+    IsDataTableNodeInitialized = *(bool*)((long long)NextSystemNodePointer + NodeActiveFlagOffset);
   }
   
   if ((PreviousSystemNodePointer == SystemRootNodeReference) || 
@@ -2118,8 +2118,8 @@ void InitializeSystemCoreConfig(void)
   
   if ((PreviousSystemNodePointer == SystemRootNodeReference) || 
       (MemorySystemIdentifierComparisonResult = memcmp(&SystemMemorySystemIdentifier1, PreviousSystemNodePointer + SystemNodeIdentifierOffset, SystemIdentifierSize), MemorySystemIdentifierComparisonResult < 0)) {
-    SystemSystemMemoryAllocationSize = GetSystemMemorySize(SystemMainTablePointer);
-    AllocateSystemMemory(SystemMainTablePointer, &NewMemoryNodePointer, PreviousSystemNodePointer, SystemSystemMemoryAllocationSize + NodeAllocationExtraSize, SystemSystemMemoryAllocationSize);
+    RequiredMemoryAllocationSize = GetSystemMemorySize(SystemMainTablePointer);
+    AllocateSystemMemory(SystemMainTablePointer, &NewMemoryNodePointer, PreviousSystemNodePointer, RequiredMemoryAllocationSize + NodeAllocationExtraSize, RequiredMemoryAllocationSize);
     PreviousSystemNodePointer = NewMemoryNodePointer;
   }
   
