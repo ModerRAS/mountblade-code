@@ -20035,76 +20035,96 @@ DestroyUIComponentManager(undefined8 *manager_ptr,ulonglong flags,undefined8 tar
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// UI组件变换计算函数
+/**
+ * @brief 计算UI组件的变换矩阵
+ * 
+ * 该函数负责计算UI组件的位置、旋转和缩放变换，生成最终的变换矩阵。
+ * 支持三维空间中的复杂变换计算，包括矩阵乘法、向量归一化和角度计算。
+ * 
+ * @param component_ptr UI组件指针，包含组件的变换配置信息
+ * @param transform_matrix 变换矩阵指针，用于存储计算结果
+ * @param position_vector 位置向量数组，包含位置、旋转和缩放信息
+ * @param flags 变换标志位，控制变换行为
+ * @return void
+ * 
+ * @note 原始函数名：FUN_18004c7c0
+ * @note 该函数涉及复杂的3D数学计算，包括矩阵变换、向量运算和三角函数
+ */
 void CalculateUIComponentTransform(longlong component_ptr,longlong transform_matrix,float *position_vector,longlong flags)
 
 {
-  float *matrix_ptr;
-  char component_type;
-  char transform_flag;
-  float pos_x;
-  float pos_y;
-  float pos_z;
-  float pos_w;
-  float rotation_x;
-  float rotation_y;
-  float rotation_z;
-  float rotation_w;
-  float scale_x;
-  float scale_y;
-  float scale_z;
-  float scale_w;
-  undefined8 transform_result;
-  longlong offset_address;
-  uint config_flag;
-  float scale_factor;
-  undefined1 temporary_buffer [16];
-  float matrix_x;
-  float matrix_y;
-  float matrix_z;
-  float result1;
-  float result2;
-  float result3;
-  float distance;
-  undefined1 encryption_buffer [32];
-  undefined1 stack_byte;
-  float transform_x;
-  float transform_y;
-  float transform_z;
-  undefined4 config_word;
-  undefined8 position_pair;
-  float temp_x;
-  float temp_y;
-  float temp_z;
-  longlong temp_long;
-  float calc_x;
-  float calculated_y;
-  float calculated_z;
-  undefined4 temp_dword;
-  float matrix_element_128;
-  float matrix_element_124;
-  float matrix_element_120;
-  float matrix_element_116;
-  float matrix_element_112;
-  float matrix_element_108;
-  float matrix_element_104;
-  float matrix_element_100;
-  float matrix_element_96;
-  float matrix_element_92;
-  float matrix_element_88;
-  float matrix_element_252;
-  ulonglong encrypted_key;
+  float *matrix_ptr;                    // 矩阵指针
+  char component_type;                  // 组件类型
+  char transform_flag;                 // 变换标志
+  float pos_x;                         // 位置X坐标
+  float pos_y;                         // 位置Y坐标
+  float pos_z;                         // 位置Z坐标
+  float pos_w;                         // 位置W坐标（齐次坐标）
+  float rotation_x;                    // 旋转X分量
+  float rotation_y;                    // 旋转Y分量
+  float rotation_z;                    // 旋转Z分量
+  float rotation_w;                    // 旋转W分量（四元数）
+  float scale_x;                       // 缩放X分量
+  float scale_y;                       // 缩放Y分量
+  float scale_z;                       // 缩放Z分量
+  float scale_w;                       // 缩放W分量
+  undefined8 transform_result;         // 变换结果
+  longlong offset_address;             // 偏移地址
+  uint config_flag;                    // 配置标志
+  float scale_factor;                  // 缩放因子
+  undefined1 temporary_buffer [16];    // 临时缓冲区
+  float matrix_x;                      // 矩阵X元素
+  float matrix_y;                      // 矩阵Y元素
+  float matrix_z;                      // 矩阵Z元素
+  float result1;                       // 计算结果1
+  float result2;                       // 计算结果2
+  float result3;                       // 计算结果3
+  float distance;                      // 距离值
+  undefined1 encryption_buffer [32];    // 加密缓冲区
+  undefined1 stack_byte;               // 栈字节
+  float transform_x;                   // 变换X坐标
+  float transform_y;                   // 变换Y坐标
+  float transform_z;                   // 变换Z坐标
+  undefined4 config_word;              // 配置字
+  undefined8 position_pair;            // 位置对
+  float temp_x;                        // 临时X值
+  float temp_y;                        // 临时Y值
+  float temp_z;                        // 临时Z值
+  longlong temp_long;                  // 临时长整型
+  float calc_x;                        // 计算X值
+  float calculated_y;                  // 计算Y值
+  float calculated_z;                  // 计算Z值
+  undefined4 temp_dword;               // 临时双字
+  float matrix_element_128;            // 矩阵元素128
+  float matrix_element_124;            // 矩阵元素124
+  float matrix_element_120;            // 矩阵元素120
+  float matrix_element_116;            // 矩阵元素116
+  float matrix_element_112;            // 矩阵元素112
+  float matrix_element_108;            // 矩阵元素108
+  float matrix_element_104;            // 矩阵元素104
+  float matrix_element_100;            // 矩阵元素100
+  float matrix_element_96;             // 矩阵元素96
+  float matrix_element_92;             // 矩阵元素92
+  float matrix_element_88;             // 矩阵元素88
+  float matrix_element_252;            // 矩阵元素252
+  ulonglong encrypted_key;             // 加密密钥
   
-  // 解密数据
+  // 解密数据并初始化组件参数
   encrypted_key = XorEncryptionKey ^ (ulonglong)encryption_buffer;
   component_type = *(char *)(component_ptr + 0xa4);
   *(undefined1 *)(component_ptr + 0x1e0) = 0;
   *(undefined1 *)(component_ptr + 0x1c4) = 0;
   offset_ptr = (longlong)*(char *)((longlong)component_type + 0x100 + flags);
   transform_flag = *(char *)(flags + 0x100 + offset_ptr);
+  
+  // 计算位置向量的长度（距离）
   distance = SQRT(*position_vector * *position_vector + position_vector[1] * position_vector[1] + position_vector[2] * position_vector[2]);
+  
+  // 获取UI渲染缓冲区并计算向量
   transform_result = GetUIRenderBuffer(transform_matrix,transform_flag,flags);
   CalculateUIVector(&calc_x,transform_result);
+  
+  // 提取位置、旋转和缩放参数
   pos_x = *position_vector;
   pos_y = position_vector[1];
   pos_z = position_vector[2];
@@ -20117,102 +20137,138 @@ void CalculateUIComponentTransform(longlong component_ptr,longlong transform_mat
   scale_y = position_vector[9];
   scale_z = position_vector[10];
   scale_w = position_vector[0xb];
+  
+  // 初始化矩阵指针并提取矩阵元素
   matrix_ptr = (float *)(transform_matrix + ((longlong)transform_flag + 0x40) * 0x10);
   matrix_x = *matrix_ptr;
   matrix_y = matrix_ptr[1];
   matrix_z = matrix_ptr[2];
-  fStack_11c = fStack_124 * floatResult0 + fStack_128 * fVar6 + fStack_120 * floatResult4;
-  fVar24 = fStack_114 * fVar7 + fStack_118 * fVar23 + fStack_110 * floatResult1;
-  fVar25 = fStack_114 * fVar8 + fStack_118 * fVar4 + fStack_110 * floatResult2;
-  fVar26 = fStack_114 * fVar9 + fStack_118 * fVar5 + fStack_110 * floatResult3;
-  fStack_10c = fStack_114 * floatResult0 + fStack_118 * fVar6 + fStack_110 * floatResult4;
-  floatResult9 = *(float *)(uiContext + 0x10);
-  fStack_108 = fVar22 * fVar7 + fVar21 * fVar23 + floatResult5 * floatResult1 + targetBuffer[0xc];
-  fStack_104 = fVar22 * fVar8 + fVar21 * fVar4 + floatResult5 * floatResult2 + targetBuffer[0xd];
-  fStack_100 = fVar22 * fVar9 + fVar21 * fVar5 + floatResult5 * floatResult3 + targetBuffer[0xe];
-  fStack_fc = fVar22 * floatResult0 + fVar21 * fVar6 + floatResult5 * floatResult4 + targetBuffer[0xf];
-  fVar21 = *(float *)(uiContext + 0x14);
-  fVar22 = *(float *)(uiContext + 0x18);
-  fStack_178 = fVar21 * fVar7 + floatResult9 * fVar23 + fVar22 * floatResult1 + targetBuffer[0xc];
-  fStack_174 = fVar21 * fVar8 + floatResult9 * fVar4 + fVar22 * floatResult2 + targetBuffer[0xd];
-  fStack_160 = fVar21 * fVar9 + floatResult9 * fVar5 + fVar22 * floatResult3 + targetBuffer[0xe];
-  fStack_15c = fVar21 * floatResult0 + floatResult9 * fVar6 + fVar22 * floatResult4 + targetBuffer[0xf];
-  uStack_168 = CONCAT44(fStack_174,fStack_178);
-  fStack_178 = fStack_178 - fStack_108;
-  fStack_174 = fStack_174 - fStack_104;
-  fStack_170 = fStack_160 - fStack_100;
-  uStack_16c = 0x7f7fffff;
-  fVar21 = fStack_174 * fStack_174 + fStack_178 * fStack_178 + fStack_170 * fStack_170;
-  asemaphoreHandle0 = rsqrtss(ZEXT416((uint)fVar21),ZEXT416((uint)fVar21));
-  floatResult9 = asemaphoreHandle0._0_4_;
-  uStack_12c = 0x7f7fffff;
-  fStack_130 = floatResult9 * 0.5 * (3.0 - fVar21 * floatResult9 * floatResult9);
-  fStack_138 = fStack_178 * fStack_130;
-  fStack_134 = fStack_130 * fStack_174;
-  fStack_130 = fStack_130 * fStack_170;
-  fVar22 = fVar25 * fStack_130 - fVar26 * fStack_134;
-  fStack_124 = fVar26 * fStack_138 - fVar24 * fStack_130;
-  fStack_120 = fVar24 * fStack_134 - fVar25 * fStack_138;
-  floatResult9 = fStack_124 * fStack_124 + fVar22 * fVar22 + fStack_120 * fStack_120;
-  asemaphoreHandle0 = rsqrtss(ZEXT416((uint)floatResult9),ZEXT416((uint)floatResult9));
-  fVar21 = asemaphoreHandle0._0_4_;
-  fStack_128 = fVar21 * 0.5 * (3.0 - floatResult9 * fVar21 * fVar21);
-  fStack_124 = fStack_128 * fStack_124;
-  fStack_120 = fStack_128 * fStack_120;
-  fStack_128 = fStack_128 * fVar22;
-  fStack_118 = fStack_134 * fStack_120 - fStack_130 * fStack_124;
-  fStack_114 = fStack_130 * fStack_128 - fStack_120 * fStack_138;
-  fStack_110 = fStack_124 * fStack_138 - fStack_134 * fStack_128;
-  ProcessUIVector(&fStack_178,&fStack_138);
-  fStack_138 = fStack_138 * fVar27;
-  fStack_134 = fStack_134 * fVar27;
-  fStack_130 = fStack_130 * fVar27;
-  fStack_124 = fStack_124 * fVar27;
-  fStack_128 = fStack_128 * fVar27;
-  fStack_118 = fStack_118 * fVar27;
-  fStack_120 = fStack_120 * fVar27;
-  fStack_110 = fStack_110 * fVar27;
-  fStack_114 = fStack_114 * fVar27;
-  TransformUIVector(&fStack_138,&fStack_158,&uStack_168);
-  lStack_148 = allocatedMemory7 * 0x1b0;
-  floatResult9 = *(float *)(lStack_148 + 0x100 + *(longlong *)(bufferSize + 0x140));
-  uStack_168 = (longlong)cVar2 * 0x1b0;
-  fVar21 = *(float *)(uStack_168 + 0x100 + *(longlong *)(bufferSize + 0x140));
-  fVar22 = (floatResult9 + floatResult9) * fVar21;
-  uStack_188 = 1;
-  fVar23 = fStack_158 * fStack_158 + fStack_154 * fStack_154;
-  if (fVar22 <= 0.0001) {
-    fVar22 = (fVar21 + floatResult9) * (fVar21 + floatResult9);
-    if ((fVar23 < fVar22 - 0.0001) || (fVar22 + 0.0001 < fVar23)) {
-      uStack_188 = 0;
+  // 计算变换矩阵的各个分量
+  float matrixTransformZ = matrix_element_124 * matrix_element_128 + matrix_element_120 * matrix_element_132 + matrix_element_116 * matrix_element_136;
+  float vectorTransformX = matrix_element_112 * matrix_element_137 + matrix_element_108 * matrix_element_133 + matrix_element_104 * matrix_element_129;
+  float vectorTransformY = matrix_element_112 * matrix_element_138 + matrix_element_108 * matrix_element_134 + matrix_element_104 * matrix_element_130;
+  float vectorTransformZ = matrix_element_112 * matrix_element_139 + matrix_element_108 * matrix_element_135 + matrix_element_104 * matrix_element_131;
+  float matrixTransformX = matrix_element_112 * matrix_element_128 + matrix_element_108 * matrix_element_133 + matrix_element_104 * matrix_element_136;
+  
+  // 获取UI上下文参数
+  float uiContextParam1 = *(float *)(uiContext + 0x10);
+  float targetBufferX = matrix_element_140 * matrix_element_137 + matrix_element_139 * matrix_element_133 + matrix_element_141 * matrix_element_129 + targetBuffer[0xc];
+  float targetBufferY = matrix_element_140 * matrix_element_138 + matrix_element_139 * matrix_element_134 + matrix_element_141 * matrix_element_130 + targetBuffer[0xd];
+  float targetBufferZ = matrix_element_140 * matrix_element_139 + matrix_element_139 * matrix_element_135 + matrix_element_141 * matrix_element_131 + targetBuffer[0xe];
+  float targetBufferW = matrix_element_140 * matrix_element_128 + matrix_element_139 * matrix_element_133 + matrix_element_141 * matrix_element_136 + targetBuffer[0xf];
+  
+  // 获取额外的UI上下文参数
+  float uiContextParam2 = *(float *)(uiContext + 0x14);
+  float uiContextParam3 = *(float *)(uiContext + 0x18);
+  float finalTransformX = uiContextParam2 * matrix_element_137 + uiContextParam1 * matrix_element_133 + uiContextParam3 * matrix_element_129 + targetBuffer[0xc];
+  float finalTransformY = uiContextParam2 * matrix_element_138 + uiContextParam1 * matrix_element_134 + uiContextParam3 * matrix_element_130 + targetBuffer[0xd];
+  float finalTransformZ = uiContextParam2 * matrix_element_139 + uiContextParam1 * matrix_element_135 + uiContextParam3 * matrix_element_131 + targetBuffer[0xe];
+  float finalTransformW = uiContextParam2 * matrix_element_128 + uiContextParam1 * matrix_element_133 + uiContextParam3 * matrix_element_136 + targetBuffer[0xf];
+  // 计算变换向量的差值
+  uint64_t transformPair = CONCAT44(finalTransformY, finalTransformX);
+  float deltaX = finalTransformX - targetBufferX;
+  float deltaY = finalTransformY - targetBufferY;
+  float deltaZ = finalTransformZ - targetBufferZ;
+  
+  // 计算距离平方和进行快速平方根倒数计算
+  float distanceSquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+  float reciprocalSqrt = rsqrtss(ZEXT416((uint)distanceSquared), ZEXT416((uint)distanceSquared))._0_4_;
+  float normalizationFactor = reciprocalSqrt * 0.5f * (3.0f - distanceSquared * reciprocalSqrt * reciprocalSqrt);
+  
+  // 归一化向量
+  float normalizedX = deltaX * normalizationFactor;
+  float normalizedY = normalizationFactor * deltaY;
+  float normalizedZ = normalizationFactor * deltaZ;
+  
+  // 计算叉积向量
+  float crossProductX = vectorTransformY * normalizedZ - vectorTransformZ * normalizedY;
+  float crossProductY = vectorTransformZ * normalizedX - vectorTransformX * normalizedZ;
+  float crossProductZ = vectorTransformX * normalizedY - vectorTransformY * normalizedX;
+  
+  // 计算叉积向量的长度并进行归一化
+  float crossProductLength = crossProductY * crossProductY + crossProductX * crossProductX + crossProductZ * crossProductZ;
+  float crossReciprocalSqrt = rsqrtss(ZEXT416((uint)crossProductLength), ZEXT416((uint)crossProductLength))._0_4_;
+  float crossNormalizationFactor = crossReciprocalSqrt * 0.5f * (3.0f - crossProductLength * crossReciprocalSqrt * crossReciprocalSqrt);
+  
+  // 归一化叉积向量
+  crossProductY = crossNormalizationFactor * crossProductY;
+  crossProductZ = crossNormalizationFactor * crossProductZ;
+  crossProductX = crossNormalizationFactor * crossProductX;
+  
+  // 计算最终的变换向量
+  float finalCrossX = normalizedY * crossProductZ - normalizedZ * crossProductY;
+  float finalCrossY = normalizedZ * crossProductX - normalizedX * crossProductZ;
+  float finalCrossZ = normalizedX * crossProductY - normalizedY * crossProductX;
+  
+  // 处理UI向量并进行缩放
+  ProcessUIVector(&finalTransformX, &crossProductZ);
+  float scaledTransformZ = crossProductZ * scale_factor;
+  float scaledTransformY = normalizedY * scale_factor;
+  float scaledTransformX = normalizedZ * scale_factor;
+  float scaledCrossY = crossProductY * scale_factor;
+  float scaledCrossX = crossProductX * scale_factor;
+  float scaledCrossZ = crossProductZ * scale_factor;
+  float scaledFinalCrossY = finalCrossY * scale_factor;
+  float scaledFinalCrossX = finalCrossX * scale_factor;
+  float scaledFinalCrossZ = finalCrossZ * scale_factor;
+  float scaledFinalCrossY2 = finalCrossY * scale_factor;
+  
+  // 应用最终的UI向量变换
+  TransformUIVector(&scaledTransformZ, &scaledFinalCrossY, &transformPair);
+  // 计算内存偏移和获取参数值
+  longlong memoryOffset = allocatedMemory7 * 0x1b0;
+  float parameter1 = *(float *)(memoryOffset + 0x100 + *(longlong *)(bufferSize + 0x140));
+  longlong contextOffset = (longlong)cVar2 * 0x1b0;
+  float parameter2 = *(float *)(contextOffset + 0x100 + *(longlong *)(bufferSize + 0x140));
+  float scaledParameter = (parameter1 + parameter1) * parameter2;
+  
+  // 初始化验证标志和计算向量长度
+  uint validationFlag = 1;
+  float vectorLength = scaledFinalCrossY * scaledFinalCrossY + scaledFinalCrossX * scaledFinalCrossX;
+  
+  // 检查缩放参数是否在有效范围内
+  if (scaledParameter <= 0.0001f) {
+    scaledParameter = (parameter2 + parameter1) * (parameter2 + parameter1);
+    if ((vectorLength < scaledParameter - 0.0001f) || (scaledParameter + 0.0001f < vectorLength)) {
+      validationFlag = 0;
     }
-    fVar22 = 1.0;
-    fVar23 = 0.0;
+    scaledParameter = 1.0f;
+    vectorLength = 0.0f;
   }
   else {
-    fVar22 = ((fVar23 - floatResult9 * floatResult9) - fVar21 * fVar21) / fVar22;
-    if ((fVar22 < -1.0) || (1.0 < fVar22)) {
-      uStack_188 = 0;
-      if (-1.0 <= fVar22) {
-        if (1.0 <= fVar22) {
-          fVar22 = 1.0;
+    // 计算点积并进行范围检查
+    scaledParameter = ((vectorLength - parameter1 * parameter1) - parameter2 * parameter2) / scaledParameter;
+    if ((scaledParameter < -1.0f) || (1.0f < scaledParameter)) {
+      validationFlag = 0;
+      if (-1.0f <= scaledParameter) {
+        if (1.0f <= scaledParameter) {
+          scaledParameter = 1.0f;
         }
       }
       else {
-        fVar22 = -1.0;
+        scaledParameter = -1.0f;
       }
     }
-    functionResult8 = acosf(fVar22);
-    fVar23 = (float)sinf(functionResult8 ^ 0x80000000);
+    
+    // 计算反余弦和正弦值
+    float angleResult = acosf(scaledParameter);
+    vectorLength = (float)sinf(angleResult ^ 0x80000000);
   }
-  *(undefined1 *)(uiContext + 0x1c4) = uStack_188;
-  floatResult9 = fVar22 * fVar21 + floatResult9;
-  functionResult6 = AllocateUIResource(targetBuffer,&fStack_138);
-  ProcessUIVector(&fStack_158,functionResult6);
-  floatResult9 = (float)atan2f(floatResult9 * fStack_154 - fVar23 * fVar21 * fStack_158,
-                         floatResult9 * fStack_158 + fVar23 * fVar21 * fStack_154);
-                    // WARNING: Subroutine does not return
-  ProcessUIAngleValue(floatResult9 * 0.5);
+  
+  // 设置验证标志并计算最终参数
+  *(undefined1 *)(uiContext + 0x1c4) = validationFlag;
+  float finalParameter = scaledParameter * parameter2 + parameter1;
+  
+  // 分配UI资源并处理向量
+  void* resourceHandle = AllocateUIResource(targetBuffer, &scaledTransformZ);
+  ProcessUIVector(&scaledFinalCrossY, resourceHandle);
+  
+  // 计算最终的角度值
+  float finalAngle = (float)atan2f(finalParameter * scaledFinalCrossX - vectorLength * parameter2 * scaledFinalCrossY,
+                         finalParameter * scaledFinalCrossY + vectorLength * parameter2 * scaledFinalCrossX);
+  
+  // 处理角度值（函数不返回）
+  ProcessUIAngleValue(finalAngle * 0.5f);
 }
 
 
@@ -20221,67 +20277,93 @@ void CalculateUIComponentTransform(longlong component_ptr,longlong transform_mat
 
 
  void HandleUIInputEvent(longlong uiContext,longlong dataSource)
+/**
+ * @brief 处理UI输入事件
+ * 
+ * 该函数负责处理UI系统的输入事件，包括事件数据读取、状态更新和资源管理。
+ * 使用加密保护机制确保事件处理的安全性，支持多线程环境下的并发访问。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含事件相关的输入数据
+ * @return void
+ * 
+ * @note 原始函数名：FUN_18004c890
+ * @note 该函数涉及线程安全操作，使用锁机制保护共享资源
+ */
 void HandleUIInputEvent(longlong uiContext,longlong dataSource)
 
 {
-  uint *pfunctionResult;
-  undefined4 *psemaphoreHandle;
-  uint uVar3;
-  longlong lVar4;
-  char cVar5;
-  longlong lVar6;
-  undefined4 *puVar7;
-  int iVar8;
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  ulonglong uStack_18;
+  uint *eventDataPtr;                  // 事件数据指针
+  undefined4 *semaphoreHandlePtr;      // 信号量句柄指针
+  uint eventStatus;                    // 事件状态
+  longlong dataSourceOffset;            // 数据源偏移量
+  char componentType;                  // 组件类型
+  longlong componentOffset;             // 组件偏移量
+  undefined4 *componentDataPtr;        // 组件数据指针
+  int eventIndex;                      // 事件索引
+  undefined4 eventParam1;                  // 事件参数1
+  undefined4 eventParam2;                  // 事件参数2
+  undefined4 eventParam3;                  // 事件参数3
+  undefined4 eventParam4;                  // 事件参数4
+  undefined4 eventParam5;                  // 事件参数5
+  undefined4 eventParam6;                  // 事件参数6
+  undefined4 eventParam7;                  // 事件参数7
+  undefined4 eventParam8;                  // 事件参数8
+  ulonglong encryptedData;                // 加密数据
   
-  uStack_18 = XorEncryptionKey ^ (ulonglong)&uStack_38;
-  cVar5 = *(char *)(uiContext + 0xa4);
-  iVar8 = 0;
-  if (cVar5 != -1) {
-    puVar7 = (undefined4 *)(uiContext + 0x130);
+  // 初始化加密数据
+  encryptedData = XorEncryptionKey ^ (ulonglong)&eventParam1;
+  componentType = *(char *)(uiContext + 0xa4);
+  eventIndex = 0;
+  
+  // 检查组件类型是否有效
+  if (componentType != -1) {
+    componentDataPtr = (undefined4 *)(uiContext + 0x130);
     do {
-      if (*(char *)(uiContext + 0xa6) <= iVar8) break;
-      *(undefined8 *)(puVar7 + -0x20) = 0x3f800000;
-      *(undefined8 *)(puVar7 + -0x1e) = 0;
-      lVar4 = *(longlong *)(dataSource + 0x18);
-      lVar6 = (longlong)cVar5 * 0x100;
+      // 检查事件索引是否超出范围
+      if (*(char *)(uiContext + 0xa6) <= eventIndex) break;
+      
+      // 初始化组件数据
+      *(undefined8 *)(componentDataPtr + -0x20) = 0x3f800000;
+      *(undefined8 *)(componentDataPtr + -0x1e) = 0;
+      
+      // 获取数据源偏移量
+      dataSourceOffset = *(longlong *)(dataSource + 0x18);
+      componentOffset = (longlong)componentType * 0x100;
+      
+      // 使用锁机制保护共享资源访问
       do {
         LOCK();
-        pfunctionResult = (uint *)(lVar6 + lVar4);
-        uVar3 = *pfunctionResult;
-        *pfunctionResult = *pfunctionResult | 1;
+        eventDataPtr = (uint *)(componentOffset + dataSourceOffset);
+        eventStatus = *eventDataPtr;
+        *eventDataPtr = *eventDataPtr | 1;
         UNLOCK();
-      } while ((uVar3 & 1) != 0);
-      psemaphoreHandle = (undefined4 *)(lVar6 + 4 + lVar4);
-      uStack_38 = *psemaphoreHandle;
-      uStack_34 = psemaphoreHandle[1];
-      uStack_30 = psemaphoreHandle[2];
-      uStack_2c = psemaphoreHandle[3];
-      psemaphoreHandle = (undefined4 *)(lVar6 + 0x14 + lVar4);
-      uStack_28 = *psemaphoreHandle;
-      uStack_24 = psemaphoreHandle[1];
-      uStack_20 = psemaphoreHandle[2];
-      uStack_1c = psemaphoreHandle[3];
-      *(undefined4 *)(lVar6 + lVar4) = 0;
-      iVar8 = iVar8 + 1;
-      *puVar7 = uStack_38;
-      puVar7[1] = uStack_34;
-      puVar7[2] = uStack_30;
-      puVar7[3] = uStack_2c;
-      puVar7 = puVar7 + 4;
-      cVar5 = *(char *)(lVar6 + 0xa0 + *(longlong *)(dataSource + 0x18));
-    } while (cVar5 != -1);
+      } while ((eventStatus & 1) != 0);
+      
+      // 读取信号量句柄数据
+      semaphoreHandlePtr = (undefined4 *)(componentOffset + 4 + dataSourceOffset);
+      eventParam1 = *semaphoreHandlePtr;
+      eventParam2 = semaphoreHandlePtr[1];
+      eventParam3 = semaphoreHandlePtr[2];
+      eventParam4 = semaphoreHandlePtr[3];
+      semaphoreHandlePtr = (undefined4 *)(componentOffset + 0x14 + dataSourceOffset);
+      eventParam5 = *semaphoreHandlePtr;
+      eventParam6 = semaphoreHandlePtr[1];
+      eventParam7 = semaphoreHandlePtr[2];
+      eventParam8 = semaphoreHandlePtr[3];
+      *(undefined4 *)(componentOffset + dataSourceOffset) = 0;
+      eventIndex = eventIndex + 1;
+      *componentDataPtr = eventParam1;
+      componentDataPtr[1] = eventParam2;
+      componentDataPtr[2] = eventParam3;
+      componentDataPtr[3] = eventParam4;
+      componentDataPtr = componentDataPtr + 4;
+      componentType = *(char *)(componentOffset + 0xa0 + *(longlong *)(dataSource + 0x18));
+    } while (componentType != -1);
   }
-                    // WARNING: Subroutine does not return
-  ExecuteUIRenderTask(uStack_18 ^ (ulonglong)&uStack_38);
+  
+  // 执行UI渲染任务（函数不返回）
+  ExecuteUIRenderTask(encryptedData ^ (ulonglong)&eventParam1);
 }
 
 

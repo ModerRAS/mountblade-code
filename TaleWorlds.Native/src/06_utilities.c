@@ -141,6 +141,19 @@
 #define OperationDataProcessed 1
 #define OperationDataComplete 2
 
+// 系统状态码常量
+#define SystemContextValidationFailure 0x1c
+#define ComponentDataValidationFailure 0x1f
+
+// 组件状态常量
+#define ComponentInactiveStatus -1
+
+// 容量增长因子常量
+#define ComponentCapacityGrowthFactor 1.5
+
+// 数据验证缓冲区大小常量
+#define DataValidationBufferSize 16
+
 // 系统内存分配常量
 #define SystemMemoryAllocationFlag 0x315
 
@@ -9746,7 +9759,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   uint64_t componentSearchIndex;
   int64_t *componentList;
   int64_t systemContextBuffer;
-  int8_t dataValidationBuffer [16];
+  int8_t dataValidationBuffer [DataValidationBufferSize];
   
   queryResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
   if ((int)queryResult != 0) {
@@ -15623,9 +15636,9 @@ DataBuffer GetSystemStatusA0(void)
         if (validationStatus != -1) {
           *(float *)(*(int64_t *)(systemFlags + 0x20) + 4 + (int64_t)validationStatus * 0x18) = *floatArrayBase;
         }
-        in_R9D = in_R9D + 1;
+        inputRegisterR9D = inputRegisterR9D + 1;
         floatArrayBase = floatArrayBase + 1;
-      } while ((int)in_R9D < *(int *)(registerContext + 0x18));
+      } while ((int)inputRegisterR9D < *(int *)(registerContext + 0x18));
     }
   }
                     // WARNING: Subroutine does not return
@@ -18919,7 +18932,7 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
 
 {
   int64_t exceptionHandlerContext;
-  int in_EAX;
+  int inputAccumulatorRegisterEAX;
   int operationResult;
   int operationStatus;
   DataBuffer memoryBaseAddress;
@@ -18935,8 +18948,8 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
   DataWord *contextPointer;
   DataBuffer systemContextBuffer;
   
-  referenceCountPointer1 = (int *)(*destinationIndexRegister + (int64_t)in_EAX * 4);
-  operationResult = *(int *)(*destinationIndexRegister + (int64_t)in_EAX * 4);
+  referenceCountPointer1 = (int *)(*destinationIndexRegister + (int64_t)inputAccumulatorRegisterEAX * 4);
+  operationResult = *(int *)(*destinationIndexRegister + (int64_t)inputAccumulatorRegisterEAX * 4);
   if (operationResult != -1) {
     exceptionHandlerContext = destinationIndexRegister[2];
     do {
@@ -25165,14 +25178,14 @@ DataBuffer ExecuteDataCleanupA0(void)
   int64_t registerContext;
   uint64_t systemContext;
   int64_t destinationIndexRegister;
-  DataBuffer in_R9;
+  DataBuffer inputRegisterR9;
   int64_t systemContext;
   int64_t calculatedIndex;
   
   if ((systemContext & 0x10) != 0) {
     operationResult = *(int *)(destinationIndexRegister + 0x260);
     validationStatus = (**(FunctionPointer**)**(DataBuffer **)(registerContext + 8))
-                      (*(DataBuffer **)(registerContext + 8),&StackDataBufferE,4,in_R9,operationResult);
+                      (*(DataBuffer **)(registerContext + 8),&StackDataBufferE,4,inputRegisterR9,operationResult);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
@@ -25185,7 +25198,7 @@ DataBuffer ExecuteDataCleanupA0(void)
           return validationStatus;
         }
         validationStatus = (**(FunctionPointer**)**(DataBuffer **)(registerContext + 8))
-                          (*(DataBuffer **)(registerContext + 8),&StackDataBufferE,1,in_R9,dataValidationFlag != 0);
+                          (*(DataBuffer **)(registerContext + 8),&StackDataBufferE,1,inputRegisterR9,dataValidationFlag != 0);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -25489,7 +25502,7 @@ uint64_t ProcessBinaryDataA0(void)
   int basePointer;
   int64_t systemContext;
   uint *destinationIndexRegister;
-  DataBuffer in_R9;
+  DataBuffer inputRegisterR9;
   DataWord floatResultA;
   uint operationCounter;
   unsigned int stackOperationStatus;
@@ -25541,7 +25554,7 @@ uint64_t ProcessBinaryDataA0(void)
           return systemDataBuffer;
         }
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
-                          (*(DataBuffer **)(systemContext + 8),&StackDataBufferE,4,in_R9,destinationIndexRegister[2]);
+                          (*(DataBuffer **)(systemContext + 8),&StackDataBufferE,4,inputRegisterR9,destinationIndexRegister[2]);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
@@ -25583,17 +25596,17 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
   char *sourceCharacterPointer;
   code *validationFlag;
   char validationResult;
-  DataWord in_EAX;
+  DataWord inputAccumulatorRegisterEAX;
   ByteTriple dataFlags;
   int loopIndex;
   DataWord in_register_00000004;
   uint register_EBP;
-  char in_CF;
+  char carryFlag;
   int *StackIntegerPointerD;
   DataWord memoryBaseAddress;
   
-  dataFlags = (ByteTriple)((uint)in_EAX >> 8);
-  validationResult = (char)in_EAX + -0x57 + in_CF;
+  dataFlags = (ByteTriple)((uint)inputAccumulatorRegisterEAX >> 8);
+  validationResult = (char)inputAccumulatorRegisterEAX + -0x57 + carryFlag;
   memoryBaseAddress = CONCAT31(dataFlags,validationResult);
   *(DataWord *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
   *(uint *)(operationBase + -0x565dff77) = *(uint *)(operationBase + -0x565dff77) & register_EBP;
@@ -25828,14 +25841,14 @@ DataBuffer ResetDataCacheA0(void)
 
 {
   float ValidationFloatValue;
-  int in_EAX;
+  int inputAccumulatorRegisterEAX;
   DataBuffer operationResult;
   DataBuffer *validationStatusPointer;
   int64_t registerContext;
   DataBuffer stackFramePointer;
   int64_t destinationIndexRegister;
   
-  if (in_EAX == 0x1b) {
+  if (inputAccumulatorRegisterEAX == 0x1b) {
     if (*(uint *)(registerContext + 0x40) < 0x3b) {
       operationResult = ProcessDataOperationA5();
       if ((int)operationResult != 0) {
@@ -25867,7 +25880,7 @@ DataBuffer ResetDataCacheA0(void)
       return 0xd;
     }
   }
-  else if ((in_EAX == 0x12) && (*(uint *)(registerContext + 0x40) < 0x40)) {
+  else if ((inputAccumulatorRegisterEAX == 0x12) && (*(uint *)(registerContext + 0x40) < 0x40)) {
     operationResult = QuerySystemDataA2();
     if ((int)operationResult != 0) {
       return operationResult;
@@ -25982,7 +25995,7 @@ uint64_t GetSystemValidationContext(void)
   operationResult = 0;
   dataFlags = 0;
   validationOutcome = 0;
-  if (in_EAX < 0x8c) {
+  if (inputAccumulatorRegisterEAX < 0x8c) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return (uint64_t)registerValueEDI;
     }
@@ -26012,10 +26025,10 @@ DataCheckpointB:
       return (uint64_t)validationStatus;
     }
     *(uint *)(stackFramePointer + 0xc4) = (*(uint *)(stackFramePointer + 0xc4) | dataFlags) & ~operationResult;
-    in_EAX = *(uint *)(registerContext + 8);
+    inputAccumulatorRegisterEAX = *(uint *)(registerContext + 8);
   }
   memoryBaseAddress = operationResult;
-  if (0x8b < in_EAX) {
+  if (0x8b < inputAccumulatorRegisterEAX) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
       memoryBaseAddress = OperateDataO0(*registerContext,stackFramePointer + 0xc4,4);
     }
@@ -28026,7 +28039,7 @@ DataProcessLabelC:
 void CheckSystemStatusB0(void)
 
 {
-  uint in_EAX;
+  uint inputAccumulatorRegisterEAX;
   int inputParameter;
   int operationResult;
   uint validationStatus;
@@ -28038,7 +28051,7 @@ void CheckSystemStatusB0(void)
   unsigned int stackValidationFlag;
   uint validationFlagParameter;
   
-  validationFlagParameter = in_EAX;
+  validationFlagParameter = inputAccumulatorRegisterEAX;
   inputParameter = ExecuteDataValidationOperation();
   if (inputParameter != 0) {
     return;
@@ -29688,7 +29701,7 @@ uint64_t ProcessSystemDataD0(void)
 {
   int64_t *exceptionHandlerContextPointer;
   int64_t dataContext;
-  int in_EAX;
+  int inputAccumulatorRegisterEAX;
   uint validationStatus;
   uint64_t memoryBaseAddress;
   int64_t *registerContext;
@@ -29713,7 +29726,7 @@ uint64_t ProcessSystemDataD0(void)
   float floatResultA_09;
   uint64_t validationOutcome;
   
-  operationResult = in_EAX + 4;
+  operationResult = inputAccumulatorRegisterEAX + 4;
   validationOutcome = 0;
   dataFlags = 0;
   memoryBaseAddress = validationOutcome;
@@ -30591,7 +30604,7 @@ uint64_t ProcessFloatDataValidation(float inputValue)
   int64_t dataPointer;
   int systemContextD;
   int inputParameter2;
-  bool in_CF;
+  bool carryFlag;
   float floatResultA;
   float calculatedFloatValue;
   float normalizedFloatValue;
@@ -30609,7 +30622,7 @@ uint64_t ProcessFloatDataValidation(float inputValue)
   validationStatus = (DataChunk)(destinationIndexRegister >> 8);
   inputParameter2 = validationErrorCode;
   inputParameter1 = systemContextD;
-  if (in_CF) {
+  if (carryFlag) {
     if (*(int *)(registerContext[1] + 0x18) == validationErrorCode) {
       exceptionHandlerContextPointer = (int64_t *)*registerContext;
       dataContext = *exceptionHandlerContextPointer;
@@ -31306,7 +31319,7 @@ uint64_t ProcessSystemDataCleanup(void)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  uint in_EAX;
+  uint inputAccumulatorRegisterEAX;
   uint operationResult;
   uint64_t registerContext;
   int64_t *destinationIndexRegister;
@@ -31316,7 +31329,7 @@ uint64_t ProcessSystemDataCleanup(void)
   uint stackDataSize;
   
   operationResult = (uint)registerContext;
-  if (2 < in_EAX) goto ProcessCheckpointValidationExit;
+  if (2 < inputAccumulatorRegisterEAX) goto ProcessCheckpointValidationExit;
   if (*(uint *)(destinationIndexRegister[1] + 0x18) != (uint)contextPointer) goto ProcessCheckpointValidationError2;
   exceptionHandlerContextPointer = (int64_t *)*destinationIndexRegister;
   if (*exceptionHandlerContextPointer != 0) {
@@ -34112,7 +34125,7 @@ uint64_t ValidateDataBufferWithParameters(DataBuffer bufferA,DataBuffer bufferB,
 {
   int64_t *exceptionHandlerContextPointer;
   int64_t dataContext;
-  uint in_EAX;
+  uint inputAccumulatorRegisterEAX;
   uint validationStatus;
   uint64_t memoryBaseAddress;
   uint64_t operationResult;
@@ -34125,7 +34138,7 @@ uint64_t ValidateDataBufferWithParameters(DataBuffer bufferA,DataBuffer bufferB,
   bool isValidationComplete;
   
   operationResult = 0x1c;
-  if (0x7e < in_EAX) goto ProcessCheckpointValidationExit2;
+  if (0x7e < inputAccumulatorRegisterEAX) goto ProcessCheckpointValidationExit2;
   if (*(int *)(destinationIndexRegister[1] + 0x18) != (int)operationFlagA) {
     return 0x1c;
   }
@@ -34382,9 +34395,9 @@ ProcessCheckpointValidationError9:
     loopCounter = (DataWord)operationFlagA;
   }
   *(DataWord *)(contextPointer + 0x38) = loopCounter;
-  in_EAX = *(uint *)(destinationIndexRegister + 8);
+  inputAccumulatorRegisterEAX = *(uint *)(destinationIndexRegister + 8);
 ProcessCheckpointValidationExit2:
-  if (in_EAX < 0x7f) {
+  if (inputAccumulatorRegisterEAX < 0x7f) {
     operationResult = operationFlagA & SystemCleanupFlag;
   }
   else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
@@ -34882,7 +34895,7 @@ DataBuffer ReturnFixedStatusCodeA3(void)
 void ConfigureSystemOptionsC1(void)
 
 {
-  int in_EAX;
+  int inputAccumulatorRegisterEAX;
   int inputParameter;
   int operationResult;
   int64_t *registerContext;
@@ -34890,7 +34903,7 @@ void ConfigureSystemOptionsC1(void)
   int64_t systemContext;
   DataWord InputParamB0;
   
-  if (in_EAX == 0x1b) {
+  if (inputAccumulatorRegisterEAX == 0x1b) {
     if (*(uint *)(registerContext + 8) < 0x3b) {
       inputParameter = GetInputParameterStatus();
       if (inputParameter != 0) {
@@ -34899,7 +34912,7 @@ void ConfigureSystemOptionsC1(void)
       goto ProcessCheckpointValidationCase;
     }
   }
-  else if ((in_EAX == 0x12) && (*(uint *)(registerContext + 8) < 0x40)) {
+  else if ((inputAccumulatorRegisterEAX == 0x12) && (*(uint *)(registerContext + 8) < 0x40)) {
     inputParameter = ExecuteDataBufferOperation();
     if (inputParameter != 0) {
       return;
