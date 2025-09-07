@@ -181223,37 +181223,99 @@ undefined UIRenderQueueData;
 undefined UIRenderQueueIndex;
 undefined UIEventBuffer;
 undefined UIEventBufferSize;
-undefined DAT_180c0fc70;
-undefined DAT_180c0fc74;
-undefined DAT_180c0faf0;
-undefined DAT_180c0faf4;
-undefined DAT_180c0fe50;
-undefined DAT_180c0fe54;
-undefined DAT_180c0fdf0;
-undefined DAT_180c0fdf4;
-undefined DAT_180c0fb50;
-undefined DAT_180c0fb54;
-undefined DAT_180c0fd90;
-undefined DAT_180c0fd94;
-undefined DAT_180c0fbb0;
-undefined DAT_180c0fbb4;
-undefined DAT_180c0fc10;
-undefined DAT_180c0fc14;
-undefined DAT_180c0fd30;
-undefined DAT_180c0fd34;
-undefined DAT_180c0feb0;
-undefined DAT_180c0feb4;
-undefined UNK_18095aaa0;
-char DAT_180c10880;
-undefined DAT_180c10890;
-undefined UNK_18095ab70;
-undefined UNK_18095ab80;
-undefined UNK_180785d90;
-undefined UNK_18095ac00;
-undefined UNK_18095ac78;
-undefined UNK_18095ac80;
-undefined UNK_1807880a0;
-undefined UNK_18095acf0;
+// 原始变量名：DAT_180c0fc70 - UI渲染队列头指针
+#define UIRenderQueueHeadPtr DAT_180c0fc70
+undefined UIRenderQueueHeadPtr;
+// 原始变量名：DAT_180c0fc74 - UI渲染队列尾指针
+#define UIRenderQueueTailPtr DAT_180c0fc74
+undefined UIRenderQueueTailPtr;
+// 原始变量名：DAT_180c0faf0 - UI事件队列头指针
+#define UIEventQueueHeadPtr DAT_180c0faf0
+undefined UIEventQueueHeadPtr;
+// 原始变量名：DAT_180c0faf4 - UI事件队列尾指针
+#define UIEventQueueTailPtr DAT_180c0faf4
+undefined UIEventQueueTailPtr;
+// 原始变量名：DAT_180c0fe50 - UI组件池头指针
+#define UIComponentPoolHeadPtr DAT_180c0fe50
+undefined UIComponentPoolHeadPtr;
+// 原始变量名：DAT_180c0fe54 - UI组件池尾指针
+#define UIComponentPoolTailPtr DAT_180c0fe54
+undefined UIComponentPoolTailPtr;
+// 原始变量名：DAT_180c0fdf0 - UI资源池头指针
+#define UIResourcePoolHeadPtr DAT_180c0fdf0
+undefined UIResourcePoolHeadPtr;
+// 原始变量名：DAT_180c0fdf4 - UI资源池尾指针
+#define UIResourcePoolTailPtr DAT_180c0fdf4
+undefined UIResourcePoolTailPtr;
+// 原始变量名：DAT_180c0fb50 - UI纹理缓存头指针
+#define UITextureCacheHeadPtr DAT_180c0fb50
+undefined UITextureCacheHeadPtr;
+// 原始变量名：DAT_180c0fb54 - UI纹理缓存尾指针
+#define UITextureCacheTailPtr DAT_180c0fb54
+undefined UITextureCacheTailPtr;
+// 原始变量名：DAT_180c0fd90 - UI字体缓存头指针
+#define UIFontCacheHeadPtr DAT_180c0fd90
+undefined UIFontCacheHeadPtr;
+// 原始变量名：DAT_180c0fd94 - UI字体缓存尾指针
+#define UIFontCacheTailPtr DAT_180c0fd94
+undefined UIFontCacheTailPtr;
+// 原始变量名：DAT_180c0fbb0 - UI着色器缓存头指针
+#define UIShaderCacheHeadPtr DAT_180c0fbb0
+undefined UIShaderCacheHeadPtr;
+// 原始变量名：DAT_180c0fbb4 - UI着色器缓存尾指针
+#define UIShaderCacheTailPtr DAT_180c0fbb4
+undefined UIShaderCacheTailPtr;
+// 原始变量名：DAT_180c0fc10 - UI布局缓存头指针
+#define UILayoutCacheHeadPtr DAT_180c0fc10
+undefined UILayoutCacheHeadPtr;
+// 原始变量名：DAT_180c0fc14 - UI布局缓存尾指针
+#define UILayoutCacheTailPtr DAT_180c0fc14
+undefined UILayoutCacheTailPtr;
+// 原始变量名：DAT_180c0fd30 - UI动画缓存头指针
+#define UIAnimationCacheHeadPtr DAT_180c0fd30
+undefined UIAnimationCacheHeadPtr;
+// 原始变量名：DAT_180c0fd34 - UI动画缓存尾指针
+#define UIAnimationCacheTailPtr DAT_180c0fd34
+undefined UIAnimationCacheTailPtr;
+// 原始变量名：DAT_180c0feb0 - UI输入状态头指针
+#define UIInputStateHeadPtr DAT_180c0feb0
+undefined UIInputStateHeadPtr;
+// 原始变量名：DAT_180c0feb4 - UI输入状态尾指针
+#define UIInputStateTailPtr DAT_180c0feb4
+undefined UIInputStateTailPtr;
+// 原始变量名：UNK_18095aaa0 - UI系统主题管理器
+#define UISystemThemeManager UNK_18095aaa0
+undefined UISystemThemeManager;
+// 原始变量名：DAT_180c10880 - UI系统配置标志
+#define UISystemConfigFlag DAT_180c10880
+char UISystemConfigFlag;
+// 原始变量名：DAT_180c10890 - UI系统状态标志
+#define UISystemStatusFlag DAT_180c10890
+undefined UISystemStatusFlag;
+// 原始变量名：UNK_18095ab70 - UI系统样式管理器
+#define UISystemStyleManager UNK_18095ab70
+undefined UISystemStyleManager;
+// 原始变量名：UNK_18095ab80 - UI系统颜色管理器
+#define UISystemColorManager UNK_18095ab80
+undefined UISystemColorManager;
+// 原始变量名：UNK_180785d90 - UI系统字体管理器
+#define UISystemFontManager UNK_180785d90
+undefined UISystemFontManager;
+// 原始变量名：UNK_18095ac00 - UI系统图标管理器
+#define UISystemIconManager UNK_18095ac00
+undefined UISystemIconManager;
+// 原始变量名：UNK_18095ac78 - UI系统光标管理器
+#define UISystemCursorManager UNK_18095ac78
+undefined UISystemCursorManager;
+// 原始变量名：UNK_18095ac80 - UI系统工具提示管理器
+#define UISystemTooltipManager UNK_18095ac80
+undefined UISystemTooltipManager;
+// 原始变量名：UNK_1807880a0 - UI系统对话框管理器
+#define UISystemDialogManager UNK_1807880a0
+undefined UISystemDialogManager;
+// 原始变量名：UNK_18095acf0 - UI系统菜单管理器
+#define UISystemMenuManager UNK_18095acf0
+undefined UISystemMenuManager;
 
  简化实现：UI系统清理函数
  原本实现：可能包含更复杂的清理逻辑
