@@ -22983,11 +22983,23 @@ DataBuffer BinarySearchAndProcessData(int64_t SearchContext,uint *SearchKeyPoint
 
 
 
-// 函数: DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuffer,ByteFlag *charBuffer,int bufferSize,int *processedCount)
-// 功能：处理指定的数据项，包括数据复制、缓冲区管理和结果返回
-// 参数：dataContext - 数据上下文，itemIndex - 项目索引，outputBuffer - 输出缓冲区
-//      charBuffer - 字符缓冲区，bufferSize - 缓冲区大小，processedCount - 处理计数指针
-// 返回值：成功返回处理结果，失败返回0x1f
+/**
+ * @brief 处理数据项并提取字符串信息
+ * 
+ * 该函数用于处理指定的数据项，提取其中的字符串信息并进行相应的处理。
+ * 函数会验证数据项的有效性，提取字符串数据，并将其复制到指定的缓冲区中。
+ * 
+ * @param dataContext 数据上下文指针，包含数据项的相关信息
+ * @param itemIndex 要处理的数据项索引
+ * @param outputBuffer 输出缓冲区，用于存储处理结果
+ * @param charBuffer 字符缓冲区，用于存储提取的字符串数据
+ * @param bufferSize 字符缓冲区的大小
+ * @param processedCount 处理计数的指针，用于返回实际处理的字符数
+ * 
+ * @return 处理结果状态码，成功返回处理结果，失败返回ComponentDataValidationFailure(0x1f)
+ * 
+ * @note 该函数是数据处理工具链的重要组成部分，负责从复杂数据结构中提取字符串信息
+ */
 DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuffer,ByteFlag *charBuffer,int bufferSize,int *processedCount)
 
 {
@@ -23088,21 +23100,21 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
         stringDataPointer = destinationDataPointer + (int64_t)(int)(bufferSize - currentBufferOffset) + -1;
         if (destinationDataPointer < stringDataPointer) {
           do {
-            charValue = *destPointer;
-            *destPointer = *stringPointer;
-            destPointer = destPointer + 1;
-            *stringPointer = charValue;
-            stringPointer = stringPointer + -1;
-          } while (destPointer < stringPointer);
+            charValue = *destinationDataPointer;
+            *destinationDataPointer = *stringDataPointer;
+            destinationDataPointer = destinationDataPointer + 1;
+            *stringDataPointer = charValue;
+            stringDataPointer = stringDataPointer + -1;
+          } while (destinationDataPointer < stringDataPointer);
         }
         charBuffer[(int64_t)bufferSize + -1] = 0;
-        processResult = 0x41;
+        processingResult = 0x41;
       }
     }
     if (processedCount != (int *)0x0) {
-      *processedCount = totalLength + 1;
+      *processedCount = totalProcessedLength + 1;
     }
-    return processResult;
+    return processingResult;
   }
   return ComponentDataValidationFailure;
 }
