@@ -92539,10 +92539,10 @@ void ProcessSystemDataValidation(long long CharacterCode, long long Utf8BufferSi
   *(uint32_t *)(in_R11 + -0x58) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -0x54) = XMMRegister8_Db;
   *(uint32_t *)(in_R11 + -0x50) = XMM8RegisterC;
-  *(uint32_t *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
+  *(uint32_t *)(in_R11 + -0x4c) = XMM8RegisterD;
   *(uint32_t *)(in_R11 + -0xa8) = AuxiliaryFloat13;
-  *(uint32_t *)(in_R11 + -0xa4) = unaff_XMM13_Db;
-  *(uint32_t *)(in_R11 + -0xa0) = unaff_XMM13_Dc;
+  *(uint32_t *)(in_R11 + -0xa4) = XMM13RegisterB;
+  *(uint32_t *)(in_R11 + -0xa0) = XMM13RegisterC;
   *(uint32_t *)(in_R11 + -0x9c) = unaff_XMM13_Dd;
   if (Utf8BufferSize == 0) {
     EncodingConversionResult = -1;
@@ -94654,7 +94654,7 @@ unsigned long long ProcessDataStructureAndFloatCalculation(uint32_t CharacterCod
   float SystemFloatValue;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
-  uint32_t unaff_XMM8_Dd;
+  uint32_t XMM8RegisterD;
   uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Db;
   uint32_t unaff_XMM9_Dc;
@@ -94671,7 +94671,7 @@ unsigned long long ProcessDataStructureAndFloatCalculation(uint32_t CharacterCod
   *(uint32_t *)(in_R11 + -0x58) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -0x54) = XMMRegister8_Db;
   *(uint32_t *)(in_R11 + -0x50) = XMM8RegisterC;
-  *(uint32_t *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
+  *(uint32_t *)(in_R11 + -0x4c) = XMM8RegisterD;
   *(uint32_t *)(in_R11 + -0x68) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -100) = unaff_XMM9_Db;
   *(uint32_t *)(in_R11 + -0x60) = unaff_XMM9_Dc;
@@ -95497,7 +95497,7 @@ uint8_t ProcessDataStructureWithMemory(uint32_t CharacterCode,float *Utf8InputBu
   float ContextSecondaryFloat3;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
-  uint32_t unaff_XMM8_Dd;
+  uint32_t XMM8RegisterD;
   uint32_t AuxiliaryFloat9;
   float ContextSecondaryFloat4;
   uint32_t unaff_XMM9_Db;
@@ -95516,7 +95516,7 @@ uint8_t ProcessDataStructureWithMemory(uint32_t CharacterCode,float *Utf8InputBu
   *(uint32_t *)(ProcessingResult + -0x68) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -100) = XMMRegister8_Db;
   *(uint32_t *)(ProcessingResult + -0x60) = XMM8RegisterC;
-  *(uint32_t *)(ProcessingResult + -0x5c) = unaff_XMM8_Dd;
+  *(uint32_t *)(ProcessingResult + -0x5c) = XMM8RegisterD;
   *(uint32_t *)(ProcessingResult + -0x78) = AuxiliaryFloat9;
   *(uint32_t *)(ProcessingResult + -0x74) = unaff_XMM9_Db;
   *(uint32_t *)(ProcessingResult + -0x70) = unaff_XMM9_Dc;
@@ -96793,7 +96793,7 @@ unsigned long long ProcessSystemContextAndMemoryManagement(void
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
-  uint32_t unaff_XMM8_Dd;
+  uint32_t XMM8RegisterD;
   uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Db;
   uint32_t unaff_XMM9_Dc;
@@ -96814,7 +96814,7 @@ unsigned long long ProcessSystemContextAndMemoryManagement(void
   *(uint32_t *)(in_R11 + -0x68) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -100) = XMMRegister8_Db;
   *(uint32_t *)(in_R11 + -0x60) = XMM8RegisterC;
-  *(uint32_t *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
+  *(uint32_t *)(in_R11 + -0x5c) = XMM8RegisterD;
   *(uint32_t *)(in_R11 + -0x78) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -0x74) = unaff_XMM9_Db;
   *(uint32_t *)(in_R11 + -0x70) = unaff_XMM9_Dc;
@@ -98818,7 +98818,7 @@ void SystemDataValidationAndProcessing(void)
   *(uint32_t *)(in_R11 + -0x38) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -0x34) = XMMRegister8_Db;
   *(uint32_t *)(in_R11 + -0x30) = XMM8RegisterC;
-  *(uint32_t *)(in_R11 + -0x2c) = unaff_XMM8_Dd;
+  *(uint32_t *)(in_R11 + -0x2c) = XMM8RegisterD;
   *(uint32_t *)(in_R11 + -0x48) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -0x44) = unaff_XMM9_Db;
   *(uint32_t *)(in_R11 + -0x40) = unaff_XMM9_Dc;
@@ -109680,7 +109680,7 @@ void SetupIntegerDataNetwork(uint64_t CharacterCode,char *Utf8InputBufferSize,ui
   float ContextSecondaryFloat4;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
-  uint32_t unaff_XMM8_Dd;
+  uint32_t XMM8RegisterD;
   uint32_t AuxiliaryFloat10;
   uint32_t unaff_XMM10_Db;
   uint32_t unaff_XMM10_Dc;
@@ -109691,8 +109691,8 @@ void SetupIntegerDataNetwork(uint64_t CharacterCode,char *Utf8InputBufferSize,ui
   uint32_t unaff_XMM11_Dd;
   uint32_t AuxiliaryFloat13;
   float ContextSecondaryFloat5;
-  uint32_t unaff_XMM13_Db;
-  uint32_t unaff_XMM13_Dc;
+  uint32_t XMM13RegisterB;
+  uint32_t XMM13RegisterC;
   uint32_t unaff_XMM13_Dd;
   float ContextSecondaryFloat6;
   uint64_t unaff_XMM14_Qa;
@@ -109736,7 +109736,7 @@ void SetupIntegerDataNetwork(uint64_t CharacterCode,char *Utf8InputBufferSize,ui
   *(uint32_t *)(in_R11 + -0x78) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -0x74) = XMMRegister8_Db;
   *(uint32_t *)(in_R11 + -0x70) = XMM8RegisterC;
-  *(uint32_t *)(in_R11 + -0x6c) = unaff_XMM8_Dd;
+  *(uint32_t *)(in_R11 + -0x6c) = XMM8RegisterD;
   *(uint32_t *)(in_R11 + -0x98) = AuxiliaryFloat10;
   *(uint32_t *)(in_R11 + -0x94) = unaff_XMM10_Db;
   *(uint32_t *)(in_R11 + -0x90) = unaff_XMM10_Dc;
@@ -109746,8 +109746,8 @@ void SetupIntegerDataNetwork(uint64_t CharacterCode,char *Utf8InputBufferSize,ui
   *(uint32_t *)(in_R11 + -0xa0) = unaff_XMM11_Dc;
   *(uint32_t *)(in_R11 + -0x9c) = unaff_XMM11_Dd;
   *(uint32_t *)(in_R11 + -200) = AuxiliaryFloat13;
-  *(uint32_t *)(in_R11 + -0xc4) = unaff_XMM13_Db;
-  *(uint32_t *)(in_R11 + -0xc0) = unaff_XMM13_Dc;
+  *(uint32_t *)(in_R11 + -0xc4) = XMM13RegisterB;
+  *(uint32_t *)(in_R11 + -0xc0) = XMM13RegisterC;
   *(uint32_t *)(in_R11 + -0xbc) = unaff_XMM13_Dd;
   *(void *)(in_R11 + -0xd8) = unaff_XMM14_Qa;
   *(void *)(in_R11 + -0xd0) = unaff_XMM14_Qb;
@@ -127743,7 +127743,7 @@ void ProcessSystemFloatDataAndMemoryAllocation(void)
   *(uint32_t *)(ProcessingResult + -0x48) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -0x44) = XMMRegister8_Db;
   *(uint32_t *)(ProcessingResult + -0x40) = XMM8RegisterC;
-  *(uint32_t *)(ProcessingResult + -0x3c) = unaff_XMM8_Dd;
+  *(uint32_t *)(ProcessingResult + -0x3c) = XMM8RegisterD;
   *(uint32_t *)(ProcessingResult + -0x58) = AuxiliaryFloat9;
   *(uint32_t *)(ProcessingResult + -0x54) = unaff_XMM9_Db;
   *(uint32_t *)(ProcessingResult + -0x50) = unaff_XMM9_Dc;
@@ -127879,7 +127879,7 @@ void FindAndFilterSystemMemoryBlocks(void)
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
-  uint32_t unaff_XMM8_Dd;
+  uint32_t XMM8RegisterD;
   uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Db;
   uint32_t unaff_XMM9_Dc;
@@ -127902,7 +127902,7 @@ void FindAndFilterSystemMemoryBlocks(void)
   *(uint32_t *)(ProcessingResult + -0x48) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -0x44) = XMMRegister8_Db;
   *(uint32_t *)(ProcessingResult + -0x40) = XMM8RegisterC;
-  *(uint32_t *)(ProcessingResult + -0x3c) = unaff_XMM8_Dd;
+  *(uint32_t *)(ProcessingResult + -0x3c) = XMM8RegisterD;
   *(uint32_t *)(ProcessingResult + -0x58) = AuxiliaryFloat9;
   *(uint32_t *)(ProcessingResult + -0x54) = unaff_XMM9_Db;
   *(uint32_t *)(ProcessingResult + -0x50) = unaff_XMM9_Dc;
@@ -131258,8 +131258,8 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
   uint64_t unaff_XMM12_Qa;
   uint64_t unaff_XMM12_Qb;
   uint32_t AuxiliaryFloat13;
-  uint32_t unaff_XMM13_Db;
-  uint32_t unaff_XMM13_Dc;
+  uint32_t XMM13RegisterB;
+  uint32_t XMM13RegisterC;
   uint32_t unaff_XMM13_Dd;
   uint32_t unaff_XMM14_Da;
   uint32_t unaff_XMM14_Dc;
@@ -131305,8 +131305,8 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
   *(void *)(in_R11 + -0x30) = CharacterLimit;
   *(void *)(in_R11 + -0x38) = NullPointerValue;
   *(uint32_t *)(in_R11 + -0xb8) = AuxiliaryFloat13;
-  *(uint32_t *)(in_R11 + -0xb4) = unaff_XMM13_Db;
-  *(uint32_t *)(in_R11 + -0xb0) = unaff_XMM13_Dc;
+  *(uint32_t *)(in_R11 + -0xb4) = XMM13RegisterB;
+  *(uint32_t *)(in_R11 + -0xb0) = XMM13RegisterC;
   *(uint32_t *)(in_R11 + -0xac) = unaff_XMM13_Dd;
   *(void *)(StackFramePointer + 10) = Utf8BufferSize;
   *(void *)(StackFramePointer + 0x1e) = CharacterCode;
@@ -133098,8 +133098,8 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
   uint64_t unaff_XMM12_Qa;
   uint64_t unaff_XMM12_Qb;
   uint32_t AuxiliaryFloat13;
-  uint32_t unaff_XMM13_Db;
-  uint32_t unaff_XMM13_Dc;
+  uint32_t XMM13RegisterB;
+  uint32_t XMM13RegisterC;
   uint32_t unaff_XMM13_Dd;
   uint32_t unaff_XMM14_Da;
   uint32_t unaff_XMM14_Dc;
@@ -133141,8 +133141,8 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
   *(void *)(in_R11 + -0x30) = CharacterLimit;
   *(void *)(in_R11 + -0x38) = NullPointerValue;
   *(uint32_t *)(in_R11 + -0xb8) = AuxiliaryFloat13;
-  *(uint32_t *)(in_R11 + -0xb4) = unaff_XMM13_Db;
-  *(uint32_t *)(in_R11 + -0xb0) = unaff_XMM13_Dc;
+  *(uint32_t *)(in_R11 + -0xb4) = XMM13RegisterB;
+  *(uint32_t *)(in_R11 + -0xb0) = XMM13RegisterC;
   *(uint32_t *)(in_R11 + -0xac) = unaff_XMM13_Dd;
   *(void *)(StackFramePointer + 10) = Utf8BufferSize;
   *(void *)(StackFramePointer + 0x1e) = CharacterCode;
@@ -141483,8 +141483,8 @@ void ProcessSystemFloatVectorOperation(float CharacterCode,float Utf8BufferSize,
   uint32_t unaff_XMM11_Dd;
   float FilterInputValue2;
   float AuxiliaryFloat13;
-  uint32_t unaff_XMM13_Db;
-  uint32_t unaff_XMM13_Dc;
+  uint32_t XMM13RegisterB;
+  uint32_t XMM13RegisterC;
   uint32_t unaff_XMM13_Dd;
   float unaff_XMM14_Da;
   float unaff_XMM15_Da;
@@ -141525,8 +141525,8 @@ void ProcessSystemFloatVectorOperation(float CharacterCode,float Utf8BufferSize,
   ContextSecondaryFloat7 = AuxiliaryFloat13;
   if (OperationStatus != '\0') {
     ContextSecondaryFloat7 = AuxiliaryFloatValue11;
-    unaff_XMM13_Db = Xmm11RegisterDb;
-    unaff_XMM13_Dc = unaff_XMM11_Dc;
+    XMM13RegisterB = Xmm11RegisterDb;
+    XMM13RegisterC = unaff_XMM11_Dc;
     unaff_XMM13_Dd = unaff_XMM11_Dd;
   }
   StackFloat1 = 3.4028235e+38;
@@ -141541,9 +141541,9 @@ void ProcessSystemFloatVectorOperation(float CharacterCode,float Utf8BufferSize,
          CONCAT44(*(float *)(CharacterLimit + 0x4c) + *(float *)(CharacterLimit + 0x44),
                   *(float *)(CharacterLimit + 0x40) + *(float *)(CharacterLimit + 0x48));
     ExecuteSystemFloatOperation(StackFramePointer + 0xe,CharacterLimit + 0x40,&TertiaryDataBuffer,RegisterR12Value + -2);
-    aMemoryAllocationBase.HighPart = unaff_XMM13_Db;
+    aMemoryAllocationBase.HighPart = XMM13RegisterB;
     aMemoryAllocationBase.LowPart = ContextSecondaryFloat7;
-    aMemoryAllocationBase._8_4_ = unaff_XMM13_Dc;
+    aMemoryAllocationBase._8_4_ = XMM13RegisterC;
     aMemoryAllocationBase.High32Part = unaff_XMM13_Dd;
     aMemoryAllocationIndexSecondary._4_12_ = aMemoryAllocationBase._4_12_;
     aMemoryAllocationIndexSecondary.LowPart = ContextSecondaryFloat7 * *RegisterR12Value;
@@ -148456,7 +148456,7 @@ void ProcessSystemBufferStatus(void)
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
-  uint32_t unaff_XMM8_Dd;
+  uint32_t XMM8RegisterD;
   uint32_t AuxiliaryFloat9;
   uint32_t unaff_XMM9_Dc;
   float fStack0000000000000030;
@@ -148480,7 +148480,7 @@ void ProcessSystemBufferStatus(void)
   *(uint32_t *)(ProcessingResult + -0x58) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -0x54) = XMMRegister8_Db;
   *(uint32_t *)(ProcessingResult + -0x50) = XMM8RegisterC;
-  *(uint32_t *)(ProcessingResult + -0x4c) = unaff_XMM8_Dd;
+  *(uint32_t *)(ProcessingResult + -0x4c) = XMM8RegisterD;
   StringBuffer = (char)SourceIndex;
   if (CharacterByteCount0 < *(int *)(SystemContext + 0x1c68)) {
     MemoryAllocationCounter = SourceIndex & 0xffffffff;
@@ -156869,7 +156869,7 @@ int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,u
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
-  uint32_t unaff_XMM8_Dd;
+  uint32_t XMM8RegisterD;
   
   *(void *)(ProcessingResult + 8) = SystemContext;
   *(void *)(ProcessingResult + 0x10) = StackFramePointer;
@@ -156891,7 +156891,7 @@ int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,u
   *(uint32_t *)(ProcessingResult + -0x48) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -0x44) = XMMRegister8_Db;
   *(uint32_t *)(ProcessingResult + -0x40) = XMM8RegisterC;
-  *(uint32_t *)(ProcessingResult + -0x3c) = unaff_XMM8_Dd;
+  *(uint32_t *)(ProcessingResult + -0x3c) = XMM8RegisterD;
   *(uint8_t *)(*(long long *)(MemoryBoundaryEnd + 0x1af8) + 0xb1) = 1;
   long long AllocatedMemorySize = *(long long *)(MemoryBoundaryEnd + 0x1af8);
   ProcessDataMatchingOperation(MatchCounter + 0x11223347);
@@ -231356,7 +231356,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   float FilterInputValue8;
   uint32_t XMM8RegisterC;
   float FilterInputValue9;
-  uint32_t unaff_XMM8_Dd;
+  uint32_t XMM8RegisterD;
   float FloatVariable40;
   uint32_t AuxiliaryFloat9;
   float FloatVariable41;
@@ -231384,8 +231384,8 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   uint32_t unaff_XMM12_Dc;
   uint32_t unaff_XMM12_Dd;
   uint32_t AuxiliaryFloat13;
-  uint32_t unaff_XMM13_Db;
-  uint32_t unaff_XMM13_Dc;
+  uint32_t XMM13RegisterB;
+  uint32_t XMM13RegisterC;
   uint32_t unaff_XMM13_Dd;
   uint32_t unaff_XMM14_Da;
   uint32_t unaff_XMM14_Db;
@@ -231422,7 +231422,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   *(uint32_t *)(in_R11 + -0x78) = SecondaryFloatValue;
   *(uint32_t *)(in_R11 + -0x74) = XMMRegister8_Db;
   *(uint32_t *)(in_R11 + -0x70) = XMM8RegisterC;
-  *(uint32_t *)(in_R11 + -0x6c) = unaff_XMM8_Dd;
+  *(uint32_t *)(in_R11 + -0x6c) = XMM8RegisterD;
   *(uint32_t *)(in_R11 + -0x88) = AuxiliaryFloat9;
   *(uint32_t *)(in_R11 + -0x84) = unaff_XMM9_Db;
   *(uint32_t *)(in_R11 + -0x80) = unaff_XMM9_Dc;
@@ -231444,8 +231444,8 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   *(uint32_t *)(in_R11 + -0xb0) = unaff_XMM12_Dc;
   *(uint32_t *)(in_R11 + -0xac) = unaff_XMM12_Dd;
   *(uint32_t *)(in_R11 + -200) = AuxiliaryFloat13;
-  *(uint32_t *)(in_R11 + -0xc4) = unaff_XMM13_Db;
-  *(uint32_t *)(in_R11 + -0xc0) = unaff_XMM13_Dc;
+  *(uint32_t *)(in_R11 + -0xc4) = XMM13RegisterB;
+  *(uint32_t *)(in_R11 + -0xc0) = XMM13RegisterC;
   *(uint32_t *)(in_R11 + -0xbc) = unaff_XMM13_Dd;
   *(uint32_t *)(in_R11 + -0xe8) = unaff_XMM15_Da;
   *(uint32_t *)(in_R11 + -0xe4) = unaff_XMM15_Db;
@@ -233412,7 +233412,7 @@ LAB_180201f5b:
   uint32_t SecondaryFloatValue;
   uint32_t XMMRegister8_Db;
   uint32_t XMM8RegisterC;
-  uint32_t unaff_XMM8_Dd;
+  uint32_t XMM8RegisterD;
   double CalculatedDifference0;
   double CalculatedDifference1;
   
@@ -233420,7 +233420,7 @@ LAB_180201f5b:
   *(uint32_t *)(ProcessingResult + -0x38) = SecondaryFloatValue;
   *(uint32_t *)(ProcessingResult + -0x34) = XMMRegister8_Db;
   *(uint32_t *)(ProcessingResult + -0x30) = XMM8RegisterC;
-  *(uint32_t *)(ProcessingResult + -0x2c) = unaff_XMM8_Dd;
+  *(uint32_t *)(ProcessingResult + -0x2c) = XMM8RegisterD;
   Utf16Char4 = (uint)SourceIndex;
   if (DataNodeIndex != SystemContext) {
     CharacterTablePointer = (long long)SystemContext - (long long)DataNodeIndex >> 2;
