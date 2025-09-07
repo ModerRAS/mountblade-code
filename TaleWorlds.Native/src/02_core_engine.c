@@ -9915,7 +9915,7 @@ void RegisterNetworkMessageHandler(void) {
   }
   if ((NetworkSearchNode == NetworkSystemRootNode) || (NetworkDataComparisonResult = memcmp(&SystemComparisonDataQuaternary, NetworkSearchNode + SystemNodeHeaderSize, SystemDataStructureSize), NetworkDataComparisonResult < 0)) {
     NetworkMemoryOffset = CoreEngineAllocateMemory(NetworkSystemContext);
-    CoreEngineSetupMemoryNode(NetworkSystemContext, &CreatedNetworkNode, NetworkSearchNode, NetworkMemoryOffset + 0x20, NetworkMemoryOffset);
+    CoreEngineSetupMemoryNode(NetworkSystemContext, &CreatedNetworkNode, NetworkSearchNode, NetworkMemoryOffset + NetworkMemoryAllocationOffset, NetworkMemoryOffset);
     NetworkSearchNode = CreatedNetworkNode;
   }
   NetworkSearchNode[6] = (void*)SystemNodeIdentifierSeptenary;
@@ -9968,7 +9968,7 @@ void CoreEngineInitializeNetworkConnectionPool(void) {
   }
   if ((CurrentNode == RootNode) || (MemoryComparisonResult = memcmp(&SystemComparisonDataQuinary, CurrentNode + SystemNodeHeaderSize, SystemDataStructureSize), MemoryComparisonResult < 0)) {
     MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
-    CoreEngineSetupNetworkConnection(SystemHandle,&NewNode,CurrentNode,MemoryOffset + 0x20,MemoryOffset);
+    CoreEngineSetupNetworkConnection(SystemHandle,&NewNode,CurrentNode,MemoryOffset + NetworkMemoryAllocationOffset,MemoryOffset);
     CurrentNode = NewNode;
   }
   CurrentNode[6] = SystemNodeIdentifierNonary;
@@ -169072,7 +169072,13 @@ LAB_18013c174:
 
 
 
-3c5c1(voidvoid FUN_18013c5c1(void
+/**
+ * @brief 重置系统字符处理状态
+ * 
+ * 该函数负责重置系统字符处理模块的状态，清理缓冲区并重置所有相关参数
+ * 确保系统在下一次字符处理时处于干净的状态
+ */
+void ResetSystemCharacterProcessingState(void)
 {
   long long PrimaryDataSize;
   int RegisterEBPValue;
@@ -169080,17 +169086,17 @@ LAB_18013c174:
   long long BufferStatus;
   long long CharacterLimit;
   int StackOffset28;
-  void *puStack0000000000000030;
+  void *SystemMemoryPointer;
   
   BufferStatus = 0;
   do {
     CharacterTablePointer = *(long long *)(CharacterLimit + 0x28);
-    puStack0000000000000030 = &CoreEngineDataTemplate;
-    iStack0000000000000028 = (CharacterTablePointer - *(char *)(BufferStatus + 0xd + CharacterTablePointer)) * 2;
+    SystemMemoryPointer = &CoreEngineDataTemplate;
+    StackOffset28 = (CharacterTablePointer - *(char *)(BufferStatus + 0xd + CharacterTablePointer)) * 2;
     ProcessStringFormattingOperation();
     ProcessStringFormattingOperation();
     if (*(int *)(BufferStatus + 4 + CharacterTablePointer) == 0) {
-      iStack0000000000000028 = (int)*(short *)(BufferStatus + 0x18 + CharacterTablePointer);
+      StackOffset28 = (int)*(short *)(BufferStatus + 0x18 + CharacterTablePointer);
       ProcessStringFormattingOperation();
     }
     else {
@@ -260730,7 +260736,16 @@ int IdentifySystemIdentifierByPatternVariantD(void
 
 
 
-int FUN_1802253c2(void
+/**
+ * @brief 识别系统标识符模式B
+ * 
+ * 该函数负责识别系统中特定类型的标识符模式B，用于系统组件的分类和识别。
+ * 通过字符串长度和内容匹配来确定系统组件类型。
+ * 
+ * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
+ * @note 原始函数名：FUN_1802253c2
+ */
+int IdentifySystemIdentifierPatternB(void
 {
   char *InputStringBuffer;
   int StringComparisonResult;
@@ -261046,7 +261061,16 @@ int FUN_1802253c2(void
 
 
 
-int FUN_1802253ee(void
+/**
+ * @brief 识别系统标识符模式C
+ * 
+ * 该函数负责识别系统中特定类型的标识符模式C，用于系统组件的分类和识别。
+ * 通过字符串长度和内容匹配来确定系统组件类型。
+ * 
+ * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
+ * @note 原始函数名：FUN_1802253ee
+ */
+int IdentifySystemIdentifierPatternC(void
 {
   char *InputStringBuffer;
   int StringComparisonResult;
@@ -261368,7 +261392,7 @@ int FUN_1802253ee(void
  * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
  * @note 原始函数名：FUN_18022541a
  */
-int FUN_18022541a(void
+int IdentifySystemIdentifierPatternD(void
 {
   char *InputStringBuffer;
   int StringComparisonResult;
@@ -261686,7 +261710,7 @@ int FUN_18022541a(void
  * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
  * @note 原始函数名：FUN_180225446
  */
-int FUN_180225446(void
+int IdentifySystemIdentifierPatternE(void
 {
   char *InputStringBuffer;
   int StringComparisonResult;
@@ -274756,7 +274780,17 @@ LAB_18022d28d:
 
 
 
-bool FUN_18022d360(long long CharacterCode
+/**
+ * @brief 验证系统字符处理状态
+ * 
+ * 该函数负责验证系统字符处理的状态，包括字符处理状态、缓冲区分配和内存管理。
+ * 主要用于确保系统字符处理的正确性和稳定性。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return 返回验证结果，true表示验证成功，false表示验证失败
+ * @note 原始函数名：FUN_18022d360
+ */
+bool ValidateSystemCharacterProcessingStatus(long long CharacterCode
 {
   char InputStringBuffer;
   long long *BufferAllocationStatus;

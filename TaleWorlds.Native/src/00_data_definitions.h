@@ -4886,8 +4886,8 @@ Label_MutexOperationComplete:
     SystemArrayStackA0[0] = 0;
     SystemUnsignedStackA8 = 0x18;
     BufferSize4 = strcpy_s(SystemArrayStackA0,64,&SystemBufferTemplateString);
-    InitializeSystemMemoryRegion(BufferSize4,&puStack_b8,MemoryAddress4,1);
-    puStack_b8 = &SystemBufferTemplate;
+    InitializeSystemMemoryRegion(BufferSize4,&SystemPointerStackB8,MemoryAddress4,1);
+    SystemPointerStackB8 = &SystemBufferTemplate;
   }
   if (*(int *)(SystemModuleStatusPointer + 0x60) == 1) {
     ActivatePrimarySystemMode();
@@ -4909,8 +4909,24 @@ Label_MutexOperationComplete:
       MemoryAddress9 = (ulonglong)BufferSize1;
     } while ((int)BufferSize1 < (int)ModuleInitializationResult8);
   }
-  InitializeGameModules();
-  InitializeCoreSystem();
+  /**
+ * @brief 初始化游戏模块
+ * 
+ * 该函数负责初始化游戏中的所有模块，包括渲染、音频、输入等子系统的初始化。
+ * 这是游戏启动过程中的重要步骤，确保所有模块都正确初始化并准备好运行。
+ * 
+ * @note 此函数在系统启动时被调用，必须在其他核心初始化之后执行
+ */
+InitializeGameModules();
+  /**
+ * @brief 初始化核心系统
+ * 
+ * 该函数负责初始化游戏引擎的核心系统，包括内存管理、线程管理、
+ * 文件系统等基础服务。这是游戏引擎启动的第一个主要步骤。
+ * 
+ * @note 此函数必须在游戏模块初始化之前调用
+ */
+InitializeCoreSystem();
   BufferSize4 = GetModuleBufferSize(ModuleInitializationResult6);
   ProcessGameAudio(BufferSize4,1,0);
   if (*(char *)(ModuleInitializationResult6 + 0xf18) != '\0') {
@@ -4953,7 +4969,23 @@ Label_MutexOperationComplete:
   *(uint32_t *)(ModuleInitializationResult8 + 0x134c) = MemoryAddress1;
   *(uint16_t *)(LongIndex + 0x1637) = 0;
   *(uint8_t *)(LongIndex + 0x162c) = 0;
+  /**
+   * @brief 初始化网络系统
+   * 
+   * 该函数负责初始化游戏的网络通信系统，包括网络协议栈、
+   * 套接字管理和网络事件处理等组件的初始化。
+   * 
+   * @note 此函数在游戏启动过程中被调用，用于建立网络通信基础
+   */
   InitializeNetworkSystem();
+  /**
+   * @brief 完成网络系统初始化
+   * 
+   * 该函数负责完成网络系统的初始化过程，执行最后的配置
+   * 和验证步骤，确保网络系统可以正常运行。
+   * 
+   * @note 此函数在网络系统初始化的最后阶段被调用
+   */
   FinalizeNetworkSystem();
   *(uint *)(GameEngineDataAddress + 0x1590) = SystemFrameCounter;
   SystemFrameCounter = SystemFrameCounter + 1 & 0x80000001;
@@ -4966,7 +4998,7 @@ Label_MutexOperationComplete:
     __Throw_C_error_std__YAXH_Z(LoopCounter3);
   }
   MemoryAddress4 = SystemModuleContext;
-  pplStack_220 = (longlong **)SystemModuleContext;
+  SystemPointerPointerStack220 = (longlong **)SystemModuleContext;
   SystemModuleContext = *pMemoryAddress5;
   ModuleInitializationResult8 = *(longlong *)(GameEngineDataAddress + 0x1a08 + (longlong)(int)SystemFrameCounter * 8);
   if (ModuleInitializationResult8 != 0) {
