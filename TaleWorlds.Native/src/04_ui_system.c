@@ -72256,7 +72256,24 @@ float FUN_1807070a0(longlong uiContext,float *dataSource,int targetBuffer)
 
 
 
- void ProcessUIRendering(float *uiContext,longlong dataSource,int targetBuffer,int bufferSize,float resultPointer,
+ /**
+ * 处理UI渲染数据计算和缓冲区操作
+ * 
+ * 该函数负责处理UI系统中的渲染数据计算，包括：
+ * - 从数据源读取渲染数据
+ * - 执行复杂的渲染计算
+ * - 将结果写入UI上下文缓冲区
+ * - 处理多轮迭代计算
+ * 
+ * @param uiContext UI上下文指针，用于存储渲染结果
+ * @param dataSource 数据源指针，包含渲染输入数据
+ * @param targetBuffer 目标缓冲区索引
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 渲染结果指针参数
+ * @param param_6 渲染计算参数6
+ * @param param_7 渲染计算参数7
+ */
+void ProcessUIRendering(float *uiContext,longlong dataSource,int targetBuffer,int bufferSize,float resultPointer,
                         float param_6,float param_7)
 
 {
@@ -72276,39 +72293,39 @@ float FUN_1807070a0(longlong uiContext,float *dataSource,int targetBuffer)
   float renderResult4;
   float renderResult5;
   
-  pfloatResult = (float *)(dataSource + (longlong)(-2 - targetBuffer) * 4);
+  renderingOutputPointer = (float *)(dataSource + (longlong)(-2 - targetBuffer) * 4);
   if (0 < bufferSize + -3) {
-    allocatedMemory1 = ((longlong)(-2 - targetBuffer) * 4 + 0x10) - (longlong)uiContext;
-    CharacterDataOffset = dataSource - (longlong)uiContext;
-    result0 = (ulonglong)((bufferSize - 4U >> 2) + 1);
-    floatResult2 = *pfloatResult;
-    floatResult3 = pfloatResult[1];
-    floatResult4 = pfloatResult[2];
-    floatResult5 = pfloatResult[3];
+    memoryOffset1 = ((longlong)(-2 - targetBuffer) * 4 + 0x10) - (longlong)uiContext;
+    characterDataOffset = dataSource - (longlong)uiContext;
+    iterationCounter = (ulonglong)((bufferSize - 4U >> 2) + 1);
+    renderResult2 = *renderingOutputPointer;
+    renderResult3 = renderingOutputPointer[1];
+    renderResult4 = renderingOutputPointer[2];
+    renderResult5 = renderingOutputPointer[3];
     do {
-      pfloatResult = (float *)(allocatedMemory1 + dataSource + (longlong)uiContext);
-      localFloat2 = *pfloatResult;
-      localFloat3 = pfloatResult[1];
-      localFloat4 = pfloatResult[2];
-      localFloat5 = pfloatResult[3];
-      pfloatResult = (float *)(CharacterDataOffset + (longlong)uiContext);
-      localFloat6 = pfloatResult[1];
-      localFloat7 = pfloatResult[2];
-      localFloat8 = pfloatResult[3];
-      *uiContext = *pfloatResult + floatResult4 * resultPointer +
-                 (floatResult5 + floatResult3) * param_6 + (localFloat2 + floatResult2) * param_7;
-      uiContext[1] = localFloat6 + floatResult5 * resultPointer +
-                   (localFloat2 + floatResult4) * param_6 + (localFloat3 + floatResult3) * param_7;
-      uiContext[2] = localFloat7 + localFloat2 * resultPointer + (localFloat3 + floatResult5) * param_6 + (localFloat4 + floatResult4) * param_7
+      renderingOutputPointer = (float *)(memoryOffset1 + dataSource + (longlong)uiContext);
+      localRenderValue2 = *renderingOutputPointer;
+      localRenderValue3 = renderingOutputPointer[1];
+      localRenderValue4 = renderingOutputPointer[2];
+      localRenderValue5 = renderingOutputPointer[3];
+      renderingOutputPointer = (float *)(characterDataOffset + (longlong)uiContext);
+      localRenderValue6 = renderingOutputPointer[1];
+      localRenderValue7 = renderingOutputPointer[2];
+      localRenderValue8 = renderingOutputPointer[3];
+      *uiContext = *renderingOutputPointer + renderResult4 * resultPointer +
+                 (renderResult5 + renderResult3) * param_6 + (localRenderValue2 + renderResult2) * param_7;
+      uiContext[1] = localRenderValue6 + renderResult5 * resultPointer +
+                   (localRenderValue2 + renderResult4) * param_6 + (localRenderValue3 + renderResult3) * param_7;
+      uiContext[2] = localRenderValue7 + localRenderValue2 * resultPointer + (localRenderValue3 + renderResult5) * param_6 + (localRenderValue4 + renderResult4) * param_7
       ;
-      uiContext[3] = localFloat8 + localFloat3 * resultPointer + (localFloat4 + localFloat2) * param_6 + (localFloat5 + floatResult5) * param_7;
+      uiContext[3] = localRenderValue8 + localRenderValue3 * resultPointer + (localRenderValue4 + localRenderValue2) * param_6 + (localRenderValue5 + renderResult5) * param_7;
       uiContext = uiContext + 4;
-      result0 = result0 - 1;
-      floatResult2 = localFloat2;
-      floatResult3 = localFloat3;
-      floatResult4 = localFloat4;
-      floatResult5 = localFloat5;
-    } while (result0 != 0);
+      iterationCounter = iterationCounter - 1;
+      renderResult2 = localRenderValue2;
+      renderResult3 = localRenderValue3;
+      renderResult4 = localRenderValue4;
+      renderResult5 = localRenderValue5;
+    } while (iterationCounter != 0);
   }
   return;
 }
@@ -72316,98 +72333,97 @@ float FUN_1807070a0(longlong uiContext,float *dataSource,int targetBuffer)
 
 
 
- void FUN_1807072c0(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize,float *resultPointer,
-void FUN_1807072c0(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize,float *resultPointer,
-                  float *param_6)
+ void ProcessUIRenderBuffer(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize,float *resultPointer,
+                           float *param_6)
 
 {
-  float *pfloatResult;
-  float *plocalFloat2;
-  uint EventTypeCode;
-  float *plocalFloat4;
-  ulonglong LoopCounter;
-  longlong contextData;
-  int localInt7;
-  longlong localLong8;
-  longlong CharacterDataOffset;
-  longlong allocatedMemory0;
-  longlong allocatedMemory1;
-  float floatResult2;
-  float floatResult3;
-  float floatResult4;
-  float floatResult5;
-  float floatResult6;
-  float floatResult7;
-  float floatResult8;
-  float floatResult9;
+  float *renderBufferPointer;
+  float *sourceDataPointer;
+  uint bufferIterationCount;
+  float *dataStreamPointer;
+  ulonglong loopCounter;
+  longlong contextOffset;
+  int processedDataSize;
+  longlong sourceOffset;
+  longlong characterDataOffset;
+  longlong memoryAllocation0;
+  longlong memoryAllocation1;
+  float renderResult2;
+  float renderResult3;
+  float renderResult4;
+  float renderResult5;
+  float renderResult6;
+  float renderResult7;
+  float renderResult8;
+  float renderResult9;
   
-  localInt7 = 0;
-  floatResult2 = 0.0;
-  floatResult3 = 0.0;
-  floatResult4 = 0.0;
-  floatResult5 = 0.0;
-  floatResult6 = 0.0;
-  floatResult7 = 0.0;
-  floatResult8 = 0.0;
-  floatResult9 = 0.0;
+  processedDataSize = 0;
+  renderResult2 = 0.0;
+  renderResult3 = 0.0;
+  renderResult4 = 0.0;
+  renderResult5 = 0.0;
+  renderResult6 = 0.0;
+  renderResult7 = 0.0;
+  renderResult8 = 0.0;
+  renderResult9 = 0.0;
   if (0 < bufferSize + -3) {
-    EventTypeCode = (bufferSize - 4U >> 2) + 1;
-    LoopCounter = (ulonglong)EventTypeCode;
-    localInt7 = EventTypeCode * 4;
-    plocalFloat4 = dataSource;
+    bufferIterationCount = (bufferSize - 4U >> 2) + 1;
+    loopCounter = (ulonglong)bufferIterationCount;
+    processedDataSize = bufferIterationCount * 4;
+    dataStreamPointer = dataSource;
     do {
-      pfloatResult = (float *)((uiContext - (longlong)dataSource) + (longlong)plocalFloat4);
-      floatResult2 = floatResult2 + *plocalFloat4 * *pfloatResult;
-      floatResult3 = floatResult3 + plocalFloat4[1] * pfloatResult[1];
-      floatResult4 = floatResult4 + plocalFloat4[2] * pfloatResult[2];
-      floatResult5 = floatResult5 + plocalFloat4[3] * pfloatResult[3];
-      plocalFloat2 = (float *)((targetBuffer - (longlong)dataSource) + (longlong)plocalFloat4);
-      plocalFloat4 = plocalFloat4 + 4;
-      floatResult6 = floatResult6 + *plocalFloat2 * *pfloatResult;
-      floatResult7 = floatResult7 + plocalFloat2[1] * pfloatResult[1];
-      floatResult8 = floatResult8 + plocalFloat2[2] * pfloatResult[2];
-      floatResult9 = floatResult9 + plocalFloat2[3] * pfloatResult[3];
-      LoopCounter = LoopCounter - 1;
-    } while (LoopCounter != 0);
+      renderBufferPointer = (float *)((uiContext - (longlong)dataSource) + (longlong)dataStreamPointer);
+      renderResult2 = renderResult2 + *dataStreamPointer * *renderBufferPointer;
+      renderResult3 = renderResult3 + dataStreamPointer[1] * renderBufferPointer[1];
+      renderResult4 = renderResult4 + dataStreamPointer[2] * renderBufferPointer[2];
+      renderResult5 = renderResult5 + dataStreamPointer[3] * renderBufferPointer[3];
+      sourceDataPointer = (float *)((targetBuffer - (longlong)dataSource) + (longlong)dataStreamPointer);
+      dataStreamPointer = dataStreamPointer + 4;
+      renderResult6 = renderResult6 + *sourceDataPointer * *renderBufferPointer;
+      renderResult7 = renderResult7 + sourceDataPointer[1] * renderBufferPointer[1];
+      renderResult8 = renderResult8 + sourceDataPointer[2] * renderBufferPointer[2];
+      renderResult9 = renderResult9 + sourceDataPointer[3] * renderBufferPointer[3];
+      loopCounter = loopCounter - 1;
+    } while (loopCounter != 0);
   }
-  allocatedMemory1 = (longlong)localInt7;
-  CharacterDataOffset = (longlong)bufferSize;
-  *resultPointer = floatResult2 + floatResult4 + floatResult3 + floatResult5;
-  *param_6 = floatResult6 + floatResult8 + floatResult7 + floatResult9;
-  if (allocatedMemory1 < CharacterDataOffset) {
-    if (3 < CharacterDataOffset - allocatedMemory1) {
-      plocalFloat4 = (float *)(uiContext + 4 + allocatedMemory1 * 4);
-      localLong8 = (longlong)dataSource - uiContext;
-      contextData = targetBuffer - uiContext;
-      allocatedMemory0 = ((CharacterDataOffset - allocatedMemory1) - 4U >> 2) + 1;
-      allocatedMemory1 = allocatedMemory1 + allocatedMemory0 * 4;
+  memoryAllocation1 = (longlong)processedDataSize;
+  characterDataOffset = (longlong)bufferSize;
+  *resultPointer = renderResult2 + renderResult4 + renderResult3 + renderResult5;
+  *param_6 = renderResult6 + renderResult8 + renderResult7 + renderResult9;
+  if (memoryAllocation1 < characterDataOffset) {
+    if (3 < characterDataOffset - memoryAllocation1) {
+      dataStreamPointer = (float *)(uiContext + 4 + memoryAllocation1 * 4);
+      sourceOffset = (longlong)dataSource - uiContext;
+      contextOffset = targetBuffer - uiContext;
+      memoryAllocation0 = ((characterDataOffset - memoryAllocation1) - 4U >> 2) + 1;
+      memoryAllocation1 = memoryAllocation1 + memoryAllocation0 * 4;
       do {
-        *resultPointer = *(float *)((longlong)plocalFloat4 + localLong8 + -4) * plocalFloat4[-1] + *resultPointer;
-        *param_6 = *(float *)((longlong)plocalFloat4 + contextData + -4) * plocalFloat4[-1] + *param_6;
-        *resultPointer = *(float *)(localLong8 + (longlong)plocalFloat4) * *plocalFloat4 + *resultPointer;
-        *param_6 = *(float *)((longlong)plocalFloat4 + contextData) * *plocalFloat4 + *param_6;
-        *resultPointer = *(float *)((longlong)plocalFloat4 + localLong8 + 4) * plocalFloat4[1] + *resultPointer;
-        *param_6 = *(float *)((longlong)plocalFloat4 + contextData + 4) * plocalFloat4[1] + *param_6;
-        *resultPointer = *(float *)((longlong)plocalFloat4 + localLong8 + 8) * plocalFloat4[2] + *resultPointer;
-        plocalFloat2 = (float *)((longlong)plocalFloat4 + contextData + 8);
-        pfloatResult = plocalFloat4 + 2;
-        plocalFloat4 = plocalFloat4 + 4;
-        *param_6 = *plocalFloat2 * *pfloatResult + *param_6;
-        allocatedMemory0 = allocatedMemory0 + -1;
-      } while (allocatedMemory0 != 0);
+        *resultPointer = *(float *)((longlong)dataStreamPointer + sourceOffset + -4) * dataStreamPointer[-1] + *resultPointer;
+        *param_6 = *(float *)((longlong)dataStreamPointer + contextOffset + -4) * dataStreamPointer[-1] + *param_6;
+        *resultPointer = *(float *)(sourceOffset + (longlong)dataStreamPointer) * *dataStreamPointer + *resultPointer;
+        *param_6 = *(float *)((longlong)dataStreamPointer + contextOffset) * *dataStreamPointer + *param_6;
+        *resultPointer = *(float *)((longlong)dataStreamPointer + sourceOffset + 4) * dataStreamPointer[1] + *resultPointer;
+        *param_6 = *(float *)((longlong)dataStreamPointer + contextOffset + 4) * dataStreamPointer[1] + *param_6;
+        *resultPointer = *(float *)((longlong)dataStreamPointer + sourceOffset + 8) * dataStreamPointer[2] + *resultPointer;
+        sourceDataPointer = (float *)((longlong)dataStreamPointer + contextOffset + 8);
+        renderBufferPointer = dataStreamPointer + 2;
+        dataStreamPointer = dataStreamPointer + 4;
+        *param_6 = *sourceDataPointer * *renderBufferPointer + *param_6;
+        memoryAllocation0 = memoryAllocation0 + -1;
+      } while (memoryAllocation0 != 0);
     }
-    if (allocatedMemory1 < CharacterDataOffset) {
-      plocalFloat4 = (float *)(uiContext + allocatedMemory1 * 4);
-      CharacterDataOffset = CharacterDataOffset - allocatedMemory1;
+    if (memoryAllocation1 < characterDataOffset) {
+      dataStreamPointer = (float *)(uiContext + memoryAllocation1 * 4);
+      characterDataOffset = characterDataOffset - memoryAllocation1;
       do {
-        *resultPointer = *(float *)(((longlong)dataSource - uiContext) + (longlong)plocalFloat4) * *plocalFloat4 + *resultPointer
+        *resultPointer = *(float *)(((longlong)dataSource - uiContext) + (longlong)dataStreamPointer) * *dataStreamPointer + *resultPointer
         ;
-        pfloatResult = (float *)((longlong)plocalFloat4 + (targetBuffer - uiContext));
-        floatResult2 = *plocalFloat4;
-        plocalFloat4 = plocalFloat4 + 1;
-        *param_6 = *pfloatResult * floatResult2 + *param_6;
-        CharacterDataOffset = CharacterDataOffset + -1;
-      } while (CharacterDataOffset != 0);
+        renderBufferPointer = (float *)((longlong)dataStreamPointer + (targetBuffer - uiContext));
+        renderResult2 = *dataStreamPointer;
+        dataStreamPointer = dataStreamPointer + 1;
+        *param_6 = *renderBufferPointer * renderResult2 + *param_6;
+        characterDataOffset = characterDataOffset + -1;
+      } while (characterDataOffset != 0);
     }
   }
   return;

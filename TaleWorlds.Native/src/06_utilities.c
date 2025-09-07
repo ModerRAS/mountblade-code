@@ -98,6 +98,7 @@
 #define MemoryReferenceCleanupOffset1D0 0x1d0
 #define MemoryReferenceCleanupOffset1F0 0x1f0
 #define MemoryReferenceCleanupOffset210 0x210
+#define ResourceCleanupOffset250 0x250
 
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
@@ -90293,7 +90294,7 @@ void CleanupResourceA0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x250);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceCleanupOffset250);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
