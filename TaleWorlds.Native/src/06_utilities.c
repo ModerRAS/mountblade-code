@@ -18862,14 +18862,14 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
                     }
                   }
                 }
-                uStack_110 = uStack_110 & SystemCleanupFlag00000000;
+                StackMemoryData = StackMemoryData & SystemCleanupFlag00000000;
                 if ((int)statusCounter < 0) {
                   statusCounter = -statusCounter;
                 }
                 if (statusCounter == 0) {
                   return dataFlags;
                 }
-                CleanupSystemResourceDW0(&uStack_118,0);
+                CleanupSystemResourceDW0(&StackMemoryBuffer,0);
                 return dataFlags;
               }
               loopCounter = (uint64_t)uStack_110._4_4_;
