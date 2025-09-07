@@ -224212,7 +224212,7 @@ LAB_18019d50f:
   systemEventTemplatePointer = SystemEventPointer;
   StatusBuffer8 = pSystemOperationFlag90;
   TemporaryBuffer = &SystemCoreDataTable;
-  if ((0 < (int)CoreEngineUnsignedValueA0) && (SystemDataTablePointer = strstr(SystemEventDispatcher,&UNK_180a0b3d4), SystemDataTablePointer != 0)) {
+  if ((0 < (int)CoreEngineUnsignedValueA0) && (SystemDataTablePointer = strstr(SystemEventDispatcher,&SystemEventDispatcherA), SystemDataTablePointer != 0)) {
     IntegerValue7 = 6;
     RemainingSpace = (int)SystemDataTablePointer - (int)SystemEventDispatcher;
     if (CoreEngineUnsignedValueA0 < RemainingSpace + 6U) {

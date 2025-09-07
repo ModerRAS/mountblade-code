@@ -5911,10 +5911,10 @@ uint8_t UtilityMemoryManagementCacheData13;
 uint8_t UtilityMemoryManagementCacheData14;
 uint8_t UtilityMemoryManagementCacheData15;
 // 工具系统内存管理数据块 - 配置和状态数据
-uint8_t UtilityMemoryManagementConfigData1;
-uint8_t UtilityMemoryManagementConfigData2;
-uint8_t UtilityMemoryManagementConfigData3;
-uint8_t UtilityMemoryManagementConfigData4;
+uint8_t UtilityMemoryManagementPrimaryConfig;
+uint8_t UtilityMemoryManagementSecondaryConfig;
+uint8_t UtilityMemoryManagementTertiaryConfig;
+uint8_t UtilityMemoryManagementQuaternaryConfig;
 uint8_t UtilityMemoryManagementStatusFlag;
 // 工具系统功能指针 - 系统核心功能指针
 uint8_t UtilitySystemGlobalStatusPointer;
