@@ -122760,12 +122760,22 @@ void EmptySystemFunction2(void)
 
 
 
-6d80(voidvoid FUN_180126d80(void
+/**
+ * @brief 管理系统内存引用计数
+ * 
+ * 该函数负责管理系统内存块的引用计数，包括递减引用计数、
+ * 重置系统状态以及更新内存块的状态标志。
+ * 
+ * @note 原始函数名：FUN_180126d80
+ */
+void ManageSystemMemoryReferenceCount(void)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
   long long MemoryOffset;
   uint64_t MemoryAddressMask;
+  void *PrimaryProcessingStatusFlag;
+  void *MemoryBlockIndex;
   
   MemoryBlockIndex = SystemDataConfiguration;
   *(uint8_t *)(*(long long *)(SystemDataConfiguration + 0x1af8) + 0xb1) = 1;
@@ -122773,11 +122783,11 @@ void EmptySystemFunction2(void)
   ReferenceCountPointer = (int *)(*(long long *)(MemoryBlockIndex + 0x2e8) + 0x60);
   *ReferenceCountPointer = *ReferenceCountPointer + -1;
   ResetSystemStatusEx();
-  PrimaryProcessingStatusFlag = (void *           (*(long long *)(*(long long *)(MemoryBlockIndex + 0x2e8) + 0x68) + -0x10 +
+  PrimaryProcessingStatusFlag = (void *)           (*(long long *)(*(long long *)(MemoryBlockIndex + 0x2e8) + 0x68) + -0x10 +
            (long long)*(int *)(*(long long *)(MemoryBlockIndex + 0x2e8) + 0x60) * 0x10);
-  MemoryAddressMask = PrimaryProcessingStatusFlag[1];
-  *(void *)(MemoryBlockIndex + 0x228) = *PrimaryProcessingStatusFlag;
-  *(void *)(MemoryBlockIndex + 0x230) = MemoryAddressMask;
+  MemoryAddressMask = ((uint64_t *)PrimaryProcessingStatusFlag)[1];
+  *(void **)(MemoryBlockIndex + 0x228) = *(void **)PrimaryProcessingStatusFlag;
+  *(void **)(MemoryBlockIndex + 0x230) = (void *)MemoryAddressMask;
   return;
 }
 
