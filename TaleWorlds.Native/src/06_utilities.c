@@ -12593,9 +12593,9 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
   conversionStatus = InitializeConversionContext(*(DataWord *)(contextHandle + 0x24),&systemContextBuffer);
   if ((int)conversionStatus == 0) {
     DataCount = *(int *)(contextHandle + 0x18);
-    if ((0 < DataCount) && (*(uint *)(contextHandle + 0x1c) < 2)) {
+    if ((0 < DataCount) && (*(uint *)(contextHandle + ResourceDescriptorValidationOffset) < 2)) {
       dataPointer = 0;
-      if (*(uint *)(contextHandle + 0x1c) == 0) {
+      if (*(uint *)(contextHandle + ResourceDescriptorValidationOffset) == 0) {
         contextData = *(int64_t *)(contextHandle + ComponentHandleOffset);
         operationParams[0] = 1;
         dataPointer = contextData;
