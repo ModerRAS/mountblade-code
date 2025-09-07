@@ -35546,8 +35546,8 @@ void ProcessCoreEngineMemoryBufferManagement(long long *Utf8InputBuffer,uint64_t
   BufferOffset = (unsigned long long)BufferOffset.HighPart << 0x20;
   SystemStackVariable70 = &ThreadLocalStorageTemplate;
   systemEventTemplatePointer = &CoreEngineDataTemplate;
-  if (QuaternaryStackPointer8 != NULL) {
-    systemEventTemplatePointer = QuaternaryStackPointer8;
+  if (ContextDataPointer != NULL) {
+    systemEventTemplatePointer = ContextDataPointer;
   }
   InitializeSystemStatusContext(&StackValidationData,systemEventTemplatePointer,&SystemFunctionPointerH,Utf16EndPointer,0);
   ConfigureEngineMemoryContext(Utf8BufferSize,&StackValidationData);
@@ -35560,11 +35560,11 @@ void ProcessCoreEngineMemoryBufferManagement(long long *Utf8InputBuffer,uint64_t
   }
   (**(code **)(**(long long **)Utf8InputBuffer[1] + 0x40))(*(long long **)Utf8InputBuffer[1],&SystemValidationPointer);
   SystemTemplatePointer = &SystemNullTemplate;
-  if (QuaternaryStackPointer8 != NULL) {
+  if (ContextDataPointer != NULL) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  QuaternaryStackPointer8 = NULL;
+  ContextDataPointer = NULL;
   FunctionAddress = 0;
   SystemTemplatePointer = &ThreadLocalStorageTemplate;
   if (StackMemoryBuffer80 != 0) {
@@ -36523,7 +36523,7 @@ void ProcessEngineIOCompletionPort(long long EngineContext{
         MemoryAllocationResult = MemoryAllocate(MemoryPoolManager,0x40,8,10);
         SystemContext = (long long *)&SystemFlagE;
         SystemValidationPointer = &SystemNetworkHandlerTemplate;
-        QuaternaryStackPointer8 = &SystemConnectionManagerTemplate;
+        ContextDataPointer = &SystemConnectionManagerTemplate;
         StackVariable70 = (uint32_t)MemoryAddressMask;
         SystemUnsignedValue6C = (uint32_t)((unsigned long long)MemoryAddressMask >> 0x20);
         StackUnsigned68 = (uint32_t)BufferStatus;
@@ -43838,7 +43838,7 @@ float * ProcessFloatBoundaryCalculation(float *Utf8InputBuffer
   if ((*(byte *)((long long)CharacterCode + 0xfd) & 0x20) == 0) {
     FloatProcessingStatusFlag = (float *)GetMemoryBlockData(*(void *)(CharacterCode + 0x6c));
   }
-  if ((*(long long *)(FloatProcessingStatusFlag + 0x84) != 0) && (((uint)Utf8InputBuffer[0x40] & 0x80) == 0)) {
+  if ((*(long long *)(FloatProcessingStatusFlag + 0x84) != 0) && (((uint)FloatDataStructure[0x40] & 0x80) == 0)) {
     pFloatBoundaryMin = CharacterCode + 0x9d;
     pFloatBoundaryMin[0] = 1e+08;
     pFloatBoundaryMin[1] = 1e+08;
@@ -44385,7 +44385,7 @@ long long * ProcessCoreEngineDataStructureAndContext(long long *Utf8InputBuffer,
   *(int *)(*Utf8InputBufferSize + 0x208) = (int)Utf8InputBuffer[0x41];
   *(int *)(*Utf8InputBufferSize + 0x1f8) = (int)Utf8InputBuffer[0x3f];
   *(uint32_t *)(*Utf8InputBufferSize + 0x1fc) = *(uint32_t *)((long long)CharacterCode + 0x1fc);
-  *(int *)(*Utf8InputBufferSize + 0x200) = (int)Utf8InputBuffer[0x40];
+  *(int *)(*Utf8InputBufferSize + 0x200) = (int)FloatDataStructure[0x40];
   *(uint32_t *)(*Utf8InputBufferSize + 0x204) = *(uint32_t *)((long long)CharacterCode + 0x204);
   *(int *)(*Utf8InputBufferSize + 0x2d8) = (int)Utf8InputBuffer[0x5b];
   MemoryAllocationIndex = *(uint32_t *)((long long)CharacterCode + 0x2dc);
@@ -44444,7 +44444,7 @@ void HandleSystemDataStructureConfigurationAndInitialization(long long *Utf8Inpu
   MemoryAllocationIndex = 0xfffffffffffffffe;
   if (Utf8InputBuffer[0x42] == 0) {
     Utf8InputBuffer[0x3f] = 0;
-    Utf8InputBuffer[0x40] = 0;
+    FloatDataStructure[0x40] = 0;
     *(uint32_t *)(CharacterCode + 0x41) = 0;
     InitializeSystemState();
   }
@@ -46823,7 +46823,7 @@ unsigned long long Process3DTransformMatrixAndVectorCalculation(long long Charac
   unsigned long long StackUnsigned60;
   float StackFloat58;
   float StackFloat54;
-  float StackFloat50;
+  float DistanceThreshold;
   uint32_t StackUnsigned4C;
   
   MemoryBufferC = *(long long *)(CharacterCode + 0x1b8);
@@ -46861,7 +46861,7 @@ LAB_180077fcf:
         StackUnsigned60.LowPart = (float)*(void *)(Utf16EndPointer + 10);
         StackFloat58 = Utf16EndPointer[0xc];
         StackFloat54 = Utf16EndPointer[0xd];
-        StackFloat50 = Utf16EndPointer[0xe];
+        DistanceThreshold = Utf16EndPointer[0xe];
       }
       else {
         ContextPrimaryFloat0 = Utf16EndPointer[4];
@@ -46896,7 +46896,7 @@ LAB_180077fcf:
                              FloatVariable4 * ContextPrimaryFloat0 + NormalizedParameterValue * SystemContextPrimaryFloat3 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6);
         StackFloat58 = FloatVariable5 * ContextPrimaryFloat0 + ContextSecondaryFloat * SystemContextPrimaryFloat3 + CalculatedDistance * SystemContextPrimaryFloat6 + Utf16EndPointer[0xc];
         StackFloat54 = FloatVariable5 * ContextPrimaryFloat1 + ContextSecondaryFloat * SystemContextPrimaryFloat4 + CalculatedDistance * SecondaryFloatValue + Utf16EndPointer[0xd];
-        StackFloat50 = FloatVariable5 * SystemContextPrimaryFloat2 + ContextSecondaryFloat * SystemFloatValue + CalculatedDistance * SystemContextPrimaryFloat8 + Utf16EndPointer[0xe];
+        DistanceThreshold = FloatVariable5 * SystemContextPrimaryFloat2 + ContextSecondaryFloat * SystemFloatValue + CalculatedDistance * SystemContextPrimaryFloat8 + Utf16EndPointer[0xe];
       }
       StackUnsigned4C = 0x3f800000;
       StackUnsigned60 = (unsigned long long)(uint)(float)StackUnsigned60;
@@ -50039,28 +50039,28 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure
   uint32_t ProcessingCounter;
   
   FunctionAddress = 0xfffffffffffffffe;
-  if (((uint)Utf8InputBuffer[0x40] & 0x10000) == 0) {
+  if (((uint)FloatDataStructure[0x40] & 0x10000) == 0) {
     ProcessingBuffer[0] = 0;
     ProcessingCounter = 0;
     CalculationFunctionAddress = 0x1800795fa;
-    StackFloatPointer28 = CharacterCode;
+    ResultPointer = CharacterCode;
     ProcessStackArray(ProcessingBuffer);
     CalculationFunctionAddress = 0x180079605;
     CalculatedDistance = (float)GetSystemTimingValue(0);
     if ((10 < (int)CalculatedDistance) ||
        ((int)(*(int *)(*(long long *)(CharacterCode + 0x84) + 0x88) +
              (*(int *)(*(long long *)(CharacterCode + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)CalculatedDistance)) {
-      QuaternaryStackPointer8 = &CoreEngineDataTemplate;
+      ContextDataPointer = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 6) != NULL) {
-        QuaternaryStackPointer8 = *(void **)(CharacterCode + 6);
+        ContextDataPointer = *(void **)(CharacterCode + 6);
       }
       SystemPriorityLevel = CONCAT44(SystemPriorityLevel.HighPart,*(uint32_t *)(*(long long *)(CharacterCode + 0x84) + 0x60));
       pBufferOffset = &SystemTimeoutTemplate;
       CalculationFunctionAddress = 0x18007967a;
-      StackFloat50 = CalculatedDistance;
+      DistanceThreshold = CalculatedDistance;
       ValidateSystemConfiguration(SystemConfigurationPointer,0,0x80000000000,3);
     }
-    Utf8InputBuffer[0x40] = (float)((uint)Utf8InputBuffer[0x40] | 0x10000);
+    FloatDataStructure[0x40] = (float)((uint)FloatDataStructure[0x40] | 0x10000);
     CalculationFunctionAddress = 0x18007968e;
     ValidateStackArray(ProcessingBuffer);
   }
@@ -50069,7 +50069,7 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure
   if ((*(byte *)((long long)CharacterCode + 0xfd) & 0x20) == 0) {
     pFloatVariable7 = (float *)GetMemoryBlockData(*(void *)(CharacterCode + 0x6c));
   }
-  if ((*(long long *)(pFloatVariable7 + 0x84) != 0) && (((uint)Utf8InputBuffer[0x40] & 0x80) == 0)) {
+  if ((*(long long *)(pFloatVariable7 + 0x84) != 0) && (((uint)FloatDataStructure[0x40] & 0x80) == 0)) {
     pSystemContextPrimaryFloat = CharacterCode + 0x9d;
     pSystemContextPrimaryFloat[0] = 1e+08;
     pSystemContextPrimaryFloat[1] = 1e+08;
@@ -50129,9 +50129,9 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure
       StackUnsigned68 = *(void *)(CharacterCode + 0x4c);
       StackUnsigned60 = *(void *)(CharacterCode + 0x4e);
       pBufferOffset = *(void **)(CharacterCode + 0x50);
-      StackFloat50 = Utf8InputBuffer[0x52];
+      DistanceThreshold = Utf8InputBuffer[0x52];
       StackFloatValue4c = Utf8InputBuffer[0x53];
-      QuaternaryStackPointer8 = *(void **)(CharacterCode + 0x54);
+      ContextDataPointer = *(void **)(CharacterCode + 0x54);
       SystemPriorityLevel = *(void *)(CharacterCode + 0x56);
       InitializeStackUnsignedData(&StackUnsigned78);
       ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackUnsigned78);
@@ -50142,9 +50142,9 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure
         StackUnsigned68 = *(void *)(CharacterCode + 0x4c);
         StackUnsigned60 = *(void *)(CharacterCode + 0x4e);
         pBufferOffset = *(void **)(CharacterCode + 0x50);
-        StackFloat50 = Utf8InputBuffer[0x52];
+        DistanceThreshold = Utf8InputBuffer[0x52];
         StackFloatValue4c = Utf8InputBuffer[0x53];
-        QuaternaryStackPointer8 = *(void **)(CharacterCode + 0x54);
+        ContextDataPointer = *(void **)(CharacterCode + 0x54);
         SystemPriorityLevel = *(void *)(CharacterCode + 0x56);
         ConvertAngleToRadians(&StackUnsigned78,0x3fc90fdb);
         ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackUnsigned78);
@@ -50153,9 +50153,9 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure
         StackUnsigned68 = *(void *)(CharacterCode + 0x4c);
         StackUnsigned60 = *(void *)(CharacterCode + 0x4e);
         pBufferOffset = *(void **)(CharacterCode + 0x50);
-        StackFloat50 = Utf8InputBuffer[0x52];
+        DistanceThreshold = Utf8InputBuffer[0x52];
         StackFloatValue4c = Utf8InputBuffer[0x53];
-        QuaternaryStackPointer8 = *(void **)(CharacterCode + 0x54);
+        ContextDataPointer = *(void **)(CharacterCode + 0x54);
         SystemPriorityLevel = *(void *)(CharacterCode + 0x56);
         NormalizeFloatValue(&StackUnsigned78);
         pFloatVariable7 = (float *)ProcessFloatVariableData(pSystemContextPrimaryFloat,pSystemContextPrimaryFloat,&StackUnsigned78);
@@ -59855,7 +59855,7 @@ unsigned long long SystemContextDataManager(long long *Utf8InputBuffer,uint64_t 
   uint8_t aSystemRegisterFlagX8 [8];
   byte *pbStack_60;
   int iStack_58;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   long long lStack_40;
   uint32_t ProcessingFlags;
   
@@ -59922,9 +59922,9 @@ LAB_18008927d:
 LAB_1800892bd:
   if (MemoryBlockListHead == CharacterCodePointer) {
     CurrentMemoryBlockAddress = Utf8InputBuffer[1];
-    CoreEngineFinalizeSystemEvent(&QuaternaryStackPointer8,Utf8BufferSize);
+    CoreEngineFinalizeSystemEvent(&ContextDataPointer,Utf8BufferSize);
     LowByte = true;
-    MemoryBlockListHead = (long long *)FindMatchingDataNode(CurrentMemoryBlockAddress,aSystemRegisterFlagX8,&QuaternaryStackPointer8);
+    MemoryBlockListHead = (long long *)FindMatchingDataNode(CurrentMemoryBlockAddress,aSystemRegisterFlagX8,&ContextDataPointer);
     if (*MemoryBlockListHead == CurrentMemoryBlockAddress) {
       HighByte = true;
       goto LAB_1800892fd;
@@ -59933,14 +59933,14 @@ LAB_1800892bd:
   HighByte = false;
 LAB_1800892fd:
   if (LowByte) {
-    QuaternaryStackPointer8 = &SystemNullTemplate;
+    ContextDataPointer = &SystemNullTemplate;
     if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
     lStack_40 = 0;
     ProcessingFlags = 0;
-    QuaternaryStackPointer8 = &ThreadLocalStorageTemplate;
+    ContextDataPointer = &ThreadLocalStorageTemplate;
   }
   if (pbStack_60 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
@@ -75833,7 +75833,7 @@ long long * InitializeSystemResourceHandler(uint64_t CharacterCode, long long *U
   uint64_t SystemValue;
   
   Utf16Char = CoreEngineSystemState;
-  QuaternaryStackPointer8 = &SystemNullTemplate;
+  ContextDataPointer = &SystemNullTemplate;
   ProcessingFlags = 0;
   pSystemPriorityLevel = (uint32_t *)0x0;
   FunctionAddress = 0;
@@ -75850,15 +75850,15 @@ long long * InitializeSystemResourceHandler(uint64_t CharacterCode, long long *U
   *(uint8_t *)(systemEventTemplatePointer + 7) = 0;
   FunctionAddress = 0x1c;
   ProcessingFlags.LowPart = MemoryAllocationIndex;
-  ReleaseSystemMemoryResources(0,Utf16EndPointer,&QuaternaryStackPointer8);
-  QuaternaryStackPointer8 = &SystemNullTemplate;
+  ReleaseSystemMemoryResources(0,Utf16EndPointer,&ContextDataPointer);
+  ContextDataPointer = &SystemNullTemplate;
   if (pSystemPriorityLevel != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
   pSystemPriorityLevel = (uint32_t *)0x0;
   ProcessingFlags = (unsigned long long)ProcessingFlags.HighPart << 0x20;
-  QuaternaryStackPointer8 = &ThreadLocalStorageTemplate;
+  ContextDataPointer = &ThreadLocalStorageTemplate;
   AllocateDataNodeStructure(Utf16Char,Utf8BufferSize);
   *(void *)(*Utf8InputBufferSize + 0x10) = Utf8SourcePointer;
   *(uint32_t *)(*Utf8InputBufferSize + 0x18) = Utf16EndPointer;
@@ -81429,7 +81429,7 @@ void ProcessSystemDataStreamSync(long long CharacterCode
   uint8_t BufferOffset;
   uint8_t auStack_57 [7];
   long long lStack_50;
-  uint8_t *QuaternaryStackPointer8;
+  uint8_t *ContextDataPointer;
   uint64_t SystemPriorityLevel;
   uint8_t FunctionAddress;
   uint8_t uStack_37;
@@ -81467,7 +81467,7 @@ void ProcessSystemDataStreamSync(long long CharacterCode
           if (0xf < ProcessingCounter) {
             StringProcessingStatus = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
           }
-          PointerPointerStack60 = &QuaternaryStackPointer8;
+          PointerPointerStack60 = &ContextDataPointer;
           EnginePointerBuffer = auStack_57;
           StackVariableBuffer = &BufferOffset;
           pCoreEngineSignedValue78 = &lStack_50;
@@ -81475,7 +81475,7 @@ void ProcessSystemDataStreamSync(long long CharacterCode
                             (*(void *)(CharacterCode + 0x68),CharacterCode + 0x74,StringProcessingStatus,
                              StringProcessingStatus + uStack_28);
           if ((-1 < validationResult) && (validationResult < 2)) {
-            if (QuaternaryStackPointer8 == &BufferOffset) {
+            if (ContextDataPointer == &BufferOffset) {
               StringProcessingStatus = &FunctionAddress;
               if (0xf < ProcessingCounter) {
                 StringProcessingStatus = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
@@ -87202,10 +87202,10 @@ void InitializeCoreEngineRenderingSystem(long long CharacterCode,uint64_t Utf8Bu
   uint64_t SystemRegisterFlagX8;
   uint8_t aStackUnsigned60 [16];
   code *pcStack_50;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   
   pcStack_50 = (code *)SystemFunctionAddressA;
-  QuaternaryStackPointer8 = &SystemFunctionAddressB;
+  ContextDataPointer = &SystemFunctionAddressB;
   *(uint32_t *)(CharacterCode + 0x128) = 0;
   StatusBuffer = (uint8_t *)(CharacterCode + 0x130);
   if (StatusBuffer != aStackUnsigned60) {
@@ -87216,7 +87216,7 @@ void InitializeCoreEngineRenderingSystem(long long CharacterCode,uint64_t Utf8Bu
       (*pcStack_50)(StatusBuffer,aStackUnsigned60,1);
     }
     *(code **)(CharacterCode + 0x140) = pcStack_50;
-    *(void **)(CharacterCode + 0x148) = QuaternaryStackPointer8;
+    *(void **)(CharacterCode + 0x148) = ContextDataPointer;
   }
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(aStackUnsigned60,0,0);
@@ -87259,7 +87259,7 @@ void InitializeCoreEngineRenderingSystem(long long CharacterCode,uint64_t Utf8Bu
   SystemRegisterFlagX8 = (uint32_t *)(CharacterCode + 0xe0);
   ProcessSystemContextAllocation(CharacterCode + 8,&SystemRegisterFlagX8);
   pcStack_50 = (code *)SystemFunctionAddressC;
-  QuaternaryStackPointer8 = &SystemFunctionAddressB;
+  ContextDataPointer = &SystemFunctionAddressB;
   *(uint32_t *)(CharacterCode + 0x198) = 1;
   StatusBuffer = (uint8_t *)(CharacterCode + 0x1a0);
   if (StatusBuffer != aStackUnsigned60) {
@@ -87270,7 +87270,7 @@ void InitializeCoreEngineRenderingSystem(long long CharacterCode,uint64_t Utf8Bu
       (*pcStack_50)(StatusBuffer,aStackUnsigned60,1);
     }
     *(code **)(CharacterCode + 0x1b0) = pcStack_50;
-    *(void **)(CharacterCode + 0x1b8) = QuaternaryStackPointer8;
+    *(void **)(CharacterCode + 0x1b8) = ContextDataPointer;
   }
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(aStackUnsigned60,0,0);
@@ -87354,7 +87354,7 @@ void InitializeCoreEngineRenderingSystem(long long CharacterCode,uint64_t Utf8Bu
   SystemRegisterFlagX8 = (uint32_t *)(CharacterCode + 0x3f0);
   ProcessSystemContextAllocation(CharacterCode + 8,&SystemRegisterFlagX8);
   pcStack_50 = (code *)SystemFunctionAddressD;
-  QuaternaryStackPointer8 = &SystemFunctionAddressB;
+  ContextDataPointer = &SystemFunctionAddressB;
   *(uint32_t *)(CharacterCode + 0x208) = 1;
   StatusBuffer = (uint8_t *)(CharacterCode + 0x210);
   if (StatusBuffer != aStackUnsigned60) {
@@ -87365,7 +87365,7 @@ void InitializeCoreEngineRenderingSystem(long long CharacterCode,uint64_t Utf8Bu
       (*pcStack_50)(StatusBuffer,aStackUnsigned60,1);
     }
     *(code **)(CharacterCode + 0x220) = pcStack_50;
-    *(void **)(CharacterCode + 0x228) = QuaternaryStackPointer8;
+    *(void **)(CharacterCode + 0x228) = ContextDataPointer;
   }
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(aStackUnsigned60,0,0);
@@ -88757,7 +88757,7 @@ LAB_180109ba3:
   uint64_t SystemRegisterFlagX8;
   uint8_t aStackUnsigned60 [16];
   code *pcStack_50;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   
   CharacterTablePointer = CharacterCode + 0xe0;
   (**(code **)(*(long long *)(CharacterCode + 0x120) + 0x10)            ((long long *)(CharacterCode + 0x120),&SystemRenderConfigParameterJ,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
@@ -89040,7 +89040,7 @@ LAB_18010a4a0:
   SystemRegisterFlagX8 = (uint32_t *)MemoryAllocationIndex;
   ProcessSystemContextAllocation(CharacterCode + 0x48,&SystemRegisterFlagX8);
   pcStack_50 = (code *)&SystemFunctionAddressG;
-  QuaternaryStackPointer8 = &SystemFunctionAddressB;
+  ContextDataPointer = &SystemFunctionAddressB;
   *(uint32_t *)(CharacterCode + 0x10b8) = 0;
   pMemoryAddressMask = (uint8_t *)(CharacterCode + 0x10c0);
   if (pMemoryAddressMask != aStackUnsigned60) {
@@ -89051,7 +89051,7 @@ LAB_18010a4a0:
       (*pcStack_50)(pMemoryAddressMask,aStackUnsigned60,1);
     }
     *(code **)(CharacterCode + 0x10d0) = pcStack_50;
-    *(void **)(CharacterCode + 0x10d8) = QuaternaryStackPointer8;
+    *(void **)(CharacterCode + 0x10d8) = ContextDataPointer;
   }
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(aStackUnsigned60,0,0);
@@ -89098,7 +89098,7 @@ LAB_18010a4a0:
   SystemRegisterFlagX8 = (uint32_t *)(CharacterCode + 0x1070);
   ProcessSystemContextAllocation(CharacterCode + 8,&SystemRegisterFlagX8);
   pcStack_50 = (code *)&SystemFunctionAddressH;
-  QuaternaryStackPointer8 = &SystemFunctionAddressB;
+  ContextDataPointer = &SystemFunctionAddressB;
   *(uint32_t *)(CharacterCode + 0x1128) = 0;
   pMemoryAddressMask = (uint8_t *)(CharacterCode + 0x1130);
   if (pMemoryAddressMask != aStackUnsigned60) {
@@ -89109,7 +89109,7 @@ LAB_18010a4a0:
       (*pcStack_50)(pMemoryAddressMask,aStackUnsigned60,1);
     }
     *(code **)(CharacterCode + 0x1140) = pcStack_50;
-    *(void **)(CharacterCode + 0x1148) = QuaternaryStackPointer8;
+    *(void **)(CharacterCode + 0x1148) = ContextDataPointer;
   }
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(aStackUnsigned60,0,0);
@@ -89156,7 +89156,7 @@ LAB_18010a4a0:
   SystemRegisterFlagX8 = (uint32_t *)(CharacterCode + 0x10e0);
   ProcessSystemContextAllocation(CharacterCode + 8,&SystemRegisterFlagX8);
   pcStack_50 = (code *)&SystemFunctionAddressI;
-  QuaternaryStackPointer8 = &SystemFunctionAddressB;
+  ContextDataPointer = &SystemFunctionAddressB;
   *(uint32_t *)(CharacterCode + 0x1198) = 0;
   pMemoryAddressMask = (uint8_t *)(CharacterCode + 0x11a0);
   if (pMemoryAddressMask != aStackUnsigned60) {
@@ -89167,7 +89167,7 @@ LAB_18010a4a0:
       (*pcStack_50)(pMemoryAddressMask,aStackUnsigned60,1);
     }
     *(code **)(CharacterCode + 0x11b0) = pcStack_50;
-    *(void **)(CharacterCode + 0x11b8) = QuaternaryStackPointer8;
+    *(void **)(CharacterCode + 0x11b8) = ContextDataPointer;
   }
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(aStackUnsigned60,0,0);
@@ -89214,7 +89214,7 @@ LAB_18010a4a0:
   SystemRegisterFlagX8 = (uint32_t *)(CharacterCode + 0x1150);
   ProcessSystemContextAllocation(CharacterCode + 8,&SystemRegisterFlagX8);
   pcStack_50 = (code *)&SystemFunctionAddressJ;
-  QuaternaryStackPointer8 = &SystemFunctionAddressB;
+  ContextDataPointer = &SystemFunctionAddressB;
   *(uint32_t *)(CharacterCode + 0x1208) = 0;
   pMemoryAddressMask = (uint8_t *)(CharacterCode + 0x1210);
   if (pMemoryAddressMask != aStackUnsigned60) {
@@ -89225,7 +89225,7 @@ LAB_18010a4a0:
       (*pcStack_50)(pMemoryAddressMask,aStackUnsigned60,1);
     }
     *(code **)(CharacterCode + 0x1220) = pcStack_50;
-    *(void **)(CharacterCode + 0x1228) = QuaternaryStackPointer8;
+    *(void **)(CharacterCode + 0x1228) = ContextDataPointer;
   }
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(aStackUnsigned60,0,0);
@@ -89272,7 +89272,7 @@ LAB_18010a4a0:
   SystemRegisterFlagX8 = (uint32_t *)(CharacterCode + 0x11c0);
   ProcessSystemContextAllocation(CharacterCode + 8,&SystemRegisterFlagX8);
   pcStack_50 = (code *)&SystemFunctionAddressK;
-  QuaternaryStackPointer8 = &SystemFunctionAddressB;
+  ContextDataPointer = &SystemFunctionAddressB;
   *(uint32_t *)(CharacterCode + 0x1278) = 0;
   pMemoryAddressMask = (uint8_t *)(CharacterCode + 0x1280);
   if (pMemoryAddressMask != aStackUnsigned60) {
@@ -89283,7 +89283,7 @@ LAB_18010a4a0:
       (*pcStack_50)(pMemoryAddressMask,aStackUnsigned60,1);
     }
     *(code **)(CharacterCode + 0x1290) = pcStack_50;
-    *(void **)(CharacterCode + 0x1298) = QuaternaryStackPointer8;
+    *(void **)(CharacterCode + 0x1298) = ContextDataPointer;
   }
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(aStackUnsigned60,0,0);
@@ -89330,7 +89330,7 @@ LAB_18010a4a0:
   SystemRegisterFlagX8 = (uint32_t *)(CharacterCode + 0x1230);
   ProcessSystemContextAllocation(CharacterCode + 8,&SystemRegisterFlagX8);
   pcStack_50 = (code *)&SystemFunctionAddressL;
-  QuaternaryStackPointer8 = &SystemFunctionAddressB;
+  ContextDataPointer = &SystemFunctionAddressB;
   *(uint32_t *)(CharacterCode + 0x12e8) = 0;
   pMemoryAddressMask = (uint8_t *)(CharacterCode + 0x12f0);
   if (pMemoryAddressMask != aStackUnsigned60) {
@@ -89341,7 +89341,7 @@ LAB_18010a4a0:
       (*pcStack_50)(pMemoryAddressMask,aStackUnsigned60,1);
     }
     *(code **)(CharacterCode + 0x1300) = pcStack_50;
-    *(void **)(CharacterCode + 0x1308) = QuaternaryStackPointer8;
+    *(void **)(CharacterCode + 0x1308) = ContextDataPointer;
   }
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(aStackUnsigned60,0,0);
@@ -89388,7 +89388,7 @@ LAB_18010a4a0:
   SystemRegisterFlagX8 = (uint32_t *)(CharacterCode + 0x12a0);
   ProcessSystemContextAllocation(CharacterCode + 8,&SystemRegisterFlagX8);
   pcStack_50 = (code *)&SystemFunctionAddressM;
-  QuaternaryStackPointer8 = &SystemFunctionAddressB;
+  ContextDataPointer = &SystemFunctionAddressB;
   *(uint32_t *)(CharacterCode + 0x1358) = 0;
   pMemoryAddressMask = (uint8_t *)(CharacterCode + 0x1360);
   if (pMemoryAddressMask != aStackUnsigned60) {
@@ -89399,7 +89399,7 @@ LAB_18010a4a0:
       (*pcStack_50)(pMemoryAddressMask,aStackUnsigned60,1);
     }
     *(code **)(CharacterCode + 0x1370) = pcStack_50;
-    *(void **)(CharacterCode + 0x1378) = QuaternaryStackPointer8;
+    *(void **)(CharacterCode + 0x1378) = ContextDataPointer;
   }
   if (pcStack_50 != (code *)0x0) {
     (*pcStack_50)(aStackUnsigned60,0,0);
@@ -94426,7 +94426,7 @@ unsigned long long ProcessSystemBufferAndDataValidation(uint64_t CharacterCode,u
   float fStack_5c;
   float StackFloat58;
   float StackFloat54;
-  float StackFloat50;
+  float DistanceThreshold;
   float fStack_4c;
   
   BufferStatus = SystemConfigurationHandle;
@@ -94450,12 +94450,12 @@ unsigned long long ProcessSystemBufferAndDataValidation(uint64_t CharacterCode,u
     StackFloat54 = *(float *)(SystemDataTablePointer + 0x104);
     CalculatedFilterValue = StackVariable70.HighPart;
     ContextPrimaryFloat0 = (float)StackVariable70;
-    StackFloat50 = StackFloat58 + (float)StackVariable70;
+    DistanceThreshold = StackFloat58 + (float)StackVariable70;
     fStack_4c = StackFloat54 + StackVariable70.HighPart;
     if (StackVariable70.HighPart < NormalizedParameterValue + NormalizedParameterValue + *(float *)(BufferStatus + 0x19f8)) {
       NormalizedParameterValue = 0.0;
     }
-    fStack_68 = StackFloat50 - StackFloat58;
+    fStack_68 = DistanceThreshold - StackFloat58;
     fStack_64 = fStack_4c - StackFloat54;
     ProcessSystemBuffer(&fStack_68,NormalizedParameterValue);
     SystemChecksumValue = ValidateSystemData(&StackFloat58,RemainingSpace,0);
@@ -94476,7 +94476,7 @@ unsigned long long ProcessSystemBufferAndDataValidation(uint64_t CharacterCode,u
       if (RemainingSpace == *(int *)(BufferStatus + 0x1ca0)) {
         ProcessMemoryLock(&StackFloat58,1,BufferStatus);
       }
-      ProcessSystemDataConcatenation(CONCAT44(StackFloat54,StackFloat58),CONCAT44(fStack_4c,StackFloat50),DataSize,1,
+      ProcessSystemDataConcatenation(CONCAT44(StackFloat54,StackFloat58),CONCAT44(fStack_4c,DistanceThreshold),DataSize,1,
                     *(uint32_t *)(BufferStatus + 0x1664));
       ContextPrimaryFloat0 = (ContextPrimaryFloat0 - *(float *)(BufferStatus + 0x19f8)) * 0.5;
       NormalizedParameterValue = (FilterInputValue - *(float *)(BufferStatus + 0x19f8)) * 0.5;
@@ -98500,7 +98500,7 @@ unsigned long long ProcessSystemMemoryAllocationAndFloatCalculation(uint64_t *Ut
   uint32_t StackUnsigned60;
   float fStack_5c;
   uint64_t BufferOffset;
-  float StackFloat50;
+  float DistanceThreshold;
   float fStack_4c;
   uint64_t SystemStackOffset48;
   uint64_t SystemPriorityLevel;
@@ -98522,7 +98522,7 @@ unsigned long long ProcessSystemMemoryAllocationAndFloatCalculation(uint64_t *Ut
       StackUnsigned60 = 0;
     }
     BufferOffset.LowPart = (float)*Utf8InputBuffer;
-    StackFloat50 = (float)Utf8InputBuffer[1];
+    DistanceThreshold = (float)Utf8InputBuffer[1];
     BufferOffset.LowPart = (float)BufferOffset - SystemContextPrimaryFloat4;
     IntegerValue3 = (int)Utf8BufferSize;
     pContextPrimaryFloat1 = (float *)((long long)&StackUnsigned68 + 4);
@@ -98532,7 +98532,7 @@ unsigned long long ProcessSystemMemoryAllocationAndFloatCalculation(uint64_t *Ut
     BufferOffset.HighPart = (float)((unsigned long long)*Utf8InputBuffer >> 0x20);
     fStack_4c = (float)((unsigned long long)Utf8InputBuffer[1] >> 0x20);
     BufferOffset.HighPart = BufferOffset.HighPart - *pContextPrimaryFloat1;
-    _StackFloat50 = CONCAT44(fStack_4c + *pContextPrimaryFloat1,StackFloat50 + SystemContextPrimaryFloat4);
+    _DistanceThreshold = CONCAT44(fStack_4c + *pContextPrimaryFloat1,DistanceThreshold + SystemContextPrimaryFloat4);
     ProcessSystemParameters(&BufferOffset,Utf8BufferSize & 0xffffffff,&AdditionalParameter5,&AdditionalParameter4,0x60);
     isSystemContextNull = AdditionalParameter4;
     if (*(int *)(MemoryBoundaryEnd + 0x1b2c) != IntegerValue3) {
@@ -98610,7 +98610,7 @@ unsigned long long ProcessSystemMemoryAllocationAndFloatCalculation(uint64_t *Ut
     }
     PrimaryProcessingStatusFlag = (void *)(MemoryBoundaryEnd + 0x1628 + (SystemContextValue + 10) * 0x10);
     BufferOffset = *PrimaryProcessingStatusFlag;
-    _StackFloat50 = CONCAT44(*(float *)((long long)PrimaryProcessingStatusFlag + 0xc) * *(float *)(MemoryBoundaryEnd + 0x1628),
+    _DistanceThreshold = CONCAT44(*(float *)((long long)PrimaryProcessingStatusFlag + 0xc) * *(float *)(MemoryBoundaryEnd + 0x1628),
                           *(uint32_t *)(PrimaryProcessingStatusFlag + 1));
     SystemMemoryAllocationResult = ValidateSystemData(&BufferOffset);
     ProcessSystemDataAndConfigure(*(void *)(AllocatedMemorySize + 0x2e8),&SystemStackFlag,&SystemPriorityLevel,SystemMemoryAllocationResult,
@@ -102168,7 +102168,7 @@ int CalculateSystemDistanceAndValidate(long long CharacterCode,float Utf8BufferS
   float CalculatedDistance;
   float FloatVariable7;
   uint64_t BufferOffset;
-  float StackFloat50;
+  float DistanceThreshold;
   uint64_t StackUnsigned4C;
   uint uStack_44;
   
@@ -102192,7 +102192,7 @@ int CalculateSystemDistanceAndValidate(long long CharacterCode,float Utf8BufferS
       return 0;
     }
     if (Utf8SourcePointer < StackUnsigned4C.HighPart + FloatVariable7) break;
-    FloatVariable7 = FloatVariable7 + StackFloat50;
+    FloatVariable7 = FloatVariable7 + DistanceThreshold;
     CharacterByteCount = CharacterByteCount + uStack_44;
     if (IntegerValue <= CharacterByteCount) {
       return IntegerValue;
@@ -110225,11 +110225,11 @@ uint64_t ProcessDataStructureAllocation(int *Utf8InputBuffer,uint64_t *Utf8Input
       *(int *)(CharacterTablePointer + 0x100) = Utf8InputBuffer[10];
       pContextPrimaryFloat0 = (float *)(MemoryBlockIndex + 0x1628 +
                          ((((unsigned long long)(ProcessStringBuffer & 0x400000) | 0x4200000) >> 0x15) + 10) * 0x10);
-      StackFloat50 = *pContextPrimaryFloat0;
+      DistanceThreshold = *pContextPrimaryFloat0;
       fStack_4c = pContextPrimaryFloat0[1];
       fStack_48 = pContextPrimaryFloat0[2];
       fStack_44 = pContextPrimaryFloat0[3] * *(float *)(MemoryBlockIndex + 0x1628);
-      CalculatedCodePoint = ValidateSystemData(&StackFloat50);
+      CalculatedCodePoint = ValidateSystemData(&DistanceThreshold);
       StackFloat54 = (float)Utf8InputBuffer[0xd] - 1.0;
       if (Utf16EndPointer == 0) {
         if ((ProcessStringBuffer & 0x200000) == 0) {
@@ -110242,15 +110242,15 @@ uint64_t ProcessDataStructureAllocation(int *Utf8InputBuffer,uint64_t *Utf8Input
         if ((ProcessStringBuffer & 0x200000) == 0) {
           SystemContextPrimaryFloat2 = *(float *)(CharacterTablePointer + 0x70);
         }
-        StackFloat50 = SystemContextPrimaryFloat2 + (float)Utf8InputBuffer[0xc];
-        pContextPrimaryFloat0 = &StackFloat50;
+        DistanceThreshold = SystemContextPrimaryFloat2 + (float)Utf8InputBuffer[0xc];
+        pContextPrimaryFloat0 = &DistanceThreshold;
         pProcessedFloatValue8 = &StackFloat58;
       }
       else {
-        StackFloat50 = *(float *)(Utf16EndPointer + 0x38);
+        DistanceThreshold = *(float *)(Utf16EndPointer + 0x38);
         pContextPrimaryFloat0 = &StackFloat58;
-        StackFloat58 = StackFloat50 + *(float *)(Utf16EndPointer + 0x40);
-        pProcessedFloatValue8 = &StackFloat50;
+        StackFloat58 = DistanceThreshold + *(float *)(Utf16EndPointer + 0x40);
+        pProcessedFloatValue8 = &DistanceThreshold;
       }
       fStack_4c = StackFloat54;
       AllocateMemoryAndConfigure(*(void *)(ThreadLocalStorageData + 0x2e8),pProcessedFloatValue8,pContextPrimaryFloat0,CalculatedCodePoint,0x3f800000);
@@ -127688,10 +127688,10 @@ unsigned long long ValidateAndProcessSystemFlags(uint64_t *Utf8InputBuffer,uint6
   float FloatVariable4;
   float StackFloat58;
   float StackFloat54;
-  float StackFloat50;
+  float DistanceThreshold;
   float fStack_4c;
   
-  StackFloat50 = (float)*Utf8InputBufferSize;
+  DistanceThreshold = (float)*Utf8InputBufferSize;
   fStack_4c = (float)((unsigned long long)*Utf8InputBufferSize >> 0x20);
   StackFloat58 = (float)*Utf8InputBuffer;
   StackFloat54 = (float)((unsigned long long)*Utf8InputBuffer >> 0x20);
@@ -127713,17 +127713,17 @@ unsigned long long ValidateAndProcessSystemFlags(uint64_t *Utf8InputBuffer,uint6
     if (fStack_4c <= *(float *)(CharacterTablePointer + 0x234)) {
       CalculatedFilterValue = fStack_4c;
     }
-    if (*(float *)(CharacterTablePointer + 0x230) <= StackFloat50) {
-      StackFloat50 = *(float *)(CharacterTablePointer + 0x230);
+    if (*(float *)(CharacterTablePointer + 0x230) <= DistanceThreshold) {
+      DistanceThreshold = *(float *)(CharacterTablePointer + 0x230);
     }
   }
   if ((((ContextSecondaryFloat - *(float *)(SystemConfigurationHandle + 0x167c) <= *(float *)(SystemConfigurationHandle + 0x118)) &&
        (FloatVariable4 - *(float *)(SystemConfigurationHandle + 0x1680) <= *(float *)(SystemConfigurationHandle + 0x11c))) &&
-      (*(float *)(SystemConfigurationHandle + 0x118) < *(float *)(SystemConfigurationHandle + 0x167c) + StackFloat50)) &&
+      (*(float *)(SystemConfigurationHandle + 0x118) < *(float *)(SystemConfigurationHandle + 0x167c) + DistanceThreshold)) &&
      (*(float *)(SystemConfigurationHandle + 0x11c) < *(float *)(SystemConfigurationHandle + 0x1680) + FilterInputValue)) {
     ProcessingResult = *(float **)(SystemConfigurationHandle + 0x1c80);
     if (((FloatVariable4 < ProcessingResult[3] + ProcessingResult[5]) && (ProcessingResult[3] < FilterInputValue)) &&
-       ((ContextSecondaryFloat < ProcessingResult[2] + ProcessingResult[4] && (ProcessingResult[2] < StackFloat50)))) {
+       ((ContextSecondaryFloat < ProcessingResult[2] + ProcessingResult[4] && (ProcessingResult[2] < DistanceThreshold)))) {
       return CONCAT71((int7)((unsigned long long)ProcessingResult >> 8),1);
     }
   }
@@ -127900,7 +127900,7 @@ void ProcessSystemStringAndEncodingConversion(void)
   uint64_t SystemRegisterFlagX8;
   float StackFloat58;
   float StackFloat54;
-  float StackFloat50;
+  float DistanceThreshold;
   float fStack_4c;
   void *pSystemPriorityLevel;
   
@@ -127926,7 +127926,7 @@ void ProcessSystemStringAndEncodingConversion(void)
     SystemContextPrimaryFloat3 = FloatVariable4 + SystemContextPrimaryFloat3;
     StackFloat58 = FilterInputValue;
     StackFloat54 = FloatVariable4;
-    StackFloat50 = SystemContextPrimaryFloat2;
+    DistanceThreshold = SystemContextPrimaryFloat2;
     fStack_4c = SystemContextPrimaryFloat3;
     ProcessSystemBuffer(&SystemRegisterFlagX8,0);
     EncodingConversionResult = SystemConfigurationHandle;
@@ -127936,14 +127936,14 @@ void ProcessSystemStringAndEncodingConversion(void)
       *(void *)(SystemStringIndex + 0x144) = 0;
       *(float *)(SystemStringIndex + 0x14c) = StackFloat58;
       *(float *)(SystemStringIndex + 0x150) = StackFloat54;
-      *(float *)(SystemStringIndex + 0x154) = StackFloat50;
+      *(float *)(SystemStringIndex + 0x154) = DistanceThreshold;
       *(float *)(SystemStringIndex + 0x158) = fStack_4c;
       long long AllocatedMemorySize = *(long long *)(EncodingConversionResult + 0x1af8);
       if (((((*(float *)(AllocatedMemorySize + 0x22c) <= SystemContextPrimaryFloat3 && SystemContextPrimaryFloat3 != *(float *)(AllocatedMemorySize + 0x22c)) &&
             (FloatVariable4 < *(float *)(AllocatedMemorySize + 0x234))) &&
            ((*(float *)(AllocatedMemorySize + 0x228) <= SystemContextPrimaryFloat2 && SystemContextPrimaryFloat2 != *(float *)(AllocatedMemorySize + 0x228) &&
             (FilterInputValue < *(float *)(AllocatedMemorySize + 0x230))))) || (*(char *)(EncodingConversionResult + 0x2e38) != '\0')) &&
-         (CharacterValidationResult = ValidateAndProcessSystemFlags(&StackFloat58,&StackFloat50,1), CharacterValidationResult != '\0')) {
+         (CharacterValidationResult = ValidateAndProcessSystemFlags(&StackFloat58,&DistanceThreshold,1), CharacterValidationResult != '\0')) {
         *(uint *)(SystemStringIndex + 0x148) = *(uint *)(SystemStringIndex + 0x148) | 1;
       }
     }
@@ -127953,7 +127953,7 @@ void ProcessSystemStringAndEncodingConversion(void)
         ProcessMemoryLock(&StackFloat58,1);
       }
       if ((*(int *)(SystemStringIndex + 0x174) == 0) && (SystemStringIndex == *(long long *)(AllocatedMemorySize + 0x1c98))) {
-        StackFloat50 = StackFloat50 + 2.0;
+        DistanceThreshold = DistanceThreshold + 2.0;
         fStack_4c = fStack_4c + 2.0;
         StackFloat58 = StackFloat58 - 2.0;
         StackFloat54 = StackFloat54 - 2.0;
@@ -145371,7 +145371,7 @@ e4e0(voidvoid ProcessSystemEncoding(void
   float SecondaryScalingFactor;
   float StackFloat58;
   float StackFloat54;
-  float StackFloat50;
+  float DistanceThreshold;
   float fStack_4c;
   
   EncodingConversionResult = SystemConfigurationHandle;
@@ -145419,7 +145419,7 @@ e4e0(voidvoid ProcessSystemEncoding(void
     SystemContextPrimaryFloat2 = SystemContextPrimaryFloat3;
     StackFloat58 = ContextSecondaryFloat;
     StackFloat54 = SystemContextPrimaryFloat;
-    StackFloat50 = SystemContextPrimaryFloat3;
+    DistanceThreshold = SystemContextPrimaryFloat3;
     fStack_4c = SystemContextPrimaryFloat4;
     ProcessSystemBuffer(&PrimaryScalingFactor,*(uint32_t *)(MemoryBlockIndex + -0x10 + SystemDataTablePointer * 0x30));
     SystemDataStructureRegistry = *(long long *)(EncodingConversionResult + 0x1af8);
@@ -145433,7 +145433,7 @@ e4e0(voidvoid ProcessSystemEncoding(void
            (SystemContextPrimaryFloat < *(float *)(AllocatedMemorySize + 0x234))) &&
           (*(float *)(AllocatedMemorySize + 0x228) <= SystemContextPrimaryFloat2 && SystemContextPrimaryFloat2 != *(float *)(AllocatedMemorySize + 0x228))) &&
          (ContextSecondaryFloat < *(float *)(AllocatedMemorySize + 0x230))) || (*(char *)(EncodingConversionResult + 0x2e38) != '\0')) &&
-       (CharacterValidationResult = ValidateAndProcessSystemFlags(&StackFloat58,&StackFloat50,1), CharacterValidationResult != '\0')) {
+       (CharacterValidationResult = ValidateAndProcessSystemFlags(&StackFloat58,&DistanceThreshold,1), CharacterValidationResult != '\0')) {
       *(uint *)(SystemDataStructureRegistry + 0x148) = *(uint *)(SystemDataStructureRegistry + 0x148) | 1;
     }
   }
@@ -146906,7 +146906,7 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
   uint64_t ReservedStackSpace;
   float StackFloat58;
   float StackFloat54;
-  float StackFloat50;
+  float DistanceThreshold;
   float StackVerticalAdjustment;
   uint8_t SystemStackFlag [64];
   
@@ -146923,12 +146923,12 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
         ProcessUtf8CharacterEncoding(SystemStackFlag, Utf8BufferSize);
         if (((*(char *)(SystemConfigurationHandle + 0x1d06) == '\0') && (*(char *)(SystemConfigurationHandle + 0x1d07) != '\0')) &&
            ((*(byte *)(SystemConfigurationHandle + 8) & 4) == 0)) {
-          StackFloat50 = HorizontalOffset + 16.0;
+          DistanceThreshold = HorizontalOffset + 16.0;
           StackVerticalAdjustment = VerticalOffset + 8.0;
         }
         else {
           CharacterScaleFactor = CharacterScaleFactor * 24.0;
-          StackFloat50 = CharacterScaleFactor + HorizontalOffset;
+          DistanceThreshold = CharacterScaleFactor + HorizontalOffset;
           StackVerticalAdjustment = CharacterScaleFactor + VerticalOffset;
         }
         StackFloat54 = fStackX_14 - 8.0;
@@ -146947,7 +146947,7 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
       MemoryBlockIndex = Utf8BufferSize;
       ProcessSystemBufferData(aSystemStackFlag);
       StackFloat58 = *(float *)(Utf8BufferSize + 0x40) - 1.0;
-      StackFloat50 = *(float *)(Utf8BufferSize + 0x40) + 1.0;
+      DistanceThreshold = *(float *)(Utf8BufferSize + 0x40) + 1.0;
       StackFloat54 = *(float *)(MemoryBlockIndex + 0x44) - 1.0;
       fStack_4c = *(float *)(MemoryBlockIndex + 0x44) + 1.0;
       ConvertSystemData(CharacterCode,Utf8BufferSize + 0x40,MemoryBlockIndex + 0x48,MemoryBlockIndex + 0xd4,aSystemStackFlag,&StackFloat58,0);
@@ -146960,7 +146960,7 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
     ProcessSystemBufferData(aSystemStackFlag);
     if (*(char *)(MemoryBlockIndex + 0x17e) == '\0') {
       StackFloat58 = *(float *)(MemoryBlockIndex + 0x40) + FloatVariable5;
-      StackFloat50 = ((*(float *)(MemoryBlockIndex + 0x40) + *(float *)(MemoryBlockIndex + 0x48)) - FloatVariable5) -
+      DistanceThreshold = ((*(float *)(MemoryBlockIndex + 0x40) + *(float *)(MemoryBlockIndex + 0x48)) - FloatVariable5) -
                   *(float *)(MemoryBlockIndex + 0xa4);
       StackFloat54 = -3.4028235e+38;
       fStack_4c = 3.4028235e+38;
@@ -146991,7 +146991,7 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
       }
       StackFloat54 = *(float *)(MemoryBlockIndex + 0x44) + StackFloat54;
       StackFloat58 = -3.4028235e+38;
-      StackFloat50 = 3.4028235e+38;
+      DistanceThreshold = 3.4028235e+38;
     }
     ConvertSystemData(CharacterCode,Utf8BufferSize + 0x40,Utf8BufferSize + 0x48,Utf8BufferSize + 0xd4,aSystemStackFlag,&StackFloat58,0);
   }
@@ -152741,7 +152741,7 @@ void ProcessSystemConfigurationUpdate(void
   float SecondaryScalingFactor;
   float StackFloat58;
   float StackFloat54;
-  float StackFloat50;
+  float DistanceThreshold;
   float fStack_4c;
   
   ReferenceCountPointer = (int *)(SystemConfigurationHandle + 0x1d98);
@@ -152782,7 +152782,7 @@ void ProcessSystemConfigurationUpdate(void
       ContextPrimaryFloat0 = *(float *)(SystemDataTablePointer + 0x44) + (float)MutexLockResult[8];
       StackFloat58 = NormalizedParameterValue;
       StackFloat54 = ContextPrimaryFloat0;
-      StackFloat50 = ContextPrimaryFloat1;
+      DistanceThreshold = ContextPrimaryFloat1;
       fStack_4c = SystemContextPrimaryFloat2;
       FUN_180131c60(SystemDataTablePointer,&StackFloat58);
       SystemDataTablePointer = *(long long *)(MutexLockResult + 2);
@@ -152794,7 +152794,7 @@ void ProcessSystemConfigurationUpdate(void
       MutexLockResult[9] = (int)(PrimaryScalingFactor + (float)MutexLockResult[9]);
       MutexLockResult[10] = (int)(SecondaryScalingFactor + (float)MutexLockResult[10]);
       if ((*(uint *)(*(long long *)(MutexLockResult + 2) + 0xc) & 0x1000000) != 0) {
-        StackFloat50 = PrimaryScalingFactor + ContextPrimaryFloat1;
+        DistanceThreshold = PrimaryScalingFactor + ContextPrimaryFloat1;
         fStack_4c = SecondaryScalingFactor + SystemContextPrimaryFloat2;
         StackFloat58 = PrimaryScalingFactor + NormalizedParameterValue;
         StackFloat54 = SecondaryScalingFactor + ContextPrimaryFloat0;
@@ -171923,7 +171923,7 @@ uint32_t ValidateSystemDataStructureMatch(uint64_t CharacterCode, long long Utf8
   char *StringDataPointer;
   char *pSystemStatusChar;
   void *SystemValidationPointer;
-  uint64_t *QuaternaryStackPointer8;
+  uint64_t *ContextDataPointer;
   uint32_t SystemPriorityLevel;
   uint64_t FunctionAddress;
   
@@ -171957,11 +171957,11 @@ uint32_t ValidateSystemDataStructureMatch(uint64_t CharacterCode, long long Utf8
 LAB_1801452ee:
   SystemTemplatePointer = &SystemNullTemplate;
   FunctionAddress = 0;
-  QuaternaryStackPointer8 = NULL;
+  ContextDataPointer = NULL;
   SystemPriorityLevel = 0;
   systemEventTemplatePointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13,StringDataPointer,0xfffffffffffffffe);
   *(uint8_t *)systemEventTemplatePointer = 0;
-  QuaternaryStackPointer8 = systemEventTemplatePointer;
+  ContextDataPointer = systemEventTemplatePointer;
   Utf16Char = GetMemoryAllocationInfo(systemEventTemplatePointer);
   FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
   *systemEventTemplatePointer = 0x736e65645f676f66;
@@ -171987,7 +171987,7 @@ LAB_1801452ee:
   char *CharacterPointer;
   void *PreviousNode;
   void *SystemValidationPointer;
-  uint32_t *QuaternaryStackPointer8;
+  uint32_t *ContextDataPointer;
   uint32_t SystemPriorityLevel;
   uint64_t FunctionAddress;
   
@@ -172014,12 +172014,12 @@ LAB_1801452ee:
 LAB_180146224:
           SystemTemplatePointer = &SystemNullTemplate;
           FunctionAddress = 0;
-          QuaternaryStackPointer8 = (uint32_t *)0x0;
+          ContextDataPointer = (uint32_t *)0x0;
           SystemPriorityLevel = 0;
           PrimaryProcessingStatusFlag = (uint32_t *                   BufferAllocate(MemoryPoolManager,0x14,CONCAT71((int7)((unsigned long long)FunctionPointer >> 8),0x13),
                                  CharacterPointer,0xfffffffffffffffe);
           *(uint8_t *)PrimaryProcessingStatusFlag = 0;
-          QuaternaryStackPointer8 = PrimaryProcessingStatusFlag;
+          ContextDataPointer = PrimaryProcessingStatusFlag;
           Utf16Char = GetMemoryAllocationInfo(PrimaryProcessingStatusFlag);
           FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
           *PrimaryProcessingStatusFlag = 0x756f6c63;
@@ -172060,7 +172060,7 @@ LAB_180146224:
   char *StringDataPointer;
   char *pSystemStatusChar;
   void *SystemValidationPointer;
-  uint32_t *QuaternaryStackPointer8;
+  uint32_t *ContextDataPointer;
   uint32_t SystemPriorityLevel;
   uint64_t FunctionAddress;
   
@@ -172094,11 +172094,11 @@ LAB_180146224:
 LAB_180146a6e:
   SystemTemplatePointer = &SystemNullTemplate;
   FunctionAddress = 0;
-  QuaternaryStackPointer8 = (uint32_t *)0x0;
+  ContextDataPointer = (uint32_t *)0x0;
   SystemPriorityLevel = 0;
   systemEventTemplatePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x10,0x13,StringDataPointer,0xfffffffffffffffe);
   *(uint8_t *)systemEventTemplatePointer = 0;
-  QuaternaryStackPointer8 = systemEventTemplatePointer;
+  ContextDataPointer = systemEventTemplatePointer;
   Utf16Char = GetMemoryAllocationInfo(systemEventTemplatePointer);
   FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
   *systemEventTemplatePointer = 0x62796b73;
@@ -172126,7 +172126,7 @@ LAB_180146a6e:
   char *CharacterPointer;
   void *PreviousNode;
   void *SystemValidationPointer;
-  uint32_t *QuaternaryStackPointer8;
+  uint32_t *ContextDataPointer;
   uint32_t SystemPriorityLevel;
   uint64_t FunctionAddress;
   
@@ -172153,12 +172153,12 @@ LAB_180146a6e:
 LAB_1801479b7:
           SystemTemplatePointer = &SystemNullTemplate;
           FunctionAddress = 0;
-          QuaternaryStackPointer8 = (uint32_t *)0x0;
+          ContextDataPointer = (uint32_t *)0x0;
           SystemPriorityLevel = 0;
           systemEventTemplatePointer = (uint32_t *                   BufferAllocate(MemoryPoolManager,0x15,CONCAT71((int7)((unsigned long long)pSystemCheckResult >> 8),0x13),
                                  CharacterPointer,0xfffffffffffffffe);
           *(uint8_t *)systemEventTemplatePointer = 0;
-          QuaternaryStackPointer8 = systemEventTemplatePointer;
+          ContextDataPointer = systemEventTemplatePointer;
           Utf16Char = GetMemoryAllocationInfo(systemEventTemplatePointer);
           FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
           *systemEventTemplatePointer = 0x67697262;
@@ -175736,7 +175736,7 @@ uint64_t * FUN_18014c850(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize
   uint64_t SystemRegisterFlagX8;
   uint32_t BufferOffset;
   uint32_t SystemUnsignedValue54;
-  float StackFloat50;
+  float DistanceThreshold;
   float fStack_4c;
   float fStack_48;
   uint32_t uStack_44;
@@ -175758,7 +175758,7 @@ uint64_t * FUN_18014c850(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize
   uStack_28.HighPart = (uint32_t)((unsigned long long)SystemChecksumValue >> 0x20);
   BufferOffset = (uint32_t)FunctionAddress;
   SystemUnsignedValue54 = FunctionAddress.HighPart;
-  StackFloat50 = (float)ProcessingFlags;
+  DistanceThreshold = (float)ProcessingFlags;
   fStack_4c = ProcessingFlags.HighPart;
   fStack_48 = (float)uStack_28;
   uStack_44 = uStack_28.HighPart;
@@ -175788,7 +175788,7 @@ uint64_t * FUN_18014c850(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize
     if (MemoryAllocationIndex <= ProcessingStatusFlag) {
       if (ProcessingStatusFlag <= MemoryAllocationIndex) {
         SystemContextPrimaryFloat = *(float *)(EncodingConversionResult + 0x28);
-        if (StackFloat50 == SystemContextPrimaryFloat) {
+        if (DistanceThreshold == SystemContextPrimaryFloat) {
           SystemContextPrimaryFloat = *(float *)(EncodingConversionResult + 0x2c);
           if (fStack_4c != SystemContextPrimaryFloat) {
             ProcessingByte4 = SystemContextPrimaryFloat == fStack_4c;
@@ -175798,8 +175798,8 @@ uint64_t * FUN_18014c850(uint64_t *Utf8InputBuffer,uint64_t *Utf8InputBufferSize
           ProcessingByte4 = fStack_48 < *(float *)(EncodingConversionResult + 0x30);
         }
         else {
-          ProcessingByte4 = SystemContextPrimaryFloat == StackFloat50;
-          ValidationByteFlag3 = SystemContextPrimaryFloat < StackFloat50;
+          ProcessingByte4 = SystemContextPrimaryFloat == DistanceThreshold;
+          ValidationByteFlag3 = SystemContextPrimaryFloat < DistanceThreshold;
 LAB_18014cc76:
           ProcessingByte4 = !ValidationByteFlag3 && !ProcessingByte4;
         }
@@ -175807,7 +175807,7 @@ LAB_18014cc76:
       }
       if (ProcessingStatusFlag <= MemoryAllocationIndex) {
         SystemContextPrimaryFloat = *(float *)(EncodingConversionResult + 0x28);
-        if (SystemContextPrimaryFloat == StackFloat50) {
+        if (SystemContextPrimaryFloat == DistanceThreshold) {
           SystemContextPrimaryFloat = *(float *)(EncodingConversionResult + 0x2c);
           if (SystemContextPrimaryFloat == fStack_4c) {
             ProcessingByte4 = fStack_48 == *(float *)(EncodingConversionResult + 0x30);
@@ -175819,8 +175819,8 @@ LAB_18014cc76:
           }
         }
         else {
-          ProcessingByte4 = StackFloat50 == SystemContextPrimaryFloat;
-          ValidationByteFlag3 = StackFloat50 < SystemContextPrimaryFloat;
+          ProcessingByte4 = DistanceThreshold == SystemContextPrimaryFloat;
+          ValidationByteFlag3 = DistanceThreshold < SystemContextPrimaryFloat;
         }
         if ((ValidationByteFlag3 || ProcessingByte4) && ((byte)SystemPriorityLevel < *(byte *)(EncodingConversionResult + 0x38))) goto LAB_18014ccbd;
       }
@@ -175862,7 +175862,7 @@ LAB_18014ccc0:
   void *StackPointer;
   void *EncodingBuffer;
   int *apiStack_58 [2];
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   void *pSystemPriorityLevel;
   
   MemoryBlockIndex = GlobalSystemMemoryBlock;
@@ -175892,7 +175892,7 @@ LAB_18014ccc0:
       apiStack_78[0] = StackIntegerArray;
       FUN_180149ed0(Utf16Char,apiStack_78,&CoreEngineValueA8);
       ppiStackX_18 = apiStack_58;
-      QuaternaryStackPointer8 = &SystemEnginePointerBuffer;
+      ContextDataPointer = &SystemEnginePointerBuffer;
       pSystemPriorityLevel = &SystemCoreEnginePointerBuffer;
       apiStack_58[0] = StackIntegerArray;
       FUN_180149bd0(Utf16Char);
@@ -180441,17 +180441,17 @@ code_r0x00018015273d:
   uint32_t Utf16Char;
   uint32_t *PrimaryProcessingStatusFlag;
   void *SystemValidationPointer;
-  uint32_t *QuaternaryStackPointer8;
+  uint32_t *ContextDataPointer;
   uint32_t SystemPriorityLevel;
   uint64_t FunctionAddress;
   
   SystemTemplatePointer = &SystemNullTemplate;
   FunctionAddress = 0;
-  QuaternaryStackPointer8 = (uint32_t *)0x0;
+  ContextDataPointer = (uint32_t *)0x0;
   SystemPriorityLevel = 0;
   PrimaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,0x12,0x13,Utf16EndPointer,0xfffffffffffffffe);
   *(uint8_t *)PrimaryProcessingStatusFlag = 0;
-  QuaternaryStackPointer8 = PrimaryProcessingStatusFlag;
+  ContextDataPointer = PrimaryProcessingStatusFlag;
   Utf16Char = GetMemoryAllocationInfo(PrimaryProcessingStatusFlag);
   FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
   *PrimaryProcessingStatusFlag = 0x69676e45;
@@ -180615,7 +180615,7 @@ uint64_t FUN_180153ab0(long long CharacterCode,long long Utf8BufferSize,long lon
   uint8_t aStackUnsigned78 [32];
   uint64_t BufferOffset;
   void *SystemValidationPointer;
-  uint8_t *QuaternaryStackPointer8;
+  uint8_t *ContextDataPointer;
   uint32_t SystemPriorityLevel;
   uint8_t aFunctionAddress [32];
   unsigned long long uStack_18;
@@ -180628,7 +180628,7 @@ uint64_t FUN_180153ab0(long long CharacterCode,long long Utf8BufferSize,long lon
   }
   ConfigureSystemDataStructureOffset670(CharacterCode,IntegerValue);
   SystemValidationPointer = &RenderConfigManager;
-  QuaternaryStackPointer8 = aFunctionAddress;
+  ContextDataPointer = aFunctionAddress;
   aFunctionAddress[0] = 0;
   SystemPriorityLevel = 0x1b;
   strcpy_s(aFunctionAddress,0x20,&SystemStringValidationTemplate);
@@ -180658,7 +180658,7 @@ uint64_t FUN_180153ab0(long long CharacterCode,long long Utf8BufferSize,long lon
   uint32_t StackUnsigned60;
   unsigned long long BufferOffset;
   void *SystemValidationPointer;
-  uint64_t *QuaternaryStackPointer8;
+  uint64_t *ContextDataPointer;
   code *ProgramCounterPointer;
   void *pFunctionAddress;
   
@@ -181937,22 +181937,22 @@ LAB_1801545d1:
     SystemStackVariable70 = &ThreadLocalStorageTemplate;
     SystemTemplatePointer = &SystemNullTemplate;
     pFunctionAddress = NULL;
-    QuaternaryStackPointer8 = NULL;
+    ContextDataPointer = NULL;
     ProgramCounterPointer = (code *)((unsigned long long)ProgramCounterPointer & 0xffffffff00000000);
     CoreEngineProcessSystemEvent(&SystemValidationPointer,0x2b);
-    *QuaternaryStackPointer8 = 0x6c69666c67725c5c;
-    QuaternaryStackPointer8[1] = 0x2e72657672657365;
-    *(uint32_t *)(QuaternaryStackPointer8 + 2) = 0x656c6174;
-    *(uint32_t *)((long long)QuaternaryStackPointer8 + 0x14) = 0x6c726f77;
-    *(uint32_t *)(QuaternaryStackPointer8 + 3) = 0x632e7364;
-    *(uint32_t *)((long long)QuaternaryStackPointer8 + 0x1c) = 0x505c6d6f;
-    QuaternaryStackPointer8[4] = 0x6144746964455452;
-    *(uint32_t *)(QuaternaryStackPointer8 + 5) = 0x5c6174;
+    *ContextDataPointer = 0x6c69666c67725c5c;
+    ContextDataPointer[1] = 0x2e72657672657365;
+    *(uint32_t *)(ContextDataPointer + 2) = 0x656c6174;
+    *(uint32_t *)((long long)ContextDataPointer + 0x14) = 0x6c726f77;
+    *(uint32_t *)(ContextDataPointer + 3) = 0x632e7364;
+    *(uint32_t *)((long long)ContextDataPointer + 0x1c) = 0x505c6d6f;
+    ContextDataPointer[4] = 0x6144746964455452;
+    *(uint32_t *)(ContextDataPointer + 5) = 0x5c6174;
     ProgramCounterPointer = (code *)CONCAT44(ProgramCounterPointer.HighPart,0x2b);
     ProcessMemoryBlockAddress(MemoryBlockIndex,&SystemValidationPointer);
     SystemTemplatePointer = &SystemNullTemplate;
-    if (QuaternaryStackPointer8 == NULL) {
-      QuaternaryStackPointer8 = NULL;
+    if (ContextDataPointer == NULL) {
+      ContextDataPointer = NULL;
       pFunctionAddress = (void *)((unsigned long long)pFunctionAddress & 0xffffffff00000000);
       SystemTemplatePointer = &ThreadLocalStorageTemplate;
       SystemRegisterFlagX8 = (uint32_t *)MemoryBlockIndex;
@@ -184528,7 +184528,7 @@ ConfigureSystemParameters(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_
   uint StackVariable70;
   uint32_t *aEncodingBuffer [2];
   code *pcStack_50;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   
   Utf16Char = SystemMemoryManager;
   DataSize = 0xfffffffffffffffe;
@@ -184544,7 +184544,7 @@ ConfigureSystemParameters(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_
   MemoryAllocationSize = (int)(SystemDataStructureRegistry + 1);
   if (MemoryAllocationSize < 1) {
     pcStack_50 = FUN_18015c0a0;
-    QuaternaryStackPointer8 = &SystemValidationBufferSecondary;
+    ContextDataPointer = &SystemValidationBufferSecondary;
     aEncodingBuffer[0] = (uint32_t *)MemoryAllocate(MemoryPoolManager,0x18,8,MemoryAllocationFlags);
     SystemOperationFlag98 = (uint32_t)Utf16Char;
     SystemUnsignedValue94 = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
@@ -184819,16 +184819,16 @@ void ProcessCharacterEncodingConversion(uint64_t CharacterCode,long long Utf8Buf
   long long secondaryLoopCounter;
   long long systemLoopCounter;
   uint16_t *pBufferOffset;
-  uint16_t *QuaternaryStackPointer8;
+  uint16_t *ContextDataPointer;
   
   SystemSystemDataStructureRegistry = LoopCounterTable;
   pBufferOffset = (uint16_t *)0x0;
-  QuaternaryStackPointer8 = (uint16_t *)0x0;
+  ContextDataPointer = (uint16_t *)0x0;
   RemainingSpace = (int)((unsigned long long)(long long)Utf8SourcePointer >> 1);
   SystemDataTablePointer = (long long)RemainingSpace;
   if (RemainingSpace != 0) {
     pBufferOffset = (uint16_t *)BufferAllocate(MemoryPoolManager,SystemDataTablePointer * 2,3);
-    QuaternaryStackPointer8 = pBufferOffset + SystemDataTablePointer;
+    ContextDataPointer = pBufferOffset + SystemDataTablePointer;
   }
   if (0 < RemainingSpace) {
     CurrentMemoryBlockAddress = 0;
@@ -184836,7 +184836,7 @@ void ProcessCharacterEncodingConversion(uint64_t CharacterCode,long long Utf8Buf
     StringProcessingStatus = pBufferOffset;
     do {
       MemoryAddressMask = CONCAT11(*(uint8_t *)(Utf8BufferSize + 1 + CurrentMemoryBlockAddress * 2),*(uint8_t *)(Utf8BufferSize + CurrentMemoryBlockAddress * 2                      );
-      if (StringProcessingStatus < QuaternaryStackPointer8) {
+      if (StringProcessingStatus < ContextDataPointer) {
         *StringProcessingStatus = MemoryAddressMask;
         pBufferOffset = SecondaryProcessingStatusFlag;
       }
@@ -184846,7 +184846,7 @@ void ProcessCharacterEncodingConversion(uint64_t CharacterCode,long long Utf8Buf
           MemoryBlockIndex = 1;
 LAB_18015b087:
           pBufferOffset = (uint16_t *                       BufferAllocate(MemoryPoolManager,MemoryBlockIndex * 2,
-                                     CONCAT71((int7)((unsigned long long)QuaternaryStackPointer8 >> 8),3));
+                                     CONCAT71((int7)((unsigned long long)ContextDataPointer >> 8),3));
         }
         else {
           MemoryBlockIndex = MemoryBlockIndex * 2;
@@ -184862,7 +184862,7 @@ LAB_18015b087:
                     // WARNING: Subroutine does not return
           CoreEngineFreeSystemMemory(SecondaryProcessingStatusFlag);
         }
-        QuaternaryStackPointer8 = pBufferOffset + MemoryBlockIndex;
+        ContextDataPointer = pBufferOffset + MemoryBlockIndex;
         StringProcessingStatus = pBufferOffset;
       }
       StringProcessingStatus = StringProcessingStatus + 1;
@@ -188585,7 +188585,7 @@ UpdateSystemStatus(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long *
   void *StackPointer;
   void *EncodingBuffer;
   int iStack_58;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   long long lStack_40;
   uint32_t ProcessingFlags;
   
@@ -188629,16 +188629,16 @@ UpdateSystemStatus(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long *
       *(uint32_t *)((unsigned long long)Utf16Char + BufferStatus) = 0x20736920;
       *(uint8_t *)((uint32_t *)((unsigned long long)Utf16Char + BufferStatus) + 1) = 0;
       *(int *)(CharacterCode + 2) = IntegerValue9 + 0xd;
-      DataSize = FUN_1800af9f0(CoreEngineMemoryContext,&QuaternaryStackPointer8,&EnginePointerBuffer,Utf16EndPointer,ProcessStringBuffer);
+      DataSize = FUN_1800af9f0(CoreEngineMemoryContext,&ContextDataPointer,&EnginePointerBuffer,Utf16EndPointer,ProcessStringBuffer);
       FUN_180628320(CharacterCode,DataSize);
-      QuaternaryStackPointer8 = &SystemNullTemplate;
+      ContextDataPointer = &SystemNullTemplate;
       if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
         CoreEngineProcessSystemEvent();
       }
       lStack_40 = 0;
       ProcessingFlags = 0;
-      QuaternaryStackPointer8 = &ThreadLocalStorageTemplate;
+      ContextDataPointer = &ThreadLocalStorageTemplate;
       SystemOperationResult = *(int *)(CharacterCode + 2) + 1;
       CoreEngineProcessSystemEvent(CharacterCode,IntegerValue9);
       *(uint16_t *)((unsigned long long)*(uint *)(CharacterCode + 2) + Utf8InputBuffer[1]) = 10;
@@ -188687,14 +188687,14 @@ UpdateSystemStatus(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long *
     *(int *)(CharacterCode + 2) = IntegerValue9;
   }
   else {
-    CoreEngineExecuteSystemEvent(&QuaternaryStackPointer8);
+    CoreEngineExecuteSystemEvent(&ContextDataPointer);
     StringProcessingStatus = &CoreEngineDataTemplate;
     if (EncodingBuffer != NULL) {
       StringProcessingStatus = EncodingBuffer;
     }
     BufferStatus = strstr(StringProcessingStatus,&SystemStringBufferQuinary);
     if (BufferStatus == 0) {
-      FUN_1800af2c0(CoreEngineMemoryContext,&EnginePointerBuffer,&QuaternaryStackPointer8);
+      FUN_1800af2c0(CoreEngineMemoryContext,&EnginePointerBuffer,&ContextDataPointer);
     }
     else {
       ProcessStringBuffer = atoi(lStack_40);
@@ -188740,14 +188740,14 @@ UpdateSystemStatus(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long *
     StringProcessingStatus[7] = 0x6c756673;
     StringProcessingStatus[8] = 0x2e796c;
     *(int *)(CharacterCode + 2) = IntegerValue9 + 0x23;
-    QuaternaryStackPointer8 = &SystemNullTemplate;
+    ContextDataPointer = &SystemNullTemplate;
     if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
     lStack_40 = 0;
     ProcessingFlags = 0;
-    QuaternaryStackPointer8 = &ThreadLocalStorageTemplate;
+    ContextDataPointer = &ThreadLocalStorageTemplate;
   }
   EnginePointerBuffer = &SystemNullTemplate;
   if (EncodingBuffer != NULL) {
@@ -188786,7 +188786,7 @@ ValidateSystemState(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long 
   void *StackPointer;
   void *EncodingBuffer;
   int iStack_58;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   long long lStack_40;
   uint32_t ProcessingFlags;
   
@@ -188861,29 +188861,29 @@ ValidateSystemState(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long 
     *(uint32_t *)((unsigned long long)Utf16Char + BufferStatus) = 0x20736920;
     *(uint8_t *)((uint32_t *)((unsigned long long)Utf16Char + BufferStatus) + 1) = 0;
     *(int *)(CharacterCode + 2) = ValidationResult + 0xd;
-    BufferStatus = FUN_1800af9f0(SystemConfigData,&QuaternaryStackPointer8,&EnginePointerBuffer);
+    BufferStatus = FUN_1800af9f0(SystemConfigData,&ContextDataPointer,&EnginePointerBuffer);
     if (0 < *(int *)(BufferStatus + 0x10)) {
       CoreEngineProcessSystemEvent(CharacterCode,*(int *)(CharacterCode + 2) + *(int *)(BufferStatus + 0x10));
                     // WARNING: Subroutine does not return
       memcpy((unsigned long long)*(uint *)(CharacterCode + 2) + Utf8InputBuffer[1],*(void *)(BufferStatus + 8),
              (long long)(*(int *)(BufferStatus + 0x10) + 1));
     }
-    QuaternaryStackPointer8 = &SystemNullTemplate;
+    ContextDataPointer = &SystemNullTemplate;
     if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
     lStack_40 = 0;
     ProcessingFlags = 0;
-    QuaternaryStackPointer8 = &ThreadLocalStorageTemplate;
+    ContextDataPointer = &ThreadLocalStorageTemplate;
     ValidationResult = *(int *)(CharacterCode + 2);
     CoreEngineProcessSystemEvent(CharacterCode,ValidationResult + 1);
     *(uint16_t *)((unsigned long long)*(uint *)(CharacterCode + 2) + Utf8InputBuffer[1]) = 10;
     *(int *)(CharacterCode + 2) = ValidationResult + 1;
   }
   else {
-    CoreEngineExecuteSystemEvent(&QuaternaryStackPointer8);
-    FUN_1800af2c0(SystemConfigData,&EnginePointerBuffer,&QuaternaryStackPointer8,Utf16EndPointer,ProcessingStatusFlag);
+    CoreEngineExecuteSystemEvent(&ContextDataPointer);
+    FUN_1800af2c0(SystemConfigData,&EnginePointerBuffer,&ContextDataPointer,Utf16EndPointer,ProcessingStatusFlag);
     ValidationResult = *(int *)(CharacterCode + 2);
     CoreEngineProcessSystemEvent(CharacterCode,ValidationResult + 0x23);
     systemEventTemplatePointer = (uint32_t *)((unsigned long long)*(uint *)(CharacterCode + 2) + Utf8InputBuffer[1]);
@@ -188897,14 +188897,14 @@ ValidateSystemState(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,long long 
     systemEventTemplatePointer[7] = 0x6c756673;
     systemEventTemplatePointer[8] = 0x2e796c;
     *(int *)(CharacterCode + 2) = ValidationResult + 0x23;
-    QuaternaryStackPointer8 = &SystemNullTemplate;
+    ContextDataPointer = &SystemNullTemplate;
     if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
     lStack_40 = 0;
     ProcessingFlags = 0;
-    QuaternaryStackPointer8 = &ThreadLocalStorageTemplate;
+    ContextDataPointer = &ThreadLocalStorageTemplate;
   }
   EnginePointerBuffer = &SystemNullTemplate;
   if (EncodingBuffer != NULL) {
@@ -191004,13 +191004,13 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
   uint64_t *EncodingBuffer;
   uint32_t BufferOffset;
   uint64_t SystemKeyPointer;
-  uint64_t *QuaternaryStackPointer8;
+  uint64_t *ContextDataPointer;
   uint64_t *pSystemPriorityLevel;
   uint64_t FunctionAddress;
   uint32_t ProcessingFlags;
   
   if (Utf16EndPointer[1] - *Utf16EndPointer >> 5 != 0) {
-    QuaternaryStackPointer8 = NULL;
+    ContextDataPointer = NULL;
     pSystemPriorityLevel = NULL;
     FunctionAddress = 0;
     ProcessingFlags = 3;
@@ -191026,7 +191026,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
     *(uint8_t *)(systemEventTemplatePointer + 1) = 0;
     StackUnsigned78 = 4;
     StackVariable70.LowPart = MemoryAllocationIndex;
-    ConvertProcessingStatusFlagAndProcessSystemVariable(&QuaternaryStackPointer8,&SystemEventPointer);
+    ConvertProcessingStatusFlagAndProcessSystemVariable(&ContextDataPointer,&SystemEventPointer);
     SystemEventPointer = &SystemNullTemplate;
     if (pCalculationFunctionAddress != NULL) {
                     // WARNING: Subroutine does not return
@@ -191046,7 +191046,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
     *pMemoryAddressMask = 0x315f6c6576656c;
     BufferOffset = 7;
     SystemKeyPointer.LowPart = MemoryAllocationIndex;
-    ConvertProcessingStatusFlagAndProcessSystemVariable(&QuaternaryStackPointer8,&EnginePointerBuffer);
+    ConvertProcessingStatusFlagAndProcessSystemVariable(&ContextDataPointer,&EnginePointerBuffer);
     EnginePointerBuffer = &SystemNullTemplate;
     if (EncodingBuffer != NULL) {
                     // WARNING: Subroutine does not return
@@ -191066,7 +191066,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
     *pMemoryAddressMask = 0x325f6c6576656c;
     StackUnsigned78 = 7;
     StackVariable70.LowPart = MemoryAllocationIndex;
-    ConvertProcessingStatusFlagAndProcessSystemVariable(&QuaternaryStackPointer8,&SystemEventPointer);
+    ConvertProcessingStatusFlagAndProcessSystemVariable(&ContextDataPointer,&SystemEventPointer);
     SystemEventPointer = &SystemNullTemplate;
     if (pCalculationFunctionAddress != NULL) {
                     // WARNING: Subroutine does not return
@@ -191086,7 +191086,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
     *pMemoryAddressMask = 0x335f6c6576656c;
     BufferOffset = 7;
     SystemKeyPointer.LowPart = MemoryAllocationIndex;
-    ConvertProcessingStatusFlagAndProcessSystemVariable(&QuaternaryStackPointer8,&EnginePointerBuffer);
+    ConvertProcessingStatusFlagAndProcessSystemVariable(&ContextDataPointer,&EnginePointerBuffer);
     EnginePointerBuffer = &SystemNullTemplate;
     if (EncodingBuffer != NULL) {
                     // WARNING: Subroutine does not return
@@ -191107,7 +191107,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
     *(uint8_t *)(pMemoryAddressMask + 1) = 0;
     StackUnsigned78 = 8;
     StackVariable70.LowPart = MemoryAllocationIndex;
-    ConvertProcessingStatusFlagAndProcessSystemVariable(&QuaternaryStackPointer8,&SystemEventPointer);
+    ConvertProcessingStatusFlagAndProcessSystemVariable(&ContextDataPointer,&SystemEventPointer);
     SystemEventPointer = &SystemNullTemplate;
     if (pCalculationFunctionAddress != NULL) {
                     // WARNING: Subroutine does not return
@@ -191116,14 +191116,14 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
     pCalculationFunctionAddress = NULL;
     StackVariable70 = (unsigned long long)StackVariable70.HighPart << 0x20;
     SystemEventPointer = &ThreadLocalStorageTemplate;
-    FUN_18020ccb0(0,*Utf16EndPointer,*Utf16EndPointer + 0x20,&QuaternaryStackPointer8);
+    FUN_18020ccb0(0,*Utf16EndPointer,*Utf16EndPointer + 0x20,&ContextDataPointer);
     StatusBuffer = pSystemPriorityLevel;
-    for (pMemoryAddressMask = QuaternaryStackPointer8; pMemoryAddressMask != StatusBuffer; pMemoryAddressMask = pMemoryAddressMask + 4) {
+    for (pMemoryAddressMask = ContextDataPointer; pMemoryAddressMask != StatusBuffer; pMemoryAddressMask = pMemoryAddressMask + 4) {
       (**(code **)*pMemoryAddressMask)(pMemoryAddressMask,0);
     }
-    if (QuaternaryStackPointer8 != NULL) {
+    if (ContextDataPointer != NULL) {
                     // WARNING: Subroutine does not return
-      CoreEngineFreeSystemMemory(QuaternaryStackPointer8);
+      CoreEngineFreeSystemMemory(ContextDataPointer);
     }
   }
   *Utf8InputBufferSize = &ThreadLocalStorageTemplate;
@@ -191184,7 +191184,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
   long long lStack_4b0;
   uint32_t uStack_4a0;
   uint64_t uStack_498;
-  void *aQuaternaryStackPointer88 [68];
+  void *aContextDataPointer8 [68];
   uint16_t aMemoryCopyBuffer [280];
   unsigned long long FunctionAddress;
   
@@ -191270,9 +191270,9 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
     puStack_4f0 = &ThreadLocalStorageTemplate;
     OperationStatus = CoreEngineValidateSystemStatus(&puStack_510);
     if (OperationStatus != '\0') {
-      SystemChecksumValue = ProcessMemoryAllocation(aQuaternaryStackPointer88,&puStack_510);
+      SystemChecksumValue = ProcessMemoryAllocation(aContextDataPointer8,&puStack_510);
       CoreEngineFinalizeSystemEvent(&puStack_530,SystemChecksumValue);
-      aQuaternaryStackPointer88[0] = &ThreadLocalStorageTemplate;
+      aContextDataPointer8[0] = &ThreadLocalStorageTemplate;
       StatusBuffer = &CoreEngineDataTemplate;
       if (puStack_528 != NULL) {
         StatusBuffer = puStack_528;
@@ -191370,7 +191370,7 @@ ProcessUtf8ToUtf16CharacterEncodingStage5(uint64_t CharacterCode,uint64_t *Utf8I
   void *EncodingBuffer;
   int iStack_58;
   void *SystemValidationPointer;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   long long lStack_40;
   uint32_t ProcessingFlags;
   
@@ -191396,7 +191396,7 @@ ProcessUtf8ToUtf16CharacterEncodingStage5(uint64_t CharacterCode,uint64_t *Utf8I
     ppMemoryAddressMask = &SystemEventPointer;
   }
   else {
-    ppMemoryAddressMask = (void **)CoreEngineExecuteSystemEvent(&QuaternaryStackPointer8);
+    ppMemoryAddressMask = (void **)CoreEngineExecuteSystemEvent(&ContextDataPointer);
   }
   EnginePointerBuffer = &SystemNullTemplate;
   SystemValidationPointer = NULL;
@@ -191423,14 +191423,14 @@ ProcessUtf8ToUtf16CharacterEncodingStage5(uint64_t CharacterCode,uint64_t *Utf8I
     ppMemoryAddressMask = (void **)0x0;
   }
   if (!IsSystemContextValid) {
-    QuaternaryStackPointer8 = &SystemNullTemplate;
+    ContextDataPointer = &SystemNullTemplate;
     if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
     lStack_40 = 0;
     ProcessingFlags = 0;
-    QuaternaryStackPointer8 = &ThreadLocalStorageTemplate;
+    ContextDataPointer = &ThreadLocalStorageTemplate;
     ppMemoryAddressMask = (void **)0x0;
   }
   SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
@@ -191506,7 +191506,7 @@ ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t CharacterCode,uint64_t *U
   void *EncodingBuffer;
   int iStack_58;
   void *SystemValidationPointer;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   long long lStack_40;
   uint32_t ProcessingFlags;
   
@@ -191530,7 +191530,7 @@ ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t CharacterCode,uint64_t *U
     ppMemoryAddressMask = &SystemEventPointer;
   }
   else {
-    ppMemoryAddressMask = (void **)CoreEngineExecuteSystemEvent(&QuaternaryStackPointer8);
+    ppMemoryAddressMask = (void **)CoreEngineExecuteSystemEvent(&ContextDataPointer);
   }
   EnginePointerBuffer = &SystemNullTemplate;
   SystemValidationPointer = NULL;
@@ -191557,14 +191557,14 @@ ProcessUtf8ToUtf16CharacterEncodingThreadSync(uint64_t CharacterCode,uint64_t *U
     ppMemoryAddressMask = (void **)0x0;
   }
   if (!IsSystemContextValid) {
-    QuaternaryStackPointer8 = &SystemNullTemplate;
+    ContextDataPointer = &SystemNullTemplate;
     if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
     lStack_40 = 0;
     ProcessingFlags = 0;
-    QuaternaryStackPointer8 = &ThreadLocalStorageTemplate;
+    ContextDataPointer = &ThreadLocalStorageTemplate;
     ppMemoryAddressMask = (void **)0x0;
   }
   SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
@@ -191723,14 +191723,14 @@ ProcessUtf8ToUtf16CharacterEncodingEx2(uint64_t CharacterCode,uint64_t *Utf8Inpu
   long long secondaryLoopCounter;
   unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   unsigned long long SystemPriorityLevel;
   uint FunctionAddress;
   uint64_t ProcessingFlags;
   unsigned long long CalculatedCodePoint;
   
   CalculatedCodePoint = 0;
-  QuaternaryStackPointer8 = &SystemNullTemplate;
+  ContextDataPointer = &SystemNullTemplate;
   ProcessingFlags = 0;
   SystemPriorityLevel = 0;
   FunctionAddress = 0;
@@ -191744,7 +191744,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx2(uint64_t CharacterCode,uint64_t *Utf8Inpu
     do {
       CharacterTablePointer = MemoryAllocationIndex + MemoryBlockIndex;
       if (0 < *(int *)(CharacterTablePointer + 0x10)) {
-        CoreEngineProcessSystemEvent(&QuaternaryStackPointer8,(int)CalculatedCodePoint + *(int *)(CharacterTablePointer + 0x10));
+        CoreEngineProcessSystemEvent(&ContextDataPointer,(int)CalculatedCodePoint + *(int *)(CharacterTablePointer + 0x10));
                     // WARNING: Subroutine does not return
         memcpy(FunctionAddress + SystemPriorityLevel,*(void *)(ThreadLocalStorageData + 8),
                (long long)(*(int *)(CharacterTablePointer + 0x10) + 1));
@@ -191752,7 +191752,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx2(uint64_t CharacterCode,uint64_t *Utf8Inpu
       if (DataSize != (SystemDataTablePointer - MemoryBlockIndex >> 5) - 1U) {
         MemoryAddressMask = (int)CalculatedCodePoint + 1;
         CalculatedCodePoint = (unsigned long long)MemoryAddressMask;
-        CoreEngineProcessSystemEvent(&QuaternaryStackPointer8,CalculatedCodePoint);
+        CoreEngineProcessSystemEvent(&ContextDataPointer,CalculatedCodePoint);
         *(uint16_t *)(FunctionAddress + SystemPriorityLevel) = 0x20;
         SystemDataTablePointer = Utf16EndPointer[1];
         MemoryBlockIndex = *Utf16EndPointer;
@@ -191777,7 +191777,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx2(uint64_t CharacterCode,uint64_t *Utf8Inpu
   *PrimaryProcessingStatusFlag = 0x656e6f44;
   *(uint8_t *)(PrimaryProcessingStatusFlag + 1) = 0;
   *(uint32_t *)(Utf8BufferSize + 2) = 4;
-  QuaternaryStackPointer8 = &SystemNullTemplate;
+  ContextDataPointer = &SystemNullTemplate;
   if (SystemChecksumValue == 0) {
     return Utf8BufferSize;
   }
@@ -194099,21 +194099,21 @@ LAB_18016c134:
   int MatchCounter;
   uint16_t aSystemRegisterFlagX8 [4];
   uint64_t *SystemValidationPointer;
-  uint64_t *QuaternaryStackPointer8;
+  uint64_t *ContextDataPointer;
   uint64_t SystemPriorityLevel;
   uint32_t FunctionAddress;
   
   SystemValidationPointer = NULL;
-  QuaternaryStackPointer8 = NULL;
+  ContextDataPointer = NULL;
   SystemPriorityLevel = 0;
   FunctionAddress = 3;
   aSystemRegisterFlagX8[0] = 0x3b;
   if (*(long long *)(CharacterCode + 0xd0) != 0) {
     ProcessSystemMemoryAllocation(CharacterCode + 200,&SystemValidationPointer,aSystemRegisterFlagX8,Utf16EndPointer,0xfffffffffffffffe);
   }
-  CharacterCodePointer = QuaternaryStackPointer8;
+  CharacterCodePointer = ContextDataPointer;
   pMemoryAddressMask = SystemValidationPointer;
-  MemoryAllocationIndex = (long long)QuaternaryStackPointer8 - (long long)SystemValidationPointer >> 5;
+  MemoryAllocationIndex = (long long)ContextDataPointer - (long long)SystemValidationPointer >> 5;
   MatchCounter = 0;
   systemEventTemplatePointer = pMemoryAddressMask;
   if (MemoryAllocationIndex != 0) {
@@ -197489,7 +197489,7 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
   uint64_t StackUnsigned60;
   long long *plStack_58;
   long long **pplStack_50;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   uint8_t *pSystemPriorityLevel;
   uint32_t FunctionAddress;
   uint8_t ProcessingBuffer [16];
@@ -197501,19 +197501,19 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
   MemoryBlockListHead = (long long *)MemoryAllocate(MemoryPoolManager,0x218,8,3);
   CharacterTablePointer = TimeoutValueStorage + 0x70;
   BufferStatus = TimeoutValueStorage + 0x78;
-  QuaternaryStackPointer8 = &UnknownDataStructureTemplate;
+  ContextDataPointer = &UnknownDataStructureTemplate;
   pSystemPriorityLevel = ProcessingBuffer;
   ProcessingBuffer[0] = 0;
   FunctionAddress = 0xc;
   plStack_68 = MemoryBlockListHead;
   strcpy_s(ProcessingBuffer,0x10,&SystemEventBufferDenary);
   CoreEngineSignedValue78 = LoopCounter;
-  ProcessSystemContextWithData(MemoryBlockListHead,&QuaternaryStackPointer8,3,BufferStatus);
+  ProcessSystemContextWithData(MemoryBlockListHead,&ContextDataPointer,3,BufferStatus);
   *MemoryBlockListHead = (long long)&SystemContextTemplatePointerB;
   *MemoryBlockListHead = (long long)SystemMemoryListHeadPrimary;
   *(uint8_t *)(MemoryBlockListHead + 0x41) = 0;
   *(long long **)(CharacterCode + 0x140) = MemoryBlockListHead;
-  QuaternaryStackPointer8 = &ThreadLocalStorageTemplate;
+  ContextDataPointer = &ThreadLocalStorageTemplate;
   *(long long *)(*(long long *)(CharacterCode + 0x140) + 0x210) = CharacterCode;
   FinalizeSystemContextProcessing(*(void *)(CharacterCode + 0x140));
   plStack_68 = *(long long **)(CharacterCode + 0x140);
@@ -201157,7 +201157,7 @@ void GetSystemMemoryInfo(uint64_t *Utf8InputBuffer)
   Utf8InputBuffer[0x42] = 0;
   *(uint32_t *)(Utf8InputBuffer + 0x44) = 3;
   *PrimaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
-  Utf8InputBuffer[0x40] = PrimaryProcessingStatusFlag;
+  FloatDataStructure[0x40] = PrimaryProcessingStatusFlag;
   Utf8InputBuffer[0x41] = 0;
   *(uint8_t *)(Utf8InputBuffer + 0x42) = 0;
   Utf8InputBuffer[0x43] = 0;
@@ -202456,7 +202456,7 @@ long long FUN_180177c00(long long CharacterCode,long long Utf8BufferSize,uint64_
   bool BooleanValidationFlag7;
   uint32_t ProcessingStatusFlag;
   uint64_t SystemMemoryAllocationResult;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   char *ProgramCounterPointer;
   int iStack_38;
   unsigned long long ProcessingFlags;
@@ -202470,11 +202470,11 @@ long long FUN_180177c00(long long CharacterCode,long long Utf8BufferSize,uint64_
     }
     ProcessingStatusFlag = 0;
     SystemDataStructureRegistry = *pMemoryBoundaryEnd;
-    QuaternaryStackPointer8 = &SystemNullTemplate;
+    ContextDataPointer = &SystemNullTemplate;
     ProcessingFlags = 0;
     ProgramCounterPointer = (char *)0x0;
     iStack_38 = 0;
-    CoreEngineProcessSystemEvent(&QuaternaryStackPointer8,*(uint32_t *)(SystemDataStructureRegistry + 0xb8));
+    CoreEngineProcessSystemEvent(&ContextDataPointer,*(uint32_t *)(SystemDataStructureRegistry + 0xb8));
     if (*(int *)(SystemDataStructureRegistry + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
       memcpy(ProgramCounterPointer,*(void *)(SystemDataStructureRegistry + 0xb0),*(int *)(SystemDataStructureRegistry + 0xb8) + 1,Utf16EndPointer,ProcessingStatusFlag,SystemMemoryAllocationResult
@@ -202509,7 +202509,7 @@ LAB_180177d1e:
 LAB_180177d26:
       isSystemContextNull = false;
     }
-    QuaternaryStackPointer8 = &SystemNullTemplate;
+    ContextDataPointer = &SystemNullTemplate;
     if (ProgramCounterPointer != (char *)0x0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
@@ -206060,7 +206060,7 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t Utf8BufferSize
   uint64_t *MemoryAddressMask;
   uint64_t CalculatedCodePoint;
   long long *pMemoryBoundaryEnd;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   uint64_t *pSystemPriorityLevel;
   uint32_t FunctionAddress;
   uint64_t ProcessingFlags;
@@ -206080,7 +206080,7 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t Utf8BufferSize
   systemEventTemplatePointer[0x2e] = 0;
   pMemoryBoundaryEnd = CharacterCode;
   (**(code **)(*Utf8InputBuffer + 0x10))(CharacterCode,&CoreEngineDataTemplate);
-  QuaternaryStackPointer8 = &SystemNullTemplate;
+  ContextDataPointer = &SystemNullTemplate;
   ProcessingFlags = 0;
   pSystemPriorityLevel = NULL;
   FunctionAddress = 0;
@@ -206092,8 +206092,8 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t Utf8BufferSize
   *pMemoryAddressMask = 0x6d614e2068746150;
   *(uint16_t *)(pMemoryAddressMask + 1) = 0x65;
   FunctionAddress = 9;
-  FUN_1803460a0(systemEventTemplatePointer,&QuaternaryStackPointer8,CharacterCode,0,CalculatedCodePoint,pMemoryBoundaryEnd);
-  QuaternaryStackPointer8 = &SystemNullTemplate;
+  FUN_1803460a0(systemEventTemplatePointer,&ContextDataPointer,CharacterCode,0,CalculatedCodePoint,pMemoryBoundaryEnd);
+  ContextDataPointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
   CoreEngineFreeSystemMemory(pMemoryAddressMask);
 }
@@ -206868,7 +206868,7 @@ uint64_t * CreateSystemStatusBuffer(uint64_t CharacterCode, uint64_t Utf8BufferS
   uint64_t *Utf8InputBufferPointer;
   uint64_t DataSize;
   long long *MemoryPoolBlockSizePointer;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   uint64_t *pSystemPriorityLevel;
   uint32_t FunctionAddress;
   uint64_t ProcessingFlags;
@@ -206894,7 +206894,7 @@ uint64_t * CreateSystemStatusBuffer(uint64_t CharacterCode, uint64_t Utf8BufferS
   if (BufferAllocationStatus != (long long *)0x0) {
     (**(code **)(*BufferAllocationStatus + 0x38))();
   }
-  QuaternaryStackPointer8 = &SystemNullTemplate;
+  ContextDataPointer = &SystemNullTemplate;
   ProcessingFlags = 0;
   pSystemPriorityLevel = NULL;
   FunctionAddress = 0;
@@ -206906,8 +206906,8 @@ uint64_t * CreateSystemStatusBuffer(uint64_t CharacterCode, uint64_t Utf8BufferS
   *Utf8InputBufferPointer = 0x6570795474736554;
   *(uint8_t *)(CharacterCodePointer + 1) = 0;
   FunctionAddress = 8;
-  FUN_1803460a0(pMemoryAddressMask,&QuaternaryStackPointer8,CharacterCode,9,DataSize,MemoryPoolBlockSizePointer);
-  QuaternaryStackPointer8 = &SystemNullTemplate;
+  FUN_1803460a0(pMemoryAddressMask,&ContextDataPointer,CharacterCode,9,DataSize,MemoryPoolBlockSizePointer);
+  ContextDataPointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
   CoreEngineFreeSystemMemory(CharacterCodePointer);
 }
@@ -209023,7 +209023,7 @@ LAB_180184089:
   uint8_t aStackUnsigned78 [32];
   int aiStack_58 [2];
   long long *plStack_50;
-  uint8_t *QuaternaryStackPointer8;
+  uint8_t *ContextDataPointer;
   long long alStack_40 [2];
   uint8_t ProcessingBuffer [16];
   uint64_t ProcessingCounter;
@@ -209037,9 +209037,9 @@ LAB_180184089:
   if (CharacterCode != (long long *)0x0) {
     aiStack_58[0] = Utf8BufferSize;
     if (Utf8BufferSize < 0) {
-      QuaternaryStackPointer8 = (uint8_t *)Utf16EndPointer[8];
+      ContextDataPointer = (uint8_t *)Utf16EndPointer[8];
       alStack_40[0] = 0;
-      (**(code **)(*Utf8InputBuffer + 0x10))(CharacterCode,aiStack_58,alStack_40,&QuaternaryStackPointer8);
+      (**(code **)(*Utf8InputBuffer + 0x10))(CharacterCode,aiStack_58,alStack_40,&ContextDataPointer);
     }
     else {
       ProcessingCounter = 0;
@@ -209051,7 +209051,7 @@ LAB_180184089:
       } while (*(char *)(*Utf8SourcePointer + MemoryBlockIndex) != '\0');
       ReallocateCharacterCode(ProcessingBuffer);
       alStack_40[0] = Utf16EndPointer[8];
-      QuaternaryStackPointer8 = ProcessingBuffer;
+      ContextDataPointer = ProcessingBuffer;
       CharacterCode = (long long *)Utf16EndPointer[7];
       if (CharacterCode == (long long *)0x0) {
         __Xbad_function_call_std__YAXXZ();
@@ -209059,7 +209059,7 @@ LAB_180184089:
         (*pSystemCheckResult)();
         return;
       }
-      (**(code **)(*Utf8InputBuffer + 0x10))(CharacterCode,aiStack_58,&QuaternaryStackPointer8,alStack_40);
+      (**(code **)(*Utf8InputBuffer + 0x10))(CharacterCode,aiStack_58,&ContextDataPointer,alStack_40);
       ProcessSystemStackData(ProcessingBuffer);
     }
   }
@@ -228443,7 +228443,7 @@ unsigned long long FUN_18019da10(uint32_t CharacterCode,long long Utf8BufferSize
   uint64_t StackUnsigned60;
   uint64_t BufferOffset;
   void *SystemValidationPointer;
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   uint64_t SystemPriorityLevel;
   
   SystemPriorityLevel = 0xfffffffffffffffe;
@@ -240586,8 +240586,8 @@ void FinalizeSystemCharacterHandler(uint64_t CharacterCode,long long Utf8BufferS
   long long *plStack_4a0;
   char *pcStack_498;
   long long *plStack_490;
-  uint64_t *******ppppppQuaternaryStackPointer88;
-  uint64_t *******ppppppQuaternaryStackPointer80;
+  uint64_t *******ppppppContextDataPointer8;
+  uint64_t *******ppppppContextDataPointer0;
   uint64_t *******pppppppuStack_478;
   uint64_t uStack_470;
   uint64_t uStack_468;
@@ -240651,8 +240651,8 @@ void FinalizeSystemCharacterHandler(uint64_t CharacterCode,long long Utf8BufferS
   SystemChecksumValue = FUN_18020d6c0(pSystemCheckResult8,MemoryBlockListHead + 4);
   ProcessSystemContextAllocation(SystemChecksumValue,&plStack_450);
   uStack_460 = 3;
-  ppppppQuaternaryStackPointer88 = &ppppppQuaternaryStackPointer88;
-  ppppppQuaternaryStackPointer80 = &ppppppQuaternaryStackPointer88;
+  ppppppContextDataPointer8 = &ppppppContextDataPointer8;
+  ppppppContextDataPointer0 = &ppppppContextDataPointer8;
   pppppppuStack_478 = (uint64_t *******)0x0;
   uStack_470 = 0;
   uStack_468 = 0;
@@ -240734,7 +240734,7 @@ void FinalizeSystemCharacterHandler(uint64_t CharacterCode,long long Utf8BufferS
       CoreEngineExecuteSystemEvent(MemoryBlockListHead,&puStack_4e0);
       plStack_450 = CharacterCodePointer;
       HighByte = true;
-      pppppppSystemStatusValue = &ppppppQuaternaryStackPointer88;
+      pppppppSystemStatusValue = &ppppppContextDataPointer8;
       ppppppSystemStatusBuffer = pppppppuStack_478;
       while (ppppppSystemStatusBuffer != (uint64_t *******)0x0) {
         pppppppSystemStatusValue = ppppppSystemStatusBuffer;
@@ -240764,7 +240764,7 @@ LAB_18020acc0:
       }
       ppppppSystemStatusBuffer = pppppppSystemStatusValue;
       if (HighByte) {
-        if (pppppppSystemStatusValue != ppppppQuaternaryStackPointer80) {
+        if (pppppppSystemStatusValue != ppppppContextDataPointer0) {
           ppppppSystemStatusBuffer = (uint64_t *******)GetPreviousMemoryBlockIndex(pppppppSystemStatusValue);
           goto LAB_18020ace0;
         }
@@ -240797,7 +240797,7 @@ LAB_18020adb5:
           if ((int)(CurrentByteValue - MemoryAllocationHandle) < 1) goto LAB_18020adb5;
         }
       }
-      if ((uint64_t ********)pppppppSystemStatusValue == &ppppppQuaternaryStackPointer88) goto LAB_18020ada0;
+      if ((uint64_t ********)pppppppSystemStatusValue == &ppppppContextDataPointer8) goto LAB_18020ada0;
       if (*(int *)(pppppppSystemStatusValue + 6) != 0) {
         if ((int)CharacterCodePointer[6] == 0) goto LAB_18020ada0;
         pppppSystemStatusContext = pppppppSystemStatusValue[5];
@@ -240813,7 +240813,7 @@ LAB_18020adb5:
       MemoryAllocationIndex7 = 1;
 LAB_18020ada0:
                     // WARNING: Subroutine does not return
-      AllocateMemoryWithFlags(CharacterCodePointer,pppppppSystemStatusValue,&ppppppQuaternaryStackPointer88,MemoryAllocationIndex7);
+      AllocateMemoryWithFlags(CharacterCodePointer,pppppppSystemStatusValue,&ppppppContextDataPointer8,MemoryAllocationIndex7);
     }
     plStack_490 = alStack_360;
     *(void **)((long long)apuStack_418 + (long long)*(int *)(apuStack_418[0] + 4)) =
@@ -240997,7 +240997,7 @@ LAB_18020b1b3:
     }
   }
 LAB_18020b750:
-  ConfigureRenderingSystemParameters(&ppppppQuaternaryStackPointer88,pppppppuStack_478);
+  ConfigureRenderingSystemParameters(&ppppppContextDataPointer8,pppppppuStack_478);
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(SystemStackFlag ^ (unsigned long long)aSystemKeyPointer8);
   while( true ) {
@@ -241045,7 +241045,7 @@ LAB_18020b304:
       }
     }
     if (*(int *)(CoreEngineSystemContext + 4) != 1) goto LAB_18020b488;
-    pppppppSystemStatusValue = &ppppppQuaternaryStackPointer88;
+    pppppppSystemStatusValue = &ppppppContextDataPointer8;
     ppppppSystemStatusBuffer = pppppppuStack_478;
     if (pppppppuStack_478 == (uint64_t *******)0x0) {
 LAB_18020b3fb:
@@ -241116,7 +241116,7 @@ LAB_18020b3a7:
         ppppppSystemStatusBuffer = pppppPrimaryProcessingStatusFlag6;
         pppppppSystemStatusValue = ppppppsystemEventTemplatePointer0;
       } while (pppppPrimaryProcessingStatusFlag6 != (uint64_t *******)0x0);
-      if ((uint64_t ********)ppppppsystemEventTemplatePointer0 == &ppppppQuaternaryStackPointer88) goto LAB_18020b3fb;
+      if ((uint64_t ********)ppppppsystemEventTemplatePointer0 == &ppppppContextDataPointer8) goto LAB_18020b3fb;
       if (*(int *)(ppppppsystemEventTemplatePointer0 + 6) != 0) {
         if (iStack_4d0 != 0) {
           pppppSystemStatusContext = ppppppsystemEventTemplatePointer0[5];
@@ -242208,7 +242208,7 @@ LAB_18020c9db:
   uint64_t *EncodingBuffer;
   uint64_t BufferOffset;
   long long *plStack_50;
-  uint64_t *QuaternaryStackPointer8;
+  uint64_t *ContextDataPointer;
   
   systemEventTemplatePointer = CoreEngineConfigurationData;
   BufferOffset = 0xfffffffffffffffe;
@@ -242324,11 +242324,11 @@ LAB_18020ceb6:
         SystemDataTablePointer = *(long long *)(lStack_88 + (long long)plStack_b8) + 400;
         EncodingConversionResult = BufferAllocate(MemoryPoolManager,0x78,
                                *(uint8_t *                                (*(long long *)(lStack_88 + (long long)plStack_b8) + 0x1b8));
-        QuaternaryStackPointer8 = (void *)(EncodingConversionResult + 0x20);
-        *QuaternaryStackPointer8 = &ThreadLocalStorageTemplate;
+        ContextDataPointer = (void *)(EncodingConversionResult + 0x20);
+        *ContextDataPointer = &ThreadLocalStorageTemplate;
         *(void *)(EncodingConversionResult + 0x28) = 0;
         *(uint32_t *)(EncodingConversionResult + 0x30) = 0;
-        *QuaternaryStackPointer8 = &SystemStringBuffer;
+        *ContextDataPointer = &SystemStringBuffer;
         *(uint8_t **)(EncodingConversionResult + 0x28) = (uint8_t *)(EncodingConversionResult + 0x38);
         *(uint32_t *)(EncodingConversionResult + 0x30) = 0;
         *(uint8_t *)(EncodingConversionResult + 0x38) = 0;
@@ -242337,12 +242337,12 @@ LAB_18020ceb6:
         if (*(void **)(CharacterTablePointer6 + 8) != NULL) {
           SystemStatusContext = *(void **)(CharacterTablePointer6 + 8);
         }
-        EncodingBuffer = QuaternaryStackPointer8;
+        EncodingBuffer = ContextDataPointer;
         strcpy_s(*(void *)(EncodingConversionResult + 0x28),0x40,StatusBuffer3);
         EncodingBuffer = (void *)EncodingConversionResult;
-                CharacterTablePointer6 = AllocateSystemMemoryBlock(SystemDataTablePointer,&SystemRegisterFlagX8,QuaternaryStackPointer8);
+                CharacterTablePointer6 = AllocateSystemMemoryBlock(SystemDataTablePointer,&SystemRegisterFlagX8,ContextDataPointer);
         if ((char)SystemRegisterFlagX8 == '\0') {
-          *QuaternaryStackPointer8 = &ThreadLocalStorageTemplate;
+          *ContextDataPointer = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
           CoreEngineFreeSystemMemory(EncodingConversionResult);
         }
@@ -244539,7 +244539,7 @@ long long FUN_1802119c0(long long CharacterCode,uint Utf8BufferSize,uint64_t Utf
   uint ProcessingStatusFlag;
   int IntegerValue9;
   void *SystemValidationPointer;
-  uint64_t *QuaternaryStackPointer8;
+  uint64_t *ContextDataPointer;
   uint SystemPriorityLevel;
   uint64_t FunctionAddress;
   
@@ -244548,59 +244548,59 @@ long long FUN_1802119c0(long long CharacterCode,uint Utf8BufferSize,uint64_t Utf
   }
   SystemTemplatePointer = &SystemNullTemplate;
   FunctionAddress = 0;
-  QuaternaryStackPointer8 = NULL;
+  ContextDataPointer = NULL;
   SystemPriorityLevel = 0;
-  QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)QuaternaryStackPointer8 = 0;
-  Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+  ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)ContextDataPointer = 0;
+  Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
   FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
-  *QuaternaryStackPointer8 = 0x726520444f4d460a;
-  *(uint32_t *)(QuaternaryStackPointer8 + 1) = 0x21726f72;
-  *(uint16_t *)((long long)QuaternaryStackPointer8 + 0xc) = 0x2820;
-  *(uint8_t *)((long long)QuaternaryStackPointer8 + 0xe) = 0;
+  *ContextDataPointer = 0x726520444f4d460a;
+  *(uint32_t *)(ContextDataPointer + 1) = 0x21726f72;
+  *(uint16_t *)((long long)ContextDataPointer + 0xc) = 0x2820;
+  *(uint8_t *)((long long)ContextDataPointer + 0xe) = 0;
   SystemPriorityLevel = 0xe;
   FUN_180628380(&SystemValidationPointer,CharacterCode);
   MemoryAllocationIndex = SystemPriorityLevel;
   SystemChecksumValue = SystemPriorityLevel + 2;
   if (SystemChecksumValue != 0) {
     ProcessingStatusFlag = SystemPriorityLevel + 3;
-    if (QuaternaryStackPointer8 == NULL) {
+    if (ContextDataPointer == NULL) {
       if ((int)ProcessingStatusFlag < 0x10) {
         ProcessingStatusFlag = 0x10;
       }
-      QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)ProcessingStatusFlag,0x13);
-      *(uint8_t *)QuaternaryStackPointer8 = 0;
+      ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)ProcessingStatusFlag,0x13);
+      *(uint8_t *)ContextDataPointer = 0;
     }
     else {
       if (ProcessingStatusFlag <= (uint)FunctionAddress) goto LAB_180211b66;
-      QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,ProcessingStatusFlag,0x10,0x13);
+      ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,ProcessingStatusFlag,0x10,0x13);
     }
-    Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+    Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
     FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
   }
 LAB_180211b66:
-  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) = 0x2029;
-  *(uint8_t *)((uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) + 1) = 0;
+  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 0x2029;
+  *(uint8_t *)((uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) + 1) = 0;
   ProcessingStatusFlag = MemoryAllocationIndex + 3;
   SystemPriorityLevel = SystemChecksumValue;
   if (ProcessingStatusFlag != 0) {
     SystemChecksumValue = MemoryAllocationIndex + 4;
-    if (QuaternaryStackPointer8 == NULL) {
+    if (ContextDataPointer == NULL) {
       if ((int)SystemChecksumValue < 0x10) {
         SystemChecksumValue = 0x10;
       }
-      QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)SystemChecksumValue,0x13);
-      *(uint8_t *)QuaternaryStackPointer8 = 0;
+      ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)SystemChecksumValue,0x13);
+      *(uint8_t *)ContextDataPointer = 0;
     }
     else {
       if (SystemChecksumValue <= (uint)FunctionAddress) goto LAB_180211be9;
-      QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,SystemChecksumValue,0x10,0x13);
+      ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,SystemChecksumValue,0x10,0x13);
     }
-    Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+    Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
     FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
   }
 LAB_180211be9:
-  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) = 0x22;
+  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 0x22;
   SystemPriorityLevel = ProcessingStatusFlag;
   if (Utf8BufferSize != 0) {
     MemoryBoundaryEnd = -1;
@@ -244612,46 +244612,46 @@ LAB_180211be9:
       SystemOperationResult = ProcessingStatusFlag + (int)MemoryBoundaryEnd;
       if (IntegerValue9 != 0) {
         MemoryAllocationIndex = IterationCounter + 1;
-        if (QuaternaryStackPointer8 == NULL) {
+        if (ContextDataPointer == NULL) {
           if ((int)MemoryAllocationIndex < 0x10) {
             MemoryAllocationIndex = 0x10;
           }
-          QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
-          *(uint8_t *)QuaternaryStackPointer8 = 0;
+          ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
+          *(uint8_t *)ContextDataPointer = 0;
         }
         else {
           if (MemoryAllocationIndex <= (uint)FunctionAddress) goto LAB_180211c85;
-          QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,MemoryAllocationIndex,0x10,0x13);
+          ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,MemoryAllocationIndex,0x10,0x13);
         }
-        Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+        Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
         FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
       }
 LAB_180211c85:
                     // WARNING: Subroutine does not return
-      memcpy((uint8_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8),Utf8BufferSize,
+      memcpy((uint8_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer),Utf8BufferSize,
              (long long)((int)MemoryBlockIndex + 2));
     }
   }
   SystemChecksumValue = MemoryAllocationIndex + 5;
   if (SystemChecksumValue != 0) {
     MemoryAllocationIndex = MemoryAllocationIndex + 6;
-    if (QuaternaryStackPointer8 == NULL) {
+    if (ContextDataPointer == NULL) {
       if ((int)MemoryAllocationIndex < 0x10) {
         MemoryAllocationIndex = 0x10;
       }
-      QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
-      *(uint8_t *)QuaternaryStackPointer8 = 0;
+      ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
+      *(uint8_t *)ContextDataPointer = 0;
     }
     else {
       if (MemoryAllocationIndex <= (uint)FunctionAddress) goto LAB_180211d03;
-      QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,MemoryAllocationIndex,0x10,0x13);
+      ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,MemoryAllocationIndex,0x10,0x13);
     }
-    Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+    Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
     FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
   }
 LAB_180211d03:
-  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) = 0x2022;
-  *(uint8_t *)((uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) + 1) = 0;
+  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 0x2022;
+  *(uint8_t *)((uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) + 1) = 0;
   SystemPriorityLevel = SystemChecksumValue;
   MemoryBlockIndex = FUN_18021a140(CharacterCode);
   MemoryBoundaryEnd = -1;
@@ -244664,53 +244664,53 @@ LAB_180211d03:
       SystemOperationResult = SystemChecksumValue + (int)MemoryBoundaryEnd;
       if (IntegerValue9 != 0) {
         MemoryAllocationIndex = IterationCounter + 1;
-        if (QuaternaryStackPointer8 == NULL) {
+        if (ContextDataPointer == NULL) {
           if ((int)MemoryAllocationIndex < 0x10) {
             MemoryAllocationIndex = 0x10;
           }
-          QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
-          *(uint8_t *)QuaternaryStackPointer8 = 0;
+          ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
+          *(uint8_t *)ContextDataPointer = 0;
         }
         else {
           if (MemoryAllocationIndex <= (uint)FunctionAddress) goto LAB_180211da7;
-          QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,MemoryAllocationIndex,0x10,0x13);
+          ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,MemoryAllocationIndex,0x10,0x13);
         }
-        Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+        Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
         FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
       }
 LAB_180211da7:
                     // WARNING: Subroutine does not return
-      memcpy((uint8_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8),MemoryBlockIndex,
+      memcpy((uint8_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer),MemoryBlockIndex,
              (long long)((int)AllocatedMemorySize + 2));
     }
   }
   SystemOperationResult = SystemPriorityLevel + 1;
   if (IntegerValue9 != 0) {
     MemoryAllocationIndex = SystemPriorityLevel + 2;
-    if (QuaternaryStackPointer8 == NULL) {
+    if (ContextDataPointer == NULL) {
       if ((int)MemoryAllocationIndex < 0x10) {
         MemoryAllocationIndex = 0x10;
       }
-      QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
-      *(uint8_t *)QuaternaryStackPointer8 = 0;
+      ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
+      *(uint8_t *)ContextDataPointer = 0;
     }
     else {
       if (MemoryAllocationIndex <= (uint)FunctionAddress) goto LAB_180211e24;
-      QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,MemoryAllocationIndex,0x10,0x13);
+      ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,MemoryAllocationIndex,0x10,0x13);
     }
-    Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+    Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
     FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
   }
 LAB_180211e24:
-  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) = 10;
+  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 10;
   pMemoryAddressMask = (void *)&CoreEngineDataTemplate;
-  if (QuaternaryStackPointer8 != NULL) {
-    pMemoryAddressMask = QuaternaryStackPointer8;
+  if (ContextDataPointer != NULL) {
+    pMemoryAddressMask = ContextDataPointer;
   }
   SystemPriorityLevel = IntegerValue9;
   ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,pMemoryAddressMask);
   SystemTemplatePointer = &SystemNullTemplate;
-  if (QuaternaryStackPointer8 == NULL) {
+  if (ContextDataPointer == NULL) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -245357,55 +245357,55 @@ long long FUN_180213700(long long CharacterCode,int Utf8BufferSize,char Utf8Sour
   int validationResult;
   long long lStackX_8;
   void *SystemValidationPointer;
-  uint32_t *QuaternaryStackPointer8;
+  uint32_t *ContextDataPointer;
   uint SystemPriorityLevel;
   uint64_t FunctionAddress;
   
   if (*(int *)(SystemConfigData + 0x9a0) == 0) goto LAB_180213890;
   SystemTemplatePointer = &SystemNullTemplate;
   FunctionAddress = 0;
-  QuaternaryStackPointer8 = (uint32_t *)0x0;
+  ContextDataPointer = (uint32_t *)0x0;
   SystemPriorityLevel = 0;
-  QuaternaryStackPointer8 = (uint32_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)QuaternaryStackPointer8 = 0;
-  Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
-  *QuaternaryStackPointer8 = 0x5f746567;
-  QuaternaryStackPointer8[1] = 0x6e657665;
-  QuaternaryStackPointer8[2] = 0x65645f74;
-  QuaternaryStackPointer8[3] = 0x206373;
+  ContextDataPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)ContextDataPointer = 0;
+  Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
+  *ContextDataPointer = 0x5f746567;
+  ContextDataPointer[1] = 0x6e657665;
+  ContextDataPointer[2] = 0x65645f74;
+  ContextDataPointer[3] = 0x206373;
   SystemPriorityLevel = 0xf;
   FunctionAddress.LowPart = Utf16Char;
   FUN_180628380(&SystemValidationPointer,Utf8BufferSize);
   validationResult = SystemPriorityLevel + 1;
   if (validationResult != 0) {
     Utf16Char = SystemPriorityLevel + 2;
-    if (QuaternaryStackPointer8 == (uint32_t *)0x0) {
+    if (ContextDataPointer == (uint32_t *)0x0) {
       if ((int)Utf16Char < 0x10) {
         Utf16Char = 0x10;
       }
-      QuaternaryStackPointer8 = (uint32_t *)BufferAllocate(MemoryPoolManager,(long long)(int)Utf16Char,0x13);
-      *(uint8_t *)QuaternaryStackPointer8 = 0;
+      ContextDataPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,(long long)(int)Utf16Char,0x13);
+      *(uint8_t *)ContextDataPointer = 0;
     }
     else {
       if (Utf16Char <= (uint)FunctionAddress) goto LAB_180213823;
-      QuaternaryStackPointer8 = (uint32_t *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,Utf16Char,0x10,0x13);
+      ContextDataPointer = (uint32_t *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,Utf16Char,0x10,0x13);
     }
-    FunctionAddress.LowPart = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+    FunctionAddress.LowPart = GetMemoryAllocationInfo(ContextDataPointer);
   }
 LAB_180213823:
-  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) = 10;
+  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 10;
   systemEventTemplatePointer = (uint32_t *)&CoreEngineDataTemplate;
-  if (QuaternaryStackPointer8 != (uint32_t *)0x0) {
-    systemEventTemplatePointer = QuaternaryStackPointer8;
+  if (ContextDataPointer != (uint32_t *)0x0) {
+    systemEventTemplatePointer = ContextDataPointer;
   }
   SystemPriorityLevel = validationResult;
   ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,systemEventTemplatePointer);
   SystemTemplatePointer = &SystemNullTemplate;
-  if (QuaternaryStackPointer8 != (uint32_t *)0x0) {
+  if (ContextDataPointer != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  QuaternaryStackPointer8 = (uint32_t *)0x0;
+  ContextDataPointer = (uint32_t *)0x0;
   FunctionAddress = (unsigned long long)FunctionAddress.HighPart << 0x20;
   SystemTemplatePointer = &ThreadLocalStorageTemplate;
 LAB_180213890:
@@ -245896,7 +245896,7 @@ LAB_180214378:
   float fStack_5c;
   float StackFloat58;
   float StackFloat54;
-  float StackFloat50;
+  float DistanceThreshold;
   float fStack_4c;
   uint32_t aSystemPriorityLevel [2];
   uint32_t FunctionAddress;
@@ -245910,7 +245910,7 @@ LAB_180214378:
   ProcessSystemEventQueueData(&SystemEventQueueDataTableSecondary,(double)StackFloat58);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableTertiary,(double)StackFloat54);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableQuaternary,(double)fStack_4c);
-  ProcessSystemEventQueueData(&SystemEventQueueDataTableQuinary,(double)StackFloat50);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableQuinary,(double)DistanceThreshold);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableSenary,(double)fStack_5c);
   FUN_180845090(*(void *)(CharacterCode + 0x368),aSystemPriorityLevel);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableSeptenary,uStack_2c);
@@ -246455,7 +246455,7 @@ uint32_t FUN_180214c90(long long CharacterCode
   uint SystemMemoryAllocationResult;
   int IntegerValue0;
   void *SystemValidationPointer;
-  uint64_t *QuaternaryStackPointer8;
+  uint64_t *ContextDataPointer;
   uint SystemPriorityLevel;
   uint64_t FunctionAddress;
   uint64_t ProcessingFlags;
@@ -246468,59 +246468,59 @@ uint32_t FUN_180214c90(long long CharacterCode
   }
   SystemTemplatePointer = &SystemNullTemplate;
   FunctionAddress = 0;
-  QuaternaryStackPointer8 = NULL;
+  ContextDataPointer = NULL;
   SystemPriorityLevel = 0;
-  QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)QuaternaryStackPointer8 = 0;
-  Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+  ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)ContextDataPointer = 0;
+  Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
   FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
-  *QuaternaryStackPointer8 = 0x726520444f4d460a;
-  *(uint32_t *)(QuaternaryStackPointer8 + 1) = 0x21726f72;
-  *(uint16_t *)((long long)QuaternaryStackPointer8 + 0xc) = 0x2820;
-  *(uint8_t *)((long long)QuaternaryStackPointer8 + 0xe) = 0;
+  *ContextDataPointer = 0x726520444f4d460a;
+  *(uint32_t *)(ContextDataPointer + 1) = 0x21726f72;
+  *(uint16_t *)((long long)ContextDataPointer + 0xc) = 0x2820;
+  *(uint8_t *)((long long)ContextDataPointer + 0xe) = 0;
   SystemPriorityLevel = 0xe;
   FUN_180628380(&SystemValidationPointer,MemoryAllocationSize);
   MemoryAllocationIndex = SystemPriorityLevel;
   ProcessingStatusFlag = SystemPriorityLevel + 2;
   if (ProcessingStatusFlag != 0) {
     SystemMemoryAllocationResult = SystemPriorityLevel + 3;
-    if (QuaternaryStackPointer8 == NULL) {
+    if (ContextDataPointer == NULL) {
       if ((int)SystemMemoryAllocationResult < 0x10) {
         SystemMemoryAllocationResult = 0x10;
       }
-      QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)SystemMemoryAllocationResult,0x13);
-      *(uint8_t *)QuaternaryStackPointer8 = 0;
+      ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)SystemMemoryAllocationResult,0x13);
+      *(uint8_t *)ContextDataPointer = 0;
     }
     else {
       if (SystemMemoryAllocationResult <= (uint)FunctionAddress) goto LAB_180211b66;
-      QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,SystemMemoryAllocationResult,0x10,0x13);
+      ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,SystemMemoryAllocationResult,0x10,0x13);
     }
-    Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+    Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
     FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
   }
 LAB_180211b66:
-  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) = 0x2029;
-  *(uint8_t *)((uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) + 1) = 0;
+  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 0x2029;
+  *(uint8_t *)((uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) + 1) = 0;
   SystemMemoryAllocationResult = MemoryAllocationIndex + 3;
   SystemPriorityLevel = ProcessingStatusFlag;
   if (SystemMemoryAllocationResult != 0) {
     ProcessingStatusFlag = MemoryAllocationIndex + 4;
-    if (QuaternaryStackPointer8 == NULL) {
+    if (ContextDataPointer == NULL) {
       if ((int)ProcessingStatusFlag < 0x10) {
         ProcessingStatusFlag = 0x10;
       }
-      QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)ProcessingStatusFlag,0x13);
-      *(uint8_t *)QuaternaryStackPointer8 = 0;
+      ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)ProcessingStatusFlag,0x13);
+      *(uint8_t *)ContextDataPointer = 0;
     }
     else {
       if (ProcessingStatusFlag <= (uint)FunctionAddress) goto LAB_180211be9;
-      QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,ProcessingStatusFlag,0x10,0x13);
+      ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,ProcessingStatusFlag,0x10,0x13);
     }
-    Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+    Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
     FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
   }
 LAB_180211be9:
-  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) = 0x22;
+  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 0x22;
   MemoryBoundaryEnd = -1;
   do {
     SystemDataStructureRegistry = MemoryBoundaryEnd;
@@ -246532,45 +246532,45 @@ LAB_180211be9:
     IntegerValue0 = SystemMemoryAllocationResult + IntegerValue0;
     if (IntegerValue0 != 0) {
       MemoryAllocationIndex = IntegerValue0 + 1;
-      if (QuaternaryStackPointer8 == NULL) {
+      if (ContextDataPointer == NULL) {
         if ((int)MemoryAllocationIndex < 0x10) {
           MemoryAllocationIndex = 0x10;
         }
-        QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
-        *(uint8_t *)QuaternaryStackPointer8 = 0;
+        ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
+        *(uint8_t *)ContextDataPointer = 0;
       }
       else {
         if (MemoryAllocationIndex <= (uint)FunctionAddress) goto LAB_180211c85;
-        QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,MemoryAllocationIndex,0x10,0x13);
+        ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,MemoryAllocationIndex,0x10,0x13);
       }
-      Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+      Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
       FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
     }
 LAB_180211c85:
                     // WARNING: Subroutine does not return
-    memcpy((uint8_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8),&CoreEngineDataTemplate,
+    memcpy((uint8_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer),&CoreEngineDataTemplate,
            (long long)((int)SystemDataStructureRegistry + 2));
   }
   ProcessingStatusFlag = MemoryAllocationIndex + 5;
   if (ProcessingStatusFlag != 0) {
     MemoryAllocationIndex = MemoryAllocationIndex + 6;
-    if (QuaternaryStackPointer8 == NULL) {
+    if (ContextDataPointer == NULL) {
       if ((int)MemoryAllocationIndex < 0x10) {
         MemoryAllocationIndex = 0x10;
       }
-      QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
-      *(uint8_t *)QuaternaryStackPointer8 = 0;
+      ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
+      *(uint8_t *)ContextDataPointer = 0;
     }
     else {
       if (MemoryAllocationIndex <= (uint)FunctionAddress) goto LAB_180211d03;
-      QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,MemoryAllocationIndex,0x10,0x13);
+      ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,MemoryAllocationIndex,0x10,0x13);
     }
-    Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+    Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
     FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
   }
 LAB_180211d03:
-  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) = 0x2022;
-  *(uint8_t *)((uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) + 1) = 0;
+  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 0x2022;
+  *(uint8_t *)((uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) + 1) = 0;
   SystemPriorityLevel = ProcessingStatusFlag;
   SystemDataStructureRegistry = FUN_18021a140(MemoryAllocationSize);
   MemoryBoundaryEnd = -1;
@@ -246583,53 +246583,53 @@ LAB_180211d03:
       MemoryAllocationSize = ProcessingStatusFlag + (int)MemoryBoundaryEnd;
       if (MemoryAllocationSize != 0) {
         MemoryAllocationIndex = MemoryAllocationSize + 1;
-        if (QuaternaryStackPointer8 == NULL) {
+        if (ContextDataPointer == NULL) {
           if ((int)MemoryAllocationIndex < 0x10) {
             MemoryAllocationIndex = 0x10;
           }
-          QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
-          *(uint8_t *)QuaternaryStackPointer8 = 0;
+          ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
+          *(uint8_t *)ContextDataPointer = 0;
         }
         else {
           if (MemoryAllocationIndex <= (uint)FunctionAddress) goto LAB_180211da7;
-          QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,MemoryAllocationIndex,0x10,0x13);
+          ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,MemoryAllocationIndex,0x10,0x13);
         }
-        Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+        Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
         FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
       }
 LAB_180211da7:
                     // WARNING: Subroutine does not return
-      memcpy((uint8_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8),SystemDataStructureRegistry,
+      memcpy((uint8_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer),SystemDataStructureRegistry,
              (long long)((int)MemoryPoolBlockSize + 2));
     }
   }
   MemoryAllocationSize = SystemPriorityLevel + 1;
   if (MemoryAllocationSize != 0) {
     MemoryAllocationIndex = SystemPriorityLevel + 2;
-    if (QuaternaryStackPointer8 == NULL) {
+    if (ContextDataPointer == NULL) {
       if ((int)MemoryAllocationIndex < 0x10) {
         MemoryAllocationIndex = 0x10;
       }
-      QuaternaryStackPointer8 = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
-      *(uint8_t *)QuaternaryStackPointer8 = 0;
+      ContextDataPointer = (void *)BufferAllocate(MemoryPoolManager,(long long)(int)MemoryAllocationIndex,0x13);
+      *(uint8_t *)ContextDataPointer = 0;
     }
     else {
       if (MemoryAllocationIndex <= (uint)FunctionAddress) goto LAB_180211e24;
-      QuaternaryStackPointer8 = (void *)AllocateMemoryPool(MemoryPoolManager,QuaternaryStackPointer8,MemoryAllocationIndex,0x10,0x13);
+      ContextDataPointer = (void *)AllocateMemoryPool(MemoryPoolManager,ContextDataPointer,MemoryAllocationIndex,0x10,0x13);
     }
-    Utf16Char = GetMemoryAllocationInfo(QuaternaryStackPointer8);
+    Utf16Char = GetMemoryAllocationInfo(ContextDataPointer);
     FunctionAddress = CONCAT44(FunctionAddress.HighPart,Utf16Char);
   }
 LAB_180211e24:
-  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)QuaternaryStackPointer8) = 10;
+  *(uint16_t *)((unsigned long long)SystemPriorityLevel + (long long)ContextDataPointer) = 10;
   CharacterCodePointer = (void *)&CoreEngineDataTemplate;
-  if (QuaternaryStackPointer8 != NULL) {
-    CharacterCodePointer = QuaternaryStackPointer8;
+  if (ContextDataPointer != NULL) {
+    CharacterCodePointer = ContextDataPointer;
   }
   SystemPriorityLevel = MemoryAllocationSize;
   ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,CharacterCodePointer);
   SystemTemplatePointer = &SystemNullTemplate;
-  if (QuaternaryStackPointer8 == NULL) {
+  if (ContextDataPointer == NULL) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -266289,7 +266289,7 @@ LAB_180227e59:
 
  void CoreEngineProcessNetworkEvent(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid CoreEngineProcessNetworkEvent(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  void *QuaternaryStackPointer8;
+  void *ContextDataPointer;
   long long lStack_40;
   uint32_t FunctionAddress;
   uint64_t ProcessingFlags;
@@ -266298,7 +266298,7 @@ LAB_180227e59:
   uint64_t SystemStackOffset18;
   uint32_t uStack_10;
   
-  QuaternaryStackPointer8 = &SystemNullTemplate;
+  ContextDataPointer = &SystemNullTemplate;
   ProcessingFlags = 0;
   lStack_40 = 0;
   FunctionAddress = 0;
@@ -266306,10 +266306,10 @@ LAB_180227e59:
   ProcessingCounter = 0;
   uStack_18 = 0;
   uStack_10 = 3;
-  FUN_180228450(&QuaternaryStackPointer8,CharacterCode,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe,&uStack_28);
-  FUN_180228280(&QuaternaryStackPointer8,Utf8SourcePointer);
+  FUN_180228450(&ContextDataPointer,CharacterCode,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe,&uStack_28);
+  FUN_180228280(&ContextDataPointer,Utf8SourcePointer);
   FUN_1802299a0(&uStack_28);
-  QuaternaryStackPointer8 = &SystemNullTemplate;
+  ContextDataPointer = &SystemNullTemplate;
   if (lStack_40 != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
@@ -271277,7 +271277,7 @@ uint GetMemoryAllocationStatus(long long CharacterCode,long long *Utf8InputBuffe
   uint8_t aStackUnsigned78 [32];
   uint64_t BufferOffset;
   void *SystemValidationPointer;
-  uint8_t *QuaternaryStackPointer8;
+  uint8_t *ContextDataPointer;
   uint32_t SystemPriorityLevel;
   uint8_t aFunctionAddress [32];
   unsigned long long uStack_18;
@@ -271286,7 +271286,7 @@ uint GetMemoryAllocationStatus(long long CharacterCode,long long *Utf8InputBuffe
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   Utf16Char = *(void *)(CharacterCode + 0x1e0);
   SystemValidationPointer = &RenderConfigManager;
-  QuaternaryStackPointer8 = aFunctionAddress;
+  ContextDataPointer = aFunctionAddress;
   aFunctionAddress[0] = 0;
   SystemPriorityLevel = 0x11;
   strcpy_s(aFunctionAddress,0x20,&SystemFunctionAddressTemplate);
