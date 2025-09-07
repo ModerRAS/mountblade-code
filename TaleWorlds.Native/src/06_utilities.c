@@ -6256,8 +6256,8 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 uint8_t SystemExceptionHandlerState;      // 系统异常处理状态
 uint8_t SystemExceptionCleanupFlag;       // 系统异常清理标志
 uint8_t SystemTerminationFlag;           // 系统终止标志
-uint8_t SystemResetInProgressFlag;        // _DAT_180d49230 - 系统重置进行中标志
-uint8_t SystemCriticalSectionFlag;       // _DAT_180d49270 - 系统临界区标志
+uint8_t SystemResetInProgressFlag;        // 系统重置进行中标志
+uint8_t SystemCriticalSectionFlag;       // 系统临界区标志
 
 // 系统内存管理全局变量宏定义
 #define SystemMemoryManagerPointer GlobalSystemMemoryManager      // 系统内存管理器指针
@@ -6289,11 +6289,11 @@ uint8_t SystemResourceCleanupFlagA6;      // DAT_180c960b8 - 系统资源清理�
 uint8_t SystemResourceCleanupFlagA7;      // DAT_180c96100 - 系统资源清理标志A7
 
 // 系统资源指针变量声明
-void* SystemResourcePointerA0;          // _DAT_180c95ff0 - 系统资源指针A0
-void* SystemResourcePointerA1;          // _DAT_180c96010 - 系统资源指针A1
-void* SystemResourcePointerA2;          // _DAT_180c96030 - 系统资源指针A2
-void* SystemResourcePointerA3;          // _DAT_180c96050 - 系统资源指针A3
-void* SystemResourcePointerA4;          // _DAT_180c96070 - 系统资源指针A4
+void* SystemResourcePointerA0;          // 系统资源指针A0
+void* SystemResourcePointerA1;          // 系统资源指针A1
+void* SystemResourcePointerA2;          // 系统资源指针A2
+void* SystemResourcePointerA3;          // 系统资源指针A3
+void* SystemResourcePointerA4;          // 系统资源指针A4
 void* SystemResourcePointerA5;          // _DAT_180c960a0 - 系统资源指针A5
 
 // 系统资源数据缓冲区变量声明
@@ -58982,7 +58982,20 @@ void ResetExceptionHandlerContext4F0(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180906500(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理上下文清理函数500
+ * 
+ * 该函数负责清理异常处理上下文，处理异常状态并重置相关指针。
+ * 确保异常处理系统能够正确处理异常情况。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906500
+ */
+#define CleanupExceptionHandlerContext500 Unwind_180906500
+
+void CleanupExceptionHandlerContext500(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
