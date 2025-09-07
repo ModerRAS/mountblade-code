@@ -197,6 +197,18 @@
 #define MemoryRegionSizeOffset 0x28
 #define MemoryAccessPointerOffset 0x10
 #define ResourceDescriptorOffset 0x10
+
+// 异常处理器调用偏移量常量
+#define ExceptionHandlerContextOffset60 0x60
+#define ExceptionHandlerTertiaryOffset410 0x410
+#define ExceptionHandlerQuaternaryOffset418 0x418
+#define ExceptionHandlerQuinaryOffset420 0x420
+#define ExceptionHandlerSenaryOffset428 0x428
+#define ExceptionHandlerSeptenaryOffset430 0x430
+#define ExceptionHandlerOctonaryOffset438 0x438
+#define ExceptionHandlerNonaryOffset440 0x440
+#define ExceptionHandlerDenaryOffset448 0x448
+#define ExceptionHandlerUndenaryOffset450 0x450
 #define ResourceDescriptorPrimaryOffset 0x18
 #define ResourceDescriptorSecondaryOffset 0x20
 #define ResourceDescriptorTertiaryOffset 0x24
@@ -100004,28 +100016,46 @@ void Unwind_18090f3d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f410(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器调用函数410
+ * 
+ * 该函数负责调用偏移量0x410处的异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090f410
+ * @note 这是一个异常处理器调用函数，用于调用特定偏移量的异常处理器
+ */
+void InvokeExceptionHandlerAtOffset410(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x60) + 0x410);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerTertiaryOffset410);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset))();
   }
   return;
 }
 
 
 
-void Unwind_18090f430(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器调用函数430
+ * 
+ * 该函数负责调用偏移量0x418处的异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090f430
+ * @note 这是一个异常处理器调用函数，用于调用特定偏移量的异常处理器
+ */
+void InvokeExceptionHandlerAtOffset418(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x60) + 0x418);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + ExceptionHandlerQuaternaryOffset418);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset))();
   }
   return;
 }
