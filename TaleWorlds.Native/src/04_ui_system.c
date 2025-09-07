@@ -382078,67 +382078,108 @@ undefined8 FUN_180898eb0(longlong *uiContext,undefined4 *dataSource)
 
 
 
-undefined8 FUN_180898ef0(undefined8 *uiContext,longlong dataSource)
-
+/**
+ * @brief 获取UI系统信号量句柄
+ * 
+ * 从UI上下文中获取信号量句柄，用于线程同步和资源管理
+ * 
+ * @param uiContext UI上下文指针，包含系统状态和配置信息
+ * @param dataSource 数据源指针，包含操作所需的数据
+ * @return 信号量句柄，失败时返回错误码
+ * 
+ * @note 原始函数名: FUN_180898ef0
+ */
+uint64_t GetUISemaphoreHandle(uint64_t *uiContext, int64_t dataSource)
 {
-  undefined8 result;
-  undefined8 semaphoreHandle;
+  uint64_t result;
+  uint64_t semaphoreHandle;
   
+  // 检查UI上下文状态
   if (*(int *)(uiContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return 0x1c;  // 返回错误码
   }
+  
   result = *uiContext;
-  semaphoreHandle = FUN_1808995c0(result);
+  semaphoreHandle = CreateUISemaphore(result);
   if ((int)semaphoreHandle == 0) {
-    semaphoreHandle = FUN_1808995c0(result,dataSource + 4);
+    semaphoreHandle = CreateUISemaphore(result, dataSource + 4);
   }
   return semaphoreHandle;
 }
 
 
 
-undefined8 FUN_180898f40(longlong *uiContext,undefined4 *dataSource)
-
+/**
+ * @brief 处理UI系统数据验证
+ * 
+ * 验证UI系统数据的完整性和有效性，通过信号量机制确保数据安全
+ * 
+ * @param uiContext UI上下文指针，包含系统状态和配置信息
+ * @param dataSource 数据源指针，包含需要验证的数据
+ * @return 验证结果，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名: FUN_180898f40
+ */
+uint64_t ProcessUIDataValidation(int64_t *uiContext, uint32_t *dataSource)
 {
-  longlong allocatedMemory;
-  undefined8 *psemaphoreHandle;
-  undefined8 uVar3;
-  undefined4 auStackX_8 [2];
-  undefined4 abufferValidation [4];
+  int64_t contextMemory;
+  uint64_t *semaphoreHandlePointer;
+  uint64_t validationResult;
+  uint32_t primaryDataBuffer[2];
+  uint32_t secondaryDataBuffer[4];
   
+  // 检查UI上下文状态
   if (*(int *)(uiContext[1] + 0x18) != 0) {
-    return 0x1c;
+    return 0x1c;  // 返回错误码
   }
-  auStackX_8[0] = *dataSource;
-  allocatedMemory = *uiContext;
-  psemaphoreHandle = *(undefined8 **)(allocatedMemory + 8);
-  uVar3 = (**(code **)*psemaphoreHandle)(psemaphoreHandle,auStackX_8,4);
-  if ((int)uVar3 == 0) {
-    psemaphoreHandle = *(undefined8 **)(allocatedMemory + 8);
-    abufferValidation[0] = dataSource[1];
-    uVar3 = (**(code **)*psemaphoreHandle)(psemaphoreHandle,abufferValidation,4);
+  
+  // 准备主数据缓冲区
+  primaryDataBuffer[0] = *dataSource;
+  contextMemory = *uiContext;
+  semaphoreHandlePointer = *(uint64_t **)(contextMemory + 8);
+  
+  // 执行首次验证
+  validationResult = (**(code **)*semaphoreHandlePointer)(semaphoreHandlePointer, primaryDataBuffer, 4);
+  if ((int)validationResult == 0) {
+    // 首次验证失败，执行二次验证
+    semaphoreHandlePointer = *(uint64_t **)(contextMemory + 8);
+    secondaryDataBuffer[0] = dataSource[1];
+    validationResult = (**(code **)*semaphoreHandlePointer)(semaphoreHandlePointer, secondaryDataBuffer, 4);
   }
-  return uVar3;
+  return validationResult;
 }
 
 
 
 
- void FUN_180898fc0(undefined8 uiContext,longlong dataSource)
-void FUN_180898fc0(undefined8 uiContext,longlong dataSource)
-
+ /**
+ * @brief 处理UI系统批量数据操作
+ * 
+ * 对UI系统中的数据进行批量处理，按顺序处理不同大小的数据块
+ * 
+ * @param uiContext UI上下文，包含系统状态和配置信息
+ * @param dataSource 数据源指针，包含需要处理的数据
+ * 
+ * @note 原始函数名: FUN_180898fc0
+ */
+void ProcessUIBatchDataOperation(uint64_t uiContext, int64_t dataSource)
 {
-  int uiOperationResult;
+  int operationResult;
   
-  uiOperationResult = FUN_1808aed00(uiContext,dataSource,4);
-  if (uiOperationResult == 0) {
-    uiOperationResult = FUN_1808aed00(uiContext,dataSource + 4,2);
-    if (uiOperationResult == 0) {
-      uiOperationResult = FUN_1808aed00(uiContext,dataSource + 6,2);
-      if (uiOperationResult == 0) {
-        uiOperationResult = FUN_1808aed00(uiContext,dataSource + 8,8);
-        if (uiOperationResult == 0) {
-          FUN_1808aed00(uiContext,dataSource + 0x10,4);
+  // 处理4字节数据块
+  operationResult = ProcessUIDataBlock(uiContext, dataSource, 4);
+  if (operationResult == 0) {
+    // 处理2字节数据块
+    operationResult = ProcessUIDataBlock(uiContext, dataSource + 4, 2);
+    if (operationResult == 0) {
+      // 处理下一个2字节数据块
+      operationResult = ProcessUIDataBlock(uiContext, dataSource + 6, 2);
+      if (operationResult == 0) {
+        // 处理8字节数据块
+        operationResult = ProcessUIDataBlock(uiContext, dataSource + 8, 8);
+        if (operationResult == 0) {
+          // 处理最后的4字节数据块
+          ProcessUIDataBlock(uiContext, dataSource + 0x10, 4);
         }
       }
     }
@@ -382149,19 +382190,31 @@ void FUN_180898fc0(undefined8 uiContext,longlong dataSource)
 
 
 
- void FUN_180899040(undefined8 uiContext,longlong dataSource)
-void FUN_180899040(undefined8 uiContext,longlong dataSource)
-
+ /**
+ * @brief 处理UI系统资源同步
+ * 
+ * 同步UI系统中的资源状态，确保数据一致性和完整性
+ * 
+ * @param uiContext UI上下文，包含系统状态和配置信息
+ * @param dataSource 数据源指针，包含需要同步的数据
+ * 
+ * @note 原始函数名: FUN_180899040
+ */
+void ProcessUIResourceSynchronization(uint64_t uiContext, int64_t dataSource)
 {
-  int uiOperationResult;
+  int syncResult;
   
-  uiOperationResult = FUN_180899100();
-  if (uiOperationResult == 0) {
-    uiOperationResult = FUN_180899100(uiContext,dataSource + 0xc);
-    if (uiOperationResult == 0) {
-      uiOperationResult = FUN_180899100(uiContext,dataSource + 0x18);
-      if (uiOperationResult == 0) {
-        FUN_180899100(uiContext,dataSource + 0x24);
+  // 初始化同步操作
+  syncResult = InitializeUISynchronization();
+  if (syncResult == 0) {
+    // 同步第一个数据块（12字节偏移）
+    syncResult = SynchronizeUIDataBlock(uiContext, dataSource + 0xc);
+    if (syncResult == 0) {
+      // 同步第二个数据块（24字节偏移）
+      syncResult = SynchronizeUIDataBlock(uiContext, dataSource + 0x18);
+      if (syncResult == 0) {
+        // 同步第三个数据块（36字节偏移）
+        SynchronizeUIDataBlock(uiContext, dataSource + 0x24);
       }
     }
   }
