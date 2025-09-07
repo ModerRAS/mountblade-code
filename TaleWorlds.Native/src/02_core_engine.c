@@ -200214,7 +200214,20 @@ void ProcessSystemMemoryAllocationAndInitialization(long long CharacterCode,long
 
 
 
-74150(uint64_t *Utf8InputBuffer,long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180174150(uint64_t *Utf8InputBuffer,long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 系统缓冲区处理和状态管理函数
+ * 
+ * 该函数负责处理系统缓冲区和状态管理，包括内存分配和数据表操作。
+ * 
+ * @param Utf8InputBuffer UTF8输入缓冲区指针
+ * @param Utf8BufferSize UTF8缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return void
+ * 
+ * @note 原始函数名：FUN_180174150
+ */
+void ProcessSystemBufferAndStatusManagement(uint64_t *Utf8InputBuffer,long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t *StatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
