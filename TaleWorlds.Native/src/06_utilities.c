@@ -64001,8 +64001,17 @@ void Unwind_180908fa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908fb0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 系统异常处理清理函数
+ * 
+ * 在系统异常处理过程中进行清理操作，验证上下文指针并执行相应的清理逻辑
+ * 
+ * @param operationBase 操作基础数据结构
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908fb0
+ */
+void SystemExceptionHandlerCleanup(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *validationContextPointer;
   
@@ -64010,12 +64019,12 @@ void Unwind_180908fb0(DataBuffer operationBase,int64_t dataBuffer)
             ((int64_t)*(int *)(*(int64_t *)**(int64_t **)(dataBuffer + 0x40) + 4) + 0x48 +
             **(int64_t **)(dataBuffer + 0x40));
   if (validationContextPointer != (int64_t *)0x0) {
-    if (*(FunctionPointer**)(*validationContextPointer + 0x10) != (code *)&UNK_18009ee10) {
+    if (*(FunctionPointer**)(*validationContextPointer + 0x10) != (code *)&DefaultExceptionHandlerA) {
       (**(FunctionPointer**)(*validationContextPointer + 0x10))();
       return;
     }
     if (validationContextPointer[0x10] != 0) {
-      _unlock_file();
+      UnlockSystemFile();
       return;
     }
   }
