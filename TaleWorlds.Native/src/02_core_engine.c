@@ -149,6 +149,24 @@
 #define ManageSystemResource FUN_180291500
 
 /**
+ * @brief 系统浮点数计算器
+ * 
+ * 该函数负责执行系统浮点数的计算操作，包括除法运算和数值处理
+ * 
+ * @note 原始函数名：FUN_180124d50
+ */
+#define CalculateSystemFloatDivision FUN_180124d50
+
+/**
+ * @brief 系统缓冲区数据处理器
+ * 
+ * 该函数负责处理系统缓冲区的数据，包括数据验证和处理
+ * 
+ * @note 原始函数名：FUN_18011fd10
+ */
+#define ProcessSystemBufferDataEx FUN_18011fd10
+
+/**
  * @brief 系统上下文清理器
  * 
  * 该函数负责清理系统上下文，包括内存释放和状态重置
@@ -49981,7 +49999,7 @@ uint8_t WaitAndProcessMemoryAllocationStatus(void
  * @note 此函数用于3D图形渲染和物理计算中的边界处理
  * @note 涉及复杂的数学计算和线程同步机制
  */
-float *ProcessFloatDataBoundaryCalculation(float *Utf8InputBuffer
+float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure
 {
   float *PrimaryFloatPointer;
   byte ProcessingFlag;
@@ -49994,31 +50012,31 @@ float *ProcessFloatDataBoundaryCalculation(float *Utf8InputBuffer
   unsigned long long SystemAllocatedMemorySize;
   bool ComparisonResult;
   float MaximumDistance;
-  float StackFloatB8;
-  float StackFloatB4;
-  float StackFloatB0;
-  uint32_t StackUnsignedAC;
-  float StackFloatA8;
-  float StackFloatA4;
-  float StackFloatA0;
-  uint32_t StackUnsigned9C;
-  float *StackFloatPointer98;
+  float BoundaryMinX;
+  float BoundaryMinY;
+  float BoundaryMinZ;
+  uint32_t BoundaryCalculationFlags;
+  float BoundaryMaxX;
+  float BoundaryMaxY;
+  float BoundaryMaxZ;
+  uint32_t BoundaryValidationStatus;
+  float *BoundaryCenterPointer;
   uint32_t ConfigurationStatus;
-  long long StackLong88;
-  uint64_t FunctionAddress80;
-  uint64_t StackUnsigned78;
-  uint64_t StackVariable70;
-  uint64_t StackUnsigned68;
-  uint64_t StackUnsigned60;
+  long long MemoryAllocationOffset;
+  uint64_t CalculationFunctionAddress;
+  uint64_t StackProcessingFlags;
+  uint64_t MemoryBlockSize;
+  uint64_t ThreadSyncFlags;
+  uint64_t TimeoutValue;
   void *TimeoutPointer;
-  float StackFloat50;
-  float StackFloat4C;
-  void *QuaternaryStackPointer8;
+  float DistanceThreshold;
+  float ProcessingTimeout;
+  void *ContextDataPointer;
   uint64_t PriorityLevel;
   uint64_t FunctionAddress;
-  uint8_t StackArray30 [8];
-  float *StackFloatPointer28;
-  uint32_t StackUnsigned20;
+  uint8_t ProcessingBuffer [8];
+  float *ResultPointer;
+  uint32_t ProcessingCounter;
   
   FunctionAddress = 0xfffffffffffffffe;
   if (((uint)Utf8InputBuffer[0x40] & 0x10000) == 0) {
@@ -147664,7 +147682,7 @@ long long ValidateSystemConfiguration(uint64_t CharacterCode
               IntegerValue4 = (int)Utf16ConversionContext;
               MemoryBlockIndex = *(long long *)(SystemMemoryAllocationResult + *(long long *)(CharacterTablePointer6 + 0x1aa8));
               if (*(long long *)(MemoryBlockIndex + 0x28) == SystemStringIndex) {
-                FUN_180124d50(MemoryBlockIndex,SystemContextPrimaryFloat8 / ContextPrimaryFloat9);
+                CalculateSystemFloatDivision(MemoryBlockIndex,SystemContextPrimaryFloat8 / ContextPrimaryFloat9);
               }
               SystemMemoryAllocationResult = SystemMemoryAllocationResult + 8;
               Utf16ConversionContext = (unsigned long long)(IntegerValue4 + 1U);
@@ -147672,7 +147690,7 @@ long long ValidateSystemConfiguration(uint64_t CharacterCode
           }
         }
         else {
-          FUN_180124d50(*(long long *)(SystemStringIndex + 0x78),SystemContextPrimaryFloat8 / ContextPrimaryFloat9);
+          CalculateSystemFloatDivision(*(long long *)(SystemStringIndex + 0x78),SystemContextPrimaryFloat8 / ContextPrimaryFloat9);
         }
       }
       *(float *)(SystemStringIndex + 0x18) = SystemContextPrimaryFloat8;
@@ -147997,7 +148015,7 @@ void ProcessSystemBufferStatus(void)
               CharacterByteCount2 = (int)UnicodeCharacterCode;
               MemoryBlockIndex = *(long long *)(MemoryAllocationCounter + *(long long *)(BufferStatus3 + 0x1aa8));
               if (*(long long *)(MemoryBlockIndex + 0x28) == CharacterTablePointer6) {
-                FUN_180124d50(MemoryBlockIndex,ContextSecondaryFloat5 / ContextSecondaryFloat6);
+                CalculateSystemFloatDivision(MemoryBlockIndex,ContextSecondaryFloat5 / ContextSecondaryFloat6);
               }
               UnicodeCharacterCode = (unsigned long long)(CharacterByteCount2 + 1U);
               MemoryAllocationCounter = MemoryAllocationCounter + 8;
@@ -148005,7 +148023,7 @@ void ProcessSystemBufferStatus(void)
           }
         }
         else {
-          FUN_180124d50(*(long long *)(CharacterTablePointer6 + 0x78),ContextSecondaryFloat5 / ContextSecondaryFloat6);
+          CalculateSystemFloatDivision(*(long long *)(CharacterTablePointer6 + 0x78),ContextSecondaryFloat5 / ContextSecondaryFloat6);
         }
       }
       *(float *)(CharacterTablePointer6 + 0x18) = ContextSecondaryFloat5;
@@ -148248,7 +148266,7 @@ LAB_180130808:
             IntegerValue3 = (int)SystemMemoryAllocationResult;
             MemoryBlockIndex = *(long long *)(SystemChecksumValue + *(long long *)(SystemDataTablePointer + 0x1aa8));
             if (*(long long *)(MemoryBlockIndex + 0x28) == BufferStatus) {
-              FUN_180124d50(MemoryBlockIndex,SystemFloatValue / SystemContextPrimaryFloat6);
+              CalculateSystemFloatDivision(MemoryBlockIndex,SystemFloatValue / SystemContextPrimaryFloat6);
             }
             SystemMemoryAllocationResult = (unsigned long long)(IntegerValue3 + 1U);
             SystemChecksumValue = SystemChecksumValue + 8;
@@ -148256,7 +148274,7 @@ LAB_180130808:
         }
       }
       else {
-        FUN_180124d50(*(long long *)(BufferStatus + 0x78),SystemFloatValue / SystemContextPrimaryFloat6);
+        CalculateSystemFloatDivision(*(long long *)(BufferStatus + 0x78),SystemFloatValue / SystemContextPrimaryFloat6);
       }
     }
     *(float *)(BufferStatus + 0x18) = SystemFloatValue;
@@ -149154,7 +149172,7 @@ unsigned long long ProcessSystemFloatData(long long CharacterCode,float *Utf8Inp
          (Utf8BufferSize[1] <= *(float *)(Utf16EndPointer + 0x22c) && *(float *)(Utf16EndPointer + 0x22c) != Utf8BufferSize[1])        || (*(float *)(Utf16EndPointer + 0x230) < Utf8BufferSize[2])) || (*(float *)(Utf16EndPointer + 0x234) < Utf8BufferSize[3]       ) {
       return *(unsigned long long *)(Utf8SourcePointer + 0x1c98) & 0xffffffffffffff00;
     }
-    FUN_18011fd10(Utf8BufferSize);
+    ProcessSystemBufferDataEx(Utf8BufferSize);
   }
   if (*(uint *)(Utf8SourcePointer + 0x1d34) < 2) {
     ProcessedFloatValue8 = *(float *)(Utf16EndPointer + 0x22c);

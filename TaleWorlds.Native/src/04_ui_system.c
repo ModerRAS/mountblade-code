@@ -64100,8 +64100,22 @@ void ResetUISystemState(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180699620(longlong uiContext)
-void FUN_180699620(longlong uiContext)
+ /**
+ * @brief UI系统初始化和配置函数
+ * 
+ * 该函数负责初始化UI系统的各个组件，包括：
+ * - 分配和配置UI内存区域
+ * - 设置UI组件的初始状态
+ * - 初始化UI事件处理系统
+ * - 配置UI缓冲区和数据结构
+ * 
+ * @param uiContext UI上下文指针，用于访问和操作UI系统数据
+ * 
+ * @note 原始函数名: FUN_180699620
+ * @note 该函数执行复杂的UI系统初始化流程
+ * @note 涉及内存分配、组件配置和事件系统设置
+ */
+void InitializeUISystem(longlong uiContext)
 
 {
   longlong allocatedMemory;
@@ -64605,9 +64619,22 @@ void SetUISystemStatusFlag(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180699f40(longlong uiContext)
-void FUN_180699f40(longlong uiContext)
-
+ /**
+ * @brief UI系统渲染器配置函数
+ * 
+ * 该函数负责配置UI系统的渲染器和数据处理组件，包括：
+ * - 初始化UI渲染器数据结构
+ * - 设置信号量和同步机制
+ * - 配置UI系统缓冲区和指针
+ * - 初始化UI系统状态标志
+ * 
+ * @param uiContext UI上下文指针，用于访问和操作UI系统数据
+ * 
+ * @note 原始函数名: FUN_180699f40
+ * @note 该函数执行UI渲染器的初始化和配置
+ * @note 涉及渲染器数据分配和系统状态设置
+ */
+void ConfigureUIRenderer(longlong uiContext)
 {
   undefined4 functionResult;
   undefined8 semaphoreHandle;
@@ -64723,8 +64750,23 @@ ulonglong ProcessUIDataAndBufferManager(longlong uiContext,longlong dataSource,u
 
 
 
- void FUN_18069a210(longlong uiContext,longlong dataSource)
-void FUN_18069a210(longlong uiContext,longlong dataSource)
+ /**
+ * @brief UI组件状态比较和匹配函数
+ * 
+ * 该函数负责比较和匹配UI组件的状态，包括：
+ * - 比较UI组件的状态标志
+ * - 执行字符匹配操作
+ * - 处理UI组件的索引和偏移量
+ * - 管理UI状态表和数据缓冲区
+ * 
+ * @param uiContext UI上下文指针，用于访问和操作UI系统数据
+ * @param dataSource 数据源标识符，用于指定要处理的数据源
+ * 
+ * @note 原始函数名: FUN_18069a210
+ * @note 该函数执行复杂的UI状态比较和匹配操作
+ * @note 涉及位运算和状态标志处理
+ */
+void CompareUIComponentStates(longlong uiContext,longlong dataSource)
 
 {
   byte isCharacterMatch;
