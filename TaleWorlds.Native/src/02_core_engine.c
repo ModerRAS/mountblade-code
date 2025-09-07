@@ -50137,19 +50137,19 @@ void CleanupSystemBuffer(void)
             } while (SystemContextOffset < TableIterationIndex);
           }
         }
-        StatusBuffer5 = (uint *)((long long)*(int *)(CoreEngineSystemContext + 0xc20) * 0x128 +
+        SystemStatusBuffer = (uint *)((long long)*(int *)(CoreEngineSystemContext + 0xc20) * 0x128 +
                           CoreEngineSystemContext + 0x9d0);
-        if (IntegerValue6 == 0) {
-          UnicodeCharacterCode = (int)OperationStatus - 1;
+        if (BufferElementCount == 0) {
+          UnicodeCharacterValue = (int)BufferOperationStatus - 1;
         }
         else {
           LOCK();
-          UnicodeCharacterCode = *StatusBuffer5;
-          *StatusBuffer5 = *StatusBuffer5 + (int)OperationStatus;
+          UnicodeCharacterValue = *SystemStatusBuffer;
+          *SystemStatusBuffer = *SystemStatusBuffer + (int)BufferOperationStatus;
           UNLOCK();
-          MemoryAllocationOffset = (unsigned long long)(UnicodeCharacterCode >> 0xb);
-          MemoryAllocationSize = (unsigned long long)(OperationStatus + -1 + UnicodeCharacterCode >> 0xb);
-          if (MemoryAllocationOffset <= MemoryAllocationSize) {
+          MemoryBlockOffset = (unsigned long long)(UnicodeCharacterValue >> 0xb);
+          MemoryBlockSize = (unsigned long long)(BufferOperationStatus + -1 + UnicodeCharacterValue >> 0xb);
+          if (MemoryBlockOffset <= MemoryBlockSize) {
             SystemStringSystemStringBuffer = (char *)((long long)StatusBuffer5 + MemoryAllocationOffset + 0x108);
             SystemContextValue = (MemoryAllocationSize - MemoryAllocationOffset) + 1;
             ProcessingStatusPointer = StatusBuffer5 + MemoryAllocationOffset * 2 + 2;
@@ -96509,16 +96509,16 @@ void InitializeSystemMemoryCache(void)
   float FloatingPointRegisterA;
   float BaseFloatValue;
   float AuxiliaryFloat9;
-  uint32_t UnsignedSystemParameter28;
-  float fStack0000000000000030;
+  uint32_t SystemInitializationFlags;
+  float TemporaryCalculationFloat;
   float TertiaryDataStorage;
   
-  fStack0000000000000030 = (TertiaryDataStorage - FloatingPointRegisterA) * BaseFloatValue + FloatingPointRegisterA;
-  TertiaryDataStorage = AuxiliaryFloat9 + fStack0000000000000030;
-  if (*(float *)(StackFramePointer + 0x77) <= AuxiliaryFloat9 + fStack0000000000000030) {
+  TemporaryCalculationFloat = (TertiaryDataStorage - FloatingPointRegisterA) * BaseFloatValue + FloatingPointRegisterA;
+  TertiaryDataStorage = AuxiliaryFloat9 + TemporaryCalculationFloat;
+  if (*(float *)(StackFramePointer + 0x77) <= AuxiliaryFloat9 + TemporaryCalculationFloat) {
     TertiaryDataStorage = *(float *)(StackFramePointer + 0x77);
   }
-  uStack0000000000000028 = 0xf;
+  SystemInitializationFlags = 0xf;
   ProcessSystemDataAndConfigure(*(void *)(SystemContext + 0x2e8),&SystemStackBuffer,&SystemChecksumValueStackBuffer,in_EAX,
                 *(uint32_t *)(DataNodeIndex + 0x1690));
   return;

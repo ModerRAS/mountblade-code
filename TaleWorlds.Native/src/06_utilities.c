@@ -76114,7 +76114,17 @@ void ProcessExceptionDataWithBuffer(DataBuffer operationBase,int64_t dataBuffer,
 
 
 
-void ExceptionHandlerD6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据并清理缓冲区
+ * 
+ * 该函数处理异常数据，并在处理完成后清理相关的异常数据缓冲区。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ProcessExceptionDataWithCleanupBuffer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -76130,7 +76140,17 @@ void ExceptionHandlerD6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
 
 
 
-void ExceptionHandlerD7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据并执行系统终止
+ * 
+ * 该函数处理异常数据，并在处理完成后终止相关系统组件。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ProcessExceptionDataWithTermination(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -76146,7 +76166,17 @@ void ExceptionHandlerD7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
 
 
 
-void ExceptionHandlerD8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统配置异常
+ * 
+ * 该函数处理系统配置相关的异常操作。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ProcessSystemConfigurationException(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
@@ -76156,7 +76186,17 @@ void ExceptionHandlerD8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
 
 
 
-void ExceptionHandlerD9(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统配置并清理资源
+ * 
+ * 该函数处理系统配置相关的异常操作，并执行资源清理。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void ProcessSystemConfigurationWithCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
