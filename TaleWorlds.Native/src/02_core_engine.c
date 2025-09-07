@@ -2978,6 +2978,28 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_1801166f0 - 系统缓冲区验证和数据处理函数
 #define ValidateSystemBufferAndProcessData FUN_1801166f0
 
+// 缺失的函数宏定义 - 基于代码使用情况分析
+// 原始函数名：FUN_180049bf0 - 系统数据结构复制和初始化函数
+#define CopyAndInitializeSystemDataStructure FUN_180049bf0
+
+// 原始函数名：FUN_1800b8300 - 系统缓冲区处理和状态管理函数
+#define ProcessSystemBufferAndManageStatus FUN_1800b8300
+
+// 原始函数名：FUN_180226020 - 系统内存分配和数据处理函数
+#define AllocateSystemMemoryAndProcessData FUN_180226020
+
+// 原始函数名：FUN_1808fcf5c - 系统数据复制和线程本地存储设置函数
+#define CopySystemDataAndSetupThreadLocalStorage FUN_1808fcf5c
+
+// 原始函数名：FUN_180627020 - 系统事件初始化和处理函数
+#define InitializeSystemEventAndProcess FUN_180627020
+
+// 原始函数名：FUN_180255f80 - 系统字符串索引查找函数
+#define FindSystemStringIndex FUN_180255f80
+
+// 原始函数名：FUN_1800c1420 - 系统向量寄存器和数据处理函数
+#define ProcessVectorRegisterAndData FUN_1800c1420
+
 const void* const SystemStackBufferA = (void*)0x18010cb70;
 const void* const SystemStackBufferB = (void*)0x18010cb60;
 const void* const SystemLocalDataBuffer = (void*)0x180103b59;
