@@ -74119,7 +74119,19 @@ void CleanupResourceOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908ed0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置系统异常数据缓冲区B到指定偏移量
+ * 
+ * 该函数从数据缓冲区的指定偏移量获取异常数据缓冲区指针，
+ * 并将其设置为系统异常数据缓冲区B，然后销毁异常数据。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908ed0
+ * @note 内存偏移量：使用MemoryPointerOffset作为偏移量
+ */
+void SetSystemExceptionDataBufferB(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -74235,7 +74247,19 @@ uint8_t * HandleStringStateException(DataBuffer operationBase, int64_t dataBuffe
 
 
 
-void Unwind_180908f90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理未捕获异常并刷新输出流
+ * 
+ * 该函数检查是否存在未捕获的异常，如果没有则刷新基本输出流。
+ * 然后处理异常上下文，调用相应的异常处理回调函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908f90
+ * @note 内存偏移量：使用0x38作为异常上下文偏移量
+ */
+void ProcessUncaughtExceptionAndFlushStream(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -74262,7 +74286,19 @@ void Unwind_180908f90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908fa0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文回调函数
+ * 
+ * 该函数从数据缓冲区获取异常上下文处理器指针，
+ * 并调用相应的异常处理回调函数。如果需要，还会解锁文件。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908fa0
+ * @note 内存偏移量：使用0x38作为异常上下文偏移量
+ */
+void ProcessExceptionHandlerCallback(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
