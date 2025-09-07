@@ -29985,33 +29985,33 @@ long long CoreEngineCopyAndProcessMemoryData(long long CharacterCode,long long U
 long long CopySystemMemoryDataBlocks(long long sourceMemoryPointer, uint64_t reservedParameter, long long destinationMemoryPointer
 {
   uint MemoryPoolBlockSize;
-  long long *memoryBlockPointer;
+  long long *MemoryBlockDataPointer;
   long long blockCounter;
   long long TargetMemoryOffset;
   unsigned long long dataSize;
   
-  memoryBlockPointer = (long long *)(sourceMemoryPointer + 8);
-  destinationOffset = destinationMemoryPointer - sourceMemoryPointer;
+  MemoryBlockDataPointer = (long long *)(sourceMemoryPointer + 8);
+  TargetMemoryOffset = destinationMemoryPointer - sourceMemoryPointer;
   do {
-    MemoryPoolBlockSize = *(uint *)(memoryBlockPointer + 1);
+    MemoryPoolBlockSize = *(uint *)(MemoryBlockDataPointer + 1);
     dataSize = (unsigned long long)MemoryPoolBlockSize;
     if (*memoryBlockPointer != 0) {
-      CoreEngineProcessSystemEvent(destinationOffset, dataSize);
+      CoreEngineProcessSystemEvent(TargetMemoryOffset, dataSize);
     }
     if (MemoryPoolBlockSize != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(*(void *)(destinationOffset + (long long)memoryBlockPointer), *memoryBlockPointer, dataSize);
+      memcpy(*(void *)(TargetMemoryOffset + (long long)memoryBlockPointer), *memoryBlockPointer, dataSize);
     }
-    *(uint32_t *)(destinationOffset + 8 + (long long)memoryBlockPointer) = 0;
-    if (*(long long *)(destinationOffset + (long long)memoryBlockPointer) != 0) {
-      *(uint8_t *)(dataSize + *(long long *)(destinationOffset + (long long)memoryBlockPointer)) = 0;
+    *(uint32_t *)(TargetMemoryOffset + 8 + (long long)memoryBlockPointer) = 0;
+    if (*(long long *)(TargetMemoryOffset + (long long)memoryBlockPointer) != 0) {
+      *(uint8_t *)(dataSize + *(long long *)(TargetMemoryOffset + (long long)memoryBlockPointer)) = 0;
     }
     blockCounter = blockCounter + -1;
-    *(uint32_t *)(destinationOffset + 0x14 + (long long)memoryBlockPointer) = *(uint32_t *)((long long)memoryBlockPointer + 0x14);
-    destinationOffset = destinationOffset + 0x20;
+    *(uint32_t *)(TargetMemoryOffset + 0x14 + (long long)memoryBlockPointer) = *(uint32_t *)((long long)memoryBlockPointer + 0x14);
+    TargetMemoryOffset = TargetMemoryOffset + 0x20;
     memoryBlockPointer = memoryBlockPointer + 4;
   } while (0 < blockCounter);
-  return destinationOffset;
+  return TargetMemoryOffset;
 }
 
 
@@ -100018,85 +100018,85 @@ ProcessSystemDataStructureConfiguration_SkipInitialization:
 // 系统事件处理和状态验证函数
 void ProcessSystemEventAndValidateStatus(void)
 {
-  long long *Utf8InputBuffer;
-  uint *PrimaryProcessingStatusFlag;
-  uint32_t *systemEventTemplatePointer;
-  float FloatVariable4;
-  float *pFloatVariable5;
-  bool BooleanStringBuffer6;
-  char CharacterStatus2;
-  char SystemStatusChar;
-  int IntegerValue9;
-  uint32_t MemoryAllocationIndex;
-  uint32_t ProcessStringBuffer;
-  int IntegerValue2;
-  char *StringBuffer3;
-  long long LoopIndex;
-  char *StringCodeBuffer;
-  long long MemoryAllocationOffset;
-  char *StringBuffer7;
-  long long FrameRegisterPointer;
-  long long RegisterSourceIndex;
-  long long DataNodeIndex;
-  char *StringBuffer8;
-  uint64_t RegisterValueR12;
-  char *RegisterR13Value;
-  char *StringBuffer;
-  int CharacterByteCount0;
-  float *RegisterR15Value;
-  float ContextSecondaryFloat1;
-  float ContextSecondaryFloat2;
-  uint32_t VectorRegisterDa;
-  float ContextSecondaryFloat3;
-  uint64_t StackParameter1;
-  uint64_t MemoryAllocationBase;
-  uint32_t MemoryAllocationIndexSecondary;
-  float StackParameter0;
-  float StackParameter3;
-  float StackParameter1;
-  float StackFloatVariable2;
-  float StackParameter2;
-  float fStack000000000000007c;
+  long long *SystemInputBuffer;
+  uint *SystemProcessingStatusFlag;
+  uint32_t *SystemEventTemplatePointer;
+  float SystemFloatValue1;
+  float *SystemFloatPointer2;
+  bool SystemBooleanFlag3;
+  char SystemStatusChar1;
+  char SystemStatusChar2;
+  int SystemIntegerValue1;
+  uint32_t SystemMemoryAllocationIndex1;
+  uint32_t SystemStringBufferSize;
+  int SystemIntegerValue2;
+  char *SystemStringBuffer1;
+  long long SystemLoopIndex;
+  char *SystemCodeBuffer;
+  long long SystemMemoryOffset;
+  char *SystemStringBuffer2;
+  long long SystemFramePointer;
+  long long SystemRegisterPointer;
+  long long SystemDataNodePointer;
+  char *SystemStringBuffer3;
+  uint64_t SystemRegisterValue1;
+  char *SystemRegisterValue2;
+  char *SystemStringBuffer4;
+  int SystemCharacterCount;
+  float *SystemRegisterValue3;
+  float SystemContextFloat1;
+  float SystemContextFloat2;
+  uint32_t SystemVectorRegister;
+  float SystemContextFloat3;
+  uint64_t SystemStackParameter1;
+  uint64_t SystemMemoryBaseAddress;
+  uint32_t SystemMemoryAllocationIndex2;
+  float SystemStackFloat1;
+  float SystemStackFloat2;
+  float SystemStackFloat3;
+  float SystemStackFloat4;
+  float SystemStackFloat5;
+  float SystemStackFloat6;
   
-  ProcessStringBuffer = (uint32_t)((unsigned long long)StackParameter1 >> 0x20);
-  MemoryAllocationIndexSecondary = (uint32_t)((unsigned long long)RegisterValueR12 >> 0x20);
+  SystemStringBufferSize = (uint32_t)((unsigned long long)SystemStackParameter1 >> 0x20);
+  SystemMemoryAllocationIndex2 = (uint32_t)((unsigned long long)SystemRegisterValue1 >> 0x20);
   SystemOperationResult = ValidateSystemDataAndProcessOperation();
-  if (*(int *)(RegisterSourceIndex + 0x1b2c) == IntegerValue9) {
-    *(int *)(RegisterSourceIndex + 0x1b34) = IntegerValue9;
+  if (*(int *)(SystemRegisterPointer + 0x1b2c) == SystemIntegerValue1) {
+    *(int *)(SystemRegisterPointer + 0x1b34) = SystemIntegerValue1;
   }
-  if (*(int *)(RegisterSourceIndex + 0x1b30) == IntegerValue9) {
-    *(uint8_t *)(RegisterSourceIndex + 0x1b3f) = 1;
+  if (*(int *)(SystemRegisterPointer + 0x1b30) == SystemIntegerValue1) {
+    *(uint8_t *)(SystemRegisterPointer + 0x1b3f) = 1;
   }
-  ContextSecondaryFloat1 = (float)InitializeSystemMemory();
-  StringBuffer3 = RegisterR13Value;
-  if (RegisterR13Value != (char *)0xffffffffffffffff) {
-    while (*StringBuffer3 != '\0') {
-      if (((*StringBuffer3 == '#') && (StringBuffer3[1] == '#')) ||
-         (StringBuffer3 = StringBuffer3 + 1, StringBuffer3 == (char *)0xffffffffffffffff)) break;
+  SystemContextFloat1 = (float)InitializeSystemMemory();
+  SystemStringBuffer1 = SystemRegisterValue2;
+  if (SystemRegisterValue2 != (char *)0xffffffffffffffff) {
+    while (*SystemStringBuffer1 != '\0') {
+      if (((*SystemStringBuffer1 == '#') && (SystemStringBuffer1[1] == '#')) ||
+         (SystemStringBuffer1 = SystemStringBuffer1 + 1, SystemStringBuffer1 == (char *)0xffffffffffffffff)) break;
     }
   }
-  pFloatVariable5 = *(float **)(RegisterSourceIndex + 0x19f0);
-  ContextSecondaryFloat3 = *(float *)(RegisterSourceIndex + 0x19f8);
-  if (RegisterR13Value == StringBuffer3) {
-    ContextSecondaryFloat2 = 0.0;
+  SystemFloatPointer2 = *(float **)(SystemRegisterPointer + 0x19f0);
+  SystemContextFloat3 = *(float *)(SystemRegisterPointer + 0x19f8);
+  if (SystemRegisterValue2 == SystemStringBuffer1) {
+    SystemContextFloat2 = 0.0;
   }
   else {
-    MemoryAllocationBase = CONCAT44(ProcessStringBuffer,0xbf800000);
-    ProcessFloatAndSystemConfiguration(pFloatVariable5,FrameRegisterPointer + -0x78,ContextSecondaryFloat3,0x7f7fffff,MemoryAllocationBase);
-    ProcessStringBuffer = (uint32_t)((unsigned long long)MemoryAllocationBase >> 0x20);
-    ContextSecondaryFloat2 = *(float *)(FrameRegisterPointer + -0x78);
-    if (0.0 < ContextSecondaryFloat2) {
-      ContextSecondaryFloat2 = ContextSecondaryFloat2 - ContextSecondaryFloat3 / *pFloatVariable5;
+    SystemMemoryBaseAddress = CONCAT44(SystemStringBufferSize,0xbf800000);
+    ProcessFloatAndSystemConfiguration(SystemFloatPointer2,SystemFramePointer + -0x78,SystemContextFloat3,0x7f7fffff,SystemMemoryBaseAddress);
+    SystemStringBufferSize = (uint32_t)((unsigned long long)SystemMemoryBaseAddress >> 0x20);
+    SystemContextFloat2 = *(float *)(SystemFramePointer + -0x78);
+    if (0.0 < SystemContextFloat2) {
+      SystemContextFloat2 = SystemContextFloat2 - SystemContextFloat3 / *SystemFloatPointer2;
     }
-    ContextSecondaryFloat3 = *(float *)(FrameRegisterPointer + -0x74);
-    ContextSecondaryFloat2 = (float)(int)(ContextSecondaryFloat2 + 0.95);
+    SystemContextFloat3 = *(float *)(SystemFramePointer + -0x74);
+    SystemContextFloat2 = (float)(int)(SystemContextFloat2 + 0.95);
   }
-  StackParameter0 = *(float *)(DataNodeIndex + 0x100);
-  fStack000000000000006c = *(float *)(DataNodeIndex + 0x104);
-  FloatVariable4 = *(float *)(RegisterSourceIndex + 0x1660);
-  *(float *)(FrameRegisterPointer + -0x80) = ContextSecondaryFloat1 + StackParameter0;
-  StackFloatVariable2 = FloatVariable4 + FloatVariable4 + ContextSecondaryFloat3 + fStack000000000000006c;
-  *(float *)(FrameRegisterPointer + -0x7c) = StackFloatVariable2;
+  SystemStackFloat1 = *(float *)(SystemDataNodePointer + 0x100);
+  SystemStackFloat6 = *(float *)(SystemDataNodePointer + 0x104);
+  SystemFloatValue1 = *(float *)(SystemRegisterPointer + 0x1660);
+  *(float *)(SystemFramePointer + -0x80) = SystemContextFloat1 + SystemStackFloat1;
+  SystemStackFloat4 = SystemFloatValue1 + SystemFloatValue1 + SystemContextFloat3 + SystemStackFloat6;
+  *(float *)(SystemFramePointer + -0x7c) = SystemStackFloat4;
   if (ContextSecondaryFloat2 <= 0.0) {
     StackParameter1 = 0.0;
   }

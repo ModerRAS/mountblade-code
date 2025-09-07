@@ -147,6 +147,14 @@
 #define ResourceIteratorTableOffset 0x1cd8
 #define ResourceValidationFlag1 0x12e3
 #define ResourceValidationFlag2 0x12dd
+
+// 系统调试地址常量定义
+#define SYSTEM_DEBUG_ADDRESS_001 0x000180893865
+#define SYSTEM_DEBUG_ADDRESS_002 0x000180893a22
+#define SYSTEM_DEBUG_ADDRESS_003 0x000180895f53
+#define SYSTEM_DEBUG_ADDRESS_004 0x000180895f67
+#define SYSTEM_DEBUG_ADDRESS_005 0x000180895fa1
+#define SYSTEM_DEBUG_ADDRESS_006 0x000180895fa9
 #define ResourceContextArrayOffset 0x80d8
 #define ResourceContextIndexOffset 0x8088
 #define ResourceContextSize 0x20
@@ -16641,7 +16649,7 @@ void ProcessAlternativeContextValidation(int64_t contextHandle,int64_t operation
 
 
 
- (ram,0x000180893865)
+ (ram,SYSTEM_DEBUG_ADDRESS_001)
 
 /**
  * @brief 验证并处理系统操作
@@ -16698,7 +16706,7 @@ int ValidateAndProcessSystemOperation(int64_t systemContext,int64_t operationCon
 
 
 
- (ram,0x000180893865)
+ (ram,SYSTEM_DEBUG_ADDRESS_001)
 
 // 原始函数名：FUN_18089379d - 数据验证和处理函数
 // 功能：验证参数有效性并根据条件执行相应的数据处理操作
@@ -16777,7 +16785,7 @@ void ValidateContextAndUpdateState(int64_t contextHandle,int64_t operationHandle
 
 
 
- (ram,0x000180893a22)
+ (ram,SYSTEM_DEBUG_ADDRESS_002)
 
 // 原始函数名：FUN_180893930 - 数据状态验证和处理函数
 // 功能：验证数据状态并根据不同状态执行相应的数据处理操作
@@ -16819,7 +16827,7 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
 
 
 
- (ram,0x000180893a22)
+ (ram,SYSTEM_DEBUG_ADDRESS_002)
 
 // 原始函数名：FUN_180893964 - 条件数据处理函数
 // 功能：根据输入条件执行不同的数据处理操作
@@ -18321,10 +18329,10 @@ CleanupContextAndExit:
 
 
 
- (ram,0x000180895f53)
- (ram,0x000180895f67)
- (ram,0x000180895fa1)
- (ram,0x000180895fa9)
+ (ram,SYSTEM_DEBUG_ADDRESS_003)
+ (ram,SYSTEM_DEBUG_ADDRESS_004)
+ (ram,SYSTEM_DEBUG_ADDRESS_005)
+ (ram,SYSTEM_DEBUG_ADDRESS_006)
  (ram,0x000180895fb1)
  (ram,0x000180895fc0)
  (ram,0x000180896027)
@@ -22831,18 +22839,18 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
 DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuffer *operationFlagA)
 
 {
-  char *characterPointer;
-  DataBuffer *resourcePointer;
-  byte validationFlag;
-  DataBuffer memoryBaseAddress;
-  char currentChar;
-  char processedChar;
-  int calculatedValue;
-  uint securityCheckResult;
-  char *stringProcessingPointer;
-  int primaryInputParameter;
-  int inputParameter0;
-  uint *exceptionDataBuffer1;
+  char *CharacterIterator;
+  DataBuffer *ResourceDataPointer;
+  byte ValidationStatusFlag;
+  DataBuffer MemoryBaseAddress;
+  char CurrentCharacter;
+  char ProcessedCharacter;
+  int CharacterMatchIndex;
+  uint SecurityValidationResult;
+  char *StringComparisonPointer;
+  int PrimaryParameter;
+  int CharacterProcessingCounter;
+  uint *ExceptionHandlingBuffer;
   
   exceptionDataBuffer1 = (uint *)*operationBase;
   if (((exceptionDataBuffer1 != (uint *)0x0) && (operationBase[4] != 0)) && (operationBase[2] != 0)) {

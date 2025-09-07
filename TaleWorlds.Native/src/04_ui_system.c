@@ -62802,8 +62802,16 @@ void ProcessUIComponentRenderingOptimized(void)
 
 
 
- void FUN_1806987ee(void)
-void FUN_1806987ee(void)
+ /**
+ * @brief UI系统空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作。
+ * 可能用于占位或特定的同步需求。
+ * 
+ * @note 原始函数名: FUN_1806987ee
+ */
+void UINullOperation(void)
+void UINullOperation(void)
 
 {
   return;
@@ -62812,11 +62820,21 @@ void FUN_1806987ee(void)
 
 
 
- void FUN_180698800(longlong uiContext,int dataSource)
-void FUN_180698800(longlong uiContext,int dataSource)
+ /**
+ * @brief 初始化UI内存缓冲区
+ * 
+ * 该函数负责初始化UI系统的内存缓冲区，根据数据源大小计算合适的操作结果，
+ * 然后使用memset填充指定大小的内存区域。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源大小
+ * @note 原始函数名: FUN_180698800
+ */
+void InitializeUIMemoryBuffer(longlong uiContext,int dataSource)
+void InitializeUIMemoryBuffer(longlong uiContext,int dataSource)
 
 {
-  int operationResult;
+  int bufferSize;
   
   operationResult = (0 >> (0 < dataSource)) >> (4 < dataSource);
   if ((0 < dataSource) && (9 - dataSource < operationResult)) {
