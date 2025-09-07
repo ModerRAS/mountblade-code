@@ -10415,18 +10415,21 @@ void TerminateProcessWithMemoryError(void)
 
 
 
-// 函数: void SystemReturnEmptyFunctionSecondary(void)
-// 
-// 空返回函数B
-// 不执行任何操作直接返回的函数
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 系统次要空返回函数
+ * 
+ * 该函数是一个不执行任何操作的空函数，主要用于系统初始化时的占位符或
+ * 作为函数调用的桩函数。它保持了函数调用的接口一致性，但实际不执行任何操作。
+ * 这是系统空返回函数的次要版本，用于不同的调用场景。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数为空函数，主要用于系统初始化时的占位符
+ * @warning 调用此函数不会产生任何效果
+ * 
+ * @see SystemReturnEmptyFunction, SystemNoOperationPrimary
+ */
 void SystemReturnEmptyFunctionSecondary(void)
-
 {
   return;
 }
@@ -33397,8 +33400,8 @@ ProcessCheckpointValidationError9:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  if ((((!bVar6) && (*(char *)(stackFramePointer + 0x77) == '\0')) && (*(char *)(stackFramePointer + 0x7f) == '\0'))
-     && (!bVar8)) {
+  if ((((!isBufferValid) && (*(char *)(stackFramePointer + 0x77) == '\0')) && (*(char *)(stackFramePointer + 0x7f) == '\0'))
+     && (!isValidationComplete)) {
     register_R12D = (DataWord)operationFlagA;
   }
   *(DataWord *)(register_R15 + 0x38) = register_R12D;
@@ -35476,7 +35479,7 @@ void ExceptionUnwindHandlerA17(void)
 void ExceptionHandlerA0(void)
 
 {
-  byte bVar1;
+  byte shiftBitCount;
   
   EnterCriticalSection(0x180c82210);
   ExceptionStatusFlagA1 = 0;
@@ -35488,11 +35491,11 @@ void ExceptionHandlerA0(void)
     ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
+  shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
 
@@ -58794,7 +58797,7 @@ void Unwind_180907120(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180907130(void)
 
 {
-  byte bVar1;
+  byte shiftBitCount;
   
   EnterCriticalSection(0x180c82210);
   SystemStatusFlag = 0;
@@ -58806,11 +58809,11 @@ void Unwind_180907130(void)
     ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
+  shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
 
@@ -62187,7 +62190,7 @@ void HandleExceptionA3(DataBuffer ContextParameter, int64_t SystemContext)
 void Unwind_180908040(void)
 
 {
-  byte bVar1;
+  byte shiftBitCount;
   
   EnterCriticalSection(0x180c82210);
   ExceptionStatusFlagA3 = 0;
@@ -62199,11 +62202,11 @@ void Unwind_180908040(void)
     ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
+  shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
 
@@ -64748,7 +64751,7 @@ void Unwind_180908d00(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180908d30(void)
 
 {
-  byte bVar1;
+  byte shiftBitCount;
   
   EnterCriticalSection(0x180c82210);
   ExceptionStatusFlagA4 = 0;
@@ -64760,11 +64763,11 @@ void Unwind_180908d30(void)
     ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
+  shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
 
@@ -69470,7 +69473,7 @@ void Unwind_18090a6d0(void)
 void Unwind_18090a6e0(void)
 
 {
-  byte bVar1;
+  byte shiftBitCount;
   
   EnterCriticalSection(0x180c82210);
   ExceptionStatusFlagA5 = 0;
@@ -69482,11 +69485,11 @@ void Unwind_18090a6e0(void)
     ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
+  shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
 
@@ -95252,7 +95255,7 @@ void Unwind_1809127c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_1809127d0(void)
 
 {
-  byte bVar1;
+  byte shiftBitCount;
   
   EnterCriticalSection(0x180c82210);
   SystemCriticalSectionFlag = 0;
@@ -95264,11 +95267,11 @@ void Unwind_1809127d0(void)
     ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
+  shiftBitCount = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
-            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBitCount |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBitCount))(0x180c82238);
   return;
 }
 
