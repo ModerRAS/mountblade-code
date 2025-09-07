@@ -163,6 +163,7 @@
 #define DataBufferOffsetC 0xc                      // 数据缓冲区偏移量0xc
 #define DataBufferOffsetE 0xe                      // 数据缓冲区偏移量0xe
 #define DataBufferOffset12 0x12                    // 数据缓冲区偏移量0x12
+#define DataBufferOffset14 0x14                    // 数据缓冲区偏移量0x14
 #define DataBufferOffset16 0x16                    // 数据缓冲区偏移量0x16
 
 // 数据处理乘数常量定义
@@ -24836,34 +24837,34 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
               memoryBaseAddress = (uint64_t)validationStatus;
             } while ((int)validationStatus < inputParameter);
           }
-          inputParameter = dataBuffer[0x12];
+          inputParameter = dataBuffer[DataBufferOffset12];
           uStackX_8 = CONCAT44(uStackX_8._4_4_,inputParameter);
-          operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                            (*(DataBuffer **)(operationBase + 8),&uStackX_8,4);
+          operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
+                            (*(DataBuffer **)(operationBase + DataBufferOffset8),&uStackX_8,DataProcessingMultiplier4);
           if (operationResult == 0) {
             memoryBaseAddress = dataFlags;
             if (0 < inputParameter) {
               do {
                 uStackX_8 = CONCAT44(uStackX_8._4_4_,
-                                     *(DataWord *)(*(int64_t *)(dataBuffer + ExceptionHandlerCallbackOffset10) + memoryBaseAddress * 4));
-                operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                                  (*(DataBuffer **)(operationBase + 8),&uStackX_8,4);
+                                     *(DataWord *)(*(int64_t *)(dataBuffer + ExceptionHandlerCallbackOffset10) + memoryBaseAddress * DataProcessingMultiplier4));
+                operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
+                                  (*(DataBuffer **)(operationBase + DataBufferOffset8),&uStackX_8,DataProcessingMultiplier4);
                 if (operationResult != 0) {
                   return;
                 }
                 memoryBaseAddress = memoryBaseAddress + 1;
               } while ((int64_t)memoryBaseAddress < (int64_t)inputParameter);
             }
-            inputParameter = dataBuffer[0x16];
+            inputParameter = dataBuffer[DataBufferOffset16];
             uStackX_8 = CONCAT44(uStackX_8._4_4_,inputParameter);
-            operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                              (*(DataBuffer **)(operationBase + 8),&uStackX_8,4);
+            operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
+                              (*(DataBuffer **)(operationBase + DataBufferOffset8),&uStackX_8,DataProcessingMultiplier4);
             if (operationResult == 0) {
               memoryBaseAddress = dataFlags;
               securityCheckResult = dataFlags;
               if (0 < inputParameter) {
                 do {
-                  resourceIterator = *(int64_t *)(dataBuffer + 0x14) + memoryBaseAddress;
+                  resourceIterator = *(int64_t *)(dataBuffer + DataBufferOffset14) + memoryBaseAddress;
                   operationResult = ProcessDataPointerA0(operationBase,resourceIterator);
                   if (operationResult != 0) {
                     return;
@@ -24900,10 +24901,10 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
                 if (operationResult == 0) {
                   if (0 < inputParameter) {
                     do {
-                      resourceIterator = *(int64_t *)(dataBuffer + 0x1c);
+                      resourceIterator = *(int64_t *)(dataBuffer + ResourceDescriptorValidationOffset);
                       uStackX_8._0_4_ = *(DataWord *)(resourceIterator + dataFlags * 8);
-                      operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                                        (*(DataBuffer **)(operationBase + 8),&uStackX_8,4);
+                      operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
+                                        (*(DataBuffer **)(operationBase + DataBufferOffset8),&uStackX_8,DataProcessingMultiplier4);
                       if (operationResult != 0) {
                         return;
                       }
@@ -24916,9 +24917,9 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
                       dataFlags = dataFlags + 1;
                     } while ((int64_t)dataFlags < (int64_t)inputParameter);
                   }
-                  uStackX_8 = CONCAT44(uStackX_8._4_4_,dataBuffer[0x20]);
-                  (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                            (*(DataBuffer **)(operationBase + 8),&uStackX_8,4);
+                  uStackX_8 = CONCAT44(uStackX_8._4_4_,dataBuffer[ResourceDescriptorDataOffset]);
+                  (**(FunctionPointer**)**(DataBuffer **)(operationBase + DataBufferOffset8))
+                            (*(DataBuffer **)(operationBase + DataBufferOffset8),&uStackX_8,DataProcessingMultiplier4);
                 }
               }
             }
@@ -24933,8 +24934,19 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
 
 
 
-// 函数: void ProcessSystemDataPointer(DataBuffer *operationBase,DataBuffer dataBuffer)
-// 功能：处理系统数据指针，执行指针操作和验证
+/**
+ * @brief 处理系统数据指针
+ * 
+ * 该函数负责处理系统数据指针，执行指针操作和验证。它会遍历系统中的数据指针，
+ * 执行必要的验证操作，并确保数据访问的安全性。
+ * 
+ * @param systemDataPointer 系统数据指针数组，包含待处理的数据指针
+ * @param operationParameter 操作参数，指定处理操作的类型和配置
+ * 
+ * @note 此函数包含复杂的指针操作和验证逻辑
+ * @warning 函数执行过程中可能会修改系统数据指针的内容
+ * @see ValidateDataParametersA0, ProcessDataPointerA0
+ */
 void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operationParameter)
 
 {
@@ -75127,7 +75139,7 @@ void Unwind_180909960(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909970(DataBuffer operationBase,int64_t dataBuffer)
+void UnlockSystemMutexAndHandleErrorA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int inputParameter;
@@ -75141,7 +75153,7 @@ void Unwind_180909970(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909980(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerAtOffset1D0A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1d0) = &DefaultExceptionHandlerB;
