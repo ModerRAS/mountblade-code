@@ -64556,7 +64556,18 @@ void ExceptionHandlerContextInvokerA0(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180907400(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据验证标志处理器A0
+ * 
+ * 该函数检查数据缓冲区的标志位，如果特定标志位被设置，
+ * 则清除该标志并调用数据验证处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含验证标志
+ * 
+ * @note 原始函数名：Unwind_180907400
+ */
+void DataValidationFlagProcessorA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
@@ -64568,7 +64579,18 @@ void Unwind_180907400(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907430(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置器A0
+ * 
+ * 该函数在数据缓冲区的特定偏移量(0x40)位置设置默认异常处理器B。
+ * 用于配置异常处理机制。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907430
+ */
+void DefaultExceptionHandlerSetterA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x40) = &DefaultExceptionHandlerB;
@@ -64577,7 +64599,18 @@ void Unwind_180907430(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907440(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据验证标志处理器A1
+ * 
+ * 该函数检查数据缓冲区的第二个标志位，如果该标志位被设置，
+ * 则清除该标志并调用数据验证处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含验证标志
+ * 
+ * @note 原始函数名：Unwind_180907440
+ */
+void DataValidationFlagProcessorA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
@@ -64589,7 +64622,18 @@ void Unwind_180907440(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907470(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据验证标志处理器A2
+ * 
+ * 该函数检查数据缓冲区的标志位，如果特定标志位被设置，
+ * 则清除该标志并调用数据验证处理器（使用不同的偏移量）。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含验证标志
+ * 
+ * @note 原始函数名：Unwind_180907470
+ */
+void DataValidationFlagProcessorA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
@@ -64601,7 +64645,18 @@ void Unwind_180907470(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809074a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据验证标志处理器A3
+ * 
+ * 该函数检查数据缓冲区的第二个标志位，如果该标志位被设置，
+ * 则清除该标志并调用数据验证处理器（使用不同的偏移量）。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含验证标志
+ * 
+ * @note 原始函数名：Unwind_1809074a0
+ */
+void DataValidationFlagProcessorA3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
@@ -64613,7 +64668,18 @@ void Unwind_1809074a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809074d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数清理器A0
+ * 
+ * 该函数负责清理资源的引用计数，管理内存块的释放。
+ * 当资源引用计数为0时，触发异常处理。这是系统资源清理的重要组成部分。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源信息
+ * 
+ * @note 原始函数名：Unwind_1809074d0
+ */
+void ResourceReferenceCountCleanerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
