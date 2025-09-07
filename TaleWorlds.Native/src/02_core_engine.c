@@ -30033,9 +30033,9 @@ void DestroySystemMutexAndProcessMemoryConfig(long long CharacterCode,uint64_t U
  * @note 使用固定的保留参数值
  * @note 涉及内存配置处理
  */
-void ProcessSystemMemoryConfigurationPrimary(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessSystemMemoryConfigurationPrimary(long long systemContext,uint64_t reservedParam1,uint64_t configParam,uint64_t reservedParam2
 {
-  CoreEngineProcessSystemMemoryResourceData(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  CoreEngineProcessSystemMemoryResourceData(systemContext,*(void *)(systemContext + 0x10),configParam,reservedParam2,0xfffffffffffffffe);
   return;
 }
 
@@ -47405,8 +47405,8 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   StackParameterE8 = in_stack_000000e8;
   TemporaryStackValue6c = 0x3f800000;
   TemporaryStackValue5c = 0;
-  uStack000000000000004c = 0;
-  uStack000000000000003c = 0;
+  StackParameter4C = 0;
+  StackParameter3C = 0;
   CalculateFloatValue(0x3f800000,SystemContextPrimaryFloat * FloatVariable7,CharacterLimitD,&SystemStackBuffer,in_stack_000000e0);
   return;
 }
@@ -47447,6 +47447,8 @@ void ProcessSystemRenderParametersAndStatus(void
   uint32_t SystemStringBufferE0;
   uint32_t StackParameterE8;  // 栈参数E8，用于存储参数数据
   uint32_t StackParameterE0;  // 栈参数E0，用于存储浮点计算参数
+  uint32_t StackParameter4C;  // 栈参数4C，用于存储参数数据
+  uint32_t StackParameter3C;  // 栈参数3C，用于存储参数数据
   
   StackDataOffset30 = *DataNodeIndex;
   StackDataOffset40 = DataNodeIndex[2];
