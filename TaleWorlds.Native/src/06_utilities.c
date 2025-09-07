@@ -68377,7 +68377,17 @@ void CleanupSystemResources7d20(DataBuffer operationBase,int64_t dataBuffer,Data
 
 
 
-void Unwind_180907d30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理函数7d30
+ * 
+ * 该函数管理系统资源的引用计数，包括内存地址计算、
+ * 资源指针验证和引用计数更新。主要用于异常处理时的资源管理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源管理信息
+ * @note 原始函数名：Unwind_180907d30
+ */
+void ManageResourceReferenceCount7d30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
