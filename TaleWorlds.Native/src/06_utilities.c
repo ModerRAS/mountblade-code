@@ -22591,7 +22591,7 @@ DataBuffer ProcessDataSequenceA0(int64_t *DataSequencePointer)
 {
   DataBuffer systemDataBuffer;
   uint *destinationIndexRegister;
-  uint DataProcessingOffset;
+  uint dataProcessingOffset;
   unsigned int stackValidationFlag;
   
   DataSequencePointer = (int64_t *)*DataSequencePointer;
@@ -22600,7 +22600,7 @@ DataBuffer ProcessDataSequenceA0(int64_t *DataSequencePointer)
   }
   else {
     if (DataSequencePointer[2] != 0) {
-      DataProcessingOffset = 0;
+      dataProcessingOffset = 0;
       systemDataBuffer = AllocateMemory(*DataSequencePointer,&stack0x00000040);
       if ((int)systemDataBuffer != 0) {
         return systemDataBuffer;
@@ -25530,6 +25530,18 @@ void ValidateAndProcessPortControlRequest(int64_t portContext, DataBuffer contro
 
 
 
+/**
+ * @brief 执行高级数据验证操作A0
+ * 
+ * 该函数执行复杂的数据验证流程，包括多重安全检查和数据处理操作。
+ * 验证过程包括端口控制验证、数据安全检查、操作范围验证等多个步骤。
+ * 
+ * @param operationBase 操作基址，包含验证所需的上下文信息
+ * @param dataBuffer 数据缓冲区指针，包含待验证的数据
+ * @return DataBuffer 验证结果状态码，0表示成功，0x1c表示验证失败
+ * 
+ * @note 原始函数名：FUN_1808909d0
+ */
 DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBuffer)
 
 {
@@ -25650,16 +25662,16 @@ DataBuffer CleanupDataResourcesA0(void)
   int64_t *registerContext;
   DataBuffer stackFramePointer;
   int64_t destinationIndexRegister;
-  bool in_CF;
-  char cStack0000000000000030;
-  uint DataProcessingOffset;
+  bool carryFlag;
+  char stackCharBuffer;
+  uint dataProcessingOffset;
   
-  if (in_CF) {
+  if (carryFlag) {
     if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
       return 0x1c;
     }
     validationContext = *registerContext;
-    _cStack0000000000000030 = stackFramePointer;
+    stackCharBuffer = stackFramePointer;
     validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 0x60,4);
     if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 100,2), (int)validationStatus == 0)) &&
        (validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 0x66,2), (int)validationStatus == 0)) {
@@ -25697,7 +25709,7 @@ DataBuffer CleanupDataResourcesA0(void)
   }
   else {
     if (pdataContext[2] != 0) {
-      DataProcessingOffset = 0;
+      dataProcessingOffset = 0;
       validationStatus = AllocateMemory(*pdataContext,&stack0x00000040);
       if ((int)validationStatus != 0) {
         return validationStatus;
@@ -25711,7 +25723,7 @@ DataBuffer CleanupDataResourcesA0(void)
   }
 ProcessCheckpointDataFlowControl:
   if ((int)validationStatus == 0) {
-    *(bool *)(destinationIndexRegister + 0x7c) = cStack0000000000000030 != (char)validationStatus;
+    *(bool *)(destinationIndexRegister + 0x7c) = stackCharBuffer != (char)validationStatus;
   }
   return validationStatus;
 }
@@ -25725,9 +25737,9 @@ DataBuffer ResetDataProcessorA1(void)
   int64_t *pdataContext;
   DataBuffer validationStatus;
   int64_t *registerContext;
-  char register_BPL;
+  char registerBPL;
   int64_t destinationIndexRegister;
-  uint DataProcessingOffset;
+  uint dataProcessingOffset;
   
   validationContext = *registerContext;
   validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 0x60);
@@ -25750,7 +25762,7 @@ DataBuffer ResetDataProcessorA1(void)
   }
   else {
     if (pdataContext[2] != 0) {
-      DataProcessingOffset = 0;
+      dataProcessingOffset = 0;
       validationStatus = AllocateMemory(*pdataContext,&stack0x00000040);
       if ((int)validationStatus != 0) {
         return validationStatus;
@@ -25764,7 +25776,7 @@ DataBuffer ResetDataProcessorA1(void)
   }
 ProcessCheckpointDataFlowControl:
   if ((int)validationStatus == 0) {
-    *(bool *)(destinationIndexRegister + 0x7c) = register_BPL != (char)validationStatus;
+    *(bool *)(destinationIndexRegister + 0x7c) = registerBPL != (char)validationStatus;
   }
   return validationStatus;
 }
@@ -86969,7 +86981,7 @@ void Unwind_180910420(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180910430(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x60) = &UNK_180a05240;
+  **(DataBuffer **)(dataBuffer + 0x60) = &DataBufferPointerA2;
   return;
 }
 
