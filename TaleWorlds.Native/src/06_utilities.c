@@ -100049,7 +100049,21 @@ void Unwind_1809106c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809106d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行数据缓冲区清理回调函数
+ * 
+ * 该函数检查数据缓冲区中的回调函数指针，如果存在有效的回调函数，
+ * 则执行该回调函数用于清理数据缓冲区资源。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针（int64_t类型）
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数主要用于数据缓冲区的清理操作
+ * @warning 确保回调函数指针有效，避免空指针访问
+ */
+void ExecuteDataBufferCleanupCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x78) != (int64_t *)0x0) {
@@ -100060,7 +100074,22 @@ void Unwind_1809106d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809106e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源并管理引用计数
+ * 
+ * 该函数负责释放内存资源，包括管理资源的引用计数、处理内存区域、
+ * 以及在引用计数归零时触发异常处理。此函数确保内存资源的正确释放
+ * 和系统的稳定性。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针（int64_t类型）
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数执行复杂的内存管理操作，包括引用计数和异常处理
+ * @warning 确保内存资源指针有效，避免内存泄漏
+ */
+void ReleaseMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -100096,7 +100125,21 @@ void Unwind_1809106e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809106f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除数据缓冲区内存指针标志位
+ * 
+ * 该函数检查数据缓冲区的内存指针标志位，如果第一个标志位被设置，
+ * 则清除该标志位并调用数据验证处理器进行验证。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针（int64_t类型）
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于管理数据缓冲区的标志位状态
+ * @warning 确保数据缓冲区指针有效
+ */
+void ClearDataBufferMemoryPointerFlag(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
@@ -100108,7 +100151,21 @@ void Unwind_1809106f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910720(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除数据缓冲区辅助标志位
+ * 
+ * 该函数检查数据缓冲区的辅助标志位，如果第二个标志位被设置，
+ * 则清除该标志位并调用数据验证处理器进行验证。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针（int64_t类型）
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于管理数据缓冲区的辅助标志位状态
+ * @warning 确保数据缓冲区指针有效
+ */
+void ClearDataBufferSecondaryFlag(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 2) != 0) {
@@ -100120,7 +100177,22 @@ void Unwind_180910720(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910750(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源副本并管理引用计数
+ * 
+ * 该函数是ReleaseMemoryResourceAndManageReferenceCount的副本实现，
+ * 用于释放内存资源并管理引用计数。当引用计数归零时，
+ * 触发异常处理函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针（int64_t类型）
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数执行与ReleaseMemoryResourceAndManageReferenceCount相同的操作
+ * @warning 确保内存资源指针有效，避免内存泄漏
+ */
+void ReleaseMemoryResourceCopy(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -116399,6 +116471,39 @@ uint8_t SystemExceptionHandlerStateTable;
 // 原始函数名：Unwind_180909630 - 系统清理函数
 // 功能：清理系统组件，执行清理流程
 #define CleanupSystemComponents Unwind_180909630
+
+// 数据缓冲区管理函数定义
+// 原始函数名：Unwind_180910680 - 数据缓冲区销毁函数A0
+// 功能：销毁数据缓冲区的基本输入流
+#define DestroyDataBufferBasicIstreamA0 Unwind_180910680
+
+// 原始函数名：Unwind_1809106a0 - 数据缓冲区系统重置函数A0
+// 功能：重置数据缓冲区的系统内存基地址和相关数据
+#define ResetDataBufferSystemMemoryA0 Unwind_1809106a0
+
+// 原始函数名：Unwind_1809106c0 - 数据缓冲区回调执行函数A0
+// 功能：执行数据缓冲区的回调函数
+#define ExecuteDataBufferCallbackA0 Unwind_1809106c0
+
+// 原始函数名：Unwind_1809106d0 - 数据缓冲区清理回调函数
+// 功能：执行数据缓冲区清理回调
+#define ExecuteDataBufferCleanupCallback Unwind_1809106d0
+
+// 原始函数名：Unwind_1809106e0 - 内存资源释放和引用计数管理函数
+// 功能：释放内存资源并管理引用计数
+#define ReleaseMemoryResourceAndManageReferenceCount Unwind_1809106e0
+
+// 原始函数名：Unwind_1809106f0 - 数据缓冲区内存指针标志清除函数
+// 功能：清除数据缓冲区的内存指针标志位
+#define ClearDataBufferMemoryPointerFlag Unwind_1809106f0
+
+// 原始函数名：Unwind_180910720 - 数据缓冲区辅助标志清除函数
+// 功能：清除数据缓冲区的辅助标志位
+#define ClearDataBufferSecondaryFlag Unwind_180910720
+
+// 原始函数名：Unwind_180910750 - 内存资源释放副本函数
+// 功能：释放内存资源的副本实现
+#define ReleaseMemoryResourceCopy Unwind_180910750
 
 /**
  * @file 06_utilities.c 总结
