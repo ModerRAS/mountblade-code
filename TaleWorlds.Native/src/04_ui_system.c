@@ -62513,7 +62513,7 @@ void ProcessUIDataTransferHandler(longlong uiContext,longlong dataSource,int tar
   longlong allocatedMemory2;
   
   if (*(int *)(bufferData + 0x1924) != *(int *)(bufferData + 0x1928)) {
-    FUN_180698800(uiContext + 0xc10);
+    ProcessUIRenderingUpdate(uiContext + 0xc10);
     *(undefined4 *)(bufferData + 0x1924) = *(undefined4 *)(bufferData + 0x1928);
   }
   lVar7 = 0;
@@ -63569,12 +63569,12 @@ undefined8 ProcessUIRendererData(longlong uiContext,undefined8 *dataSource,uint 
         iVar7 = iVar6 + (semaphoreHandle - 5) * 10;
         ProcessUIDataStream(uiContext,*(undefined8 *)(uiContext + 0x778),uiContext + 0xa70,iVar7,
                       CONCAT44(uVar8,1),0);
-        FUN_180698b00(uiContext + 0xa70,iVar7);
+        ValidateUIComponentState(uiContext + 0xa70,iVar7);
       }
       *(undefined4 *)(bufferData + 0x2e38) = *(undefined4 *)(bufferData + 0xbd0);
     }
     else {
-      FUN_18069e6e0(uiContext);
+      UpdateUIRenderContext(uiContext);
       if (((functionResult & 3) != 0) && (*(int *)(bufferData + 0xb90) != 0)) {
         ProcessUIComponentQueue(uiContext + 0xa70,uiContext + 0xb00);
         if ((functionResult & 2) == 0) {
@@ -63585,7 +63585,7 @@ undefined8 ProcessUIRendererData(longlong uiContext,undefined8 *dataSource,uint 
         else {
           iVar7 = iVar6 + (semaphoreHandle - 5) * 10;
           ProcessUIDataStream(uiContext,uiContext + 0xb00,uiContext + 0xa70,iVar7,CONCAT44(uVar8,1),0);
-          FUN_180698b00(uiContext + 0xa70,iVar7);
+          ValidateUIComponentState(uiContext + 0xa70,iVar7);
         }
       }
       *(int *)(bufferData + 0x2e38) = *(int *)(bufferData + 0x2e38) * 3 + *(int *)(bufferData + 0xbd0) >> 2;
@@ -63593,7 +63593,7 @@ undefined8 ProcessUIRendererData(longlong uiContext,undefined8 *dataSource,uint 
     *(undefined4 *)(bufferData + 0x2e3c) = 1;
     if ((functionResult & 4) != 0) {
       if ((*(int *)(bufferData + 0x2230) != iVar6) || (*(uint *)(uiContext + 0x2234) != uVar3)) {
-        FUN_1806988d0((int *)(uiContext + 0x2230),0x3f - iVar6,uVar3);
+        ProcessUIComponentBuffer((int *)(uiContext + 0x2230),0x3f - iVar6,uVar3);
       }
       func_0x000180028cc5(*(undefined8 *)(uiContext + 0xaa8),uiContext + 0x2238,uiContext + 0x2e40,
                           uiContext + 0x2e50,uiContext + 0x2e60,*(undefined4 *)(bufferData + 0xa70),
@@ -63691,12 +63691,12 @@ undefined8 InitializeUIRendererContext(longlong uiContext)
       validationResult = unaff_R15D + (allocationFlags + -5) * 10;
       ProcessUIDataStream(uVar3,*(undefined8 *)(unaff_RSI + 0x778),unaff_RSI + 0xa70,validationResult,
                     CONCAT44(uVar4,1));
-      FUN_180698b00(unaff_RSI + 0xa70,validationResult);
+      ValidateUIComponentState(unaff_RSI + 0xa70,validationResult);
     }
     *(undefined4 *)(unaff_RSI + 0x2e38) = *(undefined4 *)(unaff_RSI + 0xbd0);
   }
   else {
-    FUN_18069e6e0();
+    UpdateUIRenderContext();
     if (((unaff_EBP & 3) != 0) && (*(int *)(unaff_RSI + 0xb90) != 0)) {
       uVar3 = ProcessUIComponentQueue(unaff_RSI + 0xa70,unaff_RSI + 0xb00);
       if ((unaff_EBP & 2) == 0) {
@@ -63707,7 +63707,7 @@ undefined8 InitializeUIRendererContext(longlong uiContext)
       else {
         validationResult = unaff_R15D + (allocationFlags + -5) * 10;
         ProcessUIDataStream(uVar3,unaff_RSI + 0xb00,unaff_RSI + 0xa70,validationResult,CONCAT44(uVar4,1));
-        FUN_180698b00(unaff_RSI + 0xa70,validationResult);
+        ValidateUIComponentState(unaff_RSI + 0xa70,validationResult);
       }
     }
     *(int *)(unaff_RSI + 0x2e38) =
@@ -63717,7 +63717,7 @@ undefined8 InitializeUIRendererContext(longlong uiContext)
   if ((unaff_EBP & 4) != 0) {
     if ((*(int *)(unaff_RSI + 0x2230) != unaff_R15D) || (*(int *)(unaff_RSI + 0x2234) != unaff_R13D)
        ) {
-      FUN_1806988d0((int *)(unaff_RSI + 0x2230),unaff_R12D - unaff_R15D,unaff_R13D);
+      ProcessUIComponentBuffer((int *)(unaff_RSI + 0x2230),unaff_R12D - unaff_R15D,unaff_R13D);
     }
     func_0x000180028cc5(*(undefined8 *)(unaff_RSI + 0xaa8),unaff_RSI + 0x2238,unaff_RSI + 0x2e40,
                         unaff_RSI + 0x2e50,unaff_RSI + 0x2e60);
@@ -63772,7 +63772,7 @@ undefined8 CopyUIContextData(void)
   
   if ((*(int *)(unaff_RSI + 0x2230) != unaff_R15D) || (*(int *)(unaff_RSI + 0x2234) != unaff_R13D))
   {
-    FUN_1806988d0((int *)(unaff_RSI + 0x2230),unaff_R12D - unaff_R15D,unaff_R13D);
+    ProcessUIComponentBuffer((int *)(unaff_RSI + 0x2230),unaff_R12D - unaff_R15D,unaff_R13D);
   }
   func_0x000180028cc5(*(undefined8 *)(unaff_RSI + 0xaa8),unaff_RSI + 0x2238,unaff_RSI + 0x2e40,
                       unaff_RSI + 0x2e50,unaff_RSI + 0x2e60);
@@ -64209,7 +64209,7 @@ void InitializeUISystem(longlong uiContext)
   lStack_c0 = lVar8;
   lStack_b8 = allocatedMemory7;
   if (*(int *)(bufferData + 0x2be0) != 0) {
-    FUN_1806982a0(allocatedMemory,uiContext);
+    InitializeUIComponentMemory(allocatedMemory,uiContext);
   }
   ClearUIMemoryRegion(allocatedMemory7);
   iStack_104 = 0;
@@ -68510,8 +68510,8 @@ void FUN_18069e620(byte *uiContext,int dataSource,byte *targetBuffer,int bufferS
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18069e6e0(longlong uiContext)
-void FUN_18069e6e0(longlong uiContext)
+ void UpdateUIRenderContext(longlong uiContext)
+void UpdateUIRenderContext(longlong uiContext)
 
 {
   int operationResult;

@@ -321,18 +321,18 @@
 #define TertiaryExceptionHandlerAddress 0x0001808d74b1
 
 // 系统函数地址常量
-#define ResourceDataValidationFunctionAddress 0x00018076b630
-#define SystemStatusRetrievalFunctionAddress 0x0001808e64d0
-#define RangeValidationFunctionAddress 0x000180867960
-#define DataProcessingFunctionAddress 0x000180867660
-#define ExceptionHandlerFunctionAddress 0x00018008d310
-#define OperationResultCheckFunctionAddress 0x0001808fd8d4
-#define CallbackExecutionFunctionAddress 0x0001808fd024
+#define ResourceDataValidationFunctionPtr 0x00018076b630
+#define SystemStatusRetrievalFunctionPtr 0x0001808e64d0
+#define RangeValidationFunctionPtr 0x000180867960
+#define DataProcessingFunctionPtr 0x000180867660
+#define ExceptionHandlerFunctionPtr 0x00018008d310
+#define OperationResultCheckFunctionPtr 0x0001808fd8d4
+#define CallbackExecutionFunctionPtr 0x0001808fd024
 
 // 系统对象指针地址常量
-#define MutexObjectPointerAddress 0x180c91910
-#define ExceptionCriticalSectionAddress 0x180c82210
-#define ExceptionHandlerParameterStorageAddress 0x180c82238
+#define MutexObjectPtr 0x180c91910
+#define ExceptionCriticalSectionPtr 0x180c82210
+#define ExceptionHandlerParameterStoragePtr 0x180c82238
 
 // Goto 标签宏定义 - 用于美化代码
 #define GOTO_ValidationFailed goto ExecuteSecurityValidation
@@ -72138,10 +72138,22 @@ void ExecuteExceptionFunctionAtOffset70(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void DestroyBasicOstreamAtOffset40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 销毁基本输出流资源的异常处理函数
+ * 
+ * 该函数在异常处理过程中销毁基本输出流资源，确保系统异常时能正确释放输出流资源
+ * 从数据缓冲区的0x40偏移量处获取输出流指针进行销毁
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要销毁的输出流信息
+ * 
+ * @note 原始函数名：Unwind_180908f90
+ * @note 原始调用：__1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ
+ */
+void DestroyBasicOstreamOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                               __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(*(int64_t *)(dataBuffer + 0x40) + -0x98);
+  DestroyBasicOstream(*(int64_t *)(dataBuffer + 0x40) + -0x98);
   return;
 }
 
