@@ -5249,7 +5249,25 @@ ProcessUIDataValidation:
 
 
 
- void ProcessUIUpdates(void)
+ /**
+ * @brief 处理UI系统更新
+ * 
+ * 该函数负责处理UI系统的更新操作，包括字符串处理、大小写转换、
+ * 缓存查找和数值解析等功能。它是UI系统更新流程的核心函数。
+ * 
+ * 该函数包含以下主要步骤：
+ * 1. 计算输入字符串的长度
+ * 2. 将字符串转换为大写形式
+ * 3. 在UI字符串缓存中查找匹配项
+ * 4. 如果找不到匹配项，尝试解析为数值并处理单位后缀
+ * 5. 根据处理结果设置UI上下文状态
+ * 
+ * @note 函数支持K、M、G等单位后缀的自动转换
+ * @note 包含完整的错误处理机制
+ * @note 处理完成后会执行UI渲染任务
+ * 
+ * @see strstr, toupper, strtol, ValidateUIData, ExecuteUIRenderTask
+ */
 void ProcessUIUpdates(void)
 
 {

@@ -207841,7 +207841,7 @@ LAB_1801794f5:
   SystemOperation90 = StackValidationData;
   if ((pMemoryAddressMask == StringProcessingStatus) || (CharacterCode < (long long *)pMemoryAddressMask[4])) {
     pplStack_a8 = &pStackLongValue;
-    pMemoryAddressMask = (void *)FUN_180179770(StringProcessingStatus,aStackProcessingUnsignedValue78);
+    pMemoryAddressMask = (void *)ProcessUtf8Buffer(StringProcessingStatus,aStackProcessingUnsignedValue78);
     pMemoryAddressMask = (void *)*pMemoryAddressMask;
   }
   FUN_1800863a0(pMemoryAddressMask + 5,&StackValidationData);
@@ -207945,9 +207945,21 @@ LAB_180179852:
 
 
 
+/**
+ * @brief UTF-8内存边界处理函数
+ * 
+ * 处理UTF-8编码的内存边界检查和验证功能
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @return uint64_t* 处理后的缓冲区指针
+ */
 uint64_t *
-FUN_1801798f0(long long *Utf8InputBuffer,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
-             uint32_t *AdditionalParameter1
+ProcessUtf8MemoryBoundary(long long *Utf8InputBuffer, uint64_t *Utf8InputBufferSize, uint64_t Utf8SourcePointer, long long *Utf16EndPointer,
+             uint32_t *AdditionalParameter1)
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
