@@ -2219,18 +2219,61 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
  */
 #define ProcessSystemInitializationAndResourceAllocation FUN_1809419e0
 
+/**
+ * @brief 处理系统浮点数据和纹理
+ * 
+ * 该函数负责处理系统中的浮点数数据和纹理相关信息
+ */
 #define ProcessSystemFloatDataAndTexture FUN_180114450
+
+/**
+ * @brief 处理系统字符串数据
+ * 
+ * 该函数负责处理系统中的字符串数据操作和管理
+ */
 #define ProcessSystemStringData FUN_18013c800
+
+/**
+ * @brief 处理系统动画数据
+ * 
+ * 该函数负责处理系统中的动画数据和相关信息
+ */
 #define ProcessSystemAnimationData FUN_18012ea30
+
+/**
+ * @brief 处理系统物理数据
+ * 
+ * 该函数负责处理系统中的物理数据和模拟信息
+ */
 #define ProcessSystemPhysicsData FUN_18010fad0
 #define ProcessSystemShaderData ProcessFloatDataInputAndSystemConfiguration
 
-// 渲染系统初始化函数
+/**
+ * @brief 初始化渲染系统组件
+ * 
+ * 该函数负责初始化渲染系统的各个组件和模块
+ */
 #define InitializeRenderingSystemComponent FUN_18005b7c0
+
+/**
+ * @brief 配置渲染系统参数
+ * 
+ * 该函数负责配置渲染系统的各种参数和设置
+ */
 #define ConfigureRenderingSystemParameters FUN_18005d260
 
-// 系统数据结构配置函数
+/**
+ * @brief 配置系统数据结构偏移量070
+ * 
+ * 该函数负责配置系统数据结构在偏移量0x070处的参数
+ */
 #define ConfigureSystemDataStructureOffset070 FUN_18010d070
+
+/**
+ * @brief 配置系统数据结构偏移量0f0
+ * 
+ * 该函数负责配置系统数据结构在偏移量0x0f0处的参数
+ */
 #define ConfigureSystemDataStructureOffset0f0 FUN_18010d0f0
 #define ConfigureSystemDataStructureOffset170 FUN_18010d170
 #define ConfigureSystemDataStructureOffset1f0 FUN_18010d1f0
@@ -2260,24 +2303,73 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 #define ConfigureSystemDataStructureOffsetef0 FUN_18010def0
 #define ConfigureSystemDataStructureOffsetfb0 FUN_18010dfb0
 
-// 系统边界处理函数
+/**
+ * @brief 处理系统边界和内存分配
+ * 
+ * 该函数负责处理系统边界检查和内存分配操作
+ */
 #define ProcessSystemBoundaryAndAllocate FUN_1800a1310
 
-// 系统内存管理函数
+/**
+ * @brief 清理系统内存缓冲区
+ * 
+ * 该函数负责清理系统中的内存缓冲区和相关资源
+ */
 #define ProcessSystemMemoryBufferCleanup FUN_1800596a0
+
+/**
+ * @brief 处理系统内存数据传输
+ * 
+ * 该函数负责处理系统中的内存数据传输操作
+ */
 #define ProcessSystemMemoryDataTransfer FUN_180056f70
+
+/**
+ * @brief 处理系统内存分配索引
+ * 
+ * 该函数负责处理系统内存分配的索引管理
+ */
 #define ProcessSystemMemoryAllocationIndex FUN_1800babf0
+
+/**
+ * @brief 处理系统内存块链表
+ * 
+ * 该函数负责处理系统内存块的链表管理
+ */
 #define ProcessSystemMemoryBlockList FUN_1800590b0
+
+/**
+ * @brief 清理系统内存状态
+ * 
+ * 该函数负责清理系统内存状态和相关信息
+ */
 #define ProcessSystemMemoryStatusCleanup FUN_1800587d0
 
-// 系统浮点数处理函数
-// 原始函数名：FUN_18010ea4d - 浮点数处理和验证函数
+/**
+ * @brief 处理浮点数数据和验证
+ * 
+ * 该函数负责处理系统中的浮点数数据并进行验证操作
+ * 
+ * @note 原始函数名：FUN_18010ea4d
+ */
 #define ProcessFloatingPointDataAndValidate FUN_18010ea4d
 
-// 原始函数名：FUN_18010ebc0 - 系统数据清理和重置函数
+/**
+ * @brief 清理系统数据和重置状态
+ * 
+ * 该函数负责清理系统数据并重置相关状态
+ * 
+ * @note 原始函数名：FUN_18010ebc0
+ */
 #define CleanupSystemDataAndReset FUN_18010ebc0
 
-// 原始函数名：FUN_18010ec09 - 系统状态检查和验证函数
+/**
+ * @brief 检查系统状态和验证
+ * 
+ * 该函数负责检查系统状态并进行验证操作
+ * 
+ * @note 原始函数名：FUN_18010ec09
+ */
 #define CheckSystemStatusAndValidate FUN_18010ec09
 
 // 原始函数名：FUN_18010ec85 - 系统缓冲区处理和配置函数
@@ -45360,25 +45452,26 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t OutputBuffer, uin
   float in_XMM4_Db;
   float in_XMM4_Dc;
   float in_XMM5_Da;
-  uint32_t StackParameter28;
+  uint32_t SystemParameter28;
   float CalculatedValue30;
   float CalculatedValue34;
   float FilterCoefficient38;
-  uint32_t StackParameter3C;
+  uint32_t SystemParameter3C;
   float FilterCoefficient40;
   float TemporaryFloat44;
   float DistanceCoefficient48;
-  uint32_t StackParameter4C;
+  uint32_t SystemParameter4C;
   float TemporaryFloat50;
   float VelocityCoefficient54;
   float AccelerationCoefficient58;
-  uint32_t StackParameter5C;
+  uint32_t SystemParameter5C;
   float PositionCoefficient60;
   float TemporaryFloat64;
   float TemporaryFloat68;
-  uint32_t StackParameter6C;
+  uint32_t SystemParameter6C;
   uint32_t SystemStringBufferE0;
-  uint32_t stackParameterE8;  // 栈参数E8，用于存储参数数据
+  uint32_t InputParameterE0;  // 输入参数E0，用于存储计算参数
+  uint32_t InputParameterE8;  // 输入参数E8，用于存储参数数据
   
   FloatVariable4 = *DataNodeIndex;
   FloatVariable5 = DataNodeIndex[1];
@@ -45395,24 +45488,24 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t OutputBuffer, uin
   FilterCoefficient38 = SystemContextPrimaryFloat * in_XMM4_Dc + in_XMM0_Dc * CalculatedDistance + in_XMM1_Dc * NormalizedParameter;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x138);
   CalculatedFilterValue = *(float *)(SystemContext + 0x140);
-  fStack0000000000000040 = in_XMM5_Da * in_XMM4_Da + SystemContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7;
+  MatrixCoefficient40 = in_XMM5_Da * in_XMM4_Da + SystemContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7;
   TemporaryFloatStack44 = in_XMM5_Da * in_XMM4_Db + SystemContextSecondaryFloat * FloatVariable5 + SystemContextPrimaryFloat * FloatValue8;
-  fStack0000000000000048 = in_XMM5_Da * in_XMM4_Dc + SystemContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameter;
+  MatrixCoefficient48 = in_XMM5_Da * in_XMM4_Dc + SystemContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameter;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x148);
   SystemContextSecondaryFloat = *(float *)(SystemContext + 0x150);
   TemporaryFloatStack50 = Utf16EndPointer * in_XMM4_Da + FloatValue3 * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7;
-  fStack0000000000000054 = Utf16EndPointer * in_XMM4_Db + FloatValue3 * FloatVariable5 + SystemContextPrimaryFloat * FloatValue8;
-  fStack0000000000000058 = Utf16EndPointer * in_XMM4_Dc + FloatValue3 * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameter;
+  VelocityCoefficient54 = Utf16EndPointer * in_XMM4_Db + FloatValue3 * FloatVariable5 + SystemContextPrimaryFloat * FloatValue8;
+  AccelerationCoefficient58 = Utf16EndPointer * in_XMM4_Dc + FloatValue3 * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameter;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
-  fStack0000000000000060 = Utf8InputPointer * in_XMM4_Da + SystemContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7 + DataNodeIndex[0xc];
+  PositionCoefficient60 = Utf8InputPointer * in_XMM4_Da + SystemContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7 + DataNodeIndex[0xc];
   TemporaryFloatStack64 = Utf8InputPointer * in_XMM4_Db + SystemContextSecondaryFloat * FloatVariable5 + SystemContextPrimaryFloat * FloatValue8 + DataNodeIndex[0xd];
   TemporaryFloatStack68 = Utf8InputPointer * in_XMM4_Dc + SystemContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameter + DataNodeIndex[0xe];
-  uStack0000000000000028 = in_stack_000000e8;
-  TemporaryStackValue6c = 0x3f800000;
-  TemporaryStackValue5c = 0;
-  uStack000000000000004c = 0;
-  uStack000000000000003c = 0;
-  CalculateFloatValue(0x3f800000,SystemContextPrimaryFloat * FloatVariable7,RegisterGeneral14D,&SystemStackBuffer,in_stack_000000e0);
+  SystemStackParameter28 = InputParameterE8;
+  SystemNormalizationConstant6c = 0x3f800000;
+  SystemResetValue5c = 0;
+  SystemParameter4C = 0;
+  SystemParameter3C = 0;
+  CalculateFloatValue(0x3f800000,SystemContextPrimaryFloat * FloatVariable7,RegisterGeneral14D,&SystemStackBuffer,InputParameterE0);
   return;
 }
 
@@ -149892,8 +149985,8 @@ LAB_180132de6:
   float BaseFloatValue;
   float SecondaryFloatValue;
   uint AuxiliaryFloat9;
-  uint64_t uStack0000000000000030;
-  uint64_t uStack0000000000000038;
+  uint64_t SystemFloatValue30;
+  uint64_t SystemFloatValue38;
   
   if ((*(char *)(SystemContext + 0x1d20) != (char)RegisterGeneral14D) &&
      (*(int *)(SystemContext + 0x1cfc) == RegisterGeneral14D)) {
