@@ -16656,6 +16656,15 @@ void ExecuteUtilityDataValidation(int64_t validationContext,DataWord *validation
 
 
 
+/**
+ * @brief 系统终止函数A
+ * 
+ * 执行系统缓冲区初始化并终止系统运行。这是一个关键的系统清理函数，
+ * 在系统遇到无法恢复的错误时被调用。
+ * 
+ * @note 原始函数名：TerminateSystemA
+ * @warning 此函数不会返回，会直接终止程序执行
+ */
 void TerminateSystemA(void)
 
 {
@@ -20035,9 +20044,9 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   DataWord StackDataWordQ;
   uint8_t *psecurityCheckValueA8;
   DataWord securityCheckValueA0;
-  DataWord uStack_f8;
-  DataWord uStack_f0;
-  ByteFlag uStack_ec;
+  DataWord StackDataWordR;
+  DataWord StackDataWordS;
+  ByteFlag StackByteFlagA;
   DataBuffer uStack_e8;
   ByteFlag ExceptionDataBufferA [136];
   uint64_t colorDataWord;
@@ -20075,13 +20084,13 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
             statusFlag = CheckSystemStatus(calculatedOffset,1);
             exceptionDataBuffer6 = puStack_190;
             if ((statusFlag == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(calculatedIndex + 0x28))) {
-              uStack_f0 = *(DataWord *)(validationContext4 + 4 + dataPointer);
+              StackDataWordS = *(DataWord *)(validationContext4 + 4 + dataPointer);
               psecurityCheckValueA8 = &SystemMemoryInitializationReference;
-              uStack_f8 = StackDataWordA;
+              StackDataWordR = StackDataWordA;
               securityCheckValueA0 = 0;
               dataPointer = (**(FunctionPointer**)*puStack_190)(puStack_190);
               uStack_e8 = *(DataBuffer *)(*(int64_t *)(dataPointer + 0x90) + bufferPointer * 8);
-              uStack_ec = 0;
+              StackByteFlagA = 0;
               if (*(int *)(calculatedOffset + 0x58) < 1) {
                 exceptionDataBuffer2 = &SystemResourceDataBuffer;
               }
@@ -70112,14 +70121,14 @@ void Unwind_18090a780(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a790(DataBuffer operationBase,int64_t dataBuffer)
+void UnlockMutexAtOffset90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x90));
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x90));
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
   return;
 }
@@ -79562,7 +79571,16 @@ void Unwind_18090d3f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d400(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器B0
+ * 
+ * 该函数用于管理资源的引用计数，使用0x330偏移量
+ * 主要用于内存管理和资源清理
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ */
+void ManageResourceReferenceCountB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -101165,17 +101183,17 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordQ StackDataWordQ
 
-// 原始变量名：uStack_f8 - 栈数据字R
+// 原始变量名：StackDataWordR - 栈数据字R
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordR uStack_f8
+#define StackDataWordR StackDataWordR
 
-// 原始变量名：uStack_f0 - 栈数据字S
+// 原始变量名：StackDataWordS - 栈数据字S
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordS uStack_f0
+#define StackDataWordS StackDataWordS
 
-// 原始变量名：uStack_ec - 栈字节标志A
+// 原始变量名：StackByteFlagA - 栈字节标志A
 // 功能：存储字节标志的栈变量
-#define StackByteFlagA uStack_ec
+#define StackByteFlagA StackByteFlagA
 
 // 原始变量名：uStack_e8 - 栈数据缓冲区C
 // 功能：存储数据缓冲区的栈变量
