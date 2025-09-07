@@ -74389,26 +74389,38 @@ int FUN_18070e140(int uiContext)
 
 
 
-undefined4 FUN_18070e180(longlong uiContext,undefined8 dataSource,uint targetBuffer)
+/**
+ * @brief 验证UI缓冲区参数并清理内存
+ * 
+ * 该函数验证UI缓冲区参数，并在满足条件时清理指定内存区域。
+ * 主要用于UI系统的内存管理和参数验证。
+ * 
+ * @param uiContext UI上下文指针，用于内存清理
+ * @param dataSource 数据源参数（未使用）
+ * @param targetBuffer 目标缓冲区大小参数
+ * @return 验证结果状态码
+ * @note 原始函数名: FUN_18070e180
+ */
+undefined4 ValidateUIBufferAndClearMemory(longlong uiContext,undefined8 dataSource,uint targetBuffer)
 
 {
-  undefined4 functionResult;
-  longlong lVar2;
+  undefined4 validationResult;
+  longlong memoryInfo;
   
-  lVar2 = FUN_180712260(48000,0x3c0,0);
+  memoryInfo = FUN_180712260(48000,0x3c0,0);
   if (targetBuffer < 3) {
     if (uiContext != 0) {
                     // WARNING: Subroutine does not return
       memset(uiContext,0,
              (longlong)
-             (int)(((*(int *)(lVar2 + 4) + 0x818) * targetBuffer + *(int *)(lVar2 + 8) * 8) * 4 + 100));
+             (int)(((*(int *)(memoryInfo + 4) + 0x818) * targetBuffer + *(int *)(memoryInfo + 8) * 8) * 4 + 100));
     }
-    functionResult = 0xfffffff9;
+    validationResult = 0xfffffff9;
   }
   else {
-    functionResult = 0xffffffff;
+    validationResult = 0xffffffff;
   }
-  return functionResult;
+  return validationResult;
 }
 
 
@@ -74416,14 +74428,21 @@ undefined4 FUN_18070e180(longlong uiContext,undefined8 dataSource,uint targetBuf
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18070e250(void)
-void FUN_18070e250(void)
+ /**
+ * @brief 触发UI渲染更新
+ * 
+ * 该函数执行UI渲染更新操作，包含简单的加密密钥处理。
+ * 主要用于触发UI系统的渲染更新流程。
+ * 
+ * @note 原始函数名: FUN_18070e250
+ */
+void TriggerUIRenderingUpdate(void)
 
 {
-  undefined1 auStack_18 [8];
-  ulonglong uStack_10;
+  undefined1 stackBuffer [8];
+  ulonglong encryptedKey;
   
-  uStack_10 = XorEncryptionKey ^ (ulonglong)auStack_18;
+  encryptedKey = XorEncryptionKey ^ (ulonglong)stackBuffer;
                     // WARNING: Subroutine does not return
   ProcessUIRenderingUpdate();
 }
@@ -74433,31 +74452,42 @@ void FUN_18070e250(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18070e2f0(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize)
-void FUN_18070e2f0(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize)
+ /**
+ * @brief 处理UI渲染数据并触发更新
+ * 
+ * 该函数处理UI渲染相关的数据，包括缓冲区数据读取、位移计算等操作，
+ * 然后触发UI渲染更新流程。
+ * 
+ * @param uiContext UI上下文指针（未使用）
+ * @param dataSource 数据源参数
+ * @param targetBuffer 目标缓冲区参数
+ * @param bufferSize 缓冲区大小参数
+ * @note 原始函数名: FUN_18070e2f0
+ */
+void ProcessUIRenderingDataAndUpdate(longlong uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize)
 
 {
-  byte in_stack_00000050;
-  undefined1 auStack_88 [8];
-  undefined8 uStack_80;
-  longlong lStack_78;
-  undefined4 uStack_68;
-  undefined4 uStack_60;
-  int iStack_5c;
-  longlong lStack_50;
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  ulonglong uStack_38;
+  byte shiftAmount;
+  undefined1 stackBuffer [8];
+  undefined8 dataSourceCopy;
+  longlong shiftedValue;
+  undefined4 bufferDataUpper;
+  undefined4 bufferDataLower;
+  int shiftedInt;
+  longlong calculatedOffset;
+  undefined8 bufferSizeCopy;
+  undefined8 targetBufferCopy;
+  ulonglong encryptedKey;
   
-  uStack_38 = XorEncryptionKey ^ (ulonglong)auStack_88;
-  uStack_60 = *(undefined4 *)(bufferData + 8);
-  uStack_68 = *(undefined4 *)(bufferData + 4);
-  iStack_5c = *(int *)(bufferData + 0x30) << (in_stack_00000050 & 0x1f);
-  lStack_78 = (longlong)iStack_5c;
-  lStack_50 = lStack_78 * 4;
-  uStack_80 = dataSource;
-  uStack_48 = bufferSize;
-  uStack_40 = targetBuffer;
+  encryptedKey = XorEncryptionKey ^ (ulonglong)stackBuffer;
+  bufferDataUpper = *(undefined4 *)(bufferData + 8);
+  bufferDataLower = *(undefined4 *)(bufferData + 4);
+  shiftedInt = *(int *)(bufferData + 0x30) << (shiftAmount & 0x1f);
+  shiftedValue = (longlong)shiftedInt;
+  calculatedOffset = shiftedValue * 4;
+  dataSourceCopy = dataSource;
+  bufferSizeCopy = bufferSize;
+  targetBufferCopy = targetBuffer;
                     // WARNING: Subroutine does not return
   ProcessUIRenderingUpdate();
 }
@@ -74467,34 +74497,49 @@ void FUN_18070e2f0(longlong uiContext,undefined8 dataSource,undefined8 targetBuf
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18070e950(undefined8 uiContext,undefined8 dataSource,int targetBuffer,int bufferSize,int resultPointer,
-void FUN_18070e950(undefined8 uiContext,undefined8 dataSource,int targetBuffer,int bufferSize,int resultPointer,
+ /**
+ * @brief 执行UI渲染任务调度
+ * 
+ * 该函数根据参数条件调度UI渲染任务，包括内存对齐计算、
+ * 条件判断和任务执行等功能。
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针标志
+ * @param param_6 浮点参数指针
+ * @param param_7 额外参数
+ * @param param_8 调度标志
+ * @note 原始函数名: FUN_18070e950
+ */
+void ScheduleUIRenderTask(undefined8 uiContext,undefined8 dataSource,int targetBuffer,int bufferSize,int resultPointer,
                   undefined4 *param_6,undefined8 param_7,int param_8)
 
 {
-  ulonglong functionResult;
-  undefined4 auStack_68 [2];
-  int iStack_60;
-  int iStack_5c;
-  undefined8 uStack_48;
-  ulonglong uStack_30;
+  ulonglong alignedSize;
+  undefined4 stackBuffer [2];
+  int bufferSizeCopy;
+  int targetBufferCopy;
+  undefined8 uiContextCopy;
+  ulonglong encryptedKey;
   
-  uStack_30 = XorEncryptionKey ^ (ulonglong)auStack_68;
-  auStack_68[0] = 0;
-  iStack_60 = bufferSize;
-  iStack_5c = targetBuffer;
-  uStack_48 = uiContext;
+  encryptedKey = XorEncryptionKey ^ (ulonglong)stackBuffer;
+  stackBuffer[0] = 0;
+  bufferSizeCopy = bufferSize;
+  targetBufferCopy = targetBuffer;
+  uiContextCopy = uiContext;
   if (((resultPointer == 1) && (bufferSize == 2)) && (param_8 == 0)) {
     FUN_18070ee30(uiContext,dataSource,targetBuffer,*param_6,param_7);
                     // WARNING: Subroutine does not return
-    ExecuteUIRenderTask(uStack_30 ^ (ulonglong)auStack_68);
+    ExecuteUIRenderTask(encryptedKey ^ (ulonglong)stackBuffer);
   }
-  functionResult = (longlong)targetBuffer * 4 + 0xf;
-  if (functionResult <= (ulonglong)((longlong)targetBuffer * 4)) {
-    functionResult = 0xffffffffffffff0;
+  alignedSize = (longlong)targetBuffer * 4 + 0xf;
+  if (alignedSize <= (ulonglong)((longlong)targetBuffer * 4)) {
+    alignedSize = 0xffffffffffffff0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd200(functionResult & 0xfffffffffffffff0,dataSource,uiContext);
+  FUN_1808fd200(alignedSize & 0xfffffffffffffff0,dataSource,uiContext);
 }
 
 
