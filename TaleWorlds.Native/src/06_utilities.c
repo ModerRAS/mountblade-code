@@ -79553,8 +79553,19 @@ void SetDefaultExceptionHandlerAE0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180909af0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 内存指针标志管理函数AF0
+ * 
+ * 该函数负责管理内存指针的标志位，根据标志状态执行相应的数据验证操作。
+ * 当第1位标志被设置时，会清除该标志并调用数据验证处理函数。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909af0
+ * @note 这是一个内存指针标志管理函数，用于处理内存指针标志和数据验证
+ */
+void ManageMemoryPointerFlagAF0(DataBuffer operationBase, int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
     *(uint *)(dataBuffer + MemoryPointerOffset) = *(uint *)(dataBuffer + MemoryPointerOffset) & 0xfffffffe;
