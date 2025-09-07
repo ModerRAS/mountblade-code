@@ -30100,6 +30100,10 @@ uint64_t ProcessSystemDataA0(int64_t systemContext, int64_t *exceptionHandlerCon
   ByteFlag securityBufferPrimary [32];
   ByteFlag securityBufferSecondary [40];
   uint64_t dataFlags;
+  uint secondaryValidationFlags;
+  uint primaryValidationBuffer [2];
+  uint secondaryValidationBuffer [2];
+  uint allocationErrorCode;
   
   operationResult = 1;
   validationStatus = ExecuteSecurityValidation(exceptionHandlerContext,securityBufferSecondary,1,0x4d524150);
