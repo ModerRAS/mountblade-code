@@ -81255,7 +81255,14 @@ void DestroyMutexLock(void)
 
 
 
-void Unwind_18090a310(void)
+/**
+ * @brief 系统状态更新函数A0
+ * 
+ * 该函数更新系统状态，执行状态同步操作。
+ * 
+ * @note 原始函数名：Unwind_18090a310
+ */
+void UpdateSystemStatusA0(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -81383,7 +81390,14 @@ void CleanupExceptionDataAndMutexA6(void)
 
 
 
-void Unwind_18090a410(void)
+/**
+ * @brief 系统初始化函数A0
+ * 
+ * 该函数执行系统初始化操作，准备系统资源。
+ * 
+ * @note 原始函数名：Unwind_18090a410
+ */
+void InitializeSystemA0(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -81392,7 +81406,19 @@ void Unwind_18090a410(void)
 
 
 
-void Unwind_18090a430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常数据处理函数A0
+ * 
+ * 该函数处理异常数据，包括异常数据的处理和清理操作。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090a430
+ */
+void ProcessExceptionDataA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
