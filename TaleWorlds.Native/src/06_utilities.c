@@ -21127,8 +21127,20 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
 
 
 
-// 原始函数名：FUN_1808988b0 - 数据处理函数A2
-// 功能：处理复杂数据结构并执行相应操作
+/**
+ * @brief 复杂数据处理函数
+ * 
+ * 该函数处理复杂的数据结构，包括字符串处理、异常数据验证和资源管理。
+ * 函数通过多层次的字符处理和验证机制来确保数据的安全性和完整性。
+ * 
+ * @param operationBase 操作基础指针，包含操作所需的数据结构和配置信息
+ * @param dataBuffer 输入数据缓冲区指针，包含待处理的字符数据
+ * @param operationFlagA 操作标志指针，用于返回处理结果和资源信息
+ * 
+ * @return DataBuffer 返回处理结果：0表示成功，0x1c表示参数错误，0x4a表示处理失败
+ * 
+ * @note 原始函数名：FUN_1808988b0
+ */
 #define ProcessComplexDataA2 FUN_1808988b0
 DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuffer *operationFlagA)
 
@@ -21143,6 +21155,7 @@ DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuff
   uint securityCheckResult;
   char *stringProcessingPointer;
   int primaryInputParameter;
+  int inputParameter0;
   uint *exceptionDataBuffer1;
   
   exceptionDataBuffer1 = (uint *)*operationBase;

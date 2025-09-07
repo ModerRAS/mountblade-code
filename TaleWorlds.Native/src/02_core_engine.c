@@ -391,7 +391,7 @@ const void* const SystemStringBufferDuodenary = (void*)0x180a081b4;
 const void* const SystemDataTablePointer = (void*)0x180a0b3b8;
 const void* const SystemDataTableSecondary = (void*)0x180a0b57c;
 const void* const SystemDataTemplatePointer = (void*)0x180a00300;
-const void* const LoopCounterPointer = (void*)0x180a04ee4;
+const void* const loopCounterPointer = (void*)0x180a04ee4;
 const void* const SystemSecondaryProcessingStatusFlag = (void*)0x180a0aea0;
 const void* const SystemTertiaryProcessingStatusFlag = (void*)0x180a06430;
 const void* const SystemQuaternaryProcessingStatusFlag = (void*)0x180a0f804;
@@ -20907,7 +20907,7 @@ void CoreEngineInitializeSystemDataStructures(void
   long long StackMemoryOffset80;
   long long StackMemoryOffset78;
   long long ***SystemTripleProcessingStatusFlag;
-  uint64_t LoopCounter68;
+  uint64_t loopCounter68;
   long long **SystemMemoryPointer60;
   uint64_t SystemTimeoutCounter;
   unsigned long long SystemStatusCode;
@@ -20918,7 +20918,7 @@ void CoreEngineInitializeSystemDataStructures(void
     CoreEngineHandleThreadStatusCheck();
     return;
   }
-  LoopCounter68 = 0xfffffffffffffffe;
+  loopCounter68 = 0xfffffffffffffffe;
   *(void *)(SystemDataTabled0 + 0x2038) = *(void *)(SystemDataTabled0 + 0x2030);
   StatusBuffer = (uint16_t *)(SystemDataTablePointer + 0x14);
   loopCounter = 0x100;
@@ -21046,13 +21046,13 @@ void CoreEngineInitializeSystemThreadDataAndBuffers(long long SystemContextPoint
   long long StackMemoryOffset80;
   long long StackMemoryOffset78;
   long long ***SystemTripleProcessingStatusFlag;
-  uint64_t LoopCounter68;
+  uint64_t loopCounter68;
   long long **SystemMemoryPointer60;
   uint64_t SystemTimeoutCounter;
   unsigned long long ProcessStringBuffer;
   
   MemoryBlockSize = SystemDataTabled0;
-  LoopCounter68 = 0xfffffffffffffffe;
+  loopCounter68 = 0xfffffffffffffffe;
   *(void *)(SystemDataTabled0 + 0x2038) = *(void *)(SystemDataTabled0 + 0x2030);
   TemporaryBuffer = (uint16_t *)(MemoryBlockSize + 0x14);
   MemoryBlockSize = 0x100;
@@ -217645,7 +217645,7 @@ FUN_180194d10(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Ut
   *SystemContextPointer = (long long)&DataNodeTemplateA;
   *SystemContextPointer = (long long)&DataNodeTemplateB;
   *(uint32_t *)(SystemContextPointer + 1) = 0;
-  *SystemContextPointer = (long long)&UNK_180a0c9b0;
+  *SystemContextPointer = (long long)&SystemDataNodeTemplateSecondary;
   SystemContextPointer[2] = 0;
   *(uint32_t *)(SystemContextPointer + 3) = 0;
   SystemContextPointer[4] = 0;
@@ -217681,7 +217681,7 @@ FUN_180194e00(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Ut
   *SystemContextPointer = (long long)&DataNodeTemplateA;
   *SystemContextPointer = (long long)&DataNodeTemplateB;
   *(uint32_t *)(SystemContextPointer + 1) = 0;
-  *SystemContextPointer = (long long)&UNK_180a0c9b0;
+  *SystemContextPointer = (long long)&SystemDataNodeTemplateSecondary;
   SystemContextPointer[2] = 0;
   *(uint32_t *)(SystemContextPointer + 3) = 0;
   SystemContextPointer[4] = 0;
@@ -217767,7 +217767,7 @@ uint64_t * FUN_180195000(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize
   *SystemContextPointer = (long long)&DataNodeTemplateA;
   *SystemContextPointer = (long long)&DataNodeTemplateB;
   *(uint32_t *)(SystemContextPointer + 1) = 0;
-  *SystemContextPointer = (long long)&UNK_180a0c9b0;
+  *SystemContextPointer = (long long)&SystemDataNodeTemplateSecondary;
   SystemContextPointer[2] = 0;
   *(uint32_t *)(SystemContextPointer + 3) = 0;
   SystemContextPointer[4] = 0;
@@ -217905,7 +217905,7 @@ uint64_t * FUN_1801951e0(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize
   *SystemContextPointer = (long long)&DataNodeTemplateA;
   *SystemContextPointer = (long long)&DataNodeTemplateB;
   *(uint32_t *)(SystemContextPointer + 1) = 0;
-  *SystemContextPointer = (long long)&UNK_180a0c9b0;
+  *SystemContextPointer = (long long)&SystemDataNodeTemplateSecondary;
   SystemContextPointer[2] = 0;
   *(uint32_t *)(SystemContextPointer + 3) = 0;
   SystemContextPointer[4] = 0;
