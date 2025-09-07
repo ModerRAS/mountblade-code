@@ -67396,7 +67396,17 @@ void SetDefaultExceptionHandlerB30(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180907b40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B40
+ * 
+ * 该函数用于设置默认异常处理器B，将数据缓冲区中的异常处理器指针设置为默认值
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器配置信息
+ * 
+ * @note 原始函数名：Unwind_180907b40
+ */
+void SetDefaultExceptionHandlerB40(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x230) = &DefaultExceptionHandlerB;
@@ -100009,8 +100019,21 @@ void Unwind_180911760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 处理异常上下文清理和异常处理器设置
+ * 
+ * 该函数负责清理异常上下文并设置异常处理器。它首先调用异常上下文中
+ * 注册的清理函数，然后设置临时异常处理器，执行系统终止操作，最后
+ * 设置默认异常处理器。这个过程确保了异常处理的完整性和安全性。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于控制操作流程
+ * @param operationFlagB 操作标志B，用于控制操作流程
+ * 
+ * @note 原始函数名：Unwind_180911780
+ */
+void Unwind_ExceptionContextCleanupA(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   int64_t exceptionHandlerContext;
   
@@ -103478,7 +103501,19 @@ void Unwind_1809127b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809127c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器初始化函数7C0
+ * 
+ * 该函数用于初始化异常处理器，设置异常处理上下文并处理系统异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809127c0
+ */
+void InitializeExceptionHandler7C0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
