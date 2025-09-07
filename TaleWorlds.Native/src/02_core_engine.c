@@ -229087,7 +229087,7 @@ LAB_180201f5b:
   FunctionAddress = 0xfffffffffffffffe;
   pMemoryAddressMask = &SystemMemoryAddressMaskPrimary;
   if (*(char *)(SystemContextPointer + 0xd9) != '\0') {
-    pMemoryAddressMask = &UNK_180a0fc28;
+    pMemoryAddressMask = &SystemMemoryAddressMaskSecondary;
   }
   ProcessTemporaryBuffer(aSystemTimeoutCounter,pMemoryAddressMask);
   Utf16Char = *(void *)(SystemContextPointer + 0xe8);
