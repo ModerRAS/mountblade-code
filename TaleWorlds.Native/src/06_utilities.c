@@ -72606,7 +72606,19 @@ void ProcessMemoryResourceReferenceCountAtOffset320(DataBuffer operationBase,int
 
 
 
-void Unwind_180908ac0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理360偏移量的内存资源引用计数
+ * 
+ * 该函数负责处理位于360偏移量的内存资源引用计数，包括：
+ * - 检查内存资源指针的有效性
+ * - 处理内存区域的引用计数
+ * - 管理内存资源的生命周期
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908ac0
+ */
+void ProcessMemoryResourceReferenceCountAtOffset360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -72642,7 +72654,19 @@ void Unwind_180908ac0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908ad0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理3A0偏移量的内存资源引用计数
+ * 
+ * 该函数负责处理位于3A0偏移量的内存资源引用计数，包括：
+ * - 检查内存资源指针的有效性
+ * - 处理内存区域的引用计数
+ * - 管理内存资源的生命周期
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908ad0
+ */
+void ProcessMemoryResourceReferenceCountAtOffset3A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -72678,7 +72702,16 @@ void Unwind_180908ad0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908ae0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理3E0偏移量的数据数组
+ * 
+ * 该函数负责处理位于3E0偏移量的数据数组，调用数据数组处理函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908ae0
+ */
+void ProcessDataArrayAtOffset3E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + 0x170);
