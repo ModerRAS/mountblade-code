@@ -77490,8 +77490,12 @@ LAB_1807100a5:
 
 
 
- void FUN_1807104af(void)
-void FUN_1807104af(void)
+ /**
+ * UI系统初始化检查函数
+ * 用于验证UI系统的初始化状态
+ */
+void CheckUIInitialization(void)
+void CheckUIInitialization(void)
 
 {
   return;
@@ -77500,8 +77504,12 @@ void FUN_1807104af(void)
 
 
 
- void FUN_1807104b7(void)
-void FUN_1807104b7(void)
+ /**
+ * UI系统状态重置函数
+ * 用于重置UI系统的状态到初始值
+ */
+void ResetUIState(void)
+void ResetUIState(void)
 
 {
   return;
