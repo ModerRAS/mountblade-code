@@ -57482,7 +57482,22 @@ void ProcessSystemConfigurationIteration(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180905fe0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理和验证器
+ * 
+ * 该函数负责清理系统资源并验证数据状态，包括：
+ * 1. 清理验证状态指针和相关资源
+ * 2. 处理系统E0终止操作
+ * 3. 验证资源迭代器和状态标志
+ * 4. 管理内存引用计数和异常处理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含系统资源信息
+ * 
+ * @note 原始函数名：Unwind_180905fe0
+ * @warning 此函数涉及系统核心资源管理，调用时需确保系统状态稳定
+ */
+void CleanupSystemResourcesAndValidateStatus(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -57912,7 +57927,17 @@ void DestroyMutexInSituA4(void)
 
 
 
-void Unwind_180906130(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文指针验证器A0
+ * 
+ * 验证异常上下文指针的有效性，如果指针不匹配则终止系统E0
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906130
+ */
+void ValidateExceptionHandlerContextA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -57926,7 +57951,18 @@ void Unwind_180906130(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906140(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文指针验证器A1
+ * 
+ * 验证异常上下文指针的有效性，从数据缓冲区指定偏移量获取指针
+ * 并执行相关的函数指针调用
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906140
+ */
+void ValidateExceptionHandlerContextA1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -103254,6 +103290,7 @@ void CleanupSystemResourceA0(void)
   if (SystemResourceCleanupFlagA0 != '\0') {
     ExecuteResourceCleanupA0();
   }
+  return;
 }
 
 /**
