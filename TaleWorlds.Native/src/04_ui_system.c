@@ -602,6 +602,9 @@ void* UIAnimationSystem;
 
 // 原始函数名：FUN_180742070 - UI缓冲区管理函数
 #define ManageUIBuffer FUN_180742070
+
+// 原始函数名：FUN_18070efdd - UI浮点数据处理函数
+#define ProcessUIFloatData FUN_18070efdd
 // UI主题管理器
 void* UIThemeManager;
 // UI样式数据库
