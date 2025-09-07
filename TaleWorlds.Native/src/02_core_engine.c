@@ -206209,7 +206209,7 @@ LAB_180185b78:
     SystemStackFlag = 0xf;
     SystemContextPointer = *(long long **)(bufferAllocationStatus + 8);
     pplStack_a8 = (long long **)&CoreEnginePointerBuffer60;
-    CoreEnginePointerBuffer60 = &UNK_180a0abe0;
+    CoreEnginePointerBuffer60 = &SystemBufferTertiary;
     lStack_58 = bufferAllocationStatus;
     ppuStack_28 = &CoreEnginePointerBuffer60;
     (**(code **)(*SystemContextPointer + 0x18))(SystemContextPointer,aSystemOperationFlag90,&CoreEnginePointerBuffer60,0);
@@ -206331,7 +206331,7 @@ LAB_180185b78:
     ReallocateSystemContextPointer(aSystemStackFlag,systemEventTemplatePointer,DataConfigurationCounter);
     SystemContextPointer = *(long long **)(bufferAllocationStatus + 8);
     ppSystemStackFlagB0 = &SystemEventDispatcher;
-    SystemEventDispatcher = &UNK_180a0ab70;
+    SystemEventDispatcher = &SystemBufferQuaternary;
     CoreEngineSignedValueA0 = bufferAllocationStatus;
     pStackVariableBuffer = &SystemEventDispatcher;
     (**(code **)(*SystemContextPointer + 0x28))(SystemContextPointer,aStackUnsigned68,&SystemEventDispatcher,0);
@@ -206450,7 +206450,7 @@ void FUN_180186ac0(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64
     ReallocateSystemContextPointer(aStackUnsigned68,systemEventTemplatePointer,DataConfigurationCounter);
     SystemContextPointer = *(long long **)(bufferAllocationStatus + 8);
     ppSystemFlagG = &SystemStatusBufferPointer;
-    SystemStatusBufferPointer = &UNK_180a0aba8;
+    SystemStatusBufferPointer = &SystemBufferQuinary;
     lStack_c0 = bufferAllocationStatus;
     ppSystemOperationFlag90 = &SystemStatusBufferPointer;
     (**(code **)(*SystemContextPointer + 0x30))(SystemContextPointer,aStackValidationData,&SystemStatusBufferPointer,0);
@@ -206539,7 +206539,7 @@ void FUN_180186ac0(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64
     }
     SystemContextPointer = *(long long **)(bufferAllocationStatus + 8);
     ppFunctionAddress80 = &StackVariableBuffer;
-    StackVariableBuffer = &UNK_180a0ab00;
+    StackVariableBuffer = &SystemBufferSenary;
     lStack_68 = bufferAllocationStatus;
     ppFunctionAddress = &StackVariableBuffer;
     (**(code **)(*SystemContextPointer + 0x38))(SystemContextPointer,&ppSystemOperationFlag98,&StackVariableBuffer,0);
@@ -206659,7 +206659,7 @@ LAB_18018728e:
       TemporaryBuffer = TemporaryBuffer + 1;
     } while (TemporaryBuffer != *(uint64_t **)(SystemBufferStatusA + 0x20));
   }
-  FUN_180187390(MemoryBoundaryEnd,&UNK_180a0aa34);
+  FUN_180187390(MemoryBoundaryEnd,&SystemBufferSecondary);
   *Utf8BufferSize = &SystemNullTemplate;
   if (Utf8BufferSize[1] == 0) {
     Utf8BufferSize[1] = 0;
@@ -206729,12 +206729,12 @@ LAB_18018728e:
   if ((TemporaryBuffer != NULL) &&
      (((long long)SystemContextPointer[4] - (long long)SystemContextPointer[3] & 0xfffffffffffffff8U) != 0)) {
     pMemoryAddressMask = (void *)AllocateSystemMemoryPool(0x10);
-    *pMemoryAddressMask = &UNK_180a0ac88;
-    *pMemoryAddressMask = &UNK_180a0acd8;
+    *pMemoryAddressMask = &SystemMemoryAddressTertiary;
+    *pMemoryAddressMask = &SystemMemoryAddressQuaternary;
     CalculatedCodePoint = 0;
     pSystemFlagA = pMemoryAddressMask;
     if (TemporaryBuffer != NULL) {
-      if ((void *)*TemporaryBuffer == &UNK_180a0ad28) {
+      if ((void *)*TemporaryBuffer == &SystemMemoryAddressSecondary) {
         CalculatedCodePoint = TemporaryBuffer[1];
       }
       else {
@@ -206895,7 +206895,7 @@ LAB_18018764a:
       ProcessSystemStackData(&pSystemFlagF);
     }
     ppSystemFlagB = &pSystemFlagF;
-    pSystemFlagF = &UNK_180a0ab38;
+    pSystemFlagF = &SystemBufferSeptenary;
     pStackTempPointer = &pSystemFlagF;
     ppSystemFlagG = SystemContextPointer;
     (**(code **)(*(long long *)SystemContextPointer[1] + 8))(SystemContextPointer[1],&CoreEngineSignedValue78,&pSystemFlagF,0);
@@ -207990,7 +207990,7 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
   StackValidationData = *(uint8_t *)(Utf8BufferSize + 1);
   uStack_87 = *(uint8_t *)((long long)Utf8BufferSize + 9);
   FunctionAddress80 = Utf8BufferSize[2];
-  pSystemOperationFlag98 = &UNK_180a0aac8;
+  pSystemOperationFlag98 = &SystemBufferOctonary;
   PointerPointerStack60 = &pSystemOperationFlag98;
   SystemPointer20 = (long long *)0x0;
   if ((PointerPointerStack60 != (void **)0x0) &&
@@ -208830,7 +208830,7 @@ void FreeStatusBufferArray(long long *BufferArrayStart, long long *BufferArrayEn
 {
   code *StringBuffer;
   
-  __Xlength_error_std__YAXPEBD_Z(&UNK_180a0aaa8);
+  __Xlength_error_std__YAXPEBD_Z(&SystemBufferNonary);
   StringBuffer = (code *)swi(3);
   (*StringBuffer)();
   return;
