@@ -10214,8 +10214,18 @@ void CoreEngineInitializeNetworkDataSynchronizer(void)
  * 
  * 该函数负责初始化和管理网络配置管理器，用于处理网络相关的配置信息。
  * 包括配置的加载、验证、应用和保存机制。
+ * 
+ * @details 函数执行流程：
+ * 1. 设置网络配置处理器和缓冲区
+ * 2. 初始化网络配置字符状态缓冲区
+ * 3. 复制网络配置模板数据
+ * 4. 设置网络配置处理器
+ * 
+ * @note 此函数在网络系统初始化时调用
+ * @note 配置管理器负责处理网络相关的所有配置信息
+ * @note 使用模板数据进行初始化
  */
-void CoreEngineInitializeNetworkConfigManager(void
+void CoreEngineInitializeNetworkConfigManager(void)
 {
   void *NetworkConfigParameter;
   void *NetworkConfigHandler;
@@ -10244,18 +10254,25 @@ void CoreEngineInitializeNetworkConfigManager(void
  * @return 初始化成功返回0，失败返回-1
  */
 /**
- * @brief 初始化系统数据指针
+ * @brief 初始化系统处理状态标志
  * 
- * 该函数负责初始化系统数据指针，设置系统数据表和配置表的引用。
+ * 该函数负责初始化系统处理状态标志，设置系统数据表和配置表的引用。
  * 这些指针用于后续的系统数据访问和配置管理。
+ * 
+ * @details 函数执行流程：
+ * 1. 设置系统数据表引用
+ * 2. 设置系统配置表引用
+ * 3. 配置系统数据偏移量
+ * 4. 设置配置寄存器
  * 
  * @return 初始化结果，0表示成功
  * 
  * @note 此函数在系统启动时调用
  * @note 设置全局系统数据表引用
  * @note 设置系统配置表引用
+ * @note 配置系统处理所需的各类状态标志
  */
-int InitializeSystemProcessingStatusFlags(void
+int InitializeSystemProcessingStatusFlags(void)
 {
   long long SystemDataOffset;
   void *ConfigurationRegister;
@@ -173719,7 +173736,7 @@ uint64_t *ProcessSystemEventHandling(long long CharacterCode,uint64_t *Utf8Input
 
 
 
-uint64_t * FUN_180141660(uint64_t *Utf8InputBuffer
+uint64_t * ProcessUtf8InputBufferAllocation(uint64_t *Utf8InputBuffer
 {
   uint64_t *CharacterStatusBuffer;
   
@@ -176177,7 +176194,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *Utf8InputBuffer,unsigned long l
 
 
 
-uint64_t * FUN_18014a1b0(uint64_t *Utf8InputBuffer
+uint64_t * ProcessSystemDataBufferAllocation(uint64_t *Utf8InputBuffer
 {
   *Utf8InputBuffer = &DataNodeTemplateA;
   *Utf8InputBuffer = &DataNodeTemplateB;
@@ -176377,7 +176394,7 @@ uint64_t *InitializeUtf16ToUtf8Converter(uint64_t *Utf8InputBuffer,unsigned long
 
 
 
-uint64_t * FUN_18014a900(uint64_t *Utf8InputBuffer
+uint64_t * ProcessSystemMemoryBufferSetup(uint64_t *Utf8InputBuffer
 {
   *Utf8InputBuffer = 0;
   Utf8InputBuffer[1] = 0;
@@ -176621,7 +176638,7 @@ uint64_t* InitializeSystemContextAndBuffer(uint64_t *Utf8InputBuffer, uint64_t *
 
 
 
-long long * FUN_18014acf0(long long CharacterCode,long long *Utf8InputBufferSize
+long long * ProcessCharacterCodeMemoryAllocation(long long CharacterCode,long long *Utf8InputBufferSize
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
