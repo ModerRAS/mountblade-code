@@ -21191,7 +21191,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     LoopCounterFloat = dataPointerD;
     do {
       ValidationFloatValue = *(float *)(contextPointer + -0x180985054 + (int64_t)FloatArrayPointer);
-      if (ValidationFloatValue != *pfVar5) {
+      if (ValidationFloatValue != *FloatArrayPointer) {
         operationResult = SystemOperationResult;
         StackValidationParameterA = &DataProcessingContextA0;
         ValidationDataBuffer = dataPointerD;

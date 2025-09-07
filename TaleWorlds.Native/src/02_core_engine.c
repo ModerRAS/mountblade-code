@@ -311,6 +311,8 @@ const void* const SystemEventQueueDataTableTrigesimal = (void*)0x180a10860;
 const void* const SystemEventQueueDataTableUntrigesimal = (void*)0x180a10820;
 const void* const SystemEventQueueDataTableDuotrigesimal = (void*)0x180a10838;
 const void* const SystemEventQueueDataTableTrigesimal = (void*)0x180a10898;
+const void* const SystemEventQueueDataTableSeptenary = (void*)0x180a10628;
+const void* const SystemEventQueueDataTableOctonary = (void*)0x180a10640;
 
 // 系统内存池和数据结构常量
 const void* const SystemMemoryPoolTemplate = (void*)0x180a104d0;
