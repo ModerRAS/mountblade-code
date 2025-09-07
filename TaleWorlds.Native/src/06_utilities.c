@@ -7096,10 +7096,10 @@ uint8_t UtilityReallocateBlockPtr1;
 uint8_t UtilityCopyMemoryBlock;
 // 工具系统复制内存块数据变量
 uint8_t UtilityCopyBlockPrimaryData;
-uint8_t UtilityCopyBlockData2;
+uint8_t UtilityCopyBlockSecondaryData;
 uint8_t UtilityCopyBlockTertiaryData;
 uint8_t UtilityCopyBlockQuaternaryData;
-uint8_t UtilityCopyBlockStatus1;
+uint8_t UtilityCopyBlockPrimaryStatus;
 
 // 函数: void InitializeUtilitySystem(void)
 // 
