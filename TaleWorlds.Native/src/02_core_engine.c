@@ -341,6 +341,14 @@
 #define SystemParameter180 SystemTransformMatrixParameters      // 系统变换矩阵参数
 #define FloatValueArray180 TransformMatrixCoefficientArray       // 变换矩阵系数数组
 
+// 核心引擎数据处理变量语义化映射
+#define DataValidationValue210 dataValue210                     // 数据验证值210
+#define DataProcessingFlag208 dataFlag208                        // 数据处理标志208
+#define SystemProcessingStackValue150 StackProcessingUnsignedValue150 // 系统处理栈值150
+#define SystemProcessingStackValue210 StackProcessingUnsignedValue210 // 系统处理栈值210
+#define CoreEngineProcessingFlag208 CoreEngineUnsignedValue208   // 核心引擎处理标志208
+#define CoreEngineSystemFlag CoreEngineUnsignedValue             // 核心引擎系统标志
+
 // 新增FUN_函数语义化映射
 #define ProcessVectorRegisterOperation FUN_180225ee0             // 处理向量寄存器操作
 #define ProcessMemoryAllocationIndex FUN_180225e50               // 处理内存分配索引
@@ -37577,12 +37585,12 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t CharacterCode
   ProcessSystemContextConfiguration(&CharacterCode,&SystemContextTemplate,&CoreEngineTemplate,&SystemCharacterStatusBuffer50);
   SecondaryStackPointer20 = NULL;
   SecondaryStackPointer18 = NULL;
-  StackProcessingUnsignedValue210 = 0;
-  CoreEngineUnsignedValue208 = 3;
+  SystemProcessingStackValue210 = 0;
+  CoreEngineProcessingFlag208 = 3;
   PrimaryStackPointer60 = NULL;
   CoreEnginePointerBuffer158 = NULL;
-  StackProcessingUnsignedValue150 = 0;
-  CoreEngineUnsignedValue = 3;
+  SystemProcessingStackValue150 = 0;
+  CoreEngineSystemFlag = 3;
   OperationStatus = &SystemDataStructureTemplate;
   pErrorCode = aSystemFlagF;
   aSystemFlagF[0] = 0;
