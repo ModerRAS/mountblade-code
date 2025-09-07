@@ -5285,6 +5285,11 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define SystemResourceDataBuffer DAT_18098bc73         // 系统资源数据缓冲区
 #define SystemCalculationBaseAddress SystemCalculationBaseAddress    // 系统计算基础地址
 
+// 系统初始化和重置函数宏定义
+#define InitializeSystemB0 FUN_180296b70    // 初始化系统B0
+#define ResetSystemB0 FUN_180291610        // 重置系统B0
+#define ExecuteMemoryOperationB0 FUN_1808fc5ac    // 执行内存操作B0
+
 // 异常处理系统全局变量
 void* ExceptionHandlerTablePointer;        // 异常处理器表指针
 int SystemExceptionHandlerState;          // 系统异常处理状态
@@ -13178,7 +13183,7 @@ void UtilityValidateSystemState(void)
 
 {
   int operationResult;
-  int64_t stackFramePointer;
+  int64_t stackFrameContext;
   int64_t systemContext;
   DataBuffer systemParameter;
   
@@ -23979,15 +23984,15 @@ void UtilityNoOperationJ(void)
 DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuffer)
 
 {
-  short sVar1;
+  short statusFlag;
   int operationResult;
   ushort validationStatus;
   DataBuffer memoryBaseAddress;
-  ushort operationResult;
+  ushort operationResultSecondary;
   int64_t memoryPointer;
   int64_t memoryOffset;
   int64_t bufferPointer;
-  int aiStack_48 [4];
+  int stackParameterArray [4];
   
   memoryOffset = 0;
   operationResult = (ushort)(*(int *)(dataBuffer + 0x28) != 0);
@@ -24055,7 +24060,7 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
             if (0 < operationResult) {
               do {
                 memoryPointer = *(int64_t *)(dataBuffer + 600) + memoryOffset;
-                sVar1 = *(short *)(memoryPointer + 0x114);
+                statusFlag = *(short *)(memoryPointer + 0x114);
                 memoryBaseAddress = ProcessDataPointerA0(operationBase,memoryPointer);
                 if ((int)memoryBaseAddress != 0) {
                   return memoryBaseAddress;
