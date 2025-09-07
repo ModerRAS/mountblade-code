@@ -8176,7 +8176,7 @@ void* GlobalDataPointerA38ValidationBuffer;  // DAT_180a22fa8
 // 
 // 返回值：
 //   uint8_t - 数据处理结果
-uint8_t ProcessUtilityDataBB0;
+uint8_t ProcessUtilityData;
 void* DataTableConfigurationPrimary;
 void* DataTableConfigurationSecondary;
 void* DataTableConfigurationTertiary;
@@ -8195,7 +8195,7 @@ bool SystemConfigurationControlFlag;
 // 
 // 返回值：
 //   uint8_t - 验证结果状态
-uint8_t ValidateUtilityDataBC0;
+uint8_t ValidateUtilityData;
 
 // 函数: uint8_t EncryptUtilityDataBD0;
 // 
@@ -110849,4 +110849,294 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  * 
  * @note 原始函数名：Unwind_180907800
  */
+#define UpdateSystemStatusA0 Unwind_180907800
+
+// Unwind函数语义化宏定义补充
+// 系统初始化和配置函数
+#define InitializeSystemConfigurationA0 Unwind_180907b90
+#define ProcessValidationFlagA0 Unwind_180907ba0
+#define ResetProcessorStatusFlagsA0 Unwind_180907bd0
+#define ClearOperationFlagsA0 Unwind_180907c00
+#define SetSystemStatusFlagsA0 Unwind_180907c10
+
+// 回调函数执行器
+#define ExecuteOperationCallbacksA0 Unwind_180907c30
+#define ExecuteCleanupCallbacksA0 Unwind_180907c90
+#define ExecuteStatusCallbacksA0 Unwind_180907ca0
+#define ExecuteResourceCallbacksA0 Unwind_180907cc0
+
+// 系统资源管理
+#define ResetSystemContextA0 Unwind_180907c40
+#define CleanupTemporaryResourcesA0 Unwind_180907c50
+#define ReleaseSystemBuffersA0 Unwind_180907c60
+#define ResetDataPointersA0 Unwind_180907c70
+#define CleanupMemoryPoolA0 Unwind_180907c80
+#define CleanupOperationQueueA0 Unwind_180907cd0
+#define ReleaseMemoryReferencesA0 Unwind_180907ce0
+#define ResetThreadStatusA0 Unwind_180907cf0
+#define CleanupCacheDataA0 Unwind_180907d00
+
+// 系统状态和标志管理
+#define SetSystemConfigurationFlagsA0 Unwind_180907d30
+#define ClearSystemConfigurationFlagsA0 Unwind_180907d40
+#define ResetSystemConfigurationStateA0 Unwind_180907d50
+#define UpdateSystemConfigurationDataA0 Unwind_180907d80
+#define ValidateSystemConfigurationA0 Unwind_180907db0
+#define ProcessSystemConfigurationA0 Unwind_180907dc0
+#define CleanupSystemConfigurationA0 Unwind_180907dd0
+#define ResetSystemConfigurationPointersA0 Unwind_180907e00
+#define InitializeSystemResourcesA0 Unwind_180907e30
+#define SetupSystemResourcesA0 Unwind_180907e40
+
+// 资源回调管理
+#define ExecuteResourceInitializationCallbacksA0 Unwind_180907e50
+#define ExecuteResourceSetupCallbacksA0 Unwind_180907e60
+#define ExecuteResourceConfigurationCallbacksA0 Unwind_180907e70
+#define ExecuteResourceValidationCallbacksA0 Unwind_180907e80
+#define ResetResourceContextA0 Unwind_180907e90
+#define CleanupResourceContextA0 Unwind_180907ea0
+#define ReleaseResourceReferencesA0 Unwind_180907eb0
+#define ValidateResourceStateA0 Unwind_180907ec0
+#define ProcessResourceCleanupA0 Unwind_180907ed0
+
+// 多参数回调执行器
+#define ExecuteMultiParameterCallbacksA0 Unwind_180907ee0
+#define ExecuteMultiParameterCallbacksA1 Unwind_180907ef0
+#define ExecuteMultiParameterCallbacksA2 Unwind_180907f00
+#define ExecuteSystemCallbacksA0 Unwind_180907f10
+#define ExecuteResourceCallbacksB0 Unwind_180907f20
+#define ExecuteCleanupCallbacksB0 Unwind_180907f40
+#define ExecuteSystemCleanupCallbacksA0 Unwind_180907f60
+
+// 系统句柄和资源管理
+#define CleanupSystemHandlesA0 Unwind_180907f70
+#define CleanupContextResourcesA0 Unwind_180907f80
+#define ResetResourceContextB0 Unwind_180907f90
+
+// 系统缓冲区和状态管理
+#define ResetSystemBufferStateA0 Unwind_180907fa0
+#define ClearSystemBufferFlagsA0 Unwind_180907fb0
+#define InitializeSystemBuffersA0 Unwind_180907fe0
+#define ProcessSystemBufferDataA0 Unwind_180907ff0
+
+// 数据处理和验证
+#define ProcessDataBufferOperationsA0 Unwind_180908050
+#define ExecuteDataProcessingCallbacksA0 Unwind_1809080c0
+#define ExecuteDataValidationCallbacksA0 Unwind_1809080d0
+#define ExecuteDataCleanupCallbacksA0 Unwind_1809080e0
+#define ExecuteDataTransferCallbacksA0 Unwind_1809080f0
+#define ExecuteDataTransformationCallbacksA0 Unwind_180908100
+#define ExecuteDataEncryptionCallbacksA0 Unwind_180908110
+#define ExecuteDataDecryptionCallbacksA0 Unwind_180908120
+
+// 系统重置和清理
+#define ResetSystemDataPointersA0 Unwind_180908130
+#define ResetSystemMemoryStateA0 Unwind_180908140
+#define ResetSystemCacheStateA0 Unwind_180908150
+#define ExecuteSystemResetCallbacksA0 Unwind_180908160
+#define ExecuteSystemCleanupCallbacksB0 Unwind_180908170
+#define ExecuteSystemInitializationCallbacksA0 Unwind_180908180
+#define ExecuteSystemConfigurationCallbacksA0 Unwind_180908190
+#define ExecuteSystemValidationCallbacksA0 Unwind_1809081a0
+#define ExecuteSystemOptimizationCallbacksA0 Unwind_1809081b0
+#define ExecuteSystemMonitoringCallbacksA0 Unwind_1809081c0
+#define ExecuteSystemMaintenanceCallbacksA0 Unwind_1809081d0
+#define ExecuteSystemBackupCallbacksA0 Unwind_1809081e0
+#define ExecuteSystemRecoveryCallbacksA0 Unwind_1809081f0
+#define ExecuteSystemUpdateCallbacksA0 Unwind_180908200
+#define ExecuteSystemUpgradeCallbacksA0 Unwind_180908210
+
+// 系统资源管理
+#define ProcessSystemResourceOperationsA0 Unwind_180908360
+#define DestroySystemMutexA0 Unwind_180908380
+#define ProcessSystemResourceDataA0 Unwind_1809083a0
+#define ValidateSystemResourceStateA0 Unwind_1809083e0
+#define CleanupSystemResourceDataA0 Unwind_1809083f0
+#define ResetSystemResourcePointersA0 Unwind_180908420
+#define ExecuteSystemResourceCallbacksA0 Unwind_180908460
+
+// 系统状态管理
+#define ProcessSystemStatusOperationsA0 Unwind_180908650
+#define UpdateSystemStatusDataA0 Unwind_180908660
+#define ValidateSystemStatusStateA0 Unwind_1809086d0
+#define ResetSystemStatusFlagsA0 Unwind_1809086f0
+#define ProcessSystemStatusDataA0 Unwind_180908710
+#define CleanupSystemStatusDataA0 Unwind_180908730
+#define DestroySystemStatusLocksA0 Unwind_180908750
+#define ResetSystemStatusContextA0 Unwind_180908760
+#define ClearSystemStatusFlagsA0 Unwind_180908770
+#define InitializeSystemStatusDataA0 Unwind_180908780
+#define SetupSystemStatusPointersA0 Unwind_180908790
+#define ValidateSystemStatusConfigurationA0 Unwind_1809087a0
+#define ProcessSystemStatusCallbacksA0 Unwind_1809087b0
+#define ExecuteSystemStatusOperationsA0 Unwind_1809087c0
+#define CleanupSystemStatusResourcesA0 Unwind_1809087d0
+#define ReleaseSystemStatusMemoryA0 Unwind_1809087e0
+#define ResetSystemStatusStateA0 Unwind_1809087f0
+#define UpdateSystemStatusConfigurationA0 Unwind_180908800
+#define ProcessSystemStatusValidationA0 Unwind_180908810
+#define ExecuteSystemStatusInitializationA0 Unwind_180908820
+#define CleanupSystemStatusBuffersA0 Unwind_180908830
+#define ProcessSystemStatusOptimizationA0 Unwind_180908850
+#define UpdateSystemStatusMonitoringA0 Unwind_180908860
+#define ExecuteSystemStatusMaintenanceA0 Unwind_180908870
+#define ResetSystemStatusPointersA0 Unwind_180908880
+#define CleanupSystemStatusCacheA0 Unwind_180908890
+#define ValidateSystemStatusIntegrityA0 Unwind_1809088a0
+#define ProcessSystemStatusSecurityA0 Unwind_1809088d0
+#define ExecuteSystemStatusRecoveryA0 Unwind_1809088e0
+#define ResetSystemStatusConfigurationA0 Unwind_1809088f0
+
+// 内存管理函数
+#define ProcessMemoryOperationsA0 Unwind_180908a20
+#define InitializeMemoryPoolA0 Unwind_180908a30
+#define AllocateMemoryResourcesA0 Unwind_180908a40
+#define DeallocateMemoryResourcesA0 Unwind_180908a50
+#define ValidateMemoryStateA0 Unwind_180908a60
+#define CleanupMemoryResourcesA0 Unwind_180908a70
+#define ResetMemoryPointersA0 Unwind_180908a80
+#define ConfigureMemorySettingsA0 Unwind_180908a90
+#define OptimizeMemoryUsageA0 Unwind_180908aa0
+#define MonitorMemoryPerformanceA0 Unwind_180908ab0
+#define ProcessMemoryCallbacksA0 Unwind_180908ac0
+#define ExecuteMemoryOperationsA0 Unwind_180908ad0
+#define ValidateMemoryIntegrityA0 Unwind_180908ae0
+#define CleanupMemoryBuffersA0 Unwind_180908af0
+#define ResetMemoryConfigurationA0 Unwind_180908b00
+#define ProcessMemoryValidationA0 Unwind_180908b10
+#define ExecuteMemoryCleanupA0 Unwind_180908b20
+#define InitializeMemoryManagementA0 Unwind_180908b30
+#define SetupMemoryAllocationA0 Unwind_180908b40
+#define ConfigureMemoryProtectionA0 Unwind_180908b50
+#define ProcessMemorySecurityA0 Unwind_180908b60
+#define ExecuteMemoryOptimizationA0 Unwind_180908b70
+#define CleanupMemoryAllocationA0 Unwind_180908b80
+#define ResetMemoryStateA0 Unwind_180908b90
+#define UpdateMemoryConfigurationA0 Unwind_180908ba0
+
+// 缓冲区管理函数
+#define ProcessBufferOperationsA0 Unwind_180908c20
+#define InitializeBufferPoolA0 Unwind_180908c30
+#define AllocateBufferResourcesA0 Unwind_180908c40
+#define DeallocateBufferResourcesA0 Unwind_180908c50
+#define ValidateBufferStateA0 Unwind_180908c60
+#define CleanupBufferResourcesA0 Unwind_180908c70
+#define ResetBufferPointersA0 Unwind_180908c80
+#define ConfigureBufferSettingsA0 Unwind_180908c90
+#define OptimizeBufferUsageA0 Unwind_180908ca0
+#define ProcessBufferValidationA0 Unwind_180908cd0
+#define ExecuteBufferOperationsA0 Unwind_180908d00
+
+// 系统初始化和清理
+#define InitializeSystemComponentsA0 Unwind_180908d30
+#define CleanupSystemComponentsA0 Unwind_180908d40
+#define ProcessSystemInitializationA0 Unwind_180908d50
+#define ExecuteSystemInitializationB0 Unwind_180908d60
+#define SetupSystemConfigurationB0 Unwind_180908d70
+#define ValidateSystemConfigurationB0 Unwind_180908d80
+#define ProcessSystemOperationsA0 Unwind_180908db0
+#define ExecuteSystemOperationsA0 Unwind_180908dc0
+#define CleanupSystemOperationsA0 Unwind_180908dd0
+#define ResetSystemOperationsA0 Unwind_180908de0
+#define UpdateSystemConfigurationB0 Unwind_180908df0
+#define ProcessSystemValidationB0 Unwind_180908e00
+#define ExecuteSystemCallbacksB0 Unwind_180908e40
+#define ProcessSystemResourceDataB0 Unwind_180908e60
+#define CleanupSystemResourceDataB0 Unwind_180908e70
+#define ExecuteSystemResourceCallbacksB0 Unwind_180908e80
+#define ResetSystemResourceContextA0 Unwind_180908e90
+#define ClearSystemResourceFlagsA0 Unwind_180908ea0
+#define InitializeSystemResourceDataA0 Unwind_180908eb0
+#define SetupSystemResourcePointersA0 Unwind_180908ec0
+#define ValidateSystemResourceStateA0 Unwind_180908ed0
+
+// 系统监控和维护
+#define ProcessSystemMonitoringA0 Unwind_180908f90
+#define ExecuteSystemMonitoringA0 Unwind_180908fa0
+#define ProcessSystemMaintenanceA0 Unwind_180909080
+#define ExecuteSystemMaintenanceA0 Unwind_180909090
+#define ProcessSystemOptimizationA0 Unwind_1809090a0
+#define ExecuteSystemOptimizationA0 Unwind_1809090b0
+#define ProcessSystemBackupA0 Unwind_1809090d0
+#define ExecuteSystemBackupA0 Unwind_1809090f0
+#define ProcessSystemRecoveryA0 Unwind_180909110
+#define ExecuteSystemRecoveryA0 Unwind_180909130
+#define ProcessSystemUpdateA0 Unwind_180909150
+#define ExecuteSystemUpdateA0 Unwind_180909170
+#define ProcessSystemUpgradeA0 Unwind_180909190
+#define ExecuteSystemUpgradeA0 Unwind_1809091b0
+#define ProcessSystemValidationC0 Unwind_1809091d0
+#define ExecuteSystemValidationC0 Unwind_1809091f0
+#define ProcessSystemSecurityA0 Unwind_180909210
+#define ExecuteSystemSecurityA0 Unwind_180909290
+#define ProcessSystemPerformanceA0 Unwind_1809092b0
+#define ExecuteSystemPerformanceA0 Unwind_1809092d0
+#define ProcessSystemConfigurationC0 Unwind_1809092e0
+#define ExecuteSystemConfigurationC0 Unwind_1809092f0
+#define ProcessSystemCleanupA0 Unwind_180909400
+#define ExecuteSystemCleanupC0 Unwind_180909410
+#define ProcessSystemResetA0 Unwind_180909420
+#define ExecuteSystemResetA0 Unwind_180909430
+#define ProcessSystemStateA0 Unwind_180909440
+#define ExecuteSystemStateA0 Unwind_180909450
+#define ProcessSystemDataA0 Unwind_180909460
+#define ExecuteSystemDataA0 Unwind_180909470
+#define ProcessSystemCallbacksC0 Unwind_180909480
+#define ExecuteSystemCallbacksC0 Unwind_180909490
+#define ProcessSystemResourcesA0 Unwind_1809094a0
+#define ExecuteSystemResourcesA0 Unwind_1809094b0
+#define ProcessSystemMemoryA0 Unwind_1809094c0
+#define ExecuteSystemMemoryA0 Unwind_1809094d0
+#define ProcessSystemBufferA0 Unwind_1809094e0
+#define ExecuteSystemBufferA0 Unwind_1809094f0
+#define ProcessSystemThreadA0 Unwind_180909500
+#define ExecuteSystemThreadA0 Unwind_180909510
+#define ProcessSystemLockA0 Unwind_180909520
+#define ExecuteSystemLockA0 Unwind_180909530
+#define ProcessSystemEventA0 Unwind_180909540
+#define ExecuteSystemEventA0 Unwind_180909550
+#define ProcessSystemSyncA0 Unwind_1809095c0
+#define ExecuteSystemSyncA0 Unwind_1809095d0
+#define ProcessSystemAsyncA0 Unwind_180909600
+#define ExecuteSystemAsyncA0 Unwind_180909610
+#define ProcessSystemIOA0 Unwind_180909620
+#define ExecuteSystemIOA0 Unwind_180909630
+#define ProcessSystemNetworkA0 Unwind_180909640
+#define ExecuteSystemNetworkA0 Unwind_180909680
+#define ProcessSystemDatabaseA0 Unwind_180909690
+#define ExecuteSystemDatabaseA0 Unwind_1809096a0
+#define ProcessSystemFileA0 Unwind_1809096b0
+#define ExecuteSystemFileA0 Unwind_1809096c0
+#define ProcessSystemStreamA0 Unwind_1809096e0
+#define ExecuteSystemStreamA0 Unwind_180909700
+#define ProcessSystemCompressionA0 Unwind_180909710
+#define ExecuteSystemCompressionA0 Unwind_180909720
+#define ProcessSystemEncryptionA0 Unwind_180909730
+#define ExecuteSystemEncryptionA0 Unwind_180909740
+#define ProcessSystemSerializationA0 Unwind_180909750
+#define ExecuteSystemSerializationA0 Unwind_180909760
+#define ProcessSystemDeserializationA0 Unwind_180909770
+#define ExecuteSystemDeserializationA0 Unwind_180909780
+#define ProcessSystemValidationD0 Unwind_180909790
+#define ExecuteSystemValidationD0 Unwind_1809097a0
+#define ProcessSystemSecurityB0 Unwind_1809097b0
+#define ExecuteSystemSecurityB0 Unwind_1809097c0
+#define ProcessSystemPerformanceB0 Unwind_1809097d0
+#define ExecuteSystemPerformanceB0 Unwind_1809097e0
+#define DestroySystemResourcesA0 Unwind_1809097f0
+#define ExecuteSystemDestructionA0 Unwind_180909800
+#define ProcessSystemShutdownA0 Unwind_180909820
+#define ExecuteSystemShutdownA0 Unwind_180909840
+#define ProcessSystemFinalizationA0 Unwind_180909850
+#define ExecuteSystemFinalizationA0 Unwind_180909860
+#define ProcessSystemTerminationA0 Unwind_180909870
+#define ExecuteSystemTerminationA0 Unwind_180909890
+#define ProcessSystemExitA0 Unwind_1809098a0
+#define ExecuteSystemExitA0 Unwind_1809098b0
+#define ProcessSystemAbortA0 Unwind_1809098c0
+#define ExecuteSystemAbortA0 Unwind_1809098d0
+#define CleanupSystemMemoryA0 Unwind_1809098d0
+#define ResetSystemStateA0 Unwind_180909900
+#define ValidateSystemIntegrityA0 Unwind_180909930
+#define ExecuteSystemIntegrityCheckA0 Unwind_180909960
 #define ProcessSystemStatusUpdateA0 Unwind_180907800
