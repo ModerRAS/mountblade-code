@@ -150077,38 +150077,49 @@ LAB_180132de6:
 
 
 
-32b74(uint64_t CharacterCode,uint32_t CharacterCodeSizevoid FUN_180132b74(uint64_t CharacterCode,uint32_t CharacterCodeSize
+/**
+ * @brief 处理系统矩阵变换和浮点运算
+ * 
+ * 该函数负责处理系统中的矩阵变换操作和浮点数计算，
+ * 包括坐标变换、矩阵乘法和参数标准化等操作。
+ * 
+ * @param CharacterCode 输入的字符代码参数
+ * @param CharacterCodeSize 字符代码大小
+ * 
+ * @note 原始函数名：FUN_180132b74
+ */
+void ProcessSystemMatrixTransformation(uint64_t CharacterCode, uint32_t CharacterCodeSize)
 {
-  uint64_t *StatusBuffer;
-  long long BufferStatus;
-  uint8_t UnicodeCodePoint;
-  int validationResult;
-  long long AllocatedMemorySize;
-  long long SystemContext;
-  long long DataNodeIndex;
-  char CharacterValidationCode;
-  long long RegisterGeneral14;
-  float FloatValue8;
-  float NormalizedParameter;
-  float SystemContextPrimaryFloat0;
-  float SystemContextPrimaryFloat1;
-  uint64_t SystemStatusCode;
-  uint64_t QuaternaryReturnCode;
-  float SystemContextPrimaryFloat4;
-  float SystemFloatValue;
-  float SystemContextPrimaryFloat6;
-  float FloatingPointRegisterA;
-  float SecondaryFloatValue;
-  float SystemContextPrimaryFloat8;
-  float fStack0000000000000030;
-  float StackVariable34;
-  float StackVariable38;
-  float StackVariable3c;
-  float MatrixRow2Col1;
-  float MatrixRow2Col2;
-  int ProcessIterationCount;
+  uint64_t *SystemStatusBuffer;
+  long long BufferPointer;
+  uint8_t CharacterCodeFlag;
+  int ConfigurationValidationResult;
+  long long MemoryAllocationSize;
+  long long SystemContextPointer;
+  long long DataNodePointer;
+  char CharacterValidationStatus;
+  long long SystemRegisterValue;
+  float SystemFloatParameter;
+  float NormalizedValue;
+  float MatrixTransformX;
+  float MatrixTransformY;
+  uint64_t SystemReturnCode;
+  uint64_t SecondaryReturnCode;
+  float MatrixTransformZ;
+  float SystemCalculatedFloat;
+  float MatrixTransformW;
+  float ReferenceFloatValue;
+  float SecondaryMatrixFloat;
+  float TertiaryMatrixFloat;
+  float StackFloat1;
+  float StackFloat2;
+  float StackFloat3;
+  float StackFloat4;
+  float MatrixCoefficient1;
+  float MatrixCoefficient2;
+  int ProcessingCounter;
   
-  FloatValue8 = (float)FUN_1801333d0(CharacterCodeSize);
+  FloatValue8 = (float)CalculateCharacterCodeFloatValue(CharacterCodeSize);
   CharacterStatus1 = (char)RegisterGeneral14;
   MutexLockResult = (int)RegisterGeneral14;
   if (*(int *)(SystemContext + 0x1d2c) == -1) {
@@ -150846,86 +150857,97 @@ LAB_180132de6:
 
 
 
-uint64_t FUN_1801333d0(uint CharacterCode
+/**
+ * @brief 计算字符代码对应的浮点数值
+ * 
+ * 该函数根据输入的字符代码计算对应的浮点数值，
+ * 用于系统中的字符编码转换和数值计算。
+ * 
+ * @param CharacterCode 输入的字符代码
+ * @return 计算后的浮点数值
+ * 
+ * @note 原始函数名：FUN_1801333d0
+ */
+uint64_t CalculateCharacterCodeFloatValue(uint CharacterCode)
 {
-  char StringBuffer;
-  long long BufferStatus;
+  char ValidationFlag;
+  long long ConfigurationStatus;
   char OperationStatus;
-  long long DataStructureCounter;
-  unsigned long long CalculatedCodePoint;
-  float CalculatedDistance;
-  float FloatVariable7;
+  long long DataStructurePointer;
+  unsigned long long CodePointValue;
+  float FloatCalculationResult;
+  float SystemFloatValue;
   uint32_t ProcessingStatusFlag;
   
   if ((((*(int *)(SystemDataConfiguration + 0x1d2c) != -1) ||
-       (DataStructureCounter = *(long long *)(SystemDataConfiguration + 0x1c98), DataStructureCounter == 0)) ||
-      ((*(uint *)(DataStructureCounter + 0xc) & 0x40000) != 0)) ||
+       (DataStructurePointer = *(long long *)(SystemDataConfiguration + 0x1c98), DataStructurePointer == 0)) ||
+      ((*(uint *)(DataStructurePointer + 0xc) & 0x40000) != 0)) ||
      ((*(long long *)(SystemDataConfiguration + 0x1cd8) != 0 || (*(int *)(SystemDataConfiguration + 0x1cfc) != 0)))) {
     return 0;
   }
-  BufferStatus = (long long)*(int *)(SystemDataConfiguration + 0x50);
-  if (((*(int *)(SystemDataConfiguration + 0x50) < 0) || (*(char *)(BufferStatus + 0x138 + SystemDataConfiguration) == '\0')     || ((CharacterCode & 4) == 0)) {
+  ConfigurationStatus = (long long)*(int *)(SystemDataConfiguration + 0x50);
+  if (((*(int *)(SystemDataConfiguration + 0x50) < 0) || (*(char *)(ConfigurationStatus + 0x138 + SystemDataConfiguration) == '\0')     || ((CharacterCode & 4) == 0)) {
     OperationStatus = '\0';
   }
   else {
     OperationStatus = '\x01';
   }
-  CalculatedCodePoint = (unsigned long long)*(int *)(SystemDataConfiguration + 0x54);
-  if (((*(int *)(SystemDataConfiguration + 0x54) < 0) || (*(char *)(CalculatedCodePoint + 0x138 + SystemDataConfiguration) == '\0')     || ((CharacterCode & 8) == 0)) {
-    StringBuffer = '\0';
+  CodePointValue = (unsigned long long)*(int *)(SystemDataConfiguration + 0x54);
+  if (((*(int *)(SystemDataConfiguration + 0x54) < 0) || (*(char *)(CodePointValue + 0x138 + SystemDataConfiguration) == '\0')     || ((CharacterCode & 8) == 0)) {
+    ValidationFlag = '\0';
   }
   else {
-    StringBuffer = '\x01';
+    ValidationFlag = '\x01';
   }
-  if (OperationStatus == StringBuffer) {
+  if (OperationStatus == ValidationFlag) {
     return 0;
   }
-  if ((*(int *)(DataStructureCounter + 0x174) == 0) && (*(char *)(DataStructureCounter + 0x17d) != '\0')) {
-    OperationStatus = ValidateSystemConfiguration(BufferStatus,1);
+  if ((*(int *)(DataStructurePointer + 0x174) == 0) && (*(char *)(DataStructurePointer + 0x17d) != '\0')) {
+    OperationStatus = ValidateSystemConfiguration(ConfigurationStatus,1);
     if (OperationStatus != '\0') {
-      FloatVariable7 = *(float *)(DataStructureCounter + 0x90);
-      CalculatedDistance = FloatVariable7 - (*(float *)(DataStructureCounter + 0x264) - *(float *)(DataStructureCounter + 0x25c));
-      *(float *)(DataStructureCounter + 0x90) = CalculatedDistance;
-      *(float *)(DataStructureCounter + 0x11c) = (FloatVariable7 + *(float *)(DataStructureCounter + 0x11c)) - CalculatedDistance;
+      SystemFloatValue = *(float *)(DataStructurePointer + 0x90);
+      FloatCalculationResult = SystemFloatValue - (*(float *)(DataStructurePointer + 0x264) - *(float *)(DataStructurePointer + 0x25c));
+      *(float *)(DataStructurePointer + 0x90) = FloatCalculationResult;
+      *(float *)(DataStructurePointer + 0x11c) = (SystemFloatValue + *(float *)(DataStructurePointer + 0x11c)) - FloatCalculationResult;
       return 0;
     }
-    OperationStatus = ValidateSystemConfiguration(CalculatedCodePoint & 0xffffffff);
+    OperationStatus = ValidateSystemConfiguration(CodePointValue & 0xffffffff);
     if (OperationStatus == '\0') {
       return 0;
     }
-    FloatVariable7 = *(float *)(DataStructureCounter + 0x90);
-    CalculatedDistance = (*(float *)(DataStructureCounter + 0x264) - *(float *)(DataStructureCounter + 0x25c)) + FloatVariable7;
-    *(float *)(DataStructureCounter + 0x90) = CalculatedDistance;
-    *(float *)(DataStructureCounter + 0x11c) = (FloatVariable7 + *(float *)(DataStructureCounter + 0x11c)) - CalculatedDistance;
+    SystemFloatValue = *(float *)(DataStructurePointer + 0x90);
+    FloatCalculationResult = (*(float *)(DataStructurePointer + 0x264) - *(float *)(DataStructurePointer + 0x25c)) + SystemFloatValue;
+    *(float *)(DataStructurePointer + 0x90) = FloatCalculationResult;
+    *(float *)(DataStructurePointer + 0x11c) = (SystemFloatValue + *(float *)(DataStructurePointer + 0x11c)) - FloatCalculationResult;
     return 0;
   }
-  FloatVariable7 = 0.0;
+  SystemFloatValue = 0.0;
   ProcessingStatusFlag = 0;
-  CalculatedDistance = ((*(float *)(DataStructureCounter + 0x264) - *(float *)(DataStructureCounter + 0x25c)) -
-          *(float *)(SystemDataConfiguration + 0x19fc) * *(float *)(DataStructureCounter + 0x2d8) *
-          *(float *)(DataStructureCounter + 0x2dc)) + (*(float *)(DataStructureCounter + 0x3dc) - *(float *)(DataStructureCounter + 0x3d4));
-  if (CalculatedDistance <= 0.0) {
-    CalculatedDistance = 0.0;
+  FloatCalculationResult = ((*(float *)(DataStructurePointer + 0x264) - *(float *)(DataStructurePointer + 0x25c)) -
+          *(float *)(SystemDataConfiguration + 0x19fc) * *(float *)(DataStructurePointer + 0x2d8) *
+          *(float *)(DataStructurePointer + 0x2dc)) + (*(float *)(DataStructurePointer + 0x3dc) - *(float *)(DataStructurePointer + 0x3d4));
+  if (FloatCalculationResult <= 0.0) {
+    FloatCalculationResult = 0.0;
   }
-  DataStructureCounter = SystemDataConfiguration;
-  OperationStatus = ValidateSystemConfiguration(BufferStatus,1);
+  DataStructurePointer = SystemDataConfiguration;
+  OperationStatus = ValidateSystemConfiguration(ConfigurationStatus,1);
   if (OperationStatus == '\0') {
-    OperationStatus = ValidateSystemConfiguration(CalculatedCodePoint & 0xffffffff);
+    OperationStatus = ValidateSystemConfiguration(CodePointValue & 0xffffffff);
     if (OperationStatus == '\0') goto LAB_1801335e1;
     ProcessingStatusFlag = 0;
-    *(uint32_t *)(DataStructureCounter + 0x1d2c) = 2;
-    *(uint32_t *)(DataStructureCounter + 0x1d34) = 3;
+    *(uint32_t *)(DataStructurePointer + 0x1d2c) = 2;
+    *(uint32_t *)(DataStructurePointer + 0x1d34) = 3;
   }
   else {
-    *(uint32_t *)(DataStructureCounter + 0x1d2c) = 3;
+    *(uint32_t *)(DataStructurePointer + 0x1d2c) = 3;
     ProcessingStatusFlag = 0x80000000;
-    CalculatedDistance = -CalculatedDistance;
-    *(uint32_t *)(DataStructureCounter + 0x1d34) = 2;
+    FloatCalculationResult = -FloatCalculationResult;
+    *(uint32_t *)(DataStructurePointer + 0x1d34) = 2;
   }
-  *(uint32_t *)(DataStructureCounter + 0x1d24) = 0x30;
-  FloatVariable7 = CalculatedDistance;
+  *(uint32_t *)(DataStructurePointer + 0x1d24) = 0x30;
+  SystemFloatValue = FloatCalculationResult;
 LAB_1801335e1:
-  return CONCAT44(ProcessingStatusFlag,FloatVariable7);
+  return CONCAT44(ProcessingStatusFlag,SystemFloatValue);
 }
 
 
