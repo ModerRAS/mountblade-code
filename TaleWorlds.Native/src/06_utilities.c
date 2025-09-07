@@ -52381,7 +52381,21 @@ void SetupExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常资源清理回调C
+ * 
+ * 该函数在异常处理过程中遍历资源指针数组，对每个资源执行清理回调函数。
+ * 使用0x28和0x20偏移量获取资源指针数组，并在数组为空时终止系统。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含资源指针数组信息
+ * @param operationFlagA 操作标志A，传递给回调函数
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180904f90
+ * @note 简化实现：遍历资源数组并执行回调，数组为空时终止系统
+ */
+void ProcessExceptionResourceCleanupCallbacksC(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
