@@ -29876,7 +29876,7 @@ void ProcessCharacterCode(long long *Utf8InputBuffer
           EncodingConversionResult = MemoryAlignmentOffset;
           PrimaryProcessingStatusFlag = LocalProcessingStatusFlag8;
           ComputedResult = LoopIterationCounter;
-          StatusBuffer7 = &CoreEngineDataTemplate;
+          SystemProcessingBuffer = &CoreEngineDataTemplate;
           if ((void *)LocalProcessingStatusFlag8[MemoryAlignmentOffset * 4 + 1] != NULL) {
             StatusBuffer7 = (void *)LocalProcessingStatusFlag8[MemoryAlignmentOffset * 4 + 1];
           }
@@ -243372,7 +243372,6 @@ uint64_t FUN_18020e370(uint64_t CharacterCode,unsigned long long Utf8BufferSize
 
 
 
-0e410(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint32_t Utf16EndPointer,
 void ProcessUtf8InputBufferAndCharacterEncodingConversion(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint32_t Utf16EndPointer,
                   long long AdditionalParameter1,uint64_t *AdditionalParameter2
 {
