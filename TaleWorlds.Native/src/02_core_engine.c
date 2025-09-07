@@ -461,7 +461,7 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ProcessSystemDataFlow FUN_18011ff60
 #define ValidateSystemMemory FUN_180120960
 #define ProcessSystemMemoryOperation FUN_1801209b0
-#define ExecuteSystemValidation FUN_180120a30
+#define ExecuteSystemValidation FUN_180120a30  // 现在函数名为：ExecuteSystemValidationAndInitializeMemoryPool
 #define HandleSystemDataTransfer FUN_180120a70
 #define ProcessSystemContextData FUN_180120b10
 #define CleanupSystemResources FUN_180120d00
