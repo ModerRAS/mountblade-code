@@ -200052,64 +200052,64 @@ void ProcessUIColorBufferData(longlong uiContext,int dataSource)
   colorBufferPointer = *(longlong **)(uiContext + 0x11728);
   do {
     while( true ) {
-      pcontextData = colorBufferPointer;
-      if (pcontextData == (longlong *)(uiContext + 0x11728)) {
+      contextData = colorBufferPointer;
+      if (contextData == (longlong *)(uiContext + 0x11728)) {
                      WARNING: Subroutine does not return
         FUN_180768400(*(undefined8 *)(_DAT_180be12f0 + 0x120));
       }
-      aiStackX_8[0] = 0;
-      colorBufferPointer = (longlong *)*pcontextData;
-      *(undefined4 *)(pcontextData + 0xe) = 0;
-      if (*(int *)((longlong)pcontextData + 0x6c) == 1) {
-        FUN_180754fe0(pcontextData,aiStackX_8);
+      colorProcessingFlags[0] = 0;
+      colorBufferPointer = (longlong *)*contextData;
+      *(undefined4 *)(contextData + 0xe) = 0;
+      if (*(int *)((longlong)contextData + 0x6c) == 1) {
+        FUN_180754fe0(contextData,colorProcessingFlags);
       }
-      if (aiStackX_8[0] != 0) break;
-      *(longlong *)pcontextData[1] = *pcontextData;
-      *(longlong *)(*pcontextData + 8) = pcontextData[1];
-      pcontextData[1] = (longlong)pcontextData;
-      *pcontextData = (longlong)pcontextData;
-      localLong5 = *(longlong *)(uiBufferData + 0x11740);
-      pcontextData[1] = uiContext + 0x11740;
-      *pcontextData = localLong5;
-      *(longlong **)(localLong5 + 8) = pcontextData;
-      *(longlong **)pcontextData[1] = pcontextData;
+      if (colorProcessingFlags[0] != 0) break;
+      *(longlong *)contextData[1] = *contextData;
+      *(longlong *)(*contextData + 8) = contextData[1];
+      contextData[1] = (longlong)contextData;
+      *contextData = (longlong)contextData;
+      bufferDataValue = *(longlong *)(uiBufferData + 0x11740);
+      contextData[1] = uiContext + 0x11740;
+      *contextData = bufferDataValue;
+      *(longlong **)(bufferDataValue + 8) = contextData;
+      *(longlong **)contextData[1] = contextData;
     }
-    pstringCompareIndex = (longlong *)pcontextData[8];
-    while (pstringCompareIndex != pcontextData + 8) {
-      plocalLong4 = (longlong *)pstringCompareIndex[2];
-      pstringCompareIndex = (longlong *)*pstringCompareIndex;
-      if ((*(int *)((longlong)pcontextData + 0x6c) == 1) && (-1 < (int)pcontextData[0xd])) {
-        *(int *)(pcontextData + 0xe) = (int)pcontextData[0xe] + 1;
-        if ((int)pcontextData[0xd] < (int)pcontextData[0xe]) {
-          *(undefined4 *)((longlong)plocalLong4 + 0x21c) = 0;
+    stringCompareIndex = (longlong *)contextData[8];
+    while (stringCompareIndex != contextData + 8) {
+      uiElementPointer = (longlong *)stringCompareIndex[2];
+      stringCompareIndex = (longlong *)*stringCompareIndex;
+      if ((*(int *)((longlong)contextData + 0x6c) == 1) && (-1 < (int)contextData[0xd])) {
+        *(int *)(contextData + 0xe) = (int)contextData[0xe] + 1;
+        if ((int)contextData[0xd] < (int)contextData[0xe]) {
+          *(undefined4 *)((longlong)uiElementPointer + 0x21c) = 0;
         }
         else {
-          *(undefined4 *)((longlong)plocalLong4 + 0x21c) = 0x3f800000;
+          *(undefined4 *)((longlong)uiElementPointer + 0x21c) = 0x3f800000;
         }
       }
-      localFloat8 = *(float *)(plocalLong4 + 0x43);
-      floatResult = *(float *)((longlong)plocalLong4 + 0x21c);
-      if (localFloat8 != floatResult) {
-        if (*(float *)((longlong)pcontextData + 0x74) < 0.001) {
+      currentColorValue = *(float *)(uiElementPointer + 0x43);
+      colorValueResult = *(float *)((longlong)uiElementPointer + 0x21c);
+      if (currentColorValue != colorValueResult) {
+        if (*(float *)((longlong)contextData + 0x74) < 0.001) {
 LAB_18078c8ad:
-          *(float *)(plocalLong4 + 0x43) = floatResult;
+          *(float *)(uiElementPointer + 0x43) = colorValueResult;
         }
         else {
-          bVar7 = localFloat8 < floatResult;
-          if (bVar7) {
-            localFloat8 = (0.001 / *(float *)((longlong)pcontextData + 0x74)) * (float)dataSource + localFloat8;
-            *(float *)(plocalLong4 + 0x43) = localFloat8;
-            if (floatResult < localFloat8) {
-              *(float *)(plocalLong4 + 0x43) = floatResult;
-              localFloat8 = floatResult;
+          needsColorUpdate = currentColorValue < colorValueResult;
+          if (needsColorUpdate) {
+            currentColorValue = (0.001 / *(float *)((longlong)contextData + 0x74)) * (float)dataSource + currentColorValue;
+            *(float *)(uiElementPointer + 0x43) = currentColorValue;
+            if (colorValueResult < currentColorValue) {
+              *(float *)(uiElementPointer + 0x43) = colorValueResult;
+              currentColorValue = colorValueResult;
             }
-            bVar7 = localFloat8 < floatResult;
+            needsColorUpdate = currentColorValue < colorValueResult;
           }
-          if ((!bVar7 && localFloat8 != floatResult) &&
-             (localFloat8 = localFloat8 - (0.001 / *(float *)((longlong)pcontextData + 0x74)) * (float)dataSource,
-             *(float *)(plocalLong4 + 0x43) = localFloat8, localFloat8 < floatResult)) goto LAB_18078c8ad;
+          if ((!needsColorUpdate && currentColorValue != colorValueResult) &&
+             (currentColorValue = currentColorValue - (0.001 / *(float *)((longlong)contextData + 0x74)) * (float)dataSource,
+             *(float *)(uiElementPointer + 0x43) = currentColorValue, currentColorValue < colorValueResult)) goto LAB_18078c8ad;
         }
-        (**(code **)(*plocalLong4 + 0x20))(plocalLong4,(int)plocalLong4[6],1);
+        (**(code **)(*uiElementPointer + 0x20))(uiElementPointer,(int)uiElementPointer[6],1);
       }
     }
   } while( true );
@@ -200120,83 +200120,96 @@ LAB_18078c8ad:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18078c796(void)
-void FUN_18078c796(void)
+ // 原始函数名：FUN_18078c796 - UI颜色缓冲区处理循环函数
+#define ProcessUIColorBufferLoop FUN_18078c796
+
+/**
+ * @brief 处理UI颜色缓冲区的循环操作
+ * 
+ * 该函数负责处理UI系统颜色缓冲区的循环操作，包括：
+ * - 颜色缓冲区的遍历和更新
+ * - 颜色值的插值计算
+ * - UI元素的状态更新
+ * - 缓冲区数据的同步处理
+ * 
+ * 该函数是UI颜色处理的核心循环函数，确保颜色数据的连续更新。
+ */
+void ProcessUIColorBufferLoop(void)
 
 {
-  float floatResult;
+  float colorValueResult;
   longlong *colorBufferPointer;
-  longlong *pstringCompareIndex;
-  longlong *plocalLong4;
-  longlong localLong5;
+  longlong *stringCompareIndex;
+  longlong *uiElementPointer;
+  longlong bufferDataValue;
   longlong *context;
-  int unmodifiedEBP;
-  longlong unmodifiedR13;
-  longlong unmodifiedR15;
-  bool bVar6;
-  float localFloat7;
-  int iStack0000000000000060;
+  int dataSource;
+  longlong uiContext;
+  longlong contextEnd;
+  bool needsColorUpdate;
+  float currentColorValue;
+  int processingFlags;
   
   do {
-    iStack0000000000000060 = 0;
+    processingFlags = 0;
     colorBufferPointer = (longlong *)*context;
     *(undefined4 *)(context + 0xe) = 0;
     if (*(int *)((longlong)context + 0x6c) == 1) {
-      FUN_180754fe0(context,&stack0x00000060);
+      FUN_180754fe0(context,&processingFlags);
     }
-    if (iStack0000000000000060 == 0) {
+    if (processingFlags == 0) {
       *(longlong *)context[1] = *context;
       *(longlong *)(*context + 8) = context[1];
       context[1] = (longlong)context;
       *context = (longlong)context;
-      localLong5 = *(longlong *)(unmodifiedR13 + 0x11740);
-      context[1] = unmodifiedR13 + 0x11740;
-      *context = localLong5;
-      *(longlong **)(localLong5 + 8) = context;
+      bufferDataValue = *(longlong *)(uiContext + 0x11740);
+      context[1] = uiContext + 0x11740;
+      *context = bufferDataValue;
+      *(longlong **)(bufferDataValue + 8) = context;
       *(longlong **)context[1] = context;
     }
     else {
-      pstringCompareIndex = (longlong *)context[8];
-      while (pstringCompareIndex != context + 8) {
-        plocalLong4 = (longlong *)pstringCompareIndex[2];
-        pstringCompareIndex = (longlong *)*pstringCompareIndex;
+      stringCompareIndex = (longlong *)context[8];
+      while (stringCompareIndex != context + 8) {
+        uiElementPointer = (longlong *)stringCompareIndex[2];
+        stringCompareIndex = (longlong *)*stringCompareIndex;
         if ((*(int *)((longlong)context + 0x6c) == 1) && (-1 < (int)context[0xd])) {
           *(int *)(context + 0xe) = (int)context[0xe] + 1;
           if ((int)context[0xd] < (int)context[0xe]) {
-            *(undefined4 *)((longlong)plocalLong4 + 0x21c) = 0;
+            *(undefined4 *)((longlong)uiElementPointer + 0x21c) = 0;
           }
           else {
-            *(undefined4 *)((longlong)plocalLong4 + 0x21c) = 0x3f800000;
+            *(undefined4 *)((longlong)uiElementPointer + 0x21c) = 0x3f800000;
           }
         }
-        localFloat7 = *(float *)(plocalLong4 + 0x43);
-        floatResult = *(float *)((longlong)plocalLong4 + 0x21c);
-        if (localFloat7 != floatResult) {
+        currentColorValue = *(float *)(uiElementPointer + 0x43);
+        colorValueResult = *(float *)((longlong)uiElementPointer + 0x21c);
+        if (currentColorValue != colorValueResult) {
           if (*(float *)((longlong)context + 0x74) < 0.001) {
 LAB_18078c8ad:
-            *(float *)(plocalLong4 + 0x43) = floatResult;
+            *(float *)(uiElementPointer + 0x43) = colorValueResult;
           }
           else {
-            bVar6 = localFloat7 < floatResult;
-            if (bVar6) {
-              localFloat7 = (0.001 / *(float *)((longlong)context + 0x74)) * (float)unmodifiedEBP + localFloat7;
-              *(float *)(plocalLong4 + 0x43) = localFloat7;
-              if (floatResult < localFloat7) {
-                *(float *)(plocalLong4 + 0x43) = floatResult;
-                localFloat7 = floatResult;
+            needsColorUpdate = currentColorValue < colorValueResult;
+            if (needsColorUpdate) {
+              currentColorValue = (0.001 / *(float *)((longlong)context + 0x74)) * (float)dataSource + currentColorValue;
+              *(float *)(uiElementPointer + 0x43) = currentColorValue;
+              if (colorValueResult < currentColorValue) {
+                *(float *)(uiElementPointer + 0x43) = colorValueResult;
+                currentColorValue = colorValueResult;
               }
-              bVar6 = localFloat7 < floatResult;
+              needsColorUpdate = currentColorValue < colorValueResult;
             }
-            if ((!bVar6 && localFloat7 != floatResult) &&
-               (localFloat7 = localFloat7 - (0.001 / *(float *)((longlong)context + 0x74)) * (float)unmodifiedEBP,
-               *(float *)(plocalLong4 + 0x43) = localFloat7, localFloat7 < floatResult)) goto LAB_18078c8ad;
+            if ((!needsColorUpdate && currentColorValue != colorValueResult) &&
+               (currentColorValue = currentColorValue - (0.001 / *(float *)((longlong)context + 0x74)) * (float)dataSource,
+               *(float *)(uiElementPointer + 0x43) = currentColorValue, currentColorValue < colorValueResult)) goto LAB_18078c8ad;
           }
-          (**(code **)(*plocalLong4 + 0x20))(plocalLong4,(int)plocalLong4[6],1);
+          (**(code **)(*uiElementPointer + 0x20))(uiElementPointer,(int)uiElementPointer[6],1);
         }
       }
     }
     context = colorBufferPointer;
-    if (colorBufferPointer == (longlong *)unmodifiedR15) {
+    if (colorBufferPointer == (longlong *)contextEnd) {
                      WARNING: Subroutine does not return
       FUN_180768400(*(undefined8 *)(_DAT_180be12f0 + 0x120));
     }
