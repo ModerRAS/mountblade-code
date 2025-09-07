@@ -2542,14 +2542,14 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
 // 原始函数名：FUN_180131331 - 处理系统数据配置和参数函数
 #define ProcessSystemDataConfigurationAndParameters FUN_180131331
 
-// 原始函数名：FUN_180131aac - UTF-8输入缓冲区处理和转换函数
-#define ProcessUtf8InputBufferAndConvert FUN_180131aac
+// 原始函数名：FUN_180131aac - UTF-8输入缓冲区处理和浮点运算函数
+#define ProcessUtf8InputBufferAndExecuteFloatOperations FUN_180131aac
 
-// 原始函数名：FUN_180131be4 - UTF-8字符编码处理函数
-#define ProcessUtf8CharacterEncoding FUN_180131be4
+// 原始函数名：FUN_180131be4 - 字符编码处理和缩放应用函数
+#define ProcessCharacterEncodingAndApplyScaling FUN_180131be4
 
-// 原始函数名：FUN_180131c21 - UTF-8到UTF-16转换函数
-#define ConvertUtf8ToUtf16 FUN_180131c21
+// 原始函数名：FUN_180131c21 - 源指针缩放应用到UTF-16数据函数
+#define ApplySourcePointerScalingToUtf16Data FUN_180131c21
 
 // 原始函数名：FUN_180135160 - 系统组件验证和初始化函数
 #define ValidateSystemComponentsAndInitialize FUN_180135160
@@ -150764,12 +150764,29 @@ float * FUN_180131be4(uint64_t CharacterCode,float Utf8BufferSize,uint64_t Utf8S
 
 
 
-float * FUN_180131c21(uint64_t CharacterCode,float Utf8BufferSize,float Utf8SourcePointer,float *Utf16EndPointer
+/**
+ * @brief 应用源指针缩放到UTF-16数据
+ * 
+ * 该函数负责将UTF-8源指针的缩放因子应用到UTF-16数据上。
+ * 主要功能包括：
+ * - 检查阈值条件并应用源指针缩放
+ * - 直接修改UTF-16结束指针的数据
+ * - 返回处理后的UTF-16结束指针
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 返回处理后的UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180131c21
+ */
+float * ApplySourcePointerScalingToUtf16Data(uint64_t CharacterCode, float Utf8BufferSize, float Utf8SourcePointer, float *Utf16EndPointer)
 {
   long long ProcessingResult;
-  float SecondaryFloatValue;
+  float ThresholdValue;
   
-  if (SecondaryFloatValue < *(float *)(ProcessingResult + 0x374)) {
+  if (ThresholdValue < *(float *)(ProcessingResult + 0x374)) {
     Utf16EndPointer[1] = Utf8BufferSize * Utf8SourcePointer;
     *Utf16EndPointer = Utf8SourcePointer * *Utf16EndPointer;
     return Utf16EndPointer;
