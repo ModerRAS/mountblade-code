@@ -6970,9 +6970,9 @@ uint8_t UtilityHeapQuinaryData;
 //   uint8_t - 销毁结果状态
 uint8_t UtilityDestroyMemoryHeap;
 // 工具系统销毁堆数据
-uint8_t UtilityDestroyHeapData1;
-uint8_t UtilityDestroyHeapData2;
-uint8_t UtilityDestroyHeapPtr1;
+uint8_t UtilityDestroyHeapPrimaryData;
+uint8_t UtilityDestroyHeapSecondaryData;
+uint8_t UtilityDestroyHeapPrimaryPointer;
 uint8_t UtilityDestroyHeapData3;
 uint8_t UtilityDestroyHeapData4;
 uint8_t UtilityDestroyHeapData5;
