@@ -607,6 +607,25 @@ void* SecondarySystemDataBuffer;
 void* SystemDataProcessor;
 void* SystemGlobalDataPointer;
 
+// 全局网络系统数据指针 - 用于存储网络系统的主要数据结构
+void* GlobalNetworkSystemPrimaryDataPointer;
+
+// 全局字符串处理器数据库 - 用于存储字符串处理相关的数据
+void* GlobalStringProcessorDatabase;
+
+// 字符串处理系统配置数据
+char StringProcessingSystemAHConfigData[] = "StringProcessingSystemAHConfig";
+char StringProcessingSystemAIConfigData[] = "StringProcessingSystemAIConfig";
+
+// 系统模块配置模板
+char SystemModuleConfigTemplateAudioProcessing[] = "SystemModuleConfigTemplateAudioProcessing";
+char SystemModuleConfigTemplateVideoProcessing[] = "SystemModuleConfigTemplateVideoProcessing";
+char SystemModuleConfigTemplateNetworkProtocol[] = "SystemModuleConfigTemplateNetworkProtocol";
+char SystemModuleConfigTemplateSecurityModule[] = "SystemModuleConfigTemplateSecurityModule";
+char SystemModuleConfigTemplateFileSystem[] = "SystemModuleConfigTemplateFileSystem";
+char SystemModuleConfigTemplateMemoryManager[] = "SystemModuleConfigTemplateMemoryManager";
+char SystemModuleConfigTemplateInputHandler[] = "SystemModuleConfigTemplateInputHandler";
+
 // 系统配置相关
 void* SystemConfigMessagePath;
 
@@ -1134,7 +1153,7 @@ int InitializeInputSystem(void)
 int InitializeNetworkSystem(void)
 {
   int64_t CallbackRegistrationResult;
-  GlobalNetworkSystemData = &GlobalUnknownNetworkDataPointer;
+  GlobalNetworkSystemData = &GlobalNetworkSystemPrimaryDataPointer;
   GlobalNetworkSystemConfig = &GlobalNetworkSystemState;
   GlobalNetworkSystemFlags = 0;
   GlobalNetworkSystemState = 0;
@@ -2034,11 +2053,11 @@ int InitializeStringProcessorG(void)
 {
   int64_t CallbackResult;
   uint64_t processorFlags;
-  GlobalStringProcessorG_Base = &GlobalUnknownDataBase;
+  GlobalStringProcessorG_Base = &GlobalStringProcessorDatabase;
   GlobalStringProcessorG_BufferPtr = &GlobalStringProcessorG_Buffer;
   GlobalStringProcessorG_Buffer = 0;
   GlobalStringProcessorG_Length = 0x12;
-  strcpy_s(&GlobalStringProcessorG_Buffer,64,&GlobalUnknownDataBase,processorFlags,SystemMutexFlags);
+  strcpy_s(&GlobalStringProcessorG_Buffer,64,&GlobalStringProcessorDatabase,processorFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(StringProcessorG_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -2052,11 +2071,11 @@ int InitializeStringProcessorH(void)
 {
   int64_t CallbackResult;
   uint64_t processorFlags;
-  GlobalStringProcessorH_Base = &GlobalUnknownDataBase;
+  GlobalStringProcessorH_Base = &GlobalStringProcessorDatabase;
   GlobalStringProcessorH_BufferPtr = &GlobalStringProcessorH_Buffer;
   GlobalStringProcessorH_Buffer = 0;
   GlobalStringProcessorH_Length = 0xd;
-  strcpy_s(&GlobalStringProcessorH_Buffer,64,&GlobalUnknownDataBase,processorFlags,SystemMutexFlags);
+  strcpy_s(&GlobalStringProcessorH_Buffer,64,&GlobalStringProcessorDatabase,processorFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(StringProcessorH_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -2644,7 +2663,7 @@ int InitializeStringProcessingSystemAB(void)
   StringProcessingSystemABConfigBufferPointer = &StringProcessingSystemABConfigBuffer;
   StringProcessingSystemABConfigBuffer = 0;
   StringProcessingSystemABConfigSize = 0x15;
-  strcpy_s(&StringProcessingSystemABConfigBuffer,64,&SystemModuleConfigTemplate22F90,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessingSystemABConfigBuffer,64,&SystemModuleConfigTemplateAudioProcessing,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAB);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2662,7 +2681,7 @@ int InitializeStringProcessingSystemAC(void)
   StringProcessingSystemACConfigBufferPointer = &StringProcessingSystemACConfigBuffer;
   StringProcessingSystemACConfigBuffer = 0;
   StringProcessingSystemACConfigSize = 0x13;
-  strcpy_s(&StringProcessingSystemACConfigBuffer,64,&SystemModuleConfigTemplate22F78,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessingSystemACConfigBuffer,64,&SystemModuleConfigTemplateVideoProcessing,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAC);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2680,7 +2699,7 @@ int InitializeStringProcessingSystemAD(void)
   StringProcessingSystemADConfigBufferPointer = &StringProcessingSystemADConfigBuffer;
   StringProcessingSystemADConfigBuffer = 0;
   StringProcessingSystemADConfigSize = 0x13;
-  strcpy_s(&StringProcessingSystemADConfigBuffer,64,&SystemModuleConfigTemplate22F60,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessingSystemADConfigBuffer,64,&SystemModuleConfigTemplateNetworkProtocol,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAD);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2698,7 +2717,7 @@ int InitializeStringProcessingSystemAE(void)
   StringProcessingSystemAEConfigBufferPointer = &StringProcessingSystemAEConfigBuffer;
   StringProcessingSystemAEConfigBuffer = 0;
   StringProcessingSystemAEConfigSize = 0x1b;
-  strcpy_s(&StringProcessingSystemAEConfigBuffer,64,&SystemModuleConfigTemplate22F40,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessingSystemAEConfigBuffer,64,&SystemModuleConfigTemplateSecurityModule,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAE);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2716,7 +2735,7 @@ int InitializeStringProcessingSystemAF(void)
   StringProcessingSystemAFConfigBufferPointer = &StringProcessingSystemAFConfigBuffer;
   StringProcessingSystemAFConfigBuffer = 0;
   StringProcessingSystemAFConfigSize = 0x19;
-  strcpy_s(&StringProcessingSystemAFConfigBuffer,64,&SystemModuleConfigTemplate23018,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessingSystemAFConfigBuffer,64,&SystemModuleConfigTemplateFileSystem,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAF);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2734,7 +2753,7 @@ int InitializeStringProcessingSystemAG(void)
   StringProcessingSystemAGConfigBufferPointer = &StringProcessingSystemAGConfigBuffer;
   StringProcessingSystemAGConfigBuffer = 0;
   StringProcessingSystemAGConfigSize = 0x15;
-  strcpy_s(&StringProcessingSystemAGConfigBuffer,64,&SystemModuleConfigTemplate23000,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessingSystemAGConfigBuffer,64,&SystemModuleConfigTemplateMemoryManager,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAG);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2788,7 +2807,7 @@ int InitializeStringProcessingSystemAJ(void)
   StringProcessingSystemAJConfigBufferPointer = &StringProcessingSystemAJConfigBuffer;
   StringProcessingSystemAJConfigBuffer = 0;
   StringProcessingSystemAJConfigSize = 0x17;
-  strcpy_s(&StringProcessingSystemAJConfigBuffer,64,&SystemModuleConfigTemplate23068,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&StringProcessingSystemAJConfigBuffer,64,&SystemModuleConfigTemplateInputHandler,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAJ);
   return (ModuleInitializationResult != 0) - 1;
 }
