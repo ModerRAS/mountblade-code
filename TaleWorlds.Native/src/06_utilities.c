@@ -19610,38 +19610,38 @@ ProcessDataSecurityValidation:
               inputParameter3 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
               if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
             }
-            pfVar21 = (float *)(register_R15 + 0x94);
-            fVar19 = register_R13D;
+            floatDataPointer = (float *)(register_R15 + 0x94);
+            floatLoopCounter = register_R13D;
             do {
-              fVar1 = *pfVar21;
-              if (fVar1 != 0.0) {
+              floatCurrentValue = *floatDataPointer;
+              if (floatCurrentValue != 0.0) {
                 StackParameter38 = StackParameter20;
-                in_stack_00000028 = &UNK_1809839d8;
+                in_stack_00000028 = &SystemValidationDataTableA1;
                 StackBuffer30 = register_R13D;
-                fStack0000000000000040 = fVar19;
-                fStack0000000000000044 = fVar1;
-                inputParameter3 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
+                fStack0000000000000040 = floatLoopCounter;
+                fStack0000000000000044 = floatCurrentValue;
+                inputParameter3 = ValidateDataIntegrityA0(floatCurrentValue,&stack0x00000028);
                 if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
               }
-              fVar19 = (float)((int)fVar19 + 1);
-              pfVar21 = pfVar21 + 1;
-            } while ((int)fVar19 < 4);
-            pfVar21 = (float *)&UNK_1809850f8;
-            fVar19 = register_R13D;
+              floatLoopCounter = (float)((int)floatLoopCounter + 1);
+              floatDataPointer = floatDataPointer + 1;
+            } while ((int)floatLoopCounter < 4);
+            floatDataPointer = (float *)&SystemValidationDataTableA2;
+            floatLoopCounter = register_R13D;
             do {
-              fVar1 = *(float *)(register_R15 + -0x180985054 + (int64_t)pfVar21);
-              if (fVar1 != *pfVar21) {
+              floatCurrentValue = *(float *)(register_R15 + -0x180985054 + (int64_t)floatDataPointer);
+              if (floatCurrentValue != *floatDataPointer) {
                 StackParameter38 = StackParameter20;
-                in_stack_00000028 = &UNK_180983950;
+                in_stack_00000028 = &SystemValidationDataTableA3;
                 StackBuffer30 = register_R13D;
-                fStack0000000000000040 = fVar19;
-                fStack0000000000000044 = fVar1;
-                inputParameter3 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
+                fStack0000000000000040 = floatLoopCounter;
+                fStack0000000000000044 = floatCurrentValue;
+                inputParameter3 = ValidateDataIntegrityA0(floatCurrentValue,&stack0x00000028);
                 if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
               }
-              fVar19 = (float)((int)fVar19 + 1);
-              pfVar21 = pfVar21 + 1;
-            } while ((int)fVar19 < 6);
+              floatLoopCounter = (float)((int)floatLoopCounter + 1);
+              floatDataPointer = floatDataPointer + 1;
+            } while ((int)floatLoopCounter < 6);
             systemDataBuffer4 = ValidateParameters(systemContext + 200);
             operationResult4 = floatResultA_04;
             if ((float)(systemDataBuffer4 / 0x30) != 0.0) {
