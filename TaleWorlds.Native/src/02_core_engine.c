@@ -259240,13 +259240,13 @@ int ValidateSystemStringProcessing(void)
  */
 int IdentifySystemIdentifierByPattern(void)
 {
-  char *StringBuffer;
-  int CharacterByteCount;
-  long long MemoryOffset;
-  int MemoryAllocationSize;
-  long long SourceIndex;
-  long long SystemDataStructureRegistry;
-  long long DataNodeIndex;
+  char *InputStringBuffer;
+  int StringComparisonResult;
+  long long MemoryBlockOffset;
+  int DataStringLength;
+  long long PatternComparisonIndex;
+  long long SystemDataRegistry;
+  long long DataNodePointer;
   
   if (MemoryAllocationSize == 7) {
     SystemDataStructureRegistry = SourceIndex;
