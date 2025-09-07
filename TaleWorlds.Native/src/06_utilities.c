@@ -33599,7 +33599,7 @@ ValidationStateHandler2:
           validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
           goto ProcessCheckpointValidationError5;
         }
-        uStack_a4 = 0;
+        allocatedMemorySize = 0;
         validationStatus = AllocateMemory(*pdataContext,&allocatedMemorySize);
         isValidationSuccessful = validationStatus == 0;
         if (isValidationSuccessful) {
@@ -33634,10 +33634,10 @@ ValidationDataHandler2:
         validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
       }
       else {
-        uStack_a4 = 0;
-        validationStatus = AllocateMemory(*pdataContext,&uStack_a4);
+        allocatedMemorySize = 0;
+        validationStatus = AllocateMemory(*pdataContext,&allocatedMemorySize);
         if (validationStatus == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)pdataContext[2]) goto ProcessCheckpointValidationData2;
+          if ((uint64_t)allocatedMemorySize + 1 <= (uint64_t)pdataContext[2]) goto ProcessCheckpointValidationData2;
           validationStatus = 0x11;
         }
       }
@@ -33668,10 +33668,10 @@ ValidationStateHandler3:
         validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
       }
       else {
-        uStack_a4 = 0;
-        validationStatus = AllocateMemory(*pdataContext,&uStack_a4);
+        allocatedMemorySize = 0;
+        validationStatus = AllocateMemory(*pdataContext,&allocatedMemorySize);
         if (validationStatus == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)pdataContext[2]) goto ProcessCheckpointValidationState3;
+          if ((uint64_t)allocatedMemorySize + 1 <= (uint64_t)pdataContext[2]) goto ProcessCheckpointValidationState3;
           validationStatus = 0x11;
         }
       }
@@ -33702,10 +33702,10 @@ ProcessCheckpointValidationState4:
         validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
       }
       else {
-        uStack_a4 = 0;
-        validationStatus = AllocateMemory(*pdataContext,&uStack_a4);
+        allocatedMemorySize = 0;
+        validationStatus = AllocateMemory(*pdataContext,&allocatedMemorySize);
         if (validationStatus == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)pdataContext[2]) goto ProcessCheckpointValidationState4;
+          if ((uint64_t)allocatedMemorySize + 1 <= (uint64_t)pdataContext[2]) goto ProcessCheckpointValidationState4;
           validationStatus = 0x11;
         }
       }
@@ -33734,10 +33734,10 @@ ProcessCheckpointValidationState5:
         validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,acStack_a8,1,1,0);
       }
       else {
-        uStack_a4 = 0;
-        validationStatus = AllocateMemory(*pdataContext,&uStack_a4);
+        allocatedMemorySize = 0;
+        validationStatus = AllocateMemory(*pdataContext,&allocatedMemorySize);
         if (validationStatus == 0) {
-          if ((uint64_t)uStack_a4 + 1 <= (uint64_t)pdataContext[2]) goto ProcessCheckpointValidationState5;
+          if ((uint64_t)allocatedMemorySize + 1 <= (uint64_t)pdataContext[2]) goto ProcessCheckpointValidationState5;
           validationStatus = 0x11;
         }
       }
