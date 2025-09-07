@@ -77571,7 +77571,20 @@ void CleanupMemoryResourcePointer(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文清理函数A0
+ * 
+ * 处理异常上下文的清理工作，包括：
+ * - 重置验证状态指针
+ * - 清理内存资源
+ * - 调用异常处理器回调
+ * - 释放相关资源
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含待处理的异常上下文数据
+ * @return void 无返回值
+ */
+void ProcessExceptionContextCleanupA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -77648,7 +77661,22 @@ void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文清理函数A1
+ * 
+ * 处理异常上下文的清理工作，支持多个操作标志：
+ * - 管理内存块偏移量
+ * - 处理异常处理器上下文
+ * - 清理内存资源
+ * - 执行数据块处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含待处理的异常上下文数据
+ * @param operationFlagA 操作标志A，用于控制清理行为
+ * @param operationFlagB 操作标志B，用于控制清理行为
+ * @return void 无返回值
+ */
+void ProcessExceptionContextCleanupA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t *exceptionHandlerContextPointer;
