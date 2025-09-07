@@ -58022,12 +58022,12 @@ void ProcessSystemConfigurationIteration(DataBuffer operationBase,int64_t dataBu
 void CleanupSystemResourcesAndValidateStatus(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  int *referenceCountPointer;
-  char *validationFlag;
-  DataBuffer *validationStatusPointer;
-  int64_t *contextPointer;
-  int64_t resourceIterator;
-  uint64_t dataFlags;
+  int *resourceReferenceCountPointer;
+  char *systemValidationFlag;
+  DataBuffer *resourceValidationStatusPointer;
+  int64_t *systemContextPointer;
+  int64_t resourceCleanupIterator;
+  uint64_t systemDataFlags;
   
   contextPointer = *(int64_t **)(dataBuffer + 0x78);
   validationStatusPointer = (DataBuffer *)*contextPointer;
