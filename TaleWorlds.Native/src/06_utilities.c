@@ -20072,7 +20072,7 @@ ProcessDataSecurityValidation:
   DataWord InputParam1A8;
   
   resourcePointer2 = (DataBuffer *)(systemContext + 8);
-  fStack0000000000000048 = register_R13D;
+  StackFloatRegisterA = register_R13D;
   puStack0000000000000058 = resourcePointer2;
   validationContext5 = (*(code *)*inputAccumulatorRegister)(resourcePointer2);
   inputParameter3 = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(validationContext5 + 0xd0),&StackBuffer48);
