@@ -117443,7 +117443,7 @@ void ProcessFloatDataEncodingConversion(uint64_t CharacterCode, float *Character
 
 
 
-250a(uint64_t CharacterCode,float *CharacterCodeSizevoid FUN_18012250a(uint64_t CharacterCode,float *CharacterCodeSize
+250a(uint64_t CharacterCode,float *CharacterCodeSizevoid ProcessCharacterEncodingAndSystemContext(uint64_t CharacterCode,float *CharacterCodeSize
 {
   uint64_t *StatusBuffer;
   float SystemContextSecondaryFloat;
@@ -270042,7 +270042,7 @@ long long * FUN_18022f240(uint64_t *CharacterCode,unsigned long long CharacterCo
 2f410(long long *CharacterCodevoid FinalizeSystemFlag(long long *CharacterCode
 {
   if (*CharacterCode != 0) {
-    FUN_18022f390();
+    CleanupSystemCharacterData();
   }
   ValidateStackArray(CharacterCode + 2);
   if ((long long *)CharacterCode[5] != (long long *)0x0) {
