@@ -2212,6 +2212,10 @@
 // 功能：处理内存复制操作
 #define ProcessMemoryCopyA0 FUN_1808935c0
 
+// 原始函数名：ProcessDataBufferValidation - 数据缓冲区处理函数
+// 功能：处理数据缓冲区验证和操作
+#define ProcessDataBufferValidation ProcessDataBufferValidation
+
 // 原始函数名：FUN_180893d8f - 数据同步处理函数A0
 // 功能：处理数据同步操作
 #define ProcessDataSynchronizationA0 FUN_180893d8f
