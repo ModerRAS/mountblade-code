@@ -156783,7 +156783,16 @@ void CoreEngineInitializeNetworkSystem(void
 
 
 
-uint32_t * FUN_180136a10(uint32_t *OutputBuffer,uint32_t OutputBufferSize
+/**
+ * @brief 分配验证内存
+ * 
+ * 该函数负责分配并初始化用于验证操作的内存缓冲区
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小
+ * @return 分配的内存指针
+ */
+uint32_t * AllocateValidationMemory(uint32_t *OutputBuffer, uint32_t OutputBufferSize)
 {
   *(void *)(OutputBuffer + 8) = 0;
   *(void *)(OutputBuffer + 10) = 0;

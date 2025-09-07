@@ -19243,27 +19243,27 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
                                                validationBuffer3), exceptionHandlerContextPointer3 = stackValidationPointer, arrayIndex == 0)) {
             operationResult = *(DataWord *)(resourceIterator + 0xc + exceptionHandlerContext5 * 0x10);
             calculatedValue = (int)dataFlags + 1;
-            arrayIndex = inputParameter6;
-            if (inputParameter6 < 0) {
-              arrayIndex = -inputParameter6;
+            arrayIndex = loopCounterInput;
+            if (loopCounterInput < 0) {
+              arrayIndex = -loopCounterInput;
             }
-            inputParameter4 = (int)dataFlags;
+            dataFlagsInput = (int)dataFlags;
             if (arrayIndex < calculatedValue) {
-              if (inputParameter6 < 0) {
-                inputParameter6 = -inputParameter6;
+              if (loopCounterInput < 0) {
+                loopCounterInput = -loopCounterInput;
               }
-              inputParameter6 = (int)((float)inputParameter6 * 1.5);
+              loopCounterInput = (int)((float)loopCounterInput * 1.5);
               arrayIndex = calculatedValue;
-              if (calculatedValue <= inputParameter6) {
-                arrayIndex = inputParameter6;
+              if (calculatedValue <= loopCounterInput) {
+                arrayIndex = loopCounterInput;
               }
               if (arrayIndex < 0x10) {
-                inputParameter6 = 0x10;
+                loopCounterInput = 0x10;
               }
-              else if (inputParameter6 < calculatedValue) {
-                inputParameter6 = calculatedValue;
+              else if (loopCounterInput < calculatedValue) {
+                loopCounterInput = calculatedValue;
               }
-              securityCheckResult = CleanupSystemResourceDW0(&StackMemoryBuffer,inputParameter6);
+              securityCheckResult = CleanupSystemResourceDW0(&StackMemoryBuffer,loopCounterInput);
               dataFlags = (uint64_t)securityCheckResult;
               arrayIndex = (int)StackMemoryData;
               if (securityCheckResult != 0) {
