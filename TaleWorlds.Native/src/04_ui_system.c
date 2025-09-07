@@ -7042,8 +7042,18 @@ void UpdateUIComponentPosition(longlong uiContext,undefined8 dataSource,undefine
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-
- void CleanupUIComponentCache(void)
+/**
+ * @brief 清理UI组件缓存
+ * 
+ * 该函数负责清理UI组件的缓存数据，释放不再使用的资源，
+ * 并重置相关的状态变量。它会执行以下操作：
+ * - 清理组件缓存数据
+ * - 释放纹理和渲染资源
+ * - 重置内存分配状态
+ * - 清理加密缓冲区
+ * 
+ * @note 该函数在UI系统需要释放资源或重置状态时调用
+ */
 void CleanupUIComponentCache(void)
 
 {
