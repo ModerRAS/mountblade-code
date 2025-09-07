@@ -11193,8 +11193,8 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
     inputFloatValue = *(float *)(resourceDescriptor + ResourceDescriptorDataOffset);
     
     // 遍历浮点数组并进行验证
-    for (ArrayElementContext = *(uint64_t **)(exceptionHandlerContext + 0x48);
-        (*(uint64_t **)(exceptionHandlerContext + 0x48) <= ArrayElementContext &&
+    for (ArrayElementContext = *(uint64_t **)(exceptionHandlerContext + ExceptionHandlerContextArrayOffset);
+        (*(uint64_t **)(exceptionHandlerContext + ExceptionHandlerContextArrayOffset) <= ArrayElementContext &&
         (ArrayElementContext < *(uint64_t **)(exceptionHandlerContext + ExceptionHandlerContextOffset) + *(int32_t *)(exceptionHandlerContext + ExceptionDataOffset))); 
         ArrayElementContext = ArrayElementContext + 1) {
       operationResult = ProcessFloatingPointDataValidationA0(*ArrayElementContext, inputFloatValue, 0);
@@ -11459,7 +11459,7 @@ uint64_t ValidateDataArray(int64_t arrayDescriptor)
           if (*(int64_t *)(dataBuffer + 8) == 0) {
             return ResourceInvalidErrorCode;
           }
-          validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(dataBuffer + 8),*ValidationDataContext,*(uint8_t *)(arrayDescriptor + 0x1c)
+          validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(dataBuffer + 8),*ValidationDataContext,*(uint8_t *)(arrayDescriptor + ArrayDescriptorValidationOffset)
                                );
           if ((int)validationStatus != 0) {
             return validationStatus;

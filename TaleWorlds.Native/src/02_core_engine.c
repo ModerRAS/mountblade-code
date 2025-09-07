@@ -60021,11 +60021,11 @@ unsigned long long SystemContextDataManager(long long *Utf8InputBuffer,uint64_t 
   int MatchCounter;
   long long *Utf8InputBuffer2;
   long long *Utf8InputBuffer3;
-  uint8_t aSystemRegisterFlagX8 [8];
-  byte *pbStack_60;
-  int iStack_58;
+  uint8_t SystemRegisterFlagBuffer [8];
+  byte *StringComparisonBuffer;
+  int StringComparisonMode;
   void *ContextDataPointer;
-  long long lStack_40;
+  long long MemoryOperationStatus;
   uint32_t ProcessingFlags;
   
   CurrentMemoryBlockAddress = *Utf8InputBuffer;
@@ -60040,7 +60040,7 @@ LAB_1800892ba:
   }
   else {
     do {
-      if (iStack_58 == 0) {
+      if (StringComparisonMode == 0) {
         HighByte = false;
         CharacterCode3 = (long long *)CharacterCode2[1];
       }
@@ -60049,9 +60049,9 @@ LAB_1800892ba:
           HighByte = true;
         }
         else {
-          BufferEndPointer = pbStack_60;
+          BufferEndPointer = StringComparisonBuffer;
           do {
-            ProcessingStatusFlag = (uint)BufferEndPointer[CharacterCode2[5] - (long long)pbStack_60];
+            ProcessingStatusFlag = (uint)BufferEndPointer[CharacterCode2[5] - (long long)StringComparisonBuffer];
             MatchCounter = *BufferEndPointer - ProcessingStatusFlag;
             if (*BufferEndPointer != ProcessingStatusFlag) break;
             BufferEndPointer = BufferEndPointer + 1;
@@ -60074,9 +60074,9 @@ LAB_18008927d:
     } while (CharacterCode3 != (long long *)0x0);
     if (MemoryBlockListHead == CharacterCodePointer) goto LAB_1800892ba;
     if ((int)MemoryBlockListHead[6] != 0) {
-      if (iStack_58 != 0) {
+      if (StringComparisonMode != 0) {
         BufferEndPointer = (byte *)MemoryBlockListHead[5];
-        CurrentMemoryBlockAddress = (long long)pbStack_60 - (long long)BufferEndPointer;
+        CurrentMemoryBlockAddress = (long long)StringComparisonBuffer - (long long)BufferEndPointer;
         do {
           CurrentByteValue = *BufferEndPointer;
           ProcessingStatusFlag = (uint)BufferEndPointer[CurrentMemoryBlockAddress];
@@ -60093,7 +60093,7 @@ LAB_1800892bd:
     CurrentMemoryBlockAddress = Utf8InputBuffer[1];
     CoreEngineFinalizeSystemEvent(&ContextDataPointer,Utf8BufferSize);
     LowByte = true;
-    MemoryBlockListHead = (long long *)FindMatchingDataNode(CurrentMemoryBlockAddress,aSystemRegisterFlagX8,&ContextDataPointer);
+    MemoryBlockListHead = (long long *)FindMatchingDataNode(CurrentMemoryBlockAddress,SystemRegisterFlagBuffer,&ContextDataPointer);
     if (*MemoryBlockListHead == CurrentMemoryBlockAddress) {
       HighByte = true;
       goto LAB_1800892fd;
