@@ -118862,7 +118862,17 @@ void ProcessCharacterCodeWithUtf8Input(float *CharacterCode, uint64_t CharacterC
 
 
 
-3121(float *CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointervoid FUN_180123121(float *CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer
+/**
+ * @brief 处理字符代码指针和UTF8输入的验证转换
+ * 
+ * 该函数负责处理字符代码指针和UTF8输入数据的验证和转换运算
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码尺寸
+ * @param Utf8InputPointer UTF8输入指针
+ * @note 原始函数名：FUN_180123121
+ */
+void ProcessCharacterCodeWithUtf8Validation(float *CharacterCode, uint64_t CharacterCodeSize, long long Utf8InputPointer)
 {
   int *ReferenceCountPointer;
   float SystemContextSecondaryFloat;
@@ -235475,9 +235485,20 @@ uint64_t * FUN_180207e00(uint64_t *CharacterCode
 
  (ram,0x0001802081ca (ram,0x0001802081e9
 
-08160(uint64_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer,
-void FUN_180208160(uint64_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer,
-                  uint64_t *AdditionalParameter1
+/**
+ * @brief 处理系统字符流
+ * 
+ * 该函数负责处理系统字符流数据，包括字符流的读取、解析和处理。
+ * 用于字符数据流式处理和批量操作。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1指针
+ */
+void ProcessSystemCharacterStream(uint64_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer,
+                                  uint64_t *AdditionalParameter1
 {
   uint *StatusBuffer;
   long long BufferStatus;
@@ -236195,10 +236216,25 @@ LAB_180208d4a:
 
 
 
-089d7(uint64_t CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,uint64_t Utf16EndPointer,
-void FUN_1802089d7(uint64_t CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,uint64_t Utf16EndPointer,
-                  uint64_t AdditionalParameter1,uint64_t AdditionalParameter2,uint64_t AdditionalParameter3,uint64_t AdditionalParameter4,
-                  long long AdditionalParameter5
+/**
+ * @brief 初始化系统字符处理器
+ * 
+ * 该函数负责初始化系统字符处理器，设置字符处理的初始状态和参数。
+ * 用于字符处理系统的初始化和配置。
+ * 
+ * @param CharacterCode 字符编码
+ * @param CharacterCodeSize 字符编码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2
+ * @param AdditionalParameter3 额外参数3
+ * @param AdditionalParameter4 额外参数4
+ * @param AdditionalParameter5 额外参数5
+ */
+void InitializeSystemCharacterHandler(uint64_t CharacterCode,uint64_t CharacterCodeSize,long long Utf8InputPointer,uint64_t Utf16EndPointer,
+                                     uint64_t AdditionalParameter1,uint64_t AdditionalParameter2,uint64_t AdditionalParameter3,uint64_t AdditionalParameter4,
+                                     long long AdditionalParameter5
 {
   uint Utf16Char;
   uint32_t MemoryAllocationIndex;
