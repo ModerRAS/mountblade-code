@@ -178369,7 +178369,7 @@ uint64_t * FUN_180150ab0(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffer
     EventVariablePointer = aTemporaryFlag;
     uStack_138 = 0;
     aTemporaryFlag[0] = 0;
-    FUN_180049bf0(&CoreEngineValue148,&SystemBufferPointer);
+    CopyAndInitializeSystemDataStructure(&CoreEngineValue148, &SystemBufferPointer);
     Utf16Char9 = FUN_1802c2560(*(long long *)(CoreEngineRenderContext + 0x1cd8) + 0x7f20,&CoreEngineValue148);
     MemoryBlockListHead = plStack_180;
     if (*(char *)(CoreEngineSystemContext + 0x12e7) != '\0') {
@@ -189678,7 +189678,7 @@ LAB_180166c0c:
     if (ProcessingContextPointer380 != NULL) {
       pMemoryAddressMask = ProcessingContextPointer380;
     }
-    FUN_180049bf0(&SystemStatusBufferPointer,pMemoryAddressMask);
+    CopyAndInitializeSystemDataStructure(&SystemStatusBufferPointer, pMemoryAddressMask);
     pMemoryAddressMask = &CoreEngineDataTemplate;
     if (puStack_340 != NULL) {
       pMemoryAddressMask = puStack_340;
@@ -195780,7 +195780,7 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
     SystemFlagF = 0;
     aSystemFlagG[0] = 0;
     FunctionAddress80 = 0;
-    FUN_180049bf0(&pErrorCode,SystemStatusValidationData);
+    CopyAndInitializeSystemDataStructure(&pErrorCode, SystemStatusValidationData);
     uStack_84 = StackUnsigned68;
     SystemOperationFlag90 = uStack_74;
     StackValidationData = SystemUnsignedValue6C;
@@ -253258,7 +253258,7 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     SystemFlagF = 0;
     CoreEngineSignedValueE8 = 0;
     SystemFlagE = 0;
-    FUN_180049bf0(&CoreEngineValue148,&UNK_180a135b8);
+    FUN_180049bf0(&CoreEngineValue148,&SystemMemoryBuffer135B8);
     (**(code **)(OperationStatus + 0x10))(&OperationStatus,&DataReferencePointerA);
     SystemChecksumValue = Utf8BufferSize[1];
     if (SystemChecksumValue < (unsigned long long)Utf8BufferSize[2]) {
@@ -253400,27 +253400,27 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
     SecondaryProcessingStatusFlag = &SystemStatusFlagF;
     break;
   case 5:
-    SecondaryProcessingStatusFlag = &UNK_180a0d1e8;
+    SecondaryProcessingStatusFlag = &SystemProcessingStatusFlagD1E8;
     break;
   case 6:
-    SecondaryProcessingStatusFlag = &UNK_180a0d1a0;
+    SecondaryProcessingStatusFlag = &SystemProcessingStatusFlagD1A0;
     break;
   case 7:
   case 0xe:
-    SecondaryProcessingStatusFlag = &UNK_180a0d1b8;
+    SecondaryProcessingStatusFlag = &SystemProcessingStatusFlagD1B8;
     break;
   case 8:
   case 0xf:
-    SecondaryProcessingStatusFlag = &UNK_180a0d238;
+    SecondaryProcessingStatusFlag = &SystemProcessingStatusFlagD238;
     break;
   case 9:
-    SecondaryProcessingStatusFlag = &UNK_180a0d280;
+    SecondaryProcessingStatusFlag = &SystemProcessingStatusFlagD280;
     break;
   case 10:
-    SecondaryProcessingStatusFlag = &UNK_180a0d200;
+    SecondaryProcessingStatusFlag = &SystemProcessingStatusFlagD200;
     break;
   case 0xb:
-    SecondaryProcessingStatusFlag = &UNK_180a0d218;
+    SecondaryProcessingStatusFlag = &SystemProcessingStatusFlagD218;
   }
   (**(code **)(StackVariableBuffer + 0x10))(&StackVariableBuffer,SecondaryProcessingStatusFlag);
   SystemChecksumValue = Utf8BufferSize[1];
@@ -253529,7 +253529,7 @@ int ParseSystemIdentifier(long long CharacterCode
   }
   if (MemoryAllocationSize == 7) {
     MemoryBoundaryEnd = AllocatedMemorySize;
-    while (DataStructureCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(CharacterCode + 8) + DataStructureCounter) == (&UNK_180a13158)[DataStructureCounter]    {
+    while (DataStructureCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(CharacterCode + 8) + DataStructureCounter) == (&SystemStringConstant13158)[DataStructureCounter]    {
       MemoryBoundaryEnd = DataStructureCounter + 1;
       if (DataStructureCounter + 1 == 8) {
         return (int)DataStructureCounter + 0x24;
@@ -253538,7 +253538,7 @@ int ParseSystemIdentifier(long long CharacterCode
   }
   if (MemoryAllocationSize == 3) {
     MemoryBoundaryEnd = AllocatedMemorySize;
-    while (DataStructureCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(CharacterCode + 8) + DataStructureCounter) == (&UNK_180a13160)[DataStructureCounter]    {
+    while (DataStructureCounter = MemoryBoundaryEnd, *(char *)(*(long long *)(CharacterCode + 8) + DataStructureCounter) == (&SystemMemoryPatternA)[DataStructureCounter]    {
       MemoryBoundaryEnd = DataStructureCounter + 1;
       if (DataStructureCounter + 1 == 4) {
         return (int)DataStructureCounter + 9;
@@ -253815,7 +253815,7 @@ int SystemIdentifierParserVariant(void
       }
     }
     AllocatedMemorySize = DataStructureCounter;
-    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13108)[MemoryBlockIndex]
+    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternB)[MemoryBlockIndex]
           ) {
       AllocatedMemorySize = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -254171,7 +254171,7 @@ int ValidateSystemStringProcessing(void)
       }
     }
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13108)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -254513,7 +254513,7 @@ int FUN_1802252d3(void
       }
     }
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13108)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -254847,7 +254847,7 @@ int FUN_180225317(void
   
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13108)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternB)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -263349,10 +263349,10 @@ long long FUN_180226240(long long CharacterCode
     SystemChecksumValue = *(uint *)(CharacterCode + 8);
     if ((SystemChecksumValue + 0x7ffbfe00 < 0xfe00) && (UnicodeCodePoint = (short)SystemChecksumValue - 0x200, UnicodeCodePoint != 0)) {
       SystemChecksumValue = (uint)UnicodeCodePoint;
-      SecondaryProcessingStatusFlag = &UNK_180a13620;
+      SecondaryProcessingStatusFlag = &SystemStatusFlag13620;
     }
     else {
-      SecondaryProcessingStatusFlag = &UNK_180a13608;
+      SecondaryProcessingStatusFlag = &SystemStatusFlag13608;
     }
     FUN_1800634b0(BufferStatus,0x20,SecondaryProcessingStatusFlag,SystemChecksumValue);
   }
@@ -263364,7 +263364,7 @@ long long FUN_180226240(long long CharacterCode
 
 26360(uint64_t *Utf8InputBuffervoid FUN_180226360(uint64_t *Utf8InputBuffer
 {
-  *Utf8InputBuffer = &UNK_180a13640;
+  *Utf8InputBuffer = &SystemStatusFlag13640;
   if ((long long *)Utf8InputBuffer[2] != (long long *)0x0) {
     (**(code **)(*(long long *)Utf8InputBuffer[2] + 0x10))();
   }
@@ -263382,7 +263382,7 @@ FUN_1802263b0(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
   uint64_t Utf16Char;
   
   Utf16Char = 0xfffffffffffffffe;
-  *Utf8InputBuffer = &UNK_180a13640;
+  *Utf8InputBuffer = &SystemStatusFlag13640;
   if ((long long *)Utf8InputBuffer[2] != (long long *)0x0) {
     (**(code **)(*(long long *)Utf8InputBuffer[2] + 0x10))();
   }
