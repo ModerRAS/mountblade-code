@@ -9606,7 +9606,7 @@ void CoreEngineInitializeNetworkManager(void);
  * @note 资源管理节点包含处理资源管理的回调函数指针
  * @note 使用特定的标识符来识别资源管理节点类型
  */
-void CoreEngineInitializeResourceManagerSystem(void{
+void CoreEngineInitializeResourceManagerSystem(void) {
   char NodeStringBuffer;
   void *SystemContext;
   int ComparisonResult;
@@ -10024,7 +10024,7 @@ void CoreEngineInitializeNetworkSecurityContextManager(void
 
 
 
- void CoreEngineInitializeDatabaseSystem(void/**
+ /**
  * @brief 初始化网络数据包验证器
  * 
  * 该函数负责初始化和管理网络数据包验证器，包括系统上下文的获取、
@@ -10038,7 +10038,7 @@ void CoreEngineInitializeNetworkSecurityContextManager(void
  * @note 通过memcmp比较节点数据来确定节点位置
  * @note 为新节点分配内存并设置验证参数
  */
-void CoreEngineInitializeNetworkPacketValidator(void
+void CoreEngineInitializeNetworkPacketValidator(void)
 {
   char ValidationFlag;
   void *Utf8InputBuffer;
@@ -20006,13 +20006,13 @@ void SetThreadLocalStorageTemplate(uint64_t *Utf8InputBuffer{
           IsDataValid = true;
         }
         else {
-          Utf8OutputPointer = *(byte **)(Utf8SourcePointer + 8);
-          StatusBufferOffset = StringProcessingStatus[5] - (long long)Utf8OutputPointer;
+          Utf8InputBuffer = *(byte **)(Utf8SourcePointer + 8);
+          BufferDataOffset = StringProcessingStatus[5] - (long long)Utf8InputBuffer;
           do {
-            CalculatedCodePoint = (uint)Utf8OutputPointer[StatusBufferOffset];
-            MemoryAllocationSize = *Utf8OutputPointer - CalculatedCodePoint;
-            if (*Utf8OutputPointer != CalculatedCodePoint) break;
-            Utf8OutputPointer = Utf8OutputPointer + 1;
+            CalculatedCodePoint = (uint)Utf8InputBuffer[BufferDataOffset];
+            MemoryAllocationSize = *Utf8InputBuffer - CalculatedCodePoint;
+            if (*Utf8InputBuffer != CalculatedCodePoint) break;
+            Utf8InputBuffer = Utf8InputBuffer + 1;
           } while (CalculatedCodePoint != 0);
           IsDataValid = 0 < MemoryAllocationSize;
           if (MemoryAllocationSize < 1) {
@@ -20033,13 +20033,13 @@ TemporaryBufferProcessingComplete: // 原始标签：LAB_180047f2c，TemporaryBu
   if (MemoryAddressMask != StringProcessingStatus) {
     if (*(int *)(MemoryAddressMask + 6) == 0) goto EventInitializationComplete; // 原始标签：LAB_180047f93
     if (*(int *)(Utf8SourcePointer + 0x10) != 0) {
-      Utf8OutputPointer = (byte *)MemoryAddressMask[5];
-      EncodingConversionResult = *(long long *)(Utf8SourcePointer + 8) - (long long)Utf8OutputPointer;
+      Utf8BufferPointer = (byte *)MemoryAddressMask[5];
+      EncodingConversionResult = *(long long *)(Utf8SourcePointer + 8) - (long long)Utf8BufferPointer;
       do {
-        SourceByte = *Utf8OutputPointer;
-        TargetByte = (uint)Utf8OutputPointer[EncodingConversionResult];
+        SourceByte = *Utf8BufferPointer;
+        TargetByte = (uint)Utf8BufferPointer[EncodingConversionResult];
         if (SourceByte != TargetByte) break;
-        Utf8OutputPointer = Utf8OutputPointer + 1;
+        Utf8BufferPointer = Utf8BufferPointer + 1;
       } while (TargetByte != 0);
       if ((int)(SourceByte - TargetByte) < 1) goto EventInitializationComplete; // 原始标签：LAB_180047f93
     }
@@ -33818,7 +33818,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t CharacterCode
   uint32_t stackFlag2b0;
   unsigned long long stackVariable2a8;
   void *stackPointer2a0;
-  char *stackCharPointer298;
+  char *StringProcessingBuffer298;
   int stackIndex290;
   uint32_t stackFlag288;
   uint64_t stackVariable280;
@@ -33829,7 +33829,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t CharacterCode
   uint64_t stackVariable250;
   uint32_t stackFlag248;
   void *stackPointer240;
-  long long stackMemoryOffset238;
+  long long SystemMemoryOffset238;
   uint32_t stackFlag228;
   uint64_t *dataNodePointer220;
   uint64_t *dataReferencePointer218;
@@ -34079,7 +34079,7 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t CharacterCode
     BufferStringBuffer = 0;
     BufferTypeFlag = 3;
     ArrayStackBuffer338[0] = 10;
-    if (lStack_238 != 0) {
+    if (SystemMemoryOffset238 != 0) {
       ProcessSystemMemoryAllocation(&PointerStackBuffer240,&PointerStackBuffer260,ArrayStackBuffer338);
     }
     SystemStatusCode = (long long)PointerStackBuffer258 - (long long)PointerStackBuffer260 >> 5;
@@ -34202,13 +34202,13 @@ SystemMemoryValidation: // 原始标签：LAB_180065a3e
       CoreEngineFreeSystemMemory(CharacterCodePointer);
     }
     TemporaryBufferPointer = &SystemNullTemplate;
-    if (lStack_238 != 0) {
+    if (SystemMemoryOffset238 != 0) {
       ValidationBufferPointer = StatusBuffer8;
       DataBufferPointer = StatusBuffer7;
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
-    lStack_238 = 0;
+    SystemMemoryOffset238 = 0;
     OperationStatus = 0;
     TemporaryBufferPointer = &ThreadLocalStorageTemplate;
     ValidationBufferPointer = StatusBuffer8;
@@ -34999,13 +34999,13 @@ void SystemEmptyFunction(void
  * 
  180066df0，ProcessSystemDataStructureTransfer
  */
-void ProcessSystemDataStructureTransfer(long long *Utf8InputBuffer,long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessSystemDataStructureTransfer(long long *SystemContext,long long ContextSize,uint64_t DataBufferPointer,uint64_t DataEndPointer
 {
   long long PrimaryDataSize;
-  void *SystemContext;
+  void *SystemRootNode;
   long long MemoryOffset;
   uint64_t *MemoryAddressMask;
-  uint64_t *Utf8InputBufferPointer;
+  uint64_t *DataBufferPointer;
   long long MemoryBoundaryEnd;
   
   pMemoryAddressMask = (void *)Utf8InputBuffer[1];
@@ -128040,7 +128040,7 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
   float *pfStack_258;
   float *pfStack_250;
   float *pfStack_248;
-  long long *plStack_238;
+  long long *pSystemMemoryOffset238;
   char cStack_230;
   char cStack_22f;
   char cStack_22e;
@@ -128112,10 +128112,10 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
   ErrorCode = EncodingDecodingKey ^ (unsigned long long)SystemStatusBuffer;
   CoreEnginePointerBuffer150 = Utf8BufferSize;
   pcStack_100 = CharacterCode;
-  plStack_238 = (long long *)FUN_180128b60();
+  pSystemMemoryOffset238 = (long long *)FUN_180128b60();
   CharacterByteCount3 = *(int *)(DataStructureCounter + 0x1ad0);
-  cStack_22f = plStack_238 == (long long *)0x0;
-  if (plStack_238 == (long long *)0x0) {
+  cStack_22f = pSystemMemoryOffset238 == (long long *)0x0;
+  if (pSystemMemoryOffset238 == (long long *)0x0) {
     if (*(int *)(DataStructureCounter + 0x1bd4) == 0) {
       OperationStatus = 0;
       StatusBuffer8 = &OperationStatus;
@@ -128124,10 +128124,10 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
       StatusBuffer8 = &uStack_1b0;
       uStack_1b0 = *(long long *)(DataStructureCounter + 0x1c04);
     }
-    plStack_238 = (long long *)FUN_180128bd0(CharacterCode,*StatusBuffer8,Utf8SourcePointer);
+    pSystemMemoryOffset238 = (long long *)FUN_180128bd0(CharacterCode,*StatusBuffer8,Utf8SourcePointer);
   }
-  CoreEngineIntegerValue200 = (int)plStack_238[0x50];
-  ProcessingStatusFlag = *(uint *)((long long)plStack_238 + 0xdc);
+  CoreEngineIntegerValue200 = (int)pSystemMemoryOffset238[0x50];
+  ProcessingStatusFlag = *(uint *)((long long)pSystemMemoryOffset238 + 0xdc);
   MemoryAllocationIndex9 = Utf8SourcePointer | 6;
   if ((Utf8SourcePointer & 0xc0200) != 0xc0200) {
     MemoryAllocationIndex9 = Utf8SourcePointer;
@@ -128137,7 +128137,7 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
   if ((MemoryAllocationIndex9 >> 0x1a & 1) != 0) {
     pCharacterByteCount4 = (int *)((long long)*(int *)(DataStructureCounter + 0x1bc0) * 0x30 + *(long long *)(DataStructureCounter + 0x1bb8));
     cStack_22e = (bool)cStack_22e ||
-                 (plStack_238 != *(long long **)(pCharacterByteCount4 + 2) || (int)plStack_238[0x18] != *pCharacterByteCount4);
+                 (pSystemMemoryOffset238 != *(long long **)(pCharacterByteCount4 + 2) || (int)pSystemMemoryOffset238[0x18] != *pCharacterByteCount4);
   }
   if (((bool)cStack_22e) || (0 < (int)ProcessingStatusFlag)) {
     CharacterStatus1 = '\x01';
@@ -128145,34 +128145,34 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
   else {
     CharacterStatus1 = '\0';
   }
-  *(char *)((long long)plStack_238 + 0xb5) = CharacterStatus1;
+  *(char *)((long long)pSystemMemoryOffset238 + 0xb5) = CharacterStatus1;
   uStack_210 = ProcessingStatusFlag;
   iStack_1b8 = CharacterByteCount6;
   if (CharacterStatus1 != '\0') {
-    ProcessSystemBufferOperation(plStack_238,8,1);
+    ProcessSystemBufferOperation(pSystemMemoryOffset238,8,1);
   }
   if (CoreEngineIntegerValue200 == CharacterByteCount6) {
-    MemoryAllocationIndex9 = *(uint *)((long long)plStack_238 + 0xc);
+    MemoryAllocationIndex9 = *(uint *)((long long)pSystemMemoryOffset238 + 0xc);
   }
   else {
-    *(uint32_t *)(plStack_238 + 2) = *(uint32_t *)((long long)plStack_238 + 0xc);
-    *(uint *)((long long)plStack_238 + 0xc) = MemoryAllocationIndex9;
-    *(int *)(plStack_238 + 0x50) = CharacterByteCount6;
-    *(uint16_t *)((long long)plStack_238 + 0xba) = 0;
+    *(uint32_t *)(pSystemMemoryOffset238 + 2) = *(uint32_t *)((long long)pSystemMemoryOffset238 + 0xc);
+    *(uint *)((long long)pSystemMemoryOffset238 + 0xc) = MemoryAllocationIndex9;
+    *(int *)(pSystemMemoryOffset238 + 0x50) = CharacterByteCount6;
+    *(uint16_t *)((long long)pSystemMemoryOffset238 + 0xba) = 0;
     MemoryAllocationIndex = *(uint16_t *)(DataStructureCounter + 0x1af0);
     *(int *)(DataStructureCounter + 0x1af0) = *(int *)(DataStructureCounter + 0x1af0) + 1;
-    *(uint16_t *)((long long)plStack_238 + 0xbc) = MemoryAllocationIndex;
+    *(uint16_t *)((long long)pSystemMemoryOffset238 + 0xbc) = MemoryAllocationIndex;
   }
   if (*(int *)(DataStructureCounter + 0x1bf0) != 0) {
-    FUN_18013b040(plStack_238,*(uint32_t *)(DataStructureCounter + 0x1c40));
+    FUN_18013b040(pSystemMemoryOffset238,*(uint32_t *)(DataStructureCounter + 0x1c40));
   }
   if ((CoreEngineIntegerValue200 != CharacterByteCount6) &&
-     ((((int)plStack_238[0x83] != 0 || (plStack_238[0x81] != 0)) ||
+     ((((int)pSystemMemoryOffset238[0x83] != 0 || (pSystemMemoryOffset238[0x81] != 0)) ||
       ((*(char *)(DataStructureCounter + 0xc2) != '\0' && (((MemoryAllocationIndex9 & 0x1200001) == 0 && (CharacterByteCount3 != 0)))))))) {
-    FUN_18013b5a0(plStack_238,Utf8BufferSize);
-    MemoryAllocationIndex9 = *(uint *)((long long)plStack_238 + 0xc);
+    FUN_18013b5a0(pSystemMemoryOffset238,Utf8BufferSize);
+    MemoryAllocationIndex9 = *(uint *)((long long)pSystemMemoryOffset238 + 0xc);
   }
-  if ((*(byte *)((long long)plStack_238 + 0x432) & 1) == 0) {
+  if ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) == 0) {
     if (*(int *)(DataStructureCounter + 0x1ad0) == 0) {
       SystemContextValue = 0;
     }
@@ -128181,10 +128181,10 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
     }
   }
   else {
-    SystemContextValue = *(long long *)(plStack_238[0x81] + 0x68);
+    SystemContextValue = *(long long *)(pSystemMemoryOffset238[0x81] + 0x68);
   }
   if (CoreEngineIntegerValue200 == CharacterByteCount6) {
-    lStack_158 = plStack_238[0x73];
+    lStack_158 = pSystemMemoryOffset238[0x73];
   }
   else {
     lStack_158 = 0;
@@ -128192,37 +128192,37 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
       lStack_158 = SystemContextValue;
     }
   }
-  ProcessSystemDataAndConfiguration(DataStructureCounter + 0x1ad0,&plStack_238);
+  ProcessSystemDataAndConfiguration(DataStructureCounter + 0x1ad0,&pSystemMemoryOffset238);
   *(void *)(DataStructureCounter + 0x1af8) = 0;
-  FUN_180128a80(plStack_238,1);
+  FUN_180128a80(pSystemMemoryOffset238,1);
   if ((MemoryAllocationIndex9 >> 0x1a & 1) != 0) {
     PrimaryProcessingStatusFlag7 = (uint32_t *              ((long long)*(int *)(DataStructureCounter + 0x1bc0) * 0x30 + *(long long *)(DataStructureCounter + 0x1bb8));
-    *(long long **)(PrimaryProcessingStatusFlag7 + 2) = plStack_238;
+    *(long long **)(PrimaryProcessingStatusFlag7 + 2) = pSystemMemoryOffset238;
     FUN_18013df80((int *)(DataStructureCounter + 0x1bc0),PrimaryProcessingStatusFlag7);
-    *(uint32_t *)(plStack_238 + 0x18) = *PrimaryProcessingStatusFlag7;
+    *(uint32_t *)(pSystemMemoryOffset238 + 0x18) = *PrimaryProcessingStatusFlag7;
   }
   if ((0 < (int)ProcessingStatusFlag) && ((MemoryAllocationIndex9 >> 0x18 & 1) == 0)) {
-    *(uint32_t *)(plStack_238 + 0x79) = 0;
+    *(uint32_t *)(pSystemMemoryOffset238 + 0x79) = 0;
   }
   LowByte1 = false;
   LowByte = false;
   cStack_230 = '\0';
   if (*(uint *)(DataStructureCounter + 0x1bd0) != 0) {
-    ProcessingStatusFlag = *(uint *)(plStack_238 + 0x1c) & *(uint *)(DataStructureCounter + 0x1bd0);
+    ProcessingStatusFlag = *(uint *)(pSystemMemoryOffset238 + 0x1c) & *(uint *)(DataStructureCounter + 0x1bd0);
     cStack_230 = ProcessingStatusFlag != 0;
     if ((ProcessingStatusFlag == 0) ||
        (*(float *)(DataStructureCounter + 0x1bfc) * *(float *)(DataStructureCounter + 0x1bfc) +
         *(float *)(DataStructureCounter + 0x1c00) * *(float *)(DataStructureCounter + 0x1c00) <= 1e-05)) {
-      CopySystemData(plStack_238,DataStructureCounter + 0x1bf4);
+      CopySystemData(pSystemMemoryOffset238,DataStructureCounter + 0x1bf4);
     }
     else {
-      plStack_238[0x1e] = *(long long *)(DataStructureCounter + 0x1bf4);
-      plStack_238[0x1f] = *(long long *)(DataStructureCounter + 0x1bfc);
-      *(uint *)(plStack_238 + 0x1c) = *(uint *)(plStack_238 + 0x1c) & 0xfffffff1;
+      pSystemMemoryOffset238[0x1e] = *(long long *)(DataStructureCounter + 0x1bf4);
+      pSystemMemoryOffset238[0x1f] = *(long long *)(DataStructureCounter + 0x1bfc);
+      *(uint *)(pSystemMemoryOffset238 + 0x1c) = *(uint *)(pSystemMemoryOffset238 + 0x1c) & 0xfffffff1;
     }
   }
   if (*(uint *)(DataStructureCounter + 0x1bd4) != 0) {
-    ProcessingStatusFlag = *(uint *)((long long)plStack_238 + 0xe4) & *(uint *)(DataStructureCounter + 0x1bd4);
+    ProcessingStatusFlag = *(uint *)((long long)pSystemMemoryOffset238 + 0xe4) & *(uint *)(DataStructureCounter + 0x1bd4);
     if ((ProcessingStatusFlag == 0) || (*(float *)(DataStructureCounter + 0x1c04) <= 0.0)) {
       LowByte1 = false;
     }
@@ -128239,133 +128239,133 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
   }
   if (*(int *)(DataStructureCounter + 0x1bd8) == 0) {
     if (CoreEngineIntegerValue200 != iStack_1b8) {
-      plStack_238[0xd] = 0;
+      pSystemMemoryOffset238[0xd] = 0;
     }
   }
   else {
-    plStack_238[0xd] = *(long long *)(DataStructureCounter + 0x1c0c);
-    if (*(float *)((long long)plStack_238 + 0x6c) != 0.0) {
+    pSystemMemoryOffset238[0xd] = *(long long *)(DataStructureCounter + 0x1c0c);
+    if (*(float *)((long long)pSystemMemoryOffset238 + 0x6c) != 0.0) {
       FloatValue33 = (float)GetSystemTime();
-      FloatValue34 = (float)GetSystemFloatValue(plStack_238);
-      *(float *)((long long)plStack_238 + 0x6c) =
-           FloatValue33 + FloatValue34 + *(float *)((long long)plStack_238 + 0x6c);
+      FloatValue34 = (float)GetSystemFloatValue(pSystemMemoryOffset238);
+      *(float *)((long long)pSystemMemoryOffset238 + 0x6c) =
+           FloatValue33 + FloatValue34 + *(float *)((long long)pSystemMemoryOffset238 + 0x6c);
     }
   }
   CharacterByteCount6 = iStack_1b8;
   CharacterByteCount3 = CoreEngineIntegerValue200;
   QuaternaryReturnCode = *(void *)(DataStructureCounter + 0x1c4c);
-  *(void *)((long long)plStack_238 + 0x14) = *(void *)(DataStructureCounter + 0x1c44);
-  *(void *)((long long)plStack_238 + 0x1c) = QuaternaryReturnCode;
-  *(uint32_t *)((long long)plStack_238 + 0x24) = *(uint32_t *)(DataStructureCounter + 0x1c54);
+  *(void *)((long long)pSystemMemoryOffset238 + 0x14) = *(void *)(DataStructureCounter + 0x1c44);
+  *(void *)((long long)pSystemMemoryOffset238 + 0x1c) = QuaternaryReturnCode;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x24) = *(uint32_t *)(DataStructureCounter + 0x1c54);
   if (*(uint *)(DataStructureCounter + 0x1bdc) != 0) {
-    if ((*(uint *)(DataStructureCounter + 0x1bdc) & *(uint *)(plStack_238 + 0x1d)) != 0) {
-      *(uint8_t *)((long long)plStack_238 + 0xb2) = *(uint8_t *)(DataStructureCounter + 0x1c15);
-      *(uint *)(plStack_238 + 0x1d) = *(uint *)(plStack_238 + 0x1d) & 0xfffffff1;
+    if ((*(uint *)(DataStructureCounter + 0x1bdc) & *(uint *)(pSystemMemoryOffset238 + 0x1d)) != 0) {
+      *(uint8_t *)((long long)pSystemMemoryOffset238 + 0xb2) = *(uint8_t *)(DataStructureCounter + 0x1c15);
+      *(uint *)(pSystemMemoryOffset238 + 0x1d) = *(uint *)(pSystemMemoryOffset238 + 0x1d) & 0xfffffff1;
     }
   }
   if (*(int *)(DataStructureCounter + 0x1be4) != 0) {
     ProcessSystemLoop();
   }
-  if (*(char *)((long long)plStack_238 + 0xb5) != '\0') {
-    ProcessSystemBufferOperation(plStack_238,8);
+  if (*(char *)((long long)pSystemMemoryOffset238 + 0xb5) != '\0') {
+    ProcessSystemBufferOperation(pSystemMemoryOffset238,8);
   }
   if (CharacterByteCount3 == CharacterByteCount6) {
-    ProcessSystemStateHandler(plStack_238,plStack_238[5]);
-    ProcessSystemResourceHandler(plStack_238);
+    ProcessSystemStateHandler(pSystemMemoryOffset238,pSystemMemoryOffset238[5]);
+    ProcessSystemResourceHandler(pSystemMemoryOffset238);
     SystemContextValue = lStack_158;
     goto LAB_18012ce0f;
   }
   fStack_188 = (float)(MemoryAllocationIndex9 & 0x3000000);
-  ProcessSystemParameterHandler(plStack_238,MemoryAllocationIndex9,lStack_158);
+  ProcessSystemParameterHandler(pSystemMemoryOffset238,MemoryAllocationIndex9,lStack_158);
   SystemFlagB = 0xff7fffffff7fffff;
   OperationStatus = 0x7f7fffff7f7fffff;
-  *(uint8_t *)((long long)plStack_238 + 0xaf) = 1;
-  *(bool *)((long long)plStack_238 + 0xb7) = CoreEnginePointerBuffer150 != (uint8_t *)0x0;
+  *(uint8_t *)((long long)pSystemMemoryOffset238 + 0xaf) = 1;
+  *(bool *)((long long)pSystemMemoryOffset238 + 0xb7) = CoreEnginePointerBuffer150 != (uint8_t *)0x0;
   ProcessFloatOperation(&fStack_1f8,&SystemFlagB);
-  plStack_238[0x45] = CONCAT44(fStack_1f4,fStack_1f8);
-  plStack_238[0x46] = CONCAT44(fStack_1ec,fStack_1f0);
-  ProcessSystemDataHandler(plStack_238 + 0x43,1);
+  pSystemMemoryOffset238[0x45] = CONCAT44(fStack_1f4,fStack_1f8);
+  pSystemMemoryOffset238[0x46] = CONCAT44(fStack_1ec,fStack_1f0);
+  ProcessSystemDataHandler(pSystemMemoryOffset238 + 0x43,1);
   CharacterStatus1 = cStack_22f;
-  if (((((plStack_238[5] != 0) && (*(long long **)(plStack_238[5] + 0x78) == plStack_238)) ||
-       ((*(byte *)((long long)plStack_238 + 0x432) & 1) != 0)) ||
+  if (((((pSystemMemoryOffset238[5] != 0) && (*(long long **)(pSystemMemoryOffset238[5] + 0x78) == pSystemMemoryOffset238)) ||
+       ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) != 0)) ||
       ((*(long long *)(DataStructureCounter + 0x1ce8) != 0 &&
-       ((*(uint *)((long long)plStack_238 + 0xc) & 0x80000) == 0)))) && (cStack_22f == '\0')) {
+       ((*(uint *)((long long)pSystemMemoryOffset238 + 0xc) & 0x80000) == 0)))) && (cStack_22f == '\0')) {
     StringBuffer1 = pcStack_100;
     do {
       StringBuffer = *StringBuffer1;
-      CharacterStatus2 = StringBuffer1[*plStack_238 - (long long)pcStack_100];
+      CharacterStatus2 = StringBuffer1[*pSystemMemoryOffset238 - (long long)pcStack_100];
       if (StringBuffer != CharacterStatus2) break;
       StringBuffer1 = StringBuffer1 + 1;
     } while (CharacterStatus2 != '\0');
     if (StringBuffer != CharacterStatus2) {
-      OperationStatus = (long long)(int)plStack_238[0x10];
-      SystemContextValue = ProcessStringOperationHandler(*plStack_238,&OperationStatus,pcStack_100);
-      *plStack_238 = SystemContextValue;
-      *(float *)(plStack_238 + 0x10) = (float)OperationStatus;
+      OperationStatus = (long long)(int)pSystemMemoryOffset238[0x10];
+      SystemContextValue = ProcessStringOperationHandler(*pSystemMemoryOffset238,&OperationStatus,pcStack_100);
+      *pSystemMemoryOffset238 = SystemContextValue;
+      *(float *)(pSystemMemoryOffset238 + 0x10) = (float)OperationStatus;
     }
   }
-  if (*(char *)((long long)plStack_238 + 0xb2) == '\0') {
-    if (((*(char *)((long long)plStack_238 + 0xb6) == '\0') ||
-        (*(int *)((long long)plStack_238 + 0xdc) != 0)) || ((int)plStack_238[0x1b] < 1)) {
-      FloatValue33 = *(float *)(plStack_238 + 0xd);
+  if (*(char *)((long long)pSystemMemoryOffset238 + 0xb2) == '\0') {
+    if (((*(char *)((long long)pSystemMemoryOffset238 + 0xb6) == '\0') ||
+        (*(int *)((long long)pSystemMemoryOffset238 + 0xdc) != 0)) || ((int)pSystemMemoryOffset238[0x1b] < 1)) {
+      FloatValue33 = *(float *)(pSystemMemoryOffset238 + 0xd);
       if (FloatValue33 == 0.0) {
-        FloatValue33 = (*(float *)(plStack_238 + 0x23) - *(float *)(plStack_238 + 8)) +
-                 *(float *)((long long)plStack_238 + 0x8c);
+        FloatValue33 = (*(float *)(pSystemMemoryOffset238 + 0x23) - *(float *)(pSystemMemoryOffset238 + 8)) +
+                 *(float *)((long long)pSystemMemoryOffset238 + 0x8c);
       }
-      FloatValue34 = *(float *)((long long)plStack_238 + 0x6c);
+      FloatValue34 = *(float *)((long long)pSystemMemoryOffset238 + 0x6c);
       if (FloatValue34 == 0.0) {
-        FloatValue34 = (*(float *)((long long)plStack_238 + 0x11c) -
-                 *(float *)((long long)plStack_238 + 0x44)) + *(float *)(plStack_238 + 0x12);
+        FloatValue34 = (*(float *)((long long)pSystemMemoryOffset238 + 0x11c) -
+                 *(float *)((long long)pSystemMemoryOffset238 + 0x44)) + *(float *)(pSystemMemoryOffset238 + 0x12);
       }
-      FloatValue33 = (float)(int)FloatValue33 + *(float *)(plStack_238 + 0xe);
-      FloatValue34 = (float)(int)FloatValue34 + *(float *)((long long)plStack_238 + 0x74);
+      FloatValue33 = (float)(int)FloatValue33 + *(float *)(pSystemMemoryOffset238 + 0xe);
+      FloatValue34 = (float)(int)FloatValue34 + *(float *)((long long)pSystemMemoryOffset238 + 0x74);
     }
     else {
-      FloatValue33 = *(float *)(plStack_238 + 0xc);
-      FloatValue34 = *(float *)((long long)plStack_238 + 100);
+      FloatValue33 = *(float *)(pSystemMemoryOffset238 + 0xc);
+      FloatValue34 = *(float *)((long long)pSystemMemoryOffset238 + 100);
     }
   }
   else {
-    FloatValue33 = *(float *)(plStack_238 + 0xc);
-    FloatValue34 = *(float *)((long long)plStack_238 + 100);
+    FloatValue33 = *(float *)(pSystemMemoryOffset238 + 0xc);
+    FloatValue34 = *(float *)((long long)pSystemMemoryOffset238 + 100);
   }
-  *(float *)(plStack_238 + 0xc) = FloatValue33;
-  *(float *)((long long)plStack_238 + 100) = FloatValue34;
-  if (0 < (int)plStack_238[0x1b]) {
-    *(int *)(plStack_238 + 0x1b) = (int)plStack_238[0x1b] + -1;
+  *(float *)(pSystemMemoryOffset238 + 0xc) = FloatValue33;
+  *(float *)((long long)pSystemMemoryOffset238 + 100) = FloatValue34;
+  if (0 < (int)pSystemMemoryOffset238[0x1b]) {
+    *(int *)(pSystemMemoryOffset238 + 0x1b) = (int)pSystemMemoryOffset238[0x1b] + -1;
   }
-  if (0 < *(int *)((long long)plStack_238 + 0xdc)) {
-    *(int *)((long long)plStack_238 + 0xdc) = *(int *)((long long)plStack_238 + 0xdc) + -1;
+  if (0 < *(int *)((long long)pSystemMemoryOffset238 + 0xdc)) {
+    *(int *)((long long)pSystemMemoryOffset238 + 0xdc) = *(int *)((long long)pSystemMemoryOffset238 + 0xdc) + -1;
   }
   if ((CharacterStatus1 != '\0') && ((!LowByte1 || (!LowByte)))) {
-    *(uint32_t *)((long long)plStack_238 + 0xdc) = 1;
+    *(uint32_t *)((long long)pSystemMemoryOffset238 + 0xdc) = 1;
   }
   if (((cStack_22e != '\0') && ((MemoryAllocationIndex9 & 0x6000000) != 0)) &&
-     (*(uint32_t *)((long long)plStack_238 + 0xdc) = 1, (MemoryAllocationIndex9 & 0x40) != 0)) {
+     (*(uint32_t *)((long long)pSystemMemoryOffset238 + 0xdc) = 1, (MemoryAllocationIndex9 & 0x40) != 0)) {
     if (!LowByte1) {
-      *(uint32_t *)(plStack_238 + 10) = 0;
-      *(uint32_t *)(plStack_238 + 9) = 0;
+      *(uint32_t *)(pSystemMemoryOffset238 + 10) = 0;
+      *(uint32_t *)(pSystemMemoryOffset238 + 9) = 0;
     }
     if (!LowByte) {
-      *(uint32_t *)((long long)plStack_238 + 0x54) = 0;
-      *(uint32_t *)((long long)plStack_238 + 0x4c) = 0;
+      *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x54) = 0;
+      *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x4c) = 0;
     }
-    plStack_238[0xc] = 0;
+    pSystemMemoryOffset238[0xc] = 0;
   }
-  FUN_180130a80(plStack_238);
-  ProcessSystemStateHandler(plStack_238,plStack_238[5]);
+  FUN_180130a80(pSystemMemoryOffset238);
+  ProcessSystemStateHandler(pSystemMemoryOffset238,pSystemMemoryOffset238[5]);
   if ((*(uint *)(DataStructureCounter + 8) & 0x8000) == 0) {
     SystemMemoryAllocationResult = 0x3f800000;
   }
   else {
-    SystemMemoryAllocationResult = *(uint32_t *)(plStack_238[5] + 0x18);
+    SystemMemoryAllocationResult = *(uint32_t *)(pSystemMemoryOffset238[5] + 0x18);
   }
-  *(uint32_t *)((long long)plStack_238 + 0x2dc) = SystemMemoryAllocationResult;
-  ProcessSystemResourceHandler(plStack_238);
-  ProcessingStatusFlag = *(uint *)((long long)plStack_238 + 0xc);
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x2dc) = SystemMemoryAllocationResult;
+  ProcessSystemResourceHandler(pSystemMemoryOffset238);
+  ProcessingStatusFlag = *(uint *)((long long)pSystemMemoryOffset238 + 0xc);
   UnicodeCharacterValue = (unsigned long long)ProcessingStatusFlag;
   SystemUnsignedValue1A0 = CONCAT44(SystemUnsignedValue1A0.HighPart,ProcessingStatusFlag);
-  if ((*(byte *)((long long)plStack_238 + 0x432) & 1) == 0) {
+  if ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) == 0) {
     if ((ProcessingStatusFlag >> 0x18 & 1) == 0) {
       if (((ProcessingStatusFlag & 0x6000000) == 0) || ((ProcessingStatusFlag >> 0x1b & 1) != 0)) {
         SystemMemoryAllocationResult = *(uint32_t *)(DataStructureCounter + 0x1638);
@@ -128373,64 +128373,64 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
       else {
         SystemMemoryAllocationResult = *(uint32_t *)(DataStructureCounter + 0x1658);
       }
-      *(uint32_t *)((long long)plStack_238 + 0x7c) = SystemMemoryAllocationResult;
+      *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x7c) = SystemMemoryAllocationResult;
     }
     else {
-      *(uint32_t *)((long long)plStack_238 + 0x7c) = *(uint32_t *)(DataStructureCounter + 0x1650);
+      *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x7c) = *(uint32_t *)(DataStructureCounter + 0x1650);
     }
   }
   else {
-    *(uint32_t *)((long long)plStack_238 + 0x7c) = 0;
+    *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x7c) = 0;
   }
-  if ((((*(byte *)((long long)plStack_238 + 0x432) & 1) == 0) && ((ProcessingStatusFlag & 0x5010000) == 0x1000000)     && (*(float *)((long long)plStack_238 + 0x7c) == 0.0)) {
+  if ((((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) == 0) && ((ProcessingStatusFlag & 0x5010000) == 0x1000000)     && (*(float *)((long long)pSystemMemoryOffset238 + 0x7c) == 0.0)) {
     if ((ProcessingStatusFlag >> 10 & 1) == 0) {
-      *(uint32_t *)(plStack_238 + 0xe) = 0;
-      *(uint32_t *)((long long)plStack_238 + 0x74) = 0;
+      *(uint32_t *)(pSystemMemoryOffset238 + 0xe) = 0;
+      *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x74) = 0;
     }
     else {
       SystemMemoryAllocationResult = *(uint32_t *)(DataStructureCounter + 0x1630);
-      *(uint32_t *)(plStack_238 + 0xe) = 0;
-      *(uint32_t *)((long long)plStack_238 + 0x74) = SystemMemoryAllocationResult;
+      *(uint32_t *)(pSystemMemoryOffset238 + 0xe) = 0;
+      *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x74) = SystemMemoryAllocationResult;
     }
   }
   else {
-    plStack_238[0xe] = *(long long *)(DataStructureCounter + 0x162c);
+    pSystemMemoryOffset238[0xe] = *(long long *)(DataStructureCounter + 0x162c);
   }
-  FloatValue33 = *(float *)(plStack_238 + 0xe);
-  if (*(float *)(plStack_238 + 0xe) <= *(float *)(DataStructureCounter + 0x166c)) {
+  FloatValue33 = *(float *)(pSystemMemoryOffset238 + 0xe);
+  if (*(float *)(pSystemMemoryOffset238 + 0xe) <= *(float *)(DataStructureCounter + 0x166c)) {
     FloatValue33 = *(float *)(DataStructureCounter + 0x166c);
   }
   if (FloatValue33 <= *(float *)(DataStructureCounter + 0x1c58)) {
     FloatValue33 = *(float *)(DataStructureCounter + 0x1c58);
   }
-  *(float *)(plStack_238 + 0x30) = FloatValue33;
-  *(uint32_t *)((long long)plStack_238 + 0x184) = *(uint32_t *)(DataStructureCounter + 0x1c5c);
-  if (((ProcessingStatusFlag & 0x21) == 0) && ((*(byte *)((long long)plStack_238 + 0x432) & 1) == 0)) {
-    FUN_180120c80(plStack_238,&SystemFlagB);
-    if ((((*(long long **)(DataStructureCounter + 0x1b00) == plStack_238) && (*(int *)(DataStructureCounter + 0x1b18) == 0)) &&
+  *(float *)(pSystemMemoryOffset238 + 0x30) = FloatValue33;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x184) = *(uint32_t *)(DataStructureCounter + 0x1c5c);
+  if (((ProcessingStatusFlag & 0x21) == 0) && ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) == 0)) {
+    FUN_180120c80(pSystemMemoryOffset238,&SystemFlagB);
+    if ((((*(long long **)(DataStructureCounter + 0x1b00) == pSystemMemoryOffset238) && (*(int *)(DataStructureCounter + 0x1b18) == 0)) &&
         (*(int *)(DataStructureCounter + 0x1b20) == 0)) &&
        ((CharacterStatus1 = ValidateAndProcessSystemFlags(&SystemFlagB,&OperationStatus,1), CharacterStatus1 != '\0' &&
         (*(char *)(DataStructureCounter + 0x415) != '\0')))) {
-      *(uint8_t *)((long long)plStack_238 + 0xb3) = 1;
+      *(uint8_t *)((long long)pSystemMemoryOffset238 + 0xb3) = 1;
     }
-    if (*(char *)((long long)plStack_238 + 0xb3) != '\0') {
-      *(bool *)((long long)plStack_238 + 0xb2) = *(char *)((long long)plStack_238 + 0xb2) == '\0';
-      if (((*(uint *)((long long)plStack_238 + 0xc) & 0x100) == 0) &&
+    if (*(char *)((long long)pSystemMemoryOffset238 + 0xb3) != '\0') {
+      *(bool *)((long long)pSystemMemoryOffset238 + 0xb2) = *(char *)((long long)pSystemMemoryOffset238 + 0xb2) == '\0';
+      if (((*(uint *)((long long)pSystemMemoryOffset238 + 0xc) & 0x100) == 0) &&
          (*(float *)(SystemConfigurationHandle + 0x2e04) <= 0.0)) {
         *(uint32_t *)(SystemConfigurationHandle + 0x2e04) = *(uint32_t *)(SystemConfigurationHandle + 0x1c);
       }
-      ValidateSystemDataTablePointer(plStack_238);
+      ValidateSystemDataTablePointer(pSystemMemoryOffset238);
     }
   }
   else {
-    *(uint8_t *)((long long)plStack_238 + 0xb2) = 0;
+    *(uint8_t *)((long long)pSystemMemoryOffset238 + 0xb2) = 0;
   }
-  CharacterCode4 = plStack_238;
+  CharacterCode4 = pSystemMemoryOffset238;
   SystemContextValue = SystemConfigurationHandle;
-  *(uint8_t *)((long long)plStack_238 + 0xb3) = 0;
-  if ((*(uint *)((long long)plStack_238 + 0xc) >> 0x19 & 1) == 0) {
+  *(uint8_t *)((long long)pSystemMemoryOffset238 + 0xb3) = 0;
+  if ((*(uint *)((long long)pSystemMemoryOffset238 + 0xc) >> 0x19 & 1) == 0) {
     CoreEngineUnsignedValue208 = *(void *)(SystemContextValue + 0x163c);
-    if ((*(uint *)((long long)plStack_238 + 0xc) & 0x14000000) != 0) {
+    if ((*(uint *)((long long)pSystemMemoryOffset238 + 0xc) & 0x14000000) != 0) {
       OperationStatus = 0x4080000040800000;
       StatusBuffer8 = (void *)FUN_18011fc20(&uStack_1d8,&CoreEngineUnsignedValue208,&OperationStatus);
       CoreEngineUnsignedValue208 = *StatusBuffer8;
@@ -128465,33 +128465,33 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
   }
   else {
     LoopIterationCounter7 = SystemContextValue;
-    FloatValue34 = *(float *)(plStack_238 + 0xc);
-    FloatValue33 = *(float *)((long long)plStack_238 + 100);
+    FloatValue34 = *(float *)(pSystemMemoryOffset238 + 0xc);
+    FloatValue33 = *(float *)((long long)pSystemMemoryOffset238 + 100);
   }
   FloatValue36 = 3.4028235e+38;
   OperationStatus = CONCAT44(FloatValue33,FloatValue34);
   FloatValue38 = 3.4028235e+38;
-  if (((ProcessingStatusFlag & 0x40) == 0) || (*(char *)((long long)plStack_238 + 0xb2) != '\0')) {
-    if ((0 < *(int *)((long long)plStack_238 + 0xc4)) || (0 < (int)plStack_238[0x19])) {
-      if ((!LowByte1) && (0 < *(int *)((long long)plStack_238 + 0xc4))) {
+  if (((ProcessingStatusFlag & 0x40) == 0) || (*(char *)((long long)pSystemMemoryOffset238 + 0xb2) != '\0')) {
+    if ((0 < *(int *)((long long)pSystemMemoryOffset238 + 0xc4)) || (0 < (int)pSystemMemoryOffset238[0x19])) {
+      if ((!LowByte1) && (0 < *(int *)((long long)pSystemMemoryOffset238 + 0xc4))) {
         FloatValue36 = FloatValue34;
-        if ((*(char *)((long long)plStack_238 + 0xcc) != '\0') &&
-           (FloatValue36 = *(float *)(plStack_238 + 10), *(float *)(plStack_238 + 10) <= FloatValue34)) {
+        if ((*(char *)((long long)pSystemMemoryOffset238 + 0xcc) != '\0') &&
+           (FloatValue36 = *(float *)(pSystemMemoryOffset238 + 10), *(float *)(pSystemMemoryOffset238 + 10) <= FloatValue34)) {
           FloatValue36 = FloatValue34;
         }
-        *(float *)(plStack_238 + 10) = FloatValue36;
+        *(float *)(pSystemMemoryOffset238 + 10) = FloatValue36;
       }
-      if ((!LowByte) && (0 < (int)plStack_238[0x19])) {
+      if ((!LowByte) && (0 < (int)pSystemMemoryOffset238[0x19])) {
         FloatValue38 = FloatValue33;
-        if ((*(char *)((long long)plStack_238 + 0xcc) != '\0') &&
-           (FloatValue38 = *(float *)((long long)plStack_238 + 0x54),
-           *(float *)((long long)plStack_238 + 0x54) <= FloatValue33)) {
+        if ((*(char *)((long long)pSystemMemoryOffset238 + 0xcc) != '\0') &&
+           (FloatValue38 = *(float *)((long long)pSystemMemoryOffset238 + 0x54),
+           *(float *)((long long)pSystemMemoryOffset238 + 0x54) <= FloatValue33)) {
           FloatValue38 = FloatValue33;
         }
-        *(float *)((long long)plStack_238 + 0x54) = FloatValue38;
+        *(float *)((long long)pSystemMemoryOffset238 + 0x54) = FloatValue38;
       }
-      if (((*(char *)((long long)plStack_238 + 0xb2) == '\0') &&
-          ((*(uint *)((long long)plStack_238 + 0xc) & 0x100) == 0)) &&
+      if (((*(char *)((long long)pSystemMemoryOffset238 + 0xb2) == '\0') &&
+          ((*(uint *)((long long)pSystemMemoryOffset238 + 0xc) & 0x100) == 0)) &&
          (*(float *)(LoopIterationCounter7 + 0x2e04) <= 0.0)) {
         *(uint32_t *)(LoopIterationCounter7 + 0x2e04) = *(uint32_t *)(LoopIterationCounter7 + 0x1c);
       }
@@ -128499,51 +128499,51 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
   }
   else {
     if (!LowByte1) {
-      *(float *)(plStack_238 + 10) = FloatValue34;
+      *(float *)(pSystemMemoryOffset238 + 10) = FloatValue34;
       FloatValue36 = FloatValue34;
     }
     if (!LowByte) {
-      *(float *)((long long)plStack_238 + 0x54) = FloatValue33;
+      *(float *)((long long)pSystemMemoryOffset238 + 0x54) = FloatValue33;
       FloatValue38 = FloatValue33;
     }
   }
-  PrimaryProcessingStatusFlag7 = (uint32_t *)FUN_180128fd0(&uStack_1d8,plStack_238,plStack_238[10]);
+  PrimaryProcessingStatusFlag7 = (uint32_t *)FUN_180128fd0(&uStack_1d8,pSystemMemoryOffset238,pSystemMemoryOffset238[10]);
   SystemMemoryAllocationResult = PrimaryProcessingStatusFlag7[1];
-  *(uint32_t *)(plStack_238 + 10) = *PrimaryProcessingStatusFlag7;
-  *(uint32_t *)((long long)plStack_238 + 0x54) = SystemMemoryAllocationResult;
-  if ((*(char *)((long long)plStack_238 + 0xb2) == '\0') || ((ProcessingStatusFlag >> 0x18 & 1) != 0)) {
+  *(uint32_t *)(pSystemMemoryOffset238 + 10) = *PrimaryProcessingStatusFlag7;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x54) = SystemMemoryAllocationResult;
+  if ((*(char *)((long long)pSystemMemoryOffset238 + 0xb2) == '\0') || ((ProcessingStatusFlag >> 0x18 & 1) != 0)) {
     CharacterCode4 = &uStack_1b0;
-    uStack_1b0 = plStack_238[10];
+    uStack_1b0 = pSystemMemoryOffset238[10];
   }
   else {
-    QuaternaryReturnCode = FUN_180120c80(plStack_238,&SystemFlagB);
+    QuaternaryReturnCode = FUN_180120c80(pSystemMemoryOffset238,&SystemFlagB);
     CharacterCode4 = (long long *)AllocateVertexBuffer(QuaternaryReturnCode,&uStack_1d8);
   }
   SystemContextValue = lStack_158;
   StringBuffer = cStack_22e;
   CharacterStatus1 = cStack_230;
-  plStack_238[9] = *Utf8InputBuffer4;
-  if (*(char *)((long long)plStack_238 + 0xb2) == '\0') {
+  pSystemMemoryOffset238[9] = *Utf8InputBuffer4;
+  if (*(char *)((long long)pSystemMemoryOffset238 + 0xb2) == '\0') {
     if (FloatValue36 == 3.4028235e+38) {
-      FloatValue33 = *(float *)(plStack_238 + 0xb);
+      FloatValue33 = *(float *)(pSystemMemoryOffset238 + 0xb);
     }
     else {
-      FloatValue33 = *(float *)(plStack_238 + 10);
+      FloatValue33 = *(float *)(pSystemMemoryOffset238 + 10);
     }
     if (FloatValue38 == 3.4028235e+38) {
-      FloatValue34 = *(float *)((long long)plStack_238 + 0x5c);
+      FloatValue34 = *(float *)((long long)pSystemMemoryOffset238 + 0x5c);
     }
     else {
-      FloatValue34 = *(float *)((long long)plStack_238 + 0x54);
+      FloatValue34 = *(float *)((long long)pSystemMemoryOffset238 + 0x54);
     }
     if (((ProcessingStatusFlag >> 0xe & 1) != 0) ||
-       ((FloatValue34 < *(float *)((long long)plStack_238 + 100) && ((ProcessingStatusFlag & 8) == 0)))) {
+       ((FloatValue34 < *(float *)((long long)pSystemMemoryOffset238 + 100) && ((ProcessingStatusFlag & 8) == 0)))) {
       CharacterStatus2 = '\x01';
     }
     else {
       CharacterStatus2 = '\0';
     }
-    *(char *)((long long)plStack_238 + 0xad) = CharacterStatus2;
+    *(char *)((long long)pSystemMemoryOffset238 + 0xad) = CharacterStatus2;
     if ((ProcessingStatusFlag >> 0xf & 1) == 0) {
       if (CharacterStatus2 == '\0') {
         FloatValue36 = 0.0;
@@ -128551,82 +128551,82 @@ float * FUN_1801296e0(float *Utf8InputBuffer,long long Utf8BufferSize,int Utf8So
       else {
         FloatValue36 = *(float *)(DataStructureCounter + 0x168c);
       }
-      if ((FloatValue33 - FloatValue36 < *(float *)(plStack_238 + 0xc)) && ((ProcessingStatusFlag & 0x808) == 0x800)      goto LAB_18012a70f;
+      if ((FloatValue33 - FloatValue36 < *(float *)(pSystemMemoryOffset238 + 0xc)) && ((ProcessingStatusFlag & 0x808) == 0x800)      goto LAB_18012a70f;
       CharacterStatus2 = '\0';
     }
     else {
 LAB_18012a70f:
       CharacterStatus2 = '\x01';
     }
-    *(char *)((long long)plStack_238 + 0xac) = CharacterStatus2;
-    if ((CharacterStatus2 != '\0') && (*(char *)((long long)plStack_238 + 0xad) == '\0')) {
-      if ((*(float *)((long long)plStack_238 + 100) <= FloatValue34 - *(float *)(DataStructureCounter + 0x168c)) ||
+    *(char *)((long long)pSystemMemoryOffset238 + 0xac) = CharacterStatus2;
+    if ((CharacterStatus2 != '\0') && (*(char *)((long long)pSystemMemoryOffset238 + 0xad) == '\0')) {
+      if ((*(float *)((long long)pSystemMemoryOffset238 + 100) <= FloatValue34 - *(float *)(DataStructureCounter + 0x168c)) ||
          ((ProcessingStatusFlag & 8) != 0)) {
         MemoryAllocationIndexPrimary = 0;
       }
       else {
         MemoryAllocationIndexPrimary = 1;
       }
-      *(uint8_t *)((long long)plStack_238 + 0xad) = MemoryAllocationIndexPrimary;
+      *(uint8_t *)((long long)pSystemMemoryOffset238 + 0xad) = MemoryAllocationIndexPrimary;
     }
-    if (*(char *)((long long)plStack_238 + 0xac) == '\0') {
+    if (*(char *)((long long)pSystemMemoryOffset238 + 0xac) == '\0') {
       SystemMemoryAllocationResult = 0;
     }
     else {
       SystemMemoryAllocationResult = *(uint32_t *)(DataStructureCounter + 0x168c);
     }
-    if (*(char *)((long long)plStack_238 + 0xad) == '\0') {
+    if (*(char *)((long long)pSystemMemoryOffset238 + 0xad) == '\0') {
       MemoryAllocationIndex = 0;
     }
     else {
       MemoryAllocationIndex = *(uint32_t *)(DataStructureCounter + 0x168c);
     }
-    *(uint32_t *)((long long)plStack_238 + 0xa4) = MemoryAllocationIndex;
-    *(uint32_t *)(plStack_238 + 0x15) = SystemMemoryAllocationResult;
+    *(uint32_t *)((long long)pSystemMemoryOffset238 + 0xa4) = MemoryAllocationIndex;
+    *(uint32_t *)(pSystemMemoryOffset238 + 0x15) = SystemMemoryAllocationResult;
   }
   CoreEngineUnsignedValue = 0xffffffff;
   if (((cStack_22e != '\0') &&
-      (*(uint32_t *)((long long)plStack_238 + 0xd4) = 0xffffffff, (ProcessingStatusFlag >> 0x1a & 1) != 0)) &&
+      (*(uint32_t *)((long long)pSystemMemoryOffset238 + 0xd4) = 0xffffffff, (ProcessingStatusFlag >> 0x1a & 1) != 0)) &&
      (cStack_230 == '\0')) {
     SystemMemoryAllocationResult = *(uint32_t *             (*(long long *)(DataStructureCounter + 0x1bc8) + -0xc + (long long)*(int *)(DataStructureCounter + 0x1bc0) * 0x30);
-    *(uint32_t *)(plStack_238 + 8) =
+    *(uint32_t *)(pSystemMemoryOffset238 + 8) =
          *(uint32_t *          (*(long long *)(DataStructureCounter + 0x1bc8) + -0x10 + (long long)*(int *)(DataStructureCounter + 0x1bc0) * 0x30);
-    *(uint32_t *)((long long)plStack_238 + 0x44) = SystemMemoryAllocationResult;
+    *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x44) = SystemMemoryAllocationResult;
   }
   MemoryAllocationIndex9 = ProcessingStatusFlag & 0x1000000;
   DataProcessingFlags = MemoryAllocationIndex9;
   if (MemoryAllocationIndex9 != 0) {
-    *(uint16_t *)((long long)plStack_238 + 0xba) = *(uint16_t *)(lStack_158 + 0x188);
-    ProcessSystemDataAndConfiguration((uint16_t *)(lStack_158 + 0x188),&plStack_238);
+    *(uint16_t *)((long long)pSystemMemoryOffset238 + 0xba) = *(uint16_t *)(lStack_158 + 0x188);
+    ProcessSystemDataAndConfiguration((uint16_t *)(lStack_158 + 0x188),&pSystemMemoryOffset238);
     if ((((ProcessingStatusFlag >> 0x1a & 1) == 0) && (CharacterStatus1 == '\0')) && (fStack_188 != 3.761582e-37)) {
-      plStack_238[8] = *(long long *)(SystemContextValue + 0x100);
+      pSystemMemoryOffset238[8] = *(long long *)(SystemContextValue + 0x100);
     }
   }
-  if ((*(float *)(plStack_238 + 0x1e) == 3.4028235e+38) ||
-     (*(int *)((long long)plStack_238 + 0xdc) != 0)) {
+  if ((*(float *)(pSystemMemoryOffset238 + 0x1e) == 3.4028235e+38) ||
+     (*(int *)((long long)pSystemMemoryOffset238 + 0xdc) != 0)) {
     if ((ProcessingStatusFlag >> 0x1c & 1) == 0) {
       if (((((ProcessingStatusFlag >> 0x1a & 1) != 0) && (cStack_230 == '\0')) && (0 < (int)uStack_210)) ||
          (((CharacterStatus1 = cStack_230, (ProcessingStatusFlag >> 0x19 & 1) != 0 && (cStack_230 == '\0')) &&
           (fStack_188 != 3.761582e-37)))) {
-        PrimaryProcessingStatusFlag7 = (uint32_t *)FUN_18012f6d0(&uStack_1d8,plStack_238);
+        PrimaryProcessingStatusFlag7 = (uint32_t *)FUN_18012f6d0(&uStack_1d8,pSystemMemoryOffset238);
         SystemMemoryAllocationResult = PrimaryProcessingStatusFlag7[1];
-        *(uint32_t *)(plStack_238 + 8) = *PrimaryProcessingStatusFlag7;
-        *(uint32_t *)((long long)plStack_238 + 0x44) = SystemMemoryAllocationResult;
+        *(uint32_t *)(pSystemMemoryOffset238 + 8) = *PrimaryProcessingStatusFlag7;
+        *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x44) = SystemMemoryAllocationResult;
         CharacterStatus1 = cStack_230;
       }
     }
     else {
-      PrimaryProcessingStatusFlag7 = (uint32_t *)FUN_18012f6d0(&uStack_1d8,plStack_238);
+      PrimaryProcessingStatusFlag7 = (uint32_t *)FUN_18012f6d0(&uStack_1d8,pSystemMemoryOffset238);
       SystemMemoryAllocationResult = PrimaryProcessingStatusFlag7[1];
-      *(uint32_t *)(plStack_238 + 8) = *PrimaryProcessingStatusFlag7;
-      *(uint32_t *)((long long)plStack_238 + 0x44) = SystemMemoryAllocationResult;
+      *(uint32_t *)(pSystemMemoryOffset238 + 8) = *PrimaryProcessingStatusFlag7;
+      *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x44) = SystemMemoryAllocationResult;
     }
   }
   else {
-    FloatValue34 = *(float *)(plStack_238 + 0x1e) -
-             *(float *)(plStack_238 + 0x1f) * *(float *)(plStack_238 + 10);
-    FloatValue33 = *(float *)((long long)plStack_238 + 0xf4) -
-             *(float *)((long long)plStack_238 + 0x54) * *(float *)((long long)plStack_238 + 0xfc);
+    FloatValue34 = *(float *)(pSystemMemoryOffset238 + 0x1e) -
+             *(float *)(pSystemMemoryOffset238 + 0x1f) * *(float *)(pSystemMemoryOffset238 + 10);
+    FloatValue33 = *(float *)((long long)pSystemMemoryOffset238 + 0xf4) -
+             *(float *)((long long)pSystemMemoryOffset238 + 0x54) * *(float *)((long long)pSystemMemoryOffset238 + 0xfc);
     if (FloatValue34 <= *(float *)(DataStructureCounter + 0x16b4)) {
       FloatValue34 = *(float *)(DataStructureCounter + 0x16b4);
     }
@@ -128634,46 +128634,46 @@ LAB_18012a70f:
       FloatValue33 = *(float *)(DataStructureCounter + 0x16b8);
     }
     CoreEngineUnsignedValue208 = CONCAT44(FloatValue33,FloatValue34);
-    CopySystemData(plStack_238,&CoreEngineUnsignedValue208,0);
+    CopySystemData(pSystemMemoryOffset238,&CoreEngineUnsignedValue208,0);
   }
-  if (*(int *)((long long)plStack_238 + 0x3c) < 0) {
+  if (*(int *)((long long)pSystemMemoryOffset238 + 0x3c) < 0) {
 LAB_18012aa37:
-    if (*(char *)((long long)plStack_238 + 0xae) != '\0') goto LAB_18012aa45;
+    if (*(char *)((long long)pSystemMemoryOffset238 + 0xae) != '\0') goto LAB_18012aa45;
   }
   else {
-    if (*(char *)((long long)plStack_238 + 0xae) == '\0') {
-      if (*(char *)(plStack_238[5] + 0x77) == '\0') {
-        pSystemFloatValue = (float *)FUN_18011feb0(plStack_238[5],&SystemFlagB);
-        pSystemContextPrimaryFloat6 = (float *)FUN_18010e720(plStack_238,&fStack_1f8);
+    if (*(char *)((long long)pSystemMemoryOffset238 + 0xae) == '\0') {
+      if (*(char *)(pSystemMemoryOffset238[5] + 0x77) == '\0') {
+        pSystemFloatValue = (float *)FUN_18011feb0(pSystemMemoryOffset238[5],&SystemFlagB);
+        pSystemContextPrimaryFloat6 = (float *)FUN_18010e720(pSystemMemoryOffset238,&fStack_1f8);
         if (((*pSystemContextPrimaryFloat6 <= *pSystemFloatValue && *pSystemFloatValue != *pSystemContextPrimaryFloat6) ||
             (pSystemContextPrimaryFloat6[1] <= pSystemFloatValue[1] && pSystemFloatValue[1] != pSystemContextPrimaryFloat6[1])) ||
            ((pSystemFloatValue[2] < pSystemContextPrimaryFloat6[2] || (pSystemFloatValue[3] < pSystemContextPrimaryFloat6[3])))) {
           pfStack_258 = (float *)CONCAT44(pfStack_258.HighPart,4);
-          SystemContextValue = FUN_180130830(plStack_238,(int)plStack_238[1],plStack_238 + 8,plStack_238 + 9);
-          plStack_238[5] = SystemContextValue;
-          ProcessSystemStateHandler(plStack_238,SystemContextValue);
+          SystemContextValue = FUN_180130830(pSystemMemoryOffset238,(int)pSystemMemoryOffset238[1],pSystemMemoryOffset238 + 8,pSystemMemoryOffset238 + 9);
+          pSystemMemoryOffset238[5] = SystemContextValue;
+          ProcessSystemStateHandler(pSystemMemoryOffset238,SystemContextValue);
           if ((*(uint *)(DataStructureCounter + 8) & 0x8000) == 0) {
             SystemMemoryAllocationResult = 0x3f800000;
           }
           else {
-            SystemMemoryAllocationResult = *(uint32_t *)(plStack_238[5] + 0x18);
+            SystemMemoryAllocationResult = *(uint32_t *)(pSystemMemoryOffset238[5] + 0x18);
           }
-          *(uint32_t *)((long long)plStack_238 + 0x2dc) = SystemMemoryAllocationResult;
-          ProcessSystemResourceHandler(plStack_238);
+          *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x2dc) = SystemMemoryAllocationResult;
+          ProcessSystemResourceHandler(pSystemMemoryOffset238);
         }
       }
       goto LAB_18012aa37;
     }
 LAB_18012aa45:
-    if (*(char *)(plStack_238[5] + 0x49) != '\0') {
-      plStack_238[8] = *(long long *)(plStack_238[5] + 8);
+    if (*(char *)(pSystemMemoryOffset238[5] + 0x49) != '\0') {
+      pSystemMemoryOffset238[8] = *(long long *)(pSystemMemoryOffset238[5] + 8);
     }
-    if (*(char *)(plStack_238[5] + 0x4a) != '\0') {
-      SystemContextValue = *(long long *)(plStack_238[5] + 0x10);
-      plStack_238[10] = SystemContextValue;
-      plStack_238[9] = SystemContextValue;
+    if (*(char *)(pSystemMemoryOffset238[5] + 0x4a) != '\0') {
+      SystemContextValue = *(long long *)(pSystemMemoryOffset238[5] + 0x10);
+      pSystemMemoryOffset238[10] = SystemContextValue;
+      pSystemMemoryOffset238[9] = SystemContextValue;
     }
-    MemoryAllocationCounter = *(uint *)(plStack_238[5] + 4) & 0xffffffdc;
+    MemoryAllocationCounter = *(uint *)(pSystemMemoryOffset238[5] + 4) & 0xffffffdc;
     MemoryAllocationOffset = MemoryAllocationCounter | 0x20;
     if ((ProcessingStatusFlag & 0x2000000) == 0) {
       MemoryAllocationOffset = MemoryAllocationCounter;
@@ -128684,22 +128684,22 @@ LAB_18012aa45:
     if ((*(char *)(DataStructureCounter + 0xc6) != '\0') || ((ProcessingStatusFlag & 0x16000000) != 0)) {
       MemoryAllocationOffset = MemoryAllocationOffset | 1;
     }
-    CharacterByteCount3 = (int)plStack_238[3];
+    CharacterByteCount3 = (int)pSystemMemoryOffset238[3];
     if ((CharacterByteCount3 == 0) && (CharacterByteCount3 = 0x11111111, *(char *)(DataStructureCounter + 199) != '\0')) {
       CharacterByteCount3 = 0;
     }
-    *(int *)(plStack_238[5] + 0x28) = CharacterByteCount3;
-    MemoryAllocationCounter = *(uint *)((long long)plStack_238 + 0x1c);
+    *(int *)(pSystemMemoryOffset238[5] + 0x28) = CharacterByteCount3;
+    MemoryAllocationCounter = *(uint *)((long long)pSystemMemoryOffset238 + 0x1c);
     if (MemoryAllocationCounter != 0) {
-      MemoryAllocationOffset = MemoryAllocationOffset & ~MemoryAllocationCounter | *(uint *)(plStack_238 + 4) & MemoryAllocationCounter;
+      MemoryAllocationOffset = MemoryAllocationOffset & ~MemoryAllocationCounter | *(uint *)(pSystemMemoryOffset238 + 4) & MemoryAllocationCounter;
     }
-    *(uint *)(plStack_238[5] + 4) = MemoryAllocationOffset | 0x10;
+    *(uint *)(pSystemMemoryOffset238[5] + 4) = MemoryAllocationOffset | 0x10;
   }
-  FUN_18011feb0(plStack_238[5],&DataContentStatus);
-  if ((((CharacterStatus1 == '\0') && (MemoryAllocationIndex9 == 0)) && (*(int *)((long long)plStack_238 + 0xc4) < 1)) &&
-     ((int)plStack_238[0x19] < 1)) {
+  FUN_18011feb0(pSystemMemoryOffset238[5],&DataContentStatus);
+  if ((((CharacterStatus1 == '\0') && (MemoryAllocationIndex9 == 0)) && (*(int *)((long long)pSystemMemoryOffset238 + 0xc4) < 1)) &&
+     ((int)pSystemMemoryOffset238[0x19] < 1)) {
     FUN_18011fc50(&fStack_218,DataStructureCounter + 0x16ac,DataStructureCounter + 0x16b4);
-    if (*(char *)((long long)plStack_238 + 0xae) == '\0') {
+    if (*(char *)((long long)pSystemMemoryOffset238 + 0xae) == '\0') {
       if (0.0 < (float)SystemUnsignedValue160 - (float)DataContentStatus) {
         if (0.0 < SystemUnsignedValue160.HighPart - DataContentStatus.HighPart) {
           pSystemFloatValue = (float *)&DataContentStatus;
@@ -128708,15 +128708,15 @@ LAB_18012aa45:
       }
     }
     else if (0 < *(int *)(DataStructureCounter + 0x1600)) {
-      if (*(short *)(plStack_238[5] + 0x74) == -1) {
+      if (*(short *)(pSystemMemoryOffset238[5] + 0x74) == -1) {
         CoreEngineUnsignedValue208 = CONCAT44(*(float *)(DataStructureCounter + 0x16b0) +
                               *(float *)(**(long long **)(DataStructureCounter + 0x1c70) + 0xc),
                               *(float *)(**(long long **)(DataStructureCounter + 0x1c70) + 8) +
                               *(float *)(DataStructureCounter + 0x16ac));
-        CopySystemData(plStack_238,&CoreEngineUnsignedValue208,1);
+        CopySystemData(pSystemMemoryOffset238,&CoreEngineUnsignedValue208,1);
       }
       else {
-        LoopIterationCounter7 = (long long)*(short *)(plStack_238[5] + 0x74);
+        LoopIterationCounter7 = (long long)*(short *)(pSystemMemoryOffset238[5] + 0x74);
         pSystemFloatValue = &fStack_198;
         SystemContextValue = *(long long *)(DataStructureCounter + 0x1608);
         fStack_198 = *(float *)(SystemContextValue + 0x10 + LoopIterationCounter7 * 0x24);
@@ -128724,12 +128724,12 @@ LAB_18012aa45:
         fStack_190 = fStack_198 + *(float *)(SystemContextValue + 0x18 + LoopIterationCounter7 * 0x24);
         fStack_18c = fStack_194 + *(float *)(SystemContextValue + 0x1c + LoopIterationCounter7 * 0x24);
 LAB_18012ac57:
-        FUN_180129830(plStack_238,pSystemFloatValue,&fStack_218);
+        FUN_180129830(pSystemMemoryOffset238,pSystemFloatValue,&fStack_218);
       }
     }
   }
-  *(float *)(plStack_238 + 8) = (float)(int)*(float *)(plStack_238 + 8);
-  *(float *)((long long)plStack_238 + 0x44) = (float)(int)*(float *)((long long)plStack_238 + 0x44);
+  *(float *)(pSystemMemoryOffset238 + 8) = (float)(int)*(float *)(pSystemMemoryOffset238 + 8);
+  *(float *)((long long)pSystemMemoryOffset238 + 0x44) = (float)(int)*(float *)((long long)pSystemMemoryOffset238 + 0x44);
   if (MemoryAllocationIndex9 == 0) {
     if ((ProcessingStatusFlag & 0xc000000) == 0x4000000) {
       SystemMemoryAllocationResult = *(uint32_t *)(DataStructureCounter + 0x1654);
@@ -128742,42 +128742,42 @@ LAB_18012ac57:
     SystemMemoryAllocationResult = *(uint32_t *)(DataStructureCounter + 0x164c);
   }
   MemoryAllocationOffset = 0;
-  *(uint32_t *)(plStack_238 + 0xf) = SystemMemoryAllocationResult;
-  if (*(char *)((long long)plStack_238 + 0xae) != '\0') {
-    *(uint32_t *)(plStack_238 + 0xf) = 0;
+  *(uint32_t *)(pSystemMemoryOffset238 + 0xf) = SystemMemoryAllocationResult;
+  if (*(char *)((long long)pSystemMemoryOffset238 + 0xae) != '\0') {
+    *(uint32_t *)(pSystemMemoryOffset238 + 0xf) = 0;
   }
-  if (((int)plStack_238[0x80] == 0x7fffffff) || (CharacterByteCount3 = (int)plStack_238[0x7e], CharacterByteCount3 == -1)) {
+  if (((int)pSystemMemoryOffset238[0x80] == 0x7fffffff) || (CharacterByteCount3 = (int)pSystemMemoryOffset238[0x7e], CharacterByteCount3 == -1)) {
     CharacterByteCount3 = 0x7fffffff;
   }
   else {
-    CharacterByteCount3 = ((int)plStack_238[0x80] + 1 + CharacterByteCount3) % (CharacterByteCount3 + 1);
+    CharacterByteCount3 = ((int)pSystemMemoryOffset238[0x80] + 1 + CharacterByteCount3) % (CharacterByteCount3 + 1);
   }
-  *(int *)(plStack_238 + 0x7f) = CharacterByteCount3;
-  if ((*(int *)((long long)plStack_238 + 0x404) == 0x7fffffff) ||
-     (CharacterByteCount3 = *(int *)((long long)plStack_238 + 0x3f4), CharacterByteCount3 == -1)) {
+  *(int *)(pSystemMemoryOffset238 + 0x7f) = CharacterByteCount3;
+  if ((*(int *)((long long)pSystemMemoryOffset238 + 0x404) == 0x7fffffff) ||
+     (CharacterByteCount3 = *(int *)((long long)pSystemMemoryOffset238 + 0x3f4), CharacterByteCount3 == -1)) {
     CharacterByteCount3 = 0x7fffffff;
   }
   else {
-    CharacterByteCount3 = (*(int *)((long long)plStack_238 + 0x404) + 1 + CharacterByteCount3) % (CharacterByteCount3 + 1);
+    CharacterByteCount3 = (*(int *)((long long)pSystemMemoryOffset238 + 0x404) + 1 + CharacterByteCount3) % (CharacterByteCount3 + 1);
   }
-  *(int *)((long long)plStack_238 + 0x3fc) = CharacterByteCount3;
+  *(int *)((long long)pSystemMemoryOffset238 + 0x3fc) = CharacterByteCount3;
   StatusBuffer8 = &uStack_1d8;
-  *(uint32_t *)((long long)plStack_238 + 0x3f4) = 0xffffffff;
-  *(uint32_t *)(plStack_238 + 0x7e) = 0xffffffff;
-  *(uint32_t *)((long long)plStack_238 + 0x404) = 0x7fffffff;
-  *(uint32_t *)(plStack_238 + 0x80) = 0x7fffffff;
-  PrimaryProcessingStatusFlag7 = (uint32_t *)FUN_1801293e0(StatusBuffer8,plStack_238,1);
-  CharacterCode4 = plStack_238;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x3f4) = 0xffffffff;
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x7e) = 0xffffffff;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x404) = 0x7fffffff;
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x80) = 0x7fffffff;
+  PrimaryProcessingStatusFlag7 = (uint32_t *)FUN_1801293e0(StatusBuffer8,pSystemMemoryOffset238,1);
+  CharacterCode4 = pSystemMemoryOffset238;
   uStack_210 = (uint)StatusBuffer8 & 0xffffff00;
   SystemMemoryAllocationResult = PrimaryProcessingStatusFlag7[1];
-  *(uint32_t *)((long long)plStack_238 + 0x8c) = *PrimaryProcessingStatusFlag7;
-  *(uint32_t *)(plStack_238 + 0x12) = SystemMemoryAllocationResult;
-  *(uint32_t *)((long long)plStack_238 + 0x94) = 0x7f7fffff;
-  *(uint32_t *)(plStack_238 + 0x13) = 0x7f7fffff;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x8c) = *PrimaryProcessingStatusFlag7;
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x12) = SystemMemoryAllocationResult;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x94) = 0x7f7fffff;
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x13) = 0x7f7fffff;
   SystemContextValue = SystemConfigurationHandle;
   if ((StringBuffer != '\0') && ((ProcessingStatusFlag >> 0xc & 1) == 0)) {
     if ((ProcessingStatusFlag >> 0x1a & 1) == 0) {
-      if (((*(byte *)((long long)plStack_238 + 0x432) & 1) != 0) || (MemoryAllocationIndex9 == 0)) {
+      if (((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) != 0) || (MemoryAllocationIndex9 == 0)) {
         uStack_210 = (uint)((ProcessingStatusFlag >> 0x19 & 1) == 0);
       }
     }
@@ -128789,18 +128789,18 @@ LAB_18012ac57:
   SystemFlagB = 0;
   OperationStatus = 0;
   FloatValue34 = *(float *)(DataStructureCounter + 0x19f8) * 1.35;
-  FloatValue33 = *(float *)(DataStructureCounter + 0x19f8) * 0.2 + *(float *)(plStack_238 + 0xf) + 1.0;
+  FloatValue33 = *(float *)(DataStructureCounter + 0x19f8) * 0.2 + *(float *)(pSystemMemoryOffset238 + 0xf) + 1.0;
   if (FloatValue33 <= FloatValue34) {
     FloatValue33 = FloatValue34;
   }
   uStack_1b0 = (unsigned long long)(*(char *)(DataStructureCounter + 0xcb) != '\0') + 1;
   FloatValue33 = (float)(int)FloatValue33;
-  if ((((*(char *)((long long)plStack_238 + 0xb2) == '\0') &&
-       ((*(byte *)((long long)plStack_238 + 0xc) & 0x42) == 0)) &&
-      (*(int *)((long long)plStack_238 + 0xc4) < 1)) &&
-     (((int)plStack_238[0x19] < 1 && ((char)plStack_238[0x16] != '\0')))) {
+  if ((((*(char *)((long long)pSystemMemoryOffset238 + 0xb2) == '\0') &&
+       ((*(byte *)((long long)pSystemMemoryOffset238 + 0xc) & 0x42) == 0)) &&
+      (*(int *)((long long)pSystemMemoryOffset238 + 0xc4) < 1)) &&
+     (((int)pSystemMemoryOffset238[0x19] < 1 && ((char)pSystemMemoryOffset238[0x16] != '\0')))) {
     FloatValue36 = *(float *)(SystemConfigurationHandle + 0x19f8) * 1.35;
-    FloatValue34 = *(float *)(plStack_238 + 0xf) + 1.0 + *(float *)(SystemConfigurationHandle + 0x19f8) * 0.2;
+    FloatValue34 = *(float *)(pSystemMemoryOffset238 + 0xf) + 1.0 + *(float *)(SystemConfigurationHandle + 0x19f8) * 0.2;
     fStack_170 = (float)(-(uint)(*(char *)(SystemConfigurationHandle + 0xcb) != '\0') & 4);
     if (FloatValue34 <= FloatValue36) {
       FloatValue34 = FloatValue36;
@@ -128986,29 +128986,29 @@ LAB_18012b465:
   }
   MemoryAllocationIndex9 = (uint)UnicodeCharacterValue;
   pSystemFloatValue = (float *)0x180bf66e8;
-  if (*(char *)((long long)plStack_238 + 0xae) != '\0') {
-    if (*(char *)(plStack_238[5] + 0x49) == '\0') {
-      *(long long *)(plStack_238[5] + 8) = plStack_238[8];
+  if (*(char *)((long long)pSystemMemoryOffset238 + 0xae) != '\0') {
+    if (*(char *)(pSystemMemoryOffset238[5] + 0x49) == '\0') {
+      *(long long *)(pSystemMemoryOffset238[5] + 8) = pSystemMemoryOffset238[8];
     }
-    if (*(char *)(plStack_238[5] + 0x4a) == '\0') {
-      *(long long *)(plStack_238[5] + 0x10) = plStack_238[9];
+    if (*(char *)(pSystemMemoryOffset238[5] + 0x4a) == '\0') {
+      *(long long *)(pSystemMemoryOffset238[5] + 0x10) = pSystemMemoryOffset238[9];
     }
-    StatusBuffer8 = (void *)FUN_18011feb0(plStack_238[5]);
+    StatusBuffer8 = (void *)FUN_18011feb0(pSystemMemoryOffset238[5]);
     DataContentStatus = *StatusBuffer8;
     SystemUnsignedValue160 = StatusBuffer8[1];
   }
-  *(void *)((long long)plStack_238 + 0x34) = *(void *)(plStack_238[5] + 8);
-  if ((*(float *)(plStack_238 + 9) <= 0.0) || ((UnicodeCharacterValue & 0x2000040) != 0)) {
+  *(void *)((long long)pSystemMemoryOffset238 + 0x34) = *(void *)(pSystemMemoryOffset238[5] + 8);
+  if ((*(float *)(pSystemMemoryOffset238 + 9) <= 0.0) || ((UnicodeCharacterValue & 0x2000040) != 0)) {
     FloatValue34 = *(float *)(DataStructureCounter + 0x19f8) * 16.0;
   }
   else {
-    FloatValue34 = *(float *)(plStack_238 + 9) * 0.65;
+    FloatValue34 = *(float *)(pSystemMemoryOffset238 + 9) * 0.65;
   }
-  *(float *)((long long)plStack_238 + 0x284) = (float)(int)FloatValue34;
-  FUN_180291500(plStack_238[0x5d]);
-  *(uint *)(plStack_238[0x5d] + 0x30) =
+  *(float *)((long long)pSystemMemoryOffset238 + 0x284) = (float)(int)FloatValue34;
+  FUN_180291500(pSystemMemoryOffset238[0x5d]);
+  *(uint *)(pSystemMemoryOffset238[0x5d] + 0x30) =
        -(uint)(*(char *)(DataStructureCounter + 0x16c1) != '\0') & 2 | (uint)(*(char *)(DataStructureCounter + 0x16c0) != '\0');
-  SystemContextValue = plStack_238[0x5d];
+  SystemContextValue = pSystemMemoryOffset238[0x5d];
   SystemValue1c8 = *(void *)(*(long long *)(*(long long *)(DataStructureCounter + 0x19f0) + 0x58) + 8);
   ProcessSystemDataAndConfiguration(SystemContextValue + 0x70,&SystemValue1c8);
   FUN_180291a50(SystemContextValue);
@@ -129022,8 +129022,8 @@ LAB_18012b465:
   }
   ProcessSystemParameters(StatusBuffer8,PrimaryProcessingStatusFlag5);
   if ((((MemoryAllocationIndex9 >> 0x1b & 1) == 0) ||
-      (CharacterCode4 = (long long *)FUN_18012ea90(), plStack_238 != CharacterCode4)) ||
-     (0 < *(int *)((long long)plStack_238 + 0xdc))) {
+      (CharacterCode4 = (long long *)FUN_18012ea90(), pSystemMemoryOffset238 != CharacterCode4)) ||
+     (0 < *(int *)((long long)pSystemMemoryOffset238 + 0xdc))) {
     HighByte8 = 0;
   }
   else {
@@ -129031,9 +129031,9 @@ LAB_18012b465:
   }
   SystemContextValue = *(long long *)(DataStructureCounter + 0x1ce0);
   if ((SystemContextValue == 0) ||
-     ((plStack_238 != *(long long **)(SystemContextValue + 0x3a0) &&
+     ((pSystemMemoryOffset238 != *(long long **)(SystemContextValue + 0x3a0) &&
       (((CharacterCode4 = *(long long **)(DataStructureCounter + 0x1ce8), CharacterCode4 == (long long *)0x0 ||
-        (plStack_238 != CharacterCode4)) || (CharacterCode4[5] == *(long long *)(SystemContextValue + 0x28))))))) {
+        (pSystemMemoryOffset238 != CharacterCode4)) || (CharacterCode4[5] == *(long long *)(SystemContextValue + 0x28))))))) {
     LowByte1 = false;
   }
   else {
@@ -129048,15 +129048,15 @@ LAB_18012b465:
     SystemMemoryAllocationResult = ValidateSystemData(&fStack_1f8);
     pfStack_250 = (float *)CONCAT44(pfStack_250.HighPart,0xf);
     pfStack_258 = (float *)((unsigned long long)pfStack_258 & 0xffffffff00000000);
-    ProcessSystemDataAndConfigure(plStack_238[0x5d],&DataContentStatus,&SystemUnsignedValue160,SystemMemoryAllocationResult);
-    if ((LowByte1) && (plStack_238 == *(long long **)(DataStructureCounter + 0x1ce0))) {
-      FUN_18010e720(plStack_238,&uStack_1d8);
+    ProcessSystemDataAndConfigure(pSystemMemoryOffset238[0x5d],&DataContentStatus,&SystemUnsignedValue160,SystemMemoryAllocationResult);
+    if ((LowByte1) && (pSystemMemoryOffset238 == *(long long **)(DataStructureCounter + 0x1ce0))) {
+      FUN_18010e720(pSystemMemoryOffset238,&uStack_1d8);
       FUN_18010e610(&uStack_1d8);
       if ((float)uStack_1d8 <= (float)DataContentStatus) {
         if (((uStack_1d8.HighPart <= DataContentStatus.HighPart) && ((float)SystemUnsignedValue160 <= fStack_1d0)) &&
            (SystemUnsignedValue160.HighPart <= fStack_1cc)) goto LAB_18012b82d;
       }
-      SystemContextValue = plStack_238[0x5d];
+      SystemContextValue = pSystemMemoryOffset238[0x5d];
       SystemMemoryAllocationResult = *(uint32_t *)(DataStructureCounter + 0x1634);
       fStack_1f8 = *(float *)(SystemConfigurationHandle + 0x19b8);
       fStack_1f4 = *(float *)(SystemConfigurationHandle + 0x19bc);
@@ -129072,23 +129072,23 @@ LAB_18012b465:
 LAB_18012b82d:
   ProcessingStatusFlag = uStack_210;
   SystemContextValue = *(long long *)(DataStructureCounter + 0x1cd8);
-  FloatValue34 = *(float *)(plStack_238 + 0xf);
-  FloatValue36 = *(float *)((long long)plStack_238 + 0x7c);
+  FloatValue34 = *(float *)(pSystemMemoryOffset238 + 0xf);
+  FloatValue36 = *(float *)((long long)pSystemMemoryOffset238 + 0x7c);
   if (SystemContextValue == 0) {
     SystemContextValue = *(long long *)(DataStructureCounter + 0x1c98);
   }
   if (((char)uStack_210 == '\0') &&
      ((SystemContextValue == 0 ||
-      ((plStack_238[0x76] != *(long long *)(SystemContextValue + 0x3b0) &&
-       ((plStack_238[0x81] == 0 || (plStack_238[0x81] != *(long long *)(SystemContextValue + 0x408))))))))) {
+      ((pSystemMemoryOffset238[0x76] != *(long long *)(SystemContextValue + 0x3b0) &&
+       ((pSystemMemoryOffset238[0x81] == 0 || (pSystemMemoryOffset238[0x81] != *(long long *)(SystemContextValue + 0x408))))))))) {
     HighByte8 = 0;
   }
   else {
     HighByte8 = 1;
   }
-  FUN_180120c80(plStack_238,&fStack_180);
-  CharacterCode4 = plStack_238;
-  if (*(char *)((long long)plStack_238 + 0xb2) == '\0') {
+  FUN_180120c80(pSystemMemoryOffset238,&fStack_180);
+  CharacterCode4 = pSystemMemoryOffset238;
+  if (*(char *)((long long)pSystemMemoryOffset238 + 0xb2) == '\0') {
     SystemUnsignedValue1A0 = CONCAT44(SystemUnsignedValue1A0.HighPart,MemoryAllocationIndex9) & 0xffffffff00000080;
     if ((UnicodeCharacterValue & 0x80) == 0) {
       LowByte1 = false;
@@ -129115,7 +129115,7 @@ LAB_18012b82d:
       fStack_1f0 = pSystemContextPrimaryFloat6[2];
       fStack_1ec = pSystemContextPrimaryFloat6[3] * *(float *)(SystemConfigurationHandle + 0x1628);
       ProcessingStatusFlag = ValidateSystemData(&fStack_1f8);
-      if (*(char *)((long long)plStack_238 + 0xae) == '\0') {
+      if (*(char *)((long long)pSystemMemoryOffset238 + 0xae) == '\0') {
         FloatValue38 = 1.0;
         if (*(int *)(DataStructureCounter + 0x1be8) != 0) {
           FloatValue38 = *(float *)(DataStructureCounter + 0x1c38);
@@ -129138,16 +129138,16 @@ LAB_18012b82d:
       else {
         ProcessingStatusFlag = ProcessingStatusFlag | 0xff000000;
         if (LowByte1) {
-          *(float *)(plStack_238[5] + 0x6c) = *(float *)(plStack_238[5] + 0x6c) * 0.5;
+          *(float *)(pSystemMemoryOffset238[5] + 0x6c) = *(float *)(pSystemMemoryOffset238[5] + 0x6c) * 0.5;
         }
       }
-      fStack_124 = *(float *)((long long)plStack_238 + 0x4c) +
-                   *(float *)((long long)plStack_238 + 0x44);
-      fStack_128 = *(float *)(plStack_238 + 9) + *(float *)(plStack_238 + 8);
-      SystemContextValue = plStack_238[0x5d];
-      fStack_12c = (float)FUN_18010e760(plStack_238);
-      fStack_12c = fStack_12c + *(float *)((long long)plStack_238 + 0x44);
-      fStack_130 = *(float *)(plStack_238 + 8);
+      fStack_124 = *(float *)((long long)pSystemMemoryOffset238 + 0x4c) +
+                   *(float *)((long long)pSystemMemoryOffset238 + 0x44);
+      fStack_128 = *(float *)(pSystemMemoryOffset238 + 9) + *(float *)(pSystemMemoryOffset238 + 8);
+      SystemContextValue = pSystemMemoryOffset238[0x5d];
+      fStack_12c = (float)FUN_18010e760(pSystemMemoryOffset238);
+      fStack_12c = fStack_12c + *(float *)((long long)pSystemMemoryOffset238 + 0x44);
+      fStack_130 = *(float *)(pSystemMemoryOffset238 + 8);
       SystemMemoryAllocationResult = 0xc;
       if ((UnicodeCharacterValue & 1) != 0) {
         SystemMemoryAllocationResult = 0xf;
@@ -129158,7 +129158,7 @@ LAB_18012b82d:
     }
     LowByte1 = false;
     *(uint32_t *)(DataStructureCounter + 0x1be8) = 0;
-    if (((UnicodeCharacterValue & 1) == 0) && ((*(byte *)((long long)plStack_238 + 0x432) & 1) == 0)) {
+    if (((UnicodeCharacterValue & 1) == 0) && ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) == 0)) {
       pSystemContextPrimaryFloat6 = (float *)(SystemConfigurationHandle + 0x1628 + ((unsigned long long)HighByte8 + 0x14) * 0x10);
       fStack_1f8 = *pSystemContextPrimaryFloat6;
       fStack_1f4 = pSystemContextPrimaryFloat6[1];
@@ -129167,13 +129167,13 @@ LAB_18012b82d:
       SystemMemoryAllocationResult = ValidateSystemData(&fStack_1f8);
       pfStack_250 = (float *)CONCAT44(pfStack_250.HighPart,3);
       pfStack_258 = (float *)CONCAT44(pfStack_258.HighPart,FloatValue34);
-      ProcessSystemDataAndConfigure(plStack_238[0x5d],&fStack_180,&NormalizationResult,SystemMemoryAllocationResult);
+      ProcessSystemDataAndConfigure(pSystemMemoryOffset238[0x5d],&fStack_180,&NormalizationResult,SystemMemoryAllocationResult);
     }
     if ((MemoryAllocationIndex9 >> 10 & 1) != 0) {
-      FUN_18010e7f0(plStack_238,&fStack_198);
-      QuaternaryReturnCode = FUN_18010e720(plStack_238,&uStack_1d8);
+      FUN_18010e7f0(pSystemMemoryOffset238,&fStack_198);
+      QuaternaryReturnCode = FUN_18010e720(pSystemMemoryOffset238,&uStack_1d8);
       ProcessFloatCalculation(&fStack_198,QuaternaryReturnCode);
-      SystemContextValue = plStack_238[0x5d];
+      SystemContextValue = pSystemMemoryOffset238[0x5d];
       FloatValue38 = FloatValue34;
       if ((UnicodeCharacterValue & 1) == 0) {
         FloatValue38 = 0.0;
@@ -129189,8 +129189,8 @@ LAB_18012b82d:
       FloatValue38 = *(float *)(DataStructureCounter + 0x1668);
       if ((0.0 < FloatValue38) &&
          (fStack_18c <
-          *(float *)((long long)plStack_238 + 0x4c) + *(float *)((long long)plStack_238 + 0x44))) {
-        SystemContextValue = plStack_238[0x5d];
+          *(float *)((long long)pSystemMemoryOffset238 + 0x4c) + *(float *)((long long)pSystemMemoryOffset238 + 0x44))) {
+        SystemContextValue = pSystemMemoryOffset238[0x5d];
         fStack_1f8 = *(float *)(SystemConfigurationHandle + 0x1718);
         fStack_1f4 = *(float *)(SystemConfigurationHandle + 0x171c);
         fStack_1f0 = *(float *)(SystemConfigurationHandle + 0x1720);
@@ -129203,7 +129203,7 @@ LAB_18012b82d:
         AllocateMemoryAndConfigure(SystemContextValue,&fStack_138,&uStack_1d8,SystemMemoryAllocationResult);
       }
     }
-    SystemContextValue = plStack_238[0x81];
+    SystemContextValue = pSystemMemoryOffset238[0x81];
     if ((SystemContextValue != 0) && ((*(byte *)(SystemContextValue + 0xa0) & 0x40) != 0)) {
       fStack_1f8 = *(float *)(SystemContextValue + 0x38);
       fStack_1f4 = *(float *)(SystemContextValue + 0x3c);
@@ -129212,14 +129212,14 @@ LAB_18012b82d:
       fStack_1ec = (float)(int)(*(float *)(DataStructureCounter + 0x19f8) * 0.55);
       fStack_1f0 = fStack_1f8 + fStack_1ec;
       fStack_1ec = fStack_1f4 + fStack_1ec;
-      SystemMemoryAllocationResult = FUN_180123c00(plStack_238,SystemDataTablePointerC0,0);
+      SystemMemoryAllocationResult = FUN_180123c00(pSystemMemoryOffset238,SystemDataTablePointerC0,0);
       pfStack_258.LowPart = 0x20;
       CharacterStatus1 = ProcessSystemParameters(&fStack_1f8,SystemMemoryAllocationResult,acStack_21f,&cStack_220);
       if (CharacterStatus1 != '\0') {
-        *(byte *)(plStack_238[0x81] + 0xa1) = *(byte *)(plStack_238[0x81] + 0xa1) | 0x10;
+        *(byte *)(pSystemMemoryOffset238[0x81] + 0xa1) = *(byte *)(pSystemMemoryOffset238[0x81] + 0xa1) | 0x10;
       }
       if (((cStack_220 == '\0') || (acStack_21f[0] == '\0')) &&
-         (((*(byte *)(plStack_238[0x81] + 0xa0) & 8) == 0 || (acStack_21f[0] != '\0')))) {
+         (((*(byte *)(pSystemMemoryOffset238[0x81] + 0xa0) & 8) == 0 || (acStack_21f[0] != '\0')))) {
         SystemContextValue = (unsigned long long)(acStack_21f[0] != '\0') + 0x15;
       }
       else {
@@ -129234,21 +129234,21 @@ LAB_18012b82d:
       fStack_13c = OperationStatus.HighPart + FloatValue38;
       fStack_140 = (float)OperationStatus;
       CoreEngineUnsignedValue208 = CONCAT44(OperationStatus.HighPart,(float)OperationStatus + FloatValue38);
-      ConfigureRenderParameters(plStack_238[0x5d],&OperationStatus,&CoreEngineUnsignedValue208,&fStack_140);
+      ConfigureRenderParameters(pSystemMemoryOffset238[0x5d],&OperationStatus,&CoreEngineUnsignedValue208,&fStack_140);
     }
-    if (*(char *)((long long)plStack_238 + 0xac) != '\0') {
+    if (*(char *)((long long)pSystemMemoryOffset238 + 0xac) != '\0') {
       FUN_180110540(0);
     }
-    if (*(char *)((long long)plStack_238 + 0xad) != '\0') {
+    if (*(char *)((long long)pSystemMemoryOffset238 + 0xad) != '\0') {
       FUN_180110540(1);
     }
     if ((UnicodeCharacterValue & 2) == 0) {
       SystemContextValue = 0;
       do {
-        FloatValue38 = *(float *)(plStack_238 + 8);
-        FloatValue37 = *(float *)((long long)plStack_238 + 0x44);
-        FloatValue38 = ((FloatValue38 + *(float *)(plStack_238 + 9)) - FloatValue38) * pSystemFloatValue[-2] + FloatValue38;
-        FloatValue37 = ((FloatValue37 + *(float *)((long long)plStack_238 + 0x4c)) - FloatValue37) * pSystemFloatValue[-1] +
+        FloatValue38 = *(float *)(pSystemMemoryOffset238 + 8);
+        FloatValue37 = *(float *)((long long)pSystemMemoryOffset238 + 0x44);
+        FloatValue38 = ((FloatValue38 + *(float *)(pSystemMemoryOffset238 + 9)) - FloatValue38) * pSystemFloatValue[-2] + FloatValue38;
+        FloatValue37 = ((FloatValue37 + *(float *)((long long)pSystemMemoryOffset238 + 0x4c)) - FloatValue37) * pSystemFloatValue[-1] +
                  FloatValue37;
         if (LowByte1) {
           fStack_170 = FloatValue36;
@@ -129266,7 +129266,7 @@ LAB_18012b82d:
         }
         fStack_188 = FloatValue35 * *pSystemFloatValue + FloatValue38;
         fStack_184 = *pSystemContextPrimaryFloat6 * pSystemFloatValue[1] + FloatValue37;
-        ProcessSystemDataAndConfiguration(plStack_238[0x5d] + 0x80,&fStack_188);
+        ProcessSystemDataAndConfiguration(pSystemMemoryOffset238[0x5d] + 0x80,&fStack_188);
         if (LowByte1) {
           fStack_108 = FloatValue33;
           fStack_104 = FloatValue36;
@@ -129283,12 +129283,12 @@ LAB_18012b82d:
         }
         fStack_118 = FloatValue35 * *pSystemFloatValue + FloatValue38;
         fStack_114 = *pSystemContextPrimaryFloat6 * pSystemFloatValue[1] + FloatValue37;
-        ProcessSystemDataAndConfiguration(plStack_238[0x5d] + 0x80,&fStack_118);
+        ProcessSystemDataAndConfiguration(pSystemMemoryOffset238[0x5d] + 0x80,&fStack_118);
         pfStack_258 = (float *)CONCAT44(pfStack_258.HighPart,pSystemFloatValue[3]);
         SystemValue1c8 = CONCAT44((FloatValue36 + FloatValue34) * pSystemFloatValue[1] + FloatValue37,
                               (FloatValue36 + FloatValue34) * *pSystemFloatValue + FloatValue38);
-        FUN_180293730(plStack_238[0x5d],&SystemValue1c8);
-        LoopIterationCounter7 = plStack_238[0x5d];
+        FUN_180293730(pSystemMemoryOffset238[0x5d],&SystemValue1c8);
+        LoopIterationCounter7 = pSystemMemoryOffset238[0x5d];
         CheckSystemStatusAndProcess(LoopIterationCounter7,*(void *)(LoopIterationCounter7 + 0x88),*(uint32_t *)(LoopIterationCounter7 + 0x80),
                       *(uint32_t *)((long long)&SystemFlagB + SystemContextValue * 4));
         LowByte1 = (bool)(LowByte1 ^ 1);
@@ -129298,16 +129298,16 @@ LAB_18012b82d:
       } while (SystemContextValue < uStack_1b0);
     }
     if ((0.0 < FloatValue36) && ((int)SystemUnsignedValue1A0 == 0)) {
-      SystemContextValue = plStack_238[0x5d];
+      SystemContextValue = pSystemMemoryOffset238[0x5d];
       SystemFlagB = *(void *)(SystemConfigurationHandle + 0x1718);
       OperationStatus = CONCAT44(*(float *)(SystemConfigurationHandle + 0x1724) * *(float *)(SystemConfigurationHandle + 0x1628                           ,*(uint32_t *)(SystemConfigurationHandle + 0x1720));
       ProcessingStatusFlag = ValidateSystemData(&SystemFlagB);
-      FloatValue38 = *(float *)(plStack_238 + 8) + *(float *)(plStack_238 + 9);
-      FloatValue37 = *(float *)((long long)plStack_238 + 0x44) + *(float *)((long long)plStack_238 + 0x4c);
+      FloatValue38 = *(float *)(pSystemMemoryOffset238 + 8) + *(float *)(pSystemMemoryOffset238 + 9);
+      FloatValue37 = *(float *)((long long)pSystemMemoryOffset238 + 0x44) + *(float *)((long long)pSystemMemoryOffset238 + 0x4c);
       if ((ProcessingStatusFlag & 0xff000000) != 0) {
         pfStack_258 = (float *)CONCAT44(pfStack_258.HighPart,0xf);
-        SystemValue1c8 = CONCAT44(*(float *)((long long)plStack_238 + 0x44) + 0.5,
-                              *(float *)(plStack_238 + 8) + 0.5);
+        SystemValue1c8 = CONCAT44(*(float *)((long long)pSystemMemoryOffset238 + 0x44) + 0.5,
+                              *(float *)(pSystemMemoryOffset238 + 8) + 0.5);
         if ((*(byte *)(SystemContextValue + 0x30) & 1) == 0) {
           FloatValue38 = FloatValue38 - 0.49;
           FloatValue37 = FloatValue37 - 0.49;
@@ -129323,8 +129323,8 @@ LAB_18012b82d:
     }
     if (CoreEngineUnsignedValue != 0xffffffff) {
       pfStack_258 = (float *)((unsigned long long)pfStack_258 & 0xffffffff00000000);
-      FUN_1801296e0(&SystemValue1c8,plStack_238,CoreEngineUnsignedValue,FloatValue33);
-      SystemContextValue = plStack_238[0x5d];
+      FUN_1801296e0(&SystemValue1c8,pSystemMemoryOffset238,CoreEngineUnsignedValue,FloatValue33);
+      SystemContextValue = pSystemMemoryOffset238[0x5d];
       uStack_1b0 = *(long long *)(SystemConfigurationHandle + 0x1898);
       SystemValue1a8 = *(uint32_t *)(SystemConfigurationHandle + 0x18a0);
       fStack_1a4 = *(float *)(SystemConfigurationHandle + 0x18a4) * *(float *)(SystemConfigurationHandle + 0x1628);
@@ -129338,8 +129338,8 @@ LAB_18012b82d:
     FloatValue33 = *(float *)(DataStructureCounter + 0x1668);
     ProcessingStatusFlag = uStack_210;
     if (((0.0 < FloatValue33) && ((UnicodeCharacterValue & 1) == 0)) &&
-       ((*(byte *)((long long)plStack_238 + 0x432) & 1) == 0)) {
-      SystemContextValue = plStack_238[0x5d];
+       ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) == 0)) {
+      SystemContextValue = pSystemMemoryOffset238[0x5d];
       fStack_118 = *(float *)(SystemConfigurationHandle + 0x1718);
       fStack_114 = *(float *)(SystemConfigurationHandle + 0x171c);
       uStack_110 = *(uint32_t *)(SystemConfigurationHandle + 0x1720);
@@ -129354,7 +129354,7 @@ LAB_18012b82d:
   }
   else {
     SystemMemoryAllocationResult = *(uint32_t *)(DataStructureCounter + 0x1668);
-    *(uint32_t *)(DataStructureCounter + 0x1668) = *(uint32_t *)((long long)plStack_238 + 0x7c);
+    *(uint32_t *)(DataStructureCounter + 0x1668) = *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x7c);
     if ((HighByte8 == 0) || (SystemContextValue = 0x150, *(char *)(DataStructureCounter + 0x1d06) != '\0')) {
       SystemContextValue = 0x160;
     }
@@ -129368,139 +129368,139 @@ LAB_18012b82d:
     *(uint32_t *)(DataStructureCounter + 0x1668) = SystemMemoryAllocationResult;
   }
   pSystemFloatValue = (float *)(DataStructureCounter + 0x1668);
-  plStack_238[0xb] = plStack_238[10];
-  *(float *)(plStack_238 + 0x4e) =
-       (*(float *)(plStack_238 + 8) - *(float *)((long long)plStack_238 + 0x8c)) +
-       *(float *)(plStack_238 + 0xe);
-  FloatValue38 = (float)FUN_18010e760(plStack_238);
-  FloatValue33 = *(float *)((long long)plStack_238 + 0x44);
-  FloatValue34 = *(float *)(plStack_238 + 0x12);
-  FloatValue36 = *(float *)((long long)plStack_238 + 0x74);
+  pSystemMemoryOffset238[0xb] = pSystemMemoryOffset238[10];
+  *(float *)(pSystemMemoryOffset238 + 0x4e) =
+       (*(float *)(pSystemMemoryOffset238 + 8) - *(float *)((long long)pSystemMemoryOffset238 + 0x8c)) +
+       *(float *)(pSystemMemoryOffset238 + 0xe);
+  FloatValue38 = (float)FUN_18010e760(pSystemMemoryOffset238);
+  FloatValue33 = *(float *)((long long)pSystemMemoryOffset238 + 0x44);
+  FloatValue34 = *(float *)(pSystemMemoryOffset238 + 0x12);
+  FloatValue36 = *(float *)((long long)pSystemMemoryOffset238 + 0x74);
   FloatValue37 = (float)GetSystemTime();
-  *(float *)((long long)plStack_238 + 0x274) = FloatValue37 + FloatValue38 + (FloatValue33 - FloatValue34) + FloatValue36;
-  FloatValue33 = *(float *)(plStack_238 + 0xd);
+  *(float *)((long long)pSystemMemoryOffset238 + 0x274) = FloatValue37 + FloatValue38 + (FloatValue33 - FloatValue34) + FloatValue36;
+  FloatValue33 = *(float *)(pSystemMemoryOffset238 + 0xd);
   if (FloatValue33 == 0.0) {
-    FloatValue33 = *(float *)(plStack_238 + 9) - *(float *)((long long)plStack_238 + 0xa4);
+    FloatValue33 = *(float *)(pSystemMemoryOffset238 + 9) - *(float *)((long long)pSystemMemoryOffset238 + 0xa4);
   }
-  *(float *)(plStack_238 + 0x4f) =
-       ((*(float *)(plStack_238 + 8) - *(float *)((long long)plStack_238 + 0x8c)) -
-       *(float *)(plStack_238 + 0xe)) + FloatValue33;
-  FloatValue33 = *(float *)((long long)plStack_238 + 0x6c);
+  *(float *)(pSystemMemoryOffset238 + 0x4f) =
+       ((*(float *)(pSystemMemoryOffset238 + 8) - *(float *)((long long)pSystemMemoryOffset238 + 0x8c)) -
+       *(float *)(pSystemMemoryOffset238 + 0xe)) + FloatValue33;
+  FloatValue33 = *(float *)((long long)pSystemMemoryOffset238 + 0x6c);
   if (FloatValue33 == 0.0) {
-    FloatValue33 = *(float *)((long long)plStack_238 + 0x4c) - *(float *)(plStack_238 + 0x15);
+    FloatValue33 = *(float *)((long long)pSystemMemoryOffset238 + 0x4c) - *(float *)(pSystemMemoryOffset238 + 0x15);
   }
-  *(float *)((long long)plStack_238 + 0x27c) =
-       ((*(float *)((long long)plStack_238 + 0x44) - *(float *)(plStack_238 + 0x12)) -
-       *(float *)((long long)plStack_238 + 0x74)) + FloatValue33;
-  *(float *)((long long)plStack_238 + 0x204) =
-       *(float *)(plStack_238 + 0xe) - *(float *)((long long)plStack_238 + 0x8c);
+  *(float *)((long long)pSystemMemoryOffset238 + 0x27c) =
+       ((*(float *)((long long)pSystemMemoryOffset238 + 0x44) - *(float *)(pSystemMemoryOffset238 + 0x12)) -
+       *(float *)((long long)pSystemMemoryOffset238 + 0x74)) + FloatValue33;
+  *(float *)((long long)pSystemMemoryOffset238 + 0x204) =
+       *(float *)(pSystemMemoryOffset238 + 0xe) - *(float *)((long long)pSystemMemoryOffset238 + 0x8c);
   MemoryAllocationIndex = 0;
-  *(uint32_t *)(plStack_238 + 0x41) = 0;
-  *(uint32_t *)((long long)plStack_238 + 0x20c) = 0;
-  FUN_18010e7a0(plStack_238);
-  FUN_18010e760(plStack_238);
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x41) = 0;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x20c) = 0;
+  FUN_18010e7a0(pSystemMemoryOffset238);
+  FUN_18010e760(pSystemMemoryOffset238);
   QuaternaryReturnCode = ValidateSystemDataStructure(&uStack_1d8,
-                               *(float *)((long long)plStack_238 + 0x20c) +
-                               *(float *)((long long)plStack_238 + 0x204));
-  PrimaryProcessingStatusFlag7 = (uint32_t *)ProcessSystemDataStructure(&uStack_1b0,plStack_238 + 8,QuaternaryReturnCode);
+                               *(float *)((long long)pSystemMemoryOffset238 + 0x20c) +
+                               *(float *)((long long)pSystemMemoryOffset238 + 0x204));
+  PrimaryProcessingStatusFlag7 = (uint32_t *)ProcessSystemDataStructure(&uStack_1b0,pSystemMemoryOffset238 + 8,QuaternaryReturnCode);
   SystemMemoryAllocationResult = PrimaryProcessingStatusFlag7[1];
-  *(uint32_t *)(plStack_238 + 0x22) = *PrimaryProcessingStatusFlag7;
-  *(uint32_t *)((long long)plStack_238 + 0x114) = SystemMemoryAllocationResult;
-  plStack_238[0x20] = plStack_238[0x22];
-  plStack_238[0x21] = plStack_238[0x22];
-  plStack_238[0x23] = plStack_238[0x22];
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x22) = *PrimaryProcessingStatusFlag7;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x114) = SystemMemoryAllocationResult;
+  pSystemMemoryOffset238[0x20] = pSystemMemoryOffset238[0x22];
+  pSystemMemoryOffset238[0x21] = pSystemMemoryOffset238[0x22];
+  pSystemMemoryOffset238[0x23] = pSystemMemoryOffset238[0x22];
   PrimaryProcessingStatusFlag7 = (uint32_t *)ValidateSystemDataStructure(&uStack_1d8);
   SystemMemoryAllocationResult = PrimaryProcessingStatusFlag7[1];
-  *(uint32_t *)((long long)plStack_238 + 300) = *PrimaryProcessingStatusFlag7;
-  *(uint32_t *)(plStack_238 + 0x26) = SystemMemoryAllocationResult;
-  plStack_238[0x24] = *(long long *)((long long)plStack_238 + 300);
-  *(uint32_t *)((long long)plStack_238 + 0x134) = 0;
-  *(uint32_t *)(plStack_238 + 0x25) = 0;
-  *(uint8_t *)((long long)plStack_238 + 0x17c) = 0;
-  FloatValue33 = (float)FUN_1801293c0(plStack_238);
-  *(bool *)((long long)plStack_238 + 0x17d) = 0.0 < FloatValue33;
-  *(int *)((long long)plStack_238 + 0x174) = (int)plStack_238[0x2f];
-  *(uint32_t *)(plStack_238 + 0x2f) = 0;
-  *(uint8_t *)((long long)plStack_238 + 0x17e) = 0;
-  *(float *)(plStack_238 + 0x27) = *(float *)((long long)plStack_238 + 0x104) - 9999.0;
-  FUN_18013e200(plStack_238 + 0x31,0);
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 300) = *PrimaryProcessingStatusFlag7;
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x26) = SystemMemoryAllocationResult;
+  pSystemMemoryOffset238[0x24] = *(long long *)((long long)pSystemMemoryOffset238 + 300);
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x134) = 0;
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x25) = 0;
+  *(uint8_t *)((long long)pSystemMemoryOffset238 + 0x17c) = 0;
+  FloatValue33 = (float)FUN_1801293c0(pSystemMemoryOffset238);
+  *(bool *)((long long)pSystemMemoryOffset238 + 0x17d) = 0.0 < FloatValue33;
+  *(int *)((long long)pSystemMemoryOffset238 + 0x174) = (int)pSystemMemoryOffset238[0x2f];
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x2f) = 0;
+  *(uint8_t *)((long long)pSystemMemoryOffset238 + 0x17e) = 0;
+  *(float *)(pSystemMemoryOffset238 + 0x27) = *(float *)((long long)pSystemMemoryOffset238 + 0x104) - 9999.0;
+  FUN_18013e200(pSystemMemoryOffset238 + 0x31,0);
   SystemContextValue = lStack_158;
-  *(uint32_t *)(plStack_238 + 0x34) = 1;
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x34) = 1;
   if (lStack_158 == 0) {
     SystemMemoryAllocationResult = 1;
   }
   else {
     SystemMemoryAllocationResult = *(uint32_t *)(lStack_158 + 0x1a0);
   }
-  *(uint32_t *)((long long)plStack_238 + 0x1a4) = SystemMemoryAllocationResult;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x1a4) = SystemMemoryAllocationResult;
   if (lStack_158 != 0) {
     MemoryAllocationIndex = *(uint32_t *)(lStack_158 + 0x1a8);
   }
-  *(uint32_t *)(plStack_238 + 0x35) = MemoryAllocationIndex;
-  *(uint32_t *)((long long)plStack_238 + 0x1ac) = *(uint32_t *)((long long)plStack_238 + 0x284);
-  *(uint32_t *)(plStack_238 + 0x36) = 0xbf800000;
-  FUN_18013e340(plStack_238 + 0x37,0);
-  FUN_18013e2f0(plStack_238 + 0x39,0);
-  FUN_18013e2f0(plStack_238 + 0x3b,0);
-  plStack_238[0x42] = 0;
-  *(uint32_t *)((long long)plStack_238 + 0x13c) = 0;
-  *(uint32_t *)(plStack_238 + 0x28) = 0;
-  plStack_238[0x33] = (long long)(plStack_238 + 0x57);
-  FUN_18013db40(plStack_238 + 0x3d,0);
-  FUN_18011a9d0(plStack_238 + 0x51,3);
-  if ((DataProcessingFlags != 0) && ((int)plStack_238[0x35] != *(int *)(SystemContextValue + 0x1a8))) {
-    *(int *)(plStack_238 + 0x35) = *(int *)(SystemContextValue + 0x1a8);
-    FUN_18011d940(plStack_238 + 0x37,plStack_238 + 0x35);
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x35) = MemoryAllocationIndex;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x1ac) = *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x284);
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x36) = 0xbf800000;
+  FUN_18013e340(pSystemMemoryOffset238 + 0x37,0);
+  FUN_18013e2f0(pSystemMemoryOffset238 + 0x39,0);
+  FUN_18013e2f0(pSystemMemoryOffset238 + 0x3b,0);
+  pSystemMemoryOffset238[0x42] = 0;
+  *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x13c) = 0;
+  *(uint32_t *)(pSystemMemoryOffset238 + 0x28) = 0;
+  pSystemMemoryOffset238[0x33] = (long long)(pSystemMemoryOffset238 + 0x57);
+  FUN_18013db40(pSystemMemoryOffset238 + 0x3d,0);
+  FUN_18011a9d0(pSystemMemoryOffset238 + 0x51,3);
+  if ((DataProcessingFlags != 0) && ((int)pSystemMemoryOffset238[0x35] != *(int *)(SystemContextValue + 0x1a8))) {
+    *(int *)(pSystemMemoryOffset238 + 0x35) = *(int *)(SystemContextValue + 0x1a8);
+    FUN_18011d940(pSystemMemoryOffset238 + 0x37,pSystemMemoryOffset238 + 0x35);
   }
-  if (0 < *(int *)((long long)plStack_238 + 0xc4)) {
-    *(int *)((long long)plStack_238 + 0xc4) = *(int *)((long long)plStack_238 + 0xc4) + -1;
+  if (0 < *(int *)((long long)pSystemMemoryOffset238 + 0xc4)) {
+    *(int *)((long long)pSystemMemoryOffset238 + 0xc4) = *(int *)((long long)pSystemMemoryOffset238 + 0xc4) + -1;
   }
-  if (0 < (int)plStack_238[0x19]) {
-    *(int *)(plStack_238 + SystemNodeStatusOffset) = (int)plStack_238[0x19] + -1;
+  if (0 < (int)pSystemMemoryOffset238[0x19]) {
+    *(int *)(pSystemMemoryOffset238 + SystemNodeStatusOffset) = (int)pSystemMemoryOffset238[0x19] + -1;
   }
   if ((char)ProcessingStatusFlag != '\0') {
-    ValidateSystemDataTablePointer(plStack_238);
-    FUN_180131810(plStack_238,0);
+    ValidateSystemDataTablePointer(pSystemMemoryOffset238);
+    FUN_180131810(pSystemMemoryOffset238,0);
   }
   CharacterCodePointer = CoreEnginePointerBuffer150;
   if ((((CoreEnginePointerBuffer150 != (uint8_t *)0x0) &&
-       (LoopIterationCounter7 = plStack_238[5], *(char *)(LoopIterationCounter7 + 0x48) != '\0')) &&
+       (LoopIterationCounter7 = pSystemMemoryOffset238[5], *(char *)(LoopIterationCounter7 + 0x48) != '\0')) &&
       (MemoryBlockIndex0 = FUN_18012fae0(), LoopIterationCounter7 != MemoryBlockIndex0)) &&
-     (((*(byte *)((long long)plStack_238 + 0x432) & 1) == 0 ||
-      ((*(byte *)((long long)plStack_238 + 0x432) & 2) != 0)))) {
+     (((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) == 0 ||
+      ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 2) != 0)))) {
     *(uint8_t *)(LoopIterationCounter7 + 0x48) = 0;
     *(uint8_t *)(DataStructureCounter + 0x1cf8) = 0;
     *Utf8InputBufferPointer = 0;
   }
-  if (((UnicodeCharacterValue & 1) == 0) && ((*(byte *)((long long)plStack_238 + 0x432) & 1) == 0)) {
-    ProcessingStatusFlag = *(uint *)(plStack_238 + 0x35);
-    *(uint *)(plStack_238 + 0x35) = ProcessingStatusFlag | 0x10;
-    *(uint32_t *)((long long)plStack_238 + 0x16c) = 1;
-    *(uint32_t *)(plStack_238 + 0x2e) = 2;
+  if (((UnicodeCharacterValue & 1) == 0) && ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) == 0)) {
+    ProcessingStatusFlag = *(uint *)(pSystemMemoryOffset238 + 0x35);
+    *(uint *)(pSystemMemoryOffset238 + 0x35) = ProcessingStatusFlag | 0x10;
+    *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x16c) = 1;
+    *(uint32_t *)(pSystemMemoryOffset238 + 0x2e) = 2;
     if ((UnicodeCharacterValue & 0x20) == 0) {
-      CharacterCode4 = plStack_238 + 8;
-      SystemMemoryAllocationResult = FUN_180123c00(plStack_238,SystemDataTablePointerB0,0);
+      CharacterCode4 = pSystemMemoryOffset238 + 8;
+      SystemMemoryAllocationResult = FUN_180123c00(pSystemMemoryOffset238,SystemDataTablePointerB0,0);
       CharacterStatus1 = FUN_180110000(SystemMemoryAllocationResult,CharacterCode4,0);
       if (CharacterStatus1 != '\0') {
-        *(uint8_t *)((long long)plStack_238 + 0xb3) = 1;
+        *(uint8_t *)((long long)pSystemMemoryOffset238 + 0xb3) = 1;
       }
     }
     if (CoreEnginePointerBuffer150 != (uint8_t *)0x0) {
       FloatValue33 = *(float *)(DataStructureCounter + 0x19f8) * 0.5;
       QuaternaryReturnCode = ValidateSystemDataStructure(&uStack_1d8,
-                                   ((*(float *)(plStack_238 + 9) + *(float *)(plStack_238 + 8)) -
+                                   ((*(float *)(pSystemMemoryOffset238 + 9) + *(float *)(pSystemMemoryOffset238 + 8)) -
                                    *(float *)(DataStructureCounter + 0x165c)) - FloatValue33,
-                                   *(float *)((long long)plStack_238 + 0x44) +
+                                   *(float *)((long long)pSystemMemoryOffset238 + 0x44) +
                                    *(float *)(DataStructureCounter + 0x1660) + FloatValue33);
-      SystemMemoryAllocationResult = FUN_180123c00(plStack_238,SystemDataTablePointerD0,0);
+      SystemMemoryAllocationResult = FUN_180123c00(pSystemMemoryOffset238,SystemDataTablePointerD0,0);
       CharacterStatus1 = ProcessSystemStatus(SystemMemoryAllocationResult,QuaternaryReturnCode);
       if (CharacterStatus1 != '\0') {
         *CoreEnginePointerBuffer150 = 0;
       }
     }
-    *(uint32_t *)((long long)plStack_238 + 0x16c) = 0;
-    *(uint32_t *)(plStack_238 + 0x2e) = 1;
-    *(uint *)(plStack_238 + 0x35) = ProcessingStatusFlag;
+    *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x16c) = 0;
+    *(uint32_t *)(pSystemMemoryOffset238 + 0x2e) = 1;
+    *(uint *)(pSystemMemoryOffset238 + 0x35) = ProcessingStatusFlag;
     if ((UnicodeCharacterValue & 0x100000) == 0) {
       FloatValue33 = 0.0;
     }
@@ -129547,7 +129547,7 @@ LAB_18012b82d:
     }
     pfStack_248 = &fStack_198;
     pfStack_258 = (float *)&OperationStatus;
-    fStack_190 = (*(float *)(plStack_238 + 9) + *(float *)(plStack_238 + 8)) - fStack_190;
+    fStack_190 = (*(float *)(pSystemMemoryOffset238 + 9) + *(float *)(pSystemMemoryOffset238 + 8)) - fStack_190;
     pfStack_250 = (float *)(DataStructureCounter + 0x1644);
     ProcessSystemDataValidation(&fStack_1e8,&fStack_1e0,pcStack_100,0);
     if ((UnicodeCharacterValue & 0x100000) != 0) {
@@ -129566,116 +129566,116 @@ LAB_18012b82d:
       ProcessSystemDataValidation(Utf16Char9,QuaternaryReturnCode,&NameTemplateBuffer,0);
     }
   }
-  *(uint16_t *)((long long)plStack_238 + 0x26a) = 0;
-  *(uint16_t *)(plStack_238 + 0x4d) = 0;
-  CharacterCode4 = (long long *)FUN_18010e720(plStack_238,&SystemFlagB);
+  *(uint16_t *)((long long)pSystemMemoryOffset238 + 0x26a) = 0;
+  *(uint16_t *)(pSystemMemoryOffset238 + 0x4d) = 0;
+  CharacterCode4 = (long long *)FUN_18010e720(pSystemMemoryOffset238,&SystemFlagB);
   LoopIterationCounter7 = CharacterCode4[1];
-  plStack_238[0x47] = *Utf8InputBuffer4;
-  plStack_238[0x48] = LoopIterationCounter7;
-  if ((*(byte *)((long long)plStack_238 + 0x432) & 1) != 0) {
+  pSystemMemoryOffset238[0x47] = *Utf8InputBuffer4;
+  pSystemMemoryOffset238[0x48] = LoopIterationCounter7;
+  if ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) != 0) {
     FloatValue33 = (float)FUN_18010e760();
-    *(float *)((long long)plStack_238 + 0x23c) = FloatValue33 + *(float *)((long long)plStack_238 + 0x23c);
+    *(float *)((long long)pSystemMemoryOffset238 + 0x23c) = FloatValue33 + *(float *)((long long)pSystemMemoryOffset238 + 0x23c);
   }
-  ProcessFloatCalculation(plStack_238 + 0x47,plStack_238 + 0x45);
-  *(float *)(plStack_238 + 0x49) = fStack_180 + *(float *)((long long)plStack_238 + 0x7c);
+  ProcessFloatCalculation(pSystemMemoryOffset238 + 0x47,pSystemMemoryOffset238 + 0x45);
+  *(float *)(pSystemMemoryOffset238 + 0x49) = fStack_180 + *(float *)((long long)pSystemMemoryOffset238 + 0x7c);
   if ((MemoryAllocationIndex9 & 0x401) == 1) {
-    pSystemFloatValue = (float *)((long long)plStack_238 + 0x7c);
+    pSystemFloatValue = (float *)((long long)pSystemMemoryOffset238 + 0x7c);
   }
   FloatValue33 = *pSystemFloatValue;
   FloatValue34 = (float)GetSystemTime();
-  *(float *)((long long)plStack_238 + 0x24c) = FloatValue34 + VectorLength + FloatValue33;
-  *(float *)(plStack_238 + 0x4a) =
-       ((*(float *)(plStack_238 + 9) + *(float *)(plStack_238 + 8)) -
-       *(float *)((long long)plStack_238 + 0xa4)) - *(float *)((long long)plStack_238 + 0x7c);
-  *(float *)((long long)plStack_238 + 0x254) =
-       ((*(float *)((long long)plStack_238 + 0x4c) + *(float *)((long long)plStack_238 + 0x44)) -
-       *(float *)(plStack_238 + 0x15)) - *(float *)((long long)plStack_238 + 0x7c);
+  *(float *)((long long)pSystemMemoryOffset238 + 0x24c) = FloatValue34 + VectorLength + FloatValue33;
+  *(float *)(pSystemMemoryOffset238 + 0x4a) =
+       ((*(float *)(pSystemMemoryOffset238 + 9) + *(float *)(pSystemMemoryOffset238 + 8)) -
+       *(float *)((long long)pSystemMemoryOffset238 + 0xa4)) - *(float *)((long long)pSystemMemoryOffset238 + 0x7c);
+  *(float *)((long long)pSystemMemoryOffset238 + 0x254) =
+       ((*(float *)((long long)pSystemMemoryOffset238 + 0x4c) + *(float *)((long long)pSystemMemoryOffset238 + 0x44)) -
+       *(float *)(pSystemMemoryOffset238 + 0x15)) - *(float *)((long long)pSystemMemoryOffset238 + 0x7c);
   FloatValue33 = (float)FinalizeSystemFloatOperation();
-  *(float *)(plStack_238 + 0x4b) = (float)(int)(FloatValue33 + *(float *)(plStack_238 + 0x49) + 0.5);
-  *(float *)((long long)plStack_238 + 0x25c) =
-       (float)(int)(*(float *)((long long)plStack_238 + 0x24c) + 0.5);
-  FloatValue33 = *(float *)(plStack_238 + 0x4a);
+  *(float *)(pSystemMemoryOffset238 + 0x4b) = (float)(int)(FloatValue33 + *(float *)(pSystemMemoryOffset238 + 0x49) + 0.5);
+  *(float *)((long long)pSystemMemoryOffset238 + 0x25c) =
+       (float)(int)(*(float *)((long long)pSystemMemoryOffset238 + 0x24c) + 0.5);
+  FloatValue33 = *(float *)(pSystemMemoryOffset238 + 0x4a);
   FloatValue34 = (float)FinalizeSystemFloatOperation();
-  *(float *)(plStack_238 + 0x4c) = (float)(int)((FloatValue33 + 0.5) - FloatValue34);
-  *(float *)((long long)plStack_238 + 0x264) =
-       (float)(int)(*(float *)((long long)plStack_238 + 0x254) + 0.5);
+  *(float *)(pSystemMemoryOffset238 + 0x4c) = (float)(int)((FloatValue33 + 0.5) - FloatValue34);
+  *(float *)((long long)pSystemMemoryOffset238 + 0x264) =
+       (float)(int)(*(float *)((long long)pSystemMemoryOffset238 + 0x254) + 0.5);
   if ((*(byte *)(DataStructureCounter + 8) & 0x40) != 0) {
-    if ((*(int *)(DataStructureCounter + 0x1b2c) == *(int *)((long long)plStack_238 + 0x84)) &&
+    if ((*(int *)(DataStructureCounter + 0x1b2c) == *(int *)((long long)pSystemMemoryOffset238 + 0x84)) &&
        (((*(char *)(DataStructureCounter + 0xc1) == '\0' || (*(char *)(DataStructureCounter + 0x135) != '\0')) &&
-        ((*(uint *)(plStack_238[0x74] + 0xc) & 0x200004) == 0)))) {
+        ((*(uint *)(pSystemMemoryOffset238[0x74] + 0xc) & 0x200004) == 0)))) {
       CheckSystemStatus();
     }
     if ((((*(char *)(DataStructureCounter + 0x1dd0) != '\0') && ((MemoryAllocationIndex9 >> 0x15 & 1) == 0)) &&
         ((*(long long *)(DataStructureCounter + 0x1b78) == 0 ||
-         (*(long long **)(*(long long *)(DataStructureCounter + 0x1b78) + 0x3a0) != plStack_238)))) &&
-       ((plStack_238 == (long long *)plStack_238[0x74] &&
-        ((*(uint *)((long long)plStack_238 + 0xc) & 0x20000000) == 0)))) {
+         (*(long long **)(*(long long *)(DataStructureCounter + 0x1b78) + 0x3a0) != pSystemMemoryOffset238)))) &&
+       ((pSystemMemoryOffset238 == (long long *)pSystemMemoryOffset238[0x74] &&
+        ((*(uint *)((long long)pSystemMemoryOffset238 + 0xc) & 0x20000000) == 0)))) {
       ManageSystemResources();
     }
   }
-  if ((*(byte *)((long long)plStack_238 + 0x432) & 1) == 0) {
-    *(uint32_t *)((long long)plStack_238 + 0x144) = *(uint32_t *)((long long)plStack_238 + 0x84);
+  if ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) == 0) {
+    *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x144) = *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x84);
     CharacterStatus1 = ValidateAndProcessSystemFlags(&fStack_180,&NormalizationResult,0);
-    *(uint *)(plStack_238 + 0x29) = (uint)(CharacterStatus1 != '\0');
-    *(unsigned long long *)((long long)plStack_238 + 0x14c) = CONCAT44(fStack_17c,fStack_180);
-    *(unsigned long long *)((long long)plStack_238 + 0x154) = CONCAT44(VectorLength,NormalizationResult);
+    *(uint *)(pSystemMemoryOffset238 + 0x29) = (uint)(CharacterStatus1 != '\0');
+    *(unsigned long long *)((long long)pSystemMemoryOffset238 + 0x14c) = CONCAT44(fStack_17c,fStack_180);
+    *(unsigned long long *)((long long)pSystemMemoryOffset238 + 0x154) = CONCAT44(VectorLength,NormalizationResult);
     CharacterByteCount3 = CoreEngineIntegerValue200;
     CharacterByteCount6 = iStack_1b8;
   }
   else {
-    *(int *)((long long)plStack_238 + 0x144) = (int)plStack_238[1];
-    *(uint32_t *)(plStack_238 + 0x29) = *(uint32_t *)((long long)plStack_238 + 0x41c);
-    *(long long *)((long long)plStack_238 + 0x14c) = plStack_238[0x84];
-    *(long long *)((long long)plStack_238 + 0x154) = plStack_238[0x85];
+    *(int *)((long long)pSystemMemoryOffset238 + 0x144) = (int)pSystemMemoryOffset238[1];
+    *(uint32_t *)(pSystemMemoryOffset238 + 0x29) = *(uint32_t *)((long long)pSystemMemoryOffset238 + 0x41c);
+    *(long long *)((long long)pSystemMemoryOffset238 + 0x14c) = pSystemMemoryOffset238[0x84];
+    *(long long *)((long long)pSystemMemoryOffset238 + 0x154) = pSystemMemoryOffset238[0x85];
     CharacterByteCount3 = CoreEngineIntegerValue200;
     CharacterByteCount6 = iStack_1b8;
   }
 LAB_18012ce0f:
   if ((MemoryAllocationIndex9 >> 0x1d & 1) == 0) {
-    ProcessSystemParameters(plStack_238 + 0x4b,plStack_238 + 0x4c,1);
+    ProcessSystemParameters(pSystemMemoryOffset238 + 0x4b,pSystemMemoryOffset238 + 0x4c,1);
   }
   if (CharacterByteCount3 != CharacterByteCount6) {
-    *(uint8_t *)((long long)plStack_238 + 0xb1) = 0;
+    *(uint8_t *)((long long)pSystemMemoryOffset238 + 0xb1) = 0;
   }
-  *(short *)(plStack_238 + 0x17) = (short)plStack_238[0x17] + 1;
+  *(short *)(pSystemMemoryOffset238 + 0x17) = (short)pSystemMemoryOffset238[0x17] + 1;
   InitializeSystemContext(DataStructureCounter + 0x1bd0);
-  if (((*(byte *)((long long)plStack_238 + 0x432) & 1) != 0) &&
-     ((*(byte *)((long long)plStack_238 + 0x432) & 2) == 0)) {
-    *(uint32_t *)(plStack_238 + 0x1b) = 1;
+  if (((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 1) != 0) &&
+     ((*(byte *)((long long)pSystemMemoryOffset238 + 0x432) & 2) == 0)) {
+    *(uint32_t *)(pSystemMemoryOffset238 + 0x1b) = 1;
   }
   if ((MemoryAllocationIndex9 >> 0x18 & 1) != 0) {
-    if (((((MemoryAllocationIndex9 & 0x40) == 0) && (*(int *)((long long)plStack_238 + 0xc4) < 1)) &&
-        ((int)plStack_238[0x19] < 1)) &&
-       ((*(float *)(plStack_238 + 0x48) < *(float *)(plStack_238 + 0x47) ||
-         *(float *)(plStack_238 + 0x48) == *(float *)(plStack_238 + 0x47) ||
-        (*(float *)((long long)plStack_238 + 0x244) < *(float *)((long long)plStack_238 + 0x23c) ||
-         *(float *)((long long)plStack_238 + 0x244) == *(float *)((long long)plStack_238 + 0x23c))))    {
-      *(uint32_t *)(plStack_238 + 0x1b) = 1;
+    if (((((MemoryAllocationIndex9 & 0x40) == 0) && (*(int *)((long long)pSystemMemoryOffset238 + 0xc4) < 1)) &&
+        ((int)pSystemMemoryOffset238[0x19] < 1)) &&
+       ((*(float *)(pSystemMemoryOffset238 + 0x48) < *(float *)(pSystemMemoryOffset238 + 0x47) ||
+         *(float *)(pSystemMemoryOffset238 + 0x48) == *(float *)(pSystemMemoryOffset238 + 0x47) ||
+        (*(float *)((long long)pSystemMemoryOffset238 + 0x244) < *(float *)((long long)pSystemMemoryOffset238 + 0x23c) ||
+         *(float *)((long long)pSystemMemoryOffset238 + 0x244) == *(float *)((long long)pSystemMemoryOffset238 + 0x23c))))    {
+      *(uint32_t *)(pSystemMemoryOffset238 + 0x1b) = 1;
     }
     if ((SystemContextValue != 0) && ((*(char *)(SystemContextValue + 0xb2) != '\0' || (*(char *)(SystemContextValue + 0xb6) != '\0')))    {
-      *(uint32_t *)(plStack_238 + 0x1b) = 1;
+      *(uint32_t *)(pSystemMemoryOffset238 + 0x1b) = 1;
     }
   }
   if (*(float *)(DataStructureCounter + 0x1628) <= 0.0) {
-    *(uint32_t *)(plStack_238 + 0x1b) = 1;
+    *(uint32_t *)(pSystemMemoryOffset238 + 0x1b) = 1;
   }
-  if (((int)plStack_238[0x1b] < 1) && (*(int *)((long long)plStack_238 + 0xdc) < 1)) {
+  if (((int)pSystemMemoryOffset238[0x1b] < 1) && (*(int *)((long long)pSystemMemoryOffset238 + 0xdc) < 1)) {
     CharacterStatus1 = '\0';
   }
   else {
     CharacterStatus1 = '\x01';
   }
-  *(char *)((long long)plStack_238 + 0xb6) = CharacterStatus1;
-  if (((((*(char *)((long long)plStack_238 + 0xb2) == '\0') &&
-        (*(char *)((long long)plStack_238 + 0xaf) != '\0')) && (CharacterStatus1 == '\0')) ||
-      ((0 < *(int *)((long long)plStack_238 + 0xc4) || (0 < (int)plStack_238[0x19])))) ||
-     (0 < *(int *)((long long)plStack_238 + 0xdc))) {
+  *(char *)((long long)pSystemMemoryOffset238 + 0xb6) = CharacterStatus1;
+  if (((((*(char *)((long long)pSystemMemoryOffset238 + 0xb2) == '\0') &&
+        (*(char *)((long long)pSystemMemoryOffset238 + 0xaf) != '\0')) && (CharacterStatus1 == '\0')) ||
+      ((0 < *(int *)((long long)pSystemMemoryOffset238 + 0xc4) || (0 < (int)pSystemMemoryOffset238[0x19])))) ||
+     (0 < *(int *)((long long)pSystemMemoryOffset238 + 0xdc))) {
     MemoryAllocationIndexPrimary = 0;
   }
   else {
     MemoryAllocationIndexPrimary = 1;
   }
-  *(uint8_t *)((long long)plStack_238 + 0xb4) = MemoryAllocationIndexPrimary;
+  *(uint8_t *)((long long)pSystemMemoryOffset238 + 0xb4) = MemoryAllocationIndexPrimary;
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(ErrorCode ^ (unsigned long long)SystemStatusBuffer);
 }
@@ -253323,21 +253323,21 @@ void CoreEngineProcessSystemConfiguration(uint64_t CharacterCode,uint64_t *Utf8I
   FUN_180049bf0(&SystemStatusBufferPointer,&SystemConfigurationDataTemplateN);
   switch(AdditionalParameter1) {
   default:
-    SecondaryProcessingStatusFlag = &UNK_180a0d190;
+    SecondaryProcessingStatusFlag = &SystemStatusFlagB;
     break;
   case 1:
-    SecondaryProcessingStatusFlag = &UNK_180a0d170;
+    SecondaryProcessingStatusFlag = &SystemStatusFlagC;
     break;
   case 2:
   case 0xc:
-    SecondaryProcessingStatusFlag = &UNK_180a0d180;
+    SecondaryProcessingStatusFlag = &SystemStatusFlagD;
     break;
   case 3:
   case 0xd:
-    SecondaryProcessingStatusFlag = &UNK_180a0d1d0;
+    SecondaryProcessingStatusFlag = &SystemStatusFlagE;
     break;
   case 4:
-    SecondaryProcessingStatusFlag = &UNK_180a0d258;
+    SecondaryProcessingStatusFlag = &SystemStatusFlagF;
     break;
   case 5:
     SecondaryProcessingStatusFlag = &UNK_180a0d1e8;
@@ -253405,7 +253405,7 @@ int ParseSystemIdentifier(long long CharacterCode
     if (CharacterByteCount == 0) {
       return 1;
     }
-    CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&UNK_180a130e0);
+    CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&SystemComparisonStringA);
     if (CharacterByteCount == 0) {
       return 2;
     }
@@ -253439,7 +253439,7 @@ int ParseSystemIdentifier(long long CharacterCode
       }
     }
   }
-  if ((MemoryAllocationSize == 8) && (CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&UNK_180a130f0), CharacterByteCount == 0)) {
+  if ((MemoryAllocationSize == 8) && (CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&SystemComparisonStringB), CharacterByteCount == 0)) {
     return 5;
   }
   if ((((MemoryAllocationSize == 2) && (StringBuffer = *(char **)(CharacterCode + 8), *StringBuffer == 'A')) && (StringBuffer[1] == '8')     && (StringBuffer[2] == '\0')) {
@@ -253451,10 +253451,10 @@ int ParseSystemIdentifier(long long CharacterCode
   if ((MemoryAllocationSize == 0x11) && (CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),SystemStringConstantUnicode), CharacterByteCount == 0)  {
     return 0x36;
   }
-  if ((MemoryAllocationSize == 0xd) && (CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&UNK_180a13110), CharacterByteCount == 0)) {
+  if ((MemoryAllocationSize == 0xd) && (CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&SystemComparisonStringC), CharacterByteCount == 0)) {
     return 8;
   }
-  if ((MemoryAllocationSize == 0xc) && (CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&UNK_180a13120), CharacterByteCount == 0)) {
+  if ((MemoryAllocationSize == 0xc) && (CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&SystemComparisonStringD), CharacterByteCount == 0)) {
     return 9;
   }
   if (MemoryAllocationSize == 2) {
@@ -253485,7 +253485,7 @@ int ParseSystemIdentifier(long long CharacterCode
       }
     }
   }
-  if ((MemoryAllocationSize == 8) && (CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+  if ((MemoryAllocationSize == 8) && (CharacterByteCount = strcmp(*(void *)(CharacterCode + 8),&SystemComparisonStringE), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
