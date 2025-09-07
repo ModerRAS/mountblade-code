@@ -18735,20 +18735,20 @@ DataBuffer ValidateSystemB0(int64_t exceptionHandlerContext,int64_t systemContex
 
 {
   DataBuffer ValidationResult;          // 验证结果
-  uint inputParameter;                 // 栈参数8
+  uint floatValidationParameter;       // 浮点数验证参数
   DataWord StackParameterC;           // 栈参数C
   
   // 获取系统参数并检查浮点数是否为无穷大
-  inputParameter = *(uint *)(exceptionHandlerContext + 0x18);
-  if ((inputParameter & FloatInfinityValue) == FloatInfinityValue) {
+  floatValidationParameter = *(uint *)(exceptionHandlerContext + 0x18);
+  if ((floatValidationParameter & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;  // 返回浮点数无穷大错误
   }
   
   // 查询系统数据
-  ValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10), &inputParameter);
+  ValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10), &floatValidationParameter);
   if ((int)ValidationResult == 0) {
     // 设置系统参数并执行清理操作
-    *(DataWord *)(CONCAT44(StackParameterC, inputParameter) + 0x18) = *(DataWord *)(exceptionHandlerContext + 0x18);
+    *(DataWord *)(CONCAT44(StackParameterC, floatValidationParameter) + 0x18) = *(DataWord *)(exceptionHandlerContext + 0x18);
       CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98), exceptionHandlerContext);
   }
   return ValidationResult;
@@ -22424,7 +22424,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
 #define InitializeAndValidateSystem FUN_180897560
 
 {
-  int inputParameter;
+  int systemOperationResult;
   int64_t inputAccumulatorRegister;
   char systemStatus;
   int64_t *DestinationContext;

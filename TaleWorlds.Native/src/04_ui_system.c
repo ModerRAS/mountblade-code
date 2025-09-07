@@ -72333,7 +72333,23 @@ void ProcessUIRendering(float *uiContext,longlong dataSource,int targetBuffer,in
 
 
 
- void ProcessUIRenderBuffer(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize,float *resultPointer,
+ /**
+ * 处理UI渲染缓冲区的数据处理和计算
+ * 
+ * 该函数负责处理UI渲染缓冲区的复杂数据操作，包括：
+ * - 批量处理渲染缓冲区数据
+ * - 执行向量化计算操作
+ * - 处理不同数据源之间的数据混合
+ * - 支持剩余数据的单独处理
+ * 
+ * @param uiContext UI上下文指针，提供渲染环境信息
+ * @param dataSource 数据源指针，包含输入的渲染数据
+ * @param targetBuffer 目标缓冲区指针，用于数据处理
+ * @param bufferSize 缓冲区大小，控制处理范围
+ * @param resultPointer 结果指针，用于输出计算结果
+ * @param param_6 参数指针，用于辅助计算
+ */
+void ProcessUIRenderBuffer(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize,float *resultPointer,
                            float *param_6)
 
 {
