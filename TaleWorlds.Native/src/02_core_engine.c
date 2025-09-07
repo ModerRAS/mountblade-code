@@ -30,7 +30,6 @@
 #define ProcessStringConversion FUN_180136f60
 #define InitializeStringEncodingBuffer FUN_180120d00
 
-// 系统浮点数处理宏定义
 
 /**
  * @brief 获取系统浮点数值
@@ -68,7 +67,6 @@
  */
 #define CalculateSystemFloatValue FUN_180123c00
 
-// 系统数据结构处理函数宏定义
 
 /**
  * @brief 验证系统数据结构
