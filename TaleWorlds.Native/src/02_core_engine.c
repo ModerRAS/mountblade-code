@@ -59042,7 +59042,7 @@ void BufferAllocationStatusHandler(long long *Utf8InputBuffer
         CoreEngineProcessSystemEvent();
       }
       pSystemConfigurationMode = (uint8_t *)0x0;
-      uStack_270 = uStack_270 & 0xffffffff00000000;
+      SystemMemoryAddress = SystemMemoryAddress & 0xffffffff00000000;
       SystemStatusBufferPointer = &ThreadLocalStorageTemplate;
     }
   }
@@ -242709,7 +242709,7 @@ LAB_18020b6e6:
         CoreEngineProcessSystemEvent();
       }
       pSystemConfigurationMode = (uint8_t *)0x0;
-      uStack_270 = uStack_270 & 0xffffffff00000000;
+      SystemMemoryAddress = SystemMemoryAddress & 0xffffffff00000000;
       SystemStatusBufferPointer = &ThreadLocalStorageTemplate;
       if (SystemCheckResult != '\0') {
         pMemoryCopyBuffer = &SystemNullTemplate;

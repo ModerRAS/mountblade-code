@@ -111518,47 +111518,47 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 系统安全验证标志变量已声明为实际变量，无需#define定义
 // 数据验证缓冲区和系统数据缓冲区变量已声明为实际变量，无需#define定义
 // 数据验证和系统缓冲区变量
-uint8_t MemoryAllocationBuffer;        // 原始变量名：UNK_180a01660
-uint8_t SystemDataBufferA1;            // 原始变量名：UNK_1809fe210
-uint8_t ResourceValidationBufferA0;    // 原始变量名：UNK_180a3e470
-uint8_t OperationResultBufferA0;        // 原始变量名：UNK_180a07cd0
-uint8_t SystemValidationBufferA0;      // 原始变量名：UNK_180982378
-void* ValidationStackPointerA0;         // 原始变量名：UNK_1809823f8
-uint8_t ValidationContextBufferA0;    // 原始变量名：UNK_180982260
-uint8_t SystemValidationTableA0;        // 原始变量名：UNK_180986390
-uint8_t ValidationStatusTableA0;        // 原始变量名：UNK_180986940
+uint8_t SystemMemoryAllocationBuffer;        // 系统内存分配缓冲区
+uint8_t SystemDataProcessingBuffer;            // 系统数据处理缓冲区
+uint8_t ResourceSecurityValidationBuffer;      // 资源安全验证缓冲区
+uint8_t OperationStatusBuffer;                // 操作状态缓冲区
+uint8_t SystemIntegrityValidationBuffer;       // 系统完整性验证缓冲区
+void* SecurityValidationStackPointer;          // 安全验证栈指针
+uint8_t ValidationProcessingContext;          // 验证处理上下文
+uint8_t SystemSecurityValidationTable;         // 系统安全验证表
+uint8_t ValidationStatusCodeTable;             // 验证状态码表
 
 // 全局内存验证常量
-uint32_t GlobalMemoryValidationPrimaryConstant;   // 原始变量名：DAT_180c4eaa0
-uint32_t GlobalMemoryValidationSecondaryConstant; // 原始变量名：DAT_180c4eaa4
+uint32_t SystemMemoryValidationPrimaryConstant;    // 系统内存验证主常量
+uint32_t SystemMemoryValidationSecondaryConstant;  // 系统内存验证次常量
 
 // 系统资源管理表
-uint8_t SystemResourceAllocationIterator;      // 原始变量名：_DAT_180c86938
-uint8_t SystemFunctionDispatchTable;            // 原始变量名：_DAT_180c86968
-uint8_t SystemParameterConfigurationTable;      // 原始变量名：_DAT_180c82868
-uint8_t SystemMemoryContextManagementTable;    // 原始变量名：DAT_180bfc171
-uint8_t SystemMemoryPointerManagementTable;    // 原始变量名：DAT_180bfc170
-uint8_t SystemMemoryCapacityManagementTable;    // 原始变量名：DAT_180bfc118
-uint8_t SystemMemoryBaseAddressTable;          // 原始变量名：DAT_180bfc110
+uint8_t ResourceAllocationIterator;              // 资源分配迭代器
+uint8_t SystemFunctionDispatchTable;              // 系统函数分发表
+uint8_t SystemParameterConfigurationTable;        // 系统参数配置表
+uint8_t MemoryContextManagementTable;            // 内存上下文管理表
+uint8_t MemoryPointerManagementTable;            // 内存指针管理表
+uint8_t MemoryCapacityManagementTable;           // 内存容量管理表
+uint8_t MemoryBaseAddressTable;                  // 内存基地址表
 
 // 系统内存扩展表
-uint8_t SystemMemoryContextExtendedTable;      // 原始变量名：DAT_180bfc188
-uint8_t SystemMemoryBaseExtendedTable;        // 原始变量名：DAT_180bfc180
+uint8_t MemoryContextExtendedTable;            // 内存上下文扩展表
+uint8_t MemoryBaseExtendedTable;                // 内存基地址扩展表
 
 // 系统资源列表管理表定义
-#define SystemResourceAllocationEndTable SystemResourceAllocationEndTablePointer
-#define SystemResourceCurrentAllocationTable SystemResourceCurrentAllocationTablePointer
-#define SystemResourceAllocationEndTableSecondary SystemResourceAllocationEndTableSecondaryPointer
-#define SystemResourceCurrentAllocationTableSecondary SystemResourceCurrentAllocationTableSecondaryPointer
-#define SystemResourceAllocationEndTableTertiary SystemResourceAllocationEndTableTertiaryPointer
-#define SystemResourceCurrentAllocationTableTertiary SystemResourceCurrentAllocationTableTertiaryPointer
+#define ResourceAllocationEndTable ResourceAllocationEndTablePointer
+#define ResourceCurrentAllocationTable ResourceCurrentAllocationTablePointer
+#define ResourceAllocationEndTableSecondary ResourceAllocationEndTableSecondaryPointer
+#define ResourceCurrentAllocationTableSecondary ResourceCurrentAllocationTableSecondaryPointer
+#define ResourceAllocationEndTableTertiary ResourceAllocationEndTableTertiaryPointer
+#define ResourceCurrentAllocationTableTertiary ResourceCurrentAllocationTableTertiaryPointer
 
 // 系统异常处理器指针表定义
-#define SystemExceptionHandlerManagementTable SystemExceptionHandlerManagementTablePointer
-#define SystemExceptionHandlerPointerTablePrimary SystemExceptionHandlerPointerTablePrimaryPointer
-#define SystemExceptionHandlerPointerTableSecondary SystemExceptionHandlerPointerTableSecondaryPointer
-#define SystemExceptionHandlerPointerTableTertiary SystemExceptionHandlerPointerTableTertiaryPointer
-#define SystemExceptionHandlerPointerTableQuaternary SystemExceptionHandlerPointerTableQuaternaryPointer
+#define ExceptionHandlerManagementTable ExceptionHandlerManagementTablePointer
+#define ExceptionHandlerPointerTablePrimary ExceptionHandlerPointerTablePrimaryPointer
+#define ExceptionHandlerPointerTableSecondary ExceptionHandlerPointerTableSecondaryPointer
+#define ExceptionHandlerPointerTableTertiary ExceptionHandlerPointerTableTertiaryPointer
+#define ExceptionHandlerPointerTableQuaternary ExceptionHandlerPointerTableQuaternaryPointer
 // 系统资源和异常处理状态表定义
 #define SystemResourceDataTable SystemResourceDataTablePointer
 #define SystemResourceDataTableSecondary SystemResourceDataTableSecondaryPointer
