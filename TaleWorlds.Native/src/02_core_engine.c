@@ -181627,7 +181627,15 @@ void ProcessCharacterCodeDataStructure(long long CharacterCode)
 
 
 
-4e28c(voidvoid FUN_18014e28c(void
+/**
+ * @brief 系统空操作函数
+ * 
+ * 这是一个空操作函数，用于系统初始化或同步操作中的占位符。
+ * 该函数不执行任何实际操作，直接返回。
+ * 
+ * @note 原始函数名：FUN_18014e28c
+ */
+void SystemNullOperation(void)
 {
   return;
 }
@@ -181673,7 +181681,20 @@ void ProcessCharacterSystemBufferReset(long long *CharacterCode)
 
 
 
-4e330(long long *CharacterCode,unsigned long long SystemBufferSizevoid FUN_18014e330(long long *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 处理字符代码内存分配
+ * 
+ * 该函数负责处理字符代码相关的内存分配操作，包括：
+ * - 计算内存分配大小
+ * - 管理内存块索引
+ * - 处理系统数据注册
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18014e330
+ */
+void ProcessCharacterCodeMemoryAllocation(long long *CharacterCode, unsigned long long SystemBufferSize)
 {
   long long *CharacterCode;
   unsigned long long MemoryAllocationIndex;
@@ -181713,7 +181734,19 @@ void ProcessCharacterSystemBufferReset(long long *CharacterCode)
 
 
 
-4e400(long long *CharacterCodevoid FUN_18014e400(long long *CharacterCode
+/**
+ * @brief 处理字符代码系统初始化
+ * 
+ * 该函数负责初始化字符代码系统，包括：
+ * - 设置字符表指针
+ * - 遍历缓冲区状态
+ * - 处理字符系统初始化
+ * 
+ * @param CharacterCode 字符代码指针
+ * 
+ * @note 原始函数名：FUN_18014e400
+ */
+void ProcessCharacterCodeSystemInitialization(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
