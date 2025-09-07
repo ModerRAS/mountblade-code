@@ -41945,10 +41945,10 @@ void HandleSystemMemoryAllocationAndBufferManagement(long long *SystemContextPoi
       SearchIndexHigh = 0;
       if (BufferAllocationStatus == SystemContextPointer) {
         pMemoryBufferArray = (long long *)0x0;
-        auStack_138[0] = 0;
+        SystemStackBuffer138[0] = 0;
         BufferInitializationFlag = 0;
         pSystemMemoryAllocationBlock = BufferAllocationStatus;
-        ProcessStackArray(auStack_138);
+        ProcessStackArray(SystemStackBuffer138);
         BufferAllocationStatus = pMemoryBufferArray + 0x16;
         BufferEntryCount = *(ushort *)(pMemoryBufferArray + 0x18);
         CurrentThresholdValue = *(float *)(pMemoryBufferArray[0x17] + -4 + (unsigned long long)BufferEntryCount * 4);
@@ -202501,7 +202501,16 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
 
 
 
-7ef40(voidvoid FUN_18017ef40(void
+/**
+ * @brief 系统数据处理函数
+ * 
+ * 该函数负责处理系统数据，包括内存分配、数据结构初始化和系统事件处理。
+ * 这是一个核心系统函数，用于管理系统的数据流和资源分配。
+ * 
+ * @return 无
+ * @note 原始函数名: FUN_18017ef40（已重命名为SystemDataProcessingFunction）
+ */
+void SystemDataProcessingFunction(void
 {
   long long PrimaryDataSize;
   code ****SystemFunctionPointerArray;
