@@ -3912,9 +3912,9 @@ extern uint64_t ExceptionOffsetValue;
 // 功能：存储系统完整性验证状态标志
 #define SystemIntegrityValidationFlag SystemIntegrityValidationFlag
 
-// 原始变量名：UNK_180a17010 - 系统主资源表
+// 系统主资源表
 // 功能：存储系统主要资源分配表
-#define SystemPrimaryResourceTable UNK_180a17010
+#define SystemPrimaryResourceTable SystemPrimaryResourceTable
 
 // 原始变量名：_DAT_180bf9390 - 全局异常处理器指针A1
 // 功能：存储全局异常处理器A1的指针
