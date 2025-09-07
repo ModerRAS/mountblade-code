@@ -82163,7 +82163,7 @@ void Unwind_18090ef90(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090efc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ee130(*(int64_t *)(dataBuffer + 0x70) + 0x2d0,
+  ProcessDataBufferA3(*(int64_t *)(dataBuffer + 0x70) + 0x2d0,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x2e0),operationFlagA,operationFlagB,
                 SystemCleanupFlagAlternative);
   return;
@@ -82187,7 +82187,7 @@ void Unwind_18090efe0(DataBuffer operationBase,int64_t dataBuffer)
   presourceIterator = *(int64_t **)(validationContext + 0x328);
   if (calculatedOffset != *(int64_t *)(validationContext + 0x330)) {
     do {
-      FUN_1800edd10(calculatedOffset);
+      ProcessDataBufferA4(calculatedOffset);
       calculatedOffset = calculatedOffset + 0x78;
       if (calculatedOffset == calculatedIndex) {
         presourceIterator = presourceIterator + 1;
@@ -82252,7 +82252,7 @@ void Unwind_18090f000(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090f020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ee130(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
+  ProcessDataBufferA3(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   return;
 }
@@ -82262,7 +82262,7 @@ void Unwind_18090f020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ee130(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
+  ProcessDataBufferA3(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   return;
 }
@@ -82283,7 +82283,7 @@ void Unwind_18090f040(DataBuffer operationBase,int64_t dataBuffer)
   contextPointer = (int64_t *)validationContextPointer[5];
   if (dataContext != validationContextPointer[6]) {
     do {
-      FUN_1800edd10(dataContext);
+      ProcessDataBufferA4(dataContext);
       dataContext = dataContext + 0x78;
       if (dataContext == calculatedOffset) {
         contextPointer = contextPointer + 1;
@@ -82395,7 +82395,7 @@ void Unwind_18090f070(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090f080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ee080(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessDataBufferA5(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   return;
 }
@@ -82405,7 +82405,7 @@ void Unwind_18090f080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ee080(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessDataBufferA5(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   return;
 }
@@ -82415,7 +82415,7 @@ void Unwind_18090f090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ee130(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessDataBufferA3(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   return;
 }
@@ -82425,7 +82425,7 @@ void Unwind_18090f0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ee130(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessDataBufferA3(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   return;
 }
@@ -82446,7 +82446,7 @@ void Unwind_18090f0c0(DataBuffer operationBase,int64_t dataBuffer)
   contextPointer = (int64_t *)validationContextPointer[5];
   if (dataContext != validationContextPointer[6]) {
     do {
-      FUN_1800edd10(dataContext);
+      ProcessDataBufferA4(dataContext);
       dataContext = dataContext + 0x78;
       if (dataContext == calculatedOffset) {
         contextPointer = contextPointer + 1;
@@ -82525,7 +82525,7 @@ void Unwind_18090f0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ee080(*(int64_t *)(dataBuffer + 0x20),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x10),
+  ProcessDataBufferA5(*(int64_t *)(dataBuffer + 0x20),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   return;
 }
@@ -82535,7 +82535,7 @@ void Unwind_18090f0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090f100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800ee080(*(int64_t *)(dataBuffer + 0x20),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x10),
+  ProcessDataBufferA5(*(int64_t *)(dataBuffer + 0x20),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   return;
 }
