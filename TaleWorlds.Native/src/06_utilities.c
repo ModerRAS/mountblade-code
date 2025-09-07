@@ -7131,7 +7131,7 @@ int32_t UtilityInitializationSuccessFlag;
 //   无
 void ConfigureUtilitySystem(void);
 // 工具系统配置数据变量
-int32_t UtilityConfigureData1;
+int32_t UtilityConfigurePrimaryData;
 int32_t UtilityConfigureData2;
 int32_t UtilityConfigureData3;
 int32_t UtilityConfigureData4;
@@ -90112,7 +90112,18 @@ void ProcessDataValidationFlag3(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090fd90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据验证标志位4
+ * 
+ * 该函数检查并清除数据缓冲区状态标志的第4位。
+ * 如果该位被设置，则清除标志并调用数据验证处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含状态标志
+ * 
+ * @note 原始函数名：Unwind_18090fd90
+ */
+void ProcessDataValidationFlag4(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 8) != 0) {
@@ -90124,7 +90135,18 @@ void Unwind_18090fd90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fdc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据验证标志位5
+ * 
+ * 该函数检查并清除数据缓冲区状态标志的第5位。
+ * 如果该位被设置，则清除标志并调用数据验证处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含状态标志
+ * 
+ * @note 原始函数名：Unwind_18090fdc0
+ */
+void ProcessDataValidationFlag5(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 0x10) != 0) {
@@ -90136,7 +90158,18 @@ void Unwind_18090fdc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fdf0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除C0位置独占锁资源
+ * 
+ * 该函数用于清除偏移量0xC0位置的独占锁资源。
+ * 当指定位置的字符不为空时，会释放指定的SRW独占锁资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁资源信息
+ * 
+ * @note 原始函数名：Unwind_18090fdf0
+ */
+void ClearExclusiveLockResourceAtC0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 200) != '\0') {
@@ -90147,7 +90180,18 @@ void Unwind_18090fdf0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fe00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除C0位置独占锁资源副本
+ * 
+ * 该函数是Unwind_18090fdf0的副本，用于清除偏移量0xC0位置的独占锁资源。
+ * 当指定位置的字符不为空时，会释放指定的SRW独占锁资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁资源信息
+ * 
+ * @note 原始函数名：Unwind_18090fe00
+ */
+void ClearExclusiveLockResourceAtC0Duplicate(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 200) != '\0') {
@@ -90158,7 +90202,18 @@ void Unwind_18090fe00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fe10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清除D8位置独占锁资源
+ * 
+ * 该函数用于清除偏移量0xD8位置的独占锁资源。
+ * 当指定位置的字符不为空时，会释放指定的SRW独占锁资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含锁资源信息
+ * 
+ * @note 原始函数名：Unwind_18090fe10
+ */
+void ClearExclusiveLockResourceAtD8(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(char *)(dataBuffer + 0xd8) != '\0') {
