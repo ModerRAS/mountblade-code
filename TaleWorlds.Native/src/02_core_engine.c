@@ -33689,11 +33689,11 @@ void ProcessCoreEngineSystemInitialization(uint64_t systemContext, uint64_t conf
   void *SystemPointerBuffer1d0;
   void *pSystemValue1c8;
   void *pStackVariable1B8;
-  long long lStack_1b0;
+  long long StackMemoryBuffer1B0;
   uint32_t SystemValue1a8;
   uint64_t SystemStackOffset1A0;
   void *pStackVariable;
-  long long lStack_190;
+  long long StackMemoryBuffer190;
   uint32_t SystemUnsignedValue180;
   void *DataContentPointer;
   void *SystemPointerValue170;
@@ -33707,7 +33707,7 @@ void ProcessCoreEngineSystemInitialization(uint64_t systemContext, uint64_t conf
   long long SystemMemoryAllocationBlock;
   uint32_t DataProcessingFlags;
   void *CoreEnginePointerBuffer110;
-  long long lStack_108;
+  long long StackMemoryBuffer108;
   uint32_t SystemFlagB;
   void *SystemFlagC;
   long long CoreEngineSignedValueE8;
@@ -33729,7 +33729,7 @@ void ProcessCoreEngineSystemInitialization(uint64_t systemContext, uint64_t conf
     ProcessTemporaryBuffer(&pStackVariable1B8,&EngineDataTemplate);
     InitializeSystemStack(&pStackVariable1B8,0);
     pStackVariable1B8 = &SystemNullTemplate;
-    if (lStack_1b0 != 0) {
+    if (StackMemoryBuffer1B0 != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
@@ -42501,12 +42501,12 @@ void HandleSystemDataStructureConfigurationAndInitialization(long long *SystemCo
 {
   long long *SystemContextPointer;
   uint64_t MemoryAllocationIndex;
-  long long *plStack_40;
-  long long *plStack_38;
-  uint8_t StackArray30 [8];
-  uint64_t SystemStackOffset28;
-  long long *plStack_18;
-  uint16_t uStack_10;
+  long long *SystemContextPointerBackup;
+  long long *SystemMemoryPointer;
+  uint8_t SystemBufferArray [8];
+  uint64_t SystemStackOffset;
+  long long *SystemMemoryReference;
+  uint16_t SystemBufferControlFlag;
   char SystemBufferFlag;
   
   MemoryAllocationIndex = 0xfffffffffffffffe;
@@ -42518,14 +42518,14 @@ void HandleSystemDataStructureConfigurationAndInitialization(long long *SystemCo
   }
   else {
     (**(code **)(*SystemContextPointer + 0x28))();
-    plStack_40 = (long long *)0x0;
-    plStack_38 = (long long *)0x0;
-    plStack_18 = (long long *)0x0;
-    uStack_28 = 0;
-    StackArray30[0] = 0;
-    InitializeSystemFlag(&plStack_40,SystemContextPointer,0,Utf16EndPointer,MemoryAllocationIndex);
+    SystemContextPointerBackup = (long long *)0x0;
+    SystemMemoryPointer = (long long *)0x0;
+    SystemMemoryReference = (long long *)0x0;
+    SystemStackOffset = 0;
+    SystemBufferArray[0] = 0;
+    InitializeSystemFlag(&SystemContextPointerBackup,SystemContextPointer,0,Utf16EndPointer,MemoryAllocationIndex);
     (**(code **)(*SystemContextPointer + 0x38))(SystemContextPointer);
-    SystemContextPointer = plStack_38;
+    SystemContextPointer = SystemMemoryPointer;
     *(uint32_t *)(plStack_38 + 2) = 0;
     *(uint32_t *)(plStack_38 + 7) = 0;
     *(uint32_t *)(plStack_38 + 0x11) = 0;
@@ -100032,8 +100032,8 @@ int ValidateBufferAllocationStatus(uint64_t SystemContextPointer,int Utf8BufferS
   short SystemShortValue1;
   long long SystemContext;
   long long bufferAllocationStatus;
-  int in_R10D;
-  uint32_t in_register_00000094;
+  int RegisterR10D;
+  uint32_t RegisterHighPart;
   
   bufferAllocationStatus = (long long)Utf8BufferSize;
   do {
@@ -100049,9 +100049,9 @@ int ValidateBufferAllocationStatus(uint64_t SystemContextPointer,int Utf8BufferS
     }
     Utf8BufferSize = Utf8BufferSize + 1;
     bufferAllocationStatus = bufferAllocationStatus + 1;
-  } while (bufferAllocationStatus < CONCAT44(in_register_00000094,in_R10D));
-  if (in_R10D < Utf8BufferSize) {
-    Utf8BufferSize = in_R10D;
+  } while (bufferAllocationStatus < CONCAT44(RegisterHighPart,RegisterR10D));
+  if (RegisterR10D < Utf8BufferSize) {
+    Utf8BufferSize = RegisterR10D;
   }
   return Utf8BufferSize;
 }
