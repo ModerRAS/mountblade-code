@@ -44333,12 +44333,12 @@ float * ProcessFloatBoundaryCalculation(float *Utf8InputBuffer
         if (Utf8InputBuffer[0x9e] < StackFloatValueA4) {
           StackFloatValueA4 = Utf8InputBuffer[0x9e];
         }
-        StackFloata0 = FloatProcessingStatusFlag[2];
-        if (Utf8InputBuffer[0x9f] < StackFloata0) {
-          StackFloata0 = Utf8InputBuffer[0x9f];
+        StackFloatValueA0 = FloatProcessingStatusFlag[2];
+        if (Utf8InputBuffer[0x9f] < StackFloatValueA0) {
+          StackFloatValueA0 = Utf8InputBuffer[0x9f];
         }
         *(unsigned long long *)pFloatBoundaryMin = CONCAT44(StackFloatValueA4,StackFloatValueA8);
-        *(unsigned long long *)(CharacterCode + 0x9f) = CONCAT44(StackUnsignedValue9c,StackFloata0);
+        *(unsigned long long *)(CharacterCode + 0x9f) = CONCAT44(StackUnsignedValue9c,StackFloatValueA0);
         StackFloatValueb8 = *FloatProcessingStatusFlag;
         if (StackFloatValueb8 < Utf8InputBuffer[0xa1]) {
           StackFloatValueb8 = Utf8InputBuffer[0xa1];
@@ -97104,7 +97104,7 @@ uint8_t UpdateSystemStatus(void
   uint32_t StackParameter38;
   uint32_t UnsignedStackParameter3C;
   uint32_t SystemParameter2;
-  float StackFloat44;
+  float StackFloatValue44;
   
   MemoryAllocationIndex = CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),(int)DataNodeIndex);
   MemoryAllocationSize = ProcessSystemParameters(FramePointer + -0x79,LoopCounter,FramePointer + 0x6f,&SystemStackBuffer,MemoryAllocationIndex);
@@ -97119,8 +97119,8 @@ uint8_t UpdateSystemStatus(void
   StackParameter38 = *StatusBufferPointer;
   UnsignedStackParameter3C = StatusBufferPointer[1];
   SystemParameter2 = StatusBufferPointer[2];
-  StackFloat44 = (float)StatusBufferPointer[3];
-  *(float *)(FramePointer + -0x7d) = StackFloat44 * *(float *)(SystemContext + 0x1628);
+  StackFloatValue44 = (float)StatusBufferPointer[3];
+  *(float *)(FramePointer + -0x7d) = StackFloatValue44 * *(float *)(SystemContext + 0x1628);
   DataSize = ValidateSystemData(&StackParameter38);
   if (CharacterTablePointer == *(int *)(SystemContext + 0x1ca0)) {
     ProcessMemoryLock(StackFramePointer + -0x79,1);
@@ -105658,10 +105658,10 @@ char ProcessSystemRenderingAndMemoryManagement(void
   char SystemStringCodeBuffere;
   char SystemStringCodeBufferf;
   uint16_t StackValue60;
-  float StackFloat68;
-  float StackFloat6c;
+  float StackFloatValue68;
+  float StackFloatValue6C;
   char SystemStringBuffer70;
-  float StackFloat74;
+  float StackFloatValue74;
   float SystemParameter2;
   
   SystemStringBuffer = ValidateSystemConfigurationStatus(StackFramePointer + -0x18,NullPointerD);
@@ -106907,7 +106907,7 @@ char InitializeSystemResourceStructure(uint32_t CharacterCode, int Utf8BufferSiz
   char StackBuffer58;
   char SystemStringCodeBuffere;
   char SystemStringCodeBufferf;
-  float StackFloat68;
+  float StackFloatValue68;
   uint32_t StackValue6c;
   uint64_t MemoryBlockIndex70;
   uint32_t SystemParameter2;
@@ -179938,40 +179938,65 @@ long long * FUN_180150240(long long *Utf8InputBuffer,long long *Utf8InputBufferS
 
 
 
-float * FUN_1801503e0(float *Utf8InputBuffer,float *Utf8InputBufferSize
+/**
+ * @brief 计算浮点向量归一化值
+ * 
+ * 该函数负责计算浮点向量的归一化值，使用快速平方根倒数算法
+ * 对输入的浮点向量进行归一化处理，常用于3D图形计算
+ * 
+ * @param Utf8InputBuffer 输入浮点缓冲区指针
+ * @param Utf8InputBufferSize 输出缓冲区大小指针
+ * @return float* 归一化后的浮点缓冲区指针
+ * 
+ * @note 原始函数名：FUN_1801503e0
+ * @note 使用了SIMD指令进行快速平方根倒数计算
+ */
+float * CalculateVectorNormalization(float *InputFloatBuffer,float *OutputFloatBuffer)
 {
-  float SystemContextPrimaryFloat;
-  float ContextSecondaryFloat;
-  float CalculatedFilterValue;
-  float FloatVariable4;
-  float FloatVariable5;
-  uint8_t aDataSize [16];
+  float PrimaryComponent;
+  float SecondaryComponent;
+  float TertiaryComponent;
+  float QuaternaryComponent;
+  float NormalizationFactor;
+  uint8_t SimdResultRegister [16];
   
-  SystemContextPrimaryFloat = *Utf8InputBuffer;
-  ContextSecondaryFloat = Utf8InputBuffer[1];
-  CalculatedFilterValue = Utf8InputBuffer[2];
-  FloatVariable4 = Utf8InputBuffer[3];
-  *Utf8InputBufferSize = SystemContextPrimaryFloat;
-  Utf8BufferSize[1] = ContextSecondaryFloat;
-  Utf8BufferSize[2] = FilterInputValue;
-  Utf8BufferSize[3] = FloatVariable4;
-  FloatVariable4 = SystemContextPrimaryFloat * SystemContextPrimaryFloat + ContextSecondaryFloat * ContextSecondaryFloat + FilterInputValue * FilterInputValue;
-  aDataSize = rsqrtss(ZEXT416((uint)FloatVariable4),ZEXT416((uint)FloatVariable4));
-  FloatVariable5 = aDataSize.LowPart;
-  FloatVariable4 = FloatVariable5 * 0.5 * (3.0 - FloatVariable4 * FloatVariable5 * FloatVariable5);
-  *Utf8InputBufferSize = SystemContextPrimaryFloat * FloatVariable4;
-  Utf8BufferSize[1] = ContextSecondaryFloat * FloatVariable4;
-  Utf8BufferSize[2] = FilterInputValue * FloatVariable4;
-  return Utf8BufferSize;
+  PrimaryComponent = *InputFloatBuffer;
+  SecondaryComponent = InputFloatBuffer[1];
+  TertiaryComponent = InputFloatBuffer[2];
+  QuaternaryComponent = InputFloatBuffer[3];
+  *OutputFloatBuffer = PrimaryComponent;
+  OutputFloatBuffer[1] = SecondaryComponent;
+  OutputFloatBuffer[2] = TertiaryComponent;
+  OutputFloatBuffer[3] = QuaternaryComponent;
+  QuaternaryComponent = PrimaryComponent * PrimaryComponent + SecondaryComponent * SecondaryComponent + TertiaryComponent * TertiaryComponent;
+  SimdResultRegister = rsqrtss(ZEXT416((uint)QuaternaryComponent),ZEXT416((uint)QuaternaryComponent));
+  NormalizationFactor = SimdResultRegister.LowPart;
+  QuaternaryComponent = NormalizationFactor * 0.5 * (3.0 - QuaternaryComponent * NormalizationFactor * NormalizationFactor);
+  *OutputFloatBuffer = PrimaryComponent * QuaternaryComponent;
+  OutputFloatBuffer[1] = SecondaryComponent * QuaternaryComponent;
+  OutputFloatBuffer[2] = TertiaryComponent * QuaternaryComponent;
+  return OutputFloatBuffer;
 }
 
 
 
 
 
-50480(uint64_t CharacterCodevoid FUN_180150480(uint64_t CharacterCode
+/**
+ * @brief 处理字符代码事件
+ * 
+ * 该函数负责处理字符代码相关的事件，更新字符表指针
+ * 并调用相应的事件处理函数
+ * 
+ * @param CharacterCode 输入的字符代码
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180150480
+ * @note 该函数用于字符编码系统的核心处理
+ */
+void ProcessCharacterCodeEvent(uint64_t CharacterCode)
 {
-  long long PrimaryDataSize;
+  long long EventDataSize;
   
   CharacterTablePointer = CoreEngineEventHandler;
   FUN_180315fe0(CoreEngineEventHandler + 8,*(uint32_t *)(CoreEngineEventHandler + 0x230),CharacterCode);
