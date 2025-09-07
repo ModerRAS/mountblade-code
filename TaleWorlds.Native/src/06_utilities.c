@@ -41045,7 +41045,17 @@ void ProcessExceptionCleanupAtOffset48(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_1809034d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器4D0
+ * 
+ * 管理资源的引用计数，处理异常列表中的资源清理和内存管理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_1809034d0
+ */
+void ManageResourceReferenceCount4D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -41081,7 +41091,17 @@ void Unwind_1809034d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809034e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器4E0
+ * 
+ * 管理资源的引用计数，处理异常列表中的资源清理和内存管理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_1809034e0
+ */
+void ManageResourceReferenceCount4E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -41117,7 +41137,17 @@ void Unwind_1809034e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809034f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器4F0
+ * 
+ * 管理资源的引用计数，处理异常列表中的资源清理和内存管理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_1809034f0
+ */
+void ManageResourceReferenceCount4F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -41155,7 +41185,17 @@ void Unwind_1809034f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180903500(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器500
+ * 
+ * 管理资源的引用计数，处理异常列表中的资源清理和内存管理
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_180903500
+ */
+void ManageResourceReferenceCount500(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -41589,7 +41629,7 @@ void InitializeExceptionHandler(DataBuffer contextHandle,int64_t contextOffset,D
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(contextOffset + 0x40);
-  *exceptionDataBuffer = &UNK_180a02968;
+  *exceptionDataBuffer = &DefaultExceptionHandlerC;
   exceptionDataBuffer[0x18] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[0x19] != 0) {
                     // WARNING: Subroutine does not return
@@ -41950,7 +41990,7 @@ void Unwind_180903760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x80);
-  *exceptionDataBuffer = &UNK_180a02968;
+  *exceptionDataBuffer = &DefaultExceptionHandlerC;
   exceptionDataBuffer[0x18] = &TemporaryExceptionHandler;
   if (exceptionDataBuffer[0x19] != 0) {
                     // WARNING: Subroutine does not return
@@ -53031,9 +53071,11 @@ void Unwind_180906060(DataBuffer operationBase,int64_t dataBuffer)
   int64_t validationContext;
   int64_t *pdataContext;
   int64_t calculatedOffset;
+  int64_t contextIterator;
   
   pdataContext = *(int64_t **)(dataBuffer + 0x78);
   validationContext = pdataContext[1];
+  contextIterator = *(int64_t *)(*(int64_t *)(validationContext + 0x50) + 0x3d0);
   for (calculatedOffset = *pdataContext; calculatedOffset != contextIterator; calculatedOffset = calculatedOffset + 0x1a8) {
     FUN_180069530(calculatedOffset);
   }

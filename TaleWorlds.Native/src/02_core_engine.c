@@ -155,6 +155,18 @@ const void* const SystemStringComparisonBuffer = (void*)0x180a065c8;
 const void* const SystemDataComparisonFunction = (void*)0x180135af0;
 const void* const SystemEventProcessingFunction = (void*)0x180137f40;
 
+// 系统键值字符串常量 - 用于替换UNK_180a0b0xx变量
+const void* const SystemKeyStringStaticFriction = (void*)0x180a0b0a0;
+const void* const SystemKeyStringDynamicFriction = (void*)0x180a0b0e8;
+const void* const SystemKeyStringRestitution = (void*)0x180a0b0d0;
+const void* const SystemKeyStringDensity = (void*)0x180a0b120;
+const void* const SystemKeyStringFrictionCombine = (void*)0x180a0b100;
+const void* const SystemKeyStringBounciness = (void*)0x180a0b148;
+const void* const SystemKeyStringBouncinessThreshold = (void*)0x180a0b130;
+const void* const SystemKeyStringContactOffset = (void*)0x180a0b168;
+const void* const SystemKeyStringContactCaptureThreshold = (void*)0x180a0b158;
+const void* const SystemKeyStringSkinWidth = (void*)0x180a0b188;
+
 // 系统事件和配置常量 - 用于替换UNK_180a07xxx变量
 const void* const SystemEventConfigurationPrimary = (void*)0x180a07340;
 const void* const SystemEventConfigurationSecondary = (void*)0x180a07370;
@@ -844,7 +856,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param allocationSize 请求分配的内存大小
  * @return 检查结果状态码
  */
-#define CheckSystemMemoryAllocationSize FUN_18012ea90
+#define CheckSystemMemoryAllocationSize ValidateCoreEngineMemoryAllocationSize
 
 /**
  * @brief 检查系统操作状态
@@ -854,7 +866,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param operationHandle 操作句柄
  * @return 状态检查结果
  */
-#define CheckSystemOperationStatus FUN_18012fb90
+#define CheckSystemOperationStatus VerifyCoreEngineOperationStatus
 
 /**
  * @brief 处理系统浮点数据
@@ -865,7 +877,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param operationType 操作类型
  * @return 处理结果状态码
  */
-#define ProcessSystemFloatData FUN_180131060
+#define ProcessSystemFloatData ProcessCoreEngineFloatingPointData
 
 /**
  * @brief 分配系统内存块
@@ -876,7 +888,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param alignment 内存对齐要求
  * @return 分配的内存块指针
  */
-#define AllocateSystemMemoryBlock FUN_1801335f0
+#define AllocateSystemMemoryBlock AllocateCoreEngineMemoryBlock
 
 /**
  * @brief 获取系统上下文
@@ -886,7 +898,7 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @param contextType 上下文类型
  * @return 系统上下文指针
  */
-#define GetSystemContext FUN_180135320
+#define GetSystemContext GetCoreEngineContext
 
 /**
  * @brief 处理系统状态缓冲区
@@ -2970,7 +2982,7 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ConfigureIntegerDataTexture FUN_18011bba1
 #define ProcessIntegerDataTexture FUN_18011bc70
 #define ConfigureSystemDataTable FUN_18012ddc0
-#define CheckSystemMemoryAllocationSize FUN_18012ea90
+#define CheckSystemMemoryAllocationSize ValidateCoreEngineMemoryAllocationSize
 #define AccessSystemContext FUN_180126de0
 #define InitializeSystemModule FUN_180131810
 #define AllocateSystemBuffer FUN_180128b60
@@ -215895,7 +215907,7 @@ LAB_180193610:
         *(uint32_t *)(SystemContextPointer + 0x44) = FunctionAddress.HighPart;
         goto LAB_18019368b;
       }
-      DataConfigurationCounter = (long long)&UNK_180a0b0a0 - (long long)pSystemStatusChar;
+      DataConfigurationCounter = (long long)&SystemKeyStringStaticFriction - (long long)pSystemStatusChar;
       while (*pSystemStatusChar == pSystemStatusChar[DataConfigurationCounter]) {
         pSystemStatusChar = pSystemStatusChar + 1;
         if (pSystemCheckResult <= pSystemStatusChar) goto LAB_180193610;
@@ -215904,11 +215916,11 @@ LAB_180193610:
   }
   CoreEngineInitializeSystemEvent(SystemContextPointer + 0x28,SystemContextPointer + 8);
 LAB_18019368b:
-  DataConfigurationCounter = FUN_180631000(Utf8BufferSize,&UNK_180a0b0e8,SystemKeyBuffer);
+  DataConfigurationCounter = FUN_180631000(Utf8BufferSize,&SystemKeyStringDynamicFriction,SystemKeyBuffer);
   if ((DataConfigurationCounter != 0) && (SystemKeyBuffer[0] != '\0')) {
     *(byte *)(SystemContextPointer + 0x48) = *(byte *)(SystemContextPointer + 0x48) | 1;
   }
-  DataConfigurationCounter = FUN_180631000(Utf8BufferSize,&UNK_180a0b0d0,SystemKeyBuffer);
+  DataConfigurationCounter = FUN_180631000(Utf8BufferSize,&SystemKeyStringRestitution,SystemKeyBuffer);
   if ((DataConfigurationCounter != 0) && (SystemKeyBuffer[0] != '\0')) {
     *(byte *)(SystemContextPointer + 0x48) = *(byte *)(SystemContextPointer + 0x48) | 4;
   }
