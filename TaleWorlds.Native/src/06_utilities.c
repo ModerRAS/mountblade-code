@@ -21833,8 +21833,23 @@ ProcessCompleteLabel:
 
 
 
-// 原始函数名：FUN_1808974f4 - 安全检查跳转函数A0
-// 功能：执行安全检查并跳转到错误处理，程序不会返回
+/**
+ * @brief 安全检查跳转函数A0
+ * 
+ * 该函数负责执行安全检查并在检测到安全问题时跳转到错误处理。它会从栈帧
+ * 上下文中获取安全检查参数，并与安全缓冲区进行异或操作，然后执行安全
+ * 检查。如果检查失败，函数会跳转到错误处理代码。
+ * 
+ * @details 函数执行流程：
+ * 1. 从栈帧上下文中获取安全检查参数
+ * 2. 将参数与安全缓冲区地址进行异或操作
+ * 3. 执行安全检查
+ * 4. 根据检查结果决定是否跳转到错误处理
+ * 
+ * @warning 此函数在安全检查失败时可能会跳转到错误处理代码
+ * @note 原始函数名：FUN_1808974f4
+ * @see ExecuteSecurityCheck, StackFrameContext, securityBuffer
+ */
 #define ExecuteSecurityCheckJumpA0 FUN_1808974f4
 
 void ExecuteSecurityCheckJumpA0(void)
@@ -22693,16 +22708,27 @@ ExecuteFloatingPointSecurityCheck:
 
 
 
-// 函数: void ProcessFloatingPointDataA0(float inputValue)
-//
-// 浮点数据处理函数A0
-// 处理输入的浮点数据，进行一系列验证和计算操作
-// 
-// 参数:
-//   inputValue - 输入的浮点数值
-// 
-// 返回值:
-//   无 - 函数执行安全检查后终止
+/**
+ * @brief 浮点数据处理函数A0
+ * 
+ * 该函数负责处理输入的浮点数据，进行一系列验证和计算操作。它会对输入的
+ * 浮点数值进行归一化、插值和计算操作，然后执行安全检查，确保数据处理
+ * 的安全性。
+ * 
+ * @details 函数执行流程：
+ * 1. 对输入的浮点数值进行归一化处理
+ * 2. 执行浮点数插值计算
+ * 3. 进行系统相关的浮点数计算
+ * 4. 执行安全检查和验证
+ * 5. 根据验证结果决定是否终止进程
+ * 
+ * @param inputValue 输入的浮点数值，需要进行处理和验证
+ * @return void 无返回值，函数执行安全检查后可能会终止进程
+ * 
+ * @warning 此函数在特定条件下会终止进程执行
+ * @note 此函数会进行复杂的安全检查和验证
+ * @see ProcessFloatingPointData, ExecuteSecurityCheckAndTerminate
+ */
 void ProcessFloatingPointDataA0(float inputValue)
 
 {
