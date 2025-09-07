@@ -70031,7 +70031,22 @@ void InitializeSystemComponentsA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909660(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理函数A2
+ * 
+ * 该函数负责清理系统资源，包括引用计数管理和内存释放。
+ * 主要功能包括：
+ * - 检查资源指针有效性
+ * - 计算内存基地址和偏移量
+ * - 管理引用计数
+ * - 处理异常情况
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180909660
+ */
+void CleanupSystemResourceA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -70067,7 +70082,22 @@ void Unwind_180909660(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909670(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理函数A3
+ * 
+ * 该函数负责清理系统资源，包括引用计数管理和内存释放。
+ * 主要功能包括：
+ * - 检查资源指针有效性
+ * - 计算内存基地址和偏移量
+ * - 管理引用计数
+ * - 处理异常情况
+ * 
+ * @param operationBase 系统数据缓冲区
+ * @param dataBuffer 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180909670
+ */
+void CleanupSystemResourceA3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
