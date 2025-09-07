@@ -177329,7 +177329,7 @@ uint64_t* InitializeSystemContextAndBuffer(uint64_t *CharacterCode, uint64_t *Ch
   
   CharacterTablePointer = CharacterCode[1];
   for (BufferStatus = *CharacterCode; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x88) {
-    FUN_18014c7d0(BufferStatus);
+    ProcessCharacterWithSecondarySystem(BufferStatus);
   }
   if (*CharacterCode == 0) {
     return;
@@ -177348,7 +177348,7 @@ uint64_t* InitializeSystemContextAndBuffer(uint64_t *CharacterCode, uint64_t *Ch
   
   CharacterTablePointer = CharacterCode[1];
   for (BufferStatus = *CharacterCode; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x60) {
-    FUN_18014d790(BufferStatus);
+    ProcessCharacterWithQuaternaryValidation(BufferStatus);
   }
   if (*CharacterCode == 0) {
     return;
@@ -177462,11 +177462,11 @@ uint64_t* InitializeSystemContextAndBuffer(uint64_t *CharacterCode, uint64_t *Ch
   SystemKeyPointer = 0;
   SystemStackFlag = 0;
   SystemPriorityLevel = 6;
-  FUN_18025e700(&pMemoryOffsetValue,SystemBufferSize);
-  FUN_18025fe70(*(void *)(CharacterCode[1] + 0xb8),&pMemoryOffsetValue,MemoryBlockIndex);
-  FUN_18014e570(&BufferOffset);
-  FUN_18014e4d0(&StackProcessingUnsignedValue78);
-  FUN_18014e470(&SystemOperationFlag98);
+  ProcessCharacterWithMemoryDataEx(&pMemoryOffsetValue,SystemBufferSize);
+  ProcessCharacterWithSystemMemory(*(void *)(CharacterCode[1] + 0xb8),&pMemoryOffsetValue,MemoryBlockIndex);
+  ProcessCharacterWithSystemOperations(&BufferOffset);
+  ProcessCharacterWithMemoryOperations(&StackProcessingUnsignedValue78);
+  ProcessCharacterWithBufferOperations(&SystemOperationFlag98);
   pMemoryOffsetValue = &SystemNullTemplate;
   if (lStack_b0 != 0) {
                     // WARNING: Subroutine does not return
@@ -181140,7 +181140,7 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
   
   CharacterTablePointer = CharacterCode[1];
   for (BufferStatus = *CharacterCode; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x88) {
-    FUN_18014c7d0(BufferStatus);
+    ProcessCharacterWithSecondarySystem(BufferStatus);
   }
   if (*CharacterCode == 0) {
     return;
@@ -181152,14 +181152,23 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
 
 
 
-4e470(long long *CharacterCodevoid FUN_18014e470(long long *CharacterCode
+/**
+ * 处理字符缓冲区操作
+ * 
+ * 该函数负责处理字符代码的缓冲区操作，通过循环遍历缓冲区
+ * 并对每个缓冲区状态进行验证处理。如果缓冲区为空则直接返回，
+ * 否则触发核心引擎系统事件。
+ * 
+ * @param CharacterCode 字符代码指针，包含缓冲区信息和状态
+ */
+void ProcessCharacterBufferOperations(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
   
   CharacterTablePointer = CharacterCode[1];
   for (BufferStatus = *CharacterCode; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x60) {
-    FUN_18014d790(BufferStatus);
+    ProcessCharacterWithQuaternaryValidation(BufferStatus);
   }
   if (*CharacterCode == 0) {
     return;
@@ -181171,7 +181180,16 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
 
 
 
-4e4d0(long long *CharacterCodevoid FUN_18014e4d0(long long *CharacterCode
+/**
+ * 处理字符内存操作
+ * 
+ * 该函数负责处理字符代码的内存操作，通过循环遍历缓冲区
+ * 并对每个内存块进行清理和重置操作。设置内存块为空模板，
+ * 清理相关数据，并设置线程本地存储模板。
+ * 
+ * @param CharacterCode 字符代码指针，包含内存操作信息
+ */
+void ProcessCharacterMemoryOperations(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -181197,7 +181215,16 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
 
 
 
-4e570(long long *CharacterCodevoid FUN_18014e570(long long *CharacterCode
+/**
+ * 处理字符系统操作
+ * 
+ * 该函数负责处理字符代码的系统操作，通过循环遍历缓冲区
+ * 并对每个系统块进行清理和重置操作。设置系统块为空模板，
+ * 清理相关数据，并设置线程本地存储模板。
+ * 
+ * @param CharacterCode 字符代码指针，包含系统操作信息
+ */
+void ProcessCharacterSystemOperations(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -181223,7 +181250,15 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
 
 
 
-4e610(long long *CharacterCodevoid FUN_18014e610(long long *CharacterCode
+/**
+ * 初始化字符线程本地存储
+ * 
+ * 该函数负责初始化字符代码的线程本地存储，检查指针有效性，
+ * 并设置线程本地存储模板到指定位置。
+ * 
+ * @param CharacterCode 字符代码指针，用于初始化线程本地存储
+ */
+void InitializeCharacterThreadLocalStorage(long long *CharacterCode)
 {
   if (CharacterCode == (long long *)0x0) {
     return;
@@ -181245,7 +181280,15 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
 
 
 
-4e690(long long *CharacterCodevoid FUN_18014e690(long long *CharacterCode
+/**
+ * 清理字符系统资源
+ * 
+ * 该函数负责清理字符代码的系统资源，检查指针有效性，
+ * 调用系统清理函数，并释放系统内存。
+ * 
+ * @param CharacterCode 字符代码指针，用于清理系统资源
+ */
+void CleanupCharacterSystemResources(long long *CharacterCode)
 {
   if (CharacterCode == (long long *)0x0) {
     return;
@@ -181266,7 +181309,17 @@ void ProcessUtf8CharacterEncodingAndMemoryManagement(long long CharacterCode, lo
 
 
 
-uint64_t * FUN_18014e700(uint64_t *CharacterCode,long long SystemBufferSize
+/**
+ * 分配字符系统内存
+ * 
+ * 该函数负责为字符系统分配内存，初始化系统数据结构，
+ * 设置函数指针，并配置内存管理参数。
+ * 
+ * @param CharacterCode 字符代码指针，用于存储分配的内存信息
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配计算
+ * @return uint64_t* 返回分配的内存指针
+ */
+uint64_t * AllocateCharacterSystemMemory(uint64_t *CharacterCode, long long SystemBufferSize)
 {
   long long PrimaryDataSize;
   uint64_t MemoryAllocationIndex;
@@ -191248,7 +191301,23 @@ uint64_t FUN_18015c320(uint64_t CharacterCode,unsigned long long SystemBufferSiz
 
 
 
-601c0(long long CharacterCode,int SystemBufferSize,int *Utf8SourcePointervoid FUN_1801601c0(long long CharacterCode,int SystemBufferSize,int *Utf8SourcePointer
+/**
+ * @brief 处理字符编码和缓冲区管理
+ * 
+ * 该函数负责处理字符编码转换和缓冲区管理操作，包括：
+ * - 字符代码表的验证和处理
+ * - 内存分配和缓冲区管理
+ * - 系统上下文验证
+ * - 字符串处理和格式化
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_1801601c0
+ */
+void ProcessCharacterEncodingAndBufferManagement(long long CharacterCode, int SystemBufferSize, int *Utf8SourcePointer
 {
   uint64_t Utf16Char;
   long long *BufferAllocationStatus;
@@ -191274,10 +191343,10 @@ uint64_t FUN_18015c320(uint64_t CharacterCode,unsigned long long SystemBufferSiz
   uint MemoryAllocationOffset;
   int *pStringComparisonResult3;
   unsigned long long MemoryAllocationBase;
-  int iStackX_18;
-  uint32_t uStackX_1c;
+  int StackVariable18;
+  uint32_t StackVariable1c;
   long long PerformanceCounterValue;
-  long long alStack_60 [4];
+  long long StackArray60 [4];
   
   MemoryAllocationOffset = Utf8SourcePointer[0xc];
   pStringComparisonResult3 = (int *)(long long)(int)MemoryAllocationOffset;
