@@ -37509,7 +37509,7 @@ void SystemCallHandlerCleanupFunc1(DataBuffer operationBase,int64_t dataBuffer,D
 void SystemCallHandlerCleanupFunc2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
+  ProcessSystemConfigurationA1(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -37532,7 +37532,7 @@ void SystemCallHandlerCleanupFunc2(DataBuffer operationBase,int64_t dataBuffer,D
 void SystemCallHandlerCleanupFunc3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
+  ProcessSystemConfigurationA1(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -37692,7 +37692,7 @@ void ExceptionCleanupHandlerValidationContext(DataBuffer operationBase,int64_t d
   pdataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x70) + 0x70);
   validationContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x70) + 0x78);
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x18) {
-    FUN_18004bf50(calculatedOffset);
+    ProcessMemoryOffsetA0(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -37905,7 +37905,7 @@ void ExceptionCleanupHandlerValidationContext2(DataBuffer operationBase,int64_t 
   pdataContext = *(int64_t **)(dataBuffer + 0x78);
   validationContext = pdataContext[1];
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x18) {
-    FUN_18004bf50(calculatedOffset);
+    ProcessMemoryOffsetA0(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -38079,7 +38079,7 @@ void ExceptionCleanupHandlerMemoryContext3(DataBuffer operationBase,int64_t data
 void SystemCallHandlerCleanupFunc4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_180058420(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
+  ProcessDataBufferA1(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
