@@ -105589,10 +105589,22 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define SystemControlBuffer UNK_1809fcc88
 #define SystemExecutionBuffer UNK_180a05168
 #define DataBufferPointerA3 UNK_180a05168
+#define DataBufferPointerA4 UNK_180a07218
+#define DataBufferPointerA5 UNK_180a05068
+#define DataBufferPointerA6 UNK_180a05240
+#define MemoryAllocationBuffer UNK_180a01660
+#define SystemDataBufferA1 UNK_1809fe210
+#define ResourceValidationBufferA0 UNK_180a3e470
+#define OperationResultBufferA0 UNK_180a07cd0
+#define SystemValidationBufferA0 UNK_180982378
+#define ValidationStackPointerA0 UNK_1809823f8
+#define ValidationContextBufferA0 UNK_180982260
+#define SystemValidationTableA0 UNK_180986390
+#define ValidationStatusTableA0 UNK_180986940
 
 // 系统数据表宏定义 - 美化DAT_变量
-#define SystemValidationBaseConstantA0 SystemValidationBaseConstantA0
-#define SystemValidationBaseConstantA1 SystemValidationBaseConstantA1
+#define SystemValidationBaseConstantA0 DAT_180c4eaa0
+#define SystemValidationBaseConstantA1 DAT_180c4eaa4
 #define SystemResourceIteratorTable _DAT_180c86938
 #define SystemFunctionPointerTable _DAT_180c86968
 #define SystemInputParameterTable _DAT_180c82868
@@ -105617,6 +105629,18 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define SystemResourceDataTable _DAT_180c92498
 #define SystemResourceDataTableA1 _DAT_180c92488
 #define DefaultExceptionHandlerBPointerTable _DAT_180bf6558
+#define SystemExceptionHandlerStateTable _DAT_180d49f80
+#define SystemConfigurationDataTableA0 _DAT_180d49ff8
+#define SystemConfigurationDataTableA1 _DAT_180c92510
+#define SystemFlagA0 _DAT_180bf66d8
+#define SystemDataTableA1 _DAT_180c96858
+#define SystemBufferDataTableA0 _DAT_180bfbf64
+#define SystemBufferDataTableA1 _DAT_180bfbf7c
+#define SystemBufferDataTableA2 _DAT_180bfbf60
+#define SystemConfigurationDataTableA2 _DAT_180bf7308
+#define SystemBufferDataTableA3 _DAT_180bfbf78
+#define SystemConfigurationDataTableA3 _DAT_180bf72a8
+#define SystemManagementDataTableA0 _DAT_180bfbd80
 
 // 异常处理函数宏定义 - 美化Unwind_函数
 #define ExecuteExceptionHandlerA0 Unwind_180911160
