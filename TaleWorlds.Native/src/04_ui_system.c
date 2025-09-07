@@ -1049,6 +1049,15 @@ void* UIGestureCoordinates;
 // 原始函数名：FUN_1806780c0 - UI系统空处理器函数
 #define ProcessUINullHandler FUN_1806780c0
 
+// 原始函数名：FUN_18069bfc6 - UI系统临界区资源初始化函数
+#define InitializeUICriticalSectionResource FUN_18069bfc6
+
+// 原始函数名：FUN_18069d310 - UI系统渲染数据处理函数
+#define ProcessUIRenderDataProcessing FUN_18069d310
+
+// 原始函数名：FUN_18069d460 - UI系统渲染管道处理函数
+#define ProcessUIRenderPipelineHandler FUN_18069d460
+
 // 原始函数名：FUN_1806782c0 - UI系统默认处理器函数
 #define ProcessUIDefaultHandler FUN_1806782c0
 
@@ -65915,93 +65924,93 @@ void UpdateUIComponentData(undefined8 *uiContext,undefined1 *dataSource,int targ
 
 
 
- void FUN_18069d310(longlong uiContext)
-void FUN_18069d310(longlong uiContext)
-
+ // 原始函数名：FUN_18069d310 - UI系统渲染数据处理函数
+// 处理UI渲染相关的数据，包括像素数据计算和渲染状态更新
+void ProcessUIRenderDataProcessing(longlong uiContext)
 {
-  longlong allocatedMemory;
-  int validationResult;
-  longlong stringCompareIndex;
-  longlong lVar4;
-  int iVar5;
-  ushort *puVar6;
-  longlong lVar7;
-  longlong lVar8;
-  int iVar9;
+  longlong renderBuffer;
+  int pixelValue;
+  longlong dataOffset;
+  longlong baseOffset;
+  int columnIndex;
+  ushort *renderTarget;
+  longlong rowIndex;
+  longlong columnCount;
+  int rowCount;
   
-  lVar7 = 0;
-  puVar6 = (ushort *)(uiContext + 0xc10);
-  iVar9 = 0x10;
+  rowIndex = 0;
+  renderTarget = (ushort *)(uiContext + 0xc10);
+  rowCount = 0x10;
   do {
-    iVar5 = 0;
-    stringCompareIndex = lVar7 + 0x1c;
-    lVar8 = 2;
-    lVar4 = lVar7;
+    columnIndex = 0;
+    dataOffset = rowIndex + 0x1c;
+    columnCount = 2;
+    baseOffset = rowIndex;
     do {
-      allocatedMemory = *(longlong *)(bufferData + 0xf00);
-      validationResult = (int)*(short *)(allocatedMemory + -0x10 + stringCompareIndex) + (int)*(short *)(allocatedMemory + -0xc + stringCompareIndex) +
-              (int)*(short *)(allocatedMemory + 4 + stringCompareIndex) + (int)*(short *)(allocatedMemory + stringCompareIndex);
-      validationResult = (validationResult >> 0x1f) * 8 + 4 + validationResult;
-      *puVar6 = (ushort)((int)(validationResult + (validationResult >> 0x1f & 7U)) >> 3) & *(ushort *)(uiContext + 0xdd8);
-      allocatedMemory = *(longlong *)(bufferData + 0xf00);
-      validationResult = (int)*(short *)(allocatedMemory + -10 + stringCompareIndex) + (int)*(short *)(allocatedMemory + 0x1e + lVar4) +
-              (int)*(short *)(allocatedMemory + 0xe + lVar4) + (int)*(short *)(allocatedMemory + 6 + stringCompareIndex);
-      validationResult = (validationResult >> 0x1f) * 8 + 4 + validationResult;
-      puVar6[1] = (ushort)((int)(validationResult + (validationResult >> 0x1f & 7U)) >> 3) & *(ushort *)(uiContext + 0xdd8);
-      if (*(char *)(*(longlong *)(bufferData + 0xf00) + 10) != '\0') {
-        func_0x00018069db90(uiContext + 0x890 + (longlong)(iVar9 + iVar5) * 0x38,uiContext);
+      renderBuffer = *(longlong *)(g_UIBufferData + 0xf00);
+      pixelValue = (int)*(short *)(renderBuffer + -0x10 + dataOffset) + (int)*(short *)(renderBuffer + -0xc + dataOffset) +
+              (int)*(short *)(renderBuffer + 4 + dataOffset) + (int)*(short *)(renderBuffer + dataOffset);
+      pixelValue = (pixelValue >> 0x1f) * 8 + 4 + pixelValue;
+      *renderTarget = (ushort)((int)(pixelValue + (pixelValue >> 0x1f & 7U)) >> 3) & *(ushort *)(uiContext + 0xdd8);
+      renderBuffer = *(longlong *)(g_UIBufferData + 0xf00);
+      pixelValue = (int)*(short *)(renderBuffer + -10 + dataOffset) + (int)*(short *)(renderBuffer + 0x1e + baseOffset) +
+              (int)*(short *)(renderBuffer + 0xe + baseOffset) + (int)*(short *)(renderBuffer + 6 + dataOffset);
+      pixelValue = (pixelValue >> 0x1f) * 8 + 4 + pixelValue;
+      renderTarget[1] = (ushort)((int)(pixelValue + (pixelValue >> 0x1f & 7U)) >> 3) & *(ushort *)(uiContext + 0xdd8);
+      if (*(char *)(*(longlong *)(g_UIBufferData + 0xf00) + 10) != '\0') {
+        ProcessUIRenderDataSubroutine(uiContext + 0x890 + (longlong)(rowCount + columnIndex) * 0x38,uiContext);
       }
-      iVar5 = iVar5 + 1;
-      *(undefined4 *)(puVar6 + 0x70) = *(undefined4 *)puVar6;
-      stringCompareIndex = stringCompareIndex + 8;
-      puVar6 = puVar6 + 0x1c;
-      lVar4 = lVar4 + 8;
-      lVar8 = lVar8 + -1;
-    } while (lVar8 != 0);
-    iVar9 = iVar9 + 2;
-    lVar7 = lVar7 + 0x20;
-  } while (lVar7 < 0x40);
+      columnIndex = columnIndex + 1;
+      *(undefined4 *)(renderTarget + 0x70) = *(undefined4 *)renderTarget;
+      dataOffset = dataOffset + 8;
+      renderTarget = renderTarget + 0x1c;
+      baseOffset = baseOffset + 8;
+      columnCount = columnCount + -1;
+    } while (columnCount != 0);
+    rowCount = rowCount + 2;
+    rowIndex = rowIndex + 0x20;
+  } while (rowIndex < 0x40);
   return;
 }
 
 
 
 
- void FUN_18069d460(longlong uiContext)
-void FUN_18069d460(longlong uiContext)
-
+ // 原始函数名：FUN_18069d460 - UI系统渲染管道处理函数
+// 处理UI系统的渲染管道，包括渲染状态管理和缓冲区操作
+void ProcessUIRenderPipelineHandler(longlong uiContext)
 {
-  ushort functionResult;
-  undefined4 semaphoreHandle;
-  int compareResult;
-  longlong lVar4;
-  undefined8 uVar5;
+  ushort renderResult;
+  uint renderSemaphore;
+  int renderCompareResult;
+  longlong renderOffset;
+  ulonglong renderFlags;
   longlong contextData;
-  longlong lVar7;
-  int *piVar8;
-  uint uVar9;
-  longlong allocatedMemory0;
-  longlong allocatedMemory1;
-  longlong allocatedMemory2;
+  longlong loopCounter;
+  int *renderDataPtr;
+  uint renderWidth;
+  longlong renderBuffer0;
+  longlong renderBuffer1;
+  longlong renderBuffer2;
   
-  lVar4 = *(longlong *)(bufferData + 0xea8);
-  uVar5 = *(undefined8 *)(uiContext + 0xe18);
-  if (*(byte *)(*(longlong *)(bufferData + 0xf00) + 8) < 3) {
-    semaphoreHandle = *(undefined4 *)(bufferData + 0xe80);
-    *(undefined4 *)(bufferData + 0x890) = *(undefined4 *)(*(longlong *)(bufferData + 0xf00) + 0xc);
-    *(undefined4 *)(bufferData + 0x900) = *(undefined4 *)(*(longlong *)(bufferData + 0xf00) + 0x14);
-    *(undefined4 *)(bufferData + 0xa50) = *(undefined4 *)(*(longlong *)(bufferData + 0xf00) + 0x2c);
-    *(undefined4 *)(bufferData + 0xac0) = *(undefined4 *)(*(longlong *)(bufferData + 0xf00) + 0x34);
-    if (*(char *)(*(longlong *)(bufferData + 0xf00) + 10) != '\0') {
-      func_0x00018069db00((undefined4 *)(uiContext + 0x890),uiContext);
-      func_0x00018069db00(uiContext + 0x900);
-      func_0x00018069db00(uiContext + 0xa50);
-      func_0x00018069db00(uiContext + 0xac0);
+  renderOffset = *(longlong *)(g_UIBufferData + 0xea8);
+  renderFlags = *(ulonglong *)(uiContext + 0xe18);
+  if (*(byte *)(*(longlong *)(g_UIBufferData + 0xf00) + 8) < 3) {
+    renderSemaphore = *(uint *)(g_UIBufferData + 0xe80);
+    *(uint *)(g_UIBufferData + 0x890) = *(uint *)(*(longlong *)(g_UIBufferData + 0xf00) + 0xc);
+    *(uint *)(g_UIBufferData + 0x900) = *(uint *)(*(longlong *)(g_UIBufferData + 0xf00) + 0x14);
+    *(uint *)(g_UIBufferData + 0xa50) = *(uint *)(*(longlong *)(g_UIBufferData + 0xf00) + 0x2c);
+    *(uint *)(g_UIBufferData + 0xac0) = *(uint *)(*(longlong *)(g_UIBufferData + 0xf00) + 0x34);
+    if (*(char *)(*(longlong *)(g_UIBufferData + 0xf00) + 10) != '\0') {
+      ProcessUIRenderDataSubroutine((uint *)(uiContext + 0x890),uiContext);
+      ProcessUIRenderDataSubroutine(uiContext + 0x900);
+      ProcessUIRenderDataSubroutine(uiContext + 0xa50);
+      ProcessUIRenderDataSubroutine(uiContext + 0xac0);
     }
-    FUN_18069d940(uiContext,uiContext + 0x860,*(int *)(bufferData + 0x880) + lVar4,semaphoreHandle,uVar5,semaphoreHandle);
-    FUN_18069d940(uiContext,uiContext + 0x8d0,*(int *)(bufferData + 0x8f0) + lVar4,semaphoreHandle,uVar5,semaphoreHandle);
-    FUN_18069d940(uiContext,uiContext + 0xa20,*(int *)(bufferData + 0xa40) + lVar4,semaphoreHandle,uVar5,semaphoreHandle);
-    FUN_18069d940(uiContext,uiContext + 0xa90,*(int *)(bufferData + 0xab0) + lVar4,semaphoreHandle,uVar5,semaphoreHandle);
+    ProcessUIRenderBatch(uiContext,uiContext + 0x860,*(int *)(g_UIBufferData + 0x880) + renderOffset,renderSemaphore,renderFlags,renderSemaphore);
+    ProcessUIRenderBatch(uiContext,uiContext + 0x8d0,*(int *)(g_UIBufferData + 0x8f0) + renderOffset,renderSemaphore,renderFlags,renderSemaphore);
+    ProcessUIRenderBatch(uiContext,uiContext + 0xa20,*(int *)(g_UIBufferData + 0xa40) + renderOffset,renderSemaphore,renderFlags,renderSemaphore);
+    ProcessUIRenderBatch(uiContext,uiContext + 0xa90,*(int *)(g_UIBufferData + 0xab0) + renderOffset,renderSemaphore,renderFlags,renderSemaphore);
   }
   else {
     lVar7 = 0x10;
