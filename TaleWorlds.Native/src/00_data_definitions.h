@@ -12781,7 +12781,7 @@ uint64_t SystemConfigureParameters(uint64_t *ConfigurationArrayPointer,longlong 
   uint8_t MemoryAllocationResult;
   ulonglong StackVariable10;
   uint NetworkDataBuffer [2];
-  ulonglong StackVariable20;
+  ulonglong AudioProcessingBuffer;
   if (*(int *)(ConfigurationIndex + 0x18) < *(int *)(*(longlong *)(ConfigurationIndex + 0x10) + 0xb4)) {
 MemoryAllocationReset:
     MemoryAllocationResult = 0;
@@ -12985,7 +12985,7 @@ uint64_t SystemAudioCreateBuffer(uint32_t BufferSizeParameter,uint *AudioFormatP
   uint16_t *pUnsignedIndex;
   uint16_t *pUnsignedSize;
   byte StackBuffer18 [8];
-  longlong StackVariable20;
+  longlong AudioProcessingBuffer;
   if (SystemProcessingEnabledFlag == '\0') {
     return 0x80920005;
   }

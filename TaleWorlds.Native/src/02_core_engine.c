@@ -228181,7 +228181,7 @@ LAB_1802016f7:
       }
       FUN_1806284c0(&pCoreEngineUnsignedValue208,
                     *(uint32_t *)(*(long long *)(AllocatedMemorySize + 0x88) + -4 + (long long)MutexLockResult * 4));
-      FUN_1800ba4b0(aStackVariable1B8,&UNK_180a0fb98);
+      FUN_1800ba4b0(aStackVariable1B8,&SystemMemoryAllocationParameter);
       Utf16Char8 = SystemValue1a8 + 6;
       CoreEngineProcessSystemEvent(aStackVariable1B8,Utf16Char8);
       PrimaryProcessingStatusFlag4 = (uint32_t *)(stackPointer1B0 + SystemValue1a8);
@@ -229085,7 +229085,7 @@ LAB_180201f5b:
   uint64_t FunctionAddress;
   
   FunctionAddress = 0xfffffffffffffffe;
-  pMemoryAddressMask = &UNK_180a0fbf8;
+  pMemoryAddressMask = &SystemMemoryAddressMaskPrimary;
   if (*(char *)(SystemContextPointer + 0xd9) != '\0') {
     pMemoryAddressMask = &UNK_180a0fc28;
   }

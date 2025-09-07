@@ -20027,8 +20027,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   float StackFloatValueA;
   float StackFloatValueB;
   DataWord StackDataWordD;
-  float fStack_19c;
-  float afStack_198 [2];
+  float StackFloatValueC;
+  float StackFloatArrayA [2];
   DataBuffer *StackPointerBufferB;
   int64_t StackLongIntegerA;
   int64_t StackLongIntegerB;
@@ -20138,20 +20138,20 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
           }
-          iterationCount = ConvertDataFormatA2(dataContext,&fStack_19c,0);
+          iterationCount = ConvertDataFormatA2(dataContext,&StackFloatValueC,0);
           if (iterationCount == 0) {
-            if (fStack_19c != 1.0) {
-              StackFloatValueA = fStack_19c;
+            if (StackFloatValueC != 1.0) {
+              StackFloatValueA = StackFloatValueC;
               puStack_1c0 = &FloatingPointValidationErrorA;
               StackDataWordC = StackDataWordA;
               StackDataWordB = 0;
               iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
-            iterationCount = ValidateDataA3(dataContext,afStack_198,0);
+            iterationCount = ValidateDataA3(dataContext,StackFloatArrayA,0);
             if (iterationCount == 0) {
-              if (afStack_198[0] != 1.0) {
-                StackFloatValueA = afStack_198[0];
+              if (StackFloatArrayA[0] != 1.0) {
+                StackFloatValueA = StackFloatArrayA[0];
                 puStack_1c0 = &FloatingPointValidationErrorB;
                 StackDataWordC = StackDataWordA;
                 StackDataWordB = 0;
@@ -101107,9 +101107,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储数据处理过程中的临时数据字
 #define StackDataWordD uStack_1a0
 
-// 原始变量名：fStack_19c - 栈浮点值C
+// 原始变量名：StackFloatValueC - 栈浮点值C
 // 功能：存储浮点运算的栈值
-#define StackFloatValueC fStack_19c
+#define StackFloatValueC StackFloatValueC
 
 // 栈变量宏定义 - 美化acStack变量
 // 原始变量名：acStackX_24 - 栈系统状态
@@ -101166,9 +101166,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define StackDataBufferO stack0x000000b0
 
 // 栈变量宏定义 - 美化更多栈变量
-// 原始变量名：afStack_198 - 栈浮点数组A
+// 原始变量名：StackFloatArrayA - 栈浮点数组A
 // 功能：存储浮点数组的栈数据
-#define StackFloatArrayA afStack_198
+#define StackFloatArrayA StackFloatArrayA
 
 // 原始变量名：StackPointerBufferB - 栈指针缓冲区B
 // 功能：存储指针数据的栈缓冲区
