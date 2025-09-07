@@ -100022,10 +100022,27 @@ float *SetupFloatProcessingStatusFlag(float *Utf8InputBuffer)
 
 
 
-210d(float *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer,
-// 原始函数名：FUN_18011210d - 处理浮点数据结构和系统缓冲区的函数
+/**
+ * @brief 处理浮点数据结构和系统缓冲区
+ * 
+ * 该函数负责处理系统中的浮点数据结构和缓冲区操作，包括：
+ * - 系统上下文浮点值的读取和处理
+ * - 浮点数据的计算和验证
+ * - 内存缓冲区的管理和操作
+ * - 系统标志的验证和处理
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外的浮点参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18011210d
+ */
 void ProcessFloatDataStructureAndSystemBuffer(float *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer,
-                  float AdditionalParameter1
+                  float AdditionalParameter1)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -100045,23 +100062,23 @@ void ProcessFloatDataStructureAndSystemBuffer(float *Utf8InputBuffer,uint64_t Ut
   CalculatedSumValue = SystemContextPrimaryFloat + *Utf8InputBuffer;
   ContextSecondaryFloat = *(float *)(ProcessingResult + 0x104);
   CalculatedDistance = ContextSecondaryFloat + Utf8InputBuffer[1];
-  StackBufferOffset78 = FloatVariable7 - SystemContextPrimaryFloat;
+  StackBufferOffset78 = CalculatedSumValue - SystemContextPrimaryFloat;
   StackBufferOffset7c = CalculatedDistance - ContextSecondaryFloat;
   ProcessSystemBuffer(&SecondaryStackBuffer,0);
   long long AllocatedMemorySize = *(long long *)(Utf16EndPointer + 0x1af8);
   *(void *)(AllocatedMemorySize + 0x144) = 0;
   *(float *)(AllocatedMemorySize + 0x14c) = SystemContextPrimaryFloat;
   *(float *)(AllocatedMemorySize + 0x150) = ContextSecondaryFloat;
-  *(float *)(AllocatedMemorySize + 0x154) = FloatVariable7;
+  *(float *)(AllocatedMemorySize + 0x154) = CalculatedSumValue;
   *(float *)(AllocatedMemorySize + 0x158) = CalculatedDistance;
   MemoryBlockIndex = *(long long *)(Utf16EndPointer + 0x1af8);
   if (((((*(float *)(MemoryBlockIndex + 0x22c) <= CalculatedDistance && CalculatedDistance != *(float *)(MemoryBlockIndex + 0x22c)) &&
         (ContextSecondaryFloat < *(float *)(MemoryBlockIndex + 0x234))) &&
-       (*(float *)(MemoryBlockIndex + 0x228) <= FloatVariable7 && FloatVariable7 != *(float *)(MemoryBlockIndex + 0x228))) &&
+       (*(float *)(MemoryBlockIndex + 0x228) <= CalculatedSumValue && CalculatedSumValue != *(float *)(MemoryBlockIndex + 0x228))) &&
       (SystemContextPrimaryFloat < *(float *)(MemoryBlockIndex + 0x230))) || (*(char *)(Utf16EndPointer + 0x2e38) != '\0')) {
     NormalizedDistanceX = SystemContextPrimaryFloat;
     NormalizedDistanceY = ContextSecondaryFloat;
-    AdditionalParameter1 = FloatVariable7;
+    AdditionalParameter1 = CalculatedSumValue;
     StackBufferOffset2c = CalculatedDistance;
     OperationStatus = ValidateAndProcessSystemFlags(&NormalizedDistanceX,&AdditionalParameter1,1);
     if (OperationStatus != '\0') {
