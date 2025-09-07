@@ -3264,6 +3264,59 @@
 // 功能：存储系统数据配置信息
 #define DataConfigurationTableA4 UNK_1809865f0
 
+// 系统核心函数宏定义
+// 原始函数名：FUN_180058210 - 异常处理函数A0
+// 功能：处理系统异常和资源清理
+#define ProcessSystemExceptionA0 FUN_180058210
+
+// 原始函数名：FUN_1800587d0 - 系统资源处理函数A0
+// 功能：处理系统资源和异常状态
+#define ProcessSystemResourcesA0 FUN_1800587d0
+
+// 原始函数名：FUN_18005cb60 - 资源释放函数A0
+// 功能：释放系统资源和清理内存
+#define ReleaseSystemResourcesA1 FUN_18005cb60
+
+// 原始函数名：FUN_1801fef10 - 数据处理函数A0
+// 功能：处理数据缓冲区和异常状态
+#define ProcessDataBufferA0 FUN_1801fef10
+
+// 原始函数名：FUN_1800582b0 - 数据验证函数A0
+// 功能：验证数据完整性和安全性
+#define ValidateDataIntegrityA1 FUN_1800582b0
+
+// 原始函数名：FUN_1800f74f0 - 系统配置处理函数A0
+// 功能：处理系统配置和参数设置
+#define ProcessSystemConfigurationA1 FUN_1800f74f0
+
+// 原始函数名：FUN_18004bf50 - 偏移量处理函数A0
+// 功能：处理内存偏移量和地址计算
+#define ProcessMemoryOffsetA0 FUN_18004bf50
+
+// 原始函数名：FUN_180058420 - 数据处理函数A1
+// 功能：处理数据缓冲区和状态管理
+#define ProcessDataBufferA1 FUN_180058420
+
+// 原始函数名：FUN_18020eba0 - 字符处理函数A0
+// 功能：处理字符数据和编码转换
+#define ProcessCharacterDataA0 FUN_18020eba0
+
+// 原始函数名：FUN_18020f530 - 系统状态更新函数A0
+// 功能：更新系统状态和标志位
+#define UpdateSystemStatusA0 FUN_18020f530
+
+// 原始函数名：FUN_180057010 - 系统初始化函数A0
+// 功能：初始化系统组件和资源
+#define InitializeSystemComponentsA0 FUN_180057010
+
+// 原始函数名：FUN_18005d580 - 系统清理函数A0
+// 功能：清理系统资源和状态
+#define CleanupSystemResourcesA2 FUN_18005d580
+
+// 原始函数名：FUN_180090b80 - 系统验证函数A0
+// 功能：验证系统配置和状态
+#define ValidateSystemConfigurationA0 FUN_180090b80
+
 // 原始变量名：UNK_1809866c0 - 数据配置表A5
 // 功能：存储系统数据配置信息
 #define DataConfigurationTableA5 UNK_1809866c0
@@ -7616,8 +7669,8 @@ uint8_t SystemStatusByteA11;
 uint8_t SystemStatusByteA12;
 uint8_t SystemStatusByteA13;
 uint8_t SystemStatusByteA14;
-uint8_t UNK_180a38be0;
-uint8_t UNK_180a38be8;
+uint8_t ExceptionHandlerStatusByteA0;
+uint8_t ExceptionHandlerStatusByteA1;
 uint8_t UNK_180a38c08;
 uint8_t UNK_180a38c28;
 uint8_t UNK_180a38c40;
@@ -18519,7 +18572,7 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
       uStack_270 = 0;
       uStack_264 = 0;
       uStack_268 = operationFlagA;
-      InitializeMemory(auStack_260,*(DataBuffer *)(dataBuffer + 0x228),0x200);
+      InitializeMemory(DataProcessingBufferA,*(DataBuffer *)(dataBuffer + 0x228),0x200);
       ppdataFlags = &puStack_278;
 SecurityValidationLabel:
       operationStatus = ValidateDataIntegrityA0(operationBase,ppdataFlags);
@@ -19142,15 +19195,15 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
   validationContext = operationBase[4];
   if (((char)validationContext != '\0') || (operationResult = ValidateSystemDataA0(operationBase,1), operationResult == 0)) {
     operationResult = (**(FunctionPointer**)(*dataBuffer + 0x10))(dataBuffer,DataProcessingBufferB,0x200);
-    ProcessData(auStack_228 + operationResult,0x200 - operationResult,10);
-    operationResult = (**(FunctionPointer**)(*operationBase + 8))(operationBase,auStack_228);
+    ProcessData(DataProcessingBufferB + operationResult,0x200 - operationResult,10);
+    operationResult = (**(FunctionPointer**)(*operationBase + 8))(operationBase,DataProcessingBufferB);
     if ((operationResult == 0) &&
        (((char)validationContext == '\0' && (operationResult = (**(FunctionPointer**)(*operationBase + 0x18))(operationBase), operationResult == 0)))) {
       *(ByteFlag *)(operationBase + 4) = 0;
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(uStack_28 ^ (uint64_t)auStack_248);
+  ExecuteSecurityCheck(uStack_28 ^ (uint64_t)EncryptionKeyBufferB);
 }
 
 
@@ -19243,7 +19296,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   int64_t validationContext4;
   float *floatValuePointer;
   DataBuffer *exceptionDataBuffer6;
-  ByteFlag auStack_1e8 [32];
+  ByteFlag EncryptionKeyBufferC [32];
   DataWord uStack_1c8;
   char acStack_1c4 [4];
   uint8_t *puStack_1c0;
@@ -19280,10 +19333,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   DataWord uStack_f0;
   ByteFlag uStack_ec;
   DataBuffer uStack_e8;
-  ByteFlag auStack_e0 [136];
+  ByteFlag ExceptionDataBufferA [136];
   uint64_t colorDataWord;
   
-  colorDataWord = ExceptionEncryptionKey ^ (uint64_t)auStack_1e8;
+  colorDataWord = ExceptionEncryptionKey ^ (uint64_t)EncryptionKeyBufferC;
   dataContext = *(int64_t *)(dataBuffer + 0x80);
   validationContext4 = 0;
   uStack_1c8 = 0;
@@ -19329,7 +19382,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               else {
                 exceptionDataBuffer2 = *(uint8_t **)(calculatedOffset + 0x50);
               }
-              InitializeMemory(auStack_e0,exceptionDataBuffer2,0x80);
+              InitializeMemory(ExceptionDataBufferA,exceptionDataBuffer2,0x80);
               iterationCount = ValidateDataIntegrityA0(operationBase,&psecurityCheckValueA8);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
@@ -19462,7 +19515,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   }
 ProcessDataSecurityValidation:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(colorDataWord ^ (uint64_t)auStack_1e8);
+  ExecuteSecurityCheck(colorDataWord ^ (uint64_t)EncryptionKeyBufferC);
 }
 
 
@@ -20241,12 +20294,12 @@ OperationFailedLabel:
           uStack_278 = 0;
           dataContext = operationBase[4];
           puStack_280 = &SystemProcessingBuffer;
-          uStack_270 = auStack_288[0];
+          uStack_270 = StackDataBufferA[0];
           if (((char)dataContext == '\0') && (operationStatus = ValidateSystemDataA0(operationBase,1), operationStatus != 0))
           goto ProcessCheckpointResourceValidation;
-          operationStatus = (**(FunctionPointer**)(puStack_280 + 0x10))(&puStack_280,auStack_238,0x200);
-          ProcessData((int64_t)auStack_238 + (int64_t)operationStatus,0x200 - operationStatus,10);
-          operationStatus = (**(FunctionPointer**)(*operationBase + 8))(operationBase,auStack_238);
+          operationStatus = (**(FunctionPointer**)(puStack_280 + 0x10))(&puStack_280,DataTransferBufferA,0x200);
+          ProcessData((int64_t)DataTransferBufferA + (int64_t)operationStatus,0x200 - operationStatus,10);
+          operationStatus = (**(FunctionPointer**)(*operationBase + 8))(operationBase,DataTransferBufferA);
           if (operationStatus != 0) goto ProcessCheckpointResourceValidation;
           if ((char)dataContext == '\0') {
             operationStatus = (**(FunctionPointer**)(*operationBase + 0x18))(operationBase);
@@ -20630,9 +20683,9 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           if (((char)validationContext5 == '\0') &&
              (iterationCount = ValidateSystemDataA0(operationBase,CONCAT71((uint7)(uint3)(uStack_28c >> 8),1)), iterationCount != 0
              )) goto ProcessCheckpointBufferValidation;
-          iterationCount = (**(FunctionPointer**)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
-          ProcessData(auStack_238 + iterationCount,0x200 - iterationCount,10);
-          iterationCount = (**(FunctionPointer**)(*operationBase + 8))(operationBase,auStack_238);
+          iterationCount = (**(FunctionPointer**)(puStack_2d8 + 0x10))(&puStack_2d8,DataTransferBufferA,0x200);
+          ProcessData(DataTransferBufferA + iterationCount,0x200 - iterationCount,10);
+          iterationCount = (**(FunctionPointer**)(*operationBase + 8))(operationBase,DataTransferBufferA);
           if (iterationCount != 0) goto ProcessCheckpointBufferValidation;
           if ((char)validationContext5 == '\0') {
             iterationCount = (**(FunctionPointer**)(*operationBase + 0x18))(operationBase);
@@ -20650,7 +20703,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
       validationContextPointer4 = validationContextPointer6;
       if (0 < iterationCount) {
         do {
-          ProcessSystemDataA0(validationContext5,auStack_2f0,validationContextPointer4);
+          ProcessSystemDataA0(validationContext5,ValidationDataBufferA,validationContextPointer4);
           ProcessContext(validationContext5,validationContextPointer4,afStack_348,alStack_300);
           validationContext1 = GetSystemContextHandle(validationContext5,validationContextPointer4);
           systemStatusChar = CheckSystemStatus(validationContext1,0);
@@ -36782,7 +36835,7 @@ void HandleExceptionRecoveryG0(DataBuffer context, int64_t exceptionData, DataBu
 void HandleExceptionRecoveryH0(DataBuffer context, int64_t exceptionData, DataBuffer recoveryParameter, DataBuffer additionalData)
 
 {
-  FUN_180058210(*(int64_t *)(exceptionData + 0x70),*(DataBuffer *)(*(int64_t *)(exceptionData + 0x70) + 0x10),
+  ProcessSystemExceptionA0(*(int64_t *)(exceptionData + 0x70),*(DataBuffer *)(*(int64_t *)(exceptionData + 0x70) + 0x10),
                 recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
   return;
 }
@@ -36803,7 +36856,7 @@ void HandleExceptionRecoveryH0(DataBuffer context, int64_t exceptionData, DataBu
 void HandleExceptionRecoveryI0(DataBuffer context, int64_t exceptionData, DataBuffer recoveryParameter, DataBuffer additionalData)
 
 {
-  FUN_180058210(*(int64_t *)(exceptionData + 0x78),*(DataBuffer *)(*(int64_t *)(exceptionData + 0x78) + 0x10),
+  ProcessSystemExceptionA0(*(int64_t *)(exceptionData + 0x78),*(DataBuffer *)(*(int64_t *)(exceptionData + 0x78) + 0x10),
                 recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
   return;
 }
@@ -36990,8 +37043,8 @@ void CleanupExceptionAtOffset120(DataBuffer operationBase,int64_t dataBuffer,Dat
   
   resourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
   if (resourcePointer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x78),*resourcePointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(resourcePointer);
+    ProcessSystemResourcesA0(*(int64_t *)(dataBuffer + 0x78),*resourcePointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    ReleaseSystemResourcesA1(resourcePointer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(resourcePointer);
   }
@@ -37028,7 +37081,7 @@ void CleanupExceptionAtOffset112(DataBuffer operationBase,int64_t dataBuffer,Dat
 void CleanupExceptionAtOffset96(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1801fef10(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
+  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -37050,7 +37103,7 @@ void CleanupExceptionAtOffset96(DataBuffer operationBase,int64_t dataBuffer,Data
 void ExceptionCleanupHandler830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1801fef10(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
+  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t )(dataBuffer + 0x78) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -37072,7 +37125,7 @@ void ExceptionCleanupHandler830(DataBuffer operationBase,int64_t dataBuffer,Data
 void ExceptionCleanupHandler840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1801fef10(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
+  ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t )(dataBuffer + 0x78) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -37205,7 +37258,7 @@ void ResourceReferenceManager880(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionCleanupHandler_SystemResourceRelease(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800582b0(*(int64_t *)(dataBuffer + 0x70) + 0x40,
+  ValidateDataIntegrityA1(*(int64_t *)(dataBuffer + 0x70) + 0x40,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x50),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -37268,7 +37321,7 @@ void ResourceManager_ReferenceCountCleanup(DataBuffer operationBase,int64_t data
 void SystemCallHandler_ContextCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800582b0(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
+  ValidateDataIntegrityA1(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -37287,7 +37340,7 @@ void SystemCallHandler_ContextCleanup(DataBuffer operationBase,int64_t dataBuffe
 void SystemCallHandler_ContextResourceRelease(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800582b0(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
+  ValidateDataIntegrityA1(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -37432,7 +37485,7 @@ void ExceptionCleanupHandlerResourceRef(DataBuffer operationBase,int64_t dataBuf
 void SystemCallHandlerCleanupFunc1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x70) + 0x28,
+  ProcessSystemConfigurationA1(*(int64_t *)(dataBuffer + 0x70) + 0x28,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x38),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;

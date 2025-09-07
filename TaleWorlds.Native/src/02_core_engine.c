@@ -41999,7 +41999,7 @@ void HandleSystemMemoryAllocationAndBufferManagement(long long *SystemContextPoi
           ConfigureSystemFlagWithMemory(&SystemFlagA,BufferAllocationStatus,SearchIndexLow,SearchIndexHigh,CurrentThresholdValue);
           FinalizeSystemFlag(&SystemFlagA);
         }
-        ValidateStackArray(auStack_138);
+        ValidateStackArray(SystemStackBuffer138);
         if (pMemoryBufferHandle != (long long *)0x0) {
           (**(code **)(*pMemoryBufferHandle + 0x38))();
         }
