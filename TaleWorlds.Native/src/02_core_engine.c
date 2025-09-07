@@ -126578,7 +126578,17 @@ LAB_180127fd0:
 
 
 
-800a(voidvoid FUN_18012800a(void
+/**
+ * @brief 设置系统帧指针和数据节点
+ * 
+ * 该函数负责设置系统帧指针和数据节点信息，包括：
+ * - 从系统参数中获取帧指针并设置到系统寄存器
+ * - 更新数据节点索引到系统寄存器
+ * - 处理通用寄存器数据的更新
+ * 
+ * @note 原始函数名：FUN_18012800a
+ */
+void SetSystemFramePointerAndDataNode(void)
 {
   uint64_t DataNodeIndex;
   long long SystemParameter;
