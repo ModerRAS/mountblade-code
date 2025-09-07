@@ -1051,6 +1051,12 @@
 // 原始函数名：FUN_1801659e0 - UTF-16字符值获取函数
 #define GetUtf16CharacterValue FUN_1801659e0
 
+// 原始函数名：FUN_18016f990 - UTF-8输入缓冲区重置函数
+#define ResetUtf8InputBuffer FUN_18016f990
+
+// 原始函数名：FUN_1800547b0 - 系统清理执行函数
+#define ExecuteSystemCleanup FUN_1800547b0
+
 // 系统核心函数语义化定义
 // 原始函数名：FUN_180179770 - 系统缓冲区处理函数
 #define ProcessSystemBufferEx FUN_180179770
@@ -170814,7 +170820,7 @@ uint64_t * ProcessCharacterCodeValidation(uint64_t CharacterCode,uint64_t Utf8Bu
   DataStringLength = *(int *)(MemoryBoundaryEnd + 0x2e28);
   *(int *)(MemoryBoundaryEnd + 0x2e28) = DataStringLength + 1;
   CharacterStatusBuffer5 = (void *)((long long)DataStringLength * 0x38 + *(long long *)(MemoryBoundaryEnd + 0x2e30));
-  SystemMemoryAllocationResult = FUN_1801210b0(Utf8SourcePointer);
+  SystemMemoryAllocationResult = GetSystemCharacterData(Utf8SourcePointer);
   *CharacterStatusBuffer5 = SystemMemoryAllocationResult;
   ProcessingStatusFlag = 0xffffffff;
   HighByte = *Utf8SourcePointer;
@@ -200116,9 +200122,17 @@ uint64_t FUN_18016f840(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long 
 
 
 
-6f990(uint64_t *Utf8InputBuffervoid FUN_18016f990(uint64_t *Utf8InputBuffer
+/**
+ * @brief 重置UTF-8输入缓冲区
+ * 
+ * 该函数负责重置UTF-8输入缓冲区，将其内容清零。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @note 原始函数名：FUN_18016f990
+ */
+void ResetUtf8InputBuffer(uint64_t *Utf8InputBuffer)
 {
-  FUN_1800547b0();
+  ExecuteSystemCleanup();
   *(uint32_t *)*Utf8InputBuffer = 0;
   return;
 }
@@ -200126,8 +200140,22 @@ uint64_t FUN_18016f840(uint64_t CharacterCode,uint64_t Utf8BufferSize,long long 
 
 
 
+/**
+ * @brief 分配UTF-8编码内存
+ * 
+ * 该函数负责为UTF-8编码操作分配内存，根据系统状态选择不同的缓冲区。
+ * 如果系统核心引擎数据表的特定偏移量为0，则使用系统字符状态缓冲区；
+ * 否则初始化系统字符状态缓冲区并使用数据引用指针。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 返回字符代码
+ * @note 原始函数名：FUN_18016f9f0
+ */
 uint64_t
-FUN_18016f9f0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+AllocateUtf8EncodingMemory(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   void *CharacterStatusBuffer;
   
