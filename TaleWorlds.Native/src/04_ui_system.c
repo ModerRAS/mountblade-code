@@ -9812,14 +9812,14 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
   float fStackX_18;
   float fStackX_1c;
   float *pfStackX_20;
-  float fStack_1c8;
-  float fStack_1c4;
-  float fStack_1c0;
-  float fStack_1bc;
-  float fStack_1b8;
-  float fStack_1b4;
-  float fStack_1b0;
-  float fStack_1ac;
+  float clipMaxX;
+  float clipMaxY;
+  float clipMaxZ;
+  float clipMinX;
+  float clipMinY;
+  float clipMinZ;
+  float clipNear;
+  float clipFar;
   longlong lStack_1a8;
   longlong lStack_1a0;
   undefined4 uStack_198;
@@ -9863,45 +9863,45 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
   float matrixRow1_Z;
   float matrixRow1_W;
   
-  fVar31 = *dataSource;
-  fVar32 = dataSource[1];
-  fVar33 = dataSource[2];
-  fVar6 = dataSource[3];
-  fVar20 = dataSource[4];
-  fVar30 = dataSource[5];
-  fVar7 = dataSource[6];
-  fVar8 = dataSource[7];
-  fVar9 = dataSource[8];
-  floatResult0 = dataSource[9];
-  floatResult1 = dataSource[10];
-  floatResult2 = dataSource[0xb];
-  floatResult = *(float *)(uiContext + 9);
-  fVar27 = *(float *)(uiContext + 10);
-  fVar25 = *(float *)((longlong)uiContext + 0x4c);
-  fVar26 = *(float *)((longlong)uiContext + 0x7c);
-  fVar28 = *(float *)((longlong)uiContext + 0x6c);
-  fVar2 = *(float *)((longlong)uiContext + 0x5c);
-  fVar3 = *(float *)(uiContext + 0xb);
-  fStack_118 = fVar25 * fVar20 + floatResult * fVar31 + fVar27 * fVar9;
-  fStack_114 = fVar25 * fVar30 + floatResult * fVar32 + fVar27 * floatResult0;
-  fStack_110 = fVar25 * fVar7 + floatResult * fVar33 + fVar27 * floatResult1;
-  fStack_10c = fVar25 * fVar8 + floatResult * fVar6 + fVar27 * floatResult2;
-  floatResult = *(float *)(uiContext + 0xc);
-  fVar27 = *(float *)(uiContext + 0xd);
-  fVar34 = fVar2 * fVar20 + fVar3 * fVar31 + floatResult * fVar9;
-  fVar35 = fVar2 * fVar30 + fVar3 * fVar32 + floatResult * floatResult0;
-  fVar36 = fVar2 * fVar7 + fVar3 * fVar33 + floatResult * floatResult1;
-  fVar25 = *(float *)(uiContext + 0xe);
-  fVar29 = *(float *)(uiContext + 0xf);
-  fStack_108 = fVar28 * fVar20 + fVar27 * fVar31 + fVar25 * fVar9;
-  fStack_104 = fVar28 * fVar30 + fVar27 * fVar32 + fVar25 * floatResult0;
-  fStack_100 = fVar28 * fVar7 + fVar27 * fVar33 + fVar25 * floatResult1;
-  fStack_fc = fVar28 * fVar8 + fVar27 * fVar6 + fVar25 * floatResult2;
-  fVar27 = *(float *)(uiContext + 0x10);
-  fStack_f8 = fVar26 * fVar20 + fVar29 * fVar31 + fVar27 * fVar9 + dataSource[0xc];
-  fStack_f4 = fVar26 * fVar30 + fVar29 * fVar32 + fVar27 * floatResult0 + dataSource[0xd];
-  fStack_f0 = fVar26 * fVar7 + fVar29 * fVar33 + fVar27 * floatResult1 + dataSource[0xe];
-  fStack_ec = fVar26 * fVar8 + fVar29 * fVar6 + fVar27 * floatResult2 + dataSource[0xf];
+  sourceX = *transformData;
+  sourceY = transformData[1];
+  sourceZ = transformData[2];
+  translateX = transformData[3];
+  scaleX = transformData[4];
+  scaleY = transformData[5];
+  translateZ = transformData[6];
+  rotateX = transformData[7];
+  rotateY = transformData[8];
+  rotationX = transformData[9];
+  rotationY = transformData[10];
+  rotationZ = transformData[0xb];
+  transformResult = *(float *)(uiContext + 9);
+  centerY = *(float *)(uiContext + 10);
+  minX = *(float *)((longlong)uiContext + 0x4c);
+  minY = *(float *)((longlong)uiContext + 0x7c);
+  maxY = *(float *)((longlong)uiContext + 0x6c);
+  scaleX = *(float *)((longlong)uiContext + 0x5c);
+  scaleY = *(float *)(uiContext + 0xb);
+  fStack_118 = minX * scaleX + transformResult * sourceX + centerY * rotateY;
+  fStack_114 = minX * scaleY + transformResult * sourceY + centerY * rotationX;
+  matrixRow3_Z = minX * translateZ + transformResult * sourceZ + centerY * rotationY;
+  matrixRow3_W = minX * rotateX + transformResult * translateX + centerY * rotationZ;
+  transformResult = *(float *)(uiContext + 0xc);
+  centerY = *(float *)(uiContext + 0xd);
+  depthX = scaleX * scaleX + scaleY * sourceX + transformResult * rotateY;
+  depthY = scaleX * scaleY + scaleY * sourceY + transformResult * rotationX;
+  depthZ = scaleX * translateZ + scaleY * sourceZ + transformResult * rotationY;
+  minX = *(float *)(uiContext + 0xe);
+  maxY = *(float *)(uiContext + 0xf);
+  matrixRow2_X = maxY * scaleX + centerY * sourceX + minX * rotateY;
+  matrixRow2_Y = maxY * scaleY + centerY * sourceY + minX * rotationX;
+  matrixRow2_Z = maxY * translateZ + centerY * sourceZ + minX * rotationY;
+  matrixRow2_W = maxY * rotateX + centerY * translateX + minX * rotationZ;
+  centerY = *(float *)(uiContext + 0x10);
+  matrixRow1_X = minY * scaleX + maxY * sourceX + centerY * rotateY + transformData[0xc];
+  matrixRow1_Y = minY * scaleY + maxY * sourceY + centerY * rotationX + transformData[0xd];
+  matrixRow1_Z = minY * translateZ + maxY * sourceZ + centerY * rotationY + transformData[0xe];
+  matrixRow1_W = minY * rotateX + maxY * translateX + centerY * rotationZ + transformData[0xf];
   fVar25 = *targetBuffer - fStack_f8;
   fVar31 = targetBuffer[1] - fStack_f4;
   fVar28 = targetBuffer[2] - fStack_f0;
@@ -48403,52 +48403,52 @@ int CalculateUIImageBlockDifference(undefined1 (*uiContext) [32],int dataSource,
   if (targetBuffer == 0) {
     if (bufferSize == 0) {
       if (0 < (int)param_7) {
-        functionResult = (ulonglong)param_7;
+        pixelCount = (ulonglong)param_7;
         do {
-          auVar9 = vpunpcklbw_avx2(*resultPointer,auVar3);
-          auVar5 = vpunpcklbw_avx2(*uiContext,auVar3);
-          auVar5 = vpsubw_avx2(auVar5,auVar9);
-          auVar9 = vpunpckhbw_avx2(*uiContext,auVar3);
-          auVar6 = vpunpckhbw_avx2(*resultPointer,auVar3);
-          auVar6 = vpsubw_avx2(auVar9,auVar6);
-          auVar9 = vpaddw_avx2(auVar5,afunctionResult0._0_32_);
-          auVar5 = vpmaddwd_avx2(auVar5,auVar5);
-          auVar9 = vpaddw_avx2(auVar9,auVar6);
-          afunctionResult0 = ZEXT3264(auVar9);
+          tempVector9 = vpunpcklbw_avx2(*resultPointer,zeroVector);
+          tempVector5 = vpunpcklbw_avx2(*uiContext,zeroVector);
+          tempVector5 = vpsubw_avx2(tempVector5,tempVector9);
+          tempVector9 = vpunpckhbw_avx2(*uiContext,zeroVector);
+          tempVector6 = vpunpckhbw_avx2(*resultPointer,zeroVector);
+          tempVector6 = vpsubw_avx2(tempVector9,tempVector6);
+          tempVector9 = vpaddw_avx2(tempVector5,sumResult0._0_32_);
+          tempVector5 = vpmaddwd_avx2(tempVector5,tempVector5);
+          tempVector9 = vpaddw_avx2(tempVector9,tempVector6);
+          sumResult0 = ZEXT3264(tempVector9);
           uiContext = (undefined1 (*) [32])(*uiContext + dataSource);
           resultPointer = (undefined1 (*) [32])(*resultPointer + param_6);
-          auVar5 = vpaddd_avx2(auVar5,afunctionResult1._0_32_);
-          auVar6 = vpmaddwd_avx2(auVar6,auVar6);
-          auVar5 = vpaddd_avx2(auVar5,auVar6);
-          afunctionResult1 = ZEXT3264(auVar5);
-          functionResult = functionResult - 1;
-        } while (functionResult != 0);
+          tempVector5 = vpaddd_avx2(tempVector5,sumResult1._0_32_);
+          tempVector6 = vpmaddwd_avx2(tempVector6,tempVector6);
+          tempVector5 = vpaddd_avx2(tempVector5,tempVector6);
+          sumResult1 = ZEXT3264(tempVector5);
+          pixelCount = pixelCount - 1;
+        } while (pixelCount != 0);
       }
     }
     else if (bufferSize == 8) {
       if (0 < (int)param_7) {
-        functionResult = (ulonglong)param_7;
+        pixelCount = (ulonglong)param_7;
         do {
-          auVar5 = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + dataSource));
-          auVar9 = *resultPointer;
-          auVar6 = vpunpcklbw_avx2(auVar9,auVar3);
-          asemaphoreHandle = vpunpcklbw_avx2(auVar5,auVar3);
-          auVar6 = vpsubw_avx2(asemaphoreHandle,auVar6);
+          tempVector5 = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + dataSource));
+          tempVector9 = *resultPointer;
+          tempVector6 = vpunpcklbw_avx2(tempVector9,zeroVector);
+          tempVector1 = vpunpcklbw_avx2(tempVector5,zeroVector);
+          tempVector6 = vpsubw_avx2(tempVector1,tempVector6);
           uiContext = (undefined1 (*) [32])(*uiContext + dataSource);
           resultPointer = (undefined1 (*) [32])(*resultPointer + param_6);
-          auVar5 = vpunpckhbw_avx2(auVar5,auVar3);
-          auVar9 = vpunpckhbw_avx2(auVar9,auVar3);
-          asemaphoreHandle = vpsubw_avx2(auVar5,auVar9);
-          auVar9 = vpaddw_avx2(auVar6,afunctionResult0._0_32_);
-          auVar5 = vpmaddwd_avx2(auVar6,auVar6);
-          auVar9 = vpaddw_avx2(auVar9,asemaphoreHandle);
-          afunctionResult0 = ZEXT3264(auVar9);
-          auVar5 = vpaddd_avx2(auVar5,afunctionResult1._0_32_);
-          auVar6 = vpmaddwd_avx2(asemaphoreHandle,asemaphoreHandle);
-          auVar5 = vpaddd_avx2(auVar5,auVar6);
-          afunctionResult1 = ZEXT3264(auVar5);
-          functionResult = functionResult - 1;
-        } while (functionResult != 0);
+          tempVector5 = vpunpckhbw_avx2(tempVector5,zeroVector);
+          tempVector9 = vpunpckhbw_avx2(tempVector9,zeroVector);
+          tempVector1 = vpsubw_avx2(tempVector5,tempVector9);
+          tempVector9 = vpaddw_avx2(tempVector6,sumResult0._0_32_);
+          tempVector5 = vpmaddwd_avx2(tempVector6,tempVector6);
+          tempVector9 = vpaddw_avx2(tempVector9,tempVector1);
+          sumResult0 = ZEXT3264(tempVector9);
+          tempVector5 = vpaddd_avx2(tempVector5,sumResult1._0_32_);
+          tempVector6 = vpmaddwd_avx2(tempVector1,tempVector1);
+          tempVector5 = vpaddd_avx2(tempVector5,tempVector6);
+          sumResult1 = ZEXT3264(tempVector5);
+          pixelCount = pixelCount - 1;
+        } while (pixelCount != 0);
       }
     }
     else if (0 < (int)param_7) {
@@ -83058,46 +83058,60 @@ ulonglong FUN_180717fa0(int *uiContext,float *dataSource,uint targetBuffer,undef
 
 
 undefined8
-FUN_180718480(int *uiContext,float *dataSource,float *targetBuffer,undefined8 bufferSize,float *resultPointer)
+/**
+ * @brief 处理UI浮点数据符号
+ * 
+ * 该函数负责处理UI系统中的浮点数据，根据条件设置正负符号
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 源数据浮点数组
+ * @param targetBuffer 目标缓冲区浮点数组
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return 处理状态码，1表示成功
+ * @note 原始函数名: FUN_180718480
+ */
+undefined4
+ProcessUIFloatDataSign(int *uiContext,float *dataSource,float *targetBuffer,undefined8 bufferSize,float *resultPointer)
 
 {
   int operationResult;
   undefined8 semaphoreHandle;
-  bool bVar3;
-  uint uVar4;
-  float *pfVar5;
-  int iVar6;
-  float fVar7;
+  bool isNegative;
+  uint operationFlag;
+  float *currentFloat;
+  int iterationIndex;
+  float signValue;
   
   operationResult = *uiContext;
   semaphoreHandle = *(undefined8 *)(uiContext + 8);
-  iVar6 = 0;
-  pfVar5 = dataSource;
+  iterationIndex = 0;
+  currentFloat = dataSource;
   do {
-    uVar4 = 0;
+    operationFlag = 0;
     if (7 < uiContext[10]) {
       if (operationResult == 0) {
-        uVar4 = FUN_18070f360(semaphoreHandle,1);
+        operationFlag = FUN_18070f360(semaphoreHandle,1);
       }
       else {
-        bVar3 = *pfVar5 <= 0.0 && *pfVar5 != 0.0;
-        uVar4 = (uint)bVar3;
-        FUN_180705180(semaphoreHandle,bVar3,1);
+        isNegative = *currentFloat <= 0.0 && *currentFloat != 0.0;
+        operationFlag = (uint)isNegative;
+        FUN_180705180(semaphoreHandle,isNegative,1);
       }
       uiContext[10] = uiContext[10] + -8;
     }
     if (uiContext[1] != 0) {
-      if (uVar4 == 0) {
-        fVar7 = 1.0;
+      if (operationFlag == 0) {
+        signValue = 1.0;
       }
       else {
-        fVar7 = -1.0;
+        signValue = -1.0;
       }
-      *pfVar5 = fVar7;
+      *currentFloat = signValue;
     }
-    iVar6 = iVar6 + 1;
-    pfVar5 = targetBuffer;
-  } while (iVar6 < (int)((targetBuffer != (float *)0x0) + 1));
+    iterationIndex = iterationIndex + 1;
+    currentFloat = targetBuffer;
+  } while (iterationIndex < (int)((targetBuffer != (float *)0x0) + 1));
   if (resultPointer != (float *)0x0) {
     *resultPointer = *dataSource;
   }

@@ -58072,7 +58072,18 @@ void ManageResourceReferenceCountA1(DataBuffer operationBase, int64_t dataBuffer
 
 
 
-void Unwind_180906190(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理器A0
+ * 
+ * 该函数负责清理系统资源，包括引用计数管理、内存释放和异常处理
+ * 通过内存基地址和偏移量计算来管理系统资源的生命周期
+ * 
+ * @param operationBase 操作基址，用于资源管理上下文
+ * @param dataBuffer 数据缓冲区，包含资源信息和引用计数
+ * 
+ * @note 原始函数名：Unwind_180906190
+ */
+void CleanupSystemResourceA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -58116,8 +58127,10 @@ void Unwind_180906190(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @param operationBase 保留参数，用于异常处理上下文
  * @param dataBuffer 异常处理参数，包含验证上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809061a0
  */
-void Unwind_1809061a0(DataBuffer operationBase,int64_t dataBuffer)
+void HandleSystemExceptionA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -58132,15 +58145,17 @@ void Unwind_1809061a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 系统异常处理函数B0
+ * @brief 系统资源清理器A1
  * 
- * 该函数用于处理系统异常，通过验证上下文指针来调用异常处理程序
- * 主要用于系统级别的异常恢复和清理工作，偏移地址与A0不同
+ * 该函数负责清理系统资源，包括引用计数管理和内存释放
+ * 通过验证资源指针和引用计数来确保安全的资源清理
  * 
- * @param operationBase 保留参数，用于异常处理上下文
- * @param dataBuffer 异常处理参数，包含验证上下文信息
+ * @param operationBase 操作基址，用于资源管理上下文
+ * @param dataBuffer 数据缓冲区，包含资源信息和引用计数
+ * 
+ * @note 原始函数名：Unwind_1809061b0
  */
-void Unwind_1809061b0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupSystemResourceA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -58163,7 +58178,18 @@ void Unwind_1809061b0(DataBuffer operationBase,int64_t dataBuffer)
  * @param operationBase 保留参数，用于异常处理上下文
  * @param dataBuffer 异常处理参数，包含验证上下文信息
  */
-void Unwind_1809061c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理器A2
+ * 
+ * 该函数负责清理系统资源，通过引用计数管理和异常处理来确保资源安全释放
+ * 与A0和A1类似，但处理不同的资源类型和偏移地址
+ * 
+ * @param operationBase 操作基址，用于资源管理上下文
+ * @param dataBuffer 数据缓冲区，包含资源信息和引用计数
+ * 
+ * @note 原始函数名：Unwind_1809061c0
+ */
+void CleanupSystemResourceA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
