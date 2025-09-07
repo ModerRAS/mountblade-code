@@ -170950,7 +170950,7 @@ uint64_t * ProcessUtf16CharacterEncodingConversion(uint64_t CharacterCode,uint64
   DataStringLength = *(int *)(MemoryBoundaryEnd + 0x2e28);
   *(int *)(MemoryBoundaryEnd + 0x2e28) = DataStringLength + 1;
   ConfigurationString = (void *)((long long)DataStringLength * 0x38 + *(long long *)(MemoryBoundaryEnd + 0x2e30));
-  ProcessingStatusFlag = FUN_1801210b0(in_R11);
+  ProcessingStatusFlag = GetSystemCharacterData(in_R11);
   *ConfigurationString = ProcessingStatusFlag;
   Utf16ConversionContext = 0xffffffff;
   HighByte = *in_R11;
@@ -171053,7 +171053,7 @@ uint64_t * AllocateSystemConfigurationString(void
   DataStringLength = *(int *)(MemoryBoundaryEnd + 0x2e28);
   *(int *)(MemoryBoundaryEnd + 0x2e28) = DataStringLength + 1;
   ConfigurationString = (void *)((long long)DataStringLength * 0x38 + *(long long *)(MemoryBoundaryEnd + 0x2e30));
-  ProcessingStatusFlag = FUN_1801210b0(in_R11);
+  ProcessingStatusFlag = GetSystemCharacterData(in_R11);
   *ConfigurationString = ProcessingStatusFlag;
   Utf16ConversionContext = 0xffffffff;
   HighByte = *in_R11;
