@@ -99270,8 +99270,14 @@ void SetDefaultExceptionHandlerA0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 原始函数名：FUN_1809419a0 - 异常处理器设置函数A1
-// 功能：设置默认异常处理器B到另一个全局指针位置
+/**
+ * @brief 设置默认异常处理器A1
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_1809419a0
+ */
 void SetDefaultExceptionHandlerA1(void)
 
 {
@@ -99282,8 +99288,14 @@ void SetDefaultExceptionHandlerA1(void)
 
 
 
-// 原始函数名：FUN_1809419c0 - 互斥锁销毁函数A0
-// 功能：销毁指定位置的互斥锁
+/**
+ * @brief 销毁互斥锁A0
+ * 
+ * 该函数负责销毁指定的互斥锁资源
+ * 这是一个资源清理函数，用于确保互斥锁资源被正确释放
+ * 
+ * @note 原始函数名：FUN_1809419c0
+ */
 void DestroyMutexA0(void)
 
 {
@@ -99298,8 +99310,14 @@ void DestroyMutexA0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 原始函数名：FUN_1809419e0 - 系统终止和重置函数A0
-// 功能：设置异常处理器，如果系统正在运行则终止，然后重置系统状态
+/**
+ * @brief 终止和重置系统A0
+ * 
+ * 该函数负责设置异常处理器，检查系统运行状态，如果系统正在运行则终止系统，
+ * 然后重置系统状态到初始状态
+ * 
+ * @note 原始函数名：FUN_1809419e0
+ */
 void TerminateAndResetSystemA0(void)
 
 {
