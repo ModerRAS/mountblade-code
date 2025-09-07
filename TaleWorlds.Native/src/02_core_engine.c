@@ -1152,7 +1152,7 @@ const void* const SystemEventTemplateTertiary = (void*)0x180a13aa8;
 const void* const SystemEventTemplateQuaternary = (void*)0x180a13ab8;
 const void* const SystemEventTemplateQuinary = (void*)0x180a13bb8;
 
-// 系统事件处理常量 - 用于替换UNK_180a13b30等变量
+// 系统事件处理常量 - 用于替换SystemEventHandlerPrimary等变量
 const void* const SystemEventHandlerPrimary = (void*)0x180a13b30;
 const void* const SystemEventHandlerSecondary = (void*)0x180a13b70;
 
@@ -129222,7 +129222,7 @@ LAB_18012b18f:
           FUN_1801295b0(CharacterCode4,&fStack_128,pSystemFloatValue + -2,&CoreEngineUnsignedValue208);
           goto LAB_18012b18f;
         }
-        pSystemContextPrimaryFloat6 = (float *)FUN_180128fd0(&SystemValue1c8,CharacterCode4,LoopIterationCounter7);
+        pSystemContextPrimaryFloat6 = (float *)AllocateSystemMemoryAndManageData(&SystemValue1c8,CharacterCode4,LoopIterationCounter7);
         fStack_218 = *pSystemContextPrimaryFloat6;
         fStack_214 = pSystemContextPrimaryFloat6[1];
         ProcessMemoryOperation(0,0);
@@ -269406,7 +269406,7 @@ LAB_18022c20f:
   if (*(void **)(CharacterCode + 0x2d8) != NULL) {
     StatusBuffer6 = *(void **)(CharacterCode + 0x2d8);
   }
-  FUN_180627020(&UNK_180a13ae8,StatusBuffer6,PrimaryProcessingStatusFlag2);
+  FUN_180627020(&SystemEventTemplateSecondary,StatusBuffer6,PrimaryProcessingStatusFlag2);
   FUN_1800be9a0(SystemStatusBufferPointerA,&plStack_290,0);
   pCurrentMemoryBlockAddress = (long long *)plStack_290[0x3c];
   if (plStack_290 != (long long *)0x0) {
@@ -269437,13 +269437,13 @@ LAB_18022c460:
   SystemPointerBuffer1d0 = auStack_1c0;
   auStack_1c0[0] = 0;
   SystemValue1c8 = 9;
-  strcpy_s(auStack_1c0,0x40,&UNK_180a13aa8);
+  strcpy_s(auStack_1c0,0x40,&SystemStringTemplateA);
   SystemChecksumValue = *(void *)(CharacterCode + 0x1e0);
   pSystemUintBuffer238 = &SystemStringBuffer;
   puStack_230 = auStack_220;
   auStack_220[0] = 0;
   OperationStatus = 0x17;
-  strcpy_s(auStack_220,0x40,&UNK_180a13ab8);
+  strcpy_s(auStack_220,0x40,&SystemStringTemplateB);
   MemoryAllocationIndex7 = FUN_180240430(SystemChecksumValue,&pSystemUintBuffer238,0);
   Utf16ConversionContext = FUN_180240430(Utf16Char4,&SystemPointerBuffer1d8,0);
   *(unsigned long long *)(CharacterCode + 0x3a8) = MemoryAllocationIndex7 | Utf16ConversionContext;
@@ -269472,7 +269472,7 @@ LAB_18022c460:
   apMemoryOffsetValue[1] = aCoreEngineUnsignedValueA0;
   aCoreEngineUnsignedValueA0[0] = 0;
   CoreEngineValueA8 = 0x1d;
-  strcpy_s(aCoreEngineUnsignedValueA0,0x40,&UNK_180a13bb8);
+  strcpy_s(aCoreEngineUnsignedValueA0,0x40,&SystemStringTemplateC);
   Utf16Char4 = FUN_180240430(Utf16Char4,apMemoryOffsetValue,0);
   *(void *)(CharacterCode + 0x398) = Utf16Char4;
   apMemoryOffsetValue[0] = &ThreadLocalStorageTemplate;
@@ -270382,7 +270382,7 @@ LAB_18022d7ef:
       if (*(void **)(CharacterCode + 0x18) != NULL) {
         SecondaryProcessingStatusFlag = *(void **)(CharacterCode + 0x18);
       }
-      InitializeSystemEvent(&UNK_180a13b30,SecondaryProcessingStatusFlag,StringProcessingStatus,StatusBuffer);
+      InitializeSystemEvent(&SystemEventHandlerPrimary,SecondaryProcessingStatusFlag,StringProcessingStatus,StatusBuffer);
       return;
     }
   } while( true );
@@ -270456,7 +270456,7 @@ LAB_18022d7ef:
         if (StatusBuffer != NULL) {
           TemporaryBuffer = StatusBuffer;
         }
-        InitializeSystemEvent(&UNK_180a13b70,TemporaryBuffer,StatusBuffer,SystemStatusBuffer);
+        InitializeSystemEvent(&SystemEventHandlerSecondary,TemporaryBuffer,StatusBuffer,SystemStatusBuffer);
       }
       *(unsigned long long *)(CharacterCode + 0x140) = *(unsigned long long *)(CharacterCode + 0x140) | CalculatedCodePoint;
       ProcessingStatusFlag = (unsigned long long)((int)ProcessingStatusFlag + 1);
@@ -270500,13 +270500,13 @@ LAB_18022d7ef:
   stackPointer1B0 = aSystemUnsignedValue1A0;
   aSystemUnsignedValue1A0[0] = 0;
   SystemValue1a8 = 9;
-  strcpy_s(aSystemUnsignedValue1A0,0x40,&UNK_180a13aa8);
+  strcpy_s(aSystemUnsignedValue1A0,0x40,&SystemStringTemplateA);
   MemoryAllocationIndex = *(void *)(CharacterCode + 0x1e0);
   MemoryPoolBlockSize = &SystemStringBuffer;
   puStack_210 = aStackUnsigned200;
   aStackUnsigned200[0] = 0;
   CoreEngineUnsignedValue208 = 0x17;
-  strcpy_s(aStackUnsigned200,0x40,&UNK_180a13ab8);
+  strcpy_s(aStackUnsigned200,0x40,&SystemStringTemplateB);
   DataSize = FUN_180240430(MemoryAllocationIndex,&MemoryPoolBlockSize,0);
   ProcessingStatusFlag = FUN_180240430(SystemChecksumValue,&SystemTemplatePointer,0);
   *(unsigned long long *)(CharacterCode + 0x3a8) = DataSize | ProcessingStatusFlag;
@@ -270535,7 +270535,7 @@ LAB_18022d7ef:
   pSystemOperationFlag90 = StackBuffer80;
   StackBuffer80[0] = 0;
   StackValidationData = 0x1d;
-  strcpy_s(StackBuffer80,0x40,&UNK_180a13bb8);
+  strcpy_s(StackBuffer80,0x40,&SystemStringTemplateC);
   SystemChecksumValue = FUN_180240430(SystemChecksumValue,&pSystemOperationFlag98,0);
   *(void *)(CharacterCode + 0x398) = SystemChecksumValue;
   pSystemOperationFlag98 = &ThreadLocalStorageTemplate;
@@ -270709,7 +270709,7 @@ long long ProcessSystemMemoryAllocation(long long CharacterCode,uint64_t Utf8Buf
     if (*(void **)(CharacterCode + 0x18) != NULL) {
       SystemStatusContext = *(void **)(CharacterCode + 0x18);
     }
-    FUN_180627020(&UNK_180a13c48,StatusBuffer3);
+    FUN_180627020(&SystemProcessingStatusPrimary,StatusBuffer3);
   }
   else {
     ConversionContext = *(long long **)(EncodingConversionResult + 0xb0);
