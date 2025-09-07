@@ -106508,23 +106508,14 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：初始化异常处理器指针A8，设置为默认异常处理器
 #define InitializeExceptionHandlerPointerA8 Unwind_1809077f0
 
-// 栈变量宏定义 - 美化in_stack变量（补充定义）
-// 原始变量名：in_stack_0000000000000008 - 栈验证参数A
-// 功能：存储栈验证参数A
+// 栈变量宏定义
+// 栈验证参数定义
 #define StackValidationParameterA in_stack_0000000000000008
 
-// 栈变量宏定义 - 美化fStack变量
-// 原始变量名：StackFloatRegisterValueA - 栈浮点寄存器A
-// 功能：存储浮点运算的栈寄存器A
+// 栈浮点寄存器定义
 #define StackFloatRegisterA StackFloatRegisterValueA    
-// 原始变量名：fStack0000000000000049 - 栈浮点寄存器B
-// 功能：存储浮点运算的栈寄存器B
 #define StackFloatRegisterB fStack0000000000000049    
-// 原始变量名：fStack000000000000004a - 栈浮点寄存器C
-// 功能：存储浮点运算的栈寄存器C
 #define StackFloatRegisterC fStack000000000000004a    
-// 原始变量名：StackFloatRegisterValueD - 栈浮点寄存器D
-// 功能：存储浮点运算的栈寄存器D
 #define StackFloatRegisterD StackFloatRegisterValueD
 
 // 栈变量宏定义 - 美化lStack变量
