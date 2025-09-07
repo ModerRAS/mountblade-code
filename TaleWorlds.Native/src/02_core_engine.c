@@ -100124,9 +100124,9 @@ void ProcessSystemFloatingPointDataOperation(char *Utf8InputBuffer, uint Utf8Buf
   float ContextPrimaryFloat0;
   uint8_t SystemFlagBuffer [32];
   uint64_t SystemConfigurationFlag;
-  uint64_t CoreEngineValueC0;
+  uint64_t EngineProcessingValueA;
   uint64_t MemoryOffsetValue;
-  uint64_t CoreEngineValueA8;
+  uint64_t EngineProcessingValueB;
   uint8_t SystemOperationBuffer [64];
   unsigned long long BufferOffset;
   
@@ -200278,7 +200278,20 @@ void ProcessUtf8InputBufferAndEncoding(long long CharacterCode,long long *Utf8In
 
 
 
-762b0(long long CharacterCode,void **Utf8InputBufferSize,long long Utf8SourcePointer,void **Utf16EndPointervoid FUN_1801762b0(long long CharacterCode,void **Utf8InputBufferSize,long long Utf8SourcePointer,void **Utf16EndPointer
+/**
+ * @brief 处理UTF-8输入缓冲区和内存分配
+ * 
+ * 该函数负责处理UTF-8输入缓冲区的管理、内存分配和字符串处理，
+ * 包括系统状态检查、缓冲区验证和内存池管理。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_1801762b0
+ */
+void ProcessUtf8InputBufferAndMemoryAllocation(long long CharacterCode,void **Utf8InputBufferSize,long long Utf8SourcePointer,void **Utf16EndPointer
 {
   void **pStatusBuffer;
   void **PrimaryProcessingStatusFlag;
