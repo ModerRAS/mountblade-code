@@ -1050,6 +1050,36 @@
 #define DataBufferOffset2c 0x2c                         // 数据缓冲区偏移量2c
 #define DataBufferOffset34 0x34                         // 数据缓冲区偏移量34
 
+// 异常处理器状态标志偏移量常量
+#define ExceptionHandlerContextStateOffset808 0x808        // 异常处理上下文状态偏移量808
+#define ExceptionHandlerContextFlagOffset818 0x818          // 异常处理上下文标志偏移量818
+
+// 异常处理器回调函数偏移量常量
+#define ExceptionHandlerCallbackOffset850 0x850            // 异常处理器回调偏移量850
+#define ExceptionHandlerCallbackOffset840 0x840            // 异常处理器回调偏移量840
+#define ExceptionHandlerCallbackOffset910 0x910            // 异常处理器回调偏移量910
+#define ExceptionHandlerCallbackOffset900 0x900            // 异常处理器回调偏移量900
+
+// 异常处理器临时状态偏移量常量
+#define ExceptionHandlerTempOffset820 0x820                 // 异常处理器临时偏移量820
+#define ExceptionHandlerTempOffset828 0x828                 // 异常处理器临时状态偏移量828
+#define ExceptionHandlerTempOffset838 0x838                 // 异常处理器临时状态偏移量838
+#define ExceptionHandlerTempOffset8e0 0x8e0                 // 异常处理器临时偏移量8e0
+#define ExceptionHandlerTempOffset8e8 0x8e8                 // 异常处理器临时状态偏移量8e8
+#define ExceptionHandlerTempOffset8f8 0x8f8                 // 异常处理器临时状态偏移量8f8
+#define ExceptionHandlerTempOffset8c0 0x8c0                 // 异常处理器临时偏移量8c0
+#define ExceptionHandlerTempOffset8c8 0x8c8                 // 异常处理器临时状态偏移量8c8
+#define ExceptionHandlerTempOffset8d8 0x8d8                 // 异常处理器临时状态偏移量8d8
+#define ExceptionHandlerTempOffset8a0 0x8a0                 // 异常处理器临时偏移量8a0
+#define ExceptionHandlerTempOffset8a8 0x8a8                 // 异常处理器临时状态偏移量8a8
+#define ExceptionHandlerTempOffset8b8 0x8b8                 // 异常处理器临时状态偏移量8b8
+#define ExceptionHandlerTempOffset880 0x880                 // 异常处理器临时偏移量880
+#define ExceptionHandlerTempOffset888 0x888                 // 异常处理器临时状态偏移量888
+#define ExceptionHandlerTempOffset898 0x898                 // 异常处理器临时状态偏移量898
+#define ExceptionHandlerTempOffset860 0x860                 // 异常处理器临时偏移量860
+#define ExceptionHandlerTempOffset868 0x868                 // 异常处理器临时状态偏移量868
+#define ExceptionHandlerTempOffset878 0x878                 // 异常处理器临时状态偏移量878
+
 // 系统状态标志偏移量常量
 #define SystemStateFlagsOffset2d8 0x2d8                 // 系统状态标志偏移量2d8
 
@@ -50100,45 +50130,59 @@ void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(unwindContext + 0x80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x910) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x910))(exceptionHandlerContext + 0x900,0,0,systemFlag,SystemCleanupFlagAlternative);
+  // 从展开上下文中获取异常处理上下文
+  exceptionHandlerContext = *(int64_t *)(unwindContext + ExceptionHandlerContextOffset80);
+  
+  // 调用异常处理器回调函数（如果存在）
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerCallbackOffset910) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerCallbackOffset910))(exceptionHandlerContext + ExceptionHandlerCallbackOffset900, 0, 0, systemFlag, SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x8e0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x8e8) != 0) {
+  
+  // 设置临时异常处理器并验证状态
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset8e0) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerTempOffset8e8) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x8e8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x8f8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x8e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x8c0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x8c8) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset8e8) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempOffset8f8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset8e0) = &DefaultExceptionHandlerB;
+  
+  // 设置第二级异常处理器
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset8c0) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerTempOffset8c8) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x8c8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x8d8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x8c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x8a0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x8a8) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset8c8) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempOffset8d8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset8c0) = &DefaultExceptionHandlerB;
+  
+  // 设置第三级异常处理器
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset8a0) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerTempOffset8a8) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x8a8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x8b8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x8a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x880) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x888) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset8a8) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempOffset8b8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset8a0) = &DefaultExceptionHandlerB;
+  
+  // 设置第四级异常处理器
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset880) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerTempOffset888) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x888) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x898) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x880) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x860) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x868) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset888) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempOffset898) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset880) = &DefaultExceptionHandlerB;
+  
+  // 设置第五级异常处理器
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset860) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerTempOffset868) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x868) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x878) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x860) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset868) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempOffset878) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset860) = &DefaultExceptionHandlerB;
+  
   return;
 }
 

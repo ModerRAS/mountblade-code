@@ -83044,108 +83044,127 @@ void FUN_180716f10(int uiContext,longlong dataSource,int targetBuffer,undefined4
 
 
 
-ulonglong FUN_180717fa0(int *uiContext,float *dataSource,uint targetBuffer,undefined4 bufferSize,uint resultPointer,
-                       longlong param_6,undefined4 param_7,float *param_8,undefined4 param_9,
-                       longlong uiContext0,uint uiContext1)
+/**
+ * @brief UI渲染数据更新处理器
+ * 
+ * 该函数负责处理UI渲染数据的更新操作，包括数据验证、缓冲区管理
+ * 和渲染参数设置。它处理多个UI上下文和数据源，确保渲染数据的正确性。
+ * 
+ * @param uiContext UI上下文指针数组
+ * @param dataSource 浮点数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数6
+ * @param param_7 额外参数7
+ * @param param_8 浮点参数8
+ * @param param_9 额外参数9
+ * @param uiContext0 UI上下文0
+ * @param uiContext1 UI上下文1
+ * @return 返回处理结果状态码
+ */
+ulonglong ProcessUIRenderingDataUpdate(int *uiContext,float *dataSource,uint targetBuffer,undefined4 bufferSize,uint resultPointer,
+                                      longlong param_6,undefined4 param_7,float *param_8,undefined4 param_9,
+                                      longlong uiContext0,uint uiContext1)
 
 {
-  float *pfloatResult;
-  float *plocalFloat2;
-  byte *pbVar3;
-  undefined8 ProcessingStatus;
-  int localInt5;
-  float localFloat6;
-  float localFloat7;
-  float localFloat8;
-  float localFloat9;
-  float floatResult0;
-  float floatResult1;
-  float floatResult2;
-  float floatResult3;
-  longlong allocatedMemory4;
-  uint result5;
-  uint result6;
-  float *pfloatResult7;
-  byte isCharacterMatch8;
-  byte isCharacterMatch9;
-  uint semaphoreHandle0;
-  longlong componentIndex1;
-  longlong componentIndex2;
-  ulonglong semaphoreHandle3;
-  longlong componentIndex4;
-  int uiValidationResult5;
-  int uiValidationResult6;
-  int uiValidationResult7;
-  longlong componentIndex8;
-  uint semaphoreHandle9;
-  ulonglong EventTypeCode0;
-  bool bVar31;
-  undefined1 in_XMM1 [16];
-  undefined1 aEventTypeCode2 [16];
-  float localFloat33;
-  uint stackUInt50;
-  int stackInt4c;
+  float *FloatResultPointer;
+  float *LocalFloatPointer2;
+  byte *BytePointer3;
+  undefined8 SystemProcessingStatus;
+  int LocalInt5;
+  float LocalFloat6;
+  float LocalFloat7;
+  float LocalFloat8;
+  float LocalFloat9;
+  float FloatResult0;
+  float FloatResult1;
+  float FloatResult2;
+  float FloatResult3;
+  longlong AllocatedMemory4;
+  uint Result5;
+  uint Result6;
+  float *FloatResultPointer7;
+  byte IsCharacterMatch8;
+  byte IsCharacterMatch9;
+  uint SemaphoreHandle0;
+  longlong ComponentIndex1;
+  longlong ComponentIndex2;
+  ulonglong SemaphoreHandle3;
+  longlong ComponentIndex4;
+  int UIValidationResult5;
+  int UIValidationResult6;
+  int UIValidationResult7;
+  longlong ComponentIndex8;
+  uint SemaphoreHandle9;
+  ulonglong EventTypeCode;
+  bool IsNegativeFlag;
+  undefined1 RegisterXMM1 [16];
+  undefined1 EventTypeCode2 [16];
+  float LocalFloat33;
+  uint StackUInt50;
+  int StackInt4c;
   
-  EventTypeCode0 = (ulonglong)(int)targetBuffer;
-  bVar31 = resultPointer == 1;
-  stackUInt50 = 0;
-  uiValidationResult6 = *uiContext;
-  uiValidationResult7 = uiContext[7];
-  semaphoreHandle3 = (ulonglong)resultPointer;
+  EventTypeCode = (ulonglong)(int)targetBuffer;
+  IsNegativeFlag = resultPointer == 1;
+  StackUInt50 = 0;
+  UIValidationResult6 = *uiContext;
+  UIValidationResult7 = uiContext[7];
+  SemaphoreHandle3 = (ulonglong)resultPointer;
   if (targetBuffer == 1) {
-    uiValidationResult6 = *uiContext;
-    ProcessingStatus = *(undefined8 *)(uiContext + 8);
-    uiValidationResult7 = 0;
-    pfloatResult7 = dataSource;
+    UIValidationResult6 = *uiContext;
+    SystemProcessingStatus = *(undefined8 *)(uiContext + 8);
+    UIValidationResult7 = 0;
+    FloatResultPointer7 = dataSource;
     do {
-      result6 = 0;
+      Result6 = 0;
       if (7 < uiContext[10]) {
-        if (uiValidationResult6 == 0) {
-          result6 = FUN_18070f360(ProcessingStatus,1);
+        if (UIValidationResult6 == 0) {
+          Result6 = FUN_18070f360(SystemProcessingStatus,1);
         }
         else {
-          bVar31 = *pfloatResult7 <= 0.0 && *pfloatResult7 != 0.0;
-          result6 = (uint)bVar31;
-          FUN_180705180(ProcessingStatus,bVar31,1);
+          IsNegativeFlag = *FloatResultPointer7 <= 0.0 && *FloatResultPointer7 != 0.0;
+          Result6 = (uint)IsNegativeFlag;
+          FUN_180705180(SystemProcessingStatus,IsNegativeFlag,1);
         }
         uiContext[10] = uiContext[10] + -8;
       }
       if (uiContext[1] != 0) {
-        if (result6 == 0) {
-          localFloat33 = 1.0;
+        if (Result6 == 0) {
+          LocalFloat33 = 1.0;
         }
         else {
-          localFloat33 = -1.0;
+          LocalFloat33 = -1.0;
         }
-        *pfloatResult7 = localFloat33;
+        *FloatResultPointer7 = LocalFloat33;
       }
-      uiValidationResult7 = uiValidationResult7 + 1;
-      pfloatResult7 = (float *)0x0;
-    } while (uiValidationResult7 < 1);
+      UIValidationResult7 = UIValidationResult7 + 1;
+      FloatResultPointer7 = (float *)0x0;
+    } while (UIValidationResult7 < 1);
     if (param_8 != (float *)0x0) {
       *param_8 = *dataSource;
     }
     return 1;
   }
-  localInt5 = uiValidationResult7;
-  if (uiValidationResult7 < 1) {
-    uiElementIndex = 0;
+  LocalInt5 = UIValidationResult7;
+  if (UIValidationResult7 < 1) {
+    UIElementIndex = 0;
   }
   if (((uiContext0 != 0) && (param_6 != 0)) &&
-     ((localInt5 != 0 || ((((targetBuffer / semaphoreHandle3 & 1) == 0 && (uiValidationResult7 < 0)) || (1 < (int)resultPointer)))))) {
+     ((LocalInt5 != 0 || ((((targetBuffer / SemaphoreHandle3 & 1) == 0 && (UIValidationResult7 < 0)) || (1 < (int)resultPointer)))))) {
                      WARNING: Subroutine does not return
-    memcpy(uiContext0,param_6,EventTypeCode0 * 4);
+    memcpy(uiContext0,param_6,EventTypeCode * 4);
   }
-  stackInt4c = 0;
-  if (0 < localInt5) {
-    result6 = 1;
+  StackInt4c = 0;
+  if (0 < LocalInt5) {
+    Result6 = 1;
     do {
-      uiValidationResult5 = (int)targetBuffer >> ((byte)stackInt4c & 0x1f);
-      if (uiValidationResult6 != 0) {
-        FUN_1807165a0(dataSource,uiValidationResult5,result6);
+      UIValidationResult5 = (int)targetBuffer >> ((byte)StackInt4c & 0x1f);
+      if (UIValidationResult6 != 0) {
+        FUN_1807165a0(dataSource,UIValidationResult5,Result6);
       }
       if (param_6 != 0) {
-        FUN_1807165a0(param_6,uiValidationResult5,result6);
+        FUN_1807165a0(param_6,UIValidationResult5,Result6);
       }
       result6 = result6 << 1 | (uint)((int)result6 < 0);
       uiContext1 = (uint)(byte)(&g_uiHexConversionTable)[(longlong)(int)uiContext1 >> 4] << 2 |
