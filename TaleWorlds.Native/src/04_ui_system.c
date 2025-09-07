@@ -8793,25 +8793,25 @@ void ManageUIElements(longlong *uiContext)
         AllocateUIBuffer(&stackBuffer98,memoryOperationResult);
         functionResult = (undefined8 *)(stackBuffer90 + stackValue88);
         *functionResult = 0x75646f4d6275532f;
-        *(undefined4 *)(pfunctionResult0 + 1) = 0x782e656c;
-        *(undefined2 *)((longlong)pfunctionResult0 + 0xc) = 0x6c6d;
-        *(undefined1 *)((longlong)pfunctionResult0 + 0xe) = 0;
-        uStack_88 = operationResult4;
-        cVar5 = ValidateUIData(&puStack_98);
-        colorBufferPointer1 = plVar7;
-        if (cVar5 != '\0') {
-          contextData = ManageUIContext(&puStack_98);
-          if (plVar7 < pallocatedMemory5) {
-            colorBufferPointer1 = plVar7 + 1;
-            *plVar7 = contextData;
-            plStackX_8 = colorBufferPointer1;
-            plStack_70 = colorBufferPointer1;
+        *(undefined4 *)(functionResult + 1) = 0x782e656c;
+        *(undefined2 *)((longlong)functionResult + 0xc) = 0x6c6d;
+        *(undefined1 *)((longlong)functionResult + 0xe) = 0;
+        stackValue88 = memoryOperationResult;
+        characterCode = ValidateUIData(&stackBuffer98);
+        colorBufferPtr = memoryAllocationPtr;
+        if (characterCode != '\0') {
+          contextData = ManageUIContext(&stackBuffer98);
+          if (memoryAllocationPtr < allocatedMemoryPtr) {
+            colorBufferPtr = memoryAllocationPtr + 1;
+            *memoryAllocationPtr = contextData;
+            stackFramePointer = colorBufferPtr;
+            stackPointer70 = colorBufferPtr;
           }
           else {
-            componentIndex3 = (longlong)plVar7 - (longlong)plStack_78;
-            allocatedMemory6 = componentIndex3 >> 3;
-            if (allocatedMemory6 == 0) {
-              allocatedMemory6 = 1;
+            componentIndex = (longlong)memoryAllocationPtr - (longlong)stackPointer78;
+            memoryBlockAddress = componentIndex >> 3;
+            if (memoryBlockAddress == 0) {
+              memoryBlockAddress = 1;
 LAB_180656abd:
               plVar7 = (longlong *)CreateUIContext(UIContextManager,allocatedMemory6 * 8,(undefined1)uStack_60);
             }

@@ -746,6 +746,654 @@
 #define ExecuteSystemMemoryAllocation FUN_180203f10
 
 /**
+ * @brief 转换UTF-8字符编码
+ * 
+ * 该函数负责处理UTF-8字符编码的转换操作，包括字符编码的转换和验证。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016e850
+ */
+#define ConvertUtf8CharacterEncoding FUN_18016e850
+
+/**
+ * @brief 验证UTF-8编码数据
+ * 
+ * 该函数负责验证UTF-8编码数据的有效性和完整性。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016e940
+ */
+#define ValidateUtf8EncodingData FUN_18016e940
+
+/**
+ * @brief 处理UTF-8编码状态
+ * 
+ * 该函数负责处理UTF-8编码的状态管理和转换。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016eb20
+ */
+#define ProcessUtf8EncodingStatus FUN_18016eb20
+
+/**
+ * @brief 处理UTF-8编码错误
+ * 
+ * 该函数负责处理UTF-8编码过程中的错误处理和恢复。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016eba0
+ */
+#define HandleUtf8EncodingError FUN_18016eba0
+
+/**
+ * @brief 处理UTF-8编码流
+ * 
+ * 该函数负责处理UTF-8编码流的读取和处理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016eeb0
+ */
+#define ProcessUtf8EncodingStream FUN_18016eeb0
+
+/**
+ * @brief 初始化UTF-8编码数据
+ * 
+ * 该函数负责初始化UTF-8编码数据的结构和状态。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016ef90
+ */
+#define InitializeUtf8EncodingData FUN_18016ef90
+
+/**
+ * @brief 管理UTF-8编码内存
+ * 
+ * 该函数负责管理UTF-8编码的内存分配和释放。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016f090
+ */
+#define ManageUtf8EncodingMemory FUN_18016f090
+
+/**
+ * @brief 验证UTF-8编码扩展
+ * 
+ * 该函数负责验证UTF-8编码的扩展功能和特性。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016f440
+ */
+#define ValidateUtf8EncodingEx FUN_18016f440
+
+/**
+ * @brief 清理UTF-8编码缓冲区
+ * 
+ * 该函数负责清理UTF-8编码缓冲区的资源和状态。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016f4f0
+ */
+#define CleanupUtf8EncodingBuffer FUN_18016f4f0
+
+/**
+ * @brief 处理UTF-8编码数据扩展
+ * 
+ * 该函数负责处理UTF-8编码数据的扩展操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016f5d0
+ */
+#define ProcessUtf8EncodingDataEx FUN_18016f5d0
+
+/**
+ * @brief 转换UTF-8字符扩展
+ * 
+ * 该函数负责转换UTF-8字符的扩展操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016f680
+ */
+#define ConvertUtf8CharacterEx FUN_18016f680
+
+/**
+ * @brief 读取UTF-8编码流
+ * 
+ * 该函数负责读取UTF-8编码流的数据。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016f720
+ */
+#define ReadUtf8EncodingStream FUN_18016f720
+
+/**
+ * @brief 更新UTF-8编码状态
+ * 
+ * 该函数负责更新UTF-8编码的状态信息。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016f7d0
+ */
+#define UpdateUtf8EncodingStatus FUN_18016f7d0
+
+/**
+ * @brief 分配UTF-8编码内存
+ * 
+ * 该函数负责为UTF-8编码分配内存空间。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016f9f0
+ */
+#define AllocateUtf8EncodingMemory FUN_18016f9f0
+
+/**
+ * @brief 释放UTF-8编码数据
+ * 
+ * 该函数负责释放UTF-8编码数据的内存空间。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016fbe0
+ */
+#define ReleaseUtf8EncodingData FUN_18016fbe0
+
+/**
+ * @brief 管理UTF-8编码上下文
+ * 
+ * 该函数负责管理UTF-8编码的上下文信息。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18016fcc0
+ */
+#define ManageUtf8EncodingContext FUN_18016fcc0
+
+/**
+ * @brief 初始化UTF-8编码系统
+ * 
+ * 该函数负责初始化UTF-8编码系统的组件和状态。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180179410
+ */
+#define InitializeUtf8EncodingSystem FUN_180179410
+
+/**
+ * @brief 处理系统缓冲区扩展
+ * 
+ * 该函数负责处理系统缓冲区的扩展操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180179770
+ */
+#define ProcessSystemBufferEx FUN_180179770
+
+/**
+ * @brief 处理系统数据流扩展
+ * 
+ * 该函数负责处理系统数据流的扩展操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_1801798f0
+ */
+#define ProcessSystemDataStreamEx FUN_1801798f0
+
+/**
+ * @brief 检查系统状态
+ * 
+ * 该函数负责检查系统的运行状态。
+ * 
+ * @note 原始函数名：FUN_180179a0a
+ */
+#define CheckSystemStatus FUN_180179a0a
+
+/**
+ * @brief 管理系统内存扩展
+ * 
+ * 该函数负责管理系统内存的扩展操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180179aa0
+ */
+#define ManageSystemMemoryEx FUN_180179aa0
+
+/**
+ * @brief 分配系统资源
+ * 
+ * 该函数负责分配系统资源。
+ * 
+ * @note 原始函数名：FUN_180179b7a
+ */
+#define AllocateSystemResource FUN_180179b7a
+
+/**
+ * @brief 验证系统数据扩展
+ * 
+ * 该函数负责验证系统数据的扩展操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18017cb20
+ */
+#define ValidateSystemDataEx FUN_18017cb20
+
+/**
+ * @brief 处理系统配置
+ * 
+ * 该函数负责处理系统的配置操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18017cde0
+ */
+#define ProcessSystemConfiguration FUN_18017cde0
+
+/**
+ * @brief 处理UTF-8字符编码和浮点计算
+ * 
+ * 该函数负责处理UTF-8字符编码和浮点计算操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @note 原始函数名：FUN_1801834d0
+ */
+#define ProcessUtf8CharacterEncodingAndFloatCalculation FUN_1801834d0
+
+/**
+ * @brief 处理UTF-8输入缓冲区和验证
+ * 
+ * 该函数负责处理UTF-8输入缓冲区和验证操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_1801839a0
+ */
+#define ProcessUtf8InputBufferAndValidation FUN_1801839a0
+
+/**
+ * @brief 处理UTF-8缓冲区数据
+ * 
+ * 该函数负责处理UTF-8缓冲区数据的操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180184700
+ */
+#define ProcessUtf8BufferData FUN_180184700
+
+/**
+ * @brief 处理UTF-8到UTF-16字符编码
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_1801899b0
+ */
+#define ProcessUtf8ToUtf16CharacterEncoding FUN_1801899b0
+
+/**
+ * @brief 处理UTF-8到UTF-16字符编码扩展
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换扩展。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180189aa0
+ */
+#define ProcessUtf8ToUtf16CharacterEncodingEx FUN_180189aa0
+
+/**
+ * @brief 处理长整型UTF-8到UTF-16字符编码
+ * 
+ * 该函数负责处理长整型UTF-8到UTF-16的字符编码转换。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @note 原始函数名：FUN_18018a1c0
+ */
+#define ProcessLongIntegerUtf8ToUtf16CharacterEncoding FUN_18018a1c0
+
+/**
+ * @brief 处理UTF-8到UTF-16字符编码变体
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换变体。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @note 原始函数名：FUN_18018a660
+ */
+#define ProcessUtf8ToUtf16CharacterEncodingVariant FUN_18018a660
+
+/**
+ * @brief 处理UTF-8到UTF-16字符编码和缓冲区
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换和缓冲区管理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18018a8c0
+ */
+#define ProcessUtf8ToUtf16CharacterEncodingAndBuffer FUN_18018a8c0
+
+/**
+ * @brief 处理UTF-8字符编码和输入缓冲区
+ * 
+ * 该函数负责处理UTF-8字符编码和输入缓冲区的操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @note 原始函数名：FUN_18018aa30
+ */
+#define ProcessUtf8CharacterEncodingAndInputBuffer FUN_18018aa30
+
+/**
+ * @brief 处理UTF-8字符编码和数据
+ * 
+ * 该函数负责处理UTF-8字符编码和数据的操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @note 原始函数名：FUN_18018ac60
+ */
+#define ProcessUtf8CharacterEncodingAndData FUN_18018ac60
+
+/**
+ * @brief 处理UTF-8字符编码和验证
+ * 
+ * 该函数负责处理UTF-8字符编码和验证操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @note 原始函数名：FUN_18018af30
+ */
+#define ProcessUtf8CharacterEncodingAndValidation FUN_18018af30
+
+/**
+ * @brief 处理UTF-8字符编码和边界
+ * 
+ * 该函数负责处理UTF-8字符编码和边界检查。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @note 原始函数名：FUN_18018b160
+ */
+#define ProcessUtf8CharacterEncodingAndBoundaries FUN_18018b160
+
+/**
+ * @brief 处理UTF-8缓冲区操作
+ * 
+ * 该函数负责处理UTF-8缓冲区的操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18018b3f0
+ */
+#define ProcessUtf8BufferOperation FUN_18018b3f0
+
+/**
+ * @brief 处理UTF-8缓冲区数据扩展
+ * 
+ * 该函数负责处理UTF-8缓冲区数据的扩展操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18018b430
+ */
+#define ProcessUtf8BufferDataEx FUN_18018b430
+
+/**
+ * @brief 处理字符编码和内存管理
+ * 
+ * 该函数负责处理字符编码和内存管理的操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @note 原始函数名：FUN_18018be60
+ */
+#define ProcessCharacterEncodingAndMemoryManagement FUN_18018be60
+
+/**
+ * @brief 处理系统数据和字符编码
+ * 
+ * 该函数负责处理系统数据和字符编码的操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18018cc00
+ */
+#define ProcessSystemDataAndCharacterEncoding FUN_18018cc00
+
+/**
+ * @brief 处理UTF-8输入缓冲区和状态
+ * 
+ * 该函数负责处理UTF-8输入缓冲区和状态管理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18018e7e0
+ */
+#define ProcessUtf8InputBufferAndStatus FUN_18018e7e0
+
+/**
+ * @brief 处理字符编码和指针
+ * 
+ * 该函数负责处理字符编码和指针的操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180193adc
+ */
+#define ProcessCharacterEncodingAndPointer FUN_180193adc
+
+/**
+ * @brief 处理字符编码转换和缓冲区
+ * 
+ * 该函数负责处理字符编码转换和缓冲区的操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180193bc0
+ */
+#define ProcessCharacterEncodingConversionAndBuffer FUN_180193bc0
+
+/**
+ * @brief 处理系统数据编码
+ * 
+ * 该函数负责处理系统数据的编码操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180194e00
+ */
+#define ProcessSystemDataEncoding FUN_180194e00
+
+/**
+ * @brief 处理系统数据流
+ * 
+ * 该函数负责处理系统数据的流操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_1801952e0
+ */
+#define ProcessSystemDataStream FUN_1801952e0
+
+/**
+ * @brief 处理字符编码和数据管理
+ * 
+ * 该函数负责处理字符编码和数据管理的操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_1801953d0
+ */
+#define ProcessCharacterEncodingAndDataManagement FUN_1801953d0
+
+/**
+ * @brief 处理字符编码和内存分配
+ * 
+ * 该函数负责处理字符编码和内存分配的操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_180203abc
+ */
+#define ProcessCharacterEncodingAndMemoryAllocation FUN_180203abc
+
+/**
+ * @brief 处理系统数据和内存管理
+ * 
+ * 该函数负责处理系统数据和内存管理的操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @note 原始函数名：FUN_180203ba0
+ */
+#define ProcessSystemDataAndMemoryManagement FUN_180203ba0
+
+/**
+ * @brief 处理浮点字符代码和编码
+ * 
+ * 该函数负责处理浮点字符代码和编码的操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @note 原始函数名：FUN_180204b50
+ */
+#define ProcessFloatingPointCharacterCodeAndEncoding FUN_180204b50
+
+/**
+ * @brief 处理系统状态和编码
+ * 
+ * 该函数负责处理系统状态和编码的操作。
+ * 
+ * @note 原始函数名：FUN_180204f57
+ */
+#define ProcessSystemStatusAndEncoding FUN_180204f57
+
+/**
  * @brief 处理系统内存操作
  * 
  * 该函数负责处理系统内存相关操作
