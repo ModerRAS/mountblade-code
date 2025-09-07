@@ -249998,13 +249998,13 @@ void FUN_180824050(undefined2 *uiContext,uint *dataSource,int targetBuffer,int b
   undefined1 asemaphoreHandle5 [32];
   undefined1 aresult7 [36];
   
-  aresult7 = in_ZMM0._28_36_;
+  pixelVector7 = in_ZMM0._28_36_;
   uiElementIndex = 0;
   if (0 < targetBuffer + -7) {
     contextData = (longlong)bufferSize;
-    uVar4 = (targetBuffer - 8U >> 3) + 1;
-    eventTypeCode = (ulonglong)uVar4;
-    localInt5 = uVar4 * 8;
+    vectorElementCount = (targetBuffer - 8U >> 3) + 1;
+    eventTypeCode = (ulonglong)vectorElementCount;
+    vectorByteCount = vectorElementCount * 8;
     do {
       uVar4 = dataSource[resultPointer * 2];
       asemaphoreHandle0._4_4_ = uVar4;
