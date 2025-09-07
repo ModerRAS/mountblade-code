@@ -10692,9 +10692,9 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
         *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
-        systemQueryStatus = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,ComponentValidationBuffer);
-        if ((int32_t)systemQueryStatus != 0) {
-          return systemQueryStatus;
+        systemDataQueryStatus = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,componentValidationDataBuffer);
+        if ((int32_t)systemDataQueryStatus != 0) {
+          return systemDataQueryStatus;
         }
       }
     }
@@ -10737,69 +10737,69 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
   int64_t localStackMemoryContext;
   int64_t temporaryStackContext;
   
-  systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&TemporaryStackContext);
-  ModuleInitializationStatus = (int32_t)systemModuleOperationResult;
-  if (ModuleInitializationStatus == 0) {
+  systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&temporaryStackContext);
+  moduleInitializationStatus = (int32_t)systemModuleOperationResult;
+  if (moduleInitializationStatus == 0) {
     baseValidationContext = (int64_t *)0x0;
-    ModuleDataContext = baseValidationContext;
-    if (TemporaryStackContext != 0) {
-      ModuleDataContext = (int64_t *)(TemporaryStackContext + -8);
+    moduleDataContext = baseValidationContext;
+    if (temporaryStackContext != 0) {
+      moduleDataContext = (int64_t *)(temporaryStackContext + -8);
     }
-    systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&TemporaryStackContext);
-    ModuleInitializationStatus = (int32_t)systemModuleOperationResult;
-    if (ModuleInitializationStatus == 0) {
-      LocalStackMemoryContext = 0;
-      GameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(TemporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
-                            &LocalStackMemoryContext);
-      if (GameMessageProcessingStatus != 0) {
-        CleanupSystemDataStructures(ModuleDataContext);
-        return (uint64_t)GameMessageProcessingStatus;
+    systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&temporaryStackContext);
+    moduleInitializationStatus = (int32_t)systemModuleOperationResult;
+    if (moduleInitializationStatus == 0) {
+      localStackMemoryContext = 0;
+      gameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(temporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
+                            &localStackMemoryContext);
+      if (gameMessageProcessingStatus != 0) {
+        CleanupSystemDataStructures(moduleDataContext);
+        return (uint64_t)gameMessageProcessingStatus;
       }
-      if (((*(uint32_t *)(*(int64_t *)(TemporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
-         (systemModuleOperationResult = ValidateSystemOperationContextA0(LocalStackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
+      if (((*(uint32_t *)(*(int64_t *)(temporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
+         (systemModuleOperationResult = ValidateSystemOperationContextA0(localStackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
         return systemModuleOperationResult;
       }
-      exceptionHandlerContextPointer = (int64_t *)(LocalStackMemoryContext + MODULE_CONTEXT_OFFSET);
-      ResourceInfoContext = (int64_t *)(*exceptionHandlerContextPointer + MODULE_RESOURCE_OFFSET);
+      exceptionHandlerContextPointer = (int64_t *)(localStackMemoryContext + MODULE_CONTEXT_OFFSET);
+      resourceInfoContext = (int64_t *)(*exceptionHandlerContextPointer + MODULE_RESOURCE_OFFSET);
       if (*exceptionHandlerContextPointer == 0) {
-        ResourceInfoContext = baseValidationContext;
+        resourceInfoContext = baseValidationContext;
       }
-      ContextDataContext = baseValidationContext;
+      contextDataContext = baseValidationContext;
       componentDataContext = baseValidationContext;
-      ComponentInfoContext = baseValidationContext;
-      if (ResourceInfoContext != (int64_t *)0x0) {
-        ContextDataContext = ResourceInfoContext + RESOURCE_CONTEXT_OFFSET;
+      componentInfoContext = baseValidationContext;
+      if (resourceInfoContext != (int64_t *)0x0) {
+        contextDataContext = resourceInfoContext + RESOURCE_CONTEXT_OFFSET;
       }
       while( true ) {
-        if (ContextDataContext == exceptionHandlerContextPointer) {
-          *(int64_t **)(LocalStackMemoryContext + MODULE_COMPONENT_OFFSET) = ModuleDataContext;
-          ExecuteSystemDataProcessing(LocalStackMemoryContext,ModuleDataContext);
-          ModuleDataContext[2] = LocalStackMemoryContext;
-          systemModuleOperationResult = InitializeSystemComponent(LocalStackMemoryContext);
+        if (contextDataContext == exceptionHandlerContextPointer) {
+          *(int64_t **)(localStackMemoryContext + MODULE_COMPONENT_OFFSET) = moduleDataContext;
+          ExecuteSystemDataProcessing(localStackMemoryContext,moduleDataContext);
+          moduleDataContext[2] = localStackMemoryContext;
+          systemModuleOperationResult = InitializeSystemComponent(localStackMemoryContext);
           if ((int32_t)systemModuleOperationResult == 0) {
             return 0;
           }
           return systemModuleOperationResult;
         }
-        if ((int32_t)ModuleDataContext[5] <= (int32_t)ComponentInfoContext) {
+        if ((int32_t)moduleDataContext[5] <= (int32_t)componentInfoContext) {
           return ResourceInvalidErrorCode;
         }
-        ResourceInfoContext = ContextDataContext + RESOURCE_DATA_OFFSET;
-        if (ContextDataContext == (int64_t *)0x0) {
-          ResourceInfoContext = (int64_t *)MODULE_VALIDATION_OFFSET;
+        resourceInfoContext = contextDataContext + RESOURCE_DATA_OFFSET;
+        if (contextDataContext == (int64_t *)0x0) {
+          resourceInfoContext = (int64_t *)MODULE_VALIDATION_OFFSET;
         }
-        *(int64_t *)(ModuleDataContext[4] + SystemContextOffset + (int64_t)ComponentDataContext) = *ResourceInfoContext;
-        if (ContextDataContext == exceptionHandlerContextPointer) break;
-        ResourceInfoContext = (int64_t *)(*ContextDataContext + MODULE_RESOURCE_OFFSET);
-        if (*ContextDataContext == 0) {
-          ResourceInfoContext = baseValidationContext;
+        *(int64_t *)(moduleDataContext[4] + SystemContextOffset + (int64_t)componentDataContext) = *resourceInfoContext;
+        if (contextDataContext == exceptionHandlerContextPointer) break;
+        resourceInfoContext = (int64_t *)(*contextDataContext + MODULE_RESOURCE_OFFSET);
+        if (*contextDataContext == 0) {
+          resourceInfoContext = baseValidationContext;
         }
-        ContextDataContext = baseValidationContext;
-        if (ResourceInfoContext != (int64_t *)0x0) {
-          ContextDataContext = ResourceInfoContext + RESOURCE_CONTEXT_OFFSET;
+        contextDataContext = baseValidationContext;
+        if (resourceInfoContext != (int64_t *)0x0) {
+          contextDataContext = resourceInfoContext + RESOURCE_CONTEXT_OFFSET;
         }
         componentDataContext = componentDataContext + COMPONENT_DATA_OFFSET;
-        ComponentInfoContext = (int64_t *)(uint64_t)((int32_t)ComponentInfoContext + 1);
+        componentInfoContext = (int64_t *)(uint64_t)((int32_t)componentInfoContext + 1);
       }
       return ResourceInvalidErrorCode;
     }
