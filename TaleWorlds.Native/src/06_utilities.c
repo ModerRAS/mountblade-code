@@ -20008,7 +20008,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   DataWord StackDataWordA;
   char StackCharBufferA [4];
   uint8_t *StackPointerBufferA;
-  DataWord uStack_1b8;
+  DataWord StackDataWordB;
   DataWord uStack_1b0;
   float fStack_1a8;
   float fStack_1a4;

@@ -8970,8 +8970,8 @@ void CoreEngineInitializeConnectionPoolManager(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -9031,8 +9031,8 @@ void CoreEngineInitializeNetworkResourceManager(void
   uint32_t StackConfigurationFlag;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -9517,8 +9517,8 @@ void CoreEngineInitializeConnectionManager(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -9571,8 +9571,8 @@ void CoreEngineInitializeCacheManager(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -9624,8 +9624,8 @@ void CoreEngineInitializeQueueManager(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -9678,8 +9678,8 @@ void CoreEngineInitializeThreadPoolManager(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -9739,8 +9739,8 @@ void CoreEngineInitializeGameSystem(void)
   void *RegisterX18TempPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -9915,8 +9915,8 @@ void InitializeNetworkConfigurationNode(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkConfiguration;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -9969,8 +9969,8 @@ void InitializeNetworkAuthenticationNode(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkAuthentication;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10023,8 +10023,8 @@ void InitializeNetworkValidationNode(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkValidation;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10259,8 +10259,8 @@ void InitializeNetworkProtocolNode(void)
   uint64_t StackConfigurationFlag;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10313,8 +10313,8 @@ void InitializeNetworkSecurityNode(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10368,8 +10368,8 @@ void InitializeNetworkBufferNode(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10423,8 +10423,8 @@ void InitializeNetworkEventHandlerNode(void
   void *RegisterX18TempPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10477,8 +10477,8 @@ void SystemConnectionManagerInitialize(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10624,8 +10624,8 @@ void NetworkStatusProcessorInitialize(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10677,8 +10677,8 @@ void ConnectionManagerInitialize(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10731,8 +10731,8 @@ void SystemConnectionTemplateAInitialize(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10784,8 +10784,8 @@ void NetworkSecurityProcessorInitialize(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10838,8 +10838,8 @@ void SystemConnectionTemplateCInitialize(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -10892,8 +10892,8 @@ void FileSystemProcessorInitialize(void
   void *RegisterX18TempPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -11680,8 +11680,8 @@ void CoreEngineInitializeSystemNodeTemplateK(void
   void *FunctionPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkConfiguration;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -11972,8 +11972,8 @@ void CoreEngineInitializeNetworkStatusProcessor(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12025,8 +12025,8 @@ void CoreEngineInitializeConnectionInitializer(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12409,8 +12409,8 @@ void CoreEngineInitializeSystemDataTemplateO(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12470,8 +12470,8 @@ void CoreEngineInitializeSystemConnectionTemplateA(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12532,8 +12532,8 @@ void CoreEngineInitializeSystemConnectionTemplateB(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12586,8 +12586,8 @@ void CoreEngineInitializeSystemManager(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12640,8 +12640,8 @@ void CoreEngineInitializeSystemConnectionTemplateG(void
   void *RegisterX18TempPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12694,8 +12694,8 @@ void CoreEngineInitializeConfigurationManager(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12747,8 +12747,8 @@ void CoreEngineInitializeResourceManager(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12800,8 +12800,8 @@ void CoreEngineInitializeMemoryAllocator(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12854,8 +12854,8 @@ void CoreEngineInitializeThreadScheduler(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12907,8 +12907,8 @@ void CoreEngineInitializeEventManager(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -12961,8 +12961,8 @@ void CoreEngineInitializeRenderManager(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13015,8 +13015,8 @@ void CoreEngineInitializePhysicsManager(void
   void *RegisterX18TempPointer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13069,8 +13069,8 @@ void CoreEngineInitializeAudioManager(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13122,8 +13122,8 @@ void CoreEngineInitializeNetworkManager(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13175,8 +13175,8 @@ void CoreEngineInitializeInputManager(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13229,8 +13229,8 @@ void CoreEngineInitializeFileSystemManager(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13282,8 +13282,8 @@ void CoreEngineInitializeSecurityManager(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13336,8 +13336,8 @@ void CoreEngineInitializeDatabaseManager(void)
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13584,8 +13584,8 @@ void CoreEngineInitializeNetworkConnectionMonitor(void
   uint64_t MonitorHandler;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13647,8 +13647,8 @@ void CoreEngineInitializeMemoryNodeA(void
   void *TemporaryBuffer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13710,8 +13710,8 @@ void CoreEngineInitializeMemoryNodeB(void
   void *TemporaryBuffer;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   FunctionCallback = ThreadManagementCallback;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13764,8 +13764,8 @@ void CoreEngineInitializeThreadSystem(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13818,8 +13818,8 @@ void CoreEngineProcessThreadQueue(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13872,8 +13872,8 @@ void CoreEngineManageThreadResources(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13919,8 +13919,8 @@ void CoreEngineManageThreadResources(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkConfiguration;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -13972,8 +13972,8 @@ void CoreEngineInitializeThreadSynchronization(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = ResourceManagementCallback;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -14025,8 +14025,8 @@ void CoreEngineSetupThreadPriorities(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkEvent;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -14072,8 +14072,8 @@ void CoreEngineSetupThreadPriorities(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkConnection;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -14125,8 +14125,8 @@ void CoreEngineInitializeSystemDataTemplateA(void
   code *NetworkStatusCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkStatus;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -14172,8 +14172,8 @@ void CoreEngineInitializeSystemDataTemplateA(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -14220,8 +14220,8 @@ void CoreEngineInitializeSystemDataTemplateA(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -14267,8 +14267,8 @@ void CoreEngineInitializeSystemDataTemplateA(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkSecurity;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -14429,8 +14429,8 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -14483,8 +14483,8 @@ void CoreEngineInitializeSystemDataTemplateC(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -14531,8 +14531,8 @@ void CoreEngineInitializeSystemDataTemplateC(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -14579,8 +14579,8 @@ void CoreEngineInitializeSystemDataTemplateC(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -15060,8 +15060,8 @@ void CoreEngineInitializeDataStreamManager(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -15107,8 +15107,8 @@ void CoreEngineInitializeDataStreamManager(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkEvent;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -15154,8 +15154,8 @@ void CoreEngineInitializeDataStreamManager(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineProcessNetworkConnection;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -15520,8 +15520,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -15567,8 +15567,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   FunctionCallback *ConnectionCallback;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = ConfigurationManagementCallback;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -15615,8 +15615,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -15663,8 +15663,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -15711,8 +15711,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -15759,8 +15759,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -15807,8 +15807,8 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
@@ -16055,8 +16055,8 @@ void CoreEngineInitializeSystemThreadNodeJ(void
   uint64_t ReservedStackSpace;
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryProcessingStatusFlag = (uint64_t *)*SystemContextPtr;
-  StringBuffer = *(char *)((long long)PrimaryProcessingStatusFlag[1] + SystemNodeStatusOffset);
+  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
   TertiaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
