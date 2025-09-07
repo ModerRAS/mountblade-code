@@ -20029,10 +20029,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   DataWord StackDataWordD;
   float fStack_19c;
   float afStack_198 [2];
-  DataBuffer *puStack_190;
+  DataBuffer *StackPointerBufferB;
   int64_t lStack_188;
   int64_t lStack_180;
-  uint8_t *puStack_178;
+  uint8_t *StackPointerBufferC;
   DataWord StackDataWordE;
   DataWord StackDataWordF;
   DataWord StackDataWordG;
@@ -20071,15 +20071,15 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   if (iterationCount == 0) {
     exceptionDataBuffer6 = (DataBuffer *)(dataBuffer + 8);
     StackDataWordD = 0;
-    puStack_190 = exceptionDataBuffer6;
+    StackPointerBufferB = exceptionDataBuffer6;
     bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + 8))(exceptionDataBuffer6);
     iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&StackDataWordD);
     if (iterationCount == 0) {
       StackDataWordE = 0;
-      puStack_178 = &DataValidationErrorBase;
+      StackPointerBufferC = &DataValidationErrorBase;
       StackDataWordG = StackDataWordA;
       StackDataWordF = StackDataWordD;
-      iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_178);
+      iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferC);
       if (iterationCount == 0) {
         lStack_188 = (int64_t)*(int *)(dataContext + 0x28);
         bufferPointer = validationContext4;
@@ -20089,13 +20089,13 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
             calculatedOffset = *(int64_t *)(validationContext4 + 0x10 + dataPointer);
             calculatedIndex = *(int64_t *)(validationContext4 + 8 + dataPointer);
             statusFlag = CheckSystemStatus(calculatedOffset,1);
-            exceptionDataBuffer6 = puStack_190;
+            exceptionDataBuffer6 = StackPointerBufferB;
             if ((statusFlag == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(calculatedIndex + 0x28))) {
               StackDataWordS = *(DataWord *)(validationContext4 + 4 + dataPointer);
               psecurityCheckValueA8 = &SystemMemoryInitializationReference;
               StackDataWordR = StackDataWordA;
               securityCheckValueA0 = 0;
-              dataPointer = (**(FunctionPointer**)*puStack_190)(puStack_190);
+              dataPointer = (**(FunctionPointer**)*StackPointerBufferB)(StackPointerBufferB);
               uStack_e8 = *(DataBuffer *)(*(int64_t *)(dataPointer + 0x90) + bufferPointer * 8);
               StackByteFlagA = 0;
               if (*(int *)(calculatedOffset + 0x58) < 1) {
@@ -44578,7 +44578,22 @@ void ValidateContextExceptionHandlerA2(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_180903c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 验证上下文异常处理器A3
+ * 
+ * 该函数负责处理验证上下文的异常情况。它会检查验证上下文中的函数指针，
+ * 如果存在则调用相应的处理函数，然后设置临时异常处理器，检查状态标志，
+ * 清除相关标志位，并最终设置默认异常处理器。该函数使用不同的偏移量来处理异常。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含验证上下文信息
+ * @param operationFlagA 操作标志A，用于控制处理行为
+ * @param operationFlagB 操作标志B，用于控制处理行为
+ * 
+ * @note 原始函数名：Unwind_180903c40
+ * @warning 函数执行过程中可能会调用系统终止函数
+ */
+void ValidateContextExceptionHandlerA3(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -101155,9 +101170,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储浮点数组的栈数据
 #define StackFloatArrayA afStack_198
 
-// 原始变量名：puStack_190 - 栈指针缓冲区B
+// 原始变量名：StackPointerBufferB - 栈指针缓冲区B
 // 功能：存储指针数据的栈缓冲区
-#define StackPointerBufferB puStack_190
+#define StackPointerBufferB StackPointerBufferB
 
 // 原始变量名：lStack_188 - 栈长整型A
 // 功能：存储长整型数据的栈变量
@@ -101167,9 +101182,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：存储长整型数据的栈变量
 #define StackLongIntegerB lStack_180
 
-// 原始变量名：puStack_178 - 栈指针缓冲区C
+// 原始变量名：StackPointerBufferC - 栈指针缓冲区C
 // 功能：存储指针数据的栈缓冲区
-#define StackPointerBufferC puStack_178
+#define StackPointerBufferC StackPointerBufferC
 
 // 原始变量名：uStack_170 - 栈数据字E
 // 功能：存储数据处理过程中的临时数据字
