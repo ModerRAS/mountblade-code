@@ -4133,6 +4133,8 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 #define ProcessSystemMemoryAllocation FUN_18012fae0
 #define ConfigureSystemDataStructure FUN_18013b040
 #define ProcessSystemBufferData FUN_18013b5a0
+#define FinalizeSystemDataStructure FUN_18013df80
+#define ProcessSystemResourceCleanup FUN_180130a80
 #define ValidateSystemDataStructure FUN_18004ba20
 #define ProcessSystemDataStructure FUN_18011fbf0
 #define CalculateSystemFloatValue FUN_1801293c0
