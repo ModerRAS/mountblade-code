@@ -12055,7 +12055,7 @@ uint64_t SystemMemoryAllocate(uint64_t MemorySize)
 {
   uint64_t MemoryAddress;
   longlong LoopCounter;
-  MemoryAddress = MemoryAllocateEx(SystemMemoryAllocator,memorySize,0x19);
+  SystemMemoryAllocationResult = MemoryAllocateEx(SystemMemoryAllocator,memorySize,0x19);
   LongCounter = MemoryValidateEx(MemoryAddress);
   LOCK();
   SystemInitializationCounter = SystemInitializationCounter + LongCounter;
