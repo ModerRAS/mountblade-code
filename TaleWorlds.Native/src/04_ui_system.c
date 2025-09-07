@@ -78064,7 +78064,7 @@ undefined8 FUN_180712260(int uiContext,int dataSource,undefined4 *targetBuffer)
   int iVar3;
   undefined8 *bufferPtr;
   
-  bufferPtr = (undefined8 *)&UNK_1809530e0;
+  bufferPtr = (undefined8 *)&UiDataBuffer;
   iVar3 = 0;
   do {
     poperationResult = (int *)*bufferPtr;
@@ -78074,7 +78074,7 @@ undefined8 FUN_180712260(int uiContext,int dataSource,undefined4 *targetBuffer)
         if (targetBuffer != (undefined4 *)0x0) {
           *targetBuffer = 0;
         }
-        return *(undefined8 *)(&UNK_1809530e0 + (longlong)iVar3 * 8);
+        return *(undefined8 *)(&UiDataBuffer + (longlong)iVar3 * 8);
       }
       validationResult = validationResult + 1;
     } while (validationResult < 4);
@@ -81533,7 +81533,7 @@ void FUN_1807163d0(longlong uiContext,longlong dataSource,float *targetBuffer,lo
   for (; allocatedMemory2 < iVar4; allocatedMemory2 = allocatedMemory2 + 1) {
     sVar1 = *(short *)(lVar2 + 2 + allocatedMemory2 * 2);
     iVar9 = *(short *)(lVar2 + allocatedMemory2 * 2) * param_7;
-    floatResult3 = *(float *)(bufferSize + allocatedMemory2 * 4) + *(float *)(&UNK_1809533a0 + allocatedMemory2 * 4);
+    floatResult3 = *(float *)(bufferSize + allocatedMemory2 * 4) + *(float *)(&ColorAdjustmentTable + allocatedMemory2 * 4);
     if (32.0 <= floatResult3) {
       floatResult3 = 32.0;
     }
@@ -81588,7 +81588,7 @@ void FUN_1807164b6(undefined *uiContext)
       context = context + 1;
     } while (validationResult < sVar1 * unaff_R13D);
     unaff_R14 = unaff_R14 + 1;
-    uiContext = &UNK_1809533a0;
+    uiContext = &ColorAdjustmentTable;
   } while (unaff_R14 < unaff_R15);
                     // WARNING: Subroutine does not return
   memset(in_stack_00000090 + (longlong)in_stack_000000a8 * 4,0,
@@ -84792,7 +84792,7 @@ void FUN_180719ca0(longlong uiContext,int dataSource,int targetBuffer,longlong b
         allocatedMemory = lVar4 * 4;
         lVar4 = lVar4 + 1;
         *(float *)(resultPointer + lVar3 * 4) =
-             (float)(dVar7 * 1.4426950408889634) - *(float *)(&UNK_1809533a0 + allocatedMemory);
+             (float)(dVar7 * 1.4426950408889634) - *(float *)(&ColorAdjustmentTable + allocatedMemory);
       } while (lVar4 < dataSource);
     }
     if (dataSource < targetBuffer) {
@@ -85025,7 +85025,7 @@ int FUN_18071a480(longlong uiContext,int dataSource,int targetBuffer,longlong bu
               iVar8 = -1;
             }
             param_7 = iVar8;
-            FUN_1807054a0(lVar3,iVar8 >> 0x1f ^ iVar8 * 2,&UNK_180953404,2);
+            FUN_1807054a0(lVar3,iVar8 >> 0x1f ^ iVar8 * 2,&UiStateBuffer,2);
             iVar8 = uiContext5;
           }
         }
@@ -85199,7 +85199,7 @@ int FUN_18071a56f(int uiContext,undefined8 dataSource,int targetBuffer,int buffe
             iVar4 = -1;
           }
           iStack0000000000000130 = iVar4;
-          FUN_1807054a0(functionResult2,iVar4 >> 0x1f ^ iVar4 * 2,&UNK_180953404,2);
+          FUN_1807054a0(functionResult2,iVar4 >> 0x1f ^ iVar4 * 2,&UiStateBuffer,2);
           in_R11 = in_stack_00000118;
           targetBuffer = in_stack_00000128;
           in_R10D = in_stack_00000108;
@@ -85556,7 +85556,7 @@ void FUN_18071ad00(longlong uiContext,int dataSource,int targetBuffer,longlong b
             }
           }
           else {
-            uVar4 = FUN_18070f3e0(param_6,&UNK_180953404,2);
+            uVar4 = FUN_18070f3e0(param_6,&UiStateBuffer,2);
             uVar4 = -(uVar4 & 1) ^ (int)uVar4 >> 1;
           }
         }
@@ -85641,7 +85641,7 @@ void FUN_18071ad94(float uiContext)
           }
         }
         else {
-          semaphoreHandle = FUN_18070f3e0(uiContext,&UNK_180953404,2);
+          semaphoreHandle = FUN_18070f3e0(uiContext,&UiStateBuffer,2);
           semaphoreHandle = -(semaphoreHandle & 1) ^ (int)semaphoreHandle >> 1;
         }
       }
