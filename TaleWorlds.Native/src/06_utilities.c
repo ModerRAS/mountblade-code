@@ -35201,11 +35201,11 @@ uint64_t ValidateSystemContextAndProcessData(void)
         if (operationResult == 0) {
           StackDataBufferF = StackBytePairA;
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
-                            (*(DataBuffer **)(exceptionHandlerContext + 8),&stack0x000000a0,2);
+                            (*(DataBuffer **)(exceptionHandlerContext + 8),&FirstValidationBuffer,2);
           if (operationResult == 0) {
             StackDataBufferG = StackBytePairB;
             operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
-                              (*(DataBuffer **)(exceptionHandlerContext + 8),&stack0x000000a8,2);
+                              (*(DataBuffer **)(exceptionHandlerContext + 8),&SecondValidationBuffer,2);
             if (operationResult == 0) {
               operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                                 (*(DataBuffer **)(exceptionHandlerContext + 8),&StackDataBufferD,8);
@@ -35272,11 +35272,11 @@ uint64_t ManageMemoryAndValidatePointers(void)
       if (operationResult == 0) {
         StackDataBufferF = StackBytePairA;
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
-                          (*(DataBuffer **)(exceptionHandlerContext + 8),&stack0x000000a0,2);
+                          (*(DataBuffer **)(exceptionHandlerContext + 8),&FirstValidationBuffer,2);
         if (operationResult == 0) {
           StackDataBufferG = StackBytePairB;
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
-                            (*(DataBuffer **)(exceptionHandlerContext + 8),&stack0x000000a8,2);
+                            (*(DataBuffer **)(exceptionHandlerContext + 8),&SecondValidationBuffer,2);
           if (operationResult == 0) {
             operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                               (*(DataBuffer **)(exceptionHandlerContext + 8),&StackDataBufferD,8);
@@ -35330,11 +35330,11 @@ uint64_t ProcessSystemDataValidationAndCleanup(void)
   if (operationResult == 0) {
     StackDataBufferF = operationResult._4_2_;
     operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
-                      (*(DataBuffer **)(exceptionHandlerContext + 8),&stack0x000000a0,2);
+                      (*(DataBuffer **)(exceptionHandlerContext + 8),&FirstValidationBuffer,2);
     if (operationResult == 0) {
       StackDataBufferG = operationResult._6_2_;
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
-                        (*(DataBuffer **)(exceptionHandlerContext + 8),&stack0x000000a8,2);
+                        (*(DataBuffer **)(exceptionHandlerContext + 8),&SecondValidationBuffer,2);
       if (operationResult == 0) {
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(exceptionHandlerContext + 8))
                           (*(DataBuffer **)(exceptionHandlerContext + 8),&StackDataBufferD,8);
