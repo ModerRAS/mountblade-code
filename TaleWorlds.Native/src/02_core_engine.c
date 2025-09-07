@@ -147581,7 +147581,7 @@ void FUN_18012fa7d(void)
 
 
 
-fa9e(voidvoid FUN_18012fa9e(void
+void FUN_18012fa9e(void)
 {
   long long StackFramePointer;
   uint64_t *DataNodeIndex;
