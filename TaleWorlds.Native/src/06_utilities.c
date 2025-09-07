@@ -50062,6 +50062,24 @@ void CleanupExceptionHandlersLevel2(DataBuffer operationBase,int64_t dataBuffer,
 
 
 
+/**
+ * @brief 清理第3级异常处理器
+ * 
+ * 重置第3级异常处理器的状态，清理所有相关的异常处理机制。
+ * 该函数会：
+ * - 调用并清理主异常处理器
+ * - 重置临时异常处理器状态
+ * - 清理二级异常处理器
+ * - 验证系统状态并确保异常处理机制正常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B，用于系统清理
+ * 
+ * @note 如果异常处理器状态异常，会调用TerminateSystemE0终止系统
+ * @warning 该函数直接操作异常处理器上下文，错误的调用可能导致系统不稳定
+ */
 void CleanupExceptionHandlersLevel3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -50090,6 +50108,24 @@ void CleanupExceptionHandlersLevel3(DataBuffer operationBase,int64_t dataBuffer,
 
 
 
+/**
+ * @brief 清理第4级异常处理器
+ * 
+ * 重置第4级异常处理器的状态，清理所有相关的异常处理机制。
+ * 该函数会：
+ * - 调用并清理主异常处理器
+ * - 重置临时异常处理器状态
+ * - 清理二级异常处理器
+ * - 验证系统状态并确保异常处理机制正常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B，用于系统清理
+ * 
+ * @note 如果异常处理器状态异常，会调用TerminateSystemE0终止系统
+ * @warning 该函数直接操作异常处理器上下文，错误的调用可能导致系统不稳定
+ */
 void CleanupExceptionHandlersLevel4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -50118,6 +50154,27 @@ void CleanupExceptionHandlersLevel4(DataBuffer operationBase,int64_t dataBuffer,
 
 
 
+/**
+ * @brief 清理第5级异常处理器
+ * 
+ * 重置第5级异常处理器的状态，清理所有相关的异常处理机制。
+ * 该函数会：
+ * - 调用并清理主异常处理器
+ * - 重置临时异常处理器状态
+ * - 清理二级异常处理器
+ * - 清理第三级异常处理器
+ * - 清理第四级异常处理器
+ * - 清理第五级异常处理器
+ * - 验证系统状态并确保异常处理机制正常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B，用于系统清理
+ * 
+ * @note 如果异常处理器状态异常，会调用TerminateSystemE0终止系统
+ * @warning 该函数直接操作异常处理器上下文，错误的调用可能导致系统不稳定
+ */
 void CleanupExceptionHandlersLevel5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
