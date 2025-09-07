@@ -154832,7 +154832,18 @@ void ProcessSystemMemoryContext(long long CharacterCode,long long Utf8BufferSize
 
 
 
-int * FUN_180134480(long long CharacterCode,int Utf8BufferSize,unsigned long long Utf8SourcePointer
+/**
+ * @brief 查找或创建UTF8字符编码条目
+ * 
+ * 该函数在字符编码表中查找指定的UTF8缓冲区大小，如果找不到则创建新的条目。
+ * 这是一个内存管理函数，用于处理字符编码的动态分配和扩展。
+ * 
+ * @param CharacterCode 字符编码上下文指针
+ * @param Utf8BufferSize 要查找的UTF8缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针（未使用）
+ * @return int* 返回找到或创建的字符编码条目指针
+ */
+int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,unsigned long long Utf8SourcePointer)
 {
   uint64_t *StatusBuffer;
   int CharacterByteCount;
