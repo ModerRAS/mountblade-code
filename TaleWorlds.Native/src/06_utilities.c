@@ -69037,7 +69037,19 @@ void ExecuteExceptionHandlerCallbackOffset208(DataBuffer operationBase,int64_t d
 
 
 
-void Unwind_180907f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调（偏移量0x18）
+ * 
+ * 从数据缓冲区中获取异常处理器回调函数指针，如果存在则执行该回调。
+ * 这是一个异常处理器回调执行函数，处理偏移量0x18的回调。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907f60
+ */
+void ExecuteExceptionHandlerCallbackOffset18(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -72008,7 +72020,7 @@ void ExceptionHandlerDefaultSetter(void* setterContext, int64_t contextData)
 
 
 
-void Unwind_180908c20(DataBuffer operationBase,int64_t dataBuffer)
+void ExecutePrimaryExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x40) != (int64_t *)0x0) {
