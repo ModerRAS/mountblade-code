@@ -82913,7 +82913,7 @@ void ProcessMemoryPointerFlagsAndValidateData(DataBuffer operationBase,int64_t d
  * @note 原始函数名：Unwind_18090a830
  * @note 该函数在异常展开过程中被调用，用于批量处理数据上下文的清理操作
  */
-void Unwind_18090a830(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessDataContextCleanupAndTerminateOnError(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   int64_t *dataContext;
@@ -83054,7 +83054,7 @@ void ManageMemoryResourceReferenceCountAndCleanup(DataBuffer operationBase,int64
 
 
 
-void Unwind_18090a890(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessMemoryResourceManagementWithReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -83090,7 +83090,7 @@ void Unwind_18090a890(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a8a0(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessExceptionContextWithMemoryManagement(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
