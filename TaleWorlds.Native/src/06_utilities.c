@@ -34565,7 +34565,7 @@ uint64_t ValidateDataBufferOperation(int64_t operationBase,DataBuffer *dataBuffe
   uint systemDataBuffer;
   uint64_t operationResult;
   ByteFlag validationBuffer2 [64];
-  ByteFlag auStack_30 [40];
+  ByteFlag stackValidationBuffer [40];
   
   operationResult = ExecuteDataBufferOperation(dataBuffer,auStack_30,1,0x5453494c,operationFlagA);
   if (((int)operationResult == 0) && (operationResult = ExecuteDataBufferOperation(dataBuffer,validationBuffer2,0,operationFlagB,0), (int)operationResult == 0))
