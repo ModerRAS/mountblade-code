@@ -201599,7 +201599,7 @@ FUN_18017cb20(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
   uint64_t Utf16Char;
   
   Utf16Char = 0xfffffffffffffffe;
-  *SystemContextPointer = &UNK_180a09fb8;
+  *SystemContextPointer = &SystemStatusBufferSecondary;
   FUN_1803457d0();
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,0x70,Utf16InputPointer,Utf16EndPointer,Utf16Char);

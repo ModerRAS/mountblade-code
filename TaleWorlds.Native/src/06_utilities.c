@@ -16095,13 +16095,13 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
       blueComponent = blueAlphaComponents >> 0x18;
       alphaComponent = colorPackedData >> 0x18;
       redGreenHigh = redGreenComponents >> 0x10;
-      uStack_68 = colorPackedData >> 0x10 & 0xff;
-      uStack_70 = colorPackedData >> 8 & 0xff;
-      uStack_78 = colorPackedData & 0xff;
-      uStack_88 = blueAlphaComponents >> 0x10 & 0xff;
-      uStack_90 = blueAlphaComponents >> 8 & 0xff;
-      uStack_98 = blueAlphaComponents & 0xff;
-      uStack_a8 = redGreenComponents & 0xffff;
+      colorMidHigh = colorPackedData >> 0x10 & 0xff;
+      colorMidLow = colorPackedData >> 8 & 0xff;
+      colorLowByte = colorPackedData & 0xff;
+      blueMidHigh = blueAlphaComponents >> 0x10 & 0xff;
+      blueMidLow = blueAlphaComponents >> 8 & 0xff;
+      blueLowByte = blueAlphaComponents & 0xff;
+      redGreenLow = redGreenComponents & 0xffff;
                     // WARNING: Subroutine does not return
       InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
     }
@@ -16952,7 +16952,7 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
          (((*(uint *)(operationBase + 0x6c) >> 0x19 & 1) != 0 && (calculatedSize == *(int *)(operationBase + 0xb0))))) {
 MemoryCopyLabel:
                     // WARNING: Subroutine does not return
-        memcpy(auStack_648,dataPointer,(int64_t)*(int *)(dataPointer + 8));
+        memcpy(dataCopyBuffer,dataPointer,(int64_t)*(int *)(dataPointer + 8));
       }
     }
     else {
@@ -17311,19 +17311,19 @@ DataBuffer ValidateDataIntegrityA2(int64_t DataDescriptor,DataBuffer ValidationC
   DataBuffer *resourcePointer;
   int *destinationIndexRegister;
   int64_t in_R10;
-  DataBuffer uStack0000000000000040;
+  DataBuffer systemDataStorage;
   
   systemDataBuffer = *(DataBuffer *)(operationBase + 8 + inputAccumulatorRegister * 8);
-  uStack0000000000000040._4_4_ = (int)((uint64_t)systemDataBuffer >> 0x20);
-  if (uStack0000000000000040._4_4_ != 0) {
-    *destinationIndexRegister = uStack0000000000000040._4_4_;
+  systemDataStorage._4_4_ = (int)((uint64_t)systemDataBuffer >> 0x20);
+  if (systemDataStorage._4_4_ != 0) {
+    *destinationIndexRegister = systemDataStorage._4_4_;
     return 0;
   }
   resourcePointer = (DataBuffer *)
            ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + operationFlagA * 0xc) +
            *(int64_t *)(in_R10 + 8));
   if (resourcePointer != (DataBuffer *)0x0) {
-    uStack0000000000000040 = systemDataBuffer;
+    systemDataStorage = systemDataBuffer;
     (**(FunctionPointer**)*resourcePointer)();
   }
   *destinationIndexRegister = 0;
@@ -17447,7 +17447,7 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
   int64_t *destinationIndexRegister;
   DataBuffer *systemContext;
   DataWord *register_R15;
-  DataBuffer uStack0000000000000028;
+  DataBuffer systemContextBuffer;
   
   referenceCountPointer1 = (int *)(*destinationIndexRegister + (int64_t)in_EAX * 4);
   operationResult = *(int *)(*destinationIndexRegister + (int64_t)in_EAX * 4);
@@ -17465,7 +17465,7 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
   }
   operationResult = (int)destinationIndexRegister[4];
   if (operationResult == -1) {
-    uStack0000000000000028 = *systemContext;
+    systemContextBuffer = *systemContext;
     operationResult = (int)destinationIndexRegister[3];
     iterationCount = operationResult + 1;
     statusCounter = (int)*(uint *)((int64_t)destinationIndexRegister + 0x1c) >> 0x1f;
@@ -17489,7 +17489,7 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
     }
     poperationResult = (DataBuffer *)((int64_t)(int)destinationIndexRegister[3] * 0x10 + destinationIndexRegister[2]);
     *poperationResult = CONCAT44(SystemCleanupFlag,dataBuffer);
-    poperationResult[1] = uStack0000000000000028;
+    poperationResult[1] = systemContextBuffer;
     *(int *)(destinationIndexRegister + 3) = (int)destinationIndexRegister[3] + 1;
   }
   else {
@@ -17524,11 +17524,11 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer dataBuffer,DataWord validation
   int64_t destinationIndexRegister;
   DataBuffer *systemContext;
   DataWord *register_R15;
-  DataBuffer uStack0000000000000028;
+  DataBuffer systemContextBuffer;
   
   calculatedSize = *(int *)(destinationIndexRegister + 0x20);
   if (calculatedSize == -1) {
-    uStack0000000000000028 = *systemContext;
+    systemContextBuffer = *systemContext;
     calculatedSize = *(int *)(destinationIndexRegister + 0x18);
     arrayIndex = calculatedSize + 1;
     dataFlags = (int)*(uint *)(destinationIndexRegister + 0x1c) >> 0x1f;
@@ -17553,7 +17553,7 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer dataBuffer,DataWord validation
     validationStatusPointer = (DataBuffer *)
              ((int64_t)*(int *)(destinationIndexRegister + 0x18) * 0x10 + *(int64_t *)(destinationIndexRegister + 0x10));
     *validationStatusPointer = CONCAT44(SystemCleanupFlag,dataBuffer);
-    validationStatusPointer[1] = uStack0000000000000028;
+    validationStatusPointer[1] = systemContextBuffer;
     *(int *)(destinationIndexRegister + 0x18) = *(int *)(destinationIndexRegister + 0x18) + 1;
   }
   else {
