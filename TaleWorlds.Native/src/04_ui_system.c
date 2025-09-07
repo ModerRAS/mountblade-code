@@ -99956,6 +99956,10 @@ double FUN_18072b3a0(longlong uiContext,int dataSource)
  * @note 该函数涉及复杂的数学计算和内存操作，是UI渲染系统的核心组件
  * @warning 函数执行后不会返回，会直接调用渲染任务执行函数
  */
+// UI系统数据变换处理函数
+// 原始函数名: FUN_18072b540
+#define ProcessUIDataTransformation FUN_18072b540
+
 void ProcessUIDataTransformation(double *uiContext, longlong dataSource, float targetBuffer, int bufferSize, int resultPointer)
 {
   double transformValue1;
