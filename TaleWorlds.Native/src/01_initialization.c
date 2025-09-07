@@ -93,6 +93,7 @@
 // 系统资源管理常量
 #define SystemResourceMaxCount              1  // 系统资源最大数量
 #define SystemResourceOperationFlag         1  // 系统资源操作标志
+#define SystemResourceSize                  0x48  // 系统资源结构体大小(72字节)
 
 // 系统字符串处理相关常量
 #define SystemStringBufferCapacityDefault   0xb  // 系统字符串缓冲区默认容量
