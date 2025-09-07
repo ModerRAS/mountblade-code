@@ -80,23 +80,20 @@
 
  计算UI组件边界
  计算UI组件的边界框和尺寸信息
-   *   *  param3 参数3
-  计算结果状态码
+   *   *    计算结果状态码
   原始函数名: CalculateUIComponentBounds
  #define CalculateUIComponentBounds CalculateUIComponentBounds
 
  刷新UI组件
  刷新UI组件的显示内容和状态
-   *   *  param3 参数3
- *  param4 参数4
+   *   *   *  param4 参数4
   刷新结果状态码
   原始函数名: RefreshUIComponent
  #define RefreshUIComponent RefreshUIComponent
 
  更新UI组件
  更新UI组件的数据和状态
-   *   *  param3 参数3
-  更新结果状态码
+   *   *    更新结果状态码
   原始函数名: UpdateUIComponent
  #define UpdateUIComponent UpdateUIComponent
 
@@ -108,8 +105,7 @@
 
  处理UI组件
  处理UI组件的通用操作
-   *   *  param3 参数3
-  处理结果状态码
+   *   *    处理结果状态码
   原始函数名: HandleUIComponent
  #define HandleUIComponent HandleUIComponent
 
@@ -149,16 +145,14 @@
  处理UI事件
  处理UI系统的事件
   param1 参数1
- *   *  param3 参数3
-  处理结果状态码
+ *   *    处理结果状态码
   原始函数名: ProcessUIEvent
  #define ProcessUIEvent ProcessUIEvent
 
  渲染UI组件
  渲染UI组件到显示设备
   param1 参数1
- *   *  param3 参数3
-  渲染结果状态码
+ *   *    渲染结果状态码
   原始函数名: RenderUIComponent
  #define RenderUIComponent RenderUIComponent
 
@@ -1909,8 +1903,7 @@ void* UIGestureCoordinates;
  处理UI系统中的复杂数据操作
  * 包括复杂数据结构处理、多参数数据处理
   param1 参数1
- *   *  param3 参数3
-  处理结果
+ *   *    处理结果
   原始函数名: ProcessUIComplexData
  #define ProcessUIComplexData ProcessUIComplexData
 
@@ -1927,8 +1920,7 @@ void* UIGestureCoordinates;
  处理UI渲染数据
  处理UI系统的渲染数据，包括纹理、颜色等信息
   param1 参数1
- *   *  param3 参数3
-  处理结果
+ *   *    处理结果
   原始函数名: ProcessUIRenderData
  #define ProcessUIRenderData ProcessUIRenderData
 
@@ -1949,24 +1941,21 @@ void* UIGestureCoordinates;
  处理UI矩阵数据
  处理UI系统中的矩阵变换数据
   param1 参数1
- *   *  param3 参数3
-  处理结果
+ *   *    处理结果
   原始函数名: ProcessUIMatrixData
  #define ProcessUIMatrixData ProcessUIMatrixData
 
  处理UI缓冲区数据
  处理UI系统中的缓冲区数据操作
   param1 参数1
- *   *  param3 参数3
-  处理结果
+ *   *    处理结果
   原始函数名: ProcessUIBufferData
  #define ProcessUIBufferData ProcessUIBufferData
 
  获取UI渲染缓冲区
  获取UI系统的渲染缓冲区
   param1 参数1
- *   *  param3 参数3
-  渲染缓冲区指针
+ *   *    渲染缓冲区指针
   原始函数名: GetUIRenderBuffer
  #define GetUIRenderBuffer GetUIRenderBuffer
 
@@ -1993,8 +1982,7 @@ void* UIGestureCoordinates;
  处理UI组件浮点数计算
  处理UI组件的浮点数计算，用于UI元素的变换和渲染
    *  param1 参数1
- *   *  param3 参数3
- *  param4 参数4
+ *   *   *  param4 参数4
  *  param5 参数5
   计算结果
   原始函数名: func_0x000180669850
@@ -2030,16 +2018,14 @@ void* UIGestureCoordinates;
  初始化UI信号量
  初始化UI系统的信号量，用于线程同步和资源管理
   param1 参数1
- *   *  param3 参数3
-  初始化结果
+ *   *    初始化结果
   原始函数名: func_0x00018022b3c0
  #define InitializeUISemaphore func_0x00018022b3c0
 
  创建UI系统资源
  创建UI系统的资源，用于资源管理和分配
   param1 参数1
- *   *  param3 参数3
-  创建的资源指针
+ *   *    创建的资源指针
   原始函数名: func_0x00018022b490
  #define CreateUIResource func_0x00018022b490
 
@@ -2060,24 +2046,21 @@ void* UIGestureCoordinates;
  初始化UI纹理
  初始化UI系统的纹理资源
   texturePtr 纹理指针
- *   *  param3 参数3
-  初始化的纹理指针
+ *   *    初始化的纹理指针
   原始函数名: func_0x0001800f8f10
  #define InitializeUITexture func_0x0001800f8f10
 
  处理UI信号量操作
  处理UI系统的信号量操作，用于线程同步
   semaphorePtr 信号量指针
- *   *  param3 参数3
-  操作结果
+ *   *    操作结果
   原始函数名: func_0x000180085850
  #define ProcessUISemaphoreOperation func_0x000180085850
 
  更新UI组件数据
  更新UI组件的数据
   param1 参数1
- *   *  param3 参数3
- *  param4 参数4
+ *   *   *  param4 参数4
   更新结果
   原始函数名: FUN_18069d280
  #define UpdateUIComponentData UpdateUIComponentDataInternal
@@ -2085,8 +2068,7 @@ void* UIGestureCoordinates;
  处理UI组件渲染
  处理UI组件的渲染操作
   param1 参数1
- *   *  param3 参数3
- *  param4 参数4
+ *   *   *  param4 参数4
   渲染结果
   原始函数名: FUN_18069c200
  #define ProcessUIComponentRender ProcessUIComponentRenderInternal
@@ -2100,8 +2082,7 @@ void* UIGestureCoordinates;
  配置UI组件
  配置UI组件的参数
   param1 参数1
- *   *  param3 参数3
- *  param4 参数4
+ *   *   *  param4 参数4
   配置结果
   原始函数名: FUN_18069c820
  #define ConfigureUIComponent ConfigureUIComponentInternal
@@ -2109,8 +2090,7 @@ void* UIGestureCoordinates;
  处理UI组件缓冲区
  处理UI组件的缓冲区操作
   param1 参数1
- *   *  param3 参数3
- *  param4 参数4
+ *   *   *  param4 参数4
   处理结果
   原始函数名: FUN_18069c710
  #define ProcessUIComponentBuffer ProcessUIComponentBufferInternal
@@ -2118,48 +2098,42 @@ void* UIGestureCoordinates;
  渲染UI按钮
  渲染UI按钮组件
   param1 参数1
- *   *  param3 参数3
-  渲染结果
+ *   *    渲染结果
   原始函数名: FUN_18069cb40
  #define RenderUIButton RenderUIButtonInternal
 
  渲染UI文本
  渲染UI文本组件
   param1 参数1
- *   *  param3 参数3
-  渲染结果
+ *   *    渲染结果
   原始函数名: FUN_18069ca00
  #define RenderUIText RenderUITextInternal
 
  渲染UI图像
  渲染UI图像组件
   param1 参数1
- *   *  param3 参数3
-  渲染结果
+ *   *    渲染结果
   原始函数名: FUN_18069cad0
  #define RenderUIImage RenderUIImageInternal
 
  渲染UI面板
  渲染UI面板组件
   param1 参数1
- *   *  param3 参数3
-  渲染结果
+ *   *    渲染结果
   原始函数名: FUN_18069c900
  #define RenderUIPanel RenderUIPanelInternal
 
  渲染UI滑块
  渲染UI滑块组件
   param1 参数1
- *   *  param3 参数3
-  渲染结果
+ *   *    渲染结果
   原始函数名: FUN_18069ca80
  #define RenderUISlider RenderUISliderInternal
 
  渲染UI复选框
  渲染UI复选框组件
   param1 参数1
- *   *  param3 参数3
-  渲染结果
+ *   *    渲染结果
   原始函数名: FUN_18069c990
  #define RenderUICheckbox RenderUICheckboxInternal
 

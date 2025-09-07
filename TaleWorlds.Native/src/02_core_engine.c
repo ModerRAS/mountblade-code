@@ -148420,7 +148420,7 @@ LAB_180130808:
 
 
 
-30155(voidvoid FUN_180130155(void
+void FUN_180130155(void)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
@@ -148664,7 +148664,7 @@ LAB_180130808:
 
 
 
-306c9(voidvoid FUN_1801306c9(void
+void FUN_1801306c9(void)
 {
   unsigned long long Utf16Char;
   void *SystemContext;
