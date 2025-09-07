@@ -112409,8 +112409,21 @@ dae0(int *SystemContextPointer,int Utf8BufferSizevoid ProcessSystemBufferSize(in
 
 
 
-db30(int *SystemContextPointer,int Utf8BufferSizevoid FUN_18011db30(int *SystemContextPointer,int Utf8BufferSize
-{
+/**
+ * @brief 扩展UTF-8缓冲区（0x28大小）
+ * 
+ * 该函数负责扩展UTF-8缓冲区大小，每次扩展0x28字节。
+ * 如果当前缓冲区大小小于请求大小，则重新分配内存。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize 请求的UTF-8缓冲区大小
+ * @return void
+ * 
+ * @note 函数会复制现有数据到新分配的内存中
+ * @note 使用SystemCallMemoryAccess进行内存分配
+ * @note 内存块大小为Utf8BufferSize * 0x28字节
+ */
+void ExpandUtf8Buffer28(int *SystemContextPointer,int Utf8BufferSize) {
   uint64_t Utf16Char;
   
   if (SystemContextPointer[1] < Utf8BufferSize) {
@@ -112432,8 +112445,19 @@ db30(int *SystemContextPointer,int Utf8BufferSizevoid FUN_18011db30(int *SystemC
 
 
 
-db4c(voidvoid FUN_18011db4c(void
-{
+/**
+ * @brief 扩展UTF-8缓冲区（0x28大小）- 无参数版本
+ * 
+ * 该函数负责扩展UTF-8缓冲区大小，每次扩展0x28字节。
+ * 这是无参数版本，使用默认参数进行缓冲区扩展。
+ * 
+ * @return void
+ * 
+ * @note 函数会复制现有数据到新分配的内存中
+ * @note 使用SystemCallMemoryAccess进行内存分配
+ * @note 依赖in_RAX和DataIndex寄存器值
+ */
+void ExpandUtf8Buffer28NoArgs(void) {
   long long in_RAX;
   uint64_t Utf16Char;
   int *SystemContext;
@@ -112455,8 +112479,17 @@ db4c(voidvoid FUN_18011db4c(void
 
 
 
-dbc2(voidvoid FUN_18011dbc2(void
-{
+/**
+ * @brief 空函数 - 占位符
+ * 
+ * 该函数是一个空函数，作为代码占位符使用。
+ * 
+ * @return void
+ * 
+ * @note 可能用于保持代码结构完整性
+ * @note 或者作为未来功能的预留位置
+ */
+void EmptyFunctionPlaceholder(void) {
   return;
 }
 
@@ -112464,8 +112497,21 @@ dbc2(voidvoid FUN_18011dbc2(void
 
 
 
-dbd0(int *SystemContextPointer,int Utf8BufferSizevoid FUN_18011dbd0(int *SystemContextPointer,int Utf8BufferSize
-{
+/**
+ * @brief 扩展UTF-8缓冲区（左移2位）
+ * 
+ * 该函数负责扩展UTF-8缓冲区大小，使用左移2位（*4）计算大小。
+ * 如果当前缓冲区大小小于请求大小，则重新分配内存。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize 请求的UTF-8缓冲区大小
+ * @return void
+ * 
+ * @note 函数会复制现有数据到新分配的内存中
+ * @note 使用SystemCallMemoryAccess进行内存分配
+ * @note 内存块大小为Utf8BufferSize << 2字节（即*4）
+ */
+void ExpandUtf8BufferShift2(int *SystemContextPointer,int Utf8BufferSize) {
   uint64_t Utf16Char;
   
   if (SystemContextPointer[1] < Utf8BufferSize) {
@@ -112487,8 +112533,20 @@ dbd0(int *SystemContextPointer,int Utf8BufferSizevoid FUN_18011dbd0(int *SystemC
 
 
 
-dbec(voidvoid FUN_18011dbec(void
-{
+/**
+ * @brief 扩展UTF-8缓冲区（左移2位）- 无参数版本
+ * 
+ * 该函数负责扩展UTF-8缓冲区大小，使用左移2位（*4）计算大小。
+ * 这是无参数版本，使用默认参数进行缓冲区扩展。
+ * 
+ * @return void
+ * 
+ * @note 函数会复制现有数据到新分配的内存中
+ * @note 使用SystemCallMemoryAccess进行内存分配
+ * @note 依赖in_RAX和DataIndex寄存器值
+ * @note 内存块大小为DataIndex << 2字节（即*4）
+ */
+void ExpandUtf8BufferShift2NoArgs(void) {
   long long in_RAX;
   uint64_t Utf16Char;
   int *SystemContext;
@@ -112510,8 +112568,17 @@ dbec(voidvoid FUN_18011dbec(void
 
 
 
-dc5d(voidvoid FUN_18011dc5d(void
-{
+/**
+ * @brief 空函数 - 占位符2
+ * 
+ * 该函数是一个空函数，作为代码占位符使用。
+ * 
+ * @return void
+ * 
+ * @note 可能用于保持代码结构完整性
+ * @note 或者作为未来功能的预留位置
+ */
+void EmptyFunctionPlaceholder2(void) {
   return;
 }
 
@@ -112519,8 +112586,21 @@ dc5d(voidvoid FUN_18011dc5d(void
 
 
 
-dc70(int *SystemContextPointer,int Utf8BufferSizevoid FUN_18011dc70(int *SystemContextPointer,int Utf8BufferSize
-{
+/**
+ * @brief 扩展UTF-8缓冲区（左移3位）
+ * 
+ * 该函数负责扩展UTF-8缓冲区大小，使用左移3位（*8）计算大小。
+ * 如果当前缓冲区大小小于请求大小，则重新分配内存。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize 请求的UTF-8缓冲区大小
+ * @return void
+ * 
+ * @note 函数会复制现有数据到新分配的内存中
+ * @note 使用SystemCallMemoryAccess进行内存分配
+ * @note 内存块大小为Utf8BufferSize << 3字节（即*8）
+ */
+void ExpandUtf8BufferShift3(int *SystemContextPointer,int Utf8BufferSize) {
   uint64_t Utf16Char;
   
   if (SystemContextPointer[1] < Utf8BufferSize) {
@@ -112542,8 +112622,20 @@ dc70(int *SystemContextPointer,int Utf8BufferSizevoid FUN_18011dc70(int *SystemC
 
 
 
-dc8c(voidvoid FUN_18011dc8c(void
-{
+/**
+ * @brief 扩展UTF-8缓冲区（左移3位）- 无参数版本
+ * 
+ * 该函数负责扩展UTF-8缓冲区大小，使用左移3位（*8）计算大小。
+ * 这是无参数版本，使用默认参数进行缓冲区扩展。
+ * 
+ * @return void
+ * 
+ * @note 函数会复制现有数据到新分配的内存中
+ * @note 使用SystemCallMemoryAccess进行内存分配
+ * @note 依赖in_RAX和DataIndex寄存器值
+ * @note 内存块大小为DataIndex << 3字节（即*8）
+ */
+void ExpandUtf8BufferShift3NoArgs(void) {
   long long in_RAX;
   uint64_t Utf16Char;
   int *SystemContext;
@@ -112565,8 +112657,17 @@ dc8c(voidvoid FUN_18011dc8c(void
 
 
 
-dcfd(voidvoid FUN_18011dcfd(void
-{
+/**
+ * @brief 空函数 - 占位符3
+ * 
+ * 该函数是一个空函数，作为代码占位符使用。
+ * 
+ * @return void
+ * 
+ * @note 可能用于保持代码结构完整性
+ * @note 或者作为未来功能的预留位置
+ */
+void EmptyFunctionPlaceholder3(void) {
   return;
 }
 
@@ -112597,8 +112698,20 @@ dd10(int *SystemContextPointer,int Utf8BufferSizevoid ProcessSystemReferenceCoun
 
 
 
-dd2c(voidvoid FUN_18011dd2c(void
-{
+/**
+ * @brief 扩展UTF-8缓冲区（*2大小）- 无参数版本
+ * 
+ * 该函数负责扩展UTF-8缓冲区大小，使用乘以2计算大小。
+ * 这是无参数版本，使用默认参数进行缓冲区扩展。
+ * 
+ * @return void
+ * 
+ * @note 函数会复制现有数据到新分配的内存中
+ * @note 使用SystemCallMemoryAccess进行内存分配
+ * @note 依赖in_RAX和DataIndex寄存器值
+ * @note 内存块大小为DataIndex * 2字节
+ */
+void ExpandUtf8BufferDoubleNoArgs(void) {
   long long in_RAX;
   uint64_t Utf16Char;
   int *SystemContext;
@@ -112620,8 +112733,17 @@ dd2c(voidvoid FUN_18011dd2c(void
 
 
 
-dd9b(voidvoid FUN_18011dd9b(void
-{
+/**
+ * @brief 空函数 - 占位符4
+ * 
+ * 该函数是一个空函数，作为代码占位符使用。
+ * 
+ * @return void
+ * 
+ * @note 可能用于保持代码结构完整性
+ * @note 或者作为未来功能的预留位置
+ */
+void EmptyFunctionPlaceholder4(void) {
   return;
 }
 
