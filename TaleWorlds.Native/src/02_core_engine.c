@@ -145750,7 +145750,7 @@ faae(uint64_t *CharacterCode,long long CharacterCodeSizevoid FUN_18012faae(uint6
  * 
  * @note 原始函数名：FUN_18012fbd0
  */
-uint64_t FUN_18012fbd0(long long CharacterCode,uint32_t *CharacterCodeSize
+uint64_t ProcessCharacterCodeAndValidateSystemData(long long CharacterCode,uint32_t *CharacterCodeSize
 {
   float SystemContextPrimaryFloat;
   int CharacterByteCount;
@@ -147959,7 +147959,7 @@ LAB_18013148a:
  * 
  * @note 原始函数名：FUN_18013113e
  */
-uint8_t FUN_18013113e(void
+uint8_t GetSystemInitializationStatus(void)
 {
   return 0;
 }
