@@ -30058,9 +30058,9 @@ void ProcessSystemMemoryConfigurationPrimary(long long systemContext,uint64_t re
  * @note 使用固定的保留参数值
  * @note 涉及内存配置处理
  */
-void ProcessSystemMemoryConfigurationV2(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessSystemMemoryConfigurationV2(long long systemContext,uint64_t reservedParam1,uint64_t configParam,uint64_t reservedParam2
 {
-  CoreEngineProcessSystemMemoryResourceData(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  CoreEngineProcessSystemMemoryResourceData(systemContext,*(void *)(systemContext + 0x10),configParam,reservedParam2,0xfffffffffffffffe);
   return;
 }
 
