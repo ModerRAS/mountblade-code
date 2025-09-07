@@ -158586,60 +158586,72 @@ void ConfigureSystemRenderingParameters(void
 
 
 
-34eb0(voidvoid FUN_180134eb0(void
+/**
+ * @brief 处理系统缓冲区和字符编码转换的函数
+ * 
+ * 该函数负责处理系统缓冲区的初始化、数据复制和字符编码转换。
+ * 主要功能包括：
+ * - 系统缓冲区的初始化和数据复制
+ * - 字符编码的转换和处理
+ * - 浮点数的计算和距离验证
+ * - 系统状态的更新和管理
+ * 
+ * @note 原始函数名：FUN_180134eb0
+ */
+void ProcessSystemBufferAndCharacterEncoding(void)
 {
-  float SystemContextPrimaryFloat;
-  int in_EAX;
-  long long BufferStatus;
+  float ContextPrimaryFloat;
+  int CharacterCount;
+  long long BufferPointer;
   long long SystemContext;
   long long StackFramePointer;
   long long DataNodeIndex;
-  int MemoryMatchResult;
-  int CharacterLimitD;
-  float FloatVariable4;
-  float FloatVariable5;
-  float CalculatedDistance;
-  float AuxiliaryFloat9;
-  uint8_t uStack0000000000000110;
+  int MemoryIndex;
+  int CharacterLimit;
+  float FloatDifference;
+  float CalculatedValue;
+  float ComputedDistance;
+  float AdditionalFloatValue;
+  uint8_t SystemProcessingFlag;
   
-  if ((*(char *)(SystemContext + 9) == '\0') && (MemoryAllocationSize = 0, 0 < in_EAX + 1)) {
-    BufferStatus = 0;
+  if ((*(char *)(SystemContext + 9) == '\0') && (MemoryAllocationSize = 0, 0 < CharacterCount + 1)) {
+    BufferPointer = 0;
     do {
       MemoryAllocationSize = MemoryAllocationSize + 1;
-      *(uint32_t *)(BufferStatus + 4 + *(long long *)(SystemContext + 0x38)) =
-           *(uint32_t *)(BufferStatus + *(long long *)(SystemContext + 0x38));
-      BufferStatus = BufferStatus + 0x1c;
+      *(uint32_t *)(BufferPointer + 4 + *(long long *)(SystemContext + 0x38)) =
+           *(uint32_t *)(BufferPointer + *(long long )(SystemContext + 0x38));
+      BufferPointer = BufferPointer + 0x1c;
     } while (MemoryAllocationSize < *(int *)(SystemContext + 0x10) + 1);
   }
   *(uint8_t *)(SystemContext + 9) = 1;
-  MemoryAllocationSize = CharacterLimitD + -1;
-  uStack0000000000000110 = 1;
-  BufferStatus = *(long long *)(*(long long *)(DataNodeIndex + 0x1af8) + 0x210);
-  CalculatedDistance = ((*(float *)(DataNodeIndex + 0x118) - *(float *)(DataNodeIndex + 0x1b48)) + AuxiliaryFloat9) -
+  MemoryAllocationSize = CharacterLimit + -1;
+  SystemProcessingFlag = 1;
+  BufferPointer = *(long long *)(*(long long *)(DataNodeIndex + 0x1af8) + 0x210);
+  ComputedDistance = ((*(float *)(DataNodeIndex + 0x118) - *(float *)(DataNodeIndex + 0x1b48)) + AdditionalFloatValue) -
           *(float *)(*(long long *)(DataNodeIndex + 0x1af8) + 0x40);
-  if (MemoryMatchResult < 0) {
-    MemoryAllocationSize = *(int *)(BufferStatus + 0xc);
+  if (MemoryIndex < 0) {
+    MemoryAllocationSize = *(int *)(BufferPointer + 0xc);
   }
-  SystemContextPrimaryFloat = *(float *)(BufferStatus + 0x14);
-  FloatVariable4 = *(float *)(BufferStatus + 0x18) - SystemContextPrimaryFloat;
-  FloatVariable5 = FloatVariable4 * *(float *)((long long)MemoryAllocationSize * 0x1c + *(long long *)(BufferStatus + 0x38)) + SystemContextPrimaryFloat +
+  ContextPrimaryFloat = *(float *)(BufferPointer + 0x14);
+  FloatDifference = *(float *)(BufferPointer + 0x18) - ContextPrimaryFloat;
+  CalculatedValue = FloatDifference * *(float *)((long long)MemoryAllocationSize * 0x1c + *(long long *)(BufferPointer + 0x38)) + ContextPrimaryFloat +
           *(float *)(DataNodeIndex + 0x1688);
-  if (FloatVariable5 <= CalculatedDistance) {
-    FloatVariable5 = CalculatedDistance;
+  if (CalculatedValue <= ComputedDistance) {
+    CalculatedValue = ComputedDistance;
   }
   if ((*(byte *)(SystemContext + 4) & 4) != 0) {
-    MemoryAllocationSize = CharacterLimitD + 1;
-    if (MemoryMatchResult < 0) {
-      MemoryAllocationSize = *(int *)(BufferStatus + 0xc);
+    MemoryAllocationSize = CharacterLimit + 1;
+    if (MemoryIndex < 0) {
+      MemoryAllocationSize = *(int *)(BufferPointer + 0xc);
     }
-    CalculatedDistance = (FloatVariable4 * *(float *)((long long)MemoryAllocationSize * 0x1c + *(long long *)(BufferStatus + 0x38)) + SystemContextPrimaryFloat) -
+    ComputedDistance = (FloatDifference * *(float *)((long long)MemoryAllocationSize * 0x1c + *(long long *)(BufferPointer + 0x38)) + ContextPrimaryFloat) -
             *(float *)(DataNodeIndex + 0x1688);
-    if (CalculatedDistance <= FloatVariable5) {
-      FloatVariable5 = CalculatedDistance;
+    if (ComputedDistance <= CalculatedValue) {
+      CalculatedValue = ComputedDistance;
     }
   }
-  ProcessUtf8CharacterConversion(CharacterLimitD,FloatVariable5);
-  *(uint8_t *)(SystemContext + 9) = uStack0000000000000110;
+  ProcessUtf8CharacterConversion(CharacterLimit,CalculatedValue);
+  *(uint8_t *)(SystemContext + 9) = SystemProcessingFlag;
   *(void *)(StackFramePointer + 0x210) = 0;
   *(uint32_t *)(StackFramePointer + 0x20c) = 0;
   *(float *)(StackFramePointer + 0x100) =
