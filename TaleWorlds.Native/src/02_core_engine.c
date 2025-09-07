@@ -114415,7 +114415,7 @@ uint8_t ProcessAdvancedDataFiltering(uint64_t CharacterCode
   float AuxiliaryFloat13;
   float *StackParameter6;
   
-  CalculatedFilterValue = (float)FUN_18011f9b0(CharacterCode,*RegisterSourceIndex);
+  CalculatedFilterValue = (float)ProcessSystemFloatEx(CharacterCode,*RegisterSourceIndex);
   SystemContextPrimaryFloat = *(float *)(RegisterGeneral14 + 0xc);
   SystemContextSecondaryFloat = *(float *)(RegisterGeneral14 + 4);
   CalculatedFilterValue = (AuxiliaryFloat9 - AuxiliaryFloat11) * FloatValue3 + AuxiliaryFloat11;
@@ -114707,7 +114707,7 @@ void ProcessStringFormattingFloat(char *CharacterCode,uint64_t CharacterCodeSize
     if (SystemCheckResult == '\0') {
 LAB_18011f6c5:
       if ((SystemCheckResult == '%') && (CharacterCode[1] != '%')) {
-        FUN_180121200(&cStack_58,0x40,CharacterCode,(double)Utf8InputPointer);
+        OperateBufferAndSetParameters(&cStack_58,0x40,CharacterCode,(double)Utf8InputPointer);
         FunctionPointer = &cStack_58;
         while (cStack_58 == ' ') {
           FunctionPointer = FunctionPointer + 1;
@@ -115063,7 +115063,19 @@ void ProcessStringEncodingConversionB(long long CharacterCode,uint64_t Character
 
 
 
-0a30(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointervoid FUN_180120a30(long long CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统内存池初始化和字符编码验证
+ * 
+ * 该函数负责处理系统内存池的初始化，验证字符编码数据，
+ * 并根据字符代码大小来决定是否初始化内存池。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return 无
+ */
+void ProcessSystemMemoryPoolInitializationAndCharacterValidation(long long CharacterCode, uint64_t CharacterCodeSize, uint64_t Utf8InputPointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
