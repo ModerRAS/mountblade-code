@@ -1172,44 +1172,51 @@
 /**
  * @brief 数据加密处理函数
  * @note 原始函数名：func_0x00018074be80
+ * 功能：使用AES算法加密敏感数据
  */
-#define EncryptData EncryptDataWithAES
+#define EncryptData PerformAESEncryption
 
 /**
  * @brief 数据验证处理函数
  * @note 原始函数名：ValidateData
+ * 功能：验证数据的完整性和有效性
  */
-#define ValidateData ValidateDataIntegrity
+#define ValidateData PerformDataIntegrityCheck
 
 /**
  * @brief 内存分配处理函数
  * @note 原始函数名：AllocateMemory
+ * 功能：为系统分配内存池
  */
-#define AllocateMemoryPool AllocateMemoryPoolForSystem
+#define AllocateMemoryPool CreateSystemMemoryPool
 
 /**
  * @brief 内存初始化函数
  * @note 原始函数名：func_0x00018076b450
+ * 功能：初始化系统内存池
  */
-#define InitializeMemoryPool InitializeMemoryPoolForSystem
+#define InitializeMemoryPool SetupSystemMemoryPool
 
 /**
  * @brief 数据处理函数
  * @note 原始函数名：ProcessData
+ * 功能：处理数据缓冲区并验证数据
  */
-#define ProcessDataBuffer ProcessDataBufferWithValidation
+#define ProcessDataBuffer ProcessDataWithValidation
 
 /**
  * @brief 系统状态检查函数
  * @note 原始函数名：CheckSystemStatus
+ * 功能：验证系统状态和健康状态
  */
-#define ValidateSystemStatus ValidateSystemStatusAndHealth
+#define ValidateSystemStatus CheckSystemHealthAndStatus
 
 /**
  * @brief 系统初始化函数
  * @note 原始函数名：InitializeSystem
+ * 功能：初始化系统核心组件
  */
-#define InitializeSystemCore InitializeSystemCoreComponents
+#define InitializeSystemCore SetupSystemCoreComponents
 
 /**
  * @brief 参数验证函数
