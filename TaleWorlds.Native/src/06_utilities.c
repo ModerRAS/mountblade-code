@@ -28789,7 +28789,7 @@ ValidationLabelB:
       return systemDataBuffer1;
     }
     inputParameter8 = *(int *)(stackFramePointer + -0x21);
-    fVar20 = interpolatedFloatValue;
+    primaryFloatResult = interpolatedFloatValue;
     if (inputParameter8 == 0) {
       exceptionDataBuffer4 = *(DataBuffer **)(stackFramePointer + -0x29);
     }
@@ -28800,7 +28800,7 @@ ValidationLabelB:
         systemDataBuffer1 = (uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         inputParameter8 = *(int *)(stackFramePointer + -0x21);
-        fVar20 = validationFloatValue;
+        primaryFloatResult = validationFloatValue;
       }
       exceptionDataBuffer4 = *(DataBuffer **)(stackFramePointer + -0x29);
       for (exceptionDataBuffer5 = exceptionDataBuffer4; (exceptionDataBuffer4 <= exceptionDataBuffer5 && (exceptionDataBuffer5 < exceptionDataBuffer4 + (int64_t)inputParameter8 * 3));
@@ -28848,9 +28848,9 @@ ValidationLabelB:
           secondValidationValue = pValidationFloatValue3[2];
           thirdValidationValue = pValidationFloatValue3[3];
           *(float *)(exceptionHandlerContext6 + -0x14) = primaryFloatResult;
-          *(float *)(exceptionHandlerContext6 + -0x10) = fVar4;
-          *(float *)(exceptionHandlerContext6 + -0xc) = fVar5;
-          *(float *)(exceptionHandlerContext6 + -8) = fVar6;
+          *(float *)(exceptionHandlerContext6 + -0x10) = validationCounter;
+          *(float *)(exceptionHandlerContext6 + -0xc) = secondValidationValue;
+          *(float *)(exceptionHandlerContext6 + -8) = thirdValidationValue;
           *(DataBuffer **)(exceptionHandlerContext6 + -4) = register_R12;
           exceptionHandlerContext7 = exceptionHandlerContext7 + -1;
           exceptionHandlerContext6 = exceptionHandlerContext6 + 0x18;
@@ -28863,12 +28863,12 @@ ValidationLabelB:
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      fVar20 = (float)CleanupDataResourcesA0(stackFramePointer + -0x29,0);
+      primaryFloatResult = (float)CleanupDataResourcesA0(stackFramePointer + -0x29,0);
     }
   }
   else {
     systemDataBuffer1 = CreateExceptionDataBuffer(operationBase,systemContext + 0x48);
-    fVar20 = normalizedFloatValue;
+    primaryFloatResult = normalizedFloatValue;
     if ((int)systemDataBuffer1 != 0) {
       return systemDataBuffer1;
     }
@@ -28878,7 +28878,7 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + 0x48) <= systemDataBuffer1 &&
       (systemDataBuffer1 < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
       systemDataBuffer1 = systemDataBuffer1 + 0x1c) {
-    fVar20 = (float)GetSystemContextValue(systemContext + 0x58);
+    primaryFloatResult = (float)GetSystemContextValue(systemContext + 0x58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(destinationIndexRegister + 8)) &&
@@ -65458,7 +65458,22 @@ void CleanupExceptionPointer(DataBuffer exceptionContext,int64_t unwindInfo)
 
 
 
-void Unwind_1809086b0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_1809086b0 - 异常回调执行器A2
+// 功能：执行异常处理回调函数A2
+#define ExceptionCallbackExecutorA2 Unwind_1809086b0
+
+/**
+ * @brief 异常回调执行器A2
+ * 
+ * 该函数负责在异常展开时执行异常处理回调函数A2
+ * 从异常上下文中获取回调函数指针并执行
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 此函数在异常处理过程中自动调用
+ */
+void ExceptionCallbackExecutorA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
