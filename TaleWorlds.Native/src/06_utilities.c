@@ -10050,10 +10050,10 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
 
 {
   int64_t *exceptionHandlerContextPointer;
-  int64_t *componentDataPointer;
-  int64_t *componentInfoPointer;
+  int64_t *ComponentDataContext;
+  int64_t *ComponentInfoContext;
   int32_t ModuleInitializationStatus;
-  uint32_t gameMessageProcessingResult;
+  uint32_t GameMessageProcessingStatus;
   uint64_t systemModuleOperationResult;
   int64_t *ResourceInfoContext;
   int64_t *ContextDataContext;
@@ -10074,11 +10074,11 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
     ModuleInitializationStatus = (int32_t)systemModuleOperationResult;
     if (ModuleInitializationStatus == 0) {
       LocalStackMemoryContext = 0;
-      gameMessageProcessingResult = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(TemporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
+      GameMessageProcessingStatus = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(TemporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_3,
                             &LocalStackMemoryContext);
-      if (gameMessageProcessingResult != 0) {
+      if (GameMessageProcessingStatus != 0) {
         CleanupSystemDataStructures(ModuleDataContext);
-        return (uint64_t)gameMessageProcessingResult;
+        return (uint64_t)GameMessageProcessingStatus;
       }
       if (((*(uint32_t *)(*(int64_t *)(TemporaryStackContext + SystemContextOffset) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
          (systemModuleOperationResult = ValidateSystemOperationContextA0(LocalStackMemoryContext), (int32_t)systemModuleOperationResult != 0)) {
@@ -10090,8 +10090,8 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
         ResourceInfoContext = baseValidationContext;
       }
       ContextDataContext = baseValidationContext;
-      componentDataPointer = baseValidationContext;
-      componentInfoPointer = baseValidationContext;
+      ComponentDataContext = baseValidationContext;
+      ComponentInfoContext = baseValidationContext;
       if (ResourceInfoContext != (int64_t *)0x0) {
         ContextDataContext = ResourceInfoContext + RESOURCE_CONTEXT_OFFSET;
       }
@@ -10106,14 +10106,14 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
           }
           return systemModuleOperationResult;
         }
-        if ((int32_t)ModuleDataContext[5] <= (int32_t)componentInfoPointer) {
+        if ((int32_t)ModuleDataContext[5] <= (int32_t)ComponentInfoContext) {
           return ResourceInvalidErrorCode;
         }
         ResourceInfoContext = ContextDataContext + RESOURCE_DATA_OFFSET;
         if (ContextDataContext == (int64_t *)0x0) {
           ResourceInfoContext = (int64_t *)MODULE_VALIDATION_OFFSET;
         }
-        *(int64_t *)(ModuleDataContext[4] + SystemContextOffset + (int64_t)componentDataPointer) = *ResourceInfoContext;
+        *(int64_t *)(ModuleDataContext[4] + SystemContextOffset + (int64_t)ComponentDataContext) = *ResourceInfoContext;
         if (ContextDataContext == exceptionHandlerContextPointer) break;
         ResourceInfoContext = (int64_t *)(*ContextDataContext + MODULE_RESOURCE_OFFSET);
         if (*ContextDataContext == 0) {
@@ -10123,8 +10123,8 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
         if (ResourceInfoContext != (int64_t *)0x0) {
           ContextDataContext = ResourceInfoContext + RESOURCE_CONTEXT_OFFSET;
         }
-        componentDataPointer = componentDataPointer + COMPONENT_DATA_OFFSET;
-        componentInfoPointer = (int64_t *)(uint64_t)((int32_t)componentInfoPointer + 1);
+        ComponentDataContext = ComponentDataContext + COMPONENT_DATA_OFFSET;
+        ComponentInfoContext = (int64_t *)(uint64_t)((int32_t)ComponentInfoContext + 1);
       }
       return ResourceInvalidErrorCode;
     }
