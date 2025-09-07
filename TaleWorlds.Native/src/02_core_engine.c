@@ -70,6 +70,8 @@
 #define ValidateSystemConfiguration FUN_18012eff0              // 验证系统配置
 #define ProcessCharacterCode FUN_180174340                 // 处理UTF-8输入缓冲区
 #define ManageMemoryReferenceCount FUN_18014c7d0            // 管理内存引用计数和资源释放
+#define CalculateAndUpdateMemoryPoolSize FUN_18014c9e0      // 计算和更新系统内存池大小
+#define ExecuteSystemCharacterEncodingCleanup FUN_18014ccf0 // 执行系统字符编码清理和资源释放
 #define ManageSystemBufferSize FUN_18014d6f0                    // 管理UTF-8缓冲区大小
 #define ConvertUtf16Encoding FUN_180183e30                    // 转换UTF-16编码
 #define ProcessSystemDataTableValidation FUN_18011aad0         // 处理系统数据表验证
@@ -180161,7 +180163,18 @@ uint64_t * ManageCharacterCode(uint64_t *CharacterCode,uint64_t *CharacterCodeSi
 
 
 
-4c9e0(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_18014c9e0(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * @brief 计算和更新系统内存池大小
+ * 
+ * 该函数负责计算系统内存池的总大小，包括内存块分配、边界处理和
+ * 内存池大小的动态更新。使用互斥锁确保线程安全。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小指针
+ * 
+ * @note 原始函数名：FUN_18014c9e0
+ */
+void CalculateAndUpdateMemoryPoolSize(uint64_t CharacterCode, long long SystemBufferSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -180340,7 +180353,15 @@ LAB_18014ccc0:
 
 
 
-4ccf0(voidvoid FUN_18014ccf0(void
+/**
+ * @brief 执行系统字符编码清理和资源释放
+ * 
+ * 该函数负责清理系统中的字符编码资源，包括内存块的遍历、
+ * 字符编码处理和系统资源的释放。确保系统资源的正确清理。
+ * 
+ * @note 原始函数名：FUN_18014ccf0
+ */
+void ExecuteSystemCharacterEncodingCleanup(void)
 {
   uint64_t Utf16Char;
   int StringComparisonResult;
@@ -180350,21 +180371,21 @@ LAB_18014ccc0:
   long long *MemoryBoundaryPointer;
   uint64_t SystemParameter;
   int StackIntegerArray [2];
-  int **ppiStackX_18;
+  int **SecondaryFunctionPointer;
   uint64_t SystemChecksum;
   uint32_t CoreEngineValueA8;
   uint32_t StackCharacterValueA4;
   uint32_t CoreEngineUnsignedValueA0;
-  uint32_t uStack_9c;
-  int *apiStack_98 [2];
-  code *pcStack_88;
-  void *pCalculationFunctionAddress;
-  int *apiStack_78 [2];
+  uint32_t SystemValidationValue;
+  int *PrimaryProcessingStack [2];
+  code *SecondaryFunctionCodePointer;
+  void *TertiaryFunctionPointer;
+  int *SecondaryProcessingStack [2];
   void *StackPointer;
   void *EncodingBuffer;
-  int *apStringComparisonMode [2];
+  int *StringComparisonModeStack [2];
   void *ContextDataPointer;
-  void *pSystemPriorityLevel;
+  void *SystemPriorityLevelPointer;
   
   MemoryBlockIndex = GlobalSystemMemoryBlock;
   SystemChecksum = 0xfffffffffffffffe;
@@ -180374,28 +180395,28 @@ LAB_18014ccc0:
   while (AllocatedMemorySize != MemoryBlockIndex) {
     EncodingValidationResult = StringComparisonResult + 1;
     Utf16Char = *(void *)(AllocatedMemorySize + 0x20);
-    pcStack_88 = (code *)&SystemSecondaryFunctionPointer;
-    pCalculationFunctionAddress = &SystemTertiaryFunctionPointer;
-    apiStack_98[0] = StackIntegerArray;
-    ProcessCharacterCodeWithFlags(Utf16Char,0,apiStack_98,SystemParameter,SystemChecksum);
-    if (pcStack_88 != (code *)0x0) {
-      (*pcStack_88)(apiStack_98,0,0);
+    SecondaryFunctionCodePointer = (code *)&SystemSecondaryFunctionPointer;
+    TertiaryFunctionPointer = &SystemTertiaryFunctionPointer;
+    PrimaryProcessingStack[0] = StackIntegerArray;
+    ProcessCharacterCodeWithFlags(Utf16Char,0,PrimaryProcessingStack,SystemParameter,SystemChecksum);
+    if (SecondaryFunctionCodePointer != (code *)0x0) {
+      (*SecondaryFunctionCodePointer)(PrimaryProcessingStack,0,0);
     }
     if (*(char *)(AllocatedMemorySize + 0x38) == '\x01') {
       EncodingValidationResult = StringComparisonResult + 3;
       CoreEngineValueA8 = *(uint32_t *)(AllocatedMemorySize + 0x28);
       StackCharacterValueA4 = *(uint32_t *)(AllocatedMemorySize + 0x2c);
       CoreEngineUnsignedValueA0 = *(uint32_t *)(AllocatedMemorySize + 0x30);
-      uStack_9c = *(uint32_t *)(AllocatedMemorySize + 0x34);
-      ppiStackX_18 = apiStack_78;
+      SystemValidationValue = *(uint32_t *)(AllocatedMemorySize + 0x34);
+      SecondaryFunctionPointer = SecondaryProcessingStack;
       EnginePointerBuffer = &SystemEnginePointerBuffer;
       EncodingBuffer = &SystemCoreEnginePointerBuffer;
-      apiStack_78[0] = StackIntegerArray;
-      ProcessCharacterWithSystemData(Utf16Char,apiStack_78,&CoreEngineValueA8);
-      ppiStackX_18 = apStringComparisonMode;
+      SecondaryProcessingStack[0] = StackIntegerArray;
+      ProcessCharacterWithSystemData(Utf16Char,SecondaryProcessingStack,&CoreEngineValueA8);
+      SecondaryFunctionPointer = StringComparisonModeStack;
       ContextDataPointer = &SystemEnginePointerBuffer;
-      pSystemPriorityLevel = &SystemCoreEnginePointerBuffer;
-      apStringComparisonMode[0] = StackIntegerArray;
+      SystemPriorityLevelPointer = &SystemCoreEnginePointerBuffer;
+      StringComparisonModeStack[0] = StackIntegerArray;
       ProcessCharacterBufferReset(Utf16Char);
     }
     AllocatedMemorySize = GetNextMemoryBlockIndex(AllocatedMemorySize);
