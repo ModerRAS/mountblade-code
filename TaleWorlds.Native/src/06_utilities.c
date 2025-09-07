@@ -80006,7 +80006,17 @@ void Unwind_180909d00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909d20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作清理
+ * 
+ * 该函数负责在指定偏移量执行内存操作清理，调用内存操作处理函数
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909d20
+ */
+void ExecuteMemoryOperationCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 0x5a0,0x20,9,ProcessMemoryOperationA0);
@@ -80015,7 +80025,18 @@ void Unwind_180909d20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909d60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器链6C0
+ * 
+ * 该函数负责清理偏移量0x6c0处的异常处理器链，遍历所有异常处理器
+ * 并调用相应的清理函数
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909d60
+ */
+void CleanupExceptionHandlerChain6C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80037,7 +80058,18 @@ void Unwind_180909d60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909d80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器链6E0
+ * 
+ * 该函数负责清理偏移量0x6e0处的异常处理器链，遍历所有异常处理器
+ * 并调用相应的清理函数
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909d80
+ */
+void CleanupExceptionHandlerChain6E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80059,7 +80091,18 @@ void Unwind_180909d80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909da0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器链700
+ * 
+ * 该函数负责清理偏移量0x700处的异常处理器链，遍历所有异常处理器
+ * 并调用相应的清理函数
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909da0
+ */
+void CleanupExceptionHandlerChain700(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80081,7 +80124,18 @@ void Unwind_180909da0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909dc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理器链720
+ * 
+ * 该函数负责清理偏移量0x720处的异常处理器链，遍历所有异常处理器
+ * 并调用相应的清理函数
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909dc0
+ */
+void CleanupExceptionHandlerChain720(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -80103,7 +80157,19 @@ void Unwind_180909dc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统配置740
+ * 
+ * 该函数负责处理偏移量0x740处的系统配置，调用系统配置处理函数
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180909de0
+ */
+void ProcessSystemConfiguration740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x40) + 0x740,
@@ -99934,7 +100000,17 @@ void Unwind_18090f9c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f9d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器40
+ * 
+ * 该函数负责执行偏移量0x40处的异常处理器
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f9d0
+ */
+void ExecuteExceptionHandler40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -99948,7 +100024,17 @@ void Unwind_18090f9d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f9e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器48
+ * 
+ * 该函数负责执行偏移量0x48处的异常处理器
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f9e0
+ */
+void ExecuteExceptionHandler48(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
