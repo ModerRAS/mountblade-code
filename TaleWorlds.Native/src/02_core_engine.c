@@ -199232,7 +199232,7 @@ uint64_t FUN_18016f3c0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t U
 
 
 uint64_t *
-FUN_18016f440(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ValidateUtf8EncodingEx(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint32_t *CharacterStatusBuffer;
   
