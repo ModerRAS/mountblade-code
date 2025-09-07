@@ -1016,9 +1016,7 @@ void* UIGestureCoordinates;
 #define UIVectorMultiplyMask18 _DAT_180947450
  _DAT_180947460 - UI向量乘法掩码19
 #define UIVectorMultiplyMask19 _DAT_180947460
- _DAT_180947470 - UI向量乘法掩码20
-#define UIVectorMultiplyMask20 _DAT_180947470
- _DAT_180947480 - UI向量乘法掩码21
+ #define UIVectorMultiplyMask20 _DAT_180947470
 #define UIVectorMultiplyMask21 _DAT_180947480
  #define UIVectorMultiplyMask22 _DAT_180947490
 #define UIVectorMultiplyMask23 _DAT_1809474a0
