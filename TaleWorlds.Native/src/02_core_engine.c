@@ -110590,7 +110590,7 @@ unsigned long long ProcessSystemContextWithFloatParameters(char *Utf8InputBuffer
   float MatrixElementJ;
   
   CharacterTableIterator = SystemConfigurationHandle;
-  MemoryAllocationIndexAdditional = (uint32_t)((unsigned long long)in_stack_fffffffffffffef0 >> 0x20);
+  MemoryAllocationIndexAdditional = (uint32_t)((unsigned long long)SystemCodeParameter >> 0x20);
   ProcessingStatusFlag = (uint32_t)((unsigned long long)FloatPointerValue >> 0x20);
   SystemMemoryAllocationResult = *(unsigned long long *)(SystemConfigurationHandle + 0x1af8);
   *(uint8_t *)(SystemMemoryAllocationResult + 0xb1) = 1;
