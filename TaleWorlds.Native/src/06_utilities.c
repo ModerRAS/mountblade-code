@@ -3152,6 +3152,22 @@
 // 功能：存储异常处理的偏移量信息
 #define ExceptionOffsetValue ExceptionOffsetValue
 
+// 原始变量名：UNK_18009ee10 - 默认异常处理器A
+// 功能：默认异常处理器的第一种状态
+#define DefaultExceptionHandlerA UNK_18009ee10
+
+// 原始变量名：UNK_1800a127e - 系统状态标志A
+// 功能：存储系统状态标志信息
+#define SystemStatusFlagA UNK_1800a127e
+
+// 原始变量名：UNK_180a01630 - 系统验证标志A
+// 功能：存储系统验证标志信息
+#define SystemValidationFlagA UNK_180a01630
+
+// 原始变量名：UNK_180a17010 - 系统资源表A
+// 功能：存储系统资源表信息
+#define SystemResourceTableA UNK_180a17010
+
 // 原始变量名：_DAT_180bf9390 - 全局异常处理器指针A1
 // 功能：存储全局异常处理器A1的指针
 #define GlobalExceptionHandlerPointerA1 _DAT_180bf9390
@@ -18844,7 +18860,7 @@ SecurityValidationLabel:
     if (0 < operationStatus) {
       do {
         iStack_2f0 = 0;
-        puStack_2f8 = &UNK_180982cc0;
+        puStack_2f8 = &DataEncryptionTable;
         uStack_2e8 = CONCAT44(uStack_2e8._4_4_,operationFlagA);
         arrayIndex = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
         if (arrayIndex != 0) GOTO_SecurityCheckFailed;
@@ -67151,8 +67167,8 @@ void Unwind_180909f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0xaa0);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40) + 0xa90,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(exceptionDataBuffer);
+    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x40) + 0xa90,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    CleanupExceptionDataA0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -67326,8 +67342,8 @@ void Unwind_18090a0d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(exceptionDataBuffer);
+    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    CleanupExceptionDataA0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -67343,8 +67359,8 @@ void Unwind_18090a0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(exceptionDataBuffer);
+    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    CleanupExceptionDataA0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -67400,8 +67416,8 @@ void Unwind_18090a130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(exceptionDataBuffer);
+    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    CleanupExceptionDataA0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -67417,8 +67433,8 @@ void Unwind_18090a140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(exceptionDataBuffer);
+    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    CleanupExceptionDataA0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -67716,8 +67732,8 @@ void Unwind_18090a430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0xaa0);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x60) + 0xa90,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(exceptionDataBuffer);
+    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x60) + 0xa90,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    CleanupExceptionDataA0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -67937,8 +67953,8 @@ void Unwind_18090a5a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(exceptionDataBuffer);
+    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    CleanupExceptionDataA0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
@@ -67954,8 +67970,8 @@ void Unwind_18090a5b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(exceptionDataBuffer);
+    ProcessExceptionDataA0(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
+    CleanupExceptionDataA0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(exceptionDataBuffer);
   }
