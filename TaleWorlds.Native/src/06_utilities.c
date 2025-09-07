@@ -20678,7 +20678,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   }
 ProcessDataSecurityValidation:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(colorDataWord ^ (uint64_t)EncryptionKeyBufferC);
+  ExecuteSecurityCheck(colorProcessingData ^ (uint64_t)TertiaryEncryptionKeyBuffer);
 }
 
 
@@ -99250,9 +99250,14 @@ void ProcessValidationContextA0(DataBuffer operationBase,DataBuffer dataBuffer,D
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941980(void)
-// 原始函数名：FUN_180941980 - 异常处理器设置函数A0
-// 功能：设置默认异常处理器B到全局指针位置
+/**
+ * @brief 设置默认异常处理器A0
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180941980
+ */
 void SetDefaultExceptionHandlerA0(void)
 
 {
