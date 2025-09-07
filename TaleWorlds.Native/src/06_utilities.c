@@ -19335,8 +19335,8 @@ void ProcessFloatingPointDataA0(void)
   float floatResultA_05;
   float floatResultA_06;
   float floatValue;
-  DataWord StackParameter20;
-  float StackFloat24;
+  DataWord SystemOperationResult;     // 系统操作结果
+  float NormalizedParameterValue;    // 标准化参数值
   uint8_t *StackBuffer30;
   int stackContextParameter;
   DataWord stackParameterOffset;
