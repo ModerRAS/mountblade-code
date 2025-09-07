@@ -21795,12 +21795,12 @@ MemoryAllocationLabel:
         resourceIterator = resourceIterator + -1;
       } while (-1 < resourceIterator);
     }
-    inputParameter1 = arrayIndex;
+    validationParameter1 = arrayIndex;
     if (arrayIndex < 0) {
-      inputParameter1 = -arrayIndex;
+      validationParameter1 = -arrayIndex;
     }
-    if (inputParameter1 < 0) {
-      if (0 < inputParameter6) goto ProcessCheckpointParameterValidation;
+    if (validationParameter1 < 0) {
+      if (0 < validationParameter6) goto ProcessCheckpointParameterValidation;
       if ((0 < arrayIndex) && (dataFlags != 0)) {
           ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataFlags,&SystemMemoryPoolB,0x100,1);
       }
@@ -21809,10 +21809,10 @@ MemoryAllocationLabel:
       dataFlags = 0;
       arrayIndex = 0;
     }
-    if (inputParameter6 < 0) {
-      resourceIterator = (int64_t)-inputParameter6;
-      exceptionDataBuffer = (DataWord *)(dataFlags + (int64_t)inputParameter6 * 4);
-      if (inputParameter6 < 0) {
+    if (validationParameter6 < 0) {
+      resourceIterator = (int64_t)-validationParameter6;
+      exceptionDataBuffer = (DataWord *)(dataFlags + (int64_t)validationParameter6 * 4);
+      if (validationParameter6 < 0) {
         for (; resourceIterator != 0; resourceIterator = resourceIterator + -1) {
           *exceptionDataBuffer = 0;
           exceptionDataBuffer = exceptionDataBuffer + 1;
