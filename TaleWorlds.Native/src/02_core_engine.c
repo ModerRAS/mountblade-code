@@ -215924,11 +215924,11 @@ LAB_18019368b:
   if ((DataConfigurationCounter != 0) && (SystemKeyBuffer[0] != '\0')) {
     *(byte *)(SystemContextPointer + 0x48) = *(byte *)(SystemContextPointer + 0x48) | 4;
   }
-  DataConfigurationCounter = FUN_180631000(Utf8BufferSize,&UNK_180a0b120,SystemKeyBuffer);
+  DataConfigurationCounter = FUN_180631000(Utf8BufferSize,&SystemKeyStringDensity,SystemKeyBuffer);
   if ((DataConfigurationCounter != 0) && (SystemKeyBuffer[0] != '\0')) {
     *(byte *)(SystemContextPointer + 0x48) = *(byte *)(SystemContextPointer + 0x48) | 2;
   }
-  DataConfigurationCounter = FUN_180631000(Utf8BufferSize,&UNK_180a0b100,SystemKeyBuffer);
+  DataConfigurationCounter = FUN_180631000(Utf8BufferSize,&SystemKeyStringFrictionCombine,SystemKeyBuffer);
   if ((DataConfigurationCounter != 0) && (SystemKeyBuffer[0] != '\0')) {
     *(byte *)(SystemContextPointer + 0x48) = *(byte *)(SystemContextPointer + 0x48) | 8;
   }
@@ -215957,7 +215957,7 @@ LAB_180193772:
         }
         break;
       }
-      DataConfigurationCounter = (long long)&UNK_180a0b148 - (long long)pSystemStatusChar;
+      DataConfigurationCounter = (long long)&SystemKeyStringBounciness - (long long)pSystemStatusChar;
       while (*pSystemStatusChar == pSystemStatusChar[DataConfigurationCounter]) {
         pSystemStatusChar = pSystemStatusChar + 1;
         if (pSystemCheckResult <= pSystemStatusChar) goto LAB_180193772;
