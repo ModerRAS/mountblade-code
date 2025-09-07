@@ -177272,7 +177272,7 @@ uint64_t * ProcessSystemMemoryBufferSetup(uint64_t *CharacterCode
 {
   ProcessCharacterWithSystemOperations();
   ProcessCharacterWithMemoryOperations();
-  FUN_18014e470();
+  ProcessCharacterWithBufferOperations();
   *CharacterCode = &SystemNullTemplate;
   if (CharacterCode[1] != 0) {
                     // WARNING: Subroutine does not return
