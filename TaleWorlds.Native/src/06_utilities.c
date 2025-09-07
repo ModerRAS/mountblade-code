@@ -40756,7 +40756,7 @@ void CleanupObjectMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupClassMemory(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupClassMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -40788,7 +40788,7 @@ void Unwind_CleanupClassMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupStructMemory(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupStructMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -40802,7 +40802,7 @@ void Unwind_CleanupStructMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupUnionMemory(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupUnionMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -40816,7 +40816,7 @@ void Unwind_CleanupUnionMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupEnumMemory(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupEnumMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -40830,7 +40830,7 @@ void Unwind_CleanupEnumMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupGlobalMutex(void)
+void CleanupGlobalMutexOnException(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -40839,7 +40839,7 @@ void Unwind_CleanupGlobalMutex(void)
 
 
 
-void Unwind_CleanupThreadLocal(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupThreadLocalMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -40853,7 +40853,7 @@ void Unwind_CleanupThreadLocal(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupStaticMemory(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupStaticMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -40876,7 +40876,7 @@ void Unwind_CleanupStaticMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupConstantMemory(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupConstantMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -40899,7 +40899,7 @@ void Unwind_CleanupConstantMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupReadOnlyMemory(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupReadOnlyMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -40918,7 +40918,7 @@ void Unwind_CleanupReadOnlyMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupCodeMemory(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupCodeMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -40954,7 +40954,7 @@ void Unwind_CleanupCodeMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupDataMemory(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupDataMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -40990,7 +40990,7 @@ void Unwind_CleanupDataMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupBssMemory(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupBssMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -41026,7 +41026,7 @@ void Unwind_CleanupBssMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupStackFrame(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupStackFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -41069,7 +41069,7 @@ void Unwind_CleanupStackFrame(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_CleanupFunctionFrame(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupFunctionFrameOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -50075,10 +50075,13 @@ void DestroyConditionFromBufferOffset20OnException(DataBuffer operationBase,int6
 
 
 /**
- * @brief 销毁互斥锁B - 简化实现
+ * @brief 销毁互斥锁资源的异常处理函数
+ * 
+ * 该函数在异常处理过程中销毁互斥锁资源，确保系统异常时能正确释放锁资源
+ * 
  * @note 原始函数名：Unwind_1809047b0
  */
-void Unwind_DestroyMutexB(void)
+void DestroyMutexBOnException(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -50088,12 +50091,17 @@ void Unwind_DestroyMutexB(void)
 
 
 /**
- * @brief 销毁互斥锁C - 简化实现
- * @param operationBase 操作基础数据
- * @param dataBuffer 数据缓冲区
+ * @brief 销毁互斥锁资源的异常处理函数
+ * 
+ * 该函数在异常处理过程中销毁与特定数据缓冲区关联的互斥锁资源
+ * 从数据缓冲区的指定偏移量处获取互斥锁指针进行销毁
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要销毁的互斥锁信息
+ * 
  * @note 原始函数名：Unwind_1809047c0
  */
-void Unwind_DestroyMutexC(DataBuffer operationBase, int64_t dataBuffer)
+void DestroyMutexCFromBufferOnException(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + MemoryRegionDataReferenceOffset));
