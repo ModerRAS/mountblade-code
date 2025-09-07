@@ -1532,9 +1532,15 @@
 #define UnwindCleanupContextA9 Unwind_180909e60
 #define UnwindCleanupContextA10 Unwind_180909e80
 #define UnwindCleanupContextA11 Unwind_180909ea0
-#define UnwindCleanupContextA12 Unwind_180909ec0
-#define UnwindCleanupContextA13 Unwind_180909ee0
-#define UnwindCleanupContextA14 Unwind_180909f00
+// 原始函数名：Unwind_180909ec0 - 销毁互斥锁清理函数A12
+// 功能：销毁互斥锁，清理线程同步资源
+#define DestroyMutexCleanupA12 Unwind_180909ec0
+// 原始函数名：Unwind_180909ee0 - 销毁互斥锁清理函数A13
+// 功能：销毁互斥锁，清理线程同步资源
+#define DestroyMutexCleanupA13 Unwind_180909ee0
+// 原始函数名：Unwind_180909f00 - 销毁互斥锁清理函数A14
+// 功能：销毁互斥锁，清理线程同步资源
+#define DestroyMutexCleanupA14 Unwind_180909f00
 #define UnwindCleanupContextA15 Unwind_180909f20
 #define UnwindCleanupContextA16 Unwind_180909f40
 // 原始函数名：Unwind_180909f60 - 内存资源引用计数清理函数
@@ -79978,7 +79984,16 @@ void DestroyMutexCleanupA13(void)
 
 
 
-void Unwind_180909f00(void)
+/**
+ * @brief 销毁互斥锁清理函数A14
+ * 
+ * 该函数负责销毁互斥锁，清理线程同步资源。
+ * 这是异常处理清理过程中的标准操作。
+ * 
+ * @note 该函数是Unwind清理序列的一部分
+ * @note 仅执行互斥锁销毁操作
+ */
+void DestroyMutexCleanupA14(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -116532,9 +116547,15 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define UnwindCleanupContextA9 Unwind_180909e60
 #define UnwindCleanupContextA10 Unwind_180909e80
 #define UnwindCleanupContextA11 Unwind_180909ea0
-#define UnwindCleanupContextA12 Unwind_180909ec0
-#define UnwindCleanupContextA13 Unwind_180909ee0
-#define UnwindCleanupContextA14 Unwind_180909f00
+// 原始函数名：Unwind_180909ec0 - 销毁互斥锁清理函数A12
+// 功能：销毁互斥锁，清理线程同步资源
+#define DestroyMutexCleanupA12 Unwind_180909ec0
+// 原始函数名：Unwind_180909ee0 - 销毁互斥锁清理函数A13
+// 功能：销毁互斥锁，清理线程同步资源
+#define DestroyMutexCleanupA13 Unwind_180909ee0
+// 原始函数名：Unwind_180909f00 - 销毁互斥锁清理函数A14
+// 功能：销毁互斥锁，清理线程同步资源
+#define DestroyMutexCleanupA14 Unwind_180909f00
 #define UnwindCleanupContextA15 Unwind_180909f20
 #define UnwindCleanupContextA16 Unwind_180909f40
 // 原始函数名：Unwind_180909f60 - 内存资源引用计数清理函数
