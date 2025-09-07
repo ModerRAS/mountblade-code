@@ -21879,7 +21879,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
 
 
 
- long long CoreEngineAllocateMemoryBuffer(long long CharacterCode,long long Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer/**
+ long long CoreEngineAllocateMemoryBuffer(long long memoryContext,long long bufferSize,uint64_t sourceData,uint64_t endMarker/**
  * @brief 复制数据结构内容
  * 
  * 该函数负责将一个数据结构的内容复制到另一个数据结构中。
