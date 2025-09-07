@@ -39117,7 +39117,7 @@ MemoryCopyOperationStart:
       *SystemEventPointer = 0;
     }
     else {
-      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto LAB_180071eb0;
+      if (ProcessStringBuffer <= (uint)StackUnsigned78) goto SystemMemoryCleanupLabel;
       SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,ProcessStringBuffer,0x10,0x13);
     }
     UnicodeCodePoint = GetMemoryAllocationInfo(SystemEventPointer);
@@ -152233,7 +152233,7 @@ void ProcessSystemConfigurationUpdate(void
         fStack_4c = SecondaryScalingFactor + SystemContextPrimaryFloat2;
         StackFloat58 = PrimaryScalingFactor + NormalizedParameterValue;
         StackFloat54 = SecondaryScalingFactor + ContextPrimaryFloat0;
-        FUN_180131c60(*(void *)(*(long long *)(MutexLockResult + 2) + 0x398),&StackFloat58);
+        ConvertUtf8ToUtf16(*(void *)(*(long long *)(MutexLockResult + 2) + 0x398),&StackFloat58);
       }
     }
     *(bool *)(MemoryBoundaryEnd + 0x1b3c) = *(int *)(MemoryBoundaryEnd + 0x1b2c) != 0;
@@ -152292,7 +152292,7 @@ void ProcessSystemConfigurationUpdate(void
   CalculatedFilterValue = (float)SystemRegisterR10[8];
   fStack0000000000000028 = ContextPrimaryFloat0;
   fStack000000000000002c = ContextPrimaryFloat1;
-  FUN_180131c60(CharacterCode,Utf8BufferSize,Utf8SourcePointer,Utf16EndPointer,NormalizedParameterValue);
+  ConvertUtf8ToUtf16(CharacterCode,Utf8BufferSize,Utf8SourcePointer,Utf16EndPointer,NormalizedParameterValue);
   MemoryPoolBlockSize = *(long long *)(SystemRegisterR10 + 2);
   FUN_1801293e0(&stack0x00000080,MemoryPoolBlockSize,0);
   ProcessedFloatValue8 = *(float *)(MemoryPoolBlockSize + 0x8c) - fStack0000000000000080;

@@ -40164,7 +40164,245 @@ void ExceptionHandlerValidationContext(DataBuffer operationBase,int64_t dataBuff
  */
 #define ResetExceptionHandlerB Unwind_180902b80
 
+/**
+ * @brief 异常处理器调用函数A0
+ * 
+ * 该函数用于调用异常处理器，通过偏移量0x40获取异常处理器上下文
+ * 并在偏移量0x38处调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907620
+ */
+#define InvokeExceptionHandlerAtOffset40 Unwind_180907620
 
+/**
+ * @brief 异常处理器调用函数A1
+ * 
+ * 该函数用于调用异常处理器，通过偏移量0x20获取异常处理器上下文
+ * 并在偏移量0x38处调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907630
+ */
+#define InvokeExceptionHandlerAtOffset20 Unwind_180907630
+
+/**
+ * @brief 内存操作执行函数A0
+ * 
+ * 该函数用于执行内存操作，通过偏移量0x40获取内存操作上下文
+ * 并调用ExecuteMemoryOperation函数进行具体的内存操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907640
+ */
+#define ExecuteMemoryOperationAtOffset40 Unwind_180907640
+
+/**
+ * @brief 内存操作执行函数A1
+ * 
+ * 该函数用于执行内存操作，通过偏移量0x50获取内存操作上下文
+ * 并调用ExecuteMemoryOperation函数进行具体的内存操作
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907670
+ */
+#define ExecuteMemoryOperationAtOffset50 Unwind_180907670
+
+/**
+ * @brief 异常数据设置函数A0
+ * 
+ * 该函数用于设置异常数据，在异常数据缓冲区中按顺序设置多个异常数据表
+ * 建立异常处理的链式结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809076a0
+ */
+#define SetupExceptionDataChainA0 Unwind_1809076a0
+
+/**
+ * @brief 异常数据设置函数A1
+ * 
+ * 该函数用于设置异常数据，在异常数据缓冲区中设置异常处理句柄表
+ * 和异常处理数据表，建立异常处理的链式结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809076b0
+ */
+#define SetupExceptionDataChainA1 Unwind_1809076b0
+
+/**
+ * @brief 异常数据设置函数A2
+ * 
+ * 该函数用于设置异常数据，在异常数据缓冲区中设置异常处理句柄表
+ * 和异常处理数据表，建立异常处理的链式结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809076c0
+ */
+#define SetupExceptionDataChainA2 Unwind_1809076c0
+
+/**
+ * @brief 异常数据设置函数A3
+ * 
+ * 该函数用于设置异常数据，在异常数据缓冲区中设置异常处理句柄表
+ * 和异常处理数据表，建立异常处理的链式结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809076d0
+ */
+#define SetupExceptionDataChainA3 Unwind_1809076d0
+
+/**
+ * @brief 异常数据设置函数A4
+ * 
+ * 该函数用于设置异常数据，在异常数据缓冲区中设置异常处理句柄表
+ * 和异常处理数据表，建立异常处理的链式结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809076e0
+ */
+#define SetupExceptionDataChainA4 Unwind_1809076e0
+
+/**
+ * @brief 异常数据设置函数A5
+ * 
+ * 该函数用于设置异常数据，在异常数据缓冲区中设置异常处理句柄表
+ * 和异常处理数据表，建立异常处理的链式结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809076f0
+ */
+#define SetupExceptionDataChainA5 Unwind_1809076f0
+
+/**
+ * @brief 异常数据设置函数A6
+ * 
+ * 该函数用于设置异常数据，在异常数据缓冲区中设置异常处理句柄表
+ * 和异常处理数据表，建立异常处理的链式结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907700
+ */
+#define SetupExceptionDataChainA6 Unwind_180907700
+
+/**
+ * @brief 异常数据设置函数A7
+ * 
+ * 该函数用于设置异常数据，在异常数据缓冲区中设置异常处理句柄表
+ * 和异常处理数据表，建立异常处理的链式结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907710
+ */
+#define SetupExceptionDataChainA7 Unwind_180907710
+
+/**
+ * @brief 异常数据设置函数A8
+ * 
+ * 该函数用于设置异常数据，在异常数据缓冲区中设置异常处理句柄表
+ * 和异常处理数据表，建立异常处理的链式结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907720
+ */
+#define SetupExceptionDataChainA8 Unwind_180907720
+
+/**
+ * @brief 异常数据设置函数A9
+ * 
+ * 该函数用于设置异常数据，在异常数据缓冲区中设置异常处理句柄表
+ * 和异常处理数据表，建立异常处理的链式结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907740
+ */
+#define SetupExceptionDataChainA9 Unwind_180907740
+
+/**
+ * @brief 异常数据设置函数A10
+ * 
+ * 该函数用于设置异常数据，在异常数据缓冲区中设置异常处理句柄表
+ * 和异常处理数据表，建立异常处理的链式结构
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907750
+ */
+#define SetupExceptionDataChainA10 Unwind_180907750
+
+/**
+ * @brief 系统清理函数A0
+ * 
+ * 该函数用于执行系统清理操作，重置系统状态并释放相关资源
+ * 
+ * @note 原始函数名：Unwind_180907790
+ */
+#define CleanupSystemA0 Unwind_180907790
+
+/**
+ * @brief 系统清理函数A1
+ * 
+ * 该函数用于执行系统清理操作，重置系统状态并释放相关资源
+ * 
+ * @note 原始函数名：Unwind_1809077a0
+ */
+#define CleanupSystemA1 Unwind_1809077a0
+
+/**
+ * @brief 系统清理函数A2
+ * 
+ * 该函数用于执行系统清理操作，重置系统状态并释放相关资源
+ * 
+ * @note 原始函数名：Unwind_1809077b0
+ */
+#define CleanupSystemA2 Unwind_1809077b0
+
+/**
+ * @brief 系统清理函数A3
+ * 
+ * 该函数用于执行系统清理操作，重置系统状态并释放相关资源
+ * 
+ * @note 原始函数名：Unwind_1809077c0
+ */
+#define CleanupSystemA3 Unwind_1809077c0
+
+/**
+ * @brief 系统清理函数A4
+ * 
+ * 该函数用于执行系统清理操作，重置系统状态并释放相关资源
+ * 
+ * @note 原始函数名：Unwind_1809077d0
+ */
+#define CleanupSystemA4 Unwind_1809077d0
 
 /**
  * @brief 初始化异常处理器上下文
@@ -65218,7 +65456,7 @@ void ExecuteExceptionHandlerCallbackC3(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_180907620(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -65232,7 +65470,7 @@ void Unwind_180907620(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907630(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
