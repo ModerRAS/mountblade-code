@@ -158,74 +158,74 @@
 #define ExceptionHandlerContextDataOffset 0x50   // 异常处理上下文数据偏移量
 
 // 系统调试地址常量定义
-#define SystemDebugAddressMain 0x000180893865
-#define SystemDebugAddressSecondary 0x000180893a22
-#define SystemDebugAddressTertiary 0x000180895f53
-#define SystemDebugAddressQuaternary 0x000180895f67
-#define SystemDebugAddressQuinary 0x000180895fa1
-#define SystemDebugAddressSenary 0x000180895fa9
-#define ResourceContextArrayOffset 0x80d8
-#define ResourceContextIndexOffset 0x8088
-#define ResourceContextSize 0x20
-#define ExceptionHandlerContextStatusOffset 0x68
-#define ResourceStatusArrayOffset 0x80b0
-#define ResourceHandlerContextOffset 200
-#define ResourceContextBaseOffset 0x7f20
-#define ResourceValidationOffset 0xd0
-#define ResourceActiveFlagOffset 0x60
-#define ExceptionHandlerOffset 0x40
-#define ExceptionHandlerOffsetF0 0xf8
-#define ExceptionContextOffset 0xa0
-#define ExceptionHandlerContextOffset 0x80
-#define ExceptionHandlerPointerOffset 400
-#define ExceptionHandlerDataOffset 0x180
-#define ExceptionHandlerTableOffset 0x160
-#define ExceptionHandlerStatusOffset 0x168
-#define ExceptionHandlerStateOffset 0x178
-#define ExceptionHandlerTable2Offset 0x140
+#define SystemDebugAddressMain 0x000180893865           // 主调试地址 - 系统核心调试入口点
+#define SystemDebugAddressSecondary 0x000180893a22     // 次要调试地址 - 备用调试通道
+#define SystemDebugAddressTertiary 0x000180895f53       // 第三调试地址 - 扩展调试功能
+#define SystemDebugAddressQuaternary 0x000180895f67    // 第四调试地址 - 性能监控调试
+#define SystemDebugAddressQuinary 0x000180895fa1       // 第五调试地址 - 内存调试接口
+#define SystemDebugAddressSenary 0x000180895fa9        // 第六调试地址 - 线程调试接口
+#define ResourceContextArrayOffset 0x80d8              // 资源上下文数组偏移量 - 存储所有资源上下文信息的数组起始位置
+#define ResourceContextIndexOffset 0x8088              // 资源上下文索引偏移量 - 当前活动资源上下文的索引位置
+#define ResourceContextSize 0x20                        // 资源上下文大小 - 每个资源上下文数据结构的固定大小
+#define ExceptionHandlerContextStatusOffset 0x68      // 异常处理上下文状态偏移量 - 异常状态标志的存储位置
+#define ResourceStatusArrayOffset 0x80b0               // 资源状态数组偏移量 - 所有资源状态信息的数组起始位置
+#define ResourceHandlerContextOffset 200               // 资源处理上下文偏移量 - 资源处理相关上下文信息的偏移位置
+#define ResourceContextBaseOffset 0x7f20               // 资源上下文基础偏移量 - 资源上下文数据的基础地址偏移
+#define ResourceValidationOffset 0xd0                   // 资源验证偏移量 - 资源有效性验证信息的存储位置
+#define ResourceActiveFlagOffset 0x60                  // 资源活动标志偏移量 - 资源活动状态标志位的存储位置
+#define ExceptionHandlerOffset 0x40                      // 异常处理器偏移量 - 默认异常处理器的存储位置
+#define ExceptionHandlerOffsetF0 0xf8                    // 异常处理器F0偏移量 - F0类型异常处理器的专用位置
+#define ExceptionContextOffset 0xa0                      // 异常上下文偏移量 - 异常处理相关上下文信息的存储位置
+#define ExceptionHandlerContextOffset 0x80              // 异常处理上下文偏移量 - 异常处理上下文数据结构的起始位置
+#define ExceptionHandlerPointerOffset 400               // 异常处理器指针偏移量 - 异常处理器函数指针表的存储位置
+#define ExceptionHandlerDataOffset 0x180                // 异常处理器数据偏移量 - 异常处理相关数据的存储位置
+#define ExceptionHandlerTableOffset 0x160               // 异常处理器表偏移量 - 异常处理器查找表的起始位置
+#define ExceptionHandlerStatusOffset 0x168               // 异常处理器状态偏移量 - 异常处理器状态信息的存储位置
+#define ExceptionHandlerStateOffset 0x178               // 异常处理器状态偏移量 - 异常处理器运行状态的存储位置
+#define ExceptionHandlerTable2Offset 0x140              // 异常处理器表2偏移量 - 备用异常处理器查找表的起始位置
 
 // 资源清理函数相关常量
-#define ResourceFlagOffset 0x20
-#define ResourceFlagPrimary 2
-#define ResourceFlagMaskPrimary 0xfffffffd
-#define ResourceHandlerOffsetPrimary 0x88
-#define ResourceFlagSecondary 8
-#define ResourceFlagMaskSecondary 0xfffffff7
-#define ResourceHandlerOffsetSecondary 0x68
-#define ResourceFlagTertiary 0x10
-#define ResourceFlagMaskTertiary 0xffffffef
-#define ResourceHandlerOffsetTertiary 0x48
-#define ResourceFlagQuaternary 0x20
-#define ResourceFlagMaskQuaternary 0xffffffdf
-#define ResourceHandlerOffsetQuaternary 0x68
-#define ResourceFlagQuinary 0x40
-#define ResourceFlagMaskQuinary 0xffffffbf
-#define ResourceHandlerOffsetQuinary 0x48
-#define ExceptionHandlerStatusSecondaryOffset 0x148
-#define ExceptionHandlerStateSecondaryOffset 0x158
-#define ExceptionHandlerTableTertiaryOffset 0x120
-#define ExceptionHandlerStatusTertiaryOffset 0x128
-#define ExceptionHandlerStateTertiaryOffset 0x138
-#define ExceptionHandlerTableQuaternaryOffset 0x100
-#define ExceptionHandlerStatusQuaternaryOffset 0x108
-#define ExceptionHandlerStateQuaternaryOffset 0x118
-#define ExceptionHandlerTableQuinaryOffset 0xe0
-#define ExceptionHandlerStatusQuinaryOffset 0xe8
-#define ExceptionHandlerStateQuinaryOffset 0xf8
+#define ResourceFlagOffset 0x20                         // 资源标志偏移量 - 资源状态标志位的通用存储位置
+#define ResourceFlagPrimary 2                           // 主要资源标志 - 标识主要资源类型的标志值
+#define ResourceFlagMaskPrimary 0xfffffffd              // 主要资源标志掩码 - 用于修改主要资源标志的位掩码
+#define ResourceHandlerOffsetPrimary 0x88                // 主要资源处理器偏移量 - 主要资源清理处理器的位置
+#define ResourceFlagSecondary 8                          // 次要资源标志 - 标识次要资源类型的标志值
+#define ResourceFlagMaskSecondary 0xfffffff7            // 次要资源标志掩码 - 用于修改次要资源标志的位掩码
+#define ResourceHandlerOffsetSecondary 0x68             // 次要资源处理器偏移量 - 次要资源清理处理器的位置
+#define ResourceFlagTertiary 0x10                       // 第三资源标志 - 标识第三级资源类型的标志值
+#define ResourceFlagMaskTertiary 0xffffffef             // 第三资源标志掩码 - 用于修改第三级资源标志的位掩码
+#define ResourceHandlerOffsetTertiary 0x48              // 第三资源处理器偏移量 - 第三级资源清理处理器的位置
+#define ResourceFlagQuaternary 0x20                     // 第四资源标志 - 标识第四级资源类型的标志值
+#define ResourceFlagMaskQuaternary 0xffffffdf            // 第四资源标志掩码 - 用于修改第四级资源标志的位掩码
+#define ResourceHandlerOffsetQuaternary 0x68            // 第四资源处理器偏移量 - 第四级资源清理处理器的位置
+#define ResourceFlagQuinary 0x40                         // 第五资源标志 - 标识第五级资源类型的标志值
+#define ResourceFlagMaskQuinary 0xffffffbf               // 第五资源标志掩码 - 用于修改第五级资源标志的位掩码
+#define ResourceHandlerOffsetQuinary 0x48                // 第五资源处理器偏移量 - 第五级资源清理处理器的位置
+#define ExceptionHandlerStatusSecondaryOffset 0x148      // 异常处理器次级状态偏移量 - 次要异常处理器状态的存储位置
+#define ExceptionHandlerStateSecondaryOffset 0x158        // 异常处理器次级状态偏移量 - 次要异常处理器运行状态的存储位置
+#define ExceptionHandlerTableTertiaryOffset 0x120         // 异常处理器第三表偏移量 - 第三级异常处理器查找表的起始位置
+#define ExceptionHandlerStatusTertiaryOffset 0x128        // 异常处理器第三状态偏移量 - 第三级异常处理器状态信息的存储位置
+#define ExceptionHandlerStateTertiaryOffset 0x138         // 异常处理器第三状态偏移量 - 第三级异常处理器运行状态的存储位置
+#define ExceptionHandlerTableQuaternaryOffset 0x100        // 异常处理器第四表偏移量 - 第四级异常处理器查找表的起始位置
+#define ExceptionHandlerStatusQuaternaryOffset 0x108       // 异常处理器第四状态偏移量 - 第四级异常处理器状态信息的存储位置
+#define ExceptionHandlerStateQuaternaryOffset 0x118        // 异常处理器第四状态偏移量 - 第四级异常处理器运行状态的存储位置
+#define ExceptionHandlerTableQuinaryOffset 0xe0            // 异常处理器第五表偏移量 - 第五级异常处理器查找表的起始位置
+#define ExceptionHandlerStatusQuinaryOffset 0xe8           // 异常处理器第五状态偏移量 - 第五级异常处理器状态信息的存储位置
+#define ExceptionHandlerStateQuinaryOffset 0xf8            // 异常处理器第五状态偏移量 - 第五级异常处理器运行状态的存储位置
 
 // 异常处理器回调相关常量
-#define ExceptionHandlerCallbackOffset 0x310
+#define ExceptionHandlerCallbackOffset 0x310               // 异常处理器回调偏移量 - 异常处理器回调函数的存储位置
 
 // 系统上下文偏移量常量定义
-#define SystemContextValidationOffset 0x28
-#define SystemContextOperationOffset 0x30
-#define SystemContextDataOffset 0x38
-#define SystemContextResourceOffset 0x40
-#define SystemContextSizeOffset 0x20
-#define SystemContextConfigOffset 0x4c
-#define SystemContextHandleOffset 0x18
-#define SystemMemoryManagerOffset 0x1a0
-#define OperationDataContextOffset 0x30
+#define SystemContextValidationOffset 0x28               // 系统上下文验证偏移量 - 系统上下文验证信息的存储位置
+#define SystemContextOperationOffset 0x30                 // 系统上下文操作偏移量 - 系统操作相关信息的存储位置
+#define SystemContextDataOffset 0x38                      // 系统上下文数据偏移量 - 系统数据相关信息的存储位置
+#define SystemContextResourceOffset 0x40                  // 系统上下文资源偏移量 - 系统资源相关信息的存储位置
+#define SystemContextSizeOffset 0x20                      // 系统上下文大小偏移量 - 系统上下文数据结构大小的存储位置
+#define SystemContextConfigOffset 0x4c                   // 系统上下文配置偏移量 - 系统配置相关信息的存储位置
+#define SystemContextHandleOffset 0x18                   // 系统上下文句柄偏移量 - 系统句柄的存储位置
+#define SystemMemoryManagerOffset 0x1a0                  // 系统内存管理器偏移量 - 系统内存管理器的存储位置
+#define OperationDataContextOffset 0x30                  // 操作数据上下文偏移量 - 操作数据相关上下文信息的存储位置
 #define OperationContextBufferOffset 0x98
 #define SYSTEM_CONTEXT_OFFSET 0x8              // 系统上下文偏移量
 
