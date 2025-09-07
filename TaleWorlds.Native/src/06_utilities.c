@@ -97254,19 +97254,19 @@ void CleanupExceptionAtOffset21A0(DataBuffer operationBase,int64_t dataBuffer,Da
  * 清理验证上下文中偏移量0x2210处的异常处理状态
  * 设置临时异常处理器，然后重置为默认异常处理器
  * 
- * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * @param exceptionContext 异常处理上下文
+ * @param contextPointer 上下文指针
+ * @param cleanupFlags 清理标志
+ * @param validationFlags 验证标志
  */
-void CleanupExceptionAtOffset2210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionAtOffset2210(DataBuffer exceptionContext,int64_t contextPointer,DataBuffer cleanupFlags,DataBuffer validationFlags)
 
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
+  exceptionHandlerContext = *(int64_t *)(contextPointer + 0x40);
   if (*(FunctionPointer**)(exceptionHandlerContext + 0x2210) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x2210))(exceptionHandlerContext + 0x2200,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (**(FunctionPointer**)(exceptionHandlerContext + 0x2210))(exceptionHandlerContext + 0x2200,0,0,validationFlags,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x21d8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x21e0) != 0) {
@@ -97366,19 +97366,19 @@ void CleanupExceptionAtOffset22F0(DataBuffer operationBase,int64_t dataBuffer,Da
  * 清理验证上下文中偏移量0x2360处的异常处理状态
  * 设置临时异常处理器，然后重置为默认异常处理器
  * 
- * @param operationBase 操作基础数据缓冲区
- * @param dataBuffer 数据缓冲区
- * @param operationFlagA 操作标志A
- * @param operationFlagB 操作标志B
+ * @param exceptionContext 异常处理上下文
+ * @param contextPointer 上下文指针
+ * @param cleanupFlags 清理标志
+ * @param validationFlags 验证标志
  */
-void CleanupExceptionAtOffset2360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionAtOffset2360(DataBuffer exceptionContext,int64_t contextPointer,DataBuffer cleanupFlags,DataBuffer validationFlags)
 
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
+  exceptionHandlerContext = *(int64_t *)(contextPointer + 0x40);
   if (*(FunctionPointer**)(exceptionHandlerContext + 0x2360) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x2360))(exceptionHandlerContext + 0x2350,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (**(FunctionPointer**)(exceptionHandlerContext + 0x2360))(exceptionHandlerContext + 0x2350,0,0,validationFlags,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 9000) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x2330) != 0) {
@@ -99264,31 +99264,31 @@ void CleanupExceptionAtOffset68(DataBuffer operationBase,int64_t dataBuffer,Data
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void CleanupExceptionAtOffset1530(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
+// 函数: void CleanupExceptionAtOffset1530(DataBuffer exceptionContext, int64_t resourcePointer, DataBuffer cleanupFlags, DataBuffer validationFlags)
 // 
 // 清理偏移量0x1530处的异常处理资源
 // 在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
 // 
 // 参数:
-//   operationBase - 异常处理参数1
-//   dataBuffer - 异常上下文参数，包含要清理的资源指针
-//   operationFlagA - 异常处理参数3
-//   operationFlagB - 异常处理参数4
+//   exceptionContext - 异常处理上下文，包含异常状态信息
+//   resourcePointer - 资源指针，指向要清理的资源数据
+//   cleanupFlags - 清理标志，控制清理行为
+//   validationFlags - 验证标志，用于资源验证
 // 
 // 返回值:
 //   无
-void CleanupExceptionAtOffset1530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionAtOffset1530(DataBuffer exceptionContext,int64_t resourcePointer,DataBuffer cleanupFlags,DataBuffer validationFlags)
 
 {
-  int64_t resourcePointer;
+  int64_t cleanupResourcePointer;
   
-  resourcePointer = *(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 0x1530);
-  if (resourcePointer != 0) {
+  cleanupResourcePointer = *(int64_t *)(*(int64_t *)(resourcePointer + 0x40) + 0x1530);
+  if (cleanupResourcePointer != 0) {
     if (ExceptionContext != 0) {
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    HandleSystemException(resourcePointer,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    HandleSystemException(cleanupResourcePointer,ExceptionDataPointer,cleanupFlags,validationFlags,SystemCleanupFlagAlternative);
   }
   return;
 }
