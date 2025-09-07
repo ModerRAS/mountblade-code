@@ -114630,19 +114630,19 @@ float * CalculateFloatRangeValue(float *SystemContextPointer,float *Utf8BufferSi
   float SystemContextPrimaryFloat;
   float SystemContextSecondaryFloat;
   float CalculatedFilterValue;
-  float fStack_18;
-  float fStack_14;
+  float Utf16EndFloatValue;
+  float Utf16EndHighFloatValue;
   
   SystemContextPrimaryFloat = Utf8BufferSize[1];
   CalculatedFilterValue = Utf16InputPointer[1];
   if ((Utf16InputPointer[1] <= SystemContextPrimaryFloat) &&
-     (fStack_14 = (float)((unsigned long long)Utf16EndPointer >> 0x20), CalculatedFilterValue = SystemContextPrimaryFloat, fStack_14 <= SystemContextPrimaryFloat)) {
-    CalculatedFilterValue = fStack_14;
+     (Utf16EndHighFloatValue = (float)((unsigned long long)Utf16EndPointer >> 0x20), CalculatedFilterValue = SystemContextPrimaryFloat, Utf16EndHighFloatValue <= SystemContextPrimaryFloat)) {
+    CalculatedFilterValue = Utf16EndHighFloatValue;
   }
   SystemContextPrimaryFloat = *Utf8BufferSize;
   SystemContextSecondaryFloat = *Utf16InputPointer;
-  if ((*Utf16InputPointer <= SystemContextPrimaryFloat) && (fStack_18 = (float)Utf16EndPointer, SystemContextSecondaryFloat = SystemContextPrimaryFloat, fStack_18 <= SystemContextPrimaryFloat)) {
-    SystemContextSecondaryFloat = fStack_18;
+  if ((*Utf16InputPointer <= SystemContextPrimaryFloat) && (Utf16EndFloatValue = (float)Utf16EndPointer, SystemContextSecondaryFloat = SystemContextPrimaryFloat, Utf16EndFloatValue <= SystemContextPrimaryFloat)) {
+    SystemContextSecondaryFloat = Utf16EndFloatValue;
   }
   *SystemContextPointer = SystemContextSecondaryFloat;
   SystemContextPointer[1] = FloatValue3;
@@ -200839,8 +200839,24 @@ LAB_18017a58d:  // 内存分配索引设置标签
 
 
 
-// 系统上下文数据编码处理函数
-// 处理系统上下文数据的编码操作，管理数据的编码和转换过程
+/**
+ * @brief 处理系统上下文数据编码
+ * 
+ * 该函数负责处理系统上下文数据的编码操作，管理数据的编码和转换过程。
+ * 此函数会分配必要的内存缓冲区，设置编码参数，并处理数据的编码转换。
+ * 
+ * @param SystemContextPointer 系统上下文指针，包含编码所需的系统状态信息
+ * @param Utf8BufferSize UTF-8缓冲区大小指针，指定输入数据的大小
+ * @param Utf16InputPointer UTF-16输入数据指针，包含需要编码的数据
+ * @param Utf16EndPointer UTF-16数据结束指针，标记数据的结束位置
+ * @param AdditionalParameter1 额外参数，用于配置编码选项
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数会进行内存分配和数据处理
+ * @note 编码过程包括字符转换、内存管理和状态更新
+ * @note 函数内部会处理各种编码格式和字符集转换
+ */
 void ProcessSystemContextDataEncoding(long long SystemContextPointer,long long *Utf8BufferSize,uint64_t *Utf16InputPointer,uint64_t Utf16EndPointer,
                   uint64_t AdditionalParameter1
 {
@@ -200852,37 +200868,37 @@ void ProcessSystemContextDataEncoding(long long SystemContextPointer,long long *
   void *CurrentNode;
   long long MemoryPoolBlockSize;
   unsigned long long ProcessingStatusFlag;
-  long long systemLoopCounter;
+  long long SystemLoopCounter;
   long long SystemOffsetValue;
-  bool BooleanVariable11;
+  bool ValidationBoolean;
   long long *SystemRegisterPointerX8;
   long long *SystemRegisterPointerX10;
-  uint64_t *pStackConfigurationFlag;
-  long long *plStack_a8;
-  uint64_t CoreEngineUnsignedValueA0;
-  uint64_t SystemOperationFlag98;
-  uint64_t SystemOperationFlag90;
-  uint32_t StackValidationData;
-  uint64_t FunctionAddress80;
-  uint64_t StackUnsigned78;
-  uint64_t StackVariable70;
-  uint32_t StackUnsigned68;
-  uint64_t StackUnsigned60;
+  uint64_t *SystemConfigurationFlag;
+  long long *SystemMemoryPointer;
+  uint64_t CoreEngineUnsignedValue;
+  uint64_t SystemOperationFlagPrimary;
+  uint64_t SystemOperationFlagSecondary;
+  uint32_t SystemValidationData;
+  uint64_t SystemFunctionAddress;
+  uint64_t SystemStackPointerPrimary;
+  uint64_t SystemStackPointerSecondary;
+  uint32_t SystemStackUnsigned;
+  uint64_t SystemDataPointer;
   uint64_t SystemTimeoutCounter;
   uint64_t SystemKeyPointer;
   uint32_t SystemStackFlag;
   
-  plStack_a8 = (long long *)0x0;
-  CoreEngineUnsignedValueA0 = 0;
-  SystemOperationFlag98 = 0;
-  SystemOperationFlag90 = 0;
-  StackValidationData = 3;
-  FunctionAddress80 = 0;
-  StackUnsigned78 = 0;
-  StackVariable70 = 0;
-  StackUnsigned68 = 3;
-  pStackConfigurationFlag = &StackUnsigned60;
-  StackUnsigned60 = 0;
+  SystemMemoryPointer = (long long *)0x0;
+  CoreEngineUnsignedValue = 0;
+  SystemOperationFlagPrimary = 0;
+  SystemOperationFlagSecondary = 0;
+  SystemValidationData = 3;
+  SystemFunctionAddress = 0;
+  SystemStackPointerPrimary = 0;
+  SystemStackPointerSecondary = 0;
+  SystemStackUnsigned = 3;
+  SystemConfigurationFlag = &SystemDataPointer;
+  SystemDataPointer = 0;
   SystemTimeoutCounter = 0;
   SystemKeyPointer = 0;
   SystemStackFlag = 3;
