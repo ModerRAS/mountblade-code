@@ -79,43 +79,43 @@
  * @brief 数据加密处理函数
  * @note 原始函数名：func_0x00018074be80
  */
-#define EncryptData EncryptData
+#define EncryptData FUN_18004b730
 
 /**
  * @brief 数据验证处理函数
  * @note 原始函数名：ValidateData
  */
-#define ValidateData ValidateData
+#define ValidateData FUN_180058370
 
 /**
  * @brief 内存分配处理函数
  * @note 原始函数名：AllocateMemory
  */
-#define AllocateMemoryPool AllocateMemoryPool
+#define AllocateMemoryPool FUN_18004b790
 
 /**
  * @brief 内存初始化函数
  * @note 原始函数名：func_0x00018076b450
  */
-#define InitializeMemoryPool InitializeMemoryPool
+#define InitializeMemoryPool FUN_18064e900
 
 /**
  * @brief 数据处理函数
  * @note 原始函数名：ProcessData
  */
-#define ProcessDataBuffer ProcessDataBuffer
+#define ProcessDataBuffer FUN_180069530
 
 /**
  * @brief 系统状态检查函数
  * @note 原始函数名：CheckSystemStatus
  */
-#define ValidateSystemStatus ValidateSystemStatus
+#define ValidateSystemStatus FUN_180074a80
 
 /**
  * @brief 系统初始化函数
  * @note 原始函数名：InitializeSystem
  */
-#define InitializeSystemCore InitializeSystemCore
+#define InitializeSystemCore FUN_180080060
 
 /**
  * @brief 参数验证函数
@@ -123,7 +123,7 @@
  * 
  * @note 原始函数名：ValidateParameters
  */
-#define ValidateSystemParameters ValidateSystemParameters
+#define ValidateSystemParameters FUN_1800809a0
 
 /**
  * @brief 上下文验证函数
@@ -132,7 +132,7 @@
  * 
  * @note 原始函数名：ValidateContext
  */
-#define ValidateSystemContext ValidateSystemContext
+#define ValidateSystemContext FUN_180080870
 
 // 系统验证和清理函数宏定义
 /**
@@ -142,7 +142,7 @@
  * 
  * @note 原始函数名：FUN_18004b730
  */
-#define InitializeSystemValidation InitializeSystemValidation
+#define InitializeSystemValidation FUN_18004b730
 
 /**
  * @brief 系统数据验证处理函数
@@ -151,7 +151,7 @@
  * 
  * @note 原始函数名：FUN_180058370
  */
-#define ProcessSystemDataValidation ProcessSystemDataValidation
+#define ProcessSystemDataValidation FUN_180058370
 
 /**
  * @brief 系统数据缓冲区验证函数
@@ -160,7 +160,7 @@
  * 
  * @note 原始函数名：FUN_18004b790
  */
-#define ValidateSystemDataBuffer ValidateSystemDataBuffer
+#define ValidateSystemDataBuffer FUN_18004b790
 
 /**
  * @brief 系统数据指针清理函数
@@ -169,7 +169,7 @@
  * 
  * @note 原始函数名：FUN_18064e900
  */
-#define CleanupSystemDataPointer CleanupSystemDataPointer
+#define CleanupSystemDataPointer FUN_18064e900
 
 /**
  * @brief 上下文处理函数
@@ -178,7 +178,7 @@
  * 
  * @note 原始函数名：ProcessContext
  */
-#define ProcessSystemContext ProcessSystemContext
+#define ProcessSystemContext FUN_18007f840
 
 /**
  * @brief 数据转换函数A0
@@ -357,7 +357,7 @@
  * 
  * @note 原始函数名：FUN_1808a5780
  */
-#define CreateExceptionDataBuffer CreateExceptionDataBuffer
+#define CreateExceptionDataBuffer FUN_1808a5780
 
 /**
  * @brief 系统安全状态获取函数
@@ -25831,6 +25831,9 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   DataBuffer stackData;
   uint bufferSize;
   DataWord bufferFlag;
+  DataWord stackHighValue;
+  DataWord stackLowValue;
+  DataWord stackParameter38;
   
   if (validationFlag != 0) {
     return 0x1c;

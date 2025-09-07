@@ -112251,7 +112251,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float SystemContextPointer,float Utf8B
 
 
 
-d8b8(voidvoid CoreEngineInitializePhysics(void)
+void CoreEngineInitializePhysics(void)
 {
   return;
 }
@@ -112260,7 +112260,7 @@ d8b8(voidvoid CoreEngineInitializePhysics(void)
 
 
 
-d900(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointervoid CoreEngineCopyAndInitializeData(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+void CoreEngineCopyAndInitializeData(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   long long PrimaryDataSize;
   
@@ -112401,7 +112401,7 @@ da1c(voidvoid CoreEngineInitializeNetwork(void
 
 
 
-da85(voidvoid CoreEngineInitializeInput(void)
+void CoreEngineInitializeInput(void)
 {
   return;
 }
