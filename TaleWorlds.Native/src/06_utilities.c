@@ -98754,7 +98754,13 @@ void ProcessExceptionContextData(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090f050(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器内存块清理器050 - 清理0x78偏移处的异常处理器内存块
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090f050
+ */
+void CleanupExceptionHandlerMemoryBlockAtOffset78(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -98785,7 +98791,13 @@ void Unwind_18090f050(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f060(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器多重回调执行器060 - 执行0x78偏移处的多重异常处理器回调
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090f060
+ */
+void ExecuteMultipleExceptionHandlerCallbacksAtOffset78(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -98816,7 +98828,13 @@ void Unwind_18090f060(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f070(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行器070 - 执行0x78偏移+8处的异常处理器回调
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090f070
+ */
+void ExecuteExceptionHandlerCallbackAtOffset78Plus8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -98830,7 +98848,15 @@ void Unwind_18090f070(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理器080 - 处理0x40偏移处的数据缓冲区
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_18090f080
+ */
+void ProcessDataBufferAtOffset40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA5(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -99998,7 +100024,13 @@ void Unwind_18090f6b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090f6c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行器6C0 - 执行0x68偏移处的异常处理器回调
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090f6c0
+ */
+void ExecuteExceptionHandlerCallbackAtOffset68(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x68),8,0xd,ValidateDataHandler);
@@ -100007,7 +100039,13 @@ void Unwind_18090f6c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f6f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行器6F0 - 执行0x68偏移+0x68处的异常处理器回调
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090f6f0
+ */
+void ExecuteExceptionHandlerCallbackAtOffset68Plus68(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100021,7 +100059,13 @@ void Unwind_18090f6f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f700(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行器700 - 执行0x68偏移+0x70处的异常处理器回调
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090f700
+ */
+void ExecuteExceptionHandlerCallbackAtOffset68Plus70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100035,7 +100079,13 @@ void Unwind_18090f700(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f710(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行器710 - 执行0x68偏移+0x78处的异常处理器回调
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090f710
+ */
+void ExecuteExceptionHandlerCallbackAtOffset68Plus78(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100049,7 +100099,13 @@ void Unwind_18090f710(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f720(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行器720 - 执行0x68偏移+0x80处的异常处理器回调
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090f720
+ */
+void ExecuteExceptionHandlerCallbackAtOffset68Plus80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100063,7 +100119,13 @@ void Unwind_18090f720(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f740(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行器740 - 执行0x68偏移+0x88处的异常处理器回调
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090f740
+ */
+void ExecuteExceptionHandlerCallbackAtOffset68Plus88(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100077,7 +100139,13 @@ void Unwind_18090f740(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f760(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行器760 - 执行0x68偏移+0x90处的异常处理器回调
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_18090f760
+ */
+void ExecuteExceptionHandlerCallbackAtOffset68Plus90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100091,7 +100159,15 @@ void Unwind_18090f760(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行器780 - 执行0x68偏移+0x10处的数据缓冲区处理
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_18090f780
+ */
+void ExecuteExceptionHandlerCallbackAtOffset68Plus10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA7(*(int64_t *)(dataBuffer + DataContextOffset68),*(DataBuffer *)(*(int64_t *)(dataBuffer + DataContextOffset68) + ExceptionHandlerCallbackOffset10),
