@@ -180917,7 +180917,7 @@ code_r0x00018015273d:
 
 
 
-uint64_t FUN_180153890(uint64_t CharacterCode,unsigned long long Utf8BufferSize
+uint64_t CleanupSystemMemoryAndReturnCharacterCode(uint64_t CharacterCode,unsigned long long Utf8BufferSize
 {
   FUN_1801538d0();
   if ((Utf8BufferSize & 1) != 0) {
@@ -198032,7 +198032,7 @@ long long FUN_180170700(long long CharacterCode,long long Utf8BufferSize,long lo
  * @note 原始函数名：FUN_1801716e0
  * @note 该函数处理系统级别的内存分配和数据节点操作
  */
-uint64_t FUN_1801716e0(long long CharacterCode,long long Utf8BufferSize
+uint64_t InitializeSystemMemoryAndDataNode(long long CharacterCode,long long Utf8BufferSize
 {
   uint64_t *StatusBuffer;
   code *pSystemCheckResult;
@@ -198069,7 +198069,7 @@ uint64_t FUN_1801716e0(long long CharacterCode,long long Utf8BufferSize
 
 
 
-uint64_t FUN_1801717e0(long long CharacterCode,uint64_t Utf8BufferSize
+uint64_t InitializeSystemMemoryWithPerformanceCounter(long long CharacterCode,uint64_t Utf8BufferSize
 {
   uint64_t *StatusBuffer;
   code *pSystemCheckResult;
