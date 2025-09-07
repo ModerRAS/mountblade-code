@@ -49617,28 +49617,38 @@ void DestroyConditionFromBufferOnException(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_180904810(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数E1 - 简化实现
+ * 
+ * 该函数负责初始化异常处理器，设置临时和默认异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180904810
+ */
+void Unwind_InitializeExceptionHandlerE1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x60);
-  *(DataBuffer *)(exceptionHandlerContext + 0x40) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x48) != 0) {
-                    // WARNING: Subroutine does not return
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerDataOffset);
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerE1Offset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerE1StatusOffset) != 0) {
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x48) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x58) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x40) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x20) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x28) != 0) {
-                    // WARNING: Subroutine does not return
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerE1StatusOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerE1DataOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerE1Offset) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerE2Offset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerE2StatusOffset) != 0) {
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x28) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x38) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x20) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerE2StatusOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerE2DataOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerE2Offset) = &DefaultExceptionHandlerB;
   return;
 }
 
