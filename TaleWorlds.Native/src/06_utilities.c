@@ -78994,7 +78994,18 @@ void CleanupMemoryResourceA0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180909a50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源清理和引用计数管理函数
+ * 
+ * 该函数负责清理内存资源并管理引用计数。它检查内存资源指针的有效性，
+ * 计算内存块偏移量，更新引用计数，并在引用计数归零时调用异常处理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909a50
+ */
+void CleanupMemoryResourceAndManageReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;

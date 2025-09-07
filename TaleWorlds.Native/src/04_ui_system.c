@@ -72256,26 +72256,25 @@ float FUN_1807070a0(longlong uiContext,float *dataSource,int targetBuffer)
 
 
 
- void FUN_180707200(float *uiContext,longlong dataSource,int targetBuffer,int bufferSize,float resultPointer,
-void FUN_180707200(float *uiContext,longlong dataSource,int targetBuffer,int bufferSize,float resultPointer,
-                  float param_6,float param_7)
+ void ProcessUIRendering(float *uiContext,longlong dataSource,int targetBuffer,int bufferSize,float resultPointer,
+                        float param_6,float param_7)
 
 {
-  float *pfloatResult;
-  float localFloat2;
-  float localFloat3;
-  float localFloat4;
-  float localFloat5;
-  float localFloat6;
-  float localFloat7;
-  float localFloat8;
-  longlong CharacterDataOffset;
-  ulonglong result0;
-  longlong allocatedMemory1;
-  float floatResult2;
-  float floatResult3;
-  float floatResult4;
-  float floatResult5;
+  float *renderingOutputPointer;
+  float localRenderValue2;
+  float localRenderValue3;
+  float localRenderValue4;
+  float localRenderValue5;
+  float localRenderValue6;
+  float localRenderValue7;
+  float localRenderValue8;
+  longlong characterDataOffset;
+  ulonglong iterationCounter;
+  longlong memoryOffset1;
+  float renderResult2;
+  float renderResult3;
+  float renderResult4;
+  float renderResult5;
   
   pfloatResult = (float *)(dataSource + (longlong)(-2 - targetBuffer) * 4);
   if (0 < bufferSize + -3) {
@@ -83211,22 +83210,22 @@ ulonglong ProcessUIRenderingDataUpdate(int *uiContext,float *dataSource,uint tar
     if (1 < (int)resultPointer) {
       FUN_180716aa0(dataSource,(int)Result6 >> (IsCharacterMatch8 & 0x1f),resultPointer << (IsCharacterMatch8 & 0x1f));
     }
-    if (0 < (int)stackUInt50) {
-      EventTypeCode0 = (ulonglong)stackUInt50;
+    if (0 < (int)StackUInt50) {
+      EventTypeCode = (ulonglong)StackUInt50;
       do {
         resultPointer = (int)resultPointer >> 1;
-        result6 = result6 * 2;
-        semaphoreHandle3 = (ulonglong)((uint)semaphoreHandle3 | (uint)semaphoreHandle3 >> ((byte)resultPointer & 0x1f));
-        FUN_1807165a0(dataSource,result6,resultPointer);
-        EventTypeCode0 = EventTypeCode0 - 1;
-      } while (EventTypeCode0 != 0);
+        Result6 = Result6 * 2;
+        SemaphoreHandle3 = (ulonglong)((uint)SemaphoreHandle3 | (uint)SemaphoreHandle3 >> ((byte)resultPointer & 0x1f));
+        FUN_1807165a0(dataSource,Result6,resultPointer);
+        EventTypeCode = EventTypeCode - 1;
+      } while (EventTypeCode != 0);
     }
-    result6 = (uint)semaphoreHandle3;
-    uiValidationResult6 = 0;
-    result5 = 1;
-    if (0 < localInt5) {
+    Result6 = (uint)SemaphoreHandle3;
+    UIValidationResult6 = 0;
+    Result5 = 1;
+    if (0 < LocalInt5) {
       do {
-        pbVar3 = &g_uiPointerArray + semaphoreHandle3;
+        BytePointer3 = &g_uiPointerArray + SemaphoreHandle3;
         semaphoreHandle3 = (ulonglong)*pbVar3;
         result6 = (uint)*pbVar3;
         FUN_1807165a0(dataSource,(int)semaphoreHandle9 >> ((byte)uiValidationResult6 & 0x1f),result5);
