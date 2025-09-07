@@ -10029,51 +10029,87 @@ void InitializeSystemMemoryNode(void)
 /**
  * @brief 初始化系统数据表节点
  * 
- * 初始化系统数据表管理器中的数据表节点，设置数据表节点的配置和回调函数
+ * 初始化系统数据表管理器中的数据表节点，设置数据表节点的配置和回调函数。
+ * 该函数负责在网络管理器数据表中创建和配置新的数据表节点，包括节点标识符设置、
+ * 回调函数配置和状态标志初始化。这是系统初始化过程中的重要步骤。
+ * 
+ * @details 函数执行流程：
+ * 1. 获取系统根表和根节点引用
+ * 2. 遍历节点链表，查找合适的插入位置
+ * 3. 比较节点标识符以确定插入点
+ * 4. 如果需要，分配内存创建新节点
+ * 5. 设置节点标识符、数据指针和回调函数
+ * 6. 配置节点状态标志
+ * 
+ * @note 此函数是系统数据表初始化的关键组件
+ * @note 使用 SystemDataTemplateSecurityManager 作为比较模板
+ * @note 新节点将关联到 SystemDataNodeNetworkManager
+ * @note 节点使用 ResourceInitializationCallback 作为初始化回调
  */
 void InitializeSystemDataTableNode(void)
-
 {
-  char NodeActiveFlag;
-  void** SystemDataTable;
-  int SystemIdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long SystemCurrentOperationTimestamp;
-  void** RootNodeReference;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** HashTablePointer;
-  uint64_t SystemInitializationStatusFlag;
+  bool SystemNodeIsActive;                          // 系统节点活动状态标志
+  void** SystemDataTableRoot;                       // 系统数据表根指针
+  int32_t NodeIdentifierComparisonResult;           // 节点标识符比较结果
+  int64_t* SystemMemoryDataPointer;                 // 系统内存数据指针
+  int64_t SystemInitializationTimestamp;           // 系统初始化时间戳
+  void** RootNodeReference;                         // 根节点引用指针
+  void** CurrentNodeIterator;                        // 当前节点迭代器
+  void** NextNodeReference;                         // 下一节点引用指针
+  void** TargetNodePosition;                        // 目标节点位置指针
+  uint64_t SystemInitializationStatus;              // 系统初始化状态标志
   
-  SystemDataTable = (long long*)GetSystemRootTable();
-  RootNodeReference = (void**)*SystemDataTable;
-  NodeActiveFlag = *(char*)((long long)RootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset);
-  SystemInitializationStatusFlag = 0;
-  HashTablePointer = RootNodeReference;
-  CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
-  while (NodeActiveFlag == '\0') {
-    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateSecurityManager,SystemIdentifierSize);
-    if (SystemIdentifierCompareResult < 0) {
-      NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
-      CurrentNodePointer = HashTablePointer;
+  // 获取系统根表和根节点
+  SystemDataTableRoot = (int64_t*)GetSystemRootTable();
+  RootNodeReference = (void**)*SystemDataTableRoot;
+  
+  // 获取当前节点的活动状态
+  SystemNodeIsActive = *(bool*)((int64_t)RootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset);
+  SystemInitializationStatus = 0;
+  
+  // 初始化节点遍历指针
+  TargetNodePosition = RootNodeReference;
+  CurrentNodeIterator = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
+  
+  // 遍历节点链表，查找合适的插入位置
+  while (SystemNodeIsActive == false) {
+    // 比较当前节点标识符与安全管理器模板
+    NodeIdentifierComparisonResult = memcmp(CurrentNodeIterator + SystemNodeIdentifierOffset, &SystemDataTemplateSecurityManager, SystemIdentifierSize);
+    
+    if (NodeIdentifierComparisonResult < 0) {
+      // 移动到下一个节点
+      NextNodeReference = (void**)CurrentNodeIterator[SystemNodeNextPointerOffset];
+      CurrentNodeIterator = TargetNodePosition;
+    } else {
+      // 移动到前一个节点
+      NextNodeReference = (void**)*CurrentNodeIterator;
     }
-    else {
-      NextNodePointer = (void**)*CurrentNodePointer;
-    }
-    HashTablePointer = CurrentNodePointer;
-    CurrentNodePointer = NextNodePointer;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    
+    // 更新遍历指针
+    TargetNodePosition = CurrentNodeIterator;
+    CurrentNodeIterator = NextNodeReference;
+    SystemNodeIsActive = *(bool*)((int64_t)NextNodeReference + NodeActiveFlagOffset);
   }
-  if ((HashTablePointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + SystemNodeIdentifierOffset,0x10), SystemIdentifierCompareResult < 0)) {
-    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,SystemMemoryAllocationSize + SystemNodeAllocationExtraSize,SystemMemoryAllocationSize);
-    HashTablePointer = AllocatedSystemNode;
+  
+  // 检查是否需要创建新节点
+  if ((TargetNodePosition == RootNodeReference) || 
+      (NodeIdentifierComparisonResult = memcmp(&SystemDataTemplateSecurityManager, TargetNodePosition + SystemNodeIdentifierOffset, 0x10), 
+       NodeIdentifierComparisonResult < 0)) {
+    
+    // 计算内存分配大小并分配新节点
+    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTableRoot);
+    AllocateSystemMemory(SystemDataTableRoot, &AllocatedSystemNode, TargetNodePosition, 
+                         SystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemMemoryAllocationSize);
+    TargetNodePosition = AllocatedSystemNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
-  HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[SystemNodeDataPointerIndex] = &SystemDataNodeNetworkManager;
-  HashTablePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
-  HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
+  
+  // 配置新节点的属性
+  TargetNodePosition[NodeIdentifier1Index] = SystemDataTemplateLId1;          // 设置主标识符
+  TargetNodePosition[NodeIdentifier2Index] = SystemDataTemplateLId2;          // 设置次标识符
+  TargetNodePosition[SystemNodeDataPointerIndex] = &SystemDataNodeNetworkManager; // 关联网络管理器数据节点
+  TargetNodePosition[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;     // 设置节点为非活动状态
+  TargetNodePosition[SystemNodeCallbackIndex] = ResourceInitializationCallback; // 设置资源初始化回调函数
+  
   return;
 }
 
@@ -10083,49 +10119,88 @@ void InitializeSystemDataTableNode(void)
 /**
  * @brief 初始化系统配置节点
  * 
- * 初始化系统配置管理器中的配置节点，设置配置节点的配置数据和回调函数
+ * 初始化系统配置管理器中的配置节点，设置配置节点的配置数据和回调函数。
+ * 该函数负责在配置管理器中创建和配置新的配置节点，包括节点标识符设置、
+ * 数据指针关联和回调函数配置。这是系统配置初始化过程中的重要步骤。
+ * 
+ * @details 函数执行流程：
+ * 1. 获取系统根表和根节点引用
+ * 2. 设置配置数据指向音频处理器节点
+ * 3. 遍历节点链表，查找合适的插入位置
+ * 4. 比较节点标识符以确定插入点
+ * 5. 如果需要，分配内存创建新节点
+ * 6. 设置节点标识符、数据指针和状态标志
+ * 7. 配置性能监控相关标识符
+ * 
+ * @note 此函数是系统配置初始化的关键组件
+ * @note 使用 SystemDataTemplateConfigurationManager 作为比较模板
+ * @note 新节点将关联到 SystemDataNodeInputController
+ * @note 节点使用 PerformanceMonitorSystemId 作为标识符
  */
 void InitializeSystemConfigurationNode(void)
-
 {
-  char NodeActiveFlag;
-  void** SystemDataTable;
-  int SystemIdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long SystemCurrentOperationTimestamp;
-  void** RootNodeReference;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** HashTablePointer;
-  void* SystemConfigurationData;
+  bool SystemNodeIsActive;                          // 系统节点活动状态标志
+  void** SystemDataTableRoot;                       // 系统数据表根指针
+  int32_t NodeIdentifierComparisonResult;           // 节点标识符比较结果
+  int64_t* SystemMemoryDataPointer;                 // 系统内存数据指针
+  int64_t SystemConfigurationTimestamp;             // 系统配置时间戳
+  void** RootNodeReference;                         // 根节点引用指针
+  void** CurrentNodeIterator;                        // 当前节点迭代器
+  void** NextNodeReference;                         // 下一节点引用指针
+  void** TargetNodePosition;                        // 目标节点位置指针
+  void* SystemConfigurationDataContext;             // 系统配置数据上下文
   
-  SystemDataTable = (long long*)GetSystemRootTable();
-  RootNodeReference = (void**)*SystemDataTable;
-  NodeActiveFlag = *(char*)((long long)RootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset);
-  SystemConfigurationData = &SystemDataNodeAudioProcessor;
-  HashTablePointer = RootNodeReference;
-  CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
-  while (NodeActiveFlag == '\0') {
-    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateConfigurationManager,SystemIdentifierSize);
-    if (SystemIdentifierCompareResult < 0) {
-      NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
-      CurrentNodePointer = HashTablePointer;
+  // 获取系统根表和根节点
+  SystemDataTableRoot = (int64_t*)GetSystemRootTable();
+  RootNodeReference = (void**)*SystemDataTableRoot;
+  
+  // 获取当前节点的活动状态
+  SystemNodeIsActive = *(bool*)((int64_t)RootNodeReference[SystemRootNodeCurrentIndex] + NodeActiveFlagOffset);
+  
+  // 设置配置数据上下文为音频处理器节点
+  SystemConfigurationDataContext = &SystemDataNodeAudioProcessor;
+  
+  // 初始化节点遍历指针
+  TargetNodePosition = RootNodeReference;
+  CurrentNodeIterator = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
+  
+  // 遍历节点链表，查找合适的插入位置
+  while (SystemNodeIsActive == false) {
+    // 比较当前节点标识符与配置管理器模板
+    NodeIdentifierComparisonResult = memcmp(CurrentNodeIterator + SystemNodeIdentifierOffset, 
+                                          &SystemDataTemplateConfigurationManager, SystemIdentifierSize);
+    
+    if (NodeIdentifierComparisonResult < 0) {
+      // 移动到下一个节点
+      NextNodeReference = (void**)CurrentNodeIterator[SystemNodeNextPointerOffset];
+      CurrentNodeIterator = TargetNodePosition;
+    } else {
+      // 移动到前一个节点
+      NextNodeReference = (void**)*CurrentNodeIterator;
     }
-    else {
-      NextNodePointer = (void**)*CurrentNodePointer;
-    }
-    HashTablePointer = CurrentNodePointer;
-    CurrentNodePointer = NextNodePointer;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    
+    // 更新遍历指针
+    TargetNodePosition = CurrentNodeIterator;
+    CurrentNodeIterator = NextNodeReference;
+    SystemNodeIsActive = *(bool*)((int64_t)NextNodeReference + NodeActiveFlagOffset);
   }
-  if ((HashTablePointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + SystemNodeIdentifierOffset,0x10), SystemIdentifierCompareResult < 0)) {
-    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,SystemMemoryAllocationSize + SystemNodeAllocationExtraSize,SystemMemoryAllocationSize);
-    HashTablePointer = AllocatedSystemNode;
+  
+  // 检查是否需要创建新节点
+  if ((TargetNodePosition == RootNodeReference) || 
+      (NodeIdentifierComparisonResult = memcmp(&SystemDataTemplateConfigurationManager, TargetNodePosition + SystemNodeIdentifierOffset, 0x10), 
+       NodeIdentifierComparisonResult < 0)) {
+    
+    // 计算内存分配大小并分配新节点
+    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTableRoot);
+    AllocateSystemMemory(SystemDataTableRoot, &AllocatedSystemNode, TargetNodePosition, 
+                         SystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemMemoryAllocationSize);
+    TargetNodePosition = AllocatedSystemNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[SystemNodeDataPointerIndex] = &SystemDataNodeInputController;
+  
+  // 配置新节点的属性
+  TargetNodePosition[NodeIdentifier1Index] = PerformanceMonitorSystemId1;    // 设置性能监控主标识符
+  TargetNodePosition[NodeIdentifier2Index] = PerformanceMonitorSystemId2;    // 设置性能监控次标识符
+  TargetNodePosition[SystemNodeDataPointerIndex] = &SystemDataNodeInputController; // 关联输入控制器数据节点
   HashTablePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemConfigurationData;
   return;
