@@ -9934,47 +9934,47 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
         componentListPointer = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
         componentSearchIterator = 0;
         currentComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
-        if (0 < componentCount) {
-          componentPointer = (int64_t *)*componentList;
-          loopIndex = componentSearchIndex;
+        if (0 < currentComponentCount) {
+          currentComponentPointer = (int64_t *)*componentListPointer;
+          componentLoopIndex = componentSearchIterator;
           do {
-            if (*componentPointer == dataValidationBuffer) {
-              if (ComponentInactiveStatus < (int32_t)loopIndex) {
+            if (*currentComponentPointer == componentValidationBuffer) {
+              if (ComponentInactiveStatus < (int32_t)componentLoopIndex) {
                 return 0;
               }
               break;
             }
-            loopIndex = (uint64_t)((int32_t)loopIndex + 1);
-            componentSearchIndex = componentSearchIndex + 1;
-            componentPointer = componentPointer + 1;
-          } while ((int64_t)componentSearchIndex < (int64_t)componentCount);
+            componentLoopIndex = (uint64_t)((int32_t)componentLoopIndex + 1);
+            componentSearchIterator = componentSearchIterator + 1;
+            currentComponentPointer = currentComponentPointer + 1;
+          } while ((int64_t)componentSearchIterator < (int64_t)currentComponentCount);
         }
-        componentCount = componentCount + 1;
-        if (*(int32_t *)(componentData + COMPONENT_CAPACITY_OFFSET) < componentCount) {
-          componentCapacity = (int32_t)((float)*(int32_t *)(componentData + COMPONENT_CAPACITY_OFFSET) * ComponentCapacityGrowthFactor);
-          bufferSize = componentCount;
-          if (componentCount <= componentCapacity) {
-            bufferSize = componentCapacity;
+        currentComponentCount = currentComponentCount + 1;
+        if (*(int32_t *)(componentDataContext + COMPONENT_CAPACITY_OFFSET) < currentComponentCount) {
+          componentListCapacity = (int32_t)((float)*(int32_t *)(componentDataContext + COMPONENT_CAPACITY_OFFSET) * ComponentCapacityGrowthFactor);
+          componentBufferSize = currentComponentCount;
+          if (currentComponentCount <= componentListCapacity) {
+            componentBufferSize = componentListCapacity;
           }
-          if (bufferSize < 8) {
-            componentCapacity = 8;
+          if (componentBufferSize < 8) {
+            componentListCapacity = 8;
           }
-          else if (componentCapacity < componentCount) {
-            componentCapacity = componentCount;
+          else if (componentListCapacity < currentComponentCount) {
+            componentListCapacity = currentComponentCount;
           }
-          bufferSize = ValidateComponentMemory(componentList,componentCapacity);
-          if (bufferSize != 0) {
+          componentBufferSize = ValidateComponentMemory(componentListPointer,componentListCapacity);
+          if (componentBufferSize != 0) {
             return 0;
           }
         }
-        *(int64_t *)(*componentList + (int64_t)*(int32_t *)(componentData + COMPONENT_COUNT_OFFSET) * 8) = dataValidationBuffer;
-        *(int32_t *)(componentData + COMPONENT_COUNT_OFFSET) = *(int32_t *)(componentData + COMPONENT_COUNT_OFFSET) + 1;
-        *(int32_t *)(componentData + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentData + COMPONENT_ACTIVE_OFFSET) + 1;
+        *(int64_t *)(*componentListPointer + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * 8) = componentValidationBuffer;
+        *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) + 1;
+        *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
-        queryResult = ExecuteComponentCommand(componentData + COMPONENT_COMMAND_OFFSET,dataValidationBuffer);
-        if ((int32_t)queryResult != 0) {
-          return queryResult;
+        systemQueryResult = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,componentValidationBuffer);
+        if ((int32_t)systemQueryResult != 0) {
+          return systemQueryResult;
         }
       }
     }
