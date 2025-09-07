@@ -142406,7 +142406,7 @@ void ExecuteSystemCoreDataProcessing(void)
         RegisterFramePointer[-0xd] = ContextSecondaryFloat3;
         ProcessSystemParametersAndConfiguration(StringIndexCounter,RegisterFramePointer + -0x14,RegisterFramePointer + -0xe,ContextSecondaryFloat6,ValidationResult);
         MemoryAddressMask = (uint32_t)((unsigned long long)ValidationResult >> 0x20);
-        FUN_18010e4e0(StringIndexCounter,ProcessingStatusFlag,1,ContextSecondaryFloat5);
+        ProcessSystemDataWithValidation(StringIndexCounter,ProcessingStatusFlag,1,ContextSecondaryFloat5);
       }
     }
     if (RegisterFramePointer[0xc] != -NAN) {

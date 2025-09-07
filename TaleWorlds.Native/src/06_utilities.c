@@ -67178,7 +67178,18 @@ void ManageResourceReferenceCountA90(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180907aa0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文管理函数AA0
+ * 
+ * 该函数管理异常上下文，处理异常相关的数据结构和状态。
+ * 主要用于异常处理过程中的上下文管理和状态维护。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180907aa0
+ */
+#define ManageExceptionContextAA0 Unwind_180907aa0
+void ManageExceptionContextAA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x178) = &DefaultExceptionHandlerB;
@@ -67187,7 +67198,20 @@ void Unwind_180907aa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数AB0
+ * 
+ * 该函数执行异常处理回调，处理异常相关的数据结构和状态。
+ * 主要用于异常处理过程中的回调执行和资源清理。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180907ab0
+ */
+#define ExecuteExceptionHandlerCallbacksAB0 Unwind_180907ab0
+void ExecuteExceptionHandlerCallbacksAB0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1c0) != (code *)0x0) {
