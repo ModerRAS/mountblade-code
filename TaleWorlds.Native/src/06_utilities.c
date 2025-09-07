@@ -3847,14 +3847,14 @@
 #define ExceptionContextPtr ExceptionContextPtr
 
 // 系统重置和异常状态变量声明
-uint8_t SystemResetFlag;           // _DAT_180c821d0 - 系统重置标志
+uint8_t SystemResetFlag;           // 系统重置标志
 
 // 系统数据字变量声明
 uint32_t SystemDataWord;
 
 // 异常状态标志变量声明
-uint8_t ExceptionStatusFlagA0;       // _DAT_180d49140 - 异常状态标志A0
-uint8_t ExceptionStatusFlagA1;       // _DAT_180d49148 - 异常状态标志A1
+uint8_t ExceptionStatusFlagA0;       // 异常状态标志A0
+uint8_t ExceptionStatusFlagA1;       // 异常状态标志A1
 
 // 浮点数验证数组变量声明
 float FloatValidationArray[16];
@@ -58811,7 +58811,21 @@ void ValidateSystemOperationStatus(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809064c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证和清理异常上下文数据
+ * 
+ * 该函数负责验证异常上下文数据的有效性，并清理相关的数据结构。
+ * 它会遍历异常上下文链表，验证各个偏移量处的数据状态，并在发现异常时终止系统。
+ * 这是一个重要的异常处理验证函数，确保异常上下文数据的完整性。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809064c0
+ * @note 函数会检查0x12、0x1a等偏移量处的数据状态
+ * @note 如果发现任何异常状态，函数会调用TerminateSystemE0()终止系统
+ */
+void ValidateAndCleanupExceptionContext(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -60005,7 +60019,20 @@ void Unwind_180906a90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906ac0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统清理和资源验证
+ * 
+ * 该函数负责执行系统清理操作，验证资源上下文，并调用多个异常处理回调函数。
+ * 它会检查多个偏移量处的回调函数指针，并在有效时执行相应的回调操作。
+ * 这是一个综合性的异常处理清理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文和回调函数信息
+ * 
+ * @note 原始函数名：Unwind_180906ac0
+ * @note 函数会检查0x28、0x50、0x30等偏移量处的回调函数指针
+ */
+void ExecuteSystemCleanupAndValidation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -60029,7 +60056,19 @@ void Unwind_180906ac0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906ad0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理回调函数
+ * 
+ * 该函数负责执行异常处理过程中的回调函数，检查0x30偏移量处的
+ * 回调函数指针并在有效时执行相应的回调操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含回调函数信息
+ * 
+ * @note 原始函数名：Unwind_180906ad0
+ * @note 这是一个简化的异常处理回调执行函数
+ */
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x30) != (int64_t *)0x0) {
@@ -60040,7 +60079,19 @@ void Unwind_180906ad0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906ae0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化系统资源并执行回调
+ * 
+ * 该函数负责初始化系统资源，并执行异常处理相关的回调函数。
+ * 它会检查0x50偏移量处的回调函数指针并在有效时执行。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含回调函数信息
+ * 
+ * @note 原始函数名：Unwind_180906ae0
+ * @note 函数首先调用InitializeSystemResourcesI0()进行系统资源初始化
+ */
+void InitializeSystemResourcesAndExecuteCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemResourcesI0();
