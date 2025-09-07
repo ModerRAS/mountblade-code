@@ -47860,7 +47860,26 @@ void ResetExtendedExceptionHandlers(DataBuffer operationBase,int64_t dataBuffer,
 
 
 
-void Unwind_1809042b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 初始化异常处理器上下文A0
+ * 
+ * 该函数负责初始化异常处理器的上下文，设置多个异常处理器的回调函数。
+ * 主要功能包括：
+ * - 设置临时异常处理器
+ * - 验证异常处理器状态
+ * - 配置默认异常处理器
+ * - 清理异常处理状态
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，用于异常处理器调用
+ * 
+ * @note 原始函数名：Unwind_1809042b0
+ * @note 这是一个异常处理器初始化函数，用于设置系统的异常处理机制
+ * @warning 如果异常处理器状态异常，会调用TerminateSystemE0终止系统
+ */
+void InitializeExceptionHandlerContextA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -47914,7 +47933,29 @@ void Unwind_1809042b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809042d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 初始化异常处理器上下文A1
+ * 
+ * 该函数负责初始化异常处理器的上下文，设置多个异常处理器的回调函数。
+ * 与InitializeExceptionHandlerContextA0类似，但使用不同的偏移量。
+ * 
+ * 主要功能包括：
+ * - 设置临时异常处理器
+ * - 验证异常处理器状态
+ * - 配置默认异常处理器
+ * - 清理异常处理状态
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，用于异常处理器调用
+ * 
+ * @note 原始函数名：Unwind_1809042d0
+ * @note 这是一个异常处理器初始化函数，用于设置系统的异常处理机制
+ * @note 与InitializeExceptionHandlerContextA0类似，但使用不同的内存偏移量
+ * @warning 如果异常处理器状态异常，会调用TerminateSystemE0终止系统
+ */
+void InitializeExceptionHandlerContextA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -47968,7 +48009,29 @@ void Unwind_1809042d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809042f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 初始化异常处理器上下文A2
+ * 
+ * 该函数负责初始化异常处理器的上下文，设置多个异常处理器的回调函数。
+ * 与InitializeExceptionHandlerContextA0/A1类似，但使用不同的偏移量。
+ * 
+ * 主要功能包括：
+ * - 设置临时异常处理器
+ * - 验证异常处理器状态
+ * - 配置默认异常处理器
+ * - 清理异常处理状态
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，用于异常处理器调用
+ * 
+ * @note 原始函数名：Unwind_1809042f0
+ * @note 这是一个异常处理器初始化函数，用于设置系统的异常处理机制
+ * @note 与InitializeExceptionHandlerContextA0/A1类似，但使用不同的内存偏移量
+ * @warning 如果异常处理器状态异常，会调用TerminateSystemE0终止系统
+ */
+void InitializeExceptionHandlerContextA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -49997,7 +50060,19 @@ void Unwind_180904a20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904a30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常展开处理函数E0
+ * 
+ * 该函数处理异常展开过程中的资源清理和验证操作。它会验证资源状态，
+ * 调用相应的资源清理回调，并处理引用计数。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，包含异常处理配置信息
+ * 
+ * @note 该函数会处理资源引用计数和验证状态
+ * @warning 如果系统状态无效，会调用TerminateSystemE0终止程序
+ */
+void ExceptionUnwindHandlerE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -50058,6 +50133,10 @@ void Unwind_180904a30(DataBuffer operationBase,int64_t dataBuffer)
 }
 
 
+
+// 原始函数名：Unwind_180904a30 - 异常展开处理函数E0
+// 功能：处理异常展开过程中的资源清理和验证操作
+#define ExceptionUnwindHandlerE0 Unwind_180904a30
 
 // 原始函数名：Unwind_180904a50 - 异常展开处理函数F0
 // 功能：处理异常展开过程中的资源清理和验证操作
