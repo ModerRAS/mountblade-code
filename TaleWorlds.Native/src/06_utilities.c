@@ -60480,6 +60480,18 @@ void ExecuteExceptionCleanupAtOffset7d0(DataBuffer operationBase,int64_t dataBuf
 
 
 
+/**
+ * @brief 重置异常上下文函数7f0
+ * 
+ * 该函数负责重置异常上下文，通过异常上下文指针调用相应的重置函数。
+ * 它会检查异常上下文指针的有效性，然后执行异常上下文的重置操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文重置信息
+ * 
+ * @note 原始函数名：Unwind_1809067f0
+ * @note 这是一个异常展开（unwind）处理函数，用于重置异常上下文
+ */
 void ResetExceptionContextAtOffset7f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -60494,6 +60506,18 @@ void ResetExceptionContextAtOffset7f0(DataBuffer operationBase,int64_t dataBuffe
 
 
 
+/**
+ * @brief 清理异常数据函数810
+ * 
+ * 该函数负责清理异常处理过程中产生的数据，通过异常上下文指针
+ * 调用相应的数据清理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常数据清理信息
+ * 
+ * @note 原始函数名：Unwind_180906810
+ * @note 这是一个异常展开（unwind）处理函数，用于清理异常数据
+ */
 void CleanupExceptionDataAtOffset810(DataBuffer operationBase,int64_t dataBuffer)
 
 {
