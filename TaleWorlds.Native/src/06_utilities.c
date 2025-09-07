@@ -77886,7 +77886,15 @@ void SetDefaultExceptionHandlerToCallbackOffset(DataBuffer operationBase,int64_t
 
 
 
-void Unwind_180909730(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器A0
+ * 
+ * 该函数负责设置默认异常处理器到指定位置
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ */
+void SetDefaultExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x88) = &DefaultExceptionHandlerB;
@@ -77895,7 +77903,15 @@ void Unwind_180909730(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909740(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置临时异常处理器A0
+ * 
+ * 该函数负责设置临时异常处理器，并处理异常上下文
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ */
+void SetTemporaryExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -80254,7 +80270,15 @@ void UnlockMutexA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a670(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证数据处理器A0
+ * 
+ * 该函数负责验证数据处理器，处理标志位并调用验证函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ */
+void ValidateDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
@@ -80266,7 +80290,16 @@ void Unwind_18090a670(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a6a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证数据处理器A1
+ * 
+ * 该函数负责验证数据处理器，处理标志位并调用验证函数
+ * 与A0版本类似，但使用不同的偏移量
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ */
+void ValidateDataProcessorA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 2) != 0) {
@@ -80279,7 +80312,12 @@ void Unwind_18090a6a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a6d0(void)
+/**
+ * @brief 设置全局异常处理器A0
+ * 
+ * 该函数负责设置全局异常处理器，将异常处理器设置为默认处理器
+ */
+void SetGlobalExceptionHandlerA0(void)
 
 {
   GlobalExceptionHandlerPointerA2 = &DefaultExceptionHandlerB;
@@ -80289,7 +80327,12 @@ void Unwind_18090a6d0(void)
 
 
 
-void Unwind_18090a6e0(void)
+/**
+ * @brief 重置异常状态标志
+ * 
+ * 该函数负责重置异常状态标志，处理异常事件和加密操作
+ */
+void ResetExceptionStatusFlags(void)
 
 {
   byte encryptionShiftBitCount;
@@ -80346,7 +80389,16 @@ void CleanupResourceHandlerAtOffset58(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_18090a780(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源引用A2
+ * 
+ * 该函数负责释放内存资源的引用，减少引用计数
+ * 与A0和A1版本类似，但使用不同的偏移量
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ */
+void ReleaseMemoryResourceReferenceA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
