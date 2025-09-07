@@ -197,6 +197,19 @@
 #define IdentifySystemIdentifierByPatternVariantL FUN_1802255a3
 #define IdentifySystemIdentifierByPatternVariantM FUN_1802255e7
 #define IdentifySystemIdentifierByPatternVariantN FUN_180225627
+
+// 系统变量语义化映射
+#define SystemFloatStackBuffer SystemFloatTemporaryBuffer        // 系统浮点栈缓冲区
+#define SystemParameter180 SystemTransformMatrixParameters      // 系统变换矩阵参数
+#define FloatValueArray180 TransformMatrixCoefficientArray       // 变换矩阵系数数组
+
+// 新增FUN_函数语义化映射
+#define ProcessVectorRegisterOperation FUN_180225ee0             // 处理向量寄存器操作
+#define ProcessMemoryAllocationIndex FUN_180225e50               // 处理内存分配索引
+#define GetSystemStatusRegister FUN_180225cc6                    // 获取系统状态寄存器
+#define GetSystemControlRegister FUN_180225cf2                  // 获取系统控制寄存器
+#define GetSystemInterruptRegister FUN_180225d1e                // 获取系统中断寄存器
+#define GetSystemErrorRegister FUN_180225d4a                    // 获取系统错误寄存器
 #define IdentifySystemIdentifierByPatternVariantO FUN_180225667
 #define IdentifySystemIdentifierByPatternVariantP FUN_1802256a7
 #define IdentifySystemIdentifierByPatternVariantQ FUN_1802256e7
