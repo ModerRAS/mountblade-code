@@ -102314,7 +102314,7 @@ LAB_180117593:
           else {
             MemoryAllocationIndex6 = 0x3000c;
           }
-          FUN_180115640(MemoryBlockIndex9 + 0x1ea8,MemoryBlockIndex9 + 0x1ef0,MemoryAllocationIndex6);
+          OperateSystemBufferEx(MemoryBlockIndex9 + 0x1ea8,MemoryBlockIndex9 + 0x1ef0,MemoryAllocationIndex6);
           *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 1;
           *(uint32_t *)(MemoryBlockIndex9 + 0x2d14) = 0xbe99999a;
           UnicodeCodePoint6 = UnicodeCodePoint6 | 0x10009;

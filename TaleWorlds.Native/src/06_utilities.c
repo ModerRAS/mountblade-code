@@ -25633,7 +25633,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
   }
 ProcessCheckpointDataFlowControl:
   if ((int)operationResult == 0) {
-    *(bool *)(operationBase + 0x7c) = in_stack_00000008 != (char)operationResult;
+    *(bool *)(operationBase + 0x7c) = stackValidationParameter != (char)operationResult;
   }
   return operationResult;
 }
