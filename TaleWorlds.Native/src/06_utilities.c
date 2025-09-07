@@ -19337,10 +19337,10 @@ void ProcessFloatingPointDataA0(void)
   float floatValue;
   DataWord SystemOperationResult;     // 系统操作结果
   float NormalizedParameterValue;    // 标准化参数值
-  uint8_t *StackBuffer30;
-  int stackContextParameter;
-  DataWord stackParameterOffset;
-  float StackParameter48;
+  uint8_t *ValidationDataBuffer;    // 验证数据缓冲区
+  int SystemContextParameter;      // 系统上下文参数
+  DataWord DataProcessingOffset;    // 数据处理偏移量
+  float ProcessedFloatValue;        // 处理后的浮点值
   
   if (((register_R15B != '\0') || (*(int *)(*(int64_t *)(register_R13 + 0x2e8) + 0x34) == register_R12D)) &&
      (calculatedValue = ConfigureSystemParametersA0(), calculatedValue == 0)) {
