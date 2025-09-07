@@ -30147,30 +30147,30 @@ ValidateDataOperationLabel:
       secondaryValidationBuffer[0] = 0;
       secondaryValidationFlags = AllocateMemory(*exceptionHandlerContextPointer,secondaryValidationBuffer);
       if (secondaryValidationFlags == 0) {
-        if ((uint64_t)validationBuffer2[0] + 1 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointBufferSizeCheck;
-        dataFlags1 = 0x11;
+        if ((uint64_t)secondaryValidationBuffer[0] + 1 <= (uint64_t)exceptionHandlerContextPointer[2]) goto ProcessCheckpointBufferSizeCheck;
+        allocationErrorCode = 0x11;
       }
     }
-    if (dataFlags1 == 0) {
-      validationBuffer2[0] = (uint)((char)validationBuffer1[0] != '\0');
-      stackValidationResult = (uint)((char)validationBuffer1[0] == '\0');
-      dataFlags1 = 0;
+    if (secondaryValidationFlags == 0) {
+      secondaryValidationBuffer[0] = (uint)((char)primaryValidationBuffer[0] != '\0');
+      stackValidationResult = (uint)((char)primaryValidationBuffer[0] == '\0');
+      allocationErrorCode = 0;
     }
     else {
-      validationBuffer2[0] = 0;
+      secondaryValidationBuffer[0] = 0;
       stackValidationResult = 1;
-      if (dataFlags1 == 0) {
-        dataFlags1 = securityCheckResult;
+      if (allocationErrorCode == 0) {
+        allocationErrorCode = securityCheckResult;
       }
     }
   }
   else {
-OperationLabelB:
+SecondaryOperationLabel:
     stackValidationResult = 1;
-    validationBuffer2[0] = 0;
+    secondaryValidationBuffer[0] = 0;
   }
-  if (dataFlags1 != 0) {
-    return (uint64_t)dataFlags1;
+  if (allocationErrorCode != 0) {
+    return (uint64_t)allocationErrorCode;
   }
   if (*(int *)(exceptionHandlerContext[1] + 0x18) != 0) {
     return ResourceInvalidErrorCode;
@@ -30181,19 +30181,19 @@ OperationLabelB:
   }
   else {
     if (exceptionHandlerContextPointer[2] != 0) {
-      validationBuffer1[0] = 0;
-      validationStatus = AllocateMemory(*exceptionHandlerContextPointer,validationBuffer1);
+      primaryValidationBuffer[0] = 0;
+      validationStatus = AllocateMemory(*exceptionHandlerContextPointer,primaryValidationBuffer);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)validationBuffer1[0] + 4) {
+      if ((uint64_t)exceptionHandlerContextPointer[2] < (uint64_t)primaryValidationBuffer[0] + 4) {
         validationStatus = 0x11;
         goto ProcessCheckpointOperationFlow;
       }
     }
     validationStatus = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,&stackOperationFlag,1,4,0);
   }
-OperationLabelC:
+FinalOperationLabel:
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
