@@ -12929,20 +12929,20 @@ void NetworkStatusProcessorInitialize(void
  * 该函数负责初始化连接管理器，设置连接模板和初始化器回调。
  * 通过内存分配和节点设置来建立连接管理系统。
  */
-void ConnectionManagerInitialize(void
+void ConnectionManagerInitialize(void)
 {
   char StatusBuffer;
-  EngineContext *SystemContext;
+  void *SystemContext;
   int ComparisonResult;
-  MemorySize AllocatedMemory;
-  SystemNode *CurrentNode;
-  SystemNode *PreviousNode;
-  SystemNode *NextNode;
-  StackPointer *TempStackPointer;
-  FunctionCallback *ConnectionCallback;
+  long long AllocatedMemory;
+  void *CurrentNode;
+  void *PreviousNode;
+  void *NextNode;
+  void *ConnectionNode;
+  void *ConnectionCallback;
   
-  SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
+  SystemContext = CoreEngineGetSystemContext();
+  PrimaryStatusBlock = (void **)*SystemContext;
   StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   functionCallback = CoreEngineGetConnectionInitializer;
   TertiaryNode = PrimaryStatusBlock;
