@@ -107,6 +107,7 @@
 #define ProcessCharacterEncodingData FUN_180212e40                // 处理字符编码数据
 #define ProcessCharacterEncodingValidation FUN_180212e60            // 处理字符编码验证
 #define ProcessCharacterCodeLookupEx FUN_180214c50                // 处理字符代码查找扩展
+#define ProcessSystemStackFlagsAndVariables FUN_1801e77d0         // 处理系统栈标志和变量
 #define ProcessCharacterCodeMapping FUN_180214c90                  // 处理字符代码映射
 #define ProcessCharacterCodeRangeValidation FUN_180214cf0          // 处理字符代码范围验证
 #define ProcessCharacterBufferAllocation FUN_1802161d0             // 处理字符缓冲区分配
@@ -199996,7 +199997,7 @@ ProcessUtf8EncodingBuffer(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint
   CoreEnginePointerBuffer78 = &StackProcessingVariable70;
   StackProcessingVariable70 = MemoryAddressMask;
   CoreEngineExecuteSystemEvent(aStackProcessingUnsignedValue68,&SystemCharacterStatusBufferPointer);
-  MemoryAddressMask = FUN_1801e77d0(aSystemStackFlag,&StackProcessingVariable70);
+  MemoryAddressMask = ProcessSystemStackFlagsAndVariables(aSystemStackFlag,&StackProcessingVariable70);
   pPerformanceCounterValue = (long long *)AllocateSystemContextMemory(UnicodeCodePoint,MemoryAddressMask);
   if (pPerformanceCounterValue != (long long *)0x0) {
     (**(code **)(*pPerformanceCounterValue + 0x28))(pPerformanceCounterValue);
@@ -200674,7 +200675,7 @@ uint64_t ProcessUtf8EncodingStatusSetup(uint64_t CharacterCode,uint64_t SystemBu
   SystemRegisterPointerX18 = aMemoryOperationStatus;
   aMemoryOperationStatus[0] = *Utf16EndPointer;
   LocalProcessingStatusFlag = SystemLocalProcessingStatusFlag;
-  pcStack_28 = FUN_18016f990;
+  pcStack_28 = ResetCharacterCode;
   BufferAllocationStatus = (long long *)AllocateSystemContextMemory(Utf16Char,aMemoryOperationStatus);
   pPerformanceCounterValue = BufferAllocationStatus;
   if (BufferAllocationStatus != (long long *)0x0) {
