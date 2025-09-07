@@ -197,6 +197,13 @@
 
 #define InitializeUIMemoryPool InitializeUIMemoryPool
 
+// UI系统函数参数语义化定义
+// RenderUIElement函数参数语义化定义
+#define param_6 RenderTransformParam
+#define param_7 AnimationBlendParam
+#define param_8 RenderOpacityParam
+#define param_9 LayoutAlignmentParam
+
 #define ValidateEventDataStructure ValidateEventDataStructure
 #define ProcessUIComponentRegistration ProcessUIComponentRegistration
 #define ValidateUIComponentData ValidateUIComponentData
