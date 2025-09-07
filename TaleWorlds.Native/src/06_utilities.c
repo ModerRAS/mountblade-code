@@ -80006,7 +80006,18 @@ void Unwind_18090cb90(void)
 
 
 
-void Unwind_18090cba0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到数据缓冲区
+ * 
+ * 该函数负责将默认异常处理器B设置到指定数据缓冲区的特定位置
+ * 用于异常处理机制的配置和初始化
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090cba0
+ */
+void SetDefaultExceptionHandlerToBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x780) = &DefaultExceptionHandlerB;
@@ -80017,7 +80028,15 @@ void Unwind_18090cba0(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_18090cbb0(void)
+/**
+ * @brief 减少系统资源计数器并调用清理函数
+ * 
+ * 该函数负责减少系统资源计数器，并通过系统函数表调用资源清理函数
+ * 用于系统资源的释放和清理
+ * 
+ * @note 原始函数名：Unwind_18090cbb0
+ */
+void DecrementSystemResourceCounterAndCleanup(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -80029,7 +80048,15 @@ void Unwind_18090cbb0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_18090cbc0(void)
+/**
+ * @brief 减少系统资源计数器并调用清理函数C0
+ * 
+ * 该函数负责减少系统资源计数器，并通过系统函数表调用资源清理函数
+ * 用于系统资源的释放和清理，是C0版本的实现
+ * 
+ * @note 原始函数名：Unwind_18090cbc0
+ */
+void DecrementSystemResourceCounterAndCleanupC0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
