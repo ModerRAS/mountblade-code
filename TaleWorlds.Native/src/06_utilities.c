@@ -80113,7 +80113,17 @@ void SetDefaultExceptionHandlerOffset610(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090c7d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器（偏移量0x6b0）
+ * 
+ * 该函数在数据缓冲区的偏移量0x6b0处设置默认异常处理器B。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c7d0
+ */
+void SetDefaultExceptionHandlerOffset6B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x6b0) = &DefaultExceptionHandlerB;
@@ -80122,7 +80132,17 @@ void Unwind_18090c7d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c7e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器（偏移量0x750）
+ * 
+ * 该函数在数据缓冲区的偏移量0x750处设置默认异常处理器B。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c7e0
+ */
+void SetDefaultExceptionHandlerOffset750(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x750) = &DefaultExceptionHandlerB;
@@ -80131,7 +80151,19 @@ void Unwind_18090c7e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c7f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统清理回调函数
+ * 
+ * 该函数检查数据缓冲区中是否存在系统清理回调函数，如果存在则执行该回调。
+ * 回调函数通常用于系统资源清理和状态重置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含回调函数指针
+ * 
+ * @note 原始函数名：Unwind_18090c7f0
+ * @warning 如果回调函数指针为空，函数不会执行任何操作
+ */
+void ExecuteSystemCleanupCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x200) != (int64_t *)0x0) {
@@ -80142,7 +80174,17 @@ void Unwind_18090c7f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c800(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器（偏移量0x7f0）
+ * 
+ * 该函数在数据缓冲区的偏移量0x7f0处设置默认异常处理器B。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c800
+ */
+void SetDefaultExceptionHandlerOffset7F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x7f0) = &DefaultExceptionHandlerB;
@@ -80151,7 +80193,19 @@ void Unwind_18090c800(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c810(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统状态回调函数
+ * 
+ * 该函数检查数据缓冲区中是否存在系统状态回调函数，如果存在则执行该回调。
+ * 回调函数通常用于系统状态检查和更新。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含回调函数指针
+ * 
+ * @note 原始函数名：Unwind_18090c810
+ * @warning 如果回调函数指针为空，函数不会执行任何操作
+ */
+void ExecuteSystemStatusCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x1c8) != (int64_t *)0x0) {
