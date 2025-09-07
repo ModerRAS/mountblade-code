@@ -15721,7 +15721,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
     if ((*(int *)(dataStructurePointer + 0x180) != 0) || (*(int *)(dataStructurePointer + 0x184) != 0)) {
       stackBuffer = 0;
       InitializeSystemContextA0(&stackBuffer,DataStructureHandle,ResourceDescriptor,OperationFlags,systemContext);
-      if (stackBuffer == *(int64_t *)((int64_t)*(int *)(dataStructurePointer + 0x17c) * 8 + 0x180c4f450)) {
+      if (stackBuffer == *(int64_t *)((int64_t)*(int *)(dataStructurePointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
         validationStatus = ProcessSystemDataEC0(dataStructurePointer,DataStructureHandle);
         if ((int)validationStatus == 0) {
           return 0;
@@ -16045,7 +16045,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
   if ((*(int *)(resultPointer + 0x180) != 0) || (*(int *)(resultPointer + 0x184) != 0)) {
     stackValue = 0;
     InitializeSystemContextA0(&stackValue,valueContext,exceptionHandlerContext,processingContext,DestinationContext);
-    if (stackValue == *(int64_t *)((int64_t)*(int *)(resultPointer + 0x17c) * 8 + 0x180c4f450)) {
+    if (stackValue == *(int64_t *)((int64_t)*(int *)(resultPointer + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
       operationResult = ProcessSystemDataEC0(resultPointer,valueContext);
       if ((int)operationResult == 0) {
         return 0;
@@ -16114,7 +16114,7 @@ RangeValidationSuccess:
   if ((*(int *)(calculatedOffset + 0x180) != 0) || (*(int *)(calculatedOffset + 0x184) != 0)) {
     LocalStackOffset = 0;
     InitializeSystemContextA0(&LocalStackOffset);
-    if (LocalStackOffset == *(int64_t *)((int64_t)*(int *)(calculatedOffset + 0x17c) * 8 + 0x180c4f450)) {
+    if (LocalStackOffset == *(int64_t *)((int64_t)*(int *)(calculatedOffset + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
       operationResult = ProcessSystemDataEC0(calculatedOffset,operationBase);
       if ((int)operationResult == 0) {
         return 0;
