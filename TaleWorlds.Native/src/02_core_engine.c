@@ -173785,7 +173785,11 @@ void ProcessUtf8BufferSizeOptimization(int *Utf8InputBuffer,int Utf8BufferSize)
 
 
 
-3e910(long long CharacterCodevoid FUN_18013e910(long long CharacterCode
+/**
+ * @brief 处理UTF-8字符代码转换
+ * @note 原始函数名：FUN_18013e910
+ */
+void ProcessUtf8CharacterCodeConversion(long long CharacterCode)
 {
   long long PrimaryDataSize;
   
