@@ -101,6 +101,12 @@
 #define CONCAT44(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
 #define CONCAT71(mask, condition) ((mask) | ((condition) ? 1 : 0))
 
+// 联合体成员访问宏定义
+#define DataBufferHighWord(dataBuffer) ((dataBuffer)._4_4_)
+#define DataBufferLowWord(dataBuffer) ((dataBuffer)._0_4_)
+#define DataBufferHighByte(dataBuffer) ((dataBuffer)._1_7_)
+#define DataBufferLowByte(dataBuffer) ((dataBuffer)._7_1_)
+
 // 组件偏移量常量定义
 #define COMPONENT_DATA_OFFSET 3                 // 组件数据偏移量
 #define COMPONENT_STATUS_OFFSET 0xe4             // 组件状态偏移量
@@ -14285,7 +14291,7 @@ DataBuffer ProcessUtilityDataAndExecute(int64_t dataContext,int64_t systemContex
  * 
  * @note 原始函数名：ProcessSystemEventA3
  */
-void ProcessSystemEventA3(int64_t eventContext,int64_t systemContext)
+void ProcessSystemEventQueueWithBufferManagement(int64_t eventContext,int64_t systemContext)
 
 {
   int eventStatus;
@@ -19215,9 +19221,9 @@ DataBuffer ValidateDataIntegrityA2(int64_t DataDescriptor,DataBuffer ValidationC
   DataBuffer systemDataStorage;
   
   systemDataBuffer = *(DataBuffer *)(operationBase + 8 + inputAccumulatorRegister * 8);
-  systemDataStorage._4_4_ = (int)((uint64_t)systemDataBuffer >> 0x20);
-  if (systemDataStorage._4_4_ != 0) {
-    *DestinationContext = systemDataStorage._4_4_;
+  DataBufferHighWord(systemDataStorage) = (int)((uint64_t)systemDataBuffer >> 0x20);
+  if (DataBufferHighWord(systemDataStorage) != 0) {
+    *DestinationContext = DataBufferHighWord(systemDataStorage);
     return 0;
   }
   resourcePointer = (DataBuffer *)
