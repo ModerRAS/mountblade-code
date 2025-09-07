@@ -110252,5 +110252,27 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define SetDefaultExceptionHandlerA5 Unwind_1809077c0
 #define SetDefaultExceptionHandlerA6 Unwind_1809077d0
 #define SetDefaultExceptionHandlerA7 Unwind_1809077e0
+
+/**
+ * @brief 默认异常处理器设置函数A8
+ * 
+ * 该函数负责设置默认异常处理器，配置系统的默认异常处理机制
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809077f0
+ */
 #define SetDefaultExceptionHandlerA8 Unwind_1809077f0
+
+/**
+ * @brief 系统状态更新函数A0
+ * 
+ * 该函数负责更新系统状态，维护系统的运行状态信息
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907800
+ */
 #define ProcessSystemStatusUpdateA0 Unwind_180907800
