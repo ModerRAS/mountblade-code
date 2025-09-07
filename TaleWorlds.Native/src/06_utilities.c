@@ -65986,7 +65986,16 @@ void SetDefaultExceptionHandlerA3(void)
 
 
 
-void Unwind_1809077b0(void)
+/**
+ * @brief 设置默认异常处理器A4
+ * 
+ * 该函数将异常处理器指针A4设置为默认异常处理器B。
+ * 这是一个简单的异常处理器重置函数。
+ * 
+ * @note 原始函数名：Unwind_1809077b0
+ * @note 简化实现：设置默认异常处理器
+ */
+void SetDefaultExceptionHandlerA4(void)
 
 {
   ExceptionHandlerPointerA4 = &DefaultExceptionHandlerB;
