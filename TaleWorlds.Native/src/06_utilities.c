@@ -70137,7 +70137,20 @@ void ProcessExceptionDataBufferResourceCleanup(DataBuffer operationBase,int64_t 
  * @param operationFlagA 操作标志A
  * @param operationFlagB 操作标志B
  */
-void Unwind_1809081e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统内存清理处理函数
+ * 
+ * 该函数负责清理系统内存资源，处理内存释放的相关操作。
+ * 它会执行内存清理操作，确保系统内存资源的正确释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809081e0
+ */
+void CleanupSystemMemoryWithValidation(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + ResourceIteratorOffset) + SystemDataOffset30,
@@ -70159,7 +70172,20 @@ void Unwind_1809081e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
  * @param operationFlagA 操作标志A
  * @param operationFlagB 操作标志B
  */
-void Unwind_1809081f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统状态重置处理函数
+ * 
+ * 该函数负责重置系统状态，处理系统状态重置的相关操作。
+ * 它会将系统状态重置为初始状态，确保系统状态的正确性。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809081f0
+ */
+void ResetSystemStateWithCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -70201,7 +70227,20 @@ void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180908210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理函数
+ * 
+ * 该函数负责处理系统异常，包括异常检测、异常恢复和异常清理。
+ * 它会验证系统异常状态，并在异常发生时执行相应的处理逻辑。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180908210
+ */
+void HandleSystemExceptionWithCallback(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -70335,7 +70374,18 @@ void CleanupExceptionDataBuffer(DataBuffer operationBase, int64_t dataBuffer, Da
 
 
 
-void Unwind_180908360(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源清理执行函数
+ * 
+ * 该函数负责执行内存资源的清理操作，通过调用ExecuteMemoryOperation函数
+ * 来清理特定的内存资源，确保系统内存的正确释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908360
+ */
+void ExecuteMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x80) + 0x3b0,0x20,0x20,CleanupResourceHandler,SystemCleanupFlagAlternative);
@@ -70344,7 +70394,15 @@ void Unwind_180908360(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908380(void)
+/**
+ * @brief 互斥锁销毁函数
+ * 
+ * 该函数负责销毁互斥锁资源，释放系统中的同步机制。
+ * 通过调用_Mtx_destroy_in_situ函数来销毁互斥锁，确保系统资源的正确清理。
+ * 
+ * @note 原始函数名：Unwind_180908380
+ */
+void DestroyMutexInSitu(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -70353,7 +70411,18 @@ void Unwind_180908380(void)
 
 
 
-void Unwind_1809083a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源清理执行函数
+ * 
+ * 该函数负责执行系统资源的清理操作，通过调用ExecuteMemoryOperation函数
+ * 来清理特定的系统资源，确保系统资源的正确释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809083a0
+ */
+void ExecuteSystemResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x88) + 8,0x20,0x20,CleanupResourceHandler);
@@ -70362,7 +70431,18 @@ void Unwind_1809083a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809083e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 互斥锁解锁函数
+ * 
+ * 该函数负责解锁互斥锁资源，处理同步机制的释放操作。
+ * 如果解锁操作失败，会抛出C标准错误异常。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809083e0
+ */
+void UnlockMutexWithErrorHandling(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int inputParameter;
@@ -70376,7 +70456,18 @@ void Unwind_1809083e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809083f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据验证处理函数
+ * 
+ * 该函数负责处理数据验证操作，通过调用ExecuteMemoryOperation函数
+ * 来验证数据的完整性和有效性，确保系统数据的正确性。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809083f0
+ */
+void ValidateDataWithMemoryOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,8,0x20,ValidateDataHandler);
