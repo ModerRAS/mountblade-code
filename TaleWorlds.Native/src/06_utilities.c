@@ -3956,31 +3956,31 @@ extern uint64_t ExceptionOffsetValue;
 // 功能：存储全局异常处理器A10的指针
 #define GlobalExceptionHandlerPointerA10 _DAT_180bf96f0
 
-// 原始变量名：_DAT_180bf9750 - 全局异常处理器指针A11
+// 全局异常处理器指针A11
 // 功能：存储全局异常处理器A11的指针
 #define GlobalExceptionHandlerPointerA11 _DAT_180bf9750
 
-// 原始变量名：_DAT_180bf97b0 - 全局异常处理器指针A12
+// 全局异常处理器指针A12
 // 功能：存储全局异常处理器A12的指针
 #define GlobalExceptionHandlerPointerA12 _DAT_180bf97b0
 
-// 原始变量名：_DAT_180c92050 - 默认异常处理器指针A0
+// 默认异常处理器指针A0
 // 功能：存储默认异常处理器A0的指针
 #define DefaultExceptionHandlerPointerA0 _DAT_180c92050
 
-// 原始变量名：_DAT_180bfaef0 - 默认异常处理器指针A1
+// 默认异常处理器指针A1
 // 功能：存储默认异常处理器A1的指针
 #define DefaultExceptionHandlerPointerA1 _DAT_180bfaef0
 
-// 原始变量名：_DAT_180bfb310 - 默认异常处理器指针A2
+// 默认异常处理器指针A2
 // 功能：存储默认异常处理器A2的指针
 #define DefaultExceptionHandlerPointerA2 _DAT_180bfb310
 
-// 原始变量名：_DAT_180bfb730 - 默认异常处理器指针A3
+// 默认异常处理器指针A3
 // 功能：存储默认异常处理器A3的指针
 #define DefaultExceptionHandlerPointerA3 _DAT_180bfb730
 
-// 原始变量名：_DAT_180bf5c30 - 工具系统异常处理器指针5
+// 工具系统异常处理器指针5
 // 功能：存储工具系统的异常处理器指针5
 #define UtilitySystemExceptionHandlerPointer5 _DAT_180bf5c30
 
@@ -6242,7 +6242,7 @@ void* UtilityModuleSecondaryResourcePtr;
  * 
  * @note 原始函数名：ResetUtilityPointers1
  */
-void ResetUtilityPointers1(void);
+void ResetSystemExceptionHandlerPointers(void);
 
 /**
  * @brief 指针重置配置参数
@@ -6259,7 +6259,7 @@ uint32_t UtilityQuaternaryPointerResetConfig;
  * 
  * @note 原始函数名：ResetUtilityPointers2
  */
-void ResetUtilityPointers2(void);
+void ResetSystemResourceManagerPointers(void);
 
 /**
  * @brief 工具重置指针值
