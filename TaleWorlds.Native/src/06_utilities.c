@@ -58597,7 +58597,19 @@ void ExecuteExceptionCallbackChain(DataBuffer operationBase,int64_t dataBuffer,D
 
 
 
-void Unwind_180906400(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理偏移量176处的异常状态
+ * 
+ * 该函数负责清理系统状态中偏移量为176的异常状态，清除相应的标志位
+ * 并释放相关资源。当检测到第1位标志被设置时，执行清理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文和状态信息
+ * 
+ * @note 原始函数名：Unwind_180906400
+ * @note 这是一个异常展开（unwind）处理函数，用于清理特定偏移量的异常状态
+ */
+void CleanupExceptionAtOffset176(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
@@ -58609,7 +58621,19 @@ void Unwind_180906400(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906430(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理偏移量192处的异常状态
+ * 
+ * 该函数负责清理系统状态中偏移量为192的异常状态，清除相应的标志位
+ * 并释放相关资源。当检测到第2位标志被设置时，执行清理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文和状态信息
+ * 
+ * @note 原始函数名：Unwind_180906430
+ * @note 这是一个异常展开（unwind）处理函数，用于清理特定偏移量的异常状态
+ */
+void CleanupExceptionAtOffset192(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
