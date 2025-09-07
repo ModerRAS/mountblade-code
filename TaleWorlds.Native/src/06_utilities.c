@@ -49098,21 +49098,32 @@ void ProcessExceptionHandlersWithValidation(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_180904590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文处理器清理函数A17
+ * 
+ * 该函数负责清理异常上下文处理器，遍历异常数据缓冲区并执行清理操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180904590
+ */
+void CleanupExceptionHandlerContextA17(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
-  int64_t *pdataContext;
+  int64_t *exceptionContextPointer;
   DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
-  pdataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x80) + 0x13a0);
+  exceptionContextPointer = (int64_t *)(*(int64_t *)(dataBuffer + 0x80) + 0x13a0);
   memoryBaseAddress = SystemCleanupFlagAlternative;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x80) + 0x13a8);
-  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
+  for (validationStatusPointer = (DataBuffer *)*exceptionContextPointer; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
     (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
-  if (*pdataContext == 0) {
+  if (*exceptionContextPointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
