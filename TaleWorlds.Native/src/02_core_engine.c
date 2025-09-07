@@ -242557,9 +242557,9 @@ LAB_180214378:
   ProcessSystemEventQueueData(&SystemEventQueueDataTable);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableSecondary,(double)StackFloat58);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableTertiary,(double)StackFloat54);
-  ProcessSystemEventQueueData(&UNK_180a105f0,(double)fStack_4c);
-  ProcessSystemEventQueueData(&UNK_180a10650,(double)StackFloat50);
-  ProcessSystemEventQueueData(&UNK_180a10668,(double)fStack_5c);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableQuaternary,(double)fStack_4c);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableQuinary,(double)StackFloat50);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableSenary,(double)fStack_5c);
   FUN_180845090(*(void *)(SystemContextPointer + 0x368),aSystemPriorityLevel);
   ProcessSystemEventQueueData(&UNK_180a10628,uStack_2c);
   ProcessSystemEventQueueData(&UNK_180a10640,uStack_24);

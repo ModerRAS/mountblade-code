@@ -21179,7 +21179,7 @@ void ProcessFloatingPointDataA0(float inputValue)
         operationResult = SystemOperationResult;
         StackValidationParameterA = &DataProcessingValidationError;
         ValidationDataBuffer = dataPointerD;
-        StackFloatRegisterB = fVar4;
+        StackFloatRegisterB = LoopCounterFloat;
         StackFloatRegisterC = floatValidationValue;
         operationResult = ValidateDataIntegrityA0(ValidationFloatValue,&StackValidationBuffer);
         if (operationResult != 0) GOTO_ValidationFailure;
@@ -21195,7 +21195,7 @@ void ProcessFloatingPointDataA0(float inputValue)
         operationResult = SystemOperationResult;
         StackValidationParameterA = &DataProcessingContextA0;
         ValidationDataBuffer = dataPointerD;
-        StackFloatRegisterB = fVar4;
+        StackFloatRegisterB = LoopCounterFloat;
         StackFloatRegisterC = floatValidationValue;
         operationResult = ValidateDataIntegrityA0(ValidationFloatValue,&StackValidationBuffer);
         if (operationResult != 0) GOTO_ValidationFailure;
