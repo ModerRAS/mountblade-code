@@ -732,8 +732,8 @@ void* UIFontDatabase;
 void* UIAnimationSystem;
 
  新增UI系统函数宏定义
- 原始函数名：FUN_18076b520 - 字符串比较索引函数
-#define GetUIStringCompareIndex FUN_18076b520
+ 原始函数名：GetUIStringCompareIndex - 字符串比较索引函数
+#define GetUIStringCompareIndex GetUIStringCompareIndex
 
  原始函数名：UNK_18095af38 - UI字符串常量
 #define UIStringConstant UNK_18095af38
@@ -1120,51 +1120,34 @@ void* UIGestureCoordinates;
 #define UIDataConversionConstant _DAT_180a401b0
 #define UIXOREncryptionKey _DAT_180a40580
 
- UI系统渲染参数表宏定义
- #define UIRenderParameterTable0 UNK_18094e25c
- #define UIRenderParameterTable1 UNK_18094e26c
- #define UIRenderParameterTable2 UNK_18094e270
- UNK_18094e274 - UI渲染参数表3
+ // UI系统渲染参数表宏定义
+#define UIRenderParameterTable0 UNK_18094e25c
+#define UIRenderParameterTable1 UNK_18094e26c
+#define UIRenderParameterTable2 UNK_18094e270
 #define UIRenderParameterTable3 UNK_18094e274
- UNK_18094e27c - UI渲染参数表4
 #define UIRenderParameterTable4 UNK_18094e27c
- UNK_18094e280 - UI渲染参数表5
 #define UIRenderParameterTable5 UNK_18094e280
 
- UI系统数据缓冲区宏定义
- UNK_1809535b4 - UI数据缓冲区A
+ // UI系统数据缓冲区宏定义
 #define UIDataBufferA UNK_1809535b4
- UNK_1809535bc - UI数据缓冲区B
 #define UIDataBufferB UNK_1809535bc
- UNK_180953648 - UI数据缓冲区C
 #define UIDataBufferC UNK_180953648
- UNK_180953668 - UI数据缓冲区D
 #define UIDataBufferD UNK_180953668
- UNK_180953688 - UI数据缓冲区E
 #define UIDataBufferE UNK_180953688
 
- UI系统坐标数据表宏定义
- UNK_1809536a6 - UI坐标数据表A
+ // UI系统坐标数据表宏定义
 #define UICoordinateDataTableA UNK_1809536a6
- UNK_1809536a8 - UI坐标数据表B
 #define UICoordinateDataTableB UNK_1809536a8
 
- UI系统函数结果表宏定义
- UNK_1809535ec - UI函数结果表A
+ // UI系统函数结果表宏定义
 #define UIFunctionResultTableA UNK_1809535ec
- UNK_1809535e8 - UI函数结果表B
 #define UIFunctionResultTableB UNK_1809535e8
- UNK_180954788 - UI函数结果表C
 #define UIFunctionResultTableC UNK_180954788
- UNK_1809535d8 - UI函数结果表D
 #define UIFunctionResultTableD UNK_1809535d8
 
- UI系统验证数据表宏定义
- UNK_180954770 - UI验证数据表A
+ // UI系统验证数据表宏定义
 #define UIValidationDataTableA UNK_180954770
- UNK_1809536c0 - UI验证数据表B
 #define UIValidationDataTableB UNK_1809536c0
- UNK_180953704 - UI验证数据表C
 #define UIValidationDataTableC UNK_180953704
 
  UI系统数据表宏定义
@@ -162723,7 +162706,7 @@ int FUN_180769c60(longlong *uiContext,longlong dataSource,int targetBuffer,int b
   if ((resultPointer != 0) && (uiContext[0x29] == 0)) {
     EventTypeCode = func_0x00018076b690(resultPointer);
     *(undefined4 *)(uiBufferData + 0x2a) = EventTypeCode;
-    contextData = FUN_18076b520(resultPointer);
+    contextData = GetUIStringCompareIndex(resultPointer);
     uiContext[0x29] = contextData;
   }
   localInt4 = *(int *)((longlong)uiContext + 0x164);
@@ -164232,7 +164215,7 @@ char * FUN_18076b3b0(char *uiContext,undefined8 dataSource,int targetBuffer)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18076b520(char *uiContext)
+longlong GetUIStringCompareIndex(char *uiContext)
 
 {
   char localChar1;
@@ -200886,7 +200869,7 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,undefined8 *targetBuff
           plocalLong4[0x3c] = 0;
         }
         else {
-          stringCompareIndex = FUN_18076b520(dataSource);
+          stringCompareIndex = GetUIStringCompareIndex(dataSource);
           plocalLong4[0x3c] = stringCompareIndex;
           if (stringCompareIndex == 0) goto LAB_18078cd2a;
         }
