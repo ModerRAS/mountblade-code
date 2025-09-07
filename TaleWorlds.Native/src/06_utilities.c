@@ -58059,7 +58059,7 @@ void ExecuteSystemCallbackB(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906e20(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteSystemCallbackC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x170) != (int64_t *)0x0) {
@@ -58070,7 +58070,7 @@ void Unwind_180906e20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906e30(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteSystemCallbackD(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x178) != (int64_t *)0x0) {
@@ -58093,7 +58093,7 @@ void Unwind_180906e40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionHandlerCallbackA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -58107,7 +58107,7 @@ void Unwind_180906e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180906e60(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteSystemCallbackE(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x128) != (int64_t *)0x0) {
@@ -58118,7 +58118,7 @@ void Unwind_180906e60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906e70(DataBuffer operationBase,int64_t dataBuffer)
+void SetupExceptionDataTableA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -58131,7 +58131,7 @@ void Unwind_180906e70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906e80(DataBuffer operationBase,int64_t dataBuffer)
+void SetupExceptionDataTableB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x178) = &ExceptionDataTable6;
@@ -58140,7 +58140,7 @@ void Unwind_180906e80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906e90(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteValidationContextCallbackA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -58154,7 +58154,7 @@ void Unwind_180906e90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906ea0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteSystemCallbackF(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xd0) != (int64_t *)0x0) {
@@ -58165,7 +58165,7 @@ void Unwind_180906ea0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906eb0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteSystemCallbackG(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xb0) != (int64_t *)0x0) {
@@ -66240,12 +66240,12 @@ void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuf
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
-  ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,InitializeSystemMemoryA0);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = validationStatusPointer[0xffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     ProcessDataBlocks(resourceIterator);
@@ -66388,12 +66388,12 @@ void ValidateSystemResources(DataBuffer operationBase,int64_t dataBuffer)
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
-  ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,InitializeSystemMemoryA0);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = validationStatusPointer[0xffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     ProcessDataBlocks(resourceIterator);
@@ -66465,7 +66465,7 @@ void ExecuteResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   ProcessSystemParametersWithValidation(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   ProcessSystemParametersWithValidation(calculatedOffset + 0x81a8,*(DataBuffer *)(calculatedOffset + 0x81b8));
   ProcessSystemParametersWithValidation(calculatedOffset + 0x8178,*(DataBuffer *)(calculatedOffset + 0x8188));
-  ExecuteMemoryOperation(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(calculatedOffset + 0x80d8,0x20,5,InitializeSystemMemoryA0);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -67291,12 +67291,12 @@ void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
   ProcessSystemParametersWithValidation(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
-  ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(validationStatusPointer + 0x101b,0x20,5,InitializeSystemMemoryA0);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(validationStatusPointer + 0xffd,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = validationStatusPointer[0xffa];
   for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     ProcessDataBlocks(resourceIterator);
@@ -67368,7 +67368,7 @@ void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   ProcessSystemParametersWithValidation(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   ProcessSystemParametersWithValidation(calculatedOffset + 0x81a8,*(DataBuffer *)(calculatedOffset + 0x81b8));
   ProcessSystemParametersWithValidation(calculatedOffset + 0x8178,*(DataBuffer *)(calculatedOffset + 0x8188));
-  ExecuteMemoryOperation(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(calculatedOffset + 0x80d8,0x20,5,InitializeSystemMemoryA0);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
