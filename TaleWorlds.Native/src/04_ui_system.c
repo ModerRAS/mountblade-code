@@ -97,6 +97,9 @@
 #define CalculateUILayoutMetrics FUN_18069ccd0
 #define SynchronizeUIResources FUN_18069d8a0
 
+// UI系统函数宏定义 - 验证UI数据并处理缓冲区操作
+#define ValidateUIDataAndProcessBufferOperation FUN_180706f00
+
 // UI系统函数宏定义 - 处理UI浮点数据变换
 #define ProcessUIFloatDataTransformation FUN_18072b160
 
@@ -72290,75 +72293,75 @@ int ValidateUIDataAndProcessBufferOperation(undefined8 uiContext,undefined8 data
   int bufferParam2;
   int bufferParam3;
   
-  localInt5 = unmodifiedEBX + 2;
-  uStack0000000000000078 = 1;
-  if (0 < (int)(unmodifiedEBP - 1U)) {
-    MaxProcessingCount = (ulonglong)(unmodifiedEBP - 1U);
-    psVar4 = unmodifiedRSI;
+  calculatedSize = baseOffset + 2;
+  processingFlag = 1;
+  if (0 < (int)(dataCount - 1U)) {
+    processingCounter = (ulonglong)(dataCount - 1U);
+    stringPointer = dataSourcePointer;
     do {
-      sVar1 = *psVar4;
-      psVar4 = psVar4 + 1;
-      localInt5 = localInt5 + sVar1 + (int)CONCAT71((int7)((ulonglong)unmodifiedR12 >> 8),register10W <= sVar1) + 1;
-      MaxProcessingCount = MaxProcessingCount - 1;
-    } while (MaxProcessingCount != 0);
+      characterLength = *stringPointer;
+      stringPointer = stringPointer + 1;
+      calculatedSize = calculatedSize + characterLength + (int)CONCAT71((int7)((ulonglong)stringDataOffset >> 8),maxCharacterLength <= characterLength) + 1;
+      processingCounter = processingCounter - 1;
+    } while (processingCounter != 0);
   }
-  localInt5 = localInt5 + unmodifiedRSI[targetBuffer + -1];
-  if (unmodifiedR13D < localInt5) {
-    localInt5 = -2;
+  calculatedSize = calculatedSize + dataSourcePointer[targetBuffer + -1];
+  if (bufferSize < calculatedSize) {
+    calculatedSize = -2;
   }
   else {
-    pbVar8 = register11 + 2;
-    *register11 = *unmodifiedR14 | 3;
-    localInt9 = unmodifiedR13D - localInt5;
-    register11[1] = (byte)unmodifiedEBP | 0x80;
-    if (stackParam000000a0 == 0) {
-      localInt9 = (int)unmodifiedR12;
+    outputBuffer = targetBufferPointer + 2;
+    *targetBufferPointer = *sourceBufferPointer | 3;
+    remainingSize = bufferSize - calculatedSize;
+    targetBufferPointer[1] = (byte)dataCount | 0x80;
+    if (bufferParam3 == 0) {
+      remainingSize = (int)stringDataOffset;
     }
-    if (localInt9 != 0) {
-      register11[1] = (byte)unmodifiedEBP | 0xc0;
-      uiValidationResult = (localInt9 + -1) / 0xff;
-      if (0 < uiValidationResult) {
-        pbVar7 = pbVar8;
-        for (stringCompareIndex = (longlong)uiValidationResult; stringCompareIndex != 0; stringCompareIndex = stringCompareIndex + -1) {
-          *pbVar7 = 0xff;
-          pbVar7 = pbVar7 + 1;
+    if (remainingSize != 0) {
+      targetBufferPointer[1] = (byte)dataCount | 0xc0;
+      validationResult = (remainingSize + -1) / 0xff;
+      if (0 < validationResult) {
+        bufferPointer = outputBuffer;
+        for (stringIndex = (longlong)validationResult; stringIndex != 0; stringIndex = stringIndex + -1) {
+          *bufferPointer = 0xff;
+          bufferPointer = bufferPointer + 1;
         }
-        pbVar8 = pbVar8 + uiValidationResult;
+        outputBuffer = outputBuffer + validationResult;
       }
-      *pbVar8 = (char)localInt9 + -1 + (char)uiValidationResult;
-      pbVar8 = pbVar8 + 1;
-      localInt5 = localInt5 + localInt9;
+      *outputBuffer = (char)remainingSize + -1 + (char)validationResult;
+      outputBuffer = outputBuffer + 1;
+      calculatedSize = calculatedSize + remainingSize;
     }
-    stringCompareIndex = unmodifiedR12;
-    if (0 < unmodifiedEBP + -1) {
+    stringIndex = stringDataOffset;
+    if (0 < dataCount + -1) {
       do {
-        localInt9 = func_0x00018070f790((int)unmodifiedRSI[stringCompareIndex],pbVar8);
-        stringCompareIndex = stringCompareIndex + 1;
-        pbVar8 = pbVar8 + localInt9;
-      } while (stringCompareIndex < unmodifiedEBP + -1);
+        remainingSize = func_0x00018070f790((int)dataSourcePointer[stringIndex],outputBuffer);
+        stringIndex = stringIndex + 1;
+        outputBuffer = outputBuffer + remainingSize;
+      } while (stringIndex < dataCount + -1);
     }
-    if (stackParam00000098 != 0) {
-      localInt9 = func_0x00018070f790((int)unmodifiedRSI[lStackX_20 + -1],pbVar8);
-      pbVar8 = pbVar8 + localInt9;
+    if (bufferParam2 != 0) {
+      remainingSize = func_0x00018070f790((int)dataSourcePointer[stackOffset + -1],outputBuffer);
+      outputBuffer = outputBuffer + remainingSize;
     }
-    if (0 < unmodifiedEBP) {
+    if (0 < dataCount) {
                      WARNING: Subroutine does not return
-      memmove(pbVar8,*unmodifiedR15,(longlong)*unmodifiedRSI);
+      memmove(outputBuffer,*dataReference,(longlong)*dataSourcePointer);
     }
-    if (stackParam000000a0 != 0) {
-      stringCompareIndex = (stackParam00000090 + stackParam00000088) - (longlong)pbVar8;
-      if ((byte *)(stackParam00000090 + stackParam00000088) < pbVar8) {
-        stringCompareIndex = unmodifiedR12;
+    if (bufferParam3 != 0) {
+      stringIndex = (bufferParam1 + bufferAddress) - (longlong)outputBuffer;
+      if ((byte *)(bufferParam1 + bufferAddress) < outputBuffer) {
+        stringIndex = stringDataOffset;
       }
-      if (stringCompareIndex != 0) {
-        for (; stringCompareIndex != 0; stringCompareIndex = stringCompareIndex + -1) {
-          *pbVar8 = 0;
-          pbVar8 = pbVar8 + 1;
+      if (stringIndex != 0) {
+        for (; stringIndex != 0; stringIndex = stringIndex + -1) {
+          *outputBuffer = 0;
+          outputBuffer = outputBuffer + 1;
         }
       }
     }
   }
-  return localInt5;
+  return calculatedSize;
 }
 
 
