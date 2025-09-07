@@ -20167,45 +20167,67 @@ DataBuffer GetSystemConfigurationSize(void)
 // 函数: void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *resultCounter)
 // 功能：处理工具系统数据，包括数据验证、状态更新和内存管理
 // 参数：systemContext-系统上下文指针，dataBuffer-数据缓冲区，resultCounter-结果计数器
-// 返回值：无
-void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *resultCounter)
+/**
+ * @brief 处理工具系统数据
+ * 
+ * 该函数负责处理工具系统的数据，包括数据验证、类型检查、内存操作等。
+ * 函数会遍历系统上下文中的数据，根据不同的数据类型执行相应的处理操作。
+ * 
+ * 主要功能包括：
+ * - 数据类型识别和验证
+ * - 浮点数处理和计算
+ * - 内存管理和数据复制
+ * - 安全检查和异常处理
+ * 
+ * @param systemContext 系统上下文指针，包含系统状态和配置信息
+ * @param dataBuffer 数据缓冲区指针，用于存储处理结果
+ * @param resultCounter 结果计数器指针，用于统计处理结果
+ * 
+ * @note 原始函数名：FUN_180892bd0
+ * @warning 此函数包含复杂的数据处理逻辑，确保输入参数的有效性
+ * @see ValidateSystemConfiguration, CleanupAndValidateDataStructure, ExecuteSecurityCheck
+ */
+void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *resultCounter)
 
 {
-  byte statusFlag;
-  int64_t memoryOffset;
-  char dataType;
-  int currentIndex;
-  DataBuffer callbackResult;
-  int64_t timeDelta;
-  int64_t iterationCount;
-  int maxIndex;
-  int64_t dataPointer;
-  float firstValue;
-  float secondValue;
-  ByteFlag securityBuffer [68];
-  DataWord checksumValue;
-  int *resultCounterPtr;
-  int64_t baseAddress;
-  int64_t arrayOffset;
-  int64_t tempArray [13];
-  ByteFlag processingDataBuffer [1536];
-  uint64_t securityChecksum;
+  // 系统状态和控制变量
+  byte systemStatusFlag;                    // 系统状态标志
+  int64_t memoryOffset;                      // 内存偏移量
+  char recordDataType;                       // 记录数据类型
+  int currentRecordIndex;                    // 当前记录索引
+  DataBuffer operationCallbackResult;        // 操作回调结果
+  int64_t processingTimeDelta;               // 处理时间差
+  int64_t recordIterationCount;              // 记录迭代计数
+  int maximumRecordIndex;                    // 最大记录索引
+  int64_t recordDataPointer;                 // 记录数据指针
+  float primaryFloatValue;                   // 主要浮点数值
+  float secondaryFloatValue;                 // 次要浮点数值
+  ByteFlag securityValidationBuffer [68];    // 安全验证缓冲区
+  DataBuffer dataChecksumValue;              // 数据校验和值
+  int *resultCounterReference;               // 结果计数器引用
+  int64_t systemBaseAddress;                 // 系统基地址
+  int64_t recordArrayOffset;                 // 记录数组偏移量
+  int64_t temporaryArray [13];               // 临时数组
+  ByteFlag dataProcessingBuffer [1536];       // 数据处理缓冲区
+  uint64_t dataSecurityChecksum;             // 数据安全校验和
   
   // 临时处理变量
-  DataWord inputDataWord;                  // 输入数据字
-  ByteFlag SecurityCheckBufferA [32];     // 安全检查缓冲区A
-  ByteFlag dataCopyBuffer [1024];         // 数据复制缓冲区
-  int64_t *StackIntegerPointerC;          // 栈整数指针C
+  DataWord inputProcessingDataWord;          // 输入处理数据字
+  ByteFlag securityValidationBufferA [32];   // 安全验证缓冲区A
+  ByteFlag dataCopyDestinationBuffer [1024]; // 数据复制目标缓冲区
+  int64_t *stackIntegerPointerC;            // 栈整数指针C
   
-  securityChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)securityValidationBuffer;
-  currentIndex = *(int *)(systemContext + 0xac);
-  iterationCount = (int64_t)currentIndex;
-  resultCounterPtr = resultCounter;
+  // 初始化安全校验和
+  dataSecurityChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)securityValidationBuffer;
+  // 初始化系统状态变量
+  currentRecordIndex = *(int *)(systemContext + 0xac);
+  recordIterationCount = (int64_t)currentRecordIndex;
+  resultCounterReference = resultCounter;
   
   // 初始化临时处理变量
-  inputDataWord = 0;
-  memset(SecurityCheckBufferA, 0, sizeof(SecurityCheckBufferA));
-  memset(dataCopyBuffer, 0, sizeof(dataCopyBuffer));
+  inputProcessingDataWord = 0;
+  memset(securityValidationBufferA, 0, sizeof(securityValidationBufferA));
+  memset(dataCopyDestinationBuffer, 0, sizeof(dataCopyDestinationBuffer));
   if (currentIndex < *(int *)(systemContext + 0x20)) {
     baseAddress = *(int64_t *)(systemContext + 0x18);
     arrayOffset = iterationCount * 3;
