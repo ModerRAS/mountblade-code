@@ -3598,9 +3598,9 @@
 #define DataConfigurationTableA8 UNK_180986850
 
 // 缺失的变量定义
-// 原始变量名：UNK_180986e70 - 内存分配配置表
+// 原始变量名：SystemMemoryAllocationBuffer - 内存分配配置表
 // 功能：存储内存分配相关的配置信息
-#define MemoryAllocationConfigurationTable UNK_180986e70
+#define MemoryAllocationConfigurationTable SystemMemoryAllocationBuffer
 
 // 原始变量名：UNK_1809863f8 - 数据处理状态表A0
 // 功能：存储数据处理状态信息
@@ -21134,7 +21134,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
       operationResult = *(int *)(currentResource + 0x28);
       if (operationResult != 1) {
         stackGuard = stackGuard & SystemCleanupFlag00000000;
-        bufferPointer = (int64_t *)&UNK_180982378;
+        bufferPointer = (int64_t *)&DataValidationBufferA;
         contextArray[0] = (int64_t *)CONCAT44(contextArray[0]._4_4_,operationResult);
         bufferIndex = ValidateDataIntegrityA0(dataContext,&bufferPointer);
         if (bufferIndex != 0) goto ProcessCheckpointBufferValidation;
@@ -21148,7 +21148,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
         do {
           currentResource = dataContext[1];
           validationStack2d0 = 0;
-          pointerStack2d8 = &UNK_1809823f8;
+          pointerStack2d8 = &ValidationStackPointer;
           processedValue = SUB84(resourceIterator,0);
           validationContextPointer3 = (int64_t *)(validationContext5 + 0xe0 + (int64_t)validationContextPointer0);
           validationContext1 = *validationContextPointer3;
@@ -21206,7 +21206,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             uStack_2bc = auStack_2f0._4_4_;
             fStack_2c8 = afStack_348[0];
             uStack_2d0 = 0;
-            puStack_2d8 = &UNK_180982260;
+            puStack_2d8 = &ValidationContextBuffer;
             uStack_2c4 = uStack_2c4 & 0xffffff00;
             if (*(int *)(validationContext1 + 0x58) < 1) {
               exceptionDataBuffer2 = &SystemResourceDataBuffer;
@@ -21225,7 +21225,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
               statusCounter = (uint64_t)(lStack_320 * 48000) /
                       (uint64_t)*(uint *)((int64_t)operationBase + 0x1c);
               calculatedIndex = operationBase[2];
-              plStack_340 = (int64_t *)&UNK_180986390;
+              plStack_340 = (int64_t *)&SystemValidationTable;
               uStack_338 = uStack_338 & SystemCleanupFlag00000000;
               operationBase[2] = statusCounter;
               aplStack_330[0] = validationContextPointer6;
@@ -21474,7 +21474,7 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
       if (validationContext != 0) {
         securityCheckValue = memoryBaseAddress;
       }
-      puStack_28 = &UNK_180986390;
+      puStack_28 = &SystemValidationTable;
       operationResult = ValidateDataIntegrityA0(operationBase,&puStack_28);
       if ((int)operationResult != 0) {
         return operationResult;
@@ -24853,7 +24853,7 @@ DataBuffer ResetDataCacheA0(void)
             return 0x26;
           }
           validationStatusPointer[1] = stackFramePointer;
-          *validationStatusPointer = &UNK_180986940;
+          *validationStatusPointer = &ValidationStatusTable;
           *(DataWord *)(validationStatusPointer + 2) = 1;
           *(int *)(validationStatusPointer + 3) = (int)stackFramePointer;
           **(DataBuffer **)(destinationIndexRegister + 0x48) = validationStatusPointer;
@@ -32160,7 +32160,7 @@ ValidationErrorHandler5:
         if ((int)uStack_80 != 0) {
           for (; (puStack_88 <= poperationResult && (poperationResult < puStack_88 + (int)uStack_80));
               poperationResult = poperationResult + 1) {
-            memoryPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x28,&UNK_180986e70,0xc1c,
+            memoryPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x28,&SystemMemoryAllocationBuffer,0xc1c,
                                   0,0,1);
             if (memoryPointer == 0) {
               memoryBaseAddress = 0x26;
@@ -32344,7 +32344,7 @@ ValidationErrorHandler5:
     if (operationStatus != 0) {
       pdataFlags = *(DataWord **)(stackFramePointer + -0x29);
       for (pvalidationOutcome = pdataFlags; (pdataFlags <= pvalidationOutcome && (pvalidationOutcome < pdataFlags + operationStatus)); pvalidationOutcome = pvalidationOutcome + 1) {
-        resourceIterator = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x28,&UNK_180986e70,0xc1c);
+        resourceIterator = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x28,&SystemMemoryAllocationBuffer,0xc1c);
         if (resourceIterator == 0) {
           memoryBaseAddress = 0x26;
           goto ProcessCheckpointValidationError4;
@@ -48576,7 +48576,7 @@ void Unwind_180904af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_180904b00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x40) = &UNK_1809fe210;
+  **(DataBuffer **)(dataBuffer + 0x40) = &SystemDataBuffer;
   return;
 }
 
@@ -48739,7 +48739,7 @@ void Catch_180904c60(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180904db0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x50) = &UNK_1809fe210;
+  **(DataBuffer **)(dataBuffer + 0x50) = &SystemDataBuffer;
   return;
 }
 
@@ -51359,7 +51359,7 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t loopCounter;
   
   poperationResult = *(DataBuffer **)(dataBuffer + 0x40);
-  *poperationResult = &UNK_180a07cd0;
+  *poperationResult = &OperationResultBuffer;
   *(ByteFlag *)((int64_t)poperationResult + 0x162) = 1;
   pdataContext = poperationResult + 0x1a;
   plStackX_20 = pdataContext;
@@ -51970,7 +51970,7 @@ void Unwind_1809058f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180905900(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x48) = &UNK_180a3e470;
+  **(DataBuffer **)(dataBuffer + 0x48) = &ResourceValidationBuffer;
   return;
 }
 
@@ -52144,7 +52144,7 @@ void Unwind_180905950(DataBuffer operationBase,int64_t dataBuffer)
   uint64_t loopCounter;
   
   poperationResult = *(DataBuffer **)(dataBuffer + 0x2e8);
-  *poperationResult = &UNK_180a07cd0;
+  *poperationResult = &OperationResultBuffer;
   *(ByteFlag *)((int64_t)poperationResult + 0x162) = 1;
   pdataContext = poperationResult + 0x1a;
   plStackX_20 = pdataContext;
@@ -53485,13 +53485,13 @@ void ExecuteHandlerAtOffset178(DataBuffer systemContext,int64_t contextData,Data
  * @return void 无返回值
  * 
  * @note 此函数用于初始化系统处理器配置
- * @warning UNK_1809ff488 的具体功能需要进一步分析
+ * @warning ExceptionDataBufferA 的具体功能需要进一步分析
  * @see SetUnknownHandlerAtOffset60, SetExceptionHandlerAtOffset30
  */
 void SetUnknownHandlerAtOffset50(DataBuffer systemContext,int64_t contextData)
 
 {
-  **(DataBuffer **)(contextData + 0x50) = &UNK_1809ff488;
+  **(DataBuffer **)(contextData + 0x50) = &ExceptionDataBufferA;
   return;
 }
 
@@ -53509,13 +53509,13 @@ void SetUnknownHandlerAtOffset50(DataBuffer systemContext,int64_t contextData)
  * @return void 无返回值
  * 
  * @note 此函数用于初始化系统处理器配置
- * @warning UNK_1809ff488 的具体功能需要进一步分析
+ * @warning ExceptionDataBufferA 的具体功能需要进一步分析
  * @see SetUnknownHandlerAtOffset50, SetExceptionHandlerAtOffset30
  */
 void SetUnknownHandlerAtOffset60(DataBuffer systemContext,int64_t contextData)
 
 {
-  **(DataBuffer **)(contextData + 0x60) = &UNK_1809ff488;
+  **(DataBuffer **)(contextData + 0x60) = &ExceptionDataBufferA;
   return;
 }
 
@@ -99822,4 +99822,63 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define SystemSecurityValidationFlagA35 UNK_180a399a8
 #define SystemSecurityValidationFlagA36 UNK_180a399c0
 #define SystemSecurityValidationFlagA37 UNK_180a399e0
+
+// 数据验证缓冲区宏定义 - 美化UNK_变量
+#define DataValidationBufferA UNK_180982378
+#define ValidationStackPointer UNK_1809823f8
+#define ValidationContextBuffer UNK_180982260
+#define SystemValidationTable UNK_180986390
+#define ValidationStatusTable UNK_180986940
+#define SystemDataBuffer UNK_1809fe210
+#define ResourceValidationBuffer UNK_180a3e470
+#define OperationResultBuffer UNK_180a07cd0
 #define SystemSecurityValidationFlagA38 UNK_180a399f0
+
+// 系统数据缓冲区宏定义 - 美化剩余的UNK_变量
+#define ExceptionDataBufferA0 UNK_180a02e68
+#define MemoryBaseAddressA0 UNK_180a01668
+#define DataBufferPointerA0 UNK_180a07218
+#define DataBufferPointerA1 UNK_180a05068
+#define DataBufferPointerA2 UNK_180a05240
+#define SystemMemoryAllocationBuffer SystemMemoryAllocationBuffer
+#define ExceptionDataBufferA ExceptionDataBufferA
+#define ResourceExceptionHandlerBuffer UNK_1809ffa18
+#define ResourceTableA UNK_180a14bb8
+#define ResourceTableB UNK_180a14c60
+#define ExceptionCleanupBuffer UNK_180a14d00
+#define ThreadLocalStorageBuffer UNK_18098b928
+#define SystemResourcePointer UNK_180a17010
+#define SystemConfigurationBuffer UNK_1809fcca0
+#define SystemStateBuffer UNK_1809fcd18
+#define SystemControlBuffer UNK_1809fcc88
+#define SystemExecutionBuffer UNK_180a05168
+#define DataBufferPointerA3 UNK_180a05168
+
+// 系统数据表宏定义 - 美化DAT_变量
+#define SystemValidation基准常量A0 _DAT_180c4eaa0
+#define SystemValidation基准常量A1 _DAT_180c4eaa4
+#define SystemResourceIteratorTable _DAT_180c86938
+#define SystemFunctionPointerTable _DAT_180c86968
+#define SystemInputParameterTable _DAT_180c82868
+#define SystemMemoryContextTable _DAT_180bfc171
+#define SystemMemoryPointerTable _DAT_180bfc170
+#define SystemMemoryCapacityTable _DAT_180bfc118
+#define SystemMemoryBaseTable _DAT_180bfc110
+#define SystemMemoryContextHighByteTable SecondaryMemoryContextHighByte
+#define SystemMemoryContextExtendedTable _DAT_180bfc188
+#define SystemMemoryBaseExtendedTable _DAT_180bfc180
+#define SystemResourceListEndTable _DAT_180bfa2f0
+#define SystemResourceCurrentTable _DAT_180bfa2e8
+#define SystemResourceListEndTableA1 _DAT_180bfa310
+#define SystemResourceCurrentTableA1 _DAT_180bfa308
+#define SystemResourceListEndTableA2 _DAT_180bfa330
+#define SystemResourceCurrentTableA2 _DAT_180bfa328
+#define SystemExceptionHandlerPointerTable _DAT_180bf9bd0
+#define SystemExceptionHandlerPointerTableA1 _DAT_180bf9f30
+#define SystemExceptionHandlerPointerTableA2 _DAT_180bf9f90
+#define SystemExceptionHandlerPointerTableA3 _DAT_180bf9ff0
+#define SystemExceptionHandlerPointerTableA4 _DAT_180bfa290
+#define SystemResourceDataTable _DAT_180c92498
+#define SystemResourceDataTableA1 _DAT_180c92488
+#define DefaultExceptionHandlerBPointerTable _DAT_180bf6558
+#define SystemExceptionHandlerStateTable _DAT_180d49f80
