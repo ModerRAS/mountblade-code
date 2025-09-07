@@ -119481,15 +119481,26 @@ void PerformNoOperationBackup(void)
 
 
 
-uint64_t * FUN_180123460(uint64_t *CharacterCode,long long CharacterCodeSize,byte *Utf8InputPointer
+/**
+ * @brief 初始化UTF-8到UTF-16字符编码转换器
+ * 
+ * 该函数负责初始化UTF-8到UTF-16字符编码转换器，设置转换器的初始状态和参数
+ * 包括字符代码处理、内存分配、数据验证等操作
+ * 
+ * @param CharacterCode 字符代码指针，用于存储转换后的字符数据
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF-8输入数据指针
+ * @return uint64_t* 返回初始化后的字符代码指针
+ */
+uint64_t * InitializeUtf8ToUtf16Converter(uint64_t *CharacterCode,long long CharacterCodeSize,byte *Utf8InputPointer)
 {
   byte CurrentByteValue;
-  byte *pHighByte;
+  byte *HighBytePointer;
   int MemoryMatchResult;
   uint64_t MemoryAddressMask;
   long long AllocatedMemorySize;
   void *CurrentNode;
-  uint SystemByteValue;
+  uint SystemChecksumValue;
   
   *(void *)((long long)CharacterCode + 0x14) = 0;
   *(void *)((long long)CharacterCode + 0x1c) = 0;
@@ -119508,7 +119519,7 @@ uint64_t * FUN_180123460(uint64_t *CharacterCode,long long CharacterCodeSize,byt
   *(void *)((long long)CharacterCode + 0xa4) = 0;
   CharacterCode[0x1e] = 0;
   CharacterCode[0x1f] = 0;
-  FUN_180120b10(CharacterCode + 0x20,CharacterCodeSize,Utf8InputPointer,CharacterCodeSize,0xfffffffffffffffe);
+  InitializeUtf8EncodingBuffer(CharacterCode + 0x20,CharacterCodeSize,Utf8InputPointer,CharacterCodeSize,0xfffffffffffffffe);
   CharacterCode[0x43] = 0;
   CharacterCode[0x44] = 0;
   *(uint32_t *)(CharacterCode + 0x45) = 0x7f7fffff;
@@ -119569,7 +119580,7 @@ uint64_t * FUN_180123460(uint64_t *CharacterCode,long long CharacterCodeSize,byt
     pHighByte = pHighByte + 1;
   }
   *(uint *)(CharacterCode + 1) = ~SystemByteValue;
-  FUN_18011d940(CharacterCode + 0x43);
+  InitializeCharacterValidationTable(CharacterCode + 0x43);
   *(void *)((long long)CharacterCode + 0xc) = 0;
   CharacterCode[5] = 0;
   *(uint32_t *)(CharacterCode + 6) = 0;
