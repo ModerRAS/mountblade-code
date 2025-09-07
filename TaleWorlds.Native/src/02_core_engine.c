@@ -126641,7 +126641,7 @@ float * FUN_1801296e0(float *SystemContextPointer,long long Utf8BufferSize,int U
   else {
     plStack_238[0xd] = *(long long *)(DataStructureCounter + 0x1c0c);
     if (*(float *)((long long)plStack_238 + 0x6c) != 0.0) {
-      FloatValue33 = (float)FUN_18010e7a0();
+      FloatValue33 = (float)GetSystemTime();
       FloatValue34 = (float)FUN_18010e760(plStack_238);
       *(float *)((long long)plStack_238 + 0x6c) =
            FloatValue33 + FloatValue34 + *(float *)((long long)plStack_238 + 0x6c);
@@ -127772,7 +127772,7 @@ LAB_18012b82d:
   FloatValue33 = *(float *)((long long)plStack_238 + 0x44);
   FloatValue34 = *(float *)(plStack_238 + 0x12);
   FloatValue36 = *(float *)((long long)plStack_238 + 0x74);
-  FloatValue37 = (float)FUN_18010e7a0();
+  FloatValue37 = (float)GetSystemTime();
   *(float *)((long long)plStack_238 + 0x274) = FloatValue37 + FloatValue38 + (FloatValue33 - FloatValue34) + FloatValue36;
   FloatValue33 = *(float *)(plStack_238 + 0xd);
   if (FloatValue33 == 0.0) {
@@ -127978,7 +127978,7 @@ LAB_18012b82d:
     pSystemFloatValue = (float *)((long long)plStack_238 + 0x7c);
   }
   FloatValue33 = *pSystemFloatValue;
-  FloatValue34 = (float)FUN_18010e7a0();
+  FloatValue34 = (float)GetSystemTime();
   *(float *)((long long)plStack_238 + 0x24c) = FloatValue34 + VectorLength + FloatValue33;
   *(float *)(plStack_238 + 0x4a) =
        ((*(float *)(plStack_238 + 9) + *(float *)(plStack_238 + 8)) -
@@ -128006,7 +128006,7 @@ LAB_18012b82d:
          (*(long long **)(*(long long *)(DataStructureCounter + 0x1b78) + 0x3a0) != plStack_238)))) &&
        ((plStack_238 == (long long *)plStack_238[0x74] &&
         ((*(uint *)((long long)plStack_238 + 0xc) & 0x20000000) == 0)))) {
-      FUN_18013baf0();
+      ManageSystemResources();
     }
   }
   if ((*(byte *)((long long)plStack_238 + 0x432) & 1) == 0) {
@@ -128330,7 +128330,7 @@ LAB_18012ce0f:
   else {
     StackParameter2[0xd] = *(long long *)(MemoryPoolBlockSize + 0x1c0c);
     if (*(float *)((long long)StackParameter2 + 0x6c) != 0.0) {
-      FloatValue32 = (float)FUN_18010e7a0();
+      FloatValue32 = (float)GetSystemTime();
       FloatValue33 = (float)FUN_18010e760(StackParameter2);
       *(float *)((long long)StackParameter2 + 0x6c) =
            FloatValue32 + FloatValue33 + *(float *)((long long)StackParameter2 + 0x6c);
@@ -129599,7 +129599,7 @@ LAB_18012b465:
   FloatValue32 = *(float *)((long long)StackParameter2 + 0x44);
   FloatValue33 = *(float *)(StackParameter2 + 0x12);
   FloatValue35 = *(float *)((long long)StackParameter2 + 0x74);
-  FloatValue36 = (float)FUN_18010e7a0();
+  FloatValue36 = (float)GetSystemTime();
   *(float *)((long long)StackParameter2 + 0x274) = FloatValue36 + FloatValue39 + (FloatValue32 - FloatValue33) + FloatValue35;
   FloatValue32 = *(float *)(StackParameter2 + 0xd);
   if (FloatValue32 == 0.0) {
@@ -129813,7 +129813,7 @@ LAB_18012b465:
     pSecondaryFloatValue = (float *)((long long)StackParameter2 + 0x7c);
   }
   FloatValue32 = *pSecondaryFloatValue;
-  FloatValue33 = (float)FUN_18010e7a0();
+  FloatValue33 = (float)GetSystemTime();
   *(float *)((long long)StackParameter2 + 0x24c) = FloatValue33 + RegisterFramePointer[1] + FloatValue32;
   *(float *)(StackParameter2 + 0x4a) =
        ((*(float *)(StackParameter2 + 9) + *(float *)(StackParameter2 + 8)) -
@@ -129844,7 +129844,7 @@ LAB_18012b465:
          (*(long long **)(*(long long *)(MemoryPoolBlockSize + 0x1b78) + 0x3a0) != StackParameter2)))) &&
        ((StackParameter2 == (long long *)StackParameter2[0x74] &&
         ((*(uint *)((long long)StackParameter2 + 0xc) & 0x20000000) == 0)))) {
-      FUN_18013baf0();
+      ManageSystemResources();
     }
   }
   if ((*(byte *)((long long)StackParameter2 + 0x432) & 1) == 0) {
@@ -130168,7 +130168,7 @@ LAB_18012ce0f:
   else {
     StackParameter2[0xd] = *(long long *)(RegisterSourceIndex + 0x1c0c);
     if (*(float *)((long long)StackParameter2 + 0x6c) != 0.0) {
-      FloatValue31 = (float)FUN_18010e7a0();
+      FloatValue31 = (float)GetSystemTime();
       FloatValue32 = (float)FUN_18010e760(StackParameter2);
       *(float *)((long long)StackParameter2 + 0x6c) =
            FloatValue31 + FloatValue32 + *(float *)((long long)StackParameter2 + 0x6c);
@@ -131442,7 +131442,7 @@ LAB_18012b465:
   FloatValue31 = *(float *)((long long)StackParameter2 + 0x44);
   FloatValue32 = *(float *)(StackParameter2 + 0x12);
   FloatValue34 = *(float *)((long long)StackParameter2 + 0x74);
-  FloatValue35 = (float)FUN_18010e7a0();
+  FloatValue35 = (float)GetSystemTime();
   *(float *)((long long)StackParameter2 + 0x274) = FloatValue35 + FloatValue38 + (FloatValue31 - FloatValue32) + FloatValue34;
   FloatValue31 = *(float *)(StackParameter2 + 0xd);
   if (FloatValue31 == 0.0) {
@@ -131658,7 +131658,7 @@ LAB_18012b465:
     pSystemContextFloat16 = (float *)((long long)StackParameter2 + 0x7c);
   }
   FloatValue31 = *pSystemContextFloat16;
-  FloatValue32 = (float)FUN_18010e7a0();
+  FloatValue32 = (float)GetSystemTime();
   *(float *)((long long)StackParameter2 + 0x24c) = FloatValue32 + RegisterFramePointer[1] + FloatValue31;
   *(float *)(StackParameter2 + 0x4a) =
        ((*(float *)(StackParameter2 + 9) + *(float *)(StackParameter2 + 8)) -
@@ -131689,7 +131689,7 @@ LAB_18012b465:
          (*(long long **)(*(long long *)(RegisterSourceIndex + 0x1b78) + 0x3a0) != StackParameter2)))) &&
        ((StackParameter2 == (long long *)StackParameter2[0x74] &&
         ((*(uint *)((long long)StackParameter2 + 0xc) & 0x20000000) == 0)))) {
-      FUN_18013baf0();
+      ManageSystemResources();
     }
   }
   if ((*(byte *)((long long)StackParameter2 + 0x432) & 1) == 0) {
@@ -131865,7 +131865,7 @@ LAB_18012ce0f:
   else {
     StackParameter2[0xd] = *(long long *)(RegisterSourceIndex + 0x1c0c);
     if (AuxiliaryFloat13 != *(float *)((long long)StackParameter2 + 0x6c)) {
-      SystemContextFloat29 = (float)FUN_18010e7a0();
+      SystemContextFloat29 = (float)GetSystemTime();
       FloatValue30 = (float)FUN_18010e760(StackParameter2);
       *(float *)((long long)StackParameter2 + 0x6c) =
            SystemContextFloat29 + FloatValue30 + *(float *)((long long)StackParameter2 + 0x6c);
@@ -133135,7 +133135,7 @@ LAB_18012b465:
   SystemContextFloat29 = *(float *)((long long)StackParameter2 + 0x44);
   FloatValue30 = *(float *)(StackParameter2 + 0x12);
   FloatValue32 = *(float *)((long long)StackParameter2 + 0x74);
-  FloatValue31 = (float)FUN_18010e7a0();
+  FloatValue31 = (float)GetSystemTime();
   *(float *)((long long)StackParameter2 + 0x274) = FloatValue31 + FloatValue35 + (SystemContextFloat29 - FloatValue30) + FloatValue32;
   SystemContextFloat29 = *(float *)(StackParameter2 + 0xd);
   if (SystemContextFloat29 == AuxiliaryFloat13) {
@@ -133349,7 +133349,7 @@ LAB_18012b465:
     pSystemFloatValue = (float *)((long long)StackParameter2 + 0x7c);
   }
   SystemContextFloat29 = *pSystemFloatValue;
-  FloatValue30 = (float)FUN_18010e7a0();
+  FloatValue30 = (float)GetSystemTime();
   *(float *)((long long)StackParameter2 + 0x24c) = FloatValue30 + RegisterFramePointer[1] + SystemContextFloat29;
   *(float *)(StackParameter2 + 0x4a) =
        ((*(float *)(StackParameter2 + 9) + *(float *)(StackParameter2 + 8)) -
@@ -133380,7 +133380,7 @@ LAB_18012b465:
          (*(long long **)(*(long long *)(RegisterSourceIndex + 0x1b78) + 0x3a0) != StackParameter2)))) &&
        ((StackParameter2 == (long long *)StackParameter2[0x74] &&
         ((*(uint *)((long long)StackParameter2 + 0xc) & 0x20000000) == 0)))) {
-      FUN_18013baf0();
+      ManageSystemResources();
     }
   }
   if ((*(byte *)((long long)StackParameter2 + 0x432) & 1) == 0) {
@@ -134746,7 +134746,7 @@ LAB_18012b510:
   SystemContextFloat27 = *(float *)((long long)StackParameter2 + 0x44);
   FloatValue31 = *(float *)(StackParameter2 + 0x12);
   FloatValue32 = *(float *)((long long)StackParameter2 + 0x74);
-  FloatValue33 = (float)FUN_18010e7a0();
+  FloatValue33 = (float)GetSystemTime();
   *(float *)((long long)StackParameter2 + 0x274) = FloatValue33 + FloatValue36 + (SystemContextFloat27 - FloatValue31) + FloatValue32;
   SystemContextFloat27 = *(float *)(StackParameter2 + 0xd);
   if (SystemContextFloat27 == AuxiliaryFloat13) {
@@ -134960,7 +134960,7 @@ LAB_18012b510:
     pSystemFloatValue = (float *)((long long)StackParameter2 + 0x7c);
   }
   SystemContextFloat27 = *pSystemFloatValue;
-  FloatValue31 = (float)FUN_18010e7a0();
+  FloatValue31 = (float)GetSystemTime();
   *(float *)((long long)StackParameter2 + 0x24c) = FloatValue31 + RegisterFramePointer[1] + SystemContextFloat27;
   *(float *)(StackParameter2 + 0x4a) =
        ((*(float *)(StackParameter2 + 9) + *(float *)(StackParameter2 + 8)) -
@@ -134991,7 +134991,7 @@ LAB_18012b510:
          (*(long long **)(*(long long *)(RegisterSourceIndex + 0x1b78) + 0x3a0) != StackParameter2)))) &&
        ((StackParameter2 == (long long *)StackParameter2[0x74] &&
         ((*(uint *)((long long)StackParameter2 + 0xc) & 0x20000000) == 0)))) {
-      FUN_18013baf0();
+      ManageSystemResources();
     }
   }
   if ((*(byte *)((long long)StackParameter2 + 0x432) & 1) == 0) {
@@ -136435,7 +136435,7 @@ LAB_18012b465:
   SystemContextFloat27 = *(float *)((long long)StackParameter2 + 0x44);
   FloatValue30 = *(float *)(StackParameter2 + 0x12);
   FloatValue32 = *(float *)((long long)StackParameter2 + 0x74);
-  FloatValue31 = (float)FUN_18010e7a0();
+  FloatValue31 = (float)GetSystemTime();
   *(float *)((long long)StackParameter2 + 0x274) = FloatValue31 + FloatValue35 + (SystemContextFloat27 - FloatValue30) + FloatValue32;
   SystemContextFloat27 = *(float *)(StackParameter2 + 0xd);
   if (SystemContextFloat27 == AuxiliaryFloat13) {
@@ -136649,7 +136649,7 @@ LAB_18012b465:
     pSystemFloatValue = (float *)((long long)StackParameter2 + 0x7c);
   }
   SystemContextFloat27 = *pSystemFloatValue;
-  FloatValue30 = (float)FUN_18010e7a0();
+  FloatValue30 = (float)GetSystemTime();
   *(float *)((long long)StackParameter2 + 0x24c) = FloatValue30 + RegisterFramePointer[1] + SystemContextFloat27;
   *(float *)(StackParameter2 + 0x4a) =
        ((*(float *)(StackParameter2 + 9) + *(float *)(StackParameter2 + 8)) -
@@ -136680,7 +136680,7 @@ LAB_18012b465:
          (*(long long **)(*(long long *)(RegisterSourceIndex + 0x1b78) + 0x3a0) != StackParameter2)))) &&
        ((StackParameter2 == (long long *)StackParameter2[0x74] &&
         ((*(uint *)((long long)StackParameter2 + 0xc) & 0x20000000) == 0)))) {
-      FUN_18013baf0();
+      ManageSystemResources();
     }
   }
   if ((*(byte *)((long long)StackParameter2 + 0x432) & 1) == 0) {
@@ -138009,7 +138009,7 @@ LAB_18012b510:
   SystemContextFloat25 = *(float *)(StackParameter2 + 0x44);
   SystemContextFloat29 = *(float *)(StackParameter2 + 0x90);
   FloatValue30 = *(float *)(StackParameter2 + 0x74);
-  FloatValue31 = (float)FUN_18010e7a0();
+  FloatValue31 = (float)GetSystemTime();
   *(float *)(StackParameter2 + 0x274) = FloatValue31 + FloatValue34 + (SystemContextFloat25 - SystemContextFloat29) + FloatValue30;
   SystemContextFloat25 = *(float *)(StackParameter2 + 0x68);
   if (SystemContextFloat25 == AuxiliaryFloat13) {
@@ -138219,7 +138219,7 @@ LAB_18012b510:
     pSystemContextFloat13 = (float *)(StackParameter2 + 0x7c);
   }
   SystemContextFloat25 = *pSystemContextFloat13;
-  SystemContextFloat29 = (float)FUN_18010e7a0();
+  SystemContextFloat29 = (float)GetSystemTime();
   *(float *)(StackParameter2 + 0x24c) = SystemContextFloat29 + RegisterFramePointer[1] + SystemContextFloat25;
   *(float *)(StackParameter2 + 0x250) =
        ((*(float *)(StackParameter2 + 0x48) + *(float *)(StackParameter2 + 0x40)) -
@@ -138246,7 +138246,7 @@ LAB_18012b510:
          (*(long long *)(*(long long *)(RegisterSourceIndex + 0x1b78) + 0x3a0) != StackParameter2)))) &&
        ((StackParameter2 == *(long long *)(StackParameter2 + 0x3a0) &&
         ((*(uint *)(StackParameter2 + 0xc) & 0x20000000) == 0)))) {
-      FUN_18013baf0();
+      ManageSystemResources();
     }
   }
   if ((*(byte *)(StackParameter2 + 0x432) & 1) == 0) {
@@ -139081,7 +139081,7 @@ LAB_18012b510:
   FloatValue32 = *(float *)(StackParameter2 + 0x44);
   SystemContextFloat27 = *(float *)(StackParameter2 + 0x90);
   SystemContextFloat26 = *(float *)(StackParameter2 + 0x74);
-  SystemContextFloat28 = (float)FUN_18010e7a0();
+  SystemContextFloat28 = (float)GetSystemTime();
   *(float *)(StackParameter2 + 0x274) = SystemContextFloat28 + FloatValue30 + (FloatValue32 - SystemContextFloat27) + SystemContextFloat26;
   FloatValue32 = *(float *)(StackParameter2 + 0x68);
   if (FloatValue32 == AuxiliaryFloat13) {
@@ -139295,7 +139295,7 @@ LAB_18012b510:
     pSystemContextFloat11 = (float *)(StackParameter2 + 0x7c);
   }
   FloatValue32 = *pSystemContextFloat11;
-  SystemContextFloat27 = (float)FUN_18010e7a0();
+  SystemContextFloat27 = (float)GetSystemTime();
   *(float *)(StackParameter2 + 0x24c) = SystemContextFloat27 + RegisterFramePointer[1] + FloatValue32;
   *(float *)(StackParameter2 + 0x250) =
        ((*(float *)(StackParameter2 + 0x48) + *(float *)(StackParameter2 + 0x40)) -
@@ -139322,7 +139322,7 @@ LAB_18012b510:
          (*(long long *)(*(long long *)(RegisterSourceIndex + 0x1b78) + 0x3a0) != StackParameter2)))) &&
        ((StackParameter2 == *(long long *)(StackParameter2 + 0x3a0) &&
         ((*(uint *)(StackParameter2 + 0xc) & 0x20000000) == 0)))) {
-      FUN_18013baf0();
+      ManageSystemResources();
     }
   }
   if ((*(byte *)(StackParameter2 + 0x432) & 1) == 0) {
@@ -139923,7 +139923,7 @@ b523(voidvoid FUN_18012b523(void
   SystemContextFloat26 = *(float *)(StackParameter2 + 0x44);
   SystemContextFloat25 = *(float *)(StackParameter2 + 0x90);
   SystemContextFloat27 = *(float *)(StackParameter2 + 0x74);
-  SystemContextFloat23 = (float)FUN_18010e7a0();
+  SystemContextFloat23 = (float)GetSystemTime();
   *(float *)(StackParameter2 + 0x274) = SystemContextFloat23 + SystemContextFloat22 + (SystemContextFloat26 - SystemContextFloat25) + SystemContextFloat27;
   SystemContextFloat26 = *(float *)(StackParameter2 + 0x68);
   if (SystemContextFloat26 == AuxiliaryFloat13) {
@@ -140137,7 +140137,7 @@ b523(voidvoid FUN_18012b523(void
     pSystemContextFloat12 = (float *)(StackParameter2 + 0x7c);
   }
   SystemContextFloat26 = *pSystemContextFloat12;
-  SystemContextFloat25 = (float)FUN_18010e7a0();
+  SystemContextFloat25 = (float)GetSystemTime();
   *(float *)(StackParameter2 + 0x24c) = SystemContextFloat25 + RegisterFramePointer[1] + SystemContextFloat26;
   *(float *)(StackParameter2 + 0x250) =
        ((*(float *)(StackParameter2 + 0x48) + *(float *)(StackParameter2 + 0x40)) -
@@ -140164,7 +140164,7 @@ b523(voidvoid FUN_18012b523(void
          (*(long long *)(*(long long *)(RegisterSourceIndex + 0x1b78) + 0x3a0) != StackParameter2)))) &&
        ((StackParameter2 == *(long long *)(StackParameter2 + 0x3a0) &&
         ((*(uint *)(StackParameter2 + 0xc) & 0x20000000) == 0)))) {
-      FUN_18013baf0();
+      ManageSystemResources();
     }
   }
   if ((*(byte *)(StackParameter2 + 0x432) & 1) == 0) {
@@ -140483,7 +140483,7 @@ c305(voidvoid FUN_18012c305(void
     RegisterValueR12 = (float *)(StackParameter2 + 0x7c);
   }
   SystemContextFloat19 = *RegisterValueR12;
-  SystemContextFloat18 = (float)FUN_18010e7a0();
+  SystemContextFloat18 = (float)GetSystemTime();
   *(float *)(StackParameter2 + 0x24c) = SystemContextFloat18 + RegisterFramePointer[1] + SystemContextFloat19;
   *(float *)(StackParameter2 + 0x250) =
        ((*(float *)(StackParameter2 + 0x48) + *(float *)(StackParameter2 + 0x40)) -
@@ -140512,7 +140512,7 @@ c305(voidvoid FUN_18012c305(void
          (*(long long *)(*(long long *)(RegisterSourceIndex + 0x1b78) + 0x3a0) != StackParameter2)))) &&
        ((StackParameter2 == *(long long *)(StackParameter2 + 0x3a0) &&
         ((*(uint *)(StackParameter2 + 0xc) & 0x20000000) == 0)))) {
-      FUN_18013baf0();
+      ManageSystemResources();
     }
   }
   if ((*(byte *)(StackParameter2 + 0x432) & 1) == 0) {
@@ -140611,7 +140611,7 @@ cb2c(voidvoid FUN_18012cb2c(void
     RegisterValueR12 = (float *)(StackParameter2 + 0x7c);
   }
   FloatVariable5 = *RegisterValueR12;
-  CalculatedDistance = (float)FUN_18010e7a0();
+  CalculatedDistance = (float)GetSystemTime();
   *(float *)(StackParameter2 + 0x24c) = CalculatedDistance + *(float *)((long long)RegisterFramePointer + 4) + FloatVariable5;
   *(float *)(StackParameter2 + 0x250) =
        ((*(float *)(StackParameter2 + 0x48) + *(float *)(StackParameter2 + 0x40)) -
@@ -140640,7 +140640,7 @@ cb2c(voidvoid FUN_18012cb2c(void
          (*(long long *)(*(long long *)(RegisterSourceIndex + 0x1b78) + 0x3a0) != StackParameter2)))) &&
        ((StackParameter2 == *(long long *)(StackParameter2 + 0x3a0) &&
         ((*(uint *)(StackParameter2 + 0xc) & 0x20000000) == 0)))) {
-      FUN_18013baf0();
+      ManageSystemResources();
     }
   }
   if ((*(byte *)(StackParameter2 + 0x432) & 1) == 0) {
@@ -140738,7 +140738,7 @@ ccf4(long long SystemContextPointervoid FUN_18012ccf4(long long SystemContextPoi
       ((*(long long *)(RegisterSourceIndex + 0x1b78) == 0 ||
        (*(long long *)(*(long long *)(RegisterSourceIndex + 0x1b78) + 0x3a0) != SystemContextPointer)))) &&
      ((SystemContextPointer == *(long long *)(SystemContextPointer + 0x3a0) && ((*(uint *)(SystemContextPointer + 0xc) & 0x20000000) == 0))     ) {
-    FUN_18013baf0();
+    ManageSystemResources();
     SystemContextPointer = StackParameter2;
   }
   if ((*(byte *)(SystemContextPointer + 0x432) & 1) == 0) {
@@ -158440,7 +158440,7 @@ LAB_180137cc2:
       (*(long long *)(DataNodeIndex + 8) == 0)) &&
      ((*(long long *)(RegisterValueR13 + 0x1b78) == 0 ||
       (*(long long *)(*(long long *)(RegisterValueR13 + 0x1b78) + 0x3a0) != RegisterSourceIndex)))) {
-    FUN_18013baf0();
+    ManageSystemResources();
   }
   *(uint32_t *)(DataNodeIndex + 0x8c) = *(uint32_t *)(RegisterValueR13 + 0x1a90);
   if (RegisterSourceIndex != 0) {
@@ -158517,7 +158517,7 @@ LAB_180137cc2:
       (*(long long *)(DataNodeIndex + 8) == 0)) &&
      ((*(long long *)(RegisterValueR13 + 0x1b78) == 0 ||
       (*(long long *)(*(long long *)(RegisterValueR13 + 0x1b78) + 0x3a0) != RegisterSourceIndex)))) {
-    FUN_18013baf0();
+    ManageSystemResources();
   }
   *(uint32_t *)(DataNodeIndex + 0x8c) = *(uint32_t *)(RegisterValueR13 + 0x1a90);
   if (RegisterSourceIndex != 0) {
@@ -158619,7 +158619,7 @@ LAB_180137cc2:
       (*(long long *)(DataNodeIndex + 8) == 0)) &&
      ((*(long long *)(RegisterValueR13 + 0x1b78) == 0 ||
       (*(long long *)(*(long long *)(RegisterValueR13 + 0x1b78) + 0x3a0) != RegisterSourceIndex)))) {
-    FUN_18013baf0();
+    ManageSystemResources();
   }
   *(uint32_t *)(DataNodeIndex + 0x8c) = *(uint32_t *)(RegisterValueR13 + 0x1a90);
   if (RegisterSourceIndex != 0) {
@@ -158668,7 +158668,7 @@ LAB_180137cc2:
       (*(long long *)(DataNodeIndex + 8) == 0)) &&
      ((*(long long *)(RegisterValueR13 + 0x1b78) == 0 ||
       (*(long long *)(*(long long *)(RegisterValueR13 + 0x1b78) + 0x3a0) != RegisterSourceIndex)))) {
-    FUN_18013baf0();
+    ManageSystemResources();
   }
   *(uint32_t *)(DataNodeIndex + 0x8c) = *(uint32_t *)(RegisterValueR13 + 0x1a90);
   if (RegisterSourceIndex != 0) {
