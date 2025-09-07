@@ -205013,7 +205013,16 @@ void ProcessSystemLoopAndTriggerEvent(long long *Utf8InputBuffer
 
 
 // UTF-16编码处理和系统事件备用函数 - 备用的UTF-16到UTF-8编码处理函数
-// 原始函数名：FUN_18017a290
+/**
+ * @brief UTF-16编码和系统事件处理函数
+ * 
+ * 该函数负责处理UTF-16编码转换和系统事件，包括字符编码转换
+ * 和系统事件通知功能
+ * 
+ * @note 原始函数名：FUN_18017a290
+ */
+#define ProcessUtf16EncodingAndSystemEventAlt FUN_18017a290
+
 void ProcessUtf16EncodingAndSystemEventAlt(long long CharacterCode, uint64_t Utf8BufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   ConvertUtf16ToUtf8MainProcessor(CharacterCode, *(void *)(CharacterCode + 0x10), Utf8SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
