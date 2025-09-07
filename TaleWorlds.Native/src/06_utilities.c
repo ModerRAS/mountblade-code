@@ -69512,7 +69512,7 @@ void ProcessDataBufferA1(DataBuffer contextParameter, int64_t systemContext, Dat
  * 
  * @see ProcessSystemResourcesWithCleanup, TerminateSystemE0
  */
-void Unwind_1809080c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ProcessExceptionDataBuffer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
