@@ -73155,7 +73155,16 @@ void ResetExceptionHandlerConfiguration(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180908c40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量0x78处的异常处理器回调
+ * 
+ * 检查数据缓冲区偏移量0x78处是否存在有效的异常处理器指针，
+ * 如果存在则执行该异常处理器的回调函数（偏移量0x38处）。
+ * 
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ */
+void ExecuteExceptionHandlerCallbackOffset78(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x78) != (int64_t *)0x0) {
@@ -73166,7 +73175,16 @@ void Unwind_180908c40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908c50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量0x1b8+0x20处的异常处理器回调
+ * 
+ * 从数据缓冲区偏移量0x1b8处获取上下文指针，然后从该上下文的偏移量0x20处
+ * 获取异常处理器指针，如果存在则执行该异常处理器的回调函数。
+ * 
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ */
+void ExecuteExceptionHandlerCallbackOffset1B8_20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -73180,7 +73198,16 @@ void Unwind_180908c50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908c60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置偏移量0x1b8处异常处理器的状态
+ * 
+ * 从数据缓冲区偏移量0x1b8处获取异常处理上下文，然后重置该上下文的异常处理器状态，
+ * 包括设置临时异常处理器、终止现有处理、重置状态标志，最后设置默认异常处理器。
+ * 
+ * @param operationBase 操作基址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ */
+void ResetExceptionHandlerStateOffset1B8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
