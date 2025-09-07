@@ -92467,14 +92467,15 @@ LAB_18010ed80:
 
 
 
-e8e1(long long CharacterCode,long long Utf8BufferSize/**
- * 处理系统数据验证
+/**
+ * @brief 处理系统数据验证
+ * 
  * 验证目标数据结构中的数据，检查状态缓冲区和浮点数值
  * 
  * @param CharacterCode 目标数据结构指针
  * @param Utf8BufferSize 源数据结构指针
  */
-void ProcessSystemDataValidation(long long CharacterCode,long long Utf8BufferSize
+void ProcessSystemDataValidation(long long CharacterCode, long long Utf8BufferSize)
 {
   uint64_t *StatusBuffer;
   float ValidationFloatValue;
@@ -92529,9 +92530,9 @@ void ProcessSystemDataValidation(long long CharacterCode,long long Utf8BufferSiz
   uint32_t StackParameter4;
   uint32_t StackParameter5;
   uint32_t BufferStorageValue;
-  uint32_t in_stack_000000b8;
+  uint32_t StackParameterB8;
   uint32_t InputParameter1;
-  uint32_t in_stack_000000c8;
+  uint32_t StackParameterC8;
   
   *(void *)(in_R11 + -0x38) = XMMRegister6_Qa;
   *(void *)(in_R11 + -0x30) = XMMRegister6_Qb;

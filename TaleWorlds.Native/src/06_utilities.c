@@ -3695,6 +3695,15 @@
 // 功能：验证内存分配状态和访问权限
 #define ValidateMemoryAllocation FUN_1808a5d60
 
+// 异常处理器相关函数语义化宏定义
+// 原始函数名：Unwind_1809115c0 - 异常处理器清理函数A0
+// 功能：清理异常处理器资源，销毁相关互斥锁
+#define CleanupExceptionHandlerA0 Unwind_1809115c0
+
+// 原始函数名：Unwind_1809115e0 - 异常处理器清理函数A1
+// 功能：清理异常处理器资源，调用回调函数并终止系统
+#define CleanupExceptionHandlerA1 Unwind_1809115e0
+
 // 原始函数名：GetSystemParameter - 系统参数获取函数
 // 功能：获取系统参数并返回参数值
 #define GetSystemParameter GetSystemParameter
@@ -101997,7 +102006,25 @@ void Unwind_1809115a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809115c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器清理函数A0
+ * 
+ * 该函数负责清理异常处理器资源，包括：
+ * - 调用异常处理回调函数（如果存在）
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 恢复默认异常处理器
+ * - 销毁相关互斥锁
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809115c0
+ */
+void CleanupExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
