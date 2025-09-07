@@ -72306,7 +72306,16 @@ void ReleaseMemoryResourceReferenceB(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180908a50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理1A0偏移量的内存资源引用计数
+ * 
+ * 该函数负责处理位于1A0偏移量的内存资源引用计数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908a50
+ */
+void ProcessMemoryResourceReferenceCountAtOffset1A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -72342,7 +72351,16 @@ void Unwind_180908a50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908a60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理1E0偏移量的内存资源引用计数
+ * 
+ * 该函数负责处理位于1E0偏移量的内存资源引用计数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908a60
+ */
+void ProcessMemoryResourceReferenceCountAtOffset1E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -72378,7 +72396,19 @@ void Unwind_180908a60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908a70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理220偏移量的内存资源引用计数
+ * 
+ * 该函数负责处理位于220偏移量的内存资源引用计数，包括：
+ * - 检查内存资源指针的有效性
+ * - 处理内存区域的引用计数
+ * - 管理内存资源的生命周期
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908a70
+ */
+void ProcessMemoryResourceReferenceCountAtOffset220(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -72414,7 +72444,19 @@ void Unwind_180908a70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908a80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理260偏移量的内存资源引用计数
+ * 
+ * 该函数负责处理位于260偏移量的内存资源引用计数，包括：
+ * - 检查内存资源指针的有效性
+ * - 处理内存区域的引用计数
+ * - 管理内存资源的生命周期
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908a80
+ */
+void ProcessMemoryResourceReferenceCountAtOffset260(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -72450,7 +72492,19 @@ void Unwind_180908a80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908a90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理2A0偏移量的内存资源引用计数
+ * 
+ * 该函数负责处理位于2A0偏移量的内存资源引用计数，包括：
+ * - 检查内存资源指针的有效性
+ * - 处理内存区域的引用计数
+ * - 管理内存资源的生命周期
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908a90
+ */
+void ProcessMemoryResourceReferenceCountAtOffset2A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -72486,7 +72540,16 @@ void Unwind_180908a90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908aa0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理2E0偏移量的数据数组
+ * 
+ * 该函数负责处理位于2E0偏移量的数据数组，调用数据数组处理函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908aa0
+ */
+void ProcessDataArrayAtOffset2E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + 0x170);
@@ -72495,7 +72558,19 @@ void Unwind_180908aa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908ab0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理320偏移量的内存资源引用计数
+ * 
+ * 该函数负责处理位于320偏移量的内存资源引用计数，包括：
+ * - 检查内存资源指针的有效性
+ * - 处理内存区域的引用计数
+ * - 管理内存资源的生命周期
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908ab0
+ */
+void ProcessMemoryResourceReferenceCountAtOffset320(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -72621,7 +72696,20 @@ void Unwind_180908af0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908b00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器上下文
+ * 
+ * 该函数负责配置异常处理器上下文，包括：
+ * - 设置临时异常处理器
+ * - 终止现有的异常处理
+ * - 重置异常处理状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908b00
+ */
+void ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -73039,7 +73127,17 @@ void Unwind_180908cd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908d00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行数据验证内存操作
+ * 
+ * 该函数负责执行数据验证的内存操作，使用ValidateDataHandler处理器
+ * 对指定偏移量的数据缓冲区进行操作
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908d00
+ */
+void ExecuteDataValidationMemoryOperation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x40),8,0x10,ValidateDataHandler);
@@ -73293,7 +73391,20 @@ void Unwind_180908df0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908e00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理A0偏移量的内存资源引用计数
+ * 
+ * 该函数负责处理位于A0偏移量的内存资源引用计数，包括：
+ * - 获取内存资源指针
+ * - 计算内存区域基地址
+ * - 处理内存块偏移量
+ * - 管理资源引用计数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908e00
+ */
+void ProcessMemoryResourceReferenceCountAtOffsetA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -108116,18 +108227,21 @@ void UtilityHandleEvent1(void)
 
 
 
-// 函数: void UtilityHandleEventSecond(void)
-// 
-// 处理工具系统事件的第二阶段
-// 设置默认的事件处理器并初始化事件处理状态
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 工具系统事件处理第二阶段
+ * 
+ * 该函数负责处理工具系统事件的第二阶段，设置默认的事件处理器
+ * 并初始化事件处理状态。这是事件处理流程的重要组成部分。
+ * 
+ * @details 函数执行以下操作：
+ * - 将UtilityEventHandlerPointer设置为DefaultExceptionHandlerB
+ * - 确保事件处理系统有默认的异常处理机制
+ * - 完成事件处理系统的第二阶段初始化
+ * 
+ * @note 原始函数名：UtilityHandleEventSecond
+ * @note 该函数是事件处理系统的核心组件之一
+ */
 void UtilityHandleEventSecond(void)
-
 {
   UtilityEventHandlerPointer = &DefaultExceptionHandlerB;
   return;
@@ -108137,18 +108251,21 @@ void UtilityHandleEventSecond(void)
 
 
 
-// 函数: void UtilityInitializePointer1(void)
-// 
-// 初始化工具指针1
-// 设置全局工具指针的初始值
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 初始化工具系统指针1
+ * 
+ * 该函数负责初始化工具系统的第一个全局指针，将其设置为默认异常处理器B。
+ * 这是系统初始化过程中的重要步骤，确保指针系统有正确的初始值。
+ * 
+ * @details 函数执行以下操作：
+ * - 将UtilitySystemPointer1设置为DefaultExceptionHandlerB
+ * - 确保系统指针初始化为安全的默认值
+ * - 为后续的工具系统操作准备指针环境
+ * 
+ * @note 原始函数名：UtilityInitializePointer1
+ * @note 该函数是系统初始化流程的一部分
+ */
 void UtilityInitializePointer1(void)
-
 {
   UtilitySystemPointer1 = &DefaultExceptionHandlerB;
   return;
