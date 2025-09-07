@@ -168887,7 +168887,7 @@ uint64_t * ProcessUtf8InputBufferAndCreateCharacterStatus(byte *Utf8InputBuffer)
   int MatchCounter;
   uint64_t *CharacterStatusBuffer2;
   uint ValidationResult;
-  uint8_t uStack_15[5];
+  uint8_t ChecksumBuffer[5];
   
   MemoryBoundaryEnd = SystemConfigurationHandle;
   ProcessingStatusFlag = SystemMemoryPoolBase;
