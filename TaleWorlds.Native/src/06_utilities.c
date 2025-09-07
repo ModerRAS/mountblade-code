@@ -76730,7 +76730,19 @@ void ConfigureTemporaryExceptionHandlerAndResetStatus(DataBuffer operationBase,i
 
 
 
-void Unwind_180909510(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到备用位置（偏移量0x4b0）
+ * 
+ * 该函数将默认异常处理器B设置到数据缓冲区的备用位置(0x4b0)，
+ * 用于处理备用路径的异常情况。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_180909510
+ * @note 该函数用于系统备用异常处理机制的配置
+ */
+void SetDefaultExceptionHandlerBToBackupPosition(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x4b0) = &DefaultExceptionHandlerB;
@@ -76739,7 +76751,20 @@ void Unwind_180909510(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909520(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置临时异常处理器并重置验证状态（偏移量0x278）
+ * 
+ * 该函数负责配置临时异常处理器，重置验证结果状态和相关的状态标志，
+ * 并最终设置默认异常处理器B。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，用于配置异常处理器
+ * 
+ * @note 原始函数名：Unwind_180909520
+ * @note 该函数用于系统异常处理机制的配置和验证状态重置
+ * @warning 如果验证状态异常，会调用TerminateSystemE0终止系统
+ */
+void ConfigureTemporaryExceptionHandlerAndResetValidation(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x278) = &TemporaryExceptionHandler;
@@ -76754,7 +76779,19 @@ void Unwind_180909520(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909530(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到扩展位置（偏移量0x5d0）
+ * 
+ * 该函数将默认异常处理器B设置到数据缓冲区的扩展位置(0x5d0)，
+ * 用于处理扩展功能的异常情况。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_180909530
+ * @note 该函数用于系统扩展异常处理机制的配置
+ */
+void SetDefaultExceptionHandlerBToExtendedPosition(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x5d0) = &DefaultExceptionHandlerB;
