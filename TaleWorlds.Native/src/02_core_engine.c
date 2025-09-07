@@ -83574,11 +83574,11 @@ uint64_t ProcessCoreEngineSystemEventAndValidation(void
   uint64_t DataSize;
   bool BooleanValidationFlag7;
   float FloatValue8;
-  void *unaff_retaddr;
+  void *ReturnAddress;
   uint SystemRegisterFlagX8;
-  uint64_t StackUnsigned20;
-  long long lStack_18;
-  void *puStack_8;
+  uint64_t StackUnsignedValue20;
+  long long StackSignedValue18;
+  void *StackPointer8;
   
   DataStructureCounter = *SystemContext;
   if ((*(int *)(DataStructureCounter + 900) != *(int *)(DataStructureCounter + 0x380)) ||
@@ -83650,17 +83650,17 @@ LAB_180103c39:
   if (SystemCheckResult != '\0') {
     ProcessProcessingStatusFlag(&puStack_8);
     CoreEngineProcessSystemEvent(&puStack_8,SystemRegisterFlagX8 + 0x11);
-    systemEventTemplatePointer = (void *)(unaff_retaddr + SystemRegisterFlagX8);
+    systemEventTemplatePointer = (void *)(ReturnAddress + SystemRegisterFlagX8);
     *systemEventTemplatePointer = 0x635f656e69676e65;
     systemEventTemplatePointer[1] = 0x78742e6769666e6f;
     *(uint16_t *)(systemEventTemplatePointer + 2) = 0x74;
-    StackUnsigned20 = 0;
-    lStack_18 = 0;
+    StackUnsignedValue20 = 0;
+    StackSignedValue18 = 0;
     OutputBufferPointer = &CoreEngineDataTemplate;
-    if (unaff_retaddr != NULL) {
-      OutputBufferPointer = unaff_retaddr;
+    if (ReturnAddress != NULL) {
+      OutputBufferPointer = ReturnAddress;
     }
-    InitializeEngineStatusBuffer(&StackUnsigned20,OutputBufferPointer,&EngineInitializationBufferConfig);
+    InitializeEngineStatusBuffer(&StackUnsignedValue20,OutputBufferPointer,&EngineInitializationBufferConfig);
     OutputBuffer = CoreEngineMemoryContext;
     if (lStack_18 == 0) {
       DataSize = 3;
