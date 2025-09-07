@@ -10125,7 +10125,7 @@ uint64_t ProcessResourceAllocation(int64_t ResourceConfiguration, int64_t Resour
   *(int32_t *)(LocalResourceBuffer[0] + ResourceReferenceCountOffset) = *(int32_t *)(LocalResourceBuffer[0] + ResourceReferenceCountOffset) + 1;
   if (*(int32_t *)(LocalResourceBuffer[0] + ResourceTertiaryOffset) + *(int32_t *)(LocalResourceBuffer[0] + ResourceSecondaryOffset) +
       *(int32_t *)(LocalResourceBuffer[0] + ResourceReferenceCountOffset) == 1) {
-    LocalResourceBuffer[0] = 0;
+    LocalResourceBuffer[ResourceHandleArrayIndex] = 0;
     AllocationStatus = ValidateResourceHandle(LocalResourceBuffer);
     if (AllocationStatus == 0) {
       AllocationStatus = ExecuteResourceOperation(AllocatedResourceHandle, *(uint64_t *)(AllocatedResourceHandle + 8), *(uint64_t *)(ResourceData + ResourcePrimaryDataOffset),
