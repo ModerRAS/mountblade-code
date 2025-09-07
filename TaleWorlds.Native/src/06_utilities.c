@@ -72205,7 +72205,16 @@ void Unwind_180908d30(void)
 
 
 
-void Unwind_180908d40(void)
+/**
+ * @brief 设置默认异常处理器到全局指针A1
+ * 
+ * 该函数负责将默认异常处理器B的地址设置到全局异常处理器指针A1中，
+ * 用于系统异常处理机制的初始化和配置。
+ * 
+ * @note 原始函数名：Unwind_180908d40
+ * @see DefaultExceptionHandlerB, GlobalExceptionHandlerPointerA1
+ */
+void SetDefaultExceptionHandlerToGlobalPointerA1(void)
 
 {
   GlobalExceptionHandlerPointerA1 = &DefaultExceptionHandlerB;
