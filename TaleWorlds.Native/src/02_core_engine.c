@@ -33665,7 +33665,7 @@ void ProcessCoreEngineMemoryBufferManagement(long long *SystemContextPointer,uin
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  lStack_68 = 0;
+  StackMemoryBuffer68 = 0;
   SystemTimeoutCounter = (unsigned long long)SystemTimeoutCounter.HighPart << 0x20;
   SystemStackVariable70 = &ThreadLocalStorageTemplate;
   systemEventTemplatePointer = &CoreEngineDataTemplate;
@@ -33674,9 +33674,9 @@ void ProcessCoreEngineMemoryBufferManagement(long long *SystemContextPointer,uin
   }
   InitializeEngineStatusBuffer(&StackValidationData,systemEventTemplatePointer,&SystemFunctionPointerH,Utf16EndPointer,0);
   ConfigureEngineMemoryContext(Utf8BufferSize,&StackValidationData);
-  if (lStack_80 != 0) {
+  if (StackMemoryBuffer80 != 0) {
     fclose();
-    lStack_80 = 0;
+    StackMemoryBuffer80 = 0;
     LOCK();
     EngineReferenceCounter = EngineReferenceCounter + -1;
     UNLOCK();
@@ -33690,7 +33690,7 @@ void ProcessCoreEngineMemoryBufferManagement(long long *SystemContextPointer,uin
   QuaternaryStackPointer8 = NULL;
   FunctionAddress = 0;
   SystemTemplatePointer = &ThreadLocalStorageTemplate;
-  if (lStack_80 != 0) {
+  if (StackMemoryBuffer80 != 0) {
     fclose();
     LOCK();
     EngineReferenceCounter = EngineReferenceCounter + -1;
@@ -34770,7 +34770,7 @@ void ManageMemoryBufferAllocation(long long *SystemContextPointer
   long long lStackX_8;
   void *TempStackPointer;
   long long CoreEngineSignedValueC8;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   uint64_t MemoryOffsetValue;
   uint16_t StackVariableB0;
   uint8_t SystemUnsignedValueAE;
@@ -59834,7 +59834,7 @@ void InitializeCoreEngineSystemConfiguration(uint64_t engineConfig,long long sou
   long long lStack_d8;
   uint64_t SystemFlagG;
   unsigned long long SystemFlagH;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   uint8_t MemoryOffsetValue;
   uint64_t aSystemStackRegisterFlagB0 [2];
   code *SystemFunctionPointer;
@@ -60010,20 +60010,20 @@ void ValidateSystemDataIntegrity(uint64_t SystemContextPointer,long long Utf8Buf
   unsigned long long Utf16Char;
   unsigned long long ProcessStringBuffer;
   uint8_t auStack_328 [32];
-  void *StatusBufferPointer308;
-  long long lStack_300;
-  uint aSystemInitializationFlags [2];
-  long long alStack_2f0 [2];
-  long long lStack_2e0;
-  long long *plStack_2d0;
-  void *pLoopCounter;
+  void *StackStatusBuffer308;
+  long long StackMemorySize300;
+  uint SystemInitializationFlags [2];
+  long long StackSystemData2f0 [2];
+  long long StackMemorySize2e0;
+  long long *StackPointer2d0;
+  void *LoopCounterPointer;
   uint8_t MemoryBlockCount;
-  uint64_t SystemValue2b8;
-  uint8_t aSystemValue2b0 [8];
-  uint8_t aSystemValue2a8 [608];
+  uint64_t StackSystemValue2b8;
+  uint8_t StackSystemData2b0 [8];
+  uint8_t StackSystemData2a8 [608];
   unsigned long long SystemStackFlag;
   
-  SystemValue2b8 = 0xfffffffffffffffe;
+  StackSystemValue2b8 = 0xfffffffffffffffe;
   SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)auStack_328;
   alStack_2f0[0] = -1;
   ValidationValuePointer = &CoreEngineDataTemplate;
@@ -114576,7 +114576,20 @@ fab0(long long SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputP
 
 
 
-float * FUN_18011fc80(float *SystemContextPointer,float *Utf8BufferSize,float *Utf16InputPointer,uint64_t Utf16EndPointer
+/**
+ * @brief 计算浮点数范围值
+ * 
+ * 该函数用于计算和验证浮点数的范围值，根据输入参数进行浮点数比较和范围检查
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小指针
+ * @param Utf16InputPointer UTF-16输入数据指针
+ * @param Utf16EndPointer UTF-16数据结束指针
+ * @return float* 返回计算后的浮点数指针
+ * 
+ * @note 原始函数名：FUN_18011fc80
+ */
+float * CalculateFloatRangeValue(float *SystemContextPointer,float *Utf8BufferSize,float *Utf16InputPointer,uint64_t Utf16EndPointer
 {
   float SystemContextFloat1;
   float SystemContextFloat2;
@@ -114602,7 +114615,17 @@ float * FUN_18011fc80(float *SystemContextPointer,float *Utf8BufferSize,float *U
 
 
 
-uint64_t * FUN_18011fd90(uint64_t *SystemContextPointer
+/**
+ * @brief 处理系统上下文数据
+ * 
+ * 该函数用于处理和验证系统上下文数据，执行必要的数据操作
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @return uint64_t* 返回处理后的系统上下文指针
+ * 
+ * @note 原始函数名：FUN_18011fd90
+ */
+uint64_t * ProcessSystemContextData(uint64_t *SystemContextPointer
 {
   SystemContextPointer[1] = 0;
   SystemContextPointer[2] = 0;
@@ -176640,7 +176663,7 @@ uint64_t * FUN_180150ab0(uint64_t *SystemContextPointer,unsigned long long Utf8B
   uint8_t aProcessingCounter [24];
   long long lStack_f0;
   uint8_t aSystemFlagF [24];
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   long long lStack_a8;
   unsigned long long CoreEngineUnsignedValueA0;
   uint16_t SystemOperationFlag98;
@@ -179827,8 +179850,21 @@ LAB_1801571ef:
 
 
  (ram,0x000180157a52 (ram,0x000180157b0e
+/**
+ * 初始化内存池管理器
+ * 原始函数名: FUN_180157390
+ * 
+ * 初始化系统的内存池管理器，设置内存分配策略和初始参数。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小指针
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 附加参数1
+ * @return long long* 返回操作结果指针
+ */
 long long *
-FUN_180157390(long long *SystemContextPointer,long long *Utf8BufferSize,long long Utf16InputPointer,uint64_t Utf16EndPointer,char AdditionalParameter1
+InitializeMemoryPoolManager(long long *SystemContextPointer,long long *Utf8BufferSize,long long Utf16InputPointer,uint64_t Utf16EndPointer,char AdditionalParameter1
 {
   long long *SystemContextPointer;
   long long *BufferAllocationStatus;
@@ -180127,8 +180163,21 @@ LAB_180157b3b:
 
 
  (ram,0x000180157c4d (ram,0x000180157e88
+/**
+ * 分配系统内存缓冲区
+ * 原始函数名: FUN_180157b70
+ * 
+ * 为系统分配内存缓冲区，处理内存分配请求和错误处理。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小指针
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 附加参数1
+ * @return long long* 返回分配的内存缓冲区指针
+ */
 long long *
-FUN_180157b70(long long *SystemContextPointer,long long *Utf8BufferSize,int Utf16InputPointer,uint64_t Utf16EndPointer,char AdditionalParameter1
+AllocateSystemMemoryBuffer(long long *SystemContextPointer,long long *Utf8BufferSize,int Utf16InputPointer,uint64_t Utf16EndPointer,char AdditionalParameter1
 {
   long long *SystemContextPointer;
   long long *BufferAllocationStatus;
@@ -180278,8 +180327,23 @@ LAB_180157eb5:
 
 
  (ram,0x00018015807b
+/**
+ * 调整内存池大小
+ * 原始函数名: FUN_180157ef0
+ * 
+ * 根据系统需求调整内存池的大小，重新分配内存空间。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小指针
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 附加参数1
+ * @param AdditionalParameter2 附加参数2
+ * @param AdditionalParameter3 附加参数3
+ * @return long long* 返回调整后的内存池指针
+ */
 long long *
-FUN_180157ef0(long long *SystemContextPointer,long long *Utf8BufferSize,uint64_t Utf16InputPointer,long long Utf16EndPointer,
+ResizeMemoryPool(long long *SystemContextPointer,long long *Utf8BufferSize,uint64_t Utf16InputPointer,long long Utf16EndPointer,
              long long AdditionalParameter1,uint64_t AdditionalParameter2,uint8_t AdditionalParameter3
 {
   long long *SystemContextPointer;
@@ -180364,8 +180428,23 @@ FUN_180157ef0(long long *SystemContextPointer,long long *Utf8BufferSize,uint64_t
 
 
  (ram,0x000180158286
+/**
+ * 释放内存池
+ * 原始函数名: FUN_1801580f0
+ * 
+ * 释放之前分配的内存池，清理相关资源。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小指针
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 附加参数1
+ * @param AdditionalParameter2 附加参数2
+ * @param AdditionalParameter3 附加参数3
+ * @return long long* 返回操作结果指针
+ */
 long long *
-FUN_1801580f0(long long *SystemContextPointer,long long *Utf8BufferSize,uint64_t Utf16InputPointer,long long Utf16EndPointer,
+ReleaseMemoryPool(long long *SystemContextPointer,long long *Utf8BufferSize,uint64_t Utf16InputPointer,long long Utf16EndPointer,
              uint64_t AdditionalParameter1,uint8_t AdditionalParameter2,uint8_t AdditionalParameter3
 {
   long long *SystemContextPointer;
@@ -181343,8 +181422,20 @@ long long FUN_1801597a0(uint64_t SystemContextPointer,long long Utf8BufferSize,u
 
 
 
+/**
+ * 初始化系统上下文
+ * 原始函数名: FUN_180159820
+ * 
+ * 初始化系统的上下文环境，设置系统参数和初始状态。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf16InputPointer UTF-16输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t 返回操作状态码
+ */
 uint64_t
-FUN_180159820(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+InitializeSystemContext(uint64_t SystemContextPointer,uint64_t Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   uint64_t Utf16Char;
   
@@ -190306,7 +190397,7 @@ void FUN_18016bdb0(long long ***SystemContextPointer,long long Utf8BufferSize,ui
   uint32_t SystemFlagG;
   uint32_t uStack_cc;
   void *SystemStatusBufferPointer;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   int iStack_b8;
   uint64_t SystemStackRegisterFlagB0;
   uint32_t CoreEngineValueA8;
@@ -192178,7 +192269,7 @@ FUN_18016e6a0(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64_t *U
   uint64_t MemoryAddressMask;
   long long *pPerformanceCounterValue;
   void *SystemStatusBufferPointer;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   uint32_t SystemStackRegisterFlagB0;
   void *SystemEventDispatcher;
   long long CoreEngineSignedValueA0;
@@ -205119,7 +205210,7 @@ FUN_1801839a0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
   uint32_t SystemFlagF;
   long long *plStack_d0;
   long long CoreEngineSignedValueC8;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   uint64_t MemoryOffsetValue;
   long long *plStack_b0;
   long long lStack_a8;
@@ -206496,7 +206587,7 @@ LAB_1801857bd:
   uint32_t SystemFlagG;
   uint32_t uStack_cc;
   long long CoreEngineSignedValueC8;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   uint64_t MemoryOffsetValue;
   long long *plStack_b0;
   long long lStack_a8;
@@ -207206,7 +207297,7 @@ void FUN_180186ac0(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64
   uint64_t *pSystemFlagF;
   void **ppSystemFlagG;
   void *SystemStatusBufferPointer;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   void **ppSystemOperationFlag90;
   uint8_t aStackValidationData [16];
   uint64_t StackUnsigned78;
@@ -230166,12 +230257,31 @@ long long * FUN_180203f10(void
     DataSize = (uint8_t)RegisterValueR12;
     if (RegisterValueR15D <= RegisterValueEBP) {
 
-void FUN_1802041d5(void)
+/**
+ * @brief 系统初始化函数
+ * 
+ * 该函数用于初始化系统组件和状态
+ * 
+ * @note 原始函数名：FUN_1802041d5
+ */
+void InitializeSystemComponents(void)
 {
   uint8_t unaff_BPL;
   
 
-void FUN_1802041f0(uint8_t (*SystemContextPointer) [16],uint8_t (*Utf8BufferSize) [16],long long Utf16InputPointer,
+/**
+ * @brief 处理系统数据转换
+ * 
+ * 该函数用于处理系统数据转换和验证操作
+ * 
+ * @param SystemContextPointer 系统上下文指针数组
+ * @param Utf8BufferSize UTF-8缓冲区大小指针数组
+ * @param Utf16InputPointer UTF-16输入数据指针
+ * @param Utf16EndPointer UTF-16数据结束指针
+ * 
+ * @note 原始函数名：FUN_1802041f0
+ */
+void HandleSystemDataConversion(uint8_t (*SystemContextPointer) [16],uint8_t (*Utf8BufferSize) [16],long long Utf16InputPointer,
                   uint8_t Utf16EndPointer
 {
   bool CurrentByteValue;
@@ -232109,7 +232219,7 @@ LAB_180204eec:
   long long lStack_d8;
   uint32_t SystemFlagG;
   uint64_t SystemFlagH;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   long long lStack_b8;
   uint8_t aSystemStackRegisterFlagB0 [16];
   long long *pCoreEngineSignedValueA0;
@@ -235904,7 +236014,7 @@ long long * FUN_180209980(long long *SystemContextPointer,long long *Utf8BufferS
   int iStack_d8;
   unsigned long long SystemFlagG;
   void *SystemStatusBufferPointer;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   uint32_t MemoryOffsetValue;
   unsigned long long SystemStackRegisterFlagB0;
   void *SystemEventDispatcher;
@@ -237620,7 +237730,7 @@ long long * FUN_18020c010(uint64_t SystemContextPointer,long long *Utf8BufferSiz
   long long lStack_d8;
   long long lStack_d0;
   long long CoreEngineSignedValueC8;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   long long lStack_b8;
   uint64_t *pSystemStackRegisterFlagB0;
   uint64_t *SystemEventDispatcher;
@@ -242900,7 +243010,7 @@ FUN_180215110(long long SystemContextPointer,long long *Utf8BufferSize,int *Utf1
   uint32_t SystemFlagC;
   uint8_t SystemFlagBuffer [32];
   void *SystemStatusBufferPointer;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   uint32_t SystemStackRegisterFlagB0;
   void *SystemEventDispatcher;
   long long CoreEngineSignedValueA0;
@@ -247506,7 +247616,7 @@ code*** GetSystemDataStructurePointer(void
   uint64_t *pSystemFlagA;
   uint32_t SystemFlagB;
   uint64_t SystemFlagC;
-  long long lStack_c0;
+  long long StackMemoryBufferC0;
   uint8_t aSystemOperationFlag90 [32];
   uint64_t StackVariable70;
   unsigned long long FunctionAddress;

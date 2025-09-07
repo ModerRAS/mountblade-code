@@ -13704,7 +13704,7 @@ uint64_t ValidateSystemDataIndexAndProcessResource(int64_t systemContext, int64_
   if ((*(int *)(systemDataPtr + 0x180) != 0) || (*(int *)(systemDataPtr + 0x184) != 0)) {
     bufferPtr = 0;
     InitializeSystemContextA0(&bufferPtr);
-    if (bufferPtr == *(int64_t *)((int64_t)*(int *)(systemDataPtr + 0x17c) * 8 + 0x180c4f450)) {
+    if (bufferPtr == *(int64_t *)((int64_t)*(int *)(systemDataPtr + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBase)) {
       operationStatus = ProcessSystemDataEC0(systemDataPtr, systemContext);
       goto OperationComplete;
     }
@@ -20938,16 +20938,16 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
   DataWord dataFlags;
   DataWord validationOutcome;
   DataWord securityCheckResult;
-  uint8_t *puStack_28;
-  DataWord uStack_20;
+  uint8_t *stackSecurityPointer;
+  DataWord stackValidationResult;
   DataWord securityCheckValue;
-  DataWord uStack_14;
+  DataWord stackOperationFlags;
   
-  uStack_20 = 0;
+  stackValidationResult = 0;
   DataProcessingContext *dataProcessingContext;
   dataProcessingContext = &DataProcessingConfigurationTableA1;
   securityCheckValue = 2;
-  uStack_14 = 0x20214;
+  stackOperationFlags = 0x20214;
   operationResult = ValidateDataIntegrityA0(operationBase,dataProcessingContext);
   if ((int)operationResult == 0) {
     validationContext = *(int64_t *)(operationBase[1] + 0x78);
@@ -66470,7 +66470,7 @@ void ExecuteResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuff
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  ExecuteMemoryOperation(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(calculatedOffset + 0x7fe8,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = *(int64_t *)(calculatedOffset + 0x7fd0);
   for (resourceIterator = *(int64_t *)(calculatedOffset + 0x7fc8); resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     ProcessDataBlocks(resourceIterator);
@@ -67373,7 +67373,7 @@ void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  ExecuteMemoryOperation(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
+  ExecuteMemoryOperation(calculatedOffset + 0x7fe8,0x20,5,InitializeSystemMemoryA0);
   calculatedIndex = *(int64_t *)(calculatedOffset + 0x7fd0);
   for (resourceIterator = *(int64_t *)(calculatedOffset + 0x7fc8); resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     ProcessDataBlocks(resourceIterator);
