@@ -13886,9 +13886,18 @@ DataBuffer ProcessSystemRequest(int64_t contextHandle,int64_t systemParameters)
 
 
 
-// 函数: void ProcessDataSetFlagA0(int64_t dataContext,int64_t systemContext)
-// 功能：处理数据并设置标志位0x29，调用系统处理函数
-void ProcessDataSetFlagA0(int64_t dataContext,int64_t systemContext)
+/**
+ * @brief 处理数据并设置标志位
+ * 
+ * 该函数处理数据查询，并在数据指针的0x29偏移量处设置标志位。
+ * 如果查询成功，会调用系统事件清理函数。
+ * 
+ * @param dataContext 数据上下文指针，包含要处理的数据信息
+ * @param systemContext 系统上下文指针，包含系统状态信息
+ * 
+ * @note 原始函数名：ProcessDataSetFlagA0
+ */
+void ProcessDataSetFlagAndCleanup(int64_t dataContext,int64_t systemContext)
 
 {
   int queryStatus;
@@ -13906,9 +13915,18 @@ void ProcessDataSetFlagA0(int64_t dataContext,int64_t systemContext)
 
 
 
-// 函数: void ProcessDataSetFlagA1(int64_t dataContext,int64_t systemContext)
-// 功能：处理数据并设置标志位0x28，调用系统处理函数
-void ProcessDataSetFlagA1(int64_t dataContext,int64_t systemContext)
+/**
+ * @brief 处理数据并设置标志位（变体）
+ * 
+ * 该函数处理数据查询，并在数据指针的0x28偏移量处设置标志位。
+ * 如果查询成功，会调用系统事件清理函数。这是ProcessDataSetFlagAndCleanup的变体。
+ * 
+ * @param dataContext 数据上下文指针，包含要处理的数据信息
+ * @param systemContext 系统上下文指针，包含系统状态信息
+ * 
+ * @note 原始函数名：ProcessDataSetFlagA1
+ */
+void ProcessDataSetFlagAndCleanupVariant(int64_t dataContext,int64_t systemContext)
 
 {
   int operationStatus;
@@ -13981,8 +13999,17 @@ DataBuffer ProcessUtilityDataAndExecute(int64_t dataContext,int64_t systemContex
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ProcessSystemEventA3(int64_t eventContext,int64_t systemContext)
-// 功能：处理系统事件，管理事件队列和内存分配，调用系统处理函数
+/**
+ * @brief 处理系统事件
+ * 
+ * 该函数处理系统事件，管理事件队列和内存分配，并调用系统处理函数。
+ * 负责事件的排队、内存分配和系统操作的执行。
+ * 
+ * @param eventContext 事件上下文指针，包含事件相关信息
+ * @param systemContext 系统上下文指针，包含系统状态信息
+ * 
+ * @note 原始函数名：ProcessSystemEventA3
+ */
 void ProcessSystemEventA3(int64_t eventContext,int64_t systemContext)
 
 {
