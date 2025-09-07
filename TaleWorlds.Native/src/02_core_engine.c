@@ -116,6 +116,8 @@
 #define GetSystemErrorCode FUN_180225472                           // 获取系统错误代码
 #define GetMemoryBoundaryEnd FUN_18014e960                       // 获取内存边界结束
 #define GetProcessingPointerC0 FUN_18014f6a0                    // 获取处理指针C0
+#define ProcessCharacterEncodingAndSystemInitialization FUN_18014a9d0  // 处理字符编码和系统初始化
+#define ProcessCharacterCodeWithSecondarySystemValidation FUN_18014aae0  // 处理字符代码的二级系统验证
 
 // 系统函数指针映射
 #define ExecuteSystemFunctionCodeExecution FUN_18013cf40      // 执行系统函数代码执行
@@ -177345,7 +177347,21 @@ uint64_t* InitializeSystemContextAndBuffer(uint64_t *CharacterCode, uint64_t *Ch
 
 
 
-4aae0(long long *CharacterCodevoid FUN_18014aae0(long long *CharacterCode
+/**
+ * @brief 处理字符代码的二级系统验证
+ * 
+ * 该函数负责处理字符代码的二级系统验证，通过遍历字符表指针
+ * 并对每个缓冲区状态进行二级系统处理。如果字符代码为0，
+ * 则直接返回；否则触发系统事件处理。
+ * 
+ * @param CharacterCode 字符代码指针，包含字符表和缓冲区信息
+ * @return void 无返回值
+ * 
+ * @note 此函数使用0x88作为步长遍历缓冲区
+ * @note 如果字符代码[0]为0，函数直接返回
+ * @note 否则会触发系统事件处理（不返回）
+ */
+void ProcessCharacterCodeWithSecondarySystemValidation(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -269030,7 +269046,15 @@ int IdentifySystemIdentifierByPatternVariantAD(void
 
 
 
-int FUN_180225a27(void
+/**
+ * 识别系统标识符模式变体AE
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为5、3、4的字符串匹配，以及其他特定长度的模式。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantAE(void
 {
   int LockResult;
   long long BufferStatus;
@@ -269145,7 +269169,15 @@ int FUN_180225a27(void
 
 
 
-int FUN_180225a67(void
+/**
+ * 识别系统标识符模式变体AF
+ * 
+ * 此函数根据输入数据的长度和内容，匹配特定的系统标识符模式。
+ * 主要处理长度为5、3、4的字符串匹配，以及其他特定长度的模式。
+ * 
+ * @return 返回匹配的系统标识符代码
+ */
+int IdentifySystemIdentifierByPatternVariantAF(void
 {
   int LockResult;
   long long BufferStatus;

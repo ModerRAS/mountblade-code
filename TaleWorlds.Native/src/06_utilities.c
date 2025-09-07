@@ -81069,7 +81069,17 @@ void IterateExceptionContextHandlersA0(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090a210(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作执行函数A0
+ * 
+ * 该函数在指定内存位置执行内存操作，操作类型为写入。
+ * 
+ * @param operationBase 操作基础对象（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a210
+ */
+void ExecuteMemoryWriteOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x60) + 0x5a0,0x20,9,ProcessMemoryOperationA0);
