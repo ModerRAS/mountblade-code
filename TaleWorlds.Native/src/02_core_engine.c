@@ -132175,7 +132175,7 @@ LAB_18012b465:
   ValidationResult = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x41) = 0;
   *(uint32_t *)((long long)SystemParameter2 + 0x20c) = 0;
-  FUN_18010e7a0(SystemParameter2);
+  GetSystemParameters(SystemParameter2);
   ReadSystemStatus(SystemParameter2);
   PrimaryReturnCode = ValidateSystemDataStructure(RegisterFramePointer + -0x18,
                                *(float *)((long long)SystemParameter2 + 0x20c) +
@@ -132195,7 +132195,7 @@ LAB_18012b465:
   *(uint32_t *)((long long)SystemParameter2 + 0x134) = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x25) = 0;
   *(uint8_t *)((long long)SystemParameter2 + 0x17c) = 0;
-  FilterInputValue2 = (float)FUN_1801293c0(SystemParameter2);
+  FilterInputValue2 = (float)CalculateSystemFloatValue(SystemParameter2);
   *(bool *)((long long)SystemParameter2 + 0x17d) = 0.0 < FilterInputValue2;
   *(int *)((long long)SystemParameter2 + 0x174) = (int)SystemParameter2[0x2f];
   *(uint32_t *)(eventDataStructurePointer + 0x2f) = 0;
@@ -134018,7 +134018,7 @@ LAB_18012b465:
   SystemStatusCode = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x41) = 0;
   *(uint32_t *)((long long)SystemParameter2 + 0x20c) = 0;
-  FUN_18010e7a0(SystemParameter2);
+  GetSystemParameters(SystemParameter2);
   ReadSystemStatus(SystemParameter2);
   Utf16ConversionContext = ValidateSystemDataStructure(RegisterFramePointer + -0x18,
                                *(float *)((long long)SystemParameter2 + 0x20c) +
@@ -134038,7 +134038,7 @@ LAB_18012b465:
   *(uint32_t *)((long long)SystemParameter2 + 0x134) = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x25) = 0;
   *(uint8_t *)((long long)SystemParameter2 + 0x17c) = 0;
-  FilterInputValue1 = (float)FUN_1801293c0(SystemParameter2);
+  FilterInputValue1 = (float)CalculateSystemFloatValue(SystemParameter2);
   *(bool *)((long long)SystemParameter2 + 0x17d) = 0.0 < FilterInputValue1;
   *(int *)((long long)SystemParameter2 + 0x174) = (int)SystemParameter2[0x2f];
   *(uint32_t *)(eventDataStructurePointer + 0x2f) = 0;
@@ -135711,7 +135711,7 @@ LAB_18012b465:
   MemoryAllocationIndex = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x41) = 0;
   *(uint32_t *)((long long)SystemParameter2 + 0x20c) = 0;
-  FUN_18010e7a0(SystemParameter2);
+  GetSystemParameters(SystemParameter2);
   ReadSystemStatus(SystemParameter2);
   Utf16Char4 = ValidateSystemDataStructure(RegisterFramePointer + -0x18,
                                *(float *)((long long)SystemParameter2 + 0x20c) +
@@ -135731,7 +135731,7 @@ LAB_18012b465:
   *(uint32_t *)((long long)SystemParameter2 + 0x134) = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x25) = 0;
   *(uint8_t *)((long long)SystemParameter2 + 0x17c) = 0;
-  ContextSecondaryFloat9 = (float)FUN_1801293c0(SystemParameter2);
+  ContextSecondaryFloat9 = (float)CalculateSystemFloatValue(SystemParameter2);
   *(bool *)((long long)SystemParameter2 + 0x17d) = AuxiliaryFloat13 < ContextSecondaryFloat9;
   *(int *)((long long)SystemParameter2 + 0x174) = (int)SystemParameter2[0x2f];
   *(uint32_t *)(eventDataStructurePointer + 0x2f) = 0;
@@ -137322,7 +137322,7 @@ LAB_18012b510:
   MemoryAllocationIndex = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x41) = 0;
   *(uint32_t *)((long long)SystemParameter2 + 0x20c) = 0;
-  FUN_18010e7a0(SystemParameter2);
+  GetSystemParameters(SystemParameter2);
   ReadSystemStatus(SystemParameter2);
   Utf16Char4 = ValidateSystemDataStructure(RegisterFramePointer + -0x18,
                                *(float *)((long long)SystemParameter2 + 0x20c) +
@@ -139011,7 +139011,7 @@ LAB_18012b465:
   MemoryAllocationIndex = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x41) = 0;
   *(uint32_t *)((long long)SystemParameter2 + 0x20c) = 0;
-  FUN_18010e7a0(SystemParameter2);
+  GetSystemParameters(SystemParameter2);
   ReadSystemStatus(SystemParameter2);
   Utf16Char4 = ValidateSystemDataStructure(RegisterFramePointer + -0x18,
                                *(float *)((long long)SystemParameter2 + 0x20c) +
@@ -140585,7 +140585,7 @@ LAB_18012b510:
   MemoryAllocationIndex = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x208) = 0;
   *(uint32_t *)(eventDataStructurePointer + 0x20c) = 0;
-  FUN_18010e7a0(SystemParameter2);
+  GetSystemParameters(SystemParameter2);
   ReadSystemStatus(SystemParameter2);
   SystemStatusCode = ValidateSystemDataStructure(RegisterFramePointer + -0x18,
                                *(float *)(SystemParameter2 + 0x20c) +
@@ -141657,7 +141657,7 @@ LAB_18012b510:
   ProcessingStatusFlag = (uint32_t)DataNodeIndex;
   *(uint32_t *)(eventDataStructurePointer + 0x208) = ProcessingStatusFlag;
   *(uint32_t *)(eventDataStructurePointer + 0x20c) = ProcessingStatusFlag;
-  FUN_18010e7a0(SystemParameter2);
+  GetSystemParameters(SystemParameter2);
   ReadSystemStatus(SystemParameter2);
   MemoryAllocationOffset = ValidateSystemDataStructure(RegisterFramePointer + -0x18,
                                *(float *)(SystemParameter2 + 0x20c) +
@@ -141677,7 +141677,7 @@ LAB_18012b510:
   *(uint32_t *)(eventDataStructurePointer + 0x134) = ProcessingStatusFlag;
   *(uint32_t *)(eventDataStructurePointer + 0x128) = ProcessingStatusFlag;
   *(uint8_t *)(SystemParameter2 + 0x17c) = 0;
-  FilterInputValue2 = (float)FUN_1801293c0(SystemParameter2);
+  FilterInputValue2 = (float)CalculateSystemFloatValue(SystemParameter2);
   *(bool *)(SystemParameter2 + 0x17d) = AuxiliaryFloat13 < FilterInputValue2;
   *(uint32_t *)(eventDataStructurePointer + 0x174) = *(uint32_t *)(eventDataStructurePointer + 0x178);
   *(uint32_t *)(eventDataStructurePointer + 0x178) = ProcessingStatusFlag;
@@ -142507,7 +142507,7 @@ void ExecuteSystemCoreDataProcessing(void)
   DataSize = (uint32_t)DataNodeIndex;
   *(uint32_t *)(eventDataStructurePointer + 0x208) = DataSize;
   *(uint32_t *)(eventDataStructurePointer + 0x20c) = DataSize;
-  FUN_18010e7a0(SystemParameter2);
+  GetSystemParameters(SystemParameter2);
   ReadSystemStatus(SystemParameter2);
   ValidationResult = ValidateSystemDataStructure(RegisterFramePointer + -0x18,
                                *(float *)(SystemParameter2 + 0x20c) +
@@ -142861,7 +142861,7 @@ void ProcessSystemStatusValidationAndInitialization(void)
   PrimaryReturnCode = (uint32_t)DataNodeIndex;
   *(uint32_t *)(eventDataStructurePointer + 0x208) = PrimaryReturnCode;
   *(uint32_t *)(eventDataStructurePointer + 0x20c) = PrimaryReturnCode;
-  FUN_18010e7a0(SystemParameter2);
+  GetSystemParameters(SystemParameter2);
   ReadSystemStatus(SystemParameter2);
   SystemMemoryAllocationResult = ValidateSystemDataStructure(RegisterFramePointer + -0x18,
                               *(float *)(SystemParameter2 + 0x20c) +
