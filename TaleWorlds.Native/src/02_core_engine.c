@@ -165452,7 +165452,7 @@ LAB_180139b2f:
         CharacterVariable5 = ProcessCharacterCodeLookup(SystemCharacterStatusPointer,CharacterCode);
         ContextSecondaryFloat3 = ContextSecondaryFloat0;
         if (CharacterVariable5 != '\0') {
-          FUN_18011ce30(&FloatStack2,*SystemCharacterStatusPointer,*(uint8_t *)((long long)SystemCharacterStatusPointer + 0xb7));
+          ProcessFloatValueConversion(&FloatStack2,*SystemCharacterStatusPointer,*(uint8_t *)((long long)SystemCharacterStatusPointer + 0xb7));
           MemoryAddressMask = UnsignedStack1;
           CalculatedFilterValue = FloatStack3;
           ContextPrimaryFloat9 = ContextSecondaryFloat0 + FloatStack2;
