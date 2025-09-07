@@ -129567,7 +129567,7 @@ LAB_18012b465:
   SystemContextValue = pSystemMemoryOffset238[0x5d];
   SystemValue1c8 = *(void *)(*(long long *)(*(long long *)(DataStructureCounter + 0x19f0) + 0x58) + 8);
   ProcessSystemDataAndConfiguration(SystemContextValue + 0x70,&SystemValue1c8);
-  FUN_180291a50(SystemContextValue);
+  CleanupSystemContext(SystemContextValue);
   if (((MemoryAllocationIndex9 & 0x5000000) == 0x1000000) && (fStack_188 != 3.761582e-37)) {
     StatusBuffer8 = (void *)(lStack_158 + 0x228);
     PrimaryProcessingStatusFlag5 = (void *)(lStack_158 + 0x230);
@@ -129578,7 +129578,7 @@ LAB_18012b465:
   }
   ProcessSystemParameters(StatusBuffer8,PrimaryProcessingStatusFlag5);
   if ((((MemoryAllocationIndex9 >> 0x1b & 1) == 0) ||
-      (CharacterCode4 = (long long *)FUN_18012ea90(), pSystemMemoryOffset238 != CharacterCode4)) ||
+      (CharacterCode4 = (long long *)GetSystemDataPointer2(), pSystemMemoryOffset238 != CharacterCode4)) ||
      (0 < *(int *)((long long)pSystemMemoryOffset238 + 0xdc))) {
     HighByte8 = 0;
   }
@@ -129607,7 +129607,7 @@ LAB_18012b465:
     ProcessSystemDataAndConfigure(pSystemMemoryOffset238[0x5d],&DataContentStatus,&SystemUnsignedValue160,SystemMemoryAllocationResult);
     if ((LowByte1) && (pSystemMemoryOffset238 == *(long long **)(DataStructureCounter + 0x1ce0))) {
       GetSystemFloatArray(pSystemMemoryOffset238,&uStack_1d8);
-      FUN_18010e610(&uStack_1d8);
+      ManageSystemMemory(&uStack_1d8);
       if ((float)uStack_1d8 <= (float)DataContentStatus) {
         if (((uStack_1d8.HighPart <= DataContentStatus.HighPart) && ((float)SystemUnsignedValue160 <= fStack_1d0)) &&
            (SystemUnsignedValue160.HighPart <= fStack_1cc)) goto LAB_18012b82d;
@@ -129642,7 +129642,7 @@ LAB_18012b82d:
   else {
     HighByte8 = 1;
   }
-  FUN_180120c80(pSystemMemoryOffset238,&fStack_180);
+  ProcessSystemMemoryAllocationAndDataManagement(pSystemMemoryOffset238,&fStack_180);
   CharacterCode4 = pSystemMemoryOffset238;
   if (*(char *)((long long)pSystemMemoryOffset238 + 0xb2) == '\0') {
     SystemUnsignedValue1A0 = CONCAT44(SystemUnsignedValue1A0.HighPart,MemoryAllocationIndex9) & 0xffffffff00000080;
@@ -134846,7 +134846,7 @@ LAB_18012b465:
   *(void *)(FrameRegisterPointer + -0x14) =
        *(void *)(*(long long *)(*(long long *)(RegisterSourceIndex + 0x19f0) + 0x58) + 8);
   ProcessSystemDataAndConfiguration(SystemContextValue + 0x70,FrameRegisterPointer + -0x14);
-  FUN_180291a50(SystemContextValue);
+  CleanupSystemContext(SystemContextValue);
   if ((((uint)RegisterR15ValueD & 0x5000000) == 0x1000000) && (FrameRegisterPointer[-4] != 3.761582e-37)) {
     pSystemContextPrimaryFloat6 = (float *)(*(long long *)(FrameRegisterPointer + 8) + 0x228);
     pContextSecondaryFloat5 = (float *)(*(long long *)(FrameRegisterPointer + 8) + 0x230);
@@ -136457,7 +136457,7 @@ LAB_18012b510:
   *(void *)(FrameRegisterPointer + -0x14) =
        *(void *)(*(long long *)(*(long long *)(RegisterSourceIndex + 0x19f0) + 0x58) + 8);
   ProcessSystemDataAndConfiguration(SystemContextValue + 0x70,FrameRegisterPointer + -0x14);
-  FUN_180291a50(SystemContextValue);
+  CleanupSystemContext(SystemContextValue);
   if ((((uint)FloatValue30 & 0x5000000) == 0x1000000) && (FrameRegisterPointer[-4] != 3.761582e-37)) {
     pSystemContextPrimaryFloat6 = (float *)(*(long long *)(FrameRegisterPointer + 8) + 0x228);
     pContextSecondaryFloat5 = (float *)(*(long long *)(FrameRegisterPointer + 8) + 0x230);
@@ -138146,7 +138146,7 @@ LAB_18012b465:
   *(void *)(FrameRegisterPointer + -0x14) =
        *(void *)(*(long long *)(*(long long *)(RegisterSourceIndex + 0x19f0) + 0x58) + 8);
   ProcessSystemDataAndConfiguration(SystemContextValue + 0x70,FrameRegisterPointer + -0x14);
-  FUN_180291a50(SystemContextValue);
+  CleanupSystemContext(SystemContextValue);
   if ((((uint)RegisterR15ValueD & 0x5000000) == 0x1000000) && (FrameRegisterPointer[-4] != 3.761582e-37)) {
     pSystemContextPrimaryFloat6 = (float *)(*(long long *)(FrameRegisterPointer + 8) + 0x228);
     pContextSecondaryFloat5 = (float *)(*(long long *)(FrameRegisterPointer + 8) + 0x230);
@@ -273982,5 +273982,131 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_1801295b0
  */
 #define ProcessCharacterCodeAndFloatData FUN_1801295b0
+
+/**
+ * @brief 处理系统内存分配和数据管理
+ * 
+ * 该函数负责处理系统内存分配和数据管理操作，包括内存块的分配、初始化和清理。
+ * 
+ * @note 原始函数名：FUN_180120c80
+ */
+#define ProcessSystemMemoryAllocationAndDataManagement FUN_180120c80
+
+/**
+ * @brief 执行浮点数运算和向量处理
+ * 
+ * 该函数负责执行浮点数运算和向量处理操作，包括向量的创建、变换和计算。
+ * 
+ * @note 原始函数名：FUN_18011fcd0
+ */
+#define ExecuteFloatingPointOperationAndVectorProcessing FUN_18011fcd0
+
+/**
+ * @brief 执行系统组件初始化和配置
+ * 
+ * 该函数负责执行系统组件初始化和配置操作，包括系统组件的创建和参数设置。
+ * 
+ * @note 原始函数名：FUN_180291500
+ */
+#define ExecuteSystemComponentInitializationAndConfiguration FUN_180291500
+
+/**
+ * @brief 执行系统上下文管理和状态更新
+ * 
+ * 该函数负责执行系统上下文管理和状态更新操作，维护系统运行状态的一致性。
+ * 
+ * @note 原始函数名：FUN_180291a50
+ */
+#define ExecuteSystemContextManagementAndStateUpdate FUN_180291a50
+
+/**
+ * @brief 执行系统数据验证和错误检查
+ * 
+ * 该函数负责执行系统数据验证和错误检查操作，确保系统数据的完整性和正确性。
+ * 
+ * @note 原始函数名：FUN_18010e610
+ */
+#define ExecuteSystemDataValidationAndErrorChecking FUN_18010e610
+
+/**
+ * @brief 执行系统浮点数计算和验证
+ * 
+ * 该函数负责执行系统浮点数计算和验证操作，包括浮点数的精确计算和结果验证。
+ * 
+ * @note 原始函数名：FUN_180123c00
+ */
+#define ExecuteSystemFloatingPointCalculationAndValidation FUN_180123c00
+
+/**
+ * @brief 执行系统资源释放和清理
+ * 
+ * 该函数负责执行系统资源释放和清理操作，确保系统资源的正确释放和内存回收。
+ * 
+ * @note 原始函数名：FUN_180110540
+ */
+#define ExecuteSystemResourceReleaseAndCleanup FUN_180110540
+
+/**
+ * @brief 执行系统数据同步和状态管理
+ * 
+ * 该函数负责执行系统数据同步和状态管理操作，维护系统数据的一致性和状态同步。
+ * 
+ * @note 原始函数名：FUN_180293730
+ */
+#define ExecuteSystemDataSynchronizationAndStatusManagement FUN_180293730
+
+/**
+ * @brief 执行浮点数运算和结果处理
+ * 
+ * 该函数负责执行浮点数运算和结果处理操作，包括复杂的浮点计算和结果处理。
+ * 
+ * @note 原始函数名：FUN_18010e4e0
+ */
+#define ExecuteFloatingPointCalculationAndResultProcessing FUN_18010e4e0
+
+/**
+ * @brief 执行系统内存清理和优化
+ * 
+ * 该函数负责执行系统内存清理和优化操作，提高系统内存使用效率。
+ * 
+ * @note 原始函数名：FUN_18010e7a0
+ */
+#define ExecuteSystemMemoryCleanupAndOptimization FUN_18010e7a0
+
+/**
+ * @brief 执行系统内存分配和初始化
+ * 
+ * 该函数负责执行系统内存分配和初始化操作，为系统组件提供必要的内存资源。
+ * 
+ * @note 原始函数名：FUN_18013e200
+ */
+#define ExecuteSystemMemoryAllocationAndInitialization FUN_18013e200
+
+/**
+ * @brief 执行系统内存管理和配置
+ * 
+ * 该函数负责执行系统内存管理和配置操作，确保系统内存的正确配置和管理。
+ * 
+ * @note 原始函数名：FUN_18013e340
+ */
+#define ExecuteSystemMemoryManagementAndConfiguration FUN_18013e340
+
+/**
+ * @brief 执行系统内存数据处理和清理
+ * 
+ * 该函数负责执行系统内存数据处理和清理操作，处理内存中的数据并进行必要的清理。
+ * 
+ * @note 原始函数名：FUN_18013e2f0
+ */
+#define ExecuteSystemMemoryDataProcessingAndCleanup FUN_18013e2f0
+
+/**
+ * @brief 执行系统内存缓冲区管理和优化
+ * 
+ * 该函数负责执行系统内存缓冲区管理和优化操作，提高缓冲区使用效率。
+ * 
+ * @note 原始函数名：FUN_18013db40
+ */
+#define ExecuteSystemMemoryBufferManagementAndOptimization FUN_18013db40
 
 
