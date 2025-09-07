@@ -204697,7 +204697,7 @@ TemporaryBufferValidation: // 原始标签：LAB_18017a372，TemporaryBufferVali
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(SystemDataTablePointer);
   }
-LAB_18017a58d:  // 内存分配索引设置标签
+MemoryAllocationIndexSetup: // 原始标签：LAB_18017a58d，MemoryAllocationIndexSetup
   if ((pMemoryAddressMask == CharacterCode) || (*StatusBuffer < (unsigned long long)pMemoryAddressMask[4])) {
     MemoryAllocationIndex = 0;
   }
@@ -204861,7 +204861,7 @@ void ProcessSystemContextDataEncoding(long long CharacterCode,long long *Utf8Inp
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(SystemContextPtr);
   }
-LAB_18017a85e:  // 系统偏移值设置标签
+SystemOffsetValueSetup: // 原始标签：LAB_18017a85e，SystemOffsetValueSetup
   if ((SecondaryProcessingStatusFlag == StatusBuffer) || (EncodingConversionResult = 1, (unsigned long long)SystemContextPtr[4] < (unsigned long long)SecondaryProcessingStatusFlag[4])) {
     EncodingConversionResult = 0;
   }
