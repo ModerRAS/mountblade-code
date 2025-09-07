@@ -23337,6 +23337,7 @@ DataBuffer ValidateDataSequenceA0(int64_t *operationBase,uint *dataBuffer)
   DataBuffer systemDataBuffer;
   uint allocationParameterBuffer [2];
   unsigned int stackDataArray [4];
+  unsigned int validationParameterBuffer [4];
   
   if (*(int *)(operationBase[1] + 0x18) != 0) {
     return 0x1c;
@@ -23357,12 +23358,12 @@ DataBuffer ValidateDataSequenceA0(int64_t *operationBase,uint *dataBuffer)
         goto ProcessCheckpointDataValidation;
       }
     }
-    systemDataBuffer = ValidateDataAndReturnStatusO3(*operationBase,auStackX_18,1,4,0);
+    systemDataBuffer = ValidateDataAndReturnStatusO3(*operationBase,validationParameterBuffer,1,4,0);
   }
 ValidationCheckpointB:
   if ((int)systemDataBuffer == 0) {
-    *dataBuffer = auStackX_18[0];
-    if (2 < auStackX_18[0]) {
+    *dataBuffer = validationParameterBuffer[0];
+    if (2 < validationParameterBuffer[0]) {
       return 0xd;
     }
     systemDataBuffer = OperateDataO0(operationBase,dataBuffer + 1,4);
@@ -49570,7 +49571,20 @@ void ExecuteExceptionHandlerCallbackG(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180904740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行函数F
+ * 
+ * 该函数负责执行异常处理器回调，从数据缓冲区获取异常处理器回调指针
+ * 并执行相应的异常处理操作，使用偏移地址0x68和0x10
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180904740
+ */
+void ExecuteExceptionHandlerCallbackF(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;

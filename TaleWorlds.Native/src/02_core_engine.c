@@ -37863,6 +37863,7 @@ SystemEventProcessingLabel:
     SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,0x14,0x10,0x13);
     goto SystemEventDataProcessingComplete;
   }
+SystemEventDataProcessingComplete: // 原始标签：LAB_180071b69
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   FunctionAddress80 = 0x13;
   if (CharacterCodeSize != 0) {
