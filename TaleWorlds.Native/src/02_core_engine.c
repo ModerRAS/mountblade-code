@@ -280862,4 +280862,17 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define ConfigHandlerLAB180087418 LAB_180087418
 #define CleanupHandlerLAB18008755d LAB_18008755d
 
+// 新增的FUN_函数语义化宏定义
+#define SystemNullOperation FUN_18013e74d                    // 系统空操作函数
+#define ProcessStringComparisonResultValidation FUN_18013e760  // 处理字符串比较结果验证
+#define ResetUtf8ProcessingState FUN_18013e77c               // 重置UTF-8处理状态
+#define InitializeUtf8MemoryManagement FUN_18013e7f2          // 初始化UTF-8内存管理
+#define ProcessUtf8BufferSizeOptimization FUN_18013e800       // 处理UTF-8缓冲区大小优化
+#define ValidateUtf8CharacterCode FUN_18013e81a               // 验证UTF-8字符代码
+#define FinalizeUtf8BufferProcessing FUN_18013e8d4            // 完成UTF-8缓冲区处理
+#define ReleaseUtf8ProcessingResources FUN_18013e8e6          // 释放UTF-8处理资源
+#define ProcessUtf8CharacterCodeConversion FUN_18013e910      // 处理UTF-8字符代码转换
+#define ProcessAdvancedCharacterCodeHandling FUN_18013ea70    // 处理高级字符代码处理
+#define ProcessCharacterCodeFinalization FUN_18013f090        // 处理字符代码最终化
+
 

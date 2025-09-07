@@ -119099,15 +119099,15 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：释放偏移量30处的内存资源并管理引用计数
 #define ReleaseMemoryResourceAtOffset30 Unwind_180910770
 
-// 原始函数名：Unwind_180910780 - 内存资源释放函数780变体
+// 内存资源释放函数780变体
 // 功能：释放偏移量30处的内存资源变体实现
 #define ReleaseMemoryResourceAtOffset30Variant Unwind_180910780
 
-// 原始函数名：Unwind_180910790 - 异常上下文内存资源释放函数
+// 异常上下文内存资源释放函数
 // 功能：释放异常上下文中的内存资源
 #define ReleaseExceptionContextMemoryResource Unwind_180910790
 
-// 原始函数名：Unwind_1809107a0 - 异常上下文重置和处理器配置函数
+// 异常上下文重置和处理器配置函数
 // 功能：重置异常上下文并配置异常处理器
 #define ResetExceptionContextAndConfigureHandlers Unwind_1809107a0
 
