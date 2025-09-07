@@ -13437,6 +13437,16 @@ OperationComplete:
  * @note 原始函数名：ExecuteSecurityValidation
  * @note 验证失败会终止程序执行
  */
+// 系统上下文偏移量常量定义
+#define SystemContextHandleOffset 0x10
+#define SystemContextDataOffset 0x18
+#define ValidationContextOffset 0x30
+#define OperationDescriptorDataOffset 800
+#define SecurityFunctionOffset 0x2f0
+#define PermissionPointerOffset 0x58
+#define PermissionValidationOffset 0x60
+#define SystemEventCleanupOffset 0x98
+
 void ExecuteSecurityValidation(int64_t securityContext, int64_t operationDescriptor)
 {
   int64_t validationCtx;
@@ -13452,17 +13462,17 @@ void ExecuteSecurityValidation(int64_t securityContext, int64_t operationDescrip
   stackGuardValue = ExceptionEncryptionKey ^ (uint64_t)securityValidationBuffer;
   
   // 查询并检索系统数据
-  queryStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(securityContext + 0x10), &systemCtx);
+  queryStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(securityContext + SystemContextHandleOffset), &systemCtx);
   if (queryStatus == 0) {
     if (systemCtx != 0) {
       systemCtx = systemCtx + -8;
     }
     
     // 检查系统上下文是否有效
-    if (*(int64_t *)(systemCtx + 0x18) != 0) {
-      validationCtx = *(int64_t *)(systemCtx + 0x18) + 0x30;
-      int64_t validationResult = (**(FunctionPointer**)(**(int64_t **)(operationDescriptor + 800) + 0x2f0))
-                               (*(int64_t **)(operationDescriptor + 800), validationCtx, 1);
+    if (*(int64_t *)(systemCtx + SystemContextDataOffset) != 0) {
+      validationCtx = *(int64_t *)(systemCtx + SystemContextDataOffset) + ValidationContextOffset;
+      int64_t validationResult = (**(FunctionPointer**)(**(int64_t **)(operationDescriptor + OperationDescriptorDataOffset) + SecurityFunctionOffset))
+                               (*(int64_t **)(operationDescriptor + OperationDescriptorDataOffset), validationCtx, 1);
       
       // 验证系统数据
       if (validationResult == 0) {
@@ -13470,9 +13480,9 @@ void ExecuteSecurityValidation(int64_t securityContext, int64_t operationDescrip
       }
       
       // 验证权限指针
-      permissionPtr = (int64_t *)(validationResult + 0x58);
-      if (((int64_t *)*permissionPtr != permissionPtr) || (*(int64_t **)(validationResult + 0x60) != permissionPtr)) {
-        CleanupSystemEventA0(*(DataBuffer *)(operationDescriptor + 0x98), securityContext);
+      permissionPtr = (int64_t *)(validationResult + PermissionPointerOffset);
+      if (((int64_t *)*permissionPtr != permissionPtr) || (*(int64_t **)(validationResult + PermissionValidationOffset) != permissionPtr)) {
+        CleanupSystemEventA0(*(DataBuffer *)(operationDescriptor + SystemEventCleanupOffset), securityContext);
       }
     }
   }
@@ -13496,6 +13506,13 @@ void ExecuteSecurityValidation(int64_t securityContext, int64_t operationDescrip
  * @note 函数包含安全验证机制，确保资源访问的安全性
  * @warning 如果验证失败，函数可能不会返回
  */
+// 资源处理偏移量常量定义
+#define ResourceFunctionTableOffset 0x2f0
+#define OperationValidationOffset 0x30
+#define DataContextPointerOffset 0x58
+#define DataContextValidationOffset 0x60
+#define ResourceCleanupEventOffset 0x98
+
 void ProcessResourcePointer(int64_t *resourceHandle, int64_t operationOffset)
 
 {
@@ -13505,18 +13522,18 @@ void ProcessResourcePointer(int64_t *resourceHandle, int64_t operationOffset)
   uint64_t stackGuardValue;
   ByteFlag stackBuffer [40];
   
-  validationContext = (**(FunctionPointer**)(*resourceHandle + 0x2f0))(resourceHandle,operationOffset + 0x30);
+  validationContext = (**(FunctionPointer**)(*resourceHandle + ResourceFunctionTableOffset))(resourceHandle,operationOffset + OperationValidationOffset);
   if (validationContext == 0) {
                     // WARNING: Subroutine does not return
-    ValidateSystemDataA0(operationOffset + 0x30,stackBuffer);
+    ValidateSystemDataA0(operationOffset + OperationValidationOffset,stackBuffer);
   }
-  dataContextPointer = (int64_t *)(validationContext + 0x58);
-  if (((int64_t *)*dataContextPointer == dataContextPointer) && (*(int64_t **)(validationContext + 0x60) == dataContextPointer)) {
+  dataContextPointer = (int64_t *)(validationContext + DataContextPointerOffset);
+  if (((int64_t *)*dataContextPointer == dataContextPointer) && (*(int64_t **)(validationContext + DataContextValidationOffset) == dataContextPointer)) {
                     // WARNING: Subroutine does not return
     ExecuteSecurityCheck(stackGuardValue ^ (uint64_t)stackBuffer);
   }
                     // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(DataBuffer *)(resourceContext + 0x98));
+  CleanupSystemEventA0(*(DataBuffer *)(resourceContext + ResourceCleanupEventOffset));
 }
 
 
@@ -13994,6 +14011,14 @@ DataBuffer ValidateParametersE0(DataWord parameterFlags)
 
 
 
+// 参数验证偏移量常量定义
+#define DataValidationSecondaryOffset 0x25
+#define DataValidationPrimaryOffset 0x20
+#define ContextRangeMinOffset 0x38
+#define ContextRangeMaxOffset 0x3c
+#define ValidationResultOffset 0x98
+#define StackParameterDataOffset 4
+
 /**
  * @brief 验证参数E1
  * 
@@ -14012,13 +14037,13 @@ DataBuffer ValidateParametersE1(DataWord validationFlags)
   int64_t dataInputPointer;
   int64_t stackParameterOffset;
   
-  validationResult = ProcessDataValidationA0(validationFlags,dataInputPointer + 0x25,dataInputPointer + 0x20);
+  validationResult = ProcessDataValidationA0(validationFlags,dataInputPointer + DataValidationSecondaryOffset,dataInputPointer + DataValidationPrimaryOffset);
   if ((int)validationResult == 0) {
-    inputValue = *(float *)(dataInputPointer + 0x20);
-    if ((*(float *)(contextHandle + 0x38) <= inputValue) &&
-       (floatValue < *(float *)(registerContext + 0x3c) || floatValue == *(float *)(registerContext + 0x3c))) {
-      validationResult = *(DataBuffer *)(stackFramePointer + 0x98);
-      *(float *)(stackParameterOffset + 4) = floatValue;
+    inputValue = *(float *)(dataInputPointer + DataValidationPrimaryOffset);
+    if ((*(float *)(contextHandle + ContextRangeMinOffset) <= inputValue) &&
+       (floatValue < *(float *)(registerContext + ContextRangeMaxOffset) || floatValue == *(float *)(registerContext + ContextRangeMaxOffset))) {
+      validationResult = *(DataBuffer *)(stackFramePointer + ValidationResultOffset);
+      *(float *)(stackParameterOffset + StackParameterDataOffset) = floatValue;
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(validationResult);
     }
@@ -17552,10 +17577,10 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
     do {
       dataContext = (int64_t)arrayIndex;
       if (*(uint *)(validationContext + dataContext * 0x10) == operationFlagB) {
-        iStack0000000000000044 = (int)((uint64_t)*(DataBuffer *)(validationContext + 8 + dataContext * 0x10) >> 0x20)
+        ValidationContextIndex = (int)((uint64_t)*(DataBuffer *)(validationContext + 8 + dataContext * 0x10) >> 0x20)
         ;
-        if (iStack0000000000000044 != 0) {
-          *destinationIndexRegister = iStack0000000000000044;
+        if (ValidationContextIndex != 0) {
+          *destinationIndexRegister = ValidationContextIndex;
           return 0;
         }
         goto DataProcessingLabel;
@@ -17563,7 +17588,7 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
       arrayIndex = *(int *)(validationContext + 4 + dataContext * 0x10);
     } while (arrayIndex != -1);
   }
-  iStack0000000000000044 = 0;
+  ValidationContextIndex = 0;
 ValidationCompleteLabel:
   validationStatusPointer = (DataBuffer *)
            ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + operationFlagA * 0xc) +
@@ -17571,7 +17596,7 @@ ValidationCompleteLabel:
   if (validationStatusPointer != (DataBuffer *)0x0) {
     (**(FunctionPointer**)*validationStatusPointer)();
   }
-  *destinationIndexRegister = iStack0000000000000044;
+  *destinationIndexRegister = ValidationContextIndex;
   return 0;
 }
 
@@ -19765,12 +19790,12 @@ ProcessDataSecurityValidation:
   uint8_t *InputParam28;
   float InputParam30;
   DataWord InputParam38;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
-  float fStack0000000000000048;
-  float fStack000000000000004c;
+  float FloatValidationValue1;
+  float FloatValidationValue2;
+  float FloatRegisterValue;
+  float FloatComparisonValue;
   float InputParam50;
-  DataBuffer *puStack0000000000000058;
+  DataBuffer *ResourceDataPointer;
   int64_t stackDataBuffer;
   int64_t stackOperationContext;
   uint8_t *InputParam70;
@@ -64033,19 +64058,38 @@ void SystemExceptionHandlerCleanup(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-uint8_t * Catch_180908fc0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 系统状态捕获处理函数
+ * 
+ * 捕获系统状态变化并设置相应的状态标志，返回系统状态地址
+ * 
+ * @param operationBase 操作基础数据结构
+ * @param dataBuffer 数据缓冲区指针
+ * @return uint8_t* 系统状态指针地址
+ * 
+ * @note 原始函数名：Catch_180908fc0
+ */
+uint8_t * SystemStateCaptureHandler(DataBuffer operationBase, int64_t dataBuffer)
 {
-  _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
+  SetBasicIoStreamState
             ((int64_t)*(int *)(**(int64_t **)(dataBuffer + 0x70) + 4) +
              (int64_t)*(int64_t **)(dataBuffer + 0x70),4,1);
-  return &UNK_1800a127e;
+  return &SystemStatusFlagA;
 }
 
 
 
-void Unwind_180909000(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 默认异常处理器设置函数
+ * 
+ * 设置系统的默认异常处理器，用于处理系统运行时的异常情况
+ * 
+ * @param operationBase 操作基础数据结构
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909000
+ */
+void SetDefaultExceptionHandler(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(uint8_t **)(dataBuffer + 0x1a0) = &DefaultExceptionHandlerB;
   return;
@@ -64053,45 +64097,72 @@ void Unwind_180909000(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909010(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 系统验证上下文处理函数
+ * 
+ * 处理系统验证上下文，设置验证标志并执行相应的系统命令
+ * 
+ * @param operationBase 操作基础数据结构
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909010
+ */
+void SystemValidationContextHandler(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t validationContext;
   int operationResult;
   
   validationContext = dataBuffer + 0x128;
   *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(dataBuffer + 0x80) + 4) + -0xa8 + validationContext) =
-       &UNK_180a01630;
+       &SystemValidationFlagA;
   operationResult = *(int *)(*(int64_t *)(dataBuffer + 0x80) + 4);
   *(int *)((int64_t)operationResult + -0xac + validationContext) = operationResult + -0xa8;
   ExecuteSystemCommand(dataBuffer + 0x88);
-  __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(dataBuffer + 0x90);
+  BasicOStreamFlush(dataBuffer + 0x90);
                     // WARNING: Could not recover jumptable at 0x00018009fc52. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(validationContext);
+  BasicIoStreamCleanup(validationContext);
   return;
 }
 
 
 
-void Unwind_180909020(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 系统状态标志清理函数
+ * 
+ * 清理系统状态标志，重置状态位并执行相应的清理操作
+ * 
+ * @param operationBase 操作基础数据结构
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909020
+ */
+void SystemStatusFlagCleanup(DataBuffer operationBase, int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(dataBuffer + 0x128);
+    BasicIoStreamCleanup(dataBuffer + 0x128);
   }
   return;
 }
 
 
 
-void Unwind_180909060(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 系统输出流清理函数
+ * 
+ * 清理系统输出流，处理输出缓冲区的清理工作
+ * 
+ * @param operationBase 操作基础数据结构
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909060
+ */
+void SystemOutputStreamCleanup(DataBuffer operationBase, int64_t dataBuffer)
 {
                     // WARNING: Could not recover jumptable at 0x00018090906b. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(dataBuffer + 0x90);
+  BasicOStreamFlush(dataBuffer + 0x90);
   return;
 }
 
@@ -65046,7 +65117,7 @@ void Unwind_180909480(DataBuffer operationBase,int64_t dataBuffer)
   
   validationContext = *(int64_t *)(dataBuffer + 0x148);
   for (dataContext = *(int64_t *)(dataBuffer + 0x140); dataContext != validationContext; dataContext = dataContext + 0x78) {
-    FUN_1800adb30(dataContext);
+    InitializeSystemComponents(dataContext);
   }
   if (*(int64_t *)(dataBuffer + 0x140) == 0) {
     return;
@@ -65083,7 +65154,7 @@ void Unwind_1809094b0(DataBuffer operationBase,int64_t dataBuffer)
   
   validationContext = *(int64_t *)(dataBuffer + 0x148);
   for (dataContext = *(int64_t *)(dataBuffer + 0x140); dataContext != validationContext; dataContext = dataContext + 0x78) {
-    FUN_1800adb30(dataContext);
+    InitializeSystemComponents(dataContext);
   }
   if (*(int64_t *)(dataBuffer + 0x140) == 0) {
     return;
@@ -65104,7 +65175,7 @@ void Unwind_1809094c0(DataBuffer operationBase,int64_t dataBuffer)
   pdataContext = *(int64_t **)(dataBuffer + 0x40);
   validationContext = pdataContext[1];
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x78) {
-    FUN_1800adb30(calculatedOffset);
+    InitializeSystemComponents(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -65123,7 +65194,7 @@ void Unwind_1809094d0(DataBuffer operationBase,int64_t dataBuffer)
   
   validationContext = *(int64_t *)(dataBuffer + 0x1c0);
   for (dataContext = *(int64_t *)(dataBuffer + 0x1b8); dataContext != validationContext; dataContext = dataContext + 0x78) {
-    FUN_1800adb30(dataContext);
+    InitializeSystemComponents(dataContext);
   }
   if (*(int64_t *)(dataBuffer + 0x1b8) == 0) {
     return;
@@ -65478,7 +65549,7 @@ void Unwind_180909650(DataBuffer operationBase,int64_t dataBuffer)
   
   validationContext = *(int64_t *)(dataBuffer + 0x1c0);
   for (dataContext = *(int64_t *)(dataBuffer + 0x1b8); dataContext != validationContext; dataContext = dataContext + 0x78) {
-    FUN_1800adb30(dataContext);
+    InitializeSystemComponents(dataContext);
   }
   if (*(int64_t *)(dataBuffer + 0x1b8) == 0) {
     return;
