@@ -47254,9 +47254,9 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   FilterCoefficient38 = SystemContextPrimaryFloat * in_XMM4_Dc + in_XMM0_Dc * CalculatedDistance + in_XMM1_Dc * NormalizedParameterValue;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x138);
   CalculatedFilterValue = *(float *)(SystemContext + 0x140);
-  fStack0000000000000040 = in_XMM5_Da * in_XMM4_Da + ContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7;
+  PositionCoefficient40 = in_XMM5_Da * in_XMM4_Da + ContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7;
   TemporaryFloatStack44 = in_XMM5_Da * in_XMM4_Db + ContextSecondaryFloat * FloatVariable5 + SystemContextPrimaryFloat * ProcessedFloatValue8;
-  fStack0000000000000048 = in_XMM5_Da * in_XMM4_Dc + ContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue;
+  DistanceCoefficient48 = in_XMM5_Da * in_XMM4_Dc + ContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x148);
   ContextSecondaryFloat = *(float *)(SystemContext + 0x150);
   TemporaryFloatStack50 = Utf16EndPointer * in_XMM4_Da + FilterInputValue * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7;
@@ -151383,7 +151383,7 @@ float * ApplySourcePointerScalingToUtf16Data(uint64_t CharacterCode, float Utf8B
         }
         else if ((*(uint *)(*(long long *                             (*(long long *)(MemoryPoolBlockSize + 0x1bb8) + -0x28 + (long long)IntegerValue2 * 0x30) + 0xc
                            ) & 0x8000000) == 0) {
-          FUN_18012ee20(IntegerValue2 + -1,CONCAT71((int7)(int3)((uint)IntegerValue2 >> 8),1));
+          ProcessUtf8CharacterEncoding(IntegerValue2 + -1,CONCAT71((int7)(int3)((uint)IntegerValue2 >> 8),1));
           StringIndexCounter = SystemConfigurationHandle;
         }
       }
@@ -152225,7 +152225,7 @@ LAB_180132de6:
         }
         else if ((*(uint *)(*(long long *                             (*(long long *)(SystemContext + 0x1bb8) + -0x28 + (long long)MatchCounter * 0x30) +
                            0xc) & 0x8000000) == 0) {
-          FUN_18012ee20(MatchCounter + -1,CONCAT71((int7)(int3)((uint)MatchCounter >> 8),1));
+          ProcessUtf8CharacterEncoding(MatchCounter + -1,CONCAT71((int7)(int3)((uint)MatchCounter >> 8),1));
           CharacterTablePointer = SystemConfigurationHandle;
         }
       }
