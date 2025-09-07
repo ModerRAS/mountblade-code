@@ -12611,7 +12611,7 @@ void ExecuteUtilitySystemCleanup(int64_t systemHandle, int64_t cleanupContext)
  * 
  * @note 函数会遍历所有数据元素进行验证
  * @note 使用FUN_1808678e0进行单个元素的验证
- * @note 使用全局常量_DAT_180c4eaa0和_DAT_180c4eaa4作为验证基准
+ * @note 使用全局常量SystemValidationBaseConstantA0和SystemValidationBaseConstantA1作为验证基准
  * 
  * @warning 如果数据元素数量为0，函数会直接返回0
  * @warning 验证失败时会立即返回错误代码
@@ -103171,7 +103171,7 @@ void SetDefaultExceptionHandlerA7(void)
 /**
  * @brief 设置默认异常处理器C0
  * 
- * 该函数负责设置默认的异常处理器B到全局变量_DAT_180bf96f0中
+ * 该函数负责设置默认的异常处理器B到全局变量GlobalExceptionHandlerPointerA10中
  * 
  * @note 原始函数名：FUN_1809420c0
  */
@@ -103187,7 +103187,7 @@ void SetDefaultExceptionHandlerC0(void)
 /**
  * @brief 设置默认异常处理器C1
  * 
- * 该函数负责设置默认的异常处理器B到全局变量_DAT_180bf9750中
+ * 该函数负责设置默认的异常处理器B到全局变量GlobalExceptionHandlerPointerA11中
  * 
  * @note 原始函数名：FUN_1809420e0
  */
@@ -103203,7 +103203,7 @@ void SetDefaultExceptionHandlerC1(void)
 /**
  * @brief 设置默认异常处理器C2
  * 
- * 该函数负责设置默认的异常处理器B到全局变量_DAT_180bf97b0中
+ * 该函数负责设置默认的异常处理器B到全局变量GlobalExceptionHandlerPointerA12中
  * 
  * @note 原始函数名：FUN_180942100
  */
@@ -103219,7 +103219,7 @@ void SetDefaultExceptionHandlerC2(void)
 /**
  * @brief 设置默认异常处理器C3
  * 
- * 该函数负责设置默认的异常处理器B到全局变量_DAT_180bf9810中
+ * 该函数负责设置默认的异常处理器B到全局变量GlobalExceptionHandlerPointerA13中
  * 
  * @note 原始函数名：FUN_180942120
  */
@@ -106636,6 +106636,11 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define ValidationContextBufferA0 UNK_180982260
 #define SystemValidationTableA0 UNK_180986390
 #define ValidationStatusTableA0 UNK_180986940
+
+// 全局内存验证常量定义
+// 功能：用于系统内存验证和数据完整性检查的基准常量
+#define GlobalMemoryValidationConstantA SystemValidationBaseConstantA0
+#define GlobalMemoryValidationConstantB SystemValidationBaseConstantA1
 
 // 系统验证基准常量定义
 #define SystemValidationBaseConstantA0 DAT_180c4eaa0
