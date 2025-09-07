@@ -13996,13 +13996,13 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
  */
 #define ProcessSystemDataC1 FUN_18089fb06
 
-// 原始变量名：UNK_180986350 - 数据块指针表A0
+// 数据块指针表A0
 // 功能：存储数据块指针的表结构
-#define DataBlockPointerTableA0 DataBlockPointerTablePrimary
+#define DataBlockPointerTableA0 UNK_180986350
 
-// 原始变量名：UNK_180986370 - 数据块指针表A1
+// 数据块指针表A1
 // 功能：存储数据块指针的表结构
-#define DataBlockPointerTableA1 DataBlockPointerTableSecondary
+#define DataBlockPointerTableA1 UNK_180986370
 
 /**
  * @brief 数据和指针处理函数A0
