@@ -52592,7 +52592,20 @@ void CleanupFileHandleA(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904ff0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置临时异常处理器B
+ * 
+ * 该函数将临时异常处理器重置为默认处理器，清理相关标志位。
+ * 如果数据缓冲区的0xe0偏移量不为0，则终止系统运行。
+ * 然后重置相关数据字段并设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_180904ff0
+ * @note 简化实现：重置异常处理器和标志位
+ */
+void ResetTemporaryExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0xd8) = &TemporaryExceptionHandler;

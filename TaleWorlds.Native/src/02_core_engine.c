@@ -150192,112 +150192,112 @@ LAB_180132d15:
     *(uint8_t *)(SystemContextPointer + 0x1d20) = 1;
   }
 LAB_180132de6:
-  *(void *)(SystemContext + 0x1d54) = 0x7f7fffff7f7fffff;
-  *(void *)(SystemContext + 0x1d5c) = 0xff7fffffff7fffff;
-  *(int *)(SystemContext + 0x1d38) = MutexLockResult;
-  *(long long *)(SystemContext + 0x1d40) = RegisterGeneral14;
-  *(uint32_t *)(SystemContext + 0x1d50) = 0x7f7fffff;
-  *(uint32_t *)(SystemContext + 0x1d4c) = 0x7f7fffff;
-  *(uint32_t *)(SystemContext + 0x1d48) = 0x7f7fffff;
-  *(int *)(SystemContext + 0x1d68) = MutexLockResult;
-  *(long long *)(SystemContext + 0x1d70) = RegisterGeneral14;
-  *(uint32_t *)(SystemContext + 0x1d80) = 0x7f7fffff;
-  *(uint32_t *)(SystemContext + 0x1d7c) = 0x7f7fffff;
-  *(uint32_t *)(SystemContext + 0x1d78) = 0x7f7fffff;
-  *(void *)(SystemContext + 0x1d84) = 0x7f7fffff7f7fffff;
-  *(void *)(SystemContext + 0x1d8c) = 0xff7fffffff7fffff;
-  *(int *)(SystemContext + 0x1d98) = MutexLockResult;
-  *(long long *)(SystemContext + 0x1da0) = RegisterGeneral14;
-  *(uint32_t *)(SystemContext + 0x1db0) = 0x7f7fffff;
-  *(uint32_t *)(SystemContext + 0x1dac) = 0x7f7fffff;
-  *(uint32_t *)(SystemContext + 0x1da8) = 0x7f7fffff;
-  *(void *)(SystemContext + 0x1db4) = 0x7f7fffff7f7fffff;
-  *(void *)(SystemContext + 0x1dbc) = 0xff7fffffff7fffff;
-  if (((*(char *)(SystemContext + 0x1d21) != CharacterStatus1) && (*(char *)(SystemContext + 0x1d20) != CharacterStatus1)) &&
-     (*(int *)(SystemContext + 0x1cfc) == MutexLockResult)) {
-    BufferStatus = *(long long *)(SystemContext + 0x1c98);
-    SystemContextPrimaryFloat8 = *(float *)(BufferStatus + 0x3d0);
-    SecondaryFloatValue = (*(float *)(BufferStatus + 0x248) - *(float *)(BufferStatus + 0x40)) - 1.0;
-    SystemContextPrimaryFloat0 = (*(float *)(BufferStatus + 0x250) - *(float *)(BufferStatus + 0x40)) + 1.0;
-    SystemContextPrimaryFloat6 = (*(float *)(BufferStatus + 0x254) - *(float *)(BufferStatus + 0x44)) + 1.0;
-    NormalizedParameter = (*(float *)(BufferStatus + 0x24c) - *(float *)(BufferStatus + 0x44)) - 1.0;
-    if (((SystemContextPrimaryFloat8 < SecondaryFloatValue) ||
-        (*(float *)(BufferStatus + 0x3d4) <= NormalizedParameter && NormalizedParameter != *(float *)(BufferStatus + 0x3d4))) ||
-       ((SystemContextPrimaryFloat0 < *(float *)(BufferStatus + 0x3d8) || (SystemContextPrimaryFloat6 < *(float *)(BufferStatus + 0x3dc))))) {
-      SystemContextPrimaryFloat1 = *(float *)(DataNodeIndex + 0x19fc) * *(float *)(BufferStatus + 0x2d8) *
-               *(float *)(BufferStatus + 0x2dc) * 0.5;
-      SystemFloatValue = SystemContextPrimaryFloat6 - NormalizedParameter;
-      if (SystemContextPrimaryFloat1 <= SystemContextPrimaryFloat6 - NormalizedParameter) {
-        SystemFloatValue = SystemContextPrimaryFloat1;
+  *(void *)(SystemContextPointer + 0x1d54) = 0x7f7fffff7f7fffff;
+  *(void *)(SystemContextPointer + 0x1d5c) = 0xff7fffffff7fffff;
+  *(int *)(SystemContextPointer + 0x1d38) = MutexLockResult;
+  *(long long *)(SystemContextPointer + 0x1d40) = SystemRegisterValue;
+  *(uint32_t *)(SystemContextPointer + 0x1d50) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextPointer + 0x1d4c) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextPointer + 0x1d48) = 0x7f7fffff;
+  *(int *)(SystemContextPointer + 0x1d68) = MutexLockResult;
+  *(long long *)(SystemContextPointer + 0x1d70) = SystemRegisterValue;
+  *(uint32_t *)(SystemContextPointer + 0x1d80) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextPointer + 0x1d7c) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextPointer + 0x1d78) = 0x7f7fffff;
+  *(void *)(SystemContextPointer + 0x1d84) = 0x7f7fffff7f7fffff;
+  *(void *)(SystemContextPointer + 0x1d8c) = 0xff7fffffff7fffff;
+  *(int *)(SystemContextPointer + 0x1d98) = MutexLockResult;
+  *(long long *)(SystemContextPointer + 0x1da0) = SystemRegisterValue;
+  *(uint32_t *)(SystemContextPointer + 0x1db0) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextPointer + 0x1dac) = 0x7f7fffff;
+  *(uint32_t *)(SystemContextPointer + 0x1da8) = 0x7f7fffff;
+  *(void *)(SystemContextPointer + 0x1db4) = 0x7f7fffff7f7fffff;
+  *(void *)(SystemContextPointer + 0x1dbc) = 0xff7fffffff7fffff;
+  if (((*(char *)(SystemContextPointer + 0x1d21) != CharacterValidationStatus) && (*(char *)(SystemContextPointer + 0x1d20) != CharacterValidationStatus)) &&
+     (*(int *)(SystemContextPointer + 0x1cfc) == MutexLockResult)) {
+    BufferPointer = *(long long *)(SystemContextPointer + 0x1c98);
+    TertiaryMatrixFloat = *(float *)(BufferPointer + 0x3d0);
+    SecondaryMatrixFloat = (*(float *)(BufferPointer + 0x248) - *(float *)(BufferPointer + 0x40)) - 1.0;
+    MatrixTransformX = (*(float *)(BufferPointer + 0x250) - *(float *)(BufferPointer + 0x40)) + 1.0;
+    MatrixTransformW = (*(float *)(BufferPointer + 0x254) - *(float *)(BufferPointer + 0x44)) + 1.0;
+    NormalizedValue = (*(float *)(BufferPointer + 0x24c) - *(float *)(BufferPointer + 0x44)) - 1.0;
+    if (((TertiaryMatrixFloat < SecondaryMatrixFloat) ||
+        (*(float *)(BufferPointer + 0x3d4) <= NormalizedValue && NormalizedValue != *(float *)(BufferPointer + 0x3d4))) ||
+       ((MatrixTransformX < *(float *)(BufferPointer + 0x3d8) || (MatrixTransformW < *(float *)(BufferPointer + 0x3dc))))) {
+      MatrixTransformY = *(float *)(DataNodePointer + 0x19fc) * *(float *)(BufferPointer + 0x2d8) *
+               *(float *)(BufferPointer + 0x2dc) * 0.5;
+      SystemCalculatedFloat = MatrixTransformW - NormalizedValue;
+      if (MatrixTransformY <= MatrixTransformW - NormalizedValue) {
+        SystemCalculatedFloat = MatrixTransformY;
       }
-      SystemContextPrimaryFloat4 = SystemContextPrimaryFloat0 - SecondaryFloatValue;
-      if (SystemContextPrimaryFloat1 <= SystemContextPrimaryFloat0 - SecondaryFloatValue) {
-        SystemContextPrimaryFloat4 = SystemContextPrimaryFloat1;
+      MatrixTransformZ = MatrixTransformX - SecondaryMatrixFloat;
+      if (MatrixTransformY <= MatrixTransformX - SecondaryMatrixFloat) {
+        MatrixTransformZ = MatrixTransformY;
       }
-      NormalizedParameter = NormalizedParameter - -SystemFloatValue;
-      SecondaryFloatValue = SecondaryFloatValue - -SystemContextPrimaryFloat4;
-      SystemContextPrimaryFloat0 = SystemContextPrimaryFloat0 + -SystemContextPrimaryFloat4;
-      SystemContextPrimaryFloat6 = SystemContextPrimaryFloat6 + -SystemFloatValue;
-      if (NormalizedParameter <= *(float *)(BufferStatus + 0x3d4)) {
-        NormalizedParameter = *(float *)(BufferStatus + 0x3d4);
+      NormalizedValue = NormalizedValue - -SystemCalculatedFloat;
+      SecondaryMatrixFloat = SecondaryMatrixFloat - -MatrixTransformZ;
+      MatrixTransformX = MatrixTransformX + -MatrixTransformZ;
+      MatrixTransformW = MatrixTransformW + -SystemCalculatedFloat;
+      if (NormalizedValue <= *(float *)(BufferPointer + 0x3d4)) {
+        NormalizedValue = *(float *)(BufferPointer + 0x3d4);
       }
-      if (SecondaryFloatValue <= SystemContextPrimaryFloat8) {
-        SecondaryFloatValue = SystemContextPrimaryFloat8;
+      if (SecondaryMatrixFloat <= TertiaryMatrixFloat) {
+        SecondaryMatrixFloat = TertiaryMatrixFloat;
       }
-      *(float *)(BufferStatus + 0x3d4) = NormalizedParameter;
-      *(float *)(BufferStatus + 0x3d0) = SecondaryFloatValue;
-      if (*(float *)(BufferStatus + 0x3d8) <= SystemContextPrimaryFloat0) {
-        SystemContextPrimaryFloat0 = *(float *)(BufferStatus + 0x3d8);
+      *(float *)(BufferPointer + 0x3d4) = NormalizedValue;
+      *(float *)(BufferPointer + 0x3d0) = SecondaryMatrixFloat;
+      if (*(float *)(BufferPointer + 0x3d8) <= MatrixTransformX) {
+        MatrixTransformX = *(float *)(BufferPointer + 0x3d8);
       }
-      if (*(float *)(BufferStatus + 0x3dc) <= SystemContextPrimaryFloat6) {
-        SystemContextPrimaryFloat6 = *(float *)(BufferStatus + 0x3dc);
+      if (*(float *)(BufferPointer + 0x3dc) <= MatrixTransformW) {
+        MatrixTransformW = *(float *)(BufferPointer + 0x3dc);
       }
-      *(float *)(BufferStatus + 0x3d8) = SystemContextPrimaryFloat0;
-      *(float *)(BufferStatus + 0x3dc) = SystemContextPrimaryFloat6;
-      *(int *)(SystemContext + 0x1ca0) = MutexLockResult;
+      *(float *)(BufferPointer + 0x3d8) = MatrixTransformX;
+      *(float *)(BufferPointer + 0x3dc) = MatrixTransformW;
+      *(int *)(SystemContextPointer + 0x1ca0) = MutexLockResult;
     }
-    *(char *)(SystemContext + 0x1d20) = CharacterStatus1;
+    *(char *)(SystemContextPointer + 0x1d20) = CharacterValidationStatus;
   }
-  BufferStatus = *(long long *)(SystemContext + 0x1c98);
-  if (((BufferStatus == 0) ||
-      (AllocatedMemorySize = (long long)*(int *)(SystemContext + 0x1cfc) + 0x3d,
-      *(float *)(BufferStatus + 8 + AllocatedMemorySize * 0x10) < *(float *)(BufferStatus + AllocatedMemorySize * 0x10))) ||
-     (*(float *)(BufferStatus + 0xc + AllocatedMemorySize * 0x10) < *(float *)(BufferStatus + 4 + AllocatedMemorySize * 0x10))) {
-    SystemStatusCode = 0;
-    QuaternaryReturnCode = 0;
-  }
-  else {
-    StatusBuffer = (void *)(BufferStatus + AllocatedMemorySize * 0x10);
-    SystemStatusCode = *StatusBuffer;
-    QuaternaryReturnCode = StatusBuffer[1];
-  }
-  if (BufferStatus == 0) {
-    _fStack0000000000000030 = 0;
-    _StackVariable38 = 0;
+  BufferPointer = *(long long *)(SystemContextPointer + 0x1c98);
+  if (((BufferPointer == 0) ||
+      (MemoryAllocationSize = (long long)*(int *)(SystemContextPointer + 0x1cfc) + 0x3d,
+      *(float *)(BufferPointer + 8 + MemoryAllocationSize * 0x10) < *(float *)(BufferPointer + MemoryAllocationSize * 0x10))) ||
+     (*(float *)(BufferPointer + 0xc + MemoryAllocationSize * 0x10) < *(float *)(BufferPointer + 4 + MemoryAllocationSize * 0x10))) {
+    SystemReturnCode = 0;
+    SecondaryReturnCode = 0;
   }
   else {
-    StackVariable38 = (float)QuaternaryReturnCode;
-    fStack0000000000000030 = (float)SystemStatusCode;
-    StackVariable3c = (float)((unsigned long long)QuaternaryReturnCode >> 0x20);
-    StackVariable34 = (float)((unsigned long long)SystemStatusCode >> 0x20);
-    _StackVariable38 =
-         CONCAT44(*(float *)(BufferStatus + 0x44) + StackVariable3c,
-                  *(float *)(BufferStatus + 0x40) + StackVariable38);
-    _fStack0000000000000030 =
-         CONCAT44(*(float *)(BufferStatus + 0x44) + StackVariable34,
-                  *(float *)(BufferStatus + 0x40) + fStack0000000000000030);
+    SystemStatusBuffer = (void *)(BufferPointer + MemoryAllocationSize * 0x10);
+    SystemReturnCode = *SystemStatusBuffer;
+    SecondaryReturnCode = SystemStatusBuffer[1];
   }
-  *(void *)(SystemContext + 0x1cc4) = _fStack0000000000000030;
-  *(void *)(SystemContext + 0x1ccc) = _StackVariable38;
-  *(float *)(SystemContext + 0x1cd0) = FloatValue8 + *(float *)(SystemContext + 0x1cd0);
-  *(float *)(SystemContext + 0x1cc8) = FloatValue8 + *(float *)(SystemContext + 0x1cc8);
-  FloatValue8 = *(float *)(SystemContext + 0x1cc4) + 1.0;
-  *(int *)(SystemContext + 0x1cd4) = MutexLockResult;
-  if (*(float *)(SystemContext + 0x1ccc) <= FloatValue8) {
-    FloatValue8 = *(float *)(SystemContext + 0x1ccc);
+  if (BufferPointer == 0) {
+    StackFloat1 = 0;
+    StackFloat3 = 0;
   }
-  *(float *)(SystemContext + 0x1cc4) = FloatValue8;
-  *(float *)(SystemContext + 0x1ccc) = FloatValue8;
+  else {
+    StackFloat3 = (float)SecondaryReturnCode;
+    StackFloat1 = (float)SystemReturnCode;
+    StackFloat4 = (float)((unsigned long long)SecondaryReturnCode >> 0x20);
+    StackFloat2 = (float)((unsigned long long)SystemReturnCode >> 0x20);
+    StackFloat3 =
+         CONCAT44(*(float *)(BufferPointer + 0x44) + StackFloat4,
+                  *(float *)(BufferPointer + 0x40) + StackFloat3);
+    StackFloat1 =
+         CONCAT44(*(float *)(BufferPointer + 0x44) + StackFloat2,
+                  *(float *)(BufferPointer + 0x40) + StackFloat1);
+  }
+  *(void *)(SystemContextPointer + 0x1cc4) = StackFloat1;
+  *(void *)(SystemContextPointer + 0x1ccc) = StackFloat3;
+  *(float *)(SystemContextPointer + 0x1cd0) = SystemFloatParameter + *(float *)(SystemContextPointer + 0x1cd0);
+  *(float *)(SystemContextPointer + 0x1cc8) = SystemFloatParameter + *(float *)(SystemContextPointer + 0x1cc8);
+  SystemFloatParameter = *(float *)(SystemContextPointer + 0x1cc4) + 1.0;
+  *(int *)(SystemContextPointer + 0x1cd4) = MutexLockResult;
+  if (*(float *)(SystemContextPointer + 0x1ccc) <= SystemFloatParameter) {
+    SystemFloatParameter = *(float *)(SystemContextPointer + 0x1ccc);
+  }
+  *(float *)(SystemContextPointer + 0x1cc4) = SystemFloatParameter;
+  *(float *)(SystemContextPointer + 0x1ccc) = SystemFloatParameter;
   return;
 }
 
