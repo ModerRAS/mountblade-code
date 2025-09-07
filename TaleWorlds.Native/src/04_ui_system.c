@@ -68317,13 +68317,19 @@ void UIEmptyOperation(void)
 
 
  解码UI字符数据
- 解码UI系统中的字符数据，处理字符映射和
- * 状态表转换，支持多种字符编码格式
-  uiContext UI上下文指针，包含解码所需的状态信息
- *  dataSource 数据源指针，包含待解码的字符数据
-  解码结果状态码，成功返回解码的字符数量
-  原始函数名: FUN_18069f6a0
- int DecodeUICharacterData(longlong uiContext,longlong dataSource)
+ /**
+ * @brief 解码UI字符数据
+ * 
+ * 解码UI系统中的字符数据，处理字符映射和状态表转换，支持多种字符编码格式。
+ * 该函数通过查找映射表和状态表来解码字符数据，并更新UI上下文状态。
+ * 
+ * @param uiContext UI上下文指针，包含解码所需的状态信息
+ * @param dataSource 数据源指针，包含待解码的字符数据
+ * @return 解码结果状态码，成功返回解码的字符数量
+ * 
+ * @note 原始函数名: FUN_18069f6a0
+ */
+int DecodeUICharacterData(longlong uiContext, longlong dataSource)
 
 {
   byte isCharacterMatch;
