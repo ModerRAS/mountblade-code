@@ -80107,11 +80107,26 @@ void Unwind_18090a490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090a4b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 验证并处理系统参数的异常展开函数
+ * 
+ * 在异常展开过程中验证和处理系统参数，包括：
+ * - 从数据缓冲区中获取系统参数地址
+ * - 调用系统参数验证和处理函数
+ * - 使用系统清理标志进行安全处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090a4b0
+ */
+void ValidateSystemParametersInUnwind(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessSystemParametersWithValidation(*(int64_t *)(dataBuffer + 0x60) + 0xbd8,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0xbe8),operationFlagA,operationFlagB,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0xbe8), operationFlagA, operationFlagB,
                 SystemCleanupFlagAlternative);
   return;
 }
