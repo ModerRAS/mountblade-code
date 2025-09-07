@@ -4717,15 +4717,15 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
   SystemEngineContextCounter = SystemEngineContext;
   if (SystemEngineContext != 0) {
     InitializeFileSystem(SystemEngineContext);
-    SystemBufferValidate(LongCounter);
+    SystemBufferValidate(SystemEngineContextCounter);
   }
   SystemEngineContext = 0;
   CleanupSystemDataStructure(SystemDataStructurePointer);
-  LongCounter = SystemDataStructurePointer;
+  SystemDataStructureCounter = SystemDataStructurePointer;
   if (SystemDataStructurePointer != 0) {
     CleanupSystemDataStructure(SystemDataStructurePointer);
     _Mtx_destroy_in_situ();
-    SystemBufferValidate(LongCounter);
+    SystemBufferValidate(SystemDataStructureCounter);
   }
   SystemDataStructurePointer = 0;
   return;
