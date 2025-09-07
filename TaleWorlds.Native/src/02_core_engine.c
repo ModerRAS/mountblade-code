@@ -200042,28 +200042,28 @@ void ProcessUnicodeCharacterAndMemoryManagement(void
     StringLength = CalculatedResult;
     SystemOperationResult = CalculatedResult;
     do {
-      if (((uint)pValidationResult[-5] < *(uint *)(SourceIndex + 0xa0)) ||
-         (((pValidationResult[-5] == *(uint *)(SourceIndex + 0xa0) && (pValidationResult[-7] == (int)UnicodeCodePoint)) &&
-          (pValidationResult[-6] == iStack000000000000005c)))) break;
+      if (((uint)ValidationResultPointer[-5] < *(uint *)(DataSourceIndex + 0xa0)) ||
+         (((ValidationResultPointer[-5] == *(uint *)(DataSourceIndex + 0xa0) && (ValidationResultPointer[-7] == (int)UnicodeCodePoint)) &&
+          (ValidationResultPointer[-6] == iStack000000000000005c)))) break;
       StringLength = StringLength + 1;
-      ComputedResult = ComputedResult + (pValidationResult[-7] - pValidationResult[-1]);
-      ReferenceCountPointer = pValidationResult + -6;
-      CharacterByteCount = *pValidationResult;
-      pValidationResult = pValidationResult + 6;
-      SystemOperationResult = IntegerValue9 + (*ReferenceCountPointer - CharacterByteCount);
-    } while (StringLength < RemainingSpace + -1);
-    if ((ComputedResult != 0) || (IntegerValue9 != 0)) {
-      *(void *)(StackFramePointer + -0x78) = 0;
-      *(uint32_t *)(StackFramePointer + -0x80) = 0;
-      *(int *)(StackFramePointer + -0x70) = ComputedResult;
-      *(int *)(StackFramePointer + -0x6c) = IntegerValue9;
+      CalculatedResult = CalculatedResult + (ValidationResultPointer[-7] - ValidationResultPointer[-1]);
+      CharacterReferencePointer = ValidationResultPointer + -6;
+      CharacterByteCount = *ValidationResultPointer;
+      ValidationResultPointer = ValidationResultPointer + 6;
+      SystemOperationResult = SystemIntegerValue + (*CharacterReferencePointer - CharacterByteCount);
+    } while (StringLength < AvailableSpace + -1);
+    if ((CalculatedResult != 0) || (SystemIntegerValue != 0)) {
+      *(void *)(SystemStackPointer + -0x78) = 0;
+      *(uint32_t *)(SystemStackPointer + -0x80) = 0;
+      *(int *)(SystemStackPointer + -0x70) = CalculatedResult;
+      *(int *)(SystemStackPointer + -0x6c) = SystemIntegerValue;
       ProcessMemoryAllocationHandler();
     }
   }
-  *(uint32_t *)(SourceIndex + 0xa0) = MemoryAddressMask;
+  *(uint32_t *)(DataSourceIndex + 0xa0) = SystemMemoryMask;
   DefWindowProcW();
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(StackFramePointer + 0x780) ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(*(unsigned long long *)(SystemStackPointer + 0x780) ^ (unsigned long long)&StackBaseAddress);
 }
 
 
