@@ -140653,7 +140653,7 @@ LAB_18012b510:
   CharacterCodePointer = *(uint8_t **)(RegisterFramePointer + 10);
   if ((((CharacterCodePointer != (uint8_t *)0x0) &&
        (BufferIndex = *(long long *)(SystemParameter2 + 0x28), *(char *)(BufferIndex + 0x48) != '\0')) &&
-      (BufferStatus6 = FUN_18012fae0(), BufferIndex != BufferStatus6)) &&
+      (BufferStatus6 = ProcessSystemMemoryAllocation(), BufferIndex != BufferStatus6)) &&
      (((*(byte *)(SystemParameter2 + 0x432) & 1) == 0 ||
       ((*(byte *)(SystemParameter2 + 0x432) & 2) != 0)))) {
     *(uint8_t *)(BufferIndex + 0x48) = 0;
@@ -141726,7 +141726,7 @@ LAB_18012b510:
   systemEventTemplatePointer = *(uint8_t **)(RegisterFramePointer + 10);
   if ((((systemEventTemplatePointer != (uint8_t *)0x0) &&
        (BufferIndex = *(long long *)(SystemParameter2 + 0x28), *(char *)(BufferIndex + 0x48) != '\0')) &&
-      (CharacterTablePointer5 = FUN_18012fae0(), BufferIndex != CharacterTablePointer5)) &&
+      (CharacterTablePointer5 = ProcessSystemMemoryAllocation(), BufferIndex != CharacterTablePointer5)) &&
      (((*(byte *)(SystemParameter2 + 0x432) & 1) == 0 ||
       ((*(byte *)(SystemParameter2 + 0x432) & 2) != 0)))) {
     *(uint8_t *)(BufferIndex + 0x48) = 0;
@@ -142576,7 +142576,7 @@ void ExecuteSystemCoreDataProcessing(void)
   PrimaryProcessingStatusFlag = *(uint8_t **)(RegisterFramePointer + 10);
   if ((((PrimaryProcessingStatusFlag != (uint8_t *)0x0) &&
        (StringIndexCounter = *(long long *)(SystemParameter2 + 0x28), *(char *)(StringIndexCounter + 0x48) != '\0')) &&
-      (CharacterTablePointer5 = FUN_18012fae0(), StringIndexCounter != CharacterTablePointer5)) &&
+      (CharacterTablePointer5 = ProcessSystemMemoryAllocation(), StringIndexCounter != CharacterTablePointer5)) &&
      (((*(byte *)(SystemParameter2 + 0x432) & 1) == 0 ||
       ((*(byte *)(SystemParameter2 + 0x432) & 2) != 0)))) {
     *(uint8_t *)(StringIndexCounter + 0x48) = 0;
@@ -142930,7 +142930,7 @@ void ProcessSystemStatusValidationAndInitialization(void)
   CharacterCodePointer = *(uint8_t **)(RegisterFramePointer + 10);
   if ((((CharacterCodePointer != (uint8_t *)0x0) &&
        (MemoryBoundaryEnd = *(long long *)(SystemParameter2 + 0x28), *(char *)(MemoryBoundaryEnd + 0x48) != '\0')) &&
-      (SystemStringIndex = FUN_18012fae0(), MemoryBoundaryEnd != SystemStringIndex)) &&
+      (SystemStringIndex = ProcessSystemMemoryAllocation(), MemoryBoundaryEnd != SystemStringIndex)) &&
      (((*(byte *)(SystemParameter2 + 0x432) & 1) == 0 ||
       ((*(byte *)(SystemParameter2 + 0x432) & 2) != 0)))) {
     *(uint8_t *)(MemoryBoundaryEnd + 0x48) = 0;
