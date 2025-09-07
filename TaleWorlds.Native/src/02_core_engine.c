@@ -20003,8 +20003,7 @@ void CoreEngineUnlockMutex(uint64_t *MutexHandle
 
 
 
- uint64_t CoreEngineWaitConditionVariable(long long CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
-{
+ /**
  * @brief 等待条件变量并处理同步
  * 
  * 该函数负责等待条件变量的信号，处理线程同步操作。
@@ -20020,7 +20019,7 @@ void CoreEngineUnlockMutex(uint64_t *MutexHandle
  * @note 等待过程中会释放互斥体，唤醒后重新获取
  * @note 失败时会抛出C标准错误
  */
-uint64_t CoreEngineWaitForConditionVariable(int64_t SyncObject,uint64_t Timeout,void *Condition,void *MutexHandle
+uint64_t CoreEngineWaitForConditionVariable(int64_t SyncObject,uint64_t Timeout,void *Condition,void *MutexHandle)
 {
   bool IsConditionMet;
   int LockResult;
