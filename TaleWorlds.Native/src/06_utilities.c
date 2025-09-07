@@ -21187,10 +21187,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   DataWord StackDataWordJ;
   DataWord StackDataWordK;
   DataWord StackDataWordL;
-  DataWord StackDataWordM;
-  DataWord StackDataWordN;
-  DataWord StackDataWordO;
-  DataWord StackDataWordP;
+  DataWord DataContextOffset54Data;
+  DataWord DataContextOffset58Data;
+  DataWord DataContextOffset5CData;
+  DataWord DataContextOffset60Data;
   DataWord SecurityValidationDataQ;
   uint8_t *SecurityValidationBuffer;
   DataWord SecurityCheckValue;
@@ -21269,12 +21269,12 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               StackDataWordJ = *(DataWord *)(dataContext + 0x48);
               StackDataWordK = *(DataWord *)(dataContext + 0x4c);
               StackDataWordL = *(DataWord *)(dataContext + 0x50);
-              StackDataWordM = *(DataWord *)(dataContext + 0x54);
+              DataContextOffset54Data = *(DataWord *)(dataContext + 0x54);
               StackPointerBufferD = &SystemSecurityCheckReference;
               StackDataWordH = 0;
-              StackDataWordN = *(DataWord *)(dataContext + 0x58);
-              StackDataWordO = *(DataWord *)(dataContext + 0x5c);
-              StackDataWordP = *(DataWord *)(dataContext + 0x60);
+              DataContextOffset58Data = *(DataWord *)(dataContext + 0x58);
+              DataContextOffset5CData = *(DataWord *)(dataContext + 0x5c);
+              DataContextOffset60Data = *(DataWord *)(dataContext + 0x60);
               SecurityValidationDataQ = *(DataWord *)(dataContext + 100);
               StackDataWordI = StackDataWordA;
               iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferD);
@@ -65742,7 +65742,17 @@ void CheckSystemTerminationConditionAtOffset40_30(DataBuffer operationBase,int64
 
 
 
-void Unwind_180907700(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置临时异常处理器A0
+ * 
+ * 该函数负责设置临时异常处理器，用于处理系统运行时的异常情况
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907700
+ */
+void SetupTemporaryExceptionHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -65760,7 +65770,17 @@ void Unwind_180907700(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907710(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统资源清理A0
+ * 
+ * 该函数负责清理系统资源，重置异常处理器状态，并处理资源释放
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907710
+ */
+void ProcessSystemResourceCleanupA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -97000,7 +97020,24 @@ void Unwind_180910d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 双重异常上下文清理处理器
+ * 
+ * 该函数负责处理两个异常上下文的清理操作，包括：
+ * - 执行异常处理回调函数
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910d60
+ */
+void DualExceptionContextCleanupHandler(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -97028,7 +97065,24 @@ void Unwind_180910d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 双重异常上下文清理处理器B
+ * 
+ * 该函数负责处理两个异常上下文的清理操作，包括：
+ * - 执行异常处理回调函数
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910d80
+ */
+void DualExceptionContextCleanupHandlerB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -97056,7 +97110,24 @@ void Unwind_180910d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 双重异常上下文清理处理器C
+ * 
+ * 该函数负责处理两个异常上下文的清理操作，包括：
+ * - 执行异常处理回调函数
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910da0
+ */
+void DualExceptionContextCleanupHandlerC(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -97084,7 +97155,24 @@ void Unwind_180910da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 双重异常上下文清理处理器D
+ * 
+ * 该函数负责处理两个异常上下文的清理操作，包括：
+ * - 执行异常处理回调函数
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180910dc0
+ */
+void DualExceptionContextCleanupHandlerD(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -97940,7 +98028,24 @@ void Unwind_180911180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809111a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文处理器A0
+ * 
+ * 该函数负责处理异常上下文的清理和重置操作，包括：
+ * - 执行异常处理回调函数
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809111a0
+ */
+void ExceptionContextProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -97968,7 +98073,24 @@ void Unwind_1809111a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809111c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常上下文处理器A1
+ * 
+ * 该函数负责处理异常上下文的清理和重置操作，包括：
+ * - 执行异常处理回调函数
+ * - 设置临时异常处理器
+ * - 检查系统终止条件
+ * - 重置异常状态
+ * - 设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809111c0
+ */
+void ExceptionContextProcessorA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -108316,9 +108438,9 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：存储数据上下文偏移0x5c处的验证数据
 #define DataContextOffset5CData uStack_11c
 
-// 原始变量名：uStack_114 - 栈数据字P
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordP uStack_114
+// 原始变量名：uStack_114 - 数据上下文偏移60处的数据字
+// 功能：存储数据上下文偏移0x60处的验证数据
+#define DataContextOffset60Data uStack_114
 
 // 原始变量名：uStack_f8 - 安全验证数据字Q
 // 功能：存储数据上下文偏移100处的安全验证数据
