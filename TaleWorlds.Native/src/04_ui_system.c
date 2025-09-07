@@ -382,6 +382,65 @@
  */
 #define CompareUIEventData FUN_18069ed90
 
+/**
+ * @brief 验证UI组件
+ * 
+ * 该函数负责验证UI组件的有效性和完整性
+ * 
+ * @param componentPtr 组件指针
+ * @return 验证结果状态码
+ * @note 原始函数名: FUN_180699f40
+ */
+#define ValidateUIComponent FUN_180699f40
+
+/**
+ * @brief 分配UI组件内存
+ * 
+ * 该函数负责为UI组件分配内存资源
+ * 
+ * @param memoryPtr 内存指针
+ * @param size 内存大小
+ * @return 分配结果状态码
+ * @note 原始函数名: FUN_18069bbd0
+ */
+#define AllocateUIComponentMemory FUN_18069bbd0
+
+/**
+ * @brief 比较UI字符串数据
+ * 
+ * 该函数负责比较UI系统中的字符串数据
+ * 
+ * @param stringIndex 字符串索引
+ * @param stringBuffer 字符串缓冲区指针
+ * @return 比较结果状态码
+ * @note 原始函数名: FUN_18069a210
+ */
+#define CompareUIStringData FUN_18069a210
+
+/**
+ * @brief 处理UI数据验证
+ * 
+ * 该函数负责处理UI系统中的数据验证操作
+ * 
+ * @param contextPtr 上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @return 验证结果状态码
+ * @note 原始函数名: FUN_180699e30
+ */
+#define ProcessUIDataValidation FUN_180699e30
+
+/**
+ * @brief 释放UI组件内存
+ * 
+ * 该函数负责释放UI组件占用的内存资源
+ * 
+ * @param memoryPtr 内存指针
+ * @return 释放结果状态码
+ * @note 原始函数名: FUN_18069bb20
+ */
+#define ReleaseUIComponentMemory FUN_18069bb20
+
 // SIMD图像处理函数宏定义
 /**
  * @brief 使用AVX2指令计算图像绝对差值和
