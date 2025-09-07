@@ -230,6 +230,61 @@ void* PhysicsSolverGlobal;
 void* PhysicsMemoryManagerGlobal;
 void* PhysicsThreadPoolGlobal;
 
+// 系统函数指针常量定义 - 用于替换UNK_1800830c0等变量
+const void* const SystemValidationFunctionPointerPrimary = (void*)0x1800830c0;
+const void* const SystemValidationFunctionPointerSecondary = (void*)0x1800830b0;
+const void* const SystemValidationFunctionPointerTertiary = (void*)0x180083130;
+
+// 系统事件模板常量定义 - 用于替换UNK_180a1e220等变量
+const void* const SystemEventTemplateDataPrimary = (void*)0x180a1e220;
+const void* const SystemValidationValuePointerPrimary = (void*)0x180a1e428;
+const void* const SystemMemoryAddressMaskPrimary = (void*)0x180a1e5a0;
+const void* const SystemMemoryAddressMaskSecondary = (void*)0x180a1e7d0;
+const void* const SystemValidationValuePointerSecondary = (void*)0x180a1e978;
+const void* const SystemMemoryBlockIndexPointer = (void*)0x180a0a128;
+
+// 系统状态缓冲区常量定义 - 用于替换UNK_180941b00等变量
+const void* const SystemStatusBufferPrimary = (void*)0x180941b00;
+const void* const SystemUnsignedValueBufferPrimary = (void*)0x180180900;
+const void* const SystemUnsignedValueBufferSecondary = (void*)0x1801808f0;
+const void* const SystemUnsignedValueBufferTertiary = (void*)0x1801808b0;
+const void* const SystemUnsignedValueBufferQuaternary = (void*)0x1801808a0;
+const void* const SystemUnsignedValueBufferQuinary = (void*)0x180180860;
+const void* const SystemUnsignedValueBufferSenary = (void*)0x180180850;
+
+// 系统配置指针常量定义 - 用于替换UNK_180a3dcb0等变量
+const void* const SystemConfigurationPointerPrimary = (void*)0x180a3dcb0;
+const void* const SystemConfigurationPointerSecondary = (void*)0x180a3dca0;
+const void* const SystemConfigurationPointerTertiary = (void*)0x180a3e030;
+const void* const SystemConfigurationPointerQuaternary = (void*)0x18021cb40;
+
+// 系统处理状态常量定义 - 用于替换UNK_180a09c50等变量
+const void* const SystemProcessingStatusPrimary = (void*)0x180a09c50;
+const void* const SystemProcessingStatusSecondary = (void*)0x180a09d40;
+const void* const SystemProcessingStatusTertiary = (void*)0x180a20018;
+
+// 系统引擎状态常量定义 - 用于替换UNK_1809fcfbc等变量
+const void* const SystemEngineStatusPrimary = (void*)0x1809fcfbc;
+
+// 系统上下文数据常量定义 - 用于替换UNK_180a1ff90等变量
+const void* const SystemContextDataPrimary = (void*)0x180a1ff90;
+const void* const SystemContextDataSecondary = (void*)0x180a1ff8c;
+const void* const SystemContextDataTertiary = (void*)0x180a1ff80;
+const void* const SystemContextDataQuaternary = (void*)0x180a1ef60;
+
+// 系统字符串常量定义 - 用于替换UNK_180a03008等变量
+const void* const SystemStringPrimary = (void*)0x180a03008;
+const void* const SystemStringSecondary = (void*)0x180a02a80;
+const void* const SystemStringTertiary = (void*)0x180a02a20;
+const void* const SystemStringQuaternary = (void*)0x180a0a2a8;
+
+// 系统内存地址常量定义 - 用于替换UNK_180a0ad58等变量
+const void* const SystemMemoryAddressPrimary = (void*)0x180a0ad58;
+const void* const SystemMemoryAddressSecondary = (void*)0x180a0ad28;
+const void* const SystemMemoryAddressTertiary = (void*)0x180a0ac88;
+const void* const SystemMemoryAddressQuaternary = (void*)0x180a0acd8;
+const void* const SystemMemoryAddressQuinary = (void*)0x180a0ac88;
+
 // 核心引擎系统常量定义
 void* const StringComparisonResultTableSystem = (void*)0x18098d698;
 void* const DataConfigurationCounterSystem = (void*)0x180c86878;
@@ -199591,9 +199646,9 @@ LAB_18017a372:
     UNLOCK();
     ProcessStringBuffer = Utf16Char5;
   }
-  pcStack_58 = (code *)&UNK_1800830c0;
-  SystemValidationPointer = &UNK_1800830b0;
-  pcStack_78 = (code *)&UNK_180083130;
+  pcStack_58 = (code *)&SystemValidationBufferSecondary;
+  SystemValidationPointer = &SystemValidationBufferPrimary;
+  pcStack_78 = (code *)&SystemValidationBufferTertiary;
   pcStack_70 = ProcessSystemDataTableOperation;
   CoreEngineUnsignedValueA0 = SUB84(MemoryBlockSizePointer,0);
   uStack_9c = (uint32_t)((unsigned long long)MemoryBlockSizePointer >> 0x20);
@@ -202181,7 +202236,7 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
   FunctionAddress = 0xfffffffffffffffe;
   systemEventTemplatePointer = PrimaryProcessingStatusFlag;
   FUN_1803456e0(PrimaryProcessingStatusFlag,Utf8BufferSize,SystemContextPointer);
-  *systemEventTemplatePointer = &UNK_180a1e220;
+  *systemEventTemplatePointer = &SystemEventTemplateDataPrimary;
   *(uint32_t *)(PrimaryProcessingStatusFlag + 0x14) = 0x3f800000;
   PrimaryProcessingStatusFlag[0xe] = 0x4044000000000000;
   PrimaryProcessingStatusFlag[0xf] = 0x4010000000000000;
@@ -202232,7 +202287,7 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
   pMemoryAddressMask = (void *)MemoryAllocate(MemoryPoolManager,0x98,8,3,0xfffffffffffffffe);
   ValidationValuePointer = pMemoryAddressMask;
   FUN_1803456e0(pMemoryAddressMask,Utf8BufferSize,SystemContextPointer);
-  *ValidationValuePointer = &UNK_180a1e428;
+  *ValidationValuePointer = &SystemEventTemplateDataSecondary;
   SystemContextPointer = ValidationValuePointer + 0xe;
   *SystemContextPointer = (long long)&ThreadLocalStorageTemplate;
   ValidationValuePointer[0xf] = 0;
@@ -202285,7 +202340,7 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x78,8,3,0xfffffffffffffffe);
   pMemoryAddressMask = PrimaryProcessingStatusFlag;
   FUN_1803456e0(PrimaryProcessingStatusFlag,Utf8BufferSize,SystemContextPointer);
-  *pMemoryAddressMask = &UNK_180a1e5a0;
+  *pMemoryAddressMask = &SystemEventTemplateDataTertiary;
   *(uint8_t *)(pMemoryAddressMask + 0xe) = 0;
   pSystemPriorityLevel = &SystemNullTemplate;
   uStack_28 = 0;
@@ -202330,7 +202385,7 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
   FunctionAddress = 0xfffffffffffffffe;
   pMemoryAddressMask = PrimaryProcessingStatusFlag;
   FUN_1803456e0(PrimaryProcessingStatusFlag,Utf8BufferSize,SystemContextPointer);
-  *pMemoryAddressMask = &UNK_180a1e7d0;
+  *pMemoryAddressMask = &SystemEventTemplateDataQuaternary;
   pMemoryAddressMask[0x13] = 0;
   pMemoryAddressMask[0x14] = 0;
   pMemoryAddressMask[0x15] = 0;
@@ -202377,7 +202432,7 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
   DataSize = 0xfffffffffffffffe;
   ValidationValuePointer = systemEventTemplatePointer;
   FUN_1803456e0(systemEventTemplatePointer,Utf8BufferSize,SystemContextPointer);
-  *ValidationValuePointer = &UNK_180a1e978;
+  *ValidationValuePointer = &SystemEventTemplateDataQuinary;
   SystemContextPointer = ValidationValuePointer + 0xf;
   *SystemContextPointer = (long long)&ThreadLocalStorageTemplate;
   ValidationValuePointer[0x10] = 0;
@@ -202428,7 +202483,7 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
   MemoryBlockIndex = (long long *)MemoryAllocate(MemoryPoolManager,200,8,3,0xfffffffffffffffe);
   SystemPointerX8 = MemoryBlockIndex;
   CoreEngineProcessSystemContext(MemoryBlockIndex);
-  *MemoryBlockIndex = (long long)&UNK_180a0a128;
+  *MemoryBlockIndex = (long long)&SystemDataStructureSenary;
   MemoryBlockIndex[0x18] = bufferAllocationStatus + 0x38;
   MemoryBlockIndex[3] = -3;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
@@ -202449,17 +202504,17 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
 7ef40(voidvoid FUN_18017ef40(void
 {
   long long PrimaryDataSize;
-  code ****ppppSystemCheckResult;
+  code ****SystemFunctionPointerArray;
   code *FunctionPointer;
-  code ******ppppppOperationStatus;
-  code *****pppppCharacterVariable5;
+  code ******SystemOperationStatus;
+  code *****SystemCharacterBuffer;
   uint32_t DataSize;
   int ProcessIterationCount;
   uint64_t ProcessingStatusFlag;
   uint32_t *TemporaryBuffer;
   long long SystemOffsetValue;
-  code *****ppppStringBuffer1;
-  code ******pppppStringBuffer2;
+  code *****SystemStringBufferPrimary;
+  code ******SystemStringBufferSecondary;
   long long DataSize13;
   long long LoopCounter4;
   unsigned long long Utf16Char5;
@@ -202510,7 +202565,7 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
   if ((*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (unsigned long long)__tls_index * 8) +
                0x48) < SystemMemoryLimit) && (CheckRenderParameterStatus(&SystemMemoryLimit), SystemMemoryLimit == -1)) {
     SystemMemoryFlag = 0;
-    FUN_1808fc820(&UNK_180941b00);
+    FUN_1808fc820(&SystemMemoryAddressPrimary);
     FUN_1808fcb30(&SystemMemoryParameter); /* 系统内存参数 - 用于内存管理和配置 */
   }
   StackUnsignedValue150 = 0;
@@ -202518,8 +202573,8 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
   if (MutexLockResult == 0) {
     ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
     pppppcStack_178 = (code *****)&pppcStack_170;
-    SystemUnsignedValue160 = &UNK_180180900;
-    uStack_158 = &UNK_1801808f0;
+    SystemUnsignedValue160 = &SystemMemoryAddressSecondary;
+    uStack_158 = &SystemMemoryAddressTertiary;
     pppppcStack_180 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
     pppppcStack_188 = pppppcStack_180;
     if ((code ******)pppppcStack_180 != (code ******)0x0) {
@@ -202568,8 +202623,8 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
     }
     if (*(int *)(SystemDataTablePointer + 0x340) != 0) {
       pppppcStack_178 = (code *****)MemoryAllocate(MemoryPoolManager,400,8,3);
-      *pppppcStack_178 = (code ****)&UNK_180a3dcb0;
-      pppppcStack_178[1] = (code ****)&UNK_180a3dca0;
+      *pppppcStack_178 = (code ****)&SystemDataStructurePrimary;
+      pppppcStack_178[1] = (code ****)&SystemDataStructureSecondary;
       pppppcStack_178[2] = (code ****)0x0;
       pppppcStack_180 = pppppcStack_178 + 0x2d;
       *pppppcStack_180 = (code ****)0x0;
@@ -202581,11 +202636,11 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
       *(uint32_t *)((long long)pppppcStack_178 + 0x18c) = 0;
       *(code ******)(SystemDataTablePointer + 0x40) = pppppcStack_178;
                     // WARNING: Subroutine does not return
-      ValidateSystemConfiguration(SystemConfigurationPointer,&UNK_180a09c50);
+      ValidateSystemConfiguration(SystemConfigurationPointer,&SystemDataStructureQuaternary);
     }
     pppppcStack_178 = (code *****)MemoryAllocate(MemoryPoolManager,400,8,3);
-    *pppppcStack_178 = (code ****)&UNK_180a3dcb0;
-    ((code ******)pppppcStack_178)[1] = (code *****)&UNK_180a3dca0;
+    *pppppcStack_178 = (code ****)&SystemDataStructurePrimary;
+    ((code ******)pppppcStack_178)[1] = (code *****)&SystemDataStructureSecondary;
     ((code ******)pppppcStack_178)[2] = (code *****)0x0;
     pppppcStack_180 = (code *****)((code ******)pppppcStack_178 + 0x2d);
     *pppppcStack_180 = (code ****)0x0;
@@ -202595,7 +202650,7 @@ uint64_t * CreateSystemStatusBuffer(uint64_t SystemContextPointer, uint64_t Utf8
     *(uint16_t *)((code ******)pppppcStack_178 + 0x31) = 0;
     CoreEngineConsoleHandle = (code ******)pppppcStack_178;
     *(uint32_t *)((long long)pppppcStack_178 + 0x18c) = 0;
-    *pppppcStack_178 = (code ****)&UNK_180a3e030;
+    *pppppcStack_178 = (code ****)&SystemDataStructureTertiary;
     *(code ******)(SystemDataTablePointer + 0x40) = pppppcStack_178;
     ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0x238,8,3);
     ProcessingStatusFlag = FUN_1801504b0(ProcessingStatusFlag);
@@ -202648,9 +202703,9 @@ LAB_180180381:
     if (MutexLockResult == 3) {
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_178 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_1801808b0;
-      uStack_158 = &UNK_1801808a0;
-      pppcStack_170 = (code ***)FUN_18021bff0;
+      SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
+      uStack_158 = &SystemMemoryAddressQuinary;
+      pppcStack_170 = (code ***)GetSystemDataStructurePointer();
       pppppcStack_188 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
       pppppcStack_180 = pppppcStack_188;
       if (pppppcStack_188 != (code *****)0x0) {
@@ -202666,9 +202721,9 @@ LAB_180180381:
       FUN_1800b88d0(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_1801808b0;
-      uStack_158 = &UNK_1801808a0;
-      pppcStack_170 = (code ***)FUN_18021dc50;
+      SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
+      uStack_158 = &SystemMemoryAddressQuinary;
+      pppcStack_170 = (code ***)SystemTerminateFunction();
       ppppStringBuffer1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
       if (ppppStringBuffer1 != (code *****)0x0) {
         pppppcStack_178 = ppppStringBuffer1;
@@ -202693,8 +202748,8 @@ LAB_180180381:
       FUN_1800b88d0(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_1801808b0;
-      uStack_158 = &UNK_1801808a0;
+      SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
+      uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021b090;
       ppppStringBuffer1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
       if (ppppStringBuffer1 != (code *****)0x0) {
@@ -202720,9 +202775,9 @@ LAB_180180381:
       FUN_1800b88d0(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_1801808b0;
-      uStack_158 = &UNK_1801808a0;
-      pppcStack_170 = (code ***)&UNK_18021cb40;
+      SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
+      uStack_158 = &SystemMemoryAddressQuinary;
+      pppcStack_170 = (code ***)&SystemDataStructureQuinary;
       ppppStringBuffer1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
       if (ppppStringBuffer1 != (code *****)0x0) {
         pppppcStack_178 = ppppStringBuffer1;
@@ -202747,8 +202802,8 @@ LAB_180180381:
       FUN_1800b88d0(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_1801808b0;
-      uStack_158 = &UNK_1801808a0;
+      SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
+      uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021cb50;
       ppppStringBuffer1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
       if (ppppStringBuffer1 != (code *****)0x0) {
@@ -202774,8 +202829,8 @@ LAB_180180381:
       FUN_1800b88d0(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_1801808b0;
-      uStack_158 = &UNK_1801808a0;
+      SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
+      uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021cf80;
       ppppStringBuffer1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
       if (ppppStringBuffer1 != (code *****)0x0) {
@@ -202801,8 +202856,8 @@ LAB_180180381:
       FUN_1800b88d0(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_1801808b0;
-      uStack_158 = &UNK_1801808a0;
+      SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
+      uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021b4f0;
       ppppStringBuffer1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
       if (ppppStringBuffer1 != (code *****)0x0) {
@@ -202828,8 +202883,8 @@ LAB_180180381:
       FUN_1800b88d0(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_1801808b0;
-      uStack_158 = &UNK_1801808a0;
+      SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
+      uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021b070;
       ppppStringBuffer1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
       if (ppppStringBuffer1 != (code *****)0x0) {
@@ -202855,8 +202910,8 @@ LAB_180180381:
       FUN_1800b88d0(LoopCounter,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_1801808b0;
-      uStack_158 = &UNK_1801808a0;
+      SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
+      uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021e9c0;
       pppppStringBuffer2 = (code ******)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
       if (pppppStringBuffer2 != (code ******)0x0) {
@@ -203069,8 +203124,8 @@ LAB_180180381:
       FUN_1800b8500(SystemDataTablePointer + 800);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_178 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_1801808b0;
-      uStack_158 = &UNK_1801808a0;
+      SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
+      uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021b9c0;
       pppppcStack_188 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
       pppppcStack_180 = pppppcStack_188;
@@ -203086,8 +203141,8 @@ LAB_180180381:
       FUN_1800b88d0(SystemDataTablePointer + 800,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_1801808b0;
-      uStack_158 = &UNK_1801808a0;
+      SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
+      uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021bc50;
       ppppStringBuffer1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
       if (ppppStringBuffer1 != (code *****)0x0) {
@@ -203113,8 +203168,8 @@ LAB_180180381:
       FUN_1800b88d0(SystemDataTablePointer + 800,&pppppcStack_180);
       ProcessingStatusFlag = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
       pppppcStack_188 = (code *****)&pppcStack_170;
-      SystemUnsignedValue160 = &UNK_180180860;
-      uStack_158 = &UNK_180180850;
+      SystemUnsignedValue160 = &SystemUnsignedValueBufferQuinary;
+      uStack_158 = &SystemUnsignedValueBufferSenary;
       pppcStack_170 = (code ***)FUN_18013ea70;
       pDataContentStatus = (uint32_t *)CoreEngineMemoryContext;
       pppppStringBuffer2 = (code ******)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
@@ -203187,7 +203242,7 @@ LAB_18018054e:
   SystemPriorityLevel = 0;
   CoreEngineUnsignedValue30 = 0;
   uStack_18 = ValidationCode;
-  InitializeEngineStatusBuffer(&SystemPriorityLevel,PrimaryProcessingStatusFlag,&UNK_1809fcfbc);
+  InitializeEngineStatusBuffer(&SystemPriorityLevel,PrimaryProcessingStatusFlag,&SystemEngineStatusPrimary);
   DataConfigurationCounter = lStack_38;
   if (lStack_38 == 0) {
     PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
@@ -246479,7 +246534,15 @@ LAB_18021af9e:
 
 
 
-1bff0(voidvoid FUN_18021bff0(void
+/**
+ * @brief 获取系统数据结构指针
+ * 
+ * 该函数用于获取系统数据结构的指针，通常用于初始化或配置系统组件。
+ * 
+ * @return code*** 返回系统数据结构指针
+ * @note 原始函数名: FUN_18021bff0（已重命名为GetSystemDataStructurePointer）
+ */
+code*** GetSystemDataStructurePointer(void
 {
   uint32_t Utf16Char;
   long long bufferAllocationStatus;
@@ -246681,7 +246744,16 @@ LAB_18021af9e:
 
 
 
-1dc50(voidvoid FUN_18021dc50(void
+/**
+ * @brief 系统终止函数
+ * 
+ * 该函数用于终止系统运行，通常在系统遇到无法恢复的错误时调用。
+ * 
+ * @return 无
+ * @note 原始函数名: FUN_18021dc50（已重命名为SystemTerminateFunction）
+ * @note 此函数不会返回
+ */
+void SystemTerminateFunction(void
 {
                     // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();
@@ -269418,13 +269490,50 @@ uint64_t CoreEngineStatusCheck(void) {
   return 0;
 }
 
-// 系统配置和验证常量 - 用于替换UNK_变量
+// 系统验证缓冲区常量
 const void* const SystemValidationBufferPrimary = (void*)0x1800830b0;
 const void* const SystemValidationBufferSecondary = (void*)0x1800830c0;
 const void* const SystemValidationBufferTertiary = (void*)0x180083130;
+
+// 系统事件模板数据常量
 const void* const SystemEventTemplateDataPrimary = (void*)0x180a1e220;
 const void* const SystemEventTemplateDataSecondary = (void*)0x180a1e428;
+const void* const SystemEventTemplateDataTertiary = (void*)0x180a1e5a0;
+const void* const SystemEventTemplateDataQuaternary = (void*)0x180a1e7d0;
+const void* const SystemEventTemplateDataQuinary = (void*)0x180a1e978;
+
+// 系统内存地址常量
+const void* const SystemMemoryAddressPrimary = (void*)0x180941b00;
+const void* const SystemMemoryAddressSecondary = (void*)0x180180900;
+const void* const SystemMemoryAddressTertiary = (void*)0x1801808f0;
+const void* const SystemMemoryAddressQuaternary = (void*)0x1801808b0;
+const void* const SystemMemoryAddressQuinary = (void*)0x1801808a0;
+const void* const SystemMemoryAddressSenary = (void*)0x180180860;
+const void* const SystemMemoryAddressSeptenary = (void*)0x180180850;
+
+// 系统数据结构常量
+const void* const SystemDataStructurePrimary = (void*)0x180a3dcb0;
+const void* const SystemDataStructureSecondary = (void*)0x180a3dca0;
+const void* const SystemDataStructureTertiary = (void*)0x180a3e030;
+const void* const SystemDataStructureQuaternary = (void*)0x180a09c50;
+const void* const SystemDataStructureQuinary = (void*)0x18021cb40;
+const void* const SystemDataStructureSenary = (void*)0x180a0a128;
+const void* const SystemDataStructureSeptenary = (void*)0x180a09d40;
+const void* const SystemDataStructureOctonary = (void*)0x1809fcfbc;
+const void* const SystemDataStructureNonary = (void*)0x180a20018;
+const void* const SystemDataStructureDenary = (void*)0x180a1ff90;
+
+// 系统配置数据常量
 const void* const SystemConfigurationDataPrimary = (void*)0x180a09fb8;
+
+// 系统内存和状态常量 - 用于替换UNK_180941b00等变量
+const void* const SystemMemoryStatusBuffer = (void*)0x180941b00;
+const void* const SystemMemoryParameterBuffer = (void*)0x180180900;
+const void* const SystemMemoryConfigurationBuffer = (void*)0x1801808f0;
+const void* const SystemMemoryStatusBufferSecondary = (void*)0x1801808b0;
+const void* const SystemMemoryConfigurationBufferSecondary = (void*)0x1801808a0;
+const void* const SystemValidationDataBuffer = (void*)0x180a1e978;
+const void* const SystemMemoryBlockIndex = (void*)0x180a0a128;
 
 
 
