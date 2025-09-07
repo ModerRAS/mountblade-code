@@ -1485,7 +1485,7 @@ void* SystemDataTemplateInputSystemId1;                    // 系统数据模板
 void* SystemDataTemplateInputSystemId2;                    // 系统数据模板 - 输入系统标识符2
 void* SystemDataTemplateConfigurationComponentId1;                // 系统数据模板 - 配置组件标识符1
 void* SystemDataTemplateConfigurationComponentId2;                // 系统数据模板 - 配置组件标识符2
-void* SystemDataTemplateLId1;                    // 系统数据模板 - 日志系统标识符1
+void* SystemDataTemplateLogSystemId1;                    // 系统数据模板 - 日志系统标识符1
 void* SystemDataTemplateLId2;                    // 系统数据模板 - 日志系统标识符2
 void* SystemDataTemplateOId1;                    // 系统数据模板 - 输出系统标识符1
 void* SystemDataTemplateOId2;                    // 系统数据模板 - 输出系统标识符2
