@@ -299,6 +299,10 @@ const long long SystemNetworkEventHandlerIdentifierSecondary = 0x92a15d52fe2679b
 const long long SystemNetworkSyncManagerIdentifierPrimary = 0x4140994454d56503;
 const long long SystemNetworkSyncManagerIdentifierSecondary = 0x399eced9bb5517ad;
 
+// 网络监控器标识常量
+const long long SystemNetworkMonitorIdentifierPrimary = 0x406be72011d07d37;
+const long long SystemNetworkMonitorIdentifierSecondary = 0x71876af946c867ab;
+
 // 内存地址常量
 const void* const DataTableStartAddress = (void*)0x180c8aa70;
 const void* const DataTableEndAddress = (void*)0x180c8ea71;

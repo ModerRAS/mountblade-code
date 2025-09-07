@@ -80197,7 +80197,18 @@ void Unwind_18090c910(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c920(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用0x1d0偏移量的函数指针
+ * 
+ * 该函数检查数据缓冲区0x1d0偏移量处的函数指针是否有效，如果有效则调用该函数。
+ * 这是一个通用的函数指针调用包装器，用于执行系统回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含函数指针
+ * 
+ * @note 原始函数名：Unwind_18090c920
+ */
+void InvokeFunctionPointerAtOffset1D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x1d0) != (int64_t *)0x0) {
@@ -80208,7 +80219,18 @@ void Unwind_18090c920(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c930(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置0x2a8偏移量的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的0x2a8偏移量处设置默认异常处理器B的函数指针，
+ * 用于处理特定偏移量的异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c930
+ */
+void SetDefaultExceptionHandlerBAtOffset2A8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x2a8) = &DefaultExceptionHandlerB;
@@ -80217,7 +80239,18 @@ void Unwind_18090c930(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c940(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置0x890偏移量的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的0x890偏移量处设置默认异常处理器B的函数指针，
+ * 用于处理特定偏移量的异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c940
+ */
+void SetDefaultExceptionHandlerBAtOffset890(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x890) = &DefaultExceptionHandlerB;
@@ -80226,7 +80259,18 @@ void Unwind_18090c940(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c950(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置0x2e0偏移量的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的0x2e0偏移量处设置默认异常处理器B的函数指针，
+ * 用于处理特定偏移量的异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c950
+ */
+void SetDefaultExceptionHandlerBAtOffset2E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x2e0) = &DefaultExceptionHandlerB;
