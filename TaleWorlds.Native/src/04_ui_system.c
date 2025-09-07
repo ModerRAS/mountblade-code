@@ -5381,7 +5381,7 @@ void FinalizeUIFrame(void)
     __Throw_C_error_std__YAXH_Z(operationResult);
   }
                     // WARNING: Subroutine does not return
-  ExecuteUIRenderTask(uStack_38 ^ (ulonglong)auStack_3c8);
+  ExecuteUIRenderTask(xorKeyResult ^ (ulonglong)encryptionKeyBuffer);
 }
 
 
