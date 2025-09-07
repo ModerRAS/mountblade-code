@@ -165449,7 +165449,7 @@ LAB_180139b2f:
         if (SystemCharacterStatusBuffer[0x82] != 0) {
           SystemCharacterStatusPointer = *(uint64_t **                     (*(long long *)(*(long long *)(SystemCharacterStatusBuffer[0x82] + 0x30) + 8) + 8 + EncodingConversionResult);
         }
-        CharacterVariable5 = FUN_180138e60(SystemCharacterStatusPointer,CharacterCode);
+        CharacterVariable5 = ProcessCharacterCodeLookup(SystemCharacterStatusPointer,CharacterCode);
         ContextSecondaryFloat3 = ContextSecondaryFloat0;
         if (CharacterVariable5 != '\0') {
           FUN_18011ce30(&FloatStack2,*SystemCharacterStatusPointer,*(uint8_t *)((long long)SystemCharacterStatusPointer + 0xb7));
