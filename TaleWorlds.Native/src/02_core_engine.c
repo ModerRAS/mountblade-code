@@ -35372,7 +35372,7 @@ uint64_t ProcessSystemBufferOperation(unsigned long long *SystemContextPointer,u
   bool SystemValidationFlag;
   unsigned long long SystemByteValue;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
   unsigned long long ProcessStringBuffer;
   unsigned long long SystemStatusCode;
@@ -38924,7 +38924,7 @@ void ProcessSystemConfigurationData(long long SystemContextPointer, long long *U
   long long MemoryBoundaryEnd;
   long long MemoryPoolBlockSize;
   int ComputedResult;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long SystemOffsetValue;
   
   ProcessDataStructureSerialization(Utf8BufferSize,SystemContextPointer);
@@ -39104,7 +39104,7 @@ void ProcessMemoryBoundaryValidation(long long SystemContextPointer
   long long *SystemContext;
   long long MemoryPoolBlockSize;
   int ComputedResult;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long MemoryOffsetValue;
   
   ProcessDataStructureSerialization();
@@ -40900,7 +40900,7 @@ void ProcessDataStructureBufferExpansion(uint64_t *SystemContextPointer,unsigned
   unsigned long long DataSize;
   void *PreviousNode;
   long long secondaryLoopCounter;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   
   TertiaryProcessingStatusFlag = (void *)SystemContextPointer[1];
   if ((unsigned long long)((SystemContextPointer[2] - (long long)TertiaryProcessingStatusFlag) / 0x24) < Utf8BufferSize) {
@@ -41032,7 +41032,7 @@ void ProcessDataStructureBufferExpansion(uint64_t *SystemContextPointer,unsigned
         *systemEventTemplatePointer = 0;
         TertiaryProcessingStatusFlag = (void *)((long long)TertiaryProcessingStatusFlag + 0x24);
         systemEventTemplatePointer = (void *)((long long)systemEventTemplatePointer + 0x24);
-        SystemVariable9 = SystemVariable9 - 1;
+        MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemVariable9 != 0);
       TertiaryProcessingStatusFlag = (void *)SystemContextPointer[1];
     }
@@ -48265,7 +48265,7 @@ float *ProcessFloatDataBoundaryCalculation(float *SystemContextPointer
             CalculatedDistance = SystemContextFloat11;
           }
           pFloatVariable7 = pFloatVariable7 + 4;
-          SystemVariable9 = SystemVariable9 - 1;
+          MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
           SystemContextFloat11 = CalculatedDistance;
         } while (SystemVariable9 != 0);
       }
@@ -51825,7 +51825,7 @@ void ReallocateCoreEngineDataBuffer(long long *SystemContextPointer,unsigned lon
   void *CurrentNode;
   void *PreviousNode;
   long long *pSystemDataTablePointer;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint64_t *StatusBuffer;
   unsigned long long ProcessStringBuffer;
   
@@ -51912,7 +51912,7 @@ void ReallocateCoreEngineDataBuffer(long long *SystemContextPointer,unsigned lon
         TertiaryProcessingStatusFlag[2] = 0;
         *(uint32_t *)(TertiaryProcessingStatusFlag + 3) = 3;
         TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
-        SystemVariable9 = SystemVariable9 - 1;
+        MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemVariable9 != 0);
       TertiaryProcessingStatusFlag = (void *)SystemContextPointer[1];
     }
@@ -51952,7 +51952,7 @@ void ExpandCoreEngineDataBuffer(long long *SystemContextPointer,unsigned long lo
   void *CurrentNode;
   void *PreviousNode;
   long long *pSystemDataTablePointer;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint64_t *StatusBuffer;
   unsigned long long ProcessStringBuffer;
   
@@ -52039,7 +52039,7 @@ void ExpandCoreEngineDataBuffer(long long *SystemContextPointer,unsigned long lo
         TertiaryProcessingStatusFlag[2] = 0;
         *(uint32_t *)(TertiaryProcessingStatusFlag + 3) = 3;
         TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 4;
-        SystemVariable9 = SystemVariable9 - 1;
+        MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemVariable9 != 0);
       TertiaryProcessingStatusFlag = (void *)SystemContextPointer[1];
     }
@@ -59958,7 +59958,7 @@ void ValidateSystemDataIntegrity(uint64_t SystemContextPointer,long long Utf8Buf
   long long MemoryBoundaryEnd;
   long long MemoryPoolBlockSize;
   uint ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
   unsigned long long ProcessStringBuffer;
   uint8_t auStack_328 [32];
@@ -65608,7 +65608,7 @@ void CoreEngineUpdateSystemStatus(void
   long long MemoryBoundaryEnd;
   char CharacterStatus2;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
   uint64_t ProcessStringBuffer;
   uint8_t aSystemFlagF [32];
@@ -67776,7 +67776,7 @@ void ProcessSystemMemoryAllocation(long long targetDataStructure
   uint DataSize;
   uint SystemByteValue;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
   uint ProcessStringBuffer;
   
@@ -72152,7 +72152,7 @@ void ProcessSystemDataConfiguration(uint64_t *SystemContextPointer
   float *FloatProcessingStatusFlag;
   unsigned long long SystemByteValue;
   void *NextNode;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long SystemOffsetValue;
   long long SystemStringIndex;
   float fStackX_10;
@@ -73925,7 +73925,7 @@ uint64_t * ProcessSystemDataStructureConfiguration(long long *SystemContextPoint
   uint DataSize;
   long long MemoryPoolBlockSize;
   long long *pSystemDataTablePointer;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint64_t MemoryAllocationIndex;
   
   MemoryBlockListHead = (long long *)*SystemContextPointer;
@@ -77443,7 +77443,7 @@ void ProcessDataStructureSortingAndSwapping(long long *SystemContextPointer,long
   uint DataSize;
   long long MemoryPoolBlockSize;
   long long secondaryLoopCounter;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long SystemOffsetValue;
   unsigned long long ProcessStringBuffer;
   long long *SystemContextPointer2;
@@ -77533,7 +77533,7 @@ daf0(int *SystemContextPointer,int *Utf8BufferSize,int *Utf16InputPointer,uint64
   int *pValidationResult;
   long long MemoryPoolBlockSize;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   int aiStackX_8 [2];
   
   AllocatedMemorySize = (long long)Utf8BufferSize - (long long)SystemContextPointer >> 2;
@@ -78103,7 +78103,7 @@ void ProcessFloatDataStructureHeapSort(float *SystemContextPointer,float *Utf8Bu
   unsigned long long DataSize;
   unsigned long long SystemByteValue;
   float *pFloatValue8;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   bool CurrentByteValue0;
   
   SystemVariable9 = (long long)Utf8BufferSize - (long long)SystemContextPointer >> 2;
@@ -78186,7 +78186,7 @@ void ProcessFloatDataStructureHeapSort(float *SystemContextPointer,float *Utf8Bu
     Utf8BufferSize = Utf8BufferSize + -1;
     do {
       SystemContextFloat1 = *Utf8BufferSize;
-      SystemVariable9 = SystemVariable9 - 1;
+      MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       CalculatedCodePoint = 2;
       *Utf8BufferSize = *SystemContextPointer;
       CurrentByteValue0 = SystemVariable9 == 2;
@@ -80093,7 +80093,7 @@ void ProcessSystemDataConversion(long long *SystemContextPointer,long long *Utf8
   long long *pMemoryBoundaryEnd;
   uint8_t *TertiaryProcessingStatusFlag;
   long long secondaryLoopCounter;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint8_t *StatusBuffer;
   long long StringProcessingIndex;
   uint32_t SystemStatusCode;
@@ -80116,7 +80116,7 @@ void ProcessSystemDataConversion(long long *SystemContextPointer,long long *Utf8
         if (StringProcessingIndex != 0) {
           ProcessSystemDataAndConfigureString(MemoryBlockIndex,StringProcessingIndex);
         }
-        SystemVariable9 = SystemVariable9 - 1;
+        MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemVariable9 != 0);
     }
     *Utf8BufferSize = StringProcessingIndex;
@@ -80263,7 +80263,7 @@ LAB_18009fe7d:
           if (SystemStringIndex != 0) {
             ProcessSystemDataAndConfigureString(MemoryBlockIndex,SystemStringIndex);
           }
-          SystemVariable9 = SystemVariable9 - 1;
+          MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
         } while (SystemVariable9 != 0);
       }
       *(uint32_t *)Utf8BufferSize = SystemStatusCode;
@@ -91071,7 +91071,7 @@ unsigned long long ProcessFloatDataStructureAndMemoryAllocation(float *SystemCon
   char CharacterValidationCode;
   char CharacterStatus2;
   int ComputedResult;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint8_t MemoryAllocationIndex;
   byte IsMemoryBlockEqual;
   float SystemContextFloat12;
@@ -92186,7 +92186,7 @@ unsigned long long ProcessDataStructureAndFloatCalculation(uint32_t SystemContex
   int ProcessIterationCount;
   uint32_t ProcessingStatusFlag;
   long long in_RAX;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint MemoryAllocationIndex;
   long long in_RCX;
   char *StringBuffer1;
@@ -106192,7 +106192,7 @@ unsigned long long ProcessSystemContextWithFloatParameters(char *SystemContextPo
   byte BooleanByteFlag6;
   int ProcessIterationCount;
   uint32_t ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long SystemOffsetValue;
   float *pSystemContextFloat11;
   long long *SystemContextPointer2;
@@ -119983,7 +119983,7 @@ LAB_1801256ac:
   float *FloatProcessingStatusFlag;
   long long *MemoryPoolBlockSizePointer;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint MemoryAllocationIndex;
   float SystemContextFloat11;
   float SystemContextFloat12;
@@ -120071,7 +120071,7 @@ LAB_1801256ac:
       if (SystemContextFloat13 <= SystemContextFloat14) {
         SystemContextFloat13 = SystemContextFloat14;
       }
-      SystemVariable9 = SystemVariable9 - 1;
+      MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       SystemContextFloat11 = SystemContextFloat12;
       SystemContextFloat14 = SystemContextFloat13;
     } while (SystemVariable9 != 0);
@@ -124228,7 +124228,7 @@ LAB_180126e9d:
   int ValidationResult;
   int *pMutexLockResult;
   uint64_t ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint32_t *StatusBuffer;
   unsigned long long *SystemStatusBuffer;
   int IntegerValue2;
@@ -125662,7 +125662,7 @@ unsigned long long FUN_180128bd0(uint64_t SystemContextPointer,uint64_t Utf8Buff
   int ValidationResult;
   long long MemoryPoolBlockSize;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
   int IntegerValue1;
   int IntegerValue2;
@@ -144579,7 +144579,7 @@ long long FUN_18012fe00(uint64_t SystemContextPointer
   uint8_t DataSize;
   uint16_t SystemByteValue;
   void *NextNode;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
   long long SystemStringIndex;
   unsigned long long SystemStatusCode;
@@ -145197,7 +145197,7 @@ LAB_180130808:
   void *CurrentNode;
   unsigned long long SystemByteValue;
   long long secondaryLoopCounter;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long SystemContext;
   int RegisterValueEBP;
   char StringBuffer0;
@@ -146047,7 +146047,7 @@ LAB_180130e8e:
   char CharacterStatus2;
   int ComputedResult;
   unsigned long long RegisterSourceIndex;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long DataNodeIndex;
   float FloatingPointRegisterA;
   float fStack0000000000000060;
@@ -146126,7 +146126,7 @@ unsigned long long FUN_180130ec0(float *SystemContextPointer
   unsigned long long DataSize;
   unsigned long long SystemByteValue;
   uint ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   float SystemContextFloat10;
   float SystemContextFloat11;
   float SystemContextFloat12;
@@ -151472,7 +151472,7 @@ LAB_180133d4a:
   float SystemFloatValue;
   float FloatingPointRegisterA;
   float SecondaryFloatValue;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   
   StringBuffer1 = (char)RegisterValueR12D;
   StringBuffer2 = (char)RegisterValueR15;
@@ -152283,7 +152283,7 @@ LAB_180134065:
   long long secondaryLoopCounter;
   long long RegisterSourceIndex;
   long long DataNodeIndex;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   char *StringBuffer0;
   uint64_t MemoryAllocationIndex60;
   
@@ -154255,7 +154255,7 @@ void ConfigureSystemRenderingParameters(void
   int ComputedResult;
   long long RegisterValueR13;
   int RegisterGeneral14D;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   float SystemContextFloat10;
   float SystemContextFloat11;
   float SystemContextFloat12;
@@ -155169,7 +155169,7 @@ uint64_t * FUN_180135420(uint64_t *SystemContextPointer
   int ProcessIterationCount;
   int *RegisterSourceIndex;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long SystemOffsetValue;
   unsigned long long ProcessStringBuffer;
   
@@ -161357,7 +161357,7 @@ LAB_18013b1d6:
   unsigned long long DataSize;
   uint SystemByteValue;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   
   DataStructureCounter = SystemDataConfiguration;
   SystemVariable9 = 0;
@@ -166909,7 +166909,7 @@ uint64_t *ProcessMemoryBlockManagement(long long *SystemContextPointer,uint64_t 
   uint DataSize;
   long long MemoryPoolBlockSize;
   long long *pSystemDataTablePointer;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint64_t MemoryAllocationIndex;
   
   MemoryBlockListHead = (long long *)*SystemContextPointer;
@@ -169246,7 +169246,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *SystemContextPointer,unsigned l
   uint DataSize;
   unsigned long long SystemByteValue;
   uint ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
   unsigned long long ProcessStringBuffer;
   long long SystemContextValue;
@@ -169325,7 +169325,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *SystemContextPointer,unsigned l
   uint DataSize;
   unsigned long long SystemByteValue;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long SystemOffsetValue;
   uint64_t uStack0000000000000028;
   uint64_t *StackParameter2;
@@ -170485,7 +170485,7 @@ long long * FUN_18014acf0(long long SystemContextPointer,long long *Utf8BufferSi
   long long MemoryBoundaryEnd;
   float *pFloatVariable7;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint MemoryAllocationIndex;
   long long SystemContextValue;
   unsigned long long QuaternaryReturnCode;
@@ -171256,7 +171256,7 @@ long long * FUN_18014acf0(long long SystemContextPointer,long long *Utf8BufferSi
   long long RegisterSourceIndex;
   uint ProcessingStatusFlag;
   unsigned long long in_R11;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   float SystemContextFloat10;
   float SystemContextFloat11;
   float SystemContextFloat12;
@@ -171456,7 +171456,7 @@ long long * FUN_18014acf0(long long SystemContextPointer,long long *Utf8BufferSi
   long long RegisterSourceIndex;
   uint ProcessingStatusFlag;
   unsigned long long in_R11;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   float SystemContextFloat10;
   float SystemContextFloat11;
   float SystemContextFloat12;
@@ -172273,7 +172273,7 @@ LAB_18014c263:
   unsigned long long DataSize;
   uint SystemByteValue;
   int ComputedResult;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   int *ReferenceCountPointer0;
   uint32_t aSystemFlagX8 [2];
   int *piStack_30;
@@ -178868,7 +178868,7 @@ LAB_1801545d1:
   uint32_t *SecondaryProcessingStatusFlag;
   long long MemoryPoolBlockSize;
   uint32_t *TertiaryProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint32_t *StatusBuffer;
   uint32_t **pSystemStatusBuffer;
   uint32_t *StatusBuffer2;
@@ -179417,7 +179417,7 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t SystemContextPoin
   long long *pMemoryBoundaryEnd;
   byte *ByteBufferPointer7;
   int ComputedResult;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long SystemOffsetValue;
   unsigned long long ProcessStringBuffer;
   void *CoreEnginePointerBuffer78;
@@ -179654,7 +179654,7 @@ LAB_180156f96:
   long long *SystemPointerX10;
   long long *SystemPointerX18;
   long long *pPerformanceCounterValue;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   
   *SystemContextPointer = &SystemContextPrimary;
   *(uint8_t *)((long long)SystemContextPointer + 0x162) = 1;
@@ -187728,7 +187728,7 @@ FUN_1801672e0(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Ut
   uint32_t *SecondaryProcessingStatusFlag;
   uint64_t SystemByteValue;
   uint32_t ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   void *StatusBuffer;
   uint8_t auStack_568 [32];
   uint16_t *pSystemUnsignedValue548;
@@ -188252,7 +188252,7 @@ FUN_180168670(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Ut
   unsigned long long DataSize;
   unsigned long long SystemByteValue;
   long long secondaryLoopCounter;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
   void *QuaternaryStackPointer8;
   unsigned long long SystemPriorityLevel;
@@ -205513,7 +205513,7 @@ FUN_180184700(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
   long long *pMemoryBoundaryEnd;
   long long MemoryPoolBlockSize;
   uint64_t ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long *SystemContextPointer0;
   uint64_t *SystemStatusBuffer;
   uint64_t *StatusBuffer2;
@@ -208850,7 +208850,7 @@ uint64_t * FUN_180188910(long long *SystemContextPointer,long long Utf8BufferSiz
   long long MemoryBoundaryEnd;
   unsigned long long SystemByteValue;
   long long secondaryLoopCounter;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint64_t *StatusBuffer;
   uint64_t *SystemStatusBuffer;
   uint64_t *StatusBuffer2;
@@ -209976,7 +209976,7 @@ FUN_18018a1c0(long long *SystemContextPointer,uint64_t *Utf8BufferSize,long long
   long long *pMemoryBoundaryEnd;
   long long *MemoryPoolBlockSizePointer;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
   bool BooleanVariable11;
   unsigned long long aFunctionAddress [2];
@@ -217970,7 +217970,7 @@ LAB_1801945bb:
   unsigned long long DataSize;
   uint SystemByteValue;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long SystemOffsetValue;
   unsigned long long ProcessStringBuffer;
   unsigned long long SystemStatusCode;
@@ -229274,7 +229274,7 @@ LAB_180201f5b:
   unsigned long long DataSize;
   unsigned long long SystemByteValue;
   float *pFloatValue8;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   bool CurrentByteValue0;
   
   SystemVariable9 = (long long)Utf8BufferSize - (long long)SystemContextPointer >> 2;
@@ -229357,7 +229357,7 @@ LAB_180201f5b:
     Utf8BufferSize = Utf8BufferSize + -1;
     do {
       SystemContextFloat1 = *Utf8BufferSize;
-      SystemVariable9 = SystemVariable9 - 1;
+      MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       CalculatedCodePoint = 2;
       *Utf8BufferSize = *SystemContextPointer;
       CurrentByteValue0 = SystemVariable9 == 2;
@@ -229406,7 +229406,7 @@ LAB_180201f5b:
   unsigned long long DataSize;
   unsigned long long SystemByteValue;
   float *pFloatValue8;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   bool CurrentByteValue0;
   
   SystemVariable9 = (long long)Utf8BufferSize - (long long)SystemContextPointer >> 2;
@@ -229489,7 +229489,7 @@ LAB_180201f5b:
     Utf8BufferSize = Utf8BufferSize + -1;
     do {
       SystemContextFloat1 = *Utf8BufferSize;
-      SystemVariable9 = SystemVariable9 - 1;
+      MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       CalculatedCodePoint = 2;
       *Utf8BufferSize = *SystemContextPointer;
       CurrentByteValue0 = SystemVariable9 == 2;
@@ -229860,7 +229860,7 @@ FUN_180203ba0(long long *SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t 
   uint DataSize;
   long long MemoryPoolBlockSize;
   long long *pSystemDataTablePointer;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint64_t MemoryAllocationIndex;
   
   MemoryBlockListHead = (long long *)*SystemContextPointer;
@@ -233673,7 +233673,7 @@ uint64_t * FUN_180207e00(uint64_t *SystemContextPointer
   unsigned long long DataSize;
   unsigned long long SystemByteValue;
   uint ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long *plStack_a8;
   uint64_t CoreEngineUnsignedValueA0;
   long long *pStackLongValue;
@@ -233787,7 +233787,7 @@ void FUN_180208160(uint64_t SystemContextPointer,long long *Utf8BufferSize,uint6
   unsigned long long DataSize;
   unsigned long long SystemByteValue;
   uint ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long *plStack_b8;
   uint64_t SystemStackFlagB0;
   long long *plStack_a8;
@@ -233949,7 +233949,7 @@ void FUN_180208160(uint64_t SystemContextPointer,long long *Utf8BufferSize,uint6
   unsigned long long DataSize;
   long long MemoryPoolBlockSize;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   
   MemoryPoolBlockSize = *SystemContextPointer;
   ProcessingStatusFlag = 0;
@@ -234726,7 +234726,7 @@ LAB_180208d4a:
   long long MemoryPoolBlockSize;
   unsigned long long ProcessingStatusFlag;
   long long *RegisterValueR12;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long RegisterValueR15;
   
   MemoryPoolBlockSize = *SystemContextPointer;
@@ -238121,7 +238121,7 @@ LAB_18020c9db:
   unsigned long long DataSize;
   uint SystemByteValue;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint64_t MemoryAllocationIndex;
   
   MemoryAllocationIndex = 0xfffffffffffffffe;
@@ -238428,7 +238428,7 @@ LAB_18020d04f:
   long long MemoryBoundaryEnd;
   uint SystemByteValue;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
   long long *plStack_38;
   long long *plStack_30;
@@ -238509,7 +238509,7 @@ LAB_18020d04f:
   long long MemoryBoundaryEnd;
   uint SystemByteValue;
   unsigned long long ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   unsigned long long Utf16Char;
   long long *plStack_38;
   long long *plStack_30;
@@ -240845,7 +240845,7 @@ uint64_t FUN_180212170(uint64_t SystemContextPointer,unsigned long long Utf8Buff
   long long *SystemPointerX18;
   long long *pPerformanceCounterValue;
   uint64_t SystemStatusCode;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   
   SystemStatusCode = 0xfffffffffffffffe;
   if ((long long *)SystemContextPointer[0x91] != (long long *)0x0) {
@@ -244152,7 +244152,7 @@ uint8_t FUN_1802164d6(void
   uint DataSize;
   uint *TertiaryProcessingStatusFlag;
   uint32_t *TertiaryProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint32_t MemoryAllocationIndex;
   void *pSystemFlagG;
   long long CoreEngineSignedValueC8;
@@ -244264,7 +244264,7 @@ uint8_t FUN_1802164d6(void
         CoreEngineSignedValueC8 = 0;
         MemoryOffsetValue = MemoryOffsetValue & 0xffffffff00000000;
         pSystemFlagG = &ThreadLocalStorageTemplate;
-        SystemVariable9 = SystemVariable9 - 1;
+        MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemVariable9 != 0);
     }
     FUN_1802187b0(SystemContextPointer + 0x3d8);
@@ -244395,7 +244395,7 @@ uint64_t FUN_180216d70(unsigned long long SystemContextPointer,long long Utf8Buf
   void *CurrentNode;
   unsigned long long SystemByteValue;
   long long secondaryLoopCounter;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint64_t *StatusBuffer;
   long long SystemStringIndex;
   uint64_t SystemStatusCode;
@@ -244891,7 +244891,7 @@ LAB_180216e0c:
   void *CurrentNode;
   long long MemoryPoolBlockSize;
   void *NextNode;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint64_t DataNodeIndex;
   
   loopCounter = SystemContextPointer[1];
@@ -245691,7 +245691,7 @@ long long FUN_180218a80(long long SystemContextPointer,long long Utf8BufferSize,
   unsigned long long DataSize;
   void *PreviousNode;
   long long *pSystemDataTablePointer;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint64_t *StatusBuffer;
   
   TertiaryProcessingStatusFlag = (void *)SystemContextPointer[1];
@@ -245775,7 +245775,7 @@ long long FUN_180218a80(long long SystemContextPointer,long long Utf8BufferSize,
           (**(code **)(*pSystemDataTablePointer + 0x38))();
         }
         TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 2;
-        SystemVariable9 = SystemVariable9 - 1;
+        MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemVariable9 != 0);
       TertiaryProcessingStatusFlag = (void *)SystemContextPointer[1];
     }
@@ -247050,7 +247050,7 @@ LAB_18021a863:
   uint DataSize;
   uint *TertiaryProcessingStatusFlag;
   uint32_t *TertiaryProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint32_t MemoryAllocationIndex;
   void *pSystemFlagG;
   long long CoreEngineSignedValueC8;
@@ -247162,7 +247162,7 @@ LAB_18021a863:
         CoreEngineSignedValueC8 = 0;
         MemoryOffsetValue = MemoryOffsetValue & 0xffffffff00000000;
         pSystemFlagG = &ThreadLocalStorageTemplate;
-        SystemVariable9 = SystemVariable9 - 1;
+        MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemVariable9 != 0);
     }
     FUN_1802187b0(SystemContextPointer + 0x280);
@@ -247660,7 +247660,7 @@ void SystemTerminateFunction(void
   bool BooleanStringBuffer6;
   long long *MemoryPoolBlockSizePointer;
   long long *pSystemDataTablePointer;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   char *StringBuffer0;
   uint64_t *SystemStatusBuffer;
   uint64_t *StatusBuffer2;
@@ -262297,7 +262297,7 @@ LAB_180227e59:
   unsigned long long DataSize;
   unsigned long long SystemByteValue;
   uint ProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   
   FUN_180639ec0(Utf8BufferSize,SystemContextPointer);
   long long AllocatedMemorySize = *(long long *)(SystemContextPointer + 0x28);
@@ -262604,7 +262604,7 @@ LAB_180227e59:
   char *CharacterPointer;
   uint8_t *TertiaryProcessingStatusFlag;
   uint32_t *TertiaryProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   int IntegerValue0;
   unsigned long long ProcessStringBuffer;
   int *ReferenceCountPointer2;
@@ -262813,7 +262813,7 @@ LAB_180227e59:
   char *CharacterPointer;
   uint8_t *TertiaryProcessingStatusFlag;
   uint32_t *TertiaryProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long *SystemContext;
   int IntegerValue0;
   unsigned long long ProcessStringBuffer;
@@ -263027,7 +263027,7 @@ LAB_180227e59:
   long long *SystemContext;
   int ProcessIterationCount;
   long long secondaryLoopCounter;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   int *ReferenceCountPointer0;
   long long RegisterValueR12;
   long long RegisterGeneral14;
@@ -263164,7 +263164,7 @@ LAB_180227e59:
         do {
           FUN_180226a90(*(long long *)(RegisterValueR15 + 0xb0) + RegisterGeneral14);
           RegisterGeneral14 = RegisterGeneral14 + 0x60;
-          SystemVariable9 = SystemVariable9 - 1;
+          MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
         } while (SystemVariable9 != 0);
       }
       return;
@@ -264298,7 +264298,7 @@ LAB_1802297eb:
   uint32_t *SecondaryProcessingStatusFlag;
   uint32_t *TertiaryProcessingStatusFlag;
   void *NextNode;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   long long SystemOffsetValue;
   uint32_t *SystemStatusBuffer;
   uint32_t *StatusBuffer2;
@@ -264436,7 +264436,7 @@ LAB_1802297eb:
         TertiaryProcessingStatusFlag[0x19] = 0x3f80000000000000;
         StatusBuffer2 = StatusBuffer2 + 0x38;
         TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + 0x1c;
-        SystemVariable9 = SystemVariable9 - 1;
+        MemoryAllocationLoopCounter = MemoryAllocationLoopCounter - 1;
       } while (SystemVariable9 != 0);
       StatusBuffer2 = (uint32_t *)SystemContextPointer[1];
     }
@@ -266810,7 +266810,7 @@ uint64_t * FUN_18022cab0(uint64_t *SystemContextPointer,uint64_t *Utf8BufferSize
   uint32_t DataSize;
   long long MemoryPoolBlockSize;
   uint32_t *TertiaryProcessingStatusFlag;
-  unsigned long long SystemVariable9;
+  unsigned long long MemoryAllocationLoopCounter;
   uint8_t aMemoryOffsetValue [32];
   void *pSystemOperationFlag98;
   uint32_t *pSystemOperationFlag90;
