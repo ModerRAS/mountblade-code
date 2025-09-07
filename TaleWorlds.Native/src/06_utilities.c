@@ -19957,7 +19957,7 @@ ValidateDataSecurity:
             inputParameter3 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
             if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
           }
-          fVar19 = (float)((int)fVar19 + 1);
+          validationCounter = (float)((int)validationCounter + 1);
           pfVar21 = pfVar21 + 1;
         } while ((int)fVar19 < 4);
         pfVar21 = (float *)&UNK_1809850f8;
@@ -19973,7 +19973,7 @@ ValidateDataSecurity:
             inputParameter3 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
             if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
           }
-          fVar19 = (float)((int)fVar19 + 1);
+          validationCounter = (float)((int)validationCounter + 1);
           pfVar21 = pfVar21 + 1;
         } while ((int)fVar19 < 6);
         systemDataBuffer4 = ValidateParameters(systemContext + 200);
