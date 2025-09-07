@@ -110,6 +110,16 @@
 #define uVar5 LoopCounter
 #define uVar6 MaxProcessingCount
 #define IsValidationComplete IsValidationComplete
+#define localChar1 ValidationFlag
+#define localChar3 ProcessingFlag
+#define localFloat4 TransformScaleX
+#define localFloat5 TransformScaleY
+#define localFloat6 RotationAngle
+#define localFloat7 MatrixValue
+#define localFloat8 TransformResult
+#define localChar9 SystemStatus
+#define localFloat20 AnimationTime
+#define localFloat21 AnimationDelta
 #define ProcessUIRenderOperation FUN_180690580
 #define ProcessUIDataTransfer ProcessUIComponentBlend
 #define InitializeUILayoutSystem FUN_180707a56
