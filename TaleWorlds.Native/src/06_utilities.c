@@ -257,6 +257,49 @@
 #define MODULE_CONTEXT_OFFSET 0x240             // 模块上下文偏移量
 #define MODULE_RESOURCE_OFFSET -0x18            // 模块资源偏移量
 #define MODULE_COMPONENT_OFFSET 0x80             // 模块组件偏移量
+
+// 全局数据指针偏移量常量
+#define GlobalDataPointerA35ConfigOffset 0x10   // 全局数据指针A35配置偏移量
+#define GlobalDataPointerA35StatusOffset 0x18   // 全局数据指针A35状态偏移量
+#define GlobalDataPointerA35CacheOffset 0x20     // 全局数据指针A35缓存偏移量
+#define GlobalDataPointerA36ConfigOffset 0x28   // 全局数据指针A36配置偏移量
+#define GlobalDataPointerA36StatusOffset 0x30   // 全局数据指针A36状态偏移量
+#define GlobalDataPointerFinalConfigOffset 0x38 // 全局数据指针Final配置偏移量
+#define GlobalDataPointerFinalStatusOffset 0x40 // 全局数据指针Final状态偏移量
+
+// 内存堆管理常量
+#define MemoryHeapPrimarySize 0x1000             // 内存堆主大小
+#define MemoryHeapSecondarySize 0x800            // 内存堆次大小
+#define MemoryHeapTertiarySize 0x400             // 内存堆第三大小
+#define MemoryHeapAlignment 0x10                // 内存堆对齐大小
+#define MemoryHeapFlagMask 0x0f                 // 内存堆标志掩码
+#define MemoryHeapStatusActive 0x01              // 内存堆状态活跃
+#define MemoryHeapStatusLocked 0x02              // 内存堆状态锁定
+#define MemoryHeapStatusCompact 0x04            // 内存堆状态压缩
+
+// 工具系统处理常量
+#define UtilityProcessBlockSize 0x128           // 工具处理块大小
+#define UtilityProcessDataOffset 0x20            // 工具处理数据偏移量
+#define UtilityProcessStatusOffset 0x30          // 工具处理状态偏移量
+#define UtilityProcessFlagMask 0xff              // 工具处理标志掩码
+#define UtilityProcessCompleteFlag 0x80          // 工具处理完成标志
+#define UtilityProcessErrorFlag 0x40             // 工具处理错误标志
+
+// 云服务配置常量
+#define CloudServiceConfigSize 32                // 云服务配置大小
+#define CloudServiceStatusSize 16                // 云服务状态大小
+#define CloudServiceCacheSize 64                 // 云服务缓存大小
+#define CloudServiceFlagActive 0x01               // 云服务标志活跃
+#define CloudServiceFlagConnected 0x02           // 云服务标志已连接
+#define CloudServiceFlagError 0x04               // 云服务标志错误
+
+// 安全服务配置常量
+#define SecurityServiceConfigSize 48             // 安全服务配置大小
+#define SecurityServiceStatusSize 24              // 安全服务状态大小
+#define SecurityServiceValidationSize 32          // 安全服务验证大小
+#define SecurityServiceFlagEnabled 0x01          // 安全服务标志启用
+#define SecurityServiceFlagValid 0x02             // 安全服务标志有效
+#define SecurityServiceFlagError 0x04             // 安全服务标志错误
 #define MODULE_VALIDATION_OFFSET 0x38           // 模块验证偏移量
 
 // 资源偏移量常量定义
@@ -60084,11 +60127,11 @@ void DestroyMutexInSituOffset70(DataBuffer operationBase,int64_t dataBuffer)
 void UnlockMutexInSituOffset70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x70));
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x70));
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
   return;
 }

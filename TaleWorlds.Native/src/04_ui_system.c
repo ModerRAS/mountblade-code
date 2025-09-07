@@ -72492,15 +72492,15 @@ void CalculateUIRenderDataWeightedSum(float *uiContext, float *dataSource, longl
     *dataSource = *nextFloatPtr * *previousFloatPtr + *dataSource;
     remainingElements = remainingElements + -1;
   } while (remainingElements != 0);
-  if (allocatedMemory < targetBuffer) {
-    plocalFloat5 = (float *)(unmodifiedRDI + allocatedMemory * 4);
-    targetBuffer = targetBuffer - allocatedMemory;
+  if (processedElements < targetBuffer) {
+    currentFloatPtr = (float *)(baseAddress + processedElements * 4);
+    targetBuffer = targetBuffer - processedElements;
     do {
-      *uiContext = *(float *)((register11 - unmodifiedRDI) + (longlong)plocalFloat5) * *plocalFloat5 + *uiContext;
-      plocalFloat2 = (float *)((longlong)plocalFloat5 + (context - unmodifiedRDI));
-      localFloat4 = *plocalFloat5;
-      plocalFloat5 = plocalFloat5 + 1;
-      *dataSource = *plocalFloat2 * localFloat4 + *dataSource;
+      *uiContext = *(float *)((endIndex - baseAddress) + (longlong)currentFloatPtr) * *currentFloatPtr + *uiContext;
+      previousFloatPtr = (float *)((longlong)currentFloatPtr + (contextOffset - baseAddress));
+      currentFloatValue = *currentFloatPtr;
+      currentFloatPtr = currentFloatPtr + 1;
+      *dataSource = *previousFloatPtr * currentFloatValue + *dataSource;
       targetBuffer = targetBuffer + -1;
     } while (targetBuffer != 0);
   }
