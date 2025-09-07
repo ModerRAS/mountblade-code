@@ -5584,6 +5584,60 @@ void InitializeUtilityModule(void);
 #define ProcessUtilitySystemOperationAtOffset8A0 Unwind_1809058a0
 
 /**
+ * @brief 清理资源函数A6
+ * 
+ * 该函数负责清理系统资源，释放内存和句柄
+ * 
+ * @note 原始函数名：Unwind_180905180
+ */
+#define CleanupResourceAtOffset180 Unwind_180905180
+
+/**
+ * @brief 清理资源函数A7
+ * 
+ * 该函数负责清理系统资源，释放内存和句柄
+ * 
+ * @note 原始函数名：Unwind_180905190
+ */
+#define CleanupResourceAtOffset190 Unwind_180905190
+
+/**
+ * @brief 设置异常处理器函数A9
+ * 
+ * 该函数负责设置异常处理器，管理系统状态
+ * 
+ * @note 原始函数名：Unwind_1809051a0
+ */
+#define SetupExceptionHandlerAtOffset1A0 Unwind_1809051a0
+
+/**
+ * @brief 设置异常处理器函数A10
+ * 
+ * 该函数负责设置异常处理器，激活处理程序
+ * 
+ * @note 原始函数名：Unwind_1809051d0
+ */
+#define SetupExceptionHandlerAtOffset1D0 Unwind_1809051d0
+
+/**
+ * @brief 设置异常处理器函数A11
+ * 
+ * 该函数负责设置异常处理器，配置处理参数
+ * 
+ * @note 原始函数名：Unwind_1809051e0
+ */
+#define SetupExceptionHandlerAtOffset1E0 Unwind_1809051e0
+
+/**
+ * @brief 设置异常处理器函数A12
+ * 
+ * 该函数负责设置异常处理器，执行初始化操作
+ * 
+ * @note 原始函数名：Unwind_1809051f0
+ */
+#define SetupExceptionHandlerAtOffset1F0 Unwind_1809051f0
+
+/**
  * @brief 工具模块配置参数
  */
 uint32_t UtilityPrimaryModuleConfig;
@@ -44868,7 +44922,21 @@ void ValidateContextExceptionHandlerA3(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_180903c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器配置函数C60
+ * 
+ * 该函数负责配置异常处理器。它会获取验证上下文，调用相关函数，
+ * 设置临时异常处理器，检查数据缓冲区状态，清除相关标志位，
+ * 并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础参数，用于传递操作相关的配置信息
+ * @param dataBuffer 数据缓冲区，用于存储异常处理器配置
+ * @param operationFlagA 操作标志A，用于控制处理流程
+ * @param operationFlagB 操作标志B，用于控制处理流程
+ * 
+ * @note 原始函数名：Unwind_180903c60
+ */
+void ExceptionHandlerA42(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -50746,7 +50814,7 @@ void CleanupExceptionResourcesA4(DataBuffer operationBase, int64_t dataBuffer, D
 
 
 
-void Unwind_180905180(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceAtOffset180(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 200) = &TemporaryExceptionHandler;
@@ -50762,7 +50830,7 @@ void Unwind_180905180(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905190(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x1c8) = &TemporaryExceptionHandler;
@@ -50778,7 +50846,7 @@ void Unwind_180905190(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809051a0(DataBuffer operationBase,int64_t dataBuffer)
+void SetupExceptionHandlerAtOffset1A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x58) & 4) != 0) {
@@ -50790,7 +50858,7 @@ void Unwind_1809051a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809051d0(DataBuffer operationBase,int64_t dataBuffer)
+void SetupExceptionHandlerAtOffset1D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x188) = &DefaultExceptionHandlerB;
@@ -50799,7 +50867,7 @@ void Unwind_1809051d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809051e0(DataBuffer operationBase,int64_t dataBuffer)
+void SetupExceptionHandlerAtOffset1E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1a8) = &DefaultExceptionHandlerB;
@@ -50808,7 +50876,7 @@ void Unwind_1809051e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809051f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void SetupExceptionHandlerAtOffset1F0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -51290,7 +51358,7 @@ void SetupTemporaryExceptionHandlerAndValidate(DataBuffer operationBase,int64_t 
  * @warning 如果异常状态不为0，会调用TerminateSystemE0()终止系统
  * @see TemporaryExceptionHandler, DefaultExceptionHandlerB, TerminateSystemE0
  */
-void Unwind_180905360(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceAtOffset360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x108) = &TemporaryExceptionHandler;
@@ -51320,7 +51388,7 @@ void Unwind_180905360(DataBuffer operationBase,int64_t dataBuffer)
  * @note 这是Unwind类型的异常处理函数，用于系统异常恢复
  * @see DefaultExceptionHandlerB
  */
-void Unwind_180905370(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceAtOffset370(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x108) = &DefaultExceptionHandlerB;
@@ -51329,7 +51397,7 @@ void Unwind_180905370(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905380(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceAtOffset380(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;

@@ -538,6 +538,28 @@ const char* const SystemErrorTemplateFile = (const char*)0x1809fd298;
 const char* const SystemErrorTemplateSystem = (const char*)0x1809fd0c0;
 const char* const SystemErrorTemplateCritical = (const char*)0x1809fdfc0;
 
+// 系统状态值常量 - 用于替换UNK_180a0f7fc等变量
+const void* const SystemStatusValuePrimary = (void*)0x180a0f7fc;
+const void* const SystemStatusValueSecondary = (void*)0x180a0f820;
+const void* const SystemStatusValueTertiary = (void*)0x180a0f9b0;
+const void* const SystemStatusValueQuaternary = (void*)0x180a0f9d0;
+const void* const SystemStatusValueQuinary = (void*)0x180a0fa10;
+const void* const SystemStatusValueSenary = (void*)0x180a0fa28;
+const void* const SystemStatusValueSeptenary = (void*)0x180a0fa40;
+const void* const SystemStatusValueOctonary = (void*)0x180a0fa58;
+const void* const SystemStatusValueNonary = (void*)0x180a0fa68;
+const void* const SystemStatusValueDenary = (void*)0x180a0fa80;
+const void* const SystemStatusValueUndenary = (void*)0x180a0faa0;
+const void* const SystemStatusValueDuodenary = (void*)0x180a0fab8;
+const void* const SystemStatusValueTerdenary = (void*)0x180a0fad0;
+const void* const SystemStatusValueQuaternaryDenary = (void*)0x180a0fae8;
+const void* const SystemStatusValueQuindenary = (void*)0x180a0fb00;
+const void* const SystemStatusValueSexdenary = (void*)0x180a0fb20;
+const void* const SystemStatusValueSeptendenary = (void*)0x180a0fb38;
+const void* const SystemStatusValueOctodenary = (void*)0x180a0fb50;
+const void* const SystemStatusValueNovendenary = (void*)0x180a0fb68;
+const void* const SystemStatusValueVigintenary = (void*)0x180a0fb80;
+
 // 系统渲染配置模板常量
 const char* const SystemRenderConfigTemplateVertex = (const char*)0x180a05740;
 const char* const SystemRenderConfigTemplatePixel = (const char*)0x180a05728;
@@ -227480,7 +227502,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -227491,7 +227513,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
           pSystemStatusValue = &SystemStatusValueSecondary;
         }
       }
-      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0f820,pSystemStatusValue);
+      ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&SystemStatusValueSecondary,pSystemStatusValue);
       MutexLockResult = FUN_180203740();
       if (MutexLockResult == 0) {
         pSystemStatusValue = &SystemStatusValueQuaternary;
@@ -227500,7 +227522,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -227520,7 +227542,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -227581,7 +227603,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -227606,7 +227628,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
         else {
           MutexLockResult = FUN_18010cc20(SystemStringIndex);
           if (MutexLockResult == 2) {
-            pSystemStatusValue = &UNK_180a0f7fc;
+            pSystemStatusValue = &SystemStatusValuePrimary;
           }
           else {
             MutexLockResult = FUN_18010cc20(SystemStringIndex);
@@ -227632,7 +227654,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -227652,7 +227674,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -227692,7 +227714,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -227712,7 +227734,7 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -227853,7 +227875,7 @@ LAB_180201300:
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0fa40,pSystemStatusValue);
       MutexLockResult = *(int *)(CoreEngineMemoryContext + 0x7e0);
       if (MutexLockResult == 0) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else {
         if (MutexLockResult < 1) {
@@ -227944,7 +227966,7 @@ LAB_180201300:
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -227986,7 +228008,7 @@ LAB_1802016f7:
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -228026,7 +228048,7 @@ LAB_1802016f7:
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -228040,7 +228062,7 @@ LAB_1802016f7:
       ProcessSystemContextConfiguration(&pCoreEngineUnsignedValue208,&UNK_180a0fad0,pSystemStatusValue);
       MutexLockResult = *(int *)(CoreEngineMemoryContext + 0xa80);
       if (MutexLockResult == 0) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else {
         if (MutexLockResult < 1) {
@@ -228066,7 +228088,7 @@ LAB_1802016f7:
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -228086,7 +228108,7 @@ LAB_1802016f7:
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
@@ -228106,7 +228128,7 @@ LAB_1802016f7:
         pSystemStatusValue = &SystemStatusValueTertiary;
       }
       else if (MutexLockResult == 2) {
-        pSystemStatusValue = &UNK_180a0f7fc;
+        pSystemStatusValue = &SystemStatusValuePrimary;
       }
       else if (MutexLockResult == 3) {
         pSystemStatusValue = &SystemQuaternaryProcessingStatusFlag;
