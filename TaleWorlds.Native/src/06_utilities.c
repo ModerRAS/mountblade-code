@@ -13597,17 +13597,26 @@ void ProcessUtilityDataStructure(int64_t dataStructurePointer,int64_t contextPoi
 
 
 
-// 函数: DataBuffer ProcessUtilitySystemRequest(int64_t requestPointer)
-// 功能：处理工具系统请求，根据请求参数执行相应的系统操作
+/**
+ * @brief 处理工具系统请求
+ * 
+ * 该函数负责处理工具系统的各种请求，根据请求参数执行相应的系统操作。
+ * 它会查询和检索系统数据，执行核心操作，并返回操作结果。
+ * 
+ * @param requestPointer 请求指针，包含请求的详细信息
+ * @return DataBuffer 操作结果数据缓冲区
+ * 
+ * @note 此函数包含系统数据查询和操作执行逻辑
+ * @see QueryAndRetrieveSystemDataA0, ExecuteOperationA0
+ */
 DataBuffer ProcessUtilitySystemRequest(int64_t requestPointer)
-
 {
   uint64_t operationResult;
   int64_t contextBuffer[4];
   
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(requestPointer + ExceptionHandlerCallbackOffset10),contextBuffer);
   if ((int)operationResult == 0) {
-    *(DataWord *)(*(int64_t *)(contextBuffer[0] + ExceptionHandlerCallbackOffset10) + 0x50) = *(DataWord *)(requestPointer + 0x18);
+    *(DataWord *)(*(int64_t *)(contextBuffer[0] + ExceptionHandlerCallbackOffset10) + SystemContextPointerOffset) = *(DataWord *)(requestPointer + SystemContextDataOffset);
     if ((*(int64_t *)(contextBuffer[0] + 8) != 0) && (operationResult = ExecuteOperationA0(), (int)operationResult != 0)) {
       return operationResult;
     }
@@ -100050,6 +100059,18 @@ void SystemCleanupHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常处理器调用函数5C0
+ * 
+ * 该函数负责在指定偏移量0x238处调用异常处理器。
+ * 它会获取异常上下文处理器指针，并在偏移量0x38处执行异常处理器函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文
+ * 
+ * @note 原始函数名：Unwind_1809105c0
+ * @note 这是一个异常处理器调用函数，用于执行特定偏移量的异常处理器
+ */
 void Unwind_1809105c0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -100064,6 +100085,18 @@ void Unwind_1809105c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常处理器调用函数5E0
+ * 
+ * 该函数负责在指定偏移量600处调用异常处理器。
+ * 它会获取异常上下文处理器指针，并在偏移量0x38处执行异常处理器函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文
+ * 
+ * @note 原始函数名：Unwind_1809105e0
+ * @note 这是一个异常处理器调用函数，用于执行特定偏移量的异常处理器
+ */
 void Unwind_1809105e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -100078,6 +100111,18 @@ void Unwind_1809105e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常处理器调用函数600
+ * 
+ * 该函数负责在指定偏移量0x260处调用异常处理器。
+ * 它会获取异常上下文处理器指针，并在偏移量0x38处执行异常处理器函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文
+ * 
+ * @note 原始函数名：Unwind_180910600
+ * @note 这是一个异常处理器调用函数，用于执行特定偏移量的异常处理器
+ */
 void Unwind_180910600(DataBuffer operationBase,int64_t dataBuffer)
 
 {
