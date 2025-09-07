@@ -22077,8 +22077,8 @@ DataBuffer ProcessDataSequenceA0(int64_t *DataSequencePointer)
   }
 ValidationCheckpointB:
   if ((int)systemDataBuffer == 0) {
-    *destinationIndexRegister = in_stack_00000050;
-    if (2 < in_stack_00000050) {
+    *destinationIndexRegister = systemOperationCount;
+    if (2 < systemOperationCount) {
       return 0xd;
     }
     systemDataBuffer = OperateDataO0(DataSequencePointer,destinationIndexRegister + 1,4);
@@ -26496,7 +26496,7 @@ void CheckSystemStatusB0(void)
            (int64_t)(int)(memoryBaseAddress - inputParameter) << 4);
   }
   *(uint *)(register_R15 + 0x18) = memoryBaseAddress;
-  in_stack_00000050 = 0;
+  systemOperationCount = 0;
   inputParameter = 0;
   if (uStack0000000000000068 >> 1 != 0) {
     do {
@@ -26518,19 +26518,19 @@ void CheckSystemStatusB0(void)
         return;
       }
       inputParameter = inputParameter + 1;
-      in_stack_00000050 = in_stack_00000050 & -(uStack0000000000000068 & 1);
+      systemOperationCount = systemOperationCount & -(validationFlagParameter & 1);
     } while (inputParameter < (int)memoryBaseAddress);
   }
-  in_stack_00000050 = 0;
+  systemOperationCount = 0;
   operationResult = ExecuteDataValidationOperation(*registerContext,&systemContextBuffer50);
-  inputParameter = in_stack_00000050;
+  inputParameter = systemOperationCount;
   if (operationResult != 0) {
     return;
   }
-  resourceIterator = (int64_t)(int)in_stack_00000050;
+  resourceIterator = (int64_t)(int)systemOperationCount;
   validationStatus = (int)*(uint *)(register_R15 + 0x2c) >> 0x1f;
-  if (((int)((*(uint *)(register_R15 + 0x2c) ^ validationStatus) - validationStatus) < (int)in_stack_00000050) &&
-     (operationResult = ValidateSystemMemoryA0(register_R15 + 0x20,in_stack_00000050), operationResult != 0)) {
+  if (((int)((*(uint *)(register_R15 + 0x2c) ^ validationStatus) - validationStatus) < (int)systemOperationCount) &&
+     (operationResult = ValidateSystemMemoryA0(register_R15 + 0x20,systemOperationCount), operationResult != 0)) {
     return;
   }
   operationResult = *(int *)(register_R15 + 0x28);
@@ -38753,11 +38753,11 @@ void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
 void CleanupSyncObject(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  code *pcVar1;
+  FunctionPointer *cleanupFunction;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x60) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x60),0,0,operationFlagB,SystemCleanupFlagfffffffe);
+  cleanupFunction = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x60) + 0x10);
+  if (cleanupFunction != (FunctionPointer *)0x0) {
+    (*cleanupFunction)(*(int64_t *)(dataBuffer + 0x60),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -53414,7 +53414,7 @@ void Unwind_1809061f0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180906210(void)
 
 {
-  CloseHandle(_DAT_180c91900);
+  CloseHandle(SystemHandlePointer);
   return;
 }
 
