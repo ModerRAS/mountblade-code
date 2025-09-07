@@ -24258,54 +24258,66 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 执行系统检查并返回结果
+ * 
+ * 该函数执行系统检查操作，包括浮点数计算和数据验证。
+ * 函数会遍历系统上下文中的浮点数数据，进行归一化处理，
+ * 并调用相关的系统检查函数。
+ * 
+ * @return DataBuffer 系统检查结果缓冲区
+ * 
+ * @note 原始函数名：ExecuteSystemCheckA0
+ * @warning 函数包含复杂的浮点数计算和系统调用
+ */
 DataBuffer ExecuteSystemCheckA0(void)
 
 {
-  DataBuffer systemDataBuffer;
-  float *pfVar2;
-  int64_t systemStackFramePointer;
-  int64_t systemContext;
-  int operationStatus;
-  float fVar4;
-  BytePair uStack0000000000000070;
+  DataBuffer SystemDataBuffer;
+  float *SystemFloatPointer;
+  int64_t SystemStackFramePointer;
+  int64_t SystemContext;
+  int OperationStatus;
+  float NormalizedValue;
+  BytePair StackValueBuffer;
   
-  operationStatus = 0;
-  if (0 < *(short *)(systemContext + 0x104)) {
-    pfVar2 = (float *)(systemContext + 0x84);
+  OperationStatus = 0;
+  if (0 < *(short *)(SystemContext + 0x104)) {
+    SystemFloatPointer = (float *)(SystemContext + 0x84);
     do {
-      fVar4 = pfVar2[-0x20] * 0.25;
-      if (0.0 <= fVar4) {
-        if (1.0 <= fVar4) {
-          fVar4 = 1.0;
+      NormalizedValue = SystemFloatPointer[-0x20] * 0.25;
+      if (0.0 <= NormalizedValue) {
+        if (1.0 <= NormalizedValue) {
+          NormalizedValue = 1.0;
         }
       }
       else {
-        fVar4 = 0.0;
+        NormalizedValue = 0.0;
       }
-      uStack0000000000000070 = (BytePair)(int)(fVar4 * 65535.0);
-      systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(stackFramePointer + 8))
-                        (*(DataBuffer **)(stackFramePointer + 8),&errorHandlingBuffer,2);
-      if ((int)systemDataBuffer != 0) {
-        return systemDataBuffer;
+      StackValueBuffer = (BytePair)(int)(NormalizedValue * 65535.0);
+      SystemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(SystemStackFramePointer + 8))
+                        (*(DataBuffer **)(SystemStackFramePointer + 8), &errorHandlingBuffer, 2);
+      if ((int)SystemDataBuffer != 0) {
+        return SystemDataBuffer;
       }
-      fVar4 = *pfVar2 * 0.25;
-      if (0.0 <= fVar4) {
-        if (1.0 <= fVar4) {
-          fVar4 = 1.0;
+      NormalizedValue = *SystemFloatPointer * 0.25;
+      if (0.0 <= NormalizedValue) {
+        if (1.0 <= NormalizedValue) {
+          NormalizedValue = 1.0;
         }
       }
       else {
-        fVar4 = 0.0;
+        NormalizedValue = 0.0;
       }
-      uStack0000000000000070 = (BytePair)(int)(fVar4 * 65535.0);
-      systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(stackFramePointer + 8))
-                        (*(DataBuffer **)(stackFramePointer + 8),&errorHandlingBuffer,2);
-      if ((int)systemDataBuffer != 0) {
-        return systemDataBuffer;
+      StackValueBuffer = (BytePair)(int)(NormalizedValue * 65535.0);
+      SystemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(SystemStackFramePointer + 8))
+                        (*(DataBuffer **)(SystemStackFramePointer + 8), &errorHandlingBuffer, 2);
+      if ((int)SystemDataBuffer != 0) {
+        return SystemDataBuffer;
       }
-      operationStatus = operationStatus + 1;
-      pfVar2 = pfVar2 + 1;
-    } while (operationStatus < *(short *)(systemContext + 0x104));
+      OperationStatus = OperationStatus + 1;
+      SystemFloatPointer = SystemFloatPointer + 1;
+    } while (OperationStatus < *(short *)(SystemContext + 0x104));
   }
   return 0;
 }
@@ -69994,12 +70006,12 @@ void Unwind_180909bf0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909c20(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceReferenceCountAtOffset00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int *referenceCountPointer;
+  int *resourceReferenceCount;
   DataBuffer *resourcePointer;
-  int64_t calculatedOffset;
+  int64_t memoryCalculatedOffset;
   uint64_t memoryBaseAddress;
   
   resourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x30) + 8);
@@ -70008,14 +70020,14 @@ void Unwind_180909c20(DataBuffer operationBase,int64_t dataBuffer)
   }
   memoryBaseAddress = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
-    calculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
-    calculatedOffset = calculatedOffset - (uint64_t)*(uint *)(calculatedOffset + MemoryOffsetAdjustment);
-    if ((*(void ***)(memoryBaseAddress + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(calculatedOffset + MemoryExceptionCheckOffset) == '\0')) {
-      *resourcePointer = *(DataBuffer *)(calculatedOffset + MemoryDataOffset);
-      *(DataBuffer **)(calculatedOffset + MemoryDataOffset) = resourcePointer;
-      referenceCountPointer = (int *)(calculatedOffset + MemoryReferenceOffset);
-      *referenceCountPointer = *referenceCountPointer + -1;
-      if (*referenceCountPointer == 0) {
+    memoryCalculatedOffset = memoryBaseAddress + MemoryBaseOffset + ((int64_t)resourcePointer - memoryBaseAddress >> 0x10) * MemoryBlockMultiplier;
+    memoryCalculatedOffset = memoryCalculatedOffset - (uint64_t)*(uint *)(memoryCalculatedOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(memoryBaseAddress + MemoryPointerTableOffset) == &ExceptionList) && (*(char *)(memoryCalculatedOffset + MemoryExceptionCheckOffset) == '\0')) {
+      *resourcePointer = *(DataBuffer *)(memoryCalculatedOffset + MemoryDataOffset);
+      *(DataBuffer **)(memoryCalculatedOffset + MemoryDataOffset) = resourcePointer;
+      resourceReferenceCount = (int *)(memoryCalculatedOffset + MemoryReferenceOffset);
+      *resourceReferenceCount = *resourceReferenceCount + -1;
+      if (*resourceReferenceCount == 0) {
         HandleExceptionE0();
         return;
       }
@@ -70032,15 +70044,15 @@ void Unwind_180909c20(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180909c30(DataBuffer operationBase,int64_t dataBuffer)
+void SetupExceptionHandlerAtOffset10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int inputParameter;
-  int operationResult;
+  int threadIdInput;
+  int currentThreadId;
   
-  inputParameter = *(int *)(**(int64_t **)(SystemInputParameterTable + 8) + 0x48);
-  operationResult = _Thrd_id();
-  if (operationResult != inputParameter) {
+  threadIdInput = *(int *)(**(int64_t **)(SystemInputParameterTable + 8) + 0x48);
+  currentThreadId = _Thrd_id();
+  if (currentThreadId != threadIdInput) {
     SystemStatusFlagA = *(DataWord *)(dataBuffer + 0x90);
   }
   return;
@@ -70048,7 +70060,7 @@ void Unwind_180909c30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909c40(void)
+void ExecuteExceptionCallbacksAtOffset20(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -70057,7 +70069,7 @@ void Unwind_180909c40(void)
 
 
 
-void Unwind_180909c50(void)
+void CleanupResourceReferenceCountAtOffset30(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -70066,7 +70078,7 @@ void Unwind_180909c50(void)
 
 
 
-void Unwind_180909c60(void)
+void CleanupResourceReferenceCountAtOffset50(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -70075,7 +70087,7 @@ void Unwind_180909c60(void)
 
 
 
-void Unwind_180909c70(DataBuffer operationBase,int64_t dataBuffer)
+void DestroyMutexAtOffset70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0xa0));
@@ -70084,7 +70096,7 @@ void Unwind_180909c70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909c80(void)
+void DestroyMutexAtOffset80(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -70093,7 +70105,7 @@ void Unwind_180909c80(void)
 
 
 
-void Unwind_180909c90(DataBuffer operationBase,int64_t dataBuffer)
+void DestroyMutexAtOffset90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _Mtx_destroy_in_situ(*(DataBuffer *)(dataBuffer + 0x98));
