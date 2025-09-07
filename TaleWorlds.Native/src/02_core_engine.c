@@ -242420,14 +242420,32 @@ LAB_1802090fa:
 
 
 
-092dc(voidvoid FUN_1802092dc(void
+/**
+ * @brief 空函数 - 系统保留函数
+ * 
+ * 该函数是一个空函数，可能用于系统保留或占位符。
+ * 
+ * @note 原始函数名：FUN_1802092dc
+ */
+void SystemReservedEmptyFunction(void)
 {
   return;
 }
 
 
 
-long long FUN_1802092f0(long long CharacterCode
+/**
+ * @brief 初始化字符代码数据结构
+ * 
+ * 该函数负责初始化字符代码相关的数据结构，设置默认值，
+ * 并建立自引用指针结构。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @return long long 返回初始化后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_1802092f0
+ */
+long long InitializeCharacterCodeDataStructure(long long CharacterCode)
 {
   *(void *)(CharacterCode + 0x18) = 0;
   *(uint32_t *)(CharacterCode + 0x28) = 3;
@@ -242443,7 +242461,19 @@ long long FUN_1802092f0(long long CharacterCode
 
 
 
-09330(uint64_t *Utf8InputBuffer,long long Utf8BufferSize,uint64_t Utf8SourcePointervoid FUN_180209330(uint64_t *Utf8InputBuffer,long long Utf8BufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 处理UTF-8输入缓冲区和内存分配索引
+ * 
+ * 该函数负责处理UTF-8输入缓冲区的数据，管理内存分配索引，
+ * 并进行字符编码转换。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_180209330
+ */
+void ProcessUtf8InputBufferAndMemoryAllocationIndex(uint64_t *Utf8InputBuffer,long long Utf8BufferSize,uint64_t Utf8SourcePointer)
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
@@ -242628,7 +242658,19 @@ LAB_180209615:
 
 
 
-long long * FUN_180209720(long long *Utf8InputBuffer,long long *Utf8InputBufferSize
+/**
+ * @brief 处理UTF-8输入缓冲区边界和内存分配
+ * 
+ * 该函数负责处理UTF-8输入缓冲区的边界检查，管理内存分配，
+ * 并维护系统上下文寄存器状态。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @return long long* 返回处理后的缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180209720
+ */
+long long * ProcessUtf8InputBufferBoundaryAndMemoryAllocation(long long *Utf8InputBuffer,long long *Utf8InputBufferSize)
 {
   uint Utf16Char;
   long long *BufferAllocationStatus;
@@ -242804,7 +242846,21 @@ LAB_1802097bc:
 
 
 
-long long * FUN_180209840(long long *Utf8InputBuffer,long long *Utf8InputBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 初始化UTF-8输入缓冲区和数据结构
+ * 
+ * 该函数负责初始化UTF-8输入缓冲区，设置数据结构指针，
+ * 并管理内存分配和边界处理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long* 返回处理后的缓冲区指针
+ * 
+ * @note 原始函数名：FUN_180209840
+ */
+long long * InitializeUtf8InputBufferAndDataStructure(long long *Utf8InputBuffer,long long *Utf8InputBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint Utf16Char;
   long long *BufferAllocationStatus;
@@ -259172,7 +259228,17 @@ int ValidateSystemStringProcessing(void)
 
 
 
-int FUN_1802252d3(void
+/**
+ * @brief 系统标识符识别和分类函数
+ * 
+ * 根据输入的数据字符串模式和长度，识别并返回对应的系统标识符。
+ * 该函数用于系统初始化时的组件识别和分类，通过比较字符串模式
+ * 来确定系统组件的类型和属性。
+ * 
+ * @return 返回识别到的系统标识符，不同的返回值代表不同的系统组件类型
+ * @note 原始函数名：FUN_1802252d3
+ */
+int IdentifySystemIdentifierByPattern(void)
 {
   char *StringBuffer;
   int CharacterByteCount;
