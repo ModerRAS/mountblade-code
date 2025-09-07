@@ -9588,9 +9588,9 @@ uint8_t SystemDataTableStorage;
 // 功能：处理系统配置操作
 #define ProcessSystemConfiguration FUN_1809430b0
 uint8_t SystemConfigurationProcessingFunction;
-// 系统内存管理区A0
+// 系统内存管理区Primary
 // 功能：用于系统内存管理的区域
-uint8_t SystemMemoryManagementAreaA0;
+uint8_t SystemMemoryManagementAreaPrimary;
 // 系统内存管理区A1
 // 功能：用于系统内存管理的区域
 uint8_t SystemMemoryManagementAreaA1;
@@ -70995,7 +70995,18 @@ void ExceptionCallbackExecutorA2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809086d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器（偏移量0x1800）
+ * 
+ * 该函数负责在指定偏移量0x1800处调用异常上下文处理器。
+ * 它会检查异常上下文指针是否存在，如果存在则调用相应的处理器函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809086d0
+ */
+void InvokeExceptionHandlerAtOffset1800(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -71009,7 +71020,15 @@ void Unwind_1809086d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809086f0(void)
+/**
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责销毁互斥锁资源，调用系统内部函数_Mtx_destroy_in_situ()。
+ * 这是一个资源清理函数，用于释放系统中的互斥锁资源。
+ * 
+ * @note 原始函数名：Unwind_1809086f0
+ */
+void DestroyMutexResources(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -71018,7 +71037,18 @@ void Unwind_1809086f0(void)
 
 
 
-void Unwind_180908710(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器（偏移量0x1858）
+ * 
+ * 该函数负责在指定偏移量0x1858处调用异常上下文处理器。
+ * 它会检查异常上下文指针是否存在，如果存在则调用相应的处理器函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180908710
+ */
+void InvokeExceptionHandlerAtOffset1858(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
