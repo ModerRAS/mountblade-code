@@ -6615,7 +6615,7 @@ void InitializeCoreEnginePhysicsSystem(void) {
   }
   PhysicsTraversalNode[6] = SystemNodeIdentifierQuinary;
   PhysicsTraversalNode[7] = SystemNodeIdentifierSenary;
-  PhysicsTraversalNode[8] = &SystemDataTemplateNetwork;
+  PhysicsTraversalNode[8] = &SystemDataTemplateNetworketwork;
   PhysicsTraversalNode[9] = 4;
   PhysicsTraversalNode[10] = PhysicsSystemInitializer;
   return;
@@ -7262,7 +7262,7 @@ void CoreEngineInitializeNetworkConnectionPoolStatusProcessor(void
   }
   CurrentConnection[6] = 0x43330a43fcdb3653;
   CurrentConnection[7] = 0xdcfdc333a769ec93;
-  CurrentConnection[8] = &SystemDataTemplateN;
+  CurrentConnection[8] = &SystemDataTemplateNetwork;
   CurrentConnection[9] = 1;
   CurrentConnection[10] = ConnectionInitializer;
   return;
@@ -7317,7 +7317,7 @@ void InitializeGameDataStructureNode(void
   }
   CurrentGameDataNode[6] = 0x431d7c8d7c475be2;
   CurrentGameDataNode[7] = 0xb97f048d2153e1b0;
-  CurrentGameDataNode[8] = &SystemDataTemplateO;
+  CurrentGameDataNode[8] = &SystemDataTemplateConnection;
   CurrentGameDataNode[9] = 4;
   CurrentGameDataNode[10] = GameDataInitializationFunction;
   return;
@@ -7675,7 +7675,7 @@ void CoreEngineInitializenetworkConnectionPoolStateRecoveryManager(void
   }
   CurrentConnection[6] = 0x43330a43fcdb3653;
   CurrentConnection[7] = 0xdcfdc333a769ec93;
-  CurrentConnection[8] = &SystemDataTemplateN;
+  CurrentConnection[8] = &SystemDataTemplateNetwork;
   CurrentConnection[9] = 1;
   CurrentConnection[10] = StateRecoveryHandler;
   return;
@@ -7729,7 +7729,7 @@ void InitializeNetworkConnectionPoolStatusHandler(void
   }
   CurrentNetworkConnection[6] = SystemNodeIdentifierQuinary;
   CurrentNetworkConnection[7] = SystemNodeIdentifierSenary;
-  CurrentNetworkConnection[8] = &SystemDataTemplateNetworkConnectionPool;
+  CurrentNetworkConnection[8] = &SystemDataTemplateNetworketworkConnectionPool;
   CurrentNetworkConnection[9] = 4;
   CurrentNetworkConnection[10] = ConnectionStatusHandlerFunction;
   return;
@@ -8359,7 +8359,7 @@ void CoreEngineInitializePhysicsManager(void
   }
   PreviousPhysicsManagerNode[6] = 0x43330a43fcdb3653;
   PreviousPhysicsManagerNode[7] = 0xdcfdc333a769ec93;
-  PreviousPhysicsManagerNode[8] = &SystemDataTemplateN;
+  PreviousPhysicsManagerNode[8] = &SystemDataTemplateNetwork;
   PreviousPhysicsManagerNode[9] = 1;
   PreviousPhysicsManagerNode[10] = PhysicsNetworkStatusCallback;
   return;
@@ -8413,7 +8413,7 @@ void CoreEngineInitializeAnimationManager(void
   }
   PreviousNode[6] = 0x431d7c8d7c475be2;
   PreviousNode[7] = 0xb97f048d2153e1b0;
-  PreviousNode[8] = &SystemDataTemplateO;
+  PreviousNode[8] = &SystemDataTemplateConnection;
   PreviousNode[9] = 4;
   PreviousNode[10] = ConnectionInitializerCallback;
   return;
@@ -8737,7 +8737,7 @@ void CoreEngineInitializeResourceLoader(void
   }
   PreviousNode[6] = 0x43330a43fcdb3653;
   PreviousNode[7] = 0xdcfdc333a769ec93;
-  PreviousNode[8] = &SystemDataTemplateN;
+  PreviousNode[8] = &SystemDataTemplateNetwork;
   PreviousNode[9] = 1;
   PreviousNode[10] = ResourceProcessor;
   return;
@@ -8791,7 +8791,7 @@ void CoreEngineInitializeTextureManager(void
   }
   PreviousNode[6] = 0x431d7c8d7c475be2;
   PreviousNode[7] = 0xb97f048d2153e1b0;
-  PreviousNode[8] = &SystemDataTemplateO;
+  PreviousNode[8] = &SystemDataTemplateConnection;
   PreviousNode[9] = 4;
   PreviousNode[10] = TextureInitializer;
   return;
@@ -9191,7 +9191,7 @@ void CoreEngineInitializeNetworkConfigurationSystem(void) {
   }
   CurrentNode[6] = 0x45425dc186a5d575;
   CurrentNode[7] = 0xfab48faa65382fa5;
-  CurrentNode[8] = &SystemDataTemplateM;
+  CurrentNode[8] = &SystemDataTemplateMemory;
   CurrentNode[9] = 0;
   CurrentNode[10] = NetworkConfigCallback;
   return;
@@ -9444,7 +9444,7 @@ void CoreEngineInitializeNetworkStatusProcessor(void
   }
   PreviousNode[6] = 0x43330a43fcdb3653;
   PreviousNode[7] = 0xdcfdc333a769ec93;
-  PreviousNode[8] = &SystemDataTemplateN;
+  PreviousNode[8] = &SystemDataTemplateNetwork;
   PreviousNode[9] = 1;
   PreviousNode[10] = NetworkStatusProcessor;
   return;
@@ -9504,7 +9504,7 @@ void CoreEngineInitializeConnectionPoolManager(void
   }
   TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
   TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateConnection;
   TertiaryProcessingStatusFlag[9] = 4;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -9998,7 +9998,7 @@ void NetworkStatusManagerInitializer(void
   }
   TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
   TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateNetwork;
   TertiaryProcessingStatusFlag[9] = 1;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -10053,7 +10053,7 @@ void CoreEngineInitializeConnectionManager(void)
   }
   TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
   TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateConnection;
   TertiaryProcessingStatusFlag[9] = 4;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -10453,7 +10453,7 @@ void InitializeNetworkConfigurationNode(void
   }
   TertiaryProcessingStatusFlag[6] = 0x45425dc186a5d575;
   TertiaryProcessingStatusFlag[7] = 0xfab48faa65382fa5;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateM;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateMemory;
   TertiaryProcessingStatusFlag[9] = 0;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -10676,7 +10676,7 @@ void InitializeNetworkStatusNode(void)
   }
   statusTargetNode[6] = 0x43330a43fcdb3653;
   statusTargetNode[7] = 0xdcfdc333a769ec93;
-  statusTargetNode[8] = &SystemDataTemplateN;
+  statusTargetNode[8] = &SystemDataTemplateNetwork;
   statusTargetNode[9] = 1;
   statusTargetNode[10] = functionCallback;
   return;
@@ -10736,7 +10736,7 @@ void InitializeNetworkConnectionNode(void)
   }
   connectionTargetNode[6] = 0x431d7c8d7c475be2;
   connectionTargetNode[7] = 0xb97f048d2153e1b0;
-  connectionTargetNode[8] = &SystemDataTemplateO;
+  connectionTargetNode[8] = &SystemDataTemplateConnection;
   connectionTargetNode[9] = 4;
   connectionTargetNode[10] = functionCallback;
   return;
@@ -11162,7 +11162,7 @@ void NetworkStatusProcessorInitialize(void
   }
   TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
   TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateNetwork;
   TertiaryProcessingStatusFlag[9] = 1;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -11215,7 +11215,7 @@ void ConnectionManagerInitialize(void
   }
   TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
   TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateConnection;
   TertiaryProcessingStatusFlag[9] = 4;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -12218,7 +12218,7 @@ void CoreEngineInitializeSystemNodeTemplateK(void
   }
   TertiaryProcessingStatusFlag[6] = 0x45425dc186a5d575;
   TertiaryProcessingStatusFlag[7] = 0xfab48faa65382fa5;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateM;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateMemory;
   TertiaryProcessingStatusFlag[9] = 0;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -12510,7 +12510,7 @@ void CoreEngineInitializeNetworkStatusProcessor(void
   }
   TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
   TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateNetwork;
   TertiaryProcessingStatusFlag[9] = 1;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -12563,7 +12563,7 @@ void CoreEngineInitializeConnectionInitializer(void
   }
   TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
   TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateConnection;
   TertiaryProcessingStatusFlag[9] = 4;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -12887,7 +12887,7 @@ void CoreEngineInitializeSystemDataTemplateN(void
   }
   PreviousNode[6] = 0x43330a43fcdb3653;
   PreviousNode[7] = 0xdcfdc333a769ec93;
-  PreviousNode[8] = &SystemDataTemplateN;
+  PreviousNode[8] = &SystemDataTemplateNetwork;
   PreviousNode[9] = 1;
   PreviousNode[10] = NetworkStatusCallback;
   return;
@@ -12947,7 +12947,7 @@ void CoreEngineInitializeSystemDataTemplateO(void
   }
   TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
   TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateConnection;
   TertiaryProcessingStatusFlag[9] = 4;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -13285,7 +13285,7 @@ void CoreEngineInitializeResourceManager(void
   }
   TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
   TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateNetwork;
   TertiaryProcessingStatusFlag[9] = 1;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -13338,7 +13338,7 @@ void CoreEngineInitializeMemoryAllocator(void
   }
   TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
   TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateConnection;
   TertiaryProcessingStatusFlag[9] = 4;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -13660,7 +13660,7 @@ void CoreEngineInitializeNetworkManager(void
   }
   TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
   TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateNetwork;
   TertiaryProcessingStatusFlag[9] = 1;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -13713,7 +13713,7 @@ void CoreEngineInitializeInputManager(void
   }
   TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
   TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateConnection;
   TertiaryProcessingStatusFlag[9] = 4;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -14457,7 +14457,7 @@ void CoreEngineManageThreadResources(void
   }
   TertiaryProcessingStatusFlag[6] = 0x45425dc186a5d575;
   TertiaryProcessingStatusFlag[7] = 0xfab48faa65382fa5;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateM;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateMemory;
   TertiaryProcessingStatusFlag[9] = 0;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -14663,7 +14663,7 @@ void CoreEngineInitializeSystemDataTemplateA(void
   }
   TertiaryProcessingStatusFlag[6] = 0x43330a43fcdb3653;
   TertiaryProcessingStatusFlag[7] = 0xdcfdc333a769ec93;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateN;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateNetwork;
   TertiaryProcessingStatusFlag[9] = 1;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -14710,7 +14710,7 @@ void CoreEngineInitializeSystemDataTemplateA(void
   }
   TertiaryProcessingStatusFlag[6] = 0x431d7c8d7c475be2;
   TertiaryProcessingStatusFlag[7] = 0xb97f048d2153e1b0;
-  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateO;
+  TertiaryProcessingStatusFlag[8] = &SystemDataTemplateConnection;
   TertiaryProcessingStatusFlag[9] = 4;
   TertiaryProcessingStatusFlag[10] = functionCallback;
   return;
@@ -15746,7 +15746,7 @@ void CoreEngineInitializenetworkConnectionPoolManager(void
   }
   ConnectionManager[6] = 0x43330a43fcdb3653;
   ConnectionManager[7] = 0xdcfdc333a769ec93;
-  ConnectionManager[8] = &SystemDataTemplateN;
+  ConnectionManager[8] = &SystemDataTemplateNetwork;
   ConnectionManager[9] = 1;
   ConnectionManager[10] = ConnectionHandlerFunction;
   return;
@@ -15800,7 +15800,7 @@ void CoreEngineInitializenetworkConnectionPoolStatusMonitor(void
   }
   ConnectionManager[6] = 0x431d7c8d7c475be2;
   ConnectionManager[7] = 0xb97f048d2153e1b0;
-  ConnectionManager[8] = &SystemDataTemplateO;
+  ConnectionManager[8] = &SystemDataTemplateConnection;
   ConnectionManager[9] = 4;
   ConnectionManager[10] = ConnectionHandlerFunction;
   return;
@@ -18450,7 +18450,7 @@ int64_t CoreEngineProcessDataPacket(uint32_t *DataPacket,uint32_t *ProtocolData
   }
   PacketHeader = *ProtocolData;
   *DataPacket = PacketHeader;
-  return CONCAT71((uint7)(uint3)((uint)PacketHeader >> 8),1);
+  return ConcatenateBitFields((uint7)(uint3)((uint)PacketHeader >> 8), 1);
 }
 
 
@@ -18906,7 +18906,7 @@ void CoreEngineProcessSystemData(unsigned long long *SystemProcessingStatusFlag
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
     }
   }
@@ -20069,7 +20069,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
     }
   }
@@ -21906,7 +21906,7 @@ void CoreEngineProcessSystemEventsAndResourceCleanup(long long OutputBuffer
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
     }
   }
@@ -25706,7 +25706,7 @@ void CoreEngineProcessDataCleanup(long long *OutputBuffer
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -25759,7 +25759,7 @@ void CoreEngineProcessDataCleanup(long long *OutputBuffer
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -25810,7 +25810,7 @@ void CoreEngineProcessDataCleanup(long long *OutputBuffer
         }
       }
       else {
-        HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
       }
     }
@@ -25862,7 +25862,7 @@ void CoreEngineReleaseMainProcessingStatusFlagReference(void
         }
       }
       else {
-        HandleMemoryAllocationException(MemoryAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAlignment + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(MemoryAlignment,ConcatenateBitFields(0xff000000,*(void ***)(MemoryAlignment + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAlignment,0xfffffffffffffffe);
       }
     }
@@ -25914,7 +25914,7 @@ void CoreEngineReleaseMainProcessingStatusFlagReferenceSimple(void
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAlignment + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryAlignment,ConcatenateBitFields(0xff000000,*(void ***)(MemoryAlignment + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,MemoryAlignment,0xfffffffffffffffe);
     }
   }
@@ -26104,7 +26104,7 @@ void CleanupSystemMemoryPointers(long long OutputBuffer
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -26173,7 +26173,7 @@ void DecrementMemoryReferenceCount(long long OutputBuffer
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -26233,7 +26233,7 @@ void CoreEngineCleanupMemoryReferenceCount(void
         }
       }
       else {
-        HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
       }
     }
@@ -26283,7 +26283,7 @@ void DecrementMemoryReferenceCount(void
         }
       }
       else {
-        HandleMemoryAllocationException(memoryMask,CONCAT71(0xff000000,*(void ***)(memoryMask + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(memoryMask,ConcatenateBitFields(0xff000000,*(void ***)(memoryMask + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,memoryMask,0xfffffffffffffffe);
       }
     }
@@ -26333,7 +26333,7 @@ void SafeReleaseMemoryReferenceCount(void
       }
     }
     else {
-      HandleMemoryAllocationException(memoryMask,CONCAT71(0xff000000,*(void ***)(memoryMask + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(memoryMask,ConcatenateBitFields(0xff000000,*(void ***)(memoryMask + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,memoryMask,0xfffffffffffffffe);
     }
   }
@@ -26427,7 +26427,7 @@ void CleanupSystemResources(void{
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
     }
   }
@@ -27163,7 +27163,7 @@ void ReleaseMemoryReferenceCountHandler(unsigned long long *MemoryObjectPointer
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryBlockHeader,CONCAT71(0xff000000,*(void ***)(MemoryBlockHeader + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryBlockHeader,ConcatenateBitFields(0xff000000,*(void ***)(MemoryBlockHeader + 0x70) == &ExceptionList),
                           ObjectPointer,MemoryBlockHeader,0xfffffffffffffffe);
     }
   }
@@ -29746,7 +29746,7 @@ void CoreEngineProcessStringOperation(void *stringBuffer, void *searchString, vo
       }
     }
     else {
-      HandleMemoryAllocationException(UnicodeCodePoint,CONCAT71(0xff000000,*(void ***)(UnicodeCodePoint + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(UnicodeCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(UnicodeCodePoint + 0x70) == &ExceptionList),
                           OutputBuffer,UnicodeCodePoint,0xfffffffffffffffe);
     }
   }
@@ -29953,7 +29953,7 @@ void CoreEngineReleaseSystemMemoryReference(int64_t *MemoryReferencePointer
       }
     }
     else {
-      HandleMemoryAllocationException(IterationIndex,CONCAT71(0xff000000,*(void ***)(IterationIndex + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(IterationIndex,ConcatenateBitFields(0xff000000,*(void ***)(IterationIndex + 0x70) == &ExceptionList),
                           MemoryBlockIndex,IterationIndex,0xfffffffffffffffe);
     }
   }
@@ -30025,7 +30025,7 @@ void CoreEngineReleaseSystemMemoryReferenceCount(int64_t *MemoryReferencePointer
       }
     }
     else {
-      HandleMemoryAllocationException(IterationIndex,CONCAT71(0xff000000,*(void ***)(IterationIndex + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(IterationIndex,ConcatenateBitFields(0xff000000,*(void ***)(IterationIndex + 0x70) == &ExceptionList),
                           MemoryBlockIndex,IterationIndex,0xfffffffffffffffe);
     }
   }
@@ -30116,7 +30116,7 @@ void CoreEngineCleanupSystemMemoryReferenceQueue(void
         }
       }
       else {
-        HandleMemoryAllocationException(IterationIndex,CONCAT71(0xff000000,*(void ***)(IterationIndex + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(IterationIndex,ConcatenateBitFields(0xff000000,*(void ***)(IterationIndex + 0x70) == &ExceptionList),
                             MemoryBlockIndex,IterationIndex,0xfffffffffffffffe);
       }
     }
@@ -30158,7 +30158,7 @@ void ProcessMemoryReferenceCountRelease(uint64_t *MemoryReferencePointer
       }
     }
     else {
-      HandleMemoryAllocationException(UnicodeCodePoint,CONCAT71(0xff000000,*(void ***)(UnicodeCodePoint + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(UnicodeCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(UnicodeCodePoint + 0x70) == &ExceptionList),
                           OutputBuffer,UnicodeCodePoint,0xfffffffffffffffe);
     }
   }
@@ -30228,7 +30228,7 @@ void DestroySystemMutexAndConditionVariables(long long *SystemResourcePointer
       }
     }
     else {
-      HandleMemoryAllocationException(CalculatedCodePoint,CONCAT71(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(CalculatedCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
                           systemEventTemplatePointer,CalculatedCodePoint,0xfffffffffffffffe);
     }
   }
@@ -30916,7 +30916,7 @@ unsigned long long ProcessDataStructureExchangeAndBufferAllocation(long long *ta
   sourceDataStructure[1] = bufferCapacityValue;
   sourceDataStructure[2] = 0;
   *(unsigned long long **)(sourceDataStructure + 4) = dataPointerIterator;
-  return CONCAT71((int7)(iterationCounter >> 8),1);
+  return ConcatenateBitFields((int7)(iterationCounter >> 8),1);
 }
 
 
@@ -32325,7 +32325,7 @@ unsigned long long SearchAndCompareDataStructures(long long *targetStructure, lo
         }
 MemoryValidationComplete: // 原始标签：LAB_18006357e
         if (ValidationCode == 0) {
-          return CONCAT71((int7)((unsigned long long)stringPointer >> 8),1);
+          return ConcatenateBitFields((int7)((unsigned long long)stringPointer >> 8),1);
         }
       }
       else if (currentKey == 0) goto MemoryValidationComplete;
@@ -33169,11 +33169,11 @@ void ProcessCoreEngineDataStructureManagement(long long *OutputBuffer,long long 
   SystemConfigurationValue98 = 0;
   SystemMemoryValue90 = 0xf;
   SystemProcessingValueA8 = SystemProcessingValueA8 & 0xffffff00;
-  systemProcessingStatusFlag = CONCAT71(stackStatusValue87,stackControlValue88);
+  systemProcessingStatusFlag = ConcatenateBitFields(stackStatusValue87,stackControlValue88);
   systemConfigurationValue = CONCAT44(stackOperationFlagA4,operationStatus) & 0xffffffffffffff00;
   DataBufferPointer = &stackControlValueC8;
   if (0xf < stackMemoryValueB0) {
-    DataBufferPointer = (uint8_t *)CONCAT71(stackStatusValueC7,stackControlValueC8);
+    DataBufferPointer = (uint8_t *)ConcatenateBitFields(stackStatusValueC7,stackControlValueC8);
   }
   stackMemoryOffset118 = stackMemoryOffset78;
   PrimaryProcessingStatusFlag = (void *)AllocateSystemMemoryBuffer(DataBufferPointer,memoryOffsetPointer);
@@ -33213,7 +33213,7 @@ void ProcessCoreEngineDataStructureManagement(long long *OutputBuffer,long long 
     stackControlValue88 = 0;
     if (0xf < stackMemoryValueB0) {
       systemConfigurationValue = stackMemoryValueB0 + 1;
-      systemResourceHandle = CONCAT71(stackStatusValueC7,stackControlValueC8);
+      systemResourceHandle = ConcatenateBitFields(stackStatusValueC7,stackControlValueC8);
       systemProcessingStatusFlag = systemResourceHandle;
       if (0xfff < systemConfigurationValue) {
         systemConfigurationValue = stackMemoryValueB0 + 0x28;
@@ -33240,7 +33240,7 @@ void ProcessCoreEngineDataStructureManagement(long long *OutputBuffer,long long 
   }
   DataBufferPointer = &stackControlValueC8;
   if (0xf < stackMemoryValueB0) {
-    DataBufferPointer = (uint8_t *)CONCAT71(stackStatusValueC7,stackControlValueC8);
+    DataBufferPointer = (uint8_t *)ConcatenateBitFields(stackStatusValueC7,stackControlValueC8);
   }
   ReallocateOutputBuffer(&SystemProcessingValue68,DataBufferPointer,SecondaryProcessingStatusFlag);
   stackControlFlagE8 = 1;
@@ -33362,7 +33362,7 @@ MemoryAllocationComplete: // 原始标签：LAB_180065009
   }
   DataBufferPointer = &stackControlValueC8;
   if (0xf < stackMemoryValueB0) {
-    DataBufferPointer = (uint8_t *)CONCAT71(stackStatusValueC7,stackControlValueC8);
+    DataBufferPointer = (uint8_t *)ConcatenateBitFields(stackStatusValueC7,stackControlValueC8);
   }
   memoryOffsetPointer = (void *)((long long)memoryOffsetPointer - (long long)SecondaryProcessingStatusFlag);
                     // WARNING: Subroutine does not return
@@ -37038,7 +37038,7 @@ MemoryAllocationProceed: // 原始标签：LAB_180069dda，MemoryAllocationProce
     AllocatedMemorySize = *SourceProcessingStatusFlag;
     *(void *)(*(long long *)(DataStructureCounter + 0x40) + (unsigned long long)((uint)Utf16Char & 0x1f) * 8) = AllocatedMemorySize;
     *(unsigned long long *)(DataStructureCounter + 0x20) = Utf16Char + 1;
-    ComparisonResult = CONCAT71((int7)((unsigned long long)AllocatedMemorySize >> 8),1);
+    ComparisonResult = ConcatenateBitFields((int7)((unsigned long long)AllocatedMemorySize >> 8),1);
   }
   return ComparisonResult;
 }
@@ -37447,7 +37447,7 @@ SystemStateProcessing: // 原始标签：LAB_180070a3f，SystemStateProcessing
         }
         else {
           if (DataSize <= Utf16Char4) goto SystemStateComplete; // 原始标签：LAB_180070b00
-          pDataContentStatus = (uint8_t *)CONCAT71(pDataContentStatus.FullPart,0x13);
+          pDataContentStatus = (uint8_t *)ConcatenateBitFields(pDataContentStatus.FullPart,0x13);
           StatusBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,StatusBuffer,DataSize,0x10);
         }
         CoreEnginePointerBuffer110 = StatusBuffer;
@@ -37572,7 +37572,7 @@ BufferProcessingStart: // 原始标签：LAB_180070db8，BufferProcessingStart
         else {
           CalculatedCodePoint = TemporaryFlag;
           if (Utf16Char4 <= (uint)BufferInitializationFlag) goto BufferValidationComplete;
-          pDataContentStatus = (uint8_t *)CONCAT71(pDataContentStatus.FullPart,0x13);
+          pDataContentStatus = (uint8_t *)ConcatenateBitFields(pDataContentStatus.FullPart,0x13);
           TemporaryFlag = DataSize;
           memoryAllocationBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,memoryAllocationBuffer,Utf16Char4,0x10);
         }
@@ -38363,7 +38363,7 @@ LAB_180072120:
         }
         else {
           if (DataSize <= PrimaryReturnCode) goto LAB_1800721e1;
-          CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
+          CoreEngineValue148 = (uint8_t *)ConcatenateBitFields(CoreEngineValue148.FullPart,0x13);
           StatusBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,StatusBuffer,DataSize,0x10);
         }
         pProcessingCounter = StatusBuffer;
@@ -38483,7 +38483,7 @@ LAB_180072521:
         DataProcessingFlags = CONCAT44(DataProcessingFlags.HighPart,SystemByteValue);
       }
       else if (DataSize < 0x16) {
-        CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
+        CoreEngineValue148 = (uint8_t *)ConcatenateBitFields(CoreEngineValue148.FullPart,0x13);
         BufferInitializationFlag = 0x14;
         DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,0x16,0x10);
         goto LAB_180072521;
@@ -38500,7 +38500,7 @@ LAB_1800725ac:
         DataProcessingFlags = CONCAT44(DataProcessingFlags.HighPart,SystemByteValue);
       }
       else if ((uint)DataProcessingFlags < 0x17) {
-        CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
+        CoreEngineValue148 = (uint8_t *)ConcatenateBitFields(CoreEngineValue148.FullPart,0x13);
         BufferInitializationFlag = 0x15;
         DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,0x17,0x10);
         goto LAB_1800725ac;
@@ -38529,7 +38529,7 @@ LAB_1800725ac:
             else {
               MemoryAddressMask = BufferInitializationFlag;
               if (PrimaryReturnCode <= (uint)DataProcessingFlags) goto LAB_180072662;
-              CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
+              CoreEngineValue148 = (uint8_t *)ConcatenateBitFields(CoreEngineValue148.FullPart,0x13);
               BufferInitializationFlag = DataSize;
               DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,PrimaryReturnCode,0x10);
             }
@@ -38552,7 +38552,7 @@ LAB_1800726e7:
         DataProcessingFlags = CONCAT44(DataProcessingFlags.HighPart,SystemByteValue);
       }
       else if ((uint)DataProcessingFlags < 0x18) {
-        CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
+        CoreEngineValue148 = (uint8_t *)ConcatenateBitFields(CoreEngineValue148.FullPart,0x13);
         BufferInitializationFlag = DataSize;
         DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,0x18,0x10);
         goto LAB_1800726e7;
@@ -38573,7 +38573,7 @@ LAB_1800726e7:
         }
         else {
           if (PrimaryReturnCode <= (uint)DataProcessingFlags) goto LAB_180072780;
-          CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
+          CoreEngineValue148 = (uint8_t *)ConcatenateBitFields(CoreEngineValue148.FullPart,0x13);
           DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,PrimaryReturnCode,0x10);
         }
         SystemByteValue = GetMemoryAllocationInfo(DataProcessingBuffer);
@@ -38594,7 +38594,7 @@ LAB_180072780:
         }
         else {
           if (MemoryAddressMask <= (uint)DataProcessingFlags) goto LAB_1800727ff;
-          CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
+          CoreEngineValue148 = (uint8_t *)ConcatenateBitFields(CoreEngineValue148.FullPart,0x13);
           DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,MemoryAddressMask,0x10);
         }
         SystemByteValue = GetMemoryAllocationInfo(DataProcessingBuffer);
@@ -38625,7 +38625,7 @@ LAB_1800727ff:
             }
             else {
               if (DataSize <= (uint)DataProcessingFlags) goto LAB_1800728ad;
-              CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
+              CoreEngineValue148 = (uint8_t *)ConcatenateBitFields(CoreEngineValue148.FullPart,0x13);
               DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,DataSize,0x10);
             }
             SystemByteValue = GetMemoryAllocationInfo(DataProcessingBuffer);
@@ -38648,7 +38648,7 @@ LAB_1800728ad:
         }
         else {
           if (ProcessingStatusFlag <= (uint)DataProcessingFlags) goto LAB_180072934;
-          CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
+          CoreEngineValue148 = (uint8_t *)ConcatenateBitFields(CoreEngineValue148.FullPart,0x13);
           DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,ProcessingStatusFlag,0x10);
         }
         SystemByteValue = GetMemoryAllocationInfo(DataProcessingBuffer);
@@ -38669,7 +38669,7 @@ LAB_180072934:
         }
         else {
           if (MemoryAddressMask <= (uint)DataProcessingFlags) goto LAB_1800729bd;
-          CoreEngineValue148 = (uint8_t *)CONCAT71(CoreEngineValue148.FullPart,0x13);
+          CoreEngineValue148 = (uint8_t *)ConcatenateBitFields(CoreEngineValue148.FullPart,0x13);
           DataProcessingBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,DataProcessingBuffer,MemoryAddressMask,0x10);
         }
         SystemByteValue = GetMemoryAllocationInfo(DataProcessingBuffer);
@@ -43884,7 +43884,7 @@ void ProcessSystemReferenceCount(long long OutputBuffer
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
     }
   }
@@ -44042,7 +44042,7 @@ LAB_180077879:
         AllocatedMemorySize = ProcessDataStructureValidation(OutputBuffer,OutputBufferSize);
         SystemProcessingFlag = (char)AllocatedMemorySize << 2;
         SystemProcessingStringBuffer = SystemProcessingFlag | *(byte *)(OutputBuffer + 0xfe) & 0xfb;
-        ProcessingResult = CONCAT71((int7)((unsigned long long)AllocatedMemorySize >> 8),SystemProcessingStringBuffer);
+        ProcessingResult = ConcatenateBitFields((int7)((unsigned long long)AllocatedMemorySize >> 8),SystemProcessingStringBuffer);
         *(byte *)(OutputBuffer + 0xfe) = SystemProcessingStringBuffer;
         if ((SystemProcessingFlag & 4) == 0) goto LAB_SYSTEM_PROCESSING_CONTINUE;
       }
@@ -49696,7 +49696,7 @@ LAB_180079e40:
       StackVariable = (int *)0x0;
       piStack_190 = (int *)0x0;
       ProcessingStatus = 3;
-      ReferenceCountPointer4 = (int *)BufferAllocate(MemoryPoolManager,4,CONCAT71((uint7)(uint3)(StackConfigurationFlag >> 8),3));
+      ReferenceCountPointer4 = (int *)BufferAllocate(MemoryPoolManager,4,ConcatenateBitFields((uint7)(uint3)(StackConfigurationFlag >> 8),3));
       *ReferenceCountPointer4 = *pCharacterByteCount0;
       pCharacterByteCount0 = ReferenceCountPointer4 + 1;
       piStack_218 = (int *)0x0;
@@ -49726,7 +49726,7 @@ LAB_180079e40:
               piStack_1f0 = (int *)0x1;
 LAB_180079fb3:
               ReferenceCountPointer6 = (int *)BufferAllocate(MemoryPoolManager,(long long)piStack_1f0 * 4,
-                                             CONCAT71((int7)(uStackX_20 >> 8),3));
+                                             ConcatenateBitFields((int7)(uStackX_20 >> 8),3));
             }
             else {
               piStack_1f0 = (int *)(((long long)uStack_1d8 >> 2) * 2);
@@ -53376,7 +53376,7 @@ void ProcessOutputBufferReference(unsigned long long *OutputBuffer
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
     }
   }
@@ -58554,7 +58554,7 @@ LAB_1800892fd:
   if (HighByte) {
     OutputBuffer2 = *(long long **)*OutputBuffer;
     if (OutputBuffer2 == (long long *)0x0) {
-      DataSize = CONCAT71((int7)((unsigned long long)*OutputBuffer >> 8),1);
+      DataSize = ConcatenateBitFields((int7)((unsigned long long)*OutputBuffer >> 8),1);
     }
     else {
       DataSize = (**(code **)(*OutputBuffer2 + 8))(OutputBuffer2,OutputBufferSize);
@@ -59097,7 +59097,7 @@ LAB_180089891:
         }
         uStack_358 = uStack_358 & 0xffffffff;
       }
-      puStack_3f8 = (void *)CONCAT71(puStack_3f8.FullPart,Utf16Char);
+      puStack_3f8 = (void *)ConcatenateBitFields(puStack_3f8.FullPart,Utf16Char);
       CharacterStatus1 = ProcessSystemContextData(&lStack_1f8,&puStack_370,&ProcessInfoPointer,&ploopCounter);
       loopCounter6 = lStack_1f8;
       if (CharacterStatus1 == '\0') {
@@ -59719,7 +59719,7 @@ LAB_18008acc1:
              (uStack_568 = uStack_568 & 0xffffffff00000000, puStack_570 != NULL)) {
             *(uint8_t *)puStack_570 = 0;
           }
-          puStack_5b8 = (void *)CONCAT71(puStack_5b8.FullPart,MemoryAddressMask);
+          puStack_5b8 = (void *)ConcatenateBitFields(puStack_5b8.FullPart,MemoryAddressMask);
           StringBuffer2 = ProcessSystemContextData(&lStack_450,&puStack_578,&puStack_518,&puStack_538);
           loopCounter4 = lStack_450;
           if (StringBuffer2 == '\0') {
@@ -60158,7 +60158,7 @@ unsigned long long ProcessSystemMemoryAllocationAndValidation(long long OutputBu
                     // WARNING: Subroutine does not return
       CoreEngineFreeSystemMemory(bufferAllocationStatus);
     }
-    MemoryAddressMask = CONCAT71((int7)((unsigned long long)*(void *)(OutputBuffer + 0x110) >> 8),1);
+    MemoryAddressMask = ConcatenateBitFields((int7)((unsigned long long)*(void *)(OutputBuffer + 0x110) >> 8),1);
   }
   return MemoryAddressMask;
 }
@@ -63369,7 +63369,7 @@ unsigned long long ProcessDataStructureAllocation(uint64_t OutputBuffer,uint64_t
     MemoryAllocationIndex = (**(code **)(*SystemContext + 8))(SystemContext,OutputBuffer);
     return MemoryAllocationIndex;
   }
-  return CONCAT71((int7)((unsigned long long)OutputBufferSize[1] >> 8),1);
+  return ConcatenateBitFields((int7)((unsigned long long)OutputBufferSize[1] >> 8),1);
 }
 
 
@@ -68166,7 +68166,7 @@ void ProcessSystemEventData(uint64_t targetDataStructure, int eventData, int res
   if ((0 < (int)((CalculatedCodePoint ^ MemoryAllocationIndex) - MemoryAllocationIndex)) || (0 < (int)((DataSize ^ ProcessStringBuffer) - ProcessStringBuffer))) {
     bufferAllocationStatus = *(long long *)(CoreEngineSystemContext + 8);
     SystemRegisterFlagX8 = CONCAT44(Utf8InputPointer,OutputBufferSize);
-    pCurrentMemoryBlockAddress = (long long *             MemoryAllocate(MemoryPoolManager,0x48,8,CONCAT71((int7)((unsigned long long)LoopCounter >> 8),3),
+    pCurrentMemoryBlockAddress = (long long *             MemoryAllocate(MemoryPoolManager,0x48,8,ConcatenateBitFields((int7)((unsigned long long)LoopCounter >> 8),3),
                            0xfffffffffffffffe);
     *pCurrentMemoryBlockAddress = (long long)&DataNodeTemplateA;
     *pCurrentMemoryBlockAddress = (long long)&DataNodeTemplateB;
@@ -69585,7 +69585,7 @@ LAB_18009556a:
   if (StatusBuffer == SystemStatusBuffer) {
     return 0;
   }
-  ValidationBytePointer = (byte *)BufferAllocate(MemoryPoolManager,0x10,CONCAT71((int7)((unsigned long long)StatusBuffer3 >> 8),0x13)  ;
+  ValidationBytePointer = (byte *)BufferAllocate(MemoryPoolManager,0x10,ConcatenateBitFields((int7)((unsigned long long)StatusBuffer3 >> 8),0x13)  ;
   *ValidationBytePointer = 0;
   GetMemoryAllocationInfo(ValidationBytePointer);
   ValidationBytePointer[0] = 0x41;
@@ -69725,7 +69725,7 @@ LAB_18009580a:
   if (StatusBuffer == SystemStatusBuffer) {
     return 0;
   }
-  ValidationBytePointer = (byte *)BufferAllocate(MemoryPoolManager,0x10,CONCAT71((int7)((unsigned long long)StatusBuffer3 >> 8),0x13)  ;
+  ValidationBytePointer = (byte *)BufferAllocate(MemoryPoolManager,0x10,ConcatenateBitFields((int7)((unsigned long long)StatusBuffer3 >> 8),0x13)  ;
   *ValidationBytePointer = 0;
   GetMemoryAllocationInfo(ValidationBytePointer);
   ValidationBytePointer[0] = 0x41;
@@ -70827,7 +70827,7 @@ LAB_180098929:
   }
   PrimaryProcessingStatusFlag = StatusBuffer;
 LAB_180098960:
-  return CONCAT71((int7)((unsigned long long)PrimaryProcessingStatusFlag >> 8),
+  return ConcatenateBitFields((int7)((unsigned long long)PrimaryProcessingStatusFlag >> 8),
                   *(float *)((long long)ComparisonResultPointer + 0x24) < *(float *)((long long)PrimaryProcessingStatusFlag + 0x24));
 }
 
@@ -73769,7 +73769,7 @@ LAB_18009b73a:
         } while (DataSize != 0);
         if (0 < (int)(CurrentByteValue - DataSize)) {
           if (*MemoryBlockListHead == 0) goto LAB_18009b737;
-          Utf16EndPointer = CONCAT71((int7)(Utf16EndPointer >> 8),1);
+          Utf16EndPointer = ConcatenateBitFields((int7)(Utf16EndPointer >> 8),1);
           goto LAB_18009b73a;
         }
       }
@@ -73919,7 +73919,7 @@ LAB_18009b91a:
         } while (DataSize != 0);
         if (0 < (int)(CurrentByteValue - DataSize)) {
           if (*MemoryBlockListHead == 0) goto LAB_18009b917;
-          Utf16EndPointer = CONCAT71((int7)(Utf16EndPointer >> 8),1);
+          Utf16EndPointer = ConcatenateBitFields((int7)(Utf16EndPointer >> 8),1);
           goto LAB_18009b91a;
         }
       }
@@ -74513,7 +74513,7 @@ LAB_18009bdba:
         if (0 < (int)(CurrentByteValue - DataSize)) {
           MemoryBlockListHead = Utf16EndPointer;
           if (*Utf16EndPointer == 0) goto LAB_18009bdb7;
-          SystemVariable9 = CONCAT71((int7)((unsigned long long)pSystemDataTablePointer >> 8),1);
+          SystemVariable9 = ConcatenateBitFields((int7)((unsigned long long)pSystemDataTablePointer >> 8),1);
           MemoryBlockListHead = MemoryBlockIndex;
           goto LAB_18009bdba;
         }
@@ -74770,7 +74770,7 @@ MemoryBlockProcessing:
         if (0 < (int)(ComparisonByte - DataLength)) {
           MemoryBlockListHead = Utf16EndPointer;
           if (*Utf16EndPointer == 0) goto SystemConfigurationSetup;
-          SystemConfigurationMask = CONCAT71((int7)((unsigned long long)SystemDataTablePointer >> 8),1);
+          SystemConfigurationMask = ConcatenateBitFields((int7)((unsigned long long)SystemDataTablePointer >> 8),1);
           MemoryBlockListHead = CurrentMemoryBlock;
           goto MemoryBlockProcessing;
         }
@@ -74943,7 +74943,7 @@ LAB_18009c42a:
         if (0 < (int)(CurrentByteValue - DataSize)) {
           MemoryBlockListHead = Utf16EndPointer;
           if (*Utf16EndPointer == 0) goto LAB_18009c427;
-          SystemVariable9 = CONCAT71((int7)((unsigned long long)pSystemDataTablePointer >> 8),1);
+          SystemVariable9 = ConcatenateBitFields((int7)((unsigned long long)pSystemDataTablePointer >> 8),1);
           MemoryBlockListHead = MemoryBlockIndex;
           goto LAB_18009c42a;
         }
@@ -80023,11 +80023,11 @@ void ProcessSystemDataStreamSync(long long OutputBuffer
           ProcessSystemDataAndConfigureFunction(&FunctionAddress,UnicodeCodePoint & 0xff);
           TertiaryProcessingStatusFlag = &FunctionAddress;
           if (0xf < StackUnsigned20) {
-            TertiaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
+            TertiaryProcessingStatusFlag = (uint8_t *)ConcatenateBitFields(uStack_37,FunctionAddress);
           }
           TertiaryProcessingStatusFlag = &FunctionAddress;
           if (0xf < StackUnsigned20) {
-            TertiaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
+            TertiaryProcessingStatusFlag = (uint8_t *)ConcatenateBitFields(uStack_37,FunctionAddress);
           }
           PointerPointerStack60 = &QuaternaryStackPointer8;
           EnginePointerBuffer = auStack_57;
@@ -80040,7 +80040,7 @@ void ProcessSystemDataStreamSync(long long OutputBuffer
             if (QuaternaryStackPointer8 == &SystemTimeoutCounter) {
               TertiaryProcessingStatusFlag = &FunctionAddress;
               if (0xf < StackUnsigned20) {
-                TertiaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
+                TertiaryProcessingStatusFlag = (uint8_t *)ConcatenateBitFields(uStack_37,FunctionAddress);
               }
               DataSize = lStack_50 - (long long)TertiaryProcessingStatusFlag;
               if (uStack_28 < (unsigned long long)(lStack_50 - (long long)TertiaryProcessingStatusFlag)) {
@@ -80048,7 +80048,7 @@ void ProcessSystemDataStreamSync(long long OutputBuffer
               }
               TertiaryProcessingStatusFlag = &FunctionAddress;
               if (0xf < StackUnsigned20) {
-                TertiaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
+                TertiaryProcessingStatusFlag = (uint8_t *)ConcatenateBitFields(uStack_37,FunctionAddress);
               }
               uStack_28 = uStack_28 - DataSize;
                     // WARNING: Subroutine does not return
@@ -80056,7 +80056,7 @@ void ProcessSystemDataStreamSync(long long OutputBuffer
             }
             TertiaryProcessingStatusFlag = &FunctionAddress;
             if (0xf < StackUnsigned20) {
-              TertiaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_37,FunctionAddress);
+              TertiaryProcessingStatusFlag = (uint8_t *)ConcatenateBitFields(uStack_37,FunctionAddress);
             }
             TertiaryProcessingStatusFlag = TertiaryProcessingStatusFlag + (uStack_28 - lStack_50);
             while (0 < (long long)TertiaryProcessingStatusFlag) {
@@ -80067,7 +80067,7 @@ void ProcessSystemDataStreamSync(long long OutputBuffer
         }
         if (0xf < StackUnsigned20) {
           DataSize = StackUnsigned20 + 1;
-          bufferAllocationStatus = CONCAT71(uStack_37,FunctionAddress);
+          bufferAllocationStatus = ConcatenateBitFields(uStack_37,FunctionAddress);
           AllocatedMemorySize = bufferAllocationStatus;
           if (0xfff < DataSize) {
             DataSize = StackUnsigned20 + 0x28;
@@ -82089,7 +82089,7 @@ void ProcessCoreEngineDataStructureInitialization(uint64_t OutputBuffer,char Out
   MemoryAllocationPointer = NULL;
   uStack_218 = uStack_218 & 0xffffffff00000000;
   cStack_1e0 = OutputBufferSize;
-  TertiaryProcessingStatusFlag = (void *           BufferAllocate(MemoryPoolManager,0x10,CONCAT71((int7)((unsigned long long)loopCounter5 >> 8),0x13));
+  TertiaryProcessingStatusFlag = (void *           BufferAllocate(MemoryPoolManager,0x10,ConcatenateBitFields((int7)((unsigned long long)loopCounter5 >> 8),0x13));
   *(uint8_t *)TertiaryProcessingStatusFlag = 0;
   MemoryAllocationPointer = TertiaryProcessingStatusFlag;
   SystemByteValue = GetMemoryAllocationInfo(TertiaryProcessingStatusFlag);
@@ -88080,7 +88080,7 @@ af70(uint64_t *OutputBuffer,long long OutputBufferSize,long long Utf8InputPointe
       uStack_178 = 0;
       pProcessingStatus = (uint16_t *)0x0;
       SystemUnsignedValue180 = 0;
-      pMemoryAddressMask = (uint16_t *)BufferAllocate(MemoryPoolManager,0x10,CONCAT71((int7)(MemoryAllocationIndex >> 8),0x13));
+      pMemoryAddressMask = (uint16_t *)BufferAllocate(MemoryPoolManager,0x10,ConcatenateBitFields((int7)(MemoryAllocationIndex >> 8),0x13));
       *(uint8_t *)pMemoryAddressMask = 0;
       pProcessingStatus = pMemoryAddressMask;
       MemoryAllocationIndex = GetMemoryAllocationInfo(pMemoryAddressMask);
@@ -91436,10 +91436,10 @@ void ProcessSystemBufferAndConfigure(void
   float AuxiliaryFloat13;
   float unaff_XMM14_Da;
   
-  if ((((AuxiliaryFloat13 < *(float *)(CONCAT71(in_register_00000001,in_AL) + 0x234)) &&
-       (pSystemContextPrimaryFloat = (float *)(CONCAT71(in_register_00000001,in_AL) + 0x228),
+  if ((((AuxiliaryFloat13 < *(float *)(ConcatenateBitFields(in_register_00000001,in_AL) + 0x234)) &&
+       (pSystemContextPrimaryFloat = (float *)(ConcatenateBitFields(in_register_00000001,in_AL) + 0x228),
        *pSystemContextPrimaryFloat <= BaseFloatValue && BaseFloatValue != *pSystemContextPrimaryFloat)) &&
-      (unaff_XMM14_Da < *(float *)(CONCAT71(in_register_00000001,in_AL) + 0x230))) ||
+      (unaff_XMM14_Da < *(float *)(ConcatenateBitFields(in_register_00000001,in_AL) + 0x230))) ||
      (*(char *)(RegisterSourceIndex + 0x2e38) != RegisterValueR12B)) {
     SystemCheckResult = ValidateAndProcessSystemFlags(&TertiaryDataBuffer,&StackBuffer58,1);
     if (SystemCheckResult != '\0') {
@@ -91624,7 +91624,7 @@ unsigned long long ProcessFloatDataStructureAndMemoryAllocation(float *OutputBuf
     }
     ComputedResult = *(int *)(AllocatedMemorySize + 0x1b2c);
     if (ComputedResult == OutputBufferSize) {
-      SystemVariable9 = CONCAT71((int7)(SystemVariable9 >> 8),ComputedResult != 0);
+      SystemVariable9 = ConcatenateBitFields((int7)(SystemVariable9 >> 8),ComputedResult != 0);
       *(bool *)(AllocatedMemorySize + 0x1b3c) = ComputedResult != 0;
       if (ComputedResult != 0) {
         *(uint32_t *)(AllocatedMemorySize + 0x1b38) = 0;
@@ -92921,7 +92921,7 @@ char ProcessSystemMemoryBuffer(void
     *StatusBuffer = *StatusBuffer | 4;
   }
   if ((*(char *)(RegisterFramePointer + -0x39) == (char)SystemContext) || (*(char *)(RegisterFramePointer + 0x7f) == '\0')) {
-    SystemDataTablePointer = CONCAT71((int7)((unsigned long long)SystemContext >> 8),*(char *)(RegisterFramePointer + 0x7f) != '\0') + 0x15;
+    SystemDataTablePointer = ConcatenateBitFields((int7)((unsigned long long)SystemContext >> 8),*(char *)(RegisterFramePointer + 0x7f) != '\0') + 0x15;
   }
   else {
     SystemDataTablePointer = 0x17;
@@ -93523,7 +93523,7 @@ uint8_t ProcessDataStructureWithParameters(uint32_t OutputBuffer,float *OutputBu
         StatusBuffer[1] = SystemStackRegisterFlagB0;
         StatusBuffer = (void *)(SystemContextValue + 0x20 + MemoryPoolBlockSize);
         *StatusBuffer = CONCAT44(uStack_a4,CoreEngineValueA8);
-        StatusBuffer[1] = CONCAT71(uStack_9f,CoreEngineUnsignedValueA0);
+        StatusBuffer[1] = ConcatenateBitFields(uStack_9f,CoreEngineUnsignedValueA0);
         StatusBuffer = (void *)(SystemContextValue + 0x30 + MemoryPoolBlockSize);
         *StatusBuffer = SystemOperationFlag98;
         StatusBuffer[1] = lStack_90;
@@ -95198,7 +95198,7 @@ uint8_t UpdateSystemStatus(void
   ValidationCode = ProcessSystemParameters(FramePointer + -0x79,LoopCounter,FramePointer + 0x6f,&SystemStackBuffer,MemoryAllocationIndex);
   ProcessStringBuffer = (uint32_t)((unsigned long long)MemoryAllocationIndex >> 0x20);
   if ((SystemStringBuffer30 == (char)DataNodeIndex) || (*(char *)(FramePointer + 0x6f) == '\0')) {
-    SystemDataTablePointer = CONCAT71((int7)((unsigned long long)DataNodeIndex >> 8),*(char *)(FramePointer + 0x6f) != '\0') + 0x15;
+    SystemDataTablePointer = ConcatenateBitFields((int7)((unsigned long long)DataNodeIndex >> 8),*(char *)(FramePointer + 0x6f) != '\0') + 0x15;
   }
   else {
     SystemDataTablePointer = 0x17;
@@ -95720,7 +95720,7 @@ char ProcessSystemMemoryBufferSecondary(void
   }
   DataSize = *(uint32_t *)(SystemContext + 0x1664);
   if ((*(char *)(RegisterFramePointer + 0x68) == (char)DataNodeIndex) || (*(char *)(RegisterFramePointer + 0x60) == '\0')) {
-    SystemDataTablePointer = CONCAT71((int7)((unsigned long long)DataNodeIndex >> 8),*(char *)(RegisterFramePointer + 0x60) != '\0') + 7;
+    SystemDataTablePointer = ConcatenateBitFields((int7)((unsigned long long)DataNodeIndex >> 8),*(char *)(RegisterFramePointer + 0x60) != '\0') + 7;
   }
   else {
     SystemDataTablePointer = 9;
@@ -102228,7 +102228,7 @@ unsigned long long ValidateAndProcessCharacterData(uint *OutputBuffer,uint Outpu
      (ProcessingResult = isprint(CharacterCode & 0xff), (int)ProcessingResult == 0)) {
     if (((CharacterCode == 10) && ((OutputBufferSize >> 0x14 & 1) != 0)) ||
        ((ProcessingResult = ProcessingResult & 0xffffffffffffff00, CharacterCode == 9 && ((OutputBufferSize >> 10 & 1) != 0)))) {
-      ProcessingResult = CONCAT71((int7)(ProcessingResult >> 8),1);
+      ProcessingResult = ConcatenateBitFields((int7)(ProcessingResult >> 8),1);
     }
     if ((char)ProcessingResult == '\0') goto LabelCharacterValidationExit;
   }
@@ -102269,7 +102269,7 @@ LabelCharacterValidationExit:
     return ProcessingResult & 0xffffffffffffff00;
   }
 LabelCharacterProcessingComplete:
-  return CONCAT71((int7)(ProcessingResult >> 8),1);
+  return ConcatenateBitFields((int7)(ProcessingResult >> 8),1);
 }
 
 
@@ -106999,7 +106999,7 @@ LAB_180119eed:
           OutputBuffer2 = OutputBuffer2 + -6;
         } while (0 < loopCounter6);
       }
-      ManageMutexLock(MutexLockResult,CONCAT71((int7)((unsigned long long)loopCounter6 >> 8),1));
+      ManageMutexLock(MutexLockResult,ConcatenateBitFields((int7)((unsigned long long)loopCounter6 >> 8),1));
       if (*(long long *)(LoopCounter7 + 0x1c98) != 0) {
         *(uint8_t *)(*(long long *)(LoopCounter7 + 0x1c98) + 0x17c) = 1;
       }
@@ -107306,7 +107306,7 @@ LAB_180119eed:
           OutputBuffer4 = OutputBuffer4 + -6;
         } while (0 < loopCounter8);
       }
-      ProcessSystemEventEx(IntegerValue9,CONCAT71((int7)((unsigned long long)loopCounter8 >> 8),1),IntegerValue9,bufferAllocationStatus1,StringBuffer7);
+      ProcessSystemEventEx(IntegerValue9,ConcatenateBitFields((int7)((unsigned long long)loopCounter8 >> 8),1),IntegerValue9,bufferAllocationStatus1,StringBuffer7);
       if (*(long long *)(SystemContextValue + 0x1c98) != 0) {
         *(uint8_t *)(*(long long *)(SystemContextValue + 0x1c98) + 0x17c) = 1;
       }
@@ -110722,7 +110722,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *OutputBuffer,char *Out
       bufferAllocationStatus7 = SystemDataConfiguration;
     }
     LoopCounter7 = (long long)IntegerValue9;
-    Utf16Char5 = CONCAT71((int7)(Utf16Char5 >> 8),1);
+    Utf16Char5 = ConcatenateBitFields((int7)(Utf16Char5 >> 8),1);
     loopCounter8 = *(long long *)(OutputBuffer + 2);
     StatusBuffer = (void *)(loopCounter8 + LoopCounter7 * 0x28);
     *StatusBuffer = SystemFlagB;
@@ -110759,7 +110759,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *OutputBuffer,char *Out
     OutputBuffer[0x10] = (int)(*(float *)(MemoryPoolBlockSize + 0x1674) + (float)PrimaryProcessingStatusFlag5[7] + (float)OutputBuffer[0x10]);
   }
   HighByte9 = OutputBuffer[7] == ProcessStringBuffer;
-  MemoryAllocationIndex8 = CONCAT71((int7)((unsigned long long)OutputBufferSize >> 8),HighByte9);
+  MemoryAllocationIndex8 = ConcatenateBitFields((int7)((unsigned long long)OutputBufferSize >> 8),HighByte9);
   uStack_134 = (uint32_t)MemoryAllocationIndex8;
   if (HighByte9) {
     *(uint8_t *)((long long)OutputBuffer + 0x59) = 1;
@@ -110811,7 +110811,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *OutputBuffer,char *Out
       fStack_108 = FloatValue30;
     }
     SecondaryScalingFactor = FloatValue35;
-    ProcessSystemParameters(&fStack_108,&PrimaryScalingFactor,CONCAT71((int7)(Utf16Char5 >> 8),1));
+    ProcessSystemParameters(&fStack_108,&PrimaryScalingFactor,ConcatenateBitFields((int7)(Utf16Char5 >> 8),1));
     bufferAllocationStatus7 = SystemDataConfiguration;
   }
   else {
@@ -110950,7 +110950,7 @@ LAB_18011c9d9:
     StatusBuffer[1] = CONCAT44(uStack_dc,SystemFlagE);
     StatusBuffer = (void *)(bufferAllocationStatus1 + 0x20 + LoopCounter7);
     *StatusBuffer = CONCAT44(uStack_d4,SystemFlagF);
-    StatusBuffer[1] = CONCAT71(uStack_cf,SystemFlagG);
+    StatusBuffer[1] = ConcatenateBitFields(uStack_cf,SystemFlagG);
     BufferAllocationStatus = (long long *)(bufferAllocationStatus1 + 0x30 + LoopCounter7);
     *BufferAllocationStatus = CoreEngineSignedValueC8;
     BufferAllocationStatus[1] = lStack_c0;
@@ -111153,7 +111153,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t OutputBuffer,
       RegisterValueR13 = SystemDataConfiguration;
     }
     LoopCounter9 = (long long)CharacterByteCount2;
-    MemoryAllocationIndex8 = CONCAT71((int7)(MemoryAllocationIndex8 >> 8),1);
+    MemoryAllocationIndex8 = ConcatenateBitFields((int7)(MemoryAllocationIndex8 >> 8),1);
     MemoryAllocationIndex = *(void *)(RegisterFramePointer + -0x80);
     ProcessStringBuffer = *(void *)(RegisterFramePointer + -0x78);
     MemoryBufferA = *(long long *)(SystemContext + 2);
@@ -111195,7 +111195,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t OutputBuffer,
          (int)(*(float *)(RegisterSourceIndex + 0x1674) + (float)pCharacterByteCount9[7] + (float)SystemContext[0x10]);
   }
   LowByte1 = SystemContext[7] == CharacterByteCount5;
-  UnicodeCodePoint0 = CONCAT71((int7)((unsigned long long)RegisterGeneral14 >> 8),LowByte1);
+  UnicodeCodePoint0 = ConcatenateBitFields((int7)((unsigned long long)RegisterGeneral14 >> 8),LowByte1);
   _bStack0000000000000034 = (uint32_t)UnicodeCodePoint0;
   if (LowByte1) {
     *(uint8_t *)((long long)SystemContext + 0x59) = 1;
@@ -111247,7 +111247,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t OutputBuffer,
     if (FloatValue36 <= FloatValue33) {
       OutputBuffer2.LowPart = FloatValue33;
     }
-    ProcessSystemParameters(&OutputBuffer2,RegisterFramePointer + 0x70,CONCAT71((int7)(MemoryAllocationIndex8 >> 8),1));
+    ProcessSystemParameters(&OutputBuffer2,RegisterFramePointer + 0x70,ConcatenateBitFields((int7)(MemoryAllocationIndex8 >> 8),1));
     RegisterValueR13 = SystemDataConfiguration;
   }
   else {
@@ -112479,7 +112479,7 @@ unsigned long long ProcessSystemContextWithMixedParameters(long long OutputBuffe
         (*(int *)(MemoryBlockIndex + 0x1b2c) == AdditionalParameter2)))) {
       loopCounter6 = *(long long *)(loopCounter6 + 0x1af8);
       SystemContextPrimaryFloat8 = *(float *)(MemoryBlockIndex + 0x19f8) * 0.5;
-      uStackX_10 = CONCAT71(SUB87(SystemStatusCode,1),1);
+      uStackX_10 = ConcatenateBitFields(SUB87(SystemStatusCode,1),1);
       MemoryAllocationIndex = *(uint32_t *)(loopCounter6 + 0x144);
       Utf16Char = *(uint32_t *)(loopCounter6 + 0x148);
       MemoryAddressMask = *(void *)(loopCounter6 + 0x14c);
@@ -113732,7 +113732,7 @@ uint8_t ProcessEngineDataInterpolation(float *OutputBuffer,int OutputBufferSize,
     }
     if ((float)AdditionalParameter2 == 0.0) goto LAB_18011e808;
     SystemContextPrimaryFloat0 = (float)AdditionalParameter2;
-    FUN_18011f880(ProcessingStatusFlag,*Utf16EndPointer,AdditionalParameter1,bufferAllocationStatus);
+    ProcessSystemMemoryConfiguration(ProcessingStatusFlag,*Utf16EndPointer,AdditionalParameter1,bufferAllocationStatus);
     ValidationCode = ProcessValidationCheck(AdditionalParameter3);
     if (ValidationCode < 1) {
       NormalizedParameter = (float)AllocatedMemorySize;
@@ -113759,7 +113759,7 @@ uint8_t ProcessEngineDataInterpolation(float *OutputBuffer,int OutputBufferSize,
     }
     if (((1.0 <= VectorRegisterDa) && (0.0 < NormalizedParameter)) || ((VectorRegisterDa <= 0.0 && (NormalizedParameter < 0.0))       ) goto LAB_18011e808;
   }
-  DataStructureCounter = FUN_18011f520(AdditionalParameter3);
+  DataStructureCounter = ProcessSystemMemoryStructure(AdditionalParameter3);
   if (*Utf16EndPointer != DataStructureCounter) {
     *Utf16EndPointer = DataStructureCounter;
     DataSize = 1;
@@ -113904,7 +113904,7 @@ LAB_18011eba2:
     }
     if ((float)AdditionalParameter2 == 0.0) goto LAB_18011ec19;
     SystemContextPrimaryFloat0 = (float)AdditionalParameter2;
-    FUN_18011f8d0(ProcessStringBuffer,*Utf16EndPointer,AdditionalParameter1,MemoryAllocationIndex);
+    ProcessSystemMemoryDataTransfer(ProcessStringBuffer,*Utf16EndPointer,AdditionalParameter1,MemoryAllocationIndex);
     ValidationCode = ProcessValidationCheck(AdditionalParameter3);
     if (ValidationCode < 1) {
       NormalizedParameter = (float)SystemDataTablePointer;
@@ -113945,7 +113945,7 @@ LAB_18011eba2:
   if ((9.223372e+18 <= SystemContextPrimaryFloat6) && (SystemContextPrimaryFloat6 = SystemContextPrimaryFloat6 - 9.223372e+18, SystemContextPrimaryFloat6 < 9.223372e+18)) {
     DataStructureCounter = -0x8000000000000000;
   }
-  CalculatedCodePoint = FUN_18011f5c0(AdditionalParameter3,0x5f000000,(long long)SystemContextPrimaryFloat6 + DataStructureCounter);
+  CalculatedCodePoint = ProcessSystemCodePointCalculation(AdditionalParameter3,0x5f000000,(long long)SystemContextPrimaryFloat6 + DataStructureCounter);
   if (*Utf16EndPointer != CalculatedCodePoint) {
     *Utf16EndPointer = CalculatedCodePoint;
     SystemByteValue = 1;
@@ -114063,7 +114063,7 @@ SystemConfigurationReset:
   }
   else {
     if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto CoordinateTransformationExit;
-    ContextCoordinate = (float)FUN_180131aa0(ScalingFactors,3,5,0,0);
+    ContextCoordinate = (float)CalculateSystemVector(ScalingFactors,3,5,0,0);
     if ((*(int *)(SystemConfigurationPointer + 0x1cac) == ConfigurationStatus) && (*(char *)(SystemConfigurationPointer + 0x1b3c) == '\0')) {
       ConfigurationStatus = *(int *)(SystemConfigurationPointer + 0x1b2c);
       goto SystemConfigurationReset;
@@ -119692,7 +119692,7 @@ LAB_180124390:
     return in_RAX & 0xffffffffffffff00;
   }
 LAB_180124389:
-  return CONCAT71((int7)(in_RAX >> 8),1);
+  return ConcatenateBitFields((int7)(in_RAX >> 8),1);
 }
 
 
@@ -125958,7 +125958,7 @@ unsigned long long ValidateAndProcessSystemFlags(uint64_t *OutputBuffer,uint64_t
     in_RAX = *(float **)(SystemDataConfiguration + 0x1c80);
     if (((FloatVariable4 < in_RAX[3] + in_RAX[5]) && (in_RAX[3] < FloatValue3)) &&
        ((SystemContextSecondaryFloat < in_RAX[2] + in_RAX[4] && (in_RAX[2] < StackFloat50)))) {
-      return CONCAT71((int7)((unsigned long long)in_RAX >> 8),1);
+      return ConcatenateBitFields((int7)((unsigned long long)in_RAX >> 8),1);
     }
   }
   return (unsigned long long)in_RAX & 0xffffffffffffff00;
@@ -139232,7 +139232,7 @@ ae5a(float OutputBuffer,float OutputBufferSize,float Utf8InputPointer,float Utf1
   }
   OperationStatus = *(char *)(RegisterGeneral14 + 0xb2);
   FloatValue32 = (float)(int)FloatValue32;
-  *(long long *)(RegisterFramePointer + -0xe) = CONCAT71((int7)(DataNodeIndex >> 8),!in_ZF) + 1;
+  *(long long *)(RegisterFramePointer + -0xe) = ConcatenateBitFields((int7)(DataNodeIndex >> 8),!in_ZF) + 1;
   SystemDataTablePointer = SystemDataConfiguration;
   if ((((OperationStatus != '\0') || ((*(byte *)(RegisterGeneral14 + 0xc) & 0x42) != 0)) ||
       (0 < *(int *)(RegisterGeneral14 + 0xc4))) ||
@@ -139466,7 +139466,7 @@ LAB_18012b510:
   FUN_180291500(*(void *)(StackParameter2 + 0x2e8));
   *(uint *)(*(long long *)(StackParameter2 + 0x2e8) + 0x30) =
        -(uint)(*(char *)(RegisterSourceIndex + 0x16c1) != '\0') & 2 |
-       (uint)CONCAT71((int7)(DataNodeIndex >> 8),*(char *)(RegisterSourceIndex + 0x16c0) != '\0');
+       (uint)ConcatenateBitFields((int7)(DataNodeIndex >> 8),*(char *)(RegisterSourceIndex + 0x16c0) != '\0');
   SystemDataTablePointer = *(long long *)(StackParameter2 + 0x2e8);
   *(void *)(RegisterFramePointer + -0x14) =
        *(void *)(*(long long *)(*(long long *)(RegisterSourceIndex + 0x19f0) + 0x58) + 8);
@@ -140311,7 +140311,7 @@ b523(voidvoid FUN_18012b523(void
   FUN_180291500(*(void *)(StackParameter2 + 0x2e8));
   *(uint *)(*(long long *)(StackParameter2 + 0x2e8) + 0x30) =
        -(uint)(*(char *)(RegisterSourceIndex + 0x16c1) != '\0') & 2 |
-       (uint)CONCAT71((int7)((unsigned long long)DataNodeIndex >> 8),*(char *)(RegisterSourceIndex + 0x16c0) != '\0');
+       (uint)ConcatenateBitFields((int7)((unsigned long long)DataNodeIndex >> 8),*(char *)(RegisterSourceIndex + 0x16c0) != '\0');
   SystemStringIndex = *(long long *)(StackParameter2 + 0x2e8);
   *(void *)(RegisterFramePointer + -0x14) =
        *(void *)(*(long long *)(*(long long *)(RegisterSourceIndex + 0x19f0) + 0x58) + 8);
@@ -143146,7 +143146,7 @@ unsigned long long CheckSystemInternalStatus(void
       in_RAX = (unsigned long long)Utf16Char;
       if (((Utf16Char == 0) || (*(char *)(bufferAllocationStatus + 0x1b3d) != '\0')) ||
          (Utf16Char == *(uint *)(MemoryBlockIndex + 0x84))) {
-        return CONCAT71((uint7)(uint3)(Utf16Char >> 8),1);
+        return ConcatenateBitFields((uint7)(uint3)(Utf16Char >> 8),1);
       }
     }
   }
@@ -147256,7 +147256,7 @@ LAB_180131395:
     if (SystemContextPrimaryFloat1 < *(float *)(OutputBuffer + 0x10)) {
       *(float *)(OutputBuffer + 0x10) = SystemContextPrimaryFloat1;
       *(float *)(OutputBuffer + 0x14) = CalculatedDistance;
-      return CONCAT71((uint7)(uint3)(MemoryAllocationIndex >> 8),1);
+      return ConcatenateBitFields((uint7)(uint3)(MemoryAllocationIndex >> 8),1);
     }
     if (SystemContextPrimaryFloat1 == *(float *)(OutputBuffer + 0x10)) {
       if (*(float *)(OutputBuffer + 0x14) <= CalculatedDistance) {
@@ -147436,7 +147436,7 @@ LAB_180131395:
     if (SystemContextPrimaryFloat1 < *(float *)(in_R11 + 0x10)) {
       *(float *)(in_R11 + 0x10) = SystemContextPrimaryFloat1;
       *(float *)(in_R11 + 0x14) = CalculatedDistance;
-      return CONCAT71((uint7)(uint3)(MemoryAllocationIndex >> 8),1);
+      return ConcatenateBitFields((uint7)(uint3)(MemoryAllocationIndex >> 8),1);
     }
     if (SystemContextPrimaryFloat1 == *(float *)(in_R11 + 0x10)) {
       if (*(float *)(in_R11 + 0x14) <= CalculatedDistance) {
@@ -147592,7 +147592,7 @@ LAB_180131395:
     if (NormalizedParameter < *(float *)(in_R11 + 0x10)) {
       *(float *)(in_R11 + 0x10) = NormalizedParameter;
       *(float *)(in_R11 + 0x14) = FloatVariable5;
-      return CONCAT71((uint7)(uint3)(Utf16Char >> 8),1);
+      return ConcatenateBitFields((uint7)(uint3)(Utf16Char >> 8),1);
     }
     if (NormalizedParameter == *(float *)(in_R11 + 0x10)) {
       if (*(float *)(in_R11 + 0x14) <= FloatVariable5) {
@@ -147695,7 +147695,7 @@ LAB_180131395:
     if (BaseFloatValue < *(float *)(in_R11 + 0x10)) {
       *(float *)(in_R11 + 0x10) = BaseFloatValue;
       *(float *)(in_R11 + 0x14) = OutputBufferSize;
-      return CONCAT71((uint7)(uint3)(Utf16Char >> 8),1);
+      return ConcatenateBitFields((uint7)(uint3)(Utf16Char >> 8),1);
     }
     if (BaseFloatValue == *(float *)(in_R11 + 0x10)) {
       if (*(float *)(in_R11 + 0x14) <= OutputBufferSize) {
@@ -148874,7 +148874,7 @@ float * FUN_180131c21(uint64_t OutputBuffer,float OutputBufferSize,float Utf8Inp
         }
         else if ((*(uint *)(*(long long *                             (*(long long *)(MemoryPoolBlockSize + 0x1bb8) + -0x28 + (long long)IntegerValue2 * 0x30) + 0xc
                            ) & 0x8000000) == 0) {
-          FUN_18012ee20(IntegerValue2 + -1,CONCAT71((int7)(int3)((uint)IntegerValue2 >> 8),1));
+          FUN_18012ee20(IntegerValue2 + -1,ConcatenateBitFields((int7)(int3)((uint)IntegerValue2 >> 8),1));
           LoopCounter9 = SystemDataConfiguration;
         }
       }
@@ -149716,7 +149716,7 @@ LAB_180132de6:
         }
         else if ((*(uint *)(*(long long *                             (*(long long *)(SystemContext + 0x1bb8) + -0x28 + (long long)IntegerValue1 * 0x30) +
                            0xc) & 0x8000000) == 0) {
-          FUN_18012ee20(IntegerValue1 + -1,CONCAT71((int7)(int3)((uint)IntegerValue1 >> 8),1));
+          FUN_18012ee20(IntegerValue1 + -1,ConcatenateBitFields((int7)(int3)((uint)IntegerValue1 >> 8),1));
           loopCounter8 = SystemDataConfiguration;
         }
       }
@@ -151524,7 +151524,7 @@ LAB_1801338ca:
       SystemContextPrimaryFloat8 = 0.0;
     }
     UnicodeCodePoint = (uint8_t)(RegisterValueR15 >> 8);
-    if ((int)CONCAT71(UnicodeCodePoint,0.0 < SystemContextPrimaryFloat9) != (int)CONCAT71(UnicodeCodePoint,0.0 < SystemContextPrimaryFloat8)) {
+    if ((int)ConcatenateBitFields(UnicodeCodePoint,0.0 < SystemContextPrimaryFloat9) != (int)ConcatenateBitFields(UnicodeCodePoint,0.0 < SystemContextPrimaryFloat8)) {
       FUN_180133680();
       *(uint32_t *)(SystemContext + 0x1cf4) = 0x3f800000;
       SecondaryFloatValue = 1.0;
@@ -151795,7 +151795,7 @@ LAB_1801338ca:
       SecondaryFloatValue = 0.0;
     }
     UnicodeCodePoint = (uint8_t)(RegisterValueR15 >> 8);
-    if ((int)CONCAT71(UnicodeCodePoint,FloatingPointRegisterA < SystemContextPrimaryFloat8) != (int)CONCAT71(UnicodeCodePoint,FloatingPointRegisterA < SecondaryFloatValue)    {
+    if ((int)ConcatenateBitFields(UnicodeCodePoint,FloatingPointRegisterA < SystemContextPrimaryFloat8) != (int)ConcatenateBitFields(UnicodeCodePoint,FloatingPointRegisterA < SecondaryFloatValue)    {
       FUN_180133680();
       *(uint32_t *)(SystemContext + 0x1cf4) = 0x3f800000;
       SystemContextPrimaryFloat9 = 1.0;
@@ -152030,7 +152030,7 @@ LAB_180133d4a:
   }
   MutexLockResult = (int)RegisterValueR15;
   UnicodeCodePoint = (uint8_t)(RegisterValueR15 >> 8);
-  if ((int)CONCAT71(UnicodeCodePoint,FloatingPointRegisterA < SecondaryFloatValue) != (int)CONCAT71(UnicodeCodePoint,FloatingPointRegisterA < SystemContextPrimaryFloat6)) {
+  if ((int)ConcatenateBitFields(UnicodeCodePoint,FloatingPointRegisterA < SecondaryFloatValue) != (int)ConcatenateBitFields(UnicodeCodePoint,FloatingPointRegisterA < SystemContextPrimaryFloat6)) {
     FUN_180133680();
     *(uint32_t *)(SystemContext + 0x1cf4) = 0x3f800000;
     SystemContextPrimaryFloat8 = SecondaryFloatValue;
@@ -155690,7 +155690,7 @@ unsigned long long FUN_180135160(void
       *(uint32_t *)(DataStructureCounter + 0x1dd8) = MemoryAllocationIndex;
       *(uint8_t *)(DataStructureCounter + 0x1dd1) = 1;
       *(uint *)(MemoryBlockIndex + 0x148) = *(uint *)(MemoryBlockIndex + 0x148) & 0xfffffffe;
-      return CONCAT71((uint7)(uint3)((uint)MemoryAllocationIndex >> 8),1);
+      return ConcatenateBitFields((uint7)(uint3)((uint)MemoryAllocationIndex >> 8),1);
     }
   }
   return in_RAX & 0xffffffffffffff00;
@@ -155719,7 +155719,7 @@ long long FUN_180135260(uint64_t OutputBuffer,uint64_t *OutputBufferSize
   if ((*(int *)(bufferAllocationStatus + 0x1e44) != ValidationCode) && (ValidationCode = ValidationCode + -1, *(int *)(bufferAllocationStatus + 0x1e44) != ValidationCode     ) {
     return (unsigned long long)(uint3)((uint)ValidationCode >> 8) << 8;
   }
-  return CONCAT71((uint7)(uint3)((uint)ValidationCode >> 8),1);
+  return ConcatenateBitFields((uint7)(uint3)((uint)ValidationCode >> 8),1);
 }
 
 
@@ -156699,7 +156699,7 @@ uint32_t * FUN_180135960(long long OutputBuffer,int OutputBufferSize,uint64_t Ut
         }
       }
       else {
-        HandleMemoryAllocationException(PrimaryReturnCode,CONCAT71(0xff000000,*(void ***)(PrimaryReturnCode + 0x70) == &ExceptionList                            ,OutputBufferSize,PrimaryReturnCode,0xfffffffffffffffe);
+        HandleMemoryAllocationException(PrimaryReturnCode,ConcatenateBitFields(0xff000000,*(void ***)(PrimaryReturnCode + 0x70) == &ExceptionList                            ,OutputBufferSize,PrimaryReturnCode,0xfffffffffffffffe);
       }
     }
     return;
@@ -157594,7 +157594,7 @@ LAB_180136c0c:
             }
           }
           else {
-            HandleMemoryAllocationException(MemoryAllocationIndex0,CONCAT71(0xff000000,
+            HandleMemoryAllocationException(MemoryAllocationIndex0,ConcatenateBitFields(0xff000000,
                                                 *(void ***)(MemoryAllocationIndex0 + 0x70) == &ExceptionList),
                                 OutputBuffer,MemoryAllocationIndex0,0xfffffffffffffffe);
           }
@@ -159998,7 +159998,7 @@ LAB_180138724:
              ((*(uint *)((long long)TertiaryProcessingStatusFlag + 0xc) & 0x100000) != 0)))) &&
            ((*(int *)(bufferAllocationStatus5 + 0x1a90) <= *(int *)(TertiaryProcessingStatusFlag + 0x50) + 1 || (iStack_104 != iStack_108)           )) {
           MemoryAllocationBase = *(uint *)((long long)TertiaryProcessingStatusFlag + 0xc) >> 0x14 & 1;
-          StackConfigurationFlag = (int *)CONCAT71(StackConfigurationFlag.FullPart,1);
+          StackConfigurationFlag = (int *)ConcatenateBitFields(StackConfigurationFlag.FullPart,1);
           Utf16Char4 = MemoryAllocationBase | 0x100004;
           if ((pCharacterByteCount3[0x13] & 4U) == 0) {
             Utf16Char4 = MemoryAllocationBase | 0x100000;
@@ -160451,7 +160451,7 @@ LAB_180139300:
     UnicodeCodePoint = (unsigned long long)MemoryAddressMask << 8;
   }
   else {
-    UnicodeCodePoint = CONCAT71(MemoryAddressMask,1);
+    UnicodeCodePoint = ConcatenateBitFields(MemoryAddressMask,1);
   }
   return UnicodeCodePoint;
 }
@@ -167985,7 +167985,7 @@ LAB_18013f32a:
         if (0 < (int)(CurrentByteValue - DataSize)) {
           MemoryBlockListHead = Utf16EndPointer;
           if (*Utf16EndPointer == 0) goto LAB_18013f327;
-          SystemVariable9 = CONCAT71((int7)((unsigned long long)pSystemDataTablePointer >> 8),1);
+          SystemVariable9 = ConcatenateBitFields((int7)((unsigned long long)pSystemDataTablePointer >> 8),1);
           MemoryBlockListHead = MemoryBlockIndex;
           goto LAB_18013f32a;
         }
@@ -168499,7 +168499,7 @@ unsigned long long FUN_180141820(long long *OutputBuffer
         CalculatedCodePoint = 0x10;
       }
       pMemoryOffsetValue = (uint8_t *                   BufferAllocate(MemoryPoolManager,(long long)(int)CalculatedCodePoint,
-                                 CONCAT71((uint7)(uint3)(SystemStackRegisterFlagB0 >> 8),0x13));
+                                 ConcatenateBitFields((uint7)(uint3)(SystemStackRegisterFlagB0 >> 8),0x13));
       *pMemoryOffsetValue = 0;
     }
     else {
@@ -169124,7 +169124,7 @@ LAB_18014293a:
         } while (DataSize != 0);
         if (0 < (int)(CurrentByteValue - DataSize)) {
           if (*MemoryBlockListHead == 0) goto LAB_180142937;
-          Utf16EndPointer = CONCAT71((int7)(Utf16EndPointer >> 8),1);
+          Utf16EndPointer = ConcatenateBitFields((int7)(Utf16EndPointer >> 8),1);
           MemoryBlockListHead = SystemContextPtr;
           goto LAB_18014293a;
         }
@@ -169136,7 +169136,7 @@ LAB_18014293f:
     Utf16EndPointer = 0;
   }
   ProcessSystemEncodingAndData(OutputBuffer,&cStackX_8,MemoryBlockListHead,Utf16EndPointer,OutputBufferSize);
-  MemoryBlockListHead = (long long *)CONCAT71(uStackX_9,cStackX_8);
+  MemoryBlockListHead = (long long *)ConcatenateBitFields(uStackX_9,cStackX_8);
 LAB_180142973:
   return MemoryBlockListHead + 8;
 }
@@ -169926,7 +169926,7 @@ LAB_180146224:
           FunctionAddress = 0;
           QuaternaryStackPointer8 = (uint32_t *)0x0;
           SystemPriorityLevel = 0;
-          PrimaryProcessingStatusFlag = (uint32_t *                   BufferAllocate(MemoryPoolManager,0x14,CONCAT71((int7)((unsigned long long)FunctionPointer >> 8),0x13),
+          PrimaryProcessingStatusFlag = (uint32_t *                   BufferAllocate(MemoryPoolManager,0x14,ConcatenateBitFields((int7)((unsigned long long)FunctionPointer >> 8),0x13),
                                  CharacterPointer,0xfffffffffffffffe);
           *(uint8_t *)PrimaryProcessingStatusFlag = 0;
           QuaternaryStackPointer8 = PrimaryProcessingStatusFlag;
@@ -170065,7 +170065,7 @@ LAB_1801479b7:
           FunctionAddress = 0;
           QuaternaryStackPointer8 = (uint32_t *)0x0;
           SystemPriorityLevel = 0;
-          systemEventTemplatePointer = (uint32_t *                   BufferAllocate(MemoryPoolManager,0x15,CONCAT71((int7)((unsigned long long)pSystemCheckResult >> 8),0x13),
+          systemEventTemplatePointer = (uint32_t *                   BufferAllocate(MemoryPoolManager,0x15,ConcatenateBitFields((int7)((unsigned long long)pSystemCheckResult >> 8),0x13),
                                  CharacterPointer,0xfffffffffffffffe);
           *(uint8_t *)systemEventTemplatePointer = 0;
           QuaternaryStackPointer8 = systemEventTemplatePointer;
@@ -170322,7 +170322,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *OutputBuffer,unsigned long long
           }
         }
         else {
-          HandleMemoryAllocationException(ProcessStringBuffer,CONCAT71(0xff000000,
+          HandleMemoryAllocationException(ProcessStringBuffer,ConcatenateBitFields(0xff000000,
                                               *(void ***)(ProcessStringBuffer + 0x70) == &ExceptionList),
                               pSystemRegisterFlagX8,ProcessStringBuffer,0xfffffffffffffffe);
         }
@@ -170399,7 +170399,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *OutputBuffer,unsigned long long
       }
     }
     else {
-      HandleMemoryAllocationException(SystemVariable9,CONCAT71(0xff000000,*(void ***)(SystemVariable9 + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(SystemVariable9,ConcatenateBitFields(0xff000000,*(void ***)(SystemVariable9 + 0x70) == &ExceptionList),
                           StackParameter2,SystemVariable9,0xfffffffffffffffe);
     }
   }
@@ -170453,7 +170453,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *OutputBuffer,unsigned long long
         }
       }
       else {
-        HandleMemoryAllocationException(CalculatedCodePoint,CONCAT71(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(CalculatedCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
                             Utf16EndPointer,CalculatedCodePoint,0xfffffffffffffffe);
       }
     }
@@ -170487,7 +170487,7 @@ uint64_t * ProcessSystemDataValidation(uint64_t *OutputBuffer,unsigned long long
       }
     }
     else {
-      HandleMemoryAllocationException(UnicodeCodePoint,CONCAT71(0xff000000,*(void ***)(UnicodeCodePoint + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(UnicodeCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(UnicodeCodePoint + 0x70) == &ExceptionList),
                           SystemParameter,UnicodeCodePoint,0xfffffffffffffffe);
     }
   }
@@ -172830,7 +172830,7 @@ LAB_18014b72a:
   SystemDataTablePointer = *(long long *)(OutputBuffer + 0x70);
   loopCounter4 = (SystemDataTablePointer - *(long long *)(OutputBuffer + 0x68)) / 0x18;
   if (loopCounter4 != 0) {
-    OutputBuffer = (uint16_t *                  BufferAllocate(MemoryPoolManager,loopCounter4 * 2,CONCAT71((int7)((unsigned long long)SystemDataTablePointer >> 8),3                               );
+    OutputBuffer = (uint16_t *                  BufferAllocate(MemoryPoolManager,loopCounter4 * 2,ConcatenateBitFields((int7)((unsigned long long)SystemDataTablePointer >> 8),3                               );
     CoreEnginePointerBuffer150 = OutputBuffer + loopCounter4;
     SystemDataTablePointer = *(long long *)(OutputBuffer + 0x70);
     CoreEnginePointerBuffer158 = OutputBuffer;
@@ -173478,7 +173478,7 @@ long long * FUN_18014c570(long long *OutputBuffer,long long *OutputBufferSize,ui
         }
       }
       else {
-        HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
       }
     }
@@ -177709,7 +177709,7 @@ LAB_180152731:
     (**(code **)(**(long long **)(OutputBuffer + 0xa8) + 0x38))();
     break;
   case 8:
-    ppuStack_210 = (uint32_t **)CONCAT71(ppuStack_210.FullPart,*(int *)(OutputBuffer + 0xb0) != 0);
+    ppuStack_210 = (uint32_t **)ConcatenateBitFields(ppuStack_210.FullPart,*(int *)(OutputBuffer + 0xb0) != 0);
     uStack_218 = CONCAT44(uStack_218.HighPart,*(uint32_t *)(OutputBuffer + 0xac));
     FUN_18029ea30(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(OutputBuffer + 0xa0),
                   *(uint32_t *)(OutputBuffer + 0xa8),
@@ -180274,7 +180274,7 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t OutputBuffer,unsi
         }
       }
       else {
-        HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
       }
     }
@@ -180327,7 +180327,7 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t OutputBuffer,unsi
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -180364,7 +180364,7 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t OutputBuffer,unsi
         }
       }
       else {
-        HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
       }
     }
@@ -180417,7 +180417,7 @@ uint64_t InitializeSystemMemoryManagerAndHandleBuffer(uint64_t OutputBuffer,unsi
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -182757,7 +182757,7 @@ void ProcessSystemUtf16DataProcessing(uint64_t OutputBuffer,long long OutputBuff
           MemoryBlockIndex = 1;
 LAB_18015b087:
           pSystemTimeoutCounter = (uint16_t *                       BufferAllocate(MemoryPoolManager,MemoryBlockIndex * 2,
-                                     CONCAT71((int7)((unsigned long long)QuaternaryStackPointer8 >> 8),3));
+                                     ConcatenateBitFields((int7)((unsigned long long)QuaternaryStackPointer8 >> 8),3));
         }
         else {
           MemoryBlockIndex = MemoryBlockIndex * 2;
@@ -182911,7 +182911,7 @@ SetupSystemEnvironment(unsigned long long OutputBuffer,uint64_t OutputBufferSize
         }
       }
       else {
-        HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
       }
     }
@@ -182998,7 +182998,7 @@ SetupSystemEnvironment(unsigned long long OutputBuffer,uint64_t OutputBufferSize
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -183051,7 +183051,7 @@ SetupSystemEnvironment(unsigned long long OutputBuffer,uint64_t OutputBufferSize
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -183102,7 +183102,7 @@ SetupSystemEnvironment(unsigned long long OutputBuffer,uint64_t OutputBufferSize
         }
       }
       else {
-        HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
       }
     }
@@ -183141,7 +183141,7 @@ SetupSystemEnvironment(unsigned long long OutputBuffer,uint64_t OutputBufferSize
         }
       }
       else {
-        HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
       }
     }
@@ -183180,7 +183180,7 @@ SetupSystemEnvironment(unsigned long long OutputBuffer,uint64_t OutputBufferSize
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
     }
   }
@@ -184824,7 +184824,7 @@ uint64_t FUN_18015c320(uint64_t OutputBuffer,unsigned long long OutputBufferSize
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -184877,7 +184877,7 @@ uint64_t FUN_18015c320(uint64_t OutputBuffer,unsigned long long OutputBufferSize
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -186082,7 +186082,7 @@ FUN_180160860(long long OutputBuffer,uint64_t *OutputBufferSize,uint64_t Utf8Inp
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -186135,7 +186135,7 @@ FUN_180160860(long long OutputBuffer,uint64_t *OutputBufferSize,uint64_t Utf8Inp
         }
       }
       else {
-        HandleMemoryAllocationException(DataSize,CONCAT71(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(DataSize,ConcatenateBitFields(0xff000000,*(void ***)(DataSize + 0x70) == &ExceptionList),
                             systemEventTemplatePointer,DataSize,0xfffffffffffffffe);
       }
     }
@@ -186186,7 +186186,7 @@ FUN_180160860(long long OutputBuffer,uint64_t *OutputBufferSize,uint64_t Utf8Inp
         }
       }
       else {
-        HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
       }
     }
@@ -186225,7 +186225,7 @@ FUN_180160860(long long OutputBuffer,uint64_t *OutputBufferSize,uint64_t Utf8Inp
         }
       }
       else {
-        HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
       }
     }
@@ -186264,7 +186264,7 @@ FUN_180160860(long long OutputBuffer,uint64_t *OutputBufferSize,uint64_t Utf8Inp
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
     }
   }
@@ -187064,7 +187064,7 @@ uint64_t * FUN_1801616b0(long long OutputBuffer,uint64_t *OutputBufferSize,uint6
                   if ((int)Utf16Char4 < 0x10) {
                     Utf16Char4 = 0x10;
                   }
-                  OutputBufferPointer = (uint8_t *                           BufferAllocate(MemoryPoolManager,(long long)(int)Utf16Char4,CONCAT71(ProcessStringBuffer,0x13)                  ;
+                  OutputBufferPointer = (uint8_t *                           BufferAllocate(MemoryPoolManager,(long long)(int)Utf16Char4,ConcatenateBitFields(ProcessStringBuffer,0x13)                  ;
                   *OutputBufferPointer = 0;
                   pMemoryOffsetValue = (void *)OutputBufferPointer;
                   CoreEngineValueA8 = GetMemoryAllocationInfo(OutputBufferPointer);
@@ -187088,7 +187088,7 @@ uint64_t * FUN_1801616b0(long long OutputBuffer,uint64_t *OutputBufferSize,uint6
                   if ((int)UnicodeCodePoint < 0x10) {
                     UnicodeCodePoint = 0x10;
                   }
-                  OutputBufferPointer = (uint8_t *                           BufferAllocate(MemoryPoolManager,(long long)(int)UnicodeCodePoint,CONCAT71(ProcessStringBuffer,0x13));
+                  OutputBufferPointer = (uint8_t *                           BufferAllocate(MemoryPoolManager,(long long)(int)UnicodeCodePoint,ConcatenateBitFields(ProcessStringBuffer,0x13));
                   *OutputBufferPointer = 0;
                 }
                 else {
@@ -194808,7 +194808,7 @@ long long FUN_180170700(long long OutputBuffer,long long OutputBufferSize,long l
         }
       }
       else {
-        HandleMemoryAllocationException(CalculatedCodePoint,CONCAT71(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(CalculatedCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,CalculatedCodePoint,0xfffffffffffffffe);
       }
     }
@@ -197901,7 +197901,7 @@ uint64_t FUN_180174900(uint64_t OutputBuffer,unsigned long long OutputBufferSize
         }
       }
       else {
-        HandleMemoryAllocationException(CalculatedCodePoint,CONCAT71(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(CalculatedCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,CalculatedCodePoint,0xfffffffffffffffe);
       }
     }
@@ -197942,7 +197942,7 @@ uint64_t FUN_180174900(uint64_t OutputBuffer,unsigned long long OutputBufferSize
         }
       }
       else {
-        HandleMemoryAllocationException(CalculatedCodePoint,CONCAT71(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(CalculatedCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,CalculatedCodePoint,0xfffffffffffffffe);
       }
     }
@@ -201412,7 +201412,7 @@ void CleanupSystemContextData(unsigned long long *OutputBuffer
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
     }
   }
@@ -201450,7 +201450,7 @@ void ProcessMemoryReferenceCount(long long OutputBuffer
       }
     }
     else {
-      HandleMemoryAllocationException(MemoryAddressMask,CONCAT71(0xff000000,*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
+      HandleMemoryAllocationException(MemoryAddressMask, ConcatenateBitFields(0xff000000, *(void ***)(MemoryAddressMask + 0x70) == &ExceptionList),
                           PrimaryProcessingStatusFlag,MemoryAddressMask,0xfffffffffffffffe);
     }
   }
@@ -206291,7 +206291,7 @@ FUN_1801839a0(uint64_t *OutputBuffer,unsigned long long OutputBufferSize,uint64_
     plStack_220 = alStack_1a8;
     if (plStack_170 != (long long *)0x0) {
       (**(code **)(*plStack_170 + 0x20)                (plStack_170,
-                 CONCAT71((int7)((unsigned long long)alStack_1a8 >> 8),plStack_170 != alStack_1a8));
+                 ConcatenateBitFields((int7)((unsigned long long)alStack_1a8 >> 8),plStack_170 != alStack_1a8));
       plStack_170 = (long long *)0x0;
     }
     lStack_1d0 = MemoryBlockIndex[2];
@@ -206365,7 +206365,7 @@ FUN_1801839a0(uint64_t *OutputBuffer,unsigned long long OutputBufferSize,uint64_
       MemoryAddressMask = (**(code **)(*plStack_60 + 8))(plStack_60,MemoryBlockIndex);
       *(void *)(MemoryBlockIndex + 0x38) = MemoryAddressMask;
       if (plStack_60 == (long long *)0x0) goto LAB_180183f13;
-      (**(code **)(*plStack_60 + 0x20)                (plStack_60,CONCAT71((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
+      (**(code **)(*plStack_60 + 0x20)                (plStack_60,ConcatenateBitFields((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
     }
     else {
       *(long long **)(MemoryBlockIndex + 0x38) = plStack_60;
@@ -206378,7 +206378,7 @@ LAB_180183f13:
   SystemFlagF = 1;
   plStack_d0 = aStackLongValue;
   if (plStack_60 != (long long *)0x0) {
-    (**(code **)(*plStack_60 + 0x20)              (plStack_60,CONCAT71((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
+    (**(code **)(*plStack_60 + 0x20)              (plStack_60,ConcatenateBitFields((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
     plStack_60 = (long long *)0x0;
   }
   BufferAllocationStatus = (long long *)Utf8InputPointer[7];
@@ -206431,7 +206431,7 @@ LAB_180183f13:
       MemoryAddressMask = (**(code **)(*plStack_50 + 8))(plStack_50,MemoryBlockIndex);
       *(void *)(MemoryBlockIndex + 0x38) = MemoryAddressMask;
       if (plStack_50 == (long long *)0x0) goto LAB_180184089;
-      (**(code **)(*plStack_50 + 0x20)                (plStack_50,CONCAT71((int7)((unsigned long long)alStack_88 >> 8),plStack_50 != alStack_88));
+      (**(code **)(*plStack_50 + 0x20)                (plStack_50,ConcatenateBitFields((int7)((unsigned long long)alStack_88 >> 8),plStack_50 != alStack_88));
     }
     else {
       *(long long **)(MemoryBlockIndex + 0x38) = plStack_50;
@@ -206444,7 +206444,7 @@ LAB_180184089:
   MemoryOffsetValue = 1;
   plStack_b0 = alStack_88;
   if (plStack_50 != (long long *)0x0) {
-    (**(code **)(*plStack_50 + 0x20)              (plStack_50,CONCAT71((int7)((unsigned long long)alStack_88 >> 8),plStack_50 != alStack_88));
+    (**(code **)(*plStack_50 + 0x20)              (plStack_50,ConcatenateBitFields((int7)((unsigned long long)alStack_88 >> 8),plStack_50 != alStack_88));
     plStack_50 = (long long *)0x0;
   }
   BufferAllocationStatus = (long long *)OutputBufferSize[7];
@@ -206979,7 +206979,7 @@ FUN_180184700(uint64_t *OutputBuffer,unsigned long long OutputBufferSize,uint64_
       *(void *)(MemoryPoolBlockSize + 0x38) = ProcessingStatusFlag;
       if (ProcessingContextPointerBuffer == (uint64_t **)0x0) goto LAB_180184aa5;
       (*(code *)(*ProcessingContextPointerBuffer)[4]                (ProcessingContextPointerBuffer,
-                 CONCAT71((int7)((unsigned long long)&SystemEventDispatcher >> 8),ProcessingContextPointerBuffer != &SystemEventDispatcher));
+                 ConcatenateBitFields((int7)((unsigned long long)&SystemEventDispatcher >> 8),ProcessingContextPointerBuffer != &SystemEventDispatcher));
     }
     else {
       *(uint64_t ***)(MemoryPoolBlockSize + 0x38) = ProcessingContextPointerBuffer;
@@ -206992,7 +206992,7 @@ LAB_180184aa5:
   CoreEngineUnsignedValue = 1;
   SystemFlagB = &SystemEventDispatcher;
   if (ProcessingContextPointerBuffer != (uint64_t **)0x0) {
-    (*(code *)(*ProcessingContextPointerBuffer)[4]              (ProcessingContextPointerBuffer,CONCAT71((int7)((unsigned long long)&SystemEventDispatcher >> 8),ProcessingContextPointerBuffer != &SystemEventDispatcher)    ;
+    (*(code *)(*ProcessingContextPointerBuffer)[4]              (ProcessingContextPointerBuffer,ConcatenateBitFields((int7)((unsigned long long)&SystemEventDispatcher >> 8),ProcessingContextPointerBuffer != &SystemEventDispatcher)    ;
     ProcessingContextPointerBuffer = (uint64_t **)0x0;
   }
   if (lStack_140 != 0) {
@@ -207078,7 +207078,7 @@ LAB_180184aa5:
       MemoryAddressMask = (**(code **)(*plStack_50 + 8))(plStack_50,MemoryBlockIndex);
       *(void *)(MemoryBlockIndex + 0x38) = MemoryAddressMask;
       if (plStack_50 == (long long *)0x0) goto LAB_180184d09;
-      (**(code **)(*plStack_50 + 0x20)                (plStack_50,CONCAT71((int7)((unsigned long long)alStack_88 >> 8),plStack_50 != alStack_88));
+      (**(code **)(*plStack_50 + 0x20)                (plStack_50,ConcatenateBitFields((int7)((unsigned long long)alStack_88 >> 8),plStack_50 != alStack_88));
     }
     else {
       *(long long **)(MemoryBlockIndex + 0x38) = plStack_50;
@@ -207091,7 +207091,7 @@ LAB_180184d09:
   MemoryOffsetValue = 1;
   plStack_b0 = alStack_88;
   if (plStack_50 != (long long *)0x0) {
-    (**(code **)(*plStack_50 + 0x20)              (plStack_50,CONCAT71((int7)((unsigned long long)alStack_88 >> 8),plStack_50 != alStack_88));
+    (**(code **)(*plStack_50 + 0x20)              (plStack_50,ConcatenateBitFields((int7)((unsigned long long)alStack_88 >> 8),plStack_50 != alStack_88));
     plStack_50 = (long long *)0x0;
   }
   BufferAllocationStatus = (long long *)OutputBufferSize[7];
@@ -207390,7 +207390,7 @@ LAB_180184d09:
       SystemByteValue = (**(code **)(*pCoreEngineSignedValue70 + 8))(pCoreEngineSignedValue70,MemoryBoundaryEnd);
       *(void *)(MemoryBoundaryEnd + 0x38) = SystemByteValue;
       if (pCoreEngineSignedValue70 == (long long *)0x0) goto LAB_1801852f0;
-      (**(code **)(*pCoreEngineSignedValue70 + 0x20)                (pCoreEngineSignedValue70,CONCAT71((int7)((unsigned long long)alStack_a8 >> 8),pCoreEngineSignedValue70 != alStack_a8));
+      (**(code **)(*pCoreEngineSignedValue70 + 0x20)                (pCoreEngineSignedValue70,ConcatenateBitFields((int7)((unsigned long long)alStack_a8 >> 8),pCoreEngineSignedValue70 != alStack_a8));
     }
     else {
       *(long long **)(MemoryBoundaryEnd + 0x38) = pCoreEngineSignedValue70;
@@ -207403,7 +207403,7 @@ LAB_1801852f0:
   ProcessingCounter = 1;
   SystemFlagD = alStack_a8;
   if (pCoreEngineSignedValue70 != (long long *)0x0) {
-    (**(code **)(*pCoreEngineSignedValue70 + 0x20)              (pCoreEngineSignedValue70,CONCAT71((int7)((unsigned long long)alStack_a8 >> 8),pCoreEngineSignedValue70 != alStack_a8));
+    (**(code **)(*pCoreEngineSignedValue70 + 0x20)              (pCoreEngineSignedValue70,ConcatenateBitFields((int7)((unsigned long long)alStack_a8 >> 8),pCoreEngineSignedValue70 != alStack_a8));
     pCoreEngineSignedValue70 = (long long *)0x0;
   }
   if (MemoryBlockIndex != 0) {
@@ -207479,7 +207479,7 @@ LAB_1801852f0:
       MemoryAddressMask = (**(code **)(*plStack_60 + 8))(plStack_60,MemoryBlockIndex);
       *(void *)(MemoryBlockIndex + 0x38) = MemoryAddressMask;
       if (plStack_60 == (long long *)0x0) goto LAB_1801854b6;
-      (**(code **)(*plStack_60 + 0x20)                (plStack_60,CONCAT71((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
+      (**(code **)(*plStack_60 + 0x20)                (plStack_60,ConcatenateBitFields((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
     }
     else {
       *(long long **)(MemoryBlockIndex + 0x38) = plStack_60;
@@ -207492,7 +207492,7 @@ LAB_1801854b6:
   SystemFlagF = 1;
   plStack_d0 = aStackLongValue;
   if (plStack_60 != (long long *)0x0) {
-    (**(code **)(*plStack_60 + 0x20)              (plStack_60,CONCAT71((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
+    (**(code **)(*plStack_60 + 0x20)              (plStack_60,ConcatenateBitFields((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
     plStack_60 = (long long *)0x0;
   }
   BufferAllocationStatus = (long long *)Utf8InputPointer[7];
@@ -207568,7 +207568,7 @@ void SetScreenshotHighlightAsync(long long OutputBuffer,uint64_t *OutputBufferSi
       AsyncOperationResult = (**(code **)(*StackPointer60 + 8))(StackPointer60,MemoryBlockIndex);
       *(void *)(MemoryBlockIndex + 0x38) = AsyncOperationResult;
       if (StackPointer60 == (long long *)0x0) goto LAB_180185631;
-      (**(code **)(*StackPointer60 + 0x20)                (StackPointer60,CONCAT71((int7)((unsigned long long)StackArray98 >> 8),StackPointer60 != StackArray98));
+      (**(code **)(*StackPointer60 + 0x20)                (StackPointer60,ConcatenateBitFields((int7)((unsigned long long)StackArray98 >> 8),StackPointer60 != StackArray98));
     }
     else {
       *(long long **)(MemoryBlockIndex + 0x38) = StackPointer60;
@@ -207582,7 +207582,7 @@ LAB_180185631:
   OperationStringBuffer = 1;
   StackPointerD0 = StackArray98;
   if (StackPointer60 != (long long *)0x0) {
-    (**(code **)(*StackPointer60 + 0x20)              (StackPointer60,CONCAT71((int7)((unsigned long long)StackArray98 >> 8),StackPointer60 != StackArray98));
+    (**(code **)(*StackPointer60 + 0x20)              (StackPointer60,ConcatenateBitFields((int7)((unsigned long long)StackArray98 >> 8),StackPointer60 != StackArray98));
     StackPointer60 = (long long *)0x0;
   }
   BufferAllocationStatus = (long long *)Utf8InputPointer[7];
@@ -207662,7 +207662,7 @@ void SetVideoHighlightAsync(long long OutputBuffer,uint64_t *OutputBufferSize,lo
       AsyncOperationResult = (**(code **)(*StackPointer60 + 8))(StackPointer60,MemoryBlockIndex);
       *(void *)(MemoryBlockIndex + 0x38) = AsyncOperationResult;
       if (StackPointer60 == (long long *)0x0) goto LAB_1801857bd;
-      (**(code **)(*StackPointer60 + 0x20)                (StackPointer60,CONCAT71((int7)((unsigned long long)StackArray98 >> 8),StackPointer60 != StackArray98));
+      (**(code **)(*StackPointer60 + 0x20)                (StackPointer60,ConcatenateBitFields((int7)((unsigned long long)StackArray98 >> 8),StackPointer60 != StackArray98));
     }
     else {
       *(long long **)(MemoryBlockIndex + 0x38) = StackPointer60;
@@ -207676,7 +207676,7 @@ LAB_1801857bd:
   OperationStringBuffer = 1;
   StackPointerD0 = StackArray98;
   if (StackPointer60 != (long long *)0x0) {
-    (**(code **)(*StackPointer60 + 0x20)              (StackPointer60,CONCAT71((int7)((unsigned long long)StackArray98 >> 8),StackPointer60 != StackArray98));
+    (**(code **)(*StackPointer60 + 0x20)              (StackPointer60,ConcatenateBitFields((int7)((unsigned long long)StackArray98 >> 8),StackPointer60 != StackArray98));
     StackPointer60 = (long long *)0x0;
   }
   BufferAllocationStatus = (long long *)Utf8InputPointer[7];
@@ -207773,7 +207773,7 @@ LAB_1801857bd:
       CalculatedCodePoint = (**(code **)(*plStack_60 + 8))(plStack_60,DataStructureCounter);
       *(void *)(DataStructureCounter + 0x38) = CalculatedCodePoint;
       if (plStack_60 == (long long *)0x0) goto LAB_1801859b0;
-      (**(code **)(*plStack_60 + 0x20)                (plStack_60,CONCAT71((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
+      (**(code **)(*plStack_60 + 0x20)                (plStack_60,ConcatenateBitFields((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
     }
     else {
       *(long long **)(DataStructureCounter + 0x38) = plStack_60;
@@ -207786,7 +207786,7 @@ LAB_1801859b0:
   SystemFlagB = 1;
   SystemFlagF = aStackLongValue;
   if (plStack_60 != (long long *)0x0) {
-    (**(code **)(*plStack_60 + 0x20)              (plStack_60,CONCAT71((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
+    (**(code **)(*plStack_60 + 0x20)              (plStack_60,ConcatenateBitFields((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
     plStack_60 = (long long *)0x0;
   }
   if (bufferAllocationStatus != 0) {
@@ -207864,7 +207864,7 @@ LAB_1801859b0:
       MemoryAddressMask = (**(code **)(*plStack_60 + 8))(plStack_60,MemoryBlockIndex);
       *(void *)(MemoryBlockIndex + 0x38) = MemoryAddressMask;
       if (plStack_60 == (long long *)0x0) goto LAB_180185b78;
-      (**(code **)(*plStack_60 + 0x20)                (plStack_60,CONCAT71((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
+      (**(code **)(*plStack_60 + 0x20)                (plStack_60,ConcatenateBitFields((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
     }
     else {
       *(long long **)(MemoryBlockIndex + 0x38) = plStack_60;
@@ -207878,7 +207878,7 @@ LAB_180185b78:
   SystemFlagF = 1;
   plStack_d0 = aStackLongValue;
   if (plStack_60 != (long long *)0x0) {
-    (**(code **)(*plStack_60 + 0x20)              (plStack_60,CONCAT71((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
+    (**(code **)(*plStack_60 + 0x20)              (plStack_60,ConcatenateBitFields((int7)((unsigned long long)aStackLongValue >> 8),plStack_60 != aStackLongValue));
     plStack_60 = (long long *)0x0;
   }
   BufferAllocationStatus = (long long *)Utf8InputPointer[7];
@@ -208828,7 +208828,7 @@ LAB_18018728e:
           ProcessingStatusFlag = StackValidationData;
           TemporaryBuffer = SystemEventDispatcher;
           if (*(char *)((long long)SystemEventDispatcher[1] + SystemNodeStatusOffset) == '\0') {
-            PrimaryProcessingStatusFlag = (uint8_t *)CONCAT71(uStack_97,SystemOperationFlag98);
+            PrimaryProcessingStatusFlag = (uint8_t *)ConcatenateBitFields(uStack_97,SystemOperationFlag98);
             pMemoryAddressMask = (void *)SystemEventDispatcher[1];
             do {
               SecondaryProcessingStatusFlag = pMemoryAddressMask + 4;
@@ -208892,8 +208892,8 @@ LAB_18018764a:
           ReallocateOutputBuffer(TemporaryBuffer + 8,SystemStringIndex);
           if (0xf < FunctionAddress80) {
             if (0xfff < FunctionAddress80 + 1) {
-              SystemStringIndex = *(long long *)(CONCAT71(uStack_97,SystemOperationFlag98) + -8);
-              if (0x1f < (CONCAT71(uStack_97,SystemOperationFlag98) - SystemStringIndex) - 8U) {
+              SystemStringIndex = *(long long *)(ConcatenateBitFields(uStack_97,SystemOperationFlag98) + -8);
+              if (0x1f < (ConcatenateBitFields(uStack_97,SystemOperationFlag98) - SystemStringIndex) - 8U) {
                     // WARNING: Subroutine does not return
                 _invalid_parameter_noinfo_noreturn(SystemStringIndex,FunctionAddress80 + 0x28);
               }
@@ -210030,7 +210030,7 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
   if ((PointerPointerStack60 != (void **)0x0) &&
      (SystemPointer20 = (long long *)(*(code *)&SystemFunctionDispatchPointer)(PointerPointerStack60,ArrayStack58),
      PointerPointerStack60 != (void **)0x0)) {
-    (**(code **)(*PointerPointerStack60 + 0x20)              (PointerPointerStack60,CONCAT71((int7)((unsigned long long)&pSystemOperationFlag98 >> 8),PointerPointerStack60 != &pSystemOperationFlag98)    ;
+    (**(code **)(*PointerPointerStack60 + 0x20)              (PointerPointerStack60,ConcatenateBitFields((int7)((unsigned long long)&pSystemOperationFlag98 >> 8),PointerPointerStack60 != &pSystemOperationFlag98)    ;
     PointerPointerStack60 = (void **)0x0;
   }
   FUN_1801881a0(&pSystemOperationFlag98,OutputBuffer);
@@ -210039,7 +210039,7 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
       Utf16Char = (**(code **)(*SystemPointer20 + 8))(SystemPointer20,OutputBuffer);
       *(void *)(OutputBuffer + 0x38) = Utf16Char;
       if (SystemPointer20 == (long long *)0x0) goto LAB_18018873e;
-      (**(code **)(*SystemPointer20 + 0x20)                (SystemPointer20,CONCAT71((int7)((unsigned long long)ArrayStack58 >> 8),SystemPointer20 != ArrayStack58));
+      (**(code **)(*SystemPointer20 + 0x20)                (SystemPointer20,ConcatenateBitFields((int7)((unsigned long long)ArrayStack58 >> 8),SystemPointer20 != ArrayStack58));
     }
     else {
       *(long long **)(OutputBuffer + 0x38) = SystemPointer20;
@@ -210048,7 +210048,7 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
   }
 LAB_18018873e:
   if (SystemPointer20 != (long long *)0x0) {
-    (**(code **)(*SystemPointer20 + 0x20)              (SystemPointer20,CONCAT71((int7)((unsigned long long)ArrayStack58 >> 8),SystemPointer20 != ArrayStack58));
+    (**(code **)(*SystemPointer20 + 0x20)              (SystemPointer20,ConcatenateBitFields((int7)((unsigned long long)ArrayStack58 >> 8),SystemPointer20 != ArrayStack58));
     SystemPointer20 = (long long *)0x0;
   }
   if (PointerPointerStack60 != (void **)0x0) {
@@ -213477,7 +213477,7 @@ LAB_18018cbba:
         } while (DataSize != 0);
         if (0 < (int)(CurrentByteValue - DataSize)) {
           if (*MemoryBlockListHead == 0) goto LAB_18018cbb7;
-          Utf16EndPointer = CONCAT71((int7)(Utf16EndPointer >> 8),1);
+          Utf16EndPointer = ConcatenateBitFields((int7)(Utf16EndPointer >> 8),1);
           goto LAB_18018cbba;
         }
       }
@@ -222967,7 +222967,7 @@ void ConfigureSystemContext(long long OutputBuffer,float OutputBufferSize,char U
           *(float *)(SystemDataTablePointer + 0x8320 + OutputBuffer) =
                SystemContextPrimaryFloat2 - OutputBufferSize * *(float *)(&SystemProcessingConfigA +
                                             (long long)*(char *)(MemoryPoolBlockSize + AllocatedMemorySize * 0xc) * 4);
-          ProcessStringBuffer = CONCAT71((int7)(ProcessStringBuffer >> 8),1);
+          ProcessStringBuffer = ConcatenateBitFields((int7)(ProcessStringBuffer >> 8),1);
           ValidationCode = *(int *)(SystemDataTablePointer + 0x8324 + OutputBuffer);
         } while (ValidationCode != -1);
       }
@@ -225709,14 +225709,14 @@ LAB_18019d50f:
             *(float *)(OutputBuffer + 0x601) * *(float *)(OutputBuffer + 0x601))) {
     TemporaryBuffer = &SystemDataTemplateTertiary;
   }
-  ProcessSystemEventQueueData(&SystemDataTemplateOctonary,TemporaryBuffer);
+  ProcessSystemEventQueueData(&SystemDataTemplateConnectionctonary,TemporaryBuffer);
   if (*(char *)((long long)OutputBuffer + 0x564) == '\0') {
     TemporaryBuffer = &SystemDataTableSecondary;
   }
   else {
     TemporaryBuffer = *(void **)(&SystemDataTableTertiary + (long long)*(int *)(OutputBuffer + 0xad) * 8);
   }
-  ProcessSystemEventQueueData(&SystemDataTemplateNonary,TemporaryBuffer);
+  ProcessSystemEventQueueData(&SystemDataTemplateNetworkonary,TemporaryBuffer);
   pSystemRegisterFlagX8 = NULL;
   OperationStatus = ValidateSystemProcessingStatusFlag(&SystemDataTemplateDenary,&pSystemRegisterFlagX8,0);
   if (OperationStatus == '\0') {
@@ -225727,7 +225727,7 @@ LAB_18019d50f:
   }
   SystemDataTablePointer = SystemDataConfiguration;
   if (*(int *)(OutputBuffer + 0xc0f2) != 0) {
-    pSystemRegisterFlagX8 = (void *)CONCAT71(pSystemRegisterFlagX8.FullPart,1);
+    pSystemRegisterFlagX8 = (void *)ConcatenateBitFields(pSystemRegisterFlagX8.FullPart,1);
     *(uint32_t *)(SystemDataConfiguration + 0x1c04) = 0x43c80000;
     *(uint32_t *)(SystemDataTablePointer + 0x1c08) = 0x43960000;
     *(uint32_t *)(SystemDataTablePointer + 0x1bd4) = 4;
@@ -226962,7 +226962,7 @@ long long * FUN_18019eb80(long long OutputBuffer,long long *OutputBufferSize
         loopCounter4 = *OutputBufferSize;
       } while ((unsigned long long)(long long)iStack_2f4 < (OutputBufferSize[1] - loopCounter4 >> 3) - 1U);
     }
-    FUN_180276f30(pSystemDataTablePointer,(long long)pSystemDataTablePointer + 0x214,CONCAT71((int7)((unsigned long long)loopCounter4 >> 8),1));
+    FUN_180276f30(pSystemDataTablePointer,(long long)pSystemDataTablePointer + 0x214,ConcatenateBitFields((int7)((unsigned long long)loopCounter4 >> 8),1));
     (**(code **)(*pSystemDataTablePointer + 0x148))(pSystemDataTablePointer,&SystemDataTemplatePointer);
   }
   return pSystemDataTablePointer;
@@ -231193,7 +231193,7 @@ LAB_180203caa:
         if (0 < (int)(CurrentByteValue - DataSize)) {
           MemoryBlockListHead = Utf16EndPointer;
           if (*Utf16EndPointer == 0) goto LAB_180203ca7;
-          SystemVariable9 = CONCAT71((int7)((unsigned long long)pSystemDataTablePointer >> 8),1);
+          SystemVariable9 = ConcatenateBitFields((int7)((unsigned long long)pSystemDataTablePointer >> 8),1);
           MemoryBlockListHead = MemoryBlockIndex;
           goto LAB_180203caa;
         }
@@ -262919,7 +262919,7 @@ uint64_t * FUN_180227230(uint64_t OutputBuffer,long long OutputBufferSize
         }
       }
       else {
-        HandleMemoryAllocationException(CalculatedCodePoint,CONCAT71(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(CalculatedCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,CalculatedCodePoint,0xfffffffffffffffe);
       }
     }
@@ -262961,7 +262961,7 @@ uint64_t * FUN_180227230(uint64_t OutputBuffer,long long OutputBufferSize
         }
       }
       else {
-        HandleMemoryAllocationException(CalculatedCodePoint,CONCAT71(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(CalculatedCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,CalculatedCodePoint,0xfffffffffffffffe);
       }
     }
@@ -265187,7 +265187,7 @@ LAB_1802297eb:
         }
       }
       else {
-        HandleMemoryAllocationException(CalculatedCodePoint,CONCAT71(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(CalculatedCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,CalculatedCodePoint,0xfffffffffffffffe);
       }
     }
@@ -265407,7 +265407,7 @@ LAB_1802297eb:
         }
       }
       else {
-        HandleMemoryAllocationException(CalculatedCodePoint,CONCAT71(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
+        HandleMemoryAllocationException(CalculatedCodePoint,ConcatenateBitFields(0xff000000,*(void ***)(CalculatedCodePoint + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,CalculatedCodePoint,0xfffffffffffffffe);
       }
     }
@@ -269259,7 +269259,7 @@ unsigned long long ValidateOutputBuffer(long long OutputBuffer
     if ((CurrentByteValue) &&
        ((((char)in_RAX != '\0' || ((*(uint *)(OutputBuffer + 0x138) >> 0x12 & 1) != 0)) ||
         (*(char *)(OutputBuffer + 0x13c) == '\x06' || *(char *)(OutputBuffer + 0x13c) == '\0')))) {
-      return CONCAT71((int7)(in_RAX >> 8),1);
+      return ConcatenateBitFields((int7)(in_RAX >> 8),1);
     }
   }
   return in_RAX & 0xffffffffffffff00;
@@ -269366,7 +269366,7 @@ long long FUN_18022e5f7(void
   if ((CurrentByteValue) &&
      ((((char)UnicodeCodePoint != '\0' || ((*(uint *)(SystemContext + 0x138) >> 0x12 & 1) != 0)) ||
       (*(char *)(SystemContext + 0x13c) == '\x06' || *(char *)(SystemContext + 0x13c) == '\0')))) {
-    return CONCAT71(MemoryAddressMask,1);
+    return ConcatenateBitFields(MemoryAddressMask,1);
   }
   return (unsigned long long)MemoryAddressMask << 8;
 }
