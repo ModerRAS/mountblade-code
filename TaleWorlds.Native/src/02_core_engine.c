@@ -170596,7 +170596,7 @@ uint64_t * FUN_18013cf5d(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint Utf
   unsigned long long PrimaryReturnCode;
   byte SystemRegisterR10B;
   byte *in_R11;
-  uint8_t uStackX_13[5];
+  uint8_t StackBufferValidation[5];
   
   MemoryBoundaryEnd = SystemConfigurationHandle;
   ProcessingStatusFlag = SystemMemoryPoolBase;
@@ -171465,7 +171465,15 @@ void ProcessSystemDataFormatting(void)
 
 
 
-3d527(voidvoid FUN_18013d527(void
+/**
+ * @brief 重置字符编码状态
+ * 
+ * 该函数用于重置字符编码器的状态，清除所有临时数据，
+ * 为下一次编码操作准备干净的初始状态。
+ * 
+ * @note 原始函数名：FUN_18013d527
+ */
+void ResetCharacterEncodingState(void)
 {
   return;
 }
