@@ -5650,6 +5650,30 @@ extern uint64_t ExceptionOffsetValue;
  */
 #define ExecuteDataValidationOperation FUN_1808afe30
 
+// 栈变量和临时变量的语义化定义
+#define auStackX_8 validationStackBuffer    // 验证栈缓冲区
+#define pValidationFloatValue4 floatValidationPointer    // 浮点验证指针
+#define secondValidationValue secondaryFloatValidation    // 次级浮点验证值
+#define thirdValidationValue tertiaryFloatValidation    // 三级浮点验证值
+#define fourthValidationValue quaternaryFloatValidation    // 四级浮点验证值
+#define inputParameter0 validationParameter0    // 验证参数0
+#define inputParameter1 validationParameter1    // 验证参数1
+#define inputParameter2 validationParameter2    // 验证参数2
+#define inputParameter4 validationParameter4    // 验证参数4
+#define inputParameter6 validationParameter6    // 验证参数6
+#define inputParameter9 validationParameter9    // 验证参数9
+#define exceptionDataBuffer2 exceptionBuffer2    // 异常缓冲区2
+#define exceptionDataBuffer3 exceptionBuffer3    // 异常缓冲区3
+#define exceptionDataBuffer6 exceptionBuffer6    // 异常缓冲区6
+#define exceptionHandlerContext7 exceptionContext7    // 异常上下文7
+#define exceptionHandlerContext8 exceptionContext8    // 异常上下文8
+#define systemDataBuffer5 systemBuffer5    // 系统缓冲区5
+#define DestinationContext destinationContext    // 目标上下文
+#define SourceContext sourceContext    // 源上下文
+#define operationBase operationBaseAddress    // 操作基地址
+#define StackFrameContext stackFrameContext    // 栈帧上下文
+#define registerContext registerContextPointer    // 寄存器上下文指针
+
 /**
  * @brief 执行系统初始化操作
  * 
@@ -6294,18 +6318,18 @@ void* SystemResourcePointerA1;          // 系统资源指针A1
 void* SystemResourcePointerA2;          // 系统资源指针A2
 void* SystemResourcePointerA3;          // 系统资源指针A3
 void* SystemResourcePointerA4;          // 系统资源指针A4
-void* SystemResourcePointerA5;          // _DAT_180c960a0 - 系统资源指针A5
+void* SystemResourcePointerA5;          // 系统资源指针A5
 
 // 系统资源数据缓冲区变量声明
 void* SystemResourceDataBufferA0;         // DAT_180c960c0 - 系统资源数据缓冲区A0
 
 // 系统验证相关变量声明
-void* SystemValidationContextPointerA0;   // _DAT_180c95f18 - 系统验证上下文指针A0
+void* SystemValidationContextPointerA0;   // 系统验证上下文指针A0
 uint8_t SystemValidationCleanupFlagA0;       // DAT_180c95f28 - 系统验证清理标志A0
-void* SystemValidationContextCleanupA0;   // _DAT_180c95f20 - 系统验证上下文清理A0
-uint8_t SystemValidationTerminationFlagA0;  // _DAT_180c95ef8 - 系统验证终止标志A0
+void* SystemValidationContextCleanupA0;   // 系统验证上下文清理A0
+uint8_t SystemValidationTerminationFlagA0;  // 系统验证终止标志A0
 uint8_t SystemValidationCleanupFlagA1;       // DAT_180c95fe8 - 系统验证清理标志A1
-uint8_t SystemValidationTerminationFlagA1;  // _DAT_180c95fc8 - 系统验证终止标志A1
+uint8_t SystemValidationTerminationFlagA1;  // 系统验证终止标志A1
 uint8_t SystemValidationCleanupFlagA2;       // DAT_180c96210 - 系统验证清理标志A2
 
 // 系统数据缓冲区相关变量声明
@@ -6321,40 +6345,40 @@ void* DataBufferEndAddress;               // lRam0000000180d49d78 - 数据缓冲
 void* DataBufferCleanupPointer;           // uRam0000000180d49d58 - 数据缓冲区清理指针
 
 // 默认异常处理器指针变量声明
-void* DefaultExceptionHandlerBPointer;     // _DAT_180bf64f8 - 默认异常处理器B指针
+void* DefaultExceptionHandlerBPointer;     // 默认异常处理器B指针
 
 // 异常处理器指针变量声明
-void* ExceptionHandlerPointerA;         // _DAT_180bf90b0 - 异常处理器指针A
-void* ExceptionHandlerPointerB;         // _DAT_180bf7310 - 异常处理器指针B
-void* ExceptionHandlerPointerC;         // _DAT_180bf92d0 - 异常处理器指针C
-void* ExceptionHandlerPointerD;         // _DAT_180bf9330 - 异常处理器指针D
-void* ExceptionHandlerPointerE;         // _DAT_180bf9510 - 异常处理器指针E
-void* ExceptionHandlerPointerF;         // _DAT_180bf9570 - 异常处理器指针F
-void* ExceptionHandlerPointerG;         // _DAT_180bf96f0 - 异常处理器指针G
-void* ExceptionHandlerPointerH;         // _DAT_180bf9750 - 异常处理器指针H
-void* ExceptionHandlerPointerI;         // _DAT_180bf97b0 - 异常处理器指针I
-void* ExceptionHandlerPointerJ;         // _DAT_180bf9810 - 异常处理器指针J
-void* ExceptionHandlerPointerK;         // _DAT_180bf9870 - 异常处理器指针K
-void* ExceptionHandlerPointerL;         // _DAT_180bf98d0 - 异常处理器指针L
+void* ExceptionHandlerPointerA;         // 异常处理器指针A
+void* ExceptionHandlerPointerB;         // 异常处理器指针B
+void* ExceptionHandlerPointerC;         // 异常处理器指针C
+void* ExceptionHandlerPointerD;         // 异常处理器指针D
+void* ExceptionHandlerPointerE;         // 异常处理器指针E
+void* ExceptionHandlerPointerF;         // 异常处理器指针F
+void* ExceptionHandlerPointerG;         // 异常处理器指针G
+void* ExceptionHandlerPointerH;         // 异常处理器指针H
+void* ExceptionHandlerPointerI;         // 异常处理器指针I
+void* ExceptionHandlerPointerJ;         // 异常处理器指针J
+void* ExceptionHandlerPointerK;         // 异常处理器指针K
+void* ExceptionHandlerPointerL;         // 异常处理器指针L
 
 // 系统函数表指针变量声明
-void* SystemFunctionTablePointer;       // _DAT_180c86968 - 系统函数表指针
+void* SystemFunctionTablePointer;       // 系统函数表指针
 // 异常处理器指针变量声明（续）
-void* ExceptionHandlerPointerM;         // _DAT_180bf9930 - 异常处理器指针M
-void* ExceptionHandlerPointerN;         // _DAT_180bf9990 - 异常处理器指针N
-void* ExceptionHandlerPointerO;         // _DAT_180bf99f0 - 异常处理器指针O
-void* ExceptionHandlerPointerP;         // _DAT_180bf9a50 - 异常处理器指针P
-void* ExceptionHandlerPointerQ;         // _DAT_180bf9ab0 - 异常处理器指针Q
-void* ExceptionHandlerPointerR;         // _DAT_180bf9b10 - 异常处理器指针R
-void* ExceptionHandlerPointerS;         // _DAT_180bf9b70 - 异常处理器指针S
-void* ExceptionHandlerPointerT;         // _DAT_180bf9bd0 - 异常处理器指针T
-void* ExceptionHandlerPointerU;         // _DAT_180bf9c30 - 异常处理器指针U
-void* ExceptionHandlerPointerV;         // _DAT_180bf9c90 - 异常处理器指针V
-void* ExceptionHandlerPointerW;         // _DAT_180bf9cf0 - 异常处理器指针W
-void* ExceptionHandlerPointerX;         // _DAT_180bf9d50 - 异常处理器指针X
-void* ExceptionHandlerPointerY;         // _DAT_180bf9db0 - 异常处理器指针Y
-void* ExceptionHandlerPointerZ;         // _DAT_180bf9e10 - 异常处理器指针Z
-void* ExceptionHandlerPointerAA;         // _DAT_180bf9e70 - 异常处理器指针AA
+void* ExceptionHandlerPointerM;         // 异常处理器指针M
+void* ExceptionHandlerPointerN;         // 异常处理器指针N
+void* ExceptionHandlerPointerO;         // 异常处理器指针O
+void* ExceptionHandlerPointerP;         // 异常处理器指针P
+void* ExceptionHandlerPointerQ;         // 异常处理器指针Q
+void* ExceptionHandlerPointerR;         // 异常处理器指针R
+void* ExceptionHandlerPointerS;         // 异常处理器指针S
+void* ExceptionHandlerPointerT;         // 异常处理器指针T
+void* ExceptionHandlerPointerU;         // 异常处理器指针U
+void* ExceptionHandlerPointerV;         // 异常处理器指针V
+void* ExceptionHandlerPointerW;         // 异常处理器指针W
+void* ExceptionHandlerPointerX;         // 异常处理器指针X
+void* ExceptionHandlerPointerY;         // 异常处理器指针Y
+void* ExceptionHandlerPointerZ;         // 异常处理器指针Z
+void* ExceptionHandlerPointerAA;         // 异常处理器指针AA
 void* ExceptionHandlerPointerBB;         // _DAT_180bf9ed0 - 异常处理器指针BB
 
 // 内存验证相关变量声明
@@ -59033,7 +59057,22 @@ void CleanupExceptionHandlerContext500(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180906510(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常处理上下文链表
+ * 
+ * 该函数负责清理异常处理上下文的链表结构，遍历链表中的每个节点，
+ * 验证节点的有效性，并清理相关资源。如果发现任何异常状态，
+ * 会调用系统终止函数。这是一个复杂的异常清理函数，涉及多个
+ * 偏移量的验证和资源管理操作。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文和资源信息
+ * 
+ * @note 原始函数名：Unwind_180906510
+ * @note 这是一个异常展开（unwind）处理函数，用于清理异常处理上下文链表
+ * @note 函数会验证多个偏移量处的资源状态，并执行相应的清理操作
+ */
+void CleanupExceptionContextChain(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
