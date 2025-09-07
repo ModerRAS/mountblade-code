@@ -20013,7 +20013,7 @@ SecurityValidationLabel:
   }
 ExecuteSystemSecurityCheck:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(colorDataWord ^ (uint64_t)EncryptionKeyBufferA);
+  ExecuteSecurityCheck(colorProcessingData ^ (uint64_t)PrimaryEncryptionKeyBuffer);
 }
 
 
@@ -20350,11 +20350,11 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
 {
   int64_t exceptionHandlerContext;
   int operationResult;
-  ByteFlag EncryptionKeyBufferB [32];
+  ByteFlag SecondaryEncryptionKeyBuffer [32];
   ByteFlag DataProcessingBufferB [512];
   uint64_t EncryptionKeyXorResult;
   
-  EncryptionKeyXorResult = ExceptionEncryptionKey ^ (uint64_t)EncryptionKeyBufferB;
+  EncryptionKeyXorResult = ExceptionEncryptionKey ^ (uint64_t)SecondaryEncryptionKeyBuffer;
   exceptionHandlerContext = operationBase[4];
   if (((char)exceptionHandlerContext != '\0') || (operationResult = ValidateSystemDataA0(operationBase,1), operationResult == 0)) {
     operationResult = (**(FunctionPointer**)(*dataBuffer + 0x10))(dataBuffer,DataProcessingBufferB,0x200);
@@ -20366,7 +20366,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(EncryptionKeyXorResult ^ (uint64_t)EncryptionKeyBufferB);
+  ExecuteSecurityCheck(EncryptionKeyXorResult ^ (uint64_t)SecondaryEncryptionKeyBuffer);
 }
 
 
@@ -20459,7 +20459,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   int64_t exceptionHandlerContext4;
   float *floatValuePointer;
   DataBuffer *exceptionDataBuffer6;
-  ByteFlag EncryptionKeyBufferC [32];
+  ByteFlag TertiaryEncryptionKeyBuffer [32];
   DataWord StackDataWordA;
   char StackCharBufferA [4];
   uint8_t *StackPointerBufferA;
@@ -20497,9 +20497,9 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   ByteFlag StackByteFlagA;
   DataBuffer StackDataBufferV;
   ByteFlag ExceptionDataBufferA [136];
-  uint64_t colorDataWord;
+  uint64_t colorProcessingData;
   
-  colorDataWord = ExceptionEncryptionKey ^ (uint64_t)EncryptionKeyBufferC;
+  colorProcessingData = ExceptionEncryptionKey ^ (uint64_t)TertiaryEncryptionKeyBuffer;
   dataContext = *(int64_t *)(dataBuffer + 0x80);
   exceptionHandlerContext4 = 0;
   StackDataWordA = 0;
