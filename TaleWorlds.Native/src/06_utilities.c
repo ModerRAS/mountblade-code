@@ -26223,7 +26223,7 @@ DataBuffer ExecuteAdvancedDataValidationA0(int64_t operationBase,int64_t *dataBu
         goto ProcessCheckpointDataFlowControl;
       }
     }
-    operationResult = ValidateDataAndReturnStatusO3(*dataBuffer,&stack0x00000008,1,1,0);
+    operationResult = ValidateDataAndReturnStatusO3(*dataBuffer, &StackDataBufferJ, 1, 1, 0);
   }
 ProcessCheckpointDataFlowControl:
   if ((int)operationResult == 0) {
@@ -26441,12 +26441,12 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   }
   else {
     if (validationContextPointer[2] != 0) {
-      uStack0000000000000040 = 0;
+      StackValidationCounter = 0;
       operationResult = AllocateMemory(*validationContextPointer,&StackDataBufferD);
       if ((int)operationResult != 0) {
         return operationResult;
       }
-      if ((uint64_t)validationContextPointer[2] < (uint64_t)uStack0000000000000040 + 1) {
+      if ((uint64_t)validationContextPointer[2] < (uint64_t)StackValidationCounter + 1) {
         operationResult = 0x11;
         goto ProcessCheckpointDataFlowControl;
       }
@@ -26482,12 +26482,12 @@ void ValidateContextStatus(void)
   }
   else {
     if (validationContextPointer[2] != 0) {
-      uStack0000000000000040 = 0;
+      StackValidationCounter = 0;
       operationResult = AllocateMemory(*validationContextPointer,&StackDataBufferD);
       if (operationResult != 0) {
         return;
       }
-      if ((uint64_t)validationContextPointer[2] < (uint64_t)uStack0000000000000040 + 1) {
+      if ((uint64_t)validationContextPointer[2] < (uint64_t)StackValidationCounter + 1) {
         operationResult = 0x11;
         goto ProcessCheckpointDataFlowControl;
       }
@@ -26613,15 +26613,15 @@ void SystemInitializationCheckA(void)
   int inputParameter;
   int operationResult;
   uint validationStatus;
-  uint uStack00000000000000a8;
+  uint SystemValidationStatus;
   
-  uStack00000000000000a8 = 0;
+  SystemValidationStatus = 0;
   inputParameter = ExecuteDataValidationOperation();
   if (inputParameter != 0) {
     return;
   }
   inputParameter = 0;
-  validationStatus = uStack00000000000000a8 >> 1;
+  validationStatus = SystemValidationStatus >> 1;
   if (validationStatus != 0) {
     do {
       operationResult = ExecuteSystemInitializationOperation();
@@ -27652,7 +27652,7 @@ void CheckSystemStatusB0(void)
   *(uint *)(contextPointer + 0x18) = memoryBaseAddress;
   systemOperationCount = 0;
   inputParameter = 0;
-  if (uStack0000000000000068 >> 1 != 0) {
+  if (SystemOperationCount >> 1 != 0) {
     do {
       operationResult = ExecuteSystemInitializationOperation();
       if (operationResult != 0) {
@@ -30502,7 +30502,7 @@ uint64_t ProcessDataAndReturnResult(void)
     else {
       if (validationContextPointer[2] != 0) {
         StackDataBufferA = 0;
-        validationStatus = AllocateMemory(*validationContextPointer,&stack0x00000088);
+        validationStatus = AllocateMemory(*validationContextPointer,&StackDataBufferR);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -30511,7 +30511,7 @@ uint64_t ProcessDataAndReturnResult(void)
           goto ProcessCheckpointValidationContext2;
         }
       }
-      validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x00000080,1,4,0);
+      validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&StackDataBufferQ,1,4,0);
     }
 ValidationContextHandler2:
     if ((int)validationStatus != 0) {
@@ -31702,7 +31702,7 @@ uint64_t ProcessDataAndValidationA(void)
               systemDataBuffer = *contextRegister;
               validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,&stackDataBuffer);
               if ((int)validationStatus == 0) {
-                validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,&stack0x00000094);
+                validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,&StackDataBufferS);
               }
             }
           }
@@ -31789,7 +31789,7 @@ uint64_t ProcessDataAndValidationB(void)
             systemDataBuffer = *registerContext;
             validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,&stackDataBuffer);
             if ((int)validationStatus == 0) {
-              validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,&stack0x00000094);
+              validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,&StackDataBufferS);
             }
           }
         }
@@ -31869,7 +31869,7 @@ uint64_t ValidateSystemDataStructure(void)
             systemDataBuffer = *registerContext;
             validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,&stackDataBuffer);
             if ((int)validationStatus == 0) {
-              validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,&stack0x00000094);
+              validationStatus = ValidateDataWithSecurityCheckA2(systemDataBuffer,&StackDataBufferS);
             }
           }
         }
@@ -31934,7 +31934,7 @@ uint64_t CheckSystemDataIntegrity(void)
   systemDataBuffer = *registerContext;
   operationResult = ValidateDataWithSecurityCheckA2(systemDataBuffer,&stackDataBuffer);
   if ((int)operationResult == 0) {
-    operationResult = ValidateDataWithSecurityCheckA2(systemDataBuffer,&stack0x00000094);
+    operationResult = ValidateDataWithSecurityCheckA2(systemDataBuffer,&StackDataBufferS);
   }
   if ((int)operationResult == 0) {
     if (*(uint *)(registerContext + 8) < 0x39) {
@@ -32450,7 +32450,7 @@ uint64_t ProcessSystemValidation(void)
   }
   validationOutcome = 0;
   StackDataBufferC = 0;
-  operationResult = ExecuteDataValidationOperation(*registerContext,&stack0x000000b8);
+  operationResult = ExecuteDataValidationOperation(*registerContext,&StackDataBufferT);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -32494,7 +32494,7 @@ uint64_t ProcessSystemValidation(void)
   else {
     if (validationContextPointer[2] != 0) {
       StackDataBufferD = 0;
-      operationResult = AllocateMemory(*validationContextPointer,&stack0x000000b0);
+      operationResult = AllocateMemory(*validationContextPointer,&StackDataBufferU);
       if ((int)operationResult != 0) {
         return operationResult;
       }
@@ -32503,7 +32503,7 @@ uint64_t ProcessSystemValidation(void)
         goto ProcessCheckpointValidationComplete3;
       }
     }
-    operationResult = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x000000b8,1,4,0);
+    operationResult = ValidateDataAndReturnStatusO3(*validationContextPointer,&StackDataBufferT,1,4,0);
   }
 ValidationCompleteHandler2:
   if ((int)operationResult == 0) {
@@ -32557,7 +32557,7 @@ uint64_t ValidateSystemIntegrity(void)
   }
   validationOutcome = 0;
   StackDataBufferC = 0;
-  operationResult = ExecuteDataValidationOperation(*registerContext,&stack0x000000b8);
+  operationResult = ExecuteDataValidationOperation(*registerContext,&StackDataBufferT);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -32601,7 +32601,7 @@ uint64_t ValidateSystemIntegrity(void)
   else {
     if (validationContextPointer[2] != 0) {
       StackDataBufferD = 0;
-      operationResult = AllocateMemory(*validationContextPointer,&stack0x000000b0);
+      operationResult = AllocateMemory(*validationContextPointer,&StackDataBufferU);
       if ((int)operationResult != 0) {
         return operationResult;
       }
@@ -32610,7 +32610,7 @@ uint64_t ValidateSystemIntegrity(void)
         goto ProcessCheckpointValidationComplete3;
       }
     }
-    operationResult = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x000000b8,1,4,0);
+    operationResult = ValidateDataAndReturnStatusO3(*validationContextPointer,&StackDataBufferT,1,4,0);
   }
 ValidationCompleteHandler2:
   if ((int)operationResult == 0) {
@@ -32653,7 +32653,7 @@ uint64_t ProcessSystemBuffer(void)
   
   validationOutcome = 0;
   uStack00000000000000b8 = 0;
-  operationResult = ExecuteDataValidationOperation(*registerContext,&stack0x000000b8);
+  operationResult = ExecuteDataValidationOperation(*registerContext,&StackDataBufferT);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -32697,7 +32697,7 @@ uint64_t ProcessSystemBuffer(void)
   else {
     if (validationContextPointer[2] != 0) {
       StackDataBufferD = 0;
-      operationResult = AllocateMemory(*validationContextPointer,&stack0x000000b0);
+      operationResult = AllocateMemory(*validationContextPointer,&StackDataBufferU);
       if ((int)operationResult != 0) {
         return operationResult;
       }
@@ -32706,7 +32706,7 @@ uint64_t ProcessSystemBuffer(void)
         goto ProcessCheckpointValidationComplete3;
       }
     }
-    operationResult = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x000000b8,1,4,0);
+    operationResult = ValidateDataAndReturnStatusO3(*validationContextPointer,&StackDataBufferT,1,4,0);
   }
 ValidationCompleteHandler2:
   if ((int)operationResult == 0) {
@@ -34449,7 +34449,7 @@ DataBuffer ReturnFixedStatusCodeA3(void)
           StackDataBufferD = 0x24;
         }
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
-                          (*(DataBuffer **)(*registerContext + 8),&stack0x000000b0,4);
+                          (*(DataBuffer **)(*registerContext + 8),&StackDataBufferU,4);
         if (((int)systemDataBuffer == 0) && (systemDataBuffer = ValidateDataFormatStructure(), (int)systemDataBuffer == 0)) {
                     // WARNING: Subroutine does not return
           ExecuteSystemCleanupRoutine();
@@ -34499,7 +34499,7 @@ void ConfigureSystemOptionsC1(void)
     if (*(int *)(registerContext[1] + 0x18) == 0) {
       StackDataBufferD = 6;
       inputParameter = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
-                        (*(DataBuffer **)(*registerContext + 8),&stack0x000000b0,4);
+                        (*(DataBuffer **)(*registerContext + 8),&StackDataBufferU,4);
     }
     if (inputParameter != 0) {
       return;
@@ -34518,7 +34518,7 @@ void ConfigureSystemOptionsC1(void)
     else if (*(int *)(registerContext[1] + 0x18) == 0) {
       StackDataBufferD = CONCAT31(StackDataBufferD._1_3_,*(ByteFlag *)(systemContext + 0x5c));
       register_EBP = (**(FunctionPointer**)**(DataBuffer **)(*registerContext + 8))
-                            (*(DataBuffer **)(*registerContext + 8),&stack0x000000b0,1);
+                            (*(DataBuffer **)(*registerContext + 8),&StackDataBufferU,1);
     }
     if (register_EBP != 0) {
       return;
@@ -70130,7 +70130,7 @@ void UnlockMutexAtOffsetA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909cb0(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteSystemOperationsAtOffsetB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,0x98,9,ProcessSystemOperationsA0);
@@ -70139,20 +70139,20 @@ void Unwind_180909cb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909ce0(DataBuffer operationBase,int64_t dataBuffer)
+void SetupExceptionHandlerAtOffsetE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t validationContext;
+  int64_t exceptionHandlerContext;
   
-  validationContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(validationContext + 0x560) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(validationContext + 0x568) != 0) {
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
+  *(DataBuffer *)(exceptionHandlerContext + 0x560) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(validationContext + 0x568) = 0;
-  *(DataWord *)(validationContext + 0x578) = 0;
-  *(DataBuffer *)(validationContext + 0x560) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + 0x568) = 0;
+  *(DataWord *)(exceptionHandlerContext + 0x578) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + 0x560) = &DefaultExceptionHandlerB;
   return;
 }
 

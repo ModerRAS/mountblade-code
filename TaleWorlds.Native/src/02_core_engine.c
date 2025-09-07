@@ -278,6 +278,136 @@ const void* const SystemStringTemplateData = (void*)0x180a105d8;
 const void* const SystemStringTemplateDataSecondary = (void*)0x180a10568;
 const void* const SystemEventTemplateDataPrimary = (void*)0x180a10570;
 
+// 系统事件队列数据表常量
+const void* const SystemEventQueueDataTable = (void*)0x180a10600;
+const void* const SystemEventQueueDataTableSecondary = (void*)0x180a10618;
+const void* const SystemEventQueueDataTableTertiary = (void*)0x180a105e0;
+const void* const SystemEventQueueDataTableQuaternary = (void*)0x180a105f0;
+const void* const SystemEventQueueDataTableQuinary = (void*)0x180a10650;
+const void* const SystemEventQueueDataTableSenary = (void*)0x180a10668;
+const void* const SystemEventQueueDataTableSeptenary = (void*)0x180a10628;
+const void* const SystemEventQueueDataTableOctonary = (void*)0x180a10640;
+const void* const SystemEventQueueDataTableNonary = (void*)0x180a106c0;
+const void* const SystemEventQueueDataTableUndenary = (void*)0x180a10678;
+const void* const SystemEventQueueDataTableDuodenary = (void*)0x180a10688;
+const void* const SystemEventQueueDataTableTredecenary = (void*)0x180a10710;
+const void* const SystemEventQueueDataTableQuattuordecenary = (void*)0x180a10720;
+const void* const SystemEventQueueDataTableQuindecenary = (void*)0x180a106e8;
+const void* const SystemEventQueueDataTableSexdecenary = (void*)0x180a10700;
+const void* const SystemEventQueueDataTableSeptendecenary = (void*)0x180a10750;
+const void* const SystemEventQueueDataTableOctodecenary = (void*)0x180a10760;
+const void* const SystemEventQueueDataTableNovemdecenary = (void*)0x180a10728;
+const void* const SystemEventQueueDataTableVigesimal = (void*)0x180a10740;
+const void* const SystemEventQueueDataTableUnvigesimal = (void*)0x180a10798;
+const void* const SystemEventQueueDataTableDuovigesimal = (void*)0x180a107b0;
+const void* const SystemEventQueueDataTableTrevigesimal = (void*)0x180a10778;
+const void* const SystemEventQueueDataTableQuattuorvigesimal = (void*)0x180a10788;
+const void* const SystemEventQueueDataTableQuinvigesimal = (void*)0x180a107f8;
+const void* const SystemEventQueueDataTableSexvigesimal = (void*)0x180a10810;
+const void* const SystemEventQueueDataTableSeptenvigesimal = (void*)0x180a107c8;
+const void* const SystemEventQueueDataTableOctovigesimal = (void*)0x180a107d8;
+const void* const SystemEventQueueDataTableNovemvigesimal = (void*)0x180a10850;
+const void* const SystemEventQueueDataTableTrigesimal = (void*)0x180a10860;
+const void* const SystemEventQueueDataTableUntrigesimal = (void*)0x180a10820;
+const void* const SystemEventQueueDataTableDuotrigesimal = (void*)0x180a10838;
+const void* const SystemEventQueueDataTableTrigesimal = (void*)0x180a10898;
+
+// 系统内存池和数据结构常量
+const void* const SystemMemoryPoolTemplate = (void*)0x180a104d0;
+const void* const SystemConfigurationDataPrimary = (void*)0x180a108b0;
+const void* const SystemDataStructureTemplate = (void*)0x180a10878;
+const void* const SystemConfigurationTemplateTertiary = (void*)0x180a1b008;
+const void* const SystemMemoryBoundaryTemplate = (void*)0x180a128b0;
+const void* const SystemConfigurationTemplateQuaternary = (void*)0x180a108d0;
+const void* const SystemValidationTemplate = (void*)0x180a10988;
+const void* const SystemConfigurationTemplateQuinary = (void*)0x180a109b8;
+const void* const SystemValidationTemplateSecondary = (void*)0x180a10938;
+const void* const SystemValidationTemplateTertiary = (void*)0x180a10960;
+const void* const SystemConfigurationTemplateSenary = (void*)0x180a10a20;
+const void* const SystemEventConfigurationTemplate = (void*)0x180a10a48;
+const void* const SystemConfigurationTemplateSeptenary = (void*)0x180a109d8;
+const void* const SystemEventConfigurationTemplateSecondary = (void*)0x180a10a10;
+const void* const SystemConfigurationTemplateOctonary = (void*)0x180a10aa0;
+const void* const SystemEventConfigurationTemplateTertiary = (void*)0x180a10ad0;
+const void* const SystemConfigurationTemplateNonary = (void*)0x180a10a58;
+const void* const SystemEventConfigurationTemplateQuaternary = (void*)0x180a10a90;
+const void* const SystemConfigurationTemplateUndenary = (void*)0x180a10b88;
+const void* const SystemEventConfigurationTemplateQuinary = (void*)0x180a10bc0;
+const void* const SystemEventConfigurationTemplateSenary = (void*)0x180a10ae0;
+const void* const SystemEngineStatusTemplate = (void*)0x180a01ff0;
+const void* const SystemEventInitializationTemplateSecondary = (void*)0x180a10af0;
+const void* const SystemStringComparisonTemplate = (void*)0x180957a48;
+const void* const SystemConfigurationTemplateDuodecimal = (void*)0x180a10c10;
+const void* const SystemStatusBufferTemplate = (void*)0x180a10be0;
+const void* const SystemStringTemplateTertiary = (void*)0x180a104f0;
+const void* const SystemStringTemplateQuaternary = (void*)0x180a10500;
+const void* const SystemStringTemplateQuinary = (void*)0x180a104d0;
+const void* const SystemDataStructureTemplateSecondary = (void*)0x180a12e68;
+const void* const SystemMemoryDataTemplate = (void*)0x18020dbe0;
+const void* const SystemEventTemplateQuinary = (void*)0x180a12ed8;
+const void* const SystemEventTemplateSenary = (void*)0x180a12ef0;
+const void* const SystemContextTemplateSecondary = (void*)0x180a13650;
+const void* const SystemStringTemplateSeptenary = (void*)0x180a12f20;
+const void* const SystemStringTemplateOctonary = (void*)0x180a12f38;
+const void* const SystemStringTemplateNonary = (void*)0x180a12f80;
+const void* const SystemStringTemplateUndenary = (void*)0x180a12f90;
+const void* const SystemStringTemplateDuodecimal = (void*)0x180a12f48;
+const void* const SystemStringTemplateTredecenary = (void*)0x180a12f68;
+const void* const SystemStringTemplateQuattuordecenary = (void*)0x180a12fc8;
+const void* const SystemStringTemplateQuindecenary = (void*)0x180a12fd8;
+const void* const SystemStringTemplateSexdecenary = (void*)0x180a12fa8;
+const void* const SystemStringTemplateSeptendecenary = (void*)0x180a12fb8;
+const void* const SystemStringTemplateOctodecenary = (void*)0x180a13020;
+const void* const SystemStringTemplateNovemdecenary = (void*)0x180a13030;
+const void* const SystemStringTemplateVigesimal = (void*)0x180a12fe8;
+const void* const SystemStringTemplateUnvigesimal = (void*)0x180a13000;
+const void* const SystemMemoryTemplatePrimary = (void*)0x180a02158;
+const void* const SystemMemoryTemplateSecondary = (void*)0x180a13320;
+const void* const SystemMemoryTemplateTertiary = (void*)0x180a02628;
+const void* const SystemMemoryTemplateQuaternary = (void*)0x180a135d8;
+const void* const SystemMemoryTemplateQuinary = (void*)0x180a135f0;
+const void* const SystemMemoryTemplateSenary = (void*)0x180a02060;
+const void* const SystemMemoryTemplateSeptenary = (void*)0x180a13340;
+const void* const SystemMemoryTemplateOctonary = (void*)0x180a132f0;
+const void* const SystemMemoryTemplateNonary = (void*)0x180a13308;
+const void* const SystemMemoryTemplateUndenary = (void*)0x180a133a0;
+const void* const SystemMemoryTemplateDuodecimal = (void*)0x180a133b0;
+const void* const SystemMemoryTemplateTredecenary = (void*)0x180a13360;
+const void* const SystemMemoryTemplateQuattuordecenary = (void*)0x180a13378;
+const void* const SystemMemoryTemplateQuindecenary = (void*)0x180a133f8;
+const void* const SystemMemoryTemplateSexdecenary = (void*)0x180a13410;
+const void* const SystemMemoryTemplateSeptendecenary = (void*)0x180a133c8;
+const void* const SystemMemoryTemplateOctodecenary = (void*)0x180a133e0;
+const void* const SystemMemoryTemplateNovemdecenary = (void*)0x180a13470;
+const void* const SystemMemoryTemplateVigesimal = (void*)0x180a13488;
+const void* const SystemMemoryTemplateUnvigesimal = (void*)0x180a13430;
+const void* const SystemMemoryTemplateDuovigesimal = (void*)0x180a13450;
+const void* const SystemMemoryTemplateTrevigesimal = (void*)0x180a135b8;
+const void* const SystemProcessingTemplatePrimary = (void*)0x180a0d190;
+const void* const SystemProcessingTemplateSecondary = (void*)0x180a0d170;
+const void* const SystemProcessingTemplateTertiary = (void*)0x180a0d180;
+const void* const SystemProcessingTemplateQuaternary = (void*)0x180a0d1d0;
+const void* const SystemProcessingTemplateQuinary = (void*)0x180a0d258;
+const void* const SystemProcessingTemplateSenary = (void*)0x180a0d1e8;
+const void* const SystemProcessingTemplateSeptenary = (void*)0x180a0d1a0;
+const void* const SystemProcessingTemplateOctonary = (void*)0x180a0d1b8;
+const void* const SystemProcessingTemplateNonary = (void*)0x180a0d238;
+const void* const SystemProcessingTemplateUndenary = (void*)0x180a0d280;
+const void* const SystemProcessingTemplateDuodecimal = (void*)0x180a0d200;
+const void* const SystemProcessingTemplateTredecenary = (void*)0x180a0d218;
+const void* const SystemStringTemplateVigesimal = (void*)0x180a130e0;
+const void* const SystemStringTemplateUnvigesimal = (void*)0x180a130b4;
+const void* const SystemStringTemplateDuovigesimal = (void*)0x180a130c0;
+const void* const SystemStringTemplateTrevigesimal = (void*)0x180a130f0;
+const void* const SystemStringTemplateQuattuorvigesimal = (void*)0x180a13110;
+const void* const SystemStringTemplateQuinvigesimal = (void*)0x180a13120;
+const void* const SystemStringTemplateSexvigesimal = (void*)0x180a13158;
+const void* const SystemStringTemplateSeptenvigesimal = (void*)0x180a13160;
+const void* const SystemStringTemplateOctovigesimal = (void*)0x180a13180;
+const void* const SystemStringTemplateNovemvigesimal = (void*)0x180a1318c;
+const void* const SystemDataStructureTemplateTertiary = (void*)0x180a16c98;
+const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
+
 // 函数语义化宏定义
 // 浮点数据处理函数
 #define CalculateFloatRangeValue FUN_18011fc80
@@ -242151,14 +242281,14 @@ LAB_180213d73:
     if (SystemStatusBufferPointer != NULL) {
       TertiaryProcessingStatusFlag = SystemStatusBufferPointer;
     }
-    InitializeSystemEvent(&UNK_180a105b8,TertiaryProcessingStatusFlag);
+    InitializeSystemEvent(&SystemEventInitializationData,TertiaryProcessingStatusFlag);
     goto LAB_180214064;
   }
   TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
   if (SystemStatusBufferPointer != NULL) {
     TertiaryProcessingStatusFlag = SystemStatusBufferPointer;
   }
-  AllocatedMemorySize = strstr(TertiaryProcessingStatusFlag,&UNK_180a105d8);
+  AllocatedMemorySize = strstr(TertiaryProcessingStatusFlag,&SystemStringTemplateData);
   if (AllocatedMemorySize == 0) {
     TertiaryProcessingStatusFlag = &CoreEngineDataTemplate;
     if (SystemStatusBufferPointer != NULL) {
@@ -242170,7 +242300,7 @@ LAB_180213d73:
     if (SystemStatusBufferPointer != NULL) {
       TertiaryProcessingStatusFlag = SystemStatusBufferPointer;
     }
-    AllocatedMemorySize = strstr(TertiaryProcessingStatusFlag,&UNK_180a10568);
+    AllocatedMemorySize = strstr(TertiaryProcessingStatusFlag,&SystemStringTemplateDataSecondary);
     if (AllocatedMemorySize != 0) goto LAB_180213f5f;
   }
   else {
@@ -242296,7 +242426,7 @@ LAB_180214064:
     *(uint32_t *)(SystemContextPointer + 0x1d4) = Utf16Char;
     ValidationCode = FUN_180849990(*(void *)(SystemContextPointer + 0x368),0,&SystemStackFlag,&SystemTimeoutCounter);
     if (ValidationCode != 0) {
-      InitializeSystemEvent(&UNK_180a10570);
+      InitializeSystemEvent(&SystemEventTemplateDataPrimary);
     }
   }
                     // WARNING: Subroutine does not return
@@ -242424,9 +242554,9 @@ LAB_180214378:
   
   uStack_18 = EncodingDecodingKey ^ (unsigned long long)aCoreEngineValueA8;
   FUN_1808452a0(*(void *)(SystemContextPointer + 0x368),&fStack_5c,&StackFloat58);
-  ProcessSystemEventQueueData(&UNK_180a10600);
-  ProcessSystemEventQueueData(&UNK_180a10618,(double)StackFloat58);
-  ProcessSystemEventQueueData(&UNK_180a105e0,(double)StackFloat54);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTable);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableSecondary,(double)StackFloat58);
+  ProcessSystemEventQueueData(&SystemEventQueueDataTableTertiary,(double)StackFloat54);
   ProcessSystemEventQueueData(&UNK_180a105f0,(double)fStack_4c);
   ProcessSystemEventQueueData(&UNK_180a10650,(double)StackFloat50);
   ProcessSystemEventQueueData(&UNK_180a10668,(double)fStack_5c);
