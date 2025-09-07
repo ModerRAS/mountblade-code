@@ -9458,8 +9458,8 @@ uint8_t SecurityValidationFlagA156;  // UNK_180a3a468
 uint8_t SecurityValidationFlagA157;  // UNK_180a3a478
 uint8_t SecurityValidationFlagA158;  // UNK_180a3a498
 uint8_t SecurityValidationFlagA159;  // UNK_180a3a4a8
-uint8_t SecurityValidationFlagA160;
-uint8_t SecurityValidationFlagA161;
+uint8_t SecurityValidationFlagA160;    // UNK_180a3a420
+uint8_t SecurityValidationFlagA161;    // UNK_180a3a438
 uint8_t SecurityValidationFlagA162;
 uint8_t SecurityValidationFlagA163;
 uint8_t SecurityValidationFlagA164;
@@ -100012,7 +100012,19 @@ void Unwind_1809124d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809124e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x60偏移异常上下文
+ * 
+ * 该函数负责处理数据缓冲区0x60偏移量处的异常上下文，执行异常处理操作
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809124e0
+ */
+void HandleExceptionContextAtOffset60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;

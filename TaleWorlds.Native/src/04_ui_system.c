@@ -983,6 +983,46 @@ void* UIGestureCoordinates;
 // 原始变量名：_DAT_180a40580 - UI异或加密密钥
 #define UIXOREncryptionKey _DAT_180a40580
 
+// UI系统渲染参数表宏定义
+// 原始变量名：UNK_18094e25c - UI渲染参数表0
+#define UIRenderParameterTable0 UNK_18094e25c
+// 原始变量名：UNK_18094e26c - UI渲染参数表1
+#define UIRenderParameterTable1 UNK_18094e26c
+// 原始变量名：UNK_18094e270 - UI渲染参数表2
+#define UIRenderParameterTable2 UNK_18094e270
+// 原始变量名：UNK_18094e274 - UI渲染参数表3
+#define UIRenderParameterTable3 UNK_18094e274
+// 原始变量名：UNK_18094e27c - UI渲染参数表4
+#define UIRenderParameterTable4 UNK_18094e27c
+// 原始变量名：UNK_18094e280 - UI渲染参数表5
+#define UIRenderParameterTable5 UNK_18094e280
+
+// UI系统数据缓冲区宏定义
+// 原始变量名：UNK_1809535b4 - UI数据缓冲区A
+#define UIDataBufferA UNK_1809535b4
+// 原始变量名：UNK_1809535bc - UI数据缓冲区B
+#define UIDataBufferB UNK_1809535bc
+// 原始变量名：UNK_180953648 - UI数据缓冲区C
+#define UIDataBufferC UNK_180953648
+// 原始变量名：UNK_180953668 - UI数据缓冲区D
+#define UIDataBufferD UNK_180953668
+// 原始变量名：UNK_180953688 - UI数据缓冲区E
+#define UIDataBufferE UNK_180953688
+
+// UI系统坐标数据表宏定义
+// 原始变量名：UNK_1809536a6 - UI坐标数据表A
+#define UICoordinateDataTableA UNK_1809536a6
+// 原始变量名：UNK_1809536a8 - UI坐标数据表B
+#define UICoordinateDataTableB UNK_1809536a8
+
+// UI系统函数结果表宏定义
+// 原始变量名：UNK_1809535ec - UI函数结果表A
+#define UIFunctionResultTableA UNK_1809535ec
+// 原始变量名：UNK_1809535e8 - UI函数结果表B
+#define UIFunctionResultTableB UNK_1809535e8
+// 原始变量名：UNK_180954788 - UI函数结果表C
+#define UIFunctionResultTableC UNK_180954788
+
 // UI系统未知函数表宏定义
 #define UIUnknownFunctionTable1 UIUnknownFunctionTable1
 #define UIUnknownFunctionTable2 UIUnknownFunctionTable2
@@ -73805,17 +73845,17 @@ void FUN_180707df0(longlong uiContext,longlong dataSource,undefined8 targetBuffe
       pfVar9[-1] = fVar2 * *pfVar7;
       pfloatResult1[-1] = fVar2 * pfloatResult2[-0xf0];
       *pfloatResult1 = fVar2 * *pfloatResult2;
-      fVar2 = *(float *)((longlong)pfVar7 + ((longlong)&UNK_18094e26c - uiContext));
+      fVar2 = *(float *)((longlong)pfVar7 + ((longlong)&UIRenderParameterTable1 - uiContext));
       *pfVar9 = fVar3 * pfVar7[-0xef];
       pfVar9[1] = fVar3 * pfVar7[1];
       pfloatResult1[-3] = fVar3 * pfloatResult2[-0xf1];
       pfloatResult1[-2] = fVar3 * pfloatResult2[-1];
-      fVar3 = *(float *)((longlong)pfVar7 + ((longlong)&UNK_18094e270 - uiContext));
+      fVar3 = *(float *)((longlong)pfVar7 + ((longlong)&UIRenderParameterTable2 - uiContext));
       pfVar9[2] = fVar2 * pfVar7[-0xee];
       pfVar9[3] = fVar2 * pfVar7[2];
       pfloatResult1[-5] = fVar2 * pfloatResult2[-0xf2];
       pfloatResult1[-4] = fVar2 * pfloatResult2[-2];
-      fVar2 = *(float *)(((longlong)&UNK_18094e274 - uiContext) + (longlong)pfVar7);
+      fVar2 = *(float *)(((longlong)&UIRenderParameterTable3 - uiContext) + (longlong)pfVar7);
       pfVar9[4] = fVar3 * pfVar7[-0xed];
       pfVar9[5] = fVar3 * pfVar7[3];
       pfloatResult1[-7] = fVar3 * pfloatResult2[-0xf3];
@@ -73825,7 +73865,7 @@ void FUN_180707df0(longlong uiContext,longlong dataSource,undefined8 targetBuffe
       pfVar9[7] = fVar2 * pfVar7[4];
       pfloatResult1[-9] = fVar2 * pfloatResult2[-0xf4];
       pfloatResult1[-8] = fVar2 * pfloatResult2[-4];
-      fVar2 = *(float *)((longlong)&UNK_18094e27c + -uiContext + (longlong)pfVar7);
+      fVar2 = *(float *)((longlong)&UIRenderParameterTable4 + -uiContext + (longlong)pfVar7);
       pfVar9[8] = fVar3 * pfVar7[-0xeb];
       pfVar9[9] = fVar3 * pfVar7[5];
       pfloatResult1[-0xb] = fVar3 * pfloatResult2[-0xf5];
@@ -73833,11 +73873,11 @@ void FUN_180707df0(longlong uiContext,longlong dataSource,undefined8 targetBuffe
       pfVar9[10] = fVar2 * pfVar7[-0xea];
       pfVar9[0xb] = fVar2 * pfVar7[6];
       lVar4 = lStack_710;
-      fVar3 = *(float *)((longlong)&UNK_18094e280 + -uiContext + (longlong)pfVar7);
+      fVar3 = *(float *)((longlong)&UIRenderParameterTable5 + -uiContext + (longlong)pfVar7);
       pfloatResult = pfVar7 + 10;
       pfloatResult1[-0xd] = fVar2 * pfloatResult2[-0xf6];
       pfloatResult1[-0xc] = fVar2 * pfloatResult2[-6];
-      fVar2 = *(float *)((longlong)&UNK_18094e25c + -uiContext + (longlong)pfloatResult);
+      fVar2 = *(float *)((longlong)&UIRenderParameterTable0 + -uiContext + (longlong)pfloatResult);
       pfVar9[0xc] = fVar3 * pfVar7[-0xe9];
       pfVar9[0xd] = fVar3 * pfVar7[7];
       allocatedMemory3 = lStack_6f8;
@@ -86852,8 +86892,8 @@ void FUN_18071bfe0(undefined8 uiContext,char *dataSource)
   FUN_1807054a0(uiContext,dataSource[2] * 5 + (int)dataSource[5],&UiControlData,8);
   allocatedMemory = 2;
   do {
-    FUN_1807054a0(uiContext,(int)*dataSource,&UNK_1809535b4,8);
-    FUN_1807054a0(uiContext,(int)dataSource[1],&UNK_1809535bc,8);
+    FUN_1807054a0(uiContext,(int)*dataSource,&UIDataBufferA,8);
+    FUN_1807054a0(uiContext,(int)dataSource[1],&UIDataBufferB,8);
     dataSource = dataSource + 3;
     allocatedMemory = allocatedMemory + -1;
   } while (allocatedMemory != 0);
@@ -86879,12 +86919,12 @@ undefined8 FUN_18071c1b0(longlong uiContext,int dataSource)
   if (operationResult != *(int *)(bufferData + 0x11fc)) {
     *(int *)(bufferData + 0x11fc) = operationResult;
     if (*(int *)(bufferData + 0x11dc) == 8) {
-      bufferPtr = &UNK_180953648;
+      bufferPtr = &UIDataBufferC;
     }
     else {
-      bufferPtr = &UNK_180953668;
+      bufferPtr = &UIDataBufferD;
       if (*(int *)(bufferData + 0x11dc) != 0xc) {
-        bufferPtr = &UNK_180953688;
+        bufferPtr = &UIDataBufferE;
       }
     }
     iVar3 = 1;
@@ -92114,9 +92154,9 @@ void FUN_180722370(undefined8 uiContext,int *dataSource)
   iStack_30 = iStack_24 / 5;
   iStack_24 = iStack_24 % 5;
   do {
-    functionResult = ReadUIData(uiContext,&UNK_1809535b4,8);
+    functionResult = ReadUIData(uiContext,&UIDataBufferA,8);
     *(undefined4 *)(psVar3 + -2) = functionResult;
-    functionResult = ReadUIData(uiContext,&UNK_1809535bc,8);
+    functionResult = ReadUIData(uiContext,&UIDataBufferB,8);
     *(undefined4 *)psVar3 = functionResult;
     psVar3 = psVar3 + 6;
     lVar4 = lVar4 + -1;
