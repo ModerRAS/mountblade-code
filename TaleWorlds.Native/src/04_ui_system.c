@@ -48543,26 +48543,26 @@ int CalculateUIImageBlockDifference(undefined1 (*uiContext) [32],int dataSource,
       }
     }
     else {
-      auVar6 = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
+      tempVector6 = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
       if (0 < (int)param_7) {
-        functionResult = (ulonglong)param_7;
+        pixelCount = (ulonglong)param_7;
         do {
-          auVar9 = *resultPointer;
+          tempVector9 = *resultPointer;
           uiContext = (undefined1 (*) [32])(*uiContext + dataSource);
           resultPointer = (undefined1 (*) [32])(*resultPointer + param_6);
-          asemaphoreHandle = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
-          auVar5 = vpunpcklbw_avx2(auVar6,asemaphoreHandle);
-          auVar5 = vpmaddubsw_avx2(auVar5,*(undefined1 (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
-          auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
-          auVar4 = vpsraw_avx2(auVar5,4);
-          auVar5 = vpunpckhbw_avx2(auVar6,asemaphoreHandle);
-          auVar6 = vpunpcklbw_avx2(auVar9,auVar3);
-          auVar6 = vpsubw_avx2(auVar4,auVar6);
-          auVar5 = vpmaddubsw_avx2(auVar5,*(undefined1 (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
-          auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
-          auVar5 = vpsraw_avx2(auVar5,4);
-          auVar9 = vpunpckhbw_avx2(auVar9,auVar3);
-          auVar4 = vpsubw_avx2(auVar5,auVar9);
+          tempVector1 = vpavgb_avx2(*uiContext,*(undefined1 (*) [32])(*uiContext + 1));
+          tempVector5 = vpunpcklbw_avx2(tempVector6,tempVector1);
+          tempVector5 = vpmaddubsw_avx2(tempVector5,*(undefined1 (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
+          tempVector5 = vpaddw_avx2(tempVector5,_DAT_180948080);
+          tempVector4 = vpsraw_avx2(tempVector5,4);
+          tempVector5 = vpunpckhbw_avx2(tempVector6,tempVector1);
+          tempVector6 = vpunpcklbw_avx2(tempVector9,zeroVector);
+          tempVector6 = vpsubw_avx2(tempVector4,tempVector6);
+          tempVector5 = vpmaddubsw_avx2(tempVector5,*(undefined1 (*) [32])(&g_uiRenderLookupTable + (bufferSize << 5)));
+          tempVector5 = vpaddw_avx2(tempVector5,_DAT_180948080);
+          tempVector5 = vpsraw_avx2(tempVector5,4);
+          tempVector9 = vpunpckhbw_avx2(tempVector9,zeroVector);
+          tempVector4 = vpsubw_avx2(tempVector5,tempVector9);
           auVar9 = vpaddw_avx2(auVar6,afunctionResult0._0_32_);
           auVar5 = vpmaddwd_avx2(auVar6,auVar6);
           auVar9 = vpaddw_avx2(auVar9,auVar4);
