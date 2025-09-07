@@ -11977,8 +11977,18 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 #define CleanupSystemResourcesA0 CleanupSystemResourcesA0
 
 
-// 原始函数名：FUN_1808b0fb0 - 系统状态更新函数O0
-// 功能：更新系统状态信息
+/**
+ * @brief 系统状态更新函数O0
+ * 
+ * 更新系统状态信息，包括系统运行状态、资源使用情况和性能指标。
+ * 该函数负责维护系统的整体状态，确保系统信息的准确性和一致性。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param stateFlags 状态标志位
+ * @return DataBuffer 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_1808b0fb0
+ */
 #define UpdateSystemStateO0 FUN_1808b0fb0
 
 // 原始函数名：FUN_1808af2e0 - 数据处理函数O0
@@ -12053,8 +12063,21 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 // 功能：检查系统的完整性并返回详细的状态码
 #define CheckSystemIntegrityAndReturnStatusCode FUN_1808b0010
 
-// 原始函数名：FUN_180769ed0 - 数据验证函数O3
-// 功能：验证数据并返回结果
+/**
+ * @brief 数据验证函数O3
+ * 
+ * 验证数据的完整性和有效性，返回详细的验证结果状态码。
+ * 该函数支持多种数据类型的验证，包括基本数据类型、结构体和数组。
+ * 
+ * @param dataHandle 数据句柄
+ * @param validationBuffer 验证缓冲区
+ * @param validationType 验证类型
+ * @param validationFlags 验证标志
+ * @param securityContext 安全上下文
+ * @return DataBuffer 验证结果状态码
+ * 
+ * @note 原始函数名：FUN_180769ed0
+ */
 #define ValidateDataAndReturnStatusO3 FUN_180769ed0
 
 // 原始函数名：FUN_18076a7d0 - 数据处理函数O9
