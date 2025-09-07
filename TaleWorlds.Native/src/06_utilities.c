@@ -55146,7 +55146,13 @@ void InvokeExtendedDataBufferCallback(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_1809069b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化系统资源并调用48偏移回调函数
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809069b0
+ */
+void InitializeSystemAndInvokeOffset48Callback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemResourcesI0();
@@ -55158,7 +55164,13 @@ void Unwind_1809069b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809069c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用178偏移回调函数
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809069c0
+ */
+void InvokeOffset178Callback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x178) != (int64_t *)0x0) {

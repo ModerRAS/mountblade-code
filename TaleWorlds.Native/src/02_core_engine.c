@@ -20576,8 +20576,8 @@ void CoreEngineExecuteSafeStringCopyOperation(long long SystemContextPointer, lo
   do {
     loopCounter = loopCounter + 1;
   } while (*(char *)(Utf8BufferSize + loopCounter) != '\0');
-  if ((int)LoopCounter < 0x40) {
-    *(int *)(SystemContextPointer + 0x10) = (int)LoopCounter;
+  if ((int)loopCounter < 0x40) {
+    *(int *)(SystemContextPointer + 0x10) = (int)loopCounter;
                     // WARNING: Could not recover jumptable at 0x000180049c27. Too many branches
                     // WARNING: Treating indirect jump as call
     strcpy_s(*(void *)(SystemContextPointer + 8),0x40);
@@ -99962,7 +99962,7 @@ void ProcessSystemMemoryNode(long long SystemContextPointer,int Utf8BufferSize,i
   
   DataConfigurationCounter = *(long long *)(SystemContextPointer + 0x10);
   pSystemShortValue1 = (short *)(DataConfigurationCounter + (long long)Utf8BufferSize * 2);
-  RemainingSpace = FUN_180121d80(pSystemShortValue1,pSystemShortValue1 + Utf16InputPointer);
+  RemainingSpace = CalculateUtf8EncodingLength(pSystemShortValue1,pSystemShortValue1 + Utf16InputPointer);
   *(int *)(SystemContextPointer + 0x38) = *(int *)(SystemContextPointer + 0x38) - RemainingSpace;
   bufferAllocationStatus = (long long)Utf16InputPointer + (long long)Utf8BufferSize;
   *(int *)(SystemContextPointer + 0x3c) = *(int *)(SystemContextPointer + 0x3c) - Utf16InputPointer;
@@ -99996,7 +99996,7 @@ unsigned long long ConfigureSystemDataStructureAndMemory(long long SystemContext
   SystemDataTablePointer = (long long)Utf8BufferSize;
   MemoryBlockIndex = (long long)Utf16EndPointer * 2;
   SystemByteValue = *(uint *)(SystemContextPointer + 0xe74) >> 0x12;
-  DataSize = FUN_180121d80(Utf16InputPointer,MemoryBlockIndex + Utf16InputPointer);
+  DataSize = CalculateUtf8EncodingLength(Utf16InputPointer,MemoryBlockIndex + Utf16InputPointer);
   if (((SystemByteValue & 1) == 0) && (*(int *)(SystemContextPointer + 0x40) < *(int *)(SystemContextPointer + 0x38) + 1 + (int)DataSize)  {
 ProcessSystemDataStructureConfiguration_ExitPoint:
     return DataSize & 0xffffffffffffff00;
@@ -101862,12 +101862,12 @@ LAB_1801168eb:
       } while (Utf8BufferSize[bufferAllocationStatus8] != '\0');
       ManageSystemDataReferenceCount(MemoryBlockIndex9 + 0x1eb0,Utf16InputPointer + 1);
       StringComparisonResult0 = (int)bufferAllocationStatus8 + 1;
-      FUN_18011da90(MemoryBlockIndex9 + 0x1ec0,StringComparisonResult0);
+      SetSystemDataStatus(MemoryBlockIndex9 + 0x1ec0,StringComparisonResult0);
                     // WARNING: Subroutine does not return
       memcpy(*(void *)(MemoryBlockIndex9 + 0x1ec8),Utf8BufferSize,(long long)StringComparisonResult0);
     }
     ProcessMemoryOperation(fStack_244,SystemValue1c8);
-    FUN_180123f30(FloatVariable51,pSystemShortValue5);
+    CleanupSystemOperations(FloatVariable51,pSystemShortValue5);
     ProcessSystemLoop();
     if (((MemoryAddressMask1 & 1) == 0) && (-1 < (char)AdditionalParameter1)) {
       *(uint *)(MemoryBlockIndex9 + 0x1b44) = *(uint *)(MemoryBlockIndex9 + 0x1b44) | 0xc;
@@ -101884,7 +101884,7 @@ LAB_1801168eb:
       ManageSystemDataReferenceCount((uint32_t *)(MemoryBlockIndex9 + 0x1eb0),Utf16InputPointer + 1);
       ValidationValuePointer3 = &uStack_1b0;
       uStack_1b0 = 0;
-      MemoryAllocationIndex1 = FUN_180121740(*(void *)(MemoryBlockIndex9 + 0x1eb8),*(uint32_t *)(MemoryBlockIndex9 + 0x1eb0),
+      MemoryAllocationIndex1 = AllocateSystemMemoryAndManage(*(void *)(MemoryBlockIndex9 + 0x1eb8),*(uint32_t *)(MemoryBlockIndex9 + 0x1eb0),
                              Utf8BufferSize,0,ValidationValuePointer3);
       *(uint32_t *)(MemoryBlockIndex9 + 0x1ee4) = MemoryAllocationIndex1;
       *(int *)(MemoryBlockIndex9 + 0x1ee0) = (int)uStack_1b0 - (int)Utf8BufferSize;
@@ -101917,10 +101917,10 @@ LAB_180116f3b:
           if (*(char *)(MemoryBlockIndex9 + 0x415) != '\0') goto LAB_180116f3b;
         }
         else if (*(char *)(MemoryBlockIndex9 + 0x415) != '\0') {
-          FUN_180115640(bufferAllocationStatus8,MemoryBlockIndex9 + 0x1ef0,0x1000c,SystemContextFloat19);
+          ProcessSystemDataEx(bufferAllocationStatus8,MemoryBlockIndex9 + 0x1ef0,0x1000c,SystemContextFloat19);
           *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 1;
           *(uint32_t *)(MemoryBlockIndex9 + 0x2d14) = 0xbe99999a;
-          FUN_180115640(bufferAllocationStatus8,MemoryBlockIndex9 + 0x1ef0,0x3000d);
+          ProcessSystemDataEx(bufferAllocationStatus8,MemoryBlockIndex9 + 0x1ef0,0x3000d);
           *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 1;
           *(uint32_t *)(MemoryBlockIndex9 + 0x2d14) = 0xbe99999a;
           goto LAB_180116f58;
@@ -217610,8 +217610,8 @@ uint32_t *FUN_180194c10(uint64_t SystemContextPointer,uint32_t *Utf8BufferSize) 
 uint64_t *
 FUN_180194c60(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
-  *SystemContextPointer = &UNK_180a0c808;
-  *SystemContextPointer = &UNK_180a0c9b0;
+  *SystemContextPointer = &SystemDataNodeTemplatePrimary;
+  *SystemContextPointer = &SystemDataNodeTemplateSecondary;
   *SystemContextPointer = &DataNodeTemplateB;
   *SystemContextPointer = &DataNodeTemplateA;
   if ((Utf8BufferSize & 1) != 0) {
