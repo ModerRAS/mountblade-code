@@ -8160,8 +8160,8 @@ void* UtilityProcessDataPrimary;
 // 全局数据指针Extended相关变量
 void* GlobalDataPointerExtendedStorage;    // DAT_180bfa230
 void* GlobalDataPointerExtendedStatus;     // DAT_180bfa238
-void* GlobalDataPointerA38Config;     // DAT_180bfa240
-void* GlobalDataPointerA38Cache;      // DAT_180bfa248
+void* GlobalDataPointerExtendedConfig;     // DAT_180bfa240
+void* GlobalDataPointerExtendedCache;      // DAT_180bfa248
 void* GlobalDataPointerA38ValidationBuffer;  // DAT_180a22fa8
 
 // 函数: uint8_t ProcessUtilityData;
