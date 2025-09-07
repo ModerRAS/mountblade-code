@@ -32387,17 +32387,17 @@ ValidationStartHandler:
   dataBufferSizeValid = *(uint *)(dataBuffer + 8) < 0x34;
   cStackX_20 = (char)memoryBaseAddress;
   auStackX_18[0] = CONCAT31(auStackX_18[0]._1_3_,cStackX_20);
-  bVar9 = false;
+  isMemoryAllocationComplete = false;
   if (0x37 < *(uint *)(dataBuffer + 8)) {
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
       pdataContext = (int64_t *)*dataBuffer;
       if (*pdataContext == 0) {
         validationStatus = 0x1c;
 ValidationErrorHandler6:
-        bVar8 = validationStatus == 0;
-        if (bVar8) {
+        isValidationSuccessful = validationStatus == 0;
+        if (isValidationSuccessful) {
           dataBufferSizeValid = acStack_a8[0] != '\0';
-          bVar8 = true;
+          isValidationSuccessful = true;
         }
       }
       else {
