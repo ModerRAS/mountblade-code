@@ -12031,15 +12031,15 @@ void CoreEngineInitializeGameSystem(void)
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
-    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
+    CoreEngineSetupMemoryNode(SystemContext,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
   }
   StringProcessingStatus[6] = 0x4384dcc4b6d3f417;
   StringProcessingStatus[7] = 0x92a15d52fe2679bd;
   StringProcessingStatus[8] = &SystemConnectionTemplateD;
   StringProcessingStatus[9] = 0;
-  StringProcessingStatus[10] = SystemFileSystemConfigurationFlag;
+  StringProcessingStatus[10] = FileSystemConfigurationFlag;
   return;
 }
 
@@ -12517,25 +12517,18 @@ void InitializeNetworkProtocolNode(void)
   char StringBuffer;
   void *SystemContext;
   int MemoryMatchResult;
-  long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
-  uint64_t ReservedStackSpace;
-  long long *SystemContextPtr;
-  uint64_t *PrimaryProcessingStatusFlag;
-  void *SecondaryProcessingStatusFlag;
-  void *StringProcessingStatus;
-  void *TemporaryBuffer;
+  void *ProtocolNode;
   uint64_t StackConfigurationFlag;
   
-  SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
-  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  SystemContext = CoreEngineGetSystemContext();
+  PrimaryStatusBlock = (void **)*SystemContext;
+  StringBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
   StackConfigurationFlag = 0;
-  TertiaryNode = PrimaryStatusBlock;
+  ProtocolNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataQuaternary,0x10);
@@ -12551,8 +12544,8 @@ void InitializeNetworkProtocolNode(void)
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataQuaternary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
-    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
+    CoreEngineSetupMemoryNode(SystemContext,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
   }
   StringProcessingStatus[6] = 0x4b2d79e470ee4e2c;
@@ -12682,24 +12675,23 @@ void InitializeNetworkBufferNode(void
  * 和初始化相关的事件数据结构。函数会遍历事件链表，查找合适的
  * 位置插入新的事件节点，并设置节点的标识符和事件回调函数。
  */
-void InitializeNetworkEventHandlerNode(void
+void InitializeNetworkEventHandlerNode(void)
 {
   char StringBuffer;
   void *SystemContext;
   int MemoryMatchResult;
-  long long *EngineContext;
   long long AllocatedMemorySize;
   void *CurrentNode;
   void *PreviousNode;
   void *NextNode;
-  void *TempStackPointer;
-  void *RegisterX18TempPointer;
+  void *EventHandlerNode;
+  void *EventConfigurationFlag;
   
-  SystemContext = (EngineContext *)CoreEngineGetSystemContext();
-  PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
-  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
-  SystemFileSystemConfigurationFlag = &SystemFileSystemHandler;
-  TertiaryNode = PrimaryStatusBlock;
+  SystemContext = CoreEngineGetSystemContext();
+  PrimaryStatusBlock = (void **)*SystemContext;
+  StringBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  EventConfigurationFlag = &SystemFileSystemHandler;
+  EventHandlerNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
     MemoryMatchResult = memcmp(SecondaryProcessingStatusFlag + 4,&SystemComparisonDataSeptenary,0x10);
@@ -12715,15 +12707,15 @@ void InitializeNetworkEventHandlerNode(void
     StringBuffer = *(char *)((long long)NextNode + SystemNodeStatusOffset);
   }
   if ((StringProcessingStatus == PrimaryProcessingStatusFlag) || (MemoryMatchResult = memcmp(&SystemComparisonDataSeptenary,StringProcessingStatus + 4,0x10), MemoryMatchResult < 0)) {
-    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContextPtr);
-    CoreEngineSetupMemoryNode(SystemContextPtr,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
+    AllocatedMemorySize = CoreEngineAllocateMemory(SystemContext);
+    CoreEngineSetupMemoryNode(SystemContext,&TemporaryBuffer,StringProcessingStatus,AllocatedMemorySize + 0x20,AllocatedMemorySize);
     StringProcessingStatus = TemporaryBuffer;
   }
   StringProcessingStatus[6] = 0x4384dcc4b6d3f417;
   StringProcessingStatus[7] = 0x92a15d52fe2679bd;
   StringProcessingStatus[8] = &SystemConnectionTemplateD;
   StringProcessingStatus[9] = 0;
-  StringProcessingStatus[10] = SystemFileSystemConfigurationFlag;
+  StringProcessingStatus[10] = EventConfigurationFlag;
   return;
 }
 
@@ -12817,7 +12809,7 @@ void SystemConfigurationHandlerInitialize(void
  * 该函数负责初始化系统数据模板，设置数据模板和相关指针。
  * 返回初始化状态或错误码。
  */
-int SystemDataTemplateInitialize(void
+int SystemDataTemplateInitialize(void)
 {
   long long SystemContextHandle;
   uint64_t TemplateParameter;

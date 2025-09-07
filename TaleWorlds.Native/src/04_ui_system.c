@@ -100225,190 +100225,190 @@ void CalculateUIComponentLayoutOptimization(int uiContext)
   undefined *stackDataPtr;
   longlong stackMemorySize;
   
-  uStack0000000000000048 = CONCAT22(unaff_000000b2,unaff_R14W);
-  iStack0000000000000040 = -1;
-  fVar30 = unaff_XMM8_Da;
+  stackComponentFlags = CONCAT22(operationMode,componentType);
+  stackOptimizationLevel = -1;
+  baseScale = baseTextureScale;
   if (0 < uiContext) {
-    if (unaff_EBX == 0xc) {
+    if (uiComponentFlags == 0xc) {
       uiContext = uiContext * 2;
       uiContext = (int)(((longlong)uiContext / 3 + ((longlong)uiContext >> 0x3f) & 0xffffffffU) >> 0x1f) +
                 uiContext / 3 + (uiContext >> 0x1f);
-LAB_18072cb78:
-      *(int *)(unaff_RBP + 0x2c88) = uiContext;
+UpdateComponentLayout:
+      *(int *)(uiContextBase + 0x2c88) = uiContext;
     }
-    else if (unaff_EBX == 0x10) {
+    else if (uiComponentFlags == 0x10) {
       uiContext = uiContext >> 1;
-      goto LAB_18072cb78;
+      goto UpdateComponentLayout;
     }
-    dVar31 = (double)log10((double)uiContext);
-    fVar30 = (float)(dVar31 * 3.32192809488736);
+    logResult = (double)log10((double)uiContext);
+    baseScale = (float)(logResult * 3.32192809488736);
   }
-  if (unaff_R12D == 4) {
-    psemaphoreHandle8 = &UNK_180956e60;
-    if ((unaff_EBX == 8) && (CONCAT22(unaff_000000b2,unaff_R14W) < iStack0000000000000050)) {
-      semaphoreHandle2 = unaff_RSI & 0xffffffff;
-      *(ulonglong *)(unaff_RBP + -0x70) = unaff_RSI;
+  if (stackTextureParams == 4) {
+    renderSemaphorePtr = &UIRenderSemaphorePrimary;
+    if ((uiComponentFlags == 8) && (CONCAT22(operationMode,componentType) < stackRenderParams)) {
+      taskPriority = semaphoreHandle & 0xffffffff;
+      *(ulonglong *)(uiContextBase + -0x70) = semaphoreHandle;
     }
     else {
-      semaphoreHandle2 = 3;
-      *(ulonglong *)(unaff_RBP + -0x70) = unaff_RSI;
+      taskPriority = 3;
+      *(ulonglong *)(uiContextBase + -0x70) = semaphoreHandle;
     }
   }
   else {
-    semaphoreHandle2 = 3;
-    psemaphoreHandle8 = &UNK_180956f30;
-    *(undefined4 *)(unaff_RBP + -0x48) = 3;
-    *(undefined8 *)(unaff_RBP + -0x70) = 3;
+    taskPriority = 3;
+    renderSemaphorePtr = &UIRenderSemaphoreSecondary;
+    *(undefined4 *)(uiContextBase + -0x48) = 3;
+    *(undefined8 *)(uiContextBase + -0x70) = 3;
   }
-  *(ulonglong *)(unaff_RBP + -0x38) = semaphoreHandle2;
-  *(longlong *)(unaff_RBP + -0x40) = (longlong)allocationFlags;
-  if (0 < allocationFlags) {
-    componentIndex0 = CONCAT44(unaff_000000b4,CONCAT22(unaff_000000b2,unaff_R14W));
-    functionResult5 = *(ulonglong *)(unaff_RBP + -0x48);
-    fVar37 = (float)*(int *)(unaff_RBP + 0x2cb0);
-    fVar32 = *(float *)(unaff_RBP + 0x2c98);
-    functionResult7 = semaphoreHandle2;
-    puStack0000000000000070 =
-         (undefined *)CONCAT44(unaff_000000b4,CONCAT22(unaff_000000b2,unaff_R14W));
+  *(ulonglong *)(uiContextBase + -0x38) = taskPriority;
+  *(longlong *)(uiContextBase + -0x40) = (longlong)stackMemoryParams;
+  if (0 < stackMemoryParams) {
+    componentIndex0 = CONCAT44(optimizationFlags,CONCAT22(operationMode,componentType));
+    renderTaskId = *(ulonglong *)(uiContextBase + -0x48);
+    finalScale = (float)*(int *)(uiContextBase + 0x2cb0);
+    adjustedScale = *(float *)(uiContextBase + 0x2c98);
+    taskPriority = taskPriority;
+    stackDataPtr =
+         (undefined *)CONCAT44(optimizationFlags,CONCAT22(operationMode,componentType));
     do {
-      iVar8 = *(int *)(unaff_RBP + -0x10 + componentIndex0 * 4);
-      operationResult9 = CONCAT22(unaff_000000b2,unaff_R14W);
-      if (functionResult7 != 0) {
-        semaphoreHandle3 = *(uint *)(unaff_RBP + 0x2cb0);
-        pfVar27 = (float *)(unaff_RBP + 0x50);
+      layoutIterations = *(int *)(uiContextBase + -0x10 + componentIndex0 * 4);
+      calculationResult = CONCAT22(operationMode,componentType);
+      if (taskPriority != 0) {
+        semaphoreHandle3 = *(uint *)(uiContextBase + 0x2cb0);
+        layoutResultBuffer = (float *)(uiContextBase + 0x50);
         do {
-          *pfVar27 = (float)CONCAT22(unaff_000000b2,unaff_R14W);
+          *layoutResultBuffer = (float)CONCAT22(operationMode,componentType);
           if (0 < (int)semaphoreHandle3) {
-            componentIndex0 = CONCAT44(unaff_000000b4,CONCAT22(unaff_000000b2,unaff_R14W));
-            pcVar14 = psemaphoreHandle8 + operationResult9;
+            componentIndex0 = CONCAT44(optimizationFlags,CONCAT22(operationMode,componentType));
+            dataBufferPtr = renderSemaphorePtr + calculationResult;
             semaphoreHandle4 = (ulonglong)semaphoreHandle3;
-            fVar29 = unaff_XMM8_Da;
+            scaleFactor = baseTextureScale;
             do {
-              cVar4 = *pcVar14;
-              pcVar14 = pcVar14 + (functionResult5 & 0xffffffff);
-              allocatedMemory2 = (cVar4 + iVar8) + componentIndex0;
+              componentChar = *dataBufferPtr;
+              dataBufferPtr = dataBufferPtr + (renderTaskId & 0xffffffff);
+              renderMemoryPool = (componentChar + layoutIterations) + componentIndex0;
               componentIndex0 = componentIndex0 + 0x95;
-              fVar29 = fVar29 + *(float *)(unaff_RBP + 400 + allocatedMemory2 * 4);
+              scaleFactor = scaleFactor + *(float *)(uiContextBase + 400 + renderMemoryPool * 4);
               semaphoreHandle4 = semaphoreHandle4 - 1;
             } while (semaphoreHandle4 != 0);
-            *pfVar27 = fVar29;
+            *layoutResultBuffer = scaleFactor;
           }
-          operationResult9 = operationResult9 + 1;
-          pfVar27 = pfVar27 + 1;
-          functionResult7 = functionResult7 - 1;
-          componentIndex0 = (longlong)puStack0000000000000070;
-        } while (functionResult7 != 0);
+          calculationResult = calculationResult + 1;
+          layoutResultBuffer = layoutResultBuffer + 1;
+          taskPriority = taskPriority - 1;
+          componentIndex0 = (longlong)stackDataPtr;
+        } while (taskPriority != 0);
       }
-      semaphoreHandle3 = CONCAT22(unaff_000000b2,unaff_R14W);
-      functionResult1 = CONCAT22(unaff_000000b2,unaff_R14W);
-      fVar29 = unaff_XMM7_Da;
+      semaphoreHandle3 = CONCAT22(operationMode,componentType);
+      optimizationResult = CONCAT22(operationMode,componentType);
+      scaleFactor = baseRenderScale;
       do {
-        fVar35 = *(float *)(unaff_RBP + 0x50 + (longlong)(int)functionResult1 * 4);
-        uVar6 = functionResult1;
-        if (fVar35 <= fVar29) {
-          uVar6 = semaphoreHandle3;
-          fVar35 = fVar29;
+        optimalScale = *(float *)(uiContextBase + 0x50 + (longlong)(int)optimizationResult * 4);
+        componentFlags = optimizationResult;
+        if (optimalScale <= scaleFactor) {
+          componentFlags = semaphoreHandle3;
+          optimalScale = scaleFactor;
         }
-        fVar29 = fVar35;
-        semaphoreHandle3 = uVar6;
-        functionResult1 = functionResult1 + 1;
-      } while ((int)functionResult1 < (int)semaphoreHandle2);
-      dVar31 = (double)log10((double)iVar8);
-      fVar35 = fVar29 - fVar37 * unaff_XMM10_Da * (float)(dVar31 * 3.32192809488736);
-      if (CONCAT22(unaff_000000b2,unaff_R14W) < *(int *)(unaff_RBP + 0x2c88)) {
-        fVar33 = (float)(dVar31 * 3.32192809488736) - fVar30;
-        fVar33 = fVar33 * fVar33;
-        fVar35 = fVar35 - (fVar37 * unaff_XMM10_Da * **(float **)(unaff_RBP + -0x78) * fVar33) /
-                          (fVar33 + 0.5);
+        scaleFactor = optimalScale;
+        semaphoreHandle3 = componentFlags;
+        optimizationResult = optimizationResult + 1;
+      } while ((int)optimizationResult < (int)taskPriority);
+      logResult = (double)log10((double)layoutIterations);
+      optimalScale = scaleFactor - finalScale * maxTextureScale * (float)(logResult * 3.32192809488736);
+      if (CONCAT22(operationMode,componentType) < *(int *)(uiContextBase + 0x2c88)) {
+        componentSize = (float)(logResult * 3.32192809488736) - baseScale;
+        componentSize = componentSize * componentSize;
+        optimalScale = optimalScale - (finalScale * maxTextureScale * **(float **)(uiContextBase + -0x78) * componentSize) /
+                          (componentSize + 0.5);
       }
-      if ((unaff_XMM12_Da < fVar35) && (fVar37 * fVar32 < fVar29)) {
-        unaff_XMM12_Da = fVar35;
-        unaff_XMM13_Da = fVar29;
-        iStack0000000000000040 = iVar8;
-        uStack0000000000000048 = semaphoreHandle3;
+      if ((maxRenderScale < optimalScale) && (finalScale * adjustedScale < scaleFactor)) {
+        maxRenderScale = optimalScale;
+        maxTextureScale = scaleFactor;
+        stackOptimizationLevel = layoutIterations;
+        stackComponentFlags = semaphoreHandle3;
       }
-      functionResult7 = *(ulonglong *)(unaff_RBP + -0x38);
+      taskPriority = *(ulonglong *)(uiContextBase + -0x38);
       componentIndex0 = componentIndex0 + 1;
-      puStack0000000000000070 = (undefined *)componentIndex0;
-    } while (componentIndex0 < *(longlong *)(unaff_RBP + -0x40));
-    if (iStack0000000000000040 != -1) {
-      **(float **)(unaff_RBP + -0x78) = unaff_XMM13_Da / fVar37;
-      if (iStack000000000000004c < 9) {
-        if (0 < (int)*(uint *)(unaff_RBP + 0x2cb0)) {
-          componentIndex0 = *(longlong *)(unaff_RBP + -0x70);
-          pvalidationResult6 = *(int **)(unaff_RBP + -0x80);
-          semaphoreHandle2 = (ulonglong)*(uint *)(unaff_RBP + 0x2cb0);
-          pcVar14 = psemaphoreHandle8 + (int)uStack0000000000000048;
+      stackDataPtr = (undefined *)componentIndex0;
+    } while (componentIndex0 < *(longlong *)(uiContextBase + -0x40));
+    if (stackOptimizationLevel != -1) {
+      **(float **)(uiContextBase + -0x78) = maxTextureScale / finalScale;
+      if (stackLayoutParams < 9) {
+        if (0 < (int)*(uint *)(uiContextBase + 0x2cb0)) {
+          componentIndex0 = *(longlong *)(uiContextBase + -0x70);
+          pvalidationResult6 = *(int **)(uiContextBase + -0x80);
+          taskPriority = (ulonglong)*(uint *)(uiContextBase + 0x2cb0);
+          dataBufferPtr = renderSemaphorePtr + (int)stackComponentFlags;
           do {
-            iVar8 = *pcVar14 + iStack0000000000000040;
-            if (iVar8 < 0x91) {
-              if (iVar8 < 0x10) {
-                iVar8 = 0x10;
+            layoutIterations = *dataBufferPtr + stackOptimizationLevel;
+            if (layoutIterations < 0x91) {
+              if (layoutIterations < 0x10) {
+                layoutIterations = 0x10;
               }
             }
             else {
-              iVar8 = 0x90;
+              layoutIterations = 0x90;
             }
-            *pvalidationResult6 = iVar8;
-            pcVar14 = pcVar14 + componentIndex0;
+            *pvalidationResult6 = layoutIterations;
+            dataBufferPtr = dataBufferPtr + componentIndex0;
             pvalidationResult6 = pvalidationResult6 + 1;
-            semaphoreHandle2 = semaphoreHandle2 - 1;
-          } while (semaphoreHandle2 != 0);
+            taskPriority = taskPriority - 1;
+          } while (taskPriority != 0);
         }
-        sVar18 = (short)iStack0000000000000040 + -0x10;
-        semaphoreHandle2 = (ulonglong)uStack0000000000000048;
+        componentType = (short)stackOptimizationLevel + -0x10;
+        taskPriority = (ulonglong)stackComponentFlags;
       }
       else {
-        if (iStack000000000000004c == 0xc) {
-          semaphoreHandle3 = (short)iStack0000000000000040 * 3;
-          iStack0000000000000040 = ((int)semaphoreHandle3 >> 1) + (semaphoreHandle3 & 1);
+        if (stackLayoutParams == 0xc) {
+          semaphoreHandle3 = (short)stackOptimizationLevel * 3;
+          stackOptimizationLevel = ((int)semaphoreHandle3 >> 1) + (semaphoreHandle3 & 1);
         }
         else {
-          iStack0000000000000040 = iStack0000000000000040 * 2;
+          stackOptimizationLevel = stackOptimizationLevel * 2;
         }
-        if (in_stack_00000068 < in_stack_00000058) {
-          iVar8 = in_stack_00000058;
-          if ((iStack0000000000000040 <= in_stack_00000058) &&
-             (iVar8 = iStack0000000000000040, iStack0000000000000040 < in_stack_00000068)) {
-            iVar8 = in_stack_00000068;
+        if (inputTextureCount < inputComponentCount) {
+          layoutIterations = inputComponentCount;
+          if ((stackOptimizationLevel <= inputComponentCount) &&
+             (layoutIterations = stackOptimizationLevel, stackOptimizationLevel < inputTextureCount)) {
+            layoutIterations = inputTextureCount;
           }
         }
         else {
-          iVar8 = in_stack_00000068;
-          if ((iStack0000000000000040 <= in_stack_00000068) &&
-             (iVar8 = iStack0000000000000040, iStack0000000000000040 < in_stack_00000058)) {
-            iVar8 = in_stack_00000058;
+          layoutIterations = inputTextureCount;
+          if ((stackOptimizationLevel <= inputTextureCount) &&
+             (layoutIterations = stackOptimizationLevel, stackOptimizationLevel < inputComponentCount)) {
+            layoutIterations = inputComponentCount;
           }
         }
-        operationResult9 = *(int *)(unaff_RBP + 0x2cb0);
-        uStack0000000000000048 = CONCAT22(unaff_000000b2,unaff_R14W);
-        operationResult6 = in_stack_00000058;
-        if (in_stack_00000058 < iVar8 + -2) {
-          operationResult6 = iVar8 + -2;
+        calculationResult = *(int *)(uiContextBase + 0x2cb0);
+        stackComponentFlags = CONCAT22(operationMode,componentType);
+        calculationResult = inputComponentCount;
+        if (inputComponentCount < layoutIterations + -2) {
+          calculationResult = layoutIterations + -2;
         }
-        iVar7 = in_stack_00000068;
-        if (iVar8 + 2 < in_stack_00000068) {
-          iVar7 = iVar8 + 2;
+        componentSize = inputTextureCount;
+        if (layoutIterations + 2 < inputTextureCount) {
+          componentSize = layoutIterations + 2;
         }
-        iStack0000000000000040 = iVar7;
-        FUN_18072b930(unaff_RBP + 0xae0,*(undefined8 *)(unaff_RBP + -0x60),operationResult6,
-                      iStack0000000000000054,operationResult9);
-        FUN_18072bbd0(unaff_RBP + 0x1d00,*(undefined8 *)(unaff_RBP + -0x60),operationResult6,
-                      iStack0000000000000054,operationResult9);
-        fVar30 = (float)iVar8;
-        if (operationResult9 == 4) {
-          puStack0000000000000070 = &UNK_180956e90;
+        stackOptimizationLevel = componentSize;
+        ProcessUIComponentRenderQueue(uiContextBase + 0xae0,*(undefined8 *)(uiContextBase + -0x60),calculationResult,
+                      stackRenderParams,calculationResult);
+        ProcessUIComponentTextureQueue(uiContextBase + 0x1d00,*(undefined8 *)(uiContextBase + -0x60),calculationResult,
+                      stackRenderParams,calculationResult);
+        baseScale = (float)layoutIterations;
+        if (calculationResult == 4) {
+          stackDataPtr = &UIRenderDataBuffer;
           componentIndex0 = 0x22;
-          operationResult9 = (int)(char)(&UNK_180956e8c)[iStack0000000000000050];
+          calculationResult = (int)(char)(&UIRenderSemaphoreTertiary)[stackTextureParams];
         }
         else {
-          operationResult9 = 0xc;
-          puStack0000000000000070 = &UNK_180956f38;
+          calculationResult = 0xc;
+          stackDataPtr = &UIRenderDataBufferSecondary;
           componentIndex0 = 0xc;
         }
-        dVar31 = (double)FUN_18072b3a0(*(longlong *)(unaff_RBP + -0x60) +
-                                       (longlong)(iStack000000000000004c * 0x14) * 4,
-                                       iStack0000000000000054 * *(int *)(unaff_RBP + 0x2cb0));
+        logResult = (double)CalculateUIComponentOptimization(*(longlong *)(uiContextBase + -0x60) +
+                                       (longlong)(stackLayoutParams * 0x14) * 4,
+                                       stackRenderParams * *(int *)(uiContextBase + 0x2cb0));
         if (operationResult6 <= iVar7) {
           allocatedMemory2 = CONCAT44(unaff_000000b4,CONCAT22(unaff_000000b2,unaff_R14W));
           do {
