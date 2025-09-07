@@ -14185,7 +14185,7 @@ uint8_t DataConfigurationTableA3;    // 原始变量名：UNK_180986590
 
 // 数据配置表A4
 // 功能：存储数据配置信息的表结构
-#define DataConfigurationTableA4 UNK_1809865f0
+uint8_t DataConfigurationTableA4;    // 原始变量名：UNK_1809865f0
 
 // 数据配置表A5
 // 功能：存储数据配置信息的表结构
