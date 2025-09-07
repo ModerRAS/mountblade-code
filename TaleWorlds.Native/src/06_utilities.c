@@ -148,6 +148,30 @@
 #define ResourceDescriptorSecondaryOffset 0x20
 #define ResourceDescriptorTertiaryOffset 0x24
 
+// 资源队列和链表常量
+#define ResourceQueueEntrySize 0x1a8
+#define ResourceQueueStepSize 0x1a8
+#define ResourceValidationFlagOffset 0x3541
+#define ResourceQueuePointerOffset 0x3538
+
+// 内存管理和资源清理常量
+#define MemoryRegionMask 0xffc00000
+#define MemoryResourceBaseOffset 0x80
+#define MemoryResourceMultiplier 0x50
+#define ExceptionListOffset 0x70
+#define ResourceValidationCheckOffset 0x14
+#define ResourceDataPointerOffset 0x20
+
+// 异常上下文和处理器常量
+#define ExceptionHandlerContextOffset 0x50
+#define ExceptionDataListOffset 0x3c8
+#define ExceptionDataEndOffset 0x3d0
+#define ExceptionHandlerCleanupThreshold 0x8000
+
+// 颜色组件处理常量
+#define ColorComponentMask 0xffff
+#define ValidationStatusThreshold 0x8000
+
 // 资源验证和队列管理常量
 #define ResourceValidationFlagOffset 0x3541
 #define ResourceQueueNextOffset 0x3538
@@ -19491,7 +19515,7 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
       colorComponentBlueMid = blueAlphaComponents >> 0x10 & 0xff;
       colorComponentGreenMid = blueAlphaComponents >> 8 & 0xff;
       colorComponentGreenLow = blueAlphaComponents & 0xff;
-      colorComponentAlpha = redGreenComponents & 0xffff;
+      colorComponentAlpha = redGreenComponents & ColorComponentMask;
         InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
     }
     if (((*(byte *)(memoryBlockOffset + 0xc4) & 1) != 0) &&
@@ -19612,7 +19636,7 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
       stackGreenComponentMid = inputGreenComponent >> 0x10 & 0xff;
       stackGreenComponentLow = inputGreenComponent >> 8 & 0xff;
       stackGreenComponentLowWord = inputGreenComponent & 0xff;
-      stackBlueAlphaHigh = inputRedComponent & 0xffff;
+      stackBlueAlphaHigh = inputRedComponent & ColorComponentMask;
       
       // 初始化系统缓冲区
       InitializeSystemBufferA0(systemBufferA, 0x27, &SystemBufferConfiguration, inputDataWord);
@@ -19724,7 +19748,7 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
       blueMidHigh = blueAlphaComponents >> 0x10 & 0xff;
       blueMidLow = blueAlphaComponents >> 8 & 0xff;
       blueLowByte = blueAlphaComponents & 0xff;
-      redGreenLow = redGreenComponents & 0xffff;
+      redGreenLow = redGreenComponents & ColorComponentMask;
         InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
     }
     systemContext = *(int64_t *)(memoryBlockOffset + 0x48);
@@ -26519,7 +26543,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
                     return;
                   }
                   validationStatus = *(uint *)(resourceIterator + ExceptionHandlerCallbackOffset10);
-                  if (validationStatus < 0x8000) {
+                  if (validationStatus < ValidationStatusThreshold) {
                     stackDataBuffer = CONCAT62(stackDataBuffer._2_6_,(short)validationStatus);
                     validationOutcome = 2;
                   }
@@ -59805,9 +59829,9 @@ void UnwindProcessDataValidation(DataBuffer exceptionContext, int64_t exceptionH
   int64_t *dataContext;
   int64_t memoryBlockOffset;
   
-  dataContext = (int64_t *)(*(int64_t *)(exceptionHandlerContext + 0x50) + 0x3c8);
-  contextIterator = *(int64_t *)(*(int64_t *)(exceptionHandlerContext + 0x50) + 0x3d0);
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != contextIterator; memoryBlockOffset = memoryBlockOffset + 0x1a8) {
+  dataContext = (int64_t *)(*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset) + ExceptionDataListOffset);
+  contextIterator = *(int64_t *)(*(int64_t *)(exceptionHandlerContext + ExceptionHandlerContextOffset) + ExceptionDataEndOffset);
+  for (memoryBlockOffset = *dataContext; memoryBlockOffset != contextIterator; memoryBlockOffset = memoryBlockOffset + ResourceQueueStepSize) {
     ProcessSystemConfigurationA0(memoryBlockOffset);
   }
   if (*dataContext == 0) {
@@ -59825,9 +59849,9 @@ void UnwindValidateMemoryAccess(DataBuffer exceptionContext, int64_t memoryConte
   int64_t *dataContext;
   int64_t memoryBlockOffset;
   
-  dataContext = *(int64_t **)(memoryContext + 0x60);
+  dataContext = *(int64_t **)(memoryContext + MemoryRegionDataOffset);
   exceptionHandlerContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x1a8) {
+  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + ResourceQueueStepSize) {
     ProcessSystemConfigurationA0(memoryBlockOffset);
   }
   if (*dataContext == 0) {
@@ -59873,8 +59897,8 @@ void CleanupSystemResources(DataBuffer systemContext,int64_t contextHandle)
   }
   resourceIterator = contextPointer[5];
   while (resourceIterator != 0) {
-    validationFlag = (char *)(resourceIterator + 0x3541);
-    resourceIterator = *(int64_t *)(resourceIterator + 0x3538);
+    validationFlag = (char *)(resourceIterator + ResourceValidationFlagOffset);
+    resourceIterator = *(int64_t *)(resourceIterator + ResourceQueuePointerOffset);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
     }
@@ -60066,7 +60090,7 @@ void UnwindCleanupThreadResourceQueue(DataBuffer exceptionContext, int64_t threa
   
   resourceQueue = *(int64_t **)(threadContext + 0x40);
   queueEndPointer = resourceQueue[1];
-  for (resourceIterator = *resourceQueue; resourceIterator != queueEndPointer; resourceIterator = resourceIterator + 0x1a8) {
+  for (resourceIterator = *resourceQueue; resourceIterator != queueEndPointer; resourceIterator = resourceIterator + ResourceQueueStepSize) {
     ReleaseResourceFromQueue(resourceIterator);
   }
   if (*resourceQueue == 0) {
