@@ -119077,15 +119077,32 @@ LAB_18011f6c5:
 
 
 
-f740(char *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointervoid CalculateRenderCoordinates(char *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 计算渲染坐标和位置信息
+ * 
+ * 该函数处理渲染系统的坐标计算，包括：
+ * - 字符位置计算和坐标转换
+ * - 格式化字符串处理和参数解析
+ * - 渲染缓冲区管理和数据操作
+ * 
+ * @param CharacterCode 输入字符串指针，包含待处理的字符数据
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配和边界检查
+ * @param Utf8SourcePointer UTF-8源数据指针，包含渲染所需的数据
+ * @return void
+ * 
+ * @note 函数使用编码密钥进行数据保护
+ * @note 支持百分比格式化和字符串解析
+ * @note 内部使用栈缓冲区进行数据处理
+ */
+void CalculateRenderCoordinates(char *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer)
 {
   char CurrentCharacter;
-  char *SystemValidationFunction;
-  bool IsHighByteSet;
-  uint8_t aStackProcessingUnsignedValue78 [32];
-  char cStack_58;
-  char acStack_57 [63];
-  unsigned long long uStack_18;
+  char *StringProcessingPointer;
+  bool IsPercentCharacter;
+  uint8_t EncodingBuffer [32];
+  char FormatResultChar;
+  char FormatBuffer [63];
+  unsigned long long EncodingKey;
   
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {
@@ -119094,31 +119111,31 @@ f740(char *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointervoi
 LAB_18011f775:
       if ((CurrentCharacter == '%') && (CharacterCode[1] != '%')) {
         OperateBufferAndSetParameters(&FormatResultChar,0x40,CharacterCode,Utf8SourcePointer);
-        SystemValidationFunction = &FormatResultChar;
-        while (cStack_58 == ' ') {
-          SystemValidationFunction = SystemValidationFunction + 1;
-          cStack_58 = *SystemValidationFunction;
+        StringProcessingPointer = &FormatResultChar;
+        while (FormatResultChar == ' ') {
+          StringProcessingPointer = StringProcessingPointer + 1;
+          FormatResultChar = *StringProcessingPointer;
         }
         atof();
                     // WARNING: Subroutine does not return
-        CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue78);
+        CoreEngineExecuteUtilityFunction(EncodingKey ^ (unsigned long long)EncodingBuffer);
       }
                     // WARNING: Subroutine does not return
-      CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue78);
+      CoreEngineExecuteUtilityFunction(EncodingKey ^ (unsigned long long)EncodingBuffer);
     }
-    LowByte = CurrentCharacter == '%';
-    if (LowByte) {
+    IsPercentCharacter = CurrentCharacter == '%';
+    if (IsPercentCharacter) {
       if (CharacterCode[1] != '%') {
         CurrentCharacter = *CharacterCode;
         goto LAB_18011f775;
       }
-      LowByte = true;
+      IsPercentCharacter = true;
     }
-    SystemValidationFunction = CharacterCode + 1;
-    if (!LowByte) {
-      SystemValidationFunction = CharacterCode;
+    StringProcessingPointer = CharacterCode + 1;
+    if (!IsPercentCharacter) {
+      StringProcessingPointer = CharacterCode;
     }
-    CharacterCode = SystemValidationFunction + 1;
+    CharacterCode = StringProcessingPointer + 1;
   } while( true );
 }
 
