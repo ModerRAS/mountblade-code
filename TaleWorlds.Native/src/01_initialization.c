@@ -532,7 +532,7 @@
  * 处理系统内存页的管理和操作，包括内存页的分配、释放和映射。
  * 用于系统内存页面的生命周期管理。
  * 
- * @param MemoryPagePointer 内存页指针，指向要处理的内存页
+ * @param memoryPagePointer 内存页指针，指向要处理的内存页
  * @return 无返回值
  */
 void HandleSystemMemoryPage(long long memoryPagePointer);
@@ -1111,7 +1111,7 @@ void* SystemMemoryRegionExpansionTertiary;                   // 系统内存区�
 void* SystemMemoryRegionExpansionQuaternary;                 // 系统内存区域扩展第四区域
 void* SystemDataTableLegacy;                                  // 遗留系统数据表
 void* SystemMemoryRegionExpansionSecondary;                  // 系统内存区域扩展次级区域
-void* SystemMemoryRegionExpansionQuinary;
+void* SystemMemoryRegionExpansionQuinary;                     // 系统内存区域扩展第五区域
 void* SystemMemoryRegionExpansionSierra;                     // 系统内存区域扩展Sierra
 void* SystemMemoryRegionExpansionTango;                      // 系统内存区域扩展Tango
 void* SystemMemoryRegionExpansionUniform;                    // 系统内存区域扩展Uniform
@@ -1202,18 +1202,18 @@ void* SystemMemoryPageFile;
 void* SystemDataTableEntryTemporary;
 void* SystemDataTableEntryReserved;
 void* SystemMemoryBlockStandby;
-void* SystemMemoryBlockSleep;
-long long SystemPrimaryOperationTimestamp;
-void* SystemDataTableEntryEmergency;
-void* SystemMemoryBlockHybrid;
-void* SystemMemoryBlockFastStartup;
-unsigned long long SystemPrimaryMemorySize;
-unsigned long long SystemSecondaryMemorySize;
-unsigned long long SystemCacheMemorySize;
+void* SystemMemoryBlockSleep;                                 // 系统内存块休眠区域
+long long SystemPrimaryOperationTimestamp;                     // 系统主操作时间戳
+void* SystemDataTableEntryEmergency;                           // 系统数据表条目紧急区域
+void* SystemMemoryBlockHybrid;                                 // 系统内存块混合区域
+void* SystemMemoryBlockFastStartup;                            // 系统内存块快速启动区域
+unsigned long long SystemPrimaryMemorySize;                     // 系统主内存大小
+unsigned long long SystemSecondaryMemorySize;                   // 系统次级内存大小
+unsigned long long SystemCacheMemorySize;                       // 系统缓存内存大小
 uint8_t SystemPrimaryOperationStatus;         // 系统主操作状态字节
 uint8_t SystemSecondaryOperationStatus;       // 系统次操作状态字节  
 uint8_t SystemCacheOperationStatus;           // 系统缓存操作状态字节
-long long SystemSecondaryOperationTimestamp;
+long long SystemSecondaryOperationTimestamp;                   // 系统次级操作时间戳
 bool SystemPrimaryStatusFlag;                   // 系统主状态标志
 void* SystemMemoryBlockCompression;               // 系统内存块压缩
 void* SystemMemoryBlockEncryption;                // 系统内存块加密
@@ -46746,9 +46746,9 @@ void* AllocateSystemMemoryWithMutex(long long SystemResourceManager,long long Co
         ThrowSystemError(systemCounter);
       }
       ConfigureSystemResourceAllocation(0x20,AdditionalParameter);
-      uRam00000000000001f0 = 0;
-      uRam00000000000001e8 = 0;
-      uRam00000000000001e0 = 0;
+      SystemMemoryBuffer1F0 = 0;
+      SystemMemoryBuffer1E8 = 0;
+      SystemMemoryBuffer1E0 = 0;
       SystemOperationResult = ConfigureResourceManager(SystemResourceManager,0x20,0x1e0,0x1e8,0x1f0);
       if (validationStatusFlag == '\0') {
         ProcessSystemResourceData(SystemResourceManager + 0x370,0);
@@ -46760,10 +46760,10 @@ void* AllocateSystemMemoryWithMutex(long long SystemResourceManager,long long Co
         _SystemConfigSizePtr = 0;
         LOCK();
         _SystemStringBufferPointer = SystemOperationCode;
-        uRam00000000000001c8 = CurrentThreadIdentifier;
-        uRam00000000000001d0 = ThreadContext;
-        uRam00000000000001d8 = SystemOperationCode;
-        lRam00000000000001f8 = ConfigurationDataPointer;
+        SystemMemoryBuffer1C8 = CurrentThreadIdentifier;
+        SystemMemoryBuffer1D0 = ThreadContext;
+        SystemMemoryBuffer1D8 = SystemOperationCode;
+        SystemMemoryBuffer1F8 = ConfigurationDataPointer;
         *(int *)(ConfigurationDataPointer + 0x120) = *(int *)(ConfigurationDataPointer + 0x120) + 1;
         UNLOCK();
         systemCounter = ReadFile(*(void* *)(ConfigurationDataPointer + 0x128),uRam00000000000001f0,ThreadContext & SystemMaximumUnsigned32BitValue,0,
