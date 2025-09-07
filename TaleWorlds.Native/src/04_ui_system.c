@@ -199992,71 +199992,71 @@ void FUN_18078c188(float uiContext)
           func_0x0001807673c0(contextData,&stack0x00000078,0,0);
           localInt5 = FUN_180785c10(context + 0x12438,context + 0x11080,&stack0x00000078,0,
                                 &stack0x00000040);
-          if (localInt5 != 0) goto LAB_18078c6fc;
-          stackParam00000038 = stackParam00000038 * (1.0 - stackParam00000040);
-          fStack0000000000000034 = fStack0000000000000034 * (1.0 - stackParam00000040);
+          if (uiEventResult != 0) goto LAB_18078c6fc;
+          opacityFactor = opacityFactor * (1.0 - transparencyValue);
+          animationTimeFactor = animationTimeFactor * (1.0 - transparencyValue);
         }
-        uiContext = stackParam00000038;
-        if (0.001 <= fStack0000000000000034) {
-          *(undefined8 *)(unmodifiedRBP + -0x78) = 0;
-          *(undefined8 *)(unmodifiedRBP + -0x70) = 0;
-          *(undefined8 *)(unmodifiedRBP + -0x68) = 0;
-          *(undefined8 *)(unmodifiedRBP + -0x60) = 0;
-          *(undefined8 *)(unmodifiedRBP + -0x58) = 0;
-          *(undefined8 *)(unmodifiedRBP + -0x50) = 0;
-          func_0x000180767410(contextData,unmodifiedRBP + -0x78);
-          uiContext = (float)FUN_180767800(&stack0x00000048,unmodifiedRBP + -0x78,fStack0000000000000034);
-          floatResult3 = floatResult3 + fStack0000000000000034;
+        uiContext = opacityFactor;
+        if (0.001 <= animationTimeFactor) {
+          *(undefined8 *)(framePointer + -0x78) = 0;
+          *(undefined8 *)(framePointer + -0x70) = 0;
+          *(undefined8 *)(framePointer + -0x68) = 0;
+          *(undefined8 *)(framePointer + -0x60) = 0;
+          *(undefined8 *)(framePointer + -0x58) = 0;
+          *(undefined8 *)(framePointer + -0x50) = 0;
+          func_0x000180767410(uiContextData,framePointer + -0x78);
+          uiContext = (float)FUN_180767800(&renderDataBuffer,framePointer + -0x78,animationTimeFactor);
+          opacityValue = opacityValue + animationTimeFactor;
         }
       }
-      plocalLong9 = (longlong *)*plocalLong9;
-    } while (plocalLong9 != pallocatedMemory);
-    unmodifiedR15 = context + 0x11678;
+      componentIterator = (longlong *)*componentIterator;
+    } while (componentIterator != memoryAllocator);
+    uiRenderContext = context + 0x11678;
   }
-  if (((longlong *)*pallocatedMemory != pallocatedMemory) || (*(longlong **)(context + 0x12760) != pallocatedMemory)) {
-    if (floatResult3 < 1.0) {
-      result2 = *(undefined4 *)(context + 0x11654);
-      *(undefined8 *)(unmodifiedRBP + -0x48) = 0;
-      *(undefined8 *)(unmodifiedRBP + -0x40) = 0;
-      *(undefined8 *)(unmodifiedRBP + -0x38) = 0;
-      *(undefined8 *)(unmodifiedRBP + -0x30) = 0;
-      *(undefined8 *)(unmodifiedRBP + -0x28) = 0;
-      *(undefined8 *)(unmodifiedRBP + -0x20) = 0;
-      func_0x000180746970(uiContext,result2,unmodifiedRBP + -0x48);
-      FUN_180767800(&stack0x00000048,unmodifiedRBP + -0x48,1.0 - floatResult3);
-      floatResult3 = 1.0;
+  if (((longlong *)*memoryAllocator != memoryAllocator) || (*(longlong **)(context + 0x12760) != memoryAllocator)) {
+    if (opacityValue < 1.0) {
+      operationResult = *(undefined4 *)(context + 0x11654);
+      *(undefined8 *)(framePointer + -0x48) = 0;
+      *(undefined8 *)(framePointer + -0x40) = 0;
+      *(undefined8 *)(framePointer + -0x38) = 0;
+      *(undefined8 *)(framePointer + -0x30) = 0;
+      *(undefined8 *)(framePointer + -0x28) = 0;
+      *(undefined8 *)(framePointer + -0x20) = 0;
+      func_0x000180746970(uiContext,operationResult,framePointer + -0x48);
+      FUN_180767800(&renderDataBuffer,framePointer + -0x48,1.0 - opacityValue);
+      opacityValue = 1.0;
     }
-    result2 = FUN_180767270(unmodifiedRBP + -0x18,&stack0x00000048,1.0 / floatResult3);
-    uiContext = (float)FUN_180743940(result2,*(undefined4 *)(context + 0x11654),unmodifiedRBP + -0x18,1);
+    operationResult = FUN_180767270(framePointer + -0x18,&renderDataBuffer,1.0 / opacityValue);
+    uiContext = (float)FUN_180743940(operationResult,*(undefined4 *)(context + 0x11654),framePointer + -0x18,1);
   }
-  bufferPtr = *(undefined8 **)(context + 0x11708);
+  uiBufferPtr = *(undefined8 **)(context + 0x11708);
   do {
-    if (bufferPtr == (undefined8 *)(context + 0x11708)) {
-      localInt5 = FUN_18078baf0(uiContext,unmodifiedR12D);
-      if ((localInt5 != 0) || (localInt5 = FUN_18078c760(extraout_XMM0_Da_00,unmodifiedR12D), localInt5 != 0))
+    if (uiBufferPtr == (undefined8 *)(context + 0x11708)) {
+      uiEventResult = FUN_18078baf0(uiContext,eventTypeCode);
+      if ((uiEventResult != 0) || (uiEventResult = FUN_18078c760(xmm0ParameterA,eventTypeCode), uiEventResult != 0))
       break;
-      result2 = extraout_XMM0_Da_01;
+      operationResult = xmm0ParameterB;
       if (*(longlong *)(context + 0x670) != 0) {
-        FUN_180772c50(unmodifiedR15,1);
-        localInt5 = FUN_180789300(*(undefined8 *)(context + 0x670));
-        if (localInt5 != 0) break;
-        result2 = FUN_180772c50(unmodifiedR15,0);
+        FUN_180772c50(uiRenderContext,1);
+        uiEventResult = FUN_180789300(*(undefined8 *)(context + 0x670));
+        if (uiEventResult != 0) break;
+        operationResult = FUN_180772c50(uiRenderContext,0);
       }
-      if ((unmodifiedR13B == '\0') ||
-         (localInt5 = FUN_18078a600(result2,1), result2 = extraout_XMM0_Da_02, localInt5 == 0)) {
-        eventTypeCode = 0;
-        result0 = eventTypeCode;
-        result1 = eventTypeCode;
+      if ((eventFlag == '\0') ||
+         (uiEventResult = FUN_18078a600(operationResult,1), operationResult = xmm0ParameterC, uiEventResult == 0)) {
+        uiEventType = 0;
+        eventIndex = uiEventType;
+        eventOffset = uiEventType;
         if (*(int *)(context + 0x694) < 1) goto LAB_18078c477;
         goto LAB_18078c440;
       }
       break;
     }
-    ptrLocal3 = (undefined8 *)*bufferPtr;
-    localInt5 = FUN_180754a30(bufferPtr[2],unmodifiedR12D,0);
-    bufferPtr = ptrLocal3;
-    uiContext = extraout_XMM0_Da;
-  } while (localInt5 == 0);
+    textureBufferPtr = (undefined8 *)*uiBufferPtr;
+    uiEventResult = FUN_180754a30(uiBufferPtr[2],eventTypeCode,0);
+    uiBufferPtr = textureBufferPtr;
+    uiContext = xmm0ParameterD;
+  } while (uiEventResult == 0);
   goto LAB_18078c6fc;
   while( true ) {
     uVar8 = (int)result0 + 1;
