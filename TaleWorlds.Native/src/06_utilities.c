@@ -10250,7 +10250,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
           if (componentBufferSize < 8) {
             componentListCapacity = 8;
           }
-          else if (componentListCapacity < CurrentComponentCount) {
+          else if (componentListCapacity < registeredComponentCount) {
             componentListCapacity = CurrentComponentCount;
           }
           componentBufferSize = ValidateComponentMemory(ComponentListContext,componentListCapacity);
