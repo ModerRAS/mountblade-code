@@ -45221,7 +45221,19 @@ void ExceptionHandlerA48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
 
 
 
-void Unwind_180903d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理函数E1
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903d10
+ */
+void HandleExceptionE1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -45275,7 +45287,19 @@ void Unwind_180903d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903d30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理函数E2
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903d30
+ */
+void HandleExceptionE2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -45329,7 +45353,19 @@ void Unwind_180903d30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903d50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理函数E3
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903d50
+ */
+void HandleExceptionE3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -45383,7 +45419,19 @@ void Unwind_180903d50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903d70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理函数E4
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903d70
+ */
+void HandleExceptionE4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -45437,7 +45485,19 @@ void Unwind_180903d70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理函数E5
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903d90
+ */
+void HandleExceptionE5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -45491,7 +45551,19 @@ void Unwind_180903d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903db0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理函数E6
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903db0
+ */
+void HandleExceptionE6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -45545,7 +45617,19 @@ void Unwind_180903db0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903dd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理函数E7
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903dd0
+ */
+void HandleExceptionE7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -45599,7 +45683,19 @@ void Unwind_180903dd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180903df0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理函数E8
+ * 
+ * 该函数负责执行异常处理操作，处理系统异常状态
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180903df0
+ */
+void HandleExceptionE8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
