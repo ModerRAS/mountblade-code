@@ -102089,7 +102089,7 @@ LAB_18011713b:
       UnicodeCodePoint6 = MemoryAddressMask2 | UnicodeCodePoint6;
 LAB_180117375:
       pFloatValue34 = (float *)(MemoryBlockIndex9 + 0x1ea8);
-      FUN_180115640(pFloatValue34,MemoryBlockIndex9 + 0x1ef0,UnicodeCodePoint6);
+      ProcessSystemDataEx(pFloatValue34,MemoryBlockIndex9 + 0x1ef0,UnicodeCodePoint6);
       *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 1;
       *(uint32_t *)(MemoryBlockIndex9 + 0x2d14) = 0xbe99999a;
       goto LAB_180117443;
@@ -102279,7 +102279,7 @@ LAB_1801177f4:
             if (validationResult4 == StringComparisonResult0) {
               validationResult3 = *(int *)(MemoryBlockIndex9 + 0x1ee4);
             }
-            FUN_18011da90(MemoryBlockIndex9 + 0x1ed0,(validationResult3 - ValidationCode5) * 4 + 1);
+            SetSystemDataStatus(MemoryBlockIndex9 + 0x1ed0,(validationResult3 - ValidationCode5) * 4 + 1);
             FUN_180121c40(*(void *)(MemoryBlockIndex9 + 0x1ed8),*(uint32_t *)(MemoryBlockIndex9 + 0x1ed0),
                           *(long long *)(MemoryBlockIndex9 + 0x1eb8) + (long long)ValidationCode5 * 2,
                           *(long long *)(MemoryBlockIndex9 + 0x1eb8) + (long long)validationResult3 * 2);
@@ -102294,7 +102294,7 @@ LAB_1801177f4:
             }
             *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 1;
             if (*(int *)(MemoryBlockIndex9 + 0x1ef4) != *(int *)(MemoryBlockIndex9 + 0x1ef8)) {
-              FUN_180115490(pFloatValue34,MemoryBlockIndex9 + 0x1ef0);
+              ProcessSystemAudio(pFloatValue34,MemoryBlockIndex9 + 0x1ef0);
               *(uint8_t *)(MemoryBlockIndex9 + 0x1eff) = 0;
             }
           }
@@ -102455,11 +102455,11 @@ LAB_180117c0c:
         cStack_160 = '\0';
         ProcessingStatus = MemoryAllocationIndex2;
         uStack_174 = MemoryAllocationIndex3;
-        StringComparisonResult0 = FUN_180121d80(bufferAllocationStatus8,bufferAllocationStatus8 + (long long)*(int *)(MemoryBlockIndex9 + 0x1ef0) * 2);
+        StringComparisonResult0 = CalculateUtf8EncodingLength(bufferAllocationStatus8,bufferAllocationStatus8 + (long long)*(int *)(MemoryBlockIndex9 + 0x1ef0) * 2);
         iStack_15c = StringComparisonResult0;
-        validationResult4 = FUN_180121d80(bufferAllocationStatus8,bufferAllocationStatus8 + (long long)*(int *)(MemoryBlockIndex9 + 0x1ef4) * 2);
+        validationResult4 = CalculateUtf8EncodingLength(bufferAllocationStatus8,bufferAllocationStatus8 + (long long)*(int *)(MemoryBlockIndex9 + 0x1ef4) * 2);
         iStack_158 = validationResult4;
-        ValidationCode5 = FUN_180121d80(bufferAllocationStatus8);
+        ValidationCode5 = CalculateUtf8EncodingLength(bufferAllocationStatus8);
         uStack_154 = (uint8_t)ValidationCode5;
         uStack_153 = (uint16_t)((uint)ValidationCode5 >> 8);
         uStack_151 = (uint8_t)((uint)ValidationCode5 >> 0x18);
