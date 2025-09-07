@@ -201625,7 +201625,7 @@ FUN_18017cb20(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0xa8,8,3,0xfffffffffffffffe);
   pMemoryAddressMask = PrimaryProcessingStatusFlag;
   FUN_1803456e0(PrimaryProcessingStatusFlag,Utf8BufferSize,SystemContextPointer);
-  *pMemoryAddressMask = &UNK_180a09e48;
+  *pMemoryAddressMask = &SystemContextBufferQuinary;
   *(uint32_t *)(pMemoryAddressMask + 0x14) = 0;
   pMemoryAddressMask[0xe] = 0;
   pMemoryAddressMask[0xf] = 0;
@@ -201698,7 +201698,7 @@ FUN_18017cde0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
   uint64_t Utf16Char;
   
   Utf16Char = 0xfffffffffffffffe;
-  *SystemContextPointer = &UNK_180a09e48;
+  *SystemContextPointer = &SystemContextBufferQuinary;
   FUN_1803457d0();
   if ((Utf8BufferSize & 1) != 0) {
     free(SystemContextPointer,0xa8,Utf16InputPointer,Utf16EndPointer,Utf16Char);
@@ -201726,7 +201726,7 @@ FUN_18017cde0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
   SystemStackFlag = 0xfffffffffffffffe;
   pMemoryAddressMask = systemEventTemplatePointer;
   FUN_1803456e0(systemEventTemplatePointer,Utf8BufferSize,SystemContextPointer);
-  *pMemoryAddressMask = &UNK_180a1a098;
+  *pMemoryAddressMask = &SystemMemoryAddressMaskSecondary;
   FUN_180094c20(pMemoryAddressMask + 0xe);
   systemEventTemplatePointer[0x36] = 0;
   systemEventTemplatePointer[0x43] = 0;
@@ -202047,7 +202047,7 @@ FUN_18017cde0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x88,8,3,0xfffffffffffffffe);
   pMemoryAddressMask = PrimaryProcessingStatusFlag;
   FUN_1803456e0(PrimaryProcessingStatusFlag,Utf8BufferSize,SystemContextPointer);
-  *pMemoryAddressMask = &UNK_180a1dd48;
+  *pMemoryAddressMask = &SystemMemoryAddressMaskTertiary;
   pMemoryAddressMask[0xe] = Utf8BufferSize;
   pMemoryAddressMask[0xf] = 0;
   *(uint32_t *)(pMemoryAddressMask + 0x10) = 0;
@@ -202104,7 +202104,7 @@ void InitializeSystemDataStructureProcessor(uint64_t SystemContextPointer, uint6
   ValidationValue = 0xfffffffffffffffe;
   MemoryMaskPointer = EventTemplatePointer;
   FUN_1803456e0(EventTemplatePointer, Utf8BufferSize, SystemContextPointer);
-  *MemoryMaskPointer = &UNK_180a1dee0;
+  *MemoryMaskPointer = &SystemMemoryMaskBuffer;
   SystemContext = MemoryMaskPointer + 0xe;
   *SystemContext = (long long)&ThreadLocalStorageTemplate;
   MemoryMaskPointer[0xf] = 0;
