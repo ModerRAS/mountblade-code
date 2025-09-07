@@ -7886,7 +7886,7 @@ uint8_t SystemExceptionHandlerDataD;
 uint8_t SystemExceptionHandlerDataE;
 uint8_t SystemExceptionHandlerDataF;
 uint8_t SystemExceptionHandlerDataG;
-uint8_t UNK_180a39450;
+uint8_t SystemExceptionHandlerDataH;
 uint8_t UNK_180a39468;
 uint8_t UNK_180a39480;
 uint8_t UNK_180a394a0;

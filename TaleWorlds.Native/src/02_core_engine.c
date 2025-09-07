@@ -217638,8 +217638,24 @@ uint32_t *InitializeUtf8Buffer(uint64_t SystemContextPointer,uint32_t *Utf8Buffe
 
 
 
+/**
+ * @brief 配置系统数据节点模板
+ * 
+ * 该函数负责配置系统数据节点的模板指针，设置多个数据节点的引用。
+ * 函数会根据 Utf8BufferSize 的奇偶性决定是否释放内存。
+ * 
+ * @param SystemContextPointer 系统上下文指针，用于存储数据节点模板
+ * @param Utf8BufferSize UTF-8缓冲区大小，用于判断是否需要释放内存
+ * @param Utf16InputPointer UTF-16输入指针，用于内存释放操作
+ * @param Utf16EndPointer UTF-16结束指针，用于内存释放操作
+ * 
+ * @return uint64_t* 返回配置后的系统上下文指针
+ * 
+ * @note 此函数设置四个数据节点模板：SystemDataNodeTemplatePrimary、SystemDataNodeTemplateSecondary、DataNodeTemplateB、DataNodeTemplateA
+ * @note 当 Utf8BufferSize 为奇数时，会释放系统上下文指针的内存（0x70字节）
+ */
 uint64_t *
-FUN_180194c60(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+ConfigureSystemDataNodeTemplates(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   *SystemContextPointer = &SystemDataNodeTemplatePrimary;
   *SystemContextPointer = &SystemDataNodeTemplateSecondary;
@@ -217653,8 +217669,24 @@ FUN_180194c60(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,u
 
 
 
+/**
+ * @brief 配置系统未知数据节点
+ * 
+ * 该函数负责配置系统的未知数据节点指针，设置两个未知节点的引用。
+ * 函数会根据 Utf8BufferSize 的奇偶性决定是否释放内存。
+ * 
+ * @param SystemContextPointer 系统上下文指针，用于存储未知数据节点
+ * @param Utf8BufferSize UTF-8缓冲区大小，用于判断是否需要释放内存
+ * @param Utf16InputPointer UTF-16输入指针，用于内存释放操作
+ * @param Utf16EndPointer UTF-16结束指针，用于内存释放操作
+ * 
+ * @return uint64_t* 返回配置后的系统上下文指针
+ * 
+ * @note 此函数设置两个未知数据节点：UNK_180a0c7d8 和 UNK_180a0c7f0
+ * @note 当 Utf8BufferSize 为奇数时，会释放系统上下文指针的内存（8字节）
+ */
 uint64_t *
-FUN_180194cc0(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+ConfigureSystemUnknownDataNodes(uint64_t *SystemContextPointer,unsigned long long Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
   *SystemContextPointer = &UNK_180a0c7d8;
   *SystemContextPointer = &UNK_180a0c7f0;
