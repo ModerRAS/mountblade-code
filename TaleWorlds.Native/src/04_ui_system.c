@@ -9913,8 +9913,18 @@ void InitializeUIAnimation(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void UpdateUILayoutEx(longlong *layout_data, longlong *component_data, longlong *style_data)
- 扩展的UI布局更新函数，支持复杂布局计算
+ /**
+ * @brief 扩展的UI布局更新函数
+ * 
+ * 支持复杂布局计算的高级UI布局更新函数，处理布局数据、组件数据和样式数据的整合
+ * 
+ * @param layout_data 布局数据指针，包含布局参数和配置信息
+ * @param component_data 组件数据指针，包含UI组件的状态和属性
+ * @param style_data 样式数据指针，包含UI样式和主题信息
+ * 
+ * @note 原始函数名：UpdateUILayoutEx
+ * @note 这是一个扩展版本的布局更新函数，支持更复杂的布局计算
+ */
 void UpdateUILayoutEx(longlong *layout_data, longlong *component_data, longlong *style_data)
 
 {
