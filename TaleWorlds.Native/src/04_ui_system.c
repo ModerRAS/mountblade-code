@@ -4521,6 +4521,15 @@ void HandleUIEvent(code *eventHandler,undefined8 eventContext,longlong eventData
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// UI系统栈变量常量定义 - 用于替换stack0x等变量
+#define UIStackBufferBase &UIStackBufferBase
+#define UIStackTransformMatrix1 &UIStackTransformMatrix1
+#define UIStackTransformMatrix2 &UIStackTransformMatrix2
+#define UIStackTransformMatrix3 &UIStackTransformMatrix3
+#define UIStackTransformMatrix4 &UIStackTransformMatrix4
+#define UIStackRenderContext &UIStackRenderContext
+#define UIStackEventData &UIStackEventData
+#define UIStackLayoutData &UIStackLayoutData
 
 // 激活UI系统的主函数
 // 
@@ -4623,7 +4632,7 @@ void SetUIState(longlong uiContext)
     ProcessUIRenderRequest();
   }
                     // WARNING: Subroutine does not return
-  ExecuteUIRenderTask(in_stack_00000230 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(in_stack_00000230 ^ (ulonglong)UIStackBufferBase);
 }
 
 
@@ -4984,7 +4993,7 @@ LAB_UIStringCacheFound:
   unaff_RSI[1] = 2;
 LAB_UIRenderTaskExecution:
                     // WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(unaff_RBP + 0x47) ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(*(ulonglong *)(unaff_RBP + 0x47) ^ (ulonglong)UIStackBufferBase);
 }
 
 
@@ -5002,7 +5011,7 @@ LAB_UIRenderTaskExecution:
   longlong contextPointer;
   
                     // WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(contextPointer + 0x47) ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(*(ulonglong *)(contextPointer + 0x47) ^ (ulonglong)UIStackBufferBase);
 }
 
 
@@ -5060,7 +5069,7 @@ LAB_UIRenderTaskExecution:
     stateFlagPointer[1] = 1;
   }
                     // WARNING: Subroutine does not return
-  ExecuteUIRenderTask(*(ulonglong *)(contextPointer + 0x47) ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(*(ulonglong *)(contextPointer + 0x47) ^ (ulonglong)UIStackBufferBase);
 }
 
 
@@ -7650,51 +7659,51 @@ LAB_1806559dc:
       }
     }
   }
-  else if (iStack_20 == 7) {
+  else if (eventTypeIndex == 7) {
     eventTypeCode = 8;
-    lVar5 = 0;
+    loopCounter2 = 0;
     do {
-      lVar4 = lVar5 + 1;
-      if (*(char *)(lStack_28 + lVar5) != (&UIEventTypeScroll)[lVar5]) {
-        lVar5 = 0;
+      loopCounter1 = loopCounter2 + 1;
+      if (*(char *)(eventDataPtr + loopCounter2) != (&UIEventTypeScroll)[loopCounter2]) {
+        loopCounter2 = 0;
         goto LAB_180655a80;
       }
-      lVar5 = lVar4;
-    } while (lVar4 != 8);
-    if ((((iStack_40 == 1) && ((*pcStack_48 != 's' || (pcStack_48[1] != '\0')))) &&
-        (*pcStack_48 == 'f')) && (pcStack_48[1] == '\0')) goto LAB_180655685;
+      loopCounter2 = loopCounter1;
+    } while (loopCounter1 != 8);
+    if ((((stringLength == 1) && ((*eventStringPtr != 's' || (eventStringPtr[1] != '\0')))) &&
+        (*eventStringPtr == 'f')) && (eventStringPtr[1] == '\0')) goto LAB_180655685;
   }
-  else if (iStack_20 == 0xf) {
-    compareResult = strcmp(lStack_28,&UIEventTypeFocus);
+  else if (eventTypeIndex == 0xf) {
+    compareResult = strcmp(eventDataPtr,&UIEventTypeFocus);
     if (compareResult == 0) {
-      if (iStack_40 == 3) {
-        lVar5 = 0;
+      if (stringLength == 3) {
+        loopCounter2 = 0;
         do {
-          lVar4 = lVar5 + 1;
-          if (pcStack_48[lVar5] != (&UIEventTypeZoom)[lVar5]) break;
-          lVar5 = lVar4;
-        } while (lVar4 != 4);
+          loopCounter1 = loopCounter2 + 1;
+          if (eventStringPtr[loopCounter2] != (&UIEventTypeZoom)[loopCounter2]) break;
+          loopCounter2 = loopCounter1;
+        } while (loopCounter1 != 4);
       }
-      else if (((iStack_40 == 1) && (*pcStack_48 == 'o')) && (pcStack_48[1] == '\0')) {
+      else if (((stringLength == 1) && (*eventStringPtr == 'o')) && (eventStringPtr[1] == '\0')) {
         eventTypeCode = 0x30;
         goto LAB_180655685;
       }
     }
   }
-  else if (iStack_20 == 0x13) {
-    compareResult = strcmp(lStack_28,&UIEventTypeButton);
+  else if (eventTypeIndex == 0x13) {
+    compareResult = strcmp(eventDataPtr,&UIEventTypeButton);
     if (compareResult == 0) {
-      if (iStack_40 == 10) {
-        strcmp(pcStack_48,&UIEventTypeButtonPress);
+      if (stringLength == 10) {
+        strcmp(eventStringPtr,&UIEventTypeButtonPress);
       }
       else {
-        if (iStack_40 == 0x10) {
-          puVar6 = &UIEventTypeButtonRelease;
+        if (stringLength == 0x10) {
+          eventTypePointer = &UIEventTypeButtonRelease;
           goto LAB_180655bdf;
         }
-        if (iStack_40 == 0x11) {
-          compareResult = strcmp(pcStack_48,&UIEventTypeButtonHold);
-          bVar8 = compareResult == 0;
+        if (stringLength == 0x11) {
+          compareResult = strcmp(eventStringPtr,&UIEventTypeButtonHold);
+          EventProcessingResult = compareResult == 0;
           goto LAB_1806559dc;
         }
       }
