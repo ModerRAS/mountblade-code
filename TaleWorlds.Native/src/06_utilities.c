@@ -50701,7 +50701,16 @@ void SetDefaultExceptionHandlerBToBufferB1(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_1809056b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到数据缓冲区B2
+ * 
+ * 该函数用于设置默认的异常处理器B到指定的数据缓冲区位置
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_1809056b0
+ */
+void SetDefaultExceptionHandlerBToBufferB2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x40) + 8) = &DefaultExceptionHandlerB;
@@ -50710,7 +50719,19 @@ void Unwind_1809056b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809056c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数A5
+ * 
+ * 该函数用于执行异常处理回调函数，通过数据缓冲区中的
+ * 函数指针来调用相应的异常处理逻辑
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_1809056c0
+ */
+void ExecuteExceptionHandlerCallbackA5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
