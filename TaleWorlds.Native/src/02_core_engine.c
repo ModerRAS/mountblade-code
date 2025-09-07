@@ -38435,7 +38435,7 @@ void CoreEngineSystemCallHandler(void
  * 
  1800672c0，ProcessEngineIOCompletionPort
  */
-void ProcessEngineIOCompletionPort(long long EngineContext{
+void ProcessEngineIOCompletionPort(long long EngineContext)
   long long DataSize;
   long long CompletionStatus;
   int OperationResult;
@@ -47999,7 +47999,7 @@ void CoreEngineProcessSystemContext(void
 
 
 
-7ad8(void/**
+/**
  * @brief 处理浮点数计算和数据过滤
  * 
  * 该函数负责处理复杂的浮点数计算和数据过滤操作，包括：
@@ -56459,7 +56459,7 @@ long long ProcessCoreEngineDataStructureOperation(long long *TargetDataPointer, 
  * 
  180082fd0，InitializeSystemContext
  */
-void InitializeSystemContext(long long targetDataStructure, uint64_t sourceDataStructure, uint64_t reservedParameter1, long long *reservedParameter2{
+void InitializeSystemContext(long long targetDataStructure, uint64_t sourceDataStructure, uint64_t reservedParameter1, long long *reservedParameter2)
   int lockResult;
   int StringComparisonResult;
   long long memoryOffset;
@@ -56551,7 +56551,7 @@ int GetAndDecrementInitializationCounter(uint64_t targetDataStructure, uint64_t 
  * 
  1800831c0，ProcessSystemCharacterStatusBuffer
  */
-void ProcessSystemCharacterStatusBuffer(uint64_t targetDataStructure, uint64_t sourceDataStructure, uint64_t reservedParameter1, long long *reservedParameter2{
+void ProcessSystemCharacterStatusBuffer(uint64_t targetDataStructure, uint64_t sourceDataStructure, uint64_t reservedParameter1, long long *reservedParameter2)
   uint64_t *statusBuffer;
   uint64_t allocationIndex;
   long long *performanceCounterPointer;
@@ -58432,7 +58432,7 @@ void ProcessFloatDataStructure(float *Utf8InputBuffer,long long Utf8BufferSize,u
  * 该函数从输入数据结构中提取矩阵参数，应用缩放变换，
  * 并设置标准的4x4变换矩阵格式。主要用于3D图形变换。
  */
-void MatrixTransformScaleAndInitialize(void{
+void MatrixTransformScaleAndInitialize(void)
   uint64_t Utf16Char;
   uint64_t MemoryAllocationIndex;
   uint64_t AllocatedMemorySize;
@@ -171376,7 +171376,17 @@ code_r0x00018013d378:
 
 
 
-3d3ad(voidvoid FUN_18013d3ad(void
+/**
+ * 处理系统数据格式化操作
+ * 遍历系统数据块并对每个数据块进行字符串格式化处理
+ * 
+ * 该函数处理多种数据格式化场景，包括：
+ * - 主要字符串格式化
+ * - 性别相关数据格式化
+ * - 数值参数格式化
+ * - 方向/角度数据格式化
+ */
+void ProcessSystemDataFormatting(void)
 {
   short SystemShortValue1;
   int StringComparisonResult;
