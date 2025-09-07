@@ -9850,12 +9850,12 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
   float depthX;
   float depthY;
   float depthZ;
-  undefined8 uStackX_8;
-  float fStackX_10;
-  float fStackX_14;
-  float fStackX_18;
-  float fStackX_1c;
-  float *pfStackX_20;
+  undefined8 uiContextPointer;
+  float transformX;
+  float transformY;
+  float rotationAngleX;
+  float rotationAngleY;
+  float *bufferPointer;
   float clipMaxX;
   float clipMaxY;
   float clipMaxZ;
