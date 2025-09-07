@@ -15998,7 +15998,7 @@ DataBuffer ResetSystemB0(void)
   int64_t registerContext;
   int64_t destinationIndexRegister;
   int64_t systemContext;
-  DataWord InputParam50;
+  DataWord SystemInputParameter;       // 系统输入参数
   
   operationResult = ProcessDataValidationA0();
   if ((int)operationResult == 0) {
@@ -16008,10 +16008,10 @@ DataBuffer ResetSystemB0(void)
       operationResult = 0x1c;
     }
     else {
-      operationResult = ValidateOperationRangeA0(systemContext + 0x60,InputParam50);
+      operationResult = ValidateOperationRangeA0(systemContext + 0x60,SystemInputParameter);
       if ((int)operationResult == 0) {
         validationStatusPointer = (DataBuffer *)
-                 ProcessSystemDataA0(systemContext + 0x60,&StackBuffer40,InputParam50);
+                 ProcessSystemDataA0(systemContext + 0x60,&StackBuffer40,SystemInputParameter);
         *(DataBuffer *)(destinationIndexRegister + 0x18) = *validationStatusPointer;
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
@@ -20062,7 +20062,7 @@ ProcessDataSecurityValidation:
   float FloatValidationValue2;
   float FloatRegisterValue;
   float FloatComparisonValue;
-  float InputParam50;
+  float SystemInputParameter;
   DataBuffer *ResourceDataPointer;
   int64_t stackDataBuffer;
   int64_t stackOperationContext;
@@ -20323,7 +20323,7 @@ ValidateDataSecurity:
   float fStack0000000000000040;
   float fStack0000000000000044;
   DataBuffer ProcessedFloatValue;
-  float InputParam50;
+  float SystemInputParameter;
   DataBuffer *in_stack_00000058;
   int64_t lStack0000000000000060;
   int64_t stackOperationContext;
