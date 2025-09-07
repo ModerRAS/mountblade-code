@@ -21184,13 +21184,13 @@ void ProcessFloatingPointDataA0(float inputValue)
         operationResult = ValidateDataIntegrityA0(ValidationFloatValue,&StackValidationBuffer);
         if (operationResult != 0) GOTO_ValidationFailure;
       }
-      fVar4 = (float)((int)fVar4 + 1);
-      pfVar5 = pfVar5 + 1;
-    } while ((int)fVar4 < 4);
-    pfVar5 = (float *)&FloatValidationArray;
-    fVar4 = dataPointerD;
+      LoopCounterFloat = (float)((int)LoopCounterFloat + 1);
+      FloatArrayPointer = FloatArrayPointer + 1;
+    } while ((int)LoopCounterFloat < 4);
+    FloatArrayPointer = (float *)&FloatValidationArray;
+    LoopCounterFloat = dataPointerD;
     do {
-      ValidationFloatValue = *(float *)(contextPointer + -0x180985054 + (int64_t)pfVar5);
+      ValidationFloatValue = *(float *)(contextPointer + -0x180985054 + (int64_t)FloatArrayPointer);
       if (ValidationFloatValue != *pfVar5) {
         operationResult = SystemOperationResult;
         StackValidationParameterA = &DataProcessingContextA0;
@@ -21200,8 +21200,8 @@ void ProcessFloatingPointDataA0(float inputValue)
         operationResult = ValidateDataIntegrityA0(ValidationFloatValue,&StackValidationBuffer);
         if (operationResult != 0) GOTO_ValidationFailure;
       }
-      fVar4 = (float)((int)fVar4 + 1);
-      pfVar5 = pfVar5 + 1;
+      LoopCounterFloat = (float)((int)LoopCounterFloat + 1);
+      FloatArrayPointer = FloatArrayPointer + 1;
     } while ((int)fVar4 < 6);
     validationStatus = ValidateParameters(systemContext + 200);
     dataFlags = calculatedFloatValue;
