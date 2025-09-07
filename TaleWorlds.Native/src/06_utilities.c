@@ -74459,7 +74459,19 @@ void SystemOutputStreamCleanup(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_180909080(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置系统验证状态表并处理数据上下文
+ * 
+ * 该函数设置系统验证状态表到指定偏移量，并处理数据上下文。
+ * 如果验证状态标志被设置，则会初始化数据缓冲区，并销毁基本流缓冲区。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909080
+ * @note 内存偏移量：使用0x88作为验证状态偏移量
+ */
+void SetSystemValidationStatusTable(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
@@ -74479,13 +74491,26 @@ void Unwind_180909080(DataBuffer operationBase,int64_t dataBuffer)
   if (*(char *)(dataBuffer + 0x104) != '\0') {
     InitializeDataBuffer(validationStatusPointer);
   }
-                                DestroyBasicStreambuf(validationStatusPointer);
+  DestroyBasicStreambuf(validationStatusPointer);
   return;
 }
 
 
 
-void Unwind_180909090(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放内存资源并更新引用计数
+ * 
+ * 该函数处理内存资源的释放，包括内存区域基址计算、
+ * 内存块偏移量计算以及引用计数的更新。如果引用计数为0，
+ * 则调用异常处理函数；否则管理内存资源。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909090
+ * @note 内存偏移量：使用MemoryPointerOffset作为偏移量
+ */
+void ReleaseMemoryResourceAndUpdateReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -74512,8 +74537,8 @@ void Unwind_180909090(DataBuffer operationBase,int64_t dataBuffer)
       }
     }
     else {
-      ManageMemory(memoryRegionBase,SetBitFlag(0xff000000,*(void ***)(memoryRegionBase + 0x70) == &ExceptionList),
-                          memoryResourcePointer,memoryRegionBase,SystemCleanupFlagAlternative);
+      ManageMemory(memoryRegionBase, SetBitFlag(0xff000000, *(void ***)(memoryRegionBase + 0x70) == &ExceptionList),
+                          memoryResourcePointer, memoryRegionBase, SystemCleanupFlagAlternative);
     }
   }
   return;

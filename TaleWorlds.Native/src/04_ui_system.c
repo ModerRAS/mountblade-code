@@ -67826,9 +67826,32 @@ undefined4
 
 
  void FUN_18069ef30(longlong uiContext,longlong dataSource,char *targetBuffer,char *bufferSize,longlong resultPointer,
-void FUN_18069ef30(longlong uiContext,longlong dataSource,char *targetBuffer,char *bufferSize,longlong resultPointer,
-                  undefined8 param_6,longlong param_7,int param_8,int param_9,int uiContext0,
-                  int uiContext1)
+/**
+ * @brief 处理UI颜色数据混合和转换
+ * 
+ * 该函数负责处理UI颜色数据的混合操作，包括：
+ * - 颜色通道的分离和重组
+ * - 颜色数据的插值计算
+ * - UI上下文的状态更新
+ * - 颜色缓冲区的数据处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6（颜色分量）
+ * @param param_7 参数7（颜色分量）
+ * @param param_8 参数8（边界检查）
+ * @param param_9 参数9（边界检查）
+ * @param uiContext0 UI上下文参数0
+ * @param uiContext1 UI上下文参数1
+ * 
+ * @note 原始函数名：FUN_18069ef30
+ */
+void ProcessUIColorDataBlend(longlong uiContext,longlong dataSource,char *targetBuffer,char *bufferSize,longlong resultPointer,
+                            undefined8 param_6,longlong param_7,int param_8,int param_9,int uiContext0,
+                            int uiContext1)
 
 {
   byte isCharacterMatch;
