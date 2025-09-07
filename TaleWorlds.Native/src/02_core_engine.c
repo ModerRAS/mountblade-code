@@ -127156,11 +127156,11 @@ void ProcessSystemUnicodeCodePointAndMemoryAddressMask(void)
   long long SystemContext;
   long long FrameRegisterPointer;
   long long DataNodeIndex;
-  long long systemLoopCounter;
-  float in_XMM5_Da;
+  long long SystemLoopCounter;
+  float RegisterXMM5Value;
   float BaseFloatValue;
   float SecondaryFloatValue;
-  float AuxiliaryFloat9;
+  float AuxiliaryFloatValue;
   
   MemoryPoolBlockSize = SystemConfigurationHandle;
   if ((*(char *)(SystemContext + 0x17d) == '\0') || ((*(uint *)(SystemContext + 0xc) & 0x800000) != 0)) {
