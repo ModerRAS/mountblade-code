@@ -570,6 +570,24 @@ const char* const StringTemplateResultSystem = (const char*)0x180a09868;
 const char* const StringTemplateOutputSystem = (const char*)0x180a09870;
 const char* const StringTemplateInputSystem = (const char*)0x180a09880;
 const char* const StringTemplateMessageSystem = (const char*)0x180a09890;
+
+// 系统上下文常量 - 用于替换UNK_180a128b0等变量
+const void* const SystemContextPrimary = (void*)0x180a128b0;
+const void* const SystemContextSecondary = (void*)0x180a10cd8;
+
+// 系统数据缓冲区常量 - 用于替换UNK_180a10008等变量
+const void* const SystemDataBufferPrimary = (void*)0x180a10008;
+
+// 系统编码数据常量 - 用于替换UNK_180211ec0等变量
+const void* const SystemEncodingDataPrimary = (void*)0x180211ec0;
+const void* const SystemEncodingDataSecondary = (void*)0x180211f50;
+
+// 系统配置模板常量 - 用于替换UNK_180a10508等变量
+const void* const SystemConfigurationTemplatePrimary = (void*)0x180a10508;
+const void* const SystemConfigurationTemplateSecondary = (void*)0x180a10520;
+
+// 系统数据表常量 - 用于替换UNK_18020f868等变量
+const void* const SystemDataTablePrimary = (void*)0x18020f868;
 const char* const StringTemplateCommandSystem = (const char*)0x180a09e30;
 const char* const StringTemplateResponseSystem = (const char*)0x180a09e38;
 
@@ -237450,7 +237468,7 @@ LAB_18020b0af:
     if (pSystemCheckResult8 == pSystemCheckResult9 + -0x180a0ffa7) {
       pSystemCheckResult8 = pSystemCheckResult8 + (long long)StringBuffer;
       if (pSystemCheckResult8 <= StringBuffer) goto LAB_18020b1b3;
-      CurrentMemoryBlockAddress = (long long)&UNK_180a0ffa8 - (long long)StringBuffer;
+      CurrentMemoryBlockAddress = (long long)&SystemMemoryBufferPrimary - (long long)StringBuffer;
       while (*StringBuffer == StringBuffer[CurrentMemoryBlockAddress]) {
         StringBuffer = StringBuffer + 1;
         if (pSystemCheckResult8 <= StringBuffer) goto LAB_18020b1b3;
@@ -237459,7 +237477,7 @@ LAB_18020b0af:
   }
   TertiaryProcessingStatusFlag = NULL;
 LAB_18020b1b3:
-  CurrentMemoryBlockAddress = FUN_180631000(TertiaryProcessingStatusFlag,&UNK_180a0ffb0,auStack_4e8);
+  CurrentMemoryBlockAddress = FUN_180631000(TertiaryProcessingStatusFlag,&SystemMemoryBufferSecondary,auStack_4e8);
   MemoryBlockListHead = plStack_438;
   if (CurrentMemoryBlockAddress == 0) {
     auStack_4e8[0] = 1;
@@ -237485,7 +237503,7 @@ LAB_18020b1b3:
       if (pSystemCheckResult1 == pSystemCheckResult9 + -0x180a0b67f) {
         pSystemCheckResult1 = pSystemCheckResult1 + (long long)StringBuffer;
         if (pSystemCheckResult1 <= StringBuffer) goto LAB_18020b280;
-        CurrentMemoryBlockAddress = (long long)&UNK_180a0b680 - (long long)StringBuffer;
+        CurrentMemoryBlockAddress = (long long)&SystemConfigurationDataPrimary - (long long)StringBuffer;
         while (*StringBuffer == StringBuffer[CurrentMemoryBlockAddress]) {
           StringBuffer = StringBuffer + 1;
           if (pSystemCheckResult1 <= StringBuffer) goto LAB_18020b280;
@@ -237565,7 +237583,7 @@ LAB_18020b3fb:
           pSystemCheckResult0 = pSystemCheckResult0 + (long long)StringBuffer7;
           pSystemCheckResult8 = StringBuffer;
           if (pSystemCheckResult0 <= StringBuffer7) break;
-          CurrentMemoryBlockAddress = (long long)&UNK_180a0b680 - (long long)StringBuffer7;
+          CurrentMemoryBlockAddress = (long long)&SystemConfigurationDataPrimary - (long long)StringBuffer7;
           while (*StringBuffer7 == StringBuffer7[CurrentMemoryBlockAddress]) {
             StringBuffer7 = StringBuffer7 + 1;
             if (pSystemCheckResult0 <= StringBuffer7) goto LAB_18020b45e;
@@ -237737,7 +237755,7 @@ LAB_18020b539:
           StringBuffer7 = StringBuffer7 + (long long)pSystemCheckResult1;
           pSystemCheckResult8 = pSystemCheckResult9;
           if (StringBuffer7 <= pSystemCheckResult1) break;
-          CurrentMemoryBlockAddress = (long long)&UNK_180a0b680 - (long long)pSystemCheckResult1;
+          CurrentMemoryBlockAddress = (long long)&SystemConfigurationDataPrimary - (long long)pSystemCheckResult1;
           while (*pSystemCheckResult1 == pSystemCheckResult1[CurrentMemoryBlockAddress]) {
             pSystemCheckResult1 = pSystemCheckResult1 + 1;
             if (StringBuffer7 <= pSystemCheckResult1) goto LAB_18020b6e6;
@@ -237847,7 +237865,7 @@ LAB_18020b6e6:
       if (pcStack_2a0 != (char *)0x0) {
         CharacterPointer = pcStack_2a0;
       }
-      FUN_180626eb0(acStack_238,0x200,&UNK_180a0ffc0,CharacterPointer);
+      FUN_180626eb0(acStack_238,0x200,&SystemMemoryBufferTertiary,CharacterPointer);
       SystemStatusBufferPointer = &SystemNullTemplate;
       uStack_270 = 0;
       pSystemConfigurationMode = (uint8_t *)0x0;
@@ -239559,7 +239577,7 @@ long long FUN_18020dd10(long long *SystemContextPointer,long long *Utf8BufferSiz
   uStack_810 = 0x118;
   puStack_818 = aSystemUintBuffer258;
   MultiByteToWideChar(0xfde9,0,puStack_590,0xffffffff);
-  puStack_7d8 = &UNK_180a01620;
+  puStack_7d8 = &SystemStringSecondaryTemplate;
   __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ(auStack_730);
   FunctionAddress808 = 1;
   __0__basic_ostream_DU__char_traits_D_std___std__QEAA_PEAV__basic_streambuf_DU__char_traits_D_std___1__N_Z
@@ -239926,7 +239944,7 @@ void FUN_18020e410(uint64_t *SystemContextPointer,uint64_t Utf8BufferSize,uint64
   Utf16Char = MemoryAllocate(MemoryPoolManager,0x10,8,3,0xfffffffffffffffe);
   MemoryBlockIndex = (long long *)AllocateSystemMemoryPool(0x10);
   *MemoryBlockIndex = SystemContextPointer;
-  MemoryBlockIndex[1] = (long long)&UNK_18020f868;
+  MemoryBlockIndex[1] = (long long)&SystemDataTablePrimary;
   FUN_18020f620(Utf16Char);
   if (MemoryBlockIndex != (long long *)0x0) {
     free();
@@ -240424,7 +240442,7 @@ LAB_18020f126:
   BufferAllocationStatus = (long long *)MemoryAllocate(MemoryPoolManager,200,8,3);
   plStack_d8 = BufferAllocationStatus;
   CoreEngineProcessSystemContext(BufferAllocationStatus);
-  *BufferAllocationStatus = (long long)&UNK_180a10008;
+  *BufferAllocationStatus = (long long)&SystemDataBufferPrimary;
   BufferAllocationStatus[0x18] = (long long)alStack_b8;
   plStack_c0 = BufferAllocationStatus;
   (**(code **)(*BufferAllocationStatus + 0x28))(BufferAllocationStatus);
@@ -240623,7 +240641,7 @@ LAB_18020f50e:
   if (LockResult != 0) {
     __Throw_C_error_std__YAXH_Z(LockResult);
   }
-  LocalProcessingStatusFlag = &UNK_180a0fff8;
+  LocalProcessingStatusFlag = &SystemMemoryBufferQuaternary;
   lStack_10 = *Utf8BufferSize;
   *Utf8BufferSize = 0;
   StringComparisonResult = _Thrd_start(SystemContextPointer,FUN_18020f940,&LocalProcessingStatusFlag,Utf16EndPointer,UnicodeCodePoint,0,MemoryAddressMask,0,CalculatedCodePoint);

@@ -20455,12 +20455,12 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               StackDataWordL = *(DataWord *)(dataContext + 0x50);
               StackDataWordM = *(DataWord *)(dataContext + 0x54);
               StackPointerBufferD = &SystemSecurityCheckReference;
-              uStack_150 = 0;
-              uStack_120 = *(DataWord *)(dataContext + 0x58);
-              uStack_11c = *(DataWord *)(dataContext + 0x5c);
+              StackDataWordH = 0;
+              StackDataWordN = *(DataWord *)(dataContext + 0x58);
+              StackDataWordO = *(DataWord *)(dataContext + 0x5c);
               StackDataWordP = *(DataWord *)(dataContext + 0x60);
               StackDataWordQ = *(DataWord *)(dataContext + 100);
-              uStack_148 = StackDataWordA;
+              StackDataWordI = StackDataWordA;
               iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferD);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
@@ -20469,10 +20469,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
           if (iterationCount == 0) {
             if (StackFloatValueC != 1.0) {
               StackFloatValueA = StackFloatValueC;
-              puStack_1c0 = &FloatingPointValidationErrorA;
+              StackPointerBufferI = &FloatingPointValidationErrorA;
               StackDataWordC = StackDataWordA;
               StackDataWordB = 0;
-              iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
+              iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
             iterationCount = ValidateDataA3(dataContext,StackFloatArrayA,0);
@@ -20482,7 +20482,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 puStack_1c0 = &FloatingPointValidationErrorB;
                 StackDataWordC = StackDataWordA;
                 StackDataWordB = 0;
-                iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
+                iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               loopCounter = 0.0;
@@ -20494,7 +20494,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                   puStack_1c0 = &DataProcessingValidationError;
                   StackFloatValueA = loopCounter;
                   StackFloatValueB = *floatArrayPointer;
-                  iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
+                  iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                   if (iterationCount != 0) GOTO_SecurityTerminationA3;
                 }
                 loopCounter = (float)((int)loopCounter + 1);
@@ -20510,7 +20510,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                   puStack_1c0 = &SystemStatusValidationError;
                   StackFloatValueA = loopCounter;
                   StackFloatValueB = floatValue;
-                  iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
+                  iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                   if (iterationCount != 0) GOTO_SecurityTerminationA3;
                 }
                 loopCounter = (float)((int)loopCounter + 1);
@@ -20522,7 +20522,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 StackDataWordC = StackDataWordA;
                 StackDataWordB = 0;
                 StackFloatValueA = (float)(validationOutcome / 0x30);
-                iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
+                iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               if ((*(uint *)(dataBuffer + 0x2d8) >> 1 & 1) != 0) {
@@ -20530,7 +20530,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 puStack_1c0 = &DataIntegrityValidationErrorB;
                 StackDataWordC = StackDataWordA;
                 StackFloatValueA = (float)CONCAT31(StackFloatValueA._1_3_,1);
-                iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
+                iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               iterationCount = ProcessUtilityOperation(dataBuffer);
@@ -20538,7 +20538,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 StackDataWordB = 0;
                 puStack_1c0 = &DataIntegrityValidationErrorC;
                 StackDataWordC = StackDataWordA;
-                iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
+                iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               iterationCount = ProcessUtilityOperation(dataBuffer);
@@ -20547,7 +20547,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 puStack_1c0 = &DataIntegrityValidationErrorD;
                 StackDataWordC = StackDataWordA;
                 StackFloatValueA = 0.0;
-                iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_1c0);
+                iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               if ((*(uint *)(dataBuffer + 0x2d8) >> 3 & 1) != 0) {
@@ -100022,7 +100022,7 @@ void ReleaseSystemReferenceCount(void)
 
 
 
-9428d8(void)
+void FUN_1809428d8(void)
 /**
  * @brief 空操作函数
  * 
