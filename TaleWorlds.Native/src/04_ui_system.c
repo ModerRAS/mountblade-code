@@ -9021,18 +9021,18 @@ LAB_180656e11:
             pisCharacterMatch1 = *(byte **)pisCharacterMatch8;
           }
 LAB_180656d07:
-          if (bVar2) {
-            pisCharacterMatch8 = pbVar8;
+          if (ShouldSkipResourceValidation) {
+            ResourceDataPointer = ResourceIterator;
           }
-          pbVar8 = pisCharacterMatch8;
+          ResourceIterator = ResourceDataPointer;
           pisCharacterMatch8 = pisCharacterMatch1;
         } while (pisCharacterMatch1 != (byte *)0x0);
         pisCharacterMatch8 = (byte *)0x0;
-        if (pbVar8 == &UIDefaultResourceBuffer) goto LAB_180656d5b;
-        if (*(int *)(pbVar8 + 0x30) != 0) {
+        if (ResourceIterator == &UIDefaultResourceBuffer) goto LAB_180656d5b;
+        if (*(int *)(ResourceIterator + 0x30) != 0) {
           if (stackUInta8 != 0) {
-            pbVar8 = *(byte **)(pbVar8 + 0x28);
-            pisCharacterMatch8 = pbStack_b0 + -(longlong)pbVar8;
+            ResourceDataPointer = *(byte **)(ResourceIterator + 0x28);
+            pisCharacterMatch8 = pbStack_b0 + -(longlong)ResourceDataPointer;
             do {
               isCharacterMatch = *pbVar8;
               semaphoreHandle2 = (uint)pbVar8[(longlong)pisCharacterMatch8];
