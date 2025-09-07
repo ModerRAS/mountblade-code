@@ -166497,6 +166497,21 @@ void ProcessSystemMemoryCleanup(void
  * @note 原始函数名：FUN_18013a860
  * @note 此函数是字符编码处理系统的核心组件
  */
+/**
+ * @brief 处理字符编码转换
+ * 
+ * 该函数负责处理字符编码的转换操作，主要功能包括：
+ * - 验证字符编码状态
+ * - 处理UTF-8到UTF-16的转换
+ * - 管理字符表的遍历和操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18013a860
+ */
 void ProcessCharacterEncodingConversion(long long CharacterCode,int Utf8BufferSize,int Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
