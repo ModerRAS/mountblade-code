@@ -1110,13 +1110,13 @@ void* SystemMemoryRegionExpansionPrimary;                    // 系统内存区�
 void* SystemMemoryRegionExpansionTertiary;                   // 系统内存区域扩展第三区域
 void* SystemMemoryRegionExpansionQuaternary;                 // 系统内存区域扩展第四区域
 void* SystemDataTableLegacy;                                  // 遗留系统数据表
-void* SystemMemoryRegionExpansionSecondary;
+void* SystemMemoryRegionExpansionSecondary;                  // 系统内存区域扩展次级区域
 void* SystemMemoryRegionExpansionQuinary;
 void* SystemMemoryRegionExpansionSierra;                     // 系统内存区域扩展Sierra
 void* SystemMemoryRegionExpansionTango;                      // 系统内存区域扩展Tango
 void* SystemMemoryRegionExpansionUniform;                    // 系统内存区域扩展Uniform
-void* SystemMemoryRegionExpansionVictor;
-void* SystemMemoryRegionExpansionWhiskey;
+void* SystemMemoryRegionExpansionVictor;                     // 系统内存区域扩展Victor
+void* SystemMemoryRegionExpansionWhiskey;                     // 系统内存区域扩展Whiskey
 /**
  * @brief 系统数据指针主指针
  */

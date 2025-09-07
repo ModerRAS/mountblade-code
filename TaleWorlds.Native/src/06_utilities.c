@@ -4701,12 +4701,12 @@ void InitializeUtilityModule(void);
 /**
  * @brief 工具模块配置参数
  */
-uint32_t PrimaryModuleConfiguration;
-uint32_t SecondaryModuleConfiguration;
-uint32_t TertiaryModuleConfiguration;
-uint32_t QuaternaryModuleConfiguration;
-uint32_t QuinaryModuleConfiguration;
-uint32_t SenaryModuleConfiguration;
+uint32_t UtilityPrimaryModuleConfig;
+uint32_t UtilitySecondaryModuleConfig;
+uint32_t UtilityTertiaryModuleConfig;
+uint32_t UtilityQuaternaryModuleConfig;
+uint32_t UtilityQuinaryModuleConfig;
+uint32_t UtilitySenaryModuleConfig;
 
 /**
  * @brief 工具模块激活状态
@@ -32321,7 +32321,17 @@ ProcessCheckpointValidationExit2:
 
 
 
-uint64_t FUN_18089e9af(DataBuffer param_1,DataBuffer param_2,uint64_t param_3)
+/**
+ * @brief 数据缓冲区参数验证函数
+ * 
+ * 使用指定参数验证数据缓冲区的有效性和完整性
+ * 
+ * @param bufferA 第一个数据缓冲区
+ * @param bufferB 第二个数据缓冲区
+ * @param validationFlags 验证标志位
+ * @return uint64_t 验证状态码，0表示成功，非0表示错误码
+ */
+uint64_t ValidateDataBufferWithParameters(DataBuffer bufferA,DataBuffer bufferB,uint64_t validationFlags)
 
 {
   int64_t *validationContextPointer;

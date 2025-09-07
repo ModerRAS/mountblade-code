@@ -111253,52 +111253,52 @@ ce11(voidvoid CoreEngineInitializeAudio(void
 
 
 
-float * FUN_18011ce30(float *SystemContextPointer,char *Utf8BufferSize,char Utf16InputPointer
+float * ProcessSystemScalingCalculation(float *SystemContextPointer,char *Utf8BufferSize,char Utf16InputPointer
 {
-  float *pSystemContextFloat1;
-  long long bufferAllocationStatus;
-  char *FunctionPointer;
-  float FloatVariable4;
-  float FloatVariable5;
-  float CalculatedDistance;
-  float PrimaryScalingFactor;
-  float SecondaryScalingFactor;
+  float *systemContextFloat;
+  long long systemDataStatus;
+  char *stringIterator;
+  float calculatedFloatValue;
+  float scalingFactor;
+  float calculatedDistance;
+  float primaryScale;
+  float secondaryScale;
   
-  bufferAllocationStatus = SystemDataConfiguration;
-  FunctionPointer = Utf8BufferSize;
+  systemDataStatus = SystemDataConfiguration;
+  stringIterator = Utf8BufferSize;
   if (Utf8BufferSize != (char *)0xffffffffffffffff) {
     while( true ) {
-      if (*FunctionPointer == '\0') break;
-      if (((*FunctionPointer == '#') && (FunctionPointer[1] == '#')) ||
-         (FunctionPointer = FunctionPointer + 1, FunctionPointer == (char *)0xffffffffffffffff)) break;
+      if (*stringIterator == '\0') break;
+      if (((*stringIterator == '#') && (stringIterator[1] == '#')) ||
+         (stringIterator = stringIterator + 1, stringIterator == (char *)0xffffffffffffffff)) break;
     }
   }
-  pSystemContextFloat1 = *(float **)(SystemDataConfiguration + 0x19f0);
-  FloatVariable5 = *(float *)(SystemDataConfiguration + 0x19f8);
-  if (Utf8BufferSize == FunctionPointer) {
-    FloatVariable4 = 0.0;
-    SecondaryScalingFactor = FloatVariable5;
+  systemContextFloat = *(float **)(SystemDataConfiguration + 0x19f0);
+  scalingFactor = *(float *)(SystemDataConfiguration + 0x19f8);
+  if (Utf8BufferSize == stringIterator) {
+    calculatedFloatValue = 0.0;
+    secondaryScale = scalingFactor;
   }
   else {
-    ProcessFloatAndSystemConfiguration(pSystemContextFloat1,&PrimaryScalingFactor,FloatVariable5,0x7f7fffff,0xbf800000,Utf8BufferSize,FunctionPointer,0);
-    if (0.0 < PrimaryScalingFactor) {
-      PrimaryScalingFactor = PrimaryScalingFactor - FloatVariable5 / *pSystemContextFloat1;
+    ProcessFloatAndSystemConfiguration(systemContextFloat,&primaryScale,scalingFactor,0x7f7fffff,0xbf800000,Utf8BufferSize,stringIterator,0);
+    if (0.0 < primaryScale) {
+      primaryScale = primaryScale - scalingFactor / *systemContextFloat;
     }
-    FloatVariable4 = (float)(int)(PrimaryScalingFactor + 0.95);
+    calculatedFloatValue = (float)(int)(primaryScale + 0.95);
   }
   if (Utf16InputPointer == '\0') {
-    FloatVariable5 = 1.0;
+    scalingFactor = 1.0;
   }
   else {
-    FloatVariable5 = *(float *)(bufferAllocationStatus + 0x1674) + *(float *)(bufferAllocationStatus + 0x19f8);
+    scalingFactor = *(float *)(systemDataStatus + 0x1674) + *(float *)(systemDataStatus + 0x19f8);
   }
-  CalculatedDistance = *(float *)(bufferAllocationStatus + 0x19f8) * 20.0;
-  FloatVariable5 = *(float *)(bufferAllocationStatus + 0x165c) + FloatVariable5 + *(float *)(bufferAllocationStatus + 0x165c) + FloatVariable4;
-  SystemContextPointer[1] = *(float *)(bufferAllocationStatus + 0x1660) + *(float *)(bufferAllocationStatus + 0x1660) + SecondaryScalingFactor;
-  if (CalculatedDistance <= FloatVariable5) {
-    FloatVariable5 = CalculatedDistance;
+  calculatedDistance = *(float *)(systemDataStatus + 0x19f8) * 20.0;
+  scalingFactor = *(float *)(systemDataStatus + 0x165c) + scalingFactor + *(float *)(systemDataStatus + 0x165c) + calculatedFloatValue;
+  SystemContextPointer[1] = *(float *)(systemDataStatus + 0x1660) + *(float *)(systemDataStatus + 0x1660) + secondaryScale;
+  if (calculatedDistance <= scalingFactor) {
+    scalingFactor = calculatedDistance;
   }
-  *SystemContextPointer = FloatVariable5;
+  *SystemContextPointer = scalingFactor;
   return SystemContextPointer;
 }
 
