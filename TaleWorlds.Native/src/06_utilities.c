@@ -50185,7 +50185,13 @@ void SetExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809050d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 关闭文件资源函数
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809050d0
+ */
+void CloseFileResource(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0xf0) != 0) {
@@ -50200,7 +50206,13 @@ void Unwind_1809050d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809050e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理器B0函数
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_1809050e0
+ */
+void SetExceptionHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x168) = &TemporaryExceptionHandler;

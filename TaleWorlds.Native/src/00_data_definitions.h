@@ -3305,7 +3305,7 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
           SystemOperationStatus = 1;
           SystemProcessStatus = 0;
           *(uint8_t *)(SystemEngineContext + 0x1f0) = 0;
-          StackBuffer2C8 = &SystemNullPointer;
+          SystemNullBufferPointer = &SystemNullPointer;
           StackProcessingBuffer = 0;
           SystemMemoryBufferPointer = (uint8_t *)0x0;
           SystemOperationStatusFlag = 0;
@@ -4421,11 +4421,11 @@ Label_ModuleConfigurationStart:
     SystemInitializeSecondary(&SystemInitializationBufferA,0,0);
     ConfigureSystemComponent(&SystemConstantDD);
     SystemInitializationFlag = SystemFloatTwoValue;
-    SystemStackBuffer712[0] = SystemFloatOneValue;
+    SystemComponentRegistrationBuffer[0] = SystemFloatOneValue;
     StackParameter14 = 0x20000;
     StackParameterPointer = &SystemRegistrationBuffer;
     pplStack_328 = (longlong **)&StackCounter2f0;
-    RegisterSystemComponent(&SystemConstantEE,4,SystemConfigurationData + 0x167c,SystemStackBuffer712);
+    RegisterSystemComponent(&SystemConstantEE,4,SystemConfigurationData + 0x167c,SystemComponentRegistrationBuffer);
     plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x40000000);
     StackCounter48 = (longlong *)CONCAT44(StackCounter48._4_4_,0x3f800000);
     StackParameter14 = 0x20000;
@@ -12864,7 +12864,7 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
   longlong SystemStateValue;
   longlong LongOffset;
   uint32_t UnsignedSize;
-  longlong StackVariable8;
+  longlong NetworkResponseBuffer;
   uint8_t NetworkPacketBuffer [16];
   NetworkOperationResult = *(uint64_t *)(NetworkContextPointer + 0x28);
   pNetworkRequestResult = (uint32_t *)GetStringProcessingResult();
