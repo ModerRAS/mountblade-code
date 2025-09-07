@@ -287,6 +287,18 @@ const long long SystemValidationIdentifierSecondary = 0x703a29a844ce399;
 const long long SystemNetworkConnectionPoolStateManagerIdentifierPrimary = 0x40afa5469b6ac06d;
 const long long SystemNetworkConnectionPoolStateManagerIdentifierSecondary = 0x2f4bab01d34055a5;
 
+// 网络消息队列标识常量
+const long long SystemNetworkMessageQueueIdentifierPrimary = 0x402feffe4481676e;
+const long long SystemNetworkMessageQueueIdentifierSecondary = 0xd4c2151109de93a0;
+
+// 网络事件处理器标识常量
+const long long SystemNetworkEventHandlerIdentifierPrimary = 0x4384dcc4b6d3f417;
+const long long SystemNetworkEventHandlerIdentifierSecondary = 0x92a15d52fe2679bd;
+
+// 网络同步管理器标识常量
+const long long SystemNetworkSyncManagerIdentifierPrimary = 0x4140994454d56503;
+const long long SystemNetworkSyncManagerIdentifierSecondary = 0x399eced9bb5517ad;
+
 // 内存地址常量
 const void* const DataTableStartAddress = (void*)0x180c8aa70;
 const void* const DataTableEndAddress = (void*)0x180c8ea71;
@@ -272203,8 +272215,8 @@ int ProcessAudioSignalWithWeights(int AudioSignalData,int SignalBufferSize,char 
   float QuaternaryWeightFactor;
   uint32_t SampleCounter;
   
-  ProcessingStatusFlag = (unsigned long long)CharacterCodeSize;
-  uStackX_10 = 1;
+  ProcessingStatusFlag = (unsigned long long)SignalBufferSize;
+  SampleCounter = 1;
   RemainingSpace = 1 << ((byte)CharacterCodeSize & 0x1f);
   DataSize = RemainingSpace / 2;
   if (0 < (int)CharacterCodeSize) {
