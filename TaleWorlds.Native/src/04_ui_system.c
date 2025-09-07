@@ -10534,6 +10534,7 @@ undefined8 InitializeUIElementContext(longlong *uiContext)
   float StackParameter2;
   float StackParameter3;
   float StackParameter4;
+  bool IsGeometryValid;
   longlong StackContextPointer;
   longlong StackAllocationPointer;
   undefined4 StackValue1;
@@ -10633,33 +10634,33 @@ undefined8 InitializeUIElementContext(longlong *uiContext)
     allocatedMemory7 = allocatedMemory6 * 4;
     do {
       allocatedMemory0 = (longlong)((uiOperationResult5 + -1) % uiOperationResult2);
-      if ((!bVar3) ||
+      if ((!IsGeometryValid) ||
          ((floatResult9 = (pfloatResult1[-4] - *(float *)(componentIndex + 4 + allocatedMemory0 * 8)) * (localFloat20 - pfloatResult1[-5]) -
                     (localFloat21 - pfloatResult1[-4]) * (pfloatResult1[-5] - *(float *)(componentIndex + allocatedMemory0 * 8)),
           floatResult9 <= unmodifiedXMM6_Da && (floatResult9 < unmodifiedXMM6_Da)))) {
-        bVar3 = false;
+        IsGeometryValid = false;
       }
       else {
-        bVar3 = true;
+        IsGeometryValid = true;
       }
-      if ((!bVar3) ||
+      if ((!IsGeometryValid) ||
          ((floatResult9 = (pfloatResult1[-2] - *(float *)(componentIndex + 4 + (longlong)(uiOperationResult5 % uiOperationResult2) * 8))                     (localFloat20 - pfloatResult1[-3]) -
                     (localFloat21 - pfloatResult1[-2])                     (pfloatResult1[-3] - *(float *)(componentIndex + (longlong)(uiOperationResult5 % uiOperationResult2) * 8)),
           floatResult9 <= unmodifiedXMM6_Da && (floatResult9 < unmodifiedXMM6_Da)))) {
-        bVar3 = false;
+        IsGeometryValid = false;
       }
       else {
-        bVar3 = true;
+        IsGeometryValid = true;
       }
       allocatedMemory0 = (longlong)((uiOperationResult5 + 1) % uiOperationResult2);
-      if ((!bVar3) ||
+      if ((!IsGeometryValid) ||
          ((floatResult9 = (*pfloatResult1 - *(float *)(componentIndex + 4 + allocatedMemory0 * 8)) * (localFloat20 - pfloatResult1[-1]) -
                     (localFloat21 - *pfloatResult1) * (pfloatResult1[-1] - *(float *)(componentIndex + allocatedMemory0 * 8)),
           floatResult9 <= unmodifiedXMM6_Da && (floatResult9 < unmodifiedXMM6_Da)))) {
-        bVar3 = false;
+        IsGeometryValid = false;
       }
       else {
-        bVar3 = true;
+        IsGeometryValid = true;
       }
       allocatedMemory0 = (longlong)((uiOperationResult5 + 2) % uiOperationResult2);
       if ((!bVar3) ||

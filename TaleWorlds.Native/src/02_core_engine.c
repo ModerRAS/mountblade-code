@@ -53007,7 +53007,7 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
     BufferStatus3 = MemoryBlockIndex1;
   } while (MemoryBlockIndex1 < (long long)pStackDataBuffer1e0);
   lStack_170 = 0;
-  plStack_168 = (long long *)0x0;
+  SystemMemoryPointer168 = (long long *)0x0;
   pLocalDataStructure160 = (long long *)0x0;
   SystemStackValue158 = 3;
   InitializeSystemDataStructureA(&lStack_170,(long long)StringComparisonResult7);
@@ -53738,7 +53738,7 @@ ReferenceCountAllocation:
             IsSystemContextValid = hasDataBeenUpdated;
           } while ((unsigned long long)(long long)(int)UnicodeCodePoint3 < SystemUnsignedValue180);
         }
-        MemoryBlockIndex9 = plStack_168;
+        MemoryBlockIndex9 = SystemMemoryPointer168;
         SystemStackValue1c0 = (uint)ReferenceCountPointer218;
         SystemStackValue1bc = (uint32_t)((unsigned long long)ReferenceCountPointer218 >> 0x20);
         StackProcessingVariable1B8.LowPart = SUB84(SystemStackPointer1f8,0);
@@ -53778,15 +53778,15 @@ SystemEventProcessing:
     ProcessingStatus = *(uint32_t *)(pStackDataBuffer1e0[1] + lStack_170 + 8);
     *(uint32_t *)(pStackDataBuffer1e0[1] + lStack_170 + 8) = 3;
     SystemUnsignedValue1A0 = ReferenceCountPointer3;
-    if (plStack_168 < pLocalDataStructure160) {
+    if (SystemMemoryPointer168 < pLocalDataStructure160) {
       MemoryAddressMask1 = (long long)pStringComparisonResult6 - (long long)ReferenceCountPointer6;
-      *(uint32_t *)(plStack_168 + 3) = 3;
+      *(uint32_t *)(SystemMemoryPointer168 + 3) = 3;
       if (MemoryAddressMask1 < 4) {
         BufferStatus1 = 0;
-        plStack_168 = plStack_168 + 4;
+        SystemMemoryPointer168 = SystemMemoryPointer168 + 4;
       }
       else {
-        plStack_168 = plStack_168 + 4;
+        SystemMemoryPointer168 = SystemMemoryPointer168 + 4;
         BufferStatus1 = BufferAllocate(MemoryPoolManager,((long long)MemoryAddressMask1 >> 2) * 4,3);
       }
       *MemoryBlockIndex9 = BufferStatus1;
@@ -228212,7 +228212,7 @@ uint64_t * InitializeSystemContext(uint64_t *CharacterCode,long long SystemBuffe
   long long *plStack_188;
   uint8_t aSystemUnsignedValue180 [8];
   uint64_t SystemStackOffset178;
-  long long *plStack_168;
+  long long *SystemMemoryPointer168;
   char cStack_160;
   char cStack_15f;
   char cStack_15e;
@@ -228923,7 +228923,7 @@ uint64_t * InitializeSystemContext(uint64_t *CharacterCode,long long SystemBuffe
   SystemMemoryAllocationResult = 0;
   plStack_190 = (long long *)0x0;
   plStack_188 = (long long *)0x0;
-  plStack_168 = (long long *)0x0;
+  SystemMemoryPointer168 = (long long *)0x0;
   uStack_178 = 0;
   aSystemUnsignedValue180[0] = 0;
   InitializeSystemFlag(&plStack_190,MemoryPoolBlockSizePointer,0);
@@ -228957,8 +228957,8 @@ uint64_t * InitializeSystemContext(uint64_t *CharacterCode,long long SystemBuffe
     }
   }
   MemoryAddressMask = ValidateStackArray(aSystemUnsignedValue180);
-  if (plStack_168 != (long long *)0x0) {
-    MemoryAddressMask = (**(code **)(*plStack_168 + 0x38))();
+  if (SystemMemoryPointer168 != (long long *)0x0) {
+    MemoryAddressMask = (**(code **)(*SystemMemoryPointer168 + 0x38))();
   }
   if (plStack_188 != (long long *)0x0) {
     MemoryAddressMask = (**(code **)(*plStack_188 + 0x38))();
@@ -234671,7 +234671,7 @@ long long * FUN_18019eb80(long long CharacterCode,long long *CharacterCodeSize
   uint32_t uStack_17c;
   long long *plStack_178;
   long long *plStack_170;
-  long long *plStack_168;
+  long long *SystemMemoryPointer168;
   long long LocalDataStructure160;
   long long *plStack_158;
   long long lStack_150;
@@ -235001,7 +235001,7 @@ long long * FUN_18019eb80(long long CharacterCode,long long *CharacterCodeSize
             fStack_1c4 = ContextSecondaryFloat5;
             fStack_188 = ContextSecondaryFloat5;
             if (*(long long *)(SystemCharacterStatusBufferPointerA + 0x350) == 0) {
-              CharacterStatusBuffer = (void *                        FUN_180094e80(aInputDataLength.Low64Part,&plStack_168,&SystemEventDataTable,fStack_184,systemEventTemplatePointer5,
+              CharacterStatusBuffer = (void *                        FUN_180094e80(aInputDataLength.Low64Part,&SystemMemoryPointer168,&SystemEventDataTable,fStack_184,systemEventTemplatePointer5,
                                       TemporaryBuffer,IntegerValue3);
               SystemChecksum = *CharacterStatusBuffer;
               *CharacterStatusBuffer = 0;
@@ -235010,8 +235010,8 @@ long long * FUN_18019eb80(long long CharacterCode,long long *CharacterCodeSize
               if (plStack_158 != (long long *)0x0) {
                 (**(code **)(*plStack_158 + 0x38))();
               }
-              if (plStack_168 != (long long *)0x0) {
-                (**(code **)(*plStack_168 + 0x38))();
+              if (SystemMemoryPointer168 != (long long *)0x0) {
+                (**(code **)(*SystemMemoryPointer168 + 0x38))();
               }
             }
             CharacterCode1 = *(long long **)(CharacterTableIterator + 0x350);
@@ -241485,7 +241485,7 @@ LAB_180204eec:
   uint32_t SystemUnsignedValue180;
   long long lStack_178;
   long long *plStack_170;
-  long long *plStack_168;
+  long long *SystemMemoryPointer168;
   long long LocalDataStructure160;
   long long *plStack_158;
   long long *plStack_150;
@@ -241724,8 +241724,8 @@ LAB_180204eec:
           }
         }
         lStack_178 = 0;
-        if (plStack_168 != (long long *)0x0) {
-          (**(code **)(*plStack_168 + 0x38))();
+        if (SystemMemoryPointer168 != (long long *)0x0) {
+          (**(code **)(*SystemMemoryPointer168 + 0x38))();
         }
         ConfigurationString = SystemTemplatePointer;
         StringProcessingStatus = SystemTemplatePointer;
