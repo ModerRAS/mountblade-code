@@ -227,6 +227,20 @@
 #define SystemStateFlagsExtendedOffset 0x2d8
 #define ResourceConfigurationPrimaryOffset 0x10
 
+// 新增内存和资源管理常量
+#define ResourceDataPointerOffset 0x20
+#define ResourceIteratorOffset 0x10
+#define DataBufferValueOffset 0x18
+#define DataBufferResultOffset 0x20
+#define DataBufferValidationOffset 0x34
+#define DataBufferResult1Offset 0x38
+#define DataBufferResult2Offset 0x3c
+#define DataBufferContextOffset 0x90
+#define DataBufferCleanupOffset 0x98
+#define ResourceIteratorStep 0x18
+#define ResourceIteratorValueOffset 4
+#define DataContextStep 8
+
 // Goto 标签宏定义 - 用于美化代码
 #define GOTO_ValidationFailed goto ExecuteSecurityValidation
 #define GOTO_SecurityCheckFailed goto ExecuteSystemSecurityCheck
@@ -512,6 +526,17 @@
 #define ExecuteValidatorAtOffset20And18 Unwind_180907120
 #define ResetSystemStatusFlag Unwind_180907130
 #define ValidateAndProcessDataBuffer Unwind_180907140
+
+// 异常上下文处理函数宏定义
+#define ProcessExceptionHandlerAtOffset0 Unwind_18090f8e0
+#define ProcessExceptionHandlerAtOffset8 Unwind_18090f8f0
+#define ProcessExceptionHandlerAtOffset16 Unwind_18090f970
+#define ProcessExceptionHandlerAtOffset32 Unwind_18090f980
+#define ProcessExceptionHandlerAtOffset48 Unwind_18090f990
+#define ProcessExceptionHandlerAtOffset64 Unwind_18090f9a0
+#define ProcessExceptionHandlerAtOffset80 Unwind_18090f9b0
+#define ProcessExceptionHandlerAtOffset96 Unwind_18090f9c0
+#define ProcessExceptionHandlerAtOffset112 Unwind_18090f9d0
 
 // 异常处理器清理函数组
 // 原始函数名：Unwind_180904370 - 异常上下文处理器清理函数A0
@@ -7300,10 +7325,10 @@ int32_t UtilityInitializationSuccessFlag;
 void ConfigureUtilitySystem(void);
 // 工具系统配置数据变量
 int32_t UtilityConfigurePrimaryData;
-int32_t UtilityConfigureData2;
-int32_t UtilityConfigureData3;
-int32_t UtilityConfigureData4;
-int32_t UtilityConfigureStatus1;
+int32_t UtilityConfigureSecondaryData;
+int32_t UtilityConfigureTertiaryData;
+int32_t UtilityConfigureQuaternaryData;
+int32_t UtilityConfigureStatus;
 
 // 函数: void SetupUtilityMemory(void)
 // 
@@ -7317,11 +7342,11 @@ int32_t UtilityConfigureStatus1;
 //   无
 void SetupUtilityMemory(void);
 // 工具系统设置内存数据变量
-void* UtilitySetupMemoryData1;
-void* UtilitySetupMemoryData2;
-void* UtilitySetupMemoryData3;
-void* UtilitySetupMemoryData4;
-int32_t UtilitySetupMemoryStatus1;
+void* UtilitySetupMemoryPrimaryData;
+void* UtilitySetupMemorySecondaryData;
+void* UtilitySetupMemoryTertiaryData;
+void* UtilitySetupMemoryQuaternaryData;
+int32_t UtilitySetupMemoryStatus;
 
 // 函数: void AllocateUtilityBuffers(void)
 // 
@@ -9584,6 +9609,15 @@ uint8_t SystemManagementDataTableA0;
  * @warning 函数执行过程中不会返回，最后会调用安全检查
  * 
  * @see QueryAndRetrieveSystemDataA0, ExecuteCoreFunction, ProcessUtilityOperation, ReleaseResource, CleanupMemory
+ */
+/**
+ * @brief 处理对象数据并进行验证
+ * 
+ * 该函数负责处理对象数据，执行验证操作，并管理系统资源
+ * 包括安全验证、数据处理和资源清理等功能
+ * 
+ * @param ObjectHandle 对象句柄，用于访问对象数据
+ * @param DataContext 数据上下文，提供数据处理环境
  */
 void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 {
@@ -15386,8 +15420,8 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
-    resourceIterator = *(int64_t *)(resourceDataPointer + 0x20);
-    calculatedOffset = *(int64_t *)(resourceIterator + 0x10 + (int64_t)(int)stackBuffer[0] * 0x18);
+    resourceIterator = *(int64_t *)(resourceDataPointer + ResourceDataPointerOffset);
+    calculatedOffset = *(int64_t *)(resourceIterator + ResourceIteratorOffset + (int64_t)(int)stackBuffer[0] * ResourceIteratorStep);
     if ((*(byte *)(calculatedOffset + 0x34) & 0x11) == 0) {
       inputValue = *(float *)(dataBuffer + 0x18);
       resultValue = *(float *)(calculatedOffset + 0x38);
@@ -52017,7 +52051,7 @@ void ProcessExceptionDataBufferE40(DataBuffer operationBase,int64_t dataBuffer,D
 
 
 
-void Unwind_180904e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void SystemExceptionHandlerA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -52038,7 +52072,7 @@ void Unwind_180904e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void SystemExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -52059,7 +52093,7 @@ void Unwind_180904e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180904e70(DataBuffer operationBase,int64_t dataBuffer)
+void SystemExceptionHandlerC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -52095,7 +52129,7 @@ void Unwind_180904e70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904e80(DataBuffer operationBase,int64_t dataBuffer)
+void SystemExceptionHandlerD(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x40) & 1) != 0) {
@@ -80033,7 +80067,19 @@ void Unwind_18090cb60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cb70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理器B回调
+ * 
+ * 该函数负责设置异常处理器B的回调函数，将默认异常处理器B
+ * 安装到指定的数据缓冲区位置。
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090cb70
+ * @note 简化实现：仅设置异常处理器回调
+ */
+void SetExceptionHandlerCallbackB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x720) = &DefaultExceptionHandlerB;
@@ -80044,7 +80090,25 @@ void Unwind_18090cb70(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_18090cb80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统资源异常并设置处理器回调
+ * 
+ * 该函数负责处理系统资源异常情况，包括：
+ * 1. 检查数据缓冲区状态
+ * 2. 获取系统资源迭代器
+ * 3. 验证资源指针状态
+ * 4. 处理异常上下文
+ * 5. 执行系统操作
+ * 6. 验证数据缓冲区
+ * 7. 设置异常处理器回调
+ * 
+ * @param operationBase 操作基础参数（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090cb80
+ * @note 简化实现：资源异常处理和回调设置
+ */
+void ProcessSystemResourceExceptionAndSetCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -89917,6 +89981,17 @@ void Unwind_18090f900(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 验证数据处理器状态
+ * 
+ * 该函数检查数据缓冲区的状态标志，并在需要时调用数据验证处理器。
+ * 主要用于确保数据处理的完整性和一致性。
+ * 
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f930
+ */
 void Unwind_18090f930(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -89929,6 +90004,17 @@ void Unwind_18090f930(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 执行异常上下文根处理器
+ * 
+ * 该函数检查异常上下文的根指针，并在有效时调用相应的异常处理函数。
+ * 用于处理最顶层的异常处理逻辑。
+ * 
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f960
+ */
 void Unwind_18090f960(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -89940,6 +90026,17 @@ void Unwind_18090f960(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 执行异常上下文处理器（偏移量8）
+ * 
+ * 该函数处理位于偏移量8处的异常上下文，并在有效时调用相应的异常处理函数。
+ * 用于处理特定位置的异常处理逻辑。
+ * 
+ * @param operationBase 操作基础对象
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090f970
+ */
 void Unwind_18090f970(DataBuffer operationBase,int64_t dataBuffer)
 
 {
