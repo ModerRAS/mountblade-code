@@ -213779,8 +213779,25 @@ LAB_18018222c:
 
 
 
-uint64_t *
-FUN_1801834d0(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,int *Utf16EndPointer,unsigned long long AdditionalParameter1
+/**
+ * @brief UTF-8到UTF-16字符编码转换器
+ * 
+ * 该函数负责将UTF-8编码的字符转换为UTF-16编码格式，支持完整的Unicode字符集转换。
+ * 函数会处理字符编码查找、内存分配和编码表管理，确保转换过程的准确性和效率。
+ * 
+ * @param CharacterCode 字符编码表指针，包含字符映射数据
+ * @param CharacterCodeSize 字符编码大小指针（输出参数）
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数，用于字符表索引计算
+ * 
+ * @return uint64_t* 返回转换后的UTF-16数据指针
+ * 
+ * @note 原始函数名: FUN_1801834d0
+ * @note 该函数涉及内存分配和字符编码表操作
+ * @note 支持完整的Unicode字符集转换
+ */
+uint64_t* ConvertUtf8ToUtf16Encoding(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,int *Utf16EndPointer,unsigned long long AdditionalParameter1)
              
 {
   long long PrimaryDataSize;
