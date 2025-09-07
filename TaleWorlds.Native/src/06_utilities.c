@@ -8967,7 +8967,7 @@ void* SystemDataBufferB310;
 void* SystemDataBufferB318;
 void* SystemDataBufferB320;
 void* SystemDataBufferB328;
-void* UtilitySystemValidationPointer6c;
+void* UtilitySystemValidationPointerSecurityContext;
 
 // 函数: void* ValidateUtilitySystemState;
 #define ValidateUtilitySystemState FUN_1809427f0
@@ -8976,7 +8976,7 @@ void* SystemDataBufferB730;
 void* SystemDataBufferB738;
 void* SystemDataBufferB740;
 void* SystemDataBufferB748;
-void* UtilitySystemValidationPointer70;
+void* UtilitySystemValidationPointerSystemContext;
 
 // 函数: void InitializeUtilitySystemBuffers();
 #define InitializeUtilitySystemBuffers FUN_180942810
@@ -20634,7 +20634,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
   ByteFlag validationBuffer1 [8];
   ByteFlag validationBuffer2 [8];
   ByteFlag validationBuffer3 [40];
-  DataWord *stackDataPointer1;
+  DataWord *stackDataPointerInput;
   DataWord *stackDataPointer2;
   DataWord *stackDataPointer3;
   DataWord *stackDataPointer4;
