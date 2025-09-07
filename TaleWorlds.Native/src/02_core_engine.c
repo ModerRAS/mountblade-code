@@ -44698,13 +44698,13 @@ void HandleSystemMemoryAllocationAndBufferManagement(long long *Utf8InputBuffer
       else {
         pMemoryBufferHandle = BufferAllocationStatus;
         ProcessLongIntegerStack(&pMemoryBufferHandle);
-        MemoryPoolBlockSize = lStack_108 + 0xb0;
-        BufferEntryCount = *(ushort *)(lStack_108 + 0xc0);
-        CurrentThresholdValue = *(float *)(*(long long *)(lStack_108 + 0xb8) + -4 + (unsigned long long)BufferEntryCount * 4);
+        MemoryPoolBlockSize = SystemMemoryBuffer108 + 0xb0;
+        BufferEntryCount = *(ushort *)(SystemMemoryBuffer108 + 0xc0);
+        CurrentThresholdValue = *(float *)(*(long long *)(SystemMemoryBuffer108 + 0xb8) + -4 + (unsigned long long)BufferEntryCount * 4);
         TargetThresholdValue = *(float *)((long long)CharacterCode + 0x2dc);
         if (CurrentThresholdValue < *(float *)((long long)CharacterCode + 0x2dc)) {
           *(float *)((long long)CharacterCode + 0x2dc) = CurrentThresholdValue;
-          BufferEntryCount = *(ushort *)(lStack_108 + 0xc0);
+          BufferEntryCount = *(ushort *)(SystemMemoryBuffer108 + 0xc0);
           TargetThresholdValue = CurrentThresholdValue;
         }
         MemoryPoolSize = (uint)BufferEntryCount;
@@ -44718,16 +44718,16 @@ void HandleSystemMemoryAllocationAndBufferManagement(long long *Utf8InputBuffer
           if (0 < (int)(MemoryPoolSize - 2)) {
             do {
               SearchIndexMid = SearchIndexHigh + SearchIndexLow >> 1;
-              if (*(float *)(*(long long *)(lStack_108 + 0xb8) + (long long)SearchIndexMid * 4) <= TargetThresholdValue) {
+              if (*(float *)(*(long long *)(SystemMemoryBuffer108 + 0xb8) + (long long)SearchIndexMid * 4) <= TargetThresholdValue) {
                 SearchIndexLow = SearchIndexMid;
                 SearchIndexMid = SearchIndexHigh;
               }
               SearchIndexHigh = SearchIndexMid;
             } while (SearchIndexLow < SearchIndexHigh + -1);
           }
-          CurrentThresholdValue = *(float *)(*(long long *)(lStack_108 + 0xb8) + (long long)SearchIndexLow * 4);
+          CurrentThresholdValue = *(float *)(*(long long *)(SystemMemoryBuffer108 + 0xb8) + (long long)SearchIndexLow * 4);
           CurrentThresholdValue = (TargetThresholdValue - CurrentThresholdValue) /
-                  (*(float *)(*(long long *)(lStack_108 + 0xb8) + (long long)SearchIndexHigh * 4) - CurrentThresholdValue);
+                  (*(float *)(*(long long *)(SystemMemoryBuffer108 + 0xb8) + (long long)SearchIndexHigh * 4) - CurrentThresholdValue);
           if (0.0 <= CurrentThresholdValue) {
             if (1.0 <= CurrentThresholdValue) {
               CurrentThresholdValue = 1.0;
@@ -237297,8 +237297,8 @@ LAB_180204eec:
   long long *plStack_120;
   long long *plStack_118;
   long long *plStack_110;
-  long long lStack_108;
-  long long lStack_100;
+  long long SystemMemoryBuffer108;
+  long long SystemMemoryBuffer100;
   long long lStack_f8;
   uint32_t OperationStatus;
   long long CoreEngineSignedValueE8;
