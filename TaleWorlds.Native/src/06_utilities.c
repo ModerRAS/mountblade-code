@@ -102504,3 +102504,63 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：piStack_8 - 栈整型指针D
 // 功能：存储整型指针的栈变量
 #define StackIntegerPointerD piStack_8
+
+// 原始变量名：stack0x00000008 - 栈数据缓冲区P
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferP stack0x00000008
+
+// 原始变量名：stack0x00000080 - 栈数据缓冲区Q
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferQ stack0x00000080
+
+// 原始变量名：stack0x00000088 - 栈数据缓冲区R
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferR stack0x00000088
+
+// 原始变量名：stack0x00000094 - 栈数据缓冲区S
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferS stack0x00000094
+
+// 原始变量名：stack0x000000b0 - 栈数据缓冲区T
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferT stack0x000000b0
+
+// 原始变量名：stack0x000000b8 - 栈数据缓冲区U
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferU stack0x000000b8
+
+// 原始变量名：uStack_28 - 栈数据字AC
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAC uStack_28
+
+// 原始变量名：uStack_e8 - 栈数据缓冲区V
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferV uStack_e8
+
+// 原始变量名：puStack_1c0 - 栈指针缓冲区I
+// 功能：存储指针数据的栈缓冲区
+#define StackPointerBufferI puStack_1c0
+
+// 原始变量名：afStack_308 - 栈浮点数组D
+// 功能：存储浮点数组的栈数据
+#define StackFloatArrayD afStack_308
+
+// 原始变量名：afStack_348 - 栈浮点数组E
+// 功能：存储浮点数组的栈数据
+#define StackFloatArrayE afStack_348
+
+// 原始变量名：plStack_318 - 栈长整型指针A
+// 功能：存储长整型指针的栈变量
+#define StackLongIntegerPointerA plStack_318
+
+// 原始变量名：uStack_310 - 栈数据字AD
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordAD uStack_310
+
+// 原始变量名：alStack_300 - 栈长整型数组A
+// 功能：存储长整型数组的栈数据
+#define StackLongIntegerArrayA alStack_300
+
+// 原始变量名：fStack_2c8 - 栈浮点数A
+// 功能：存储浮点数的栈变量
+#define StackFloatValueA fStack_2c8

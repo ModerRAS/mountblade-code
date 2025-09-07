@@ -110546,12 +110546,12 @@ LAB_18011cbeb:
   fStack_fc = pFloatValue3[3] * *(float *)(bufferAllocationStatus7 + 0x1628);
   Utf16Char4 = ValidateSystemData(&fStack_108);
   SystemStatusCode = uStackX_20;
-  FUN_18011cf80(ProcessingStatusFlag,&fStack_130,uStackX_20,Utf16Char4);
+  ValidateSystemData(ProcessingStatusFlag,&fStack_130,uStackX_20,Utf16Char4);
   if (ProcessStringBuffer == *(uint *)(SystemDataConfiguration + 0x1ca0)) {
     ProcessMemoryLock(&fStack_130,1,SystemDataConfiguration);
   }
   bufferAllocationStatus7 = SystemDataConfiguration;
-  StringBuffer0 = FUN_1801242c0(8);
+  StringBuffer0 = AllocateSystemBuffer(8);
   Utf16Char5 = uStack_118;
   if ((StringBuffer0 != '\0') &&
      ((*(float *)(bufferAllocationStatus7 + 0x428) == 0.0 || (*(char *)(bufferAllocationStatus7 + 0x41b) != '\0')))) {
@@ -110567,7 +110567,7 @@ LAB_18011cbeb:
   else {
     Utf16Char4 = SystemCallResourceOperation(uStack_118,(unsigned long long)ProcessStringBuffer + 1);
   }
-  StringBuffer0 = FUN_18011d200(ProcessingStatusFlag,&fStack_130,MemoryAllocationIndex6,pcStackX_10,ProcessStringBuffer,Utf16Char4);
+  StringBuffer0 = ProcessSystemDataValidation(ProcessingStatusFlag,&fStack_130,MemoryAllocationIndex6,pcStackX_10,ProcessStringBuffer,Utf16Char4);
   if (StringBuffer0 != '\0') {
     *functionCallback = '\0';
     if (SystemContextPointer[7] == *PrimaryProcessingStatusFlag5) {
@@ -110592,7 +110592,7 @@ LAB_18011cbeb:
     for (; ((pSystemCheckResult3 != (char *)0xffffffffffffffff && (*pSystemCheckResult3 != '\0')) &&
            ((*pSystemCheckResult3 != '#' || (pSystemCheckResult3[1] != '#')))); pSystemCheckResult3 = pSystemCheckResult3 + 1) {
     }
-    FUN_18012ea30(&SystemShaderDataTable,(int)pSystemCheckResult3 - (int)pcStackX_10,pcStackX_10);
+    ProcessSystemDataUpdate(&SystemShaderDataTable,(int)pSystemCheckResult3 - (int)pcStackX_10,pcStackX_10);
   }
   return (unsigned long long)(byte)uStack_134;
 }
