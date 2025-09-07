@@ -28086,15 +28086,15 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = OperateDataO0(systemDataBuffer,&uStack_74,2);
+      validationOutcome = OperateDataO0(systemDataBuffer,&stackDataBuffer74,2);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = OperateDataO0(systemDataBuffer,(int64_t)&uStack_74 + 2,2);
+      validationOutcome = OperateDataO0(systemDataBuffer,(int64_t)&stackDataBuffer74 + 2,2);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = OperateDataO0(systemDataBuffer,&uStack_70,8);
+      validationOutcome = OperateDataO0(systemDataBuffer,&stackDataBuffer70,8);
     }
     else {
       validationOutcome = 0x1c;
