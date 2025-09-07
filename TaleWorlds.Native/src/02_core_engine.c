@@ -172143,7 +172143,19 @@ void ProcessCharacterCodeLookup(int CharacterCode
 
 
 
-3dd40(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18013dd40(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16的数据流转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的数据流转换，包括内存管理、
+ * 数据验证和字符编码转换操作。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18013dd40
+ */
+void ProcessUtf8ToUtf16DataFlow(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   int *ReferenceCountPointer;
   int StringComparisonResult;
