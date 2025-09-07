@@ -22878,16 +22878,16 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
         } while ((int)systemDataBuffer7 < iterationCount);
       }
       SystemCleanupStatusLocal = AllBitsSet;
-      afStack_308[0] = -NAN;
-      plStack_318 = (int64_t *)(*(int64_t *)(operationBase[1] + 0x90) + 0x38);
-      ProcessDataAndExecuteOperationO5(plStack_318,&SystemCleanupStatusLocal,afStack_308);
-      afStack_348[0] = afStack_308[0];
-      if (afStack_308[0] != -NAN) {
-        exceptionHandlerContextPointer6 = plStack_318;
+      StackFloatArrayD[0] = -NAN;
+      StackLongIntegerPointerA = (int64_t *)(*(int64_t *)(operationBase[1] + 0x90) + 0x38);
+      ProcessDataAndExecuteOperationO5(StackLongIntegerPointerA,&SystemCleanupStatusLocal,StackFloatArrayD);
+      StackFloatArrayE[0] = StackFloatArrayD[0];
+      if (StackFloatArrayD[0] != -NAN) {
+        exceptionHandlerContextPointer6 = StackLongIntegerPointerA;
         ValidationFloatValue8 = (float)SystemCleanupStatusLocal;
         do {
           do {
-            exceptionHandlerContext5 = (int64_t)(int)afStack_348[0] * 0x20;
+            exceptionHandlerContext5 = (int64_t)(int)StackFloatArrayE[0] * 0x20;
             SystemCleanupFlagLocal2 = AllBitsSet;
             aplStack_330[0] = (int64_t *)CONCAT44(aplStack_330[0]._4_4_,SystemCleanupFlag);
             plStack_340 = *(int64_t **)(exceptionHandlerContextPointer6[2] + 0x18 + exceptionHandlerContext5);
@@ -22925,7 +22925,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
                 calculatedValue = iterationCount;
 DataProcessingCheckpoint:
                 exceptionHandlerContext5 = StackLongIntegerC;
-                exceptionHandlerContextPointer6 = plStack_318;
+                exceptionHandlerContextPointer6 = StackLongIntegerPointerA;
               } while (iterationCount != -1);
             }
           } while ((afStack_348[0] != -NAN) &&
@@ -68467,7 +68467,17 @@ void SetDefaultExceptionHandlerBOffset218(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_180907dc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B（偏移量0x1c0）
+ * 
+ * 在数据缓冲区的指定偏移量处设置默认异常处理器B的指针。
+ * 这是一个基础的异常处理器设置函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180907dc0
+ */
+void SetDefaultExceptionHandlerBOffset1C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1c0) = &DefaultExceptionHandlerB;
