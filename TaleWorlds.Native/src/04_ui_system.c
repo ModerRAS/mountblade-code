@@ -68093,21 +68093,21 @@ void InitializeUIEventSystem(longlong uiContext)
           if (*(int *)(uiBufferData + 0x42d8) < 0) {
             UpdateUIContext(allocatedMemory);
           }
-          uVar5 = *(ulonglong *)(uiContext + 0x42d0);
-          uVar4 = (ulonglong)eventTypeCode << 0x38;
-          bVar9 = uVar4 <= uVar5;
-          if (bVar9) {
+          processedDataValue = *(ulonglong *)(uiContext + 0x42d0);
+          bitShiftedValue = (ulonglong)eventTypeCode << 0x38;
+          comparisonResult = bitShiftedValue <= processedDataValue;
+          if (comparisonResult) {
             eventTypeCode = *(int *)(uiBufferData + 0x42dc) - eventTypeCode;
-            uVar5 = uVar5 - uVar4;
+            processedDataValue = processedDataValue - bitShiftedValue;
           }
-          bVar2 = (&g_uiStateTable)[eventTypeCode];
-          *(int *)(uiBufferData + 0x42d8) = *(int *)(uiBufferData + 0x42d8) - (uint)bVar2;
-          uVar6 = uVar6 | (uint)bVar9 << ((byte)uiCompareResult & 0x1f);
-          *(ulonglong *)(uiContext + 0x42d0) = uVar5 << (bVar2 & 0x3f);
+          characterMatchResult = (&g_uiStateTable)[eventTypeCode];
+          *(int *)(uiBufferData + 0x42d8) = *(int *)(uiBufferData + 0x42d8) - (uint)characterMatchResult;
+          bitFieldAccumulator = bitFieldAccumulator | (uint)comparisonResult << ((byte)uiCompareResult & 0x1f);
+          *(ulonglong *)(uiContext + 0x42d0) = processedDataValue << (characterMatchResult & 0x3f);
           uiCompareResult = uiCompareResult + -1;
-          *(uint *)(uiContext + 0x42dc) = eventTypeCode << (bVar2 & 0x1f);
+          *(uint *)(uiContext + 0x42dc) = eventTypeCode << (characterMatchResult & 0x1f);
         } while (-1 < uiCompareResult);
-        *(char *)(localLong8 + 0x308b + uiContext) = (char)uVar6;
+        *(char *)(localLong8 + 0x308b + uiContext) = (char)bitFieldAccumulator;
         localLong8 = localLong8 + 1;
       } while (localLong8 < 4);
     }
@@ -68115,32 +68115,32 @@ void InitializeUIEventSystem(longlong uiContext)
     if (uiCompareResult != 0) {
       localLong8 = 0;
       do {
-        uVar6 = 0;
+        bitFieldAccumulator = 0;
         uiCompareResult = 7;
         do {
           eventTypeCode = ((uint)((*(int *)(uiBufferData + 0x42dc) + -1) * 0x80) >> 8) + 1;
           if (*(int *)(uiBufferData + 0x42d8) < 0) {
             UpdateUIContext(allocatedMemory);
           }
-          uVar5 = *(ulonglong *)(uiContext + 0x42d0);
-          uVar4 = (ulonglong)eventTypeCode << 0x38;
-          bVar9 = uVar4 <= uVar5;
-          if (bVar9) {
+          processedDataValue = *(ulonglong *)(uiContext + 0x42d0);
+          bitShiftedValue = (ulonglong)eventTypeCode << 0x38;
+          comparisonResult = bitShiftedValue <= processedDataValue;
+          if (comparisonResult) {
             eventTypeCode = *(int *)(uiBufferData + 0x42dc) - eventTypeCode;
-            uVar5 = uVar5 - uVar4;
+            processedDataValue = processedDataValue - bitShiftedValue;
           }
-          bVar2 = (&g_uiStateTable)[eventTypeCode];
-          *(int *)(uiBufferData + 0x42d8) = *(int *)(uiBufferData + 0x42d8) - (uint)bVar2;
-          uVar6 = uVar6 | (uint)bVar9 << ((byte)uiCompareResult & 0x1f);
-          *(ulonglong *)(uiContext + 0x42d0) = uVar5 << (bVar2 & 0x3f);
+          characterMatchResult = (&g_uiStateTable)[eventTypeCode];
+          *(int *)(uiBufferData + 0x42d8) = *(int *)(uiBufferData + 0x42d8) - (uint)characterMatchResult;
+          bitFieldAccumulator = bitFieldAccumulator | (uint)comparisonResult << ((byte)uiCompareResult & 0x1f);
+          *(ulonglong *)(uiContext + 0x42d0) = processedDataValue << (characterMatchResult & 0x3f);
           uiCompareResult = uiCompareResult + -1;
-          *(uint *)(uiContext + 0x42dc) = eventTypeCode << (bVar2 & 0x1f);
+          *(uint *)(uiContext + 0x42dc) = eventTypeCode << (characterMatchResult & 0x1f);
         } while (-1 < uiCompareResult);
-        *(char *)(localLong8 + 0x308f + uiContext) = (char)uVar6;
+        *(char *)(localLong8 + 0x308f + uiContext) = (char)bitFieldAccumulator;
         localLong8 = localLong8 + 1;
       } while (localLong8 < 3);
     }
-    FUN_1806a0150(allocatedMemory,uiContext + 0x34b5);
+    ProcessUIResourceUpdate(allocatedMemory,uiContext + 0x34b5);
   }
   return;
 }

@@ -200067,42 +200067,42 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long CharacterCode)
   ProcessingFlags = 0x180170e65;
   FUN_180173c40(*(void *)(CharacterCode + 0xc0));
   MemoryBlockIndex = *(long long *)(CharacterCode + 0xc0);
-  uStack_18 = EncodingDecodingKey ^ (unsigned long long)SystemOperationBuffer;
-  StackProcessingUnsignedValue78 = 0;
-  StackProcessingVariable70 = 0;
-  StackProcessingUnsignedValue68 = 0;
-  SystemUnsignedValue64 = 0;
-  StackProcessingUnsignedValue60 = 0;
-  SystemUnsignedValue5C = 0;
+  EncodedOperationKey = EncodingDecodingKey ^ (unsigned long long)SystemOperationBuffer;
+  WindowPositionX = 0;
+  WindowPositionY = 0;
+  WindowWidth = 0;
+  ScreenCoordinateX = 0;
+  WindowHeight = 0;
+  ScreenCoordinateY = 0;
   BufferOffset = 0;
   SystemKeyPointer = 0;
   SystemStackFlag = 0;
   SystemPriorityLevel = 0;
   FunctionAddress = 0;
   SystemDataStructureRegistry = GetFocus();
-  StackProcessingUnsignedValue68 = CONCAT31(StackProcessingUnsignedValue68._1_3_,*(long long *)(MemoryBlockIndex + 8) == SystemDataStructureRegistry);
-  SystemDataStructureRegistry = WindowFromPoint(CONCAT44(StackProcessingUnsignedValue60,SystemUnsignedValue64));
-  SystemUnsignedValue5C = CONCAT31(SystemUnsignedValue5C._1_3_,SystemDataStructureRegistry == *(long long *)(MemoryBlockIndex + 8));
+  WindowWidth = CONCAT31(WindowWidth._1_3_,*(long long *)(MemoryBlockIndex + 8) == SystemDataStructureRegistry);
+  SystemDataStructureRegistry = WindowFromPoint(CONCAT44(WindowHeight,ScreenCoordinateX));
+  ScreenCoordinateY = CONCAT31(ScreenCoordinateY._1_3_,SystemDataStructureRegistry == *(long long *)(MemoryBlockIndex + 8));
   GetWindowRect(*(long long *)(MemoryBlockIndex + 8),&BufferOffset);
   SystemDataStructureRegistry = GetConsoleWindow();
   if (SystemDataStructureRegistry != 0) {
     GetWindowRect(SystemDataStructureRegistry,&SystemStackFlag);
   }
-  uStack_28 = (uint32_t)StackProcessingUnsignedValue78;
-  uStack_24 = StackProcessingUnsignedValue78.HighPart;
-  ProcessingCounter = (uint32_t)StackProcessingVariable70;
-  uStack_1c = StackProcessingVariable70.HighPart;
-  MapWindowPoints(*(void *)(MemoryBlockIndex + 8),0,&uStack_28,2);
-  FunctionAddress = CONCAT44(uStack_24,uStack_28);
-  GetClientRect(*(void *)(MemoryBlockIndex + 8),&StackProcessingUnsignedValue78);
-  GetCursorPos(&SystemUnsignedValue64);
+  StackParameter1 = (uint32_t)WindowPositionX;
+  StackParameter2 = WindowPositionX.HighPart;
+  ProcessingCounter = (uint32_t)WindowPositionY;
+  StackParameter4 = WindowPositionY.HighPart;
+  MapWindowPoints(*(void *)(MemoryBlockIndex + 8),0,&StackParameter1,2);
+  FunctionAddress = CONCAT44(StackParameter2,StackParameter1);
+  GetClientRect(*(void *)(MemoryBlockIndex + 8),&WindowPositionX);
+  GetCursorPos(&ScreenCoordinateX);
   CalculatedCodePoint = (unsigned long long)(*(int *)(MemoryBlockIndex + 0x13c) - 1U & 1);
   CharacterStatusBuffer = (void *)(MemoryBlockIndex + 0xac + CalculatedCodePoint * 0x48);
-  *CharacterStatusBuffer = StackProcessingUnsignedValue78;
-  CharacterStatusBuffer[1] = StackProcessingVariable70;
+  *CharacterStatusBuffer = WindowPositionX;
+  CharacterStatusBuffer[1] = WindowPositionY;
   CharacterStatusBuffer = (void *)(MemoryBlockIndex + 0xbc + CalculatedCodePoint * 0x48);
-  *CharacterStatusBuffer = CONCAT44(SystemUnsignedValue64,StackProcessingUnsignedValue68);
-  CharacterStatusBuffer[1] = CONCAT44(SystemUnsignedValue5C,StackProcessingUnsignedValue60);
+  *CharacterStatusBuffer = CONCAT44(ScreenCoordinateX,WindowWidth);
+  CharacterStatusBuffer[1] = CONCAT44(ScreenCoordinateY,WindowHeight);
   CharacterStatusBuffer = (void *)(MemoryBlockIndex + 0xcc + CalculatedCodePoint * 0x48);
   *CharacterStatusBuffer = BufferOffset;
   CharacterStatusBuffer[1] = SystemKeyPointer;
@@ -200116,7 +200116,7 @@ void ProcessCharacterEncodingStatusAndWindowManagement(long long CharacterCode)
   *(int *)(MemoryBlockIndex + 0x13c) = *(int *)(MemoryBlockIndex + 0x13c) + 1;
   UNLOCK();
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)SystemOperationBuffer);
+  CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemOperationBuffer);
 }
 
 
