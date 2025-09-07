@@ -21459,7 +21459,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
     bufferPointer = exceptionHandlerContext4;
   }
   StackLongIntegerB = dataBuffer;
-  iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&StackDataWordA);
+  iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&TemporaryDataWordA);
   if (iterationCount == 0) {
     exceptionDataBuffer6 = (DataBuffer *)(dataBuffer + 8);
     StackDataWordD = 0;
