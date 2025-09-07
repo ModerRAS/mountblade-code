@@ -19357,29 +19357,29 @@ ExecuteSystemSecurityCheck:
 void ProcessFloatingPointDataA0(void)
 
 {
-  int64_t validationContext;
-  int64_t dataContext;
-  DataWord validationStatus;
-  DataWord memoryBaseAddress;
-  DataWord operationResult;
-  DataWord dataFlags;
-  int calculatedValue;
-  int calculatedSize;
-  int validationErrorCode;
-  DataWord register_EBX;
-  int64_t systemStackFramePointer;
-  int register_R12D;
-  int64_t dataContextPointer;
-  char register_R15B;
-  float floatResultA;
-  float floatResultA_00;
-  float floatResultA_01;
-  float floatResultA_02;
-  float floatResultA_03;
-  float floatResultA_04;
-  float floatResultA_05;
-  float floatResultA_06;
-  float floatValue;
+  int64_t ValidationContext;
+  int64_t DataContext;
+  DataWord ValidationStatus;
+  DataWord MemoryBaseAddress;
+  DataWord OperationResult;
+  DataWord DataFlags;
+  int CalculatedValue;
+  int CalculatedSize;
+  int ValidationErrorCode;
+  DataWord SystemRegisterEBX;
+  int64_t SystemStackFramePointer;
+  int SystemRegisterR12D;
+  int64_t DataContextPointer;
+  char SystemRegisterR15B;
+  float FloatResultA;
+  float FloatResultA_00;
+  float FloatResultA_01;
+  float FloatResultA_02;
+  float FloatResultA_03;
+  float FloatResultA_04;
+  float FloatResultA_05;
+  float FloatResultA_06;
+  float FloatValue;
   DataWord SystemOperationResult;     // 系统操作结果
   float NormalizedParameterValue;    // 标准化参数值
   uint8_t *ValidationDataBuffer;    // 验证数据缓冲区
