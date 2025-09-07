@@ -149,6 +149,13 @@
 #define CONTEXT_POINTER_OFFSET_50 0x50           // 上下文指针偏移量50
 #define DATA_STRUCTURE_OFFSET_EXCEPTION_HANDLER 0x10  // 数据结构异常处理器偏移量
 
+// 数据处理偏移量常量定义
+#define DATA_CONTEXT_OFFSET_18 0x18              // 数据上下文偏移量18
+#define DATA_BUFFER_OFFSET_24 0x24               // 数据缓冲区偏移量24
+#define SYSTEM_CONTEXT_OFFSET_98 0x98            // 系统上下文偏移量98
+#define QUEUE_INFO_OFFSET_8 0x8                  // 队列信息偏移量8
+#define EVENT_HANDLE_OFFSET_8 0x8                // 事件句柄偏移量8
+
 // 异常处理相关常量定义
 #define ExceptionCallbackOffset 0xb0
 #define ModuleResourceAllocationStatus 0x1e
@@ -10610,8 +10617,8 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   int64_t componentDataContext;
   int64_t systemContextHandle;
   int32_t componentBufferSize;
-  uint64_t systemQueryStatus;
-  uint64_t componentProcessStatus;
+  uint64_t systemDataQueryStatus;
+  uint64_t componentValidationStatus;
   int64_t *activeComponentContext;
   int32_t registeredComponentCount;
   uint64_t componentIterationCounter;
@@ -10619,10 +10626,10 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   uint64_t componentSearchIndex;
   int64_t *componentListPointer;
   int64_t systemContextBuffer;
-  int8_t ComponentValidationBuffer [DataValidationBufferSize];
+  int8_t componentValidationDataBuffer [DataValidationBufferSize];
   
-  systemQueryStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
-  if ((int)systemQueryStatus != 0) {
+  systemDataQueryStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
+  if ((int)systemDataQueryStatus != 0) {
     return SystemQueryStatus;
   }
   systemContextHandle = *(int64_t *)(systemContextBuffer + SystemContextOffset);
@@ -10634,16 +10641,16 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
     return ComponentDataValidationFailure;
   }
   if (*(int32_t *)(systemContextHandle + COMPONENT_STATUS_OFFSET) == ComponentInactiveStatus) {
-    systemQueryStatus = ProcessInputData(systemContextHandle,ComponentValidationBuffer);
-    if ((int32_t)systemQueryStatus != 0) {
-      return systemQueryStatus;
+    systemDataQueryStatus = ProcessInputData(systemContextHandle,componentValidationDataBuffer);
+    if ((int32_t)systemDataQueryStatus != 0) {
+      return systemDataQueryStatus;
     }
-    ComponentProcessStatus = ValidateInputData(ComponentValidationBuffer);
-    if ((int32_t)ComponentProcessStatus != 0) {
-      return ComponentProcessStatus;
+    componentValidationStatus = ValidateInputData(componentValidationDataBuffer);
+    if ((int32_t)componentValidationStatus != 0) {
+      return componentValidationStatus;
     }
-    if ((int8_t)systemQueryStatus == (int8_t)ComponentProcessStatus) {
-      if (ComponentValidationBuffer[0] == (int8_t)ComponentProcessStatus) {
+    if ((int8_t)systemDataQueryStatus == (int8_t)componentValidationStatus) {
+      if (componentValidationDataBuffer[0] == (int8_t)componentValidationStatus) {
         componentListPointer = (int64_t *)(componentDataContext + COMPONENT_LIST_OFFSET);
         componentSearchIndex = 0;
         registeredComponentCount = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET);
@@ -10651,7 +10658,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
           activeComponentContext = (int64_t *)*componentListPointer;
           componentIterationCounter = componentSearchIndex;
           do {
-            if (*activeComponentContext == ComponentValidationBuffer) {
+            if (*activeComponentContext == componentValidationDataBuffer) {
               if (ComponentInactiveStatus < (int32_t)componentIterationCounter) {
                 return 0;
               }
@@ -10680,7 +10687,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
             return 0;
           }
         }
-        *(int64_t *)(*ComponentListContext + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * PointerSizeBytes) = ComponentValidationBuffer;
+        *(int64_t *)(*ComponentListContext + (int64_t)*(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) * PointerSizeBytes) = componentValidationDataBuffer;
         *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_COUNT_OFFSET) + 1;
         *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) + 1;
       }
@@ -13209,9 +13216,9 @@ void ProcessUtilityDataStructure(int64_t dataStructurePointer,int64_t contextPoi
   currentNodePointer = (int64_t *)0x0;
   systemContextBuffer[0] = 0;
   validationResult = AllocateSystemBufferCA0(systemContextBuffer);
-  if ((validationResult == 0) && (validationResult = ValidateContextA0(*(DataBuffer *)(contextPointer + 0x90)), validationResult == 0)) {
-    nextNodePointer = (int64_t *)(*(int64_t *)(contextPointer + 0x50) + -8);
-    if (*(int64_t *)(contextPointer + 0x50) == 0) {
+  if ((validationResult == 0) && (validationResult = ValidateContextA0(*(DataBuffer *)(contextPointer + CONTEXT_DATA_OFFSET_90)), validationResult == 0)) {
+    nextNodePointer = (int64_t *)(*(int64_t *)(contextPointer + CONTEXT_POINTER_OFFSET_50) + -8);
+    if (*(int64_t *)(contextPointer + CONTEXT_POINTER_OFFSET_50) == 0) {
       nextNodePointer = currentNodePointer;
     }
     dataNodePointer = currentNodePointer;
@@ -13219,8 +13226,8 @@ void ProcessUtilityDataStructure(int64_t dataStructurePointer,int64_t contextPoi
       dataNodePointer = nextNodePointer + 1;
     }
     do {
-      if (dataNodePointer == (int64_t *)(contextPointer + 0x50)) {
-        if (*(char *)(dataStructurePointer + ExceptionHandlerCallbackOffset10) != '\0') {
+      if (dataNodePointer == (int64_t *)(contextPointer + CONTEXT_POINTER_OFFSET_50)) {
+        if (*(char *)(dataStructurePointer + DATA_STRUCTURE_OFFSET_EXCEPTION_HANDLER) != '\0') {
           InitializeSystemContextA0(contextPointer);
         }
         break;
@@ -14697,14 +14704,14 @@ DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
   uint validationData;
   DataWord tempValue;
   
-  validationData = *(uint *)(dataContext + 0x18);
+  validationData = *(uint *)(dataContext + DATA_CONTEXT_OFFSET_18);
   if ((validationData & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset10),&validationData);
   if ((int)result == 0) {
-    *(DataWord *)(CONCAT44(tempValue,systemDataBuffer) + 0x24) = *(DataWord *)(dataContext + 0x18);
-      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),dataContext);
+    *(DataWord *)(CONCAT44(tempValue,systemDataBuffer) + DATA_BUFFER_OFFSET_24) = *(DataWord *)(dataContext + DATA_CONTEXT_OFFSET_18);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_CONTEXT_OFFSET_98),dataContext);
   }
   return result;
 }
@@ -14767,11 +14774,11 @@ void ProcessSystemEventQueueWithBufferManagement(int64_t eventContext,int64_t sy
   
   eventStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventContext + ExceptionHandlerCallbackOffset10),&queueInfo);
   if (((eventStatus != 0) || (eventStatus = InitializeSystemEventA0(&eventHandle), eventStatus != 0)) ||
-     (eventStatus = ProcessSystemEventDataA0(eventHandle,systemContext,*(DataBuffer *)(queueInfo + 8)), eventStatus != 0)) {
+     (eventStatus = ProcessSystemEventDataA0(eventHandle,systemContext,*(DataBuffer *)(queueInfo + QUEUE_INFO_OFFSET_8)), eventStatus != 0)) {
     return;
   }
   newBuffer = 0;
-  bufferPtr = eventHandle + 8;
+  bufferPtr = eventHandle + EVENT_HANDLE_OFFSET_8;
   if (eventHandle == 0) {
     bufferPtr = newBuffer;
   }
