@@ -62680,49 +62680,49 @@ void FUN_1806986b7(void)
 
 
 
- void FUN_1806986d0(longlong uiContext,byte *dataSource,int targetBuffer,undefined4 bufferSize,undefined8 resultPointer,
-void FUN_1806986d0(longlong uiContext,byte *dataSource,int targetBuffer,undefined4 bufferSize,undefined8 resultPointer,
-                  longlong param_6)
+ void ProcessUIComponentRendering(longlong uiContext,byte *componentData,int renderTarget,undefined4 renderBufferSize,undefined8 renderResultPointer,
+void ProcessUIComponentRendering(longlong uiContext,byte *componentData,int renderTarget,undefined4 renderBufferSize,undefined8 renderResultPointer,
+                  longlong renderContext)
 
 {
-  longlong allocatedMemory;
-  byte bVar2;
-  bool bVar3;
-  int iVar4;
-  uint uVar5;
+  longlong componentMemory;
+  byte componentType;
+  bool shouldRender;
+  int componentIndex;
+  uint componentId;
   
-  iVar4 = 0;
-  allocatedMemory = uiContext + 0xc10;
+  componentIndex = 0;
+  componentMemory = uiContext + 0xc10;
   if (0 < *(int *)(bufferData + 3000)) {
     do {
-      bVar2 = *dataSource;
-      if (((bVar2 == 4) || (bVar2 == 9)) || (dataSource[9] == 0)) {
-        bVar3 = false;
+      componentType = *componentData;
+      if (((componentType == 4) || (componentType == 9)) || (componentData[9] == 0)) {
+        shouldRender = false;
       }
       else {
-        bVar3 = true;
+        shouldRender = true;
       }
-      bVar2 = *(byte *)((ulonglong)*(byte *)((ulonglong)bVar2 + 0xd00 + allocatedMemory) + allocatedMemory + 0xc40 +
-                       ((ulonglong)dataSource[2] + (ulonglong)dataSource[0xb] * 4) * 4);
-      if (bVar2 != 0) {
-        uVar5 = (uint)bVar2;
-        if (0 < iVar4) {
-          func_0x00018001c253(param_6,bufferSize,(longlong)(int)uVar5 * 0x10 + allocatedMemory);
+      componentType = *(byte *)((ulonglong)*(byte *)((ulonglong)componentType + 0xd00 + componentMemory) + componentMemory + 0xc40 +
+                       ((ulonglong)componentData[2] + (ulonglong)componentData[0xb] * 4) * 4);
+      if (componentType != 0) {
+        componentId = (uint)componentType;
+        if (0 < componentIndex) {
+          func_0x00018001c253(renderContext,renderBufferSize,(longlong)(int)componentId * 0x10 + componentMemory);
         }
-        if (!bVar3) {
-          RenderUISliderInternal(param_6,bufferSize,((longlong)(int)uVar5 + 0x40) * 0x10 + allocatedMemory);
+        if (!shouldRender) {
+          RenderUISliderInternal(renderContext,renderBufferSize,((longlong)(int)componentId + 0x40) * 0x10 + componentMemory);
         }
-        if (0 < targetBuffer) {
-          func_0x00018001c10b(param_6,bufferSize,(longlong)(int)uVar5 * 0x10 + allocatedMemory);
+        if (0 < renderTarget) {
+          func_0x00018001c10b(renderContext,renderBufferSize,(longlong)(int)componentId * 0x10 + componentMemory);
         }
-        if (!bVar3) {
-          RenderUICheckboxInternal(param_6,bufferSize,((ulonglong)bVar2 + 0x40) * 0x10 + allocatedMemory);
+        if (!shouldRender) {
+          RenderUICheckboxInternal(renderContext,renderBufferSize,((ulonglong)componentType + 0x40) * 0x10 + componentMemory);
         }
       }
-      param_6 = param_6 + 0x10;
-      dataSource = dataSource + 0x4c;
-      iVar4 = iVar4 + 1;
-    } while (iVar4 < *(int *)(bufferData + 3000));
+      renderContext = renderContext + 0x10;
+      componentData = componentData + 0x4c;
+      componentIndex = componentIndex + 1;
+    } while (componentIndex < *(int *)(bufferData + 3000));
   }
   return;
 }

@@ -143477,7 +143477,7 @@ void ProcessSystemDataValidation(void)
 
 
 
-d06b(voidvoid FUN_18012d06b(void
+void InitializeSystemContextManager(void)
 {
   int *ReferenceCountPointer;
   float ContextSecondaryFloat;
@@ -143563,7 +143563,7 @@ d06b(voidvoid FUN_18012d06b(void
 
 
 
-d11e(voidvoid FUN_18012d11e(void
+void ProcessSystemFloatCalculation(void)
 {
   float SystemContextPrimaryFloat;
   long long BufferStatus;
@@ -143616,7 +143616,7 @@ d11e(voidvoid FUN_18012d11e(void
 
 
 
-d123(voidvoid FUN_18012d123(void
+void InitializeSystemFloatProcessor(void)
 {
   float SystemContextPrimaryFloat;
   long long BufferStatus;
@@ -143669,7 +143669,7 @@ d123(voidvoid FUN_18012d123(void
 
 
 
-d18f(voidvoid FUN_18012d18f(void
+void ProcessSystemDataDeallocation(void)
 {
   long long PrimaryDataSize;
   int in_EAX;
@@ -143709,7 +143709,7 @@ d18f(voidvoid FUN_18012d18f(void
 
 
 
-d1ed(long long CharacterCodevoid FUN_18012d1ed(long long CharacterCode
+void ProcessSystemCharacterTableUpdate(long long CharacterCode)
 {
   long long PrimaryDataSize;
   long long SystemContext;
@@ -143834,7 +143834,7 @@ d2e0(long long CharacterCodevoid ValidateSystemDataTablePointer(long long Charac
 
 
 
-d4c0(int CharacterCodevoid FUN_18012d4c0(int CharacterCode
+void ProcessSystemCharacterValidation2(int CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
