@@ -3677,11 +3677,11 @@
 
 // 原始变量名：UNK_180982dc0 - 系统配置数据表
 // 功能：存储系统配置相关的数据表信息
-#define SystemConfigurationDataTable UNK_180982dc0
+#define SystemConfigurationDataTableSecondaryAddress UNK_180982dc0
 
 // 原始变量名：UNK_1809868b0 - 系统状态数据表
 // 功能：存储系统状态相关的数据表信息
-#define SystemStatusDataTable UNK_1809868b0
+#define SystemStatusDataTableAddress UNK_1809868b0
 
 // 工具函数宏定义
 // 原始函数名：FUN_180896140 - 数据验证和处理函数A0
@@ -14860,6 +14860,10 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   int64_t systemContextBuffer [2];
   uint TemporaryUint;
   float TemporaryFloat;
+  int componentWInfinityFlag;
+  int componentXInfinityFlag;
+  int componentYInfinityFlag;
+  int componentZInfinityFlag;
   
   dataBufferPtr = 0;
   tertiaryInfinityFlag = 0;
@@ -14875,42 +14879,43 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   if ((*(uint *)(dataPtr + 0x18) & FloatInfinityValue) == FloatInfinityValue) {
     secondaryInfinityFlag = 0x1d;
   }
-  if ((quaternaryInfinityFlag != 0 || InfinityFlag1 != 0) || InfinityFlag2 != 0) {
+  if ((quaternaryInfinityFlag != 0 || componentXInfinityFlag != 0) || componentYInfinityFlag != 0) {
     return ComponentDataValidationFailure;
   }
-  InfinityFlag4 = 0;
+  componentZInfinityFlag = 0;
   if ((*(uint *)(dataPtr + 0x2c) & FloatInfinityValue) == FloatInfinityValue) {
-    InfinityFlag3 = 0x1d;
+    componentWInfinityFlag = 0x1d;
   }
-  InfinityFlag1 = InfinityFlag4;
+  componentXInfinityFlag = componentZInfinityFlag;
   if ((*(uint *)(dataPtr + 0x28) & FloatInfinityValue) == FloatInfinityValue) {
     primaryInfinityFlag = 0x1d;
   }
-  InfinityFlag2 = InfinityFlag4;
+  componentYInfinityFlag = componentZInfinityFlag;
   if ((*(uint *)(dataPtr + 0x24) & FloatInfinityValue) == FloatInfinityValue) {
     secondaryInfinityFlag = 0x1d;
   }
-  if ((InfinityFlag3 != 0 || InfinityFlag1 != 0) || InfinityFlag2 != 0) {
+  if ((componentWInfinityFlag != 0 || componentXInfinityFlag != 0) || componentYInfinityFlag != 0) {
     return ComponentDataValidationFailure;
   }
-  InfinityFlag3 = InfinityFlag4;
+  componentWInfinityFlag = componentZInfinityFlag;
   if ((*(uint *)(dataPtr + 0x38) & FloatInfinityValue) == FloatInfinityValue) {
-    InfinityFlag3 = 0x1d;
+    componentWInfinityFlag = 0x1d;
   }
-  InfinityFlag1 = InfinityFlag4;
+  componentXInfinityFlag = componentZInfinityFlag;
   if ((*(uint *)(dataPtr + 0x34) & FloatInfinityValue) == FloatInfinityValue) {
     primaryInfinityFlag = 0x1d;
   }
   if (((uint)*(float *)(dataPtr + 0x30) & FloatInfinityValue) == FloatInfinityValue) {
     quaternaryInfinityFlag = 0x1d;
   }
-  if ((InfinityFlag3 != 0 || InfinityFlag1 != 0) || quaternaryInfinityFlag != 0) {
+  if ((componentWInfinityFlag != 0 || componentXInfinityFlag != 0) || quaternaryInfinityFlag != 0) {
     return ComponentDataValidationFailure;
   }
   floatComponentZ = *(float *)(dataPtr + 0x44);
   tertiaryInfinityFlag = 0;
   VectorComponentW = *(uint *)(dataPtr + 0x40);
   TemporaryFloat = *(float *)(dataPtr + 0x3c);
+  // 将浮点数组件Z合并到系统上下文缓冲区中
   systemContextBuffer[0] = CONCAT44(systemContextBuffer[0]._4_4_,floatComponentZ);
   quaternaryInfinityFlag = tertiaryInfinityFlag;
   if (((uint)floatComponentZ & FloatInfinityValue) == FloatInfinityValue) {
@@ -14921,9 +14926,9 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     primaryInfinityFlag = 0x1d;
   }
   if (((uint)TemporaryFloat & FloatInfinityValue) == FloatInfinityValue) {
-    InfinityFlag3 = 0x1d;
+    componentWInfinityFlag = 0x1d;
   }
-  if ((InfinityFlag4 == 0 && InfinityFlag1 == 0) && InfinityFlag3 == 0) {
+  if ((componentZInfinityFlag == 0 && componentXInfinityFlag == 0) && componentWInfinityFlag == 0) {
     if (((*(float *)(dataPtr + 0x30) == 0.0) && (*(float *)(dataPtr + 0x34) == 0.0)) &&
        (*(float *)(dataPtr + 0x38) == 0.0)) {
       return ComponentDataValidationFailure;
@@ -62047,7 +62052,18 @@ void ValidateAndProcessDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907170(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统资源指针清理函数7170
+ * 
+ * 该函数负责清理系统资源指针，检查数据缓冲区中的指针有效性，
+ * 并在指针存在时调用相应的清理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含系统资源信息
+ * 
+ * @note 原始函数名：Unwind_180907170
+ */
+void CleanupSystemResourcePointer7170(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x168) != (int64_t *)0x0) {
