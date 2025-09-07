@@ -68025,7 +68025,7 @@ LAB_18069fbb4:
     operationResult0 = iStack_50;
     iVar8 = (int)uStack_58;
   }
-  iVar9 = FUN_18069bbd0(allocatedMemory,*(undefined4 *)(&UNK_18094a000 + (longlong)iVar8 * 0x10));
+  iVar9 = FUN_18069bbd0(allocatedMemory,*(undefined4 *)(&UiRenderDataBuffer + (longlong)iVar8 * 0x10));
   if (iVar9 == 0) {
     *targetBuffer = '\a';
     targetBuffer[4] = '\0';
@@ -68044,13 +68044,13 @@ LAB_18069fbb4:
     operationResult3 = operationResult0;
   }
   uStack_98 = CONCAT44(uStack_98._4_4_,operationResult3);
-  operationResult0 = FUN_18069bbd0(allocatedMemory,*(undefined4 *)(&UNK_18094a004 + (longlong)operationResult3 * 0x10));
+  operationResult0 = FUN_18069bbd0(allocatedMemory,*(undefined4 *)(&UiRenderDataBuffer2 + (longlong)operationResult3 * 0x10));
   if (operationResult0 == 0) {
     *targetBuffer = '\x05';
     *(uint *)(targetBuffer + 4) = functionResult6;
   }
   else {
-    operationResult0 = FUN_18069bbd0(allocatedMemory,*(undefined4 *)(&UNK_18094a008 + (longlong)iVar9 * 0x10));
+    operationResult0 = FUN_18069bbd0(allocatedMemory,*(undefined4 *)(&UiRenderDataBuffer3 + (longlong)iVar9 * 0x10));
     pcVar4 = pcStack_78;
     pcVar3 = pcStack_80;
     if (operationResult0 != 0) {
@@ -68082,7 +68082,7 @@ LAB_18069fcfe:
         goto LAB_18069fcfe;
       }
       iVar8 = FUN_18069bbd0(allocatedMemory,*(undefined4 *)
-                                   (&UNK_18094a00c +
+                                   (&UiRenderDataBuffer4 +
                                    ((ulonglong)(pcStack_78[-0x4c] == '\t') +
                                    ((ulonglong)(*pcStack_80 == '\t') +
                                    (ulonglong)(*pcStack_78 == '\t')) * 2) * 0x10));
@@ -76300,7 +76300,7 @@ LAB_180710f7f:
             pvalidationResult1[7] = 1;
           }
           else {
-            operationResult6 = FUN_18070f3e0(resultPointer,*(undefined8 *)(&UNK_180953620 + (longlong)*pvalidationResult1 * 8),
+            operationResult6 = FUN_18070f3e0(resultPointer,*(undefined8 *)(&UiEventQueue + (longlong)*pvalidationResult1 * 8),
                                    8);
             if (0 < *pvalidationResult1) {
               psemaphoreHandle5 = (uint *)(pvalidationResult1 + 7);
@@ -78147,13 +78147,13 @@ void FUN_180712340(longlong uiContext,longlong dataSource,uint targetBuffer,uint
     }
     allocatedMemory3 = (longlong)param_9;
     functionResult1 = (uint)functionResult2;
-    floatResult9 = param_6 * *(float *)(&UNK_180953138 + lVar7 * 0xc);
+    floatResult9 = param_6 * *(float *)(&TransformMatrixZ + lVar7 * 0xc);
     floatResult7 = *(float *)(dataSource + (longlong)(int)(1 - functionResult1) * 4);
-    fVar26 = param_6 * *(float *)(&UNK_180953130 + lVar7 * 0xc);
-    fVar27 = param_6 * *(float *)(&UNK_180953134 + lVar7 * 0xc);
-    fVar21 = param_7 * *(float *)(&UNK_180953130 + allocatedMemory3 * 0xc);
-    fVar22 = param_7 * *(float *)(&UNK_180953134 + allocatedMemory3 * 0xc);
-    fVar23 = param_7 * *(float *)(&UNK_180953138 + allocatedMemory3 * 0xc);
+    fVar26 = param_6 * *(float *)(&TransformMatrixX + lVar7 * 0xc);
+    fVar27 = param_6 * *(float *)(&TransformMatrixY + lVar7 * 0xc);
+    fVar21 = param_7 * *(float *)(&TransformMatrixX + allocatedMemory3 * 0xc);
+    fVar22 = param_7 * *(float *)(&TransformMatrixY + allocatedMemory3 * 0xc);
+    fVar23 = param_7 * *(float *)(&TransformMatrixZ + allocatedMemory3 * 0xc);
     lVar7 = 0;
     iVar9 = 0;
     floatResult4 = *(float *)(dataSource + (longlong)(int)functionResult1 * -4);
@@ -78321,13 +78321,13 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
   }
   allocatedMemory1 = (longlong)in_stack_000001e0;
   uStack0000000000000044 = (uint)functionResult0;
-  fStack00000000000001c8 = in_XMM1_Da * *(float *)(&UNK_180953138 + dataSource * 0xc);
+  fStack00000000000001c8 = in_XMM1_Da * *(float *)(&TransformMatrixZ + dataSource * 0xc);
   floatResult5 = *(float *)(in_R10 + (longlong)(int)(1 - uStack0000000000000044) * 4);
-  fVar23 = in_XMM1_Da * *(float *)(&UNK_180953130 + dataSource * 0xc);
-  fVar24 = in_XMM1_Da * *(float *)(&UNK_180953134 + dataSource * 0xc);
-  floatResult8 = uiContext * *(float *)(&UNK_180953130 + allocatedMemory1 * 0xc);
-  floatResult9 = uiContext * *(float *)(&UNK_180953134 + allocatedMemory1 * 0xc);
-  fVar20 = uiContext * *(float *)(&UNK_180953138 + allocatedMemory1 * 0xc);
+  fVar23 = in_XMM1_Da * *(float *)(&TransformMatrixX + dataSource * 0xc);
+  fVar24 = in_XMM1_Da * *(float *)(&TransformMatrixY + dataSource * 0xc);
+  floatResult8 = uiContext * *(float *)(&TransformMatrixX + allocatedMemory1 * 0xc);
+  floatResult9 = uiContext * *(float *)(&TransformMatrixY + allocatedMemory1 * 0xc);
+  fVar20 = uiContext * *(float *)(&TransformMatrixZ + allocatedMemory1 * 0xc);
   allocatedMemory1 = 0;
   iVar8 = 0;
   floatResult2 = *(float *)(in_R10 + (longlong)(int)uStack0000000000000044 * -4);
@@ -91270,16 +91270,16 @@ void FUN_180722370(undefined8 uiContext,int *dataSource)
   } while (lVar4 != 0);
   lVar4 = (longlong)(iStack_38 + iStack_30 * 3);
   iVar5 = (int)(short)((ulonglong)
-                       (uint)((int)*(short *)(&UNK_1809535f2 + lVar4 * 2) -
-                             (int)*(short *)(&UNK_1809535f0 + lVar4 * 2)) * 0x199a >> 0x10) *
-          (int)(short)(asStack_34[0] * 2 + 1) + (int)*(short *)(&UNK_1809535f0 + lVar4 * 2);
+                       (uint)((int)*(short *)(&FontMetricTableY + lVar4 * 2) -
+                             (int)*(short *)(&FontMetricTableX + lVar4 * 2)) * 0x199a >> 0x10) *
+          (int)(short)(asStack_34[0] * 2 + 1) + (int)*(short *)(&FontMetricTableX + lVar4 * 2);
   *dataSource = iVar5;
   lVar4 = (longlong)(iStack_2c + iStack_24 * 3);
   validationResult = (int)(short)(sStack_28 * 2 + 1) *
           (int)(short)((ulonglong)
-                       (uint)((int)*(short *)(&UNK_1809535f2 + lVar4 * 2) -
-                             (int)*(short *)(&UNK_1809535f0 + lVar4 * 2)) * 0x199a >> 0x10) +
-          (int)*(short *)(&UNK_1809535f0 + lVar4 * 2);
+                       (uint)((int)*(short *)(&FontMetricTableY + lVar4 * 2) -
+                             (int)*(short *)(&FontMetricTableX + lVar4 * 2)) * 0x199a >> 0x10) +
+          (int)*(short *)(&FontMetricTableX + lVar4 * 2);
   dataSource[1] = validationResult;
   *dataSource = iVar5 - validationResult;
                     // WARNING: Subroutine does not return
@@ -93032,8 +93032,8 @@ void FUN_180723ee0(int *uiContext,char *dataSource)
   iVar8 = 0;
   do {
     iVar7 = 0;
-    sVar1 = *(short *)(&UNK_1809535f0 + (longlong)iVar8 * 2);
-    sVar2 = *(short *)(&UNK_1809535f2 + (longlong)iVar8 * 2);
+    sVar1 = *(short *)(&FontMetricTableX + (longlong)iVar8 * 2);
+    sVar2 = *(short *)(&FontMetricTableY + (longlong)iVar8 * 2);
     iVar4 = operationResult2;
     operationResult0 = operationResult1;
     do {
@@ -93064,8 +93064,8 @@ LAB_180723f9b:
   *uiContext = operationResult0;
   do {
     iVar4 = 0;
-    sVar1 = *(short *)(&UNK_1809535f0 + (longlong)operationResult2 * 2);
-    sVar2 = *(short *)(&UNK_1809535f2 + (longlong)operationResult2 * 2);
+    sVar1 = *(short *)(&FontMetricTableX + (longlong)operationResult2 * 2);
+    sVar2 = *(short *)(&FontMetricTableY + (longlong)operationResult2 * 2);
     iVar8 = operationResult0;
     operationResult1 = iVar9;
     do {
