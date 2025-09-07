@@ -113918,7 +113918,7 @@ SystemConfigurationReset:
       NormalizedDistance = 1.0;
     }
   }
-  ContextCoordinate = (float)FUN_18011f690(Parameter3,DistanceValue,(InputCoordinate2 - InputCoordinate1) * NormalizedDistance + InputCoordinate1);
+  ContextCoordinate = (float)ProcessSystemCoordinateScaling(Parameter3,DistanceValue,(InputCoordinate2 - InputCoordinate1) * NormalizedDistance + InputCoordinate1);
   if (ContextCoordinate != *OutputCoordinatePointer) {
     *OutputCoordinatePointer = ContextCoordinate;
     ProcessingStatus = 1;
@@ -114044,7 +114044,7 @@ LAB_18011ee7f:
       ScaledValue = 1.0;
     }
   }
-  CharacterCode = (float)FUN_18011f690(StackParameter2,CharacterCodeSize,
+  CharacterCode = (float)ProcessSystemCoordinateScaling(StackParameter2,CharacterCodeSize,
                                  (VectorRegisterX10 - SecondaryFloatValue) * ScaledValue + SecondaryFloatValue);
   if (CharacterCode != *ProcessingStatusFlag) {
     *ProcessingStatusFlag = CharacterCode;

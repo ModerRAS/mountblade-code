@@ -21979,7 +21979,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             if ((char)exceptionHandlerContext1 == '\0') {
               *(ByteFlag *)(operationBase + 4) = 1;
               calculatedValue = InitializeDataStructureA0(*(DataBuffer *)(operationBase[1] + 0x78),aStackDataWordV);
-              if (((calculatedValue != 0) || (calculatedValue = ProcessDataBufferA0(aStackDataWordV[0],&lStack_320,0), calculatedValue != 0)
+              if (((calculatedValue != 0) || (calculatedValue = ProcessDataBufferA0(aStackDataWordV[0],&StackLongIntegerC,0), calculatedValue != 0)
                   ) || (calculatedValue = (**(FunctionPointer**)(*operationBase + 0x10))(operationBase), calculatedValue != 0))
               goto ProcessCheckpointBufferValidation;
               statusCounter = (uint64_t)(lStack_320 * 48000) /
