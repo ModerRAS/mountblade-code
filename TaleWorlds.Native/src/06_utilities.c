@@ -4588,20 +4588,11 @@ extern void* SystemPrimaryResourceTable;
 // 功能：验证系统配置和状态
 #define ValidateSystemConfigurationA0 FUN_180090b80
 
-// 原始变量名：UNK_1809866c0 - 数据配置表A5
-// 功能：存储系统数据配置信息
+// 数据配置表A5-A8
+// 功能：存储系统数据配置的多级配置表和参数
 #define DataConfigurationTableA5 UNK_1809866c0
-
-// 原始变量名：UNK_180986730 - 数据配置表A6
-// 功能：存储系统数据配置信息
 #define DataConfigurationTableA6 UNK_180986730
-
-// 原始变量名：UNK_1809867b0 - 数据配置表A7
-// 功能：存储系统数据配置信息
 #define DataConfigurationTableA7 UNK_1809867b0
-
-// 原始变量名：UNK_180986850 - 数据配置表A8
-// 功能：存储系统数据配置信息
 #define DataConfigurationTableA8 UNK_180986850
 
 // 缺失的变量定义
