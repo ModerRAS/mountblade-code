@@ -9506,6 +9506,11 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
   #define MODULE_COMPONENT_OFFSET 0x80      // 模块组件偏移量
   #define MODULE_VALIDATION_OFFSET 0x38    // 模块验证偏移量
   
+  // 资源和上下文指针偏移量
+  #define RESOURCE_CONTEXT_OFFSET 3         // 资源上下文偏移量
+  #define RESOURCE_DATA_OFFSET 4            // 资源数据偏移量
+  #define COMPONENT_DATA_OFFSET 3           // 组件数据偏移量
+  
   int64_t *validationContextPtr;
   int64_t *componentDataPtr;
   int64_t *componentInfoPtr;
@@ -9550,7 +9555,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
       componentDataPtr = baseValidationContext;
       componentInfoPtr = baseValidationContext;
       if (resourceInfoPtr != (int64_t *)0x0) {
-        contextDataPtr = resourceInfoPtr + 3;
+        contextDataPtr = resourceInfoPtr + RESOURCE_CONTEXT_OFFSET;
       }
       while( true ) {
         if (contextDataPtr == validationContextPtr) {
@@ -9566,7 +9571,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
         if ((int32_t)moduleDataPtr[5] <= (int32_t)componentInfoPtr) {
           return 0x1c;
         }
-        resourceInfoPtr = contextDataPtr + 4;
+        resourceInfoPtr = contextDataPtr + RESOURCE_DATA_OFFSET;
         if (contextDataPtr == (int64_t *)0x0) {
           resourceInfoPtr = (int64_t *)MODULE_VALIDATION_OFFSET;
         }
@@ -9578,7 +9583,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
         }
         contextDataPtr = baseValidationContext;
         if (resourceInfoPtr != (int64_t *)0x0) {
-          contextDataPtr = resourceInfoPtr + 3;
+          contextDataPtr = resourceInfoPtr + RESOURCE_CONTEXT_OFFSET;
         }
         componentDataPtr = componentDataPtr + 3;
         componentInfoPtr = (int64_t *)(uint64_t)((int32_t)componentInfoPtr + 1);
