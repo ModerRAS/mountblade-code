@@ -2442,8 +2442,13 @@
  */
 #define ExecuteSecurityValidationOperation FUN_180894a07
 
-// 原始函数名：FUN_180894ad2 - 安全检查包装函数
-// 功能：包装安全检查函数，执行栈保护验证
+/**
+ * @brief 安全检查包装函数
+ * 
+ * 该函数负责包装安全检查函数，执行栈保护验证
+ * 
+ * @note 原始函数名：FUN_180894ad2
+ */
 #define ExecuteSecurityCheckWrapper FUN_180894ad2
 
 // 原始函数名：FUN_180894bf5 - 安全检查包装函数B
