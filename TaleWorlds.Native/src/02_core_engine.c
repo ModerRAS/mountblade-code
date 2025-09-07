@@ -280649,6 +280649,121 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define InitializeSystemEventHandler FUN_1801306c9
 
 /**
+ * @brief 处理字符代码表查找
+ * 
+ * 该函数负责在字符代码表中查找指定的字符代码，支持各种字符编码的查找操作。
+ * 用于系统字符代码表的查找和检索。
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return 查找结果状态码
+ * 
+ * @note 原始函数名：FUN_180213440
+ */
+#define ProcessCharacterCodeTableLookup FUN_180213440
+
+/**
+ * @brief 处理UTF-16字符转换
+ * 
+ * 该函数负责处理UTF-16字符的转换操作，包括字符编码的转换和验证。
+ * 用于系统UTF-16字符的转换处理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param RegisterFlag 寄存器标志
+ * @return 转换后的UTF-16字符
+ * 
+ * @note 原始函数名：FUN_180840490
+ */
+#define ProcessUtf16CharacterConversion FUN_180840490
+
+/**
+ * @brief 处理字符代码存储
+ * 
+ * 该函数负责处理字符代码的存储操作，包括字符代码的保存和管理。
+ * 用于系统字符代码的存储和管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param StatusPointer 状态指针
+ * @return 存储结果状态码
+ * 
+ * @note 原始函数名：FUN_180211a30
+ */
+#define ProcessCharacterCodeStorage FUN_180211a30
+
+/**
+ * @brief 处理字符数据缓冲区管理
+ * 
+ * 该函数负责处理字符数据缓冲区的管理操作，包括缓冲区的分配、使用和释放。
+ * 用于系统字符数据缓冲区的管理。
+ * 
+ * @param BufferPointer 缓冲区指针
+ * @param SourcePointer 源指针
+ * @param StatusPointer 状态指针
+ * @return 管理结果状态码
+ * 
+ * @note 原始函数名：FUN_180407630
+ */
+#define ProcessCharacterDataBufferManagement FUN_180407630
+
+/**
+ * @brief 处理系统内存清理
+ * 
+ * 该函数负责处理系统内存的清理操作，包括内存的释放和资源的回收。
+ * 用于系统内存的清理和管理。
+ * 
+ * @return 清理结果状态码
+ * 
+ * @note 原始函数名：FUN_1802164f0
+ */
+#define ProcessSystemMemoryCleanup FUN_1802164f0
+
+/**
+ * @brief 处理字符数据最终化
+ * 
+ * 该函数负责处理字符数据的最终化操作，包括数据的最终处理和保存。
+ * 用于系统字符数据的最终化处理。
+ * 
+ * @param DataPointer 数据指针
+ * @param EndPointer 结束指针
+ * @return 最终化结果状态码
+ * 
+ * @note 原始函数名：FUN_18084a280
+ */
+#define ProcessCharacterDataFinalization FUN_18084a280
+
+/**
+ * @brief 处理字符代码检索
+ * 
+ * 该函数负责处理字符代码的检索操作，包括字符代码的查找和获取。
+ * 用于系统字符代码的检索和管理。
+ * 
+ * @param DataPointer 数据指针
+ * @return 检索到的字符代码
+ * 
+ * @note 原始函数名：FUN_180406800
+ */
+#define ProcessCharacterCodeRetrieval FUN_180406800
+
+/**
+ * @brief 处理高级UTF-8到UTF-16转换
+ * 
+ * 该函数负责处理高级的UTF-8到UTF-16转换操作，支持复杂的编码转换场景。
+ * 用于系统高级UTF-8到UTF-16的转换处理。
+ * 
+ * @param SystemContext 系统上下文
+ * @param BufferPointer 缓冲区指针
+ * @param SourcePointer 源指针
+ * @param EndPointer 结束指针
+ * @param Parameter1 参数1
+ * @param Parameter2 参数2
+ * @return 转换结果状态码
+ * 
+ * @note 原始函数名：FUN_18032c0b0
+ */
+#define ProcessAdvancedUtf8ToUtf16Conversion FUN_18032c0b0
+
+/**
  * @brief 清理系统事件处理器
  * 
  * 该函数负责清理系统事件处理器。
