@@ -63841,7 +63841,18 @@ void CheckSystemTerminationA2(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907200(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统终止检查函数A3
+ * 
+ * 该函数检查嵌套指针的特定偏移量(0x68)，如果不为0则终止系统。
+ * 这是一个系统安全检查函数，确保系统状态正确。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_180907200
+ */
+void CheckSystemTerminationA3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(*(int64_t *)(dataBuffer + 0x20) + 0x68) != 0) {
