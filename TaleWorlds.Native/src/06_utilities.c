@@ -6379,10 +6379,10 @@ void* ExceptionHandlerPointerX;         // 异常处理器指针X
 void* ExceptionHandlerPointerY;         // 异常处理器指针Y
 void* ExceptionHandlerPointerZ;         // 异常处理器指针Z
 void* ExceptionHandlerPointerAA;         // 异常处理器指针AA
-void* ExceptionHandlerPointerBB;         // _DAT_180bf9ed0 - 异常处理器指针BB
+void* ExceptionHandlerPointerBB;         // 异常处理器指针BB
 
 // 内存验证相关变量声明
-void* MemoryValidationStartPointer;     // _DAT_180c91f18 - 内存验证起始指针
+void* MemoryValidationStartPointer;     // 内存验证起始指针
 void* MemoryValidationEndPointer;       // _DAT_180c91f28 - 内存验证结束指针
 uint8_t MemoryValidationStatus;    // 内存验证状态
 
@@ -59110,7 +59110,21 @@ void CleanupExceptionContextChain(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906520(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理表指针
+ * 
+ * 该函数负责初始化异常处理表指针，将系统异常处理表的地址
+ * 存储到数据缓冲区的指定偏移量处。这是一个简单的初始化函数，
+ * 用于设置异常处理的基础设施。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于存储异常处理表地址
+ * 
+ * @note 原始函数名：Unwind_180906520
+ * @note 这是一个异常展开（unwind）处理函数，用于初始化异常处理表
+ * @note 函数将系统异常处理表地址存储到数据缓冲区的0x48偏移量处
+ */
+void InitializeExceptionHandlerTablePointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x48) = &SystemExceptionHandlerTable;
@@ -59119,7 +59133,22 @@ void Unwind_180906520(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906530(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常数据表和处理程序
+ * 
+ * 该函数负责初始化异常数据表和异常处理程序的指针设置。
+ * 它配置多个异常处理相关的数据表地址，包括系统异常数据表、
+ * 默认异常处理程序和其他异常数据表。这是一个关键的初始化函数，
+ * 用于建立完整的异常处理基础设施。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理配置信息
+ * 
+ * @note 原始函数名：Unwind_180906530
+ * @note 这是一个异常展开（unwind）处理函数，用于初始化异常数据表
+ * @note 函数会设置多个异常处理表和处理程序的指针
+ */
+void InitializeExceptionDataTables(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
