@@ -60040,6 +60040,15 @@ void Unwind_1809077b0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 初始化异常处理器指针A5
+ * 
+ * 初始化异常处理器指针A5，将其设置为默认异常处理器B。
+ * 这个函数在系统初始化期间调用，确保异常处理系统的正常运行。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void Unwind_1809077c0(void)
 
 {
@@ -60051,6 +60060,15 @@ void Unwind_1809077c0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 初始化异常处理器指针A6
+ * 
+ * 初始化异常处理器指针A6，将其设置为默认异常处理器B。
+ * 这个函数在系统初始化期间调用，确保异常处理系统的正常运行。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void Unwind_1809077d0(void)
 
 {
@@ -65980,6 +65998,13 @@ void SetSystemExceptionHandlerB(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
+/**
+ * @brief 系统资源清理和终止函数
+ * @note 原始函数名：Unwind_180909320
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区
+ * @details 清理系统资源表中的所有资源，调用清理回调函数，并终止系统
+ */
 void CleanupSystemResourcesAndTerminate(DataBuffer operationBase,int64_t dataBuffer)
 
 {
