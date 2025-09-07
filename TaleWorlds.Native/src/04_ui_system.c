@@ -8813,7 +8813,7 @@ void ManageUIElements(longlong *uiContext)
             if (memoryBlockAddress == 0) {
               memoryBlockAddress = 1;
 LAB_180656abd:
-              plVar7 = (longlong *)CreateUIContext(UIContextManager,allocatedMemory6 * 8,(undefined1)uStack_60);
+              memoryAllocationPtr = (longlong *)CreateUIContext(UIContextManager,memoryBlockAddress * 8,(undefined1)stackValue60);
             }
             else {
               allocatedMemory6 = allocatedMemory6 * 2;
