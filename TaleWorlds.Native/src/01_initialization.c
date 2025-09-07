@@ -6225,7 +6225,7 @@ void InitializeSystemStringConfigurationManager(void)
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigProcessBuffer;
   SystemConfigProcessBuffer[0] = 0;
-  SystemConfigurationValue = 0xb;
+  SystemConfigurationValue = 0xb; // 配置缓冲区大小 (11字节)
   strcpy_s(SystemConfigProcessBuffer,SystemConfigurationValue,&SystemConfigurationTemplateA,SystemParameter,InvalidHandleValue);
   SystemGlobalDataProcessorResult = SystemGlobalDataProcessor(&SystemDataPointer);
   return;
@@ -21951,7 +21951,7 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   SystemStackFlagPrimary = ConcatenatedSystemValue(*(uint32_t *)(SystemResourceDataIndex + 0x18c),(uint32_t)SystemStackFlagPrimary);
   SystemDataBuffer = SystemInitializationStatusFlags;
   InitializeSystemDataBuffer(&SystemDataPointer,5);
-  *(uint32_t *)(SystemStackBuffer + SystemDataBuffer) = 0x73676f6c; // logs
+  *(uint32_t *)(SystemStackBuffer + SystemDataBuffer) = 0x73676f6c; // "logs" 字符串的十六进制表示
   *(uint16_t *)((long long)(SystemStackBuffer + SystemDataBuffer) + 4) = 0x2f;
   SystemDataBuffer = 5;
   InitializeSystemDataBuffer(&SystemDataPointer,0x18);
@@ -27420,11 +27420,11 @@ void SystemDataInitializer(void)
   *(uint8_t *)SystemDataBufferPointer = 0;
   SystemProcessFlagsPointer = SystemDataBufferPointer;
   ThreadContext = StartSystemThread(SystemDataBufferPointer);
-  *SystemDataBufferPointer = 0x706d6554;
-  SystemDataBufferPointer[1] = 0x7261726f;
-  SystemDataBufferPointer[2] = 0x73655279;
-  SystemDataBufferPointer[3] = 0x6372756f;
-  SystemDataBufferPointer[4] = 0x2f7365;
+  *SystemDataBufferPointer = 0x706d6554; // "Temp" 字符串的十六进制表示
+  SystemDataBufferPointer[1] = 0x7261726f; // "orar" 字符串的十六进制表示
+  SystemDataBufferPointer[2] = 0x73655279; // "seRy" 字符串的十六进制表示
+  SystemDataBufferPointer[3] = 0x6372756f; // "cruo" 字符串的十六进制表示
+  SystemDataBufferPointer[4] = 0x2f7365; // "/se" 字符串的十六进制表示
   SystemEncryptionStatus = 0x13;
   SystemThreadContext.PrimaryField = ThreadContext;
   InitializeSystemStack(&SystemUnsignedFlagPointer,&memoryAllocationEnd);
@@ -28785,7 +28785,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   systemCounter = SystemOperationResult + 5;
   ExecuteSystemCommand(ConfigurationDataPointer,systemCounter);
   SystemDataPointer = (uint32_t *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8));
-  *SystemDataPointer = 0x3a757067;
+  *SystemDataPointer = 0x3a757067; // ":upg" 字符串的十六进制表示
   *(uint16_t *)(SystemDataPointer + 1) = 0x20;
   *(int *)(ConfigurationDataPointer + 0x10) = systemCounter;
   if (0 < IntegerStackC8) {

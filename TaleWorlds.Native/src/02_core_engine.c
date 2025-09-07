@@ -148243,7 +148243,7 @@ LAB_18013148a:
 
 
 
-uint8_t FUN_1801313c6(uint64_t CharacterCode,uint8_t CharacterCodeSize,float Utf8InputPointer,float Utf16EndPointer
+uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t CharacterCodeSize,float Utf8InputPointer,float Utf16EndPointer
 {
   int LockResult;
   uint8_t SystemDataStringBuffer;
@@ -151492,7 +151492,7 @@ LAB_1801335e1:
 
 
 
-uint64_t FUN_180133548(float CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,long long Utf16EndPointer
+uint64_t ProcessCharacterCodeWithMemoryAllocation(float CharacterCode,uint64_t CharacterCodeSize,uint64_t Utf8InputPointer,long long Utf16EndPointer
 {
   char StringBuffer;
   long long in_R10;
@@ -157029,7 +157029,7 @@ uint64_t * FUN_180135420(uint64_t *CharacterCode
 
 
 
-uint FUN_1801358c0(long long CharacterCode
+uint GetMemoryAddressMask(long long CharacterCode
 {
   int LockResult;
   uint *PrimaryProcessingStatusFlag;
@@ -161224,7 +161224,7 @@ char ProcessSystemDataStructureMemory(long long CharacterCode, long long Charact
 
 
 
-uint8_t FUN_1801396ea(void
+uint8_t GetSystemStringEncodingStatus(void)
 {
   uint32_t Utf16Char;
   uint64_t MemoryAllocationIndex;
