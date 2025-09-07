@@ -19680,7 +19680,7 @@ ProcessDataSecurityValidation:
           in_stack_000001a8 = register_XMM6_Dc;
           if (fStack000000000000004c != 1.0) {
             fStack0000000000000040 = fStack000000000000004c;
-            in_stack_00000028 = &UNK_180983738;
+            in_stack_00000028 = &FloatingPointValidationErrorA;
             StackParameter38 = StackParameter20;
             StackBuffer30 = register_R13D;
             inputParameter3 = ValidateDataIntegrityA0(fStack000000000000004c,&stack0x00000028);
@@ -19691,7 +19691,7 @@ ProcessDataSecurityValidation:
           if (inputParameter3 == 0) {
             if (in_stack_00000050 != 1.0) {
               fStack0000000000000040 = in_stack_00000050;
-              in_stack_00000028 = &UNK_1809837c0;
+              in_stack_00000028 = &FloatingPointValidationErrorB;
               StackParameter38 = StackParameter20;
               StackBuffer30 = register_R13D;
               inputParameter3 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
@@ -19741,7 +19741,7 @@ ProcessDataSecurityValidation:
               if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
             }
             if ((*(uint *)(systemContext + 0x2d8) >> 1 & 1) != 0) {
-              in_stack_00000028 = &UNK_180983a60;
+              in_stack_00000028 = &DataIntegrityValidationErrorB;
               StackParameter38 = StackParameter20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               StackBuffer30 = register_R13D;
@@ -19750,7 +19750,7 @@ ProcessDataSecurityValidation:
             }
             inputParameter3 = ProcessUtilityOperation(systemContext);
             if (inputParameter3 != 2) {
-              in_stack_00000028 = &UNK_180983ae8;
+              in_stack_00000028 = &DataIntegrityValidationErrorC;
               StackParameter38 = StackParameter20;
               StackBuffer30 = register_R13D;
               inputParameter3 = ValidateDataIntegrityA0(floatResultA_06,&stack0x00000028);
@@ -19759,7 +19759,7 @@ ProcessDataSecurityValidation:
             inputParameter3 = ProcessUtilityOperation(systemContext);
             operationResult4 = floatResultA_07;
             if (inputParameter3 == 4) {
-              in_stack_00000028 = &UNK_180983b68;
+              in_stack_00000028 = &DataIntegrityValidationErrorD;
               StackParameter38 = StackParameter20;
               StackBuffer30 = register_R13D;
               fStack0000000000000040 = register_R13D;
@@ -19927,7 +19927,7 @@ ValidateDataSecurity:
       in_stack_000001a8 = register_XMM6_Dc;
       if (StackParameter48._4_4_ != 1.0) {
         fStack0000000000000040 = StackParameter48._4_4_;
-        in_stack_00000028 = &UNK_180983738;
+        in_stack_00000028 = &FloatingPointValidationErrorA;
         StackParameter38 = StackParameter20;
         StackBuffer30 = register_R13D;
         inputParameter3 = ValidateDataIntegrityA0(StackParameter48._4_4_,&stack0x00000028);
@@ -19938,7 +19938,7 @@ ValidateDataSecurity:
       if (inputParameter3 == 0) {
         if (in_stack_00000050 != 1.0) {
           fStack0000000000000040 = in_stack_00000050;
-          in_stack_00000028 = &UNK_1809837c0;
+          in_stack_00000028 = &FloatingPointValidationErrorB;
           StackParameter38 = StackParameter20;
           StackBuffer30 = register_R13D;
           inputParameter3 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
@@ -19988,7 +19988,7 @@ ValidateDataSecurity:
           if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
         if ((*(uint *)(systemContext + 0x2d8) >> 1 & 1) != 0) {
-          in_stack_00000028 = &UNK_180983a60;
+          in_stack_00000028 = &DataIntegrityValidationErrorB;
           StackParameter38 = StackParameter20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           StackBuffer30 = register_R13D;
@@ -19997,7 +19997,7 @@ ValidateDataSecurity:
         }
         inputParameter3 = ProcessUtilityOperation(systemContext);
         if (inputParameter3 != 2) {
-          in_stack_00000028 = &UNK_180983ae8;
+          in_stack_00000028 = &DataIntegrityValidationErrorC;
           StackParameter38 = StackParameter20;
           StackBuffer30 = register_R13D;
           inputParameter3 = ValidateDataIntegrityA0(floatResultA_05,&stack0x00000028);
@@ -20006,7 +20006,7 @@ ValidateDataSecurity:
         inputParameter3 = ProcessUtilityOperation(systemContext);
         operationResult3 = floatResultA_06;
         if (inputParameter3 == 4) {
-          in_stack_00000028 = &UNK_180983b68;
+          in_stack_00000028 = &DataIntegrityValidationErrorD;
           StackParameter38 = StackParameter20;
           StackBuffer30 = register_R13D;
           fStack0000000000000040 = register_R13D;
@@ -20132,7 +20132,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       if (operationResult != 0) GOTO_ValidationFailure;
     }
     if ((*(uint *)(systemContext + 0x2d8) >> 1 & 1) != 0) {
-      in_stack_00000028 = &UNK_180983a60;
+      in_stack_00000028 = &DataIntegrityValidationErrorB;
       StackParameter38 = StackParameter20;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       StackBuffer30 = register_R13D;
@@ -20141,7 +20141,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     }
     operationResult = ProcessUtilityOperation();
     if (operationResult != 2) {
-      in_stack_00000028 = &UNK_180983ae8;
+      in_stack_00000028 = &DataIntegrityValidationErrorC;
       StackParameter38 = StackParameter20;
       StackBuffer30 = register_R13D;
       operationResult = ValidateDataIntegrityA0(floatResultA_02,&stack0x00000028);
@@ -20150,7 +20150,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     operationResult = ProcessUtilityOperation();
     dataFlags = floatResultA_03;
     if (operationResult == 4) {
-      in_stack_00000028 = &UNK_180983b68;
+      in_stack_00000028 = &DataIntegrityValidationErrorD;
       StackParameter38 = StackParameter20;
       StackBuffer30 = register_R13D;
       fStack0000000000000040 = register_R13D;
