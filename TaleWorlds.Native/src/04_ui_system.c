@@ -101,6 +101,7 @@
 #define ProcessUIRenderOperation FUN_180690580
 #define ProcessUIDataTransfer ProcessUIComponentBlend
 #define InitializeUILayoutSystem FUN_180707a56
+#define FinalizeUIComponentInitialization FUN_1806a0150
 
  // UI系统函数宏定义 - 验证UI布局
 #define ValidateUILayout FUN_180707a74
@@ -68074,7 +68075,7 @@ void FUN_18069f2f0(longlong uiContext)
         localLong8 = localLong8 + 1;
       } while (localLong8 < 3);
     }
-    FUN_1806a0150(allocatedMemory,uiContext + 0x34b5);
+    FinalizeUIComponentInitialization(allocatedMemory,uiContext + 0x34b5);
   }
   return;
 }
@@ -68157,7 +68158,7 @@ void ProcessUIComponentMemoryAllocation(void)
       localLong7 = localLong7 + 1;
     } while (localLong7 < 3);
   }
-  FUN_1806a0150();
+  FinalizeUIComponentInitialization();
   return;
 }
 
