@@ -7978,27 +7978,27 @@ uint8_t SystemExceptionHandlerDataP;
 uint8_t SystemExceptionHandlerDataQ;
 uint8_t SystemExceptionHandlerDataR;
 uint8_t SystemSecurityValidationFlagA0;     // UNK_180a395c0
-uint8_t UNK_180a395e0;
-uint8_t UNK_180a39600;
-uint8_t UNK_180a39628;
-uint8_t UNK_180a39640;
-uint8_t UNK_180a39660;
-uint8_t UNK_180a39688;
-uint8_t UNK_180a396b0;
-uint8_t UNK_180a396c8;
-uint8_t UNK_180a396f0;
-uint8_t UNK_180a39710;
-uint8_t UNK_180a39728;
-uint8_t UNK_180a39740;
-uint8_t UNK_180a39758;
-uint8_t UNK_180a39768;
-uint8_t UNK_180a39788;
-uint8_t UNK_180a397a8;
-uint8_t UNK_180a397c8;
-uint8_t UNK_180a397d8;
-uint8_t UNK_180a397e8;
-uint8_t UNK_180a397f8;
-uint8_t UNK_180a39820;
+uint8_t SystemSecurityValidationFlagA1;     // UNK_180a395e0
+uint8_t SystemSecurityValidationFlagA2;     // UNK_180a39600
+uint8_t SystemSecurityValidationFlagA3;     // UNK_180a39628
+uint8_t SystemSecurityValidationFlagA4;     // UNK_180a39640
+uint8_t SystemSecurityValidationFlagA5;     // UNK_180a39660
+uint8_t SystemSecurityValidationFlagA6;     // UNK_180a39688
+uint8_t SystemSecurityValidationFlagA7;     // UNK_180a396b0
+uint8_t SystemSecurityValidationFlagA8;     // UNK_180a396c8
+uint8_t SystemSecurityValidationFlagA9;     // UNK_180a396f0
+uint8_t SystemSecurityValidationFlagA10;    // UNK_180a39710
+uint8_t SystemSecurityValidationFlagA11;    // UNK_180a39728
+uint8_t SystemSecurityValidationFlagA12;    // UNK_180a39740
+uint8_t SystemSecurityValidationFlagA13;    // UNK_180a39758
+uint8_t SystemSecurityValidationFlagA14;    // UNK_180a39768
+uint8_t SystemSecurityValidationFlagA15;    // UNK_180a39788
+uint8_t SystemSecurityValidationFlagA16;    // UNK_180a397a8
+uint8_t SystemSecurityValidationFlagA17;    // UNK_180a397c8
+uint8_t SystemSecurityValidationFlagA18;    // UNK_180a397d8
+uint8_t SystemSecurityValidationFlagA19;    // UNK_180a397e8
+uint8_t SystemSecurityValidationFlagA20;    // UNK_180a397f8
+uint8_t SystemSecurityValidationFlagA21;    // UNK_180a39820
 uint8_t UNK_180a39850;
 uint8_t UNK_180a39864;
 uint8_t UNK_180a39870;
@@ -69992,7 +69992,11 @@ void Unwind_18090b2b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b2d0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_18090b2d0 - 异常展开处理函数A31
+// 功能：异常展开清理函数A31
+#define ExceptionUnwindHandlerA31 Unwind_18090b2d0
+
+void ExceptionUnwindHandlerA31(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -70006,7 +70010,11 @@ void Unwind_18090b2d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b2f0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_18090b2f0 - 异常展开处理函数A32
+// 功能：异常展开清理函数A32
+#define ExceptionUnwindHandlerA32 Unwind_18090b2f0
+
+void ExceptionUnwindHandlerA32(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -70020,7 +70028,11 @@ void Unwind_18090b2f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b310(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_18090b310 - 异常展开处理函数A33
+// 功能：异常展开清理函数A33
+#define ExceptionUnwindHandlerA33 Unwind_18090b310
+
+void ExceptionUnwindHandlerA33(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -72735,7 +72747,7 @@ void Unwind_18090c490(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -72998,7 +73010,7 @@ void Unwind_18090c540(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -73044,7 +73056,7 @@ void Unwind_18090c550(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -73120,7 +73132,7 @@ void Unwind_18090c590(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -73187,7 +73199,7 @@ void Unwind_18090c5c0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -73233,7 +73245,7 @@ void Unwind_18090c5d0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -73291,7 +73303,7 @@ void Unwind_18090c5f0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -73337,7 +73349,7 @@ void Unwind_18090c600(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74026,7 +74038,7 @@ void Unwind_18090ca20(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74084,7 +74096,7 @@ void Unwind_18090ca40(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74154,7 +74166,7 @@ void Unwind_18090ca70(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74221,7 +74233,7 @@ void Unwind_18090caa0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74288,7 +74300,7 @@ void Unwind_18090cad0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74355,7 +74367,7 @@ void Unwind_18090cb00(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74410,7 +74422,7 @@ void Unwind_18090cb20(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74465,7 +74477,7 @@ void Unwind_18090cb40(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74523,7 +74535,7 @@ void Unwind_18090cb60(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74578,7 +74590,7 @@ void Unwind_18090cb80(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74669,7 +74681,7 @@ void Unwind_18090cbd0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74736,7 +74748,7 @@ void Unwind_18090cc00(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -74902,7 +74914,7 @@ void Unwind_18090cce0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -80203,7 +80215,7 @@ void Unwind_18090e760(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -80261,7 +80273,7 @@ void Unwind_18090e7a0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -80307,7 +80319,7 @@ void Unwind_18090e7b0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -80353,7 +80365,7 @@ void Unwind_18090e7c0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -80399,7 +80411,7 @@ void Unwind_18090e7d0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -80445,7 +80457,7 @@ void Unwind_18090e7e0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -80491,7 +80503,7 @@ void Unwind_18090e7f0(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -80537,7 +80549,7 @@ void Unwind_18090e800(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -80595,7 +80607,7 @@ void Unwind_18090e820(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -80653,7 +80665,7 @@ void Unwind_18090e840(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -80711,7 +80723,7 @@ void Unwind_18090e860(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
@@ -81150,7 +81162,7 @@ void Unwind_18090eb00(DataBuffer operationBase,int64_t dataBuffer)
         do {
           if (*(char *)(*(int64_t *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
-              FUN_1802c24b0(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
+              ValidateDataBufferA2(*(DataBuffer *)(validationContext + (int64_t)operationResult * 8));
             }
             break;
           }
