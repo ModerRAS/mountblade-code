@@ -128713,7 +128713,7 @@ float * ProcessSystemFloatDataAndInitializeBuffer(float *Utf8InputBuffer,long lo
     }
     pSystemMemoryOffset238[0xc] = 0;
   }
-  FUN_180130a80(pSystemMemoryOffset238);
+  ProcessSystemResourceCleanup(pSystemMemoryOffset238);
   ProcessSystemStateHandler(pSystemMemoryOffset238,pSystemMemoryOffset238[5]);
   if ((*(uint *)(DataStructureCounter + 8) & 0x8000) == 0) {
     SystemMemoryAllocationResult = 0x3f800000;
@@ -130423,7 +130423,7 @@ LAB_18012ce0f:
     }
     StackParameter2[0xc] = 0;
   }
-  FUN_180130a80(StackParameter2);
+  ProcessSystemResourceCleanup(StackParameter2);
   ProcessSystemStateHandler(StackParameter2,StackParameter2[5]);
   if ((*(uint *)(MemoryPoolBlockSize + 8) & 0x8000) == 0) {
     SystemStatusCode = 0x3f800000;
@@ -132261,7 +132261,7 @@ LAB_18012ce0f:
     }
     StackParameter2[0xc] = 0;
   }
-  FUN_180130a80(StackParameter2);
+  ProcessSystemResourceCleanup(StackParameter2);
   ProcessSystemStateHandler(StackParameter2,StackParameter2[5]);
   if ((*(uint *)(RegisterSourceIndex + 8) & 0x8000) == 0) {
     ProcessStringBuffer = 0x3f800000;
@@ -133958,7 +133958,7 @@ LAB_18012ce0f:
     }
     StackParameter2[0xc] = 0;
   }
-  FUN_180130a80(StackParameter2);
+  ProcessSystemResourceCleanup(StackParameter2);
   ProcessSystemStateHandler(StackParameter2,StackParameter2[5]);
   if ((*(uint *)(RegisterSourceIndex + 8) & 0x8000) == 0) {
     SystemMemoryAllocationResult = 0x3f800000;
@@ -135573,7 +135573,7 @@ LAB_18012ce0f:
     }
     StackParameter2[0xc] = 0;
   }
-  FUN_180130a80(StackParameter2);
+  ProcessSystemResourceCleanup(StackParameter2);
   ProcessSystemStateHandler(StackParameter2,StackParameter2[5]);
   if ((*(uint *)(RegisterSourceIndex + 8) & 0x8000) == 0) {
     SystemMemoryAllocationResult = 0x3f800000;
@@ -137258,7 +137258,7 @@ void ProcessSystemStatusAndValidation(void
     }
     StackParameter2[0xc] = 0;
   }
-  FUN_180130a80(StackParameter2);
+  ProcessSystemResourceCleanup(StackParameter2);
   ProcessSystemStateHandler(StackParameter2,StackParameter2[5]);
   if ((*(uint *)(RegisterSourceIndex + 8) & 0x8000) == 0) {
     SystemMemoryAllocationResult = 0x3f800000;
@@ -138833,7 +138833,7 @@ a023(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_18012a023(uint64_t 
     }
     *(void *)(StackParameter2 + 0x60) = 0;
   }
-  FUN_180130a80(StackParameter2);
+  ProcessSystemResourceCleanup(StackParameter2);
   ProcessSystemStateHandler(StackParameter2,*(void *)(StackParameter2 + 0x28));
   if ((*(uint *)(RegisterSourceIndex + 8) & 0x8000) == 0) {
     SystemMemoryAllocationResult = 0x3f800000;
@@ -190887,7 +190887,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx(uint64_t CharacterCode,uint64_t *Utf8Input
 
 
 uint64_t *
-FUN_180168670(uint64_t CharacterCode,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingEx2(uint64_t CharacterCode,uint64_t *Utf8InputBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
 {
   long long PrimaryDataSize;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -194480,7 +194480,7 @@ uint64_t FUN_18016dca0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t U
 
 uint64_t FUN_18016dd20(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer
 {
-  FUN_180168670(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
+  ProcessUtf8ToUtf16CharacterEncodingEx2(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
@@ -194488,7 +194488,7 @@ uint64_t FUN_18016dd20(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t U
 
 uint64_t FUN_18016dda0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer
 {
-  FUN_180168590(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
+  ProcessUtf8ToUtf16CharacterEncodingEx(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
