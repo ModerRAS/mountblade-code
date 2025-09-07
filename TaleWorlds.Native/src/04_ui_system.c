@@ -69558,85 +69558,86 @@ void ProcessUIDataEncryption(undefined8 uiContext,undefined8 dataSource,undefine
 
 
 
-float FUN_180702f80(longlong uiContext,uint dataSource,int targetBuffer,float bufferSize)
+float CalculateUIFloatAbsoluteSum(longlong uiContext,uint dataSource,int targetBuffer,float bufferSize)
 
 {
-  float *pfloatResult;
-  float *pfVar2;
-  float *pfVar3;
-  float *pfVar4;
-  uint uVar5;
-  longlong contextData;
-  longlong lVar7;
-  longlong lVar8;
-  ulonglong uVar9;
-  uint functionResult0;
-  float floatResult2;
-  float floatResult3;
-  float floatResult4;
-  float floatResult5;
-  float floatResult6;
-  float floatResult7;
-  float floatResult8;
-  float floatResult9;
-  ulonglong functionResult1;
+  float *floatArrayPointer1;
+  float *floatArrayPointer2;
+  float *floatArrayPointer3;
+  float *floatArrayPointer4;
+  uint dataAlignment;
+  longlong processedDataCount;
+  longlong loopCounter;
+  longlong totalDataSize;
+  ulonglong arrayIndex;
+  uint processedItems;
+  float absoluteSum1;
+  float absoluteSum2;
+  float absoluteSum3;
+  float absoluteSum4;
+  float absoluteSum5;
+  float absoluteSum6;
+  float absoluteSum7;
+  float absoluteSum8;
+  float absoluteSum9;
+  ulonglong iterationCount;
   
-  uVar9 = 0;
-  floatResult2 = 0.0;
-  floatResult3 = 0.0;
-  floatResult4 = 0.0;
-  floatResult5 = 0.0;
-  functionResult0 = 0;
-  floatResult6 = 0.0;
-  if ((0 < (int)dataSource) && (floatResult6 = floatResult2, 7 < dataSource)) {
-    floatResult6 = 0.0;
-    floatResult7 = 0.0;
-    floatResult8 = 0.0;
-    floatResult9 = 0.0;
-    uVar5 = dataSource & 0x80000007;
-    if ((int)uVar5 < 0) {
-      uVar5 = (uVar5 - 1 | 0xfffffff8) + 1;
+  arrayIndex = 0;
+  absoluteSum2 = 0.0;
+  absoluteSum3 = 0.0;
+  absoluteSum4 = 0.0;
+  absoluteSum5 = 0.0;
+  processedItems = 0;
+  absoluteSum6 = 0.0;
+  if ((0 < (int)dataSource) && (absoluteSum6 = absoluteSum2, 7 < dataSource)) {
+    absoluteSum6 = 0.0;
+    absoluteSum7 = 0.0;
+    absoluteSum8 = 0.0;
+    absoluteSum9 = 0.0;
+    dataAlignment = dataSource & 0x80000007;
+    if ((int)dataAlignment < 0) {
+      dataAlignment = (dataAlignment - 1 | 0xfffffff8) + 1;
     }
-    functionResult1 = uVar9;
+    iterationCount = arrayIndex;
     do {
-      pfVar4 = (float *)(uiContext + uVar9 * 4);
-      functionResult0 = (int)functionResult1 + 8;
-      functionResult1 = (ulonglong)functionResult0;
-      floatResult6 = floatResult6 + ABS(*pfVar4);
-      floatResult7 = floatResult7 + ABS(pfVar4[1]);
-      floatResult8 = floatResult8 + ABS(pfVar4[2]);
-      floatResult9 = floatResult9 + ABS(pfVar4[3]);
-      pfVar4 = (float *)(uiContext + 0x10 + uVar9 * 4);
-      uVar9 = uVar9 + 8;
-      floatResult2 = floatResult2 + ABS(*pfVar4);
-      floatResult3 = floatResult3 + ABS(pfVar4[1]);
-      floatResult4 = floatResult4 + ABS(pfVar4[2]);
-      floatResult5 = floatResult5 + ABS(pfVar4[3]);
-    } while ((longlong)uVar9 < (longlong)(int)(dataSource - uVar5));
-    floatResult6 = floatResult8 + floatResult4 + floatResult6 + floatResult2 + floatResult9 + floatResult5 + floatResult7 + floatResult3;
+      floatArrayPointer4 = (float *)(uiContext + arrayIndex * 4);
+      processedItems = (int)iterationCount + 8;
+      iterationCount = (ulonglong)processedItems;
+      absoluteSum6 = absoluteSum6 + ABS(*floatArrayPointer4);
+      absoluteSum7 = absoluteSum7 + ABS(floatArrayPointer4[1]);
+      absoluteSum8 = absoluteSum8 + ABS(floatArrayPointer4[2]);
+      absoluteSum9 = absoluteSum9 + ABS(floatArrayPointer4[3]);
+      floatArrayPointer4 = (float *)(uiContext + 0x10 + arrayIndex * 4);
+      arrayIndex = arrayIndex + 8;
+      absoluteSum2 = absoluteSum2 + ABS(*floatArrayPointer4);
+      absoluteSum3 = absoluteSum3 + ABS(floatArrayPointer4[1]);
+      absoluteSum4 = absoluteSum4 + ABS(floatArrayPointer4[2]);
+      absoluteSum5 = absoluteSum5 + ABS(floatArrayPointer4[3]);
+    } while ((longlong)arrayIndex < (longlong)(int)(dataSource - dataAlignment));
+    absoluteSum6 = absoluteSum8 + absoluteSum4 + absoluteSum6 + absoluteSum2 + absoluteSum9 + absoluteSum5 + absoluteSum7 + absoluteSum3;
   }
-  contextData = (longlong)(int)functionResult0;
-  lVar8 = (longlong)(int)dataSource;
-  if (contextData < lVar8) {
-    if (3 < lVar8 - contextData) {
-      pfVar4 = (float *)(uiContext + 8 + contextData * 4);
-      lVar7 = ((lVar8 - contextData) - 4U >> 2) + 1;
-      contextData = contextData + lVar7 * 4;
+  processedDataCount = (longlong)(int)processedItems;
+  totalDataSize = (longlong)(int)dataSource;
+  if (processedDataCount < totalDataSize) {
+    if (3 < totalDataSize - processedDataCount) {
+      floatArrayPointer4 = (float *)(uiContext + 8 + processedDataCount * 4);
+      loopCounter = ((totalDataSize - processedDataCount) - 4U >> 2) + 1;
+      processedDataCount = processedDataCount + loopCounter * 4;
       do {
-        pfloatResult = pfVar4 + -2;
-        pfVar2 = pfVar4 + -1;
-        floatResult2 = *pfVar4;
-        pfVar3 = pfVar4 + 1;
-        pfVar4 = pfVar4 + 4;
-        floatResult6 = ABS(*pfloatResult) + floatResult6 + ABS(*pfVar2) + ABS(floatResult2) + ABS(*pfVar3);
-        lVar7 = lVar7 + -1;
-      } while (lVar7 != 0);
+        floatArrayPointer1 = floatArrayPointer4 + -2;
+        floatArrayPointer2 = floatArrayPointer4 + -1;
+        absoluteSum2 = *floatArrayPointer4;
+        floatArrayPointer3 = floatArrayPointer4 + 1;
+        floatArrayPointer4 = floatArrayPointer4 + 4;
+        absoluteSum6 = ABS(*floatArrayPointer1) + absoluteSum6 + ABS(*floatArrayPointer2) + ABS(absoluteSum2) + ABS(*floatArrayPointer3);
+        loopCounter = loopCounter + -1;
+      } while (loopCounter != 0);
     }
-    for (; contextData < lVar8; contextData = contextData + 1) {
-      floatResult6 = floatResult6 + ABS(*(float *)(uiContext + contextData * 4));
+    for (; processedDataCount < totalDataSize; processedDataCount = processedDataCount + 1) {
+      absoluteSum6 = absoluteSum6 + ABS(*(float *)(uiContext + processedDataCount * 4));
     }
   }
-  return ((float)targetBuffer * bufferSize + 1.0) * floatResult6;
+  return ((float)targetBuffer * bufferSize + 1.0) * absoluteSum6;
 }
 
 
