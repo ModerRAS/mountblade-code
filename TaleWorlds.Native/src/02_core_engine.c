@@ -7266,8 +7266,8 @@ void CoreEngineInitializeNetworkStatusMonitor(void
     CoreEngineSetupNetworkStatusMonitor(SystemHandle,&NewMonitorPointer,CurrentMonitorNode,MemoryOffset + 0x20,MemoryOffset);
     CurrentMonitorNode = NewMonitorPointer;
   }
-  CurrentMonitorNode[6] = 0x406be72011d07d37;
-  CurrentMonitorNode[7] = 0x71876af946c867ab;
+  CurrentMonitorNode[6] = SystemNetworkMonitorIdentifierPrimary;
+  CurrentMonitorNode[7] = SystemNetworkMonitorIdentifierSecondary;
   CurrentMonitorNode[8] = &SystemMonitorTemplateA;
   CurrentMonitorNode[9] = 0;
   CurrentMonitorNode[10] = StatusCallbackFunction;
@@ -7331,8 +7331,8 @@ void CoreEngineInitializePhysicsConfig(void
     CoreEngineSetupNetworkConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,MemoryOffset + 0x20,MemoryOffset);
     CurrentConnection = NewConnectionPointer;
   }
-  CurrentConnection[6] = 0x40afa5469b6ac06d;
-  CurrentConnection[7] = 0x2f4bab01d34055a5;
+  CurrentConnection[6] = SystemNetworkConnectionPoolStateManagerIdentifierPrimary;
+  CurrentConnection[7] = SystemNetworkConnectionPoolStateManagerIdentifierSecondary;
   CurrentConnection[8] = (uint64_t)&NetworkConnectionConfig;
   CurrentConnection[9] = 3;
   CurrentConnection[10] = (uint64_t)ConnectionInitializer;
@@ -7388,8 +7388,8 @@ void CoreEngineInitializeAudioConfig(void
     CoreEngineSetupNetworkConnection(SystemHandle,&NewConnectionPointer,CurrentConnection,MemoryOffset + 0x20,MemoryOffset);
     CurrentConnection = NewConnectionPointer;
   }
-  CurrentConnection[6] = 0x406be72011d07d37;
-  CurrentConnection[7] = 0x71876af946c867ab;
+  CurrentConnection[6] = SystemNetworkMonitorIdentifierPrimary;
+  CurrentConnection[7] = SystemNetworkMonitorIdentifierSecondary;
   CurrentConnection[8] = &SystemMonitorTemplateA;
   CurrentConnection[9] = 0;
   CurrentConnection[10] = ConnectionInitializer;
