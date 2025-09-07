@@ -555,6 +555,28 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 // 系统字符和缓冲区处理函数
 #define ProcessSystemCharacter FUN_180121f20
 #define OperateSystemBufferEx FUN_1801220b0
+
+// 系统字符编码转换函数
+#define ProcessSystemCharacterEncodingConversion FUN_18015b810
+#define HandleSystemCharacterDataProcessing FUN_18016bdb0
+#define ValidateSystemCharacterData FUN_1801727d0
+#define ProcessSystemCharacterBuffer FUN_180173720
+#define ConvertSystemCharacterData FUN_180179c00
+#define TransformSystemCharacterData FUN_180179cd0
+#define CalculateSystemCharacterMetrics FUN_180181a80
+#define ProcessSystemCharacterValidation FUN_180181e30
+#define EncodeSystemCharacterData FUN_180186ac0
+#define DecodeSystemCharacterData FUN_18018c360
+#define ParseSystemCharacterData FUN_18018cde0
+#define OptimizeSystemCharacterData FUN_1801985e0
+#define CompressSystemCharacterData FUN_180198980
+#define NormalizeSystemCharacterData FUN_18019fc10
+#define FormatSystemCharacterData FUN_180203e30
+#define SanitizeSystemCharacterData FUN_180206da0
+#define ValidateSystemCharacterInput FUN_1802072b0
+#define ProcessSystemCharacterStream FUN_180208160
+#define InitializeSystemCharacterHandler FUN_1802089d7
+#define FinalizeSystemCharacterHandler FUN_18020a890
 const void* const SystemKeyStringAngularDamping = (void*)0x180a0b198;
 
 // 系统事件和配置常量 - 用于替换UNK_180a07xxx变量
@@ -34177,7 +34199,6 @@ void ProcessCoreEngineMemoryBufferManagement(long long *CharacterCode,uint64_t C
 
  (ram,0x0001800665ec (ram,0x0001800665f5
 
-6320(uint64_t CharacterCode,uint64_t CharacterCodeSize,char Utf8InputPointer,char Utf16EndPointer,
 /**
  * @brief 处理核心引擎系统初始化和配置管理
  * 
@@ -183328,8 +183349,19 @@ uint64_t * FUN_18015b6b0(long long CharacterCode,uint64_t *CharacterCodeSize,int
 
 
 
-5b810(uint64_t CharacterCode,int CharacterCodeSize,int Utf8InputPointer,int Utf16EndPointer,uint64_t AdditionalParameter1,
-void FUN_18015b810(uint64_t CharacterCode,int CharacterCodeSize,int Utf8InputPointer,int Utf16EndPointer,uint64_t AdditionalParameter1,
+/**
+ * @brief 处理系统字符编码转换
+ * 
+ * 该函数负责将字符从一种编码格式转换为另一种编码格式
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 附加参数1
+ * @param AdditionalParameter2 附加参数2
+ */
+void ProcessSystemCharacterEncodingConversion(uint64_t CharacterCode,int CharacterCodeSize,int Utf8InputPointer,int Utf16EndPointer,uint64_t AdditionalParameter1,
                   long long AdditionalParameter2
 {
   uint32_t Utf16Char;
