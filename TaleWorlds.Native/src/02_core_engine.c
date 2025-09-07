@@ -16263,7 +16263,7 @@ void CoreEngineSetupThreadPriorities(void
  * 
  * 该函数负责初始化系统数据模板A，配置相关的数据结构和内存分配
  */
-void CoreEngineInitializeSystemDataTemplateA(void
+void CoreEngineInitializeSystemDataTemplateConfiguration(void
 {
   char ComparisonResult;
   void *Utf8InputBuffer;
@@ -200162,7 +200162,18 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
 
 
 
-74080(long long CharacterCode,long long Utf8BufferSizevoid FUN_180174080(long long CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 系统内存块分配和初始化函数
+ * 
+ * 该函数负责分配系统内存块并进行初始化，包括数据模板设置和资源管理。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8BufferSize UTF8缓冲区大小参数
+ * @return void
+ * 
+ * @note 原始函数名：FUN_180174080
+ */
+void ProcessSystemMemoryAllocationAndInitialization(long long CharacterCode,long long Utf8BufferSize
 {
   uint64_t *StatusBuffer;
   code *pSystemCheckResult;
