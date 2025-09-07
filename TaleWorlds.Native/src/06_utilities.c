@@ -80279,7 +80279,18 @@ void SetDefaultExceptionHandlerBAtOffset2E0(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_18090c960(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置0x930偏移量的默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的0x930偏移量处设置默认异常处理器B的函数指针，
+ * 用于处理特定偏移量的异常情况。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c960
+ */
+void SetDefaultExceptionHandlerBAtOffset930(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x930) = &DefaultExceptionHandlerB;
