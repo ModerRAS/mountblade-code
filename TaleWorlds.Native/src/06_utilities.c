@@ -72720,7 +72720,16 @@ void ProcessDataArrayAtOffset3E0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908af0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理420偏移量的数据数组
+ * 
+ * 该函数负责处理位于420偏移量的数据数组，调用数据数组处理函数
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908af0
+ */
+void ProcessDataArrayAtOffset420(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + 0x170);
@@ -72760,7 +72769,19 @@ void ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180908b10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理3E0偏移量的内存资源引用计数
+ * 
+ * 该函数负责处理位于3E0偏移量的内存资源引用计数，包括：
+ * - 检查内存资源指针的有效性
+ * - 处理内存区域的引用计数
+ * - 管理内存资源的生命周期
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908b10
+ */
+void ProcessMemoryResourceReferenceCountAtOffset3E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -108308,18 +108329,21 @@ void UtilityInitializePointer1(void)
 
 
 
-// 函数: void UtilityInitializePointer2(void)
-// 
-// 初始化工具指针2
-// 设置全局工具指针的初始值
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 初始化工具系统指针2
+ * 
+ * 该函数负责初始化工具系统的第二个全局指针，将异常处理器指针B设置为默认异常处理器B。
+ * 这是系统初始化过程中的重要步骤，确保异常处理系统有正确的初始配置。
+ * 
+ * @details 函数执行以下操作：
+ * - 将ExceptionHandlerPointerB设置为DefaultExceptionHandlerB
+ * - 确保异常处理指针初始化为安全的默认值
+ * - 为后续的异常处理操作准备指针环境
+ * 
+ * @note 原始函数名：UtilityInitializePointer2
+ * @note 该函数是系统初始化流程的一部分
+ */
 void UtilityInitializePointer2(void)
-
 {
   ExceptionHandlerPointerB = &DefaultExceptionHandlerB;
   return;
@@ -108329,8 +108353,24 @@ void UtilityInitializePointer2(void)
 
 
 
+/**
+ * @brief 清理系统状态和资源H0
+ * 
+ * 该函数负责清理系统状态和释放系统资源，包括内存、互斥锁、条件变量等。
+ * 这是系统关闭流程中的重要步骤，确保系统资源得到正确释放。
+ * 
+ * @details 函数执行以下操作：
+ * - 检查系统清理标志，如果设置则执行清理操作
+ * - 调用CleanupSystemDataA0()清理系统数据
+ * - 根据清理计数器和指针状态决定是否终止系统
+ * - 通过清理处理器执行额外的清理操作
+ * - 销毁互斥锁和条件变量
+ * - 清理指定地址的系统内存
+ * 
+ * @note 原始函数名：CleanupSystemStateAndResourcesH0
+ * @note 该函数是系统关闭流程的核心组件
+ */
 void CleanupSystemStateAndResourcesH0(void)
-
 {
   if (SystemCleanupFlag != '\0') {
     CleanupSystemDataA0();
