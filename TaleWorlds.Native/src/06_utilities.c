@@ -75846,7 +75846,19 @@ void ValidateAndCleanupMemoryResources(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_1809092e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统异常处理器初始化和资源管理函数
+ * 
+ * 该函数负责初始化系统异常处理器，并管理相关的资源引用计数。
+ * 它会遍历验证状态指针，设置默认异常处理器，并处理内存资源的清理。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809092e0
+ * @note 该函数主要用于系统初始化阶段的异常处理器设置
+ */
+void InitializeSystemExceptionHandlerWithResourceManagement(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -75889,7 +75901,19 @@ void Unwind_1809092e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809092f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B（偏移量0x90）
+ * 
+ * 该函数在数据缓冲区的指定偏移量（0x90）处设置默认异常处理器B的指针。
+ * 这是一个简单的异常处理器设置函数，用于初始化系统的默认异常处理机制。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_1809092f0
+ * @note 该函数是系统异常处理机制的基础设置函数
+ */
+void SetDefaultExceptionHandlerBOffset90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x90) = &DefaultExceptionHandlerB;
@@ -76249,7 +76273,21 @@ void ReleaseSystemMemory(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理器回调（偏移量0x48）
+ * 
+ * 该函数检查数据缓冲区中指定偏移量（0x48）的异常处理器回调函数，
+ * 如果存在则执行该回调函数。这是一个标准的异常处理器回调执行函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_180909400
+ * @note 该函数用于系统异常处理机制中的回调执行
+ */
+void ExecuteExceptionHandlerCallbackOffset48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
