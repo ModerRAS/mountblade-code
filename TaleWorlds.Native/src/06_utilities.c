@@ -28043,30 +28043,30 @@ ValidationLabelB:
         *tempDataPointer = *ploopCounter;
         tempDataPointer[1] = systemDataBuffer;
         *(DataWord *)(tempDataPointer + 2) = *(DataWord *)(ploopCounter + 2);
-        *(float *)((int64_t)puStackX_18 + 0x14) =
+        *(float *)((int64_t)tempDataPointer + 0x14) =
              *(float *)((int64_t)ploopCounter + 0x14) + *(float *)(ploopCounter + 2);
-        *(ByteFlag *)(puStackX_18 + 3) = 1;
+        *(ByteFlag *)(tempDataPointer + 3) = 1;
       }
     }
-    dataFlags = uStack_80._4_4_;
-    if ((int64_t)uStack_80 < 0) {
-      dataFlags = -uStack_80._4_4_;
+    dataFlags = stackDataBuffer._4_4_;
+    if ((int64_t)stackDataBuffer < 0) {
+      dataFlags = -stackDataBuffer._4_4_;
     }
-    statusCounter = uStack_80._4_4_;
+    statusCounter = stackDataBuffer._4_4_;
     if ((int)dataFlags < 0) {
       if (0 < inputParameter3) goto ProcessCheckpointParameterRangeCheck;
-      if ((0 < (int)uStack_80._4_4_) && (puStack_88 != (DataBuffer *)0x0)) {
+      if ((0 < (int)stackDataBuffer._4_4_) && (stackDataPointer != (DataBuffer *)0x0)) {
                     // WARNING: Subroutine does not return
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),puStack_88,&SystemMemoryPoolB,0x100,1);
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),stackDataPointer,&SystemMemoryPoolB,0x100,1);
       }
-      puStack_88 = (DataBuffer *)0x0;
-      uStack_80 = uStack_80 & SystemCleanupFlag;
+      stackDataPointer = (DataBuffer *)0x0;
+      stackDataBuffer = stackDataBuffer & SystemCleanupFlag;
       statusCounter = operationResult;
     }
     if (inputParameter3 < 0) {
       exceptionHandlerContext2 = (int64_t)-inputParameter3;
       if (inputParameter3 < 0) {
-        exceptionHandlerContext1 = (int64_t)inputParameter3 * 0x18 + 0x14 + (int64_t)puStack_88;
+        exceptionHandlerContext1 = (int64_t)inputParameter3 * 0x18 + 0x14 + (int64_t)stackDataPointer;
         do {
           psecurityCheckResult = (DataWord *)ExecuteSystemResourceOperation();
           operationResult = psecurityCheckResult[1];
@@ -28080,15 +28080,15 @@ ValidationLabelB:
           exceptionHandlerContext2 = exceptionHandlerContext2 + -1;
           exceptionHandlerContext1 = exceptionHandlerContext1 + 0x18;
         } while (exceptionHandlerContext2 != 0);
-        statusCounter = uStack_80._4_4_;
+        statusCounter = stackDataBuffer._4_4_;
       }
     }
-    uStack_80 = uStack_80 & SystemCleanupFlag00000000;
+    stackDataBuffer = stackDataBuffer & SystemCleanupFlag00000000;
     if ((int)statusCounter < 0) {
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      CleanupDataResourcesA0(&puStack_88,0);
+      CleanupDataResourcesA0(&stackDataPointer,0);
     }
   }
   else {
