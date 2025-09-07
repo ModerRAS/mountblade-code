@@ -144846,7 +144846,16 @@ void ProcessCharacterCodeAndMemoryBlock(int CharacterCode)
 
 
 
-daef(int CharacterCode,long long Utf8BufferSizevoid FUN_18012daef(int CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理UTF-8字符编码转换
+ * 
+ * 该函数负责处理UTF-8字符编码的转换和处理
+ * 
+ * @param CharacterCode 字符编码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @note 原始函数名：FUN_18012daef
+ */
+void ProcessUtf8CharacterEncoding(int CharacterCode, long long Utf8BufferSize)
 {
   int LockResult;
   long long BufferStatus;
@@ -144950,7 +144959,16 @@ daef(int CharacterCode,long long Utf8BufferSizevoid FUN_18012daef(int CharacterC
 
 
 
-dcb6(uint64_t CharacterCode,long long Utf8BufferSizevoid FUN_18012dcb6(uint64_t CharacterCode,long long Utf8BufferSize
+/**
+ * @brief 处理UTF-8字符编码转换（64位版本）
+ * 
+ * 该函数负责处理64位UTF-8字符编码的转换和处理
+ * 
+ * @param CharacterCode 字符编码（64位）
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @note 原始函数名：FUN_18012dcb6
+ */
+void ProcessUtf8CharacterEncoding64(uint64_t CharacterCode, long long Utf8BufferSize)
 {
   int LockResult;
   long long BufferStatus;
@@ -275117,5 +275135,245 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_18029e450
  */
 #define ProcessSystemRenderContext FUN_18029e450
+
+/**
+ * @brief 清理事件和系统维护
+ * 
+ * 该函数负责清理系统事件和维护系统状态，确保系统稳定运行。
+ * 在核心引擎中用于事件清理和系统维护。
+ * 
+ * @note 原始函数名：FUN_18013c760
+ */
+#define CleanupEventAndSystemMaintenance FUN_18013c760
+
+/**
+ * @brief 处理系统数据库操作
+ * 
+ * 该函数负责处理系统数据库的各种操作，包括数据的存储和检索。
+ * 在核心引擎中用于数据库操作和管理。
+ * 
+ * @note 原始函数名：FUN_18011dbd0
+ */
+#define ProcessSystemDatabaseOperation FUN_18011dbd0
+
+/**
+ * @brief 获取字符串缓冲区
+ * 
+ * 该函数负责获取系统字符串缓冲区，用于字符串处理和管理。
+ * 在核心引擎中用于字符串缓冲区操作。
+ * 
+ * @note 原始函数名：FUN_180128350
+ */
+#define GetStringBuffer FUN_180128350
+
+/**
+ * @brief 处理系统编码转换
+ * 
+ * 该函数负责处理系统编码的转换操作，支持多种编码格式。
+ * 在核心引擎中用于编码转换处理。
+ * 
+ * @note 原始函数名：FUN_18012e810
+ */
+#define ProcessSystemEncodingConversion FUN_18012e810
+
+/**
+ * @brief 处理系统缓冲区数据
+ * 
+ * 该函数负责处理系统缓冲区的数据操作，包括数据的读写和管理。
+ * 在核心引擎中用于缓冲区数据处理。
+ * 
+ * @note 原始函数名：FUN_18012f580
+ */
+#define ProcessSystemBufferData FUN_18012f580
+
+/**
+ * @brief 初始化系统配置
+ * 
+ * 该函数负责初始化系统的配置参数，设置系统运行环境。
+ * 在核心引擎中用于系统配置初始化。
+ * 
+ * @note 原始函数名：FUN_180131890
+ */
+#define InitializeSystemConfiguration FUN_180131890
+
+/**
+ * @brief 获取内存池块大小
+ * 
+ * 该函数负责获取内存池块的大小信息，用于内存管理。
+ * 在核心引擎中用于内存池大小查询。
+ * 
+ * @note 原始函数名：FUN_18012fb00
+ */
+#define GetMemoryPoolBlockSize FUN_18012fb00
+
+/**
+ * @brief 处理系统资源分配
+ * 
+ * 该函数负责处理系统资源的分配操作，管理资源的使用。
+ * 在核心引擎中用于资源分配管理。
+ * 
+ * @note 原始函数名：FUN_180133110
+ */
+#define ProcessSystemResourceAllocation FUN_180133110
+
+/**
+ * @brief 处理系统数据验证
+ * 
+ * 该函数负责处理系统数据的验证操作，确保数据的完整性。
+ * 在核心引擎中用于数据验证处理。
+ * 
+ * @note 原始函数名：FUN_180133680
+ */
+#define ProcessSystemDataValidation FUN_180133680
+
+/**
+ * @brief 计算系统距离值
+ * 
+ * 该函数负责计算系统中的距离值，用于空间计算。
+ * 在核心引擎中用于距离值计算。
+ * 
+ * @note 原始函数名：FUN_1801342a0
+ */
+#define CalculateSystemDistance FUN_1801342a0
+
+/**
+ * @brief 处理系统缓冲区操作
+ * 
+ * 该函数负责处理系统缓冲区的各种操作，包括缓冲区的管理。
+ * 在核心引擎中用于缓冲区操作处理。
+ * 
+ * @note 原始函数名：FUN_18013b490
+ */
+#define ProcessSystemBufferOperation FUN_18013b490
+
+/**
+ * @brief 处理系统内存分配
+ * 
+ * 该函数负责处理系统内存的分配操作，管理内存的使用。
+ * 在核心引擎中用于内存分配处理。
+ * 
+ * @note 原始函数名：FUN_180136210
+ */
+#define ProcessSystemMemoryAllocation FUN_180136210
+
+/**
+ * @brief 处理系统数据传输
+ * 
+ * 该函数负责处理系统数据的传输操作，确保数据正确传输。
+ * 在核心引擎中用于数据传输处理。
+ * 
+ * @note 原始函数名：FUN_180136440
+ */
+#define ProcessSystemDataTransfer FUN_180136440
+
+/**
+ * @brief 处理系统状态更新
+ * 
+ * 该函数负责处理系统状态的更新操作，维护系统状态。
+ * 在核心引擎中用于状态更新处理。
+ * 
+ * @note 原始函数名：FUN_180136850
+ */
+#define ProcessSystemStatusUpdate FUN_180136850
+
+/**
+ * @brief 获取UTF-8缓冲区大小
+ * 
+ * 该函数负责获取UTF-8缓冲区的大小信息，用于字符串处理。
+ * 在核心引擎中用于UTF-8缓冲区大小查询。
+ * 
+ * @note 原始函数名：FUN_1801358c0
+ */
+#define GetUtf8BufferSize FUN_1801358c0
+
+/**
+ * @brief 获取字符串处理状态
+ * 
+ * 该函数负责获取字符串处理的状态信息，用于字符串管理。
+ * 在核心引擎中用于字符串状态查询。
+ * 
+ * @note 原始函数名：FUN_180135960
+ */
+#define GetStringProcessingStatus FUN_180135960
+
+/**
+ * @brief 处理系统编码操作
+ * 
+ * 该函数负责处理系统编码的各种操作，支持多种编码格式。
+ * 在核心引擎中用于编码操作处理。
+ * 
+ * @note 原始函数名：FUN_180136b10
+ */
+#define ProcessSystemEncodingOperation FUN_180136b10
+
+/**
+ * @brief 处理系统事件调度
+ * 
+ * 该函数负责处理系统事件的调度操作，管理事件的执行。
+ * 在核心引擎中用于事件调度处理。
+ * 
+ * @note 原始函数名：FUN_180137110
+ */
+#define ProcessSystemEventDispatch FUN_180137110
+
+/**
+ * @brief 获取字符代码值
+ * 
+ * 该函数负责获取字符代码的值，用于字符处理。
+ * 在核心引擎中用于字符代码值获取。
+ * 
+ * @note 原始函数名：FUN_180137370
+ */
+#define GetCharacterCodeValue FUN_180137370
+
+/**
+ * @brief 处理系统字符转换
+ * 
+ * 该函数负责处理系统字符的转换操作，支持多种字符格式。
+ * 在核心引擎中用于字符转换处理。
+ * 
+ * @note 原始函数名：FUN_18013a920
+ */
+#define ProcessSystemCharacterConversion FUN_18013a920
+
+/**
+ * @brief 处理系统格式化操作
+ * 
+ * 该函数负责处理系统数据的格式化操作，确保数据格式正确。
+ * 在核心引擎中用于数据格式化处理。
+ * 
+ * @note 原始函数名：FUN_180137f90
+ */
+#define ProcessSystemFormattingOperation FUN_180137f90
+
+/**
+ * @brief 获取系统验证字符
+ * 
+ * 该函数负责获取系统验证字符，用于系统验证。
+ * 在核心引擎中用于验证字符获取。
+ * 
+ * @note 原始函数名：FUN_18012eff0
+ */
+#define GetSystemValidationCharacter FUN_18012eff0
+
+/**
+ * @brief 处理系统地址验证
+ * 
+ * 该函数负责处理系统地址的验证操作，确保地址有效。
+ * 在核心引擎中用于地址验证处理。
+ * 
+ * @note 原始函数名：FUN_18012eaf0
+ */
+#define ProcessSystemAddressValidation FUN_18012eaf0
+
+/**
+ * @brief 处理系统错误恢复
+ * 
+ * 该函数负责处理系统错误的恢复操作，确保系统稳定。
+ * 在核心引擎中用于错误恢复处理。
+ * 
+ * @note 原始函数名：FUN_18011b190
+ */
+#define ProcessSystemErrorRecovery FUN_18011b190
 
 
