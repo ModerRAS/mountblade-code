@@ -29608,104 +29608,115 @@ DataProcessLabelC:
 
 
 
+/**
+ * @brief 系统状态检查函数B0
+ * 
+ * 该函数负责检查系统状态，执行系统验证和资源管理操作。它包括：
+ * - 验证系统参数和内存区域
+ * - 执行系统初始化和清理操作
+ * - 管理系统资源和内存分配
+ * - 处理系统状态转换
+ * 
+ * @note 这是一个简化的实现，主要执行基本的系统状态检查
+ */
 void CheckSystemStatusB0(void)
 
 {
-  uint InputAccumulator;
-  int inputParameter;
-  int operationResult;
-  uint validationStatus;
-  DataBuffer *registerContext;
-  uint memoryRegionBase;
-  int64_t resourceIterator;
-  int loopCounter;
-  int64_t contextPointer;
-  unsigned int stackValidationFlag;
-  uint validationFlagParameter;
+  uint SystemValidationFlag;
+  int SystemParameter;
+  int SystemOperationResult;
+  uint MemoryValidationStatus;
+  DataBuffer *SystemRegisterContext;
+  uint MemoryRegionBase;
+  int64_t ResourceIterator;
+  int SystemLoopCounter;
+  int64_t SystemContextPointer;
+  unsigned int StackValidationFlag;
+  uint ValidationParameter;
   
-  validationFlagParameter = InputAccumulator;
-  inputParameter = ExecuteDataValidationOperation();
-  if (inputParameter != 0) {
+  ValidationParameter = SystemValidationFlag;
+  SystemParameter = ExecuteDataValidationOperation();
+  if (SystemParameter != 0) {
     return;
   }
-  validationStatus = (int)*(uint *)(contextPointer + 0x1c) >> 0x1f;
-  memoryRegionBase = validationFlagParameter >> 1;
-  if (((int)((*(uint *)(contextPointer + 0x1c) ^ validationStatus) - validationStatus) < (int)memoryRegionBase) &&
-     (inputParameter = QuerySystemInformationA0(contextPointer + 0x10,memoryRegionBase), inputParameter != 0)) {
+  MemoryValidationStatus = (int)*(uint *)(SystemContextPointer + 0x1c) >> 0x1f;
+  MemoryRegionBase = ValidationParameter >> 1;
+  if (((int)((*(uint *)(SystemContextPointer + 0x1c) ^ MemoryValidationStatus) - MemoryValidationStatus) < (int)MemoryRegionBase) &&
+     (SystemParameter = QuerySystemInformationA0(SystemContextPointer + 0x10,MemoryRegionBase), SystemParameter != 0)) {
     return;
   }
-  inputParameter = *(int *)(contextPointer + 0x18);
-  if (inputParameter < (int)memoryRegionBase) {
-      memset((int64_t)inputParameter * 0x10 + *(int64_t *)(contextPointer + ExceptionHandlerCallbackOffset10),0,
-           (int64_t)(int)(memoryRegionBase - inputParameter) << 4);
+  SystemParameter = *(int *)(SystemContextPointer + 0x18);
+  if (SystemParameter < (int)MemoryRegionBase) {
+      memset((int64_t)SystemParameter * 0x10 + *(int64_t *)(SystemContextPointer + ExceptionHandlerCallbackOffset10),0,
+           (int64_t)(int)(MemoryRegionBase - SystemParameter) << 4);
   }
-  *(uint *)(contextPointer + 0x18) = memoryRegionBase;
-  systemOperationCount = 0;
-  inputParameter = 0;
+  *(uint *)(SystemContextPointer + 0x18) = MemoryRegionBase;
+  SystemOperationCount = 0;
+  SystemParameter = 0;
   if (SystemOperationCount >> 1 != 0) {
     do {
-      operationResult = ExecuteSystemInitializationOperation();
-      if (operationResult != 0) {
+      SystemOperationResult = ExecuteSystemInitializationOperation();
+      if (SystemOperationResult != 0) {
         return;
       }
-      if (*(int *)(registerContext[1] + 0x18) == 0) {
-        operationResult = ProcessDataBlocksA1(*registerContext,(int64_t)inputParameter * 0x10 + *(int64_t *)(contextPointer + ExceptionHandlerCallbackOffset10));
+      if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
+        SystemOperationResult = ProcessDataBlocksA1(*SystemRegisterContext,(int64_t)SystemParameter * 0x10 + *(int64_t *)(SystemContextPointer + ExceptionHandlerCallbackOffset10));
       }
       else {
-        operationResult = 0x1c;
+        SystemOperationResult = 0x1c;
       }
-      if (operationResult != 0) {
+      if (SystemOperationResult != 0) {
         return;
       }
-      operationResult = ExecuteSystemCleanupOperation();
-      if (operationResult != 0) {
+      SystemOperationResult = ExecuteSystemCleanupOperation();
+      if (SystemOperationResult != 0) {
         return;
       }
-      inputParameter = inputParameter + 1;
-      systemOperationCount = systemOperationCount & -(validationFlagParameter & 1);
-    } while (inputParameter < (int)memoryRegionBase);
+      SystemParameter = SystemParameter + 1;
+      SystemOperationCount = SystemOperationCount & -(ValidationParameter & 1);
+    } while (SystemParameter < (int)MemoryRegionBase);
   }
-  systemOperationCount = 0;
-  operationResult = ExecuteDataValidationOperation(*registerContext,&systemContextBuffer50);
-  inputParameter = systemOperationCount;
-  if (operationResult != 0) {
+  SystemOperationCount = 0;
+  SystemOperationResult = ExecuteDataValidationOperation(*SystemRegisterContext,&systemContextBuffer50);
+  SystemParameter = SystemOperationCount;
+  if (SystemOperationResult != 0) {
     return;
   }
-  resourceIterator = (int64_t)(int)systemOperationCount;
-  validationStatus = (int)*(uint *)(contextPointer + 0x2c) >> 0x1f;
-  if (((int)((*(uint *)(contextPointer + 0x2c) ^ validationStatus) - validationStatus) < (int)systemOperationCount) &&
-     (operationResult = ValidateSystemMemoryA0(contextPointer + 0x20,systemOperationCount), operationResult != 0)) {
+  ResourceIterator = (int64_t)(int)SystemOperationCount;
+  MemoryValidationStatus = (int)*(uint *)(SystemContextPointer + 0x2c) >> 0x1f;
+  if (((int)((*(uint *)(SystemContextPointer + 0x2c) ^ MemoryValidationStatus) - MemoryValidationStatus) < (int)SystemOperationCount) &&
+     (SystemOperationResult = ValidateSystemMemoryA0(SystemContextPointer + 0x20,SystemOperationCount), SystemOperationResult != 0)) {
     return;
   }
-  operationResult = *(int *)(contextPointer + 0x28);
-  if (operationResult < inputParameter) {
-      memset((int64_t)operationResult + *(int64_t *)(contextPointer + 0x20),0,(int64_t)(inputParameter - operationResult));
+  SystemOperationResult = *(int *)(SystemContextPointer + 0x28);
+  if (SystemOperationResult < SystemParameter) {
+      memset((int64_t)SystemOperationResult + *(int64_t *)(SystemContextPointer + 0x20),0,(int64_t)(SystemParameter - SystemOperationResult));
   }
-  *(int *)(contextPointer + 0x28) = inputParameter;
-  if (inputParameter != 0) {
-    if (*(int *)(registerContext[1] + 0x18) == 0) {
-      inputParameter = OperateDataO0(*registerContext,*(DataBuffer *)(contextPointer + 0x20),resourceIterator);
-      if (inputParameter == 0) goto ProcessCheckpointOperationCheck;
+  *(int *)(SystemContextPointer + 0x28) = SystemParameter;
+  if (SystemParameter != 0) {
+    if (*(int *)(SystemRegisterContext[1] + 0x18) == 0) {
+      SystemParameter = OperateDataO0(*SystemRegisterContext,*(DataBuffer *)(SystemContextPointer + 0x20),ResourceIterator);
+      if (SystemParameter == 0) goto ProcessCheckpointOperationCheck;
     }
     else {
-      inputParameter = 0x1c;
+      SystemParameter = 0x1c;
     }
-    if (inputParameter != 0) {
+    if (SystemParameter != 0) {
       return;
     }
   }
 DataProcessLabelC:
-  if (loopCounter == 0) {
-    inputParameter = ProcessDataOperationA0();
+  if (SystemLoopCounter == 0) {
+    SystemParameter = ProcessDataOperationA0();
   }
   else {
-    inputParameter = AllocateMemoryA0();
-    if (inputParameter != 0) {
+    SystemParameter = AllocateMemoryA0();
+    if (SystemParameter != 0) {
       return;
     }
-    inputParameter = AllocateMemoryA0();
+    SystemParameter = AllocateMemoryA0();
   }
-  if (inputParameter == 0) {
+  if (SystemParameter == 0) {
     InitializeMemory();
   }
   return;
@@ -29737,79 +29748,79 @@ void InitializeSystemComponentsB0(void)
 uint64_t ValidateAndAllocateMemory(int64_t MemoryContext, DataBuffer *AllocationParams)
 
 {
-  int validationCheck;
-  int allocationResult;
-  uint memoryValidationStatus;
-  uint64_t allocatedAddress;
-  uint operationOutcome;
-  DataBuffer *dataFlagPointer;
-  int64_t allocationSize;
-  int stackValidationArray [2];
+  int MemoryValidationCheck;
+  int MemoryAllocationResult;
+  uint MemoryValidationStatus;
+  uint64_t AllocatedMemoryAddress;
+  uint MemoryOperationOutcome;
+  DataBuffer *MemoryFlagPointer;
+  int64_t MemoryAllocationSize;
+  int MemoryValidationBuffer [2];
   
   if (*(int *)(AllocationParams[1] + 0x18) != 0) {
     return ResourceInvalidErrorCode;
   }
-  allocatedAddress = OperateDataO0(*AllocationParams,MemoryContext,4);
-  if ((int)allocatedAddress != 0) {
-    return allocatedAddress;
+  AllocatedMemoryAddress = OperateDataO0(*AllocationParams,MemoryContext,4);
+  if ((int)AllocatedMemoryAddress != 0) {
+    return AllocatedMemoryAddress;
   }
-  stackValidationArray[0] = 0;
-  allocatedAddress = ExecuteDataValidationOperation(*AllocationParams,stackValidationArray);
-  allocationResult = stackValidationArray[0];
-  memoryValidationStatus = 0x1c;
-  if ((int)allocatedAddress != 0) {
-    return allocatedAddress;
+  MemoryValidationBuffer[0] = 0;
+  AllocatedMemoryAddress = ExecuteDataValidationOperation(*AllocationParams,MemoryValidationBuffer);
+  MemoryAllocationResult = MemoryValidationBuffer[0];
+  MemoryValidationStatus = 0x1c;
+  if ((int)AllocatedMemoryAddress != 0) {
+    return AllocatedMemoryAddress;
   }
-  allocationSize = (int64_t)stackValidationArray[0];
-  operationOutcome = (int)*(uint *)(MemoryContext + 0x14) >> 0x1f;
-  if (((int)((*(uint *)(MemoryContext + 0x14) ^ operationOutcome) - operationOutcome) < stackValidationArray[0]) &&
-     (allocatedAddress = AllocateMemoryWithContext(MemoryContext + 8,stackValidationArray[0]), (int)allocatedAddress != 0)) {
-    return allocatedAddress;
+  MemoryAllocationSize = (int64_t)MemoryValidationBuffer[0];
+  MemoryOperationOutcome = (int)*(uint *)(MemoryContext + 0x14) >> 0x1f;
+  if (((int)((*(uint *)(MemoryContext + 0x14) ^ MemoryOperationOutcome) - MemoryOperationOutcome) < MemoryValidationBuffer[0]) &&
+     (AllocatedMemoryAddress = AllocateMemoryWithContext(MemoryContext + 8,MemoryValidationBuffer[0]), (int)AllocatedMemoryAddress != 0)) {
+    return AllocatedMemoryAddress;
   }
-  validationCheck = *(int *)(MemoryContext + ExceptionHandlerCallbackOffset10);
-  if (validationCheck < operationOutcome) {
-    dataFlagPointer = (DataBuffer *)(*(int64_t *)(MemoryContext + 8) + (int64_t)validationCheck * 8);
-    if (0 < operationOutcome - validationCheck) {
-      allocatedAddress = (uint64_t)(uint)(operationOutcome - validationCheck);
+  MemoryValidationCheck = *(int *)(MemoryContext + ExceptionHandlerCallbackOffset10);
+  if (MemoryValidationCheck < MemoryOperationOutcome) {
+    MemoryFlagPointer = (DataBuffer *)(*(int64_t *)(MemoryContext + 8) + (int64_t)MemoryValidationCheck * 8);
+    if (0 < MemoryOperationOutcome - MemoryValidationCheck) {
+      AllocatedMemoryAddress = (uint64_t)(uint)(MemoryOperationOutcome - MemoryValidationCheck);
       do {
-        if (dataFlagPointer != (DataBuffer *)0x0) {
-          *dataFlagPointer = 0;
+        if (MemoryFlagPointer != (DataBuffer *)0x0) {
+          *MemoryFlagPointer = 0;
         }
-        dataFlagPointer = dataFlagPointer + 1;
-        allocatedAddress = allocatedAddress - 1;
-      } while (allocatedAddress != 0);
+        MemoryFlagPointer = MemoryFlagPointer + 1;
+        AllocatedMemoryAddress = AllocatedMemoryAddress - 1;
+      } while (AllocatedMemoryAddress != 0);
     }
   }
-  *(int *)(MemoryContext + ExceptionHandlerCallbackOffset10) = operationOutcome;
-  if (operationOutcome != 0) {
+  *(int *)(MemoryContext + ExceptionHandlerCallbackOffset10) = MemoryOperationOutcome;
+  if (MemoryOperationOutcome != 0) {
     if (*(int *)(AllocationParams[1] + 0x18) == 0) {
-      allocatedAddress = OperateDataO0(*AllocationParams,*(DataBuffer *)(MemoryContext + 8),allocationSize << 3);
-      if ((int)allocatedAddress == 0) goto ProcessCheckpointAddressValidation;
+      AllocatedMemoryAddress = OperateDataO0(*AllocationParams,*(DataBuffer *)(MemoryContext + 8),MemoryAllocationSize << 3);
+      if ((int)AllocatedMemoryAddress == 0) goto ProcessCheckpointAddressValidation;
     }
     else {
-      allocatedAddress = 0x1c;
+      AllocatedMemoryAddress = 0x1c;
     }
-    if ((int)allocatedAddress != 0) {
-      return allocatedAddress;
+    if ((int)AllocatedMemoryAddress != 0) {
+      return AllocatedMemoryAddress;
     }
   }
 ValidationLabelA:
-  allocatedAddress = AllocateMemoryA0(AllocationParams,MemoryContext + 0x18);
-  if ((int)allocatedAddress == 0) {
+  AllocatedMemoryAddress = AllocateMemoryA0(AllocationParams,MemoryContext + 0x18);
+  if ((int)AllocatedMemoryAddress == 0) {
     if (*(uint *)(AllocationParams + 8) < 0x7c) {
-      memoryValidationStatus = 0;
+      MemoryValidationStatus = 0;
     }
     else if (*(int *)(AllocationParams[1] + 0x18) == 0) {
-      memoryValidationStatus = OperateDataO0(*AllocationParams,MemoryContext + 4,4);
+      MemoryValidationStatus = OperateDataO0(*AllocationParams,MemoryContext + 4,4);
     }
-    if (memoryValidationStatus == 0) {
-      allocatedAddress = InitializeMemory(MemoryContext);
+    if (MemoryValidationStatus == 0) {
+      AllocatedMemoryAddress = InitializeMemory(MemoryContext);
     }
     else {
-      allocatedAddress = (uint64_t)memoryValidationStatus;
+      AllocatedMemoryAddress = (uint64_t)MemoryValidationStatus;
     }
   }
-  return allocatedAddress;
+  return AllocatedMemoryAddress;
 }
 
 
