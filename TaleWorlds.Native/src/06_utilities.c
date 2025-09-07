@@ -8045,7 +8045,8 @@ uint8_t SystemDebugDataManagerE;
 // 系统调试数据管理器F
 uint8_t SystemDebugDataManagerF;
 uint8_t SystemDataBufferA;
-uint8_t UnknownSystemDataG;
+// 系统资源预留空间G
+uint8_t SystemResourceReservedSpaceG;
 // 系统状态标志变量B
 char SystemStatusFlagB;
 // 系统异常处理状态表A3
@@ -8082,10 +8083,13 @@ uint8_t SystemExceptionStatusA;
 uint8_t SystemExceptionStatusB;
 uint8_t SystemExceptionStatusC;
 uint8_t SystemExceptionStatusD;
-uint8_t UnknownSystemDataH;
+// 系统内存管理表A2
+uint8_t SystemMemoryManagementTableA2;
 uint8_t SystemDataBufferB;
-uint8_t UnknownSystemDataI;
-uint8_t UnknownSystemDataJ;
+// 系统资源管理表A2
+uint8_t SystemResourceManagerTableA2;
+// 系统配置管理表A1
+uint8_t SystemConfigurationManagementTableA1;
 uint8_t UnknownSystemDataK;
 uint8_t UnknownSystemDataL;
 
