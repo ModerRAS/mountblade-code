@@ -20030,35 +20030,35 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer dataBuffer,DataWord validation
   DataWord *contextDataPointer;            // 上下文数据指针
   DataBuffer systemContextBuffer;           // 系统上下文缓冲区
   
-  calculatedSize = *(int *)(DestinationContext + 0x20);
-  if (calculatedSize == -1) {
-    systemContextBuffer = *systemContext;
-    calculatedSize = *(int *)(DestinationContext + 0x18);
-    arrayIndex = calculatedSize + 1;
-    dataFlags = (int)*(uint *)(DestinationContext + 0x1c) >> 0x1f;
-    inputParameter = (*(uint *)(DestinationContext + 0x1c) ^ dataFlags) - dataFlags;
-    if (inputParameter < arrayIndex) {
-      calculatedValue = (int)((float)inputParameter * 1.5);
-      inputParameter = arrayIndex;
-      if (arrayIndex <= calculatedValue) {
-        inputParameter = calculatedValue;
+  allocatedMemorySize = *(int *)(destinationContext + 0x20);
+  if (allocatedMemorySize == -1) {
+    systemContextBuffer = *systemContextPointer;
+    allocatedMemorySize = *(int *)(destinationContext + 0x18);
+    arrayElementIndex = allocatedMemorySize + 1;
+    dataProcessingFlags = (int)*(uint *)(destinationContext + 0x1c) >> 0x1f;
+    inputParameterCount = (*(uint *)(destinationContext + 0x1c) ^ dataProcessingFlags) - dataProcessingFlags;
+    if (inputParameterCount < arrayElementIndex) {
+      calculatedBufferSize = (int)((float)inputParameterCount * 1.5);
+      inputParameterCount = arrayElementIndex;
+      if (arrayElementIndex <= calculatedBufferSize) {
+        inputParameterCount = calculatedBufferSize;
       }
-      if (inputParameter < 4) {
-        calculatedValue = 4;
+      if (inputParameterCount < 4) {
+        calculatedBufferSize = 4;
       }
-      else if (calculatedValue < arrayIndex) {
-        calculatedValue = arrayIndex;
+      else if (calculatedBufferSize < arrayElementIndex) {
+        calculatedBufferSize = arrayElementIndex;
       }
-      operationResult = CheckSystemDataA0(DestinationContext + 0x10,calculatedValue);
+      operationResult = CheckSystemDataA0(destinationContext + 0x10, calculatedBufferSize);
       if ((int)operationResult != 0) {
         return operationResult;
       }
     }
     validationStatusPointer = (DataBuffer *)
-             ((int64_t)*(int *)(DestinationContext + 0x18) * 0x10 + *(int64_t *)(DestinationContext + ExceptionHandlerCallbackOffset10));
-    *validationStatusPointer = CONCAT44(SystemCleanupFlag,dataBuffer);
+             ((int64_t)*(int *)(destinationContext + 0x18) * 0x10 + *(int64_t *)(destinationContext + ExceptionHandlerCallbackOffset10));
+    *validationStatusPointer = CONCAT44(SystemCleanupFlag, dataBuffer);
     validationStatusPointer[1] = systemContextBuffer;
-    *(int *)(DestinationContext + 0x18) = *(int *)(DestinationContext + 0x18) + 1;
+    *(int *)(destinationContext + 0x18) = *(int *)(destinationContext + 0x18) + 1;
   }
   else {
     operationResult = (DataWord *)((int64_t)calculatedSize * 0x10 + *(int64_t *)(DestinationContext + ExceptionHandlerCallbackOffset10));
@@ -75838,19 +75838,31 @@ void Unwind_1809094b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809094c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统组件初始化处理器C
+ * 
+ * 该函数负责初始化系统组件，通过数据缓冲区中的指针遍历系统组件列表
+ * 并调用初始化函数进行系统组件的初始化操作。
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809094c0
+ * @note 这是一个系统初始化函数，通过指针间接访问组件列表进行初始化
+ */
+void InitializeSystemComponentsProcessorC(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int64_t exceptionHandlerContext;
-  int64_t *dataContext;
-  int64_t memoryBlockOffset;
+  int64_t componentContextEnd;
+  int64_t *componentContextPointer;
+  int64_t componentContextStart;
   
-  dataContext = *(int64_t **)(dataBuffer + 0x40);
-  exceptionHandlerContext = dataContext[1];
-  for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x78) {
-    InitializeSystemComponents(memoryBlockOffset);
+  componentContextPointer = *(int64_t **)(dataBuffer + SystemContextPointerOffset);
+  componentContextEnd = componentContextPointer[1];
+  for (componentContextStart = *componentContextPointer; componentContextStart != componentContextEnd; componentContextStart = componentContextStart + SystemComponentSize) {
+    InitializeSystemComponents(componentContextStart);
   }
-  if (*dataContext == 0) {
+  if (*componentContextPointer == 0) {
     return;
   }
     TerminateSystemE0();
