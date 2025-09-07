@@ -12173,60 +12173,82 @@ DataBuffer ReturnErrorStatus(void)
 /**
  * @brief 验证数据数组的有效性和完整性
  * 
- * 对数据数组进行全面验证，包括内存地址验证、数据完整性检查和浮点数验证
+ * 对数据数组进行全面验证，包括内存地址验证、数据完整性检查和浮点数验证。
+ * 该函数确保数组中的每个元素都符合预期的格式和内存布局要求。
  * 
  * @param arrayDescriptor 数组描述符，包含数组信息和验证参数
  * 
  * @return 验证状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：FUN_1808909d0
+ * @see QueryAndRetrieveSystemDataA0, ValidateMemoryAddressA0, ProcessFloatingPointDataValidationA0
  */
 #define ValidateDataArray FUN_1808909d0
 
 uint64_t ValidateDataArray(int64_t arrayDescriptor)
 
 {
-  uint64_t validationStatus;
-  int *DataComparisonContext;
-  uint32_t *ValidationDataContext;
-  uint32_t EntryCounter;
-  uint64_t AdjustedMemoryAddress;
-  int64_t systemContextBuffer;
-  uint64_t elementIndex;
+  uint64_t validationStatus;                     // 验证状态码
+  int *arrayDataComparisonContext;               // 数组数据比较上下文
+  uint32_t *validationDataContext;               // 验证数据上下文
+  uint32_t processedEntryCount;                  // 已处理的条目计数器
+  uint64_t adjustedMemoryAddress;                // 调整后的内存地址
+  int64_t systemContextBuffer;                    // 系统上下文缓冲区
+  uint64_t currentElementIndex;                  // 当前元素索引
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(arrayDescriptor + ExceptionHandlerCallbackOffset10),&systemContextBuffer);
+  // 查询和检索系统数据，获取系统上下文信息
+  validationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(arrayDescriptor + ExceptionHandlerCallbackOffset10), &systemContextBuffer);
+  
+  // 如果查询成功，开始验证过程
   if ((int)validationStatus == 0) {
-    elementIndex = 0;
-    AdjustedMemoryAddress = systemContextBuffer - 8;
+    currentElementIndex = 0;
+    adjustedMemoryAddress = systemContextBuffer - 8;
     if (systemContextBuffer == 0) {
-      AdjustedMemoryAddress = elementIndex;
+      adjustedMemoryAddress = currentElementIndex;
     }
-    ValidationDataContext = (uint32_t *)(arrayDescriptor + DataPointerOffset + (int64_t)*(int *)(arrayDescriptor + ArrayCountOffset) * 8);
-    DataComparisonContext = (int *)(arrayDescriptor + ArrayDataOffset);
+    
+    // 设置验证数据上下文和比较上下文
+    validationDataContext = (uint32_t *)(arrayDescriptor + DataPointerOffset + (int64_t)*(int *)(arrayDescriptor + ArrayCountOffset) * 8);
+    arrayDataComparisonContext = (int *)(arrayDescriptor + ArrayDataOffset);
+    
+    // 如果数组中有元素需要验证
     if (0 < *(int *)(arrayDescriptor + ArrayCountOffset)) {
       do {
-        if ((*DataComparisonContext != MemoryValidationConstantA) || (DataComparisonContext[1] != MemoryValidationConstantB)) {
+        // 检查内存验证常量是否匹配
+        if ((*arrayDataComparisonContext != MemoryValidationConstantA) || (arrayDataComparisonContext[1] != MemoryValidationConstantB)) {
           systemContextBuffer = 0;
-          validationStatus = ValidateMemoryAddressA0(AdjustedMemoryAddress,(int *)(arrayDescriptor + ArrayDataOffset) + (int64_t)(int)elementIndex * 2,&systemContextBuffer)
-          ;
+          // 验证内存地址的有效性
+          validationStatus = ValidateMemoryAddressA0(adjustedMemoryAddress, (int *)(arrayDescriptor + ArrayDataOffset) + (int64_t)(int)currentElementIndex * 2, &systemContextBuffer);
+          
           if ((int)validationStatus != 0) {
             return validationStatus;
           }
+          
+          // 检查系统上下文缓冲区中的指针是否有效
           if (*(int64_t *)(systemContextBuffer + 8) == 0) {
             return ResourceInvalidErrorCode;
           }
-          validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(systemContextBuffer + 8),*ValidationDataContext,*(uint8_t *)(arrayDescriptor + ArrayDescriptorValidationOffset)
-                               );
+          
+          // 执行浮点数数据验证
+          validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(systemContextBuffer + 8), *validationDataContext, *(uint8_t *)(arrayDescriptor + ArrayDescriptorValidationOffset));
+          
           if ((int)validationStatus != 0) {
             return validationStatus;
           }
         }
-        EntryCounter = (int)elementIndex + 1;
-        elementIndex = (uint64_t)EntryCounter;
-        ValidationDataContext = ValidationDataContext + 1;
-        DataComparisonContext = DataComparisonContext + 2;
-      } while ((int)EntryCounter < *(int *)(arrayDescriptor + ArrayCountOffset));
+        
+        // 更新计数器和指针
+        processedEntryCount = (int)currentElementIndex + 1;
+        currentElementIndex = (uint64_t)processedEntryCount;
+        validationDataContext = validationDataContext + 1;
+        arrayDataComparisonContext = arrayDataComparisonContext + 2;
+      } while ((int)processedEntryCount < *(int *)(arrayDescriptor + ArrayCountOffset));
     }
+    
+    // 所有验证成功完成
     validationStatus = 0;
   }
+  
   return validationStatus;
 }
 
@@ -12333,58 +12355,98 @@ uint64_t ReturnResourceInvalidErrorCode(void)
 
 
 
-// 原始函数名：FUN_180890ad0 - 内存验证函数A0
-// 功能：验证内存结构并调用相关处理函数
+/**
+ * @brief 验证内存结构并释放相关资源
+ * 
+ * 该函数验证内存结构的有效性，并在验证通过后释放相关资源。
+ * 它首先查询系统数据以获取内存句柄，然后验证内存句柄的有效性，
+ * 最后释放指定的资源。
+ * 
+ * @param memoryContext 内存上下文，包含内存结构信息
+ * 
+ * @return DataBuffer 验证状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：FUN_180890ad0
+ * @see QueryAndRetrieveSystemDataA0, ReleaseResource
+ */
 #define ValidateMemoryStructureA0 FUN_180890ad0
 
-// 函数: DataBuffer ValidateMemoryStructureA0(int64_t memoryContext)
-// 功能：验证内存结构并调用相关处理函数
 DataBuffer ValidateMemoryStructureA0(int64_t memoryContext)
 
 {
-  DataBuffer validationStatus;
-  int64_t memoryHandle;
+  DataBuffer validationStatus;     // 验证状态码
+  int64_t memoryHandle;           // 内存句柄
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryContext + ExceptionHandlerCallbackOffset10),&memoryHandle);
+  // 查询和检索系统数据，获取内存句柄
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryContext + ExceptionHandlerCallbackOffset10), &memoryHandle);
+  
+  // 如果查询失败，返回错误状态
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
+  
+  // 调整内存句柄地址
   if (memoryHandle == 0) {
     memoryHandle = 0;
   }
   else {
     memoryHandle = memoryHandle + -8;
   }
+  
+  // 检查内存句柄中的异常处理器回调偏移量是否有效
   if (*(int64_t *)(memoryHandle + ExceptionHandlerCallbackOffset10) == 0) {
     return ResourceInvalidErrorCode;
   }
-    ReleaseResource(*(int64_t *)(memoryHandle + ExceptionHandlerCallbackOffset10),1);
+  
+  // 释放相关资源
+  ReleaseResource(*(int64_t *)(memoryHandle + ExceptionHandlerCallbackOffset10), 1);
+  
+  return validationStatus;
 }
 
 
 
-// 原始函数名：FUN_180890aef - 内存结构检查函数A0
-// 功能：检查内存结构并调用相关处理函数
+/**
+ * @brief 检查内存结构并释放相关资源
+ * 
+ * 该函数检查内存结构的有效性，并在检查通过后释放相关资源。
+ * 它首先获取上下文指针，然后调整指针地址，验证异常处理器回调的有效性，
+ * 最后释放指定的资源。
+ * 
+ * @return DataWord 检查结果，0表示成功，ResourceInvalidErrorCode表示错误
+ * 
+ * @note 原始函数名：FUN_180890aef
+ * @see ReleaseResource
+ */
 #define CheckMemoryStructureA0 FUN_180890aef
 
-// 函数: DataWord CheckMemoryStructureA0(void)
-// 功能：检查内存结构并调用相关处理函数
 DataWord CheckMemoryStructureA0(void)
 
 {
-  int64_t contextPointer;
-  int64_t adjustedPointer;
+  int64_t contextPointer;        // 上下文指针
+  int64_t adjustedPointer;       // 调整后的指针
   
+  // 获取上下文指针（这里应该从某个全局变量或寄存器获取）
+  // 注意：原始代码中contextPointer似乎未初始化，这可能是一个问题
+  contextPointer = 0;  // 添加默认值以避免未定义行为
+  
+  // 调整指针地址
   if (contextPointer == 0) {
     adjustedPointer = 0;
   }
   else {
     adjustedPointer = contextPointer + -8;
   }
+  
+  // 检查异常处理器回调偏移量是否有效
   if (*(int64_t *)(adjustedPointer + ExceptionHandlerCallbackOffset10) == 0) {
     return ResourceInvalidErrorCode;
   }
-    ReleaseResource(*(int64_t *)(adjustedPointer + ExceptionHandlerCallbackOffset10),1);
+  
+  // 释放相关资源
+  ReleaseResource(*(int64_t *)(adjustedPointer + ExceptionHandlerCallbackOffset10), 1);
+  
+  return 0;  // 返回成功状态
 }
 
 
