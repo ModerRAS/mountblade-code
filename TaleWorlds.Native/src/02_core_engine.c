@@ -230080,12 +230080,11 @@ long long * FUN_180203f10(void
     DataSize = (uint8_t)RegisterValueR12;
     if (RegisterValueR15D <= RegisterValueEBP) {
 
-041d5(voidvoid FUN_1802041d5(void
+void FUN_1802041d5(void)
 {
   uint8_t unaff_BPL;
   
 
-041f0(uint8_t (*SystemContextPointer) [16],uint8_t (*Utf8BufferSize) [16],long long Utf16InputPointer,
 void FUN_1802041f0(uint8_t (*SystemContextPointer) [16],uint8_t (*Utf8BufferSize) [16],long long Utf16InputPointer,
                   uint8_t Utf16EndPointer
 {

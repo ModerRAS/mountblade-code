@@ -50024,7 +50024,7 @@ void CleanupSystemResourceBuffer(DataBuffer operationBase,int64_t dataBuffer)
   memoryBaseAddress = (uint64_t)systemResourcePointer & SystemMemoryCleanupMask;
   if (memoryBaseAddress != 0) {
     memoryCalculatedOffset = memoryBaseAddress + 0x80 + ((int64_t)systemResourcePointer - memoryBaseAddress >> 0x10) * 0x50;
-    memoryCalculatedOffset = memoryCalculatedOffset - (uint64_t)*(uint *)(memoryCalculatedOffset + 4);
+    memoryCalculatedOffset = memoryCalculatedOffset - (uint64_t)*(uint *)(memoryCalculatedOffset + MemoryOffsetAdjustment);
     if ((*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList) && (*(char *)(memoryCalculatedOffset + 0xe) == '\0')) {
       *systemResourcePointer = *(DataBuffer *)(memoryCalculatedOffset + 0x20);
       *(DataBuffer **)(memoryCalculatedOffset + 0x20) = systemResourcePointer;
