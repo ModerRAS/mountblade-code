@@ -220473,7 +220473,7 @@ LAB_180198827:
     pCurrentMemoryBlockAddress = (long long *)MemoryAllocate(MemoryPoolManager,0x70,8,3);
     *pCurrentMemoryBlockAddress = (long long)&SystemConfigurationTemplateSecondary;
     pCurrentMemoryBlockAddress[1] = SystemContextPointer;
-    *pCurrentMemoryBlockAddress = (long long)&UNK_180a0c148;
+    *pCurrentMemoryBlockAddress = (long long)&SystemConfigurationTemplateQuaternary;
     pCurrentMemoryBlockAddress[2] = 0;
     pCurrentMemoryBlockAddress[3] = 0;
     pCurrentMemoryBlockAddress[4] = 0;
