@@ -70002,8 +70002,17 @@ void Unwind_180909230(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909250(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 调用异常上下文处理器A（偏移量0x1cc8）
+ * 
+ * 该函数从数据缓冲区的特定偏移量获取异常上下文处理器指针，并调用相应的处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180909250
+ */
+void CallExceptionHandlerWithContextOffset1cc8(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
