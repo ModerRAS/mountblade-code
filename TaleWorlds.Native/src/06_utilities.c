@@ -11024,14 +11024,14 @@ DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
     contextData[0] = 0;
     
     // 验证资源访问权限
-    validationStatus = ValidateResourceAccess(adjustedResourcePointer, resourceDescriptor + 0x18, contextData);
+    validationStatus = ValidateResourceAccess(adjustedResourcePointer, resourceDescriptor + ResourceDescriptorPrimaryOffset, contextData);
     if ((int)validationStatus == 0) {
       if (contextData[0] != 0) {
         if (*(int64_t *)(contextData[0] + 8) == 0) {
           return ResourceInvalidErrorCode;
         }
-        validationStatus = ProcessResourceData(*(int64_t *)(contextData[0] + 8),*(DataWord *)(resourceDescriptor + 0x20),
-                                       *(ByteFlag *)(resourceDescriptor + 0x24));
+        validationStatus = ProcessResourceData(*(int64_t *)(contextData[0] + 8),*(DataWord *)(resourceDescriptor + ResourceDescriptorSecondaryOffset),
+                                       *(ByteFlag *)(resourceDescriptor + ResourceDescriptorTertiaryOffset));
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -11064,14 +11064,14 @@ DataBuffer ValidateResourcePointerAccess(int64_t resourceDescriptor)
       resourceInfo[0] = resourceInfo[0] + -8;
     }
     accessInfo[0] = 0;
-    validationStatus = ValidateResourceAccess(resourceInfo[0],resourceDescriptor + 0x20,accessInfo);
+    validationStatus = ValidateResourceAccess(resourceInfo[0],resourceDescriptor + ResourceDescriptorSecondaryOffset,accessInfo);
     if ((int)validationStatus == 0) {
       if (accessInfo[0] != 0) {
         if (*(int64_t *)(accessInfo[0] + 8) == 0) {
           return ResourceInvalidErrorCode;
         }
-        validationStatus = ProcessResourceData(*(int64_t *)(accessInfo[0] + 8),*(DataWord *)(resourceDescriptor + 0x18),
-                              *(ByteFlag *)(resourceDescriptor + 0x1c));
+        validationStatus = ProcessResourceData(*(int64_t *)(accessInfo[0] + 8),*(DataWord *)(resourceDescriptor + ResourceDescriptorPrimaryOffset),
+                              *(ByteFlag *)(resourceDescriptor + ResourceDescriptorQuaternaryOffset));
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -66600,7 +66600,14 @@ void InitializeExceptionHandlerA(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907960(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理程序初始化函数B
+ * @details 初始化异常处理程序，设置临时异常处理器并重置状态
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_180907960
+ */
+void InitializeExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -66619,7 +66626,14 @@ void Unwind_180907960(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907970(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文句柄清理函数A
+ * @details 清理异常上下文句柄，减少资源计数器并关闭句柄
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_180907970
+ */
+void CleanupExceptionContextHandleA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -66637,7 +66651,14 @@ void Unwind_180907970(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907980(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数A
+ * @details 设置默认异常处理器B到指定位置
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_180907980
+ */
+void SetDefaultExceptionHandlerA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0xb0) = &DefaultExceptionHandlerB;
@@ -66646,7 +66667,14 @@ void Unwind_180907980(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907990(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数B
+ * @details 设置默认异常处理器B到指定位置
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名: Unwind_180907990
+ */
+void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0xb8) = &DefaultExceptionHandlerB;
