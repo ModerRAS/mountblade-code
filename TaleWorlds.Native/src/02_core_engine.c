@@ -102356,7 +102356,7 @@ LAB_1801177f4:
       MemoryAllocationIndex1 = (uint32_t)((unsigned long long)in_stack_fffffffffffffd78 >> 0x20);
       if ((hasComparisonResult0 != 0) || (IsSystemContextValid)) {
         pFloatValue34 = (float *)(MemoryBlockIndex9 + 0x1ea8);
-        FUN_180115640(pFloatValue34,MemoryBlockIndex9 + 0x1ef0,(hasComparisonResult0 ^ 1) + 0x1000a);
+        OperateSystemBufferEx(pFloatValue34,MemoryBlockIndex9 + 0x1ef0,(hasComparisonResult0 ^ 1) + 0x1000a);
         *(uint32_t *)(MemoryBlockIndex9 + 0x1ef8) = *(uint32_t *)(MemoryBlockIndex9 + 0x1ef0);
         *(uint32_t *)(MemoryBlockIndex9 + 0x1ef4) = *(uint32_t *)(MemoryBlockIndex9 + 0x1ef0);
         *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 1;
@@ -102433,7 +102433,7 @@ LAB_1801177f4:
               StringBuffer7 = *pSystemCheckResult9;
               StackUnsigned200 = systemEventTemplatePointer0;
               while (StringBuffer7 != '\0') {
-                validationResult4 = FUN_180121550(aSystemUintBuffer258,pSystemCheckResult9,0);
+                validationResult4 = ValidateSystemDataEx(aSystemUintBuffer258,pSystemCheckResult9,0);
                 MemoryAllocationIndex5 = (uint32_t)((unsigned long long)ValidationValuePointer3 >> 0x20);
                 MemoryAllocationIndex1 = (uint32_t)((unsigned long long)in_stack_fffffffffffffd78 >> 0x20);
                 pSystemCheckResult9 = pSystemCheckResult9 + validationResult4;
@@ -102453,7 +102453,7 @@ LAB_1801177f4:
               pFloatValue34 = (float *)(MemoryBlockIndex9 + 0x1ea8);
               StackUnsigned200[StringComparisonResult0] = 0;
               if (0 < StringComparisonResult0) {
-                FUN_180115580(pFloatValue34,MemoryBlockIndex9 + 0x1ef0,StackUnsigned200,StringComparisonResult0);
+                ProcessSystemDataStatus(pFloatValue34,MemoryBlockIndex9 + 0x1ef0,StackUnsigned200,StringComparisonResult0);
                 *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 1;
               }
               ReleaseSystemResources();
@@ -102582,16 +102582,16 @@ LAB_180117c0c:
         uStack_151 = (uint8_t)((uint)ValidationCode5 >> 0x18);
         (*AdditionalParameter2)(&ProcessingStatus);
         if (iStack_15c != StringComparisonResult0) {
-          MemoryAllocationIndex3 = FUN_1801219c0();
+          MemoryAllocationIndex3 = ValidateAndParseUtf8Character();
           *(uint32_t *)(MemoryBlockIndex9 + 0x1ef0) = MemoryAllocationIndex3;
           *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 1;
         }
         if (iStack_158 != validationResult4) {
-          MemoryAllocationIndex3 = FUN_1801219c0();
+          MemoryAllocationIndex3 = ValidateAndParseUtf8Character();
           *(uint32_t *)(MemoryBlockIndex9 + 0x1ef4) = MemoryAllocationIndex3;
         }
         if (CONCAT13(uStack_151,CONCAT21(uStack_153,uStack_154)) != ValidationCode5) {
-          MemoryAllocationIndex3 = FUN_1801219c0();
+          MemoryAllocationIndex3 = ValidateAndParseUtf8Character();
           *(uint32_t *)(MemoryBlockIndex9 + 0x1ef8) = MemoryAllocationIndex3;
         }
         FloatVariable51 = fStack_230;
