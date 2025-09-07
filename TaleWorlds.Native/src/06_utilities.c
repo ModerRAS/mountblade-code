@@ -33072,12 +33072,12 @@ uint64_t ValidateAndProcessDataOperation(int64_t operationBase,DataBuffer *dataB
   uint64_t memoryBaseAddress;
   DataWord *poperationResult;
   int64_t memoryPointer;
-  DataWord *puStack_88;
-  DataBuffer uStack_80;
-  DataWord uStack_78;
-  DataWord uStack_74;
-  DataWord uStack_70;
-  DataWord uStack_6c;
+  DataWord *pvalidationResult;
+  DataBuffer bufferSize;
+  DataWord validationCount;
+  DataWord operationCounter;
+  DataWord memoryOffset;
+  DataWord bufferPadding;
   ByteFlag acolorDataWord [32];
   ByteFlag systemBufferA [32];
   
