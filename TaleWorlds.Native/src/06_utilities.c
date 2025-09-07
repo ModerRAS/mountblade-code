@@ -3932,23 +3932,23 @@ extern uint64_t ExceptionOffsetValue;
 // 功能：存储全局异常处理器A4的指针
 #define GlobalExceptionHandlerPointerA4 _DAT_180bf94b0
 
-// 原始变量名：_DAT_180bf9510 - 全局异常处理器指针A5
+// 全局异常处理器指针A5
 // 功能：存储全局异常处理器A5的指针
 #define GlobalExceptionHandlerPointerA5 _DAT_180bf9510
 
-// 原始变量名：_DAT_180bf9570 - 全局异常处理器指针A6
+// 全局异常处理器指针A6
 // 功能：存储全局异常处理器A6的指针
 #define GlobalExceptionHandlerPointerA6 _DAT_180bf9570
 
-// 原始变量名：_DAT_180bf95d0 - 全局异常处理器指针A7
+// 全局异常处理器指针A7
 // 功能：存储全局异常处理器A7的指针
 #define GlobalExceptionHandlerPointerA7 _DAT_180bf95d0
 
-// 原始变量名：_DAT_180bf9630 - 全局异常处理器指针A8
+// 全局异常处理器指针A8
 // 功能：存储全局异常处理器A8的指针
 #define GlobalExceptionHandlerPointerA8 _DAT_180bf9630
 
-// 原始变量名：_DAT_180bf9690 - 全局异常处理器指针A9
+// 全局异常处理器指针A9
 // 功能：存储全局异常处理器A9的指针
 #define GlobalExceptionHandlerPointerA9 _DAT_180bf9690
 
