@@ -5484,9 +5484,17 @@
 /**
  * @brief 初始化工具模块
  * 
- * 初始化系统工具模块，设置初始配置参数和资源指针
+ * 初始化系统工具模块，设置初始配置参数和资源指针。该函数负责：
+ * 1. 初始化系统工具模块的内存结构
+ * 2. 设置初始配置参数
+ * 3. 初始化资源指针和内存管理器
+ * 4. 配置异常处理机制
+ * 5. 验证系统状态
  * 
  * @note 原始函数名：InitializeUtilityModule
+ * @warning 此函数必须在系统启动时调用，以确保工具模块正常工作
+ * 
+ * @see ProcessResourceCleanup, ValidateSystemParameters
  */
 void InitializeUtilityModule(void);
 
@@ -8733,89 +8741,89 @@ uint8_t SystemStatusBufferF;
 uint8_t SystemStatusBufferG;
 uint8_t SystemStatusBufferH;
 uint8_t SystemStatusBufferI;
-uint8_t SystemExceptionHandlerDataA0;
-uint8_t SystemExceptionHandlerDataA1;
-uint8_t SystemExceptionHandlerDataA2;
-uint8_t SystemExceptionHandlerDataA3;
-uint8_t SystemExceptionHandlerDataA4;
-uint8_t SystemExceptionHandlerDataA5;
-uint8_t SystemExceptionHandlerDataA6;
-uint8_t SystemExceptionHandlerDataA7;
-uint8_t SystemExceptionHandlerDataA8;
-uint8_t SystemExceptionHandlerDataA9;
-uint8_t SystemExceptionHandlerDataA10;
-uint8_t SystemExceptionHandlerDataA11;
-uint8_t SystemExceptionHandlerDataA12;
-uint8_t SystemExceptionHandlerDataA13;
-uint8_t SystemExceptionHandlerDataA14;
-uint8_t SystemExceptionHandlerDataA15;
-uint8_t SystemExceptionHandlerDataA16;
-uint8_t SystemExceptionHandlerDataA17;
-uint8_t SystemExceptionHandlerDataA18;
+uint8_t ExceptionHandlerDataA0;
+uint8_t ExceptionHandlerDataA1;
+uint8_t ExceptionHandlerDataA2;
+uint8_t ExceptionHandlerDataA3;
+uint8_t ExceptionHandlerDataA4;
+uint8_t ExceptionHandlerDataA5;
+uint8_t ExceptionHandlerDataA6;
+uint8_t ExceptionHandlerDataA7;
+uint8_t ExceptionHandlerDataA8;
+uint8_t ExceptionHandlerDataA9;
+uint8_t ExceptionHandlerDataA10;
+uint8_t ExceptionHandlerDataA11;
+uint8_t ExceptionHandlerDataA12;
+uint8_t ExceptionHandlerDataA13;
+uint8_t ExceptionHandlerDataA14;
+uint8_t ExceptionHandlerDataA15;
+uint8_t ExceptionHandlerDataA16;
+uint8_t ExceptionHandlerDataA17;
+uint8_t ExceptionHandlerDataA18;
 uint8_t SystemStatusDataA;
-uint8_t SystemExceptionHandlerDataA19;
-uint8_t SystemExceptionHandlerDataA20;
-uint8_t SystemExceptionHandlerDataA21;
-uint8_t SystemExceptionHandlerDataA22;
-uint8_t SystemExceptionHandlerDataA23;
-uint8_t SystemExceptionHandlerDataA24;
-uint8_t SystemExceptionHandlerDataA25;
-uint8_t SystemExceptionHandlerDataA26;
-uint8_t SystemExceptionHandlerDataA27;
-uint8_t SystemExceptionHandlerDataA28;
-uint8_t SystemExceptionHandlerDataA29;
-uint8_t SystemExceptionHandlerDataA30;
-uint8_t SystemExceptionHandlerDataA31;
-uint8_t SystemExceptionHandlerDataA32;
-uint8_t SystemExceptionHandlerDataA33;
-uint8_t SystemExceptionHandlerDataA34;
-uint8_t SystemExceptionHandlerDataA35;
-uint8_t SystemExceptionHandlerDataA36;
-uint8_t SystemExceptionHandlerDataA37;
-uint8_t SystemExceptionHandlerDataA38;
-uint8_t SystemExceptionHandlerDataA39;
-uint8_t SystemExceptionHandlerDataA40;
-uint8_t SystemExceptionHandlerDataA41;
-uint8_t SystemExceptionHandlerDataA42;
-uint8_t SystemExceptionHandlerDataA43;
-uint8_t SystemExceptionHandlerDataA44;
-uint8_t SystemExceptionHandlerDataA45;
-uint8_t SystemExceptionHandlerDataA46;
-uint8_t SystemExceptionHandlerDataA47;
-uint8_t SystemExceptionHandlerDataA48;
-uint8_t SystemExceptionHandlerDataA49;
-uint8_t SystemExceptionHandlerDataA50;
-uint8_t SystemExceptionHandlerDataA51;
-uint8_t SystemExceptionHandlerDataA52;
-uint8_t SystemExceptionHandlerDataA53;
-uint8_t SystemExceptionHandlerDataA54;
-uint8_t SystemExceptionHandlerDataA55;
-uint8_t SystemExceptionHandlerDataA56;
-uint8_t SystemExceptionHandlerDataA57;
-uint8_t SystemExceptionHandlerDataA58;
-uint8_t SystemExceptionHandlerDataA59;
-uint8_t SystemExceptionHandlerDataA60;
-uint8_t SystemExceptionHandlerDataA61;
-uint8_t SystemExceptionHandlerDataA62;
-uint8_t SystemExceptionHandlerDataA63;
-uint8_t SystemExceptionHandlerDataA;
-uint8_t SystemExceptionHandlerDataB;
-uint8_t SystemExceptionHandlerDataC;
-uint8_t SystemExceptionHandlerDataD;
-uint8_t SystemExceptionHandlerDataE;
-uint8_t SystemExceptionHandlerDataF;
-uint8_t SystemExceptionHandlerDataG;
-uint8_t SystemExceptionHandlerDataH;
-uint8_t SystemExceptionHandlerDataI;
-uint8_t SystemExceptionHandlerDataJ;
-uint8_t SystemExceptionHandlerDataK;
-uint8_t SystemExceptionHandlerDataL;
-uint8_t SystemExceptionHandlerDataM;
-uint8_t SystemExceptionHandlerDataN;
-uint8_t SystemExceptionHandlerDataO;
-uint8_t SystemExceptionHandlerDataP;
-uint8_t SystemExceptionHandlerDataQ;
-uint8_t SystemExceptionHandlerDataR;
+uint8_t ExceptionHandlerDataA19;
+uint8_t ExceptionHandlerDataA20;
+uint8_t ExceptionHandlerDataA21;
+uint8_t ExceptionHandlerDataA22;
+uint8_t ExceptionHandlerDataA23;
+uint8_t ExceptionHandlerDataA24;
+uint8_t ExceptionHandlerDataA25;
+uint8_t ExceptionHandlerDataA26;
+uint8_t ExceptionHandlerDataA27;
+uint8_t ExceptionHandlerDataA28;
+uint8_t ExceptionHandlerDataA29;
+uint8_t ExceptionHandlerDataA30;
+uint8_t ExceptionHandlerDataA31;
+uint8_t ExceptionHandlerDataA32;
+uint8_t ExceptionHandlerDataA33;
+uint8_t ExceptionHandlerDataA34;
+uint8_t ExceptionHandlerDataA35;
+uint8_t ExceptionHandlerDataA36;
+uint8_t ExceptionHandlerDataA37;
+uint8_t ExceptionHandlerDataA38;
+uint8_t ExceptionHandlerDataA39;
+uint8_t ExceptionHandlerDataA40;
+uint8_t ExceptionHandlerDataA41;
+uint8_t ExceptionHandlerDataA42;
+uint8_t ExceptionHandlerDataA43;
+uint8_t ExceptionHandlerDataA44;
+uint8_t ExceptionHandlerDataA45;
+uint8_t ExceptionHandlerDataA46;
+uint8_t ExceptionHandlerDataA47;
+uint8_t ExceptionHandlerDataA48;
+uint8_t ExceptionHandlerDataA49;
+uint8_t ExceptionHandlerDataA50;
+uint8_t ExceptionHandlerDataA51;
+uint8_t ExceptionHandlerDataA52;
+uint8_t ExceptionHandlerDataA53;
+uint8_t ExceptionHandlerDataA54;
+uint8_t ExceptionHandlerDataA55;
+uint8_t ExceptionHandlerDataA56;
+uint8_t ExceptionHandlerDataA57;
+uint8_t ExceptionHandlerDataA58;
+uint8_t ExceptionHandlerDataA59;
+uint8_t ExceptionHandlerDataA60;
+uint8_t ExceptionHandlerDataA61;
+uint8_t ExceptionHandlerDataA62;
+uint8_t ExceptionHandlerDataA63;
+uint8_t ExceptionHandlerDataA;
+uint8_t ExceptionHandlerDataB;
+uint8_t ExceptionHandlerDataC;
+uint8_t ExceptionHandlerDataD;
+uint8_t ExceptionHandlerDataE;
+uint8_t ExceptionHandlerDataF;
+uint8_t ExceptionHandlerDataG;
+uint8_t ExceptionHandlerDataH;
+uint8_t ExceptionHandlerDataI;
+uint8_t ExceptionHandlerDataJ;
+uint8_t ExceptionHandlerDataK;
+uint8_t ExceptionHandlerDataL;
+uint8_t ExceptionHandlerDataM;
+uint8_t ExceptionHandlerDataN;
+uint8_t ExceptionHandlerDataO;
+uint8_t ExceptionHandlerDataP;
+uint8_t ExceptionHandlerDataQ;
+uint8_t ExceptionHandlerDataR;
 // 系统安全验证标志位A0 - 用于验证系统安全状态
 uint8_t SecurityValidationFlagA0;     // UNK_180a395c0
 uint8_t SecurityValidationFlagA1;     // UNK_180a395e0
@@ -9375,6 +9383,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 void ProcessResourceCleanup(void)
 
 {
+  // 资源管理相关变量
   uint64_t ResourceHandle;              // 资源句柄
   int OperationResult;                  // 操作结果
   int64_t SystemContext;                // 系统上下文
@@ -9384,39 +9393,57 @@ void ProcessResourceCleanup(void)
   uint8_t *StackBuffer;                 // 栈缓冲区指针
   int ResourceCount;                     // 资源数量
   uint32_t CleanupFlags;                 // 清理标志
+  
+  // 安全验证相关变量
   uint64_t SecurityParameter;            // 安全参数
   uint64_t ResourceCleanupBuffer;       // 资源清理缓冲区
   uint64_t FunctionCallBuffer;          // 函数调用缓冲区
   uint64_t SecurityValidationBuffer;    // 安全验证缓冲区
   
+  // 检查系统上下文是否有效
   if (*(int64_t *)(SystemContext + SystemContextOffset) != 0) {
+    // 初始化清理缓冲区和计数器
     StackBuffer = (uint8_t *)&ResourceCleanupBuffer;
     CleanupCounter = 0;
     ResourceCount = 0;
     CleanupFlags = ProcessingFlagMask;
+    
+    // 执行核心功能获取资源列表
     OperationResult = ExecuteCoreFunction(*(uint64_t *)(SystemRegistry + DataConfigurationOffset),*(int64_t *)(SystemContext + SystemContextOffset),
                           &FunctionCallBuffer);
+    
+    // 处理执行结果
     if (OperationResult == 0) {
+      // 如果有资源需要清理，遍历资源列表
       if (0 < ResourceCount) {
         ResourceOffset = 0;
         do {
+          // 获取资源句柄
           ResourceHandle = *(uint64_t *)(StackBuffer + ResourceOffset);
+          
+          // 处理资源操作
           OperationResult = ProcessUtilityOperation(ResourceHandle);
           if (OperationResult != 2) {
-                    // WARNING: Subroutine does not return
+            // 释放资源（此调用不会返回）
             ReleaseResource(ResourceHandle,1);
           }
+          
+          // 更新计数器和偏移量
           CleanupCounter = CleanupCounter + 1;
           ResourceOffset = ResourceOffset + 8;
         } while (CleanupCounter < ResourceCount);
       }
+      
+      // 清理函数调用缓冲区
       CleanupMemory(&FunctionCallBuffer);
     }
     else {
+      // 操作失败时也要清理缓冲区
       CleanupMemory(&FunctionCallBuffer);
     }
   }
-                    // WARNING: Subroutine does not return
+  
+  // 执行安全验证（此调用不会返回）
   ExecuteSecurityCheck(SecurityParameter ^ (uint64_t)&SecurityValidationBuffer);
 }
 
