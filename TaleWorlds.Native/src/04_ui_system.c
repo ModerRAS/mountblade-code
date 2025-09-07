@@ -68871,7 +68871,7 @@ void ProcessUIDataSource(longlong uiContext,char *dataSource)
   processingResult = *(int *)(bufferData + 0x1e7c);
   uiContext = uiContext + 0x42c0;
   dataSource[2] = '\0';
-  dataCharacter = FUN_18069f8f0(uiContext,&UIFontData);
+  dataCharacter = ProcessUICharacterMapping(uiContext,&UIFontData);
   *dataSource = dataCharacter;
   if (dataCharacter == '\x04') {
     processingIndex = 0;
@@ -68926,7 +68926,7 @@ LAB_18069f85f:
         secondaryOperation = *dataPointer;
       }
       dataPointer = dataPointer + 1;
-      operationType = FUN_18069f6a0(uiContext,&UIOperationTable + ((longlong)secondaryOperation + (longlong)operationType * 10) * 9);
+      operationType = DecodeUICharacterData(uiContext,&UIOperationTable + ((longlong)secondaryOperation + (longlong)operationType * 10) * 9);
       processingIndex = processingIndex + 1;
       *dataPointer = operationType;
     } while ((int)processingIndex < 0x10);
@@ -68961,7 +68961,7 @@ void InitializeUISystemComponents(void)
   *(uint8_t *)(systemContext + 3) = 1;
   do {
     componentPointer = componentPointer + 1;
-    semaphoreHandle = FUN_18069f6a0();
+    semaphoreHandle = DecodeUICharacterData();
     componentIndex = componentIndex + 1;
     *componentPointer = semaphoreHandle;
   } while (componentIndex < 0x10);
@@ -69095,7 +69095,7 @@ void FUN_18069f9c0(longlong uiContext,longlong dataSource,char *targetBuffer)
       pfunctionResult4 = (undefined4 *)(dataSource + 0xc);
       allocatedMemory2 = 0x10;
       do {
-        functionResult1 = FUN_18069f6a0(allocatedMemory,uiContext + 0x3082);
+        functionResult1 = DecodeUICharacterData(allocatedMemory,uiContext + 0x3082);
         *pfunctionResult4 = functionResult1;
         pfunctionResult4 = pfunctionResult4 + 1;
         allocatedMemory2 = allocatedMemory2 + -1;

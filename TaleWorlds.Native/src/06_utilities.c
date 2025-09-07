@@ -13726,8 +13726,14 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
  */
 #define ResetSystemStateA1 FUN_180891af0
 
-// 原始函数名：FUN_1808987e0 - 系统数据验证函数A0
-// 功能：验证系统数据和参数
+/**
+ * @brief 系统数据验证函数A0
+ * 
+ * 该函数负责验证系统数据和参数，包括数据的有效性检查和参数的正确性验证。
+ * 确保系统数据的完整性和参数的有效性。
+ * 
+ * @note 原始函数名：FUN_1808987e0
+ */
 #define ValidateSystemDataA0 FUN_1808987e0
 
 // 原始变量名：UNK_1809864e0 - 数据配置表A0
