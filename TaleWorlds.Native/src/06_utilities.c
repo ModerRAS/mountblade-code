@@ -27358,13 +27358,13 @@ void ValidateAndInitializeSystemA0(void)
   int64_t registerContext;
   DataBuffer *destinationIndexRegister;
   uint dataFlags;
-  uint uStack0000000000000088;
+  uint StackValidationResult;
   
-  uStack0000000000000088 = 0;
+  StackValidationResult = 0;
   arrayIndex = ExecuteDataValidationOperation();
-  validationStatus = uStack0000000000000088;
+  validationStatus = StackValidationResult;
   if (arrayIndex == 0) {
-    dataFlags = uStack0000000000000088 >> 1;
+    dataFlags = StackValidationResult >> 1;
     arrayIndex = ValidateArrayIndex((int64_t *)(registerContext + 0x20),dataFlags);
     if (arrayIndex == 0) {
       arrayIndex = 0;
@@ -27468,18 +27468,18 @@ void ValidateAndProcessDataB0(int64_t dataContext,DataBuffer *dataPointer,int va
   uint validationBuffer[2];
   uint processDataBuffer[2];
   
-  stackByteBuffer[0] = InitializeDataValidation(dataBuffer,operationBase,0);
-  if (stackByteBuffer[0] != 0) {
+  validationBuffer[0] = InitializeDataValidation(dataBuffer,operationBase,0);
+  if (validationBuffer[0] != 0) {
     return;
   }
-  operationResult = ExecuteDataProcessing(*dataBuffer,stackByteBuffer);
-  systemDataBuffer = stackByteBuffer[0];
+  operationResult = ExecuteDataProcessing(*dataBuffer,validationBuffer);
+  systemDataBuffer = validationBuffer[0];
   if (operationResult != 0) {
     return;
   }
-  validationOutcome = stackByteBuffer[0] & 1;
+  validationOutcome = validationBuffer[0] & 1;
   memoryBaseAddress = (int)*(uint *)(operationBase + 0x1c) >> 0x1f;
-  operationResult = stackByteBuffer[0] >> 1;
+  operationResult = validationBuffer[0] >> 1;
   if (((int)((*(uint *)(operationBase + 0x1c) ^ memoryBaseAddress) - memoryBaseAddress) < (int)operationResult) &&
      (operationResult = ValidateSystemMemoryAccess(operationBase + 0x10,operationResult), operationResult != 0)) {
     return;
@@ -27491,11 +27491,11 @@ void ValidateAndProcessDataB0(int64_t dataContext,DataBuffer *dataPointer,int va
            (int64_t)(int)(operationResult - operationResult) << 4);
   }
   *(uint *)(operationBase + 0x18) = operationResult;
-  auStackX_8[0] = 0;
+  processDataBuffer[0] = 0;
   operationResult = 0;
   if (systemDataBuffer >> 1 != 0) {
     do {
-      operationStatus = CheckOperationStatus(dataBuffer,auStackX_8[0]);
+      operationStatus = CheckOperationStatus(dataBuffer,processDataBuffer[0]);
       if (operationStatus != 0) {
         return;
       }
