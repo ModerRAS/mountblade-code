@@ -127949,7 +127949,7 @@ LAB_18012b82d:
     if ((UnicodeCodePoint2 & 0x100000) != 0) {
       QuaternaryReturnCode = FUN_18004ba20(&SystemValue1c8,2.0 - FloatValue33);
       FUN_18010e590(&fStack_1e8);
-      FUN_18013e900();
+      FinalizeSystemFloatOperation();
       Utf16Char9 = FUN_18004ba20(&fStack_118);
       FUN_18011fbf0(&uStack_1d8,Utf16Char9,QuaternaryReturnCode);
       FUN_18004ba20(&uStack_1b0);
@@ -127986,12 +127986,12 @@ LAB_18012b82d:
   *(float *)((long long)plStack_238 + 0x254) =
        ((*(float *)((long long)plStack_238 + 0x4c) + *(float *)((long long)plStack_238 + 0x44)) -
        *(float *)(plStack_238 + 0x15)) - *(float *)((long long)plStack_238 + 0x7c);
-  FloatValue33 = (float)FUN_18013e900();
+  FloatValue33 = (float)FinalizeSystemFloatOperation();
   *(float *)(plStack_238 + 0x4b) = (float)(int)(FloatValue33 + *(float *)(plStack_238 + 0x49) + 0.5);
   *(float *)((long long)plStack_238 + 0x25c) =
        (float)(int)(*(float *)((long long)plStack_238 + 0x24c) + 0.5);
   FloatValue33 = *(float *)(plStack_238 + 0x4a);
-  FloatValue34 = (float)FUN_18013e900();
+  FloatValue34 = (float)FinalizeSystemFloatOperation();
   *(float *)(plStack_238 + 0x4c) = (float)(int)((FloatValue33 + 0.5) - FloatValue34);
   *(float *)((long long)plStack_238 + 0x264) =
        (float)(int)(*(float *)((long long)plStack_238 + 0x254) + 0.5);
@@ -127999,7 +127999,7 @@ LAB_18012b82d:
     if ((*(int *)(DataStructureCounter + 0x1b2c) == *(int *)((long long)plStack_238 + 0x84)) &&
        (((*(char *)(DataStructureCounter + 0xc1) == '\0' || (*(char *)(DataStructureCounter + 0x135) != '\0')) &&
         ((*(uint *)(plStack_238[0x74] + 0xc) & 0x200004) == 0)))) {
-      FUN_18013ba30();
+      CheckSystemStatus();
     }
     if ((((*(char *)(DataStructureCounter + 0x1dd0) != '\0') && ((MemoryAllocationIndex9 >> 0x15 & 1) == 0)) &&
         ((*(long long *)(DataStructureCounter + 0x1b78) == 0 ||
@@ -129785,7 +129785,7 @@ LAB_18012b465:
     if (((uint)FloatValue34 & 0x100000) != 0) {
       PrimaryReturnCode = FUN_18004ba20(RegisterFramePointer + -0x14,2.0 - FloatValue32);
       FUN_18010e590(RegisterFramePointer + -0x1c);
-      FUN_18013e900();
+      FinalizeSystemFloatOperation();
       MemoryAllocationIndex1 = FUN_18004ba20(RegisterFramePointer + 0x18);
       FUN_18011fbf0(RegisterFramePointer + -0x18,MemoryAllocationIndex1,PrimaryReturnCode);
       FUN_18004ba20(RegisterFramePointer + -0xe);
@@ -129823,13 +129823,13 @@ LAB_18012b465:
        ((*(float *)((long long)StackParameter2 + 0x4c) +
         *(float *)((long long)StackParameter2 + 0x44)) - *(float *)(StackParameter2 + 0x15)) -
        *(float *)((long long)StackParameter2 + 0x7c);
-  FloatValue32 = (float)FUN_18013e900();
+  FloatValue32 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x4b) =
        (float)(int)(FloatValue32 + *(float *)(StackParameter2 + 0x49) + 0.5);
   *(float *)((long long)StackParameter2 + 0x25c) =
        (float)(int)(*(float *)((long long)StackParameter2 + 0x24c) + 0.5);
   FloatValue32 = *(float *)(StackParameter2 + 0x4a);
-  FloatValue33 = (float)FUN_18013e900();
+  FloatValue33 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x4c) = (float)(int)((FloatValue32 + 0.5) - FloatValue33);
   *(float *)((long long)StackParameter2 + 0x264) =
        (float)(int)(*(float *)((long long)StackParameter2 + 0x254) + 0.5);
@@ -129837,7 +129837,7 @@ LAB_18012b465:
     if ((*(int *)(MemoryPoolBlockSize + 0x1b2c) == *(int *)((long long)StackParameter2 + 0x84)) &&
        (((*(char *)(MemoryPoolBlockSize + 0xc1) == '\0' || (*(char *)(MemoryPoolBlockSize + 0x135) != '\0')) &&
         ((*(uint *)(StackParameter2[0x74] + 0xc) & 0x200004) == 0)))) {
-      FUN_18013ba30();
+      CheckSystemStatus();
     }
     if ((((*(char *)(MemoryPoolBlockSize + 0x1dd0) != '\0') && (((uint)FloatValue34 >> 0x15 & 1) == 0)) &&
         ((*(long long *)(MemoryPoolBlockSize + 0x1b78) == 0 ||
@@ -131630,7 +131630,7 @@ LAB_18012b465:
     if (((uint)FloatValue33 & 0x100000) != 0) {
       Utf16Char5 = FUN_18004ba20(RegisterFramePointer + -0x14,2.0 - FloatValue31);
       FUN_18010e590(RegisterFramePointer + -0x1c);
-      FUN_18013e900();
+      FinalizeSystemFloatOperation();
       MemoryAllocationIndex0 = FUN_18004ba20(RegisterFramePointer + 0x18);
       FUN_18011fbf0(RegisterFramePointer + -0x18,MemoryAllocationIndex0,Utf16Char5);
       FUN_18004ba20(RegisterFramePointer + -0xe);
@@ -131668,13 +131668,13 @@ LAB_18012b465:
        ((*(float *)((long long)StackParameter2 + 0x4c) +
         *(float *)((long long)StackParameter2 + 0x44)) - *(float *)(StackParameter2 + 0x15)) -
        *(float *)((long long)StackParameter2 + 0x7c);
-  FloatValue31 = (float)FUN_18013e900();
+  FloatValue31 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x4b) =
        (float)(int)(FloatValue31 + *(float *)(StackParameter2 + 0x49) + 0.5);
   *(float *)((long long)StackParameter2 + 0x25c) =
        (float)(int)(*(float *)((long long)StackParameter2 + 0x24c) + 0.5);
   FloatValue31 = *(float *)(StackParameter2 + 0x4a);
-  FloatValue32 = (float)FUN_18013e900();
+  FloatValue32 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x4c) = (float)(int)((FloatValue31 + 0.5) - FloatValue32);
   *(float *)((long long)StackParameter2 + 0x264) =
        (float)(int)(*(float *)((long long)StackParameter2 + 0x254) + 0.5);
@@ -131682,7 +131682,7 @@ LAB_18012b465:
     if ((*(int *)(RegisterSourceIndex + 0x1b2c) == *(int *)((long long)StackParameter2 + 0x84)) &&
        (((*(char *)(RegisterSourceIndex + 0xc1) == '\0' || (*(char *)(RegisterSourceIndex + 0x135) != '\0')) &&
         ((*(uint *)(StackParameter2[0x74] + 0xc) & 0x200004) == 0)))) {
-      FUN_18013ba30();
+      CheckSystemStatus();
     }
     if ((((*(char *)(RegisterSourceIndex + 0x1dd0) != '\0') && (((uint)FloatValue33 >> 0x15 & 1) == 0)) &&
         ((*(long long *)(RegisterSourceIndex + 0x1b78) == 0 ||
@@ -133321,7 +133321,7 @@ LAB_18012b465:
     if (((uint)RegisterValueR15D & 0x100000) != 0) {
       Utf16Char4 = FUN_18004ba20(RegisterFramePointer + -0x14,2.0 - SystemContextFloat29);
       FUN_18010e590(RegisterFramePointer + -0x1c);
-      FUN_18013e900();
+      FinalizeSystemFloatOperation();
       Utf16Char9 = FUN_18004ba20(RegisterFramePointer + 0x18);
       FUN_18011fbf0(RegisterFramePointer + -0x18,Utf16Char9,Utf16Char4);
       FUN_18004ba20(RegisterFramePointer + -0xe);
@@ -133359,13 +133359,13 @@ LAB_18012b465:
        ((*(float *)((long long)StackParameter2 + 0x4c) +
         *(float *)((long long)StackParameter2 + 0x44)) - *(float *)(StackParameter2 + 0x15)) -
        *(float *)((long long)StackParameter2 + 0x7c);
-  SystemContextFloat29 = (float)FUN_18013e900();
+  SystemContextFloat29 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x4b) =
        (float)(int)(SystemContextFloat29 + *(float *)(StackParameter2 + 0x49) + 0.5);
   *(float *)((long long)StackParameter2 + 0x25c) =
        (float)(int)(*(float *)((long long)StackParameter2 + 0x24c) + 0.5);
   SystemContextFloat29 = *(float *)(StackParameter2 + 0x4a);
-  FloatValue30 = (float)FUN_18013e900();
+  FloatValue30 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x4c) = (float)(int)((SystemContextFloat29 + 0.5) - FloatValue30);
   *(float *)((long long)StackParameter2 + 0x264) =
        (float)(int)(*(float *)((long long)StackParameter2 + 0x254) + 0.5);
@@ -133373,7 +133373,7 @@ LAB_18012b465:
     if ((*(int *)(RegisterSourceIndex + 0x1b2c) == *(int *)((long long)StackParameter2 + 0x84)) &&
        (((*(char *)(RegisterSourceIndex + 0xc1) == '\0' || (*(char *)(RegisterSourceIndex + 0x135) != '\0')) &&
         ((*(uint *)(StackParameter2[0x74] + 0xc) & 0x200004) == 0)))) {
-      FUN_18013ba30();
+      CheckSystemStatus();
     }
     if ((((*(char *)(RegisterSourceIndex + 0x1dd0) != '\0') && (((uint)RegisterValueR15D >> 0x15 & 1) == 0)) &&
         ((*(long long *)(RegisterSourceIndex + 0x1b78) == 0 ||
@@ -134932,7 +134932,7 @@ LAB_18012b510:
     if (((uint)FloatValue30 & 0x100000) != 0) {
       Utf16Char4 = FUN_18004ba20(RegisterFramePointer + -0x14,2.0 - SystemContextFloat27);
       FUN_18010e590(RegisterFramePointer + -0x1c);
-      FUN_18013e900();
+      FinalizeSystemFloatOperation();
       MemoryAllocationIndex0 = FUN_18004ba20(RegisterFramePointer + 0x18);
       FUN_18011fbf0(RegisterFramePointer + -0x18,MemoryAllocationIndex0,Utf16Char4);
       FUN_18004ba20(RegisterFramePointer + -0xe);
@@ -134970,13 +134970,13 @@ LAB_18012b510:
        ((*(float *)((long long)StackParameter2 + 0x4c) +
         *(float *)((long long)StackParameter2 + 0x44)) - *(float *)(StackParameter2 + 0x15)) -
        *(float *)((long long)StackParameter2 + 0x7c);
-  SystemContextFloat27 = (float)FUN_18013e900();
+  SystemContextFloat27 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x4b) =
        (float)(int)(SystemContextFloat27 + *(float *)(StackParameter2 + 0x49) + 0.5);
   *(float *)((long long)StackParameter2 + 0x25c) =
        (float)(int)(*(float *)((long long)StackParameter2 + 0x24c) + 0.5);
   SystemContextFloat27 = *(float *)(StackParameter2 + 0x4a);
-  FloatValue31 = (float)FUN_18013e900();
+  FloatValue31 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x4c) = (float)(int)((SystemContextFloat27 + 0.5) - FloatValue31);
   *(float *)((long long)StackParameter2 + 0x264) =
        (float)(int)(*(float *)((long long)StackParameter2 + 0x254) + 0.5);
@@ -134984,7 +134984,7 @@ LAB_18012b510:
     if ((*(int *)(RegisterSourceIndex + 0x1b2c) == *(int *)((long long)StackParameter2 + 0x84)) &&
        (((*(char *)(RegisterSourceIndex + 0xc1) == '\0' || (*(char *)(RegisterSourceIndex + 0x135) != '\0')) &&
         ((*(uint *)(StackParameter2[0x74] + 0xc) & 0x200004) == 0)))) {
-      FUN_18013ba30();
+      CheckSystemStatus();
     }
     if ((((*(char *)(RegisterSourceIndex + 0x1dd0) != '\0') && (((uint)FloatValue30 >> 0x15 & 1) == 0)) &&
         ((*(long long *)(RegisterSourceIndex + 0x1b78) == 0 ||
@@ -136621,7 +136621,7 @@ LAB_18012b465:
     if (((uint)RegisterValueR15D & 0x100000) != 0) {
       Utf16Char4 = FUN_18004ba20(RegisterFramePointer + -0x14,2.0 - SystemContextFloat27);
       FUN_18010e590(RegisterFramePointer + -0x1c);
-      FUN_18013e900();
+      FinalizeSystemFloatOperation();
       Utf16Char9 = FUN_18004ba20(RegisterFramePointer + 0x18);
       FUN_18011fbf0(RegisterFramePointer + -0x18,Utf16Char9,Utf16Char4);
       FUN_18004ba20(RegisterFramePointer + -0xe);
@@ -136659,13 +136659,13 @@ LAB_18012b465:
        ((*(float *)((long long)StackParameter2 + 0x4c) +
         *(float *)((long long)StackParameter2 + 0x44)) - *(float *)(StackParameter2 + 0x15)) -
        *(float *)((long long)StackParameter2 + 0x7c);
-  SystemContextFloat27 = (float)FUN_18013e900();
+  SystemContextFloat27 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x4b) =
        (float)(int)(SystemContextFloat27 + *(float *)(StackParameter2 + 0x49) + 0.5);
   *(float *)((long long)StackParameter2 + 0x25c) =
        (float)(int)(*(float *)((long long)StackParameter2 + 0x24c) + 0.5);
   SystemContextFloat27 = *(float *)(StackParameter2 + 0x4a);
-  FloatValue30 = (float)FUN_18013e900();
+  FloatValue30 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x4c) = (float)(int)((SystemContextFloat27 + 0.5) - FloatValue30);
   *(float *)((long long)StackParameter2 + 0x264) =
        (float)(int)(*(float *)((long long)StackParameter2 + 0x254) + 0.5);
@@ -136673,7 +136673,7 @@ LAB_18012b465:
     if ((*(int *)(RegisterSourceIndex + 0x1b2c) == *(int *)((long long)StackParameter2 + 0x84)) &&
        (((*(char *)(RegisterSourceIndex + 0xc1) == '\0' || (*(char *)(RegisterSourceIndex + 0x135) != '\0')) &&
         ((*(uint *)(StackParameter2[0x74] + 0xc) & 0x200004) == 0)))) {
-      FUN_18013ba30();
+      CheckSystemStatus();
     }
     if ((((*(char *)(RegisterSourceIndex + 0x1dd0) != '\0') && (((uint)RegisterValueR15D >> 0x15 & 1) == 0)) &&
         ((*(long long *)(RegisterSourceIndex + 0x1b78) == 0 ||
@@ -138193,7 +138193,7 @@ LAB_18012b510:
     if (((uint)SystemContextFloat28 & 0x100000) != 0) {
       SystemStatusCode = FUN_18004ba20(RegisterFramePointer + -0x14,2.0 - SystemContextFloat25);
       FUN_18010e590(RegisterFramePointer + -0x1c);
-      FUN_18013e900();
+      FinalizeSystemFloatOperation();
       Utf16Char7 = FUN_18004ba20(RegisterFramePointer + 0x18);
       FUN_18011fbf0(RegisterFramePointer + -0x18,Utf16Char7,SystemStatusCode);
       FUN_18004ba20(RegisterFramePointer + -0xe);
@@ -138227,19 +138227,19 @@ LAB_18012b510:
   *(float *)(StackParameter2 + 0x254) =
        ((*(float *)(StackParameter2 + 0x4c) + *(float *)(StackParameter2 + 0x44)) -
        *(float *)(StackParameter2 + 0xa8)) - *(float *)(StackParameter2 + 0x7c);
-  SystemContextFloat25 = (float)FUN_18013e900();
+  SystemContextFloat25 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 600) =
        (float)(int)(SystemContextFloat25 + *(float *)(StackParameter2 + 0x248) + 0.5);
   *(float *)(StackParameter2 + 0x25c) = (float)(int)(*(float *)(StackParameter2 + 0x24c) + 0.5);
   SystemContextFloat25 = *(float *)(StackParameter2 + 0x250);
-  SystemContextFloat29 = (float)FUN_18013e900();
+  SystemContextFloat29 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x260) = (float)(int)((SystemContextFloat25 + 0.5) - SystemContextFloat29);
   *(float *)(StackParameter2 + 0x264) = (float)(int)(*(float *)(StackParameter2 + 0x254) + 0.5);
   if ((*(byte *)(RegisterSourceIndex + 8) & 0x40) != 0) {
     if ((*(int *)(RegisterSourceIndex + 0x1b2c) == *(int *)(StackParameter2 + 0x84)) &&
        (((*(char *)(RegisterSourceIndex + 0xc1) == '\0' || (*(char *)(RegisterSourceIndex + 0x135) != '\0')) &&
         ((*(uint *)(*(long long *)(StackParameter2 + 0x3a0) + 0xc) & 0x200004) == 0)))) {
-      FUN_18013ba30();
+      CheckSystemStatus();
     }
     if ((((*(char *)(RegisterSourceIndex + 0x1dd0) != '\0') && (((uint)SystemContextFloat28 >> 0x15 & 1) == 0)) &&
         ((*(long long *)(RegisterSourceIndex + 0x1b78) == 0 ||
@@ -139268,7 +139268,7 @@ LAB_18012b510:
     else {
       MemoryAllocationIndex2 = FUN_18004ba20(RegisterFramePointer + -0x14,2.0 - FloatValue32);
       FUN_18010e590(RegisterFramePointer + -0x1c);
-      FUN_18013e900();
+      FinalizeSystemFloatOperation();
       Utf16Char7 = FUN_18004ba20(RegisterFramePointer + 0x18);
       FUN_18011fbf0(RegisterFramePointer + -0x18,Utf16Char7,MemoryAllocationIndex2);
       FUN_18004ba20(RegisterFramePointer + -0xe);
@@ -139303,19 +139303,19 @@ LAB_18012b510:
   *(float *)(StackParameter2 + 0x254) =
        ((*(float *)(StackParameter2 + 0x4c) + *(float *)(StackParameter2 + 0x44)) -
        *(float *)(StackParameter2 + 0xa8)) - *(float *)(StackParameter2 + 0x7c);
-  FloatValue32 = (float)FUN_18013e900();
+  FloatValue32 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 600) =
        (float)(int)(FloatValue32 + *(float *)(StackParameter2 + 0x248) + 0.5);
   *(float *)(StackParameter2 + 0x25c) = (float)(int)(*(float *)(StackParameter2 + 0x24c) + 0.5);
   FloatValue32 = *(float *)(StackParameter2 + 0x250);
-  SystemContextFloat27 = (float)FUN_18013e900();
+  SystemContextFloat27 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x260) = (float)(int)((FloatValue32 + 0.5) - SystemContextFloat27);
   *(float *)(StackParameter2 + 0x264) = (float)(int)(*(float *)(StackParameter2 + 0x254) + 0.5);
   if ((*(byte *)(RegisterSourceIndex + 8) & 0x40) != 0) {
     if ((*(int *)(RegisterSourceIndex + 0x1b2c) == *(int *)(StackParameter2 + 0x84)) &&
        (((*(char *)(RegisterSourceIndex + 0xc1) == '\0' || (*(char *)(RegisterSourceIndex + 0x135) != '\0')) &&
         ((*(uint *)(*(long long *)(StackParameter2 + 0x3a0) + 0xc) & 0x200004) == 0)))) {
-      FUN_18013ba30();
+      CheckSystemStatus();
     }
     if ((((*(char *)(RegisterSourceIndex + 0x1dd0) != '\0') && (((uint)RegisterValueR15D >> 0x15 & 1) == 0)) &&
         ((*(long long *)(RegisterSourceIndex + 0x1b78) == 0 ||
@@ -140110,7 +140110,7 @@ b523(voidvoid FUN_18012b523(void
     else {
       QuaternaryReturnCode = FUN_18004ba20(RegisterFramePointer + -0x14,2.0 - SystemContextFloat26);
       FUN_18010e590(RegisterFramePointer + -0x1c);
-      FUN_18013e900();
+      FinalizeSystemFloatOperation();
       Utf16Char7 = FUN_18004ba20(RegisterFramePointer + 0x18);
       FUN_18011fbf0(RegisterFramePointer + -0x18,Utf16Char7,QuaternaryReturnCode);
       FUN_18004ba20(RegisterFramePointer + -0xe);
@@ -140145,19 +140145,19 @@ b523(voidvoid FUN_18012b523(void
   *(float *)(StackParameter2 + 0x254) =
        ((*(float *)(StackParameter2 + 0x4c) + *(float *)(StackParameter2 + 0x44)) -
        *(float *)(StackParameter2 + 0xa8)) - *(float *)(StackParameter2 + 0x7c);
-  SystemContextFloat26 = (float)FUN_18013e900();
+  SystemContextFloat26 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 600) =
        (float)(int)(SystemContextFloat26 + *(float *)(StackParameter2 + 0x248) + 0.5);
   *(float *)(StackParameter2 + 0x25c) = (float)(int)(*(float *)(StackParameter2 + 0x24c) + 0.5);
   SystemContextFloat26 = *(float *)(StackParameter2 + 0x250);
-  SystemContextFloat25 = (float)FUN_18013e900();
+  SystemContextFloat25 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x260) = (float)(int)((SystemContextFloat26 + 0.5) - SystemContextFloat25);
   *(float *)(StackParameter2 + 0x264) = (float)(int)(*(float *)(StackParameter2 + 0x254) + 0.5);
   if ((*(byte *)(RegisterSourceIndex + 8) & 0x40) != 0) {
     if ((*(int *)(RegisterSourceIndex + 0x1b2c) == *(int *)(StackParameter2 + 0x84)) &&
        (((*(char *)(RegisterSourceIndex + 0xc1) == '\0' || (*(char *)(RegisterSourceIndex + 0x135) != '\0')) &&
         ((*(uint *)(*(long long *)(StackParameter2 + 0x3a0) + 0xc) & 0x200004) == 0)))) {
-      FUN_18013ba30();
+      CheckSystemStatus();
     }
     if ((((*(char *)(RegisterSourceIndex + 0x1dd0) != '\0') && ((RegisterValueR15D >> 0x15 & 1) == 0)) &&
         ((*(long long *)(RegisterSourceIndex + 0x1b78) == 0 ||
@@ -140456,7 +140456,7 @@ c305(voidvoid FUN_18012c305(void
     else {
       SystemVariable9 = FUN_18004ba20(RegisterFramePointer + -0x14,2.0 - SystemContextFloat19);
       FUN_18010e590(RegisterFramePointer + -0x1c);
-      FUN_18013e900();
+      FinalizeSystemFloatOperation();
       QuaternaryReturnCode = FUN_18004ba20(RegisterFramePointer + 0x18);
       FUN_18011fbf0(RegisterFramePointer + -0x18,QuaternaryReturnCode,SystemVariable9);
       FUN_18004ba20(RegisterFramePointer + -0xe);
@@ -140491,13 +140491,13 @@ c305(voidvoid FUN_18012c305(void
   *(float *)(StackParameter2 + 0x254) =
        ((*(float *)(StackParameter2 + 0x4c) + *(float *)(StackParameter2 + 0x44)) -
        *(float *)(StackParameter2 + 0xa8)) - *(float *)(StackParameter2 + 0x7c);
-  SystemContextFloat19 = (float)FUN_18013e900();
+  SystemContextFloat19 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 600) =
        (float)(int)(SystemContextFloat19 + *(float *)(StackParameter2 + 0x248) + AuxiliaryFloat11);
   *(float *)(StackParameter2 + 0x25c) =
        (float)(int)(*(float *)(StackParameter2 + 0x24c) + AuxiliaryFloat11);
   SystemContextFloat19 = *(float *)(StackParameter2 + 0x250);
-  SystemContextFloat18 = (float)FUN_18013e900();
+  SystemContextFloat18 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x260) = (float)(int)((SystemContextFloat19 + AuxiliaryFloat11) - SystemContextFloat18);
   *(float *)(StackParameter2 + 0x264) =
        (float)(int)(*(float *)(StackParameter2 + 0x254) + AuxiliaryFloat11);
@@ -140505,7 +140505,7 @@ c305(voidvoid FUN_18012c305(void
     if ((*(int *)(RegisterSourceIndex + 0x1b2c) == *(int *)(StackParameter2 + 0x84)) &&
        (((*(char *)(RegisterSourceIndex + 0xc1) == '\0' || (*(char *)(RegisterSourceIndex + 0x135) != '\0')) &&
         ((*(uint *)(*(long long *)(StackParameter2 + 0x3a0) + 0xc) & 0x200004) == 0)))) {
-      FUN_18013ba30();
+      CheckSystemStatus();
     }
     if ((((*(char *)(RegisterSourceIndex + 0x1dd0) != '\0') && ((RegisterValueR15D >> 0x15 & 1) == 0)) &&
         ((*(long long *)(RegisterSourceIndex + 0x1b78) == 0 ||
@@ -140619,13 +140619,13 @@ cb2c(voidvoid FUN_18012cb2c(void
   *(float *)(StackParameter2 + 0x254) =
        ((*(float *)(StackParameter2 + 0x4c) + *(float *)(StackParameter2 + 0x44)) -
        *(float *)(StackParameter2 + 0xa8)) - *(float *)(StackParameter2 + 0x7c);
-  FloatVariable5 = (float)FUN_18013e900();
+  FloatVariable5 = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 600) =
        (float)(int)(FloatVariable5 + *(float *)(StackParameter2 + 0x248) + AuxiliaryFloat11);
   *(float *)(StackParameter2 + 0x25c) =
        (float)(int)(*(float *)(StackParameter2 + 0x24c) + AuxiliaryFloat11);
   FloatVariable5 = *(float *)(StackParameter2 + 0x250);
-  CalculatedDistance = (float)FUN_18013e900();
+  CalculatedDistance = (float)FinalizeSystemFloatOperation();
   *(float *)(StackParameter2 + 0x260) = (float)(int)((FloatVariable5 + AuxiliaryFloat11) - CalculatedDistance);
   *(float *)(StackParameter2 + 0x264) =
        (float)(int)(*(float *)(StackParameter2 + 0x254) + AuxiliaryFloat11);
@@ -140633,7 +140633,7 @@ cb2c(voidvoid FUN_18012cb2c(void
     if ((*(int *)(RegisterSourceIndex + 0x1b2c) == *(int *)(StackParameter2 + 0x84)) &&
        (((*(char *)(RegisterSourceIndex + 0xc1) == '\0' || (*(char *)(RegisterSourceIndex + 0x135) != '\0')) &&
         ((*(uint *)(*(long long *)(StackParameter2 + 0x3a0) + 0xc) & 0x200004) == 0)))) {
-      FUN_18013ba30();
+      CheckSystemStatus();
     }
     if ((((*(char *)(RegisterSourceIndex + 0x1dd0) != '\0') && ((RegisterValueR15D >> 0x15 & 1) == 0)) &&
         ((*(long long *)(RegisterSourceIndex + 0x1b78) == 0 ||
@@ -140731,7 +140731,7 @@ ccf4(long long SystemContextPointervoid FUN_18012ccf4(long long SystemContextPoi
   if ((*(int *)(RegisterSourceIndex + 0x1b2c) == *(int *)(SystemContextPointer + 0x84)) &&
      (((*(char *)(RegisterSourceIndex + 0xc1) == '\0' || (*(char *)(RegisterSourceIndex + 0x135) != '\0')) &&
       ((*(uint *)(*(long long *)(SystemContextPointer + 0x3a0) + 0xc) & 0x200004) == 0)))) {
-    FUN_18013ba30();
+    CheckSystemStatus();
     SystemContextPointer = StackParameter2;
   }
   if ((((*(char *)(RegisterSourceIndex + 0x1dd0) != '\0') && ((RegisterValueR15D >> 0x15 & 1) == 0)) &&

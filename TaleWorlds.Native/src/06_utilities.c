@@ -18800,7 +18800,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
               StackSecurityData = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               StackSecurityOffset = 0;
               StackSecurityFlag = 0x3f800000;
-              ValidateSystemA0(&puStack_b8,*(DataBuffer *)(operationBase + 0x58));
+              ValidateSystemA0(&StackSecurityPointer,*(DataBuffer *)(operationBase + 0x58));
               validationContextPointer3 = systemContextPointer;
             }
           }
