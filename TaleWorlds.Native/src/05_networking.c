@@ -3517,7 +3517,7 @@ PrimaryNetworkProcessingComplete:
                            NetworkConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
       int32_t StatusProcessingCount = (int)OperationBuffer[NetworkOperationBufferSizeIndex];
-      int64_t StatusProcessingIterator = (int64_t)StatusProcessingCount;
+      int64_t StatusProcessingCounter = (int64_t)StatusProcessingCount;
       if ((StatusProcessingCount != 0) && (ContextIdentifier = *OperationBuffer, 0 < StatusProcessingCount)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
@@ -3530,9 +3530,9 @@ PrimaryNetworkProcessingComplete:
           ConnectionStatusIterator[NetworkStatusTimeoutIndex] = ConnectionTimeoutResultCode;
           ConnectionStatusIterator[NetworkStatusSecondaryIndex] = SecondaryConnectionStatusCode;
           ConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkStatus *)CalculateLastConnectionStatusEntryAddress(ContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
-          StatusProcessingIterator--;
+          StatusProcessingCounter--;
           ConnectionStatusIterator += ConnectionContextEntrySize;
-        } while (StatusProcessingIterator != 0);
+        } while (StatusProcessingCounter != 0);
       }
 SecondaryNetworkProcessingStageComplete:
       // 网络处理循环完成，继续后续处理
