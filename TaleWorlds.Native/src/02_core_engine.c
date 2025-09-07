@@ -212189,7 +212189,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)GetSystemDataStructureHandle();
-      pppppcStack_188 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      pppppcStack_188 = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       pppppcStack_180 = pppppcStack_188;
       if (pppppcStack_188 != (code *****)0x0) {
         (*(code *)(*pppppcStack_188)[5])(pppppcStack_188);
@@ -212207,7 +212207,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)SystemTerminateFunction();
-      ppppCurrentCharacter1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      ppppCurrentCharacter1 = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (ppppCurrentCharacter1 != (code *****)0x0) {
         pppppcStack_178 = ppppCurrentCharacter1;
         (*(code *)(*ppppCurrentCharacter1)[5])(ppppCurrentCharacter1);
@@ -212234,7 +212234,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021b090;
-      ppppCurrentCharacter1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      ppppCurrentCharacter1 = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (ppppCurrentCharacter1 != (code *****)0x0) {
         pppppcStack_178 = ppppCurrentCharacter1;
         (*(code *)(*ppppCurrentCharacter1)[5])(ppppCurrentCharacter1);
@@ -212261,7 +212261,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)&SystemDataStructureQuinary;
-      ppppCurrentCharacter1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      ppppCurrentCharacter1 = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (ppppCurrentCharacter1 != (code *****)0x0) {
         pppppcStack_178 = ppppCurrentCharacter1;
         (*(code *)(*ppppCurrentCharacter1)[5])(ppppCurrentCharacter1);
@@ -212288,7 +212288,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021cb50;
-      ppppCurrentCharacter1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      ppppCurrentCharacter1 = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (ppppCurrentCharacter1 != (code *****)0x0) {
         pppppcStack_178 = ppppCurrentCharacter1;
         (*(code *)(*ppppCurrentCharacter1)[5])(ppppCurrentCharacter1);
@@ -212315,7 +212315,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021cf80;
-      ppppCurrentCharacter1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      ppppCurrentCharacter1 = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (ppppCurrentCharacter1 != (code *****)0x0) {
         pppppcStack_178 = ppppCurrentCharacter1;
         (*(code *)(*ppppCurrentCharacter1)[5])(ppppCurrentCharacter1);
@@ -212342,7 +212342,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021b4f0;
-      ppppCurrentCharacter1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      ppppCurrentCharacter1 = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (ppppCurrentCharacter1 != (code *****)0x0) {
         pppppcStack_178 = ppppCurrentCharacter1;
         (*(code *)(*ppppCurrentCharacter1)[5])(ppppCurrentCharacter1);
@@ -212369,7 +212369,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021b070;
-      ppppCurrentCharacter1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      ppppCurrentCharacter1 = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (ppppCurrentCharacter1 != (code *****)0x0) {
         pppppcStack_178 = ppppCurrentCharacter1;
         (*(code *)(*ppppCurrentCharacter1)[5])(ppppCurrentCharacter1);
@@ -212396,7 +212396,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021e9c0;
-      pppppCurrentCharacter2 = (code ******)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      pppppCurrentCharacter2 = (code ******)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (pppppCurrentCharacter2 != (code ******)0x0) {
         pppppcStack_178 = (code *****)pppppCurrentCharacter2;
         (*(code *)(*pppppCurrentCharacter2)[5])(pppppCurrentCharacter2);
@@ -212610,7 +212610,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021b9c0;
-      pppppcStack_188 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      pppppcStack_188 = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       pppppcStack_180 = pppppcStack_188;
       if (pppppcStack_188 != (code *****)0x0) {
         (*(code *)(*pppppcStack_188)[5])(pppppcStack_188);
@@ -212627,7 +212627,7 @@ LAB_180180381:
       SystemUnsignedValue160 = &SystemMemoryAddressQuaternary;
       uStack_158 = &SystemMemoryAddressQuinary;
       pppcStack_170 = (code ***)FUN_18021bc50;
-      ppppCurrentCharacter1 = (code *****)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      ppppCurrentCharacter1 = (code *****)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (ppppCurrentCharacter1 != (code *****)0x0) {
         pppppcStack_178 = ppppCurrentCharacter1;
         (*(code *)(*ppppCurrentCharacter1)[5])(ppppCurrentCharacter1);
@@ -212655,7 +212655,7 @@ LAB_180180381:
       uStack_158 = &SystemUnsignedValueBufferSenary;
       pppcStack_170 = (code ***)FUN_18013ea70;
       pDataContentStatus = (uint32_t *)CoreEngineMemoryContext;
-      pppppCurrentCharacter2 = (code ******)FUN_18006b640(ProcessingStatusFlag,&pppcStack_170);
+      pppppCurrentCharacter2 = (code ******)AllocateSystemContextMemory(ProcessingStatusFlag,&pppcStack_170);
       if (pppppCurrentCharacter2 != (code ******)0x0) {
         pppppcStack_178 = (code *****)pppppCurrentCharacter2;
         (*(code *)(*pppppCurrentCharacter2)[5])(pppppCurrentCharacter2);
@@ -232262,7 +232262,7 @@ LAB_18019a44a:
     plStack_2e0 = SystemBufferSize;
     plStack_1d0 = CharacterCode;
     plStack_1c8 = SystemBufferSize;
-    CharacterCodeData = (long long *)FUN_18006b640(PrimaryReturnCode,&plStack_1d0);
+    CharacterCodeData = (long long *)AllocateSystemContextMemory(PrimaryReturnCode,&plStack_1d0);
     if (CharacterCodeData != (long long *)0x0) {
       plStack_1e8 = CharacterCodeData;
       (**(code **)(*CharacterCode4 + 0x28))(CharacterCodeData);
@@ -232304,7 +232304,7 @@ LAB_18019a44a:
     plStack_2e0 = SystemBufferSize;
     plStack_1b0 = CharacterCode;
     plStack_1a8 = SystemBufferSize;
-    CharacterCodeData = (long long *)FUN_18006b640(PrimaryReturnCode,&plStack_1b0);
+    CharacterCodeData = (long long *)AllocateSystemContextMemory(PrimaryReturnCode,&plStack_1b0);
     if (CharacterCodeData != (long long *)0x0) {
       plStack_1e0 = CharacterCodeData;
       (**(code **)(*CharacterCode4 + 0x28))(CharacterCodeData);

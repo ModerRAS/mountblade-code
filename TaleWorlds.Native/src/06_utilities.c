@@ -114319,7 +114319,7 @@ void DestroyMutexD(void)
 
 {
   // 销毁指定地址的互斥锁
-  _Mtx_destroy_in_situ(0x180c91f70);
+  _Mtx_destroy_in_situ(SystemMutexObjectSecondaryAddress);
   return;
 }
 
@@ -115455,7 +115455,7 @@ void InitializeExceptionHandlerA(void)
 void DestroyMutexA(void)
 
 {
-                                   _Mtx_destroy_in_situ(0x180d49e70);
+                                   _Mtx_destroy_in_situ(SystemExceptionInitializerAddressA);
   return;
 }
 
@@ -115477,7 +115477,7 @@ void DestroyMutexA(void)
 void DestroyMutexB(void)
 
 {
-                                      _Mtx_destroy_in_situ(0x180d49f10);
+                                      _Mtx_destroy_in_situ(SystemExceptionInitializerAddressB);
   return;
 }
 
@@ -115499,7 +115499,7 @@ void DestroyMutexB(void)
 void DestroyMutexC(void)
 
 {
-                                           _Mtx_destroy_in_situ(0x180c96690);
+                                           _Mtx_destroy_in_situ(SystemMutexCleanupAddressA);
   return;
 }
 
@@ -115597,7 +115597,7 @@ void InitializeUtilitySystem(void)
 void DestroyMutexInPlace(void)
 
 {
-                                          _Mtx_destroy_in_situ(0x180c966f0);
+                                          _Mtx_destroy_in_situ(SystemMutexCleanupAddressB);
   return;
 }
 
@@ -115619,7 +115619,7 @@ void DestroyMutexInPlace(void)
 void CleanupThreadMutex(void)
 
 {
-                                           _Mtx_destroy_in_situ(0x180c96740);
+                                           _Mtx_destroy_in_situ(SystemMutexCleanupAddressC);
   return;
 }
 
