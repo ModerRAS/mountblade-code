@@ -6827,6 +6827,108 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 // 原始函数名：FUN_18011c2d9 - 系统数据验证函数
 #define ValidateSystemDataEx2 FUN_18011c2d9
 
+// 新增函数重命名 - 条件内存管理相关函数
+/**
+ * @brief 条件内存管理器
+ * 
+ * 该函数根据UTF-8缓冲区大小的奇偶性决定是否释放内存
+ * 
+ * @note 原始函数名：FUN_180153890
+ */
+#define ConditionalMemoryManager FUN_180153890
+
+/**
+ * @brief 系统配置验证器
+ * 
+ * 该函数负责验证系统配置参数并进行相应的初始化操作
+ * 
+ * @note 原始函数名：FUN_180153ab0
+ */
+#define SystemConfigurationValidator FUN_180153ab0
+
+/**
+ * @brief 哈希表缓冲区查找器
+ * 
+ * 该函数在哈希表中查找指定大小的缓冲区，使用互斥锁保证线程安全
+ * 
+ * @note 原始函数名：FUN_180158a70
+ */
+#define HashTableBufferFinder FUN_180158a70
+
+/**
+ * @brief 条件内存释放器
+ * 
+ * 该函数根据UTF-8缓冲区大小的奇偶性释放内存
+ * 
+ * @note 原始函数名：FUN_18015c270
+ */
+#define ConditionalMemoryReleaser FUN_18015c270
+
+// 新增函数重命名 - 系统上下文处理相关函数
+/**
+ * @brief 系统上下文处理器
+ * 
+ * 该函数负责处理系统上下文的相关操作
+ * 
+ * @note 原始函数名：FUN_18016dca0
+ */
+#define SystemContextProcessor FUN_18016dca0
+
+/**
+ * @brief 系统上下文初始化器
+ * 
+ * 该函数负责初始化系统上下文
+ * 
+ * @note 原始函数名：FUN_18016dd20
+ */
+#define SystemContextInitializer FUN_18016dd20
+
+/**
+ * @brief 系统上下文管理器
+ * 
+ * 该函数负责管理系统上下文
+ * 
+ * @note 原始函数名：FUN_18016dda0
+ */
+#define SystemContextManager FUN_18016dda0
+
+/**
+ * @brief 系统上下文处理器
+ * 
+ * 该函数负责处理系统上下文的相关操作
+ * 
+ * @note 原始函数名：FUN_18016e120
+ */
+#define SystemContextHandler FUN_18016e120
+
+// 新增函数重命名 - 资源管理器相关函数
+/**
+ * @brief 资源管理器缓冲区查找器
+ * 
+ * 该函数在核心引擎资源管理器中查找指定大小的缓冲区
+ * 
+ * @note 原始函数名：FUN_180160500
+ */
+#define ResourceManagerBufferFinder FUN_180160500
+
+/**
+ * @brief 字符编码处理器
+ * 
+ * 该函数负责处理单个字符编码
+ * 
+ * @note 原始函数名：FUN_18016055e
+ */
+#define CharacterCodeProcessor FUN_18016055e
+
+/**
+ * @brief 缓冲区大小处理器
+ * 
+ * 该函数根据不同的缓冲区大小值执行不同的操作
+ * 
+ * @note 原始函数名：FUN_18016bb80
+ */
+#define BufferSizeHandler FUN_18016bb80
+
 /**
  * @brief 初始化核心引擎数据结构
  * 
@@ -253824,7 +253926,7 @@ int SystemIdentifierParserVariant(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a130f0), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant130f0), CharacterByteCount == 0)) {
     return 5;
   }
   if ((((MemoryAllocationSize == 2) && (StringBuffer = *(char **)(DataNodeIndex + 8), *StringBuffer == 'A')) &&
@@ -253832,19 +253934,19 @@ int SystemIdentifierParserVariant(void
     return 6;
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13130), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13130), CharacterByteCount == 0)) {
     return 7;
   }
   if ((MemoryAllocationSize == 0x11) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13140), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13140), CharacterByteCount == 0)) {
     return 0x36;
   }
   if ((MemoryAllocationSize == 0xd) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13110), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13110), CharacterByteCount == 0)) {
     return 8;
   }
   if ((MemoryAllocationSize == 0xc) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13120), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13120), CharacterByteCount == 0)) {
     return 9;
   }
   if (MemoryAllocationSize == 2) {
@@ -253859,7 +253961,7 @@ int SystemIdentifierParserVariant(void
   }
   if (MemoryAllocationSize == 7) {
     AllocatedMemorySize = DataStructureCounter;
-    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       AllocatedMemorySize = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -253869,7 +253971,7 @@ int SystemIdentifierParserVariant(void
   }
   if (MemoryAllocationSize == 3) {
     AllocatedMemorySize = DataStructureCounter;
-    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = AllocatedMemorySize, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       AllocatedMemorySize = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -253878,7 +253980,7 @@ int SystemIdentifierParserVariant(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -254180,7 +254282,7 @@ int ValidateSystemStringProcessing(void)
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a130f0), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant130f0), CharacterByteCount == 0)) {
     return 5;
   }
   if ((((MemoryAllocationSize == 2) && (StringBuffer = *(char **)(DataNodeIndex + 8), *StringBuffer == 'A')) &&
@@ -254188,19 +254290,19 @@ int ValidateSystemStringProcessing(void)
     return 6;
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13130), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13130), CharacterByteCount == 0)) {
     return 7;
   }
   if ((MemoryAllocationSize == 0x11) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13140), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13140), CharacterByteCount == 0)) {
     return 0x36;
   }
   if ((MemoryAllocationSize == 0xd) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13110), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13110), CharacterByteCount == 0)) {
     return 8;
   }
   if ((MemoryAllocationSize == 0xc) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13120), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13120), CharacterByteCount == 0)) {
     return 9;
   }
   if (MemoryAllocationSize == 2) {
@@ -254215,7 +254317,7 @@ int ValidateSystemStringProcessing(void)
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -254225,7 +254327,7 @@ int ValidateSystemStringProcessing(void)
   }
   if (MemoryAllocationSize == 3) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -254234,7 +254336,7 @@ int ValidateSystemStringProcessing(void)
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -254522,7 +254624,7 @@ int FUN_1802252d3(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a130f0), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant130f0), CharacterByteCount == 0)) {
     return 5;
   }
   if ((((MemoryAllocationSize == 2) && (StringBuffer = *(char **)(DataNodeIndex + 8), *StringBuffer == 'A')) &&
@@ -254530,19 +254632,19 @@ int FUN_1802252d3(void
     return 6;
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13130), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13130), CharacterByteCount == 0)) {
     return 7;
   }
   if ((MemoryAllocationSize == 0x11) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13140), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13140), CharacterByteCount == 0)) {
     return 0x36;
   }
   if ((MemoryAllocationSize == 0xd) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13110), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13110), CharacterByteCount == 0)) {
     return 8;
   }
   if ((MemoryAllocationSize == 0xc) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13120), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13120), CharacterByteCount == 0)) {
     return 9;
   }
   if (MemoryAllocationSize == 2) {
@@ -254557,7 +254659,7 @@ int FUN_1802252d3(void
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -254567,7 +254669,7 @@ int FUN_1802252d3(void
   }
   if (MemoryAllocationSize == 3) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -254576,7 +254678,7 @@ int FUN_1802252d3(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -254856,7 +254958,7 @@ int FUN_180225317(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a130f0), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant130f0), CharacterByteCount == 0)) {
     return 5;
   }
   if ((((MemoryAllocationSize == 2) && (StringBuffer = *(char **)(DataNodeIndex + 8), *StringBuffer == 'A')) &&
@@ -254864,19 +254966,19 @@ int FUN_180225317(void
     return 6;
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13130), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13130), CharacterByteCount == 0)) {
     return 7;
   }
   if ((MemoryAllocationSize == 0x11) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13140), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13140), CharacterByteCount == 0)) {
     return 0x36;
   }
   if ((MemoryAllocationSize == 0xd) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13110), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13110), CharacterByteCount == 0)) {
     return 8;
   }
   if ((MemoryAllocationSize == 0xc) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13120), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13120), CharacterByteCount == 0)) {
     return 9;
   }
   if (MemoryAllocationSize == 2) {
@@ -254891,7 +254993,7 @@ int FUN_180225317(void
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -254901,7 +255003,7 @@ int FUN_180225317(void
   }
   if (MemoryAllocationSize == 3) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -254910,7 +255012,7 @@ int FUN_180225317(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -255180,7 +255282,7 @@ int FUN_180225357(void
   long long DataNodeIndex;
   
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a130f0), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant130f0), CharacterByteCount == 0)) {
     return 5;
   }
   if ((((MemoryAllocationSize == 2) && (StringBuffer = *(char **)(DataNodeIndex + 8), *StringBuffer == 'A')) &&
@@ -255188,19 +255290,19 @@ int FUN_180225357(void
     return 6;
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13130), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13130), CharacterByteCount == 0)) {
     return 7;
   }
   if ((MemoryAllocationSize == 0x11) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13140), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13140), CharacterByteCount == 0)) {
     return 0x36;
   }
   if ((MemoryAllocationSize == 0xd) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13110), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13110), CharacterByteCount == 0)) {
     return 8;
   }
   if ((MemoryAllocationSize == 0xc) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13120), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13120), CharacterByteCount == 0)) {
     return 9;
   }
   if (MemoryAllocationSize == 2) {
@@ -255215,7 +255317,7 @@ int FUN_180225357(void
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -255225,7 +255327,7 @@ int FUN_180225357(void
   }
   if (MemoryAllocationSize == 3) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -255234,7 +255336,7 @@ int FUN_180225357(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -255508,19 +255610,19 @@ int FUN_180225383(void
     return 6;
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13130), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13130), CharacterByteCount == 0)) {
     return 7;
   }
   if ((MemoryAllocationSize == 0x11) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13140), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13140), CharacterByteCount == 0)) {
     return 0x36;
   }
   if ((MemoryAllocationSize == 0xd) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13110), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13110), CharacterByteCount == 0)) {
     return 8;
   }
   if ((MemoryAllocationSize == 0xc) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13120), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13120), CharacterByteCount == 0)) {
     return 9;
   }
   if (MemoryAllocationSize == 2) {
@@ -255535,7 +255637,7 @@ int FUN_180225383(void
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -255545,7 +255647,7 @@ int FUN_180225383(void
   }
   if (MemoryAllocationSize == 3) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -255554,7 +255656,7 @@ int FUN_180225383(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -255824,19 +255926,19 @@ int FUN_1802253c2(void
   long long DataNodeIndex;
   
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13130), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13130), CharacterByteCount == 0)) {
     return 7;
   }
   if ((MemoryAllocationSize == 0x11) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13140), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13140), CharacterByteCount == 0)) {
     return 0x36;
   }
   if ((MemoryAllocationSize == 0xd) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13110), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13110), CharacterByteCount == 0)) {
     return 8;
   }
   if ((MemoryAllocationSize == 0xc) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13120), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13120), CharacterByteCount == 0)) {
     return 9;
   }
   if (MemoryAllocationSize == 2) {
@@ -255851,7 +255953,7 @@ int FUN_1802253c2(void
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -255861,7 +255963,7 @@ int FUN_1802253c2(void
   }
   if (MemoryAllocationSize == 3) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -255870,7 +255972,7 @@ int FUN_1802253c2(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -256140,15 +256242,15 @@ int FUN_1802253ee(void
   long long DataNodeIndex;
   
   if ((MemoryAllocationSize == 0x11) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13140), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13140), CharacterByteCount == 0)) {
     return 0x36;
   }
   if ((MemoryAllocationSize == 0xd) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13110), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13110), CharacterByteCount == 0)) {
     return 8;
   }
   if ((MemoryAllocationSize == 0xc) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13120), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13120), CharacterByteCount == 0)) {
     return 9;
   }
   if (MemoryAllocationSize == 2) {
@@ -256163,7 +256265,7 @@ int FUN_1802253ee(void
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -256173,7 +256275,7 @@ int FUN_1802253ee(void
   }
   if (MemoryAllocationSize == 3) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -256182,7 +256284,7 @@ int FUN_1802253ee(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -256452,11 +256554,11 @@ int FUN_18022541a(void
   long long DataNodeIndex;
   
   if ((MemoryAllocationSize == 0xd) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13110), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13110), CharacterByteCount == 0)) {
     return 8;
   }
   if ((MemoryAllocationSize == 0xc) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13120), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13120), CharacterByteCount == 0)) {
     return 9;
   }
   if (MemoryAllocationSize == 2) {
@@ -256471,7 +256573,7 @@ int FUN_18022541a(void
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -256481,7 +256583,7 @@ int FUN_18022541a(void
   }
   if (MemoryAllocationSize == 3) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -256490,7 +256592,7 @@ int FUN_18022541a(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -256760,7 +256862,7 @@ int FUN_180225446(void
   long long DataNodeIndex;
   
   if ((MemoryAllocationSize == 0xc) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13120), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13120), CharacterByteCount == 0)) {
     return 9;
   }
   if (MemoryAllocationSize == 2) {
@@ -256775,7 +256877,7 @@ int FUN_180225446(void
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -256785,7 +256887,7 @@ int FUN_180225446(void
   }
   if (MemoryAllocationSize == 3) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -256794,7 +256896,7 @@ int FUN_180225446(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -257075,7 +257177,7 @@ int FUN_180225472(void
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -257085,7 +257187,7 @@ int FUN_180225472(void
   }
   if (MemoryAllocationSize == 3) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -257094,7 +257196,7 @@ int FUN_180225472(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -257369,7 +257471,7 @@ int FUN_1802254b1(void
   }
   if (MemoryAllocationSize == 7) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13158)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternC)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 8) {
@@ -257379,7 +257481,7 @@ int FUN_1802254b1(void
   }
   if (MemoryAllocationSize == 3) {
     DataStructureCounter = RegisterSourceIndex;
-    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&UNK_180a13160)[MemoryBlockIndex]
+    while (MemoryBlockIndex = DataStructureCounter, *(char *)(*(long long *)(DataNodeIndex + 8) + MemoryBlockIndex) == (&SystemMemoryPatternD)[MemoryBlockIndex]
           ) {
       DataStructureCounter = MemoryBlockIndex + 1;
       if (MemoryBlockIndex + 1 == 4) {
@@ -257388,7 +257490,7 @@ int FUN_1802254b1(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), CharacterByteCount == 0)) {
+     (CharacterByteCount = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), CharacterByteCount == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -257677,7 +257779,7 @@ int FUN_1802254f0(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (IntegerValue = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), IntegerValue == 0)) {
+     (IntegerValue = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), IntegerValue == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -257956,7 +258058,7 @@ int FUN_180225537(void
     }
   }
   if ((MemoryAllocationSize == 8) &&
-     (IntegerValue = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), IntegerValue == 0)) {
+     (IntegerValue = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), IntegerValue == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -258225,7 +258327,7 @@ int FUN_180225577(void
   long long DataNodeIndex;
   
   if ((MemoryAllocationSize == 8) &&
-     (IntegerValue = strcmp(*(void *)(DataNodeIndex + 8),&UNK_180a13180), IntegerValue == 0)) {
+     (IntegerValue = strcmp(*(void *)(DataNodeIndex + 8),&SystemStringConstant13180), IntegerValue == 0)) {
     return 0x2c;
   }
   if (MemoryAllocationSize == 4) {
@@ -264085,7 +264187,7 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
   
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x20,8,3,0xfffffffffffffffe);
   *PrimaryProcessingStatusFlag = &SystemPrimaryDataTemplate;
-  *PrimaryProcessingStatusFlag = &UNK_180a139f0;
+  *PrimaryProcessingStatusFlag = &SystemStatusFlag139f0;
   *(uint8_t *)(PrimaryProcessingStatusFlag + 3) = 0;
   PrimaryProcessingStatusFlag[1] = 0;
   PrimaryProcessingStatusFlag[2] = 0;
@@ -264176,16 +264278,16 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
     uStack_84 = 0;
     FunctionAddress80 = 0;
     uStack_7c = 0;
-    pcStack_170 = (code *)&UNK_18022a500;
-    pDataContentStatus = &UNK_18022a4f0;
+    pcStack_170 = (code *)&SystemFunctionPointer22a500;
+    pDataContentStatus = &SystemFunctionPointer22a4f0;
     apSystemProcessingStatusFlag[0] = &CoreEnginePointerBuffer158;
     PrimaryStackPointer98 = apSystemProcessingStatusFlag;
     (**(code **)(**(long long **)(CharacterCode + 0x88) + 0x60)              (*(long long **)(CharacterCode + 0x88),&SystemMonitorComparisonData,CharacterCode + 0xc,0);
     if (pcStack_170 != (code *)0x0) {
       (*pcStack_170)(apSystemProcessingStatusFlag,0,0);
     }
-    pcStack_170 = (code *)&UNK_18022a4b0;
-    pDataContentStatus = &UNK_18022a4a0;
+    pcStack_170 = (code *)&SystemFunctionPointer22a4b0;
+    pDataContentStatus = &SystemFunctionPointer22a4a0;
     apSystemProcessingStatusFlag[0] = (void **)aProcessingCounter;
     PrimaryStackPointer98 = apSystemProcessingStatusFlag;
     (**(code **)(**(long long **)(CharacterCode + 0x88) + 0x60)              (*(long long **)(CharacterCode + 0x88),&SystemConnectionComparisonData,CharacterCode + 0xc,0);
@@ -264777,7 +264879,7 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
           do {
             MemoryAllocationIndexAdditional = MemoryAllocationIndexSecondary + 1;
             if (*(char *)(*(long long *)(UnicodeCodePoint8 + 0xa8 + BufferStatus3) + MemoryAllocationIndexSecondary) !=
-                (&UNK_180a139e0)[MemoryAllocationIndexSecondary]) goto LAB_180227e59;
+                (&SystemStatusFlag139e0)[MemoryAllocationIndexSecondary]) goto LAB_180227e59;
             MemoryAllocationIndexSecondary = MemoryAllocationIndexAdditional;
           } while (MemoryAllocationIndexAdditional != 6);
         }
@@ -264786,7 +264888,7 @@ LAB_180227e59:
           if (*(char *)(Utf8SourcePointer + 9) != '\x01') {
             CoreEngineFinalizeSystemEvent(&DataContentStatus,BufferStatus3 + 0xa0 + UnicodeCodePoint8);
             if (fStack_158 == 0.0) {
-              InitializeSystemEvent(&UNK_180a27738);
+              InitializeSystemEvent(&SystemEventTemplate27738);
               SystemCheckResult4 = -1;
             }
             else {
@@ -264811,7 +264913,7 @@ LAB_180227e59:
               if (PrimaryProcessingStatusFlag8 != NULL) {
                 pSystemStatusValue = PrimaryProcessingStatusFlag8;
               }
-              FUN_180627020(&UNK_180a138c0,pSystemStatusValue,systemEventTemplatePointer0);
+              FUN_180627020(&SystemEventTemplate138c0,pSystemStatusValue,systemEventTemplatePointer0);
             }
             else {
               *(char *)((long long)SystemCheckResult4 + 0xc0 + CharacterCode) = (char)UnicodeCodePoint5;
@@ -268377,7 +268479,7 @@ FUN_18022b510(uint64_t CharacterCode,uint64_t *Utf8InputBufferSize,uint64_t Utf8
   Utf8BufferSize[1] = Utf8BufferSize + 3;
   *(uint8_t *)(Utf8BufferSize + 3) = 0;
   *(uint32_t *)(Utf8BufferSize + 2) = 0xb;
-  strcpy_s(Utf8BufferSize[1],0x80,&UNK_180a13a98,Utf16EndPointer,0,0xfffffffffffffffe);
+  strcpy_s(Utf8BufferSize[1],0x80,&SystemStringConfig13a98,Utf16EndPointer,0,0xfffffffffffffffe);
   return Utf8BufferSize;
 }
 
@@ -268408,7 +268510,7 @@ uint64_t * FUN_18022b590(uint64_t *Utf8InputBuffer
   *(uint32_t *)(CharacterCode + 1) = 0;
   *(uint16_t *)(CharacterCode + 0x16) = 0;
   Utf8InputBuffer[0x15] = 0;
-  *Utf8InputBuffer = &UNK_180a13cc0;
+  *Utf8InputBuffer = &SystemStringConfig13cc0;
   MemoryBlockIndex = CharacterCode + 0x17;
   DataStructureCounter = 0x10;
   ProcessSystemResourceInitialization(MemoryBlockIndex,8,0x10,&CoreEngineSystemBufferAllocator,InitializeSystemMemoryCallback);
@@ -268556,7 +268658,7 @@ uint64_t FUN_18022b980(uint64_t CharacterCode,unsigned long long Utf8BufferSize
   uint64_t MemoryAddressMask;
   
   MemoryAddressMask = 0xfffffffffffffffe;
-  *Utf8InputBuffer = &UNK_180a13cc0;
+  *Utf8InputBuffer = &SystemStringConfig13cc0;
   BufferAllocationStatus = CharacterCode + 0x17;
   MemoryBlockIndex = 0x10;
   do {
