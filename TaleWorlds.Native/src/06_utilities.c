@@ -6372,15 +6372,15 @@ void* SystemResourceDataBufferA0;         // 系统资源数据缓冲区A0
 
 // 系统验证相关变量声明
 void* SystemValidationContextPointerA0;   // 系统验证上下文指针A0
-uint8_t SystemValidationCleanupFlagA0;       // DAT_180c95f28 - 系统验证清理标志A0
+uint8_t SystemValidationCleanupFlagA0;       // 系统验证清理标志A0
 void* SystemValidationContextCleanupA0;   // 系统验证上下文清理A0
 uint8_t SystemValidationTerminationFlagA0;  // 系统验证终止标志A0
-uint8_t SystemValidationCleanupFlagA1;       // DAT_180c95fe8 - 系统验证清理标志A1
+uint8_t SystemValidationCleanupFlagA1;       // 系统验证清理标志A1
 uint8_t SystemValidationTerminationFlagA1;  // 系统验证终止标志A1
-uint8_t SystemValidationCleanupFlagA2;       // DAT_180c96210 - 系统验证清理标志A2
+uint8_t SystemValidationCleanupFlagA2;       // 系统验证清理标志A2
 
 // 系统数据缓冲区相关变量声明
-void* SystemDataBufferA;               // DAT_180a06434 - 系统数据缓冲区A
+void* SystemDataBufferA;               // 系统数据缓冲区A
 void* SystemDataBufferB;                // 系统数据缓冲区B
 void* SystemDataBufferC;                // 系统数据缓冲区C
 void* SystemDataBufferD;                // 系统数据缓冲区D
@@ -6435,8 +6435,8 @@ uint8_t MemoryValidationStatus;    // 内存验证状态
 
 // 系统资源数据管理相关变量声明
 void* SystemResourceDataManager;     // 系统资源数据管理器
-void* SystemResourceDataTable;         // DAT_180c96790 - 系统资源数据表
-void* SystemResourceDataBuffer;         // DAT_18098bc73 - 系统资源数据缓冲区
+void* SystemResourceDataTable;         // 系统资源数据表
+void* SystemResourceDataBuffer;         // 系统资源数据缓冲区
 void* SystemCalculationBaseAddress;    // 系统计算基础地址
 
 // 系统初始化和重置函数宏定义
