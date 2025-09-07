@@ -921,6 +921,52 @@
 // 异常处理器特殊状态常量
 #define ExceptionHandlerSpecialStateOffset 3000
 
+// 新增常量定义 - 用于替换硬编码偏移量
+#define ExceptionHandlerContextOffsetB50 0xb50            // 异常处理上下文偏移量B50
+#define ExceptionHandlerContextOffsetB40 0xb40            // 异常处理上下文偏移量B40
+#define ExceptionHandlerContextOffsetB20 0xb20            // 异常处理上下文偏移量B20
+#define ExceptionHandlerContextOffsetB28 0xb28            // 异常处理上下文偏移量B28
+#define ExceptionHandlerContextOffsetB38 0xb38            // 异常处理上下文偏移量B38
+#define ExceptionHandlerContextOffsetB00 0xb00            // 异常处理上下文偏移量B00
+#define ExceptionHandlerContextOffsetB08 0xb08            // 异常处理上下文偏移量B08
+#define ExceptionHandlerContextOffsetB18 0xb18            // 异常处理上下文偏移量B18
+#define ExceptionHandlerContextOffsetAe0 0xae0            // 异常处理上下文偏移量Ae0
+#define ExceptionHandlerContextOffsetAe8 0xae8            // 异常处理上下文偏移量Ae8
+#define ExceptionHandlerContextOffsetAf8 0xaf8            // 异常处理上下文偏移量Af8
+#define ExceptionHandlerContextOffsetAc0 0xac0            // 异常处理上下文偏移量Ac0
+#define ExceptionHandlerContextOffsetAc8 0xac8            // 异常处理上下文偏移量Ac8
+#define ExceptionHandlerContextOffsetAd8 0xad8            // 异常处理上下文偏移量Ad8
+#define ExceptionHandlerContextOffsetAa0 0xaa0            // 异常处理上下文偏移量Aa0
+#define ExceptionHandlerContextOffsetAa8 0xaa8            // 异常处理上下文偏移量Aa8
+#define ExceptionHandlerContextOffsetAb8 0xab8            // 异常处理上下文偏移量Ab8
+
+// 函数指针表偏移量常量
+#define FunctionPointerTableOffset2f8 0x2f8              // 函数指针表偏移量2f8
+
+// 全局资源表偏移量常量
+#define GlobalResourceTableOffset1a0 0x1a0               // 全局资源表偏移量1a0
+
+// 数据结构偏移量常量
+#define DataStructureOffset58 0x58                       // 数据结构偏移量58
+#define DataStructureOffset90 0x90                       // 数据结构偏移量90
+#define DataStructureOffset790 0x790                     // 数据结构偏移量790
+
+// 安全检查相关偏移量常量
+#define SecurityCheckOffset5f0 0x5f0                     // 安全检查偏移量5f0
+#define SecurityCheckOffset1d0 0x1d0                     // 安全检查偏移量1d0
+
+// 系统组件偏移量常量
+#define SystemComponentOffset4d0 0x4d0                   // 系统组件偏移量4d0
+#define SystemComponentOffset774 0x774                   // 系统组件偏移量774
+
+// 数据缓冲区偏移量常量
+#define DataBufferOffset2e8 0x2e8                       // 数据缓冲区偏移量2e8
+#define DataBufferOffset2c 0x2c                         // 数据缓冲区偏移量2c
+#define DataBufferOffset34 0x34                         // 数据缓冲区偏移量34
+
+// 系统状态标志偏移量常量
+#define SystemStateFlagsOffset2d8 0x2d8                 // 系统状态标志偏移量2d8
+
 /**
  * @brief 数据加密处理函数
  * @note 原始函数名：func_0x00018074be80
@@ -18990,7 +19036,7 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
     redGreenComponents = dataBuffer[1];
     blueAlphaComponents = dataBuffer[2];
     colorPackedData = dataBuffer[3];
-    memoryBlockOffset = (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x2f8))(exceptionHandlerContextPointer,&colorDataWord,1);
+    memoryBlockOffset = (**(FunctionPointer**)(*exceptionHandlerContextPointer + FunctionPointerTableOffset2f8))(exceptionHandlerContextPointer,&colorDataWord,1);
     if (memoryBlockOffset == 0) {
       blueComponent = blueAlphaComponents >> 0x18;
       alphaComponent = colorPackedData >> 0x18;
