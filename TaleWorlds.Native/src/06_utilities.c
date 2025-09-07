@@ -9507,8 +9507,14 @@ uint8_t SecurityValidationFlagA41;    // UNK_180a39a40
 // 系统安全验证标志A42
 // 功能：用于系统安全验证的第42个标志位，控制系统安全检查的状态
 uint8_t SecurityValidationFlagA42;    // UNK_180a39a60
+// 系统安全验证标志A43
+// 功能：用于系统安全验证的第43个标志位，控制系统安全检查的状态
 uint8_t SecurityValidationFlagA43;    // UNK_180a39a70
+// 系统安全验证标志A44
+// 功能：用于系统安全验证的第44个标志位，控制系统安全检查的状态
 uint8_t SecurityValidationFlagA44;    // UNK_180a39a88
+// 系统安全验证标志A45
+// 功能：用于系统安全验证的第45个标志位，控制系统安全检查的状态
 uint8_t SecurityValidationFlagA45;    // UNK_180a39aa0
 uint8_t SecurityValidationFlagA46;    // UNK_180a39ab8
 uint8_t SecurityValidationFlagA47;    // UNK_180a39ad8
