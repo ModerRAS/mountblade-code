@@ -1002,147 +1002,126 @@ void* UIGestureCoordinates;
 #define UIVectorMultiplyMask10 _DAT_1809473d0
 #define UIVectorMultiplyMask11 _DAT_1809473e0
 #define UIVectorMultiplyMask12 _DAT_1809473f0
- 原始变量名：_DAT_180947400 - UI向量乘法掩码13
+ _DAT_180947400 - UI向量乘法掩码13
 #define UIVectorMultiplyMask13 _DAT_180947400
- 原始变量名：_DAT_180947410 - UI向量乘法掩码14
+ _DAT_180947410 - UI向量乘法掩码14
 #define UIVectorMultiplyMask14 _DAT_180947410
- 原始变量名：_DAT_180947420 - UI向量乘法掩码15
+ _DAT_180947420 - UI向量乘法掩码15
 #define UIVectorMultiplyMask15 _DAT_180947420
- 原始变量名：_DAT_180947430 - UI向量乘法掩码16
+ _DAT_180947430 - UI向量乘法掩码16
 #define UIVectorMultiplyMask16 _DAT_180947430
- 原始变量名：_DAT_180947440 - UI向量乘法掩码17
+ _DAT_180947440 - UI向量乘法掩码17
 #define UIVectorMultiplyMask17 _DAT_180947440
- 原始变量名：_DAT_180947450 - UI向量乘法掩码18
+ _DAT_180947450 - UI向量乘法掩码18
 #define UIVectorMultiplyMask18 _DAT_180947450
- 原始变量名：_DAT_180947460 - UI向量乘法掩码19
+ _DAT_180947460 - UI向量乘法掩码19
 #define UIVectorMultiplyMask19 _DAT_180947460
- 原始变量名：_DAT_180947470 - UI向量乘法掩码20
+ _DAT_180947470 - UI向量乘法掩码20
 #define UIVectorMultiplyMask20 _DAT_180947470
- 原始变量名：_DAT_180947480 - UI向量乘法掩码21
+ _DAT_180947480 - UI向量乘法掩码21
 #define UIVectorMultiplyMask21 _DAT_180947480
- 原始变量名：_DAT_180947490 - UI向量乘法掩码22
-#define UIVectorMultiplyMask22 _DAT_180947490
- 原始变量名：_DAT_1809474a0 - UI向量乘法掩码23
+ #define UIVectorMultiplyMask22 _DAT_180947490
 #define UIVectorMultiplyMask23 _DAT_1809474a0
- 原始变量名：_DAT_1809474b0 - UI向量乘法掩码24
-#define UIVectorMultiplyMask24 _DAT_1809474b0
- 原始变量名：_DAT_1809474c0 - UI向量乘法掩码25
+ #define UIVectorMultiplyMask24 _DAT_1809474b0
 #define UIVectorMultiplyMask25 _DAT_1809474c0
- 原始变量名：_DAT_1809474d0 - UI向量乘法掩码26
-#define UIVectorMultiplyMask26 _DAT_1809474d0
- 原始变量名：_DAT_1809474e0 - UI向量乘法掩码27
+ #define UIVectorMultiplyMask26 _DAT_1809474d0
 #define UIVectorMultiplyMask27 _DAT_1809474e0
- 原始变量名：_DAT_1809474f0 - UI向量乘法掩码28
 #define UIVectorMultiplyMask28 _DAT_1809474f0
- 原始变量名：_DAT_180947500 - UI向量乘法掩码29
 #define UIVectorMultiplyMask29 _DAT_180947500
- 原始变量名：_DAT_180947510 - UI向量乘法掩码30
 #define UIVectorMultiplyMask30 _DAT_180947510
- 原始变量名：_DAT_180947520 - UI向量乘法掩码31
-#define UIVectorMultiplyMask31 _DAT_180947520
- 原始变量名：_DAT_180948080 - UI向量加法常数
+ #define UIVectorMultiplyMask31 _DAT_180947520
 #define UIVectorAdditionConstant _DAT_180948080
- 原始变量名：_DAT_1809480a0 - UI渲染常数2
 #define UIRenderingConstant2 _DAT_1809480a0
- 原始变量名：_DAT_1809480b0 - UI渲染常数3
 #define UIRenderingConstant3 _DAT_1809480b0
- 原始变量名：_DAT_1809480c0 - UI渲染常数4
 #define UIRenderingConstant4 _DAT_1809480c0
- 原始变量名：_DAT_1809480d0 - UI渲染常数5
 #define UIRenderingConstant5 _DAT_1809480d0
- 原始变量名：_DAT_180948140 - UI加密掩码
 #define UIEncryptionMask _DAT_180948140
- 原始变量名：_DAT_180a06434 - UI数据校验常数
 #define UIDataValidationConstant _DAT_180a06434
- 原始变量名：_DAT_180a3f870 - UI饱和加法常数
 #define UISaturationAdditionConstant _DAT_180a3f870
- 原始变量名：_DAT_180a3f880 - UI饱和减法常数
 #define UISaturationSubtractionConstant _DAT_180a3f880
- 原始变量名：_DAT_180a401b0 - UI数据转换常数
 #define UIDataConversionConstant _DAT_180a401b0
- 原始变量名：_DAT_180a40580 - UI异或加密密钥
 #define UIXOREncryptionKey _DAT_180a40580
 
  UI系统渲染参数表宏定义
- 原始变量名：UNK_18094e25c - UI渲染参数表0
+ UNK_18094e25c - UI渲染参数表0
 #define UIRenderParameterTable0 UNK_18094e25c
- 原始变量名：UNK_18094e26c - UI渲染参数表1
+ UNK_18094e26c - UI渲染参数表1
 #define UIRenderParameterTable1 UNK_18094e26c
- 原始变量名：UNK_18094e270 - UI渲染参数表2
+ UNK_18094e270 - UI渲染参数表2
 #define UIRenderParameterTable2 UNK_18094e270
- 原始变量名：UNK_18094e274 - UI渲染参数表3
+ UNK_18094e274 - UI渲染参数表3
 #define UIRenderParameterTable3 UNK_18094e274
- 原始变量名：UNK_18094e27c - UI渲染参数表4
+ UNK_18094e27c - UI渲染参数表4
 #define UIRenderParameterTable4 UNK_18094e27c
- 原始变量名：UNK_18094e280 - UI渲染参数表5
+ UNK_18094e280 - UI渲染参数表5
 #define UIRenderParameterTable5 UNK_18094e280
 
  UI系统数据缓冲区宏定义
- 原始变量名：UNK_1809535b4 - UI数据缓冲区A
+ UNK_1809535b4 - UI数据缓冲区A
 #define UIDataBufferA UNK_1809535b4
- 原始变量名：UNK_1809535bc - UI数据缓冲区B
+ UNK_1809535bc - UI数据缓冲区B
 #define UIDataBufferB UNK_1809535bc
- 原始变量名：UNK_180953648 - UI数据缓冲区C
+ UNK_180953648 - UI数据缓冲区C
 #define UIDataBufferC UNK_180953648
- 原始变量名：UNK_180953668 - UI数据缓冲区D
+ UNK_180953668 - UI数据缓冲区D
 #define UIDataBufferD UNK_180953668
- 原始变量名：UNK_180953688 - UI数据缓冲区E
+ UNK_180953688 - UI数据缓冲区E
 #define UIDataBufferE UNK_180953688
 
  UI系统坐标数据表宏定义
- 原始变量名：UNK_1809536a6 - UI坐标数据表A
+ UNK_1809536a6 - UI坐标数据表A
 #define UICoordinateDataTableA UNK_1809536a6
- 原始变量名：UNK_1809536a8 - UI坐标数据表B
+ UNK_1809536a8 - UI坐标数据表B
 #define UICoordinateDataTableB UNK_1809536a8
 
  UI系统函数结果表宏定义
- 原始变量名：UNK_1809535ec - UI函数结果表A
+ UNK_1809535ec - UI函数结果表A
 #define UIFunctionResultTableA UNK_1809535ec
- 原始变量名：UNK_1809535e8 - UI函数结果表B
+ UNK_1809535e8 - UI函数结果表B
 #define UIFunctionResultTableB UNK_1809535e8
- 原始变量名：UNK_180954788 - UI函数结果表C
+ UNK_180954788 - UI函数结果表C
 #define UIFunctionResultTableC UNK_180954788
- 原始变量名：UNK_1809535d8 - UI函数结果表D
+ UNK_1809535d8 - UI函数结果表D
 #define UIFunctionResultTableD UNK_1809535d8
 
  UI系统验证数据表宏定义
- 原始变量名：UNK_180954770 - UI验证数据表A
+ UNK_180954770 - UI验证数据表A
 #define UIValidationDataTableA UNK_180954770
- 原始变量名：UNK_1809536c0 - UI验证数据表B
+ UNK_1809536c0 - UI验证数据表B
 #define UIValidationDataTableB UNK_1809536c0
- 原始变量名：UNK_180953704 - UI验证数据表C
+ UNK_180953704 - UI验证数据表C
 #define UIValidationDataTableC UNK_180953704
 
  UI系统数据表宏定义
- 原始变量名：UNK_180956f72 - UI数据表A
+ UNK_180956f72 - UI数据表A
 #define UIDataTableA UNK_180956f72
- 原始变量名：UNK_18097edf8 - UI数据表B
+ UNK_18097edf8 - UI数据表B
 #define UIDataTableB UNK_18097edf8
- 原始变量名：UNK_180980dc0 - UI数据表C
+ UNK_180980dc0 - UI数据表C
 #define UIDataTableC UNK_180980dc0
- 原始变量名：UNK_180981620 - UI数据表D
+ UNK_180981620 - UI数据表D
 #define UIDataTableD UNK_180981620
 
  UI系统渲染缓冲区指针宏定义
- 原始变量名：UNK_18097f660 - UI组件数据缓冲区指针
+ UNK_18097f660 - UI组件数据缓冲区指针
 #define UIComponentDataBufferPointer UNK_18097f660
- 原始变量名：UNK_18097f960 - UI事件处理缓冲区指针
+ UNK_18097f960 - UI事件处理缓冲区指针
 #define UIEventHandlingBufferPointer UNK_18097f960
- 原始变量名：UNK_18097fda8 - UI渲染缓冲区指针A
+ UNK_18097fda8 - UI渲染缓冲区指针A
 #define UIRenderBufferPointerA UNK_18097fda8
- 原始变量名：UNK_18097fdc0 - UI渲染缓冲区指针B
+ UNK_18097fdc0 - UI渲染缓冲区指针B
 #define UIRenderBufferPointerB UNK_18097fdc0
- 原始变量名：UNK_18097fd98 - UI渲染缓冲区指针C
+ UNK_18097fd98 - UI渲染缓冲区指针C
 #define UIRenderBufferPointerC UNK_18097fd98
- 原始变量名：UNK_18097fd88 - UI渲染缓冲区指针D
+ UNK_18097fd88 - UI渲染缓冲区指针D
 #define UIRenderBufferPointerD UNK_18097fd88
- 原始变量名：UNK_18097fd78 - UI渲染缓冲区指针E
+ UNK_18097fd78 - UI渲染缓冲区指针E
 #define UIRenderBufferPointerE UNK_18097fd78
- 原始变量名：UNK_18097fd68 - UI渲染缓冲区指针F
+ UNK_18097fd68 - UI渲染缓冲区指针F
 #define UIRenderBufferPointerF UNK_18097fd68
- 原始变量名：UNK_18097fd58 - UI渲染缓冲区指针G
+ UNK_18097fd58 - UI渲染缓冲区指针G
 #define UIRenderBufferPointerG UNK_18097fd58
- 原始变量名：UNK_18097fd48 - UI渲染缓冲区指针H
+ UNK_18097fd48 - UI渲染缓冲区指针H
 #define UIRenderBufferPointerH UNK_18097fd48
 
  UI系统未知函数表宏定义
