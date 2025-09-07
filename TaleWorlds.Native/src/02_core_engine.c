@@ -151,8 +151,8 @@
 
 // 浮点变量语义化映射
 #define FloatVariable7 PrimaryFloatCoefficient              // 主浮点系数
-#define FloatVariable5 SecondaryFloatCoefficient            // 次浮点系数  
-#define FloatVariable4 TertiaryFloatCoefficient             // 第三浮点系数
+#define MatrixTransformMultiplier2 SecondaryFloatCoefficient            // 次浮点系数  
+#define MatrixTransformMultiplier1 TertiaryFloatCoefficient             // 第三浮点系数
 #define ProcessedFloatValue8 CalculatedFloatResult          // 计算浮点结果
 #define fStackX_10 HorizontalOffsetValue                   // 水平偏移值
 #define fStackX_14 VerticalOffsetValue                     // 垂直偏移值
@@ -47595,10 +47595,10 @@ SystemBufferValidationError:
       float matrixTransformMultiplier1 = *(float *)(CharacterCode + 0x138);
       float matrixTransformMultiplier2 = *(float *)(CharacterCode + 0x140);
       CalculatedFilterValue = *(float *)(CharacterCode + 0x144);
-      MatrixElementE = FloatVariable4 * SystemContextPrimaryFloat3 + FloatVariable5 * NormalizedParameterValue + matrixTransformMultiplier1 * SecondaryFloatValue;
-      MatrixElementF = FloatVariable4 * SystemContextPrimaryFloat4 + FloatVariable5 * PrimaryFloatValue + matrixTransformMultiplier1 * SystemContextPrimaryFloat8;
-      MatrixElementG = FloatVariable4 * SystemFloatValue + FloatVariable5 * SecondaryFloatValue + matrixTransformMultiplier1 * ContextPrimaryFloat9;
-      MatrixElementH = FloatVariable4 * SystemContextPrimaryFloat6 + FloatVariable5 * SystemContextPrimaryFloat2 + matrixTransformMultiplier1 * ContextSecondaryFloat0;
+      MatrixElementE = MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier2 * NormalizedParameterValue + matrixTransformMultiplier1 * SecondaryFloatValue;
+      MatrixElementF = MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + MatrixTransformMultiplier2 * PrimaryFloatValue + matrixTransformMultiplier1 * SystemContextPrimaryFloat8;
+      MatrixElementG = MatrixTransformMultiplier1 * SystemFloatValue + MatrixTransformMultiplier2 * SecondaryFloatValue + matrixTransformMultiplier1 * ContextPrimaryFloat9;
+      MatrixElementH = MatrixTransformMultiplier1 * SystemContextPrimaryFloat6 + MatrixTransformMultiplier2 * SystemContextPrimaryFloat2 + matrixTransformMultiplier1 * ContextSecondaryFloat0;
       matrixTransformMultiplier1 = *(float *)(CharacterCode + 0x148);
       float matrixTransformMultiplier3 = *(float *)(CharacterCode + 0x154);
       float matrixTransformMultiplier4 = *(float *)(CharacterCode + 0x150);
@@ -47946,7 +47946,7 @@ void CoreEngineProcessSystemContext(void
     MatrixRow4Col3 =
          MatrixSkewZ * TransformMatrixValue6 + MatrixDistanceZ * TransformMatrixValue2 + MatrixTranslationZ * TransformMatrixValue10 + FloatValueArray180[0xe];
     StackFloatValue220 =
-         FloatVariable5 * SystemContextPrimaryFloat6 + CalculatedDistance * SystemContextPrimaryFloat2 + ContextSecondaryFloat * ContextSecondaryFloat0 + SystemParameter180[0xf];
+         MatrixTransformMultiplier2 * SystemContextPrimaryFloat6 + CalculatedDistance * SystemContextPrimaryFloat2 + ContextSecondaryFloat * ContextSecondaryFloat0 + SystemParameter180[0xf];
     pFilterInputValue9 = &SystemFloatStackBuffer;
   }
   ProcessSystemDataTransfer(&SystemDataTransferBuffer,MemoryBlockIndex4 + 0x30,*(uint8_t *)(SystemContext + 0xf7),pFilterInputValue9);
@@ -48019,7 +48019,7 @@ void ProcessFloatCalculationAndDataFiltering(void)
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   int ValidationResult;
   uint32_t SystemChecksum;
   uint32_t ProcessingStatusFlag;
@@ -48191,8 +48191,8 @@ void ProcessFloatCalculationAndDataFiltering(void)
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x124);
     ContextSecondaryFloat = *(float *)(SystemContext + 0x120);
     CalculatedFilterValue = *(float *)(SystemContext + 0x128);
-    FloatVariable4 = *(float *)(SystemContext + 0x134);
-    FloatVariable5 = *(float *)(SystemContext + 0x130);
+    MatrixTransformMultiplier1 = *(float *)(SystemContext + 0x134);
+    MatrixTransformMultiplier2 = *(float *)(SystemContext + 0x130);
     MatrixRow1Col1 = SystemContextPrimaryFloat * SystemContextPrimaryFloat3 + ContextSecondaryFloat * NormalizedParameterValue + FilterInputValue * SecondaryFloatValue;
     MatrixRow1Col2 = SystemContextPrimaryFloat * SystemContextPrimaryFloat4 + ContextSecondaryFloat * PrimaryFloatValue + FilterInputValue * SystemContextPrimaryFloat8;
     MatrixRow1Col3 = SystemContextPrimaryFloat * SystemFloatValue + ContextSecondaryFloat * SecondaryFloatValue + FilterInputValue * ContextPrimaryFloat9;
@@ -48200,26 +48200,26 @@ void ProcessFloatCalculationAndDataFiltering(void)
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x138);
     ContextSecondaryFloat = *(float *)(SystemContext + 0x140);
     CalculatedFilterValue = *(float *)(SystemContext + 0x144);
-    MatrixRow2Col1 = FloatVariable4 * SystemContextPrimaryFloat3 + FloatVariable5 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
-    MatrixRow2Col2 = FloatVariable4 * SystemContextPrimaryFloat4 + FloatVariable5 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
-    MatrixRow2Col3 = FloatVariable4 * SystemFloatValue + FloatVariable5 * SecondaryFloatValue + SystemContextPrimaryFloat * ContextPrimaryFloat9;
-    MatrixRow2Col4 = FloatVariable4 * SystemContextPrimaryFloat6 + FloatVariable5 * SystemContextPrimaryFloat2 + SystemContextPrimaryFloat * ContextSecondaryFloat0;
+    MatrixRow2Col1 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier2 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
+    MatrixRow2Col2 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + MatrixTransformMultiplier2 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
+    MatrixRow2Col3 = MatrixTransformMultiplier1 * SystemFloatValue + MatrixTransformMultiplier2 * SecondaryFloatValue + SystemContextPrimaryFloat * ContextPrimaryFloat9;
+    MatrixRow2Col4 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat6 + MatrixTransformMultiplier2 * SystemContextPrimaryFloat2 + SystemContextPrimaryFloat * ContextSecondaryFloat0;
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x148);
-    FloatVariable4 = *(float *)(SystemContext + 0x154);
-    FloatVariable5 = *(float *)(SystemContext + 0x150);
+    MatrixTransformMultiplier1 = *(float *)(SystemContext + 0x154);
+    MatrixTransformMultiplier2 = *(float *)(SystemContext + 0x150);
     MatrixRow3Col1 = FilterInputValue * SystemContextPrimaryFloat3 + ContextSecondaryFloat * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
     MatrixRow3Col2 = FilterInputValue * SystemContextPrimaryFloat4 + ContextSecondaryFloat * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
     MatrixRow3Col3 = FilterInputValue * SystemFloatValue + ContextSecondaryFloat * SecondaryFloatValue + SystemContextPrimaryFloat * ContextPrimaryFloat9;
     MatrixRow3Col4 = FilterInputValue * SystemContextPrimaryFloat6 + ContextSecondaryFloat * SystemContextPrimaryFloat2 + SystemContextPrimaryFloat * ContextSecondaryFloat0;
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
     TransformedMatrixElementD0 =
-         FloatVariable4 * SystemContextPrimaryFloat3 + FloatVariable5 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue + InputParameterArray[0xc];
+         MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier2 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue + InputParameterArray[0xc];
     TransformedMatrixElementD4 =
-         FloatVariable4 * SystemContextPrimaryFloat4 + FloatVariable5 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8 + InputParameterArray[0xd];
+         MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + MatrixTransformMultiplier2 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8 + InputParameterArray[0xd];
     TransformedMatrixElementD8 =
-         FloatVariable4 * SystemFloatValue + FloatVariable5 * SecondaryFloatValue + SystemContextPrimaryFloat * ContextPrimaryFloat9 + InputParameterArray[0xe];
+         MatrixTransformMultiplier1 * SystemFloatValue + MatrixTransformMultiplier2 * SecondaryFloatValue + SystemContextPrimaryFloat * ContextPrimaryFloat9 + InputParameterArray[0xe];
     StackFloatValue220 =
-         FloatVariable4 * SystemContextPrimaryFloat6 + FloatVariable5 * SystemContextPrimaryFloat2 + SystemContextPrimaryFloat * ContextSecondaryFloat0 + InputParameterArray[0xf];
+         MatrixTransformMultiplier1 * SystemContextPrimaryFloat6 + MatrixTransformMultiplier2 * SystemContextPrimaryFloat2 + SystemContextPrimaryFloat * ContextSecondaryFloat0 + InputParameterArray[0xf];
     pFilterInputValue6 = &SystemFloatStackBuffer;
   }
   ProcessSystemDataTransfer(&SystemDataTransferBuffer,BufferStatus9 + 0x30,*(uint8_t *)(SystemContext + 0xf7),pFilterInputValue6);
@@ -48292,7 +48292,7 @@ void ExecuteFloatDataProcessingAndContextManagement(void
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   int ValidationResult;
   float FloatVariable7;
   float TemporaryProcessedFloatValue8;
@@ -48361,8 +48361,8 @@ void ExecuteFloatDataProcessingAndContextManagement(void
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x124);
     ContextSecondaryFloat = *(float *)(SystemContext + 0x120);
     CalculatedFilterValue = *(float *)(SystemContext + 0x128);
-    FloatVariable4 = *(float *)(SystemContext + 0x134);
-    FloatVariable5 = *(float *)(SystemContext + 0x130);
+    MatrixTransformMultiplier1 = *(float *)(SystemContext + 0x134);
+    MatrixTransformMultiplier2 = *(float *)(SystemContext + 0x130);
     MatrixRow1Col1 = SystemContextPrimaryFloat * SecondaryFloatValue + ContextSecondaryFloat * FloatVariable7 + FilterInputValue * SystemFloatValue;
     MatrixRow1Col2 = SystemContextPrimaryFloat * SystemContextPrimaryFloat2 + ContextSecondaryFloat * ProcessedFloatValue8 + FilterInputValue * SystemContextPrimaryFloat6;
     MatrixRow1Col3 = SystemContextPrimaryFloat * SystemContextPrimaryFloat3 + ContextSecondaryFloat * NormalizedParameterValue + FilterInputValue * SecondaryFloatValue;
@@ -48370,22 +48370,22 @@ void ExecuteFloatDataProcessingAndContextManagement(void
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x138);
     ContextSecondaryFloat = *(float *)(SystemContext + 0x140);
     CalculatedFilterValue = *(float *)(SystemContext + 0x144);
-    MatrixRow2Col1 = FloatVariable4 * SecondaryFloatValue + FloatVariable5 * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue;
-    MatrixRow2Col2 = FloatVariable4 * SystemContextPrimaryFloat2 + FloatVariable5 * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6;
-    MatrixRow2Col3 = FloatVariable4 * SystemContextPrimaryFloat3 + FloatVariable5 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
-    MatrixRow2Col4 = FloatVariable4 * SystemContextPrimaryFloat4 + FloatVariable5 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
+    MatrixRow2Col1 = MatrixTransformMultiplier1 * SecondaryFloatValue + MatrixTransformMultiplier2 * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue;
+    MatrixRow2Col2 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat2 + MatrixTransformMultiplier2 * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6;
+    MatrixRow2Col3 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier2 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
+    MatrixRow2Col4 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + MatrixTransformMultiplier2 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x148);
-    FloatVariable4 = *(float *)(SystemContext + 0x154);
-    FloatVariable5 = *(float *)(SystemContext + 0x150);
+    MatrixTransformMultiplier1 = *(float *)(SystemContext + 0x154);
+    MatrixTransformMultiplier2 = *(float *)(SystemContext + 0x150);
     MatrixRow3Col1 = FilterInputValue * SecondaryFloatValue + ContextSecondaryFloat * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue;
     MatrixRow3Col2 = FilterInputValue * SystemContextPrimaryFloat2 + ContextSecondaryFloat * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6;
     MatrixRow3Col3 = FilterInputValue * SystemContextPrimaryFloat3 + ContextSecondaryFloat * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
     MatrixRow3Col4 = FilterInputValue * SystemContextPrimaryFloat4 + ContextSecondaryFloat * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
-    TransformedMatrixElementD0 = FloatVariable4 * SecondaryFloatValue + FloatVariable5 * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue + PatternIndex[0xc];
-    TransformedMatrixElementD4 = FloatVariable4 * SystemContextPrimaryFloat2 + FloatVariable5 * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6 + PatternIndex[0xd];
-    TransformedMatrixElementD8 = FloatVariable4 * SystemContextPrimaryFloat3 + FloatVariable5 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue + PatternIndex[0xe];
-    StackFloatValue220 = FloatVariable4 * SystemContextPrimaryFloat4 + FloatVariable5 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8 + PatternIndex[0xf];
+    TransformedMatrixElementD0 = MatrixTransformMultiplier1 * SecondaryFloatValue + MatrixTransformMultiplier2 * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue + PatternIndex[0xc];
+    TransformedMatrixElementD4 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat2 + MatrixTransformMultiplier2 * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6 + PatternIndex[0xd];
+    TransformedMatrixElementD8 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier2 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue + PatternIndex[0xe];
+    StackFloatValue220 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + MatrixTransformMultiplier2 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8 + PatternIndex[0xf];
   }
   ProcessSystemDataTransfer(&DataTransferStackBuffer,RegisterR13Value + 0x30,*(uint8_t *)(SystemContext + 0xf7));
   MemoryAllocationIndexAdditional = StackProcessingParameter6;
@@ -48457,7 +48457,7 @@ void ExecuteSystemStatusCheckAndDataProcessing(void
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   int ValidationResult;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -48539,8 +48539,8 @@ void ExecuteSystemStatusCheckAndDataProcessing(void
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x124);
     ContextSecondaryFloat = *(float *)(SystemContext + 0x120);
     CalculatedFilterValue = *(float *)(SystemContext + 0x128);
-    FloatVariable4 = *(float *)(SystemContext + 0x134);
-    FloatVariable5 = *(float *)(SystemContext + 0x130);
+    MatrixTransformMultiplier1 = *(float *)(SystemContext + 0x134);
+    MatrixTransformMultiplier2 = *(float *)(SystemContext + 0x130);
     MatrixRow1Col1 = SystemContextPrimaryFloat * SecondaryFloatValue + ContextSecondaryFloat * FloatVariable7 + FilterInputValue * SystemFloatValue;
     MatrixRow1Col2 = SystemContextPrimaryFloat * SystemContextPrimaryFloat2 + ContextSecondaryFloat * ProcessedFloatValue8 + FilterInputValue * SystemContextPrimaryFloat6;
     MatrixRow1Col3 = SystemContextPrimaryFloat * SystemContextPrimaryFloat3 + ContextSecondaryFloat * NormalizedParameterValue + FilterInputValue * SecondaryFloatValue;
@@ -48548,26 +48548,26 @@ void ExecuteSystemStatusCheckAndDataProcessing(void
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x138);
     ContextSecondaryFloat = *(float *)(SystemContext + 0x140);
     CalculatedFilterValue = *(float *)(SystemContext + 0x144);
-    MatrixRow2Col1 = FloatVariable4 * SecondaryFloatValue + FloatVariable5 * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue;
-    MatrixRow2Col2 = FloatVariable4 * SystemContextPrimaryFloat2 + FloatVariable5 * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6;
-    MatrixRow2Col3 = FloatVariable4 * SystemContextPrimaryFloat3 + FloatVariable5 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
-    MatrixRow2Col4 = FloatVariable4 * SystemContextPrimaryFloat4 + FloatVariable5 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
+    MatrixRow2Col1 = MatrixTransformMultiplier1 * SecondaryFloatValue + MatrixTransformMultiplier2 * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue;
+    MatrixRow2Col2 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat2 + MatrixTransformMultiplier2 * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6;
+    MatrixRow2Col3 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier2 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
+    MatrixRow2Col4 = MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + MatrixTransformMultiplier2 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x148);
-    FloatVariable4 = *(float *)(SystemContext + 0x154);
-    FloatVariable5 = *(float *)(SystemContext + 0x150);
+    MatrixTransformMultiplier1 = *(float *)(SystemContext + 0x154);
+    MatrixTransformMultiplier2 = *(float *)(SystemContext + 0x150);
     MatrixRow3Col1 = FilterInputValue * SecondaryFloatValue + ContextSecondaryFloat * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue;
     MatrixRow3Col2 = FilterInputValue * SystemContextPrimaryFloat2 + ContextSecondaryFloat * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6;
     MatrixRow3Col3 = FilterInputValue * SystemContextPrimaryFloat3 + ContextSecondaryFloat * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue;
     MatrixRow3Col4 = FilterInputValue * SystemContextPrimaryFloat4 + ContextSecondaryFloat * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
     SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
     TransformedMatrixElementD0 =
-         FloatVariable4 * SecondaryFloatValue + FloatVariable5 * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue + InputParameterArray[0xc];
+         MatrixTransformMultiplier1 * SecondaryFloatValue + MatrixTransformMultiplier2 * FloatVariable7 + SystemContextPrimaryFloat * SystemFloatValue + InputParameterArray[0xc];
     TransformedMatrixElementD4 =
-         FloatVariable4 * SystemContextPrimaryFloat2 + FloatVariable5 * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6 + InputParameterArray[0xd];
+         MatrixTransformMultiplier1 * SystemContextPrimaryFloat2 + MatrixTransformMultiplier2 * ProcessedFloatValue8 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6 + InputParameterArray[0xd];
     TransformedMatrixElementD8 =
-         FloatVariable4 * SystemContextPrimaryFloat3 + FloatVariable5 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue + InputParameterArray[0xe];
+         MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier2 * NormalizedParameterValue + SystemContextPrimaryFloat * SecondaryFloatValue + InputParameterArray[0xe];
     StackFloatValue220 =
-         FloatVariable4 * SystemContextPrimaryFloat4 + FloatVariable5 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8 + InputParameterArray[0xf];
+         MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + MatrixTransformMultiplier2 * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8 + InputParameterArray[0xf];
     pContextSecondaryFloat9 = &SecondaryFloatStackBuffer;
   }
   ProcessSystemDataTransfer(&DataTransferStackBuffer,RegisterR13Value + 0x30,*(uint8_t *)(SystemContext + 0xf7),pContextSecondaryFloat9);
@@ -48827,8 +48827,8 @@ StringProcessingComplete:
         SystemContextPrimaryFloat = *(float *)(CharacterCode + 0x120);
         ContextSecondaryFloat = *(float *)(CharacterCode + 0x128);
         CalculatedFilterValue = *(float *)(CharacterCode + 0x134);
-        FloatVariable4 = *(float *)(CharacterCode + 0x144);
-        FloatVariable5 = *(float *)(CharacterCode + 0x154);
+        MatrixTransformMultiplier1 = *(float *)(CharacterCode + 0x144);
+        MatrixTransformMultiplier2 = *(float *)(CharacterCode + 0x154);
         SystemContextPrimaryFloat3 = *Utf16EndPointer;
         SystemContextPrimaryFloat4 = Utf16EndPointer[1];
         SystemFloatValue = Utf16EndPointer[2];
@@ -48845,15 +48845,15 @@ StringProcessingComplete:
                              CalculatedDistance * PrimaryFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat3 + ContextSecondaryFloat * SystemContextPrimaryFloat6);
         SystemContextPrimaryFloat = *(float *)(CharacterCode + 0x148);
         ContextSecondaryFloat = *(float *)(CharacterCode + 0x150);
-        StackProcessingUnsignedValue60.LowPart = FloatVariable4 * SystemContextPrimaryFloat2 + NormalizedParameterValue * SystemFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
+        StackProcessingUnsignedValue60.LowPart = MatrixTransformMultiplier1 * SystemContextPrimaryFloat2 + NormalizedParameterValue * SystemFloatValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat8;
         CalculatedDistance = *(float *)(CharacterCode + 0x158);
         StackProcessingUnsignedValue78 = CONCAT44(FilterInputValue * SecondaryFloatValue + FloatVariable7 * SystemContextPrimaryFloat4 + ProcessedFloatValue8 * SecondaryFloatValue,
                              FilterInputValue * PrimaryFloatValue + FloatVariable7 * SystemContextPrimaryFloat3 + ProcessedFloatValue8 * SystemContextPrimaryFloat6);
-        StackProcessingUnsignedValue68 = CONCAT44(FloatVariable4 * SecondaryFloatValue + NormalizedParameterValue * SystemContextPrimaryFloat4 + SystemContextPrimaryFloat * SecondaryFloatValue,
-                             FloatVariable4 * PrimaryFloatValue + NormalizedParameterValue * SystemContextPrimaryFloat3 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6);
-        PrimaryFloatValue = FloatVariable5 * PrimaryFloatValue + ContextSecondaryFloat * SystemContextPrimaryFloat3 + CalculatedDistance * SystemContextPrimaryFloat6 + Utf16EndPointer[0xc];
-        SecondaryFloatValue = FloatVariable5 * SecondaryFloatValue + ContextSecondaryFloat * SystemContextPrimaryFloat4 + CalculatedDistance * SecondaryFloatValue + Utf16EndPointer[0xd];
-        DistanceThreshold = FloatVariable5 * SystemContextPrimaryFloat2 + ContextSecondaryFloat * SystemFloatValue + CalculatedDistance * SystemContextPrimaryFloat8 + Utf16EndPointer[0xe];
+        StackProcessingUnsignedValue68 = CONCAT44(MatrixTransformMultiplier1 * SecondaryFloatValue + NormalizedParameterValue * SystemContextPrimaryFloat4 + SystemContextPrimaryFloat * SecondaryFloatValue,
+                             MatrixTransformMultiplier1 * PrimaryFloatValue + NormalizedParameterValue * SystemContextPrimaryFloat3 + SystemContextPrimaryFloat * SystemContextPrimaryFloat6);
+        PrimaryFloatValue = MatrixTransformMultiplier2 * PrimaryFloatValue + ContextSecondaryFloat * SystemContextPrimaryFloat3 + CalculatedDistance * SystemContextPrimaryFloat6 + Utf16EndPointer[0xc];
+        SecondaryFloatValue = MatrixTransformMultiplier2 * SecondaryFloatValue + ContextSecondaryFloat * SystemContextPrimaryFloat4 + CalculatedDistance * SecondaryFloatValue + Utf16EndPointer[0xd];
+        DistanceThreshold = MatrixTransformMultiplier2 * SystemContextPrimaryFloat2 + ContextSecondaryFloat * SystemFloatValue + CalculatedDistance * SystemContextPrimaryFloat8 + Utf16EndPointer[0xe];
       }
       StackUnsigned4C = 0x3f800000;
       StackProcessingUnsignedValue60 = (unsigned long long)(uint)(float)StackProcessingUnsignedValue60;
@@ -48899,7 +48899,7 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -48934,32 +48934,32 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   uint32_t SystemInputStringBufferE0;
   uint32_t stackParameterE8;  // 栈参数E8，用于存储参数数据
   
-  FloatVariable4 = *DataNodePointer;
-  FloatVariable5 = DataNodePointer[1];
+  MatrixTransformMultiplier1 = *DataNodePointer;
+  MatrixTransformMultiplier2 = DataNodePointer[1];
   CalculatedDistance = DataNodePointer[2];
   FloatVariable7 = DataNodePointer[8];
   ProcessedFloatValue8 = DataNodePointer[9];
   NormalizedParameterValue = DataNodePointer[10];
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x124);
   ContextSecondaryFloat = *(float *)(SystemContext + 0x130);
-  CalculatedValue30 = SystemContextPrimaryFloat * in_XMM4_Da + (float)CharacterCode * FloatVariable4 + (float)Utf8BufferSize * FloatVariable7;
+  CalculatedValue30 = SystemContextPrimaryFloat * in_XMM4_Da + (float)CharacterCode * MatrixTransformMultiplier1 + (float)Utf8BufferSize * FloatVariable7;
   CalculatedValue34 =
-       SystemContextPrimaryFloat * in_XMM4_Db + (float)((unsigned long long)CharacterCode >> 0x20) * FloatVariable5 +
+       SystemContextPrimaryFloat * in_XMM4_Db + (float)((unsigned long long)CharacterCode >> 0x20) * MatrixTransformMultiplier2 +
        (float)((unsigned long long)Utf8BufferSize >> 0x20) * ProcessedFloatValue8;
   FilterCoefficient38 = SystemContextPrimaryFloat * in_XMM4_Dc + in_XMM0_Dc * CalculatedDistance + in_XMM1_Dc * NormalizedParameterValue;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x138);
   CalculatedFilterValue = *(float *)(SystemContext + 0x140);
-  PositionCoefficient40 = in_XMM5_Da * in_XMM4_Da + ContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7;
-  TemporaryFloatStack44 = in_XMM5_Da * in_XMM4_Db + ContextSecondaryFloat * FloatVariable5 + SystemContextPrimaryFloat * ProcessedFloatValue8;
+  PositionCoefficient40 = in_XMM5_Da * in_XMM4_Da + ContextSecondaryFloat * MatrixTransformMultiplier1 + SystemContextPrimaryFloat * FloatVariable7;
+  TemporaryFloatStack44 = in_XMM5_Da * in_XMM4_Db + ContextSecondaryFloat * MatrixTransformMultiplier2 + SystemContextPrimaryFloat * ProcessedFloatValue8;
   DistanceCoefficient48 = in_XMM5_Da * in_XMM4_Dc + ContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x148);
   ContextSecondaryFloat = *(float *)(SystemContext + 0x150);
-  StackFloatValue50 = Utf16EndPointer * in_XMM4_Da + FilterInputValue * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7;
-  VelocityCoefficient54 = Utf16EndPointer * in_XMM4_Db + FilterInputValue * FloatVariable5 + SystemContextPrimaryFloat * ProcessedFloatValue8;
+  StackFloatValue50 = Utf16EndPointer * in_XMM4_Da + FilterInputValue * MatrixTransformMultiplier1 + SystemContextPrimaryFloat * FloatVariable7;
+  VelocityCoefficient54 = Utf16EndPointer * in_XMM4_Db + FilterInputValue * MatrixTransformMultiplier2 + SystemContextPrimaryFloat * ProcessedFloatValue8;
   AccelerationCoefficient58 = Utf16EndPointer * in_XMM4_Dc + FilterInputValue * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
-  StackFloatValue60 = Utf8SourcePointer * in_XMM4_Da + ContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7 + DataNodePointer[0xc];
-  TemporaryFloatStack64 = Utf8SourcePointer * in_XMM4_Db + ContextSecondaryFloat * FloatVariable5 + SystemContextPrimaryFloat * ProcessedFloatValue8 + DataNodePointer[0xd];
+  StackFloatValue60 = Utf8SourcePointer * in_XMM4_Da + ContextSecondaryFloat * MatrixTransformMultiplier1 + SystemContextPrimaryFloat * FloatVariable7 + DataNodePointer[0xc];
+  TemporaryFloatStack64 = Utf8SourcePointer * in_XMM4_Db + ContextSecondaryFloat * MatrixTransformMultiplier2 + SystemContextPrimaryFloat * ProcessedFloatValue8 + DataNodePointer[0xd];
   TemporaryFloatStack68 = Utf8SourcePointer * in_XMM4_Dc + ContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue + DataNodePointer[0xe];
   StackProcessingParameterE8 = StackProcessingParameterE8;
   StackUintValue6c = 0x3f800000;
@@ -49645,7 +49645,7 @@ void ProcessCharacterCode(uint64_t *Utf8InputBuffer,long long Utf8BufferSize
   uint32_t MemoryAllocationIndex;
   long long *MemoryBlockIndex;
   uint64_t MemoryAddressMask;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   void *SecondaryProcessingStatusFlag;
   long long MemoryPoolBlockSize;
   long long *SystemDataTablePointer;
@@ -49865,8 +49865,8 @@ void ProcessCharacterCode(uint64_t *Utf8InputBuffer,long long Utf8BufferSize
   }
   ExecuteSystemDataValidation(CharacterCode + 8,&BufferOffset,&systemStackProcessingVariable,systemStackBuffer,&SystemContextRegister);
   if ((void *)*Utf8InputBuffer == &SystemSecondaryDataTemplate) {
-    pFloatVariable5 = (float *)(CharacterCode + 0x10);
-    *(void *)pFloatVariable5 = Utf8InputBuffer[8];
+    pMatrixTransformMultiplier2 = (float *)(CharacterCode + 0x10);
+    *(void *)pMatrixTransformMultiplier2 = Utf8InputBuffer[8];
     Utf8InputBuffer[0x11] = Utf8InputBuffer[9];
     Utf8InputBuffer[0x12] = Utf8InputBuffer[10];
     Utf8InputBuffer[0x13] = Utf8InputBuffer[0xb];
@@ -49883,14 +49883,14 @@ void ProcessCharacterCode(uint64_t *Utf8InputBuffer,long long Utf8BufferSize
     *(uint32_t *)((long long)CharacterCode + 0x9c) = 0;
     *(uint32_t *)((long long)CharacterCode + 0xac) = 0;
     *(uint32_t *)((long long)CharacterCode + 0xbc) = 0x3f800000;
-    SystemContextFloatC = pFloatVariable5[6];
-    SystemContextFloatB = pFloatVariable5[0xd];
-    CharacterFloatValueA = pFloatVariable5[9];
-    SecondaryFloatMultiplier = pFloatVariable5[1];
-    SystemFloatMultiplier = pFloatVariable5[0xe];
-    MatrixTransformZ = pFloatVariable5[2];
-    MatrixScaleX = pFloatVariable5[10];
-    MatrixRotationX = pFloatVariable5[5];
+    SystemContextFloatC = pMatrixTransformMultiplier2[6];
+    SystemContextFloatB = pMatrixTransformMultiplier2[0xd];
+    CharacterFloatValueA = pMatrixTransformMultiplier2[9];
+    SecondaryFloatMultiplier = pMatrixTransformMultiplier2[1];
+    SystemFloatMultiplier = pMatrixTransformMultiplier2[0xe];
+    MatrixTransformZ = pMatrixTransformMultiplier2[2];
+    MatrixScaleX = pMatrixTransformMultiplier2[10];
+    MatrixRotationX = pMatrixTransformMultiplier2[5];
     MatrixTransformW = SystemFloatMultiplier * CharacterFloatValueA - SystemContextFloatB * MatrixScaleX;
     MatrixTransformY = SystemFloatMultiplier * MatrixRotationX - SystemContextFloatB * SystemContextFloatC;
     MatrixTransformZ = SystemFloatMultiplier * SecondaryFloatMultiplier - SystemContextFloatB * MatrixTransformZ;
@@ -49898,40 +49898,40 @@ void ProcessCharacterCode(uint64_t *Utf8InputBuffer,long long Utf8BufferSize
     MatrixTransformX = SecondaryFloatMultiplier * MatrixScaleX - CharacterFloatValueA * MatrixTransformZ;
     *(float *)(CharacterCode + 0x18) = MatrixRotationY;
     ContextFloatResultA = SecondaryFloatMultiplier * SystemContextFloatC - MatrixRotationX * MatrixTransformZ;
-    CalculatedFloatA = MatrixTransformZ * pFloatVariable5[9] - MatrixScaleX * pFloatVariable5[1];
+    CalculatedFloatA = MatrixTransformZ * pMatrixTransformMultiplier2[9] - MatrixScaleX * pMatrixTransformMultiplier2[1];
     *(float *)((long long)CharacterCode + 0xc4) = FilterInputValue0;
-    SystemContextPrimaryFloat6 = pFloatVariable5[5];
-    SystemFloatValue = pFloatVariable5[1];
+    SystemContextPrimaryFloat6 = pMatrixTransformMultiplier2[5];
+    SystemFloatValue = pMatrixTransformMultiplier2[1];
     *(uint32_t *)((long long)CharacterCode + 0xcc) = 0;
     FilterInputValue1 = SystemContextPrimaryFloat8 * SystemFloatValue - ContextSecondaryFloat3 * SystemContextPrimaryFloat6;
     *(float *)(CharacterCode + SystemNodeStatusOffset) = FilterInputValue1;
-    SystemContextPrimaryFloat4 = SystemContextPrimaryFloat8 * pFloatVariable5[8] - ContextSecondaryFloat5 * pFloatVariable5[4];
+    SystemContextPrimaryFloat4 = SystemContextPrimaryFloat8 * pMatrixTransformMultiplier2[8] - ContextSecondaryFloat5 * pMatrixTransformMultiplier2[4];
     *(float *)(CharacterCode + 0x1a) = SystemContextPrimaryFloat4;
-    ContextSecondaryFloat7 = ContextSecondaryFloat5 * *pFloatVariable5 - ContextSecondaryFloat3 * pFloatVariable5[8];
+    ContextSecondaryFloat7 = ContextSecondaryFloat5 * *pMatrixTransformMultiplier2 - ContextSecondaryFloat3 * pMatrixTransformMultiplier2[8];
     *(float *)((long long)CharacterCode + 0xd4) = ContextSecondaryFloat7;
-    SystemContextPrimaryFloat6 = pFloatVariable5[4];
-    SystemFloatValue = *pFloatVariable5;
+    SystemContextPrimaryFloat6 = pMatrixTransformMultiplier2[4];
+    SystemFloatValue = *pMatrixTransformMultiplier2;
     *(uint32_t *)((long long)CharacterCode + 0xdc) = 0;
     ContextSecondaryFloat6 = ContextSecondaryFloat3 * SystemContextPrimaryFloat6 - SystemContextPrimaryFloat8 * SystemFloatValue;
     *(float *)(CharacterCode + 0x1b) = ContextSecondaryFloat6;
-    SystemFloatValue = PrimaryFloatValue * pFloatVariable5[4] - ContextSecondaryFloat8 * pFloatVariable5[8];
+    SystemFloatValue = PrimaryFloatValue * pMatrixTransformMultiplier2[4] - ContextSecondaryFloat8 * pMatrixTransformMultiplier2[8];
     *(float *)(CharacterCode + 0x1c) = SystemFloatValue;
-    PrimaryFloatValue = SecondaryFloatValue * pFloatVariable5[8] - PrimaryFloatValue * *pFloatVariable5;
+    PrimaryFloatValue = SecondaryFloatValue * pMatrixTransformMultiplier2[8] - PrimaryFloatValue * *pMatrixTransformMultiplier2;
     *(float *)((long long)CharacterCode + 0xe4) = PrimaryFloatValue;
-    SystemContextPrimaryFloat8 = pFloatVariable5[4];
-    SystemContextPrimaryFloat6 = *pFloatVariable5;
+    SystemContextPrimaryFloat8 = pMatrixTransformMultiplier2[4];
+    SystemContextPrimaryFloat6 = *pMatrixTransformMultiplier2;
     *(uint32_t *)((long long)CharacterCode + 0xec) = 0;
     ContextSecondaryFloat8 = ContextSecondaryFloat8 * SystemContextPrimaryFloat6 - SecondaryFloatValue * SystemContextPrimaryFloat8;
     *(float *)(CharacterCode + 0x1d) = ContextSecondaryFloat8;
-    SystemContextPrimaryFloat6 = (ContextSecondaryFloat1 * pFloatVariable5[8] - ContextSecondaryFloat4 * pFloatVariable5[4]) - ContextSecondaryFloat9 * pFloatVariable5[0xc];
+    SystemContextPrimaryFloat6 = (ContextSecondaryFloat1 * pMatrixTransformMultiplier2[8] - ContextSecondaryFloat4 * pMatrixTransformMultiplier2[4]) - ContextSecondaryFloat9 * pMatrixTransformMultiplier2[0xc];
     *(float *)(CharacterCode + 0x1e) = SystemContextPrimaryFloat6;
-    ContextSecondaryFloat5 = (ContextSecondaryFloat4 * *pFloatVariable5 - ContextSecondaryFloat2 * pFloatVariable5[8]) + ContextSecondaryFloat0 * pFloatVariable5[0xc];
+    ContextSecondaryFloat5 = (ContextSecondaryFloat4 * *pMatrixTransformMultiplier2 - ContextSecondaryFloat2 * pMatrixTransformMultiplier2[8]) + ContextSecondaryFloat0 * pMatrixTransformMultiplier2[0xc];
     *(float *)((long long)CharacterCode + 0xf4) = ContextSecondaryFloat5;
-    ContextSecondaryFloat3 = (ContextSecondaryFloat2 * pFloatVariable5[4] - ContextSecondaryFloat1 * *pFloatVariable5) - ContextPrimaryFloat9 * pFloatVariable5[0xc];
+    ContextSecondaryFloat3 = (ContextSecondaryFloat2 * pMatrixTransformMultiplier2[4] - ContextSecondaryFloat1 * *pMatrixTransformMultiplier2) - ContextPrimaryFloat9 * pMatrixTransformMultiplier2[0xc];
     *(float *)(CharacterCode + 0x1f) = ContextSecondaryFloat3;
-    SecondaryFloatValue = (ContextSecondaryFloat9 * *pFloatVariable5 - ContextSecondaryFloat0 * pFloatVariable5[4]) + ContextPrimaryFloat9 * pFloatVariable5[8];
+    SecondaryFloatValue = (ContextSecondaryFloat9 * *pMatrixTransformMultiplier2 - ContextSecondaryFloat0 * pMatrixTransformMultiplier2[4]) + ContextPrimaryFloat9 * pMatrixTransformMultiplier2[8];
     *(float *)((long long)CharacterCode + 0xfc) = SecondaryFloatValue;
-    SystemContextPrimaryFloat8 = FilterInputValue0 * pFloatVariable5[4] + ContextSecondaryFloat9 * *pFloatVariable5 + FilterInputValue1 * pFloatVariable5[8];
+    SystemContextPrimaryFloat8 = FilterInputValue0 * pMatrixTransformMultiplier2[4] + ContextSecondaryFloat9 * *pMatrixTransformMultiplier2 + FilterInputValue1 * pMatrixTransformMultiplier2[8];
     if (SystemContextPrimaryFloat8 != 1.0) {
       SystemContextPrimaryFloat8 = 1.0 / SystemContextPrimaryFloat8;
       *(float *)(CharacterCode + 0x1a) = SystemContextPrimaryFloat4 * SystemContextPrimaryFloat8;
@@ -49975,7 +49975,7 @@ void ProcessFloatDataNormalization(long long CharacterCode
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -50011,47 +50011,47 @@ void ProcessFloatDataNormalization(long long CharacterCode
   *(uint32_t *)(CharacterCode + 0x9c) = 0;
   *(uint32_t *)(CharacterCode + 0xac) = 0;
   FloatVariable7 = pSystemContextPrimaryFloat[6];
-  FloatVariable5 = pSystemContextPrimaryFloat[0xd];
+  MatrixTransformMultiplier2 = pSystemContextPrimaryFloat[0xd];
   ContextSecondaryFloat = pSystemContextPrimaryFloat[9];
   CalculatedDistance = pSystemContextPrimaryFloat[1];
-  FloatVariable4 = pSystemContextPrimaryFloat[0xe];
+  MatrixTransformMultiplier1 = pSystemContextPrimaryFloat[0xe];
   SystemContextPrimaryFloat2 = pSystemContextPrimaryFloat[2];
   SystemContextPrimaryFloat4 = pSystemContextPrimaryFloat[10];
   SecondaryFloatValue = pSystemContextPrimaryFloat[5];
-  SystemContextPrimaryFloat3 = FloatVariable4 * ContextSecondaryFloat - FloatVariable5 * SystemContextPrimaryFloat4;
-  PrimaryFloatValue = FloatVariable4 * SecondaryFloatValue - FloatVariable5 * FloatVariable7;
-  SecondaryFloatValue = FloatVariable4 * CalculatedDistance - FloatVariable5 * SystemContextPrimaryFloat2;
+  SystemContextPrimaryFloat3 = MatrixTransformMultiplier1 * ContextSecondaryFloat - MatrixTransformMultiplier2 * SystemContextPrimaryFloat4;
+  PrimaryFloatValue = MatrixTransformMultiplier1 * SecondaryFloatValue - MatrixTransformMultiplier2 * FloatVariable7;
+  SecondaryFloatValue = MatrixTransformMultiplier1 * CalculatedDistance - MatrixTransformMultiplier2 * SystemContextPrimaryFloat2;
   SystemContextPrimaryFloat8 = SecondaryFloatValue * SystemContextPrimaryFloat4 - ContextSecondaryFloat * FloatVariable7;
   NormalizedParameterValue = CalculatedDistance * SystemContextPrimaryFloat4 - ContextSecondaryFloat * SystemContextPrimaryFloat2;
   *(float *)(CharacterCode + 0xc0) = SystemContextPrimaryFloat8;
   ProcessedFloatValue8 = CalculatedDistance * FloatVariable7 - SecondaryFloatValue * SystemContextPrimaryFloat2;
   ContextPrimaryFloat9 = SystemContextPrimaryFloat2 * pSystemContextPrimaryFloat[9] - SystemContextPrimaryFloat4 * pSystemContextPrimaryFloat[1];
   *(float *)(CharacterCode + 0xc4) = ContextPrimaryFloat9;
-  FloatVariable5 = pSystemContextPrimaryFloat[5];
-  FloatVariable4 = pSystemContextPrimaryFloat[1];
+  MatrixTransformMultiplier2 = pSystemContextPrimaryFloat[5];
+  MatrixTransformMultiplier1 = pSystemContextPrimaryFloat[1];
   *(uint32_t *)(CharacterCode + 0xcc) = 0;
-  ContextSecondaryFloat0 = FloatVariable7 * FloatVariable4 - SystemContextPrimaryFloat2 * FloatVariable5;
+  ContextSecondaryFloat0 = FloatVariable7 * MatrixTransformMultiplier1 - SystemContextPrimaryFloat2 * MatrixTransformMultiplier2;
   *(float *)(CharacterCode + 200) = ContextSecondaryFloat0;
   CalculatedFilterValue = FloatVariable7 * pSystemContextPrimaryFloat[8] - SystemContextPrimaryFloat4 * pSystemContextPrimaryFloat[4];
   *(float *)(CharacterCode + 0xd0) = FilterInputValue;
   SystemContextPrimaryFloat6 = SystemContextPrimaryFloat4 * *pSystemContextPrimaryFloat - SystemContextPrimaryFloat2 * pSystemContextPrimaryFloat[8];
   *(float *)(CharacterCode + 0xd4) = SystemContextPrimaryFloat6;
-  FloatVariable5 = pSystemContextPrimaryFloat[4];
-  FloatVariable4 = *pSystemContextPrimaryFloat;
+  MatrixTransformMultiplier2 = pSystemContextPrimaryFloat[4];
+  MatrixTransformMultiplier1 = *pSystemContextPrimaryFloat;
   *(uint32_t *)(CharacterCode + 0xdc) = 0;
-  SystemFloatValue = SystemContextPrimaryFloat2 * FloatVariable5 - FloatVariable7 * FloatVariable4;
+  SystemFloatValue = SystemContextPrimaryFloat2 * MatrixTransformMultiplier2 - FloatVariable7 * MatrixTransformMultiplier1;
   *(float *)(CharacterCode + 0xd8) = SystemFloatValue;
-  FloatVariable4 = ContextSecondaryFloat * pSystemContextPrimaryFloat[4] - SecondaryFloatValue * pSystemContextPrimaryFloat[8];
-  *(float *)(CharacterCode + 0xe0) = FloatVariable4;
+  MatrixTransformMultiplier1 = ContextSecondaryFloat * pSystemContextPrimaryFloat[4] - SecondaryFloatValue * pSystemContextPrimaryFloat[8];
+  *(float *)(CharacterCode + 0xe0) = MatrixTransformMultiplier1;
   ContextSecondaryFloat = CalculatedDistance * pSystemContextPrimaryFloat[8] - ContextSecondaryFloat * *pSystemContextPrimaryFloat;
   *(float *)(CharacterCode + 0xe4) = ContextSecondaryFloat;
   FloatVariable7 = pSystemContextPrimaryFloat[4];
-  FloatVariable5 = *pSystemContextPrimaryFloat;
+  MatrixTransformMultiplier2 = *pSystemContextPrimaryFloat;
   *(uint32_t *)(CharacterCode + 0xec) = 0;
-  SecondaryFloatValue = SecondaryFloatValue * FloatVariable5 - CalculatedDistance * FloatVariable7;
+  SecondaryFloatValue = SecondaryFloatValue * MatrixTransformMultiplier2 - CalculatedDistance * FloatVariable7;
   *(float *)(CharacterCode + 0xe8) = SecondaryFloatValue;
-  FloatVariable5 = (PrimaryFloatValue * pSystemContextPrimaryFloat[8] - SystemContextPrimaryFloat3 * pSystemContextPrimaryFloat[4]) - SystemContextPrimaryFloat8 * pSystemContextPrimaryFloat[0xc];
-  *(float *)(CharacterCode + 0xf0) = FloatVariable5;
+  MatrixTransformMultiplier2 = (PrimaryFloatValue * pSystemContextPrimaryFloat[8] - SystemContextPrimaryFloat3 * pSystemContextPrimaryFloat[4]) - SystemContextPrimaryFloat8 * pSystemContextPrimaryFloat[0xc];
+  *(float *)(CharacterCode + 0xf0) = MatrixTransformMultiplier2;
   SystemContextPrimaryFloat4 = (SystemContextPrimaryFloat3 * *pSystemContextPrimaryFloat - SecondaryFloatValue * pSystemContextPrimaryFloat[8]) + NormalizedParameterValue * pSystemContextPrimaryFloat[0xc];
   *(float *)(CharacterCode + 0xf4) = SystemContextPrimaryFloat4;
   SystemContextPrimaryFloat2 = (SecondaryFloatValue * pSystemContextPrimaryFloat[4] - PrimaryFloatValue * *pSystemContextPrimaryFloat) - ProcessedFloatValue8 * pSystemContextPrimaryFloat[0xc];
@@ -50062,7 +50062,7 @@ void ProcessFloatDataNormalization(long long CharacterCode
   if (FloatVariable7 != 1.0) {
     FloatVariable7 = 1.0 / FloatVariable7;
     *(float *)(CharacterCode + 0xd0) = FilterInputValue * FloatVariable7;
-    *(float *)(CharacterCode + 0xe0) = FloatVariable4 * FloatVariable7;
+    *(float *)(CharacterCode + 0xe0) = MatrixTransformMultiplier1 * FloatVariable7;
     *(float *)(CharacterCode + 0xc0) = SystemContextPrimaryFloat8 * FloatVariable7;
     *(float *)(CharacterCode + 0xc4) = ContextPrimaryFloat9 * FloatVariable7;
     *(float *)(CharacterCode + 200) = ContextSecondaryFloat0 * FloatVariable7;
@@ -50070,7 +50070,7 @@ void ProcessFloatDataNormalization(long long CharacterCode
     *(float *)(CharacterCode + 0xd8) = SystemFloatValue * FloatVariable7;
     *(float *)(CharacterCode + 0xe4) = ContextSecondaryFloat * FloatVariable7;
     *(float *)(CharacterCode + 0xe8) = SecondaryFloatValue * FloatVariable7;
-    *(float *)(CharacterCode + 0xf0) = FloatVariable5 * FloatVariable7;
+    *(float *)(CharacterCode + 0xf0) = MatrixTransformMultiplier2 * FloatVariable7;
     *(float *)(CharacterCode + 0xf4) = SystemContextPrimaryFloat4 * FloatVariable7;
     *(float *)(CharacterCode + 0xf8) = SystemContextPrimaryFloat2 * FloatVariable7;
     *(float *)(CharacterCode + 0xfc) = CalculatedDistance * FloatVariable7;
@@ -50977,7 +50977,7 @@ void ProcessSystemContextAndFloatCalculations(void
   long long *BufferAllocationStatus;
   byte *LowBytePointer;
   uint64_t *MemoryAddressMask;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -51062,7 +51062,7 @@ void ProcessSystemContextAndFloatCalculations(void
   ContextSecondaryFloat6 = pSystemFloatValue[5];
   ContextSecondaryFloat7 = pSystemFloatValue[6];
   ContextSecondaryFloat8 = pSystemFloatValue[7];
-  FloatVariable5 = *(float *)(CharacterTablePointer6 + 0x374);
+  MatrixTransformMultiplier2 = *(float *)(CharacterTablePointer6 + 0x374);
   CalculatedDistance = *(float *)(CharacterTablePointer6 + SecondaryProcessingStatusOffset);
   FloatVariable7 = *(float *)(CharacterTablePointer6 + 0x378);
   ProcessedFloatValue8 = *(float *)(CharacterTablePointer6 + 900);
@@ -51071,10 +51071,10 @@ void ProcessSystemContextAndFloatCalculations(void
   SecondaryFloatValue = *(float *)(CharacterTablePointer6 + 0x388);
   SystemContextPrimaryFloat2 = *(float *)(CharacterTablePointer6 + 0x390);
   SystemContextPrimaryFloat3 = *(float *)(CharacterTablePointer6 + 0x398);
-  *pSystemFloatValue = FloatVariable5 * ContextSecondaryFloat5 + CalculatedDistance * ContextSecondaryFloat1 + FloatVariable7 * SecondaryFloatValue;
-  pSystemFloatValue[1] = FloatVariable5 * ContextSecondaryFloat6 + CalculatedDistance * ContextSecondaryFloat2 + FloatVariable7 * SystemContextPrimaryFloat8;
-  pSystemFloatValue[2] = FloatVariable5 * ContextSecondaryFloat7 + CalculatedDistance * ContextSecondaryFloat3 + FloatVariable7 * ContextPrimaryFloat9;
-  pSystemFloatValue[3] = FloatVariable5 * ContextSecondaryFloat8 + CalculatedDistance * ContextSecondaryFloat4 + FloatVariable7 * ContextSecondaryFloat0;
+  *pSystemFloatValue = MatrixTransformMultiplier2 * ContextSecondaryFloat5 + CalculatedDistance * ContextSecondaryFloat1 + FloatVariable7 * SecondaryFloatValue;
+  pSystemFloatValue[1] = MatrixTransformMultiplier2 * ContextSecondaryFloat6 + CalculatedDistance * ContextSecondaryFloat2 + FloatVariable7 * SystemContextPrimaryFloat8;
+  pSystemFloatValue[2] = MatrixTransformMultiplier2 * ContextSecondaryFloat7 + CalculatedDistance * ContextSecondaryFloat3 + FloatVariable7 * ContextPrimaryFloat9;
+  pSystemFloatValue[3] = MatrixTransformMultiplier2 * ContextSecondaryFloat8 + CalculatedDistance * ContextSecondaryFloat4 + FloatVariable7 * ContextSecondaryFloat0;
   pSystemFloatValue[4] = ProcessedFloatValue8 * ContextSecondaryFloat5 + PrimaryFloatValue * ContextSecondaryFloat1 + SecondaryFloatValue * SecondaryFloatValue;
   pSystemFloatValue[5] = ProcessedFloatValue8 * ContextSecondaryFloat6 + PrimaryFloatValue * ContextSecondaryFloat2 + SecondaryFloatValue * SystemContextPrimaryFloat8;
   pSystemFloatValue[6] = ProcessedFloatValue8 * ContextSecondaryFloat7 + PrimaryFloatValue * ContextSecondaryFloat3 + SecondaryFloatValue * ContextPrimaryFloat9;
@@ -51280,7 +51280,7 @@ void ProcessDataStructureParametersAndFloatCalculations(long long CharacterCode,
   long long *BufferAllocationStatus;
   byte *LowBytePointer;
   uint64_t *MemoryAddressMask;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -51361,7 +51361,7 @@ void ProcessDataStructureParametersAndFloatCalculations(long long CharacterCode,
   ContextSecondaryFloat5 = Utf16EndPointer[5];
   ContextSecondaryFloat6 = Utf16EndPointer[6];
   ContextSecondaryFloat7 = Utf16EndPointer[7];
-  FloatVariable5 = *(float *)(CharacterTablePointer5 + 0x374);
+  MatrixTransformMultiplier2 = *(float *)(CharacterTablePointer5 + 0x374);
   CalculatedDistance = *(float *)(CharacterTablePointer5 + SecondaryProcessingStatusOffset);
   FloatVariable7 = *(float *)(CharacterTablePointer5 + 0x378);
   ProcessedFloatValue8 = *(float *)(CharacterTablePointer5 + 900);
@@ -51370,10 +51370,10 @@ void ProcessDataStructureParametersAndFloatCalculations(long long CharacterCode,
   SecondaryFloatValue = *(float *)(CharacterTablePointer5 + 0x388);
   SystemContextPrimaryFloat2 = *(float *)(CharacterTablePointer5 + 0x390);
   SystemContextPrimaryFloat3 = *(float *)(CharacterTablePointer5 + 0x398);
-  *Utf16EndPointer = FloatVariable5 * ContextSecondaryFloat4 + CalculatedDistance * ContextSecondaryFloat0 + FloatVariable7 * SystemContextPrimaryFloat6;
-  Utf16EndPointer[1] = FloatVariable5 * ContextSecondaryFloat5 + CalculatedDistance * ContextSecondaryFloat1 + FloatVariable7 * SecondaryFloatValue;
-  Utf16EndPointer[2] = FloatVariable5 * ContextSecondaryFloat6 + CalculatedDistance * ContextSecondaryFloat2 + FloatVariable7 * SystemContextPrimaryFloat8;
-  Utf16EndPointer[3] = FloatVariable5 * ContextSecondaryFloat7 + CalculatedDistance * ContextSecondaryFloat3 + FloatVariable7 * ContextPrimaryFloat9;
+  *Utf16EndPointer = MatrixTransformMultiplier2 * ContextSecondaryFloat4 + CalculatedDistance * ContextSecondaryFloat0 + FloatVariable7 * SystemContextPrimaryFloat6;
+  Utf16EndPointer[1] = MatrixTransformMultiplier2 * ContextSecondaryFloat5 + CalculatedDistance * ContextSecondaryFloat1 + FloatVariable7 * SecondaryFloatValue;
+  Utf16EndPointer[2] = MatrixTransformMultiplier2 * ContextSecondaryFloat6 + CalculatedDistance * ContextSecondaryFloat2 + FloatVariable7 * SystemContextPrimaryFloat8;
+  Utf16EndPointer[3] = MatrixTransformMultiplier2 * ContextSecondaryFloat7 + CalculatedDistance * ContextSecondaryFloat3 + FloatVariable7 * ContextPrimaryFloat9;
   Utf16EndPointer[4] = ProcessedFloatValue8 * ContextSecondaryFloat4 + PrimaryFloatValue * ContextSecondaryFloat0 + SecondaryFloatValue * SystemContextPrimaryFloat6;
   Utf16EndPointer[5] = ProcessedFloatValue8 * ContextSecondaryFloat5 + PrimaryFloatValue * ContextSecondaryFloat1 + SecondaryFloatValue * SecondaryFloatValue;
   Utf16EndPointer[6] = ProcessedFloatValue8 * ContextSecondaryFloat6 + PrimaryFloatValue * ContextSecondaryFloat2 + SecondaryFloatValue * SystemContextPrimaryFloat8;
@@ -52233,7 +52233,7 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   uint *PrimaryProcessingStatusFlag;
   uint64_t *systemEventTemplatePointer;
   uint64_t *MemoryAddressMask;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   uint64_t byteComparisonValue;
   uint64_t UnsignedVariable7;
   uint8_t ByteArray8 [16];
@@ -52273,8 +52273,8 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   uint8_t (*paMemoryAddressMask2) [16];
   long long SystemDataRegistry3;
   bool SystemOperationFlag;
-  float FloatVariable45;
-  float FloatVariable46;
+  float MatrixTransformMultiplier15;
+  float MatrixTransformMultiplier16;
   uint8_t MemoryAddressMask7 [16];
   float FloatValue48;
   float FloatValue49;
@@ -52442,53 +52442,53 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
           SystemDataRegistry0 = *(long long *)(CharacterCode + 0x18);
           CharacterTableIterator = (long long)*(int *)(CharacterTableIterator + SystemContextValue);
           BufferStatus1 = (long long)*(int *)((long long)*(int *)(BufferStatus1 + MemoryAddressMask1) * 0x5c + SystemContextValue);
-          FloatVariable48 = *(float *)(SystemDataRegistry0 + 8 + BufferStatus1 * 0x10);
-          FloatVariable49 = *(float *)(SystemDataRegistry0 + 8 + CharacterTableIterator * 0x10) - FloatVariable48;
-          FloatVariable5 = *(float *)(SystemDataRegistry0 + 4 + BufferStatus1 * 0x10);
-          FloatVariable52 = *(float *)(SystemDataRegistry0 + 4 + CharacterTableIterator * 0x10);
-          FloatVariable51 = *(float *)(SystemDataRegistry0 + BufferStatus1 * 0x10);
+          MatrixTransformMultiplier18 = *(float *)(SystemDataRegistry0 + 8 + BufferStatus1 * 0x10);
+          MatrixTransformMultiplier19 = *(float *)(SystemDataRegistry0 + 8 + CharacterTableIterator * 0x10) - MatrixTransformMultiplier18;
+          MatrixTransformMultiplier2 = *(float *)(SystemDataRegistry0 + 4 + BufferStatus1 * 0x10);
+          MatrixTransformMultiplier22 = *(float *)(SystemDataRegistry0 + 4 + CharacterTableIterator * 0x10);
+          MatrixTransformMultiplier21 = *(float *)(SystemDataRegistry0 + BufferStatus1 * 0x10);
           BufferStatus1 = (long long)*(int *)(BufferStatus4 * 0x5c + SystemContextValue);
-          FloatVariable48 = *(float *)(SystemDataRegistry0 + 8 + BufferStatus1 * 0x10) - FloatVariable48;
-          FloatVariable45 = *(float *)(SystemDataRegistry0 + 4 + BufferStatus1 * 0x10);
-          FloatVariable46 = *(float *)(SystemDataRegistry0 + CharacterTableIterator * 0x10);
-          FloatVariable53 = *(float *)(SystemDataRegistry0 + BufferStatus1 * 0x10);
+          MatrixTransformMultiplier18 = *(float *)(SystemDataRegistry0 + 8 + BufferStatus1 * 0x10) - MatrixTransformMultiplier18;
+          MatrixTransformMultiplier15 = *(float *)(SystemDataRegistry0 + 4 + BufferStatus1 * 0x10);
+          MatrixTransformMultiplier16 = *(float *)(SystemDataRegistry0 + CharacterTableIterator * 0x10);
+          MatrixTransformMultiplier23 = *(float *)(SystemDataRegistry0 + BufferStatus1 * 0x10);
         }
         else {
           SystemContextValue = *(long long *)(CharacterCode + 0x68);
           SystemDataRegistry0 = *(long long *)(BufferStatus3 * 0x50 + *(long long *)(CharacterCode + 0xb0) + 8);
           CharacterTableIterator = (long long)*(int *)(CharacterTableIterator + SystemContextValue);
           BufferStatus1 = (long long)*(int *)((long long)*(int *)(BufferStatus1 + MemoryAddressMask1) * 0x5c + SystemContextValue);
-          FloatVariable48 = *(float *)(SystemDataRegistry0 + 8 + BufferStatus1 * 0x10);
-          FloatVariable49 = *(float *)(SystemDataRegistry0 + 8 + CharacterTableIterator * 0x10) - FloatVariable48;
-          FloatVariable5 = *(float *)(SystemDataRegistry0 + 4 + BufferStatus1 * 0x10);
-          FloatVariable52 = *(float *)(SystemDataRegistry0 + 4 + CharacterTableIterator * 0x10);
-          FloatVariable51 = *(float *)(SystemDataRegistry0 + BufferStatus1 * 0x10);
+          MatrixTransformMultiplier18 = *(float *)(SystemDataRegistry0 + 8 + BufferStatus1 * 0x10);
+          MatrixTransformMultiplier19 = *(float *)(SystemDataRegistry0 + 8 + CharacterTableIterator * 0x10) - MatrixTransformMultiplier18;
+          MatrixTransformMultiplier2 = *(float *)(SystemDataRegistry0 + 4 + BufferStatus1 * 0x10);
+          MatrixTransformMultiplier22 = *(float *)(SystemDataRegistry0 + 4 + CharacterTableIterator * 0x10);
+          MatrixTransformMultiplier21 = *(float *)(SystemDataRegistry0 + BufferStatus1 * 0x10);
           BufferStatus1 = (long long)*(int *)(BufferStatus4 * 0x5c + SystemContextValue);
-          FloatVariable48 = *(float *)(SystemDataRegistry0 + 8 + BufferStatus1 * 0x10) - FloatVariable48;
-          FloatVariable45 = *(float *)(SystemDataRegistry0 + 4 + BufferStatus1 * 0x10);
-          FloatVariable46 = *(float *)(SystemDataRegistry0 + CharacterTableIterator * 0x10);
-          FloatVariable53 = *(float *)(SystemDataRegistry0 + BufferStatus1 * 0x10);
+          MatrixTransformMultiplier18 = *(float *)(SystemDataRegistry0 + 8 + BufferStatus1 * 0x10) - MatrixTransformMultiplier18;
+          MatrixTransformMultiplier15 = *(float *)(SystemDataRegistry0 + 4 + BufferStatus1 * 0x10);
+          MatrixTransformMultiplier16 = *(float *)(SystemDataRegistry0 + CharacterTableIterator * 0x10);
+          MatrixTransformMultiplier23 = *(float *)(SystemDataRegistry0 + BufferStatus1 * 0x10);
         }
-        FloatVariable50 = (FloatVariable46 - FloatVariable51) * (FloatVariable45 - FloatVariable5) - (FloatVariable52 - FloatVariable5) * (FloatVariable53 - FloatVariable51);
-        FloatVariable51 = FloatVariable49 * (FloatVariable53 - FloatVariable51) - FloatVariable48 * (FloatVariable46 - FloatVariable51);
-        FloatVariable48 = FloatVariable48 * (FloatVariable52 - FloatVariable5) - FloatVariable49 * (FloatVariable45 - FloatVariable5);
-        VectorLength = SQRT(FloatVariable51 * FloatVariable51 + FloatVariable48 * FloatVariable48 + FloatVariable50 * FloatVariable50);
+        MatrixTransformMultiplier20 = (MatrixTransformMultiplier16 - MatrixTransformMultiplier21) * (MatrixTransformMultiplier15 - MatrixTransformMultiplier2) - (MatrixTransformMultiplier22 - MatrixTransformMultiplier2) * (MatrixTransformMultiplier23 - MatrixTransformMultiplier21);
+        MatrixTransformMultiplier21 = MatrixTransformMultiplier19 * (MatrixTransformMultiplier23 - MatrixTransformMultiplier21) - MatrixTransformMultiplier18 * (MatrixTransformMultiplier16 - MatrixTransformMultiplier21);
+        MatrixTransformMultiplier18 = MatrixTransformMultiplier18 * (MatrixTransformMultiplier22 - MatrixTransformMultiplier2) - MatrixTransformMultiplier19 * (MatrixTransformMultiplier15 - MatrixTransformMultiplier2);
+        VectorLength = SQRT(MatrixTransformMultiplier21 * MatrixTransformMultiplier21 + MatrixTransformMultiplier18 * MatrixTransformMultiplier18 + MatrixTransformMultiplier20 * MatrixTransformMultiplier20);
         if (VectorLength <= 0.0) {
-          FloatVariable48 = 0.0;
-          FloatVariable51 = 0.0;
+          MatrixTransformMultiplier18 = 0.0;
+          MatrixTransformMultiplier21 = 0.0;
           NormalizationResult = 1.0;
           VectorLength = 1.0;
         }
         else {
           NormalizationResult = 1.0 / VectorLength;
-          FloatVariable48 = FloatVariable48 * NormalizationResult;
-          FloatVariable51 = NormalizationResult * FloatVariable51;
-          NormalizationResult = NormalizationResult * FloatVariable50;
+          MatrixTransformMultiplier18 = MatrixTransformMultiplier18 * NormalizationResult;
+          MatrixTransformMultiplier21 = NormalizationResult * MatrixTransformMultiplier21;
+          NormalizationResult = NormalizationResult * MatrixTransformMultiplier20;
         }
-        SystemUnsignedValue180 = CONCAT44(FloatVariable51,FloatVariable48);
+        SystemUnsignedValue180 = CONCAT44(MatrixTransformMultiplier21,MatrixTransformMultiplier18);
         pSystemContextPrimaryFloat8 = (float *)(*(long long *)(StackDataBuffer150.Low64Part + MemoryBufferC) + UnicodeCodePoint0);
-        *pSystemContextPrimaryFloat8 = FloatVariable48;
-        pSystemContextPrimaryFloat8[1] = FloatVariable51;
+        *pSystemContextPrimaryFloat8 = MatrixTransformMultiplier18;
+        pSystemContextPrimaryFloat8[1] = MatrixTransformMultiplier21;
         pSystemContextPrimaryFloat8[2] = NormalizationResult;
         pSystemContextPrimaryFloat8[3] = VectorLength;
         UnicodeCodePoint8 = UnicodeCodePoint8 - 1;
@@ -52663,26 +52663,26 @@ SystemDataRelease:
                 DataSize = ((void *)(BufferStatus3 + *MemoryBlockIndex9))[1];
                 *(void *)(MemoryBlockIndex1 + 0x34) = *(void *)(BufferStatus3 + *MemoryBlockIndex9);
                 *(void *)(MemoryBlockIndex1 + 0x3c) = DataSize;
-                FloatVariable48 = *(float *)(MemoryBlockIndex1 + 8);
-                FloatVariable52 = *(float *)(MemoryBlockIndex1 + 4);
-                FloatVariable51 = *(float *)(MemoryBlockIndex1 + 0xc);
-                FloatVariable45 = FloatVariable51 * FloatVariable51 + FloatVariable52 * FloatVariable52 + FloatVariable48 * FloatVariable48;
-                aMemoryAddressMask7 = rsqrtss(ZEXT416((uint)FloatVariable45),ZEXT416((uint)FloatVariable45));
-                FloatVariable46 = aMemoryAddressMask7.LowPart;
-                FloatVariable45 = FloatVariable46 * 0.5 * (3.0 - FloatVariable45 * FloatVariable46 * FloatVariable46);
-                *(float *)(MemoryBlockIndex1 + 4) = FloatVariable45 * FloatVariable52;
-                *(float *)(MemoryBlockIndex1 + 8) = FloatVariable45 * FloatVariable48;
-                *(float *)(MemoryBlockIndex1 + 0xc) = FloatVariable45 * FloatVariable51;
-                FloatVariable48 = *(float *)(MemoryBlockIndex1 + 0x38);
-                FloatVariable52 = *(float *)(MemoryBlockIndex1 + 0x34);
-                FloatVariable51 = *(float *)(MemoryBlockIndex1 + 0x3c);
-                FloatVariable45 = FloatVariable51 * FloatVariable51 + FloatVariable52 * FloatVariable52 + FloatVariable48 * FloatVariable48;
-                aMemoryAddressMask7 = rsqrtss(ZEXT416((uint)FloatVariable45),ZEXT416((uint)FloatVariable45));
-                FloatVariable46 = aMemoryAddressMask7.LowPart;
-                FloatVariable45 = FloatVariable46 * 0.5 * (3.0 - FloatVariable45 * FloatVariable46 * FloatVariable46);
-                *(float *)(MemoryBlockIndex1 + 0x34) = FloatVariable52 * FloatVariable45;
-                *(float *)(MemoryBlockIndex1 + 0x38) = FloatVariable48 * FloatVariable45;
-                *(float *)(MemoryBlockIndex1 + 0x3c) = FloatVariable51 * FloatVariable45;
+                MatrixTransformMultiplier18 = *(float *)(MemoryBlockIndex1 + 8);
+                MatrixTransformMultiplier22 = *(float *)(MemoryBlockIndex1 + 4);
+                MatrixTransformMultiplier21 = *(float *)(MemoryBlockIndex1 + 0xc);
+                MatrixTransformMultiplier15 = MatrixTransformMultiplier21 * MatrixTransformMultiplier21 + MatrixTransformMultiplier22 * MatrixTransformMultiplier22 + MatrixTransformMultiplier18 * MatrixTransformMultiplier18;
+                aMemoryAddressMask7 = rsqrtss(ZEXT416((uint)MatrixTransformMultiplier15),ZEXT416((uint)MatrixTransformMultiplier15));
+                MatrixTransformMultiplier16 = aMemoryAddressMask7.LowPart;
+                MatrixTransformMultiplier15 = MatrixTransformMultiplier16 * 0.5 * (3.0 - MatrixTransformMultiplier15 * MatrixTransformMultiplier16 * MatrixTransformMultiplier16);
+                *(float *)(MemoryBlockIndex1 + 4) = MatrixTransformMultiplier15 * MatrixTransformMultiplier22;
+                *(float *)(MemoryBlockIndex1 + 8) = MatrixTransformMultiplier15 * MatrixTransformMultiplier18;
+                *(float *)(MemoryBlockIndex1 + 0xc) = MatrixTransformMultiplier15 * MatrixTransformMultiplier21;
+                MatrixTransformMultiplier18 = *(float *)(MemoryBlockIndex1 + 0x38);
+                MatrixTransformMultiplier22 = *(float *)(MemoryBlockIndex1 + 0x34);
+                MatrixTransformMultiplier21 = *(float *)(MemoryBlockIndex1 + 0x3c);
+                MatrixTransformMultiplier15 = MatrixTransformMultiplier21 * MatrixTransformMultiplier21 + MatrixTransformMultiplier22 * MatrixTransformMultiplier22 + MatrixTransformMultiplier18 * MatrixTransformMultiplier18;
+                aMemoryAddressMask7 = rsqrtss(ZEXT416((uint)MatrixTransformMultiplier15),ZEXT416((uint)MatrixTransformMultiplier15));
+                MatrixTransformMultiplier16 = aMemoryAddressMask7.LowPart;
+                MatrixTransformMultiplier15 = MatrixTransformMultiplier16 * 0.5 * (3.0 - MatrixTransformMultiplier15 * MatrixTransformMultiplier16 * MatrixTransformMultiplier16);
+                *(float *)(MemoryBlockIndex1 + 0x34) = MatrixTransformMultiplier22 * MatrixTransformMultiplier15;
+                *(float *)(MemoryBlockIndex1 + 0x38) = MatrixTransformMultiplier18 * MatrixTransformMultiplier15;
+                *(float *)(MemoryBlockIndex1 + 0x3c) = MatrixTransformMultiplier21 * MatrixTransformMultiplier15;
               }
               else {
                 DataSize = ((void *)(BufferStatus3 + *MemoryBlockIndex9))[1];
@@ -52692,16 +52692,16 @@ SystemDataRelease:
                 systemEventTemplatePointer[1] = DataSize;
                 pSystemContextPrimaryFloat8 = (float *)((long long)*(int *)(SystemUnsignedValue180 + BufferStatus1 * 4) * 0x10 +
                                    *(long long *                                    (*(long long *)(CharacterCode + 0xb0) + 0x30 + StackProcessingConfigurationFlag * 0x50));
-                FloatVariable48 = pSystemContextPrimaryFloat8[1];
-                FloatVariable52 = *pSystemContextPrimaryFloat8;
-                FloatVariable51 = pSystemContextPrimaryFloat8[2];
-                FloatVariable45 = FloatVariable51 * FloatVariable51 + FloatVariable52 * FloatVariable52 + FloatVariable48 * FloatVariable48;
-                aMemoryAddressMask7 = rsqrtss(ZEXT416((uint)FloatVariable45),ZEXT416((uint)FloatVariable45));
-                FloatVariable46 = aMemoryAddressMask7.LowPart;
-                FloatVariable45 = FloatVariable46 * 0.5 * (3.0 - FloatVariable45 * FloatVariable46 * FloatVariable46);
-                *pSystemContextPrimaryFloat8 = FloatVariable52 * FloatVariable45;
-                pSystemContextPrimaryFloat8[1] = FloatVariable48 * FloatVariable45;
-                pSystemContextPrimaryFloat8[2] = FloatVariable51 * FloatVariable45;
+                MatrixTransformMultiplier18 = pSystemContextPrimaryFloat8[1];
+                MatrixTransformMultiplier22 = *pSystemContextPrimaryFloat8;
+                MatrixTransformMultiplier21 = pSystemContextPrimaryFloat8[2];
+                MatrixTransformMultiplier15 = MatrixTransformMultiplier21 * MatrixTransformMultiplier21 + MatrixTransformMultiplier22 * MatrixTransformMultiplier22 + MatrixTransformMultiplier18 * MatrixTransformMultiplier18;
+                aMemoryAddressMask7 = rsqrtss(ZEXT416((uint)MatrixTransformMultiplier15),ZEXT416((uint)MatrixTransformMultiplier15));
+                MatrixTransformMultiplier16 = aMemoryAddressMask7.LowPart;
+                MatrixTransformMultiplier15 = MatrixTransformMultiplier16 * 0.5 * (3.0 - MatrixTransformMultiplier15 * MatrixTransformMultiplier16 * MatrixTransformMultiplier16);
+                *pSystemContextPrimaryFloat8 = MatrixTransformMultiplier22 * MatrixTransformMultiplier15;
+                pSystemContextPrimaryFloat8[1] = MatrixTransformMultiplier18 * MatrixTransformMultiplier15;
+                pSystemContextPrimaryFloat8[2] = MatrixTransformMultiplier21 * MatrixTransformMultiplier15;
               }
               BufferStatus1 = BufferStatus1 + 1;
             } while (BufferStatus1 < 3);
@@ -52727,13 +52727,13 @@ SystemDataRelease:
                     PrimaryProcessingStatusFlag = (uint *)(MemoryBlockIndex1 + *(long long *)(piStack_218 + (unsigned long long)UnicodeCodePoint3 * 8));
                     *PrimaryProcessingStatusFlag = *PrimaryProcessingStatusFlag | Utf16Char9;
                     MemoryBufferC = *MemoryBlockIndex9;
-                    FloatVariable48 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
-                    FloatVariable52 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
+                    MatrixTransformMultiplier18 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
+                    MatrixTransformMultiplier22 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
                     SystemContextValue = *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
                     *(float *)(SystemContextValue + 4 + MemoryBlockIndex1) =
                          *(float *)(SystemContextValue + 4 + MemoryBlockIndex1) + *(float *)(BufferStatus3 + MemoryBufferC);
-                    *(float *)(SystemContextValue + 8 + MemoryBlockIndex1) = FloatVariable52 + *(float *)(SystemContextValue + 8 + MemoryBlockIndex1);
-                    *(float *)(SystemContextValue + 0xc + MemoryBlockIndex1) = FloatVariable48 + *(float *)(SystemContextValue + 0xc + MemoryBlockIndex1);
+                    *(float *)(SystemContextValue + 8 + MemoryBlockIndex1) = MatrixTransformMultiplier22 + *(float *)(SystemContextValue + 8 + MemoryBlockIndex1);
+                    *(float *)(SystemContextValue + 0xc + MemoryBlockIndex1) = MatrixTransformMultiplier18 + *(float *)(SystemContextValue + 0xc + MemoryBlockIndex1);
                     hasDataBeenUpdated = true;
                     UnicodeCodePoint3 = *systemEventTemplatePointer2;
                   }
@@ -52742,13 +52742,13 @@ SystemDataRelease:
                                      MemoryBlockIndex1);
                     *PrimaryProcessingStatusFlag = *PrimaryProcessingStatusFlag | Utf16Char9;
                     MemoryBufferC = *MemoryBlockIndex9;
-                    FloatVariable48 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
-                    FloatVariable52 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
+                    MatrixTransformMultiplier18 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
+                    MatrixTransformMultiplier22 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
                     SystemContextValue = *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
                     *(float *)(SystemContextValue + 0x18 + MemoryBlockIndex1) =
                          *(float *)(SystemContextValue + 0x18 + MemoryBlockIndex1) + *(float *)(BufferStatus3 + MemoryBufferC);
-                    *(float *)(SystemContextValue + 0x1c + MemoryBlockIndex1) = FloatVariable52 + *(float *)(SystemContextValue + 0x1c + MemoryBlockIndex1                    ;
-                    *(float *)(SystemContextValue + 0x20 + MemoryBlockIndex1) = FloatVariable48 + *(float *)(SystemContextValue + 0x20 + MemoryBlockIndex1                    ;
+                    *(float *)(SystemContextValue + 0x1c + MemoryBlockIndex1) = MatrixTransformMultiplier22 + *(float *)(SystemContextValue + 0x1c + MemoryBlockIndex1                    ;
+                    *(float *)(SystemContextValue + 0x20 + MemoryBlockIndex1) = MatrixTransformMultiplier18 + *(float *)(SystemContextValue + 0x20 + MemoryBlockIndex1                    ;
                     hasDataBeenUpdated = true;
                     UnicodeCodePoint3 = *systemEventTemplatePointer2;
                   }
@@ -52757,13 +52757,13 @@ SystemDataRelease:
                                      MemoryBlockIndex1);
                     *PrimaryProcessingStatusFlag = *PrimaryProcessingStatusFlag | Utf16Char9;
                     MemoryBufferC = *MemoryBlockIndex9;
-                    FloatVariable48 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
-                    FloatVariable52 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
+                    MatrixTransformMultiplier18 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
+                    MatrixTransformMultiplier22 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
                     SystemContextValue = *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
                     *(float *)(SystemContextValue + 0x2c + MemoryBlockIndex1) =
                          *(float *)(SystemContextValue + 0x2c + MemoryBlockIndex1) + *(float *)(BufferStatus3 + MemoryBufferC);
-                    *(float *)(SystemContextValue + 0x30 + MemoryBlockIndex1) = FloatVariable52 + *(float *)(SystemContextValue + 0x30 + MemoryBlockIndex1                    ;
-                    *(float *)(SystemContextValue + 0x34 + MemoryBlockIndex1) = FloatVariable48 + *(float *)(SystemContextValue + 0x34 + MemoryBlockIndex1                    ;
+                    *(float *)(SystemContextValue + 0x30 + MemoryBlockIndex1) = MatrixTransformMultiplier22 + *(float *)(SystemContextValue + 0x30 + MemoryBlockIndex1                    ;
+                    *(float *)(SystemContextValue + 0x34 + MemoryBlockIndex1) = MatrixTransformMultiplier18 + *(float *)(SystemContextValue + 0x34 + MemoryBlockIndex1                    ;
                     hasDataBeenUpdated = true;
                   }
                   UnicodeCodePoint3 = *(uint *)(MemoryBlockIndex1 + 0x3c +
@@ -52771,13 +52771,13 @@ SystemDataRelease:
                   if ((Utf16Char9 & UnicodeCodePoint3) != 0) {
                     *(uint *)(*(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8) + 0x3c + MemoryBlockIndex1                         = UnicodeCodePoint3 | Utf16Char9;
                     MemoryBufferC = *MemoryBlockIndex9;
-                    FloatVariable48 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
-                    FloatVariable52 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
+                    MatrixTransformMultiplier18 = *(float *)(BufferStatus3 + 8 + MemoryBufferC);
+                    MatrixTransformMultiplier22 = *(float *)(BufferStatus3 + 4 + MemoryBufferC);
                     SystemContextValue = *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
                     *(float *)(SystemContextValue + 0x40 + MemoryBlockIndex1) =
                          *(float *)(SystemContextValue + 0x40 + MemoryBlockIndex1) + *(float *)(BufferStatus3 + MemoryBufferC);
-                    *(float *)(SystemContextValue + 0x44 + MemoryBlockIndex1) = FloatVariable52 + *(float *)(SystemContextValue + 0x44 + MemoryBlockIndex1                    ;
-                    *(float *)(SystemContextValue + 0x48 + MemoryBlockIndex1) = FloatVariable48 + *(float *)(SystemContextValue + 0x48 + MemoryBlockIndex1                    ;
+                    *(float *)(SystemContextValue + 0x44 + MemoryBlockIndex1) = MatrixTransformMultiplier22 + *(float *)(SystemContextValue + 0x44 + MemoryBlockIndex1                    ;
+                    *(float *)(SystemContextValue + 0x48 + MemoryBlockIndex1) = MatrixTransformMultiplier18 + *(float *)(SystemContextValue + 0x48 + MemoryBlockIndex1                    ;
                     hasDataBeenUpdated = true;
                   }
                   MemoryBlockIndex1 = MemoryBlockIndex1 + 0x50;
@@ -52794,13 +52794,13 @@ SystemDataRelease:
                     *(uint *)(MemoryBlockIndex1 + *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8)) =
                          UnicodeCodePoint3 | Utf16Char9;
                     BufferStatus1 = *MemoryBlockIndex9;
-                    FloatVariable48 = *(float *)(BufferStatus3 + 8 + BufferStatus1);
-                    FloatVariable52 = *(float *)(BufferStatus3 + 4 + BufferStatus1);
+                    MatrixTransformMultiplier18 = *(float *)(BufferStatus3 + 8 + BufferStatus1);
+                    MatrixTransformMultiplier22 = *(float *)(BufferStatus3 + 4 + BufferStatus1);
                     BufferStatus4 = *(long long *)(piStack_218 + (unsigned long long)*systemEventTemplatePointer2 * 8);
                     *(float *)(MemoryBlockIndex1 + 4 + BufferStatus4) =
                          *(float *)(MemoryBlockIndex1 + 4 + BufferStatus4) + *(float *)(BufferStatus3 + BufferStatus1);
-                    *(float *)(MemoryBlockIndex1 + 8 + BufferStatus4) = FloatVariable52 + *(float *)(MemoryBlockIndex1 + 8 + BufferStatus4);
-                    *(float *)(MemoryBlockIndex1 + 0xc + BufferStatus4) = FloatVariable48 + *(float *)(MemoryBlockIndex1 + 0xc + BufferStatus4);
+                    *(float *)(MemoryBlockIndex1 + 8 + BufferStatus4) = MatrixTransformMultiplier22 + *(float *)(MemoryBlockIndex1 + 8 + BufferStatus4);
+                    *(float *)(MemoryBlockIndex1 + 0xc + BufferStatus4) = MatrixTransformMultiplier18 + *(float *)(MemoryBlockIndex1 + 0xc + BufferStatus4);
                     hasDataBeenUpdated = true;
                   }
                   MemoryBlockIndex1 = MemoryBlockIndex1 + 0x14;
@@ -52883,20 +52883,20 @@ UnicodeBufferAllocation:
           if (0 < StringComparisonResult7) {
             do {
               SystemContextValue = *(long long *)(BufferStatus3 + (long long)piStack_218);
-              FloatVariable48 = *(float *)(SystemContextValue + 8 + BufferStatus4);
-              FloatVariable52 = *(float *)(SystemContextValue + 4 + BufferStatus4);
-              FloatVariable51 = *(float *)(SystemContextValue + 0xc + BufferStatus4);
-              FloatVariable45 = FloatVariable52 * FloatVariable52 + FloatVariable48 * FloatVariable48 + FloatVariable51 * FloatVariable51;
-              if (SQRT(FloatVariable45) == 0.0) {
+              MatrixTransformMultiplier18 = *(float *)(SystemContextValue + 8 + BufferStatus4);
+              MatrixTransformMultiplier22 = *(float *)(SystemContextValue + 4 + BufferStatus4);
+              MatrixTransformMultiplier21 = *(float *)(SystemContextValue + 0xc + BufferStatus4);
+              MatrixTransformMultiplier15 = MatrixTransformMultiplier22 * MatrixTransformMultiplier22 + MatrixTransformMultiplier18 * MatrixTransformMultiplier18 + MatrixTransformMultiplier21 * MatrixTransformMultiplier21;
+              if (SQRT(MatrixTransformMultiplier15) == 0.0) {
                 *(uint8_t (*) [16])(SystemContextValue + 4 + BufferStatus4) = _ByteArrayTemplate;
               }
               else {
-                aMemoryAddressMask7 = rsqrtss(ZEXT416((uint)FloatVariable45),ZEXT416((uint)FloatVariable45));
-                FloatVariable46 = aMemoryAddressMask7.LowPart;
-                FloatVariable45 = FloatVariable46 * 0.5 * (3.0 - FloatVariable45 * FloatVariable46 * FloatVariable46);
-                *(float *)(SystemContextValue + 4 + BufferStatus4) = FloatVariable52 * FloatVariable45;
-                *(float *)(SystemContextValue + 8 + BufferStatus4) = FloatVariable45 * FloatVariable48;
-                *(float *)(SystemContextValue + 0xc + BufferStatus4) = FloatVariable51 * FloatVariable45;
+                aMemoryAddressMask7 = rsqrtss(ZEXT416((uint)MatrixTransformMultiplier15),ZEXT416((uint)MatrixTransformMultiplier15));
+                MatrixTransformMultiplier16 = aMemoryAddressMask7.LowPart;
+                MatrixTransformMultiplier15 = MatrixTransformMultiplier16 * 0.5 * (3.0 - MatrixTransformMultiplier15 * MatrixTransformMultiplier16 * MatrixTransformMultiplier16);
+                *(float *)(SystemContextValue + 4 + BufferStatus4) = MatrixTransformMultiplier22 * MatrixTransformMultiplier15;
+                *(float *)(SystemContextValue + 8 + BufferStatus4) = MatrixTransformMultiplier15 * MatrixTransformMultiplier18;
+                *(float *)(SystemContextValue + 0xc + BufferStatus4) = MatrixTransformMultiplier21 * MatrixTransformMultiplier15;
               }
               MemoryBufferC = MemoryBufferC + -1;
               BufferStatus4 = BufferStatus4 + 0x14;
@@ -57889,7 +57889,7 @@ void CalculateAndTransformFloatData(float *Utf8InputBuffer,float *Utf8InputBuffe
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -57906,53 +57906,53 @@ void CalculateAndTransformFloatData(float *Utf8InputBuffer,float *Utf8InputBuffe
   float ContextPrimaryFloat9;
   
   CalculatedDistance = Utf8InputBuffer[6];
-  FloatVariable4 = Utf8InputBuffer[0xd];
+  MatrixTransformMultiplier1 = Utf8InputBuffer[0xd];
   SystemContextPrimaryFloat = Utf8InputBuffer[9];
-  FloatVariable5 = Utf8InputBuffer[1];
+  MatrixTransformMultiplier2 = Utf8InputBuffer[1];
   CalculatedFilterValue = Utf8InputBuffer[0xe];
   SecondaryFloatValue = Utf8InputBuffer[2];
   SystemContextPrimaryFloat3 = Utf8InputBuffer[10];
   SystemContextPrimaryFloat6 = Utf8InputBuffer[5];
-  SystemContextPrimaryFloat2 = FilterInputValue * SystemContextPrimaryFloat - FloatVariable4 * SystemContextPrimaryFloat3;
-  NormalizedParameterValue = FilterInputValue * SystemContextPrimaryFloat6 - FloatVariable4 * CalculatedDistance;
-  PrimaryFloatValue = FilterInputValue * FloatVariable5 - FloatVariable4 * SecondaryFloatValue;
+  SystemContextPrimaryFloat2 = FilterInputValue * SystemContextPrimaryFloat - MatrixTransformMultiplier1 * SystemContextPrimaryFloat3;
+  NormalizedParameterValue = FilterInputValue * SystemContextPrimaryFloat6 - MatrixTransformMultiplier1 * CalculatedDistance;
+  PrimaryFloatValue = FilterInputValue * MatrixTransformMultiplier2 - MatrixTransformMultiplier1 * SecondaryFloatValue;
   SecondaryFloatValue = SystemContextPrimaryFloat6 * SystemContextPrimaryFloat3 - SystemContextPrimaryFloat * CalculatedDistance;
-  ProcessedFloatValue8 = FloatVariable5 * SystemContextPrimaryFloat3 - SystemContextPrimaryFloat * SecondaryFloatValue;
+  ProcessedFloatValue8 = MatrixTransformMultiplier2 * SystemContextPrimaryFloat3 - SystemContextPrimaryFloat * SecondaryFloatValue;
   *Utf8InputBufferSize = SecondaryFloatValue;
-  FloatVariable7 = FloatVariable5 * CalculatedDistance - SystemContextPrimaryFloat6 * SecondaryFloatValue;
+  FloatVariable7 = MatrixTransformMultiplier2 * CalculatedDistance - SystemContextPrimaryFloat6 * SecondaryFloatValue;
   SystemContextPrimaryFloat8 = SecondaryFloatValue * Utf8InputBuffer[9] - SystemContextPrimaryFloat3 * Utf8InputBuffer[1];
   Utf8BufferSize[1] = SystemContextPrimaryFloat8;
-  FloatVariable4 = Utf8InputBuffer[5];
+  MatrixTransformMultiplier1 = Utf8InputBuffer[5];
   CalculatedFilterValue = Utf8InputBuffer[1];
   Utf8BufferSize[3] = 0.0;
-  ContextPrimaryFloat9 = CalculatedDistance * FilterInputValue - SecondaryFloatValue * FloatVariable4;
+  ContextPrimaryFloat9 = CalculatedDistance * FilterInputValue - SecondaryFloatValue * MatrixTransformMultiplier1;
   Utf8BufferSize[2] = ContextPrimaryFloat9;
   ContextSecondaryFloat = CalculatedDistance * Utf8InputBuffer[8] - SystemContextPrimaryFloat3 * Utf8InputBuffer[4];
   Utf8BufferSize[4] = ContextSecondaryFloat;
   SystemFloatValue = SystemContextPrimaryFloat3 * *Utf8InputBuffer - SecondaryFloatValue * Utf8InputBuffer[8];
   Utf8BufferSize[5] = SystemFloatValue;
-  FloatVariable4 = Utf8InputBuffer[4];
+  MatrixTransformMultiplier1 = Utf8InputBuffer[4];
   CalculatedFilterValue = *Utf8InputBuffer;
   Utf8BufferSize[7] = 0.0;
-  SystemContextPrimaryFloat4 = SecondaryFloatValue * FloatVariable4 - CalculatedDistance * FilterInputValue;
+  SystemContextPrimaryFloat4 = SecondaryFloatValue * MatrixTransformMultiplier1 - CalculatedDistance * FilterInputValue;
   Utf8BufferSize[6] = SystemContextPrimaryFloat4;
   CalculatedFilterValue = SystemContextPrimaryFloat * Utf8InputBuffer[4] - SystemContextPrimaryFloat6 * Utf8InputBuffer[8];
   Utf8BufferSize[8] = FilterInputValue;
-  SystemContextPrimaryFloat = FloatVariable5 * Utf8InputBuffer[8] - SystemContextPrimaryFloat * *Utf8InputBuffer;
+  SystemContextPrimaryFloat = MatrixTransformMultiplier2 * Utf8InputBuffer[8] - SystemContextPrimaryFloat * *Utf8InputBuffer;
   Utf8BufferSize[9] = SystemContextPrimaryFloat;
   CalculatedDistance = Utf8InputBuffer[4];
-  FloatVariable4 = *Utf8InputBuffer;
+  MatrixTransformMultiplier1 = *Utf8InputBuffer;
   Utf8BufferSize[0xb] = 0.0;
-  SystemContextPrimaryFloat6 = SystemContextPrimaryFloat6 * FloatVariable4 - FloatVariable5 * CalculatedDistance;
+  SystemContextPrimaryFloat6 = SystemContextPrimaryFloat6 * MatrixTransformMultiplier1 - MatrixTransformMultiplier2 * CalculatedDistance;
   Utf8BufferSize[10] = SystemContextPrimaryFloat6;
-  FloatVariable4 = (NormalizedParameterValue * Utf8InputBuffer[8] - SystemContextPrimaryFloat2 * Utf8InputBuffer[4]) - SecondaryFloatValue * Utf8InputBuffer[0xc];
-  Utf8BufferSize[0xc] = FloatVariable4;
+  MatrixTransformMultiplier1 = (NormalizedParameterValue * Utf8InputBuffer[8] - SystemContextPrimaryFloat2 * Utf8InputBuffer[4]) - SecondaryFloatValue * Utf8InputBuffer[0xc];
+  Utf8BufferSize[0xc] = MatrixTransformMultiplier1;
   SystemContextPrimaryFloat3 = (SystemContextPrimaryFloat2 * *Utf8InputBuffer - PrimaryFloatValue * Utf8InputBuffer[8]) + ProcessedFloatValue8 * Utf8InputBuffer[0xc];
   Utf8BufferSize[0xd] = SystemContextPrimaryFloat3;
   SecondaryFloatValue = (PrimaryFloatValue * Utf8InputBuffer[4] - NormalizedParameterValue * *Utf8InputBuffer) - FloatVariable7 * Utf8InputBuffer[0xc];
   Utf8BufferSize[0xe] = SecondaryFloatValue;
-  FloatVariable5 = (SecondaryFloatValue * *Utf8InputBuffer - ProcessedFloatValue8 * Utf8InputBuffer[4]) + FloatVariable7 * Utf8InputBuffer[8];
-  Utf8BufferSize[0xf] = FloatVariable5;
+  MatrixTransformMultiplier2 = (SecondaryFloatValue * *Utf8InputBuffer - ProcessedFloatValue8 * Utf8InputBuffer[4]) + FloatVariable7 * Utf8InputBuffer[8];
+  Utf8BufferSize[0xf] = MatrixTransformMultiplier2;
   CalculatedDistance = SystemContextPrimaryFloat8 * Utf8InputBuffer[4] + SecondaryFloatValue * *Utf8InputBuffer + ContextPrimaryFloat9 * Utf8InputBuffer[8];
   if (CalculatedDistance != 1.0) {
     CalculatedDistance = 1.0 / CalculatedDistance;
@@ -57965,10 +57965,10 @@ void CalculateAndTransformFloatData(float *Utf8InputBuffer,float *Utf8InputBuffe
     Utf8BufferSize[6] = SystemContextPrimaryFloat4 * CalculatedDistance;
     Utf8BufferSize[9] = SystemContextPrimaryFloat * CalculatedDistance;
     Utf8BufferSize[10] = SystemContextPrimaryFloat6 * CalculatedDistance;
-    Utf8BufferSize[0xc] = FloatVariable4 * CalculatedDistance;
+    Utf8BufferSize[0xc] = MatrixTransformMultiplier1 * CalculatedDistance;
     Utf8BufferSize[0xd] = SystemContextPrimaryFloat3 * CalculatedDistance;
     Utf8BufferSize[0xe] = SecondaryFloatValue * CalculatedDistance;
-    Utf8BufferSize[0xf] = FloatVariable5 * CalculatedDistance;
+    Utf8BufferSize[0xf] = MatrixTransformMultiplier2 * CalculatedDistance;
   }
   return;
 }
@@ -57998,32 +57998,32 @@ void NormalizeVectorDataStructure(float *Utf8InputBuffer
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   uint8_t aMemoryAddressMask [16];
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   
   ContextSecondaryFloat = Utf8InputBuffer[4];
   CalculatedFilterValue = Utf8InputBuffer[6];
-  FloatVariable5 = Utf8InputBuffer[5];
-  SystemContextPrimaryFloat = ContextSecondaryFloat * ContextSecondaryFloat + FloatVariable5 * FloatVariable5 + FilterInputValue * FilterInputValue;
+  MatrixTransformMultiplier2 = Utf8InputBuffer[5];
+  SystemContextPrimaryFloat = ContextSecondaryFloat * ContextSecondaryFloat + MatrixTransformMultiplier2 * MatrixTransformMultiplier2 + FilterInputValue * FilterInputValue;
   aMemoryAddressMask = rsqrtss(ZEXT416((uint)SystemContextPrimaryFloat),ZEXT416((uint)SystemContextPrimaryFloat));
   CalculatedDistance = aMemoryAddressMask.LowPart;
   SystemContextPrimaryFloat = CalculatedDistance * 0.5 * (3.0 - SystemContextPrimaryFloat * CalculatedDistance * CalculatedDistance);
   Utf8InputBuffer[6] = FilterInputValue * SystemContextPrimaryFloat;
   Utf8InputBuffer[4] = ContextSecondaryFloat * SystemContextPrimaryFloat;
-  Utf8InputBuffer[5] = FloatVariable5 * SystemContextPrimaryFloat;
-  CalculatedDistance = FloatVariable5 * SystemContextPrimaryFloat * Utf8InputBuffer[10] - FilterInputValue * SystemContextPrimaryFloat * Utf8InputBuffer[9];
+  Utf8InputBuffer[5] = MatrixTransformMultiplier2 * SystemContextPrimaryFloat;
+  CalculatedDistance = MatrixTransformMultiplier2 * SystemContextPrimaryFloat * Utf8InputBuffer[10] - FilterInputValue * SystemContextPrimaryFloat * Utf8InputBuffer[9];
   *Utf8InputBuffer = CalculatedDistance;
   SystemContextPrimaryFloat = Utf8InputBuffer[6] * Utf8InputBuffer[8] - Utf8InputBuffer[4] * Utf8InputBuffer[10];
   Utf8InputBuffer[1] = SystemContextPrimaryFloat;
-  FloatVariable5 = Utf8InputBuffer[4] * Utf8InputBuffer[9] - Utf8InputBuffer[5] * Utf8InputBuffer[8];
-  ContextSecondaryFloat = SystemContextPrimaryFloat * SystemContextPrimaryFloat + CalculatedDistance * CalculatedDistance + FloatVariable5 * FloatVariable5;
+  MatrixTransformMultiplier2 = Utf8InputBuffer[4] * Utf8InputBuffer[9] - Utf8InputBuffer[5] * Utf8InputBuffer[8];
+  ContextSecondaryFloat = SystemContextPrimaryFloat * SystemContextPrimaryFloat + CalculatedDistance * CalculatedDistance + MatrixTransformMultiplier2 * MatrixTransformMultiplier2;
   aMemoryAddressMask = rsqrtss(ZEXT416((uint)ContextSecondaryFloat),ZEXT416((uint)ContextSecondaryFloat));
   CalculatedFilterValue = aMemoryAddressMask.LowPart;
   ContextSecondaryFloat = FilterInputValue * 0.5 * (3.0 - ContextSecondaryFloat * FilterInputValue * FilterInputValue);
   Utf8InputBuffer[1] = SystemContextPrimaryFloat * ContextSecondaryFloat;
-  Utf8InputBuffer[2] = FloatVariable5 * ContextSecondaryFloat;
+  Utf8InputBuffer[2] = MatrixTransformMultiplier2 * ContextSecondaryFloat;
   *Utf8InputBuffer = CalculatedDistance * ContextSecondaryFloat;
-  Utf8InputBuffer[8] = SystemContextPrimaryFloat * ContextSecondaryFloat * Utf8InputBuffer[6] - FloatVariable5 * ContextSecondaryFloat * Utf8InputBuffer[5];
+  Utf8InputBuffer[8] = SystemContextPrimaryFloat * ContextSecondaryFloat * Utf8InputBuffer[6] - MatrixTransformMultiplier2 * ContextSecondaryFloat * Utf8InputBuffer[5];
   Utf8InputBuffer[9] = Utf8InputBuffer[4] * Utf8InputBuffer[2] - Utf8InputBuffer[6] * *Utf8InputBuffer;
   Utf8InputBuffer[10] = Utf8InputBuffer[5] * *Utf8InputBuffer - Utf8InputBuffer[4] * Utf8InputBuffer[1];
   return;
@@ -58076,23 +58076,23 @@ void InitializeIdentityMatrixAndTransform(float *Utf8InputBuffer,float *Utf8Inpu
   Utf8InputBuffer[0xe] = 0.0;
   Utf8InputBuffer[0xf] = 1.0;
   CalculatedFilterValue = *Utf16EndPointer;
-  FloatVariable4 = Utf8InputBuffer[4];
+  MatrixTransformMultiplier1 = Utf8InputBuffer[4];
   SystemContextPrimaryFloat = Utf8InputBuffer[5];
   ContextSecondaryFloat = Utf8InputBuffer[6];
   Utf8InputBuffer[4] = *Utf8InputBuffer * FilterInputValue + Utf8InputBuffer[4];
   Utf8InputBuffer[5] = Utf8InputBuffer[1] * FilterInputValue + Utf8InputBuffer[5];
   Utf8InputBuffer[6] = Utf8InputBuffer[2] * FilterInputValue + Utf8InputBuffer[6];
   CalculatedFilterValue = Utf16EndPointer[1];
-  *Utf8InputBuffer = FloatVariable4 * FilterInputValue + *Utf8InputBuffer;
+  *Utf8InputBuffer = MatrixTransformMultiplier1 * FilterInputValue + *Utf8InputBuffer;
   Utf8InputBuffer[1] = SystemContextPrimaryFloat * FilterInputValue + Utf8InputBuffer[1];
   Utf8InputBuffer[2] = ContextSecondaryFloat * FilterInputValue + Utf8InputBuffer[2];
   CalculatedFilterValue = *AdditionalParameter1;
-  FloatVariable4 = FilterInputValue * Utf8InputBuffer[4] + Utf8InputBuffer[0xc];
-  Utf8InputBuffer[0xc] = FloatVariable4;
+  MatrixTransformMultiplier1 = FilterInputValue * Utf8InputBuffer[4] + Utf8InputBuffer[0xc];
+  Utf8InputBuffer[0xc] = MatrixTransformMultiplier1;
   Utf8InputBuffer[0xd] = Utf8InputBuffer[5] * FilterInputValue + Utf8InputBuffer[0xd];
   Utf8InputBuffer[0xe] = Utf8InputBuffer[6] * FilterInputValue + Utf8InputBuffer[0xe];
   CalculatedFilterValue = AdditionalParameter1[1];
-  Utf8InputBuffer[0xc] = FilterInputValue * *Utf8InputBuffer + FloatVariable4;
+  Utf8InputBuffer[0xc] = FilterInputValue * *Utf8InputBuffer + MatrixTransformMultiplier1;
   Utf8InputBuffer[0xd] = Utf8InputBuffer[1] * FilterInputValue + Utf8InputBuffer[0xd];
   Utf8InputBuffer[0xe] = Utf8InputBuffer[2] * FilterInputValue + Utf8InputBuffer[0xe];
   CalculateSystemAngleValueA(SUB84((double)*Utf8InputBufferSize * 0.0174532925199433,0),
@@ -58220,8 +58220,8 @@ float * CalculateAndNormalizeVector(float *VectorInputBuffer,float *VectorOutput
   NormalizationFactor = VectorInputBuffer[10];
   VectorOutputBuffer[1] = SQRT(VectorResultY * VectorResultY + VectorResultX * VectorResultX + VectorZComponent * VectorZComponent);
   Utf8BufferSize[2] = SQRT(FilterInputValue * FilterInputValue + ContextSecondaryFloat * ContextSecondaryFloat + NormalizedParameterValue * NormalizedParameterValue);
-  if ((CalculatedDistance * FloatVariable5 - ProcessedFloatValue8 * SystemContextPrimaryFloat) * ContextSecondaryFloat + (FloatVariable7 * SystemContextPrimaryFloat - CalculatedDistance * FloatVariable4) * FilterInputValue +
-      (ProcessedFloatValue8 * FloatVariable4 - FloatVariable7 * FloatVariable5) * Utf8InputBuffer[10] < 0.0) {
+  if ((CalculatedDistance * MatrixTransformMultiplier2 - ProcessedFloatValue8 * SystemContextPrimaryFloat) * ContextSecondaryFloat + (FloatVariable7 * SystemContextPrimaryFloat - CalculatedDistance * MatrixTransformMultiplier1) * FilterInputValue +
+      (ProcessedFloatValue8 * MatrixTransformMultiplier1 - FloatVariable7 * MatrixTransformMultiplier2) * Utf8InputBuffer[10] < 0.0) {
     *Utf8InputBufferSize = -PrimaryFloatValue;
   }
   return Utf8BufferSize;
@@ -58236,7 +58236,7 @@ float * CalculateAndNormalizeVector(float *VectorInputBuffer,float *VectorOutput
   uint64_t MemoryAllocationIndex;
   uint64_t UnicodeCodePoint;
   uint64_t MemoryAddressMask;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   uint8_t aDataSize [16];
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -58245,9 +58245,9 @@ float * CalculateAndNormalizeVector(float *VectorInputBuffer,float *VectorOutput
   float SecondaryFloatValue;
   float SystemContextPrimaryFloat2;
   float SystemContextPrimaryFloat3;
-  float fStack_68;
-  float fStack_64;
-  float fStack_60;
+  float StackCalculationResult1;
+  float StackCalculationResult2;
+  float StackCalculationResult3;
   
   if (Utf8SourcePointer == '\0') {
     Utf16Char = Utf16EndPointer[1];
@@ -58271,11 +58271,11 @@ float * CalculateAndNormalizeVector(float *VectorInputBuffer,float *VectorOutput
     Utf8InputBuffer[0xf] = 1.0;
     return;
   }
-  FloatVariable5 = *(float *)((long long)Utf16EndPointer + 0x34);
+  MatrixTransformMultiplier2 = *(float *)((long long)Utf16EndPointer + 0x34);
   SystemContextPrimaryFloat2 = *(float *)(Utf16EndPointer + 7);
   SecondaryFloatValue = *(float *)((long long)Utf16EndPointer + 0x3c);
   Utf8InputBuffer[0xc] = *(float *)(Utf16EndPointer + 6);
-  Utf8InputBuffer[0xd] = FloatVariable5;
+  Utf8InputBuffer[0xd] = MatrixTransformMultiplier2;
   Utf8InputBuffer[0xe] = SystemContextPrimaryFloat2;
   Utf8InputBuffer[0xf] = SecondaryFloatValue;
   if (Utf8SourcePointer == '\x01') {
@@ -58283,7 +58283,7 @@ float * CalculateAndNormalizeVector(float *VectorInputBuffer,float *VectorOutput
     SecondaryFloatValue = *(float *)((long long)Utf16EndPointer + 0x24);
     PrimaryFloatValue = *(float *)(Utf16EndPointer + 5);
     FloatVariable7 = *(float *)((long long)Utf16EndPointer + 0x2c);
-    FloatVariable5 = *(float *)(Utf8BufferSize + 0xc4);
+    MatrixTransformMultiplier2 = *(float *)(Utf8BufferSize + 0xc4);
     Utf8InputBuffer[8] = SystemContextPrimaryFloat2;
     Utf8InputBuffer[9] = SecondaryFloatValue;
     Utf8InputBuffer[10] = PrimaryFloatValue;
@@ -58297,18 +58297,18 @@ float * CalculateAndNormalizeVector(float *VectorInputBuffer,float *VectorOutput
     SystemContextPrimaryFloat2 = SystemContextPrimaryFloat2 * SystemContextPrimaryFloat3;
     SystemContextPrimaryFloat3 = SystemContextPrimaryFloat3 * ProcessedFloatValue8;
     FloatVariable7 = *(float *)(Utf8BufferSize + 0xc0) * PrimaryFloatValue - *(float *)(Utf8BufferSize + 200) * SystemContextPrimaryFloat2;
-    ProcessedFloatValue8 = *(float *)(Utf8BufferSize + 200) * SecondaryFloatValue - FloatVariable5 * PrimaryFloatValue;
-    NormalizedParameterValue = FloatVariable5 * SystemContextPrimaryFloat2 - *(float *)(Utf8BufferSize + 0xc0) * SecondaryFloatValue;
+    ProcessedFloatValue8 = *(float *)(Utf8BufferSize + 200) * SecondaryFloatValue - MatrixTransformMultiplier2 * PrimaryFloatValue;
+    NormalizedParameterValue = MatrixTransformMultiplier2 * SystemContextPrimaryFloat2 - *(float *)(Utf8BufferSize + 0xc0) * SecondaryFloatValue;
     Utf8InputBuffer[4] = ProcessedFloatValue8;
     Utf8InputBuffer[5] = FloatVariable7;
     Utf8InputBuffer[6] = NormalizedParameterValue;
     Utf8InputBuffer[7] = 3.4028235e+38;
-    FloatVariable5 = FloatVariable7 * PrimaryFloatValue - NormalizedParameterValue * SecondaryFloatValue;
-    *Utf8InputBuffer = FloatVariable5;
+    MatrixTransformMultiplier2 = FloatVariable7 * PrimaryFloatValue - NormalizedParameterValue * SecondaryFloatValue;
+    *Utf8InputBuffer = MatrixTransformMultiplier2;
     Utf8InputBuffer[1] = NormalizedParameterValue * SystemContextPrimaryFloat2 - ProcessedFloatValue8 * PrimaryFloatValue;
     Utf8InputBuffer[2] = ProcessedFloatValue8 * SecondaryFloatValue - FloatVariable7 * SystemContextPrimaryFloat2;
     Utf8InputBuffer[3] = 3.4028235e+38;
-    *Utf8InputBuffer = SystemContextPrimaryFloat3 * FloatVariable5;
+    *Utf8InputBuffer = SystemContextPrimaryFloat3 * MatrixTransformMultiplier2;
     Utf8InputBuffer[2] = SystemContextPrimaryFloat3 * Utf8InputBuffer[2];
     Utf8InputBuffer[1] = SystemContextPrimaryFloat3 * Utf8InputBuffer[1];
     Utf8InputBuffer[6] = SystemContextPrimaryFloat3 * Utf8InputBuffer[6];
@@ -70706,9 +70706,9 @@ void SetSystemFloatParameter(float targetValue, long long sourceData, float para
     CharacterCode = *(float *)(SystemContext + 0x17ec);
     Utf8SourcePointer = *(float *)(SystemContext + 0x17f0);
   }
-  FloatVariable4 = SQRT(Utf8SourcePointer / CharacterCode);
-  *(float *)(SystemContext + 0x17f4) = FloatVariable4;
-  *(float *)(SystemContext + 0x17f8) = 1.0 / FloatVariable4;
+  MatrixTransformMultiplier1 = SQRT(Utf8SourcePointer / CharacterCode);
+  *(float *)(SystemContext + 0x17f4) = MatrixTransformMultiplier1;
+  *(float *)(SystemContext + 0x17f8) = 1.0 / MatrixTransformMultiplier1;
   *(float *)(SystemContext + 0x17fc) = (Utf8SourcePointer / CharacterCode) * 1.3333334;
   return;
 }
@@ -70746,11 +70746,11 @@ void ProcessSystemDataTransfer(uint64_t targetDataStructure, long long sourceDat
     MemoryAllocationIndex = MemoryAllocationIndex + 8;
   } while ((unsigned long long)(long long)(int)LoopCounter <
            (unsigned long long)(*(long long *)(SystemContext + 0x1870) - Utf8BufferSize >> 3));
-  FloatVariable4 = *(float *)(SystemContext + 0x17f0) / *(float *)(SystemContext + 0x17ec);
-  CalculatedFilterValue = SQRT(FloatVariable4);
+  MatrixTransformMultiplier1 = *(float *)(SystemContext + 0x17f0) / *(float *)(SystemContext + 0x17ec);
+  CalculatedFilterValue = SQRT(MatrixTransformMultiplier1);
   *(float *)(SystemContext + 0x17f4) = FilterInputValue;
   *(float *)(SystemContext + 0x17f8) = 1.0 / FilterInputValue;
-  *(float *)(SystemContext + 0x17fc) = FloatVariable4 * 1.3333334;
+  *(float *)(SystemContext + 0x17fc) = MatrixTransformMultiplier1 * 1.3333334;
   return;
 }
 
@@ -72051,7 +72051,7 @@ void ProcessFloatMatrixTransformation(float *Utf8InputBuffer,float *Utf8InputBuf
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -72081,9 +72081,9 @@ void ProcessFloatMatrixTransformation(float *Utf8InputBuffer,float *Utf8InputBuf
   SystemContextPrimaryFloat2 = Utf8InputBuffer[0xe];
   SystemContextPrimaryFloat3 = Utf8InputBuffer[6];
   SystemContextPrimaryFloat6 = Utf8InputBuffer[10];
-  FloatVariable4 = SystemContextPrimaryFloat6 * CalculatedDistance - FloatVariable7 * SystemContextPrimaryFloat2;
+  MatrixTransformMultiplier1 = SystemContextPrimaryFloat6 * CalculatedDistance - FloatVariable7 * SystemContextPrimaryFloat2;
   SystemContextPrimaryFloat = Utf8InputBuffer[5];
-  FloatVariable5 = SystemContextPrimaryFloat3 * CalculatedDistance - NormalizedParameterValue * SystemContextPrimaryFloat2;
+  MatrixTransformMultiplier2 = SystemContextPrimaryFloat3 * CalculatedDistance - NormalizedParameterValue * SystemContextPrimaryFloat2;
   SecondaryFloatValue = Utf8InputBuffer[3];
   SystemContextPrimaryFloat4 = SystemContextPrimaryFloat3 * FloatVariable7 - NormalizedParameterValue * SystemContextPrimaryFloat6;
   SystemFloatValue = SecondaryFloatValue * CalculatedDistance - SecondaryFloatValue * SystemContextPrimaryFloat2;
@@ -72103,17 +72103,17 @@ void ProcessFloatMatrixTransformation(float *Utf8InputBuffer,float *Utf8InputBuf
   ContextSecondaryFloat4 = FilterInputValue * SystemContextPrimaryFloat2 - PrimaryFloatValue * SecondaryFloatValue;
   SecondaryFloatValue = FilterInputValue * SystemContextPrimaryFloat6 - ContextSecondaryFloat * SecondaryFloatValue;
   SystemContextPrimaryFloat2 = FilterInputValue * SystemContextPrimaryFloat3 - SystemContextPrimaryFloat * SecondaryFloatValue;
-  SecondaryFloatValue = (SystemContextPrimaryFloat * FloatVariable4 - ContextSecondaryFloat * FloatVariable5) + PrimaryFloatValue * SystemContextPrimaryFloat4;
+  SecondaryFloatValue = (SystemContextPrimaryFloat * MatrixTransformMultiplier1 - ContextSecondaryFloat * MatrixTransformMultiplier2) + PrimaryFloatValue * SystemContextPrimaryFloat4;
   *Utf8InputBufferSize = SecondaryFloatValue;
-  PrimaryFloatValue = (SystemFloatValue * Utf8InputBuffer[9] - FloatVariable4 * Utf8InputBuffer[1]) - ContextSecondaryFloat5 * Utf8InputBuffer[0xd];
+  PrimaryFloatValue = (SystemFloatValue * Utf8InputBuffer[9] - MatrixTransformMultiplier1 * Utf8InputBuffer[1]) - ContextSecondaryFloat5 * Utf8InputBuffer[0xd];
   Utf8BufferSize[1] = PrimaryFloatValue;
-  SystemContextPrimaryFloat6 = (FloatVariable5 * Utf8InputBuffer[1] - SystemFloatValue * Utf8InputBuffer[5]) + ContextSecondaryFloat3 * Utf8InputBuffer[0xd];
+  SystemContextPrimaryFloat6 = (MatrixTransformMultiplier2 * Utf8InputBuffer[1] - SystemFloatValue * Utf8InputBuffer[5]) + ContextSecondaryFloat3 * Utf8InputBuffer[0xd];
   Utf8BufferSize[2] = SystemContextPrimaryFloat6;
   SystemContextPrimaryFloat3 = (ContextSecondaryFloat5 * Utf8InputBuffer[5] - SystemContextPrimaryFloat4 * Utf8InputBuffer[1]) - ContextSecondaryFloat3 * Utf8InputBuffer[9];
   Utf8BufferSize[3] = SystemContextPrimaryFloat3;
-  Utf8BufferSize[4] = (FloatVariable5 * Utf8InputBuffer[8] - FloatVariable4 * Utf8InputBuffer[4]) - SystemContextPrimaryFloat4 * Utf8InputBuffer[0xc];
-  Utf8BufferSize[5] = (FloatVariable4 * *Utf8InputBuffer - SystemFloatValue * Utf8InputBuffer[8]) + ContextSecondaryFloat5 * Utf8InputBuffer[0xc];
-  Utf8BufferSize[6] = (SystemFloatValue * Utf8InputBuffer[4] - FloatVariable5 * *Utf8InputBuffer) - ContextSecondaryFloat3 * Utf8InputBuffer[0xc];
+  Utf8BufferSize[4] = (MatrixTransformMultiplier2 * Utf8InputBuffer[8] - MatrixTransformMultiplier1 * Utf8InputBuffer[4]) - SystemContextPrimaryFloat4 * Utf8InputBuffer[0xc];
+  Utf8BufferSize[5] = (MatrixTransformMultiplier1 * *Utf8InputBuffer - SystemFloatValue * Utf8InputBuffer[8]) + ContextSecondaryFloat5 * Utf8InputBuffer[0xc];
+  Utf8BufferSize[6] = (SystemFloatValue * Utf8InputBuffer[4] - MatrixTransformMultiplier2 * *Utf8InputBuffer) - ContextSecondaryFloat3 * Utf8InputBuffer[0xc];
   Utf8BufferSize[7] = (SystemContextPrimaryFloat4 * *Utf8InputBuffer - ContextSecondaryFloat5 * Utf8InputBuffer[4]) + ContextSecondaryFloat3 * Utf8InputBuffer[8];
   Utf8BufferSize[8] = (SystemContextPrimaryFloat8 * Utf8InputBuffer[4] - ContextPrimaryFloat9 * Utf8InputBuffer[8]) + ContextSecondaryFloat0 * Utf8InputBuffer[0xc];
   Utf8BufferSize[9] = (ContextSecondaryFloat1 * Utf8InputBuffer[8] - SystemContextPrimaryFloat8 * *Utf8InputBuffer) - ProcessedFloatValue8 * Utf8InputBuffer[0xc];
@@ -72167,7 +72167,7 @@ float * ExecuteFloatMatrixMultiplication(float *Utf8InputBuffer,float *Utf8Input
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -72185,8 +72185,8 @@ float * ExecuteFloatMatrixMultiplication(float *Utf8InputBuffer,float *Utf8Input
   SystemContextPrimaryFloat = Utf8InputBuffer[1];
   ContextSecondaryFloat = Utf8InputBuffer[2];
   CalculatedFilterValue = *Utf8InputBuffer;
-  FloatVariable4 = Utf8InputBuffer[3];
-  FloatVariable5 = Utf8InputBuffer[4];
+  MatrixTransformMultiplier1 = Utf8InputBuffer[3];
+  MatrixTransformMultiplier2 = Utf8InputBuffer[4];
   CalculatedDistance = Utf8SourcePointer[3];
   FloatVariable7 = Utf8SourcePointer[7];
   ProcessedFloatValue8 = Utf8SourcePointer[9];
@@ -72197,45 +72197,45 @@ float * ExecuteFloatMatrixMultiplication(float *Utf8InputBuffer,float *Utf8Input
   SystemContextPrimaryFloat3 = Utf8SourcePointer[10];
   SystemContextPrimaryFloat4 = Utf8SourcePointer[0xb];
   SystemFloatValue = Utf8SourcePointer[0xf];
-  *Utf8InputBufferSize = FilterInputValue * *Utf8SourcePointer + SystemContextPrimaryFloat * Utf8SourcePointer[4] + ContextSecondaryFloat * Utf8SourcePointer[8] + FloatVariable4 * Utf8SourcePointer[0xc];
-  Utf8BufferSize[1] = NormalizedParameterValue * FilterInputValue + SystemContextPrimaryFloat2 * SystemContextPrimaryFloat + ProcessedFloatValue8 * ContextSecondaryFloat + Utf8SourcePointer[0xd] * FloatVariable4;
+  *Utf8InputBufferSize = FilterInputValue * *Utf8SourcePointer + SystemContextPrimaryFloat * Utf8SourcePointer[4] + ContextSecondaryFloat * Utf8SourcePointer[8] + MatrixTransformMultiplier1 * Utf8SourcePointer[0xc];
+  Utf8BufferSize[1] = NormalizedParameterValue * FilterInputValue + SystemContextPrimaryFloat2 * SystemContextPrimaryFloat + ProcessedFloatValue8 * ContextSecondaryFloat + Utf8SourcePointer[0xd] * MatrixTransformMultiplier1;
   ProcessedFloatValue8 = Utf8InputBuffer[6];
   SystemContextPrimaryFloat2 = Utf8InputBuffer[5];
-  Utf8BufferSize[2] = SecondaryFloatValue * FilterInputValue + PrimaryFloatValue * SystemContextPrimaryFloat + SystemContextPrimaryFloat3 * ContextSecondaryFloat + Utf8SourcePointer[0xe] * FloatVariable4;
+  Utf8BufferSize[2] = SecondaryFloatValue * FilterInputValue + PrimaryFloatValue * SystemContextPrimaryFloat + SystemContextPrimaryFloat3 * ContextSecondaryFloat + Utf8SourcePointer[0xe] * MatrixTransformMultiplier1;
   SystemContextPrimaryFloat6 = Utf8InputBuffer[7];
   SecondaryFloatValue = Utf8SourcePointer[8];
   SystemContextPrimaryFloat8 = Utf8SourcePointer[4];
-  Utf8BufferSize[3] = CalculatedDistance * FilterInputValue + FloatVariable7 * SystemContextPrimaryFloat + SystemContextPrimaryFloat4 * ContextSecondaryFloat + SystemFloatValue * FloatVariable4;
+  Utf8BufferSize[3] = CalculatedDistance * FilterInputValue + FloatVariable7 * SystemContextPrimaryFloat + SystemContextPrimaryFloat4 * ContextSecondaryFloat + SystemFloatValue * MatrixTransformMultiplier1;
   SystemContextPrimaryFloat = Utf8SourcePointer[9];
   ContextSecondaryFloat = Utf8SourcePointer[5];
-  Utf8BufferSize[4] = FloatVariable5 * *Utf8SourcePointer + SystemContextPrimaryFloat2 * SystemContextPrimaryFloat8 + ProcessedFloatValue8 * SecondaryFloatValue + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xc];
-  Utf8BufferSize[5] = FloatVariable5 * NormalizedParameterValue + SystemContextPrimaryFloat2 * ContextSecondaryFloat + ProcessedFloatValue8 * SystemContextPrimaryFloat + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xd];
+  Utf8BufferSize[4] = MatrixTransformMultiplier2 * *Utf8SourcePointer + SystemContextPrimaryFloat2 * SystemContextPrimaryFloat8 + ProcessedFloatValue8 * SecondaryFloatValue + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xc];
+  Utf8BufferSize[5] = MatrixTransformMultiplier2 * NormalizedParameterValue + SystemContextPrimaryFloat2 * ContextSecondaryFloat + ProcessedFloatValue8 * SystemContextPrimaryFloat + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xd];
   SystemContextPrimaryFloat = Utf8InputBuffer[9];
   ContextSecondaryFloat = Utf8InputBuffer[10];
   CalculatedFilterValue = Utf8SourcePointer[8];
-  FloatVariable4 = Utf8SourcePointer[4];
+  MatrixTransformMultiplier1 = Utf8SourcePointer[4];
   SecondaryFloatValue = Utf8InputBuffer[0xb];
-  Utf8BufferSize[6] = FloatVariable5 * SecondaryFloatValue + SystemContextPrimaryFloat2 * PrimaryFloatValue + ProcessedFloatValue8 * SystemContextPrimaryFloat3 + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xe];
-  Utf8BufferSize[7] = FloatVariable5 * CalculatedDistance + SystemContextPrimaryFloat2 * FloatVariable7 + ProcessedFloatValue8 * SystemContextPrimaryFloat4 + SystemContextPrimaryFloat6 * SystemFloatValue;
-  FloatVariable5 = Utf8InputBuffer[8];
+  Utf8BufferSize[6] = MatrixTransformMultiplier2 * SecondaryFloatValue + SystemContextPrimaryFloat2 * PrimaryFloatValue + ProcessedFloatValue8 * SystemContextPrimaryFloat3 + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xe];
+  Utf8BufferSize[7] = MatrixTransformMultiplier2 * CalculatedDistance + SystemContextPrimaryFloat2 * FloatVariable7 + ProcessedFloatValue8 * SystemContextPrimaryFloat4 + SystemContextPrimaryFloat6 * SystemFloatValue;
+  MatrixTransformMultiplier2 = Utf8InputBuffer[8];
   ProcessedFloatValue8 = Utf8SourcePointer[9];
   SystemContextPrimaryFloat2 = Utf8SourcePointer[5];
-  Utf8BufferSize[8] = FloatVariable5 * *Utf8SourcePointer + SystemContextPrimaryFloat * FloatVariable4 + ContextSecondaryFloat * FilterInputValue + SecondaryFloatValue * Utf8SourcePointer[0xc];
-  Utf8BufferSize[9] = FloatVariable5 * NormalizedParameterValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat2 + ContextSecondaryFloat * ProcessedFloatValue8 + SecondaryFloatValue * Utf8SourcePointer[0xd];
-  Utf8BufferSize[10] = FloatVariable5 * SecondaryFloatValue + SystemContextPrimaryFloat * PrimaryFloatValue + ContextSecondaryFloat * SystemContextPrimaryFloat3 + SecondaryFloatValue * Utf8SourcePointer[0xe];
+  Utf8BufferSize[8] = MatrixTransformMultiplier2 * *Utf8SourcePointer + SystemContextPrimaryFloat * MatrixTransformMultiplier1 + ContextSecondaryFloat * FilterInputValue + SecondaryFloatValue * Utf8SourcePointer[0xc];
+  Utf8BufferSize[9] = MatrixTransformMultiplier2 * NormalizedParameterValue + SystemContextPrimaryFloat * SystemContextPrimaryFloat2 + ContextSecondaryFloat * ProcessedFloatValue8 + SecondaryFloatValue * Utf8SourcePointer[0xd];
+  Utf8BufferSize[10] = MatrixTransformMultiplier2 * SecondaryFloatValue + SystemContextPrimaryFloat * PrimaryFloatValue + ContextSecondaryFloat * SystemContextPrimaryFloat3 + SecondaryFloatValue * Utf8SourcePointer[0xe];
   CalculatedFilterValue = Utf8InputBuffer[0xd];
-  FloatVariable4 = Utf8InputBuffer[0xe];
+  MatrixTransformMultiplier1 = Utf8InputBuffer[0xe];
   ProcessedFloatValue8 = Utf8SourcePointer[4];
   SystemContextPrimaryFloat2 = Utf8SourcePointer[8];
   SystemContextPrimaryFloat6 = Utf8InputBuffer[0xf];
-  Utf8BufferSize[0xb] = FloatVariable5 * CalculatedDistance + SystemContextPrimaryFloat * FloatVariable7 + ContextSecondaryFloat * SystemContextPrimaryFloat4 + SecondaryFloatValue * SystemFloatValue;
+  Utf8BufferSize[0xb] = MatrixTransformMultiplier2 * CalculatedDistance + SystemContextPrimaryFloat * FloatVariable7 + ContextSecondaryFloat * SystemContextPrimaryFloat4 + SecondaryFloatValue * SystemFloatValue;
   SystemContextPrimaryFloat = Utf8InputBuffer[0xc];
   ContextSecondaryFloat = Utf8SourcePointer[9];
-  FloatVariable5 = Utf8SourcePointer[5];
-  Utf8BufferSize[0xc] = SystemContextPrimaryFloat * *Utf8SourcePointer + FilterInputValue * ProcessedFloatValue8 + FloatVariable4 * SystemContextPrimaryFloat2 + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xc];
-  Utf8BufferSize[0xd] = SystemContextPrimaryFloat * NormalizedParameterValue + FilterInputValue * FloatVariable5 + FloatVariable4 * ContextSecondaryFloat + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xd];
-  Utf8BufferSize[0xe] = SystemContextPrimaryFloat * SecondaryFloatValue + FilterInputValue * PrimaryFloatValue + FloatVariable4 * SystemContextPrimaryFloat3 + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xe];
-  Utf8BufferSize[0xf] = SystemContextPrimaryFloat * CalculatedDistance + FilterInputValue * FloatVariable7 + FloatVariable4 * SystemContextPrimaryFloat4 + SystemContextPrimaryFloat6 * SystemFloatValue;
+  MatrixTransformMultiplier2 = Utf8SourcePointer[5];
+  Utf8BufferSize[0xc] = SystemContextPrimaryFloat * *Utf8SourcePointer + FilterInputValue * ProcessedFloatValue8 + MatrixTransformMultiplier1 * SystemContextPrimaryFloat2 + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xc];
+  Utf8BufferSize[0xd] = SystemContextPrimaryFloat * NormalizedParameterValue + FilterInputValue * MatrixTransformMultiplier2 + MatrixTransformMultiplier1 * ContextSecondaryFloat + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xd];
+  Utf8BufferSize[0xe] = SystemContextPrimaryFloat * SecondaryFloatValue + FilterInputValue * PrimaryFloatValue + MatrixTransformMultiplier1 * SystemContextPrimaryFloat3 + SystemContextPrimaryFloat6 * Utf8SourcePointer[0xe];
+  Utf8BufferSize[0xf] = SystemContextPrimaryFloat * CalculatedDistance + FilterInputValue * FloatVariable7 + MatrixTransformMultiplier1 * SystemContextPrimaryFloat4 + SystemContextPrimaryFloat6 * SystemFloatValue;
   return Utf8BufferSize;
 }
 
@@ -75985,7 +75985,7 @@ float CalculateSystemAverageValue(long long CharacterCode,long long Utf8BufferSi
   long long *BufferAllocationStatus;
   long long MemoryOffset;
   long long SystemDataRegistry;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   uint8_t SystemRegisterFlagBuffer [8];
   
@@ -76003,11 +76003,11 @@ float CalculateSystemAverageValue(long long CharacterCode,long long Utf8BufferSi
         } while (MemoryBlockIndex != CharacterTablePointer + 0x40);
         SystemDataRegistry = *(long long *)(CharacterTablePointer + 0x60);
       }
-      FloatVariable5 = (float)SystemDataRegistry;
+      MatrixTransformMultiplier2 = (float)SystemDataRegistry;
       if (SystemDataRegistry < 0) {
-        FloatVariable5 = FloatVariable5 + 1.8446744e+19;
+        MatrixTransformMultiplier2 = MatrixTransformMultiplier2 + 1.8446744e+19;
       }
-      return CalculatedDistance / FloatVariable5;
+      return CalculatedDistance / MatrixTransformMultiplier2;
     }
   }
   return (float)*(double *)(Utf8BufferSize + 0x40);
@@ -94740,7 +94740,7 @@ void CleanupSystemDataAndReset(void
   uint64_t RegisterR12Value;
   int CharacterLimitD;
   float FloatingPointRegisterA;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float AuxiliaryFloat10;
   float AuxiliaryFloatValue11;
@@ -94758,9 +94758,9 @@ void CleanupSystemDataAndReset(void
     CharacterLimitD = CharacterLimitD + 1;
     DataNodePointer = UnicodeCodePoint + 1;
   } while (DataNodePointer < SystemContext);
-  FloatVariable5 = (FloatingPointRegisterA + (float)CharacterLimitD * AuxiliaryFloat10) - AuxiliaryFloat13;
-  *(float *)(StackFrameAddressPointer + 0x4c) = FloatVariable5;
-  FloatVariable5 = AuxiliaryFloat13 + FloatVariable5;
+  MatrixTransformMultiplier2 = (FloatingPointRegisterA + (float)CharacterLimitD * AuxiliaryFloat10) - AuxiliaryFloat13;
+  *(float *)(StackFrameAddressPointer + 0x4c) = MatrixTransformMultiplier2;
+  MatrixTransformMultiplier2 = AuxiliaryFloat13 + MatrixTransformMultiplier2;
   CalculatedDistance = unaff_XMM14_Da + AuxiliaryFloatValue11;
   ProcessSystemBuffer(StackFrameAddressPointer + 0x48);
   SystemDataRegistry = *(long long *)(PatternIndex + 0x1af8);
@@ -94768,15 +94768,15 @@ void CleanupSystemDataAndReset(void
   *(float *)(SystemDataRegistry + 0x14c) = unaff_XMM14_Da;
   *(float *)(SystemDataRegistry + 0x150) = AuxiliaryFloat13;
   *(float *)(SystemDataRegistry + 0x154) = CalculatedDistance;
-  *(float *)(SystemDataRegistry + 0x158) = FloatVariable5;
+  *(float *)(SystemDataRegistry + 0x158) = MatrixTransformMultiplier2;
   CharacterTablePointer = *(long long *)(PatternIndex + 0x1af8);
-  if (((((*(float *)(CharacterTablePointer + 0x22c) <= FloatVariable5 && FloatVariable5 != *(float *)(CharacterTablePointer + 0x22c)) &&
+  if (((((*(float *)(CharacterTablePointer + 0x22c) <= MatrixTransformMultiplier2 && MatrixTransformMultiplier2 != *(float *)(CharacterTablePointer + 0x22c)) &&
         (AuxiliaryFloat13 < *(float *)(CharacterTablePointer + 0x234))) &&
        (*(float *)(CharacterTablePointer + 0x228) <= CalculatedDistance && CalculatedDistance != *(float *)(CharacterTablePointer + 0x228))) &&
       (unaff_XMM14_Da < *(float *)(CharacterTablePointer + 0x230))) ||
      (*(char *)(PatternIndex + 0x2e38) != (char)RegisterR12Value)) {
     InputDataBuffer = CalculatedDistance;
-    CalculationBuffer = FloatVariable5;
+    CalculationBuffer = MatrixTransformMultiplier2;
     SystemCheckResult = ValidateAndProcessSystemFlags(&TertiaryDataBuffer,&StackBuffer58,1);
     if (SystemCheckResult != '\0') {
       *(uint *)(SystemDataRegistry + 0x148) = *(uint *)(SystemDataRegistry + 0x148) | 1;
@@ -94799,7 +94799,7 @@ void CheckSystemStatusAndValidate(void
   uint64_t RegisterR12Value;
   float MatrixTransformMultiplier1;
   float FloatingPointRegisterA;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float AuxiliaryFloatValue11;
   float AuxiliaryFloat13;
   float unaff_XMM14_Da;
@@ -94807,23 +94807,23 @@ void CheckSystemStatusAndValidate(void
   float InputDataBuffer;
   float CalculationBuffer;
   
-  FloatVariable4 = AuxiliaryFloat13 + FloatingPointRegisterA;
-  FloatVariable5 = unaff_XMM14_Da + AuxiliaryFloatValue11;
+  MatrixTransformMultiplier1 = AuxiliaryFloat13 + FloatingPointRegisterA;
+  MatrixTransformMultiplier2 = unaff_XMM14_Da + AuxiliaryFloatValue11;
   ProcessSystemBuffer(StackFrameAddressPointer + 0x48);
   MemoryBlockIndex = *(long long *)(PatternIndex + 0x1af8);
   *(void *)(MemoryBlockIndex + 0x144) = RegisterR12Value;
   *(float *)(MemoryBlockIndex + 0x14c) = unaff_XMM14_Da;
   *(float *)(MemoryBlockIndex + 0x150) = AuxiliaryFloat13;
-  *(float *)(MemoryBlockIndex + 0x154) = FloatVariable5;
-  *(float *)(MemoryBlockIndex + 0x158) = FloatVariable4;
+  *(float *)(MemoryBlockIndex + 0x154) = MatrixTransformMultiplier2;
+  *(float *)(MemoryBlockIndex + 0x158) = MatrixTransformMultiplier1;
   CharacterTablePointer = *(long long *)(PatternIndex + 0x1af8);
-  if (((((*(float *)(CharacterTablePointer + 0x22c) <= FloatVariable4 && FloatVariable4 != *(float *)(CharacterTablePointer + 0x22c)) &&
+  if (((((*(float *)(CharacterTablePointer + 0x22c) <= MatrixTransformMultiplier1 && MatrixTransformMultiplier1 != *(float *)(CharacterTablePointer + 0x22c)) &&
         (AuxiliaryFloat13 < *(float *)(CharacterTablePointer + 0x234))) &&
-       (*(float *)(CharacterTablePointer + 0x228) <= FloatVariable5 && FloatVariable5 != *(float *)(CharacterTablePointer + 0x228))) &&
+       (*(float *)(CharacterTablePointer + 0x228) <= MatrixTransformMultiplier2 && MatrixTransformMultiplier2 != *(float *)(CharacterTablePointer + 0x228))) &&
       (unaff_XMM14_Da < *(float *)(CharacterTablePointer + 0x230))) ||
      (*(char *)(PatternIndex + 0x2e38) != (char)RegisterR12Value)) {
-    InputDataBuffer = FloatVariable5;
-    CalculationBuffer = FloatVariable4;
+    InputDataBuffer = MatrixTransformMultiplier2;
+    CalculationBuffer = MatrixTransformMultiplier1;
     SystemCheckResult = ValidateAndProcessSystemFlags(&TertiaryDataBuffer,&StackBuffer58,1);
     if (SystemCheckResult != '\0') {
       *(uint *)(MemoryBlockIndex + 0x148) = *(uint *)(MemoryBlockIndex + 0x148) | 1;
@@ -96410,9 +96410,9 @@ unsigned long long ProcessSystemBufferAndDataValidation(uint64_t CharacterCode,u
   uint32_t ReservedParameterArray [2];
   char ValidationBuffer [8];
   uint64_t EncodedParameterValue;
-  float fStack_68;
-  float fStack_64;
-  float fStack_60;
+  float StackCalculationResult1;
+  float StackCalculationResult2;
+  float StackCalculationResult3;
   float fStack_5c;
   float StackFloatValue58;
   float StackFloatValue54;
@@ -96503,7 +96503,7 @@ uint8_t InitializeSystemMemoryAllocationStatus(void)
   uint8_t SystemParameterB;
   uint32_t CharacterLimitD;
   float FloatingPointRegisterA;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float BaseFloatValue;
   float CalculatedDistance;
   float SecondaryFloatValue;
@@ -96536,14 +96536,14 @@ uint8_t InitializeSystemMemoryAllocationStatus(void)
   ProcessSystemDataConcatenation(CONCAT44(StackFloatValue54,StackFloatValue50),StackProcessingParameter58,UnicodeCodePoint,1,
                 *(uint32_t *)(SystemContext + 0x1664));
   CalculatedDistance = (BaseFloatValue - *(float *)(SystemContext + 0x19f8)) * 0.5;
-  FloatVariable5 = (FloatingPointRegisterA - *(float *)(SystemContext + 0x19f8)) * 0.5;
+  MatrixTransformMultiplier2 = (FloatingPointRegisterA - *(float *)(SystemContext + 0x19f8)) * 0.5;
   if (CalculatedDistance <= SecondaryFloatValue) {
     CalculatedDistance = SecondaryFloatValue;
   }
-  if (FloatVariable5 <= SecondaryFloatValue) {
-    FloatVariable5 = SecondaryFloatValue;
+  if (MatrixTransformMultiplier2 <= SecondaryFloatValue) {
+    MatrixTransformMultiplier2 = SecondaryFloatValue;
   }
-  ProcessSystemFloatDataWithValidation(CONCAT44(FloatVariable5 + StackFloatValue54,CalculatedDistance + StackFloatValue50),CharacterLimitD,
+  ProcessSystemFloatDataWithValidation(CONCAT44(MatrixTransformMultiplier2 + StackFloatValue54,CalculatedDistance + StackFloatValue50),CharacterLimitD,
                 0x3f800000);
   return MemoryAllocationIndex;
 }
@@ -98356,7 +98356,7 @@ unsigned long long ProcessSystemContextAndMemoryManagement(void
   *ReferenceCountPointer = *ReferenceCountPointer + -1;
   SystemFloatValue = *(float *)(CharacterLimit + 0x100);
   CalculatedFilterValue = *(float *)(CharacterLimit + 0x104);
-  FloatVariable4 = DataNodePointer[1];
+  MatrixTransformMultiplier1 = DataNodePointer[1];
   ContextPrimaryFloat9 = (float)*(void *)(NullPointerValue + 0x165c);
   TertiaryDataStorage.HighPart = (float)((unsigned long long)*(void *)(NullPointerValue + 0x165c) >> 0x20);
   SystemContextPrimaryFloat8 = TertiaryDataStorage.HighPart;
@@ -98368,10 +98368,10 @@ unsigned long long ProcessSystemContextAndMemoryManagement(void
   *(float *)(StackFrameAddressPointer + -0x65) = FilterInputValue + TertiaryDataStorage.HighPart;
   *(float *)(StackFrameAddressPointer + -0x61) = SystemFloatValue + ContextPrimaryFloat9 + SystemContextPrimaryFloat6;
   SecondaryFloatValue = SystemFloatValue + SecondaryFloatValue + ContextPrimaryFloat9 * 2.0;
-  SystemContextPrimaryFloat6 = FloatVariable4 + FilterInputValue + TertiaryDataStorage.HighPart * 2.0;
+  SystemContextPrimaryFloat6 = MatrixTransformMultiplier1 + FilterInputValue + TertiaryDataStorage.HighPart * 2.0;
   *(float *)(StackFrameAddressPointer + -0x71) = SecondaryFloatValue;
   *(float *)(StackFrameAddressPointer + -0x6d) = SystemContextPrimaryFloat6;
-  *(float *)(StackFrameAddressPointer + -0x5d) = FilterInputValue + TertiaryDataStorage.HighPart + FloatVariable4;
+  *(float *)(StackFrameAddressPointer + -0x5d) = FilterInputValue + TertiaryDataStorage.HighPart + MatrixTransformMultiplier1;
   TertiaryDataStorage = CONCAT44(SystemContextPrimaryFloat6 - FilterInputValue,SecondaryFloatValue - SystemFloatValue);
   ProcessSystemBuffer(&SystemChecksumStackBuffer,0);
   ValidationResult = ValidateSystemData(StackFrameAddressPointer + -0x79,IntegerValue9,0);
@@ -98731,7 +98731,7 @@ unsigned long long ProcessCharacterVariableAndCharacterStatusBuffer(char *Utf8In
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   uint64_t DataSize;
   long long MemoryPoolBlockSize;
   byte BooleanByteFlag8;
@@ -98787,15 +98787,15 @@ unsigned long long ProcessCharacterVariableAndCharacterStatusBuffer(char *Utf8In
            (InputStringBuffer3 = InputStringBuffer3 + 1, InputStringBuffer3 == (char *)0xffffffffffffffff)) break;
       }
     }
-    pFloatVariable5 = *(float **)(MemoryPoolBlockSize + 0x19f0);
+    pMatrixTransformMultiplier2 = *(float **)(MemoryPoolBlockSize + 0x19f0);
     ContextPrimaryFloat9 = *(float *)(MemoryPoolBlockSize + 0x19f8);
     if (CharacterCode == InputStringBuffer3) {
       ContextSecondaryFloat0 = 0.0;
     }
     else {
-      ProcessFloatAndSystemConfiguration(pFloatVariable5,&fStackX_18,ContextPrimaryFloat9,0x7f7fffff,0xbf800000,CharacterCode,InputStringBuffer3,0);
+      ProcessFloatAndSystemConfiguration(pMatrixTransformMultiplier2,&fStackX_18,ContextPrimaryFloat9,0x7f7fffff,0xbf800000,CharacterCode,InputStringBuffer3,0);
       if (0.0 < fStackX_18) {
-        fStackX_18 = fStackX_18 - ContextPrimaryFloat9 / *pFloatVariable5;
+        fStackX_18 = fStackX_18 - ContextPrimaryFloat9 / *pMatrixTransformMultiplier2;
       }
       ContextSecondaryFloat0 = (float)(int)(fStackX_18 + 0.95);
       ContextPrimaryFloat9 = fStackX_1c;
@@ -98819,20 +98819,20 @@ unsigned long long ProcessCharacterVariableAndCharacterStatusBuffer(char *Utf8In
     if (0.0 < ContextSecondaryFloat0) {
       InitializeFloatConstants(0);
     }
-    FloatVariable4 = *(float *)(CharacterTablePointer5 + 0x100);
+    MatrixTransformMultiplier1 = *(float *)(CharacterTablePointer5 + 0x100);
     ContextSecondaryFloat1 = *(float *)(MemoryPoolBlockSize + 0x1660) + *(float *)(CharacterTablePointer5 + 0x104);
-    SystemContextPrimaryFloat8 = FloatVariable4 + ContextSecondaryFloat0;
+    SystemContextPrimaryFloat8 = MatrixTransformMultiplier1 + ContextSecondaryFloat0;
     ContextPrimaryFloat9 = ContextPrimaryFloat9 + ContextSecondaryFloat1;
-    fStack_f8 = FloatVariable4;
+    fStack_f8 = MatrixTransformMultiplier1;
     fStack_f4 = ContextSecondaryFloat1;
     fStack_f0 = SystemContextPrimaryFloat8;
     fStack_ec = ContextPrimaryFloat9;
     if (0.0 < ContextSecondaryFloat0) {
-      fStackX_18 = SystemContextPrimaryFloat8 - FloatVariable4;
+      fStackX_18 = SystemContextPrimaryFloat8 - MatrixTransformMultiplier1;
       fStackX_1c = ContextSecondaryFloat3;
       ProcessSystemBuffer(&fStackX_18);
-      fStack_108 = FloatVariable4;
-      if (ContextSecondaryFloat <= FloatVariable4) {
+      fStack_108 = MatrixTransformMultiplier1;
+      if (ContextSecondaryFloat <= MatrixTransformMultiplier1) {
         fStack_108 = ContextSecondaryFloat;
       }
       fStack_104 = FilterInputValue;
@@ -98869,11 +98869,11 @@ unsigned long long ProcessCharacterVariableAndCharacterStatusBuffer(char *Utf8In
       else {
         CharacterTablePointer6 = 9;
       }
-      pFloatVariable5 = (float *)(CharacterTablePointer5 + 0x1628 + (CharacterTablePointer6 + 10) * 0x10);
-      fStack_108 = *pFloatVariable5;
-      fStack_104 = pFloatVariable5[1];
-      fStack_100 = pFloatVariable5[2];
-      fStack_fc = pFloatVariable5[3] * *(float *)(CharacterTablePointer5 + 0x1628);
+      pMatrixTransformMultiplier2 = (float *)(CharacterTablePointer5 + 0x1628 + (CharacterTablePointer6 + 10) * 0x10);
+      fStack_108 = *pMatrixTransformMultiplier2;
+      fStack_104 = pMatrixTransformMultiplier2[1];
+      fStack_100 = pMatrixTransformMultiplier2[2];
+      fStack_fc = pMatrixTransformMultiplier2[3] * *(float *)(CharacterTablePointer5 + 0x1628);
       MemoryAllocationIndex = ValidateSystemData(&fStack_108);
       ProcessSystemDataConcatenation(DataSize,CONCAT44(fStack_dc,fStack_e0),MemoryAllocationIndex,1,ProcessInputStringBuffer);
       if (*Utf8InputBufferSize != '\0') {
@@ -98919,7 +98919,7 @@ unsigned long long ProcessDataStructureAndSystemConfiguration(uint64_t Character
   uint32_t *PrimaryProcessingStatusFlag;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float *FloatProcessingStatusFlag;
   uint64_t SystemChecksum;
   byte BooleanByteFlag8;
@@ -98988,42 +98988,42 @@ unsigned long long ProcessDataStructureAndSystemConfiguration(uint64_t Character
     SystemContextPrimaryFloat6 = (float)(int)(SystemContextPrimaryFloat6 + 0.95);
   }
   CalculatedFilterValue = *(float *)(RegisterR13Value + 0x100);
-  FloatVariable4 = *(float *)(RegisterR13Value + 0x104);
+  MatrixTransformMultiplier1 = *(float *)(RegisterR13Value + 0x104);
   SystemChecksum = *(void *)(RegisterR13Value + 0x100);
   SecondaryFloatValue = *(float *)(PatternIndex + 0x1660) + *(float *)(PatternIndex + 0x1660) + ContextPrimaryFloat9;
-  ContextSecondaryFloat1 = FloatVariable4 + SecondaryFloatValue;
+  ContextSecondaryFloat1 = MatrixTransformMultiplier1 + SecondaryFloatValue;
   SecondaryFloatValue = FilterInputValue + SecondaryFloatValue;
-  ContextSecondaryFloat2 = ContextSecondaryFloat1 - FloatVariable4;
+  ContextSecondaryFloat2 = ContextSecondaryFloat1 - MatrixTransformMultiplier1;
   *(float *)(StackFrameAddressPointer + 0x60) = SecondaryFloatValue - FilterInputValue;
   *(float *)(StackFrameAddressPointer + 100) = ContextSecondaryFloat2;
   StackProcessingParameter0 = SecondaryFloatValue;
   fStack000000000000006c = ContextSecondaryFloat1;
   ProcessSystemBuffer(StackFrameAddressPointer + 0x60);
   SystemParameter2 = FilterInputValue;
-  TemporaryFloatStack44 = FloatVariable4;
+  TemporaryFloatStack44 = MatrixTransformMultiplier1;
   PrimaryDataStorage = SecondaryFloatValue;
   StackProcessingVariable4c = ContextSecondaryFloat1;
   if (0.0 < SystemContextPrimaryFloat6) {
     InitializeFloatConstants(0);
   }
-  FloatVariable5 = *(float *)(RegisterR13Value + 0x100);
+  MatrixTransformMultiplier2 = *(float *)(RegisterR13Value + 0x100);
   ContextSecondaryFloat0 = *(float *)(PatternIndex + 0x1660) + *(float *)(RegisterR13Value + 0x104);
-  SystemContextPrimaryFloat8 = FloatVariable5 + SystemContextPrimaryFloat6;
+  SystemContextPrimaryFloat8 = MatrixTransformMultiplier2 + SystemContextPrimaryFloat6;
   ContextPrimaryFloat9 = ContextPrimaryFloat9 + ContextSecondaryFloat0;
-  DataStorageValue = FloatVariable5;
+  DataStorageValue = MatrixTransformMultiplier2;
   StackFloatValue54 = ContextSecondaryFloat0;
   InputDataBuffer = SystemContextPrimaryFloat8;
   CalculationBuffer = ContextPrimaryFloat9;
   if (0.0 < SystemContextPrimaryFloat6) {
     *(float *)(StackFrameAddressPointer + 100) = ContextSecondaryFloat2;
-    *(float *)(StackFrameAddressPointer + 0x60) = SystemContextPrimaryFloat8 - FloatVariable5;
+    *(float *)(StackFrameAddressPointer + 0x60) = SystemContextPrimaryFloat8 - MatrixTransformMultiplier2;
     ProcessSystemBuffer(StackFrameAddressPointer + 0x60);
-    SystemParameter2 = FloatVariable5;
-    if (FilterInputValue <= FloatVariable5) {
+    SystemParameter2 = MatrixTransformMultiplier2;
+    if (FilterInputValue <= MatrixTransformMultiplier2) {
       SystemParameter2 = FilterInputValue;
     }
-    TemporaryFloatStack44 = FloatVariable4;
-    if (ContextSecondaryFloat0 <= FloatVariable4) {
+    TemporaryFloatStack44 = MatrixTransformMultiplier1;
+    if (ContextSecondaryFloat0 <= MatrixTransformMultiplier1) {
       TemporaryFloatStack44 = ContextSecondaryFloat0;
     }
     PrimaryDataStorage = SystemContextPrimaryFloat8;
@@ -99082,7 +99082,7 @@ unsigned long long ProcessDataStructureAndSystemConfiguration(uint64_t Character
       fStack000000000000006c =
            *(float *)(SystemConfigurationHandle + 0x17f4) * *(float *)(SystemConfigurationHandle + 0x1628);
       ProcessInputStringBuffer = ValidateSystemData(&DataTransferStackBuffer);
-      ProcessSystemFloatCalculation(CONCAT44(ContextPrimaryFloat9 + FloatVariable4,ContextPrimaryFloat9 + FilterInputValue),ProcessInputStringBuffer,SecondaryFloatValue - (ContextPrimaryFloat9 + ContextPrimaryFloat9));
+      ProcessSystemFloatCalculation(CONCAT44(ContextPrimaryFloat9 + MatrixTransformMultiplier1,ContextPrimaryFloat9 + FilterInputValue),ProcessInputStringBuffer,SecondaryFloatValue - (ContextPrimaryFloat9 + ContextPrimaryFloat9));
     }
     if (*(char *)(SystemContext + 0x2e38) != '\0') {
       ConfigurationString = &SystemCharacterStatusBufferPointer;
@@ -99459,7 +99459,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *Utf8InputBuffer
   long long BufferStatus;
   long long MemoryOffset;
   char OperationStatus;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   char *CharacterPointer;
   long long MemoryPoolBlockSize;
   uint32_t ProcessingStatusFlag;
@@ -99496,11 +99496,11 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *Utf8InputBuffer
     SecondaryFloatValue = *(float *)(CharacterTablePointer + 0x100);
     SystemContextPrimaryFloat2 = *(float *)(CharacterTablePointer + 0x104);
     ProcessingStatusFlag = InitializeSystemMemory();
-    pFloatVariable5 = (float *)ProcessSystemDataStructure(&fStack_d0,*Utf8InputBufferSize,ProcessingStatusFlag,
+    pMatrixTransformMultiplier2 = (float *)ProcessSystemDataStructure(&fStack_d0,*Utf8InputBufferSize,ProcessingStatusFlag,
                                     *(float *)(MemoryBlockIndex + 0x1660) + *(float *)(MemoryBlockIndex + 0x1660) +
                                     *(float *)(MemoryBlockIndex + 0x19f8));
-    PrimaryFloatValue = SecondaryFloatValue + *pFloatVariable5;
-    SystemContextPrimaryFloat3 = SystemContextPrimaryFloat2 + pFloatVariable5[1];
+    PrimaryFloatValue = SecondaryFloatValue + *pMatrixTransformMultiplier2;
+    SystemContextPrimaryFloat3 = SystemContextPrimaryFloat2 + pMatrixTransformMultiplier2[1];
     ContextDifferenceFloat1 = PrimaryFloatValue - SecondaryFloatValue;
     ContextDifferenceFloat2 = SystemContextPrimaryFloat3 - SystemContextPrimaryFloat2;
     ProcessSystemBuffer(&ContextDifferenceFloat1);
@@ -99559,14 +99559,14 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *Utf8InputBuffer
       CharacterTablePointer = SystemConfigurationHandle;
       pfStack_100 = (float *)&MemoryOffsetValue;
       pfStack_f0 = (float *)0x0;
-      pFloatVariable5 = *(float **)(SystemConfigurationHandle + 0x19f0);
+      pMatrixTransformMultiplier2 = *(float **)(SystemConfigurationHandle + 0x19f0);
       SystemContextPrimaryFloat3 = *(float *)(SystemConfigurationHandle + 0x19f8);
       pSystemFlagB = (uint32_t *)0x0;
       pcStack_108 = (char *)CONCAT44(pcStack_108.HighPart,0xbf800000);
-      ProcessFloatAndSystemConfiguration(pFloatVariable5,&fStack_e8,SystemContextPrimaryFloat3,0x7f7fffff);
+      ProcessFloatAndSystemConfiguration(pMatrixTransformMultiplier2,&fStack_e8,SystemContextPrimaryFloat3,0x7f7fffff);
       NormalizedParameterValue = fStack_e8;
       if (0.0 < fStack_e8) {
-        NormalizedParameterValue = fStack_e8 - SystemContextPrimaryFloat3 / *pFloatVariable5;
+        NormalizedParameterValue = fStack_e8 - SystemContextPrimaryFloat3 / *pMatrixTransformMultiplier2;
       }
       fStack_cc = fStack_e4;
       fStack_d0 = (float)(int)(NormalizedParameterValue + 0.95);
@@ -102331,27 +102331,27 @@ void CoreEngineProcessDataStructureAndMemoryAllocation(long long CharacterCode, 
          (InputStringBuffer3 = InputStringBuffer3 + 1, InputStringBuffer3 == (char *)0xffffffffffffffff)) break;
     }
   }
-  pFloatVariable5 = *(float **)(PatternIndex + 0x19f0);
+  pMatrixTransformMultiplier2 = *(float **)(PatternIndex + 0x19f0);
   ContextSecondaryFloat3 = *(float *)(PatternIndex + 0x19f8);
   if (RegisterR13Value == InputStringBuffer3) {
     ContextSecondaryFloat2 = 0.0;
   }
   else {
     MemoryAllocationBase = CONCAT44(ProcessInputStringBuffer,0xbf800000);
-    ProcessFloatAndSystemConfiguration(pFloatVariable5,StackFrameAddressPointer + -0x78,ContextSecondaryFloat3,0x7f7fffff,MemoryAllocationBase);
+    ProcessFloatAndSystemConfiguration(pMatrixTransformMultiplier2,StackFrameAddressPointer + -0x78,ContextSecondaryFloat3,0x7f7fffff,MemoryAllocationBase);
     ProcessInputStringBuffer = (uint32_t)((unsigned long long)MemoryAllocationBase >> 0x20);
     ContextSecondaryFloat2 = *(float *)(StackFrameAddressPointer + -0x78);
     if (0.0 < ContextSecondaryFloat2) {
-      ContextSecondaryFloat2 = ContextSecondaryFloat2 - ContextSecondaryFloat3 / *pFloatVariable5;
+      ContextSecondaryFloat2 = ContextSecondaryFloat2 - ContextSecondaryFloat3 / *pMatrixTransformMultiplier2;
     }
     ContextSecondaryFloat3 = *(float *)(StackFrameAddressPointer + -0x74);
     ContextSecondaryFloat2 = (float)(int)(ContextSecondaryFloat2 + 0.95);
   }
   StackProcessingParameter0 = *(float *)(DataNodePointer + 0x100);
   fStack000000000000006c = *(float *)(DataNodePointer + 0x104);
-  FloatVariable4 = *(float *)(PatternIndex + 0x1660);
+  MatrixTransformMultiplier1 = *(float *)(PatternIndex + 0x1660);
   *(float *)(StackFrameAddressPointer + -0x80) = ContextSecondaryFloat1 + StackProcessingParameter0;
-  StackFloatVariable2 = FloatVariable4 + FloatVariable4 + ContextSecondaryFloat3 + fStack000000000000006c;
+  StackFloatVariable2 = MatrixTransformMultiplier1 + MatrixTransformMultiplier1 + ContextSecondaryFloat3 + fStack000000000000006c;
   *(float *)(StackFrameAddressPointer + -0x7c) = StackFloatVariable2;
   if (ContextSecondaryFloat2 <= 0.0) {
     SystemParameter1 = 0.0;
@@ -103120,7 +103120,7 @@ void ProcessSystemDataStructureConfiguration(uint32_t CharacterCode,uint64_t Utf
   char *RegisterR12Value;
   long long RegisterR13Value;
   long long CharacterLimit;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   uint32_t FloatingPointRegisterA;
   float FloatVariable7;
@@ -103177,12 +103177,12 @@ ProcessSystemDataStructureConfiguration_DataProcessing:
     ProcessSystemSecondaryEventHandle();
     CleanupSystemResources();
     CalculatedDistance = *(float *)(CharacterLimit + 0x1674);
-    FloatVariable5 = (float)InitializeSystemMemory();
-    FloatVariable5 = FloatVariable5 - (FloatVariable7 + FloatVariable7 + CalculatedDistance + CalculatedDistance);
-    if (FloatVariable5 <= 1.0) {
-      FloatVariable5 = 1.0;
+    MatrixTransformMultiplier2 = (float)InitializeSystemMemory();
+    MatrixTransformMultiplier2 = MatrixTransformMultiplier2 - (FloatVariable7 + FloatVariable7 + CalculatedDistance + CalculatedDistance);
+    if (MatrixTransformMultiplier2 <= 1.0) {
+      MatrixTransformMultiplier2 = 1.0;
     }
-    ProcessMemoryCleanup(FloatVariable5);
+    ProcessMemoryCleanup(MatrixTransformMultiplier2);
     SystemParameter2 = 0;
     OperationStatus = ValidateSystemBufferAndProcessData(&CoreEngineDataTemplate,&TertiaryDataBuffer,0x40,&DataStackBuffer,
                           CONCAT44(ProcessingStatusFlag,MemoryAddressMask) | 0x10);
@@ -103257,7 +103257,7 @@ void FinalizeFloatDataTexture(void)
   char *RegisterR12Value;
   long long CharacterLimit;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   uint64_t SystemParameter1;
   uint32_t SystemChecksum;
@@ -103269,13 +103269,13 @@ void FinalizeFloatDataTexture(void)
   CalculatedDistance = *(float *)(ProcessingResult + 0x1660) + *(float *)(ProcessingResult + 0x1660) + *(float *)(ProcessingResult + 0x19f8);
   ProcessSystemSecondaryEventHandle();
   CleanupSystemResources();
-  FloatVariable5 = *(float *)(CharacterLimit + 0x1674);
-  FloatVariable4 = (float)InitializeSystemMemory();
-  FloatVariable4 = FloatVariable4 - (CalculatedDistance + CalculatedDistance + FloatVariable5 + FloatVariable5);
-  if (FloatVariable4 <= 1.0) {
-    FloatVariable4 = 1.0;
+  MatrixTransformMultiplier2 = *(float *)(CharacterLimit + 0x1674);
+  MatrixTransformMultiplier1 = (float)InitializeSystemMemory();
+  MatrixTransformMultiplier1 = MatrixTransformMultiplier1 - (CalculatedDistance + CalculatedDistance + MatrixTransformMultiplier2 + MatrixTransformMultiplier2);
+  if (MatrixTransformMultiplier1 <= 1.0) {
+    MatrixTransformMultiplier1 = 1.0;
   }
-  ProcessMemoryCleanup(FloatVariable4);
+  ProcessMemoryCleanup(MatrixTransformMultiplier1);
   SystemParameter2 = 0;
   SystemCheckResult = ValidateSystemBufferAndProcessData(&CoreEngineDataTemplate,&TertiaryDataBuffer,0x40,&DataStackBuffer,
                         CONCAT44(SystemChecksum,CharacterTablePointer));
@@ -103716,9 +103716,9 @@ float * CalculateFloatDataStructureDistance(float *Utf8InputBuffer,ushort *Utf8I
         CalculatedDistance = CalculatedDistance + TempValue * (SourceValue1 / SourceValue2);
       }
     } while (Utf8BufferSize < Utf8SourcePointer);
-    FloatVariable5 = *Utf8InputBuffer;
+    MatrixTransformMultiplier2 = *Utf8InputBuffer;
 ProcessSystemDataStructureConfiguration_MemoryManagement:
-    if (FloatVariable5 < CalculatedDistance) {
+    if (MatrixTransformMultiplier2 < CalculatedDistance) {
       *Utf8InputBuffer = CalculatedDistance;
     }
     if (CalculatedDistance <= 0.0) goto LAB_180114b2d;
@@ -104370,7 +104370,7 @@ void ProcessFloatSystemContextUtf16String(float *Utf8InputBuffer,long long Utf8B
   float *pContextSecondaryFloat;
   long long MemoryOffset;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   long long secondaryLoopCounter;
@@ -104382,8 +104382,8 @@ void ProcessFloatSystemContextUtf16String(float *Utf8InputBuffer,long long Utf8B
   float fStack_24;
   
   FloatVariable7 = *(float *)(Utf8BufferSize + 0x3c);
-  FloatVariable4 = 0.0;
-  FloatVariable5 = 0.0;
+  MatrixTransformMultiplier1 = 0.0;
+  MatrixTransformMultiplier2 = 0.0;
   if (Utf8SourcePointer == FloatVariable7) {
     if (Utf16EndPointer == 0) {
       Utf8InputBuffer[0] = 0.0;
@@ -104392,14 +104392,14 @@ void ProcessFloatSystemContextUtf16String(float *Utf8InputBuffer,long long Utf8B
       CalculatedDistance = 0.0;
       if (0 < (int)FloatVariable7) {
         do {
-          FloatVariable4 = CalculatedDistance;
-          SetupFloatDataCamera(&fStack_38,Utf8BufferSize,FloatVariable4);
-          FloatVariable5 = (float)((int)FloatVariable4 + (int)fStack_24);
-          CalculatedDistance = FloatVariable5;
-        } while ((int)FloatVariable5 < (int)FloatVariable7);
+          MatrixTransformMultiplier1 = CalculatedDistance;
+          SetupFloatDataCamera(&fStack_38,Utf8BufferSize,MatrixTransformMultiplier1);
+          MatrixTransformMultiplier2 = (float)((int)MatrixTransformMultiplier1 + (int)fStack_24);
+          CalculatedDistance = MatrixTransformMultiplier2;
+        } while ((int)MatrixTransformMultiplier2 < (int)FloatVariable7);
       }
-      Utf8InputBuffer[5] = FloatVariable4;
-      Utf8InputBuffer[3] = FloatVariable5;
+      Utf8InputBuffer[5] = MatrixTransformMultiplier1;
+      Utf8InputBuffer[3] = MatrixTransformMultiplier2;
       Utf8InputBuffer[4] = 0.0;
     }
     else {
@@ -104415,18 +104415,18 @@ void ProcessFloatSystemContextUtf16String(float *Utf8InputBuffer,long long Utf8B
     Utf8InputBuffer[1] = 0.0;
     SetupFloatDataCamera(&fStack_38,Utf8BufferSize,0);
     FloatVariable7 = 0.0;
-    FloatVariable4 = fStack_24;
-    while ((int)FloatVariable4 <= (int)Utf8SourcePointer) {
+    MatrixTransformMultiplier1 = fStack_24;
+    while ((int)MatrixTransformMultiplier1 <= (int)Utf8SourcePointer) {
       CalculatedDistance = (float)((int)FloatVariable7 + (int)fStack_24);
       Utf8InputBuffer[1] = fStack_30 + Utf8InputBuffer[1];
       SetupFloatDataCamera(&fStack_38,Utf8BufferSize,CalculatedDistance);
-      FloatVariable5 = FloatVariable7;
+      MatrixTransformMultiplier2 = FloatVariable7;
       FloatVariable7 = CalculatedDistance;
-      FloatVariable4 = (float)((int)fStack_24 + (int)CalculatedDistance);
+      MatrixTransformMultiplier1 = (float)((int)fStack_24 + (int)CalculatedDistance);
     }
     Utf8InputBuffer[3] = FloatVariable7;
     Utf8InputBuffer[4] = fStack_24;
-    Utf8InputBuffer[5] = FloatVariable5;
+    Utf8InputBuffer[5] = MatrixTransformMultiplier2;
     Utf8InputBuffer[2] = fStack_28 - fStack_2c;
     *Utf8InputBuffer = fStack_38;
     MemoryBlockIndex = SystemConfigurationHandle;
@@ -104435,21 +104435,21 @@ void ProcessFloatSystemContextUtf16String(float *Utf8InputBuffer,long long Utf8B
       do {
         Utf16Char = *(ushort *)(SystemDataTablePointer + *(long long *)(Utf8BufferSize + 0x10));
         if (Utf16Char == 10) {
-          FloatVariable5 = -1.0;
+          MatrixTransformMultiplier2 = -1.0;
         }
         else {
           pContextSecondaryFloat = *(float **)(MemoryBlockIndex + 0x19f0);
           if ((int)(uint)Utf16Char < (int)pContextSecondaryFloat[8]) {
-            FloatVariable5 = *(float *)(*(long long *)(pContextSecondaryFloat + 10) + (unsigned long long)Utf16Char * 4);
+            MatrixTransformMultiplier2 = *(float *)(*(long long *)(pContextSecondaryFloat + 10) + (unsigned long long)Utf16Char * 4);
           }
           else {
-            FloatVariable5 = pContextSecondaryFloat[0x12];
+            MatrixTransformMultiplier2 = pContextSecondaryFloat[0x12];
           }
-          FloatVariable5 = (*(float *)(MemoryBlockIndex + 0x19f8) / *pContextSecondaryFloat) * FloatVariable5;
+          MatrixTransformMultiplier2 = (*(float *)(MemoryBlockIndex + 0x19f8) / *pContextSecondaryFloat) * MatrixTransformMultiplier2;
         }
         FloatVariable7 = (float)((int)FloatVariable7 + 1);
         SystemDataTablePointer = SystemDataTablePointer + 2;
-        *Utf8InputBuffer = FloatVariable5 + *Utf8InputBuffer;
+        *Utf8InputBuffer = MatrixTransformMultiplier2 + *Utf8InputBuffer;
       } while ((int)FloatVariable7 < (int)Utf8SourcePointer);
     }
   }
@@ -105841,13 +105841,13 @@ unsigned long long CoreEngineSystemProcessor(uint64_t CharacterCode,char *Utf8In
   int EncodingValidationResult3;
   int EncodingValidationResult4;
   byte hasComparisonResult5;
-  float FloatVariable46;
-  float FloatVariable47;
-  float FloatVariable48;
-  float FloatVariable49;
-  float FloatVariable50;
-  float FloatVariable51;
-  float FloatVariable52;
+  float MatrixTransformMultiplier16;
+  float MatrixTransformMultiplier17;
+  float MatrixTransformMultiplier18;
+  float MatrixTransformMultiplier19;
+  float MatrixTransformMultiplier20;
+  float MatrixTransformMultiplier21;
+  float MatrixTransformMultiplier22;
   char *pcStackX_10;
   uint64_t in_stack_fffffffffffffd68;
   uint64_t *Utf8InputBufferPointer3;
@@ -106031,7 +106031,7 @@ MemoryAllocationReturn: // 原始标签：LAB_1801168eb，MemoryAllocationReturn
     IsSystemContextValid = true;
   }
   pSystemShortValue5 = SystemValue1c8;
-  FloatVariable51 = fStack_244;
+  MatrixTransformMultiplier21 = fStack_244;
   ContextPrimaryFloat9 = *(float *)(MemoryBlockIndex9 + 0x1b2c);
   if ((ContextPrimaryFloat9 == fStack_244) ||
      ((*(float *)(MemoryBlockIndex9 + 0x1cb0) != fStack_244 &&
@@ -106061,7 +106061,7 @@ MemoryAllocationReturn: // 原始标签：LAB_1801168eb，MemoryAllocationReturn
       memcpy(*(void *)(MemoryBlockIndex9 + 0x1ec8),Utf8BufferSize,(long long)StringComparisonResult0);
     }
     ProcessMemoryOperation(fStack_244,SystemValue1c8);
-    CleanupSystemOperations(FloatVariable51,pSystemShortValue5);
+    CleanupSystemOperations(MatrixTransformMultiplier21,pSystemShortValue5);
     ProcessSystemLoop();
     if (((MemoryAddressMask1 & 1) == 0) && (-1 < (char)AdditionalParameter1)) {
       *(uint *)(MemoryBlockIndex9 + 0x1b44) = *(uint *)(MemoryBlockIndex9 + 0x1b44) | 0xc;
@@ -106073,7 +106073,7 @@ MemoryAllocationReturn: // 原始标签：LAB_1801168eb，MemoryAllocationReturn
   bStack_25a = 0;
   bStack_259 = 0;
   fStack_250 = 0.0;
-  if (*(float *)(MemoryBlockIndex9 + 0x1b2c) == FloatVariable51) {
+  if (*(float *)(MemoryBlockIndex9 + 0x1b2c) == MatrixTransformMultiplier21) {
     if ((bStack_260 == 0) && (*(char *)(MemoryBlockIndex9 + 0x1b3c) == '\0')) {
       ManageSystemDataReferenceCount((uint32_t *)(MemoryBlockIndex9 + 0x1eb0),Utf8SourcePointer + 1);
       CharacterCodeTablePointer3 = &uStack_1b0;
@@ -106153,7 +106153,7 @@ LAB_180116f58:
           UnicodeCodePoint6 = (int)UnicodeCodePoint7 + 1;
           UnicodeCodePoint7 = (unsigned long long)UnicodeCodePoint6;
           MemoryAllocationIndex7 = MemoryAllocationIndex7 + 2;
-          FloatVariable51 = fStack_244;
+          MatrixTransformMultiplier21 = fStack_244;
         } while ((int)UnicodeCodePoint6 < *ReferenceCountPointer);
       }
       ManageSystemDataReferenceCount(ReferenceCountPointer,0);
@@ -106162,7 +106162,7 @@ LAB_180116f58:
   MemoryAllocationIndexSecondary = (uint32_t)((unsigned long long)CharacterCodeTablePointer3 >> 0x20);
   MemoryAllocationCounter = (uint32_t)((unsigned long long)in_stack_fffffffffffffd78 >> 0x20);
   IsSystemContextValid = false;
-  if (((*(float *)(MemoryBlockIndex9 + 0x1b2c) != FloatVariable51) || (*(char *)(MemoryBlockIndex9 + 0x1b3c) != '\0')) || (ProcessingByte4)  {
+  if (((*(float *)(MemoryBlockIndex9 + 0x1b2c) != MatrixTransformMultiplier21) || (*(char *)(MemoryBlockIndex9 + 0x1b3c) != '\0')) || (ProcessingByte4)  {
 LAB_18011788f:
     pFilterInputValue4 = (float *)(MemoryBlockIndex9 + 0x1ea8);
 LAB_180117445:
@@ -106334,10 +106334,10 @@ LAB_180117593:
           UnicodeCodePoint6 = (uint)hasComparisonResult5 * 4 + 0x10003 | UnicodeCodePoint6;
           goto LAB_180117375;
         }
-        FloatVariable51 = (float)GetFloatConstant();
+        MatrixTransformMultiplier21 = (float)GetFloatConstant();
         ContextPrimaryFloat9 = *(float *)(MemoryBlockIndex9 + 0x19f8) + *(float *)(psStack_238 + 0x48);
-        if (FloatVariable51 <= ContextPrimaryFloat9) {
-          ContextPrimaryFloat9 = FloatVariable51;
+        if (MatrixTransformMultiplier21 <= ContextPrimaryFloat9) {
+          ContextPrimaryFloat9 = MatrixTransformMultiplier21;
         }
         goto LAB_180117437;
       }
@@ -106594,7 +106594,7 @@ LAB_1801177b9:
           SystemValidationFunction9 = *(char **)(MemoryBlockIndex9 + 0x1ec8);
         }
       }
-      FloatVariable51 = fStack_230;
+      MatrixTransformMultiplier21 = fStack_230;
       if ((IsSystemContextValid) && ((AdditionalParameter1 & 0x20) != 0)) goto LAB_180117b4d;
     }
     else {
@@ -106604,7 +106604,7 @@ LAB_180117b4d:
         ConvertUtf16Character(*(void *)(MemoryBlockIndex9 + 0x1ed8),*(uint32_t *)(MemoryBlockIndex9 + 0x1ed0),
                       *(void *)(MemoryBlockIndex9 + 0x1eb8),0);
       }
-      FloatVariable51 = fStack_230;
+      MatrixTransformMultiplier21 = fStack_230;
       if ((AdditionalParameter1 & 0x1c0) != 0) {
         DataStringLength = 0x15;
         if ((((AdditionalParameter1 & 0x40) == 0) || (*(int *)(SystemConfigurationHandle + 0x3c) < 0)) ||
@@ -106625,7 +106625,7 @@ LAB_180117b4d:
           else {
 LAB_180117c0c:
             MemoryAllocationOffset = 0x100;
-            FloatVariable51 = fStack_230;
+            MatrixTransformMultiplier21 = fStack_230;
             if ((AdditionalParameter1 & 0x100) == 0) goto LAB_180117d84;
           }
         }
@@ -106671,7 +106671,7 @@ LAB_180117c0c:
           DataStringLength = ValidateAndParseUtf8Character();
           *(uint32_t *)(MemoryBlockIndex9 + 0x1ef8) = DataStringLength;
         }
-        FloatVariable51 = fStack_230;
+        MatrixTransformMultiplier21 = fStack_230;
         if (cStack_160 != '\0') {
           if (((int)fStack_250 < iStack_168) && (SUB41(fStack_230,0) != '\0')) {
             ManageSystemDataReferenceCount((int *)(MemoryBlockIndex9 + 0x1eb0),
@@ -106702,7 +106702,7 @@ LAB_180117d84:
       }
     }
     if (SystemValidationFunction9 != (char *)0x0) {
-      if ((fStack_250 != ContextPrimaryFloat9) && (SUB41(FloatVariable51,0) != '\0')) {
+      if ((fStack_250 != ContextPrimaryFloat9) && (SUB41(MatrixTransformMultiplier21,0) != '\0')) {
         uStack_13c = AdditionalParameter1;
         TemporaryFlag = 0;
         uStack_118 = 0;
@@ -106751,7 +106751,7 @@ LAB_180117e4a:
       pcStackX_10 = *(char **)(MemoryBlockIndex9 + 0x1ed8);
     }
   }
-  FloatVariable51 = 2.0;
+  MatrixTransformMultiplier21 = 2.0;
   if ((MemoryAddressMask1 & 1) == 0) {
     if (((fStack_244 == *(float *)(SystemConfigurationHandle + 0x1ca0)) &&
         (*(char *)(SystemConfigurationHandle + 0x1d06) == '\0')) &&
@@ -106803,7 +106803,7 @@ LAB_180117f26:
     ContextPrimaryFloat9 = *(float *)(MemoryBlockIndex9 + 0x1b2c);
   }
   pSystemShortValue5 = psStack_238;
-  FloatVariable48 = fStack_244;
+  MatrixTransformMultiplier18 = fStack_244;
   fStack_1c0 = fStack_218;
   fStack_1bc = fStack_214;
   fStack_1b8 = fStack_218 + fStack_208;
@@ -106818,8 +106818,8 @@ LAB_180117f26:
     lStack_1a8 = *(long long *)(psStack_238 + 0x80);
   }
   OperationStatus = *MemoryBlockIndex2;
-  FloatVariable52 = 0.0;
-  FloatVariable50 = 0.0;
+  MatrixTransformMultiplier22 = 0.0;
+  MatrixTransformMultiplier20 = 0.0;
   if ((*pFilterInputValue4 == fStack_244) && ((MemoryAddressMask1 & 1) != 0)) {
     ContextPrimaryFloat9 = *(float *)(MemoryBlockIndex9 + 0x1b2c);
     ContextSecondaryFloat4 = (float)ProcessStringValidation(psStack_238,&SystemStringValidationTable,0);
@@ -106830,7 +106830,7 @@ LAB_180117f26:
 LAB_1801180e1:
     IsSystemContextValid = false;
   }
-  if ((ContextPrimaryFloat9 == FloatVariable48) || (IsSystemContextValid)) {
+  if ((ContextPrimaryFloat9 == MatrixTransformMultiplier18) || (IsSystemContextValid)) {
     ContextPrimaryFloat9 = 0.0;
     dataStreamPointer = *(short **)(MemoryBlockIndex9 + 0x1eb8);
     pSystemShortValue38 = (short *)0x0;
@@ -106839,7 +106839,7 @@ LAB_1801180e1:
     EncodingValidationResult3 = -999;
     pSystemShortValue5 = dataStreamPointer + *(int *)(MemoryBlockIndex9 + 0x1ef0);
     DataStringLength5 = *(int *)(MemoryBlockIndex9 + 0x1ef8);
-    FloatVariable48 = 0.0;
+    MatrixTransformMultiplier18 = 0.0;
     *(float *)(MemoryBlockIndex9 + 0x2d14) = *(float *)(MemoryBlockIndex9 + 0x18) + *(float *)(MemoryBlockIndex9 + 0x2d14);
     if (EncodingValidationResult4 == DataStringLength5) {
       EncodingValidationResult4 = 1;
@@ -106883,9 +106883,9 @@ LAB_1801180e1:
     MemoryPointerValue = MemoryPointerValue & 0xffffffffffffff00;
     MemoryAllocationIndex7 = 0;
     pFilterInputValue4 = (float *)ProcessCameraMaterial(&lStack_1a8,pSystemShortValue13,pSystemShortValue5,0,0,MemoryPointerValue);
-    FloatVariable46 = *(float *)(MemoryBlockIndex9 + 0x19f8);
+    MatrixTransformMultiplier16 = *(float *)(MemoryBlockIndex9 + 0x19f8);
     ContextSecondaryFloat4 = *pFilterInputValue4;
-    FloatVariable49 = (float)EncodingValidationResult4 * FloatVariable46;
+    MatrixTransformMultiplier19 = (float)EncodingValidationResult4 * MatrixTransformMultiplier16;
     fStack_250 = ContextSecondaryFloat4;
     pSystemShortValue5 = pSystemShortValue38;
     if (-1 < StringComparisonResult0) {
@@ -106897,15 +106897,15 @@ LAB_1801180e1:
       MemoryAllocationIndex7 = 0;
       pFilterInputValue4 = (float *)ProcessCameraMaterial(&DataProcessingStatus,pSystemShortValue33,pSystemShortValue38,0,0,
                                        MemoryPointerValue & 0xffffffffffffff00);
-      FloatVariable46 = *(float *)(MemoryBlockIndex9 + 0x19f8);
+      MatrixTransformMultiplier16 = *(float *)(MemoryBlockIndex9 + 0x19f8);
       ContextPrimaryFloat9 = *pFilterInputValue4;
-      FloatVariable48 = (float)StringComparisonResult0 * FloatVariable46;
+      MatrixTransformMultiplier18 = (float)StringComparisonResult0 * MatrixTransformMultiplier16;
     }
     pSystemShortValue5 = psStack_238;
     MemoryAllocationCounter = (uint32_t)(MemoryAllocationIndex7 >> 0x20);
     if ((MemoryAddressMask1 & 1) != 0) {
-      FloatVariable50 = (float)DataStringLength5 * FloatVariable46;
-      FloatVariable52 = fStack_208;
+      MatrixTransformMultiplier20 = (float)DataStringLength5 * MatrixTransformMultiplier16;
+      MatrixTransformMultiplier22 = fStack_208;
     }
     if (*(char *)(MemoryBlockIndex9 + 0x2d18) != '\0') {
       if ((AdditionalParameter1 & 0x1000) == 0) {
@@ -106915,37 +106915,37 @@ LAB_1801180e1:
           }
         }
         else {
-          FloatVariable46 = ContextSecondaryFloat4 - fStack_208 * 0.25;
-          if (FloatVariable46 <= 0.0) {
-            FloatVariable46 = 0.0;
+          MatrixTransformMultiplier16 = ContextSecondaryFloat4 - fStack_208 * 0.25;
+          if (MatrixTransformMultiplier16 <= 0.0) {
+            MatrixTransformMultiplier16 = 0.0;
           }
-          *(float *)(MemoryBlockIndex9 + 0x1eec) = (float)(int)FloatVariable46;
+          *(float *)(MemoryBlockIndex9 + 0x1eec) = (float)(int)MatrixTransformMultiplier16;
         }
       }
       else {
         *(uint32_t *)(MemoryBlockIndex9 + 0x1eec) = 0;
       }
       if ((MemoryAddressMask1 & 1) != 0) {
-        FloatVariable46 = *(float *)(psStack_238 + 0x48);
-        FloatVariable47 = FloatVariable49 - *(float *)(MemoryBlockIndex9 + 0x19f8);
-        if (FloatVariable46 <= FloatVariable47) {
-          FloatVariable47 = FloatVariable49 - fStack_204;
-          if (FloatVariable49 - fStack_204 <= FloatVariable46) {
-            FloatVariable47 = FloatVariable46;
+        MatrixTransformMultiplier16 = *(float *)(psStack_238 + 0x48);
+        MatrixTransformMultiplier17 = MatrixTransformMultiplier19 - *(float *)(MemoryBlockIndex9 + 0x19f8);
+        if (MatrixTransformMultiplier16 <= MatrixTransformMultiplier17) {
+          MatrixTransformMultiplier17 = MatrixTransformMultiplier19 - fStack_204;
+          if (MatrixTransformMultiplier19 - fStack_204 <= MatrixTransformMultiplier16) {
+            MatrixTransformMultiplier17 = MatrixTransformMultiplier16;
           }
         }
-        else if (FloatVariable47 <= 0.0) {
-          FloatVariable47 = 0.0;
+        else if (MatrixTransformMultiplier17 <= 0.0) {
+          MatrixTransformMultiplier17 = 0.0;
         }
-        *(float *)(psStack_238 + 0x48) = FloatVariable47;
-        FloatVariable46 = (FloatVariable46 - FloatVariable47) + *(float *)(psStack_238 + 0x82);
-        *(float *)(psStack_238 + 0x82) = FloatVariable46;
-        OperationStatus = CONCAT44(FloatVariable46,(float)OperationStatus);
+        *(float *)(psStack_238 + 0x48) = MatrixTransformMultiplier17;
+        MatrixTransformMultiplier16 = (MatrixTransformMultiplier16 - MatrixTransformMultiplier17) + *(float *)(psStack_238 + 0x82);
+        *(float *)(psStack_238 + 0x82) = MatrixTransformMultiplier16;
+        OperationStatus = CONCAT44(MatrixTransformMultiplier16,(float)OperationStatus);
       }
     }
     StringComparisonResult0 = *(int *)(MemoryBlockIndex9 + 0x1ef8);
     EncodingValidationResult4 = *(int *)(MemoryBlockIndex9 + 0x1ef4);
-    FloatVariable46 = *(float *)(MemoryBlockIndex9 + 0x1eec);
+    MatrixTransformMultiplier16 = *(float *)(MemoryBlockIndex9 + 0x1eec);
     *(uint8_t *)(MemoryBlockIndex9 + 0x2d18) = 0;
     if (EncodingValidationResult4 != StringComparisonResult0) {
       DataStringLength5 = StringComparisonResult0;
@@ -106956,7 +106956,7 @@ LAB_1801180e1:
       pSystemShortValue38 = dataStreamPointer + DataStringLength5;
       dataStreamPointer = dataStreamPointer + EncodingValidationResult4;
       if ((MemoryAddressMask1 & 1) != 0) {
-        FloatVariable51 = 0.0;
+        MatrixTransformMultiplier21 = 0.0;
         pcStack_1f8 = (char *)((unsigned long long)pcStack_1f8 & 0xffffffff00000000);
       }
       ProcessingCounter = *(uint32_t *)(SystemConfigurationHandle + 0x1988);
@@ -106965,17 +106965,17 @@ LAB_1801180e1:
       fStack_fc = *(float *)(SystemConfigurationHandle + 0x1994) * *(float *)(SystemConfigurationHandle + 0x1628);
       MemoryAllocationIndexSecondary = ValidateSystemData(&ProcessingCounter);
       MemoryAllocationCounter = (uint32_t)(MemoryAllocationIndex7 >> 0x20);
-      FloatVariable48 = OperationStatus.HighPart + FloatVariable48;
+      MatrixTransformMultiplier18 = OperationStatus.HighPart + MatrixTransformMultiplier18;
       psStack_238 = pSystemShortValue38;
       if (pSystemShortValue38 < dataStreamPointer) {
-        FloatVariable47 = *(float *)(MemoryBlockIndex9 + 0x19f8);
+        MatrixTransformMultiplier17 = *(float *)(MemoryBlockIndex9 + 0x19f8);
         SystemContextPrimaryFloat6 = pcStack_1f8.LowPart;
         ContextPrimaryFloat9 = (float)OperationStatus + ContextPrimaryFloat9;
         do {
           MemoryAllocationCounter = (uint32_t)(MemoryAllocationIndex7 >> 0x20);
           ContextSecondaryFloat4 = fStack_250;
-          if (fStack_1b4 + FloatVariable47 < FloatVariable48) break;
-          if (fStack_1bc <= FloatVariable48) {
+          if (fStack_1b4 + MatrixTransformMultiplier17 < MatrixTransformMultiplier18) break;
+          if (fStack_1bc <= MatrixTransformMultiplier18) {
             MemoryAllocationIndex7 = 0;
             ProcessCameraMaterial(&fStack_230,pSystemShortValue38,dataStreamPointer,&psStack_238,0,1);
             if (fStack_230 <= 0.0) {
@@ -106988,10 +106988,10 @@ LAB_1801180e1:
               }
               fStack_230 = (float)(int)(ContextSecondaryFloat4 * 0.5);
             }
-            fStack_190 = fStack_230 + (ContextPrimaryFloat9 - FloatVariable46);
-            fStack_18c = FloatVariable51 + FloatVariable48;
-            fStack_194 = (SystemContextPrimaryFloat6 - *(float *)(MemoryBlockIndex9 + 0x19f8)) + FloatVariable48;
-            fStack_198 = ContextPrimaryFloat9 - FloatVariable46;
+            fStack_190 = fStack_230 + (ContextPrimaryFloat9 - MatrixTransformMultiplier16);
+            fStack_18c = MatrixTransformMultiplier21 + MatrixTransformMultiplier18;
+            fStack_194 = (SystemContextPrimaryFloat6 - *(float *)(MemoryBlockIndex9 + 0x19f8)) + MatrixTransformMultiplier18;
+            fStack_198 = ContextPrimaryFloat9 - MatrixTransformMultiplier16;
             ProcessFloatOperation(&pcStack_1f8,&fStack_1c0);
             ProcessFloatCalculation(&fStack_198,&pcStack_1f8);
             ProcessFloatOperation(aSystemFlagB,&fStack_1c0);
@@ -107013,8 +107013,8 @@ LAB_1801180e1:
             } while (SystemShortValue4 != 10);
           }
           MemoryAllocationCounter = (uint32_t)(MemoryAllocationIndex7 >> 0x20);
-          FloatVariable47 = *(float *)(MemoryBlockIndex9 + 0x19f8);
-          FloatVariable48 = FloatVariable48 + FloatVariable47;
+          MatrixTransformMultiplier17 = *(float *)(MemoryBlockIndex9 + 0x19f8);
+          MatrixTransformMultiplier18 = MatrixTransformMultiplier18 + MatrixTransformMultiplier17;
           ContextSecondaryFloat4 = fStack_250;
           ContextPrimaryFloat9 = (float)OperationStatus;
         } while (pSystemShortValue38 < dataStreamPointer);
@@ -107028,7 +107028,7 @@ LAB_1801180e1:
       fStack_1ec = *(float *)(SystemConfigurationHandle + 0x16d4) * *(float *)(SystemConfigurationHandle + 0x1628);
       MemoryAllocationIndexSecondary = ValidateSystemData(&pcStack_1f8);
       pFilterInputValue4 = &fStack_1c0;
-      fStack_250 = (float)OperationStatus - FloatVariable46;
+      fStack_250 = (float)OperationStatus - MatrixTransformMultiplier16;
       if ((MemoryAddressMask1 & 1) != 0) {
         pFilterInputValue4 = (float *)0x0;
       }
@@ -107045,12 +107045,12 @@ LAB_1801180e1:
     else {
       IsSystemContextValid = false;
     }
-    FloatVariable49 = OperationStatus.HighPart + FloatVariable49;
-    FloatVariable46 = ((float)OperationStatus + ContextSecondaryFloat4) - FloatVariable46;
-    fStack_1cc = FloatVariable49 - 1.5;
-    fStack_1d4 = (FloatVariable49 - *(float *)(MemoryBlockIndex9 + 0x19f8)) + 0.5;
-    fStack_1d0 = FloatVariable46 + 1.0;
-    fStack_1d8 = FloatVariable46;
+    MatrixTransformMultiplier19 = OperationStatus.HighPart + MatrixTransformMultiplier19;
+    MatrixTransformMultiplier16 = ((float)OperationStatus + ContextSecondaryFloat4) - MatrixTransformMultiplier16;
+    fStack_1cc = MatrixTransformMultiplier19 - 1.5;
+    fStack_1d4 = (MatrixTransformMultiplier19 - *(float *)(MemoryBlockIndex9 + 0x19f8)) + 0.5;
+    fStack_1d0 = MatrixTransformMultiplier16 + 1.0;
+    fStack_1d8 = MatrixTransformMultiplier16;
     if (IsSystemContextValid) {
       ProcessFloatOperation(SystemFlagBuffer,&fStack_1c0);
       InputStringBuffer7 = CompareFloatValues(&fStack_1d8,SystemFlagBuffer);
@@ -107066,8 +107066,8 @@ LAB_1801180e1:
       }
     }
     if (bStack_260 != 0) {
-      *(float *)(MemoryBlockIndex9 + 0x2de4) = FloatVariable49 - *(float *)(MemoryBlockIndex9 + 0x19f8);
-      *(float *)(MemoryBlockIndex9 + 0x2de0) = FloatVariable46 - 1.0;
+      *(float *)(MemoryBlockIndex9 + 0x2de4) = MatrixTransformMultiplier19 - *(float *)(MemoryBlockIndex9 + 0x19f8);
+      *(float *)(MemoryBlockIndex9 + 0x2de0) = MatrixTransformMultiplier16 - 1.0;
       *(void *)(MemoryBlockIndex9 + 0x2df0) = *(void *)(SystemValue1c8 + 0x14);
     }
   }
@@ -107084,8 +107084,8 @@ LAB_1801180e1:
     }
     else {
       StringComparisonResult0 = InitializeFloatSystem(pcStackX_10,&pcStack_1f8);
-      FloatVariable50 = (float)StringComparisonResult0 * *(float *)(MemoryBlockIndex9 + 0x19f8);
-      FloatVariable52 = fStack_208;
+      MatrixTransformMultiplier20 = (float)StringComparisonResult0 * *(float *)(MemoryBlockIndex9 + 0x19f8);
+      MatrixTransformMultiplier22 = fStack_208;
     }
     MemoryAllocationIndexAdditional = *(void *)(pSystemShortValue5 + 0x174);
     fStack_1d8 = *(float *)(SystemConfigurationHandle + 0x16c8);
@@ -107096,7 +107096,7 @@ LAB_1801180e1:
     ProcessSystemRenderData(MemoryAllocationIndexAdditional,*(void *)(MemoryBlockIndex9 + 0x19f0));
   }
   if ((MemoryAddressMask1 & 1) != 0) {
-    SystemValue1c8 = (short *)CONCAT44(FloatVariable50 + *(float *)(MemoryBlockIndex9 + 0x19f8),FloatVariable52);
+    SystemValue1c8 = (short *)CONCAT44(MatrixTransformMultiplier20 + *(float *)(MemoryBlockIndex9 + 0x19f8),MatrixTransformMultiplier22);
     InitializeSystemFloatData(&SystemValue1c8);
     ManageSystemMemory();
     ProcessSystemTertiaryEventHandle();
@@ -107252,9 +107252,9 @@ char ProcessSystemRenderingAndMemoryManagement(void
   else {
     IsMemoryBlockEqual = true;
   }
-  FloatVariable51 = StackFloatVariable2;
-  FloatVariable43 = *(float *)(PatternIndex + 0x1b2c);
-  if ((FloatVariable43 == StackFloatVariable2) ||
+  MatrixTransformMultiplier21 = StackFloatVariable2;
+  MatrixTransformMultiplier13 = *(float *)(PatternIndex + 0x1b2c);
+  if ((MatrixTransformMultiplier13 == StackFloatVariable2) ||
      ((*(float *)(PatternIndex + 0x1cb0) != StackFloatVariable2 &&
       ((*(float *)(PatternIndex + 0x1ca4) != StackFloatVariable2 ||
        (*(int *)(PatternIndex + 0x1cc0) != 3)))))) {
@@ -107264,14 +107264,14 @@ char ProcessSystemRenderingAndMemoryManagement(void
     ValidationByteFlag3 = true;
   }
   CurrentByteValue6 = false;
-  if (((FloatVariable43 == StackFloatVariable2) || ((((uint)StackFrameAddressPointer[0x78] & 0x10) == 0 && (!ValidationByteFlag3)))     || (bStack0000000000000054 != 0)) {
+  if (((MatrixTransformMultiplier13 == StackFloatVariable2) || ((((uint)StackFrameAddressPointer[0x78] & 0x10) == 0 && (!ValidationByteFlag3)))     || (bStack0000000000000054 != 0)) {
     CurrentByteValue2 = false;
   }
   else {
     CurrentByteValue2 = true;
   }
   if ((((InputStringBuffer8 != '\0') || (CurrentByteValue0)) || (IsMemoryBlockEqual)) || (ValidationByteFlag3)) {
-    if (FloatVariable43 != StackFloatVariable2) {
+    if (MatrixTransformMultiplier13 != StackFloatVariable2) {
       BufferStatus4 = -1;
       do {
         BufferStatus4 = BufferStatus4 + 1;
@@ -107282,12 +107282,12 @@ char ProcessSystemRenderingAndMemoryManagement(void
                     // WARNING: Subroutine does not return
       memcpy(*(void *)(PatternIndex + 0x1ec8),*(void *)(StackFrameAddressPointer + 0x72),(long long)IntegerValue9      ;
     }
-    FloatVariable43 = StackFrameAddressPointer[0x78];
+    MatrixTransformMultiplier13 = StackFrameAddressPointer[0x78];
     MemoryAddressMask5 = *(void *)(StackFrameAddressPointer + -4);
     ProcessMemoryOperation(StackFloatVariable2,MemoryAddressMask5);
-    CleanupSystemOperations(FloatVariable51,MemoryAddressMask5);
+    CleanupSystemOperations(MatrixTransformMultiplier21,MemoryAddressMask5);
     ProcessSystemLoop();
-    if ((bStack0000000000000054 == 0) && (-1 < SUB41(FloatVariable43,0))) {
+    if ((bStack0000000000000054 == 0) && (-1 < SUB41(MatrixTransformMultiplier13,0))) {
       *(uint *)(PatternIndex + 0x1b44) = *(uint *)(PatternIndex + 0x1b44) | 0xc;
     }
   }
@@ -107297,7 +107297,7 @@ char ProcessSystemRenderingAndMemoryManagement(void
   systemStringCodeBuffere = '\0';
   systemStringCodeBufferf = '\0';
   TemporaryFloatStack68 = 0.0;
-  if (*(float *)(PatternIndex + 0x1b2c) == FloatVariable51) {
+  if (*(float *)(PatternIndex + 0x1b2c) == MatrixTransformMultiplier21) {
     if ((InputDataBuffer == '\0') && (*(char *)(PatternIndex + 0x1b3c) == '\0')) {
       ManageSystemDataReferenceCount((uint32_t *)(PatternIndex + 0x1eb0),(int)StackFrameAddressPointer[0x74] + 1);
       MemoryAllocationIndexPrimary = *(uint32_t *)(PatternIndex + 0x1eb0);
@@ -107314,18 +107314,18 @@ char ProcessSystemRenderingAndMemoryManagement(void
     BufferStatus4 = PatternIndex + 0x1ea8;
     TemporaryFloatStack68 = *(float *)(PatternIndex + 0x1ee0);
     MemoryAddressMask5 = *(void *)(StackFrameAddressPointer + 0x7a);
-    FloatVariable43 = StackFrameAddressPointer[0x78];
-    *(float *)(PatternIndex + 0x2d1c) = FloatVariable43;
+    MatrixTransformMultiplier13 = StackFrameAddressPointer[0x78];
+    *(float *)(PatternIndex + 0x2d1c) = MatrixTransformMultiplier13;
     *(void *)(PatternIndex + 0x2d20) = MemoryAddressMask5;
     *(float *)(PatternIndex + 0x1ee8) = StackFrameAddressPointer[0x74];
     *(void *)(PatternIndex + 0x2d28) = *(void *)(StackFrameAddressPointer + 0x7c);
     *(uint32_t *)(PatternIndex + 0x3050) = 1;
     *(bool *)(PatternIndex + 0x1b3d) = *(char *)(PatternIndex + 0x120) == '\0';
     if (bStack0000000000000054 == 0) {
-      FloatVariable46 = *(float *)(PatternIndex + 0x19f8) * 0.5;
+      MatrixTransformMultiplier16 = *(float *)(PatternIndex + 0x19f8) * 0.5;
     }
     else {
-      FloatVariable46 = (*(float *)(PatternIndex + 0x11c) - *(float *)(*(long long *)(StackFrameAddressPointer + -0x20) + 0x104               ) - *(float *)(PatternIndex + 0x1660);
+      MatrixTransformMultiplier16 = (*(float *)(PatternIndex + 0x11c) - *(float *)(*(long long *)(StackFrameAddressPointer + -0x20) + 0x104               ) - *(float *)(PatternIndex + 0x1660);
     }
     InputStringBuffer8 = *(char *)(PatternIndex + 0xc9);
     if (CurrentByteValue2) {
@@ -107333,7 +107333,7 @@ LAB_180116f3b:
       FinalizeMemorySetup();
       *(uint8_t *)(PatternIndex + 0x2d19) = 1;
 LAB_180116f4a:
-      FloatVariable43 = StackFrameAddressPointer[0x78];
+      MatrixTransformMultiplier13 = StackFrameAddressPointer[0x78];
       MemoryAddressMask5 = *(void *)(StackFrameAddressPointer + 0x7a);
     }
     else {
@@ -107342,7 +107342,7 @@ LAB_180116f4a:
           if (*(char *)(PatternIndex + 0x415) != '\0') goto LAB_180116f3b;
         }
         else if (*(char *)(PatternIndex + 0x415) != '\0') {
-          OperateSystemBufferEx(BufferStatus4,PatternIndex + 0x1ef0,0x1000c,FloatVariable46);
+          OperateSystemBufferEx(BufferStatus4,PatternIndex + 0x1ef0,0x1000c,MatrixTransformMultiplier16);
           *(uint8_t *)(PatternIndex + 0x2d18) = 1;
           *(uint32_t *)(PatternIndex + 0x2d14) = 0xbe99999a;
           OperateSystemBufferEx(BufferStatus4,PatternIndex + 0x1ef0,0x3000d);
@@ -107380,7 +107380,7 @@ LAB_180116f4a:
         do {
           _StackUintValue60 =
                (float)(uint)*(ushort *)(UnicodeCodePoint9 + *(long long *)(PatternIndex + 0x1538));
-          InputStringBuffer7 = ValidateSystemParametersAndCheckStatus(&DataTransferStackBuffer,FloatVariable43,MemoryAddressMask5,CalculatedCodePoint2);
+          InputStringBuffer7 = ValidateSystemParametersAndCheckStatus(&DataTransferStackBuffer,MatrixTransformMultiplier13,MemoryAddressMask5,CalculatedCodePoint2);
           if (InputStringBuffer7 != '\0') {
             OperateSystemBufferEx(BufferStatus4,PatternIndex + 0x1ef0,_StackUintValue60);
             *(uint8_t *)(PatternIndex + 0x2d18) = 1;
@@ -107389,9 +107389,9 @@ LAB_180116f4a:
           MemoryAddressMask5 = *(void *)(StackFrameAddressPointer + 0x7a);
           UnicodeCodePoint3 = (int)CalculatedCodePoint3 + 1;
           CalculatedCodePoint3 = (unsigned long long)UnicodeCodePoint3;
-          FloatVariable43 = StackFrameAddressPointer[0x78];
+          MatrixTransformMultiplier13 = StackFrameAddressPointer[0x78];
           UnicodeCodePoint9 = UnicodeCodePoint9 + 2;
-          FloatVariable51 = StackFloatVariable2;
+          MatrixTransformMultiplier21 = StackFloatVariable2;
         } while ((int)UnicodeCodePoint3 < *ReferenceCountPointer);
       }
       ManageSystemDataReferenceCount(ReferenceCountPointer,0);
@@ -107399,7 +107399,7 @@ LAB_180116f4a:
   }
   MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
   CurrentByteValue0 = false;
-  if (((*(float *)(PatternIndex + 0x1b2c) != FloatVariable51) || (*(char *)(PatternIndex + 0x1b3c) != '\0')) ||
+  if (((*(float *)(PatternIndex + 0x1b2c) != MatrixTransformMultiplier21) || (*(char *)(PatternIndex + 0x1b3c) != '\0')) ||
      (CurrentByteValue6)) {
 LAB_18011788f:
     pFilterInputValue1 = (float *)(PatternIndex + 0x1ea8);
@@ -107521,10 +107521,10 @@ LAB_18011713b:
       else {
         UnicodeCodePoint8 = 0x10004;
       }
-      FloatVariable43 = (float)(UnicodeCodePoint8 | UnicodeCodePoint3);
+      MatrixTransformMultiplier13 = (float)(UnicodeCodePoint8 | UnicodeCodePoint3);
 LAB_180117375:
       pFilterInputValue1 = (float *)(PatternIndex + 0x1ea8);
-      OperateSystemBufferEx(pFilterInputValue1,PatternIndex + 0x1ef0,FloatVariable43);
+      OperateSystemBufferEx(pFilterInputValue1,PatternIndex + 0x1ef0,MatrixTransformMultiplier13);
       *(uint8_t *)(PatternIndex + 0x2d18) = 1;
       *(uint32_t *)(PatternIndex + 0x2d14) = 0xbe99999a;
       goto LAB_180117443;
@@ -107539,10 +107539,10 @@ LAB_18011739a:
           if (cStack0000000000000050 != '\0') {
             UnicodeCodePoint8 = 0x1000d;
           }
-          FloatVariable43 = (float)(UnicodeCodePoint8 | UnicodeCodePoint3);
+          MatrixTransformMultiplier13 = (float)(UnicodeCodePoint8 | UnicodeCodePoint3);
         }
         else {
-          FloatVariable43 = (float)(UnicodeCodePoint3 | 0x10005);
+          MatrixTransformMultiplier13 = (float)(UnicodeCodePoint3 | 0x10005);
         }
         goto LAB_180117375;
       }
@@ -107552,7 +107552,7 @@ LAB_18011739a:
       MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
       if ((InputStringBuffer7 == '\0') || (bStack0000000000000054 == 0)) goto LAB_180117593;
       if (*(char *)(PatternIndex + 0x134) == '\0') {
-        FloatVariable43 = (float)((uint)hasComparisonResult2 * 4 + 0x10002 | UnicodeCodePoint3);
+        MatrixTransformMultiplier13 = (float)((uint)hasComparisonResult2 * 4 + 0x10002 | UnicodeCodePoint3);
         goto LAB_180117375;
       }
 LAB_180117437:
@@ -107565,7 +107565,7 @@ LAB_180117593:
       MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
       if ((InputStringBuffer7 != '\0') && (bStack0000000000000054 != 0)) {
         if (*(char *)(PatternIndex + 0x134) == '\0') {
-          FloatVariable43 = (float)((uint)hasComparisonResult2 * 4 + 0x10003 | UnicodeCodePoint3);
+          MatrixTransformMultiplier13 = (float)((uint)hasComparisonResult2 * 4 + 0x10003 | UnicodeCodePoint3);
           goto LAB_180117375;
         }
         GetFloatConstant();
@@ -107580,7 +107580,7 @@ LAB_180117593:
         if (*(char *)(PatternIndex + 0x134) == '\0') {
           UnicodeCodePoint8 = 0x10004;
         }
-        FloatVariable43 = (float)(UnicodeCodePoint8 | UnicodeCodePoint3);
+        MatrixTransformMultiplier13 = (float)(UnicodeCodePoint8 | UnicodeCodePoint3);
         goto LAB_180117375;
       }
     }
@@ -107592,7 +107592,7 @@ LAB_180117593:
         if (*(char *)(PatternIndex + 0x134) == '\0') {
           UnicodeCodePoint8 = 0x10005;
         }
-        FloatVariable43 = (float)(UnicodeCodePoint8 | UnicodeCodePoint3);
+        MatrixTransformMultiplier13 = (float)(UnicodeCodePoint8 | UnicodeCodePoint3);
         goto LAB_180117375;
       }
     }
@@ -107600,7 +107600,7 @@ LAB_180117593:
       InputStringBuffer7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 100),1);
       MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
       if ((InputStringBuffer7 != '\0') && (StackProcessingParameter58 != '\0')) {
-        FloatVariable43 = (float)(UnicodeCodePoint3 | 0x10008);
+        MatrixTransformMultiplier13 = (float)(UnicodeCodePoint3 | 0x10008);
         goto LAB_180117375;
       }
     }
@@ -107620,28 +107620,28 @@ LAB_180117593:
           OperateSystemBufferEx(PatternIndex + 0x1ea8,PatternIndex + 0x1ef0,MemoryAddressMask5);
           *(uint8_t *)(PatternIndex + 0x2d18) = 1;
           *(uint32_t *)(PatternIndex + 0x2d14) = 0xbe99999a;
-          FloatVariable43 = (float)(UnicodeCodePoint3 | 0x10009);
+          MatrixTransformMultiplier13 = (float)(UnicodeCodePoint3 | 0x10009);
         }
         else {
 LAB_18011774b:
-          FloatVariable43 = (float)(UnicodeCodePoint3 | 0x10009);
+          MatrixTransformMultiplier13 = (float)(UnicodeCodePoint3 | 0x10009);
         }
         goto LAB_180117375;
       }
     }
     if (*(int *)(SystemConfigurationHandle + 0x70) < 0) {
 LAB_1801177f4:
-      FloatVariable43 = StackFrameAddressPointer[0x78];
-      if ((((uint)FloatVariable43 >> 10 & 1) != 0) && (-1 < *(int *)(SystemConfigurationHandle + 0x3c))) {
+      MatrixTransformMultiplier13 = StackFrameAddressPointer[0x78];
+      if ((((uint)MatrixTransformMultiplier13 >> 10 & 1) != 0) && (-1 < *(int *)(SystemConfigurationHandle + 0x3c))) {
         InputStringBuffer7 = ValidateSystemConfiguration(*(int *)(SystemConfigurationHandle + 0x3c),1);
         MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
         if ((((InputStringBuffer7 != '\0') &&
              ((*(char *)(PatternIndex + 0x134) == '\0' && (*(char *)(PatternIndex + 0x135) == '\0')))) &&
             (*(char *)(PatternIndex + 0x136) == '\0')) && (StackProcessingParameter58 != '\0')) {
           _StackUintValue60 = 1.26117e-44;
-          InputStringBuffer7 = ValidateSystemParametersAndCheckStatus(&DataTransferStackBuffer,FloatVariable43,*(void *)(StackFrameAddressPointer + 0x7a),
+          InputStringBuffer7 = ValidateSystemParametersAndCheckStatus(&DataTransferStackBuffer,MatrixTransformMultiplier13,*(void *)(StackFrameAddressPointer + 0x7a),
                                  *(void *)(StackFrameAddressPointer + 0x7c));
-          FloatVariable43 = _StackUintValue60;
+          MatrixTransformMultiplier13 = _StackUintValue60;
           if (InputStringBuffer7 != '\0') goto LAB_180117375;
           goto LAB_18011743c;
         }
@@ -107731,7 +107731,7 @@ LAB_1801177f4:
               IntegerValue9 = 0;
               if (*SystemValidationFunction5 != '\0') {
                 MemoryAddressMask5 = *(void *)(StackFrameAddressPointer + 0x7c);
-                FloatVariable43 = StackFrameAddressPointer[0x78];
+                MatrixTransformMultiplier13 = StackFrameAddressPointer[0x78];
                 CalculatedCodePoint2 = *(void *)(StackFrameAddressPointer + 0x7a);
                 do {
                   EncodingValidationResult1 = ValidateSystemDataEx(&DataTransferStackBuffer,SystemValidationFunction5,0);
@@ -107739,7 +107739,7 @@ LAB_1801177f4:
                   SystemValidationFunction5 = SystemValidationFunction5 + EncodingValidationResult1;
                   if (_StackUintValue60 == 0.0) break;
                   if (((uint)_StackUintValue60 < 0x10000) &&
-                     (InputStringBuffer7 = ValidateSystemParametersAndCheckStatus(&DataTransferStackBuffer,FloatVariable43,CalculatedCodePoint2,MemoryAddressMask5), InputStringBuffer7 != '\0'                     ) {
+                     (InputStringBuffer7 = ValidateSystemParametersAndCheckStatus(&DataTransferStackBuffer,MatrixTransformMultiplier13,CalculatedCodePoint2,MemoryAddressMask5), InputStringBuffer7 != '\0'                     ) {
                     IntegerValue9 = IterationCounter + 1;
                     *PrimaryProcessingStatusFlag6 = StackUintValue60;
                     PrimaryProcessingStatusFlag6 = PrimaryProcessingStatusFlag6 + 1;
@@ -107780,7 +107780,7 @@ LAB_1801177b9:
           StackFrameAddressPointer[-0x12] = 1.4013e-44;
           InputStringBuffer7 = ValidateSystemParametersAndCheckStatus(StackFrameAddressPointer + -0x12,StackFrameAddressPointer[0x78],*(void *)(StackFrameAddressPointer + 0x7a                                 ,*(void *)(StackFrameAddressPointer + 0x7c));
           if (InputStringBuffer7 != '\0') {
-            FloatVariable43 = StackFrameAddressPointer[-0x12];
+            MatrixTransformMultiplier13 = StackFrameAddressPointer[-0x12];
             goto LAB_180117375;
           }
         }
@@ -107793,12 +107793,12 @@ LAB_1801177b9:
     pFilterInputValue1 = (float *)(PatternIndex + 0x1ea8);
     CurrentByteValue0 = false;
   }
-  FloatVariable43 = *(float *)(PatternIndex + 0x1b2c);
-  if (FloatVariable43 == StackFloatVariable2) {
+  MatrixTransformMultiplier13 = *(float *)(PatternIndex + 0x1b2c);
+  if (MatrixTransformMultiplier13 == StackFloatVariable2) {
     SystemValidationFunction5 = (char *)0x0;
-    FloatVariable43 = 0.0;
+    MatrixTransformMultiplier13 = 0.0;
     if (CurrentByteValue0) {
-      FloatVariable43 = 0.0;
+      MatrixTransformMultiplier13 = 0.0;
       if (StackProcessingParameter58 != '\0') {
         SystemValidationFunction5 = *(char **)(StackFrameAddressPointer + 0x72);
         BufferStatus4 = (long long)*(char **)(PatternIndex + 0x1ec8) - (long long)SystemValidationFunction5;
@@ -107809,54 +107809,54 @@ LAB_1801177b9:
           SystemValidationFunction5 = SystemValidationFunction5 + 1;
         } while (InputStringBuffer8 != '\0');
         SystemValidationFunction5 = (char *)0x0;
-        FloatVariable43 = 0.0;
+        MatrixTransformMultiplier13 = 0.0;
         if (InputStringBuffer7 != InputStringBuffer8) {
-          FloatVariable43 = (float)(*(int *)(PatternIndex + 0x1ec0) + -1);
+          MatrixTransformMultiplier13 = (float)(*(int *)(PatternIndex + 0x1ec0) + -1);
           SystemValidationFunction5 = *(char **)(PatternIndex + 0x1ec8);
         }
       }
-      if ((IsMemoryBlockEqual) && (FloatVariable51 = StackFrameAddressPointer[0x78], ((uint)FloatVariable51 & 0x20) != 0)) goto LAB_180117b4d;
+      if ((IsMemoryBlockEqual) && (MatrixTransformMultiplier21 = StackFrameAddressPointer[0x78], ((uint)MatrixTransformMultiplier21 & 0x20) != 0)) goto LAB_180117b4d;
       BufferStatus4 = *(long long *)(StackFrameAddressPointer + 0x72);
       InputStringBuffer7 = SUB41(StackFrameAddressPointer[-0x1e],0);
     }
     else {
-      FloatVariable51 = StackFrameAddressPointer[0x78];
+      MatrixTransformMultiplier21 = StackFrameAddressPointer[0x78];
 LAB_180117b4d:
       if (StackProcessingParameter58 != '\0') {
         SetSystemDataStatus(PatternIndex + 0x1ed0,*(int *)(PatternIndex + 0x1eb0) * 4 + 1);
         ConvertUtf16Character(*(void *)(PatternIndex + 0x1ed8),*(uint32_t *)(PatternIndex + 0x1ed0),
                       *(void *)(PatternIndex + 0x1eb8),0);
       }
-      if (((uint)FloatVariable51 & 0x1c0) == 0) {
+      if (((uint)MatrixTransformMultiplier21 & 0x1c0) == 0) {
 LAB_180117d7c:
         InputStringBuffer7 = SUB41(StackFrameAddressPointer[-0x1e],0);
       }
       else {
-        FloatVariable46 = 2.94273e-44;
-        if (((((uint)FloatVariable51 & 0x40) == 0) || (*(int *)(SystemConfigurationHandle + 0x3c) < 0)) ||
+        MatrixTransformMultiplier16 = 2.94273e-44;
+        if (((((uint)MatrixTransformMultiplier21 & 0x40) == 0) || (*(int *)(SystemConfigurationHandle + 0x3c) < 0)) ||
            (InputStringBuffer7 = ValidateSystemConfiguration(), InputStringBuffer7 == '\0')) {
-          if (SUB41(FloatVariable51,0) < '\0') {
+          if (SUB41(MatrixTransformMultiplier21,0) < '\0') {
             if ((*(int *)(SystemConfigurationHandle + 0x48) < 0) ||
                (InputStringBuffer7 = ValidateSystemConfiguration(), InputStringBuffer7 == '\0')) {
               if ((*(int *)(SystemConfigurationHandle + 0x4c) < 0) ||
                  (InputStringBuffer7 = ValidateSystemConfiguration(), InputStringBuffer7 == '\0')) goto LAB_180117c0c;
               ContextSecondaryFloat2 = 1.79366e-43;
-              FloatVariable46 = 5.60519e-45;
+              MatrixTransformMultiplier16 = 5.60519e-45;
             }
             else {
               ContextSecondaryFloat2 = 1.79366e-43;
-              FloatVariable46 = 4.2039e-45;
+              MatrixTransformMultiplier16 = 4.2039e-45;
             }
           }
           else {
 LAB_180117c0c:
             ContextSecondaryFloat2 = 3.58732e-43;
-            if (((uint)FloatVariable51 & 0x100) == 0) goto LAB_180117d7c;
+            if (((uint)MatrixTransformMultiplier21 & 0x100) == 0) goto LAB_180117d7c;
           }
         }
         else {
           ContextSecondaryFloat2 = 8.96831e-44;
-          FloatVariable46 = 0.0;
+          MatrixTransformMultiplier16 = 0.0;
         }
         StackFrameAddressPointer[0xc] = ContextSecondaryFloat2;
         *(void *)(StackFrameAddressPointer + 0xe) = *(void *)(StackFrameAddressPointer + 0x7c);
@@ -107864,29 +107864,29 @@ LAB_180117c0c:
         StackFrameAddressPointer[0x14] = *(float *)(PatternIndex + 0x1ee0);
         StackFrameAddressPointer[0x15] = *(float *)(PatternIndex + 0x1ee8);
         IntegerValue9 = *(int *)(PatternIndex + 0x1ef0);
-        StackFrameAddressPointer[0x11] = FloatVariable46;
+        StackFrameAddressPointer[0x11] = MatrixTransformMultiplier16;
         BufferStatus4 = *(long long *)(PatternIndex + 0x1eb8);
         StackFrameAddressPointer[0x10] = 0.0;
         *(void *)((long long)StackFrameAddressPointer + 0x59) = 0;
         *(uint32_t *)((long long)StackFrameAddressPointer + 0x61) = 0;
         *(uint16_t *)((long long)StackFrameAddressPointer + 0x65) = 0;
         *(uint8_t *)((long long)StackFrameAddressPointer + 0x67) = 0;
-        StackFrameAddressPointer[0xd] = FloatVariable51;
+        StackFrameAddressPointer[0xd] = MatrixTransformMultiplier21;
         *(uint8_t *)(StackFrameAddressPointer + 0x16) = 0;
-        FloatVariable51 = (float)CalculateUtf8EncodingLength(BufferStatus4,BufferStatus4 + (long long)IntegerValue9 * 2);
+        MatrixTransformMultiplier21 = (float)CalculateUtf8EncodingLength(BufferStatus4,BufferStatus4 + (long long)IntegerValue9 * 2);
         IntegerValue9 = *(int *)(PatternIndex + 0x1ef4);
-        StackFrameAddressPointer[0x17] = FloatVariable51;
-        FloatVariable46 = (float)CalculateUtf8EncodingLength(BufferStatus4,BufferStatus4 + (long long)IntegerValue9 * 2);
-        StackFrameAddressPointer[0x18] = FloatVariable46;
+        StackFrameAddressPointer[0x17] = MatrixTransformMultiplier21;
+        MatrixTransformMultiplier16 = (float)CalculateUtf8EncodingLength(BufferStatus4,BufferStatus4 + (long long)IntegerValue9 * 2);
+        StackFrameAddressPointer[0x18] = MatrixTransformMultiplier16;
         ContextSecondaryFloat2 = (float)CalculateUtf8EncodingLength(BufferStatus4);
         StackFrameAddressPointer[0x19] = ContextSecondaryFloat2;
         (**(code **)(StackFrameAddressPointer + 0x7a))(StackFrameAddressPointer + 0xc);
-        if (StackFrameAddressPointer[0x17] != FloatVariable51) {
+        if (StackFrameAddressPointer[0x17] != MatrixTransformMultiplier21) {
           DataStringLength = ValidateAndParseUtf8Character();
           *(uint32_t *)(PatternIndex + 0x1ef0) = DataStringLength;
           *(uint8_t *)(PatternIndex + 0x2d18) = 1;
         }
-        if (StackFrameAddressPointer[0x18] != FloatVariable46) {
+        if (StackFrameAddressPointer[0x18] != MatrixTransformMultiplier16) {
           DataStringLength = ValidateAndParseUtf8Character();
           *(uint32_t *)(PatternIndex + 0x1ef4) = DataStringLength;
         }
@@ -107921,14 +107921,14 @@ LAB_180117c0c:
           SystemValidationFunction7 = SystemValidationFunction7 + 1;
         } while (CharacterVariable5 != '\0');
         if (InputStringBuffer8 != CharacterVariable5) {
-          FloatVariable43 = *(float *)(PatternIndex + 0x1ee0);
+          MatrixTransformMultiplier13 = *(float *)(PatternIndex + 0x1ee0);
           SystemValidationFunction5 = StringDataPointer;
         }
       }
     }
     if (SystemValidationFunction5 != (char *)0x0) {
-      if ((TemporaryFloatStack68 == FloatVariable43) || (InputStringBuffer7 == '\0')) {
-        FloatVariable51 = StackFrameAddressPointer[0x74];
+      if ((TemporaryFloatStack68 == MatrixTransformMultiplier13) || (InputStringBuffer7 == '\0')) {
+        MatrixTransformMultiplier21 = StackFrameAddressPointer[0x74];
       }
       else {
         StackFrameAddressPointer[0x1f] = StackFrameAddressPointer[0x78];
@@ -107938,28 +107938,28 @@ LAB_180117c0c:
         StackFrameAddressPointer[0x29] = 0.0;
         StackFrameAddressPointer[0x2a] = 0.0;
         StackFrameAddressPointer[0x2b] = 0.0;
-        FloatVariable51 = (float)((int)FloatVariable43 + 1);
-        if ((int)FloatVariable43 + 1 <= (int)StackFrameAddressPointer[0x74]) {
-          FloatVariable51 = StackFrameAddressPointer[0x74];
+        MatrixTransformMultiplier21 = (float)((int)MatrixTransformMultiplier13 + 1);
+        if ((int)MatrixTransformMultiplier13 + 1 <= (int)StackFrameAddressPointer[0x74]) {
+          MatrixTransformMultiplier21 = StackFrameAddressPointer[0x74];
         }
-        StackFrameAddressPointer[0x27] = FloatVariable51;
+        StackFrameAddressPointer[0x27] = MatrixTransformMultiplier21;
         *(void *)(StackFrameAddressPointer + 0x20) = *(void *)(StackFrameAddressPointer + 0x7c);
         StackFrameAddressPointer[0x1e] = 3.67342e-40;
         *(long long *)(StackFrameAddressPointer + 0x24) = BufferStatus4;
-        StackFrameAddressPointer[0x26] = FloatVariable43;
+        StackFrameAddressPointer[0x26] = MatrixTransformMultiplier13;
         (**(code **)(StackFrameAddressPointer + 0x7a))(StackFrameAddressPointer + 0x1e);
-        FloatVariable51 = StackFrameAddressPointer[0x27];
+        MatrixTransformMultiplier21 = StackFrameAddressPointer[0x27];
         BufferStatus4 = *(long long *)(StackFrameAddressPointer + 0x24);
         *(long long *)(StackFrameAddressPointer + 0x72) = BufferStatus4;
-        FloatVariable43 = (float)((int)FloatVariable51 + -1);
-        if ((int)StackFrameAddressPointer[0x26] < (int)FloatVariable51 + -1) {
-          FloatVariable43 = StackFrameAddressPointer[0x26];
+        MatrixTransformMultiplier13 = (float)((int)MatrixTransformMultiplier21 + -1);
+        if ((int)StackFrameAddressPointer[0x26] < (int)MatrixTransformMultiplier21 + -1) {
+          MatrixTransformMultiplier13 = StackFrameAddressPointer[0x26];
         }
       }
-      if ((int)FloatVariable43 + 1 < (int)FloatVariable51) {
-        FloatVariable51 = (float)((int)FloatVariable43 + 1);
+      if ((int)MatrixTransformMultiplier13 + 1 < (int)MatrixTransformMultiplier21) {
+        MatrixTransformMultiplier21 = (float)((int)MatrixTransformMultiplier13 + 1);
       }
-      MemoryBlockIndex4 = (long long)(int)FloatVariable51;
+      MemoryBlockIndex4 = (long long)(int)MatrixTransformMultiplier21;
       if (MemoryBlockIndex4 != 0) {
         strncpy(BufferStatus4,*(void *)(PatternIndex + 0x1ed8),MemoryBlockIndex4);
         *(uint8_t *)(MemoryBlockIndex4 + -1 + BufferStatus4) = 0;
@@ -107969,12 +107969,12 @@ LAB_180117c0c:
     *(uint32_t *)(PatternIndex + 0x2d1c) = 0;
     *(void *)(PatternIndex + 0x2d20) = 0;
     *(void *)(PatternIndex + 0x2d28) = 0;
-    FloatVariable43 = *(float *)(PatternIndex + 0x1b2c);
+    MatrixTransformMultiplier13 = *(float *)(PatternIndex + 0x1b2c);
   }
   if (CurrentByteValue6) {
-    if (FloatVariable43 == StackFloatVariable2) {
+    if (MatrixTransformMultiplier13 == StackFloatVariable2) {
       ProcessMemoryOperation(0);
-      FloatVariable43 = *(float *)(PatternIndex + 0x1b2c);
+      MatrixTransformMultiplier13 = *(float *)(PatternIndex + 0x1b2c);
       goto LAB_180117e4a;
     }
 LAB_180117e69:
@@ -107982,11 +107982,11 @@ LAB_180117e69:
   }
   else {
 LAB_180117e4a:
-    if ((FloatVariable43 != StackFloatVariable2) || (InputDataBuffer == '\0')) goto LAB_180117e69;
+    if ((MatrixTransformMultiplier13 != StackFloatVariable2) || (InputDataBuffer == '\0')) goto LAB_180117e69;
     BufferStatus4 = *(long long *)(PatternIndex + 0x1ed8);
     *(long long *)(StackFrameAddressPointer + 0x72) = BufferStatus4;
   }
-  FloatVariable51 = 2.0;
+  MatrixTransformMultiplier21 = 2.0;
   if (bStack0000000000000054 == 0) {
     if (((StackFloatVariable2 == *(float *)(SystemConfigurationHandle + 0x1ca0)) &&
         (*(char *)(SystemConfigurationHandle + 0x1d06) == '\0')) &&
@@ -108028,20 +108028,20 @@ LAB_180117f26:
     }
     MemoryBlockIndex4 = SystemConfigurationHandle;
     DataStringLength = *(uint32_t *)(PatternIndex + 0x1664);
-    FloatVariable43 = *(float *)(SystemConfigurationHandle + 0x173c);
-    FloatVariable46 = *(float *)(SystemConfigurationHandle + 0x1740);
+    MatrixTransformMultiplier13 = *(float *)(SystemConfigurationHandle + 0x173c);
+    MatrixTransformMultiplier16 = *(float *)(SystemConfigurationHandle + 0x1740);
     ContextSecondaryFloat2 = *(float *)(SystemConfigurationHandle + 0x1744);
     StackFrameAddressPointer[-8] = *(float *)(SystemConfigurationHandle + 0x1738);
-    StackFrameAddressPointer[-7] = FloatVariable43;
-    StackFrameAddressPointer[-6] = FloatVariable46;
+    StackFrameAddressPointer[-7] = MatrixTransformMultiplier13;
+    StackFrameAddressPointer[-6] = MatrixTransformMultiplier16;
     StackFrameAddressPointer[-5] = ContextSecondaryFloat2;
     StackFrameAddressPointer[-5] = ContextSecondaryFloat2 * *(float *)(MemoryBlockIndex4 + 0x1628);
     MemoryAllocationCounter = ValidateSystemData(StackFrameAddressPointer + -8);
     ProcessSystemDataConcatenation(*(void *)(StackFrameAddressPointer + -0x18),*(void *)(StackFrameAddressPointer + -0x16),MemoryAllocationCounter,1,
                   CONCAT44(MemoryAllocationIndexPrimary,DataStringLength));
-    FloatVariable43 = *(float *)(PatternIndex + 0x1b2c);
+    MatrixTransformMultiplier13 = *(float *)(PatternIndex + 0x1b2c);
   }
-  FloatVariable46 = StackFloatVariable2;
+  MatrixTransformMultiplier16 = StackFloatVariable2;
   MemoryBlockIndex4 = *(long long *)(StackFrameAddressPointer + -0x20);
   StackFrameAddressPointer[-2] = StackFrameAddressPointer[-0x18];
   StackFrameAddressPointer[-1] = StackFrameAddressPointer[-0x17];
@@ -108060,9 +108060,9 @@ LAB_180117f26:
   ContextSecondaryFloat2 = *pFilterInputValue1;
   *(void *)(StackFrameAddressPointer + -0x1c) = *(void *)pContextSecondaryFloat8;
   if ((ContextSecondaryFloat2 == StackFloatVariable2) && (bStack0000000000000054 != 0)) {
-    FloatVariable43 = *(float *)(PatternIndex + 0x1b2c);
+    MatrixTransformMultiplier13 = *(float *)(PatternIndex + 0x1b2c);
     ContextSecondaryFloat2 = (float)ProcessStringValidation(MemoryBlockIndex4,&SystemStringValidationTable,0);
-    if (FloatVariable43 != ContextSecondaryFloat2) goto LAB_1801180e1;
+    if (MatrixTransformMultiplier13 != ContextSecondaryFloat2) goto LAB_1801180e1;
     CurrentByteValue0 = true;
   }
   else {
@@ -108070,8 +108070,8 @@ LAB_1801180e1:
     CurrentByteValue0 = false;
   }
   ContextSecondaryFloat2 = SecondaryFloatValue;
-  FloatVariable50 = SecondaryFloatValue;
-  if ((FloatVariable43 == FloatVariable46) || (CurrentByteValue0)) {
+  MatrixTransformMultiplier20 = SecondaryFloatValue;
+  if ((MatrixTransformMultiplier13 == MatrixTransformMultiplier16) || (CurrentByteValue0)) {
     secondaryDataStreamPointer = *(short **)(PatternIndex + 0x1eb8);
     pSystemShortValue35 = (short *)0x0;
     EncodingValidationResult1 = *(int *)(PatternIndex + 0x1ef4);
@@ -108121,12 +108121,12 @@ LAB_1801180e1:
     } while (pSystemShortValue15[-1] != 10);
     CalculatedCodePoint3 = 0;
     pFilterInputValue1 = (float *)ProcessCameraMaterial(StackFrameAddressPointer + 4,pSystemShortValue15,pSystemShortValue36,0,0);
-    FloatVariable46 = *(float *)(PatternIndex + 0x19f8);
-    FloatVariable43 = *pFilterInputValue1;
-    FloatVariable49 = (float)EncodingValidationResult1 * FloatVariable46;
-    FloatVariable47 = SecondaryFloatValue;
-    FloatVariable48 = SecondaryFloatValue;
-    TemporaryFloatStack68 = FloatVariable43;
+    MatrixTransformMultiplier16 = *(float *)(PatternIndex + 0x19f8);
+    MatrixTransformMultiplier13 = *pFilterInputValue1;
+    MatrixTransformMultiplier19 = (float)EncodingValidationResult1 * MatrixTransformMultiplier16;
+    MatrixTransformMultiplier17 = SecondaryFloatValue;
+    MatrixTransformMultiplier18 = SecondaryFloatValue;
+    TemporaryFloatStack68 = MatrixTransformMultiplier13;
     pSystemShortValue36 = pSystemShortValue35;
     if (-1 < IntegerValue9) {
       do {
@@ -108136,32 +108136,32 @@ LAB_1801180e1:
       } while (pSystemShortValue30[-1] != 10);
       CalculatedCodePoint3 = 0;
       pFilterInputValue1 = (float *)ProcessCameraMaterial(StackFrameAddressPointer + -0xc,pSystemShortValue30,pSystemShortValue35,0,0);
-      FloatVariable46 = *(float *)(PatternIndex + 0x19f8);
-      FloatVariable47 = *pFilterInputValue1;
-      FloatVariable48 = (float)IntegerValue9 * FloatVariable46;
+      MatrixTransformMultiplier16 = *(float *)(PatternIndex + 0x19f8);
+      MatrixTransformMultiplier17 = *pFilterInputValue1;
+      MatrixTransformMultiplier18 = (float)IntegerValue9 * MatrixTransformMultiplier16;
     }
     MemoryAllocationIndexPrimary = (uint32_t)(CalculatedCodePoint3 >> 0x20);
-    FloatVariable44 = StackFrameAddressPointer[-0x14];
+    MatrixTransformMultiplier14 = StackFrameAddressPointer[-0x14];
     if (bStack0000000000000054 != 0) {
-      FloatVariable50 = (float)DataStringLength2 * FloatVariable46;
-      ContextSecondaryFloat2 = FloatVariable44;
+      MatrixTransformMultiplier20 = (float)DataStringLength2 * MatrixTransformMultiplier16;
+      ContextSecondaryFloat2 = MatrixTransformMultiplier14;
     }
     if (*(char *)(PatternIndex + 0x2d18) == '\0') {
       MemoryBlockIndex4 = *(long long *)(StackFrameAddressPointer + -0x20);
     }
     else {
       if (((uint)StackFrameAddressPointer[0x78] & 0x1000) == 0) {
-        if (*(float *)(PatternIndex + 0x1eec) <= FloatVariable43) {
-          if (*(float *)(PatternIndex + 0x1eec) <= FloatVariable43 - FloatVariable44) {
-            *(float *)(PatternIndex + 0x1eec) = (float)(int)(FloatVariable44 * 0.25 + (FloatVariable43 - FloatVariable44));
+        if (*(float *)(PatternIndex + 0x1eec) <= MatrixTransformMultiplier13) {
+          if (*(float *)(PatternIndex + 0x1eec) <= MatrixTransformMultiplier13 - MatrixTransformMultiplier14) {
+            *(float *)(PatternIndex + 0x1eec) = (float)(int)(MatrixTransformMultiplier14 * 0.25 + (MatrixTransformMultiplier13 - MatrixTransformMultiplier14));
           }
         }
         else {
-          FloatVariable46 = FloatVariable43 - FloatVariable44 * 0.25;
-          if (FloatVariable46 <= SecondaryFloatValue) {
-            FloatVariable46 = SecondaryFloatValue;
+          MatrixTransformMultiplier16 = MatrixTransformMultiplier13 - MatrixTransformMultiplier14 * 0.25;
+          if (MatrixTransformMultiplier16 <= SecondaryFloatValue) {
+            MatrixTransformMultiplier16 = SecondaryFloatValue;
           }
-          *(float *)(PatternIndex + 0x1eec) = (float)(int)FloatVariable46;
+          *(float *)(PatternIndex + 0x1eec) = (float)(int)MatrixTransformMultiplier16;
         }
       }
       else {
@@ -108169,26 +108169,26 @@ LAB_1801180e1:
       }
       MemoryBlockIndex4 = *(long long *)(StackFrameAddressPointer + -0x20);
       if (bStack0000000000000054 != 0) {
-        FloatVariable46 = *(float *)(MemoryBlockIndex4 + 0x90);
-        FloatVariable44 = FloatVariable49 - *(float *)(PatternIndex + 0x19f8);
-        if (FloatVariable46 <= FloatVariable44) {
-          FloatVariable44 = FloatVariable49 - StackFrameAddressPointer[-0x13];
-          if (FloatVariable49 - StackFrameAddressPointer[-0x13] <= FloatVariable46) {
-            FloatVariable44 = FloatVariable46;
+        MatrixTransformMultiplier16 = *(float *)(MemoryBlockIndex4 + 0x90);
+        MatrixTransformMultiplier14 = MatrixTransformMultiplier19 - *(float *)(PatternIndex + 0x19f8);
+        if (MatrixTransformMultiplier16 <= MatrixTransformMultiplier14) {
+          MatrixTransformMultiplier14 = MatrixTransformMultiplier19 - StackFrameAddressPointer[-0x13];
+          if (MatrixTransformMultiplier19 - StackFrameAddressPointer[-0x13] <= MatrixTransformMultiplier16) {
+            MatrixTransformMultiplier14 = MatrixTransformMultiplier16;
           }
         }
-        else if (FloatVariable44 <= SecondaryFloatValue) {
-          FloatVariable44 = SecondaryFloatValue;
+        else if (MatrixTransformMultiplier14 <= SecondaryFloatValue) {
+          MatrixTransformMultiplier14 = SecondaryFloatValue;
         }
-        *(float *)(MemoryBlockIndex4 + 0x90) = FloatVariable44;
-        FloatVariable46 = (FloatVariable46 - FloatVariable44) + *(float *)(MemoryBlockIndex4 + 0x104);
-        *(float *)(MemoryBlockIndex4 + 0x104) = FloatVariable46;
-        StackFrameAddressPointer[-0x1b] = FloatVariable46;
+        *(float *)(MemoryBlockIndex4 + 0x90) = MatrixTransformMultiplier14;
+        MatrixTransformMultiplier16 = (MatrixTransformMultiplier16 - MatrixTransformMultiplier14) + *(float *)(MemoryBlockIndex4 + 0x104);
+        *(float *)(MemoryBlockIndex4 + 0x104) = MatrixTransformMultiplier16;
+        StackFrameAddressPointer[-0x1b] = MatrixTransformMultiplier16;
       }
     }
     IntegerValue9 = *(int *)(PatternIndex + 0x1ef8);
     EncodingValidationResult1 = *(int *)(PatternIndex + 0x1ef4);
-    FloatVariable46 = *(float *)(PatternIndex + 0x1eec);
+    MatrixTransformMultiplier16 = *(float *)(PatternIndex + 0x1eec);
     *(uint8_t *)(PatternIndex + 0x2d18) = 0;
     if (EncodingValidationResult1 != IntegerValue9) {
       DataStringLength2 = IntegerValue9;
@@ -108199,50 +108199,50 @@ LAB_1801180e1:
       pSystemShortValue36 = secondaryDataStreamPointer + DataStringLength2;
       secondaryDataStreamPointer = secondaryDataStreamPointer + EncodingValidationResult1;
       if (bStack0000000000000054 != 0) {
-        FloatVariable51 = 0.0;
+        MatrixTransformMultiplier21 = 0.0;
         StackFrameAddressPointer[-0x10] = 0.0;
       }
       BufferStatus4 = SystemConfigurationHandle;
-      FloatVariable44 = *(float *)(SystemConfigurationHandle + 0x198c);
-      FloatVariable4 = *(float *)(SystemConfigurationHandle + 0x1990);
+      MatrixTransformMultiplier14 = *(float *)(SystemConfigurationHandle + 0x198c);
+      MatrixTransformMultiplier1 = *(float *)(SystemConfigurationHandle + 0x1990);
       NormalizedParameterValue = *(float *)(SystemConfigurationHandle + 0x1994);
       StackFrameAddressPointer[0x2c] = *(float *)(SystemConfigurationHandle + 0x1988);
-      StackFrameAddressPointer[0x2d] = FloatVariable44;
-      StackFrameAddressPointer[0x2e] = FloatVariable4;
+      StackFrameAddressPointer[0x2d] = MatrixTransformMultiplier14;
+      StackFrameAddressPointer[0x2e] = MatrixTransformMultiplier1;
       StackFrameAddressPointer[0x2f] = NormalizedParameterValue;
       StackFrameAddressPointer[0x2f] = NormalizedParameterValue * *(float *)(BufferStatus4 + 0x1628);
       DataStringLength = ValidateSystemData(StackFrameAddressPointer + 0x2c);
       MemoryAllocationIndexPrimary = (uint32_t)(CalculatedCodePoint3 >> 0x20);
       *(short **)(StackFrameAddressPointer + -0x20) = pSystemShortValue36;
-      FloatVariable47 = StackFrameAddressPointer[-0x1c] + FloatVariable47;
-      FloatVariable48 = StackFrameAddressPointer[-0x1b] + FloatVariable48;
+      MatrixTransformMultiplier17 = StackFrameAddressPointer[-0x1c] + MatrixTransformMultiplier17;
+      MatrixTransformMultiplier18 = StackFrameAddressPointer[-0x1b] + MatrixTransformMultiplier18;
       if (pSystemShortValue36 < secondaryDataStreamPointer) {
-        FloatVariable44 = *(float *)(PatternIndex + 0x19f8);
-        FloatVariable4 = StackFrameAddressPointer[-0x10];
+        MatrixTransformMultiplier14 = *(float *)(PatternIndex + 0x19f8);
+        MatrixTransformMultiplier1 = StackFrameAddressPointer[-0x10];
         do {
           MemoryAllocationIndexPrimary = (uint32_t)(CalculatedCodePoint3 >> 0x20);
-          FloatVariable43 = TemporaryFloatStack68;
-          if (StackFrameAddressPointer[1] + FloatVariable44 < FloatVariable48) break;
-          if (StackFrameAddressPointer[-1] <= FloatVariable48) {
+          MatrixTransformMultiplier13 = TemporaryFloatStack68;
+          if (StackFrameAddressPointer[1] + MatrixTransformMultiplier14 < MatrixTransformMultiplier18) break;
+          if (StackFrameAddressPointer[-1] <= MatrixTransformMultiplier18) {
             CalculatedCodePoint3 = 0;
             ProcessCameraMaterial(StackFrameAddressPointer + -0x1e,pSystemShortValue36,secondaryDataStreamPointer,StackFrameAddressPointer + -0x20,0);
-            FloatVariable43 = StackFrameAddressPointer[-0x1e];
-            if (FloatVariable43 <= 0.0) {
+            MatrixTransformMultiplier13 = StackFrameAddressPointer[-0x1e];
+            if (MatrixTransformMultiplier13 <= 0.0) {
               BufferStatus4 = *(long long *)(PatternIndex + 0x19f0);
               if (*(int *)(BufferStatus4 + 0x20) < 0x21) {
-                FloatVariable43 = *(float *)(BufferStatus4 + 0x48);
+                MatrixTransformMultiplier13 = *(float *)(BufferStatus4 + 0x48);
               }
               else {
-                FloatVariable43 = *(float *)(*(long long *)(BufferStatus4 + 0x28) + 0x80);
+                MatrixTransformMultiplier13 = *(float *)(*(long long *)(BufferStatus4 + 0x28) + 0x80);
               }
-              FloatVariable43 = (float)(int)(FloatVariable43 * 0.5);
-              StackFrameAddressPointer[-0x1e] = FloatVariable43;
+              MatrixTransformMultiplier13 = (float)(int)(MatrixTransformMultiplier13 * 0.5);
+              StackFrameAddressPointer[-0x1e] = MatrixTransformMultiplier13;
             }
-            StackFrameAddressPointer[8] = FloatVariable47 - FloatVariable46;
-            FloatVariable44 = *(float *)(PatternIndex + 0x19f8);
-            StackFrameAddressPointer[10] = FloatVariable43 + (FloatVariable47 - FloatVariable46);
-            StackFrameAddressPointer[0xb] = FloatVariable51 + FloatVariable48;
-            StackFrameAddressPointer[9] = (FloatVariable4 - FloatVariable44) + FloatVariable48;
+            StackFrameAddressPointer[8] = MatrixTransformMultiplier17 - MatrixTransformMultiplier16;
+            MatrixTransformMultiplier14 = *(float *)(PatternIndex + 0x19f8);
+            StackFrameAddressPointer[10] = MatrixTransformMultiplier13 + (MatrixTransformMultiplier17 - MatrixTransformMultiplier16);
+            StackFrameAddressPointer[0xb] = MatrixTransformMultiplier21 + MatrixTransformMultiplier18;
+            StackFrameAddressPointer[9] = (MatrixTransformMultiplier1 - MatrixTransformMultiplier14) + MatrixTransformMultiplier18;
             ProcessFloatOperation(StackFrameAddressPointer + -0x10,StackFrameAddressPointer + -2);
             ProcessFloatCalculation(StackFrameAddressPointer + 8,StackFrameAddressPointer + -0x10);
             ProcessFloatOperation(StackFrameAddressPointer + 0x30,StackFrameAddressPointer + -2);
@@ -108263,10 +108263,10 @@ LAB_1801180e1:
             } while (SystemShortValue6 != 10);
           }
           MemoryAllocationIndexPrimary = (uint32_t)(CalculatedCodePoint3 >> 0x20);
-          FloatVariable44 = *(float *)(PatternIndex + 0x19f8);
-          FloatVariable47 = StackFrameAddressPointer[-0x1c];
-          FloatVariable48 = FloatVariable48 + FloatVariable44;
-          FloatVariable43 = TemporaryFloatStack68;
+          MatrixTransformMultiplier14 = *(float *)(PatternIndex + 0x19f8);
+          MatrixTransformMultiplier17 = StackFrameAddressPointer[-0x1c];
+          MatrixTransformMultiplier18 = MatrixTransformMultiplier18 + MatrixTransformMultiplier14;
+          MatrixTransformMultiplier13 = TemporaryFloatStack68;
         } while (pSystemShortValue36 < secondaryDataStreamPointer);
       }
     }
@@ -108276,18 +108276,18 @@ LAB_1801180e1:
     }
     else {
       MemoryAddressMask5 = *(void *)(MemoryBlockIndex4 + 0x2e8);
-      FloatVariable51 = *(float *)(SystemConfigurationHandle + 0x16cc);
-      FloatVariable47 = *(float *)(SystemConfigurationHandle + 0x16d0);
-      FloatVariable48 = *(float *)(SystemConfigurationHandle + 0x16d4);
+      MatrixTransformMultiplier21 = *(float *)(SystemConfigurationHandle + 0x16cc);
+      MatrixTransformMultiplier17 = *(float *)(SystemConfigurationHandle + 0x16d0);
+      MatrixTransformMultiplier18 = *(float *)(SystemConfigurationHandle + 0x16d4);
       StackFrameAddressPointer[-0x10] = *(float *)(SystemConfigurationHandle + 0x16c8);
-      StackFrameAddressPointer[-0xf] = FloatVariable51;
-      StackFrameAddressPointer[-0xe] = FloatVariable47;
-      StackFrameAddressPointer[-0xd] = FloatVariable48;
-      StackFrameAddressPointer[-0xd] = FloatVariable48 * *(float *)(BufferStatus4 + 0x1628);
+      StackFrameAddressPointer[-0xf] = MatrixTransformMultiplier21;
+      StackFrameAddressPointer[-0xe] = MatrixTransformMultiplier17;
+      StackFrameAddressPointer[-0xd] = MatrixTransformMultiplier18;
+      StackFrameAddressPointer[-0xd] = MatrixTransformMultiplier18 * *(float *)(BufferStatus4 + 0x1628);
       DataStringLength = ValidateSystemData(StackFrameAddressPointer + -0x10);
       pFilterInputValue1 = StackFrameAddressPointer + -2;
       BufferStatus4 = *(long long *)(StackFrameAddressPointer + 0x72);
-      TemporaryFloatStack68 = StackFrameAddressPointer[-0x1c] - FloatVariable46;
+      TemporaryFloatStack68 = StackFrameAddressPointer[-0x1c] - MatrixTransformMultiplier16;
       if (bStack0000000000000054 != 0) {
         pFilterInputValue1 = (float *)0x0;
       }
@@ -108297,33 +108297,33 @@ LAB_1801180e1:
       MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)CalculatedCodePoint2 >> 0x20);
     }
     if (((*(char *)(PatternIndex + 0xca) == '\0') || (*(float *)(PatternIndex + 0x2d14) <= 0.0)) ||
-       (FloatVariable51 = (float)fmodf(), FloatVariable51 <= 0.8)) {
+       (MatrixTransformMultiplier21 = (float)fmodf(), MatrixTransformMultiplier21 <= 0.8)) {
       CurrentByteValue0 = true;
     }
     else {
       CurrentByteValue0 = false;
     }
-    FloatVariable49 = StackFrameAddressPointer[-0x1b] + FloatVariable49;
-    FloatVariable46 = (StackFrameAddressPointer[-0x1c] + FloatVariable43) - FloatVariable46;
-    FloatVariable43 = *(float *)(PatternIndex + 0x19f8);
-    StackFrameAddressPointer[-8] = FloatVariable46;
-    StackFrameAddressPointer[-5] = FloatVariable49 - 1.5;
-    StackFrameAddressPointer[-7] = (FloatVariable49 - FloatVariable43) + 0.5;
-    StackFrameAddressPointer[-6] = FloatVariable46 + 1.0;
+    MatrixTransformMultiplier19 = StackFrameAddressPointer[-0x1b] + MatrixTransformMultiplier19;
+    MatrixTransformMultiplier16 = (StackFrameAddressPointer[-0x1c] + MatrixTransformMultiplier13) - MatrixTransformMultiplier16;
+    MatrixTransformMultiplier13 = *(float *)(PatternIndex + 0x19f8);
+    StackFrameAddressPointer[-8] = MatrixTransformMultiplier16;
+    StackFrameAddressPointer[-5] = MatrixTransformMultiplier19 - 1.5;
+    StackFrameAddressPointer[-7] = (MatrixTransformMultiplier19 - MatrixTransformMultiplier13) + 0.5;
+    StackFrameAddressPointer[-6] = MatrixTransformMultiplier16 + 1.0;
     if (CurrentByteValue0) {
       ProcessFloatOperation(StackFrameAddressPointer + 0x34,StackFrameAddressPointer + -2);
       InputStringBuffer7 = CompareFloatValues(StackFrameAddressPointer + -8,StackFrameAddressPointer + 0x34);
       BufferStatus9 = SystemConfigurationHandle;
       if (InputStringBuffer7 != '\0') {
         MemoryAddressMask5 = *(void *)(MemoryBlockIndex4 + 0x2e8);
-        FloatVariable43 = *(float *)(SystemConfigurationHandle + 0x16cc);
-        FloatVariable51 = *(float *)(SystemConfigurationHandle + 0x16d0);
-        FloatVariable47 = *(float *)(SystemConfigurationHandle + 0x16d4);
+        MatrixTransformMultiplier13 = *(float *)(SystemConfigurationHandle + 0x16cc);
+        MatrixTransformMultiplier21 = *(float *)(SystemConfigurationHandle + 0x16d0);
+        MatrixTransformMultiplier17 = *(float *)(SystemConfigurationHandle + 0x16d4);
         StackFrameAddressPointer[-0x10] = *(float *)(SystemConfigurationHandle + 0x16c8);
-        StackFrameAddressPointer[-0xf] = FloatVariable43;
-        StackFrameAddressPointer[-0xe] = FloatVariable51;
-        StackFrameAddressPointer[-0xd] = FloatVariable47;
-        StackFrameAddressPointer[-0xd] = FloatVariable47 * *(float *)(BufferStatus9 + 0x1628);
+        StackFrameAddressPointer[-0xf] = MatrixTransformMultiplier13;
+        StackFrameAddressPointer[-0xe] = MatrixTransformMultiplier21;
+        StackFrameAddressPointer[-0xd] = MatrixTransformMultiplier17;
+        StackFrameAddressPointer[-0xd] = MatrixTransformMultiplier17 * *(float *)(BufferStatus9 + 0x1628);
         DataStringLength = ValidateSystemData(StackFrameAddressPointer + -0x10);
         StackFloatVariable2 = StackFrameAddressPointer[-8];
         SystemParameter2 = StackFrameAddressPointer[-5];
@@ -108334,8 +108334,8 @@ LAB_1801180e1:
     SecondaryFloatValue = 0.0;
     if (StackProcessingParameter58 != '\0') {
       MemoryBlockIndex4 = *(long long *)(StackFrameAddressPointer + -4);
-      *(float *)(PatternIndex + 0x2de4) = FloatVariable49 - *(float *)(PatternIndex + 0x19f8);
-      *(float *)(PatternIndex + 0x2de0) = FloatVariable46 - 1.0;
+      *(float *)(PatternIndex + 0x2de4) = MatrixTransformMultiplier19 - *(float *)(PatternIndex + 0x19f8);
+      *(float *)(PatternIndex + 0x2de0) = MatrixTransformMultiplier16 - 1.0;
       *(void *)(PatternIndex + 0x2df0) = *(void *)(MemoryBlockIndex4 + 0x28);
     }
   }
@@ -108354,25 +108354,25 @@ LAB_1801180e1:
     else {
       IntegerValue9 = InitializeFloatSystem(BufferStatus4,StackFrameAddressPointer + -0x10);
       ContextSecondaryFloat2 = StackFrameAddressPointer[-0x14];
-      FloatVariable50 = (float)IntegerValue9 * *(float *)(PatternIndex + 0x19f8);
+      MatrixTransformMultiplier20 = (float)IntegerValue9 * *(float *)(PatternIndex + 0x19f8);
     }
     BufferStatus9 = SystemConfigurationHandle;
     MemoryAddressMask5 = *(void *)(MemoryBlockIndex4 + 0x2e8);
-    FloatVariable43 = *(float *)(SystemConfigurationHandle + 0x16cc);
-    FloatVariable51 = *(float *)(SystemConfigurationHandle + 0x16d0);
-    FloatVariable46 = *(float *)(SystemConfigurationHandle + 0x16d4);
+    MatrixTransformMultiplier13 = *(float *)(SystemConfigurationHandle + 0x16cc);
+    MatrixTransformMultiplier21 = *(float *)(SystemConfigurationHandle + 0x16d0);
+    MatrixTransformMultiplier16 = *(float *)(SystemConfigurationHandle + 0x16d4);
     StackFrameAddressPointer[-8] = *(float *)(SystemConfigurationHandle + 0x16c8);
-    StackFrameAddressPointer[-7] = FloatVariable43;
-    StackFrameAddressPointer[-6] = FloatVariable51;
-    StackFrameAddressPointer[-5] = FloatVariable46;
-    StackFrameAddressPointer[-5] = FloatVariable46 * *(float *)(BufferStatus9 + 0x1628);
+    StackFrameAddressPointer[-7] = MatrixTransformMultiplier13;
+    StackFrameAddressPointer[-6] = MatrixTransformMultiplier21;
+    StackFrameAddressPointer[-5] = MatrixTransformMultiplier16;
+    StackFrameAddressPointer[-5] = MatrixTransformMultiplier16 * *(float *)(BufferStatus9 + 0x1628);
     ValidateSystemData(StackFrameAddressPointer + -8);
     ProcessSystemRenderData(MemoryAddressMask5,*(void *)(PatternIndex + 0x19f0));
   }
   if (bStack0000000000000054 != 0) {
-    FloatVariable43 = *(float *)(PatternIndex + 0x19f8);
+    MatrixTransformMultiplier13 = *(float *)(PatternIndex + 0x19f8);
     StackFrameAddressPointer[-4] = ContextSecondaryFloat2;
-    StackFrameAddressPointer[-3] = FloatVariable50 + FloatVariable43;
+    StackFrameAddressPointer[-3] = MatrixTransformMultiplier20 + MatrixTransformMultiplier13;
     InitializeSystemEx(StackFrameAddressPointer + -4);
     ManageSystemMemory();
     ProcessSystemTertiaryEventHandle();
@@ -108627,10 +108627,10 @@ char InitializeSystemResourceStructure(uint32_t CharacterCode, int Utf8BufferSiz
             *(float *)(StackFrameAddressPointer + -0x78) = ContextSecondaryFloat3;
           }
           *(float *)(StackFrameAddressPointer + 0x20) = ContextSecondaryFloat2 - ContextSecondaryFloat1;
-          FloatVariable4 = *(float *)(PatternIndex + 0x19f8);
+          MatrixTransformMultiplier1 = *(float *)(PatternIndex + 0x19f8);
           *(float *)(StackFrameAddressPointer + 0x28) = ContextSecondaryFloat3 + (ContextSecondaryFloat2 - ContextSecondaryFloat1);
           *(float *)(StackFrameAddressPointer + 0x2c) = unaff_XMM14_Da + ContextSecondaryFloat4;
-          *(float *)(StackFrameAddressPointer + 0x24) = (FilterInputValue - FloatVariable4) + ContextSecondaryFloat4;
+          *(float *)(StackFrameAddressPointer + 0x24) = (FilterInputValue - MatrixTransformMultiplier1) + ContextSecondaryFloat4;
           ProcessFloatOperation(StackFrameAddressPointer + -0x40,StackFrameAddressPointer + -8);
           ProcessFloatCalculation(StackFrameAddressPointer + 0x20,StackFrameAddressPointer + -0x40);
           ProcessFloatOperation(StackFrameAddressPointer + 0xc0,StackFrameAddressPointer + -8);
@@ -109873,7 +109873,7 @@ unsigned long long ProcessSystemContextWithCharacterHandling(char *Utf8InputBuff
   float *pContextSecondaryFloat;
   bool IsHighByteSet;
   long long SystemDataRegistry;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   char CharacterDataStringLength;
   uint8_t SystemChecksum;
   int ComputedResult;
@@ -109948,7 +109948,7 @@ unsigned long long ProcessSystemContextWithCharacterHandling(char *Utf8InputBuff
   SystemFlagA = 1;
   Utf16Char4 = *(void *)(SystemDataRegistry + 0x165c);
   ProcessingCounter.LowPart = (float)Utf16Char4;
-  FloatVariable5 = (float)ProcessingCounter;
+  MatrixTransformMultiplier2 = (float)ProcessingCounter;
   ProcessingCounter.HighPart = (float)((unsigned long long)Utf16Char4 >> 0x20);
   ContextSecondaryFloat5 = ProcessingCounter.HighPart;
   StringCodeBuffer = CharacterCode;
@@ -110008,18 +110008,18 @@ unsigned long long ProcessSystemContextWithCharacterHandling(char *Utf8InputBuff
   ContextSecondaryFloat6 = *(float *)(SystemFlagE + 0x100);
   SystemContextPrimaryFloat = *(float *)(SystemFlagE + 0x104);
   ContextSecondaryFloat7 = ContextSecondaryFloat7 + *(float *)(SystemFlagE + 0x40);
-  ContextSecondaryFloat1 = FloatVariable5 + FloatVariable5;
+  ContextSecondaryFloat1 = MatrixTransformMultiplier2 + MatrixTransformMultiplier2;
   if (CharacterValidationResult != '\0') {
     ContextSecondaryFloat1 = (float)(int)(*(float *)(SystemFlagE + 0x70) * 0.5) - 1.0;
     ContextSecondaryFloat6 = ContextSecondaryFloat6 - ContextSecondaryFloat1;
     ContextSecondaryFloat7 = ContextSecondaryFloat1 + ContextSecondaryFloat7;
-    ContextSecondaryFloat1 = FloatVariable5 * 3.0;
+    ContextSecondaryFloat1 = MatrixTransformMultiplier2 * 3.0;
   }
   if (fStack_e8 <= 0.0) {
     ContextSecondaryFloat2 = 0.0;
   }
   else {
-    ContextSecondaryFloat2 = FloatVariable5 + FloatVariable5 + fStack_e8;
+    ContextSecondaryFloat2 = MatrixTransformMultiplier2 + MatrixTransformMultiplier2 + fStack_e8;
   }
   ContextSecondaryFloat2 = ContextSecondaryFloat4 + ContextSecondaryFloat2;
   fStack_118 = ContextSecondaryFloat2;
@@ -110147,7 +110147,7 @@ LAB_180119279:
       if ((char)UnicodeCharacterCode != '\0') {
         Utf16Char4 = 3;
       }
-      ProcessSystemFloatDataWithValidation(CONCAT44(*(float *)(SystemDataRegistry + 0x19f8) * 0.15 + ContextSecondaryFloat8 + SystemContextPrimaryFloat,FloatVariable5 + ContextSecondaryFloat6),
+      ProcessSystemFloatDataWithValidation(CONCAT44(*(float *)(SystemDataRegistry + 0x19f8) * 0.15 + ContextSecondaryFloat8 + SystemContextPrimaryFloat,MatrixTransformMultiplier2 + ContextSecondaryFloat6),
                     Utf16Char4,0x3f333333);
     }
     if (*(char *)(SystemDataRegistry + 0x2e38) != '\0') {
@@ -110165,7 +110165,7 @@ LAB_180119279:
     if ((char)UnicodeCharacterCode != '\0') {
       Utf16Char4 = 3;
     }
-    ProcessSystemFloatDataWithValidation(CONCAT44(ContextSecondaryFloat4,FloatVariable5 + ContextSecondaryFloat6),Utf16Char4,0x3f800000);
+    ProcessSystemFloatDataWithValidation(CONCAT44(ContextSecondaryFloat4,MatrixTransformMultiplier2 + ContextSecondaryFloat6),Utf16Char4,0x3f800000);
     BufferIndex = SystemConfigurationHandle;
     if (*(char *)(SystemDataRegistry + 0x2e38) == '\0') {
       ProcessingCounter = 0;
@@ -114300,23 +114300,23 @@ unsigned long long ProcessSystemDataStructureHandler(int *Utf8InputBuffer,char *
   if (Utf8InputBuffer[5] == ProcessInputStringBuffer) {
     PrimaryProcessingStatusFlag5[5] = *(uint *)(MemoryPoolBlockSize + 0x1a90);
   }
-  FloatVariable4 = (float)Utf8InputBuffer[0xb];
+  MatrixTransformMultiplier1 = (float)Utf8InputBuffer[0xb];
   FilterInputValue4 = (float)PrimaryProcessingStatusFlag5[7];
-  FilterInputValue5 = FloatVariable4 + SecondaryScalingFactor;
+  FilterInputValue5 = MatrixTransformMultiplier1 + SecondaryScalingFactor;
   CalculatedCodePoint = *(uint32_t *)(uStack_118 + 0x100);
   DataSize = *(uint32_t *)(uStack_118 + 0x104);
   ScalingFactor = ((float)(int)(float)PrimaryProcessingStatusFlag5[6] - (float)Utf8InputBuffer[0x11]) + (float)Utf8InputBuffer[10];
-  *(float *)(uStack_118 + 0x104) = FloatVariable4;
+  *(float *)(uStack_118 + 0x104) = MatrixTransformMultiplier1;
   *(float *)(uStack_118 + 0x100) = ScalingFactor;
   FilterInputValue0 = (float)Utf8InputBuffer[10];
   FilterInputValue4 = ScalingFactor + FilterInputValue4;
   fStack_130 = ScalingFactor;
-  fStack_12c = FloatVariable4;
+  fStack_12c = MatrixTransformMultiplier1;
   fStack_128 = FilterInputValue4;
   fStack_124 = FilterInputValue5;
   if ((ScalingFactor < FilterInputValue0) || ((float)Utf8InputBuffer[0xc] <= FilterInputValue4)) {
     PrimaryScalingFactor = (float)Utf8InputBuffer[0xc];
-    fStack_104 = FloatVariable4 - 1.0;
+    fStack_104 = MatrixTransformMultiplier1 - 1.0;
     cStack_137 = '\x01';
     fStack_108 = ScalingFactor;
     if (ScalingFactor <= FilterInputValue0) {
@@ -114330,7 +114330,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *Utf8InputBuffer,char *
     cStack_137 = '\0';
   }
   PrimaryScalingFactor = FilterInputValue4 - ScalingFactor;
-  SecondaryScalingFactor = FilterInputValue5 - FloatVariable4;
+  SecondaryScalingFactor = FilterInputValue5 - MatrixTransformMultiplier1;
   ProcessSystemBuffer(&PrimaryScalingFactor,*(uint32_t *)(MemoryPoolBlockSize + 0x1660));
   InputStringBuffer0 = ValidateSystemData(&fStack_130,ProcessInputStringBuffer,0);
   if (InputStringBuffer0 == '\0') {
@@ -114360,7 +114360,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *Utf8InputBuffer,char *
     SystemCallGlobalCleanup();
   }
   FilterInputValue4 = fStack_12c;
-  FloatVariable4 = fStack_130;
+  MatrixTransformMultiplier1 = fStack_130;
   if (((((AdditionalParameter1 == 0) || (CharacterTablePointer = *(long long *)(AdditionalParameter1 + 0x408), CharacterTablePointer == 0)) ||
        (*(long long *)(CharacterTablePointer + 8) != 0)) ||
       (((*(byte *)(CharacterTablePointer + 0xa0) & 0x10) != 0 || (*(int *)(CharacterTablePointer + 0x20) != 1)))) ||
@@ -114470,7 +114470,7 @@ LAB_18011c9d9:
     *(long long *)(MemoryPoolBlockSize + 0x1b78) = AdditionalParameter1;
     *(uint32_t *)(MemoryPoolBlockSize + 0x1b2c) = *(uint32_t *)(AdditionalParameter1 + 0x84);
     FilterInputValue0 = *(float *)(AdditionalParameter1 + 0x44);
-    *(float *)(MemoryPoolBlockSize + 0x1b48) = *(float *)(MemoryPoolBlockSize + 0x1b48) - (*(float *)(AdditionalParameter1 + 0x40) - FloatVariable4);
+    *(float *)(MemoryPoolBlockSize + 0x1b48) = *(float *)(MemoryPoolBlockSize + 0x1b48) - (*(float *)(AdditionalParameter1 + 0x40) - MatrixTransformMultiplier1);
     *(float *)(MemoryPoolBlockSize + 0x1b4c) = *(float *)(MemoryPoolBlockSize + 0x1b4c) - (FilterInputValue0 - FilterInputValue4);
   }
   else {
@@ -114736,24 +114736,24 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t CharacterCode
   if (SystemContext[5] == StringComparisonResult5) {
     pStringComparisonResult9[5] = *(int *)(PatternIndex + 0x1a90);
   }
-  FloatVariable4 = (float)SystemContext[0xb];
+  MatrixTransformMultiplier1 = (float)SystemContext[0xb];
   FilterInputValue7 = (float)pStringComparisonResult9[7];
-  FilterInputValue8 = FloatVariable4 + *(float *)(StackFrameAddressPointer + 0x74);
+  FilterInputValue8 = MatrixTransformMultiplier1 + *(float *)(StackFrameAddressPointer + 0x74);
   UnicodeCharacterValue = *(uint32_t *)(CharacterCodeTablePointer + 0x100);
   CalculatedCodePoint = *(uint32_t *)(CharacterCodeTablePointer + 0x104);
   FilterInputValue6 = ((float)(int)(float)pStringComparisonResult9[6] - (float)SystemContext[0x11]) + (float)SystemContext[10];
-  *(float *)(CharacterCodeTablePointer + 0x104) = FloatVariable4;
+  *(float *)(CharacterCodeTablePointer + 0x104) = MatrixTransformMultiplier1;
   *(float *)(CharacterCodeTablePointer + 0x100) = FilterInputValue6;
   ScalingFactor = (float)SystemContext[10];
   FilterInputValue7 = FilterInputValue6 + FilterInputValue7;
   AdditionalParameter3 = FilterInputValue6;
-  StackProcessingVariable3c = FloatVariable4;
+  StackProcessingVariable3c = MatrixTransformMultiplier1;
   AdditionalParameter4 = FilterInputValue7;
   TemporaryFloatStack44 = FilterInputValue8;
   if ((FilterInputValue6 < ScalingFactor) || ((float)SystemContext[0xc] <= FilterInputValue7)) {
     *(int *)(StackFrameAddressPointer + 0x70) = SystemContext[0xc];
     *(float *)(StackFrameAddressPointer + 0x74) = FilterInputValue8;
-    CharacterCode2.HighPart = FloatVariable4 - 1.0;
+    CharacterCode2.HighPart = MatrixTransformMultiplier1 - 1.0;
     cStack0000000000000031 = '\x01';
     CharacterCode2.LowPart = FilterInputValue6;
     if (FilterInputValue6 <= ScalingFactor) {
@@ -114767,7 +114767,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t CharacterCode
   }
   UnicodeCharacterCode = *(uint32_t *)(PatternIndex + 0x1660);
   *(float *)(StackFrameAddressPointer + 0x70) = FilterInputValue7 - FilterInputValue6;
-  *(float *)(StackFrameAddressPointer + 0x74) = FilterInputValue8 - FloatVariable4;
+  *(float *)(StackFrameAddressPointer + 0x74) = FilterInputValue8 - MatrixTransformMultiplier1;
   ProcessSystemBuffer(StackFrameAddressPointer + 0x70,UnicodeCharacterCode);
   InputStringBuffer3 = ValidateSystemData(&AdditionalParameter3,DataNodePointer & 0xffffffff,0);
   if (InputStringBuffer3 == '\0') {
@@ -114797,7 +114797,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t CharacterCode
     SystemCallGlobalCleanup();
   }
   FilterInputValue7 = StackProcessingVariable3c;
-  FloatVariable4 = AdditionalParameter3;
+  MatrixTransformMultiplier1 = AdditionalParameter3;
   BufferIndex = *(long long *)(StackFrameAddressPointer + 0x90);
   if (((((BufferIndex == 0) || (StringIndexCounter = *(long long *)(BufferIndex + 0x408), StringIndexCounter == 0)) ||
        (*(long long *)(StringIndexCounter + 8) != 0)) ||
@@ -114915,7 +114915,7 @@ LAB_18011c9d9:
     *(uint32_t *)(PatternIndex + 0x1b2c) = *(uint32_t *)(BufferIndex + 0x84);
     ScalingFactor = *(float *)(BufferIndex + 0x44);
     *(float *)(PatternIndex + 0x1b48) =
-         *(float *)(PatternIndex + 0x1b48) - (*(float *)(BufferIndex + 0x40) - FloatVariable4);
+         *(float *)(PatternIndex + 0x1b48) - (*(float *)(BufferIndex + 0x40) - MatrixTransformMultiplier1);
     *(float *)(PatternIndex + 0x1b4c) = *(float *)(PatternIndex + 0x1b4c) - (ScalingFactor - FilterInputValue7);
   }
   else {
@@ -118024,10 +118024,10 @@ LAB_18011f1e4:
       *(void *)(SystemContext + 0x1b50) = 0;
       goto LAB_18011f326;
     }
-    FloatVariable4 = 0.0;
+    MatrixTransformMultiplier1 = 0.0;
     if (((0.0 < (float)Utf8BufferSize) &&
-        (ContextSecondaryFloat = (*(float *)(SystemContext + 0x118) - AuxiliaryFloatValue11) / (float)Utf8BufferSize, 0.0 <= ContextSecondaryFloat)       && (FloatVariable4 = ContextSecondaryFloat, 1.0 <= ContextSecondaryFloat)) {
-      FloatVariable4 = 1.0;
+        (ContextSecondaryFloat = (*(float *)(SystemContext + 0x118) - AuxiliaryFloatValue11) / (float)Utf8BufferSize, 0.0 <= ContextSecondaryFloat)       && (MatrixTransformMultiplier1 = ContextSecondaryFloat, 1.0 <= ContextSecondaryFloat)) {
+      MatrixTransformMultiplier1 = 1.0;
     }
   }
   else {
@@ -118039,7 +118039,7 @@ LAB_18011f1e4:
     }
     if (in_stack_000000f0 == 0.0) goto LAB_18011f326;
     ContextSecondaryFloat = in_stack_000000f0;
-    FloatVariable4 = (float)ProcessSystemFloatEx(CharacterCode,*PatternIndex);
+    MatrixTransformMultiplier1 = (float)ProcessSystemFloatEx(CharacterCode,*PatternIndex);
     IntegerValue = ProcessValidationCheck(ValidationResultFlag2);
     Utf8BufferSize = 0x3f800000;
     CharacterCode = extraout_XMM0_Qa;
@@ -118072,17 +118072,17 @@ LAB_18011f1e4:
     if (0.0 < *(float *)(SystemContext + 0x374)) {
       ContextSecondaryFloat = ContextSecondaryFloat * 10.0;
     }
-    if (((1.0 <= FloatVariable4) && (0.0 < ContextSecondaryFloat)) || ((FloatVariable4 <= 0.0 && (ContextSecondaryFloat < 0.0)))) goto LAB_18011f326;
-    ContextSecondaryFloat = ContextSecondaryFloat + FloatVariable4;
-    FloatVariable4 = 0.0;
-    if ((0.0 <= ContextSecondaryFloat) && (FloatVariable4 = ContextSecondaryFloat, 1.0 <= ContextSecondaryFloat)) {
-      FloatVariable4 = 1.0;
+    if (((1.0 <= MatrixTransformMultiplier1) && (0.0 < ContextSecondaryFloat)) || ((MatrixTransformMultiplier1 <= 0.0 && (ContextSecondaryFloat < 0.0)))) goto LAB_18011f326;
+    ContextSecondaryFloat = ContextSecondaryFloat + MatrixTransformMultiplier1;
+    MatrixTransformMultiplier1 = 0.0;
+    if ((0.0 <= ContextSecondaryFloat) && (MatrixTransformMultiplier1 = ContextSecondaryFloat, 1.0 <= ContextSecondaryFloat)) {
+      MatrixTransformMultiplier1 = 1.0;
     }
   }
   CharacterCode = (double)ProcessSystemFloatCalculation(in_stack_00000100,Utf8BufferSize,
                                   SUB84(((double)CONCAT44(XMM10RegisterB,AuxiliaryFloat10) -
                                         (double)CONCAT44(XMMRegister8_Db,SecondaryFloatValue)) *
-                                        (double)FloatVariable4 +
+                                        (double)MatrixTransformMultiplier1 +
                                         (double)CONCAT44(XMMRegister8_Db,SecondaryFloatValue),0));
   if (CharacterCode != *PatternIndex) {
     *PatternIndex = CharacterCode;
@@ -118091,10 +118091,10 @@ LAB_18011f1e4:
 LAB_18011f326:
   CalculatedFilterValue = (float)ProcessSystemFloatEx(CharacterCode,*PatternIndex);
   ContextSecondaryFloat = *(float *)(CharacterLimit + 0xc);
-  FloatVariable4 = *(float *)(CharacterLimit + 4);
+  MatrixTransformMultiplier1 = *(float *)(CharacterLimit + 4);
   CalculatedFilterValue = (AuxiliaryFloat9 - AuxiliaryFloatValue11) * FilterInputValue + AuxiliaryFloatValue11;
   *StackProcessingParameter6 = FilterInputValue - AuxiliaryFloat12;
-  StackProcessingParameter6[1] = FloatVariable4 + AuxiliaryFloat13;
+  StackProcessingParameter6[1] = MatrixTransformMultiplier1 + AuxiliaryFloat13;
   StackProcessingParameter6[2] = FilterInputValue + AuxiliaryFloat12;
   StackProcessingParameter6[3] = ContextSecondaryFloat - AuxiliaryFloat13;
   return NullPointerValueB;
@@ -120635,7 +120635,7 @@ void ValidateSystemDataStructure(long long CharacterCode,float *Utf8InputBufferS
   if (shouldReturnSource) {
     SystemContextPrimaryFloat2 = pNormalizedParameterValue[1];
     CalculatedFilterValue = pPrimaryFloatValue[1];
-    FloatVariable4 = *pNormalizedParameterValue;
+    MatrixTransformMultiplier1 = *pNormalizedParameterValue;
     ProcessingStatusFlag = ValidateSystemData(&SystemOperationFlag98);
     if ((ProcessingStatusFlag & 0xff000000) != 0) {
       if (AdditionalParameter1 == 0) {
@@ -120649,8 +120649,8 @@ void ValidateSystemDataStructure(long long CharacterCode,float *Utf8InputBufferS
         pNormalizedParameterValue = (float *)(*(long long *)(CharacterCode + 0x68) + -0x10 +
                           (long long)*(int *)(CharacterCode + 0x60) * 0x10);
         SystemOperationFlag98.LowPart = *pNormalizedParameterValue;
-        if (*pNormalizedParameterValue < FloatVariable4) {
-          SystemOperationFlag98.LowPart = FloatVariable4;
+        if (*pNormalizedParameterValue < MatrixTransformMultiplier1) {
+          SystemOperationFlag98.LowPart = MatrixTransformMultiplier1;
         }
         SystemOperationFlag98.HighPart = pNormalizedParameterValue[1];
         if (pNormalizedParameterValue[1] < SystemContextPrimaryFloat2) {
@@ -121228,7 +121228,7 @@ void ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode, uint64_
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   uint64_t DataSize;
   uint32_t SystemChecksum;
   uint32_t ProcessingStatusFlag;
@@ -121253,13 +121253,13 @@ void ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode, uint64_
   float ContextSecondaryFloat0;
   float AuxiliaryFloat10;
   
-  pFloatVariable5 = *(float **)(StackFrameAddressPointer + 0x7f);
-  pSecondaryFloatValue = pFloatVariable5;
-  if (pFloatVariable5 == (float *)0x0) {
+  pMatrixTransformMultiplier2 = *(float **)(StackFrameAddressPointer + 0x7f);
+  pSecondaryFloatValue = pMatrixTransformMultiplier2;
+  if (pMatrixTransformMultiplier2 == (float *)0x0) {
     pSecondaryFloatValue = CharacterLimit;
   }
-  pContextPrimaryFloat9 = pFloatVariable5 + 2;
-  if (pFloatVariable5 == (float *)0x0) {
+  pContextPrimaryFloat9 = pMatrixTransformMultiplier2 + 2;
+  if (pMatrixTransformMultiplier2 == (float *)0x0) {
     pContextPrimaryFloat9 = RegisterR12Value;
   }
   ContextSecondaryFloat = *(float *)(StackFrameAddressPointer + 0x4f);
@@ -121271,7 +121271,7 @@ void ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode, uint64_
   else {
     ProcessingByte4 = false;
   }
-  if (pFloatVariable5 != (float *)0x0) {
+  if (pMatrixTransformMultiplier2 != (float *)0x0) {
     if ((ContextSecondaryFloat < *pSecondaryFloatValue) || (*(float *)(StackFrameAddressPointer + 0x53) < pSecondaryFloatValue[1])) {
       CurrentByteValue5 = 1;
     }
@@ -121297,7 +121297,7 @@ void ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode, uint64_
   if (ProcessingByte4) {
     ContextSecondaryFloat = pSecondaryFloatValue[1];
     ContextSecondaryFloat0 = pContextPrimaryFloat9[1];
-    FloatVariable4 = *pSecondaryFloatValue;
+    MatrixTransformMultiplier1 = *pSecondaryFloatValue;
     PrimaryReturnCode = ValidateSystemData(StackFrameAddressPointer + -0x59);
     if ((PrimaryReturnCode & 0xff000000) != 0) {
       if (SystemContext == 0) {
@@ -121309,18 +121309,18 @@ void ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode, uint64_
       }
       if (DataNodePointer != SystemContext) {
         CharacterTablePointer = *(long long *)(RegisterR13Value + 0x38);
-        pFloatVariable5 = (float *)(*(long long *)(RegisterR13Value + 0x68) + -0x10 +
+        pMatrixTransformMultiplier2 = (float *)(*(long long *)(RegisterR13Value + 0x68) + -0x10 +
                           (long long)*(int *)(RegisterR13Value + 0x60) * 0x10);
-        NormalizedParameterValue = *pFloatVariable5;
-        PrimaryFloatValue = pFloatVariable5[1];
-        SecondaryFloatValue = pFloatVariable5[2];
-        SystemContextPrimaryFloat2 = pFloatVariable5[3];
+        NormalizedParameterValue = *pMatrixTransformMultiplier2;
+        PrimaryFloatValue = pMatrixTransformMultiplier2[1];
+        SecondaryFloatValue = pMatrixTransformMultiplier2[2];
+        SystemContextPrimaryFloat2 = pMatrixTransformMultiplier2[3];
         *(float *)(StackFrameAddressPointer + -0x59) = NormalizedParameterValue;
         *(float *)(StackFrameAddressPointer + -0x55) = PrimaryFloatValue;
         *(float *)(StackFrameAddressPointer + -0x51) = SecondaryFloatValue;
         *(float *)(StackFrameAddressPointer + -0x4d) = SystemContextPrimaryFloat2;
-        if (NormalizedParameterValue < FloatVariable4) {
-          *(float *)(StackFrameAddressPointer + -0x59) = FloatVariable4;
+        if (NormalizedParameterValue < MatrixTransformMultiplier1) {
+          *(float *)(StackFrameAddressPointer + -0x59) = MatrixTransformMultiplier1;
         }
         if (*(float *)(StackFrameAddressPointer + -0x55) < ContextSecondaryFloat) {
           *(float *)(StackFrameAddressPointer + -0x55) = ContextSecondaryFloat;
@@ -121381,7 +121381,7 @@ void ProcessCharacterCodeFloatCalculation(uint64_t CharacterCode, float *Utf8Inp
   uint32_t *PrimaryProcessingStatusFlag;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   uint64_t DataSize;
   uint32_t SystemChecksum;
   uint32_t ProcessingStatusFlag;
@@ -121407,8 +121407,8 @@ void ProcessCharacterCodeFloatCalculation(uint64_t CharacterCode, float *Utf8Inp
   float AuxiliaryFloat10;
   
   CalculatedFilterValue = *(float *)(StackFrameAddressPointer + 0x4f);
-  FloatVariable4 = *RegisterR12Value;
-  if ((FloatVariable4 <= in_XMM4_Da + FilterInputValue) || (RegisterR12Value[1] <= in_XMM5_Da + *(float *)(StackFrameAddressPointer + 0x53))  {
+  MatrixTransformMultiplier1 = *RegisterR12Value;
+  if ((MatrixTransformMultiplier1 <= in_XMM4_Da + FilterInputValue) || (RegisterR12Value[1] <= in_XMM5_Da + *(float *)(StackFrameAddressPointer + 0x53))  {
     ProcessingByte4 = true;
   }
   else {
@@ -121440,7 +121440,7 @@ void ProcessCharacterCodeFloatCalculation(uint64_t CharacterCode, float *Utf8Inp
   if (ProcessingByte4) {
     CalculatedFilterValue = Utf8BufferSize[1];
     SystemContextPrimaryFloat8 = RegisterR12Value[1];
-    FloatVariable5 = *Utf8InputBufferSize;
+    MatrixTransformMultiplier2 = *Utf8InputBufferSize;
     PrimaryReturnCode = ValidateSystemData(StackFrameAddressPointer + -0x59);
     if ((PrimaryReturnCode & 0xff000000) != 0) {
       if (SystemContext == 0) {
@@ -121462,14 +121462,14 @@ void ProcessCharacterCodeFloatCalculation(uint64_t CharacterCode, float *Utf8Inp
         *(float *)(StackFrameAddressPointer + -0x55) = PrimaryFloatValue;
         *(float *)(StackFrameAddressPointer + -0x51) = SecondaryFloatValue;
         *(float *)(StackFrameAddressPointer + -0x4d) = SystemContextPrimaryFloat2;
-        if (NormalizedParameterValue < FloatVariable5) {
-          *(float *)(StackFrameAddressPointer + -0x59) = FloatVariable5;
+        if (NormalizedParameterValue < MatrixTransformMultiplier2) {
+          *(float *)(StackFrameAddressPointer + -0x59) = MatrixTransformMultiplier2;
         }
         if (*(float *)(StackFrameAddressPointer + -0x55) < FilterInputValue) {
           *(float *)(StackFrameAddressPointer + -0x55) = FilterInputValue;
         }
-        if (FloatVariable4 <= *(float *)(StackFrameAddressPointer + -0x51)) {
-          *(float *)(StackFrameAddressPointer + -0x51) = FloatVariable4;
+        if (MatrixTransformMultiplier1 <= *(float *)(StackFrameAddressPointer + -0x51)) {
+          *(float *)(StackFrameAddressPointer + -0x51) = MatrixTransformMultiplier1;
         }
         if (SystemContextPrimaryFloat8 <= *(float *)(StackFrameAddressPointer + -0x4d)) {
           *(float *)(StackFrameAddressPointer + -0x4d) = SystemContextPrimaryFloat8;
@@ -121525,7 +121525,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, float *Utf8I
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -121539,7 +121539,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, float *Utf8I
   
   ContextSecondaryFloat = Utf8BufferSize[1];
   CalculatedFilterValue = *(float *)(Utf8SourcePointer + 4);
-  FloatVariable4 = *Utf8InputBufferSize;
+  MatrixTransformMultiplier1 = *Utf8InputBufferSize;
   SystemMemoryAllocationResult = ValidateSystemData();
   if ((SystemMemoryAllocationResult & 0xff000000) != 0) {
     if (SystemContext == 0) {
@@ -121553,16 +121553,16 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, float *Utf8I
       EncodingConversionResult = *(long long *)(RegisterR13Value + 0x38);
       pSystemContextPrimaryFloat = (float *)(*(long long *)(RegisterR13Value + 0x68) + -0x10 +
                         (long long)*(int *)(RegisterR13Value + 0x60) * 0x10);
-      FloatVariable5 = *pSystemContextPrimaryFloat;
+      MatrixTransformMultiplier2 = *pSystemContextPrimaryFloat;
       CalculatedDistance = pSystemContextPrimaryFloat[1];
       FloatVariable7 = pSystemContextPrimaryFloat[2];
       ProcessedFloatValue8 = pSystemContextPrimaryFloat[3];
-      *(float *)(StackFrameAddressPointer + -0x59) = FloatVariable5;
+      *(float *)(StackFrameAddressPointer + -0x59) = MatrixTransformMultiplier2;
       *(float *)(StackFrameAddressPointer + -0x55) = CalculatedDistance;
       *(float *)(StackFrameAddressPointer + -0x51) = FloatVariable7;
       *(float *)(StackFrameAddressPointer + -0x4d) = ProcessedFloatValue8;
-      if (FloatVariable5 < FloatVariable4) {
-        *(float *)(StackFrameAddressPointer + -0x59) = FloatVariable4;
+      if (MatrixTransformMultiplier2 < MatrixTransformMultiplier1) {
+        *(float *)(StackFrameAddressPointer + -0x59) = MatrixTransformMultiplier1;
       }
       if (*(float *)(StackFrameAddressPointer + -0x55) < ContextSecondaryFloat) {
         *(float *)(StackFrameAddressPointer + -0x55) = ContextSecondaryFloat;
@@ -121598,7 +121598,7 @@ void ProcessUtf8CharacterEncodingWithDistance(uint64_t CharacterCode, float *Utf
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   uint ProcessingStatusFlag;
@@ -121625,15 +121625,15 @@ void ProcessUtf8CharacterEncodingWithDistance(uint64_t CharacterCode, float *Utf
       StringOffset = *(long long *)(RegisterR13Value + 0x38);
       pSystemContextPrimaryFloat = (float *)(*(long long *)(RegisterR13Value + 0x68) + -0x10 +
                         (long long)*(int *)(RegisterR13Value + 0x60) * 0x10);
-      FloatVariable4 = *pSystemContextPrimaryFloat;
-      FloatVariable5 = pSystemContextPrimaryFloat[1];
+      MatrixTransformMultiplier1 = *pSystemContextPrimaryFloat;
+      MatrixTransformMultiplier2 = pSystemContextPrimaryFloat[1];
       CalculatedDistance = pSystemContextPrimaryFloat[2];
       FloatVariable7 = pSystemContextPrimaryFloat[3];
-      *(float *)(StackFrameAddressPointer + -0x59) = FloatVariable4;
-      *(float *)(StackFrameAddressPointer + -0x55) = FloatVariable5;
+      *(float *)(StackFrameAddressPointer + -0x59) = MatrixTransformMultiplier1;
+      *(float *)(StackFrameAddressPointer + -0x55) = MatrixTransformMultiplier2;
       *(float *)(StackFrameAddressPointer + -0x51) = CalculatedDistance;
       *(float *)(StackFrameAddressPointer + -0x4d) = FloatVariable7;
-      if (FloatVariable4 < FilterInputValue) {
+      if (MatrixTransformMultiplier1 < FilterInputValue) {
         *(float *)(StackFrameAddressPointer + -0x59) = FilterInputValue;
       }
       if (*(float *)(StackFrameAddressPointer + -0x55) < FloatingPointRegisterA) {
@@ -121841,7 +121841,7 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t Utf8BufferSi
   uint32_t MemoryAllocationIndex;
   long long MemoryOffset;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -121860,8 +121860,8 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t Utf8BufferSi
   fStack_74 = 0.0;
   CalculatedDistance = 0.0;
   SystemContextPrimaryFloat = *(float *)(SystemConfigurationHandle + 0x19f8);
-  FloatVariable5 = 0.0;
-  FloatVariable4 = SystemContextPrimaryFloat * 0.4 * Utf8SourcePointer;
+  MatrixTransformMultiplier2 = 0.0;
+  MatrixTransformMultiplier1 = SystemContextPrimaryFloat * 0.4 * Utf8SourcePointer;
   fStackX_24 = (float)((unsigned long long)CharacterCode >> 0x20);
   fStack_6c = SystemContextPrimaryFloat * 0.5 * Utf8SourcePointer + fStackX_24;
   fStackX_20 = (float)CharacterCode;
@@ -121871,22 +121871,22 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t Utf8BufferSi
   if (-1 < Utf8BufferSize) {
     if (Utf8BufferSize < 2) {
       if (Utf8BufferSize == 0) {
-        FloatVariable4 = SystemContextPrimaryFloat * -0.4 * Utf8SourcePointer;
+        MatrixTransformMultiplier1 = SystemContextPrimaryFloat * -0.4 * Utf8SourcePointer;
       }
-      FloatVariable5 = FloatVariable4 * -0.75;
-      FloatVariable7 = FloatVariable4 * 0.75;
-      fStack_74 = FloatVariable4 * 0.866;
-      ProcessedFloatValue8 = FloatVariable4 * -0.866;
-      fStack_78 = FloatVariable5;
+      MatrixTransformMultiplier2 = MatrixTransformMultiplier1 * -0.75;
+      FloatVariable7 = MatrixTransformMultiplier1 * 0.75;
+      fStack_74 = MatrixTransformMultiplier1 * 0.866;
+      ProcessedFloatValue8 = MatrixTransformMultiplier1 * -0.866;
+      fStack_78 = MatrixTransformMultiplier2;
     }
     else if (Utf8BufferSize < 4) {
       if (Utf8BufferSize == 2) {
-        FloatVariable4 = SystemContextPrimaryFloat * -0.4 * Utf8SourcePointer;
+        MatrixTransformMultiplier1 = SystemContextPrimaryFloat * -0.4 * Utf8SourcePointer;
       }
-      fStack_74 = FloatVariable4 * -0.75;
-      CalculatedDistance = FloatVariable4 * 0.75;
-      FloatVariable5 = FloatVariable4 * 0.866;
-      fStack_78 = FloatVariable4 * -0.866;
+      fStack_74 = MatrixTransformMultiplier1 * -0.75;
+      CalculatedDistance = MatrixTransformMultiplier1 * 0.75;
+      MatrixTransformMultiplier2 = MatrixTransformMultiplier1 * 0.866;
+      fStack_78 = MatrixTransformMultiplier1 * -0.866;
       ProcessedFloatValue8 = fStack_74;
     }
   }
@@ -121894,7 +121894,7 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t Utf8BufferSi
   SystemUnsignedValue64 = *(uint32_t *)(SystemConfigurationHandle + 0x16cc);
   StackProcessingUnsignedValue60 = *(uint32_t *)(SystemConfigurationHandle + 0x16d0);
   fStack_5c = *(float *)(SystemConfigurationHandle + 0x16d4) * *(float *)(SystemConfigurationHandle + 0x1628);
-  _fStackX_20 = CONCAT44(fStack_6c + ProcessedFloatValue8,fStack_70 + FloatVariable5);
+  _fStackX_20 = CONCAT44(fStack_6c + ProcessedFloatValue8,fStack_70 + MatrixTransformMultiplier2);
   fStack_78 = fStack_70 + fStack_78;
   fStack_70 = fStack_70 + FloatVariable7;
   fStack_74 = fStack_6c + fStack_74;
@@ -121947,29 +121947,29 @@ void ProcessSystemDataConcatenation(uint64_t CharacterCode,uint64_t Utf8BufferSi
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float fStackX_20;
   float fStackX_24;
   
   CharacterTablePointer = *(long long *)(SystemConfigurationHandle + 0x1af8);
-  FloatVariable5 = Utf8SourcePointer * 0.2;
-  if (FloatVariable5 <= 1.0) {
-    FloatVariable5 = 1.0;
+  MatrixTransformMultiplier2 = Utf8SourcePointer * 0.2;
+  if (MatrixTransformMultiplier2 <= 1.0) {
+    MatrixTransformMultiplier2 = 1.0;
   }
-  Utf8SourcePointer = Utf8SourcePointer + FloatVariable5 * -0.5;
+  Utf8SourcePointer = Utf8SourcePointer + MatrixTransformMultiplier2 * -0.5;
   fStackX_24 = (float)((unsigned long long)CharacterCode >> 0x20);
   fStackX_20 = (float)CharacterCode;
   CalculatedFilterValue = Utf8SourcePointer * 0.33333334;
-  ContextSecondaryFloat = FloatVariable5 * 0.25 + fStackX_20 + FilterInputValue;
-  FloatVariable4 = (FloatVariable5 * 0.25 + fStackX_24 + Utf8SourcePointer) - FilterInputValue * 0.5;
-  _fStackX_20 = CONCAT44(FloatVariable4 - FilterInputValue,ContextSecondaryFloat - FilterInputValue);
+  ContextSecondaryFloat = MatrixTransformMultiplier2 * 0.25 + fStackX_20 + FilterInputValue;
+  MatrixTransformMultiplier1 = (MatrixTransformMultiplier2 * 0.25 + fStackX_24 + Utf8SourcePointer) - FilterInputValue * 0.5;
+  _fStackX_20 = CONCAT44(MatrixTransformMultiplier1 - FilterInputValue,ContextSecondaryFloat - FilterInputValue);
   ProcessSystemDataAndConfiguration(*(long long *)(CharacterTablePointer + 0x2e8) + 0x80,&fStackX_20);
-  _fStackX_20 = CONCAT44(FloatVariable4,ContextSecondaryFloat);
+  _fStackX_20 = CONCAT44(MatrixTransformMultiplier1,ContextSecondaryFloat);
   ProcessSystemDataAndConfiguration(*(long long *)(CharacterTablePointer + 0x2e8) + 0x80,&fStackX_20);
-  _fStackX_20 = CONCAT44(FloatVariable4 - (FilterInputValue + FilterInputValue),FilterInputValue + FilterInputValue + ContextSecondaryFloat);
+  _fStackX_20 = CONCAT44(MatrixTransformMultiplier1 - (FilterInputValue + FilterInputValue),FilterInputValue + FilterInputValue + ContextSecondaryFloat);
   ProcessSystemDataAndConfiguration(*(long long *)(CharacterTablePointer + 0x2e8) + 0x80,&fStackX_20);
   CharacterTablePointer = *(long long *)(CharacterTablePointer + 0x2e8);
-  ProcessSystemConfigurationEx(LoopCounter,*(void *)(ThreadLocalStorageData + 0x88),*(uint32_t *)(ThreadLocalStorageData + 0x80),Utf8BufferSize,0,FloatVariable5);
+  ProcessSystemConfigurationEx(LoopCounter,*(void *)(ThreadLocalStorageData + 0x88),*(uint32_t *)(ThreadLocalStorageData + 0x80),Utf8BufferSize,0,MatrixTransformMultiplier2);
   *(uint32_t *)(ThreadLocalStorageData + 0x80) = 0;
   return;
 }
@@ -122038,9 +122038,9 @@ void ProcessMemoryLock(float *Utf8InputBuffer,uint Utf8BufferSize,long long Utf8
     if (FilterInputValue <= MatrixElementF) {
       SystemContextPrimaryFloat2 = MatrixElementF;
     }
-    FloatVariable4 = *(float *)(AllocatedMemorySize + 0x230);
-    PrimaryFloatValue = FloatVariable4;
-    if (MatrixElementG <= FloatVariable4) {
+    MatrixTransformMultiplier1 = *(float *)(AllocatedMemorySize + 0x230);
+    PrimaryFloatValue = MatrixTransformMultiplier1;
+    if (MatrixElementG <= MatrixTransformMultiplier1) {
       PrimaryFloatValue = MatrixElementG;
     }
     ProcessedFloatValue8 = *(float *)(AllocatedMemorySize + 0x234);
@@ -122056,7 +122056,7 @@ void ProcessMemoryLock(float *Utf8InputBuffer,uint Utf8BufferSize,long long Utf8
       NormalizedParameterValue = ProcessedFloatValue8 + 4.0;
       SystemContextPrimaryFloat3 = SystemContextPrimaryFloat2 - 4.0;
       if (((SystemContextPrimaryFloat4 < ContextSecondaryFloat) || (SystemContextPrimaryFloat3 < FilterInputValue)) ||
-         ((FloatVariable4 < SecondaryFloatValue ||
+         ((MatrixTransformMultiplier1 < SecondaryFloatValue ||
           (*(float *)(AllocatedMemorySize + 0x234) <= NormalizedParameterValue && NormalizedParameterValue != *(float *)(AllocatedMemorySize + 0x234))))) {
         hasMemoryBoundaryChanged = false;
       }
@@ -122162,25 +122162,25 @@ void ProcessCharacterCodeWithUtf8Input(float *Utf8InputBuffer, uint64_t Utf8Buff
     ContextSecondaryFloat = *(float *)(AllocatedMemorySize + 0x228);
     CalculatedFilterValue = *(float *)(AllocatedMemorySize + 0x22c);
     SecondaryFloatValue = *(float *)(AllocatedMemorySize + 0x234);
-    FloatVariable4 = *Utf8InputBuffer;
+    MatrixTransformMultiplier1 = *Utf8InputBuffer;
     SystemContextPrimaryFloat3 = Utf8InputBuffer[1];
     SystemContextPrimaryFloat2 = Utf8InputBuffer[2];
     SystemContextPrimaryFloat4 = Utf8InputBuffer[3];
     SecondaryFloatValue = ContextSecondaryFloat;
-    if (ContextSecondaryFloat <= FloatVariable4) {
-      SecondaryFloatValue = FloatVariable4;
+    if (ContextSecondaryFloat <= MatrixTransformMultiplier1) {
+      SecondaryFloatValue = MatrixTransformMultiplier1;
     }
     SystemFloatValue = FilterInputValue;
     if (FilterInputValue <= SystemContextPrimaryFloat3) {
       SystemFloatValue = SystemContextPrimaryFloat3;
     }
-    *(float *)(StackFrameAddressPointer + -0x59) = FloatVariable4;
+    *(float *)(StackFrameAddressPointer + -0x59) = MatrixTransformMultiplier1;
     *(float *)(StackFrameAddressPointer + -0x55) = SystemContextPrimaryFloat3;
     *(float *)(StackFrameAddressPointer + -0x51) = SystemContextPrimaryFloat2;
     *(float *)(StackFrameAddressPointer + -0x4d) = SystemContextPrimaryFloat4;
-    FloatVariable4 = *(float *)(AllocatedMemorySize + 0x230);
-    SystemContextPrimaryFloat3 = FloatVariable4;
-    if (*(float *)(StackFrameAddressPointer + -0x51) <= FloatVariable4) {
+    MatrixTransformMultiplier1 = *(float *)(AllocatedMemorySize + 0x230);
+    SystemContextPrimaryFloat3 = MatrixTransformMultiplier1;
+    if (*(float *)(StackFrameAddressPointer + -0x51) <= MatrixTransformMultiplier1) {
       SystemContextPrimaryFloat3 = *(float *)(StackFrameAddressPointer + -0x51);
     }
     if (*(float *)(StackFrameAddressPointer + -0x4d) <= SecondaryFloatValue) {
@@ -122194,7 +122194,7 @@ void ProcessCharacterCodeWithUtf8Input(float *Utf8InputBuffer, uint64_t Utf8Buff
       SystemContextPrimaryFloat4 = SystemContextPrimaryFloat3 + 4.0;
       SystemContextPrimaryFloat2 = SecondaryFloatValue + 4.0;
       SystemContextPrimaryFloat6 = SystemFloatValue - 4.0;
-      if ((((SecondaryFloatValue < ContextSecondaryFloat) || (SystemContextPrimaryFloat6 < FilterInputValue)) || (FloatVariable4 < SystemContextPrimaryFloat4)) ||
+      if ((((SecondaryFloatValue < ContextSecondaryFloat) || (SystemContextPrimaryFloat6 < FilterInputValue)) || (MatrixTransformMultiplier1 < SystemContextPrimaryFloat4)) ||
          (*(float *)(AllocatedMemorySize + 0x234) <= SystemContextPrimaryFloat2 && SystemContextPrimaryFloat2 != *(float *)(AllocatedMemorySize + 0x234))) {
         IsSystemContextValid = false;
       }
@@ -122309,25 +122309,25 @@ void ProcessCharacterCodeWithUtf8Validation(float *Utf8InputBuffer, uint64_t Utf
   ContextSecondaryFloat = *(float *)(SystemContext + 0x228);
   CalculatedFilterValue = *(float *)(SystemContext + 0x22c);
   SecondaryFloatValue = *(float *)(SystemContext + 0x234);
-  FloatVariable4 = *Utf8InputBuffer;
+  MatrixTransformMultiplier1 = *Utf8InputBuffer;
   SystemContextPrimaryFloat3 = Utf8InputBuffer[1];
   SystemContextPrimaryFloat2 = Utf8InputBuffer[2];
   SystemContextPrimaryFloat4 = Utf8InputBuffer[3];
   SecondaryFloatValue = ContextSecondaryFloat;
-  if (ContextSecondaryFloat <= FloatVariable4) {
-    SecondaryFloatValue = FloatVariable4;
+  if (ContextSecondaryFloat <= MatrixTransformMultiplier1) {
+    SecondaryFloatValue = MatrixTransformMultiplier1;
   }
   SystemFloatValue = FilterInputValue;
   if (FilterInputValue <= SystemContextPrimaryFloat3) {
     SystemFloatValue = SystemContextPrimaryFloat3;
   }
-  *(float *)(StackFrameAddressPointer + -0x59) = FloatVariable4;
+  *(float *)(StackFrameAddressPointer + -0x59) = MatrixTransformMultiplier1;
   *(float *)(StackFrameAddressPointer + -0x55) = SystemContextPrimaryFloat3;
   *(float *)(StackFrameAddressPointer + -0x51) = SystemContextPrimaryFloat2;
   *(float *)(StackFrameAddressPointer + -0x4d) = SystemContextPrimaryFloat4;
-  FloatVariable4 = *(float *)(SystemContext + 0x230);
-  SystemContextPrimaryFloat3 = FloatVariable4;
-  if (*(float *)(StackFrameAddressPointer + -0x51) <= FloatVariable4) {
+  MatrixTransformMultiplier1 = *(float *)(SystemContext + 0x230);
+  SystemContextPrimaryFloat3 = MatrixTransformMultiplier1;
+  if (*(float *)(StackFrameAddressPointer + -0x51) <= MatrixTransformMultiplier1) {
     SystemContextPrimaryFloat3 = *(float *)(StackFrameAddressPointer + -0x51);
   }
   if (*(float *)(StackFrameAddressPointer + -0x4d) <= SecondaryFloatValue) {
@@ -122341,7 +122341,7 @@ void ProcessCharacterCodeWithUtf8Validation(float *Utf8InputBuffer, uint64_t Utf
     SystemContextPrimaryFloat4 = SystemContextPrimaryFloat3 + 4.0;
     SystemContextPrimaryFloat2 = SecondaryFloatValue + 4.0;
     SystemContextPrimaryFloat6 = SystemFloatValue - 4.0;
-    if ((((SecondaryFloatValue < ContextSecondaryFloat) || (SystemContextPrimaryFloat6 < FilterInputValue)) || (FloatVariable4 < SystemContextPrimaryFloat4)) ||
+    if ((((SecondaryFloatValue < ContextSecondaryFloat) || (SystemContextPrimaryFloat6 < FilterInputValue)) || (MatrixTransformMultiplier1 < SystemContextPrimaryFloat4)) ||
        (*(float *)(SystemContext + 0x234) <= SystemContextPrimaryFloat2 && SystemContextPrimaryFloat2 != *(float *)(SystemContext + 0x234))) {
       IsSystemContextValid = false;
     }
@@ -122419,7 +122419,7 @@ void ProcessCharacterCodeWithUtf8Validation(float *Utf8InputBuffer, uint64_t Utf
   long long BufferStatus;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMask;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   bool BooleanInputStringBuffer6;
   long long MemoryPoolBlockSize;
   uint ProcessingStatusFlag;
@@ -122452,12 +122452,12 @@ void ProcessCharacterCodeWithUtf8Validation(float *Utf8InputBuffer, uint64_t Utf
   MemoryPoolBlockSize = SystemConfigurationHandle;
   UnicodeCodePoint = *(uint32_t *)(SystemConfigurationHandle + 0x19ac);
   MemoryAddressMask = *(uint32_t *)(SystemConfigurationHandle + 0x19b0);
-  FloatVariable5 = *(float *)(SystemConfigurationHandle + 0x19b4);
+  MatrixTransformMultiplier2 = *(float *)(SystemConfigurationHandle + 0x19b4);
   *(uint32_t *)(StackFrameAddressPointer + -0x59) = *(uint32_t *)(SystemConfigurationHandle + 0x19a8);
   *(uint32_t *)(StackFrameAddressPointer + -0x55) = UnicodeCodePoint;
   *(uint32_t *)(StackFrameAddressPointer + -0x51) = MemoryAddressMask;
-  *(float *)(StackFrameAddressPointer + -0x4d) = FloatVariable5;
-  *(float *)(StackFrameAddressPointer + -0x4d) = FloatVariable5 * *(float *)(MemoryPoolBlockSize + 0x1628);
+  *(float *)(StackFrameAddressPointer + -0x4d) = MatrixTransformMultiplier2;
+  *(float *)(StackFrameAddressPointer + -0x4d) = MatrixTransformMultiplier2 * *(float *)(MemoryPoolBlockSize + 0x1628);
   ProcessingStatusFlag = ValidateSystemData(StackFrameAddressPointer + -0x59);
   *(float *)(StackFrameAddressPointer + 0x77) = BaseFloatValue + 3.0;
   *(float *)(StackFrameAddressPointer + 0x7b) = FloatingPointRegisterA + 3.0;
@@ -122476,12 +122476,12 @@ void ProcessCharacterCodeWithUtf8Validation(float *Utf8InputBuffer, uint64_t Utf
     BufferStatus = *(long long *)(SystemContext + 0x2e8);
     UnicodeCodePoint = *(uint32_t *)(SystemConfigurationHandle + 0x19ac);
     MemoryAddressMask = *(uint32_t *)(SystemConfigurationHandle + 0x19b0);
-    FloatVariable5 = *(float *)(SystemConfigurationHandle + 0x19b4);
+    MatrixTransformMultiplier2 = *(float *)(SystemConfigurationHandle + 0x19b4);
     *(uint32_t *)(StackFrameAddressPointer + -0x59) = *(uint32_t *)(SystemConfigurationHandle + 0x19a8);
     *(uint32_t *)(StackFrameAddressPointer + -0x55) = UnicodeCodePoint;
     *(uint32_t *)(StackFrameAddressPointer + -0x51) = MemoryAddressMask;
-    *(float *)(StackFrameAddressPointer + -0x4d) = FloatVariable5;
-    *(float *)(StackFrameAddressPointer + -0x4d) = FloatVariable5 * *(float *)(MemoryPoolBlockSize + 0x1628);
+    *(float *)(StackFrameAddressPointer + -0x4d) = MatrixTransformMultiplier2;
+    *(float *)(StackFrameAddressPointer + -0x4d) = MatrixTransformMultiplier2 * *(float *)(MemoryPoolBlockSize + 0x1628);
     ProcessingStatusFlag = ValidateSystemData(StackFrameAddressPointer + -0x59);
     if ((ProcessingStatusFlag & 0xff000000) != 0) {
       if ((*(byte *)(BufferStatus + 0x30) & 1) == 0) {
@@ -122514,7 +122514,7 @@ void ProcessCharacterCodeWithUtf8Validation(float *Utf8InputBuffer, uint64_t Utf
   long long BufferStatus;
   uint32_t UnicodeCodePoint;
   uint32_t MemoryAddressMask;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   bool BooleanInputStringBuffer6;
   long long MemoryPoolBlockSize;
   uint ProcessingStatusFlag;
@@ -122546,12 +122546,12 @@ void ProcessCharacterCodeWithUtf8Validation(float *Utf8InputBuffer, uint64_t Utf
   MemoryPoolBlockSize = SystemConfigurationHandle;
   UnicodeCodePoint = *(uint32_t *)(SystemConfigurationHandle + 0x19ac);
   MemoryAddressMask = *(uint32_t *)(SystemConfigurationHandle + 0x19b0);
-  FloatVariable5 = *(float *)(SystemConfigurationHandle + 0x19b4);
+  MatrixTransformMultiplier2 = *(float *)(SystemConfigurationHandle + 0x19b4);
   *(uint32_t *)(StackFrameAddressPointer + -0x59) = *(uint32_t *)(SystemConfigurationHandle + 0x19a8);
   *(uint32_t *)(StackFrameAddressPointer + -0x55) = UnicodeCodePoint;
   *(uint32_t *)(StackFrameAddressPointer + -0x51) = MemoryAddressMask;
-  *(float *)(StackFrameAddressPointer + -0x4d) = FloatVariable5;
-  *(float *)(StackFrameAddressPointer + -0x4d) = FloatVariable5 * *(float *)(MemoryPoolBlockSize + 0x1628);
+  *(float *)(StackFrameAddressPointer + -0x4d) = MatrixTransformMultiplier2;
+  *(float *)(StackFrameAddressPointer + -0x4d) = MatrixTransformMultiplier2 * *(float *)(MemoryPoolBlockSize + 0x1628);
   ProcessingStatusFlag = ValidateSystemData(StackFrameAddressPointer + -0x59);
   *(float *)(StackFrameAddressPointer + 0x77) = BaseFloatValue + 3.0;
   *(float *)(StackFrameAddressPointer + 0x7b) = FloatingPointRegisterA + 3.0;
@@ -122570,12 +122570,12 @@ void ProcessCharacterCodeWithUtf8Validation(float *Utf8InputBuffer, uint64_t Utf
     BufferStatus = *(long long *)(SystemContext + 0x2e8);
     UnicodeCodePoint = *(uint32_t *)(SystemConfigurationHandle + 0x19ac);
     MemoryAddressMask = *(uint32_t *)(SystemConfigurationHandle + 0x19b0);
-    FloatVariable5 = *(float *)(SystemConfigurationHandle + 0x19b4);
+    MatrixTransformMultiplier2 = *(float *)(SystemConfigurationHandle + 0x19b4);
     *(uint32_t *)(StackFrameAddressPointer + -0x59) = *(uint32_t *)(SystemConfigurationHandle + 0x19a8);
     *(uint32_t *)(StackFrameAddressPointer + -0x55) = UnicodeCodePoint;
     *(uint32_t *)(StackFrameAddressPointer + -0x51) = MemoryAddressMask;
-    *(float *)(StackFrameAddressPointer + -0x4d) = FloatVariable5;
-    *(float *)(StackFrameAddressPointer + -0x4d) = FloatVariable5 * *(float *)(MemoryPoolBlockSize + 0x1628);
+    *(float *)(StackFrameAddressPointer + -0x4d) = MatrixTransformMultiplier2;
+    *(float *)(StackFrameAddressPointer + -0x4d) = MatrixTransformMultiplier2 * *(float *)(MemoryPoolBlockSize + 0x1628);
     ProcessingStatusFlag = ValidateSystemData(StackFrameAddressPointer + -0x59);
     if ((ProcessingStatusFlag & 0xff000000) != 0) {
       if ((*(byte *)(BufferStatus + 0x30) & 1) == 0) {
@@ -123158,7 +123158,7 @@ uint64_t * InitializeUtf8ToUtf16Converter(uint64_t *Utf8InputBuffer,long long Ut
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   int ComputedResult;
@@ -123176,14 +123176,14 @@ uint64_t * InitializeUtf8ToUtf16Converter(uint64_t *Utf8InputBuffer,long long Ut
   if (*(int *)(Utf8BufferSize + 0x144) == CharacterCode) {
     ContextSecondaryFloat = *(float *)(Utf8BufferSize + 0x150);
     CalculatedFilterValue = *(float *)(Utf8BufferSize + 0x44);
-    FloatVariable4 = *(float *)(Utf8BufferSize + 0x154);
-    FloatVariable5 = *(float *)(Utf8BufferSize + 0x40);
+    MatrixTransformMultiplier1 = *(float *)(Utf8BufferSize + 0x154);
+    MatrixTransformMultiplier2 = *(float *)(Utf8BufferSize + 0x40);
     CalculatedDistance = *(float *)(Utf8BufferSize + 0x158);
     FloatVariable7 = *(float *)(Utf8BufferSize + 0x44);
     pSystemContextPrimaryFloat = (float *)(Utf8BufferSize + ((long long)ComputedResult + 0x3d) * 0x10);
     *pSystemContextPrimaryFloat = *(float *)(Utf8BufferSize + 0x14c) - *(float *)(Utf8BufferSize + 0x40);
     pSystemContextPrimaryFloat[1] = ContextSecondaryFloat - FilterInputValue;
-    pSystemContextPrimaryFloat[2] = FloatVariable4 - FloatVariable5;
+    pSystemContextPrimaryFloat[2] = MatrixTransformMultiplier1 - MatrixTransformMultiplier2;
     pSystemContextPrimaryFloat[3] = CalculatedDistance - FloatVariable7;
   }
   if (*(int *)(StringOffset + 0x1b60) == 2) {
@@ -123428,7 +123428,7 @@ ExecuteMemoryAllocationAndDataProcessing(uint64_t *Utf8InputBuffer,uint64_t Utf8
   
   MemoryAllocationThreshold1 = 0.0;
   SystemRegisterFlagX8.HighPart = (float)((unsigned long long)Utf8BufferSize >> 0x20);
-  FloatVariable4 = SystemRegisterFlagX8.HighPart;
+  MatrixTransformMultiplier1 = SystemRegisterFlagX8.HighPart;
   FloatVariable7 = 0.0;
   SystemRegisterFlagX8.LowPart = (float)Utf8BufferSize;
   if (((float)SystemRegisterFlagX8 < 0.0) || (SystemRegisterFlagX8.HighPart < 0.0)) {
@@ -123464,13 +123464,13 @@ ExecuteMemoryAllocationAndDataProcessing(uint64_t *Utf8InputBuffer,uint64_t Utf8
     }
   }
   SystemRegisterFlagX8 = CalculatedCodePoint;
-  if (FloatVariable4 <= 0.0) {
-    if (FloatVariable4 != 0.0) {
+  if (MatrixTransformMultiplier1 <= 0.0) {
+    if (MatrixTransformMultiplier1 != 0.0) {
       ProcessedFloatValue8 = ProcessedFloatValue8 - *(float *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x104);
       if (ProcessedFloatValue8 <= 4.0) {
         ProcessedFloatValue8 = 4.0;
       }
-      *Utf8InputBuffer = CONCAT44(FloatVariable4 + ProcessedFloatValue8,(int)SystemRegisterFlagX8);
+      *Utf8InputBuffer = CONCAT44(MatrixTransformMultiplier1 + ProcessedFloatValue8,(int)SystemRegisterFlagX8);
       return CharacterCode;
     }
     SystemRegisterFlagX8 = CONCAT44(Utf16EndPointer,(int)SystemRegisterFlagX8);
@@ -123873,7 +123873,7 @@ LAB_18012edb4:
   long long BufferStatus;
   char OperationStatus;
   float *FloatVariablePointer4;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   char *CharacterPointer;
   long long MemoryPoolBlockSize;
   float *pProcessedFloatValue8;
@@ -123956,15 +123956,15 @@ LAB_180124eff:
            (*(float *)(BufferStatus + 0x11c) <= -256000.0 && *(float *)(BufferStatus + 0x11c) != -256000.0)) {
           afStackX_20[0] = 0.0;
           afStackX_20[1] = 0.0;
-          pFloatVariable5 = afStackX_20;
+          pMatrixTransformMultiplier2 = afStackX_20;
         }
         else {
-          pFloatVariable5 = afStackX_10 + 2;
+          pMatrixTransformMultiplier2 = afStackX_10 + 2;
           afStackX_10[2] = *pSystemContextPrimaryFloat - FloatVariablePointer4[-1];
           fStackX_1c = *(float *)(BufferStatus + 0x11c) - *FloatVariablePointer4;
         }
-        NormalizedParameterValue = *pFloatVariable5;
-        PrimaryFloatValue = pFloatVariable5[1];
+        NormalizedParameterValue = *pMatrixTransformMultiplier2;
+        PrimaryFloatValue = pMatrixTransformMultiplier2[1];
         SecondaryFloatValue = PrimaryFloatValue * PrimaryFloatValue + NormalizedParameterValue * NormalizedParameterValue;
         if (SecondaryFloatValue <= pProcessedFloatValue8[0x14]) {
           SecondaryFloatValue = pProcessedFloatValue8[0x14];
@@ -123989,16 +123989,16 @@ LAB_180124eff:
            (*(float *)(BufferStatus + 0x11c) <= -256000.0 && *(float *)(BufferStatus + 0x11c) != -256000.0)) {
           afStackX_10[0] = 0.0;
           afStackX_10[1] = 0.0;
-          pFloatVariable5 = afStackX_10;
+          pMatrixTransformMultiplier2 = afStackX_10;
         }
         else {
-          pFloatVariable5 = &PrimaryScalingFactor;
+          pMatrixTransformMultiplier2 = &PrimaryScalingFactor;
           PrimaryScalingFactor = *pSystemContextPrimaryFloat - FloatVariablePointer4[-1];
           SecondaryScalingFactor = *(float *)(BufferStatus + 0x11c) - *FloatVariablePointer4;
         }
         DoubleVariable12 = -3.4028234663852886e+38;
         OperationStatus = CharacterPointer[0x2f5];
-        if (pFloatVariable5[1] * pFloatVariable5[1] + *pFloatVariable5 * *pFloatVariable5 <
+        if (pMatrixTransformMultiplier2[1] * pMatrixTransformMultiplier2[1] + *pMatrixTransformMultiplier2 * *pMatrixTransformMultiplier2 <
             *(float *)(BufferStatus + 0x34) * *(float *)(BufferStatus + 0x34)) {
           OperationStatus = '\x01';
         }
@@ -124109,7 +124109,7 @@ LAB_180124eff:
   long long BufferStatus;
   long long MemoryOffset;
   uint MemoryAddressMask;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float in_XMM4_Da;
   float CalculatedDistance;
   
@@ -124128,45 +124128,45 @@ LAB_180124eff:
           CalculatedDistance = *(float *)(Utf8BufferSize + 0x19fc) * *(float *)(MemoryBlockIndex + 0x2d8) *
                   *(float *)(MemoryBlockIndex + 0x2dc) * 5.0;
           SystemContextPrimaryFloat = *(float *)(MemoryBlockIndex + 0x90);
-          FloatVariable5 = (*(float *)(MemoryBlockIndex + 0x27c) - *(float *)(MemoryBlockIndex + 0x274)) * 0.67 +
+          MatrixTransformMultiplier2 = (*(float *)(MemoryBlockIndex + 0x27c) - *(float *)(MemoryBlockIndex + 0x274)) * 0.67 +
                   *(float *)(MemoryBlockIndex + 0x74) * 1.34;
-          if (CalculatedDistance <= FloatVariable5) {
-            FloatVariable5 = CalculatedDistance;
+          if (CalculatedDistance <= MatrixTransformMultiplier2) {
+            MatrixTransformMultiplier2 = CalculatedDistance;
           }
-          FloatVariable5 = SystemContextPrimaryFloat - (float)(int)FloatVariable5 * in_XMM4_Da;
-          *(float *)(MemoryBlockIndex + 0x90) = FloatVariable5;
-          *(float *)(MemoryBlockIndex + 0x11c) = (SystemContextPrimaryFloat + *(float *)(MemoryBlockIndex + 0x11c)) - FloatVariable5;
+          MatrixTransformMultiplier2 = SystemContextPrimaryFloat - (float)(int)MatrixTransformMultiplier2 * in_XMM4_Da;
+          *(float *)(MemoryBlockIndex + 0x90) = MatrixTransformMultiplier2;
+          *(float *)(MemoryBlockIndex + 0x11c) = (SystemContextPrimaryFloat + *(float *)(MemoryBlockIndex + 0x11c)) - MatrixTransformMultiplier2;
         }
       }
       else if (*(char *)(Utf8BufferSize + 0xac) != '\0') {
         SystemContextPrimaryFloat = *(float *)(Utf8SourcePointer + 0x2d8);
         CalculatedDistance = in_XMM4_Da * 0.1 + SystemContextPrimaryFloat;
-        FloatVariable5 = 0.5;
-        if ((0.5 <= CalculatedDistance) && (FloatVariable5 = CalculatedDistance, 2.5 <= CalculatedDistance)) {
-          FloatVariable5 = 2.5;
+        MatrixTransformMultiplier2 = 0.5;
+        if ((0.5 <= CalculatedDistance) && (MatrixTransformMultiplier2 = CalculatedDistance, 2.5 <= CalculatedDistance)) {
+          MatrixTransformMultiplier2 = 2.5;
         }
-        *(float *)(Utf8SourcePointer + 0x2d8) = FloatVariable5;
+        *(float *)(Utf8SourcePointer + 0x2d8) = MatrixTransformMultiplier2;
         CalculatedDistance = *(float *)(Utf8BufferSize + 0x11c);
-        FloatVariable5 = FloatVariable5 / SystemContextPrimaryFloat;
+        MatrixTransformMultiplier2 = MatrixTransformMultiplier2 / SystemContextPrimaryFloat;
         *(float *)(Utf8SourcePointer + 0x40) =
              ((*(float *)(Utf8BufferSize + 0x118) - *(float *)(Utf8SourcePointer + 0x40)) *
-             *(float *)(Utf8SourcePointer + 0x48) * (1.0 - FloatVariable5)) / *(float *)(Utf8SourcePointer + 0x48) +
+             *(float *)(Utf8SourcePointer + 0x48) * (1.0 - MatrixTransformMultiplier2)) / *(float *)(Utf8SourcePointer + 0x48) +
              *(float *)(Utf8SourcePointer + 0x40);
         *(float *)(Utf8SourcePointer + 0x44) =
-             (*(float *)(Utf8SourcePointer + 0x4c) * (1.0 - FloatVariable5) * (CalculatedDistance - *(float *)(Utf8SourcePointer + 0x44))) /
+             (*(float *)(Utf8SourcePointer + 0x4c) * (1.0 - MatrixTransformMultiplier2) * (CalculatedDistance - *(float *)(Utf8SourcePointer + 0x44))) /
              *(float *)(Utf8SourcePointer + 0x4c) + *(float *)(Utf8SourcePointer + 0x44);
-        *(float *)(Utf8SourcePointer + 0x48) = FloatVariable5 * *(float *)(Utf8SourcePointer + 0x48);
-        *(float *)(Utf8SourcePointer + 0x4c) = FloatVariable5 * *(float *)(Utf8SourcePointer + 0x4c);
-        *(float *)(Utf8SourcePointer + 0x54) = FloatVariable5 * *(float *)(Utf8SourcePointer + 0x54);
-        *(float *)(Utf8SourcePointer + 0x50) = FloatVariable5 * *(float *)(Utf8SourcePointer + 0x50);
+        *(float *)(Utf8SourcePointer + 0x48) = MatrixTransformMultiplier2 * *(float *)(Utf8SourcePointer + 0x48);
+        *(float *)(Utf8SourcePointer + 0x4c) = MatrixTransformMultiplier2 * *(float *)(Utf8SourcePointer + 0x4c);
+        *(float *)(Utf8SourcePointer + 0x54) = MatrixTransformMultiplier2 * *(float *)(Utf8SourcePointer + 0x54);
+        *(float *)(Utf8SourcePointer + 0x50) = MatrixTransformMultiplier2 * *(float *)(Utf8SourcePointer + 0x50);
       }
     }
     if (((*(float *)(Utf8BufferSize + 300) != 0.0) && (MemoryAddressMask == 0)) && (*(char *)(Utf8BufferSize + 0x134) == '\0'       ) {
       SystemContextPrimaryFloat = *(float *)(MemoryBlockIndex + 0x8c);
-      FloatVariable5 = SystemContextPrimaryFloat - *(float *)(Utf8BufferSize + 0x19fc) * *(float *)(MemoryBlockIndex + 0x2d8) *
+      MatrixTransformMultiplier2 = SystemContextPrimaryFloat - *(float *)(Utf8BufferSize + 0x19fc) * *(float *)(MemoryBlockIndex + 0x2d8) *
                       *(float *)(MemoryBlockIndex + 0x2dc) * *(float *)(Utf8BufferSize + 300);
-      *(float *)(MemoryBlockIndex + 0x8c) = FloatVariable5;
-      *(float *)(MemoryBlockIndex + 0x118) = (SystemContextPrimaryFloat + *(float *)(MemoryBlockIndex + 0x118)) - FloatVariable5;
+      *(float *)(MemoryBlockIndex + 0x8c) = MatrixTransformMultiplier2;
+      *(float *)(MemoryBlockIndex + 0x118) = (SystemContextPrimaryFloat + *(float *)(MemoryBlockIndex + 0x118)) - MatrixTransformMultiplier2;
     }
   }
   return;
@@ -124649,7 +124649,7 @@ LAB_180125a82:
   long long BufferStatus;
   long long MemoryOffset;
   int EncodingValidationResult;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   long long *MemoryBoundaryPointer;
   long long SystemContext;
   unsigned long long SystemChecksum;
@@ -124705,13 +124705,13 @@ LAB_180125a82:
   InitializeSystemEx();
   MemoryBlockIndex = SystemConfigurationHandle;
   **(uint8_t **)(SystemContext + 0xa0) = 1;
-  pFloatVariable5 = *(float **)(MemoryBlockIndex + 0xb0);
-  if (pFloatVariable5 == (float *)0x0) {
-    pFloatVariable5 = (float *)**(uint64_t **)(*(long long *)(MemoryBlockIndex + 0xa0) + 0x48);
+  pMatrixTransformMultiplier2 = *(float **)(MemoryBlockIndex + 0xb0);
+  if (pMatrixTransformMultiplier2 == (float *)0x0) {
+    pMatrixTransformMultiplier2 = (float *)**(uint64_t **)(*(long long *)(MemoryBlockIndex + 0xa0) + 0x48);
   }
   BufferStatus = *(long long *)(MemoryBlockIndex + 0x1af8);
-  *(float **)(MemoryBlockIndex + 0x19f0) = pFloatVariable5;
-  PrimaryFloatValue = *(float *)(MemoryBlockIndex + 0xa8) * *pFloatVariable5 * pFloatVariable5[1];
+  *(float **)(MemoryBlockIndex + 0x19f0) = pMatrixTransformMultiplier2;
+  PrimaryFloatValue = *(float *)(MemoryBlockIndex + 0xa8) * *pMatrixTransformMultiplier2 * pMatrixTransformMultiplier2[1];
   *(float *)(MemoryBlockIndex + 0x19fc) = PrimaryFloatValue;
   if (BufferStatus == 0) {
     PrimaryFloatValue = 0.0;
@@ -124722,9 +124722,9 @@ LAB_180125a82:
   *(float *)(MemoryBlockIndex + 0x19f8) = PrimaryFloatValue;
   SecondaryFloatValue = 0.0;
   SystemContextPrimaryFloat2 = 0.0;
-  *(void *)(MemoryBlockIndex + 0x1a00) = *(void *)(*(long long *)(pFloatVariable5 + 0x16) + 0x38);
+  *(void *)(MemoryBlockIndex + 0x1a00) = *(void *)(*(long long *)(pMatrixTransformMultiplier2 + 0x16) + 0x38);
   *(float *)(MemoryBlockIndex + 0x1a10) = PrimaryFloatValue;
-  *(float **)(MemoryBlockIndex + 0x1a08) = pFloatVariable5;
+  *(float **)(MemoryBlockIndex + 0x1a08) = pMatrixTransformMultiplier2;
   SystemMemoryAllocationResult = *(uint *)(SystemContext + 0x1c68);
   if (0 < (int)SystemMemoryAllocationResult) {
     MemoryBoundaryPointer = *(long long **)(SystemContext + 0x1c70);
@@ -129133,9 +129133,9 @@ ExecuteCharacterDataProcessing(uint64_t *Utf8InputBuffer,char *Utf8InputBufferSi
   float SystemContextPrimaryFloat6;
   float PrimaryScalingFactor;
   float SecondaryScalingFactor;
-  float fStack_68;
-  float fStack_64;
-  float fStack_60;
+  float StackCalculationResult1;
+  float StackCalculationResult2;
+  float StackCalculationResult3;
   float fStack_5c;
   float MatrixTransformMultiplier1;
   
@@ -129185,15 +129185,15 @@ ExecuteCharacterDataProcessing(uint64_t *Utf8InputBuffer,char *Utf8InputBufferSi
         fStack_60 = (float)*(void *)(MemoryBoundaryEnd + 0x240);
         fStack_5c = (float)((unsigned long long)*(void *)(MemoryBoundaryEnd + 0x240) >> 0x20);
         CalculatedFilterValue = SystemContextPrimaryFloat;
-        FloatVariable4 = ContextSecondaryFloat;
+        MatrixTransformMultiplier1 = ContextSecondaryFloat;
         if ((*(uint *)(MemoryBoundaryEnd + 0xc) & 0x1000002) == 0) {
           CalculatedFilterValue = PrimaryScalingFactor;
-          FloatVariable4 = SecondaryScalingFactor;
+          MatrixTransformMultiplier1 = SecondaryScalingFactor;
         }
         SystemContextPrimaryFloat6 = *(float *)(MemoryPoolBlockSize + 0x118);
         if (((fStack_68 - FilterInputValue <= SystemContextPrimaryFloat6) &&
-            (SystemFloatValue = *(float *)(MemoryPoolBlockSize + 0x11c), fStack_64 - FloatVariable4 <= SystemFloatValue)) &&
-           ((SystemContextPrimaryFloat6 < fStack_60 + FilterInputValue && (SystemFloatValue < fStack_5c + FloatVariable4)))) {
+            (SystemFloatValue = *(float *)(MemoryPoolBlockSize + 0x11c), fStack_64 - MatrixTransformMultiplier1 <= SystemFloatValue)) &&
+           ((SystemContextPrimaryFloat6 < fStack_60 + FilterInputValue && (SystemFloatValue < fStack_5c + MatrixTransformMultiplier1)))) {
           if (*(short *)(MemoryBoundaryEnd + 0x268) != 0) {
             SystemContextPrimaryFloat6 = SystemContextPrimaryFloat6 - *(float *)(MemoryBoundaryEnd + 0x40);
             SystemFloatValue = SystemFloatValue - *(float *)(MemoryBoundaryEnd + 0x44);
@@ -129344,16 +129344,16 @@ void ProcessSystemFloatDataAndMemoryAllocation(void)
         PrimaryScalingFactor = (float)*(void *)(MemoryBoundaryEnd + 0x240);
         SecondaryScalingFactor = (float)((unsigned long long)*(void *)(MemoryBoundaryEnd + 0x240) >> 0x20);
         CalculatedFilterValue = SystemContextPrimaryFloat;
-        FloatVariable4 = ContextSecondaryFloat;
+        MatrixTransformMultiplier1 = ContextSecondaryFloat;
         if ((*(uint *)(MemoryBoundaryEnd + 0xc) & 0x1000002) == 0) {
           CalculatedFilterValue = StackFloat1;
-          FloatVariable4 = StackFloatVariable2;
+          MatrixTransformMultiplier1 = StackFloatVariable2;
         }
         SystemFloatValue = *(float *)(SystemRegisterR10 + 0x118);
         if ((((float)*(void *)(MemoryBoundaryEnd + 0x238) - FilterInputValue <= SystemFloatValue) &&
             (SystemContextPrimaryFloat4 = *(float *)(SystemRegisterR10 + 0x11c),
-            (float)((unsigned long long)*(void *)(MemoryBoundaryEnd + 0x238) >> 0x20) - FloatVariable4 <= SystemContextPrimaryFloat4)) &&
-           ((SystemFloatValue < PrimaryScalingFactor + FilterInputValue && (SystemContextPrimaryFloat4 < SecondaryScalingFactor + FloatVariable4)))) {
+            (float)((unsigned long long)*(void *)(MemoryBoundaryEnd + 0x238) >> 0x20) - MatrixTransformMultiplier1 <= SystemContextPrimaryFloat4)) &&
+           ((SystemFloatValue < PrimaryScalingFactor + FilterInputValue && (SystemContextPrimaryFloat4 < SecondaryScalingFactor + MatrixTransformMultiplier1)))) {
           if (*(short *)(MemoryBoundaryEnd + 0x268) != 0) {
             SystemFloatValue = SystemFloatValue - *(float *)(MemoryBoundaryEnd + 0x40);
             SystemContextPrimaryFloat4 = SystemContextPrimaryFloat4 - *(float *)(MemoryBoundaryEnd + 0x44);
@@ -129504,16 +129504,16 @@ void FindAndFilterSystemMemoryBlocks(void)
         PrimaryScalingFactor = (float)*(void *)(MemoryBoundaryEnd + 0x240);
         SecondaryScalingFactor = (float)((unsigned long long)*(void *)(MemoryBoundaryEnd + 0x240) >> 0x20);
         CalculatedFilterValue = SystemContextPrimaryFloat;
-        FloatVariable4 = ContextSecondaryFloat;
+        MatrixTransformMultiplier1 = ContextSecondaryFloat;
         if ((*(uint *)(MemoryBoundaryEnd + 0xc) & 0x1000002) == 0) {
           CalculatedFilterValue = StackFloat1;
-          FloatVariable4 = StackFloatVariable2;
+          MatrixTransformMultiplier1 = StackFloatVariable2;
         }
         SystemFloatValue = *(float *)(SystemRegisterR10 + 0x118);
         if ((((float)*(void *)(MemoryBoundaryEnd + 0x238) - FilterInputValue <= SystemFloatValue) &&
             (SystemContextPrimaryFloat4 = *(float *)(SystemRegisterR10 + 0x11c),
-            (float)((unsigned long long)*(void *)(MemoryBoundaryEnd + 0x238) >> 0x20) - FloatVariable4 <= SystemContextPrimaryFloat4)) &&
-           ((SystemFloatValue < PrimaryScalingFactor + FilterInputValue && (SystemContextPrimaryFloat4 < SecondaryScalingFactor + FloatVariable4)))) {
+            (float)((unsigned long long)*(void *)(MemoryBoundaryEnd + 0x238) >> 0x20) - MatrixTransformMultiplier1 <= SystemContextPrimaryFloat4)) &&
+           ((SystemFloatValue < PrimaryScalingFactor + FilterInputValue && (SystemContextPrimaryFloat4 < SecondaryScalingFactor + MatrixTransformMultiplier1)))) {
           if (*(short *)(MemoryBoundaryEnd + 0x268) != 0) {
             SystemFloatValue = SystemFloatValue - *(float *)(MemoryBoundaryEnd + 0x40);
             SystemContextPrimaryFloat4 = SystemContextPrimaryFloat4 - *(float *)(MemoryBoundaryEnd + 0x44);
@@ -129574,7 +129574,7 @@ void ProcessCharacterTableDataFiltering(void)
   long long SystemRegisterR10;
   long long in_R11;
   uint64_t CharacterLimit;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float FloatingPointRegisterA;
@@ -129591,33 +129591,33 @@ void ProcessCharacterTableDataFiltering(void)
     BufferStatus = SystemParameter;
     if ((((*(char *)(CharacterTablePointer + 0xaf) != (char)StackFrameAddressPointer) &&
          (*(char *)(CharacterTablePointer + 0xb6) == (char)StackFrameAddressPointer)) && ((*(uint *)(CharacterTablePointer + 0xc) >> 9 & 1) == 0)       && (*(long long *)(CharacterTablePointer + 0x28) == *(long long *)(SystemRegisterR10 + 0x1c80))) {
-      FloatVariable5 = (float)*(void *)(ThreadLocalStorageData + 0x238);
+      MatrixTransformMultiplier2 = (float)*(void *)(ThreadLocalStorageData + 0x238);
       CalculatedDistance = (float)((unsigned long long)*(void *)(ThreadLocalStorageData + 0x238) >> 0x20);
       PrimaryScalingFactor = (float)*(void *)(ThreadLocalStorageData + 0x240);
       SecondaryScalingFactor = (float)((unsigned long long)*(void *)(ThreadLocalStorageData + 0x240) >> 0x20);
       if ((*(uint *)(CharacterTablePointer + 0xc) & 0x1000002) == 0) {
-        FloatVariable5 = FloatVariable5 - SecondaryFloatValue;
+        MatrixTransformMultiplier2 = MatrixTransformMultiplier2 - SecondaryFloatValue;
         CalculatedDistance = CalculatedDistance - AuxiliaryFloat9;
         PrimaryScalingFactor = PrimaryScalingFactor + SecondaryFloatValue;
         SecondaryScalingFactor = SecondaryScalingFactor + AuxiliaryFloat9;
       }
       else {
-        FloatVariable5 = FloatVariable5 - FloatingPointRegisterA;
+        MatrixTransformMultiplier2 = MatrixTransformMultiplier2 - FloatingPointRegisterA;
         CalculatedDistance = CalculatedDistance - BaseFloatValue;
         PrimaryScalingFactor = PrimaryScalingFactor + FloatingPointRegisterA;
         SecondaryScalingFactor = SecondaryScalingFactor + BaseFloatValue;
       }
       FloatVariable7 = *(float *)(SystemRegisterR10 + 0x118);
-      if (FloatVariable5 <= FloatVariable7) {
-        FloatVariable5 = *(float *)(SystemRegisterR10 + 0x11c);
-        if (((CalculatedDistance <= FloatVariable5) && (FloatVariable7 < PrimaryScalingFactor)) && (FloatVariable5 < SecondaryScalingFactor)) {
+      if (MatrixTransformMultiplier2 <= FloatVariable7) {
+        MatrixTransformMultiplier2 = *(float *)(SystemRegisterR10 + 0x11c);
+        if (((CalculatedDistance <= MatrixTransformMultiplier2) && (FloatVariable7 < PrimaryScalingFactor)) && (MatrixTransformMultiplier2 < SecondaryScalingFactor)) {
           if (*(short *)(CharacterTablePointer + 0x268) != 0) {
             FloatVariable7 = FloatVariable7 - *(float *)(CharacterTablePointer + 0x40);
-            FloatVariable5 = FloatVariable5 - *(float *)(CharacterTablePointer + 0x44);
+            MatrixTransformMultiplier2 = MatrixTransformMultiplier2 - *(float *)(CharacterTablePointer + 0x44);
             if ((((float)(int)*(short *)(CharacterTablePointer + 0x26c) <= FloatVariable7) &&
-                ((float)(int)*(short *)(CharacterTablePointer + 0x26e) <= FloatVariable5)) &&
+                ((float)(int)*(short *)(CharacterTablePointer + 0x26e) <= MatrixTransformMultiplier2)) &&
                ((FloatVariable7 < (float)((int)*(short *)(CharacterTablePointer + 0x268) + (int)*(short *)(CharacterTablePointer + 0x26c)) &&
-                (FloatVariable5 < (float)((int)*(short *)(CharacterTablePointer + 0x26a) + (int)*(short *)(CharacterTablePointer + 0x26e))))               ) goto LAB_180127fd0;
+                (MatrixTransformMultiplier2 < (float)((int)*(short *)(CharacterTablePointer + 0x26a) + (int)*(short *)(CharacterTablePointer + 0x26e))))               ) goto LAB_180127fd0;
           }
           BufferStatus = LoopCounter;
           if (SystemParameter != 0) {
@@ -129745,7 +129745,7 @@ unsigned long long ValidateAndProcessSystemFlags(uint64_t *Utf8InputBuffer,uint6
   StackFloatValue54 = (float)((unsigned long long)*Utf8InputBuffer >> 0x20);
   ContextSecondaryFloat = StackFloatValue58;
   CalculatedFilterValue = fStack_4c;
-  FloatVariable4 = StackFloatValue54;
+  MatrixTransformMultiplier1 = StackFloatValue54;
   if (Utf8SourcePointer != '\0') {
     CharacterTablePointer = *(long long *)(SystemConfigurationHandle + 0x1af8);
     ProcessingResult = (float *)(CharacterTablePointer + 0x228);
@@ -129753,9 +129753,9 @@ unsigned long long ValidateAndProcessSystemFlags(uint64_t *Utf8InputBuffer,uint6
     if (*ProcessingResult <= StackFloatValue58) {
       ContextSecondaryFloat = StackFloatValue58;
     }
-    FloatVariable4 = *(float *)(CharacterTablePointer + 0x22c);
+    MatrixTransformMultiplier1 = *(float *)(CharacterTablePointer + 0x22c);
     if (*(float *)(CharacterTablePointer + 0x22c) <= StackFloatValue54) {
-      FloatVariable4 = StackFloatValue54;
+      MatrixTransformMultiplier1 = StackFloatValue54;
     }
     CalculatedFilterValue = *(float *)(CharacterTablePointer + 0x234);
     if (fStack_4c <= *(float *)(CharacterTablePointer + 0x234)) {
@@ -129766,11 +129766,11 @@ unsigned long long ValidateAndProcessSystemFlags(uint64_t *Utf8InputBuffer,uint6
     }
   }
   if ((((ContextSecondaryFloat - *(float *)(SystemConfigurationHandle + 0x167c) <= *(float *)(SystemConfigurationHandle + 0x118)) &&
-       (FloatVariable4 - *(float *)(SystemConfigurationHandle + 0x1680) <= *(float *)(SystemConfigurationHandle + 0x11c))) &&
+       (MatrixTransformMultiplier1 - *(float *)(SystemConfigurationHandle + 0x1680) <= *(float *)(SystemConfigurationHandle + 0x11c))) &&
       (*(float *)(SystemConfigurationHandle + 0x118) < *(float *)(SystemConfigurationHandle + 0x167c) + DistanceThreshold)) &&
      (*(float *)(SystemConfigurationHandle + 0x11c) < *(float *)(SystemConfigurationHandle + 0x1680) + FilterInputValue)) {
     ProcessingResult = *(float **)(SystemConfigurationHandle + 0x1c80);
-    if (((FloatVariable4 < ProcessingResult[3] + ProcessingResult[5]) && (ProcessingResult[3] < FilterInputValue)) &&
+    if (((MatrixTransformMultiplier1 < ProcessingResult[3] + ProcessingResult[5]) && (ProcessingResult[3] < FilterInputValue)) &&
        ((ContextSecondaryFloat < ProcessingResult[2] + ProcessingResult[4] && (ProcessingResult[2] < DistanceThreshold)))) {
       return CONCAT71((int7)((unsigned long long)ProcessingResult >> 8),1);
     }
@@ -129970,10 +129970,10 @@ void ProcessSystemStringAndEncodingConversion(void)
     FinalizeSystemEventQueue();
     CalculatedFilterValue = *(float *)(*(long long *)(AllocatedMemorySize + 0x1af8) + 0x100);
     SystemContextPrimaryFloat2 = FilterInputValue + SystemContextPrimaryFloat2;
-    FloatVariable4 = *(float *)(*(long long *)(AllocatedMemorySize + 0x1af8) + 0x104);
-    SystemContextPrimaryFloat3 = FloatVariable4 + SystemContextPrimaryFloat3;
+    MatrixTransformMultiplier1 = *(float *)(*(long long *)(AllocatedMemorySize + 0x1af8) + 0x104);
+    SystemContextPrimaryFloat3 = MatrixTransformMultiplier1 + SystemContextPrimaryFloat3;
     StackFloatValue58 = FilterInputValue;
-    StackFloatValue54 = FloatVariable4;
+    StackFloatValue54 = MatrixTransformMultiplier1;
     DistanceThreshold = SystemContextPrimaryFloat2;
     fStack_4c = SystemContextPrimaryFloat3;
     ProcessSystemBuffer(&SystemRegisterFlagX8,0);
@@ -129988,7 +129988,7 @@ void ProcessSystemStringAndEncodingConversion(void)
       *(float *)(SystemStringIndex + 0x158) = fStack_4c;
       long long AllocatedMemorySize = *(long long *)(EncodingConversionResult + 0x1af8);
       if (((((*(float *)(AllocatedMemorySize + 0x22c) <= SystemContextPrimaryFloat3 && SystemContextPrimaryFloat3 != *(float *)(AllocatedMemorySize + 0x22c)) &&
-            (FloatVariable4 < *(float *)(AllocatedMemorySize + 0x234))) &&
+            (MatrixTransformMultiplier1 < *(float *)(AllocatedMemorySize + 0x234))) &&
            ((*(float *)(AllocatedMemorySize + 0x228) <= SystemContextPrimaryFloat2 && SystemContextPrimaryFloat2 != *(float *)(AllocatedMemorySize + 0x228) &&
             (FilterInputValue < *(float *)(AllocatedMemorySize + 0x230))))) || (*(char *)(EncodingConversionResult + 0x2e38) != '\0')) &&
          (CharacterValidationResult = ValidateAndProcessSystemFlags(&StackFloatValue58,&DistanceThreshold,1), CharacterValidationResult != '\0')) {
@@ -130560,7 +130560,7 @@ uint64_t * ManageSystemMemoryPointers(uint64_t *Utf8InputBuffer,long long Utf8Bu
   uint64_t MemoryAllocationIndex;
   long long MemoryOffset;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -130581,9 +130581,9 @@ uint64_t * ManageSystemMemoryPointers(uint64_t *Utf8InputBuffer,long long Utf8Bu
   if (*(int *)(SystemConfigurationHandle + 0x1be0) != 0) {
     ProcessingFlags.LowPart = *(float *)(SystemConfigurationHandle + 0x1c18);
     ProcessingFlags.HighPart = *(float *)(SystemConfigurationHandle + 0x1c1c);
-    FloatVariable4 = *(float *)(SystemConfigurationHandle + 0x1c20);
-    FloatVariable5 = *(float *)(SystemConfigurationHandle + 0x1c24);
-    if (((float)ProcessingFlags < 0.0) || (FloatVariable4 < 0.0)) {
+    MatrixTransformMultiplier1 = *(float *)(SystemConfigurationHandle + 0x1c20);
+    MatrixTransformMultiplier2 = *(float *)(SystemConfigurationHandle + 0x1c24);
+    if (((float)ProcessingFlags < 0.0) || (MatrixTransformMultiplier1 < 0.0)) {
       ProcessingFlags.LowPart = *(float *)(Utf8BufferSize + 0x50);
       SystemRegisterFlagX8 = CONCAT44(SystemRegisterFlagX8.HighPart,(float)ProcessingFlags);
       MemoryAllocationIndex = SystemRegisterFlagX8;
@@ -130591,9 +130591,9 @@ uint64_t * ManageSystemMemoryPointers(uint64_t *Utf8InputBuffer,long long Utf8Bu
     else if ((float)ProcessingFlags <= (float)SystemRegisterFlagX8) {
       ProcessingFlags.LowPart = (float)SystemRegisterFlagX8;
       MemoryAllocationIndex = Utf8SourcePointer;
-      if (FloatVariable4 < (float)SystemRegisterFlagX8) {
-        SystemRegisterFlagX8 = CONCAT44(SystemRegisterFlagX8.HighPart,FloatVariable4);
-        ProcessingFlags.LowPart = FloatVariable4;
+      if (MatrixTransformMultiplier1 < (float)SystemRegisterFlagX8) {
+        SystemRegisterFlagX8 = CONCAT44(SystemRegisterFlagX8.HighPart,MatrixTransformMultiplier1);
+        ProcessingFlags.LowPart = MatrixTransformMultiplier1;
         MemoryAllocationIndex = SystemRegisterFlagX8;
       }
     }
@@ -130602,15 +130602,15 @@ uint64_t * ManageSystemMemoryPointers(uint64_t *Utf8InputBuffer,long long Utf8Bu
       MemoryAllocationIndex = SystemRegisterFlagX8;
     }
     SystemRegisterFlagX8 = MemoryAllocationIndex;
-    if ((ProcessingFlags.HighPart < 0.0) || (FloatVariable5 < 0.0)) {
+    if ((ProcessingFlags.HighPart < 0.0) || (MatrixTransformMultiplier2 < 0.0)) {
       ProcessingFlags.HighPart = *(float *)(Utf8BufferSize + 0x54);
       SystemRegisterFlagX8 = CONCAT44(ProcessingFlags.HighPart,(float)SystemRegisterFlagX8);
     }
     else if (ProcessingFlags.HighPart <= SystemRegisterFlagX8.HighPart) {
       ProcessingFlags.HighPart = SystemRegisterFlagX8.HighPart;
-      if (FloatVariable5 < SystemRegisterFlagX8.HighPart) {
-        SystemRegisterFlagX8 = CONCAT44(FloatVariable5,(float)SystemRegisterFlagX8);
-        ProcessingFlags.HighPart = FloatVariable5;
+      if (MatrixTransformMultiplier2 < SystemRegisterFlagX8.HighPart) {
+        SystemRegisterFlagX8 = CONCAT44(MatrixTransformMultiplier2,(float)SystemRegisterFlagX8);
+        ProcessingFlags.HighPart = MatrixTransformMultiplier2;
       }
     }
     else {
@@ -130634,13 +130634,13 @@ uint64_t * ManageSystemMemoryPointers(uint64_t *Utf8InputBuffer,long long Utf8Bu
        (MemoryBlockIndex = *(long long *)(*(long long *)(Utf8BufferSize + 0x410) + 0x70), MemoryBlockIndex == 0)) {
       MemoryBlockIndex = Utf8BufferSize;
     }
-    FloatVariable5 = *(float *)(CharacterTablePointer + 0x1640);
+    MatrixTransformMultiplier2 = *(float *)(CharacterTablePointer + 0x1640);
     if (*(float *)(CharacterTablePointer + 0x1640) <= ProcessingFlags.HighPart) {
-      FloatVariable5 = ProcessingFlags.HighPart;
+      MatrixTransformMultiplier2 = ProcessingFlags.HighPart;
     }
-    FloatVariable4 = *(float *)(CharacterTablePointer + 0x163c);
+    MatrixTransformMultiplier1 = *(float *)(CharacterTablePointer + 0x163c);
     if (*(float *)(CharacterTablePointer + 0x163c) <= (float)ProcessingFlags) {
-      FloatVariable4 = (float)ProcessingFlags;
+      MatrixTransformMultiplier1 = (float)ProcessingFlags;
     }
     if ((*(uint *)(MemoryBlockIndex + 0xc) & 1) == 0) {
       ProcessedFloatValue8 = *(float *)(SystemConfigurationHandle + 0x19fc) * *(float *)(MemoryBlockIndex + 0x2d8) *
@@ -130663,15 +130663,15 @@ uint64_t * ManageSystemMemoryPointers(uint64_t *Utf8InputBuffer,long long Utf8Bu
       FloatVariable7 = 0.0;
     }
     FloatVariable7 = FloatVariable7 + CalculatedDistance + ProcessedFloatValue8;
-    if (FloatVariable5 < FloatVariable7) {
-      FloatVariable5 = FloatVariable7;
+    if (MatrixTransformMultiplier2 < FloatVariable7) {
+      MatrixTransformMultiplier2 = FloatVariable7;
     }
   }
   else {
-    FloatVariable4 = (float)SystemRegisterFlagX8;
-    FloatVariable5 = (float)((unsigned long long)SystemRegisterFlagX8 >> 0x20);
+    MatrixTransformMultiplier1 = (float)SystemRegisterFlagX8;
+    MatrixTransformMultiplier2 = (float)((unsigned long long)SystemRegisterFlagX8 >> 0x20);
   }
-  *Utf8InputBuffer = CONCAT44(FloatVariable5,FloatVariable4);
+  *Utf8InputBuffer = CONCAT44(MatrixTransformMultiplier2,MatrixTransformMultiplier1);
   return CharacterCode;
 }
 
@@ -130684,7 +130684,7 @@ uint64_t * HandleFloatMemoryOperations(uint64_t *Utf8InputBuffer,long long Utf8B
   int StringComparisonResult;
   long long MemoryOffset;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float SecondaryScalingFactor;
   float fStackX_10;
@@ -130701,37 +130701,37 @@ uint64_t * HandleFloatMemoryOperations(uint64_t *Utf8InputBuffer,long long Utf8B
       SecondaryScalingFactor = 4.0;
     }
   }
-  FloatVariable4 = *(float *)(*(long long *)(Utf8BufferSize + 0x28) + 0x10);
-  FloatVariable5 = *(float *)(*(long long *)(Utf8BufferSize + 0x28) + 0x14);
+  MatrixTransformMultiplier1 = *(float *)(*(long long *)(Utf8BufferSize + 0x28) + 0x10);
+  MatrixTransformMultiplier2 = *(float *)(*(long long *)(Utf8BufferSize + 0x28) + 0x14);
   if (*(char *)(Utf8BufferSize + 0xae) != '\0') {
-    FloatVariable4 = 3.4028235e+38;
-    FloatVariable5 = 3.4028235e+38;
+    MatrixTransformMultiplier1 = 3.4028235e+38;
+    MatrixTransformMultiplier2 = 3.4028235e+38;
   }
   StringComparisonResult = *(int *)(Utf8BufferSize + 0x3c);
   if ((-1 < StringComparisonResult) && (StringComparisonResult < *(int *)(SystemConfigurationHandle + 0x1600))) {
-    FloatVariable4 = *(float *)(*(long long *)(SystemConfigurationHandle + 0x1608) + 0x18 + (long long)StringComparisonResult * 0x24);
-    FloatVariable5 = *(float *)(*(long long *)(SystemConfigurationHandle + 0x1608) + 0x1c + (long long)StringComparisonResult * 0x24);
+    MatrixTransformMultiplier1 = *(float *)(*(long long *)(SystemConfigurationHandle + 0x1608) + 0x18 + (long long)StringComparisonResult * 0x24);
+    MatrixTransformMultiplier2 = *(float *)(*(long long *)(SystemConfigurationHandle + 0x1608) + 0x1c + (long long)StringComparisonResult * 0x24);
   }
-  FloatVariable4 = FloatVariable4 - (*(float *)(SystemConfigurationHandle + 0x16b4) + *(float *)(SystemConfigurationHandle + 0x16b4));
+  MatrixTransformMultiplier1 = MatrixTransformMultiplier1 - (*(float *)(SystemConfigurationHandle + 0x16b4) + *(float *)(SystemConfigurationHandle + 0x16b4));
   SystemContextPrimaryFloat = Utf8SourcePointer[1];
-  if (FloatVariable4 <= CalculatedDistance) {
-    FloatVariable4 = CalculatedDistance;
+  if (MatrixTransformMultiplier1 <= CalculatedDistance) {
+    MatrixTransformMultiplier1 = CalculatedDistance;
   }
   if (SecondaryScalingFactor <= SystemContextPrimaryFloat) {
-    FloatVariable5 = FloatVariable5 - (*(float *)(SystemConfigurationHandle + 0x16b8) + *(float *)(SystemConfigurationHandle + 0x16b8));
-    if (FloatVariable5 <= SecondaryScalingFactor) {
-      FloatVariable5 = SecondaryScalingFactor;
+    MatrixTransformMultiplier2 = MatrixTransformMultiplier2 - (*(float *)(SystemConfigurationHandle + 0x16b8) + *(float *)(SystemConfigurationHandle + 0x16b8));
+    if (MatrixTransformMultiplier2 <= SecondaryScalingFactor) {
+      MatrixTransformMultiplier2 = SecondaryScalingFactor;
     }
-    SecondaryScalingFactor = FloatVariable5;
-    if (SystemContextPrimaryFloat <= FloatVariable5) {
+    SecondaryScalingFactor = MatrixTransformMultiplier2;
+    if (SystemContextPrimaryFloat <= MatrixTransformMultiplier2) {
       SecondaryScalingFactor = SystemContextPrimaryFloat;
     }
   }
-  FloatVariable5 = *Utf8SourcePointer;
-  if ((CalculatedDistance <= FloatVariable5) && (CalculatedDistance = FloatVariable4, FloatVariable5 <= FloatVariable4)) {
-    CalculatedDistance = FloatVariable5;
+  MatrixTransformMultiplier2 = *Utf8SourcePointer;
+  if ((CalculatedDistance <= MatrixTransformMultiplier2) && (CalculatedDistance = MatrixTransformMultiplier1, MatrixTransformMultiplier2 <= MatrixTransformMultiplier1)) {
+    CalculatedDistance = MatrixTransformMultiplier2;
   }
-  AllocateSystemMemoryAndManageData(&fStackX_10,FloatVariable4,CONCAT44(SecondaryScalingFactor,CalculatedDistance));
+  AllocateSystemMemoryAndManageData(&fStackX_10,MatrixTransformMultiplier1,CONCAT44(SecondaryScalingFactor,CalculatedDistance));
   if (((fStackX_10 < *Utf8SourcePointer) && ((*(uint *)(Utf8BufferSize + 0xc) & 8) == 0)) &&
      ((*(uint *)(Utf8BufferSize + 0xc) >> 0xb & 1) != 0)) {
     SecondaryScalingFactor = SecondaryScalingFactor + *(float *)(MemoryBlockIndex + 0x168c);
@@ -130754,32 +130754,32 @@ float * ProcessFloatMemoryBuffers(float *Utf8InputBuffer,long long Utf8BufferSiz
   long long BufferStatus;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   
   BufferStatus = SystemConfigurationHandle;
-  FloatVariable5 = *(float *)(Utf8BufferSize + 0x94);
+  MatrixTransformMultiplier2 = *(float *)(Utf8BufferSize + 0x94);
   *(void *)CharacterCode = *(void *)(Utf8BufferSize + 0x8c);
-  if (FloatVariable5 < 3.4028235e+38) {
-    *Utf8InputBuffer = FloatVariable5 - (*(float *)(Utf8BufferSize + 0x50) - *(float *)(Utf8BufferSize + 0xa4)) *
+  if (MatrixTransformMultiplier2 < 3.4028235e+38) {
+    *Utf8InputBuffer = MatrixTransformMultiplier2 - (*(float *)(Utf8BufferSize + 0x50) - *(float *)(Utf8BufferSize + 0xa4)) *
                        *(float *)(Utf8BufferSize + 0x9c);
   }
-  FloatVariable5 = *(float *)(Utf8BufferSize + 0x98);
-  if (3.4028235e+38 <= FloatVariable5) {
-    FloatVariable5 = Utf8InputBuffer[1];
+  MatrixTransformMultiplier2 = *(float *)(Utf8BufferSize + 0x98);
+  if (3.4028235e+38 <= MatrixTransformMultiplier2) {
+    MatrixTransformMultiplier2 = Utf8InputBuffer[1];
   }
   else {
     FloatVariable7 = *(float *)(Utf8BufferSize + 0xa0);
     if (Utf8SourcePointer != '\0') {
       if ((FloatVariable7 <= 0.0) &&
-         (FloatVariable5 < *(float *)(Utf8BufferSize + 0x74) || FloatVariable5 == *(float *)(Utf8BufferSize + 0x74))) {
-        FloatVariable5 = 0.0;
+         (MatrixTransformMultiplier2 < *(float *)(Utf8BufferSize + 0x74) || MatrixTransformMultiplier2 == *(float *)(Utf8BufferSize + 0x74))) {
+        MatrixTransformMultiplier2 = 0.0;
       }
       if ((1.0 <= FloatVariable7) &&
          ((*(float *)(Utf8BufferSize + 100) - *(float *)(Utf8BufferSize + 0x74)) + *(float *)(BufferStatus + 0x1670) <=
-          FloatVariable5)) {
-        FloatVariable5 = *(float *)(Utf8BufferSize + 100);
+          MatrixTransformMultiplier2)) {
+        MatrixTransformMultiplier2 = *(float *)(Utf8BufferSize + 100);
       }
     }
     if ((*(uint *)(Utf8BufferSize + 0xc) & 1) == 0) {
@@ -130795,37 +130795,37 @@ float * ProcessFloatMemoryBuffers(float *Utf8InputBuffer,long long Utf8BufferSiz
       CalculatedFilterValue = *(float *)(BufferStatus + 0x19fc) * *(float *)(Utf8BufferSize + 0x2d8) * *(float *)(Utf8BufferSize + 0x2dc              + *(float *)(Utf8BufferSize + 0x184) +
               *(float *)(BufferStatus + 0x1660) + *(float *)(BufferStatus + 0x1660);
     }
-    FloatVariable5 = (FloatVariable5 - (FilterInputValue + CalculatedDistance) * (1.0 - FloatVariable7)) -
+    MatrixTransformMultiplier2 = (MatrixTransformMultiplier2 - (FilterInputValue + CalculatedDistance) * (1.0 - FloatVariable7)) -
             (*(float *)(Utf8BufferSize + 0x54) - *(float *)(Utf8BufferSize + 0xa8)) * FloatVariable7;
-    Utf8InputBuffer[1] = FloatVariable5;
+    Utf8InputBuffer[1] = MatrixTransformMultiplier2;
   }
   InputStringBuffer = *(char *)(Utf8BufferSize + 0xb2);
-  if (FloatVariable5 <= 0.0) {
-    FloatVariable5 = 0.0;
+  if (MatrixTransformMultiplier2 <= 0.0) {
+    MatrixTransformMultiplier2 = 0.0;
   }
   FloatVariable7 = *Utf8InputBuffer;
   if (FloatVariable7 <= 0.0) {
     FloatVariable7 = 0.0;
   }
-  Utf8InputBuffer[1] = FloatVariable5;
+  Utf8InputBuffer[1] = MatrixTransformMultiplier2;
   *Utf8InputBuffer = FloatVariable7;
   if ((InputStringBuffer == '\0') && (*(char *)(Utf8BufferSize + 0xb4) == '\0')) {
-    FloatVariable4 = *(float *)(Utf8BufferSize + 0x60) - (*(float *)(Utf8BufferSize + 0x50) - *(float *)(Utf8BufferSize + 0xa4));
+    MatrixTransformMultiplier1 = *(float *)(Utf8BufferSize + 0x60) - (*(float *)(Utf8BufferSize + 0x50) - *(float *)(Utf8BufferSize + 0xa4));
     CalculatedDistance = *(float *)(Utf8BufferSize + 0x54);
     CalculatedFilterValue = *(float *)(Utf8BufferSize + 0xa8);
-    if (FloatVariable4 <= 0.0) {
-      FloatVariable4 = 0.0;
+    if (MatrixTransformMultiplier1 <= 0.0) {
+      MatrixTransformMultiplier1 = 0.0;
     }
-    if (FloatVariable7 <= FloatVariable4) {
-      FloatVariable4 = FloatVariable7;
+    if (FloatVariable7 <= MatrixTransformMultiplier1) {
+      MatrixTransformMultiplier1 = FloatVariable7;
     }
-    *Utf8InputBuffer = FloatVariable4;
+    *Utf8InputBuffer = MatrixTransformMultiplier1;
     FloatVariable7 = *(float *)(Utf8BufferSize + 100) - (CalculatedDistance - FilterInputValue);
     if (FloatVariable7 <= 0.0) {
       FloatVariable7 = 0.0;
     }
-    if (FloatVariable5 <= FloatVariable7) {
-      FloatVariable7 = FloatVariable5;
+    if (MatrixTransformMultiplier2 <= FloatVariable7) {
+      FloatVariable7 = MatrixTransformMultiplier2;
     }
     Utf8InputBuffer[1] = FloatVariable7;
   }
@@ -130842,7 +130842,7 @@ float * ManageFloatMemoryAllocation(float *Utf8InputBuffer,long long Utf8BufferS
   long long ProcessingResult;
   char in_R8B;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float in_XMM5_Da;
   
@@ -130864,44 +130864,44 @@ float * ManageFloatMemoryAllocation(float *Utf8InputBuffer,long long Utf8BufferS
     CalculatedDistance = 0.0;
   }
   if ((*(uint *)(Utf8BufferSize + 0xc) >> 10 & 1) == 0) {
-    FloatVariable4 = 0.0;
+    MatrixTransformMultiplier1 = 0.0;
   }
   else {
-    FloatVariable4 = *(float *)(ProcessingResult + 0x19fc) * *(float *)(Utf8BufferSize + 0x2d8) * *(float *)(Utf8BufferSize + 0x2dc            + *(float *)(Utf8BufferSize + 0x184) +
+    MatrixTransformMultiplier1 = *(float *)(ProcessingResult + 0x19fc) * *(float *)(Utf8BufferSize + 0x2d8) * *(float *)(Utf8BufferSize + 0x2dc            + *(float *)(Utf8BufferSize + 0x184) +
             *(float *)(ProcessingResult + 0x1660) + *(float *)(ProcessingResult + 0x1660);
   }
-  CalculatedDistance = (Utf8SourcePointer - (FloatVariable4 + CalculatedDistance) * (1.0 - in_XMM5_Da)) -
+  CalculatedDistance = (Utf8SourcePointer - (MatrixTransformMultiplier1 + CalculatedDistance) * (1.0 - in_XMM5_Da)) -
           (*(float *)(Utf8BufferSize + 0x54) - *(float *)(Utf8BufferSize + 0xa8)) * in_XMM5_Da;
   Utf8InputBuffer[1] = CalculatedDistance;
   OperationStatus = *(char *)(Utf8BufferSize + 0xb2);
   if (CalculatedDistance <= Utf16EndPointer) {
     CalculatedDistance = Utf16EndPointer;
   }
-  FloatVariable4 = *Utf8InputBuffer;
+  MatrixTransformMultiplier1 = *Utf8InputBuffer;
   if (*Utf8InputBuffer <= Utf16EndPointer) {
-    FloatVariable4 = Utf16EndPointer;
+    MatrixTransformMultiplier1 = Utf16EndPointer;
   }
   Utf8InputBuffer[1] = CalculatedDistance;
-  *Utf8InputBuffer = FloatVariable4;
+  *Utf8InputBuffer = MatrixTransformMultiplier1;
   if ((OperationStatus == '\0') && (*(char *)(Utf8BufferSize + 0xb4) == '\0')) {
-    FloatVariable5 = *(float *)(Utf8BufferSize + 0x60) - (*(float *)(Utf8BufferSize + 0x50) - *(float *)(Utf8BufferSize + 0xa4));
+    MatrixTransformMultiplier2 = *(float *)(Utf8BufferSize + 0x60) - (*(float *)(Utf8BufferSize + 0x50) - *(float *)(Utf8BufferSize + 0xa4));
     SystemContextPrimaryFloat = *(float *)(Utf8BufferSize + 0x54);
     ContextSecondaryFloat = *(float *)(Utf8BufferSize + 0xa8);
-    if (FloatVariable5 <= Utf16EndPointer) {
-      FloatVariable5 = Utf16EndPointer;
+    if (MatrixTransformMultiplier2 <= Utf16EndPointer) {
+      MatrixTransformMultiplier2 = Utf16EndPointer;
     }
-    if (FloatVariable4 <= FloatVariable5) {
-      FloatVariable5 = FloatVariable4;
+    if (MatrixTransformMultiplier1 <= MatrixTransformMultiplier2) {
+      MatrixTransformMultiplier2 = MatrixTransformMultiplier1;
     }
-    *Utf8InputBuffer = FloatVariable5;
-    FloatVariable4 = *(float *)(Utf8BufferSize + 100) - (SystemContextPrimaryFloat - ContextSecondaryFloat);
-    if (FloatVariable4 <= Utf16EndPointer) {
-      FloatVariable4 = Utf16EndPointer;
+    *Utf8InputBuffer = MatrixTransformMultiplier2;
+    MatrixTransformMultiplier1 = *(float *)(Utf8BufferSize + 100) - (SystemContextPrimaryFloat - ContextSecondaryFloat);
+    if (MatrixTransformMultiplier1 <= Utf16EndPointer) {
+      MatrixTransformMultiplier1 = Utf16EndPointer;
     }
-    if (CalculatedDistance <= FloatVariable4) {
-      FloatVariable4 = CalculatedDistance;
+    if (CalculatedDistance <= MatrixTransformMultiplier1) {
+      MatrixTransformMultiplier1 = CalculatedDistance;
     }
-    Utf8InputBuffer[1] = FloatVariable4;
+    Utf8InputBuffer[1] = MatrixTransformMultiplier1;
   }
   return CharacterCode;
 }
@@ -130914,7 +130914,7 @@ float * HandleUnicodeFloatMemory(float *Utf8InputBuffer,long long Utf8BufferSize
   float ContextSecondaryFloat;
   char OperationStatus;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   
   OperationStatus = *(char *)(Utf8BufferSize + 0xb2);
@@ -130922,31 +130922,31 @@ float * HandleUnicodeFloatMemory(float *Utf8InputBuffer,long long Utf8BufferSize
   if (Utf8InputBuffer[1] <= Utf16EndPointer) {
     CalculatedDistance = Utf16EndPointer;
   }
-  FloatVariable5 = *Utf8InputBuffer;
+  MatrixTransformMultiplier2 = *Utf8InputBuffer;
   if (*Utf8InputBuffer <= Utf16EndPointer) {
-    FloatVariable5 = Utf16EndPointer;
+    MatrixTransformMultiplier2 = Utf16EndPointer;
   }
   Utf8InputBuffer[1] = CalculatedDistance;
-  *Utf8InputBuffer = FloatVariable5;
+  *Utf8InputBuffer = MatrixTransformMultiplier2;
   if ((OperationStatus == '\0') && (*(char *)(Utf8BufferSize + 0xb4) == '\0')) {
-    FloatVariable4 = *(float *)(Utf8BufferSize + 0x60) - (*(float *)(Utf8BufferSize + 0x50) - *(float *)(Utf8BufferSize + 0xa4));
+    MatrixTransformMultiplier1 = *(float *)(Utf8BufferSize + 0x60) - (*(float *)(Utf8BufferSize + 0x50) - *(float *)(Utf8BufferSize + 0xa4));
     SystemContextPrimaryFloat = *(float *)(Utf8BufferSize + 0x54);
     ContextSecondaryFloat = *(float *)(Utf8BufferSize + 0xa8);
-    if (FloatVariable4 <= Utf16EndPointer) {
-      FloatVariable4 = Utf16EndPointer;
+    if (MatrixTransformMultiplier1 <= Utf16EndPointer) {
+      MatrixTransformMultiplier1 = Utf16EndPointer;
     }
-    if (FloatVariable5 <= FloatVariable4) {
-      FloatVariable4 = FloatVariable5;
+    if (MatrixTransformMultiplier2 <= MatrixTransformMultiplier1) {
+      MatrixTransformMultiplier1 = MatrixTransformMultiplier2;
     }
-    *Utf8InputBuffer = FloatVariable4;
-    FloatVariable5 = *(float *)(Utf8BufferSize + 100) - (SystemContextPrimaryFloat - ContextSecondaryFloat);
-    if (FloatVariable5 <= Utf16EndPointer) {
-      FloatVariable5 = Utf16EndPointer;
+    *Utf8InputBuffer = MatrixTransformMultiplier1;
+    MatrixTransformMultiplier2 = *(float *)(Utf8BufferSize + 100) - (SystemContextPrimaryFloat - ContextSecondaryFloat);
+    if (MatrixTransformMultiplier2 <= Utf16EndPointer) {
+      MatrixTransformMultiplier2 = Utf16EndPointer;
     }
-    if (CalculatedDistance <= FloatVariable5) {
-      FloatVariable5 = CalculatedDistance;
+    if (CalculatedDistance <= MatrixTransformMultiplier2) {
+      MatrixTransformMultiplier2 = CalculatedDistance;
     }
-    Utf8InputBuffer[1] = FloatVariable5;
+    Utf8InputBuffer[1] = MatrixTransformMultiplier2;
   }
   return CharacterCode;
 }
@@ -130972,23 +130972,23 @@ void ProcessFloatDataCalculation(long long CharacterCode,float *Utf8InputBufferS
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float PrimaryScalingFactor;
   float SecondaryScalingFactor;
   
   ContextSecondaryFloat = *(float *)(CharacterCode + 0x44) + *(float *)(CharacterCode + 0x4c);
   SystemContextPrimaryFloat = *(float *)(CharacterCode + 0x40) + *(float *)(CharacterCode + 0x48);
-  FloatVariable5 = *Utf8InputBufferSize;
+  MatrixTransformMultiplier2 = *Utf8InputBufferSize;
   CalculatedDistance = Utf8BufferSize[1];
-  FloatVariable4 = (*(float *)(CharacterCode + 0x40) - FloatVariable5) * *Utf8SourcePointer + FloatVariable5;
+  MatrixTransformMultiplier1 = (*(float *)(CharacterCode + 0x40) - MatrixTransformMultiplier2) * *Utf8SourcePointer + MatrixTransformMultiplier2;
   CalculatedFilterValue = (*(float *)(CharacterCode + 0x44) - CalculatedDistance) * Utf8SourcePointer[1] + CalculatedDistance;
-  FloatVariable5 = ((FloatVariable5 - SystemContextPrimaryFloat) * *Utf8SourcePointer + SystemContextPrimaryFloat) - FloatVariable4;
+  MatrixTransformMultiplier2 = ((MatrixTransformMultiplier2 - SystemContextPrimaryFloat) * *Utf8SourcePointer + SystemContextPrimaryFloat) - MatrixTransformMultiplier1;
   CalculatedDistance = ((CalculatedDistance - ContextSecondaryFloat) * Utf8SourcePointer[1] + ContextSecondaryFloat) - FilterInputValue;
-  CalculateSystemFloatAndDistance(&PrimaryScalingFactor,CharacterCode,CONCAT44(CalculatedDistance,FloatVariable5));
-  *(unsigned long long *)Utf16EndPointer = CONCAT44(FilterInputValue,FloatVariable4);
+  CalculateSystemFloatAndDistance(&PrimaryScalingFactor,CharacterCode,CONCAT44(CalculatedDistance,MatrixTransformMultiplier2));
+  *(unsigned long long *)Utf16EndPointer = CONCAT44(FilterInputValue,MatrixTransformMultiplier1);
   if (*Utf8SourcePointer == 0.0) {
-    *Utf16EndPointer = *Utf16EndPointer - (PrimaryScalingFactor - FloatVariable5);
+    *Utf16EndPointer = *Utf16EndPointer - (PrimaryScalingFactor - MatrixTransformMultiplier2);
   }
   if (Utf8SourcePointer[1] == 0.0) {
     Utf16EndPointer[1] = Utf16EndPointer[1] - (SecondaryScalingFactor - CalculatedDistance);
@@ -131009,10 +131009,10 @@ float * ProcessSystemFloatDataAndInitializeBuffer(float *Utf8InputBuffer,long lo
   SystemContextPrimaryFloat = *(float *)(Utf8BufferSize + 0x40);
   ContextSecondaryFloat = *(float *)(Utf8BufferSize + 0x44);
   CalculatedFilterValue = SystemContextPrimaryFloat + *(float *)(Utf8BufferSize + 0x48);
-  FloatVariable4 = ContextSecondaryFloat + *(float *)(Utf8BufferSize + 0x4c);
+  MatrixTransformMultiplier1 = ContextSecondaryFloat + *(float *)(Utf8BufferSize + 0x4c);
   if (AdditionalParameter1 == 0.0) {
     CalculatedFilterValue = FilterInputValue - 1.0;
-    FloatVariable4 = FloatVariable4 - 1.0;
+    MatrixTransformMultiplier1 = MatrixTransformMultiplier1 - 1.0;
   }
   if (Utf8SourcePointer == 0) {
     *Utf8InputBuffer = SystemContextPrimaryFloat + Utf16EndPointer;
@@ -131025,21 +131025,21 @@ float * ProcessSystemFloatDataAndInitializeBuffer(float *Utf8InputBuffer,long lo
     Utf8InputBuffer[1] = ContextSecondaryFloat + Utf16EndPointer;
     *Utf8InputBuffer = FilterInputValue - AdditionalParameter1;
     Utf8InputBuffer[2] = FilterInputValue + AdditionalParameter1;
-    Utf8InputBuffer[3] = FloatVariable4 - Utf16EndPointer;
+    Utf8InputBuffer[3] = MatrixTransformMultiplier1 - Utf16EndPointer;
     return CharacterCode;
   }
   if (Utf8SourcePointer == 2) {
     *Utf8InputBuffer = SystemContextPrimaryFloat + Utf16EndPointer;
-    Utf8InputBuffer[1] = FloatVariable4 - AdditionalParameter1;
+    Utf8InputBuffer[1] = MatrixTransformMultiplier1 - AdditionalParameter1;
     Utf8InputBuffer[2] = FilterInputValue - Utf16EndPointer;
-    Utf8InputBuffer[3] = FloatVariable4 + AdditionalParameter1;
+    Utf8InputBuffer[3] = MatrixTransformMultiplier1 + AdditionalParameter1;
     return CharacterCode;
   }
   if (Utf8SourcePointer == 3) {
     Utf8InputBuffer[1] = ContextSecondaryFloat + Utf16EndPointer;
     *Utf8InputBuffer = SystemContextPrimaryFloat - AdditionalParameter1;
     Utf8InputBuffer[2] = SystemContextPrimaryFloat + AdditionalParameter1;
-    Utf8InputBuffer[3] = FloatVariable4 - Utf16EndPointer;
+    Utf8InputBuffer[3] = MatrixTransformMultiplier1 - Utf16EndPointer;
     return CharacterCode;
   }
   *Utf8InputBuffer = 3.4028235e+38;
@@ -145291,38 +145291,38 @@ void ProcessUnicodeCharacterEncodingValidation(void)
   float *RegisterR12Value;
   long long RegisterR13Value;
   uint NullPointerD;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float AuxiliaryFloatValue11;
   float AuxiliaryFloat13;
   long long SystemParameter2;
   int SystemParameter2;
   
-  FloatVariable5 = (float)GetSystemFloatValue();
-  *(float *)(SystemParameter2 + 0x23c) = FloatVariable5 + *(float *)(SystemParameter2 + 0x23c);
+  MatrixTransformMultiplier2 = (float)GetSystemFloatValue();
+  *(float *)(SystemParameter2 + 0x23c) = MatrixTransformMultiplier2 + *(float *)(SystemParameter2 + 0x23c);
   ProcessFloatCalculation(SystemParameter2 + 0x238,SystemParameter2 + 0x228);
   *(float *)(SystemParameter2 + 0x248) =
        *(float *)(StackFrameAddressPointer + -1) + *(float *)(SystemParameter2 + 0x7c);
   if ((NullPointerD & 0x401) == 1) {
     RegisterR12Value = (float *)(SystemParameter2 + 0x7c);
   }
-  FloatVariable5 = *RegisterR12Value;
+  MatrixTransformMultiplier2 = *RegisterR12Value;
   CalculatedDistance = (float)GetSystemTime();
-  *(float *)(SystemParameter2 + 0x24c) = CalculatedDistance + *(float *)((long long)StackFrameAddressPointer + 4) + FloatVariable5;
+  *(float *)(SystemParameter2 + 0x24c) = CalculatedDistance + *(float *)((long long)StackFrameAddressPointer + 4) + MatrixTransformMultiplier2;
   *(float *)(SystemParameter2 + 0x250) =
        ((*(float *)(SystemParameter2 + 0x48) + *(float *)(SystemParameter2 + 0x40)) -
        *(float *)(SystemParameter2 + 0xa4)) - *(float *)(SystemParameter2 + 0x7c);
   *(float *)(SystemParameter2 + 0x254) =
        ((*(float *)(SystemParameter2 + 0x4c) + *(float *)(SystemParameter2 + 0x44)) -
        *(float *)(SystemParameter2 + 0xa8)) - *(float *)(SystemParameter2 + 0x7c);
-  FloatVariable5 = (float)FinalizeSystemFloatOperation();
+  MatrixTransformMultiplier2 = (float)FinalizeSystemFloatOperation();
   *(float *)(SystemParameter2 + 600) =
-       (float)(int)(FloatVariable5 + *(float *)(SystemParameter2 + 0x248) + AuxiliaryFloatValue11);
+       (float)(int)(MatrixTransformMultiplier2 + *(float *)(SystemParameter2 + 0x248) + AuxiliaryFloatValue11);
   *(float *)(SystemParameter2 + 0x25c) =
        (float)(int)(*(float *)(SystemParameter2 + 0x24c) + AuxiliaryFloatValue11);
-  FloatVariable5 = *(float *)(SystemParameter2 + 0x250);
+  MatrixTransformMultiplier2 = *(float *)(SystemParameter2 + 0x250);
   CalculatedDistance = (float)FinalizeSystemFloatOperation();
-  *(float *)(SystemParameter2 + 0x260) = (float)(int)((FloatVariable5 + AuxiliaryFloatValue11) - CalculatedDistance);
+  *(float *)(SystemParameter2 + 0x260) = (float)(int)((MatrixTransformMultiplier2 + AuxiliaryFloatValue11) - CalculatedDistance);
   *(float *)(SystemParameter2 + 0x264) =
        (float)(int)(*(float *)(SystemParameter2 + 0x254) + AuxiliaryFloatValue11);
   if ((*(byte *)(PatternIndex + 8) & 0x40) != 0) {
@@ -146000,7 +146000,7 @@ void InitializeSystemContextManager(void)
   long long PatternIndex;
   long long DataNodePointer;
   uint8_t *NullPointerValue;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   
   CleanupEventAndSystemMaintenance();
   if (*(long long *)(SystemContext + 0x2e40) != PatternIndex) {
@@ -146034,11 +146034,11 @@ void InitializeSystemContextManager(void)
   *NullPointerValue = (char)PatternIndex;
   if (((*(long long *)(StackFrameAddressPointer + 0x408) != 0) && ((*(byte *)(StackFrameAddressPointer + 0x432) & 2) != 0)) &&
      (MemoryBlockIndex = *(long long *)(*(long long *)(StackFrameAddressPointer + 0x408) + 0x68), MemoryBlockIndex != 0)) {
-    FloatVariable5 = *(float *)(StackFrameAddressPointer + 0x11c);
+    MatrixTransformMultiplier2 = *(float *)(StackFrameAddressPointer + 0x11c);
     ContextSecondaryFloat = *(float *)(StackFrameAddressPointer + 0x74);
     *(float *)(MemoryBlockIndex + 0x118) =
          (*(float *)(StackFrameAddressPointer + 0x118) + *(float *)(StackFrameAddressPointer + 0x70)) - *(float *)(MemoryBlockIndex + 0x70);
-    *(float *)(MemoryBlockIndex + 0x11c) = (FloatVariable5 + ContextSecondaryFloat) - *(float *)(MemoryBlockIndex + 0x74);
+    *(float *)(MemoryBlockIndex + 0x11c) = (MatrixTransformMultiplier2 + ContextSecondaryFloat) - *(float *)(MemoryBlockIndex + 0x74);
   }
   *(int *)(DataNodePointer + 0x1ad0) = *(int *)(DataNodePointer + 0x1ad0) + -1;
   if ((*(uint *)(StackFrameAddressPointer + 0xc) & 0x4000000) != 0) {
@@ -146050,10 +146050,10 @@ void InitializeSystemContextManager(void)
   }
   *(long long *)(SystemDataRegistry + 0x1af8) = PatternIndex;
   if (PatternIndex != 0) {
-    FloatVariable5 = *(float *)(SystemDataRegistry + 0x19fc) * *(float *)(PatternIndex + 0x2d8) *
+    MatrixTransformMultiplier2 = *(float *)(SystemDataRegistry + 0x19fc) * *(float *)(PatternIndex + 0x2d8) *
             *(float *)(PatternIndex + 0x2dc);
-    *(float *)(SystemDataRegistry + 0x1a10) = FloatVariable5;
-    *(float *)(SystemDataRegistry + 0x19f8) = FloatVariable5;
+    *(float *)(SystemDataRegistry + 0x1a10) = MatrixTransformMultiplier2;
+    *(float *)(SystemDataRegistry + 0x19f8) = MatrixTransformMultiplier2;
   }
   if (*(long long *)(DataNodePointer + 0x1af8) != 0) {
     MemoryBlockIndex = *(long long *)(*(long long *)(DataNodePointer + 0x1af8) + 0x28);
@@ -147143,7 +147143,7 @@ void HandleSystemError(void)
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -147164,15 +147164,15 @@ void HandleSystemError(void)
     SystemContextPrimaryFloat = *(float *)(StringOffset + 0x14c);
     ContextSecondaryFloat = *(float *)(StringOffset + 0x40);
     CalculatedFilterValue = *(float *)(StringOffset + 0x150);
-    FloatVariable4 = *(float *)(StringOffset + 0x44);
-    FloatVariable5 = *(float *)(StringOffset + 0x154);
+    MatrixTransformMultiplier1 = *(float *)(StringOffset + 0x44);
+    MatrixTransformMultiplier2 = *(float *)(StringOffset + 0x154);
     CalculatedDistance = *(float *)(StringOffset + 0x40);
     FloatVariable7 = *(float *)(StringOffset + 0x158);
     ProcessedFloatValue8 = *(float *)(StringOffset + 0x44);
     *(bool *)(SystemStringIndex + 0x1d08) = InputStringBuffer0 != '\0';
     *(float *)(SystemStringIndex + 0x1d10) = SystemContextPrimaryFloat - ContextSecondaryFloat;
-    *(float *)(SystemStringIndex + 0x1d14) = FilterInputValue - FloatVariable4;
-    *(float *)(SystemStringIndex + 0x1d18) = FloatVariable5 - CalculatedDistance;
+    *(float *)(SystemStringIndex + 0x1d14) = FilterInputValue - MatrixTransformMultiplier1;
+    *(float *)(SystemStringIndex + 0x1d18) = MatrixTransformMultiplier2 - CalculatedDistance;
     *(float *)(SystemStringIndex + 0x1d1c) = FloatVariable7 - ProcessedFloatValue8;
     InputStringBuffer0 = GetSystemBuffer();
     if (InputStringBuffer0 == '\0') {
@@ -147368,7 +147368,7 @@ void ProcessSystemSecondaryEventHandle(void)
   long long BufferStatus;
   long long MemoryOffset;
   long long SystemDataRegistry;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   
   MemoryBlockIndex = SystemConfigurationHandle;
   *(uint8_t *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0xb1) = 1;
@@ -147387,9 +147387,9 @@ void ProcessSystemSecondaryEventHandle(void)
   *(uint8_t *)(BufferStatus + -4 + SystemDataRegistry * 0x30) = *(uint8_t *)(MemoryBlockIndex + 0x1b3f);
   *(uint8_t *)(BufferStatus + -3 + SystemDataRegistry * 0x30) = 1;
   *(void *)(ThreadLocalStorageData + 0x120) = 0;
-  FloatVariable5 = (*(float *)(CharacterTablePointer + 0x100) - *(float *)(CharacterTablePointer + 0x40)) - *(float *)(CharacterTablePointer + 0x20c);
-  *(float *)(CharacterTablePointer + 0x208) = FloatVariable5;
-  *(float *)(CharacterTablePointer + 0x204) = FloatVariable5;
+  MatrixTransformMultiplier2 = (*(float *)(CharacterTablePointer + 0x100) - *(float *)(CharacterTablePointer + 0x40)) - *(float *)(CharacterTablePointer + 0x20c);
+  *(float *)(CharacterTablePointer + 0x208) = MatrixTransformMultiplier2;
+  *(float *)(CharacterTablePointer + 0x204) = MatrixTransformMultiplier2;
   *(void *)(ThreadLocalStorageData + 0x118) = *(void *)(ThreadLocalStorageData + 0x100);
   *(float *)(CharacterTablePointer + 0x138) = *(float *)(CharacterTablePointer + 0x104) - 9999.0;
   return;
@@ -148733,10 +148733,10 @@ void InitializeSystemCharacterStatusBuffer(void)
     if (((*(long long *)(MemoryPoolBlockSize + 0x408) != 0) && ((*(byte *)(MemoryPoolBlockSize + 0x432) & 2) != 0)) &&
        (SystemContextValue = *(long long *)(*(long long *)(MemoryPoolBlockSize + 0x408) + 0x68), SystemContextValue != 0)) {
       SystemFloatValue = *(float *)(MemoryPoolBlockSize + 0x11c);
-      FloatVariable4 = *(float *)(MemoryPoolBlockSize + 0x74);
+      MatrixTransformMultiplier1 = *(float *)(MemoryPoolBlockSize + 0x74);
       *(float *)(SystemContextValue + 0x118) =
            (*(float *)(MemoryPoolBlockSize + 0x118) + *(float *)(MemoryPoolBlockSize + 0x70)) - *(float *)(SystemContextValue + 0x70);
-      *(float *)(SystemContextValue + 0x11c) = (SystemFloatValue + FloatVariable4) - *(float *)(SystemContextValue + 0x74);
+      *(float *)(SystemContextValue + 0x11c) = (SystemFloatValue + MatrixTransformMultiplier1) - *(float *)(SystemContextValue + 0x74);
     }
     *(int *)(SystemDataTablePointer + 0x1ad0) = *(int *)(SystemDataTablePointer + 0x1ad0) + -1;
     if ((*(uint *)(MemoryPoolBlockSize + 0xc) & 0x4000000) != 0) {
@@ -149081,13 +149081,13 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
     }
   }
   else {
-    FloatVariable5 = *(float *)(SystemConfigurationHandle + 0x166c);
+    MatrixTransformMultiplier2 = *(float *)(SystemConfigurationHandle + 0x166c);
     MemoryBlockIndex = *(long long *)(Utf8BufferSize + 0x398);
     BufferStatus = SystemConfigurationHandle;
     ProcessSystemBufferData(aSystemStackFlag);
     if (*(char *)(MemoryBlockIndex + 0x17e) == '\0') {
-      StackFloatValue58 = *(float *)(MemoryBlockIndex + 0x40) + FloatVariable5;
-      DistanceThreshold = ((*(float *)(MemoryBlockIndex + 0x40) + *(float *)(MemoryBlockIndex + 0x48)) - FloatVariable5) -
+      StackFloatValue58 = *(float *)(MemoryBlockIndex + 0x40) + MatrixTransformMultiplier2;
+      DistanceThreshold = ((*(float *)(MemoryBlockIndex + 0x40) + *(float *)(MemoryBlockIndex + 0x48)) - MatrixTransformMultiplier2) -
                   *(float *)(MemoryBlockIndex + 0xa4);
       StackFloatValue54 = -3.4028235e+38;
       fStack_4c = 3.4028235e+38;
@@ -149096,11 +149096,11 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
       StackFloatValue54 = 0.0;
       Utf16Char = *(uint *)(MemoryBlockIndex + 0xc) & 1;
       if (Utf16Char == 0) {
-        FloatVariable5 = *(float *)(BufferStatus + 0x19fc) * *(float *)(MemoryBlockIndex + 0x2d8) * *(float *)(MemoryBlockIndex + 0x2dc) +
+        MatrixTransformMultiplier2 = *(float *)(BufferStatus + 0x19fc) * *(float *)(MemoryBlockIndex + 0x2d8) * *(float *)(MemoryBlockIndex + 0x2dc) +
                 *(float *)(BufferStatus + 0x1660) + *(float *)(BufferStatus + 0x1660);
       }
       else {
-        FloatVariable5 = 0.0;
+        MatrixTransformMultiplier2 = 0.0;
       }
       if ((*(uint *)(MemoryBlockIndex + 0xc) >> 10 & 1) == 0) {
         fStack_4c = 0.0;
@@ -149110,7 +149110,7 @@ uint64_t * ProcessUtf16CharacterEncoding(uint64_t *Utf8InputBuffer, long long Ut
                     *(float *)(MemoryBlockIndex + 0x2dc) + *(float *)(MemoryBlockIndex + 0x184) +
                     *(float *)(BufferStatus + 0x1660) + *(float *)(BufferStatus + 0x1660);
       }
-      fStack_4c = *(float *)(MemoryBlockIndex + 0x44) + FloatVariable5 + fStack_4c;
+      fStack_4c = *(float *)(MemoryBlockIndex + 0x44) + MatrixTransformMultiplier2 + fStack_4c;
       if (Utf16Char == 0) {
         StackFloatValue54 = *(float *)(BufferStatus + 0x19fc) * *(float *)(MemoryBlockIndex + 0x2d8) *
                     *(float *)(MemoryBlockIndex + 0x2dc) +
@@ -149148,7 +149148,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long Ut
   long long SystemRegisterR10;
   uint32_t UnicodeCodePoint;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatingPointRegisterA;
   
@@ -149156,14 +149156,14 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long Ut
   ProcessSystemBufferData();
   if (*(char *)(CharacterTablePointer + 0x17e) == '\0') {
     UnicodeCodePoint = 0xff7fffff;
-    FloatVariable5 = *(float *)(CharacterTablePointer + 0x40) + FloatingPointRegisterA;
+    MatrixTransformMultiplier2 = *(float *)(CharacterTablePointer + 0x40) + FloatingPointRegisterA;
     CalculatedDistance = ((*(float *)(CharacterTablePointer + 0x40) + *(float *)(CharacterTablePointer + 0x48)) - FloatingPointRegisterA) -
             *(float *)(CharacterTablePointer + 0xa4);
-    *(float *)(StackFrameAddressPointer + 7) = FloatVariable5;
+    *(float *)(StackFrameAddressPointer + 7) = MatrixTransformMultiplier2;
     *(uint32_t *)(StackFrameAddressPointer + 0xb) = 0xff7fffff;
     *(float *)(StackFrameAddressPointer + 0xf) = CalculatedDistance;
     *(uint32_t *)(StackFrameAddressPointer + 0x13) = 0x7f7fffff;
-    *(float *)(StackFrameAddressPointer + 7) = FloatVariable5;
+    *(float *)(StackFrameAddressPointer + 7) = MatrixTransformMultiplier2;
     *(uint32_t *)(StackFrameAddressPointer + 0xb) = 0xff7fffff;
     *(float *)(StackFrameAddressPointer + 0xf) = CalculatedDistance;
     *(uint32_t *)(StackFrameAddressPointer + 0x13) = 0x7f7fffff;
@@ -149172,20 +149172,20 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long Ut
     CalculatedDistance = 0.0;
     MemoryAllocationIndex = *(uint *)(CharacterTablePointer + 0xc) & 1;
     if (MemoryAllocationIndex == 0) {
-      FloatVariable5 = *(float *)(SystemRegisterR10 + 0x19fc) * *(float *)(CharacterTablePointer + 0x2d8) * *(float *)(CharacterTablePointer + 0x2dc) +
+      MatrixTransformMultiplier2 = *(float *)(SystemRegisterR10 + 0x19fc) * *(float *)(CharacterTablePointer + 0x2d8) * *(float *)(CharacterTablePointer + 0x2dc) +
               *(float *)(SystemRegisterR10 + 0x1660) + *(float *)(SystemRegisterR10 + 0x1660);
     }
     else {
-      FloatVariable5 = 0.0;
+      MatrixTransformMultiplier2 = 0.0;
     }
     if ((*(uint *)(CharacterTablePointer + 0xc) >> 10 & 1) == 0) {
-      FloatVariable4 = 0.0;
+      MatrixTransformMultiplier1 = 0.0;
     }
     else {
-      FloatVariable4 = *(float *)(SystemRegisterR10 + 0x19fc) * *(float *)(CharacterTablePointer + 0x2d8) * *(float *)(CharacterTablePointer + 0x2dc) +
+      MatrixTransformMultiplier1 = *(float *)(SystemRegisterR10 + 0x19fc) * *(float *)(CharacterTablePointer + 0x2d8) * *(float *)(CharacterTablePointer + 0x2dc) +
               *(float *)(CharacterTablePointer + 0x184) + *(float *)(SystemRegisterR10 + 0x1660) + *(float *)(SystemRegisterR10 + 0x1660);
     }
-    FloatVariable4 = *(float *)(CharacterTablePointer + 0x44) + FloatVariable5 + FloatVariable4;
+    MatrixTransformMultiplier1 = *(float *)(CharacterTablePointer + 0x44) + MatrixTransformMultiplier2 + MatrixTransformMultiplier1;
     if (MemoryAllocationIndex == 0) {
       CalculatedDistance = *(float *)(SystemRegisterR10 + 0x19fc) * *(float *)(CharacterTablePointer + 0x2d8) * *(float *)(CharacterTablePointer + 0x2dc) +
               *(float *)(SystemRegisterR10 + 0x1660) + *(float *)(SystemRegisterR10 + 0x1660);
@@ -149195,11 +149195,11 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long Ut
     *(uint32_t *)(StackFrameAddressPointer + 7) = 0xff7fffff;
     *(float *)(StackFrameAddressPointer + 0xb) = CalculatedDistance;
     *(uint32_t *)(StackFrameAddressPointer + 0xf) = 0x7f7fffff;
-    *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable4;
+    *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier1;
     *(uint32_t *)(StackFrameAddressPointer + 7) = 0xff7fffff;
     *(float *)(StackFrameAddressPointer + 0xb) = CalculatedDistance;
     *(uint32_t *)(StackFrameAddressPointer + 0xf) = 0x7f7fffff;
-    *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable4;
+    *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier1;
   }
   ConvertSystemData(UnicodeCodePoint,Utf8BufferSize + 0x40,Utf8BufferSize + 0x48,Utf8BufferSize + 0xd4,StackFrameAddressPointer + 0x17);
   return;
@@ -149231,48 +149231,48 @@ void ProcessUtf8InputBuffer(uint64_t *Utf8InputBuffer, long long Utf8BufferSize)
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   
   if ((in_EAX >> 0x1a & 1) == 0) {
     if ((in_EAX >> 0x19 & 1) == 0) {
       *Utf8InputBuffer = *(void *)(Utf8BufferSize + 0x40);
     }
     else {
-      FloatVariable5 = *(float *)(SystemRegisterR10 + 0x16bc);
+      MatrixTransformMultiplier2 = *(float *)(SystemRegisterR10 + 0x16bc);
       InitializeSystemConfiguration(StackFrameAddressPointer + 0x6f);
       ProcessSystemBufferData(StackFrameAddressPointer + 0x17,in_R11);
       if (((*(char *)(SystemRegisterR10 + 0x1d06) == '\0') && (*(char *)(SystemRegisterR10 + 0x1d07) != '\0')) &&
          ((*(byte *)(SystemRegisterR10 + 8) & 4) == 0)) {
-        FloatVariable4 = *(float *)(StackFrameAddressPointer + 0x6f);
+        MatrixTransformMultiplier1 = *(float *)(StackFrameAddressPointer + 0x6f);
         ContextSecondaryFloat = *(float *)(StackFrameAddressPointer + 0x73);
-        *(float *)(StackFrameAddressPointer + 7) = FloatVariable4 - 16.0;
+        *(float *)(StackFrameAddressPointer + 7) = MatrixTransformMultiplier1 - 16.0;
         *(float *)(StackFrameAddressPointer + 0xb) = ContextSecondaryFloat - 8.0;
-        *(float *)(StackFrameAddressPointer + 0xf) = FloatVariable4 + 16.0;
+        *(float *)(StackFrameAddressPointer + 0xf) = MatrixTransformMultiplier1 + 16.0;
         *(float *)(StackFrameAddressPointer + 0x13) = ContextSecondaryFloat + 8.0;
-        *(float *)(StackFrameAddressPointer + 7) = FloatVariable4 - 16.0;
+        *(float *)(StackFrameAddressPointer + 7) = MatrixTransformMultiplier1 - 16.0;
         *(float *)(StackFrameAddressPointer + 0xb) = ContextSecondaryFloat - 8.0;
-        *(float *)(StackFrameAddressPointer + 0xf) = FloatVariable4 + 16.0;
+        *(float *)(StackFrameAddressPointer + 0xf) = MatrixTransformMultiplier1 + 16.0;
         *(float *)(StackFrameAddressPointer + 0x13) = ContextSecondaryFloat + 8.0;
       }
       else {
-        FloatVariable4 = *(float *)(StackFrameAddressPointer + 0x6f);
+        MatrixTransformMultiplier1 = *(float *)(StackFrameAddressPointer + 0x6f);
         ContextSecondaryFloat = *(float *)(StackFrameAddressPointer + 0x73);
-        FloatVariable5 = FloatVariable5 * 24.0;
-        CalculatedFilterValue = FloatVariable5 + FloatVariable4;
-        FloatVariable5 = FloatVariable5 + ContextSecondaryFloat;
-        *(float *)(StackFrameAddressPointer + 7) = FloatVariable4 - 16.0;
+        MatrixTransformMultiplier2 = MatrixTransformMultiplier2 * 24.0;
+        CalculatedFilterValue = MatrixTransformMultiplier2 + MatrixTransformMultiplier1;
+        MatrixTransformMultiplier2 = MatrixTransformMultiplier2 + ContextSecondaryFloat;
+        *(float *)(StackFrameAddressPointer + 7) = MatrixTransformMultiplier1 - 16.0;
         *(float *)(StackFrameAddressPointer + 0xb) = ContextSecondaryFloat - 8.0;
         *(float *)(StackFrameAddressPointer + 0xf) = FilterInputValue;
-        *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable5;
-        *(float *)(StackFrameAddressPointer + 7) = FloatVariable4 - 16.0;
+        *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier2;
+        *(float *)(StackFrameAddressPointer + 7) = MatrixTransformMultiplier1 - 16.0;
         *(float *)(StackFrameAddressPointer + 0xb) = ContextSecondaryFloat - 8.0;
         *(float *)(StackFrameAddressPointer + 0xf) = FilterInputValue;
-        *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable5;
+        *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier2;
       }
       ReferenceCountPointer = (int *)(in_R11 + 0xd4);
       ConvertSystemData(StackFrameAddressPointer + 0x77,StackFrameAddressPointer + 0x6f,in_R11 + 0x48,ReferenceCountPointer,StackFrameAddressPointer + 0x17);
       if (*ReferenceCountPointer == -1) {
-        *DataNodePointer = CONCAT44(ContextSecondaryFloat + 2.0,FloatVariable4 + 2.0);
+        *DataNodePointer = CONCAT44(ContextSecondaryFloat + 2.0,MatrixTransformMultiplier1 + 2.0);
       }
       else {
         *DataNodePointer = *(void *)(StackFrameAddressPointer + 0x77);
@@ -149281,13 +149281,13 @@ void ProcessUtf8InputBuffer(uint64_t *Utf8InputBuffer, long long Utf8BufferSize)
   }
   else {
     ProcessSystemBufferData(StackFrameAddressPointer + 0x17);
-    FloatVariable5 = *(float *)(Utf8BufferSize + 0x40);
-    FloatVariable4 = *(float *)(in_R11 + 0x44);
-    *(float *)(StackFrameAddressPointer + 7) = FloatVariable5 - 1.0;
-    ContextSecondaryFloat = FloatVariable4 - 1.0;
-    *(float *)(StackFrameAddressPointer + 0xf) = FloatVariable5 + 1.0;
+    MatrixTransformMultiplier2 = *(float *)(Utf8BufferSize + 0x40);
+    MatrixTransformMultiplier1 = *(float *)(in_R11 + 0x44);
+    *(float *)(StackFrameAddressPointer + 7) = MatrixTransformMultiplier2 - 1.0;
+    ContextSecondaryFloat = MatrixTransformMultiplier1 - 1.0;
+    *(float *)(StackFrameAddressPointer + 0xf) = MatrixTransformMultiplier2 + 1.0;
     *(float *)(StackFrameAddressPointer + 0xb) = ContextSecondaryFloat;
-    *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable4 + 1.0;
+    *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier1 + 1.0;
     ConvertSystemData(ContextSecondaryFloat,Utf8BufferSize + 0x40,in_R11 + 0x48,in_R11 + 0xd4,StackFrameAddressPointer + 0x17);
   }
   return;
@@ -149316,43 +149316,43 @@ void EmptyOperation2(void)
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   
-  FloatVariable5 = *(float *)(SystemRegisterR10 + 0x16bc);
+  MatrixTransformMultiplier2 = *(float *)(SystemRegisterR10 + 0x16bc);
   InitializeSystemConfiguration(StackFrameAddressPointer + 0x6f);
   ProcessSystemBufferData(StackFrameAddressPointer + 0x17,in_R11);
   if (((*(char *)(SystemRegisterR10 + 0x1d06) == '\0') && (*(char *)(SystemRegisterR10 + 0x1d07) != '\0')) &&
      ((*(byte *)(SystemRegisterR10 + 8) & 4) == 0)) {
     CalculatedFilterValue = *(float *)(StackFrameAddressPointer + 0x6f);
-    FloatVariable4 = *(float *)(StackFrameAddressPointer + 0x73);
+    MatrixTransformMultiplier1 = *(float *)(StackFrameAddressPointer + 0x73);
     *(float *)(StackFrameAddressPointer + 7) = FilterInputValue - 16.0;
-    *(float *)(StackFrameAddressPointer + 0xb) = FloatVariable4 - 8.0;
+    *(float *)(StackFrameAddressPointer + 0xb) = MatrixTransformMultiplier1 - 8.0;
     *(float *)(StackFrameAddressPointer + 0xf) = FilterInputValue + 16.0;
-    *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable4 + 8.0;
+    *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier1 + 8.0;
     *(float *)(StackFrameAddressPointer + 7) = FilterInputValue - 16.0;
-    *(float *)(StackFrameAddressPointer + 0xb) = FloatVariable4 - 8.0;
+    *(float *)(StackFrameAddressPointer + 0xb) = MatrixTransformMultiplier1 - 8.0;
     *(float *)(StackFrameAddressPointer + 0xf) = FilterInputValue + 16.0;
-    *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable4 + 8.0;
+    *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier1 + 8.0;
   }
   else {
     CalculatedFilterValue = *(float *)(StackFrameAddressPointer + 0x6f);
-    FloatVariable4 = *(float *)(StackFrameAddressPointer + 0x73);
-    FloatVariable5 = FloatVariable5 * 24.0;
-    ContextSecondaryFloat = FloatVariable5 + FilterInputValue;
-    FloatVariable5 = FloatVariable5 + FloatVariable4;
+    MatrixTransformMultiplier1 = *(float *)(StackFrameAddressPointer + 0x73);
+    MatrixTransformMultiplier2 = MatrixTransformMultiplier2 * 24.0;
+    ContextSecondaryFloat = MatrixTransformMultiplier2 + FilterInputValue;
+    MatrixTransformMultiplier2 = MatrixTransformMultiplier2 + MatrixTransformMultiplier1;
     *(float *)(StackFrameAddressPointer + 7) = FilterInputValue - 16.0;
-    *(float *)(StackFrameAddressPointer + 0xb) = FloatVariable4 - 8.0;
+    *(float *)(StackFrameAddressPointer + 0xb) = MatrixTransformMultiplier1 - 8.0;
     *(float *)(StackFrameAddressPointer + 0xf) = ContextSecondaryFloat;
-    *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable5;
+    *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier2;
     *(float *)(StackFrameAddressPointer + 7) = FilterInputValue - 16.0;
-    *(float *)(StackFrameAddressPointer + 0xb) = FloatVariable4 - 8.0;
+    *(float *)(StackFrameAddressPointer + 0xb) = MatrixTransformMultiplier1 - 8.0;
     *(float *)(StackFrameAddressPointer + 0xf) = ContextSecondaryFloat;
-    *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable5;
+    *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier2;
   }
   ReferenceCountPointer = (int *)(in_R11 + 0xd4);
   ConvertSystemData(StackFrameAddressPointer + 0x77,StackFrameAddressPointer + 0x6f,in_R11 + 0x48,ReferenceCountPointer,StackFrameAddressPointer + 0x17);
   if (*ReferenceCountPointer == -1) {
-    *DataNodePointer = CONCAT44(FloatVariable4 + 2.0,FilterInputValue + 2.0);
+    *DataNodePointer = CONCAT44(MatrixTransformMultiplier1 + 2.0,FilterInputValue + 2.0);
   }
   else {
     *DataNodePointer = *(void *)(StackFrameAddressPointer + 0x77);
@@ -149384,43 +149384,43 @@ void ProcessSystemDataFiltering(float FilterInputValue)
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   
-  FloatVariable5 = *(float *)(SystemRegisterR10 + 0x16bc);
+  MatrixTransformMultiplier2 = *(float *)(SystemRegisterR10 + 0x16bc);
   InitializeSystemConfiguration();
   ProcessSystemBufferData(StackFrameAddressPointer + 0x17,in_R11);
   if (((*(char *)(SystemRegisterR10 + 0x1d06) == '\0') && (*(char *)(SystemRegisterR10 + 0x1d07) != '\0')) &&
      ((*(byte *)(SystemRegisterR10 + 8) & 4) == 0)) {
     CalculatedFilterValue = *(float *)(StackFrameAddressPointer + 0x6f);
-    FloatVariable4 = *(float *)(StackFrameAddressPointer + 0x73);
+    MatrixTransformMultiplier1 = *(float *)(StackFrameAddressPointer + 0x73);
     *(float *)(StackFrameAddressPointer + 7) = FilterInputValue - 16.0;
-    *(float *)(StackFrameAddressPointer + 0xb) = FloatVariable4 - 8.0;
+    *(float *)(StackFrameAddressPointer + 0xb) = MatrixTransformMultiplier1 - 8.0;
     *(float *)(StackFrameAddressPointer + 0xf) = FilterInputValue + 16.0;
-    *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable4 + 8.0;
+    *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier1 + 8.0;
     *(float *)(StackFrameAddressPointer + 7) = FilterInputValue - 16.0;
-    *(float *)(StackFrameAddressPointer + 0xb) = FloatVariable4 - 8.0;
+    *(float *)(StackFrameAddressPointer + 0xb) = MatrixTransformMultiplier1 - 8.0;
     *(float *)(StackFrameAddressPointer + 0xf) = FilterInputValue + 16.0;
-    *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable4 + 8.0;
+    *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier1 + 8.0;
   }
   else {
     CalculatedFilterValue = *(float *)(StackFrameAddressPointer + 0x6f);
-    FloatVariable4 = *(float *)(StackFrameAddressPointer + 0x73);
-    FloatVariable5 = FloatVariable5 * 24.0;
-    ContextSecondaryFloat = FloatVariable5 + FilterInputValue;
-    FloatVariable5 = FloatVariable5 + FloatVariable4;
+    MatrixTransformMultiplier1 = *(float *)(StackFrameAddressPointer + 0x73);
+    MatrixTransformMultiplier2 = MatrixTransformMultiplier2 * 24.0;
+    ContextSecondaryFloat = MatrixTransformMultiplier2 + FilterInputValue;
+    MatrixTransformMultiplier2 = MatrixTransformMultiplier2 + MatrixTransformMultiplier1;
     *(float *)(StackFrameAddressPointer + 7) = FilterInputValue - 16.0;
-    *(float *)(StackFrameAddressPointer + 0xb) = FloatVariable4 - 8.0;
+    *(float *)(StackFrameAddressPointer + 0xb) = MatrixTransformMultiplier1 - 8.0;
     *(float *)(StackFrameAddressPointer + 0xf) = ContextSecondaryFloat;
-    *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable5;
+    *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier2;
     *(float *)(StackFrameAddressPointer + 7) = FilterInputValue - 16.0;
-    *(float *)(StackFrameAddressPointer + 0xb) = FloatVariable4 - 8.0;
+    *(float *)(StackFrameAddressPointer + 0xb) = MatrixTransformMultiplier1 - 8.0;
     *(float *)(StackFrameAddressPointer + 0xf) = ContextSecondaryFloat;
-    *(float *)(StackFrameAddressPointer + 0x13) = FloatVariable5;
+    *(float *)(StackFrameAddressPointer + 0x13) = MatrixTransformMultiplier2;
   }
   ReferenceCountPointer = (int *)(in_R11 + 0xd4);
   ConvertSystemData(StackFrameAddressPointer + 0x77,StackFrameAddressPointer + 0x6f,in_R11 + 0x48,ReferenceCountPointer,StackFrameAddressPointer + 0x17);
   if (*ReferenceCountPointer == -1) {
-    *DataNodePointer = CONCAT44(FloatVariable4 + 2.0,FilterInputValue + 2.0);
+    *DataNodePointer = CONCAT44(MatrixTransformMultiplier1 + 2.0,FilterInputValue + 2.0);
   }
   else {
     *DataNodePointer = *(void *)(StackFrameAddressPointer + 0x77);
@@ -151318,7 +151318,7 @@ unsigned long long ProcessUtf8InputBufferAndMatchCharacter(float *Utf8InputBuffe
       ContextSecondaryFloat = *Utf8InputBuffer;
       SystemContextPrimaryFloat4 = Utf8InputBuffer[1];
       CalculatedFilterValue = Utf8InputBuffer[2];
-      FloatVariable4 = Utf8InputBuffer[3];
+      MatrixTransformMultiplier1 = Utf8InputBuffer[3];
       SystemFloatValue = PrimaryFloatValue;
       if ((PrimaryFloatValue <= SystemContextPrimaryFloat4) && (SystemFloatValue = SystemContextPrimaryFloat2, SystemContextPrimaryFloat4 <= SystemContextPrimaryFloat2)) {
         SystemFloatValue = SystemContextPrimaryFloat4;
@@ -151327,8 +151327,8 @@ unsigned long long ProcessUtf8InputBufferAndMatchCharacter(float *Utf8InputBuffe
       if ((SecondaryFloatValue <= ContextSecondaryFloat) && (SystemContextPrimaryFloat4 = SystemContextPrimaryFloat3, ContextSecondaryFloat <= SystemContextPrimaryFloat3)) {
         SystemContextPrimaryFloat4 = ContextSecondaryFloat;
       }
-      if ((PrimaryFloatValue <= FloatVariable4) && (PrimaryFloatValue = SystemContextPrimaryFloat2, FloatVariable4 <= SystemContextPrimaryFloat2)) {
-        PrimaryFloatValue = FloatVariable4;
+      if ((PrimaryFloatValue <= MatrixTransformMultiplier1) && (PrimaryFloatValue = SystemContextPrimaryFloat2, MatrixTransformMultiplier1 <= SystemContextPrimaryFloat2)) {
+        PrimaryFloatValue = MatrixTransformMultiplier1;
       }
       if ((SecondaryFloatValue <= FilterInputValue) && (SecondaryFloatValue = SystemContextPrimaryFloat3, FilterInputValue <= SystemContextPrimaryFloat3)) {
         SecondaryFloatValue = FilterInputValue;
@@ -151748,7 +151748,7 @@ unsigned long long ProcessSystemFloatCalculation(float CharacterCode,float Utf8B
   byte BooleanByteFlag4;
   float *SystemRegisterR10;
   long long in_R11;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float FloatingPointRegisterA;
@@ -151771,13 +151771,13 @@ unsigned long long ProcessSystemFloatCalculation(float CharacterCode,float Utf8B
   }
   SystemRegisterR10[2] = FloatingPointRegisterA;
   SystemContextPrimaryFloat4 = *(float *)(Utf8SourcePointer + 0x1cc4);
-  FloatVariable5 = *(float *)(Utf8SourcePointer + 0x1ccc);
+  MatrixTransformMultiplier2 = *(float *)(Utf8SourcePointer + 0x1ccc);
   if (SystemContextPrimaryFloat4 <= FloatingPointRegisterA) {
-    if (FloatVariable7 <= FloatVariable5) {
+    if (FloatVariable7 <= MatrixTransformMultiplier2) {
       CalculatedDistance = 0.0;
     }
     else {
-      CalculatedDistance = FloatVariable7 - FloatVariable5;
+      CalculatedDistance = FloatVariable7 - MatrixTransformMultiplier2;
     }
   }
   else {
@@ -151810,10 +151810,10 @@ LAB_18013127c:
       }
     }
   }
-  FloatVariable7 = (FloatVariable7 + FloatingPointRegisterA) - (SystemContextPrimaryFloat4 + FloatVariable5);
+  FloatVariable7 = (FloatVariable7 + FloatingPointRegisterA) - (SystemContextPrimaryFloat4 + MatrixTransformMultiplier2);
   NormalizedParameterValue = ABS(PrimaryFloatValue) + ABS(CalculatedDistance);
   SystemContextPrimaryFloat4 = (SystemRegisterR10[3] + SystemRegisterR10[1]) - (*(float *)(Utf8SourcePointer + 0x1cd0) + SystemContextPrimaryFloat3);
-  FloatVariable5 = ABS(SystemContextPrimaryFloat4) + ABS(FloatVariable7);
+  MatrixTransformMultiplier2 = ABS(SystemContextPrimaryFloat4) + ABS(FloatVariable7);
   if ((CalculatedDistance == 0.0) && (PrimaryFloatValue == 0.0)) {
     if ((FloatVariable7 == 0.0) && (SystemContextPrimaryFloat4 == 0.0)) {
       UnicodeCodePoint = (uint)(*(uint *)(Utf8SourcePointer + 0x1ca0) <= *(uint *)(Utf16EndPointer + 0x144));
@@ -151822,7 +151822,7 @@ LAB_18013127c:
       SystemContextPrimaryFloat3 = 0.0;
     }
     else {
-      SystemContextPrimaryFloat3 = FloatVariable5;
+      SystemContextPrimaryFloat3 = MatrixTransformMultiplier2;
       if (ABS(FloatVariable7) <= ABS(SystemContextPrimaryFloat4)) goto LAB_180131395;
       UnicodeCodePoint = (uint)(0.0 < FloatVariable7);
     }
@@ -151844,12 +151844,12 @@ LAB_180131395:
   if (UnicodeCodePoint == Utf16Char) {
     if (NormalizedParameterValue < *(float *)(in_R11 + 0x10)) {
       *(float *)(in_R11 + 0x10) = NormalizedParameterValue;
-      *(float *)(in_R11 + 0x14) = FloatVariable5;
+      *(float *)(in_R11 + 0x14) = MatrixTransformMultiplier2;
       return CONCAT71((uint7)(uint3)(Utf16Char >> 8),1);
     }
     if (NormalizedParameterValue == *(float *)(in_R11 + 0x10)) {
-      if (*(float *)(in_R11 + 0x14) <= FloatVariable5) {
-        if (FloatVariable5 == *(float *)(in_R11 + 0x14)) {
+      if (*(float *)(in_R11 + 0x14) <= MatrixTransformMultiplier2) {
+        if (MatrixTransformMultiplier2 == *(float *)(in_R11 + 0x14)) {
           if (Utf16Char - 2 < 2) {
             CalculatedDistance = PrimaryFloatValue;
           }
@@ -151860,7 +151860,7 @@ LAB_180131395:
         }
       }
       else {
-        *(float *)(in_R11 + 0x14) = FloatVariable5;
+        *(float *)(in_R11 + 0x14) = MatrixTransformMultiplier2;
         hasComparisonResult = 1;
       }
     }
@@ -152152,12 +152152,12 @@ uint8_t ProcessCharacterCodeWithFloatParameters(uint64_t CharacterCode,uint8_t U
         ((*Utf8InputBufferSize <= *(float *)(CharacterCode + 0x230) && *(float *)(CharacterCode + 0x230) != *Utf8InputBufferSize &&
          (*(float *)(CharacterCode + 0x228) < Utf8BufferSize[2])))))) {
       SystemContextPrimaryFloat4 = *(float *)(CharacterCode + 0x22c);
-      FloatVariable4 = *(float *)(CharacterCode + 0x234);
+      MatrixTransformMultiplier1 = *(float *)(CharacterCode + 0x234);
       SystemContextPrimaryFloat2 = SystemContextPrimaryFloat4;
-      if ((SystemContextPrimaryFloat4 <= FilterInputValue) && (SystemContextPrimaryFloat2 = FloatVariable4, FilterInputValue <= FloatVariable4)) {
+      if ((SystemContextPrimaryFloat4 <= FilterInputValue) && (SystemContextPrimaryFloat2 = MatrixTransformMultiplier1, FilterInputValue <= MatrixTransformMultiplier1)) {
         SystemContextPrimaryFloat2 = FilterInputValue;
       }
-      if ((SystemContextPrimaryFloat4 <= ContextSecondaryFloat) && (SystemContextPrimaryFloat4 = FloatVariable4, ContextSecondaryFloat <= FloatVariable4)) {
+      if ((SystemContextPrimaryFloat4 <= ContextSecondaryFloat) && (SystemContextPrimaryFloat4 = MatrixTransformMultiplier1, ContextSecondaryFloat <= MatrixTransformMultiplier1)) {
         SystemContextPrimaryFloat4 = ContextSecondaryFloat;
       }
       if ((FilterInputValue - ContextSecondaryFloat) * 0.7 <= SystemContextPrimaryFloat2 - SystemContextPrimaryFloat4) {
@@ -152409,12 +152409,12 @@ void ProcessUtf8DataEncodingAndSourcePointer(uint64_t CharacterCode,uint64_t Utf
        *(float *)(SystemContext + 0x22c) <= FilterInputValue && FilterInputValue != *(float *)(SystemContext + 0x22c))) &&
       (*DataNodePointer <= *(float *)(SystemContext + 0x230) && *(float *)(SystemContext + 0x230) != *DataNodePointer)     && (*(float *)(SystemContext + 0x228) < DataNodePointer[2])) {
     FloatVariable7 = *(float *)(SystemContext + 0x22c);
-    FloatVariable4 = *(float *)(SystemContext + 0x234);
+    MatrixTransformMultiplier1 = *(float *)(SystemContext + 0x234);
     CalculatedDistance = FloatVariable7;
-    if ((FloatVariable7 <= FilterInputValue) && (CalculatedDistance = FloatVariable4, FilterInputValue <= FloatVariable4)) {
+    if ((FloatVariable7 <= FilterInputValue) && (CalculatedDistance = MatrixTransformMultiplier1, FilterInputValue <= MatrixTransformMultiplier1)) {
       CalculatedDistance = FilterInputValue;
     }
-    if ((FloatVariable7 <= ContextSecondaryFloat) && (FloatVariable7 = FloatVariable4, ContextSecondaryFloat <= FloatVariable4)) {
+    if ((FloatVariable7 <= ContextSecondaryFloat) && (FloatVariable7 = MatrixTransformMultiplier1, ContextSecondaryFloat <= MatrixTransformMultiplier1)) {
       FloatVariable7 = ContextSecondaryFloat;
     }
     if ((FilterInputValue - ContextSecondaryFloat) * 0.7 <= CalculatedDistance - FloatVariable7) {
@@ -152513,22 +152513,22 @@ void ProcessUtf8CharacterEncoding(uint64_t CharacterCode,uint64_t Utf8BufferSize
     return;
   }
   if (Utf8BufferSize == 3) {
-    FloatVariable4 = *(float *)(SystemConfigurationHandle + 0x94) * 0.8;
+    MatrixTransformMultiplier1 = *(float *)(SystemConfigurationHandle + 0x94) * 0.8;
   }
   else {
     if (Utf8BufferSize == 4) {
       CalculatedFilterValue = *(float *)(SystemConfigurationHandle + 0x90);
-      FloatVariable4 = *(float *)(SystemConfigurationHandle + 0x94) + *(float *)(SystemConfigurationHandle + 0x94);
+      MatrixTransformMultiplier1 = *(float *)(SystemConfigurationHandle + 0x94) + *(float *)(SystemConfigurationHandle + 0x94);
       goto LAB_180131a76;
     }
     if (Utf8BufferSize != 5) {
       return;
     }
-    FloatVariable4 = *(float *)(SystemConfigurationHandle + 0x94) * 0.3;
+    MatrixTransformMultiplier1 = *(float *)(SystemConfigurationHandle + 0x94) * 0.3;
   }
   CalculatedFilterValue = *(float *)(SystemConfigurationHandle + 0x90) * 0.8;
 LAB_180131a76:
-  CalculateFloatValue(CharacterCode,ContextSecondaryFloat - *(float *)(SystemConfigurationHandle + 0x18),FilterInputValue,FloatVariable4);
+  CalculateFloatValue(CharacterCode,ContextSecondaryFloat - *(float *)(SystemConfigurationHandle + 0x18),FilterInputValue,MatrixTransformMultiplier1);
   return;
 }
 
@@ -152554,7 +152554,7 @@ float * ProcessSystemFloatContext(float *Utf8InputBuffer,uint Utf8BufferSize,uin
   unsigned long long MemoryAllocationIndex;
   unsigned long long UnicodeCodePoint;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   
@@ -152565,30 +152565,30 @@ float * ProcessSystemFloatContext(float *Utf8InputBuffer,uint Utf8BufferSize,uin
   FloatVariable7 = 0.0;
   if ((Utf8BufferSize & 1) != 0) {
     FloatVariable7 = (float)PerformSystemCalculation(0x14,Utf8SourcePointer);
-    FloatVariable4 = (float)PerformSystemCalculation(0x13);
-    FloatVariable5 = (float)PerformSystemCalculation(0x12);
+    MatrixTransformMultiplier1 = (float)PerformSystemCalculation(0x13);
+    MatrixTransformMultiplier2 = (float)PerformSystemCalculation(0x12);
     CalculatedDistance = (float)PerformSystemCalculation(0x11);
-    FloatVariable7 = (FloatVariable7 - FloatVariable4) + Utf8InputBuffer[1];
+    FloatVariable7 = (FloatVariable7 - MatrixTransformMultiplier1) + Utf8InputBuffer[1];
     Utf8InputBuffer[1] = FloatVariable7;
-    *Utf8InputBuffer = (FloatVariable5 - CalculatedDistance) + *Utf8InputBuffer;
+    *Utf8InputBuffer = (MatrixTransformMultiplier2 - CalculatedDistance) + *Utf8InputBuffer;
   }
   if ((MemoryAllocationIndex & 2) != 0) {
     FloatVariable7 = (float)PerformSystemCalculation(7,UnicodeCodePoint & 0xffffffff);
-    FloatVariable4 = (float)PerformSystemCalculation(6);
-    FloatVariable5 = (float)PerformSystemCalculation(5);
+    MatrixTransformMultiplier1 = (float)PerformSystemCalculation(6);
+    MatrixTransformMultiplier2 = (float)PerformSystemCalculation(5);
     CalculatedDistance = (float)PerformSystemCalculation(4);
-    FloatVariable7 = (FloatVariable7 - FloatVariable4) + Utf8InputBuffer[1];
+    FloatVariable7 = (FloatVariable7 - MatrixTransformMultiplier1) + Utf8InputBuffer[1];
     Utf8InputBuffer[1] = FloatVariable7;
-    *Utf8InputBuffer = (FloatVariable5 - CalculatedDistance) + *Utf8InputBuffer;
+    *Utf8InputBuffer = (MatrixTransformMultiplier2 - CalculatedDistance) + *Utf8InputBuffer;
   }
   if ((MemoryAllocationIndex & 4) != 0) {
     FloatVariable7 = (float)PerformSystemCalculation(0xb,UnicodeCodePoint & 0xffffffff);
-    FloatVariable4 = (float)PerformSystemCalculation(10);
-    FloatVariable5 = (float)PerformSystemCalculation(9);
+    MatrixTransformMultiplier1 = (float)PerformSystemCalculation(10);
+    MatrixTransformMultiplier2 = (float)PerformSystemCalculation(9);
     CalculatedDistance = (float)PerformSystemCalculation(8);
-    FloatVariable7 = (FloatVariable7 - FloatVariable4) + Utf8InputBuffer[1];
+    FloatVariable7 = (FloatVariable7 - MatrixTransformMultiplier1) + Utf8InputBuffer[1];
     Utf8InputBuffer[1] = FloatVariable7;
-    *Utf8InputBuffer = (FloatVariable5 - CalculatedDistance) + *Utf8InputBuffer;
+    *Utf8InputBuffer = (MatrixTransformMultiplier2 - CalculatedDistance) + *Utf8InputBuffer;
   }
   CharacterTablePointer = SystemConfigurationHandle;
   if ((Utf16EndPointer != 0.0) && (0.0 < *(float *)(SystemConfigurationHandle + SecondaryProcessingStatusOffset))) {
@@ -152643,30 +152643,30 @@ float * ConvertUtf8ToUtf16Encoding(float *Utf8InputBuffer, uint Utf8BufferSize, 
   AccumulatedResult = 0.0;
   if ((Utf8BufferSize & 1) != 0) {
     FloatVariable7 = (float)PerformSystemCalculation((int)ProcessingResult + 0x14,Utf8SourcePointer);
-    FloatVariable4 = (float)PerformSystemCalculation(0x13);
-    FloatVariable5 = (float)PerformSystemCalculation(0x12);
+    MatrixTransformMultiplier1 = (float)PerformSystemCalculation(0x13);
+    MatrixTransformMultiplier2 = (float)PerformSystemCalculation(0x12);
     CalculatedDistance = (float)PerformSystemCalculation(0x11);
-    FloatVariable7 = (FloatVariable7 - FloatVariable4) + Utf8InputBuffer[1];
+    FloatVariable7 = (FloatVariable7 - MatrixTransformMultiplier1) + Utf8InputBuffer[1];
     Utf8InputBuffer[1] = FloatVariable7;
-    *Utf8InputBuffer = (FloatVariable5 - CalculatedDistance) + *Utf8InputBuffer;
+    *Utf8InputBuffer = (MatrixTransformMultiplier2 - CalculatedDistance) + *Utf8InputBuffer;
   }
   if ((MemoryAllocationIndex & 2) != 0) {
     FloatVariable7 = (float)PerformSystemCalculation(7,UnicodeCodePoint & 0xffffffff);
-    FloatVariable4 = (float)PerformSystemCalculation(6);
-    FloatVariable5 = (float)PerformSystemCalculation(5);
+    MatrixTransformMultiplier1 = (float)PerformSystemCalculation(6);
+    MatrixTransformMultiplier2 = (float)PerformSystemCalculation(5);
     CalculatedDistance = (float)PerformSystemCalculation(4);
-    FloatVariable7 = (FloatVariable7 - FloatVariable4) + Utf8InputBuffer[1];
+    FloatVariable7 = (FloatVariable7 - MatrixTransformMultiplier1) + Utf8InputBuffer[1];
     Utf8InputBuffer[1] = FloatVariable7;
-    *Utf8InputBuffer = (FloatVariable5 - CalculatedDistance) + *Utf8InputBuffer;
+    *Utf8InputBuffer = (MatrixTransformMultiplier2 - CalculatedDistance) + *Utf8InputBuffer;
   }
   if ((MemoryAllocationIndex & 4) != 0) {
     FloatVariable7 = (float)PerformSystemCalculation(0xb,UnicodeCodePoint & 0xffffffff);
-    FloatVariable4 = (float)PerformSystemCalculation(10);
-    FloatVariable5 = (float)PerformSystemCalculation(9);
+    MatrixTransformMultiplier1 = (float)PerformSystemCalculation(10);
+    MatrixTransformMultiplier2 = (float)PerformSystemCalculation(9);
     CalculatedDistance = (float)PerformSystemCalculation(8);
-    FloatVariable7 = (FloatVariable7 - FloatVariable4) + Utf8InputBuffer[1];
+    FloatVariable7 = (FloatVariable7 - MatrixTransformMultiplier1) + Utf8InputBuffer[1];
     Utf8InputBuffer[1] = FloatVariable7;
-    *Utf8InputBuffer = (FloatVariable5 - CalculatedDistance) + *Utf8InputBuffer;
+    *Utf8InputBuffer = (MatrixTransformMultiplier2 - CalculatedDistance) + *Utf8InputBuffer;
   }
   CharacterTablePointer = SystemConfigurationHandle;
   if ((Utf16EndPointer != 0.0) && (0.0 < *(float *)(SystemConfigurationHandle + SecondaryProcessingStatusOffset))) {
@@ -154687,22 +154687,22 @@ void ProcessSystemFloatMatrixOperations(void
   if ((*(char *)(SystemContext + 0x1d20) != (char)CharacterLimitD) &&
      (*(int *)(SystemContext + 0x1cfc) == CharacterLimitD)) {
     BufferStatus = *(long long *)(SystemContext + 0x1c98);
-    FloatVariable5 = *(float *)(BufferStatus + 0x3d0);
+    MatrixTransformMultiplier2 = *(float *)(BufferStatus + 0x3d0);
     SecondaryFloatValue = (*(float *)(BufferStatus + 0x248) - *(float *)(BufferStatus + 0x40)) - BaseFloatValue;
     NormalizedParameterValue = (*(float *)(BufferStatus + 0x250) - *(float *)(BufferStatus + 0x40)) + BaseFloatValue;
     PrimaryFloatValue = (*(float *)(BufferStatus + 0x254) - *(float *)(BufferStatus + 0x44)) + BaseFloatValue;
     ProcessedFloatValue8 = (*(float *)(BufferStatus + 0x24c) - *(float *)(BufferStatus + 0x44)) - BaseFloatValue;
-    if ((FloatVariable5 < SecondaryFloatValue) ||
+    if ((MatrixTransformMultiplier2 < SecondaryFloatValue) ||
        (((*(float *)(BufferStatus + 0x3d4) <= ProcessedFloatValue8 && ProcessedFloatValue8 != *(float *)(BufferStatus + 0x3d4) ||
          (NormalizedParameterValue < *(float *)(BufferStatus + 0x3d8))) || (PrimaryFloatValue < *(float *)(BufferStatus + 0x3dc))))) {
-      FloatVariable4 = *(float *)(DataNodePointer + 0x19fc) * *(float *)(BufferStatus + 0x2d8) * *(float *)(BufferStatus + 0x2dc              * 0.5;
+      MatrixTransformMultiplier1 = *(float *)(DataNodePointer + 0x19fc) * *(float *)(BufferStatus + 0x2d8) * *(float *)(BufferStatus + 0x2dc              * 0.5;
       FloatVariable7 = PrimaryFloatValue - ProcessedFloatValue8;
-      if (FloatVariable4 <= PrimaryFloatValue - ProcessedFloatValue8) {
-        FloatVariable7 = FloatVariable4;
+      if (MatrixTransformMultiplier1 <= PrimaryFloatValue - ProcessedFloatValue8) {
+        FloatVariable7 = MatrixTransformMultiplier1;
       }
       CalculatedDistance = NormalizedParameterValue - SecondaryFloatValue;
-      if (FloatVariable4 <= NormalizedParameterValue - SecondaryFloatValue) {
-        CalculatedDistance = FloatVariable4;
+      if (MatrixTransformMultiplier1 <= NormalizedParameterValue - SecondaryFloatValue) {
+        CalculatedDistance = MatrixTransformMultiplier1;
       }
       ProcessedFloatValue8 = ProcessedFloatValue8 - (float)((uint)FloatVariable7 ^ AuxiliaryFloat9);
       SecondaryFloatValue = SecondaryFloatValue - (float)((uint)CalculatedDistance ^ AuxiliaryFloat9);
@@ -154711,8 +154711,8 @@ void ProcessSystemFloatMatrixOperations(void
       if (ProcessedFloatValue8 <= *(float *)(BufferStatus + 0x3d4)) {
         ProcessedFloatValue8 = *(float *)(BufferStatus + 0x3d4);
       }
-      if (SecondaryFloatValue <= FloatVariable5) {
-        SecondaryFloatValue = FloatVariable5;
+      if (SecondaryFloatValue <= MatrixTransformMultiplier2) {
+        SecondaryFloatValue = MatrixTransformMultiplier2;
       }
       *(float *)(BufferStatus + 0x3d4) = ProcessedFloatValue8;
       *(float *)(BufferStatus + 0x3d0) = SecondaryFloatValue;
@@ -154733,14 +154733,14 @@ void ProcessSystemFloatMatrixOperations(void
       (MemoryBlockIndex = (long long)*(int *)(SystemContext + 0x1cfc) + 0x3d,
       *(float *)(BufferStatus + 8 + MemoryBlockIndex * 0x10) < *(float *)(BufferStatus + MemoryBlockIndex * 0x10))) ||
      (*(float *)(BufferStatus + 0xc + MemoryBlockIndex * 0x10) < *(float *)(BufferStatus + 4 + MemoryBlockIndex * 0x10))) {
-    FloatVariable5 = 0.0;
+    MatrixTransformMultiplier2 = 0.0;
     MemoryAllocationThreshold1 = 0.0;
     NormalizedParameterValue = 0.0;
     PrimaryFloatValue = 0.0;
   }
   else {
     pSystemContextPrimaryFloat = (float *)(BufferStatus + MemoryBlockIndex * 0x10);
-    FloatVariable5 = *pSystemContextPrimaryFloat;
+    MatrixTransformMultiplier2 = *pSystemContextPrimaryFloat;
     ProcessedFloatValue8 = pSystemContextPrimaryFloat[1];
     NormalizedParameterValue = pSystemContextPrimaryFloat[2];
     PrimaryFloatValue = pSystemContextPrimaryFloat[3];
@@ -154753,19 +154753,19 @@ void ProcessSystemFloatMatrixOperations(void
     uStack0000000000000038 =
          CONCAT44(*(float *)(BufferStatus + 0x44) + PrimaryFloatValue,*(float *)(BufferStatus + 0x40) + NormalizedParameterValue);
     uStack0000000000000030 =
-         CONCAT44(*(float *)(BufferStatus + 0x44) + ProcessedFloatValue8,*(float *)(BufferStatus + 0x40) + FloatVariable5);
+         CONCAT44(*(float *)(BufferStatus + 0x44) + ProcessedFloatValue8,*(float *)(BufferStatus + 0x40) + MatrixTransformMultiplier2);
   }
   *(void *)(SystemContext + 0x1cc4) = uStack0000000000000030;
   *(void *)(SystemContext + 0x1ccc) = uStack0000000000000038;
   *(float *)(SystemContext + 0x1cd0) = SecondaryFloatValue + *(float *)(SystemContext + 0x1cd0);
   *(float *)(SystemContext + 0x1cc8) = SecondaryFloatValue + *(float *)(SystemContext + 0x1cc8);
-  FloatVariable5 = *(float *)(SystemContext + 0x1cc4) + BaseFloatValue;
+  MatrixTransformMultiplier2 = *(float *)(SystemContext + 0x1cc4) + BaseFloatValue;
   *(int *)(SystemContext + 0x1cd4) = CharacterLimitD;
-  if (*(float *)(SystemContext + 0x1ccc) <= FloatVariable5) {
-    FloatVariable5 = *(float *)(SystemContext + 0x1ccc);
+  if (*(float *)(SystemContext + 0x1ccc) <= MatrixTransformMultiplier2) {
+    MatrixTransformMultiplier2 = *(float *)(SystemContext + 0x1ccc);
   }
-  *(float *)(SystemContext + 0x1cc4) = FloatVariable5;
-  *(float *)(SystemContext + 0x1ccc) = FloatVariable5;
+  *(float *)(SystemContext + 0x1cc4) = MatrixTransformMultiplier2;
+  *(float *)(SystemContext + 0x1ccc) = MatrixTransformMultiplier2;
   return;
 }
 
@@ -154789,7 +154789,7 @@ void ProcessSystemValidationEC4(void)
   long long DataNodePointer;
   uint32_t CharacterLimitD;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -154802,22 +154802,22 @@ void ProcessSystemValidationEC4(void)
   uint64_t uStack0000000000000030;
   uint64_t uStack0000000000000038;
   
-  FloatVariable5 = *(float *)(ProcessingResult + 0x3d0);
+  MatrixTransformMultiplier2 = *(float *)(ProcessingResult + 0x3d0);
   SecondaryFloatValue = (*(float *)(ProcessingResult + 0x248) - *(float *)(ProcessingResult + 0x40)) - BaseFloatValue;
   NormalizedParameterValue = (*(float *)(ProcessingResult + 0x250) - *(float *)(ProcessingResult + 0x40)) + BaseFloatValue;
   PrimaryFloatValue = (*(float *)(ProcessingResult + 0x254) - *(float *)(ProcessingResult + 0x44)) + BaseFloatValue;
   ProcessedFloatValue8 = (*(float *)(ProcessingResult + 0x24c) - *(float *)(ProcessingResult + 0x44)) - BaseFloatValue;
-  if ((((FloatVariable5 < SecondaryFloatValue) ||
+  if ((((MatrixTransformMultiplier2 < SecondaryFloatValue) ||
        (*(float *)(ProcessingResult + 0x3d4) <= ProcessedFloatValue8 && ProcessedFloatValue8 != *(float *)(ProcessingResult + 0x3d4))) ||
       (NormalizedParameterValue < *(float *)(ProcessingResult + 0x3d8))) || (PrimaryFloatValue < *(float *)(ProcessingResult + 0x3dc))) {
-    FloatVariable4 = *(float *)(DataNodePointer + 0x19fc) * *(float *)(ProcessingResult + 0x2d8) * *(float *)(ProcessingResult + 0x2dc            * 0.5;
+    MatrixTransformMultiplier1 = *(float *)(DataNodePointer + 0x19fc) * *(float *)(ProcessingResult + 0x2d8) * *(float *)(ProcessingResult + 0x2dc            * 0.5;
     FloatVariable7 = PrimaryFloatValue - ProcessedFloatValue8;
-    if (FloatVariable4 <= PrimaryFloatValue - ProcessedFloatValue8) {
-      FloatVariable7 = FloatVariable4;
+    if (MatrixTransformMultiplier1 <= PrimaryFloatValue - ProcessedFloatValue8) {
+      FloatVariable7 = MatrixTransformMultiplier1;
     }
     CalculatedDistance = NormalizedParameterValue - SecondaryFloatValue;
-    if (FloatVariable4 <= NormalizedParameterValue - SecondaryFloatValue) {
-      CalculatedDistance = FloatVariable4;
+    if (MatrixTransformMultiplier1 <= NormalizedParameterValue - SecondaryFloatValue) {
+      CalculatedDistance = MatrixTransformMultiplier1;
     }
     ProcessedFloatValue8 = ProcessedFloatValue8 - (float)((uint)FloatVariable7 ^ AuxiliaryFloat9);
     SecondaryFloatValue = SecondaryFloatValue - (float)((uint)CalculatedDistance ^ AuxiliaryFloat9);
@@ -154826,8 +154826,8 @@ void ProcessSystemValidationEC4(void)
     if (ProcessedFloatValue8 <= *(float *)(ProcessingResult + 0x3d4)) {
       ProcessedFloatValue8 = *(float *)(ProcessingResult + 0x3d4);
     }
-    if (SecondaryFloatValue <= FloatVariable5) {
-      SecondaryFloatValue = FloatVariable5;
+    if (SecondaryFloatValue <= MatrixTransformMultiplier2) {
+      SecondaryFloatValue = MatrixTransformMultiplier2;
     }
     *(float *)(ProcessingResult + 0x3d4) = ProcessedFloatValue8;
     *(float *)(ProcessingResult + 0x3d0) = SecondaryFloatValue;
@@ -154847,14 +154847,14 @@ void ProcessSystemValidationEC4(void)
       (MemoryBlockIndex = (long long)*(int *)(SystemContext + 0x1cfc) + 0x3d,
       *(float *)(BufferStatus + 8 + MemoryBlockIndex * 0x10) < *(float *)(BufferStatus + MemoryBlockIndex * 0x10))) ||
      (*(float *)(BufferStatus + 0xc + MemoryBlockIndex * 0x10) < *(float *)(BufferStatus + 4 + MemoryBlockIndex * 0x10))) {
-    FloatVariable5 = 0.0;
+    MatrixTransformMultiplier2 = 0.0;
     MemoryAllocationThreshold1 = 0.0;
     NormalizedParameterValue = 0.0;
     PrimaryFloatValue = 0.0;
   }
   else {
     pSystemContextPrimaryFloat = (float *)(BufferStatus + MemoryBlockIndex * 0x10);
-    FloatVariable5 = *pSystemContextPrimaryFloat;
+    MatrixTransformMultiplier2 = *pSystemContextPrimaryFloat;
     ProcessedFloatValue8 = pSystemContextPrimaryFloat[1];
     NormalizedParameterValue = pSystemContextPrimaryFloat[2];
     PrimaryFloatValue = pSystemContextPrimaryFloat[3];
@@ -154867,19 +154867,19 @@ void ProcessSystemValidationEC4(void)
     uStack0000000000000038 =
          CONCAT44(*(float *)(BufferStatus + 0x44) + PrimaryFloatValue,*(float *)(BufferStatus + 0x40) + NormalizedParameterValue);
     uStack0000000000000030 =
-         CONCAT44(*(float *)(BufferStatus + 0x44) + ProcessedFloatValue8,*(float *)(BufferStatus + 0x40) + FloatVariable5);
+         CONCAT44(*(float *)(BufferStatus + 0x44) + ProcessedFloatValue8,*(float *)(BufferStatus + 0x40) + MatrixTransformMultiplier2);
   }
   *(void *)(SystemContext + 0x1cc4) = uStack0000000000000030;
   *(void *)(SystemContext + 0x1ccc) = uStack0000000000000038;
   *(float *)(SystemContext + 0x1cd0) = SecondaryFloatValue + *(float *)(SystemContext + 0x1cd0);
   *(float *)(SystemContext + 0x1cc8) = SecondaryFloatValue + *(float *)(SystemContext + 0x1cc8);
-  FloatVariable5 = *(float *)(SystemContext + 0x1cc4) + BaseFloatValue;
+  MatrixTransformMultiplier2 = *(float *)(SystemContext + 0x1cc4) + BaseFloatValue;
   *(uint32_t *)(SystemContext + 0x1cd4) = CharacterLimitD;
-  if (*(float *)(SystemContext + 0x1ccc) <= FloatVariable5) {
-    FloatVariable5 = *(float *)(SystemContext + 0x1ccc);
+  if (*(float *)(SystemContext + 0x1ccc) <= MatrixTransformMultiplier2) {
+    MatrixTransformMultiplier2 = *(float *)(SystemContext + 0x1ccc);
   }
-  *(float *)(SystemContext + 0x1cc4) = FloatVariable5;
-  *(float *)(SystemContext + 0x1ccc) = FloatVariable5;
+  *(float *)(SystemContext + 0x1cc4) = MatrixTransformMultiplier2;
+  *(float *)(SystemContext + 0x1ccc) = MatrixTransformMultiplier2;
   return;
 }
 
@@ -154901,7 +154901,7 @@ void ProcessSystemValidationFDB(void)
   long long SystemContext;
   uint32_t CharacterLimitD;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float BaseFloatValue;
@@ -154914,15 +154914,15 @@ void ProcessSystemValidationFDB(void)
       (MemoryBlockIndex = (long long)*(int *)(SystemContext + 0x1cfc) + 0x3d,
       *(float *)(BufferStatus + 8 + MemoryBlockIndex * 0x10) < *(float *)(BufferStatus + MemoryBlockIndex * 0x10))) ||
      (*(float *)(BufferStatus + 0xc + MemoryBlockIndex * 0x10) < *(float *)(BufferStatus + 4 + MemoryBlockIndex * 0x10))) {
-    FloatVariable4 = 0.0;
-    FloatVariable5 = 0.0;
+    MatrixTransformMultiplier1 = 0.0;
+    MatrixTransformMultiplier2 = 0.0;
     CalculatedDistance = 0.0;
     FloatVariable7 = 0.0;
   }
   else {
     pSystemContextPrimaryFloat = (float *)(BufferStatus + MemoryBlockIndex * 0x10);
-    FloatVariable4 = *pSystemContextPrimaryFloat;
-    FloatVariable5 = pSystemContextPrimaryFloat[1];
+    MatrixTransformMultiplier1 = *pSystemContextPrimaryFloat;
+    MatrixTransformMultiplier2 = pSystemContextPrimaryFloat[1];
     CalculatedDistance = pSystemContextPrimaryFloat[2];
     FloatVariable7 = pSystemContextPrimaryFloat[3];
   }
@@ -154934,19 +154934,19 @@ void ProcessSystemValidationFDB(void)
     uStack0000000000000038 =
          CONCAT44(*(float *)(BufferStatus + 0x44) + FloatVariable7,*(float *)(BufferStatus + 0x40) + CalculatedDistance);
     uStack0000000000000030 =
-         CONCAT44(*(float *)(BufferStatus + 0x44) + FloatVariable5,*(float *)(BufferStatus + 0x40) + FloatVariable4);
+         CONCAT44(*(float *)(BufferStatus + 0x44) + MatrixTransformMultiplier2,*(float *)(BufferStatus + 0x40) + MatrixTransformMultiplier1);
   }
   *(void *)(SystemContext + 0x1cc4) = uStack0000000000000030;
   *(void *)(SystemContext + 0x1ccc) = uStack0000000000000038;
   *(float *)(SystemContext + 0x1cd0) = SecondaryFloatValue + *(float *)(SystemContext + 0x1cd0);
   *(float *)(SystemContext + 0x1cc8) = SecondaryFloatValue + *(float *)(SystemContext + 0x1cc8);
-  FloatVariable4 = *(float *)(SystemContext + 0x1cc4) + BaseFloatValue;
+  MatrixTransformMultiplier1 = *(float *)(SystemContext + 0x1cc4) + BaseFloatValue;
   *(uint32_t *)(SystemContext + 0x1cd4) = CharacterLimitD;
-  if (*(float *)(SystemContext + 0x1ccc) <= FloatVariable4) {
-    FloatVariable4 = *(float *)(SystemContext + 0x1ccc);
+  if (*(float *)(SystemContext + 0x1ccc) <= MatrixTransformMultiplier1) {
+    MatrixTransformMultiplier1 = *(float *)(SystemContext + 0x1ccc);
   }
-  *(float *)(SystemContext + 0x1cc4) = FloatVariable4;
-  *(float *)(SystemContext + 0x1ccc) = FloatVariable4;
+  *(float *)(SystemContext + 0x1cc4) = MatrixTransformMultiplier1;
+  *(float *)(SystemContext + 0x1ccc) = MatrixTransformMultiplier1;
   return;
 }
 
@@ -154969,7 +154969,7 @@ void ProcessCharacterEncodingConversionFFD(long long CharacterCode)
   uint32_t CharacterLimitD;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float BaseFloatValue;
   float SecondaryFloatValue;
@@ -154980,15 +154980,15 @@ void ProcessCharacterEncodingConversionFFD(long long CharacterCode)
   if ((*(float *)(CharacterCode + 8 + BufferStatus * 0x10) < *(float *)(CharacterCode + BufferStatus * 0x10)) ||
      (*(float *)(CharacterCode + 0xc + BufferStatus * 0x10) < *(float *)(CharacterCode + 4 + BufferStatus * 0x10))) {
     CalculatedFilterValue = 0.0;
-    FloatVariable4 = 0.0;
-    FloatVariable5 = 0.0;
+    MatrixTransformMultiplier1 = 0.0;
+    MatrixTransformMultiplier2 = 0.0;
     CalculatedDistance = 0.0;
   }
   else {
     pSystemContextPrimaryFloat = (float *)(CharacterCode + BufferStatus * 0x10);
     CalculatedFilterValue = *pSystemContextPrimaryFloat;
-    FloatVariable4 = pSystemContextPrimaryFloat[1];
-    FloatVariable5 = pSystemContextPrimaryFloat[2];
+    MatrixTransformMultiplier1 = pSystemContextPrimaryFloat[1];
+    MatrixTransformMultiplier2 = pSystemContextPrimaryFloat[2];
     CalculatedDistance = pSystemContextPrimaryFloat[3];
   }
   if (CharacterCode == 0) {
@@ -154997,9 +154997,9 @@ void ProcessCharacterEncodingConversionFFD(long long CharacterCode)
   }
   else {
     uStack0000000000000038 =
-         CONCAT44(*(float *)(CharacterCode + 0x44) + CalculatedDistance,*(float *)(CharacterCode + 0x40) + FloatVariable5);
+         CONCAT44(*(float *)(CharacterCode + 0x44) + CalculatedDistance,*(float *)(CharacterCode + 0x40) + MatrixTransformMultiplier2);
     uStack0000000000000030 =
-         CONCAT44(*(float *)(CharacterCode + 0x44) + FloatVariable4,*(float *)(CharacterCode + 0x40) + FilterInputValue);
+         CONCAT44(*(float *)(CharacterCode + 0x44) + MatrixTransformMultiplier1,*(float *)(CharacterCode + 0x40) + FilterInputValue);
   }
   *(void *)(SystemContext + 0x1cc4) = uStack0000000000000030;
   *(void *)(SystemContext + 0x1ccc) = uStack0000000000000038;
@@ -156704,7 +156704,7 @@ void CoreEngineProcessSystemOperationStatus(void)
   unsigned long long MemoryAllocationIndex;
   char OperationStatus;
   char OperationStatus;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   uint DataSize;
   uint8_t *StringProcessingStatus;
   uint64_t SystemMemoryAllocationResult;
@@ -156775,12 +156775,12 @@ void CoreEngineProcessSystemOperationStatus(void)
     else {
       OperationStatus = '\x01';
     }
-    pFloatVariable5 = (float *)(SystemContext + 0x3b4);
-    if (pFloatVariable5 == (float *)0x0) {
-      pFloatVariable5 = (float *)(SystemContext + 0x118);
+    pMatrixTransformMultiplier2 = (float *)(SystemContext + 0x3b4);
+    if (pMatrixTransformMultiplier2 == (float *)0x0) {
+      pMatrixTransformMultiplier2 = (float *)(SystemContext + 0x118);
     }
-    if ((*pFloatVariable5 <= -256000.0 && *pFloatVariable5 != -256000.0) ||
-       (pFloatVariable5[1] <= -256000.0 && pFloatVariable5[1] != -256000.0)) {
+    if ((*pMatrixTransformMultiplier2 <= -256000.0 && *pMatrixTransformMultiplier2 != -256000.0) ||
+       (pMatrixTransformMultiplier2[1] <= -256000.0 && pMatrixTransformMultiplier2[1] != -256000.0)) {
       OperationStatus = '\0';
     }
     else {
@@ -156796,16 +156796,16 @@ void CoreEngineProcessSystemOperationStatus(void)
         SystemMemoryAllocationResult = 1;
         StringProcessingStatus = &SecondaryFloatStackBuffer;
 LAB_180133c1e:
-        pFloatVariable5 = (float *)AllocateSystemFloatArray(StringProcessingStatus,SystemMemoryAllocationResult,0,0);
-        SystemContextPrimaryFloat4 = pFloatVariable5[1];
-        if ((*pFloatVariable5 != FloatingPointRegisterA) || (SystemContextPrimaryFloat4 != FloatingPointRegisterA)) {
+        pMatrixTransformMultiplier2 = (float *)AllocateSystemFloatArray(StringProcessingStatus,SystemMemoryAllocationResult,0,0);
+        SystemContextPrimaryFloat4 = pMatrixTransformMultiplier2[1];
+        if ((*pMatrixTransformMultiplier2 != FloatingPointRegisterA) || (SystemContextPrimaryFloat4 != FloatingPointRegisterA)) {
           SystemFloatValue = *(float *)(SystemContext + 0xbc);
           if (*(float *)(SystemContext + 0xb8) <= *(float *)(SystemContext + 0xbc)) {
             SystemFloatValue = *(float *)(SystemContext + 0xb8);
           }
           EncodingConversionResult = *(long long *)(EncodingConversionResult + 0x3a0);
           SystemFloatValue = (float)(int)(SystemFloatValue * *(float *)(SystemContext + 0x18) * 800.0);
-          *(float *)(EncodingConversionResult + 0x40) = *pFloatVariable5 * SystemFloatValue + *(float *)(EncodingConversionResult + 0x40);
+          *(float *)(EncodingConversionResult + 0x40) = *pMatrixTransformMultiplier2 * SystemFloatValue + *(float *)(EncodingConversionResult + 0x40);
           *(float *)(EncodingConversionResult + 0x44) = SystemContextPrimaryFloat4 * SystemFloatValue + *(float *)(EncodingConversionResult + 0x44);
           *(uint8_t *)(SystemContext + 0x1d07) = 1;
           if (((*(uint *)(*(long long *)(SystemContext + 0x1cd8) + 0xc) & 0x100) == 0) &&
@@ -157389,12 +157389,12 @@ void CoreEngineProcessSystemMemoryAllocation(void)
     CalculatedFilterValue = *(float *)(SystemDataTablePointer + 0xc);
     uStack_2c = 0x7f7fffff;
     FunctionAddress = 1;
-    FloatVariable4 = *(float *)(SystemDataTablePointer + 8);
+    MatrixTransformMultiplier1 = *(float *)(SystemDataTablePointer + 8);
     *(uint32_t *)(MemoryPoolBlockSize + 0x1bfc) = 0x3f000000;
     *(float *)(MemoryPoolBlockSize + 0x1bf8) = SystemContextPrimaryFloat * 0.5 + FilterInputValue;
     *(uint32_t *)(MemoryPoolBlockSize + 0x1c00) = 0x3f000000;
     *(uint32_t *)(MemoryPoolBlockSize + 0x1bd0) = 1;
-    *(float *)(MemoryPoolBlockSize + 0x1bf4) = ContextSecondaryFloat * 0.5 + FloatVariable4;
+    *(float *)(MemoryPoolBlockSize + 0x1bf4) = ContextSecondaryFloat * 0.5 + MatrixTransformMultiplier1;
     *(uint8_t *)(MemoryPoolBlockSize + 0x1c14) = 1;
     SystemContextPrimaryFloat = *(float *)(MemoryPoolBlockSize + 0x162c);
     ContextSecondaryFloat = *(float *)(MemoryPoolBlockSize + 0x1630);
@@ -157524,12 +157524,12 @@ void CoreEngineProcessSystemFloatFilter(void)
   CalculatedFilterValue = *(float *)(SystemDataTablePointer + 0xc);
   uStack000000000000002c = 0x7f7fffff;
   PrimaryReturnCode = 1;
-  FloatVariable4 = *(float *)(SystemDataTablePointer + 8);
+  MatrixTransformMultiplier1 = *(float *)(SystemDataTablePointer + 8);
   *(uint32_t *)(DataNodePointer + 0x1bfc) = 0x3f000000;
   *(float *)(DataNodePointer + 0x1bf8) = SystemContextPrimaryFloat * 0.5 + FilterInputValue;
   *(uint32_t *)(DataNodePointer + 0x1c00) = 0x3f000000;
   *(uint32_t *)(DataNodePointer + 0x1bd0) = 1;
-  *(float *)(DataNodePointer + 0x1bf4) = ContextSecondaryFloat * 0.5 + FloatVariable4;
+  *(float *)(DataNodePointer + 0x1bf4) = ContextSecondaryFloat * 0.5 + MatrixTransformMultiplier1;
   *(uint8_t *)(DataNodePointer + 0x1c14) = 1;
   SystemContextPrimaryFloat = *(float *)(DataNodePointer + 0x162c);
   ContextSecondaryFloat = *(float *)(DataNodePointer + 0x1630);
@@ -157657,12 +157657,12 @@ void CoreEngineProcessSystemFloatValidator(void)
   CalculatedFilterValue = *(float *)(SystemDataTablePointer + 0xc);
   uStack000000000000002c = 0x7f7fffff;
   PrimaryReturnCode = 1;
-  FloatVariable4 = *(float *)(SystemDataTablePointer + 8);
+  MatrixTransformMultiplier1 = *(float *)(SystemDataTablePointer + 8);
   *(uint32_t *)(DataNodePointer + 0x1bfc) = 0x3f000000;
   *(float *)(DataNodePointer + 0x1bf8) = SystemContextPrimaryFloat * 0.5 + FilterInputValue;
   *(uint32_t *)(DataNodePointer + 0x1c00) = 0x3f000000;
   *(uint32_t *)(DataNodePointer + 0x1bd0) = 1;
-  *(float *)(DataNodePointer + 0x1bf4) = ContextSecondaryFloat * 0.5 + FloatVariable4;
+  *(float *)(DataNodePointer + 0x1bf4) = ContextSecondaryFloat * 0.5 + MatrixTransformMultiplier1;
   *(uint8_t *)(DataNodePointer + 0x1c14) = 1;
   SystemContextPrimaryFloat = *(float *)(DataNodePointer + 0x162c);
   ContextSecondaryFloat = *(float *)(DataNodePointer + 0x1630);
@@ -158299,13 +158299,13 @@ int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,u
         SystemStatusCode = *(uint *)(MemoryPoolBlockSize + 0xc);
       }
       MemoryAllocationIndexPrimary = (unsigned long long)MemoryAllocationCounter;
-      FloatVariable4 = *(float *)((long long)(int)SystemStatusCode * 0x1c + *(long long *)(MemoryPoolBlockSize + 0x38));
+      MatrixTransformMultiplier1 = *(float *)((long long)(int)SystemStatusCode * 0x1c + *(long long *)(MemoryPoolBlockSize + 0x38));
       pSystemContextPrimaryFloat = (float *)(UnicodeCharacterCode + 0xc + CharacterTablePointer);
       *pSystemContextPrimaryFloat = (float)(int)((ContextSecondaryFloat2 * *(float *)((long long)MatchCounter * 0x1c +
                                                  *(long long *)(MemoryPoolBlockSize + 0x38)) + ContextSecondaryFloat3 + ContextSecondaryFloat4) -
                             1.0);
       pSystemContextPrimaryFloat[1] = -3.4028235e+38;
-      pSystemContextPrimaryFloat[2] = (float)(int)((ContextSecondaryFloat2 * FloatVariable4 + ContextSecondaryFloat3 + ContextSecondaryFloat4) - 1.0);
+      pSystemContextPrimaryFloat[2] = (float)(int)((ContextSecondaryFloat2 * MatrixTransformMultiplier1 + ContextSecondaryFloat3 + ContextSecondaryFloat4) - 1.0);
       pSystemContextPrimaryFloat[3] = 3.4028235e+38;
       ContextSecondaryFloat3 = *(float *)(UnicodeCharacterCode + 0x10 + CharacterTablePointer);
       if (ContextSecondaryFloat3 <= *(float *)(AllocatedMemorySize + 0x22c)) {
@@ -158349,10 +158349,10 @@ int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,u
   ContextSecondaryFloat3 = *(float *)(MemoryBoundaryEnd + 0x18);
   ContextSecondaryFloat2 = *(float *)(MemoryBoundaryEnd + 0x14);
   ContextSecondaryFloat4 = *(float *)(((long long)*(int *)(MemoryBoundaryEnd + 0xc) + 1) * 0x1c + *(long long *)(MemoryBoundaryEnd + 0x38));
-  FloatVariable4 = *(float *)((long long)*(int *)(MemoryBoundaryEnd + 0xc) * 0x1c + *(long long *)(MemoryBoundaryEnd + 0x38));
+  MatrixTransformMultiplier1 = *(float *)((long long)*(int *)(MemoryBoundaryEnd + 0xc) * 0x1c + *(long long *)(MemoryBoundaryEnd + 0x38));
   *(uint8_t *)(*(long long *)(AllocatedMemorySize + 0x1af8) + 0xb1) = 1;
   long long AllocatedMemorySize = *(long long *)(AllocatedMemorySize + 0x1af8);
-  ContextSecondaryFloat3 = (ContextSecondaryFloat4 - FloatVariable4) * (ContextSecondaryFloat3 - ContextSecondaryFloat2) * 0.65;
+  ContextSecondaryFloat3 = (ContextSecondaryFloat4 - MatrixTransformMultiplier1) * (ContextSecondaryFloat3 - ContextSecondaryFloat2) * 0.65;
   if (ContextSecondaryFloat3 == 0.0) {
     ContextSecondaryFloat3 = *(float *)(AllocatedMemorySize + 0x284);
   }
@@ -158561,13 +158561,13 @@ int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,u
         SystemStatusCode = *(uint *)(MemoryPoolBlockSize + 0xc);
       }
       MemoryAllocationIndexPrimary = (unsigned long long)MemoryAllocationCounter;
-      FloatVariable4 = *(float *)((long long)(int)SystemStatusCode * 0x1c + *(long long *)(MemoryPoolBlockSize + 0x38));
+      MatrixTransformMultiplier1 = *(float *)((long long)(int)SystemStatusCode * 0x1c + *(long long *)(MemoryPoolBlockSize + 0x38));
       pSystemContextPrimaryFloat = (float *)(UnicodeCharacterCode + 0xc + CharacterTablePointer);
       *pSystemContextPrimaryFloat = (float)(int)((ContextSecondaryFloat2 * *(float *)((long long)MatchCounter * 0x1c +
                                                  *(long long *)(MemoryPoolBlockSize + 0x38)) + ContextSecondaryFloat3 + ContextSecondaryFloat4) -
                             1.0);
       pSystemContextPrimaryFloat[1] = -3.4028235e+38;
-      pSystemContextPrimaryFloat[2] = (float)(int)((ContextSecondaryFloat2 * FloatVariable4 + ContextSecondaryFloat3 + ContextSecondaryFloat4) - 1.0);
+      pSystemContextPrimaryFloat[2] = (float)(int)((ContextSecondaryFloat2 * MatrixTransformMultiplier1 + ContextSecondaryFloat3 + ContextSecondaryFloat4) - 1.0);
       pSystemContextPrimaryFloat[3] = 3.4028235e+38;
       ContextSecondaryFloat3 = *(float *)(UnicodeCharacterCode + 0x10 + CharacterTablePointer);
       if (ContextSecondaryFloat3 <= *(float *)(AllocatedMemorySize + 0x22c)) {
@@ -158611,10 +158611,10 @@ int * FindOrCreateUtf8EncodingEntry(long long CharacterCode,int Utf8BufferSize,u
   ContextSecondaryFloat3 = *(float *)(MemoryBoundaryEnd + 0x18);
   ContextSecondaryFloat2 = *(float *)(MemoryBoundaryEnd + 0x14);
   ContextSecondaryFloat4 = *(float *)(((long long)*(int *)(MemoryBoundaryEnd + 0xc) + 1) * 0x1c + *(long long *)(MemoryBoundaryEnd + 0x38));
-  FloatVariable4 = *(float *)((long long)*(int *)(MemoryBoundaryEnd + 0xc) * 0x1c + *(long long *)(MemoryBoundaryEnd + 0x38));
+  MatrixTransformMultiplier1 = *(float *)((long long)*(int *)(MemoryBoundaryEnd + 0xc) * 0x1c + *(long long *)(MemoryBoundaryEnd + 0x38));
   *(uint8_t *)(*(long long *)(AllocatedMemorySize + 0x1af8) + 0xb1) = 1;
   MemoryBoundaryEnd = *(long long *)(AllocatedMemorySize + 0x1af8);
-  ContextSecondaryFloat3 = (ContextSecondaryFloat4 - FloatVariable4) * (ContextSecondaryFloat3 - ContextSecondaryFloat2) * 0.65;
+  ContextSecondaryFloat3 = (ContextSecondaryFloat4 - MatrixTransformMultiplier1) * (ContextSecondaryFloat3 - ContextSecondaryFloat2) * 0.65;
   if (ContextSecondaryFloat3 == 0.0) {
     ContextSecondaryFloat3 = *(float *)(MemoryBoundaryEnd + 0x284);
   }
@@ -158827,13 +158827,13 @@ void ProcessUtf8CharacterEncodingAndMemoryAllocation(uint64_t CharacterCode,int 
         ProcessInputStringBuffer = *(uint *)(MemoryPoolBlockSize + 0xc);
       }
       MemoryAllocationHandle = (unsigned long long)Utf16Char9;
-      FloatVariable4 = *(float *)((long long)(int)ProcessInputStringBuffer * 0x1c + *(long long *)(MemoryPoolBlockSize + 0x38));
+      MatrixTransformMultiplier1 = *(float *)((long long)(int)ProcessInputStringBuffer * 0x1c + *(long long *)(MemoryPoolBlockSize + 0x38));
       pSystemContextPrimaryFloat = (float *)(Utf16ConversionContext + 0xc + CharacterTablePointer6);
       *pSystemContextPrimaryFloat = (float)(int)((ContextSecondaryFloat0 * *(float *)((long long)ArrayIndex * 0x1c +
                                                  *(long long *)(MemoryPoolBlockSize + 0x38)) + ContextSecondaryFloat2 + ContextSecondaryFloat3) -
                             1.0);
       pSystemContextPrimaryFloat[1] = -3.4028235e+38;
-      pSystemContextPrimaryFloat[2] = (float)(int)((ContextSecondaryFloat0 * FloatVariable4 + ContextSecondaryFloat2 + ContextSecondaryFloat3) - 1.0);
+      pSystemContextPrimaryFloat[2] = (float)(int)((ContextSecondaryFloat0 * MatrixTransformMultiplier1 + ContextSecondaryFloat2 + ContextSecondaryFloat3) - 1.0);
       pSystemContextPrimaryFloat[3] = 3.4028235e+38;
       ContextSecondaryFloat2 = *(float *)(Utf16ConversionContext + 0x10 + CharacterTablePointer6);
       if (ContextSecondaryFloat2 <= *(float *)(AllocatedMemorySize + 0x22c)) {
@@ -158877,10 +158877,10 @@ void ProcessUtf8CharacterEncodingAndMemoryAllocation(uint64_t CharacterCode,int 
   ContextSecondaryFloat2 = *(float *)(MemoryBoundaryEnd + 0x18);
   ContextSecondaryFloat0 = *(float *)(MemoryBoundaryEnd + 0x14);
   ContextSecondaryFloat3 = *(float *)(((long long)*(int *)(MemoryBoundaryEnd + 0xc) + 1) * 0x1c + *(long long *)(MemoryBoundaryEnd + 0x38));
-  FloatVariable4 = *(float *)((long long)*(int *)(MemoryBoundaryEnd + 0xc) * 0x1c + *(long long *)(MemoryBoundaryEnd + 0x38));
+  MatrixTransformMultiplier1 = *(float *)((long long)*(int *)(MemoryBoundaryEnd + 0xc) * 0x1c + *(long long *)(MemoryBoundaryEnd + 0x38));
   *(uint8_t *)(*(long long *)(AllocatedMemorySize + 0x1af8) + 0xb1) = 1;
   MemoryBoundaryEnd = *(long long *)(AllocatedMemorySize + 0x1af8);
-  ContextSecondaryFloat2 = (ContextSecondaryFloat3 - FloatVariable4) * (ContextSecondaryFloat2 - ContextSecondaryFloat0) * 0.65;
+  ContextSecondaryFloat2 = (ContextSecondaryFloat3 - MatrixTransformMultiplier1) * (ContextSecondaryFloat2 - ContextSecondaryFloat0) * 0.65;
   if (ContextSecondaryFloat2 == 0.0) {
     ContextSecondaryFloat2 = *(float *)(MemoryBoundaryEnd + 0x284);
   }
@@ -160306,7 +160306,7 @@ unsigned long long CalculateCharacterProcessingResult(void
   long long MemoryOffset;
   long long SystemDataRegistry;
   unsigned long long ProcessingResult;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   
   SystemDataRegistry = SystemConfigurationHandle;
   MemoryBlockIndex = *(long long *)(SystemConfigurationHandle + 0x1af8);
@@ -160318,9 +160318,9 @@ unsigned long long CalculateCharacterProcessingResult(void
     ProcessingResult = *(unsigned long long *)(MemoryBlockIndex + 0x220);
     MemoryAllocationIndex = *(uint32_t *)((ProcessingResult - 4) + (long long)*(int *)(MemoryBlockIndex + 0x218) * 4);
     if ((*(char *)(SystemDataRegistry + 0x120) != '\0') &&
-       (FloatVariable5 = *(float *)(SystemDataRegistry + 0x38) * *(float *)(SystemDataRegistry + 0x38),
+       (MatrixTransformMultiplier2 = *(float *)(SystemDataRegistry + 0x38) * *(float *)(SystemDataRegistry + 0x38),
        ProcessingResult = ProcessingResult & 0xffffffffffffff00,
-       FloatVariable5 < *(float *)(SystemDataRegistry + 0x474) || FloatVariable5 == *(float *)(SystemDataRegistry + 0x474))) {
+       MatrixTransformMultiplier2 < *(float *)(SystemDataRegistry + 0x474) || MatrixTransformMultiplier2 == *(float *)(SystemDataRegistry + 0x474))) {
       if (*(char *)(SystemDataRegistry + 0x1dd0) == '\0') {
         ValidateSystemComponentsA0();
         *(int *)(SystemDataRegistry + 0x1dec) = IntegerValue;
@@ -164238,11 +164238,11 @@ void ProcessCharacterDataConversion(uint32_t CharacterCode,uint64_t Utf8BufferSi
   uint32_t in_XMM4_Da;
   uint32_t in_XMM4_Db;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   
   SystemContextPrimaryFloat = *(float *)(DataNodePointer + 0x38);
-  FloatVariable5 = Utf16EndPointer + *(float *)(DataNodePointer + 0x44);
-  FloatVariable4 = SystemContextPrimaryFloat + *(float *)(DataNodePointer + 0x40);
+  MatrixTransformMultiplier2 = Utf16EndPointer + *(float *)(DataNodePointer + 0x44);
+  MatrixTransformMultiplier1 = SystemContextPrimaryFloat + *(float *)(DataNodePointer + 0x40);
   *(uint32_t *)(StackFrameAddressPointer + -0x49) = in_XMM4_Db;
   *(uint32_t *)(StackFrameAddressPointer + -0x45) = in_XMM4_Da;
   *(uint32_t *)(StackFrameAddressPointer + -0x41) = CharacterCode;
@@ -164253,12 +164253,12 @@ void ProcessCharacterDataConversion(uint32_t CharacterCode,uint64_t Utf8BufferSi
   *(uint32_t *)(StackFrameAddressPointer + -0x4d) = Utf8SourcePointer;
   *(float *)(StackFrameAddressPointer + -0x59) = SystemContextPrimaryFloat;
   *(float *)(StackFrameAddressPointer + -0x55) = Utf16EndPointer;
-  *(float *)(StackFrameAddressPointer + -0x51) = FloatVariable4;
-  *(float *)(StackFrameAddressPointer + -0x4d) = FloatVariable5;
+  *(float *)(StackFrameAddressPointer + -0x51) = MatrixTransformMultiplier1;
+  *(float *)(StackFrameAddressPointer + -0x4d) = MatrixTransformMultiplier2;
   *(float *)(StackFrameAddressPointer + -0x59) = SystemContextPrimaryFloat;
   *(float *)(StackFrameAddressPointer + -0x55) = Utf16EndPointer;
-  *(float *)(StackFrameAddressPointer + -0x51) = FloatVariable4;
-  *(float *)(StackFrameAddressPointer + -0x4d) = FloatVariable5;
+  *(float *)(StackFrameAddressPointer + -0x51) = MatrixTransformMultiplier1;
+  *(float *)(StackFrameAddressPointer + -0x4d) = MatrixTransformMultiplier2;
   UnicodeCodePoint = ValidateSystemData();
   ProcessSystemMatrixCalculation(*(void *)(PatternIndex + 0x2e8),StackFrameAddressPointer + -0x59,StackFrameAddressPointer + -0x49,UnicodeCodePoint);
   CleanupSystemDataConfiguration(*(void *)(PatternIndex + 0x2e8));
@@ -164481,7 +164481,7 @@ void ProcessUtf8BufferFinalization(int *Utf8InputBuffer,long long Utf8BufferSize
   uint32_t *PrimaryProcessingStatusFlag;
   long long *MemoryBlockIndex;
   uint32_t *MemoryAddressMask;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   byte BooleanByteFlag6;
   void *PreviousNode;
   uint32_t ProcessingStatusFlag;
@@ -164816,15 +164816,15 @@ LAB_180138640:
 LAB_180138724:
     ContextSecondaryFloat8 = (float)Utf8InputBuffer[0xe];
     fStack_120 = ContextSecondaryFloat8 + (float)Utf8InputBuffer[0x10];
-    FloatVariable5 = *(float *)(SystemConfigurationHandle + 0x19f8);
-    fStack_11c = *(float *)(SystemConfigurationHandle + 0x1660) + *(float *)(SystemConfigurationHandle + 0x1660) + FloatVariable5 +
+    MatrixTransformMultiplier2 = *(float *)(SystemConfigurationHandle + 0x19f8);
+    fStack_11c = *(float *)(SystemConfigurationHandle + 0x1660) + *(float *)(SystemConfigurationHandle + 0x1660) + MatrixTransformMultiplier2 +
                  (float)Utf8InputBuffer[0xf];
     if ((*(byte *)((long long)CharacterCode + 0xa1) & 1) != 0) {
-      ContextSecondaryFloat8 = FloatVariable5 + *(float *)(SystemConfigurationHandle + 0x165c) + ContextSecondaryFloat8;
+      ContextSecondaryFloat8 = MatrixTransformMultiplier2 + *(float *)(SystemConfigurationHandle + 0x165c) + ContextSecondaryFloat8;
     }
     BufferInitializationFlag = (int *)CONCAT44(Utf8InputBuffer[0xf],ContextSecondaryFloat8);
     if ((char)*(byte *)(CharacterCode + 0x28) < '\0') {
-      fStack_120 = fStack_120 - (FloatVariable5 + *(float *)(SystemConfigurationHandle + 0x165c) + 1.0);
+      fStack_120 = fStack_120 - (MatrixTransformMultiplier2 + *(float *)(SystemConfigurationHandle + 0x165c) + 1.0);
     }
     Utf16Char4 = (*(byte *)(CharacterCode + 0x28) & 0x10) << 0x11;
     MemoryAllocationBase = Utf16Char4 | 0x90000b;
@@ -165546,7 +165546,7 @@ uint8_t GetSystemStringEncodingStatus(void)
   uint64_t MemoryAllocationIndex;
   uint32_t *systemEventTemplatePointer;
   uint32_t *MemoryAddressMask;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   uint DataStringLength;
   long long StackFrameAddressPointer;
   long long PatternIndex;
@@ -165567,11 +165567,11 @@ uint8_t GetSystemStringEncodingStatus(void)
   float SecondaryFloatValue;
   
   if (DataStringLength < 2) {
-    pFloatVariable5 = (float *)(StackFrameAddressPointer + 0x38);
+    pMatrixTransformMultiplier2 = (float *)(StackFrameAddressPointer + 0x38);
     SystemDataTablePointer = 0x40;
   }
   else {
-    pFloatVariable5 = (float *)(StackFrameAddressPointer + 0x3c);
+    pMatrixTransformMultiplier2 = (float *)(StackFrameAddressPointer + 0x3c);
     SystemDataTablePointer = 0x44;
   }
   MemoryAllocationIndex = *(void *)(PatternIndex + 0x48);
@@ -165622,7 +165622,7 @@ uint8_t GetSystemStringEncodingStatus(void)
   else if ((DataStringLength & 0xfffffffd) == 0) {
     *SystemCharacterStatusBuffer = *pMemoryAddressMask;
   }
-  SystemContextPrimaryFloat4 = *pFloatVariable5 / *(float *)(SystemDataTablePointer + in_R11);
+  SystemContextPrimaryFloat4 = *pMatrixTransformMultiplier2 / *(float *)(SystemDataTablePointer + in_R11);
   SecondaryFloatValue = 0.0;
   if ((0.0 <= SystemContextPrimaryFloat4) && (SecondaryFloatValue = SystemContextPrimaryFloat4, 1.0 <= SystemContextPrimaryFloat4)) {
     SecondaryFloatValue = 1.0;
@@ -168918,7 +168918,7 @@ void ProcessUtf8CharacterEncodingValidationAndConversion(long long CharacterCode
   uint *PrimaryProcessingStatusFlag;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -168955,8 +168955,8 @@ void ProcessUtf8CharacterEncodingValidationAndConversion(long long CharacterCode
     UnsignedStack11._0_2_ = CONCAT11((char)Utf8SourcePointer,SystemMemoryAllocationResult);
     UnsignedStack11 = CONCAT13(CurrentByteValue0 >> 5,CONCAT12(CurrentByteValue0 >> 4,(uint16_t)UnsignedStack11)) & 0x101ffff;
     CalculatedFilterValue = (float)Utf8BufferSize[0xe];
-    FloatVariable4 = (float)Utf8BufferSize[0xf];
-    FloatVariable5 = (float)Utf8BufferSize[0x10];
+    MatrixTransformMultiplier1 = (float)Utf8BufferSize[0xf];
+    MatrixTransformMultiplier2 = (float)Utf8BufferSize[0x10];
     CalculatedDistance = (float)Utf8BufferSize[0x11];
     FloatVariable7 = (float)Utf8BufferSize[0x12];
     ProcessedFloatValue8 = (float)Utf8BufferSize[0x13];
@@ -168983,7 +168983,7 @@ void ProcessUtf8CharacterEncodingValidationAndConversion(long long CharacterCode
     CharacterStatusBuffer[3] = UnsignedStack11;
     PrimaryProcessingStatusFlag = (uint *)((long long)IntegerValue5 * 0x20 + 0x10 + SystemDataTablePointer);
     *PrimaryProcessingStatusFlag = CONCAT22((short)(int)FilterInputValue,CONCAT11(UnsignedStack12,CurrentByteValue0 >> 6)) & 0xffffff01;
-    PrimaryProcessingStatusFlag[1] = CONCAT22((short)(int)FloatVariable5,(short)(int)FloatVariable4);
+    PrimaryProcessingStatusFlag[1] = CONCAT22((short)(int)MatrixTransformMultiplier2,(short)(int)MatrixTransformMultiplier1);
     PrimaryProcessingStatusFlag[2] = CONCAT22((short)(int)FloatVariable7,(short)(int)CalculatedDistance);
     PrimaryProcessingStatusFlag[3] = CONCAT22(UnsignedStack13,(short)(int)ProcessedFloatValue8);
     *(int *)(CharacterCode + 0x20) = *(int *)(CharacterCode + 0x20) + 1;
@@ -176941,14 +176941,14 @@ long long * FUN_18014acf0(long long CharacterCode,long long *Utf8InputBufferSize
       }
       MatrixElementF = pFloatVariable7[2];
       CalculatedFilterValue = pFloatVariable7[7];
-      FloatVariable4 = pFloatVariable7[6];
+      MatrixTransformMultiplier1 = pFloatVariable7[6];
       MatrixElementK = MatrixElementG;
       if (FilterInputValue <= MatrixElementG) {
         MatrixElementK = FilterInputValue;
       }
       MatrixElementJ = MatrixElementF;
-      if (FloatVariable4 <= MatrixElementF) {
-        MatrixElementJ = FloatVariable4;
+      if (MatrixTransformMultiplier1 <= MatrixElementF) {
+        MatrixElementJ = MatrixTransformMultiplier1;
       }
       MatrixElementI = MatrixElementI - SystemContextPrimaryFloat;
       MatrixElementK = MatrixElementK - SystemContextPrimaryFloat;
@@ -176972,8 +176972,8 @@ long long * FUN_18014acf0(long long CharacterCode,long long *Utf8InputBufferSize
       if (MatrixElementG <= FilterInputValue) {
         MatrixElementG = FilterInputValue;
       }
-      if (MatrixElementF <= FloatVariable4) {
-        MatrixElementF = FloatVariable4;
+      if (MatrixElementF <= MatrixTransformMultiplier1) {
+        MatrixElementF = MatrixTransformMultiplier1;
       }
       MatrixElementE = MatrixElementE + SystemContextPrimaryFloat;
       MatrixElementG = MatrixElementG + SystemContextPrimaryFloat;
@@ -186836,7 +186836,7 @@ long long * FUN_1801582f0(uint64_t CharacterCode,long long *Utf8InputBufferSize,
   RandomSeedValue = RandomSeedValue << 0xd ^ RandomSeedValue;
   RandomSeedValue = RandomSeedValue >> 0x11 ^ RandomSeedValue;
   RandomSeedValue = RandomSeedValue << 5 ^ RandomSeedValue;
-  FloatVariable4 = (float)(RandomSeedValue - 1) * 2.3283064e-10 * FilterInputValue;
+  MatrixTransformMultiplier1 = (float)(RandomSeedValue - 1) * 2.3283064e-10 * FilterInputValue;
   *Utf8InputBufferSize = 0;
   BufferStatus = *(long long *)(Utf8SourcePointer + 0x20);
   do {
@@ -186859,7 +186859,7 @@ LAB_180158404:
       return Utf8BufferSize;
     }
     CalculatedFilterValue = FilterInputValue - *(float *)(BufferStatus + 0x20);
-    if (FilterInputValue <= FloatVariable4) {
+    if (FilterInputValue <= MatrixTransformMultiplier1) {
       CharacterCode = (long long *               FUN_1801580f0(CharacterCode,&pPerformanceCounterValue,
                              *(void *                              (SystemDataOffsetTable + (long long)*(char *)(Utf8SourcePointer + 0x59) * 8),BufferStatus,0,
                              *(uint8_t *)(Utf8SourcePointer + 0x58),0);
@@ -197452,7 +197452,7 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long Utf8BufferSiz
   int *pStringComparisonResult;
   uint64_t *systemEventTemplatePointer;
   uint64_t *MemoryAddressMask;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   int ComputedResult;
@@ -197541,14 +197541,14 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long Utf8BufferSiz
         if (*(char *)(CharacterCode + 0x70) != '\0') {
           *(uint8_t *)(*(long long *)(CharacterTableIterator + 0x1af8) + 0xb1) = 1;
           EncodingConversionResult = *(long long *)(CharacterTableIterator + 0x1af8);
-          FloatVariable5 = *(float *)(EncodingConversionResult + 0x130);
+          MatrixTransformMultiplier2 = *(float *)(EncodingConversionResult + 0x130);
           CalculatedDistance = *(float *)(EncodingConversionResult + 0x10c);
           FloatVariable7 = *(float *)(EncodingConversionResult + 0x44);
           *(uint8_t *)(EncodingConversionResult + 0xb1) = 1;
           EncodingConversionResult = *(long long *)(CharacterTableIterator + 0x1af8);
           *(uint32_t *)(EncodingConversionResult + 0xa0) = 0x3f000000;
           *(float *)(EncodingConversionResult + 0x98) =
-               (float)(int)((CalculatedDistance - FloatVariable7) + FloatVariable5 * 0.5 + *(float *)(EncodingConversionResult + 0x90));
+               (float)(int)((CalculatedDistance - FloatVariable7) + MatrixTransformMultiplier2 * 0.5 + *(float *)(EncodingConversionResult + 0x90));
           *(uint8_t *)(CharacterCode + 0x70) = 0;
         }
         systemEventTemplatePointer = (void *                 (*(long long *)(CharacterTableIterator + 0x1b88) + -0x10 +
@@ -197610,7 +197610,7 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long Utf8BufferSiz
   int *pStringComparisonResult;
   uint64_t *systemEventTemplatePointer;
   uint64_t *MemoryAddressMask;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   int ComputedResult;
@@ -197712,14 +197712,14 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long Utf8BufferSiz
         if (*(char *)(CharacterCode + 0x70) != '\0') {
           *(uint8_t *)(*(long long *)(CharacterTableIterator + 0x1af8) + 0xb1) = 1;
           EncodingConversionResult = *(long long *)(CharacterTableIterator + 0x1af8);
-          FloatVariable5 = *(float *)(EncodingConversionResult + 0x130);
+          MatrixTransformMultiplier2 = *(float *)(EncodingConversionResult + 0x130);
           CalculatedDistance = *(float *)(EncodingConversionResult + 0x10c);
           FloatVariable7 = *(float *)(EncodingConversionResult + 0x44);
           *(uint8_t *)(EncodingConversionResult + 0xb1) = 1;
           EncodingConversionResult = *(long long *)(CharacterTableIterator + 0x1af8);
           *(uint32_t *)(EncodingConversionResult + 0xa0) = 0x3f000000;
           *(float *)(EncodingConversionResult + 0x98) =
-               (float)(int)((CalculatedDistance - FloatVariable7) + FloatVariable5 * 0.5 + *(float *)(EncodingConversionResult + 0x90));
+               (float)(int)((CalculatedDistance - FloatVariable7) + MatrixTransformMultiplier2 * 0.5 + *(float *)(EncodingConversionResult + 0x90));
           *(uint8_t *)(CharacterCode + 0x70) = 0;
         }
         systemEventTemplatePointer = (void *                 (*(long long *)(CharacterTableIterator + 0x1b88) + -0x10 +
@@ -197781,7 +197781,7 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long Utf8BufferSiz
   void *SystemContext;
   uint64_t *systemEventTemplatePointer;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   int ProcessIterationCount;
   void *StringProcessingStatus;
@@ -197827,14 +197827,14 @@ long long FUN_18016c8e0(long long CharacterCode,unsigned long long Utf8BufferSiz
       if (*(char *)(PatternIndex + 0x70) != (char)RegisterR12Value) {
         *(uint8_t *)(*(long long *)(SystemContext + 0x1af8) + 0xb1) = 1;
         StringOffset = *(long long *)(SystemContext + 0x1af8);
-        FloatVariable4 = *(float *)(StringOffset + 0x130);
-        FloatVariable5 = *(float *)(StringOffset + 0x10c);
+        MatrixTransformMultiplier1 = *(float *)(StringOffset + 0x130);
+        MatrixTransformMultiplier2 = *(float *)(StringOffset + 0x10c);
         CalculatedDistance = *(float *)(StringOffset + 0x44);
         *(uint8_t *)(StringOffset + 0xb1) = 1;
         StringOffset = *(long long *)(SystemContext + 0x1af8);
         *(uint32_t *)(StringOffset + 0xa0) = 0x3f000000;
         *(float *)(StringOffset + 0x98) =
-             (float)(int)((FloatVariable5 - CalculatedDistance) + FloatVariable4 * 0.5 + *(float *)(StringOffset + 0x90));
+             (float)(int)((MatrixTransformMultiplier2 - CalculatedDistance) + MatrixTransformMultiplier1 * 0.5 + *(float *)(StringOffset + 0x90));
         *(char *)(PatternIndex + 0x70) = (char)RegisterR12Value;
       }
       PrimaryProcessingStatusFlag = (void *               (*(long long *)(SystemContext + 0x1b88) + -0x10 +
@@ -202473,13 +202473,13 @@ void ProcessUnicodeCharacterAndMemoryManagement(void
   uStackX_10 = Utf8BufferSize;
   if ((InputControlFlag & 1) == 0) {
     CalculatedFilterValue = (float)InputComputedResult;
-    FloatVariable4 = (float)InputFloatValue;
+    MatrixTransformMultiplier1 = (float)InputFloatValue;
 LAB_180173542:
-    if ((FilterInputValue != 0.0) || (FloatVariable4 != 0.0)) {
+    if ((FilterInputValue != 0.0) || (MatrixTransformMultiplier1 != 0.0)) {
       iStack_28 = (int)FilterInputValue;
       ProcessingFlags = 0;
       FunctionAddress = 0;
-      iStack_24 = (int)FloatVariable4;
+      iStack_24 = (int)MatrixTransformMultiplier1;
       ProcessMemoryAllocationHandler(CharacterCode,&FunctionAddress);
     }
   }
@@ -202494,7 +202494,7 @@ LAB_180173542:
       CalculatedFilterValue = (float)(int)uStackX_10 -
               *(float *)(SystemMemoryManager + 0x17e0) * *(float *)(SystemMemoryManager + 0x17ec);
       CharacterCode = *(float *)(SystemMemoryManager + 0x17e4) * *(float *)(SystemMemoryManager + 0x17f0);
-      FloatVariable4 = (float)uStackX_10.HighPart - CharacterCode;
+      MatrixTransformMultiplier1 = (float)uStackX_10.HighPart - CharacterCode;
       goto LAB_180173542;
     }
   }
@@ -202590,17 +202590,17 @@ LAB_1801736de:
   long long StackFrameAddressPointer;
   bool in_ZF;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   
   if (in_ZF) {
-    FloatVariable4 = (float)NormalizedParameterValue;
-    FloatVariable5 = (float)SystemFloatParameter2;
+    MatrixTransformMultiplier1 = (float)NormalizedParameterValue;
+    MatrixTransformMultiplier2 = (float)SystemFloatParameter2;
 LAB_180173542:
-    if ((FloatVariable4 != 0.0) || (FloatVariable5 != 0.0)) {
+    if ((MatrixTransformMultiplier1 != 0.0) || (MatrixTransformMultiplier2 != 0.0)) {
       *(void *)(StackFrameAddressPointer + -0x28) = 0;
       *(uint32_t *)(StackFrameAddressPointer + -0x30) = 0;
-      *(int *)(StackFrameAddressPointer + -0x20) = (int)FloatVariable4;
-      *(int *)(StackFrameAddressPointer + -0x1c) = (int)FloatVariable5;
+      *(int *)(StackFrameAddressPointer + -0x20) = (int)MatrixTransformMultiplier1;
+      *(int *)(StackFrameAddressPointer + -0x1c) = (int)MatrixTransformMultiplier2;
       ProcessMemoryAllocationHandler(CharacterCode,StackFrameAddressPointer + -0x30);
     }
   }
@@ -202613,10 +202613,10 @@ LAB_180173542:
       Utf16Char = *(void *)(SystemContext + 8);
       *(void *)(StackFrameAddressPointer + 0x18) = *(void *)(StackFrameAddressPointer + 0x20);
       ScreenToClient(Utf16Char,StackFrameAddressPointer + 0x18);
-      FloatVariable4 = (float)*(int *)(StackFrameAddressPointer + 0x18) -
+      MatrixTransformMultiplier1 = (float)*(int *)(StackFrameAddressPointer + 0x18) -
               *(float *)(SystemMemoryManager + 0x17e0) * *(float *)(SystemMemoryManager + 0x17ec);
       CharacterCode = *(float *)(SystemMemoryManager + 0x17e4) * *(float *)(SystemMemoryManager + 0x17f0);
-      FloatVariable5 = (float)*(int *)(StackFrameAddressPointer + 0x1c) - CharacterCode;
+      MatrixTransformMultiplier2 = (float)*(int *)(StackFrameAddressPointer + 0x1c) - CharacterCode;
       goto LAB_180173542;
     }
   }
@@ -211981,7 +211981,7 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode,long long Utf8Buffe
   long long *BufferAllocationStatus;
   bool IsHighByteSet;
   long long *EngineContext;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   void *SecondaryProcessingStatusFlag;
   bool BooleanValidationFlag7;
   int ComputedResult;
@@ -212016,7 +212016,7 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode,long long Utf8Buffe
   uint8_t aMemoryAllocationIndexSecondary [16];
   uint8_t aMemoryAllocationIndex7 [16];
   
-  FloatVariable5 = AdditionalParameter3;
+  MatrixTransformMultiplier2 = AdditionalParameter3;
   SystemContextPtr = AdditionalParameter1;
   CoreEngineValueC0 = 0xfffffffffffffffe;
   UnicodeCodePoint0 = 0;
@@ -212173,7 +212173,7 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode,long long Utf8Buffe
         }
         else {
           ContextSecondaryFloat1 = (float)FUN_180181d80();
-          ContextSecondaryFloat9 = ContextSecondaryFloat9 + ContextSecondaryFloat1 * FloatVariable5;
+          ContextSecondaryFloat9 = ContextSecondaryFloat9 + ContextSecondaryFloat1 * MatrixTransformMultiplier2;
         }
         PrimaryReturnCode = Utf8SourcePointer & 0xffffffff;
         isSystemContextNull = LowByte;
@@ -225632,7 +225632,7 @@ float * FUN_180194940(float *Utf8InputBuffer,float *Utf8InputBufferSize,float *U
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -225645,8 +225645,8 @@ float * FUN_180194940(float *Utf8InputBuffer,float *Utf8InputBufferSize,float *U
   SystemContextPrimaryFloat = Utf8InputBuffer[8];
   ContextSecondaryFloat = Utf8InputBuffer[9];
   CalculatedFilterValue = Utf8InputBuffer[10];
-  FloatVariable4 = Utf8InputBuffer[0xb];
-  FloatVariable5 = Utf8InputBuffer[4];
+  MatrixTransformMultiplier1 = Utf8InputBuffer[0xb];
+  MatrixTransformMultiplier2 = Utf8InputBuffer[4];
   CalculatedDistance = Utf8InputBuffer[5];
   FloatVariable7 = Utf8InputBuffer[6];
   SecondaryFloatValue = Utf8SourcePointer[1];
@@ -225656,30 +225656,30 @@ float * FUN_180194940(float *Utf8InputBuffer,float *Utf8InputBufferSize,float *U
   SystemContextPrimaryFloat2 = *Utf8SourcePointer;
   SystemContextPrimaryFloat3 = Utf8SourcePointer[2];
   *Utf8InputBufferSize = SecondaryFloatValue * NormalizedParameterValue + SystemContextPrimaryFloat2 * ProcessedFloatValue8 + SystemContextPrimaryFloat3 * PrimaryFloatValue;
-  Utf8BufferSize[1] = SecondaryFloatValue * CalculatedDistance + SystemContextPrimaryFloat2 * FloatVariable5 + SystemContextPrimaryFloat3 * FloatVariable7;
+  Utf8BufferSize[1] = SecondaryFloatValue * CalculatedDistance + SystemContextPrimaryFloat2 * MatrixTransformMultiplier2 + SystemContextPrimaryFloat3 * FloatVariable7;
   Utf8BufferSize[2] = SecondaryFloatValue * ContextSecondaryFloat + SystemContextPrimaryFloat2 * SystemContextPrimaryFloat + SystemContextPrimaryFloat3 * FilterInputValue;
-  Utf8BufferSize[3] = SecondaryFloatValue * FloatVariable4 + SystemContextPrimaryFloat2 * FloatVariable4 + SystemContextPrimaryFloat3 * FloatVariable4;
+  Utf8BufferSize[3] = SecondaryFloatValue * MatrixTransformMultiplier1 + SystemContextPrimaryFloat2 * MatrixTransformMultiplier1 + SystemContextPrimaryFloat3 * MatrixTransformMultiplier1;
   SecondaryFloatValue = Utf8SourcePointer[5];
   SystemContextPrimaryFloat2 = Utf8SourcePointer[4];
   SystemContextPrimaryFloat3 = Utf8SourcePointer[6];
   Utf8BufferSize[4] = SecondaryFloatValue * NormalizedParameterValue + SystemContextPrimaryFloat2 * ProcessedFloatValue8 + SystemContextPrimaryFloat3 * PrimaryFloatValue;
-  Utf8BufferSize[5] = SecondaryFloatValue * CalculatedDistance + SystemContextPrimaryFloat2 * FloatVariable5 + SystemContextPrimaryFloat3 * FloatVariable7;
+  Utf8BufferSize[5] = SecondaryFloatValue * CalculatedDistance + SystemContextPrimaryFloat2 * MatrixTransformMultiplier2 + SystemContextPrimaryFloat3 * FloatVariable7;
   Utf8BufferSize[6] = SecondaryFloatValue * ContextSecondaryFloat + SystemContextPrimaryFloat2 * SystemContextPrimaryFloat + SystemContextPrimaryFloat3 * FilterInputValue;
-  Utf8BufferSize[7] = SecondaryFloatValue * FloatVariable4 + SystemContextPrimaryFloat2 * FloatVariable4 + SystemContextPrimaryFloat3 * FloatVariable4;
+  Utf8BufferSize[7] = SecondaryFloatValue * MatrixTransformMultiplier1 + SystemContextPrimaryFloat2 * MatrixTransformMultiplier1 + SystemContextPrimaryFloat3 * MatrixTransformMultiplier1;
   SecondaryFloatValue = Utf8SourcePointer[9];
   SystemContextPrimaryFloat2 = Utf8SourcePointer[8];
   SystemContextPrimaryFloat3 = Utf8SourcePointer[10];
   Utf8BufferSize[8] = SecondaryFloatValue * NormalizedParameterValue + SystemContextPrimaryFloat2 * ProcessedFloatValue8 + SystemContextPrimaryFloat3 * PrimaryFloatValue;
-  Utf8BufferSize[9] = SecondaryFloatValue * CalculatedDistance + SystemContextPrimaryFloat2 * FloatVariable5 + SystemContextPrimaryFloat3 * FloatVariable7;
+  Utf8BufferSize[9] = SecondaryFloatValue * CalculatedDistance + SystemContextPrimaryFloat2 * MatrixTransformMultiplier2 + SystemContextPrimaryFloat3 * FloatVariable7;
   Utf8BufferSize[10] = SecondaryFloatValue * ContextSecondaryFloat + SystemContextPrimaryFloat2 * SystemContextPrimaryFloat + SystemContextPrimaryFloat3 * FilterInputValue;
-  Utf8BufferSize[0xb] = SecondaryFloatValue * FloatVariable4 + SystemContextPrimaryFloat2 * FloatVariable4 + SystemContextPrimaryFloat3 * FloatVariable4;
+  Utf8BufferSize[0xb] = SecondaryFloatValue * MatrixTransformMultiplier1 + SystemContextPrimaryFloat2 * MatrixTransformMultiplier1 + SystemContextPrimaryFloat3 * MatrixTransformMultiplier1;
   SystemContextPrimaryFloat3 = Utf8SourcePointer[0xd] - Utf8InputBuffer[0xd];
   SecondaryFloatValue = Utf8SourcePointer[0xc] - Utf8InputBuffer[0xc];
   SystemContextPrimaryFloat2 = Utf8SourcePointer[0xe] - Utf8InputBuffer[0xe];
   Utf8BufferSize[0xc] = SystemContextPrimaryFloat3 * NormalizedParameterValue + SecondaryFloatValue * ProcessedFloatValue8 + SystemContextPrimaryFloat2 * PrimaryFloatValue;
-  Utf8BufferSize[0xd] = SystemContextPrimaryFloat3 * CalculatedDistance + SecondaryFloatValue * FloatVariable5 + SystemContextPrimaryFloat2 * FloatVariable7;
+  Utf8BufferSize[0xd] = SystemContextPrimaryFloat3 * CalculatedDistance + SecondaryFloatValue * MatrixTransformMultiplier2 + SystemContextPrimaryFloat2 * FloatVariable7;
   Utf8BufferSize[0xe] = SystemContextPrimaryFloat3 * ContextSecondaryFloat + SecondaryFloatValue * SystemContextPrimaryFloat + SystemContextPrimaryFloat2 * FilterInputValue;
-  Utf8BufferSize[0xf] = SystemContextPrimaryFloat3 * FloatVariable4 + SecondaryFloatValue * FloatVariable4 + SystemContextPrimaryFloat2 * FloatVariable4;
+  Utf8BufferSize[0xf] = SystemContextPrimaryFloat3 * MatrixTransformMultiplier1 + SecondaryFloatValue * MatrixTransformMultiplier1 + SystemContextPrimaryFloat2 * MatrixTransformMultiplier1;
   return Utf8BufferSize;
 }
 
@@ -227561,7 +227561,7 @@ uint64_t * FUN_180196bd0(uint64_t *Utf8InputBuffer
   short SystemShortValue2;
   long long MemoryOffset;
   long long *EngineContext;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   uint64_t DataSize;
   float FloatVariable7;
   char SystemStatusChar;
@@ -227730,14 +227730,14 @@ LAB_1801974aa:
   FloatVariable7 = afStackX_10[0];
   UnicodeCharacterCode = TimeoutValueStorage;
   if (pStackTempPointer == (uint64_t **)0x0) {
-    pFloatVariable5 = (float *)Utf8InputBuffer[0x4c];
+    pMatrixTransformMultiplier2 = (float *)Utf8InputBuffer[0x4c];
     ppppStackProcessingConfigurationFlag = &psystemEventConfigurationPointer;
-    psystemEventConfigurationPointer = *(uint64_t *****)(pFloatVariable5 + 0xdc);
+    psystemEventConfigurationPointer = *(uint64_t *****)(pMatrixTransformMultiplier2 + 0xdc);
     if (psystemEventConfigurationPointer != (uint64_t ****)0x0) {
       (*(code *)(*psystemEventConfigurationPointer)[5])();
     }
     ProcessDataSizeAllocation(UnicodeCharacterCode,&psystemEventConfigurationPointer,0);
-    *pFloatVariable5 = FloatVariable7 + *pFloatVariable5;
+    *pMatrixTransformMultiplier2 = FloatVariable7 + *pMatrixTransformMultiplier2;
     if (((Utf8InputBuffer[99] != (long long *)0x0) && (*(char *)((long long)CharacterCode + 0x2a61) != '\0')) &&
        ((*(char *)((long long)CharacterCode + 0x2a62) != '\0' && (*(int *)(SystemConfigData + 0xaf0) != 0)))    {
       (**(code **)(*Utf8InputBuffer[99] + 0x40))();
@@ -233300,7 +233300,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   float ContextSecondaryFloat;
   long long *MemoryBlockIndex;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -233603,8 +233603,8 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
                   FilterInputValue0 = *(float *)(LoopIndex + 0x84);
                   FilterInputValue1 = *(float *)(LoopIndex + 0x88);
                   FilterInputValue2 = *(float *)(LoopIndex + 0x8c);
-                  FloatVariable4 = *(float *)(LoopIndex + 0x90);
-                  FloatVariable5 = *(float *)(LoopIndex + 0x94);
+                  MatrixTransformMultiplier1 = *(float *)(LoopIndex + 0x90);
+                  MatrixTransformMultiplier2 = *(float *)(LoopIndex + 0x94);
                   CalculatedDistance = *(float *)(LoopIndex + 0x98);
                   FloatVariable7 = *(float *)(LoopIndex + 0x9c);
                   ProcessedFloatValue8 = *(float *)(LoopIndex + 0x70);
@@ -233618,26 +233618,26 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
                   SystemContextPrimaryFloat = pSystemFloatValue[9];
                   ScalingFactor = pSystemFloatValue[0xd];
                   ContextSecondaryFloat = pSystemFloatValue[4];
-                  fStack_198 = ContextSecondaryFloat5 * ContextSecondaryFloat9 + ContextSecondaryFloat6 * ProcessedFloatValue8 + ContextSecondaryFloat7 * FloatVariable4;
-                  fStack_194 = ContextSecondaryFloat5 * FilterInputValue0 + ContextSecondaryFloat6 * NormalizedParameterValue + ContextSecondaryFloat7 * FloatVariable5;
+                  fStack_198 = ContextSecondaryFloat5 * ContextSecondaryFloat9 + ContextSecondaryFloat6 * ProcessedFloatValue8 + ContextSecondaryFloat7 * MatrixTransformMultiplier1;
+                  fStack_194 = ContextSecondaryFloat5 * FilterInputValue0 + ContextSecondaryFloat6 * NormalizedParameterValue + ContextSecondaryFloat7 * MatrixTransformMultiplier2;
                   fStack_190 = ContextSecondaryFloat5 * FilterInputValue1 + ContextSecondaryFloat6 * PrimaryFloatValue + ContextSecondaryFloat7 * CalculatedDistance;
                   fStack_18c = ContextSecondaryFloat5 * FilterInputValue2 + ContextSecondaryFloat6 * SecondaryFloatValue + ContextSecondaryFloat7 * FloatVariable7;
                   ContextSecondaryFloat5 = pSystemFloatValue[6];
                   ContextSecondaryFloat6 = pSystemFloatValue[8];
-                  fStack_188 = ContextSecondaryFloat8 * ContextSecondaryFloat9 + ContextSecondaryFloat * ProcessedFloatValue8 + ContextSecondaryFloat5 * FloatVariable4;
-                  fStack_184 = ContextSecondaryFloat8 * FilterInputValue0 + ContextSecondaryFloat * NormalizedParameterValue + ContextSecondaryFloat5 * FloatVariable5;
+                  fStack_188 = ContextSecondaryFloat8 * ContextSecondaryFloat9 + ContextSecondaryFloat * ProcessedFloatValue8 + ContextSecondaryFloat5 * MatrixTransformMultiplier1;
+                  fStack_184 = ContextSecondaryFloat8 * FilterInputValue0 + ContextSecondaryFloat * NormalizedParameterValue + ContextSecondaryFloat5 * MatrixTransformMultiplier2;
                   fStack_180 = ContextSecondaryFloat8 * FilterInputValue1 + ContextSecondaryFloat * PrimaryFloatValue + ContextSecondaryFloat5 * CalculatedDistance;
                   fStack_17c = ContextSecondaryFloat8 * FilterInputValue2 + ContextSecondaryFloat * SecondaryFloatValue + ContextSecondaryFloat5 * FloatVariable7;
                   ContextSecondaryFloat5 = pSystemFloatValue[10];
                   ContextSecondaryFloat7 = pSystemFloatValue[0xc];
-                  NormalizationResult = SystemContextPrimaryFloat * ContextSecondaryFloat9 + ContextSecondaryFloat6 * ProcessedFloatValue8 + ContextSecondaryFloat5 * FloatVariable4;
-                  VectorLength = SystemContextPrimaryFloat * FilterInputValue0 + ContextSecondaryFloat6 * NormalizedParameterValue + ContextSecondaryFloat5 * FloatVariable5;
+                  NormalizationResult = SystemContextPrimaryFloat * ContextSecondaryFloat9 + ContextSecondaryFloat6 * ProcessedFloatValue8 + ContextSecondaryFloat5 * MatrixTransformMultiplier1;
+                  VectorLength = SystemContextPrimaryFloat * FilterInputValue0 + ContextSecondaryFloat6 * NormalizedParameterValue + ContextSecondaryFloat5 * MatrixTransformMultiplier2;
                   fStack_170 = SystemContextPrimaryFloat * FilterInputValue1 + ContextSecondaryFloat6 * PrimaryFloatValue + ContextSecondaryFloat5 * CalculatedDistance;
                   fStack_16c = SystemContextPrimaryFloat * FilterInputValue2 + ContextSecondaryFloat6 * SecondaryFloatValue + ContextSecondaryFloat5 * FloatVariable7;
                   ContextSecondaryFloat5 = pSystemFloatValue[0xe];
-                  fStack_168 = ScalingFactor * ContextSecondaryFloat9 + ContextSecondaryFloat7 * ProcessedFloatValue8 + ContextSecondaryFloat5 * FloatVariable4 +
+                  fStack_168 = ScalingFactor * ContextSecondaryFloat9 + ContextSecondaryFloat7 * ProcessedFloatValue8 + ContextSecondaryFloat5 * MatrixTransformMultiplier1 +
                                *(float *)(LoopIndex + 0xa0);
-                  fStack_164 = ScalingFactor * FilterInputValue0 + ContextSecondaryFloat7 * NormalizedParameterValue + ContextSecondaryFloat5 * FloatVariable5 +
+                  fStack_164 = ScalingFactor * FilterInputValue0 + ContextSecondaryFloat7 * NormalizedParameterValue + ContextSecondaryFloat5 * MatrixTransformMultiplier2 +
                                *(float *)(LoopIndex + 0xa4);
                   fStack_160 = ScalingFactor * FilterInputValue1 + ContextSecondaryFloat7 * PrimaryFloatValue + ContextSecondaryFloat5 * CalculatedDistance +
                                *(float *)(LoopIndex + 0xa8);
@@ -233753,8 +233753,8 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
             FilterInputValue0 = *(float *)(LoopIndex + 0x84);
             FilterInputValue1 = *(float *)(LoopIndex + 0x88);
             FilterInputValue2 = *(float *)(LoopIndex + 0x8c);
-            FloatVariable4 = *(float *)(LoopIndex + 0x90);
-            FloatVariable5 = *(float *)(LoopIndex + 0x94);
+            MatrixTransformMultiplier1 = *(float *)(LoopIndex + 0x90);
+            MatrixTransformMultiplier2 = *(float *)(LoopIndex + 0x94);
             CalculatedDistance = *(float *)(LoopIndex + 0x98);
             FloatVariable7 = *(float *)(LoopIndex + 0x9c);
             fStack_158 = fStack_228;
@@ -233769,21 +233769,21 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
             fStack_134 = fStack_204;
             fStack_130 = fStack_200;
             uStack_12c = uStack_1fc;
-            fStack_3c8 = fStack_228 * ContextSecondaryFloat8 + fStack_224 * ContextSecondaryFloat9 + fStack_220 * FloatVariable4;
-            fStack_3c4 = fStack_228 * SystemContextPrimaryFloat + fStack_224 * FilterInputValue0 + fStack_220 * FloatVariable5;
+            fStack_3c8 = fStack_228 * ContextSecondaryFloat8 + fStack_224 * ContextSecondaryFloat9 + fStack_220 * MatrixTransformMultiplier1;
+            fStack_3c4 = fStack_228 * SystemContextPrimaryFloat + fStack_224 * FilterInputValue0 + fStack_220 * MatrixTransformMultiplier2;
             fStack_3c0 = fStack_228 * ScalingFactor + fStack_224 * FilterInputValue1 + fStack_220 * CalculatedDistance;
             fStack_1ec = fStack_228 * ContextSecondaryFloat + fStack_224 * FilterInputValue2 + fStack_220 * FloatVariable7;
-            fStack_3b8 = fStack_218 * ContextSecondaryFloat8 + fStack_214 * ContextSecondaryFloat9 + fStack_210 * FloatVariable4;
-            fStack_3b4 = fStack_218 * SystemContextPrimaryFloat + fStack_214 * FilterInputValue0 + fStack_210 * FloatVariable5;
+            fStack_3b8 = fStack_218 * ContextSecondaryFloat8 + fStack_214 * ContextSecondaryFloat9 + fStack_210 * MatrixTransformMultiplier1;
+            fStack_3b4 = fStack_218 * SystemContextPrimaryFloat + fStack_214 * FilterInputValue0 + fStack_210 * MatrixTransformMultiplier2;
             fStack_3b0 = fStack_218 * ScalingFactor + fStack_214 * FilterInputValue1 + fStack_210 * CalculatedDistance;
             fStack_1dc = fStack_218 * ContextSecondaryFloat + fStack_214 * FilterInputValue2 + fStack_210 * FloatVariable7;
-            fStack_3a8 = fStack_208 * ContextSecondaryFloat8 + fStack_204 * ContextSecondaryFloat9 + fStack_200 * FloatVariable4;
-            fStack_3a4 = fStack_208 * SystemContextPrimaryFloat + fStack_204 * FilterInputValue0 + fStack_200 * FloatVariable5;
+            fStack_3a8 = fStack_208 * ContextSecondaryFloat8 + fStack_204 * ContextSecondaryFloat9 + fStack_200 * MatrixTransformMultiplier1;
+            fStack_3a4 = fStack_208 * SystemContextPrimaryFloat + fStack_204 * FilterInputValue0 + fStack_200 * MatrixTransformMultiplier2;
             fStack_3a0 = fStack_208 * ScalingFactor + fStack_204 * FilterInputValue1 + fStack_200 * CalculatedDistance;
             fStack_1cc = fStack_208 * ContextSecondaryFloat + fStack_204 * FilterInputValue2 + fStack_200 * FloatVariable7;
-            fStack_398 = ContextSecondaryFloat5 * ContextSecondaryFloat8 + ContextSecondaryFloat6 * ContextSecondaryFloat9 + ContextSecondaryFloat7 * FloatVariable4 +
+            fStack_398 = ContextSecondaryFloat5 * ContextSecondaryFloat8 + ContextSecondaryFloat6 * ContextSecondaryFloat9 + ContextSecondaryFloat7 * MatrixTransformMultiplier1 +
                          *(float *)(LoopIndex + 0xa0);
-            fStack_394 = ContextSecondaryFloat5 * SystemContextPrimaryFloat + ContextSecondaryFloat6 * FilterInputValue0 + ContextSecondaryFloat7 * FloatVariable5 +
+            fStack_394 = ContextSecondaryFloat5 * SystemContextPrimaryFloat + ContextSecondaryFloat6 * FilterInputValue0 + ContextSecondaryFloat7 * MatrixTransformMultiplier2 +
                          *(float *)(LoopIndex + 0xa4);
             fStack_390 = ContextSecondaryFloat5 * ScalingFactor + ContextSecondaryFloat6 * FilterInputValue1 + ContextSecondaryFloat7 * CalculatedDistance +
                          *(float *)(LoopIndex + 0xa8);
@@ -233900,7 +233900,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -233955,27 +233955,27 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   uint32_t XMM8RegisterC;
   float FilterInputValue9;
   uint32_t XMM8RegisterD;
-  float FloatVariable40;
+  float MatrixTransformMultiplier10;
   uint32_t AuxiliaryFloat9;
-  float FloatVariable41;
+  float MatrixTransformMultiplier11;
   uint32_t unaff_XMM9_Db;
-  float FloatVariable42;
+  float MatrixTransformMultiplier12;
   uint32_t XMM9RegisterC;
-  float FloatVariable43;
+  float MatrixTransformMultiplier13;
   uint32_t unaff_XMM9_Dd;
   uint32_t AuxiliaryFloat10;
-  float FloatVariable44;
+  float MatrixTransformMultiplier14;
   uint32_t XMM10RegisterB;
-  float FloatVariable45;
+  float MatrixTransformMultiplier15;
   uint32_t XMM10RegisterC;
-  float FloatVariable46;
+  float MatrixTransformMultiplier16;
   uint32_t XMM10RegisterD;
   uint32_t AuxiliaryFloatValue11;
-  float FloatVariable47;
+  float MatrixTransformMultiplier17;
   uint32_t Xmm11RegisterDb;
-  float FloatVariable48;
+  float MatrixTransformMultiplier18;
   uint32_t unaff_XMM11_Dc;
-  float FloatVariable49;
+  float MatrixTransformMultiplier19;
   uint32_t unaff_XMM11_Dd;
   uint32_t AuxiliaryFloat12;
   uint32_t unaff_XMM12_Db;
@@ -233990,7 +233990,7 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
   uint32_t unaff_XMM14_Dc;
   uint32_t unaff_XMM14_Dd;
   uint32_t XMM15RegisterA;
-  float FloatVariable50;
+  float MatrixTransformMultiplier20;
   uint32_t unaff_XMM15_Db;
   uint32_t XMM15RegisterC;
   uint32_t unaff_XMM15_Dd;
@@ -234103,8 +234103,8 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
                 }
                 ContextSecondaryFloat = *(float *)(CharacterTablePointer + 0x80);
                 CalculatedFilterValue = *(float *)(CharacterTablePointer + 0x84);
-                FloatVariable4 = *(float *)(CharacterTablePointer + 0x88);
-                FloatVariable5 = *(float *)(CharacterTablePointer + 0x8c);
+                MatrixTransformMultiplier1 = *(float *)(CharacterTablePointer + 0x88);
+                MatrixTransformMultiplier2 = *(float *)(CharacterTablePointer + 0x8c);
                 CalculatedDistance = *(float *)(CharacterTablePointer + 0x90);
                 FloatVariable7 = *(float *)(CharacterTablePointer + 0x94);
                 ProcessedFloatValue8 = *(float *)(CharacterTablePointer + 0x98);
@@ -234117,66 +234117,66 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
                 FilterInputValue0 = *pContextPrimaryFloat9;
                 ContextSecondaryFloat9 = pContextPrimaryFloat9[2];
                 FilterInputValue4 = pContextPrimaryFloat9[5];
-                FloatVariable41 = pContextPrimaryFloat9[9];
+                MatrixTransformMultiplier11 = pContextPrimaryFloat9[9];
                 ScalingFactor = pContextPrimaryFloat9[0xd];
                 FilterInputValue1 = pContextPrimaryFloat9[4];
-                FloatVariable47 = FilterInputValue5 * ContextSecondaryFloat + FilterInputValue0 * PrimaryFloatValue + ContextSecondaryFloat9 * CalculatedDistance;
-                FloatVariable48 = FilterInputValue5 * FilterInputValue + FilterInputValue0 * SecondaryFloatValue + ContextSecondaryFloat9 * FloatVariable7;
-                FloatVariable49 = FilterInputValue5 * FloatVariable4 + FilterInputValue0 * SystemContextPrimaryFloat2 + ContextSecondaryFloat9 * ProcessedFloatValue8;
+                MatrixTransformMultiplier17 = FilterInputValue5 * ContextSecondaryFloat + FilterInputValue0 * PrimaryFloatValue + ContextSecondaryFloat9 * CalculatedDistance;
+                MatrixTransformMultiplier18 = FilterInputValue5 * FilterInputValue + FilterInputValue0 * SecondaryFloatValue + ContextSecondaryFloat9 * FloatVariable7;
+                MatrixTransformMultiplier19 = FilterInputValue5 * MatrixTransformMultiplier1 + FilterInputValue0 * SystemContextPrimaryFloat2 + ContextSecondaryFloat9 * ProcessedFloatValue8;
                 FilterInputValue6 = pContextPrimaryFloat9[6];
-                FloatVariable42 = pContextPrimaryFloat9[8];
-                FloatVariable44 = FilterInputValue4 * ContextSecondaryFloat + FilterInputValue1 * PrimaryFloatValue + FilterInputValue6 * CalculatedDistance;
-                FloatVariable45 = FilterInputValue4 * FilterInputValue + FilterInputValue1 * SecondaryFloatValue + FilterInputValue6 * FloatVariable7;
-                FloatVariable46 = FilterInputValue4 * FloatVariable4 + FilterInputValue1 * SystemContextPrimaryFloat2 + FilterInputValue6 * ProcessedFloatValue8;
-                FloatVariable43 = pContextPrimaryFloat9[10];
+                MatrixTransformMultiplier12 = pContextPrimaryFloat9[8];
+                MatrixTransformMultiplier14 = FilterInputValue4 * ContextSecondaryFloat + FilterInputValue1 * PrimaryFloatValue + FilterInputValue6 * CalculatedDistance;
+                MatrixTransformMultiplier15 = FilterInputValue4 * FilterInputValue + FilterInputValue1 * SecondaryFloatValue + FilterInputValue6 * FloatVariable7;
+                MatrixTransformMultiplier16 = FilterInputValue4 * MatrixTransformMultiplier1 + FilterInputValue1 * SystemContextPrimaryFloat2 + FilterInputValue6 * ProcessedFloatValue8;
+                MatrixTransformMultiplier13 = pContextPrimaryFloat9[10];
                 FilterInputValue2 = *RegisterR12Value;
-                FloatVariable50 = pContextPrimaryFloat9[0xc];
-                FilterInputValue7 = FloatVariable41 * ContextSecondaryFloat + FloatVariable42 * PrimaryFloatValue + FloatVariable43 * CalculatedDistance;
-                FilterInputValue8 = FloatVariable41 * FilterInputValue + FloatVariable42 * SecondaryFloatValue + FloatVariable43 * FloatVariable7;
-                FilterInputValue9 = FloatVariable41 * FloatVariable4 + FloatVariable42 * SystemContextPrimaryFloat2 + FloatVariable43 * ProcessedFloatValue8;
-                FloatVariable40 = FloatVariable41 * FloatVariable5 + FloatVariable42 * SystemContextPrimaryFloat3 + FloatVariable43 * NormalizedParameterValue;
-                StackFrameAddressPointer[0x80] = FloatVariable47;
-                StackFrameAddressPointer[0x81] = FloatVariable48;
-                StackFrameAddressPointer[0x82] = FloatVariable49;
-                StackFrameAddressPointer[0x83] = FilterInputValue5 * FloatVariable5 + FilterInputValue0 * SystemContextPrimaryFloat3 + ContextSecondaryFloat9 * NormalizedParameterValue;
+                MatrixTransformMultiplier20 = pContextPrimaryFloat9[0xc];
+                FilterInputValue7 = MatrixTransformMultiplier11 * ContextSecondaryFloat + MatrixTransformMultiplier12 * PrimaryFloatValue + MatrixTransformMultiplier13 * CalculatedDistance;
+                FilterInputValue8 = MatrixTransformMultiplier11 * FilterInputValue + MatrixTransformMultiplier12 * SecondaryFloatValue + MatrixTransformMultiplier13 * FloatVariable7;
+                FilterInputValue9 = MatrixTransformMultiplier11 * MatrixTransformMultiplier1 + MatrixTransformMultiplier12 * SystemContextPrimaryFloat2 + MatrixTransformMultiplier13 * ProcessedFloatValue8;
+                MatrixTransformMultiplier10 = MatrixTransformMultiplier11 * MatrixTransformMultiplier2 + MatrixTransformMultiplier12 * SystemContextPrimaryFloat3 + MatrixTransformMultiplier13 * NormalizedParameterValue;
+                StackFrameAddressPointer[0x80] = MatrixTransformMultiplier17;
+                StackFrameAddressPointer[0x81] = MatrixTransformMultiplier18;
+                StackFrameAddressPointer[0x82] = MatrixTransformMultiplier19;
+                StackFrameAddressPointer[0x83] = FilterInputValue5 * MatrixTransformMultiplier2 + FilterInputValue0 * SystemContextPrimaryFloat3 + ContextSecondaryFloat9 * NormalizedParameterValue;
                 FilterInputValue5 = pContextPrimaryFloat9[0xe];
-                FloatVariable41 = *(float *)(CharacterTablePointer + 0xa0);
-                FloatVariable42 = *(float *)(CharacterTablePointer + 0xa4);
-                FloatVariable43 = *(float *)(CharacterTablePointer + 0xa8);
+                MatrixTransformMultiplier11 = *(float *)(CharacterTablePointer + 0xa0);
+                MatrixTransformMultiplier12 = *(float *)(CharacterTablePointer + 0xa4);
+                MatrixTransformMultiplier13 = *(float *)(CharacterTablePointer + 0xa8);
                 SystemContextPrimaryFloat4 = *(float *)(CharacterTablePointer + 0xac);
-                StackFrameAddressPointer[0x84] = FloatVariable44;
-                StackFrameAddressPointer[0x85] = FloatVariable45;
-                StackFrameAddressPointer[0x86] = FloatVariable46;
-                StackFrameAddressPointer[0x87] = FilterInputValue4 * FloatVariable5 + FilterInputValue1 * SystemContextPrimaryFloat3 + FilterInputValue6 * NormalizedParameterValue;
+                StackFrameAddressPointer[0x84] = MatrixTransformMultiplier14;
+                StackFrameAddressPointer[0x85] = MatrixTransformMultiplier15;
+                StackFrameAddressPointer[0x86] = MatrixTransformMultiplier16;
+                StackFrameAddressPointer[0x87] = FilterInputValue4 * MatrixTransformMultiplier2 + FilterInputValue1 * SystemContextPrimaryFloat3 + FilterInputValue6 * NormalizedParameterValue;
                 FilterInputValue0 = RegisterR12Value[2];
-                FloatVariable41 = ScalingFactor * ContextSecondaryFloat + FloatVariable50 * PrimaryFloatValue + FilterInputValue5 * CalculatedDistance + FloatVariable41;
-                FloatVariable42 = ScalingFactor * FilterInputValue + FloatVariable50 * SecondaryFloatValue + FilterInputValue5 * FloatVariable7 + FloatVariable42;
-                FloatVariable43 = ScalingFactor * FloatVariable4 + FloatVariable50 * SystemContextPrimaryFloat2 + FilterInputValue5 * ProcessedFloatValue8 + FloatVariable43;
+                MatrixTransformMultiplier11 = ScalingFactor * ContextSecondaryFloat + MatrixTransformMultiplier20 * PrimaryFloatValue + FilterInputValue5 * CalculatedDistance + MatrixTransformMultiplier11;
+                MatrixTransformMultiplier12 = ScalingFactor * FilterInputValue + MatrixTransformMultiplier20 * SecondaryFloatValue + FilterInputValue5 * FloatVariable7 + MatrixTransformMultiplier12;
+                MatrixTransformMultiplier13 = ScalingFactor * MatrixTransformMultiplier1 + MatrixTransformMultiplier20 * SystemContextPrimaryFloat2 + FilterInputValue5 * ProcessedFloatValue8 + MatrixTransformMultiplier13;
                 ContextSecondaryFloat9 = RegisterR12Value[1];
                 StackFrameAddressPointer[0x88] = FilterInputValue7;
                 StackFrameAddressPointer[0x89] = FilterInputValue8;
                 StackFrameAddressPointer[0x8a] = FilterInputValue9;
-                StackFrameAddressPointer[0x8b] = FloatVariable40;
-                FilterInputValue2 = FilterInputValue2 - FloatVariable41;
-                StackFrameAddressPointer[0x8c] = FloatVariable41;
-                StackFrameAddressPointer[0x8d] = FloatVariable42;
-                StackFrameAddressPointer[0x8e] = FloatVariable43;
-                StackFrameAddressPointer[0x8f] = ScalingFactor * FloatVariable5 + FloatVariable50 * SystemContextPrimaryFloat3 + FilterInputValue5 * NormalizedParameterValue + SystemContextPrimaryFloat4;
-                ContextSecondaryFloat9 = ContextSecondaryFloat9 - FloatVariable42;
-                FilterInputValue0 = FilterInputValue0 - FloatVariable43;
-                FloatVariable41 = *RegisterR13Value - FloatVariable41;
-                StackFrameAddressPointer[0x14] = FilterInputValue2 * FloatVariable47 + ContextSecondaryFloat9 * FloatVariable48 + FilterInputValue0 * FloatVariable49;
-                StackFrameAddressPointer[0x15] = FilterInputValue2 * FloatVariable44 + ContextSecondaryFloat9 * FloatVariable45 + FilterInputValue0 * FloatVariable46;
+                StackFrameAddressPointer[0x8b] = MatrixTransformMultiplier10;
+                FilterInputValue2 = FilterInputValue2 - MatrixTransformMultiplier11;
+                StackFrameAddressPointer[0x8c] = MatrixTransformMultiplier11;
+                StackFrameAddressPointer[0x8d] = MatrixTransformMultiplier12;
+                StackFrameAddressPointer[0x8e] = MatrixTransformMultiplier13;
+                StackFrameAddressPointer[0x8f] = ScalingFactor * MatrixTransformMultiplier2 + MatrixTransformMultiplier20 * SystemContextPrimaryFloat3 + FilterInputValue5 * NormalizedParameterValue + SystemContextPrimaryFloat4;
+                ContextSecondaryFloat9 = ContextSecondaryFloat9 - MatrixTransformMultiplier12;
+                FilterInputValue0 = FilterInputValue0 - MatrixTransformMultiplier13;
+                MatrixTransformMultiplier11 = *RegisterR13Value - MatrixTransformMultiplier11;
+                StackFrameAddressPointer[0x14] = FilterInputValue2 * MatrixTransformMultiplier17 + ContextSecondaryFloat9 * MatrixTransformMultiplier18 + FilterInputValue0 * MatrixTransformMultiplier19;
+                StackFrameAddressPointer[0x15] = FilterInputValue2 * MatrixTransformMultiplier14 + ContextSecondaryFloat9 * MatrixTransformMultiplier15 + FilterInputValue0 * MatrixTransformMultiplier16;
                 StackFrameAddressPointer[0x16] = FilterInputValue2 * FilterInputValue7 + ContextSecondaryFloat9 * FilterInputValue8 + FilterInputValue0 * FilterInputValue9;
-                StackFrameAddressPointer[0x17] = FilterInputValue2 * FloatVariable40 + ContextSecondaryFloat9 * FloatVariable40 + FilterInputValue0 * FloatVariable40;
-                FloatVariable42 = RegisterR13Value[1] - FloatVariable42;
+                StackFrameAddressPointer[0x17] = FilterInputValue2 * MatrixTransformMultiplier10 + ContextSecondaryFloat9 * MatrixTransformMultiplier10 + FilterInputValue0 * MatrixTransformMultiplier10;
+                MatrixTransformMultiplier12 = RegisterR13Value[1] - MatrixTransformMultiplier12;
                 BufferStatus1 = *(long long *)(CharacterTablePointer + 0x20);
-                FloatVariable43 = RegisterR13Value[2] - FloatVariable43;
+                MatrixTransformMultiplier13 = RegisterR13Value[2] - MatrixTransformMultiplier13;
                 BufferStatus4 = Utf8InputBuffer[99];
-                StackFrameAddressPointer[0x2e] = FloatVariable42 * FloatVariable48 + FloatVariable41 * FloatVariable47 + FloatVariable43 * FloatVariable49;
-                StackFrameAddressPointer[0x2f] = FloatVariable42 * FloatVariable45 + FloatVariable41 * FloatVariable44 + FloatVariable43 * FloatVariable46;
-                StackFrameAddressPointer[0x30] = FloatVariable42 * FilterInputValue8 + FloatVariable41 * FilterInputValue7 + FloatVariable43 * FilterInputValue9;
-                StackFrameAddressPointer[0x31] = FloatVariable42 * FloatVariable40 + FloatVariable41 * FloatVariable40 + FloatVariable43 * FloatVariable40;
+                StackFrameAddressPointer[0x2e] = MatrixTransformMultiplier12 * MatrixTransformMultiplier18 + MatrixTransformMultiplier11 * MatrixTransformMultiplier17 + MatrixTransformMultiplier13 * MatrixTransformMultiplier19;
+                StackFrameAddressPointer[0x2f] = MatrixTransformMultiplier12 * MatrixTransformMultiplier15 + MatrixTransformMultiplier11 * MatrixTransformMultiplier14 + MatrixTransformMultiplier13 * MatrixTransformMultiplier16;
+                StackFrameAddressPointer[0x30] = MatrixTransformMultiplier12 * FilterInputValue8 + MatrixTransformMultiplier11 * FilterInputValue7 + MatrixTransformMultiplier13 * FilterInputValue9;
+                StackFrameAddressPointer[0x31] = MatrixTransformMultiplier12 * MatrixTransformMultiplier10 + MatrixTransformMultiplier11 * MatrixTransformMultiplier10 + MatrixTransformMultiplier13 * MatrixTransformMultiplier10;
                 if ((int)BufferStatus4 == -1) {
                   *(uint32_t *)((long long)CharacterCode + 0x314) = 0x10;
                   UnicodeCharacterCode = FUN_1801b9a40(BufferStatus1 + 0x51d0,0x10);
@@ -234221,31 +234221,31 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
       FilterInputValue0 = RegisterR13Value[2];
       ContextSecondaryFloat9 = RegisterR12Value[2];
       FilterInputValue4 = RegisterR12Value[1];
-      FloatVariable41 = *RegisterR13Value;
+      MatrixTransformMultiplier11 = *RegisterR13Value;
       ScalingFactor = RegisterR13Value[1];
       StackFrameAddressPointer[-0x11] = 3.4028235e+38;
       StackFrameAddressPointer[-0xd] = 3.4028235e+38;
-      FloatVariable42 = ContextSecondaryFloat9 + FilterInputValue0 * 0.2;
+      MatrixTransformMultiplier12 = ContextSecondaryFloat9 + FilterInputValue0 * 0.2;
       StackFrameAddressPointer[0x3a] = 0.05;
-      FilterInputValue1 = FilterInputValue5 - FloatVariable41 * 0.2;
+      FilterInputValue1 = FilterInputValue5 - MatrixTransformMultiplier11 * 0.2;
       ContextSecondaryFloat9 = ContextSecondaryFloat9 - FilterInputValue0 * 0.2;
-      FilterInputValue5 = FilterInputValue5 + FloatVariable41 * 0.2;
+      FilterInputValue5 = FilterInputValue5 + MatrixTransformMultiplier11 * 0.2;
       FilterInputValue6 = FilterInputValue4 + ScalingFactor * 0.2;
       FilterInputValue4 = FilterInputValue4 - ScalingFactor * 0.2;
       FilterInputValue0 = StackFrameAddressPointer[-0x11];
-      FloatVariable41 = StackFrameAddressPointer[-0xd];
+      MatrixTransformMultiplier11 = StackFrameAddressPointer[-0xd];
       StackFrameAddressPointer[-0x14] = FilterInputValue1;
       StackFrameAddressPointer[-0x13] = FilterInputValue4;
       StackFrameAddressPointer[-0x12] = ContextSecondaryFloat9;
       StackFrameAddressPointer[-0x11] = FilterInputValue0;
       StackFrameAddressPointer[-0x10] = FilterInputValue5;
       StackFrameAddressPointer[-0xf] = FilterInputValue6;
-      StackFrameAddressPointer[-0xe] = FloatVariable42;
-      StackFrameAddressPointer[-0xd] = FloatVariable41;
+      StackFrameAddressPointer[-0xe] = MatrixTransformMultiplier12;
+      StackFrameAddressPointer[-0xd] = MatrixTransformMultiplier11;
       StackFrameAddressPointer[0x36] = FilterInputValue5;
       StackFrameAddressPointer[0x37] = FilterInputValue6;
-      StackFrameAddressPointer[0x38] = FloatVariable42;
-      StackFrameAddressPointer[0x39] = FloatVariable41;
+      StackFrameAddressPointer[0x38] = MatrixTransformMultiplier12;
+      StackFrameAddressPointer[0x39] = MatrixTransformMultiplier11;
       StackFrameAddressPointer[0x32] = FilterInputValue1;
       StackFrameAddressPointer[0x33] = FilterInputValue4;
       StackFrameAddressPointer[0x34] = ContextSecondaryFloat9;
@@ -234281,18 +234281,18 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
         StackFrameAddressPointer[0x4a] = ContextSecondaryFloat9;
         StackFrameAddressPointer[0x4b] = FilterInputValue4;
         FUN_18063b5f0(StackFrameAddressPointer + 0x5c,StackFrameAddressPointer + 0x44);
-        FloatVariable41 = StackFrameAddressPointer[0x5c];
+        MatrixTransformMultiplier11 = StackFrameAddressPointer[0x5c];
         ScalingFactor = StackFrameAddressPointer[0x5d];
         FilterInputValue1 = StackFrameAddressPointer[0x5e];
         FilterInputValue6 = StackFrameAddressPointer[0x60];
-        FloatVariable42 = StackFrameAddressPointer[0x61];
-        FloatVariable43 = StackFrameAddressPointer[0x62];
+        MatrixTransformMultiplier12 = StackFrameAddressPointer[0x61];
+        MatrixTransformMultiplier13 = StackFrameAddressPointer[0x62];
         FilterInputValue2 = *(float *)(CharacterTablePointer + 0x70);
-        FloatVariable50 = *(float *)(CharacterTablePointer + 0x74);
+        MatrixTransformMultiplier20 = *(float *)(CharacterTablePointer + 0x74);
         ContextSecondaryFloat = *(float *)(CharacterTablePointer + 0x78);
         CalculatedFilterValue = *(float *)(CharacterTablePointer + 0x7c);
-        FloatVariable4 = *(float *)(CharacterTablePointer + 0x80);
-        FloatVariable5 = *(float *)(CharacterTablePointer + 0x84);
+        MatrixTransformMultiplier1 = *(float *)(CharacterTablePointer + 0x80);
+        MatrixTransformMultiplier2 = *(float *)(CharacterTablePointer + 0x84);
         CalculatedDistance = *(float *)(CharacterTablePointer + 0x88);
         FloatVariable7 = *(float *)(CharacterTablePointer + 0x8c);
         ProcessedFloatValue8 = StackFrameAddressPointer[100];
@@ -234302,13 +234302,13 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
         SystemContextPrimaryFloat2 = *(float *)(CharacterTablePointer + 0x94);
         SystemContextPrimaryFloat3 = *(float *)(CharacterTablePointer + 0x98);
         SystemContextPrimaryFloat4 = *(float *)(CharacterTablePointer + 0x9c);
-        StackFrameAddressPointer[0x90] = FloatVariable41;
+        StackFrameAddressPointer[0x90] = MatrixTransformMultiplier11;
         StackFrameAddressPointer[0x91] = ScalingFactor;
         StackFrameAddressPointer[0x92] = FilterInputValue1;
         StackFrameAddressPointer[0x93] = StackFrameAddressPointer[0x5f];
         StackFrameAddressPointer[0x94] = FilterInputValue6;
-        StackFrameAddressPointer[0x95] = FloatVariable42;
-        StackFrameAddressPointer[0x96] = FloatVariable43;
+        StackFrameAddressPointer[0x95] = MatrixTransformMultiplier12;
+        StackFrameAddressPointer[0x96] = MatrixTransformMultiplier13;
         StackFrameAddressPointer[0x97] = StackFrameAddressPointer[99];
         StackFrameAddressPointer[0x98] = ProcessedFloatValue8;
         StackFrameAddressPointer[0x99] = NormalizedParameterValue;
@@ -234318,46 +234318,46 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
         StackFrameAddressPointer[0x9d] = FilterInputValue0;
         StackFrameAddressPointer[0x9e] = ContextSecondaryFloat9;
         StackFrameAddressPointer[0x9f] = FilterInputValue4;
-        FilterInputValue4 = FloatVariable41 * FilterInputValue2 + ScalingFactor * FloatVariable4 + FilterInputValue1 * SecondaryFloatValue;
-        FloatVariable40 = FloatVariable41 * FloatVariable50 + ScalingFactor * FloatVariable5 + FilterInputValue1 * SystemContextPrimaryFloat2;
-        FloatVariable44 = FloatVariable41 * ContextSecondaryFloat + ScalingFactor * CalculatedDistance + FilterInputValue1 * SystemContextPrimaryFloat3;
+        FilterInputValue4 = MatrixTransformMultiplier11 * FilterInputValue2 + ScalingFactor * MatrixTransformMultiplier1 + FilterInputValue1 * SecondaryFloatValue;
+        MatrixTransformMultiplier10 = MatrixTransformMultiplier11 * MatrixTransformMultiplier20 + ScalingFactor * MatrixTransformMultiplier2 + FilterInputValue1 * SystemContextPrimaryFloat2;
+        MatrixTransformMultiplier14 = MatrixTransformMultiplier11 * ContextSecondaryFloat + ScalingFactor * CalculatedDistance + FilterInputValue1 * SystemContextPrimaryFloat3;
         StackFrameAddressPointer[-0xc] = FilterInputValue4;
         StackFrameAddressPointer[0x68] = FilterInputValue4;
-        StackFrameAddressPointer[0x69] = FloatVariable40;
-        StackFrameAddressPointer[0x6a] = FloatVariable44;
-        StackFrameAddressPointer[0x6b] = FloatVariable41 * FilterInputValue + ScalingFactor * FloatVariable7 + FilterInputValue1 * SystemContextPrimaryFloat4;
-        FilterInputValue7 = FilterInputValue6 * FilterInputValue2 + FloatVariable42 * FloatVariable4 + FloatVariable43 * SecondaryFloatValue;
-        FilterInputValue8 = FilterInputValue6 * FloatVariable50 + FloatVariable42 * FloatVariable5 + FloatVariable43 * SystemContextPrimaryFloat2;
-        FilterInputValue9 = FilterInputValue6 * ContextSecondaryFloat + FloatVariable42 * CalculatedDistance + FloatVariable43 * SystemContextPrimaryFloat3;
+        StackFrameAddressPointer[0x69] = MatrixTransformMultiplier10;
+        StackFrameAddressPointer[0x6a] = MatrixTransformMultiplier14;
+        StackFrameAddressPointer[0x6b] = MatrixTransformMultiplier11 * FilterInputValue + ScalingFactor * FloatVariable7 + FilterInputValue1 * SystemContextPrimaryFloat4;
+        FilterInputValue7 = FilterInputValue6 * FilterInputValue2 + MatrixTransformMultiplier12 * MatrixTransformMultiplier1 + MatrixTransformMultiplier13 * SecondaryFloatValue;
+        FilterInputValue8 = FilterInputValue6 * MatrixTransformMultiplier20 + MatrixTransformMultiplier12 * MatrixTransformMultiplier2 + MatrixTransformMultiplier13 * SystemContextPrimaryFloat2;
+        FilterInputValue9 = FilterInputValue6 * ContextSecondaryFloat + MatrixTransformMultiplier12 * CalculatedDistance + MatrixTransformMultiplier13 * SystemContextPrimaryFloat3;
         StackFrameAddressPointer[0x6c] = FilterInputValue7;
         StackFrameAddressPointer[0x6d] = FilterInputValue8;
         StackFrameAddressPointer[0x6e] = FilterInputValue9;
-        StackFrameAddressPointer[0x6f] = FilterInputValue6 * FilterInputValue + FloatVariable42 * FloatVariable7 + FloatVariable43 * SystemContextPrimaryFloat4;
-        FilterInputValue6 = ProcessedFloatValue8 * FilterInputValue2 + NormalizedParameterValue * FloatVariable4 + PrimaryFloatValue * SecondaryFloatValue;
-        FloatVariable42 = ProcessedFloatValue8 * FloatVariable50 + NormalizedParameterValue * FloatVariable5 + PrimaryFloatValue * SystemContextPrimaryFloat2;
-        FloatVariable43 = ProcessedFloatValue8 * ContextSecondaryFloat + NormalizedParameterValue * CalculatedDistance + PrimaryFloatValue * SystemContextPrimaryFloat3;
+        StackFrameAddressPointer[0x6f] = FilterInputValue6 * FilterInputValue + MatrixTransformMultiplier12 * FloatVariable7 + MatrixTransformMultiplier13 * SystemContextPrimaryFloat4;
+        FilterInputValue6 = ProcessedFloatValue8 * FilterInputValue2 + NormalizedParameterValue * MatrixTransformMultiplier1 + PrimaryFloatValue * SecondaryFloatValue;
+        MatrixTransformMultiplier12 = ProcessedFloatValue8 * MatrixTransformMultiplier20 + NormalizedParameterValue * MatrixTransformMultiplier2 + PrimaryFloatValue * SystemContextPrimaryFloat2;
+        MatrixTransformMultiplier13 = ProcessedFloatValue8 * ContextSecondaryFloat + NormalizedParameterValue * CalculatedDistance + PrimaryFloatValue * SystemContextPrimaryFloat3;
         StackFrameAddressPointer[0x70] = FilterInputValue6;
-        StackFrameAddressPointer[0x71] = FloatVariable42;
-        StackFrameAddressPointer[0x72] = FloatVariable43;
+        StackFrameAddressPointer[0x71] = MatrixTransformMultiplier12;
+        StackFrameAddressPointer[0x72] = MatrixTransformMultiplier13;
         StackFrameAddressPointer[0x73] = ProcessedFloatValue8 * FilterInputValue + NormalizedParameterValue * FloatVariable7 + PrimaryFloatValue * SystemContextPrimaryFloat4;
         FilterInputValue4 = *(float *)(CharacterTablePointer + 0xac);
-        FloatVariable41 = FilterInputValue5 * FilterInputValue2 + FilterInputValue0 * FloatVariable4 + ContextSecondaryFloat9 * SecondaryFloatValue + *(float *)(CharacterTablePointer + 0xa0);
-        ScalingFactor = FilterInputValue5 * FloatVariable50 + FilterInputValue0 * FloatVariable5 + ContextSecondaryFloat9 * SystemContextPrimaryFloat2 + *(float *)(CharacterTablePointer + 0xa4);
+        MatrixTransformMultiplier11 = FilterInputValue5 * FilterInputValue2 + FilterInputValue0 * MatrixTransformMultiplier1 + ContextSecondaryFloat9 * SecondaryFloatValue + *(float *)(CharacterTablePointer + 0xa0);
+        ScalingFactor = FilterInputValue5 * MatrixTransformMultiplier20 + FilterInputValue0 * MatrixTransformMultiplier2 + ContextSecondaryFloat9 * SystemContextPrimaryFloat2 + *(float *)(CharacterTablePointer + 0xa4);
         FilterInputValue1 = FilterInputValue5 * ContextSecondaryFloat + FilterInputValue0 * CalculatedDistance + ContextSecondaryFloat9 * SystemContextPrimaryFloat3 + *(float *)(CharacterTablePointer + 0xa8);
-        StackFrameAddressPointer[0x74] = FloatVariable41;
+        StackFrameAddressPointer[0x74] = MatrixTransformMultiplier11;
         StackFrameAddressPointer[0x75] = ScalingFactor;
         StackFrameAddressPointer[0x76] = FilterInputValue1;
         StackFrameAddressPointer[0x77] = FilterInputValue5 * FilterInputValue + FilterInputValue0 * FloatVariable7 + ContextSecondaryFloat9 * SystemContextPrimaryFloat4 + FilterInputValue4;
-        StackFrameAddressPointer[-0xb] = FloatVariable40;
+        StackFrameAddressPointer[-0xb] = MatrixTransformMultiplier10;
         StackFrameAddressPointer[-8] = FilterInputValue7;
         StackFrameAddressPointer[-7] = FilterInputValue8;
-        StackFrameAddressPointer[-3] = FloatVariable42;
+        StackFrameAddressPointer[-3] = MatrixTransformMultiplier12;
         StackFrameAddressPointer[-4] = FilterInputValue6;
-        *StackFrameAddressPointer = FloatVariable41;
+        *StackFrameAddressPointer = MatrixTransformMultiplier11;
         StackFrameAddressPointer[2] = FilterInputValue1;
-        StackFrameAddressPointer[-10] = FloatVariable44;
+        StackFrameAddressPointer[-10] = MatrixTransformMultiplier14;
         StackFrameAddressPointer[-6] = FilterInputValue9;
-        StackFrameAddressPointer[-2] = FloatVariable43;
+        StackFrameAddressPointer[-2] = MatrixTransformMultiplier13;
         StackFrameAddressPointer[1] = ScalingFactor;
         StackFrameAddressPointer[-9] = 0.0;
         StackFrameAddressPointer[-5] = 0.0;
@@ -234381,43 +234381,43 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
              StackFrameAddressPointer[0x13];
         FUN_1801c1140(StackFrameAddressPointer + 0x68,StackFrameAddressPointer + 0x20);
         CharacterTablePointer = BufferStatus1 * 0x1b0 + *(long long *)(*(long long *)(BufferStatus4 + 0x208) + 0x140);
-        FloatVariable41 = *(float *)(CharacterTablePointer + 0x30);
+        MatrixTransformMultiplier11 = *(float *)(CharacterTablePointer + 0x30);
         ScalingFactor = *(float *)(CharacterTablePointer + 0x34);
         FilterInputValue1 = *(float *)(CharacterTablePointer + 0x38);
         FilterInputValue5 = *(float *)(CharacterTablePointer + 0x3c);
         FilterInputValue6 = *(float *)(CharacterTablePointer + 0x40);
-        FloatVariable42 = *(float *)(CharacterTablePointer + 0x44);
-        FloatVariable43 = *(float *)(CharacterTablePointer + 0x48);
+        MatrixTransformMultiplier12 = *(float *)(CharacterTablePointer + 0x44);
+        MatrixTransformMultiplier13 = *(float *)(CharacterTablePointer + 0x48);
         FilterInputValue2 = *(float *)(CharacterTablePointer + 0x4c);
-        StackFrameAddressPointer[0x50] = FloatVariable41;
+        StackFrameAddressPointer[0x50] = MatrixTransformMultiplier11;
         StackFrameAddressPointer[0x51] = ScalingFactor;
         StackFrameAddressPointer[0x52] = FilterInputValue1;
         StackFrameAddressPointer[0x53] = FilterInputValue5;
         StackFrameAddressPointer[0x4c] = FilterInputValue6;
-        StackFrameAddressPointer[0x4d] = FloatVariable42;
-        StackFrameAddressPointer[0x4e] = FloatVariable43;
+        StackFrameAddressPointer[0x4d] = MatrixTransformMultiplier12;
+        StackFrameAddressPointer[0x4e] = MatrixTransformMultiplier13;
         StackFrameAddressPointer[0x4f] = FilterInputValue2;
         pContextPrimaryFloat9 = (float *)FUN_1801c0fb0(StackFrameAddressPointer + 0x4c,StackFrameAddressPointer + 0x7c,StackFrameAddressPointer + -0x1c);
         CharacterTablePointer = FunctionReturnValue;
         FilterInputValue5 = StackFrameAddressPointer[0x22];
         FilterInputValue0 = StackFrameAddressPointer[0x20];
         ContextSecondaryFloat9 = StackFrameAddressPointer[0x21];
-        FloatVariable41 = FloatVariable41 + *pContextPrimaryFloat9;
+        MatrixTransformMultiplier11 = MatrixTransformMultiplier11 + *pContextPrimaryFloat9;
         FilterInputValue4 = pContextPrimaryFloat9[2];
         StackFrameAddressPointer[-0x20] = ScalingFactor + pContextPrimaryFloat9[1];
         StackFrameAddressPointer[-0x1f] = ScalingFactor;
         StackFrameAddressPointer[-0x1e] = ScalingFactor;
         StackFrameAddressPointer[-0x1d] = ScalingFactor;
-        ScalingFactor = FilterInputValue5 * FloatVariable43 - ContextSecondaryFloat9 * FilterInputValue2;
+        ScalingFactor = FilterInputValue5 * MatrixTransformMultiplier13 - ContextSecondaryFloat9 * FilterInputValue2;
         _StackFloat1 = CONCAT44(FilterInputValue1,FilterInputValue1 + FilterInputValue4);
         ScalingFactor = ScalingFactor + ScalingFactor;
-        FloatVariable50 = FilterInputValue0 * FilterInputValue2 - FilterInputValue5 * FloatVariable42;
-        FilterInputValue4 = ContextSecondaryFloat9 * FloatVariable42 - FilterInputValue0 * FloatVariable43;
-        FloatVariable50 = FloatVariable50 + FloatVariable50;
+        MatrixTransformMultiplier20 = FilterInputValue0 * FilterInputValue2 - FilterInputValue5 * MatrixTransformMultiplier12;
+        FilterInputValue4 = ContextSecondaryFloat9 * MatrixTransformMultiplier12 - FilterInputValue0 * MatrixTransformMultiplier13;
+        MatrixTransformMultiplier20 = MatrixTransformMultiplier20 + MatrixTransformMultiplier20;
         FilterInputValue4 = FilterInputValue4 + FilterInputValue4;
-        FilterInputValue0 = ScalingFactor * FilterInputValue6 + FilterInputValue0 + (FilterInputValue4 * FloatVariable43 - FloatVariable50 * FilterInputValue2);
-        FloatVariable43 = (FloatVariable50 * FloatVariable42 - ScalingFactor * FloatVariable43) + FilterInputValue4 * FilterInputValue6 + FilterInputValue5;
-        FilterInputValue5 = (ScalingFactor * FilterInputValue2 - FilterInputValue4 * FloatVariable42) + FloatVariable50 * FilterInputValue6 + ContextSecondaryFloat9;
+        FilterInputValue0 = ScalingFactor * FilterInputValue6 + FilterInputValue0 + (FilterInputValue4 * MatrixTransformMultiplier13 - MatrixTransformMultiplier20 * FilterInputValue2);
+        MatrixTransformMultiplier13 = (MatrixTransformMultiplier20 * MatrixTransformMultiplier12 - ScalingFactor * MatrixTransformMultiplier13) + FilterInputValue4 * FilterInputValue6 + FilterInputValue5;
+        FilterInputValue5 = (ScalingFactor * FilterInputValue2 - FilterInputValue4 * MatrixTransformMultiplier12) + MatrixTransformMultiplier20 * FilterInputValue6 + ContextSecondaryFloat9;
         fStack0000000000000078 = FilterInputValue1;
         fStack000000000000007c = FilterInputValue1;
         if (*(int *)(BufferStatus4 + 0x170) == -1) {
@@ -234428,21 +234428,21 @@ void NormalizeSystemCharacterData(long long CharacterCode,float *Utf8InputBuffer
           *(uint32_t *)(BufferStatus4 + 0x168) = 0;
           UNLOCK();
         }
-        StackFrameAddressPointer[0x24] = FloatVariable41;
+        StackFrameAddressPointer[0x24] = MatrixTransformMultiplier11;
         StackFrameAddressPointer[0x25] = StackFrameAddressPointer[-0x20];
         StackFrameAddressPointer[0x26] = StackFloat1;
         StackFrameAddressPointer[0x27] = StackFrameAddressPointer[0xf2];
-        StackFrameAddressPointer[0x54] = FloatVariable41;
+        StackFrameAddressPointer[0x54] = MatrixTransformMultiplier11;
         StackFrameAddressPointer[0x55] = StackFrameAddressPointer[-0x20];
         StackFrameAddressPointer[0x56] = StackFloat1;
         StackFrameAddressPointer[0x57] = StackFrameAddressPointer[0xf2];
         StackFrameAddressPointer[0x28] = FilterInputValue0;
         StackFrameAddressPointer[0x29] = FilterInputValue5;
-        StackFrameAddressPointer[0x2a] = FloatVariable43;
+        StackFrameAddressPointer[0x2a] = MatrixTransformMultiplier13;
         StackFrameAddressPointer[0x2b] = (float)iStack0000000000000050;
         StackFrameAddressPointer[0x58] = FilterInputValue0;
         StackFrameAddressPointer[0x59] = FilterInputValue5;
-        StackFrameAddressPointer[0x5a] = FloatVariable43;
+        StackFrameAddressPointer[0x5a] = MatrixTransformMultiplier13;
         StackFrameAddressPointer[0x5b] = (float)iStack0000000000000050;
         FUN_18020a7b0(BufferStatus4 + 0x160,CharacterTablePointer + 0x3fb8,StackFrameAddressPointer + 0x54);
       }
@@ -236448,7 +236448,7 @@ LAB_180201f5b:
   float ContextSecondaryFloat;
   unsigned long long UnicodeCodePoint;
   long long SystemDataRegistry;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   float *FloatProcessingStatusFlag;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -236467,7 +236467,7 @@ LAB_180201f5b:
       ProcessedFloatValue8 = ContextSecondaryFloat;
       ContextSecondaryFloat = FloatVariable7;
     }
-    pFloatVariable5 = Utf8BufferSize;
+    pMatrixTransformMultiplier2 = Utf8BufferSize;
     FloatProcessingStatusFlag = CharacterCode;
     if ((SystemContextPrimaryFloat <= ProcessedFloatValue8) && (ProcessedFloatValue8 = ContextSecondaryFloat, ContextSecondaryFloat < SystemContextPrimaryFloat)) {
       ProcessedFloatValue8 = SystemContextPrimaryFloat;
@@ -236477,16 +236477,16 @@ LAB_180201f5b:
         FloatVariable7 = pCalculatedDistance[1];
         FloatProcessingStatusFlag = pCalculatedDistance + 1;
       }
-      pFloatVariable5 = pFloatVariable5 + -1;
-      SystemContextPrimaryFloat = *pFloatVariable5;
+      pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + -1;
+      SystemContextPrimaryFloat = *pMatrixTransformMultiplier2;
       while (ProcessedFloatValue8 < SystemContextPrimaryFloat) {
-        pFloatVariable5 = pFloatVariable5 + -1;
-        SystemContextPrimaryFloat = *pFloatVariable5;
+        pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + -1;
+        SystemContextPrimaryFloat = *pMatrixTransformMultiplier2;
       }
-      if (pFloatVariable5 <= pCalculatedDistance) break;
+      if (pMatrixTransformMultiplier2 <= pCalculatedDistance) break;
       SystemContextPrimaryFloat = *pCalculatedDistance;
-      *FloatProcessingStatusFlag = *pFloatVariable5;
-      *pFloatVariable5 = SystemContextPrimaryFloat;
+      *FloatProcessingStatusFlag = *pMatrixTransformMultiplier2;
+      *pMatrixTransformMultiplier2 = SystemContextPrimaryFloat;
       FloatVariable7 = pCalculatedDistance[1];
       FloatProcessingStatusFlag = pCalculatedDistance + 1;
     }
@@ -236511,7 +236511,7 @@ LAB_180201f5b:
   long long ProcessingResult;
   unsigned long long UnicodeCodePoint;
   long long SystemDataRegistry;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   float *FloatProcessingStatusFlag;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -236530,7 +236530,7 @@ LAB_180201f5b:
       ProcessedFloatValue8 = ContextSecondaryFloat;
       ContextSecondaryFloat = FloatVariable7;
     }
-    pFloatVariable5 = Utf8BufferSize;
+    pMatrixTransformMultiplier2 = Utf8BufferSize;
     FloatProcessingStatusFlag = CharacterCode;
     if ((SystemContextPrimaryFloat <= ProcessedFloatValue8) && (ProcessedFloatValue8 = ContextSecondaryFloat, ContextSecondaryFloat < SystemContextPrimaryFloat)) {
       ProcessedFloatValue8 = SystemContextPrimaryFloat;
@@ -236540,16 +236540,16 @@ LAB_180201f5b:
         FloatVariable7 = pCalculatedDistance[1];
         FloatProcessingStatusFlag = pCalculatedDistance + 1;
       }
-      pFloatVariable5 = pFloatVariable5 + -1;
-      SystemContextPrimaryFloat = *pFloatVariable5;
+      pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + -1;
+      SystemContextPrimaryFloat = *pMatrixTransformMultiplier2;
       while (ProcessedFloatValue8 < SystemContextPrimaryFloat) {
-        pFloatVariable5 = pFloatVariable5 + -1;
-        SystemContextPrimaryFloat = *pFloatVariable5;
+        pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + -1;
+        SystemContextPrimaryFloat = *pMatrixTransformMultiplier2;
       }
-      if (pFloatVariable5 <= pCalculatedDistance) break;
+      if (pMatrixTransformMultiplier2 <= pCalculatedDistance) break;
       SystemContextPrimaryFloat = *pCalculatedDistance;
-      *FloatProcessingStatusFlag = *pFloatVariable5;
-      *pFloatVariable5 = SystemContextPrimaryFloat;
+      *FloatProcessingStatusFlag = *pMatrixTransformMultiplier2;
+      *pMatrixTransformMultiplier2 = SystemContextPrimaryFloat;
       FloatVariable7 = pCalculatedDistance[1];
       FloatProcessingStatusFlag = pCalculatedDistance + 1;
     }
@@ -236573,7 +236573,7 @@ LAB_180201f5b:
   float ContextSecondaryFloat;
   long long MemoryOffset;
   float *FloatVariablePointer4;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   uint8_t RegisterValueBL;
   long long StackFrameAddressPointer;
   float *PatternIndex;
@@ -236581,7 +236581,7 @@ LAB_180201f5b:
   float FloatVariable7;
   
   do {
-    pFloatVariable5 = Utf8BufferSize;
+    pMatrixTransformMultiplier2 = Utf8BufferSize;
     if (StackFrameAddressPointer < 1) break;
     MemoryBlockIndex = (long long)Utf8BufferSize - (long long)PatternIndex >> 2;
     if (MemoryBlockIndex < 0) {
@@ -236596,14 +236596,14 @@ LAB_180201f5b:
       ContextSecondaryFloat = CalculatedDistance;
     }
     FloatVariablePointer4 = Utf8BufferSize;
-    pFloatVariable5 = PatternIndex;
+    pMatrixTransformMultiplier2 = PatternIndex;
     if ((SystemContextPrimaryFloat <= FloatVariable7) && (FloatVariable7 = ContextSecondaryFloat, ContextSecondaryFloat < SystemContextPrimaryFloat)) {
       FloatVariable7 = SystemContextPrimaryFloat;
     }
     while( true ) {
       while (CalculatedDistance < FloatVariable7) {
-        CalculatedDistance = pFloatVariable5[1];
-        pFloatVariable5 = pFloatVariable5 + 1;
+        CalculatedDistance = pMatrixTransformMultiplier2[1];
+        pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + 1;
       }
       FloatVariablePointer4 = FloatVariablePointer4 + -1;
       SystemContextPrimaryFloat = *FloatVariablePointer4;
@@ -236611,19 +236611,19 @@ LAB_180201f5b:
         FloatVariablePointer4 = FloatVariablePointer4 + -1;
         SystemContextPrimaryFloat = *FloatVariablePointer4;
       }
-      if (FloatVariablePointer4 <= pFloatVariable5) break;
-      SystemContextPrimaryFloat = *pFloatVariable5;
-      *pFloatVariable5 = *FloatVariablePointer4;
+      if (FloatVariablePointer4 <= pMatrixTransformMultiplier2) break;
+      SystemContextPrimaryFloat = *pMatrixTransformMultiplier2;
+      *pMatrixTransformMultiplier2 = *FloatVariablePointer4;
       *FloatVariablePointer4 = SystemContextPrimaryFloat;
-      CalculatedDistance = pFloatVariable5[1];
-      pFloatVariable5 = pFloatVariable5 + 1;
+      CalculatedDistance = pMatrixTransformMultiplier2[1];
+      pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + 1;
     }
     StackFrameAddressPointer = StackFrameAddressPointer + -1;
-    CharacterCode = FUN_180202c00(pFloatVariable5,Utf8BufferSize,StackFrameAddressPointer,RegisterValueBL);
-    Utf8BufferSize = pFloatVariable5;
-  } while (0x70 < (long long)((long long)pFloatVariable5 - (long long)PatternIndex & 0xfffffffffffffffcU));
+    CharacterCode = FUN_180202c00(pMatrixTransformMultiplier2,Utf8BufferSize,StackFrameAddressPointer,RegisterValueBL);
+    Utf8BufferSize = pMatrixTransformMultiplier2;
+  } while (0x70 < (long long)((long long)pMatrixTransformMultiplier2 - (long long)PatternIndex & 0xfffffffffffffffcU));
   if (StackFrameAddressPointer == 0) {
-    FUN_180202e40(CharacterCode,pFloatVariable5,pFloatVariable5,RegisterValueBL);
+    FUN_180202e40(CharacterCode,pMatrixTransformMultiplier2,pMatrixTransformMultiplier2,RegisterValueBL);
   }
   return;
 }
@@ -236659,7 +236659,7 @@ LAB_180201f5b:
   float ContextSecondaryFloat;
   unsigned long long UnicodeCodePoint;
   long long SystemDataRegistry;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   float *FloatProcessingStatusFlag;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -236678,7 +236678,7 @@ LAB_180201f5b:
       ProcessedFloatValue8 = ContextSecondaryFloat;
       ContextSecondaryFloat = FloatVariable7;
     }
-    pFloatVariable5 = Utf8BufferSize;
+    pMatrixTransformMultiplier2 = Utf8BufferSize;
     FloatProcessingStatusFlag = CharacterCode;
     if ((SystemContextPrimaryFloat <= ProcessedFloatValue8) && (ProcessedFloatValue8 = ContextSecondaryFloat, ContextSecondaryFloat < SystemContextPrimaryFloat)) {
       ProcessedFloatValue8 = SystemContextPrimaryFloat;
@@ -236688,16 +236688,16 @@ LAB_180201f5b:
         FloatVariable7 = pCalculatedDistance[1];
         FloatProcessingStatusFlag = pCalculatedDistance + 1;
       }
-      pFloatVariable5 = pFloatVariable5 + -1;
-      SystemContextPrimaryFloat = *pFloatVariable5;
+      pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + -1;
+      SystemContextPrimaryFloat = *pMatrixTransformMultiplier2;
       while (ProcessedFloatValue8 < SystemContextPrimaryFloat) {
-        pFloatVariable5 = pFloatVariable5 + -1;
-        SystemContextPrimaryFloat = *pFloatVariable5;
+        pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + -1;
+        SystemContextPrimaryFloat = *pMatrixTransformMultiplier2;
       }
-      if (pFloatVariable5 <= pCalculatedDistance) break;
+      if (pMatrixTransformMultiplier2 <= pCalculatedDistance) break;
       SystemContextPrimaryFloat = *pCalculatedDistance;
-      *FloatProcessingStatusFlag = *pFloatVariable5;
-      *pFloatVariable5 = SystemContextPrimaryFloat;
+      *FloatProcessingStatusFlag = *pMatrixTransformMultiplier2;
+      *pMatrixTransformMultiplier2 = SystemContextPrimaryFloat;
       FloatVariable7 = pCalculatedDistance[1];
       FloatProcessingStatusFlag = pCalculatedDistance + 1;
     }
@@ -236722,7 +236722,7 @@ LAB_180201f5b:
   long long ProcessingResult;
   unsigned long long UnicodeCodePoint;
   long long SystemDataRegistry;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   float *FloatProcessingStatusFlag;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -236741,7 +236741,7 @@ LAB_180201f5b:
       ProcessedFloatValue8 = ContextSecondaryFloat;
       ContextSecondaryFloat = FloatVariable7;
     }
-    pFloatVariable5 = Utf8BufferSize;
+    pMatrixTransformMultiplier2 = Utf8BufferSize;
     FloatProcessingStatusFlag = CharacterCode;
     if ((SystemContextPrimaryFloat <= ProcessedFloatValue8) && (ProcessedFloatValue8 = ContextSecondaryFloat, ContextSecondaryFloat < SystemContextPrimaryFloat)) {
       ProcessedFloatValue8 = SystemContextPrimaryFloat;
@@ -236751,16 +236751,16 @@ LAB_180201f5b:
         FloatVariable7 = pCalculatedDistance[1];
         FloatProcessingStatusFlag = pCalculatedDistance + 1;
       }
-      pFloatVariable5 = pFloatVariable5 + -1;
-      SystemContextPrimaryFloat = *pFloatVariable5;
+      pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + -1;
+      SystemContextPrimaryFloat = *pMatrixTransformMultiplier2;
       while (ProcessedFloatValue8 < SystemContextPrimaryFloat) {
-        pFloatVariable5 = pFloatVariable5 + -1;
-        SystemContextPrimaryFloat = *pFloatVariable5;
+        pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + -1;
+        SystemContextPrimaryFloat = *pMatrixTransformMultiplier2;
       }
-      if (pFloatVariable5 <= pCalculatedDistance) break;
+      if (pMatrixTransformMultiplier2 <= pCalculatedDistance) break;
       SystemContextPrimaryFloat = *pCalculatedDistance;
-      *FloatProcessingStatusFlag = *pFloatVariable5;
-      *pFloatVariable5 = SystemContextPrimaryFloat;
+      *FloatProcessingStatusFlag = *pMatrixTransformMultiplier2;
+      *pMatrixTransformMultiplier2 = SystemContextPrimaryFloat;
       FloatVariable7 = pCalculatedDistance[1];
       FloatProcessingStatusFlag = pCalculatedDistance + 1;
     }
@@ -236784,7 +236784,7 @@ LAB_180201f5b:
   float ContextSecondaryFloat;
   long long MemoryOffset;
   float *FloatVariablePointer4;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   uint8_t RegisterValueBL;
   long long StackFrameAddressPointer;
   float *PatternIndex;
@@ -236792,7 +236792,7 @@ LAB_180201f5b:
   float FloatVariable7;
   
   do {
-    pFloatVariable5 = Utf8BufferSize;
+    pMatrixTransformMultiplier2 = Utf8BufferSize;
     if (StackFrameAddressPointer < 1) break;
     MemoryBlockIndex = (long long)Utf8BufferSize - (long long)PatternIndex >> 2;
     if (MemoryBlockIndex < 0) {
@@ -236807,14 +236807,14 @@ LAB_180201f5b:
       ContextSecondaryFloat = CalculatedDistance;
     }
     FloatVariablePointer4 = Utf8BufferSize;
-    pFloatVariable5 = PatternIndex;
+    pMatrixTransformMultiplier2 = PatternIndex;
     if ((SystemContextPrimaryFloat <= FloatVariable7) && (FloatVariable7 = ContextSecondaryFloat, ContextSecondaryFloat < SystemContextPrimaryFloat)) {
       FloatVariable7 = SystemContextPrimaryFloat;
     }
     while( true ) {
       while (CalculatedDistance < FloatVariable7) {
-        CalculatedDistance = pFloatVariable5[1];
-        pFloatVariable5 = pFloatVariable5 + 1;
+        CalculatedDistance = pMatrixTransformMultiplier2[1];
+        pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + 1;
       }
       FloatVariablePointer4 = FloatVariablePointer4 + -1;
       SystemContextPrimaryFloat = *FloatVariablePointer4;
@@ -236822,19 +236822,19 @@ LAB_180201f5b:
         FloatVariablePointer4 = FloatVariablePointer4 + -1;
         SystemContextPrimaryFloat = *FloatVariablePointer4;
       }
-      if (FloatVariablePointer4 <= pFloatVariable5) break;
-      SystemContextPrimaryFloat = *pFloatVariable5;
-      *pFloatVariable5 = *FloatVariablePointer4;
+      if (FloatVariablePointer4 <= pMatrixTransformMultiplier2) break;
+      SystemContextPrimaryFloat = *pMatrixTransformMultiplier2;
+      *pMatrixTransformMultiplier2 = *FloatVariablePointer4;
       *FloatVariablePointer4 = SystemContextPrimaryFloat;
-      CalculatedDistance = pFloatVariable5[1];
-      pFloatVariable5 = pFloatVariable5 + 1;
+      CalculatedDistance = pMatrixTransformMultiplier2[1];
+      pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + 1;
     }
     StackFrameAddressPointer = StackFrameAddressPointer + -1;
-    CharacterCode = FUN_180202d20(pFloatVariable5,Utf8BufferSize,StackFrameAddressPointer,RegisterValueBL);
-    Utf8BufferSize = pFloatVariable5;
-  } while (0x70 < (long long)((long long)pFloatVariable5 - (long long)PatternIndex & 0xfffffffffffffffcU));
+    CharacterCode = FUN_180202d20(pMatrixTransformMultiplier2,Utf8BufferSize,StackFrameAddressPointer,RegisterValueBL);
+    Utf8BufferSize = pMatrixTransformMultiplier2;
+  } while (0x70 < (long long)((long long)pMatrixTransformMultiplier2 - (long long)PatternIndex & 0xfffffffffffffffcU));
   if (StackFrameAddressPointer == 0) {
-    FUN_180203100(CharacterCode,pFloatVariable5,pFloatVariable5,RegisterValueBL);
+    FUN_180203100(CharacterCode,pMatrixTransformMultiplier2,pMatrixTransformMultiplier2,RegisterValueBL);
   }
   return;
 }
@@ -249663,9 +249663,9 @@ LAB_180214378:
   float fStack_74;
   float fStack_70;
   float fStack_6c;
-  float fStack_68;
-  float fStack_64;
-  float fStack_60;
+  float StackCalculationResult1;
+  float StackCalculationResult2;
+  float StackCalculationResult3;
   float fStack_5c;
   float StackFloatValue58;
   float StackFloatValue54;
@@ -249872,7 +249872,7 @@ FUN_180214ad0(uint64_t CharacterCode,int Utf8BufferSize,long long Utf8SourcePoin
   int StringComparisonResult;
   long long MemoryOffset;
   uint MemoryAddressMask;
-  float *pFloatVariable5;
+  float *pMatrixTransformMultiplier2;
   float *FloatProcessingStatusFlag;
   unsigned long long SystemChecksum;
   int ComputedResult;
@@ -249886,7 +249886,7 @@ FUN_180214ad0(uint64_t CharacterCode,int Utf8BufferSize,long long Utf8SourcePoin
   if (((AdditionalParameter1 == 0) && (*(uint64_t **)(Utf8SourcePointer + 0x18) != NULL)) &&
      (*(uint64_t **)(Utf16EndPointer + 0x18) != NULL)) {
     SystemContextPrimaryFloat3 = 0.0;
-    pFloatVariable5 = (float *)**(uint64_t **)(Utf8SourcePointer + 0x18);
+    pMatrixTransformMultiplier2 = (float *)**(uint64_t **)(Utf8SourcePointer + 0x18);
     FloatProcessingStatusFlag = (float *)**(uint64_t **)(Utf16EndPointer + 0x18);
     StringComparisonResult = **(int **)(Utf8SourcePointer + 8);
     SystemContextPrimaryFloat4 = 1.0;
@@ -249899,14 +249899,14 @@ FUN_180214ad0(uint64_t CharacterCode,int Utf8BufferSize,long long Utf8SourcePoin
           SystemChecksum = (unsigned long long)MemoryAddressMask;
           ComputedResult = MemoryAddressMask * 4;
           do {
-            SystemContextPrimaryFloat2 = *pFloatVariable5;
+            SystemContextPrimaryFloat2 = *pMatrixTransformMultiplier2;
             *FloatProcessingStatusFlag = SystemContextPrimaryFloat2;
-            SecondaryFloatValue = pFloatVariable5[1];
+            SecondaryFloatValue = pMatrixTransformMultiplier2[1];
             pCalculatedDistance[1] = SecondaryFloatValue;
-            PrimaryFloatValue = pFloatVariable5[2];
+            PrimaryFloatValue = pMatrixTransformMultiplier2[2];
             pCalculatedDistance[2] = PrimaryFloatValue;
-            pSystemContextPrimaryFloat = pFloatVariable5 + 3;
-            pFloatVariable5 = pFloatVariable5 + 4;
+            pSystemContextPrimaryFloat = pMatrixTransformMultiplier2 + 3;
+            pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + 4;
             SystemContextPrimaryFloat2 = SystemContextPrimaryFloat2 * 0.5;
             SecondaryFloatValue = SecondaryFloatValue * 0.5;
             if (SystemContextPrimaryFloat2 <= SystemContextPrimaryFloat3) {
@@ -249933,8 +249933,8 @@ FUN_180214ad0(uint64_t CharacterCode,int Utf8BufferSize,long long Utf8SourcePoin
           SystemChecksum = (unsigned long long)(uint)(StringComparisonResult - ComputedResult);
           SystemContextPrimaryFloat2 = SystemContextPrimaryFloat3;
           do {
-            SystemContextPrimaryFloat3 = *pFloatVariable5;
-            pFloatVariable5 = pFloatVariable5 + 1;
+            SystemContextPrimaryFloat3 = *pMatrixTransformMultiplier2;
+            pMatrixTransformMultiplier2 = pMatrixTransformMultiplier2 + 1;
             *FloatProcessingStatusFlag = SystemContextPrimaryFloat3;
             SystemContextPrimaryFloat3 = SystemContextPrimaryFloat3 * 0.5;
             FloatProcessingStatusFlag = pCalculatedDistance + 1;
@@ -269747,7 +269747,7 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
   uint32_t *PrimaryProcessingStatusFlag;
   uint32_t *systemEventTemplatePointer;
   int *pEncodingValidationResult;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -269782,25 +269782,25 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
   unsigned long long UnicodeCodePoint7;
   unsigned long long UnicodeCodePoint8;
   float FilterInputValue9;
-  float FloatVariable40;
-  float FloatVariable41;
+  float MatrixTransformMultiplier10;
+  float MatrixTransformMultiplier11;
   uint32_t MemoryAddressMask2;
-  float FloatVariable43;
-  float FloatVariable44;
-  float FloatVariable45;
-  float FloatVariable46;
-  float FloatVariable47;
-  float FloatVariable48;
-  float FloatVariable49;
-  float FloatVariable50;
-  float FloatVariable51;
-  float FloatVariable52;
-  float FloatVariable53;
-  float FloatVariable54;
-  float FloatVariable55;
-  float FloatVariable56;
-  float FloatVariable57;
-  float FloatVariable58;
+  float MatrixTransformMultiplier13;
+  float MatrixTransformMultiplier14;
+  float MatrixTransformMultiplier15;
+  float MatrixTransformMultiplier16;
+  float MatrixTransformMultiplier17;
+  float MatrixTransformMultiplier18;
+  float MatrixTransformMultiplier19;
+  float MatrixTransformMultiplier20;
+  float MatrixTransformMultiplier21;
+  float MatrixTransformMultiplier22;
+  float MatrixTransformMultiplier23;
+  float MatrixTransformMultiplier24;
+  float MatrixTransformMultiplier25;
+  float MatrixTransformMultiplier26;
+  float MatrixTransformMultiplier27;
+  float MatrixTransformMultiplier28;
   uint8_t aSystemValue1a8 [32];
   long long lStack_188;
   uint64_t SystemUnsignedValue180;
@@ -269851,15 +269851,15 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
     *(void *)(CharacterCode + 0x178) = *(void *)(Utf8SourcePointer + 1);
     *(void *)(CharacterCode + 0x180) = MemoryAllocationIndexPrimary;
     FilterInputValue9 = (float)Utf8SourcePointer[5];
-    FloatVariable40 = (float)Utf8SourcePointer[6];
-    FloatVariable41 = (float)Utf8SourcePointer[7];
+    MatrixTransformMultiplier10 = (float)Utf8SourcePointer[6];
+    MatrixTransformMultiplier11 = (float)Utf8SourcePointer[7];
     MemoryAddressMask2 = Utf8SourcePointer[8];
     *(uint8_t *)(CharacterCode + 0x1d8) = 1;
   }
   else {
     FilterInputValue9 = 1e+08;
-    FloatVariable40 = 1e+08;
-    FloatVariable41 = 1e+08;
+    MatrixTransformMultiplier10 = 1e+08;
+    MatrixTransformMultiplier11 = 1e+08;
     DataContentStatus = (void *)0x4cbebc204cbebc20;
     SystemUnsignedValue160 = 0x7f7fffff4cbebc20;
     fStack_158 = -1e+08;
@@ -269874,8 +269874,8 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
       DataContentStatus.LowPart = 1e+08;
       pStringComparisonResult9 = pEncodingValidationResult;
       FilterInputValue9 = (float)DataContentStatus;
-      FloatVariable40 = DataContentStatus.HighPart;
-      FloatVariable41 = (float)SystemUnsignedValue160;
+      MatrixTransformMultiplier10 = DataContentStatus.HighPart;
+      MatrixTransformMultiplier11 = (float)SystemUnsignedValue160;
       do {
         uStack_110 = *(uint64_t **)(pStringComparisonResult9 + 0x2a);
         SystemFlagA = *(unsigned long long *)(pStringComparisonResult9 + 0x2e);
@@ -269892,15 +269892,15 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
           if (DataStringLength3 == -1) break;
           BufferStatus3 = (long long)DataStringLength3;
           pContextSecondaryFloat7 = (float *)(pEncodingValidationResult + BufferStatus3 * 0x38 + 0x28);
-          FloatVariable5 = *pContextSecondaryFloat7;
+          MatrixTransformMultiplier2 = *pContextSecondaryFloat7;
           CalculatedDistance = pContextSecondaryFloat7[1];
-          FloatVariable51 = pContextSecondaryFloat7[2];
-          FloatVariable52 = pContextSecondaryFloat7[3];
+          MatrixTransformMultiplier21 = pContextSecondaryFloat7[2];
+          MatrixTransformMultiplier22 = pContextSecondaryFloat7[3];
           pContextSecondaryFloat7 = (float *)(pEncodingValidationResult + BufferStatus3 * 0x38 + 0x2c);
           FloatVariable7 = *pContextSecondaryFloat7;
           ProcessedFloatValue8 = pContextSecondaryFloat7[1];
-          FloatVariable46 = pContextSecondaryFloat7[2];
-          FloatVariable50 = pContextSecondaryFloat7[3];
+          MatrixTransformMultiplier16 = pContextSecondaryFloat7[2];
+          MatrixTransformMultiplier20 = pContextSecondaryFloat7[3];
           pContextSecondaryFloat7 = (float *)(pEncodingValidationResult + BufferStatus3 * 0x38 + 0x30);
           NormalizedParameterValue = *pContextSecondaryFloat7;
           PrimaryFloatValue = pContextSecondaryFloat7[1];
@@ -269908,51 +269908,51 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
           SystemContextPrimaryFloat2 = pContextSecondaryFloat7[3];
           pContextSecondaryFloat7 = (float *)(pEncodingValidationResult + BufferStatus3 * 0x38 + 0x34);
           uStack_118.HighPart = (float)((unsigned long long)PrimaryProcessingStatusFlag8 >> 0x20);
-          FloatVariable43 = uStack_118.HighPart * FloatVariable46;
-          FloatVariable47 = uStack_118.HighPart * FloatVariable50;
+          MatrixTransformMultiplier13 = uStack_118.HighPart * MatrixTransformMultiplier16;
+          MatrixTransformMultiplier17 = uStack_118.HighPart * MatrixTransformMultiplier20;
           uStack_118.LowPart = SUB84(PrimaryProcessingStatusFlag8,0);
-          FloatVariable57 = (float)uStack_118 * FloatVariable51;
-          FloatVariable58 = (float)uStack_118 * FloatVariable52;
+          MatrixTransformMultiplier27 = (float)uStack_118 * MatrixTransformMultiplier21;
+          MatrixTransformMultiplier28 = (float)uStack_118 * MatrixTransformMultiplier22;
           ProcessingCounter.HighPart = (float)((unsigned long long)MemoryAllocationIndexPrimary >> 0x20);
-          FloatVariable44 = ProcessingCounter.HighPart * FloatVariable46;
-          FloatVariable48 = ProcessingCounter.HighPart * FloatVariable50;
+          MatrixTransformMultiplier14 = ProcessingCounter.HighPart * MatrixTransformMultiplier16;
+          MatrixTransformMultiplier18 = ProcessingCounter.HighPart * MatrixTransformMultiplier20;
           ProcessingCounter.LowPart = (float)MemoryAllocationIndexPrimary;
-          FloatVariable55 = (float)ProcessingCounter * FloatVariable51;
-          FloatVariable56 = (float)ProcessingCounter * FloatVariable52;
+          MatrixTransformMultiplier25 = (float)ProcessingCounter * MatrixTransformMultiplier21;
+          MatrixTransformMultiplier26 = (float)ProcessingCounter * MatrixTransformMultiplier22;
           SystemFlagB.HighPart = (float)((unsigned long long)MemoryAllocationCounter >> 0x20);
-          FloatVariable45 = SystemFlagB.HighPart * FloatVariable46;
-          FloatVariable49 = SystemFlagB.HighPart * FloatVariable50;
+          MatrixTransformMultiplier15 = SystemFlagB.HighPart * MatrixTransformMultiplier16;
+          MatrixTransformMultiplier19 = SystemFlagB.HighPart * MatrixTransformMultiplier20;
           SystemFlagB.LowPart = (float)MemoryAllocationCounter;
-          FloatVariable53 = (float)SystemFlagB * FloatVariable51;
-          FloatVariable54 = (float)SystemFlagB * FloatVariable52;
-          FloatVariable46 = ErrorCode.HighPart * FloatVariable46;
-          FloatVariable50 = ErrorCode.HighPart * FloatVariable50;
-          FloatVariable51 = (float)ErrorCode * FloatVariable51;
-          FloatVariable52 = (float)ErrorCode * FloatVariable52;
+          MatrixTransformMultiplier23 = (float)SystemFlagB * MatrixTransformMultiplier21;
+          MatrixTransformMultiplier24 = (float)SystemFlagB * MatrixTransformMultiplier22;
+          MatrixTransformMultiplier16 = ErrorCode.HighPart * MatrixTransformMultiplier16;
+          MatrixTransformMultiplier20 = ErrorCode.HighPart * MatrixTransformMultiplier20;
+          MatrixTransformMultiplier21 = (float)ErrorCode * MatrixTransformMultiplier21;
+          MatrixTransformMultiplier22 = (float)ErrorCode * MatrixTransformMultiplier22;
           uStack_118 = (void *                       CONCAT44((float)uStack_118 * CalculatedDistance + uStack_118.HighPart * ProcessedFloatValue8 +
                                 (float)uStack_110 * PrimaryFloatValue,
-                                (float)uStack_118 * FloatVariable5 + uStack_118.HighPart * FloatVariable7 +
+                                (float)uStack_118 * MatrixTransformMultiplier2 + uStack_118.HighPart * FloatVariable7 +
                                 (float)uStack_110 * NormalizedParameterValue);
-          uStack_110 = (void *                       CONCAT44(FloatVariable58 + FloatVariable47 + (float)uStack_110 * SystemContextPrimaryFloat2,
-                                FloatVariable57 + FloatVariable43 + (float)uStack_110 * SecondaryFloatValue);
+          uStack_110 = (void *                       CONCAT44(MatrixTransformMultiplier28 + MatrixTransformMultiplier17 + (float)uStack_110 * SystemContextPrimaryFloat2,
+                                MatrixTransformMultiplier27 + MatrixTransformMultiplier13 + (float)uStack_110 * SecondaryFloatValue);
           ProcessingCounter = CONCAT44((float)ProcessingCounter * CalculatedDistance + ProcessingCounter.HighPart * ProcessedFloatValue8 +
                                 (float)SystemFlagA * PrimaryFloatValue,
-                                (float)ProcessingCounter * FloatVariable5 + ProcessingCounter.HighPart * FloatVariable7 +
+                                (float)ProcessingCounter * MatrixTransformMultiplier2 + ProcessingCounter.HighPart * FloatVariable7 +
                                 (float)SystemFlagA * NormalizedParameterValue);
-          SystemFlagA = CONCAT44(FloatVariable56 + FloatVariable48 + (float)SystemFlagA * SystemContextPrimaryFloat2,
-                                FloatVariable55 + FloatVariable44 + (float)SystemFlagA * SecondaryFloatValue);
+          SystemFlagA = CONCAT44(MatrixTransformMultiplier26 + MatrixTransformMultiplier18 + (float)SystemFlagA * SystemContextPrimaryFloat2,
+                                MatrixTransformMultiplier25 + MatrixTransformMultiplier14 + (float)SystemFlagA * SecondaryFloatValue);
           SystemFlagB = CONCAT44((float)SystemFlagB * CalculatedDistance + SystemFlagB.HighPart * ProcessedFloatValue8 +
                                (float)OperationStatus * PrimaryFloatValue,
-                               (float)SystemFlagB * FloatVariable5 + SystemFlagB.HighPart * FloatVariable7 +
+                               (float)SystemFlagB * MatrixTransformMultiplier2 + SystemFlagB.HighPart * FloatVariable7 +
                                (float)OperationStatus * NormalizedParameterValue);
-          OperationStatus = CONCAT44(FloatVariable54 + FloatVariable49 + (float)OperationStatus * SystemContextPrimaryFloat2,
-                               FloatVariable53 + FloatVariable45 + (float)OperationStatus * SecondaryFloatValue);
+          OperationStatus = CONCAT44(MatrixTransformMultiplier24 + MatrixTransformMultiplier19 + (float)OperationStatus * SystemContextPrimaryFloat2,
+                               MatrixTransformMultiplier23 + MatrixTransformMultiplier15 + (float)OperationStatus * SecondaryFloatValue);
           ErrorCode = CONCAT44((float)ErrorCode * CalculatedDistance + ErrorCode.HighPart * ProcessedFloatValue8 +
                                (float)SystemFlagE * PrimaryFloatValue + pContextSecondaryFloat7[1],
-                               (float)ErrorCode * FloatVariable5 + ErrorCode.HighPart * FloatVariable7 +
+                               (float)ErrorCode * MatrixTransformMultiplier2 + ErrorCode.HighPart * FloatVariable7 +
                                (float)SystemFlagE * NormalizedParameterValue + *pContextSecondaryFloat7);
-          SystemFlagE = CONCAT44(FloatVariable52 + FloatVariable50 + (float)SystemFlagE * SystemContextPrimaryFloat2 + pContextSecondaryFloat7[3],
-                               FloatVariable51 + FloatVariable46 + (float)SystemFlagE * SecondaryFloatValue + pContextSecondaryFloat7[2]);
+          SystemFlagE = CONCAT44(MatrixTransformMultiplier22 + MatrixTransformMultiplier20 + (float)SystemFlagE * SystemContextPrimaryFloat2 + pContextSecondaryFloat7[3],
+                               MatrixTransformMultiplier21 + MatrixTransformMultiplier16 + (float)SystemFlagE * SecondaryFloatValue + pContextSecondaryFloat7[2]);
           DataStringLength3 = pEncodingValidationResult[BufferStatus3 * 0x38];
           PrimaryProcessingStatusFlag8 = uStack_118;
           MemoryAllocationIndexPrimary = ProcessingCounter;
@@ -269962,24 +269962,24 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
         if ((float)ErrorCode <= FilterInputValue9) {
           FilterInputValue9 = (float)ErrorCode;
         }
-        if (ErrorCode.HighPart <= FloatVariable40) {
-          FloatVariable40 = ErrorCode.HighPart;
+        if (ErrorCode.HighPart <= MatrixTransformMultiplier10) {
+          MatrixTransformMultiplier10 = ErrorCode.HighPart;
         }
-        if ((float)SystemFlagE <= FloatVariable41) {
-          FloatVariable41 = (float)SystemFlagE;
+        if ((float)SystemFlagE <= MatrixTransformMultiplier11) {
+          MatrixTransformMultiplier11 = (float)SystemFlagE;
         }
-        DataContentStatus = (void *)CONCAT44(FloatVariable40,FilterInputValue9);
-        SystemUnsignedValue160 = CONCAT44(uStack_124,FloatVariable41);
-        FloatVariable5 = (float)ErrorCode;
+        DataContentStatus = (void *)CONCAT44(MatrixTransformMultiplier10,FilterInputValue9);
+        SystemUnsignedValue160 = CONCAT44(uStack_124,MatrixTransformMultiplier11);
+        MatrixTransformMultiplier2 = (float)ErrorCode;
         if ((float)ErrorCode < fStack_158) {
-          FloatVariable5 = fStack_158;
+          MatrixTransformMultiplier2 = fStack_158;
         }
-        fStack_158 = FloatVariable5;
-        FloatVariable5 = ErrorCode.HighPart;
+        fStack_158 = MatrixTransformMultiplier2;
+        MatrixTransformMultiplier2 = ErrorCode.HighPart;
         if (ErrorCode.HighPart < fStack_154) {
-          FloatVariable5 = fStack_154;
+          MatrixTransformMultiplier2 = fStack_154;
         }
-        fStack_154 = FloatVariable5;
+        fStack_154 = MatrixTransformMultiplier2;
         SystemUnsignedValue180 = CONCAT44(fStack_154,fStack_158);
         if (fStack_150 <= (float)SystemFlagE) {
           NormalizationResult = (float)SystemFlagE;
@@ -269999,18 +269999,18 @@ uint64_t * FUN_180227230(uint64_t CharacterCode,long long Utf8BufferSize
       } while (UnicodeCharacterIndex != 0);
     }
     *(float *)(CharacterCode + 0x178) = FilterInputValue9;
-    *(float *)(CharacterCode + 0x17c) = FloatVariable40;
-    *(float *)(CharacterCode + 0x180) = FloatVariable41;
+    *(float *)(CharacterCode + 0x17c) = MatrixTransformMultiplier10;
+    *(float *)(CharacterCode + 0x180) = MatrixTransformMultiplier11;
     *(uint32_t *)(CharacterCode + 0x184) = MemoryAddressMask2;
     *(uint8_t *)(CharacterCode + 0x1d8) = 0;
     FilterInputValue9 = fStack_158;
-    FloatVariable40 = fStack_154;
-    FloatVariable41 = fStack_150;
+    MatrixTransformMultiplier10 = fStack_154;
+    MatrixTransformMultiplier11 = fStack_150;
     MemoryAddressMask2 = uStack_14c;
   }
   *(float *)(CharacterCode + 0x188) = FilterInputValue9;
-  *(float *)(CharacterCode + 0x18c) = FloatVariable40;
-  *(float *)(CharacterCode + 400) = FloatVariable41;
+  *(float *)(CharacterCode + 0x18c) = MatrixTransformMultiplier10;
+  *(float *)(CharacterCode + 400) = MatrixTransformMultiplier11;
   *(uint32_t *)(CharacterCode + 0x194) = MemoryAddressMask2;
   TemporaryFlag = UnicodeCodePoint5;
   ProcessMatrixElement();
@@ -270195,46 +270195,46 @@ LAB_180227e59:
       }
       else {
         pContextSecondaryFloat7 = (float *)((long long)SystemCheckResult4 * 0x1b0 + BufferStatus3);
-        FloatVariable5 = *pContextSecondaryFloat7;
+        MatrixTransformMultiplier2 = *pContextSecondaryFloat7;
         CalculatedDistance = pContextSecondaryFloat7[1];
-        FloatVariable51 = pContextSecondaryFloat7[2];
-        FloatVariable52 = pContextSecondaryFloat7[3];
+        MatrixTransformMultiplier21 = pContextSecondaryFloat7[2];
+        MatrixTransformMultiplier22 = pContextSecondaryFloat7[3];
         FloatVariable7 = pContextSecondaryFloat7[4];
         ProcessedFloatValue8 = pContextSecondaryFloat7[5];
-        FloatVariable46 = pContextSecondaryFloat7[6];
-        FloatVariable50 = pContextSecondaryFloat7[7];
+        MatrixTransformMultiplier16 = pContextSecondaryFloat7[6];
+        MatrixTransformMultiplier20 = pContextSecondaryFloat7[7];
         NormalizedParameterValue = pContextSecondaryFloat7[8];
         PrimaryFloatValue = pContextSecondaryFloat7[9];
         SecondaryFloatValue = pContextSecondaryFloat7[10];
         SystemContextPrimaryFloat2 = pContextSecondaryFloat7[0xb];
         FilterInputValue9 = *(float *)(UnicodeCodePoint5 + 0x54 + BufferStatus3);
-        FloatVariable40 = *(float *)(UnicodeCodePoint5 + 0x50 + BufferStatus3);
-        FloatVariable41 = *(float *)(UnicodeCodePoint5 + 0x58 + BufferStatus3);
-        uStack_118 = (void *                     CONCAT44(FilterInputValue9 * ProcessedFloatValue8 + FloatVariable40 * CalculatedDistance + FloatVariable41 * PrimaryFloatValue,
-                              FilterInputValue9 * FloatVariable7 + FloatVariable40 * FloatVariable5 + FloatVariable41 * NormalizedParameterValue);
-        uStack_110 = (void *                     CONCAT44(FilterInputValue9 * FloatVariable50 + FloatVariable40 * FloatVariable52 + FloatVariable41 * SystemContextPrimaryFloat2,
-                              FilterInputValue9 * FloatVariable46 + FloatVariable40 * FloatVariable51 + FloatVariable41 * SecondaryFloatValue);
+        MatrixTransformMultiplier10 = *(float *)(UnicodeCodePoint5 + 0x50 + BufferStatus3);
+        MatrixTransformMultiplier11 = *(float *)(UnicodeCodePoint5 + 0x58 + BufferStatus3);
+        uStack_118 = (void *                     CONCAT44(FilterInputValue9 * ProcessedFloatValue8 + MatrixTransformMultiplier10 * CalculatedDistance + MatrixTransformMultiplier11 * PrimaryFloatValue,
+                              FilterInputValue9 * FloatVariable7 + MatrixTransformMultiplier10 * MatrixTransformMultiplier2 + MatrixTransformMultiplier11 * NormalizedParameterValue);
+        uStack_110 = (void *                     CONCAT44(FilterInputValue9 * MatrixTransformMultiplier20 + MatrixTransformMultiplier10 * MatrixTransformMultiplier22 + MatrixTransformMultiplier11 * SystemContextPrimaryFloat2,
+                              FilterInputValue9 * MatrixTransformMultiplier16 + MatrixTransformMultiplier10 * MatrixTransformMultiplier21 + MatrixTransformMultiplier11 * SecondaryFloatValue);
         FilterInputValue9 = *(float *)(UnicodeCodePoint5 + 100 + BufferStatus3);
-        FloatVariable40 = *(float *)(UnicodeCodePoint5 + 0x60 + BufferStatus3);
-        FloatVariable41 = *(float *)(UnicodeCodePoint5 + 0x68 + BufferStatus3);
-        ProcessingCounter = CONCAT44(FilterInputValue9 * ProcessedFloatValue8 + FloatVariable40 * CalculatedDistance + FloatVariable41 * PrimaryFloatValue,
-                              FilterInputValue9 * FloatVariable7 + FloatVariable40 * FloatVariable5 + FloatVariable41 * NormalizedParameterValue);
-        SystemFlagA = CONCAT44(FilterInputValue9 * FloatVariable50 + FloatVariable40 * FloatVariable52 + FloatVariable41 * SystemContextPrimaryFloat2,
-                              FilterInputValue9 * FloatVariable46 + FloatVariable40 * FloatVariable51 + FloatVariable41 * SecondaryFloatValue);
+        MatrixTransformMultiplier10 = *(float *)(UnicodeCodePoint5 + 0x60 + BufferStatus3);
+        MatrixTransformMultiplier11 = *(float *)(UnicodeCodePoint5 + 0x68 + BufferStatus3);
+        ProcessingCounter = CONCAT44(FilterInputValue9 * ProcessedFloatValue8 + MatrixTransformMultiplier10 * CalculatedDistance + MatrixTransformMultiplier11 * PrimaryFloatValue,
+                              FilterInputValue9 * FloatVariable7 + MatrixTransformMultiplier10 * MatrixTransformMultiplier2 + MatrixTransformMultiplier11 * NormalizedParameterValue);
+        SystemFlagA = CONCAT44(FilterInputValue9 * MatrixTransformMultiplier20 + MatrixTransformMultiplier10 * MatrixTransformMultiplier22 + MatrixTransformMultiplier11 * SystemContextPrimaryFloat2,
+                              FilterInputValue9 * MatrixTransformMultiplier16 + MatrixTransformMultiplier10 * MatrixTransformMultiplier21 + MatrixTransformMultiplier11 * SecondaryFloatValue);
         FilterInputValue9 = *(float *)(UnicodeCodePoint5 + 0x74 + BufferStatus3);
-        FloatVariable40 = *(float *)(UnicodeCodePoint5 + 0x70 + BufferStatus3);
-        FloatVariable41 = *(float *)(UnicodeCodePoint5 + 0x78 + BufferStatus3);
-        SystemFlagB = CONCAT44(FilterInputValue9 * ProcessedFloatValue8 + FloatVariable40 * CalculatedDistance + FloatVariable41 * PrimaryFloatValue,
-                             FilterInputValue9 * FloatVariable7 + FloatVariable40 * FloatVariable5 + FloatVariable41 * NormalizedParameterValue);
-        OperationStatus = CONCAT44(FilterInputValue9 * FloatVariable50 + FloatVariable40 * FloatVariable52 + FloatVariable41 * SystemContextPrimaryFloat2,
-                             FilterInputValue9 * FloatVariable46 + FloatVariable40 * FloatVariable51 + FloatVariable41 * SecondaryFloatValue);
+        MatrixTransformMultiplier10 = *(float *)(UnicodeCodePoint5 + 0x70 + BufferStatus3);
+        MatrixTransformMultiplier11 = *(float *)(UnicodeCodePoint5 + 0x78 + BufferStatus3);
+        SystemFlagB = CONCAT44(FilterInputValue9 * ProcessedFloatValue8 + MatrixTransformMultiplier10 * CalculatedDistance + MatrixTransformMultiplier11 * PrimaryFloatValue,
+                             FilterInputValue9 * FloatVariable7 + MatrixTransformMultiplier10 * MatrixTransformMultiplier2 + MatrixTransformMultiplier11 * NormalizedParameterValue);
+        OperationStatus = CONCAT44(FilterInputValue9 * MatrixTransformMultiplier20 + MatrixTransformMultiplier10 * MatrixTransformMultiplier22 + MatrixTransformMultiplier11 * SystemContextPrimaryFloat2,
+                             FilterInputValue9 * MatrixTransformMultiplier16 + MatrixTransformMultiplier10 * MatrixTransformMultiplier21 + MatrixTransformMultiplier11 * SecondaryFloatValue);
         FilterInputValue9 = *(float *)(UnicodeCodePoint5 + 0x84 + BufferStatus3);
-        FloatVariable40 = *(float *)(UnicodeCodePoint5 + 0x80 + BufferStatus3);
-        FloatVariable41 = *(float *)(UnicodeCodePoint5 + 0x88 + BufferStatus3);
-        ErrorCode = CONCAT44(FilterInputValue9 * ProcessedFloatValue8 + FloatVariable40 * CalculatedDistance + FloatVariable41 * PrimaryFloatValue + pContextSecondaryFloat7[0xd],
-                             FilterInputValue9 * FloatVariable7 + FloatVariable40 * FloatVariable5 + FloatVariable41 * NormalizedParameterValue + pContextSecondaryFloat7[0xc]);
-        SystemFlagE = CONCAT44(FilterInputValue9 * FloatVariable50 + FloatVariable40 * FloatVariable52 + FloatVariable41 * SystemContextPrimaryFloat2 + pContextSecondaryFloat7[0xf],
-                             FilterInputValue9 * FloatVariable46 + FloatVariable40 * FloatVariable51 + FloatVariable41 * SecondaryFloatValue + pContextSecondaryFloat7[0xe]);
+        MatrixTransformMultiplier10 = *(float *)(UnicodeCodePoint5 + 0x80 + BufferStatus3);
+        MatrixTransformMultiplier11 = *(float *)(UnicodeCodePoint5 + 0x88 + BufferStatus3);
+        ErrorCode = CONCAT44(FilterInputValue9 * ProcessedFloatValue8 + MatrixTransformMultiplier10 * CalculatedDistance + MatrixTransformMultiplier11 * PrimaryFloatValue + pContextSecondaryFloat7[0xd],
+                             FilterInputValue9 * FloatVariable7 + MatrixTransformMultiplier10 * MatrixTransformMultiplier2 + MatrixTransformMultiplier11 * NormalizedParameterValue + pContextSecondaryFloat7[0xc]);
+        SystemFlagE = CONCAT44(FilterInputValue9 * MatrixTransformMultiplier20 + MatrixTransformMultiplier10 * MatrixTransformMultiplier22 + MatrixTransformMultiplier11 * SystemContextPrimaryFloat2 + pContextSecondaryFloat7[0xf],
+                             FilterInputValue9 * MatrixTransformMultiplier16 + MatrixTransformMultiplier10 * MatrixTransformMultiplier21 + MatrixTransformMultiplier11 * SecondaryFloatValue + pContextSecondaryFloat7[0xe]);
         BufferStatus3 = (long long)DataStringLength3 * 0x1b0 + BufferStatus3;
         systemEventTemplatePointer2 = &uStack_118;
       }
@@ -273054,7 +273054,7 @@ FUN_18022a810(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
   float *pContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   char CharacterStatus2;
   float ProcessedFloatValue8;
@@ -273113,8 +273113,8 @@ FUN_18022a810(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
         else {
           pContextSecondaryFloat = (float *)(CharacterCode + (ValidationResult + 0x82) * 0x10);
           CalculatedFilterValue = *pContextSecondaryFloat;
-          FloatVariable4 = pContextSecondaryFloat[1];
-          FloatVariable5 = pContextSecondaryFloat[2];
+          MatrixTransformMultiplier1 = pContextSecondaryFloat[1];
+          MatrixTransformMultiplier2 = pContextSecondaryFloat[2];
           CalculatedDistance = pContextSecondaryFloat[3];
           SystemStringIndex = (long long)CharacterStatus2;
           SystemContextValue = SystemStringIndex + 0x40;
@@ -273124,25 +273124,25 @@ FUN_18022a810(uint64_t *Utf8InputBuffer,unsigned long long Utf8BufferSize,uint64
           ContextPrimaryFloat9 = pContextSecondaryFloat[2];
           ProcessedFloatValue8 = pContextSecondaryFloat[3];
           pContextSecondaryFloat = (float *)(CharacterCode + ValidationResult * 0x10);
-          *pContextSecondaryFloat = ProcessedFloatValue8 * CalculatedDistance * -1.0 + ContextPrimaryFloat9 * FloatVariable5 * -1.0 + (FilterInputValue * SecondaryFloatValue - SystemContextPrimaryFloat8 * FloatVariable4          ;
-          pContextSecondaryFloat[1] = ContextPrimaryFloat9 * CalculatedDistance * 1.0 + SecondaryFloatValue * FloatVariable4 * 1.0 + (FilterInputValue * SystemContextPrimaryFloat8 - ProcessedFloatValue8 * FloatVariable5          ;
-          pContextSecondaryFloat[2] = ProcessedFloatValue8 * FloatVariable4 * 1.0 + SecondaryFloatValue * FloatVariable5 * 1.0 + (FilterInputValue * ContextPrimaryFloat9 - SystemContextPrimaryFloat8 * CalculatedDistance          ;
-          pContextSecondaryFloat[3] = SystemContextPrimaryFloat8 * FloatVariable5 * 1.0 + SecondaryFloatValue * CalculatedDistance * 1.0 + (FilterInputValue * ProcessedFloatValue8 - ContextPrimaryFloat9 * FloatVariable4          ;
+          *pContextSecondaryFloat = ProcessedFloatValue8 * CalculatedDistance * -1.0 + ContextPrimaryFloat9 * MatrixTransformMultiplier2 * -1.0 + (FilterInputValue * SecondaryFloatValue - SystemContextPrimaryFloat8 * MatrixTransformMultiplier1          ;
+          pContextSecondaryFloat[1] = ContextPrimaryFloat9 * CalculatedDistance * 1.0 + SecondaryFloatValue * MatrixTransformMultiplier1 * 1.0 + (FilterInputValue * SystemContextPrimaryFloat8 - ProcessedFloatValue8 * MatrixTransformMultiplier2          ;
+          pContextSecondaryFloat[2] = ProcessedFloatValue8 * MatrixTransformMultiplier1 * 1.0 + SecondaryFloatValue * MatrixTransformMultiplier2 * 1.0 + (FilterInputValue * ContextPrimaryFloat9 - SystemContextPrimaryFloat8 * CalculatedDistance          ;
+          pContextSecondaryFloat[3] = SystemContextPrimaryFloat8 * MatrixTransformMultiplier2 * 1.0 + SecondaryFloatValue * CalculatedDistance * 1.0 + (FilterInputValue * ProcessedFloatValue8 - ContextPrimaryFloat9 * MatrixTransformMultiplier1          ;
           CalculatedFilterValue = *(float *)(CharacterCode + 0xc + SystemStringIndex * 0x10);
-          FloatVariable4 = *(float *)(CharacterCode + 4 + SystemStringIndex * 0x10);
-          FloatVariable5 = *(float *)(CharacterCode + 8 + SystemStringIndex * 0x10);
+          MatrixTransformMultiplier1 = *(float *)(CharacterCode + 4 + SystemStringIndex * 0x10);
+          MatrixTransformMultiplier2 = *(float *)(CharacterCode + 8 + SystemStringIndex * 0x10);
           CalculatedDistance = *(float *)(CharacterCode + SystemStringIndex * 0x10);
-          SystemContextPrimaryFloat8 = fStack_d0 * FloatVariable5 - fStack_d4 * FilterInputValue;
-          ContextPrimaryFloat9 = fStack_d8 * FilterInputValue - FloatVariable4 * fStack_d0;
+          SystemContextPrimaryFloat8 = fStack_d0 * MatrixTransformMultiplier2 - fStack_d4 * FilterInputValue;
+          ContextPrimaryFloat9 = fStack_d8 * FilterInputValue - MatrixTransformMultiplier1 * fStack_d0;
           SystemContextPrimaryFloat8 = SystemContextPrimaryFloat8 + SystemContextPrimaryFloat8;
-          SecondaryFloatValue = FloatVariable4 * fStack_d4 - fStack_d8 * FloatVariable5;
+          SecondaryFloatValue = MatrixTransformMultiplier1 * fStack_d4 - fStack_d8 * MatrixTransformMultiplier2;
           ContextPrimaryFloat9 = ContextPrimaryFloat9 + ContextPrimaryFloat9;
           SecondaryFloatValue = SecondaryFloatValue + SecondaryFloatValue;
-          fStack_d8 = (SecondaryFloatValue * FloatVariable5 - ContextPrimaryFloat9 * FilterInputValue) + fStack_d8 + CalculatedDistance * SystemContextPrimaryFloat8 +
+          fStack_d8 = (SecondaryFloatValue * MatrixTransformMultiplier2 - ContextPrimaryFloat9 * FilterInputValue) + fStack_d8 + CalculatedDistance * SystemContextPrimaryFloat8 +
                       *(float *)(CharacterCode + SystemContextValue * 0x10);
-          fStack_d4 = (SystemContextPrimaryFloat8 * FilterInputValue - SecondaryFloatValue * FloatVariable4) + CalculatedDistance * ContextPrimaryFloat9 + fStack_d4 +
+          fStack_d4 = (SystemContextPrimaryFloat8 * FilterInputValue - SecondaryFloatValue * MatrixTransformMultiplier1) + CalculatedDistance * ContextPrimaryFloat9 + fStack_d4 +
                       *(float *)(CharacterCode + 4 + SystemContextValue * 0x10);
-          fStack_d0 = (ContextPrimaryFloat9 * FloatVariable4 - SystemContextPrimaryFloat8 * FloatVariable5) + CalculatedDistance * SecondaryFloatValue + fStack_d0 +
+          fStack_d0 = (ContextPrimaryFloat9 * MatrixTransformMultiplier1 - SystemContextPrimaryFloat8 * MatrixTransformMultiplier2) + CalculatedDistance * SecondaryFloatValue + fStack_d0 +
                       *(float *)(CharacterCode + 8 + SystemContextValue * 0x10);
         }
         pContextSecondaryFloat = (float *)(CharacterCode + (ValidationResult + 0x40) * 0x10);
@@ -273168,7 +273168,7 @@ long long FUN_18022a8cd(void
   float *pContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   char CharacterStatus2;
   float ProcessedFloatValue8;
@@ -273226,8 +273226,8 @@ long long FUN_18022a8cd(void
       else {
         pContextSecondaryFloat = (float *)(SystemParameter + (ValidationResult + 0x82) * 0x10);
         CalculatedFilterValue = *pContextSecondaryFloat;
-        FloatVariable4 = pContextSecondaryFloat[1];
-        FloatVariable5 = pContextSecondaryFloat[2];
+        MatrixTransformMultiplier1 = pContextSecondaryFloat[1];
+        MatrixTransformMultiplier2 = pContextSecondaryFloat[2];
         CalculatedDistance = pContextSecondaryFloat[3];
         SystemStringIndex = (long long)CharacterStatus2;
         SystemContextValue = SystemStringIndex + 0x40;
@@ -273237,25 +273237,25 @@ long long FUN_18022a8cd(void
         ContextPrimaryFloat9 = pContextSecondaryFloat[2];
         ProcessedFloatValue8 = pContextSecondaryFloat[3];
         pContextSecondaryFloat = (float *)(SystemParameter + ValidationResult * 0x10);
-        *pContextSecondaryFloat = ProcessedFloatValue8 * CalculatedDistance * -1.0 + ContextPrimaryFloat9 * FloatVariable5 * -1.0 + (FilterInputValue * SecondaryFloatValue - SystemContextPrimaryFloat8 * FloatVariable4);
-        pContextSecondaryFloat[1] = ContextPrimaryFloat9 * CalculatedDistance * 1.0 + SecondaryFloatValue * FloatVariable4 * 1.0 + (FilterInputValue * SystemContextPrimaryFloat8 - ProcessedFloatValue8 * FloatVariable5);
-        pContextSecondaryFloat[2] = ProcessedFloatValue8 * FloatVariable4 * 1.0 + SecondaryFloatValue * FloatVariable5 * 1.0 + (FilterInputValue * ContextPrimaryFloat9 - SystemContextPrimaryFloat8 * CalculatedDistance);
-        pContextSecondaryFloat[3] = SystemContextPrimaryFloat8 * FloatVariable5 * 1.0 + SecondaryFloatValue * CalculatedDistance * 1.0 + (FilterInputValue * ProcessedFloatValue8 - ContextPrimaryFloat9 * FloatVariable4);
+        *pContextSecondaryFloat = ProcessedFloatValue8 * CalculatedDistance * -1.0 + ContextPrimaryFloat9 * MatrixTransformMultiplier2 * -1.0 + (FilterInputValue * SecondaryFloatValue - SystemContextPrimaryFloat8 * MatrixTransformMultiplier1);
+        pContextSecondaryFloat[1] = ContextPrimaryFloat9 * CalculatedDistance * 1.0 + SecondaryFloatValue * MatrixTransformMultiplier1 * 1.0 + (FilterInputValue * SystemContextPrimaryFloat8 - ProcessedFloatValue8 * MatrixTransformMultiplier2);
+        pContextSecondaryFloat[2] = ProcessedFloatValue8 * MatrixTransformMultiplier1 * 1.0 + SecondaryFloatValue * MatrixTransformMultiplier2 * 1.0 + (FilterInputValue * ContextPrimaryFloat9 - SystemContextPrimaryFloat8 * CalculatedDistance);
+        pContextSecondaryFloat[3] = SystemContextPrimaryFloat8 * MatrixTransformMultiplier2 * 1.0 + SecondaryFloatValue * CalculatedDistance * 1.0 + (FilterInputValue * ProcessedFloatValue8 - ContextPrimaryFloat9 * MatrixTransformMultiplier1);
         CalculatedFilterValue = *(float *)(SystemParameter + 0xc + SystemStringIndex * 0x10);
-        FloatVariable4 = *(float *)(SystemParameter + 4 + SystemStringIndex * 0x10);
-        FloatVariable5 = *(float *)(SystemParameter + 8 + SystemStringIndex * 0x10);
+        MatrixTransformMultiplier1 = *(float *)(SystemParameter + 4 + SystemStringIndex * 0x10);
+        MatrixTransformMultiplier2 = *(float *)(SystemParameter + 8 + SystemStringIndex * 0x10);
         CalculatedDistance = *(float *)(SystemParameter + SystemStringIndex * 0x10);
-        SystemContextPrimaryFloat8 = PrimaryScalingFactor * FloatVariable5 - SystemFloatValue * FilterInputValue;
-        ContextPrimaryFloat9 = SystemContextPrimaryFloat6 * FilterInputValue - FloatVariable4 * PrimaryScalingFactor;
+        SystemContextPrimaryFloat8 = PrimaryScalingFactor * MatrixTransformMultiplier2 - SystemFloatValue * FilterInputValue;
+        ContextPrimaryFloat9 = SystemContextPrimaryFloat6 * FilterInputValue - MatrixTransformMultiplier1 * PrimaryScalingFactor;
         SystemContextPrimaryFloat8 = SystemContextPrimaryFloat8 + SystemContextPrimaryFloat8;
-        SecondaryFloatValue = FloatVariable4 * SystemFloatValue - SystemContextPrimaryFloat6 * FloatVariable5;
+        SecondaryFloatValue = MatrixTransformMultiplier1 * SystemFloatValue - SystemContextPrimaryFloat6 * MatrixTransformMultiplier2;
         ContextPrimaryFloat9 = ContextPrimaryFloat9 + ContextPrimaryFloat9;
         SecondaryFloatValue = SecondaryFloatValue + SecondaryFloatValue;
-        SystemContextPrimaryFloat6 = (SecondaryFloatValue * FloatVariable5 - ContextPrimaryFloat9 * FilterInputValue) + SystemContextPrimaryFloat6 + CalculatedDistance * SystemContextPrimaryFloat8 +
+        SystemContextPrimaryFloat6 = (SecondaryFloatValue * MatrixTransformMultiplier2 - ContextPrimaryFloat9 * FilterInputValue) + SystemContextPrimaryFloat6 + CalculatedDistance * SystemContextPrimaryFloat8 +
                  *(float *)(SystemParameter + SystemContextValue * 0x10);
-        SystemFloatValue = (SystemContextPrimaryFloat8 * FilterInputValue - SecondaryFloatValue * FloatVariable4) + CalculatedDistance * ContextPrimaryFloat9 + SystemFloatValue +
+        SystemFloatValue = (SystemContextPrimaryFloat8 * FilterInputValue - SecondaryFloatValue * MatrixTransformMultiplier1) + CalculatedDistance * ContextPrimaryFloat9 + SystemFloatValue +
                  *(float *)(SystemParameter + 4 + SystemContextValue * 0x10);
-        PrimaryScalingFactor = (ContextPrimaryFloat9 * FloatVariable4 - SystemContextPrimaryFloat8 * FloatVariable5) + CalculatedDistance * SecondaryFloatValue + PrimaryScalingFactor +
+        PrimaryScalingFactor = (ContextPrimaryFloat9 * MatrixTransformMultiplier1 - SystemContextPrimaryFloat8 * MatrixTransformMultiplier2) + CalculatedDistance * SecondaryFloatValue + PrimaryScalingFactor +
                     *(float *)(SystemParameter + 8 + SystemContextValue * 0x10);
       }
       pContextSecondaryFloat = (float *)(SystemParameter + (ValidationResult + 0x40) * 0x10);
@@ -273591,7 +273591,7 @@ float * FUN_18022b050(long long CharacterCode,float *Utf8InputBufferSize,int Utf
   void *SystemContext;
   unsigned long long UnicodeCodePoint;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   uint64_t ProcessingStatusFlag;
@@ -273637,20 +273637,20 @@ float * FUN_18022b050(long long CharacterCode,float *Utf8InputBufferSize,int Utf
         SystemDataTablePointer = (long long)InputStringBuffer0;
         InputStringBuffer0 = *(char *)(SystemDataTablePointer + 0x100 + Utf16EndPointer);
         pSystemContextPrimaryFloat = (float *)(CharacterCode + (SystemDataTablePointer + 0x82) * 0x10);
-        FloatVariable4 = *pSystemContextPrimaryFloat;
-        FloatVariable5 = pSystemContextPrimaryFloat[1];
+        MatrixTransformMultiplier1 = *pSystemContextPrimaryFloat;
+        MatrixTransformMultiplier2 = pSystemContextPrimaryFloat[1];
         CalculatedDistance = pSystemContextPrimaryFloat[2];
         FloatVariable7 = pSystemContextPrimaryFloat[3];
         SystemContextPrimaryFloat8 = FloatVariable7 * SecondaryFloatValue;
-        ContextSecondaryFloat0 = FloatVariable5 * ContextPrimaryFloat9;
+        ContextSecondaryFloat0 = MatrixTransformMultiplier2 * ContextPrimaryFloat9;
         ContextSecondaryFloat2 = FloatVariable7 * ContextSecondaryFloat1;
         SystemContextPrimaryFloat4 = CalculatedDistance * ContextPrimaryFloat9;
         SystemFloatValue = CalculatedDistance * SecondaryFloatValue;
-        SystemContextPrimaryFloat6 = FloatVariable5 * SecondaryFloatValue;
-        SecondaryFloatValue = CalculatedDistance * ContextSecondaryFloat1 * 1.0 + FloatVariable4 * SecondaryFloatValue * 1.0 + (ContextSecondaryFloat3 * FloatVariable5 - FloatVariable7 * ContextPrimaryFloat9);
-        ContextPrimaryFloat9 = SystemContextPrimaryFloat8 * 1.0 + FloatVariable4 * ContextPrimaryFloat9 * 1.0 + (ContextSecondaryFloat3 * CalculatedDistance - FloatVariable5 * ContextSecondaryFloat1);
-        ContextSecondaryFloat1 = ContextSecondaryFloat0 * 1.0 + FloatVariable4 * ContextSecondaryFloat1 * 1.0 + (ContextSecondaryFloat3 * FloatVariable7 - SystemFloatValue);
-        ContextSecondaryFloat3 = ContextSecondaryFloat2 * -1.0 + SystemContextPrimaryFloat4 * -1.0 + (ContextSecondaryFloat3 * FloatVariable4 - SystemContextPrimaryFloat6);
+        SystemContextPrimaryFloat6 = MatrixTransformMultiplier2 * SecondaryFloatValue;
+        SecondaryFloatValue = CalculatedDistance * ContextSecondaryFloat1 * 1.0 + MatrixTransformMultiplier1 * SecondaryFloatValue * 1.0 + (ContextSecondaryFloat3 * MatrixTransformMultiplier2 - FloatVariable7 * ContextPrimaryFloat9);
+        ContextPrimaryFloat9 = SystemContextPrimaryFloat8 * 1.0 + MatrixTransformMultiplier1 * ContextPrimaryFloat9 * 1.0 + (ContextSecondaryFloat3 * CalculatedDistance - MatrixTransformMultiplier2 * ContextSecondaryFloat1);
+        ContextSecondaryFloat1 = ContextSecondaryFloat0 * 1.0 + MatrixTransformMultiplier1 * ContextSecondaryFloat1 * 1.0 + (ContextSecondaryFloat3 * FloatVariable7 - SystemFloatValue);
+        ContextSecondaryFloat3 = ContextSecondaryFloat2 * -1.0 + SystemContextPrimaryFloat4 * -1.0 + (ContextSecondaryFloat3 * MatrixTransformMultiplier1 - SystemContextPrimaryFloat6);
         if (InputStringBuffer0 < '\0') {
           *Utf8InputBufferSize = ContextSecondaryFloat3;
           Utf8BufferSize[1] = SecondaryFloatValue;
@@ -273661,14 +273661,14 @@ float * FUN_18022b050(long long CharacterCode,float *Utf8InputBufferSize,int Utf
       }
       if ((-1 < InputStringBuffer0) && (InputStringBuffer0 == IntegerValue9)) {
         pSystemContextPrimaryFloat = (float *)(CharacterCode + (long long)InputStringBuffer0 * 0x10);
-        FloatVariable4 = *pSystemContextPrimaryFloat;
-        FloatVariable5 = pSystemContextPrimaryFloat[1];
+        MatrixTransformMultiplier1 = *pSystemContextPrimaryFloat;
+        MatrixTransformMultiplier2 = pSystemContextPrimaryFloat[1];
         CalculatedDistance = pSystemContextPrimaryFloat[2];
         FloatVariable7 = pSystemContextPrimaryFloat[3];
-        SecondaryFloatValue = CalculatedDistance * ContextSecondaryFloat1 * 1.0 + FloatVariable4 * SecondaryFloatValue * 1.0 + (ContextSecondaryFloat3 * FloatVariable5 - FloatVariable7 * ContextPrimaryFloat9);
-        ContextPrimaryFloat9 = FloatVariable7 * SecondaryFloatValue * 1.0 + FloatVariable4 * ContextPrimaryFloat9 * 1.0 + (ContextSecondaryFloat3 * CalculatedDistance - FloatVariable5 * ContextSecondaryFloat1);
-        ContextSecondaryFloat1 = FloatVariable5 * ContextPrimaryFloat9 * 1.0 + FloatVariable4 * ContextSecondaryFloat1 * 1.0 + (ContextSecondaryFloat3 * FloatVariable7 - CalculatedDistance * SecondaryFloatValue);
-        ContextSecondaryFloat3 = FloatVariable7 * ContextSecondaryFloat1 * -1.0 + CalculatedDistance * ContextPrimaryFloat9 * -1.0 + (ContextSecondaryFloat3 * FloatVariable4 - FloatVariable5 * SecondaryFloatValue);
+        SecondaryFloatValue = CalculatedDistance * ContextSecondaryFloat1 * 1.0 + MatrixTransformMultiplier1 * SecondaryFloatValue * 1.0 + (ContextSecondaryFloat3 * MatrixTransformMultiplier2 - FloatVariable7 * ContextPrimaryFloat9);
+        ContextPrimaryFloat9 = FloatVariable7 * SecondaryFloatValue * 1.0 + MatrixTransformMultiplier1 * ContextPrimaryFloat9 * 1.0 + (ContextSecondaryFloat3 * CalculatedDistance - MatrixTransformMultiplier2 * ContextSecondaryFloat1);
+        ContextSecondaryFloat1 = MatrixTransformMultiplier2 * ContextPrimaryFloat9 * 1.0 + MatrixTransformMultiplier1 * ContextSecondaryFloat1 * 1.0 + (ContextSecondaryFloat3 * FloatVariable7 - CalculatedDistance * SecondaryFloatValue);
+        ContextSecondaryFloat3 = FloatVariable7 * ContextSecondaryFloat1 * -1.0 + CalculatedDistance * ContextPrimaryFloat9 * -1.0 + (ContextSecondaryFloat3 * MatrixTransformMultiplier1 - MatrixTransformMultiplier2 * SecondaryFloatValue);
       }
     }
     *Utf8InputBufferSize = ContextSecondaryFloat3;
@@ -273693,7 +273693,7 @@ float * FUN_18022b050(long long CharacterCode,float *Utf8InputBufferSize,int Utf
   float ContextSecondaryFloat;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -273719,16 +273719,16 @@ float * FUN_18022b050(long long CharacterCode,float *Utf8InputBufferSize,int Utf
     SystemContextPrimaryFloat = *Utf8SourcePointer;
     ContextSecondaryFloat = Utf8SourcePointer[1];
     CalculatedFilterValue = Utf8SourcePointer[2];
-    FloatVariable4 = Utf8SourcePointer[3];
-    FloatVariable5 = *pPrimaryFloatValue;
+    MatrixTransformMultiplier1 = Utf8SourcePointer[3];
+    MatrixTransformMultiplier2 = *pPrimaryFloatValue;
     CalculatedDistance = pPrimaryFloatValue[1];
     FloatVariable7 = pPrimaryFloatValue[2];
     ProcessedFloatValue8 = pPrimaryFloatValue[3];
     pPrimaryFloatValue = (float *)(CharacterCode + (SystemStatusCode + 0x82) * 2);
-    *pPrimaryFloatValue = ProcessedFloatValue8 * FloatVariable4 * 1.0 + SystemContextPrimaryFloat * FloatVariable5 * 1.0 + FloatVariable7 * FilterInputValue + CalculatedDistance * ContextSecondaryFloat;
-    pPrimaryFloatValue[1] = FloatVariable7 * FloatVariable4 * -1.0 + SystemContextPrimaryFloat * CalculatedDistance * -1.0 + FloatVariable5 * ContextSecondaryFloat + ProcessedFloatValue8 * FilterInputValue;
-    pPrimaryFloatValue[2] = ProcessedFloatValue8 * ContextSecondaryFloat * -1.0 + SystemContextPrimaryFloat * FloatVariable7 * -1.0 + FloatVariable5 * FilterInputValue + CalculatedDistance * FloatVariable4;
-    pPrimaryFloatValue[3] = CalculatedDistance * FilterInputValue * -1.0 + SystemContextPrimaryFloat * ProcessedFloatValue8 * -1.0 + FloatVariable5 * FloatVariable4 + FloatVariable7 * ContextSecondaryFloat;
+    *pPrimaryFloatValue = ProcessedFloatValue8 * MatrixTransformMultiplier1 * 1.0 + SystemContextPrimaryFloat * MatrixTransformMultiplier2 * 1.0 + FloatVariable7 * FilterInputValue + CalculatedDistance * ContextSecondaryFloat;
+    pPrimaryFloatValue[1] = FloatVariable7 * MatrixTransformMultiplier1 * -1.0 + SystemContextPrimaryFloat * CalculatedDistance * -1.0 + MatrixTransformMultiplier2 * ContextSecondaryFloat + ProcessedFloatValue8 * FilterInputValue;
+    pPrimaryFloatValue[2] = ProcessedFloatValue8 * ContextSecondaryFloat * -1.0 + SystemContextPrimaryFloat * FloatVariable7 * -1.0 + MatrixTransformMultiplier2 * FilterInputValue + CalculatedDistance * MatrixTransformMultiplier1;
+    pPrimaryFloatValue[3] = CalculatedDistance * FilterInputValue * -1.0 + SystemContextPrimaryFloat * ProcessedFloatValue8 * -1.0 + MatrixTransformMultiplier2 * MatrixTransformMultiplier1 + FloatVariable7 * ContextSecondaryFloat;
     SystemMemoryAllocationResult = *(void *)(Utf8SourcePointer + 2);
     Utf8InputBuffer[SystemStatusCode * 2] = *(void *)Utf8SourcePointer;
     (CharacterCode + SystemStatusCode * 2)[1] = SystemMemoryAllocationResult;
@@ -276728,7 +276728,7 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
   char SystemCheckResult;
   float CalculatedFilterValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   float FloatVariable7;
   float ProcessedFloatValue8;
@@ -276742,24 +276742,24 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
   FloatVariable7 = *pSystemContextPrimaryFloat;
   NormalizedParameterValue = *(float *)(Utf8BufferSize + 0x18);
   PrimaryFloatValue = *(float *)(Utf8BufferSize + 0x1c);
-  FloatVariable5 = (FloatVariable7 * ProcessedFloatValue8 - FilterInputValue * PrimaryFloatValue) * *(float *)(Utf8BufferSize + 0x28) +
+  MatrixTransformMultiplier2 = (FloatVariable7 * ProcessedFloatValue8 - FilterInputValue * PrimaryFloatValue) * *(float *)(Utf8BufferSize + 0x28) +
           (PrimaryFloatValue * CalculatedDistance - NormalizedParameterValue * ProcessedFloatValue8) * *(float *)(Utf8BufferSize + 0x24) +
           (FilterInputValue * NormalizedParameterValue - FloatVariable7 * CalculatedDistance) * *(float *)(Utf8BufferSize + 0x2c);
-  SystemCheckResult = FloatVariable5 < 0.0;
-  FloatVariable4 = FilterInputValue * FloatVariable7 + NormalizedParameterValue * CalculatedDistance + ProcessedFloatValue8 * PrimaryFloatValue;
-  FloatVariable7 = FloatVariable7 - FilterInputValue * FloatVariable4;
-  PrimaryFloatValue = PrimaryFloatValue - ProcessedFloatValue8 * FloatVariable4;
-  NormalizedParameterValue = NormalizedParameterValue - CalculatedDistance * FloatVariable4;
+  SystemCheckResult = MatrixTransformMultiplier2 < 0.0;
+  MatrixTransformMultiplier1 = FilterInputValue * FloatVariable7 + NormalizedParameterValue * CalculatedDistance + ProcessedFloatValue8 * PrimaryFloatValue;
+  FloatVariable7 = FloatVariable7 - FilterInputValue * MatrixTransformMultiplier1;
+  PrimaryFloatValue = PrimaryFloatValue - ProcessedFloatValue8 * MatrixTransformMultiplier1;
+  NormalizedParameterValue = NormalizedParameterValue - CalculatedDistance * MatrixTransformMultiplier1;
   *pSystemContextPrimaryFloat = FloatVariable7;
   *(float *)(Utf8BufferSize + 0x18) = NormalizedParameterValue;
   *(float *)(Utf8BufferSize + 0x1c) = PrimaryFloatValue;
   *(uint32_t *)(Utf8BufferSize + 0x20) = 0x7f7fffff;
   CalculatedFilterValue = PrimaryFloatValue * PrimaryFloatValue;
   if (FloatVariable7 * FloatVariable7 + NormalizedParameterValue * NormalizedParameterValue + FilterInputValue < 1e-05) {
-    FloatVariable5 = *(float *)(Utf8BufferSize + 0x38) * 0.1;
+    MatrixTransformMultiplier2 = *(float *)(Utf8BufferSize + 0x38) * 0.1;
     FloatVariable7 = *(float *)(Utf8BufferSize + 0x38) * 0.7 - *(float *)(Utf8BufferSize + 0x3c) * 0.2;
     CalculatedDistance = *(float *)(Utf8BufferSize + 0x3c) * 0.1 - *(float *)(Utf8BufferSize + 0x34) * 0.7;
-    PrimaryFloatValue = *(float *)(Utf8BufferSize + 0x34) * 0.2 - FloatVariable5;
+    PrimaryFloatValue = *(float *)(Utf8BufferSize + 0x34) * 0.2 - MatrixTransformMultiplier2;
     *pSystemContextPrimaryFloat = FloatVariable7;
     *(float *)(Utf8BufferSize + 0x18) = CalculatedDistance;
     *(float *)(Utf8BufferSize + 0x1c) = PrimaryFloatValue;
@@ -276775,7 +276775,7 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
       *(uint32_t *)(Utf8BufferSize + 0x20) = 0x7f7fffff;
     }
   }
-  FUN_18023a1e0(pSystemContextPrimaryFloat,FilterInputValue,SystemCheckResult,FloatVariable5,FloatVariable7,PrimaryFloatValue);
+  FUN_18023a1e0(pSystemContextPrimaryFloat,FilterInputValue,SystemCheckResult,MatrixTransformMultiplier2,FloatVariable7,PrimaryFloatValue);
   CalculatedFilterValue = *(float *)(Utf8BufferSize + 0x38);
   ProcessedFloatValue8 = FilterInputValue * pSystemContextPrimaryFloat[2] - *(float *)(Utf8BufferSize + 0x3c) * pSystemContextPrimaryFloat[1];
   FloatVariable7 = *(float *)(Utf8BufferSize + 0x34) * pSystemContextPrimaryFloat[1] - *pSystemContextPrimaryFloat * FilterInputValue;
@@ -276797,11 +276797,11 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
     NormalizedParameterValue = CalculatedDistance * CalculatedDistance + ProcessedFloatValue8 + FloatVariable7;
     if (NormalizedParameterValue < 1e-05) {
       CalculatedDistance = *(float *)(Utf8BufferSize + 0x3c);
-      FloatVariable4 = *(float *)(Utf8BufferSize + 0x34);
+      MatrixTransformMultiplier1 = *(float *)(Utf8BufferSize + 0x34);
       ProcessedFloatValue8 = *(float *)(Utf8BufferSize + 0x38) * 0.39 - CalculatedDistance * 0.67;
-      PrimaryFloatValue = FloatVariable4 * 0.67 - *(float *)(Utf8BufferSize + 0x38) * 0.76;
+      PrimaryFloatValue = MatrixTransformMultiplier1 * 0.67 - *(float *)(Utf8BufferSize + 0x38) * 0.76;
       *pSystemContextPrimaryFloat = ProcessedFloatValue8;
-      pSystemContextPrimaryFloat[1] = CalculatedDistance * 0.76 - FloatVariable4 * 0.39;
+      pSystemContextPrimaryFloat[1] = CalculatedDistance * 0.76 - MatrixTransformMultiplier1 * 0.39;
       pSystemContextPrimaryFloat[2] = PrimaryFloatValue;
       pSystemContextPrimaryFloat[3] = 3.4028235e+38;
       CalculatedDistance = ProcessedFloatValue8;
@@ -276837,7 +276837,7 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
   void *SystemContext;
   float *pFilterInputValue;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   float CalculatedDistance;
   uint SystemChecksum;
   uint ProcessingStatusFlag;
@@ -276888,14 +276888,14 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
             StringOffset = *(long long *)(*Utf8InputBufferSize + 8 + (long long)aiStackX_20[0] * 0x50);
             SecondaryFloatValue = 1.0 - AdditionalParameter1;
             EncodingConversionResult = *(long long *)(*Utf8InputBufferSize + 8 + (long long)aiStackX_18[0] * 0x50);
-            FloatVariable4 = *(float *)(StringOffset + 4 + SystemContextValue * 0x10);
-            FloatVariable5 = *(float *)(EncodingConversionResult + 4 + SystemContextValue * 0x10);
+            MatrixTransformMultiplier1 = *(float *)(StringOffset + 4 + SystemContextValue * 0x10);
+            MatrixTransformMultiplier2 = *(float *)(EncodingConversionResult + 4 + SystemContextValue * 0x10);
             CalculatedDistance = *(float *)(StringOffset + 8 + SystemContextValue * 0x10);
             SystemFloatValue = *(float *)(EncodingConversionResult + 8 + SystemContextValue * 0x10);
             pCalculatedFilterValue = (float *)(*(long long *)(Utf8InputBuffer[1] + 0x40) + SystemContextValue * 0x10);
             *pCalculatedFilterValue = AdditionalParameter1 * *(float *)(EncodingConversionResult + SystemContextValue * 0x10) +
                       SecondaryFloatValue * *(float *)(StringOffset + SystemContextValue * 0x10);
-            pFilterInputValue[1] = SecondaryFloatValue * FloatVariable4 + AdditionalParameter1 * FloatVariable5;
+            pFilterInputValue[1] = SecondaryFloatValue * MatrixTransformMultiplier1 + AdditionalParameter1 * MatrixTransformMultiplier2;
             pFilterInputValue[2] = SecondaryFloatValue * CalculatedDistance + AdditionalParameter1 * SystemFloatValue;
             pFilterInputValue[3] = 3.4028235e+38;
             ProcessInputStringBuffer = ProcessInputStringBuffer + 1;
@@ -276907,27 +276907,27 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
             StringOffset = *(long long *)(*Utf8InputBufferSize + 0x30 + (long long)aiStackX_20[0] * 0x50);
             SecondaryFloatValue = 1.0 - AdditionalParameter1;
             EncodingConversionResult = *(long long *)(*Utf8InputBufferSize + 0x30 + (long long)aiStackX_18[0] * 0x50);
-            FloatVariable4 = *(float *)(StringOffset + 4 + SystemDataTablePointer * 0x10);
-            FloatVariable5 = *(float *)(EncodingConversionResult + 4 + SystemDataTablePointer * 0x10);
+            MatrixTransformMultiplier1 = *(float *)(StringOffset + 4 + SystemDataTablePointer * 0x10);
+            MatrixTransformMultiplier2 = *(float *)(EncodingConversionResult + 4 + SystemDataTablePointer * 0x10);
             CalculatedDistance = *(float *)(StringOffset + 8 + SystemDataTablePointer * 0x10);
             SystemFloatValue = *(float *)(EncodingConversionResult + 8 + SystemDataTablePointer * 0x10);
             SystemContextValue = SystemDataTablePointer * 0x5c;
             pCalculatedFilterValue = (float *)(*(long long *)(Utf8InputBuffer[1] + 0x68) + 0x34 + SystemContextValue);
             *pCalculatedFilterValue = AdditionalParameter1 * *(float *)(EncodingConversionResult + SystemDataTablePointer * 0x10) +
                       SecondaryFloatValue * *(float *)(StringOffset + SystemDataTablePointer * 0x10);
-            pFilterInputValue[1] = SecondaryFloatValue * FloatVariable4 + AdditionalParameter1 * FloatVariable5;
+            pFilterInputValue[1] = SecondaryFloatValue * MatrixTransformMultiplier1 + AdditionalParameter1 * MatrixTransformMultiplier2;
             pFilterInputValue[2] = SecondaryFloatValue * CalculatedDistance + AdditionalParameter1 * SystemFloatValue;
             pFilterInputValue[3] = 3.4028235e+38;
             StringOffset = *(long long *)(Utf8InputBuffer[1] + 0x68);
-            FloatVariable4 = *(float *)(StringOffset + 0x38 + SystemContextValue);
-            FloatVariable5 = *(float *)(StringOffset + 0x34 + SystemContextValue);
+            MatrixTransformMultiplier1 = *(float *)(StringOffset + 0x38 + SystemContextValue);
+            MatrixTransformMultiplier2 = *(float *)(StringOffset + 0x34 + SystemContextValue);
             CalculatedDistance = *(float *)(StringOffset + 0x3c + SystemContextValue);
-            SystemFloatValue = FloatVariable5 * FloatVariable5 + FloatVariable4 * FloatVariable4 + CalculatedDistance * CalculatedDistance;
+            SystemFloatValue = MatrixTransformMultiplier2 * MatrixTransformMultiplier2 + MatrixTransformMultiplier1 * MatrixTransformMultiplier1 + CalculatedDistance * CalculatedDistance;
             aPrimaryReturnCode = rsqrtss(ZEXT416((uint)SystemFloatValue),ZEXT416((uint)SystemFloatValue));
             SecondaryFloatValue = aPrimaryReturnCode.LowPart;
             SystemFloatValue = SecondaryFloatValue * 0.5 * (3.0 - SystemFloatValue * SecondaryFloatValue * SecondaryFloatValue);
-            *(float *)(StringOffset + 0x34 + SystemContextValue) = FloatVariable5 * SystemFloatValue;
-            *(float *)(StringOffset + 0x38 + SystemContextValue) = FloatVariable4 * SystemFloatValue;
+            *(float *)(StringOffset + 0x34 + SystemContextValue) = MatrixTransformMultiplier2 * SystemFloatValue;
+            *(float *)(StringOffset + 0x38 + SystemContextValue) = MatrixTransformMultiplier1 * SystemFloatValue;
             *(float *)(StringOffset + 0x3c + SystemContextValue) = CalculatedDistance * SystemFloatValue;
             FUN_18022f490(StringOffset,SystemContextValue + *(long long *)(Utf8InputBuffer[1] + 0x68));
             Utf16Char4 = Utf16Char4 + 1;
@@ -276957,15 +276957,15 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
             *PrimaryProcessingStatusFlag = *CharacterStatusBuffer;
             PrimaryProcessingStatusFlag[1] = MemoryAllocationHandle;
             StringOffset = *(long long *)(Utf8InputBuffer[1] + 0x68);
-            FloatVariable4 = *(float *)(StringOffset + 0x38 + EncodingConversionResult);
-            FloatVariable5 = *(float *)(StringOffset + 0x34 + EncodingConversionResult);
+            MatrixTransformMultiplier1 = *(float *)(StringOffset + 0x38 + EncodingConversionResult);
+            MatrixTransformMultiplier2 = *(float *)(StringOffset + 0x34 + EncodingConversionResult);
             CalculatedDistance = *(float *)(StringOffset + 0x3c + EncodingConversionResult);
-            SystemFloatValue = FloatVariable5 * FloatVariable5 + FloatVariable4 * FloatVariable4 + CalculatedDistance * CalculatedDistance;
+            SystemFloatValue = MatrixTransformMultiplier2 * MatrixTransformMultiplier2 + MatrixTransformMultiplier1 * MatrixTransformMultiplier1 + CalculatedDistance * CalculatedDistance;
             aPrimaryReturnCode = rsqrtss(ZEXT416((uint)SystemFloatValue),ZEXT416((uint)SystemFloatValue));
             SecondaryFloatValue = aPrimaryReturnCode.LowPart;
             SystemFloatValue = SecondaryFloatValue * 0.5 * (3.0 - SystemFloatValue * SecondaryFloatValue * SecondaryFloatValue);
-            *(float *)(StringOffset + 0x34 + EncodingConversionResult) = SystemFloatValue * FloatVariable5;
-            *(float *)(StringOffset + 0x38 + EncodingConversionResult) = SystemFloatValue * FloatVariable4;
+            *(float *)(StringOffset + 0x34 + EncodingConversionResult) = SystemFloatValue * MatrixTransformMultiplier2;
+            *(float *)(StringOffset + 0x38 + EncodingConversionResult) = SystemFloatValue * MatrixTransformMultiplier1;
             *(float *)(StringOffset + 0x3c + EncodingConversionResult) = SystemFloatValue * CalculatedDistance;
             FUN_18022f490(StringOffset,EncodingConversionResult + *(long long *)(Utf8InputBuffer[1] + 0x68));
             Utf16Char4 = Utf16Char4 + 1;
@@ -276996,15 +276996,15 @@ long long * FUN_18022f240(uint64_t *Utf8InputBuffer,unsigned long long Utf8Buffe
           *PrimaryProcessingStatusFlag = *CharacterStatusBuffer;
           PrimaryProcessingStatusFlag[1] = MemoryAllocationHandle;
           StringOffset = *(long long *)(Utf8InputBuffer[1] + 0x68);
-          FloatVariable4 = *(float *)(StringOffset + 0x38 + EncodingConversionResult);
-          FloatVariable5 = *(float *)(StringOffset + 0x34 + EncodingConversionResult);
+          MatrixTransformMultiplier1 = *(float *)(StringOffset + 0x38 + EncodingConversionResult);
+          MatrixTransformMultiplier2 = *(float *)(StringOffset + 0x34 + EncodingConversionResult);
           CalculatedDistance = *(float *)(StringOffset + 0x3c + EncodingConversionResult);
-          SystemFloatValue = FloatVariable5 * FloatVariable5 + FloatVariable4 * FloatVariable4 + CalculatedDistance * CalculatedDistance;
+          SystemFloatValue = MatrixTransformMultiplier2 * MatrixTransformMultiplier2 + MatrixTransformMultiplier1 * MatrixTransformMultiplier1 + CalculatedDistance * CalculatedDistance;
           aPrimaryReturnCode = rsqrtss(ZEXT416((uint)SystemFloatValue),ZEXT416((uint)SystemFloatValue));
           SecondaryFloatValue = aPrimaryReturnCode.LowPart;
           SystemFloatValue = SecondaryFloatValue * 0.5 * (3.0 - SystemFloatValue * SecondaryFloatValue * SecondaryFloatValue);
-          *(float *)(StringOffset + 0x34 + EncodingConversionResult) = SystemFloatValue * FloatVariable5;
-          *(float *)(StringOffset + 0x38 + EncodingConversionResult) = SystemFloatValue * FloatVariable4;
+          *(float *)(StringOffset + 0x34 + EncodingConversionResult) = SystemFloatValue * MatrixTransformMultiplier2;
+          *(float *)(StringOffset + 0x38 + EncodingConversionResult) = SystemFloatValue * MatrixTransformMultiplier1;
           *(float *)(StringOffset + 0x3c + EncodingConversionResult) = SystemFloatValue * CalculatedDistance;
           FUN_18022f490(StringOffset,EncodingConversionResult + *(long long *)(Utf8InputBuffer[1] + 0x68));
           Utf16Char4 = Utf16Char4 + 1;
@@ -277362,17 +277362,17 @@ uint64_t CalculateVectorNormalizationFactor(void
                                  + ContextSecondaryFloat9) & SystemMemoryAllocationResult | ~SystemMemoryAllocationResult & (uint)ContextSecondaryFloat9);
           FilterInputValue1 = (float)((uint)((float)(IntegerValue4 + 2) * (float)XMM12RegisterC * 0.5 * ContextSecondaryFloat3 * FilterInputValue
                                  + FilterInputValue1) & Utf16ConversionContext | ~Utf16ConversionContext & (uint)FilterInputValue1);
-          ContextPrimaryFloat9 = (float)((uint)((float)(IntegerValue4 + 3) * (float)unaff_XMM12_Dd * 0.5 * ContextSecondaryFloat4 * FloatVariable4
+          ContextPrimaryFloat9 = (float)((uint)((float)(IntegerValue4 + 3) * (float)unaff_XMM12_Dd * 0.5 * ContextSecondaryFloat4 * MatrixTransformMultiplier1
                                  + ContextPrimaryFloat9) & PrimaryReturnCode | ~PrimaryReturnCode & (uint)ContextPrimaryFloat9);
           ContextSecondaryFloat5 = (float)((uint)(SystemContextPrimaryFloat + ContextSecondaryFloat5) & MemoryAllocationIndex | ~MemoryAllocationIndex & (uint)ContextSecondaryFloat5);
           ContextSecondaryFloat6 = (float)((uint)(ContextSecondaryFloat + ContextSecondaryFloat6) & SystemMemoryAllocationResult | ~SystemMemoryAllocationResult & (uint)ContextSecondaryFloat6);
           ContextSecondaryFloat7 = (float)((uint)(FilterInputValue + ContextSecondaryFloat7) & Utf16ConversionContext | ~Utf16ConversionContext & (uint)ContextSecondaryFloat7);
-          ContextSecondaryFloat8 = (float)((uint)(FloatVariable4 + ContextSecondaryFloat8) & PrimaryReturnCode | ~PrimaryReturnCode & (uint)ContextSecondaryFloat8);
-          MemoryAllocationIndex = -(uint)(0.0001 < FloatVariable5);
+          ContextSecondaryFloat8 = (float)((uint)(MatrixTransformMultiplier1 + ContextSecondaryFloat8) & PrimaryReturnCode | ~PrimaryReturnCode & (uint)ContextSecondaryFloat8);
+          MemoryAllocationIndex = -(uint)(0.0001 < MatrixTransformMultiplier2);
           SystemMemoryAllocationResult = -(uint)(0.0001 < CalculatedDistance);
           Utf16ConversionContext = -(uint)(0.0001 < FloatVariable7);
           PrimaryReturnCode = -(uint)(0.0001 < ProcessedFloatValue8);
-          FilterInputValue0 = (float)((uint)((float)(IntegerValue4 + 4) * (float)AuxiliaryFloat12 * 0.5 * ContextSecondaryFloat0 * FloatVariable5
+          FilterInputValue0 = (float)((uint)((float)(IntegerValue4 + 4) * (float)AuxiliaryFloat12 * 0.5 * ContextSecondaryFloat0 * MatrixTransformMultiplier2
                                  + FilterInputValue0) & MemoryAllocationIndex | ~MemoryAllocationIndex & (uint)FilterInputValue0);
           FilterInputValue2 = (float)((uint)((float)(IntegerValue4 + 5) * (float)unaff_XMM12_Db * 0.5 * ContextSecondaryFloat2 * CalculatedDistance
                                  + FilterInputValue2) & SystemMemoryAllocationResult | ~SystemMemoryAllocationResult & (uint)FilterInputValue2);
@@ -277380,7 +277380,7 @@ uint64_t CalculateVectorNormalizationFactor(void
                                  + ScalingFactor) & Utf16ConversionContext | ~Utf16ConversionContext & (uint)ScalingFactor);
           FilterInputValue4 = (float)((uint)((float)(IntegerValue4 + 7) * (float)unaff_XMM12_Dd * 0.5 * ContextSecondaryFloat4 * ProcessedFloatValue8
                                  + FilterInputValue4) & PrimaryReturnCode | ~PrimaryReturnCode & (uint)FilterInputValue4);
-          FilterInputValue5 = (float)((uint)(FloatVariable5 + FilterInputValue5) & MemoryAllocationIndex | ~MemoryAllocationIndex & (uint)FilterInputValue5);
+          FilterInputValue5 = (float)((uint)(MatrixTransformMultiplier2 + FilterInputValue5) & MemoryAllocationIndex | ~MemoryAllocationIndex & (uint)FilterInputValue5);
           FilterInputValue6 = (float)((uint)(CalculatedDistance + FilterInputValue6) & SystemMemoryAllocationResult | ~SystemMemoryAllocationResult & (uint)FilterInputValue6);
           FilterInputValue7 = (float)((uint)(FloatVariable7 + FilterInputValue7) & Utf16ConversionContext | ~Utf16ConversionContext & (uint)FilterInputValue7);
           FilterInputValue8 = (float)((uint)(ProcessedFloatValue8 + FilterInputValue8) & PrimaryReturnCode | ~PrimaryReturnCode & (uint)FilterInputValue8);
@@ -277556,13 +277556,13 @@ uint64_t ProcessVectorNormalizationCalculation(void
         SystemContextPrimaryFloat = *pSecondaryFloatValue;
         ContextSecondaryFloat = pSecondaryFloatValue[1];
         CalculatedFilterValue = pSecondaryFloatValue[2];
-        FloatVariable4 = pSecondaryFloatValue[3];
+        MatrixTransformMultiplier1 = pSecondaryFloatValue[3];
         ValidationResult = -(uint)(0.0001 < SystemContextPrimaryFloat);
         Utf16Char4 = -(uint)(0.0001 < ContextSecondaryFloat);
         Utf16ConversionContext = -(uint)(0.0001 < FilterInputValue);
-        PrimaryReturnCode = -(uint)(0.0001 < FloatVariable4);
+        PrimaryReturnCode = -(uint)(0.0001 < MatrixTransformMultiplier1);
         ArrayIndex = LoopCounter + 8;
-        FloatVariable5 = pSecondaryFloatValue[4];
+        MatrixTransformMultiplier2 = pSecondaryFloatValue[4];
         CalculatedDistance = pSecondaryFloatValue[5];
         FloatVariable7 = pSecondaryFloatValue[6];
         ProcessedFloatValue8 = pSecondaryFloatValue[7];
@@ -277573,17 +277573,17 @@ uint64_t ProcessVectorNormalizationCalculation(void
                                ContextSecondaryFloat9) & Utf16Char4 | ~Utf16Char4 & (uint)ContextSecondaryFloat9);
         FilterInputValue1 = (float)((uint)((float)(LoopCounter + 2) * (float)XMM12RegisterC * 0.5 * ContextSecondaryFloat2 * FilterInputValue +
                                FilterInputValue1) & Utf16ConversionContext | ~Utf16ConversionContext & (uint)FilterInputValue1);
-        SystemContextPrimaryFloat8 = (float)((uint)((float)(LoopCounter + 3) * (float)unaff_XMM12_Dd * 0.5 * ContextSecondaryFloat3 * FloatVariable4 +
+        SystemContextPrimaryFloat8 = (float)((uint)((float)(LoopCounter + 3) * (float)unaff_XMM12_Dd * 0.5 * ContextSecondaryFloat3 * MatrixTransformMultiplier1 +
                                SystemContextPrimaryFloat8) & PrimaryReturnCode | ~PrimaryReturnCode & (uint)SystemContextPrimaryFloat8);
         ContextSecondaryFloat4 = (float)((uint)(SystemContextPrimaryFloat + ContextSecondaryFloat4) & ValidationResult | ~ValidationResult & (uint)ContextSecondaryFloat4);
         ContextSecondaryFloat6 = (float)((uint)(ContextSecondaryFloat + ContextSecondaryFloat6) & Utf16Char4 | ~Utf16Char4 & (uint)ContextSecondaryFloat6);
         ContextSecondaryFloat7 = (float)((uint)(FilterInputValue + ContextSecondaryFloat7) & Utf16ConversionContext | ~Utf16ConversionContext & (uint)ContextSecondaryFloat7);
-        ContextSecondaryFloat8 = (float)((uint)(FloatVariable4 + ContextSecondaryFloat8) & PrimaryReturnCode | ~PrimaryReturnCode & (uint)ContextSecondaryFloat8);
-        ValidationResult = -(uint)(0.0001 < FloatVariable5);
+        ContextSecondaryFloat8 = (float)((uint)(MatrixTransformMultiplier1 + ContextSecondaryFloat8) & PrimaryReturnCode | ~PrimaryReturnCode & (uint)ContextSecondaryFloat8);
+        ValidationResult = -(uint)(0.0001 < MatrixTransformMultiplier2);
         Utf16Char4 = -(uint)(0.0001 < CalculatedDistance);
         Utf16ConversionContext = -(uint)(0.0001 < FloatVariable7);
         PrimaryReturnCode = -(uint)(0.0001 < ProcessedFloatValue8);
-        FilterInputValue0 = (float)((uint)((float)(LoopCounter + 4) * (float)AuxiliaryFloat12 * 0.5 * ContextPrimaryFloat9 * FloatVariable5 +
+        FilterInputValue0 = (float)((uint)((float)(LoopCounter + 4) * (float)AuxiliaryFloat12 * 0.5 * ContextPrimaryFloat9 * MatrixTransformMultiplier2 +
                                FilterInputValue0) & ValidationResult | ~ValidationResult & (uint)FilterInputValue0);
         FilterInputValue2 = (float)((uint)((float)(LoopCounter + 5) * (float)unaff_XMM12_Db * 0.5 * ContextSecondaryFloat1 * CalculatedDistance +
                                FilterInputValue2) & Utf16Char4 | ~Utf16Char4 & (uint)FilterInputValue2);
@@ -277591,7 +277591,7 @@ uint64_t ProcessVectorNormalizationCalculation(void
                                ScalingFactor) & Utf16ConversionContext | ~Utf16ConversionContext & (uint)ScalingFactor);
         FilterInputValue4 = (float)((uint)((float)(LoopCounter + 7) * (float)unaff_XMM12_Dd * 0.5 * ContextSecondaryFloat3 * ProcessedFloatValue8 +
                                FilterInputValue4) & PrimaryReturnCode | ~PrimaryReturnCode & (uint)FilterInputValue4);
-        FilterInputValue5 = (float)((uint)(FloatVariable5 + FilterInputValue5) & ValidationResult | ~ValidationResult & (uint)FilterInputValue5);
+        FilterInputValue5 = (float)((uint)(MatrixTransformMultiplier2 + FilterInputValue5) & ValidationResult | ~ValidationResult & (uint)FilterInputValue5);
         FilterInputValue6 = (float)((uint)(CalculatedDistance + FilterInputValue6) & Utf16Char4 | ~Utf16Char4 & (uint)FilterInputValue6);
         FilterInputValue7 = (float)((uint)(FloatVariable7 + FilterInputValue7) & Utf16ConversionContext | ~Utf16ConversionContext & (uint)FilterInputValue7);
         FilterInputValue8 = (float)((uint)(ProcessedFloatValue8 + FilterInputValue8) & PrimaryReturnCode | ~PrimaryReturnCode & (uint)FilterInputValue8);
@@ -277893,34 +277893,34 @@ uint64_t CalculateAudioSignalAverage(int CharacterCode,uint64_t Utf8BufferSize,u
   float *in_R11;
   float FloatingPointRegisterA;
   float MatrixTransformMultiplier1;
-  float FloatVariable5;
+  float MatrixTransformMultiplier2;
   
   if (CharacterCode < SystemParameterD) {
     if (3 < SystemParameterD - CharacterCode) {
       DataStringLength = CharacterCode + 2;
-      FloatVariable4 = (float)DataStringLength;
+      MatrixTransformMultiplier1 = (float)DataStringLength;
       pContextSecondaryFloat = (float *)(DataNodePointer + ((long long)CharacterCode + 2) * 4);
-      FloatVariable5 = (float)SystemParameterD;
+      MatrixTransformMultiplier2 = (float)SystemParameterD;
       do {
         SystemContextPrimaryFloat = pContextSecondaryFloat[-2];
         if (0.0001 < SystemContextPrimaryFloat) {
           Utf16EndPointer = Utf16EndPointer + SystemContextPrimaryFloat;
-          FloatingPointRegisterA = FloatingPointRegisterA + ((FloatVariable4 * 0.5 * (float)CharacterCode) / FloatVariable5) * SystemContextPrimaryFloat;
+          FloatingPointRegisterA = FloatingPointRegisterA + ((MatrixTransformMultiplier1 * 0.5 * (float)CharacterCode) / MatrixTransformMultiplier2) * SystemContextPrimaryFloat;
         }
         SystemContextPrimaryFloat = pContextSecondaryFloat[-1];
         if (0.0001 < SystemContextPrimaryFloat) {
           Utf16EndPointer = Utf16EndPointer + SystemContextPrimaryFloat;
-          FloatingPointRegisterA = FloatingPointRegisterA + (((float)(DataStringLength + -1) * FloatVariable4 * 0.5) / FloatVariable5) * SystemContextPrimaryFloat;
+          FloatingPointRegisterA = FloatingPointRegisterA + (((float)(DataStringLength + -1) * MatrixTransformMultiplier1 * 0.5) / MatrixTransformMultiplier2) * SystemContextPrimaryFloat;
         }
         SystemContextPrimaryFloat = *pContextSecondaryFloat;
         if (0.0001 < SystemContextPrimaryFloat) {
           Utf16EndPointer = Utf16EndPointer + SystemContextPrimaryFloat;
-          FloatingPointRegisterA = FloatingPointRegisterA + (((float)DataStringLength * FloatVariable4 * 0.5) / FloatVariable5) * SystemContextPrimaryFloat;
+          FloatingPointRegisterA = FloatingPointRegisterA + (((float)DataStringLength * MatrixTransformMultiplier1 * 0.5) / MatrixTransformMultiplier2) * SystemContextPrimaryFloat;
         }
         SystemContextPrimaryFloat = pContextSecondaryFloat[1];
         if (0.0001 < SystemContextPrimaryFloat) {
           Utf16EndPointer = Utf16EndPointer + SystemContextPrimaryFloat;
-          FloatingPointRegisterA = FloatingPointRegisterA + (((float)(DataStringLength + 1) * FloatVariable4 * 0.5) / FloatVariable5) * SystemContextPrimaryFloat;
+          FloatingPointRegisterA = FloatingPointRegisterA + (((float)(DataStringLength + 1) * MatrixTransformMultiplier1 * 0.5) / MatrixTransformMultiplier2) * SystemContextPrimaryFloat;
         }
         pContextSecondaryFloat = pContextSecondaryFloat + 4;
         CharacterCode = CharacterCode + 4;
@@ -277930,11 +277930,11 @@ uint64_t CalculateAudioSignalAverage(int CharacterCode,uint64_t Utf8BufferSize,u
     if (CharacterCode < SystemParameterD) {
       pContextSecondaryFloat = (float *)(DataNodePointer + (long long)CharacterCode * 4);
       do {
-        FloatVariable4 = *pContextSecondaryFloat;
-        if (0.0001 < FloatVariable4) {
-          Utf16EndPointer = Utf16EndPointer + FloatVariable4;
+        MatrixTransformMultiplier1 = *pContextSecondaryFloat;
+        if (0.0001 < MatrixTransformMultiplier1) {
+          Utf16EndPointer = Utf16EndPointer + MatrixTransformMultiplier1;
           FloatingPointRegisterA =
-               FloatingPointRegisterA + (((float)DataStringLength * 0.5 * (float)CharacterCode) / (float)SystemParameterD) * FloatVariable4;
+               FloatingPointRegisterA + (((float)DataStringLength * 0.5 * (float)CharacterCode) / (float)SystemParameterD) * MatrixTransformMultiplier1;
         }
         pContextSecondaryFloat = pContextSecondaryFloat + 1;
         CharacterCode = CharacterCode + 1;
