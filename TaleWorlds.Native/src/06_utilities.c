@@ -77013,7 +77013,18 @@ void SetDefaultExceptionHandlerA0(DataBuffer systemParameter, int64_t systemCont
 
 
 
-void Unwind_1809095c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器（偏移量0x4b0）
+ * 
+ * 在数据缓冲区的偏移量0x4b0位置设置默认异常处理器B，用于特定上下文
+ * 的异常处理配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809095c0
+ */
+void SetDefaultExceptionHandlerBOffset4B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x4b0) = &DefaultExceptionHandlerB;
@@ -77034,7 +77045,18 @@ void Unwind_1809095d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909600(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器（偏移量0x5d0）
+ * 
+ * 在数据缓冲区的偏移量0x5d0位置设置默认异常处理器B，用于特定上下文
+ * 的异常处理配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909600
+ */
+void SetDefaultExceptionHandlerBOffset5D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x5d0) = &DefaultExceptionHandlerB;
@@ -77043,7 +77065,18 @@ void Unwind_180909600(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909610(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置临时异常处理器（偏移量0x2f0）
+ * 
+ * 在数据缓冲区的偏移量0x2f0位置设置临时异常处理器，用于异常处理过程中的
+ * 临时状态管理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909610
+ */
+void SetTemporaryExceptionHandlerOffset2F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x2f0) = &TemporaryExceptionHandler;
@@ -77058,7 +77091,18 @@ void Unwind_180909610(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909620(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器（偏移量0x2f0）
+ * 
+ * 在数据缓冲区的偏移量0x2f0位置设置默认异常处理器B，用于异常处理完成后
+ * 恢复默认的异常处理行为。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909620
+ */
+void SetDefaultExceptionHandlerBOffset2F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x2f0) = &DefaultExceptionHandlerB;
@@ -77067,7 +77111,18 @@ void Unwind_180909620(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909630(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器（偏移量0x1f8）
+ * 
+ * 在数据缓冲区的偏移量0x1f8位置设置默认异常处理器B，用于特定上下文
+ * 的异常处理配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909630
+ */
+void SetDefaultExceptionHandlerBOffset1F8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1f8) = &DefaultExceptionHandlerB;
@@ -77076,7 +77131,18 @@ void Unwind_180909630(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909640(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器（偏移量0x198）
+ * 
+ * 在数据缓冲区的偏移量0x198位置设置默认异常处理器B，用于特定上下文
+ * 的异常处理配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909640
+ */
+void SetDefaultExceptionHandlerBOffset198(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x198) = &DefaultExceptionHandlerB;
@@ -79947,48 +80013,101 @@ void Unwind_18090a7a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 执行回调并设置异常处理器
+ * 
+ * 执行指定的回调函数，并设置相应的异常处理器。该函数负责在回调执行前后
+ * 管理异常处理器的状态，确保系统的异常处理机制正常工作。
+ * 
+ * @param operationBase 操作基础地址，用于回调执行的上下文
+ * @param dataBuffer 数据缓冲区指针，包含回调函数和异常处理相关信息
+ * 
+ * @note 该函数在系统需要执行特定回调并管理异常处理时调用
+ * @warning 如果回调执行失败，可能影响系统的异常处理能力
+ */
 void ExecuteCallbackAndSetExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
-
 {
+  // 检查并执行回调函数
   if (*(int64_t **)(dataBuffer + 0x48) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x48) + 0x38))();
   }
+  
+  // 设置临时异常处理器
   *(DataBuffer *)(dataBuffer + ValidationResultOffset) = &TemporaryExceptionHandler;
+  
+  // 检查并处理系统终止状态
   if (*(int64_t *)(dataBuffer + 0x30) != 0) {
       TerminateSystemE0();
   }
+  
+  // 重置系统状态
   *(DataBuffer *)(dataBuffer + 0x30) = 0;
   *(DataWord *)(dataBuffer + 0x40) = 0;
   *(DataBuffer *)(dataBuffer + ValidationResultOffset) = &DefaultExceptionHandlerB;
+  
   return;
 }
 
 
 
+/**
+ * @brief 系统展开处理函数A0
+ * 
+ * 执行系统展开操作，在异常处理或栈展开过程中调用。该函数负责
+ * 执行必要的回调函数，确保系统状态的正确恢复。
+ * 
+ * @param operationBase 操作基础地址，用于展开处理的上下文
+ * @param dataBuffer 数据缓冲区指针，包含展开处理所需的信息
+ * 
+ * @note 原始函数名：Unwind_18090a7c0
+ * @note 该函数在系统展开过程中被调用，用于执行清理和恢复操作
+ */
 void Unwind_18090a7c0(DataBuffer operationBase,int64_t dataBuffer)
-
 {
+  // 检查并执行展开回调函数
   if (*(int64_t **)(dataBuffer + 0x48) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x48) + 0x38))();
   }
+  
   return;
 }
 
 
 
+/**
+ * @brief 系统展开处理函数A1
+ * 
+ * 执行系统展开操作，管理异常处理器的状态切换。该函数负责在展开过程中
+ * 设置临时异常处理器，检查系统状态，并最终恢复默认异常处理器。
+ * 
+ * @param operationBase 操作基础地址，用于展开处理的上下文
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_18090a7d0
+ * @note 该函数在异常展开过程中被调用，用于管理异常处理器的状态
+ */
 void Unwind_18090a7d0(DataBuffer operationBase,int64_t dataBuffer)
-
 {
   DataBuffer *exceptionDataBuffer;
   
+  // 获取异常数据缓冲区指针
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffsetA0);
+  
+  // 设置临时异常处理器
   *exceptionDataBuffer = &TemporaryExceptionHandler;
+  
+  // 检查系统终止状态
   if (exceptionDataBuffer[1] != 0) {
       TerminateSystemE0();
   }
+  
+  // 重置异常处理状态
   exceptionDataBuffer[1] = 0;
   *(DataWord *)(exceptionDataBuffer + 3) = 0;
+  
+  // 恢复默认异常处理器
   *exceptionDataBuffer = &DefaultExceptionHandlerB;
+  
   return;
 }
 
