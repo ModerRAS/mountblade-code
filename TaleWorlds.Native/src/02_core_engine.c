@@ -175690,7 +175690,7 @@ uint64_t * ProcessSystemFunctionCall(uint64_t *Utf8InputBuffer)
 
 uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsigned long long Utf8BufferSize
 {
-  FUN_1801431d0();
+  ProcessCharacterInitializeSystem();
   if ((Utf8BufferSize & 1) != 0) {
     free(CharacterCode,0x348);
   }
@@ -175822,7 +175822,7 @@ uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsi
   }
   pSystemRegisterPointerX10 = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(SystemContextRegister,0,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
+    ProcessRenderDataOperation(SystemContextRegister,0,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
   }
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x38))();
@@ -175833,7 +175833,7 @@ uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsi
   }
   pSystemRegisterPointerX10 = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(SystemContextRegister,0,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
+    ProcessRenderDataOperation(SystemContextRegister,0,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
   }
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x38))();
@@ -175844,7 +175844,7 @@ uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsi
   }
   pSystemRegisterPointerX10 = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(SystemContextRegister,0);
+    ProcessRenderDataOperation(SystemContextRegister,0);
   }
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x38))();
@@ -175855,7 +175855,7 @@ uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsi
   }
   pSystemRegisterPointerX10 = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(SystemContextRegister,0);
+    ProcessRenderDataOperation(SystemContextRegister,0);
   }
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x38))();
@@ -175866,7 +175866,7 @@ uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsi
   }
   pSystemRegisterPointerX10 = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(SystemContextRegister,0);
+    ProcessRenderDataOperation(SystemContextRegister,0);
   }
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x38))();
@@ -175877,7 +175877,7 @@ uint64_t ProcessCharacterCodeWithSecondaryValidation(uint64_t CharacterCode,unsi
   }
   pSystemRegisterPointerX10 = &SystemContextRegister;
   if ((SystemContextRegister != (long long *)0x0) && ((*(uint *)(SystemContextRegister + 0x65) & 0x20000000) == 0)) {
-    FUN_18023b050(SystemContextRegister,0);
+    ProcessRenderDataOperation(SystemContextRegister,0);
   }
   if (SystemContextRegister != (long long *)0x0) {
     (**(code **)(*SystemContextRegister + 0x38))();
@@ -221203,7 +221203,7 @@ LAB_18018d08e:
     } while ((unsigned long long)(long long)(int)MemoryAllocationCounter < (unsigned long long)(CharacterTablePointer5 - MemoryBlockIndex));
   }
   FUN_180190630(CharacterCode + 0x3a0,aFunctionAddress8);
-  FUN_1801431d0(aFunctionAddress8);
+  ProcessCharacterInitializeSystem(aFunctionAddress8);
   return;
 }
 
