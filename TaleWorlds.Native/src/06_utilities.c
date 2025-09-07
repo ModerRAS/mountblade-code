@@ -6128,13 +6128,20 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 // 原始变量名：DAT_180c96100 - 系统资源清理标志A7
 #define SystemResourceCleanupFlagA7 GlobalSystemResourceCleanupFlagA7      // 系统资源清理标志A7
 
-#define SystemResourcePointerA0 _DAT_180c95ff0          // 系统资源指针A0
-#define SystemResourcePointerA1 _DAT_180c96010          // 系统资源指针A1
-#define SystemResourcePointerA2 _DAT_180c96030          // 系统资源指针A2
-#define SystemResourcePointerA3 _DAT_180c96050          // 系统资源指针A3
-#define SystemResourcePointerA4 _DAT_180c96070          // 系统资源指针A4
-#define SystemResourcePointerA5 _DAT_180c960a0          // 系统资源指针A5
-#define SystemResourceDataBufferA0 DAT_180c960c0         // 系统资源数据缓冲区A0
+// 原始变量名：_DAT_180c95ff0 - 系统资源指针A0
+#define SystemResourcePointerA0 GlobalSystemResourcePointerA0          // 系统资源指针A0
+// 原始变量名：_DAT_180c96010 - 系统资源指针A1
+#define SystemResourcePointerA1 GlobalSystemResourcePointerA1          // 系统资源指针A1
+// 原始变量名：_DAT_180c96030 - 系统资源指针A2
+#define SystemResourcePointerA2 GlobalSystemResourcePointerA2          // 系统资源指针A2
+// 原始变量名：_DAT_180c96050 - 系统资源指针A3
+#define SystemResourcePointerA3 GlobalSystemResourcePointerA3          // 系统资源指针A3
+// 原始变量名：_DAT_180c96070 - 系统资源指针A4
+#define SystemResourcePointerA4 GlobalSystemResourcePointerA4          // 系统资源指针A4
+// 原始变量名：_DAT_180c960a0 - 系统资源指针A5
+#define SystemResourcePointerA5 GlobalSystemResourcePointerA5          // 系统资源指针A5
+// 原始变量名：DAT_180c960c0 - 系统资源数据缓冲区A0
+#define SystemResourceDataBufferA0 GlobalSystemResourceDataBufferA0         // 系统资源数据缓冲区A0
 
 // 系统验证相关变量宏定义
 #define SystemValidationContextPointerA0 _DAT_180c95f18   // 系统验证上下文指针A0
