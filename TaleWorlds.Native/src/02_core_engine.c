@@ -39154,9 +39154,9 @@ void ManageBufferIndexllocation(long long *CharacterCode
   ReferenceCountPointer = (int *)(*(long long *)(CharacterCode[1] + 0x1f8) + 0x120);
   *ReferenceCountPointer = *ReferenceCountPointer + -1;
   UNLOCK();
-  lStackX_8 = *(long long *)(CharacterCode[1] + 0x1a8);
+  StackMemoryOffset = *(long long *)(CharacterCode[1] + 0x1a8);
   MemoryBlockIndex = *CharacterCode;
-  ProcessMemoryBlockData(MemoryBlockIndex + 0x10,&lStackX_8);
+  ProcessMemoryBlockData(MemoryBlockIndex + 0x10,&StackMemoryOffset);
   SystemOperationResult = _Cnd_signal(MemoryBlockIndex + 0x278);
   if (IntegerValue9 != 0) {
     __Throw_C_error_std__YAXH_Z(IntegerValue9);
