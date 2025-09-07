@@ -7567,6 +7567,8 @@ void CleanupUIComponentCache(void)
   undefined4 *DefaultDataBufferPointer;
   undefined4 *UIContextPointer;
   undefined1 *CopyDestinationBuffer;
+  undefined *dataSourcePointer;
+  undefined4 *componentContextPointer;
   undefined *SourceBufferPointer;
   undefined *CustomDataSource;
   undefined4 *ComponentContextPointer;
@@ -7607,13 +7609,13 @@ void CleanupUIComponentCache(void)
   uStack_2c0 = 0;
   puStack_2d0 = (undefined4 *)0x0;
   uStack_2c8 = 0;
-  puVar5 = (undefined4 *)CreateUIContext(UIContextManager,0x10,0x13);
-  *(undefined1 *)puVar5 = 0;
-  puStack_2d0 = puVar5;
-  semaphoreHandle = ConfigureUIComponent(puVar5);
+  componentContextPointer = (undefined4 *)CreateUIContext(UIContextManager,0x10,0x13);
+  *(undefined1 *)componentContextPointer = 0;
+  puStack_2d0 = componentContextPointer;
+  semaphoreHandle = ConfigureUIComponent(componentContextPointer);
   uStack_2c0 = CONCAT44(uStack_2c0._4_4_,semaphoreHandle);
-  *puVar5 = 0x2f6e6962;
-  *(undefined1 *)(puVar5 + 1) = 0;
+  *componentContextPointer = 0x2f6e6962;
+  *(undefined1 *)(componentContextPointer + 1) = 0;
   uStack_2c8 = 4;
   lVar6 = MergeUIData(&puStack_270,&puStack_180,&puStack_2d8);
   puStack_2b8 = &PrimaryUIBuffer;

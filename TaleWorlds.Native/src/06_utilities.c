@@ -106406,7 +106406,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 #define ExecuteExceptionHandlerA2 Unwind_1809111a0
 #define ExecuteExceptionHandlerA3 Unwind_1809111c0
 
-// 异常处理函数宏定义 - 美化Unwind_函数
+// 异常处理函数定义
 #define ExceptionHandlerA0 Unwind_180903790
 #define ExceptionHandlerA1 Unwind_1809037b0
 #define ExceptionHandlerA2 Unwind_1809037d0
