@@ -8497,26 +8497,31 @@ void ProcessResourceCleanup(void)
 
 
 /**
- * @brief 执行系统关闭
+ * @brief 执行系统关闭操作
  * 
- * 该函数负责处理系统关闭时的必要操作。它会执行安全检查，
- * 确保系统在关闭过程中不会出现数据丢失或资源泄漏。
+ * 该函数负责安全地关闭系统，确保在系统关闭过程中不会出现数据丢失
+ * 或资源泄漏。此函数是系统关闭流程中的关键组件，提供安全验证机制。
  * 
- * 该函数执行以下操作：
- * 1. 准备安全上下文
- * 2. 执行系统安全检查
- * 3. 确保系统安全关闭
+ * 函数执行流程：
+ * 1. 准备安全上下文和系统安全缓冲区
+ * 2. 执行安全检查以确保系统关闭过程的安全性
+ * 3. 通过XOR操作提供基本的安全保护
  * 
- * @note 此函数包含安全验证机制，确保系统关闭过程的安全性
- * @warning 函数执行过程中不会返回，最后会调用安全检查
+ * @note 此函数包含安全验证机制，使用XOR操作保护安全参数
+ * @warning 函数执行过程中不会返回，最后会调用安全检查函数
+ * @warning 此函数应该在所有系统资源已经正确释放后调用
  * 
  * @see ExecuteSecurityCheck
+ * 
+ * @since 系统版本 1.0
+ * @security_level 高
  */
 void ExecuteSystemShutdown(void)
 {
-  uint64_t securityContext;
-  uint64_t systemSecurityBuffer;
+  uint64_t securityContext;              // 安全上下文参数
+  uint64_t systemSecurityBuffer;         // 系统安全缓冲区
   
+  // 执行安全检查，使用XOR操作提供基本的安全保护
   ExecuteSecurityCheck(securityContext ^ (uint64_t)&systemSecurityBuffer);
 }
 
@@ -8524,33 +8529,40 @@ void ExecuteSystemShutdown(void)
 
 
 /**
- * @brief 验证系统状态
+ * @brief 验证系统状态并执行清理操作
  * 
- * 该函数负责检查系统状态并在必要时执行清理操作。它会验证系统
- * 的当前状态，确保系统运行在正常的状态下，如果发现异常状态，
- * 会执行相应的清理和恢复操作。
+ * 该函数负责检查系统运行状态并在检测到异常状态时执行相应的清理操作。
+ * 它会验证系统的当前状态，确保系统运行在正常的状态下，如果发现异常状态，
+ * 会执行资源释放和内存清理等恢复操作。
  * 
- * 该函数执行以下操作：
- * 1. 检查系统上下文中的状态标志
- * 2. 如果发现异常状态，执行资源释放
+ * 函数执行流程：
+ * 1. 检查系统上下文中的状态标志位（偏移量0x2d8的第7位）
+ * 2. 如果检测到异常状态，调用资源释放函数
  * 3. 清理系统内存缓冲区
- * 4. 执行安全验证
+ * 4. 执行安全验证以确保状态验证过程的安全性
  * 
- * @note 此函数包含安全验证机制，确保状态验证过程的安全性
- * @warning 函数执行过程中不会返回，最后会调用安全检查
+ * @note 此函数包含安全验证机制，使用XOR操作保护验证参数
+ * @warning 函数执行过程中不会返回，最后会调用安全检查函数
+ * @warning 此函数会检查系统上下文中的特定状态标志位
  * 
  * @see ReleaseResource, CleanupMemory, ExecuteSecurityCheck
+ * 
+ * @since 系统版本 1.0
+ * @security_level 高
  */
 void ValidateSystemState(void)
 {
-  int64_t systemContextPointer;
-  uint64_t systemValidationParameter;
-  uint64_t systemCleanupBuffer;
-  uint64_t systemSecurityBuffer;
+  int64_t systemContextPointer;           // 系统上下文指针
+  uint64_t systemValidationParameter;     // 系统验证参数
+  uint64_t systemCleanupBuffer;           // 系统清理缓冲区
+  uint64_t systemSecurityBuffer;          // 系统安全缓冲区
   
+  // 检查系统上下文中的状态标志位（第7位）
   if ((*(uint32_t *)(systemContextPointer + 0x2d8) >> 7 & 1) != 0) {
     ReleaseResource();
   }
+  
+  // 清理内存缓冲区并执行安全验证
   CleanupMemory(&systemCleanupBuffer);
   ExecuteSecurityCheck(systemValidationParameter ^ (uint64_t)&systemSecurityBuffer);
 }
@@ -64671,8 +64683,17 @@ void Unwind_1809092f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909300(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 系统异常处理器设置函数A
+ * 
+ * 设置系统异常处理器A，用于处理特定的异常情况
+ * 
+ * @param operationBase 操作基础数据结构
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909300
+ */
+void SetSystemExceptionHandlerA(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x58) + 0x10) = &DefaultExceptionHandlerB;
   return;
@@ -64680,8 +64701,17 @@ void Unwind_180909300(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909310(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 系统异常处理器设置函数B
+ * 
+ * 设置系统异常处理器B，用于处理特定的异常情况
+ * 
+ * @param operationBase 操作基础数据结构
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909310
+ */
+void SetSystemExceptionHandlerB(DataBuffer operationBase, int64_t dataBuffer)
 {
   *(uint8_t **)(dataBuffer + 0x90) = &DefaultExceptionHandlerB;
   return;
@@ -67016,7 +67046,7 @@ void Unwind_180909dc0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_180909de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9030(*(int64_t *)(dataBuffer + 0x40) + 0x740,
+  ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x40) + 0x740,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x750),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -67326,7 +67356,7 @@ void Unwind_18090a0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9030(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
+  ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -67336,7 +67366,7 @@ void Unwind_18090a0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9030(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
+  ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -67346,7 +67376,7 @@ void Unwind_18090a100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9030(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -67356,7 +67386,7 @@ void Unwind_18090a110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9030(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
+  ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -67581,7 +67611,7 @@ void Unwind_18090a2b0(DataBuffer operationBase,int64_t dataBuffer)
 void Unwind_18090a2d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9030(*(int64_t *)(dataBuffer + 0x60) + 0x740,
+  ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x60) + 0x740,
                 *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x750),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
@@ -67883,7 +67913,7 @@ void ExecuteValidatorCleanupF2(DataBuffer systemHandle, int64_t validatorArray)
 void Unwind_18090a580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9030(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
+  ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
@@ -67893,7 +67923,7 @@ void Unwind_18090a580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 void Unwind_18090a590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800b9030(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
+  ProcessSystemConfigurationA0(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
                 operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
