@@ -482,6 +482,46 @@
 // 功能：清理偏移量0x48处的资源指针，处理内存引用计数和异常情况
 #define CleanupResourceAtOffset48 Unwind_1809049f0
 
+// 原始函数名：Unwind_1809046d0 - 异常上下文重置函数偏移量0x18
+// 功能：重置异常上下文处理器状态，设置临时异常处理器并清理状态标志
+#define ResetExceptionContextOffset18 Unwind_1809046d0
+
+// 原始函数名：Unwind_180904750 - 同步资源清理函数
+// 功能：在异常处理过程中清理互斥锁和条件变量等同步资源
+#define CleanupSynchronizationPrimitives Unwind_180904750
+
+// 原始函数名：Unwind_180904760 - 异常处理器回调执行函数
+// 功能：执行异常处理器的回调函数，传递相关参数和系统清理标志
+#define ExecuteExceptionHandlerCallback Unwind_180904760
+
+// 原始函数名：Unwind_180904770 - 异常处理器执行函数
+// 功能：执行异常处理器的回调函数，通过间接调用机制
+#define ExecuteExceptionHandler Unwind_180904770
+
+// 原始函数名：Unwind_180904820 - 异常上下文重置函数偏移量0x20
+// 功能：重置异常上下文处理器状态（偏移量0x20），设置临时异常处理器并清理状态标志
+#define ResetExceptionContextOffset20 Unwind_180904820
+
+// 原始函数名：Unwind_180904830 - 默认异常处理器设置函数
+// 功能：设置默认异常处理器B到异常上下文中
+#define SetDefaultExceptionHandlerB Unwind_180904830
+
+// 原始函数名：Unwind_180904840 - 异常处理状态清理函数
+// 功能：清理异常处理状态标志，处理数据缓冲区状态
+#define ClearExceptionHandlingState Unwind_180904840
+
+// 原始函数名：Unwind_180904870 - 异常上下文重置函数偏移量0x50
+// 功能：重置异常上下文处理器状态（偏移量0x50），设置临时异常处理器并清理状态标志
+#define ResetExceptionContextOffset50 Unwind_180904870
+
+// 原始函数名：Unwind_180904880 - 默认异常处理器设置函数偏移量0x40
+// 功能：设置默认异常处理器B到指定偏移量0x40的位置
+#define SetDefaultExceptionHandlerBOffset40 Unwind_180904880
+
+// 原始函数名：Unwind_180904890 - 默认异常处理器设置函数偏移量0x50
+// 功能：设置默认异常处理器B到指定偏移量0x50的位置
+#define SetDefaultExceptionHandlerBOffset50 Unwind_180904890
+
 // 原始函数名：ReleaseDataBufferResource - 数据缓冲区资源释放函数
 // 功能：释放数据缓冲区资源
 #define ReleaseDataBufferResource ReleaseDataBufferResource
