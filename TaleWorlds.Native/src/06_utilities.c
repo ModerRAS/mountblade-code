@@ -7293,7 +7293,7 @@ uint8_t UtilityProcessDataPrimaryPointer;
 // 
 // 返回值:
 //   uint8_t - 处理结果状态
-uint8_t UtilityProcessPrimaryData;
+uint8_t UtilityProcessDataFirst(void);
 // 工具系统处理数据1相关变量
 uint8_t UtilityProcessPrimaryStatus;
 uint8_t UtilityProcessPrimaryContext;
@@ -7311,7 +7311,7 @@ uint8_t UtilitySystemPrimaryData;
 // 
 // 返回值:
 //   uint8_t - 处理结果状态
-uint8_t UtilityProcessSecondaryData;
+uint8_t UtilityProcessDataSecond(void);
 
 // 函数: uint8_t UtilityProcessDataThird(void)
 // 
@@ -7323,7 +7323,7 @@ uint8_t UtilityProcessSecondaryData;
 // 
 // 返回值:
 //   uint8_t - 处理结果状态
-uint8_t UtilityProcessTertiaryData;
+uint8_t UtilityProcessDataThird(void);
 // 工具系统处理数据变量
 uint8_t UtilityProcessSecondaryStatus;
 uint8_t UtilityProcessSecondaryContext;

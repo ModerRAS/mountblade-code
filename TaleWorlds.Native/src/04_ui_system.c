@@ -57219,10 +57219,10 @@ void ProcessUIMainRenderer(void)
   int renderMode;
   
   if (renderMode == 1) {
-    FUN_1806935a0();
+    InitializeUIRenderDataProcessor();
     return;
   }
-  FUN_1806922f0();
+  ProcessUISecondaryRenderer();
   return;
 }
 
