@@ -4625,12 +4625,12 @@ Label_ModuleConfigurationStart:
     SystemModuleContext = (longlong *)*pUnsignedValue;
     PerformanceCounterValue = (longlong *)0x0;
     StackCounter48 = (longlong *)0x0;
-    SystemConfigurationPointer = (longlong **)&cStack_300;
+    SystemConfigurationPointer = (longlong **)&SystemCharStackBuffer300;
     ConfigureModuleInitialization(ModuleInitializationResult2,&StackSystemPointer,&PerformanceCounterValue,&StackCounter48);
     if (*(char *)(ModuleInitializationResult2 + 0x60) != '\0') {
-      ValidateModuleInitialization(ModuleInitializationResult2,&PerformanceCounterValue,&StackCounter48,acStack_2ff);
+      ValidateModuleInitialization(ModuleInitializationResult2,&PerformanceCounterValue,&StackCounter48,SystemCharArrayBuffer2ff);
     }
-    if ((cStack_300 == '\0') && (acStack_2ff[0] == '\0')) {
+    if ((SystemCharStackBuffer300 == '\0') && (SystemCharArrayBuffer2ff[0] == '\0')) {
       *(uint8_t *)(ModuleInitializationResult2 + 0x60) = 0;
     }
     SystemModuleContext = pModuleInitializationResult4;
@@ -4770,15 +4770,15 @@ ProcessMemoryAllocation(uint64_t *memoryPtr, ulonglong controlFlags, uint64_t me
       pSystemOperationCounter = &SystemBufferTemplate;
     }
   }
-  puStack_a8 = &SystemNullPointer;
+  SystemPointerStackA8 = &SystemNullPointer;
   if (StackPointerBuffer != (void *)0x0) {
     CleanupSystemResources();
   }
   StackPointerBuffer = (void *)0x0;
-  uStack_90 = 0;
-  puStack_a8 = &SystemBufferTemplate;
+  SystemUnsignedStack90 = 0;
+  SystemPointerStackA8 = &SystemBufferTemplate;
 Label_MemoryPoolInitialized:
-  SystemSecurityCheck(uStack_48 ^ (ulonglong)auStack_168);
+  SystemSecurityCheck(SystemUnsignedStack48 ^ (ulonglong)SystemArrayStack168);
 }
 /**
  * 处理互斥锁操作
@@ -4820,7 +4820,7 @@ uint HandleMutexOperations(void)
   SystemSecurityCheck(StackCounter5 ^ (ulonglong)aStackStringLength);
 }
     SystemRenderingActive = '\0';
-    if ((cStack_208 != '\0') && (LoopCounter3 = _Mtx_unlock(uStack_210), LoopCounter3 != 0)) {
+    if ((SystemCharStack208 != '\0') && (LoopCounter3 = _Mtx_unlock(SystemUnsignedStack210), LoopCounter3 != 0)) {
       __Throw_C_error_std__YAXH_Z(LoopCounter3);
     }
     if (BooleanCheck3 != '\0') goto Label_MutexOperationComplete;
@@ -4846,7 +4846,7 @@ Label_MutexOperationComplete:
       __Throw_C_error_std__YAXH_Z(LoopCounter3);
     }
     MemoryAddress4 = SystemModuleContext;
-    pplStack_1b8 = (longlong **)SystemModuleContext;
+    SystemPointerPointerStack1b8 = (longlong **)SystemModuleContext;
     SystemModuleContext = *pMemoryAddress5;
     SystemInitializeSecondary(&SystemDataRatioCalculator,0,0);
     dVar2 = 0.0;
@@ -4881,11 +4881,11 @@ Label_MutexOperationComplete:
   if (*(char *)(SystemConfigurationData + 0x1626) != '\0') {
     MemoryAddress4 = *(uint64_t *)(SystemEngineContext + 0x138);
     *(uint64_t *)(SystemEngineContext + 0x138) = 0;
-    puStack_b8 = &SystemMemoryPool;
-    pStackMemoryFlag = auStack_a0;
-    auStack_a0[0] = 0;
-    uStack_a8 = 0x18;
-    BufferSize4 = strcpy_s(auStack_a0,64,&SystemBufferTemplateString);
+    SystemPointerStackB8 = &SystemMemoryPool;
+    SystemPointerMemoryFlag = SystemArrayStackA0;
+    SystemArrayStackA0[0] = 0;
+    SystemUnsignedStackA8 = 0x18;
+    BufferSize4 = strcpy_s(SystemArrayStackA0,64,&SystemBufferTemplateString);
     InitializeSystemMemoryRegion(BufferSize4,&puStack_b8,MemoryAddress4,1);
     puStack_b8 = &SystemBufferTemplate;
   }
