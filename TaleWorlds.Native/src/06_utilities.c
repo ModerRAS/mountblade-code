@@ -65201,7 +65201,19 @@ void ExceptionHandlerInitializerA0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809085b0(void)
+// 原始函数名：Unwind_1809085b0 - 异常处理器初始化器A1
+// 功能：初始化异常处理器指针A1
+#define ExceptionHandlerInitializerA1 Unwind_1809085b0
+
+/**
+ * @brief 异常处理器初始化器A1
+ * 
+ * 该函数负责初始化异常处理器指针A1，设置为默认异常处理器
+ * 确保异常处理机制正常工作
+ * 
+ * @note 此函数在系统初始化时调用
+ */
+void ExceptionHandlerInitializerA1(void)
 
 {
   ExceptionHandlerPointerA10 = &DefaultExceptionHandlerB;
@@ -65210,14 +65222,29 @@ void Unwind_1809085b0(void)
 
 
 
-void Unwind_1809085c0(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名：Unwind_1809085c0 - 互斥锁解锁器A0
+// 功能：解锁互斥锁资源
+#define MutexUnlockerA0 Unwind_1809085c0
+
+/**
+ * @brief 互斥锁解锁器A0
+ * 
+ * 该函数负责在异常展开时解锁互斥锁资源
+ * 确保线程同步机制被正确释放
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 此函数在异常处理过程中自动调用
+ */
+void MutexUnlockerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x1d0));
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x1d0));
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
   return;
 }
