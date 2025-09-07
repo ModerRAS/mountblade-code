@@ -47219,7 +47219,21 @@ ulonglong ProcessUIDataOperationExtended(longlong uiContext,int dataSource,longl
 
 
 
-ulonglong FUN_180690200(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,uint *resultPointer)
+/**
+ * @brief 处理UI系统数据操作（模式2）
+ * 
+ * 该函数负责处理UI系统中的数据操作，使用模式2处理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_180690200
+ */
+ulonglong ProcessUIDataOperationMode2(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,uint *resultPointer)
 
 {
   uint functionResult;
