@@ -30159,12 +30159,12 @@ uint64_t * SetSystemContextPointerWithMemoryManagement(uint64_t *SystemContextPo
  * 用于系统线程管理的前期准备工作
  * 
  * @param ThreadLocalStoragePointer 线程本地存储指针
- * @param Parameter2 参数2
- * @param Parameter3 参数3
- * @param Parameter4 参数4
+ * @param StorageSize 存储大小
+ * @param StorageFlags 存储标志
+ * @param StorageAttributes 存储属性
  * @note 这是线程管理系统的初始化函数
  */
-void InitializeSystemThreadLocalStorage(uint64_t *ThreadLocalStoragePointer,uint64_t Parameter2,uint64_t Parameter3,uint64_t Parameter4
+void InitializeSystemThreadLocalStorage(uint64_t *ThreadLocalStoragePointer,uint64_t StorageSize,uint64_t StorageFlags,uint64_t StorageAttributes
 {
   char StringBuffer;
   uint64_t MemoryAllocationIndex;

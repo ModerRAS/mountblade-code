@@ -20238,7 +20238,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
   int operationResult;
   ByteFlag EncryptionKeyBufferB [32];
   ByteFlag DataProcessingBufferB [512];
-  uint64_t uStack_28;
+  uint64_t EncryptionKeyXorResult;
   
   uStack_28 = ExceptionEncryptionKey ^ (uint64_t)EncryptionKeyBufferB;
   validationContext = operationBase[4];
@@ -60002,7 +60002,24 @@ void Unwind_1809070c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809070d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行偏移量108处的处理器函数
+ * 
+ * 该函数从数据缓冲区的偏移量108处获取处理器函数指针，
+ * 并在处理器函数存在时调用它，传递相关参数和系统清理标志。
+ * 
+ * @param operationBase 系统句柄
+ * @param dataBuffer 数据缓冲区，包含处理器函数指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于异常处理和系统清理操作
+ * @warning 确保dataBuffer中的指针有效，避免空指针访问
+ * @see ExecuteHandlerAtOffset178, SetExceptionHandlerAtOffset30
+ */
+void ExecuteHandlerAtOffset108(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x108) != (code *)0x0) {
@@ -60013,7 +60030,22 @@ void Unwind_1809070d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809070e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量10处的验证器
+ * 
+ * 该函数从数据缓冲区的偏移量28处获取上下文指针，
+ * 然后从偏移量10处获取验证器指针并执行。
+ * 
+ * @param operationBase 系统句柄
+ * @param dataBuffer 数据缓冲区，包含验证器指针
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于系统验证和清理操作
+ * @warning 确保验证器指针有效，避免空指针访问
+ * @see ExecuteValidatorAtOffset18, ExecuteValidatorAtOffset20
+ */
+void ExecuteValidatorAtOffset10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
