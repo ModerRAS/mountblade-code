@@ -777,6 +777,20 @@ const void* const SystemKeyStringLinearDamping = (void*)0x180a0b178;
 
 // 系统内存和缓冲区常量 - 用于替换UNK_180a01620等变量
 const void* const SystemStringSecondaryTemplate = (void*)0x180a01620;
+
+// 系统数据模板常量 - 用于替换单字母变量名
+const void* const SystemDataTemplateSessionore = (void*)0x180a00000;
+const void* const SystemDataTemplateAudio = (void*)0x180a00010;
+const void* const SystemDataTemplateUI = (void*)0x180a00020;
+const void* const SystemDataTemplateRendering = (void*)0x180a00030;
+const void* const SystemDataTemplatePhysics = (void*)0x180a00040;
+const void* const SystemDataTemplateInputetwork = (void*)0x180a00050;
+const void* const SystemDataTemplateInputetworkConnectionPool = (void*)0x180a00060;
+const void* const SystemDataTemplateInput = (void*)0x180a00070;
+const void* const SystemDataTemplateSessiononfiguration = (void*)0x180a00080;
+const void* const SystemDataTemplateSession = (void*)0x180a00090;
+const void* const SystemDataTemplateTertiary = (void*)0x180a000a0;
+
 const void* const SystemDataTablePrimary = (void*)0x18020f868;
 const void* const SystemBufferAllocationStatus = (void*)0x180a10008;
 const void* const SystemContextTemplate = (void*)0x180a128b0;
@@ -8215,7 +8229,7 @@ void InitializeCoreEnginePhysicsSystem(void) {
   }
   PhysicsTraversalNode[6] = SystemNodeIdentifierQuinary;
   PhysicsTraversalNode[7] = SystemNodeIdentifierSenary;
-  PhysicsTraversalNode[8] = &SystemDataTemplateNetwork;
+  PhysicsTraversalNode[8] = &SystemDataTemplateInputetwork;
   PhysicsTraversalNode[9] = 4;
   PhysicsTraversalNode[10] = PhysicsSystemInitializer;
   return;
@@ -8862,7 +8876,7 @@ void CoreEngineInitializeNetworkConnectionPoolStatusProcessor(void
   }
   CurrentConnection[6] = SystemNodeIdentifierTertiary;
   CurrentConnection[7] = SystemNodeIdentifierQuaternary;
-  CurrentConnection[8] = &SystemDataTemplateN;
+  CurrentConnection[8] = &SystemDataTemplateInput;
   CurrentConnection[9] = 1;
   CurrentConnection[10] = ConnectionInitializer;
   return;
@@ -8917,7 +8931,7 @@ void InitializeGameDataStructureNode(void
   }
   CurrentGameDataNode[6] = SystemNodeIdentifierQuinary;
   CurrentGameDataNode[7] = SystemNodeIdentifierSenary;
-  CurrentGameDataNode[8] = &SystemDataTemplateO;
+  CurrentGameDataNode[8] = &SystemDataTemplateUI;
   CurrentGameDataNode[9] = 4;
   CurrentGameDataNode[10] = GameDataInitializationFunction;
   return;
@@ -9275,7 +9289,7 @@ void CoreEngineInitializenetworkConnectionPoolStateRecoveryManager(void
   }
   CurrentConnection[6] = SystemNodeIdentifierTertiary;
   CurrentConnection[7] = SystemNodeIdentifierQuaternary;
-  CurrentConnection[8] = &SystemDataTemplateN;
+  CurrentConnection[8] = &SystemDataTemplateInput;
   CurrentConnection[9] = 1;
   CurrentConnection[10] = StateRecoveryHandler;
   return;
@@ -9329,7 +9343,7 @@ void InitializeNetworkConnectionPoolStatusHandler(void
   }
   CurrentNetworkConnection[6] = SystemNodeIdentifierQuinary;
   CurrentNetworkConnection[7] = SystemNodeIdentifierSenary;
-  CurrentNetworkConnection[8] = &SystemDataTemplateNetworkConnectionPool;
+  CurrentNetworkConnection[8] = &SystemDataTemplateInputetworkConnectionPool;
   CurrentNetworkConnection[9] = 4;
   CurrentNetworkConnection[10] = ConnectionStatusHandlerFunction;
   return;
@@ -9662,7 +9676,7 @@ int CoreEngineInitializeGameConfigManager(void
   uint64_t ConfigurationParameter;
   
   // 设置全局配置管理器指针
-  SystemDataTemplatePrimaryPointer = &SystemDataTemplateCore;
+  SystemDataTemplatePrimaryPointer = &SystemDataTemplateSessionore;
   SystemDataTemplateSecondaryPointer = &SystemDataTemplateAudio;
 
   return InitializationResult;
@@ -9959,7 +9973,7 @@ void CoreEngineInitializePhysicsManager(void
   }
   PreviousPhysicsManagerNode[6] = 0x43330a43fcdb3653;
   PreviousPhysicsManagerNode[7] = 0xdcfdc333a769ec93;
-  PreviousPhysicsManagerNode[8] = &SystemDataTemplateN;
+  PreviousPhysicsManagerNode[8] = &SystemDataTemplateInput;
   PreviousPhysicsManagerNode[9] = 1;
   PreviousPhysicsManagerNode[10] = PhysicsNetworkStatusCallback;
   return;
@@ -10013,7 +10027,7 @@ void CoreEngineInitializeAnimationManager(void
   }
   PreviousNode[6] = 0x431d7c8d7c475be2;
   PreviousNode[7] = 0xb97f048d2153e1b0;
-  PreviousNode[8] = &SystemDataTemplateO;
+  PreviousNode[8] = &SystemDataTemplateUI;
   PreviousNode[9] = 4;
   PreviousNode[10] = ConnectionInitializerCallback;
   return;
@@ -10353,7 +10367,7 @@ void CoreEngineInitializeResourceLoader(void
   }
   PreviousNode[6] = 0x43330a43fcdb3653;
   PreviousNode[7] = 0xdcfdc333a769ec93;
-  PreviousNode[8] = &SystemDataTemplateN;
+  PreviousNode[8] = &SystemDataTemplateInput;
   PreviousNode[9] = 1;
   PreviousNode[10] = ResourceProcessor;
   return;
@@ -10407,7 +10421,7 @@ void CoreEngineInitializeTextureManager(void
   }
   PreviousNode[6] = 0x431d7c8d7c475be2;
   PreviousNode[7] = 0xb97f048d2153e1b0;
-  PreviousNode[8] = &SystemDataTemplateO;
+  PreviousNode[8] = &SystemDataTemplateUI;
   PreviousNode[9] = 4;
   PreviousNode[10] = TextureInitializer;
   return;
@@ -10807,7 +10821,7 @@ void CoreEngineInitializeNetworkConfigurationSystem(void) {
   }
   CurrentNode[6] = 0x45425dc186a5d575;
   CurrentNode[7] = 0xfab48faa65382fa5;
-  CurrentNode[8] = &SystemDataTemplateM;
+  CurrentNode[8] = &SystemDataTemplateSessiononfiguration;
   CurrentNode[9] = 0;
   CurrentNode[10] = NetworkConfigCallback;
   return;
@@ -11060,7 +11074,7 @@ void CoreEngineInitializeNetworkStatusProcessor(void
   }
   PreviousNode[6] = 0x43330a43fcdb3653;
   PreviousNode[7] = 0xdcfdc333a769ec93;
-  PreviousNode[8] = &SystemDataTemplateN;
+  PreviousNode[8] = &SystemDataTemplateInput;
   PreviousNode[9] = 1;
   PreviousNode[10] = NetworkStatusProcessor;
   return;
@@ -11120,7 +11134,7 @@ void CoreEngineInitializeConnectionPoolManager(void
   }
   StringProcessingStatus[6] = 0x431d7c8d7c475be2;
   StringProcessingStatus[7] = 0xb97f048d2153e1b0;
-  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[8] = &SystemDataTemplateUI;
   StringProcessingStatus[9] = 4;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -11614,7 +11628,7 @@ void NetworkStatusManagerInitializer(void)
   }
   LeftTraverseNode[6] = 0x43330a43fcdb3653;
   LeftTraverseNode[7] = 0xdcfdc333a769ec93;
-  LeftTraverseNode[8] = &SystemDataTemplateN;
+  LeftTraverseNode[8] = &SystemDataTemplateInput;
   LeftTraverseNode[9] = 1;
   LeftTraverseNode[10] = NetworkStatusHandler;
   return;
@@ -11667,7 +11681,7 @@ void CoreEngineInitializeConnectionManager(void
   }
   StringProcessingStatus[6] = 0x431d7c8d7c475be2;
   StringProcessingStatus[7] = 0xb97f048d2153e1b0;
-  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[8] = &SystemDataTemplateUI;
   StringProcessingStatus[9] = 4;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -12065,7 +12079,7 @@ void InitializeNetworkConfigurationNode(void
   }
   StringProcessingStatus[6] = 0x45425dc186a5d575;
   StringProcessingStatus[7] = 0xfab48faa65382fa5;
-  StringProcessingStatus[8] = &SystemDataTemplateM;
+  StringProcessingStatus[8] = &SystemDataTemplateSessiononfiguration;
   StringProcessingStatus[9] = 0;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -12228,7 +12242,7 @@ void InitializeNetworkSessionNode(void)
   }
   sessionTargetNode[6] = 0x42bea5b911d9c4bf;
   sessionTargetNode[7] = 0x1aa83fc0020dc1b6;
-  sessionTargetNode[8] = &SystemDataTemplateC;
+  sessionTargetNode[8] = &SystemDataTemplateSession;
   sessionTargetNode[9] = 0;
   sessionTargetNode[10] = sessionCallbackFlag;
   return;
@@ -12288,7 +12302,7 @@ void InitializeNetworkStatusNode(void)
   }
   statusTargetNode[6] = 0x43330a43fcdb3653;
   statusTargetNode[7] = 0xdcfdc333a769ec93;
-  statusTargetNode[8] = &SystemDataTemplateN;
+  statusTargetNode[8] = &SystemDataTemplateInput;
   statusTargetNode[9] = 1;
   statusTargetNode[10] = functionCallback;
   return;
@@ -12348,7 +12362,7 @@ void InitializeNetworkConnectionNode(void)
   }
   connectionTargetNode[6] = 0x431d7c8d7c475be2;
   connectionTargetNode[7] = 0xb97f048d2153e1b0;
-  connectionTargetNode[8] = &SystemDataTemplateO;
+  connectionTargetNode[8] = &SystemDataTemplateUI;
   connectionTargetNode[9] = 4;
   connectionTargetNode[10] = functionCallback;
   return;
@@ -12675,7 +12689,7 @@ int SystemDataTemplateInitialize(void
   uint64_t TemplateParameter;
   
   SystemDataTemplatePointer = &SystemDataTemplateAudio;
-  SystemDataSecondaryTemplatePointer = &SystemDataTemplateC;
+  SystemDataSecondaryTemplatePointer = &SystemDataTemplateSession;
 
  void CoreEngineInitializeMaterialSystem(void/**
  * @brief 初始化数据缓冲池
@@ -12774,7 +12788,7 @@ void NetworkStatusProcessorInitialize(void
   }
   StringProcessingStatus[6] = 0x43330a43fcdb3653;
   StringProcessingStatus[7] = 0xdcfdc333a769ec93;
-  StringProcessingStatus[8] = &SystemDataTemplateN;
+  StringProcessingStatus[8] = &SystemDataTemplateInput;
   StringProcessingStatus[9] = 1;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -12827,7 +12841,7 @@ void ConnectionManagerInitialize(void
   }
   StringProcessingStatus[6] = 0x431d7c8d7c475be2;
   StringProcessingStatus[7] = 0xb97f048d2153e1b0;
-  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[8] = &SystemDataTemplateUI;
   StringProcessingStatus[9] = 4;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -13150,7 +13164,7 @@ void CoreEngineInitializeFileSystemManager(void
   }
   PreviousNode[6] = 0x42bea5b911d9c4bf;
   PreviousNode[7] = 0x1aa83fc0020dc1b6;
-  PreviousNode[8] = &SystemDataTemplateC;
+  PreviousNode[8] = &SystemDataTemplateSession;
   PreviousNode[9] = 0;
   PreviousNode[10] = fileSystemCallback;
   return;
@@ -13830,7 +13844,7 @@ void CoreEngineInitializeSystemNodeTemplateK(void
   }
   StringProcessingStatus[6] = 0x45425dc186a5d575;
   StringProcessingStatus[7] = 0xfab48faa65382fa5;
-  StringProcessingStatus[8] = &SystemDataTemplateM;
+  StringProcessingStatus[8] = &SystemDataTemplateSessiononfiguration;
   StringProcessingStatus[9] = 0;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -14122,7 +14136,7 @@ void CoreEngineInitializeNetworkStatusProcessor(void
   }
   StringProcessingStatus[6] = 0x43330a43fcdb3653;
   StringProcessingStatus[7] = 0xdcfdc333a769ec93;
-  StringProcessingStatus[8] = &SystemDataTemplateN;
+  StringProcessingStatus[8] = &SystemDataTemplateInput;
   StringProcessingStatus[9] = 1;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -14175,7 +14189,7 @@ void CoreEngineInitializeConnectionInitializer(void
   }
   StringProcessingStatus[6] = 0x431d7c8d7c475be2;
   StringProcessingStatus[7] = 0xb97f048d2153e1b0;
-  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[8] = &SystemDataTemplateUI;
   StringProcessingStatus[9] = 4;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -14454,13 +14468,13 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
 
 
 
- void CoreEngineInitializeSystemDataTemplateN(void/**
+ void CoreEngineInitializeSystemDataTemplateInput(void/**
  * @brief 初始化核心引擎系统数据模板N
  * 
  * 该函数负责初始化核心引擎的系统数据模板N，设置系统数据的基本配置
  * 和数据结构。用于管理引擎的系统数据。
  */
-void CoreEngineInitializeSystemDataTemplateN(void
+void CoreEngineInitializeSystemDataTemplateInput(void
 {
   char NodeStringBuffer;
   void *Utf8InputBuffer;
@@ -14499,7 +14513,7 @@ void CoreEngineInitializeSystemDataTemplateN(void
   }
   PreviousNode[6] = 0x43330a43fcdb3653;
   PreviousNode[7] = 0xdcfdc333a769ec93;
-  PreviousNode[8] = &SystemDataTemplateN;
+  PreviousNode[8] = &SystemDataTemplateInput;
   PreviousNode[9] = 1;
   PreviousNode[10] = NetworkStatusCallback;
   return;
@@ -14521,7 +14535,7 @@ void CoreEngineInitializeSystemDataTemplateN(void
  * @note 通过比较操作找到合适位置插入新节点
  * @note 系统数据模板使用内存池技术来优化性能
  */
-void CoreEngineInitializeSystemDataTemplateO(void
+void CoreEngineInitializeSystemDataTemplateUI(void
 {
   char StatusBuffer;
   EngineContext *SystemContext;
@@ -14559,7 +14573,7 @@ void CoreEngineInitializeSystemDataTemplateO(void
   }
   StringProcessingStatus[6] = 0x431d7c8d7c475be2;
   StringProcessingStatus[7] = 0xb97f048d2153e1b0;
-  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[8] = &SystemDataTemplateUI;
   StringProcessingStatus[9] = 4;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -14897,7 +14911,7 @@ void CoreEngineInitializeResourceManager(void
   }
   StringProcessingStatus[6] = 0x43330a43fcdb3653;
   StringProcessingStatus[7] = 0xdcfdc333a769ec93;
-  StringProcessingStatus[8] = &SystemDataTemplateN;
+  StringProcessingStatus[8] = &SystemDataTemplateInput;
   StringProcessingStatus[9] = 1;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -14950,7 +14964,7 @@ void CoreEngineInitializeMemoryAllocator(void
   }
   StringProcessingStatus[6] = 0x431d7c8d7c475be2;
   StringProcessingStatus[7] = 0xb97f048d2153e1b0;
-  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[8] = &SystemDataTemplateUI;
   StringProcessingStatus[9] = 4;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -15272,7 +15286,7 @@ void CoreEngineInitializeNetworkManager(void
   }
   StringProcessingStatus[6] = 0x43330a43fcdb3653;
   StringProcessingStatus[7] = 0xdcfdc333a769ec93;
-  StringProcessingStatus[8] = &SystemDataTemplateN;
+  StringProcessingStatus[8] = &SystemDataTemplateInput;
   StringProcessingStatus[9] = 1;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -15325,7 +15339,7 @@ void CoreEngineInitializeInputManager(void
   }
   StringProcessingStatus[6] = 0x431d7c8d7c475be2;
   StringProcessingStatus[7] = 0xb97f048d2153e1b0;
-  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[8] = &SystemDataTemplateUI;
   StringProcessingStatus[9] = 4;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -16082,7 +16096,7 @@ void CoreEngineHandleThreadEvents(void)
   }
   StringProcessingStatus[6] = 0x45425dc186a5d575;
   StringProcessingStatus[7] = 0xfab48faa65382fa5;
-  StringProcessingStatus[8] = &SystemDataTemplateM;
+  StringProcessingStatus[8] = &SystemDataTemplateSessiononfiguration;
   StringProcessingStatus[9] = 0;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -16288,7 +16302,7 @@ void CoreEngineInitializeSystemDataTemplateA(void
   }
   StringProcessingStatus[6] = 0x43330a43fcdb3653;
   StringProcessingStatus[7] = 0xdcfdc333a769ec93;
-  StringProcessingStatus[8] = &SystemDataTemplateN;
+  StringProcessingStatus[8] = &SystemDataTemplateInput;
   StringProcessingStatus[9] = 1;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -16335,7 +16349,7 @@ void CoreEngineInitializeSystemDataTemplateA(void
   }
   StringProcessingStatus[6] = 0x431d7c8d7c475be2;
   StringProcessingStatus[7] = 0xb97f048d2153e1b0;
-  StringProcessingStatus[8] = &SystemDataTemplateO;
+  StringProcessingStatus[8] = &SystemDataTemplateUI;
   StringProcessingStatus[9] = 4;
   StringProcessingStatus[10] = functionCallback;
   return;
@@ -16607,7 +16621,7 @@ void CoreEngineInitializeSystemConnectionTemplateE(void
  * 该函数负责初始化系统数据模板C，设置文件系统相关的数据结构和配置。
  * 包括内存分配、节点设置和数据模板的初始化。
  */
-void CoreEngineInitializeSystemDataTemplateC(void
+void CoreEngineInitializeSystemDataTemplateSession(void
 {
   char StringBuffer;
   void *SystemContext;
@@ -16646,7 +16660,7 @@ void CoreEngineInitializeSystemDataTemplateC(void
   }
   StringProcessingStatus[6] = 0x42bea5b911d9c4bf;
   StringProcessingStatus[7] = 0x1aa83fc0020dc1b6;
-  StringProcessingStatus[8] = &SystemDataTemplateC;
+  StringProcessingStatus[8] = &SystemDataTemplateSession;
   StringProcessingStatus[9] = 0;
   StringProcessingStatus[10] = StackConfigurationFlag;
   return;
@@ -17371,7 +17385,7 @@ void CoreEngineInitializenetworkConnectionPoolManager(void
   }
   ConnectionManager[6] = 0x43330a43fcdb3653;
   ConnectionManager[7] = 0xdcfdc333a769ec93;
-  ConnectionManager[8] = &SystemDataTemplateN;
+  ConnectionManager[8] = &SystemDataTemplateInput;
   ConnectionManager[9] = 1;
   ConnectionManager[10] = ConnectionHandlerFunction;
   return;
@@ -17425,7 +17439,7 @@ void CoreEngineInitializeNetworkConnectionPoolStatusMonitor(void)
   }
   ConnectionManager[6] = 0x431d7c8d7c475be2;
   ConnectionManager[7] = 0xb97f048d2153e1b0;
-  ConnectionManager[8] = &SystemDataTemplateO;
+  ConnectionManager[8] = &SystemDataTemplateUI;
   ConnectionManager[9] = 4;
   ConnectionManager[10] = ConnectionHandlerFunction;
   return;
@@ -35394,7 +35408,7 @@ SystemMemoryValidation: // 原始标签：LAB_180065a3e
                   if ((void *)StatusBuffer7[1] != NULL) {
                     StatusBuffer6 = (void *)StatusBuffer7[1];
                   }
-                  ProcessSystemContextConfiguration(&CharacterCode,&SystemContextTemplate,&SystemDataTemplateC8,StatusBuffer6);
+                  ProcessSystemContextConfiguration(&CharacterCode,&SystemContextTemplate,&SystemDataTemplateSession8,StatusBuffer6);
                   break;
                 }
               }
@@ -154926,7 +154940,7 @@ LAB_180133d4a:
         *(int *)(ProcessStringBuffer + 0x3cc) = IntegerValue3;
       }
     }
-    FUN_180131750(ProcessingStatusFlag);
+    ValidateSystemStatus(ProcessingStatusFlag);
   }
   return;
 }
@@ -155101,7 +155115,7 @@ LAB_180133d4a:
         *(int *)(MemoryAllocationIndex + 0x3cc) = IntegerValue3;
       }
     }
-    FUN_180131750(SystemMemoryAllocationResult);
+    ValidateSystemStatus(SystemMemoryAllocationResult);
   }
   return;
 }
@@ -155247,7 +155261,7 @@ LAB_180133d4a:
         *(int *)(SystemStatusCode + 0x3cc) = IntegerValue5;
       }
     }
-    FUN_180131750(MemoryAllocationIndex);
+    ValidateSystemStatus(MemoryAllocationIndex);
   }
   return;
 }
@@ -155318,7 +155332,7 @@ LAB_180133d43:
         *(int *)(DataSize + 0x3cc) = (int)NullPointerValue;
       }
     }
-    FUN_180131750(CalculatedCodePoint);
+    ValidateSystemStatus(CalculatedCodePoint);
   }
   return;
 }
@@ -200060,23 +200074,23 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
   uint64_t SystemStatusCode;
   int IntegerValue3;
   uint8_t aSystemKeyPointer8 [32];
-  int iStack_4e8;
-  uint32_t uStack_4e0;
-  uint32_t uStack_498;
-  uint32_t uStack_494;
-  code *pcStack_490;
+  int SystemMetricsIndex;
+  uint32_t SystemResourceHandle;
+  uint32_t WindowClassStyle;
+  uint32_t WindowClassExtra;
+  code *WindowProcedurePointer;
   uint64_t SystemStackFlag8;
   uint64_t SystemStackFlag0;
-  uint64_t uStack_478;
-  uint64_t uStack_470;
-  uint64_t uStack_468;
-  uint64_t uStack_460;
-  void *puStack_458;
-  uint64_t uStack_450;
-  uint64_t uStack_448;
-  int iStack_440;
-  int iStack_43c;
-  uint8_t auStack_438 [1024];
+  uint64_t SystemContextHandle;
+  uint64_t SystemMemoryHandle;
+  uint64_t SystemBufferHandle;
+  uint64_t SystemDataHandle;
+  void *SystemImageHandle;
+  uint64_t SystemResourceHandle2;
+  uint64_t SystemWindowHandle;
+  int WindowWidth;
+  int WindowHeight;
+  uint8_t WindowClassBuffer [1024];
   unsigned long long FunctionAddress;
   
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aSystemKeyPointer8;
@@ -228792,7 +228806,7 @@ LAB_18019d50f:
   else {
     TemporaryBuffer = *(void **)(&SystemDataTableTertiary + (long long)*(int *)(CharacterCode + 0xad) * 8);
   }
-  ProcessSystemEventQueueData(&SystemDataTemplateNonary,TemporaryBuffer);
+  ProcessSystemEventQueueData(&SystemDataTemplateInputonary,TemporaryBuffer);
   pSystemRegisterFlagX8 = NULL;
   OperationStatus = ValidateSystemProcessingStatusFlag(&SystemDataTemplateDenary,&pSystemRegisterFlagX8,0);
   if (OperationStatus == '\0') {
