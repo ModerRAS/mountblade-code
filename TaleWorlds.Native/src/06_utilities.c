@@ -8946,10 +8946,10 @@ void* SystemDataBufferException18;
 void* ConfigureUtilitySystemBuffers;
 void* SystemDataBufferAEE0;
 void* SystemDataBufferAEE8;
-void* UtilitySystemMemoryData1;
-void* UtilitySystemMemoryData2;
-void* UtilitySystemMemoryData3;
-void* UtilitySystemMemoryData4;
+void* UtilitySystemMemoryDataPrimary;
+void* UtilitySystemMemoryDataSecondary;
+void* UtilitySystemMemoryDataTertiary;
+void* UtilitySystemMemoryDataQuaternary;
 
 // 函数: void* SetupUtilitySystemMemory;
 #define SetupUtilitySystemMemory FUN_180942790
@@ -8962,7 +8962,7 @@ void* SystemDataBufferAF08;
 // 函数: void* ProcessUtilitySystemConfiguration;
 #define ProcessUtilitySystemConfiguration FUN_1809427d0
 void* ProcessUtilitySystemConfiguration;
-void* UtilitySystemValidationPointer58;
+void* UtilitySystemValidationPointerExceptionContext;
 void* SystemDataBufferB310;
 void* SystemDataBufferB318;
 void* SystemDataBufferB320;
