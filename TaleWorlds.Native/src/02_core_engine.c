@@ -111248,9 +111248,9 @@ void ProcessSystemConfigurationHandle(uint64_t CharacterCode,char *Utf8InputBuff
       SystemContextPrimaryFloat6 = 0.0;
     }
     else {
-      in_stack_fffffffffffffe88 =
-           CONCAT44((int)((unsigned long long)in_stack_fffffffffffffe88 >> 0x20),0xbf800000);
-      ProcessFloatAndSystemConfiguration(pSystemContextPrimaryFloat,&StackProcessingConfigurationFlag,SystemContextPrimaryFloat8,0x7f7fffff,in_stack_fffffffffffffe88,Utf8BufferSize,pSystemStatusChar,0      ;
+      FloatProcessingParameter =
+           CONCAT44((int)((unsigned long long)FloatProcessingParameter >> 0x20),0xbf800000);
+      ProcessFloatAndSystemConfiguration(pSystemContextPrimaryFloat,&StackProcessingConfigurationFlag,SystemContextPrimaryFloat8,0x7f7fffff,FloatProcessingParameter,Utf8BufferSize,pSystemStatusChar,0      ;
       SystemContextPrimaryFloat6 = (float)StackProcessingConfigurationFlag;
       if (0.0 < (float)StackProcessingConfigurationFlag) {
         SystemContextPrimaryFloat6 = (float)StackProcessingConfigurationFlag - SystemContextPrimaryFloat8 / *pSystemContextPrimaryFloat;
@@ -111330,7 +111330,7 @@ void ProcessSystemConfigurationHandle(uint64_t CharacterCode,char *Utf8InputBuff
         hasComparisonResult = false;
       }
       CalculatedCodePoint = uStackX_20;
-      MemoryAllocationBase = (uint32_t)((unsigned long long)in_stack_fffffffffffffe88 >> 0x20);
+      MemoryAllocationBase = (uint32_t)((unsigned long long)FloatProcessingParameter >> 0x20);
       CharacterTablePointer5 = SystemContextValue;
       if ((AdditionalParameter4 == 3.4028235e+38) || (AdditionalParameter5 == 3.4028235e+38)) {
         SystemContextPrimaryFloat6 = -3.4028235e+38;
@@ -111338,7 +111338,7 @@ void ProcessSystemConfigurationHandle(uint64_t CharacterCode,char *Utf8InputBuff
         if (0 < AdditionalParameter1) {
           do {
             SecondaryFloatValue = (float)SystemCallFloatConversion(CalculatedCodePoint,IntegerValue9);
-            MemoryAllocationBase = (uint32_t)((unsigned long long)in_stack_fffffffffffffe88 >> 0x20);
+            MemoryAllocationBase = (uint32_t)((unsigned long long)FloatProcessingParameter >> 0x20);
             if (SecondaryFloatValue <= ContextSecondaryFloat0) {
               ContextSecondaryFloat0 = SecondaryFloatValue;
             }

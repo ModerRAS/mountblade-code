@@ -123106,38 +123106,38 @@ ProcessUIContextAllocation(longlong uiContext,longlong dataSource,int targetBuff
   undefined8 uiSemaphoreHandle;
   ulonglong uiEventTypeCode;
   
-  FUN_180742070();
-  *(undefined4 *)(uiBufferData + 0x330) = bufferSize;
-  *(undefined4 *)(uiBufferData + 0x334) = resultPointer;
+  InitializeUIComponentSystem();
+  *(undefined4 *)(uiContextBufferData + 0x330) = bufferSize;
+  *(undefined4 *)(uiContextBufferData + 0x334) = resultPointer;
   if (dataSource == 0) {
-    allocatedMemory = FUN_180742570(targetBuffer,uiContext);
-    if (allocatedMemory == -1) {
+    allocatedUIComponentMemory = AllocateUIComponentMemory(targetBuffer,uiContext);
+    if (allocatedUIComponentMemory == -1) {
       return 0x26;
     }
-    allocatedMemory = FUN_18076bcd0(allocatedMemory,(longlong)targetBuffer,0,FUN_180742570,uiContext);
-    *(longlong *)(uiBufferData + 0x370) = allocatedMemory;
+    allocatedUIComponentMemory = ConfigureUIComponentData(allocatedUIComponentMemory,(longlong)targetBuffer,0,AllocateUIComponentMemory,uiContext);
+    *(longlong *)(uiContextBufferData + 0x370) = allocatedUIComponentMemory;
   }
   else {
     if (targetBuffer == 0) {
       return 0x26;
     }
-    EventTypeCode = dataSource + 0xffU & 0xffffffffffffff00;
-    allocatedMemory = FUN_18076bcd0(EventTypeCode,(longlong)(((int)dataSource - (int)EventTypeCode) + targetBuffer) &
+    uiEventTypeCode = dataSource + 0xffU & 0xffffffffffffff00;
+    allocatedUIComponentMemory = ConfigureUIComponentData(uiEventTypeCode,(longlong)(((int)dataSource - (int)uiEventTypeCode) + targetBuffer) &
                                 0xffffffffffffff00,0,0,0);
-    *(longlong *)(uiBufferData + 0x370) = allocatedMemory;
+    *(longlong *)(uiContextBufferData + 0x370) = allocatedUIComponentMemory;
   }
-  if (allocatedMemory == 0) {
+  if (allocatedUIComponentMemory == 0) {
     return 0x26;
   }
   *(undefined8 *)(uiContext + 0x344) = 0;
-  *(undefined4 *)(uiBufferData + 0x340) = 0;
+  *(undefined4 *)(uiContextBufferData + 0x340) = 0;
   *(undefined8 *)(uiContext + 0x358) = 0;
   *(undefined8 *)(uiContext + 0x360) = 0;
   *(undefined8 *)(uiContext + 0x368) = 0;
-  semaphoreHandle = InitializeUIContextState(uiContext + 0x378,
+  uiSemaphoreHandle = InitializeUIContextState(uiContext + 0x378,
                         CONCAT31((uint3)(*(uint *)(uiContext + 0x330) >> 9),
                                  ~(byte)(*(uint *)(uiContext + 0x330) >> 1)) & 0xffffff01);
-  return semaphoreHandle;
+  return uiSemaphoreHandle;
 }
 
 
