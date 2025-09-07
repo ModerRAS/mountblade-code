@@ -3770,11 +3770,11 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：ConvertCharacterCode - Unicode代码点处理函数
 #define ProcessUnicodeCodePoint ConvertCharacterCode
 
-// 原始函数名：FUN_18012e4f6 - UTF-8到UTF-16转换处理函数
-#define ConvertUtf8ToUtf16AndProcess FUN_18012e4f6
+// 原始函数名：ProcessSystemDataConversion - UTF-8到UTF-16转换处理函数
+#define ConvertUtf8ToUtf16AndProcess ProcessSystemDataConversion
 
-// 原始函数名：FUN_18012e63a - 字符编码和浮点处理函数
-#define ProcessCharacterEncodingAndFloat FUN_18012e63a
+// 原始函数名：ProcessSystemFloatingPoint - 字符编码和浮点处理函数
+#define ProcessCharacterEncodingAndFloat ProcessSystemFloatingPoint
 
 // 原始函数名：ValidateSystemData - 系统状态处理函数
 #define ProcessSystemStatus ValidateSystemData
@@ -145438,7 +145438,7 @@ LAB_18012e732:
 
 
 
-e4f6(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint8_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18012e4f6(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint8_t Utf8SourcePointer,uint64_t Utf16EndPointer
+e4f6(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint8_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessSystemDataConversion(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint8_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -145539,7 +145539,7 @@ LAB_18012e732:
 
 
 
-e63a(uint32_t CharacterCode,float Utf8BufferSizevoid FUN_18012e63a(uint32_t CharacterCode,float Utf8BufferSize
+e63a(uint32_t CharacterCode,float Utf8BufferSizevoid ProcessSystemFloatingPoint(uint32_t CharacterCode,float Utf8BufferSize
 {
   long long PrimaryDataSize;
   long long BufferStatus;
