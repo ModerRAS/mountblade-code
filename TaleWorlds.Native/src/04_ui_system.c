@@ -120,6 +120,57 @@
  // UI系统函数宏定义 - 处理UI组件事件
 #define ProcessUIComponentEvent FUN_18070ba50
 
+// UI系统函数宏定义 - 初始化UI内存池
+#define InitializeUIMemoryPool FUN_1807806c0
+
+// UI系统函数宏定义 - 更新UI渲染
+#define UpdateUIRendering FUN_1807808b0
+
+// UI系统函数宏定义 - 清理UI内存
+#define CleanupUIMemory FUN_180780a6e
+
+// UI系统函数宏定义 - 处理UI向量数据
+#define ProcessUIVectorData FUN_180823fbf
+
+// UI系统函数宏定义 - 初始化UI组件内存
+#define InitializeUIComponentMemory FUN_18069f51a
+
+// UI系统函数宏定义 - 验证UI内存状态
+#define ValidateUIMemoryState FUN_18069f682
+
+// UI系统函数宏定义 - 获取UI组件状态
+#define GetUIComponentStatus FUN_18069ff30
+
+// UI系统函数宏定义 - 检查UI数据有效性
+#define CheckUIDataValidity FUN_18069ff39
+
+// UI系统函数宏定义 - 获取UI系统标志
+#define GetUISystemFlags FUN_18069ff67
+
+// UI系统函数宏定义 - 验证UI缓冲区操作
+#define ValidateUIBufferOperation FUN_1807040a0
+
+// UI系统函数宏定义 - 查找UI上下文数据
+#define FindUIContextData FUN_18087b43a
+
+// UI系统函数宏定义 - 清理UI临时资源
+#define CleanupUITemporaryResources FUN_18087b4e9
+
+// UI系统函数宏定义 - 获取UI资源句柄
+#define GetUIResourceHandle FUN_18087b4ff
+
+// UI系统函数宏定义 - 查找UI数据索引
+#define FindUIDataIndex FUN_18087b530
+
+// UI系统函数宏定义 - 查找UI上下文资源
+#define FindUIContextResource FUN_18087b553
+
+// UI系统函数宏定义 - 重置UI状态
+#define ResetUIState FUN_18087b5f0
+
+// UI系统函数宏定义 - 获取UI系统信息
+#define GetUISystemInfo FUN_18087b60b
+
 #define CalculateUITransformMatrix CalculateUITransformMatrixInternal
 
 #define CalculateUIScaleFactor CalculateUIScaleFactorInternal
@@ -70347,6 +70398,22 @@ void ProcessUIAnimationData(longlong *uiContext,undefined8 dataSource,undefined8
 
 
 
+/**
+ * @brief 验证UI缓冲区操作
+ * 
+ * 该函数负责验证UI系统缓冲区操作的有效性，包括：
+ * - 缓冲区边界检查
+ * - 数据类型验证
+ * - 内存访问权限验证
+ * - 操作安全性检查
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区索引
+ * @param bufferSize 缓冲区大小
+ * @return 验证结果：true表示验证通过，false表示验证失败
+ * @note 原始函数名: FUN_1807040a0
+ */
 bool FUN_1807040a0(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
 
 {
@@ -349989,6 +350056,21 @@ LAB_18087b4df:
 
 
 
+/**
+ * @brief 查找UI上下文数据
+ * 
+ * 该函数负责在UI系统中查找指定的上下文数据，包括：
+ * - 上下文数据索引查找
+ * - 数据有效性验证
+ * - 内存资源管理
+ * - 缓冲区清理操作
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区标识
+ * @return 查找结果：成功返回数据指针，失败返回0
+ * @note 原始函数名: FUN_18087b43a
+ */
 longlong FUN_18087b43a(longlong uiContext,undefined8 dataSource,char targetBuffer)
 
 {
