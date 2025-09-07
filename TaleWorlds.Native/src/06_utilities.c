@@ -21049,18 +21049,29 @@ DataBuffer ProcessResourceData(int64_t resourceContext)
 
 
 
-// 函数: int ProcessStringData(int64_t stringContext, int64_t dataBuffer, int bufferSize)
-//
-// 字符串数据处理函数
-// 处理字符串数据，包括解析和转换操作
-// 
-// 参数:
-//   stringContext - 字符串上下文指针，包含字符串处理的相关信息
-//   dataBuffer - 数据缓冲区指针，指向要处理的数据
-//   bufferSize - 缓冲区大小，指定要处理的数据长度
-// 
-// 返回值:
-//   int - 返回处理后的总字节数
+/**
+ * @brief 字符串数据处理函数
+ * 
+ * 该函数负责处理字符串数据，包括加密、验证和转换操作。它会根据字符串上下文
+ * 中的格式标志，对输入的数据缓冲区进行加密处理，然后对加密后的数据进行
+ * 系统缓冲区处理，最后进行数据验证操作。
+ * 
+ * @details 函数执行流程：
+ * 1. 从字符串上下文中获取格式标志
+ * 2. 对数据缓冲区进行加密处理
+ * 3. 处理系统缓冲区数据
+ * 4. 对处理后的数据进行验证
+ * 5. 返回处理的总字节数
+ * 
+ * @param stringContext 字符串上下文指针，包含字符串处理的相关信息和格式标志
+ * @param dataBuffer 数据缓冲区指针，指向要处理的数据
+ * @param bufferSize 缓冲区大小，指定要处理的数据长度
+ * @return int 返回处理后的总字节数
+ * 
+ * @note 此函数会修改原始数据缓冲区中的数据
+ * @warning 确保传入的缓冲区大小足够，否则可能导致缓冲区溢出
+ * @see EncryptSystemData, ProcessSystemBufferDataA0, ProcessSystemDataWithValidation
+ */
 int ProcessStringData(int64_t stringContext, int64_t dataBuffer, int bufferSize)
 
 {
@@ -21078,18 +21089,29 @@ int ProcessStringData(int64_t stringContext, int64_t dataBuffer, int bufferSize)
 
 
 
-// 函数: int ProcessEncodedData(int64_t encodingContext, int64_t dataBuffer, int bufferSize)
-//
-// 编码数据处理函数
-// 处理编码数据，包括解码和转换操作
-// 
-// 参数:
-//   encodingContext - 编码上下文指针，包含编码处理的相关信息
-//   dataBuffer - 数据缓冲区指针，指向要处理的编码数据
-//   bufferSize - 缓冲区大小，指定要处理的数据长度
-// 
-// 返回值:
-//   int - 返回处理后的总字节数
+/**
+ * @brief 编码数据处理函数
+ * 
+ * 该函数负责处理编码数据，包括解码、验证和加密操作。它会根据编码上下文
+ * 中的编码密钥，对输入的数据缓冲区进行分阶段处理，先进行初步的数据处理，
+ * 然后进行二次数据处理，最后对处理后的数据进行加密操作。
+ * 
+ * @details 函数执行流程：
+ * 1. 从编码上下文中获取编码密钥
+ * 2. 对数据缓冲区进行初步的系统缓冲区处理
+ * 3. 对剩余数据进行二次系统缓冲区处理
+ * 4. 对处理后的数据进行加密
+ * 5. 返回处理的总字节数
+ * 
+ * @param encodingContext 编码上下文指针，包含编码处理的相关信息和编码密钥
+ * @param dataBuffer 数据缓冲区指针，指向要处理的编码数据
+ * @param bufferSize 缓冲区大小，指定要处理的数据长度
+ * @return int 返回处理后的总字节数
+ * 
+ * @note 此函数会修改原始数据缓冲区中的数据
+ * @warning 确保传入的缓冲区大小足够，否则可能导致缓冲区溢出
+ * @see ProcessSystemBufferDataA0, EncryptData, DataProcessingStatusTableA0
+ */
 int ProcessEncodedData(int64_t encodingContext, int64_t dataBuffer, int bufferSize)
 
 {
@@ -21107,18 +21129,30 @@ int ProcessEncodedData(int64_t encodingContext, int64_t dataBuffer, int bufferSi
 
 
 
-// 函数: int ProcessComplexData(int64_t complexContext, int64_t dataBuffer, int bufferSize)
-//
-// 复杂数据处理函数
-// 处理复杂的数据结构，包括多层解析和转换操作
-// 
-// 参数:
-//   complexContext - 复杂数据上下文指针，包含数据处理的相关信息
-//   dataBuffer - 数据缓冲区指针，指向要处理的复杂数据
-//   bufferSize - 缓冲区大小，指定要处理的数据长度
-// 
-// 返回值:
-//   int - 返回处理后的总字节数
+/**
+ * @brief 复杂数据处理函数
+ * 
+ * 该函数负责处理复杂的数据结构，包括多层解析、转换和加密操作。它会根据
+ * 复杂数据上下文中的主要和次要格式标志，对输入的数据缓冲区进行多阶段处理，
+ * 包括初步处理、二次处理、加密处理和最终处理。
+ * 
+ * @details 函数执行流程：
+ * 1. 从复杂数据上下文中获取主要和次要格式标志
+ * 2. 对数据缓冲区进行初步的系统缓冲区处理
+ * 3. 对剩余数据进行二次系统缓冲区处理
+ * 4. 对处理后的数据进行加密
+ * 5. 对加密后的数据进行最终的系统缓冲区处理
+ * 6. 返回处理的总字节数
+ * 
+ * @param complexContext 复杂数据上下文指针，包含数据处理的相关信息和格式标志
+ * @param dataBuffer 数据缓冲区指针，指向要处理的复杂数据
+ * @param bufferSize 缓冲区大小，指定要处理的数据长度
+ * @return int 返回处理后的总字节数
+ * 
+ * @note 此函数会多次修改原始数据缓冲区中的数据
+ * @warning 确保传入的缓冲区大小足够，否则可能导致缓冲区溢出
+ * @see ProcessSystemBufferDataA0, EncryptSystemData, DataProcessingStatusTableA1
+ */
 int ProcessComplexData(int64_t complexContext, int64_t dataBuffer, int bufferSize)
 
 {
@@ -32788,8 +32822,22 @@ uint64_t ValidateSystemMemoryStatus(void)
 
 
 
-// 原始函数名：FUN_18089d208 - 系统终止函数A0
-// 功能：调用系统终止函数，程序不会返回
+/**
+ * @brief 系统终止函数A0
+ * 
+ * 该函数负责调用底层的系统终止函数，执行系统的关闭操作。它会终止当前进程
+ * 的执行，释放所有系统资源，确保系统能够安全地关闭。这是一个关键的系统
+ * 管理函数，用于处理系统级别的关闭操作。
+ * 
+ * @details 函数执行流程：
+ * 1. 调用ExecuteSystemTermination()函数执行系统终止操作
+ * 2. 释放所有系统资源
+ * 3. 终止进程执行
+ * 
+ * @warning 此函数执行后不会返回，会直接终止系统进程
+ * @note 原始函数名：FUN_18089d208
+ * @see TerminateSystem, TerminateSystemA, ExecuteSystemTermination
+ */
 void TerminateSystemWithoutReturn(void)
 
 {
@@ -32799,6 +32847,21 @@ void TerminateSystemWithoutReturn(void)
 
 
 
+/**
+ * @brief 工具系统空操作函数V
+ * 
+ * 该函数是一个不执行任何操作的空函数，仅执行返回操作。它主要用于工具系统
+ * 初始化过程中的占位符，或者作为函数指针的默认实现。这个函数保持了代码
+ * 结构的完整性，同时不会对系统状态产生任何影响。
+ * 
+ * @details 函数执行流程：
+ * 1. 执行返回操作
+ * 2. 不修改任何系统状态
+ * 
+ * @warning 调用此函数不会产生任何效果
+ * @note 此函数是UtilityNoOperation系列的变体版本
+ * @see UtilityNoOperation, PerformNoOperation, SystemReturnEmptyFunction
+ */
 void UtilityNoOperationV(void)
 
 {
