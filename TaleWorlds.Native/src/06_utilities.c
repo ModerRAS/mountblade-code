@@ -23119,24 +23119,24 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
 DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,DataWord *outputDataBuffer)
 
 {
-  DataBuffer *dataBuffer;
-  ByteFlag statusFlag;
-  uint dataLength;
-  uint3 dataChunkArray;
+  DataBuffer *dataProcessingBuffer;
+  ByteFlag validationStatus;
+  uint dataProcessingLength;
+  uint3 dataChunkDescriptor;
   DataWord operationResult;
-  DataWord validationCode;
-  uint processIndex;
-  int resultStatus;
-  int errorCode;
-  DataBuffer *bufferPointer1;
-  DataBuffer *bufferPointer2;
-  uint bufferOffset;
-  int bufferIndex;
+  DataWord validationResult;
+  uint processingIndex;
+  int operationStatus;
+  int validationErrorCode;
+  DataBuffer *sourceBufferPointer;
+  DataBuffer *targetBufferPointer;
+  uint dataBufferOffset;
+  int bufferProcessingIndex;
   int64_t systemStackFramePointer;
-  ByteFlag *systemContext;
-  int64_t exceptionHandlerContext4;
-  DataBuffer *bufferPointer3;
-  int operationCount;
+  ByteFlag *systemExecutionContext;
+  int64_t exceptionHandlingBuffer;
+  DataBuffer *temporaryBuffer;
+  int processedOperationsCount;
   DataWord finalResult;
   int64_t *systemContext;
   int processStatus;
@@ -78603,7 +78603,7 @@ void CleanupDataBufferA1Secondary(DataBuffer operationBase,int64_t dataBuffer,Da
 
 
 
-void Unwind_18090c040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupDataBufferValidation(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ValidateDataBufferA1(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + ExceptionHandlerCallbackOffset10),
