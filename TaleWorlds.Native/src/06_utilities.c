@@ -11325,19 +11325,19 @@ void ValidateSystemState(void)
 uint64_t RegisterSystemComponent(int64_t componentHandle)
 
 {
-  int64_t componentDataContext;
-  int64_t systemContextHandle;
-  int32_t componentBufferSize;
-  uint64_t systemDataQueryStatus;
-  uint64_t componentValidationStatus;
-  int64_t *activeComponentContext;
-  int32_t registeredComponentCount;
-  uint64_t componentIterationCounter;
-  int32_t componentListCapacity;
-  uint64_t componentSearchIndex;
-  int64_t *componentListPointer;
-  int64_t systemContextBuffer;
-  int8_t componentValidationDataBuffer [DataValidationBufferSize];
+  int64_t componentDataContext;              // 组件数据上下文指针
+  int64_t systemContextHandle;               // 系统上下文句柄
+  int32_t componentBufferSize;                // 组件缓冲区大小
+  uint64_t systemDataQueryStatus;            // 系统数据查询状态
+  uint64_t componentValidationStatus;        // 组件验证状态
+  int64_t *activeComponentContext;           // 活动组件上下文指针
+  int32_t registeredComponentCount;          // 已注册组件数量
+  uint64_t componentIterationCounter;        // 组件迭代计数器
+  int32_t componentListCapacity;              // 组件列表容量
+  uint64_t componentSearchIndex;             // 组件搜索索引
+  int64_t *componentListPointer;             // 组件列表指针
+  int64_t systemContextBuffer;               // 系统上下文缓冲区
+  int8_t componentValidationDataBuffer [DataValidationBufferSize];  // 组件验证数据缓冲区
   
   systemDataQueryStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + ComponentHandleOffset),&systemContextBuffer);
   if ((int)systemDataQueryStatus != 0) {
