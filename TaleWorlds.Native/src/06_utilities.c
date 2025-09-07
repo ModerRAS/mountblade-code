@@ -33236,7 +33236,7 @@ ValidationErrorHandler5:
             if (validationStatus != 0) goto ProcessCheckpointValidationError4;
           }
         }
-        CleanupSystemResourcesA0(&puStack_88);
+        CleanupSystemResourcesA0(&StackPointerWordAF);
       }
       else {
         memoryBaseAddress = GetSecurityCheckResult(dataBuffer,operationBase + 0x58);
