@@ -8098,15 +8098,15 @@ uint8_t GlobalDataPointerA36Status;
 #define GlobalDataPointerA36Config DAT_180bfa120
 uint8_t GlobalDataPointerA36Config;
 
-// 全局数据指针A36缓存区
-// 功能：存储全局数据指针A36的缓存数据
-#define GlobalDataPointerA36Cache DAT_180bfa128
-uint8_t GlobalDataPointerA36Cache;
+// 全局数据指针Cache缓存区
+// 功能：存储全局数据指针Cache的缓存数据
+#define GlobalDataPointerCacheCache DAT_180bfa128
+uint8_t GlobalDataPointerCacheCache;
 
-// 全局数据指针A36验证缓冲区
-// 功能：存储全局数据指针A36的验证信息
-#define GlobalDataPointerA36ValidationBuffer UNK_180a23018
-uint8_t GlobalDataPointerA36ValidationBuffer;
+// 全局数据指针Cache验证缓冲区
+// 功能：存储全局数据指针Cache的验证信息
+#define GlobalDataPointerCacheValidationBuffer UNK_180a23018
+uint8_t GlobalDataPointerCacheValidationBuffer;
 
 // 原始函数名：FUN_180942420 - 全局指针设置函数A37
 // 功能：设置全局数据指针A37到指定地址
@@ -67649,7 +67649,18 @@ void ResetExceptionHandlerStateAtOffset600(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_180907c20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数（偏移量0x230）
+ * 
+ * 清理数据缓冲区偏移量0x230处的资源指针，处理引用计数和内存管理
+ * 如果引用计数归零，调用异常处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907c20
+ */
+void CleanupResourceReferenceCountAtOffset230(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -67685,7 +67696,20 @@ void Unwind_180907c20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907c30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行多重异常处理回调（偏移量0x210、0x1f0、0x1d0）
+ * 
+ * 依次执行数据缓冲区偏移量0x210、0x1f0、0x1d0处的异常处理回调函数
+ * 用于清理多个异常处理状态
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180907c30
+ */
+void ExecuteMultipleExceptionCallbacks(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x210) != (code *)0x0) {
@@ -67702,7 +67726,17 @@ void Unwind_180907c30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180907c40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量0x298
+ * 
+ * 在数据缓冲区的偏移量0x298处设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180907c40
+ */
+void SetDefaultExceptionHandlerAtOffset298(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x298) = &DefaultExceptionHandlerB;
