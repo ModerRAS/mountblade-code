@@ -165418,7 +165418,7 @@ LAB_180139b2f:
     if ((lStackX_10 == 0) || (*(long long *)(lStackX_10 + 0x30) == 0)) {
       ContextSecondaryFloat0 = (float)uStack_138;
       if ((*(uint *)((long long)CharacterCode + 0xc) & 0x20000000) == 0) {
-        pProcessedFloatValue8 = (float *)FUN_18011ce30(&uStack_178,*Utf8InputBuffer,
+        pProcessedFloatValue8 = (float *)ProcessFloatValueConversion(&uStack_178,*Utf8InputBuffer,
                                         *(uint8_t *)((long long)CharacterCode + 0xb7));
         ContextSecondaryFloat0 = *(float *)(LocalDataStructure160 + 0x1674) + *pProcessedFloatValue8 + ContextSecondaryFloat2;
       }
@@ -165428,7 +165428,7 @@ LAB_180139b2f:
         ContextSecondaryFloat0 = *(float *)(*(long long *)(lStackX_10 + 0x30) + 0x3c);
       }
       else {
-        pProcessedFloatValue8 = (float *)FUN_18011ce30(&FloatStack1,
+        pProcessedFloatValue8 = (float *)ProcessFloatValueConversion(&FloatStack1,
                                         *(void *)**(long long **)(lStackX_10 + 0x28),
                                         *(uint8_t *)(**(long long **)(lStackX_10 + 0x28) + 0xb7));
         ContextSecondaryFloat0 = *pProcessedFloatValue8;

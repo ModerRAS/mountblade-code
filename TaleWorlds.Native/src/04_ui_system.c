@@ -9034,10 +9034,10 @@ LAB_180656d07:
             ResourceDataPointer = *(byte **)(ResourceIterator + 0x28);
             pisCharacterMatch8 = pbStack_b0 + -(longlong)ResourceDataPointer;
             do {
-              isCharacterMatch = *pbVar8;
-              semaphoreHandle2 = (uint)pbVar8[(longlong)pisCharacterMatch8];
+              isCharacterMatch = *ResourceDataPointer;
+              semaphoreHandle2 = (uint)ResourceDataPointer[(longlong)pisCharacterMatch8];
               if (isCharacterMatch != semaphoreHandle2) break;
-              pbVar8 = pbVar8 + 1;
+              ResourceDataPointer = ResourceDataPointer + 1;
             } while (semaphoreHandle2 != 0);
             if ((int)(isCharacterMatch - semaphoreHandle2) < 1) goto LAB_180656e1e;
           }
@@ -9442,7 +9442,7 @@ undefined8 ProcessUIComponentEx(ulonglong uiContext,undefined8 *dataSource,undef
   bool bVar2;
   undefined8 *ptrLocal3;
   longlong *plocalLong4;
-  byte *pbVar5;
+  byte *StringDataPointer;
   undefined8 *ptrLocal6;
   uint eventTypeCode;
   longlong *plocalLong8;
@@ -9456,8 +9456,8 @@ undefined8 ProcessUIComponentEx(ulonglong uiContext,undefined8 *dataSource,undef
       plocalLong8 = _UIDefaultResourceBuffer;
       pallocatedMemory0 = bufferSize;
       if ((int)_UIDefaultResourceBuffer[6] != 0) {
-        pbVar5 = *(byte **)(resultPointer + 8);
-        pallocatedMemory0 = (longlong *)(_UIDefaultResourceBuffer[5] - (longlong)pbVar5);
+        StringDataPointer = *(byte **)(resultPointer + 8);
+        pallocatedMemory0 = (longlong *)(_UIDefaultResourceBuffer[5] - (longlong)StringDataPointer);
         do {
           isCharacterMatch = *pbVar5;
           uiContext = (ulonglong)pbVar5[(longlong)pallocatedMemory0];
