@@ -109064,3 +109064,28 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  * @note 原始函数名：Unwind_18090f140
  */
 #define ConfigureExceptionHandlerA0 Unwind_18090f140
+
+// 异常处理器调用函数系列 - 根据偏移量调用不同的异常处理器
+#define ExecuteExceptionHandlerOffset40 Unwind_180907620
+#define ExecuteExceptionHandlerOffset20 Unwind_180907630
+#define ExecuteMemoryOperationOffset40 Unwind_180907640
+#define ExecuteMemoryOperationOffset50 Unwind_180907670
+#define SetExceptionDataTableSequenceA0 Unwind_1809076a0
+#define SetExceptionDataTable6 Unwind_1809076b0
+#define CheckSystemTerminationConditionA0 Unwind_1809076c0
+#define CheckSystemTerminationConditionA1 Unwind_1809076d0
+#define CheckSystemTerminationConditionA2 Unwind_1809076e0
+#define CheckSystemTerminationConditionA3 Unwind_1809076f0
+#define SetupTemporaryExceptionHandlerA0 Unwind_180907700
+#define ProcessSystemResourceCleanupA0 Unwind_180907710
+#define ExecuteExceptionHandlerOffsetB0 Unwind_180907720
+#define ProcessSystemResourceCleanupA1 Unwind_180907740
+#define ExecuteExceptionHandlerOffsetC0 Unwind_180907750
+#define SetDefaultExceptionHandlerA2 Unwind_180907790
+#define SetDefaultExceptionHandlerA3 Unwind_1809077a0
+#define SetDefaultExceptionHandlerA4 Unwind_1809076b0
+#define SetDefaultExceptionHandlerA5 Unwind_1809077c0
+#define SetDefaultExceptionHandlerA6 Unwind_1809077d0
+#define SetDefaultExceptionHandlerA7 Unwind_1809077e0
+#define SetDefaultExceptionHandlerA8 Unwind_1809077f0
+#define ProcessSystemStatusUpdateA0 Unwind_180907800
