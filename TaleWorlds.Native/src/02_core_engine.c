@@ -180324,7 +180324,7 @@ LAB_18014ccc0:
     pcStack_88 = (code *)&SystemSecondaryFunctionPointer;
     pCalculationFunctionAddress = &SystemTertiaryFunctionPointer;
     apiStack_98[0] = StackIntegerArray;
-    FUN_18014a370(Utf16Char,0,apiStack_98,SystemParameter,SystemChecksum);
+    ProcessCharacterCodeWithFlags(Utf16Char,0,apiStack_98,SystemParameter,SystemChecksum);
     if (pcStack_88 != (code *)0x0) {
       (*pcStack_88)(apiStack_98,0,0);
     }
