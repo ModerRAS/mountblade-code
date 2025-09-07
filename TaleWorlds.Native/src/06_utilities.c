@@ -71720,7 +71720,20 @@ void ProcessExceptionContextCallbacks(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180908870(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理内存资源引用计数
+ * 
+ * 该函数负责处理内存资源的引用计数，包括：
+ * - 检查内存资源指针的有效性
+ * - 计算内存块的偏移地址
+ * - 更新资源的引用计数
+ * - 管理内存资源的链接关系
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180908870
+ */
+void ProcessMemoryResourceReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
