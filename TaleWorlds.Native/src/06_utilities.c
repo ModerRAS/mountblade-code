@@ -5949,6 +5949,17 @@ void InitializeUtilityModule(void);
 #define CleanupResourceReferenceCountA0 Unwind_180904920
 
 /**
+ * @brief 资源引用计数清理函数A1
+ * 
+ * 该函数负责清理异常处理过程中的资源引用计数，与函数A0类似但操作不同的内存偏移量。
+ * 它会验证资源指针的有效性，计算内存偏移量，并递减引用计数。当引用计数归零时，
+ * 会调用异常处理器。这是异常展开机制的重要组成部分，确保资源被正确释放。
+ * 
+ * @note 原始函数名：Unwind_180904930
+ */
+#define CleanupResourceReferenceCountA1 Unwind_180904930
+
+/**
  * @brief 工具模块配置参数
  */
 uint32_t UtilityPrimaryModuleConfig;
@@ -105197,8 +105208,8 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define StackSystemStatusStorage uStack_150
 
 // 原始变量名：uStack_148 - 栈数据字I
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordI uStack_148
+// 功能：存储数据处理的备份数据字
+#define StackDataProcessingBackup uStack_148
 
 // 原始变量名：uStack_140 - 栈数据缓冲区A
 // 功能：存储数据缓冲区的栈变量
@@ -105209,12 +105220,12 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define StackDataBufferB uStack_138
 
 // 原始变量名：uStack_130 - 栈数据字J
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordJ uStack_130
+// 功能：存储异常上下文的数据字1
+#define StackExceptionContextData1 uStack_130
 
 // 原始变量名：uStack_12c - 栈数据字K
-// 功能：存储数据处理过程中的临时数据字
-#define StackDataWordK uStack_12c
+// 功能：存储异常上下文的数据字2
+#define StackExceptionContextData2 uStack_12c
 
 // 原始变量名：uStack_128 - 栈数据字L
 // 功能：存储数据处理过程中的临时数据字
@@ -105750,6 +105761,14 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始函数名：Unwind_180909250 - 系统监控函数
 // 功能：监控系统状态，检测系统异常
 #define MonitorSystemA Unwind_180909250
+
+// 原始变量名：puStack_88 - 操作结果指针
+// 功能：存储操作结果的指针
+#define OperationResultPointer puStack_88
+
+// 原始变量名：uStack_80 - 栈大小变量
+// 功能：存储栈大小的变量
+#define StackSizeVariable uStack_80
 
 // 原始函数名：Unwind_180909270 - 系统恢复函数
 // 功能：恢复系统状态，处理系统故障
