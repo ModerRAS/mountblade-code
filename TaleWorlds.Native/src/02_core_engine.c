@@ -50120,11 +50120,11 @@ void ProcessFloatDataNormalization(long long CharacterCode
   *(float *)(CharacterCode + 0xe8) = CrossProductZ;
   MatrixMultiplier2 = (CrossProductY * pSourceMatrixData[8] - VectorComponentY * pSourceMatrixData[4]) - CrossProductResultX * pSourceMatrixData[0xc];
   *(float *)(CharacterCode + 0xf0) = MatrixMultiplier2;
-  SystemContextPrimaryFloat4 = (SystemContextPrimaryFloat3 * *pSystemContextPrimaryFloat - SecondaryFloatValue * pSystemContextPrimaryFloat[8]) + NormalizedParameterValue * pSystemContextPrimaryFloat[0xc];
-  *(float *)(CharacterCode + 0xf4) = SystemContextPrimaryFloat4;
-  SystemContextPrimaryFloat2 = (SecondaryFloatValue * pSystemContextPrimaryFloat[4] - PrimaryFloatValue * *pSystemContextPrimaryFloat) - ProcessedFloatValue8 * pSystemContextPrimaryFloat[0xc];
-  *(float *)(CharacterCode + 0xf8) = SystemContextPrimaryFloat2;
-  CalculatedDistance = (SystemContextPrimaryFloat8 * *pSystemContextPrimaryFloat - NormalizedParameterValue * pSystemContextPrimaryFloat[4]) + ProcessedFloatValue8 * pSystemContextPrimaryFloat[8];
+  VectorComponentZ = (VectorComponentY * *pSourceMatrixData - CrossProductZ * pSourceMatrixData[8]) + NormalizationFactor * pSourceMatrixData[0xc];
+  *(float *)(CharacterCode + 0xf4) = VectorComponentZ;
+  VectorComponentX = (CrossProductZ * pSourceMatrixData[4] - CrossProductY * *pSourceMatrixData) - VectorDotProduct * pSourceMatrixData[0xc];
+  *(float *)(CharacterCode + 0xf8) = VectorComponentX;
+  VectorLengthX = (CrossProductResultX * *pSourceMatrixData - NormalizationFactor * pSourceMatrixData[4]) + VectorDotProduct * pSourceMatrixData[8];
   *(float *)(CharacterCode + 0xfc) = CalculatedDistance;
   FloatVariable7 = ContextPrimaryFloat9 * pSystemContextPrimaryFloat[4] + SystemContextPrimaryFloat8 * *pSystemContextPrimaryFloat + ContextSecondaryFloat0 * pSystemContextPrimaryFloat[8];
   if (FloatVariable7 != 1.0) {
