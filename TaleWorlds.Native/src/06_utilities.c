@@ -183,7 +183,7 @@
  * @brief 数据加密处理函数
  * @note 原始函数名：func_0x00018074be80
  */
-#define EncryptData FUN_18004b730
+#define EncryptData EncryptDataWithAES
 
 /**
  * @brief 数据验证处理函数
@@ -15570,15 +15570,21 @@ DataBuffer GetSystemStatusA0(void)
   int64_t systemContext;
   float resultValue;
   
+  // 输入参数寄存器变量
+  uint64_t inputAccumulatorRegister;      // 输入累加器寄存器
+  uint64_t inputRegisterR9D;               // 输入寄存器R9D
+  uint64_t inputRegisterR10;              // 输入寄存器R10
+  bool zeroFlag;                          // 零标志位
+  
   systemFlags = inputAccumulatorRegister - 8;
   if (inputAccumulatorRegister == 0) {
-    systemFlags = (uint64_t)in_R9D;
+    systemFlags = (uint64_t)inputRegisterR9D;
   }
   validationStatus = *(int *)(systemFlags + 0x28);
   floatArrayBase = (float *)(registerContext + 0x20 + (int64_t)*(int *)(registerContext + 0x18) * 4);
   if (0 < *(int *)(registerContext + 0x18)) {
     floatArrayPointer = floatArrayBase;
-    securityCheckResult = in_R9D;
+    securityCheckResult = inputRegisterR9D;
     do {
       arrayIndex = *(int *)(((registerContext + 0x20) - (int64_t)floatArrayBase) + (int64_t)floatArrayPointer);
       if (arrayIndex != -1) {
@@ -15597,7 +15603,7 @@ DataBuffer GetSystemStatusA0(void)
         if (dataNodePointer == 0) {
           return 0x1e;
         }
-        if (*(uint *)(dataNodePointer + 0x30) != in_R9D) {
+        if (*(uint *)(dataNodePointer + 0x30) != inputRegisterR9D) {
           return 0x1f;
         }
         resultValue = *(float *)(dataNodePointer + 0x38);
@@ -18273,7 +18279,7 @@ DataBuffer UtilityNoOperationK(void)
 
 {
   int64_t exceptionHandlerContext;
-  int in_EAX;
+  int inputAccumulatorRegisterEAX;      // 输入累加器寄存器EAX
   DataBuffer operationResult;
   uint64_t validationStatus;
   int64_t calculatedIndex;
@@ -18285,12 +18291,12 @@ DataBuffer UtilityNoOperationK(void)
   uint64_t securityCheckResult;
   uint64_t statusCounter;
   
-  if (validationStatus == in_EAX) {
+  if (validationStatus == inputAccumulatorRegisterEAX) {
     calculatedValue = validationStatus * 2;
     if (calculatedValue < 4) {
       calculatedValue = 4;
     }
-    if (((calculatedValue <= in_EAX) || ((int)registerContext[3] != in_EAX)) || ((int)registerContext[4] != -1)) {
+    if (((calculatedValue <= inputAccumulatorRegisterEAX) || ((int)registerContext[3] != inputAccumulatorRegisterEAX)) || ((int)registerContext[4] != -1)) {
       return 0x1c;
     }
     operationResult = (int)*(uint *)((int64_t)registerContext + 0x1c) >> 0x1f;
@@ -105304,36 +105310,36 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define StackDataWordAB StackOperationStatusFlag
 
 // 原始变量名：puStack_2a8 - 栈指针缓冲区G
-// 功能：存储指针数据的栈缓冲区
-#define StackPointerBufferG puStack_2a8
+// 功能：存储系统表指针的栈缓冲区
+#define StackPointerBufferG StackSystemTablePointer
 
 // 原始变量名：iStack_2a0 - 栈整型D
-// 功能：存储整型数据的栈变量
-#define StackIntegerD iStack_2a0
+// 功能：存储验证结果的栈变量
+#define StackIntegerD StackValidationResult
 
 // 原始变量名：iStack_290 - 栈整型E
-// 功能：存储整型数据的栈变量
-#define StackIntegerE iStack_290
+// 功能：存储循环计数的栈变量
+#define StackIntegerE StackLoopCounter
 
 // 原始变量名：puStack_2f8 - 栈指针缓冲区H
-// 功能：存储指针数据的栈缓冲区
-#define StackPointerBufferH puStack_2f8
+// 功能：存储验证表指针的栈缓冲区
+#define StackPointerBufferH StackValidationTablePointer
 
 // 原始变量名：iStack_2f0 - 栈整型F
-// 功能：存储整型数据的栈变量
-#define StackIntegerF iStack_2f0
+// 功能：存储处理状态的栈变量
+#define StackIntegerF StackProcessingStatus
 
 // 原始变量名：afStack_304 - 栈浮点数组C
-// 功能：存储浮点数组的栈数据
-#define StackFloatArrayC afStack_304
+// 功能：存储同步浮点数组的栈数据
+#define StackFloatArrayC StackSynchronizationArray
 
 // 原始变量名：piStack_6f0 - 栈整型指针C
-// 功能：存储整型指针的栈变量
-#define StackIntegerPointerC piStack_6f0
+// 功能：存储数组索引指针的栈变量
+#define StackIntegerPointerC StackArrayIndexPointer
 
 // 原始变量名：piStack_8 - 栈整型指针D
-// 功能：存储整型指针的栈变量
-#define StackIntegerPointerD piStack_8
+// 功能：存储数据缓冲区指针的栈变量
+#define StackIntegerPointerD StackDataBufferPointer
 
 // 原始变量名：stack0x00000008 - 栈数据缓冲区P
 // 功能：存储数据缓冲区的栈变量
