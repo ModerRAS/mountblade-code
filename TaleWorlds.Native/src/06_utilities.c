@@ -76922,7 +76922,9 @@ void Unwind_1809097e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809097f0(void)
+// 原始函数名：Unwind_1809097f0 - 互斥锁销毁函数
+// 功能：销毁互斥锁资源
+void DestroyMutexInSitu(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -77834,7 +77836,9 @@ void Unwind_180909de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180909e00(void)
+// 原始函数名：Unwind_180909e00 - 互斥锁销毁函数A0
+// 功能：销毁互斥锁资源
+void DestroyMutexInSituA0(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -77843,7 +77847,9 @@ void Unwind_180909e00(void)
 
 
 
-void Unwind_180909e20(void)
+// 原始函数名：Unwind_180909e20 - 互斥锁销毁函数A1
+// 功能：销毁互斥锁资源
+void DestroyMutexInSituA1(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -77852,7 +77858,9 @@ void Unwind_180909e20(void)
 
 
 
-void Unwind_180909e40(void)
+// 原始函数名：Unwind_180909e40 - 互斥锁销毁函数A2
+// 功能：销毁互斥锁资源
+void DestroyMutexInSituA2(void)
 
 {
   _Mtx_destroy_in_situ();
