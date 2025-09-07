@@ -95081,10 +95081,20 @@ void ExecuteMemoryOperationE410(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090e420(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作函数E420
+ * 
+ * 该函数负责执行内存操作，调用ExecuteMemoryOperation函数处理特定的内存地址
+ * 使用偏移量0x918和ProcessMemoryOperationA1作为处理器
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e420
+ */
+void ExecuteMemoryOperationE420(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0x918,0x128,2,ProcessMemoryOperationA1,SystemCleanupFlagAlternative);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x30) + 0x918, 0x128, 2, ProcessMemoryOperationA1, SystemCleanupFlagAlternative);
   return;
 }
 
