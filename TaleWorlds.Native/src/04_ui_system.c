@@ -5137,7 +5137,7 @@ LAB_RenderJobCallbackHandler:
 void UpdateUIConditions(int *uiContext)
 
 {
-  code *functionPtr;
+  code *errorHandler;
   char currentCharacter;
   uint envVarLength;
   int numericValue;
@@ -5179,34 +5179,34 @@ void UpdateUIConditions(int *uiContext)
     }
     if (0x40 < stringLength) {
       TriggerUIErrorHandler();
-      functionPtr = (code *)swi(3);
-      (*functionPtr)();
+      errorHandler = (code *)swi(3);
+      (*errorHandler)();
       return;
     }
     combinedPathBuffer[stringLength] = '\0';
-    if ((combinedPathBuffer[0] == '\0') || (stringIndex = strstr(&UIStringCache,combinedPathBuffer), stringIndex != 0)) {
+    if ((combinedPathBuffer[0] == '\0') || (stringCacheResult = strstr(&UIStringCache,combinedPathBuffer), stringCacheResult != 0)) {
       *uiContext = 1;
     }
     else {
-      stringIndex = strstr(&DefaultUIStringCache,combinedPathBuffer);
-      if (stringIndex == 0) {
+      stringCacheResult = strstr(&DefaultUIStringCache,combinedPathBuffer);
+      if (stringCacheResult == 0) {
         stringPointers[0] = combinedPathBuffer;
-        intValue = strtol(combinedPathBuffer,stringPointers,10);
+        numericValue = strtol(combinedPathBuffer,stringPointers,10);
         if (uiContext[2] == 8) {
-          charValue = *stringPointers[0];
-          if (charValue == 'K') {
+          unitCharacter = *stringPointers[0];
+          if (unitCharacter == 'K') {
             stringPointers[0] = stringPointers[0] + 1;
           }
-          else if (charValue == 'M') {
-            intValue = intValue << 10;
+          else if (unitCharacter == 'M') {
+            numericValue = numericValue << 10;
             stringPointers[0] = stringPointers[0] + 1;
           }
-          else if (charValue == 'G') {
-            intValue = intValue << 0x14;
+          else if (unitCharacter == 'G') {
+            numericValue = numericValue << 0x14;
             stringPointers[0] = stringPointers[0] + 1;
           }
           else {
-            intValue = (int)((longlong)intValue + 0x3ffU >> 10);
+            numericValue = (int)((longlong)numericValue + 0x3ffU >> 10);
           }
           if (*stringPointers[0] == 'B') {
             stringPointers[0] = stringPointers[0] + 1;
@@ -5217,7 +5217,7 @@ void UpdateUIConditions(int *uiContext)
           uiContext[1] = 1;
           goto ProcessUIDataValidation;
         }
-        *uiContext = intValue;
+        *uiContext = numericValue;
       }
       else {
         *uiContext = 0;
@@ -5230,7 +5230,7 @@ void UpdateUIConditions(int *uiContext)
   }
 ProcessUIDataValidation:
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInte8);
+  ExecuteUIRenderTask(0);
 }
 
 
