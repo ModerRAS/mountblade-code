@@ -50,6 +50,7 @@
 #define ExceptionDataBufferOffset 0x210
 #define ResourcePointerStartOffset 0x208
 #define ResourcePointerStep 4
+#define ExceptionHandlerContextOffset 0x1800
 
 // 资源管理常量定义
 #define ResourceDataOffset 0x10
@@ -7305,10 +7306,10 @@ void* SystemDataBufferOutput;            // 系统数据缓冲区输出
 void* SystemDataBufferTemp;              // 系统数据缓冲区临时
 
 // 数据缓冲区管理相关变量声明
-void* DataBufferStartAddress;             // lRam0000000180d49d68 - 数据缓冲区起始地址
-uint32_t DataBufferSizeCounter;              // uRam0000000180d49d70 - 数据缓冲区大小计数器
-void* DataBufferEndAddress;               // lRam0000000180d49d78 - 数据缓冲区结束地址
-void* DataBufferCleanupPointer;           // uRam0000000180d49d58 - 数据缓冲区清理指针
+void* DataBufferStartAddress;             // 数据缓冲区起始地址
+uint32_t DataBufferSizeCounter;              // 数据缓冲区大小计数器
+void* DataBufferEndAddress;               // 数据缓冲区结束地址
+void* DataBufferCleanupPointer;           // 数据缓冲区清理指针
 
 // 默认异常处理器指针变量声明
 void* DefaultExceptionHandlerBPointer;     // 默认异常处理器B指针
@@ -42384,7 +42385,7 @@ void CleanupEnumMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x1800);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerContextOffset);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
@@ -71981,7 +71982,7 @@ void InvokeExceptionHandlerAtOffset1800(DataBuffer operationBase,int64_t dataBuf
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x1800);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + ExceptionHandlerContextOffset);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
@@ -101762,8 +101763,8 @@ void Unwind_180910ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   int64_t exceptionHandlerContext;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x1800) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x1800))(exceptionHandlerContext + 0x17f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset))(exceptionHandlerContext + 0x17f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x17c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x17d0) != 0) {
@@ -104381,8 +104382,8 @@ void Unwind_180911400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   int64_t exceptionHandlerContext;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x1800) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x1800))(exceptionHandlerContext + 0x17f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerContextOffset))(exceptionHandlerContext + 0x17f0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(exceptionHandlerContext + 0x17c8) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0x17d0) != 0) {
