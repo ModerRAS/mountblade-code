@@ -117109,21 +117109,21 @@ void ExpandUtf8BufferShift3(int *Utf8InputBuffer,int Utf8BufferSize) {
  * @note 内存块大小为DataStringLength << 3字节（即*8）
  */
 void ExpandUtf8BufferShift3NoArgs(void) {
-  long long SystemContextPointer;
-  uint64_t AllocatedMemoryBuffer;
-  int *SystemContextArray;
-  long long DataStringLength;
+  long long systemContextPointer;                                         // 系统上下文指针
+  uint64_t allocatedMemoryBuffer;                                         // 分配的内存缓冲区
+  int *systemContextArray;                                               // 系统上下文数组
+  long long dataStringLength;                                            // 数据字符串长度
   
-  if (SystemContextPointer != 0) {
-    *(int *)(SystemContextPointer + 0x3a8) = *(int *)(SystemContextPointer + 0x3a8) + 1;
+  if (systemContextPointer != 0) {                                        // 检查系统上下文指针
+    *(int *)(systemContextPointer + 0x3a8) = *(int *)(systemContextPointer + 0x3a8) + 1; // 增加引用计数
   }
-  AllocatedMemoryBuffer = SystemCallMemoryAccess(DataStringLength << 3,SystemMemoryPoolBase);
-  if (*(long long *)(SystemContextArray + 2) != 0) {
+  allocatedMemoryBuffer = SystemCallMemoryAccess(dataStringLength << 3, SystemMemoryPoolBase); // 分配内存（左移3位=*8）
+  if (*(long long *)(systemContextArray + 2) != 0) {                     // 检查现有数据
                     // WARNING: Subroutine does not return
-    memcpy(AllocatedMemoryBuffer,*(long long *)(SystemContextArray + 2),(long long)*SystemContextArray << 3);
+    memcpy(allocatedMemoryBuffer, *(long long *)(systemContextArray + 2), (long long)*systemContextArray << 3); // 复制数据
   }
-  *(void *)(SystemContextArray + 2) = AllocatedMemoryBuffer;
-  SystemContextArray[1] = (int)DataStringLength;
+  *(void *)(systemContextArray + 2) = allocatedMemoryBuffer;             // 设置新缓冲区
+  systemContextArray[1] = (int)dataStringLength;                        // 更新缓冲区大小
   return;
 }
 
@@ -173654,7 +173654,18 @@ void SystemNullOperation(void)
 
 
 
-3e760(int *Utf8InputBuffer,int Utf8BufferSizevoid ProcessStringComparisonResultValidation(int *Utf8InputBuffer,int Utf8BufferSize
+/**
+ * @brief 处理字符串比较结果验证
+ * 
+ * 该函数验证字符串比较结果，并在需要时分配和复制UTF-16字符数据
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18013e760
+ * @warning 此函数包含不返回的子程序调用，使用时需谨慎
+ */
+void ProcessStringComparisonResultValidation(int *Utf8InputBuffer, int Utf8BufferSize)
 {
   uint64_t Utf16Char;
   
@@ -173662,10 +173673,10 @@ void SystemNullOperation(void)
     if (SystemConfigurationHandle != 0) {
       *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
     }
-    Utf16Char = SystemCallMemoryAccess((long long)Utf8BufferSize * 0x30,SystemMemoryPoolBase);
+    Utf16Char = SystemCallMemoryAccess((long long)Utf8BufferSize * 0x30, SystemMemoryPoolBase);
     if (*(long long *)(CharacterCode + 2) != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(Utf16Char,*(long long *)(CharacterCode + 2),(long long)*Utf8InputBuffer * 0x30);
+      memcpy(Utf16Char, *(long long *)(CharacterCode + 2), (long long)*Utf8InputBuffer * 0x30);
     }
     *(void *)(CharacterCode + 2) = Utf16Char;
     Utf8InputBuffer[1] = Utf8BufferSize;
@@ -173677,7 +173688,15 @@ void SystemNullOperation(void)
 
 
 
-3e77c(voidvoid FUN_18013e77c(void
+/**
+ * @brief 重置UTF-8处理状态
+ * 
+ * 该函数重置UTF-8处理系统的状态，包括清理内存分配和重置上下文
+ * 
+ * @note 原始函数名：FUN_18013e77c
+ * @warning 此函数包含不返回的子程序调用，使用时需谨慎
+ */
+void ResetUtf8ProcessingState(void)
 {
   long long ProcessingResult;
   uint64_t Utf16Char;
@@ -173687,10 +173706,10 @@ void SystemNullOperation(void)
   if (ProcessingResult != 0) {
     *(int *)(ProcessingResult + 0x3a8) = *(int *)(ProcessingResult + 0x3a8) + 1;
   }
-  Utf16Char = SystemCallMemoryAccess(DataNodePointer * 0x30,SystemMemoryPoolBase);
+  Utf16Char = SystemCallMemoryAccess(DataNodePointer * 0x30, SystemMemoryPoolBase);
   if (*(long long *)(SystemContext + 2) != 0) {
                     // WARNING: Subroutine does not return
-    memcpy(Utf16Char,*(long long *)(SystemContext + 2),(long long)*SystemContext * 0x30);
+    memcpy(Utf16Char, *(long long *)(SystemContext + 2), (long long)*SystemContext * 0x30);
   }
   *(void *)(SystemContext + 2) = Utf16Char;
   SystemContext[1] = (int)DataNodePointer;
@@ -173700,7 +173719,14 @@ void SystemNullOperation(void)
 
 
 
-3e7f2(voidvoid FUN_18013e7f2(void
+/**
+ * @brief 初始化UTF-8内存管理
+ * 
+ * 该函数初始化UTF-8内存管理系统，为后续的字符编码处理做准备
+ * 
+ * @note 原始函数名：FUN_18013e7f2
+ */
+void InitializeUtf8MemoryManagement(void)
 {
   return;
 }
