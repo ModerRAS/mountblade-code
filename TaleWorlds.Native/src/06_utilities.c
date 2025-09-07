@@ -20005,7 +20005,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   float *floatValuePointer;
   DataBuffer *exceptionDataBuffer6;
   ByteFlag EncryptionKeyBufferC [32];
-  DataWord uStack_1c8;
+  DataWord StackDataWordA;
   char acStack_1c4 [4];
   uint8_t *puStack_1c0;
   DataWord uStack_1b8;
@@ -100871,3 +100871,104 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 原始变量名：stack0x000000b0 - 栈数据缓冲区O
 // 功能：存储数据缓冲区的栈变量
 #define StackDataBufferO stack0x000000b0
+
+// 栈变量宏定义 - 美化更多栈变量
+// 原始变量名：afStack_198 - 栈浮点数组A
+// 功能：存储浮点数组的栈数据
+#define StackFloatArrayA afStack_198
+
+// 原始变量名：puStack_190 - 栈指针缓冲区B
+// 功能：存储指针数据的栈缓冲区
+#define StackPointerBufferB puStack_190
+
+// 原始变量名：lStack_188 - 栈长整型A
+// 功能：存储长整型数据的栈变量
+#define StackLongIntegerA lStack_188
+
+// 原始变量名：lStack_180 - 栈长整型B
+// 功能：存储长整型数据的栈变量
+#define StackLongIntegerB lStack_180
+
+// 原始变量名：puStack_178 - 栈指针缓冲区C
+// 功能：存储指针数据的栈缓冲区
+#define StackPointerBufferC puStack_178
+
+// 原始变量名：uStack_170 - 栈数据字E
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordE uStack_170
+
+// 原始变量名：uStack_168 - 栈数据字F
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordF uStack_168
+
+// 原始变量名：uStack_160 - 栈数据字G
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordG uStack_160
+
+// 原始变量名：puStack_158 - 栈指针缓冲区D
+// 功能：存储指针数据的栈缓冲区
+#define StackPointerBufferD puStack_158
+
+// 原始变量名：uStack_150 - 栈数据字H
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordH uStack_150
+
+// 原始变量名：uStack_148 - 栈数据字I
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordI uStack_148
+
+// 原始变量名：uStack_140 - 栈数据缓冲区A
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferA uStack_140
+
+// 原始变量名：uStack_138 - 栈数据缓冲区B
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferB uStack_138
+
+// 原始变量名：uStack_130 - 栈数据字J
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordJ uStack_130
+
+// 原始变量名：uStack_12c - 栈数据字K
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordK uStack_12c
+
+// 原始变量名：uStack_128 - 栈数据字L
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordL uStack_128
+
+// 原始变量名：uStack_124 - 栈数据字M
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordM uStack_124
+
+// 原始变量名：uStack_120 - 栈数据字N
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordN uStack_120
+
+// 原始变量名：uStack_11c - 栈数据字O
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordO uStack_11c
+
+// 原始变量名：uStack_118 - 栈数据字P
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordP uStack_118
+
+// 原始变量名：uStack_114 - 栈数据字Q
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordQ uStack_114
+
+// 原始变量名：uStack_f8 - 栈数据字R
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordR uStack_f8
+
+// 原始变量名：uStack_f0 - 栈数据字S
+// 功能：存储数据处理过程中的临时数据字
+#define StackDataWordS uStack_f0
+
+// 原始变量名：uStack_ec - 栈字节标志A
+// 功能：存储字节标志的栈变量
+#define StackByteFlagA uStack_ec
+
+// 原始变量名：uStack_e8 - 栈数据缓冲区C
+// 功能：存储数据缓冲区的栈变量
+#define StackDataBufferC uStack_e8
