@@ -57866,13 +57866,21 @@ void FUN_180694c40(undefined8 *uiContext,int dataSource,undefined1 *targetBuffer
 
 
 
- void FUN_180695530(void)
-void FUN_180695530(void)
+ /**
+ * @brief 切换UI渲染模式
+ * 
+ * 该函数根据输入参数切换UI系统的渲染模式，
+ * 在不同的渲染函数之间进行选择。
+ * 
+ * @param renderMode 渲染模式参数（1使用模式1，其他使用模式2）
+ * @note 原始函数名: FUN_180695530
+ */
+void SwitchUIRenderMode(void)
 
 {
-  int in_stack_00000030;
+  int renderMode;
   
-  if (in_stack_00000030 == 1) {
+  if (renderMode == 1) {
     FUN_180694c40();
     return;
   }
@@ -67844,7 +67852,20 @@ void FUN_18069ec80(longlong *uiContext)
 
 
 undefined4
-FUN_18069ed90(longlong *uiContext,longlong dataSource,uint targetBuffer,longlong bufferSize,longlong resultPointer)
+/**
+ * @brief 处理UI上下文数据
+ * 
+ * 该函数负责处理UI上下文中的数据转换和操作
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return 处理结果状态码
+ * @note 原始函数名: FUN_18069ed90
+ */
+bool ProcessUIContextData(longlong *uiContext, longlong dataSource, uint targetBuffer, longlong bufferSize, longlong resultPointer)
 
 {
   uiContext[1] = dataSource;
@@ -71441,14 +71462,27 @@ void FUN_180706ba7(void)
 
 
 
-undefined8 FUN_180706c10(byte *uiContext,byte *dataSource,int targetBuffer,undefined4 bufferSize)
+/**
+ * @brief 处理UI上下文数据复制和验证
+ * 
+ * 该函数负责验证和复制UI上下文数据，处理信号量操作，
+ * 确保数据传输的完整性和安全性。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区大小
+ * @param bufferSize 缓冲区大小参数
+ * @return 操作结果状态码，0表示成功，其他值表示错误
+ * @note 原始函数名: FUN_180706c10
+ */
+undefined8 ProcessUIContextDataCopy(byte *uiContext,byte *dataSource,int targetBuffer,undefined4 bufferSize)
 
 {
   int operationResult;
   undefined4 semaphoreHandle;
-  int iVar3;
-  undefined8 uVar4;
-  undefined1 auStackX_18 [16];
+  int dataValidationResult;
+  undefined8 copyOperationResult;
+  undefined1 tempStackBuffer [16];
   
   if (0 < targetBuffer) {
     if (*(int *)(bufferData + 4) == 0) {
@@ -71459,16 +71493,16 @@ undefined8 FUN_180706c10(byte *uiContext,byte *dataSource,int targetBuffer,undef
     else if (((*uiContext ^ *dataSource) & 0xfc) != 0) {
       return 0xfffffffc;
     }
-    iVar3 = func_0x0001806fd5e0(dataSource,targetBuffer);
-    if ((0 < iVar3) &&
-       (operationResult = *(int *)(bufferData + 4), (operationResult + iVar3) * *(int *)(bufferData + 0x1e8) < 0x3c1)) {
-      uVar4 = FUN_18070f860(dataSource,targetBuffer,bufferSize,auStackX_18,uiContext + ((longlong)operationResult + 1) * 8,
+    dataValidationResult = func_0x0001806fd5e0(dataSource,targetBuffer);
+    if ((0 < dataValidationResult) &&
+       (operationResult = *(int *)(bufferData + 4), (operationResult + dataValidationResult) * *(int *)(bufferData + 0x1e8) < 0x3c1)) {
+      copyOperationResult = FUN_18070f860(dataSource,targetBuffer,bufferSize,tempStackBuffer,uiContext + ((longlong)operationResult + 1) * 8,
                             uiContext + (longlong)operationResult * 2 + 0x188,0,0);
-      if (0 < (int)uVar4) {
-        *(int *)(bufferData + 4) = *(int *)(bufferData + 4) + iVar3;
+      if (0 < (int)copyOperationResult) {
+        *(int *)(bufferData + 4) = *(int *)(bufferData + 4) + dataValidationResult;
         return 0;
       }
-      return uVar4;
+      return copyOperationResult;
     }
   }
   return 0xfffffffc;
@@ -71923,7 +71957,15 @@ int FUN_180706f00(undefined8 uiContext,undefined8 dataSource,longlong targetBuff
 
 
 
-undefined8 FUN_18070708f(void)
+/**
+ * @brief 获取UI系统错误代码
+ * 
+ * 该函数返回UI系统的错误代码，用于错误处理和状态检查。
+ * 
+ * @return 返回0xffffffff作为错误代码
+ * @note 原始函数名: FUN_18070708f
+ */
+undefined8 GetUISystemErrorCode(void)
 
 {
   return 0xffffffff;
@@ -84322,8 +84364,26 @@ ulonglong FUN_180718f58(void)
 
 
 undefined1
-FUN_1807193b0(longlong uiContext,longlong dataSource,int *targetBuffer,int bufferSize,int *resultPointer,uint *param_6,
-             int param_7,uint param_8,int param_9,int uiContext0)
+/**
+ * @brief 处理UI数据缓冲区
+ * 
+ * 该函数负责处理UI数据缓冲区的操作和管理
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7
+ * @param param_8 参数8
+ * @param param_9 参数9
+ * @param uiContext0 UI上下文参数0
+ * @return 处理结果状态码
+ * @note 原始函数名: FUN_1807193b0
+ */
+bool ProcessUIDataBuffer(longlong uiContext, longlong dataSource, int *targetBuffer, int bufferSize, int *resultPointer, uint *param_6,
+                        int param_7, uint param_8, int param_9, int uiContext0)
 
 {
   longlong allocatedMemory;

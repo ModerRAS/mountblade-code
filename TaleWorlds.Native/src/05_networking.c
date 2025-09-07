@@ -3124,13 +3124,13 @@ uint32_t NetworkConnectionOptions;                        // 网络连接选项
 uint32_t NetworkConnectionConfiguration;                         // 网络连接配置
 uint32_t NetworkConnectionGeneralSettings;                       // 网络连接设置
 uint32_t ConnectionContextIdentifier;                 // 网络连接上下文标识符
-uint32_t NetworkConnectionContextDataPointer;                  // 网络连接上下文数据指针
+uint32_t ConnectionContextDataPointer;                  // 连接上下文数据指针
 uint32_t NetworkConnectionContextConfiguration;                // 网络连接上下文配置
 uint32_t NetworkConnectionValidationStatus;              // 连接验证状态
 uint32_t NetworkConnectionValidationData;                // 连接验证数据
 uint32_t NetworkConnectionValidationDataSize;                // 连接验证数据大小
 uint32_t NetworkConnectionValidationCode;                // 连接验证码
-uint32_t NetworkConnectionBaseAddress;                  // 连接基地址
+uint32_t ConnectionBaseAddress;                  // 连接基地址
 uint32_t NetworkConnectionContextDataArray;                     // 连接上下文数据数组
 uint32_t NetworkConnectionContextDataArraySize;                 // 连接上下文数据数组大小
 uint32_t NetworkConnectionContextDataIndex;                     // 连接上下文数据索引

@@ -92246,7 +92246,19 @@ void ExceptionContextHandlerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910260(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文清理器260
+ * 
+ * 该函数负责清理异常处理上下文中的指定偏移量处的异常处理器
+ * 通过遍历异常上下文的不同偏移量，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基址，用于异常处理上下文
+ * @param dataBuffer 数据缓冲区，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_180910260
+ * @note 该函数处理偏移量0x60处的异常上下文
+ */
+void CleanupExceptionHandlerContext260(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -92260,7 +92272,19 @@ void Unwind_180910260(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910270(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 线程锁资源清理器270
+ * 
+ * 该函数负责清理线程锁资源，检查并释放SRW锁
+ * 如果数据缓冲区中的锁标志位被设置，则释放独占锁
+ * 
+ * @param operationBase 操作基址，用于线程锁管理
+ * @param dataBuffer 数据缓冲区，包含线程锁信息和标志位
+ * 
+ * @note 原始函数名：Unwind_180910270
+ * @note 该函数处理SRW锁的释放操作
+ */
+void CleanupThreadLockResource270(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(char *)(*(DataBuffer **)(dataBuffer + 0x40) + 1) != '\0') {
@@ -92271,7 +92295,19 @@ void Unwind_180910270(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910280(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据验证标志清理器280
+ * 
+ * 该函数负责清理数据验证标志，重置标志位并验证数据
+ * 如果验证标志位被设置，则清除标志并调用数据验证函数
+ * 
+ * @param operationBase 操作基址，用于数据验证管理
+ * @param dataBuffer 数据缓冲区，包含验证标志位和待验证数据
+ * 
+ * @note 原始函数名：Unwind_180910280
+ * @note 该函数处理数据验证标志的清理和验证操作
+ */
+void CleanupDataValidationFlag280(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
