@@ -200117,7 +200117,16 @@ void SetCharacterLimitA0(void)
 
 
 
-73950(voidvoid FUN_180173950(void
+/**
+ * @brief 系统终止函数A0
+ * 
+ * 该函数负责终止系统运行，调用核心引擎终止函数
+ * 
+ * @note 原始函数名：FUN_180173950
+ */
+#define TerminateSystemA0 FUN_180173950
+
+void TerminateSystemA0(void)
 {
                     // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();
