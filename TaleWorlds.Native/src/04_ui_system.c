@@ -46462,7 +46462,23 @@ int ProcessUIDataOperationStandard(undefined8 uiContext,int dataSource,undefined
 
 
 
-int FUN_18068fc10(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+/**
+ * @brief 处理UI数据操作（模式4）
+ * 
+ * 该函数负责处理UI系统中的数据操作，使用模式4处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18068fc10
+ */
+int ProcessUIDataOperationMode4(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
                  undefined8 resultPointer,int param_6,int *param_7)
 
 {
@@ -46476,7 +46492,23 @@ int FUN_18068fc10(undefined8 uiContext,int dataSource,undefined8 targetBuffer,un
 
 
 
-int FUN_18068fc80(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+/**
+ * @brief 处理UI数据操作（模式4标准）
+ * 
+ * 该函数负责处理UI系统中的数据操作，使用模式4标准处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18068fc80
+ */
+int ProcessUIDataOperationMode4Standard(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
                  undefined8 resultPointer,int param_6,int *param_7)
 
 {
@@ -46490,7 +46522,23 @@ int FUN_18068fc80(undefined8 uiContext,int dataSource,undefined8 targetBuffer,un
 
 
 
-int FUN_18068fcf0(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+/**
+ * @brief 处理UI数据操作（模式8）
+ * 
+ * 该函数负责处理UI系统中的数据操作，使用模式8处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18068fcf0
+ */
+int ProcessUIDataOperationMode8(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
                  undefined8 resultPointer,int param_6,int *param_7)
 
 {
@@ -46504,7 +46552,23 @@ int FUN_18068fcf0(undefined8 uiContext,int dataSource,undefined8 targetBuffer,un
 
 
 
-int FUN_18068fd60(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
+/**
+ * @brief 处理UI数据操作（模式8标准）
+ * 
+ * 该函数负责处理UI系统中的数据操作，使用模式8标准处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 操作参数6
+ * @param param_7 参数7指针，用于返回处理结果
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18068fd60
+ */
+int ProcessUIDataOperationMode8Standard(undefined8 uiContext,int dataSource,undefined8 targetBuffer,undefined8 bufferSize,
                  undefined8 resultPointer,int param_6,int *param_7)
 
 {
@@ -46535,7 +46599,21 @@ int PerformUIInitializationCheck(void)
 
 
 
-ulonglong FUN_18068fe10(undefined1 (*uiContext) [16],int dataSource,longlong targetBuffer,int bufferSize,
+/**
+ * @brief 处理UI系统上下文数据操作
+ * 
+ * 该函数负责处理UI系统中的上下文数据操作，包括数据验证、内存分配和结果计算
+ * 
+ * @param uiContext UI上下文指针数组
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18068fe10
+ */
+ulonglong ProcessUIContextDataOperation(undefined1 (*uiContext) [16],int dataSource,longlong targetBuffer,int bufferSize,
                        uint *resultPointer)
 
 {
@@ -46825,7 +46903,21 @@ ulonglong FUN_18068fe10(undefined1 (*uiContext) [16],int dataSource,longlong tar
 
 
 
-ulonglong FUN_18068ff60(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,uint *resultPointer)
+/**
+ * @brief 处理UI系统数据操作（扩展模式）
+ * 
+ * 该函数负责处理UI系统中的数据操作，使用扩展模式处理
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：FUN_18068ff60
+ */
+ulonglong ProcessUIDataOperationExtended(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,uint *resultPointer)
 
 {
   uint functionResult;

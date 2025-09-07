@@ -123,6 +123,12 @@
 #define ExceptionHandlerStatusOffset 0x168
 #define ExceptionHandlerStateOffset 0x178
 #define ExceptionHandlerTable2Offset 0x140
+
+// 资源清理函数D0相关常量
+#define ResourceFlagOffset 0x20
+#define ResourceFlagD0 2
+#define ResourceFlagMaskD0 0xfffffffd
+#define ResourceHandlerOffsetD0 0x88
 #define ExceptionHandlerStatus2Offset 0x148
 #define ExceptionHandlerState2Offset 0x158
 #define ExceptionHandlerTable3Offset 0x120
@@ -80195,12 +80201,24 @@ void SetExceptionHandlerF0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090cd00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源清理函数D0 - 简化实现
+ * 
+ * 检查数据缓冲区中的标志位，如果设置了特定的资源标志位，
+ * 则清除该标志位并调用资源清理处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源状态信息
+ * 
+ * @note 原始函数名：Unwind_18090cd00
+ * @note 这是一个简化实现，处理资源清理标志位
+ */
+void CleanupResourceD0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + 0x20) & 2) != 0) {
-    *(uint *)(dataBuffer + 0x20) = *(uint *)(dataBuffer + 0x20) & 0xfffffffd;
-    CleanupResourceHandler(dataBuffer + 0x88);
+  if ((*(uint *)(dataBuffer + ResourceFlagOffset) & ResourceFlagD0) != 0) {
+    *(uint *)(dataBuffer + ResourceFlagOffset) = *(uint *)(dataBuffer + ResourceFlagOffset) & ResourceFlagMaskD0;
+    CleanupResourceHandler(dataBuffer + ResourceHandlerOffsetD0);
   }
   return;
 }
