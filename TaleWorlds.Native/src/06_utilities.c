@@ -20007,17 +20007,17 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   char StackCharBufferA [4];
   uint8_t *StackPointerBufferA;
   DataWord StackDataWordB;
-  DataWord uStack_1b0;
+  DataWord StackDataWordC;
   float fStack_1a8;
   float fStack_1a4;
-  DataWord uStack_1a0;
+  DataWord StackDataWordD;
   float fStack_19c;
   float afStack_198 [2];
   DataBuffer *puStack_190;
   int64_t lStack_188;
   int64_t lStack_180;
   uint8_t *puStack_178;
-  DataWord uStack_170;
+  DataWord StackDataWordE;
   DataWord uStack_168;
   DataWord uStack_160;
   uint8_t *puStack_158;
@@ -20054,15 +20054,15 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&StackDataWordA);
   if (iterationCount == 0) {
     exceptionDataBuffer6 = (DataBuffer *)(dataBuffer + 8);
-    uStack_1a0 = 0;
+    StackDataWordD = 0;
     puStack_190 = exceptionDataBuffer6;
     bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + 8))(exceptionDataBuffer6);
-    iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&uStack_1a0);
+    iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&StackDataWordD);
     if (iterationCount == 0) {
-      uStack_170 = 0;
+      StackDataWordE = 0;
       puStack_178 = &DataValidationErrorBase;
-      uStack_160 = StackDataWordA;
-      uStack_168 = StackDataWordD;
+      StackDataWordG = StackDataWordA;
+      StackDataWordF = StackDataWordD;
       iterationCount = ValidateDataIntegrityA0(operationBase,&puStack_178);
       if (iterationCount == 0) {
         lStack_188 = (int64_t)*(int *)(dataContext + 0x28);
