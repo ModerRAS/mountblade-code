@@ -6346,6 +6346,17 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define SystemDataBufferC GlobalSystemDataBufferC                // 系统数据缓冲区C
 // 原始变量名：UNK_180982240 - 系统数据缓冲区D
 #define SystemDataBufferD GlobalSystemDataBufferD                // 系统数据缓冲区D
+
+// 数据缓冲区管理相关变量宏定义
+// 原始变量名：lRam0000000180d49d68 - 数据缓冲区起始地址
+#define DataBufferStartAddress lRam0000000180d49d68             // 数据缓冲区起始地址
+// 原始变量名：uRam0000000180d49d70 - 数据缓冲区大小计数器
+#define DataBufferSizeCounter uRam0000000180d49d70              // 数据缓冲区大小计数器
+// 原始变量名：lRam0000000180d49d78 - 数据缓冲区结束地址
+#define DataBufferEndAddress lRam0000000180d49d78               // 数据缓冲区结束地址
+// 原始变量名：uRam0000000180d49d58 - 数据缓冲区清理指针
+#define DataBufferCleanupPointer uRam0000000180d49d58           // 数据缓冲区清理指针
+
 // 原始变量名：_DAT_180bf64f8 - 默认异常处理器B指针
 #define DefaultExceptionHandlerBPointer GlobalDefaultExceptionHandlerBPointer     // 默认异常处理器B指针
 
@@ -103056,7 +103067,6 @@ void FreeSystemMemoryBuffer(void)
   SystemMemoryBaseExtendedTable = 0;
   SystemMemoryContextExtendedTable = 0xf;
 
-9429f0(void)
 /**
  * @brief 释放数据缓冲区资源
  * 
@@ -103075,28 +103085,27 @@ void FreeSystemMemoryBuffer(void)
 void ReleaseDataBufferResources(void)
 
 {
-  uint64_t BufferSize;
-  int64_t DataBufferPointer;
-  DataBuffer SecurityParameter;
+  uint64_t bufferSize;
+  int64_t dataBufferPointer;
+  DataBuffer securityParameter;
   
-  if (lRam0000000180d49d68 != 0) {
-    BufferSize = (lRam0000000180d49d78 - lRam0000000180d49d68 >> 3) * 8;
-    DataBufferPointer = lRam0000000180d49d68;
-    if (0xfff < BufferSize) {
-      DataBufferPointer = *(int64_t *)(lRam0000000180d49d68 + -8);
-      if (0x1f < (lRam0000000180d49d68 - DataBufferPointer) - 8U) {
+  if (DataBufferStartAddress != 0) {
+    bufferSize = (DataBufferEndAddress - DataBufferStartAddress >> 3) * 8;
+    dataBufferPointer = DataBufferStartAddress;
+    if (0xfff < bufferSize) {
+      dataBufferPointer = *(int64_t *)(DataBufferStartAddress + -8);
+      if (0x1f < (DataBufferStartAddress - dataBufferPointer) - 8U) {
           _invalid_parameter_noinfo_noreturn
-                  (lRam0000000180d49d68 - DataBufferPointer,BufferSize + 0x27,DataBufferPointer,SecurityParameter,SystemCleanupFlagAlternative);
+                  (DataBufferStartAddress - dataBufferPointer,bufferSize + 0x27,dataBufferPointer,securityParameter,SystemCleanupFlagAlternative);
       }
     }
-    free(DataBufferPointer);
-    lRam0000000180d49d68 = 0;
-    uRam0000000180d49d70 = 0;
-    lRam0000000180d49d78 = 0;
+    free(dataBufferPointer);
+    DataBufferStartAddress = 0;
+    DataBufferSizeCounter = 0;
+    DataBufferEndAddress = 0;
   }
-  ProcessMemoryAccess(&uRam0000000180d49d58);
-                     0x0001808ffc83. Too many branches
-                      free(uRam0000000180d49d58,0x40);
+  ProcessMemoryAccess(&DataBufferCleanupPointer);
+  free(DataBufferCleanupPointer,0x40);
   return;
 }
 
