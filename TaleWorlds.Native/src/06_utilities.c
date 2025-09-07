@@ -21488,8 +21488,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               SecurityValidationResultB = StackDataWordA;
               SecurityCheckValue = 0;
               dataPointer = (**(FunctionPointer**)*TemporaryPointerBufferB)(TemporaryPointerBufferB);
-              StackDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + 0x90) + bufferPointer * 8);
-              StackByteFlagA = 0;
+              TemporaryDataBufferV = *(DataBuffer *)(*(int64_t *)(dataPointer + 0x90) + bufferPointer * 8);
+              TemporaryByteFlagA = 0;
               if (*(int *)(calculatedOffset + 0x58) < 1) {
                 exceptionDataBuffer2 = &SystemResourceDataBuffer;
               }
@@ -21530,10 +21530,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
           }
-          iterationCount = ConvertDataFormatA2(dataContext,&StackFloatValueC,0);
+          iterationCount = ConvertDataFormatA2(dataContext,&InputFloatValueC,0);
           if (iterationCount == 0) {
-            if (StackFloatValueC != 1.0) {
-              StackFloatValueA = StackFloatValueC;
+            if (InputFloatValueC != 1.0) {
+              StackFloatValueA = InputFloatValueC;
               StackPointerBufferI = &FloatingPointValidationErrorA;
               TemporaryDataWordC = StackDataWordA;
               TemporaryDataWordB = 0;
@@ -110134,9 +110134,9 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：存储资源清理的状态数据字
 #define StackResourceCleanupStatus uStack_1a0
 
-// 原始变量名：StackFloatValueC - 栈浮点值C
+// 原始变量名：InputFloatValueC - 栈浮点值C
 // 功能：存储浮点运算的栈值
-#define StackFloatValueC StackFloatValueC
+#define InputFloatValueC InputFloatValueC
 
 // 栈变量宏定义 - 美化acStack变量
 // 原始变量名：systemNameBufferX - 栈系统状态
@@ -110303,7 +110303,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 原始变量名：uStack_e8 - 栈字节标志A
 // 功能：存储字节标志的栈变量
-#define StackByteFlagA uStack_e8
+#define TemporaryByteFlagA uStack_e8
 
 // 原始变量名：uStack_e4 - 栈数据缓冲区C
 // 功能：存储数据缓冲区的栈变量
@@ -110407,7 +110407,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 原始变量名：uStack_e8 - 栈数据缓冲区V
 // 功能：存储数据缓冲区的栈变量
-#define StackDataBufferV uStack_e8
+#define TemporaryDataBufferV uStack_e8
 
 // 原始变量名：puStack_1c0 - 栈指针缓冲区I
 // 功能：存储指针数据的栈缓冲区

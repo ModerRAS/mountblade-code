@@ -200059,7 +200059,16 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
 
 
 
-73887(voidvoid FUN_180173887(void
+/**
+ * @brief 窗口位置和大小设置函数A0
+ * 
+ * 该函数负责设置窗口的位置和大小，包括窗口属性调整和布局计算
+ * 
+ * @note 原始函数名：FUN_180173887
+ */
+#define ConfigureWindowPositionAndSizeA0 FUN_180173887
+
+void ConfigureWindowPositionAndSizeA0(void)
 {
   uint32_t MemoryAllocationSize;
   int CharacterTablePointer;
@@ -200085,7 +200094,16 @@ void ProcessSystemCharacterBuffer(long long CharacterCode, int Utf8BufferSize, i
 
 
 
-73923(voidvoid FUN_180173923(void
+/**
+ * @brief 字符限制设置函数A0
+ * 
+ * 该函数负责设置字符限制，并调用核心引擎实用函数
+ * 
+ * @note 原始函数名：FUN_180173923
+ */
+#define SetCharacterLimitA0 FUN_180173923
+
+void SetCharacterLimitA0(void)
 {
   uint32_t MemoryAllocationSize;
   uint32_t *CharacterLimit;
