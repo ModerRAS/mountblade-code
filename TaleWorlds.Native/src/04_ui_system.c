@@ -48153,7 +48153,7 @@ int CalculateUIChecksum(void)
 
 
 
- void FUN_1806905c0(undefined1 (*uiContext) [16],int dataSource,undefined1 (*targetBuffer) [16],int bufferSize,
+ void CalculateUIImageAbsoluteDifferenceAVX2(undefined1 (*uiContext) [16],int dataSource,undefined1 (*targetBuffer) [16],int bufferSize,
 /**
  * @brief 计算UI图像绝对差异（AVX2优化版本）
  * 
@@ -48242,7 +48242,7 @@ void CalculateUIImageAbsoluteDifferenceAVX2(undefined1 (*uiContext) [16],int dat
 
 
 
- void FUN_180690700(undefined1 (*uiContext) [32],int dataSource,undefined1 (*targetBuffer) [32],int bufferSize,
+ void CalculateUIImageSquareDifferenceSumAVX2(undefined1 (*uiContext) [32],int dataSource,undefined1 (*targetBuffer) [32],int bufferSize,
 /**
  * @brief 计算UI图像平方差异和（AVX2优化版本）
  * 
@@ -55198,7 +55198,7 @@ void InitializeUIDataStreamProcessor(undefined1 (*uiContext) [16],int dataSource
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1806935a0(undefined8 *uiContext,int dataSource,undefined1 (*targetBuffer) [16],
+ void InitializeUIRenderDataProcessor(undefined8 *uiContext,int dataSource,undefined1 (*targetBuffer) [16],
 /**
  * UI系统渲染数据处理器初始化函数
  * 
@@ -57230,7 +57230,7 @@ void InitializeUIRenderDataProcessor(undefined8 *uiContext,int dataSource,undefi
 
 
 
- void FUN_180694010(void)
+ void ProcessUIMainRenderer(void)
 /**
  * @brief UI系统主渲染器函数
  * 
@@ -58544,7 +58544,22 @@ longlong CalculateUIImageDifferenceAdvanced(longlong uiContext,int dataSource,lo
 
 
 
-longlong FUN_180695ac0(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,uint *resultPointer)
+/**
+ * @brief UI图像差异计算和统计分析函数
+ * 
+ * 该函数计算两个图像缓冲区之间的差异，并进行统计分析。
+ * 主要用于图像质量评估、相似度计算等UI图像处理操作。
+ * 
+ * @param uiContext 图像上下文指针
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，存储计算结果
+ * 
+ * @return 差异计算结果值
+ * @note 原始函数名: FUN_180695ac0
+ */
+longlong CalculateUIImageDifferenceStatistics(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,uint *resultPointer)
 
 {
   uint *pfunctionResult;
@@ -60020,8 +60035,21 @@ void InitializeUITextureProcessor(longlong uiContext,int dataSource,longlong tar
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180696540(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
-void FUN_180696540(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
+ /**
+ * @brief UI系统像素数据处理器函数
+ * 
+ * 该函数处理UI系统的像素数据，包括数据验证、转换和统计操作。
+ * 主要用于UI图像处理、像素级操作和数据管理。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，存储处理结果
+ * 
+ * @note 原始函数名: FUN_180696540
+ */
+void ProcessUIPixelData(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
 
 {
   int operationResult;
@@ -60144,8 +60172,21 @@ void FUN_180696540(longlong uiContext,int dataSource,longlong targetBuffer,int b
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180696710(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
-void FUN_180696710(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
+ /**
+ * @brief UI系统高级像素数据处理器函数
+ * 
+ * 该函数处理UI系统的高级像素数据操作，包括复杂的数据验证、转换和统计。
+ * 主要用于高级UI图像处理、像素级优化操作和数据管理。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，存储处理结果
+ * 
+ * @note 原始函数名: FUN_180696710
+ */
+void ProcessUIAdvancedPixelData(longlong uiContext,int dataSource,longlong targetBuffer,int bufferSize,int *resultPointer)
 
 {
   int operationResult;
@@ -60268,8 +60309,21 @@ void FUN_180696710(longlong uiContext,int dataSource,longlong targetBuffer,int b
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1806968e0(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
-void FUN_1806968e0(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
+ /**
+ * @brief UI系统无符号整数像素数据处理器函数
+ * 
+ * 该函数处理UI系统的无符号整数像素数据，包括数据验证、转换和统计操作。
+ * 主要用于UI图像处理、无符号像素级操作和数据管理。
+ * 
+ * @param uiContext UI上下文指针（无符号整数）
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区指针（无符号整数）
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，存储处理结果
+ * 
+ * @note 原始函数名: FUN_1806968e0
+ */
+void ProcessUIUnsignedPixelData(uint *uiContext,int dataSource,uint *targetBuffer,int bufferSize,int *resultPointer)
 
 {
   int operationResult;
