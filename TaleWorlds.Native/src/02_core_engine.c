@@ -129085,7 +129085,7 @@ LAB_18012aa45:
         fStack_190 = fStack_198 + *(float *)(SystemContextValue + 0x18 + LoopIterationCounter7 * 0x24);
         fStack_18c = fStack_194 + *(float *)(SystemContextValue + 0x1c + LoopIterationCounter7 * 0x24);
 LAB_18012ac57:
-        FUN_180129830(pSystemMemoryOffset238,pSystemFloatValue,&fStack_218);
+        ProcessSystemFloatOperation(pSystemMemoryOffset238,pSystemFloatValue,&fStack_218);
       }
     }
   }
@@ -129176,7 +129176,7 @@ LAB_18012ac57:
     CoreEngineUnsignedValue208 = 0x7f7fffff7f7fffff;
     fStack_218 = 3.4028235e+38;
     fStack_214 = 3.4028235e+38;
-    FUN_18012e1b0(SystemDataTablePointerA0);
+    CleanupSystemResources(SystemDataTablePointerA0);
     LoopIterationCounter7 = OperationStatus;
     MemoryBlockIndex0 = 0;
     pSystemFloatValue = (float *)0x180bf66e8;
