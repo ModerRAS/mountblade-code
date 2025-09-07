@@ -42092,7 +42092,17 @@ void InitializeExceptionHandler(DataBuffer contextHandle,int64_t contextOffset,D
 
 
 
-void Unwind_180903620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 验证上下文异常处理器初始化函数
+ * 
+ * 初始化验证上下文的异常处理器，设置临时和默认异常处理器
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void InitializeValidationContextExceptionHandler(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
