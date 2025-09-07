@@ -19668,18 +19668,18 @@ void CalculateUIComponentTransform(longlong component_ptr,longlong transform_mat
   float calculated_y;
   float calculated_z;
   undefined4 temp_dword;
-  float stack_f128;
-  float stack_f124;
-  float stack_f120;
-  float stack_f11c;
-  float stack_f118;
-  float stack_f114;
-  float stack_f110;
-  float stack_f10c;
-  float stack_f108;
-  float stack_f104;
-  float stack_f100;
-  float stack_fc;
+  float matrix_element_128;
+  float matrix_element_124;
+  float matrix_element_120;
+  float matrix_element_116;
+  float matrix_element_112;
+  float matrix_element_108;
+  float matrix_element_104;
+  float matrix_element_100;
+  float matrix_element_96;
+  float matrix_element_92;
+  float matrix_element_88;
+  float matrix_element_252;
   ulonglong encrypted_key;
   
   // 解密数据

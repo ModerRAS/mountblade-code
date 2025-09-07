@@ -4033,8 +4033,8 @@ Label_BufferSizeValidationConfirmed:
   SystemDataProcess(&SystemBufferPointer310,&SystemBufferPointer128,LoopCounterValue + 0xf,pMemoryAddress4);
   SystemBufferPointerE8 = (uint64_t *)0x0;
   SystemBufferPointerE0 = (uint64_t *)0x0;
-  uStack_d8 = 0;
-  uStack_d0 = 3;
+  SystemStackValue216 = 0;
+  SystemStackValue208 = 3;
   if (SystemOperationFlag != 0) {
     InitializeSystemBuffers(&SystemBufferPointer128,&SystemBufferPointerE8,&SystemStackBufferB);
   }
@@ -4049,7 +4049,7 @@ Label_MemoryOperationComplete:
       CleanupSystemResources();
     }
     StringProcessingCompleteFlag = 0;
-    uStack_f0 = 0;
+    SystemStackValue240 = 0;
     SystemStringTransferBuffer = &SystemBufferTemplate;
     SystemDataTransferBuffer = &SystemNullPointer;
     if (SystemTransferCompleteFlag != 0) {
@@ -4421,11 +4421,11 @@ Label_ModuleConfigurationStart:
     SystemInitializeSecondary(&SystemInitializationBufferA,0,0);
     ConfigureSystemComponent(&SystemConstantDD);
     SystemInitializationFlag = SystemFloatTwoValue;
-    auStack_2c8[0] = SystemFloatOneValue;
+    SystemStackBuffer712[0] = SystemFloatOneValue;
     StackParameter14 = 0x20000;
     StackParameterPointer = &SystemRegistrationBuffer;
     pplStack_328 = (longlong **)&StackCounter2f0;
-    RegisterSystemComponent(&SystemConstantEE,4,SystemConfigurationData + 0x167c,auStack_2c8);
+    RegisterSystemComponent(&SystemConstantEE,4,SystemConfigurationData + 0x167c,SystemStackBuffer712);
     plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x40000000);
     StackCounter48 = (longlong *)CONCAT44(StackCounter48._4_4_,0x3f800000);
     StackParameter14 = 0x20000;
@@ -4654,7 +4654,7 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
   }
   if (LongData != 0) {
     fclose(LongData);
-    lStack_40 = 0;
+    SystemStackValue64 = 0;
     LOCK();
     SystemReferenceCounter = SystemReferenceCounter + -1;
     UNLOCK();
@@ -4740,14 +4740,14 @@ ProcessMemoryAllocation(uint64_t *memoryPtr, ulonglong controlFlags, uint64_t me
         CleanupSystemResources();
       }
       pSystemStatusIndicator = (uint8_t *)0x0;
-      uStack_120 = uStack_120 & SystemMemoryAlignmentMask;
+      SystemStackValue288 = SystemStackValue288 & SystemMemoryAlignmentMask;
       StackPointerBuffer312 = &SystemBufferTemplate;
       pSystemOperationCounter = &SystemNullPointer;
       if (pMemoryAddress0 != (void *)0x0) {
         SystemBufferValidate(pMemoryAddress0);
       }
       SystemStringTransferBuffer = (uint8_t *)0x0;
-      uStack_f8 = uStack_f8 & SystemMemoryAlignmentMask;
+      SystemStackValue248 = SystemStackValue248 & SystemMemoryAlignmentMask;
       pSystemOperationCounter = &SystemBufferTemplate;
     }
   }
@@ -5819,8 +5819,8 @@ SystemMemoryPoolValidationSuccessLabel:
   ppppppplStack_108 = (longlong *******)&ppppppplStack_108;
   pppppppStringProcessingCompleteFlag = (longlong *******)&ppppppplStack_108;
   ppppppplStack_f8 = (longlong *******)0x0;
-  uStack_f0 = 0;
-  uStack_e8 = 0;
+  SystemStackValue240_2 = 0;
+  SystemStackValue232 = 0;
   if (ppppppSystemBufferPointer128 != (uint64_t *******)0x0) {
     ppppppplStack_f8 =
          (longlong *******)CreateSystemMemoryContext(&ppppppplStack_108,ppppppSystemBufferPointer128,&ppppppplStack_108);
@@ -7663,10 +7663,10 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
     }
     (**(code **)(ModuleInitializationResult + 0x330))(*(uint32_t *)(SystemStringProcessingBuffer + 0x10),pMemoryAllocationResult);
     StackBufferPointer2 = &SystemNullPointer;
-    if (lStack_40 != 0) {
+    if (SystemStackValue64_2 != 0) {
       CleanupSystemResources();
     }
-    lStack_40 = 0;
+    SystemStackValue64_2 = 0;
     StackCounter4 = 0;
     StackBufferPointer2 = &SystemBufferTemplate;
   }

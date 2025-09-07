@@ -15767,7 +15767,7 @@ void ExecuteUtilityDataValidation(int64_t validationContext,DataWord *validation
     if (((*(byte *)(calculatedOffset + 0xc4) & 1) != 0) &&
        ((systemContext = *(int64_t *)(calculatedOffset + 0x68), systemContext != 0 ||
         (operationResult = ProcessSystemConfigurationA0(operationBase,calculatedOffset,&systemContext), operationResult == 0)))) {
-      *param_3 = systemContext;
+      *operationFlagA = systemContext;
     }
   }
                     // WARNING: Subroutine does not return
@@ -15999,7 +15999,7 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
     }
     systemContext = *(int64_t *)(calculatedOffset + 0x48);
     if ((systemContext != 0) || (operationResult = ProcessSystemContextA0(operationBase,calculatedOffset,&systemContext), operationResult == 0)) {
-      *param_3 = systemContext;
+      *operationFlagA = systemContext;
     }
   }
                     // WARNING: Subroutine does not return
@@ -16959,10 +16959,10 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
       operationStatus = (**(FunctionPointer**)(destinationIndexRegister + 0xc0))
                         (dataFlags,register_EBX,*(DataWord *)(bufferPointer + 0x18),
                          *(DataBuffer *)(destinationIndexRegister + 0xb8));
-      param_3 = StackParameter48;
+      operationFlagA = StackParameter48;
       if (operationStatus != 0) goto ValidationSuccessLabel;
     }
-    if ((((characterFlag != '\0') && (operationStatus = *param_3, *param_3 = operationStatus + 1, operationStatus < 10)) &&
+    if ((((characterFlag != '\0') && (operationStatus = *operationFlagA, *operationFlagA = operationStatus + 1, operationStatus < 10)) &&
         ((*(uint *)(destinationIndexRegister + 0x6c) >> 0x18 & 1) == 0)) &&
        (((*(uint *)(destinationIndexRegister + 0x6c) >> 0x19 & 1) != 0 && (arrayIndex == *(int *)(destinationIndexRegister + 0xb0)))))
     {
@@ -17165,11 +17165,11 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
   
   if (((!in_ZF) && (*(int *)(operationBase + 0x78) != 0)) &&
      (arrayIndex = *(int *)(*(int64_t *)(in_R10 + 0x70) +
-                      (int64_t)(int)(*(int *)(operationBase + 0x78) - 1U & param_4) * 4), arrayIndex != -1)) {
+                      (int64_t)(int)(*(int *)(operationBase + 0x78) - 1U & operationFlagB) * 4), arrayIndex != -1)) {
     validationContext = *(int64_t *)(in_R10 + 0x80);
     do {
       dataContext = (int64_t)arrayIndex;
-      if (*(uint *)(validationContext + dataContext * 0x10) == param_4) {
+      if (*(uint *)(validationContext + dataContext * 0x10) == operationFlagB) {
         iStack0000000000000044 = (int)((uint64_t)*(DataBuffer *)(validationContext + 8 + dataContext * 0x10) >> 0x20)
         ;
         if (iStack0000000000000044 != 0) {
@@ -17184,7 +17184,7 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
   iStack0000000000000044 = 0;
 ValidationCompleteLabel:
   validationStatusPointer = (DataBuffer *)
-           ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + param_3 * 0xc) +
+           ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + operationFlagA * 0xc) +
            *(int64_t *)(in_R10 + 8));
   if (validationStatusPointer != (DataBuffer *)0x0) {
     (**(FunctionPointer**)*validationStatusPointer)();
@@ -17212,7 +17212,7 @@ DataBuffer ValidateDataIntegrityA2(int64_t DataDescriptor,DataBuffer ValidationC
     return 0;
   }
   resourcePointer = (DataBuffer *)
-           ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + param_3 * 0xc) +
+           ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + operationFlagA * 0xc) +
            *(int64_t *)(in_R10 + 8));
   if (resourcePointer != (DataBuffer *)0x0) {
     uStack0000000000000040 = systemDataBuffer;
@@ -17266,7 +17266,7 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
       do {
         dataPointer = (int64_t)operationResult;
         if (*(uint *)(bufferPointer + dataPointer * 0x10) == systemDataBuffer) {
-          *(DataBuffer *)(bufferPointer + 8 + dataPointer * 0x10) = *param_3;
+          *(DataBuffer *)(bufferPointer + 8 + dataPointer * 0x10) = *operationFlagA;
           return 0;
         }
         operationResult = *(int *)(bufferPointer + 4 + dataPointer * 0x10);
@@ -17307,7 +17307,7 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
       *(uint *)(operationBase + 4) = ploopCounter[1];
       ploopCounter[1] = SystemCleanupFlag;
       *ploopCounter = *dataBuffer;
-      *(DataBuffer *)(ploopCounter + 2) = *param_3;
+      *(DataBuffer *)(ploopCounter + 2) = *operationFlagA;
     }
     *referenceCountPointer3 = operationResult;
     *(int *)((int64_t)operationBase + 0x24) = *(int *)((int64_t)operationBase + 0x24) + 1;
@@ -18316,7 +18316,7 @@ DataBuffer ValidateAndProcessDataOperation(int64_t operationContext,DataBuffer i
   systemDataBuffer = ValidateNetworkConnectionA0(outputData,operationContext + 0x10);
   if ((int)systemDataBuffer == 0) {
     *(DataWord *)(operationBase + 0x14) = 0;
-    if ((1 < *(int *)(operationBase + 0x10)) && (systemDataBuffer = ValidateNetworkStatusA0(param_3), (int)systemDataBuffer != 0)) {
+    if ((1 < *(int *)(operationBase + 0x10)) && (systemDataBuffer = ValidateNetworkStatusA0(operationFlagA), (int)systemDataBuffer != 0)) {
       return systemDataBuffer;
     }
     systemDataBuffer = 0;
@@ -18376,13 +18376,13 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   
   colorDataWord = ExceptionEncryptionKey ^ (uint64_t)auStack_328;
   loopIndex = 0;
-  if (param_3 != 0) {
+  if (operationFlagA != 0) {
     operationStatus = *(int *)(dataBuffer + 0x220);
     if (operationStatus == 0) {
       puStack_278 = &UNK_180982508;
       uStack_270 = 0;
       uStack_264 = 0;
-      uStack_268 = param_3;
+      uStack_268 = operationFlagA;
       InitializeMemory(auStack_260,*(DataBuffer *)(dataBuffer + 0x228),0x200);
       ppdataFlags = &puStack_278;
 SecurityValidationLabel:
@@ -18401,11 +18401,11 @@ SecurityValidationLabel:
         uStack_2c8 = 0;
         uStack_2c0 = 0;
         uStack_2b8 = 0;
-        uStack_2ac = param_3;
+        uStack_2ac = operationFlagA;
         goto ProcessCheckpointSystemCleanup;
       }
       puStack_2f8 = &UNK_180982588;
-      lStack_2d8 = (uint64_t)param_3 << 0x20;
+      lStack_2d8 = (uint64_t)operationFlagA << 0x20;
       uStack_2e8 = *(DataBuffer *)(dataBuffer + 0x228);
       uStack_2e0 = (uint64_t)CONCAT14(operationStatus != 1,*(DataWord *)(dataBuffer + 0x230));
       operationStatus = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
@@ -18418,7 +18418,7 @@ SecurityValidationLabel:
     iStack_2a0 = 0;
     puStack_2a8 = &UNK_180985a80;
     uStack_284 = 0;
-    uStack_288 = param_3;
+    uStack_288 = operationFlagA;
     operationStatus = ValidateDataIntegrityA0(operationBase,&puStack_2a8);
     if (operationStatus != 0) GOTO_SecurityCheckFailed;
     calculatedValue = 0;
@@ -18427,15 +18427,15 @@ SecurityValidationLabel:
       do {
         iStack_2f0 = 0;
         puStack_2f8 = &UNK_180982cc0;
-        uStack_2e8 = CONCAT44(uStack_2e8._4_4_,param_3);
+        uStack_2e8 = CONCAT44(uStack_2e8._4_4_,operationFlagA);
         arrayIndex = ValidateDataIntegrityA0(operationBase,&puStack_2f8);
         if (arrayIndex != 0) GOTO_SecurityCheckFailed;
         calculatedValue = calculatedValue + 1;
       } while (calculatedValue < operationStatus);
     }
   }
-  if (((param_4 != '\0') || (*(int *)(*(int64_t *)(dataBuffer + 0x2e8) + 0x34) == 0)) &&
-     (operationStatus = ConfigureSystemParametersA0(operationBase,dataBuffer,param_3), operationStatus == 0)) {
+  if (((operationFlagB != '\0') || (*(int *)(*(int64_t *)(dataBuffer + 0x2e8) + 0x34) == 0)) &&
+     (operationStatus = ConfigureSystemParametersA0(operationBase,dataBuffer,operationFlagA), operationStatus == 0)) {
     for (operationStatus = 0; (-1 < operationStatus && (operationStatus < *(int *)(dataBuffer + 0x48))); operationStatus = operationStatus + 1) {
       validationContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + (int64_t)operationStatus * 8);
       dataContext = *(int64_t *)(validationContext + 0x68);
@@ -18451,7 +18451,7 @@ SecurityValidationLabel:
         arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = calculatedValue;
-        uStack_298 = param_3;
+        uStack_298 = operationFlagA;
         iStack_290 = loopIndex;
         loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2a8);
         if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
@@ -18498,7 +18498,7 @@ SecurityValidationLabel:
         arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = calculatedValue;
-        uStack_298 = param_3;
+        uStack_298 = operationFlagA;
         iStack_290 = loopIndex;
         loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2a8);
         if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
@@ -18545,7 +18545,7 @@ SecurityValidationLabel:
         arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = calculatedValue;
-        uStack_298 = param_3;
+        uStack_298 = operationFlagA;
         iStack_290 = loopIndex;
         loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2a8);
         if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
@@ -18592,7 +18592,7 @@ SecurityValidationLabel:
         arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = calculatedValue;
-        uStack_298 = param_3;
+        uStack_298 = operationFlagA;
         iStack_290 = loopIndex;
         loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2a8);
         if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
@@ -18642,7 +18642,7 @@ SecurityValidationLabel:
         arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = calculatedValue;
-        uStack_298 = param_3;
+        uStack_298 = operationFlagA;
         iStack_290 = loopIndex;
         loopIndex = ValidateDataIntegrityA0(operationBase,&puStack_2a8);
         if ((loopIndex != 0) || (calculatedValue = ValidateDataA2(dataContext,afStack_304,0), calculatedValue != 0)) break;
@@ -20131,7 +20131,7 @@ OperationFailedLabel:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ProcessDataBlockWithSecurityCheck(int64_t *operationBase,DataBuffer dataBuffer,DataBuffer param_3,DataBuffer param_4)
+// 函数: void ProcessDataBlockWithSecurityCheck(int64_t *operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 // 
 // 数据块安全处理函数
 // 对数据块进行安全处理，包括数据加密、验证和安全检查
@@ -20139,8 +20139,8 @@ OperationFailedLabel:
 // 参数:
 //   operationBase - 指向数据处理上下文的指针
 //   dataBuffer - 要处理的数据块指针
-//   param_3 - 处理参数1
-//   param_4 - 处理参数2
+//   operationFlagA - 处理参数1
+//   operationFlagB - 处理参数2
 // 
 // 返回值:
 //   void - 无返回值
@@ -20807,7 +20807,7 @@ DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
 // 原始函数名：FUN_1808988b0 - 数据处理函数A2
 // 功能：处理复杂数据结构并执行相应操作
 #define ProcessComplexDataA2 FUN_1808988b0
-DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuffer *param_3)
+DataBuffer ProcessComplexDataA2(int64_t *operationBase,char *dataBuffer,DataBuffer *operationFlagA)
 
 {
   char *pcVar1;
@@ -20880,8 +20880,8 @@ SystemCheckpointB:
     if (((char)(exceptionDataBuffer1[1] >> 0x18) == '\0') && ((int)securityCheckResult < (int)operationBase[3])) {
       resourcePointer = (DataBuffer *)(operationBase[2] + (uint64_t)securityCheckResult * 0x10);
       memoryBaseAddress = resourcePointer[1];
-      *param_3 = *resourcePointer;
-      param_3[1] = memoryBaseAddress;
+      *operationFlagA = *resourcePointer;
+      operationFlagA[1] = memoryBaseAddress;
       return 0;
     }
   }
@@ -21112,15 +21112,15 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
   int processStatus;
   int *stackParameter;
   
-  if (param_3 != (DataWord *)0x0) {
+  if (operationFlagA != (DataWord *)0x0) {
     dataBuffer = (DataWord *)(systemContext[2] + (int64_t)dataBuffer * 0x10);
     finalResult = dataBuffer[1];
     operationResult = exceptionDataBuffer[2];
     dataFlags = exceptionDataBuffer[3];
-    *param_3 = *exceptionDataBuffer;
-    param_3[1] = systemDataBuffer7;
-    param_3[2] = operationResult;
-    param_3[3] = dataFlags;
+    *operationFlagA = *exceptionDataBuffer;
+    operationFlagA[1] = systemDataBuffer7;
+    operationFlagA[2] = operationResult;
+    operationFlagA[3] = dataFlags;
   }
   inputParameter8 = 0;
   systemDataBuffer2 = 0;
@@ -26159,7 +26159,7 @@ DataBuffer ProcessDataSequenceA1(int64_t operationBase,DataBuffer *dataBuffer)
 
 
 
-89be10(int64_t operationBase,DataBuffer *dataBuffer,int param_3)
+89be10(int64_t operationBase,DataBuffer *dataBuffer,int operationFlagA)
 void ValidateAndProcessDataB0(int64_t dataContext,DataBuffer *dataPointer,int validationFlag)
 
 {
@@ -26252,7 +26252,7 @@ void ValidateAndProcessDataB0(int64_t dataContext,DataBuffer *dataPointer,int va
     }
   }
 DataProcessLabelC:
-  if (param_3 == 0) {
+  if (operationFlagA == 0) {
     operationResult = ProcessDataOperationA0(operationBase,dataBuffer);
   }
   else {
@@ -32350,7 +32350,7 @@ uint64_t ValidateDataBufferWithParameters(DataBuffer bufferA,DataBuffer bufferB,
   
   operationResult = 0x1c;
   if (0x7e < in_EAX) goto ProcessCheckpointValidationExit2;
-  if (*(int *)(destinationIndexRegister[1] + 0x18) != (int)param_3) {
+  if (*(int *)(destinationIndexRegister[1] + 0x18) != (int)operationFlagA) {
     return 0x1c;
   }
   validationContextPointer = (int64_t *)*destinationIndexRegister;
@@ -32359,15 +32359,15 @@ uint64_t ValidateDataBufferWithParameters(DataBuffer bufferA,DataBuffer bufferB,
     memoryBaseAddress = 0x1c;
   }
   else {
-    if (validationContextPointer[2] == param_3) {
+    if (validationContextPointer[2] == operationFlagA) {
 ValidationStartHandler:
-      memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x41,register_R12D,4,param_3);
+      memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x41,register_R12D,4,operationFlagA);
     }
     else {
-      *(int *)(stackFramePointer + 0x77) = (int)param_3;
+      *(int *)(stackFramePointer + 0x77) = (int)operationFlagA;
       memoryBaseAddress = AllocateMemory(dataContext,stackFramePointer + 0x77);
       if ((int)memoryBaseAddress == 0) {
-        param_3 = 0;
+        operationFlagA = 0;
         if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + 0x77) + 4) {
           memoryBaseAddress = 0x11;
           goto ProcessCheckpointValidationContext3;
@@ -32375,7 +32375,7 @@ ValidationStartHandler:
         goto ProcessCheckpointValidationStart2;
       }
     }
-    param_3 = 0;
+    operationFlagA = 0;
   }
 ProcessCheckpointValidationContext3:
   if ((int)memoryBaseAddress != 0) {
@@ -32386,7 +32386,7 @@ ProcessCheckpointValidationContext3:
   *(char *)(stackFramePointer + 0x7f) = (char)memoryBaseAddress;
   bVar8 = false;
   if (*(uint *)(destinationIndexRegister + 8) < 0x38) {
-    memoryBaseAddress = param_3 & SystemCleanupFlag;
+    memoryBaseAddress = operationFlagA & SystemCleanupFlag;
   }
   else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
     validationContextPointer = (int64_t *)*destinationIndexRegister;
@@ -32406,7 +32406,7 @@ ValidationStateHandler2:
         validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,0);
         goto ProcessCheckpointValidationError5;
       }
-      *(int *)(stackFramePointer + -0x45) = (int)param_3;
+      *(int *)(stackFramePointer + -0x45) = (int)operationFlagA;
       validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x45);
       bVar7 = validationStatus == 0;
       if (bVar7) {
@@ -32417,7 +32417,7 @@ ValidationStateHandler2:
         goto ProcessCheckpointValidationState2;
       }
     }
-    param_3 = 0;
+    operationFlagA = 0;
     memoryBaseAddress = (uint64_t)validationStatus;
     if (bVar7) {
       memoryBaseAddress = 0;
@@ -32430,7 +32430,7 @@ ValidationStateHandler2:
     return memoryBaseAddress;
   }
   if (*(uint *)(destinationIndexRegister + 8) < 0x67) {
-    memoryBaseAddress = param_3 & SystemCleanupFlag;
+    memoryBaseAddress = operationFlagA & SystemCleanupFlag;
   }
   else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
     validationContextPointer = (int64_t *)*destinationIndexRegister;
@@ -32441,13 +32441,13 @@ ValidationStateHandler2:
     else {
       if (validationContextPointer[2] == 0) {
 ValidationDataHandler2:
-        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,operationFlagA);
       }
       else {
-        *(int *)(stackFramePointer + -0x45) = (int)param_3;
+        *(int *)(stackFramePointer + -0x45) = (int)operationFlagA;
         validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
-          param_3 = 0;
+          operationFlagA = 0;
           if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
             validationStatus = 0x11;
             goto ProcessCheckpointValidationError6;
@@ -32455,7 +32455,7 @@ ValidationDataHandler2:
           goto ProcessCheckpointValidationData2;
         }
       }
-      param_3 = 0;
+      operationFlagA = 0;
     }
 ValidationErrorHandler7:
     if (validationStatus == 0) {
@@ -32463,7 +32463,7 @@ ValidationErrorHandler7:
     }
     memoryBaseAddress = (uint64_t)validationStatus;
     if (validationStatus == 0) {
-      memoryBaseAddress = param_3 & SystemCleanupFlag;
+      memoryBaseAddress = operationFlagA & SystemCleanupFlag;
     }
   }
   else {
@@ -32473,7 +32473,7 @@ ValidationErrorHandler7:
     return memoryBaseAddress;
   }
   if (*(uint *)(destinationIndexRegister + 8) < 0x79) {
-    memoryBaseAddress = param_3 & SystemCleanupFlag;
+    memoryBaseAddress = operationFlagA & SystemCleanupFlag;
   }
   else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
     validationContextPointer = (int64_t *)*destinationIndexRegister;
@@ -32484,13 +32484,13 @@ ValidationErrorHandler7:
     else {
       if (validationContextPointer[2] == 0) {
 ValidationStateHandler3:
-        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,operationFlagA);
       }
       else {
-        *(int *)(stackFramePointer + -0x45) = (int)param_3;
+        *(int *)(stackFramePointer + -0x45) = (int)operationFlagA;
         validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
-          param_3 = 0;
+          operationFlagA = 0;
           if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
             validationStatus = 0x11;
             goto ProcessCheckpointValidationError7;
@@ -32498,7 +32498,7 @@ ValidationStateHandler3:
           goto ProcessCheckpointValidationState3;
         }
       }
-      param_3 = 0;
+      operationFlagA = 0;
     }
 ValidationErrorHandler8:
     if (validationStatus == 0) {
@@ -32506,7 +32506,7 @@ ValidationErrorHandler8:
     }
     memoryBaseAddress = (uint64_t)validationStatus;
     if (validationStatus == 0) {
-      memoryBaseAddress = param_3 & SystemCleanupFlag;
+      memoryBaseAddress = operationFlagA & SystemCleanupFlag;
     }
   }
   else {
@@ -32516,7 +32516,7 @@ ValidationErrorHandler8:
     return memoryBaseAddress;
   }
   if (*(uint *)(destinationIndexRegister + 8) < 0x7a) {
-    memoryBaseAddress = param_3 & SystemCleanupFlag;
+    memoryBaseAddress = operationFlagA & SystemCleanupFlag;
   }
   else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
     validationContextPointer = (int64_t *)*destinationIndexRegister;
@@ -32527,13 +32527,13 @@ ValidationErrorHandler8:
     else {
       if (validationContextPointer[2] == 0) {
 ProcessCheckpointValidationState4:
-        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,operationFlagA);
       }
       else {
-        *(int *)(stackFramePointer + -0x45) = (int)param_3;
+        *(int *)(stackFramePointer + -0x45) = (int)operationFlagA;
         validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
-          param_3 = 0;
+          operationFlagA = 0;
           if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
             validationStatus = 0x11;
             goto ProcessCheckpointValidationError8;
@@ -32541,7 +32541,7 @@ ProcessCheckpointValidationState4:
           goto ProcessCheckpointValidationState4;
         }
       }
-      param_3 = 0;
+      operationFlagA = 0;
     }
 ProcessCheckpointValidationError8:
     if (validationStatus == 0) {
@@ -32549,7 +32549,7 @@ ProcessCheckpointValidationError8:
     }
     memoryBaseAddress = (uint64_t)validationStatus;
     if (validationStatus == 0) {
-      memoryBaseAddress = param_3 & SystemCleanupFlag;
+      memoryBaseAddress = operationFlagA & SystemCleanupFlag;
     }
   }
   else {
@@ -32559,7 +32559,7 @@ ProcessCheckpointValidationError8:
     return memoryBaseAddress;
   }
   if (*(uint *)(destinationIndexRegister + 8) < 0x7b) {
-    memoryBaseAddress = param_3 & SystemCleanupFlag;
+    memoryBaseAddress = operationFlagA & SystemCleanupFlag;
   }
   else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
     validationContextPointer = (int64_t *)*destinationIndexRegister;
@@ -32570,13 +32570,13 @@ ProcessCheckpointValidationError8:
     else {
       if (validationContextPointer[2] == 0) {
 ProcessCheckpointValidationState5:
-        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,operationFlagA);
       }
       else {
-        *(int *)(stackFramePointer + -0x45) = (int)param_3;
+        *(int *)(stackFramePointer + -0x45) = (int)operationFlagA;
         validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
-          param_3 = 0;
+          operationFlagA = 0;
           if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
             validationStatus = 0x11;
             goto ProcessCheckpointValidationError9;
@@ -32584,7 +32584,7 @@ ProcessCheckpointValidationState5:
           goto ProcessCheckpointValidationState5;
         }
       }
-      param_3 = 0;
+      operationFlagA = 0;
     }
 ProcessCheckpointValidationError9:
     if (validationStatus == 0) {
@@ -32592,7 +32592,7 @@ ProcessCheckpointValidationError9:
     }
     memoryBaseAddress = (uint64_t)validationStatus;
     if (validationStatus == 0) {
-      memoryBaseAddress = param_3 & SystemCleanupFlag;
+      memoryBaseAddress = operationFlagA & SystemCleanupFlag;
     }
   }
   else {
@@ -32603,13 +32603,13 @@ ProcessCheckpointValidationError9:
   }
   if ((((!bVar6) && (*(char *)(stackFramePointer + 0x77) == '\0')) && (*(char *)(stackFramePointer + 0x7f) == '\0'))
      && (!bVar8)) {
-    register_R12D = (DataWord)param_3;
+    register_R12D = (DataWord)operationFlagA;
   }
   *(DataWord *)(register_R15 + 0x38) = register_R12D;
   in_EAX = *(uint *)(destinationIndexRegister + 8);
 ProcessCheckpointValidationExit2:
   if (in_EAX < 0x7f) {
-    operationResult = param_3 & SystemCleanupFlag;
+    operationResult = operationFlagA & SystemCleanupFlag;
   }
   else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
     validationStatus = OperateDataO0(*destinationIndexRegister,register_R15 + 0x38,4);
@@ -33202,9 +33202,9 @@ void UtilityNoOperationAA(void)
  * 
  * @param operationBase 操作参数的基地址
  * @param dataBuffer 数据缓冲区指针
- * @param param_3 操作标志位A
- * @param param_4 操作标志位B
- * @param param_5 操作模式标志
+ * @param operationFlagA 操作标志位A
+ * @param operationFlagB 操作标志位B
+ * @param operationMode 操作模式标志
  * @return uint64_t 操作状态码，0表示成功，非0表示错误码
  */
 uint64_t ValidateDataBufferOperation(int64_t operationBase,DataBuffer *dataBuffer,DataWord operationFlagA,DataWord operationFlagB,
@@ -33216,14 +33216,14 @@ uint64_t ValidateDataBufferOperation(int64_t operationBase,DataBuffer *dataBuffe
   ByteFlag auStack_70 [64];
   ByteFlag auStack_30 [40];
   
-  operationResult = ExecuteDataBufferOperation(dataBuffer,auStack_30,1,0x5453494c,param_3);
-  if (((int)operationResult == 0) && (operationResult = ExecuteDataBufferOperation(dataBuffer,auStack_70,0,param_4,0), (int)operationResult == 0))
+  operationResult = ExecuteDataBufferOperation(dataBuffer,auStack_30,1,0x5453494c,operationFlagA);
+  if (((int)operationResult == 0) && (operationResult = ExecuteDataBufferOperation(dataBuffer,auStack_70,0,operationFlagB,0), (int)operationResult == 0))
   {
     if (*(int *)(dataBuffer[1] + 0x18) == 0) {
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0x10);
       operationResult = (uint64_t)systemDataBuffer;
       if ((systemDataBuffer == 0) &&
-         ((param_5 == '\0' || (operationResult = ValidateDataSecurityContext(operationBase + 0x48,dataBuffer), (int)operationResult == 0)))) {
+         ((operationMode == '\0' || (operationResult = ValidateDataSecurityContext(operationBase + 0x48,dataBuffer), (int)operationResult == 0)))) {
                     // WARNING: Subroutine does not return
         ExecuteSystemCleanupRoutine(dataBuffer,auStack_70);
       }
@@ -33237,7 +33237,14 @@ uint64_t ValidateDataBufferOperation(int64_t operationBase,DataBuffer *dataBuffe
 
 
 
-uint64_t FUN_18089f571(void)
+/**
+ * @brief 系统状态查询函数
+ * 
+ * 查询系统当前状态和运行时信息
+ * 
+ * @return uint64_t 系统状态码
+ */
+uint64_t QuerySystemStatus(void)
 
 {
   uint systemDataBuffer;
@@ -34642,14 +34649,14 @@ void ExceptionHandlerA0(void)
 
 
 
-void ExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa0) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa0),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa0),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -34672,19 +34679,19 @@ void ExceptionUnwindHandlerA20(DataBuffer ExceptionContext, int64_t ExceptionHan
 
 
 
-// 函数: void ExceptionUnwindHandlerA21(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+// 函数: void ExceptionUnwindHandlerA21(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 /**
  * @brief 异常展开处理器A21
  * @details 处理异常展开过程中的特定操作，调用相关的异常处理回调
  */
-void ExceptionUnwindHandlerA21(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionUnwindHandlerA21(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa0) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa0),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa0),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -35554,12 +35561,12 @@ void ExceptionRecoveryHandlerB6(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @param operationBase 异常上下文指针
  * @param dataBuffer 资源管理器指针
- * @param param_3 扩展参数1
- * @param param_4 扩展参数2
+ * @param operationFlagA 扩展参数1
+ * @param operationFlagB 扩展参数2
  * 
  * @note 原始函数名：Unwind_1809024d0
  */
-void ExceptionRecoveryHandlerB7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionRecoveryHandlerB7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -35569,7 +35576,7 @@ void ExceptionRecoveryHandlerB7(DataBuffer operationBase,int64_t dataBuffer,Data
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x128);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x120); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x120) == 0) {
     return;
@@ -35642,12 +35649,12 @@ void ExceptionRecoveryHandlerB9(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @param operationBase 异常上下文指针
  * @param dataBuffer 资源管理器指针
- * @param param_3 扩展参数1
- * @param param_4 扩展参数2
+ * @param operationFlagA 扩展参数1
+ * @param operationFlagB 扩展参数2
  * 
  * @note 原始函数名：Unwind_180902500
  */
-void ExceptionRecoveryHandlerB10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionRecoveryHandlerB10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -35657,7 +35664,7 @@ void ExceptionRecoveryHandlerB10(DataBuffer operationBase,int64_t dataBuffer,Dat
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x128);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x120); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x120) == 0) {
     return;
@@ -35940,16 +35947,16 @@ void ExceptionRecoveryHandlerB22(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @param operationBase 异常上下文参数
  * @param dataBuffer 异常处理数据指针
- * @param param_3 异常处理参数1
- * @param param_4 异常处理参数2
+ * @param operationFlagA 异常处理参数1
+ * @param operationFlagB 异常处理参数2
  * 
  * @note 原始函数名：Unwind_180902590
  */
-void ExceptionRecoveryHandlerB23(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionRecoveryHandlerB23(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36397,14 +36404,14 @@ void DestroyMutexResources(void)
  * 调用清理函数处理偏移量 0x78 的资源
  * @param operationBase 上下文参数
  * @param dataBuffer 目标结构体指针
- * @param param_3 清理参数1
- * @param param_4 清理参数2
+ * @param operationFlagA 清理参数1
+ * @param operationFlagB 清理参数2
  */
-void CallCleanupFunctionForOffset78(DataBuffer operationBase, int64_t dataBuffer, DataBuffer param_3, DataBuffer param_4)
+void CallCleanupFunctionForOffset78(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   FUN_1803aeb70(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36509,17 +36516,17 @@ void DestroyMutexResources2(void)
  * 调用清理函数处理偏移量 0x78 的资源并检查空指针
  * @param operationBase 上下文参数
  * @param dataBuffer 目标结构体指针
- * @param param_3 清理参数1
- * @param param_4 清理参数2
+ * @param operationFlagA 清理参数1
+ * @param operationFlagB 清理参数2
  */
-void CallCleanupFunctionForOffset78WithCheck(DataBuffer operationBase, int64_t dataBuffer, DataBuffer param_3, DataBuffer param_4)
+void CallCleanupFunctionForOffset78WithCheck(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x78),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x78),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -36604,14 +36611,14 @@ void HandleExceptionRecoveryI0(DataBuffer context, int64_t exceptionData, DataBu
  * 
  * @param operationBase 上下文参数1
  * @param dataBuffer 上下文参数2，包含系统状态信息
- * @param param_3 异常代码参数
- * @param param_4 异常处理标志
+ * @param operationFlagA 异常代码参数
+ * @param operationFlagB 异常处理标志
  */
-void ExceptionHandler790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionHandler790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   ProcessSystemDataWithEncryption(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36624,17 +36631,17 @@ void ExceptionHandler790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
  * 
  * @param operationBase 上下文参数1
  * @param dataBuffer 上下文参数2，包含系统状态信息
- * @param param_3 异常代码参数
- * @param param_4 异常处理标志
+ * @param operationFlagA 异常代码参数
+ * @param operationFlagB 异常处理标志
  */
-void ExceptionHandler7A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionHandler7A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *resourcePointer;
   
   resourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x70) + 0x30);
   if (resourcePointer != (DataBuffer *)0x0) {
-    ValidateSystemConfiguration(*(int64_t *)(dataBuffer + 0x70) + 0x20,*resourcePointer,param_3,param_4,SystemCleanupFlagfffffffe);
+    ValidateSystemConfiguration(*(int64_t *)(dataBuffer + 0x70) + 0x20,*resourcePointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     ManageMemory(resourcePointer);
   }
@@ -36650,17 +36657,17 @@ void ExceptionHandler7A0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
  * 
  * @param operationBase 上下文参数1
  * @param dataBuffer 上下文参数2，包含系统状态信息
- * @param param_3 异常代码参数
- * @param param_4 异常处理标志
+ * @param operationFlagA 异常代码参数
+ * @param operationFlagB 异常处理标志
  */
-void ExceptionHandler7B0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionHandler7B0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *systemResourcePointer;
   
   systemResourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x70) + 0x60);
   if (systemResourcePointer != (DataBuffer *)0x0) {
-    ValidateSystemConfiguration(*(int64_t *)(dataBuffer + 0x70) + 0x50,*systemResourcePointer,param_3,param_4,SystemCleanupFlagfffffffe);
+    ValidateSystemConfiguration(*(int64_t *)(dataBuffer + 0x70) + 0x50,*systemResourcePointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     ManageMemory(systemResourcePointer);
   }
@@ -36766,18 +36773,18 @@ void ExceptionResourceCleanupA1(DataBuffer exceptionContext,int64_t resourceMana
  * 
  * @param operationBase 系统上下文句柄
  * @param dataBuffer 异常状态结构指针
- * @param param_3 清理参数1
- * @param param_4 清理参数2
+ * @param operationFlagA 清理参数1
+ * @param operationFlagB 清理参数2
  * @note 原始函数名：Unwind_180902800
  */
-void CleanupExceptionAtOffset120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionAtOffset120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *resourcePointer;
   
   resourcePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
   if (resourcePointer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x78),*resourcePointer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x78),*resourcePointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(resourcePointer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(resourcePointer);
@@ -36794,11 +36801,11 @@ void CleanupExceptionAtOffset120(DataBuffer operationBase,int64_t dataBuffer,Dat
  * 
  * @note 原始函数名：Unwind_180902810
  */
-void CleanupExceptionAtOffset112(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionAtOffset112(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x70) + 0x18,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x28),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x28),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -36812,11 +36819,11 @@ void CleanupExceptionAtOffset112(DataBuffer operationBase,int64_t dataBuffer,Dat
  * 
  * @note 原始函数名：Unwind_180902820
  */
-void CleanupExceptionAtOffset96(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionAtOffset96(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1801fef10(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36829,16 +36836,16 @@ void CleanupExceptionAtOffset96(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @param operationBase 上下文参数1
  * @param dataBuffer 上下文参数2，包含异常状态信息
- * @param param_3 清理参数1
- * @param param_4 清理参数2
+ * @param operationFlagA 清理参数1
+ * @param operationFlagB 清理参数2
  * 
  * @note 原始函数名：Unwind_180902830
  */
-void ExceptionCleanupHandler830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionCleanupHandler830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1801fef10(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36851,16 +36858,16 @@ void ExceptionCleanupHandler830(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @param operationBase 上下文参数1
  * @param dataBuffer 上下文参数2，包含异常状态信息
- * @param param_3 清理参数1
- * @param param_4 清理参数2
+ * @param operationFlagA 清理参数1
+ * @param operationFlagB 清理参数2
  * 
  * @note 原始函数名：Unwind_180902840
  */
-void ExceptionCleanupHandler840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionCleanupHandler840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1801fef10(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36873,16 +36880,16 @@ void ExceptionCleanupHandler840(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @param operationBase 上下文参数1
  * @param dataBuffer 上下文参数2，包含异常状态信息
- * @param param_3 清理参数1
- * @param param_4 清理参数2
+ * @param operationFlagA 清理参数1
+ * @param operationFlagB 清理参数2
  * 
  * @note 原始函数名：Unwind_180902850
  */
-void ExceptionCleanupHandler850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionCleanupHandler850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36895,16 +36902,16 @@ void ExceptionCleanupHandler850(DataBuffer operationBase,int64_t dataBuffer,Data
  * 
  * @param operationBase 上下文参数1
  * @param dataBuffer 上下文参数2，包含异常状态信息
- * @param param_3 清理参数1
- * @param param_4 清理参数2
+ * @param operationFlagA 清理参数1
+ * @param operationFlagB 清理参数2
  * 
  * @note 原始函数名：Unwind_180902860
  */
-void ExceptionCleanupHandler860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionCleanupHandler860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36984,16 +36991,16 @@ void ResourceReferenceManager880(DataBuffer operationBase,int64_t dataBuffer)
  * @brief 异常清理处理器 - 系统资源释放
  * @param operationBase 异常上下文指针
  * @param dataBuffer 异常处理状态数据
- * @param param_3 清理标志位
- * @param param_4 系统保留参数
+ * @param operationFlagA 清理标志位
+ * @param operationFlagB 系统保留参数
  * @note 原始函数名：Unwind_180902890
  * @note 简化实现：直接调用系统清理函数处理特定偏移的资源
  */
-void ExceptionCleanupHandler_SystemResourceRelease(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionCleanupHandler_SystemResourceRelease(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800582b0(*(int64_t *)(dataBuffer + 0x70) + 0x40,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x50),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x50),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -37047,16 +37054,16 @@ void ResourceManager_ReferenceCountCleanup(DataBuffer operationBase,int64_t data
  * @brief 系统调用处理器 - 上下文清理
  * @param operationBase 异常上下文指针
  * @param dataBuffer 异常处理状态数据
- * @param param_3 清理标志位
- * @param param_4 系统保留参数
+ * @param operationFlagA 清理标志位
+ * @param operationFlagB 系统保留参数
  * @note 原始函数名：Unwind_1809028c0
  * @note 简化实现：调用系统清理函数处理特定偏移的上下文数据
  */
-void SystemCallHandler_ContextCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void SystemCallHandler_ContextCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800582b0(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37066,16 +37073,16 @@ void SystemCallHandler_ContextCleanup(DataBuffer operationBase,int64_t dataBuffe
  * @brief 系统调用处理器 - 上下文资源释放
  * @param operationBase 异常上下文指针
  * @param dataBuffer 异常处理状态数据
- * @param param_3 清理标志位
- * @param param_4 系统保留参数
+ * @param operationFlagA 清理标志位
+ * @param operationFlagB 系统保留参数
  * @note 原始函数名：Unwind_1809028d0
  * @note 简化实现：调用系统清理函数处理上下文资源释放
  */
-void SystemCallHandler_ContextResourceRelease(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void SystemCallHandler_ContextResourceRelease(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800582b0(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37216,11 +37223,11 @@ void ExceptionCleanupHandlerResourceRef(DataBuffer operationBase,int64_t dataBuf
  * @param param3 额外参数3
  * @param param4 额外参数4
  */
-void SystemCallHandlerCleanupFunc1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void SystemCallHandlerCleanupFunc1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x70) + 0x28,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x38),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x38),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -37240,11 +37247,11 @@ void SystemCallHandlerCleanupFunc1(DataBuffer operationBase,int64_t dataBuffer,D
  * @param param3 额外参数3
  * @param param4 额外参数4
  */
-void SystemCallHandlerCleanupFunc2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void SystemCallHandlerCleanupFunc2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37263,11 +37270,11 @@ void SystemCallHandlerCleanupFunc2(DataBuffer operationBase,int64_t dataBuffer,D
  * @param param3 额外参数3
  * @param param4 额外参数4
  */
-void SystemCallHandlerCleanupFunc3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void SystemCallHandlerCleanupFunc3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37810,11 +37817,11 @@ void ExceptionCleanupHandlerMemoryContext3(DataBuffer operationBase,int64_t data
  * @param param3 额外参数3
  * @param param4 额外参数4
  */
-void SystemCallHandlerCleanupFunc4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void SystemCallHandlerCleanupFunc4(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058420(*(int64_t *)(dataBuffer + 0x70),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37880,11 +37887,11 @@ void ExceptionCleanupHandlerResourceRef2(DataBuffer operationBase,int64_t dataBu
  * @param param3 额外参数3
  * @param param4 额外参数4
  */
-void SystemCallHandlerCleanupFunc5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void SystemCallHandlerCleanupFunc5(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x70) + 0x50,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x60),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x60),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -37904,11 +37911,11 @@ void SystemCallHandlerCleanupFunc5(DataBuffer operationBase,int64_t dataBuffer,D
  * @param param3 额外参数3
  * @param param4 额外参数4
  */
-void SystemCallHandlerCleanupFunc6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void SystemCallHandlerCleanupFunc6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058420(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37927,11 +37934,11 @@ void SystemCallHandlerCleanupFunc6(DataBuffer operationBase,int64_t dataBuffer,D
  * @param param3 额外参数3
  * @param param4 额外参数4
  */
-void SystemCallHandlerCleanupFunc7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void SystemCallHandlerCleanupFunc7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058420(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -38445,7 +38452,7 @@ void CleanupThreadResource(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -38455,9 +38462,9 @@ void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x38);
   validationStatus = SystemCleanupFlagfffffffe;
   *exceptionDataBuffer = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,param_3,param_4,SystemCleanupFlagfffffffe);
+  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,param_3,param_4,validationStatus);
+    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
@@ -38482,28 +38489,28 @@ void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
 
 
 
-void CleanupSyncObject(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupSyncObject(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x60) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x60),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x60),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void CleanupMutexLock(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupMutexLock(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x60) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x60),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x60),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -39191,16 +39198,16 @@ void SetDefaultExceptionHandlerBAtOffset438(DataBuffer operationBase,int64_t dat
  * 
  * @param operationBase 系统上下文参数
  * @param dataBuffer 资源管理参数
- * @param param_3 清理操作参数1
- * @param param_4 清理操作参数2
+ * @param operationFlagA 清理操作参数1
+ * @param operationFlagB 清理操作参数2
  * 
  * @note 原始函数名：Unwind_180902f00
  */
-void ExecuteSystemResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExecuteSystemResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058710(*(int64_t *)(dataBuffer + 0x40) + 0x858,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x868),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x868),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -39327,11 +39334,11 @@ void CleanupResourceReference(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void CleanupSystemResource(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupSystemResource(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x40) + 0x8e8,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x8f8),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x8f8),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -39357,14 +39364,14 @@ void ResetSystemHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void CleanupDataResourceA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupDataResourceA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x948);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40) + 0x938,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40) + 0x938,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -39374,14 +39381,14 @@ void CleanupDataResourceA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
 
 
 
-void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x978);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40) + 0x968,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40) + 0x968,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -39391,14 +39398,14 @@ void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
 
 
 
-void ExceptionDataProcessorA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionDataProcessorA1(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -39408,14 +39415,14 @@ void ExceptionDataProcessorA1(DataBuffer operationBase,int64_t dataBuffer,DataBu
 
 
 
-void ExceptionDataProcessorA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionDataProcessorA2(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -39425,74 +39432,74 @@ void ExceptionDataProcessorA2(DataBuffer operationBase,int64_t dataBuffer,DataBu
 
 
 
-void CleanupDataResourceE(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupDataResourceE(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void CleanupDataResourceF(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupDataResourceF(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void CleanupDataResourceG(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupDataResourceG(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058710(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void ExceptionDataProcessorA3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExceptionDataProcessorA3(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058710(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void CleanupExceptionDataBufferA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionDataBufferA(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058710(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void CleanupExceptionDataBufferB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionDataBufferB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058710(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void CleanupExceptionDataBufferWithValidation(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionDataBufferWithValidation(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -39510,10 +39517,10 @@ void CleanupExceptionDataBufferWithValidation(DataBuffer operationBase,int64_t d
  * 
  * @param operationBase 异常处理参数1
  * @param dataBuffer 异常处理参数2，包含数据值指针信息
- * @param param_3 异常处理参数3
- * @param param_4 异常处理参数4
+ * @param operationFlagA 异常处理参数3
+ * @param operationFlagB 异常处理参数4
  */
-void CleanupDataValuePointer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupDataValuePointer(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *DataValuePointer;
@@ -39522,7 +39529,7 @@ void CleanupDataValuePointer(DataBuffer operationBase,int64_t dataBuffer,DataBuf
   DataValuePointer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (DataValuePointer != (DataBuffer *)0x0) {
     // 调用一系列清理函数处理8位数据值指针
-    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40),*DataValuePointer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800587d0(*(int64_t *)(dataBuffer + 0x40),*DataValuePointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_18005cb60(DataValuePointer);
     FUN_18064e900(DataValuePointer);
   }
@@ -39531,7 +39538,7 @@ void CleanupDataValuePointer(DataBuffer operationBase,int64_t dataBuffer,DataBuf
 
 
 
-void CleanupExceptionResourceWithValidation(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionResourceWithValidation(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -39541,7 +39548,7 @@ void CleanupExceptionResourceWithValidation(DataBuffer operationBase,int64_t dat
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x30);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x28); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x28) == 0) {
     return;
@@ -39612,7 +39619,7 @@ void CleanupMemoryResourcesF0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void CleanupSystemResources100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupSystemResources100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -39621,7 +39628,7 @@ void CleanupSystemResources100(DataBuffer operationBase,int64_t dataBuffer,DataB
   validationContext = *(int64_t *)(dataBuffer + 0x70);
   operationResult = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),param_3,param_4,operationResult);
+  FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
   FUN_180058370(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
   FUN_180058370(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
   FUN_1800593f0(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
@@ -39939,7 +39946,7 @@ void CleanupValidationContext(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void CleanupSystemMemoryWithFunctionCall(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupSystemMemoryWithFunctionCall(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -39948,7 +39955,7 @@ void CleanupSystemMemoryWithFunctionCall(DataBuffer operationBase,int64_t dataBu
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   operationResult = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),param_3,param_4,operationResult);
+  FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
   FUN_180058370(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
   FUN_180058370(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
   FUN_1800593f0(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
@@ -40211,31 +40218,31 @@ void ExecuteSystemCleanupG(DataBuffer dataBuffer, int64_t executionContext, Data
 
 
 
-void Unwind_1809032e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809032e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800593f0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809032f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809032f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800593f0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180903300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800593f0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -40297,14 +40304,14 @@ void Unwind_180903320(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180903330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x80) + 0x30);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x80) + 0x20,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x80) + 0x20,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -40313,14 +40320,14 @@ void Unwind_180903330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x88) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x88),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x88),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -41224,7 +41231,7 @@ void InitializeExceptionHandler(DataBuffer contextHandle,int64_t contextOffset,D
   exceptionDataBuffer[0x19] = 0;
   *(DataWord *)(exceptionDataBuffer + 0x1b) = 0;
   exceptionDataBuffer[0x18] = &DefaultExceptionHandlerB;
-  FUN_18005d260(exceptionDataBuffer + 0x12,exceptionDataBuffer[0x14],param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_18005d260(exceptionDataBuffer + 0x12,exceptionDataBuffer[0x14],operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   if (exceptionDataBuffer[0xd] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41246,14 +41253,14 @@ void InitializeExceptionHandler(DataBuffer contextHandle,int64_t contextOffset,D
 
 
 
-void Unwind_180903620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x140) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x140))(validationContext + 0x130,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x140))(validationContext + 0x130,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x108) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x110) != 0) {
@@ -41276,14 +41283,14 @@ void Unwind_180903620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1b0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1b0))(validationContext + 0x1a0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1b0))(validationContext + 0x1a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x178) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x180) != 0) {
@@ -41306,14 +41313,14 @@ void Unwind_180903640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x220) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x220))(validationContext + 0x210,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x220))(validationContext + 0x210,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1f0) != 0) {
@@ -41336,14 +41343,14 @@ void Unwind_180903660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x290) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x290))(validationContext + 0x280,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x290))(validationContext + 0x280,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 600) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x260) != 0) {
@@ -41366,14 +41373,14 @@ void Unwind_180903680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809036a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809036a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x300) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x300))(validationContext + 0x2f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x300))(validationContext + 0x2f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2d0) != 0) {
@@ -41396,14 +41403,14 @@ void Unwind_1809036a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809036c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809036c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x370) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x370))(validationContext + 0x360,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x370))(validationContext + 0x360,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x338) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x340) != 0) {
@@ -41426,14 +41433,14 @@ void Unwind_1809036c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809036e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809036e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x3e0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x3e0))(validationContext + 0x3d0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x3e0))(validationContext + 0x3d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x3a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x3b0) != 0) {
@@ -41456,14 +41463,14 @@ void Unwind_1809036e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x450) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x450))(validationContext + 0x440,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x450))(validationContext + 0x440,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x418) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x420) != 0) {
@@ -41486,14 +41493,14 @@ void Unwind_180903700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x510) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x510))(validationContext + 0x500,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x510))(validationContext + 0x500,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4e8) != 0) {
@@ -41540,14 +41547,14 @@ void Unwind_180903720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x580) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x580))(validationContext + 0x570,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x580))(validationContext + 0x570,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x548) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x550) != 0) {
@@ -41570,7 +41577,7 @@ void Unwind_180903740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -41585,7 +41592,7 @@ void Unwind_180903760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   exceptionDataBuffer[0x19] = 0;
   *(DataWord *)(exceptionDataBuffer + 0x1b) = 0;
   exceptionDataBuffer[0x18] = &DefaultExceptionHandlerB;
-  FUN_18005d260(exceptionDataBuffer + 0x12,exceptionDataBuffer[0x14],param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_18005d260(exceptionDataBuffer + 0x12,exceptionDataBuffer[0x14],operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   if (exceptionDataBuffer[0xd] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -41607,14 +41614,14 @@ void Unwind_180903760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x140) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x140))(validationContext + 0x130,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x140))(validationContext + 0x130,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x108) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x110) != 0) {
@@ -41637,14 +41644,14 @@ void Unwind_180903770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1b0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1b0))(validationContext + 0x1a0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1b0))(validationContext + 0x1a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x178) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x180) != 0) {
@@ -41667,14 +41674,14 @@ void Unwind_180903790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809037b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809037b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x220) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x220))(validationContext + 0x210,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x220))(validationContext + 0x210,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1f0) != 0) {
@@ -41697,14 +41704,14 @@ void Unwind_1809037b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809037d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809037d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x290) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x290))(validationContext + 0x280,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x290))(validationContext + 0x280,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 600) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x260) != 0) {
@@ -41727,14 +41734,14 @@ void Unwind_1809037d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809037f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809037f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x300) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x300))(validationContext + 0x2f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x300))(validationContext + 0x2f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2d0) != 0) {
@@ -41757,14 +41764,14 @@ void Unwind_1809037f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x370) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x370))(validationContext + 0x360,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x370))(validationContext + 0x360,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x338) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x340) != 0) {
@@ -41787,14 +41794,14 @@ void Unwind_180903810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x3e0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x3e0))(validationContext + 0x3d0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x3e0))(validationContext + 0x3d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x3a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x3b0) != 0) {
@@ -41817,14 +41824,14 @@ void Unwind_180903830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x450) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x450))(validationContext + 0x440,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x450))(validationContext + 0x440,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x418) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x420) != 0) {
@@ -41847,14 +41854,14 @@ void Unwind_180903850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x510) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x510))(validationContext + 0x500,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x510))(validationContext + 0x500,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4e8) != 0) {
@@ -41901,14 +41908,14 @@ void Unwind_180903870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x580) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x580))(validationContext + 0x570,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x580))(validationContext + 0x570,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x548) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x550) != 0) {
@@ -41969,42 +41976,42 @@ void Unwind_1809038c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809038d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809038d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x88) + 0x60);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x88) + 0x50,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x88) + 0x50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809038e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809038e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x90) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x90),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x90),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809038f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809038f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x4c0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x4c0))(validationContext + 0x4b0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x4c0))(validationContext + 0x4b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x488) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x490) != 0) {
@@ -42027,14 +42034,14 @@ void Unwind_1809038f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x530) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x530))(validationContext + 0x520,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x530))(validationContext + 0x520,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x4f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x500) != 0) {
@@ -42057,14 +42064,14 @@ void Unwind_180903910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x5a0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x5a0))(validationContext + 0x590,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x5a0))(validationContext + 0x590,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x568) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x570) != 0) {
@@ -42087,14 +42094,14 @@ void Unwind_180903930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903950(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903950(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x610) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x5d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x5e0) != 0) {
@@ -42117,14 +42124,14 @@ void Unwind_180903950(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903970(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903970(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x680) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x680))(validationContext + 0x670,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x680))(validationContext + 0x670,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x648) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x650) != 0) {
@@ -42147,14 +42154,14 @@ void Unwind_180903970(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903990(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903990(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x6f0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x6f0))(validationContext + 0x6e0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x6f0))(validationContext + 0x6e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x6b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x6c0) != 0) {
@@ -42192,7 +42199,7 @@ void ValidateExceptionContextA0(DataBuffer exceptionContext, int64_t contextPoin
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x760) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x760))(validationContext + 0x750,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x760))(validationContext + 0x750,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x728) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x730) != 0) {
@@ -42215,14 +42222,14 @@ void ValidateExceptionContextA0(DataBuffer exceptionContext, int64_t contextPoin
 
 
 
-void Unwind_1809039d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809039d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 2000) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 2000))(validationContext + 0x7c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 2000))(validationContext + 0x7c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x798) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x7a0) != 0) {
@@ -42245,14 +42252,14 @@ void Unwind_1809039d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809039f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809039f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x840) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x840))(validationContext + 0x830,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x840))(validationContext + 0x830,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x808) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x810) != 0) {
@@ -42275,14 +42282,14 @@ void Unwind_1809039f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903a10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903a10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x8b0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x8b0))(validationContext + 0x8a0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x8b0))(validationContext + 0x8a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x878) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x880) != 0) {
@@ -42305,14 +42312,14 @@ void Unwind_180903a10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x920) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x920))(validationContext + 0x910,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x920))(validationContext + 0x910,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x8e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x8f0) != 0) {
@@ -42335,14 +42342,14 @@ void Unwind_180903a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903a50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903a50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x990) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x990))(validationContext + 0x980,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x990))(validationContext + 0x980,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x958) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x960) != 0) {
@@ -42365,14 +42372,14 @@ void Unwind_180903a50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903a70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903a70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xa08) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xa08))(validationContext + 0x9f8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xa08))(validationContext + 0x9f8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x9d0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9d8) != 0) {
@@ -42395,14 +42402,14 @@ void Unwind_180903a70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903a90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903a90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xa80) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xa80))(validationContext + 0xa70,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xa80))(validationContext + 0xa70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xa48) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa50) != 0) {
@@ -42425,14 +42432,14 @@ void Unwind_180903a90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -42477,42 +42484,42 @@ void Unwind_180903ad0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180903ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x68);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x58,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x58,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180903af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x58) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x58),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x58),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180903b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x4c0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x4c0))(validationContext + 0x4b0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x4c0))(validationContext + 0x4b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x488) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x490) != 0) {
@@ -42535,14 +42542,14 @@ void Unwind_180903b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x530) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x530))(validationContext + 0x520,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x530))(validationContext + 0x520,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x4f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x500) != 0) {
@@ -42565,14 +42572,14 @@ void Unwind_180903b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x5a0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x5a0))(validationContext + 0x590,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x5a0))(validationContext + 0x590,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x568) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x570) != 0) {
@@ -42595,14 +42602,14 @@ void Unwind_180903b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x610) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x5d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x5e0) != 0) {
@@ -42625,14 +42632,14 @@ void Unwind_180903b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x680) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x680))(validationContext + 0x670,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x680))(validationContext + 0x670,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x648) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x650) != 0) {
@@ -42655,14 +42662,14 @@ void Unwind_180903b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x6f0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x6f0))(validationContext + 0x6e0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x6f0))(validationContext + 0x6e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x6b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x6c0) != 0) {
@@ -42685,14 +42692,14 @@ void Unwind_180903ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x760) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x760))(validationContext + 0x750,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x760))(validationContext + 0x750,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x728) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x730) != 0) {
@@ -42715,14 +42722,14 @@ void Unwind_180903bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 2000) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 2000))(validationContext + 0x7c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 2000))(validationContext + 0x7c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x798) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x7a0) != 0) {
@@ -42745,14 +42752,14 @@ void Unwind_180903be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x840) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x840))(validationContext + 0x830,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x840))(validationContext + 0x830,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x808) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x810) != 0) {
@@ -42775,14 +42782,14 @@ void Unwind_180903c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x8b0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x8b0))(validationContext + 0x8a0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x8b0))(validationContext + 0x8a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x878) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x880) != 0) {
@@ -42805,14 +42812,14 @@ void Unwind_180903c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x920) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x920))(validationContext + 0x910,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x920))(validationContext + 0x910,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x8e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x8f0) != 0) {
@@ -42835,14 +42842,14 @@ void Unwind_180903c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x990) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x990))(validationContext + 0x980,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x990))(validationContext + 0x980,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x958) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x960) != 0) {
@@ -42865,14 +42872,14 @@ void Unwind_180903c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xa08) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xa08))(validationContext + 0x9f8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xa08))(validationContext + 0x9f8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x9d0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9d8) != 0) {
@@ -42895,14 +42902,14 @@ void Unwind_180903c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xa80) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xa80))(validationContext + 0xa70,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xa80))(validationContext + 0xa70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xa48) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa50) != 0) {
@@ -42963,28 +42970,28 @@ void Unwind_180903cd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180903ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x88) + 0x68);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x88) + 0x58,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x88) + 0x58,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180903cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 400) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 400))(validationContext + 0x180,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 400))(validationContext + 0x180,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x160) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x168) != 0) {
@@ -43031,14 +43038,14 @@ void Unwind_180903cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x250) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x250))(validationContext + 0x240,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x250))(validationContext + 0x240,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x220) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x228) != 0) {
@@ -43085,14 +43092,14 @@ void Unwind_180903d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903d30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903d30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x310) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x310))(validationContext + 0x300,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x310))(validationContext + 0x300,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2e8) != 0) {
@@ -43139,14 +43146,14 @@ void Unwind_180903d30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903d50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903d50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x3d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x3d0))(validationContext + 0x3c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x3d0))(validationContext + 0x3c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x3a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x3a8) != 0) {
@@ -43193,14 +43200,14 @@ void Unwind_180903d50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903d70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903d70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x490) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x490))(validationContext + 0x480,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x490))(validationContext + 0x480,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x460) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x468) != 0) {
@@ -43247,14 +43254,14 @@ void Unwind_180903d70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x550) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x550))(validationContext + 0x540,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x550))(validationContext + 0x540,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x520) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x528) != 0) {
@@ -43301,14 +43308,14 @@ void Unwind_180903d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903db0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903db0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x610) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x5e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x5e8) != 0) {
@@ -43355,14 +43362,14 @@ void Unwind_180903db0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903dd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903dd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x6d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x6d0))(validationContext + 0x6c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x6d0))(validationContext + 0x6c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x6a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x6a8) != 0) {
@@ -43409,14 +43416,14 @@ void Unwind_180903dd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903df0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903df0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x790) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x790))(validationContext + 0x780,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x790))(validationContext + 0x780,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x760) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x768) != 0) {
@@ -43463,14 +43470,14 @@ void Unwind_180903df0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903e10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903e10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x850) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x850))(validationContext + 0x840,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x850))(validationContext + 0x840,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x820) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x828) != 0) {
@@ -43517,14 +43524,14 @@ void Unwind_180903e10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903e30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903e30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x910) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x910))(validationContext + 0x900,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x910))(validationContext + 0x900,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x8e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x8e8) != 0) {
@@ -43571,14 +43578,14 @@ void Unwind_180903e30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x9d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x9d0))(validationContext + 0x9c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x9d0))(validationContext + 0x9c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x9a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9a8) != 0) {
@@ -43625,14 +43632,14 @@ void Unwind_180903e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xa90) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xa90))(validationContext + 0xa80,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xa90))(validationContext + 0xa80,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xa60) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa68) != 0) {
@@ -43679,14 +43686,14 @@ void Unwind_180903e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xb50) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xb20) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb28) != 0) {
@@ -43733,14 +43740,14 @@ void Unwind_180903e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903eb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903eb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xc10) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xc10))(validationContext + 0xc00,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xc10))(validationContext + 0xc00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xbe0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xbe8) != 0) {
@@ -43787,14 +43794,14 @@ void Unwind_180903eb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903ed0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903ed0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xcd0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xcd0))(validationContext + 0xcc0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xcd0))(validationContext + 0xcc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xca0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xca8) != 0) {
@@ -43841,14 +43848,14 @@ void Unwind_180903ed0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xd40) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xd40))(validationContext + 0xd30,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xd40))(validationContext + 0xd30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xd08) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xd10) != 0) {
@@ -43871,14 +43878,14 @@ void Unwind_180903ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903f10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903f10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xdb0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xdb0))(validationContext + 0xda0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xdb0))(validationContext + 0xda0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xd78) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xd80) != 0) {
@@ -43901,14 +43908,14 @@ void Unwind_180903f10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903f30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903f30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xe20) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xe20))(validationContext + 0xe10,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xe20))(validationContext + 0xe10,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xde8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xdf0) != 0) {
@@ -43931,14 +43938,14 @@ void Unwind_180903f30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xee0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xee0))(validationContext + 0xed0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xee0))(validationContext + 0xed0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xeb0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xeb8) != 0) {
@@ -43985,14 +43992,14 @@ void Unwind_180903f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 4000) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 4000))(validationContext + 0xf90,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 4000))(validationContext + 0xf90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xf70) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf78) != 0) {
@@ -44039,14 +44046,14 @@ void Unwind_180903f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1060) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1060))(validationContext + 0x1050,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1060))(validationContext + 0x1050,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1030) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1038) != 0) {
@@ -44093,14 +44100,14 @@ void Unwind_180903f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x10d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x10d0))(validationContext + 0x10c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x10d0))(validationContext + 0x10c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1098) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x10a0) != 0) {
@@ -44123,14 +44130,14 @@ void Unwind_180903fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1140) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1140))(validationContext + 0x1130,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1140))(validationContext + 0x1130,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1108) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1110) != 0) {
@@ -44153,14 +44160,14 @@ void Unwind_180903fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180903ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180903ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x11b0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x11b0))(validationContext + 0x11a0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x11b0))(validationContext + 0x11a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1178) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1180) != 0) {
@@ -44183,14 +44190,14 @@ void Unwind_180903ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904010(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904010(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1220) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1220))(validationContext + 0x1210,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1220))(validationContext + 0x1210,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x11e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x11f0) != 0) {
@@ -44213,14 +44220,14 @@ void Unwind_180904010(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1290) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1290))(validationContext + 0x1280,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1290))(validationContext + 0x1280,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1258) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1260) != 0) {
@@ -44243,14 +44250,14 @@ void Unwind_180904030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1300) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1300))(validationContext + 0x12f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1300))(validationContext + 0x12f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x12c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x12d0) != 0) {
@@ -44273,14 +44280,14 @@ void Unwind_180904050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1370) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1370))(validationContext + 0x1360,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1370))(validationContext + 0x1360,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1338) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1340) != 0) {
@@ -44303,7 +44310,7 @@ void Unwind_180904070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -44315,7 +44322,7 @@ void Unwind_180904090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 5000);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -44326,7 +44333,7 @@ void Unwind_180904090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809040b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809040b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -44338,7 +44345,7 @@ void Unwind_1809040b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x13a8);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -44368,28 +44375,28 @@ void Unwind_1809040d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809040e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809040e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x60);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0x50,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0x50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809040f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809040f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x28),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x28),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -44415,14 +44422,14 @@ void Unwind_180904100(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x60);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x50,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -44524,14 +44531,14 @@ void Unwind_180904160(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0xb0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0xa0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0xa0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -44557,28 +44564,28 @@ void Unwind_1809041a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809041b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809041b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0xb0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0xa0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0xa0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809041d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809041d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 400) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 400))(validationContext + 0x180,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 400))(validationContext + 0x180,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x160) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x168) != 0) {
@@ -44625,14 +44632,14 @@ void Unwind_1809041d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809041f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809041f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x250) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x250))(validationContext + 0x240,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x250))(validationContext + 0x240,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x220) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x228) != 0) {
@@ -44679,14 +44686,14 @@ void Unwind_1809041f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x310) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x310))(validationContext + 0x300,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x310))(validationContext + 0x300,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2e8) != 0) {
@@ -44733,14 +44740,14 @@ void Unwind_180904210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904230(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904230(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x3d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x3d0))(validationContext + 0x3c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x3d0))(validationContext + 0x3c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x3a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x3a8) != 0) {
@@ -44787,14 +44794,14 @@ void Unwind_180904230(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x490) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x490))(validationContext + 0x480,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x490))(validationContext + 0x480,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x460) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x468) != 0) {
@@ -44841,14 +44848,14 @@ void Unwind_180904250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x550) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x550))(validationContext + 0x540,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x550))(validationContext + 0x540,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x520) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x528) != 0) {
@@ -44895,14 +44902,14 @@ void Unwind_180904270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x610) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x610))(validationContext + 0x600,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x5e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x5e8) != 0) {
@@ -44949,14 +44956,14 @@ void Unwind_180904290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809042b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809042b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x6d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x6d0))(validationContext + 0x6c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x6d0))(validationContext + 0x6c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x6a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x6a8) != 0) {
@@ -45003,14 +45010,14 @@ void Unwind_1809042b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809042d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809042d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x790) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x790))(validationContext + 0x780,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x790))(validationContext + 0x780,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x760) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x768) != 0) {
@@ -45057,14 +45064,14 @@ void Unwind_1809042d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809042f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809042f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x850) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x850))(validationContext + 0x840,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x850))(validationContext + 0x840,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x820) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x828) != 0) {
@@ -45253,14 +45260,14 @@ void ExceptionUnwindHandlerE1(DataBuffer exceptionContext, int64_t unwindContext
 
 
 
-void Unwind_180904350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xa90) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xa90))(validationContext + 0xa80,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xa90))(validationContext + 0xa80,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xa60) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa68) != 0) {
@@ -45307,14 +45314,14 @@ void Unwind_180904350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904370(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904370(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xb50) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xb20) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb28) != 0) {
@@ -45361,14 +45368,14 @@ void Unwind_180904370(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xc10) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xc10))(validationContext + 0xc00,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xc10))(validationContext + 0xc00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xbe0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xbe8) != 0) {
@@ -45415,14 +45422,14 @@ void Unwind_180904390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809043b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809043b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xcd0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xcd0))(validationContext + 0xcc0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xcd0))(validationContext + 0xcc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xca0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xca8) != 0) {
@@ -45469,14 +45476,14 @@ void Unwind_1809043b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809043d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809043d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xd40) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xd40))(validationContext + 0xd30,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xd40))(validationContext + 0xd30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xd08) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xd10) != 0) {
@@ -45499,14 +45506,14 @@ void Unwind_1809043d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809043f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809043f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xdb0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xdb0))(validationContext + 0xda0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xdb0))(validationContext + 0xda0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xd78) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xd80) != 0) {
@@ -45529,14 +45536,14 @@ void Unwind_1809043f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xe20) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xe20))(validationContext + 0xe10,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xe20))(validationContext + 0xe10,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xde8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xdf0) != 0) {
@@ -45559,14 +45566,14 @@ void Unwind_180904410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xee0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xee0))(validationContext + 0xed0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xee0))(validationContext + 0xed0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xeb0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xeb8) != 0) {
@@ -45613,14 +45620,14 @@ void Unwind_180904430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 4000) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 4000))(validationContext + 0xf90,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 4000))(validationContext + 0xf90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xf70) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf78) != 0) {
@@ -45667,14 +45674,14 @@ void Unwind_180904450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1060) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1060))(validationContext + 0x1050,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1060))(validationContext + 0x1050,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1030) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1038) != 0) {
@@ -45721,14 +45728,14 @@ void Unwind_180904470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x10d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x10d0))(validationContext + 0x10c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x10d0))(validationContext + 0x10c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1098) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x10a0) != 0) {
@@ -45751,14 +45758,14 @@ void Unwind_180904490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809044b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809044b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1140) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1140))(validationContext + 0x1130,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1140))(validationContext + 0x1130,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1108) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1110) != 0) {
@@ -45781,14 +45788,14 @@ void Unwind_1809044b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809044d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809044d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x11b0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x11b0))(validationContext + 0x11a0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x11b0))(validationContext + 0x11a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1178) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1180) != 0) {
@@ -45811,14 +45818,14 @@ void Unwind_1809044d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809044f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809044f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1220) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1220))(validationContext + 0x1210,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1220))(validationContext + 0x1210,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x11e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x11f0) != 0) {
@@ -45841,14 +45848,14 @@ void Unwind_1809044f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1290) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1290))(validationContext + 0x1280,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1290))(validationContext + 0x1280,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1258) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1260) != 0) {
@@ -45871,14 +45878,14 @@ void Unwind_180904510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1300) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1300))(validationContext + 0x12f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1300))(validationContext + 0x12f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x12c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x12d0) != 0) {
@@ -45901,14 +45908,14 @@ void Unwind_180904530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904550(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904550(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1370) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1370))(validationContext + 0x1360,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1370))(validationContext + 0x1360,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1338) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1340) != 0) {
@@ -45931,7 +45938,7 @@ void Unwind_180904550(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904570(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904570(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -45943,7 +45950,7 @@ void Unwind_180904570(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x80) + 5000);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -45954,7 +45961,7 @@ void Unwind_180904570(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -45966,7 +45973,7 @@ void Unwind_180904590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x80) + 0x13a8);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -45977,7 +45984,7 @@ void Unwind_180904590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809045b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809045b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -45989,7 +45996,7 @@ void Unwind_1809045b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = (DataBuffer *)pdataContext[1];
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -46054,42 +46061,42 @@ void Unwind_180904630(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904670(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904670(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x58) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x58),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x58),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46110,14 +46117,14 @@ void Unwind_180904680(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904690(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904690(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46184,70 +46191,70 @@ void Unwind_1809046d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809046e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809046e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0xd0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0xc0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0xc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x68),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x68),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904710(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904710(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x60) + 0xd0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x60) + 0xc0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x60) + 0xc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904730(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904730(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x68),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x68),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46264,14 +46271,14 @@ void Unwind_180904750(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46334,14 +46341,14 @@ void Unwind_1809047c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809047d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809047d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46560,21 +46567,21 @@ void Unwind_1809048f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_18005d260(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180904910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_18005d260(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -47291,7 +47298,7 @@ void Unwind_180904aa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -47301,9 +47308,9 @@ void Unwind_180904ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x160);
   validationStatus = SystemCleanupFlagfffffffe;
   *exceptionDataBuffer = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,param_3,param_4,SystemCleanupFlagfffffffe);
+  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,param_3,param_4,validationStatus);
+    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
@@ -47359,7 +47366,7 @@ void Unwind_180904ae0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -47369,9 +47376,9 @@ void Unwind_180904af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x50);
   validationStatus = SystemCleanupFlagfffffffe;
   *exceptionDataBuffer = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,param_3,param_4,SystemCleanupFlagfffffffe);
+  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,param_3,param_4,validationStatus);
+    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
@@ -47707,7 +47714,7 @@ void Unwind_180904e30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -47717,9 +47724,9 @@ void Unwind_180904e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x30);
   validationStatus = SystemCleanupFlagfffffffe;
   *exceptionDataBuffer = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,param_3,param_4,SystemCleanupFlagfffffffe);
+  characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,param_3,param_4,validationStatus);
+    characterFlag = FUN_18020eba0(exceptionDataBuffer,1,operationFlagA,operationFlagB,validationStatus);
   }
   if (exceptionDataBuffer[1] == 0) {
     exceptionDataBuffer[1] = 0;
@@ -47744,7 +47751,7 @@ void Unwind_180904e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -47754,7 +47761,7 @@ void Unwind_180904e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 200);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xc0); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xc0) == 0) {
     return;
@@ -47765,7 +47772,7 @@ void Unwind_180904e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -47775,7 +47782,7 @@ void Unwind_180904e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 200);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xc0); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xc0) == 0) {
     return;
@@ -47858,7 +47865,7 @@ void Unwind_180904ee0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904f10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904f10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -47868,7 +47875,7 @@ void Unwind_180904f10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x98);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x90); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x90) == 0) {
     return;
@@ -47879,7 +47886,7 @@ void Unwind_180904f10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -47889,7 +47896,7 @@ void Unwind_180904f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x98);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x90); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x90) == 0) {
     return;
@@ -47986,7 +47993,7 @@ void Unwind_180904f80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -47996,7 +48003,7 @@ void Unwind_180904f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x28);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x20); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x20) == 0) {
     return;
@@ -48007,7 +48014,7 @@ void Unwind_180904f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180904fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48017,7 +48024,7 @@ void Unwind_180904fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x28);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x20); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x20) == 0) {
     return;
@@ -48080,7 +48087,7 @@ void Unwind_180904fc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180904fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48090,7 +48097,7 @@ void Unwind_180904fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xa0);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x98); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x98) == 0) {
     return;
@@ -48167,7 +48174,7 @@ void Unwind_180905010(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48177,7 +48184,7 @@ void Unwind_180905020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x48);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x40); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x40) == 0) {
     return;
@@ -48224,7 +48231,7 @@ void Unwind_180905030(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48234,7 +48241,7 @@ void Unwind_180905040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xa0);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x98); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x98) == 0) {
     return;
@@ -48401,7 +48408,7 @@ void Unwind_180905100(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48411,7 +48418,7 @@ void Unwind_180905110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x148); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x148) == 0) {
     return;
@@ -48422,7 +48429,7 @@ void Unwind_180905110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180905120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48432,7 +48439,7 @@ void Unwind_180905120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x210);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x208); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x208) == 0) {
     return;
@@ -48477,7 +48484,7 @@ void Unwind_180905150(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48487,7 +48494,7 @@ void Unwind_180905160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x110);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x108); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x108) == 0) {
     return;
@@ -48498,7 +48505,7 @@ void Unwind_180905160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180905170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48508,7 +48515,7 @@ void Unwind_180905170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x230);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x228); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x228) == 0) {
     return;
@@ -48581,7 +48588,7 @@ void Unwind_1809051e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809051f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809051f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48591,7 +48598,7 @@ void Unwind_1809051f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x148); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x148) == 0) {
     return;
@@ -48638,7 +48645,7 @@ void Unwind_180905200(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48648,7 +48655,7 @@ void Unwind_180905210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x210);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x208); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x208) == 0) {
     return;
@@ -48713,7 +48720,7 @@ void Unwind_180905240(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48723,7 +48730,7 @@ void Unwind_180905250(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x110);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x108); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x108) == 0) {
     return;
@@ -48770,7 +48777,7 @@ void Unwind_180905260(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -48780,7 +48787,7 @@ void Unwind_180905270(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x230);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x228); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x228) == 0) {
     return;
@@ -48970,7 +48977,7 @@ void Unwind_180905380(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ExecuteExceptionHandlerAtOffsetD8(DataBuffer context,int64_t exceptionContext,DataBuffer param_3,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffsetD8(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
 
 {
   code *exceptionHandler;
@@ -48984,7 +48991,7 @@ void ExecuteExceptionHandlerAtOffsetD8(DataBuffer context,int64_t exceptionConte
 
 
 
-void ExecuteExceptionHandlerAtOffsetD8Alt(DataBuffer context,int64_t exceptionContext,DataBuffer param_3,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffsetD8Alt(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
 
 {
   code *exceptionHandler;
@@ -48998,7 +49005,7 @@ void ExecuteExceptionHandlerAtOffsetD8Alt(DataBuffer context,int64_t exceptionCo
 
 
 
-void ExecuteExceptionHandlerAtOffset50(DataBuffer context,int64_t exceptionContext,DataBuffer param_3,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffset50(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
 
 {
   if (*(FunctionPointer**)(exceptionContext + 0x50) != (code *)0x0) {
@@ -49009,7 +49016,7 @@ void ExecuteExceptionHandlerAtOffset50(DataBuffer context,int64_t exceptionConte
 
 
 
-void ExecuteExceptionHandlerAtOffsetF0(DataBuffer context,int64_t exceptionContext,DataBuffer param_3,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffsetF0(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
 
 {
   code *exceptionHandler;
@@ -49034,7 +49041,7 @@ void ExecuteCleanupHandlerAtOffset108(DataBuffer context,int64_t exceptionContex
 
 
 
-void ExecuteExceptionHandlerAtOffset50Alt(DataBuffer context,int64_t exceptionContext,DataBuffer param_3,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffset50Alt(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
 
 {
   if (*(FunctionPointer**)(exceptionContext + 0x50) != (code *)0x0) {
@@ -49045,7 +49052,7 @@ void ExecuteExceptionHandlerAtOffset50Alt(DataBuffer context,int64_t exceptionCo
 
 
 
-void ExecuteExceptionHandlerAtOffsetF8(DataBuffer context,int64_t exceptionContext,DataBuffer param_3,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffsetF8(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
 
 {
   code *exceptionHandler;
@@ -49059,7 +49066,7 @@ void ExecuteExceptionHandlerAtOffsetF8(DataBuffer context,int64_t exceptionConte
 
 
 
-void ExecuteExceptionHandlerAtOffset100(DataBuffer context,int64_t exceptionContext,DataBuffer param_3,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffset100(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
 
 {
   code *exceptionHandler;
@@ -49073,7 +49080,7 @@ void ExecuteExceptionHandlerAtOffset100(DataBuffer context,int64_t exceptionCont
 
 
 
-void ExecuteExceptionHandlerAtOffsetF8Alt(DataBuffer context,int64_t exceptionContext,DataBuffer param_3,DataBuffer exceptionData)
+void ExecuteExceptionHandlerAtOffsetF8Alt(DataBuffer context,int64_t exceptionContext,DataBuffer operationFlagA,DataBuffer exceptionData)
 
 {
   code *exceptionHandler;
@@ -49087,112 +49094,112 @@ void ExecuteExceptionHandlerAtOffsetF8Alt(DataBuffer context,int64_t exceptionCo
 
 
 
-void Unwind_180905420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xf0) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xf0),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0xf0),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x100) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x100),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x100),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x108) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x108),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x108),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x100) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x100),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x100),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x108) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x108),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x108),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa8),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xf8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xf8),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0xf8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -49486,14 +49493,14 @@ void Unwind_180905630(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0xa8);
   if (*(FunctionPointer**)(validationContext + 0x198) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x198))(validationContext + 0x188,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x198))(validationContext + 0x188,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   if (*(FunctionPointer**)(validationContext + 0x178) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x178))(validationContext + 0x168,0,0);
@@ -49504,14 +49511,14 @@ void Unwind_180905640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180905650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x48);
   if (*(FunctionPointer**)(validationContext + 0x198) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x198))(validationContext + 0x188,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x198))(validationContext + 0x188,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   if (*(FunctionPointer**)(validationContext + 0x178) != (code *)0x0) {
     (**(FunctionPointer**)(validationContext + 0x178))(validationContext + 0x168,0,0);
@@ -49522,28 +49529,28 @@ void Unwind_180905650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180905660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0x148,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x20) + 0x178);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0x168,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x20) + 0x168,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -49568,42 +49575,42 @@ void Unwind_1809056b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809056c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809056c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x148,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809056e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809056e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x178);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x168,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x168,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x48),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x48),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -49649,7 +49656,7 @@ void Unwind_180905740(DataBuffer operationBase,uint *dataBuffer)
 
 
 
-void Unwind_180905770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -49661,7 +49668,7 @@ void Unwind_180905770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = (DataBuffer *)pdataContext[1];
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 0x13) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -50068,7 +50075,7 @@ void ExecuteExceptionCallbackChain(DataBuffer chainContext, int64_t callbackChai
 
 
 
-void Unwind_180905870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50080,7 +50087,7 @@ void Unwind_180905870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = (DataBuffer *)pdataContext[1];
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -50155,7 +50162,7 @@ void Unwind_180905890(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809058a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809058a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50167,7 +50174,7 @@ void Unwind_1809058a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x2e0) + 0x28);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -50178,7 +50185,7 @@ void Unwind_1809058a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809058b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809058b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50190,7 +50197,7 @@ void Unwind_1809058b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x2e0) + 0x48);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -50299,14 +50306,14 @@ void Unwind_180905900(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @param operationBase 数据缓冲区参数
  * @param dataBuffer 数据上下文参数
- * @param param_3 异常数据参数
- * @param param_4 内存基地址参数
+ * @param operationFlagA 异常数据参数
+ * @param operationFlagB 内存基地址参数
  * 
  * @return void 无返回值
  * 
  * @note 原始函数名：Unwind_180905910
  */
-void Unwind_180905910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50318,7 +50325,7 @@ void Unwind_180905910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -50569,13 +50576,13 @@ ProcessCheckpointValidationData3:
  * @brief 处理异常回调并管理系统状态
  * @param operationBase 数据缓冲区指针
  * @param dataBuffer 异常上下文参数
- * @param param_3 附加数据参数1
- * @param param_4 附加数据参数2
+ * @param operationFlagA 附加数据参数1
+ * @param operationFlagB 附加数据参数2
  * @return 无返回值
  * @note 原始函数名：Unwind_180905960 - 异常回调处理函数G6
  * 功能：处理异常回调并管理系统状态
  */
-void Unwind_180905960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50587,7 +50594,7 @@ void Unwind_180905960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x2e8) + 0x268);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 0x13) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -50638,13 +50645,13 @@ void Unwind_180905980(DataBuffer operationBase,int64_t dataBuffer)
  * @brief 处理异常并执行回调操作
  * @param operationBase 数据缓冲区指针
  * @param dataBuffer 异常上下文参数
- * @param param_3 附加数据参数1
- * @param param_4 附加数据参数2
+ * @param operationFlagA 附加数据参数1
+ * @param operationFlagB 附加数据参数2
  * @return 无返回值
  * @note 原始函数名：Unwind_1809059a0 - 异常处理函数G8
  * 功能：处理异常并执行回调操作
  */
-void Unwind_1809059a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809059a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50656,7 +50663,7 @@ void Unwind_1809059a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = (DataBuffer *)pdataContext[1];
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 0x13) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -50671,20 +50678,20 @@ void Unwind_1809059a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
  * @brief 处理异常系统调用并执行相关操作
  * @param operationBase 数据缓冲区指针
  * @param dataBuffer 异常上下文参数
- * @param param_3 附加数据参数1
- * @param param_4 附加数据参数2
+ * @param operationFlagA 附加数据参数1
+ * @param operationFlagB 附加数据参数2
  * @return 无返回值
  * @note 原始函数名：Unwind_1809059b0 - 异常处理函数G9
  * 功能：处理异常系统调用并执行相关操作
  */
-void Unwind_1809059b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809059b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x2e8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x2e8),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x2e8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -51650,11 +51657,11 @@ void Unwind_180905cd0(void)
 
 
 
-void Unwind_180905cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1f8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x1f8))(dataBuffer + 0x1e8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x1f8))(dataBuffer + 0x1e8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   if (*(FunctionPointer**)(dataBuffer + 0x1d8) != (code *)0x0) {
     (**(FunctionPointer**)(dataBuffer + 0x1d8))(dataBuffer + 0x1c8,0,0);
@@ -51665,36 +51672,36 @@ void Unwind_180905cf0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180905d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1d8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x1d8))(dataBuffer + 0x1c8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x1d8))(dataBuffer + 0x1c8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1f8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x1f8))(dataBuffer + 0x1e8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x1f8))(dataBuffer + 0x1e8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x30) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x30),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x30),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -51744,14 +51751,14 @@ void Unwind_180905d80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x148,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -51766,8 +51773,8 @@ void Unwind_180905d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
  * 
  * @param systemContext 系统上下文，包含系统状态信息
  * @param contextData 上下文数据，包含处理器函数指针
- * @param param_3 保留参数3
- * @param param_4 保留参数4
+ * @param operationFlagA 保留参数3
+ * @param operationFlagB 保留参数4
  * 
  * @return void 无返回值
  * 
@@ -51775,14 +51782,14 @@ void Unwind_180905d90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
  * @warning 确保contextData中的指针有效，避免空指针访问
  * @see ExecuteHandlerAtOffset168, SetExceptionHandlerAtOffset30
  */
-void ExecuteHandlerAtOffset178(DataBuffer systemContext,int64_t contextData,DataBuffer param_3,DataBuffer param_4)
+void ExecuteHandlerAtOffset178(DataBuffer systemContext,int64_t contextData,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *handlerFunction;
   
   handlerFunction = *(FunctionPointer**)(*(int64_t *)(contextData + 0x50) + 0x178);
   if (handlerFunction != (code *)0x0) {
-    (*handlerFunction)(*(int64_t *)(contextData + 0x50) + 0x168,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*handlerFunction)(*(int64_t *)(contextData + 0x50) + 0x168,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -51958,42 +51965,42 @@ void Unwind_180905e40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70) + 0x148,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70) + 0x148,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x178);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70) + 0x168,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70) + 0x168,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180905e90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x78),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x78),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -53259,7 +53266,7 @@ void Unwind_1809063c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809063f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809063f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -53269,7 +53276,7 @@ void Unwind_1809063f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xe8);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xe0); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xe0) == 0) {
     return;
@@ -53304,7 +53311,7 @@ void Unwind_180906430(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180906460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -53314,7 +53321,7 @@ void Unwind_180906460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xe8);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xe0); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xe0) == 0) {
     return;
@@ -54001,7 +54008,7 @@ void Unwind_1809066e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180906700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -54013,7 +54020,7 @@ void Unwind_180906700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0xa0) + 0x220);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -54202,7 +54209,7 @@ void Unwind_180906870(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180906890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -54214,7 +54221,7 @@ void Unwind_180906890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x50) + 0x220);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -54266,7 +54273,7 @@ void Unwind_180906910(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180906940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -54278,7 +54285,7 @@ void Unwind_180906940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = (DataBuffer *)pdataContext[1];
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -54607,11 +54614,11 @@ void Unwind_180906af0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180906b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x78) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x78))(dataBuffer + 0x68,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x78))(dataBuffer + 0x68,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -54655,11 +54662,11 @@ void Unwind_180906b20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180906b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x78) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x78))(dataBuffer + 0x68,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x78))(dataBuffer + 0x68,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55990,14 +55997,14 @@ void Unwind_180906e40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180906e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x170) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x170),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x170),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56121,14 +56128,14 @@ void Unwind_180906ee0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180906ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x170) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x170),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x170),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56552,22 +56559,22 @@ void UnwindExceptionHandlerB4(DataBuffer ExceptionContext, int64_t HandlerContex
 
 
 
-void Unwind_180907090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0xe8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0xe8))(dataBuffer + 0xd8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0xe8))(dataBuffer + 0xd8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809070a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809070a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x68) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x68))(dataBuffer + 0x58,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x68))(dataBuffer + 0x58,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56602,11 +56609,11 @@ void Unwind_1809070c0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809070d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809070d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x108) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x108))(dataBuffer + 0xf8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x108))(dataBuffer + 0xf8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56788,22 +56795,22 @@ void Unwind_1809071b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809071c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809071c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x48) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x48))(dataBuffer + 0x38,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x48))(dataBuffer + 0x38,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809071d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809071d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x48) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x48))(dataBuffer + 0x38,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x48))(dataBuffer + 0x38,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -58025,7 +58032,7 @@ void Unwind_180907800(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -58037,7 +58044,7 @@ void Unwind_180907810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0x30);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -58048,36 +58055,36 @@ void Unwind_180907810(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180907820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_18005d260(*(int64_t *)(dataBuffer + 0x20) + 0x48,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x58),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x58),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180907830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907830(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_18008d810(*(int64_t *)(dataBuffer + 0x20) + 0x78,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x88),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x88),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180907840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0xc0);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20) + 0xb0,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20) + 0xb0,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -58086,14 +58093,14 @@ void Unwind_180907840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180907860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0xf0);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20) + 0xe0,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20) + 0xe0,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -58283,14 +58290,14 @@ void InvokeExceptionHandlerWithParamsD(DataBuffer exceptionContext, int64_t hand
 
 
 
-void Unwind_180907900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x28),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x28),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -58299,14 +58306,14 @@ void Unwind_180907900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180907910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x28),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x28),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -58336,21 +58343,21 @@ void Unwind_180907920(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_18008d810(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180907940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_18008d810(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -58622,20 +58629,20 @@ void Unwind_180907a10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_18005d260(dataBuffer + 0xe8,*(DataBuffer *)(dataBuffer + 0xf8),param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_18005d260(dataBuffer + 0xe8,*(DataBuffer *)(dataBuffer + 0xf8),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180907a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x200) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x200))(dataBuffer + 0x1f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x200))(dataBuffer + 0x1f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   if (*(FunctionPointer**)(dataBuffer + 0x1e0) != (code *)0x0) {
     (**(FunctionPointer**)(dataBuffer + 0x1e0))(dataBuffer + 0x1d0,0,0);
@@ -58648,11 +58655,11 @@ void Unwind_180907a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180907a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x2a0) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x2a0))(dataBuffer + 0x290,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x2a0))(dataBuffer + 0x290,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   if (*(FunctionPointer**)(dataBuffer + 0x280) != (code *)0x0) {
     (**(FunctionPointer**)(dataBuffer + 0x280))(dataBuffer + 0x270,0,0);
@@ -58737,19 +58744,19 @@ void Unwind_180907a60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907a70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907a70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_18005d260(dataBuffer + 0xe8,*(DataBuffer *)(dataBuffer + 0xf8),param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_18005d260(dataBuffer + 0xe8,*(DataBuffer *)(dataBuffer + 0xf8),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180907a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_18005d260(dataBuffer + 0xe8,*(DataBuffer *)(dataBuffer + 0xf8),param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_18005d260(dataBuffer + 0xe8,*(DataBuffer *)(dataBuffer + 0xf8),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -58783,33 +58790,33 @@ void Unwind_180907aa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907ab0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1c0) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x1c0))(dataBuffer + 0x1b0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x1c0))(dataBuffer + 0x1b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907ac0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907ac0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1e0) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x1e0))(dataBuffer + 0x1d0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x1e0))(dataBuffer + 0x1d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907ad0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907ad0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x200) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x200))(dataBuffer + 0x1f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x200))(dataBuffer + 0x1f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -58825,33 +58832,33 @@ void Unwind_180907ae0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907af0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x260) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x260))(dataBuffer + 0x250,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x260))(dataBuffer + 0x250,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x280) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x280))(dataBuffer + 0x270,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x280))(dataBuffer + 0x270,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907b10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907b10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x2a0) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x2a0))(dataBuffer + 0x290,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x2a0))(dataBuffer + 0x290,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -58885,28 +58892,28 @@ void Unwind_180907b40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x50);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x40,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x40,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x70);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x60,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x60,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -59036,11 +59043,11 @@ void Unwind_180907c20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907c30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907c30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x210) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x210))(dataBuffer + 0x200,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x210))(dataBuffer + 0x200,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   if (*(FunctionPointer**)(dataBuffer + 0x1f0) != (code *)0x0) {
     (**(FunctionPointer**)(dataBuffer + 0x1f0))(dataBuffer + 0x1e0,0,0);
@@ -59152,40 +59159,40 @@ void Unwind_180907c80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907c90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907c90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1d0) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x1d0))(dataBuffer + 0x1c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x1d0))(dataBuffer + 0x1c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1f0) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x1f0))(dataBuffer + 0x1e0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x1f0))(dataBuffer + 0x1e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907cb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907cb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x210) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x210))(dataBuffer + 0x200,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x210))(dataBuffer + 0x200,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -59195,7 +59202,7 @@ void Unwind_180907cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x170);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x168); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x168) == 0) {
     return;
@@ -59259,11 +59266,11 @@ void Unwind_180907d00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x150) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x150))(dataBuffer + 0x140,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x150))(dataBuffer + 0x140,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   if (*(FunctionPointer**)(dataBuffer + 0x130) != (code *)0x0) {
     (**(FunctionPointer**)(dataBuffer + 0x130))(dataBuffer + 0x120,0,0);
@@ -59276,7 +59283,7 @@ void Unwind_180907d10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180907d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -59286,7 +59293,7 @@ void Unwind_180907d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x170);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x168); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x168) == 0) {
     return;
@@ -59426,40 +59433,40 @@ void Unwind_180907e40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907e50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x110) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x110))(dataBuffer + 0x100,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x110))(dataBuffer + 0x100,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x130) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x130))(dataBuffer + 0x120,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x130))(dataBuffer + 0x120,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907e70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x150) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x150))(dataBuffer + 0x140,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x150))(dataBuffer + 0x140,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -59469,7 +59476,7 @@ void Unwind_180907e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x30);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x28); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x28) == 0) {
     return;
@@ -59660,22 +59667,22 @@ void Unwind_180907ed0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x60) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x60))(dataBuffer + 0x50,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x60))(dataBuffer + 0x50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x208) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x208))(dataBuffer + 0x1f8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x208))(dataBuffer + 0x1f8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   if (*(FunctionPointer**)(dataBuffer + 0x1e8) != (code *)0x0) {
     (**(FunctionPointer**)(dataBuffer + 0x1e8))(dataBuffer + 0x1d8,0,0);
@@ -59686,11 +59693,11 @@ void Unwind_180907ef0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180907f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x60) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x60))(dataBuffer + 0x50,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x60))(dataBuffer + 0x50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -59706,36 +59713,36 @@ void Unwind_180907f10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x1e8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x1e8))(dataBuffer + 0x1d8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x1e8))(dataBuffer + 0x1d8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x208) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x208))(dataBuffer + 0x1f8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x208))(dataBuffer + 0x1f8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x18);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -59856,14 +59863,14 @@ void Unwind_180907fe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180907ff0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x78);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(dataBuffer + 0x68,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(dataBuffer + 0x68,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -60033,13 +60040,13 @@ void Unwind_180908040(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180908050(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908050(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t *validationContextPointer;
   
   validationContextPointer = ValidationContextPointerArray;
-  FUN_18008d1f0(&DAT_180d49200,ValidationContextPointerArray[1],param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_18008d1f0(&DAT_180d49200,ValidationContextPointerArray[1],operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   ValidationContextPointerArray[1] = (int64_t)validationContextPointer;
   *ValidationContextPointerArray = (int64_t)validationContextPointer;
   ValidationContextPointerArray[2] = (int64_t)validationContextPointer;
@@ -60165,14 +60172,14 @@ void ProcessDataBufferA1(DataBuffer contextParameter, int64_t systemContext, Dat
 
 
 
-void Unwind_1809080c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809080c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x78),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x78),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -60181,25 +60188,25 @@ void Unwind_1809080c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809080d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809080d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x78) + 0x30,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x40),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x40),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809080e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809080e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x78) + 0x70);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x78) + 0x60,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x78) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -60208,34 +60215,34 @@ void Unwind_1809080e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809080f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809080f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x30),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x30) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180908100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x30),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x30) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180908110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -60244,14 +60251,14 @@ void Unwind_180908110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180908120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -60297,7 +60304,7 @@ void Unwind_180908150(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -60307,10 +60314,10 @@ void Unwind_180908160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   dataContext = *(int64_t *)(dataBuffer + 0x80);
   validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
-  FUN_180058370(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),param_3,param_4,validationStatus);
+  FUN_180058370(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),operationFlagA,operationFlagB,validationStatus);
   exceptionDataBuffer = *(DataBuffer **)(dataContext + 0x20);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(dataContext + 0x10,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -60319,14 +60326,14 @@ void Unwind_180908160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180908170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x60),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x60),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -60335,25 +60342,25 @@ void Unwind_180908170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180908180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x60) + 0x30,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x40),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x40),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180908190(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908190(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0x70);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x60) + 0x60,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x60) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -60362,27 +60369,27 @@ void Unwind_180908190(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809081a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809081a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809081b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809081b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809081c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809081c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -60392,10 +60399,10 @@ void Unwind_1809081c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   dataContext = *(int64_t *)(dataBuffer + 0x40);
   validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
-  FUN_180058370(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),param_3,param_4,validationStatus);
+  FUN_180058370(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),operationFlagA,operationFlagB,validationStatus);
   exceptionDataBuffer = *(DataBuffer **)(dataContext + 0x20);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(dataContext + 0x10,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -60404,14 +60411,14 @@ void Unwind_1809081c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809081d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809081d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -60420,25 +60427,25 @@ void Unwind_1809081d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809081e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809081e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x40) + 0x30,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x40),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x40),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809081f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809081f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x70);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40) + 0x60,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40) + 0x60,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -60447,28 +60454,28 @@ void Unwind_1809081f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180908200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x58) + 0x18);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x58) + 8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x58) + 8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180908210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x50) + 0x18);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x50) + 8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -60533,7 +60540,7 @@ void Unwind_180908300(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -60545,7 +60552,7 @@ void Unwind_180908340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x80) + 0x390);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -60615,7 +60622,7 @@ void Unwind_180908420(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -60627,7 +60634,7 @@ void Unwind_180908460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x390);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -62765,14 +62772,14 @@ void Unwind_180908e10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0x30);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x60) + 0x20,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x60) + 0x20,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -62889,7 +62896,7 @@ void Unwind_180908e70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180908e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -62898,7 +62905,7 @@ void Unwind_180908e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationContext = *(int64_t *)(dataBuffer + 0x60);
   operationResult = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),param_3,param_4,operationResult);
+  FUN_180058370(validationContext + 0x110,*(DataBuffer *)(validationContext + 0x120),operationFlagA,operationFlagB,operationResult);
   FUN_180058370(validationContext + 0xe0,*(DataBuffer *)(validationContext + 0xf0));
   FUN_180058370(validationContext + 0xb0,*(DataBuffer *)(validationContext + 0xc0));
   FUN_1800593f0(validationContext + 0x80,*(DataBuffer *)(validationContext + 0x90));
@@ -63850,28 +63857,28 @@ void Unwind_180909360(DataBuffer operationBase,uint *dataBuffer)
 
 
 
-void Unwind_180909390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x98) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x98),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x98),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809093a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809093a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x98) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x98),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x98),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -63959,7 +63966,7 @@ void Unwind_1809093b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809093c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809093c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t *validationContextPointer;
@@ -64014,7 +64021,7 @@ void Unwind_1809093c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
                     // WARNING: Subroutine does not return
     FUN_18064e900(resourcePointer);
   }
-  FUN_180058370(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_180058370(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   FUN_180058370(calculatedOffset + 0x81a8,*(DataBuffer *)(calculatedOffset + 0x81b8));
   FUN_180058370(calculatedOffset + 0x8178,*(DataBuffer *)(calculatedOffset + 0x8188));
   FUN_1808fc8a8(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
@@ -64050,14 +64057,14 @@ void Unwind_1809093e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x48),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x48),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -64136,14 +64143,14 @@ void Unwind_180909460(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909470(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x70) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x70),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -64862,7 +64869,7 @@ void Unwind_1809096b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t *validationContextPointer;
@@ -64917,7 +64924,7 @@ void Unwind_1809096c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
                     // WARNING: Subroutine does not return
     FUN_18064e900(resourcePointer);
   }
-  FUN_180058370(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_180058370(calculatedOffset + 0x81d8,*(DataBuffer *)(calculatedOffset + 0x81e8),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   FUN_180058370(calculatedOffset + 0x81a8,*(DataBuffer *)(calculatedOffset + 0x81b8));
   FUN_180058370(calculatedOffset + 0x8178,*(DataBuffer *)(calculatedOffset + 0x8188));
   FUN_1808fc8a8(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
@@ -65071,34 +65078,34 @@ void Unwind_180909780(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ae2c0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809097a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809097a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ae2c0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809097b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809097b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -65107,14 +65114,14 @@ void Unwind_1809097b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809097c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809097c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x20) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x20),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -65123,21 +65130,21 @@ void Unwind_1809097c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809097d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809097d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809097e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809097e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ae2c0(*(int64_t *)(dataBuffer + 0x40) + 0x30,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x40),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x40),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -65153,14 +65160,14 @@ void Unwind_1809097f0(void)
 
 
 
-void Unwind_180909800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 200);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40) + 0xb8,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40) + 0xb8,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -65169,14 +65176,14 @@ void Unwind_180909800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180909820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0xf8);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40) + 0xe8,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18004b790(*(int64_t *)(dataBuffer + 0x40) + 0xe8,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
   }
@@ -65185,21 +65192,21 @@ void Unwind_180909820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180909840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ae2c0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180909850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ae2c0(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -65241,52 +65248,52 @@ void Unwind_180909860(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_18005d260(*(int64_t *)(dataBuffer + 0x40) + 0x90,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0xa0),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0xa0),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180909890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_18005d260(*(int64_t *)(dataBuffer + 0x50),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x50) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809098a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809098a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_18005d260(*(int64_t *)(dataBuffer + 0x50),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x50) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809098b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809098b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_18005d260(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809098c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809098c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_18005d260(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -66054,11 +66061,11 @@ void Unwind_180909dc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9030(*(int64_t *)(dataBuffer + 0x40) + 0x740,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x750),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x750),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -66155,14 +66162,14 @@ void Unwind_180909f20(void)
 
 
 
-void Unwind_180909f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0xaa0);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40) + 0xa90,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40) + 0xa90,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -66224,22 +66231,22 @@ void Unwind_180909f80(void)
 
 
 
-void Unwind_180909fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9270(*(int64_t *)(dataBuffer + 0x40) + 0xba8,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 3000),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 3000),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180909fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180909fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x40) + 0xbd8,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0xbe8),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0xbe8),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -66310,34 +66317,34 @@ void Unwind_18090a080(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9270(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090a0c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a0c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9270(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090a0d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a0d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -66347,14 +66354,14 @@ void Unwind_18090a0d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_18090a0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x48) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x48),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -66364,54 +66371,54 @@ void Unwind_18090a0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_18090a0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9030(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090a100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9030(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090a110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9030(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090a120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9030(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090a130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -66421,14 +66428,14 @@ void Unwind_18090a130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_18090a140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x40),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -66438,21 +66445,21 @@ void Unwind_18090a140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_18090a150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9270(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090a160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9270(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -66619,11 +66626,11 @@ void Unwind_18090a2b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a2d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a2d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9030(*(int64_t *)(dataBuffer + 0x60) + 0x740,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x750),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x750),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -66720,14 +66727,14 @@ void Unwind_18090a410(void)
 
 
 
-void Unwind_18090a430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x60) + 0xaa0);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x60) + 0xa90,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x60) + 0xa90,*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -66789,22 +66796,22 @@ void Unwind_18090a470(void)
 
 
 
-void Unwind_18090a490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a490(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9270(*(int64_t *)(dataBuffer + 0x60) + 0xba8,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 3000),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 3000),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090a4b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a4b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x60) + 0xbd8,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0xbe8),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0xbe8),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -66921,34 +66928,34 @@ void ExecuteValidatorCleanupF2(DataBuffer systemHandle, int64_t validatorArray)
 
 
 
-void Unwind_18090a580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9030(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090a590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9030(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090a5a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a5a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -66958,14 +66965,14 @@ void Unwind_18090a5a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_18090a5b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a5b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
   
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x68) + 0x10);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b9210(*(int64_t *)(dataBuffer + 0x68),*exceptionDataBuffer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(exceptionDataBuffer);
                     // WARNING: Subroutine does not return
     FUN_18064e900(exceptionDataBuffer);
@@ -67056,21 +67063,21 @@ void Unwind_18090a5e0(void)
 
 
 
-void Unwind_18090a5f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a5f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9270(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090a600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800b9270(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67085,22 +67092,22 @@ void Unwind_18090a610(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x38) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x38))(dataBuffer + 0x28,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x38))(dataBuffer + 0x28,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090a650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090a650(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x38) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x38))(dataBuffer + 0x28,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x38))(dataBuffer + 0x28,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -70259,22 +70266,22 @@ void Unwind_18090bd20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bd30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090bd30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x58) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x58))(dataBuffer + 0x48,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x58))(dataBuffer + 0x48,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090bd40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090bd40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x58) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x58))(dataBuffer + 0x48,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x58))(dataBuffer + 0x48,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -70606,7 +70613,7 @@ void Unwind_18090bfa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bfb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090bfb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -70618,7 +70625,7 @@ void Unwind_18090bfb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = (DataBuffer *)pdataContext[1];
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -70629,22 +70636,22 @@ void Unwind_18090bfb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_18090bfc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090bfc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800c2ca0(*(int64_t *)(dataBuffer + 0x20) + 0x20,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x30),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x30),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090bfd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090bfd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800c2ff0(*(int64_t *)(dataBuffer + 0x20) + 0x50,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x60),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x60),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -70674,52 +70681,52 @@ void Unwind_18090bfe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058370(*(int64_t *)(dataBuffer + 0x20) + 0xa0,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0xb0),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0xb0),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090c020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800c2ca0(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090c030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800c2ca0(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090c040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800c2ff0(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090c050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c050(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800c2ff0(*(int64_t *)(dataBuffer + 0x28),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x28) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -70748,41 +70755,41 @@ void Unwind_18090c060(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c070(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800c2ca0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090c080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800c2ca0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090c090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800c2ff0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090c0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800c2ff0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -71205,10 +71212,10 @@ void Unwind_18090c240(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_18005d260(dataBuffer + 0x48,*(DataBuffer *)(dataBuffer + 0x58),param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_18005d260(dataBuffer + 0x48,*(DataBuffer *)(dataBuffer + 0x58),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -71259,19 +71266,19 @@ void Unwind_18090c280(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c290(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_18005d260(dataBuffer + 0x48,*(DataBuffer *)(dataBuffer + 0x58),param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_18005d260(dataBuffer + 0x48,*(DataBuffer *)(dataBuffer + 0x58),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090c2a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c2a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_18005d260(dataBuffer + 0x48,*(DataBuffer *)(dataBuffer + 0x58),param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_18005d260(dataBuffer + 0x48,*(DataBuffer *)(dataBuffer + 0x58),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -72537,11 +72544,11 @@ void Unwind_18090c750(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x110) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x110))(dataBuffer + 0x100,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x110))(dataBuffer + 0x100,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -72559,11 +72566,11 @@ void Unwind_18090c770(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090c780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x110) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x110))(dataBuffer + 0x100,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x110))(dataBuffer + 0x100,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -76261,56 +76268,56 @@ void Unwind_18090d310(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090d320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa88) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa88),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa88),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090d330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090d330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa88) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa88),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa88),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090d340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090d340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa80),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090d350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090d350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xa80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa80),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0xa80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -77253,28 +77260,28 @@ void Unwind_18090d4f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090d500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x28) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x28),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x28),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090d510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090d510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xe8) + 0xd0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xe8) + 0xc0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0xe8) + 0xc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -79950,7 +79957,7 @@ void Unwind_18090e9b0(void)
 
 
 
-void Unwind_18090e9c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090e9c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -79960,7 +79967,7 @@ void Unwind_18090e9c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x40);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x38); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x38) == 0) {
     return;
@@ -79971,7 +79978,7 @@ void Unwind_18090e9c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_18090e9d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090e9d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -79981,7 +79988,7 @@ void Unwind_18090e9d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x40);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x38); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x38) == 0) {
     return;
@@ -80446,28 +80453,28 @@ void Unwind_18090ecf0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ed00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090ed00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x80),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090ed10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090ed10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x80),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x80),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -80592,28 +80599,28 @@ void Unwind_18090ed80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ed90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090ed90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x178) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x178),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x178),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090eda0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090eda0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x150) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x150),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x150),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -80656,14 +80663,14 @@ void Unwind_18090edd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ede0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090ede0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x88) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x88) + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x88) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -80706,14 +80713,14 @@ void Unwind_18090ee10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ee20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090ee20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x150) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x150),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x150),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -80734,14 +80741,14 @@ void Unwind_18090ee30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ee40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090ee40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x98) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x98) + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x98) + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -80784,28 +80791,28 @@ void Unwind_18090ee70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ee80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090ee80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0xe8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0xe8),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0xe8),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090ee90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090ee90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x178) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x178),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x178),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81061,14 +81068,14 @@ void Unwind_18090ef70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ef80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090ef80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x78) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x78),0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x78),0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -81084,11 +81091,11 @@ void Unwind_18090ef90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090efc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090efc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ee130(*(int64_t *)(dataBuffer + 0x70) + 0x2d0,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x2e0),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x70) + 0x2e0),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -81173,21 +81180,21 @@ void Unwind_18090f000(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ee130(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f030(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ee130(*(int64_t *)(dataBuffer + 0x78),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x78) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -81316,41 +81323,41 @@ void Unwind_18090f070(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ee080(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ee080(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f0a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ee130(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f0b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ee130(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -81432,35 +81439,35 @@ void Unwind_18090f0d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f0e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   code *pcVar1;
   
   pcVar1 = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x40) + 0x68);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x58,0,0,param_4,SystemCleanupFlagfffffffe);
+    (*pcVar1)(*(int64_t *)(dataBuffer + 0x40) + 0x58,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090f0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f0f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ee080(*(int64_t *)(dataBuffer + 0x20),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800ee080(*(int64_t *)(dataBuffer + 0x20),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x20) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -82093,11 +82100,11 @@ void Unwind_18090f370(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f390(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f7260(*(int64_t *)(dataBuffer + 0x60) + 0x2c8,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x2d8),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x2d8),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -82311,11 +82318,11 @@ void Unwind_18090f570(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f7320(*(int64_t *)(dataBuffer + 0x60) + 0x470,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x480),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x480),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -82364,22 +82371,22 @@ void Unwind_18090f5f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f610(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f610(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x60) + 0x40e0,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x40f0),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x40f0),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f630(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f630(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058210(*(int64_t *)(dataBuffer + 0x60) + 0x4110,
-                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x4120),param_3,param_4,
+                *(DataBuffer *)(*(int64_t *)(dataBuffer + 0x60) + 0x4120),operationFlagA,operationFlagB,
                 SystemCleanupFlagfffffffe);
   return;
 }
@@ -82445,21 +82452,21 @@ void Unwind_18090f690(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f6a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f6a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f7260(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f6b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f6b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f7260(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -82558,61 +82565,61 @@ void Unwind_18090f760(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f7320(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f7320(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f7a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f7a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f7b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f7b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f7c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f7c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058210(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f7d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f7d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_180058210(*(int64_t *)(dataBuffer + 0x68),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x68) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -82639,21 +82646,21 @@ void Unwind_18090f7e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f7f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f7f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f7260(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f7260(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -82668,41 +82675,41 @@ void Unwind_18090f810(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090f840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f7320(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f850(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f7320(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090f870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090f870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FUN_1800f74f0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+                operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -83176,10 +83183,10 @@ void Unwind_18090fb00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fb10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090fb10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_1800f74f0(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -83194,19 +83201,19 @@ void Unwind_18090fb20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090fb30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090fb30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_1800f74f0(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_18090fb40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_18090fb40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  FUN_1800f74f0(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_1800f74f0(dataBuffer + 0x58,*(DataBuffer *)(dataBuffer + 0x68),operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -84556,7 +84563,7 @@ void Unwind_1809102b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809102e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809102e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -84566,7 +84573,7 @@ void Unwind_1809102e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xf0);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xe8); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xe8) == 0) {
     return;
@@ -84577,7 +84584,7 @@ void Unwind_1809102e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809102f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809102f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -84587,7 +84594,7 @@ void Unwind_1809102f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xd0);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 200); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 200) == 0) {
     return;
@@ -84598,7 +84605,7 @@ void Unwind_1809102f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -84608,7 +84615,7 @@ void Unwind_180910300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xf0);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xe8); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xe8) == 0) {
     return;
@@ -84619,7 +84626,7 @@ void Unwind_180910300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910310(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910310(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -84631,7 +84638,7 @@ void Unwind_180910310(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = (DataBuffer *)pdataContext[1];
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -84678,7 +84685,7 @@ void Unwind_180910320(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -84688,7 +84695,7 @@ void Unwind_180910330(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xd0);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 200); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 200) == 0) {
     return;
@@ -85596,14 +85603,14 @@ void Unwind_180910790(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809107a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809107a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xa00) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xa00))(validationContext + 0x9f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xa00))(validationContext + 0x9f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x9c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9d0) != 0) {
@@ -85626,14 +85633,14 @@ void Unwind_1809107a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809107c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809107c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xa70) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xa70))(validationContext + 0xa60,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xa70))(validationContext + 0xa60,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xa38) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa40) != 0) {
@@ -85656,14 +85663,14 @@ void Unwind_1809107c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809107e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809107e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xae0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xae0))(validationContext + 0xad0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xae0))(validationContext + 0xad0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xaa8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xab0) != 0) {
@@ -85686,14 +85693,14 @@ void Unwind_1809107e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xb50) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xb18) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb20) != 0) {
@@ -85716,14 +85723,14 @@ void Unwind_180910800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xbc0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xbc0))(validationContext + 0xbb0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xbc0))(validationContext + 0xbb0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xb88) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb90) != 0) {
@@ -85746,14 +85753,14 @@ void Unwind_180910820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xc30) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xc30))(validationContext + 0xc20,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xc30))(validationContext + 0xc20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xbf8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc00) != 0) {
@@ -85776,14 +85783,14 @@ void Unwind_180910840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xca0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xca0))(validationContext + 0xc90,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xca0))(validationContext + 0xc90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xc68) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc70) != 0) {
@@ -85806,14 +85813,14 @@ void Unwind_180910860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xd10) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xd10))(validationContext + 0xd00,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xd10))(validationContext + 0xd00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xcd8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xce0) != 0) {
@@ -85836,14 +85843,14 @@ void Unwind_180910880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809108a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809108a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xd80) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xd80))(validationContext + 0xd70,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xd80))(validationContext + 0xd70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xd48) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xd50) != 0) {
@@ -85866,14 +85873,14 @@ void Unwind_1809108a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809108c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809108c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xdf0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xdf0))(validationContext + 0xde0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xdf0))(validationContext + 0xde0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xdb8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xdc0) != 0) {
@@ -85896,14 +85903,14 @@ void Unwind_1809108c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809108e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809108e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xe60) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xe60))(validationContext + 0xe50,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xe60))(validationContext + 0xe50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xe28) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe30) != 0) {
@@ -85926,14 +85933,14 @@ void Unwind_1809108e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xed0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xed0))(validationContext + 0xec0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xed0))(validationContext + 0xec0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xe98) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xea0) != 0) {
@@ -85956,14 +85963,14 @@ void Unwind_180910900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xf40) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xf40))(validationContext + 0xf30,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xf40))(validationContext + 0xf30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xf08) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf10) != 0) {
@@ -85986,14 +85993,14 @@ void Unwind_180910920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0xfb0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xfb0))(validationContext + 4000,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xfb0))(validationContext + 4000,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xf78) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf80) != 0) {
@@ -86016,14 +86023,14 @@ void Unwind_180910940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1020) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1020))(validationContext + 0x1010,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1020))(validationContext + 0x1010,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xfe8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xff0) != 0) {
@@ -86046,14 +86053,14 @@ void Unwind_180910960(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910980(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910980(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1090) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1090))(validationContext + 0x1080,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1090))(validationContext + 0x1080,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1058) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1060) != 0) {
@@ -86076,14 +86083,14 @@ void Unwind_180910980(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809109a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809109a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1100) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1100))(validationContext + 0x10f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1100))(validationContext + 0x10f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x10c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x10d0) != 0) {
@@ -86106,14 +86113,14 @@ void Unwind_1809109a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809109c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809109c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1170) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1170))(validationContext + 0x1160,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1170))(validationContext + 0x1160,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1138) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1140) != 0) {
@@ -86136,14 +86143,14 @@ void Unwind_1809109c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809109e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809109e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x11e0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x11e0))(validationContext + 0x11d0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x11e0))(validationContext + 0x11d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x11a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x11b0) != 0) {
@@ -86166,14 +86173,14 @@ void Unwind_1809109e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910a00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910a00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1250) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1250))(validationContext + 0x1240,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1250))(validationContext + 0x1240,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1218) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1220) != 0) {
@@ -86196,14 +86203,14 @@ void Unwind_180910a00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x12c0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x12c0))(validationContext + 0x12b0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x12c0))(validationContext + 0x12b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1288) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1290) != 0) {
@@ -86226,14 +86233,14 @@ void Unwind_180910a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1330) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1330))(validationContext + 0x1320,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1330))(validationContext + 0x1320,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x12f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1300) != 0) {
@@ -86256,14 +86263,14 @@ void Unwind_180910a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910a60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910a60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x13a0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x13a0))(validationContext + 0x1390,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x13a0))(validationContext + 0x1390,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1368) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1370) != 0) {
@@ -86286,14 +86293,14 @@ void Unwind_180910a60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1410) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1410))(validationContext + 0x1400,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1410))(validationContext + 0x1400,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x13d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x13e0) != 0) {
@@ -86316,14 +86323,14 @@ void Unwind_180910a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910aa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910aa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1480) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1480))(validationContext + 0x1470,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1480))(validationContext + 0x1470,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1448) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1450) != 0) {
@@ -86346,14 +86353,14 @@ void Unwind_180910aa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910ac0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910ac0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x14f0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x14f0))(validationContext + 0x14e0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x14f0))(validationContext + 0x14e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x14b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x14c0) != 0) {
@@ -86376,14 +86383,14 @@ void Unwind_180910ac0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1560) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1560))(validationContext + 0x1550,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1560))(validationContext + 0x1550,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1528) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1530) != 0) {
@@ -86406,14 +86413,14 @@ void Unwind_180910ae0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x15d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x15d0))(validationContext + 0x15c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x15d0))(validationContext + 0x15c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1598) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x15a0) != 0) {
@@ -86436,14 +86443,14 @@ void Unwind_180910b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1640) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1640))(validationContext + 0x1630,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1640))(validationContext + 0x1630,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1608) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1610) != 0) {
@@ -86466,14 +86473,14 @@ void Unwind_180910b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x16b0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x16b0))(validationContext + 0x16a0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x16b0))(validationContext + 0x16a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1678) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1680) != 0) {
@@ -86496,14 +86503,14 @@ void Unwind_180910b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1720) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1720))(validationContext + 0x1710,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1720))(validationContext + 0x1710,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x16e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x16f0) != 0) {
@@ -86526,14 +86533,14 @@ void Unwind_180910b60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1790) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1790))(validationContext + 0x1780,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1790))(validationContext + 0x1780,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1758) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1760) != 0) {
@@ -86556,14 +86563,14 @@ void Unwind_180910b80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1800) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1800))(validationContext + 0x17f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1800))(validationContext + 0x17f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x17c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x17d0) != 0) {
@@ -86586,14 +86593,14 @@ void Unwind_180910ba0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1870) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1870))(validationContext + 0x1860,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1870))(validationContext + 0x1860,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1838) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1840) != 0) {
@@ -86616,14 +86623,14 @@ void Unwind_180910bc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x18e0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x18e0))(validationContext + 0x18d0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x18e0))(validationContext + 0x18d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x18a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x18b0) != 0) {
@@ -86646,14 +86653,14 @@ void Unwind_180910be0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1950) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1950))(validationContext + 0x1940,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1950))(validationContext + 0x1940,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1918) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1920) != 0) {
@@ -86676,14 +86683,14 @@ void Unwind_180910c00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x19c0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x19c0))(validationContext + 0x19b0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x19c0))(validationContext + 0x19b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1988) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1990) != 0) {
@@ -86706,14 +86713,14 @@ void Unwind_180910c20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1a30) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1a30))(validationContext + 0x1a20,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1a30))(validationContext + 0x1a20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x19f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1a00) != 0) {
@@ -86736,14 +86743,14 @@ void Unwind_180910c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1aa0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1aa0))(validationContext + 0x1a90,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1aa0))(validationContext + 0x1a90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1a68) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1a70) != 0) {
@@ -86766,14 +86773,14 @@ void Unwind_180910c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1b10) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1b10))(validationContext + 0x1b00,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1b10))(validationContext + 0x1b00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1ad8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1ae0) != 0) {
@@ -86796,14 +86803,14 @@ void Unwind_180910c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1b80) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1b80))(validationContext + 0x1b70,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1b80))(validationContext + 0x1b70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1b48) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1b50) != 0) {
@@ -86826,14 +86833,14 @@ void Unwind_180910ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1bf0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1bf0))(validationContext + 0x1be0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1bf0))(validationContext + 0x1be0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1bb8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1bc0) != 0) {
@@ -86856,14 +86863,14 @@ void Unwind_180910cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1c60) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1c60))(validationContext + 0x1c50,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1c60))(validationContext + 0x1c50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1c28) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1c30) != 0) {
@@ -86886,14 +86893,14 @@ void Unwind_180910ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1cd0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1cd0))(validationContext + 0x1cc0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1cd0))(validationContext + 0x1cc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1c98) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1ca0) != 0) {
@@ -86916,14 +86923,14 @@ void Unwind_180910d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1d40) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1d40))(validationContext + 0x1d30,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1d40))(validationContext + 0x1d30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1d08) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1d10) != 0) {
@@ -86946,14 +86953,14 @@ void Unwind_180910d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1db0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1db0))(validationContext + 0x1da0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1db0))(validationContext + 0x1da0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1d78) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1d80) != 0) {
@@ -86976,14 +86983,14 @@ void Unwind_180910d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1e20) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1e20))(validationContext + 0x1e10,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1e20))(validationContext + 0x1e10,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1de8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1df0) != 0) {
@@ -87006,14 +87013,14 @@ void Unwind_180910d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1e90) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1e90))(validationContext + 0x1e80,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1e90))(validationContext + 0x1e80,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1e58) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1e60) != 0) {
@@ -87036,14 +87043,14 @@ void Unwind_180910d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1f00) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1f00))(validationContext + 0x1ef0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1f00))(validationContext + 0x1ef0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1ec8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1ed0) != 0) {
@@ -87066,14 +87073,14 @@ void Unwind_180910da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1f70) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1f70))(validationContext + 0x1f60,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1f70))(validationContext + 0x1f60,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1f38) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 8000) != 0) {
@@ -87096,14 +87103,14 @@ void Unwind_180910dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x1fe0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1fe0))(validationContext + 0x1fd0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1fe0))(validationContext + 0x1fd0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1fa8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1fb0) != 0) {
@@ -87126,14 +87133,14 @@ void Unwind_180910de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x2050) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2050))(validationContext + 0x2040,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2050))(validationContext + 0x2040,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2018) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2020) != 0) {
@@ -87156,14 +87163,14 @@ void Unwind_180910e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x20c0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x20c0))(validationContext + 0x20b0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x20c0))(validationContext + 0x20b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2088) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2090) != 0) {
@@ -87186,14 +87193,14 @@ void Unwind_180910e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x2130) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2130))(validationContext + 0x2120,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2130))(validationContext + 0x2120,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x20f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2100) != 0) {
@@ -87216,14 +87223,14 @@ void Unwind_180910e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x21a0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x21a0))(validationContext + 0x2190,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x21a0))(validationContext + 0x2190,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2168) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2170) != 0) {
@@ -87246,14 +87253,14 @@ void Unwind_180910e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x2210) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2210))(validationContext + 0x2200,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2210))(validationContext + 0x2200,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x21d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x21e0) != 0) {
@@ -87276,14 +87283,14 @@ void Unwind_180910e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x2280) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2280))(validationContext + 0x2270,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2280))(validationContext + 0x2270,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2248) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2250) != 0) {
@@ -87306,14 +87313,14 @@ void Unwind_180910ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x22f0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x22f0))(validationContext + 0x22e0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x22f0))(validationContext + 0x22e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x22b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x22c0) != 0) {
@@ -87336,14 +87343,14 @@ void Unwind_180910ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x2360) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2360))(validationContext + 0x2350,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2360))(validationContext + 0x2350,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 9000) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2330) != 0) {
@@ -87366,14 +87373,14 @@ void Unwind_180910ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x23d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x23d0))(validationContext + 0x23c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x23d0))(validationContext + 0x23c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2398) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x23a0) != 0) {
@@ -87396,14 +87403,14 @@ void Unwind_180910f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x2440) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2440))(validationContext + 0x2430,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2440))(validationContext + 0x2430,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2408) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2410) != 0) {
@@ -87426,14 +87433,14 @@ void Unwind_180910f20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x24b0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x24b0))(validationContext + 0x24a0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x24b0))(validationContext + 0x24a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2478) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2480) != 0) {
@@ -87456,14 +87463,14 @@ void Unwind_180910f40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x2520) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2520))(validationContext + 0x2510,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2520))(validationContext + 0x2510,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x24e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x24f0) != 0) {
@@ -87486,14 +87493,14 @@ void Unwind_180910f60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910f80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910f80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x2590) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2590))(validationContext + 0x2580,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2590))(validationContext + 0x2580,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2558) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2560) != 0) {
@@ -87516,14 +87523,14 @@ void Unwind_180910f80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x2600) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2600))(validationContext + 0x25f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2600))(validationContext + 0x25f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x25c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x25d0) != 0) {
@@ -87546,7 +87553,7 @@ void Unwind_180910fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -87558,7 +87565,7 @@ void Unwind_180910fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x80) + 0x2618);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -87569,7 +87576,7 @@ void Unwind_180910fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180910fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180910fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -87581,7 +87588,7 @@ void Unwind_180910fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x80) + 0x2638);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -87592,14 +87599,14 @@ void Unwind_180910fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xa00) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xa00))(validationContext + 0x9f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xa00))(validationContext + 0x9f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x9c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9d0) != 0) {
@@ -87622,14 +87629,14 @@ void Unwind_180911000(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xa70) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xa70))(validationContext + 0xa60,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xa70))(validationContext + 0xa60,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xa38) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa40) != 0) {
@@ -87652,14 +87659,14 @@ void Unwind_180911020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xae0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xae0))(validationContext + 0xad0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xae0))(validationContext + 0xad0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xaa8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xab0) != 0) {
@@ -87682,14 +87689,14 @@ void Unwind_180911040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xb50) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xb50))(validationContext + 0xb40,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xb18) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb20) != 0) {
@@ -87712,14 +87719,14 @@ void Unwind_180911060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xbc0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xbc0))(validationContext + 0xbb0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xbc0))(validationContext + 0xbb0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xb88) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb90) != 0) {
@@ -87742,14 +87749,14 @@ void Unwind_180911080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809110a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809110a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xc30) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xc30))(validationContext + 0xc20,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xc30))(validationContext + 0xc20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xbf8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc00) != 0) {
@@ -87772,14 +87779,14 @@ void Unwind_1809110a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809110c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809110c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xca0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xca0))(validationContext + 0xc90,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xca0))(validationContext + 0xc90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xc68) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc70) != 0) {
@@ -87802,14 +87809,14 @@ void Unwind_1809110c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809110e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809110e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xd10) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xd10))(validationContext + 0xd00,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xd10))(validationContext + 0xd00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xcd8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xce0) != 0) {
@@ -87832,14 +87839,14 @@ void Unwind_1809110e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xd80) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xd80))(validationContext + 0xd70,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xd80))(validationContext + 0xd70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xd48) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xd50) != 0) {
@@ -87862,14 +87869,14 @@ void Unwind_180911100(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xdf0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xdf0))(validationContext + 0xde0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xdf0))(validationContext + 0xde0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xdb8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xdc0) != 0) {
@@ -87892,14 +87899,14 @@ void Unwind_180911120(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xe60) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xe60))(validationContext + 0xe50,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xe60))(validationContext + 0xe50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xe28) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe30) != 0) {
@@ -87922,14 +87929,14 @@ void Unwind_180911140(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xed0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xed0))(validationContext + 0xec0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xed0))(validationContext + 0xec0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xe98) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xea0) != 0) {
@@ -87952,14 +87959,14 @@ void Unwind_180911160(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xf40) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xf40))(validationContext + 0xf30,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xf40))(validationContext + 0xf30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xf08) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf10) != 0) {
@@ -87982,14 +87989,14 @@ void Unwind_180911180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809111a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809111a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0xfb0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0xfb0))(validationContext + 4000,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0xfb0))(validationContext + 4000,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xf78) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf80) != 0) {
@@ -88012,14 +88019,14 @@ void Unwind_1809111a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809111c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809111c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1020) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1020))(validationContext + 0x1010,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1020))(validationContext + 0x1010,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0xfe8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xff0) != 0) {
@@ -88042,14 +88049,14 @@ void Unwind_1809111c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809111e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809111e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1090) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1090))(validationContext + 0x1080,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1090))(validationContext + 0x1080,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1058) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1060) != 0) {
@@ -88072,14 +88079,14 @@ void Unwind_1809111e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1100) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1100))(validationContext + 0x10f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1100))(validationContext + 0x10f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x10c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x10d0) != 0) {
@@ -88102,14 +88109,14 @@ void Unwind_180911200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1170) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1170))(validationContext + 0x1160,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1170))(validationContext + 0x1160,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1138) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1140) != 0) {
@@ -88132,14 +88139,14 @@ void Unwind_180911220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x11e0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x11e0))(validationContext + 0x11d0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x11e0))(validationContext + 0x11d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x11a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x11b0) != 0) {
@@ -88162,14 +88169,14 @@ void Unwind_180911240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1250) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1250))(validationContext + 0x1240,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1250))(validationContext + 0x1240,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1218) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1220) != 0) {
@@ -88192,14 +88199,14 @@ void Unwind_180911260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x12c0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x12c0))(validationContext + 0x12b0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x12c0))(validationContext + 0x12b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1288) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1290) != 0) {
@@ -88222,14 +88229,14 @@ void Unwind_180911280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809112a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809112a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1330) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1330))(validationContext + 0x1320,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1330))(validationContext + 0x1320,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x12f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1300) != 0) {
@@ -88252,14 +88259,14 @@ void Unwind_1809112a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809112c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809112c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x13a0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x13a0))(validationContext + 0x1390,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x13a0))(validationContext + 0x1390,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1368) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1370) != 0) {
@@ -88282,14 +88289,14 @@ void Unwind_1809112c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809112e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809112e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1410) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1410))(validationContext + 0x1400,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1410))(validationContext + 0x1400,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x13d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x13e0) != 0) {
@@ -88312,14 +88319,14 @@ void Unwind_1809112e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1480) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1480))(validationContext + 0x1470,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1480))(validationContext + 0x1470,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1448) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1450) != 0) {
@@ -88342,14 +88349,14 @@ void Unwind_180911300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x14f0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x14f0))(validationContext + 0x14e0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x14f0))(validationContext + 0x14e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x14b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x14c0) != 0) {
@@ -88372,14 +88379,14 @@ void Unwind_180911320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1560) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1560))(validationContext + 0x1550,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1560))(validationContext + 0x1550,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1528) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1530) != 0) {
@@ -88402,14 +88409,14 @@ void Unwind_180911340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x15d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x15d0))(validationContext + 0x15c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x15d0))(validationContext + 0x15c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1598) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x15a0) != 0) {
@@ -88432,14 +88439,14 @@ void Unwind_180911360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911380(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911380(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1640) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1640))(validationContext + 0x1630,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1640))(validationContext + 0x1630,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1608) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1610) != 0) {
@@ -88462,14 +88469,14 @@ void Unwind_180911380(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809113a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809113a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x16b0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x16b0))(validationContext + 0x16a0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x16b0))(validationContext + 0x16a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1678) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1680) != 0) {
@@ -88492,14 +88499,14 @@ void Unwind_1809113a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809113c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809113c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1720) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1720))(validationContext + 0x1710,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1720))(validationContext + 0x1710,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x16e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x16f0) != 0) {
@@ -88522,14 +88529,14 @@ void Unwind_1809113c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809113e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809113e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1790) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1790))(validationContext + 0x1780,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1790))(validationContext + 0x1780,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1758) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1760) != 0) {
@@ -88552,14 +88559,14 @@ void Unwind_1809113e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1800) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1800))(validationContext + 0x17f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1800))(validationContext + 0x17f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x17c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x17d0) != 0) {
@@ -88582,14 +88589,14 @@ void Unwind_180911400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1870) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1870))(validationContext + 0x1860,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1870))(validationContext + 0x1860,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1838) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1840) != 0) {
@@ -88612,14 +88619,14 @@ void Unwind_180911420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x18e0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x18e0))(validationContext + 0x18d0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x18e0))(validationContext + 0x18d0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x18a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x18b0) != 0) {
@@ -88642,14 +88649,14 @@ void Unwind_180911440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1950) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1950))(validationContext + 0x1940,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1950))(validationContext + 0x1940,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1918) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1920) != 0) {
@@ -88672,14 +88679,14 @@ void Unwind_180911460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x19c0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x19c0))(validationContext + 0x19b0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x19c0))(validationContext + 0x19b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1988) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1990) != 0) {
@@ -88702,14 +88709,14 @@ void Unwind_180911480(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809114a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809114a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1a30) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1a30))(validationContext + 0x1a20,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1a30))(validationContext + 0x1a20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x19f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1a00) != 0) {
@@ -88732,14 +88739,14 @@ void Unwind_1809114a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809114c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809114c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1aa0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1aa0))(validationContext + 0x1a90,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1aa0))(validationContext + 0x1a90,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1a68) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1a70) != 0) {
@@ -88762,14 +88769,14 @@ void Unwind_1809114c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809114e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809114e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1b10) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1b10))(validationContext + 0x1b00,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1b10))(validationContext + 0x1b00,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1ad8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1ae0) != 0) {
@@ -88792,14 +88799,14 @@ void Unwind_1809114e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1b80) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1b80))(validationContext + 0x1b70,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1b80))(validationContext + 0x1b70,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1b48) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1b50) != 0) {
@@ -88822,14 +88829,14 @@ void Unwind_180911500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1bf0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1bf0))(validationContext + 0x1be0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1bf0))(validationContext + 0x1be0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1bb8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1bc0) != 0) {
@@ -88852,14 +88859,14 @@ void Unwind_180911520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1c60) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1c60))(validationContext + 0x1c50,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1c60))(validationContext + 0x1c50,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1c28) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1c30) != 0) {
@@ -88882,14 +88889,14 @@ void Unwind_180911540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911560(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911560(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1cd0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1cd0))(validationContext + 0x1cc0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1cd0))(validationContext + 0x1cc0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1c98) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1ca0) != 0) {
@@ -88912,14 +88919,14 @@ void Unwind_180911560(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1d40) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1d40))(validationContext + 0x1d30,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1d40))(validationContext + 0x1d30,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1d08) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1d10) != 0) {
@@ -88942,14 +88949,14 @@ void Unwind_180911580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809115a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809115a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1db0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1db0))(validationContext + 0x1da0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1db0))(validationContext + 0x1da0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1d78) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1d80) != 0) {
@@ -88972,14 +88979,14 @@ void Unwind_1809115a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809115c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809115c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1e20) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1e20))(validationContext + 0x1e10,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1e20))(validationContext + 0x1e10,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1de8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1df0) != 0) {
@@ -89002,14 +89009,14 @@ void Unwind_1809115c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809115e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809115e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1e90) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1e90))(validationContext + 0x1e80,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1e90))(validationContext + 0x1e80,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1e58) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1e60) != 0) {
@@ -89032,14 +89039,14 @@ void Unwind_1809115e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1f00) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1f00))(validationContext + 0x1ef0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1f00))(validationContext + 0x1ef0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1ec8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1ed0) != 0) {
@@ -89062,14 +89069,14 @@ void Unwind_180911600(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1f70) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1f70))(validationContext + 0x1f60,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1f70))(validationContext + 0x1f60,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1f38) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 8000) != 0) {
@@ -89092,14 +89099,14 @@ void Unwind_180911620(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x1fe0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x1fe0))(validationContext + 0x1fd0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x1fe0))(validationContext + 0x1fd0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x1fa8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1fb0) != 0) {
@@ -89122,14 +89129,14 @@ void Unwind_180911640(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x2050) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2050))(validationContext + 0x2040,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2050))(validationContext + 0x2040,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2018) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2020) != 0) {
@@ -89152,14 +89159,14 @@ void Unwind_180911660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x20c0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x20c0))(validationContext + 0x20b0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x20c0))(validationContext + 0x20b0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2088) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2090) != 0) {
@@ -89182,14 +89189,14 @@ void Unwind_180911680(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809116a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809116a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x2130) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2130))(validationContext + 0x2120,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2130))(validationContext + 0x2120,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x20f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2100) != 0) {
@@ -89212,14 +89219,14 @@ void Unwind_1809116a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809116c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809116c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x21a0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x21a0))(validationContext + 0x2190,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x21a0))(validationContext + 0x2190,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2168) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2170) != 0) {
@@ -89242,14 +89249,14 @@ void Unwind_1809116c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809116e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809116e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x2210) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2210))(validationContext + 0x2200,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2210))(validationContext + 0x2200,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x21d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x21e0) != 0) {
@@ -89272,14 +89279,14 @@ void Unwind_1809116e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x2280) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2280))(validationContext + 0x2270,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2280))(validationContext + 0x2270,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2248) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2250) != 0) {
@@ -89302,14 +89309,14 @@ void Unwind_180911700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x22f0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x22f0))(validationContext + 0x22e0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x22f0))(validationContext + 0x22e0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x22b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x22c0) != 0) {
@@ -89332,14 +89339,14 @@ void Unwind_180911720(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x2360) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2360))(validationContext + 0x2350,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2360))(validationContext + 0x2350,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 9000) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2330) != 0) {
@@ -89362,14 +89369,14 @@ void Unwind_180911740(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x23d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x23d0))(validationContext + 0x23c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x23d0))(validationContext + 0x23c0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2398) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x23a0) != 0) {
@@ -89392,14 +89399,14 @@ void Unwind_180911760(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x2440) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2440))(validationContext + 0x2430,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2440))(validationContext + 0x2430,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2408) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2410) != 0) {
@@ -89422,14 +89429,14 @@ void Unwind_180911780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809117a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809117a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x24b0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x24b0))(validationContext + 0x24a0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x24b0))(validationContext + 0x24a0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2478) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2480) != 0) {
@@ -89452,14 +89459,14 @@ void Unwind_1809117a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809117c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809117c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x2520) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2520))(validationContext + 0x2510,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2520))(validationContext + 0x2510,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x24e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x24f0) != 0) {
@@ -89482,14 +89489,14 @@ void Unwind_1809117c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809117e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809117e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x2590) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2590))(validationContext + 0x2580,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2590))(validationContext + 0x2580,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x2558) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2560) != 0) {
@@ -89512,14 +89519,14 @@ void Unwind_1809117e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
   
   validationContext = *(int64_t *)(dataBuffer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x2600) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x2600))(validationContext + 0x25f0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x2600))(validationContext + 0x25f0,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x25c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x25d0) != 0) {
@@ -89542,7 +89549,7 @@ void Unwind_180911800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89554,7 +89561,7 @@ void Unwind_180911820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x2618);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -89565,7 +89572,7 @@ void Unwind_180911820(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89577,7 +89584,7 @@ void Unwind_180911840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataBuffer + 0x40) + 0x2638);
   for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != exceptionDataBuffer; validationStatusPointer = validationStatusPointer + 4) {
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,operationFlagA,operationFlagB,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -89588,7 +89595,7 @@ void Unwind_180911840(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89598,7 +89605,7 @@ void Unwind_180911860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x78);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x70); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x70) == 0) {
     return;
@@ -89609,7 +89616,7 @@ void Unwind_180911860(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89619,7 +89626,7 @@ void Unwind_180911870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x118);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x110); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x110) == 0) {
     return;
@@ -89630,7 +89637,7 @@ void Unwind_180911870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89640,7 +89647,7 @@ void Unwind_180911880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xf8);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xf0); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xf0) == 0) {
     return;
@@ -89651,7 +89658,7 @@ void Unwind_180911880(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89661,7 +89668,7 @@ void Unwind_180911890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xd8);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xd0); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xd0) == 0) {
     return;
@@ -89672,7 +89679,7 @@ void Unwind_180911890(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809118a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809118a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89682,7 +89689,7 @@ void Unwind_1809118a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xb8);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xb0); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xb0) == 0) {
     return;
@@ -89693,7 +89700,7 @@ void Unwind_1809118a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_1809118b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809118b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89703,7 +89710,7 @@ void Unwind_1809118b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x138);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x130); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x130) == 0) {
     return;
@@ -89759,7 +89766,7 @@ void Unwind_1809118d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809118e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809118e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89769,7 +89776,7 @@ void Unwind_1809118e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x78);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x70); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x70) == 0) {
     return;
@@ -89816,7 +89823,7 @@ void Unwind_1809118f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180911900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89826,7 +89833,7 @@ void Unwind_180911900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x118);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x110); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x110) == 0) {
     return;
@@ -89837,7 +89844,7 @@ void Unwind_180911900(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89847,7 +89854,7 @@ void Unwind_180911910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xf8);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xf0); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xf0) == 0) {
     return;
@@ -89858,7 +89865,7 @@ void Unwind_180911910(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89868,7 +89875,7 @@ void Unwind_180911920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xd8);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xd0); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xd0) == 0) {
     return;
@@ -89879,7 +89886,7 @@ void Unwind_180911920(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89889,7 +89896,7 @@ void Unwind_180911930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xb8);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0xb0); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0xb0) == 0) {
     return;
@@ -89900,7 +89907,7 @@ void Unwind_180911930(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 
 
-void Unwind_180911940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -89910,7 +89917,7 @@ void Unwind_180911940(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
   validationStatus = SystemCleanupFlagfffffffe;
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x138);
   for (resourcePointer = *(DataBuffer **)(dataBuffer + 0x130); resourcePointer != exceptionDataBuffer; resourcePointer = resourcePointer + 4) {
-    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
+    (**(FunctionPointer**)*resourcePointer)(resourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x130) == 0) {
     return;
@@ -90005,88 +90012,88 @@ void Unwind_1809119f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180911a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x30) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x30))(dataBuffer + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x30))(dataBuffer + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x98) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x98))(dataBuffer + 0x88,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x98))(dataBuffer + 0x88,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0xb8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0xb8))(dataBuffer + 0xa8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0xb8))(dataBuffer + 0xa8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911a50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0xd8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0xd8))(dataBuffer + 200,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0xd8))(dataBuffer + 200,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911a60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0xf8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0xf8))(dataBuffer + 0xe8,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0xf8))(dataBuffer + 0xe8,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911a70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x118) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x118))(dataBuffer + 0x108,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x118))(dataBuffer + 0x108,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911a80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x138) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x138))(dataBuffer + 0x128,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x138))(dataBuffer + 0x128,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911a90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   if (*(FunctionPointer**)(dataBuffer + 0x30) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x30))(dataBuffer + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(dataBuffer + 0x30))(dataBuffer + 0x20,0,0,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90119,7 +90126,7 @@ void Unwind_180911ad0(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90130,7 +90137,7 @@ void Unwind_180911b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90139,7 +90146,7 @@ void Unwind_180911b00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911b10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90150,7 +90157,7 @@ void Unwind_180911b10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90159,7 +90166,7 @@ void Unwind_180911b10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90170,7 +90177,7 @@ void Unwind_180911b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90179,7 +90186,7 @@ void Unwind_180911b20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90190,7 +90197,7 @@ void Unwind_180911b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90199,7 +90206,7 @@ void Unwind_180911b30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90210,7 +90217,7 @@ void Unwind_180911b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90219,7 +90226,7 @@ void Unwind_180911b40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90230,7 +90237,7 @@ void Unwind_180911b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90239,7 +90246,7 @@ void Unwind_180911b50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911b70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90250,7 +90257,7 @@ void Unwind_180911b70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90303,7 +90310,7 @@ void Unwind_180911c00(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911c30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911c30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90314,7 +90321,7 @@ void Unwind_180911c30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90323,7 +90330,7 @@ void Unwind_180911c30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90334,7 +90341,7 @@ void Unwind_180911c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x70) + 0x1608);
   if (validationContext != 0) {
@@ -90342,7 +90349,7 @@ void Unwind_180911c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90351,7 +90358,7 @@ void Unwind_180911c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90362,7 +90369,7 @@ void Unwind_180911c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90371,7 +90378,7 @@ void Unwind_180911c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90382,7 +90389,7 @@ void Unwind_180911c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90391,7 +90398,7 @@ void Unwind_180911c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90402,7 +90409,7 @@ void Unwind_180911ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90411,7 +90418,7 @@ void Unwind_180911ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90422,7 +90429,7 @@ void Unwind_180911cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90431,7 +90438,7 @@ void Unwind_180911cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90442,7 +90449,7 @@ void Unwind_180911ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90451,7 +90458,7 @@ void Unwind_180911ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90462,7 +90469,7 @@ void Unwind_180911d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90471,7 +90478,7 @@ void Unwind_180911d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90482,7 +90489,7 @@ void Unwind_180911d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90491,7 +90498,7 @@ void Unwind_180911d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90502,7 +90509,7 @@ void Unwind_180911d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90511,7 +90518,7 @@ void Unwind_180911d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90522,7 +90529,7 @@ void Unwind_180911d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90531,7 +90538,7 @@ void Unwind_180911d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90542,7 +90549,7 @@ void Unwind_180911d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90551,7 +90558,7 @@ void Unwind_180911d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90562,7 +90569,7 @@ void Unwind_180911da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90571,7 +90578,7 @@ void Unwind_180911da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90582,7 +90589,7 @@ void Unwind_180911dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90591,7 +90598,7 @@ void Unwind_180911dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int *referenceCountPointer;
@@ -90616,7 +90623,7 @@ void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
           *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+        FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
       }
       dataFlags = (int)validationOutcome + 1;
       operationResult = operationResult + 0x10;
@@ -90631,7 +90638,7 @@ void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   calculatedOffset = *(int64_t *)(calculatedIndex + 0x1e68);
   if (calculatedOffset == 0) {
@@ -90642,7 +90649,7 @@ void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
         *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+      FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     }
     calculatedIndex = *(int64_t *)(calculatedIndex + 0x1e68);
     if (calculatedIndex == 0) {
@@ -90652,21 +90659,21 @@ void Unwind_180911de0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(calculatedIndex,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(calculatedIndex,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(calculatedIndex + 0x1e60) = 0;
   if (ExceptionContextPtr != 0) {
     *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90677,7 +90684,7 @@ void Unwind_180911e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90686,7 +90693,7 @@ void Unwind_180911e00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90697,7 +90704,7 @@ void Unwind_180911e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90706,7 +90713,7 @@ void Unwind_180911e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90719,7 +90726,7 @@ void Unwind_180911e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataContext + 0x1ec8);
   if (validationContext != 0) {
@@ -90727,7 +90734,7 @@ void Unwind_180911e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataContext + 0x1eb8);
   if (validationContext != 0) {
@@ -90735,7 +90742,7 @@ void Unwind_180911e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90744,7 +90751,7 @@ void Unwind_180911e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90760,7 +90767,7 @@ void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x2d58);
   if (validationContext != 0) {
@@ -90768,7 +90775,7 @@ void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x2d48);
   if (validationContext != 0) {
@@ -90776,7 +90783,7 @@ void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   return;
 }
@@ -90785,7 +90792,7 @@ void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90796,7 +90803,7 @@ void Unwind_180911e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90805,7 +90812,7 @@ void Unwind_180911e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90816,7 +90823,7 @@ void Unwind_180911ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90825,7 +90832,7 @@ void Unwind_180911ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90836,7 +90843,7 @@ void Unwind_180911ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90845,7 +90852,7 @@ void Unwind_180911ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90856,7 +90863,7 @@ void Unwind_180911ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90865,7 +90872,7 @@ void Unwind_180911ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90876,7 +90883,7 @@ void Unwind_180911f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90895,7 +90902,7 @@ void Unwind_180911f20(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90906,7 +90913,7 @@ void Unwind_180911f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90915,7 +90922,7 @@ void Unwind_180911f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90926,7 +90933,7 @@ void Unwind_180911f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90935,7 +90942,7 @@ void Unwind_180911f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90946,7 +90953,7 @@ void Unwind_180911f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90955,7 +90962,7 @@ void Unwind_180911f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90966,7 +90973,7 @@ void Unwind_180911fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90975,7 +90982,7 @@ void Unwind_180911fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -90986,7 +90993,7 @@ void Unwind_180911fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -90995,7 +91002,7 @@ void Unwind_180911fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91006,7 +91013,7 @@ void Unwind_180911fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91015,7 +91022,7 @@ void Unwind_180911fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91026,7 +91033,7 @@ void Unwind_180911fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91035,7 +91042,7 @@ void Unwind_180911fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180911fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91046,7 +91053,7 @@ void Unwind_180911fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91055,7 +91062,7 @@ void Unwind_180911fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void CleanupExceptionAtOffset48(DataBuffer operationBase, int64_t dataBuffer, DataBuffer param_3, DataBuffer param_4)
+// 函数: void CleanupExceptionAtOffset48(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 // 
 // 清理偏移量0x48处的异常处理资源
 // 在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
@@ -91063,12 +91070,12 @@ void Unwind_180911fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 // 参数:
 //   operationBase - 异常处理参数1
 //   dataBuffer - 异常上下文参数，包含要清理的资源指针
-//   param_3 - 异常处理参数3
-//   param_4 - 异常处理参数4
+//   operationFlagA - 异常处理参数3
+//   operationFlagB - 异常处理参数4
 // 
 // 返回值:
 //   无
-void CleanupExceptionAtOffset48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionAtOffset48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t resourcePointer;
@@ -91079,7 +91086,7 @@ void CleanupExceptionAtOffset48(DataBuffer operationBase,int64_t dataBuffer,Data
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91088,7 +91095,7 @@ void CleanupExceptionAtOffset48(DataBuffer operationBase,int64_t dataBuffer,Data
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void CleanupExceptionAtOffset58(DataBuffer operationBase, int64_t dataBuffer, DataBuffer param_3, DataBuffer param_4)
+// 函数: void CleanupExceptionAtOffset58(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 // 
 // 清理偏移量0x58处的异常处理资源
 // 在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
@@ -91096,12 +91103,12 @@ void CleanupExceptionAtOffset48(DataBuffer operationBase,int64_t dataBuffer,Data
 // 参数:
 //   operationBase - 异常处理参数1
 //   dataBuffer - 异常上下文参数，包含要清理的资源指针
-//   param_3 - 异常处理参数3
-//   param_4 - 异常处理参数4
+//   operationFlagA - 异常处理参数3
+//   operationFlagB - 异常处理参数4
 // 
 // 返回值:
 //   无
-void CleanupExceptionAtOffset58(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionAtOffset58(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t resourcePointer;
@@ -91112,7 +91119,7 @@ void CleanupExceptionAtOffset58(DataBuffer operationBase,int64_t dataBuffer,Data
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91121,7 +91128,7 @@ void CleanupExceptionAtOffset58(DataBuffer operationBase,int64_t dataBuffer,Data
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void CleanupExceptionAtOffset68(DataBuffer operationBase, int64_t dataBuffer, DataBuffer param_3, DataBuffer param_4)
+// 函数: void CleanupExceptionAtOffset68(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 // 
 // 清理偏移量0x68处的异常处理资源
 // 在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
@@ -91129,12 +91136,12 @@ void CleanupExceptionAtOffset58(DataBuffer operationBase,int64_t dataBuffer,Data
 // 参数:
 //   operationBase - 异常处理参数1
 //   dataBuffer - 异常上下文参数，包含要清理的资源指针
-//   param_3 - 异常处理参数3
-//   param_4 - 异常处理参数4
+//   operationFlagA - 异常处理参数3
+//   operationFlagB - 异常处理参数4
 // 
 // 返回值:
 //   无
-void CleanupExceptionAtOffset68(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionAtOffset68(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t resourcePointer;
@@ -91145,7 +91152,7 @@ void CleanupExceptionAtOffset68(DataBuffer operationBase,int64_t dataBuffer,Data
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91154,7 +91161,7 @@ void CleanupExceptionAtOffset68(DataBuffer operationBase,int64_t dataBuffer,Data
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void CleanupExceptionAtOffset1530(DataBuffer operationBase, int64_t dataBuffer, DataBuffer param_3, DataBuffer param_4)
+// 函数: void CleanupExceptionAtOffset1530(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 // 
 // 清理偏移量0x1530处的异常处理资源
 // 在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
@@ -91162,12 +91169,12 @@ void CleanupExceptionAtOffset68(DataBuffer operationBase,int64_t dataBuffer,Data
 // 参数:
 //   operationBase - 异常处理参数1
 //   dataBuffer - 异常上下文参数，包含要清理的资源指针
-//   param_3 - 异常处理参数3
-//   param_4 - 异常处理参数4
+//   operationFlagA - 异常处理参数3
+//   operationFlagB - 异常处理参数4
 // 
 // 返回值:
 //   无
-void CleanupExceptionAtOffset1530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionAtOffset1530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t resourcePointer;
@@ -91178,7 +91185,7 @@ void CleanupExceptionAtOffset1530(DataBuffer operationBase,int64_t dataBuffer,Da
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91187,7 +91194,7 @@ void CleanupExceptionAtOffset1530(DataBuffer operationBase,int64_t dataBuffer,Da
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91198,7 +91205,7 @@ void Unwind_180912040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91207,7 +91214,7 @@ void Unwind_180912040(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91218,7 +91225,7 @@ void Unwind_180912060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91227,7 +91234,7 @@ void Unwind_180912060(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91238,7 +91245,7 @@ void Unwind_180912080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91247,7 +91254,7 @@ void Unwind_180912080(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91258,7 +91265,7 @@ void Unwind_180912090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91267,7 +91274,7 @@ void Unwind_180912090(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809120a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91278,7 +91285,7 @@ void Unwind_1809120a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91287,7 +91294,7 @@ void Unwind_1809120a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809120b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91298,7 +91305,7 @@ void Unwind_1809120b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91307,7 +91314,7 @@ void Unwind_1809120b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809120d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91318,7 +91325,7 @@ void Unwind_1809120d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91327,7 +91334,7 @@ void Unwind_1809120d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809120f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91338,7 +91345,7 @@ void Unwind_1809120f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91347,7 +91354,7 @@ void Unwind_1809120f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91358,7 +91365,7 @@ void Unwind_180912110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91367,7 +91374,7 @@ void Unwind_180912110(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91378,7 +91385,7 @@ void Unwind_180912130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91387,7 +91394,7 @@ void Unwind_180912130(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91398,7 +91405,7 @@ void Unwind_180912150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91407,7 +91414,7 @@ void Unwind_180912150(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91418,7 +91425,7 @@ void Unwind_180912170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91427,7 +91434,7 @@ void Unwind_180912170(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91440,7 +91447,7 @@ void Unwind_180912180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataContext + 0x1e0);
   if (validationContext != 0) {
@@ -91448,7 +91455,7 @@ void Unwind_180912180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataContext + 0x1d0);
   if (validationContext != 0) {
@@ -91456,7 +91463,7 @@ void Unwind_180912180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataContext + 0x1c0);
   if (validationContext != 0) {
@@ -91464,7 +91471,7 @@ void Unwind_180912180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataContext + 400);
   if (validationContext != 0) {
@@ -91472,7 +91479,7 @@ void Unwind_180912180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91481,7 +91488,7 @@ void Unwind_180912180(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809121a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809121a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91492,7 +91499,7 @@ void Unwind_1809121a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91501,7 +91508,7 @@ void Unwind_1809121a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809121c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809121c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91512,7 +91519,7 @@ void Unwind_1809121c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91521,7 +91528,7 @@ void Unwind_1809121c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809121e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809121e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91532,7 +91539,7 @@ void Unwind_1809121e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91541,7 +91548,7 @@ void Unwind_1809121e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91557,7 +91564,7 @@ void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x378);
   if (validationContext != 0) {
@@ -91565,7 +91572,7 @@ void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x368);
   if (validationContext != 0) {
@@ -91573,7 +91580,7 @@ void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x358);
   if (validationContext != 0) {
@@ -91581,7 +91588,7 @@ void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x318);
   if (validationContext != 0) {
@@ -91589,7 +91596,7 @@ void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x308);
   if (validationContext != 0) {
@@ -91597,7 +91604,7 @@ void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x2f8);
   if (validationContext != 0) {
@@ -91605,7 +91612,7 @@ void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   return;
 }
@@ -91614,7 +91621,7 @@ void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91625,7 +91632,7 @@ void Unwind_180912220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91634,7 +91641,7 @@ void Unwind_180912220(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91645,7 +91652,7 @@ void Unwind_180912240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91654,7 +91661,7 @@ void Unwind_180912240(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91665,7 +91672,7 @@ void Unwind_180912260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91674,7 +91681,7 @@ void Unwind_180912260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91685,7 +91692,7 @@ void Unwind_180912280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91694,7 +91701,7 @@ void Unwind_180912280(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91707,7 +91714,7 @@ void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataContext + 0x1e0);
   if (validationContext != 0) {
@@ -91715,7 +91722,7 @@ void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataContext + 0x1d0);
   if (validationContext != 0) {
@@ -91723,7 +91730,7 @@ void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataContext + 0x1c0);
   if (validationContext != 0) {
@@ -91731,7 +91738,7 @@ void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataContext + 400);
   if (validationContext != 0) {
@@ -91739,7 +91746,7 @@ void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91748,7 +91755,7 @@ void Unwind_1809122a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809122c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809122c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91759,7 +91766,7 @@ void Unwind_1809122c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91768,7 +91775,7 @@ void Unwind_1809122c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809122e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809122e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91779,7 +91786,7 @@ void Unwind_1809122e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91788,7 +91795,7 @@ void Unwind_1809122e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91799,7 +91806,7 @@ void Unwind_180912300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91808,7 +91815,7 @@ void Unwind_180912300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91824,7 +91831,7 @@ void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x378);
   if (validationContext != 0) {
@@ -91832,7 +91839,7 @@ void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x368);
   if (validationContext != 0) {
@@ -91840,7 +91847,7 @@ void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x358);
   if (validationContext != 0) {
@@ -91848,7 +91855,7 @@ void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x318);
   if (validationContext != 0) {
@@ -91856,7 +91863,7 @@ void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x308);
   if (validationContext != 0) {
@@ -91864,7 +91871,7 @@ void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   validationContext = *(int64_t *)(dataContext + 0x2f8);
   if (validationContext != 0) {
@@ -91872,7 +91879,7 @@ void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,validationStatus);
   }
   return;
 }
@@ -91881,7 +91888,7 @@ void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91892,7 +91899,7 @@ void Unwind_180912340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91901,7 +91908,7 @@ void Unwind_180912340(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91912,7 +91919,7 @@ void Unwind_180912350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91921,7 +91928,7 @@ void Unwind_180912350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91932,7 +91939,7 @@ void Unwind_180912360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91971,7 +91978,7 @@ void Unwind_1809123d0(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -91982,7 +91989,7 @@ void Unwind_180912400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -91991,7 +91998,7 @@ void Unwind_180912400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92002,7 +92009,7 @@ void Unwind_180912410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92011,7 +92018,7 @@ void Unwind_180912410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92022,7 +92029,7 @@ void Unwind_180912420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92031,7 +92038,7 @@ void Unwind_180912420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92042,7 +92049,7 @@ void Unwind_180912430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92051,7 +92058,7 @@ void Unwind_180912430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92062,7 +92069,7 @@ void Unwind_180912440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92071,7 +92078,7 @@ void Unwind_180912440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92082,7 +92089,7 @@ void Unwind_180912450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92091,7 +92098,7 @@ void Unwind_180912450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92102,7 +92109,7 @@ void Unwind_180912460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92131,7 +92138,7 @@ void Unwind_1809124a0(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809124d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809124d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92142,7 +92149,7 @@ void Unwind_1809124d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92151,7 +92158,7 @@ void Unwind_1809124d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809124e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809124e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92162,7 +92169,7 @@ void Unwind_1809124e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92171,7 +92178,7 @@ void Unwind_1809124e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809124f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809124f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92189,7 +92196,7 @@ void Unwind_1809124f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,operationResult);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
@@ -92198,7 +92205,7 @@ void Unwind_1809124f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92209,7 +92216,7 @@ void Unwind_180912500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92218,7 +92225,7 @@ void Unwind_180912500(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92229,7 +92236,7 @@ void Unwind_180912510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92238,7 +92245,7 @@ void Unwind_180912510(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92249,7 +92256,7 @@ void Unwind_180912520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92258,7 +92265,7 @@ void Unwind_180912520(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92269,7 +92276,7 @@ void Unwind_180912530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92278,7 +92285,7 @@ void Unwind_180912530(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92289,7 +92296,7 @@ void Unwind_180912540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92308,7 +92315,7 @@ void Unwind_180912550(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92319,7 +92326,7 @@ void Unwind_180912580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92328,7 +92335,7 @@ void Unwind_180912580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92340,7 +92347,7 @@ void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataBuffer + 0x48);
   if (validationContext != 0) {
@@ -92349,7 +92356,7 @@ void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   *(DataWord *)(dataBuffer + 0x60) = 0;
   validationContext = *(int64_t *)(dataBuffer + 0x58);
@@ -92358,7 +92365,7 @@ void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   validationContext = *(int64_t *)(dataBuffer + 0x48);
   if (validationContext != 0) {
@@ -92366,7 +92373,7 @@ void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92375,7 +92382,7 @@ void Unwind_180912590(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809125a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809125a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92386,7 +92393,7 @@ void Unwind_1809125a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92395,7 +92402,7 @@ void Unwind_1809125a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809125b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809125b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92406,7 +92413,7 @@ void Unwind_1809125b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92415,7 +92422,7 @@ void Unwind_1809125b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809125c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809125c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92426,7 +92433,7 @@ void Unwind_1809125c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92465,7 +92472,7 @@ void Unwind_180912630(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92476,7 +92483,7 @@ void Unwind_180912660(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92495,7 +92502,7 @@ void Unwind_180912670(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809126a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809126a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92506,7 +92513,7 @@ void Unwind_1809126a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92554,7 +92561,7 @@ void Unwind_180912740(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92565,7 +92572,7 @@ void Unwind_180912770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92574,7 +92581,7 @@ void Unwind_180912770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92591,7 +92598,7 @@ void Unwind_180912780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,operationResult);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
@@ -92600,7 +92607,7 @@ void Unwind_180912780(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92617,7 +92624,7 @@ void Unwind_180912790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,operationResult);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
@@ -92626,7 +92633,7 @@ void Unwind_180912790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809127a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92643,7 +92650,7 @@ void Unwind_1809127a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,operationResult);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
@@ -92652,7 +92659,7 @@ void Unwind_1809127a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809127b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92669,7 +92676,7 @@ void Unwind_1809127b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,operationResult);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
@@ -92678,7 +92685,7 @@ void Unwind_1809127b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809127c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92696,7 +92703,7 @@ void Unwind_1809127c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,operationResult);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,operationResult);
   }
   return;
 }
@@ -92732,7 +92739,7 @@ void Unwind_1809127d0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809127e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92743,7 +92750,7 @@ void Unwind_1809127e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92752,7 +92759,7 @@ void Unwind_1809127e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_1809127f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92763,7 +92770,7 @@ void Unwind_1809127f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -92772,7 +92779,7 @@ void Unwind_1809127f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void Unwind_180912800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t validationContext;
@@ -92783,7 +92790,7 @@ void Unwind_180912800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer par
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -93573,13 +93580,13 @@ void SetDefaultExceptionHandlerB0(void)
 
 // 验证上下文处理函数A0 - 处理验证上下文并释放相关资源
 // 原始函数名：FUN_180941920
-void ProcessValidationContextA0(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ProcessValidationContextA0(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t *validationContextPointer;
   
   validationContextPointer = ValidationContextPointerArray;
-  FUN_18008d1f0(operationBase,ValidationContextPointerArray[1],param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_18008d1f0(operationBase,ValidationContextPointerArray[1],operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   ValidationContextPointerArray[1] = (int64_t)validationContextPointer;
   *ValidationContextPointerArray = (int64_t)validationContextPointer;
   ValidationContextPointerArray[2] = (int64_t)validationContextPointer;
@@ -94856,7 +94863,7 @@ void SetDefaultExceptionHandler19(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9424c0(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer param_3,DataBuffer param_4)
+9424c0(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 /**
  * @brief 清理系统资源管理器A
  * 
@@ -94865,8 +94872,8 @@ void SetDefaultExceptionHandler19(void)
  * 
  * @param operationBase 系统句柄（保留参数）
  * @param dataBuffer 数据指针（保留参数）
- * @param param_3 操作类型标识符
- * @param param_4 清理标志位
+ * @param operationFlagA 操作类型标识符
+ * @param operationFlagB 清理标志位
  * 
  * @return void 无返回值
  * 
@@ -94874,7 +94881,7 @@ void SetDefaultExceptionHandler19(void)
  * @warning 如果资源链表不为空但起始指针为空，将触发系统终止
  * @see CleanupSystemResourceManagerB, CleanupSystemResourceManagerC
  */
-void CleanupSystemResourceManagerA(DataBuffer operationBase, DataBuffer dataBuffer, DataBuffer param_3, DataBuffer param_4)
+void CleanupSystemResourceManagerA(DataBuffer operationBase, DataBuffer dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *resourceListEnd;
@@ -94886,7 +94893,7 @@ void CleanupSystemResourceManagerA(DataBuffer operationBase, DataBuffer dataBuff
   currentResource = _DAT_180bfa2e8;
   if (_DAT_180bfa2e8 != _DAT_180bfa2f0) {
     do {
-      (**(FunctionPointer**)*currentResource)(currentResource, 0, param_3, param_4, cleanupFlag);
+      (**(FunctionPointer**)*currentResource)(currentResource, 0, operationFlagA, operationFlagB, cleanupFlag);
       currentResource = currentResource + 0xb;
     } while (currentResource != resourceListEnd);
   }
@@ -94902,7 +94909,7 @@ void CleanupSystemResourceManagerA(DataBuffer operationBase, DataBuffer dataBuff
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942520(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer param_3,DataBuffer param_4)
+942520(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 /**
  * @brief 清理系统资源管理器B
  * 
@@ -94911,8 +94918,8 @@ void CleanupSystemResourceManagerA(DataBuffer operationBase, DataBuffer dataBuff
  * 
  * @param operationBase 系统句柄（保留参数）
  * @param dataBuffer 数据指针（保留参数）
- * @param param_3 操作类型标识符
- * @param param_4 清理标志位
+ * @param operationFlagA 操作类型标识符
+ * @param operationFlagB 清理标志位
  * 
  * @return void 无返回值
  * 
@@ -94920,7 +94927,7 @@ void CleanupSystemResourceManagerA(DataBuffer operationBase, DataBuffer dataBuff
  * @warning 如果资源链表不为空但起始指针为空，将触发系统终止
  * @see CleanupSystemResourceManagerA, CleanupSystemResourceManagerC
  */
-void CleanupSystemResourceManagerB(DataBuffer operationBase, DataBuffer dataBuffer, DataBuffer param_3, DataBuffer param_4)
+void CleanupSystemResourceManagerB(DataBuffer operationBase, DataBuffer dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *resourceListEnd;
@@ -94932,7 +94939,7 @@ void CleanupSystemResourceManagerB(DataBuffer operationBase, DataBuffer dataBuff
   currentResource = _DAT_180bfa308;
   if (_DAT_180bfa308 != _DAT_180bfa310) {
     do {
-      (**(FunctionPointer**)*currentResource)(currentResource, 0, param_3, param_4, cleanupFlag);
+      (**(FunctionPointer**)*currentResource)(currentResource, 0, operationFlagA, operationFlagB, cleanupFlag);
       currentResource = currentResource + 0xb;
     } while (currentResource != resourceListEnd);
   }
@@ -94948,7 +94955,7 @@ void CleanupSystemResourceManagerB(DataBuffer operationBase, DataBuffer dataBuff
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942580(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer param_3,DataBuffer param_4)
+942580(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 /**
  * @brief 清理系统资源管理器C
  * 
@@ -94957,8 +94964,8 @@ void CleanupSystemResourceManagerB(DataBuffer operationBase, DataBuffer dataBuff
  * 
  * @param operationBase 系统句柄（保留参数）
  * @param dataBuffer 数据指针（保留参数）
- * @param param_3 操作类型标识符
- * @param param_4 清理标志位
+ * @param operationFlagA 操作类型标识符
+ * @param operationFlagB 清理标志位
  * 
  * @return void 无返回值
  * 
@@ -94966,7 +94973,7 @@ void CleanupSystemResourceManagerB(DataBuffer operationBase, DataBuffer dataBuff
  * @warning 如果资源链表不为空但起始指针为空，将触发系统终止
  * @see CleanupSystemResourceManagerA, CleanupSystemResourceManagerB
  */
-void CleanupSystemResourceManagerC(DataBuffer operationBase, DataBuffer dataBuffer, DataBuffer param_3, DataBuffer param_4)
+void CleanupSystemResourceManagerC(DataBuffer operationBase, DataBuffer dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *resourceListEnd;
@@ -94978,7 +94985,7 @@ void CleanupSystemResourceManagerC(DataBuffer operationBase, DataBuffer dataBuff
   currentResource = _DAT_180bfa328;
   if (_DAT_180bfa328 != _DAT_180bfa330) {
     do {
-      (**(FunctionPointer**)*currentResource)(currentResource, 0, param_3, param_4, cleanupFlag);
+      (**(FunctionPointer**)*currentResource)(currentResource, 0, operationFlagA, operationFlagB, cleanupFlag);
       currentResource = currentResource + 0xb;
     } while (currentResource != resourceListEnd);
   }
@@ -95214,13 +95221,13 @@ void CleanupDataBufferD(void)
 
 
 // 初始化异常处理器表A0
-void InitializeExceptionHandlerTableA0(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void InitializeExceptionHandlerTableA0(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionTableEnd;
   DataBuffer *exceptionTableIterator;
   
-  FUN_18005d260(&DAT_180bfaec0,_DAT_180bfaed0,param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_18005d260(&DAT_180bfaec0,_DAT_180bfaed0,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   exceptionTableEnd = _DAT_180bfaea8;
   for (exceptionTableIterator = _DAT_180bfaea0; exceptionTableIterator != exceptionTableEnd; exceptionTableIterator = exceptionTableIterator + 7) {
     *exceptionTableIterator = &UNK_180a3c3e0;
@@ -95845,21 +95852,21 @@ void SetDefaultExceptionHandlerA80(void)
  * 
  * @param operationBase 系统资源句柄
  * @param dataBuffer 资源管理器指针
- * @param param_3 清理标志参数
- * @param param_4 清理超时参数
+ * @param operationFlagA 清理标志参数
+ * @param operationFlagB 清理超时参数
  * 
  * @note 原始函数名：FUN_180942aa0
  */
 #define ExecuteSystemResourceCleanup FUN_180942aa0
 
-void ExecuteSystemResourceCleanup(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer param_3,DataBuffer param_4)
+void ExecuteSystemResourceCleanup(DataBuffer operationBase,DataBuffer dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *resourceManagerPtr;
   
   resourceManagerPtr = GlobalResourceManagerPointer;
   if (GlobalResourceManagerPointer != (DataBuffer *)0x0) {
-    ExecuteResourceCleanupOperation(operationBase,*GlobalResourceManagerPointer,param_3,param_4,SystemCleanupFlagfffffffe);
+    ExecuteResourceCleanupOperation(operationBase,*GlobalResourceManagerPointer,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     TerminateResourceManager(resourceManagerPtr);
   }
@@ -96333,7 +96340,7 @@ void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,Dat
   
   systemData = SystemResourceDataManager;
   if (SystemResourceDataManager != (SystemDataPtr *)0x0) {
-    ProcessSystemDataE0(&SystemResourceDataTable,*SystemResourceDataManager,param_3,param_4,SystemCleanupFlagfffffffe);
+    ProcessSystemDataE0(&SystemResourceDataTable,*SystemResourceDataManager,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
     ReleaseSystemResourceE0(systemData + 5);
                     // WARNING: Subroutine does not return
     TerminateSystemE0(systemData);
@@ -96384,7 +96391,7 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
   if (GlobalSystemResourceManagerPtr == (ResourceManagerPtr *)0x0) {
     return;
   }
-  CleanupSystemResourceE1(&SystemResourceDataTable,*GlobalSystemResourceManagerPtr,param_3,param_4,SystemCleanupFlagfffffffe);
+  CleanupSystemResourceE1(&SystemResourceDataTable,*GlobalSystemResourceManagerPtr,operationFlagA,operationFlagB,SystemCleanupFlagfffffffe);
   resourceManager[4] = &SystemResourceBufferA0;
   if (resourceManager[5] != 0) {
                     // WARNING: Subroutine does not return
