@@ -114646,7 +114646,7 @@ fef0(uint64_t SystemContextPointervoid FUN_18011fef0(uint64_t SystemContextPoint
 
 
 
-ff20(uint32_t *SystemContextPointervoid FUN_18011ff20(uint32_t *SystemContextPointer
+ff20(uint32_t *SystemContextPointervoid InitializeSystemContext(uint32_t *SystemContextPointer
 {
   uint32_t uStack_18;
   
@@ -128034,7 +128034,7 @@ LAB_18012ce0f:
     *(uint8_t *)((long long)plStack_238 + 0xb1) = 0;
   }
   *(short *)(plStack_238 + 0x17) = (short)plStack_238[0x17] + 1;
-  FUN_18011ff20(DataStructureCounter + 0x1bd0);
+  InitializeSystemContext(DataStructureCounter + 0x1bd0);
   if (((*(byte *)((long long)plStack_238 + 0x432) & 1) != 0) &&
      ((*(byte *)((long long)plStack_238 + 0x432) & 2) == 0)) {
     *(uint32_t *)(plStack_238 + 0x1b) = 1;
@@ -129874,7 +129874,7 @@ LAB_18012ce0f:
     *(uint8_t *)((long long)StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0x17) = (short)StackParameter2[0x17] + 1;
-  FUN_18011ff20(MemoryPoolBlockSize + 0x1bd0);
+  InitializeSystemContext(MemoryPoolBlockSize + 0x1bd0);
   if (((*(byte *)((long long)StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)((long long)StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0x1b) = 1;
@@ -131719,7 +131719,7 @@ LAB_18012ce0f:
     *(uint8_t *)((long long)StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0x17) = (short)StackParameter2[0x17] + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)((long long)StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)((long long)StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0x1b) = 1;
@@ -133410,7 +133410,7 @@ LAB_18012ce0f:
     *(uint8_t *)((long long)StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0x17) = (short)StackParameter2[0x17] + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)((long long)StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)((long long)StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0x1b) = 1;
@@ -135019,7 +135019,7 @@ LAB_18012b510:
     *(uint8_t *)((long long)StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0x17) = (short)StackParameter2[0x17] + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)((long long)StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)((long long)StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0x1b) = 1;
@@ -136710,7 +136710,7 @@ LAB_18012ce0f:
     *(uint8_t *)((long long)StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0x17) = (short)StackParameter2[0x17] + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)((long long)StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)((long long)StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0x1b) = 1;
@@ -138273,7 +138273,7 @@ LAB_18012b510:
     *(uint8_t *)(StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0xb8) = *(short *)(StackParameter2 + 0xb8) + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)(StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)(StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0xd8) = 1;
@@ -139349,7 +139349,7 @@ LAB_18012b510:
     *(uint8_t *)(StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0xb8) = *(short *)(StackParameter2 + 0xb8) + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)(StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)(StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0xd8) = 1;
@@ -140191,7 +140191,7 @@ b523(voidvoid FUN_18012b523(void
     *(uint8_t *)(StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0xb8) = *(short *)(StackParameter2 + 0xb8) + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)(StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)(StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0xd8) = 1;
@@ -140539,7 +140539,7 @@ c305(voidvoid FUN_18012c305(void
     *(uint8_t *)(StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0xb8) = *(short *)(StackParameter2 + 0xb8) + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)(StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)(StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0xd8) = 1;
@@ -140666,7 +140666,7 @@ cb2c(voidvoid FUN_18012cb2c(void
     *(uint8_t *)(StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0xb8) = *(short *)(StackParameter2 + 0xb8) + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)(StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)(StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0xd8) = 1;
@@ -140770,7 +140770,7 @@ ccf4(long long SystemContextPointervoid FUN_18012ccf4(long long SystemContextPoi
     *(uint8_t *)(StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0xb8) = *(short *)(StackParameter2 + 0xb8) + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)(StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)(StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0xd8) = 1;
@@ -140834,7 +140834,7 @@ ce2e(voidvoid FUN_18012ce2e(void
     *(uint8_t *)(StackParameter2 + 0xb1) = 0;
   }
   *(short *)(StackParameter2 + 0xb8) = *(short *)(StackParameter2 + 0xb8) + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)(StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)(StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0xd8) = 1;
@@ -140893,7 +140893,7 @@ ce5d(voidvoid FUN_18012ce5d(void
   
   *(uint8_t *)(StackParameter2 + 0xb1) = 0;
   *(short *)(StackParameter2 + 0xb8) = *(short *)(StackParameter2 + 0xb8) + 1;
-  FUN_18011ff20(RegisterSourceIndex + 0x1bd0);
+  InitializeSystemContext(RegisterSourceIndex + 0x1bd0);
   if (((*(byte *)(StackParameter2 + 0x432) & 1) != 0) &&
      ((*(byte *)(StackParameter2 + 0x432) & 2) == 0)) {
     *(uint32_t *)(eventDataStructurePointer + 0xd8) = 1;

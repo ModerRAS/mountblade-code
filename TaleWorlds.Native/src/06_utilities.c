@@ -18853,7 +18853,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
                   statusCounter = 0;
                 }
                 if (arrayIndex < 0) {
-                  exceptionDataBuffer2 = (DataWord *)(uStack_118 + resourceIterator * 4);
+                  exceptionDataBuffer2 = (DataWord *)(StackMemoryBuffer + resourceIterator * 4);
                   resourceIterator = (int64_t)-arrayIndex;
                   if (arrayIndex < 0) {
                     for (; resourceIterator != 0; resourceIterator = resourceIterator + -1) {
