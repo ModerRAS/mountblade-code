@@ -129843,7 +129843,7 @@ LAB_18012b82d:
         pfStack_258 = (float *)CONCAT44(pfStack_258.HighPart,pSystemFloatValue[3]);
         SystemValue1c8 = CONCAT44((FloatValue36 + FloatValue34) * pSystemFloatValue[1] + FloatValue37,
                               (FloatValue36 + FloatValue34) * *pSystemFloatValue + FloatValue38);
-        FUN_180293730(pSystemMemoryOffset238[0x5d],&SystemValue1c8);
+        ConfigureSystemDataEx(pSystemMemoryOffset238[0x5d],&SystemValue1c8);
         LoopIterationCounter7 = pSystemMemoryOffset238[0x5d];
         CheckSystemStatusAndProcess(LoopIterationCounter7,*(void *)(LoopIterationCounter7 + 0x88),*(uint32_t *)(LoopIterationCounter7 + 0x80),
                       *(uint32_t *)((long long)&SystemFlagB + SystemContextValue * 4));
@@ -129874,7 +129874,7 @@ LAB_18012b82d:
         }
         uStack_1b0 = CONCAT44(FloatValue37,FloatValue38);
         ProcessSystemParametersAndConfiguration(SystemContextValue,&SystemValue1c8,&uStack_1b0,FloatValue34);
-        FUN_18010e4e0(SystemContextValue,ProcessingStatusFlag,1,FloatValue36);
+        ProcessSystemDataWithValidation(SystemContextValue,ProcessingStatusFlag,1,FloatValue36);
       }
     }
     if (CoreEngineUnsignedValue != 0xffffffff) {
