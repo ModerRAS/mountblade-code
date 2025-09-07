@@ -109301,9 +109301,9 @@ unsigned long long ProcessSystemContextWithUtf8Conversion(char *Utf8InputBuffer
   float ContextSecondaryFloat6;
   float ContextSecondaryFloat7;
   float ContextSecondaryFloat8;
-  uint64_t in_stack_fffffffffffffec8;
+  uint64_t Utf16EndPointerParameter;
   uint MemoryAllocationIndex9;
-  uint64_t in_stack_fffffffffffffed0;
+  uint64_t AdditionalParameter1;
   uint32_t UnicodeCodePoint0;
   float fStack_118;
   float fStack_114;
@@ -109325,8 +109325,8 @@ unsigned long long ProcessSystemContextWithUtf8Conversion(char *Utf8InputBuffer
   float fStack_cc;
   
   AllocatedMemorySize = SystemConfigurationHandle;
-  UnicodeCodePoint0 = (uint32_t)((unsigned long long)in_stack_fffffffffffffed0 >> 0x20);
-  MemoryAllocationIndex = (uint32_t)((unsigned long long)in_stack_fffffffffffffec8 >> 0x20);
+  UnicodeCodePoint0 = (uint32_t)((unsigned long long)AdditionalParameter1 >> 0x20);
+  MemoryAllocationIndex = (uint32_t)((unsigned long long)Utf16EndPointerParameter >> 0x20);
   *(uint8_t *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0xb1) = 1;
   Utf16Char9 = *(unsigned long long *)(AllocatedMemorySize + 0x1af8);
   if (*(char *)(Utf16Char9 + 0xb4) != '\0') {
@@ -109773,8 +109773,8 @@ unsigned long long ProcessSystemDataConversionAndMemoryManagement(uint Character
   float ContextSecondaryFloat6;
   float ContextSecondaryFloat7;
   float ContextSecondaryFloat8;
-  uint64_t in_stack_fffffffffffffec8;
-  uint64_t in_stack_fffffffffffffed0;
+  uint64_t CodeParameter;
+  uint64_t AdditionalParameter2;
   uint32_t MemoryAllocationIndex9;
   float fStack_118;
   float fStack_114;
