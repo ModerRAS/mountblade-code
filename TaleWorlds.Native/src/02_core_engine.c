@@ -188897,8 +188897,21 @@ LAB_180166438:
 
 
 
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换的主函数
+ * 
+ * 该函数负责处理UTF-8到UTF-16字符编码转换的主要流程，包括数据初始化、内存分配和转换处理
+ * 
+ * @param CharacterCode 输入的字符编码
+ * @param CharacterCodeSize 字符编码大小指针
+ * @param Utf8InputPointer UTF-8输入指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 转换后的字符编码指针
+ * 
+ * @note 原始函数名：FUN_180166580
+ */
 uint64_t *
-FUN_180166580(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingMain(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8InputPointer,long long *Utf16EndPointer
 {
   long long PrimaryDataSize;
   void *SystemContext;
