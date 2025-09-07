@@ -55082,7 +55082,13 @@ void InitializeSystemAndInvokeCallback(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_180906970(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据缓冲区A0函数
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180906970
+ */
+void ProcessDataBufferOffset28(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataBufferA0(dataBuffer + 0x28);
