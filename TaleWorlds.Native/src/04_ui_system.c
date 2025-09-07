@@ -70213,7 +70213,34 @@ void FUN_180701330(longlong uiContext,int dataSource,longlong targetBuffer,longl
 
 
 
-int FUN_180701650(longlong uiContext,int *dataSource,int targetBuffer,byte bufferSize,int resultPointer,int param_6,
+/**
+ * @brief 计算UI布局参数
+ * 
+ * 该函数负责计算UI系统的布局参数，包括位置、尺寸、
+ * 缩放等属性的计算和调整，支持多种布局模式
+ * 
+ * @param uiContext UI上下文指针，包含布局计算所需的状态信息
+ * @param dataSource 数据源指针，包含布局配置数据
+ * @param targetBuffer 目标缓冲区，用于存储计算结果
+ * @param bufferSize 缓冲区大小，指定计算精度
+ * @param resultPointer 结果指针，用于返回计算状态
+ * @param param_6 布局模式参数，指定布局计算模式
+ * @param param_7 辅助参数，用于特殊布局计算
+ * @param param_8 尺寸约束参数，限制布局范围
+ * @param param_9 对齐参数，指定对齐方式
+ * @param uiContext0 位置参数X，指定X坐标位置
+ * @param uiContext1 位置参数Y，指定Y坐标位置
+ * @param uiContext2 缩放参数，指定缩放比例
+ * @param uiContext3 旋转参数，指定旋转角度
+ * @param uiContext4 透明度参数，指定透明度值
+ * @param uiContext5 层级参数，指定显示层级
+ * @param uiContext6 对齐参数X，指定X轴对齐
+ * @param uiContext7 对齐参数Y，指定Y轴对齐
+ * @param uiContext8 边距参数，指定边距大小
+ * @return 布局计算结果状态码，成功返回计算后的布局参数
+ * @note 原始函数名: FUN_180701650
+ */
+int CalculateUILayoutParameters(longlong uiContext,int *dataSource,int targetBuffer,byte bufferSize,int resultPointer,int param_6,
                  int param_7,int param_8,int param_9,float uiContext0,int uiContext1,float uiContext2,
                  int uiContext3,float uiContext4,int uiContext5,int uiContext6,float uiContext7,float uiContext8
                  )

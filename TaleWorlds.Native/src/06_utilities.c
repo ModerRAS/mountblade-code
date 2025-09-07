@@ -13656,8 +13656,14 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
  */
 #define ProcessSystemDataA2 FUN_180893420
 
-// 原始函数名：FUN_1808920e0 - 验证和执行操作函数A0
-// 功能：验证参数并执行操作
+/**
+ * @brief 验证和操作执行函数A0
+ * 
+ * 该函数负责验证参数并执行相应的操作，包括参数的有效性检查和操作的安全执行。
+ * 确保参数验证的正确性和操作执行的安全性。
+ * 
+ * @note 原始函数名：FUN_1808920e0
+ */
 #define ValidateAndExecuteOperationA0 FUN_1808920e0
 
 // 原始函数名：FUN_180891d40 - 数据验证函数A0

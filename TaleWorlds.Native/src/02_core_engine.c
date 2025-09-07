@@ -125677,7 +125677,7 @@ void ProcessSystemMemoryCleanupAndValidation(void)
     do {
       MemoryAllocationIndex = *(unsigned long long *)(Utf16CharacterCode + *(long long *)(DataNodeIndex + 0x1aa8));
       if ((((*(char *)(MemoryAllocationIndex + 0xaf) != '\0') && (*(char *)(MemoryAllocationIndex + 0xb6) == '\0')) &&
-          ((*(uint *)(MemoryAllocationIndex + 0xc) >> 0x18 & 1) == 0)) && ((MemoryAllocationIndex != UnicodeCharacterCode && (MemoryAllocationIndex != QuaternaryReturnCode)))      {
+          ((*(uint *)(MemoryAllocationIndex + 0xc) >> 0x18 & 1) == 0)) && ((MemoryAllocationIndex != UnicodeCharacterCode && (MemoryAllocationIndex != LoopCounter)))      {
         ProcessMemoryAllocation(MemoryAllocationIndex,*(uint *)(MemoryAllocationIndex + 0xc) >> 0x19 & 1);
       }
       MemoryAddressMask = (int)SystemMemoryAllocationResult + 1;
