@@ -159389,7 +159389,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode)
 
 
 
-void FUN_1801356dc(long long CharacterCode
+void ProcessCharacterDataValidation(long long CharacterCode
 {
   int *ReferenceCountPointer;
   long long *BufferAllocationStatus;
