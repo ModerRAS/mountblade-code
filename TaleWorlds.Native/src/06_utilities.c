@@ -7706,7 +7706,7 @@ uint32_t SerializationDataFlags;
 uint32_t SerializationDataChecksum;
 uint32_t SerializationDataHandle;
 
-// 函数: uint8_t UtilityDeserializeData;
+// 函数: uint8_t UtilityDeserializeData(void);
 // 
 // 反序列化工具数据
 // 将序列化的工具数据还原为原始格式
@@ -7716,7 +7716,7 @@ uint32_t SerializationDataHandle;
 // 
 // 返回值:
 //   uint8_t - 反序列化结果状态
-uint8_t UtilityDeserializeData;
+uint8_t UtilityDeserializeData(void);
 uint8_t DeserializationDataBuffer;
 uint8_t DeserializationDataSize;
 uint8_t DeserializationDataFlags;
