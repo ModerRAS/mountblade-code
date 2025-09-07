@@ -96,6 +96,18 @@
  // UI系统函数宏定义 - 初始化UI布局系统
 #define CalculateUILayoutMetrics FUN_18069ccd0
 #define SynchronizeUIResources FUN_18069d8a0
+
+// UI系统函数宏定义 - 处理UI浮点数据变换
+#define ProcessUIFloatDataTransformation FUN_18072b160
+
+// UI系统函数宏定义 - 执行UI数据高级变换
+#define ProcessUIDataAdvancedTransformation FUN_18072b17c
+
+// UI系统函数宏定义 - UI系统空操作函数
+#define UINoOperationFunction FUN_18072b301
+
+// UI系统函数宏定义 - 处理UI数据缓冲区操作
+#define ProcessUIDataBufferOperation FUN_18072b310
 #define ProcessUIResourceUpdate FUN_18069d9e0
 #define ProcessUIComponentSync FUN_18069d940
 
@@ -100197,63 +100209,74 @@ void ProcessUIDataAdvancedTransformation(longlong uiContext,longlong dataSource,
   float *dataRegister;
   uint encryptionMask;
   
-  localLong8 = 0;
-  localInt9 = 0;
+  iterationCount = 0;
+  processingStep = 0;
   do {
-    localInt9 = localInt9 + 1;
-    floatResult = *register11;
-    contextData = 0;
-    allocatedMemory0 = (longlong)localInt9 >> 1;
-    if (3 < allocatedMemory0) {
-      pfloatResult1 = (float *)((uiContext - dataSource) + -8 + (longlong)register11);
-      presultFloat = (float *)(bufferSize + 8);
-      EventDataIndex = (allocatedMemory0 - 4U >> 2) + 1;
-      contextData = EventDataIndex * 4;
+    processingStep = processingStep + 1;
+    inputValue = *dataRegister;
+    processingIndex = 0;
+    blockSize = (longlong)processingStep >> 1;
+    if (3 < blockSize) {
+      sourcePointer = (float *)((uiContext - dataSource) + -8 + (longlong)dataRegister);
+      resultPointer = (float *)(bufferSize + 8);
+      dataCounter = (blockSize - 4U >> 2) + 1;
+      processingIndex = dataCounter * 4;
       do {
-        localFloat2 = pfloatResult1[1];
-        resultValue = presultFloat[-2];
-        presultFloat[-2] = localFloat2 * floatResult + resultValue;
-        processedFloat = *pfloatResult1;
-        pfloatResult1[1] = resultValue * floatResult + localFloat2;
-        localFloat2 = presultFloat[-1];
-        presultFloat[-1] = processedFloat * floatResult + localFloat2;
-        resultValue = pfloatResult1[-1];
-        *pfloatResult1 = localFloat2 * floatResult + processedFloat;
-        localFloat2 = *presultFloat;
-        *presultFloat = resultValue * floatResult + localFloat2;
-        processedFloat = pfloatResult1[-2];
-        pfloatResult1[-1] = localFloat2 * floatResult + resultValue;
-        localFloat2 = presultFloat[1];
-        presultFloat[1] = processedFloat * floatResult + localFloat2;
-        presultFloat = presultFloat + 4;
-        pfloatResult1[-2] = localFloat2 * floatResult + processedFloat;
-        pfloatResult1 = pfloatResult1 + -4;
-        EventDataIndex = EventDataIndex + -1;
-      } while (EventDataIndex != 0);
+        tempValueA = sourcePointer[1];
+        tempValueB = resultPointer[-2];
+        resultPointer[-2] = tempValueA * inputValue + tempValueB;
+        transformedValue = *sourcePointer;
+        sourcePointer[1] = tempValueB * inputValue + tempValueA;
+        tempValueA = resultPointer[-1];
+        resultPointer[-1] = transformedValue * inputValue + tempValueA;
+        tempValueB = sourcePointer[-1];
+        *sourcePointer = tempValueA * inputValue + transformedValue;
+        tempValueA = *resultPointer;
+        *resultPointer = tempValueB * inputValue + tempValueA;
+        transformedValue = sourcePointer[-2];
+        sourcePointer[-1] = tempValueA * inputValue + tempValueB;
+        tempValueA = resultPointer[1];
+        resultPointer[1] = transformedValue * inputValue + tempValueA;
+        resultPointer = resultPointer + 4;
+        sourcePointer[-2] = tempValueA * inputValue + transformedValue;
+        sourcePointer = sourcePointer + -4;
+        dataCounter = dataCounter + -1;
+      } while (dataCounter != 0);
     }
-    if (contextData < allocatedMemory0) {
-      presultFloat = (float *)(bufferSize + ((localLong8 - contextData) + -1) * 4);
+    if (processingIndex < blockSize) {
+      resultPointer = (float *)(bufferSize + ((iterationCount - processingIndex) + -1) * 4);
       do {
-        localFloat2 = *presultFloat;
-        resultValue = *(float *)(bufferSize + contextData * 4);
-        *(float *)(bufferSize + contextData * 4) = localFloat2 * floatResult + resultValue;
-        contextData = contextData + 1;
-        *presultFloat = resultValue * floatResult + localFloat2;
-        presultFloat = presultFloat + -1;
-      } while (contextData < allocatedMemory0);
+        tempValueA = *resultPointer;
+        tempValueB = *(float *)(bufferSize + processingIndex * 4);
+        *(float *)(bufferSize + processingIndex * 4) = tempValueA * inputValue + tempValueB;
+        processingIndex = processingIndex + 1;
+        *resultPointer = tempValueB * inputValue + tempValueA;
+        resultPointer = resultPointer + -1;
+      } while (processingIndex < blockSize);
     }
-    *(uint *)((uiContext - dataSource) + (longlong)register11) = (uint)floatResult ^ in_XMM5_Da;
-    localLong8 = localLong8 + 1;
-    register11 = register11 + 1;
-  } while (localLong8 < unmodifiedRBP);
+    *(uint *)((uiContext - dataSource) + (longlong)dataRegister) = (uint)inputValue ^ encryptionMask;
+    iterationCount = iterationCount + 1;
+    dataRegister = dataRegister + 1;
+  } while (iterationCount < loopLimit);
   return;
 }
 
 
 
 
- void FUN_18072b301(void)
-void FUN_18072b301(void)
+ /**
+ * @brief UI系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于：
+ * - 系统初始化时的占位符
+ * - 函数指针表的默认值
+ * - 调试和测试目的
+ * 
+ * @note 原始函数名：FUN_18072b301
+ * @note 该函数不执行任何操作，直接返回
+ */
+void UINoOperationFunction(void)
+void UINoOperationFunction(void)
 
 {
   return;
@@ -100262,29 +100285,46 @@ void FUN_18072b301(void)
 
 
 
- void FUN_18072b310(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
-void FUN_18072b310(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
+ /**
+ * @brief 处理UI数据的缓冲区操作和转换
+ * 
+ * 该函数负责处理UI系统中的数据缓冲区操作，包括：
+ * - 数据缓冲区的读取和写入
+ * - 数据类型的转换处理
+ * - 信号量管理和同步控制
+ * - 事件类型的编码处理
+ * 
+ * @param uiContext UI上下文指针，用于访问UI系统状态
+ * @param dataSource 数据源指针，包含待处理的输入数据
+ * @param targetBuffer 目标缓冲区标识符
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * 
+ * @note 原始函数名：FUN_18072b310
+ * @note 该函数使用了信号量机制进行同步控制
+ */
+void ProcessUIDataBufferOperation(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
+void ProcessUIDataBufferOperation(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize)
 
 {
-  int uiOperationResult;
+  int operationResult;
   ulonglong semaphoreHandle;
-  ulonglong EventTypeCode;
-  double dVar4;
+  ulonglong eventCodeCounter;
+  double calculatedValue;
   
   semaphoreHandle = 0;
-  uiOperationResult = targetBuffer;
+  operationResult = targetBuffer;
   if (bufferSize <= targetBuffer) {
-    uiOperationResult = bufferSize;
+    operationResult = bufferSize;
   }
-  EventTypeCode = semaphoreHandle;
-  if (0 < uiOperationResult) {
+  eventCodeCounter = semaphoreHandle;
+  if (0 < operationResult) {
     do {
-      dVar4 = (double)FUN_180734500(dataSource,dataSource + (longlong)(int)EventTypeCode * 4,targetBuffer);
+      calculatedValue = (double)ProcessUIDataTransformation(dataSource,dataSource + (longlong)(int)eventCodeCounter * 4,targetBuffer);
       targetBuffer = targetBuffer + -1;
-      *(float *)(uiContext + semaphoreHandle * 4) = (float)dVar4;
+      *(float *)(uiContext + semaphoreHandle * 4) = (float)calculatedValue;
       semaphoreHandle = semaphoreHandle + 1;
-      EventTypeCode = (ulonglong)((int)EventTypeCode + 1);
-    } while ((longlong)semaphoreHandle < (longlong)uiOperationResult);
+      eventCodeCounter = (ulonglong)((int)eventCodeCounter + 1);
+    } while ((longlong)semaphoreHandle < (longlong)operationResult);
   }
   return;
 }
