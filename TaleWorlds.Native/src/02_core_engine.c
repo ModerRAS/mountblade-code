@@ -172388,7 +172388,12 @@ void ProcessCharacterCodeLookup(int CharacterCode
 
 
 
-3dc14(voidvoid FUN_18013dc14(void
+/**
+ * 设置系统上下文值
+ * 
+ * 该函数将寄存器EDI的值设置到系统上下文中。
+ */
+void SetSystemContextValue(void)
 {
   uint32_t *SystemContext;
   uint32_t RegisterValueEDI;
@@ -172400,7 +172405,12 @@ void ProcessCharacterCodeLookup(int CharacterCode
 
 
 
-3dc26(voidvoid FUN_18013dc26(void
+/**
+ * 更新系统上下文寄存器值
+ * 
+ * 该函数更新系统上下文中的寄存器EDI值。
+ */
+void UpdateSystemContextRegisterValue(void)
 {
   uint32_t *SystemContext;
   uint32_t RegisterValueEDI;
@@ -172470,7 +172480,13 @@ void ProcessCharacterCodeLookup(int CharacterCode
 
 
 
-3dc8c(voidvoid FUN_18013dc8c(void
+/**
+ * 处理字符状态缓冲区和系统数据
+ * 
+ * 该函数处理字符状态缓冲区的分配和系统数据的处理，
+ * 包括Unicode码点的计算和内存管理操作。
+ */
+void ProcessCharacterStatusBufferAndSystemData(void)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
