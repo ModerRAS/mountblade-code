@@ -15158,8 +15158,28 @@ void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
 
 
 
-// 函数: void DoubleValidateAndExecuteOperation(void* contextHandle, void* operationData)
-// 功能：双重验证上下文句柄并执行相应操作，如果任一验证失败则调用错误处理函数
+/**
+ * @brief 双重验证并执行操作
+ * 
+ * 该函数通过双重验证机制来确保操作的安全性。首先验证上下文句柄的有效性，
+ * 然后验证系统数据的完整性，只有当两个验证都通过时才会执行相应的操作。
+ * 这种双重验证机制提供了更高的安全性和可靠性。
+ * 
+ * @param contextHandle 上下文句柄指针，指向要验证的上下文数据
+ * @param operationData 操作数据指针，包含要执行的操作信息
+ * 
+ * @return void 无返回值
+ * 
+ * @note 函数采用双重验证机制，先验证上下文句柄，再验证数据完整性
+ * @warning 如果任一验证失败，函数会调用错误处理函数
+ * @warning 此函数可能不会正常返回，因为 CleanupSystemEventA0 可能会执行清理操作
+ * @warning 双重验证机制提供了更高的安全性，但也增加了执行开销
+ * 
+ * @see QueryAndRetrieveSystemDataA0, ValidateSystemDataIntegrityA0, CleanupSystemEventA0
+ * 
+ * @since 系统版本 1.0
+ * @security_level 高
+ */
 void DoubleValidateAndExecuteOperation(void* contextHandle, void* operationData)
 
 {
