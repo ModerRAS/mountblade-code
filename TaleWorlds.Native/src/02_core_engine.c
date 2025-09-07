@@ -15008,7 +15008,7 @@ void CoreEngineInitializeDataStreamManager(void
 
 
 
- void CoreEngineInitializeThreadCache(voidvoid CoreEngineInitializeThreadCache(void
+ void CoreEngineInitializeThreadCache(void)
 {
   char StringBuffer;
   void *SystemContext;
