@@ -2821,6 +2821,34 @@ void* UIGestureCoordinates;
 // 原始函数名: FUN_180742e60
 #define ReleaseUIMemory FUN_180742e60
 
+// UI系统数据验证函数（版本1）
+// 原始函数名: FUN_180690800
+#define ValidateUIDataVersion1 FUN_180690800
+
+// UI系统数据验证函数（版本2）
+// 原始函数名: FUN_180691080
+#define ValidateUIDataVersion2 FUN_180691080
+
+// UI系统渲染队列处理函数
+// 原始函数名: FUN_1806922f0
+#define ProcessUIRenderQueue FUN_1806922f0
+
+// UI系统缓冲区处理函数
+// 原始函数名: FUN_180694040
+#define ProcessUIBufferData FUN_180694040
+
+// UI系统渲染处理函数
+// 原始函数名: FUN_180694c40
+#define ProcessUIRendering FUN_180694c40
+
+// UI系统图像处理函数
+// 原始函数名: FUN_180690700
+#define ProcessUIImageData FUN_180690700
+
+// UI系统高级渲染函数
+// 原始函数名: FUN_1806935a0
+#define ProcessUIAdvancedRendering FUN_1806935a0
+
 // UI组件创建函数
 void* CreateUIComponent;
 
