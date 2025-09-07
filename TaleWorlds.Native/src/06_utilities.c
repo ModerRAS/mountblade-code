@@ -21779,14 +21779,14 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
           } while (resourceIterator != (int)exceptionHandlerContextPointer[1]);
         }
         stackIntBuffer[0] = -1;
-        inputParameter1 = stackIntBuffer[0];
+        validationParameter1 = stackIntBuffer[0];
 MemoryAllocationLabel:
       } while (stackIntBuffer[0] != -1);
       stackIntBuffer[0] = -1;
       dataFlags = memoryOperationCounter;
     }
-    resourceIterator = (int64_t)(inputParameter6 + -1);
-    if (-1 < inputParameter6 + -1) {
+    resourceIterator = (int64_t)(validationParameter6 + -1);
+    if (-1 < validationParameter6 + -1) {
       do {
         SecurityCheckValue = SecurityCheckValue & ZeroValue;
         systemContextPointer = (int64_t *)&SystemConfigurationDataTable;
