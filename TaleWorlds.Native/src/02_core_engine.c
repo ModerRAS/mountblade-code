@@ -162219,7 +162219,16 @@ void InitializeSystemMemoryPoolWithCharCode(uint64_t CharacterCode)
 
 
 
-37068(voidvoid FUN_180137068(void
+37068(void
+
+/**
+ * @brief 处理字符缓冲区重置
+ * 
+ * 重置字符缓冲区并清理相关的内存和数据结构，为后续操作准备干净的状态
+ * 
+ * @return void 无返回值
+ */
+void ProcessCharacterBufferReset(void)
 {
   long long PrimaryDataSize;
   long long SystemContext;
@@ -162240,7 +162249,18 @@ void InitializeSystemMemoryPoolWithCharCode(uint64_t CharacterCode)
 
 
 
-370a0(long long CharacterCode,long long *Utf8InputBufferSizevoid FUN_1801370a0(long long CharacterCode,long long *Utf8InputBufferSize
+370a0(long long CharacterCode,long long *Utf8InputBufferSize
+
+/**
+ * @brief 处理字符缓冲区大小验证
+ * 
+ * 验证字符缓冲区的大小并进行相关的内存管理操作，确保缓冲区操作的安全性
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8InputBufferSize UTF-8输入缓冲区大小指针
+ * @return void 无返回值
+ */
+void ProcessCharacterBufferSizeValidation(long long CharacterCode, long long *Utf8InputBufferSize)
 {
   while( true ) {
     if (0 < *(int *)(CharacterCode + 0x20)) {
@@ -162268,7 +162288,17 @@ void InitializeSystemMemoryPoolWithCharCode(uint64_t CharacterCode)
 
 
 
-37110(uint32_t *Utf8InputBuffervoid FUN_180137110(uint32_t *Utf8InputBuffer
+37110(uint32_t *Utf8InputBuffer
+
+/**
+ * @brief 处理字符输入缓冲区验证
+ * 
+ * 验证UTF-8输入缓冲区的有效性和安全性，处理相关的内存管理和同步操作
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @return void 无返回值
+ */
+void ProcessCharacterInputBufferValidation(uint32_t *Utf8InputBuffer)
 {
   int LockResult;
   long long BufferStatus;
@@ -162359,7 +162389,18 @@ void InitializeSystemMemoryPoolWithCharCode(uint64_t CharacterCode)
 
 
 
-37370(long long CharacterCode,uint64_t Utf8BufferSizevoid FUN_180137370(long long CharacterCode,uint64_t Utf8BufferSize
+37370(long long CharacterCode,uint64_t Utf8BufferSize
+
+/**
+ * @brief 处理字符内存分配
+ * 
+ * 为字符数据分配内存并处理相关的内存管理操作，包括UTF-8缓冲区的处理
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @return void 无返回值
+ */
+void ProcessCharacterMemoryAllocation(long long CharacterCode, uint64_t Utf8BufferSize)
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
