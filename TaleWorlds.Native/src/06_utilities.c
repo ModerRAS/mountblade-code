@@ -100225,4 +100225,6 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define StackValidationBuffer stack_0000000000000010
 
 // 栈变量宏定义 - 美化acStack变量
-#define StackSystemStatus acStackX_24    // 栈系统状态
+// 原始变量名：acStackX_24 - 栈系统状态
+// 功能：存储系统状态的栈变量
+#define StackSystemStatus acStackX_24
