@@ -241005,7 +241005,7 @@ uint64_t * FUN_180211930(uint64_t *SystemContextPointer
   *(uint32_t *)(SystemContextPointer + 1) = 0;
   *SystemContextPointer = &SystemStringBufferTertiary;
   FUN_18015c2b0(SystemContextPointer + 2);
-  *SystemContextPointer = &UNK_180a128b0;
+  *SystemContextPointer = &SystemContextPrimary;
   SystemContextPointer[0x11] = 0;
   *(uint32_t *)(SystemContextPointer + 0x12) = 0xffffffff;
   SystemContextPointer[0x15] = 0;
@@ -241258,7 +241258,7 @@ uint64_t * FUN_180211fa0(uint64_t *SystemContextPointer
   long long *BufferAllocationStatus;
   
   FUN_1801566b0();
-  *SystemContextPointer = &UNK_180a10cd8;
+  *SystemContextPointer = &SystemContextSecondary;
   _Mtx_init_in_situ(SystemContextPointer + 0x4c,0x102);
   SystemContextPointer[0x56] = 0;
   SystemContextPointer[0x57] = 0;
@@ -241525,7 +241525,7 @@ LAB_1801571ef:
   *(bool *)(SystemContextPointer + 0x42) = *(int *)(CoreEngineMemoryContext + 0x1ce0) != 0;
   uStack_d30 = 0xffffffff;
   pcStack_d38 = InitializeSystemMemoryPool;
-  FUN_180738730(0,0,&UNK_180211f50,FUN_180211f70);
+  FUN_180738730(0,0,&SystemEncodingDataSecondary,FUN_180211f70);
   FUN_180840330(SystemContextPointer + 0x6d,0x20214);
   SystemFlagG0 = 0;
   uStack_cf4 = 0;
@@ -241840,7 +241840,7 @@ LAB_180213627:
     }
   }
   else {
-    UnicodeCodePoint = FUN_1808496c0(uStackX_10,&UNK_180211ec0,0xffffffff);
+    UnicodeCodePoint = FUN_1808496c0(uStackX_10,&SystemEncodingDataPrimary,0xffffffff);
     SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
     if (*(void **)(Utf8BufferSize + 8) != NULL) {
       SecondaryProcessingStatusFlag = *(void **)(Utf8BufferSize + 8);
@@ -241918,7 +241918,7 @@ LAB_180213890:
                         (long long)Utf8BufferSize * 0x10 + *(long long *)(SystemContextPointer + 0x3b8),&lStackX_8);
   FUN_180211a30(MemoryAllocationIndex,&CoreEngineDataTemplate);
   if ((lStackX_8 != 0) && (Utf16InputPointer != '\0')) {
-    MemoryAllocationIndex = FUN_1808496c0(lStackX_8,&UNK_180211ec0,0xffffffff);
+    MemoryAllocationIndex = FUN_1808496c0(lStackX_8,&SystemEncodingDataPrimary,0xffffffff);
     FUN_180211a30(MemoryAllocationIndex,&CoreEngineDataTemplate);
   }
   return lStackX_8;
@@ -242540,7 +242540,7 @@ LAB_180214378:
       memset(auStack_118,0,0xd8);
     }
   }
-  if ((void *)*SystemContextPointer == &UNK_180a10cd8) {
+  if ((void *)*SystemContextPointer == &SystemContextSecondary) {
     FUN_180156300();
     CoreEngineValue148 = NULL;
     EventVariablePointer = NULL;
@@ -243487,7 +243487,7 @@ LAB_1802158f5:
         ValidateSystemConfiguration(SystemConfigurationPointer,0,0x1000000000000,3,&UNK_180a1b008,SystemCounterVariableB,Utf16Char,SystemContextPointer2
                      );
       }
-      *pCurrentMemoryBlockAddress = (long long)&UNK_180a128b0;
+      *pCurrentMemoryBlockAddress = (long long)&SystemContextPrimary;
       pCurrentMemoryBlockAddress[0x11] = 0;
       *(uint32_t *)(pCurrentMemoryBlockAddress + 0x12) = 0xffffffff;
       plStack_60 = pCurrentMemoryBlockAddress + 0x13;
@@ -245302,7 +245302,7 @@ LAB_180216e0c:
     do {
       SystemContextPointer = *(long long **)(MemoryBoundaryEnd + 8);
       FUN_180846610(SystemContextPointer[0xf],auStack_138,0x100,auStack_150);
-      if ((void *)*SystemContextPointer == &UNK_180a128b0) {
+      if ((void *)*SystemContextPointer == &SystemContextPrimary) {
         ValidationCode = FUN_180846a90(SystemContextPointer[0x10],&iStack_160);
         FUN_180211a30(ValidationCode,&CoreEngineDataTemplate);
         if ((ValidationCode == 0) && ((iStack_160 == 0 || (iStack_160 == 3)))) {
@@ -245315,14 +245315,14 @@ LAB_180216e0c:
       else {
         SystemCheckResult = (**(code **)((void *)*SystemContextPointer + 0x80))(SystemContextPointer);
       }
-      if ((void *)*SystemContextPointer == &UNK_180a128b0) {
+      if ((void *)*SystemContextPointer == &SystemContextPrimary) {
         FUN_180846810(SystemContextPointer[0x10],aProcessingStatus);
       }
       else {
         (**(code **)((void *)*SystemContextPointer + 0x90))(SystemContextPointer);
       }
       if (SystemCheckResult != '\0') {
-        if ((void *)*SystemContextPointer == &UNK_180a128b0) {
+        if ((void *)*SystemContextPointer == &SystemContextPrimary) {
           ValidationCode = FUN_1808473f0(SystemContextPointer[0x10],&fStack_15c,0);
           FloatValue8 = fStack_15c;
           if (ValidationCode != 0) {
