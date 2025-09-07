@@ -32549,7 +32549,7 @@ ProcessCheckpointValidationState5:
         }
       }
       if (validationStatus == 0) {
-        bVar9 = acStack_a8[0] != '\0';
+        hasValidData = acStack_a8[0] != '\0';
       }
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -32563,7 +32563,7 @@ ProcessCheckpointValidationState5:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  if ((((!bVar7) && ((char)auStackX_18[0] == '\0')) && (cStackX_20 == '\0')) && (!bVar9)) {
+  if ((((!isOperationValid) && ((char)auStackX_18[0] == '\0')) && (cStackX_20 == '\0')) && (!hasValidData)) {
     dataFlags = 0;
   }
   *(DataWord *)(operationBase + 0x38) = dataFlags;
