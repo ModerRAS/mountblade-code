@@ -544,6 +544,23 @@ const char* const StringTemplateErrorSystem = (const char*)0x180a09750;
 const char* const StringTemplateWarningSystem = (const char*)0x180a09768;
 const char* const StringTemplateInfoSystem = (const char*)0x180a09780;
 const char* const StringTemplateDebugSystem = (const char*)0x180a097a0;
+
+// 系统字符串模板常量 - 用于替换UNK_180a03ac8等变量
+const void* const SystemStringPrimaryTemplate = (void*)0x180a03ac8;
+const void* const SystemStringSecondaryTemplate = (void*)0x180a01620;
+const void* const SystemStringTertiaryTemplate = (void*)0x180a03ad8;
+
+// 系统内存缓冲区常量 - 用于替换UNK_180a0ffa8等变量
+const void* const SystemMemoryBufferPrimary = (void*)0x180a0ffa8;
+const void* const SystemMemoryBufferSecondary = (void*)0x180a0ffb0;
+const void* const SystemMemoryBufferTertiary = (void*)0x180a0ffc0;
+const void* const SystemMemoryBufferQuaternary = (void*)0x180a0fff8;
+
+// 系统状态数据常量 - 用于替换UNK_180059b80等变量
+const void* const SystemStatusDataTemplate = (void*)0x180059b80;
+
+// 系统配置数据常量 - 用于替换UNK_180a0b680等变量
+const void* const SystemConfigurationDataPrimary = (void*)0x180a0b680;
 const char* const StringTemplateTraceSystem = (const char*)0x180a097c0;
 const char* const StringTemplateLogSystem = (const char*)0x180a097e0;
 const char* const StringTemplateConfigSystem = (const char*)0x180a09818;

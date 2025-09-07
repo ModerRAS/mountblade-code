@@ -20240,7 +20240,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
   ByteFlag DataProcessingBufferB [512];
   uint64_t EncryptionKeyXorResult;
   
-  uStack_28 = ExceptionEncryptionKey ^ (uint64_t)EncryptionKeyBufferB;
+  EncryptionKeyXorResult = ExceptionEncryptionKey ^ (uint64_t)EncryptionKeyBufferB;
   validationContext = operationBase[4];
   if (((char)validationContext != '\0') || (operationResult = ValidateSystemDataA0(operationBase,1), operationResult == 0)) {
     operationResult = (**(FunctionPointer**)(*dataBuffer + 0x10))(dataBuffer,DataProcessingBufferB,0x200);
@@ -20252,7 +20252,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(uStack_28 ^ (uint64_t)EncryptionKeyBufferB);
+  ExecuteSecurityCheck(EncryptionKeyXorResult ^ (uint64_t)EncryptionKeyBufferB);
 }
 
 
@@ -20381,7 +20381,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   DataWord StackDataWordR;
   DataWord StackDataWordS;
   ByteFlag StackByteFlagA;
-  DataBuffer uStack_e8;
+  DataBuffer StackDataBufferV;
   ByteFlag ExceptionDataBufferA [136];
   uint64_t colorDataWord;
   
@@ -60059,7 +60059,22 @@ void ExecuteValidatorAtOffset10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809070f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量18处的验证器
+ * 
+ * 该函数从数据缓冲区的偏移量28处获取上下文指针，
+ * 然后从偏移量18处获取验证器指针并执行。
+ * 
+ * @param operationBase 系统句柄
+ * @param dataBuffer 数据缓冲区，包含验证器指针
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于系统验证和清理操作
+ * @warning 确保验证器指针有效，避免空指针访问
+ * @see ExecuteValidatorAtOffset10, ExecuteValidatorAtOffset20
+ */
+void ExecuteValidatorAtOffset18(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
