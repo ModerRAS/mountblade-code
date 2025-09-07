@@ -21525,7 +21525,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               DataContextOffset5CData = *(DataWord *)(dataContext + 0x5c);
               DataContextOffset60Data = *(DataWord *)(dataContext + 0x60);
               SecurityValidationDataQ = *(DataWord *)(dataContext + 100);
-              StackDataWordI = StackDataWordA;
+              TemporaryDataWordI = StackDataWordA;
               iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferD);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
@@ -21535,8 +21535,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
             if (StackFloatValueC != 1.0) {
               StackFloatValueA = StackFloatValueC;
               StackPointerBufferI = &FloatingPointValidationErrorA;
-              StackDataWordC = StackDataWordA;
-              StackDataWordB = 0;
+              TemporaryDataWordC = StackDataWordA;
+              TemporaryDataWordB = 0;
               iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
@@ -21545,8 +21545,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               if (StackFloatArrayA[0] != 1.0) {
                 StackFloatValueA = StackFloatArrayA[0];
                 StackPointerBufferI = &FloatingPointValidationErrorB;
-                StackDataWordC = StackDataWordA;
-                StackDataWordB = 0;
+                TemporaryDataWordC = StackDataWordA;
+                TemporaryDataWordB = 0;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
@@ -21554,8 +21554,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               floatArrayPointer = (float *)(dataContext + 0x94);
               do {
                 if (*floatArrayPointer != 0.0) {
-                  StackDataWordC = StackDataWordA;
-                  StackDataWordB = 0;
+                  TemporaryDataWordC = StackDataWordA;
+                  TemporaryDataWordB = 0;
                   StackPointerBufferI = &DataProcessingValidationError;
                   StackFloatValueA = loopCounter;
                   StackFloatValueB = *floatArrayPointer;
@@ -21570,8 +21570,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               do {
                 floatValue = *(float *)(dataContext + -0x180985054 + (int64_t)floatArrayPointer);
                 if (floatValue != *floatArrayPointer) {
-                  StackDataWordC = StackDataWordA;
-                  StackDataWordB = 0;
+                  TemporaryDataWordC = StackDataWordA;
+                  TemporaryDataWordB = 0;
                   StackPointerBufferI = &SystemStatusValidationError;
                   StackFloatValueA = loopCounter;
                   StackFloatValueB = floatValue;
@@ -21584,41 +21584,41 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               validationOutcome = ValidateParameters(dataBuffer + 200);
               if ((float)(validationOutcome / 0x30) != 0.0) {
                 StackPointerBufferI = &DataIntegrityValidationErrorA;
-                StackDataWordC = StackDataWordA;
-                StackDataWordB = 0;
+                TemporaryDataWordC = StackDataWordA;
+                TemporaryDataWordB = 0;
                 StackFloatValueA = (float)(validationOutcome / 0x30);
                 iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               if ((*(uint *)(dataBuffer + 0x2d8) >> 1 & 1) != 0) {
-                StackDataWordB = 0;
+                TemporaryDataWordB = 0;
                 StackPointerBufferI = &DataIntegrityValidationErrorB;
-                StackDataWordC = StackDataWordA;
+                TemporaryDataWordC = StackDataWordA;
                 StackFloatValueA = (float)CONCAT31(StackFloatValueA._1_3_,1);
                 iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               iterationCount = ProcessUtilityOperation(dataBuffer);
               if (iterationCount != 2) {
-                StackDataWordB = 0;
+                TemporaryDataWordB = 0;
                 StackPointerBufferI = &DataIntegrityValidationErrorC;
-                StackDataWordC = StackDataWordA;
+                TemporaryDataWordC = StackDataWordA;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               iterationCount = ProcessUtilityOperation(dataBuffer);
               if (iterationCount == 4) {
-                StackDataWordB = 0;
+                TemporaryDataWordB = 0;
                 StackPointerBufferI = &DataIntegrityValidationErrorD;
-                StackDataWordC = StackDataWordA;
+                TemporaryDataWordC = StackDataWordA;
                 StackFloatValueA = 0.0;
                 iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               if ((*(uint *)(dataBuffer + 0x2d8) >> 3 & 1) != 0) {
-                StackDataWordB = 0;
+                TemporaryDataWordB = 0;
                 StackPointerBufferI = &DataIntegrityValidationErrorE;
-                StackDataWordC = StackDataWordA;
+                TemporaryDataWordC = StackDataWordA;
                 ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
               }
             }
@@ -110114,9 +110114,9 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：存储指针数据的栈缓冲区
 #define StackPointerBufferA puStack_1c0
 
-// 原始变量名：StackDataWordB - 栈数据字B
+// 原始变量名：TemporaryDataWordB - 栈数据字B
 // 功能：存储异常处理的上下文数据字
-#define StackExceptionHandlerContext StackDataWordB
+#define StackExceptionHandlerContext TemporaryDataWordB
 
 // 原始变量名：uStack_1b0 - 栈数据字C
 // 功能：存储数据处理的临时存储数据字
@@ -110539,7 +110539,7 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 
 // 原始变量名：uStack_6c - 栈数据字BA
 // 功能：存储数据处理过程中的临时数据字
-#define StackDataWordBA uStack_6c
+#define TemporaryDataWordBA uStack_6c
 
 // 原始变量名：fStack_2c8 - 栈浮点数A
 // 功能：存储浮点数的栈变量
