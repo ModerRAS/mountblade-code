@@ -62502,22 +62502,22 @@ void RenderUIComponents(longlong uiContext,byte *dataSource,int targetBuffer,und
   longlong imageBuffer;
   longlong panelBuffer;
   
-  iVar6 = 0;
+  renderCount = 0;
   allocatedMemory = uiContext + 0xc10;
   if (0 < *(int *)(bufferData + 3000)) {
     compareResult = *(int *)(bufferData + 0xba4);
     do {
-      bVar2 = *dataSource;
-      if (((bVar2 == 4) || (bVar2 == 9)) || (dataSource[9] == 0)) {
-        bVar4 = false;
+      componentType = *dataSource;
+      if (((componentType == 4) || (componentType == 9)) || (dataSource[9] == 0)) {
+        shouldRenderText = false;
       }
       else {
-        bVar4 = true;
+        shouldRenderText = true;
       }
-      bVar2 = *(byte *)((ulonglong)*(byte *)((ulonglong)bVar2 + 0xd00 + allocatedMemory) + allocatedMemory + 0xc40 +
+      componentType = *(byte *)((ulonglong)*(byte *)((ulonglong)componentType + 0xd00 + allocatedMemory) + allocatedMemory + 0xc40 +
                        ((ulonglong)dataSource[2] + (ulonglong)dataSource[0xb] * 4) * 4);
-      uVar5 = (ulonglong)bVar2;
-      if (bVar2 != 0) {
+      componentIndex = (ulonglong)componentType;
+      if (componentType != 0) {
         lStack_58 = uVar5 * 0x10 + allocatedMemory;
         lStack_50 = (uVar5 + 0x40) * 0x10 + allocatedMemory;
         lStack_48 = (uVar5 + 0x80) * 0x10 + allocatedMemory;
