@@ -53140,13 +53140,13 @@ MemoryAddressProcessingLoop:
             SystemStackData = (long long)piStack_210 - (long long)pStringComparisonResult5;
             if ((long long)SystemStackData >> 2 == 0) {
               piStack_1f0 = (int *)0x1;
-LAB_180079fb3:
+ReferenceCountBufferAllocation:
               ReferenceCountPointer6 = (int *)BufferAllocate(MemoryPoolManager,(long long)piStack_1f0 * 4,
                                              CONCAT71((int7)(uStackX_20 >> 8),3));
             }
             else {
               piStack_1f0 = (int *)(((long long)SystemStackData >> 2) * 2);
-              if (piStack_1f0 != (int *)0x0) goto LAB_180079fb3;
+              if (piStack_1f0 != (int *)0x0) goto ReferenceCountBufferAllocation;
             }
             if (pStringComparisonResult5 != pStringComparisonResult6) {
                     // WARNING: Subroutine does not return
