@@ -23335,7 +23335,7 @@ DataBuffer ValidateDataSequenceA0(int64_t *operationBase,uint *dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
-  uint auStackX_8 [2];
+  uint allocationParameterBuffer [2];
   unsigned int stackDataArray [4];
   
   if (*(int *)(operationBase[1] + 0x18) != 0) {
@@ -23347,12 +23347,12 @@ DataBuffer ValidateDataSequenceA0(int64_t *operationBase,uint *dataBuffer)
   }
   else {
     if (operationBase[2] != 0) {
-      auStackX_8[0] = 0;
-      systemDataBuffer = ProcessMemoryAllocationA0(*operationBase,auStackX_8);
+      allocationParameterBuffer[0] = 0;
+      systemDataBuffer = ProcessMemoryAllocationA0(*operationBase,allocationParameterBuffer);
       if ((int)systemDataBuffer != 0) {
         return systemDataBuffer;
       }
-      if ((uint64_t)operationBase[2] < (uint64_t)auStackX_8[0] + 4) {
+      if ((uint64_t)operationBase[2] < (uint64_t)allocationParameterBuffer[0] + 4) {
         systemDataBuffer = 0x11;
         goto ProcessCheckpointDataValidation;
       }
