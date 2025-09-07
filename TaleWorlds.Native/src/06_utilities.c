@@ -24051,18 +24051,18 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
   uint64_t dataFlags;
   DataWord validationOutcome;
   uint64_t securityCheckResult;
-  DataBuffer uStackX_8;
+  DataBuffer temporaryDataBuffer;
   
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,*dataBuffer);
-  inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))(*(DataBuffer **)(operationBase + 8),&uStackX_8,4);
+  temporaryDataBuffer = CONCAT44(temporaryDataBuffer._4_4_,*dataBuffer);
+  inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))(*(DataBuffer **)(operationBase + 8),&temporaryDataBuffer,4);
   if (inputParameter == 0) {
-    uStackX_8 = *(DataBuffer *)(dataBuffer + 2);
-    inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))(*(DataBuffer **)(operationBase + 8),&uStackX_8,8);
+    temporaryDataBuffer = *(DataBuffer *)(dataBuffer + 2);
+    inputParameter = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))(*(DataBuffer **)(operationBase + 8),&temporaryDataBuffer,8);
     if ((inputParameter == 0) && (inputParameter = ValidateDataAndReturnCodeA1(operationBase,dataBuffer + 4), inputParameter == 0)) {
       inputParameter = dataBuffer[10];
-      uStackX_8 = CONCAT44(uStackX_8._4_4_,inputParameter);
+      temporaryDataBuffer = CONCAT44(temporaryDataBuffer._4_4_,inputParameter);
       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                        (*(DataBuffer **)(operationBase + 8),&uStackX_8,4);
+                        (*(DataBuffer **)(operationBase + 8),&temporaryDataBuffer,4);
       dataFlags = 0;
       if (operationResult == 0) {
         memoryBaseAddress = dataFlags;
@@ -24077,9 +24077,9 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
           } while ((int)validationStatus < inputParameter);
         }
         inputParameter = dataBuffer[0xe];
-        uStackX_8 = CONCAT44(uStackX_8._4_4_,inputParameter);
+        temporaryDataBuffer = CONCAT44(temporaryDataBuffer._4_4_,inputParameter);
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + 8))
-                          (*(DataBuffer **)(operationBase + 8),&uStackX_8,4);
+                          (*(DataBuffer **)(operationBase + 8),&temporaryDataBuffer,4);
         if (operationResult == 0) {
           memoryBaseAddress = dataFlags;
           if (0 < inputParameter) {
@@ -80017,7 +80017,18 @@ void Unwind_18090cdf0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ce00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器CE00
+ * 
+ * 该函数处理异常上下文，包括执行回调函数、设置临时异常处理器、
+ * 终止系统、重置状态标志，并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090ce00
+ */
+void ProcessExceptionContextCE00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -80041,7 +80052,18 @@ void Unwind_18090ce00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ce10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器CE10
+ * 
+ * 该函数处理异常上下文，包括执行0x388偏移量的回调函数、设置临时异常处理器、
+ * 终止系统、重置状态标志，并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090ce10
+ */
+void ProcessExceptionContextCE10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x388) != (int64_t *)0x0) {
