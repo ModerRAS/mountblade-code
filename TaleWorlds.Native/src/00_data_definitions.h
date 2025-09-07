@@ -7651,7 +7651,7 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
   SystemModuleConfigIndex2 = 0;
   SystemModuleConfigSize6 = 3;
   SystemModuleConfigFlag8 = 0;
-  uRam0000000180c961b8 = 0;
+  SystemModuleConfigCleanupFlag = 0;
   SystemModuleConfigFlag9 = 0;
   SystemLightEnabled = 1;
   SystemModuleConfigSize7 = 3;
@@ -7682,11 +7682,11 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
   SystemShadowConfigFlag3 = 0;
   SystemShadowConfigValue1 = 0;
   SystemShadowQuality = 3;
-  uRam0000000180c95f98 = 0;
+  SystemShadowConfigResetFlag = 0;
   SystemLightConfigFlag1 = 0;
   SystemLightConfigFlag2 = 0;
   SystemLightQuality = 3;
-  uRam0000000180c95f78 = 0;
+  SystemLightConfigResetFlag = 0;
   SystemLightConfigFlag3 = 0;
   SystemLightConfigValue1 = 0;
   SystemLightConfigSize = 4;
