@@ -20981,30 +20981,41 @@ ValidationCompleteLabel:
 
 
 
+/**
+ * @brief 验证数据完整性A2
+ * 
+ * 该函数负责验证数据的完整性，检查数据描述符和验证上下文，
+ * 确保数据的一致性和正确性。
+ * 
+ * @param DataDescriptor 数据描述符，包含要验证的数据信息
+ * @param ValidationContext 验证上下文，提供验证所需的上下文信息
+ * @param ResourceIndex 资源索引，标识要验证的资源
+ * @return DataBuffer 验证结果，0表示成功，非0表示错误码
+ */
 DataBuffer ValidateDataIntegrityA2(int64_t DataDescriptor,DataBuffer ValidationContext,int64_t ResourceIndex)
 
 {
   DataBuffer systemDataBuffer;
-  int64_t inputAccumulatorRegister;
+  int64_t resourceAccumulatorRegister;
   DataBuffer *memoryResourcePointer;
-  int *DestinationContext;
-  int64_t inputRegisterR10;
+  int *validationResultPointer;
+  int64_t systemContextRegister;
   DataBuffer systemDataStorage;
   
-  systemDataBuffer = *(DataBuffer *)(operationBase + OperationBaseOffset8 + inputAccumulatorRegister * 8);
+  systemDataBuffer = *(DataBuffer *)(operationBase + OperationBaseOffset8 + resourceAccumulatorRegister * 8);
   DataBufferHighWord(systemDataStorage) = (int)((uint64_t)systemDataBuffer >> 0x20);
   if (DataBufferHighWord(systemDataStorage) != 0) {
-    *DestinationContext = DataBufferHighWord(systemDataStorage);
+    *validationResultPointer = DataBufferHighWord(systemDataStorage);
     return 0;
   }
   memoryResourcePointer = (DataBuffer *)
-           ((int64_t)*(int *)(*(int64_t *)(inputRegisterR10 + 0x18) + operationFlagA * 0xc) +
-           *(int64_t *)(inputRegisterR10 + 8));
+           ((int64_t)*(int *)(*(int64_t *)(systemContextRegister + 0x18) + operationFlagA * 0xc) +
+           *(int64_t *)(systemContextRegister + 8));
   if (memoryResourcePointer != (DataBuffer *)0x0) {
     systemDataStorage = systemDataBuffer;
     (**(FunctionPointer**)*memoryResourcePointer)();
   }
-  *DestinationContext = 0;
+  *validationResultPointer = 0;
   return 0;
 }
 
