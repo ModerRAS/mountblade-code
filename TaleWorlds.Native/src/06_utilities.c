@@ -6902,10 +6902,10 @@ uint8_t UtilityProcessDataPrimaryPointer;
 //   uint8_t - 处理结果状态
 uint8_t UtilityProcessPrimaryData;
 // 工具系统处理数据1相关变量
-uint8_t UtilityProcessData1Status;
-uint8_t UtilityProcessData1Context;
-uint8_t UtilityProcessData1Buffer;
-uint8_t UtilityProcessData1Result;
+uint8_t UtilityProcessPrimaryStatus;
+uint8_t UtilityProcessPrimaryContext;
+uint8_t UtilityProcessPrimaryBuffer;
+uint8_t UtilityProcessPrimaryResult;
 uint8_t UtilitySystemPrimaryData;
 
 // 函数: uint8_t UtilityProcessDataSecond(void)
@@ -6918,7 +6918,7 @@ uint8_t UtilitySystemPrimaryData;
 // 
 // 返回值:
 //   uint8_t - 处理结果状态
-uint8_t UtilityProcessData2;
+uint8_t UtilityProcessSecondaryData;
 
 // 函数: uint8_t UtilityProcessDataThird(void)
 // 
@@ -6930,13 +6930,13 @@ uint8_t UtilityProcessData2;
 // 
 // 返回值:
 //   uint8_t - 处理结果状态
-uint8_t UtilityProcessData3;
+uint8_t UtilityProcessTertiaryData;
 // 工具系统处理数据变量
-uint8_t UtilityProcessData2Status;
-uint8_t UtilityProcessData2Context;
-uint8_t UtilityProcessData2Buffer;
-uint8_t UtilityProcessData2Result;
-uint8_t UtilityProcessData2Pointer;
+uint8_t UtilityProcessSecondaryStatus;
+uint8_t UtilityProcessSecondaryContext;
+uint8_t UtilityProcessSecondaryBuffer;
+uint8_t UtilityProcessSecondaryResult;
+uint8_t UtilityProcessSecondaryPointer;
 int UtilityDataProcessingErrorCode;
 
 // 函数: uint8_t UtilityCreateMemoryHeap;
@@ -6951,7 +6951,7 @@ int UtilityDataProcessingErrorCode;
 //   uint8_t - 创建结果状态
 uint8_t UtilityCreateMemoryHeap;
 // 工具系统内存堆数据
-uint8_t UtilityHeapData1;
+uint8_t UtilityHeapPrimaryData;
 uint8_t UtilityHeapData2;
 uint8_t UtilityHeapData3;
 uint8_t UtilityHeapPtr1;
