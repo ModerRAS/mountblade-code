@@ -21489,12 +21489,12 @@ void CoreEngineProcessSystemConfiguration(uint64_t configHandle, uint64_t config
           IsDataValid = 0 < MemoryAllocationSize;
           if (MemoryAllocationSize < 1) {
             TemporaryBuffer = (void *)StringProcessingStatus[1];
-            goto TemporaryBufferProcessingComplete; // 原始标签：LAB_180047f2c
+            goto TemporaryBufferProcessingComplete;
           }
         }
         TemporaryBuffer = (void *)*StringProcessingStatus;
       }
-TemporaryBufferProcessingComplete: // 原始标签：LAB_180047f2c，TemporaryBufferProcessingComplete
+TemporaryBufferProcessingComplete:
       if (HighByte) {
         StringProcessingStatus = MemoryAddressMask;
       }
@@ -21503,7 +21503,7 @@ TemporaryBufferProcessingComplete: // 原始标签：LAB_180047f2c，TemporaryBu
     } while (TemporaryBuffer != NULL);
   }
   if (MemoryAddressMask != StringProcessingStatus) {
-    if (*(int *)(MemoryAddressMask + 6) == 0) goto EventInitializationComplete; // 原始标签：LAB_180047f93
+    if (*(int *)(MemoryAddressMask + 6) == 0) goto EventInitializationComplete;
     if (*(int *)(Utf8SourcePointer + 0x10) != 0) {
       Utf8BufferPointer = (byte *)MemoryAddressMask[5];
       EncodingConversionResult = *(long long *)(Utf8SourcePointer + 8) - (long long)Utf8BufferPointer;
@@ -21513,12 +21513,12 @@ TemporaryBufferProcessingComplete: // 原始标签：LAB_180047f2c，TemporaryBu
         if (SourceByte != TargetByte) break;
         Utf8BufferPointer = Utf8BufferPointer + 1;
       } while (TargetByte != 0);
-      if ((int)(SourceByte - TargetByte) < 1) goto EventInitializationComplete; // 原始标签：LAB_180047f93
+      if ((int)(SourceByte - TargetByte) < 1) goto EventInitializationComplete;
     }
   }
   pMemoryAddressMask = (void *)AllocateEngineMemoryBlock(StringProcessingStatus,&SystemRegisterFlagX8);
   pMemoryAddressMask = (void *)*pMemoryAddressMask;
-EventInitializationComplete: // 原始标签：LAB_180047f93，EventInitializationComplete
+EventInitializationComplete:
   CoreEngineInitializeSystemEvent(pMemoryAddressMask + 8,Utf8SourcePointer);
   pMemoryAddressMask[0xc] = Utf16EndPointer;
   return;
