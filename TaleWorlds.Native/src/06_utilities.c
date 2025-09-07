@@ -131,8 +131,6 @@
 #define ResourceHandleArrayIndex 0
 #define ResourceHandleDataOffset 8
 #define ResourceCountThreshold 1
-#define ExceptionCriticalSectionAddress 0x180c82210
-#define ExceptionProcessParameterAddress 0x180c82238
 #define ExceptionHandlerDataOffsetA8 0xa8
 #define ExceptionHandlerCallbackOffset38 0x38
 #define ExceptionHandlerContextOffsetA0 0xa0
@@ -306,7 +304,7 @@
 // 系统对象指针地址常量
 #define MutexObjectPointerAddress 0x180c91910
 #define ExceptionCriticalSectionAddress 0x180c82210
-#define ExceptionHandlerParameterAddress 0x180c82238
+#define ExceptionHandlerParameterStorageAddress 0x180c82238
 
 // Goto 标签宏定义 - 用于美化代码
 #define GOTO_ValidationFailed goto ExecuteSecurityValidation

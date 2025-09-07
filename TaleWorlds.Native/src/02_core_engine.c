@@ -20005,19 +20005,19 @@ void SetThreadLocalStoragePointer(long long ThreadLocalStoragePointer
 
 
 
- void CoreEngineInitializeMemoryRegion(uint64_t *memoryRegion/**
+ /**
  * @brief 设置线程本地存储模板
  * 
  * 该函数负责设置线程本地存储模板，将指定指针直接设置为线程本地存储模板。
  * 这是一个底层系统函数，用于线程本地存储的配置。
  * 
- * @param CharacterCode 要设置的目标数据结构指针
+ * @param threadStoragePointer 要设置的目标数据结构指针
  * @return 无
  * 
  * @note 此函数直接设置指针为线程本地存储模板
  * @note 用于线程本地存储系统的配置
  */
-void SetThreadLocalStorageTemplate(uint64_t *Utf8InputBuffer{
+void SetThreadLocalStorageTemplate(uint64_t *threadStoragePointer) {
   *Utf8InputBuffer = &ThreadLocalStorageTemplate;
   return;
 }
@@ -20026,7 +20026,7 @@ void SetThreadLocalStorageTemplate(uint64_t *Utf8InputBuffer{
 
 
 
- void CoreEngineProcessSystemConfiguration(uint64_t configHandle,uint64_t configData,long long contextParam,uint64_t flagsParamvoid CoreEngineProcessSystemConfiguration(uint64_t configHandle,uint64_t configData,long long contextParam,uint64_t flagsParam
+ void CoreEngineProcessSystemConfiguration(uint64_t configHandle, uint64_t configData, long long contextParam, uint64_t flagsParam)
 {
   byte SystemStringBuffer;
   bool BufferStatus;
