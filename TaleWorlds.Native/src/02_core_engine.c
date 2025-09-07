@@ -314,6 +314,8 @@ const void* const SystemEventQueueDataTableTrigesimal = (void*)0x180a10898;
 const void* const SystemEventQueueDataTableSeptenary = (void*)0x180a10628;
 const void* const SystemEventQueueDataTableOctonary = (void*)0x180a10640;
 const void* const SystemEventQueueDataTableNonary = (void*)0x180a106c0;
+const void* const SystemEventQueueDataTableUndenary = (void*)0x180a10678;
+const void* const SystemEventQueueDataTableDuodenary = (void*)0x180a10688;
 
 // 系统内存池和数据结构常量
 const void* const SystemMemoryPoolTemplate = (void*)0x180a104d0;
@@ -242569,9 +242571,9 @@ LAB_180214378:
   ProcessSystemEventQueueData(&SystemPriorityLevelData,aSystemPriorityLevel[0]);
   ProcessSystemEventQueueData(&SystemEventQueueDataTableNonary,FunctionAddress);
   fStack_88 = 0.0;
-  FUN_180846210(*(void *)(SystemContextPointer + 0x368),&UNK_180a10678,&fStack_88,0);
+  FUN_180846210(*(void *)(SystemContextPointer + 0x368),&SystemEventQueueDataTableUndenary,&fStack_88,0);
   fStack_84 = 0.0;
-  FUN_180846210(*(void *)(SystemContextPointer + 0x368),&UNK_180a10688,&fStack_84,0);
+  FUN_180846210(*(void *)(SystemContextPointer + 0x368),&SystemEventQueueDataTableDuodenary,&fStack_84,0);
   fStack_80 = 0.0;
   FUN_180846210(*(void *)(SystemContextPointer + 0x368),&UNK_180a10710,&fStack_80,0);
   fStack_7c = 0.0;
