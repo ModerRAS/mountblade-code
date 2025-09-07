@@ -78091,7 +78091,21 @@ void SetTemporaryExceptionHandlerA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909780(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理器上下文D0
+ * 
+ * 该函数负责初始化异常处理器上下文，设置临时异常处理器，
+ * 验证异常处理回调状态，并配置默认异常处理器
+ * 
+ * @param operationBase 系统操作句柄
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909780
+ * @warning 此函数必须在异常处理系统初始化时调用
+ * 
+ * @see TerminateSystemE0, TemporaryExceptionHandler, DefaultExceptionHandlerB
+ */
+void InitializeExceptionHandlerContextD0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -78109,7 +78123,23 @@ void Unwind_180909780(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180909790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据缓冲区D1
+ * 
+ * 该函数负责处理异常数据缓冲区，调用数据缓冲区处理函数A0，
+ * 传递操作标志和系统清理标志
+ * 
+ * @param operationBase 系统操作句柄
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180909790
+ * @warning 此函数必须在异常处理上下文中调用
+ * 
+ * @see ProcessDataBufferA0, SystemCleanupFlagAlternative
+ */
+void ProcessExceptionDataBufferD1(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -78119,7 +78149,23 @@ void Unwind_180909790(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809097a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理异常数据缓冲区D2
+ * 
+ * 该函数负责处理异常数据缓冲区，调用数据缓冲区处理函数A0，
+ * 传递操作标志和系统清理标志
+ * 
+ * @param operationBase 系统操作句柄
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809097a0
+ * @warning 此函数必须在异常处理上下文中调用
+ * 
+ * @see ProcessDataBufferA0, SystemCleanupFlagAlternative
+ */
+void ProcessExceptionDataBufferD2(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA0(*(int64_t *)(dataBuffer + 0x40),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10),
@@ -78129,7 +78175,23 @@ void Unwind_1809097a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_1809097b0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统资源清理D3
+ * 
+ * 该函数负责处理系统资源的清理操作，验证异常数据缓冲区，
+ * 调用系统资源清理函数，并在必要时终止系统
+ * 
+ * @param operationBase 系统操作句柄
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809097b0
+ * @warning 此函数必须在资源清理上下文中调用
+ * 
+ * @see ProcessSystemResourcesWithCleanup, TerminateSystemE0
+ */
+void ProcessSystemResourceCleanupD3(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;

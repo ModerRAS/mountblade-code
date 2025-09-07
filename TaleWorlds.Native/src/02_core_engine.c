@@ -53550,7 +53550,7 @@ void ProcessDataStructureValidation(long long *Utf8InputBuffer
     *(uint8_t *)((long long)CharacterCode + 0x15) = 0;
     UNLOCK();
   }
-LAB_1800802aa:
+ErrorHandlerLAB1800802aa:
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)BufferTypeFlag);
 }
@@ -56050,7 +56050,7 @@ void ProcessCoreEngineDataStructureCopy(long long *Utf8InputBuffer,long long *Ut
   CharacterCodeTablePointer = (void *           BufferAllocate(MemoryPoolManager,EncodingConversionResult << 5,(char)Utf8InputBuffer[3],CharacterStatusBuffer2,0xfffffffffffffffe);
   CharacterStatusBuffer2 = (uint32_t *)Utf8InputBuffer[1];
   SecondaryProcessingStatusFlag = (uint32_t *)*Utf8InputBuffer;
-LAB_180082720:
+ValidationHandlerLAB180082720:
   StringProcessingStatus = CharacterCodeTablePointer;
   if (SecondaryProcessingStatusFlag != CharacterStatusBuffer2) {
     SystemStringIndex = (long long)CharacterCodeTablePointer - (long long)SecondaryProcessingStatusFlag;
@@ -59709,7 +59709,7 @@ void CopyDataStructure(unsigned long long *Utf8InputBuffer,uint64_t *Utf8InputBu
   CharacterCodeTablePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0x18,(char)Utf8InputBuffer[3]);
   StringProcessingStatus = (void *)*Utf8InputBuffer;
   StringProcessingStatus = (void *)Utf8InputBuffer[1];
-LAB_180086316:
+DataProcessorLAB180086316:
   if (StringProcessingStatus != StringProcessingStatus) {
                     // WARNING: Subroutine does not return
     memmove(CharacterCodeTablePointer,StringProcessingStatus,(long long)StringProcessingStatus - (long long)StringProcessingStatus);
@@ -59777,7 +59777,7 @@ void ProcessSystemDataStructureAllocation(long long CharacterCode,uint64_t Utf8B
   MemoryBufferPointer = (uint32_t *)BufferAllocate(MemoryPoolManager,BufferAllocationSize * 0x18,(char)Utf8InputBuffer[3]);
   Utf16EndPointer = *Utf8InputBuffer;
   DataCopySize = Utf8InputBuffer[1];
-LAB_180086316:
+DataProcessorLAB180086316:
   if (Utf16EndPointer != DataCopySize) {
                     // WARNING: Subroutine does not return
     memmove(MemoryBufferPointer,Utf16EndPointer,DataCopySize - Utf16EndPointer);
@@ -59864,7 +59864,7 @@ void ExpandCharacterStatusBuffer(unsigned long long *CharacterStatusBufferPointe
   CharacterCodeTablePointer = (uint32_t *)BufferAllocate(MemoryPoolManager,MemoryPoolBlockSize << 4,(char)CharacterStatusBufferPointer[3]);
   SecondaryProcessingStatusFlag = (void *)*CharacterStatusBufferPointer;
   CurrentNode = (void *)CharacterStatusBufferPointer[1];
-LAB_18008642b:
+BufferHandlerLAB18008642b:
   if (SecondaryProcessingStatusFlag != currentNode) {
                     // WARNING: Subroutine does not return
     memmove(CharacterCodeTablePointer,SecondaryProcessingStatusFlag,(long long)currentNode - (long long)SecondaryProcessingStatusFlag);
@@ -60722,7 +60722,7 @@ uint64_t SystemCharacterStatusBufferHandler(long long CharacterCode,long long Ut
     SystemCharacterStatusBuffer = *(uint64_t **)(AllocatedMemorySize + 0x70);
     TemporaryBuffer = CharacterStatusBuffer;
     if (SystemCharacterStatusBuffer == NULL) {
-LAB_180087337:
+SystemHandlerLAB180087337:
       CharacterStatusBuffer = CharacterStatusBuffer;
     }
     else {
@@ -60751,7 +60751,7 @@ LAB_180087337:
           }
           CharacterStatusBuffer2 = (void *)*SystemCharacterStatusBuffer;
         }
-LAB_1800872f7:
+MemoryHandlerLAB1800872f7:
         CharacterStatusBuffer = SystemCharacterStatusBuffer;
         if (LowByte) {
           CharacterStatusBuffer = TemporaryBuffer;
@@ -60775,7 +60775,7 @@ LAB_1800872f7:
         goto LAB_180087337;
       }
     }
-LAB_18008733a:
+StatusHandlerLAB18008733a:
     SystemTemplatePointer = &SystemNullTemplate;
     if (pbStack_48 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
@@ -60831,7 +60831,7 @@ uint64_t SystemContextBufferAllocator(int CharacterCode,long long *Utf8InputBuff
   FunctionAddress = 0xfffffffffffffffe;
   MemoryAddressMask = 0;
   if (CharacterCode < 0) {
-LAB_180087418:
+ConfigHandlerLAB180087418:
     BufferStatus = CoreEngineGetSystemContext();
   }
   else {
@@ -60882,7 +60882,7 @@ LAB_180087418:
   ProcessSystemContextConfiguration(&pMemoryOffsetValue,&SystemConfigurationTemplateSecondary,CharacterCodeTablePointer,systemEventTemplatePointer);
   InputStringBuffer = CoreEngineValidateSystemStatus(&CoreEnginePointerBuffer78);
   if (InputStringBuffer == '\0') {
-LAB_18008755d:
+CleanupHandlerLAB18008755d:
     InputStringBuffer = CoreEngineValidateSystemStatus(&pMemoryOffsetValue);
     if (InputStringBuffer == '\0') goto LAB_18008758f;
     systemEventTemplatePointer = &CoreEngineDataTemplate;
@@ -279921,5 +279921,16 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_180130ae3
  */
 #define ValidateCharacterEncodingData FUN_180130ae3
+
+// LAB_标签语义化宏定义
+#define ErrorHandlerLAB1800802aa LAB_1800802aa
+#define ValidationHandlerLAB180082720 LAB_180082720
+#define DataProcessorLAB180086316 LAB_180086316
+#define BufferHandlerLAB18008642b LAB_18008642b
+#define SystemHandlerLAB180087337 LAB_180087337
+#define MemoryHandlerLAB1800872f7 LAB_1800872f7
+#define StatusHandlerLAB18008733a LAB_18008733a
+#define ConfigHandlerLAB180087418 LAB_180087418
+#define CleanupHandlerLAB18008755d LAB_18008755d
 
 
