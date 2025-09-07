@@ -51917,17 +51917,26 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   uint64_t CoreEngineValueC0;
   uint64_t MemoryOffsetValue;
   uint32_t SystemStackRegisterFlagB0;
+  uint64_t SystemStackValue110;
+  uint64_t SystemStackValue118;
+  uint64_t SystemStackValue138;
+  int StackOffset1e8;
+  long long CharacterCode;
+  int MatchCounter;
+  uint64_t SystemStackValue158;
+  uint32_t SystemStackValue1bc;
+  uint32_t SystemStackValue1c0;
   
-  uStack_110 = 0xfffffffffffffffe;
+  SystemStackValue110 = 0xfffffffffffffffe;
   ReferenceCountPointer = (int *)(CharacterCode + 0x60);
   CharacterByteCount7 = *ReferenceCountPointer;
   MatchCounter = *(int *)(CharacterCode + 0x88);
   MemoryAllocationIndex8 = (unsigned long long)MatchCounter;
-  iStack_1e8 = *(int *)(CharacterCode + 0x10);
+  StackOffset1e8 = *(int *)(CharacterCode + 0x10);
   DataProcessingBuffer = (uint32_t *)0x0;
   BufferInitializationFlag = 0;
   DataProcessingFlags = 0;
-  uStack_118 = 3;
+  SystemStackValue118 = 3;
   ProcessCoreEngineBuffer(&DataProcessingBuffer,MemoryAllocationIndex8);
   MemoryAddressMask1 = MemoryAllocationIndex8;
   PrimaryProcessingStatusFlag9 = DataProcessingBuffer;
@@ -51939,7 +51948,7 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   }
   StackDataBuffer150 = ZEXT816(0);
   SystemStatusValue = 0;
-  uStack_138 = 3;
+  SystemStackValue138 = 3;
   BufferStatus1 = (unsigned long long)*(ushort *)(CharacterCode + 0xc0) + 1;
   if (BufferStatus1 == 0) {
     BufferStatus1 = 0;
@@ -52078,7 +52087,7 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   lStack_170 = 0;
   plStack_168 = (long long *)0x0;
   pLocalDataStructure160 = (long long *)0x0;
-  uStack_158 = 3;
+  SystemStackValue158 = 3;
   InitializeSystemDataStructureA(&lStack_170,(long long)CharacterByteCount7);
   MemoryAddressMask1 = UnicodeCodePoint6;
   uStackX_20 = MemoryAllocationIndex8;
