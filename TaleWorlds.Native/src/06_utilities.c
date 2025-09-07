@@ -20448,12 +20448,12 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
             systemDataBuffer1 = InitializeSystem();
             iterationCount = memcmp(dataContext + 0x38,systemDataBuffer1,0x30);
             if (iterationCount != 0) {
-              uStack_140 = *(DataBuffer *)(dataContext + 0x38);
-              uStack_138 = *(DataBuffer *)(dataContext + 0x40);
-              uStack_130 = *(DataWord *)(dataContext + 0x48);
-              uStack_12c = *(DataWord *)(dataContext + 0x4c);
-              uStack_128 = *(DataWord *)(dataContext + 0x50);
-              uStack_124 = *(DataWord *)(dataContext + 0x54);
+              StackDataBufferA = *(DataBuffer *)(dataContext + 0x38);
+              StackDataBufferB = *(DataBuffer *)(dataContext + 0x40);
+              StackDataWordJ = *(DataWord *)(dataContext + 0x48);
+              StackDataWordK = *(DataWord *)(dataContext + 0x4c);
+              StackDataWordL = *(DataWord *)(dataContext + 0x50);
+              StackDataWordM = *(DataWord *)(dataContext + 0x54);
               StackPointerBufferD = &SystemSecurityCheckReference;
               uStack_150 = 0;
               uStack_120 = *(DataWord *)(dataContext + 0x58);
@@ -60123,7 +60123,22 @@ void ExecuteValidatorAtOffset18And10(DataBuffer operationBase,int64_t dataBuffer
 
 
 
-void Unwind_180907110(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量20处的验证器
+ * 
+ * 该函数从数据缓冲区的偏移量20处获取上下文指针，
+ * 然后从偏移量10处获取验证器指针并执行。
+ * 
+ * @param operationBase 系统句柄
+ * @param dataBuffer 数据缓冲区，包含验证器指针
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于系统验证和清理操作
+ * @warning 确保验证器指针有效，避免空指针访问
+ * @see ExecuteValidatorAtOffset10, ExecuteValidatorAtOffset18
+ */
+void ExecuteValidatorAtOffset20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -60137,7 +60152,22 @@ void Unwind_180907110(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907120(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行偏移量20和18处的验证器
+ * 
+ * 该函数从数据缓冲区的偏移量20处获取上下文指针，
+ * 然后分别从偏移量18和10处获取验证器指针并执行。
+ * 
+ * @param operationBase 系统句柄
+ * @param dataBuffer 数据缓冲区，包含验证器指针
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于系统验证和清理操作
+ * @warning 确保验证器指针有效，避免空指针访问
+ * @see ExecuteValidatorAtOffset10, ExecuteValidatorAtOffset18
+ */
+void ExecuteValidatorAtOffset20And18(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
@@ -60159,7 +60189,20 @@ void Unwind_180907120(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180907130(void)
+/**
+ * @brief 重置系统状态标志
+ * 
+ * 该函数负责重置系统状态标志，并在关键区域保护下执行。
+ * 它会进入关键区域，重置系统状态标志，然后离开关键区域。
+ * 如果存在异常事件句柄，还会设置和重置事件。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于系统状态管理和异常处理
+ * @warning 函数包含间接跳转，可能用于异常处理或解密操作
+ * @see ResetSystemStatusFlag, HandleExceptionEvent
+ */
+void ResetSystemStatusFlag(void)
 
 {
   byte shiftBitCount;
@@ -60184,7 +60227,22 @@ void Unwind_180907130(void)
 
 
 
-void Unwind_180907140(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证并处理数据缓冲区
+ * 
+ * 该函数检查数据缓冲区的标志位，如果第0位被设置，
+ * 则清除该位并调用数据验证处理器。
+ * 
+ * @param operationBase 系统句柄
+ * @param dataBuffer 数据缓冲区，包含验证标志
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于数据验证和标志位管理
+ * @warning 确保dataBuffer中的指针有效，避免空指针访问
+ * @see ValidateDataHandler, ProcessDataBuffer
+ */
+void ValidateAndProcessDataBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x20) & 1) != 0) {
