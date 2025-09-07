@@ -97,6 +97,12 @@
 #define ProcessSystemDataTable FUN_180627ce0                     // 处理系统数据表
 #define GetCharacterBuffer80 FUN_18014f810                       // 获取字符缓冲区80
 #define GetProcessingPointer88 FUN_18014f840                     // 获取处理指针88
+#define ProcessCharacterCodeData FUN_18019c480                    // 处理字符代码数据
+#define ProcessCharacterCodeConversionEx FUN_18019c560            // 处理字符代码转换扩展
+#define ProcessCharacterCodeValidationEx FUN_18019c5b0            // 处理字符代码验证扩展
+#define ProcessCharacterEncodingData FUN_180212e40                // 处理字符编码数据
+#define ProcessCharacterEncodingValidation FUN_180212e60            // 处理字符编码验证
+#define ProcessCharacterCodeLookupEx FUN_180214c50                // 处理字符代码查找扩展
 #define GetMemoryBoundaryEnd FUN_18014e960                       // 获取内存边界结束
 #define GetProcessingPointerC0 FUN_18014f6a0                    // 获取处理指针C0
 
@@ -168798,50 +168804,50 @@ void ProcessCharacterEncodingAndBufferManagement(long long CharacterCode, uint64
     ProcessingCounter = (uint16_t)SystemPriorityLevel;
     goto LAB_18013c174;
   }
-  pRemainingSpace = &iStack_48;
-  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableDuotrigesimal,&iStack_44,&SystemPriorityLevel,pRemainingSpace);
+  RemainingSpacePointer = &ValidationStatus1;
+  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableDuotrigesimal,&ValidationStatus2,&SystemPriorityLevel,RemainingSpacePointer);
   if (DataStringLength == 2) {
-    Utf16EndPointer = Utf16EndPointer + iStack_48;
-    uStack_3c = CONCAT22((uint16_t)SystemPriorityLevel,(short)iStack_44);
-    uStack_1e = uStack_3c;
+    Utf16EndPointer = Utf16EndPointer + ValidationStatus1;
+    SystemFlags = CONCAT22((uint16_t)SystemPriorityLevel,(short)ValidationStatus2);
+    AddressInfo = SystemFlags;
   }
 LAB_18013c174:
-  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableQuintrigesimal,acStackX_20,&iStack_48,pRemainingSpace);
+  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableQuintrigesimal,TempBuffer,&ValidationStatus1,RemainingSpacePointer);
   if (DataStringLength == 1) {
-    Utf16EndPointer = Utf16EndPointer + iStack_48;
-    if (acStackX_20[0] == 'X') {
-      uStack_2c = 0;
+    Utf16EndPointer = Utf16EndPointer + ValidationStatus1;
+    if (TempBuffer[0] == 'X') {
+      BufferControl = 0;
     }
-    else if (acStackX_20[0] == 'Y') {
-      uStack_2c = 1;
+    else if (TempBuffer[0] == 'Y') {
+      BufferControl = 1;
     }
   }
-  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemValidationParameterC,&iStack_44,&iStack_48,pRemainingSpace);
+  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemValidationParameterC,&ValidationStatus2,&ValidationStatus1,RemainingSpacePointer);
   if (DataStringLength == 1) {
-    Utf16EndPointer = Utf16EndPointer + iStack_48;
-    uStack_29 = iStack_44 != 0;
+    Utf16EndPointer = Utf16EndPointer + ValidationStatus1;
+    DataTypeFlag = ValidationStatus2 != 0;
   }
-  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableSeptentrigesimal,&iStack_44,&iStack_48,pRemainingSpace);
+  DataStringLength = ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,SystemDataTableSeptentrigesimal,&ValidationStatus2,&ValidationStatus1,RemainingSpacePointer);
   if (DataStringLength == 1) {
-    Utf16EndPointer = Utf16EndPointer + iStack_48;
-    uStack_28 = iStack_44 != 0;
+    Utf16EndPointer = Utf16EndPointer + ValidationStatus1;
+    EncodingFlag = ValidationStatus2 != 0;
   }
-  ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemDataValidationTemplateA,&ProcessingFlags,&iStack_48);
+  ProcessStringAndCharacterStatusBuffer(Utf16EndPointer,&SystemDataValidationTemplateA,&ProcessingFlags,&ValidationStatus1);
   SystemDataRegistry = *(long long *)(CharacterCode + 0x2df8);
-  if ((iStack_34 != 0) && (0 < *(int *)(SystemDataRegistry + 0x20))) {
-    pRemainingSpace = *(int **)(SystemDataRegistry + 0x28);
+  if ((MemoryOffset != 0) && (0 < *(int *)(SystemDataRegistry + 0x20))) {
+    RemainingSpacePointer = *(int **)(SystemDataRegistry + 0x28);
     ProcessingStatusFlag = DataSize;
     do {
-      if (*pRemainingSpace == iStack_34) {
-        pRemainingSpace = *(int **)(SystemDataRegistry + 0x28) + (long long)(int)ProcessingStatusFlag * 8;
-        if (pRemainingSpace != (int *)0x0) {
-          cStack_2b = *(char *)((long long)pRemainingSpace + 0xd) + '\x01';
+      if (*RemainingSpacePointer == MemoryOffset) {
+        RemainingSpacePointer = *(int **)(SystemDataRegistry + 0x28) + (long long)(int)ProcessingStatusFlag * 8;
+        if (RemainingSpacePointer != (int *)0x0) {
+          StatusChar = *(char *)((long long)RemainingSpacePointer + 0xd) + '\x01';
         }
         break;
       }
       ProcessingStatusFlag = (unsigned long long)((int)ProcessingStatusFlag + 1);
       DataSize = DataSize + 1;
-      pRemainingSpace = pRemainingSpace + 8;
+      RemainingSpacePointer = RemainingSpacePointer + 8;
     } while ((long long)DataSize < (long long)*(int *)(SystemDataRegistry + 0x20));
   }
   DataStringLength = *(int *)(SystemDataRegistry + 0x20);
