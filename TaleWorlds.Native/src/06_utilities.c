@@ -621,17 +621,7 @@
  */
 #define ValidateSystemContext ValidateSystemContextAndState
 
-/**
- * @brief 系统验证初始化函数
- * @note 原始函数名：FUN_18004b730
- */
 #define InitializeSystemValidation FUN_18004b730
-
-/**
- * @brief 系统数据验证处理函数
- * 功能：处理系统数据的验证流程，包括数据完整性检查和安全性验证
- * @note 原始函数名：FUN_180058370
- */
 #define ProcessSystemDataValidation FUN_180058370
 
 /**
