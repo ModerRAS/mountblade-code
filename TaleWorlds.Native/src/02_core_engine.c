@@ -61479,11 +61479,11 @@ void SystemStatusMemoryManager(uint64_t CharacterCode,uint8_t Utf8BufferSize
   void *pSystemValue2b0;
   uint8_t *pSystemValue2a8;
   uint32_t SystemUnsignedValue2A0;
-  unsigned long long uStack_298;
+  unsigned long long SystemProcessingStatusA;
   void *SystemConfigHandle;
   void *SystemCharacterStatusBufferPointer;
   uint32_t SystemConfigurationMode;
-  unsigned long long uStack_278;
+  unsigned long long SystemProcessingStatusB;
   uint32_t uStack_270;
   long long lStack_268;
   long long lStack_258;
@@ -171605,7 +171605,15 @@ long long FUN_18013d540(void
 
 
 
-3d7c9(voidvoid FUN_18013d7c9(void
+/**
+ * @brief 初始化字符数据缓冲区
+ * 
+ * 该函数负责初始化字符数据缓冲区，为后续的字符处理操作
+ * 分配必要的内存资源，并设置初始状态。
+ * 
+ * @note 原始函数名：FUN_18013d7c9
+ */
+void InitializeCharacterDataBuffer(void)
 {
   int LockResult;
   long long BufferStatus;
@@ -171894,7 +171902,16 @@ long long FUN_18013d540(void
 
 
 
-3db5a(int CharacterCodevoid FUN_18013db5a(int CharacterCode
+/**
+ * @brief 处理字符代码查找
+ * 
+ * 该函数根据字符代码在系统中查找对应的字符数据，
+ * 处理内存分配和数据管理操作。
+ * 
+ * @param CharacterCode 要查找的字符代码
+ * @note 原始函数名：FUN_18013db5a
+ */
+void ProcessCharacterCodeLookup(int CharacterCode
 {
   int LockResult;
   uint64_t MemoryAllocationIndex;
