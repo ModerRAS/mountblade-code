@@ -110106,33 +110106,61 @@ void Unwind_180911e20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 清理多级异常处理器上下文函数
+ * 
+ * 该函数负责清理多个级别的异常处理器上下文，按顺序处理以下资源：
+ * 1. 清理偏移量0x1ed8处的异常处理器上下文
+ * 2. 清理偏移量0x1ec8处的异常处理器上下文
+ * 3. 清理偏移量0x1eb8处的异常处理器上下文
+ * 
+ * 每个清理步骤都会：
+ * - 检查异常处理器上下文是否存在
+ * - 更新异常上下文引用计数
+ * - 调用系统异常处理函数进行清理
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含要清理的上下文信息
+ * @param operationFlagA 操作标志A，传递给异常处理函数
+ * @param operationFlagB 操作标志B，传递给异常处理函数
+ * 
+ * @note 原始函数名：Unwind_180911e40
+ * @note 这是一个异常处理清理函数，用于系统资源释放和状态重置
+ * @note 函数会依次清理三个不同级别的异常处理器上下文
+ */
+void CleanupMultiLevelExceptionContexts(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   int64_t exceptionHandlerContext;
   int64_t dataContext;
   
+  // 获取数据上下文指针
   dataContext = *(int64_t *)(dataBuffer + 0x70);
+  
+  // 清理第一级异常处理器上下文（偏移量0x1ed8）
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1ed8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
+  
+  // 清理第二级异常处理器上下文（偏移量0x1ec8）
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1ec8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
+  
+  // 清理第三级异常处理器上下文（偏移量0x1eb8）
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1eb8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -110140,36 +110168,64 @@ void Unwind_180911e40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 清理高级异常处理器并重置系统状态函数
+ * 
+ * 该函数负责清理高级别的异常处理器上下文，并在清理前重置系统状态。
+ * 主要功能包括：
+ * 1. 初始化系统状态，确保系统处于已知状态
+ * 2. 清理偏移量0x2d68处的高级异常处理器上下文
+ * 3. 清理偏移量0x2d58处的高级异常处理器上下文
+ * 4. 清理偏移量0x2d48处的高级异常处理器上下文
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含要清理的上下文信息
+ * @param operationFlagA 操作标志A，传递给异常处理函数
+ * @param operationFlagB 操作标志B，传递给异常处理函数
+ * 
+ * @note 原始函数名：Unwind_180911e60
+ * @note 此函数在清理异常处理器之前会先调用InitializeSystemState()重置系统
+ * @note 处理的是更高级别的异常处理器上下文（偏移量0x2dxx系列）
+ * @note 用于系统深度清理和状态重置场景
+ */
+void CleanupAdvancedExceptionHandlersAndResetSystem(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   int64_t exceptionHandlerContext;
   int64_t dataContext;
   DataBuffer validationStatus;
   
+  // 获取数据上下文指针
   dataContext = *(int64_t *)(dataBuffer + 0x70);
   validationStatus = SystemCleanupFlagAlternative;
+  
+  // 重置系统状态到初始状态
   InitializeSystemState();
+  
+  // 清理第一级高级异常处理器上下文（偏移量0x2d68）
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d68);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
+  
+  // 清理第二级高级异常处理器上下文（偏移量0x2d58）
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d58);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
+  
+  // 清理第三级高级异常处理器上下文（偏移量0x2d48）
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d48);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-      HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   return;
 }
@@ -110177,17 +110233,39 @@ void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911e80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 清理系统级异常处理器上下文函数
+ * 
+ * 该函数负责清理系统级别的异常处理器上下文，处理最顶层的异常处理资源。
+ * 主要功能：
+ * 1. 从数据缓冲区获取上下文指针
+ * 2. 清理偏移量0x2dd8处的系统级异常处理器上下文
+ * 3. 更新异常上下文引用计数
+ * 4. 调用系统异常处理函数进行最终清理
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含系统级上下文信息
+ * @param operationFlagA 操作标志A，传递给异常处理函数
+ * @param operationFlagB 操作标志B，传递给异常处理函数
+ * 
+ * @note 原始函数名：Unwind_180911e80
+ * @note 这是系统级别的异常处理器清理函数
+ * @note 处理的是最顶层的异常处理器上下文（偏移量0x2dd8）
+ * @note 用于系统关闭或重大异常恢复时的最终清理工作
+ */
+void CleanupSystemLevelExceptionHandlerContext(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   int64_t exceptionHandlerContext;
   
+  // 获取系统级异常处理器上下文
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x70) + 0x2dd8);
   if (exceptionHandlerContext != 0) {
+    // 更新异常上下文引用计数
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
-      HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+    // 执行系统级异常处理清理
+    HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -120218,6 +120296,19 @@ uint8_t SystemExceptionHandlerStateTable;
 // 原始函数名：Unwind_180910720 - 数据缓冲区辅助标志清除函数
 // 功能：清除数据缓冲区的辅助标志位
 #define ClearDataBufferSecondaryFlag Unwind_180910720
+
+// 新美化的Unwind函数宏定义
+// 原始函数名：Unwind_180911e40 - 清理多级异常处理器上下文函数
+// 功能：清理多个级别的异常处理器上下文，按顺序处理三个不同级别的异常处理器
+#define CleanupMultiLevelExceptionContexts Unwind_180911e40
+
+// 原始函数名：Unwind_180911e60 - 清理高级异常处理器并重置系统状态函数
+// 功能：清理高级别的异常处理器上下文，并在清理前重置系统状态
+#define CleanupAdvancedExceptionHandlersAndResetSystem Unwind_180911e60
+
+// 原始函数名：Unwind_180911e80 - 清理系统级异常处理器上下文函数
+// 功能：清理系统级别的异常处理器上下文，处理最顶层的异常处理资源
+#define CleanupSystemLevelExceptionHandlerContext Unwind_180911e80
 
 // 内存资源释放副本函数
 // 功能：释放内存资源的副本实现
