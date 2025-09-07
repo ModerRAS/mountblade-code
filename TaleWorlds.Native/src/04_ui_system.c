@@ -1246,6 +1246,149 @@ void* UIGestureCoordinates;
 // 原始函数名：FUN_180679b20 - UI系统数据缓冲区函数
 #define ProcessUIDataBuffer FUN_180679b20
 
+// UI系统渲染状态管理函数
+/**
+ * @brief UI系统渲染状态重置函数
+ * 
+ * 该函数负责重置UI系统的渲染状态到初始值
+ * 主要用于渲染过程中的状态清理和重置操作
+ * 
+ * @note 原始函数名: FUN_180694c40
+ */
+#define ResetUIRenderState FUN_180694c40
+
+/**
+ * @brief UI系统布局状态重置函数
+ * 
+ * 该函数负责重置UI系统的布局状态
+ * 主要用于布局计算过程中的状态清理
+ * 
+ * @note 原始函数名: FUN_180694040
+ */
+#define ResetUILayoutState FUN_180694040
+
+/**
+ * @brief UI系统上下文初始化函数
+ * 
+ * 该函数负责初始化UI系统的上下文环境
+ * 设置初始状态和参数
+ * 
+ * @note 原始函数名: FUN_1806905c0
+ */
+#define InitializeUIContext FUN_1806905c0
+
+/**
+ * @brief UI系统数据验证函数
+ * 
+ * 该函数负责验证UI系统数据的有效性和完整性
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param6 参数6
+ * @param param7 参数7
+ * @param param8 参数8
+ * @return 验证结果状态码
+ * 
+ * @note 原始函数名: FUN_180690800
+ */
+#define ValidateUIDataStructure FUN_180690800
+
+/**
+ * @brief UI系统数据比较函数
+ * 
+ * 该函数负责比较两个UI数据块的相似性
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param6 参数6
+ * @param param7 参数7
+ * @param param8 参数8
+ * @return 比较结果状态码
+ * 
+ * @note 原始函数名: FUN_180691080
+ */
+#define CompareUIDataBlocks FUN_180691080
+
+/**
+ * @brief UI系统渲染更新触发函数
+ * 
+ * 该函数触发UI系统的渲染更新流程
+ * 调用ProcessUIRenderingUpdate函数进行实际的渲染更新操作
+ * 
+ * @note 原始函数名: FUN_1806979e0
+ * @note 该函数不返回
+ */
+#define TriggerUIRenderingUpdate FUN_1806979e0
+
+/**
+ * @brief UI系统渲染更新函数
+ * 
+ * 该函数执行UI系统的渲染更新操作
+ * 更新渲染状态和缓冲区
+ * 
+ * @param uiContext UI上下文指针
+ * @return 更新结果状态码
+ * 
+ * @note 原始函数名: FUN_180698800
+ */
+#define ProcessUIRenderingUpdate FUN_180698800
+
+/**
+ * @brief UI系统空闲处理函数
+ * 
+ * 该函数在UI系统空闲时执行清理和优化操作
+ * 
+ * @note 原始函数名: FUN_180698a50
+ */
+#define ProcessUIIdleTasks FUN_180698a50
+
+/**
+ * @brief UI系统资源加载函数
+ * 
+ * 该函数负责加载UI系统所需的资源
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识
+ * @return 加载结果状态码
+ * 
+ * @note 原始函数名: FUN_180698b00
+ */
+#define LoadUIResource FUN_180698b00
+
+/**
+ * @brief UI系统数据流处理函数
+ * 
+ * 该函数负责处理UI系统的数据流
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名: FUN_180698bb0
+ */
+#define ProcessUIDataStream FUN_180698bb0
+
+/**
+ * @brief UI系统上下文清理函数
+ * 
+ * 该函数负责清理UI系统的上下文环境
+ * 释放资源并重置状态
+ * 
+ * @param uiContext UI上下文指针
+ * @return 清理结果状态码
+ * 
+ * @note 原始函数名: FUN_180698c64
+ */
+#define CleanupUIContext FUN_180698c64
+
 // UI系统数据处理函数
 #define ProcessUIDataHandler FUN_180675b40
 #define ProcessUIDataTransfer FUN_180675e28
@@ -58369,10 +58512,10 @@ void SwitchUIRenderMode(void)
   int renderMode;
   
   if (renderMode == 1) {
-    FUN_180694c40();
+    ResetUIRenderState();
     return;
   }
-  FUN_180694040();
+  ResetUILayoutState();
   return;
 }
 

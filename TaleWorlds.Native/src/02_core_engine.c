@@ -135583,7 +135583,7 @@ LAB_18012b465:
         SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,pSystemFloatValue[3]);
         RegisterFramePointer[-0x14] = (FilterInputValue2 + FilterInputValue0) * *pSystemFloatValue + FilterInputValue5;
         RegisterFramePointer[-0x13] = (FilterInputValue2 + FilterInputValue0) * ScalingFactor + FilterInputValue1;
-        FUN_180293730(MemoryBufferC,RegisterFramePointer + -0x14);
+        ConfigureSystemDataEx(MemoryBufferC,RegisterFramePointer + -0x14);
         MemoryBufferC = SystemParameter2[0x5d];
         CheckSystemStatusAndProcess(MemoryBufferC,*(void *)(MemoryBufferC + 0x88),*(uint32_t *)(MemoryBufferC + 0x80),
                       RegisterFramePointer[SystemContextValue + 0x20],SystemParameter1);
@@ -137194,7 +137194,7 @@ LAB_18012b510:
         SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,pSystemFloatValue[3]);
         RegisterFramePointer[-0x14] = (FilterInputValue2 + FilterInputValue1) * *pSystemFloatValue + FilterInputValue6;
         RegisterFramePointer[-0x13] = (FilterInputValue2 + FilterInputValue1) * FilterInputValue4 + ScalingFactor;
-        FUN_180293730(BufferStatus8,RegisterFramePointer + -0x14);
+        ConfigureSystemDataEx(BufferStatus8,RegisterFramePointer + -0x14);
         BufferStatus8 = SystemParameter2[0x5d];
         CheckSystemStatusAndProcess(BufferStatus8,*(void *)(BufferStatus8 + 0x88),*(uint32_t *)(BufferStatus8 + 0x80),
                       RegisterFramePointer[SystemContextValue + 0x20],SystemParameter1);
@@ -138883,7 +138883,7 @@ LAB_18012b465:
         SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,pSystemFloatValue[3]);
         RegisterFramePointer[-0x14] = (FilterInputValue2 + FilterInputValue0) * *pSystemFloatValue + FilterInputValue5;
         RegisterFramePointer[-0x13] = (FilterInputValue2 + FilterInputValue0) * ScalingFactor + FilterInputValue1;
-        FUN_180293730(MemoryBufferC,RegisterFramePointer + -0x14);
+        ConfigureSystemDataEx(MemoryBufferC,RegisterFramePointer + -0x14);
         MemoryBufferC = SystemParameter2[0x5d];
         CheckSystemStatusAndProcess(MemoryBufferC,*(void *)(MemoryBufferC + 0x88),*(uint32_t *)(MemoryBufferC + 0x80),
                       RegisterFramePointer[SystemContextValue + 0x20],SystemParameter1);

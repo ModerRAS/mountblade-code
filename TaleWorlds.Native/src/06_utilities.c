@@ -100790,7 +100790,18 @@ void Unwind_ExceptionDataBufferCleanupA11(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_180911950(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存引用计数清理器
+ * 
+ * 该函数负责清理内存引用计数，处理资源指针的引用计数管理。
+ * 如果引用计数降为0，则调用异常处理函数。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @return void
+ */
+void Unwind_MemoryReferenceCountCleanup(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名: Unwind_180911950
 
 {
   int *referenceCountPointer;
@@ -100826,7 +100837,18 @@ void Unwind_180911950(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180911960(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 状态标志清理器A
+ * 
+ * 该函数负责清理状态标志，检查并清除特定的状态位。
+ * 如果状态标志被设置，则清除该标志并调用数据验证函数。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @return void
+ */
+void Unwind_StatusFlagCleanupA(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名: Unwind_180911960
 
 {
   if ((*(uint *)(dataBuffer + 0x2c) & 1) != 0) {
@@ -100838,7 +100860,18 @@ void Unwind_180911960(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180911990(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 状态标志清理器B
+ * 
+ * 该函数负责清理状态标志，检查并清除特定的状态位。
+ * 如果状态标志被设置，则清除该标志并调用数据验证函数。
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区
+ * @return void
+ */
+void Unwind_StatusFlagCleanupB(DataBuffer operationBase,int64_t dataBuffer)
+// 原始函数名: Unwind_180911990
 
 {
   if ((*(uint *)(dataBuffer + 0x2c) & 2) != 0) {
