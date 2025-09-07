@@ -10087,11 +10087,11 @@ uint8_t SystemBufferDataTableA2;
 uint8_t SystemConfigurationDataTableA1;
 // 系统缓冲区数据表A3
 // 功能：存储系统缓冲区数据表信息
-#define SystemBufferDataTableA3 DAT_180bfbf78
+#define SystemBufferDataTableA3 SystemBufferDataTableQuaternary
 uint8_t SystemBufferDataTableA3;
 // 系统配置数据表A2
 // 功能：存储系统配置数据表信息
-#define SystemConfigurationDataTableA2 DAT_180bf72a8
+#define SystemConfigurationDataTableA2 SystemConfigurationDataTableTertiary
 uint8_t SystemConfigurationDataTableA2;
 // 系统辅助缓存状态标志
 char SystemSecondaryCacheStatusFlag;

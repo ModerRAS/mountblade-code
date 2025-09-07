@@ -47466,7 +47466,7 @@ void ProcessFloatDataStructureAndParameterCalculation(uint64_t CharacterCode, ui
   VelocityCoefficient54 = Utf16EndPointer * in_XMM4_Db + FilterInputValue * FloatVariable5 + SystemContextPrimaryFloat * ProcessedFloatValue8;
   AccelerationCoefficient58 = Utf16EndPointer * in_XMM4_Dc + FilterInputValue * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue;
   SystemContextPrimaryFloat = *(float *)(SystemContext + 0x158);
-  fStack0000000000000060 = Utf8SourcePointer * in_XMM4_Da + ContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7 + DataNodeIndex[0xc];
+  StackFloatValue60 = Utf8SourcePointer * in_XMM4_Da + ContextSecondaryFloat * FloatVariable4 + SystemContextPrimaryFloat * FloatVariable7 + DataNodeIndex[0xc];
   TemporaryFloatStack64 = Utf8SourcePointer * in_XMM4_Db + ContextSecondaryFloat * FloatVariable5 + SystemContextPrimaryFloat * ProcessedFloatValue8 + DataNodeIndex[0xd];
   TemporaryFloatStack68 = Utf8SourcePointer * in_XMM4_Dc + ContextSecondaryFloat * CalculatedDistance + SystemContextPrimaryFloat * NormalizedParameterValue + DataNodeIndex[0xe];
   StackParameterE8 = StackParameterE8;
@@ -66206,7 +66206,7 @@ void ProcessSystemEventTemplateData(void
   if (1 < CharacterTablePointer) {
     systemEventTemplatePointer = (void *)(CharacterLimit + -8);
     do {
-      uStack0000000000000060 = *systemEventTemplatePointer;
+      StackUintValue60 = *systemEventTemplatePointer;
       *systemEventTemplatePointer = *NullPointerValue;
       ProcessSystemDataStructureAllocation();
       systemEventTemplatePointer = systemEventTemplatePointer + -1;
@@ -98228,7 +98228,7 @@ void ProcessSystemCoreDataAndFloatOperations(void
     }
     fStack0000000000000058 = *(float *)(SystemContext + 0x1738);
     CalculationBuffer = *(float *)(SystemContext + 0x173c);
-    uStack0000000000000060 = *(uint32_t *)(SystemContext + 0x1740);
+    StackUintValue60 = *(uint32_t *)(SystemContext + 0x1740);
     TemporaryFloatStack64 = *(float *)(SystemContext + 0x1744) * *(float *)(SystemContext + 0x1628);
     SystemChecksum = ValidateSystemData(&StackBuffer58);
     ValidationResult = CONCAT44(UnicodeCodePoint,*(uint32_t *)(SystemContext + 0x1664));
@@ -98242,7 +98242,7 @@ void ProcessSystemCoreDataAndFloatOperations(void
     StackFloatValue54 = SystemContextPrimaryFloat2 + StackFloatValue54;
     fStack0000000000000058 = *(float *)(SystemConfigurationHandle + 0x1968);
     CalculationBuffer = *(float *)(SystemConfigurationHandle + 0x196c);
-    uStack0000000000000060 = *(uint32_t *)(SystemConfigurationHandle + 0x1970);
+    StackUintValue60 = *(uint32_t *)(SystemConfigurationHandle + 0x1970);
     TemporaryFloatStack64 =
          *(float *)(SystemConfigurationHandle + 0x1974) * *(float *)(SystemConfigurationHandle + 0x1628);
     PrimaryDataStorage = PrimaryFloatValue;
@@ -105823,11 +105823,11 @@ LAB_180116f4a:
         CalculatedCodePoint2 = *(void *)(StackFramePointer + 0x7c);
         UnicodeCodePoint9 = CalculatedCodePoint3;
         do {
-          _uStack0000000000000060 =
+          _StackUintValue60 =
                (float)(uint)*(ushort *)(UnicodeCodePoint9 + *(long long *)(SourceIndex + 0x1538));
           StringBuffer7 = ValidateSystemParametersAndCheckStatus(&DataTransferStackBuffer,FloatVariable43,MemoryAddressMask5,CalculatedCodePoint2);
           if (StringBuffer7 != '\0') {
-            OperateSystemBufferEx(BufferStatus4,SourceIndex + 0x1ef0,_uStack0000000000000060);
+            OperateSystemBufferEx(BufferStatus4,SourceIndex + 0x1ef0,_StackUintValue60);
             *(uint8_t *)(SourceIndex + 0x2d18) = 1;
             *(uint32_t *)(SourceIndex + 0x2d14) = 0xbe99999a;
           }
@@ -106083,10 +106083,10 @@ LAB_1801177f4:
         if ((((StringBuffer7 != '\0') &&
              ((*(char *)(SourceIndex + 0x134) == '\0' && (*(char *)(SourceIndex + 0x135) == '\0')))) &&
             (*(char *)(SourceIndex + 0x136) == '\0')) && (StackParameter58 != '\0')) {
-          _uStack0000000000000060 = 1.26117e-44;
+          _StackUintValue60 = 1.26117e-44;
           StringBuffer7 = ValidateSystemParametersAndCheckStatus(&DataTransferStackBuffer,FloatVariable43,*(void *)(StackFramePointer + 0x7a),
                                  *(void *)(StackFramePointer + 0x7c));
-          FloatVariable43 = _uStack0000000000000060;
+          FloatVariable43 = _StackUintValue60;
           if (StringBuffer7 != '\0') goto LAB_180117375;
           goto LAB_18011743c;
         }
@@ -106182,11 +106182,11 @@ LAB_1801177f4:
                   validationResult1 = ValidateSystemDataEx(&DataTransferStackBuffer,pSystemCheckResult5,0);
                   MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
                   pSystemCheckResult5 = pSystemCheckResult5 + validationResult1;
-                  if (_uStack0000000000000060 == 0.0) break;
-                  if (((uint)_uStack0000000000000060 < 0x10000) &&
+                  if (_StackUintValue60 == 0.0) break;
+                  if (((uint)_StackUintValue60 < 0x10000) &&
                      (StringBuffer7 = ValidateSystemParametersAndCheckStatus(&DataTransferStackBuffer,FloatVariable43,CalculatedCodePoint2,MemoryAddressMask5), StringBuffer7 != '\0'                     ) {
                     IntegerValue9 = IterationCounter + 1;
-                    *PrimaryProcessingStatusFlag6 = uStack0000000000000060;
+                    *PrimaryProcessingStatusFlag6 = StackUintValue60;
                     PrimaryProcessingStatusFlag6 = PrimaryProcessingStatusFlag6 + 1;
                   }
                   MemoryAllocationIndexPrimary = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
@@ -110085,7 +110085,7 @@ void SystemDataProcessor(void)
   float FloatParameter1;
   int StackOffset58;
   float CalculationBuffer;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   long long StackParameter0;
   float StackFloat1;
@@ -110241,7 +110241,7 @@ void SystemDataProcessor(void)
     }
     RegisterR12Value = *(void *)(StackFramePointer + 0xa8);
     XMM15RegisterA = *(uint32_t *)(StackFramePointer + -0x60);
-    AuxiliaryFloat13 = fStack0000000000000060;
+    AuxiliaryFloat13 = StackFloatValue60;
   }
   FunctionPointer = *(char **)(StackFramePointer + 0xd0);
   if (FunctionPointer != (char *)0x0) {
@@ -113495,7 +113495,7 @@ char CoreEngineValidateSystemStatus(void
   byte PrimaryDataStorage;
   long long DataStorageValue;
   int StackParameter58;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   uint32_t StackParameter0;
   float StackParameter3;
@@ -113526,9 +113526,9 @@ char CoreEngineValidateSystemStatus(void
     *(float *)(StackFramePointer + 0x74) = FilterInputValue1;
     TemporaryFloatStack64 = FilterInputValue - 1.0;
     cStack0000000000000031 = '\x01';
-    fStack0000000000000060 = ContextSecondaryFloat9;
+    StackFloatValue60 = ContextSecondaryFloat9;
     if (ContextSecondaryFloat9 <= ContextSecondaryFloat6) {
-      fStack0000000000000060 = ContextSecondaryFloat6;
+      StackFloatValue60 = ContextSecondaryFloat6;
     }
     ProcessSystemParameters(&DataTransferStackBuffer,StackFramePointer + 0x70,1);
     RegisterR13Value = SystemConfigurationHandle;
@@ -113715,7 +113715,7 @@ LAB_18011cbeb:
     StringIndexCounter = 0x22;
   }
   PrimaryProcessingStatusFlag = (uint32_t *)(RegisterR13Value + 0x1628 + (StringIndexCounter + 10) * 0x10);
-  fStack0000000000000060 = (float)*PrimaryProcessingStatusFlag;
+  StackFloatValue60 = (float)*PrimaryProcessingStatusFlag;
   TemporaryFloatStack64 = (float)PrimaryProcessingStatusFlag[1];
   StackParameter0 = PrimaryProcessingStatusFlag[2];
   fStack000000000000006c = (float)PrimaryProcessingStatusFlag[3] * *(float *)(RegisterR13Value + 0x1628);
@@ -113830,7 +113830,7 @@ char ManageSystemResourceAndRelease(void)
   byte PrimaryDataStorage;
   long long DataStorageValue;
   int StackParameter58;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   uint32_t StackParameter0;
   float StackParameter3;
@@ -113861,9 +113861,9 @@ char ManageSystemResourceAndRelease(void)
     *(float *)(StackFramePointer + 0x74) = FilterInputValue1;
     TemporaryFloatStack64 = FilterInputValue - 1.0;
     cStack0000000000000031 = '\x01';
-    fStack0000000000000060 = ContextSecondaryFloat9;
+    StackFloatValue60 = ContextSecondaryFloat9;
     if (ContextSecondaryFloat9 <= ContextSecondaryFloat6) {
-      fStack0000000000000060 = ContextSecondaryFloat6;
+      StackFloatValue60 = ContextSecondaryFloat6;
     }
     ProcessSystemParameters(&DataTransferStackBuffer,StackFramePointer + 0x70,1);
     RegisterR13Value = SystemConfigurationHandle;
@@ -114050,7 +114050,7 @@ LAB_18011cbeb:
     StringIndexCounter = 0x22;
   }
   PrimaryProcessingStatusFlag = (uint32_t *)(RegisterR13Value + 0x1628 + (StringIndexCounter + 10) * 0x10);
-  fStack0000000000000060 = (float)*PrimaryProcessingStatusFlag;
+  StackFloatValue60 = (float)*PrimaryProcessingStatusFlag;
   TemporaryFloatStack64 = (float)PrimaryProcessingStatusFlag[1];
   StackParameter0 = PrimaryProcessingStatusFlag[2];
   fStack000000000000006c = (float)PrimaryProcessingStatusFlag[3] * *(float *)(RegisterR13Value + 0x1628);
@@ -114604,7 +114604,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float CharacterCode,float Utf8BufferSi
   uint32_t uStack0000000000000054;
   uint32_t StackParameter58;
   float CalculationBuffer;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   float TemporaryFloatStack68;
   
@@ -114613,7 +114613,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float CharacterCode,float Utf8BufferSi
   Utf8BufferSize = unaff_XMM14_Da + Utf8BufferSize;
   TemporaryFloatStack64 = CharacterCode + *(float *)(DataNodeIndex + 0x1660);
   *(float *)(StackFramePointer + -0x7d) = RegisterR12Value[3];
-  fStack0000000000000060 = Utf8BufferSize;
+  StackFloatValue60 = Utf8BufferSize;
   TemporaryFloatStack68 = ContextSecondaryFloat4;
   if ((Utf8SourcePointer & 1) != 0) {
     pSystemFloatValue = *(float **)(DataNodeIndex + 0x19f0);
@@ -114726,7 +114726,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float CharacterCode,float Utf8BufferSi
       } while (CharacterLimit < StringBuffer6);
     }
     ValidateSystemDataStructure(MemoryAllocationSize,&DataTransferStackBuffer,&MemoryAllocationSizeStackBuffer);
-    ContextSecondaryFloat4 = fStack0000000000000060 + ContextSecondaryFloat4 + 1.0;
+    ContextSecondaryFloat4 = StackFloatValue60 + ContextSecondaryFloat4 + 1.0;
     if ((*(char *)(StackFramePointer + 0x5f) == StringBuffer7) &&
        (ContextSecondaryFloat4 + 5.0 < RegisterR12Value[2] || ContextSecondaryFloat4 + 5.0 == RegisterR12Value[2])) {
       DataStorageValue = *(uint32_t *)(SystemConfigurationHandle + 0x16c8);
@@ -131275,7 +131275,7 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
   float FloatParameter1;
   char cStack0000000000000058;
   char cStack0000000000000059;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   uint StackParameter0;
   float StackFloat1;
@@ -131675,19 +131675,19 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
                   FilterInputValue2 - (*(float *)(CharacterTablePointer5 + 0x16b4) + *(float *)(CharacterTablePointer5 + 0x16b4)));
     StatusBuffer9 = (void *)ProcessSystemBuffer(StackFramePointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     TransferBufferData(&DataTransferStackBuffer,pBufferIndex + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer9);
-    ProcessBufferData(StackFramePointer + 2,pBufferIndex,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
+    ProcessBufferData(StackFramePointer + 2,pBufferIndex,CONCAT44(TemporaryFloatStack64,StackFloatValue60));
     if (((StackFramePointer[2] < *(float *)(pBufferIndex + 0xc)) &&
         ((*(uint *)((long long)pBufferIndex + 0xc) & 8) == 0)) &&
        ((*(uint *)((long long)pBufferIndex + 0xc) >> 0xb & 1) != 0)) {
       TemporaryFloatStack64 = TemporaryFloatStack64 + *(float *)(CharacterTablePointer5 + 0x168c);
     }
     BufferStatus4 = SystemConfigurationHandle;
-    ScalingFactor = fStack0000000000000060;
+    ScalingFactor = StackFloatValue60;
     FilterInputValue2 = TemporaryFloatStack64;
     if ((StackFramePointer[3] < *(float *)((long long)pBufferIndex + 100)) &&
        ((*(byte *)((long long)pBufferIndex + 0xc) & 8) == 0)) {
-      fStack0000000000000060 = fStack0000000000000060 + *(float *)(CharacterTablePointer5 + 0x168c);
-      ScalingFactor = fStack0000000000000060;
+      StackFloatValue60 = StackFloatValue60 + *(float *)(CharacterTablePointer5 + 0x168c);
+      ScalingFactor = StackFloatValue60;
     }
   }
   else {
@@ -132058,7 +132058,7 @@ LAB_18012ac57:
       FilterInputValue4 = 4.0;
     }
     _StackFloat1 = 0x7f7fffff7f7fffff;
-    fStack0000000000000060 = 3.4028235e+38;
+    StackFloatValue60 = 3.4028235e+38;
     TemporaryFloatStack64 = 3.4028235e+38;
     CleanupSystemResources(SystemDataTablePointerA0);
     BufferStatus4 = _StackFloatValue50;
@@ -132117,7 +132117,7 @@ LAB_18012b18f:
           goto LAB_18012b18f;
         }
         pSystemContextPrimaryFloat8 = (float *)ProcessSystemMemoryOffset(StackFramePointer + -0x14,pBufferIndex,BufferStatus4);
-        fStack0000000000000060 = *pSystemContextPrimaryFloat8;
+        StackFloatValue60 = *pSystemContextPrimaryFloat8;
         TemporaryFloatStack64 = pSystemContextPrimaryFloat8[1];
         ProcessMemoryOperation(0,0);
 LAB_18012b0c8:
@@ -132211,16 +132211,16 @@ LAB_18012b2d2:
                                          CONCAT44(FilterInputValue5 * FilterInputValue6 +
                                                   *(float *)((long long)pBufferIndex + 0x54),
                                                   ScalingFactor * FilterInputValue6 + *(float *)(pBufferIndex + 10)));
-        fStack0000000000000060 = *pSecondaryFloatValue;
+        StackFloatValue60 = *pSecondaryFloatValue;
         TemporaryFloatStack64 = pSecondaryFloatValue[1];
       }
     }
 LAB_18012b465:
     CharacterTablePointer5 = SystemConfigurationHandle;
-    if ((fStack0000000000000060 != 3.4028235e+38) &&
-       ((fStack0000000000000060 != *(float *)(pBufferIndex + 10) ||
+    if ((StackFloatValue60 != 3.4028235e+38) &&
+       ((StackFloatValue60 != *(float *)(pBufferIndex + 10) ||
         (TemporaryFloatStack64 != *(float *)((long long)pBufferIndex + 0x54))))) {
-      *(float *)(pBufferIndex + 10) = fStack0000000000000060;
+      *(float *)(pBufferIndex + 10) = StackFloatValue60;
       *(float *)((long long)pBufferIndex + 0x54) = TemporaryFloatStack64;
       if (((*(uint *)((long long)pBufferIndex + 0xc) & 0x100) == 0) &&
          (*(float *)(CharacterTablePointer5 + 0x2e04) <= 0.0)) {
@@ -132558,7 +132558,7 @@ LAB_18012b465:
           FilterInputValue7 = FilterInputValue5;
         }
         else {
-          fStack0000000000000060 = FilterInputValue2;
+          StackFloatValue60 = FilterInputValue2;
           TemporaryFloatStack64 = FilterInputValue5;
           FilterInputValue7 = FilterInputValue2;
         }
@@ -133115,7 +133115,7 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
   float FloatParameter1;
   char cStack0000000000000058;
   char cStack0000000000000059;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   uint StackParameter0;
   float StackFloat1;
@@ -133514,19 +133514,19 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Utf8B
                   FilterInputValue1 - (*(float *)(LoopIndex + 0x16b4) + *(float *)(LoopIndex + 0x16b4)));
     StatusBuffer8 = (void *)ProcessSystemBuffer(StackFramePointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     CalculateFloatRangeValue(&DataTransferStackBuffer,CharacterCode9 + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer8);
-    ProcessBufferData(StackFramePointer + 2,CharacterCode9,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
+    ProcessBufferData(StackFramePointer + 2,CharacterCode9,CONCAT44(TemporaryFloatStack64,StackFloatValue60));
     if (((StackFramePointer[2] < *(float *)(CharacterCode9 + 0xc)) &&
         ((*(uint *)((long long)CharacterCode9 + 0xc) & 8) == 0)) &&
        ((*(uint *)((long long)CharacterCode9 + 0xc) >> 0xb & 1) != 0)) {
       TemporaryFloatStack64 = TemporaryFloatStack64 + *(float *)(LoopIndex + 0x168c);
     }
     BufferStatus3 = SystemConfigurationHandle;
-    FilterInputValue2 = fStack0000000000000060;
+    FilterInputValue2 = StackFloatValue60;
     FilterInputValue1 = TemporaryFloatStack64;
     if ((StackFramePointer[3] < *(float *)((long long)CharacterCode9 + 100)) &&
        ((*(byte *)((long long)CharacterCode9 + 0xc) & 8) == 0)) {
-      fStack0000000000000060 = fStack0000000000000060 + *(float *)(LoopIndex + 0x168c);
-      FilterInputValue2 = fStack0000000000000060;
+      StackFloatValue60 = StackFloatValue60 + *(float *)(LoopIndex + 0x168c);
+      FilterInputValue2 = StackFloatValue60;
     }
   }
   else {
@@ -133900,7 +133900,7 @@ LAB_18012ac57:
       ScalingFactor = 4.0;
     }
     _StackFloat1 = 0x7f7fffff7f7fffff;
-    fStack0000000000000060 = 3.4028235e+38;
+    StackFloatValue60 = 3.4028235e+38;
     TemporaryFloatStack64 = 3.4028235e+38;
     CleanupSystemResources(SystemDataTablePointerA0);
     BufferStatus3 = _StackFloatValue50;
@@ -133959,7 +133959,7 @@ LAB_18012b18f:
           goto LAB_18012b18f;
         }
         pSecondaryFloatValue = (float *)ProcessSystemMemoryOffset(StackFramePointer + -0x14,CharacterCode9,BufferStatus3);
-        fStack0000000000000060 = *pSecondaryFloatValue;
+        StackFloatValue60 = *pSecondaryFloatValue;
         TemporaryFloatStack64 = pSecondaryFloatValue[1];
         ProcessMemoryOperation(0,0);
 LAB_18012b0c8:
@@ -134053,16 +134053,16 @@ LAB_18012b2d2:
                                          CONCAT44(FilterInputValue4 * FilterInputValue5 +
                                                   *(float *)((long long)CharacterCode9 + 0x54),
                                                   FilterInputValue2 * FilterInputValue5 + *(float *)(CharacterCode9 + 10)));
-        fStack0000000000000060 = *pSystemContextPrimaryFloat6;
+        StackFloatValue60 = *pSystemContextPrimaryFloat6;
         TemporaryFloatStack64 = pSystemContextPrimaryFloat6[1];
       }
     }
 LAB_18012b465:
     LoopIndex = SystemConfigurationHandle;
-    if ((fStack0000000000000060 != 3.4028235e+38) &&
-       ((fStack0000000000000060 != *(float *)(CharacterCode9 + 10) ||
+    if ((StackFloatValue60 != 3.4028235e+38) &&
+       ((StackFloatValue60 != *(float *)(CharacterCode9 + 10) ||
         (TemporaryFloatStack64 != *(float *)((long long)CharacterCode9 + 0x54))))) {
-      *(float *)(CharacterCode9 + 10) = fStack0000000000000060;
+      *(float *)(CharacterCode9 + 10) = StackFloatValue60;
       *(float *)((long long)CharacterCode9 + 0x54) = TemporaryFloatStack64;
       if (((*(uint *)((long long)CharacterCode9 + 0xc) & 0x100) == 0) &&
          (*(float *)(LoopIndex + 0x2e04) <= 0.0)) {
@@ -134401,7 +134401,7 @@ LAB_18012b465:
           FilterInputValue6 = FilterInputValue4;
         }
         else {
-          fStack0000000000000060 = FilterInputValue1;
+          StackFloatValue60 = FilterInputValue1;
           TemporaryFloatStack64 = FilterInputValue4;
           FilterInputValue6 = FilterInputValue1;
         }
@@ -134952,7 +134952,7 @@ void InitializeSystemStringProcessing(void)
   float FloatParameter1;
   char cStack0000000000000058;
   char cStack0000000000000059;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   uint StackParameter0;
   float StackFloat1;
@@ -135212,19 +135212,19 @@ void InitializeSystemStringProcessing(void)
                   ContextSecondaryFloat9 - (*(float *)(SystemContextValue + 0x16b4) + *(float *)(SystemContextValue + 0x16b4)));
     StatusBuffer7 = (void *)ProcessSystemBuffer(StackFramePointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     CalculateFloatRangeValue(&DataTransferStackBuffer,CharacterCode8 + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer7);
-    ProcessBufferData(StackFramePointer + 2,CharacterCode8,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
+    ProcessBufferData(StackFramePointer + 2,CharacterCode8,CONCAT44(TemporaryFloatStack64,StackFloatValue60));
     if (((StackFramePointer[2] < *(float *)(CharacterCode8 + 0xc)) &&
         ((*(uint *)((long long)CharacterCode8 + 0xc) & 8) == 0)) &&
        ((*(uint *)((long long)CharacterCode8 + 0xc) >> 0xb & 1) != 0)) {
       TemporaryFloatStack64 = TemporaryFloatStack64 + *(float *)(SystemContextValue + 0x168c);
     }
     MemoryBufferC = SystemConfigurationHandle;
-    FilterInputValue0 = fStack0000000000000060;
+    FilterInputValue0 = StackFloatValue60;
     ContextSecondaryFloat9 = TemporaryFloatStack64;
     if ((StackFramePointer[3] < *(float *)((long long)CharacterCode8 + 100)) &&
        ((*(byte *)((long long)CharacterCode8 + 0xc) & 8) == 0)) {
-      fStack0000000000000060 = fStack0000000000000060 + *(float *)(SystemContextValue + 0x168c);
-      FilterInputValue0 = fStack0000000000000060;
+      StackFloatValue60 = StackFloatValue60 + *(float *)(SystemContextValue + 0x168c);
+      FilterInputValue0 = StackFloatValue60;
     }
   }
   else {
@@ -135591,7 +135591,7 @@ LAB_18012ac57:
       FilterInputValue0 = 4.0;
     }
     _StackFloat1 = 0x7f7fffff7f7fffff;
-    fStack0000000000000060 = 3.4028235e+38;
+    StackFloatValue60 = 3.4028235e+38;
     TemporaryFloatStack64 = 3.4028235e+38;
     CleanupSystemResources(SystemDataTablePointerA0);
     MemoryBufferC = _StackFloatValue50;
@@ -135651,7 +135651,7 @@ LAB_18012b18f:
           goto LAB_18012b18f;
         }
         pSystemContextPrimaryFloat6 = (float *)ProcessSystemMemoryOffset(StackFramePointer + -0x14,CharacterCode8,MemoryBufferC);
-        fStack0000000000000060 = *pSystemContextPrimaryFloat6;
+        StackFloatValue60 = *pSystemContextPrimaryFloat6;
         TemporaryFloatStack64 = pSystemContextPrimaryFloat6[1];
         ProcessMemoryOperation(0,0);
 LAB_18012b0c8:
@@ -135747,16 +135747,16 @@ LAB_18012b2d2:
                                          CONCAT44(FilterInputValue2 * FilterInputValue1 +
                                                   *(float *)((long long)CharacterCode8 + 0x54),
                                                   FilterInputValue0 * FilterInputValue1 + *(float *)(CharacterCode8 + 10)));
-        fStack0000000000000060 = *pSystemFloatValue;
+        StackFloatValue60 = *pSystemFloatValue;
         TemporaryFloatStack64 = pSystemFloatValue[1];
       }
     }
 LAB_18012b465:
     SystemContextValue = SystemConfigurationHandle;
-    if ((fStack0000000000000060 != 3.4028235e+38) &&
-       ((fStack0000000000000060 != *(float *)(CharacterCode8 + 10) ||
+    if ((StackFloatValue60 != 3.4028235e+38) &&
+       ((StackFloatValue60 != *(float *)(CharacterCode8 + 10) ||
         (TemporaryFloatStack64 != *(float *)((long long)CharacterCode8 + 0x54))))) {
-      *(float *)(CharacterCode8 + 10) = fStack0000000000000060;
+      *(float *)(CharacterCode8 + 10) = StackFloatValue60;
       *(float *)((long long)CharacterCode8 + 0x54) = TemporaryFloatStack64;
       if (((*(uint *)((long long)CharacterCode8 + 0xc) & 0x100) == 0) &&
          (*(float *)(SystemContextValue + 0x2e04) <= AuxiliaryFloat13)) {
@@ -136094,7 +136094,7 @@ LAB_18012b465:
         }
         else {
           TemporaryFloatStack64 = FilterInputValue2;
-          fStack0000000000000060 = ContextSecondaryFloat9;
+          StackFloatValue60 = ContextSecondaryFloat9;
           ScalingFactor = ContextSecondaryFloat9;
         }
         pSystemContextPrimaryFloat6 = (float *)((long long)&DataTransferStackBuffer + 4);
@@ -136630,7 +136630,7 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode)
   float FloatParameter1;
   char cStack0000000000000058;
   char cStack0000000000000059;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   uint StackParameter0;
   float StackFloat1;
@@ -136826,19 +136826,19 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode)
                   ContextSecondaryFloat7 - (*(float *)(SystemContextValue + 0x16b4) + *(float *)(SystemContextValue + 0x16b4)));
     StatusBuffer7 = (void *)ProcessSystemBuffer(StackFramePointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     CalculateFloatRangeValue(&DataTransferStackBuffer,CharacterCode8 + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer7);
-    ProcessBufferData(StackFramePointer + 2,CharacterCode8,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
+    ProcessBufferData(StackFramePointer + 2,CharacterCode8,CONCAT44(TemporaryFloatStack64,StackFloatValue60));
     if (((StackFramePointer[2] < *(float *)(CharacterCode8 + 0xc)) &&
         ((*(uint *)((long long)CharacterCode8 + 0xc) & 8) == 0)) &&
        ((*(uint *)((long long)CharacterCode8 + 0xc) >> 0xb & 1) != 0)) {
       TemporaryFloatStack64 = TemporaryFloatStack64 + *(float *)(SystemContextValue + 0x168c);
     }
     BufferStatus8 = SystemConfigurationHandle;
-    FilterInputValue1 = fStack0000000000000060;
+    FilterInputValue1 = StackFloatValue60;
     ContextSecondaryFloat7 = TemporaryFloatStack64;
     if ((StackFramePointer[3] < *(float *)((long long)CharacterCode8 + 100)) &&
        ((*(byte *)((long long)CharacterCode8 + 0xc) & 8) == 0)) {
-      fStack0000000000000060 = fStack0000000000000060 + *(float *)(SystemContextValue + 0x168c);
-      FilterInputValue1 = fStack0000000000000060;
+      StackFloatValue60 = StackFloatValue60 + *(float *)(SystemContextValue + 0x168c);
+      FilterInputValue1 = StackFloatValue60;
     }
   }
   else {
@@ -137202,7 +137202,7 @@ LAB_18012ac57:
     FilterInputValue0 = 4.0;
   }
   _StackFloat1 = 0x7f7fffff7f7fffff;
-  fStack0000000000000060 = 3.4028235e+38;
+  StackFloatValue60 = 3.4028235e+38;
   TemporaryFloatStack64 = 3.4028235e+38;
   CleanupSystemResources(SystemDataTablePointerA0);
   Utf16Char4 = _StackFloatValue50;
@@ -137262,7 +137262,7 @@ LAB_18012b18f:
         goto LAB_18012b18f;
       }
       pSystemContextPrimaryFloat6 = (float *)ProcessSystemMemoryOffset(StackFramePointer + -0x14,CharacterCode8,Utf16Char4);
-      fStack0000000000000060 = *pSystemContextPrimaryFloat6;
+      StackFloatValue60 = *pSystemContextPrimaryFloat6;
       TemporaryFloatStack64 = pSystemContextPrimaryFloat6[1];
       ProcessMemoryOperation(0,0);
 LAB_18012b0c8:
@@ -137358,16 +137358,16 @@ LAB_18012b2d2:
                                        CONCAT44(FilterInputValue2 * ScalingFactor +
                                                 *(float *)((long long)CharacterCode8 + 0x54),
                                                 FilterInputValue1 * ScalingFactor + *(float *)(CharacterCode8 + 10)));
-      fStack0000000000000060 = *pSystemFloatValue;
+      StackFloatValue60 = *pSystemFloatValue;
       TemporaryFloatStack64 = pSystemFloatValue[1];
     }
   }
 LAB_18012b465:
   SystemContextValue = SystemConfigurationHandle;
-  if ((fStack0000000000000060 != 3.4028235e+38) &&
-     ((fStack0000000000000060 != *(float *)(CharacterCode8 + 10) ||
+  if ((StackFloatValue60 != 3.4028235e+38) &&
+     ((StackFloatValue60 != *(float *)(CharacterCode8 + 10) ||
       (TemporaryFloatStack64 != *(float *)((long long)CharacterCode8 + 0x54))))) {
-    *(float *)(CharacterCode8 + 10) = fStack0000000000000060;
+    *(float *)(CharacterCode8 + 10) = StackFloatValue60;
     *(float *)((long long)CharacterCode8 + 0x54) = TemporaryFloatStack64;
     if (((*(uint *)((long long)CharacterCode8 + 0xc) & 0x100) == 0) &&
        (*(float *)(SystemContextValue + 0x2e04) <= AuxiliaryFloat13)) {
@@ -137705,7 +137705,7 @@ LAB_18012b510:
         }
         else {
           TemporaryFloatStack64 = FilterInputValue2;
-          fStack0000000000000060 = ContextSecondaryFloat7;
+          StackFloatValue60 = ContextSecondaryFloat7;
           FilterInputValue4 = ContextSecondaryFloat7;
         }
         pSystemContextPrimaryFloat6 = (float *)((long long)&DataTransferStackBuffer + 4);
@@ -138264,7 +138264,7 @@ void ProcessSystemStatusAndValidation(void
   float FloatParameter1;
   char cStack0000000000000058;
   char cStack0000000000000059;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   uint StackParameter0;
   float StackFloat1;
@@ -138512,19 +138512,19 @@ void ProcessSystemStatusAndValidation(void
                   ContextSecondaryFloat7 - (*(float *)(SystemContextValue + 0x16b4) + *(float *)(SystemContextValue + 0x16b4)));
     StatusBuffer7 = (void *)ProcessSystemBuffer(StackFramePointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     CalculateFloatRangeValue(&DataTransferStackBuffer,CharacterCode8 + 0xc,&MemoryAllocationStackBuffer,*StatusBuffer7);
-    ProcessBufferData(StackFramePointer + 2,CharacterCode8,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
+    ProcessBufferData(StackFramePointer + 2,CharacterCode8,CONCAT44(TemporaryFloatStack64,StackFloatValue60));
     if (((StackFramePointer[2] < *(float *)(CharacterCode8 + 0xc)) &&
         ((*(uint *)((long long)CharacterCode8 + 0xc) & 8) == 0)) &&
        ((*(uint *)((long long)CharacterCode8 + 0xc) >> 0xb & 1) != 0)) {
       TemporaryFloatStack64 = TemporaryFloatStack64 + *(float *)(SystemContextValue + 0x168c);
     }
     MemoryBufferC = SystemConfigurationHandle;
-    FilterInputValue0 = fStack0000000000000060;
+    FilterInputValue0 = StackFloatValue60;
     ContextSecondaryFloat7 = TemporaryFloatStack64;
     if ((StackFramePointer[3] < *(float *)((long long)CharacterCode8 + 100)) &&
        ((*(byte *)((long long)CharacterCode8 + 0xc) & 8) == 0)) {
-      fStack0000000000000060 = fStack0000000000000060 + *(float *)(SystemContextValue + 0x168c);
-      FilterInputValue0 = fStack0000000000000060;
+      StackFloatValue60 = StackFloatValue60 + *(float *)(SystemContextValue + 0x168c);
+      FilterInputValue0 = StackFloatValue60;
     }
   }
   else {
@@ -138891,7 +138891,7 @@ LAB_18012ac57:
       FilterInputValue0 = 4.0;
     }
     _StackFloat1 = 0x7f7fffff7f7fffff;
-    fStack0000000000000060 = 3.4028235e+38;
+    StackFloatValue60 = 3.4028235e+38;
     TemporaryFloatStack64 = 3.4028235e+38;
     CleanupSystemResources(SystemDataTablePointerA0);
     MemoryBufferC = _StackFloatValue50;
@@ -138951,7 +138951,7 @@ LAB_18012b18f:
           goto LAB_18012b18f;
         }
         pSystemContextPrimaryFloat6 = (float *)ProcessSystemMemoryOffset(StackFramePointer + -0x14,CharacterCode8,MemoryBufferC);
-        fStack0000000000000060 = *pSystemContextPrimaryFloat6;
+        StackFloatValue60 = *pSystemContextPrimaryFloat6;
         TemporaryFloatStack64 = pSystemContextPrimaryFloat6[1];
         ProcessMemoryOperation(0,0);
 LAB_18012b0c8:
@@ -139047,16 +139047,16 @@ LAB_18012b2d2:
                                          CONCAT44(FilterInputValue2 * FilterInputValue1 +
                                                   *(float *)((long long)CharacterCode8 + 0x54),
                                                   FilterInputValue0 * FilterInputValue1 + *(float *)(CharacterCode8 + 10)));
-        fStack0000000000000060 = *pSystemFloatValue;
+        StackFloatValue60 = *pSystemFloatValue;
         TemporaryFloatStack64 = pSystemFloatValue[1];
       }
     }
 LAB_18012b465:
     SystemContextValue = SystemConfigurationHandle;
-    if ((fStack0000000000000060 != 3.4028235e+38) &&
-       ((fStack0000000000000060 != *(float *)(CharacterCode8 + 10) ||
+    if ((StackFloatValue60 != 3.4028235e+38) &&
+       ((StackFloatValue60 != *(float *)(CharacterCode8 + 10) ||
         (TemporaryFloatStack64 != *(float *)((long long)CharacterCode8 + 0x54))))) {
-      *(float *)(CharacterCode8 + 10) = fStack0000000000000060;
+      *(float *)(CharacterCode8 + 10) = StackFloatValue60;
       *(float *)((long long)CharacterCode8 + 0x54) = TemporaryFloatStack64;
       if (((*(uint *)((long long)CharacterCode8 + 0xc) & 0x100) == 0) &&
          (*(float *)(SystemContextValue + 0x2e04) <= AuxiliaryFloat13)) {
@@ -139394,7 +139394,7 @@ LAB_18012b465:
         }
         else {
           TemporaryFloatStack64 = FilterInputValue2;
-          fStack0000000000000060 = ContextSecondaryFloat7;
+          StackFloatValue60 = ContextSecondaryFloat7;
           ScalingFactor = ContextSecondaryFloat7;
         }
         pSystemContextPrimaryFloat6 = (float *)((long long)&DataTransferStackBuffer + 4);
@@ -139928,7 +139928,7 @@ void ProcessSystemMemoryAllocation(uint64_t CharacterCode,long long Utf8BufferSi
   float FloatParameter1;
   char cStack0000000000000058;
   char cStack0000000000000059;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   uint StackParameter0;
   float StackFloat1;
@@ -140087,17 +140087,17 @@ void ProcessSystemMemoryAllocation(uint64_t CharacterCode,long long Utf8BufferSi
                   ContextSecondaryFloat5 - (*(float *)(CharacterTablePointer6 + 0x16b4) + *(float *)(CharacterTablePointer6 + 0x16b4)));
     StatusBuffer5 = (void *)ProcessSystemBuffer(StackFramePointer + -0x18,&MemoryAllocationStackBuffer,&TertiaryDataBuffer    ;
     CalculateFloatRangeValue(&DataTransferStackBuffer,BufferIndex + 0x60,&MemoryAllocationStackBuffer,*StatusBuffer5);
-    ProcessSystemMemoryOffset(StackFramePointer + 2,BufferIndex,CONCAT44(TemporaryFloatStack64,fStack0000000000000060));
+    ProcessSystemMemoryOffset(StackFramePointer + 2,BufferIndex,CONCAT44(TemporaryFloatStack64,StackFloatValue60));
     if (((StackFramePointer[2] < *(float *)(BufferIndex + 0x60)) && ((*(uint *)(BufferIndex + 0xc) & 8) == 0)) &&
        ((*(uint *)(BufferIndex + 0xc) >> 0xb & 1) != 0)) {
       TemporaryFloatStack64 = TemporaryFloatStack64 + *(float *)(CharacterTablePointer6 + 0x168c);
     }
     BufferStatus6 = SystemConfigurationHandle;
-    ContextSecondaryFloat9 = fStack0000000000000060;
+    ContextSecondaryFloat9 = StackFloatValue60;
     ContextSecondaryFloat5 = TemporaryFloatStack64;
     if ((StackFramePointer[3] < *(float *)(BufferIndex + 100)) && ((*(byte *)(BufferIndex + 0xc) & 8) == 0)) {
-      fStack0000000000000060 = fStack0000000000000060 + *(float *)(CharacterTablePointer6 + 0x168c);
-      ContextSecondaryFloat9 = fStack0000000000000060;
+      StackFloatValue60 = StackFloatValue60 + *(float *)(CharacterTablePointer6 + 0x168c);
+      ContextSecondaryFloat9 = StackFloatValue60;
     }
   }
   else {
@@ -140466,7 +140466,7 @@ LAB_18012ac57:
     ContextSecondaryFloat8 = 4.0;
   }
   _StackFloat1 = 0x7f7fffff7f7fffff;
-  fStack0000000000000060 = 3.4028235e+38;
+  StackFloatValue60 = 3.4028235e+38;
   TemporaryFloatStack64 = 3.4028235e+38;
   CleanupSystemResources(SystemDataTablePointerA0);
   SystemStatusCode = _StackFloatValue50;
@@ -140526,7 +140526,7 @@ LAB_18012b18f:
         goto LAB_18012b18f;
       }
       pSystemContextPrimaryFloat4 = (float *)ProcessSystemMemoryOffset(StackFramePointer + -0x14,CharacterTablePointer6,SystemStatusCode);
-      fStack0000000000000060 = *pSystemContextPrimaryFloat4;
+      StackFloatValue60 = *pSystemContextPrimaryFloat4;
       TemporaryFloatStack64 = pSystemContextPrimaryFloat4[1];
       ProcessMemoryOperation(0,0);
 LAB_18012b0c8:
@@ -140621,16 +140621,16 @@ LAB_18012b2d2:
       pSystemContextPrimaryFloat3 = (float *)ProcessSystemMemoryOffset(StackFramePointer + -0x18,CharacterTablePointer6,
                                        CONCAT44(FilterInputValue0 * FilterInputValue1 + *(float *)(CharacterTablePointer6 + 0x54),
                                                 ContextSecondaryFloat9 * FilterInputValue1 + *(float *)(CharacterTablePointer6 + 0x50)));
-      fStack0000000000000060 = *pSystemContextPrimaryFloat3;
+      StackFloatValue60 = *pSystemContextPrimaryFloat3;
       TemporaryFloatStack64 = pSystemContextPrimaryFloat3[1];
     }
   }
 LAB_18012b465:
   BufferIndex = SystemConfigurationHandle;
-  if ((fStack0000000000000060 != 3.4028235e+38) &&
-     ((fStack0000000000000060 != *(float *)(CharacterTablePointer6 + 0x50) ||
+  if ((StackFloatValue60 != 3.4028235e+38) &&
+     ((StackFloatValue60 != *(float *)(CharacterTablePointer6 + 0x50) ||
       (TemporaryFloatStack64 != *(float *)(CharacterTablePointer6 + 0x54))))) {
-    *(float *)(CharacterTablePointer6 + 0x50) = fStack0000000000000060;
+    *(float *)(CharacterTablePointer6 + 0x50) = StackFloatValue60;
     *(float *)(CharacterTablePointer6 + 0x54) = TemporaryFloatStack64;
     if (((*(uint *)(CharacterTablePointer6 + 0xc) & 0x100) == 0) && (*(float *)(BufferIndex + 0x2e04) <= AuxiliaryFloat13)    {
       *(uint32_t *)(BufferIndex + 0x2e04) = *(uint32_t *)(BufferIndex + 0x1c);
@@ -140968,7 +140968,7 @@ LAB_18012b510:
         }
         else {
           TemporaryFloatStack64 = FilterInputValue0;
-          fStack0000000000000060 = ContextSecondaryFloat5;
+          StackFloatValue60 = ContextSecondaryFloat5;
           FilterInputValue2 = ContextSecondaryFloat5;
         }
         pSystemContextPrimaryFloat4 = (float *)((long long)&DataTransferStackBuffer + 4);
@@ -141496,7 +141496,7 @@ void ProcessSystemFloatVectorOperation(float CharacterCode,float Utf8BufferSize,
   float FloatParameter1;
   char cStack0000000000000058;
   char cStack0000000000000059;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   uint32_t StackParameter0;
   float StackFloat1;
@@ -141531,7 +141531,7 @@ void ProcessSystemFloatVectorOperation(float CharacterCode,float Utf8BufferSize,
   }
   StackFloat1 = 3.4028235e+38;
   StackFloatVariable2 = 3.4028235e+38;
-  fStack0000000000000060 = 3.4028235e+38;
+  StackFloatValue60 = 3.4028235e+38;
   TemporaryFloatStack64 = 3.4028235e+38;
   CleanupSystemResources(SystemDataTablePointerA0);
   BufferIndex = 0;
@@ -141594,7 +141594,7 @@ LAB_18012b18f:
         goto LAB_18012b18f;
       }
       pSecondaryFloatValue = (float *)ProcessSystemMemoryOffset(StackFramePointer + -0x14);
-      fStack0000000000000060 = *pSecondaryFloatValue;
+      StackFloatValue60 = *pSecondaryFloatValue;
       TemporaryFloatStack64 = pSecondaryFloatValue[1];
       ProcessMemoryOperation(0,0);
 LAB_18012b0c8:
@@ -141687,16 +141687,16 @@ LAB_18012b2d2:
       ContextSecondaryFloat7 = (float)ProcessSystemStatusUpdateAndFloatCalculation(0x20);
       StackFramePointer[0x20] = ContextSecondaryFloat7;
       pSecondaryFloatValue = (float *)ProcessSystemMemoryOffset(StackFramePointer + -0x18);
-      fStack0000000000000060 = *pSecondaryFloatValue;
+      StackFloatValue60 = *pSecondaryFloatValue;
       TemporaryFloatStack64 = pSecondaryFloatValue[1];
     }
   }
 LAB_18012b465:
   SystemDataTablePointer = SystemConfigurationHandle;
-  if ((fStack0000000000000060 != unaff_XMM14_Da) &&
-     ((fStack0000000000000060 != *(float *)(CharacterLimit + 0x50) ||
+  if ((StackFloatValue60 != unaff_XMM14_Da) &&
+     ((StackFloatValue60 != *(float *)(CharacterLimit + 0x50) ||
       (TemporaryFloatStack64 != *(float *)(CharacterLimit + 0x54))))) {
-    *(float *)(CharacterLimit + 0x50) = fStack0000000000000060;
+    *(float *)(CharacterLimit + 0x50) = StackFloatValue60;
     *(float *)(CharacterLimit + 0x54) = TemporaryFloatStack64;
     if (((*(uint *)(CharacterLimit + 0xc) & 0x100) == 0) &&
        (*(float *)(SystemDataTablePointer + 0x2e04) <= AuxiliaryFloat13)) {
@@ -142040,7 +142040,7 @@ LAB_18012b510:
         }
         else {
           TemporaryFloatStack64 = ContextSecondaryFloat6;
-          fStack0000000000000060 = FilterInputValue2;
+          StackFloatValue60 = FilterInputValue2;
           ContextSecondaryFloat9 = FilterInputValue2;
         }
         pSecondaryFloatValue = (float *)((long long)&DataTransferStackBuffer + 4);
@@ -142565,7 +142565,7 @@ void ExecuteSystemCoreDataProcessing(void)
   float FloatParameter1;
   char cStack0000000000000058;
   char cStack0000000000000059;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   uint32_t StackParameter0;
   float StackFloat1;
@@ -142893,7 +142893,7 @@ void ExecuteSystemCoreDataProcessing(void)
         else {
           TemporaryFloatStack64 = ContextSecondaryFloat5;
           ContextSecondaryFloat3 = AuxiliaryFloat12;
-          fStack0000000000000060 = AuxiliaryFloat12;
+          StackFloatValue60 = AuxiliaryFloat12;
         }
         pSystemContextPrimaryFloat2 = (float *)((long long)&DataTransferStackBuffer + 4);
         if (HighByte1) {
@@ -149446,7 +149446,7 @@ void ValidateCharacterEncodingData(uint64_t CharacterCode)
   uint64_t extraout_XMM0_Qa_03;
   uint64_t extraout_XMM0_Qa_04;
   uint64_t extraout_XMM0_Qa_05;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   
   *(uint8_t *)(in_RCX + 0xae) = 0;
@@ -149576,8 +149576,8 @@ LAB_180130c8e:
   else {
     CurrentByteValue = true;
   }
-  fStack0000000000000060 = (float)DataSize;
-  if ((fStack0000000000000060 < -256000.0) ||
+  StackFloatValue60 = (float)DataSize;
+  if ((StackFloatValue60 < -256000.0) ||
      (TemporaryFloatStack64 = (float)((unsigned long long)DataSize >> 0x20), TemporaryFloatStack64 < -256000.0
      )) {
     HighByte = false;
@@ -149593,10 +149593,10 @@ LAB_180130d35:
     if (CurrentByteValue) {
       if (!HighByte) goto LAB_180130d35;
       pFloatVariable7 = &DataTransferStackBuffer;
-      _fStack0000000000000060 = *StringProcessingStatus;
+      _StackFloatValue60 = *StringProcessingStatus;
     }
     else {
-      _fStack0000000000000060 = DataSize;
+      _StackFloatValue60 = DataSize;
       pFloatVariable7 = (float *)InitializeSystemConfiguration(&DataTransferStackBuffer);
     }
     if (0 < *(int *)(SystemConfigurationHandle + 0x1600)) {
@@ -149641,7 +149641,7 @@ void ProcessSystemFloatDataAndCheckStatus(void)
   unsigned long long MemoryAllocationLoopCounter;
   long long DataNodeIndex;
   float FloatingPointRegisterA;
-  float fStack0000000000000060;
+  float StackFloatValue60;
   float TemporaryFloat2;
   
   if ((RegisterEBPValue & 0x2000000) == 0) {
@@ -149660,8 +149660,8 @@ void ProcessSystemFloatDataAndCheckStatus(void)
   else {
     HighByte = true;
   }
-  fStack0000000000000060 = (float)Utf16Char;
-  if ((fStack0000000000000060 < FloatingPointRegisterA) ||
+  StackFloatValue60 = (float)Utf16Char;
+  if ((StackFloatValue60 < FloatingPointRegisterA) ||
      (TemporaryFloatStack64 = (float)((unsigned long long)Utf16Char >> 0x20),
      TemporaryFloatStack64 < FloatingPointRegisterA)) {
     LowByte = false;
@@ -149677,10 +149677,10 @@ LAB_180130d35:
     if (HighByte) {
       if (!LowByte) goto LAB_180130d35;
       FloatVariablePointer4 = &DataTransferStackBuffer;
-      _fStack0000000000000060 = *Utf8InputBufferPointer;
+      _StackFloatValue60 = *Utf8InputBufferPointer;
     }
     else {
-      _fStack0000000000000060 = Utf16Char;
+      _StackFloatValue60 = Utf16Char;
       FloatVariablePointer4 = (float *)InitializeSystemConfiguration(&DataTransferStackBuffer);
     }
     if (0 < *(int *)(SystemConfigurationHandle + 0x1600)) {
@@ -188235,7 +188235,7 @@ LAB_1801604e5:
   StackVariable48 = CharacterLimit[2];
   uStack0000000000000050 = CharacterLimit[3];
   TemporaryStackValue58 = CharacterLimit[4];
-  uStack0000000000000060 = CharacterLimit[5];
+  StackUintValue60 = CharacterLimit[5];
   MemoryAllocationIndex = CharacterLimit[6];
   iStack00000000000000e0 = LoopCounter;
   FUN_180160af0(ProcessingResult,&MemoryAllocationSizeStackBuffer,Utf8SourcePointer,&stack0x000000e0,(long long)CharacterTablePointer);
@@ -188244,7 +188244,7 @@ LAB_1801604e5:
   *(void *)(StackParameter0 + 0x14) = StackVariable48;
   *(void *)(StackParameter0 + 0x1c) = uStack0000000000000050;
   *(void *)(StackParameter0 + 0x24) = TemporaryStackValue58;
-  *(void *)(StackParameter0 + 0x2c) = uStack0000000000000060;
+  *(void *)(StackParameter0 + 0x2c) = StackUintValue60;
   *(void *)(StackParameter0 + 0x34) = MemoryAllocationIndex;
   return;
 }
