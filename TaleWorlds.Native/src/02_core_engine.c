@@ -136,6 +136,14 @@
 #define SystemBufferDataOffset 8
 #define SystemMemoryCleanupFlag 0xfffffffffffffffe
 
+// 系统数据结构大小常量
+#define SystemDataLinkNodeSize 0xc0
+#define SystemLinkNodeTemplateOffset 0x68
+#define SystemLinkNodeDataOffset 3
+#define SystemLinkNodeInvalidValue -4
+#define SystemLinkNodeCallbackOffset 0x28
+#define SystemLinkNodeSystemContextOffset 0x38
+
 // 系统节点标识常量
 const long long SystemNodeIdentifierPrimary = 0x45425dc186a5d575;
 const long long SystemNodeIdentifierSecondary = 0xfab48faa65382fa5;
@@ -17238,15 +17246,15 @@ void InitializeSystemDataLinkage(long long systemContext
       NodeValidationFlag = (char)DataLinkedListHead[2] != '\0';
     }
     else {
-      NodeValidationFlag = (**(code **)((void *)*DataLinkedListHead + 0x68))();
+      NodeValidationFlag = (**(code **)((void *)*DataLinkedListHead + SystemLinkNodeTemplateOffset))();
     }
     if (NodeValidationFlag == '\0') goto ValidateDataLinkNode;
   }
-  DataLinkNode = (long long *)MemoryAllocate(MemoryPoolManager,0xc0,8,3,DataLinkOperationFlag);
+  DataLinkNode = (long long *)MemoryAllocate(MemoryPoolManager,SystemDataLinkNodeSize,8,3,DataLinkOperationFlag);
   LinkNodeContext = DataLinkNode;
   CoreEngineProcessDataLinkNode(DataLinkNode);
   *DataLinkNode = (long long)&DataLinkedListNodeTemplate;
-  DataLinkNode[3] = -4;
+  DataLinkNode[SystemLinkNodeDataOffset] = SystemLinkNodeInvalidValue;
   LinkNodePointer = (long long **)DataLinkNode;
   (**(code **)(*DataLinkNode + 0x28))(DataLinkNode);
   LinkNodePointer = (long long **)DataLinkedListHead;
@@ -113670,7 +113678,7 @@ uint8_t ProcessEngineDataInterpolation(float *OutputBuffer,int OutputBufferSize,
   }
   else {
     if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto LAB_18011e808;
-    ProcessingStatusFlag = FUN_180131aa0(&AdditionalParameter2,3,5,0,0);
+    ProcessingStatusFlag = CalculateSystemVector(&AdditionalParameter2,3,5,0,0);
     if ((*(int *)(DataStructureCounter + 0x1cac) == OutputBufferSize) && (*(char *)(DataStructureCounter + 0x1b3c) == '\0')) {
       *(bool *)(DataStructureCounter + 0x1b3c) = *(int *)(DataStructureCounter + 0x1b2c) != 0;
       if (*(int *)(DataStructureCounter + 0x1b2c) != 0) {
@@ -113842,7 +113850,7 @@ LAB_18011eba2:
   }
   else {
     if (*(int *)(SystemDataConfiguration + 0x1b60) != 2) goto LAB_18011ec19;
-    ProcessStringBuffer = FUN_180131aa0(&AdditionalParameter2,3,5,0,0);
+    ProcessStringBuffer = CalculateSystemVector(&AdditionalParameter2,3,5,0,0);
     if ((*(int *)(DataStructureCounter + 0x1cac) == OutputBufferSize) && (*(char *)(DataStructureCounter + 0x1b3c) == '\0')) {
       *(bool *)(DataStructureCounter + 0x1b3c) = *(int *)(DataStructureCounter + 0x1b2c) != 0;
       if (*(int *)(DataStructureCounter + 0x1b2c) != 0) {
