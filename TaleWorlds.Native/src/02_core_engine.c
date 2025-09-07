@@ -105484,12 +105484,12 @@ unsigned long long ProcessSystemDataConversionAndMemoryManagement(uint SystemCon
     ProcessingCounter = *(long long *)(MemoryBlockIndex + 0x1af8);
     QuaternaryReturnCode = *(void *)(ProcessingCounter + 0x198);
     if (*(uint *)(MemoryBlockIndex + 0x1c64) == 0) {
-      MutexLockResult = FUN_180121f20(QuaternaryReturnCode,Utf16Char8 & 0xffffffff,Utf8BufferSize >> 5 & 1);
+      MutexLockResult = FindSystemDataTableEntry(QuaternaryReturnCode,Utf16Char8 & 0xffffffff,Utf8BufferSize >> 5 & 1);
       Utf16Char5 = (unsigned long long)(MutexLockResult != 0);
     }
     else if ((*(uint *)(MemoryBlockIndex + 0x1c64) & 1) == 0) {
       IntegerValue1 = -1;
-      MutexLockResult = FUN_180121f20(QuaternaryReturnCode,Utf16Char8 & 0xffffffff);
+      MutexLockResult = FindSystemDataTableEntry(QuaternaryReturnCode,Utf16Char8 & 0xffffffff);
       if (MutexLockResult == IntegerValue1) {
         Utf16Char5 = (unsigned long long)*(byte *)(MemoryBlockIndex + 0x1c60);
         FUN_1801220b0(QuaternaryReturnCode,SystemContextPointer,*(byte *)(MemoryBlockIndex + 0x1c60));
@@ -105938,12 +105938,12 @@ unsigned long long ProcessSystemContextWithCharacterHandling(char *SystemContext
   fStack_f4 = SystemContextFloat1;
   fStack_ec = SystemContextFloat25;
   if (*(uint *)(DataConfigurationCounter + 0x1c64) == 0) {
-    ComputedResult = FUN_180121f20(Utf16Char4,Utf16Char9 & 0xffffffff,0);
+    ComputedResult = FindSystemDataTableEntry(Utf16Char4,Utf16Char9 & 0xffffffff,0);
     Utf16Char7 = (unsigned long long)(ComputedResult != 0);
   }
   else if ((*(uint *)(DataConfigurationCounter + 0x1c64) & 1) == 0) {
     IntegerValue2 = -1;
-    ComputedResult = FUN_180121f20(Utf16Char4,Utf16Char9 & 0xffffffff);
+    ComputedResult = FindSystemDataTableEntry(Utf16Char4,Utf16Char9 & 0xffffffff);
     if (ComputedResult == IntegerValue2) {
       Utf16Char7 = (unsigned long long)*(byte *)(DataConfigurationCounter + 0x1c60);
       FUN_1801220b0(Utf16Char4,MemoryAllocationIndex,*(byte *)(DataConfigurationCounter + 0x1c60));
