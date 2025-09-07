@@ -6240,10 +6240,19 @@ int * RetrieveUIComponentProperty(longlong uiContext, int *dataSource, longlong 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 get_ftdn_managed_interface(void)
+/**
+ * @brief 获取托管接口
+ * 
+ * 获取系统的托管接口指针，用于与托管代码进行交互。
+ * 此函数提供对托管接口的访问权限。
+ * 
+ * @return undefined8 返回托管接口指针
+ * 
+ * @note 原始函数名：get_ftdn_managed_interface
+ */
+undefined8 GetManagedInterface(void)
 
 {
-                    // 0x6523f0  33  get_ftdn_managed_interface
   return ManagedInterface;
 }
 
@@ -6252,11 +6261,22 @@ undefined8 get_ftdn_managed_interface(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void SetUIComponentProperty(longlong *uiContext,longlong dataSource)
-void SetUIComponentProperty(longlong *uiContext,longlong dataSource)
+ /**
+ * @brief 设置UI组件属性
+ * 
+ * 为UI组件设置指定的属性数据，包括内存分配和数据处理。
+ * 此函数用于更新UI组件的属性信息。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：SetUIComponentProperty
+ */
+void ConfigureUIComponentProperty(longlong *uiContext, longlong dataSource)
 
 {
-  undefined4 *pfunctionResult;
+  undefined4 *functionResult;
   undefined4 semaphoreHandle;
   undefined4 tempValue1;
   undefined4 tempValue2;
@@ -11509,7 +11529,7 @@ LAB_18065a2e9:
     floatResult3 = floatResult3 * fVar25;
   }
   pfVar7 = uiContext + 0x1855;
-  iVar5 = 1;
+  uiElementCounter = 1;
   do {
     fVar25 = *(float *)(((longlong)afStack_6260 - (longlong)uiContext) + (longlong)pfVar7);
     floatResult7 = fVar25 - pfVar7[-10];
