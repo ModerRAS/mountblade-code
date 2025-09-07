@@ -223,8 +223,8 @@
  * 
  * @note 原始函数名：func_0x000180060c10
  */
-#define ProcessSystemOperations ProcessSystemOperations
-#define ProcessSystemA0 ProcessSystemOperations
+#define ProcessSystemOperations FUN_1808fc914
+#define ProcessSystemA0 FUN_1808fc914
 
 /**
  * @brief 数据掩码处理函数
