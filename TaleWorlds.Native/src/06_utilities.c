@@ -60994,7 +60994,19 @@ void ExecuteSystemCleanupAndCallbacks(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_180906b80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常处理器（偏移量0x38）
+ * 
+ * 该函数从数据缓冲区的偏移量0x38处获取异常上下文指针，然后调用相应的异常处理器。
+ * 这是一个用于处理特定类型异常的函数调用包装器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906b80
+ * @note 这是一个异常展开（unwind）处理函数，用于异常处理
+ */
+void InvokeExceptionHandlerAtOffset38(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x38) != (int64_t *)0x0) {
@@ -61005,7 +61017,19 @@ void Unwind_180906b80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180906b90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化系统资源并调用异常处理器（偏移量0x58）
+ * 
+ * 该函数首先初始化系统资源I0，然后从数据缓冲区的偏移量0x58处获取异常上下文指针，
+ * 调用相应的异常处理器。这是一个复合的异常处理函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180906b90
+ * @note 这是一个异常展开（unwind）处理函数，用于系统资源初始化和异常处理
+ */
+void InitializeSystemResourcesAndInvokeExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemResourcesI0();
@@ -61717,7 +61741,19 @@ void CleanupExceptionResourceReferenceCountAtOffsetF8(DataBuffer operationBase,i
 
 
 
-void Unwind_180906d00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 减少资源引用计数（偏移量0x260）
+ * 
+ * 该函数从数据缓冲区的偏移量0x260处获取资源指针，减少其引用计数。
+ * 如果引用计数降至0，则触发异常处理。这是资源管理的关键函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含资源指针信息
+ * 
+ * @note 原始函数名：Unwind_180906d00
+ * @note 这是一个异常展开（unwind）处理函数，用于资源引用计数管理
+ */
+void DecrementResourceReferenceCountAtOffset260(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;

@@ -39117,7 +39117,7 @@ MemoryDataCopyStart:
         pProcessingCounter = StatusBuffer;
         SystemFlagB.LowPart = GetMemoryAllocationInfo(StatusBuffer);
       }
-LAB_1800721e1:
+StatusBufferCopy:
                     // WARNING: Subroutine does not return
       memcpy(StatusBuffer + Utf16Char9,Utf8BufferSize,(long long)((int)LoopIterationCounter7 + 2));
     }
@@ -39158,7 +39158,7 @@ LAB_1800721e1:
       }
       SystemSecondaryFlag = SystemCheckResult;
       if (TimeoutValueStorage == 0) {
-LAB_1800722f5:
+SystemMemoryManagerProcessing:
         CurrentMemoryBlockAddress = SystemMemoryManager;
         if ((SystemMemoryManager != 0) && (*(char *)(SystemMemoryManager + 0x1609) != '\x01')) {
           ProcessSystemResource(*(void *)(CoreEngineSystemContext + 8),
