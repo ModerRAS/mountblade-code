@@ -135613,7 +135613,7 @@ LAB_18012b465:
     }
     if (RegisterFramePointer[0xc] != -NAN) {
       Utf16Char4 = CONCAT44(SystemMemoryAllocationResult,AuxiliaryFloat13);
-      FUN_1801296e0(RegisterFramePointer + -0x14,SystemParameter2,RegisterFramePointer[0xc],ContextSecondaryFloat9,Utf16Char4);
+      CleanupSystemEventHandling(RegisterFramePointer + -0x14,SystemParameter2,RegisterFramePointer[0xc],ContextSecondaryFloat9,Utf16Char4);
       MemoryBufferC = SystemConfigurationHandle;
       ProcessingStatusFlag = (uint32_t)((unsigned long long)Utf16Char4 >> 0x20);
       SystemContextValue = SystemParameter2[0x5d];
@@ -136725,7 +136725,7 @@ LAB_18012b0d0:
   if (FilterInputValue2 != 0.0) {
     do {
       Utf16Char4 = CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),0x40800000);
-      FUN_1801296e0(RegisterFramePointer + -0x20,CharacterCode8,FilterInputValue6,FilterInputValue1,Utf16Char4);
+      CleanupSystemEventHandling(RegisterFramePointer + -0x20,CharacterCode8,FilterInputValue6,FilterInputValue1,Utf16Char4);
       ProcessingStatusFlag = (uint32_t)((unsigned long long)Utf16Char4 >> 0x20);
       SystemMemoryAllocationResult = SystemCallResourceOperation(CharacterCode8,(long long)((int)FilterInputValue6 + 4));
       SystemParameter1 = (void *)CONCAT44(ProcessingStatusFlag,0x20);
@@ -137224,7 +137224,7 @@ LAB_18012b510:
     }
     if (RegisterFramePointer[0xc] != -NAN) {
       Utf16Char4 = CONCAT44(SystemMemoryAllocationResult,AuxiliaryFloat13);
-      FUN_1801296e0(RegisterFramePointer + -0x14,SystemParameter2,RegisterFramePointer[0xc],ContextSecondaryFloat7,Utf16Char4);
+      CleanupSystemEventHandling(RegisterFramePointer + -0x14,SystemParameter2,RegisterFramePointer[0xc],ContextSecondaryFloat7,Utf16Char4);
       BufferStatus8 = SystemConfigurationHandle;
       ProcessingStatusFlag = (uint32_t)((unsigned long long)Utf16Char4 >> 0x20);
       SystemContextValue = SystemParameter2[0x5d];
@@ -138913,7 +138913,7 @@ LAB_18012b465:
     }
     if (RegisterFramePointer[0xc] != -NAN) {
       Utf16Char4 = CONCAT44(SystemMemoryAllocationResult,AuxiliaryFloat13);
-      FUN_1801296e0(RegisterFramePointer + -0x14,SystemParameter2,RegisterFramePointer[0xc],ContextSecondaryFloat7,Utf16Char4);
+      CleanupSystemEventHandling(RegisterFramePointer + -0x14,SystemParameter2,RegisterFramePointer[0xc],ContextSecondaryFloat7,Utf16Char4);
       MemoryBufferC = SystemConfigurationHandle;
       ProcessingStatusFlag = (uint32_t)((unsigned long long)Utf16Char4 >> 0x20);
       SystemContextValue = SystemParameter2[0x5d];
@@ -139989,7 +139989,7 @@ LAB_18012b0d0:
   if (FilterInputValue0 != 0.0) {
     do {
       SystemStatusCode = CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),0x40800000);
-      FUN_1801296e0(RegisterFramePointer + -0x20,CharacterTablePointer6,FilterInputValue4,ContextSecondaryFloat9,SystemStatusCode);
+      CleanupSystemEventHandling(RegisterFramePointer + -0x20,CharacterTablePointer6,FilterInputValue4,ContextSecondaryFloat9,SystemStatusCode);
       ProcessingStatusFlag = (uint32_t)((unsigned long long)SystemStatusCode >> 0x20);
       SystemMemoryAllocationResult = SystemCallResourceOperation(CharacterTablePointer6,(long long)((int)FilterInputValue4 + 4));
       SystemParameter1 = (void *)CONCAT44(ProcessingStatusFlag,0x20);
@@ -140487,7 +140487,7 @@ LAB_18012b510:
     }
     if (RegisterFramePointer[0xc] != -NAN) {
       SystemStatusCode = CONCAT44(SystemMemoryAllocationResult,AuxiliaryFloat13);
-      FUN_1801296e0(RegisterFramePointer + -0x14,SystemParameter2,RegisterFramePointer[0xc],ContextSecondaryFloat5,SystemStatusCode);
+      CleanupSystemEventHandling(RegisterFramePointer + -0x14,SystemParameter2,RegisterFramePointer[0xc],ContextSecondaryFloat5,SystemStatusCode);
       CharacterTablePointer6 = SystemConfigurationHandle;
       ProcessingStatusFlag = (uint32_t)((unsigned long long)SystemStatusCode >> 0x20);
       SystemStatusCode = *(void *)(SystemParameter2 + 0x2e8);

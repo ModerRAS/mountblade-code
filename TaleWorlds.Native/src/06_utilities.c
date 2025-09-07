@@ -355,6 +355,7 @@
 #define ExceptionHandlerBufferOffset 0xc0
 #define ExceptionHandlerStackOffset 0xd0
 #define ExceptionHandlerThreadOffset 0xe0
+#define ExceptionHandlerAlternateOffset 0x40
 
 /**
  * @brief 数据加密处理函数
@@ -50305,7 +50306,7 @@ void ResetExceptionContextOffset50(DataBuffer operationBase,int64_t dataBuffer)
 void SetDefaultExceptionHandlerBOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(*(int64_t *)(dataBuffer + 0x40) + 0x20) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerAlternateOffset) + ExceptionHandlerDataOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
