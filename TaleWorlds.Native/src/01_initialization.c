@@ -1467,19 +1467,19 @@ void* SystemDataTemplateRenderingSystem;        // 系统数据模板 - 渲染�
 void* SystemDataTemplateInputSystem;             // 系统数据模板 - 输入系统
 
 // 系统数据模板标识符变量 - 用于系统识别和节点比较
-void* SystemDataTemplateA;                       // 系统数据模板 - 配置管理器标识符
-void* SystemDataTemplateD;                       // 系统数据模板 - 事件管理器标识符
-void* SystemDataTemplateK;                       // 系统数据模板 - 性能监控器标识符
-void* SystemDataTemplateR;                       // 系统数据模板 - 渲染系统标识符
+void* SystemDataTemplateConfigurationManagerId;                       // 系统数据模板 - 配置管理器标识符
+void* SystemDataTemplateEventManagerId;                       // 系统数据模板 - 事件管理器标识符
+void* SystemDataTemplatePerformanceMonitorId;                       // 系统数据模板 - 性能监控器标识符
+void* SystemDataTemplateRenderingSystemId;                       // 系统数据模板 - 渲染系统标识符
 
 // 系统数据模板标识符对 - 用于节点标识符设置
-void* SystemDataTemplateEId1;                    // 系统数据模板 - 事件处理器标识符1
-void* SystemDataTemplateEId2;                    // 系统数据模板 - 事件处理器标识符2
-void* SystemDataTemplateFId1;                    // 系统数据模板 - 文件系统标识符1
-void* SystemDataTemplateFId2;                    // 系统数据模板 - 文件系统标识符2
-void* SystemDataTemplateGId1;                    // 系统数据模板 - 图形系统标识符1
-void* SystemDataTemplateGId2;                    // 系统数据模板 - 图形系统标识符2
-void* SystemDataTemplateHId1;                    // 系统数据模板 - 硬件管理器标识符1
+void* SystemDataTemplateEventProcessorId1;                    // 系统数据模板 - 事件处理器标识符1
+void* SystemDataTemplateEventProcessorId2;                    // 系统数据模板 - 事件处理器标识符2
+void* SystemDataTemplateFileSystemId1;                    // 系统数据模板 - 文件系统标识符1
+void* SystemDataTemplateFileSystemId2;                    // 系统数据模板 - 文件系统标识符2
+void* SystemDataTemplateGraphicsSystemId1;                    // 系统数据模板 - 图形系统标识符1
+void* SystemDataTemplateGraphicsSystemId2;                    // 系统数据模板 - 图形系统标识符2
+void* SystemDataTemplateHardwareManagerId1;                    // 系统数据模板 - 硬件管理器标识符1
 void* SystemDataTemplateHId2;                    // 系统数据模板 - 硬件管理器标识符2
 void* SystemDataTemplateIId1;                    // 系统数据模板 - 输入系统标识符1
 void* SystemDataTemplateIId2;                    // 系统数据模板 - 输入系统标识符2
@@ -71874,20 +71874,20 @@ void* *SystemInterfaceTable;                      // 系统接口表
 uint8_t *SystemInterfaceData;                     // 系统接口数据
 uint32_t SystemInterfaceConfig;                   // 系统接口配置
 long long SystemInterfaceMemoryBase;               // 系统接口内存基址
-long long SystemInterfaceMemorySize;
-long long SystemInterfaceDataOffset;
-long long SystemInterfaceDataSize;
-uint32_t SystemInterfaceFlags;
-uint32_t SystemInterfaceStatus;
-void* SystemModuleConfigurationData;
-void* SystemModuleRuntimeData;
-void* SystemGlobalConfigFlag;
-void* SystemRuntimeDataFlag;
-void* SystemModuleLoadStatus;
-long long SystemModuleLoadTime;
-void* SystemModuleUnloadTime;
-long long SystemModuleExecutionTime;
-long long *SystemModuleExecutionCounter;
+long long SystemInterfaceMemorySize;                         // 系统接口内存大小
+long long SystemInterfaceDataOffset;                        // 系统接口数据偏移量
+long long SystemInterfaceDataSize;                          // 系统接口数据大小
+uint32_t SystemInterfaceFlags;                              // 系统接口标志
+uint32_t SystemInterfaceStatus;                             // 系统接口状态
+void* SystemModuleConfigurationData;                        // 系统模块配置数据
+void* SystemModuleRuntimeData;                             // 系统模块运行时数据
+void* SystemGlobalConfigFlag;                              // 系统全局配置标志
+void* SystemRuntimeDataFlag;                               // 系统运行时数据标志
+void* SystemModuleLoadStatus;                               // 系统模块加载状态
+long long SystemModuleLoadTime;                             // 系统模块加载时间
+void* SystemModuleUnloadTime;                              // 系统模块卸载时间
+long long SystemModuleExecutionTime;                        // 系统模块执行时间
+long long *SystemModuleExecutionCounter;                     // 系统模块执行计数器
 
 // 系统字符串常量模板
 void* SystemStringConstantErrorMessageCritical;
