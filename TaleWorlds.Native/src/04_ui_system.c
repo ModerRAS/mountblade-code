@@ -9755,46 +9755,57 @@ LAB_1806588f2:
 
 
 
+/**
+ * @brief 处理UI元素变换
+ * 
+ * 该函数负责处理UI元素的变换操作，包括平移、旋转、缩放等变换计算
+ * 
+ * @param uiContext UI上下文指针，包含变换矩阵和状态信息
+ * @param dataSource 变换数据源，包含位置、旋转、缩放等信息
+ * @param targetBuffer 目标缓冲区，存储变换后的位置信息
+ * @param bufferSize 缓冲区大小信息
+ * @param resultPointer 结果指针，用于返回变换状态
+ * @return 变换结果状态码
+ * @note 原始函数名: ProcessUIElementTransform
+ */
 undefined8
-ProcessUIElementTransform(longlong *uiContext,float *dataSource,float *targetBuffer,float *bufferSize,char resultPointer)
+ProcessUIElementTransform(longlong *uiContext,float *transformData,float *targetPosition,float *bufferSize,char resultPointer)
 
 {
-  float floatResult;
-  float fVar2;
-  float fVar3;
-  longlong lVar4;
-  bool bVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
-  float floatResult0;
-  float floatResult1;
-  float floatResult2;
-  float *pfloatResult3;
-  char cVar14;
-  longlong allocatedMemory5;
-  undefined8 functionResult6;
-  float *pfloatResult7;
-  int operationResult8;
-  undefined4 *pfunctionResult9;
-  float fVar20;
-  int validationResult1;
-  longlong lVar22;
-  longlong lVar23;
-  int validationResult4;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  float fVar34;
-  float fVar35;
-  float fVar36;
+  float transformResult;
+  float scaleX;
+  float scaleY;
+  longlong transformMatrix;
+  bool isValidTransform;
+  float translateX;
+  float translateY;
+  float translateZ;
+  float rotateX;
+  float rotationX;
+  float rotationY;
+  float *outputPosition;
+  char validationResult;
+  longlong matrixOffset;
+  undefined8 transformStatus;
+  float *matrixData;
+  int matrixSize;
+  undefined4 *matrixPointer;
+  float sourceX;
+  int vertexIndex;
+  longlong vertexCount;
+  longlong polygonCount;
+  int polygonIndex;
+  float minX;
+  float minY;
+  float maxX;
+  float maxY;
+  float centerX;
+  float centerY;
+  float width;
+  float height;
+  float depthX;
+  float depthY;
+  float depthZ;
   undefined8 uStackX_8;
   float fStackX_10;
   float fStackX_14;
@@ -47874,56 +47885,75 @@ void CalculateUIImageAbsoluteDifferenceAVX2(undefined1 (*uiContext) [16],int dat
 
 
  void FUN_180690700(undefined1 (*uiContext) [32],int dataSource,undefined1 (*targetBuffer) [32],int bufferSize,
-void FUN_180690700(undefined1 (*uiContext) [32],int dataSource,undefined1 (*targetBuffer) [32],int bufferSize,
-                  int *resultPointer,int *param_6)
+/**
+ * @brief 计算UI图像平方差异和（AVX2优化版本）
+ * 
+ * 该函数使用AVX2指令集计算两个图像缓冲区之间的平方差异和。
+ * 主要用于图像质量评估、相似度计算等UI图像处理操作。
+ * 
+ * @param uiContext 图像上下文指针数组
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区指针数组
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针，存储计算结果
+ * @param param_6 额外参数指针
+ * 
+ * @note 原始函数名: FUN_180690700
+ * @note 使用AVX2指令集进行并行计算优化
+ */
+void CalculateUIImageSquareDifferenceSumAVX2(undefined1 (*uiContext) [32],int dataSource,undefined1 (*targetBuffer) [32],int bufferSize,
+                                           int *resultPointer,int *param_6)
 
 {
-  undefined1 afunctionResult [32];
-  undefined1 asemaphoreHandle [32];
-  undefined1 auVar3 [32];
-  longlong lVar4;
-  undefined1 auVar5 [32];
-  undefined1 auVar6 [32];
-  undefined1 auVar7 [32];
+  undefined1 differenceResultVector [32];
+  undefined1 tempCalculationVector [32];
+  undefined1 subtractionResultVector [32];
+  longlong iterationCount;
+  undefined1 zeroVector [32];
+  undefined1 accumulatedSumVector [32];
+  undefined1 highBytesVector [32];
+  undefined1 sourceDataVector [32];
+  undefined1 targetDataVector [32];
+  undefined1 initialZeroVector [32];
   
-  auVar5 = ZEXT832(0) << 0x40;
-  lVar4 = 0x10;
-  auVar6 = auVar5;
-  afunctionResult = auVar5;
+  initialZeroVector = ZEXT832(0) << 0x40;
+  iterationCount = 0x10;
+  accumulatedSumVector = initialZeroVector;
+  differenceResultVector = initialZeroVector;
   do {
-    auVar7 = vpunpcklbw_avx2(*targetBuffer,auVar5);
-    auVar3 = vpunpcklbw_avx2(*uiContext,auVar5);
-    auVar3 = vpsubw_avx2(auVar3,auVar7);
-    auVar7 = vpunpckhbw_avx2(*uiContext,auVar5);
-    asemaphoreHandle = vpunpckhbw_avx2(*targetBuffer,auVar5);
-    asemaphoreHandle = vpsubw_avx2(auVar7,asemaphoreHandle);
-    auVar7 = vpaddw_avx2(asemaphoreHandle,auVar3);
-    auVar3 = vpmaddwd_avx2(auVar3,auVar3);
-    asemaphoreHandle = vpmaddwd_avx2(asemaphoreHandle,asemaphoreHandle);
-    auVar6 = vpaddw_avx2(auVar7,auVar6);
+    highBytesVector = vpunpcklbw_avx2(*targetBuffer,initialZeroVector);
+    subtractionResultVector = vpunpcklbw_avx2(*uiContext,initialZeroVector);
+    subtractionResultVector = vpsubw_avx2(subtractionResultVector,highBytesVector);
+    highBytesVector = vpunpckhbw_avx2(*uiContext,initialZeroVector);
+    tempCalculationVector = vpunpckhbw_avx2(*targetBuffer,initialZeroVector);
+    tempCalculationVector = vpsubw_avx2(highBytesVector,tempCalculationVector);
+    highBytesVector = vpaddw_avx2(tempCalculationVector,subtractionResultVector);
+    subtractionResultVector = vpmaddwd_avx2(subtractionResultVector,subtractionResultVector);
+    tempCalculationVector = vpmaddwd_avx2(tempCalculationVector,tempCalculationVector);
+    accumulatedSumVector = vpaddw_avx2(highBytesVector,accumulatedSumVector);
     uiContext = (undefined1 (*) [32])(*uiContext + dataSource);
     targetBuffer = (undefined1 (*) [32])(*targetBuffer + bufferSize);
-    auVar7 = vpaddd_avx2(asemaphoreHandle,auVar3);
-    afunctionResult = vpaddd_avx2(auVar7,afunctionResult);
-    lVar4 = lVar4 + -1;
-  } while (lVar4 != 0);
-  auVar7 = vpunpcklwd_avx2(auVar5,auVar6);
-  auVar7 = vpsrad_avx2(auVar7,0x10);
-  auVar6 = vpunpckhwd_avx2(auVar5,auVar6);
-  auVar6 = vpsrad_avx2(auVar6,0x10);
-  auVar6 = vpaddd_avx2(auVar6,auVar7);
-  auVar7 = vpunpckldq_avx2(auVar6,auVar5);
-  auVar3 = vpunpckldq_avx2(afunctionResult,auVar5);
-  afunctionResult = vpunpckhdq_avx2(afunctionResult,auVar5);
-  afunctionResult = vpaddd_avx2(afunctionResult,auVar3);
-  auVar6 = vpunpckhdq_avx2(auVar6,auVar5);
-  auVar6 = vpaddd_avx2(auVar6,auVar7);
-  auVar5 = vpsrldq_avx2(afunctionResult,8);
-  afunctionResult = vpaddd_avx2(auVar5,afunctionResult);
-  auVar5 = vpsrldq_avx2(auVar6,8);
-  auVar6 = vpaddd_avx2(auVar5,auVar6);
-  *resultPointer = afunctionResult._16_4_ + afunctionResult._0_4_;
-  *param_6 = auVar6._16_4_ + auVar6._0_4_;
+    highBytesVector = vpaddd_avx2(tempCalculationVector,subtractionResultVector);
+    differenceResultVector = vpaddd_avx2(highBytesVector,differenceResultVector);
+    iterationCount = iterationCount + -1;
+  } while (iterationCount != 0);
+  highBytesVector = vpunpcklwd_avx2(initialZeroVector,accumulatedSumVector);
+  highBytesVector = vpsrad_avx2(highBytesVector,0x10);
+  accumulatedSumVector = vpunpckhwd_avx2(initialZeroVector,accumulatedSumVector);
+  accumulatedSumVector = vpsrad_avx2(accumulatedSumVector,0x10);
+  accumulatedSumVector = vpaddd_avx2(accumulatedSumVector,highBytesVector);
+  highBytesVector = vpunpckldq_avx2(accumulatedSumVector,initialZeroVector);
+  subtractionResultVector = vpunpckldq_avx2(differenceResultVector,initialZeroVector);
+  differenceResultVector = vpunpckhdq_avx2(differenceResultVector,initialZeroVector);
+  differenceResultVector = vpaddd_avx2(differenceResultVector,subtractionResultVector);
+  accumulatedSumVector = vpunpckhdq_avx2(accumulatedSumVector,initialZeroVector);
+  accumulatedSumVector = vpaddd_avx2(accumulatedSumVector,highBytesVector);
+  initialZeroVector = vpsrldq_avx2(differenceResultVector,8);
+  differenceResultVector = vpaddd_avx2(initialZeroVector,differenceResultVector);
+  initialZeroVector = vpsrldq_avx2(accumulatedSumVector,8);
+  accumulatedSumVector = vpaddd_avx2(initialZeroVector,accumulatedSumVector);
+  *resultPointer = differenceResultVector._16_4_ + differenceResultVector._0_4_;
+  *param_6 = accumulatedSumVector._16_4_ + accumulatedSumVector._0_4_;
   return;
 }
 
@@ -47931,27 +47961,48 @@ void FUN_180690700(undefined1 (*uiContext) [32],int dataSource,undefined1 (*targ
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180690800(undefined1 (*uiContext) [32],int dataSource,int targetBuffer,int bufferSize,
-                 undefined1 (*resultPointer) [32],int param_6,undefined1 (*param_7) [32],int param_8,
-                 uint param_9,int *uiContext0)
+/**
+ * @brief 高级UI图像差异计算函数（多模式AVX2优化）
+ * 
+ * 该函数使用AVX2指令集计算两个图像缓冲区之间的差异，支持多种处理模式。
+ * 主要用于高级图像质量评估、多尺度差异计算等UI图像处理操作。
+ * 
+ * @param uiContext 图像上下文指针数组
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区索引
+ * @param bufferSize 缓冲区大小配置
+ * @param resultPointer 结果指针数组
+ * @param param_6 结果偏移量参数
+ * @param param_7 参数指针数组
+ * @param param_8 参数偏移量
+ * @param param_9 处理迭代次数
+ * @param uiContext0 UI上下文输出指针
+ * 
+ * @return 差异计算结果值
+ * @note 原始函数名: FUN_180690800
+ * @note 使用AVX2指令集进行并行计算优化，支持多种处理模式
+ */
+int CalculateUIImageAdvancedDifferenceAVX2(undefined1 (*uiContext) [32],int dataSource,int targetBuffer,int bufferSize,
+                                          undefined1 (*resultPointer) [32],int param_6,undefined1 (*param_7) [32],int param_8,
+                                          uint param_9,int *uiContext0)
 
 {
-  ulonglong functionResult;
-  undefined1 asemaphoreHandle [32];
-  undefined1 auVar3 [32];
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  undefined1 auVar6 [32];
-  undefined1 auVar7 [32];
-  undefined1 auVar8 [32];
-  undefined1 auVar9 [64];
-  undefined1 afunctionResult0 [64];
+  ulonglong iterationCounter;
+  undefined1 tempCalculationVector [32];
+  undefined1 zeroVector [32];
+  undefined1 sourceDataVector [32];
+  undefined1 targetDataVector [32];
+  undefined1 differenceVector1 [32];
+  undefined1 differenceVector2 [32];
+  undefined1 lookupTableVector [32];
+  undefined1 sumResultVector [64];
+  undefined1 squaredSumVector [64];
   
-  auVar3 = ZEXT832(0) << 0x40;
-  auVar9 = ZEXT3264(auVar3);
-  afunctionResult0 = ZEXT3264(auVar3);
-  auVar4 = auVar3;
-  auVar5 = auVar3;
+  zeroVector = ZEXT832(0) << 0x40;
+  sumResultVector = ZEXT3264(zeroVector);
+  squaredSumVector = ZEXT3264(zeroVector);
+  sourceDataVector = zeroVector;
+  targetDataVector = zeroVector;
   if (targetBuffer == 0) {
     if (bufferSize == 0) {
       if (0 < (int)param_9) {
@@ -57916,7 +57967,7 @@ longlong FUN_180695870(void)
   int iStack_18;
   
   *_iStack0000000000000028 = 0;
-  FUN_180690700();
+  CalculateUIImageSquareDifferenceSumAVX2();
   *_iStack0000000000000028 = *_iStack0000000000000028 + iStack0000000000000028;
   return (ulonglong)*_iStack0000000000000028 - ((longlong)iStack_18 * (longlong)iStack_18 >> 9);
 }
@@ -57938,7 +57989,7 @@ longlong FUN_1806958c0(longlong uiContext,int dataSource,longlong targetBuffer,i
   lVar3 = 2;
   lStack_30 = (longlong)(bufferSize << 4);
   do {
-    FUN_180690700(uiContext,dataSource,targetBuffer,bufferSize,&resultPointer,aiStack_38);
+    CalculateUIImageSquareDifferenceSumAVX2(uiContext,dataSource,targetBuffer,bufferSize,&resultPointer,aiStack_38);
     uiContext = uiContext + (dataSource << 4);
     *pfunctionResult = *pfunctionResult + (int)resultPointer;
     validationResult = validationResult + aiStack_38[0];
@@ -57979,7 +58030,7 @@ longlong FUN_180695990(longlong uiContext,int dataSource,longlong targetBuffer,i
     lVar5 = 2;
     lVar6 = lStack_70 - uVar7;
     do {
-      FUN_180690700(lVar2,dataSource,(lVar6 - uiContext) + targetBuffer + lVar2,bufferSize,&resultPointer,aiStack_78);
+      CalculateUIImageSquareDifferenceSumAVX2(lVar2,dataSource,(lVar6 - uiContext) + targetBuffer + lVar2,bufferSize,&resultPointer,aiStack_78);
       lVar2 = lVar2 + 0x20;
       *pfunctionResult = *pfunctionResult + (int)resultPointer;
       uVar3 = (int)uVar4 + aiStack_78[0];
@@ -58024,7 +58075,7 @@ longlong FUN_180695ac0(longlong uiContext,int dataSource,longlong targetBuffer,i
     lVar5 = 2;
     lVar6 = lStack_70 - uVar7;
     do {
-      FUN_180690700(lVar2,dataSource,(lVar6 - uiContext) + targetBuffer + lVar2,bufferSize,&resultPointer,aiStack_78);
+      CalculateUIImageSquareDifferenceSumAVX2(lVar2,dataSource,(lVar6 - uiContext) + targetBuffer + lVar2,bufferSize,&resultPointer,aiStack_78);
       lVar2 = lVar2 + 0x20;
       *pfunctionResult = *pfunctionResult + (int)resultPointer;
       uVar3 = (int)uVar4 + aiStack_78[0];
@@ -73964,64 +74015,98 @@ void FUN_18070ba50(longlong *uiContext,int dataSource,undefined4 targetBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18070ce70(longlong *uiContext,longlong dataSource,uint targetBuffer,longlong bufferSize,int resultPointer,
-void FUN_18070ce70(longlong *uiContext,longlong dataSource,uint targetBuffer,longlong bufferSize,int resultPointer,
-                  undefined1 *param_6,undefined4 param_7)
+ /**
+ * @brief 处理UI上下文数据
+ * 
+ * 该函数负责处理UI上下文中的数据，包括内存分配、数据验证、
+ * 缓冲区管理等操作。它会根据传入的参数来处理UI系统的各种数据。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态和数据
+ * @param dataSource 数据源指针，提供处理所需的数据
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * @param bufferSize 缓冲区大小，限制数据处理的最大范围
+ * @param resultPointer 结果指针，用于返回处理结果
+ * @param param_6 附加参数，提供额外的处理配置
+ * @param param_7 参数标志，控制处理行为
+ * 
+ * @note 原始函数名: FUN_18070ce70
+ * @warning 该函数包含安全验证机制，执行过程中会进行栈保护检查
+ */
+void ProcessUIContextData(longlong *uiContext, longlong dataSource, uint targetBuffer, longlong bufferSize, int resultPointer,
+                          undefined1 *param_6, undefined4 param_7)
 
 {
-  longlong allocatedMemory;
-  int validationResult;
-  longlong lVar3;
-  float *pfVar4;
-  uint uVar5;
-  ulonglong uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  int iVar9;
-  int operationResult0;
-  int operationResult1;
-  float floatResult2;
-  undefined8 in_stack_fffffffffffffdb8;
-  undefined4 functionResult3;
-  int iStack_1b8;
-  int iStack_1b4;
-  int iStack_1b0;
-  int iStack_1a8;
-  int iStack_1a4;
-  int iStack_19c;
-  int iStack_198;
-  int iStack_194;
-  int iStack_190;
-  longlong lStack_188;
-  undefined4 uStack_180;
-  uint uStack_17c;
-  int iStack_178;
-  int iStack_174;
-  int iStack_170;
-  undefined4 uStack_16c;
-  undefined4 uStack_168;
-  undefined4 uStack_164;
-  int iStack_160;
-  int iStack_15c;
-  longlong lStack_158;
-  longlong lStack_148;
-  undefined4 uStack_140;
-  longlong *plStack_138;
-  int iStack_12c;
-  int iStack_128;
-  longlong lStack_118;
-  longlong lStack_110;
-  longlong lStack_108;
-  longlong lStack_d8;
-  longlong lStack_d0;
-  longlong lStack_c8;
-  longlong lStack_c0;
-  undefined8 uStack_b8;
-  longlong lStack_b0;
-  longlong alStack_a8 [4];
-  longlong alStack_88 [2];
-  undefined1 auStack_78 [56];
-  ulonglong uStack_40;
+  // 内存管理相关变量
+  longlong allocatedMemory;                  // 已分配的内存地址
+  int validationResult;                      // 验证结果
+  longlong memoryOffset;                     // 内存偏移量
+  float *floatPointer;                      // 浮点数指针
+  uint bitFieldValue;                       // 位字段值
+  ulonglong loopCounter;                    // 循环计数器
+  longlong arrayIterator;                   // 数组迭代器
+  longlong contextBaseAddress;               // 上下文基地址
+  int indexCounter;                         // 索引计数器
+  
+  // 操作结果相关变量
+  int operationResult0;                     // 操作结果0
+  int operationResult1;                     // 操作结果1
+  float floatResult2;                       // 浮点结果2
+  
+  // 栈参数相关变量
+  undefined8 stackParameterHigh;           // 栈参数高64位
+  undefined4 functionResult3;              // 函数结果3
+  // UI上下文相关栈变量
+  int contextParam1;                          // 上下文参数1
+  int contextParam2;                          // 上下文参数2
+  int contextParam3;                          // 上下文参数3
+  int contextSizeLimit;                       // 上下文大小限制
+  int bufferMultiplier;                       // 缓冲区乘数
+  
+  // 循环和状态相关栈变量
+  int loopStateVar1;                          // 循环状态变量1
+  int loopStateVar2;                          // 循环状态变量2
+  int validationFlags;                        // 验证标志
+  int contextDimension;                       // 上下文维度
+  
+  // 内存指针相关栈变量
+  longlong memoryPointer1;                    // 内存指针1
+  undefined4 reservedField1;                 // 保留字段1
+  uint targetBufferID;                        // 目标缓冲区ID
+  int allocationResult;                      // 分配结果
+  int memoryBlockSize;                        // 内存块大小
+  int operationFlags;                        // 操作标志
+  
+  // 数据处理相关栈变量
+  undefined4 dataField1;                      // 数据字段1
+  undefined4 dataField2;                      // 数据字段2
+  undefined4 dataField3;                      // 数据字段3
+  int bitShiftValue;                          // 位偏移值
+  int arraySizeValue;                         // 数组大小值
+  
+  // 地址计算相关栈变量
+  longlong calculatedAddress1;                // 计算地址1
+  longlong calculatedAddress2;                // 计算地址2
+  undefined4 paddingField1;                  // 填充字段1
+  longlong *contextPointerRef;                // 上下文指针引用
+  
+  // 临时计算栈变量
+  int tempValue1;                             // 临时值1
+  int tempValue2;                             // 临时值2
+  longlong tempAddress1;                      // 临时地址1
+  longlong tempAddress2;                      // 临时地址2
+  longlong tempAddress3;                      // 临时地址3
+  longlong tempAddress4;                      // 临时地址4
+  longlong tempAddress5;                      // 临时地址5
+  longlong tempAddress6;                      // 临时地址6
+  longlong tempAddress7;                      // 临时地址7
+  
+  // 数组和缓冲区栈变量
+  undefined8 stackParameterLow;               // 栈参数低64位
+  longlong bufferSizeParam;                   // 缓冲区大小参数
+  longlong addressArray1[4];                  // 地址数组1
+  longlong addressArray2[2];                  // 地址数组2
+  undefined1 dataBuffer[56];                  // 数据缓冲区
+  ulonglong securityCheckValue;               // 安全检查值
   
   functionResult3 = (undefined4)((ulonglong)in_stack_fffffffffffffdb8 >> 0x20);
   uStack_40 = XorEncryptionKey ^ (ulonglong)&iStack_1b8;
