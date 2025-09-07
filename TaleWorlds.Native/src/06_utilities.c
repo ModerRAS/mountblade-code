@@ -255,9 +255,7 @@
 #define GOTO_ValidationFailed goto ExecuteSecurityValidation
 #define GOTO_SecurityCheckFailed goto ExecuteSystemSecurityCheck
 #define GOTO_ValidationFailure goto ValidationFailedLabel
-#define GOTO_SecurityTerminationA1 goto ValidationFailedLabel
-#define GOTO_SecurityTerminationA2 goto ValidationFailedLabel
-#define GOTO_SecurityTerminationA3 goto ValidationFailedLabel
+#define GOTO_SecurityTermination goto ValidationFailedLabel
 
 /**
  * @brief 数据加密处理函数
@@ -3900,13 +3898,13 @@
 // 功能：存储异常处理的事件句柄信息
 #define ExceptionEventHandle _DAT_180c82240
 
-// 原始变量名：ExceptionEncryptionKey - 异常加密密钥
+// 异常加密密钥变量
 // 功能：存储异常处理的加密密钥信息
-#define ExceptionEncryptionKey ExceptionEncryptionKey
+extern uint64_t ExceptionEncryptionKey;
 
-// 原始变量名：ExceptionOffsetValue - 异常偏移量
+// 异常偏移量变量
 // 功能：存储异常处理的偏移量信息
-#define ExceptionOffsetValue ExceptionOffsetValue
+extern uint64_t ExceptionOffsetValue;
 
 // 原始变量名：UNK_1809ff498 - 异常数据初始化表
 // 功能：存储异常数据的初始化信息
