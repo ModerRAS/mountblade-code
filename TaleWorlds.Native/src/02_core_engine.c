@@ -160180,8 +160180,8 @@ LAB_180139b2f:
             SystemContextValue = SystemContextValue + 1;
             SystemStatusBuffer = StackConfigurationFlag;
             SystemContextPointer = SystemRegisterFlagX8;
-            SystemContextSecondaryFloat3 = fStack_148;
-          } while (SystemContextValue < lStack_140);
+            SystemContextSecondaryFloat3 = FloatStack5;
+          } while (SystemContextValue < LongStack1);
         }
         SystemOffsetValue = SystemOffsetValue + 0x28;
         LoopCounter7 = LoopCounter7 + -1;
@@ -160191,46 +160191,46 @@ LAB_180139b2f:
       } while (LoopCounter7 != 0);
     }
   }
-LAB_180139e51:
+PerformanceCalculationComplete:
   QuaternaryReturnCode = 0xffffffffffffffff;
   SystemContextSecondaryFloat2 = *(float *)(LocalDataStructure160 + 0x1664);
   if (SystemContextSecondaryFloat2 <= 3.0) {
     SystemContextSecondaryFloat2 = 3.0;
   }
-  uStack_178 = (float *)(PerformanceCounterValue + 0xc4);
-  uStack_138 = 0xffffffffffffffff;
+  FloatStack1 = (float *)(PerformanceCounterValue + 0xc4);
+  UnsignedStack1 = 0xffffffffffffffff;
   LoopCounter7 = PerformanceCounterValue;
   SystemOffsetValue = LocalDataStructure160;
   do {
-    SystemContextValue = lStack_140;
+    SystemContextValue = LongStack1;
     MemoryAllocationIndex = DataContentStatus;
-    IntegerValue5 = (int)uStack_138;
-    if ((uStack_178[-1] <= uStack_178[1]) && (*uStack_178 <= uStack_178[2])) {
-      SystemContextSecondaryFloat4 = uStack_178[-1] - -2.0;
-      SystemContextSecondaryFloat3 = *uStack_178 - -2.0;
-      SystemContextPrimaryFloat8 = uStack_178[1] - 2.0;
-      fStack_f8 = uStack_178[-1];
-      fStack_f4 = *uStack_178;
-      fStack_f0 = uStack_178[1];
-      fStack_ec = uStack_178[2];
-      SystemContextSecondaryFloat0 = uStack_178[2] - 2.0;
+    IntegerValue5 = (int)UnsignedStack1;
+    if ((FloatStack1[-1] <= FloatStack1[1]) && (*FloatStack1 <= FloatStack1[2])) {
+      SystemContextSecondaryFloat4 = FloatStack1[-1] - -2.0;
+      SystemContextSecondaryFloat3 = *FloatStack1 - -2.0;
+      SystemContextPrimaryFloat8 = FloatStack1[1] - 2.0;
+      FloatStack10 = FloatStack1[-1];
+      FloatStack11 = *FloatStack1;
+      FloatStack12 = FloatStack1[1];
+      FloatStack13 = FloatStack1[2];
+      SystemContextSecondaryFloat0 = FloatStack1[2] - 2.0;
       if ((*(int *)(LoopCounter7 + 0xb8) != IntegerValue5) ||
          (DataSize = BufferInitializationFlag, *(char *)(LoopCounter7 + 0xab) == '\0')) {
-        DataSize = uStack_124;
+        DataSize = UnsignedStack2;
       }
       LoopCounter7 = 0;
       SystemContextPrimaryFloat9 = (float)(int)((SystemContextSecondaryFloat4 + SystemContextPrimaryFloat8) * 0.5);
       SystemContextSecondaryFloat1 = (float)(int)((SystemContextSecondaryFloat3 + SystemContextSecondaryFloat0) * 0.5);
       do {
-        SystemOffsetValue = alStack_108[LoopCounter7];
-        ProcessSystemDataAndConfigure(SystemOffsetValue,&fStack_f8,&fStack_f0,DataSize,SystemContextSecondaryFloat2,0xf);
+        SystemOffsetValue = LongArrayStack1[LoopCounter7];
+        ProcessSystemDataAndConfigure(SystemOffsetValue,&FloatStack10,&FloatStack12,DataSize,SystemContextSecondaryFloat2,0xf);
         if ((SystemByteValue & 0xff000000) != 0) {
           if ((*(byte *)(SystemOffsetValue + 0x30) & 1) == 0) {
-            fStack_158 = SystemContextPrimaryFloat8 - 0.49;
-            fStack_154 = SystemContextSecondaryFloat0 - 0.49;
-            pFloatValue8 = &fStack_158;
-            pNormalizedParameter = &fStack_148;
-            fStack_148 = SystemContextSecondaryFloat4 + 0.5;
+            FloatStack2 = SystemContextPrimaryFloat8 - 0.49;
+            FloatStack4 = SystemContextSecondaryFloat0 - 0.49;
+            pFloatValue8 = &FloatStack2;
+            pNormalizedParameter = &FloatStack5;
+            FloatStack5 = SystemContextSecondaryFloat4 + 0.5;
             LocalFloatValue144 = SystemContextSecondaryFloat3 + 0.5;
           }
           else {
@@ -162926,12 +162926,12 @@ LAB_18013c174:
   }
   bufferAllocationStatus = *(long long *)(DataStructureCounter + 0x28);
   StatusBuffer = (void *)((long long)ValidationCode * 0x20 + bufferAllocationStatus);
-  *StatusBuffer = CONCAT44(iStack_34,FunctionAddress);
-  StatusBuffer[1] = CONCAT17(uStack_29,
-                       CONCAT16(uStack_2a,CONCAT15(cStack_2b,CONCAT14(uStack_2c,CoreEngineUnsignedValue30))));
+  *StatusBuffer = CONCAT44(IntegerStack1,FunctionAddress);
+  StatusBuffer[1] = CONCAT17(UnsignedStack1,
+                       CONCAT16(UnsignedStack2,CONCAT15(CharStack1,CONCAT14(UnsignedStack3,CoreEngineUnsignedValue30))));
   StatusBuffer = (void *)((long long)ValidationCode * 0x20 + 0x10 + bufferAllocationStatus);
-  *StatusBuffer = CONCAT26(uStack_22,CONCAT42(uStack_26,CONCAT11(uStack_27,uStack_28)));
-  StatusBuffer[1] = CONCAT26(uStack_1a,CONCAT42(uStack_1e,StackUnsigned20));
+  *StatusBuffer = CONCAT26(UnsignedStack4,CONCAT42(UnsignedStack5,CONCAT11(UnsignedStack6,UnsignedStack7)));
+  StatusBuffer[1] = CONCAT26(UnsignedStack8,CONCAT42(UnsignedStack9,StackUnsigned20));
   *(int *)(DataStructureCounter + 0x20) = *(int *)(DataStructureCounter + 0x20) + 1;
   return;
 }
@@ -162957,10 +162957,10 @@ LAB_18013c174:
   int IntegerValue4;
   int IntegerValue5;
   int IntegerValue6;
-  uint32_t uStack_44;
-  uint32_t uStack_3c;
-  uint8_t uStack_37;
-  uint16_t uStack_2a;
+  uint32_t UnsignedStack10;
+  uint32_t UnsignedStack11;
+  uint8_t UnsignedStack12;
+  uint16_t UnsignedStack13;
   
   while( true ) {
     ProcessStringBuffer = *Utf8BufferSize;

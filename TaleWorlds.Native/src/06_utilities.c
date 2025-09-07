@@ -5338,6 +5338,251 @@
  */
 void InitializeUtilityModule(void);
 
+// Unwind函数宏定义 - 异常处理和资源清理函数系列
+
+/**
+ * @brief 清理文件句柄函数A0
+ * 
+ * 该函数负责清理文件句柄，管理系统资源计数器
+ * 
+ * @note 原始函数名：Unwind_180905000
+ */
+#define CleanupFileHandleAtOffset00 Unwind_180905000
+
+/**
+ * @brief 设置异常处理器函数A0
+ * 
+ * 该函数负责设置异常处理器并管理临时异常状态
+ * 
+ * @note 原始函数名：Unwind_180905010
+ */
+#define SetupExceptionHandlerAtOffset10 Unwind_180905010
+
+/**
+ * @brief 执行异常处理回调函数A0
+ * 
+ * 该函数负责执行异常处理回调，处理资源清理和状态管理
+ * 
+ * @note 原始函数名：Unwind_180905020
+ */
+#define ExecuteExceptionCallbacksAtOffset20 Unwind_180905020
+
+/**
+ * @brief 清理资源引用计数函数A0
+ * 
+ * 该函数负责清理资源引用计数，管理内存资源释放
+ * 
+ * @note 原始函数名：Unwind_180905030
+ */
+#define CleanupResourceReferenceCountAtOffset30 Unwind_180905030
+
+/**
+ * @brief 清理资源引用计数函数A1
+ * 
+ * 该函数负责清理资源引用计数，管理内存资源释放
+ * 
+ * @note 原始函数名：Unwind_180905050
+ */
+#define CleanupResourceReferenceCountAtOffset50 Unwind_180905050
+
+/**
+ * @brief 清理资源函数A0
+ * 
+ * 该函数负责清理系统资源，释放内存和句柄
+ * 
+ * @note 原始函数名：Unwind_180905060
+ */
+#define CleanupResourceAtOffset60 Unwind_180905060
+
+/**
+ * @brief 清理资源函数A1
+ * 
+ * 该函数负责清理系统资源，释放内存和句柄
+ * 
+ * @note 原始函数名：Unwind_180905070
+ */
+#define CleanupResourceAtOffset70 Unwind_180905070
+
+/**
+ * @brief 清理资源函数A2
+ * 
+ * 该函数负责清理系统资源，释放内存和句柄
+ * 
+ * @note 原始函数名：Unwind_180905080
+ */
+#define CleanupResourceAtOffset80 Unwind_180905080
+
+/**
+ * @brief 查询异常处理状态函数A0
+ * 
+ * 该函数负责查询异常处理状态，验证系统配置
+ * 
+ * @note 原始函数名：Unwind_180905090
+ */
+#define QueryExceptionStatusAtOffset90 Unwind_180905090
+
+/**
+ * @brief 设置异常处理器函数A1
+ * 
+ * 该函数负责设置异常处理器，配置临时和默认处理器
+ * 
+ * @note 原始函数名：Unwind_1809050c0
+ */
+#define SetupExceptionHandlerAtOffsetC0 Unwind_1809050c0
+
+/**
+ * @brief 设置异常处理器函数A2
+ * 
+ * 该函数负责设置异常处理器，管理文件句柄和状态
+ * 
+ * @note 原始函数名：Unwind_1809050d0
+ */
+#define SetupExceptionHandlerAtOffsetD0 Unwind_1809050d0
+
+/**
+ * @brief 设置异常处理器函数A3
+ * 
+ * 该函数负责设置异常处理器，重置系统标志
+ * 
+ * @note 原始函数名：Unwind_1809050e0
+ */
+#define SetupExceptionHandlerAtOffsetE0 Unwind_1809050e0
+
+/**
+ * @brief 设置异常处理器函数A4
+ * 
+ * 该函数负责设置异常处理器，初始化系统状态
+ * 
+ * @note 原始函数名：Unwind_1809050f0
+ */
+#define SetupExceptionHandlerAtOffsetF0 Unwind_1809050f0
+
+/**
+ * @brief 设置异常处理器函数A5
+ * 
+ * 该函数负责设置异常处理器，验证系统配置
+ * 
+ * @note 原始函数名：Unwind_1809051a0
+ */
+#define SetupExceptionHandlerAtOffset1A0 Unwind_1809051a0
+
+/**
+ * @brief 设置异常处理器函数A6
+ * 
+ * 该函数负责设置异常处理器，激活处理程序
+ * 
+ * @note 原始函数名：Unwind_1809051d0
+ */
+#define SetupExceptionHandlerAtOffset1D0 Unwind_1809051d0
+
+/**
+ * @brief 设置异常处理器函数A7
+ * 
+ * 该函数负责设置异常处理器，配置处理参数
+ * 
+ * @note 原始函数名：Unwind_1809051e0
+ */
+#define SetupExceptionHandlerAtOffset1E0 Unwind_1809051e0
+
+/**
+ * @brief 设置异常处理器函数A8
+ * 
+ * 该函数负责设置异常处理器，执行初始化操作
+ * 
+ * @note 原始函数名：Unwind_1809051f0
+ */
+#define SetupExceptionHandlerAtOffset1F0 Unwind_1809051f0
+
+/**
+ * @brief 清理资源函数A3
+ * 
+ * 该函数负责清理系统资源，释放内存和句柄
+ * 
+ * @note 原始函数名：Unwind_180905360
+ */
+#define CleanupResourceAtOffset360 Unwind_180905360
+
+/**
+ * @brief 清理资源函数A4
+ * 
+ * 该函数负责清理系统资源，释放内存和句柄
+ * 
+ * @note 原始函数名：Unwind_180905370
+ */
+#define CleanupResourceAtOffset370 Unwind_180905370
+
+/**
+ * @brief 清理资源函数A5
+ * 
+ * 该函数负责清理系统资源，释放内存和句柄
+ * 
+ * @note 原始函数名：Unwind_180905380
+ */
+#define CleanupResourceAtOffset380 Unwind_180905380
+
+/**
+ * @brief 执行异常处理回调函数A1
+ * 
+ * 该函数负责执行异常处理回调，处理资源清理和状态管理
+ * 
+ * @note 原始函数名：Unwind_180905420
+ */
+#define ExecuteExceptionCallbacksAtOffset420 Unwind_180905420
+
+/**
+ * @brief 执行异常处理回调函数A2
+ * 
+ * 该函数负责执行异常处理回调，处理资源清理和状态管理
+ * 
+ * @note 原始函数名：Unwind_180905430
+ */
+#define ExecuteExceptionCallbacksAtOffset430 Unwind_180905430
+
+/**
+ * @brief 执行异常处理回调函数A3
+ * 
+ * 该函数负责执行异常处理回调，处理资源清理和状态管理
+ * 
+ * @note 原始函数名：Unwind_180905440
+ */
+#define ExecuteExceptionCallbacksAtOffset440 Unwind_180905440
+
+/**
+ * @brief 执行异常处理回调函数A4
+ * 
+ * 该函数负责执行异常处理回调，处理资源清理和状态管理
+ * 
+ * @note 原始函数名：Unwind_180905450
+ */
+#define ExecuteExceptionCallbacksAtOffset450 Unwind_180905450
+
+/**
+ * @brief 执行异常处理回调函数A5
+ * 
+ * 该函数负责执行异常处理回调，处理资源清理和状态管理
+ * 
+ * @note 原始函数名：Unwind_180905460
+ */
+#define ExecuteExceptionCallbacksAtOffset460 Unwind_180905460
+
+/**
+ * @brief 执行异常处理回调函数A6
+ * 
+ * 该函数负责执行异常处理回调，处理资源清理和状态管理
+ * 
+ * @note 原始函数名：Unwind_180905470
+ */
+#define ExecuteExceptionCallbacksAtOffset470 Unwind_180905470
+
+/**
+ * @brief 工具系统处理函数A0
+ * 
+ * 该函数负责处理工具系统操作，管理数据和资源
+ * 
+ * @note 原始函数名：Unwind_1809058a0
+ */
+#define ProcessUtilitySystemOperationAtOffset8A0 Unwind_1809058a0
+
 /**
  * @brief 工具模块配置参数
  */
@@ -49959,7 +50204,7 @@ void Unwind_180904ff0(DataBuffer operationBase,int64_t dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180905000(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupFileHandleAtOffset00(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t *)(dataBuffer + 0x80) != 0) {
@@ -49974,7 +50219,7 @@ void Unwind_180905000(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905010(DataBuffer operationBase,int64_t dataBuffer)
+void SetupExceptionHandlerAtOffset10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0xf8) = &TemporaryExceptionHandler;
@@ -49990,7 +50235,7 @@ void Unwind_180905010(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void ExecuteExceptionCallbacksAtOffset20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -50011,7 +50256,7 @@ void Unwind_180905020(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905030(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupResourceReferenceCountAtOffset30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
