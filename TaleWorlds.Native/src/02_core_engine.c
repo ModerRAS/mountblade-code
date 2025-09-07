@@ -24997,7 +24997,7 @@ void CoreEngineSafeCopyStringData(void* DestinationBuffer,void* SourceBuffer,int
 
 
 
- void CoreEngineCleanupSystemResources(void/**
+ void CoreEngineCleanupSystemResources(void) {
  * @brief 执行内存复制操作
  * 
  * 该函数负责执行内存复制操作，这是一个底层系统函数，
@@ -25009,8 +25009,7 @@ void CoreEngineSafeCopyStringData(void* DestinationBuffer,void* SourceBuffer,int
  * @note 此函数是一个不返回的函数
  * @note 用于底层内存复制操作
  */
-void ExecuteMemoryCopyOperation(void
-{
+void ExecuteMemoryCopyOperation(void) {
                     // WARNING: Subroutine does not return
   memcpy();
 }
@@ -25018,7 +25017,19 @@ void ExecuteMemoryCopyOperation(void
 
 
 
- void CoreEngineProcessCharacterStatusBuffer(uint8_t *CharacterStatusBuffer/**
+ /**
+ * @brief 处理字符状态缓冲区
+ * 
+ * 该函数负责处理字符状态缓冲区的相关操作。
+ * 
+ * @param CharacterStatusBuffer 字符状态缓冲区指针
+ */
+void CoreEngineProcessCharacterStatusBuffer(uint8_t *CharacterStatusBuffer) {
+  // TODO: 实现字符状态缓冲区处理逻辑
+  return;
+}
+
+/**
  * @brief 重置数据缓冲区
  * 
  * 该函数负责重置指定的数据缓冲区，将缓冲区内容清零，
@@ -25030,7 +25041,7 @@ void ExecuteMemoryCopyOperation(void
  * @note 此函数会将缓冲区首字节设为0
  * @note 同时重置缓冲区大小计数器
  */
-void CoreEngineResetCharacterStatusBuffer(uint8_t *CharacterStatusBuffer
+void CoreEngineResetCharacterStatusBuffer(uint8_t *CharacterStatusBuffer)
 {
   *CharacterStatusBuffer = 0;
   *(uint32_t *)((long long)CharacterStatusBuffer + 0x10) = 0;
@@ -80376,7 +80387,7 @@ void SystemDataStructureCleanerEx(void)
 
 
 
-void ProcessSystemDataStructureSwapAndSort(uint64_t *CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer)/**
+/**
  * @brief 处理系统数据结构交换和排序操作
  * 
  * 该函数负责处理系统数据结构的交换和排序操作
@@ -80389,7 +80400,7 @@ void ProcessSystemDataStructureSwapAndSort(uint64_t *CharacterCode,long long Sys
  * 
  * @note 原始函数名: FUN_18009d3a0（已重命名为ProcessSystemDataStructureSwapAndSort）
  */
-void ProcessSystemDataStructureSwapAndSort(uint64_t *CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessSystemDataStructureSwapAndSort(uint64_t *CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   uint64_t MemoryAllocationIndex;
@@ -80614,7 +80625,7 @@ void SystemDataStructureProcessorEx(void)
 
 
 
-void ProcessDataStructurePartitioningAndQuickSort(uint32_t *CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer)/**
+/**
  * @brief 处理数据结构分区和快速排序操作
  * 
  * 该函数负责对数据结构进行分区操作，通过比较和交换数据元素来实现快速排序算法。
@@ -80625,7 +80636,7 @@ void ProcessDataStructurePartitioningAndQuickSort(uint32_t *CharacterCode,long l
  * @param Utf8SourcePointer 保留参数1，用于递归深度控制
  * @param Utf16EndPointer 保留参数2，用于系统上下文
  */
-void ProcessDataStructurePartitioningAndQuickSort(uint32_t *CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessDataStructurePartitioningAndQuickSort(uint32_t *CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
