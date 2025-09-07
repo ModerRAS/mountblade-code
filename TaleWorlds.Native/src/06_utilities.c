@@ -18667,8 +18667,8 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   uint8_t **ppdataFlags;
   int calculatedValue;
   ByteFlag EncryptionKeyBufferA [32];
-  DataWord uStack_308;
-  float afStack_304 [3];
+  DataWord systemConfigurationWord;
+  float colorDataArray [3];
   uint8_t *securityValidationContext;
   int cleanupStepIndex;
   DataBuffer memoryOperationBufferA;
