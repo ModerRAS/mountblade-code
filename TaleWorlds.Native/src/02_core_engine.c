@@ -39,6 +39,7 @@
 #define InitializeCharacterProcessing FUN_180136231        // 初始化字符处理
 #define CleanupCharacterProcessing FUN_18013643d           // 清理字符处理
 #define ResetCharacterEncoder FUN_180136457                // 重置字符编码器
+#define ProcessCharacterInputBufferValidation FUN_180137110  // 处理字符输入缓冲区验证
 
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
@@ -162315,7 +162316,7 @@ void ProcessCharacterBufferSizeValidation(long long CharacterCode, long long *Ut
     }
     if ((1 < (int)Utf8BufferSize[2]) && (*Utf8InputBufferSize != 0)) break;
     if (*(long long *)(CharacterCode + 0x10) != 0) {
-      FUN_1801370a0(*(long long *)(CharacterCode + 0x10),Utf8BufferSize);
+      ProcessCharacterBufferSizeValidation(*(long long *)(CharacterCode + 0x10),Utf8BufferSize);
     }
     CharacterCode = *(long long *)(CharacterCode + 0x18);
     if (CharacterCode == 0) {
