@@ -67812,10 +67812,10 @@ void ProcessUIColorDataAndUpdateContext(longlong uiContext,longlong dataSource,c
   componentType = 0x10;
   colorTableIndex = 3;
   colorIndex = 0;
-  iVar6 = AllocateUIComponentMemory(uiContext,0x6e);
-  if (iVar6 != 0) {
-    iStackX_10 = 4;
-    stackInt68 = 2;
+  memoryAllocationResult = AllocateUIComponentMemory(uiContext,0x6e);
+  if (memoryAllocationResult != 0) {
+    componentType = 4;
+    colorTableIndex = 2;
     iVar6 = AllocateUIComponentMemory(uiContext,0x6f);
     if (iVar6 != 0) {
       stackInt68 = AllocateUIComponentMemory(uiContext,0x96);
@@ -68124,8 +68124,7 @@ void InitializeUIEventHandlingSystem(longlong uiContext)
 
 
 
- void FUN_18069f51a(void)
-void ProcessUIComponentMemoryAllocation(void)
+ void ProcessUIComponentMemoryAllocation(void)
 
 {
   byte isCharacterMatch;
@@ -68206,8 +68205,7 @@ void ProcessUIComponentMemoryAllocation(void)
 
 
 
- void FUN_18069f682(void)
-void UIEmptyOperation(void)
+ void UIEmptyOperation(void)
 
 {
   return;
