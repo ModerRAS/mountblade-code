@@ -200,6 +200,96 @@
 #define ProcessUtf8CharacterConversion ProcessUtf8CharacterConversion
 
 /**
+ * @brief 验证和处理UTF-8编码
+ * 
+ * 该函数负责验证UTF-8编码的有效性并进行相应的处理
+ * 
+ * @note 原始函数名：FUN_18016e450
+ */
+#define ValidateAndProcessUtf8Encoding FUN_18016e450
+
+/**
+ * @brief 转换UTF-8到UTF-16字符
+ * 
+ * 该函数负责将UTF-8编码的字符转换为UTF-16编码
+ * 
+ * @note 原始函数名：FUN_18016e630
+ */
+#define ConvertUtf8ToUtf16Character FUN_18016e630
+
+/**
+ * @brief 处理UTF-8编码缓冲区
+ * 
+ * 该函数负责处理UTF-8编码的缓冲区操作
+ * 
+ * @note 原始函数名：FUN_18016e6a0
+ */
+#define ProcessUtf8EncodingBuffer FUN_18016e6a0
+
+/**
+ * @brief 转换UTF-8字符编码
+ * 
+ * 该函数负责执行UTF-8字符编码的转换操作
+ * 
+ * @note 原始函数名：FUN_18016e850
+ */
+#define ConvertUtf8CharacterEncoding FUN_18016e850
+
+/**
+ * @brief 验证UTF-8编码数据
+ * 
+ * 该函数负责验证UTF-8编码数据的有效性
+ * 
+ * @note 原始函数名：FUN_18016e940
+ */
+#define ValidateUtf8EncodingData FUN_18016e940
+
+/**
+ * @brief 处理UTF-8字符编码状态
+ * 
+ * 该函数负责处理UTF-8字符编码的状态信息
+ * 
+ * @note 原始函数名：FUN_18016e530
+ */
+#define ProcessUtf8CharacterEncodingState FUN_18016e530
+
+/**
+ * @brief 处理UTF-8字符编码转换
+ * 
+ * 该函数负责处理UTF-8字符编码的转换操作
+ * 
+ * @note 原始函数名：FUN_18016e5b0
+ */
+#define ProcessUtf8CharacterEncodingConversion FUN_18016e5b0
+
+/**
+ * @brief 初始化UTF-16字符处理
+ * 
+ * 该函数负责初始化UTF-16字符的处理操作
+ * 
+ * @note 原始函数名：FUN_180167a50
+ */
+#define InitializeUtf16CharacterProcessing FUN_180167a50
+
+/**
+ * @brief 处理临时缓冲区
+ * 
+ * 该函数负责处理临时缓冲区的操作
+ * 
+ * @note 原始函数名：ProcessTemporaryBuffer
+ */
+#define ProcessTemporaryBuffer ProcessTemporaryBuffer
+
+/**
+ * @brief 处理UTF-8编码缓冲区
+ * 
+ * 该函数负责处理UTF-8编码的缓冲区操作，包括内存分配和数据管理
+ * 
+ * @note 原始函数名：FUN_18016e6a0
+ */
+#define ProcessUtf8EncodingBuffer FUN_18016e6a0
+
+/**
  * @brief 初始化系统资源
  * 
  * 该函数负责初始化系统资源模块
@@ -196616,8 +196706,22 @@ uint64_t ProcessUtf8ToUtf16Initialization(uint64_t *Utf8InputBuffer,uint64_t Utf
 
 
 
+/**
+ * @brief 验证和处理UTF-8编码
+ * 
+ * 该函数负责验证UTF-8编码的有效性，并进行相应的处理操作。
+ * 它会检查输入的UTF-8数据，确保编码正确，并进行必要的转换。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 处理结果指针
+ * 
+ * @note 原始函数名：FUN_18016e450
+ */
 uint64_t *
-FUN_18016e450(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ValidateAndProcessUtf8Encoding(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint32_t *StatusBuffer;
   uint32_t MemoryAllocationIndex;
@@ -196643,7 +196747,19 @@ FUN_18016e450(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8Sou
 
 
 
-uint64_t FUN_18016e530(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码状态
+ * 
+ * 该函数负责处理UTF-8字符编码的状态信息，包括状态更新和维护
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return uint64_t 处理结果
+ * 
+ * @note 原始函数名：FUN_18016e530
+ */
+uint64_t ProcessUtf8CharacterEncodingState(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer)
 {
   FUN_1801681e0(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
@@ -196651,7 +196767,19 @@ uint64_t FUN_18016e530(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t U
 
 
 
-uint64_t FUN_18016e5b0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码转换
+ * 
+ * 该函数负责处理UTF-8字符编码的转换操作，确保编码正确转换
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return uint64_t 处理结果
+ * 
+ * @note 原始函数名：FUN_18016e5b0
+ */
+uint64_t ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer)
 {
   FUN_180167f80(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
@@ -196659,8 +196787,21 @@ uint64_t FUN_18016e5b0(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t U
 
 
 
+/**
+ * @brief 转换UTF-8到UTF-16字符
+ * 
+ * 该函数负责将UTF-8编码的字符转换为UTF-16编码，处理字符编码转换
+ * 
+ * @param CharacterCode 字符代码
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t 转换结果
+ * 
+ * @note 原始函数名：FUN_18016e630
+ */
 uint64_t
-FUN_18016e630(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ConvertUtf8ToUtf16Character(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t Utf16Char;
   uint32_t MemoryAllocationIndex;
@@ -196668,7 +196809,7 @@ FUN_18016e630(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8Source
   
   UnicodeCodePoint = 0xfffffffffffffffe;
   MemoryAllocationIndex = 0;
-  Utf16Char = FUN_180167a50();
+  Utf16Char = InitializeUtf16CharacterProcessing();
   ProcessTemporaryBuffer(CharacterCode,Utf16Char,Utf8SourcePointer,Utf16EndPointer,MemoryAllocationIndex,UnicodeCodePoint);
   return CharacterCode;
 }
@@ -196676,8 +196817,22 @@ FUN_18016e630(uint64_t CharacterCode,uint64_t Utf8BufferSize,uint64_t Utf8Source
 
 
 
+/**
+ * @brief 处理UTF-8编码缓冲区
+ * 
+ * 该函数负责处理UTF-8编码的缓冲区操作，包括内存分配、数据管理和
+ * 缓冲区初始化等操作。它会确保UTF-8编码数据的正确处理和管理。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 处理结果指针
+ * 
+ * @note 原始函数名：FUN_18016e6a0
+ */
 uint64_t *
-FUN_18016e6a0(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t *Utf8SourcePointer,long long *Utf16EndPointer
+ProcessUtf8EncodingBuffer(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t *Utf8SourcePointer,long long *Utf16EndPointer)
 {
   uint32_t *StatusBuffer;
   uint64_t MemoryAllocationIndex;
