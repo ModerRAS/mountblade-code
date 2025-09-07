@@ -78711,7 +78711,18 @@ void CleanupDataBufferAtOffsetE0A0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809099b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 默认异常处理器设置函数A1
+ * 
+ * 该函数在数据缓冲区的指定偏移量处设置默认异常处理器B。
+ * 主要用于系统异常处理机制的配置和管理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809099b0
+ */
+void SetDefaultExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0xe0) + 0x50) = &DefaultExceptionHandlerB;
