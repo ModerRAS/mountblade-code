@@ -173638,7 +173638,14 @@ void ProcessSystemMemoryAllocationAndCopy64(void)
 
 
 
-3e74d(voidvoid FUN_18013e74d(void
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数执行空操作，直接返回，用于系统初始化或清理过程中的占位操作
+ * 
+ * @note 原始函数名：FUN_18013e74d
+ */
+void SystemNullOperation(void)
 {
   return;
 }
