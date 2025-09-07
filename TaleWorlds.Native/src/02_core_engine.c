@@ -181993,39 +181993,39 @@ uint64_t * AllocateCharacterSystemMemory(uint64_t *CharacterCode, long long Syst
  */
 void ProcessSystemBufferInitialization(long long *CharacterCode, unsigned long long SystemBufferSize)
 {
-  long long PrimaryDataSize;
-  uint32_t *PrimaryProcessingStatusFlag;
-  uint32_t *systemEventTemplatePointer;
-  long long SystemDataRegistry;
+  long long BufferAllocationSize;
+  uint32_t *NewBufferPointer;
+  uint32_t *DestinationIterator;
+  long long SourceDataStart;
   
-  SystemDataRegistry = *CharacterCode;
-  if ((unsigned long long)((CharacterCode[2] - SystemDataRegistry) / 0xc) < SystemBufferSize) {
+  SourceDataStart = *CharacterCode;
+  if ((unsigned long long)((CharacterCode[2] - SourceDataStart) / 0xc) < SystemBufferSize) {
     if (SystemBufferSize == 0) {
-      PrimaryProcessingStatusFlag = (uint32_t *)0x0;
+      NewBufferPointer = (uint32_t *)0x0;
     }
     else {
-      PrimaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,SystemBufferSize * 0xc,(char)CharacterCode[3]);
-      SystemDataRegistry = *CharacterCode;
+      NewBufferPointer = (uint32_t *)BufferAllocate(MemoryPoolManager, SystemBufferSize * 0xc, (char)CharacterCode[3]);
+      SourceDataStart = *CharacterCode;
     }
     CharacterTablePointer = CharacterCode[1];
-    systemEventTemplatePointer = PrimaryProcessingStatusFlag;
-    if (SystemDataRegistry != CharacterTablePointer) {
-      SystemDataRegistry = SystemDataRegistry - (long long)PrimaryProcessingStatusFlag;
+    DestinationIterator = NewBufferPointer;
+    if (SourceDataStart != CharacterTablePointer) {
+      SourceDataStart = SourceDataStart - (long long)NewBufferPointer;
       do {
-        *systemEventTemplatePointer = *(uint32_t *)(SystemDataRegistry + (long long)systemEventTemplatePointer);
-        systemEventTemplatePointer[1] = *(uint32_t *)(SystemDataRegistry + 4 + (long long)systemEventTemplatePointer);
-        systemEventTemplatePointer[2] = *(uint32_t *)(SystemDataRegistry + 8 + (long long)systemEventTemplatePointer);
-        systemEventTemplatePointer = systemEventTemplatePointer + 3;
-      } while (SystemDataRegistry + (long long)systemEventTemplatePointer != CharacterTablePointer);
-      SystemDataRegistry = *CharacterCode;
+        *DestinationIterator = *(uint32_t *)(SourceDataStart + (long long)DestinationIterator);
+        DestinationIterator[1] = *(uint32_t *)(SourceDataStart + 4 + (long long)DestinationIterator);
+        DestinationIterator[2] = *(uint32_t *)(SourceDataStart + 8 + (long long)DestinationIterator);
+        DestinationIterator = DestinationIterator + 3;
+      } while (SourceDataStart + (long long)DestinationIterator != CharacterTablePointer);
+      SourceDataStart = *CharacterCode;
     }
-    if (SystemDataRegistry != 0) {
-                    // WARNING: Subroutine does not return
-      CoreEngineFreeSystemMemory(SystemDataRegistry);
+    if (SourceDataStart != 0) {
+      // WARNING: Subroutine does not return
+      CoreEngineFreeSystemMemory(SourceDataStart);
     }
-    *CharacterCode = (long long)PrimaryProcessingStatusFlag;
-    CharacterCode[1] = (long long)systemEventTemplatePointer;
-    CharacterCode[2] = (long long)(PrimaryProcessingStatusFlag + SystemBufferSize * 3);
+    *CharacterCode = (long long)NewBufferPointer;
+    CharacterCode[1] = (long long)DestinationIterator;
+    CharacterCode[2] = (long long)(NewBufferPointer + SystemBufferSize * 3);
   }
   return;
 }
