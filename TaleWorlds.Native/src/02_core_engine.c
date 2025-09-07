@@ -126800,7 +126800,18 @@ uint8_t CheckMemorySystemStatus(void
 
 
 
-85e0(voidvoid FUN_1801285e0(void
+/**
+ * @brief 处理系统字符串和编码转换
+ * 
+ * 该函数负责处理系统字符串和编码转换操作，包括：
+ * - 处理字符串缓冲区和字符字节计数
+ * - 计算和过滤浮点数值
+ * - 管理内存分配和字符编码转换
+ * - 处理系统校验和和循环计数器
+ * 
+ * @note 原始函数名：FUN_1801285e0
+ */
+void ProcessSystemStringAndEncodingConversion(void)
 {
   char *StringBuffer;
   int *pCharacterByteCount;
@@ -126979,7 +126990,19 @@ uint8_t CheckMemorySystemStatus(void
 
 
 
-862b(uint64_t CharacterCodevoid FUN_18012862b(uint64_t CharacterCode
+/**
+ * @brief 处理字符代码相关的系统操作
+ * 
+ * 该函数负责处理字符代码相关的系统操作，包括：
+ * - 处理系统上下文中的浮点数值
+ * - 执行内存匹配操作
+ * - 管理数据结构计数器
+ * - 处理内存分配和字符代码转换
+ * 
+ * @param CharacterCode 输入的字符代码
+ * @note 原始函数名：FUN_18012862b
+ */
+void ProcessCharacterCodeSystemOperations(uint64_t CharacterCode)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
