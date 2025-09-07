@@ -60,6 +60,11 @@
 #define ProcessCharacterCodeLookup FUN_180138e60               // 处理字符代码查找
 #define ProcessCharacterDataProcessing FUN_18011cf80           // 处理字符数据处理
 #define ProcessSystemEventEx FUN_18011d200                       // 处理系统事件扩展
+#define ProcessCharacterEncodingValidation FUN_18013a3d0        // 处理字符编码验证
+#define ProcessSystemMemoryCleanup FUN_18013a851                 // 处理系统内存清理
+#define ProcessCharacterEncodingConversion FUN_18013a860        // 处理字符编码转换
+#define ProcessSystemDataLookup FUN_18012e350                    // 处理系统数据查找
+#define ProcessSystemCharacterValidation FUN_180112630           // 处理系统字符验证
 
 // UTF-8到UTF-16转换处理函数
 #define ProcessUtf8ToUtf16ConversionInitial FUN_18016eeb0  // 初始UTF-8到UTF-16转换处理
@@ -165472,7 +165477,7 @@ LAB_180139b2f:
             }
             LoopIndex = LongArrayStack1[SystemContextValue];
             ProcessCharacterDataProcessing(LoopIndex,&FloatStack1,SystemChecksum,FilterInputValue);
-            FUN_18011d200(LoopIndex,&FloatStack1,SystemChecksum,*SystemCharacterStatusPointer,0,0);
+            ProcessSystemEventEx(LoopIndex,&FloatStack1,SystemChecksum,*SystemCharacterStatusPointer,0,0);
             ContextSecondaryFloat1 = FloatStack7;
             ContextPrimaryFloat9 = FloatStack6;
             ContextSecondaryFloat0 = (float)FloatStack1;
@@ -165815,7 +165820,7 @@ LAB_18013a7a6:
 
 
 
-3a3d0(long long CharacterCode,uint32_t *Utf8InputBufferSize,long long Utf8SourcePointervoid FUN_18013a3d0(long long CharacterCode,uint32_t *Utf8InputBufferSize,long long Utf8SourcePointer
+void ProcessCharacterEncodingValidation(long long CharacterCode,uint32_t *Utf8InputBufferSize,long long Utf8SourcePointer
 {
   uint32_t Utf16Char;
   uint32_t MemoryAllocationIndex;
@@ -166201,7 +166206,7 @@ LAB_18013a7a6:
 
 
 
-3a851(voidvoid FUN_18013a851(void
+void ProcessSystemMemoryCleanup(void
 {
   return;
 }

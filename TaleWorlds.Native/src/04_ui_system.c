@@ -9480,23 +9480,23 @@ LAB_1806577da:
     plocalLong4 = (longlong *)GetUIComponentContext(bufferSize);
     if (*(int *)(resultPointer + 0x10) != 0) {
       if ((int)bufferSize[6] != 0) {
-        pbVar5 = *(byte **)(resultPointer + 8);
-        localLong9 = bufferSize[5] - (longlong)pbVar5;
+        StringDataPointer = *(byte **)(resultPointer + 8);
+        localLong9 = bufferSize[5] - (longlong)StringDataPointer;
         do {
-          isCharacterMatch = *pbVar5;
-          eventTypeCode = (uint)pbVar5[localLong9];
+          isCharacterMatch = *StringDataPointer;
+          eventTypeCode = (uint)StringDataPointer[localLong9];
           if (isCharacterMatch != eventTypeCode) break;
-          pbVar5 = pbVar5 + 1;
+          StringDataPointer = StringDataPointer + 1;
         } while (eventTypeCode != 0);
         if ((int)(isCharacterMatch - eventTypeCode) < 1) goto LAB_1806577f1;
       }
       if ((int)plocalLong4[6] != 0) {
-        pbVar5 = (byte *)plocalLong4[5];
-        pallocatedMemory0 = (longlong *)(*(longlong *)(resultPointer + 8) - (longlong)pbVar5);
+        StringDataPointer = (byte *)plocalLong4[5];
+        pallocatedMemory0 = (longlong *)(*(longlong *)(resultPointer + 8) - (longlong)StringDataPointer);
         do {
-          isCharacterMatch = *pbVar5;
-          uiContext = (ulonglong)pbVar5[(longlong)pallocatedMemory0];
-          eventTypeCode = (uint)pbVar5[(longlong)pallocatedMemory0];
+          isCharacterMatch = *StringDataPointer;
+          uiContext = (ulonglong)StringDataPointer[(longlong)pallocatedMemory0];
+          eventTypeCode = (uint)StringDataPointer[(longlong)pallocatedMemory0];
           if (isCharacterMatch != eventTypeCode) break;
           pbVar5 = pbVar5 + 1;
         } while (eventTypeCode != 0);
