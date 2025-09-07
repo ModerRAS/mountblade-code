@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// CONCAT函数语义化宏定义
+#define CONCAT44(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
+#define CONCAT71(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
+
 // 系统常量定义
 #define DefaultSystemDataAddress 0x18
 #define ComponentHandleOffset 0x10
@@ -80000,7 +80004,24 @@ void Unwind_18090d0a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d0b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源清理函数A0
+ * 
+ * 该函数负责清理指定数据缓冲区中的资源，主要执行以下操作：
+ * - 从数据缓冲区中获取资源指针
+ * - 验证内存基地址的有效性
+ * - 计算资源在内存中的偏移量
+ * - 减少资源的引用计数
+ * - 当引用计数为0时，触发异常处理
+ * 
+ * @param operationBase 操作基地址（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含要清理的资源信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090d0b0
+ * @note 这是一个资源清理函数，用于释放和清理系统资源
+ */
+void CleanupResourceA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -99856,7 +99877,14 @@ void InitializeGlobalDataPointerA5(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942040(void)
+/**
+ * @brief 初始化全局数据指针A6
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180942040
+ */
 void InitializeGlobalDataPointerA6(void)
 
 {
@@ -99869,9 +99897,14 @@ void InitializeGlobalDataPointerA6(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942060(void)
-// 设置默认异常处理器函数A5
-// 功能：设置默认异常处理器A5，初始化异常处理器B
+/**
+ * @brief 设置默认异常处理器A5
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180942060
+ */
 void SetDefaultExceptionHandlerA5(void)
 
 {
@@ -99884,9 +99917,14 @@ void SetDefaultExceptionHandlerA5(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942080(void)
-// 设置默认异常处理器函数A6
-// 功能：设置默认异常处理器A6，初始化异常处理器B
+/**
+ * @brief 设置默认异常处理器A6
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180942080
+ */
 void SetDefaultExceptionHandlerA6(void)
 
 {
@@ -99899,7 +99937,14 @@ void SetDefaultExceptionHandlerA6(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9420a0(void)
+/**
+ * @brief 设置默认异常处理器A7
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_1809420a0
+ */
 void SetDefaultExceptionHandlerA7(void)
 
 {
