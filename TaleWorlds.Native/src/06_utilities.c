@@ -75181,7 +75181,7 @@ void SetExceptionDataTable6A0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809099d0(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateDataHandlerAtOffsetD0A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x58) & 1) != 0) {
