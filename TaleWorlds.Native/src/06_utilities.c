@@ -7010,9 +7010,9 @@ uint8_t UtilityCompactMemoryHeap;
 // 工具系统压缩内存堆状态变量
 uint8_t UtilityCompactHeapPrimaryStatus;
 uint8_t UtilityCompactHeapPrimaryData;
-uint8_t UtilityCompactHeapData2;
-uint8_t UtilityCompactHeapData3;
-uint8_t UtilityCompactHeapData4;
+uint8_t UtilityCompactHeapSecondaryData;
+uint8_t UtilityCompactHeapTertiaryData;
+uint8_t UtilityCompactHeapQuaternaryData;
 
 // 函数: uint8_t UtilityValidateMemoryHeap;
 // 
@@ -7026,11 +7026,11 @@ uint8_t UtilityCompactHeapData4;
 //   uint8_t - 验证结果状态
 uint8_t UtilityValidateMemoryHeap;
 // 工具系统验证内存堆状态变量
-uint8_t UtilityValidateHeapStatus1;
-uint8_t UtilityValidateHeapData1;
-uint8_t UtilityValidateHeapData2;
-uint8_t UtilityValidateHeapData3;
-uint8_t UtilityValidateHeapData4;
+uint8_t UtilityValidateHeapPrimaryStatus;
+uint8_t UtilityValidateHeapPrimaryData;
+uint8_t UtilityValidateHeapSecondaryData;
+uint8_t UtilityValidateHeapTertiaryData;
+uint8_t UtilityValidateHeapQuaternaryData;
 
 // 函数: uint8_t UtilityLockMemoryHeap;
 // 
@@ -7044,20 +7044,20 @@ uint8_t UtilityValidateHeapData4;
 //   uint8_t - 锁定结果状态
 uint8_t UtilityLockMemoryHeap;
 // 工具系统锁定内存堆状态变量
-uint8_t UtilityLockHeapStatus1;
-uint8_t UtilityLockHeapData1;
-uint8_t UtilityLockHeapData2;
-uint8_t UtilityLockHeapData3;
-uint8_t UtilityLockHeapData4;
-uint8_t UtilityLockHeapControl1;
+uint8_t UtilityLockHeapPrimaryStatus;
+uint8_t UtilityLockHeapPrimaryData;
+uint8_t UtilityLockHeapSecondaryData;
+uint8_t UtilityLockHeapTertiaryData;
+uint8_t UtilityLockHeapQuaternaryData;
+uint8_t UtilityLockHeapPrimaryControl;
 
 // 函数: uint8_t UtilityUnlockMemoryHeap;
 // 解锁内存堆，允许其他线程访问
 uint8_t UtilityUnlockMemoryHeap;
 // 工具系统解锁内存堆数据变量
-uint8_t UtilityUnlockHeapData1;
-uint8_t UtilityUnlockHeapData2;
-uint8_t UtilityUnlockHeapData3;
+uint8_t UtilityUnlockHeapPrimaryData;
+uint8_t UtilityUnlockHeapSecondaryData;
+uint8_t UtilityUnlockHeapTertiaryData;
 uint8_t UtilityUnlockHeapData4;
 uint8_t UtilityUnlockHeapStatus1;
 
