@@ -12990,16 +12990,29 @@ void SystemReturnEmptyFunctionTertiary(void)
 
 
 
-// 函数: DataBuffer ValidateContextAndTerminate(int64_t contextHandle)
-// 
-// 验证上下文并终止进程函数
-// 验证上下文句柄并在特定条件下终止进程
-// 
-// 参数:
-//   contextHandle - 上下文句柄，包含验证信息
-// 
-// 返回值:
-//   DataBuffer - 返回操作结果或错误代码
+/**
+ * @brief 验证上下文并终止进程
+ * 
+ * 该函数负责验证系统上下文的有效性，并在检测到特定条件时触发进程终止。
+ * 函数首先查询系统数据以获取上下文信息，然后进行一系列验证检查，
+ * 最后根据验证结果决定是否终止进程执行。
+ * 
+ * 函数执行流程：
+ * 1. 查询系统数据获取上下文缓冲区
+ * 2. 验证上下文句柄的有效性
+ * 3. 在特定条件下调用进程终止函数
+ * 
+ * @param contextHandle 上下文句柄，包含系统验证和进程管理所需的参数
+ * 
+ * @return DataBuffer 验证状态码
+ *         - 成功：返回0表示验证通过但不需要终止进程
+ *         - 失败：返回非0错误码，表示验证失败或进程已终止
+ * 
+ * @note 该函数在某些条件下不会返回，会调用TerminateProcessWithSystemError函数
+ * @note 原始函数名：FUN_180890b40
+ * 
+ * @see QueryAndRetrieveSystemDataA0, TerminateProcessWithSystemError
+ */
 DataBuffer ValidateContextAndTerminate(int64_t contextHandle)
 
 {
