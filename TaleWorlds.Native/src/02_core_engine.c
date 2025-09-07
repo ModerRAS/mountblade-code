@@ -125203,9 +125203,9 @@ LAB_180125a82:
     pIsSystemContextValid = pIsSystemContextValid + 1;
   } while (HighByte != 0);
   StackProcessingVariable70 = (unsigned long long)~ProcessingStatusFlag;
-  pcStack_68 = FUN_18013cf40;
-  pcStack_60 = FUN_18013d010;
-  pcStack_58 = FUN_18013d200;
+  pcStack_68 = ExecuteSystemFunctionCodeExecution;
+  pcStack_60 = ProcessSystemCharacterCodeValidation;
+  pcStack_58 = ProcessSystemMemoryBlockAllocation;
   ProcessCharacterEncodingBuffer(CharacterCode + 0x2e18,&CoreEnginePointerBuffer78,pIsSystemContextValid,MemoryAllocationIndex,0xfffffffffffffffe);
   if (SystemConfigurationHandle != 0) {
     *(int *)(SystemConfigurationHandle + 0x3a8) = *(int *)(SystemConfigurationHandle + 0x3a8) + 1;
@@ -125273,8 +125273,8 @@ LAB_180125a82:
   } while (HighByte != 0);
   StackProcessingVariable70 = (unsigned long long)~ProcessingStatusFlag;
   pcStack_68 = (code *)&SystemFunctionCodeExecution;
-  pcStack_60 = FUN_18013c020;
-  pcStack_58 = FUN_18013c4e0;
+  pcStack_60 = ExecuteSystemFunctionInitialization;
+  pcStack_58 = ProcessSystemDataStructureSetup;
   puStackX_20 = TemporaryBuffer;
   ProcessCharacterEncodingBuffer(CharacterCode + 0x2e18,&CoreEnginePointerBuffer78);
   *Utf8InputBuffer = 1;
@@ -169552,7 +169552,7 @@ uint64_t * ProcessUtf8InputBufferAndCreateCharacterStatus(byte *Utf8InputBuffer)
   DataStringLength = *(int *)(MemoryBoundaryEnd + 0x2e28);
   *(int *)(MemoryBoundaryEnd + 0x2e28) = DataStringLength + 1;
   CharacterStatusBuffer2 = (void *)((long long)DataStringLength * 0x38 + *(long long *)(MemoryBoundaryEnd + 0x2e30));
-  ProcessingStatusFlag = FUN_1801210b0(CharacterCode);
+  ProcessingStatusFlag = GetSystemCharacterDataStatus(CharacterCode);
   *CharacterStatusBuffer2 = ProcessingStatusFlag;
   ValidationResult = 0xffffffff;
   HighByte = *Utf8InputBuffer;
@@ -169664,7 +169664,7 @@ uint64_t * ProcessUtf8InputBufferWithChecksum(byte *Utf8InputBuffer)
   DataStringLength = *(int *)(MemoryBoundaryEnd + 0x2e28);
   *(int *)(MemoryBoundaryEnd + 0x2e28) = DataStringLength + 1;
   SystemStatusContext = (void *)((long long)DataStringLength * 0x38 + *(long long *)(MemoryBoundaryEnd + 0x2e30));
-  SystemMemoryAllocationResult = FUN_1801210b0(CharacterCode);
+  SystemMemoryAllocationResult = GetSystemCharacterDataStatus(CharacterCode);
   *SystemStatusContext = SystemMemoryAllocationResult;
   Utf16Char4 = 0xffffffff;
   HighByte = *Utf8InputBuffer;
