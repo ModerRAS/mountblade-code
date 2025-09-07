@@ -8071,38 +8071,38 @@ uint8_t SystemSecurityValidationFlagA18;    // UNK_180a397d8
 uint8_t SystemSecurityValidationFlagA19;    // UNK_180a397e8
 uint8_t SystemSecurityValidationFlagA20;    // UNK_180a397f8
 uint8_t SystemSecurityValidationFlagA21;    // UNK_180a39820
-uint8_t UNK_180a39850;
-uint8_t UNK_180a39864;
-uint8_t UNK_180a39870;
-uint8_t UNK_180a39888;
-uint8_t UNK_180a398a8;
-uint8_t UNK_180a398b8;
-uint8_t UNK_180a398d8;
-uint8_t UNK_180a398f0;
-uint8_t UNK_180a39910;
-uint8_t UNK_180a39920;
-uint8_t UNK_180a39940;
-uint8_t UNK_180a39970;
-uint8_t UNK_180a39988;
-uint8_t UNK_180a399a8;
-uint8_t UNK_180a399c0;
-uint8_t UNK_180a399e0;
-uint8_t UNK_180a399f0;
-uint8_t UNK_180a39a18;
-uint8_t UNK_180a39a28;
-uint8_t UNK_180a39a40;
-uint8_t UNK_180a39a60;
-uint8_t UNK_180a39a70;
-uint8_t UNK_180a39a88;
-uint8_t UNK_180a39aa0;
-uint8_t UNK_180a39ab8;
-uint8_t UNK_180a39ad8;
-uint8_t UNK_180a39af0;
-uint8_t UNK_180a39b00;
-uint8_t UNK_180a39b18;
-uint8_t UNK_180a39b30;
-uint8_t UNK_180a39b48;
-uint8_t UNK_180a39b68;
+uint8_t SystemSecurityValidationFlagA22;    // UNK_180a39850
+uint8_t SystemSecurityValidationFlagA23;    // UNK_180a39864
+uint8_t SystemSecurityValidationFlagA24;    // UNK_180a39870
+uint8_t SystemSecurityValidationFlagA25;    // UNK_180a39888
+uint8_t SystemSecurityValidationFlagA26;    // UNK_180a398a8
+uint8_t SystemSecurityValidationFlagA27;    // UNK_180a398b8
+uint8_t SystemSecurityValidationFlagA28;    // UNK_180a398d8
+uint8_t SystemSecurityValidationFlagA29;    // UNK_180a398f0
+uint8_t SystemSecurityValidationFlagA30;    // UNK_180a39910
+uint8_t SystemSecurityValidationFlagA31;    // UNK_180a39920
+uint8_t SystemSecurityValidationFlagA32;    // UNK_180a39940
+uint8_t SystemSecurityValidationFlagA33;    // UNK_180a39970
+uint8_t SystemSecurityValidationFlagA34;    // UNK_180a39988
+uint8_t SystemSecurityValidationFlagA35;    // UNK_180a399a8
+uint8_t SystemSecurityValidationFlagA36;    // UNK_180a399c0
+uint8_t SystemSecurityValidationFlagA37;    // UNK_180a399e0
+uint8_t SystemSecurityValidationFlagA38;    // UNK_180a399f0
+uint8_t SystemSecurityValidationFlagA39;    // UNK_180a39a18
+uint8_t SystemSecurityValidationFlagA40;    // UNK_180a39a28
+uint8_t SystemSecurityValidationFlagA41;    // UNK_180a39a40
+uint8_t SystemSecurityValidationFlagA42;    // UNK_180a39a60
+uint8_t SystemSecurityValidationFlagA43;    // UNK_180a39a70
+uint8_t SystemSecurityValidationFlagA44;    // UNK_180a39a88
+uint8_t SystemSecurityValidationFlagA45;    // UNK_180a39aa0
+uint8_t SystemSecurityValidationFlagA46;    // UNK_180a39ab8
+uint8_t SystemSecurityValidationFlagA47;    // UNK_180a39ad8
+uint8_t SystemSecurityValidationFlagA48;    // UNK_180a39af0
+uint8_t SystemSecurityValidationFlagA49;    // UNK_180a39b00
+uint8_t SystemSecurityValidationFlagA50;    // UNK_180a39b18
+uint8_t SystemSecurityValidationFlagA51;    // UNK_180a39b30
+uint8_t SystemSecurityValidationFlagA52;    // UNK_180a39b48
+uint8_t SystemSecurityValidationFlagA53;    // UNK_180a39b68
 uint8_t UNK_180a39b78;
 uint8_t UNK_180a39b88;
 uint8_t UNK_180a39ba0;
@@ -50745,7 +50745,19 @@ void ExecuteExceptionHandlerCallbackA5(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_1809056e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数A6
+ * 
+ * 该函数用于执行异常处理回调函数，通过数据缓冲区中的
+ * 函数指针来调用相应的异常处理逻辑
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_1809056e0
+ */
+void ExecuteExceptionHandlerCallbackA6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -50759,7 +50771,19 @@ void Unwind_1809056e0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905700(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理回调函数A7
+ * 
+ * 该函数用于执行异常处理回调函数，通过数据缓冲区中的
+ * 函数指针来调用相应的异常处理逻辑
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180905700
+ */
+void ExecuteExceptionHandlerCallbackA7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -51303,7 +51327,19 @@ void ExecuteExceptionCallbackChain(DataBuffer chainContext, int64_t callbackChai
 
 
 
-void Unwind_180905870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 执行异常处理和系统终止B
+ * 
+ * 该函数用于执行异常处理操作，遍历验证状态指针数组，
+ * 调用相应的处理函数，并在必要时终止系统
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * @note 原始函数名：Unwind_180905870
+ */
+void ExecuteExceptionHandlingAndTerminateB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -51326,7 +51362,16 @@ void Unwind_180905870(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180905880(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理函数B1
+ * 
+ * 管理资源的引用计数，当引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区
+ * @note 原始函数名：Unwind_180905880
+ */
+void ManageResourceReferenceCountB1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -51362,7 +51407,17 @@ void Unwind_180905880(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180905890(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行数据验证和处理B
+ * 
+ * 该函数用于执行数据验证和处理操作，包括数据偏移计算
+ * 和内存管理操作
+ * 
+ * @param operationBase 操作基础地址
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_180905890
+ */
+void ExecuteDataValidationAndProcessingB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t validationContext;
@@ -92374,7 +92429,7 @@ void Unwind_180911e60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   dataContext = *(int64_t *)(dataBuffer + 0x70);
   validationStatus = SystemCleanupFlagAlternative;
-  FUN_180296b70();
+  InitializeSystemState();
   validationContext = *(int64_t *)(dataContext + 0x2d68);
   if (validationContext != 0) {
     if (ExceptionContextPtr != 0) {
@@ -93171,7 +93226,7 @@ void Unwind_180912200(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   dataContext = *(int64_t *)(dataBuffer + 0x70);
   validationStatus = SystemCleanupFlagAlternative;
-  FUN_180291610();
+  ResetSystemState();
   validationContext = *(int64_t *)(dataContext + 0x390);
   if (validationContext != 0) {
     if (ExceptionContextPtr != 0) {
@@ -93438,7 +93493,7 @@ void Unwind_180912320(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   dataContext = *(int64_t *)(dataBuffer + 0x40);
   validationStatus = SystemCleanupFlagAlternative;
-  FUN_180291610();
+  ResetSystemState();
   validationContext = *(int64_t *)(dataContext + 0x390);
   if (validationContext != 0) {
     if (ExceptionContextPtr != 0) {
@@ -93800,7 +93855,7 @@ void Unwind_1809124f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   
   validationContext = *(int64_t *)(dataBuffer + 0x50);
   operationResult = SystemCleanupFlagAlternative;
-  FUN_18013ea00(*(DataBuffer *)(validationContext + 0x30));
+  ReleaseDataBuffer(*(DataBuffer *)(validationContext + 0x30));
   *(DataBuffer *)(validationContext + 0x30) = 0;
   *(DataBuffer *)(validationContext + 0x18) = 0;
   *(DataBuffer *)(validationContext + 0x10) = 0;
