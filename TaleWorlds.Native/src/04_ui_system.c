@@ -4342,6 +4342,13 @@ undefined UIResourceLoaderOctonary;
  * - 运行时状态监控
  * - 错误恢复验证
  */
+/**
+ * @brief 获取UI状态标志
+ * 
+ * 获取UI系统的当前状态标志，用于检查UI系统的运行状态。
+ * 
+ * @return undefined8 状态标志值，1表示UI系统正常运行
+ */
 undefined8 GetUIStatusFlag(void)
 
 {
@@ -4863,7 +4870,7 @@ void ProcessUIParameters(undefined8 uiContext,undefined8 dataSource,undefined8 t
   uint64_t EncryptionKey;
   
   if (bufferSize != 0) {
-    EncryptionKey = XorEncryptionKey ^ (ulonglong)astackUInt278;
+    EncryptionKey = XorEncryptionKey ^ (ulonglong)encryptionKeyParameter;
     threadLocalStorageFlag = (char *)(*(longlong *)
                        ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 8);
     if (*threadLocalStorageFlag == '\0') {
@@ -7787,6 +7794,18 @@ UIEventTypeString31Check:
 
 
 
+/**
+ * @brief UI事件处理回调函数
+ * 
+ * 处理UI系统中的事件回调，包括事件数据的处理、验证和转换操作。
+ * 该函数负责管理UI事件的整个生命周期，从初始化到最终处理。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含事件数据的来源信息
+ * @param targetBuffer 目标缓冲区指针，用于存储处理后的数据
+ * @param bufferSize 缓冲区大小，指定目标缓冲区的容量
+ * @return ulonglong 处理结果状态码，0表示成功，非0表示错误
+ */
 ulonglong UIProcessEventCallback(undefined8 uiContext,undefined8 dataSource,undefined8 targetBuffer,undefined8 bufferSize)
 
 {
@@ -9102,7 +9121,7 @@ void LoadUIModules(ulonglong *module_list)
   undefined8 *ptrResult;
   undefined8 *psemaphoreHandle;
   char localChar3;
-  undefined8 uVar4;
+  undefined8 eventDataBuffer;
   longlong localLong5;
   undefined8 *ptrLocal6;
   undefined8 *peventTypeCode;
@@ -9206,7 +9225,7 @@ void LoadUIModules(ulonglong *module_list)
       stackUIntc8 = uiBufferSize;
       localChar3 = ValidateUIData(&pstackUIntd8);
       if (localChar3 != '\0') {
-        uVar4 = ManageUIContext(&pstackUIntd8);
+        eventDataBuffer = ManageUIContext(&pstackUIntd8);
         peventTypeCode = (undefined8 *)uiContext[1];
         if (peventTypeCode < (undefined8 *)uiContext[2]) {
           uiContext[1] = (ulonglong)(peventTypeCode + 1);

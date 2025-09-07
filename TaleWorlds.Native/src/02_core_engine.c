@@ -186609,7 +186609,7 @@ LAB_180158671:
   pSystemPriorityLevel = &ThreadLocalStorageTemplate;
 LAB_180158962:
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+  CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
 }
 
 
@@ -200288,7 +200288,7 @@ void ProcessCharacterEncodingStatusAndWindowOperations(long long CharacterCode)
     FUN_180173720(SystemDataStructureRegistry,*(uint32_t *)(CharacterCode + 0x30),*(uint32_t *)(CharacterCode + 0x34),
                   *(uint8_t *)(CharacterCode + 0x38));
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   case 0xd:
     CharacterStatusBuffer = *(void **)(*(long long *)(CharacterCode + 0x20) + 0x150);
     SecondaryProcessingStatusFlag = &CoreEngineDataTemplate;
@@ -200297,57 +200297,83 @@ void ProcessCharacterEncodingStatusAndWindowOperations(long long CharacterCode)
     }
     SetWindowTextA(*(void *)(*(long long *)(CharacterCode + 0x20) + 8),SecondaryProcessingStatusFlag);
                     // WARNING: Subroutine does not return
-    CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+    CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue68);
+  CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
 }
 
 
 
 
-71037(long long CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointervoid FUN_180171037(long long CharacterCode,uint64_t Utf8BufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码和缓冲区管理
+ * 
+ * 该函数负责处理UTF-8字符编码，管理缓冲区操作，包括字符转换、
+ * 缓冲区分配和数据验证等功能。
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_180171037
+ */
+void ProcessUtf8CharacterEncodingAndBufferManagement(long long CharacterCode, uint64_t Utf8BufferSize, long long Utf8SourcePointer)
 {
-  uint in_EAX;
-  code *UNRECOVERED_JUMPTABLE;
-  unsigned long long DataStorageValue;
+  uint FunctionTableIndex;                           // 函数表索引
+  code *FunctionJumpTable;                          // 函数跳转表
+  unsigned long long EncodedStorageValue;             // 编码存储值
   
-  if (in_EAX < 0xb) {
-    UNRECOVERED_JUMPTABLE =
-         (code *)((unsigned long long)*(uint *)(Utf8SourcePointer + 0x17128c + (long long)(int)in_EAX * 4) + Utf8SourcePointer);
+  if (FunctionTableIndex < 0xb) {
+    FunctionJumpTable =
+         (code *)((unsigned long long)*(uint *)(Utf8SourcePointer + 0x17128c + (long long)(int)FunctionTableIndex * 4) + Utf8SourcePointer);
                     // WARNING: Could not recover jumptable at 0x000180171056. Too many branches
                     // WARNING: Treating indirect jump as call
-    (*UNRECOVERED_JUMPTABLE)(*(void *)(CharacterCode + 0x38),UNRECOVERED_JUMPTABLE);
+    (*FunctionJumpTable)(*(void *)(CharacterCode + 0x38),FunctionJumpTable);
     return;
   }
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(EncodedStorageValue ^ (unsigned long long)&StackBaseAddress);
 }
 
 
 
 
-71067(voidvoid FUN_180171067(void
+/**
+ * @brief 系统工具函数执行器A
+ * 
+ * 该函数负责执行系统工具函数，处理系统级别的操作。
+ * 
+ * @note 原始函数名：FUN_180171067
+ */
+void ExecuteSystemUtilityFunctionA(void)
 {
-  unsigned long long DataStorageValue;
+  unsigned long long EncodedStorageValue;                // 编码存储值
   
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(EncodedStorageValue ^ (unsigned long long)&StackBaseAddress);
 }
 
 
 
 
-7107a(voidvoid FUN_18017107a(void
+/**
+ * @brief 光标资源加载和设置函数
+ * 
+ * 该函数负责加载光标资源并设置到指定的数据节点中。
+ * 
+ * @note 原始函数名：FUN_18017107a
+ */
+void LoadCursorResourceAndSetToDataNode(void)
 {
-  uint64_t Utf16Char;
-  long long DataNodeIndex;
-  unsigned long long DataStorageValue;
+  uint64_t CursorResourceHandle;                     // 光标资源句柄
+  long long DataNodePointer;                         // 数据节点指针
+  unsigned long long EncodedStorageValue;            // 编码存储值
   
-  Utf16Char = LoadCursorFromFileA();
-  *(void *)(DataNodeIndex + 0x50) = Utf16Char;
+  CursorResourceHandle = LoadCursorFromFileA();
+  *(void *)(DataNodePointer + 0x50) = CursorResourceHandle;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(DataStorageValue ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(EncodedStorageValue ^ (unsigned long long)&StackBaseAddress);
 }
 
 
