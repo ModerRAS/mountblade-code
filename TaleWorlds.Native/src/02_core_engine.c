@@ -1164,6 +1164,24 @@
 #define ProcessUtf8EncodingStatusSetup FUN_18016f840
 
 /**
+ * @brief 释放UTF-8编码数据
+ * 
+ * 该函数负责释放UTF-8编码数据的资源，包括缓冲区清理和状态重置
+ * 
+ * @note 原始函数名：FUN_18016fbe0
+ */
+#define ReleaseUtf8EncodingData FUN_18016fbe0
+
+/**
+ * @brief 管理UTF-8编码上下文
+ * 
+ * 该函数负责管理UTF-8编码的上下文，包括字符表指针和本地存储数据
+ * 
+ * @note 原始函数名：FUN_18016fcc0
+ */
+#define ManageUtf8EncodingContext FUN_18016fcc0
+
+/**
  * @brief 执行系统编码转换
  * 
  * 该函数负责执行系统编码转换，包括字符集转换
@@ -200367,8 +200385,20 @@ InitializeCoreEngineData(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint6
 
 
 
+/**
+ * @brief 释放UTF-8编码数据
+ * 
+ * 该函数负责释放UTF-8编码数据的资源，包括缓冲区清理和状态重置。
+ * 它会初始化系统事件，清理字符状态缓冲区，并重置内存分配索引。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 返回处理后的字符代码指针
+ */
 uint64_t *
-FUN_18016fbe0(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ReleaseUtf8EncodingData(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint32_t *CharacterStatusBuffer;
   uint32_t MemoryAllocationIndex;
@@ -200394,8 +200424,20 @@ FUN_18016fbe0(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8Sou
 
 
 
+/**
+ * @brief 管理UTF-8编码上下文
+ * 
+ * 该函数负责管理UTF-8编码的上下文，包括字符表指针和本地存储数据。
+ * 它会处理字符表指针的获取，初始化输入缓冲区，并管理线程本地存储数据。
+ * 
+ * @param Utf8InputBuffer UTF-8输入缓冲区指针
+ * @param Utf8BufferSize UTF-8缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 返回处理后的字符代码指针
+ */
 uint64_t *
-FUN_18016fcc0(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t *Utf16EndPointer
+ManageUtf8EncodingContext(uint64_t *Utf8InputBuffer,uint64_t Utf8BufferSize,uint64_t Utf8SourcePointer,uint64_t *Utf16EndPointer
 {
   long long PrimaryDataSize;
   void *puStack_28;
