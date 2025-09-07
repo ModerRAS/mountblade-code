@@ -18929,8 +18929,8 @@ MemoryAllocationLabel:
                     // WARNING: Subroutine does not return
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),dataFlags,&SystemMemoryPoolB,0x100,1);
       }
-      uStack_118 = 0;
-      uStack_110 = 0;
+      StackMemoryBuffer = 0;
+      StackMemoryData = 0;
       dataFlags = 0;
       arrayIndex = 0;
     }
@@ -18944,7 +18944,7 @@ MemoryAllocationLabel:
         }
       }
     }
-    uStack_110 = uStack_110 & SystemCleanupFlag00000000;
+    StackMemoryData = StackMemoryData & SystemCleanupFlag00000000;
     if (arrayIndex < 0) {
       arrayIndex = -arrayIndex;
     }
@@ -19277,9 +19277,9 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
     operationStatus = *(int *)(dataBuffer + 0x220);
     if (operationStatus == 0) {
       validationContextPointer = &DataValidationFlagTable;
-      uStack_270 = 0;
-      uStack_264 = 0;
-      uStack_268 = operationFlagA;
+      StackValidationFlagA = 0;
+      StackValidationOffsetA = 0;
+      StackValidationDataA = operationFlagA;
       InitializeMemory(DataProcessingBufferA,*(DataBuffer *)(dataBuffer + 0x228),0x200);
       ppdataFlags = validationContextPointer;
 SecurityValidationLabel:
