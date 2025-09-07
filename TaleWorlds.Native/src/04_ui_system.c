@@ -141,7 +141,8 @@ typedef enum {
 #define GetUILayoutData FUN_1807079df
 
  // UI系统函数宏定义 - 初始化UI布局系统
-#define CalculateUILayoutMetrics FUN_18069ccd0
+#define InitializeUILayoutSystem FUN_18069ccd0
+#define CalculateUILayoutMetrics FUN_180707aa0
 #define SynchronizeUIResources FUN_18069d8a0
 
 // UI系统函数宏定义 - 验证UI数据并处理缓冲区操作
@@ -73915,100 +73916,105 @@ void ValidateUILayout(void)
 
 
 
-float FUN_180707aa0(float *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
+/**
+ * 计算UI布局度量 - 计算UI布局的度量和误差值
+ * 该函数处理UI布局相关的数学计算，包括坐标变换和误差分析
+ * 返回计算出的总误差值
+ */
+float CalculateUILayoutMetrics(float *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize)
 
 {
-  float floatResult;
+  float contextValue;
   longlong componentIndex;
-  longlong stringCompareIndex;
-  float *pprocessedFloat;
-  longlong EventDataIndex;
-  float *plocalFloat6;
-  float resultFloat;
-  float localFloat8;
-  float localFloat9;
-  float floatResult0;
-  float floatResult1;
-  float floatResult2;
-  float floatResult3;
-  float vectorComponentX;
-  float floatResult5;
+  longlong batchCount;
+  float *outputBuffer;
+  longlong elementCount;
+  float *inputBuffer;
+  float tempValue;
+  float offsetX;
+  float offsetY;
+  float resultX;
+  float resultY;
+  float resultZ;
+  float resultW;
+  float vectorX;
+  float totalError;
   
-  floatResult5 = 0.0;
-  EventDataIndex = (longlong)(bufferSize / 2);
+  totalError = 0.0;
+  elementCount = (longlong)(bufferSize / 2);
   componentIndex = 0;
-  if (3 < EventDataIndex) {
-    pprocessedFloat = (float *)(dataSource + 8);
-    stringCompareIndex = (EventDataIndex - 4U >> 2) + 1;
-    plocalFloat6 = (float *)(targetBuffer + 8);
-    componentIndex = stringCompareIndex * 4;
+  if (3 < elementCount) {
+    outputBuffer = (float *)(dataSource + 8);
+    batchCount = (elementCount - 4U >> 2) + 1;
+    inputBuffer = (float *)(targetBuffer + 8);
+    componentIndex = batchCount * 4;
     do {
-      floatResult = uiContext[1];
-      resultFloat = (plocalFloat6[-2] - *uiContext) * 0.6074371;
-      floatResult1 = *uiContext + resultFloat;
-      *uiContext = resultFloat + plocalFloat6[-2];
-      resultFloat = plocalFloat6[-1];
-      localFloat8 = (resultFloat - floatResult) * 0.15063;
-      localFloat9 = (-resultFloat - uiContext[2]) * 0.15063;
-      floatResult0 = uiContext[2] + floatResult1 + localFloat9;
-      uiContext[1] = localFloat8 + resultFloat;
-      uiContext[2] = localFloat9 - resultFloat;
-      pprocessedFloat[-2] = (floatResult + floatResult1 + localFloat8) * 0.5;
-      floatResult = uiContext[1];
-      resultFloat = (*plocalFloat6 - *uiContext) * 0.6074371;
-      floatResult2 = *uiContext + resultFloat;
-      *uiContext = resultFloat + *plocalFloat6;
-      resultFloat = plocalFloat6[1];
-      localFloat8 = (resultFloat - floatResult) * 0.15063;
-      localFloat9 = (-resultFloat - uiContext[2]) * 0.15063;
-      floatResult1 = uiContext[2] + floatResult2 + localFloat9;
-      uiContext[1] = localFloat8 + resultFloat;
-      uiContext[2] = localFloat9 - resultFloat;
-      pprocessedFloat[-1] = (floatResult + floatResult2 + localFloat8) * 0.5;
-      floatResult = uiContext[1];
-      resultFloat = (plocalFloat6[2] - *uiContext) * 0.6074371;
-      floatResult3 = *uiContext + resultFloat;
-      *uiContext = resultFloat + plocalFloat6[2];
-      resultFloat = plocalFloat6[3];
-      localFloat8 = (resultFloat - floatResult) * 0.15063;
-      uiContext[1] = localFloat8 + resultFloat;
-      localFloat9 = (-resultFloat - uiContext[2]) * 0.15063;
-      floatResult2 = uiContext[2] + floatResult3 + localFloat9;
-      uiContext[2] = localFloat9 - resultFloat;
-      *pprocessedFloat = (floatResult + floatResult3 + localFloat8) * 0.5;
-      floatResult = uiContext[1];
-      resultFloat = (plocalFloat6[4] - *uiContext) * 0.6074371;
-      vectorComponentX = *uiContext + resultFloat;
-      *uiContext = resultFloat + plocalFloat6[4];
-      resultFloat = plocalFloat6[5];
-      plocalFloat6 = plocalFloat6 + 8;
-      localFloat8 = (resultFloat - floatResult) * 0.15063;
-      localFloat9 = (-resultFloat - uiContext[2]) * 0.15063;
-      floatResult3 = uiContext[2] + vectorComponentX + localFloat9;
-      uiContext[1] = localFloat8 + resultFloat;
-      uiContext[2] = localFloat9 - resultFloat;
-      pprocessedFloat[1] = (floatResult + vectorComponentX + localFloat8) * 0.5;
-      pprocessedFloat = pprocessedFloat + 4;
-      floatResult5 = floatResult5 + floatResult0 * floatResult0 + floatResult1 * floatResult1 + floatResult2 * floatResult2 + floatResult3 * floatResult3;
-      stringCompareIndex = stringCompareIndex + -1;
-    } while (stringCompareIndex != 0);
+      contextValue = uiContext[1];
+      tempValue = (inputBuffer[-2] - *uiContext) * 0.6074371;
+      resultX = *uiContext + tempValue;
+      *uiContext = tempValue + inputBuffer[-2];
+      tempValue = inputBuffer[-1];
+      offsetX = (tempValue - contextValue) * 0.15063;
+      offsetY = (-tempValue - uiContext[2]) * 0.15063;
+      resultY = uiContext[2] + resultX + offsetY;
+      uiContext[1] = offsetX + tempValue;
+      uiContext[2] = offsetY - tempValue;
+      outputBuffer[-2] = (contextValue + resultX + offsetX) * 0.5;
+      contextValue = uiContext[1];
+      tempValue = (*inputBuffer - *uiContext) * 0.6074371;
+      resultZ = *uiContext + tempValue;
+      *uiContext = tempValue + *inputBuffer;
+      tempValue = inputBuffer[1];
+      offsetX = (tempValue - contextValue) * 0.15063;
+      offsetY = (-tempValue - uiContext[2]) * 0.15063;
+      resultX = uiContext[2] + resultZ + offsetY;
+      uiContext[1] = offsetX + tempValue;
+      uiContext[2] = offsetY - tempValue;
+      outputBuffer[-1] = (contextValue + resultZ + offsetX) * 0.5;
+      contextValue = uiContext[1];
+      tempValue = (inputBuffer[2] - *uiContext) * 0.6074371;
+      resultW = *uiContext + tempValue;
+      *uiContext = tempValue + inputBuffer[2];
+      tempValue = inputBuffer[3];
+      offsetX = (tempValue - contextValue) * 0.15063;
+      uiContext[1] = offsetX + tempValue;
+      offsetY = (-tempValue - uiContext[2]) * 0.15063;
+      resultZ = uiContext[2] + resultW + offsetY;
+      uiContext[2] = offsetY - tempValue;
+      *outputBuffer = (contextValue + resultW + offsetX) * 0.5;
+      contextValue = uiContext[1];
+      tempValue = (inputBuffer[4] - *uiContext) * 0.6074371;
+      vectorX = *uiContext + tempValue;
+      *uiContext = tempValue + inputBuffer[4];
+      tempValue = inputBuffer[5];
+      inputBuffer = inputBuffer + 8;
+      offsetX = (tempValue - contextValue) * 0.15063;
+      offsetY = (-tempValue - uiContext[2]) * 0.15063;
+      resultW = uiContext[2] + vectorX + offsetY;
+      uiContext[1] = offsetX + tempValue;
+      uiContext[2] = offsetY - tempValue;
+      outputBuffer[1] = (contextValue + vectorX + offsetX) * 0.5;
+      outputBuffer = outputBuffer + 4;
+      totalError = totalError + resultY * resultY + resultX * resultX + resultZ * resultZ + resultW * resultW;
+      batchCount = batchCount + -1;
+    } while (batchCount != 0);
   }
-  for (; componentIndex < EventDataIndex; componentIndex = componentIndex + 1) {
-    floatResult = *(float *)(targetBuffer + componentIndex * 8);
-    resultFloat = uiContext[1];
-    localFloat8 = (floatResult - *uiContext) * 0.6074371;
-    floatResult1 = *uiContext + localFloat8;
-    *uiContext = localFloat8 + floatResult;
-    floatResult = *(float *)(targetBuffer + 4 + componentIndex * 8);
-    localFloat8 = (floatResult - resultFloat) * 0.15063;
-    localFloat9 = (-floatResult - uiContext[2]) * 0.15063;
-    floatResult0 = uiContext[2] + floatResult1 + localFloat9;
-    uiContext[1] = localFloat8 + floatResult;
-    uiContext[2] = localFloat9 - floatResult;
-    *(float *)(dataSource + componentIndex * 4) = (resultFloat + floatResult1 + localFloat8) * 0.5;
-    floatResult5 = floatResult5 + floatResult0 * floatResult0;
+  for (; componentIndex < elementCount; componentIndex = componentIndex + 1) {
+    contextValue = *(float *)(targetBuffer + componentIndex * 8);
+    tempValue = uiContext[1];
+    offsetX = (contextValue - *uiContext) * 0.6074371;
+    resultX = *uiContext + offsetX;
+    *uiContext = offsetX + contextValue;
+    contextValue = *(float *)(targetBuffer + 4 + componentIndex * 8);
+    offsetX = (contextValue - tempValue) * 0.15063;
+    offsetY = (-contextValue - uiContext[2]) * 0.15063;
+    resultY = uiContext[2] + resultX + offsetY;
+    uiContext[1] = offsetX + contextValue;
+    uiContext[2] = offsetY - contextValue;
+    *(float *)(dataSource + componentIndex * 4) = (tempValue + resultX + offsetX) * 0.5;
+    totalError = totalError + resultY * resultY;
   }
-  return floatResult5;
+  return totalError;
 }
 
 
@@ -75674,8 +75680,11 @@ uint UpdateUIResourceAllocation(UIHandle uiContext,UIHandle dataSource,int targe
 
 
 
- void FUN_18070f535(void)
-void FUN_18070f535(void)
+ /**
+ * UI系统空操作函数 - 空操作函数，用于占位或默认处理
+ * 该函数不执行任何操作，直接返回
+ */
+void UINoOperationFunction(void)
 
 {
   return;
