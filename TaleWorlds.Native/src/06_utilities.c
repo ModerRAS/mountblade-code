@@ -119548,33 +119548,67 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：解锁系统互斥锁并处理相关错误
 #define UnlockSystemMutexAndHandleErrorA0 Unwind_180909970
 
-// 原始函数名：Unwind_180909980 - 设置默认异常处理器函数A0
-// 功能：在偏移量1D0处设置默认异常处理器
+/**
+ * @brief 设置默认异常处理器函数A0
+ * 
+ * 该函数负责在偏移量1D0处设置默认异常处理器。
+ * 
+ * @note 原始函数名：Unwind_180909980
+ */
 #define SetDefaultExceptionHandlerAtOffset1D0A0 Unwind_180909980
 
-// 原始函数名：Unwind_180909990 - 设置异常数据表指针函数A0
-// 功能：设置异常数据表的指针
+/**
+ * @brief 设置异常数据表指针函数A0
+ * 
+ * 该函数负责设置异常数据表的指针。
+ * 
+ * @note 原始函数名：Unwind_180909990
+ */
 #define SetExceptionDataTablePointersA0 Unwind_180909990
 
-// 原始函数名：Unwind_1809099a0 - 清理偏移量E0处数据缓冲区函数A0
-// 功能：清理偏移量E0处的数据缓冲区
+/**
+ * @brief 清理偏移量E0处数据缓冲区函数A0
+ * 
+ * 该函数负责清理偏移量E0处的数据缓冲区。
+ * 
+ * @note 原始函数名：Unwind_1809099a0
+ */
 #define CleanupDataBufferAtOffsetE0A0 Unwind_1809099a0
 
-// 原始函数名：Unwind_180907800 - 系统状态更新处理函数A0
-// 功能：处理系统状态更新操作
+/**
+ * @brief 系统状态更新处理函数A0
+ * 
+ * 该函数负责处理系统状态更新操作。
+ * 
+ * @note 原始函数名：Unwind_180907800
+ */
 #define ProcessSystemStatusUpdateA0 Unwind_180907800
 
-// 异常处理器状态管理函数定义
-// 原始函数名：Unwind_180910ee0 - 异常处理器状态重置函数
-// 功能：重置异常处理器的状态，清理异常处理上下文并设置默认处理器
+/**
+ * @brief 异常处理器状态重置函数
+ * 
+ * 该函数负责重置异常处理器的状态，清理异常处理上下文并设置默认处理器。
+ * 
+ * @note 原始函数名：Unwind_180910ee0
+ */
 #define ResetExceptionHandlerStates Unwind_180910ee0
 
-// 原始函数名：Unwind_180910f00 - 异常处理器上下文清理函数
-// 功能：清理异常处理器上下文，重置相关状态和处理器指针
+/**
+ * @brief 异常处理器上下文清理函数
+ * 
+ * 该函数负责清理异常处理器上下文，重置相关状态和处理器指针。
+ * 
+ * @note 原始函数名：Unwind_180910f00
+ */
 #define CleanupExceptionHandlerContext Unwind_180910f00
 
-// 原始函数名：Unwind_180910f20 - 异常处理器最终清理函数
-// 功能：执行异常处理器的最终清理操作，重置状态并设置默认处理器
+/**
+ * @brief 异常处理器最终清理函数
+ * 
+ * 该函数负责执行异常处理器的最终清理操作，重置状态并设置默认处理器。
+ * 
+ * @note 原始函数名：Unwind_180910f20
+ */
 #define FinalizeExceptionHandlerCleanup Unwind_180910f20
 
 // 工具系统异常处理函数定义
@@ -119598,52 +119632,112 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：清理系统资源，释放内存和处理器资源
 #define CleanupSystemResources Unwind_180908780
 
-// 原始函数名：Unwind_180908790 - 异常状态重置函数
-// 功能：重置异常状态，清理异常处理上下文
+/**
+ * @brief 异常状态重置函数
+ * 
+ * 该函数负责重置异常状态，清理异常处理上下文。
+ * 
+ * @note 原始函数名：Unwind_180908790
+ */
 #define ResetExceptionState Unwind_180908790
 
-// 原始函数名：Unwind_1809087a0 - 系统状态验证函数
-// 功能：验证系统状态的一致性和完整性
+/**
+ * @brief 系统状态验证函数
+ * 
+ * 该函数负责验证系统状态的一致性和完整性。
+ * 
+ * @note 原始函数名：Unwind_1809087a0
+ */
 #define ValidateSystemState Unwind_1809087a0
 
-// 原始函数名：Unwind_1809087b0 - 系统数据清理函数
-// 功能：清理系统数据，释放数据缓冲区
+/**
+ * @brief 系统数据清理函数
+ * 
+ * 该函数负责清理系统数据，释放数据缓冲区。
+ * 
+ * @note 原始函数名：Unwind_1809087b0
+ */
 #define CleanupSystemData Unwind_1809087b0
 
-// 原始函数名：Unwind_1809087c0 - 系统内存管理函数
-// 功能：管理系统内存分配和释放
+/**
+ * @brief 系统内存管理函数
+ * 
+ * 该函数负责管理系统内存分配和释放。
+ * 
+ * @note 原始函数名：Unwind_1809087c0
+ */
 #define ManageSystemMemory Unwind_1809087c0
 
-// 原始函数名：Unwind_18090af90 - 异常上下文处理器清理函数A0
-// 功能：清理异常上下文处理器，处理异常数据缓冲区
+/**
+ * @brief 异常上下文处理器清理函数A0
+ * 
+ * 该函数负责清理异常上下文处理器，处理异常数据缓冲区。
+ * 
+ * @note 原始函数名：Unwind_18090af90
+ */
 #define CleanupExceptionHandlerContextA0 Unwind_18090af90
 
-// 原始函数名：Unwind_18090afb0 - 异常上下文处理器清理函数A1
-// 功能：清理异常上下文处理器，处理异常数据缓冲区
+/**
+ * @brief 异常上下文处理器清理函数A1
+ * 
+ * 该函数负责清理异常上下文处理器，处理异常数据缓冲区。
+ * 
+ * @note 原始函数名：Unwind_18090afb0
+ */
 #define CleanupExceptionHandlerContextA1 Unwind_18090afb0
 
-// 原始函数名：Unwind_18090afd0 - 异常上下文处理器清理函数A2
-// 功能：清理异常上下文处理器，处理异常数据缓冲区
+/**
+ * @brief 异常上下文处理器清理函数A2
+ * 
+ * 该函数负责清理异常上下文处理器，处理异常数据缓冲区。
+ * 
+ * @note 原始函数名：Unwind_18090afd0
+ */
 #define CleanupExceptionHandlerContextA2 Unwind_18090afd0
 
-// 原始函数名：Unwind_18090aff0 - 异常上下文处理器清理函数A3
-// 功能：清理异常上下文处理器，处理异常数据缓冲区
+/**
+ * @brief 异常上下文处理器清理函数A3
+ * 
+ * 该函数负责清理异常上下文处理器，处理异常数据缓冲区。
+ * 
+ * @note 原始函数名：Unwind_18090aff0
+ */
 #define CleanupExceptionHandlerContextA3 Unwind_18090aff0
 
-// 原始函数名：Unwind_18090b010 - 异常上下文处理器清理函数A4
-// 功能：清理异常上下文处理器，处理异常数据缓冲区
+/**
+ * @brief 异常上下文处理器清理函数A4
+ * 
+ * 该函数负责清理异常上下文处理器，处理异常数据缓冲区。
+ * 
+ * @note 原始函数名：Unwind_18090b010
+ */
 #define CleanupExceptionHandlerContextA4 Unwind_18090b010
 
-// 原始函数名：Unwind_1809092b0 - 异常上下文处理器调用函数
-// 功能：调用异常上下文处理器，执行异常处理回调
+/**
+ * @brief 异常上下文处理器调用函数
+ * 
+ * 该函数负责调用异常上下文处理器，执行异常处理回调。
+ * 
+ * @note 原始函数名：Unwind_1809092b0
+ */
 #define InvokeExceptionHandlerCallback Unwind_1809092b0
 
-// 原始函数名：Unwind_1809092d0 - 内存资源验证和清理函数
-// 功能：验证内存资源状态并执行清理操作
+/**
+ * @brief 内存资源验证和清理函数
+ * 
+ * 该函数负责验证内存资源状态并执行清理操作。
+ * 
+ * @note 原始函数名：Unwind_1809092d0
+ */
 #define ValidateAndCleanupMemoryResources Unwind_1809092d0
 
-// 原始函数名：Unwind_1809092e0 - 系统资源释放函数
-// 功能：释放系统资源，清理内存和异常处理器
+/**
+ * @brief 系统资源释放函数
+ * 
+ * 该函数负责释放系统资源，清理内存和异常处理器。
+ * 
+ * @note 原始函数名：Unwind_1809092e0
+ */
 #define ReleaseSystemResources Unwind_1809092e0
 
 // 原始函数名：Unwind_1809092f0 - 异常处理器重置函数
