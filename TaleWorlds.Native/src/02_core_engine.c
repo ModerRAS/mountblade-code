@@ -113207,7 +113207,7 @@ unsigned long long ProcessSystemContextWithQuadParameters(uint64_t CharacterCode
   float TemporaryFloatStack44;
   float StackParameter3;
   uint32_t BufferStorageValue;
-  uint32_t in_stack_000000b8;
+  uint32_t SystemContextPointer;
   uint32_t InputParameter1;
   uint32_t StackParameterC8;
   uint32_t SystemStringBufferE0;
@@ -148623,7 +148623,7 @@ void ProcessSystemBufferStatus(void)
   uint32_t SystemParameter1;
   uint32_t SystemParameter2;
   unsigned long long BufferStorageValue;
-  uint64_t in_stack_000000b8;
+  uint64_t SystemContextPointer;
   
   *(void *)(ProcessingResult + 0x18) = StackFramePointer;
   *(void *)(ProcessingResult + 0x20) = DataNodeIndex;
@@ -148655,7 +148655,7 @@ void ProcessSystemBufferStatus(void)
       MemoryAllocationCounter = MemoryAllocationCounter + 1;
     } while ((int)MemoryAllocationBase < *(int *)(SystemContext + 0x1c68));
   }
-  in_stack_000000b8 = *(void *)(SystemContext + 0x10);
+  SystemContextPointer = *(void *)(SystemContext + 0x10);
   BufferStatus = **(long long **)(SystemContext + 0x1c70);
   BufferStorageValue = SourceIndex;
   if ((*(uint *)(SystemContext + 0x19e8) & 0x400) != 0) {
