@@ -4821,15 +4821,15 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define SystemExceptionCleanupFlag _DAT_180d49258       // 系统异常清理标志
 
 // 系统内存管理全局变量宏定义
-#define SystemMemoryManagerPointer _DAT_180be12f0      // 系统内存管理器指针
-#define MemoryValidationConstantA _DAT_180c4eaa0        // 内存验证常量A
-#define MemoryValidationConstantB _DAT_180c4eaa4        // 内存验证常量B
-#define SystemMemoryPoolA _DAT_18095b500               // 系统内存池A
-#define SystemMemoryPoolB _DAT_180957f70               // 系统内存池B
-#define SystemMemoryPoolC _DAT_1809862d0               // 系统内存池C
-#define SystemMemoryPoolD _DAT_1809869a0               // 系统内存池D
-#define SystemMemoryPoolE _DAT_180986e70               // 系统内存池E
-#define TemporaryExceptionHandler UNK_180a3c3e0         // 临时异常处理器
+#define SystemMemoryManagerPointer GlobalSystemMemoryManager      // 系统内存管理器指针
+#define MemoryValidationConstantA GlobalMemoryValidationConstantA        // 内存验证常量A
+#define MemoryValidationConstantB GlobalMemoryValidationConstantB        // 内存验证常量B
+#define SystemMemoryPoolA GlobalSystemMemoryPoolA               // 系统内存池A
+#define SystemMemoryPoolB GlobalSystemMemoryPoolB               // 系统内存池B
+#define SystemMemoryPoolC GlobalSystemMemoryPoolC               // 系统内存池C
+#define SystemMemoryPoolD GlobalSystemMemoryPoolD               // 系统内存池D
+#define SystemMemoryPoolE GlobalSystemMemoryPoolE               // 系统内存池E
+#define TemporaryExceptionHandler GlobalTemporaryExceptionHandler         // 临时异常处理器
 
 // 系统清理相关变量宏定义
 #define SystemCleanupFlag DAT_180c91d50               // 系统清理标志
@@ -35966,13 +35966,13 @@ void ExceptionContextCleanupHandlerB14(DataBuffer ExceptionContext, int64_t Vali
   int64_t exceptionData;
   
   exceptionData = *(int64_t *)(ValidationContext + 0x70);
-  *(DataBuffer *)(exceptionData + 0x20) = &UNK_180a3cf50;
+  *(DataBuffer *)(exceptionData + 0x20) = &ExceptionHandlerA;
   if (*(char *)(exceptionData + 0xd1) != '\0') {
-    FUN_180639250();
+    ResetSystemStateE0();
   }
   _Mtx_destroy_in_situ();
-  *(DataBuffer *)(exceptionData + 0x20) = &UNK_180a30778;
-  *(DataBuffer *)(exceptionData + 0x58) = &UNK_180a3c3e0;
+  *(DataBuffer *)(exceptionData + 0x20) = &ExceptionHandlerB;
+  *(DataBuffer *)(exceptionData + 0x58) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionData + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -35980,7 +35980,7 @@ void ExceptionContextCleanupHandlerB14(DataBuffer ExceptionContext, int64_t Vali
   *(DataBuffer *)(exceptionData + 0x60) = 0;
   *(DataWord *)(exceptionData + 0x70) = 0;
   *(DataBuffer *)(exceptionData + 0x58) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionData + 0x28) = &UNK_180a3c3e0;
+  *(DataBuffer *)(exceptionData + 0x28) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionData + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -36011,13 +36011,13 @@ void ExceptionContextCleanupHandlerB15(DataBuffer ExceptionContext, int64_t Vali
   int64_t exceptionData;
   
   exceptionData = *(int64_t *)(ValidationContext + 0x70);
-  *(DataBuffer *)(exceptionData + 0xd8) = &UNK_180a3cf50;
+  *(DataBuffer *)(exceptionData + 0xd8) = &ExceptionHandlerA;
   if (*(char *)(exceptionData + 0x189) != '\0') {
-    FUN_180639250();
+    ResetSystemStateE0();
   }
   _Mtx_destroy_in_situ();
-  *(DataBuffer *)(exceptionData + 0xd8) = &UNK_180a30778;
-  *(DataBuffer *)(exceptionData + 0x110) = &UNK_180a3c3e0;
+  *(DataBuffer *)(exceptionData + 0xd8) = &ExceptionHandlerB;
+  *(DataBuffer *)(exceptionData + 0x110) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionData + 0x118) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -36025,7 +36025,7 @@ void ExceptionContextCleanupHandlerB15(DataBuffer ExceptionContext, int64_t Vali
   *(DataBuffer *)(exceptionData + 0x118) = 0;
   *(DataWord *)(exceptionData + 0x128) = 0;
   *(DataBuffer *)(exceptionData + 0x110) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionData + 0xe0) = &UNK_180a3c3e0;
+  *(DataBuffer *)(exceptionData + 0xe0) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionData + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
