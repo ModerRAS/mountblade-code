@@ -72244,7 +72244,19 @@ void ProcessDataArrayOperationA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908d60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据数组操作A1
+ * 
+ * 该函数负责处理指定数据缓冲区中的数组数据，通过调用ProcessDataArrayA0函数
+ * 对数据缓冲区偏移0xc0位置的数据进行数组处理操作。
+ * 
+ * @param operationBase 操作基础缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含要处理的数组数据
+ * 
+ * @note 原始函数名：Unwind_180908d60
+ * @see ProcessDataArrayA0
+ */
+void ProcessDataArrayOperationA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + 0xc0);
@@ -72253,7 +72265,19 @@ void Unwind_180908d60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908d70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据数组操作A2
+ * 
+ * 该函数负责处理指定数据缓冲区中的数组数据，通过调用ProcessDataArrayA0函数
+ * 对数据缓冲区偏移0xc0位置的数据进行数组处理操作。
+ * 
+ * @param operationBase 操作基础缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含要处理的数组数据
+ * 
+ * @note 原始函数名：Unwind_180908d70
+ * @see ProcessDataArrayA0
+ */
+void ProcessDataArrayOperationA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + 0xc0);
@@ -72262,7 +72286,19 @@ void Unwind_180908d70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180908d80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源处理器状态
+ * 
+ * 该函数检查数据缓冲区中的状态标志，如果资源处理器处于活动状态，
+ * 则清除状态标志并执行资源清理操作。
+ * 
+ * @param operationBase 操作基础缓冲区（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含资源状态信息
+ * 
+ * @note 原始函数名：Unwind_180908d80
+ * @see CleanupResourceHandler
+ */
+void CleanupResourceHandlerState(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
