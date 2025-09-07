@@ -837,6 +837,18 @@ const void* const SystemMemoryPoolPointer = (void*)0x18009a070;
 // 系统内存边界常量 - 用于替换UNK_180a0ad90等变量
 const void* const SystemMemoryBoundaryStartAddress = (void*)0x180a0ad90;
 const void* const SystemMemoryBoundaryEndAddress = (void*)0x180a0adf8;
+
+// 系统事件队列数据常量 - 用于替换UNK_180a10710等变量
+const void* const SystemEventQueueDataTablePrimary = (void*)0x180a10710;
+const void* const SystemEventQueueDataTableSecondary = (void*)0x180a10720;
+const void* const SystemEventQueueDataTableTertiary = (void*)0x180a106e8;
+const void* const SystemEventQueueDataTableQuaternary = (void*)0x180a10700;
+const void* const SystemEventQueueDataTableQuinary = (void*)0x180a10750;
+const void* const SystemEventQueueDataTableSenary = (void*)0x180a10760;
+const void* const SystemEventQueueDataTableSeptenary = (void*)0x180a10728;
+const void* const SystemEventQueueDataTableOctonary = (void*)0x180a10740;
+const void* const SystemEventQueueDataTableNonary = (void*)0x180a10798;
+const void* const SystemEventQueueDataTableDenary = (void*)0x180a107b0;
 const void* const SystemMemoryCheckBoundary1 = (void*)0x180a0ae10;
 const void* const SystemMemoryCheckBoundary2 = (void*)0x180a0ae28;
 const void* const SystemMemoryCheckBoundary3 = (void*)0x180a0ae30;
@@ -37982,7 +37994,7 @@ SystemEventMemoryAllocationLabel:
   else if (MemoryAllocationIndex < 0x13) {
     FunctionAddress80 = 0x11;
     SystemEventPointer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,SystemEventPointer,0x13,0x10,0x13);
-    goto SystemEventProcessingLabel;
+    goto LAB_180071af3;
   }
   *(uint16_t *)(SystemEventPointer + FunctionAddress80) = 10;
   FunctionAddress80 = 0x12;
