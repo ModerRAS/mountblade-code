@@ -67203,26 +67203,35 @@ void ProcessUIContextDataValidation(int uiContext,int dataSource,int targetBuffe
 
 
 
- void ProcessUIComponentBlend(byte *uiContext,int dataSource,byte *targetBuffer,int bufferSize,int resultPointer)
+ /**
+ * @brief 处理UI组件混合
+ * 
+ * 在UI组件之间进行颜色混合操作，处理RGBA颜色值的混合计算
+ * 
+ * @param uiContext UI上下文指针，包含源颜色数据
+ * @param dataSource 数据源步长，用于在颜色数据间移动
+ * @param targetBuffer 目标缓冲区指针，存储混合后的颜色
+ * @param bufferSize 缓冲区大小，用于目标缓冲区偏移
+ * @param resultPointer 混合因子指针，控制混合比例
+ */
 void ProcessUIComponentBlend(byte *uiContext,int dataSource,byte *targetBuffer,int bufferSize,int resultPointer)
-
 {
-  byte *pisCharacterMatch;
-  longlong componentIndex;
-  int compareResult;
+  byte *alphaChannelSource;
+  longlong colorChannelCount;
+  int blendFactor;
   
-  compareResult = 0x10 - resultPointer;
-  componentIndex = 4;
+  blendFactor = 0x10 - resultPointer;
+  colorChannelCount = 4;
   do {
-    *targetBuffer = (byte)((int)((uint)*targetBuffer * compareResult + 8 + (uint)*uiContext * resultPointer) >> 4);
-    targetBuffer[1] = (byte)((int)((uint)uiContext[1] * resultPointer + (uint)targetBuffer[1] * compareResult + 8) >> 4);
-    targetBuffer[2] = (byte)((int)((uint)uiContext[2] * resultPointer + (uint)targetBuffer[2] * compareResult + 8) >> 4);
-    pisCharacterMatch = uiContext + 3;
+    *targetBuffer = (byte)((int)((uint)*targetBuffer * blendFactor + 8 + (uint)*uiContext * resultPointer) >> 4);
+    targetBuffer[1] = (byte)((int)((uint)uiContext[1] * resultPointer + (uint)targetBuffer[1] * blendFactor + 8) >> 4);
+    targetBuffer[2] = (byte)((int)((uint)uiContext[2] * resultPointer + (uint)targetBuffer[2] * blendFactor + 8) >> 4);
+    alphaChannelSource = uiContext + 3;
     uiContext = uiContext + dataSource;
-    targetBuffer[3] = (byte)((int)((uint)*pisCharacterMatch * resultPointer + 8 + (uint)targetBuffer[3] * compareResult) >> 4);
+    targetBuffer[3] = (byte)((int)((uint)*alphaChannelSource * resultPointer + 8 + (uint)targetBuffer[3] * blendFactor) >> 4);
     targetBuffer = targetBuffer + bufferSize;
-    componentIndex = componentIndex + -1;
-  } while (componentIndex != 0);
+    colorChannelCount = colorChannelCount + -1;
+  } while (colorChannelCount != 0);
   return;
 }
 
@@ -67231,7 +67240,13 @@ void ProcessUIComponentBlend(byte *uiContext,int dataSource,byte *targetBuffer,i
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void UpdateUIRenderContext(longlong uiContext)
+ /**
+ * @brief 更新UI渲染上下文
+ * 
+ * 更新UI系统的渲染上下文，处理渲染状态和缓冲区操作
+ * 
+ * @param uiContext UI上下文指针
+ */
 void UpdateUIRenderContext(longlong uiContext)
 
 {
