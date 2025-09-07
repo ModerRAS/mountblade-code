@@ -10663,14 +10663,14 @@ undefined8 InitializeUIElementContext(longlong *uiContext)
         IsGeometryValid = true;
       }
       allocatedMemory0 = (longlong)((uiOperationResult5 + 2) % uiOperationResult2);
-      if ((!bVar3) ||
+      if ((!IsGeometryValid) ||
          ((floatResult9 = (pfloatResult1[2] - *(float *)(componentIndex + 4 + allocatedMemory0 * 8)) * (localFloat20 - pfloatResult1[1]) -
                     (localFloat21 - pfloatResult1[2]) * (pfloatResult1[1] - *(float *)(componentIndex + allocatedMemory0 * 8)),
           floatResult9 <= unmodifiedXMM6_Da && (floatResult9 < unmodifiedXMM6_Da)))) {
-        bVar3 = false;
+        IsGeometryValid = false;
       }
       else {
-        bVar3 = true;
+        IsGeometryValid = true;
       }
       uiOperationResult5 = uiOperationResult5 + 4;
       pfloatResult1 = pfloatResult1 + 8;
@@ -22137,8 +22137,8 @@ void CreateUIWidget(longlong uiContext,longlong dataSource,undefined8 targetBuff
   uint semaphoreHandle0;
   longlong componentIndex1;
   undefined1 *psemaphoreHandle2;
-  char localChar23;
-  longlong componentIndex4;
+  char widgetValidationFlag;
+  longlong widgetLayoutIndex;
   ulonglong semaphoreHandle5;
   int uiValidationResult6;
   ulonglong semaphoreHandle7;
