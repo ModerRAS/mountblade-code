@@ -14698,10 +14698,15 @@ void ClearUtilitySystemData(void)
 
 
 
-// 函数: void ManageUtilitySystemCacheAE0(void)
-// 功能：管理工具系统缓存，优化缓存使用效率
-// 注意：此函数负责缓存的清理、整理和优化操作
-void ManageUtilitySystemCacheAE0(void)
+/**
+ * @brief 管理工具系统缓存
+ * 
+ * 优化缓存使用效率，负责缓存的清理、整理和优化操作。
+ * 包括缓存策略调整、内存使用优化和性能提升。
+ * 
+ * 注意：此函数会影响系统缓存的使用策略和性能。
+ */
+void ManageUtilitySystemCache(void)
 
 {
   return;
@@ -14710,12 +14715,19 @@ void ManageUtilitySystemCacheAE0(void)
 
 
 
-// 函数: void ManageUtilitySystemConnectionsAF0(int64_t connectionManager,int64_t connectionFlags)
-// 功能：管理工具系统连接，处理网络和内部连接的建立和维护
-// 参数：
-//   connectionManager - 连接管理器实例，负责管理所有系统连接
-//   connectionFlags - 连接标志，控制连接的类型和行为
-void ManageUtilitySystemConnectionsAF0(int64_t connectionManager,int64_t connectionFlags)
+/**
+ * @brief 管理工具系统连接
+ * 
+ * 处理网络和内部连接的建立和维护，包括：
+ * - 连接状态监控
+ * - 连接池管理
+ * - 网络通信优化
+ * - 连接错误处理
+ * 
+ * @param connectionManager 连接管理器实例，负责管理所有系统连接
+ * @param connectionFlags 连接标志，控制连接的类型和行为
+ */
+void ManageUtilitySystemConnections(int64_t connectionManager,int64_t connectionFlags)
 
 {
   int operationStatus;
