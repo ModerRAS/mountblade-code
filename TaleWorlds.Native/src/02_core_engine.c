@@ -15068,8 +15068,8 @@ void CoreEngineInitializeSystemConnectionTemplateB(void)
   
   SystemContext = (EngineContext *)CoreEngineGetSystemContext();
   PrimaryStatusBlock = (SystemStatusBlock *)*SystemContext;
-  StatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
-  functionCallback = CoreEngineProcessNetworkSecurity;
+  ConnectionStatusBuffer = *(char *)((long long)PrimaryStatusBlock[1] + SystemNodeStatusOffset);
+  NetworkSecurityCallback = CoreEngineProcessNetworkSecurity;
   TertiaryNode = PrimaryStatusBlock;
   SecondaryProcessingStatusFlag = (void *)PrimaryProcessingStatusFlag[1];
   while (StringBuffer == '\0') {
