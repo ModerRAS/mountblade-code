@@ -60118,7 +60118,20 @@ void ReleaseExclusiveLockA1(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907350(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数A0
+ * 
+ * 在异常处理时清理资源引用计数，确保系统能够正确处理内存资源。
+ * 该函数通过减少资源引用计数来管理内存资源，当引用计数为0时调用异常处理函数。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含资源指针和引用计数信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907350
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void CleanupResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -60154,7 +60167,20 @@ void Unwind_180907350(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907360(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数A1
+ * 
+ * 在异常处理时清理资源引用计数，确保系统能够正确处理内存资源。
+ * 该函数通过减少资源引用计数来管理内存资源，当引用计数为0时调用异常处理函数。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含资源指针和引用计数信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907360
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void CleanupResourceReferenceCountA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -60190,7 +60216,20 @@ void Unwind_180907360(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907370(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源引用计数A2
+ * 
+ * 在异常处理时清理资源引用计数，确保系统能够正确处理内存资源。
+ * 该函数通过减少资源引用计数来管理内存资源，当引用计数为0时调用异常处理函数。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含资源指针和引用计数信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907370
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void CleanupResourceReferenceCountA2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
@@ -60226,7 +60265,20 @@ void Unwind_180907370(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180907380(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理验证上下文指针A0
+ * 
+ * 在异常处理时清理验证上下文指针，确保系统能够正确处理上下文状态。
+ * 该函数检查数据缓冲区中的验证上下文指针，如果存在则调用相应的清理函数。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含验证上下文指针信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180907380
+ * @warning 此函数为异常处理机制的一部分，不应直接调用
+ */
+void CleanupValidationContextPointerA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *validationContextPointer;
