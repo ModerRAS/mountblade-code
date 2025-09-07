@@ -37532,7 +37532,7 @@ BufferProcessingStart: // 原始标签：LAB_180070db8，BufferProcessingStart
         }
         else {
           CalculatedCodePoint = TemporaryFlag;
-          if (Utf16Char4 <= (uint)BufferInitializationFlag) goto LAB_180070e64;
+          if (Utf16Char4 <= (uint)BufferInitializationFlag) goto BufferValidationComplete;
           pDataContentStatus = (uint8_t *)CONCAT71(pDataContentStatus.FullPart,0x13);
           TemporaryFlag = DataSize;
           memoryAllocationBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,memoryAllocationBuffer,Utf16Char4,0x10);
@@ -37557,7 +37557,7 @@ SystemMemoryProcessingStart:
   }
   else if ((uint)BufferInitializationFlag < 4) {
     MemoryAllocationBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,memoryAllocationBuffer,4,0x10);
-    goto LAB_180070ee8;
+    goto SystemMemoryProcessingStart;
   }
   *(uint16_t *)(memoryAllocationBuffer + BufferOffset) = 0x3a;
   BufferOffset = 3;
@@ -37574,7 +37574,7 @@ SystemMemoryProcessingStart:
       *memoryAllocationBuffer = 0;
     }
     else {
-      if (Utf16Char4 <= (uint)BufferInitializationFlag) goto LAB_180070f81;
+      if (Utf16Char4 <= (uint)BufferInitializationFlag) goto SystemMemoryValidationComplete;
       memoryAllocationBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,memoryAllocationBuffer,Utf16Char4,0x10);
     }
     SystemByteValue = GetMemoryAllocationInfo(memoryAllocationBuffer);
@@ -37594,13 +37594,13 @@ SystemMemoryValidationComplete:
       *memoryAllocationBuffer = 0;
     }
     else {
-      if (CalculatedCodePoint <= (uint)BufferInitializationFlag) goto LAB_180071000;
+      if (CalculatedCodePoint <= (uint)BufferInitializationFlag) goto SystemStatusBufferProcessing;
       memoryAllocationBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,memoryAllocationBuffer,CalculatedCodePoint,0x10);
     }
     SystemByteValue = GetMemoryAllocationInfo(memoryAllocationBuffer);
     BufferInitializationFlag = CONCAT44(BufferInitializationFlag.HighPart,SystemByteValue);
   }
-LAB_ProcessSystemStatusBuffer:
+SystemStatusBufferProcessing:
   loopCounter5 = lStack_88;
   SystemStatusBuffer = (void *)(memoryAllocationBuffer + BufferOffset);
   *SystemStatusBuffer = 0x6973736572707845;
@@ -37625,7 +37625,7 @@ LAB_ProcessSystemStatusBuffer:
           *memoryAllocationBuffer = 0;
         }
         else {
-          if (DataSize <= (uint)BufferInitializationFlag) goto LAB_1800710b8;
+          if (DataSize <= (uint)BufferInitializationFlag) goto SystemMemoryAllocationComplete;
           memoryAllocationBuffer = (uint8_t *)AllocateMemoryPool(MemoryPoolManager,memoryAllocationBuffer,DataSize,0x10);
         }
         SystemByteValue = GetMemoryAllocationInfo(memoryAllocationBuffer);
@@ -117283,7 +117283,20 @@ void ProcessSystemFloatCalculationAndEncoding(uint64_t OutputBuffer, float *Outp
 
 
 
-250a(uint64_t OutputBuffer,float *OutputBufferSizevoid FUN_18012250a(uint64_t OutputBuffer,float *OutputBufferSize
+/**
+ * @brief 处理系统浮点数缓冲区操作
+ * 
+ * 该函数负责处理系统中的浮点数缓冲区操作，包括数据分配
+ * 和浮点数处理。用于系统内存管理和数据处理。
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小（浮点数指针）
+ * 
+ * @note 原始函数名：FUN_18012250a
+ * @note 包含浮点数缓冲区管理操作
+ * @note 用于系统数据处理和内存管理
+ */
+void ProcessSystemFloatBufferOperation(uint64_t OutputBuffer, float *OutputBufferSize)
 {
   uint64_t *StatusBuffer;
   float SystemContextSecondaryFloat;
@@ -117448,7 +117461,21 @@ void ProcessSystemFloatCalculationAndEncoding(uint64_t OutputBuffer, float *Outp
 
 
 
-2537(uint64_t OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointervoid FUN_180122537(uint64_t OutputBuffer,uint64_t OutputBufferSize,uint64_t Utf8InputPointer
+/**
+ * @brief 处理系统数据编码和缓冲区管理
+ * 
+ * 该函数负责处理系统数据编码操作和缓冲区管理，包括数据验证
+ * 和内存分配。用于系统数据处理和编码转换。
+ * 
+ * @param OutputBuffer 输出缓冲区
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入数据指针
+ * 
+ * @note 原始函数名：FUN_180122537
+ * @note 包含数据编码和缓冲区管理操作
+ * @note 用于系统数据处理和编码转换流程
+ */
+void ProcessSystemDataEncodingAndBufferManagement(uint64_t OutputBuffer, uint64_t OutputBufferSize, uint64_t Utf8InputPointer)
 {
   uint64_t *StatusBuffer;
   float SystemContextSecondaryFloat;
@@ -117603,7 +117630,17 @@ void ProcessSystemFloatCalculationAndEncoding(uint64_t OutputBuffer, float *Outp
 
 
 
-25c7(voidvoid FUN_1801225c7(void
+/**
+ * @brief 系统状态检查和验证函数
+ * 
+ * 该函数负责检查和验证系统状态，包括数据处理和状态验证。
+ * 用于系统运行状态监控和数据验证。
+ * 
+ * @note 原始函数名：FUN_1801225c7
+ * @note 包含系统状态检查和验证操作
+ * @note 用于系统监控和状态管理
+ */
+void CheckSystemStatusAndValidation(void)
 {
   uint32_t *StatusBuffer;
   float SystemContextSecondaryFloat;
@@ -191342,56 +191379,69 @@ uint64_t FUN_18016bb80(long long OutputBuffer,int *OutputBufferSize
 // WARNING: Type propagation algorithm not settling
 
 
-6bdb0(long long ***OutputBuffer,long long OutputBufferSize,uint64_t *Utf8InputPointer,uint64_t *Utf16EndPointer,
-void FUN_18016bdb0(long long ***OutputBuffer,long long OutputBufferSize,uint64_t *Utf8InputPointer,uint64_t *Utf16EndPointer,
+/**
+ * @brief 处理系统数据编码和转换
+ * 
+ * 该函数负责处理系统数据的编码和转换操作，包括UTF8到UTF16的转换，
+ * 系统缓冲区的管理和数据验证等功能。
+ * 
+ * @param OutputBuffer 输出缓冲区指针
+ * @param OutputBufferSize 输出缓冲区大小
+ * @param Utf8InputPointer UTF8输入指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * 
+ * @note 原始函数名：FUN_18016bdb0
+ */
+void ProcessSystemDataEncodingAndConversion(long long ***OutputBuffer,long long OutputBufferSize,uint64_t *Utf8InputPointer,uint64_t *Utf16EndPointer,
                   uint64_t AdditionalParameter1
 {
   int *ReferenceCountPointer;
   void *SystemContext;
   uint UnicodeCodePoint;
-  long long ***ppSystemContextPtr;
-  code *pCharacterVariable5;
+  long long ***SystemContextPointer;
+  code *CharacterVariable;
   char CharacterValidationCode;
   int ProcessIterationCount;
   uint64_t ProcessingStatusFlag;
-  long long systemLoopCounter;
+  long long SystemLoopCounter;
   long long SystemOffsetValue;
   long long SystemStringIndex;
-  long long ****pppOutputBuffer2;
-  uint64_t *StatusBuffer3;
+  long long ****OutputBufferPointer;
+  uint64_t *StatusBuffer;
   void *SystemStatusBuffer;
   void *SecondaryStatusBuffer;
-  long long ***ppOutputBuffer6;
-  long long LoopCounter7;
-  unsigned long long Utf16Char8;
-  int IntegerValue9;
-  long long **ppMemoryBufferA;
-  long long *BufferAllocationStatus1;
-  long long ****pppSystemRegisterPointerX8;
-  long long ****pppSystemRegisterPointerX10;
-  uint64_t *pStackConfigurationFlag;
-  uint64_t *puStackX_20;
+  long long ***OutputBufferSecondary;
+  long long LoopCounter;
+  unsigned long long Utf16Character;
+  int IntegerValue;
+  long long **MemoryBufferPointer;
+  long long *BufferAllocationStatus;
+  long long ****SystemRegisterPointerX8;
+  long long ****SystemRegisterPointerX10;
+  uint64_t *ConfigurationFlagPointer;
+  uint64_t *StackPointerX20;
   uint32_t MemoryAllocationOffset;
   uint64_t SystemFlagF;
   uint32_t SystemFlagG;
-  uint32_t uStack_cc;
+  uint32_t StackValueCC;
   void *SystemStatusBufferPointer;
   long long StackMemoryBufferC0;
-  int iStack_b8;
+  int StackValueB8;
   uint64_t SystemStackRegisterFlagB0;
   uint32_t CoreEngineValueA8;
-  uint32_t uStack_a4;
+  uint32_t StackValueA4;
   uint32_t CoreEngineUnsignedValueA0;
-  uint32_t uStack_9c;
+  uint32_t StackValue9C;
   uint32_t SystemOperationFlag98;
-  uint32_t configurationFlag;
-  long long ****pppplStack_88;
+  uint32_t ConfigurationFlag;
+  long long ****StackPointer88;
   uint64_t FunctionAddress80;
-  long long ****ppppCoreEngineSignedValue78;
+  long long ****CoreEngineSignedValue78;
   
   FunctionAddress80 = 0xfffffffffffffffe;
-  pStackConfigurationFlag = Utf8InputPointer;
-  puStackX_20 = Utf16EndPointer;
+  ConfigurationFlagPointer = Utf8InputPointer;
+  StackPointerX20 = Utf16EndPointer;
   ProcessingStatusFlag = CoreEngineGetSystemContext();
   CoreEngineExecuteSystemEvent(&SystemStatusBufferPointer,ProcessingStatusFlag);
   LoopCounter7 = SystemDataConfiguration;

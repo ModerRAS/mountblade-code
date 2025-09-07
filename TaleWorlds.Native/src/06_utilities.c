@@ -90,6 +90,26 @@
 #define ExceptionHandlerStatus5Offset 0xe8
 #define ExceptionHandlerState5Offset 0xf8
 
+// 异常处理器回调相关常量
+#define ExceptionHandlerCallbackOffset 0x310
+
+// 异常处理器E0-E4相关常量
+#define ExceptionHandlerE0Offset 0x2e0
+#define ExceptionHandlerE0StatusOffset 0x2e8
+#define ExceptionHandlerE0StateOffset 0x2f8
+#define ExceptionHandlerE1Offset 0x2c0
+#define ExceptionHandlerE1StatusOffset 0x2c8
+#define ExceptionHandlerE1StateOffset 0x2d8
+#define ExceptionHandlerE2Offset 0x2a0
+#define ExceptionHandlerE2StatusOffset 0x2a8
+#define ExceptionHandlerE2StateOffset 0x2b8
+#define ExceptionHandlerE3Offset 0x280
+#define ExceptionHandlerE3StatusOffset 0x288
+#define ExceptionHandlerE3StateOffset 0x298
+#define ExceptionHandlerE4Offset 0x260
+#define ExceptionHandlerE4StatusOffset 0x268
+#define ExceptionHandlerE4StateOffset 0x278
+
 // 数据配置和内存管理常量定义
 #define DataConfigurationOffset 0x90
 #define MemoryRegionIteratorOffset 0x20
@@ -30958,7 +30978,7 @@ ValidationCompleteHandler:
     }
   }
   if (validationStatus == 0) {
-    validationFlag = cStack0000000000000090 != '\0';
+    validationFlag = validationStatusFlag != '\0';
     validationStatus = 0;
   }
   if (validationStatus != 0) {
@@ -32752,16 +32772,16 @@ uint64_t ProcessSystemBuffer(void)
   uint dataFlags;
   uint64_t validationOutcome;
   unsigned int stackSystemFlag;
-  uint uStack00000000000000b8;
+  uint systemOperationFlags;
   
   validationOutcome = 0;
-  uStack00000000000000b8 = 0;
+  systemOperationFlags = 0;
   operationResult = ExecuteDataValidationOperation(*registerContext,&StackDataBufferT);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   StackDataBufferD = 0;
-  memoryBaseAddress = uStack00000000000000b8 & 1;
+  memoryBaseAddress = systemOperationFlags & 1;
   dataFlags = uStack00000000000000b8 >> 1;
   operationResult = validationOutcome;
   if (dataFlags != 0) {
@@ -47462,55 +47482,70 @@ void CleanupExceptionHandlersAtMultipleOffsets(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_180904210(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 重置异常处理器状态
+ * 
+ * 该函数负责重置多个异常处理器的状态，将它们设置为默认状态。
+ * 函数会检查每个异常处理器的当前状态，如果有异常状态存在，
+ * 则会调用系统终止函数，否则将异常处理器重置为默认处理器。
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180904210
+ * @warning 此函数包含系统终止调用，确保在调用前系统状态稳定
+ */
+void ResetExceptionHandlersState(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  int64_t exceptionHandlerContext;
+  int64_t exceptionContextPointer;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x310) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x310))(exceptionHandlerContext + 0x300,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionContextPointer = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset);
+  if (*(FunctionPointer**)(exceptionContextPointer + ExceptionHandlerCallbackOffset) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionContextPointer + ExceptionHandlerCallbackOffset))(exceptionContextPointer + ExceptionHandlerDataOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x2e0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x2e8) != 0) {
-                    // WARNING: Subroutine does not return
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE0Offset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContextPointer + ExceptionHandlerE0StatusOffset) != 0) {
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x2e8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x2f8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x2e0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x2c0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x2c8) != 0) {
-                    // WARNING: Subroutine does not return
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE0StatusOffset) = 0;
+  *(DataWord *)(exceptionContextPointer + ExceptionHandlerE0StateOffset) = 0;
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE0Offset) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE1Offset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContextPointer + ExceptionHandlerE1StatusOffset) != 0) {
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x2c8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x2d8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x2c0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x2a0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x2a8) != 0) {
-                    // WARNING: Subroutine does not return
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE1StatusOffset) = 0;
+  *(DataWord *)(exceptionContextPointer + ExceptionHandlerE1StateOffset) = 0;
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE1Offset) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE2Offset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContextPointer + ExceptionHandlerE2StatusOffset) != 0) {
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x2a8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x2b8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x2a0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x280) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x288) != 0) {
-                    // WARNING: Subroutine does not return
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE2StatusOffset) = 0;
+  *(DataWord *)(exceptionContextPointer + ExceptionHandlerE2StateOffset) = 0;
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE2Offset) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE3Offset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContextPointer + ExceptionHandlerE3StatusOffset) != 0) {
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x288) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x298) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x280) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x260) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x268) != 0) {
-                    // WARNING: Subroutine does not return
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE3StatusOffset) = 0;
+  *(DataWord *)(exceptionContextPointer + ExceptionHandlerE3StateOffset) = 0;
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE3Offset) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE4Offset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionContextPointer + ExceptionHandlerE4StatusOffset) != 0) {
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x268) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x278) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x260) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE4StatusOffset) = 0;
+  *(DataWord *)(exceptionContextPointer + ExceptionHandlerE4StateOffset) = 0;
+  *(DataBuffer *)(exceptionContextPointer + ExceptionHandlerE4Offset) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -50002,7 +50037,26 @@ void CleanupFileHandle(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180904a80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 管理内存引用计数
+ * 
+ * 该函数负责管理内存资源的引用计数，当引用计数降为0时触发异常处理。
+ * 这是一个内存管理的关键函数，确保资源的正确释放和异常处理。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区，包含资源指针和内存管理信息
+ * 
+ * 功能说明：
+ * 1. 从数据缓冲区中获取资源指针
+ * 2. 计算内存基地址和偏移量
+ * 3. 检查内存有效性并管理引用计数
+ * 4. 当引用计数降为0时触发异常处理
+ * 5. 对于异常情况调用通用内存管理函数
+ * 
+ * @note 原始函数名：Unwind_180904a80
+ * @warning 此函数不返回，最后会调用异常处理或内存管理函数
+ */
+void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *referenceCountPointer;
