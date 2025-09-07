@@ -5981,6 +5981,8 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
 
 // 原始函数名：FUN_180139880 - 系统数据处理和浮点计算函数
 #define ProcessSystemDataAndFloatCalculation FUN_180139880
+#define ProcessSystemCharacterValidation FUN_180139440
+#define ProcessSystemCharacterEx FUN_180135420
 
 // 原始函数名：FUN_1800ba940 - 数据指针处理函数
 #define ProcessProcessingStatusFlag FUN_1800ba940
@@ -166241,7 +166243,7 @@ void ProcessSystemMemoryCleanup(void
     if (((*(byte *)(CharacterTablePointer + 0xa0) & 4) != 0) &&
        (((*(int *)(CharacterCode + 0x50) != Utf8BufferSize || (Utf8SourcePointer == 0)) ||
         ((*(byte *)(*(long long *)(CharacterCode + 0x18) + 0xa0) & 4) == 0)))) {
-      FUN_18013a860(LoopCounter,Utf8BufferSize,Utf8SourcePointer,Utf16EndPointer);
+      ProcessCharacterEncodingOperation(LoopCounter,Utf8BufferSize,Utf8SourcePointer,Utf16EndPointer);
     }
     BufferStatus = *(long long *)(CharacterCode + 0x18);
     if ((*(byte *)(BufferStatus + 0xa0) & 4) == 0) break;
@@ -166338,10 +166340,10 @@ void ProcessSystemMemoryCleanup(void
             else {
               if (((*(byte *)(AllocatedMemorySize + 0xa0) & 4) != 0) &&
                  ((SecondaryProcessingStatusFlag[0x14] != EncodingValidationResult || ((*(byte *)(*(long long *)(SecondaryProcessingStatusFlag + 6) + 0xa0) & 4) == 0                  ))) {
-                FUN_18013a860(AllocatedMemorySize,EncodingValidationResult,1,aCoreEngineUnsignedValueA0);
+                ProcessCharacterEncodingOperation(AllocatedMemorySize,EncodingValidationResult,1,aCoreEngineUnsignedValueA0);
               }
               if ((*(byte *)(*(long long *)(SecondaryProcessingStatusFlag + 6) + 0xa0) & 4) != 0) {
-                FUN_18013a860(*(long long *)(SecondaryProcessingStatusFlag + 6),EncodingValidationResult,1,aCoreEngineUnsignedValueA0);
+                ProcessCharacterEncodingOperation(*(long long *)(SecondaryProcessingStatusFlag + 6),EncodingValidationResult,1,aCoreEngineUnsignedValueA0);
               }
             }
             long long AllocatedMemorySize = *(long long *)(StringProcessingStatus + 4);
@@ -166351,11 +166353,11 @@ void ProcessSystemMemoryCleanup(void
             }
             else {
               if ((*(byte *)(AllocatedMemorySize + 0xa0) & 4) != 0) {
-                FUN_18013a860(AllocatedMemorySize,EncodingValidationResult,0,aSystemOperation90);
+                ProcessCharacterEncodingOperation(AllocatedMemorySize,EncodingValidationResult,0,aSystemOperation90);
               }
               if (((*(byte *)(*(long long *)(StringProcessingStatus + 6) + 0xa0) & 4) != 0) &&
                  ((StringProcessingStatus[0x14] != EncodingValidationResult || ((*(byte *)(*(long long *)(StringProcessingStatus + 4) + 0xa0) & 4) == 0                  ))) {
-                FUN_18013a860(*(long long *)(StringProcessingStatus + 6),EncodingValidationResult,0,aSystemOperation90);
+                ProcessCharacterEncodingOperation(*(long long *)(StringProcessingStatus + 6),EncodingValidationResult,0,aSystemOperation90);
               }
             }
             if (0 < (int)aCoreEngineUnsignedValueA0[0]) {
@@ -168070,8 +168072,8 @@ LAB_18013bc7c:
       }
       if (((*(char *)(CharacterTablePointer5 + 0x1e19) != '\0') || (*(char *)(CharacterTablePointer5 + 0x1e1a) != '\0')) &&
          ((SystemContextValue != 0 || (shouldReturnSource)))) {
-        FUN_180135420(acStack_1c0 + 0x68);
-        FUN_180135420(acStack_268);
+        ProcessSystemCharacterEx(acStack_1c0 + 0x68);
+        ProcessSystemCharacterEx(acStack_268);
         StringBuffer = acStack_1c0 + 0x68;
         StringBuffer6 = StringBuffer;
         if ((SystemContextValue != 0) &&
@@ -168084,7 +168086,7 @@ LAB_18013bc7c:
           if (MemoryPoolBlockSize != 0) {
             SystemValue2d0 = 1;
             SystemStateFlag = UnicodeCharacterCode;
-            SystemValidationChar = FUN_180139440(CharacterCode,MemoryPoolBlockSize,MemoryAddressMask,acStack_268);
+            SystemValidationChar = ProcessSystemCharacterValidation(CharacterCode,MemoryPoolBlockSize,MemoryAddressMask,acStack_268);
             StringBuffer6 = acStack_268;
             if (SystemValidationChar == '\0') {
               StringBuffer6 = StringBuffer;
@@ -168093,12 +168095,12 @@ LAB_18013bc7c:
         }
         SystemValue2d0 = 0;
         SystemStateFlag = UnicodeCharacterCode;
-        FUN_180139440(CharacterCode,SystemContextValue,MemoryAddressMask,acStack_1c0 + 0x68);
+        ProcessSystemCharacterValidation(CharacterCode,SystemContextValue,MemoryAddressMask,acStack_1c0 + 0x68);
         if (StringBuffer6 == acStack_268) {
           acStack_1c0[0x110] = 0;
         }
-        FUN_180139880(CharacterCode,SystemContextValue,MemoryAddressMask,acStack_1c0 + 0x68);
-        FUN_180139880(CharacterCode,SystemContextValue,MemoryAddressMask,acStack_268);
+        ProcessSystemDataAndFloatCalculation(CharacterCode,SystemContextValue,MemoryAddressMask,acStack_1c0 + 0x68);
+        ProcessSystemDataAndFloatCalculation(CharacterCode,SystemContextValue,MemoryAddressMask,acStack_268);
         if ((StringBuffer6[0xa8] != '\0') && (*(char *)(CharacterTablePointer5 + 0x1e1a) != '\0')) {
           uStack_294 = *(uint32_t *)(StringBuffer6 + 0xbc);
           uStack_298 = *(uint32_t *)(StringBuffer6 + 0xb8);
@@ -168375,7 +168377,7 @@ LAB_18013c174:
     if (MemoryAllocationSize + 1 < StringLength) {
       SystemOperationResult = StringLength;
     }
-    FUN_18013da40(SystemDataStructureRegistry + 0x20,IntegerValue9);
+    ProcessSystemDataAllocation(SystemDataStructureRegistry + 0x20,IntegerValue9);
     MemoryAllocationSize = *(int *)(SystemDataStructureRegistry + 0x20);
   }
   BufferStatus = *(long long *)(SystemDataStructureRegistry + 0x28);
@@ -168453,7 +168455,7 @@ LAB_18013c174:
       if (IntegerValue5 + 1 < IntegerValue4) {
         IntegerValue6 = IntegerValue4;
       }
-      FUN_18013da40(CharacterCode + 0x20,IntegerValue6);
+      ProcessSystemDataAllocation(CharacterCode + 0x20,IntegerValue6);
       IntegerValue5 = *(int *)(CharacterCode + 0x20);
     }
     SystemDataTablePointer = *(long long *)(CharacterCode + 0x28);
@@ -168469,7 +168471,7 @@ LAB_18013c174:
     PrimaryProcessingStatusFlag[3] = CONCAT22(UnsignedStack13,(short)(int)ProcessedFloatValue8);
     *(int *)(CharacterCode + 0x20) = *(int *)(CharacterCode + 0x20) + 1;
     if (*(long long *)(Utf8BufferSize + 4) != 0) {
-      FUN_18013c380(CharacterCode,*(long long *)(Utf8BufferSize + 4),Utf8SourcePointer + 1);
+      ProcessSystemDataValidation(CharacterCode,*(long long *)(Utf8BufferSize + 4),Utf8SourcePointer + 1);
     }
     Utf8BufferSize = *(uint32_t **)(Utf8BufferSize + 6);
     if (Utf8BufferSize == (uint32_t *)0x0) break;
@@ -168505,17 +168507,17 @@ LAB_18013c174:
       if (0 < EncodingValidationResult) {
         StringLength = EncodingValidationResult;
       }
-      FUN_18013da40(pCharacterByteCount + 8,StringLength);
+      ProcessSystemDataAllocation(pCharacterByteCount + 8,StringLength);
     }
     pCharacterByteCount[8] = 0;
-    FUN_18013da40(pCharacterByteCount + 8,*pCharacterByteCount);
+    ProcessSystemDataAllocation(pCharacterByteCount + 8,*pCharacterByteCount);
     EncodingValidationResult = 0;
     if (0 < *pCharacterByteCount) {
       SystemDataTablePointer = 0;
       do {
         MemoryBlockIndex = *(long long *)(SystemDataTablePointer + 8 + *(long long *)(pCharacterByteCount + 2));
         if ((MemoryBlockIndex != 0) && (*(long long *)(MemoryBlockIndex + 8) == 0)) {
-          FUN_18013c380(pCharacterByteCount,MemoryBlockIndex,0);
+          ProcessSystemDataValidation(pCharacterByteCount,MemoryBlockIndex,0);
         }
         EncodingValidationResult = EncodingValidationResult + 1;
         SystemDataTablePointer = SystemDataTablePointer + 0x10;
