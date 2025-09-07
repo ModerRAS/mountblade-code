@@ -100137,6 +100137,20 @@ void Unwind_180910600(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 异常上下文处理器清理函数620
+ * 
+ * 该函数负责清理异常上下文处理器，遍历内存块并执行异常处理器。
+ * 它会处理数据上下文中的异常处理器指针，并依次执行每个异常处理器。
+ * 如果数据上下文为空，则直接返回；否则调用系统终止函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文
+ * 
+ * @note 原始函数名：Unwind_180910620
+ * @note 这是一个异常上下文清理函数，用于遍历和执行多个异常处理器
+ * @warning 如果数据上下文为空且异常处理器未正确处理，会调用TerminateSystemE0终止系统
+ */
 void Unwind_180910620(DataBuffer operationBase,int64_t dataBuffer)
 
 {
