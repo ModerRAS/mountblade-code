@@ -2633,6 +2633,82 @@ void* UIGestureCoordinates;
  */
 #define ValidateUIDataIntegrity FUN_18072c8e6
 
+// UI系统事件分发器初始化函数
+// 原始函数名: FUN_1806917c0
+#define InitializeUIEventDispatcher FUN_1806917c0
+
+// UI系统状态更新器初始化函数
+// 原始函数名: FUN_180691db0
+#define InitializeUIStateUpdater FUN_180691db0
+
+// UI系统主渲染器函数
+// 原始函数名: FUN_180694010
+#define ProcessUIMainRenderer FUN_180694010
+
+// UI系统数据操作函数
+// 原始函数名: FUN_18068f9a0
+#define ProcessUIBatchData FUN_18068f9a0
+
+// UI系统资源管理器初始化函数
+// 原始函数名: FUN_180695870
+#define InitializeUIResourceManager FUN_180695870
+
+// UI系统数据处理器初始化函数
+// 原始函数名: FUN_1806958c0
+#define InitializeUIDataProcessor FUN_1806958c0
+
+// UI系统渲染器初始化函数
+// 原始函数名: FUN_180695990
+#define InitializeUIRenderer FUN_180695990
+
+// UI系统缓冲区管理器初始化函数
+// 原始函数名: FUN_180695ac0
+#define InitializeUIBufferManager FUN_180695ac0
+
+// UI系统组件处理器初始化函数
+// 原始函数名: FUN_180695c4d
+#define InitializeUIComponentProcessor FUN_180695c4d
+
+// UI系统事件处理器初始化函数
+// 原始函数名: FUN_180695f0f
+#define InitializeUIEventHandler FUN_180695f0f
+
+// UI系统纹理处理器初始化函数
+// 原始函数名: FUN_180696370
+#define InitializeUITextureProcessor FUN_180696370
+
+// UI系统字体渲染器初始化函数
+// 原始函数名: FUN_180696540
+#define InitializeUIFontRenderer FUN_180696540
+
+// UI系统着色器处理器初始化函数
+// 原始函数名: FUN_180696710
+#define InitializeUIShaderProcessor FUN_180696710
+
+// UI系统布局处理器初始化函数
+// 原始函数名: FUN_1806968e0
+#define InitializeUILayoutProcessor FUN_1806968e0
+
+// UI系统输入处理器初始化函数
+// 原始函数名: FUN_180696a60
+#define InitializeUIInputProcessor FUN_180696a60
+
+// UI系统像素处理器初始化函数
+// 原始函数名: FUN_180696be0
+#define InitializeUIPixelProcessor FUN_180696be0
+
+// UI系统颜色处理器初始化函数
+// 原始函数名: FUN_180696d90
+#define InitializeUIColorProcessor FUN_180696d90
+
+// UI系统内存管理器初始化函数
+// 原始函数名: FUN_180696f40
+#define InitializeUIMemoryManager FUN_180696f40
+
+// UI系统事件队列处理器初始化函数
+// 原始函数名: FUN_1806979e0
+#define InitializeUIEventQueueProcessor FUN_1806979e0
+
 // UI组件创建函数
 void* CreateUIComponent;
 

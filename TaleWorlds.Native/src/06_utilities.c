@@ -10129,7 +10129,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
         *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentDataContext + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
-        SystemQueryStatus = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,ComponentValidationBuffer);
+        systemQueryStatus = ExecuteComponentCommand(componentDataContext + COMPONENT_COMMAND_OFFSET,ComponentValidationBuffer);
         if ((int32_t)SystemQueryStatus != 0) {
           return SystemQueryStatus;
         }
