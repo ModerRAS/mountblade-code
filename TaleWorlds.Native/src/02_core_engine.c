@@ -42309,7 +42309,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t CharacterCode,uint64_t *
     CoreEnginePointerBuffer110 = &SystemNullTemplate;
     SystemFlagB = 0;
     pProcessingCounter = NULL;
-    iStack_100 = 0;
+    ProcessingStatusFlag = 0;
     SecondaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x34,0x13);
     *(uint8_t *)SecondaryProcessingStatusFlag = 0;
     pProcessingCounter = SecondaryProcessingStatusFlag;
@@ -42325,7 +42325,7 @@ bool ValidateAndProcessCoreEngineDataStructure(uint64_t CharacterCode,uint64_t *
     *(uint32_t *)((long long)SecondaryProcessingStatusFlag + 0x2c) = 0x6c6f4667;
     *(uint32_t *)(SecondaryProcessingStatusFlag + 6) = 0x726564;
     DataStringLength = 0x33;
-    iStack_100 = 0x33;
+    ProcessingStatusFlag = 0x33;
     ProcessInputStringBuffer = 2;
     Utf16ConversionContext = 2;
     pStringProcessingStatus = &pProcessingCounter;
@@ -47044,7 +47044,7 @@ uint64_t ProcessCoreEngineSystemConfiguration(long long CharacterCode,long long 
   uint32_t SystemUnsignedValue64;
   uint8_t StackProcessingUnsignedValue60;
   uint64_t BufferOffset;
-  long long lStack_50;
+  long long SystemStackProcessingFlag;
   uint64_t SystemStackOffset48;
   uint64_t SystemPriorityLevel;
   uint32_t FunctionAddress;
@@ -53388,7 +53388,7 @@ void ProcessDataStructureValidation(long long *Utf8InputBuffer
   long long CoreEngineSignedValue78;
   unsigned long long FunctionAddress;
   
-  uStack_210 = 0xfffffffffffffffe;
+  SystemStatusFlag = 0xfffffffffffffffe;
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)BufferTypeFlag;
   LOCK();
   SystemContextPtr = CharacterCode + 2;
@@ -105149,7 +105149,7 @@ code_r0x000180115c00:
     SystemFloatValue = (float)CalculateDistance(CharacterCode,iStack_44,StringLength);
     if ((SystemFloatValue == SecondaryFloatValue) || (SystemContextPrimaryFloat6 = SystemContextPrimaryFloat6 + SystemFloatValue, SystemContextPrimaryFloat8 < SystemContextPrimaryFloat6)) break;
   }
-code_r0x000180115b16:
+ProcessStackValue:
   StringLength = Utf8BufferSize[2];
   IntegerValue4 = Utf8BufferSize[1];
   MatchCounter = *(int *)(CharacterCode + 0x3c);
