@@ -80154,13 +80154,24 @@ void DestroyMutexAtSystemContextOffset(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void UnlockMutexAtOffsetA0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量A0处解锁互斥锁
+ * 
+ * 该函数负责在数据缓冲区的指定偏移量处解锁互斥锁。
+ * 它会检查标志位，如果设置则解锁互斥锁，并在失败时抛出异常。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含互斥锁信息
+ * 
+ * @note 原始函数名：UnlockMutexAtOffsetA0
+ */
+void UnlockMutexAtDataBufferOffset(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int mutexUnlockResult;
   
-  if (*(char *)(dataBuffer + 0x40) != '\0') {
-    mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0x38));
+  if (*(char *)(dataBuffer + SystemStatePrimaryOffset) != '\0') {
+    mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemStackDataOffset));
     if (mutexUnlockResult != 0) {
       __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
     }
@@ -80170,28 +80181,50 @@ void UnlockMutexAtOffsetA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void ExecuteSystemOperationsAtOffsetB0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量B0处执行系统操作
+ * 
+ * 该函数负责在数据缓冲区的指定偏移量处执行系统操作。
+ * 它会调用内存操作函数来处理系统数据。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含系统操作信息
+ * 
+ * @note 原始函数名：ExecuteSystemOperationsAtOffsetB0
+ */
+void ExecuteSystemOperationsAtMemoryOffset(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x40) + 8,0x98,9,ProcessSystemOperationsA0);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + SystemStatePrimaryOffset) + 8, SystemContextOffset98, 9, ProcessSystemOperationsA0);
   return;
 }
 
 
 
-void SetupExceptionHandlerAtOffsetE0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量E0处设置异常处理器
+ * 
+ * 该函数负责在数据缓冲区的指定偏移量处设置异常处理器。
+ * 它会设置临时异常处理器，然后替换为默认异常处理器B。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * 
+ * @note 原始函数名：SetupExceptionHandlerAtOffsetE0
+ */
+void SetupExceptionHandlerAtContextOffset(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
-  *(DataBuffer *)(exceptionHandlerContext + 0x560) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x568) != 0) {
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + SystemStatePrimaryOffset);
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel13_FunctionPointerOffset) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerLevel13_CallbackParamOffset) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x568) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x578) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x560) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel13_CallbackParamOffset) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerLevel13_TemporaryStateOffset) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerLevel13_FunctionPointerOffset) = &DefaultExceptionHandlerB;
   return;
 }
 
