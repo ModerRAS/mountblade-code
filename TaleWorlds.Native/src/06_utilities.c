@@ -85650,13 +85650,25 @@ void HandleThreadSynchronizationAndCallback(DataBuffer operationBase, int64_t da
 
 
 
-void Unwind_18090b110(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理上下文回调函数 - 数据完整性检查
+ * 
+ * 该函数负责在异常处理过程中检查数据完整性，通过调用异常处理上下文中的回调函数
+ * 来验证数据的完整性和一致性，确保系统在异常情况下数据的正确性。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 原始函数名：Unwind_18090b110
+ */
+void CheckDataIntegrityAndCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取异常处理上下文指针，偏移量0x338用于定位数据完整性检查相关的上下文
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x338);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
+    // 调用异常处理上下文中的回调函数来执行数据完整性检查
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
