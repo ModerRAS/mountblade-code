@@ -1135,24 +1135,125 @@
 #define LabelSystemFlagConfiguration LAB_18016c134            // 系统标志配置标签
 
 // 新增的LAB_标签定义
-#define LAB_180082720 ValidationHandlerLAB180082720           // 验证处理器标签
-#define LAB_18008642b CharacterProcessingCompleteLAB18008642b  // 字符处理完成标签
-#define LAB_1800872f7 MemoryAllocationStartLAB1800872f7        // 内存分配开始标签
-#define LAB_180087337 BufferValidationLAB180087337             // 缓冲区验证标签
-#define LAB_18008733a DataSizeCheckLAB18008733a                // 数据大小检查标签
-#define LAB_180087418 CharacterCodeValidationLAB180087418      // 字符代码验证标签
-#define LAB_18008755d NullCharacterCheckLAB18008755d          // 空字符检查标签
-#define LAB_1800878e0 CharacterProcessingLAB1800878e0         // 字符处理标签
-#define LAB_180088131 SystemProcessingLAB180088131             // 系统处理标签
-#define LAB_180087f81 MemoryAllocationLAB180087f81            // 内存分配标签
-#define LAB_180087f16 CharacterValidationLAB180087f16          // 字符验证标签
-#define LAB_180088ac9 DataProcessingLAB180088ac9               // 数据处理标签
-#define LAB_18008913b CharacterEncodingLAB18008913b           // 字符编码标签
-#define LAB_18008917c SystemMemoryCheckLAB18008917c           // 系统内存检查标签
-#define LAB_18008927d StringProcessingLAB18008927d             // 字符串处理标签
-#define LAB_1800892ba MemoryBlockProcessingLAB1800892ba       // 内存块处理标签
-#define LAB_1800892bd DataStructureProcessingLAB1800892bd     // 数据结构处理标签
-#define LAB_1800892fd MemoryCopyLAB1800892fd                  // 内存复制标签
+/**
+ * @brief 系统事件处理开始标签
+ */
+#define SystemEventProcessingStartLabel LAB_180071c1a        // 系统事件处理开始标签
+
+/**
+ * @brief 系统事件处理继续标签
+ */
+#define SystemEventProcessingContinueLabel LAB_180071d1f      // 系统事件处理继续标签
+
+/**
+ * @brief 线程状态检查标签
+ */
+#define ThreadStatusCheckLabel LAB_180072d7b                  // 线程状态检查标签
+
+/**
+ * @brief 数据大小验证标签
+ */
+#define DataSizeValidationLabel LAB_1800721e1                 // 数据大小验证标签
+
+/**
+ * @brief 内存地址验证标签
+ */
+#define MemoryAddressValidationLabel LAB_1800729bd            // 内存地址验证标签
+
+/**
+ * @brief 系统标志配置标签
+ */
+#define SystemFlagConfigurationLabel LAB_18016c134            // 系统标志配置标签
+
+/**
+ * @brief 验证处理器标签
+ */
+#define ValidationHandlerLabel LAB_180082720           // 验证处理器标签
+
+/**
+ * @brief 字符处理完成标签
+ */
+#define CharacterProcessingCompleteLabel LAB_18008642b  // 字符处理完成标签
+
+/**
+ * @brief 内存分配开始标签
+ */
+#define MemoryAllocationStartLabel LAB_1800872f7        // 内存分配开始标签
+
+/**
+ * @brief 缓冲区验证标签
+ */
+#define BufferValidationLabel LAB_180087337             // 缓冲区验证标签
+
+/**
+ * @brief 数据大小检查标签
+ */
+#define DataSizeCheckLabel LAB_18008733a                // 数据大小检查标签
+
+/**
+ * @brief 字符代码验证标签
+ */
+#define CharacterCodeValidationLabel LAB_180087418      // 字符代码验证标签
+
+/**
+ * @brief 空字符检查标签
+ */
+#define NullCharacterCheckLabel LAB_18008755d          // 空字符检查标签
+
+/**
+ * @brief 字符处理标签
+ */
+#define CharacterProcessingLabel LAB_1800878e0         // 字符处理标签
+
+/**
+ * @brief 系统处理标签
+ */
+#define SystemProcessingLabel LAB_180088131             // 系统处理标签
+
+/**
+ * @brief 内存分配标签
+ */
+#define MemoryAllocationLabel LAB_180087f81            // 内存分配标签
+
+/**
+ * @brief 字符验证标签
+ */
+#define CharacterValidationLabel LAB_180087f16          // 字符验证标签
+
+/**
+ * @brief 数据处理标签
+ */
+#define DataProcessingLabel LAB_180088ac9               // 数据处理标签
+
+/**
+ * @brief 字符编码标签
+ */
+#define CharacterEncodingLabel LAB_18008913b           // 字符编码标签
+
+/**
+ * @brief 系统内存检查标签
+ */
+#define SystemMemoryCheckLabel LAB_18008917c           // 系统内存检查标签
+
+/**
+ * @brief 字符串处理标签
+ */
+#define StringProcessingLabel LAB_18008927d             // 字符串处理标签
+
+/**
+ * @brief 内存块处理标签
+ */
+#define MemoryBlockProcessingLabel LAB_1800892ba       // 内存块处理标签
+
+/**
+ * @brief 数据结构处理标签
+ */
+#define DataStructureProcessingLabel LAB_1800892bd     // 数据结构处理标签
+
+/**
+ * @brief 内存复制标签
+ */
+#define MemoryCopyLabel LAB_1800892fd                  // 内存复制标签
 
 // 浮点变量语义化映射
 #define FloatOffsetValue PrimaryFloatCoefficient              // 主浮点系数
