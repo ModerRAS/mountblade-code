@@ -10036,6 +10036,7 @@ uint8_t SystemNetworkManager;
 #define RequestContextDataOffset 0x58
 #define RequestContextStateOffset 0x50
 #define ComponentDataCounterOffset 0xc
+#define ExceptionHandlerContextPointerOffset 8
 // 系统图形管理器
 uint8_t SystemGraphicsManager;
 // 系统音频管理器
@@ -16409,14 +16410,29 @@ SystemCleanupLabel:
 /**
  * @brief 验证工具系统配置的有效性
  * 
- * 检查配置参数是否符合系统要求，包括：
+ * 该函数负责验证工具系统的配置参数，确保系统配置的正确性和安全性。
+ * 它会检查配置ID和验证标志，计算系统所需的操作结果，并根据验证结果
+ * 进行相应的内存分配和数据处理。
+ * 
+ * 主要功能包括：
  * - 配置参数完整性检查
- * - 参数范围验证
+ * - 参数范围验证和调整
  * - 系统兼容性检查
  * - 安全性验证
+ * - 内存资源分配和管理
+ * - 系统上下文初始化
+ * - 错误处理和异常管理
  * 
  * @param configId 配置标识符，指定要验证的配置项
  * @param validationFlags 验证标志，控制验证过程的严格程度和检查项目
+ * 
+ * @note 函数内部使用寄存器上下文进行系统操作
+ * @note 包含错误处理标签和系统清理逻辑
+ * @note 内存分配使用系统内存管理器
+ * 
+ * @warning 确保传入的参数有效，否则可能导致系统异常
+ * 
+ * @see AllocateSystemMemoryA0, ReleaseSystemMemoryA0, CleanupSystemEventA0
  */
 void ValidateUtilityConfiguration(int configId,int validationFlags)
 
@@ -20311,7 +20327,7 @@ uint32_t ProcessSystemRequestWithValidation(int64_t requestContext,DataBuffer re
     return ComponentDataValidationFailure;
   }
   contextCount = 0;
-  requestFlags = *(uint *)(requestContext + 0x20);
+  requestFlags = *(uint *)(requestContext + RequestContextFlagsOffset);
   temporaryContext[0] = 0;
   operationResult = InitializeTemporaryContext(temporaryContext,requestContext);
   if (operationResult == 0) {
@@ -20321,7 +20337,7 @@ uint32_t ProcessSystemRequestWithValidation(int64_t requestContext,DataBuffer re
       processedOperationFlags = operationFlags;
     }
     operationResult = ExecuteSystemOperation(requestContext,requestData,processedOperationFlags,&operationResultData);
-    if ((operationResult == 0) && (exceptionHandlerContextPointer = (int64_t *)(exceptionHandlerContext + 8), exceptionHandlerContextPointer != (int64_t *)0x0)) {
+    if ((operationResult == 0) && (exceptionHandlerContextPointer = (int64_t *)(exceptionHandlerContext + ExceptionHandlerContextPointerOffset), exceptionHandlerContextPointer != (int64_t *)0x0)) {
       contextIterator = (int64_t *)*exceptionHandlerContextPointer;
       if (contextIterator != exceptionHandlerContextPointer) {
         do {
@@ -20330,8 +20346,8 @@ uint32_t ProcessSystemRequestWithValidation(int64_t requestContext,DataBuffer re
         } while (contextIterator != exceptionHandlerContextPointer);
         if (contextCount != 0) goto CleanupContextAndExit;
       }
-      *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) = *(DataBuffer *)(requestContext + 0x58);
-      *exceptionHandlerContextPointer = requestContext + 0x50;
+      *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) = *(DataBuffer *)(requestContext + RequestContextDataOffset);
+      *exceptionHandlerContextPointer = requestContext + RequestContextStateOffset;
       *(int64_t **)(requestContext + ResourceContextOffset) = exceptionHandlerContextPointer;
       **(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) = (int64_t)exceptionHandlerContextPointer;
       ProcessValidationContextData(exceptionHandlerContext,operationResultData);
@@ -20389,7 +20405,7 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
   uint dataCounter;
   
   // 获取数据计数器
-  dataCounter = *(uint *)((int64_t)componentContext + 0xc);
+  dataCounter = *(uint *)((int64_t)componentContext + ComponentDataCounterOffset);
   
   // 执行数据验证（使用异或操作进行完整性检查）
   validationStatus = dataCounter ^ (int)dataCounter >> 0x1f;
