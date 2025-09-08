@@ -815,6 +815,11 @@
 // 新增的FUN_函数语义化定义
 #define ProcessSystemDataBufferConfiguration FUN_1802a8080     // 处理系统数据缓冲区配置
 #define ProcessSystemContextWithMemoryAllocation FUN_18032c450    // 处理系统上下文和内存分配
+#define ProcessSystemFunctionAddressAllocation FUN_180628420    // 处理系统函数地址分配
+#define ProcessCharacterTableWithValidation FUN_1803214c0       // 处理字符表和验证
+#define ProcessLoopCounterWithParameters FUN_180323d00          // 处理循环计数器和参数
+#define ProcessCharacterTableMemoryOperation FUN_18033ad00      // 处理字符表内存操作
+#define ProcessCharacterTableUpdate FUN_1803336f0             // 处理字符表更新
 
 // 渲染上下文处理函数
 #define ProcessRenderContextWithUnsignedValue FUN_1800a43c0     // 处理渲染上下文和无符号值
@@ -204169,7 +204174,7 @@ uint64_t ProcessUtf8CharacterEncodingWithMemoryAllocation(uint64_t CharacterCode
     ProcessingCounter = 0;
     LocalProcessingStatusFlag = NULL;
     StackValidationFlag28 = 0;
-    FUN_180628420(&pFunctionAddress,*(uint32_t *)(*(long long *)(CoreEngineSystemContext + 0x3d8) + 0x160),Utf8SourcePointer
+    ProcessSystemFunctionAddressAllocation(&pFunctionAddress,*(uint32_t *)(*(long long *)(CoreEngineSystemContext + 0x3d8) + 0x160),Utf8SourcePointer
                   ,Utf16EndPointer,0,0xfffffffffffffffe);
     pMemoryAddressMaskPointer = &CoreEngineDataTemplate;
     if (LocalProcessingStatusFlag != NULL) {
