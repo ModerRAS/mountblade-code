@@ -7033,9 +7033,9 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 // 功能：验证数据并执行相应的操作
 #define ValidateAndExecuteOperationsA1 FUN_180899100
 
-// 原始函数名：FUN_180899763 - 系统状态检查函数A0
+// 原始函数名：FUN_180899763 - 系统状态检查函数A1
 // 功能：检查系统状态并返回状态码
-#define CheckSystemStatusA0 FUN_180899763
+#define CheckSystemStatusA1 FUN_180899763
 
 // 原始函数名：FUN_180899790 - 系统清理函数A0
 // 功能：清理系统资源和状态
