@@ -81969,24 +81969,24 @@ void ProcessUIFloatDataTransform(longlong uiContext,float *dataSource,UIHandle t
   elementCount = (bufferSize - 4U >> 2) + 1;
   processingCounter = (ulonglong)elementCount;
   do {
-    resultFloat = unmodifiedXMM10_Da;
-    localFloat9 = *(float *)(uiContext + -4 + (longlong)ptransformCoeff4);
-    ptransformCoeff4[-1] = resultFloat * unmodifiedXMM11_Da + localFloat9 + unmodifiedXMM9_Da * unmodifiedXMM12_Da +
-                 unmodifiedXMM7_Da * unmodifiedXMM13_Da + unmodifiedXMM8_Da * unmodifiedXMM14_Da +
-                 unmodifiedXMM6_Da * unmodifiedXMM15_Da;
-    localFloat8 = *(float *)(uiContext + (longlong)ptransformCoeff4);
-    *ptransformCoeff4 = localFloat9 * unmodifiedXMM11_Da + localFloat8 + resultFloat * unmodifiedXMM12_Da +
-              unmodifiedXMM9_Da * unmodifiedXMM13_Da + unmodifiedXMM7_Da * unmodifiedXMM14_Da +
-              unmodifiedXMM8_Da * unmodifiedXMM15_Da;
-    baseValue0 = *(float *)(uiContext + 4 + (longlong)ptransformCoeff4);
-    ptransformCoeff4[1] = localFloat8 * unmodifiedXMM11_Da + baseValue0 + localFloat9 * unmodifiedXMM12_Da + resultFloat * unmodifiedXMM13_Da +
-                unmodifiedXMM9_Da * unmodifiedXMM14_Da + unmodifiedXMM7_Da * unmodifiedXMM15_Da;
-    unmodifiedXMM10_Da = *(float *)(uiContext + 8 + (longlong)ptransformCoeff4);
-    ptransformCoeff4[2] = baseValue0 * unmodifiedXMM11_Da + unmodifiedXMM10_Da + localFloat8 * unmodifiedXMM12_Da +
-                localFloat9 * unmodifiedXMM13_Da + resultFloat * unmodifiedXMM14_Da + unmodifiedXMM9_Da * unmodifiedXMM15_Da;
-    ptransformCoeff4 = ptransformCoeff4 + 4;
-    ProcessingStatus = ProcessingStatus - 1;
-    unmodifiedXMM6_Da = resultFloat;
+    resultValue = transformCoeff10;
+    tempFloat9 = *(float *)(uiContext + -4 + (longlong)transformCoeffPointer);
+    transformCoeffPointer[-1] = resultValue * transformCoeff11 + tempFloat9 + transformCoeff9 * transformCoeff12 +
+                 transformCoeff7 * transformCoeff13 + transformCoeff8 * transformCoeff14 +
+                 transformCoeff6 * transformCoeff15;
+    tempFloat8 = *(float *)(uiContext + (longlong)transformCoeffPointer);
+    *transformCoeffPointer = tempFloat9 * transformCoeff11 + tempFloat8 + resultValue * transformCoeff12 +
+              transformCoeff9 * transformCoeff13 + transformCoeff7 * transformCoeff14 +
+              transformCoeff8 * transformCoeff15;
+    sourceValue0 = *(float *)(uiContext + 4 + (longlong)transformCoeffPointer);
+    transformCoeffPointer[1] = tempFloat8 * transformCoeff11 + sourceValue0 + tempFloat9 * transformCoeff12 + resultValue * transformCoeff13 +
+                transformCoeff9 * transformCoeff14 + transformCoeff7 * transformCoeff15;
+    transformCoeff10 = *(float *)(uiContext + 8 + (longlong)transformCoeffPointer);
+    transformCoeffPointer[2] = sourceValue0 * transformCoeff11 + transformCoeff10 + tempFloat8 * transformCoeff12 +
+                tempFloat9 * transformCoeff13 + resultValue * transformCoeff14 + transformCoeff9 * transformCoeff15;
+    transformCoeffPointer = transformCoeffPointer + 4;
+    processingCounter = processingCounter - 1;
+    transformCoeff6 = resultValue;
     unmodifiedXMM7_Da = localFloat8;
     unmodifiedXMM8_Da = localFloat9;
     unmodifiedXMM9_Da = baseValue0;

@@ -5234,13 +5234,13 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 // 功能：加载系统配置B1并返回加载结果
 #define LoadSystemConfigurationB1 FUN_180941820
 
-// 原始函数名：FUN_180941840 - 全局指针设置函数B2
-// 功能：设置全局数据指针B2到指定地址
-#define SetGlobalDataPointerB2 FUN_180941840
+// 原始函数名：FUN_180941840 - 系统配置验证函数B2
+// 功能：验证系统配置B2并返回验证结果
+#define ValidateSystemConfigurationB2 FUN_180941840
 
-// 原始函数名：FUN_180941860 - 全局指针设置函数B3
-// 功能：设置全局数据指针B3到指定地址
-#define SetGlobalDataPointerB3 FUN_180941860
+// 原始函数名：FUN_180941860 - 系统配置保存函数B3
+// 功能：保存系统配置B3并返回保存结果
+#define SaveSystemConfigurationB3 FUN_180941860
 
 // 原始函数名：FUN_180941880 - 全局指针设置函数B4
 // 功能：设置全局数据指针B4到指定地址

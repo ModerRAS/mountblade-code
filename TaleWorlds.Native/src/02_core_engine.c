@@ -50005,10 +50005,13 @@ void CoreEngineProcessSystemContext(void
     MemoryAddressMaskPointer1 = (unsigned long long)(EncodingValidationResult0 + 1);
     pMemoryAddressMaskPointer2 = pMemoryAddressMaskPointer2 + 2;
   } while ((long long)(FunctionPointer7 + (-0x808 - (long long)systemEventTemplatePtr6)) <= (long long)UnicodeCharacterValue);
+  // 获取系统事件模板指针
   SystemEventTemplatePointer8 = (void *            (*(long long *              ((long long)*(int *)(systemEventTablePointer + 0x1210) * 0x908 + systemEventTablePointer + 8 +
               UnicodeCharacterValue * 8) + (unsigned long long)(Utf16Char - (Utf16CharacterValue & 0xfffffe00)) * 0x60);
   MemoryBlockIndex3 = SystemContext;
   eventDataStructureHandle = SystemEventTemplatePointer8;
+  
+  // 检查系统上下文标志并获取内存块数据
   if ((*(byte *)(SystemContext + 0xfd) & 0x20) == 0) {
     MemoryBlockIndex3 = GetMemoryBlockData(*(void *)(SystemContext + 0x1b0));
   }
