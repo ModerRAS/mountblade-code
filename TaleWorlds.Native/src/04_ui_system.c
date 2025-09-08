@@ -90858,8 +90858,19 @@ void InitializeUIContextSystem(void)
 
 
 
- void FUN_18071da89(void)
-void FUN_18071da89(void)
+ /**
+ * @brief 处理UI上下文数据移动
+ * 
+ * 该函数负责处理UI上下文数据的移动操作，包括：
+ * - 移动UI上下文中的数据块
+ * - 重新组织内存布局
+ * - 确保数据连续性
+ * 
+ * 该函数是一个不返回的函数，用于重要的数据重组操作。
+ * 
+ * @note 原始函数名：FUN_18071da89
+ */
+void ProcessUIContextDataMovement(void)
 
 {
   longlong contextHandle;
@@ -90872,11 +90883,22 @@ void FUN_18071da89(void)
 
 
 
- void FUN_18071dadd(void)
-void FUN_18071dadd(void)
+ /**
+ * @brief 验证UI系统完整性
+ * 
+ * 该函数负责验证UI系统的完整性，包括：
+ * - 检查系统状态的一致性
+ * - 验证内存布局的正确性
+ * - 确保系统组件的完整性
+ * 
+ * 该函数通常在系统重要操作后调用，确保系统处于正确状态。
+ * 
+ * @note 原始函数名：FUN_18071dadd
+ */
+void ValidateUISystemIntegrity(void)
 
 {
-  longlong BasePointer;
+  longlong basePointer;
   UIDword *preservedRegister15;
   
   *preservedRegister15 = 0;
