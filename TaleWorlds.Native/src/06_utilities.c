@@ -123458,4 +123458,12 @@ uint8_t SystemExceptionHandlerStateTable;
 #define CleanupSystemResourceTableAndHandleExceptions Unwind_180911de0
 #define ProcessExceptionHandlerContextCleanup Unwind_180911e00
 #define ProcessExceptionHandlerContextCleanupVariant Unwind_180911e20
+
+// 内存管理和异常处理函数
+#define ManageMemoryResourceReferenceCount Unwind_18090ef60
+#define InvokeExceptionHandlerContext Unwind_18090ef70
+#define InvokeExceptionHandlerCallback Unwind_18090ef80
+#define ExecuteSystemMemoryOperation Unwind_18090ef90
+#define ProcessDataBufferWithFlags Unwind_18090efc0
+#define ManageExceptionContextResources Unwind_18090efe0
 #define ValidateSystemResources130 Unwind_18090a130

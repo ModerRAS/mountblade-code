@@ -748,6 +748,20 @@
 #define ProcessSystemDataAllocationAndMemoryPool FUN_180240430
 
 /**
+ * @brief 处理内存引用计数和资源释放
+ * 
+ * 该函数负责管理系统内存资源的引用计数，包括：
+ * - 检查主处理状态标志的有效性
+ * - 计算内存偏移量和地址掩码
+ * - 管理内存块的引用计数
+ * - 在引用计数归零时释放内存资源
+ * - 处理内存分配异常情况
+ * 
+ * @note 原始函数名：FUN_18015b574
+ */
+#define ProcessMemoryReferenceCountAndReleaseResources FUN_18015b574
+
+/**
  * @brief 处理系统配置数据和核心引擎值
  * 
  * 该函数负责处理系统配置数据和核心引擎值的操作。
@@ -20547,7 +20561,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
 
 
- void CoreEngineInitializeThreadSecurity(voidvoid CoreEngineInitializeThreadSecurity(void
+ void CoreEngineInitializeThreadSecurity(void)
 {
   char CurrentCharacter;
   void *SystemContext;
@@ -20595,7 +20609,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
 
 
- void CoreEngineInitializeThreadMemoryManagement(voidvoid CoreEngineInitializeThreadMemoryManagement(void
+ void CoreEngineInitializeThreadMemoryManagement(void)
 {
   char CurrentCharacter;
   void *SystemContext;
@@ -20643,7 +20657,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
 
 
- void CoreEngineInitializeThreadContextSwitching(voidvoid CoreEngineInitializeThreadContextSwitching(void
+ void CoreEngineInitializeThreadContextSwitching(void)
 {
   char CurrentCharacter;
   void *SystemContext;
@@ -21745,7 +21759,7 @@ CoreEngineProcessDataNode(uint64_t *SystemDataNode,unsigned long long Processing
 
 
 
- void CoreEngineHandleSystemError(voidvoid CoreEngineHandleSystemError(void
+ void CoreEngineHandleSystemError(void)
 {
                     // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();
@@ -24460,7 +24474,7 @@ void CoreEngineInitializeDataProcessors(uint64_t SystemContext,uint64_t Configur
 
 
 
- void CoreEngineInitializeCharacterStatusBuffers(long long *CharacterCodevoid CoreEngineInitializeCharacterStatusBuffers(long long *CharacterCode
+ void CoreEngineInitializeCharacterStatusBuffers(long long *CharacterCode)
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -191686,7 +191700,19 @@ void ReleaseSystemMemoryReferencesAndCleanup(void)
 
 
 
-5b574(voidvoid FUN_18015b574(void
+/**
+ * @brief 处理内存引用计数和资源释放
+ * 
+ * 该函数负责管理系统内存资源的引用计数，包括：
+ * - 检查主处理状态标志的有效性
+ * - 计算内存偏移量和地址掩码
+ * - 管理内存块的引用计数
+ * - 在引用计数归零时释放内存资源
+ * - 处理内存分配异常情况
+ * 
+ * @note 原始函数名：FUN_18015b574
+ */
+void ProcessMemoryReferenceCountAndReleaseResources(void)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
