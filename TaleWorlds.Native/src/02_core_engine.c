@@ -263011,8 +263011,8 @@ ProcessCharacterEncodingWithMemoryManagement(uint64_t *CharacterCode,long long *
 
 
 long long *
-FUN_18021f710(uint64_t *CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,unsigned long long Utf16EndPointer,
-             uint64_t AdditionalParameter1,uint32_t AdditionalParameter2
+ProcessCharacterEncodingWithBufferValidation(uint64_t *CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,unsigned long long Utf16EndPointer,
+                                             uint64_t AdditionalParameter1,uint32_t AdditionalParameter2
 {
   int LockResult;
   uint64_t MemoryAllocationIndex;
@@ -263051,7 +263051,7 @@ FUN_18021f710(uint64_t *CharacterCode,long long *CharacterCodeSize,uint64_t Utf8
 
 
 uint64_t *
-FUN_18021f7f0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+InitializeCharacterCodeTableWithMutex(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   
