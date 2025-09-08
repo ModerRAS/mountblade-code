@@ -21158,7 +21158,7 @@ void ProcessDataWithColorComponents(int64_t DataPointer, DataWord *DataBuffer, i
       redGreenLow = redGreenComponents & ColorComponentMask;
         InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
     }
-    systemContext = *(int64_t *)(memoryBlockOffset + 0x48);
+    systemContext = *(int64_t *)(memoryBlockOffset + SystemContextOffset48);
     if ((systemContext != 0) || (operationResult = ProcessSystemContextA0(operationBase,memoryBlockOffset,&systemContext), operationResult == 0)) {
       *operationFlagA = systemContext;
     }
