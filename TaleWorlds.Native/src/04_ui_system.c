@@ -1,5 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
 
+/**
+ * @file 04_ui_system.c
+ * @brief Mount & Blade: Native UI系统实现
+ * 
+ * 该文件实现了游戏的核心UI系统，包括：
+ * - UI组件管理和渲染
+ * - 事件处理和状态管理
+ * - 资源管理和内存分配
+ * - 布局计算和动画处理
+ * 
+ * @author Ghidra逆向工程
+ * @version 1.0
+ * @date 2025
+ */
+
 // UI系统基本类型定义
 typedef uint8_t UIByte;
 typedef uint16_t UIWord;
@@ -183083,8 +183098,8 @@ undefined UIRenderSystem;
  原本实现：可能包含更复杂的事件处理逻辑
 undefined UIProcessEvents;
 
- undefined FUN_18079b740;
-undefined FUN_18079b740;
+ undefined UIResourceAllocator;
+undefined UIResourceAllocator;
 undefined DAT_180c11734;
 undefined DAT_180c11738;
 undefined DAT_180be3540;
@@ -183094,21 +183109,21 @@ undefined DAT_180be34dc;
 undefined DAT_180c1173c;
 undefined DAT_180be3590;
 
- undefined FUN_18079b400;
-undefined FUN_18079b400;
+ undefined UIResourceManager;
+undefined UIResourceManager;
 undefined DAT_180be34e0;
 
- undefined FUN_18079b4c0;
-undefined FUN_18079b4c0;
+ undefined UIResourceCache;
+undefined UIResourceCache;
 undefined DAT_180be3598;
 
- undefined FUN_18079b5a0;
-undefined FUN_18079b5a0;
+ undefined UIConfigDataPrimary;
+undefined UIConfigDataPrimary;
 
- undefined FUN_18079b600;
-undefined FUN_18079b600;
-undefined DAT_180be35a0;
-undefined DAT_180be34e4;
+ undefined UIConfigDataSecondary;
+undefined UIConfigDataSecondary;
+undefined UIConfigDataTertiary;
+undefined UIConfigDataQuaternary;
 undefined DAT_180be34e8;
 undefined DAT_180c11740;
 undefined DAT_180be35f0;
