@@ -29945,8 +29945,6 @@ void UtilityNoOperationC(void)
 
 
 
-// 函数: uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer)
-// 
 /**
  * @brief 验证并处理数据块
  * 
@@ -30023,18 +30021,25 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
 
 
 
-// 函数: uint64_t ProcessDataWithValidation(void)
-// 
-// 带验证的数据处理函数
-// 处理数据流并进行验证，确保数据处理的正确性和完整性
-// 
-// 参数:
-//   无 (使用全局寄存器状态)
-// 
-// 返回值:
-//   uint64_t - 处理结果状态码
-// 
-// 原始函数名: FUN_18089b307
+/**
+ * @brief 带验证的数据处理函数
+ * 
+ * 该函数处理数据流并进行验证，确保数据处理的正确性和完整性。
+ * 函数使用全局寄存器状态进行操作，执行数据元素处理和验证。
+ * 
+ * @return uint64_t 处理结果状态码，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名: FUN_18089b307
+ * 
+ * 处理流程：
+ * 1. 检查进位标志状态
+ * 2. 根据状态选择不同的数据处理路径
+ * 3. 执行多个数据元素的处理操作
+ * 4. 验证处理结果并执行相应的清理操作
+ * 5. 返回最终的处理状态
+ * 
+ * @warning 该函数依赖全局寄存器状态，调用前需确保寄存器状态正确
+ */
 uint64_t ProcessDataWithValidation(void)
 
 {
