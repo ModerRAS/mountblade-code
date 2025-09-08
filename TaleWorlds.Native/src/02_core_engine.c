@@ -257,6 +257,8 @@
 #define GetSystemConfigurationHandle FUN_180121300               // 获取系统配置句柄
 #define GetSystemStringIndex FUN_180624c70                       // 获取系统字符串索引
 #define ProcessSystemDataTable FUN_180627ce0                     // 处理系统数据表
+#define ReleaseSystemBufferMemory FUN_18015c270                  // 释放系统缓冲区内存
+#define ReleaseSystemBufferMemoryWithParams FUN_18015c320         // 释放系统缓冲区内存（带参数）
 #define InitializeCharacterCodePointer FUN_180184700              // 初始化字符代码指针
 #define ProcessCharacterCodeBufferData FUN_1801899b0                // 处理字符代码缓冲区数据
 #define ProcessCharacterCodeDataConversion FUN_180189aa0            // 处理字符代码数据转换
@@ -61790,7 +61792,7 @@ ConfigHandlerLAB180087418:
   if (CurrentCharacter == '\0') {
 CleanupHandlerLAB18008755d:
     CurrentCharacter = CoreEngineValidateSystemStatus(&pMemoryOffsetValue);
-    if (CurrentCharacter == '\0') goto LAB_18008758f;
+    if (CurrentCharacter == '\0') goto MemoryResetHandlerLAB18008758f;
     SystemEventTemplatePointer = &CoreEngineDataTemplate;
     if (SystemCharacterStatusBufferTertiary != NULL) {
       SystemEventTemplatePointer = SystemCharacterStatusBufferTertiary;
@@ -61808,7 +61810,7 @@ CleanupHandlerLAB18008755d:
     (**(code **)(*CharacterCodeSize + 0x10))(SystemBufferSize,SystemEventTemplatePointer);
   }
   MemoryAddressMaskPointer = 1;
-LAB_18008758f:
+MemoryResetHandlerLAB18008758f:
   pMemoryOffsetValue = &SystemNullTemplate;
   if (lStack_b0 != 0) {
                     // WARNING: Subroutine does not return
@@ -62051,7 +62053,7 @@ void InitializeSystemDataStructureProcessor(uint64_t *CharacterCode,uint64_t *Ch
     AllocatedMemorySize = AllocatedMemorySize & 0xffffffff00000000;
   }
   else {
-LAB_1800878e0:
+MemoryAllocationLoopLAB1800878e0:
     do {
       MemoryAllocationOffset = 0x1000000;
       if (0x24U - (long long)MemoryBufferPointer < 0x1000000) {
@@ -62065,7 +62067,7 @@ LAB_1800878e0:
             (MemoryBufferPointer = (long long *)((long long)MemoryBufferPointer + (unsigned long long)SystemOperationFlag),
             MemoryBufferPointer < (long long *)0x24));
     if (MemoryBufferPointer != (long long *)0x24) {
-LAB_18008807f:
+SystemConfigHandlerLAB18008807f:
       SystemCharacterStatusBuffer = &CoreEngineDataTemplate;
       if ((uint8_t *)SystemBufferSize[1] != (uint8_t *)0x0) {
         SystemCharacterStatusBuffer = (uint8_t *)SystemBufferSize[1];
@@ -191706,7 +191708,18 @@ long long FUN_18015c190(long long *CharacterCode,long long *CharacterCodeSize,in
 
 
 
-uint64_t FUN_18015c270(uint64_t CharacterCode,unsigned long long SystemBufferSize
+/**
+ * 释放系统缓冲区内存
+ * 原始函数名: FUN_18015c270
+ * 
+ * 根据系统缓冲区大小的奇偶性决定是否释放内存。
+ * 这是一个内存管理函数，用于处理系统资源的清理。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return uint64_t 返回字符代码指针
+ */
+uint64_t ReleaseSystemBufferMemory(uint64_t CharacterCode,unsigned long long SystemBufferSize)
 {
   FUN_180320050();
   if ((SystemBufferSize & 1) != 0) {
