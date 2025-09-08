@@ -440,6 +440,18 @@
  */
 #define ProcessSystemBufferSizeAndCoreEngineValue FUN_180226020
 
+/**
+ * @brief 处理系统数据分配和内存池
+ * 
+ * 该函数负责处理系统数据分配和内存池的操作。
+ * 
+ * @param DataPointer 数据指针
+ * @param BufferPointer 缓冲区指针
+ * @param OperationFlag 操作标志
+ * @note 原始函数名：FUN_180240430
+ */
+#define ProcessSystemDataAllocationAndMemoryPool FUN_180240430
+
 #define ProcessSystemResourceInitialization HandleSystemResourceInitializationAndConfiguration
 
 #define ProcessSystemContextManagement HandleSystemContextManagementAndMaintenance
@@ -277240,7 +277252,7 @@ LAB_18022c460:
   auStack_220[0] = 0;
   OperationStatus = 0xf;
   strcpy_s(auStack_220,0x40,&SystemUnknownProcessingStatusFlagJ);
-  Utf16Char4 = FUN_180240430(Utf16Char4,&pSystemUintBuffer238,0);
+  Utf16Char4 = ProcessSystemDataAllocationAndMemoryPool(Utf16Char4,&pSystemUintBuffer238,0);
   *(void *)(CharacterCode + 0x390) = Utf16Char4;
   pSystemUintBuffer238 = &ThreadLocalStorageTemplate;
   Utf16Char4 = *(void *)(CharacterCode + 0x1e0);
@@ -277255,8 +277267,8 @@ LAB_18022c460:
   auStack_220[0] = 0;
   OperationStatus = 0x17;
   strcpy_s(auStack_220,0x40,&SystemStringTemplateB);
-  MemoryAllocationIndex7 = FUN_180240430(SystemChecksum,&pSystemUintBuffer238,0);
-  Utf16ConversionContext = FUN_180240430(Utf16Char4,&SystemPointerBuffer1d8,0);
+  MemoryAllocationIndex7 = ProcessSystemDataAllocationAndMemoryPool(SystemChecksum,&pSystemUintBuffer238,0);
+  Utf16ConversionContext = ProcessSystemDataAllocationAndMemoryPool(Utf16Char4,&SystemPointerBuffer1d8,0);
   *(unsigned long long *)(CharacterCode + 0x3a8) = MemoryAllocationIndex7 | Utf16ConversionContext;
   pSystemUintBuffer238 = &ThreadLocalStorageTemplate;
   SystemPointerBuffer1d8 = &ThreadLocalStorageTemplate;
@@ -277266,7 +277278,7 @@ LAB_18022c460:
   aSystemUnsignedValue160[0] = 0;
   DataContentStatus = 0x10;
   strcpy_s(aSystemUnsignedValue160,0x40,&SystemUnknownProcessingStatusFlagK);
-  Utf16Char4 = FUN_180240430(Utf16Char4,&DataContentPointer,0);
+  Utf16Char4 = ProcessSystemDataAllocationAndMemoryPool(Utf16Char4,&DataContentPointer,0);
   *(void *)(CharacterCode + 0x3b0) = Utf16Char4;
   DataContentPointer = &ThreadLocalStorageTemplate;
   Utf16Char4 = *(void *)(CharacterCode + 0x1e0);
@@ -277275,7 +277287,7 @@ LAB_18022c460:
   aSystemFlagA[0] = 0;
   ProcessingCounter = 0x14;
   strcpy_s(aSystemFlagA,0x40,&SystemUnknownProcessingStatusFlagL);
-  Utf16Char4 = FUN_180240430(Utf16Char4,&ThreadLocalStorageBuffer,0);
+  Utf16Char4 = ProcessSystemDataAllocationAndMemoryPool(Utf16Char4,&ThreadLocalStorageBuffer,0);
   *(void *)(CharacterCode + 0x3b8) = Utf16Char4;
   ThreadLocalStorageBuffer = &ThreadLocalStorageTemplate;
   Utf16Char4 = *(void *)(CharacterCode + 0x1e0);
@@ -277284,7 +277296,7 @@ LAB_18022c460:
   aCoreEngineUnsignedValueA0[0] = 0;
   CoreEngineValueA8 = 0x1d;
   strcpy_s(aCoreEngineUnsignedValueA0,0x40,&SystemStringTemplateC);
-  Utf16Char4 = FUN_180240430(Utf16Char4,apMemoryOffsetValue,0);
+  Utf16Char4 = ProcessSystemDataAllocationAndMemoryPool(Utf16Char4,apMemoryOffsetValue,0);
   *(void *)(CharacterCode + 0x398) = Utf16Char4;
   apMemoryOffsetValue[0] = &ThreadLocalStorageTemplate;
   ProcessingStatusFlag = FUN_18022d6c0(CharacterCode);
@@ -277466,7 +277478,7 @@ LAB_18022cf5f:
     StackValidationData = 0x15;
     hasMemoryBoundaryChanged = true;
     StackProcessingUnsignedValue78 = 1;
-    LoopIndex = FUN_180240430(UnicodeCodePoint,&pSystemOperationFlag98,0);
+    LoopIndex = ProcessSystemDataAllocationAndMemoryPool(UnicodeCodePoint,&pSystemOperationFlag98,0);
     if (LoopIndex == 0) goto LAB_18022cf5f;
     isSystemContextNull = true;
   }
@@ -277507,7 +277519,7 @@ LAB_18022cf5f:
       aSystemKeyPointer[0] = 0;
       BufferOffset = 0x15;
       strcpy_s(aSystemKeyPointer,0x20,&SystemUnknownProcessingStatusFlagM);
-      ProcessCurrentCharacter = FUN_180240430(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
+      ProcessCurrentCharacter = ProcessSystemDataAllocationAndMemoryPool(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
       *(unsigned long long *)(CharacterCode + 0x140) = *(unsigned long long *)(CharacterCode + 0x140) | ProcessCurrentCharacter;
       FUN_18022dd60(CharacterCode);
       *(uint16_t *)(CharacterCode + 0x3c0) = 0xffff;
@@ -277534,7 +277546,7 @@ LAB_18022cf5f:
       CharacterStatusBuffer[8] = 0x72757478;
       *(uint16_t *)(CharacterStatusBuffer + 9) = 0x65;
       StackValidationData = 0x25;
-      FUN_180240430(UnicodeCodePoint,&pSystemOperationFlag98,0);
+      ProcessSystemDataAllocationAndMemoryPool(UnicodeCodePoint,&pSystemOperationFlag98,0);
       pSystemOperationFlag98 = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
       CoreEngineFreeSystemMemory(CharacterStatusBuffer);
@@ -277544,7 +277556,7 @@ LAB_18022cf5f:
     aSystemKeyPointer[0] = 0;
     BufferOffset = 0x15;
     strcpy_s(aSystemKeyPointer,0x20,&SystemUnknownProcessingStatusFlagM);
-    ProcessCurrentCharacter = FUN_180240430(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
+    ProcessCurrentCharacter = ProcessSystemDataAllocationAndMemoryPool(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
     *(unsigned long long *)(CharacterCode + 0x140) = *(unsigned long long *)(CharacterCode + 0x140) & ~ProcessCurrentCharacter;
     FUN_18022dd60(CharacterCode);
     EnginePointerBuffer = &ThreadLocalStorageTemplate;
@@ -277734,7 +277746,7 @@ LAB_18022cf5f:
     StackValidationData = 0x15;
     LowByte = true;
     StackProcessingUnsignedValue78 = 1;
-    MemoryPoolBlockSize = FUN_180240430(MemoryAllocationIndex,&pSystemOperationFlag98,0);
+    MemoryPoolBlockSize = ProcessSystemDataAllocationAndMemoryPool(MemoryAllocationIndex,&pSystemOperationFlag98,0);
     if (MemoryPoolBlockSize == 0) goto LAB_18022cf5f;
     hasComparisonResult = true;
   }
@@ -277775,7 +277787,7 @@ LAB_18022cf5f:
       aSystemKeyPointer[0] = 0;
       BufferOffset = 0x15;
       strcpy_s(aSystemKeyPointer,0x20,&SystemUnknownProcessingStatusFlagM);
-      SystemMemoryAllocationResult = FUN_180240430(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
+      SystemMemoryAllocationResult = ProcessSystemDataAllocationAndMemoryPool(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
       *(unsigned long long *)(CharacterCode + 0x140) = *(unsigned long long *)(CharacterCode + 0x140) | SystemMemoryAllocationResult;
       FUN_18022dd60(CharacterCode);
       *(uint16_t *)(CharacterCode + 0x3c0) = 0xffff;
@@ -277802,7 +277814,7 @@ LAB_18022cf5f:
       StringProcessingStatus[8] = 0x72757478;
       *(uint16_t *)(StringProcessingStatus + 9) = 0x65;
       StackValidationData = 0x25;
-      FUN_180240430(MemoryAllocationIndex,&pSystemOperationFlag98,0);
+      ProcessSystemDataAllocationAndMemoryPool(MemoryAllocationIndex,&pSystemOperationFlag98,0);
       pSystemOperationFlag98 = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
       CoreEngineFreeSystemMemory(StringProcessingStatus);
@@ -277812,7 +277824,7 @@ LAB_18022cf5f:
     aSystemKeyPointer[0] = 0;
     BufferOffset = 0x15;
     strcpy_s(aSystemKeyPointer,0x20,&SystemUnknownProcessingStatusFlagM);
-    SystemMemoryAllocationResult = FUN_180240430(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
+    SystemMemoryAllocationResult = ProcessSystemDataAllocationAndMemoryPool(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
     *(unsigned long long *)(CharacterCode + 0x140) = *(unsigned long long *)(CharacterCode + 0x140) & ~SystemMemoryAllocationResult;
     FUN_18022dd60(CharacterCode);
     EnginePointerBuffer = &ThreadLocalStorageTemplate;
@@ -277881,7 +277893,7 @@ LAB_18022cf5f:
     StackValidationData = 0x15;
     HighByte = true;
     StackProcessingUnsignedValue78 = 1;
-    MemoryBoundaryEnd = FUN_180240430(Utf16Char,&pSystemOperationFlag98,0);
+    MemoryBoundaryEnd = ProcessSystemDataAllocationAndMemoryPool(Utf16Char,&pSystemOperationFlag98,0);
     if (MemoryBoundaryEnd == 0) goto LAB_18022cf5f;
     LowByte = true;
   }
@@ -277922,7 +277934,7 @@ LAB_18022cf5f:
       aSystemKeyPointer[0] = 0;
       BufferOffset = 0x15;
       strcpy_s(aSystemKeyPointer,0x20,&SystemUnknownProcessingStatusFlagM);
-      ProcessingStatusFlag = FUN_180240430(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
+      ProcessingStatusFlag = ProcessSystemDataAllocationAndMemoryPool(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
       *(unsigned long long *)(CharacterCode + 0x140) = *(unsigned long long *)(CharacterCode + 0x140) | ProcessingStatusFlag;
       FUN_18022dd60(CharacterCode);
       *(uint16_t *)(CharacterCode + 0x3c0) = 0xffff;
@@ -277949,7 +277961,7 @@ LAB_18022cf5f:
       StringProcessingStatus[8] = 0x72757478;
       *(uint16_t *)(StringProcessingStatus + 9) = 0x65;
       StackValidationData = 0x25;
-      FUN_180240430(Utf16Char,&pSystemOperationFlag98,0);
+      ProcessSystemDataAllocationAndMemoryPool(Utf16Char,&pSystemOperationFlag98,0);
       pSystemOperationFlag98 = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
       CoreEngineFreeSystemMemory(StringProcessingStatus);
@@ -277959,7 +277971,7 @@ LAB_18022cf5f:
     aSystemKeyPointer[0] = 0;
     BufferOffset = 0x15;
     strcpy_s(aSystemKeyPointer,0x20,&SystemUnknownProcessingStatusFlagM);
-    ProcessingStatusFlag = FUN_180240430(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
+    ProcessingStatusFlag = ProcessSystemDataAllocationAndMemoryPool(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
     *(unsigned long long *)(CharacterCode + 0x140) = *(unsigned long long *)(CharacterCode + 0x140) & ~ProcessingStatusFlag;
     FUN_18022dd60(CharacterCode);
     EnginePointerBuffer = &ThreadLocalStorageTemplate;
@@ -278133,7 +278145,7 @@ uint GetMemoryAllocationStatus(long long CharacterCode,long long *CharacterCodeS
   aFunctionAddress[0] = 0;
   SystemPriorityLevel = 0x11;
   strcpy_s(aFunctionAddress,0x20,&SystemFunctionAddressTemplate);
-  FUN_180240430(Utf16Char,&SystemValidationPointer,0);
+  ProcessSystemDataAllocationAndMemoryPool(Utf16Char,&SystemValidationPointer,0);
   SystemTemplatePointer = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aStackProcessingUnsignedValue78);
@@ -278260,7 +278272,7 @@ LAB_18022d7ef:
   DataSize = ProcessingStatusFlag;
   if (0 < InputDataLength) {
     do {
-      CalculatedCodePoint = FUN_180240430(*(void *)(CharacterCode + 0x1e0),
+      CalculatedCodePoint = ProcessSystemDataAllocationAndMemoryPool(*(void *)(CharacterCode + 0x1e0),
                             (long long)(int)ProcessingStatusFlag * 0x58 + *(long long *)(CharacterCode + 0x368),0);
       if (CalculatedCodePoint == 0) {
         SystemCharacterStatusBuffer = &CoreEngineDataTemplate;
@@ -278293,7 +278305,7 @@ LAB_18022d7ef:
     aProcessingCounter0[0] = 0;
     CoreEngineUnsignedValue208 = 0x10;
     strcpy_s(aProcessingCounter0,0x20,&SystemUnknownProcessingStatusFlagN);
-    DataSize = FUN_180240430(SystemChecksum,&MemoryPoolBlockSize,0);
+    DataSize = ProcessSystemDataAllocationAndMemoryPool(SystemChecksum,&MemoryPoolBlockSize,0);
     *(unsigned long long *)(CharacterCode + 0x140) = *(unsigned long long *)(CharacterCode + 0x140) | DataSize;
   }
   SystemChecksum = *(void *)(CharacterCode + 0x1e0);
@@ -278302,7 +278314,7 @@ LAB_18022d7ef:
   aProcessingCounter0[0] = 0;
   CoreEngineUnsignedValue208 = 10;
   strcpy_s(aProcessingCounter0,0x20,&SystemUnknownProcessingStatusFlagO);
-  DataSize = FUN_180240430(SystemChecksum,&MemoryPoolBlockSize,0);
+  DataSize = ProcessSystemDataAllocationAndMemoryPool(SystemChecksum,&MemoryPoolBlockSize,0);
   if ((((DataSize & *(unsigned long long *)(CharacterCode + 0x140)) != 0) && (-0.001 < *(float *)(CharacterCode + 600))) &&
      (*(float *)(CharacterCode + 600) < 0.001)) {
     *(unsigned long long *)(CharacterCode + 0x140) = ~DataSize & *(unsigned long long *)(CharacterCode + 0x140);
@@ -278313,7 +278325,7 @@ LAB_18022d7ef:
   aProcessingCounter0[0] = 0;
   CoreEngineUnsignedValue208 = 0xf;
   strcpy_s(aProcessingCounter0,0x40,&SystemUnknownProcessingStatusFlagJ);
-  SystemChecksum = FUN_180240430(SystemChecksum,&MemoryPoolBlockSize,0);
+  SystemChecksum = ProcessSystemDataAllocationAndMemoryPool(SystemChecksum,&MemoryPoolBlockSize,0);
   *(void *)(CharacterCode + 0x390) = SystemChecksum;
   MemoryPoolBlockSize = &ThreadLocalStorageTemplate;
   SystemChecksum = *(void *)(CharacterCode + 0x1e0);
@@ -278328,8 +278340,8 @@ LAB_18022d7ef:
   aProcessingCounter0[0] = 0;
   CoreEngineUnsignedValue208 = 0x17;
   strcpy_s(aProcessingCounter0,0x40,&SystemStringTemplateB);
-  DataSize = FUN_180240430(MemoryAllocationIndex,&MemoryPoolBlockSize,0);
-  ProcessingStatusFlag = FUN_180240430(SystemChecksum,&SystemTemplatePointer,0);
+  DataSize = ProcessSystemDataAllocationAndMemoryPool(MemoryAllocationIndex,&MemoryPoolBlockSize,0);
+  ProcessingStatusFlag = ProcessSystemDataAllocationAndMemoryPool(SystemChecksum,&SystemTemplatePointer,0);
   *(unsigned long long *)(CharacterCode + 0x3a8) = DataSize | ProcessingStatusFlag;
   MemoryPoolBlockSize = &ThreadLocalStorageTemplate;
   SystemTemplatePointer = &ThreadLocalStorageTemplate;
@@ -278339,7 +278351,7 @@ LAB_18022d7ef:
   aSystemStatusValue[0] = 0;
   CoreEngineUnsignedValue = 0x10;
   strcpy_s(aSystemStatusValue,0x40,&SystemUnknownProcessingStatusFlagK);
-  SystemChecksum = FUN_180240430(SystemChecksum,&CoreEnginePointerBuffer158,0);
+  SystemChecksum = ProcessSystemDataAllocationAndMemoryPool(SystemChecksum,&CoreEnginePointerBuffer158,0);
   *(void *)(CharacterCode + 0x3b0) = SystemChecksum;
   CoreEnginePointerBuffer158 = &ThreadLocalStorageTemplate;
   SystemChecksum = *(void *)(CharacterCode + 0x1e0);
@@ -278348,7 +278360,7 @@ LAB_18022d7ef:
   aSystemFlagE[0] = 0;
   ErrorCode = 0x14;
   strcpy_s(aSystemFlagE,0x40,&SystemUnknownProcessingStatusFlagL);
-  SystemChecksum = FUN_180240430(SystemChecksum,&pSystemFlagB,0);
+  SystemChecksum = ProcessSystemDataAllocationAndMemoryPool(SystemChecksum,&pSystemFlagB,0);
   *(void *)(CharacterCode + 0x3b8) = SystemChecksum;
   pSystemFlagB = &ThreadLocalStorageTemplate;
   SystemChecksum = *(void *)(CharacterCode + 0x1e0);
@@ -278357,7 +278369,7 @@ LAB_18022d7ef:
   StackBuffer80[0] = 0;
   StackValidationData = 0x1d;
   strcpy_s(StackBuffer80,0x40,&SystemStringTemplateC);
-  SystemChecksum = FUN_180240430(SystemChecksum,&pSystemOperationFlag98,0);
+  SystemChecksum = ProcessSystemDataAllocationAndMemoryPool(SystemChecksum,&pSystemOperationFlag98,0);
   *(void *)(CharacterCode + 0x398) = SystemChecksum;
   pSystemOperationFlag98 = &ThreadLocalStorageTemplate;
   MemoryAddressMask = FUN_18022d6c0(CharacterCode);
@@ -279399,7 +279411,7 @@ uint64_t * FUN_18022efb0(long long CharacterCode,long long SystemBufferSize,uint
     BufferOffset = 0x15;
     CurrentByteValue = true;
     StackProcessingUnsignedValue78 = 1;
-    AllocatedMemorySize = FUN_180240430(AllocatedMemorySize,&EnginePointerBuffer,0);
+    AllocatedMemorySize = ProcessSystemDataAllocationAndMemoryPool(AllocatedMemorySize,&EnginePointerBuffer,0);
     if (AllocatedMemorySize != 0) {
       HighByte = true;
       goto LAB_18022f178;
@@ -279424,7 +279436,7 @@ LAB_18022f178:
     aSystemKeyPointer[0] = aSystemKeyPointer[0] & 0xffffffffffffff00;
     BufferOffset = 0x15;
     strcpy_s(aSystemKeyPointer,0x20,&SystemUnknownProcessingStatusFlagM);
-    DataSize = FUN_180240430(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
+    DataSize = ProcessSystemDataAllocationAndMemoryPool(*(void *)(CharacterCode + 0x1e0),&EnginePointerBuffer,1);
     *(unsigned long long *)(CharacterCode + 0x140) = *(unsigned long long *)(CharacterCode + 0x140) & ~DataSize;
     FUN_18022dd60(CharacterCode);
     EnginePointerBuffer = &ThreadLocalStorageTemplate;
