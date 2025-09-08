@@ -94712,10 +94712,20 @@ void ResetExceptionHandlerToDefaultAtOffset540(DataBuffer operationBase, int64_t
 
 
 
-void Unwind_18090cc30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器重置函数CC30
+ * 
+ * 简单的异常处理器重置函数，设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090cc30
+ */
+void ResetExceptionHandlerToDefaultAtOffset5a0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x5a0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerDataOffset5a0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
