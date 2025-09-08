@@ -2140,6 +2140,18 @@
 // 原始函数名：Unwind_1809045c0 - 异常上下文处理器清理函数A19
 #define CleanupExceptionHandlerContextA19 Unwind_1809045c0
 
+// 原始函数名：Unwind_18090af50 - 异常上下文处理器回调函数AF50
+// 功能：处理异常上下文回调，从0x50偏移量的0x298处获取异常上下文指针并执行回调
+#define ExecuteExceptionHandlerCallbackAF50 Unwind_18090af50
+
+// 原始函数名：Unwind_18090b130 - 异常上下文处理器回调函数B130
+// 功能：处理异常上下文回调，从0x50偏移量的0x340处获取异常上下文指针并执行回调
+#define ExecuteExceptionHandlerCallbackB130 Unwind_18090b130
+
+// 原始函数名：Unwind_18090b150 - 异常上下文处理器回调函数B150
+// 功能：处理异常上下文回调，从0x50偏移量的0x348处获取异常上下文指针并执行回调
+#define ExecuteExceptionHandlerCallbackB150 Unwind_18090b150
+
 // 原始函数名：Unwind_1809049e0 - 资源清理函数偏移量0x28
 // 功能：清理偏移量0x28处的资源指针，处理内存引用计数和异常情况
 #define CleanupResourceAtOffset28 Unwind_1809049e0
@@ -85730,7 +85742,21 @@ void CheckDataIntegrityAndCallback(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090b130(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器回调函数B130
+ * 
+ * 该函数处理异常上下文回调，从0x50偏移量的0x340处获取异常上下文指针
+ * 并执行相应的回调函数。该函数是异常处理系统的重要组成部分，
+ * 负责在特定异常情况下执行预定义的处理逻辑。
+ * 
+ * @param operationBase 操作基地址，用于系统上下文管理
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息和上下文数据
+ * 
+ * @note 原始函数名：Unwind_18090b130
+ * @note 该函数从数据缓冲区的0x50偏移量处获取异常上下文指针，
+ *       然后在0x340偏移量处执行回调函数处理异常情况。
+ */
+void ExecuteExceptionHandlerCallbackB130(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -85744,7 +85770,21 @@ void Unwind_18090b130(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b150(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器回调函数B150
+ * 
+ * 该函数处理异常上下文回调，从0x50偏移量的0x348处获取异常上下文指针
+ * 并执行相应的回调函数。该函数是异常处理系统的重要组成部分，
+ * 负责在特定异常情况下执行预定义的处理逻辑。
+ * 
+ * @param operationBase 操作基地址，用于系统上下文管理
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息和上下文数据
+ * 
+ * @note 原始函数名：Unwind_18090b150
+ * @note 该函数从数据缓冲区的0x50偏移量处获取异常上下文指针，
+ *       然后在0x348偏移量处执行回调函数处理异常情况。
+ */
+void ExecuteExceptionHandlerCallbackB150(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -88429,17 +88469,19 @@ void SetDefaultExceptionHandlerAtOffset300(DataBuffer operationBase,int64_t data
 
 
 /**
- * @brief 在偏移量0x3C0处设置默认异常处理器
+ * @brief 设置默认异常处理器到偏移量3C0
  * 
- * 该函数在数据缓冲区的偏移量0x3C0处设置默认异常处理器B。
- * 这是一个简单的异常处理器配置函数。
+ * 该函数在数据缓冲区的0x3C0偏移量处设置默认异常处理器B。
+ * 这是一个简单的异常处理器设置函数，用于异常处理机制的初始化。
  * 
- * @param operationBase 操作基址（DataBuffer类型）
- * @param dataBuffer 数据缓冲区指针
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文信息
+ * @return void 无返回值
  * 
  * @note 原始函数名：Unwind_18090c120
+ * @note 此函数为异常处理机制的一部分，用于初始化异常处理器
  */
-void Unwind_18090c120(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandlerAtOffset3C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x3c0) = &DefaultExceptionHandlerB;
@@ -88454,12 +88496,14 @@ void Unwind_18090c120(DataBuffer operationBase,int64_t dataBuffer)
  * 该函数遍历数据缓冲区中的异常处理器上下文，执行每个有效的异常处理器，
  * 并在完成后终止系统。这是一个关键的系统清理函数。
  * 
- * @param operationBase 操作基址（DataBuffer类型）
- * @param dataBuffer 数据缓冲区指针
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文信息
+ * @return void 无返回值
  * 
  * @note 原始函数名：Unwind_18090c130
+ * @note 此函数为异常处理机制的一部分，用于系统清理和终止
  */
-void Unwind_18090c130(DataBuffer operationBase,int64_t dataBuffer)
+void ProcessExceptionHandlersAndTerminateSystem(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;

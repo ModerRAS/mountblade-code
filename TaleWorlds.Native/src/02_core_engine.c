@@ -208556,7 +208556,19 @@ void ConvertCharacterEncodingA0(void)
 
 
 
-73b8f(voidvoid FUN_180173b8f(void
+/**
+ * @brief 剪贴板关闭和系统上下文处理函数
+ * 
+ * 该函数负责处理剪贴板关闭操作和系统上下文管理，包括调用系统上下文函数、
+ * 关闭剪贴板和执行全局解锁操作。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 该函数不会返回，会调用核心引擎工具函数
+ * @warning 函数执行后会导致程序流程跳转到其他位置
+ * @see CoreEngineExecuteUtilityFunction
+ */
+void ClipboardCloseAndSystemContextHandler(void)
 {
   long long *SystemContext;
   unsigned long long in_stack_00008040;
@@ -208571,7 +208583,19 @@ void ConvertCharacterEncodingA0(void)
 
 
 
-73bc0(voidvoid FUN_180173bc0(void
+/**
+ * @brief 核心引擎工具函数执行器
+ * 
+ * 该函数负责执行核心引擎的工具函数，使用栈安全参数进行异或运算后调用。
+ * 这是一个简单的包装函数，用于处理系统级别的工具函数调用。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 该函数不会返回，会直接跳转到核心引擎工具函数
+ * @warning 函数执行后会导致程序流程跳转到其他位置
+ * @see CoreEngineExecuteUtilityFunction
+ */
+void CoreEngineUtilityFunctionExecutor(void)
 {
   unsigned long long in_stack_00008040;
   
@@ -209911,11 +209935,11 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
   void *FunctionReturnValue;
   
   long long AllocatedMemorySize = *(long long *)(ProcessingResult + 0x1cd8);
-  SystemDataRegistry = FUN_18023a940();
+  SystemDataRegistry = InitializeSystemDataRegistry();
   CharacterCode = *(long long **)(AllocatedMemorySize + 0x8400);
   InputDataLength = (**(code **)(*CharacterCode + 0x70))(CharacterCode,*(void *)(SystemDataRegistry + 8),0,1,0);
   if (MemoryMatchResult < 0) {
-    FUN_180220810(InputDataLength,&SystemValidationBuffer);
+    ProcessSystemDataWithRemainingSpace(InputDataLength,&SystemValidationBuffer);
   }
   InputDataLength = (**(code **)(**(long long **)(PatternIndex + 0x50) + 0xa8)                    (*(long long **)(PatternIndex + 0x50),DataStorageValue,
                      *(uint16_t *)(*(long long *)(CharacterLimit + 0x28) + 0x32c),
@@ -246795,7 +246819,7 @@ void ProcessUtf8ToUtf16CharacterEncodingExtended(uint64_t CharacterCode,long lon
           CoreEngineValueA8 = 0;
           StringComparisonResult = (**(code **)(*MemoryBlockIndex + 0x70))(MemoryBlockIndex,*(void *)(MemoryBoundaryEnd + 0x10),0,4);
           if (StringComparisonResult < 0) {
-            FUN_180220810(StringComparisonResult,&SystemMutexLock);
+            ProcessSystemDataWithRemainingSpace(StringComparisonResult,&SystemMutexLock);
           }
           *StringProcessingStatus = aStackProcessingValue[0];
           MemoryBlockIndex = (long long *)FUN_1800e81f0();
