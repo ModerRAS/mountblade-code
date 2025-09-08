@@ -7731,6 +7731,22 @@ extern void* SystemPrimaryResourceTable;
 #define StackFrameContext stackFrameContext    // 栈帧上下文
 #define registerContext registerContextPointer    // 寄存器上下文指针
 
+// 系统状态和验证变量语义化定义
+#define securityCheckResult securityValidationResult    // 安全检查结果
+#define statusCounter statusTrackingCounter    // 状态跟踪计数器
+#define operationResult0 operationInitialResult    // 操作初始结果
+#define normalizedValue1 normalizedComponentX    // 标准化分量X
+#define normalizedValue2 normalizedComponentY    // 标准化分量Y
+#define normalizedValue3 normalizedComponentZ    // 标准化分量Z
+#define loopCounter iterationCounter    // 迭代计数器
+#define dataPointer dataBufferPointer    // 数据缓冲区指针
+#define resultPointer resultBufferPointer    // 结果缓冲区指针
+#define contextPointer contextDataPointer    // 上下文数据指针
+#define floatArrayPointer floatBufferArrayPointer    // 浮点缓冲区数组指针
+#define systemConfiguration systemConfigData    // 系统配置数据
+#define memoryResourcePointer memoryResourceDataPointer    // 内存资源数据指针
+#define framePointer stackFramePointer    // 栈帧指针
+
 /**
  * @brief 执行系统初始化操作
  * 
