@@ -197304,32 +197304,32 @@ InitializeUtf8ToUtf16StringConversion(uint64_t CharacterCode,uint64_t *Character
  */
 void InitializeSystemCharacterEncodingValidation(void)
 {
-  long long *CharacterCode;
+  long long *CharacterEncodingPointer;
   code *SystemValidationFunction;
-  uint8_t StackArray138 [32];
-  void **pThreadLocalStorageBuffer;
-  uint64_t ProcessingCounter;
-  void *pSystemFlagA;
-  uint8_t *pSystemFlagB;
-  uint32_t OperationStatus;
-  uint8_t SystemFlagBuffer [32];
-  void *SystemCharacterStatusBufferPointer;
-  uint8_t *SystemMemoryPointer;
-  uint32_t MemoryOffsetValue;
-  uint8_t aSystemStackRegisterFlagB0 [32];
-  void *pSystemOperation90;
-  uint8_t *SystemEventPointer;
-  uint32_t CalculationFunctionAddress;
-  uint8_t aStackProcessingUnsignedValue78 [32];
-  void *pBufferOffset;
-  uint8_t *SystemValidationPointer;
-  uint32_t SystemStackFlag;
-  uint8_t aSystemPriorityLevel [32];
-  unsigned long long ProcessingCounter;
+  uint8_t EncodingKeyBuffer [32];
+  void **ThreadLocalStorageBufferPointer;
+  uint64_t EncodingProcessingCounter;
+  void *SystemFlagPointerA;
+  uint8_t *SystemFlagPointerB;
+  uint32_t SystemOperationStatus;
+  uint8_t SystemFlagInitializationBuffer [32];
+  void *CharacterStatusBufferPointer;
+  uint8_t *SystemMemoryAllocationPointer;
+  uint32_t MemoryOffset;
+  uint8_t SystemStackRegisterBuffer [32];
+  void *SystemOperationPointer;
+  uint8_t *SystemEventBufferPointer;
+  uint32_t CalculationAddress;
+  uint8_t SystemProcessingBuffer [32];
+  void *BufferOffsetPointer;
+  uint8_t *ValidationPointer;
+  uint32_t SystemStackRegisterFlag;
+  uint8_t SystemPriorityLevelBuffer [32];
+  unsigned long long InitializationCounter;
   
-  ProcessingCounter = 0xfffffffffffffffe;
-  ProcessingCounter = EncodingDecodingKey ^ (unsigned long long)StackArray138;
-  CharacterCode = *(long long **)(SystemCallbackTable + 0x18);
+  InitializationCounter = 0xfffffffffffffffe;
+  InitializationCounter = EncodingDecodingKey ^ (unsigned long long)EncodingKeyBuffer;
+  CharacterEncodingPointer = *(long long **)(SystemCallbackTable + 0x18);
   if (CharacterCode != (long long *)0x0) {
     SystemValidationFunction = *(code **)(*CharacterCode + 0x20);
     pBufferOffset = &RenderConfigManager;
