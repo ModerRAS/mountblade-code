@@ -77135,8 +77135,8 @@ LAB_18070fb9d:
 ulonglong ParseUIDataStream(byte *uiContext,UIHandle dataSource,int targetBuffer)
 
 {
-  byte isCharacterMatch;
-  byte IsEventProcessingActive;
+  byte dataTypeIdentifier;
+  byte isEventProcessingActive;
   short sVar3;
   byte bVar4;
   ulonglong loopCounter;
