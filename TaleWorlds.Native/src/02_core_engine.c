@@ -87,6 +87,20 @@
 #define SystemParameterStatusOffset 0x4c                     // 系统参数状态偏移量
 #define SystemParameterProcessingFlagOffset 0x4d             // 系统参数处理标志偏移量
 #define SystemParameterMemoryAllocationOffset 0x54           // 系统参数内存分配偏移量
+
+// 内存缓冲区偏移量常量
+#define Utf16CharacterDataOffset 0x10                       // UTF-16字符数据偏移量
+#define MemoryAllocationStatusOffset 0x8                     // 内存分配状态偏移量
+#define MemoryAllocationHeaderOffset 0x1c                    // 内存分配头偏移量
+
+// 系统事件标志常量
+#define SystemEventInitializationFlag 0xf                     // 系统事件初始化标志
+#define SystemStringEncodingFlag 0x1                          // 系统字符串编码标志
+#define SystemPathSeparatorCharacter 0x2f                      // 系统路径分隔符字符
+
+// 系统栈操作常量
+#define SystemStackParameterMask 0xffffffff00000000          // 系统栈参数掩码
+#define SystemStackShiftAmount 0x20                          // 系统栈移位数量
 #define SystemStatusByte LowByte                          // 系统状态字节
 #define MemoryBlockStatus IsMemoryBlockEqual              // 内存块状态
 #define Utf16CharacterValue Utf16Char                     // UTF-16字符值
@@ -199599,50 +199613,50 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCo
     MemoryAllocationPointer = NULL;
     StackOperationCode = 0;
     StackValidationFlag = 1;
-    ConvertedUtf16Char = *(uint *)(AllocatedMemoryBuffer + 0x10);
+    ConvertedUtf16Char = *(uint *)(AllocatedMemoryBuffer + Utf16CharacterDataOffset);
     SystemMemoryAllocationResult = (unsigned long long)ConvertedUtf16Char;
-    if (*(long long *)(AllocatedMemoryBuffer + 8) != 0) {
+    if (*(long long *)(AllocatedMemoryBuffer + MemoryAllocationStatusOffset) != 0) {
       CoreEngineProcessSystemEvent(&SystemContextPointer,SystemMemoryAllocationResult);
     }
     if (ConvertedUtf16Char != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(MemoryAllocationPointer,*(void *)(AllocatedMemoryBuffer + 8),SystemMemoryAllocationResult);
+      memcpy(MemoryAllocationPointer,*(void *)(AllocatedMemoryBuffer + MemoryAllocationStatusOffset),SystemMemoryAllocationResult);
     }
     if (MemoryAllocationPointer != NULL) {
       *(uint8_t *)(SystemMemoryAllocationResult + (long long)MemoryAllocationPointer) = 0;
     }
-    StackParameter = CONCAT44(*(uint32_t *)(AllocatedMemoryBuffer + 0x1c),(uint32_t)StackParameter);
+    StackParameter = CONCAT44(*(uint32_t *)(AllocatedMemoryBuffer + MemoryAllocationHeaderOffset),(uint32_t)StackParameter);
     StackOperationCode = ConvertedUtf16Char;
-    CoreEngineProcessSystemEvent(&SystemContextPointer,0xf);
+    CoreEngineProcessSystemEvent(&SystemContextPointer,SystemEventInitializationFlag);
     SecondaryProcessingStatusFlag = (uint32_t *)((unsigned long long)StackOperationCode + (long long)MemoryAllocationPointer);
-    *SecondaryProcessingStatusFlag = 0x72726554;
-    SecondaryProcessingStatusFlag[1] = 0x536e6961;
-    SecondaryProcessingStatusFlag[2] = 0x65646168;
-    SecondaryProcessingStatusFlag[3] = 0x2f7372;
-    StackOperationCode = 0xf;
+    *SecondaryProcessingStatusFlag = 0x72726554; // "TerT" - Terminal Text
+    SecondaryProcessingStatusFlag[1] = 0x536e6961; // "ainS" - Main String
+    SecondaryProcessingStatusFlag[2] = 0x65646168; // "hade" - Header
+    SecondaryProcessingStatusFlag[3] = 0x2f7372; // "rs/" - Resource path
+    StackOperationCode = SystemEventInitializationFlag;
     AllocatedMemoryBuffer = ConvertUtf8ToUtf16CharacterEncoding(&SystemContextPointer,&SystemResourcePointerB8,*Utf8SourcePointer);
     ThreadLocalStoragePointer = &SystemNullTemplate;
     StackDataBuffer = 0;
     MemoryBlockOffset = 0;
     SystemKeyIndex = 0;
     StackValidationFlag = 3;
-    ConvertedUtf16Char = *(uint *)(AllocatedMemoryBuffer + 0x10);
+    ConvertedUtf16Char = *(uint *)(AllocatedMemoryBuffer + Utf16CharacterDataOffset);
     SystemMemoryAllocationResult = (unsigned long long)ConvertedUtf16Char;
-    if (*(long long *)(AllocatedMemoryBuffer + 8) != 0) {
+    if (*(long long *)(AllocatedMemoryBuffer + MemoryAllocationStatusOffset) != 0) {
       CoreEngineProcessSystemEvent(&ThreadLocalStoragePointer,SystemMemoryAllocationResult);
     }
     if (ConvertedUtf16Char != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(MemoryBlockOffset,*(void *)(AllocatedMemoryBuffer + 8),SystemMemoryAllocationResult);
+      memcpy(MemoryBlockOffset,*(void *)(AllocatedMemoryBuffer + MemoryAllocationStatusOffset),SystemMemoryAllocationResult);
     }
     if (MemoryBlockOffset != 0) {
       *(uint8_t *)(SystemMemoryAllocationResult + MemoryBlockOffset) = 0;
     }
-    StackDataBuffer = CONCAT44(*(uint32_t *)(AllocatedMemoryBuffer + 0x1c),(uint32_t)StackDataBuffer);
-    ProcessingStatusFlag = 1;
+    StackDataBuffer = CONCAT44(*(uint32_t *)(AllocatedMemoryBuffer + MemoryAllocationHeaderOffset),(uint32_t)StackDataBuffer);
+    ProcessingStatusFlag = SystemStringEncodingFlag;
     SystemKeyIndex = ConvertedUtf16Char;
-    CoreEngineProcessSystemEvent(&ThreadLocalStoragePointer,1);
-    *(uint16_t *)((unsigned long long)SystemKeyIndex + MemoryBlockOffset) = 0x2f;
+    CoreEngineProcessSystemEvent(&ThreadLocalStoragePointer,SystemStringEncodingFlag);
+    *(uint16_t *)((unsigned long long)SystemKeyIndex + MemoryBlockOffset) = SystemPathSeparatorCharacter;
     SystemResourcePointerB8 = &SystemNullTemplate;
     SystemKeyIndex = ProcessingStatusFlag;
     if (SystemMemoryOffsetB0 != 0) {
@@ -199659,7 +199673,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCo
       CoreEngineProcessSystemEvent();
     }
     MemoryAllocationPointer = NULL;
-    StackParameter = StackParameter & 0xffffffff00000000;
+    StackParameter = StackParameter & SystemStackParameterMask;
     SystemContextPointer = &ThreadLocalStorageTemplate;
     SystemResourcePointer = &SystemNullTemplate;
     if (StackMemoryOffset != 0) {
@@ -199667,7 +199681,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCo
       CoreEngineProcessSystemEvent();
     }
     StackMemoryOffset = 0;
-    StackAddress = (unsigned long long)StackAddress.HighPart << 0x20;
+    StackAddress = (unsigned long long)StackAddress.HighPart << SystemStackShiftAmount;
     SystemResourcePointer = &ThreadLocalStorageTemplate;
     OperationStatus = CoreEngineValidateSystemStatus(&ThreadLocalStoragePointer);
     if (OperationStatus != '\0') {

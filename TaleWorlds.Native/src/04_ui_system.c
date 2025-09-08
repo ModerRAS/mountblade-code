@@ -132,7 +132,7 @@ typedef enum {
 #define LAB_EventStringCompare LAB_EventStringCompare
 #define LAB_EventFocusCheck LAB_EventFocusCheck
 #define LAB_EventValidationCheck LAB_EventValidationCheck
-#define LAB_EventProcessingComplete LAB_180655598
+#define LAB_EventProcessingComplete LAB_EventProcessingComplete
 #define LAB_EventComponentCheck LAB_1806555a6
 #define LAB_EventTypeHandler LAB_18065555e
 #define LAB_EventStringMatch LAB_180655761
@@ -11738,7 +11738,7 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
   float transformCoeff2;
   float transformCoeff3;
   float transformCoeff4;
-  float localFloat6;
+  float rotationAngle;
   float resultFloat;
   char localChar8;
   longlong CharacterDataOffset;
@@ -11992,10 +11992,10 @@ UIHandle ProcessUIRenderingPipeline(void)
   float transformCoeff2;
   float transformCoeff3;
   float transformCoeff4;
-  float localFloat6;
+  float rotationAngle;
   float resultFloat;
-  float localFloat8;
-  float localFloat9;
+  float scaleValue;
+  float translationValue;
   bool isCharacterMatch0;
   char localChar11;
   longlong allocatedMemory2;
@@ -90095,8 +90095,20 @@ LAB_ProcessingContinue:
 
 
 
- void FUN_18071ccba(void)
-void FUN_18071ccba(void)
+ /**
+ * @brief UI渲染参数处理函数
+ * 
+ * 处理UI渲染过程中的参数验证和数据转换。
+ * 该函数负责：
+ * 1. 验证UI渲染参数的有效性
+ * 2. 处理数据位移和转换操作
+ * 3. 确保渲染参数在有效范围内
+ * 
+ * @note 原始函数名：FUN_18071ccba
+ * @warning 该函数依赖于SourceHandle全局变量
+ * @see GetUIProcessingValue
+ */
+void ProcessUIRenderingParameters(void)
 
 {
   int processingResult;
@@ -299997,20 +300009,34 @@ UIHandle FUN_18084ec60(longlong uiContext)
 
 
 
-UIHandle FUN_18084ed10(longlong uiContext)
+/**
+ * @brief 处理UI浮点数据转换
+ * 
+ * 该函数执行以下操作：
+ * - 从UI上下文中提取变换系数
+ * - 根据条件计算浮点数变换结果
+ * - 遍历缓冲区并应用变换
+ * - 返回处理后的句柄
+ * 
+ * @param uiContext UI上下文句柄
+ * @return 处理后的UI句柄
+ * 
+ * @note 原始函数名：FUN_18084ed10
+ */
+UIHandle ProcessUIFloatDataTransformation(longlong uiContext)
 
 {
-  UIHandle *ptrResult;
-  float transformCoeff1;
-  float transformCoeff2;
-  UIHandle *bufferPtr;
-  UIHandle loopCounter;
-  float localFloat6;
-  float resultFloat;
+  UIHandle *resultPointer;
+  float transformCoefficient1;
+  float transformCoefficient2;
+  UIHandle *bufferIterator;
+  UIHandle processingResult;
+  float intermediateFloat;
+  float finalResult;
   
-  localFloat6 = *(float *)(uiContext + 0xcc);
-  transformCoeff1 = *(float *)(uiContext + 0xc4);
-  transformCoeff2 = *(float *)(*(longlong *)(uiBufferData + 0x40) + 0x70);
+  intermediateFloat = *(float *)(uiContext + 0xcc);
+  transformCoefficient1 = *(float *)(uiContext + 0xc4);
+  transformCoefficient2 = *(float *)(*(longlong *)(uiBufferData + 0x40) + 0x70);
   if ((*(uint *)(uiContext + 0xc0) >> 2 & 1) == 0) {
     resultFloat = *(float *)(*(longlong *)(uiBufferData + 0x40) + 0x30);
     if (-80.0 < resultFloat) {

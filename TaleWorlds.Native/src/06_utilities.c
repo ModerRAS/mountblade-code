@@ -25834,7 +25834,7 @@ void ProcessDataTypesA0(void)
     }
   }
 ValidateDataSecurity:
-    ExecuteSecurityCheck(StackFrameContext[0x12] ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(StackFrameContext[SecurityCheckOffset12] ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -26078,7 +26078,7 @@ ValidateDataSecurity:
     }
   }
 ExecuteFloatingPointSecurityCheck:
-    ExecuteSecurityCheck(StackFrameContext[0x12] ^ (uint64_t)&securityBuffer);
+    ExecuteSecurityCheck(StackFrameContext[SecurityCheckOffset12] ^ (uint64_t)&securityBuffer);
 }
 
 
@@ -45581,8 +45581,8 @@ void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
     _Mtx_destroy_in_situ();
     UpdateSystemStatusA0();
     if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
-      *(DataBuffer *)(exceptionDataBuffer[0xe] + ExceptionHandlerCallbackOffset10) = 0;
-      *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
+      *(DataBuffer *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset10) = 0;
+      *(ByteFlag *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset8) = 1;
     }
     exceptionDataBuffer[2] = &SystemDefaultExceptionHandlerB;
     return;
@@ -48628,8 +48628,8 @@ void InitializeExceptionHandler(DataBuffer contextHandle,int64_t contextOffset,D
   exceptionDataBuffer[ExceptionDataBufferIndex19] = 0;
   *(DataWord *)(exceptionDataBuffer + 0x1b) = 0;
   exceptionDataBuffer[ExceptionDataBufferIndex18] = &SystemDefaultExceptionHandlerB;
-  ProcessExceptionData(exceptionDataBuffer + 0x12,exceptionDataBuffer[0x14],operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-  if (exceptionDataBuffer[0xd] != 0) {
+  ProcessExceptionData(exceptionDataBuffer + ExceptionDataBufferIndex12,exceptionDataBuffer[ExceptionDataBufferIndex14],operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+  if (exceptionDataBuffer[ExceptionDataBufferIndexD] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   if (exceptionDataBuffer[9] != 0) {
@@ -49093,8 +49093,8 @@ void CleanupExceptionDataA0(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   exceptionDataBuffer[ExceptionDataBufferIndex19] = 0;
   *(DataWord *)(exceptionDataBuffer + 0x1b) = 0;
   exceptionDataBuffer[ExceptionDataBufferIndex18] = &SystemDefaultExceptionHandlerB;
-  ProcessExceptionData(exceptionDataBuffer + 0x12,exceptionDataBuffer[0x14],operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
-  if (exceptionDataBuffer[0xd] != 0) {
+  ProcessExceptionData(exceptionDataBuffer + ExceptionDataBufferIndex12,exceptionDataBuffer[ExceptionDataBufferIndex14],operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+  if (exceptionDataBuffer[ExceptionDataBufferIndexD] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
   if (exceptionDataBuffer[9] != 0) {
@@ -56473,8 +56473,8 @@ void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
     _Mtx_destroy_in_situ();
     UpdateSystemStatusA0();
     if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
-      *(DataBuffer *)(exceptionDataBuffer[0xe] + ExceptionHandlerCallbackOffset10) = 0;
-      *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
+      *(DataBuffer *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset10) = 0;
+      *(ByteFlag *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset8) = 1;
     }
     exceptionDataBuffer[2] = &SystemDefaultExceptionHandlerB;
     return;
@@ -56592,8 +56592,8 @@ void SetExceptionHandlerAf0(DataBuffer operationBase,int64_t dataBuffer,DataBuff
     _Mtx_destroy_in_situ();
     UpdateSystemStatusA0();
     if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
-      *(DataBuffer *)(exceptionDataBuffer[0xe] + ExceptionHandlerCallbackOffset10) = 0;
-      *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
+      *(DataBuffer *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset10) = 0;
+      *(ByteFlag *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset8) = 1;
     }
     exceptionDataBuffer[2] = &SystemDefaultExceptionHandlerB;
     return;
@@ -57035,8 +57035,8 @@ void ProcessExceptionDataBufferE40(DataBuffer operationBase,int64_t dataBuffer,D
     _Mtx_destroy_in_situ();
     UpdateSystemStatusA0();
     if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
-      *(DataBuffer *)(exceptionDataBuffer[0xe] + ExceptionHandlerCallbackOffset10) = 0;
-      *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
+      *(DataBuffer *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset10) = 0;
+      *(ByteFlag *)(exceptionDataBuffer[ExceptionDataBufferIndexE] + ExceptionHandlerCallbackOffset8) = 1;
     }
     exceptionDataBuffer[2] = &SystemDefaultExceptionHandlerB;
     return;
