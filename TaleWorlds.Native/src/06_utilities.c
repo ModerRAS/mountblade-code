@@ -17810,7 +17810,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     primaryInfinityFlag = 0x1d;
   }
   componentYInfinityFlag = componentZInfinityFlag;
-  if ((*(uint *)(dataPtr + 0x24) & FloatInfinityValue) == FloatInfinityValue) {
+  if ((*(uint *)(dataPtr + VectorComponentXOffset) & FloatInfinityValue) == FloatInfinityValue) {
     secondaryInfinityFlag = 0x1d;
   }
   if ((componentWInfinityFlag != 0 || componentXInfinityFlag != 0) || componentYInfinityFlag != 0) {
@@ -17930,8 +17930,8 @@ void ValidateResourceAccess(int64_t ResourceDescriptor, int64_t AccessRequest)
     else {
       ResourcePointer = SystemContext + -8;
     }
-    *(DataWord *)(ResourcePointer + 0x88) = *(DataWord *)(ResourceDescriptor + 0x18);
-      UpdateSystemResourceState(*(DataBuffer *)(AccessRequest + 0x98),ResourceDescriptor);
+    *(DataWord *)(ResourcePointer + SystemResourceOffset88) = *(DataWord *)(ResourceDescriptor + ResourceDescriptorOffset18);
+      UpdateSystemResourceState(*(DataBuffer *)(AccessRequest + ResourceAccessRequestOffset98),ResourceDescriptor);
   }
   return;
 }

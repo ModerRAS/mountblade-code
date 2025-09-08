@@ -652,8 +652,34 @@ typedef enum {
 // UI系统函数宏定义 - 处理UI系统数据高级
 #define ProcessUISystemDataAdvanced FUN_18070efdd
 
-// UI系统函数宏定义 - 处理UI浮点运算
-#define ProcessUIFloatCalculation FUN_18070f860
+// UI系统函数宏定义 - 处理UI音频数据和字符编码
+/**
+ * @brief 处理UI音频数据和字符编码
+ * 
+ * 该函数负责处理UI系统中的音频数据和字符编码，包括：
+ * - 音频采样率转换和处理（48000Hz、44100Hz、32000Hz等）
+ * - 字符编码匹配和验证（UTF-8、UTF-16等）
+ * - 数据缓冲区管理和内存分配
+ * - 音频数据块的分割和重组
+ * - 错误状态检查和返回码处理
+ * 
+ * 该函数是UI音频系统的核心组件，处理各种音频格式的数据转换
+ * 和字符编码的验证，确保音频数据能够正确播放和处理。
+ * 
+ * @param uiContext UI上下文指针，包含音频配置信息
+ * @param dataSource 数据源索引，指定音频数据的来源
+ * @param targetBuffer 目标缓冲区，用于存储处理后的数据
+ * @param bufferSize 缓冲区大小指针，返回实际使用的缓冲区大小
+ * @param resultPointer 结果指针，返回处理后的数据指针数组
+ * @param param_6 参数6（短整型指针），返回音频块的采样信息
+ * @param param_7 参数7（整型指针），返回数据偏移量
+ * @param param_8 参数8（整型指针），返回总数据大小
+ * @return 处理结果状态码，成功时返回处理的数据块数量，失败时返回错误码
+ * 
+ * @note 原始函数名：FUN_18070f860
+ * @note 支持多种音频采样率：48000Hz、44100Hz、32000Hz、24000Hz、22050Hz、16000Hz、12000Hz、11025Hz、8000Hz
+ */
+#define ProcessUIAudioData FUN_18070f860
 #define UIComponentListOffset 0x12758
 #define UIComponentDataOffset 0x11080
 #define UIRenderQueueOffset 0x12438
@@ -76891,8 +76917,8 @@ uint ProcessUIEventHandlersAndManageState(UIHandle uiContext, uint dataSource)
  * @param param_8 参数8（整型指针）
  * @return 处理结果状态码
  */
-ulonglong FUN_18070f860(byte *uiContext,int dataSource,int targetBuffer,byte *bufferSize,longlong resultPointer,
-                       short *param_6,int *param_7,int *param_8)
+ulonglong ProcessUIAudioData(byte *uiContext,int dataSource,int targetBuffer,byte *bufferSize,longlong resultPointer,
+                             short *param_6,int *param_7,int *param_8)
 
 {
   byte isCharacterMatch;
