@@ -35180,7 +35180,7 @@ DataBuffer ExecuteSystemSecurityCheck(int64_t systemParameter,DataBuffer *dataBu
   ByteFlag inputDataBuffer [32];                        // 输入数据缓冲区
   ByteFlag stackBuffer [32];                            // 栈缓冲区
   
-  validationStatus = ExecuteSecurityValidation(dataBuffer,stackBuffer,1,0x46464553);
+  validationStatus = ExecuteSecurityValidation(dataBuffer,stackBuffer,1,SecurityValidationFfcOperationSecurity);
   if (((((int)validationStatus == 0) &&
        (validationStatus = ExecuteSecurityValidation(dataBuffer,inputDataBuffer,0,0x42464553), (int)validationStatus == 0)) &&
       (validationStatus = ValidatePortControlRequest(dataBuffer,systemParameter + ExceptionHandlerCallbackOffset10), (int)validationStatus == 0)) &&
