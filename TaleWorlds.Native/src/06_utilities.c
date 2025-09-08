@@ -20778,7 +20778,7 @@ int ProcessUtilityDataWithValidation(int64_t dataContext,int64_t dataBuffer,int 
   ProcessedBytes = ProcessedBytes + OperationResult;
   
   // 第七步：执行数据缓冲区转换
-  OperationResult = ProcessSystemBufferConversionA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(ByteFlag *)(dataContext + 0x14));
+  OperationResult = ProcessSystemBufferConversionA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(ByteFlag *)(dataContext + DataProcessingContextOffset14));
   
   // 返回总处理字节数
   return OperationResult + ProcessedBytes;
