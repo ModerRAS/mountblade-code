@@ -24077,7 +24077,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
             memoryBlockOffset = *(int64_t *)(exceptionHandlerContext4 + 0x10 + dataPointer);
             calculatedIndex = *(int64_t *)(exceptionHandlerContext4 + 8 + dataPointer);
             statusFlag = CheckSystemStatus(memoryBlockOffset,1);
-            exceptionDataBuffer6 = TemporaryPointerBufferB;
+            exceptionBuffer6 = TemporaryPointerBufferB;
             if ((statusFlag == '\0') && (*(float *)(memoryBlockOffset + 0x4c) != *(float *)(calculatedIndex + 0x28))) {
               SecurityValidationDataS = *(DataWord *)(exceptionHandlerContext4 + 4 + dataPointer);
               SecurityValidationBuffer = &SystemMemoryInitializationReference;
@@ -24102,7 +24102,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
           } while (bufferPointer < StackLongIntegerA);
         }
         systemMemoryBuffer = *(DataBuffer *)(*(int64_t *)(operationBase + OperationBaseOffset8) + 800);
-        loopCounter = (**(FunctionPointer**)*exceptionDataBuffer6)(exceptionDataBuffer6);
+        loopCounter = (**(FunctionPointer**)*exceptionBuffer6)(exceptionBuffer6);
         iterationCount = ProcessDataOperationA7(loopCounter,systemMemoryBuffer,systemNameBuffer);
         if (iterationCount == 0) {
           if (systemNameBuffer[0] != '\0') {
