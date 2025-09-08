@@ -80057,6 +80057,21 @@ void CleanupResourceHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
+// 数据验证处理函数常量定义
+#define DataValidationFlagMask 1
+#define DataValidationFlagClearMask 0xfffffffe
+#define DataValidationHandlerOffset30 0x30
+#define DataValidationHandlerOffset88 0x88
+#define DataValidationHandlerOffset5c 0x5c
+#define DataValidationHandlerOffsetC8 0xc8
+
+// 异常处理器偏移量常量定义
+#define DefaultExceptionHandlerOffsetF0 0xf0
+#define DefaultExceptionHandlerOffset1D0 0x1d0
+#define SystemMutexUnlockOffsetE8 0xe8
+#define ExceptionDataTablePointerOffsetE0 0xe0
+#define ExceptionDataTablePointerOffset50 0x50
+
 /**
  * @brief 数据验证处理函数A0
  * 
@@ -80071,9 +80086,9 @@ void CleanupResourceHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 void ValidateDataHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
-    *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffe;
-    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 0x88));
+  if ((*(uint *)(dataBuffer + DataValidationHandlerOffset30) & DataValidationFlagMask) != 0) {
+    *(uint *)(dataBuffer + DataValidationHandlerOffset30) = *(uint *)(dataBuffer + DataValidationHandlerOffset30) & DataValidationFlagClearMask;
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + DataValidationHandlerOffset88));
   }
   return;
 }
@@ -80081,7 +80096,7 @@ void ValidateDataHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 /**
- * @brief 数据验证处理函数A0
+ * @brief 数据验证处理函数A1
  * 
  * 该函数检查数据缓冲区的标志位，当标志位被设置时，清除标志位并调用数据验证处理器。
  * 主要用于系统数据的验证和处理。
@@ -80091,12 +80106,12 @@ void ValidateDataHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180909930
  */
-void ValidateDataProcessingA0(DataBuffer operationBase, int64_t dataBuffer)
+void ValidateDataProcessingA1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  if ((*(uint *)(dataBuffer + 0x5c) & 1) != 0) {
-    *(uint *)(dataBuffer + 0x5c) = *(uint *)(dataBuffer + 0x5c) & 0xfffffffe;
-    ValidateDataHandler(*(DataBuffer *)(dataBuffer + 200));
+  if ((*(uint *)(dataBuffer + DataValidationHandlerOffset5c) & DataValidationFlagMask) != 0) {
+    *(uint *)(dataBuffer + DataValidationHandlerOffset5c) = *(uint *)(dataBuffer + DataValidationHandlerOffset5c) & DataValidationFlagClearMask;
+    ValidateDataHandler(*(DataBuffer *)(dataBuffer + DataValidationHandlerOffsetC8));
   }
   return;
 }
@@ -80117,18 +80132,29 @@ void ValidateDataProcessingA0(DataBuffer operationBase, int64_t dataBuffer)
 void SetDefaultExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0xf0) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DefaultExceptionHandlerOffsetF0) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
+/**
+ * @brief 解锁系统互斥锁并处理错误A0
+ * 
+ * 该函数解锁系统互斥锁，如果解锁失败则抛出C标准错误。
+ * 主要用于系统线程同步和错误处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909970
+ */
 void UnlockSystemMutexAndHandleErrorA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int mutexUnlockResult;
   
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0xe8));
+  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + SystemMutexUnlockOffsetE8));
   if (mutexUnlockResult != 0) {
     __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
@@ -80137,21 +80163,43 @@ void UnlockSystemMutexAndHandleErrorA0(DataBuffer operationBase,int64_t dataBuff
 
 
 
+/**
+ * @brief 在偏移量1D0处设置默认异常处理器A0
+ * 
+ * 该函数在数据缓冲区的指定偏移量处设置默认异常处理器B。
+ * 主要用于系统异常处理机制的配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909980
+ */
 void SetDefaultExceptionHandlerAtOffset1D0A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x1d0) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DefaultExceptionHandlerOffset1D0) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
+/**
+ * @brief 设置异常数据表指针A0
+ * 
+ * 该函数设置异常数据表指针，将数据表3和数据表6分别设置到指定位置。
+ * 主要用于系统异常数据的管理和配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180909990
+ */
 void SetExceptionDataTablePointersA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   DataBuffer *exceptionDataTablePointer;
   
-  exceptionDataTablePointer = *(DataBuffer **)(dataBuffer + 0xe0);
+  exceptionDataTablePointer = *(DataBuffer **)(dataBuffer + ExceptionDataTablePointerOffsetE0);
   *exceptionDataTablePointer = &ExceptionDataTable3;
   *exceptionDataTablePointer = &ExceptionDataTable6;
   return;
@@ -80159,10 +80207,21 @@ void SetExceptionDataTablePointersA0(DataBuffer operationBase,int64_t dataBuffer
 
 
 
+/**
+ * @brief 清理偏移量E0处的数据缓冲区A0
+ * 
+ * 该函数清理指定偏移量处的数据缓冲区，调用数据缓冲区清理函数A0。
+ * 主要用于系统数据缓冲区的管理和清理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809099a0
+ */
 void CleanupDataBufferAtOffsetE0A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  CleanupDataBufferA0(*(int64_t *)(dataBuffer + 0xe0) + ExceptionHandlerCallbackOffset10);
+  CleanupDataBufferA0(*(int64_t *)(dataBuffer + ExceptionDataTablePointerOffsetE0) + ExceptionHandlerCallbackOffset10);
   return;
 }
 
@@ -80182,16 +80241,27 @@ void CleanupDataBufferAtOffsetE0A0(DataBuffer operationBase,int64_t dataBuffer)
 void SetDefaultExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(*(int64_t *)(dataBuffer + 0xe0) + 0x50) = &DefaultExceptionHandlerB;
+  *(uint8_t **)(*(int64_t *)(dataBuffer + ExceptionDataTablePointerOffsetE0) + ExceptionDataTablePointerOffset50) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
+/**
+ * @brief 设置异常数据表6A0
+ * 
+ * 该函数设置异常数据表6到指定的双重指针位置。
+ * 主要用于系统异常数据表的管理和配置。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_1809099c0
+ */
 void SetExceptionDataTable6A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0xe0) = &ExceptionDataTable6;
+  **(DataBuffer **)(dataBuffer + ExceptionDataTablePointerOffsetE0) = &ExceptionDataTable6;
   return;
 }
 
