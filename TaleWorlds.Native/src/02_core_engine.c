@@ -188480,7 +188480,7 @@ void ProcessSystemCharacterStatusInitialization(long long CharacterCode)
 
 
 
-56bc0(long long CharacterCodevoid FUN_180156bc0(long long CharacterCode
+void ProcessSystemCharacterStatusConfiguration(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
