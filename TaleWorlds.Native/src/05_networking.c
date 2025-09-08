@@ -4847,65 +4847,6 @@ uint32_t AuthenticateConnectionData(NetworkHandle ConnectionHandle, void* Valida
     }
 }
 
-/**
- * @brief 解码网络数据包数据
- * 
- * 解码网络数据包中的加密数据，执行解密操作并验证数据完整性。
- * 该函数处理数据包的解码过程，包括数据解密、完整性验证和格式检查。
- * 
- * @param PacketData 数据包数据指针，包含待解码的数据包
- * @param DecodingBuffer 解码缓冲区指针，用于存储解码过程中的临时数据
- * @param DecodingMode 解码模式，指定解码的类型和级别
- * @param MagicNumber 魔数值，用于数据包验证
- * @param ValidationMagic 验证魔数，用于完整性验证
- * @return NetworkHandle 解码结果，0表示解码成功，非0值表示解码失败
- * 
- * @retval NetworkOperationSuccess 解码成功
- * @retval NetworkOperationFailure 解码失败
- * 
- * @note 这是简化实现，实际应用中需要实现完整的解码逻辑
- * @warning 简化实现仅执行基本的验证，不进行实际的解码工作
- * @see NetworkOperationSuccess, NetworkOperationFailure
- */
-NetworkHandle DecodeNetworkPacketData(NetworkHandle* PacketData, void* DecodingBuffer, uint32_t DecodingMode, uint32_t MagicNumber, uint32_t ValidationMagic)
-{
-    // 数据包解码变量
-    uint32_t PacketIntegrityValidationResult;   // 数据包完整性验证结果
-    uint32_t DecodingOperationStatus;           // 解码操作状态
-    uint32_t MagicNumberValidationResult;        // 魔数验证结果
-    
-    // 初始化解码状态为失败状态
-    PacketIntegrityValidationResult = NetworkValidationFailure;
-    DecodingOperationStatus = NetworkValidationFailure;
-    MagicNumberValidationResult = NetworkValidationFailure;
-    
-    // 验证数据包有效性
-    if (PacketData && *PacketData != 0) {
-        PacketIntegrityValidationResult = NetworkValidationSuccess;
-    }
-    
-    // 验证解码缓冲区有效性
-    if (DecodingBuffer) {
-        DecodingOperationStatus = NetworkValidationSuccess;
-    }
-    
-    // 验证魔数有效性
-    if (MagicNumber != 0 && ValidationMagic != 0) {
-        MagicNumberValidationResult = NetworkValidationSuccess;
-    }
-    
-    // 综合解码结果
-    uint32_t FinalDecodingResult = PacketIntegrityValidationResult & 
-                                   DecodingOperationStatus & 
-                                   MagicNumberValidationResult;
-    
-    // 返回解码结果
-    if (FinalDecodingResult == NetworkValidationSuccess) {
-        return NetworkOperationSuccess;  // 解码成功
-    } else {
-        return NetworkOperationFailure;  // 解码失败
-    }
-}
 
 /**
  * @brief 处理网络数据包头部信息
