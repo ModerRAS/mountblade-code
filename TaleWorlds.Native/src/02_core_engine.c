@@ -197189,7 +197189,7 @@ HandleOutputData(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t Ut
   CharacterTablePointer = *(long long *)(CharacterCode + 0x48);
   if ((CharacterTablePointer != 0) && (*(long long *)(CharacterTablePointer + 0x48) != 0)) {
     MemoryAllocationIndex = ProcessSystemCharacterEncodingAndDataManagement(LoopCounter,&pFunctionAddress,Utf8SourcePointer,Utf16EndPointer,1,0xfffffffffffffffe);
-    FUN_180628320(SystemBufferSize,MemoryAllocationIndex);
+    ProcessSystemCharacterEncodingConversion(SystemBufferSize,MemoryAllocationIndex);
     pFunctionAddress = &SystemNullTemplate;
     if (lStack_30 != 0) {
                     // WARNING: Subroutine does not return
