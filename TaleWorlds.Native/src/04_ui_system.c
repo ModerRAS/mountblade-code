@@ -81912,8 +81912,19 @@ void FUN_180712f20(UIHandle uiContext,longlong dataSource,longlong targetBuffer,
 
 
 
- void FUN_180712f5f(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
-void FUN_180712f5f(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
+ /**
+ * @brief UI数据批量处理函数
+ * 
+ * 该函数负责批量处理UI系统中的数据，包括：
+ * - 处理数据源和目标缓冲区之间的数据传输
+ * - 管理信号量和循环计数器
+ * - 执行UI渲染任务
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ */
+void ProcessUIDataBatch(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 
 {
   int uiOperationResult;
