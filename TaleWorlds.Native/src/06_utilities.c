@@ -79031,10 +79031,22 @@ void CleanupExceptionDataBufferAtOffset40(DataBuffer operationBase,int64_t dataB
 
 
 
+/**
+ * @brief 锁定标准资源的异常处理函数
+ * 
+ * 该函数在异常处理过程中锁定标准资源，确保系统异常时能正确管理资源访问
+ * 从数据缓冲区的0x60偏移量处获取资源指针进行锁定
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要锁定的资源信息
+ * 
+ * @note 原始函数名：Unwind_180908f10
+ * @note 原始调用：__1_Lockit_std__QEAA_XZ
+ */
 void LockStdResourceAtOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                             __1_Lockit_std__QEAA_XZ(dataBuffer + ExceptionHandlerContextOffset60);
+  LockStdResource(dataBuffer + ExceptionHandlerContextOffset60);
   return;
 }
 
@@ -120144,7 +120156,18 @@ void Unwind_180911f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器180911f90
+ * 
+ * 该函数负责处理系统异常，从8偏移量处获取异常上下文，
+ * 并调用相应的异常处理函数。同时管理异常上下文的引用计数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void HandleSystemExceptionAtOffset180911f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -120166,10 +120189,16 @@ void Unwind_180911f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
  * @brief 异常上下文清理函数A0
  * 
  * 该函数负责清理异常上下文，处理异常数据缓冲区。
+ * 从SystemDataSecondaryOffset18偏移量处获取异常上下文并处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
  * 
  * @note 原始函数名：Unwind_180911fa0
  */
-void Unwind_180911fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void CleanupExceptionContextA0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
