@@ -68279,7 +68279,7 @@ LAB_18069f21f:
       *(ulonglong *)(uiContext + 0x10) = result0 << (isCharacterMatch & 0x3f);
       *(uint *)(uiContext + 0x1c) = result3 << (isCharacterMatch & 0x1f);
       if (localInt6 == 0) goto LAB_18069f21f;
-      sVar4 = FUN_18069ff30(uiContext,param_7);
+      sVar4 = GetUIComponentStatus(uiContext,param_7);
       sVar4 = sVar4 * 2 + (short)param_6;
       sVar5 = FUN_18069ff30(uiContext,param_7 + 0x13);
       uStackX_8 = CONCAT22(sVar5 * 2 + param_6._2_2_,sVar4);
@@ -69431,8 +69431,8 @@ uint ProcessUIEventEncodingAndValidation(void)
     *(ulonglong *)(uiContextHandle + 0x10) = eventProcessingStatus << (characterMatchFlag & 0x3f);
     *(uint *)(uiContextHandle + 0x1c) = encodingCounter << (characterMatchFlag & 0x1f);
   } while (processingIndex < 3);
-  localInt7 = 9;
-  pbVar6 = (byte *)(unmodifiedR13 + 0x12);
+  processingIndex = 9;
+  dataBufferPointer = (byte *)(dataSourcePointer + 0x12);
   do {
     LoopCounter = ((*(int *)(ContextHandle + 0x1c) + -1) * (uint)*pbVar6 >> 8) + 1;
     if (*(int *)(ContextHandle + 0x18) < 0) {
