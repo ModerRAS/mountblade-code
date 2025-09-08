@@ -60046,9 +60046,9 @@ void ExecuteTertiaryContextExceptionCleanup(DataBuffer operationBase,int64_t dat
 {
   FunctionPointer *exceptionHandlerCallback;
   
-  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x78) + ExceptionHandlerCallbackOffset10);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionContextSecondaryOffset) + ExceptionHandlerCallbackOffset10);
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x78),0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionContextSecondaryOffset),0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -83612,7 +83612,25 @@ void ReleaseMemoryResourceAndManageReferenceCountB(DataBuffer operationBase, int
 
 
 
-void Unwind_18090a970(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源释放和引用计数管理函数C
+ * 
+ * 该函数负责在异常处理过程中释放内存资源并管理引用计数。
+ * 与函数B相同，也从偏移量0x50获取内存块信息。
+ * 主要功能包括：
+ * - 从数据缓冲区获取内存块偏移量
+ * - 验证内存资源指针的有效性
+ * - 计算内存区域基地址
+ * - 更新资源引用计数
+ * - 当引用计数为0时调用异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a970
+ * @note 这是一个异常处理展开函数，用于清理资源
+ */
+void ReleaseMemoryResourceAndManageReferenceCountC(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -83650,7 +83668,22 @@ void Unwind_18090a970(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a980(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器调用函数A
+ * 
+ * 该函数负责在异常处理过程中调用异常上下文处理器。
+ * 主要功能包括：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 验证指针的有效性
+ * - 调用异常处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a980
+ * @note 这是一个异常处理展开函数，用于调用异常处理器
+ */
+void CallExceptionHandlerWithContextA(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -83664,7 +83697,23 @@ void Unwind_18090a980(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a9a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器调用函数B
+ * 
+ * 该函数负责在异常处理过程中调用异常上下文处理器。
+ * 与函数A类似，但从不同的偏移量(0x50)获取上下文指针。
+ * 主要功能包括：
+ * - 从数据缓冲区获取异常上下文指针
+ * - 验证指针的有效性
+ * - 调用异常处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a9a0
+ * @note 这是一个异常处理展开函数，用于调用异常处理器
+ */
+void CallExceptionHandlerWithContextB(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -83678,7 +83727,22 @@ void Unwind_18090a9a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a9b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源清理标志管理函数A
+ * 
+ * 该函数负责在异常处理过程中管理资源清理标志。
+ * 主要功能包括：
+ * - 检查数据缓冲区的清理标志
+ * - 清除清理标志位
+ * - 调用资源清理处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a9b0
+ * @note 这是一个异常处理展开函数，用于资源清理
+ */
+void ManageResourceCleanupFlagA(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 1) != 0) {
