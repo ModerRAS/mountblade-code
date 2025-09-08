@@ -126534,7 +126534,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始函数名：Unwind_18090cbd0 - 异常上下文处理函数BD0
 // 功能：处理异常上下文，设置默认异常处理器B
-#define ProcessExceptionContextBD0 Unwind_18090cbd0
+#define ProcessExceptionContextBD0 ProcessExceptionContextResourceReleaseBD0
 
 // 原始函数名：Unwind_18090cbe0 - 异常处理器设置函数BE0
 // 功能：设置异常数据缓冲区的默认异常处理器B
