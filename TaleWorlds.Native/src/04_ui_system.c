@@ -77110,75 +77110,75 @@ ulonglong ProcessUICharacterEncoding(byte *uiContext,UIHandle dataSource,int tar
   int *stackParameterA0;
   int *stackParameterA8;
   
-  if (in_ZF) {
+  if (zeroFlag) {
     return 0xfffffffc;
   }
-  isCharacterMatch = *uiContext;
-  if ((char)isCharacterMatch < '\0') {
-    localInt6 = 48000 << (isCharacterMatch >> 3 & 3);
-    localInt6 = localInt6 / 400 + (localInt6 >> 0x1f);
+  characterEncoding = *uiContext;
+  if ((char)characterEncoding < '\0') {
+    encodingOffset = 48000 << (characterEncoding >> 3 & 3);
+    encodingOffset = encodingOffset / 400 + (encodingOffset >> 0x1f);
 LAB_18070f928:
-    localInt6 = localInt6 - (localInt6 >> 0x1f);
+    encodingOffset = encodingOffset - (encodingOffset >> 0x1f);
   }
-  else if ((isCharacterMatch & 0x60) == 0x60) {
-    localInt6 = 0x3c0;
-    if ((isCharacterMatch & 8) == 0) {
-      localInt6 = 0x1e0;
+  else if ((characterEncoding & 0x60) == 0x60) {
+    encodingOffset = 0x3c0;
+    if ((characterEncoding & 8) == 0) {
+      encodingOffset = 0x1e0;
     }
   }
   else {
-    bVar4 = isCharacterMatch >> 3 & 3;
-    if (bVar4 != 3) {
-      localInt6 = 48000 << bVar4;
-      localInt6 = localInt6 / 100 + (localInt6 >> 0x1f);
+    encodingType = characterEncoding >> 3 & 3;
+    if (encodingType != 3) {
+      encodingOffset = 48000 << encodingType;
+      encodingOffset = encodingOffset / 100 + (encodingOffset >> 0x1f);
       goto LAB_18070f928;
     }
-    localInt6 = 0xb40;
+    encodingOffset = 0xb40;
   }
-  IndexResult = RegisterPointerD - 1;
-  pisCharacterMatch3 = (byte *)(register10 + 1);
-  CounterResult = (uint)ContextHandle;
-  result2 = IndexResult;
-  if ((isCharacterMatch & 3) == 0) {
-    uVar9 = 1;
+  indexResult = registerValue - 1;
+  characterPointer = (byte *)(baseRegister + 1);
+  counterResult = (uint)contextHandle;
+  secondaryResult = indexResult;
+  if ((characterEncoding & 3) == 0) {
+    resultMultiplier = 1;
   }
-  else if ((isCharacterMatch & 3) == 1) {
-    uVar9 = 2;
-    CounterResult = 1;
+  else if ((characterEncoding & 3) == 1) {
+    resultMultiplier = 2;
+    counterResult = 1;
     if (targetBuffer == 0) {
-      if ((IndexResult & 1) != 0) {
+      if ((indexResult & 1) != 0) {
         return 0xfffffffc;
       }
-      *SourceHandle = (short)((int)IndexResult / 2);
-      result2 = (int)IndexResult / 2;
+      *sourceHandle = (short)((int)indexResult / 2);
+      secondaryResult = (int)indexResult / 2;
     }
   }
-  else if ((isCharacterMatch & 3) == 2) {
-    uVar9 = 2;
-    localInt6 = func_0x0001807104d0(pisCharacterMatch3,IndexResult);
-    sVar3 = *SourceHandle;
-    IndexResult = IndexResult - localInt6;
-    if (sVar3 < 0) {
+  else if ((characterEncoding & 3) == 2) {
+    resultMultiplier = 2;
+    encodingOffset = func_0x0001807104d0(characterPointer,indexResult);
+    sourceValue = *sourceHandle;
+    indexResult = indexResult - encodingOffset;
+    if (sourceValue < 0) {
       return 0xfffffffc;
     }
-    if ((int)IndexResult < (int)sVar3) {
+    if ((int)indexResult < (int)sourceValue) {
       return 0xfffffffc;
     }
-    pisCharacterMatch3 = pisCharacterMatch3 + localInt6;
-    result2 = IndexResult - (int)sVar3;
+    characterPointer = characterPointer + encodingOffset;
+    secondaryResult = indexResult - (int)sourceValue;
   }
   else {
-    if ((int)IndexResult < 1) {
+    if ((int)indexResult < 1) {
       return 0xfffffffc;
     }
-    bVar4 = *pisCharacterMatch3;
-    pisCharacterMatch3 = (byte *)(register10 + 2);
-    uVar8 = bVar4 & 0x3f;
-    uVar9 = (ulonglong)uVar8;
-    if ((bVar4 & 0x3f) == 0) {
+    encodingType = *characterPointer;
+    characterPointer = (byte *)(baseRegister + 2);
+    encodingSize = encodingType & 0x3f;
+    resultMultiplier = (ulonglong)encodingSize;
+    if ((encodingType & 0x3f) == 0) {
       return 0xfffffffc;
     }
-    if (0x1680 < (int)(localInt6 * uVar8)) {
+    if (0x1680 < (int)(encodingOffset * encodingSize)) {
       return 0xfffffffc;
     }
     IndexResult = RegisterPointerD - 2;
@@ -126940,7 +126940,16 @@ UIHandle * FUN_180744640(UIHandle *uiContext,ulonglong dataSource)
 
 
 
-UIHandle * FUN_180744750(UIHandle *uiContext,ulonglong dataSource)
+/**
+ * @brief 初始化UI上下文指针
+ * 
+ * 该函数负责初始化UI上下文指针，设置默认值并可选地释放内存。
+ * 
+ * @param uiContext UI上下文指针的指针
+ * @param dataSource 数据源标志，最低位表示是否需要释放内存
+ * @return 初始化后的UI上下文指针
+ */
+UIHandle * InitializeUIContextPointer(UIHandle *uiContext,ulonglong dataSource)
 
 {
   *uiContext = &UNK_180957f58;
@@ -127642,7 +127651,7 @@ ulonglong FUN_180744ee0(ulonglong uiContext,char dataSource)
         if ((((int)MaxProcessingCount == 0) && (MaxProcessingCount = FUN_180742070(uiContext + 0x10848), (int)MaxProcessingCount == 0)) &&
            ((MaxProcessingCount = FUN_180742070(uiContext + 0x10bd0), (int)MaxProcessingCount == 0 &&
             ((MaxProcessingCount = FUN_180743880(uiContext), (int)MaxProcessingCount == 0 &&
-             (MaxProcessingCount = FUN_18076fc40(uiContext + 0x12798), (int)MaxProcessingCount == 0)))))) {
+             (MaxProcessingCount = CheckUIState(uiContext + 0x12798), (int)MaxProcessingCount == 0)))))) {
           pCharacterDataOffset = (longlong *)(uiContext + 0x11530);
           do {
             if (*pCharacterDataOffset != 0) {
@@ -130308,6 +130317,23 @@ UIHandle FUN_180747eef(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 释放UI资源句柄
+ * 
+ * 该函数负责释放UI系统中的资源句柄，包括：
+ * - 检查数据源的有效性
+ * - 分配和释放内存资源
+ * - 复制和清理UI上下文数据
+ * - 更新资源计数和状态
+ * 
+ * 该函数确保UI资源得到正确的释放和清理，防止内存泄漏。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统状态和数据
+ * @param dataSource 数据源参数，指定要释放的资源类型
+ * @return UIHandle 返回操作状态句柄
+ * 
+ * @note 原始函数名：FUN_180747f10
+ */
 UIHandle FUN_180747f10(longlong *uiContext,int dataSource)
 
 {
