@@ -409,6 +409,8 @@
 // 新发现的FUN_函数语义化宏定义
 #define ProcessSystemValidationAndCleanup FUN_1800ae520         // 处理系统验证和清理
 #define ExecuteSystemMemoryCleanup FUN_1801538d0                // 执行系统内存清理
+#define ProcessCharacterCodeWithReferenceCount FUN_18015c0a0     // 处理带引用计数的字符代码
+#define ProcessCharacterCodeWithMemoryAllocation FUN_18015c190   // 处理带内存分配的字符代码
 #define InitializeSystemComponent FUN_18005b960                  // 初始化系统组件
 #define ConfigureSystemRenderingParameters FUN_1806faf00         // 配置系统渲染参数
 #define ProcessCharacterDataFinalization FUN_180157050           // 处理字符数据最终化
