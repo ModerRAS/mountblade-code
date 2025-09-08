@@ -191319,7 +191319,18 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
 
 
 
-5b3a0(long long CharacterCodevoid FUN_18015b3a0(long long CharacterCode
+/**
+ * @brief 处理字符代码并释放系统内存
+ * 
+ * 该函数处理输入的字符代码，执行事件队列处理，并释放相关的系统内存。
+ * 函数会遍历UTF-16字符，处理每个字符的事件，最后释放内存。
+ * 
+ * @param CharacterCode 字符代码指针，指向包含UTF-16字符数据的内存区域
+ * 
+ * @note 原始函数名：FUN_18015b3a0
+ * @warning 此函数包含不返回的子程序调用
+ */
+void ProcessCharacterCodeAndFreeMemory(long long CharacterCode)
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryAllocationIndex;
@@ -191328,9 +191339,13 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
   if (CharacterCode == 0) {
     return;
   }
+  
+  // 获取UTF-16字符数据
   Utf16Char = *(unsigned long long *)(CharacterCode + -0x10);
   MemoryAllocationIndex = Utf16Char >> 0x20;
   UnicodeCodePoint = 0;
+  
+  // 处理事件队列
   if ((int)(Utf16Char >> 0x20) != 0) {
     do {
       CoreEngineProcessEventQueue(UnicodeCodePoint + CharacterCode + 0x60);
@@ -191338,30 +191353,52 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
       MemoryAllocationIndex = MemoryAllocationIndex - 1;
     } while (MemoryAllocationIndex != 0);
   }
-                    // WARNING: Subroutine does not return
+  
+  // WARNING: 此函数不会返回
   CoreEngineFreeSystemMemory(CharacterCode + -0x10);
 }
 
 
 
 
-5b420(long long CharacterCodevoid FUN_18015b420(long long CharacterCode
+/**
+ * @brief 释放系统资源并清理内存
+ * 
+ * 该函数负责释放系统资源，处理内存引用计数，并在必要时进行内存清理。
+ * 函数会检查字符代码的有效性，处理主处理状态标志，并管理内存引用计数。
+ * 
+ * @param CharacterCode 字符代码指针，用于系统资源管理
+ * 
+ * @note 原始函数名：FUN_18015b420
+ */
+void ReleaseSystemResourcesAndCleanupMemory(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
   long long SearchStartIndex;
   unsigned long long MemoryOffsetValue;
   
+  // 执行系统资源释放
   ExecuteSystemResourceRelease();
+  
+  // 检查字符代码的有效性
   if ((1 < *(unsigned long long *)(CharacterCode + 0x10)) &&
      (PrimaryProcessingStatusFlag = *(uint64_t **)(CharacterCode + 8), PrimaryProcessingStatusFlag != NULL)) {
+    
+    // 计算内存地址掩码
     MemoryAddressMaskPointer = (unsigned long long)PrimaryProcessingStatusFlag & 0xffffffffffc00000;
     if (MemoryAddressMaskPointer != 0) {
+      // 计算内存偏移量
       MemoryOffset = MemoryAddressMaskPointer + 0x80 + ((long long)PrimaryProcessingStatusFlag - MemoryAddressMaskPointer >> 0x10) * 0x50;
       MemoryOffset = MemoryOffset - (unsigned long long)*(uint *)(MemoryBlockIndex + 4);
+      
+      // 检查异常列表和内存状态
       if ((*(void ***)(MemoryAddressMaskPointer + 0x70) == &ExceptionList) && (*(char *)(MemoryOffset + 0xe) == '\0')) {
+        // 更新主处理状态标志
         *PrimaryProcessingStatusFlag = *(void *)(MemoryOffset + SystemMemoryAllocationOffset);
         *(uint64_t **)(MemoryOffset + SystemMemoryAllocationOffset) = PrimaryProcessingStatusFlag;
+        
+        // 处理引用计数
         ReferenceCountPointer = (int *)(MemoryBlockIndex + 0x18);
         *ReferenceCountPointer = *ReferenceCountPointer + -1;
         if (*ReferenceCountPointer == 0) {
@@ -191370,6 +191407,7 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
         }
       }
       else {
+        // 处理内存分配异常
         HandleMemoryAllocationException(MemoryAddressMaskPointer,CONCAT71(0xff000000,*(void ***)(MemoryAddressMaskPointer + 0x70) == &ExceptionList),
                             PrimaryProcessingStatusFlag,MemoryAddressMaskPointer,0xfffffffffffffffe);
       }
@@ -202529,7 +202567,23 @@ ProcessUtf8CharacterEncodingC(uint64_t CharacterCode,uint64_t SystemBufferSize,u
 
 
 
-uint64_t FUN_18016ec20(uint64_t CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码和状态缓冲区
+ * 
+ * 该函数负责处理UTF-8字符编码，根据UTF-8源指针的大小选择适当的字符状态缓冲区。
+ * 主要功能包括：
+ * - 检查UTF-8源指针的范围以确定使用哪个状态缓冲区
+ * - 选择主要或次要的字符状态缓冲区
+ * - 调用临时缓冲区处理函数来处理字符数据
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针数组
+ * @return 处理后的字符代码
+ * 
+ * @note 原始函数名：FUN_18016ec20
+ */
+uint64_t ProcessUtf8CharacterEncodingWithStatusBuffer(uint64_t CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePointer
 {
   void *CharacterStatusBuffer;
   
@@ -202547,7 +202601,27 @@ uint64_t FUN_18016ec20(uint64_t CharacterCode,uint64_t SystemBufferSize,long lon
 
 
 
-uint64_t FUN_18016ecb0(uint64_t CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8字符编码和内存分配
+ * 
+ * 该函数负责处理UTF-8字符编码，包括内存分配、线程本地存储管理和互斥锁操作。
+ * 主要功能包括：
+ * - 根据UTF-8源指针的范围选择不同的处理路径
+ * - 处理内存分配和地址掩码操作
+ * - 管理线程本地存储数据的初始化和清理
+ * - 执行互斥锁的锁定和解锁操作
+ * - 处理字符表指针的内存管理
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针数组
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 处理后的字符代码
+ * 
+ * @note 原始函数名：FUN_18016ecb0
+ * @warning 该函数包含不返回的子程序调用
+ */
+uint64_t ProcessUtf8CharacterEncodingWithMemoryAllocation(uint64_t CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   long long PrimaryDataSize;
   uint MemoryAllocationIndex;
