@@ -10627,20 +10627,20 @@ UIHandle * FindUIModuleByPath(UIHandle path_length, UIHandle *path_buffer, longl
 LAB_1806575b7:
       searchResultPtr = resourceManagerPtr;
       if (isPathMatching) {
-        resultPtr = resultPtr;
+        searchResultPtr = searchResultPtr;
       }
-      eventCodePtr = modulePathPtr;
-      resultPtr = resultPtr;
+      resourceManagerPtr = modulePathPtr;
+      searchResultPtr = searchResultPtr;
     } while (modulePathPtr != (UIHandle *)0x0);
-    if (resultPtr != (UIHandle *)&UIDefaultResourceBuffer) {
-      if (*(int *)(resultPtr + 6) == 0) {
+    if (searchResultPtr != (UIHandle *)&UIDefaultResourceBuffer) {
+      if (*(int *)(searchResultPtr + 6) == 0) {
 LAB_1806575f7:
-        *dataSource = resultPtr;
+        *dataSource = searchResultPtr;
         return dataSource;
       }
       if (*(int *)(targetBuffer + 0x10) != 0) {
-        pathCharacterPtr = (byte *)resultPtr[5];
-        ContextHandleData = *(longlong *)(targetBuffer + 8) - (longlong)pathCharacterPtr;
+        pathCharacterPtr = (byte *)searchResultPtr[5];
+        pathOffset = *(longlong *)(targetBuffer + 8) - (longlong)pathCharacterPtr;
         do {
           isCharacterMatch = *pathCharacterPtr;
           characterCode = (uint)pathCharacterPtr[ContextHandleData];
