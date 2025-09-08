@@ -573,7 +573,7 @@ typedef enum {
 #define ProcessingStatus ProcessingStatus
 #define localLong5 EventDataIndex
 #define LoopCounter loopCounter
-#define uVar6 maxProcessingCount
+#define MaxProcessingCount maxProcessingCount
 #define IsValidationComplete IsValidationComplete
 #define localChar1 ValidationFlag
 #define localChar3 ProcessingFlag
