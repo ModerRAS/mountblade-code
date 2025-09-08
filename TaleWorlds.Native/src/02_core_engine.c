@@ -182350,7 +182350,25 @@ void ExpandSystemBufferCapacity(long long *CharacterCode,unsigned long long Syst
 
 
 
-4ea1e(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointervoid FUN_18014ea1e(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer
+/**
+ * @brief 转换UTF-8到UTF-16编码
+ * 
+ * 该函数负责将UTF-8编码的数据转换为UTF-16编码，主要功能包括：
+ * - 计算所需的UTF-16缓冲区大小
+ * - 分配适当的内存空间
+ * - 执行UTF-8到UTF-16的编码转换
+ * - 处理内存管理和数据复制
+ * 
+ * 该函数是字符编码系统的核心组件，确保不同编码格式之间的
+ * 正确转换，支持多语言文本处理。
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @note 原始函数名：FUN_18014ea1e
+ */
+void ConvertUtf8ToUtf16Encoding(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer)
 {
   long long PrimaryDataSize;
   long long ProcessingResult;
