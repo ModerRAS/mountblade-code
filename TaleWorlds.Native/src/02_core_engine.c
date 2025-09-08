@@ -272229,7 +272229,7 @@ uint64_t GetSystemNullStatus(void
   SystemDataValue1 = 0;
   SystemDataValue2 = 0;
   (**(code **)(*CharacterCode + 0x108))(CharacterCode,Utf16EndPointer,alStack_a8);
-  FUN_1802a8080(SystemBufferSize,alStack_a8,Utf8SourcePointer);
+  ProcessSystemDataBufferConfiguration(SystemBufferSize,alStack_a8,Utf8SourcePointer);
   if (SystemOperationFlag98._1_1_ == '\0') {
     if (((char)SystemOperationFlag98 == '\0') && (alStack_a8[0] != 0)) {
                     // WARNING: Subroutine does not return
