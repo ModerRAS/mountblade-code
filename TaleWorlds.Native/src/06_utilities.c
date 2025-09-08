@@ -2712,6 +2712,10 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 /**
  * @brief 系统数据处理函数A0
+ * 
+ * 该函数负责处理系统数据，包括数据验证、格式转换和数据处理。
+ * 它会根据系统需求对数据进行各种操作，确保数据的正确性和完整性。
+ * 
  * @note 原始函数名：FUN_18007f840
  */
 #define ProcessSystemDataA1 ProcessSystemDataAndValidation

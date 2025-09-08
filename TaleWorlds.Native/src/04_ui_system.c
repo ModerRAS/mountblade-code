@@ -93885,8 +93885,18 @@ uint FUN_180721b40(longlong uiContext,uint dataSource,uint targetBuffer)
 
 
 
- void FUN_180721bd0(float *uiContext,uint dataSource,float targetBuffer)
-void FUN_180721bd0(float *uiContext,uint dataSource,float targetBuffer)
+ /**
+ * @brief UI数据归一化处理器
+ * 
+ * 对UI数据进行归一化处理，通常用于缩放UI组件的尺寸或位置
+ * 
+ * @param uiContext UI上下文数据数组指针
+ * @param dataSource 数据源大小
+ * @param targetBuffer 目标缩放因子
+ * 
+ * @note 原始函数名：FUN_180721bd0
+ */
+void NormalizeUIData(float *uiContext,uint dataSource,float targetBuffer)
 
 {
   uint result;
