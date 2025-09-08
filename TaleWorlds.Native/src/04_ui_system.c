@@ -76056,10 +76056,10 @@ uint ProcessUIResourceAllocation(longlong *uiContext,uint dataSource)
     for (; allocationCounter >> bitShiftCount == 0; bitShiftCount = bitShiftCount + -1) {
     }
   }
-  if (ProcessingResult1 + 1 < 9) {
-    uiOperationResult = (int)((ulonglong)uVar8 / (ulonglong)dataSource);
-    *(int *)(uiBufferData + 5) = uiOperationResult;
-    TempInt4 = (int)((ulonglong)uVar9 / ((ulonglong)uVar8 / (ulonglong)dataSource));
+  if (bitShiftCount + 1 < 9) {
+    allocationResult = (int)((ulonglong)contextValue1 / (ulonglong)dataSource);
+    *(int *)(uiBufferData + 5) = allocationResult;
+    tempValue = (int)((ulonglong)contextValue2 / ((ulonglong)contextValue1 / (ulonglong)dataSource));
     ProcessingResult1 = 0;
     if (dataSource < TempInt4 + 1U) {
       ProcessingResult1 = (dataSource - TempInt4) + -1;
