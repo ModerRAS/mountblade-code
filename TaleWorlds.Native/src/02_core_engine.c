@@ -213202,7 +213202,7 @@ LAB_180179981:
       Utf16EndPointer = MemoryBoundaryPointer;
 LAB_180179984:
       if (Utf16EndPointer != (long long *)0x0) {
-        FUN_180179cd0(CharacterCode,SystemBufferSize,Utf16EndPointer,ProcessingStatusFlag,AdditionalParameter1);
+        TransformSystemCharacterData(CharacterCode,SystemBufferSize,Utf16EndPointer,ProcessingStatusFlag,AdditionalParameter1);
         return SystemBufferSize;
       }
     }
