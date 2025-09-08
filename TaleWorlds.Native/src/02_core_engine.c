@@ -222817,6 +222817,25 @@ LAB_18018d08e:
 
 
 
+/**
+ * @brief 初始化字符代码系统和数据结构
+ * 
+ * 该函数负责初始化字符代码处理系统和相关的数据结构，主要功能包括：
+ * - 初始化系统事件和数据结构
+ * - 复制和同步字符代码数据
+ * - 管理内存分配和缓冲区设置
+ * - 处理系统状态和配置参数
+ * 
+ * @param CharacterCode 字符代码指针，指向需要初始化的字符数据
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配和验证
+ * @param Utf8SourcePointer UTF-8源数据指针，指向需要转换的字符数据
+ * @param Utf16EndPointer UTF-16结束指针，标记转换数据的结束位置
+ * 
+ * @return 初始化状态结果，成功返回0，失败返回错误代码
+ * 
+ * @note 原始函数名：FUN_18018d8f0
+ * @note 这是一个系统初始化函数，用于设置字符处理系统的初始状态
+ */
 long long InitializeCharacterCodeSystem(long long CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long *CharacterCode;
