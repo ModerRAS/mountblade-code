@@ -185471,11 +185471,11 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
     }
     SystemReferenceCounter = SystemReferenceCounter + -1;
     (**(code **)(SystemSystemContext + 0x20))();
-    FUN_1800a3f00(CoreEngineRenderContext,0);
+    CleanupSystemRenderContext(CoreEngineRenderContext,0);
   }
   CoreEngineCleanupSystemContext(0x180c91100);
   if (SystemDebugFlag != '\0') {
-    FUN_1801c6120();
+    ResetSystemStatusFlag();
   }
   MemoryBlockListHead = *(long long **)(CoreEngineRenderContext + 0x1cd8);
   MemoryBlockListHead[0x1077] = 0;
@@ -185603,7 +185603,7 @@ LAB_180152731:
   SystemStringIndex = (unsigned long long)*(uint *)(&SystemStringOffsetTable + (long long)(int)DataSize * 4) + 0x180000000;
   switch(DataSize) {
   case 0:
-    SystemCheckResult0 = FUN_1801c9940(SystemConfigurationData);
+    SystemCheckResult0 = ValidateSystemConfigurationData(SystemConfigurationData);
     if (SystemCheckResult0 != '\0') {
                     // WARNING: Subroutine does not return
       ValidateSystemConfiguration(SystemConfigHandle,&SystemEventConfigurationPrimary);
