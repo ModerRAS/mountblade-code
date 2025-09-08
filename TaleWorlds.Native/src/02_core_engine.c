@@ -280321,24 +280321,24 @@ long long FUN_18022ac3f(void
  */
 float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,float *CharacterCodeSize,int Utf8SourcePointer,long long Utf16EndPointer)
 {
-  float *pSystemContextPrimaryFloat;
+  float *SystemContextPrimaryFloatPtr;
   void *SystemContext;
   unsigned long long UnicodeCodePoint;
-  float MatrixTransformMultiplier1;
-  float MatrixTransformMultiplier;
+  float MatrixTransformMultiplierA;
+  float MatrixTransformMultiplierB;
   float CalculatedDistance;
   float FloatOffsetValue;
   uint64_t ProcessingStatusFlag;
-  int IntegerValue9;
+  int CharacterTableIndex;
   char CurrentCharacter0;
   int MatchCounter;
   char CurrentCharacter;
   long long DataSize13;
-  float SystemContextPrimaryFloat4;
+  float SystemContextFloat4;
   float SystemFloatValue;
-  float SystemContextPrimaryFloat6;
+  float SystemContextFloat6;
   float SecondaryFloatValue;
-  float SystemContextPrimaryFloat8;
+  float SystemContextFloat8;
   float ContextPrimaryFloat9;
   float ContextSecondaryFloat0;
   float ContextSecondaryFloat1;
