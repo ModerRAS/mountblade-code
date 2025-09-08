@@ -2150,6 +2150,10 @@ void* UIGestureCoordinates;
 #define UIFunctionResultTableLayout UNK_180954848
 #define UIFunctionResultTableState UNK_1809535d4
 #define UIFunctionResultTableDebug UNK_1809535b8
+#define UIComparisonTableEntry UNK_1809543d8
+#define UIComponentDataTable UNK_180954320
+#define UIValidationFlagTable UNK_1809543c2
+#define UIComponentStateTable UNK_1809535b0
 
  // UI系统验证数据表美化
 #define UIValidationDataTableInput UNK_180954770
@@ -96376,20 +96380,20 @@ void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int t
   stackUInt114 = bufferSize;
   stackInt110 = targetBuffer;
   stackLong108 = dataSource;
-  uiCompareResult = ReadUIData(uiContext,&UNK_1809543d8 + ((longlong)targetBuffer >> 1) * 9,8);
+  uiCompareResult = ReadUIData(uiContext,&UIComparisonTableEntry + ((longlong)targetBuffer >> 1) * 9,8);
   componentIndex = 0;
   eventProcessingCounter = CounterResult;
   result0 = componentIndex;
   if (0 < (int)result3) {
     do {
       *(UIDword *)((longlong)astackUInta8 + result0) = 0;
-      TempInt4 = ReadUIData(uiContext,&UNK_180954320 + (longlong)uiCompareResult * 0x12,8);
+      TempInt4 = ReadUIData(uiContext,&UIComponentDataTable + (longlong)uiCompareResult * 0x12,8);
       *(int *)((longlong)astackUIntf8 + result0) = TempInt4;
       processingCounter = componentIndex;
       if (TempInt4 == 0x11) {
         do {
           loopCounter = (int)processingCounter + 1;
-          TempInt4 = ReadUIData(uiContext,&UNK_1809543c2 + (loopCounter == 10),8);
+          TempInt4 = ReadUIData(uiContext,&UIValidationFlagTable + (loopCounter == 10),8);
           *(int *)((longlong)astackUIntf8 + result0) = TempInt4;
           processingCounter = (ulonglong)loopCounter;
         } while (TempInt4 == 0x11);
