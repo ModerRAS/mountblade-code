@@ -130685,7 +130685,7 @@ void ProcessSystemEventQueueAndMemoryAllocation(void)
   long long SystemContextValue;
   char RegisterR12ValueB;
   uint8_t SystemCurrentCharacterLow;
-  uint16_t UnaffVariableA2;
+  uint16_t CharacterProcessingValue;
   uint32_t SystemCurrentCharacterHigh;
   int IntegerValue;
   float SystemContextPrimaryFloat4;
@@ -130880,7 +130880,7 @@ void ProcessSystemMemoryBlock(void)
   int *PatternIndex;
   char RegisterR12ValueB;
   uint8_t SystemCurrentCharacterLow;
-  uint16_t UnaffVariableA2;
+  uint16_t CharacterProcessingValue;
   uint32_t SystemCurrentCharacterHigh;
   long long CharacterLimit;
   int NullPointerD;
@@ -130994,7 +130994,7 @@ void SystemMemoryReferenceCountManager(void)
   long long MemoryPoolBlockSize;
   char RegisterR12ValueB;
   uint8_t SystemCurrentCharacterLow;
-  uint16_t UnaffVariableA2;
+  uint16_t CharacterProcessingValue;
   uint32_t SystemCurrentCharacterHigh;
   long long CharacterLimit;
   
