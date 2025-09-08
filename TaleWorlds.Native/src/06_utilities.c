@@ -2569,8 +2569,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 /**
  * @brief 数据缓冲区初始化函数
-// 功能：初始化系统数据缓冲区，为后续的数据操作准备内存空间
-// 数据缓冲区初始化函数
+ * 
+ * 初始化系统数据缓冲区，为后续的数据操作准备内存空间
+ * 
+ * @note 原始函数名：FUN_1800a19c0
+ */
 #define InitializeDataBuffer FUN_1800a19c0
 
 // 系统命令执行函数
@@ -92654,7 +92657,19 @@ void SetDefaultExceptionHandlerAtOffset2A8(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090c830(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 在偏移量890处设置默认异常处理器B
+ * 
+ * 该函数在数据缓冲区的偏移量0x890处设置系统默认异常处理器B的指针。
+ * 这是一个简单的异常处理器配置函数，用于初始化异常处理机制。
+ * 
+ * @param operationBase 操作基础数据缓冲区（参数未使用）
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090c830
+ * @note 这是异常处理器初始化系列函数之一
+ */
+void SetDefaultExceptionHandlerAtOffset890(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x890) = &SystemDefaultExceptionHandlerB;
