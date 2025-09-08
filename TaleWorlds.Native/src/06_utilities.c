@@ -1310,6 +1310,36 @@
 #define FunctionPointerSecondaryOffset 0x288        // 函数指针次偏移量
 
 // 数据合并函数定义
+
+// 系统上下文操作偏移量常量
+#define SystemContextOperationOffset60 0x60         // 系统上下文操作偏移量60
+#define SystemContextDataOffsetA0 0xa0             // 系统上下文数据偏移量A0
+#define SystemContextDataOffsetB0 0xb0             // 系统上下文数据偏移量B0
+#define SystemContextDataOffsetC0 0xc0             // 系统上下文数据偏移量C0
+#define SystemContextDataOffset14 0x14             // 系统上下文数据偏移量14
+#define SystemContextDataOffset24 0x24             // 系统上下文数据偏移量24
+#define SystemContextFlagsOffset6C 0x6c            // 系统上下文标志偏移量6C
+#define SystemContextValidationOffset94 0x94       // 系统上下文验证偏移量94
+#define SystemContextValidationOffset78 0x78       // 系统上下文验证偏移量78
+
+// 数据操作偏移量常量
+#define DataOperationOffset1C 0x1c                  // 数据操作偏移量1C
+#define DataOperationOffset24 0x24                  // 数据操作偏移量24
+#define DataOperationOffset30 0x30                  // 数据操作偏移量30
+
+// 内存管理偏移量常量
+#define MemoryManagementOffset1A0 0x1a0             // 内存管理偏移量1A0
+#define MemoryAlignmentSize32 0x20                   // 内存对齐大小32
+#define SystemMemoryManagerOffset1a0 0x1a0           // 系统内存管理器偏移量1a0
+
+// 系统管理偏移量常量
+#define SystemManagementOffset98 0x98               // 系统管理偏移量98
+#define FloatProcessingBufferSizeOffset 0xb0        // 浮点处理缓冲区大小偏移量
+
+// 数据验证偏移量常量
+#define ValidationStepSize 0x10                     // 验证步长大小
+#define ValidationSecondaryStep 0x18                // 验证次级步长
+
 // 数据类型定义
 typedef uint32_t DataWord;                  // 数据字类型 - 32位无符号整数，用于系统数据交换
 typedef uint32_t DataBuffer;                // 数据缓冲区类型 - 32位无符号整数，用于数据缓冲区操作
@@ -20654,7 +20684,7 @@ DataBuffer SaveSystemConfigurationA0(int64_t configHandle,int64_t systemContext)
   securityBuffer[0] = 0;
   operationResult = ExecuteSystemDataProcessingA0(systemContext,configHandle + SystemDataParameterOffset20,securityBuffer);
   if ((int)operationResult == 0) {
-    dataOffset = GetOperationRangeDataA0(systemContext + 0x60,securityBuffer[0]);
+    dataOffset = GetOperationRangeDataA0(systemContext + SystemContextOperationOffset60,securityBuffer[0]);
     if ((*(uint *)(dataOffset + SystemDataValidationOffset34) >> 4 & 1) != 0) {
       return ComponentDataValidationFailure;
     }
@@ -94731,7 +94761,18 @@ void ResetExceptionHandlerToDefaultAtOffset5a0(DataBuffer operationBase, int64_t
 
 
 
-void Unwind_18090cc40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器为默认处理器 - 偏移量0x600
+ * 
+ * 该函数将数据缓冲区偏移量0x600处的异常处理器重置为系统默认异常处理器B。
+ * 这是一个标准的异常处理器重置函数，用于在异常处理完成后恢复默认状态。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090cc40
+ */
+void ResetExceptionHandlerToDefaultAtOffset600(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + ExceptionHandlerContextOffset600) = &SystemDefaultExceptionHandlerB;
@@ -94740,7 +94781,18 @@ void Unwind_18090cc40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cc50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器为默认处理器 - 偏移量0x660
+ * 
+ * 该函数将数据缓冲区偏移量0x660处的异常处理器重置为系统默认异常处理器B。
+ * 这是一个标准的异常处理器重置函数，用于在异常处理完成后恢复默认状态。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090cc50
+ */
+void ResetExceptionHandlerToDefaultAtOffset660(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + DataProcessingOffset660) = &SystemDefaultExceptionHandlerB;

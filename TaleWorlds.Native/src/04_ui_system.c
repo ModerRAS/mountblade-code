@@ -100000,57 +100000,57 @@ float FUN_180727dd3(UIHandle uiContext,UIHandle dataSource,float targetBuffer)
   int ProcessingResult1;
   uint result2;
   ulonglong RegisterPointer;
-  longlong *pallocatedMemory3;
+  longlong *ContextDataArray3;
   float vectorComponentX;
   float baseValue5;
   
   EventDataIndex = RegisterPointer * 4;
-  pallocatedMemory3 = (longlong *)(&UNK_180956d30 + RegisterPointer * 8);
+  ContextDataArray3 = (longlong *)(&SystemGlobalDataRegistry + RegisterPointer * 8);
   do {
     ptrLocal6 = SourceHandle;
-    ContextHandleData = (longlong)register10D;
+    ContextHandleData = (longlong)ContextRegister10;
     ProcessingResult1 = (int)RegisterPointer;
-    sVar10 = (short)register10D;
-    if (register10D < ProcessingResult1) {
-      uVar8 = *(uint *)(EventDataIndex + *(longlong *)(&UNK_180956d38 + ContextHandleData * 8));
-      if ((register8D < *(uint *)(EventDataIndex + *(longlong *)(&UNK_180956d30 + ContextHandleData * 8))) ||
-         (uVar8 <= register8D)) {
-        processingCounter = unmodifiedEBP;
-        if (uVar8 <= register8D) {
-          processingCounter = uVar8;
+    ContextDataIndex = (short)ContextRegister10;
+    if (ContextRegister10 < ProcessingResult1) {
+      EventDataValue = *(uint *)(EventDataIndex + *(longlong *)(&SystemGlobalDataRegistry38 + ContextHandleData * 8));
+      if ((ContextRegister8 < *(uint *)(EventDataIndex + *(longlong *)(&SystemGlobalDataRegistry30 + ContextHandleData * 8))) ||
+         (EventDataValue <= ContextRegister8)) {
+        EventProcessingCounter = unmodifiedEBP;
+        if (EventDataValue <= ContextRegister8) {
+          EventProcessingCounter = EventDataValue;
         }
         do {
-          register10D = register10D + -1;
-        } while (register8D - processingCounter <
-                 *(uint *)(EventDataIndex + *(longlong *)(&UNK_180956d30 + (longlong)register10D * 8)));
-        EventTypeCode = (register8D < uVar8) - 1;
-        sVar2 = EventTypeCode - (short)register10D;
-        register8D = (register8D - processingCounter) -
-                 *(uint *)(EventDataIndex + *(longlong *)(&UNK_180956d30 + (longlong)register10D * 8));
+          ContextRegister10 = ContextRegister10 + -1;
+        } while (ContextRegister8 - EventProcessingCounter <
+                 *(uint *)(EventDataIndex + *(longlong *)(&SystemGlobalDataRegistry30 + (longlong)ContextRegister10 * 8)));
+        EventTypeCode = (ContextRegister8 < EventDataValue) - 1;
+        ContextDataIndex2 = EventTypeCode - (short)ContextRegister10;
+        ContextRegister8 = (ContextRegister8 - EventProcessingCounter) -
+                 *(uint *)(EventDataIndex + *(longlong *)(&SystemGlobalDataRegistry30 + (longlong)ContextRegister10 * 8));
         goto LAB_180727edb;
       }
-      register8D = register8D - *(uint *)(EventDataIndex + *(longlong *)(&UNK_180956d30 + ContextHandleData * 8));
-      uVar8 = unmodifiedEBP;
+      ContextRegister8 = ContextRegister8 - *(uint *)(EventDataIndex + *(longlong *)(&SystemGlobalDataRegistry30 + ContextHandleData * 8));
+      EventDataValue = unmodifiedEBP;
     }
     else {
-      allocatedMemory = *pallocatedMemory3;
-      uVar8 = *(uint *)(allocatedMemory + 4 + ContextHandleData * 4);
-      processingCounter = unmodifiedEBP;
-      if (uVar8 <= register8D) {
-        processingCounter = uVar8;
+      AllocatedMemoryData = *ContextDataArray3;
+      EventDataValue = *(uint *)(AllocatedMemoryData + 4 + ContextHandleData * 4);
+      EventProcessingCounter = unmodifiedEBP;
+      if (EventDataValue <= ContextRegister8) {
+        EventProcessingCounter = EventDataValue;
       }
-      processingCounter = register8D - processingCounter;
-      localInt9 = ProcessingResult1;
-      if (processingCounter < *(uint *)(EventDataIndex + allocatedMemory)) {
+      EventProcessingCounter = ContextRegister8 - EventProcessingCounter;
+      LocalIntIndex = ProcessingResult1;
+      if (EventProcessingCounter < *(uint *)(EventDataIndex + AllocatedMemoryData)) {
         do {
-          register10D = localInt9 + -1;
-          result2 = *(uint *)(EventDataIndex + *(longlong *)(&UNK_180956d30 + (longlong)register10D * 8));
-          localInt9 = register10D;
-        } while (processingCounter < result2);
+          ContextRegister10 = LocalIntIndex + -1;
+          EventDataResult = *(uint *)(EventDataIndex + *(longlong *)(&SystemGlobalDataRegistry30 + (longlong)ContextRegister10 * 8));
+          LocalIntIndex = ContextRegister10;
+        } while (EventProcessingCounter < EventDataResult);
       }
       else {
-        result2 = *(uint *)(allocatedMemory + ContextHandleData * 4);
-        while (processingCounter < result2) {
+        EventDataResult = *(uint *)(AllocatedMemoryData + ContextHandleData * 4);
+        while (EventProcessingCounter < EventDataResult) {
           register10D = register10D + -1;
           result2 = *(uint *)(allocatedMemory + (longlong)register10D * 4);
         }
