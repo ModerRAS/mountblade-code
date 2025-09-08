@@ -100538,7 +100538,21 @@ void DestroyMutexResource(void)
 
 
 
-void Unwind_18090d700(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器D700
+ * 
+ * 该函数负责调用异常上下文处理器，在指定的偏移量处执行异常处理操作。
+ * 主要功能包括：
+ * - 获取异常上下文指针
+ * - 在13B8偏移量处调用异常处理器函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d700
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常上下文处理器
+ */
+void InvokeExceptionContextHandlerAtOffset13B8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100552,7 +100566,21 @@ void Unwind_18090d700(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d720(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器D720
+ * 
+ * 该函数负责调用异常上下文处理器，在指定的偏移量处执行异常处理操作。
+ * 主要功能包括：
+ * - 获取异常上下文指针
+ * - 在13D0偏移量处调用异常处理器函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d720
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常上下文处理器
+ */
+void InvokeExceptionContextHandlerAtOffset13D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100566,7 +100594,21 @@ void Unwind_18090d720(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d740(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器D740
+ * 
+ * 该函数负责调用异常上下文处理器，在指定的偏移量处执行异常处理操作。
+ * 主要功能包括：
+ * - 获取异常上下文指针
+ * - 在13E8偏移量处调用异常处理器函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d740
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常上下文处理器
+ */
+void InvokeExceptionContextHandlerAtOffset13E8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100580,7 +100622,21 @@ void Unwind_18090d740(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d760(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器D760
+ * 
+ * 该函数负责调用异常上下文处理器，在指定的偏移量处执行异常处理操作。
+ * 主要功能包括：
+ * - 获取异常上下文指针
+ * - 在1400偏移量处调用异常处理器函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d760
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常上下文处理器
+ */
+void InvokeExceptionContextHandlerAtOffset1400(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100608,7 +100664,21 @@ void Unwind_18090d780(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d7a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器D7A0
+ * 
+ * 该函数负责调用异常上下文处理器，在指定的偏移量处执行异常处理操作。
+ * 主要功能包括：
+ * - 获取异常上下文指针
+ * - 在1430偏移量处调用异常处理器函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d7a0
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常上下文处理器
+ */
+void InvokeExceptionContextHandlerAtOffset1430(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100622,7 +100692,21 @@ void Unwind_18090d7a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d7c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常上下文处理器D7C0
+ * 
+ * 该函数负责调用异常上下文处理器，在指定的偏移量处执行异常处理操作。
+ * 主要功能包括：
+ * - 获取异常上下文指针
+ * - 在1448偏移量处调用异常处理器函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d7c0
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常上下文处理器
+ */
+void InvokeExceptionContextHandlerAtOffset1448(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
