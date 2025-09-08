@@ -433,6 +433,32 @@
 // 系统管理偏移量常量
 #define SystemManagementOffset98 0x98                          // 系统管理偏移量98
 #define SystemConfigPrimaryOffset 0x0                         // 系统配置主偏移量
+
+// 数据操作偏移量常量
+#define SystemDataSecondaryOffset18 0x18                      // 系统数据次级偏移量18
+#define DataOperationOffset24 0x24                           // 数据操作偏移量24
+#define DataOperationOffset40 0x40                            // 数据操作偏移量40
+#define DataOperationOffset48 0x48                            // 数据操作偏移量48
+#define DataOperationOffset50 0x50                            // 数据操作偏移量50
+#define DataOperationOffset77 0x77                            // 数据操作偏移量77
+#define DataOperationOffsetB8 0xb8                            // 数据操作偏移量B8
+#define DataOperationOffsetC 0xc                              // 数据操作偏移量C
+#define DataOperationOffset10 0x10                            // 数据操作偏移量10
+#define DataOperationOffset1C 0x1c                            // 数据操作偏移量1C
+#define DataOperationOffset8 0x8                              // 数据操作偏移量8
+#define DataOperationOffsetD 0xd                              // 数据操作偏移量D
+
+// 系统上下文偏移量常量
+#define SystemContextDataOffset24 0x24                        // 系统上下文数据偏移量24
+#define SystemContextDataOffset48 0x48                        // 系统上下文数据偏移量48
+
+// 异常上下文偏移量常量
+#define ExceptionContextDataOffset6D4 0x6d4                    // 异常上下文数据偏移量6D4
+#define ExceptionContextDataOffset1193C 0x1193c               // 异常上下文数据偏移量1193C
+
+// 验证状态常量
+#define ValidationStatusMinimum 0x40                          // 验证状态最小值
+#define ValidationStatusMaximum 0x70                          // 验证状态最大值
 #define SystemConfigSecondaryOffset 0x4                       // 系统配置次级偏移量
 
 // 执行上下文偏移量常量

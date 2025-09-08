@@ -981,7 +981,7 @@ typedef enum {
 // UI系统数据指针美化
 #define UIDataBufferRegistryPointer (void*)0x180741cf0
 #define UIResourceTableRegistryPointer (void*)0x180741d00
-#define UIContextDataPointer UNK_180741ce0
+#define UIContextDataPointer (void*)0x180741ce0
 // UI系统全局数据美化
 #define UISystemGlobalDataRegistry UNK_180958080
 #define UISystemConfigurationData UNK_18078b870
