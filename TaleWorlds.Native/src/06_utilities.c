@@ -126518,7 +126518,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始函数名：Unwind_18090cb30 - 异常处理器设置函数B30
 // 功能：设置异常数据缓冲区的默认异常处理器B
-#define SetupExceptionHandlerB30 Unwind_18090cb30
+#define SetupExceptionHandlerB30 SetupExceptionHandlerB30
 
 // 原始函数名：Unwind_18090cb40 - 异常处理器设置函数B40
 // 功能：设置异常数据缓冲区的默认异常处理器B
