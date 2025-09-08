@@ -92844,11 +92844,24 @@ void ExecuteFunctionPointerAtMemoryOperationOffset(DataBuffer operationBase,int6
 
 
 
-void Unwind_18090c870(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行238偏移量处的函数指针
+ * 
+ * 该函数检查数据缓冲区238偏移量处的函数指针是否有效，如果有效则调用该函数。
+ * 这是一个通用的函数指针调用包装器，用于执行系统回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含函数指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090c870
+ * @note 此函数为异常处理机制的一部分，用于执行回调函数
+ */
+void ExecuteFunctionPointerAtOffset238(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t **)(dataBuffer + 0x238) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0x238) + SystemFloatDataOffset38))();
+  if (*(int64_t **)(dataBuffer + ExceptionHandlerOffset238) != (int64_t *)0x0) {
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + ExceptionHandlerOffset238) + SystemFloatDataOffset38))();
   }
   return;
 }
