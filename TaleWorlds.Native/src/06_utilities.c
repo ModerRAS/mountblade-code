@@ -18216,13 +18216,13 @@ DataBuffer ValidateParametersE0(DataWord parameterFlags)
   int64_t dataPointer;
   int64_t stackPointer;
   
-  if ((*(byte *)(contextHandle + 0x34) & 0x11) != 0) {
+  if ((*(byte *)(contextHandle + ValidationStatusOffset34) & SystemValidationFlagMask11) != 0) {
     return ComponentDataValidationFailure;
   }
   validationResult = ProcessDataValidationA0(parameterFlags,dataPointer + 0x25,dataPointer + 0x20);
   if ((int)validationResult == 0) {
-    floatValue = *(float *)(dataPointer + 0x20);
-    if ((*(float *)(contextHandle + 0x38) <= floatValue) &&
+    floatValue = *(float *)(dataPointer + VectorComponentWOffset);
+    if ((*(float *)(contextHandle + ValidationStatusOffset38) <= floatValue) &&
        (floatValue < *(float *)(contextHandle + 0x3c) || floatValue == *(float *)(contextHandle + 0x3c))) {
       validationResult = *(DataBuffer *)(basePointer + 0x98);
       *(float *)(stackPointer + 4) = floatValue;

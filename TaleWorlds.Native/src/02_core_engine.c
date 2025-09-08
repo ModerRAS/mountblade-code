@@ -54511,7 +54511,7 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
     ExecuteSystemDataProcessing(StackDataBuffer150,BufferStatus1);
     BufferStatus1 = StackDataBuffer150.Low64Part;
   }
-  pStackDataBuffer1e0 = (uint8_t (*) [16])(unsigned long long)*(ushort *)(CharacterCode + 0xc0);
+  DataBuffer1E0 = (uint8_t (*) [16])(unsigned long long)*(ushort *)(CharacterCode + 0xc0);
   BufferStatus3 = -1;
   do {
     MemoryBlockIndex1 = BufferStatus3 + 1;
@@ -55397,13 +55397,13 @@ SystemEventProcessing:
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  ReferenceCountPointer3 = *(int **)(*pStackDataBuffer1e0 + lStack_170);
+  ReferenceCountPointer3 = *(int **)(*DataBuffer1E0 + lStack_170);
   ReferenceCountPointer218 = ReferenceCountPointer6;
-  if (((*(long long *)(*pStackDataBuffer1e0 + lStack_170 + 8) - (long long)ReferenceCountPointer3 ^
+  if (((*(long long *)(*DataBuffer1E0 + lStack_170 + 8) - (long long)ReferenceCountPointer3 ^
        (long long)StringComparisonResultPointer0 - (long long)ReferenceCountPointer4) & 0xfffffffffffffffcU) != 0) {
-    *(int **)(*pStackDataBuffer1e0 + lStack_170) = ReferenceCountPointer4;
-    StackProcessingVariable = *(int **)(*pStackDataBuffer1e0 + lStack_170 + 8);
-    *(int **)(*pStackDataBuffer1e0 + lStack_170 + 8) = StringComparisonResultPointer0;
+    *(int **)(*DataBuffer1E0 + lStack_170) = ReferenceCountPointer4;
+    StackProcessingVariable = *(int **)(*DataBuffer1E0 + lStack_170 + 8);
+    *(int **)(*DataBuffer1E0 + lStack_170 + 8) = StringComparisonResultPointer0;
     SystemStackPointer190 = *(int **)(pStackDataBuffer1e0[1] + lStack_170);
     *(int **)(pStackDataBuffer1e0[1] + lStack_170) = ReferenceCountPointer5;
     ProcessingStatus = *(uint32_t *)(pStackDataBuffer1e0[1] + lStack_170 + 8);

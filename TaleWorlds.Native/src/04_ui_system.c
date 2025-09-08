@@ -29230,8 +29230,8 @@ void SetUIRenderingParameters(longlong uiContext,longlong dataSource,int targetB
       result7 = 0;
       if (0 < *(int *)(uiBufferData + 0x1e78)) {
         RenderContextSize = 0x10;
-        stackInt14c = 0;
-        stackLong130 = 0x20;
+        RenderContextIndex = 0;
+        RenderDataAlignment = 0x20;
         do {
           pprocessingResult4 = pstackInt110;
           localInt5 = stackInt160;
@@ -29244,7 +29244,7 @@ void SetUIRenderingParameters(longlong uiContext,longlong dataSource,int targetB
           }
           componentIndex0 = *(longlong *)(dataSource + 0xf00);
           allocatedMemory8 = (longlong)stackInt150;
-          *(int *)(dataSource + 0xf84) = stackInt14c;
+          *(int *)(dataSource + 0xf84) = RenderContextIndex;
           localInt5 = *(int *)(uiBufferData + 0x1e78);
           *(longlong *)(dataSource + 0xea8) = stackLong100 + stackInt154;
           *(longlong *)(dataSource + 0xeb0) = stackLongf8 + allocatedMemory8;
@@ -29291,7 +29291,7 @@ LAB_18066fdc2:
               result2 = ptrResult[3];
               piterationCount = (UIDword *)
                        (*(longlong *)(*(longlong *)(uiBufferData + 0x43b0) + 8 + AnimationStateValue * 8) +
-                       stackLong130);
+                       RenderDataAlignment);
               *piterationCount = *ptrResult;
               piterationCount[1] = result0;
               piterationCount[2] = result1;
@@ -29419,12 +29419,12 @@ LAB_18066fdc2:
             }
           }
           result7 = result7 + 1;
-          stackInt14c = stackInt14c + -0x80;
+          RenderContextIndex = RenderContextIndex + -0x80;
           stackInt154 = stackInt154 + 0x10;
           stackInt150 = stackInt150 + 8;
           *(longlong *)(dataSource + 0xf00) = *(longlong *)(dataSource + 0xf00) + 0x4c;
           *(longlong *)(dataSource + 0xf50) = *(longlong *)(dataSource + 0xf50) + 9;
-          stackLong130 = stackLong130 + 0x10;
+          RenderDataAlignment = RenderDataAlignment + 0x10;
           RenderContextSize = RenderContextSize + 8;
           iterationCount1 = (ulonglong)(int)iterationCount2;
         } while ((int)result7 < *(int *)(uiBufferData + 0x1e78));
@@ -102163,7 +102163,7 @@ void FUN_18072b930(longlong uiContext,longlong dataSource,int targetBuffer,ulong
   uint stackUInt144;
   ulonglong stackUInt140;
   longlong stackLong138;
-  longlong stackLong130;
+  longlong RenderDataAlignment;
   longlong RenderContextSize;
   UIDword astackUInt118 [22];
   UIDword astackUIntc0 [26];
@@ -102186,7 +102186,7 @@ void FUN_18072b930(longlong uiContext,longlong dataSource,int targetBuffer,ulong
   stackLong138 = (longlong)localInt7;
   dataSource = dataSource + (longlong)(int)(stackUInt144 * 4) * 4;
   if (0 < (int)resultPointer) {
-    stackLong130 = (longlong)(int)stackUInt144 << 2;
+    RenderDataAlignment = (longlong)(int)stackUInt144 << 2;
     RenderContextSize = (longlong)targetBuffer;
     localInt7 = 0;
     ptrResult4 = (UIDword *)(uiContext + 8);
@@ -102244,7 +102244,7 @@ void FUN_18072b930(longlong uiContext,longlong dataSource,int targetBuffer,ulong
           ProcessingResult2 = ProcessingResult2 + 1;
         } while (CharacterDataOffset != 0);
       }
-      dataSource = dataSource + stackLong130;
+      dataSource = dataSource + RenderDataAlignment;
       plocalChar10 = plocalChar10 + 2;
       localInt7 = localInt7 + stackInt148;
       ptrResult4 = ptrResult4 + 0xaa;
@@ -119246,15 +119246,15 @@ void FUN_18073d150(UIHandle uiContext,UIDword dataSource)
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   longlong stackLong138;
-  longlong *pstackLong130;
+  longlong *pRenderDataAlignment;
   UIByte astackUInt128 [256];
   ulonglong stackUInt28;
   
   stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt168;
   stackLong138 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong130,&stackLong138);
+  processingResult = func_0x00018074fb10(uiContext,&pRenderDataAlignment,&stackLong138);
   if (processingResult == 0) {
-    processingResult = (**(code **)(*pstackLong130 + 0x1c8))(pstackLong130,dataSource);
+    processingResult = (**(code **)(*pRenderDataAlignment + 0x1c8))(pRenderDataAlignment,dataSource);
     if (processingResult == 0) goto LAB_18073d1f1;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
@@ -119869,15 +119869,15 @@ void FUN_18073d980(UIHandle uiContext,UIDword dataSource)
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   longlong stackLong138;
-  longlong *pstackLong130;
+  longlong *pRenderDataAlignment;
   UIByte astackUInt128 [256];
   ulonglong stackUInt28;
   
   stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt168;
   stackLong138 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong130,&stackLong138);
+  processingResult = func_0x00018074fb10(uiContext,&pRenderDataAlignment,&stackLong138);
   if (processingResult == 0) {
-    processingResult = (**(code **)(*pstackLong130 + 0x48))(pstackLong130,dataSource);
+    processingResult = (**(code **)(*pRenderDataAlignment + 0x48))(pRenderDataAlignment,dataSource);
     if (processingResult == 0) goto LAB_18073da1e;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
@@ -120049,15 +120049,15 @@ void FUN_18073dba0(UIHandle uiContext,UIDword dataSource)
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   longlong stackLong138;
-  longlong *pstackLong130;
+  longlong *pRenderDataAlignment;
   UIByte astackUInt128 [256];
   ulonglong stackUInt28;
   
   stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt168;
   stackLong138 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong130,&stackLong138);
+  processingResult = func_0x00018074fb10(uiContext,&pRenderDataAlignment,&stackLong138);
   if (processingResult == 0) {
-    processingResult = (**(code **)(*pstackLong130 + 0x20))(pstackLong130,dataSource,0);
+    processingResult = (**(code **)(*pRenderDataAlignment + 0x20))(pRenderDataAlignment,dataSource,0);
     if (processingResult == 0) goto LAB_18073dc41;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
@@ -189057,7 +189057,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
   UIDword stackUInt148;
   UIDword stackUInt140;
   uint stackUInt138;
-  longlong stackLong130;
+  longlong RenderDataAlignment;
   longlong RenderContextSize;
   longlong stackLong120;
   ulonglong stackUInt118;
@@ -189125,10 +189125,10 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
     allocatedMemory8 = (longlong)(int)resultPointer;
     stackUInt118 = 0;
     if (*(longlong *)(uiBufferData + 0x350) != 0) {
-      stackLong130 = 0;
-      localInt6 = (**(code **)(*(longlong *)(uiBufferData + 0xd8) + 0x40))(uiContext + 0xb0,&stackLong130,0,0);
+      RenderDataAlignment = 0;
+      localInt6 = (**(code **)(*(longlong *)(uiBufferData + 0xd8) + 0x40))(uiContext + 0xb0,&RenderDataAlignment,0,0);
       if (localInt6 != 0) goto LAB_18077fe2b;
-      localLong8 = stackLong130 - *(longlong *)(uiBufferData + 0x350);
+      localLong8 = RenderDataAlignment - *(longlong *)(uiBufferData + 0x350);
       FloatValue2 = *(float *)(uiContext + 0x338);
       localFloat27 = (float)localLong8;
       if (localLong8 < 0) {
@@ -189388,7 +189388,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
         eventTypeCode = localInt6 * resultPointer;
         allocatedMemory8 = RenderContextSize + (ulonglong)eventTypeCode * 4;
         if (0 < (int)resultPointer) {
-          stackLong130 = (longlong)afStack_108 - uiContext;
+          RenderDataAlignment = (longlong)afStack_108 - uiContext;
           pfloatResult6 = (float *)(uiContext + 0x22c);
           result3 = (ulonglong)resultPointer;
           do {
@@ -289255,7 +289255,7 @@ void FUN_180844f40(ulonglong uiContext,UIHandle *dataSource)
   UIHandle stackUInt148;
   UIHandle stackUInt140;
   longlong stackLong138;
-  longlong stackLong130;
+  longlong RenderDataAlignment;
   UIByte astackUInt128 [256];
   ulonglong stackUInt28;
   
@@ -289275,10 +289275,10 @@ void FUN_180844f40(ulonglong uiContext,UIHandle *dataSource)
   stackLong138 = 0;
   localInt5 = func_0x00018088c590(0,&stackUInt140);
   if (((localInt5 == 0) && (localInt5 = FUN_18088c740(&stackUInt148,stackUInt140), localInt5 == 0)) &&
-     (localInt5 = func_0x00018088c530(uiContext & 0xffffffff,&stackLong130), localInt5 == 0)) {
+     (localInt5 = func_0x00018088c530(uiContext & 0xffffffff,&RenderDataAlignment), localInt5 == 0)) {
     stackLong138 = 0;
-    if (stackLong130 != 0) {
-      stackLong138 = stackLong130 + -8;
+    if (RenderDataAlignment != 0) {
+      stackLong138 = RenderDataAlignment + -8;
     }
   }
   else if (localInt5 != 0) {
@@ -289320,7 +289320,7 @@ void FUN_180845090(UIHandle uiContext,longlong dataSource)
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   UIHandle stackUInt138;
-  longlong stackLong130;
+  longlong RenderDataAlignment;
   UIByte astackUInt128 [256];
   ulonglong stackUInt28;
   
@@ -289336,9 +289336,9 @@ void FUN_180845090(UIHandle uiContext,longlong dataSource)
     ExecuteUIRenderTask(stackUInt28 ^ (ulonglong)astackUInt168);
   }
   stackUInt138 = 0;
-  processingResult = func_0x00018088c590(uiContext,&stackLong130);
+  processingResult = func_0x00018088c590(uiContext,&RenderDataAlignment);
   if (processingResult == 0) {
-    if ((*(uint *)(stackLong130 + 0x24) >> 1 & 1) == 0) {
+    if ((*(uint *)(RenderDataAlignment + 0x24) >> 1 & 1) == 0) {
                      WARNING: Subroutine does not return
       FUN_18088c790(&stackUInt138);
     }
@@ -289351,7 +289351,7 @@ LAB_18084510c:
                      WARNING: Subroutine does not return
     FUN_18088c790(&stackUInt138);
   }
-  func_0x0001808754e0(stackLong130,dataSource);
+  func_0x0001808754e0(RenderDataAlignment,dataSource);
                      WARNING: Subroutine does not return
   FUN_18088c790(&stackUInt138);
 }
@@ -289798,7 +289798,7 @@ void FUN_180845ef0(ulonglong uiContext,uint *dataSource)
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   UIHandle stackUInt138;
-  longlong stackLong130;
+  longlong RenderDataAlignment;
   longlong RenderContextSize;
   longlong stackLong120;
   UIByte astackUInt118 [256];
@@ -289817,10 +289817,10 @@ void FUN_180845ef0(ulonglong uiContext,uint *dataSource)
   }
   *dataSource = 0;
   stackUInt138 = 0;
-  stackLong130 = 0;
+  RenderDataAlignment = 0;
   RenderContextSize = 0;
-  processingResult = func_0x00018088c590(0,&stackLong130);
-  if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,stackLong130), processingResult == 0)) &&
+  processingResult = func_0x00018088c590(0,&RenderDataAlignment);
+  if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,RenderDataAlignment), processingResult == 0)) &&
      (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong120), processingResult == 0)) {
     RenderContextSize = *(longlong *)(stackLong120 + 8);
   }
@@ -289828,7 +289828,7 @@ void FUN_180845ef0(ulonglong uiContext,uint *dataSource)
                      WARNING: Subroutine does not return
     FUN_18088c790(&stackUInt138);
   }
-  componentIndex = FUN_18083fbf0(*(UIHandle *)(stackLong130 + 800),RenderContextSize + 0x30);
+  componentIndex = FUN_18083fbf0(*(UIHandle *)(RenderDataAlignment + 800),RenderContextSize + 0x30);
   if (componentIndex != 0) {
     ptrLocal3 = (uint *)FUN_18084cde0(componentIndex,&stackLong120);
     *dataSource = *ptrLocal3 / 0x30;
@@ -290185,7 +290185,7 @@ void FUN_180846810(ulonglong uiContext,UIByte *dataSource)
   UIHandle stackUInt148;
   UIHandle stackUInt140;
   longlong stackLong138;
-  longlong stackLong130;
+  longlong RenderDataAlignment;
   UIByte astackUInt128 [256];
   ulonglong stackUInt28;
   
@@ -290206,10 +290206,10 @@ void FUN_180846810(ulonglong uiContext,UIByte *dataSource)
   stackLong138 = 0;
   processingResult = func_0x00018088c590(0,&stackUInt140);
   if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt148,stackUInt140), processingResult == 0)) &&
-     (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong130), processingResult == 0)) {
+     (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&RenderDataAlignment), processingResult == 0)) {
     stackLong138 = 0;
-    if (stackLong130 != 0) {
-      stackLong138 = stackLong130 + -8;
+    if (RenderDataAlignment != 0) {
+      stackLong138 = RenderDataAlignment + -8;
     }
   }
   else if (processingResult != 0) {
@@ -290279,7 +290279,7 @@ void FUN_180846a90(ulonglong uiContext,UIDword *dataSource)
   UIHandle stackUInt148;
   UIHandle stackUInt140;
   longlong stackLong138;
-  longlong stackLong130;
+  longlong RenderDataAlignment;
   UIByte astackUInt128 [256];
   ulonglong stackUInt28;
   
@@ -290300,10 +290300,10 @@ void FUN_180846a90(ulonglong uiContext,UIDword *dataSource)
   stackLong138 = 0;
   processingResult = func_0x00018088c590(0,&stackUInt140);
   if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt148,stackUInt140), processingResult == 0)) &&
-     (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong130), processingResult == 0)) {
+     (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&RenderDataAlignment), processingResult == 0)) {
     stackLong138 = 0;
-    if (stackLong130 != 0) {
-      stackLong138 = stackLong130 + -8;
+    if (RenderDataAlignment != 0) {
+      stackLong138 = RenderDataAlignment + -8;
     }
   }
   else if (processingResult != 0) {
@@ -290448,7 +290448,7 @@ void FUN_180846e90(ulonglong uiContext,uint *dataSource)
   UIHandle stackUInt148;
   UIHandle stackUInt140;
   longlong stackLong138;
-  longlong stackLong130;
+  longlong RenderDataAlignment;
   UIByte astackUInt128 [256];
   ulonglong stackUInt28;
   
@@ -290470,12 +290470,12 @@ void FUN_180846e90(ulonglong uiContext,uint *dataSource)
   stackLong138 = 0;
   processingResult = func_0x00018088c590(0,&stackUInt140);
   if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt148,stackUInt140), processingResult == 0)) &&
-     (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong130), processingResult == 0)) {
-    if (stackLong130 == 0) {
+     (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&RenderDataAlignment), processingResult == 0)) {
+    if (RenderDataAlignment == 0) {
       stackLong138 = 0;
     }
     else {
-      stackLong138 = stackLong130 + -8;
+      stackLong138 = RenderDataAlignment + -8;
     }
   }
   else if (processingResult != 0) {
@@ -290554,7 +290554,7 @@ void FUN_180847110(ulonglong uiContext,UIHandle *dataSource)
   UIHandle stackUInt148;
   UIHandle stackUInt140;
   longlong stackLong138;
-  longlong stackLong130;
+  longlong RenderDataAlignment;
   UIByte astackUInt128 [256];
   ulonglong stackUInt28;
   
@@ -290575,10 +290575,10 @@ void FUN_180847110(ulonglong uiContext,UIHandle *dataSource)
   stackLong138 = 0;
   processingResult = func_0x00018088c590(0,&stackUInt140);
   if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt148,stackUInt140), processingResult == 0)) &&
-     (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong130), processingResult == 0)) {
+     (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&RenderDataAlignment), processingResult == 0)) {
     stackLong138 = 0;
-    if (stackLong130 != 0) {
-      stackLong138 = stackLong130 + -8;
+    if (RenderDataAlignment != 0) {
+      stackLong138 = RenderDataAlignment + -8;
     }
   }
   else if (processingResult != 0) {
@@ -290951,7 +290951,7 @@ void FUN_180847890(ulonglong uiContext,UIByte *dataSource)
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   UIHandle stackUInt138;
-  longlong stackLong130;
+  longlong RenderDataAlignment;
   UIHandle stackUInt128;
   longlong stackLong120;
   UIByte astackUInt118 [256];
@@ -290971,9 +290971,9 @@ void FUN_180847890(ulonglong uiContext,UIByte *dataSource)
   *dataSource = 0;
   stackUInt128 = 0;
   stackUInt138 = 0;
-  stackLong130 = 0;
-  processingResult = func_0x00018088c590(0,&stackLong130);
-  if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,stackLong130), processingResult == 0)) &&
+  RenderDataAlignment = 0;
+  processingResult = func_0x00018088c590(0,&RenderDataAlignment);
+  if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,RenderDataAlignment), processingResult == 0)) &&
      (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong120), processingResult == 0)) {
     stackUInt128 = *(UIHandle *)(stackLong120 + 8);
   }
@@ -290981,7 +290981,7 @@ void FUN_180847890(ulonglong uiContext,UIByte *dataSource)
                      WARNING: Subroutine does not return
     FUN_18088c790(&stackUInt138);
   }
-  FUN_1808479d0(stackUInt128,*(UIHandle *)(stackLong130 + 800),dataSource);
+  FUN_1808479d0(stackUInt128,*(UIHandle *)(RenderDataAlignment + 800),dataSource);
                      WARNING: Subroutine does not return
   FUN_18088c790(&stackUInt138);
 }
@@ -291165,7 +291165,7 @@ void FUN_180847df0(ulonglong uiContext,UIByte *dataSource)
   UIByte astackUInt168 [32];
   UIByte *pstackUInt148;
   UIHandle stackUInt138;
-  longlong stackLong130;
+  longlong RenderDataAlignment;
   UIHandle stackUInt128;
   longlong stackLong120;
   UIByte astackUInt118 [256];
@@ -291185,9 +291185,9 @@ void FUN_180847df0(ulonglong uiContext,UIByte *dataSource)
   *dataSource = 0;
   stackUInt128 = 0;
   stackUInt138 = 0;
-  stackLong130 = 0;
-  processingResult = func_0x00018088c590(0,&stackLong130);
-  if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,stackLong130), processingResult == 0)) &&
+  RenderDataAlignment = 0;
+  processingResult = func_0x00018088c590(0,&RenderDataAlignment);
+  if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,RenderDataAlignment), processingResult == 0)) &&
      (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong120), processingResult == 0)) {
     stackUInt128 = *(UIHandle *)(stackLong120 + 8);
   }
@@ -291195,7 +291195,7 @@ void FUN_180847df0(ulonglong uiContext,UIByte *dataSource)
                      WARNING: Subroutine does not return
     FUN_18088c790(&stackUInt138);
   }
-  FUN_180847c60(stackUInt128,*(UIHandle *)(stackLong130 + 800),dataSource);
+  FUN_180847c60(stackUInt128,*(UIHandle *)(RenderDataAlignment + 800),dataSource);
                      WARNING: Subroutine does not return
   FUN_18088c790(&stackUInt138);
 }
@@ -311194,7 +311194,7 @@ ulonglong FUN_180857e50(longlong uiContext,uint *dataSource,int targetBuffer,uin
   uint astackUInt140 [2];
   uint stackUInt138;
   uint stackUInt134;
-  longlong *pstackLong130;
+  longlong *pRenderDataAlignment;
   ulonglong stackUInt128;
   ulonglong stackUInt120;
   uint stackUInt118;
@@ -311351,7 +311351,7 @@ LAB_1808580a0:
       if (colorBufferPointer4 != (longlong *)0x0) {
         *(int *)(colorBufferPointer4 + 2) = (int)colorBufferPointer4[2] + 1;
       }
-      pstackLong130 = colorBufferPointer4;
+      pRenderDataAlignment = colorBufferPointer4;
       if ((1 < stackUInt150 - 4) || (colorBufferPointer4 == (longlong *)0x0)) {
         result8 = 0x1c;
         goto LAB_180859163;
@@ -311362,7 +311362,7 @@ LAB_1808580a0:
       if ((MaxProcessingCount <= *(uint *)(uiContext + 0x148)) && ((*(byte *)(uiContext + 0x128) & 2) == 0)) {
         loopCounter = FUN_18085c620(uiContext,iterationCount6);
         result8 = (ulonglong)loopCounter;
-        colorBufferPointer4 = pstackLong130;
+        colorBufferPointer4 = pRenderDataAlignment;
         if (loopCounter != 0) goto LAB_180859163;
       }
       loopCounter = *(uint *)(uiContext + 0x148);
@@ -311432,7 +311432,7 @@ LAB_1808580a0:
           stackUInt168 = 1;
         }
       }
-      colorBufferPointer4 = pstackLong130;
+      colorBufferPointer4 = pRenderDataAlignment;
       MaxProcessingCount = result9;
       if (loopCounter < iterationCount0) {
         MaxProcessingCount = iterationCount0 - loopCounter;
@@ -311445,7 +311445,7 @@ LAB_1808580a0:
       }
       else {
         if ((*(byte *)(uiContext + 0x128) & 4) == 0) {
-          iterationCount = *(UIDword *)((longlong)pstackLong130 + 0xc);
+          iterationCount = *(UIDword *)((longlong)pRenderDataAlignment + 0xc);
           *(uint *)(uiContext + 0x150) = loopCounter - iterationCount0;
           *(UIDword *)(uiBufferData + 0x158) = iterationCount;
           *(UIDword *)(uiBufferData + 0x15c) = iterationCount;
@@ -311599,14 +311599,14 @@ LAB_180858c20:
     stackUInt168 = 0;
     colorBufferPointer4 = (longlong *)(*(longlong *)(uiBufferData + 0x110) + 0x58);
     pstackLong148 = (longlong *)*colorBufferPointer4;
-    pstackLong130 = colorBufferPointer4;
+    pRenderDataAlignment = colorBufferPointer4;
     iterationCount5 = 0;
     if (pstackLong148 != colorBufferPointer4) {
       while (iterationCount5 = stackUInt168, *(uint *)(pstackLong148 + 2) <= result9) {
         if (((0 < *(int *)(uiBufferData + 300)) && (loopCounter <= *(uint *)(pstackLong148 + 2))) &&
            (((int)pstackLong148[4] == 0 ||
             (localChar4 = FUN_1808b0820(pstackLong148 + 3,*(UIHandle *)(uiContext + 0x160)),
-            colorBufferPointer4 = pstackLong130, localChar4 != '\0')))) {
+            colorBufferPointer4 = pRenderDataAlignment, localChar4 != '\0')))) {
           if (*(uint *)(pstackLong148 + 2) == result9) {
             stackUInt168 = stackUInt168 + 1;
           }
@@ -311719,18 +311719,18 @@ LAB_180858c20:
           goto joined_r0x0001808591a3;
         }
         *(UIByte *)(uiContext + 0x13c) = 0;
-        pstackLong130 = (longlong *)0x0;
+        pRenderDataAlignment = (longlong *)0x0;
         ptrResult4 = (UIDword *)FUN_18084da10();
-        stackParamfffffffffffffe78 = &pstackLong130;
+        stackParamfffffffffffffe78 = &pRenderDataAlignment;
         eventTypeCode = FUN_18085c4b0(uiContext,allocatedMemory5,*ptrResult4,eventTypeCode,stackParamfffffffffffffe78);
-        colorBufferPointer4 = pstackLong130;
+        colorBufferPointer4 = pRenderDataAlignment;
         result8 = (ulonglong)eventTypeCode;
         if (eventTypeCode == 0) {
           stackUInt118 = iterationCount0;
           stackUInt114 = 4;
-          pstackLong110 = pstackLong130;
-          if (pstackLong130 != (longlong *)0x0) {
-            *(int *)(pstackLong130 + 2) = (int)pstackLong130[2] + 1;
+          pstackLong110 = pRenderDataAlignment;
+          if (pRenderDataAlignment != (longlong *)0x0) {
+            *(int *)(pRenderDataAlignment + 2) = (int)pRenderDataAlignment[2] + 1;
           }
           stackUInt120 = iterationCount6;
           eventTypeCode = FUN_180859210(uiContext + 0x70,&stackUInt120);
