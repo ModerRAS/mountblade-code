@@ -77658,7 +77658,7 @@ LAB_1807100a5:
 
 
  void FUN_1807104af(void)
-void FUN_1807104af(void)
+void UINoOperation(void)
 
 {
   return;
@@ -124354,7 +124354,7 @@ InitializeUIComponent(longlong uiContext,int dataSource,UIHandle targetBuffer,UI
   
   if (*(longlong *)((longlong)dataSource * 8 + 0x10f90 + uiContext) == 0) {
     pallocatedMemory = (longlong *)
-             FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x3c0,&UNK_180957e90,0x264,0);
+             FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x3c0,&UIMemoryPoolData,0x264,0);
     if (pallocatedMemory == (longlong *)0x0) {
       return 0x26;
     }
@@ -124387,7 +124387,7 @@ UIHandle FUN_180742d90(longlong uiContext,int dataSource)
     semaphoreHandle = FUN_180770580(allocatedMemory);
     if ((int)semaphoreHandle == 0) {
                      WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),allocatedMemory,&UNK_180957e90,0x28c,1);
+      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),allocatedMemory,&UIMemoryPoolData,0x28c,1);
     }
   }
   return semaphoreHandle;
@@ -124434,7 +124434,7 @@ UIDword FUN_180742e60(longlong uiContext)
     return 0x26;
   }
   colorBufferPointer = (longlong *)
-           FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180957e90,0x7e,0);
+           FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x20,&UIMemoryPoolData,0x7e,0);
   if (colorBufferPointer != (longlong *)0x0) {
     colorBufferPointer[2] = 0;
     colorBufferPointer[3] = allocatedMemory;
@@ -124504,7 +124504,7 @@ UIHandle FUN_180743010(longlong uiContext)
   longlong ContextHandleData;
   
   pallocatedMemory = (longlong *)
-           FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x18,&UNK_180957e90,0xd0,0,0,1);
+           FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x18,&UIMemoryPoolData,0xd0,0,0,1);
   if (pallocatedMemory == (longlong *)0x0) {
     return 0x26;
   }
@@ -124512,10 +124512,10 @@ UIHandle FUN_180743010(longlong uiContext)
   *pallocatedMemory = (longlong)pallocatedMemory;
   pallocatedMemory[2] = 0;
   colorBufferPointer = (longlong *)
-           FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x2000,&UNK_180957e90,0xd6,0);
+           FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x2000,&UIMemoryPoolData,0xd6,0);
   if (colorBufferPointer == (longlong *)0x0) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pallocatedMemory,&UNK_180957e90,0xd9,1);
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),pallocatedMemory,&UIMemoryPoolData,0xd9,1);
   }
   ContextHandleData = 0x100;
   pstringCompareIndex = colorBufferPointer;
@@ -125425,7 +125425,7 @@ UIHandle FUN_180743880(longlong uiContext)
   *(UIHandle *)(uiContext + 0x10820) = 0;
   if ((longlong *)*colorBufferPointer != colorBufferPointer) {
                      WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),((longlong *)*colorBufferPointer)[2],&UNK_180957e90,
+    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),((longlong *)*colorBufferPointer)[2],&UIMemoryPoolData,
                   0xff,1);
   }
   *(longlong **)(uiContext + 0x10838) = colorBufferPointer;
@@ -125447,7 +125447,7 @@ void FUN_1807438b7(void)
   
                      WARNING: Subroutine does not return
   FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*(UIHandle *)(SourceHandle + 0x10),
-                &UNK_180957e90,0xff,1);
+                &UIMemoryPoolData,0xff,1);
 }
 
 
