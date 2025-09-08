@@ -188003,7 +188003,19 @@ LAB_1801545d1:
 
 
 
-56300(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180156300(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16的字符编码转换和内存管理
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，包括内存分配、缓冲区管理和字符处理。
+ * 函数会动态分配内存来存储转换后的UTF-16字符，并处理各种边界情况。
+ * 
+ * @param CharacterCode 字符代码指针，用于字符编码处理
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void
+ */
+void ProcessUtf8ToUtf16ConversionWithMemoryManagement(long long *CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   char CurrentCharacter;
   int StringComparisonResult;
@@ -188272,7 +188284,7 @@ uint64_t *InitializeSystemContext(uint64_t *CharacterCode,uint64_t SystemBufferS
   *(uint32_t *)(CharacterCode + 0x4b) = 0;
   *(void *)((long long)CharacterCode + 0x214) = 0x2ee00002ee00;
   *(uint32_t *)((long long)CharacterCode + 0x21c) = 1;
-  Utf16Char = FUN_1806fade0(*(uint32_t *)(CharacterCode + 0x43),*(uint32_t *)((long long)CharacterCode + 0x21c),
+  Utf16Char = ConvertCharacterToUtf16Format(*(uint32_t *)(CharacterCode + 0x43),*(uint32_t *)((long long)CharacterCode + 0x21c),
                         0x800,&TemporaryBuffer);
   CharacterCode[0x4a] = Utf16Char;
   if ((int)TemporaryBuffer < 0) {
@@ -189714,7 +189726,7 @@ LAB_18015860c:
   SystemStackFlag = (unsigned long long)SystemStackFlag.HighPart << 0x20;
   EncodingBuffer = &ThreadLocalStorageTemplate;
 LAB_180158671:
-  SystemCheckResult = FUN_180158a70(CharacterTablePointer);
+  SystemCheckResult = ValidateCharacterTableStructure(CharacterTablePointer);
   if (SystemCheckResult != '\0') {
     ComputedResult = _Mtx_lock(CharacterTablePointer + 0xd0);
     if (ComputedResult != 0) {
