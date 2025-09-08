@@ -18574,7 +18574,7 @@ void CoreEngineSetupThreadPriorities(void
 
 
 
- void CoreEngineInitializeThreadAffinity(voidvoid CoreEngineInitializeThreadAffinity(void
+ void CoreEngineInitializeThreadAffinity(void)
 {
   char CharacterStatusBuffer;
   EngineContext *SystemContext;
@@ -18674,7 +18674,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
 
 
 
- void CoreEngineInitializeThreadMonitoring(voidvoid CoreEngineInitializeThreadMonitoring(void
+ void CoreEngineInitializeThreadMonitoring(void)
 {
   char CharacterStatusBuffer;
   EngineContext *SystemContext;
@@ -18721,7 +18721,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
 
 
 
- void CoreEngineInitializeThreadDebugging(voidvoid CoreEngineInitializeThreadDebugging(void
+ void CoreEngineInitializeThreadDebugging(void)
 {
   char CurrentCharacter;
   void *SystemContext;
@@ -18769,7 +18769,7 @@ void CoreEngineInitializeSystemDataTemplateConfiguration(void
 
 
 
- void CoreEngineInitializeThreadProfiling(voidvoid CoreEngineInitializeThreadProfiling(void
+ void CoreEngineInitializeThreadProfiling(void)
 {
   char CharacterStatusBuffer;
   EngineContext *SystemContext;
@@ -19032,7 +19032,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
 
 
 
- void CoreEngineInitializeThreadErrorHandling(voidvoid CoreEngineInitializeThreadErrorHandling(void
+ void CoreEngineInitializeThreadErrorHandling(void)
 {
   char CurrentCharacter;
   void *SystemContext;
@@ -19080,7 +19080,7 @@ void CoreEngineInitializeSystemDataTemplateSession(void
 
 
 
- void CoreEngineInitializeThreadRecovery(voidvoid CoreEngineInitializeThreadRecovery(void
+ void CoreEngineInitializeThreadRecovery(void)
 {
   char CurrentCharacter;
   void *SystemContext;
