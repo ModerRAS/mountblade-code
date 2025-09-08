@@ -194097,7 +194097,7 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *CharacterC
   long long SystemDataNode;
   long long RegisterR13Value;
   uint64_t *NullPointerValue;
-  char cStack0000000000000080;
+  char SystemStackCharacter128;
   uint SystemStackUnsigned132;
   
   ProcessEngineDataTransfer(CharacterCode,&stack0x00000080,Utf8SourcePointer,Utf16EndPointer,1);
@@ -194105,7 +194105,7 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *CharacterC
   *PrimaryProcessingStatusFlag = *SystemContext;
   PrimaryProcessingStatusFlag[1] = 0;
   *(void *)(PrimaryProcessingStatusFlag + 2) = 0;
-  if (cStack0000000000000080 != '\0') {
+  if (SystemStackCharacter128 != '\0') {
     UnicodeCodePoint = MemoryAllocate(MemoryPoolManager,(unsigned long long)SystemStackUnsigned132 * 8 + 8,8,
                           *(uint8_t *)(SystemDataNode + 0x2c));
                     // WARNING: Subroutine does not return
@@ -194509,7 +194509,7 @@ ProcessUtf8ToUtf16ExtendedEncodingConverter(long long CharacterCode,uint64_t *Ch
   long long SystemDataNode;
   long long RegisterR13Value;
   uint64_t *NullPointerValue;
-  char cStack0000000000000080;
+  char SystemStackCharacter128;
   uint SystemStackUnsigned132;
   
   ProcessEngineDataTransfer(CharacterCode,&stack0x00000080,Utf8SourcePointer,Utf16EndPointer,1);
@@ -194524,7 +194524,7 @@ ProcessUtf8ToUtf16ExtendedEncodingConverter(long long CharacterCode,uint64_t *Ch
   PrimaryProcessingStatusFlag[0xd] = 0;
   *(uint8_t *)(PrimaryProcessingStatusFlag + 0xe) = 0;
   *(void *)(PrimaryProcessingStatusFlag + 0x10) = 0;
-  if (cStack0000000000000080 != '\0') {
+  if (SystemStackCharacter128 != '\0') {
     UnicodeCodePoint = MemoryAllocate(MemoryPoolManager,(unsigned long long)SystemStackUnsigned132 * 8 + 8,8,
                           *(uint8_t *)(SystemDataNode + 0x2c));
                     // WARNING: Subroutine does not return
@@ -205307,23 +205307,23 @@ void ProcessUnicodeCharacterAndMemoryManagement(void
   SystemMemoryMask = GetMessageTime();
   UnicodeCodePoint = *(void *)(DataPatternIndex + 0xa4);
   ClientToScreen();
-  uStack000000000000003c = PrimaryDataStorage;
+  SystemStackUnsigned60 = PrimaryDataStorage;
   *(unsigned long long *)(DataPatternIndex + 0xa4) = CONCAT44(PrimaryDataStorage,SystemParameter);
   ClientToScreen();
-  *(uint32_t *)(SystemStackPointer + 0x164) = uStack000000000000003c;
+  *(uint32_t *)(SystemStackPointer + 0x164) = SystemStackUnsigned60;
   *(uint32_t *)(SystemStackPointer + 0x168) = SystemMemoryMask;
   *(uint32_t *)(SystemStackPointer + 0x160) = SystemParameter;
   *(void *)(SystemStackPointer + 0x170) = 0;
   AvailableSpace = GetMouseMovePointsEx(0x18,SystemStackPointer + 0x160,SystemStackPointer + 0x180,0x40,1);
   if ((1 < AvailableSpace) && (0 < AvailableSpace + -1)) {
     ValidationResultPointer = (int *)(SystemStackPointer + 0x19c);
-    iStack000000000000005c = (int)((unsigned long long)UnicodeCodePoint >> 0x20);
+    SystemStackInteger92 = (int)((unsigned long long)UnicodeCodePoint >> 0x20);
     StringLength = CalculatedResult;
     SystemOperationResult = CalculatedResult;
     do {
       if (((uint)ValidationResultPointer[-5] < *(uint *)(DataPatternIndex + 0xa0)) ||
          (((ValidationResultPointer[-5] == *(uint *)(DataPatternIndex + 0xa0) && (ValidationResultPointer[-7] == (int)UnicodeCodePoint)) &&
-          (ValidationResultPointer[-6] == iStack000000000000005c)))) break;
+          (ValidationResultPointer[-6] == SystemStackInteger92)))) break;
       StringLength = StringLength + 1;
       CalculatedResult = CalculatedResult + (ValidationResultPointer[-7] - ValidationResultPointer[-1]);
       CharacterReferencePointer = ValidationResultPointer + -6;
@@ -205910,7 +205910,7 @@ void ProcessCharacterEncodingAndMemoryManagement(void)
   StringComparisonResult = GetSystemMetrics(0);
   InputDataLength = GetSystemMetrics(1);
   CharacterTablePointer = *PatternIndex;
-  iStack0000000000000044 = 0;
+  SystemStackInteger68 = 0;
   MemoryAllocationIndex = 0;
   MemoryBoundaryEnd = PatternIndex[1] - LoopCounter >> 0x3f;
   SystemDataTablePointer = (PatternIndex[1] - CharacterTablePointer) / 0x70 + MemoryBoundaryEnd;
@@ -205919,9 +205919,9 @@ void ProcessCharacterEncodingAndMemoryManagement(void)
     do {
       if ((int)MemoryAllocationIndex == *(int *)(CoreEngineMemoryContext + 0x1f10)) {
         MemoryBoundaryEnd = MemoryAllocationIndex * 0x70;
-        iStack0000000000000044 = *(int *)(MemoryBoundaryEnd + 0x58 + CharacterTablePointer);
+        SystemStackInteger68 = *(int *)(MemoryBoundaryEnd + 0x58 + CharacterTablePointer);
         MatchCounter = *(int *)(MemoryBoundaryEnd + 0x5c + CharacterTablePointer);
-        MemoryAddressMaskPointer = *(int *)(MemoryBoundaryEnd + 0x60 + CharacterTablePointer) - iStack0000000000000044;
+        MemoryAddressMaskPointer = *(int *)(MemoryBoundaryEnd + 0x60 + CharacterTablePointer) - SystemStackInteger68;
         SystemChecksum = (int)MemoryAddressMaskPointer >> 0x1f;
         CalculatedCodePoint = *(int *)(MemoryBoundaryEnd + 100 + CharacterTablePointer) - MatchCounter;
         StringComparisonResult = (MemoryAddressMaskPointer ^ SystemChecksum) - SystemChecksum;
@@ -205934,19 +205934,19 @@ void ProcessCharacterEncodingAndMemoryManagement(void)
     } while (MemoryAllocationIndex < (unsigned long long)(SystemDataTablePointer - MemoryBoundaryEnd));
   }
   SystemOperationResult = 0;
-  _iStack0000000000000048 = 0;
+  _SystemStackInteger72 = 0;
   if (InputDataLength == 1) {
     SystemOperationResult = -0x70000000;
     DataStorageValue = StringComparisonResult;
-    iStack0000000000000054 = InputDataLength;
+    SystemStackInteger84 = InputDataLength;
   }
   else {
     DataStorageValue = NullPointerD;
-    iStack0000000000000054 = RegisterEBPValue;
+    SystemStackInteger84 = RegisterEBPValue;
     if (InputDataLength == 0) {
       SystemOperationResult = 0xca0000;
       if (NullPointerD <= StringComparisonResult) {
-        iStack0000000000000044 = (StringComparisonResult - NullPointerD) / 2 + iStack0000000000000044;
+        SystemStackInteger68 = (StringComparisonResult - NullPointerD) / 2 + SystemStackInteger68;
       }
       if (RegisterEBPValue <= InputDataLength) {
         MatchCounter = MatchCounter + (InputDataLength - RegisterEBPValue) / 2;
@@ -205959,8 +205959,8 @@ void ProcessCharacterEncodingAndMemoryManagement(void)
     *CharacterLimit = InputDataLength;
   }
   AdjustWindowRect(&SecondaryDataBuffer,IntegerValue9,0);
-  SetWindowPos(*(void *)(RegisterR13Value + 8),0,iStack0000000000000044 + iStack0000000000000048,
-               MatchCounter,DataStorageValue - iStack0000000000000048);
+  SetWindowPos(*(void *)(RegisterR13Value + 8),0,SystemStackInteger68 + SystemStackInteger72,
+               MatchCounter,DataStorageValue - SystemStackInteger72);
   *CharacterLimit = InputDataLength;
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(StackProcessingParameter58 ^ (unsigned long long)&StackBaseAddress);
