@@ -70894,10 +70894,10 @@ bool ValidateUIFloatDataPrecision(longlong uiContext,longlong dataSource,int tar
   psVar19 = *(short **)(uiContext + 0x20);
   do {
     dataOffset = *offsetPointer;
-    psVar19 = psVar19 + 1;
-    isCharacterMatch3 = (byte)targetBuffer;
-    allocatedMemory6 = (longlong)((int)sVar9 << (isCharacterMatch3 & 0x1f));
-    allocatedMemory4 = (longlong)((int)*psVar19 << (isCharacterMatch3 & 0x1f));
+    offsetPointer = offsetPointer + 1;
+    shiftAmount = (byte)targetBuffer;
+    dataStartIndex = (longlong)((int)dataOffset << (shiftAmount & 0x1f));
+    dataEndIndex = (longlong)((int)*offsetPointer << (shiftAmount & 0x1f));
     if (allocatedMemory6 < allocatedMemory4) {
       if (3 < allocatedMemory4 - allocatedMemory6) {
         pfloatResult2 = (float *)(dataSource + 4 + allocatedMemory6 * 4);
@@ -72547,7 +72547,21 @@ int ValidateUIDataAndProcessBufferOperation(UIHandle uiContext,UIHandle dataSour
 
 
 
-float FUN_1807070a0(longlong uiContext,float *dataSource,int targetBuffer)
+/**
+ * @brief 计算UI浮点数据变换
+ * 
+ * 该函数处理UI系统中的浮点数据变换操作，包括数据插值、缩放和平移等
+ * 变换操作。通过计算多个浮点值的组合变换结果，实现UI元素的精确
+ * 位置和尺寸调整。
+ * 
+ * @param uiContext UI上下文指针，包含变换所需的上下文信息
+ * @param dataSource 数据源指针，包含待变换的浮点数据
+ * @param targetBuffer 目标缓冲区索引，指定变换的目标区域
+ * @return 变换结果，返回计算后的浮点数值
+ * 
+ * @note 原始函数名: FUN_1807070a0
+ */
+float CalculateUIFloatDataTransformation(longlong uiContext,float *dataSource,int targetBuffer)
 
 {
   float *pfloatResult;
