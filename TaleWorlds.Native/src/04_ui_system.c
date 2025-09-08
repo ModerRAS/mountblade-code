@@ -90765,13 +90765,13 @@ void FUN_18071ce0f(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
       } while (2 < contextOffset);
     }
     if (-1 < contextOffset) {
-      psVar7 = (short *)(uiContext + 0x13f2 + contextOffset * 2);
+      componentPointer = (short *)(uiContext + 0x13f2 + contextOffset * 2);
       do {
-        sVar5 = *psVar7;
-        psVar7 = psVar7 + -1;
-        stringCompareIndex = contextOffset + allocatedMemory0;
+        componentData = *componentPointer;
+        componentPointer = componentPointer + -1;
+        stringCompareIndex = contextOffset + allocatedMemorySize;
         contextOffset = contextOffset + -1;
-        *(float *)(allocatedMemory + stringCompareIndex * 4) = (float)(int)sVar5;
+        *(float *)(allocatedMemory + stringCompareIndex * 4) = (float)(int)componentData;
       } while (-1 < contextOffset);
     }
   }

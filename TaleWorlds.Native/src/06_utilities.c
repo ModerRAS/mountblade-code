@@ -820,6 +820,7 @@
 
 // 资源管理器偏移量常量
 #define ResourceReferenceManagerOffset330 0x330              // 资源引用计数管理器偏移量
+#define ResourceReferenceManagerOffset350 0x350              // 资源引用计数管理器偏移量350
 #define RegisterContextQuinaryOffset 0x28
 #define RegisterContextSenaryOffset 0x30
 #define RegisterContextSeptenaryOffset 0x38
