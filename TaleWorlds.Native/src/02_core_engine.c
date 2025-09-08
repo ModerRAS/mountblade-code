@@ -94963,7 +94963,7 @@ void GetSystemValueByIndex(long long CharacterCode,uint32_t SystemBufferSize
 
 
 
-d070(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataStructureOffset070(long long CharacterCode,uint32_t SystemBufferSize
+void ConfigureSystemDataStructureOffset070(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;
@@ -94989,7 +94989,7 @@ d070(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataSt
 
 
 
-d0f0(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataStructureOffset0f0(long long CharacterCode,uint32_t SystemBufferSize
+void ConfigureSystemDataStructureOffset0f0(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;
@@ -95015,7 +95015,7 @@ d0f0(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataSt
 
 
 
-d170(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataStructureOffset170(long long CharacterCode,uint32_t SystemBufferSize
+void ConfigureSystemDataStructureOffset170(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;
@@ -95041,7 +95041,7 @@ d170(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataSt
 
 
 
-d1f0(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataStructureOffset1f0(long long CharacterCode,uint32_t SystemBufferSize
+void ConfigureSystemDataStructureOffset1f0(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;
@@ -95067,7 +95067,7 @@ d1f0(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataSt
 
 
 
-d270(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataStructureOffset270(long long CharacterCode,uint32_t SystemBufferSize
+void ConfigureSystemDataStructureOffset270(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;
@@ -95093,7 +95093,7 @@ d270(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataSt
 
 
 
-d2f0(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataStructureOffset2f0(long long CharacterCode,uint32_t SystemBufferSize
+void ConfigureSystemDataStructureOffset2f0(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;
@@ -95119,7 +95119,7 @@ d2f0(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataSt
 
 
 
-d3b0(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataStructureOffset3b0(long long CharacterCode,uint32_t SystemBufferSize
+void ConfigureSystemDataStructureOffset3b0(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;
@@ -150061,7 +150061,22 @@ LAB_18012e732:
 
 
 
-e63a(uint32_t CharacterCode,float SystemBufferSizevoid ProcessSystemFloatingPoint(uint32_t CharacterCode,float SystemBufferSize
+/**
+ * @brief 处理系统浮点数运算和参数调整
+ * 
+ * 该函数负责处理系统浮点数运算，包括：
+ * - 浮点数计算和范围限制
+ * - 系统缓冲区处理
+ * - 寄存器值管理
+ * - 数据验证和状态更新
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18012e63a
+ */
+void ProcessSystemFloatingPointOperations(uint32_t CharacterCode, float SystemBufferSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -150073,26 +150088,26 @@ e63a(uint32_t CharacterCode,float SystemBufferSizevoid ProcessSystemFloatingPoin
   long long SystemRegisterR11;
   float FloatXMM5;
   uint32_t FloatingPointRegisterA;
-  uint32_t unaff_XMM6_Db;
+  uint32_t SecondaryRegisterValue;
   uint32_t FloatingPointRegisterC;
-  uint32_t unaff_XMM6_Dd;
+  uint32_t QuaternaryRegisterValue;
   float BaseFloatValue;
   float SecondaryFloatValue;
   float AuxiliaryCalculationFloat9;
-  uint8_t auStackX_20 [8];
-  float fStack0000000000000080;
-  float fStack0000000000000084;
+  uint8_t StackBuffer20 [8];
+  float StackProcessedFloat80;
+  float StackProcessedFloat84;
   
-  fStack0000000000000080 = SystemBufferSize - BaseFloatValue;
+  StackProcessedFloat80 = SystemBufferSize - BaseFloatValue;
   *(uint32_t *)(SystemRegisterR10 + 0x128) = CharacterCode;
-  fStack0000000000000084 = AuxiliaryCalculationFloat9 - SecondaryFloatValue;
-  ProcessSystemBuffer(fStack0000000000000084,*(uint32_t *)(PatternIndex + -0x10 + SystemContext * 8));
+  StackProcessedFloat84 = AuxiliaryCalculationFloat9 - SecondaryFloatValue;
+  ProcessSystemBuffer(StackProcessedFloat84, *(uint32_t *)(PatternIndex + -0x10 + SystemContext * 8));
   CharacterTablePointer = *(long long *)(SystemRegisterR11 + 0x1af8);
   *(void *)(ThreadLocalStorageData + 0x144) = 0;
   *(uint32_t *)(ThreadLocalStorageData + 0x14c) = FloatingPointRegisterA;
-  *(uint32_t *)(ThreadLocalStorageData + 0x150) = unaff_XMM6_Db;
+  *(uint32_t *)(ThreadLocalStorageData + 0x150) = SecondaryRegisterValue;
   *(uint32_t *)(ThreadLocalStorageData + 0x154) = FloatingPointRegisterC;
-  *(uint32_t *)(ThreadLocalStorageData + 0x158) = unaff_XMM6_Dd;
+  *(uint32_t *)(ThreadLocalStorageData + 0x158) = QuaternaryRegisterValue;
   BufferStatus = *(long long *)(SystemRegisterR11 + 0x1af8);
   if (((((*(float *)(BufferStatus + 0x22c) <= AuxiliaryCalculationFloat9 && AuxiliaryCalculationFloat9 != *(float *)(BufferStatus + 0x22c)        && (SecondaryFloatValue < *(float *)(BufferStatus + 0x234))) &&
        (*(float *)(BufferStatus + 0x228) <= in_XMM5_Da && in_XMM5_Da != *(float *)(BufferStatus + 0x228))) &&
@@ -199993,8 +200008,25 @@ ProcessUtf8ToUtf16CharacterEncodingEx(uint64_t CharacterCode,uint64_t *Character
 
 
 
+/**
+ * @brief 扩展UTF-8到UTF-16字符编码转换函数2
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，包括：
+ * - 内存分配和初始化
+ * - 系统事件处理
+ * - 字符表处理
+ * - 数据验证和状态管理
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_18013a0b5
+ */
 uint64_t *
-ProcessUtf8ToUtf16CharacterEncodingEx2(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingExtended2(uint64_t CharacterCode, uint64_t *CharacterCodeSize, uint64_t Utf8SourcePointer, long long *Utf16EndPointer)
 {
   long long PrimaryDataSize;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -200069,8 +200101,25 @@ ProcessUtf8ToUtf16CharacterEncodingEx2(uint64_t CharacterCode,uint64_t *Characte
 
 
 
+/**
+ * @brief 扩展UTF-8到UTF-16字符编码转换函数3
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，包括：
+ * - Unicode码点解析
+ * - 字符状态缓冲区处理
+ * - 系统上下文管理
+ * - 字符串转换和验证
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_18013a6c0
+ */
 uint64_t *
-ProcessUtf8ToUtf16CharacterEncodingEx3(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
+ProcessUtf8ToUtf16CharacterEncodingExtended3(uint64_t CharacterCode, uint64_t *CharacterCodeSize, uint64_t Utf8SourcePointer, long long *Utf16EndPointer)
 {
   uint32_t *CharacterStatusBuffer;
   void *SystemContext;
@@ -250035,14 +250084,27 @@ LAB_1802093e9:
 
 
 
-09450(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180209450(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 释放字符状态缓冲区并处理系统数据
+ * 
+ * 该函数负责释放字符状态缓冲区，并处理相关的系统数据，
+ * 包括内存释放和系统缓冲区数据处理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180209450
+ */
+void ReleaseCharacterStatusBufferAndProcessSystemData(long long CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   
   CharacterStatusBuffer = *(uint64_t **)(CharacterCode + 0x10);
   if (CharacterStatusBuffer != NULL) {
-    ProcessSystemBufferData(CharacterCode,*CharacterStatusBuffer,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
+    ProcessSystemBufferData(CharacterCode, *CharacterStatusBuffer, Utf8SourcePointer, Utf16EndPointer, 0xfffffffffffffffe);
     CoreEngineFreeSystemMemory(CharacterStatusBuffer);
   }
   return;
@@ -280019,7 +280081,22 @@ void ProcessCharacterCodeData(long long *CharacterCode,unsigned long long System
 
 
 
-29f80(long long *CharacterCode,unsigned long long SystemBufferSizevoid FUN_180229f80(long long *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 处理系统字符状态缓冲区和内存管理
+ * 
+ * 该函数负责处理系统字符状态缓冲区的管理，包括：
+ * - 内存分配和初始化
+ * - 字符状态缓冲区配置
+ * - 系统事件模板处理
+ * - 数据验证和状态管理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180229f80
+ */
+void ProcessSystemCharacterStatusBufferAndMemoryManagement(long long *CharacterCode, unsigned long long SystemBufferSize
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
