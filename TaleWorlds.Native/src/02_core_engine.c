@@ -37911,8 +37911,8 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t CharacterCode
   uint16_t systemArrayBuffer334 [2];
   void *systemBufferPointer330;
   long long stackMemoryOffset328;
-  int stackIndex320;
-  unsigned long long stackVariable318;
+  int ArrayIndex320;
+  unsigned long long SystemContextValue318;
   uint32_t SystemStatusFlag;
   void *DataBufferPointer308;
   void *SystemStackPointer300;
@@ -37921,10 +37921,10 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t CharacterCode
   void *StackPointer2e8;
   void *StackPointer2e0;
   uint32_t ProcessingFlag2d8;
-  unsigned long long stackVariable2d0;
-  unsigned long long stackVariable2c8;
-  void *stackPointer2c0;
-  uint64_t stackVariable2b8;
+  unsigned long long StackDataValue2d0;
+  unsigned long long StackDataValue2c8;
+  void *StackPointer2c0;
+  uint64_t StackDataValue2b8;
   uint32_t ValidationFlag2b0;
   unsigned long long StackVariable2a8;
   void *StackPointer2a0;
@@ -284793,5 +284793,20 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_180202c2d
  */
 #define ProcessFloatDataSearchAndSorting FUN_180202c2d
+
+/**
+ * @brief 处理系统内存分配和数据初始化
+ * 
+ * 该函数负责处理系统内存分配和数据初始化工作，包括：
+ * - 分配内存池块
+ * - 初始化字符数据结构
+ * - 设置内存分配标志
+ * 
+ * @param CharacterCode 字符代码参数
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180179a0a
+ */
+#define ProcessSystemMemoryAllocationAndDataInitialization FUN_180179a0a
 
 
