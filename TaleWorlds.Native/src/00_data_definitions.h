@@ -14009,8 +14009,8 @@ int RegisterSystemNetworkModule(void);
 #define SystemStackPointer SystemStackContextPointer
 
 // 数据处理栈变量
-#define DataProcessingStackA lStack_b0
-#define DataProcessingStackB lStack_a8
+#define DataProcessingStackA SystemDataProcessingStackA
+#define DataProcessingStackB SystemDataProcessingStackB
 #define DataProcessingStackC lStack_28
 #define DataProcessingStackD lStack_68
 #define DataProcessingStackE lStack_d0

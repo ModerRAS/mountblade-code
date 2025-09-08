@@ -100042,6 +100042,9 @@ uint8_t UpdateSystemStatus(void
   uint32_t UnsignedStackProcessingParameter3C;
   uint32_t SystemParameter2;
   float StackFloatValue44;
+  uint64_t CalculatedCodePoint;
+  int SystemDataTablePointer;
+  int LoopCounter;
   
   MemoryAllocationIndex = CONCAT44((int)((unsigned long long)SystemParameter1 >> 0x20),(int)SystemDataNode);
   InputDataLength = ProcessSystemParameters(StackFrameAddressPointer + -0x79,LoopCounter,StackFrameAddressPointer + 0x6f,&SystemStackBuffer,MemoryAllocationIndex);
