@@ -95939,104 +95939,111 @@ LAB_18072300a:
 
 
 
- void FUN_180723060(longlong *uiContext,uint *dataSource,uint targetBuffer,int bufferSize)
-void FUN_180723060(longlong *uiContext,uint *dataSource,uint targetBuffer,int bufferSize)
-
+ /**
+ * @brief 处理UI事件和数据流
+ * 
+ * 该函数负责处理UI系统中的事件流和数据传输，包括事件计数、缓冲区管理和数据同步。
+ * 
+ * @param uiContext UI上下文指针，包含UI状态和缓冲区信息
+ * @param dataSource 数据源指针，指向事件处理计数器
+ * @param targetBuffer 目标缓冲区大小
+ * @param bufferSize 缓冲区大小参数
+ */
+void ProcessUIEventStream(longlong *uiContext, uint *dataSource, uint targetBuffer, int bufferSize)
 {
-  longlong *pallocatedMemory;
-  char localChar2;
-  int uiCompareResult;
-  int TempInt4;
-  uint loopCounter;
+  longlong *allocatedMemory;
+  char statusFlag;
+  int comparisonResult;
+  int tempCounter;
+  uint eventCounter;
   uint maxProcessingCount;
   uint processingCounter;
-  uint eventProcessingCounter;
-  uint eventProcessingStatus;
-  int processedCount;
+  uint eventStatus;
+  uint processedEvents;
   
-  eventProcessingCounter = *dataSource;
-  uiCompareResult = 0;
-  if (eventProcessingCounter != 0) {
-    loopCounter = (int)eventProcessingCounter >> 0x1f;
-    TempInt4 = 1;
-    eventProcessingStatus = loopCounter + eventProcessingCounter ^ loopCounter;
+  eventStatus = *dataSource;
+  comparisonResult = 0;
+  if (eventStatus != 0) {
+    eventCounter = (int)eventStatus >> 0x1f;
+    tempCounter = 1;
+    eventStatus = eventCounter + eventStatus ^ eventCounter;
     maxProcessingCount = (0x7fe0 - targetBuffer) * (0x4000 - bufferSize);
     processingCounter = maxProcessingCount >> 0xf;
-    eventProcessingCounter = targetBuffer;
+    eventStatus = targetBuffer;
     if (maxProcessingCount >> 0xf != 0) {
       do {
-        eventProcessingCounter = targetBuffer;
-        if ((int)eventProcessingStatus <= TempInt4) break;
+        eventStatus = targetBuffer;
+        if ((int)eventStatus <= tempCounter) break;
         targetBuffer = targetBuffer + 2 + processingCounter * 2;
-        TempInt4 = TempInt4 + 1;
+        tempCounter = tempCounter + 1;
         maxProcessingCount = processingCounter * 2 * bufferSize;
         processingCounter = maxProcessingCount >> 0xf;
-        eventProcessingCounter = targetBuffer;
+        eventStatus = targetBuffer;
       } while (maxProcessingCount >> 0xf != 0);
       if (processingCounter != 0) {
         targetBuffer = processingCounter + 1;
-        uiCompareResult = eventProcessingCounter + (~loopCounter & targetBuffer);
-        goto FUN_180723131;
+        comparisonResult = eventStatus + (~eventCounter & targetBuffer);
+        goto ProcessUIEventStream_Complete;
       }
     }
-    processedCount = eventProcessingStatus - TempInt4;
-    uiCompareResult = ((int)((0x8000 - loopCounter) - eventProcessingCounter) >> 1) + -1;
-    if (uiCompareResult <= processedCount) {
-      processedCount = uiCompareResult;
+    processedEvents = eventStatus - tempCounter;
+    comparisonResult = ((int)((0x8000 - eventCounter) - eventStatus) >> 1) + -1;
+    if (comparisonResult <= processedEvents) {
+      processedEvents = comparisonResult;
     }
-    uiCompareResult = eventProcessingCounter + loopCounter + 1 + processedCount * 2;
-    targetBuffer = 0x8000 - uiCompareResult;
+    comparisonResult = eventStatus + eventCounter + 1 + processedEvents * 2;
+    targetBuffer = 0x8000 - comparisonResult;
     if (1 < targetBuffer) {
       targetBuffer = 1;
     }
-    *dataSource = processedCount + TempInt4 + loopCounter ^ loopCounter;
+    *dataSource = processedEvents + tempCounter + eventCounter ^ eventCounter;
   }
-FUN_180723131:
-  eventProcessingCounter = *(uint *)(uiContext + 4);
-  loopCounter = eventProcessingCounter >> 0xf;
-  if (uiCompareResult == 0) {
-    *(uint *)(uiContext + 4) = eventProcessingCounter - (0x8000 - (targetBuffer + uiCompareResult)) * loopCounter;
+ProcessUIEventStream_Complete:
+  eventCounter = *(uint *)(uiContext + 4);
+  eventStatus = eventCounter >> 0xf;
+  if (comparisonResult == 0) {
+    *(uint *)(uiContext + 4) = eventCounter - (0x8000 - (targetBuffer + comparisonResult)) * eventStatus;
   }
   else {
     *(int *)((longlong)uiContext + 0x24) =
-         *(int *)((longlong)uiContext + 0x24) + (eventProcessingCounter - (0x8000 - uiCompareResult) * loopCounter);
-    *(uint *)(uiContext + 4) = ((targetBuffer + uiCompareResult) - uiCompareResult) * loopCounter;
+         *(int *)((longlong)uiContext + 0x24) + (eventCounter - (0x8000 - comparisonResult) * eventStatus);
+    *(uint *)(uiContext + 4) = ((targetBuffer + comparisonResult) - comparisonResult) * eventStatus;
   }
   if (*(uint *)(uiContext + 4) < 0x800001) {
-    eventProcessingCounter = *(uint *)((longlong)uiContext + 0x24);
+    eventCounter = *(uint *)((longlong)uiContext + 0x24);
     do {
-      if (eventProcessingCounter >> 0x17 == 0xff) {
+      if (eventCounter >> 0x17 == 0xff) {
         *(int *)(uiBufferData + 5) = (int)uiContext[5] + 1;
       }
       else {
-        localChar2 = (char)((int)eventProcessingCounter >> 0x1f);
+        statusFlag = (char)((int)eventCounter >> 0x1f);
         if (-1 < *(int *)((longlong)uiContext + 0x2c)) {
           if (*(int *)((longlong)uiContext + 0xc) + *(uint *)((longlong)uiContext + 0x1c) <
               *(uint *)(uiContext + 1)) {
             *(char *)((ulonglong)*(uint *)((longlong)uiContext + 0x1c) + *uiContext) =
-                 (char)*(int *)((longlong)uiContext + 0x2c) - localChar2;
+                 (char)*(int *)((longlong)uiContext + 0x2c) - statusFlag;
             *(int *)((longlong)uiContext + 0x1c) = *(int *)((longlong)uiContext + 0x1c) + 1;
-            loopCounter = 0;
+            eventStatus = 0;
           }
           else {
-            loopCounter = 0xffffffff;
+            eventStatus = 0xffffffff;
           }
-          *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | loopCounter;
+          *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | eventStatus;
         }
         if ((int)uiContext[5] != 0) {
-          loopCounter = *(uint *)((longlong)uiContext + 0x1c);
+          eventStatus = *(uint *)((longlong)uiContext + 0x1c);
           do {
-            if (*(int *)((longlong)uiContext + 0xc) + loopCounter < *(uint *)(uiContext + 1)) {
-              *(char *)((ulonglong)loopCounter + *uiContext) = -1 - localChar2;
+            if (*(int *)((longlong)uiContext + 0xc) + eventStatus < *(uint *)(uiContext + 1)) {
+              *(char *)((ulonglong)eventStatus + *uiContext) = -1 - statusFlag;
               *(int *)((longlong)uiContext + 0x1c) = *(int *)((longlong)uiContext + 0x1c) + 1;
-              loopCounter = *(uint *)((longlong)uiContext + 0x1c);
+              eventStatus = *(uint *)((longlong)uiContext + 0x1c);
               maxProcessingCount = 0;
             }
             else {
               maxProcessingCount = 0xffffffff;
             }
             *(uint *)(uiContext + 6) = *(uint *)(uiContext + 6) | maxProcessingCount;
-            pallocatedMemory = uiContext + 5;
+            allocatedMemory = uiContext + 5;
             *(int *)pallocatedMemory = (int)*pallocatedMemory + -1;
           } while ((int)*pallocatedMemory != 0);
         }
