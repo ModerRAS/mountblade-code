@@ -34188,12 +34188,12 @@ ValidationLabelB:
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      primaryFloatResult = (float)CleanupDataResourcesA0(StackFrameContext + -0x29,0);
+      calculatedResultValue = (float)CleanupDataResourcesA0(StackFrameContext + -0x29,0);
     }
   }
   else {
     systemMemoryBuffer = CreateExceptionDataBuffer(operationBase,systemContext + 0x48);
-    primaryFloatResult = normalizedFloatValue;
+    calculatedResultValue = normalizedFloatValue;
     if ((int)systemMemoryBuffer != 0) {
       return systemMemoryBuffer;
     }
@@ -34203,13 +34203,13 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + 0x48) <= systemMemoryBuffer &&
       (systemMemoryBuffer < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
       systemMemoryBuffer = systemMemoryBuffer + 0x1c) {
-    primaryFloatResult = (float)GetSystemContextValue(systemContext + 0x58);
+    calculatedResultValue = (float)GetSystemContextValue(systemContext + 0x58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(DestinationContext + 8)) &&
      (securityValidationPassed = *(uint *)(DestinationContext[1] + SystemDataSecondaryOffset18) == securityCheckResult, securityCheckResult = contextPointerD, securityValidationPassed)) {
     securityCheckResult = OperateDataO0(*DestinationContext,systemContext + 0x68,4);
-    primaryFloatResult = calculatedFloatValue;
+    calculatedResultValue = calculatedFloatValue;
   }
   if (securityCheckResult != 0) {
     return (uint64_t)securityCheckResult;

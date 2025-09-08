@@ -4967,85 +4967,85 @@ UIHandle UIPixelBuffer;
  UI系统效果管理器
 UIHandle UIEffectManager;
  UI系统粒子系统
-undefined UIParticleSystem;
+UIHandle UIParticleSystem;
  UI系统图集管理器
-undefined UIAtlasManager;
+UIHandle UIAtlasManager;
  UI系统触摸处理器
-undefined UITouchHandler;
+UIHandle UITouchHandler;
  UI系统手势处理器
-undefined UIGestureHandler;
+UIHandle UIGestureHandler;
  UI系统键盘管理器
-undefined UIKeyboardManager;
+UIHandle UIKeyboardManager;
  UI系统鼠标处理器
-undefined UIMouseHandler;
+UIHandle UIMouseHandler;
  UI系统主题管理器
-undefined UIThemeManager;
+UIHandle UIThemeManager;
  UI系统样式数据库
-undefined UIStyleDatabase;
+UIHandle UIStyleDatabase;
  UI系统组件注册表
-undefined UIComponentRegistry;
+UIHandle UIComponentRegistry;
  UI系统布局引擎
-undefined UILayoutEngine;
+UIHandle UILayoutEngine;
  UI系统动画时间线
-undefined UIAnimationTimeline;
+UIHandle UIAnimationTimeline;
  UI系统转换队列
-undefined UITransitionQueue;
+UIHandle UITransitionQueue;
  UI系统文本处理器
-undefined UITextProcessor;
+UIHandle UITextProcessor;
  UI系统字体渲染器
-undefined UIFontRenderer;
+UIHandle UIFontRenderer;
  UI系统模态栈
-undefined UIModalStack;
+UIHandle UIModalStack;
  UI系统资源池
-undefined UIResourcePool;
+UIHandle UIResourcePool;
  UI系统事件调度器
-undefined UIEventDispatcher;
+UIHandle UIEventDispatcher;
  UI系统剪裁区域
-undefined UIClipRegion;
+UIHandle UIClipRegion;
  UI系统视口设置
-undefined UIViewportSettings;
+UIHandle UIViewportSettings;
  UI系统显示缓冲区
-undefined UIDisplayBuffer;
+UIHandle UIDisplayBuffer;
  UI系统相机矩阵
-undefined UICameraMatrix;
+UIHandle UICameraMatrix;
  UI系统投影矩阵
-undefined UIProjectionMatrix;
+UIHandle UIProjectionMatrix;
  UI系统视图矩阵
-undefined UIViewMatrix;
+UIHandle UIViewMatrix;
  UI系统屏幕分辨率
-undefined UIScreenResolution;
+UIHandle UIScreenResolution;
  UI系统深度缓冲区
-undefined UIDepthBuffer;
+UIHandle UIDepthBuffer;
  UI系统颜色缓冲区
-undefined UIColorBuffer;
+UIHandle UIColorBuffer;
  UI系统模板格式
-undefined UIStencilFormat;
+UIHandle UIStencilFormat;
  UI系统光标位置
-undefined UICursorPosition;
+UIHandle UICursorPosition;
  UI系统输入状态
-undefined UIInputState;
+UIHandle UIInputState;
  UI系统纹理图集
-undefined UITextureAtlas;
+UIHandle UITextureAtlas;
  UI系统字体图集
-undefined UIFontAtlas;
+UIHandle UIFontAtlas;
  UI系统精灵表
-undefined UISpriteSheet;
+UIHandle UISpriteSheet;
  UI系统安全上下文
-undefined UISecurityContext;
+UIHandle UISecurityContext;
  UI系统验证状态
-undefined UIValidationStatus;
+UIHandle UIValidationStatus;
  UI系统完整性检查
-undefined UIIntegrityCheck;
+UIHandle UIIntegrityCheck;
  UI系统调试信息
-undefined UIDebugInfo;
+UIHandle UIDebugInfo;
  UI系统性能计数器
-undefined UIPerformanceCounter;
+UIHandle UIPerformanceCounter;
  UI系统内存管理器
-undefined UIMemoryManager;
+UIHandle UIMemoryManager;
  UI系统资源加载器
-undefined UIResourceLoader;
+UIHandle UIResourceLoader;
  UI系统缓存管理器
-undefined UICacheManager;
+UIHandle UICacheManager;
  UI系统状态机
 undefined UIStateMachine;
  UI系统事件处理器
