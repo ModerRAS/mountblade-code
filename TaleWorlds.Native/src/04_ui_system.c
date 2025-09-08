@@ -7830,14 +7830,14 @@ void ConfigureUIComponentProperty(longlong *uiContext, longlong dataSource)
   longlong allocatedMemory4;
   UIHandle *sourceDataBlock;
   UIWord stackArray [4];
-  ulonglong stackValue1;
+  ulonglong elementCounter;
   UIHandle newContext;
   UIHandle *resultPointer1;
   UIHandle *resultPointer2;
   UIHandle transformCoeff21;
   UIDword transformCoeff22;
   undefined *resultPointer3;
-  longlong stackValue2;
+  longlong transformResult;
   UIDword transformCoeff23;
   UIHandle *resultPointer4;
   UIHandle *resultPointer5;
@@ -7865,7 +7865,7 @@ void ConfigureUIComponentProperty(longlong *uiContext, longlong dataSource)
         transformMatrix24 = 0;
         transformCoeff25 = 3;
         stackArray[0] = 0x40;
-        stackValue1 = elementCount;
+        elementCounter = elementCount;
         if (sourceDataBlock[1] != 0) {
           ProcessUIData(sourceDataBlock,&resultPointer4,stackArray);
         }
@@ -90817,33 +90817,55 @@ void ProcessUIRenderingUpdateWrapper(void)
 
 
 
- void FUN_18071ce0f(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
-void FUN_18071ce0f(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
+ // 原始函数名：FUN_18071ce0f - UI组件数据初始化器
+#define InitializeUIComponentData FUN_18071ce0f
+
+/**
+ * @brief 初始化UI组件数据
+ * 
+ * 该函数负责初始化UI组件的数据结构和状态，包括：
+ * - 设置组件句柄和指针
+ * - 初始化内存分配和缓冲区
+ * - 配置上下文标志和状态
+ * - 设置组件索引和偏移量
+ * - 处理组件的初始化参数
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数用于初始化UI组件的数据结构
+ * @note 包含内存分配和组件配置逻辑
+ * @note 负责确保组件数据正确初始化
+ */
+void InitializeUIComponentData(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIDword bufferSize)
 
 {
-  longlong allocatedMemory;
-  longlong componentIndex;
-  longlong stringCompareIndex;
-  byte bVar4;
-  short sVar5;
-  int loopCounter;
-  UIHandle registerAX;
-  short *psVar7;
-  longlong contextOffset;
+  longlong AllocatedMemory;
+  longlong ComponentIndex;
+  longlong StringCompareIndex;
+  UIByte ValidationByte;
+  UIWord ValidationWord;
+  int LoopCounter;
+  UIHandle RegisterAX;
+  UIWord *PointerToWord;
+  longlong ContextOffset;
   longlong BasePointer;
-  float *bufferPointer;
-  longlong allocatedMemory0;
-  UIByte StackData2;
-  UIDword uStack0000000000000034;
-  UIDword StackData3;
-  UIDword uStack0000000000000044;
-  UIDword StackHandle1;
-  UIDword uStack000000000000004c;
-  UIDword uStack0000000000000054;
-  UIDword uStack0000000000000058;
-  UIDword uStack000000000000005c;
-  UIHandle uStack0000000000000068;
-  longlong lStack0000000000000070;
+  float *BufferPointer;
+  longlong AllocatedMemoryDuplicate;
+  UIByte StackByteData;
+  UIDword StackDwordData1;
+  UIDword StackDwordData2;
+  UIDword StackHandleData;
+  UIDword StackDwordData3;
+  UIDword StackDwordData4;
+  UIDword StackDwordData5;
+  UIDword StackDwordData6;
+  UIHandle StackHandleData2;
+  longlong StackLongData;
   
   *(UIHandle *)(basePointer + 0x35a0) = componentHandle;
   *(UIHandle *)(basePointer + 0x35a8) = componentHandle;
