@@ -372,6 +372,10 @@
 #define ProcessSystemDataBufferConfiguration FUN_1802a8080     // 处理系统数据缓冲区配置
 #define ReleaseSystemMemoryResources FUN_18006f4c0             // 释放系统内存资源
 #define ProcessRenderContextDataUpdate FUN_18029ef00           // 处理渲染上下文数据更新
+#define GetSystemStringIdentifierHandle FUN_180629810         // 获取系统字符串标识符句柄
+#define AllocateSystemMemoryBlockWithId FUN_18031a020          // 分配带ID的系统内存块
+#define ConvertCharacterToUtf16Format FUN_1806fade0           // 转换字符为UTF16格式
+#define ValidateCharacterTableStructure FUN_180158a70          // 验证字符表结构
 /**
  * @brief 处理系统内存管理
  * 
@@ -185968,7 +185972,7 @@ code_r0x000180151fd7:
         __Throw_C_error_std__YAXH_Z(StringLength);
       }
     }
-    MemoryAllocationIndex = FUN_180629810();
+    MemoryAllocationIndex = GetSystemStringIdentifierHandle();
     *(void *)(CoreEngineSystemContext + 0x1528) = MemoryAllocationIndex;
     FUN_180150ae0(*(void *)(CharacterCode + 0xa0));
     SystemStringIndex = CoreEngineSystemContext;
