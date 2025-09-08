@@ -1377,6 +1377,8 @@
 #define ContextStatusCounterOffset5C 0x5c               // 上下文状态计数器偏移量5C
 #define ContextLoopCounterOffset60 0x60                 // 上下文循环计数器偏移量60
 #define ContextSystemMemoryBufferOffset64 0x64         // 上下文系统内存缓冲区偏移量64
+#define ContextValidationCountOffsetC 0xc               // 上下文验证计数器偏移量C
+#define ContextFloatDataPointerOffset94 0x94            // 上下文浮点数据指针偏移量94
 #define ExceptionHandlerCallbackOffsetB50 0xb50        // 异常处理器回调偏移量B50
 #define ExceptionHandlerCleanupOffsetB20 0xb20         // 异常处理器清理偏移量B20
 #define ExceptionHandlerCleanupStateOffsetB28 0xb28   // 异常处理器清理状态偏移量B28
