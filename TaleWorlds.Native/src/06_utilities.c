@@ -102338,7 +102338,18 @@ void CleanupMemoryResourceAtOffset7440(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090db60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理内存资源偏移量0x74e8
+ * 
+ * 该函数负责在异常处理过程中清理指定偏移量0x74e8处的内存资源
+ * 执行内存操作以释放资源并确保系统稳定性
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090db60
+ */
+void CleanupMemoryResourceAtOffset74e8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x74e8,0x98,2,ProcessMemoryOperationA1,SystemCleanupFlagAlternative);
@@ -102347,7 +102358,18 @@ void Unwind_18090db60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090db80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理内存资源偏移量0x7620
+ * 
+ * 该函数负责在异常处理过程中清理指定偏移量0x7620处的内存资源
+ * 执行内存操作以释放资源并确保系统稳定性
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090db80
+ */
+void CleanupMemoryResourceAtOffset7620(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x7620,0x248,2,ProcessMemoryOperationA0,SystemCleanupFlagAlternative);
