@@ -377,6 +377,16 @@
 
 // 异常处理上下文偏移量常量
 #define ExceptionHandlerContextDataOffset 0x6d8         // 异常处理上下文数据偏移量
+
+// 数据处理上下文偏移量常量
+#define DataProcessingContextOffset1C 0x1c                  // 数据处理上下文偏移量1C
+#define DataProcessingContextOffset14 0x14                  // 数据处理上下文偏移量14
+#define DataValidationOffsetC4 0xc4                         // 数据验证偏移量C4
+#define SystemContextOffset68 0x68                         // 系统上下文偏移量68
+#define SystemContextOffset48 0x48                         // 系统上下文偏移量48
+
+// 内存管理常量
+#define MemoryAlignmentSize32 0x20                           // 内存对齐大小32字节
 #define ExceptionHandlerContextFlagOffset 0x2d8         // 异常处理上下文标志偏移量
 #define ExceptionHandlerShiftRight1Bit 1                 // 异常处理器右移1位
 #define ExceptionHandlerShiftRight3Bit 3                 // 异常处理器右移3位
@@ -27604,7 +27614,7 @@ void ValidateDataWithSecurityCheck(int64_t *dataHandle,DataWord *resultBuffer)
       }
       if ((uint64_t)dataHandle[2] < (uint64_t)sizeBuffer[0] + 4) {
         validationResult = 0x11;
-        goto ProcessCheckpointErrorHandling;
+        goto ErrorHandlingCheckpoint;
       }
     }
     validationResult = ValidateDataAndReturnStatusO3(*dataHandle,dataBuffer,1,4,0);
