@@ -25582,8 +25582,21 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
 
 
 
-// 原始函数名：FUN_180897dd3 - 系统状态获取函数
-// 功能：获取当前系统状态信息
+/**
+ * @brief 获取系统状态信息
+ * 
+ * 该函数负责获取当前系统的状态信息，包括异常处理上下文、寄存器状态等。
+ * 函数通过调用多个子系统来验证和收集系统状态数据，确保状态信息的完整性和准确性。
+ * 
+ * @param void 无参数
+ * 
+ * @return DataBuffer 返回系统状态数据缓冲区
+ *         - 成功时返回0
+ *         - 失败时返回错误代码（如0x1c表示异常处理上下文无效）
+ * 
+ * @note 原始函数名：FUN_180897dd3
+ * @note 该函数会调用多个数据块处理函数来验证系统状态
+ */
 #define GetSystemState FUN_180897dd3
 DataBuffer GetSystemState(void)
 
