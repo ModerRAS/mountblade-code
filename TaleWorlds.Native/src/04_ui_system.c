@@ -84545,94 +84545,106 @@ void ProcessUIDataTransform(longlong uiContext,longlong dataSource,float *target
   double exponentialResult;
   
   componentIndex = *(longlong *)(uiBufferData + 0x20);
-  ProcessingResult1 = *(int *)(uiBufferData + 0x30) * param_7;
-  localInt9 = *(short *)(componentIndex + (longlong)param_6 * 2) * param_7;
-  if ((param_8 != 1) && (param_8 = ProcessingResult1 / param_8, param_8 <= localInt9)) {
-    localInt9 = param_8;
+  processingResult = *(int *)(uiBufferData + 0x30) * param_7;
+  calculatedValue = *(short *)(componentIndex + (longlong)param_6 * 2) * param_7;
+  if ((param_8 != 1) && (param_8 = processingResult / param_8, param_8 <= calculatedValue)) {
+    calculatedValue = param_8;
   }
   uiElementIndex = 0;
-  uiCompareResult = localInt5;
-  TempInt4 = localInt5;
+  compareResult = iterationCount;
+  tempValue = iterationCount;
   if (param_9 == 0) {
-    localInt5 = localInt9;
-    uiCompareResult = resultPointer;
-    TempInt4 = param_6;
+    iterationCount = calculatedValue;
+    compareResult = resultPointer;
+    tempValue = param_6;
   }
-  allocatedMemory2 = (longlong)uiCompareResult;
-  localInt9 = *(short *)(componentIndex + allocatedMemory2 * 2) * param_7;
-  plocalFloat8 = (float *)(dataSource + (longlong)localInt9 * 4);
-  presultFloat = targetBuffer;
-  if (0 < localInt9) {
-    presultFloat = targetBuffer + localInt9;
-    pbaseValue0 = targetBuffer;
-    for (maxProcessingCount = (longlong)localInt9 & 0x3fffffffffffffff; maxProcessingCount != 0; maxProcessingCount = maxProcessingCount - 1) {
-      *pbaseValue0 = 0.0;
-      pbaseValue0 = pbaseValue0 + 1;
+  memoryOffset = (longlong)compareResult;
+  calculatedValue = *(short *)(componentIndex + memoryOffset * 2) * param_7;
+  sourcePointer = (float *)(dataSource + (longlong)calculatedValue * 4);
+  resultPointer = targetBuffer;
+  if (0 < calculatedValue) {
+    resultPointer = targetBuffer + calculatedValue;
+    basePointer = targetBuffer;
+    for (processingLimit = (longlong)calculatedValue & 0x3fffffffffffffff; processingLimit != 0; processingLimit = processingLimit - 1) {
+      *basePointer = 0.0;
+      basePointer = basePointer + 1;
     }
   }
-  for (; allocatedMemory2 < TempInt4; allocatedMemory2 = allocatedMemory2 + 1) {
-    sVar1 = *(short *)(componentIndex + 2 + allocatedMemory2 * 2);
-    localInt9 = *(short *)(componentIndex + allocatedMemory2 * 2) * param_7;
-    baseValue3 = *(float *)(bufferSize + allocatedMemory2 * 4) + *(float *)(&ColorAdjustmentTable + allocatedMemory2 * 4);
-    if (32.0 <= baseValue3) {
-      baseValue3 = 32.0;
+  for (; memoryOffset < tempValue; memoryOffset = memoryOffset + 1) {
+    componentCount = *(short *)(componentIndex + 2 + memoryOffset * 2);
+    calculatedValue = *(short *)(componentIndex + memoryOffset * 2) * param_7;
+    transformValue = *(float *)(bufferSize + memoryOffset * 4) + *(float *)(&ColorAdjustmentTable + memoryOffset * 4);
+    if (32.0 <= transformValue) {
+      transformValue = 32.0;
     }
-    dVar14 = (double)exp((double)baseValue3 * 0.6931471805599453);
+    exponentialResult = (double)exp((double)transformValue * 0.6931471805599453);
     do {
-      localInt9 = localInt9 + 1;
-      baseValue3 = *plocalFloat8;
-      plocalFloat8 = plocalFloat8 + 1;
-      *presultFloat = (float)dVar14 * baseValue3;
-      presultFloat = presultFloat + 1;
-    } while (localInt9 < sVar1 * param_7);
+      calculatedValue = calculatedValue + 1;
+      transformValue = *sourcePointer;
+      sourcePointer = sourcePointer + 1;
+      *resultPointer = (float)exponentialResult * transformValue;
+      resultPointer = resultPointer + 1;
+    } while (calculatedValue < componentCount * param_7);
   }
                      WARNING: Subroutine does not return
-  memset(targetBuffer + localInt5,0,(longlong)(ProcessingResult1 - localInt5) << 2);
+  memset(targetBuffer + iterationCount,0,(longlong)(processingResult - iterationCount) << 2);
 }
 
 
 
 
- void FUN_1807164b6(undefined *uiContext)
-void FUN_1807164b6(undefined *uiContext)
+ /**
+ * @brief 处理UI上下文数据变换
+ * 
+ * 该函数负责处理UI上下文中的数据变换操作，包括：
+ * - 组件数据的迭代处理
+ * - 变换系数的计算和限制
+ * - 指数变换和颜色调整
+ * - 内存缓冲区的清理操作
+ * 
+ * @param uiContext UI上下文指针
+ * 
+ * @note 原始函数名：FUN_1807164b6
+ */
+void ProcessUIContextTransform(undefined *uiContext)
 
 {
-  short sVar1;
-  float *ContextHandle;
-  float *SourceHandle;
-  int uiValidationResult;
-  longlong unmodifiedR12;
-  int unmodifiedR13D;
-  longlong EventHandle;
-  longlong unmodifiedR15;
-  float transformCoeff2;
-  double dVar4;
-  longlong stackParam00000090;
-  longlong stackParam00000098;
-  int stackParam000000a8;
-  int stackParam000000b0;
+  short componentCount;
+  float *targetPointer;
+  float *sourcePointer;
+  int iterationCount;
+  longlong componentBase;
+  int multiplier;
+  longlong eventIndex;
+  longlong maxEvents;
+  float transformCoeff;
+  double exponentialResult;
+  longlong bufferBase;
+  longlong coeffTable;
+  int startIndex;
+  int endIndex;
   
   do {
-    sVar1 = *(short *)(unmodifiedR12 + 2 + EventHandle * 2);
-    uiValidationResult = *(short *)(unmodifiedR12 + EventHandle * 2) * unmodifiedR13D;
-    transformCoeff2 = *(float *)(stackParam00000098 + EventHandle * 4) + *(float *)(uiContext + EventHandle * 4);
-    if (32.0 <= transformCoeff2) {
-      transformCoeff2 = 32.0;
+    componentCount = *(short *)(componentBase + 2 + eventIndex * 2);
+    iterationCount = *(short *)(componentBase + eventIndex * 2) * multiplier;
+    transformCoeff = *(float *)(coeffTable + eventIndex * 4) + *(float *)(uiContext + eventIndex * 4);
+    if (32.0 <= transformCoeff) {
+      transformCoeff = 32.0;
     }
-    dVar4 = (double)exp((double)transformCoeff2 * 0.6931471805599453);
+    exponentialResult = (double)exp((double)transformCoeff * 0.6931471805599453);
     do {
-      uiValidationResult = uiValidationResult + 1;
-      transformCoeff2 = *SourceHandle;
-      SourceHandle = SourceHandle + 1;
-      *ContextHandle = (float)dVar4 * transformCoeff2;
-      ContextHandle = ContextHandle + 1;
-    } while (uiValidationResult < sVar1 * unmodifiedR13D);
-    EventHandle = EventHandle + 1;
+      iterationCount = iterationCount + 1;
+      transformCoeff = *sourcePointer;
+      sourcePointer = sourcePointer + 1;
+      *targetPointer = (float)exponentialResult * transformCoeff;
+      targetPointer = targetPointer + 1;
+    } while (iterationCount < componentCount * multiplier);
+    eventIndex = eventIndex + 1;
     uiContext = &ColorAdjustmentTable;
-  } while (EventHandle < unmodifiedR15);
+  } while (eventIndex < maxEvents);
                      WARNING: Subroutine does not return
-  memset(stackParam00000090 + (longlong)stackParam000000a8 * 4,0,
-         (longlong)(stackParam000000b0 - stackParam000000a8) << 2);
+  memset(bufferBase + (longlong)startIndex * 4,0,
+         (longlong)(endIndex - startIndex) << 2);
 }
 
 

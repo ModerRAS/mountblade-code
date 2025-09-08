@@ -222105,20 +222105,36 @@ LAB_18018764a:
 
 
 
-879d0(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801879d0(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: void FUN_1801879d0(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理系统字符代码和内存释放操作
+ * 
+ * 该函数负责处理系统字符代码和内存释放操作，主要功能包括：
+ * - 获取字符代码指针并进行验证
+ * - 处理内存释放和资源清理
+ * - 调用系统栈数据处理函数
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_1801879d0
+ */
+void ProcessSystemCharacterCodeAndMemoryRelease(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long *CharacterCode;
+  long long *InternalCharacterCodePointer;
   
-  CharacterCode = (long long *)*CharacterCode;
-  if (CharacterCode != (long long *)0x0) {
-    CharacterCode = (long long *)CharacterCode[7];
-    if (CharacterCode != (long long *)0x0) {
-      (**(code **)(*CharacterCode + 0x20))(CharacterCode,CharacterCode != CharacterCode,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-      CharacterCode[7] = 0;
+  InternalCharacterCodePointer = (long long *)*CharacterCode;
+  if (InternalCharacterCodePointer != (long long *)0x0) {
+    InternalCharacterCodePointer = (long long *)InternalCharacterCodePointer[7];
+    if (InternalCharacterCodePointer != (long long *)0x0) {
+      (**(code **)(*InternalCharacterCodePointer + 0x20))(InternalCharacterCodePointer,InternalCharacterCodePointer != InternalCharacterCodePointer,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+      InternalCharacterCodePointer[7] = 0;
     }
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-    free(CharacterCode,0x48);
+    free(InternalCharacterCodePointer,0x48);
     return;
   }
   return;
@@ -222127,7 +222143,23 @@ LAB_18018764a:
 
 
 
-87a30(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180187a30(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: void FUN_180187a30(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理字符表指针和内存释放操作
+ * 
+ * 该函数负责处理字符表指针和内存释放操作，主要功能包括：
+ * - 验证字符表指针的有效性
+ * - 计算Unicode码点和缓冲区状态
+ * - 执行内存释放和资源清理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180187a30
+ */
+void ProcessCharacterTablePointerAndMemoryRelease(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -222156,7 +222188,23 @@ LAB_18018764a:
 
 
 
-87aa0(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180187aa0(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: void FUN_180187aa0(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理字符代码和Unicode码点计算
+ * 
+ * 该函数负责处理字符代码和Unicode码点计算，主要功能包括：
+ * - 验证字符代码指针的有效性
+ * - 计算Unicode码点和字符表指针
+ * - 执行内存释放和资源清理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180187aa0
+ */
+void ProcessCharacterCodeAndUnicodeCalculation(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -222185,7 +222233,23 @@ LAB_18018764a:
 
 
 
-87b40(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180187b40(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: void FUN_180187b40(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理字符表和Unicode码点的高级计算
+ * 
+ * 该函数负责处理字符表和Unicode码点的高级计算，主要功能包括：
+ * - 验证字符表指针的有效性
+ * - 计算Unicode码点和字符表偏移量
+ * - 执行内存分配和缓冲区管理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180187b40
+ */
+void ProcessCharacterTableAndUnicodeAdvancedCalculation(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -222214,14 +222278,27 @@ LAB_18018764a:
 
 
 
-87bd0(long long *CharacterCodevoid FUN_180187bd0(long long *CharacterCode
+// 函数: void FUN_180187bd0(long long *CharacterCode)
+/**
+ * @brief 处理字符代码指针和函数调用
+ * 
+ * 该函数负责处理字符代码指针和函数调用，主要功能包括：
+ * - 获取字符代码指针并进行验证
+ * - 执行函数调用操作
+ * - 清理字符代码指针
+ * 
+ * @param CharacterCode 字符代码指针
+ * 
+ * @note 原始函数名：FUN_180187bd0
+ */
+void ProcessCharacterCodePointerAndFunctionCall(long long *CharacterCode)
 {
-  long long *CharacterCode;
+  long long *InternalCharacterCodePointer;
   
-  CharacterCode = (long long *)CharacterCode[7];
-  if (CharacterCode != (long long *)0x0) {
-    (**(code **)(*CharacterCode + 0x20))(CharacterCode,CharacterCode != CharacterCode);
-    CharacterCode[7] = 0;
+  InternalCharacterCodePointer = (long long *)CharacterCode[7];
+  if (InternalCharacterCodePointer != (long long *)0x0) {
+    (**(code **)(*InternalCharacterCodePointer + 0x20))(InternalCharacterCodePointer,InternalCharacterCodePointer != InternalCharacterCodePointer);
+    InternalCharacterCodePointer[7] = 0;
   }
   return;
 }
@@ -222229,7 +222306,23 @@ LAB_18018764a:
 
 
 
-87c00(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180187c00(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: void FUN_180187c00(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理UTF-16字符和内存块管理
+ * 
+ * 该函数负责处理UTF-16字符和内存块管理，主要功能包括：
+ * - 验证字符代码指针的有效性
+ * - 计算UTF-16字符和内存块索引
+ * - 执行系统栈数据处理和内存释放
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180187c00
+ */
+void ProcessUtf16CharacterAndMemoryBlockManagement(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   unsigned long long Utf16Char;
   long long BufferStatus;
