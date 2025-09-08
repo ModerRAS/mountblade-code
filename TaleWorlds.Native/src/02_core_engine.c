@@ -161459,7 +161459,7 @@ void ConfigureSystemRenderingParameters(void)
       ProcessUtf8CharacterConversion(StringLength,StringOffset,MemoryBlockIndex,SecondaryFloatValue);
     }
   }
-  *(uint8_t *)((long long)SystemContext + 9) = in_stack_00000110;
+  *(uint8_t *)((long long)SystemContext + 9) = SystemProcessingFlag;
   *(void *)(StackFrameAddressPointer + 0x210) = 0;
   *(uint32_t *)(StackFrameAddressPointer + 0x20c) = 0;
   *(float *)(StackFrameAddressPointer + 0x100) =
@@ -161547,8 +161547,8 @@ void InitializeSystemStateAndMemoryManagement(void
       StackValidationFlag2 = '\0';
       if ((((*(byte *)(SystemContext + 1) & 2) == 0) &&
           ((ProcessSystemParameters(&SystemChecksumStackBuffer,ValidationResult,&stack0x00000108,&stack0x00000100,0),
-           in_stack_00000108 != '\0' || (in_stack_00000100 != '\0')))) &&
-         (*(uint32_t *)(RegisterR13Value + 0x1dcc) = 4, in_stack_00000100 != '\0')) {
+           StackValidationFlag1 != '\0' || (StackValidationFlag2 != '\0')))) &&
+         (*(uint32_t *)(RegisterR13Value + 0x1dcc) = 4, StackValidationFlag2 != '\0')) {
         AllocatedMemorySize = 0x1d;
         ComputedResult = LoopCounter;
         if ((*(byte *)(*(long long *)(SystemContext + 0xe) + 8 + SystemMemoryAllocationResult) & 2) != 0) {
@@ -161556,7 +161556,7 @@ void InitializeSystemStateAndMemoryManagement(void
         }
       }
       else {
-        AllocatedMemorySize = (unsigned long long)(in_stack_00000108 != '\0') + 0x1b;
+        AllocatedMemorySize = (unsigned long long)(StackValidationFlag1 != '\0') + 0x1b;
         ComputedResult = CharacterLimitD;
       }
       CharacterStatusBuffer = (uint32_t *)(MemoryPoolBlockSize + 0x1628 + (AllocatedMemorySize + 10) * 0x10);
@@ -161595,7 +161595,7 @@ void InitializeSystemStateAndMemoryManagement(void
     }
     *(uint8_t *)((long long)SystemContext + 9) = 1;
     ComputedResult = CharacterLimitD + -1;
-    in_stack_00000110 = 1;
+    SystemProcessingFlag = 1;
     long long AllocatedMemorySize = *(long long *)(*(long long *)(MemoryPoolBlockSize + 0x1af8) + 0x210);
     SystemContextPrimaryFloat2 = ((*(float *)(MemoryPoolBlockSize + 0x118) - *(float *)(MemoryPoolBlockSize + 0x1b48)) + 4.0) -
              *(float *)(*(long long *)(MemoryPoolBlockSize + 0x1af8) + 0x40);
@@ -161623,7 +161623,7 @@ void InitializeSystemStateAndMemoryManagement(void
     }
     ProcessUtf8CharacterConversion(CharacterLimitD,AllocatedMemorySize,MemoryBlockIndex,SecondaryFloatValue);
   }
-  *(uint8_t *)((long long)SystemContext + 9) = in_stack_00000110;
+  *(uint8_t *)((long long)SystemContext + 9) = SystemProcessingFlag;
   *(void *)(StackFrameAddressPointer + 0x210) = 0;
   *(uint32_t *)(StackFrameAddressPointer + 0x20c) = 0;
   *(float *)(StackFrameAddressPointer + 0x100) =
@@ -161711,8 +161711,8 @@ void ProcessSystemCharacterAndStatusManagement(void
       StackValidationFlag2 = '\0';
       if ((((*(byte *)(SystemContext + 1) & 2) == 0) &&
           ((ProcessSystemParameters(&SystemChecksumStackBuffer,ValidationResult,&stack0x00000108,&stack0x00000100,0),
-           in_stack_00000108 != '\0' || (in_stack_00000100 != '\0')))) &&
-         (*(uint32_t *)(RegisterR13Value + 0x1dcc) = 4, in_stack_00000100 != '\0')) {
+           StackValidationFlag1 != '\0' || (StackValidationFlag2 != '\0')))) &&
+         (*(uint32_t *)(RegisterR13Value + 0x1dcc) = 4, StackValidationFlag2 != '\0')) {
         AllocatedMemorySize = 0x1d;
         StringLength = LoopCounter;
         if ((*(byte *)(*(long long *)(SystemContext + 0xe) + 8 + ProcessingStatusFlag) & 2) != 0) {
@@ -161720,7 +161720,7 @@ void ProcessSystemCharacterAndStatusManagement(void
         }
       }
       else {
-        AllocatedMemorySize = (unsigned long long)(in_stack_00000108 != '\0') + 0x1b;
+        AllocatedMemorySize = (unsigned long long)(StackValidationFlag1 != '\0') + 0x1b;
         StringLength = CharacterLimitD;
       }
       CharacterStatusBuffer = (uint32_t *)(SystemDataNode + 0x1628 + (AllocatedMemorySize + 10) * 0x10);
@@ -161759,7 +161759,7 @@ void ProcessSystemCharacterAndStatusManagement(void
     }
     *(uint8_t *)((long long)SystemContext + 9) = 1;
     StringLength = CharacterLimitD + -1;
-    in_stack_00000110 = 1;
+    SystemProcessingFlag = 1;
     long long AllocatedMemorySize = *(long long *)(*(long long *)(SystemDataNode + 0x1af8) + 0x210);
     SecondaryFloatValue = ((*(float *)(SystemDataNode + 0x118) - *(float *)(SystemDataNode + 0x1b48)) + 4.0) -
              *(float *)(*(long long *)(SystemDataNode + 0x1af8) + 0x40);
@@ -161787,7 +161787,7 @@ void ProcessSystemCharacterAndStatusManagement(void
     }
     ProcessUtf8CharacterConversion(CharacterLimitD,AllocatedMemorySize,MemoryBlockIndex,PrimaryFloatValue);
   }
-  *(uint8_t *)((long long)SystemContext + 9) = in_stack_00000110;
+  *(uint8_t *)((long long)SystemContext + 9) = SystemProcessingFlag;
   *(void *)(StackFrameAddressPointer + 0x210) = 0;
   *(uint32_t *)(StackFrameAddressPointer + 0x20c) = 0;
   *(float *)(StackFrameAddressPointer + 0x100) =
