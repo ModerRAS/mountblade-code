@@ -186109,7 +186109,7 @@ code_r0x000180151fd7:
     break;
   case 0x21:
     MemoryBlockListHead = *(long long **)(CharacterCode + 0xa0);
-    FUN_18031a020(&plStack_1e8,MemoryBlockListHead[0x24],*(uint32_t *)(CharacterCode + 0xb0));
+    AllocateSystemMemoryBlockWithId(&plStack_1e8,MemoryBlockListHead[0x24],*(uint32_t *)(CharacterCode + 0xb0));
     MemoryBlockIndex = plStack_1e8;
     plStack_1b0 = plStack_1e8;
     if (plStack_1e8 != (long long *)0x0) {
