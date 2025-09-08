@@ -78612,8 +78612,24 @@ void ProcessUIFloatData(int *uiContext,float *dataSource,float *targetBuffer,flo
 
 
 
- void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *bufferSize)
-void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *bufferSize)
+ /**
+ * @brief UI浮点数据变换处理器
+ * 
+ * 该函数负责处理UI系统中的浮点数据变换，包括：
+ * - 执行浮点数据的矩阵变换
+ * - 处理旋转和缩放变换
+ * - 管理UI组件的变换属性
+ * - 执行复杂的浮点运算
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 浮点数据源指针
+ * @param targetBuffer 目标浮点缓冲区
+ * @param bufferSize 缓冲区大小（浮点数）
+ * 
+ * @note 此函数专门处理UI系统中的浮点数据变换
+ * @note 包含复杂的矩阵运算和变换逻辑
+ */
+void ProcessUIFloatTransform(int *uiContext,float *dataSource,float *targetBuffer,float *bufferSize)
 
 {
   float floatResult;
@@ -78905,8 +78921,24 @@ void FUN_180711037(int *uiContext,float *dataSource,float *targetBuffer,float *b
 
 
 
- void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float *bufferSize)
-void FUN_18071103e(int *uiContext,float *dataSource,UIHandle targetBuffer,float *bufferSize)
+ /**
+ * @brief UI组件浮点变换处理器
+ * 
+ * 该函数负责处理UI组件的浮点变换，包括：
+ * - 执行UI组件的浮点变换运算
+ * - 处理组件的位置、旋转和缩放
+ * - 管理UI组件的变换矩阵
+ * - 执行复杂的浮点矩阵运算
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 浮点数据源指针
+ * @param targetBuffer 目标缓冲区（UI句柄）
+ * @param bufferSize 缓冲区大小（浮点数）
+ * 
+ * @note 此函数专门处理UI组件的浮点变换
+ * @note 包含复杂的矩阵运算和变换逻辑
+ */
+void ProcessUIComponentTransform(int *uiContext,float *dataSource,UIHandle targetBuffer,float *bufferSize)
 
 {
   float floatResult;

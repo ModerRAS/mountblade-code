@@ -207599,7 +207599,7 @@ void ProcessClipboardDataA0(void)
   uint64_t Utf16Char;
   long long BufferStatus;
   long long *SystemContext;
-  unsigned long long in_stack_00008040;
+  unsigned long long StackSecurityParameter;
   
   Utf16Char = GetClipboardData(0xd);
   BufferStatus = GlobalLock(Utf16Char);
@@ -207614,7 +207614,7 @@ void ProcessClipboardDataA0(void)
   CloseClipboard();
   GlobalUnlock(Utf16Char);
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(StackSecurityParameter ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -207648,7 +207648,7 @@ void ConvertCharacterEncodingA0(void)
   CloseClipboard();
   GlobalUnlock();
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(StackSecurityParameter ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -207663,7 +207663,7 @@ void ConvertCharacterEncodingA0(void)
   CloseClipboard();
   GlobalUnlock();
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(StackSecurityParameter ^ (unsigned long long)&StackBaseAddress);
 }
 
 
@@ -207674,7 +207674,7 @@ void ConvertCharacterEncodingA0(void)
   unsigned long long in_stack_00008040;
   
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(in_stack_00008040 ^ (unsigned long long)&StackBaseAddress);
+  CoreEngineExecuteUtilityFunction(StackSecurityParameter ^ (unsigned long long)&StackBaseAddress);
 }
 
 
