@@ -183434,7 +183434,21 @@ long long ProcessUtf8EncodingStream(long long *CharacterCode, long long *Charact
 
 
 
-4f660(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointervoid FUN_18014f660(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
+/**
+ * @brief 处理系统字符编码转换
+ * 
+ * 该函数负责处理系统字符编码的转换操作，根据不同的编码类型
+ * 执行相应的转换和处理逻辑。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18014f660
+ */
+#define ProcessSystemCharacterEncodingConversion FUN_18014f660
 {
   long long PrimaryDataSize;
   
@@ -183450,7 +183464,21 @@ long long ProcessUtf8EncodingStream(long long *CharacterCode, long long *Charact
 
 
 
-long long FUN_18014f6a0(long long *CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统数据缓冲区分配
+ * 
+ * 该函数负责处理系统数据缓冲区的分配和管理，根据不同的分配类型
+ * 执行相应的内存分配和初始化操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long 返回处理结果
+ * 
+ * @note 原始函数名：FUN_18014f6a0
+ */
+#define ProcessSystemDataBufferAllocation FUN_18014f6a0
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -183508,7 +183536,20 @@ long long FUN_18014f6a0(long long *CharacterCode,long long *CharacterCodeSize,in
 
 
 
-4f810(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointervoid FUN_18014f810(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
+/**
+ * @brief 处理系统字符编码验证
+ * 
+ * 该函数负责处理系统字符编码的验证操作，确保编码的正确性和完整性。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18014f810
+ */
+#define ValidateSystemCharacterEncoding FUN_18014f810
 {
   long long PrimaryDataSize;
   
@@ -183523,7 +183564,20 @@ long long FUN_18014f6a0(long long *CharacterCode,long long *CharacterCodeSize,in
 
 
 
-long long FUN_18014f840(long long *CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理系统内存分配
+ * 
+ * 该函数负责处理系统内存的分配操作，包括内存块的分配、初始化和管理。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long 返回分配结果
+ * 
+ * @note 原始函数名：FUN_18014f840
+ */
+#define AllocateSystemMemory FUN_18014f840
 {
   long long PrimaryDataSize;
   long long BufferStatus;
