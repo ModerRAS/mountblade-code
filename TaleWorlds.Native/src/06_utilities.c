@@ -7921,14 +7921,8 @@ uint8_t SystemCriticalSectionFlag;       // 系统临界区标志
 
 // 系统资源清理相关变量宏定义
 // 系统资源清理标志变量声明
-uint8_t SystemResourceCleanupFlagA0;      // 系统资源清理标志A0
-uint8_t SystemResourceCleanupFlagA1;      // 系统资源清理标志A1
-uint8_t SystemResourceCleanupFlagA2;      // 系统资源清理标志A2
-uint8_t SystemResourceCleanupFlagA3;      // 系统资源清理标志A3
-uint8_t SystemResourceCleanupFlagA4;      // 系统资源清理标志A4
-uint8_t SystemResourceCleanupFlagA5;      // 系统资源清理标志A5
-uint8_t SystemResourceCleanupFlagA6;      // 系统资源清理标志A6
-uint8_t SystemResourceCleanupFlagA7;      // 系统资源清理标志A7
+// 系统资源清理状态标志数组
+uint8_t SystemResourceCleanupStatus[8];   // 系统资源清理状态标志数组（索引0-7）
 
 // 系统资源指针变量声明
 void* PrimarySystemResourcePointer;     // 主系统资源指针
@@ -9329,7 +9323,8 @@ uint8_t UtilityDecompressionStatus;
 // 功能：加密工具数据以确保安全性
 #define EncryptUtilityDataA1 FUN_1809422e0
 
-uint8_t EncryptUtilityDataA0;
+// 加密操作状态标志
+uint8_t EncryptionOperationStatus;
 uint8_t UtilityEncryptionPrimaryBuffer;
 uint8_t UtilityEncryptionSecondaryBuffer;
 uint8_t UtilityEncryptionTertiaryBuffer;
@@ -9340,7 +9335,8 @@ uint8_t UtilityEncryptionStatus;
 // 功能：解密已加密的工具数据
 #define DecryptUtilityDataA1 FUN_180942300
 
-uint8_t DecryptUtilityDataA0;
+// 解密操作状态标志
+uint8_t DecryptionOperationStatus;
 uint8_t UtilityDecryptionPrimaryBuffer;
 uint8_t UtilityDecryptionSecondaryBuffer;
 uint8_t UtilityDecryptionTertiaryBuffer;
@@ -9351,13 +9347,15 @@ uint8_t UtilityDecryptionStatus;
 // 功能：计算工具数据的哈希值
 #define HashUtilityDataA0 FUN_180942320
 
-uint8_t HashUtilityDataA0;
+// 哈希计算状态标志
+uint8_t HashCalculationStatus;
 
 // 原始函数名：FUN_180942340 - 数据校验函数A0
 // 功能：校验工具数据的完整性和一致性
 #define ChecksumUtilityDataA0 FUN_180942340
 
-uint8_t ChecksumUtilityDataA0;
+// 校验和计算状态标志
+uint8_t ChecksumCalculationStatus;
 uint8_t UtilityChecksumPrimaryBuffer;
 uint8_t UtilityChecksumSecondaryBuffer;
 uint8_t UtilityChecksumTertiaryBuffer;
@@ -9369,7 +9367,8 @@ uint8_t UtilityChecksumResult;
 // 功能：转换工具数据的格式
 #define ConvertUtilityDataA0 FUN_180942360
 
-uint8_t ConvertUtilityDataA0;
+// 数据转换状态标志
+uint8_t DataConversionStatus;
 uint8_t UtilityConversionBufferA;
 uint8_t UtilityConversionBufferB;
 uint8_t UtilityConversionBufferC;
@@ -9381,7 +9380,8 @@ uint8_t UtilityConversionResultB;
 // 功能：合并多个工具数据
 #define MergeUtilityDataA0 FUN_180942380
 
-uint8_t MergeUtilityDataA0;
+// 数据合并状态标志
+uint8_t DataMergeStatus;
 uint8_t UtilityMergeBufferA;
 uint8_t UtilityMergeBufferB;
 uint8_t UtilityMergeStatusA;
@@ -9393,7 +9393,8 @@ uint8_t UtilityMergeResultC;
 // 功能：分割工具数据为多个部分
 #define SplitUtilityDataA0 FUN_1809423a0
 
-uint8_t SplitUtilityDataA0;
+// 数据分割状态标志
+uint8_t DataSplitStatus;
 uint8_t UtilitySplitBufferA;
 uint8_t UtilitySplitStatusA;
 uint8_t UtilitySplitResultA;
@@ -9405,7 +9406,8 @@ uint8_t UtilitySplitResultD;
 // 功能：过滤工具数据中的特定内容
 #define FilterUtilityDataA0 FUN_1809423c0
 
-uint8_t FilterUtilityDataA0;
+// 数据过滤状态标志
+uint8_t DataFilterStatus;
 uint8_t UtilityFilterStatusA;
 uint8_t UtilityFilterBufferA;
 uint8_t UtilityFilterBufferB;
@@ -9739,16 +9741,15 @@ uint8_t SystemStatusFlagPrimary;
 void* SystemDataBufferState;
 void* SystemDataBufferStatus;
 uint64_t UtilitySystemControlPointerConfig;
-void* SystemDataBufferException00;
-void* SystemDataBufferException08;
-void* SystemDataBufferException10;
-void* SystemDataBufferException18;
+// 系统数据缓冲区异常处理器指针数组
+void* SystemDataBufferExceptionHandlers[4];  // 异常处理器指针数组（00x, 08x, 10x, 18x偏移量）
 
 // 函数: void* ConfigureUtilitySystemBuffers;
 #define ConfigureUtilitySystemBuffers FUN_180942750
 void* ConfigureUtilitySystemBuffers;
-void* SystemDataBufferAEE0;
-void* SystemDataBufferAEE8;
+// 系统数据缓冲区配置指针
+void* SystemDataBufferConfigPrimary;     // 主配置缓冲区（AEE0）
+void* SystemDataBufferConfigSecondary;   // 次要配置缓冲区（AEE8）
 void* UtilitySystemMemoryDataPrimary;
 void* UtilitySystemMemoryDataSecondary;
 void* UtilitySystemMemoryDataTertiary;
@@ -9757,10 +9758,8 @@ void* UtilitySystemMemoryDataQuaternary;
 // 函数: void* SetupUtilitySystemMemory;
 #define SetupUtilitySystemMemory FUN_180942790
 void* SetupUtilitySystemMemory;
-void* SystemDataBufferAEF0;
-void* SystemDataBufferAEF8;
-void* SystemDataBufferAF00;
-void* SystemDataBufferAF08;
+// 系统数据缓冲区内存管理指针
+void* SystemDataBufferMemoryPool[4];      // 内存池指针数组（AEF0, AEF8, AF00, AF08）
 
 // 函数: void* ProcessUtilitySystemConfiguration;
 #define ProcessUtilitySystemConfiguration FUN_1809427d0
