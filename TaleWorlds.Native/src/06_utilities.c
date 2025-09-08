@@ -87984,7 +87984,7 @@ void InvokeExceptionHandlerAtOffset3C8(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090bbd0(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset3D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -87998,7 +87998,7 @@ void Unwind_18090bbd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bbf0(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset3D8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
