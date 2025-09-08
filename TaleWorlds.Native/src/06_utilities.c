@@ -39597,13 +39597,13 @@ void ClearStateFlagAndExecuteCallback(DataBuffer unusedParameter,int64_t targetO
 void SetDefaultExceptionHandlerAtOffset180(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
-  *(DataBuffer *)(targetObjectPointer + 0x180) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(targetObjectPointer + 0x188) != 0) {
+  *(DataBuffer *)(targetObjectPointer + DefaultExceptionHandlerOffset180) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(targetObjectPointer + DefaultExceptionHandlerOffset188) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(targetObjectPointer + 0x188) = 0;
-  *(DataWord *)(targetObjectPointer + 0x198) = 0;
-  *(DataBuffer *)(targetObjectPointer + 0x180) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(targetObjectPointer + DefaultExceptionHandlerOffset188) = 0;
+  *(DataWord *)(targetObjectPointer + DefaultExceptionHandlerOffset198) = 0;
+  *(DataBuffer *)(targetObjectPointer + DefaultExceptionHandlerOffset180) = &DefaultExceptionHandlerB;
   return;
 }
 
