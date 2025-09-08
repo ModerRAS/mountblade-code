@@ -307,9 +307,11 @@
 
 // 异常处理上下文偏移常量
 #define ExceptionHandlerContextOffset48 0x48
+#define ExceptionHandlerContextOffset70 0x70
 #define ExceptionHandlerContextCallbackOffset40 0x40
 #define ExceptionHandlerContextFunctionOffset38 0x38
 #define ExceptionHandlerContextCallbackOffset20 0x20
+#define ExceptionHandlerContextStatusOffset30 0x30
 #define SystemTerminationFlagOffset 0x28
 #define SystemCleanupFlagOffset 0x38
 
@@ -89499,12 +89501,30 @@ void Unwind_18090c170(DataBuffer operationBase,int64_t dataBuffer)
  * @note 使用偏移量0x70获取异常处理上下文
  * @note 使用偏移量0x20获取异常处理器配置指针
  */
-void Unwind_18090c180(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器配置函数C180
+ * 
+ * 该函数负责配置异常处理器参数，设置异常处理选项。
+ * 它会从数据缓冲区获取异常处理上下文指针，并执行相关的配置操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 功能说明：
+ * - 从数据缓冲区获取异常处理上下文指针（使用偏移量0x70）
+ * - 通过偏移量0x20获取异常处理器配置指针
+ * - 执行异常处理器配置操作
+ * 
+ * @note 原始函数名：Unwind_18090c180
+ * @note 使用偏移量0x70获取异常处理上下文
+ * @note 使用偏移量0x20获取异常处理器配置指针
+ */
+void ConfigureExceptionHandlerC180(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x70) + 0x20);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset70) + ExceptionHandlerContextCallbackOffset20);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
@@ -89513,12 +89533,30 @@ void Unwind_18090c180(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c190(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器状态检查函数C190
+ * 
+ * 该函数负责检查异常处理器状态，执行状态相关的回调函数。
+ * 它会从数据缓冲区获取异常处理上下文指针，并执行状态检查操作。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * 功能说明：
+ * - 从数据缓冲区获取异常处理上下文指针（使用偏移量0x48）
+ * - 通过偏移量0x30获取异常处理器状态指针
+ * - 执行异常处理器状态检查操作
+ * 
+ * @note 原始函数名：Unwind_18090c190
+ * @note 使用偏移量0x48获取异常处理上下文
+ * @note 使用偏移量0x30获取异常处理器状态指针
+ */
+void CheckExceptionHandlerStatusC190(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x48) + 0x30);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset48) + ExceptionHandlerContextStatusOffset30);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
