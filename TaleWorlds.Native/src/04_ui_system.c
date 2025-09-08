@@ -183021,15 +183021,15 @@ undefined UICleanupSystem;
  简化实现：UI系统暂停函数
  原本实现：可能包含更复杂的暂停逻辑
 undefined UIPauseSystem;
-undefined UNK_1807872a0;
-undefined UNK_18095ad08;
-undefined UNK_18095ad20;
+undefined UIResourceOffsetTable;
+undefined UIResourceManagerHandle;
+undefined UIResourceAllocator;
 
  简化实现：UI系统恢复函数
  原本实现：可能包含更复杂的恢复逻辑
 undefined UIResumeSystem;
-undefined UNK_18095ad40;
-undefined UNK_18095adb0;
+undefined UIResourceValidator;
+undefined UIResourceCache;
 undefined DAT_180c108d8;
 undefined DAT_180c108e0;
 undefined DAT_180c108dc;
