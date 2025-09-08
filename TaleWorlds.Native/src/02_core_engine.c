@@ -221078,23 +221078,23 @@ uint64_t *
 ProcessCharacterStatusManagementForUtf8ToUtf16Conversion(long long *CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,unsigned long long Utf16EndPointer
 {
   uint64_t *CharacterStatusBuffer;
-  uint64_t MemoryAllocationIndex;
-  uint64_t *SystemEventTemplatePointer;
+  uint64_t MemoryAllocationHandle;
+  uint64_t *SystemContextTemplatePointer;
   
-  SystemEventTemplatePointer = (void *)*CharacterCode;
+  SystemContextTemplatePointer = (void *)*CharacterCode;
   if (*(char *)((long long)SystemBufferSize + SystemNodeStatusOffset) == '\0') {
     CharacterStatusBuffer = (void *)FUN_18018b2e0(CharacterCode,SystemBufferSize + 4,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
     CharacterStatusBuffer[1] = Utf8SourcePointer;
     *(uint8_t *)(CharacterStatusBuffer + 3) = *(uint8_t *)(SystemBufferSize + 3);
-    if (*(char *)((long long)SystemEventTemplatePointer + SystemNodeStatusOffset) != '\0') {
-      SystemEventTemplatePointer = CharacterStatusBuffer;
+    if (*(char *)((long long)SystemContextTemplatePointer + SystemNodeStatusOffset) != '\0') {
+      SystemContextTemplatePointer = CharacterStatusBuffer;
     }
-    MemoryAllocationIndex = FUN_18018a8c0(CharacterCode,*CharacterCodeSize,CharacterStatusBuffer,Utf16EndPointer & 0xff);
-    *CharacterStatusBuffer = MemoryAllocationIndex;
-    MemoryAllocationIndex = FUN_18018a8c0(CharacterCode,SystemBufferSize[2],CharacterStatusBuffer,Utf16EndPointer & 0xff);
-    CharacterStatusBuffer[2] = MemoryAllocationIndex;
+    MemoryAllocationHandle = ProcessCharacterStatusManagementForUtf8ToUtf16Conversion(CharacterCode,*CharacterCodeSize,CharacterStatusBuffer,Utf16EndPointer & 0xff);
+    *CharacterStatusBuffer = MemoryAllocationHandle;
+    MemoryAllocationHandle = ProcessCharacterStatusManagementForUtf8ToUtf16Conversion(CharacterCode,SystemBufferSize[2],CharacterStatusBuffer,Utf16EndPointer & 0xff);
+    CharacterStatusBuffer[2] = MemoryAllocationHandle;
   }
-  return SystemEventTemplatePointer;
+  return SystemContextTemplatePointer;
 }
 
 
