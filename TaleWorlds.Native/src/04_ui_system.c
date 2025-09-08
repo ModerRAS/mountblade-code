@@ -858,6 +858,10 @@ typedef enum {
 #define UIEventDataBuffer UNK_180747d60
 #define UIFontManagerData UNK_180785d90
 
+// UI系统查找函数美化
+#define ProcessUILookupTableSearch FUN_180724250
+#define InitializeUILookupTable FUN_180724237
+
 // UI系统渲染参数美化
 #define renderParam1 stackParam00000048
 
@@ -84038,7 +84042,13 @@ void ProcessUIEventDataCompression(UIHandle uiContext,longlong dataSource,UIHand
 
 
 
- void FUN_18071565d(void)
+ /**
+ * @brief 清理UI渲染器
+ * 
+ * 清理UI系统中的渲染器资源，释放相关内存
+ * 
+ * @note 原始函数名：FUN_18071565d
+ */
 void CleanupUIRenderer(void)
 
 {
