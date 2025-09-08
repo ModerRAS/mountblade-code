@@ -86828,31 +86828,46 @@ void FUN_180718e92(void)
 
 
 
-uint FUN_180718ead(UIHandle uiContext,UIHandle dataSource)
+/**
+ * @brief 处理UI上下文和数据源的位运算和浮点数计算
+ * 
+ * 该函数执行以下操作：
+ * - 对输入参数进行位移操作
+ * - 执行浮点数乘法计算
+ * - 调用其他处理函数获取结果
+ * - 组合处理结果并返回
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @return 处理结果，包含迭代计数和处理状态的组合值
+ * 
+ * @note 原始函数名：FUN_180718ead
+ */
+uint ProcessUIContextBitwiseAndFloatCalculation(UIHandle uiContext,UIHandle dataSource)
 
 {
   int processingResult;
   uint iterationCount;
-  byte unmodifiedDIL;
-  int unmodifiedR13D;
-  float unmodifiedXMM6_Da;
-  float unmodifiedXMM7_Da;
-  float unmodifiedXMM8_Da;
-  UIHandle StackData1;
-  float fStack0000000000000038;
-  int iStack0000000000000040;
-  UIHandle stackParam00000118;
-  int stackParam00000130;
+  byte shiftAmount;
+  int bitShiftParameter;
+  float floatMultiplier1;
+  float floatMultiplier2;
+  float floatMultiplier3;
+  UIHandle dataHandle;
+  float floatCalculationResult;
+  int bitShiftResult;
+  UIHandle contextHandle;
+  int bitShiftInput;
   
-  iStack0000000000000040 = stackParam00000130 >> (unmodifiedDIL & 0x1f);
-  fStack0000000000000038 = unmodifiedXMM7_Da * unmodifiedXMM8_Da;
-  StackData1 = dataSource;
+  bitShiftResult = bitShiftInput >> (shiftAmount & 0x1f);
+  floatCalculationResult = floatMultiplier2 * floatMultiplier3;
+  dataHandle = dataSource;
   processingResult = FUN_180718bd0();
-  iStack0000000000000040 = stackParam00000130;
-  fStack0000000000000038 = unmodifiedXMM6_Da * unmodifiedXMM8_Da;
-  StackData1 = stackParam00000118;
+  bitShiftResult = bitShiftInput;
+  floatCalculationResult = floatMultiplier1 * floatMultiplier3;
+  dataHandle = contextHandle;
   iterationCount = FUN_180718bd0();
-  return iterationCount | processingResult << ((byte)(unmodifiedR13D >> 1) & 0x1f);
+  return iterationCount | processingResult << ((byte)(bitShiftParameter >> 1) & 0x1f);
 }
 
 
@@ -87549,9 +87564,14 @@ uint FUN_1807196d4(int uiContext,UIHandle dataSource,uint targetBuffer,uint buff
 
 
 
- void FUN_180719789(void)
-void FUN_180719789(void)
-
+ /**
+ * @brief UI系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于UI系统的某些特定场景下的占位符或默认处理。
+ * 
+ * @note 原始函数名：FUN_180719789
+ */
+void UINoOperationHandler(void)
 {
   return;
 }
