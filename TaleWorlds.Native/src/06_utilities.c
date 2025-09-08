@@ -99996,7 +99996,17 @@ void Unwind_18090eee0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ef00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文指针重置A0
+ * 
+ * 该函数负责处理异常上下文指针的重置操作，确保异常处理系统的正确运行。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090ef00
+ */
+void ProcessExceptionHandlerPointerResetA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100010,7 +100020,17 @@ void Unwind_18090ef00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ef20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理内存资源释放A0
+ * 
+ * 该函数负责处理内存资源的释放操作，包括引用计数的管理和内存块的清理。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090ef20
+ */
+void ProcessMemoryResourceReleaseA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -100046,7 +100066,17 @@ void Unwind_18090ef20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ef40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文指针重置A1
+ * 
+ * 该函数负责处理异常上下文指针的重置操作，使用不同的偏移量进行重置。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090ef40
+ */
+void ProcessExceptionHandlerPointerResetA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100060,7 +100090,17 @@ void Unwind_18090ef40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ef50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理内存资源释放A1
+ * 
+ * 该函数负责处理内存资源的释放操作，使用不同的偏移量进行释放。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区
+ * 
+ * @note 原始函数名：Unwind_18090ef50
+ */
+void ProcessMemoryResourceReleaseA1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;

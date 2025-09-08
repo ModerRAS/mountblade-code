@@ -200026,7 +200026,22 @@ ProcessUtf8ToUtf16CharacterEncodingEx6(long long *CharacterCode,uint64_t *Charac
 
 
 
-6a8b0(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_18016a8b0(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * @brief 处理字符编码和系统缓冲区配置
+ * 
+ * 该函数负责处理字符编码和系统缓冲区的配置，包括：
+ * - 内存分配和缓冲区管理
+ * - 字符编码状态处理
+ * - 系统事件调度
+ * - UTF-16字符处理
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016a8b0
+ */
+void ProcessCharacterEncodingAndSystemBufferConfiguration(uint64_t CharacterCode, long long SystemBufferSize)
 {
   uint Utf16Char;
   uint32_t MemoryAllocationIndex;
