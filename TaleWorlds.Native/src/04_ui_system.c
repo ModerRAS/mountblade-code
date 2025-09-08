@@ -5873,31 +5873,31 @@ UIHandle GetUIStatusFlag(void)
  void ProcessUIComponent(UIByte *componentPointer)
 
 {
-  ulonglong currentBufferIndex;
-  longlong stringLength;
-  longlong remainingChars;
-  UIByte *uiBufferPointer;
+  ulonglong CurrentBufferIndex;
+  longlong ComponentStringLength;
+  longlong RemainingCharacters;
+  UIByte *UIBufferPointer;
   
   if (UIRendererInitialized == '\0') {
     _cputs();
   }
-  currentBufferIndex = UIBufferIndex;
+  CurrentBufferIndex = UIBufferIndex;
   if ((uiContext != (UIByte *)0x0) && (UIBufferIndex < 0x8000)) {
-    stringLength = -1;
+    ComponentStringLength = -1;
     do {
-      stringLength = stringLength + 1;
-    } while (uiContext[stringLength] != '\0');
-    if (stringLength != 0) {
+      ComponentStringLength = ComponentStringLength + 1;
+    } while (uiContext[ComponentStringLength] != '\0');
+    if (ComponentStringLength != 0) {
       LOCK();
-      currentBufferIndex = UIBufferIndex + stringLength;
+      CurrentBufferIndex = UIBufferIndex + ComponentStringLength;
       UNLOCK();
       if (UIBufferIndex < 0x8000) {
-        remainingChars = 0x7fff - UIBufferIndex;
-        if (UIBufferIndex + stringLength < 0x8000) {
-          remainingChars = stringLength;
+        RemainingCharacters = 0x7fff - UIBufferIndex;
+        if (UIBufferIndex + ComponentStringLength < 0x8000) {
+          RemainingCharacters = ComponentStringLength;
         }
-        uiBufferPointer = (UIByte *)(UIBufferIndex + UI_SYSTEM_CALLBACK_ID);
-        UIBufferIndex = currentBufferIndex;
+        UIBufferPointer = (UIByte *)(UIBufferIndex + UI_SYSTEM_CALLBACK_ID);
+        UIBufferIndex = CurrentBufferIndex;
         if (UISystemEnabled == '\0') {
                      WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                      WARNING: Subroutine does not return

@@ -338,6 +338,30 @@
 #define ResetCharacterProcessingSystem FUN_18013ce40
 
 /**
+ * @brief 配置系统事件模板初始化
+ * 
+ * 该函数负责配置系统事件模板的初始化过程，包括设置事件参数、
+ * 系统缓冲区大小和字符代码等关键信息。
+ * 
+ * @param SystemEventTemplatePointer 系统事件模板指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param CharacterCode 字符代码
+ * 
+ * @note 原始函数名：FUN_1803624e0
+ */
+#define ConfigureSystemEventTemplateInitialization FUN_1803624e0
+
+/**
+ * @brief 初始化系统编码转换状态
+ * 
+ * 该函数负责初始化系统编码转换的状态，重置内部标志和缓冲区，
+ * 为UTF-8到UTF-16的编码转换做准备。
+ * 
+ * @note 原始函数名：FUN_1803457d0
+ */
+#define InitializeSystemEncodingConversionStatus FUN_1803457d0
+
+/**
  * @brief 处理字符代码缓冲区分配和数据管理
  * 
  * 该函数负责处理字符代码数据的缓冲区分配、数据移动和内存管理。
