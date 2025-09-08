@@ -25051,15 +25051,15 @@ void ProcessFloatingPointDataWithValidation(void)
   int calculatedValue;
   int calculatedSize;
   int validationErrorCode;
-  DataWord systemRegisterEBX;
-  int64_t systemStackFramePointer;
-  int systemRegisterValueR12;
-  int64_t dataContextPointer;
-  char systemRegisterValueR15B;
-  float calculatedFloatResultA;
-  float processedFloatResultArray[6];
-  float processedFloatResultSpecial;
-  float calculatedFloatValue;
+  DataWord systemRegisterEBX;           // 系统寄存器EBX值
+  int64_t systemStackFramePointer;      // 系统栈帧指针
+  int systemRegisterValueR12;           // 系统寄存器R12值
+  int64_t dataContextPointer;            // 数据上下文指针
+  char systemRegisterValueR15B;         // 系统寄存器R15B值
+  float calculatedFloatResultA;          // 计算的浮点结果A
+  float processedFloatResultArray[6];    // 处理后的浮点结果数组
+  float processedFloatResultSpecial;    // 处理后的浮点特殊结果
+  float calculatedFloatValue;           // 计算的浮点值
   DataWord systemOperationResult;     // 系统操作结果
   float normalizedParameterValue;    // 标准化参数值
   uint8_t *validationDataBuffer;    // 验证数据缓冲区
@@ -25774,34 +25774,34 @@ ProcessDataSecurityValidation:
 
 void ProcessDataTypesA0(void)
 {
-  float inputValue1;
-  int64_t dataContext;
-  int64_t memoryBlockOffset;
-  DataBuffer *memoryRegionBase;
-  DataWord operationResult;
-  DataWord dataFlags;
-  DataWord validationOutcome;
-  DataWord securityCheckResult;
-  DataWord statusCounter;
-  DataWord loopCounter;
-  DataWord systemMemoryBuffer;
-  char statusChar;
-  int validationResult;
-  uint systemDataBufferSize;
-  DataBuffer *inputAccumulatorRegister;
-  int64_t exceptionHandlerContext5;
-  DataBuffer systemDataBuffer6;
-  DataBuffer systemDataBuffer7;
-  uint8_t *exceptionDataBuffer8;
-  float calculationResult19;
-  uint64_t operationResult0;
-  float *poutputValue21;
-  DataBuffer *StackFrameContext;
-  int64_t systemContext;
-  DataBuffer *memoryResourcePointer2;
-  float dataPointerD;
-  int64_t systemContext;
-  uint64_t operationResult3;
+  float inputValue1;                     // 输入值1 - 用于存储输入的浮点数值
+  int64_t dataContext;                   // 数据上下文 - 指向数据上下文的指针
+  int64_t memoryBlockOffset;             // 内存块偏移量 - 用于内存块操作的偏移量
+  DataBuffer *memoryRegionBase;          // 内存区域基础指针 - 指向内存区域的指针
+  DataWord operationResult;              // 操作结果 - 存储操作的结果状态
+  DataWord dataFlags;                    // 数据标志 - 用于存储数据的标志位
+  DataWord validationOutcome;            // 验证结果 - 存储验证操作的结果
+  DataWord securityCheckResult;          // 安全检查结果 - 存储安全检查的结果
+  DataWord statusCounter;                // 状态计数器 - 用于计数状态变化
+  DataWord loopCounter;                  // 循环计数器 - 用于控制循环执行
+  DataWord systemMemoryBuffer;           // 系统内存缓冲区 - 系统内存缓冲区
+  char statusChar;                       // 状态字符 - 用于存储状态信息
+  int validationResult;                  // 验证结果整数值 - 存储验证的整型结果
+  uint systemDataBufferSize;             // 系统数据缓冲区大小 - 系统数据缓冲区的大小
+  DataBuffer *inputAccumulatorRegister;  // 输入累加器寄存器 - 用于累加输入数据的寄存器
+  int64_t exceptionHandlerContext5;      // 异常处理上下文5 - 第五个异常处理上下文
+  DataBuffer systemDataBuffer6;          // 系统数据缓冲区6 - 第六个系统数据缓冲区
+  DataBuffer systemDataBuffer7;          // 系统数据缓冲区7 - 第七个系统数据缓冲区
+  uint8_t *exceptionDataBuffer8;        // 异常数据缓冲区8 - 第八个异常数据缓冲区
+  float calculationResult19;             // 计算结果19 - 第19个计算结果
+  uint64_t operationResult0;             // 操作结果0 - 第0个操作结果
+  float *poutputValue21;                 // 输出值21指针 - 指向第21个输出值的指针
+  DataBuffer *StackFrameContext;         // 栈帧上下文 - 栈帧的上下文信息
+  int64_t systemContext;                 // 系统上下文 - 系统的上下文信息
+  DataBuffer *memoryResourcePointer2;    // 内存资源指针2 - 第二个内存资源指针
+  float dataPointerD;                    // 数据指针D - D类型数据的指针
+  int64_t systemContext;                 // 系统上下文 - 系统的上下文信息（重复定义）
+  uint64_t operationResult3;             // 操作结果3 - 第3个操作结果
   int64_t contextPointer;
   DataWord floatResultA;
   DataWord SystemOperationResult4;

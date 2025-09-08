@@ -20978,7 +20978,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
         }
       }
       else {
-        transformCoeff29 = *param_6;
+        transformCoeff29 = *transformMatrix;
         transformCoeff34 = transformMatrix[1];
         transformCoeff38 = param_6[2];
         transformScale42 = param_6[3];
