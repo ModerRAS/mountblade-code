@@ -77349,136 +77349,147 @@ LAB_1807100a5:
 
 
 
- void FUN_18070fe0f(void)
-void FUN_18070fe0f(void)
+ /**
+ * UI系统浮点数据归一化处理器
+ * 处理UI组件的浮点数据，进行范围检查、符号处理和数值归一化
+ * 
+ * 该函数主要负责：
+ * 1. 对浮点数据进行范围检查和裁剪
+ * 2. 处理浮点数的符号和绝对值
+ * 3. 对数据进行归一化处理
+ * 4. 应用数值变换和约束
+ * 
+ * @note 这是一个简化的实现，原始函数包含复杂的浮点运算逻辑
+ */
+void ProcessUIFloatDataNormalization(void)
 
 {
-  float *pfloatResult;
-  float localFloat2;
-  bool bVar3;
-  int TempInt4;
-  uint LoopCounter;
-  int localInt6;
-  int localInt7;
-  longlong localLong8;
-  ulonglong uVar9;
-  float *pfloatResult0;
-  int ProcessingResult1;
-  longlong allocatedMemory2;
-  longlong BasePointer;
-  longlong allocatedMemory3;
-  int uiOperationResult4;
-  int uiOperationResult5;
-  float *register10;
-  longlong RegisterPointer;
-  int unmodifiedR13D;
-  int uiOperationResult6;
+  float *DataBufferPointer;
+  float NormalizationFactor;
+  bool IsNegativeValue;
+  int TempIndex;
+  uint ProcessingCounter;
+  int CurrentIndex;
+  int MaxIndex;
+  longlong DataOffset;
+  ulonglong LoopCounter;
+  float *ResultBufferPointer;
+  int ProcessingStatus;
+  longlong MemoryBlock1;
+  longlong BaseDataPointer;
+  longlong MemoryBlock2;
+  int OperationResult1;
+  int OperationResult2;
+  float *RegisterDataPointer;
+  longlong RegisterOffset;
+  int ComponentCount;
+  int OperationResult3;
   longlong EventHandle;
-  float floatResult7;
+  float CalculatedValue;
   float FloatValue1;
   float FloatValue2;
-  float AccumulatedFloat;
-  float in_XMM3_Da;
-  float in_XMM4_Da;
-  longlong componentIndex1;
-  float *stackParam000000c8;
+  float AccumulatedValue;
+  float MinRangeValue;
+  float MaxRangeValue;
+  longlong ComponentIndex;
+  float *StackParameter;
   
-  componentIndex1 = EventHandle;
+  ComponentIndex = EventHandle;
   do {
-    localFloat2 = *register10;
-    pfloatResult = (float *)(RegisterPointer + (longlong)register10);
-    localInt6 = 0;
-    uiOperationResult6 = (int)EventHandle;
-    if (3 < unmodifiedR13D) {
-      ProcessingResult1 = uiOperationResult6 * 2;
+    NormalizationFactor = *RegisterDataPointer;
+    DataBufferPointer = (float *)(RegisterOffset + (longlong)RegisterDataPointer);
+    CurrentIndex = 0;
+    OperationResult3 = (int)EventHandle;
+    if (3 < ComponentCount) {
+      ProcessingStatus = OperationResult3 * 2;
       do {
-        TempInt4 = uiOperationResult6 * -2 + ProcessingResult1;
-        floatResult7 = pfloatResult[TempInt4] * localFloat2;
-        if (0.0 <= floatResult7) goto LAB_18070ff9b;
-        pfloatResult[TempInt4] = (floatResult7 + in_XMM4_Da) * pfloatResult[TempInt4];
-        floatResult7 = pfloatResult[ProcessingResult1 - uiOperationResult6] * localFloat2;
-        if (0.0 <= floatResult7) goto LAB_18070ff9b;
-        pfloatResult[ProcessingResult1 - uiOperationResult6] = (floatResult7 + in_XMM4_Da) * pfloatResult[ProcessingResult1 - uiOperationResult6];
-        floatResult7 = pfloatResult[ProcessingResult1] * localFloat2;
-        if (0.0 <= floatResult7) goto LAB_18070ff9b;
-        pfloatResult[ProcessingResult1] = (floatResult7 + in_XMM4_Da) * pfloatResult[ProcessingResult1];
-        TempInt4 = ProcessingResult1 + uiOperationResult6;
-        floatResult7 = pfloatResult[TempInt4] * localFloat2;
-        if (0.0 <= floatResult7) goto LAB_18070ff9b;
-        localInt6 = localInt6 + 4;
-        ProcessingResult1 = ProcessingResult1 + uiOperationResult6 * 4;
-        pfloatResult[TempInt4] = (floatResult7 + in_XMM4_Da) * pfloatResult[TempInt4];
-      } while (localInt6 < unmodifiedR13D + -3);
+        TempIndex = OperationResult3 * -2 + ProcessingStatus;
+        CalculatedValue = DataBufferPointer[TempIndex] * NormalizationFactor;
+        if (0.0 <= CalculatedValue) goto LAB_18070ff9b;
+        DataBufferPointer[TempIndex] = (CalculatedValue + MaxRangeValue) * DataBufferPointer[TempIndex];
+        CalculatedValue = DataBufferPointer[ProcessingStatus - OperationResult3] * NormalizationFactor;
+        if (0.0 <= CalculatedValue) goto LAB_18070ff9b;
+        DataBufferPointer[ProcessingStatus - OperationResult3] = (CalculatedValue + MaxRangeValue) * DataBufferPointer[ProcessingStatus - OperationResult3];
+        CalculatedValue = DataBufferPointer[ProcessingStatus] * NormalizationFactor;
+        if (0.0 <= CalculatedValue) goto LAB_18070ff9b;
+        DataBufferPointer[ProcessingStatus] = (CalculatedValue + MaxRangeValue) * DataBufferPointer[ProcessingStatus];
+        TempIndex = ProcessingStatus + OperationResult3;
+        CalculatedValue = DataBufferPointer[TempIndex] * NormalizationFactor;
+        if (0.0 <= CalculatedValue) goto LAB_18070ff9b;
+        CurrentIndex = CurrentIndex + 4;
+        ProcessingStatus = ProcessingStatus + OperationResult3 * 4;
+        DataBufferPointer[TempIndex] = (CalculatedValue + MaxRangeValue) * DataBufferPointer[TempIndex];
+      } while (CurrentIndex < ComponentCount + -3);
     }
-    if (localInt6 < unmodifiedR13D) {
-      ProcessingResult1 = localInt6 * uiOperationResult6;
+    if (CurrentIndex < ComponentCount) {
+      ProcessingStatus = CurrentIndex * OperationResult3;
       do {
-        floatResult7 = pfloatResult[ProcessingResult1] * localFloat2;
-        if (0.0 <= floatResult7) break;
-        localInt6 = localInt6 + 1;
-        pfloatResult[ProcessingResult1] = (floatResult7 + in_XMM4_Da) * pfloatResult[ProcessingResult1];
-        ProcessingResult1 = ProcessingResult1 + uiOperationResult6;
-      } while (localInt6 < unmodifiedR13D);
+        CalculatedValue = DataBufferPointer[ProcessingStatus] * NormalizationFactor;
+        if (0.0 <= CalculatedValue) break;
+        CurrentIndex = CurrentIndex + 1;
+        DataBufferPointer[ProcessingStatus] = (CalculatedValue + MaxRangeValue) * DataBufferPointer[ProcessingStatus];
+        ProcessingStatus = ProcessingStatus + OperationResult3;
+      } while (CurrentIndex < ComponentCount);
     }
 LAB_18070ff9b:
-    localFloat2 = *pfloatResult;
-    localInt6 = 0;
+    NormalizationFactor = *DataBufferPointer;
+    CurrentIndex = 0;
     do {
-      ProcessingResult1 = localInt6;
-      if (localInt6 < unmodifiedR13D) {
-        if (3 < unmodifiedR13D - localInt6) {
-          uiOperationResult5 = localInt6 - (localInt6 + 2);
-          TempInt4 = (localInt6 + 2) * uiOperationResult6;
+      ProcessingStatus = CurrentIndex;
+      if (CurrentIndex < ComponentCount) {
+        if (3 < ComponentCount - CurrentIndex) {
+          OperationResult2 = CurrentIndex - (CurrentIndex + 2);
+          TempIndex = (CurrentIndex + 2) * OperationResult3;
           do {
-            if ((in_XMM4_Da < pfloatResult[uiOperationResult5 * uiOperationResult6 + TempInt4]) ||
-               (pfloatResult[uiOperationResult5 * uiOperationResult6 + TempInt4] < in_XMM3_Da)) goto LAB_1807100a5;
-            if ((in_XMM4_Da < pfloatResult[(uiOperationResult5 + 1) * uiOperationResult6 + TempInt4]) ||
-               (pfloatResult[(uiOperationResult5 + 1) * uiOperationResult6 + TempInt4] < in_XMM3_Da)) {
-              ProcessingResult1 = ProcessingResult1 + 1;
+            if ((MaxRangeValue < DataBufferPointer[OperationResult2 * OperationResult3 + TempIndex]) ||
+               (DataBufferPointer[OperationResult2 * OperationResult3 + TempIndex] < MinRangeValue)) goto LAB_1807100a5;
+            if ((MaxRangeValue < DataBufferPointer[(OperationResult2 + 1) * OperationResult3 + TempIndex]) ||
+               (DataBufferPointer[(OperationResult2 + 1) * OperationResult3 + TempIndex] < MinRangeValue)) {
+              ProcessingStatus = ProcessingStatus + 1;
               goto LAB_1807100a5;
             }
-            if ((in_XMM4_Da < pfloatResult[TempInt4]) || (pfloatResult[TempInt4] < in_XMM3_Da)) {
-              ProcessingResult1 = ProcessingResult1 + 2;
+            if ((MaxRangeValue < DataBufferPointer[TempIndex]) || (DataBufferPointer[TempIndex] < MinRangeValue)) {
+              ProcessingStatus = ProcessingStatus + 2;
               goto LAB_1807100a5;
             }
-            if ((in_XMM4_Da < pfloatResult[(uiOperationResult5 + 3) * uiOperationResult6 + TempInt4]) ||
-               (pfloatResult[(uiOperationResult5 + 3) * uiOperationResult6 + TempInt4] < in_XMM3_Da)) {
-              ProcessingResult1 = ProcessingResult1 + 3;
+            if ((MaxRangeValue < DataBufferPointer[(OperationResult2 + 3) * OperationResult3 + TempIndex]) ||
+               (DataBufferPointer[(OperationResult2 + 3) * OperationResult3 + TempIndex] < MinRangeValue)) {
+              ProcessingStatus = ProcessingStatus + 3;
               goto LAB_1807100a5;
             }
-            ProcessingResult1 = ProcessingResult1 + 4;
-            TempInt4 = TempInt4 + uiOperationResult6 * 4;
-          } while (ProcessingResult1 < unmodifiedR13D + -3);
+            ProcessingStatus = ProcessingStatus + 4;
+            TempIndex = TempIndex + OperationResult3 * 4;
+          } while (ProcessingStatus < ComponentCount + -3);
         }
-        if (ProcessingResult1 < unmodifiedR13D) {
-          TempInt4 = ProcessingResult1 * uiOperationResult6;
+        if (ProcessingStatus < ComponentCount) {
+          TempIndex = ProcessingStatus * OperationResult3;
           do {
-            if ((in_XMM4_Da < pfloatResult[TempInt4]) || (pfloatResult[TempInt4] < in_XMM3_Da)) break;
-            ProcessingResult1 = ProcessingResult1 + 1;
-            TempInt4 = TempInt4 + uiOperationResult6;
-          } while (ProcessingResult1 < unmodifiedR13D);
+            if ((MaxRangeValue < DataBufferPointer[TempIndex]) || (DataBufferPointer[TempIndex] < MinRangeValue)) break;
+            ProcessingStatus = ProcessingStatus + 1;
+            TempIndex = TempIndex + OperationResult3;
+          } while (ProcessingStatus < ComponentCount);
         }
       }
 LAB_1807100a5:
-      if (ProcessingResult1 == unmodifiedR13D) {
-        floatResult7 = 0.0;
+      if (ProcessingStatus == ComponentCount) {
+        CalculatedValue = 0.0;
         break;
       }
-      TempInt4 = ProcessingResult1 * uiOperationResult6;
-      AccumulatedFloat = pfloatResult[TempInt4];
-      floatResult7 = ABS(AccumulatedFloat);
-      uiOperationResult5 = ProcessingResult1;
-      uiOperationResult4 = ProcessingResult1;
-      if (0 < ProcessingResult1) {
-        localInt7 = (ProcessingResult1 + -1) * uiOperationResult6;
+      TempIndex = ProcessingStatus * OperationResult3;
+      AccumulatedValue = DataBufferPointer[TempIndex];
+      CalculatedValue = ABS(AccumulatedValue);
+      OperationResult2 = ProcessingStatus;
+      OperationResult1 = ProcessingStatus;
+      if (0 < ProcessingStatus) {
+        MaxIndex = (ProcessingStatus + -1) * OperationResult3;
         do {
-          if (AccumulatedFloat * pfloatResult[localInt7] < 0.0) break;
-          uiOperationResult4 = uiOperationResult4 + -1;
-          localInt7 = localInt7 - uiOperationResult6;
-        } while (0 < uiOperationResult4);
+          if (AccumulatedValue * DataBufferPointer[MaxIndex] < 0.0) break;
+          OperationResult1 = OperationResult1 + -1;
+          MaxIndex = MaxIndex - OperationResult3;
+        } while (0 < OperationResult1);
       }
-      while ((localInt7 = uiOperationResult5, uiOperationResult5 = ProcessingResult1, uiOperationResult5 < unmodifiedR13D &&
-             (0.0 <= AccumulatedFloat * pfloatResult[TempInt4]))) {
+      while ((MaxIndex = OperationResult2, OperationResult2 = ProcessingStatus, OperationResult2 < ComponentCount &&
+             (0.0 <= AccumulatedValue * DataBufferPointer[TempIndex]))) {
         FloatValue2 = ABS(pfloatResult[TempInt4]);
         FloatValue1 = floatResult7;
         if (floatResult7 < FloatValue2) {
