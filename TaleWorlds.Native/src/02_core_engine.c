@@ -196595,7 +196595,7 @@ LAB_18016195a:
       StackTempPointer = &ThreadLocalStorageTemplate;
       SystemContextValue = (long long)pMemoryOffsetValue - (long long)SystemMemoryPointer >> 5;
       if (SystemContextValue == 0) {
-        FUN_18016a740(CharacterCode + 0x70,SystemBufferSize);
+        ProcessSystemBufferConfigurationAndDataManagement(CharacterCode + 0x70,SystemBufferSize);
         for (SecondaryProcessingStatusFlag = SystemMemoryPointer; SecondaryProcessingStatusFlag != pMemoryOffsetValue; SecondaryProcessingStatusFlag = SecondaryProcessingStatusFlag + 4) {
           (**(code **)*SecondaryProcessingStatusFlag)(SecondaryProcessingStatusFlag,0);
         }
