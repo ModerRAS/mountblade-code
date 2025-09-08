@@ -107615,7 +107615,18 @@ void CleanupExceptionHandlers18090fac0(DataBuffer exceptionContext,int64_t syste
 
 
 
-void SetDefaultExceptionHandler18090fad0(DataBuffer exceptionContext,int64_t systemContext)
+/**
+ * @brief 重置异常处理器为默认处理器 - 偏移量0x120
+ * 
+ * 该函数将数据缓冲区偏移量0x120处的异常处理器重置为系统默认异常处理器B。
+ * 这是一个标准的异常处理器重置函数，用于在异常处理完成后恢复默认状态。
+ * 
+ * @param exceptionContext 异常上下文数据缓冲区
+ * @param systemContext 系统上下文数据
+ * 
+ * @note 原始函数名：Unwind_18090fad0
+ */
+void ResetExceptionHandlerToDefaultAtOffset120(DataBuffer exceptionContext, int64_t systemContext)
 
 {
   **(DataBuffer **)(dataBuffer + 0x120) = &SystemDefaultExceptionHandlerB;
@@ -107679,7 +107690,18 @@ void Unwind_18090fb10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090fb20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据数组A0 - 偏移量0x0
+ * 
+ * 该函数调用ProcessDataArrayA0函数处理数据缓冲区偏移量0x0处的数据数组。
+ * 这是一个简单的数据处理函数，用于处理验证结果数据。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要处理的数据数组
+ * 
+ * @note 原始函数名：Unwind_18090fb20
+ */
+void ProcessDataArrayAtOffset0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + ValidationResultOffset0);
@@ -107706,7 +107728,18 @@ void Unwind_18090fb40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090fb50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据数组A0 - 偏移量0x0
+ * 
+ * 该函数调用ProcessDataArrayA0函数处理数据缓冲区偏移量0x0处的数据数组。
+ * 这是一个简单的数据处理函数，用于处理验证结果数据。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要处理的数据数组
+ * 
+ * @note 原始函数名：Unwind_18090fb50
+ */
+void ProcessDataArrayAtOffset0B(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + ValidationResultOffset0);
