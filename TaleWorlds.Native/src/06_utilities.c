@@ -125101,15 +125101,15 @@ uint8_t SystemExceptionHandlerStateTable;
 #define ExecuteResourceCallbacksA0 ExecuteSystemResourceCallbacksA0
 
 // 系统资源管理
-#define ResetSystemContextA0 Unwind_180907c40
-#define CleanupTemporaryResourcesA0 Unwind_180907c50
-#define ReleaseSystemBuffersA0 Unwind_180907c60
-#define ResetDataPointersA0 Unwind_180907c70
-#define CleanupMemoryPoolA0 Unwind_180907c80
-#define CleanupOperationQueueA0 Unwind_180907cd0
-#define ReleaseMemoryReferencesA0 Unwind_180907ce0
-#define ResetThreadStatusA0 Unwind_180907cf0
-#define CleanupCacheDataA0 Unwind_180907d00
+#define ResetSystemContextA0 ResetSystemContextResourcesA0
+#define CleanupTemporaryResourcesA0 CleanupSystemTemporaryResourcesA0
+#define ReleaseSystemBuffersA0 ReleaseSystemMemoryBuffersA0
+#define ResetDataPointersA0 ResetSystemDataPointersA0
+#define CleanupMemoryPoolA0 CleanupSystemMemoryPoolA0
+#define CleanupOperationQueueA0 CleanupSystemOperationQueueA0
+#define ReleaseMemoryReferencesA0 ReleaseSystemMemoryReferencesA0
+#define ResetThreadStatusA0 ResetSystemThreadStatusA0
+#define CleanupCacheDataA0 CleanupSystemCacheDataA0
 
 // 系统状态和标志管理
 #define SetSystemConfigurationFlagsA0 Unwind_180907d30
