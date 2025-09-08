@@ -24005,7 +24005,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   float processedValue;
   int64_t exceptionHandlerContext4;
   float *floatValuePointer;
-  DataBuffer *exceptionDataBuffer6;
+  DataBuffer *exceptionBuffer6;
   ByteFlag TertiaryEncryptionKeyBuffer [32];
   DataWord SystemValidationWordA;
   char ValidationCharBuffer [4];
@@ -24057,10 +24057,10 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   ProcessingLongIntegerB = dataBuffer;
   iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&SystemValidationWordA);
   if (iterationCount == 0) {
-    exceptionDataBuffer6 = (DataBuffer *)(dataBuffer + 8);
+    exceptionBuffer6 = (DataBuffer *)(dataBuffer + 8);
     SystemResourceValidationWord = 0;
-    SystemResourcePointerBuffer = exceptionDataBuffer6;
-    bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + 8))(exceptionDataBuffer6);
+    SystemResourcePointerBuffer = exceptionBuffer6;
+    bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + 8))(exceptionBuffer6);
     iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&SystemResourceValidationWord);
     if (iterationCount == 0) {
       SystemSecurityValidationWord = 0;
@@ -25394,7 +25394,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   int64_t *pointerStackBuffer318;
   DataBuffer resourceStackBuffer310;
   float floatValidationDataBuffer8 [2];
-  int64_t contextProcessingArray300 [2];
+  int64_t contextProcessingBuffer [2];
   ByteFlag dataStackBuffer2f0 [8];
   DataBuffer validationStackBuffer2e8 [2];
   uint8_t *pointerStackBuffer2d8;
@@ -25421,8 +25421,8 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   
   securityValidationValue = ExceptionEncryptionKeyValue ^ (uint64_t)securityBuffer;
   nullPointer = (int64_t *)0x0;
-  contextProcessingArray300[1] = 0;
-  operationResult = InitializeBufferA0(contextProcessingArray300 + 1,dataContext[1]);
+  contextProcessingBuffer[1] = 0;
+  operationResult = InitializeBufferA0(contextProcessingBuffer + 1,dataContext[1]);
   if ((operationResult == 0) && (operationResult = ValidateSystemDataA0(dataContext,1), operationResult == 0)) {
     (**(FunctionPointer**)(*dataContext + 8))(dataContext,&DataProcessingConfigurationTableA2);
     if (((*(uint *)(dataContext + 3) & 0x1000000) == 0) ||
@@ -25474,7 +25474,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
       contextPointer = nullPointer;
       resourceIterator = nullPointer;
       finalContext = nullPointer;
-      contextProcessingArray300[0] = (int64_t)operationResult;
+      contextProcessingBuffer[0] = (int64_t)operationResult;
       if (0 < operationResult) {
         do {
           currentResource = dataContext[1];
@@ -25521,7 +25521,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           exceptionHandlerContextPointer0 = exceptionHandlerContextPointer0 + 6;
           exceptionHandlerContextPointer = (int64_t *)(uint64_t)((int)ValidationFloatValue8 + 1);
           exceptionHandlerContextPointer9 = (int64_t *)((int64_t)exceptionHandlerContextPointer9 + 0xc);
-        } while ((int64_t)exceptionHandlerContextPointer4 < contextProcessingArray300[0]);
+        } while ((int64_t)exceptionHandlerContextPointer4 < contextProcessingBuffer[0]);
       }
       exceptionHandlerContext5 = operationBase[1] + 0x60;
       iterationCount = ValidateContext(exceptionHandlerContext5);
@@ -25529,7 +25529,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
       if (0 < iterationCount) {
         do {
           ProcessSystemDataA0(exceptionHandlerContext5,ValidationDataBufferA,exceptionHandlerContextPointer4);
-          ProcessContext(exceptionHandlerContext5,exceptionHandlerContextPointer4,StackFloatArrayE,contextProcessingArray300);
+          ProcessContext(exceptionHandlerContext5,exceptionHandlerContextPointer4,StackFloatArrayE,contextProcessingBuffer);
           exceptionHandlerContext1 = GetSystemContextHandle(exceptionHandlerContext5,exceptionHandlerContextPointer4);
           systemStatusChar = CheckSystemStatus(exceptionHandlerContext1,0);
           if ((systemStatusChar == '\0') && (StackFloatArrayE[0] != *(float *)(exceptionHandlerContext1 + 0x4c))) {
@@ -25664,7 +25664,7 @@ CalculationCheckpoint:
     }
   }
 MemoryCheckpoint:
-    ReleaseResourceA1(contextProcessingArray300 + 1);
+    ReleaseResourceA1(contextProcessingBuffer + 1);
 }
 
 
@@ -26851,18 +26851,18 @@ void ValidateSystemDataD0(int64_t SystemContext,DataWord *DataValidationPtr)
 
 {
   int ValidationResult;
-  DataWord DataChunk1 [2];
-  DataWord DataChunk2 [2];
-  DataWord DataChunk3 [2];
+  DataWord primaryValidationChunk [2];
+  DataWord secondaryValidationChunk [2];
+  DataWord tertiaryValidationChunk [2];
   
-  DataChunk1[0] = *DataValidationPtr;
-  ValidationResult = ExecuteSystemValidationCallback(*(DataBuffer **)(SystemContext + 8),DataChunk1,4);
+  primaryValidationChunk[0] = *DataValidationPtr;
+  ValidationResult = ExecuteSystemValidationCallback(*(DataBuffer **)(SystemContext + 8),primaryValidationChunk,4);
   if (ValidationResult == 0) {
-    DataChunk2[0] = DataValidationPtr[1];
-    ValidationResult = ExecuteSystemValidationCallback(*(DataBuffer **)(SystemContext + 8),DataChunk2,4);
+    secondaryValidationChunk[0] = DataValidationPtr[1];
+    ValidationResult = ExecuteSystemValidationCallback(*(DataBuffer **)(SystemContext + 8),secondaryValidationChunk,4);
     if (ValidationResult == 0) {
-      DataChunk3[0] = DataValidationPtr[2];
-      ExecuteSystemValidationCallback(*(DataBuffer **)(SystemContext + 8),DataChunk3,4);
+      tertiaryValidationChunk[0] = DataValidationPtr[2];
+      ExecuteSystemValidationCallback(*(DataBuffer **)(SystemContext + 8),tertiaryValidationChunk,4);
     }
   }
   return;
@@ -31503,7 +31503,7 @@ void ValidateAndProcessDataWithSecurity(int64_t dataContext,DataBuffer *dataPoin
       if (operationStatus != 0) {
         return;
       }
-      operationStatus = FinalizeDataProcessing(dataBuffer,auStackX_8);
+      operationStatus = FinalizeDataProcessing(dataBuffer,validationStackBuffer);
       if (operationStatus != 0) {
         return;
       }
@@ -31511,16 +31511,16 @@ void ValidateAndProcessDataWithSecurity(int64_t dataContext,DataBuffer *dataPoin
       validationDataBuffer[0] = validationDataBuffer[0] & -validationOutcome;
     } while (operationResult < (int)operationResult);
   }
-  auStackX_8[0] = 0;
-  operationResult = ExecuteDataValidationOperation(*dataBuffer,auStackX_8);
-  systemDataBuffer = auStackX_8[0];
+  validationDataBuffer[0] = 0;
+  operationResult = ExecuteDataValidationOperation(*dataBuffer,validationDataBuffer);
+  systemDataBuffer = validationDataBuffer[0];
   if (operationResult != 0) {
     return;
   }
-  memoryPointer = (int64_t)(int)auStackX_8[0];
+  memoryPointer = (int64_t)(int)validationDataBuffer[0];
   memoryRegionBase = (int)*(uint *)(operationBase + 0x2c) >> 0x1f;
-  if (((int)((*(uint *)(operationBase + 0x2c) ^ memoryRegionBase) - memoryRegionBase) < (int)auStackX_8[0]) &&
-     (operationResult = ValidateSystemMemoryA0(operationBase + 0x20,auStackX_8[0]), operationResult != 0)) {
+  if (((int)((*(uint *)(operationBase + 0x2c) ^ memoryRegionBase) - memoryRegionBase) < (int)validationDataBuffer[0]) &&
+     (operationResult = ValidateSystemMemoryA0(operationBase + 0x20,validationDataBuffer[0]), operationResult != 0)) {
     return;
   }
   operationResult = *(int *)(operationBase + 0x28);
