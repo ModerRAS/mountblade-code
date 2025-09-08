@@ -40141,9 +40141,15 @@ void SetDefaultExceptionHandlerAtOffset30(DataBuffer operationBase, int64_t data
 
 
 /**
- * 设置默认异常处理器到偏移量 0xf0
- * @param operationBase 上下文参数
- * @param dataBuffer 目标结构体指针
+ * @brief 设置默认异常处理器到偏移量0xf0
+ * 
+ * 该函数负责在数据缓冲区的指定偏移量处设置默认异常处理器，确保异常处理链的完整性。
+ * 
+ * @param operationBase 操作基地址，用于上下文管理
+ * @param dataBuffer 目标结构体指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：未指定
+ * @note 这是一个异常处理器设置函数，用于配置默认异常处理行为
  */
 void SetDefaultExceptionHandlerAtOffsetF0(DataBuffer operationBase, int64_t dataBuffer)
 
@@ -40155,9 +40161,18 @@ void SetDefaultExceptionHandlerAtOffsetF0(DataBuffer operationBase, int64_t data
 
 
 /**
- * 设置默认异常处理器到偏移量 0x138
- * @param operationBase 上下文参数
- * @param dataBuffer 目标结构体指针
+ * @brief 设置默认异常处理器到偏移量0x138
+ * 
+ * 该函数负责在数据缓冲区的指定偏移量处设置默认异常处理器，包括：
+ * - 先设置临时异常处理器
+ * - 进行安全检查和清理操作
+ * - 最后设置默认异常处理器B
+ * 
+ * @param operationBase 操作基地址，用于上下文管理
+ * @param dataBuffer 目标结构体指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：未指定
+ * @note 这是一个异常处理器设置函数，用于配置默认异常处理行为
  */
 void SetDefaultExceptionHandlerAtOffset138(DataBuffer operationBase, int64_t dataBuffer)
 
