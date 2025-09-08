@@ -207007,7 +207007,7 @@ void UpdateSystemStatusAndNotify(long long CharacterCode, char SystemBufferSize,
       if (**(char **)(SystemDataTabled0 + 0x2010) != '\0') {
         **(char **)(SystemDataTabled0 + 0x2010) = '\0';
       }
-      FUN_1801720a0(CharacterCode,Utf8SourcePointer);
+      ProcessCharacterConversionWithUtf16(CharacterCode,Utf8SourcePointer);
       do {
         EncodingValidationResult = ShowCursor(1);
       } while (EncodingValidationResult < 0);
@@ -208535,7 +208535,7 @@ void ConvertCharacterEncodingA0(void)
     if (**(char **)(SystemDataTabled0 + 0x2010) != '\0') {
       **(char **)(SystemDataTabled0 + 0x2010) = '\0';
     }
-    FUN_1801720a0(CharacterCode,Utf8SourcePointer);
+    ProcessCharacterConversionWithUtf16(CharacterCode,Utf8SourcePointer);
     do {
       IntegerValue = ShowCursor(1);
     } while (IntegerValue < 0);
