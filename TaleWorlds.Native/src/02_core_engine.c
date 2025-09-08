@@ -286530,3 +286530,58 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define ProcessSystemStackDataAndCleanupOperations FUN_1802c6e70
 
+/**
+ * @brief 分配系统内存缓冲区
+ * 
+ * 该函数负责分配系统内存缓冲区，返回分配的内存大小
+ * 
+ * @param MemoryPointer 内存指针
+ * @return 分配的内存大小
+ * 
+ * @note 原始函数名：FUN_1800baa80
+ */
+#define AllocateSystemMemoryBuffer FUN_1800baa80
+
+/**
+ * @brief 处理内存地址掩码操作
+ * 
+ * 该函数负责处理内存地址掩码的相关操作
+ * 
+ * @param MemoryAddressMaskPointer 内存地址掩码指针
+ * @param ProcessingStatusFlag 处理状态标志
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801c9bd0
+ */
+#define ProcessMemoryAddressMaskOperation FUN_1801c9bd0
+
+/**
+ * @brief 执行内存地址掩码验证
+ * 
+ * 该函数负责执行内存地址掩码的验证操作
+ * 
+ * @param MemoryAddressMaskPointer 内存地址掩码指针
+ * @param ProcessingStatusFlag 处理状态标志
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801ca670
+ */
+#define ExecuteMemoryAddressMaskValidation FUN_1801ca670
+
+/**
+ * @brief 处理字符编码转换和地址计算
+ * 
+ * 该函数负责处理字符编码转换并计算相关地址
+ * 
+ * @param CharacterCode 字符代码
+ * @param FunctionAddressPointer 函数地址指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param ConversionFlag 转换标志
+ * @param AddressMask 地址掩码
+ * @return 处理结果
+ * 
+ * @note 原始函数名：FUN_18016a6c0
+ */
+#define ProcessCharacterEncodingConversionAndAddressCalculation FUN_18016a6c0
+
