@@ -209980,7 +209980,22 @@ uint64_t * FUN_1801754b0(uint64_t *CharacterCode
 
 
 
-void FUN_180175500(long long CharacterCode,long long SystemBufferSize)
+/**
+ * @brief 处理字符代码和系统缓冲区大小的核心引擎函数
+ * 
+ * 该函数负责处理字符代码和系统缓冲区大小的核心引擎操作，包括：
+ * - UTF-16字符处理和状态标志计算
+ * - 内存分配和边界管理
+ * - 系统数据处理和渲染上下文配置
+ * - 函数指针调用和操作状态管理
+ * 
+ * @param CharacterCode 字符代码指针，包含字符编码和处理状态
+ * @param SystemBufferSize 系统缓冲区大小，用于内存分配和管理
+ * 
+ * @note 原始函数名：FUN_180175500
+ * @note 该函数是核心引擎的重要处理函数，涉及多个系统组件的协调
+ */
+void ProcessCharacterCodeWithSystemBufferSize(long long CharacterCode,long long SystemBufferSize)
 {
   unsigned long long Utf16Char;
   long long BufferStatus;
@@ -210100,7 +210115,18 @@ void ProcessCharacterEncodingAndSystemValidation(void)
 
 
 
-75686(voidvoid FUN_180175686(void
+/**
+ * @brief 处理系统内存验证扩展操作
+ * 
+ * 该函数负责处理系统内存验证扩展操作，主要功能包括：
+ * - 初始化系统状态变量
+ * - 处理栈参数存储和配置数据
+ * - 执行系统渲染上下文处理
+ * - 管理模式索引和计数器
+ * 
+ * @note 原始函数名：FUN_180175686
+ */
+void ProcessSystemMemoryValidationEx(void)
 {
   long long ProcessingResult;
   long long StackFrameAddressPointer;
@@ -211013,7 +211039,20 @@ LAB_1801769b0:
 
 
 
-769e0(long long CharacterCodevoid FUN_1801769e0(long long CharacterCode
+/**
+ * @brief 处理字符代码和系统数据注册表操作
+ * 
+ * 该函数负责处理字符代码和系统数据注册表操作，主要功能包括：
+ * - 处理字符代码和字符串比较
+ * - 管理系统数据注册表和内存分配
+ * - 执行Unicode码点处理和字符编码转换
+ * - 管理系统配置字符串和状态码
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的对象
+ * 
+ * @note 原始函数名：FUN_1801769e0
+ */
+void ProcessCharacterCodeAndSystemDataRegistryOperations(long long CharacterCode)
 {
   long long *CharacterCode;
   int StringComparisonResult;

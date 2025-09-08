@@ -99998,7 +99998,16 @@ void Unwind_18090e920(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e930(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统资源清理函数调用
+ * 
+ * 该函数检查数据缓冲区中的系统资源指针，并在资源存在时执行清理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e930
+ */
+void ExecuteSystemResourceCleanupFunctionCall(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x98) != (int64_t *)0x0) {
@@ -100009,7 +100018,16 @@ void Unwind_18090e930(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e940(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器调用
+ * 
+ * 该函数从验证结果中获取异常上下文指针，并调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e940
+ */
+void ExecuteExceptionHandlerContextCall(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100023,7 +100041,17 @@ void Unwind_18090e940(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e950(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置临时异常处理器并清理状态
+ * 
+ * 该函数在异常上下文中设置临时异常处理器，清理相关状态标志，
+ * 并在必要时终止系统运行
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e950
+ */
+void SetTemporaryExceptionHandlerAndCleanupState(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;

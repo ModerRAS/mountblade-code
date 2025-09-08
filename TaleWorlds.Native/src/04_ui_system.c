@@ -7921,12 +7921,12 @@ void SetupUIMemoryAllocator(void)
  void InitializeUITextureSystem(void)
 
 {
-  longlong *pallocatedMemory;
-  UIDword *psemaphoreHandle;
+  longlong *monoAssemblyMemory;
+  UIDword *textureSemaphoreHandle;
   UIDword textureFormatFlag;
   longlong monoAssemblyResult;
-  UIHandle *pstringBuffer;
-  UIDword *ptextureData;
+  UIHandle *stringBufferHandle;
+  UIDword *textureDataBuffer;
   ulonglong bufferOffset;
   UIByte encryptionKeyBuffer [32];
   undefined *pprimaryUIBuffer;
