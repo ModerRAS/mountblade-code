@@ -82121,8 +82121,7 @@ void ProcessUIDataBatch(UIHandle uiContext,longlong dataSource,longlong targetBu
 
 
 
- void FUN_180712fbc(UIDword uiContext,UIHandle dataSource,longlong targetBuffer)
-/**
+ /**
  * @brief 处理UI上下文数据批量操作
  * 
  * 该函数负责处理UI上下文数据的批量操作，包括：
@@ -82151,20 +82150,20 @@ void ProcessUIContextBatchOperation(UIDword uiContext,UIHandle dataSource,longlo
   UIDword eventHandle;
   ulonglong renderTaskParam;
   
-  if (RegisterValue < unmodifiedESI) {
-    stringCompareIndex = (longlong)RegisterValue * 4 + unmodifiedR13;
-    ptrResult = (UIDword *)(targetBuffer + (longlong)RegisterValue * 4);
-    iterationCount = (ulonglong)(uint)(unmodifiedESI - RegisterValue);
+  if (currentIndex < maxIterations) {
+    dataOffset = (longlong)currentIndex * 4 + baseAddress;
+    resultPointer = (UIDword *)(targetBuffer + (longlong)currentIndex * 4);
+    iterationCount = (ulonglong)(uint)(maxIterations - currentIndex);
     do {
-      uiContext = FUN_1807070a0(uiContext,stringCompareIndex,EventHandleD);
-      stringCompareIndex = stringCompareIndex + 4;
-      *ptrResult = uiContext;
-      ptrResult = ptrResult + 1;
+      uiContext = ProcessUIDataConversion(uiContext,dataOffset,eventHandle);
+      dataOffset = dataOffset + 4;
+      *resultPointer = uiContext;
+      resultPointer = resultPointer + 1;
       iterationCount = iterationCount - 1;
     } while (iterationCount != 0);
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000038 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParam ^ (ulonglong)&stack0x00000000);
 }
 
 
