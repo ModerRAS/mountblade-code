@@ -8941,7 +8941,7 @@ LAB_UIEventProcessingCheck:
         loopCounter1 = loopCounter2 + 1;
         if (eventStringPtr[loopCounter2] != (&UIEventTypeMouseDrag)[loopCounter2]) {
           iterationCount = 0;
-          goto LAB_1806557d3;
+          goto LAB_EventDataProcess;
         }
         loopCounter2 = loopCounter1;
       } while (loopCounter1 != 5);
@@ -8998,7 +8998,7 @@ UIAxisEventProcessing:
       if ((stringLength == 1) &&
          (((*eventStringPtr != 'x' || (eventStringPtr[1] != '\0')) && (*eventStringPtr == 'y')))) {
         EventProcessingResult = eventStringPtr[1] == '\0';
-        goto LAB_180655bea;
+        goto LAB_EventResultReturn;
       }
     }
   }
@@ -9059,7 +9059,7 @@ LAB_EventProcessingContinue:
       else {
         if (stringLength == 0x10) {
           eventTypePointer = &UIEventTypeButtonRelease;
-          goto LAB_180655bdf;
+          goto LAB_EventFocusCheck;
         }
         if (stringLength == 0x11) {
           uiCompareResult = strcmp(eventStringPtr,&UIEventTypeButtonHold);
