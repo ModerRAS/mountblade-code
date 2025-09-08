@@ -205182,7 +205182,24 @@ LAB_18017023b:
 
 
 
-void FUN_180170380(long long CharacterCode,unsigned long long SystemBufferSize,unsigned long long Utf8SourcePointer,uint8_t Utf16EndPointer
+/**
+ * @brief 处理字符编码转换和内存池管理的复杂操作
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，包括：
+ * - 内存边界检查和分配
+ * - 内存池块大小管理
+ * - 字符串比较和验证
+ * - 高低字节处理
+ * - 系统事件处理
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180170380
+ */
+void ProcessCharacterEncodingAndMemoryPoolManagement(long long CharacterCode,unsigned long long SystemBufferSize,unsigned long long Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
   long long *CharacterCode;
   byte SystemHighByte;
