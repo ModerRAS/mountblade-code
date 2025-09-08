@@ -108,9 +108,9 @@ typedef enum {
 #define ValidateUISystem ValidateUISystemIntegrity
 
 // UI系统数据变量宏定义
-#define SystemGlobalDataRegistry UNK_180956d30
+#define UIGlobalDataRegistry UNK_180956d30
 #define SystemGlobalDataRegistry38 UNK_180956d38
-#define SystemGlobalDataRegistry30 UNK_180956d30
+#define UIGlobalDataRegistry30 UNK_180956d30
 
 // UI系统查找表变量宏定义
 #define UILookupTablePrimary UNK_180954690
@@ -84780,8 +84780,7 @@ void ClearUIBufferMemory(void)
 
 
 
- void FUN_1807165be(longlong uiContext,UIHandle dataSource,int targetBuffer,UIHandle bufferSize,
-/**
+ /**
  * @brief 处理UI变换和旋转操作
  * 
  * 该函数负责处理UI系统中的变换和旋转操作，包括：
@@ -99854,13 +99853,13 @@ float FUN_180727db0(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
   baseValue7 = 0.0;
   if (2 < uiContext) {
     ContextHandleData = result3 * 4;
-    pallocatedMemory4 = (longlong *)(&UNK_180956d30 + result3 * 8);
+    pallocatedMemory4 = (longlong *)(&UIGlobalDataRegistry + result3 * 8);
     do {
       EventDataIndex = (longlong)(int)result0;
       sVar11 = (short)result0;
       if ((int)result0 < (int)result3) {
         result2 = *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d38 + EventDataIndex * 8));
-        if ((targetBuffer < *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d30 + EventDataIndex * 8))) ||
+        if ((targetBuffer < *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + EventDataIndex * 8))) ||
            (result2 <= targetBuffer)) {
           processingCounter = 0;
           if (result2 <= targetBuffer) {
@@ -99870,7 +99869,7 @@ float FUN_180727db0(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
             uVar9 = (int)result0 - 1;
             result0 = (ulonglong)uVar9;
           } while (targetBuffer - processingCounter <
-                   *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8)));
+                   *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + (longlong)(int)uVar9 * 8)));
           EventTypeCode = (targetBuffer < result2) - 1;
           sVar2 = EventTypeCode - (short)uVar9;
           targetBuffer = (targetBuffer - processingCounter) -
@@ -99969,13 +99968,13 @@ float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
   baseValue7 = 0.0;
   if (2 < uiContext) {
     ContextHandleData = result3 * 4;
-    pallocatedMemory4 = (longlong *)(&UNK_180956d30 + result3 * 8);
+    pallocatedMemory4 = (longlong *)(&UIGlobalDataRegistry + result3 * 8);
     do {
       EventDataIndex = (longlong)(int)result0;
       sVar11 = (short)result0;
       if ((int)result0 < (int)result3) {
         result2 = *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d38 + EventDataIndex * 8));
-        if ((targetBuffer < *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d30 + EventDataIndex * 8))) ||
+        if ((targetBuffer < *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + EventDataIndex * 8))) ||
            (result2 <= targetBuffer)) {
           processingCounter = 0;
           if (result2 <= targetBuffer) {
@@ -99985,7 +99984,7 @@ float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
             uVar9 = (int)result0 - 1;
             result0 = (ulonglong)uVar9;
           } while (targetBuffer - processingCounter <
-                   *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d30 + (longlong)(int)uVar9 * 8)));
+                   *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + (longlong)(int)uVar9 * 8)));
           EventTypeCode = (targetBuffer < result2) - 1;
           sVar2 = EventTypeCode - (short)uVar9;
           targetBuffer = (targetBuffer - processingCounter) -
