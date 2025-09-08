@@ -243037,8 +243037,20 @@ LAB_180203b67:
 
 
 
-uint64_t *
-FUN_180203abc(uint64_t CharacterCode,long long SystemBufferSize,uint64_t *Utf8SourcePointer,uint64_t *Utf16EndPointer
+/**
+ * 处理UTF-8到UTF-16字符编码转换
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，包括字符串比较、
+ * 字节序处理和编码验证等核心功能。它会遍历输入的UTF-8数据，
+ * 进行必要的转换和验证操作。
+ * 
+ * @param CharacterCode 字符代码，用于标识处理的字符类型
+ * @param SystemBufferSize 系统缓冲区大小，包含处理所需的状态信息
+ * @param Utf8SourcePointer UTF-8源数据指针数组
+ * @param Utf16EndPointer UTF-16结束指针数组
+ * @return uint64_t* 返回处理后的64位无符号整数指针
+ */
+uint64_t *ProcessUtf8ToUtf16Conversion(uint64_t CharacterCode,long long SystemBufferSize,uint64_t *Utf8SourcePointer,uint64_t *Utf16EndPointer)
 {
   byte StringComparisonByte;
   bool HighByte;
@@ -243142,9 +243154,21 @@ LAB_180203b67:
 
 
 
-uint64_t *
-FUN_180203ba0(long long *CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
-             long long AdditionalParameter1
+/**
+ * 管理内存块分配和字符编码处理
+ * 
+ * 该函数负责管理系统内存块的分配、验证和字符编码处理。
+ * 它处理内存块的分配逻辑、验证内存块状态，并管理字符编码的转换过程。
+ * 
+ * @param CharacterCode 字符代码指针，包含编码处理所需的信息
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数，包含系统配置信息
+ * @return uint64_t* 返回处理后的内存地址指针
+ */
+uint64_t *ManageMemoryBlockAllocationAndCharacterEncoding(long long *CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
+             long long AdditionalParameter1)
 {
   byte StringComparisonByte;
   bool HighByte;
