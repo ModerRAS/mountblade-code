@@ -1130,6 +1130,7 @@
 #define SystemDataFunctionOffset50 0x50                   // 系统数据函数偏移量50
 #define ArrayIndexMultiplier 0xc                           // 数组索引乘数
 #define SystemDataTableOffset8 8                            // 系统数据表偏移量8
+#define ResourceReferenceDataOffset330 0x330                // 资源引用数据偏移量330
 #define ExceptionHandlerTempCallbackOffsetEC8 0xec8     // 异常处理器临时回调偏移量EC8
 #define ExceptionHandlerTempCallbackOffsetE90 0xe90     // 异常处理器临时回调偏移量E90
 #define ExceptionHandlerTempCallbackOffsetE98 0xe98     // 异常处理器临时回调偏移量E98
@@ -30317,7 +30318,7 @@ uint64_t GetSystemValidationContext(void)
   uint validationOutcome;
   char stackValidationFlag;
   uint stackAllocationCounter;
-  DataWord resourceValidationStatus8;
+  DataWord SystemResourceValidationStatus;
   
   operationResult = 0;
   dataFlags = 0;
@@ -31152,7 +31153,7 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   DataWord bufferFlag;
   DataWord stackHighValue;
   DataWord stackLowValue;
-  DataWord stackParameter38;
+  DataWord SystemStackParameterData;
   
   if (validationFlag != 0) {
     return ResourceInvalidErrorCode;
