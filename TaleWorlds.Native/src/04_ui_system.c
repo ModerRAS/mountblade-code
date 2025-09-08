@@ -90710,10 +90710,10 @@ UIDword FUN_18071dfc0(longlong uiContext,int dataSource,ulonglong targetBuffer)
       *(UIDword *)(uiBufferData + 0x11e0) = 4;
       *(int *)(uiBufferData + 0x11e4) = uiValidationResult * 0x14;
       *(int *)(uiBufferData + 0x11c0) = uiValidationResult * 0x18;
-      ptrResult = &UNK_180954818;
+      ptrResult = &UIStatusPointer3;
       *(int *)(uiBufferData + 0x1678) = (int)ProcessingStatus / 0x14;
       if (*(int *)(uiBufferData + 0x11dc) != 8) {
-        ptrResult = &UNK_1809547f0;
+        ptrResult = &UIStatusPointer4;
       }
     }
     *(undefined **)(uiContext + 0x1250) = ptrResult;
