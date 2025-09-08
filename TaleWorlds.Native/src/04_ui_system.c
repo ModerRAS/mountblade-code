@@ -99995,8 +99995,25 @@ void ProcessUIDataUnpackingAndConversion(ulonglong uiContext,UIHandle dataSource
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180726c40(longlong uiContext,longlong dataSource,longlong targetBuffer,UIHandle bufferSize,
-void FUN_180726c40(longlong uiContext,longlong dataSource,longlong targetBuffer,UIHandle bufferSize,
+ /**
+ * @brief 处理UI变换数据
+ * 
+ * 该函数负责处理UI系统中的变换数据，包括：
+ * - 组件上下文数据的转换和缩放
+ * - 变换系数的计算和应用
+ * - 浮点数据到整型的转换
+ * - UI渲染参数的预处理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数
+ * 
+ * @note 原始函数名：FUN_180726c40
+ */
+void ProcessUITransformData(longlong uiContext,longlong dataSource,longlong targetBuffer,UIHandle bufferSize,
                   UIHandle resultPointer,longlong param_6)
 
 {
