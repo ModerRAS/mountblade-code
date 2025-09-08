@@ -100163,7 +100163,12 @@ void ExecuteSystemMemoryOperationAndCleanupDE80(DataBuffer operationBase,int64_t
  */
 void ExecuteSystemMemoryOperationAndCleanupDEA0(DataBuffer operationBase, int64_t dataBuffer)
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0xee8, 0x18, 2, ProcessMemoryOperationA5, SystemCleanupFlagAlternative);
+  int64_t exceptionHandlerContext;
+  DataBuffer cleanupResult;
+  
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextDataOffset);
+  cleanupResult = SystemCleanupFlagAlternative;
+  ExecuteMemoryOperation(exceptionHandlerContext + ExceptionHandlerMemoryOffsetEE8, 0x18, 2, ProcessMemoryOperationA5, cleanupResult);
   return;
 }
 
