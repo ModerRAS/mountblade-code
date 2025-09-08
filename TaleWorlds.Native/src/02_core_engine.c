@@ -258235,7 +258235,18 @@ uint64_t ResetSystemFloatParameters(void
 
 
 
-uint32_t FUN_180214c50(long long CharacterCode
+/**
+ * @brief 处理字符代码并返回系统寄存器标志
+ * 
+ * 该函数处理给定的字符代码，通过调用UTF-16处理函数来转换字符，
+ * 然后处理核心引擎数据和模板，最后返回系统寄存器标志缓冲区的第一个值。
+ * 
+ * @param CharacterCode 输入的字符代码
+ * @return uint32_t 系统寄存器标志缓冲区的第一个值
+ * 
+ * @note 原始函数名：FUN_180214c50
+ */
+uint32_t ProcessCharacterCodeAndReturnSystemRegisterFlag(long long CharacterCode)
 {
   uint32_t Utf16Char;
   uint32_t SystemRegisterFlagBuffer [8];
@@ -258247,7 +258258,19 @@ uint32_t FUN_180214c50(long long CharacterCode
 
 
 
-uint32_t FUN_180214c90(long long CharacterCode
+/**
+ * @brief 处理字符代码并返回系统寄存器标志（变体）
+ * 
+ * 该函数处理给定的字符代码，通过调用UTF-16处理函数来转换字符，
+ * 然后处理核心引擎数据和模板，最后返回系统寄存器标志缓冲区的第一个值。
+ * 与FUN_180214c50类似，但调用的UTF-16处理函数不同。
+ * 
+ * @param CharacterCode 输入的字符代码
+ * @return uint32_t 系统寄存器标志缓冲区的第一个值
+ * 
+ * @note 原始函数名：FUN_180214c90
+ */
+uint32_t ProcessCharacterCodeAndReturnSystemRegisterFlagVariant(long long CharacterCode)
 {
   uint32_t Utf16Char;
   uint32_t SystemRegisterFlagBuffer [8];
@@ -258261,7 +258284,17 @@ uint32_t FUN_180214c90(long long CharacterCode
 
 
 
-14cc0(long long CharacterCodevoid FUN_180214cc0(long long CharacterCode
+/**
+ * @brief 处理字符代码和内存分配
+ * 
+ * 该函数处理给定的字符代码，执行内存分配、数据验证和系统状态更新。
+ * 它涉及复杂的内存管理和字符处理逻辑。
+ * 
+ * @param CharacterCode 输入的字符代码
+ * 
+ * @note 原始函数名：FUN_180214cc0
+ */
+void ProcessCharacterCodeAndMemoryAllocation(long long CharacterCode)
 {
   uint32_t Utf16Char;
   uint MemoryAllocationIndex;
@@ -258456,12 +258489,23 @@ LAB_180211e24:
 
 
 
-uint32_t FUN_180214cf0(long long CharacterCode
+/**
+ * @brief 处理字符代码并返回系统寄存器标志（简化版）
+ * 
+ * 该函数处理给定的字符代码，通过调用字符处理函数来获取系统寄存器标志，
+ * 然后返回系统寄存器标志缓冲区的第一个值。
+ * 
+ * @param CharacterCode 输入的字符代码
+ * @return uint32_t 系统寄存器标志缓冲区的第一个值
+ * 
+ * @note 原始函数名：FUN_180214cf0
+ */
+uint32_t ProcessCharacterCodeAndReturnRegisterFlag(long long CharacterCode)
 {
   uint32_t SystemRegisterFlagBuffer [2];
-  uint8_t auStackX_10 [24];
+  uint8_t LocalStackBuffer [24];
   
-  FUN_180739950(*(void *)(CharacterCode + SecondaryProcessingStatusOffset),SystemRegisterFlagBuffer,auStackX_10);
+  FUN_180739950(*(void *)(CharacterCode + SecondaryProcessingStatusOffset),SystemRegisterFlagBuffer,LocalStackBuffer);
   return SystemRegisterFlagBuffer[0];
 }
 
@@ -258469,7 +258513,20 @@ uint32_t FUN_180214cf0(long long CharacterCode
 
 
 
-14d20(long long CharacterCode,int SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointervoid FUN_180214d20(long long CharacterCode,int SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16转换
+ * 
+ * 该函数处理字符代码转换，将UTF-8数据转换为UTF-16格式，
+ * 并管理内存分配和数据验证。
+ * 
+ * @param CharacterCode 输入的字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180214d20
+ */
+void ProcessUtf8ToUtf16Conversion(long long CharacterCode,int SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer)
 {
   long long PrimaryDataSize;
   uint MemoryAllocationIndex;
@@ -259294,7 +259351,17 @@ unsigned long long ValidateSystemUnicodeConversion(void
 
 
 
-uint8_t FUN_180215fee(void
+/**
+ * @brief 返回零值的状态检查函数
+ * 
+ * 该函数是一个简单的状态检查函数，始终返回0。
+ * 可能用于系统初始化或状态验证。
+ * 
+ * @return uint8_t 始终返回0
+ * 
+ * @note 原始函数名：FUN_180215fee
+ */
+uint8_t ReturnZeroStatusCheck(void)
 {
   return 0;
 }

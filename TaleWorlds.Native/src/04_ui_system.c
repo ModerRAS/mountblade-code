@@ -99543,26 +99543,42 @@ void FUN_180726700(longlong uiContext,float *dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180726a00(UIHandle uiContext,longlong dataSource,int targetBuffer)
-void FUN_180726a00(UIHandle uiContext,longlong dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI数据转换和缩放
+ * 
+ * 该函数负责将UI数据从浮点数转换为整数并进行缩放处理。
+ * 主要功能包括：
+ * 1. 将浮点数据源乘以65536.0进行缩放
+ * 2. 将结果四舍五入为整数
+ * 3. 调用后续的UI数据处理函数
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180726a00
+ * @warning 该函数调用的子函数不返回
+ */
+void ProcessUIDataConversionAndScaling(UIHandle uiContext,longlong dataSource,int targetBuffer)
+void ProcessUIDataConversionAndScaling(UIHandle uiContext,longlong dataSource,int targetBuffer)
 
 {
-  longlong allocatedMemory;
-  UIByte astackUInt88 [48];
-  int astackInt58 [16];
-  ulonglong stackUInt18;
+  longlong dataProcessingIndex;
+  UIByte encryptionBuffer [48];
+  int scaledDataBuffer [16];
+  ulonglong encryptedStackValue;
   
-  stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt88;
+  encryptedStackValue = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
   if (0 < targetBuffer) {
-    allocatedMemory = 0;
+    dataProcessingIndex = 0;
     do {
-      astackInt58[allocatedMemory] = (int)ROUND(*(float *)(dataSource + allocatedMemory * 4) * 65536.0);
-      allocatedMemory = allocatedMemory + 1;
-    } while (allocatedMemory < targetBuffer);
+      scaledDataBuffer[dataProcessingIndex] = (int)ROUND(*(float *)(dataSource + dataProcessingIndex * 4) * 65536.0);
+      dataProcessingIndex = dataProcessingIndex + 1;
+    } while (dataProcessingIndex < targetBuffer);
   }
-  FUN_18072edd0(uiContext,astackInt58);
+  ProcessUIScaledData(uiContext,scaledDataBuffer);
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt18 ^ (ulonglong)astackUInt88);
+  ExecuteUIRenderTask(encryptedStackValue ^ (ulonglong)encryptionBuffer);
 }
 
 
