@@ -84998,7 +84998,7 @@ void ProcessUIDataTransformAndNormalization(longlong uiContext, longlong dataSou
   float normalizeCoeff11;
   ulonglong transformIndex;
   
-  allocatedMemory4 = (longlong)(int)param_6;
+  bufferSize4 = (longlong)(int)param_6;
   transformCoeff2 = *(float *)(bufferSize + (longlong)resultPointer * 4);
   transformCoeff11 = *(float *)(bufferSize + (longlong)(*(int *)(uiBufferData + 8) + resultPointer) * 4);
   result7 = 0;
