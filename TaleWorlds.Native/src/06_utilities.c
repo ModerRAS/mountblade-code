@@ -64860,18 +64860,18 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
   int64_t BlockOffset;
   uint64_t MemoryAddress;
   
-  MemoryBlock = *(DataBuffer **)(ResourcePointer + 0xa8);
+  MemoryBlock = *(DataBuffer **)(ResourcePointer + ExceptionResourcePointerOffsetA8);
   if (MemoryBlock == (DataBuffer *)0x0) {
     return;
   }
-  MemoryAddress = (uint64_t)MemoryBlock & SystemCleanupFlagffc00000;
+  MemoryAddress = (uint64_t)MemoryBlock & SystemMemoryPageAlignmentMask;
   if (MemoryAddress != 0) {
-    BlockOffset = MemoryAddress + 0x80 + ((int64_t)MemoryBlock - MemoryAddress >> 0x10) * 0x50;
-    BlockOffset = BlockOffset - (uint64_t)*(uint *)(BlockOffset + 4);
-    if ((*(void ***)(MemoryAddress + 0x70) == &ExceptionList) && (*(char *)(BlockOffset + 0xe) == '\0')) {
-      *MemoryBlock = *(DataBuffer *)(BlockOffset + 0x20);
-      *(DataBuffer **)(BlockOffset + 0x20) = MemoryBlock;
-      ReferenceCount = (int *)(BlockOffset + 0x18);
+    BlockOffset = MemoryAddress + MemoryBaseOffset + ((int64_t)MemoryBlock - MemoryAddress >> 0x10) * ExceptionMemoryBlockMultiplier;
+    BlockOffset = BlockOffset - (uint64_t)*(uint *)(BlockOffset + MemoryOffsetAdjustment);
+    if ((*(void ***)(MemoryAddress + ExceptionMemoryRegionOffset70) == &ExceptionList) && (*(char *)(BlockOffset + ExceptionHandlerPointerOffsetE) == '\0')) {
+      *MemoryBlock = *(DataBuffer *)(BlockOffset + MemoryDataOffset);
+      *(DataBuffer **)(BlockOffset + MemoryDataOffset) = MemoryBlock;
+      ReferenceCount = (int *)(BlockOffset + MemoryReferenceOffset);
       *ReferenceCount = *ReferenceCount + -1;
       if (*ReferenceCount == 0) {
         HandleExceptionE0();
