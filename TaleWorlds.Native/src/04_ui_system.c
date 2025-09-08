@@ -1101,7 +1101,7 @@ typedef enum {
  #define CalculateUILayout CalculateUILayout
 
 // UI系统字体渲染函数
-#define FUN_1807224d0 InitializeUIFontRendering
+#define InitializeUIFontRendering InitializeUIFontRendering
 #define FUN_180722540 ProcessUIFontDataTransfer
 #define FUN_1807226f0 ConfigureUIFontParameters
 #define FUN_180722910 ValidateUIFontRenderingContext
@@ -76478,7 +76478,7 @@ bool ValidateUISemaphore(longlong uiContext,byte dataSource)
     updatedValue = *(uint *)(uiContext + 0x20) - semaphoreMask;
   }
   *(uint *)(uiContext + 0x20) = updatedValue;
-  FUN_18070f490(uiContext);
+  CleanupUIContext(uiContext);
   return currentValue < semaphoreMask;
 }
 
@@ -76756,7 +76756,7 @@ uint ProcessUIResourceAllocation(longlong *uiContext,uint dataSource)
       processingResult = uVar8 - ProcessingResult1;
     }
     *(int *)(uiBufferData + 4) = processingResult;
-    FUN_18070f490(uiContext);
+    CleanupUIContext(uiContext);
   }
   else {
     MaxProcessingCount = ProcessingResult1 - 7;
@@ -76777,7 +76777,7 @@ uint ProcessUIResourceAllocation(longlong *uiContext,uint dataSource)
       processingResult = uVar8 - ProcessingResult1;
     }
     *(int *)(uiBufferData + 4) = processingResult;
-    FUN_18070f490(uiContext);
+    CleanupUIContext(uiContext);
     uVar8 = *(uint *)((longlong)uiContext + 0x14);
     uVar9 = *(uint *)(uiContext + 2);
     if (uVar8 < MaxProcessingCount) {
@@ -78604,7 +78604,7 @@ void ProcessUIDataInitialization(longlong uiContext,int *dataSource,int targetBu
   pstackInt328 = dataSource;
   stackLong320 = uiContext;
   if (*(int *)(uiBufferData + 0x2190) < processingResult6) {
-    stackInt338 = FUN_1807224d0(uiContext + 0x10c0);
+    stackInt338 = InitializeUIFontRendering(uiContext + 0x10c0);
     processingResult6 = dataSource[1];
   }
   if (((processingResult6 != 1) || (*(int *)(uiBufferData + 0x2190) != 2)) ||
@@ -78868,7 +78868,7 @@ void InitializeUIContextAndBuffers(longlong uiContext)
   
   initializationCounter = 2;
   do {
-    FUN_1807224d0();
+    InitializeUIFontRendering();
     initializationCounter = initializationCounter + -1;
   } while (initializationCounter != 0);
   *(UIHandle *)(uiContext + 0x2180) = 0;
@@ -93994,8 +93994,8 @@ void FUN_180722370(UIHandle uiContext,int *dataSource)
 
 
 
- void FUN_1807224d0(longlong uiContext)
-void FUN_1807224d0(longlong uiContext)
+ void InitializeUIFontRendering(longlong uiContext)
+void InitializeUIFontRendering(longlong uiContext)
 
 {
                      WARNING: Subroutine does not return
