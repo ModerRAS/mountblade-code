@@ -75711,7 +75711,7 @@ LAB_18070e0f9:
       stackInt178 = 0;
       goto LAB_18070d1ad;
     }
-    stackInt178 = FUN_18070f310(param_6,(*(int *)(param_6 + 0x18) - localInt9) + 0xd);
+    stackInt178 = GetUIElementCount(param_6,(*(int *)(param_6 + 0x18) - localInt9) + 0xd);
     LoopCounter = *(uint *)(param_6 + 0x20);
     if (stackInt178 == 0) goto LAB_18070d1ad;
   }
@@ -75731,12 +75731,12 @@ LAB_18070d1ad:
   stackUInt180 = 6;
   stackUIntb8 = 2;
   if ((stackInt1b4 == 0) && (EventOperationCount + 0x10 <= uiValidationResult)) {
-    localInt9 = FUN_18070f310(param_6,1);
+    localInt9 = GetUIElementCount(param_6,1);
     if (localInt9 != 0) {
-      localInt9 = FUN_18070f540(param_6,6);
-      EventOperationCount = FUN_18070f360(param_6,localInt9 + 4);
+      localInt9 = SetUIElementState(param_6,6);
+      EventOperationCount = UpdateUIElementData(param_6,localInt9 + 4);
       stackInt170 = (0x10 << ((byte)localInt9 & 0x1f)) + EventOperationCount + -1;
-      FUN_18070f360(param_6,3);
+      UpdateUIElementData(param_6,3);
       localInt9 = 0x1f;
       if (*(uint *)(param_6 + 0x20) != 0) {
         for (; *(uint *)(param_6 + 0x20) >> localInt9 == 0; localInt9 = localInt9 + -1) {
@@ -80157,33 +80157,32 @@ void ProcessUIMatrixTransformation(float *uiContext, UIHandle dataSource, UIHand
 
 
 
- void FUN_180711576(float *uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_180711576(float *uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
+ void ProcessUIMatrixTransformation(float *uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
+void ProcessUIMatrixTransformation(float *uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
-  float floatResult;
-  float localFloat2;
-  float resultValue;
-  float processedFloat;
-  float secondaryValue;
-  float localFloat6;
-  int localInt7;
-  uint uVar8;
-  float *plocalFloat9;
-  float *ContextHandle;
-  float *pfloatResult0;
-  longlong BasePointer;
-  float *TargetHandle;
-  float *pfloatResult1;
-  longlong allocatedMemory2;
-  ulonglong result3;
-  longlong RegisterPointer;
-  int RegisterValue;
-  longlong unmodifiedR13;
-  float *EventHandle;
-  float *pvectorComponentX;
-  longlong allocatedMemory5;
-  longlong unmodifiedR15;
+  float matrixElementA;
+  float matrixElementB;
+  float targetValueX;
+  float contextValueY;
+  float contextValueX;
+  float tempResult;
+  int elementCount;
+  uint loopCounter;
+  float *sourceMatrixPtr;
+  float *contextBasePtr;
+  float *targetMatrixPtr;
+  longlong matrixStride;
+  float *inverseMatrixPtr;
+  longlong tempMemory1;
+  ulonglong iterationCount;
+  longlong startIndex;
+  int registerValue;
+  longlong sourceBaseAddr;
+  float *eventDataPtr;
+  float *vectorComponentPtr;
+  longlong tempMemory2;
+  longlong targetBaseAddr;
   int stackParam000000a0;
   
   if (RegisterPointer < bufferSize) {
