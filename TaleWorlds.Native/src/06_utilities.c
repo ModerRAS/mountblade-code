@@ -5427,12 +5427,8 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 #define GetSecurityCheckResult GetSecurityCheckResult
 #define ProcessDataValidationAndSecurityCheck FUN_18089dcf0
 
-// 原始函数名：FUN_18089dd54 - 系统上下文处理函数
-// 功能：处理系统上下文和输入寄存器操作
+// 系统处理和验证函数组
 #define ProcessSystemContext FUN_18089dd54
-
-// 原始函数名：FUN_18089dd78 - 系统状态验证函数
-// 功能：验证系统状态并返回验证结果
 #define ValidateSystemState FUN_18089dd78
 
 /**
@@ -5445,20 +5441,11 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
  */
 #define ProcessDataBuffer FUN_18089dda2
 
-// 原始函数名：Unwind_18090af70 - 异常上下文内存资源清理函数
-// 功能：清理异常上下文中的内存资源，执行回调函数并管理系统终止状态
+// 异常处理器回调函数组
 #define CleanupExceptionContextMemoryResources Unwind_18090af70
-
-// 原始函数名：Unwind_18090af90 - 异常处理器回调执行函数
-// 功能：执行异常处理器回调函数，处理异常清理操作
 #define ExecuteExceptionHandlerCallback Unwind_18090af90
-
-// 原始函数名：Unwind_18090afb0 - 异常处理器回调执行函数A1
-// 功能：在0x2e0偏移处执行异常处理器回调函数
 #define ExecuteExceptionHandlerCallbackA1 Unwind_18090afb0
 
-// 原始函数名：Unwind_18090afd0 - 异常处理器回调执行函数A2
-// 功能：在0x2e8偏移处执行异常处理器回调函数
 #define ExecuteExceptionHandlerCallbackA2 Unwind_18090afd0
 
 /**
