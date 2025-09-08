@@ -12226,26 +12226,6 @@ uint8_t SystemResourceManagementTable;
  * 
  * @see QueryAndRetrieveSystemDataA0, ExecuteCoreFunction, ProcessUtilityOperation, ReleaseResource, CleanupMemory
  */
-/**
- * @brief 处理对象数据并进行验证
- * 
- * 该函数负责处理系统对象数据，执行安全验证，并管理相关资源的生命周期。
- * 它通过系统上下文验证对象的有效性，执行核心功能处理，然后清理相关资源。
- * 
- * @param ObjectHandle 对象句柄，用于标识要处理的对象
- * @param DataContext 数据上下文，包含处理所需的数据配置信息
- * 
- * @note 该函数包含栈保护机制，防止栈溢出攻击
- * @note 函数会自动清理分配的资源，确保系统资源不被泄漏
- * 
- * 处理流程：
- * 1. 初始化变量和栈保护
- * 2. 查询系统数据并验证上下文
- * 3. 执行核心功能处理
- * 4. 遍历并处理资源列表
- * 5. 清理内存缓冲区
- * 6. 执行安全验证检查
- */
 void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 {
   // 资源和操作相关变量
