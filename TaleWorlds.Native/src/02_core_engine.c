@@ -225416,7 +225416,7 @@ LAB_18018e486:
 
 
 uint64_t *
-FUN_18018e7e0(uint64_t *CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+ProcessCharacterEncodingAndSystemBufferConfiguration(uint64_t *CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   long long *CharacterCode;
   uint32_t MemoryAllocationIndex;
