@@ -91763,7 +91763,20 @@ void ConfigureExceptionHandlerContextC5C0(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_18090c5d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文资源管理（偏移量0xC5D0）
+ * 
+ * 该函数负责管理异常上下文中的资源，包括资源迭代器的处理、
+ * 异常上下文的验证和数据缓冲区的清理操作。此函数在异常处理
+ * 系统中起到关键的资源管理作用。
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_18090c5d0
+ * @note 该函数处理异常上下文的资源分配和释放
+ */
+void ProcessExceptionContextResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
