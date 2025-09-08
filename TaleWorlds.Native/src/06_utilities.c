@@ -416,6 +416,18 @@
 #define ExceptionHandlerPointerOffset2A0 0x2a0                // 异常处理器指针偏移量2A0
 #define ExceptionContextStatusOffset68 0x68                   // 异常上下文状态偏移量68
 
+// 异常上下文资源管理偏移量常量
+#define ResourceIteratorTableOffset1CD8 0x1cd8                // 资源迭代器表偏移量1CD8
+#define ResourceValidationOffset12E3 0x12e3                    // 资源验证偏移量12E3
+#define ResourceValidationOffset12DD 0x12dd                  // 资源验证偏移量12DD
+#define ResourceManagementOffset80D8 0x80d8                    // 资源管理偏移量80D8
+#define ResourceManagementOffset8088 0x8088                  // 资源管理偏移量8088
+#define ResourceManagementOffset80B0 0x80b0                    // 资源管理偏移量80B0
+#define MemoryBlockOffset200 200                               // 内存块偏移量200
+#define MemoryBlockOffsetD0 0xd0                               // 内存块偏移量D0
+#define SystemResourceBaseOffset7F20 0x7f20                    // 系统资源基础偏移量7F20
+#define ResourceValidationFlagOffset60 0x60                    // 资源验证标志偏移量60
+
 // 系统管理偏移量常量
 #define SystemManagementOffset98 0x98                          // 系统管理偏移量98
 #define SystemConfigPrimaryOffset 0x0                         // 系统配置主偏移量
@@ -95144,9 +95156,9 @@ void ProcessExceptionContextResourceReleaseB00(DataBuffer operationBase, int64_t
   int64_t *contextPointer;
   int64_t resourceIterator;
   
-  if (0 < *(int *)(dataBuffer + 0x2b0)) {
-    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
-    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
+  if (0 < *(int *)(dataBuffer + ResourceCounterOffset2B0)) {
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + ResourceIteratorTableOffset1CD8);
+    if ((*(char *)(SystemResourcePointer + ResourceValidationOffset12E3) != '\0') || (*(char *)(SystemResourcePointer + ResourceValidationOffset12DD) != '\0')
        ) {
       contextPointer = (int64_t *)(resourceIterator + ResourceManagementOffset80d8 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20);
       exceptionHandlerContext = *contextPointer;
@@ -95156,12 +95168,12 @@ void ProcessExceptionContextResourceReleaseB00(DataBuffer operationBase, int64_t
         *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionHandlerContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionHandlerContext = *(int64_t *)(memoryBlockOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryBlockOffset + MemoryBlockOffsetD0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
-          if (*(char *)(*(int64_t *)(exceptionHandlerContext + resourceIterator * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(exceptionHandlerContext + resourceIterator * 8) + ResourceValidationFlagOffset60) == '\x01') {
             if (operationResult != -1) {
               ValidateDataBufferA2(*(DataBuffer *)(exceptionHandlerContext + (int64_t)operationResult * 8));
             }
@@ -95173,7 +95185,7 @@ void ProcessExceptionContextResourceReleaseB00(DataBuffer operationBase, int64_t
       }
     }
   }
-  *(uint8_t **)(dataBuffer + 0x2a0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerPointerOffset2A0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
