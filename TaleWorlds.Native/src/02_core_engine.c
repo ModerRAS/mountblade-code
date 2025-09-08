@@ -200498,25 +200498,25 @@ void ProcessCharacterEncodingAndSystemBufferConfiguration(uint64_t CharacterCode
   Utf16Character = *(uint *)(MemoryPoolBlockSize + 0x10);
   if (*(long long *)(MemoryPoolBlockSize + 8) == 0) {
 LAB_18016a9e0:
-    if (Utf16Char != 0) {
+    if (Utf16Character != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(SystemCharacterStatusBufferPointer,*(void *)(MemoryPoolBlockSize + 8),(unsigned long long)Utf16Char);
+      memcpy(CharacterStatusBuffer,*(void *)(MemoryPoolBlockSize + 8),(unsigned long long)Utf16Character);
     }
   }
-  else if (Utf16Char != 0) {
-    InputDataLength = Utf16Char + 1;
+  else if (Utf16Character != 0) {
+    InputDataLength = Utf16Character + 1;
     if (InputDataLength < 0x10) {
       InputDataLength = 0x10;
     }
-    SystemCharacterStatusBufferPointer = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)InputDataLength,0x13);
-    *SystemCharacterStatusBufferPointer = 0;
-    MemoryAddressMaskPointer = GetMemoryAllocationInfo(SystemCharacterStatusBufferPointer);
+    CharacterStatusBuffer = (uint8_t *)BufferAllocate(MemoryPoolManager,(long long)InputDataLength,0x13);
+    *CharacterStatusBuffer = 0;
+    MemoryAddressMask = GetMemoryAllocationInfo(CharacterStatusBuffer);
     goto LAB_18016a9e0;
   }
-  if (SystemCharacterStatusBufferPointer != (uint8_t *)0x0) {
-    SystemCharacterStatusBufferPointer[Utf16Char] = 0;
+  if (CharacterStatusBuffer != (uint8_t *)0x0) {
+    CharacterStatusBuffer[Utf16Character] = 0;
   }
-  if (Utf16Char != 0xffffffff) {
+  if (Utf16Character != 0xffffffff) {
     CalculatedCodePoint = Utf16Char + 2;
     if (SystemCharacterStatusBufferPointer == (uint8_t *)0x0) {
       if ((int)CalculatedCodePoint < 0x10) {
