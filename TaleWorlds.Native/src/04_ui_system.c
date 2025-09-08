@@ -6181,25 +6181,25 @@ LAB_UIStringCacheFound:
     *resultPointer = 1;
   }
   else {
-    stringCacheResult = strstr(&UIStringCache,stackPointer + -0x59);
-    if (stringCacheResult != 0) goto LAB_UIStringCacheFound;
-    stringCacheResult = strstr(&DefaultUIStringCache,stackPointer + -0x59);
-    if (stringCacheResult == 0) {
+    cacheSearchResult = strstr(&UIStringCache,stackPointer + -0x59);
+    if (cacheSearchResult != 0) goto LAB_UIStringCacheFound;
+    cacheSearchResult = strstr(&DefaultUIStringCache,stackPointer + -0x59);
+    if (cacheSearchResult == 0) {
       *(longlong *)(stackPointer + -0x69) = stackPointer + -0x59;
       parsedNumericValue = strtol(stackPointer + -0x59,stackPointer + -0x69,10);
       unitSuffixPointer = *(char **)(stackPointer + -0x69);
       if (resultPointer[2] == 8) {
-        unitChar = *unitSuffixPointer;
-        if (unitChar == 'K') {
+        unitConversionChar = *unitSuffixPointer;
+        if (unitConversionChar == 'K') {
           unitSuffixPointer = unitSuffixPointer + 1;
           *(char **)(stackPointer + -0x69) = unitSuffixPointer;
         }
-        else if (unitChar == 'M') {
+        else if (unitConversionChar == 'M') {
           parsedNumericValue = parsedNumericValue << 10;
           unitSuffixPointer = unitSuffixPointer + 1;
           *(char **)(stackPointer + -0x69) = unitSuffixPointer;
         }
-        else if (unitChar == 'G') {
+        else if (unitConversionChar == 'G') {
           parsedNumericValue = parsedNumericValue << 0x14;
           unitSuffixPointer = unitSuffixPointer + 1;
           *(char **)(stackPointer + -0x69) = unitSuffixPointer;
@@ -77117,12 +77117,22 @@ LAB_18070fb9d:
  * - UI句柄的处理和验证
  * - 数据传输和转换操作
  * 
- * @param uiContext UI上下文指针
+ /**
+ * @brief 解析和处理UI数据流
+ * 
+ * 该函数负责解析和处理UI系统中的复杂数据流，包括：
+ * - 根据数据类型标识符解析不同格式的UI数据
+ * - 处理压缩和编码的UI数据结构
+ * - 验证数据完整性和边界检查
+ * - 分配和管理数据缓冲区
+ * - 返回处理结果和状态信息
+ * 
+ * @param uiContext UI上下文指针，包含数据类型和控制信息
  * @param dataSource 数据源句柄
  * @param targetBuffer 目标缓冲区索引
- * @return 处理结果状态码
+ * @return 处理结果状态码，成功时返回处理的数据大小，失败时返回0xfffffffc
  */
-ulonglong FUN_18070f8a4(byte *uiContext,UIHandle dataSource,int targetBuffer)
+ulonglong ParseUIDataStream(byte *uiContext,UIHandle dataSource,int targetBuffer)
 
 {
   byte isCharacterMatch;
@@ -82112,17 +82122,34 @@ void ProcessUIDataBatch(UIHandle uiContext,longlong dataSource,longlong targetBu
 
 
  void FUN_180712fbc(UIDword uiContext,UIHandle dataSource,longlong targetBuffer)
-void FUN_180712fbc(UIDword uiContext,UIHandle dataSource,longlong targetBuffer)
+/**
+ * @brief 处理UI上下文数据批量操作
+ * 
+ * 该函数负责处理UI上下文数据的批量操作，包括：
+ * - 遍历和处理多个UI上下文数据
+ * - 调用UI处理函数进行数据转换
+ * - 将结果写入目标缓冲区
+ * - 执行渲染任务
+ * 
+ * 该函数是UI系统中进行批量数据处理的组件，用于高效处理多个UI元素的数据。
+ * 
+ * @param uiContext UI上下文标识符
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区地址
+ * 
+ * @note 原始函数名：FUN_180712fbc
+ */
+void ProcessUIContextBatchOperation(UIDword uiContext,UIHandle dataSource,longlong targetBuffer)
 
 {
-  UIDword *ptrResult;
-  int unmodifiedESI;
+  UIDword *resultPointer;
+  int maxIterations;
   ulonglong iterationCount;
-  longlong stringCompareIndex;
-  int RegisterValue;
-  longlong unmodifiedR13;
-  UIDword EventHandleD;
-  ulonglong stackParam00000038;
+  longlong dataOffset;
+  int currentIndex;
+  longlong baseAddress;
+  UIDword eventHandle;
+  ulonglong renderTaskParam;
   
   if (RegisterValue < unmodifiedESI) {
     stringCompareIndex = (longlong)RegisterValue * 4 + unmodifiedR13;

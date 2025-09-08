@@ -87308,7 +87308,19 @@ void ExecuteExceptionHandlerCallbackB2(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090b750(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器回调函数B3
+ * 
+ * 该函数负责在偏移量0x280处获取异常上下文处理器指针，
+ * 并调用该上下文中的异常处理函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090b750
+ */
+void ExecuteExceptionHandlerCallbackB3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -87322,7 +87334,19 @@ void Unwind_18090b750(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b770(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器回调函数B4
+ * 
+ * 该函数负责在偏移量0x288处获取异常上下文处理器指针，
+ * 并调用该上下文中的异常处理函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090b770
+ */
+void ExecuteExceptionHandlerCallbackB4(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -87336,7 +87360,19 @@ void Unwind_18090b770(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b790(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器回调函数B5
+ * 
+ * 该函数负责在偏移量0x2a0处获取异常上下文处理器指针，
+ * 并调用该上下文中的异常处理函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090b790
+ */
+void ExecuteExceptionHandlerCallbackB5(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -87350,7 +87386,19 @@ void Unwind_18090b790(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b7b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器回调函数B6
+ * 
+ * 该函数负责在偏移量0x2a8处获取异常上下文处理器指针，
+ * 并调用该上下文中的异常处理函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090b7b0
+ */
+void ExecuteExceptionHandlerCallbackB6(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -87364,7 +87412,19 @@ void Unwind_18090b7b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b7d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器回调函数B7
+ * 
+ * 该函数负责在偏移量0x2b0处获取异常上下文处理器指针，
+ * 并调用该上下文中的异常处理函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090b7d0
+ */
+void ExecuteExceptionHandlerCallbackB7(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
