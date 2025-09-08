@@ -206509,7 +206509,16 @@ void ProcessCharacterEncodingConversion(long long CharacterCode)
 
 
 
-719d0(long long CharacterCodevoid FUN_1801719d0(long long CharacterCode
+/**
+ * @brief 处理字符数据验证的函数
+ * 
+ * 处理字符数据验证操作，包括字符代码验证和系统状态检查
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * 
+ * @note 原始函数名：FUN_1801719d0
+ */
+void ProcessCharacterDataValidation(long long CharacterCode)
 {
   uint64_t *CharacterStatusBuffer;
   code *SystemValidationFunction;
@@ -206550,7 +206559,16 @@ void ProcessCharacterEncodingConversion(long long CharacterCode)
 
 
 
-71ab0(long long CharacterCodevoid FUN_180171ab0(long long CharacterCode
+/**
+ * @brief 处理字符编码状态管理的函数
+ * 
+ * 处理字符编码状态管理操作，包括字符状态缓冲区和系统资源管理
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * 
+ * @note 原始函数名：FUN_180171ab0
+ */
+void ProcessCharacterEncodingStatusManagement(long long CharacterCode)
 {
   uint64_t *CharacterStatusBuffer;
   code *SystemValidationFunction;
@@ -206591,7 +206609,17 @@ void ProcessCharacterEncodingConversion(long long CharacterCode)
 
 
 
-71c80(long long CharacterCode,long long SystemBufferSizevoid FUN_180171c80(long long CharacterCode,long long SystemBufferSize
+/**
+ * @brief 处理字符缓冲区大小管理的函数
+ * 
+ * 处理字符缓冲区大小管理操作，包括缓冲区分配和大小计算
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * @param SystemBufferSize 系统缓冲区大小参数，用于指定缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180171c80
+ */
+void ProcessCharacterBufferSizeManagement(long long CharacterCode,long long SystemBufferSize)
 {
   uint64_t *CharacterStatusBuffer;
   code *SystemValidationFunction;
@@ -209106,7 +209134,7 @@ unsigned long long ProcessCharacterEncodingAndThreadPriorityManagement(long long
           DispatchMessageW(&SystemPriorityLevel);
           StringComparisonResult = PeekMessageW(&SystemPriorityLevel,0,0,0,1);
         }
-        FUN_1801712c0(CharacterCode[0x42]);
+        ProcessCharacterTableWithOffset(CharacterCode[0x42]);
       }
       pSystemTemporaryValue50 = CharacterCode + 0x33;
       cStack_48 = 0;
