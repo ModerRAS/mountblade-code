@@ -2229,8 +2229,41 @@ void* UIGestureCoordinates;
  * @see ProcessUIDataTransfer
  */
 #define ProcessUIDataTransfer FUN_180675e28
+/**
+ * @brief UI系统数据转换函数
+ * 
+ * 处理UI系统中的数据转换操作，包括数据格式的转换和适配。
+ * 主要负责管理UI系统中的数据转换流程。
+ * 
+ * @return uint32_t 转换结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 原始函数名：FUN_180675f70
+ * @see ProcessUIDataConversion
+ */
 #define ProcessUIDataConversion FUN_180675f70
+/**
+ * @brief UI系统数据优化函数
+ * 
+ * 处理UI系统中的数据优化操作，包括数据的压缩和性能优化。
+ * 主要负责管理UI系统中的数据优化流程。
+ * 
+ * @return uint32_t 优化结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 原始函数名：FUN_180676320
+ * @see ProcessUIDataOptimization
+ */
 #define ProcessUIDataOptimization FUN_180676320
+/**
+ * @brief UI系统数据验证函数
+ * 
+ * 处理UI系统中的数据验证操作，包括数据完整性和有效性检查。
+ * 主要负责管理UI系统中的数据验证流程。
+ * 
+ * @return uint32_t 验证结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 原始函数名：FUN_180676490
+ * @see ProcessUIDataValidation
+ */
 #define ProcessUIDataValidation FUN_180676490
 #define ProcessUIDataAnalysis FUN_180676700
 #define ProcessUIDataTransformation FUN_180676aa0
