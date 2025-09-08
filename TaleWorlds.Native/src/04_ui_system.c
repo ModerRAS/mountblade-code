@@ -90909,12 +90909,15 @@ void ValidateUISystemIntegrity(void)
 
 
 
- void FUN_18071db50(UIHandle uiContext)
-void FUN_18071db50(UIHandle uiContext)
-
+ /**
+ * @brief 清空UI上下文内存
+ * @param uiContext UI上下文句柄
+ * @note 原始函数名：FUN_18071db50
+ * @warning 此函数不返回（清空内存后可能跳转到其他位置）
+ */
+void ClearUIContextMemory(UIHandle uiContext)
 {
-                     WARNING: Subroutine does not return
-  memset(uiContext,0,0x13ec);
+  memset(uiContext, 0, 0x13ec);
 }
 
 
@@ -397195,42 +397198,57 @@ void FUN_18089f7fd(void)
 
 
 
-UIHandle FUN_18089f830(longlong uiContext,longlong *dataSource)
+/**
+ * @brief 验证UI数据完整性
+ * 
+ * 验证UI系统数据的完整性和有效性，包括缓冲区验证、数据一致性检查等
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @return UIHandle 验证结果句柄，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：FUN_18089f830
+ */
+UIHandle ValidateUIDataIntegrity(longlong uiContext, longlong *dataSource)
 
 {
-  UIHandle result;
-  UIDword bufferValidation [4];
-  UIByte astackUInt48 [32];
-  UIByte astackUInt28 [32];
+  UIHandle validationResult;
+  UIDword bufferValidationData[4];
+  UIByte firstValidationBuffer[32];
+  UIByte secondValidationBuffer[32];
   
-  result = FUN_1808ddd30(dataSource,astackUInt28,1,0x5453494c,0x49444d43);
-  if (((int)result == 0) &&
-     (result = FUN_1808ddd30(dataSource,astackUInt48,0,0x42444d43,0), (int)result == 0)) {
+  // 验证LIST和IDMC数据头
+  validationResult = FUN_1808ddd30(dataSource, firstValidationBuffer, 1, 0x5453494c, 0x49444d43);
+  if (((int)validationResult == 0) &&
+     (validationResult = FUN_1808ddd30(dataSource, secondValidationBuffer, 0, 0x42444d43, 0), (int)validationResult == 0)) {
     if (*(int *)(dataSource[1] + 0x18) != 0) {
       return 0x1c;
     }
-    result = FUN_180899ef0(*dataSource,uiContext + 0x10);
-    if ((int)result == 0) {
+    // 验证数据源上下文
+    validationResult = FUN_180899ef0(*dataSource, uiContext + 0x10);
+    if ((int)validationResult == 0) {
       if (*(int *)(dataSource[1] + 0x18) != 0) {
         return 0x1c;
       }
-      bufferValidation[0] = *(UIDword *)(uiBufferData + 0xd8);
-      result = (**(code **)**(UIHandle **)(*dataSource + 8))
-                        (*(UIHandle **)(*dataSource + 8),bufferValidation,4);
-      if ((int)result == 0) {
+      // 验证缓冲区数据
+      bufferValidationData[0] = *(UIDword *)(uiBufferData + 0xd8);
+      validationResult = (**(code **)**(UIHandle **)(*dataSource + 8))
+                        (*(UIHandle **)(*dataSource + 8), bufferValidationData, 4);
+      if ((int)validationResult == 0) {
         if (*(int *)(dataSource[1] + 0x18) != 0) {
           return 0x1c;
         }
-        result = FUN_180899ef0(*dataSource,uiContext + 0xdc);
-        if (((int)result == 0) &&
-           (result = FUN_1808a7c40(dataSource,uiContext + 0xec,0x80), (int)result == 0)) {
+        // 验证扩展数据区域
+        validationResult = FUN_180899ef0(*dataSource, uiContext + 0xdc);
+        if (((int)validationResult == 0) &&
+           (validationResult = FUN_1808a7c40(dataSource, uiContext + 0xec, 0x80), (int)validationResult == 0)) {
                      WARNING: Subroutine does not return
-          FUN_1808de000(dataSource,astackUInt48);
+          FUN_1808de000(dataSource, secondValidationBuffer);
         }
       }
     }
   }
-  return result;
+  return validationResult;
 }
 
 
@@ -397976,6 +397994,9 @@ UIHandle FUN_18089fc50(longlong uiContext,UIHandle *dataSource)
 #define ProcessUIValidationData FUN_180719a90
 #define ProcessUIAdvancedData FUN_1807213f0
 #define ProcessUIComplexData FUN_180721540
+
+// UI系统数据验证函数
+#define ValidateUIDataIntegrity FUN_18089f830
 
 
 
