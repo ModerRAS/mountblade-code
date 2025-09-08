@@ -327,7 +327,7 @@ typedef enum {
 // UI系统函数宏定义补充
 #define ValidateUIContext ValidateUIContext
 #define ProcessUIComponent ProcessUIComponent
-#define ProcessUIComponentOpacity func_0x0001807673c0
+#define ProcessUIComponentOpacity ProcessUIComponentOpacity
 #define ProcessUIRenderOpacity FUN_180785c10
 
 // UI系统函数宏定义 - 处理UI事件调度
@@ -981,8 +981,8 @@ void* UIAnimationSystem;
  原始函数名：ProcessUIDataInternal - UI数据处理函数
 #define ProcessUIDataInternal ProcessUIDataInternal
 
- 原始函数名：func_0x000180753860 - UI内存释放函数
-#define FreeUIMemory func_0x000180753860
+ 原始函数名：FreeUIMemory - UI内存释放函数
+#define FreeUIMemory FreeUIMemory
 
  原始函数名：ExecuteUIRenderTask - UI渲染任务执行函数
 #define ExecuteUIRenderTask ExecuteUIRenderTask
@@ -1441,9 +1441,9 @@ void* UIGestureCoordinates;
 #define UIUnknownFunctionTable14 UIUnknownFunctionTable14
 
  UI系统内部函数宏定义
-#define ProcessUIComponentRenderTask1 func_0x00018001a59e
-#define ProcessUIComponentRenderTask2 func_0x00018001a682
-#define ProcessUIComponentRenderTask3 func_0x00018001c560
+#define ProcessUIComponentRenderTask1 ProcessUIComponentRenderTask1
+#define ProcessUIComponentRenderTask2 ProcessUIComponentRenderTask2
+#define ProcessUIComponentRenderTask3 ProcessUIComponentRenderTask3
 
  原始函数名：FUN_180676930 - UI系统主数据处理函数
 #define ProcessUIMainDataAlternative FUN_180676930
@@ -2459,8 +2459,8 @@ void* UIGestureCoordinates;
  获取UI队列的索引值，用于队列管理和状态同步
   queueContext 队列上下文指针
   队列索引值
-  原始函数名: func_0x00018066eb80
- #define GetUIQueueIndex func_0x00018066eb80
+  原始函数名: GetUIQueueIndex
+ #define GetUIQueueIndex GetUIQueueIndex
 
  清理UI系统资源
  清理UI系统的资源
@@ -2474,23 +2474,23 @@ void* UIGestureCoordinates;
  *   *   *  param4 参数4
  *  param5 参数5
   计算结果
-  原始函数名: func_0x000180669850
- #define ProcessUIComponentFloatCalculation func_0x000180669850
+  原始函数名: ProcessUIComponentFloatCalculation
+ #define ProcessUIComponentFloatCalculation ProcessUIComponentFloatCalculation
 
  处理UI结果指针
  处理UI操作的结果指针，用于数据管理和状态同步
   resultPointer 结果指针
  *  param 参数
   处理结果
-  原始函数名: func_0x000180435420
- #define ProcessUIResultPointer func_0x000180435420
+  原始函数名: ProcessUIResultPointer
+ #define ProcessUIResultPointer ProcessUIResultPointer
 
  获取UI系统状态
  获取UI系统的当前状态信息
  * 
   系统状态值
-  原始函数名: func_0x000180435400
- #define GetUISystemStatus func_0x000180435400
+  原始函数名: GetUISystemStatus
+ #define GetUISystemStatus GetUISystemStatus
 
  释放UI分配的内存
  释放UI系统分配的内存资源
@@ -62976,13 +62976,13 @@ void ProcessUIDataSource(UIHandle uiContext,longlong dataSource)
         if (*plocalChar8 != '\0') {
           if (*plocalChar8 < '\x02') {
             result0 = CONCAT44(result1,uiValidationResult);
-            func_0x00018001a59e((int)*(short *)*componentContextPtr * (int)*(short *)(dataSource + 0x7e0),stringCompareIndex,
+            ProcessUIComponentRenderTask1((int)*(short *)*componentContextPtr * (int)*(short *)(dataSource + 0x7e0),stringCompareIndex,
                                 uiValidationResult,stringCompareIndex,result0);
             result1 = (UIDword)((ulonglong)result0 >> 0x20);
             *(UIDword *)*componentContextPtr = 0;
           }
           else {
-            func_0x00018001a682(*componentContextPtr,dataSource + 0x7e0,stringCompareIndex,uiValidationResult);
+            ProcessUIComponentRenderTask2(*componentContextPtr,dataSource + 0x7e0,stringCompareIndex,uiValidationResult);
           }
         }
         CharacterDataOffset = CharacterDataOffset + 4;
@@ -63087,13 +63087,13 @@ void ProcessUIDataSource(UIHandle uiContext,longlong dataSource)
     if (*plocalChar7 != '\0') {
       if (*plocalChar7 < '\x02') {
         uVar9 = CONCAT44(result0,uiOperationResult);
-        func_0x00018001a59e((int)*(short *)*bufferPtr * (int)*(short *)(ContextHandle + 0x7e0),componentIndex,uiOperationResult,
+        ProcessUIComponentRenderTask1((int)*(short *)*bufferPtr * (int)*(short *)(ContextHandle + 0x7e0),componentIndex,uiOperationResult,
                             componentIndex,uVar9);
         result0 = (UIDword)((ulonglong)uVar9 >> 0x20);
         *(UIDword *)*bufferPtr = 0;
       }
       else {
-        func_0x00018001a682(*bufferPtr,ContextHandle + 0x7e0,componentIndex,uiOperationResult);
+        ProcessUIComponentRenderTask2(*bufferPtr,ContextHandle + 0x7e0,componentIndex,uiOperationResult);
       }
     }
     localLong8 = localLong8 + 4;
@@ -120996,7 +120996,7 @@ void FUN_18073f710(UIHandle uiContext)
   stackLong128 = 0;
   uiOperationResult = FUN_180754f10(uiContext,&stackUInt120,&stackLong128);
   if (uiOperationResult == 0) {
-    uiOperationResult = func_0x000180753860(stackUInt120);
+    uiOperationResult = FreeUIMemory(stackUInt120);
     if (uiOperationResult == 0) goto LAB_18073f792;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
@@ -131096,7 +131096,7 @@ void ThunkUIBufferOperation(longlong uiContext)
         if (ValidationBuffer[0] != '\0') {
           FUN_1807671a0(ComponentStatus,uiContext + 0x11080,&ScaleValue,&OpacityValue);
           if (0.0 < ScaleValue) {
-            func_0x0001807673c0(ComponentStatus,EventDataBuffer,0,0);
+            ProcessUIComponentOpacity(ComponentStatus,EventDataBuffer,0,0);
             ColorPointer = ColorArray;
             ProcessingResult = FUN_180785c10(uiContext + 0x12438,uiContext + 0x11080,EventDataBuffer,0);
             if (ProcessingResult != 0) goto ExitFunction;
@@ -200117,7 +200117,7 @@ void FUN_18078b880(longlong uiContext)
     if (acStack_118[0] != '\0') {
       FUN_1807671a0(EventTypeCode,uiContext + 0x11080,&fStack_110,&fStack_114);
       if (0.0 < fStack_110) {
-        func_0x0001807673c0(EventTypeCode,astackUInta8,0,0);
+        ProcessUIComponentOpacity(EventTypeCode,astackUInta8,0,0);
         pfStack_128 = &fStack_10c;
         TempInt4 = FUN_180785c10(uiContext + 0x12438,uiContext + 0x11080,astackUInta8,0);
         if (TempInt4 != 0) goto LAB_18078baa4;
@@ -200503,7 +200503,7 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
         if (ValidationBuffer[0] != '\0') {
           FUN_1807671a0(ComponentStatus,uiContext + 0x11080,&ScaleValue,&OpacityValue);
           if (0.0 < ScaleValue) {
-            func_0x0001807673c0(ComponentStatus,EventDataBuffer,0,0);
+            ProcessUIComponentOpacity(ComponentStatus,EventDataBuffer,0,0);
             ColorPointer = ColorArray;
             ProcessingResult = FUN_180785c10(uiContext + 0x12438,uiContext + 0x11080,EventDataBuffer,0);
             if (ProcessingResult != 0) goto ExitFunction;
@@ -200771,7 +200771,7 @@ void ProcessUIContextEventLoop(longlong uiContext)
       if (cStack0000000000000030 != '\0') {
         FUN_1807671a0(ProcessingStatus,ContextHandle + 0x11080,&stack0x00000038,(longlong)&stack0x00000030 + 4);
         if (0.0 < fStack0000000000000038) {
-          func_0x0001807673c0(ProcessingStatus,&stack0x00000078,0,0);
+          ProcessUIComponentOpacity(ProcessingStatus,&stack0x00000078,0,0);
           localInt5 = FUN_180785c10(ContextHandle + 0x12438,ContextHandle + 0x11080,&stack0x00000078,0,
                                 &stack0x00000040);
           if (localInt5 != 0) goto FUN_18078c72e;
@@ -200983,7 +200983,7 @@ void FUN_18078c188(float uiContext)
       if (cStack0000000000000030 != '\0') {
         FUN_1807671a0(ContextHandleData,ContextHandle + 0x11080,&stack0x00000038,(longlong)&stack0x00000030 + 4);
         if (0.0 < stackParam00000038) {
-          func_0x0001807673c0(ContextHandleData,&stack0x00000078,0,0);
+          ProcessUIComponentOpacity(ContextHandleData,&stack0x00000078,0,0);
           localInt5 = FUN_180785c10(ContextHandle + 0x12438,ContextHandle + 0x11080,&stack0x00000078,0,
                                 &stack0x00000040);
           if (uiEventResult != 0) goto LAB_18078c6fc;
@@ -201682,7 +201682,7 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,UIHandle *targetBuffer
   }
 LAB_18078cd2a:
   if (pEventDataIndex != (longlong *)0x0) {
-    func_0x000180753860(pEventDataIndex);
+    FreeUIMemory(pEventDataIndex);
   }
 LAB_18078cd39:
                      WARNING: Subroutine does not return
