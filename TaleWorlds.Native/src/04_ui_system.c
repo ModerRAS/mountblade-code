@@ -776,7 +776,7 @@ typedef enum {
 #define ProcessUIEventSystem FUN_18070e950
 
 // UI系统函数宏定义 - 获取UI队列项
-#define GetUIQueueItem FUN_18070f310
+#define GetUIQueueItem ProcessUIResourceAllocation
 
 // UI系统函数宏定义 - 设置UI队列项
 #define SetUIQueueItem FUN_18070f360
@@ -863,7 +863,7 @@ typedef enum {
 #define GetUISystemInfo FUN_18087b60b
 
 // UI系统函数宏定义 - 获取UI验证标志
-#define GetUIValidationFlags FUN_18070f310
+#define GetUIValidationFlags ProcessUIResourceAllocation
 
 // UI系统函数宏定义 - 执行UI高级操作
 #define ExecuteUIAdvancedOperation FUN_18071ad00
@@ -1102,9 +1102,9 @@ typedef enum {
 
 // UI系统字体渲染函数
 #define InitializeUIFontRendering InitializeUIFontRendering
-#define FUN_180722540 ProcessUIFontDataTransfer
+#define ProcessUIFontValidation ProcessUIFontDataTransfer
 #define FUN_1807226f0 ConfigureUIFontParameters
-#define FUN_180722910 ValidateUIFontRenderingContext
+#define ProcessUIComponentRendering ValidateUIFontRenderingContext
 #define FUN_180722cf0 ProcessUIFontShaderConfiguration
 #define FUN_180722f80 AcquireUIFontResourceHandle
 
@@ -1566,7 +1566,7 @@ void* UIRenderTarget;
 #define FUN_18070e250 AcquireUISemaphoreHandle
 #define FUN_18070ba50 ProcessUIComponentEvent
 #define FUN_18070e950 ProcessUIRenderDataWithTransform
-#define FUN_18070f310 GetUIElementCount
+#define ProcessUIResourceAllocation GetUIElementCount
 #define FUN_18070f540 SetUIElementState
 #define FUN_18070f360 UpdateUIElementData
 #define FUN_18070ee30 ProcessUIDataTransferWithOffset
@@ -78639,7 +78639,7 @@ LAB_18071066b:
       }
       processingResult6 = (dataSource[3] >> 10) + 1;
       if ((((dataSource[3] >> 10) - 7U & 0xfffffff3) != 0) || (processingResult6 == 0x14)) goto LAB_180710f7f;
-      processingResult6 = FUN_180722540((longlong)uiValidationResult3 * 0x10c0 + uiContext,processingResult6,dataSource[2]);
+      processingResult6 = ProcessUIFontValidation((longlong)uiValidationResult3 * 0x10c0 + uiContext,processingResult6,dataSource[2]);
       stackInt338 = stackInt338 + processingResult6;
       uiValidationResult3 = uiValidationResult3 + 1;
       processingResult6 = dataSource[1];
@@ -78728,13 +78728,13 @@ LAB_180710f7f:
           puiValidationResult0 = puiValidationResult1 + 3;
           processingResult6 = uiValidationResult6;
           do {
-            ProcessingResult1 = FUN_18070f310(resultPointer,1);
+            ProcessingResult1 = ProcessUIResourceAllocation(resultPointer,1);
             *puiValidationResult0 = ProcessingResult1;
             puiValidationResult0 = puiValidationResult0 + 1;
             processingResult6 = processingResult6 + 1;
           } while (processingResult6 < *puiValidationResult1);
         }
-        processingResult6 = FUN_18070f310(resultPointer,1);
+        processingResult6 = ProcessUIResourceAllocation(resultPointer,1);
         puiValidationResult1[6] = processingResult6;
         uiValidationResult3 = uiValidationResult3 + 1;
         processingResult6 = puiValidationResult4[1];
@@ -78795,7 +78795,7 @@ LAB_180710f7f:
               if ((uiValidationResult3 < 1) || (processingResult6 = 2, *puiValidationResult4 == 0)) {
                 processingResult6 = ProcessingResult2;
               }
-              FUN_180722910((longlong)ProcessingResult1 * 0x10c0 + uiContext,stackUInt318,uiValidationResult3,1,processingResult6);
+              ProcessUIComponentRendering((longlong)ProcessingResult1 * 0x10c0 + uiContext,stackUInt318,uiValidationResult3,1,processingResult6);
               FUN_180722cf0(stackUInt318,astackUInt2c8,(int)threadLocalStorageFlag2[-1],(int)*threadLocalStorageFlag2,
                             *(UIDword *)(threadLocalStorageFlag2 + -0x1ce));
               processingResult6 = pstackInt328[1];
@@ -83047,7 +83047,7 @@ uint FUN_1807147f0(longlong uiContext,int dataSource,uint targetBuffer,int buffe
       }
       if (processingResult6 <= localInt7) {
         if (dataSource2 == 0) {
-          ProcessingResult1 = FUN_18070f310(dataSource1,1);
+          ProcessingResult1 = ProcessUIResourceAllocation(dataSource1,1);
           if (ProcessingResult1 != 0) goto LAB_180714c0e;
         }
         else {
@@ -83124,7 +83124,7 @@ LAB_180714c0e:
     *uiContext4 = 0;
   }
   else if (dataSource2 == 0) {
-    ProcessingResult1 = FUN_18070f310(dataSource1);
+    ProcessingResult1 = ProcessUIResourceAllocation(dataSource1);
     *uiContext4 = ProcessingResult1;
   }
   else {
@@ -83939,7 +83939,7 @@ void FUN_180715830(int *uiContext,uint *dataSource,UIHandle targetBuffer,longlon
       result2 = iterationCount0;
       if ((0x10 < *param_6) && (0x10 < uiContext[10])) {
         if (EventOperationCount == 0) {
-          result2 = FUN_18070f310(iterationCount,2);
+          result2 = ProcessUIResourceAllocation(iterationCount,2);
         }
         else {
           func_0x000180705150(iterationCount,uStackX_8,2);
@@ -88268,7 +88268,7 @@ void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffe
               ProcessingStatus = 0xffffffff;
             }
             else {
-              localInt5 = FUN_18070f310(param_6,1);
+              localInt5 = ProcessUIResourceAllocation(param_6,1);
               ProcessingStatus = -localInt5;
             }
           }
@@ -88353,7 +88353,7 @@ void FUN_18071ad94(float uiContext)
             iterationCount = 0xffffffff;
           }
           else {
-            uiCompareResult = FUN_18070f310(uiContext,1);
+            uiCompareResult = ProcessUIResourceAllocation(uiContext,1);
             iterationCount = -uiCompareResult;
           }
         }
@@ -94004,7 +94004,7 @@ void InitializeUIFontRendering(longlong uiContext)
 
 
 
-UIDword FUN_180722540(longlong uiContext,int dataSource,UIHandle targetBuffer)
+UIDword ProcessUIFontValidation(longlong uiContext,int dataSource,UIHandle targetBuffer)
 
 {
   UIDword result;
@@ -94113,8 +94113,8 @@ void FUN_1807226f0(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180722910(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,int resultPointer)
-void FUN_180722910(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,int resultPointer)
+ void ProcessUIComponentRendering(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,int resultPointer)
+void ProcessUIComponentRendering(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,int resultPointer)
 
 {
   UIByte result;

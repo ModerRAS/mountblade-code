@@ -35928,52 +35928,54 @@ void InitializeSystemThreadStructure(void)
 void CleanupSystemResources(long long *ResourceHandle)
 
 {
-  int* SystemIntegerPointer;
-  char *SystemStringPointer;
-  void* *SystemHashNodeData;
-  long long SystemProcessBufferPointer;
-  ulong long CurrentThreadIdentifier;
+  int* ResourceReferenceCounter;
+  char *ResourceValidationString;
+  void* *HashNodeDataPointer;
+  long long ProcessingBufferPointer;
+  long long NextBufferPointer;
+  ulong long MemoryBlockIdentifier;
   
-  SystemHashNodeData = (void* *)*SystemResourceManager;
-  if (SystemHashNodeData != (void* *)0x0) {
-    if ((void* *)SystemHashNodeData[3] != (void* *)0x0) {
-      *(void* *)SystemHashNodeData[3] = 0;
+  HashNodeDataPointer = (void* *)*SystemResourceManager;
+  if (HashNodeDataPointer != (void* *)0x0) {
+    if ((void* *)HashNodeDataPointer[3] != (void* *)0x0) {
+      *(void* *)HashNodeDataPointer[3] = 0;
     }
-    (**(code **)*SystemHashNodeData)(SystemHashNodeData,0);
-      SystemCleanupFunction(SystemHashNodeData);
+    (**(code **)*HashNodeDataPointer)(HashNodeDataPointer,0);
+      SystemCleanupFunction(HashNodeDataPointer);
   }
   if ((SystemResourceManager[6] != 0) && (*(long long *)(SystemResourceManager[6] + 0x10) != 0)) {
       SystemCleanupFunction();
   }
-  SystemProcessBufferPtr = SystemResourceManager[5];
-  while (SystemProcessingBufferPointer != 0) {
-    SystemStringPointer = (char *)(SystemProcessingBufferPointer + 0x141);
-    SystemProcessBufferPtr = *(long long *)(SystemProcessingBufferPointer + 0x138);
-    if (*SystemStringPointer != '\0') {
+  ProcessingBufferPointer = SystemResourceManager[5];
+  while (ProcessingBufferPointer != 0) {
+    ResourceValidationString = (char *)(ProcessingBufferPointer + 0x141);
+    NextBufferPointer = *(long long *)(ProcessingBufferPointer + 0x138);
+    if (*ResourceValidationString != '\0') {
         SystemCleanupFunction();
     }
+    ProcessingBufferPointer = NextBufferPointer;
   }
-  SystemHashNodeData = (void* *)SystemResourceManager[3];
-  if (SystemHashNodeData == (void* *)0x0) {
+  HashNodeDataPointer = (void* *)SystemResourceManager[3];
+  if (HashNodeDataPointer == (void* *)0x0) {
     return;
   }
-  CurrentThreadIdentifier = (ulong long)SystemHashNodeData & SystemMemoryPageAlignmentMask;
-  if (CurrentThreadIdentifier != 0) {
-    SystemProcessBufferPtr = CurrentThreadIdentifier + 0x80 + ((long long)SystemHashNodeData - CurrentThreadIdentifier >> 0x10) * 0x50;
-    SystemProcessBufferPtr = SystemProcessingBufferPointer - (ulong long)*(uint *)(SystemProcessingBufferPointer + 4);
-    if ((*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList) && (*(char *)(SystemProcessingBufferPointer + 0xe) == '\0')) {
-      *SystemHashNodeData = *(void* *)(SystemProcessingBufferPointer + 0x20);
-      *(void* **)(SystemProcessingBufferPointer + 0x20) = SystemHashNodeData;
-      SystemIntegerPointer = (int *)(SystemProcessingBufferPointer + 0x18);
-      *SystemIntegerPointer = *SystemIntegerPointer + SystemResourceCounterDecrement;
-      if (*SystemIntegerPointer == 0) {
+  MemoryBlockIdentifier = (ulong long)HashNodeDataPointer & SystemMemoryPageAlignmentMask;
+  if (MemoryBlockIdentifier != 0) {
+    ProcessingBufferPointer = MemoryBlockIdentifier + 0x80 + ((long long)HashNodeDataPointer - MemoryBlockIdentifier >> 0x10) * 0x50;
+    ProcessingBufferPointer = ProcessingBufferPointer - (ulong long)*(uint *)(ProcessingBufferPointer + 4);
+    if ((*(void ***)(MemoryBlockIdentifier + 0x70) == &ExceptionList) && (*(char *)(ProcessingBufferPointer + 0xe) == '\0')) {
+      *HashNodeDataPointer = *(void* *)(ProcessingBufferPointer + 0x20);
+      *(void* **)(ProcessingBufferPointer + 0x20) = HashNodeDataPointer;
+      ResourceReferenceCounter = (int *)(ProcessingBufferPointer + 0x18);
+      *ResourceReferenceCounter = *ResourceReferenceCounter + SystemResourceCounterDecrement;
+      if (*ResourceReferenceCounter == 0) {
         ReleaseSystemResource();
         return;
       }
     }
     else {
-      SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
-                          SystemHashNodeData,CurrentThreadIdentifier,InvalidHandleValue);
+      SystemExceptionCheck(MemoryBlockIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(MemoryBlockIdentifier + 0x70) == &ExceptionList),
+                          HashNodeDataPointer,MemoryBlockIdentifier,InvalidHandleValue);
     }
   }
   return;
@@ -36061,12 +36063,12 @@ void InitializeSystemDataPointer(long long* SystemResourceManager)
 void ReleaseSystemResourceReference(void)
 
 {
-  void* *MemoryBlockAddress;
+  void* *ResourceMemoryBlock;
   
-  if ((void* *)MemoryBlockAddress[3] != (void* *)0x0) {
-    *(void* *)MemoryBlockAddress[3] = 0;
+  if ((void* *)ResourceMemoryBlock[3] != (void* *)0x0) {
+    *(void* *)ResourceMemoryBlock[3] = 0;
   }
-  (**(code **)*MemoryBlockAddress)();
+  (**(code **)*ResourceMemoryBlock)();
     SystemCleanupFunction();
 }
 
@@ -36085,44 +36087,46 @@ void ReleaseSystemResourceReference(void)
 void CleanupSystemAndProcessBuffers(void)
 
 {
-  int* SystemIntegerPointer;
-  char *SystemStringPointer;
-  void* *SystemHashNodeData;
-  long long SystemProcessBufferPointer;
-  long long StringIterator;
-  ulong long CurrentThreadIdentifier;
+  int* ResourceReferenceCounter;
+  char *BufferValidationString;
+  void* *HashNodeDataPointer;
+  long long ProcessingBufferPointer;
+  long long NextBufferPointer;
+  long long SystemContextIterator;
+  ulong long MemoryBlockIdentifier;
   
-  if ((*(long long *)(StringIterator + 0x30) != 0) &&
-     (*(long long *)(*(long long *)(StringIterator + 0x30) + 0x10) != 0)) {
+  if ((*(long long *)(SystemContextIterator + 0x30) != 0) &&
+     (*(long long *)(*(long long *)(SystemContextIterator + 0x30) + 0x10) != 0)) {
       SystemCleanupFunction();
   }
-  SystemProcessBufferPtr = *(long long *)(StringIterator + 0x28);
-  while (SystemProcessingBufferPointer != 0) {
-    SystemStringPointer = (char *)(SystemProcessingBufferPointer + 0x141);
-    SystemProcessBufferPtr = *(long long *)(SystemProcessingBufferPointer + 0x138);
-    if (*SystemStringPointer != '\0') {
+  ProcessingBufferPointer = *(long long *)(SystemContextIterator + 0x28);
+  while (ProcessingBufferPointer != 0) {
+    BufferValidationString = (char *)(ProcessingBufferPointer + 0x141);
+    NextBufferPointer = *(long long *)(ProcessingBufferPointer + 0x138);
+    if (*BufferValidationString != '\0') {
         SystemCleanupFunction();
     }
+    ProcessingBufferPointer = NextBufferPointer;
   }
-  SystemHashNodeData = *(void* **)(StringIterator + 0x18);
-  if (SystemHashNodeData != (void* *)0x0) {
-    CurrentThreadIdentifier = (ulong long)SystemHashNodeData & SystemMemoryPageAlignmentMask;
-    if (CurrentThreadIdentifier != 0) {
-      SystemProcessBufferPtr = CurrentThreadIdentifier + 0x80 + ((long long)SystemHashNodeData - CurrentThreadIdentifier >> 0x10) * 0x50;
-      SystemProcessBufferPtr = SystemProcessingBufferPointer - (ulong long)*(uint *)(SystemProcessingBufferPointer + 4);
-      if ((*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList) && (*(char *)(SystemProcessingBufferPointer + 0xe) == '\0')) {
-        *SystemHashNodeData = *(void* *)(SystemProcessingBufferPointer + 0x20);
-        *(void* **)(SystemProcessingBufferPointer + 0x20) = SystemHashNodeData;
-        SystemIntegerPointer = (int *)(SystemProcessingBufferPointer + 0x18);
-        *SystemIntegerPointer = *SystemIntegerPointer + SystemResourceCounterDecrement;
-        if (*SystemIntegerPointer == 0) {
+  HashNodeDataPointer = *(void* **)(SystemContextIterator + 0x18);
+  if (HashNodeDataPointer != (void* *)0x0) {
+    MemoryBlockIdentifier = (ulong long)HashNodeDataPointer & SystemMemoryPageAlignmentMask;
+    if (MemoryBlockIdentifier != 0) {
+      ProcessingBufferPointer = MemoryBlockIdentifier + 0x80 + ((long long)HashNodeDataPointer - MemoryBlockIdentifier >> 0x10) * 0x50;
+      ProcessingBufferPointer = ProcessingBufferPointer - (ulong long)*(uint *)(ProcessingBufferPointer + 4);
+      if ((*(void ***)(MemoryBlockIdentifier + 0x70) == &ExceptionList) && (*(char *)(ProcessingBufferPointer + 0xe) == '\0')) {
+        *HashNodeDataPointer = *(void* *)(ProcessingBufferPointer + 0x20);
+        *(void* **)(ProcessingBufferPointer + 0x20) = HashNodeDataPointer;
+        ResourceReferenceCounter = (int *)(ProcessingBufferPointer + 0x18);
+        *ResourceReferenceCounter = *ResourceReferenceCounter + SystemResourceCounterDecrement;
+        if (*ResourceReferenceCounter == 0) {
           ReleaseSystemResource();
           return;
         }
       }
       else {
-        SystemExceptionCheck(CurrentThreadIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
-                            SystemHashNodeData,CurrentThreadIdentifier,InvalidHandleValue);
+        SystemExceptionCheck(MemoryBlockIdentifier,CombineMemoryFlags(SystemExceptionIdentifierTemplate1,*(void ***)(MemoryBlockIdentifier + 0x70) == &ExceptionList),
+                            HashNodeDataPointer,MemoryBlockIdentifier,InvalidHandleValue);
       }
     }
     return;
