@@ -4349,6 +4349,7 @@ const void* const SystemConfigurationDataSecondary = (void*)0x180a27158;
 #define ParseSystemCharacterData FUN_18018cde0
 #define OptimizeSystemCharacterData FUN_1801985e0
 #define CompressSystemCharacterData FUN_180198980
+#define CalculateMemoryPoolBlockSize FUN_18007f2f0
 #define NormalizeSystemCharacterData FUN_18019fc10
 #define FormatSystemCharacterData FUN_180203e30
 #define SanitizeSystemCharacterData FUN_180206da0
@@ -174557,7 +174558,7 @@ void UpdateSystemContextRegisterValue(void)
 
 
 
-3dc40(int *CharacterCode,uint64_t *CharacterCodeSizevoid ProcessCharacterEncodingBuffer(int *CharacterCode,uint64_t *CharacterCodeSize
+void ProcessCharacterEncodingBuffer(int *CharacterCode,uint64_t *CharacterCodeSize)
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
@@ -174927,7 +174928,7 @@ void ProcessCharacterFlushOperation(void)
 
 
 
-3df80(int *CharacterCode,uint64_t *CharacterCodeSizevoid FinalizeSystemDataStructure(int *CharacterCode,uint64_t *CharacterCodeSize
+void FinalizeSystemDataStructure(int *CharacterCode,uint64_t *CharacterCodeSize)
 {
   uint64_t *CharacterStatusBuffer;
   long long BufferStatus;
@@ -214126,7 +214127,7 @@ TemporaryBufferValidation: // 原始标签：LAB_18017a372，TemporaryBufferVali
   }
   StringComparisonResultPointer = (int *)(CharacterCode + 0x10);
   DataSize = MemoryAllocate(MemoryPoolManager,0xf0,8,3);
-  MemoryPoolBlockSizePointer = (long long *)FUN_18007f2f0(DataSize);
+  MemoryPoolBlockSizePointer = (long long *)CalculateMemoryPoolBlockSize(DataSize);
   if (MemoryPoolBlockSizePointer != (long long *)0x0) {
     (**(code **)(*MemoryPoolBlockSizePointer + 0x28))(MemoryPoolBlockSizePointer);
   }
