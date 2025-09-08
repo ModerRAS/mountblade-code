@@ -719,7 +719,7 @@
 #define ProcessSystemDataWithRemainingSpace FUN_180220810           // 处理系统数据和剩余空间
 #define ProcessSystemMemoryValidation FUN_1800b2450                 // 处理系统内存验证
 #define ProcessSystemMemoryCleanupEx FUN_180626ee0                  // 处理系统内存清理扩展
-#define ProcessCharacterEncodingFinalization FUN_180179f00          // 处理字符编码最终化
+#define ProcessCharacterEncodingFinalization ProcessCharacterEncodingFinalization          // 处理字符编码最终化
 #define ConvertCharacterToSystemFormat FUN_1800a1e20          // 转换字符为系统格式
 #define GetCharacterFromMemoryBlock FUN_1802c2400            // 从内存块获取字符
 #define ProcessSystemMemoryAddressMask FUN_1801c9bd0               // 处理系统内存地址掩码
@@ -765,6 +765,12 @@
 #define ProcessSystemDataBufferAllocation FUN_18014a1b0        // 处理系统数据缓冲区分配
 #define ProcessSystemMemoryBufferSetup FUN_18014a900          // 处理系统内存缓冲区设置
 #define ProcessCharacterCodeMemoryAllocation FUN_18014acf0   // 处理字符代码内存分配
+#define ProcessCharacterDataAllocation FUN_1801753d0          // 处理字符数据分配
+#define ProcessCharacterDataFinalization FUN_1801754b0         // 处理字符数据最终化
+#define ProcessCharacterCodeWithSystemBufferSize FUN_180175500 // 处理带系统缓冲区大小的字符代码
+#define ProcessSystemCharacterCleanup FUN_180175572             // 处理系统字符清理
+#define ProcessSystemMemoryValidationEx FUN_180175686           // 处理系统内存验证扩展
+#define ProcessCharacterDataWithUtf8Conversion FUN_180175f20    // 处理带UTF8转换的字符数据
 #define ProcessCharacterCodeValidationAndMemoryManagement FUN_18013d22f // 处理字符代码验证和内存管理
 #define ProcessCharacterCodeAndBufferManagement FUN_18013d36b // 处理字符代码和缓冲区管理
 #define ProcessCharacterCodeWithUtf8BufferManagement FUN_18013d378 // 处理字符代码和UTF8缓冲区管理
@@ -921,7 +927,7 @@
 #define InitializeSystemDataRegistry FUN_18023a940                  // 初始化系统数据注册表
 #define ProcessSystemMemoryWithValidation FUN_1800b2450             // 处理带验证的系统内存
 #define ProcessSystemMemoryValidation FUN_180626ee0                // 处理系统内存验证
-#define ProcessCharacterCodeWithUtf8Conversion FUN_180179f00       // 处理带UTF8转换的字符代码
+#define ProcessCharacterCodeWithUtf8Conversion ProcessCharacterEncodingFinalization       // 处理带UTF8转换的字符代码
 
 /**
  * @brief 处理系统内存管理
@@ -5118,6 +5124,15 @@ const void* const SystemRenderConfigurationStreamOutput = (void*)0x180a05d18;
  * @return 验证结果状态码
  */
 #define ValidateSystemParametersAndCheckStatus ValidateCoreEngineParametersAndStatus
+
+/**
+ * @brief 处理浮点数计算和数组操作函数
+ * 
+ * 该函数负责处理浮点数计算和数组操作，包括比较、计算和数组访问。
+ * 
+ * @return 无返回值
+ */
+#define ProcessFloatCalculationAndArrayOperations FUN_1802090ff
 
 /**
  * @brief 获取系统引用计数
@@ -210008,7 +210023,7 @@ void ProcessCharacterEncodingAndSystemValidation(void)
   SystemUnsignedValue38 = 0;
   StackConfigurationData30 = 0;
   StackParameterStorage28 = *(void *)(**(long long **)(ProcessingResult + 0x50) + 0x428);
-  FUN_18029e450(*(void *)(CoreEngineRenderContext + 0x1cd8),
+  ProcessSystemRenderContext(*(void *)(CoreEngineRenderContext + 0x1cd8),
                 *(void *)(PatternIndex + 0x28 + StackFrameAddressPointer * 8),0,0,1);
   *(long long *)(PatternIndex + 0x40) = *(long long *)(PatternIndex + 0x40) + 1;
   return;
@@ -210423,7 +210438,7 @@ InitializeCharacterCode(uint64_t *CharacterCode,unsigned long long SystemBufferS
 
 uint64_t * FUN_180175f20(uint64_t *CharacterCode,uint SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  FUN_180179f00(CharacterCode + 1,CharacterCode[3],Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  ProcessCharacterEncodingFinalization(CharacterCode + 1,CharacterCode[3],Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   *CharacterCode = &SystemContextBufferSecondary;
   if ((SystemBufferSize & 1) != 0) {
     free(CharacterCode,0x40);
@@ -210870,7 +210885,7 @@ LAB_180176827:
     *(long long **)(CharacterCode + 200) = MemoryPoolBlockSizePointer + 1;
     *(long long **)(CharacterCode + 0xd0) = MemoryPoolBlockSizePointer + AllocatedMemorySize;
   }
-  FUN_1801769e0(CharacterCode,CharacterCodeTablePointer);
+  ProcessCharacterTableValidation(CharacterCode,CharacterCodeTablePointer);
   CharacterCodeTablePointer = *(long long **)(CharacterCode + 200);
   for (CharacterCode2 = *(long long **)(CharacterCode + 0xc0); CharacterCode2 != CharacterCodeTablePointer; CharacterCode2 = CharacterCode2 + 1) {
     AllocatedMemorySize = *CharacterCode2;
@@ -213092,12 +213107,12 @@ uint64_t * FUN_180179ec0(uint64_t *CharacterCode,unsigned long long SystemBuffer
 
 
 
-79f00(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180179f00(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+79f00(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessCharacterEncodingFinalization(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   if (SystemBufferSize == NULL) {
     return;
   }
-  FUN_180179f00(CharacterCode,*CharacterCodeSize,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  ProcessCharacterEncodingFinalization(CharacterCode,*CharacterCodeSize,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   if (SystemBufferSize[5] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
@@ -213111,7 +213126,7 @@ uint64_t * FUN_180179ec0(uint64_t *CharacterCode,unsigned long long SystemBuffer
 
 79f70(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180179f70(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  FUN_180179f00(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  ProcessCharacterEncodingFinalization(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
 }
 
@@ -213120,7 +213135,7 @@ uint64_t * FUN_180179ec0(uint64_t *CharacterCode,unsigned long long SystemBuffer
 
 79f90(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180179f90(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  FUN_180179f00(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  ProcessCharacterEncodingFinalization(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
 }
 
@@ -213129,7 +213144,7 @@ uint64_t * FUN_180179ec0(uint64_t *CharacterCode,unsigned long long SystemBuffer
 
 79fc0(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180179fc0(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  FUN_180179f00(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  ProcessCharacterEncodingFinalization(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
 }
 
@@ -213138,7 +213153,7 @@ uint64_t * FUN_180179ec0(uint64_t *CharacterCode,unsigned long long SystemBuffer
 
 79ff0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180179ff0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  FUN_180179f00(CharacterCode + 1,CharacterCode[3],Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+  ProcessCharacterEncodingFinalization(CharacterCode + 1,CharacterCode[3],Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   *CharacterCode = &SystemContextBufferSecondary;
   return;
 }
@@ -248964,7 +248979,18 @@ LAB_1802090fa:
 
 
 
-090ff(voidvoid FUN_1802090ff(void
+/**
+ * @brief 处理浮点数计算和数组操作
+ * 
+ * 该函数负责处理浮点数计算和数组操作，包括：
+ * - 比较浮点数值并执行相应的计算
+ * - 处理数组元素的访问和修改
+ * - 管理内存边界和迭代计数
+ * 
+ * @note 原始函数名：FUN_1802090ff
+ * @note 函数主要涉及浮点数运算和数组操作
+ */
+void ProcessFloatCalculationAndArrayOperations(void)
 {
   float SystemContextPrimaryFloat;
   int StringComparisonResult;
@@ -252100,7 +252126,7 @@ LAB_18020c9db:
     *(void *)(CharacterCode + 0x20) = 0;
     return;
   }
-  FUN_180179f00(CharacterCode,*PrimaryProcessingStatusFlag,Utf8SourcePointer,Utf16EndPointer,MemoryAllocationIndex);
+  ProcessCharacterEncodingFinalization(CharacterCode,*PrimaryProcessingStatusFlag,Utf8SourcePointer,Utf16EndPointer,MemoryAllocationIndex);
   if (PrimaryProcessingStatusFlag[5] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
@@ -256860,12 +256886,12 @@ long long *ConvertUtf8ToUtf16Character(long long CharacterCode,long long *Charac
   
   StackProcessingValue = 0xfffffffffffffffe;
   if (*(char *)(CharacterCode + 0x210) != '\0') {
-    CharacterCode2 = *(long long **)(CharacterCode + 0x1e8);
-    *CharacterCodeSize = (long long)CharacterCode2;
-    if (CharacterCode2 == (long long *)0x0) {
+    CharacterCodeSecondary = *(long long **)(CharacterCode + 0x1e8);
+    *CharacterCodeSize = (long long)CharacterCodeSecondary;
+    if (CharacterCodeSecondary == (long long *)0x0) {
       return SystemBufferSize;
     }
-    (**(code **)(*CharacterCode2 + 0x28))();
+    (**(code **)(*CharacterCodeSecondary + 0x28))();
     return SystemBufferSize;
   }
   if (*Utf8SourcePointer != 1) {
@@ -256875,7 +256901,7 @@ long long *ConvertUtf8ToUtf16Character(long long CharacterCode,long long *Charac
     CoreEngineValue148 = &SystemNullTemplate;
     TemporaryFlag = 0;
     EventVariablePointer = NULL;
-    uStack_138 = 0;
+    StackValue138 = 0;
     SecondaryProcessingStatusFlag = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
     *(uint8_t *)SecondaryProcessingStatusFlag = 0;
     EventVariablePointer = SecondaryProcessingStatusFlag;
