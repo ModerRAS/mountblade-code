@@ -10630,6 +10630,52 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 #define BufferSizeHandler FUN_18016bb80
 
 /**
+ * @brief 处理浮点数组的快速排序操作
+ * 
+ * 该函数实现了一个复杂的浮点数组排序算法，类似于快速排序的变种
+ * 通过迭代方式对数组进行分区和排序操作
+ * 
+ * @param FloatArrayPointer - 浮点数组指针
+ * @param ArraySizePointer - 数组大小指针  
+ * @param IterationCount - 迭代计数
+ * @param ProcessFlag - 处理标志
+ * 
+ * @note 原始函数名：FUN_180202c0d
+ */
+#define ProcessFloatArrayQuickSort FUN_180202c0d
+
+/**
+ * @brief 处理浮点数组的搜索和排序操作
+ * 
+ * 该函数实现了一个浮点数组的搜索和排序算法，通过迭代方式
+ * 对数组进行查找和排序操作
+ * 
+ * @param SearchPattern - 搜索模式参数
+ * @param ArraySizePointer - 数组大小指针
+ * 
+ * @note 原始函数名：FUN_180202c2d
+ */
+#define ProcessFloatArraySearchAndSort FUN_180202c2d
+
+/**
+ * @brief 处理系统栈帧检查
+ * 
+ * 该函数负责检查系统栈帧的状态，确保系统调用的正确性
+ * 
+ * @note 原始函数名：FUN_180202cef
+ */
+#define ProcessSystemStackFrameCheck FUN_180202cef
+
+/**
+ * @brief 执行系统最终化操作
+ * 
+ * 该函数直接调用系统最终化函数，完成清理工作
+ * 
+ * @note 原始函数名：FUN_180202cf9
+ */
+#define ExecuteSystemFinalization FUN_180202cf9
+
+/**
  * @brief 初始化核心引擎数据结构
  * 
  * 该函数负责初始化核心引擎的数据结构，包括节点创建、内存分配和数据初始化。
@@ -240129,7 +240175,7 @@ void ProcessFloatArrayQuickSort(float *FloatArrayPointer,float *ArraySizePointer
  * 
  * @note 原始函数名：FUN_180202c2d
  */
-void FUN_180202c2d(uint32_t SearchPattern,float *ArraySizePointer)
+void ProcessFloatArraySearchAndSort(uint32_t SearchPattern,float *ArraySizePointer)
 {
   float PrimaryContextValue;
   float SecondaryContextValue;
