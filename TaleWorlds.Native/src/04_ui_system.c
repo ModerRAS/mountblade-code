@@ -870,6 +870,10 @@ typedef enum {
 
 // UI系统变量名美化补充
 #define bVar41 IsComponentValid
+#define localChar36 ComponentContextIndex
+#define localChar34 PreviousComponentContext
+#define localChar8 CurrentComponentContext
+#define localChar26 ComponentContextBackup
 /**
  * @brief 验证UI上下文的有效性
  * 

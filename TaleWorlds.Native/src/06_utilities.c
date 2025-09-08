@@ -34168,11 +34168,11 @@ ValidationLabelB:
         exceptionHandlerContext6 = (int64_t)inputParameter8 * SystemDataRecordMultiplier + 0x14 + (int64_t)exceptionDataBuffer4;
         do {
           pValidationFloatValue3 = (float *)ExecuteSystemResourceOperation();
-          primaryFloatResult = *pValidationFloatValue3;
+          calculatedResultValue = *pValidationFloatValue3;
           validationCounter = pValidationFloatValue3[1];
           secondValidationValue = pValidationFloatValue3[2];
           thirdValidationValue = pValidationFloatValue3[3];
-          *(float *)(exceptionHandlerContext6 + -0x14) = primaryFloatResult;
+          *(float *)(exceptionHandlerContext6 + -0x14) = calculatedResultValue;
           *(float *)(exceptionHandlerContext6 + -0x10) = validationCounter;
           *(float *)(exceptionHandlerContext6 + -0xc) = secondValidationValue;
           *(float *)(exceptionHandlerContext6 + -8) = thirdValidationValue;
