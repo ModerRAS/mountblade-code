@@ -200479,7 +200479,21 @@ ProcessUtf8ToUtf16CharacterEncodingEx9(uint64_t *CharacterCode,uint64_t SystemBu
 
 
 
-uint64_t FUN_18016dca0(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 扩展UTF-8到UTF-16字符编码转换（版本3）
+ * 
+ * 该函数负责将UTF-8编码的字符数据转换为UTF-16编码格式，
+ * 使用第三种转换算法。该函数是字符编码转换系统的
+ * 核心组件之一。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return 返回转换后的字符代码
+ * 
+ * @note 原始函数名：FUN_18016dca0
+ */
+uint64_t ConvertUtf8ToUtf16EncodingEx3(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer)
 {
   ProcessUtf8ToUtf16CharacterEncodingEx3(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
@@ -200487,7 +200501,21 @@ uint64_t FUN_18016dca0(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t
 
 
 
-uint64_t FUN_18016dd20(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 扩展UTF-8到UTF-16字符编码转换（版本2）
+ * 
+ * 该函数负责将UTF-8编码的字符数据转换为UTF-16编码格式，
+ * 使用第二种转换算法。该函数是字符编码转换系统的
+ * 核心组件之一。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return 返回转换后的字符代码
+ * 
+ * @note 原始函数名：FUN_18016dd20
+ */
+uint64_t ConvertUtf8ToUtf16EncodingEx2(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer)
 {
   ProcessUtf8ToUtf16CharacterEncodingEx2(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
@@ -200495,7 +200523,21 @@ uint64_t FUN_18016dd20(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t
 
 
 
-uint64_t FUN_18016dda0(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
+/**
+ * @brief 扩展UTF-8到UTF-16字符编码转换（基础版本）
+ * 
+ * 该函数负责将UTF-8编码的字符数据转换为UTF-16编码格式，
+ * 使用基础转换算法。该函数是字符编码转换系统的
+ * 核心组件之一。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return 返回转换后的字符代码
+ * 
+ * @note 原始函数名：FUN_18016dda0
+ */
+uint64_t ConvertUtf8ToUtf16EncodingEx(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer)
 {
   ProcessUtf8ToUtf16CharacterEncodingEx(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
