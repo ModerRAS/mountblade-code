@@ -10637,17 +10637,17 @@ uint32_t UtilityQueueConfig;
 uint32_t UtilityQueueTimeout;
 uint32_t UtilityQueuePriority;
 
-// 函数: void ConfigureUtilityThreadPool(void)
-// 
-// 配置工具系统线程池
-// 设置线程池的大小和配置参数
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
-void ConfigureUtilityThreadPool(void);             // 配置工具系统线程池
+/**
+ * @brief 配置工具系统线程池
+ * 
+ * 该函数负责初始化和配置工具系统的线程池，设置线程池的大小和配置参数。
+ * 线程池用于处理异步任务和提高系统性能。
+ * 
+ * @note 此函数在系统初始化时调用，确保线程池参数的正确性
+ * 
+ * @see InitializeUtilitySystem, StartUtilityWorkers, ProcessUtilityQueue
+ */
+void ConfigureUtilityThreadPool(void);
 // 工具系统线程池配置变量
 uint32_t UtilityThreadPoolSize;
 uint32_t UtilityThreadPoolStatus;
@@ -10656,16 +10656,17 @@ uint32_t UtilityThreadPoolMaxThreads;
 uint32_t UtilityThreadPoolTimeout;
 uint32_t UtilityThreadPoolPriority;
 
-// 函数: void SynchronizeUtilityData(void)
-// 
-// 同步工具系统数据
-// 同步工具系统中的数据状态
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 同步工具系统数据
+ * 
+ * 该函数负责同步工具系统中的数据状态，确保所有组件使用的数据
+ * 保持一致性。此函数会检查数据版本、处理数据冲突，并更新
+ * 相关的数据状态标志。
+ * 
+ * @note 此函数在多线程环境中调用，需要确保线程安全
+ * 
+ * @see ConfigureUtilitySystem, InitializeUtilitySystem, UtilityEncodeData
+ */
 void SynchronizeUtilityData(void);
 // 工具系统同步数据变量
 uint32_t UtilitySyncDataStatus;
@@ -10674,16 +10675,18 @@ uint32_t UtilitySyncDataOffset;
 uint32_t UtilitySyncDataFlags;
 uint32_t UtilitySyncDataVersion;
 
-// 函数: uint8_t UtilityEncodeData(void);
-// 
-// 编码工具数据
-// 对工具数据进行编码处理，支持多种编码格式
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   uint8_t - 编码结果状态
+/**
+ * @brief 编码工具数据
+ * 
+ * 该函数对工具数据进行编码处理，支持多种编码格式。编码过程
+ * 包括数据验证、格式转换和加密处理等步骤。
+ * 
+ * @return uint8_t - 编码结果状态，0表示成功，非0表示错误码
+ * 
+ * @note 此函数使用预设的编码密钥和缓冲区进行编码操作
+ * 
+ * @see UtilityDecodeData, SynchronizeUtilityData, InitializeUtilitySystem
+ */
 uint8_t UtilityEncodeData(void);
 uint8_t* UtilityEncodingBuffer;
 uint8_t* UtilityEncodeInputData;
@@ -11409,13 +11412,13 @@ uint8_t UtilitySystemSecondaryStorageData;
  * @return uint8_t 处理结果状态码
  */
 uint8_t ProcessUtilitySystemStorage(void);
-uint8_t UtilitySystemStorageData3;
-uint8_t UtilitySystemStorageData4;
-uint8_t UtilitySystemStorageData5;
-uint8_t UtilitySystemStorageData6;
-uint8_t UtilitySystemStorageData7;
-uint8_t UtilitySystemStorageStatus1;
-uint8_t UtilitySystemStorageStatus2;
+uint8_t UtilitySystemTertiaryStorageData;
+uint8_t UtilitySystemQuaternaryStorageData;
+uint8_t UtilitySystemQuinaryStorageData;
+uint8_t UtilitySystemSenaryStorageData;
+uint8_t UtilitySystemSeptenaryStorageData;
+uint8_t UtilitySystemPrimaryStorageStatus;
+uint8_t UtilitySystemSecondaryStorageStatus;
 
 /**
  * @brief 初始化线程本地存储A8
@@ -11646,15 +11649,15 @@ uint8_t SystemNetworkSocket;
 uint8_t SystemThreadLocalStorage;
 uint8_t SystemExceptionVector;
 // 工具系统配置数据
-uint8_t UtilitySystemConfigData1;
-uint8_t UtilitySystemConfigData2;
-uint8_t UtilitySystemConfigData3;
-uint8_t UtilitySystemConfigData4;
-uint8_t UtilitySystemConfigData5;
-uint8_t UtilitySystemConfigData6;
-uint8_t UtilitySystemConfigData7;
-uint8_t UtilitySystemConfigData8;
-uint8_t UtilitySystemConfigData9;
+uint8_t UtilitySystemPrimaryConfigData;
+uint8_t UtilitySystemSecondaryConfigData;
+uint8_t UtilitySystemTertiaryConfigData;
+uint8_t UtilitySystemQuaternaryConfigData;
+uint8_t UtilitySystemQuinaryConfigData;
+uint8_t UtilitySystemSenaryConfigData;
+uint8_t UtilitySystemSeptenaryConfigData;
+uint8_t UtilitySystemOctonaryConfigData;
+uint8_t UtilitySystemNonaryConfigData;
 
 /**
  * @brief 创建内存堆
@@ -11720,26 +11723,27 @@ uint8_t SystemPointerArrayTertiary;
 // 系统指针数组第四值
 uint8_t SystemPointerArrayQuaternary;
 // 系统线程管理数据块
-uint8_t SystemThreadManagementBlock1;
-uint8_t SystemThreadManagementBlock2;
-uint8_t SystemThreadManagementBlock3;
-uint8_t SystemThreadManagementBlock4;
-uint8_t SystemThreadManagementBlock5;
-uint8_t SystemThreadManagementBlock6;
-uint8_t SystemThreadManagementBlock7;
-uint8_t SystemThreadManagementBlock8;
-uint8_t SystemThreadManagementBlock9;
-uint8_t SystemThreadManagementBlock10;
-uint8_t SystemThreadManagementBlock11;
-uint8_t SystemThreadManagementBlock12;
-uint8_t SystemThreadManagementBlock13;
-uint8_t SystemThreadManagementBlock14;
-uint8_t SystemThreadManagementBlock15;
-uint8_t SystemThreadManagementBlock16;
-uint8_t SystemThreadManagementBlock17;
-uint8_t SystemThreadManagementBlock18;
-uint8_t SystemThreadManagementBlock19;
-uint8_t SystemThreadManagementBlock20;
+uint8_t SystemThreadPrimaryManagementBlock;
+uint8_t SystemThreadSecondaryManagementBlock;
+uint8_t SystemThreadTertiaryManagementBlock;
+uint8_t SystemThreadQuaternaryManagementBlock;
+uint8_t SystemThreadQuinaryManagementBlock;
+uint8_t SystemThreadSenaryManagementBlock;
+uint8_t SystemThreadSeptenaryManagementBlock;
+uint8_t SystemThreadOctonaryManagementBlock;
+uint8_t SystemThreadNonaryManagementBlock;
+uint8_t SystemThreadDenaryManagementBlock;
+uint8_t SystemThreadUndenaryManagementBlock;
+uint8_t SystemThreadDuodenaryManagementBlock;
+uint8_t SystemThreadTerdenaryManagementBlock;
+uint8_t SystemThreadQuattuordenaryManagementBlock;
+uint8_t SystemThreadQuindenaryManagementBlock;
+uint8_t SystemThreadSexdenaryManagementBlock;
+uint8_t SystemThreadSeptendenaryManagementBlock;
+uint8_t SystemThreadOctodenaryManagementBlock;
+uint8_t SystemThreadNovendenaryManagementBlock;
+uint8_t SystemThreadVigendenaryManagementBlock;
+uint8_t SystemThreadTrigendenaryManagementBlock;
 // 系统内存管理数据块控制
 uint8_t SystemMemoryManagementBlockControl;
 uint8_t SystemMemoryManagementBlockHandler;
