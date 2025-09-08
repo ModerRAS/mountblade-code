@@ -186618,7 +186618,20 @@ uint64_t ProcessSystemCharacterEncodingConfiguration(long long SystemContext, lo
 
 
 
-53c60(long long CharacterCodevoid FUN_180153c60(long long CharacterCode
+/**
+ * 配置系统数据结构参数
+ * 
+ * 该函数负责配置系统数据结构的各种参数，包括：
+ * - 设置系统数据结构的偏移量
+ * - 配置编码和解密密钥
+ * - 初始化系统验证指针
+ * - 设置系统优先级
+ * 
+ * @param CharacterCode 字符代码指针，包含系统配置信息
+ * 
+ * @note 原始函数名：FUN_180153c60
+ */
+void ConfigureSystemDataStructureParameters(long long CharacterCode)
 {
   int LockResult;
   char SystemCheckResult;
@@ -186654,7 +186667,7 @@ uint64_t ProcessSystemCharacterEncodingConfiguration(long long SystemContext, lo
 
 
 
-53d40(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180153d40(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void InitializeCharacterStatusBufferManagement(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   void **pCharacterStatusBuffer;
   unsigned long long MemoryAllocationIndex;
@@ -193223,17 +193236,17 @@ LAB_1801604e5:
   uint64_t SystemUnsignedValue38;
   uint64_t StackProcessingVariable40;
   uint64_t StackProcessingVariable48;
-  uint64_t uStack0000000000000050;
+  uint64_t SystemStackUnsigned50;
   uint64_t TemporaryStackValue58;
   uint64_t StackProcessingParameter60;
   long long StackProcessingParameter0;
   long long MemoryOffsetStorage;
   int FloatValueStorage;
   int StackOffsetE0;
-  long long lStack00000000000000e8;
+  long long SystemStackLong232;
   
-  lStack00000000000000e8 = *(long long *)(CharacterCode + *(long long *)(SystemRegisterR11 + 0x60) * 8);
-  if (SystemContext != lStack00000000000000e8) {
+  SystemStackLong232 = *(long long *)(CharacterCode + *(long long *)(SystemRegisterR11 + 0x60) * 8);
+  if (SystemContext != SystemStackLong232) {
     pEncodingValidationResult = (int *)(CharacterLimit + 3);
     do {
       SystemChecksum = 0;
@@ -193272,7 +193285,7 @@ LAB_1801604e5:
           }
           pEncodingValidationResult = pEncodingValidationResult + 1;
           MemoryAllocationIndex = MemoryAllocationIndex - 1;
-          CharacterLimit = _iStack00000000000000e0;
+          CharacterLimit = _SystemStackInteger224;
         } while (MemoryAllocationIndex != 0);
       }
       if ((*(uint *)(SystemContext + 0x34) == RegisterR13ValueD) && (SystemChecksum == *(uint *)(SystemContext + 0x34))) {
@@ -193286,7 +193299,7 @@ LAB_1801604e5:
       }
       pEncodingValidationResult = (int *)(CharacterLimit + 3);
       CharacterTablePointer = FloatValueStorage;
-    } while (SystemContext != lStack00000000000000e8);
+    } while (SystemContext != SystemStackLong232);
   }
   SystemUnsignedValue38 = *CharacterLimit;
   StackProcessingVariable40 = CharacterLimit[1];
