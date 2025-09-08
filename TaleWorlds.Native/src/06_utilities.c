@@ -100091,7 +100091,20 @@ void CleanupResourceFlag4Handler(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090ea70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源处理器标志位5的异常处理函数
+ * 
+ * 该函数负责检查数据缓冲区的标志位5（值为0x20），如果该位被设置，
+ * 则清除该位并调用资源清理处理器处理偏移量200处的资源。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090ea70
+ * @warning 确保传入的dataBuffer参数有效，否则可能导致内存访问错误
+ */
+void CleanupResourceFlag5Handler(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 0x20) != 0) {
@@ -100103,7 +100116,20 @@ void Unwind_18090ea70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090eaa0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源处理器标志位6的异常处理函数
+ * 
+ * 该函数负责检查数据缓冲区的标志位6（值为0x40），如果该位被设置，
+ * 则清除该位并调用资源清理处理器处理偏移量0x38处的资源。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090eaa0
+ * @warning 确保传入的dataBuffer参数有效，否则可能导致内存访问错误
+ */
+void CleanupResourceFlag6Handler(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x30) & 0x40) != 0) {
