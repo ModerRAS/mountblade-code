@@ -90845,14 +90845,14 @@ void InitializeUIContextSystem(void)
   if ((*(int *)(contextHandle + 0x17d8) != 0) && (0x4d < *(int *)(contextHandle + 0x11b0))) {
     *(UIDword *)(contextHandle + 0x127c + (longlong)*(int *)(contextHandle + 0x167c) * 4) = 1;
                      WARNING: Subroutine does not return
-    memcpy(BasePointer + 0x24a0,contextHandle + 0x90,0x1100);
+    memcpy(basePointer + 0x24a0,contextHandle + 0x90,0x1100);
   }
-  uStack0000000000000034 = 0;
-  uStack0000000000000054 = 0;
+  stackData34 = 0;
+  stackData54 = 0;
   func_0x0001807249a0(contextHandle + 0x1288,*(UIDword *)(contextHandle + 0x11e0));
-  uStack000000000000004c = 0xffffffff;
+  stackData4c = 0xffffffff;
                      WARNING: Subroutine does not return
-  memcpy(BasePointer + -0x50,contextHandle + 0x90,0x1100);
+  memcpy(basePointer + -0x50,contextHandle + 0x90,0x1100);
 }
 
 
