@@ -205256,7 +205256,7 @@ LAB_18017023b:
         *(uint32_t *)(CharacterCode + 0x10) = 0;
         *(void *)(CharacterCode + 8) = 0;
         *(void *)(CharacterCode + 0x18) = 0;
-        FUN_180170700(CharacterCode,0,StringOffset,0,&EncodingBuffer,Utf16EndPointer,MemoryAllocationIndex);
+        ProcessCharacterEncodingAndMemoryPoolOperations(CharacterCode,0,StringOffset,0,&EncodingBuffer,Utf16EndPointer,MemoryAllocationIndex);
         EncodingBuffer = &SystemNullTemplate;
         if (SystemStackRegister58 != 0) {
                     // WARNING: Subroutine does not return
@@ -205585,7 +205585,7 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t CharacterCode,uint
     MemoryAllocationIndex = *(unsigned long long *)(Utf16EndPointer + 0x20);
     if (iStack_54 == 1) {
       if ((MemoryAllocationIndex == *(unsigned long long *)(Utf16EndPointer + 0x28)) || (*CharacterStatusBuffer != MemoryAllocationIndex)) {
-        FUN_180174340(CharacterStatusBuffer,*CharacterStatusBuffer,&pErrorCode);
+        ProcessCharacterCode(CharacterStatusBuffer,*CharacterStatusBuffer,&pErrorCode);
       }
       else {
         ProcessingCounter = (void **)MemoryAllocationIndex;
@@ -205656,7 +205656,22 @@ void ProcessWindowMessageAndCharacterTableOperations(uint64_t CharacterCode,uint
 
 
 
-70e20(long long CharacterCodevoid FUN_180170e20(long long CharacterCode
+// 函数: void FUN_180170e20(long long CharacterCode)
+/**
+ * @brief 处理引用计数和系统上下文管理
+ * 
+ * 该函数负责处理引用计数和系统上下文管理，主要功能包括：
+ * - 管理系统对象的引用计数
+ * - 处理系统上下文和内存地址
+ * - 执行搜索操作和码点计算
+ * - 管理内存地址掩码指针
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的对象
+ * 
+ * @note 原始函数名：FUN_180170e20
+ */
+#define ProcessReferenceCountAndSystemContextManagement FUN_180170e20
+void ProcessReferenceCountAndSystemContextManagement(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
