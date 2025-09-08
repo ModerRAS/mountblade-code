@@ -19246,14 +19246,14 @@ void ValidateContextAndUpdateState(int64_t contextHandle,int64_t operationHandle
 
 {
   int validationResult;
-  int64_t localBuffer;
+  int64_t ComponentDataBuffer;
   
   validationResult = ExecuteSystemValidationA0(operationHandle,contextHandle + ComponentHandleOffset);
   if (validationResult == 0) {
-    validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&localBuffer);
+    validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&ComponentDataBuffer);
     if (validationResult == 0) {
-      if (*(int *)(localBuffer + 0x30) == 1) {
-        *(DataWord *)(localBuffer + 0x30) = 2;
+      if (*(int *)(ComponentDataBuffer + 0x30) == 1) {
+        *(DataWord *)(ComponentDataBuffer + 0x30) = 2;
       }
         CleanupSystemEventA0(*(DataBuffer *)(operationHandle + 0x98),contextHandle);
     }

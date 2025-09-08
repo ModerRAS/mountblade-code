@@ -81234,19 +81234,30 @@ void FUN_180712943(float uiContext,UIHandle dataSource,float targetBuffer,longlo
 
 
 
- void FUN_180712aba(void)
-void FUN_180712aba(void)
+ /**
+ * @brief UI内存数据移动函数
+ * 
+ * 该函数用于在UI系统中移动内存数据块。它检查源地址和目标地址是否不同，
+ * 如果不同，则使用memmove函数将数据从源地址复制到目标地址。
+ * 这是一个安全的内存操作函数，可以处理重叠的内存区域。
+ * 
+ * @param 无显式参数，函数通过寄存器传递参数
+ * @return void 无返回值
+ * 
+ * @note 该函数是一个底层内存操作函数，用于UI系统的数据管理
+ */
+void MoveUIMemoryData(void)
 
 {
-  int unmodifiedESI;
-  longlong register9;
-  longlong register10;
-  longlong RegisterPointer;
-  int stackParam000001c0;
+  int sourceDataCount;
+  longlong elementIndex;
+  longlong sourceAddress;
+  longlong targetAddress;
+  int elementCount;
   
-  if (register10 != RegisterPointer) {
-                     WARNING: Subroutine does not return
-    memmove(RegisterPointer + register9 * 4,register10 + register9 * 4,(longlong)(stackParam000001c0 - unmodifiedESI) << 2);
+  if (sourceAddress != targetAddress) {
+    // 安全地移动内存数据块，处理可能的内存重叠
+    memmove(targetAddress + elementIndex * 4, sourceAddress + elementIndex * 4, (longlong)(elementCount - sourceDataCount) << 2);
   }
   return;
 }
@@ -81254,8 +81265,16 @@ void FUN_180712aba(void)
 
 
 
- void FUN_180712b39(void)
-void FUN_180712b39(void)
+ /**
+ * @brief UI空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作。
+ * 通常用作占位符或在某些条件分支中作为空实现。
+ * 
+ * @param 无参数
+ * @return void 无返回值
+ */
+void UIEmptyOperation(void)
 
 {
   return;
