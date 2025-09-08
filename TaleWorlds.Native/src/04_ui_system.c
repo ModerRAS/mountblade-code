@@ -70893,7 +70893,7 @@ bool ValidateUIFloatDataPrecision(longlong uiContext,longlong dataSource,int tar
   allocatedMemory8 = (longlong)bufferSize;
   psVar19 = *(short **)(uiContext + 0x20);
   do {
-    sVar9 = *psVar19;
+    dataOffset = *offsetPointer;
     psVar19 = psVar19 + 1;
     isCharacterMatch3 = (byte)targetBuffer;
     allocatedMemory6 = (longlong)((int)sVar9 << (isCharacterMatch3 & 0x1f));
