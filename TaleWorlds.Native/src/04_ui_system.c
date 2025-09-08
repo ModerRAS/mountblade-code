@@ -90281,19 +90281,19 @@ void ProcessUIDataStream(UIHandle uiContext,UIDword dataSource,UIDword targetBuf
                          int resultPointer)
 
 {
-  ulonglong result;
+  ulonglong streamResult;
   ulonglong iterationCount;
-  int uiCompareResult;
-  UIDword astackUIntb8 [6];
-  UIDword stackUInta0;
-  int stackInt9c;
-  longlong stackLong88;
-  UIHandle stackUInt80;
-  UIHandle stackUInt78;
-  UIHandle stackUInt70;
-  UIHandle stackUInt68;
-  UIHandle stackUInt60;
-  ulonglong stackUInt58;
+  int streamCompareResult;
+  UIDword streamBuffer [6];
+  UIDword targetBufferSize;
+  int resultSize;
+  longlong streamOffset;
+  UIHandle contextHandle;
+  UIHandle zeroHandle1;
+  UIHandle zeroHandle2;
+  UIHandle zeroHandle3;
+  UIHandle zeroHandle4;
+  ulonglong encryptionKey;
   
   stackUInt58 = XorEncryptionKey ^ (ulonglong)astackUIntb8;
   stackUInt78 = 0;
