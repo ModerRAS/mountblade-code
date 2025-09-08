@@ -11094,10 +11094,10 @@ void* UtilitySystemQuaternaryProcessDataPointer;
  * @note 原始函数名: FUN_180942a60
  */
 void ConfigureUtilitySystemCallbacks(void);         // 配置工具系统回调函数
-void* UtilitySystemCallbackData1;
-void* UtilitySystemCallbackData2;
-void* UtilitySystemCallbackData3;
-void* UtilitySystemCallbackData4;
+void* UtilitySystemPrimaryCallbackDataPointer;
+void* UtilitySystemSecondaryCallbackDataPointer;
+void* UtilitySystemTertiaryCallbackDataPointer;
+void* UtilitySystemQuaternaryCallbackDataPointer;
 
 /**
  * @brief 设置工具系统配置
@@ -22216,7 +22216,7 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
   // 初始化安全校验和
   dataSecurityChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)securityValidationBuffer;
   // 初始化系统状态变量
-  currentRecordIndex = *(int *)(systemContext + 0xac);
+  currentRecordIndex = *(int *)(systemContext + SystemContextOffsetAc);
   recordIterationCount = (int64_t)currentRecordIndex;
   resultCounterReference = resultCounter;
   
@@ -22358,9 +22358,9 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
   dataType = *(char *)(dataPointer + 8 + arrayIndex * 4);
   *(int64_t *)(stackPointer + -0x80) = arrayIndex;
   if (dataType == typeCheck) {
-    itemCount = *(int *)(systemContext + 0xb0);
+    itemCount = *(int *)(systemContext + SystemContextOffsetB0);
     if (currentIndex < itemCount) {
-      *(int *)(systemContext + 0xac) = currentIndex + 1;
+      *(int *)(systemContext + SystemContextOffsetAc) = currentIndex + 1;
       goto ValidationSuccessLabel;
     }
     floatValue = *(float *)(allocatedMemoryBlock + SystemDataSecondaryOffset18);
