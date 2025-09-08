@@ -806,10 +806,24 @@
 // 异常上下文扩展偏移常量
 #define ExceptionContextExtendedOffset1193C 0x1193c
 #define ExceptionContextExtendedOffset6D4 0x6d4
+#define ExceptionContextExtendedOffset1160C 0x1160c
 #define ExceptionContextExtendedOffset11610 0x11610
 #define ExceptionContextExtendedOffset11614 0x11614
+#define ExceptionContextExtendedOffset11618 0x11618
+#define ExceptionContextExtendedOffset1161C 0x1161c
+#define ExceptionContextExtendedOffset11620 0x11620
+#define ExceptionContextExtendedOffset11624 0x11624
+#define ExceptionContextExtendedOffset11628 0x11628
+#define ExceptionContextExtendedOffset11640 0x11640
+#define ExceptionContextExtendedOffset11644 0x11644
+#define ExceptionContextExtendedOffset1164C 0x1164c
+#define ExceptionContextExtendedOffset11650 0x11650
 #define ExceptionContextExtendedOffset11654 0x11654
 #define ExceptionContextExtendedOffset11658 0x11658
+#define ExceptionContextExtendedOffset1165C 0x1165c
+#define ExceptionContextExtendedOffset11660 0x11660
+#define ExceptionContextExtendedOffset11668 0x11668
+#define ExceptionContextExtendedOffset116BC 0x116bc
 
 // 数据上下文状态偏移常量
 #define DataContextStatusOffset204 0x204
@@ -19472,9 +19486,9 @@ DataBuffer ProcessMemoryReleaseA0(int64_t memoryDescriptor,int64_t systemContext
   DataWord MemoryFlags;
   
   MemoryOffsetPrimary = *(DataWord *)(memoryDescriptor + ExceptionHandlerCallbackOffset10);
-  MemoryOffsetSecondary = *(DataWord *)(memoryDescriptor + 0x14);
+  MemoryOffsetSecondary = *(DataWord *)(memoryDescriptor + MemoryDescriptorPrimaryOffset14);
   MemoryOffsetTertiary = *(DataWord *)(memoryDescriptor + SystemDataSecondaryOffset18);
-  MemoryFlags = *(DataWord *)(memoryDescriptor + 0x1c);
+  MemoryFlags = *(DataWord *)(memoryDescriptor + MemoryDescriptorFlagsOffset1C);
   ValidationContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
                     (*(int64_t **)(systemContext + 800),&MemoryOffsetPrimary,1);
   if ((ValidationContext == 0) || (*(int64_t *)(ValidationContext + ValidationContextResourceOffset) == 0)) {
@@ -19504,9 +19518,9 @@ DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
   DataWord MemoryFlags;
   
   memoryOffsetPrimary = *(DataWord *)(memoryDescriptor + ExceptionHandlerCallbackOffset10);
-  memoryOffsetSecondary = *(DataWord *)(memoryDescriptor + 0x14);
+  memoryOffsetSecondary = *(DataWord *)(memoryDescriptor + MemoryDescriptorPrimaryOffset14);
   memoryOffsetTertiary = *(DataWord *)(memoryDescriptor + SystemDataSecondaryOffset18);
-  memoryFlags = *(DataWord *)(memoryDescriptor + 0x1c);
+  memoryFlags = *(DataWord *)(memoryDescriptor + MemoryDescriptorFlagsOffset1C);
   exceptionHandlerContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
                     (*(int64_t **)(systemContext + 800),&memoryOffsetPrimary,1);
   if ((exceptionHandlerContext == 0) || (*(int64_t *)(exceptionHandlerContext + ValidationContextResourceOffset) == 0)) {
@@ -19566,7 +19580,7 @@ void ProcessExtendedContextValidation(int64_t contextHandle,int64_t operationHan
   
   validationResult = ValidateExtendedContext(operationHandle,contextHandle + ComponentHandleOffset,&extendedContext);
   if (validationResult == 0) {
-    validationResult = ExecuteContextOperation(*(DataBuffer *)(extendedContext + 0xd0),contextHandle + SystemDataParameterOffset20);
+    validationResult = ExecuteContextOperation(*(DataBuffer *)(extendedContext + ExtendedContextOperationOffsetD0),contextHandle + SystemDataParameterOffset20);
     if (validationResult == 0) {
       ExecuteExtendedOperation(*(DataBuffer *)(operationHandle + SystemManagementOffset98),contextHandle);
     }
@@ -19721,7 +19735,7 @@ void ValidateContextAndUpdateState(int64_t contextHandle,int64_t operationHandle
   if (validationResult == 0) {
     validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&ComponentDataBuffer);
     if (validationResult == 0) {
-      if (*(int *)(ComponentDataBuffer + 0x30) == 1) {
+      if (*(int *)(ComponentDataBuffer + ComponentDataStateOffset30) == 1) {
         *(DataWord *)(ComponentDataBuffer + 0x30) = 2;
       }
         CleanupSystemEventA0(*(DataBuffer *)(operationHandle + SystemManagementOffset98),contextHandle);
@@ -25517,7 +25531,7 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
         memoryRegionBase = 0x14;
         operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA0,2,2,0x14);
         if (((((int)operationResult == 0) &&
-             (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA1,*(DataWord *)(exceptionHandlerContext + 0x116bc)),
+             (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA1,*(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset116BC)),
              (int)operationResult == 0)) &&
             (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA2,(uint64_t)*(uint *)(exceptionHandlerContext + 0x6d8),
                                    (uint64_t)*(uint *)(exceptionHandlerContext + 0x6dc) /
@@ -25525,10 +25539,10 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
            (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA3,*(DataWord *)(exceptionHandlerContext + 0x6d0),
                                   *(DataWord *)(exceptionHandlerContext + 0x1193c),*(DataWord *)(exceptionHandlerContext + 0x6d4)),
            (int)operationResult == 0)) {
-          memoryRegionBase = *(DataWord *)(exceptionHandlerContext + 0x11668);
-          securityCheckResult = *(DataWord *)(exceptionHandlerContext + 0x11624);
-          validationOutcome = *(DataWord *)(exceptionHandlerContext + 0x11620);
-          dataFlags = *(DataWord *)(exceptionHandlerContext + 0x1161c);
+          memoryRegionBase = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11668);
+          securityCheckResult = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11624);
+          validationOutcome = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11620);
+          dataFlags = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset1161C);
           operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA4,*(DataWord *)(exceptionHandlerContext + 0x1160c),
                                 *(DataWord *)(exceptionHandlerContext + 0x11610),*(DataWord *)(exceptionHandlerContext + 0x11614),
                                 *(DataWord *)(exceptionHandlerContext + 0x11618),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
