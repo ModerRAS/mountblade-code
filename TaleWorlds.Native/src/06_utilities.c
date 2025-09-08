@@ -210,6 +210,17 @@
 #define StackDataHighWordOffset6C 0x6c
 #define StackDataLowWordOffset6F 0x6f
 
+// 大型数据缓冲区偏移量常量
+#define DataBufferValidationOffset14C 0x14c
+#define DataBufferStatusOffset254 0x254
+#define DataBufferConfigOffset260 0x260
+#define DataBufferControlOffset270 0x270
+#define DataBufferIntegrityOffset150 0x150
+#define DataBufferSystemOffset268 0x268
+#define ExceptionDataBufferOffset128 0x128
+#define ExceptionDataContextOffset120 0x120
+#define ExceptionHandlerTemporaryOffset100 0x100
+
 // 浮点数据偏移量常量
 #define FloatDataValidationOffset3C 0x3c
 
@@ -29460,19 +29471,19 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
     operationResult = operationResult | 2;
   }
   validationStatus = operationResult | 4;
-  if (*(short *)(dataBuffer + 0x14c) == 0) {
+  if (*(short *)(dataBuffer + DataBufferValidationOffset14C) == 0) {
     validationStatus = operationResult;
   }
   operationResult = validationStatus | 8;
-  if (*(short *)(dataBuffer + 0x254) == 0) {
+  if (*(short *)(dataBuffer + DataBufferStatusOffset254) == 0) {
     operationResult = validationStatus;
   }
   validationStatus = operationResult | 0x10;
-  if (*(int *)(dataBuffer + 0x260) == 0) {
+  if (*(int *)(dataBuffer + DataBufferConfigOffset260) == 0) {
     validationStatus = operationResult;
   }
   operationResult = validationStatus | 0x20;
-  if (*(int *)(dataBuffer + 0x270) == 0) {
+  if (*(int *)(dataBuffer + DataBufferControlOffset270) == 0) {
     operationResult = validationStatus;
   }
   if ((*(int *)(dataBuffer + SystemDataValidationOffset34) != 0) || (*(int *)(dataBuffer + SystemFloatDataOffset38) != 0)) {
@@ -29507,9 +29518,9 @@ DataBuffer ProcessAdvancedDataOperationA0(int64_t operationBase,int64_t dataBuff
               (memoryRegionBase = ValidateParametersA1(operationBase,dataBuffer + 0x30), (int)memoryRegionBase == 0)))) &&
             (((operationResult & 4) == 0 || (memoryRegionBase = ValidateDataIntegrityA3(operationBase,dataBuffer + 0x48), (int)memoryRegionBase == 0)))
             ) && (((operationResult & 8) == 0 ||
-                  (memoryRegionBase = ValidateDataIntegrityA3(operationBase,dataBuffer + 0x150), (int)memoryRegionBase == 0)))) {
+                  (memoryRegionBase = ValidateDataIntegrityA3(operationBase,dataBuffer + DataBufferIntegrityOffset150), (int)memoryRegionBase == 0)))) {
           if ((operationResult & 0x10) != 0) {
-            operationResult = *(int *)(dataBuffer + 0x260);
+            operationResult = *(int *)(dataBuffer + DataBufferConfigOffset260);
             memoryPointerArray[0] = operationResult;
             memoryRegionBase = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                               (*(DataBuffer **)(operationBase + OperationBaseOffset8),memoryPointerArray,4);
