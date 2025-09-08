@@ -199,6 +199,15 @@
 // 数据处理偏移量常量
 #define ProcessedDataOffset72 0x72
 #define ProcessedDataOffset74 0x74
+#define InputParameterOffset1E 0x1e
+#define DataValidationOffset68 0x68
+#define StackDataHighWordOffset65 0x65
+#define StackDataHighWordOffset69 0x69
+#define StackDataHighWordOffset6A 0x6a
+#define StackDataHighWordOffset6B 0x6b
+#define StackDataHighWordOffset6D 0x6d
+#define StackDataHighWordOffset6E 0x6e
+#define StackDataHighWordOffset6C 0x6c
 
 // 浮点数据偏移量常量
 #define FloatDataValidationOffset3C 0x3c
@@ -28512,7 +28521,7 @@ void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
               }
               inputParameter = CheckSystemStateAndReturnStatusA2(operationBase,dataBuffer + FloatValueOffset);
               if (inputParameter == 0) {
-                inputParameter = dataBuffer[0x1e];
+                inputParameter = dataBuffer[InputParameterOffset1E];
                 stackDataBuffer = CONCAT44(stackDataBuffer.lowWord,inputParameter);
                 operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                   (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
@@ -29156,7 +29165,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
                         (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,1);
       if (operationResult == 0) {
         operationResult = 0;
-        if (0 < (int)dataBuffer[0x68]) {
+        if (0 < (int)dataBuffer[DataValidationOffset68]) {
           do {
             operationStatus = ValidateAndExecuteOperationsA1(operationBase,dataBuffer + (int64_t)operationResult * 0xc + 4);
             if (operationStatus != 0) {
@@ -29175,7 +29184,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
               return;
             }
             operationResult = operationResult + 1;
-          } while (operationResult < (int)dataBuffer[0x68]);
+          } while (operationResult < (int)dataBuffer[DataValidationOffset68]);
         }
         systemDataBuffer = dataBuffer[100];
         if (systemDataBuffer < 0x8000) {
@@ -29189,7 +29198,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
         operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                           (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,memoryRegionBase);
         if (operationResult == 0) {
-          stackDataBuffer.highWord = dataBuffer[0x65];
+          stackDataBuffer.highWord = dataBuffer[StackDataHighWordOffset65];
           operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                             (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
           if (((operationResult == 0) && (operationResult = ValidateParametersA1(operationBase,dataBuffer + DataProcessingOffset66), operationResult == 0)) &&
@@ -29230,7 +29239,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
                             operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                               (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                             if (operationResult == 0) {
-                              processedData = *(DataBuffer *)(dataBuffer + 0x74);
+                              processedData = *(DataBuffer *)(dataBuffer + ProcessedDataOffset74);
                               operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                                 (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                               if (operationResult == 0) {
