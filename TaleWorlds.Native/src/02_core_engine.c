@@ -186005,7 +186005,7 @@ code_r0x000180151fd7:
     }
     MemoryAllocationIndex = GetSystemStringIdentifierHandle();
     *(void *)(CoreEngineSystemContext + 0x1528) = MemoryAllocationIndex;
-    FUN_180150ae0(*(void *)(CharacterCode + 0xa0));
+    ProcessCharacterStatusValidationAndMemoryManagement(*(void *)(CharacterCode + 0xa0));
     SystemStringIndex = CoreEngineSystemContext;
     LoopIndex = CoreEngineSystemContext;
     if (*(char *)(CoreEngineSystemContext + 0x12e7) == '\0') {
@@ -221473,10 +221473,10 @@ ProcessCharacterStringComparison(long long *CharacterCode,uint64_t *CharacterCod
   SystemContextRegister = CharacterCode;
   while (*(char *)((long long)StringProcessingStatus + SystemNodeStatusOffset) == '\0') {
     if (Utf8SourcePointer == '\0') {
-      pStringOffset = StringProcessingStatus + 4;
+      StringOffsetPointer = StringProcessingStatus + 4;
       Utf16Char = StringProcessingStatus[6];
       if (0xf < (unsigned long long)StringProcessingStatus[7]) {
-        pStringOffset = (long long *)*pStringOffset;
+        StringOffsetPointer = (long long *)*StringOffsetPointer;
       }
       MemoryAllocationIndex = Utf16EndPointer[2];
       StringProcessingStatus = Utf16EndPointer;
@@ -221489,7 +221489,7 @@ ProcessCharacterStringComparison(long long *CharacterCode,uint64_t *CharacterCod
       }
       SystemKeyPointer = Utf16Char;
       SystemStackFlag = MemoryAllocationIndex;
-      CalculatedCodePoint = memcmp(StringProcessingStatus,pStringOffset,ProcessedCharacter);
+      CalculatedCodePoint = memcmp(StringProcessingStatus,StringOffsetPointer,ProcessedCharacter);
       if (CalculatedCodePoint == 0) {
         if (MemoryAllocationIndex < Utf16Char) {
           CalculatedCodePoint = 0xffffffff;
@@ -221500,7 +221500,7 @@ ProcessCharacterStringComparison(long long *CharacterCode,uint64_t *CharacterCod
       }
     }
     else {
-      pStringOffset = StringProcessingStatus + 4;
+      StringOffsetPointer = StringProcessingStatus + 4;
       Utf16Char = Utf16EndPointer[2];
       StringProcessingStatus = Utf16EndPointer;
       if (0xf < (unsigned long long)Utf16EndPointer[3]) {
@@ -221508,7 +221508,7 @@ ProcessCharacterStringComparison(long long *CharacterCode,uint64_t *CharacterCod
       }
       MemoryAllocationIndex = StringProcessingStatus[6];
       if (0xf < (unsigned long long)StringProcessingStatus[7]) {
-        pStringOffset = (long long *)*pStringOffset;
+        StringOffsetPointer = (long long *)*StringOffsetPointer;
       }
       ProcessedCharacter = MemoryAllocationIndex;
       if (Utf16Char < MemoryAllocationIndex) {
@@ -221568,14 +221568,14 @@ CharacterComparisonComplete:
       StringProcessingStatus = (void *)StringProcessingStatus[2];
     }
   }
-  pStringOffset = StringProcessingStatus + 4;
+  StringOffsetPointer = StringProcessingStatus + 4;
   Utf16Char = Utf16EndPointer[2];
   if (0xf < (unsigned long long)Utf16EndPointer[3]) {
     Utf16EndPointer = (void *)*Utf16EndPointer;
   }
   MemoryAllocationIndex = StringProcessingStatus[6];
   if (0xf < (unsigned long long)StringProcessingStatus[7]) {
-    pStringOffset = (long long *)*pStringOffset;
+    StringOffsetPointer = (long long *)*StringOffsetPointer;
   }
   ProcessedCharacter = MemoryAllocationIndex;
   if (Utf16Char < MemoryAllocationIndex) {
@@ -221583,7 +221583,7 @@ CharacterComparisonComplete:
   }
   StackProcessingBuffer[0] = MemoryAllocationIndex;
   SystemPriorityLevel = Utf16Char;
-  ValidationResult = memcmp(pStringOffset,Utf16EndPointer,ProcessedCharacter);
+  ValidationResult = memcmp(StringOffsetPointer,Utf16EndPointer,ProcessedCharacter);
   if (ValidationResult == 0) {
     if (Utf16Char <= MemoryAllocationIndex) {
 MemoryCleanupAndReturn:
@@ -278017,7 +278017,7 @@ LAB_18022bda0:
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)aLoopCounter;
   SystemEventFlag0 = CharacterCode;
   pStringOffset = (long long *)ProcessSystemDataAndConfigureTarget(SystemMemoryManagerPointer,&plStack_268,CharacterCode + 0x2d0,0);
-  pStringOffset = (long long *)*pStringOffset;
+  StringOffsetPointer = (long long *)*StringOffsetPointer;
   pSystemEventFlag8 = pStringOffset;
   if (plStack_268 != (long long *)0x0) {
     (**(code **)(*plStack_268 + 0x38))();
