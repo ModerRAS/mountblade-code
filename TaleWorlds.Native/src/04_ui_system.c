@@ -127802,44 +127802,60 @@ UIHandle FUN_18074496d(void)
 
 
 
-UIHandle FUN_1807449f2(void)
+/**
+ * @brief 处理UI句柄验证和数据同步
+ * @return UIHandle 返回处理后的UI句柄，失败时返回0
+ * 
+ * 该函数执行UI句柄的验证操作，包括：
+ * - 初始化UI处理上下文
+ * - 验证句柄有效性
+ * - 处理数据同步
+ * - 返回处理结果
+ */
+UIHandle ValidateAndSyncUIHandle(void)
 
 {
-  char localChar1;
-  int unmodifiedEBX;
-  longlong TargetHandle;
-  UIWord StackData2;
-  UIHandle stackParam00000038;
-  longlong stackParam00000048;
-  UIHandle stackParam00000050;
-  longlong stackParam00000058;
-  UIHandle stackParam00000060;
-  int stackParam00000098;
-  char stackParam000000a0;
+  char statusFlag;
+  int iterationIndex;
+  longlong targetHandle;
+  UIWord handleData;
+  UIHandle contextHandle;
+  longlong compareData1;
+  UIHandle processHandle;
+  longlong compareData2;
+  UIHandle resultHandle;
+  int maxIterations;
+  char validationFlag;
   
-  FUN_180759220();
-  func_0x000180766510(stackParam00000050,_StackData2 | 0xfeed0000);
-  localChar1 = stackParam000000a0;
-  if ((stackParam000000a0 == '\0') &&
-     (FUN_18075ec10(stackParam00000038,&stack0x00000098,0,1), unmodifiedEBX < stackParam00000098)) {
+  // 初始化UI处理上下文
+  InitializeUIProcessingContext();
+  ProcessUIHandleData(processHandle, handleData | 0xfeed0000);
+  statusFlag = validationFlag;
+  if ((validationFlag == '\0') &&
+     (ValidateUIHandleRange(contextHandle, &maxIterations, 0, 1), iterationIndex < maxIterations)) {
     do {
-      FUN_18075ef40(stackParam00000038,unmodifiedEBX,&stack0x00000058,&stack0x00000060,0);
-      if (stackParam00000058 == stackParam00000048) {
-        FUN_180765c40(stackParam00000060,0,0,1,0);
+      ProcessUIHandleComparison(contextHandle, iterationIndex, &compareData2, &resultHandle, 0);
+      if (compareData2 == compareData1) {
+        ExecuteUIHandleOperation(resultHandle, 0, 0, 1, 0);
       }
-      unmodifiedEBX = unmodifiedEBX + 1;
-    } while (unmodifiedEBX < stackParam00000098);
+      iterationIndex = iterationIndex + 1;
+    } while (iterationIndex < maxIterations);
   }
-  *(UIWord *)(TargetHandle + 0x1fc) = StackData2;
-  *(char *)(TargetHandle + 0x1fe) = localChar1;
+  *(UIWord *)(targetHandle + 0x1fc) = handleData;
+  *(char *)(targetHandle + 0x1fe) = statusFlag;
   return 0;
 }
 
 
 
 
- void FUN_180744abc(void)
-void FUN_180744abc(void)
+ /**
+ * @brief 空的UI处理函数
+ * 
+ * 这是一个空的UI处理函数，用于作为占位符或默认的空操作函数。
+ * 在某些UI流程中可能需要一个什么都不做的函数指针。
+ */
+void EmptyUIHandler(void)
 
 {
   return;
@@ -127847,7 +127863,14 @@ void FUN_180744abc(void)
 
 
 
-UIHandle FUN_180744aca(void)
+/**
+ * @brief 获取UI系统默认句柄值
+ * @return UIHandle 返回默认的UI句柄值 0x1f
+ * 
+ * 该函数返回UI系统的默认句柄值，用于初始化或作为默认值。
+ * 返回值 0x1f 可能是一个预定义的常量值。
+ */
+UIHandle GetDefaultUIHandle(void)
 
 {
   return 0x1f;
@@ -127855,79 +127878,116 @@ UIHandle FUN_180744aca(void)
 
 
 
-int FUN_180744ae0(longlong uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+/**
+ * @brief 执行UI数据处理操作
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @return int 处理结果，0表示成功，非0表示失败
+ * 
+ * 该函数遍历UI上下文中的函数指针数组，依次调用每个处理函数来处理数据。
+ * 如果任何一个处理函数返回非零值，则立即停止处理并返回结果。
+ */
+int ProcessUIDataOperation(longlong uiContext, UIDword dataSource, UIHandle targetBuffer, UIHandle bufferSize)
 
 {
   int processingResult;
-  UIHandle *piterationCount;
-  int uiCompareResult;
+  UIHandle *functionPointerArray;
+  int arrayIndex;
   
+  // 初始化UI上下文处理
   if (uiContext != 0) {
-    func_0x000180743c20(uiContext,0x15);
+    InitializeUIContextProcessing(uiContext, 0x15);
   }
-  uiCompareResult = 0;
-  piterationCount = (UIHandle *)(uiContext + 0x115e8);
+  
+  arrayIndex = 0;
+  functionPointerArray = (UIHandle *)(uiContext + 0x115e8);
   do {
-    if ((UIFunctionPtr *)piterationCount[-1] != (UIFunctionPtr *)0x0) {
-      processingResult = (*(UIFunctionPtr *)piterationCount[-1])(uiContext,dataSource,targetBuffer,bufferSize,*piterationCount);
-      if (processingResult != 0) goto LAB_180744b66;
+    // 检查函数指针是否有效
+    if ((UIFunctionPtr *)functionPointerArray[-1] != (UIFunctionPtr *)0x0) {
+      // 调用处理函数
+      processingResult = (*(UIFunctionPtr *)functionPointerArray[-1])(uiContext, dataSource, targetBuffer, bufferSize, *functionPointerArray);
+      if (processingResult != 0) goto ProcessingComplete;
     }
-    uiCompareResult = uiCompareResult + 1;
-    piterationCount = piterationCount + 1;
-  } while (uiCompareResult < 1);
+    arrayIndex = arrayIndex + 1;
+    functionPointerArray = functionPointerArray + 1;
+  } while (arrayIndex < 1);
   processingResult = 0;
-LAB_180744b66:
+ProcessingComplete:
+  // 清理UI上下文（此函数不返回）
   if ((uiContext != 0) && (uiContext != 0)) {
-                     WARNING: Subroutine does not return
-    ProcessUISystemCleanup(uiContext,0x15);
+    CleanupUISystemContext(uiContext, 0x15);
   }
   return processingResult;
 }
 
 
 
-int FUN_180744ae6(longlong uiContext,UIDword dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+/**
+ * @brief 执行UI数据验证操作
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @return int 处理结果，0表示成功，非0表示失败
+ * 
+ * 该函数遍历UI上下文中的验证函数数组，依次调用每个验证函数来验证数据。
+ * 如果任何一个验证函数返回非零值，则立即停止验证并返回结果。
+ */
+int ValidateUIDataOperation(longlong uiContext, UIDword dataSource, UIHandle targetBuffer, UIHandle bufferSize)
 
 {
   int processingResult;
-  UIHandle *piterationCount;
-  int uiCompareResult;
+  UIHandle *validationFunctionArray;
+  int arrayIndex;
   
+  // 初始化UI上下文验证
   if (uiContext != 0) {
-    func_0x000180743c20(uiContext,0x15);
+    InitializeUIContextValidation(uiContext, 0x15);
   }
-  uiCompareResult = 0;
-  piterationCount = (UIHandle *)(uiContext + 0x115e8);
+  
+  arrayIndex = 0;
+  validationFunctionArray = (UIHandle *)(uiContext + 0x115e8);
   do {
-    if ((UIFunctionPtr *)piterationCount[-1] != (UIFunctionPtr *)0x0) {
-      processingResult = (*(UIFunctionPtr *)piterationCount[-1])(uiContext,dataSource,targetBuffer,bufferSize,*piterationCount);
-      if (processingResult != 0) goto LAB_180744b66;
+    // 检查验证函数是否有效
+    if ((UIFunctionPtr *)validationFunctionArray[-1] != (UIFunctionPtr *)0x0) {
+      // 调用验证函数
+      processingResult = (*(UIFunctionPtr *)validationFunctionArray[-1])(uiContext, dataSource, targetBuffer, bufferSize, *validationFunctionArray);
+      if (processingResult != 0) goto ValidationComplete;
     }
-    uiCompareResult = uiCompareResult + 1;
-    piterationCount = piterationCount + 1;
-  } while (uiCompareResult < 1);
+    arrayIndex = arrayIndex + 1;
+    validationFunctionArray = validationFunctionArray + 1;
+  } while (arrayIndex < 1);
   processingResult = 0;
-LAB_180744b66:
+ValidationComplete:
+  // 清理UI上下文（此函数不返回）
   if ((uiContext != 0) && (uiContext != 0)) {
-                     WARNING: Subroutine does not return
-    ProcessUISystemCleanup(uiContext,0x15);
+    CleanupUISystemValidation(uiContext, 0x15);
   }
   return processingResult;
 }
 
 
 
-UIDword FUN_180744b89(void)
+/**
+ * @brief 获取UI系统状态值
+ * @return UIDword 返回UI系统状态值
+ * 
+ * 该函数获取当前UI系统的状态值，并在需要时清理系统资源。
+ * 如果基础指针不为空，则执行系统清理操作。
+ */
+UIDword GetUISystemStatus(void)
 
 {
-  longlong BasePointer;
-  UIDword unmodifiedESI;
+  longlong contextPointer;
+  UIDword systemStatus;
   
-  if (BasePointer != 0) {
-                     WARNING: Subroutine does not return
-    ProcessUISystemCleanup();
+  if (contextPointer != 0) {
+    // 清理UI系统（此函数不返回）
+    CleanupUISystemResources();
   }
-  return unmodifiedESI;
+  return systemStatus;
 }
 
 
@@ -127935,17 +127995,27 @@ UIDword FUN_180744b89(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180744bb0(longlong uiContext,longlong dataSource)
-void FUN_180744bb0(longlong uiContext,longlong dataSource)
+ /**
+ * @brief 处理UI上下文数据源操作
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * 
+ * 该函数处理指定UI上下文的数据源操作，包括：
+ * - 初始化上下文处理
+ * - 验证数据源
+ * - 执行数据处理操作
+ */
+void ProcessUIContextDataSource(longlong uiContext, longlong dataSource)
 
 {
   int processingResult;
-  int uiValidationResult;
-  longlong stringCompareIndex;
-  int TempInt4;
+  int validationStatus;
+  longlong compareIndex;
+  int tempValue;
   
+  // 初始化UI上下文数据源处理
   if (uiContext != 0) {
-    func_0x000180743c20(uiContext,0x11);
+    InitializeUIContextDataSource(uiContext, 0x11);
   }
   uiValidationResult = *(int *)(dataSource + 0x20);
   stringCompareIndex = (longlong)*(int *)(uiBufferData + 0x127e8) * 8 + -8;
