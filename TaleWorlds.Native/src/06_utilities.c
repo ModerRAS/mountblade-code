@@ -95048,6 +95048,22 @@ void Unwind_18090d3d0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理内存资源引用计数（偏移量310A）
+ * 
+ * 该函数负责清理指定偏移量（0x310）处的内存资源引用计数。
+ * 它会检查内存资源指针的有效性，计算内存区域基址，并递减引用计数。
+ * 如果引用计数归零，则调用异常处理函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含内存资源引用信息
+ * 
+ * @note 原始函数名：Unwind_18090d3e0
+ * @note 处理偏移量0x310处的内存资源引用计数
+ * @note 使用MemoryReferenceCleanupOffset310常量定义偏移量
+ * 
+ * @see CleanupMemoryResourceReferenceCountAtOffset2F0, CleanupMemoryResourceReferenceCountAtOffset310B
+ */
 void Unwind_18090d3e0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -95084,6 +95100,22 @@ void Unwind_18090d3e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理内存资源引用计数（偏移量310B）
+ * 
+ * 该函数负责清理指定偏移量（0x310）处的内存资源引用计数。
+ * 它会检查内存资源指针的有效性，计算内存区域基址，并递减引用计数。
+ * 如果引用计数归零，则调用异常处理函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含内存资源引用信息
+ * 
+ * @note 原始函数名：Unwind_18090d3f0
+ * @note 处理偏移量0x310处的内存资源引用计数
+ * @note 使用MemoryReferenceCleanupOffset310常量定义偏移量
+ * 
+ * @see CleanupMemoryResourceReferenceCountAtOffset2F0, CleanupMemoryResourceReferenceCountAtOffset310A
+ */
 void Unwind_18090d3f0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
