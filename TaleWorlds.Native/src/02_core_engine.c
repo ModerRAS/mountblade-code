@@ -193747,7 +193747,7 @@ void ProcessCharacterCodeValidation(long long CharacterCode)
 
 
 
-601a0(long long CharacterCodevoid InitializeCharacterCodeData(long long CharacterCode
+void InitializeCharacterCodeData(long long CharacterCode)
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -194009,7 +194009,7 @@ LAB_1801604e5:
 
 
 
-60341(long long CharacterCode,uint64_t SystemBufferSize,int *Utf8SourcePointervoid ValidateAndConvertCharacterCodeData(long long CharacterCode,uint64_t SystemBufferSize,int *Utf8SourcePointer
+void ValidateAndConvertCharacterCodeData(long long CharacterCode, uint64_t SystemBufferSize, int *Utf8SourcePointer)
 {
   long long *CharacterCode;
   uint64_t MemoryAllocationIndex;
@@ -194389,7 +194389,7 @@ uint8_t GetSystemActiveStatus(void
 
 
 
-605c8(voidvoid FUN_1801605c8(void
+void InitializeSystemMemoryManagement(void)
 {
   float *pSystemContextPrimaryFloat;
   uint MemoryAllocationIndex;
@@ -194785,7 +194785,18 @@ LAB_180160797:
 
 
 
-long long FUN_1801607a0(long long CharacterCode,uint32_t *CharacterCodeSize
+/**
+ * 初始化字符代码数据结构
+ * 原始函数名: FUN_1801607a0
+ * 
+ * 初始化字符代码数据结构的各个字段，设置默认值。
+ * 该函数为字符代码处理系统创建和初始化数据结构。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @return long long 返回初始化后的字符代码指针
+ */
+long long InitializeCharacterCodeDataStructure(long long CharacterCode,uint32_t *CharacterCodeSize
 {
   *(void *)(CharacterCode + 0x10) = 0;
   *(void *)(CharacterCode + 0x18) = 0;
@@ -194801,7 +194812,19 @@ long long FUN_1801607a0(long long CharacterCode,uint32_t *CharacterCodeSize
 
 
 
-long long FUN_180160800(long long CharacterCode,uint32_t *CharacterCodeSize
+/**
+ * 初始化字符代码数据结构副本
+ * 原始函数名: FUN_180160800
+ * 
+ * 初始化字符代码数据结构的各个字段，设置默认值。
+ * 该函数与InitializeCharacterCodeDataStructure功能相同，
+ * 为字符代码处理系统创建和初始化数据结构。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @return long long 返回初始化后的字符代码指针
+ */
+long long InitializeCharacterCodeDataStructureCopy(long long CharacterCode,uint32_t *CharacterCodeSize
 {
   *(void *)(CharacterCode + 0x10) = 0;
   *(void *)(CharacterCode + 0x18) = 0;
