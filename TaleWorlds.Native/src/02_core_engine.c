@@ -199627,7 +199627,7 @@ long long InitializeCharacterCodeProcessingAndSystemBufferManagement(long long C
     } while (AllocatedMemorySize + (long long)SecondaryProcessingStatusFlag != SystemDataRegistry);
   }
   *(uint64_t **)(CharacterCode + 0x180) = SecondaryProcessingStatusFlag;
-  FUN_1808fcf5c(CharacterCode + 0x198,SystemBufferSize + 0x198,0x98,5,FUN_180049b30,CoreEngineSetupThreadLocalStorage);
+  SetupThreadLocalStorageData(CharacterCode + 0x198,SystemBufferSize + 0x198,0x98,5,FUN_180049b30,CoreEngineSetupThreadLocalStorage);
   SystemDataRegistry = *(long long *)(SystemBufferSize + 0x498) - *(long long *)(SystemBufferSize + 0x490);
   SystemDataRegistry = SystemDataRegistry / 0x26 + (SystemDataRegistry >> 0x3f);
   AllocatedMemorySize = (SystemDataRegistry >> 2) - (SystemDataRegistry >> 0x3f);
@@ -199663,8 +199663,8 @@ long long InitializeCharacterCodeProcessingAndSystemBufferManagement(long long C
     } while (AllocatedMemorySize + (long long)SecondaryProcessingStatusFlag != SystemDataRegistry);
   }
   *(uint64_t **)(CharacterCode + 0x498) = SecondaryProcessingStatusFlag;
-  FUN_1808fcf5c(CharacterCode + 0x4b0,SystemBufferSize + 0x4b0,0x58,0x10,FUN_1800b8300,CoreEngineSetupThreadLocalStorage);
-  FUN_1808fcf5c(CharacterCode + 0xa30,SystemBufferSize + 0xa30,0x98,9,FUN_180049b30,CoreEngineSetupThreadLocalStorage);
+  SetupThreadLocalStorageData(CharacterCode + 0x4b0,SystemBufferSize + 0x4b0,0x58,0x10,FUN_1800b8300,CoreEngineSetupThreadLocalStorage);
+  SetupThreadLocalStorageData(CharacterCode + 0xa30,SystemBufferSize + 0xa30,0x98,9,FUN_180049b30,CoreEngineSetupThreadLocalStorage);
   ProcessCoreEngineParameters(CharacterCode + 0xf88,SystemBufferSize + 0xf88);
   ProcessCoreEngineParameters(CharacterCode + 0x1020,SystemBufferSize + 0x1020);
   SystemDataRegistry = *(long long *)(SystemBufferSize + 0x10c0) - *(long long *)(SystemBufferSize + 0x10b8);
@@ -199752,7 +199752,7 @@ long long * ProcessCharacterEncodingAndSystemStatusValidation(uint64_t Character
   
   MemoryBlockIndex = _SystemPrimaryProcessingStatusFlag;
   CoreEngineFinalizeSystemEvent(&CoreEngineSystemBuffer,Utf8SourcePointer,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe);
-  SystemDataRegistry = FUN_180169350(MemoryBlockIndex,&CoreEngineSystemBuffer);
+  SystemDataRegistry = AllocateSystemDataRegistry(MemoryBlockIndex,&CoreEngineSystemBuffer);
   CoreEngineSystemBuffer = &SystemNullTemplate;
   if (StackProcessingBuffer != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -200243,7 +200243,7 @@ LAB_18016a086:
   SystemBufferSize[2] = 0;
   *(uint32_t *)(SystemBufferSize + 3) = 3;
   SystemFlagF = 1;
-  MemoryBlockIndex = FUN_180169350(MemoryAllocationIndex,&pSystemFlagG);
+  MemoryBlockIndex = AllocateSystemDataRegistry(MemoryAllocationIndex,&pSystemFlagG);
   if (MemoryBlockIndex != 0) {
     plStack_b0 = (long long *)0x0;
     plStack_a8 = (long long *)0x0;
