@@ -2647,17 +2647,17 @@ void InitializeSystemDataTable(void)
   }
   
   if ((PreviousSystemNode == SystemRootPointer) || 
-      (DataTableIdentifierComparisonResult = memcmp(&SYSTEM_DATA_COMPARISON_TEMPLATE_B, PreviousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), DataTableIdentifierComparisonResult < 0)) {
-    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, SystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemMemoryAllocationSize);
+      (DataTableIdentifierComparisonResult = memcmp(&SystemDataTemplateSecondarySystemId1, PreviousSystemNode + SystemNodeIdentifierOffset, SystemIdentifierSize), DataTableIdentifierComparisonResult < 0)) {
+    SystemSystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, SystemSystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemSystemMemoryAllocationSize);
     PreviousSystemNode = AllocatedSystemNode;
   }
   
-  PreviousSystemNode[SystemNodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID1;
-  PreviousSystemNode[SystemNodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_B_ID2;
+  PreviousSystemNode[SystemNodeIdentifier1Index] = SystemDataTemplateSecondarySystemId1;
+  PreviousSystemNode[SystemNodeIdentifier2Index] = SystemDataTemplateSecondarySystemId2;
   PreviousSystemNode[SystemNodeDataPointerIndex] = &SystemNodeLinkPointerSecondary;
-  PreviousSystemNode[SystemNodeActiveFlagIndex] = 1;
-  PreviousSystemNode[SYSTEM_NODE_HANDLER_INDEX] = SystemInitializationHandler;
+  PreviousSystemNode[SystemNodeActiveFlagIndex] = SystemNodeActiveFlag;
+  PreviousSystemNode[SystemNodeHandlerIndex] = SystemInitializationHandler;
   return;
 }
 
