@@ -9752,7 +9752,13 @@ void* UtilityDataBufferInstanceSeptenary;
 void* UtilityDataBufferInstanceOctonary;
 void* UtilityDataBufferInstanceNonary;
 
-// 函数: int32_t UtilityCompareObject(void);
+// 函数指针: int32_t UtilityCompareObject(void)
+// 
+// 对象比较工具函数指针
+// 用于比较两个对象的属性或状态
+// 
+// 返回值:
+//   int32_t - 比较结果（相等、大于、小于）
 int32_t UtilityCompareObject;
 void* UtilityCompareObjectPointerPrimary;
 int32_t UtilityPrimaryCompareData;
@@ -9760,7 +9766,13 @@ int32_t UtilitySecondaryCompareData;
 int32_t UtilityTertiaryCompareData;
 int32_t UtilityQuaternaryCompareData;
 
-// 函数: void* UtilityProcessDataEighth(void);
+// 函数指针: void* UtilityProcessDataOctonary(void)
+// 
+// 数据处理工具函数指针Octonary
+// 执行第八类数据处理操作
+// 
+// 返回值:
+//   void* - 数据处理结果指针
 void* UtilityProcessDataOctonary;
 void* UtilityDataProcessorPointerNonary;
 void* UtilityProcessDataInstancePrimary;
@@ -91263,18 +91275,18 @@ void SetDefaultExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 系统栈展开处理函数：配置异常处理器上下文
+ * @brief 配置异常处理器上下文
  * 
  * 在系统栈展开过程中配置异常处理器上下文，包括临时异常处理器的设置
  * 和系统状态的清理。此函数负责处理异常处理器的切换和状态重置。
  * 
- * @param operationBase 操作基础参数，包含栈展开的基本信息
- * @param dataBuffer 数据缓冲区，包含需要处理的异常上下文信息
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
  * 
- * @note 此函数是系统异常处理的一部分，用于配置异常处理器上下文
- * @warning 调用者需要确保参数的有效性，函数可能会终止系统执行
+ * @note 原始函数名：Unwind_180904850
+ * @note 这是一个异常展开（unwind）处理函数，用于配置异常处理器上下文
  */
-void Unwind_ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffer)
+void ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -91293,17 +91305,18 @@ void Unwind_ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t da
 
 
 /**
- * @brief 系统栈展开处理函数：设置备用异常处理器
+ * @brief 设置备用异常处理器
  * 
- * 在系统栈展开过程中设置备用异常处理器到指定位置
+ * 在系统栈展开过程中设置备用异常处理器到指定位置。
+ * 该函数将系统默认异常处理器B设置到数据缓冲区的指定偏移量处。
  * 
- * @param operationBase 操作基础参数，包含栈展开的基本信息
- * @param dataBuffer 数据缓冲区，包含需要处理的异常处理器信息
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
  * 
- * @note 此函数是系统异常处理的一部分，用于设置备用异常处理器
- * @warning 调用者需要确保参数的有效性
+ * @note 原始函数名：Unwind_180904860
+ * @note 这是一个异常展开（unwind）处理函数，用于设置备用异常处理器
  */
-void Unwind_SetAlternateExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
+void SetAlternateExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + ExceptionHandlerDataBufferOffsetC0) = &SystemDefaultExceptionHandlerB;

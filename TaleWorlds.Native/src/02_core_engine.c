@@ -199523,7 +199523,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
  */
 void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePointer)
 {
-  uint ConvertedUtf16Character;
+  uint16_t ConvertedUtf16Character;
   code *CharacterValidationFunctionPointer;
   char SystemOperationStatusCode;
   int CharacterEncodingValidationStatus;
