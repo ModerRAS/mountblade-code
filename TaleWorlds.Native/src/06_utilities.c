@@ -11019,14 +11019,14 @@ void ProcessUtilitySystemData(void);                // 处理工具系统数据
  * @note 原始函数名: FUN_1809429f0
  */
 void ValidateUtilitySystemData(void);               // 验证工具系统数据
-void* UtilitySystemValidateData1;
-void* UtilitySystemValidateDataPointer1;
-void* UtilitySystemValidateData2;
-uint8_t UtilitySystemValidateStatus1;
-void* UtilitySystemValidateData3;
-uint8_t UtilitySystemValidateStatus2;
-void* UtilitySystemValidateData4;
-uint8_t UtilitySystemValidateStatus3;
+void* UtilitySystemPrimaryValidationDataPointer;
+void* UtilitySystemSecondaryValidationDataPointer;
+void* UtilitySystemTertiaryValidationDataPointer;
+uint8_t UtilitySystemPrimaryValidationStatus;
+void* UtilitySystemQuaternaryValidationDataPointer;
+uint8_t UtilitySystemSecondaryValidationStatus;
+void* UtilitySystemQuinaryValidationDataPointer;
+uint8_t UtilitySystemTertiaryValidationStatus;
 void* UtilitySystemProcessData1;
 void* UtilitySystemProcessData2;
 void* UtilitySystemProcessData3;
