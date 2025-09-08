@@ -18810,7 +18810,7 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
         if (*(int *)(dataRecordIndex + 0x30) != 0) {
           return ComponentDataValidationFailure;
         }
-        rangeMinValue = *(float *)(dataRecordIndex + 0x38);
+        rangeMinValue = *(float *)(dataRecordIndex + DataValidationOffset38);
         if ((*(float *)(dataRecordIndex + 0x38) <= currentValue) &&
            (rangeMaxValue = *(float *)(dataRecordIndex + DataValidationOffset3C), currentValue <= *(float *)(dataRecordIndex + DataValidationOffset3C))) {
           rangeMaxValue = currentValue;
