@@ -89065,16 +89065,16 @@ void AdvancedProcessUIContextData(longlong uiContext,uint dataSource,int targetB
                                  longlong param_6,longlong param_7,int param_8,UIHandle param_9,int uiContext0)
 
 {
-  float *pbaseValue;
+  float *baseValuePointer;
   bool IsEventProcessingActive;
   int uiCompareResult;
   longlong contextHandleData;
-  int localInt5;
+  int tempInt5;
   ulonglong maxProcessingCount;
-  int localInt7;
-  int *ptrLocalInt8;
+  int tempInt7;
+  int *tempIntPtr8;
   ulonglong eventProcessingStatus;
-  ulonglong result0;
+  ulonglong processingResult;
   float baseValue1;
   int stackInt98;
   
