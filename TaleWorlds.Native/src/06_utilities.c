@@ -29452,7 +29452,7 @@ DataBuffer ExecuteSystemCheckA0(void)
   if (0 < *(short *)(SystemContext + FloatDataArraySizeOffset)) {
     SystemFloatPointer = (float *)(SystemContext + FloatDataPointerOffset84);
     do {
-      NormalizedValue = SystemFloatPointer[-0x20] * 0.25;
+      NormalizedValue = SystemFloatPointer[-FloatDataPreprocessorOffset20] * 0.25;
       if (0.0 <= NormalizedValue) {
         if (1.0 <= NormalizedValue) {
           NormalizedValue = 1.0;
@@ -42547,7 +42547,7 @@ void ExceptionRecoveryHandlerB12(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionRecoveryHandlerB13(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x100) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerContextOffset100) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
