@@ -185655,7 +185655,7 @@ LAB_180152731:
     break;
   case 4:
     uStack_218 = *(unsigned long long *)(CharacterCode + 0xc0);
-    FUN_18029e6e0(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
+    ProcessSystemDataEncoding(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
                   *(uint32_t *)(CharacterCode + 0xa8),*(uint32_t *)(CharacterCode + 0xac));
     (**(code **)(**(long long **)(CharacterCode + 0xc0) + 0x38))();
     break;
