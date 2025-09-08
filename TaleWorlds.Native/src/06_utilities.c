@@ -127,6 +127,21 @@
 #define SystemStatusCheckOffset24 0x24                     // 系统状态检查偏移量24
 #define SystemStatusCheckOffset48 0x48                     // 系统状态检查偏移量48
 #define SystemStatusCheckOffset150 0x150                   // 系统状态检查偏移量150
+
+// 异常上下文资源管理偏移量常量
+#define ResourceCounterOffset130 0x130                      // 资源计数器偏移量130
+#define ResourceIteratorTableOffset1CD8 0x1cd8              // 资源迭代器表偏移量1CD8
+#define ResourceValidationOffset12E3 0x12e3                 // 资源验证偏移量12E3
+#define ResourceValidationOffset12DD 0x12dd                 // 资源验证偏移量12DD
+#define ResourceManagementOffset80D8 0x80d8                // 资源管理偏移量80D8
+#define ResourceManagementOffset8088 0x8088                // 资源管理偏移量8088
+#define ResourceManagementOffset80B0 0x80b0                // 资源管理偏移量80B0
+#define MemoryBlockOffset200 200                            // 内存块偏移量200
+#define MemoryBlockOffsetD0 0xd0                            // 内存块偏移量D0
+#define SystemResourceBaseOffset7F20 0x7f20                 // 系统资源基地址偏移量7F20
+#define ResourceValidationFlagOffset60 0x60                 // 资源验证标志偏移量60
+#define ExceptionHandlerPointerOffset120 0x120             // 异常处理器指针偏移量120
+#define ExceptionHandlerPointerOffset7F0 0x7f0             // 异常处理器指针偏移量7F0
 #define SystemStatusCheckOffset268 0x268                   // 系统状态检查偏移量268
 
 // 资源管理相关偏移量常量
@@ -93405,7 +93420,21 @@ void DecrementSystemResourceCounterAndCallCleanupC(void)
 
 
 
-void Unwind_18090ca40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文资源管理器CA40
+ * 
+ * 该函数负责管理系统异常上下文资源的分配和释放。主要功能包括：
+ * - 检查资源计数器并获取资源迭代器
+ * - 处理异常上下文的状态验证和更新
+ * - 执行系统操作和数据缓冲区验证
+ * - 设置默认异常处理器指针
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090ca40
+ */
+void ManageExceptionContextResourcesCA40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -93414,24 +93443,24 @@ void Unwind_18090ca40(DataBuffer operationBase,int64_t dataBuffer)
   int64_t *contextPointer;
   int64_t resourceIterator;
   
-  if (0 < *(int *)(dataBuffer + 0x130)) {
-    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + 0x1cd8);
-    if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
+  if (0 < *(int *)(dataBuffer + ResourceCounterOffset130)) {
+    resourceIterator = *(int64_t *)(SystemResourceIteratorTable + ResourceIteratorTableOffset1CD8);
+    if ((*(char *)(SystemResourcePointer + ResourceValidationOffset12E3) != '\0') || (*(char *)(SystemResourcePointer + ResourceValidationOffset12DD) != '\0')
        ) {
-      contextPointer = (int64_t *)(resourceIterator + ResourceManagementOffset80d8 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20);
+      contextPointer = (int64_t *)(resourceIterator + ResourceManagementOffset80D8 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20);
       exceptionHandlerContext = *contextPointer;
       exceptionHandlerContext = *(int64_t *)(exceptionHandlerContext + ((int64_t)(int)(contextPointer[1] - exceptionHandlerContext >> 3) + -1) * 8);
       ProcessSystemOperationsA0();
       if (*(int64_t *)(exceptionHandlerContext + ExceptionContextStatusOffset68) == 0) {
-        *(int64_t *)(resourceIterator + ResourceManagementOffset80b0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
+        *(int64_t *)(resourceIterator + ResourceManagementOffset80B0 + (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 8) = exceptionHandlerContext;
       }
       memoryBlockOffset = (int64_t)*(int *)(resourceIterator + ResourceManagementOffset8088) * 0x20;
-      exceptionHandlerContext = *(int64_t *)(memoryBlockOffset + 200 + resourceIterator + 0x7f20);
-      operationResult = (int)(*(int64_t *)(memoryBlockOffset + 0xd0 + resourceIterator + 0x7f20) - exceptionHandlerContext >> 3) + -1;
+      exceptionHandlerContext = *(int64_t *)(memoryBlockOffset + MemoryBlockOffset200 + resourceIterator + SystemResourceBaseOffset7F20);
+      operationResult = (int)(*(int64_t *)(memoryBlockOffset + MemoryBlockOffsetD0 + resourceIterator + SystemResourceBaseOffset7F20) - exceptionHandlerContext >> 3) + -1;
       if (-1 < operationResult) {
         resourceIterator = (int64_t)operationResult;
         do {
-          if (*(char *)(*(int64_t *)(exceptionHandlerContext + resourceIterator * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(exceptionHandlerContext + resourceIterator * 8) + ResourceValidationFlagOffset60) == '\x01') {
             if (operationResult != -1) {
               ValidateDataBufferA2(*(DataBuffer *)(exceptionHandlerContext + (int64_t)operationResult * 8));
             }
@@ -93443,7 +93472,7 @@ void Unwind_18090ca40(DataBuffer operationBase,int64_t dataBuffer)
       }
     }
   }
-  *(uint8_t **)(dataBuffer + 0x120) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerPointerOffset120) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
