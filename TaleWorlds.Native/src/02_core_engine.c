@@ -100218,24 +100218,24 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCo
   float matrixElementI;
   float matrixElementJ;
   
-  AllocatedMemorySize = SystemConfigurationHandle;
-  ProcessedCharacter = (uint)((unsigned long long)CharacterCodeParameter >> 0x20);
-  SystemStatusCode = *(unsigned long long *)(SystemConfigurationHandle + 0x1af8);
-  *(uint8_t *)(SystemStatusCode + 0xb1) = 1;
-  MemoryBlockIndex = *(long long *)(AllocatedMemorySize + 0x1af8);
+  allocatedMemorySize = SystemConfigurationHandle;
+  processedCharacter = (uint)((unsigned long long)characterCodeParameter >> 0x20);
+  systemStatusCode = *(unsigned long long *)(SystemConfigurationHandle + 0x1af8);
+  *(uint8_t *)(systemStatusCode + 0xb1) = 1;
+  MemoryBlockIndex = *(long long *)(allocatedMemorySize + 0x1af8);
   if (*(char *)(MemoryBlockIndex + 0xb4) == '\0') {
     ProcessSystemEvent();
-    ComputedResult = ValidateSystemDataAndProcessOperation(&SystemDataBufferH,0,
+    computedResult = ValidateSystemDataAndProcessOperation(&SystemDataBufferH,0,
                           *(uint32_t *                           (*(long long *)(MemoryBlockIndex + 0x220) + -4 +
                            (long long)*(int *)(MemoryBlockIndex + 0x218) * 4));
-    MemoryBoundaryEnd = SystemConfigurationHandle;
-    if (*(int *)(SystemConfigurationHandle + 0x1b2c) == ComputedResult) {
-      *(int *)(SystemConfigurationHandle + 0x1b34) = ComputedResult;
+    memoryBoundaryEnd = SystemConfigurationHandle;
+    if (*(int *)(SystemConfigurationHandle + 0x1b2c) == computedResult) {
+      *(int *)(SystemConfigurationHandle + 0x1b34) = computedResult;
     }
-    if (*(int *)(MemoryBoundaryEnd + 0x1b30) == ComputedResult) {
-      *(uint8_t *)(MemoryBoundaryEnd + 0x1b3f) = 1;
+    if (*(int *)(memoryBoundaryEnd + 0x1b30) == computedResult) {
+      *(uint8_t *)(memoryBoundaryEnd + 0x1b3f) = 1;
     }
-    ReferenceCountPointer = (int *)(*(long long *)(MemoryBoundaryEnd + 0x1af8) + 0x218);
+    referenceCountPointer = (int *)(*(long long *)(memoryBoundaryEnd + 0x1af8) + 0x218);
     *ReferenceCountPointer = *ReferenceCountPointer + -1;
     MatrixElementC = *(float *)(MemoryBlockIndex + 0x100);
     MatrixElementD = *(float *)(MemoryBlockIndex + 0x104);
