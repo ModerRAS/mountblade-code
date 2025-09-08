@@ -90701,7 +90701,7 @@ UIDword FUN_18071dfc0(longlong uiContext,int dataSource,ulonglong targetBuffer)
       *(uint *)(uiContext + 0x11e0) = (ProcessingStatus == 10) + 1;
       *(int *)(uiBufferData + 0x11e4) = (short)targetBuffer * uiValidationResult;
       *(int *)(uiBufferData + 0x11c0) = uiValidationResult * 0xe;
-      ptrResult = &UNK_180954814;
+      ptrResult = &UIStatusPointer1;
       if (*(int *)(uiBufferData + 0x11dc) != 8) {
         ptrResult = &UNK_180954828;
       }
