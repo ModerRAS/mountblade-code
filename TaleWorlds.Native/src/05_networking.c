@@ -4800,36 +4800,53 @@ void CopyNetworkConnectionBuffer(void* SourceBuffer)
  * @note 这是简化实现，实际应用中需要实现完整的头部处理逻辑
  * @warning 简化实现仅执行基本的验证，不进行实际的头部解析工作
  */
+/**
+ * @brief 处理网络数据包头部信息
+ * 
+ * 该函数负责处理网络数据包的头部信息，验证头部格式和内容的有效性。
+ * 函数解析和验证数据包头部的各个字段，确保数据包符合网络协议规范。
+ * 
+ * @param PacketData 数据包数据指针，包含待处理的头部信息
+ * @param HeaderContext 头部上下文参数，包含头部处理的配置信息
+ * @return NetworkHandle 处理结果句柄，0表示处理成功，非0值表示处理失败
+ * 
+ * @retval NetworkOperationSuccess 处理成功
+ * @retval NetworkOperationFailure 处理失败
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的头部处理逻辑
+ * @warning 简化实现仅执行基本的验证，不进行实际的头部解析工作
+ * @see NetworkOperationSuccess, NetworkOperationFailure
+ */
 NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t HeaderValidationResult;                    // 头部完整性验证结果
-  uint32_t ContextProcessingStatus;                   // 上下文处理状态
-  uint32_t FormatValidationResult;                   // 格式验证结果
+  uint32_t PacketHeaderValidationResult;           // 数据包头部完整性验证结果
+  uint32_t HeaderContextProcessingStatus;          // 头部上下文处理状态
+  uint32_t HeaderFormatValidationResult;           // 头部格式验证结果
   
-  // 初始化处理状态
-  HeaderValidationResult = NetworkValidationFailure;
-  ContextProcessingStatus = NetworkValidationFailure;
-  FormatValidationResult = NetworkValidationFailure;
+  // 初始化处理状态为失败状态
+  PacketHeaderValidationResult = NetworkValidationFailure;
+  HeaderContextProcessingStatus = NetworkValidationFailure;
+  HeaderFormatValidationResult = NetworkValidationFailure;
   
   // 验证数据包有效性
   if (PacketData != 0) {
-    HeaderValidationResult = NetworkValidationSuccess;
+    PacketHeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    ContextProcessingStatus = NetworkValidationSuccess;
+    HeaderContextProcessingStatus = NetworkValidationSuccess;
   }
   
-  // 检查头部格式
-  if (HeaderValidationResult == NetworkValidationSuccess && 
-      ContextProcessingStatus == NetworkValidationSuccess) {
-    FormatValidationResult = NetworkValidationSuccess;
+  // 检查头部格式，只有在数据包和上下文都有效时才进行格式验证
+  if (PacketHeaderValidationResult == NetworkValidationSuccess && 
+      HeaderContextProcessingStatus == NetworkValidationSuccess) {
+    HeaderFormatValidationResult = NetworkValidationSuccess;
   }
   
   // 返回处理结果
-  if (FormatValidationResult == NetworkValidationSuccess) {
+  if (HeaderFormatValidationResult == NetworkValidationSuccess) {
     return NetworkOperationSuccess;  // 处理成功
   } else {
     return NetworkOperationFailure;  // 处理失败
