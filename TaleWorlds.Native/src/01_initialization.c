@@ -39037,15 +39037,15 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
             SystemCleanupFunction(LoggerCleanupResult);
         }
       }
-      *(void* *)(localDataIndex + *PrimaryResourceHandle) = 0;
+      *(void* *)(LoggerCleanupIndex + *PrimaryResourceHandle) = 0;
       LoggerProcessingCounter = LoggerProcessingCounter + 1;
-      localDataIndex = localDataIndex + 8;
-      LocalSystemOffset = *PrimaryResourceHandle;
-    } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - LocalSystemOffset >> 3));
+      LoggerCleanupIndex = LoggerCleanupIndex + 8;
+      LoggerIteratorOffset = *PrimaryResourceHandle;
+    } while ((ulong long)(long long)LoggerProcessingCounter < (ulong long)(*(long long )(SystemResourceManager + 0x10) - LoggerIteratorOffset >> 3));
   }
   LoggerProcessingCounter = 0;
-  LocalSystemOffset = *resourcePoolPointer;
-  if (*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - LocalSystemOffset >> 3 != 0) {
+  LoggerIteratorOffset = *resourcePoolPointer;
+  if (*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - LoggerIteratorOffset >> 3 != 0) {
     localDataIndex = 0;
     do {
       SystemCalculatedBufferPointer = *(long long **)(LocalSystemOffset + localDataIndex);
