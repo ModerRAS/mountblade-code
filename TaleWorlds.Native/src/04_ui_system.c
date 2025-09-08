@@ -228633,7 +228633,7 @@ FUN_180807d00(UIHandle uiContext,longlong *dataSource,longlong targetBuffer,long
   stackUInt40 = *(UIDword *)(stringCompareIndex + 0xfb4);
   stackUInt3c = *(UIDword *)(stringCompareIndex + 0xfb8);
   stackUInt38 = *(UIHandle *)(stringCompareIndex + 0xfbc);
-  uiOperationResult = FUN_180824b30(uiContext,*(UIHandle *)(stringCompareIndex + 0x78),&stackUInt68,FUN_180808090,dataSource);
+  uiOperationResult = FUN_180824b30(uiContext,*(UIHandle *)(stringCompareIndex + 0x78),&stackUInt68,ProcessUIComponentHierarchy,dataSource);
   if (uiOperationResult == 0) {
     *(UIDword *)*dataSource = 8;
     return 3;
@@ -228697,7 +228697,7 @@ FUN_180807d00(UIHandle uiContext,longlong *dataSource,longlong targetBuffer,long
 
 
 UIHandle
-FUN_180808090(UIHandle uiContext,UIHandle dataSource,longlong *targetBuffer,UIHandle *bufferSize)
+ProcessUIComponentHierarchy(UIHandle uiContext,UIHandle dataSource,longlong *targetBuffer,UIHandle *bufferSize)
 
 {
   code *plocalChar1;
