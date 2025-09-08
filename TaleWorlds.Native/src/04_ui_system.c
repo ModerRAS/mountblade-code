@@ -89296,8 +89296,15 @@ LAB_18071cd2d:
 
 
 
- void FUN_18071cbe5(longlong uiContext)
-void FUN_18071cbe5(longlong uiContext)
+ /**
+ * @brief UI系统内存分配验证器
+ * 
+ * 该函数验证UI系统中的内存分配，确保内存使用的有效性和安全性。
+ * 主要用于UI系统的内存验证和错误检查。
+ * 
+ * @param uiContext UI上下文句柄
+ */
+void ValidateUIMemoryAllocation(longlong uiContext)
 
 {
   short sVar1;
@@ -89366,7 +89373,16 @@ LAB_18071cd2d:
 
 
  void FUN_18071cc58(UIHandle uiContext,int dataSource)
-void FUN_18071cc58(UIHandle uiContext,int dataSource)
+/**
+ * @brief UI系统数据源处理器
+ * 
+ * 该函数处理UI系统中的数据源，包括数据验证、分配和优化。
+ * 主要用于UI系统的数据源管理和处理。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源参数
+ */
+void ProcessUIDataSource(UIHandle uiContext,int dataSource)
 
 {
   int processingResult;
