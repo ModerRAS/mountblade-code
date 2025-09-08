@@ -100016,6 +100016,7 @@ uint8_t UpdateSystemStatus(void
   uint32_t *CharacterStatusBufferPointer;
   uint32_t MemoryAllocationIndex;
   bool IsHighByteSet;
+  bool LowByte;
   long long SystemDataRegistry;
   uint8_t InputDataLength;
   uint32_t DataSize;
@@ -100032,6 +100033,7 @@ uint8_t UpdateSystemStatus(void
   float FloatingPointRegisterA;
   float UnassignedFloatValueA;
   float UnassignedFloatValueB;
+  float CalculatedFilterValue;
   uint64_t SystemParameter1;
   uint64_t AllocatedMemorySize;
   uint32_t ProcessedCharacter;
