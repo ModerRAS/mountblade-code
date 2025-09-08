@@ -120925,10 +120925,10 @@ void ProcessStringFormatting64Bit(char *CharacterCode,uint64_t SystemBufferSize,
   char ValidationStatus;
   char *SystemValidationFunction;
   bool IsHighByteSet;
-  uint8_t aStackProcessingValue78 [32];
-  char cStack_58;
-  char acStack_57 [63];
-  unsigned long long uStack_18;
+  uint8_t ProcessingStackBuffer [32];
+  char FormatStackCharacter;
+  char FormattedCharacterBuffer [63];
+  unsigned long long EncodingStackValue;
   
   EncodingKey = EncodingDecodingKey ^ (unsigned long long)EncodingBuffer;
   do {

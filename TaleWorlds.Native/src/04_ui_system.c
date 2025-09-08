@@ -10057,13 +10057,13 @@ void ManageUIElements(longlong *uiContext)
   }
   longlong *uiElementPtr = (longlong *)0x0;
   longlong *uiColorBuffer = (longlong *)0x0;
-  iterationCount = 0;
-  stackPointer68 = (longlong *)0x0;
-  stackValue60 = 3;
-  InitializeUIComponent(&stackPointer78);
-  colorBufferPtr = stackPointer70;
+  ulonglong uiIterationCount = 0;
+  longlong *uiMemoryPtr = (longlong *)0x0;
+  uint uiAllocationSize = 3;
+  InitializeUIComponent(&uiElementPtr);
+  longlong *uiColorBufferData = uiColorBuffer;
   if (UIActiveContext != (longlong *)0x0) {
-    stackPointer58 = (UIHandle *)0x0;
+    UIHandle *uiComponentQueue = (UIHandle *)0x0;
     stackPointer50 = (UIHandle *)0x0;
     stackValue48 = 0;
     stackValue40 = 3;

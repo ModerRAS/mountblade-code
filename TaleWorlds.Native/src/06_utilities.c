@@ -397,6 +397,25 @@
 // 上下文指针偏移量常量
 #define ContextPointerOffset50 0x50                          // 上下文指针偏移量
 
+// 异常处理器调用偏移量常量
+#define ExceptionHandlerContextOffset40 0x40                 // 异常处理器上下文偏移量40
+#define SystemDataValidationOffset348 0x348                   // 系统数据验证偏移量348
+#define ExceptionHandlerContextFunctionOffset38 0x38         // 异常处理器上下文函数偏移量38
+#define ExceptionHandlerContextOffset350 0x350                // 异常处理器上下文偏移量350
+#define ExceptionHandlerContextOffset358 0x358                // 异常处理器上下文偏移量358
+#define ExceptionHandlerContextOffset360 0x360                // 异常处理器上下文偏移量360
+#define ExceptionHandlerContextOffset368 0x368                // 异常处理器上下文偏移量368
+#define ExceptionHandlerContextOffset370 0x370                // 异常处理器上下文偏移量370
+#define ExceptionHandlerContextOffset378 0x378                // 异常处理器上下文偏移量378
+#define SystemFloatDataOffset380 0x380                        // 系统浮点数据偏移量380
+
+// 资源管理偏移量常量
+#define ResourceCounterOffset2B0 0x2b0                         // 资源计数器偏移量2B0
+#define ExceptionHandlerContextOffset600 0x600                // 异常处理器上下文偏移量600
+#define SystemDataParameterOffset20 0x20                      // 系统数据参数偏移量20
+#define ExceptionHandlerPointerOffset2A0 0x2a0                // 异常处理器指针偏移量2A0
+#define ExceptionContextStatusOffset68 0x68                   // 异常上下文状态偏移量68
+
 // 系统管理偏移量常量
 #define SystemManagementOffset98 0x98                          // 系统管理偏移量98
 #define SystemConfigPrimaryOffset 0x0                         // 系统配置主偏移量
@@ -90006,12 +90025,21 @@ void InvokeExceptionHandlerAtOffset348(DataBuffer operationBase,int64_t dataBuff
 
 
 
+/**
+ * @brief 异常上下文处理器调用函数B9D0
+ * 
+ * 调用异常上下文处理器，处理系统数据偏移量350处的异常处理逻辑
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090b9d0
+ */
 void InvokeExceptionHandlerAtOffset350(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x350);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionHandlerContextOffset350);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
