@@ -27924,9 +27924,10 @@ DataBuffer ValidateDataFormatA0(DataBuffer systemContext,DataWord *dataBuffer)
 /**
  * @brief 获取系统状态A1
  * 
- * 该函数用于获取当前系统的运行状态信息
+ * 获取当前系统的运行状态信息，包括系统资源使用情况、错误状态等。
+ * 该函数通过检查系统状态来获取当前的运行状态信息。
  * 
- * @return 系统状态码，成功返回0，失败返回错误码
+ * @return DataBuffer 系统状态码，0表示成功，非0表示错误状态
  */
 DataBuffer GetSystemStatusA1(void)
 
@@ -27945,7 +27946,14 @@ DataBuffer GetSystemStatusA1(void)
 
 
 
-// 清理系统资源
+/**
+ * @brief 清理系统资源
+ * 
+ * 清理系统使用的资源，包括内存、文件句柄、网络连接等。
+ * 该函数用于系统关闭或资源释放时的清理工作。
+ * 
+ * @return void 无返回值
+ */
 void CleanupSystemResources(void)
 
 {
@@ -127629,6 +127637,43 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始函数名：Unwind_18090c240 - 异常处理器验证函数C240
 // 功能：验证异常处理器的有效性，检查异常处理状态
+
+// 系统内存操作和资源清理函数系列 - DEA0-DFC0
+// 原始函数名：Unwind_18090dea0 - 系统内存操作函数DEA0
+// 功能：执行系统内存操作，处理资源清理和异常处理
+#define ExecuteSystemMemoryOperationAndCleanupDEA0 Unwind_18090dea0
+
+// 原始函数名：Unwind_18090dec0 - 系统内存操作函数DEC0
+// 功能：执行系统内存操作，处理资源清理和异常处理
+#define ExecuteSystemMemoryOperationAndCleanupDEC0 Unwind_18090dec0
+
+// 原始函数名：Unwind_18090df00 - 系统互斥锁销毁函数DF00
+// 功能：销毁系统互斥锁，释放系统资源
+#define DestroySystemMutexAndReleaseResourcesDF00 Unwind_18090df00
+
+// 原始函数名：Unwind_18090df20 - 异常处理器调用函数DF20
+// 功能：调用异常处理器，处理异常上下文
+#define InvokeExceptionHandlerAtOffset13B8 Unwind_18090df20
+
+// 原始函数名：Unwind_18090df40 - 异常处理器调用函数DF40
+// 功能：调用异常处理器，处理异常上下文
+#define InvokeExceptionHandlerAtOffset13D0 Unwind_18090df40
+
+// 原始函数名：Unwind_18090df60 - 异常处理器调用函数DF60
+// 功能：调用异常处理器，处理异常上下文
+#define InvokeExceptionHandlerAtOffset13E8 Unwind_18090df60
+
+// 原始函数名：Unwind_18090df80 - 异常处理器调用函数DF80
+// 功能：调用异常处理器，处理异常上下文
+#define InvokeExceptionHandlerAtOffset1400 Unwind_18090df80
+
+// 原始函数名：Unwind_18090dfa0 - 异常处理器调用函数DFA0
+// 功能：调用异常处理器，处理异常上下文
+#define InvokeExceptionHandlerAtOffset1418 Unwind_18090dfa0
+
+// 原始函数名：Unwind_18090dfc0 - 异常处理器调用函数DFC0
+// 功能：调用异常处理器，处理异常上下文
+#define InvokeExceptionHandlerAtOffset1430 Unwind_18090dfc0
 #define ValidateExceptionHandlerC240 Unwind_18090c240
 
 // 原始函数名：Unwind_18090c260 - 异常处理器设置函数C260
