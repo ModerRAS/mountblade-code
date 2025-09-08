@@ -568,23 +568,23 @@
 #define DisplayPipelineContextAddress        0x180be1550
 
 // 音频系统地址常量
-#define AudioMixerContextAddress              0x180be1c00
-#define AudioBufferContextAddress              0x180be1c08
-#define AudioEffectContextAddress              0x180be23a0
-#define AudioStreamContextAddress              0x180be23c0
+#define AudioMixerSystemContext               0x180be1c00
+#define AudioBufferSystemContext               0x180be1c08
+#define AudioEffectSystemContext               0x180be23a0
+#define AudioStreamSystemContext               0x180be23c0
 
 // 输入系统地址常量
-#define InputControllerContextAddress           0x180be2ad8
-#define InputKeyboardContextAddress              0x180be2af8
+#define InputControllerSystemContext            0x180be2ad8
+#define InputKeyboardSystemContext              0x180be2af8
 
 // 物理系统地址常量
-#define PhysicsWorldContextAddress              0x180be4710
-#define PhysicsColliderContextAddress            0x180be4728
+#define PhysicsWorldSystemContext               0x180be4710
+#define PhysicsColliderSystemContext             0x180be4728
 
 // 网络系统地址常量
-#define NetworkClientContextAddress             0x180be6068
-#define NetworkServerContextAddress             0x180be6070
-#define NetworkSystemTertiaryAddress           0x180be6078
+#define NetworkClientSystemContext              0x180be6068
+#define NetworkServerSystemContext              0x180be6070
+#define NetworkConnectionSystemContext           0x180be6078
 
 // 虚函数表偏移量常量
 #define VirtualTableInitializeMethodOffset  0x28
