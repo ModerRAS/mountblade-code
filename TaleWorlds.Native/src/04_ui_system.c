@@ -7953,7 +7953,7 @@ LAB_UIContextInitialize:
         sourceDataBlock = sourceDataBlock + 4;
         elementCount = elementCount - 1;
       } while (elementCount != 0);
-      stackValue1 = 0;
+      elementCounter = 0;
       sourceDataBlock = resultPointer1;
       currentMemoryBlock = resultPointer1;
       dataPointer1 = resultPointer2;
@@ -8070,8 +8070,8 @@ LAB_UIContextInitialize:
   longlong bufferOffset;
   undefined *defaultData;
   undefined *resultBuffer;
-  longlong stackValue1;
-  UIDword stackValue2;
+  longlong bufferHandle;
+  UIDword renderFlags;
   UIDword stackValue3;
   UIDword stackValue4;
   longlong loopCounter;
