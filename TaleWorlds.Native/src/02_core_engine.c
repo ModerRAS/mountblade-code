@@ -100111,25 +100111,25 @@ void ValidateSystemMemoryOperation(void)
  */
 void InitializeSystemMemoryCache(void)
 {
-  uint32_t in_EAX;
-  long long SystemContext;
-  long long StackFrameAddressPointer;
-  long long SystemDataNode;
-  float FloatingPointRegisterA;
-  float BaseFloatValue;
-  float AuxiliaryFloat9;
-  uint32_t SystemInitializationFlags;
-  float TemporaryCalculationFloat;
-  float TertiaryDataStorage;
+  uint32_t eaxRegisterValue;
+  long long systemContextPointer;
+  long long stackFrameAddress;
+  long long systemDataNode;
+  float floatingPointRegisterA;
+  float baseFloatValue;
+  float auxiliaryFloat9;
+  uint32_t systemInitializationFlags;
+  float temporaryCalculationFloat;
+  float tertiaryDataStorage;
   
-  TemporaryCalculationFloat = (TertiaryDataStorage - FloatingPointRegisterA) * BaseFloatValue + FloatingPointRegisterA;
-  TertiaryDataStorage = AuxiliaryFloat9 + TemporaryCalculationFloat;
-  if (*(float *)(StackFrameAddressPointer + 0x77) <= AuxiliaryFloat9 + TemporaryCalculationFloat) {
-    TertiaryDataStorage = *(float *)(StackFrameAddressPointer + 0x77);
+  temporaryCalculationFloat = (tertiaryDataStorage - floatingPointRegisterA) * baseFloatValue + floatingPointRegisterA;
+  tertiaryDataStorage = auxiliaryFloat9 + temporaryCalculationFloat;
+  if (*(float *)(stackFrameAddress + 0x77) <= auxiliaryFloat9 + temporaryCalculationFloat) {
+    tertiaryDataStorage = *(float *)(stackFrameAddress + 0x77);
   }
-  SystemInitializationFlags = 0xf;
-  ProcessSystemDataAndConfigure(*(void *)(SystemContext + 0x2e8),&SystemStackBuffer,&SystemChecksumStackBuffer,in_EAX,
-                *(uint32_t *)(SystemDataNode + 0x1690));
+  systemInitializationFlags = 0xf;
+  ProcessSystemDataAndConfigure(*(void *)(systemContextPointer + 0x2e8),&SystemStackBuffer,&SystemChecksumStackBuffer,eaxRegisterValue,
+                *(uint32_t *)(systemDataNode + 0x1690));
   return;
 }
 
@@ -100189,34 +100189,34 @@ void ConfigureSystemMemoryFlags(void)
 unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCode,float *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer,
                        char AdditionalParameter1,float *AdditionalParameter2,float *AdditionalParameter3
 {
-  int *ReferenceCountPointer;
-  void *SystemContext;
-  long long SearchStartIndex;
-  bool BooleanOperationFlag4;
-  long long AllocatedMemorySize;
-  long long MemoryBoundaryEnd;
-  byte BooleanByteFlag7;
-  int ComputedResult;
-  uint32_t SystemMemoryAllocationResult;
-  uint32_t MemoryAllocationIndex;
-  uint ProcessedCharacter;
-  unsigned long long SystemStatusCode;
-  long long DataSize13;
-  float SystemContextPrimaryFloat4;
-  float SystemFloatValue;
-  uint64_t CharacterCodeParameter;
-  char LocalStackBuffer_d8 [8];
-  uint64_t MatrixTransformResult;
-  uint32_t SystemValidationFlag;
-  float MatrixElementB;
-  float MatrixElementC;
-  float MatrixElementD;
-  float MatrixElementE;
-  float MatrixElementF;
-  float MatrixElementG;
-  float MatrixElementH;
-  float MatrixElementI;
-  float MatrixElementJ;
+  int *referenceCountPointer;
+  void *systemContext;
+  long long searchStartIndex;
+  bool booleanOperationFlag;
+  long long allocatedMemorySize;
+  long long memoryBoundaryEnd;
+  byte booleanByteFlag;
+  int computedResult;
+  uint32_t systemMemoryAllocationResult;
+  uint32_t memoryAllocationIndex;
+  uint processedCharacter;
+  unsigned long long systemStatusCode;
+  long long dataSizeValue;
+  float systemContextPrimaryFloat4;
+  float systemFloatValue;
+  uint64_t characterCodeParameter;
+  char localStackBuffer_d8 [8];
+  uint64_t matrixTransformResult;
+  uint32_t systemValidationFlag;
+  float matrixElementB;
+  float matrixElementC;
+  float matrixElementD;
+  float matrixElementE;
+  float matrixElementF;
+  float matrixElementG;
+  float matrixElementH;
+  float matrixElementI;
+  float matrixElementJ;
   
   AllocatedMemorySize = SystemConfigurationHandle;
   ProcessedCharacter = (uint)((unsigned long long)CharacterCodeParameter >> 0x20);
