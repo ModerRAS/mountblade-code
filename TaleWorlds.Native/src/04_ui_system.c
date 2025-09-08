@@ -10216,17 +10216,17 @@ void UpdateUILayoutEx(longlong *layout_data, longlong *component_data, longlong 
         EventTypeCodePointer = ResultPointer0;
       }
       else {
-        ContextHandleData = (longlong)pstackUInt58 - (longlong)ptrResult0 >> 3;
+        ContextHandleData = (longlong)StackPointer58 - (longlong)ResultPointer0 >> 3;
         if (ContextHandleData == 0) {
           ContextHandleData = 1;
 LAB_1806588f2:
-          peventTypeCode = (UIHandle *)
+          EventTypeCodePointer = (UIHandle *)
                    CreateUIContext(UIContextManager,ContextHandleData * 8,
-                                 CONCAT71((int7)((ulonglong)lStackX_8 >> 8),3),targetBuffer,result3);
+                                 CONCAT71((int7)((ulonglong)lStackX_8 >> 8),3),targetBuffer,Result3);
         }
         else {
           ContextHandleData = ContextHandleData * 2;
-          peventTypeCode = ptrLocal9;
+          EventTypeCodePointer = LocalPointer9;
           if (ContextHandleData != 0) goto LAB_1806588f2;
         }
         if (ptrResult0 != ptrLocal3) {
