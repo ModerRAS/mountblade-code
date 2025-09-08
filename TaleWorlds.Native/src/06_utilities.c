@@ -133,6 +133,7 @@
 #define ResourceIteratorTableOffset1CD8 0x1cd8              // 资源迭代器表偏移量1CD8
 #define ResourceValidationOffset12E3 0x12e3                 // 资源验证偏移量12E3
 #define ResourceValidationOffset12DD 0x12dd                 // 资源验证偏移量12DD
+#define ExceptionContextReferenceCountOffset 0x3a8          // 异常上下文引用计数偏移量
 #define ResourceManagementOffset80D8 0x80d8                // 资源管理偏移量80D8
 #define ResourceManagementOffset8088 0x8088                // 资源管理偏移量8088
 #define ResourceManagementOffset80B0 0x80b0                // 资源管理偏移量80B0
@@ -22176,7 +22177,7 @@ DataBuffer InitializeSystemDataStructure(int64_t *systemContext)
   uint64_t processingCounter;
   uint64_t bufferPointer;
   
-  configurationValue = *(int *)((int64_t)systemContext + 0x24);
+  configurationValue = *(int *)((int64_t)systemContext + SystemContextDataOffset24);
   if (configurationValue == -1) {
     return ResourceInvalidErrorCode;
   }
@@ -22189,7 +22190,7 @@ DataBuffer InitializeSystemDataStructure(int64_t *systemContext)
     if (((calculatedSize <= inputParameter) || ((int)systemContext[3] != inputParameter)) || ((int)systemContext[4] != -1)) {
       return ResourceInvalidErrorCode;
     }
-    dataFlags = (int)*(uint *)((int64_t)systemContext + 0x1c) >> 0x1f;
+    dataFlags = (int)*(uint *)((int64_t)systemContext + DataOperationOffset1C) >> 0x1f;
     if (((int)((*(uint *)((int64_t)systemContext + 0x1c) ^ dataFlags) - dataFlags) < calculatedSize) &&
        (validationStatus = CheckSystemDataA0(systemContext + 2,calculatedSize), (int)validationStatus != 0)) {
       return validationStatus;
@@ -22225,7 +22226,7 @@ DataBuffer InitializeSystemDataStructure(int64_t *systemContext)
         loopCounter = loopCounter + 1;
         statusCounter = (uint64_t)((int)statusCounter + 1);
         *(DataWord *)(operationBase[2] + 4 + memoryRegionBase) = SystemCleanupFlag;
-        memoryRegionBase = memoryRegionBase + 0x10;
+        memoryRegionBase = memoryRegionBase + ValidationStepSize;
       } while ((int64_t)loopCounter < (int64_t)(int)dataContext);
     }
   }
@@ -95157,7 +95158,7 @@ void CleanupResourceDC0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090cdf0(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_InitializeExceptionHandlerCDF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x178) != (int64_t *)0x0) {
@@ -95245,7 +95246,7 @@ void ProcessExceptionContextCE10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ce20(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_InitializeExceptionHandlerCE20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -99530,7 +99531,18 @@ void SetDefaultExceptionHandlerD5F0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d600(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器为默认处理器 - 偏移量0x1b8
+ * 
+ * 该函数将数据缓冲区偏移量0x1b8处的异常处理器重置为系统默认异常处理器B。
+ * 这是一个标准的异常处理器重置函数，用于在异常处理完成后恢复默认状态。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d600
+ */
+void ResetExceptionHandlerToDefaultAtOffset1b8(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x1b8) = &SystemDefaultExceptionHandlerB;
@@ -120065,7 +120077,20 @@ void InitializeExceptionHandler7E0(DataBuffer operationBase, int64_t dataBuffer,
 
 
 
-void Unwind_1809127f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器初始化函数7F0
+ * 
+ * 该函数用于初始化异常处理器，从指定偏移量获取异常处理上下文并处理系统异常
+ * 使用偏移量0x50获取异常处理上下文，与7E0函数类似但偏移量不同
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_1809127f0
+ */
+void InitializeExceptionHandler7F0(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -120073,7 +120098,7 @@ void Unwind_1809127f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemDataSecondaryOffset18);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
