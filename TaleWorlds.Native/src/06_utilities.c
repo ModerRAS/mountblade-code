@@ -18362,10 +18362,21 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
 /**
  * @brief 获取系统状态信息
  * 
- * 该函数用于获取系统状态信息，包括数据验证、浮点数处理和数组操作
- * 主要用于系统监控和状态检查
+ * 该函数用于获取系统状态信息，包括数据验证、浮点数处理和数组操作。
+ * 它会遍历浮点数组，对每个元素进行验证和范围检查，确保数据完整性。
+ * 主要用于系统监控和状态检查。
+ * 
+ * 处理流程：
+ * 1. 初始化系统标志和验证状态
+ * 2. 遍历浮点数组进行验证
+ * 3. 检查浮点数的有效性和范围
+ * 4. 验证数据节点指针的有效性
+ * 5. 执行最终的安全检查和清理
  * 
  * @return 系统状态码，成功时返回0，失败时返回错误码
+ * 
+ * @note 原始函数名：FUN_18008f7f0
+ * @warning 该函数包含复杂的数据验证逻辑，确保输入数据的有效性
  */
 DataBuffer GetSystemStatusA0(void)
 
@@ -22300,6 +22311,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
   DataWord stackDataOffsetOctonary;
   DataWord stackDataOffsetNonary;
   DataWord stackDataOffsetDenary;
+  int stackMemoryIndex;
+  int dataFlagCounter;
+  int arrayIterationIndex;
   
   securityCheckResult = *(uint *)(operationBase + OperationBaseOffset6C);
   dataFlags = 0;
@@ -22489,19 +22503,19 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
               stackIntBuffer[0] = *(int *)(*exceptionHandlerContextPointer + (int64_t)arrayIterationIndex * 4);
               goto ProcessCheckpointDataFlow;
             }
-            validationParameter1 = validationParameter1 + 1;
+            arrayIterationIndex = arrayIterationIndex + 1;
             resourceIterator = resourceIterator + 1;
           } while (resourceIterator != (int)exceptionHandlerContextPointer[1]);
         }
         stackIntBuffer[0] = -1;
-        validationParameter1 = stackIntBuffer[0];
+        arrayIterationIndex = stackIntBuffer[0];
 MemoryAllocationLabel:
       } while (stackIntBuffer[0] != -1);
       stackIntBuffer[0] = -1;
       dataFlags = memoryOperationCounter;
     }
-    resourceIterator = (int64_t)(validationParameter6 + -1);
-    if (-1 < validationParameter6 + -1) {
+    resourceIterator = (int64_t)(dataFlagCounter + -1);
+    if (-1 < dataFlagCounter + -1) {
       do {
         SecurityCheckValue = SecurityCheckValue & ZeroValue;
         systemContextPointer = (int64_t *)&SystemConfigurationDataTable;
@@ -22512,10 +22526,10 @@ MemoryAllocationLabel:
     }
     validationParameter1 = arrayIndex;
     if (arrayIndex < 0) {
-      validationParameter1 = -arrayIndex;
+      arrayIterationIndex = -arrayIndex;
     }
-    if (validationParameter1 < 0) {
-      if (0 < validationParameter6) goto ProcessCheckpointParameterValidation;
+    if (arrayIterationIndex < 0) {
+      if (0 < dataFlagCounter) goto ProcessCheckpointParameterValidation;
       if ((0 < arrayIndex) && (dataFlags != 0)) {
           ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataFlags,&SystemMemoryPoolB,0x100,1);
       }
@@ -22524,10 +22538,10 @@ MemoryAllocationLabel:
       dataFlags = 0;
       arrayIndex = 0;
     }
-    if (validationParameter6 < 0) {
-      resourceIterator = (int64_t)-validationParameter6;
-      exceptionDataBuffer = (DataWord *)(dataFlags + (int64_t)validationParameter6 * 4);
-      if (validationParameter6 < 0) {
+    if (dataFlagCounter < 0) {
+      resourceIterator = (int64_t)-dataFlagCounter;
+      exceptionDataBuffer = (DataWord *)(dataFlags + (int64_t)dataFlagCounter * 4);
+      if (dataFlagCounter < 0) {
         for (; resourceIterator != 0; resourceIterator = resourceIterator + -1) {
           *exceptionDataBuffer = 0;
           exceptionDataBuffer = exceptionDataBuffer + 1;
