@@ -196215,36 +196215,49 @@ LAB_18016195a:
 
 
 
-long long FUN_180161e00(long long CharacterCode,long long SystemBufferSize
+/**
+ * 在字符代码数据结构中搜索匹配项
+ * 原始函数名: FUN_180161e00
+ * 
+ * 在字符代码数据结构中搜索与给定系统缓冲区匹配的项。
+ * 该函数遍历数据结构，比较标识符和字符串内容。
+ * 
+ * @param CharacterCode 字符代码数据结构指针
+ * @param SystemBufferSize 系统缓冲区指针
+ * @return long long 返回匹配项的指针，未找到返回0
+ */
+long long SearchCharacterCodeDataStructure(long long CharacterCode,long long SystemBufferSize
 {
   int LockResult;
   int StringComparisonResult;
   int MemoryMatchResult;
   long long SystemDataRegistry;
-  long long AllocatedMemorySize;
+  long long BaseMemoryAddress;
+  long long CurrentMemoryEntry;
+  long long SearchIndex;
   
-  long long AllocatedMemorySize = *(long long *)(CharacterCode + 0x28);
-  InputDataLength = 0;
-  if (*(long long *)(CharacterCode + 0x30) - AllocatedMemorySize >> 3 != 0) {
+  BaseMemoryAddress = *(long long *)(CharacterCode + 0x28);
+  SearchIndex = 0;
+  if (*(long long *)(CharacterCode + 0x30) - BaseMemoryAddress >> 3 != 0) {
     SystemDataRegistry = 0;
     do {
-      long long AllocatedMemorySize = *(long long *)(SystemDataRegistry + AllocatedMemorySize);
+      CurrentMemoryEntry = *(long long *)(SystemDataRegistry + BaseMemoryAddress);
       StringComparisonResult = *(int *)(SystemBufferSize + 0x10);
-      IntegerValue = *(int *)(AllocatedMemorySize + 0x10);
-      if (IntegerValue == StringComparisonResult) {
+      MemoryMatchResult = *(int *)(CurrentMemoryEntry + 0x10);
+      if (MemoryMatchResult == StringComparisonResult) {
         if (LockResult != 0) {
-          StringComparisonResult = _stricmp(*(void *)(AllocatedMemorySize + 8),*(void *)(SystemBufferSize + 8));
+          StringComparisonResult = _stricmp(*(void *)(CurrentMemoryEntry + 8),*(void *)(SystemBufferSize + 8));
         }
 LAB_180161e6a:
         if (StringComparisonResult == 0) {
-          return AllocatedMemorySize;
+          return CurrentMemoryEntry;
         }
       }
-      else if (IntegerValue == 0) goto LAB_180161e6a;
-      long long AllocatedMemorySize = *(long long *)(CharacterCode + 0x28);
-      InputDataLength = InputDataLength + 1;
+      else if (MemoryMatchResult == 0) goto LAB_180161e6a;
+      BaseMemoryAddress = *(long long *)(CharacterCode + 0x28);
+      SearchIndex = SearchIndex + 1;
       SystemDataRegistry = SystemDataRegistry + 8;
-    } while ((unsigned long long)(long long)InputDataLength < (unsigned long long)(*(long long *)(CharacterCode + 0x30) - AllocatedMemorySize >> 3));
+    } while ((unsigned long long)(long long)SearchIndex < (unsigned long long)(*(long long *)(CharacterCode + 0x30) - BaseMemoryAddress >> 3));
   }
   return 0;
 }
