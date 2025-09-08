@@ -110173,7 +110173,25 @@ void CheckSystemStatusInExceptionHandler(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_1809101c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器的异常处理器
+ * 
+ * 该函数负责在异常上下文中配置异常处理器。主要功能包括：
+ * - 获取异常处理器上下文
+ * - 设置临时异常处理器
+ * - 检查异常处理器状态，必要时终止系统执行
+ * - 重置异常处理器状态
+ * - 设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809101c0
+ * @note 这是一个异常展开（unwind）处理函数，用于配置异常处理器
+ */
+#define ConfigureExceptionHandlerInUnwind Unwind_1809101c0
+
+void ConfigureExceptionHandlerInUnwind(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
