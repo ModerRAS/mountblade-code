@@ -29920,7 +29920,7 @@ DataProcessLabelA:
             }
             if ((int)dataFlags == 0) {
               if (*(uint *)(dataBuffer + 8) < 0x82) {
-DataProcessLabelB:
+SystemCleanupAndExit:
                   ExecutePortControlOperation(dataBuffer,ainputDataWord);
               }
               dataFlags = securityCheckResult;
@@ -29990,7 +29990,7 @@ uint64_t ProcessUtilityDataValidation(void)
       memoryRegionBase = 0x1c;
     }
     else if (exceptionHandlerContextPointer[2] == 0) {
-DataProcessLabelA:
+ValidateDataWithDirectAllocation:
       memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,&stackDataBuffer,1,1,0);
     }
     else {
@@ -30083,7 +30083,7 @@ DataProcessLabelA:
             operationResult = validationOutcome;
             if ((int)validationOutcome == 0) {
               if (*(uint *)(registerContext + 8) < 0x82) {
-DataProcessLabelB:
+SystemCleanupAndExit:
                   CleanupSystemResourcesA0();
               }
               operationResult = securityCheckResult;
@@ -30236,7 +30236,7 @@ DataProcessSectionA:
             operationResult = validationOutcome;
             if ((int)validationOutcome == 0) {
               if (*(uint *)(registerContext + 8) < 0x82) {
-DataProcessLabelB:
+SystemCleanupAndExit:
                   CleanupSystemResourcesA0();
               }
               operationResult = securityCheckResult;
@@ -30385,7 +30385,7 @@ DataProcessLabelA:
             operationResult = validationOutcome;
             if ((int)validationOutcome == 0) {
               if (*(uint *)(registerContext + 8) < 0x82) {
-DataProcessLabelB:
+SystemCleanupAndExit:
                   CleanupSystemResourcesA0();
               }
               operationResult = securityCheckResult;

@@ -488,6 +488,18 @@
  */
 #define ProcessSystemEventTemplateAndMemoryAllocation FUN_1803460a0
 
+/**
+ * @brief 处理系统状态和缓冲区大小
+ * 
+ * 该函数负责处理系统状态和缓冲区大小的操作。
+ * 
+ * @param StatusPointer 状态指针
+ * @param BufferSize 缓冲区大小
+ * @param CharacterCode 字符代码
+ * @note 原始函数名：FUN_1803456e0
+ */
+#define ProcessSystemStatusAndBufferSize FUN_1803456e0
+
 #define ProcessSystemResourceInitialization HandleSystemResourceInitializationAndConfiguration
 
 #define ProcessSystemContextManagement HandleSystemContextManagementAndMaintenance
@@ -211831,7 +211843,7 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t SystemBufferSi
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0xa8,8,3);
   AddressMask = 0xfffffffffffffffe;
   EventTemplatePointer = PrimaryProcessingStatusFlag;
-  FUN_1803456e0(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
   *EventTemplatePointer = &SystemEventTemplatePrimary;
   EventTemplatePointer[0x11] = 0;
   EventTemplatePointer[0x12] = 0;
@@ -211878,7 +211890,7 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t SystemBufferSi
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x80,8,3);
   MemoryAddressMask = 0xfffffffffffffffe;
   systemEventTemplatePointer = PrimaryProcessingStatusFlag;
-  FUN_1803456e0(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
   *systemEventTemplatePointer = &SystemEventTemplateSecondary;
   systemEventTemplatePointer[0xe] = 0;
   *(uint32_t *)(systemEventTemplatePointer + 0xf) = 0x3f800000;
@@ -211939,7 +211951,7 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t SystemBufferSi
   ProcessingFlags = EncodingDecodingKey ^ (unsigned long long)aDataContentStatus;
   PrimaryProcessingStatusFlag = CharacterStatusBuffer;
   EventVariablePointer = CharacterStatusBuffer;
-  FUN_1803456e0(CharacterStatusBuffer,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(CharacterStatusBuffer,SystemBufferSize,CharacterCode);
   *PrimaryProcessingStatusFlag = &SystemProcessingStatusFlagPrimary;
   *(uint16_t *)(PrimaryProcessingStatusFlag + 0x12) = 0;
   *(uint8_t *)((long long)PrimaryProcessingStatusFlag + 0x92) = 0;
@@ -212008,7 +212020,7 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t SystemBufferSi
   systemEventTemplatePointer = (void *)MemoryAllocate(MemoryPoolManager,0xa8,8,3);
   CalculatedCodePoint = 0xfffffffffffffffe;
   pMemoryAddressMask = systemEventTemplatePointer;
-  FUN_1803456e0(systemEventTemplatePointer,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(systemEventTemplatePointer,SystemBufferSize,CharacterCode);
   *pMemoryAddressMask = &SystemMemoryAddressMaskPrimary;
   CharacterStatusBuffer = pMemoryAddressMask + 0xe;
   *CharacterStatusBuffer = &ThreadLocalStorageTemplate;
@@ -212106,7 +212118,7 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t SystemBufferSi
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x180,8,3);
   FunctionAddress = 0xfffffffffffffffe;
   systemEventTemplatePointer = PrimaryProcessingStatusFlag;
-  FUN_1803456e0(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
   *systemEventTemplatePointer = &SystemEventTemplateQuaternary;
   InitializeSystemResourceStructure(systemEventTemplatePointer + 0xe,0x20,4,ManageSystemResourceAndRelease,ReleaseSystemResource);
   InitializeSystemResourceStructure(PrimaryProcessingStatusFlag + 0x1e,0x20,4,ManageSystemResourceAndRelease,ReleaseSystemResource);
@@ -212152,7 +212164,7 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t SystemBufferSi
   CharacterCodeTablePointer = (void *)MemoryAllocate(MemoryPoolManager,0x130,8,3);
   SystemStackFlag = 0xfffffffffffffffe;
   SecondaryProcessingStatusFlag = CharacterCodeTablePointer;
-  FUN_1803456e0(CharacterCodeTablePointer,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(CharacterCodeTablePointer,SystemBufferSize,CharacterCode);
   *SecondaryProcessingStatusFlag = &SystemProcessingStatusFlagSecondary;
   CharacterCode = SecondaryProcessingStatusFlag + 0xe;
   *CharacterCode = (long long)&ThreadLocalStorageTemplate;
@@ -212219,7 +212231,7 @@ uint64_t * FUN_18017cac0(uint64_t CharacterCode,uint64_t SystemBufferSize
   uint64_t *CharacterStatusBuffer;
   
   CharacterStatusBuffer = (void *)MemoryAllocate(MemoryPoolManager,0x70,8,3,0xfffffffffffffffe);
-  FUN_1803456e0(CharacterStatusBuffer,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(CharacterStatusBuffer,SystemBufferSize,CharacterCode);
   *CharacterStatusBuffer = &SystemCharacterStatusBufferSecondary;
   return CharacterStatusBuffer;
 }
@@ -212279,7 +212291,7 @@ void ProcessUtf8EncodingConversion(uint64_t CharacterCode,uint64_t SystemBufferS
   
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0xa8,8,3,0xfffffffffffffffe);
   pMemoryAddressMask = PrimaryProcessingStatusFlag;
-  FUN_1803456e0(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
   *pMemoryAddressMask = &SystemContextBufferQuinary;
   *(uint32_t *)(pMemoryAddressMask + 0x14) = 0;
   pMemoryAddressMask[0xe] = 0;
@@ -212402,7 +212414,7 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t SystemBufferSize
   systemEventTemplatePointer = (void *)MemoryAllocate(MemoryPoolManager,0x230,0x10,3);
   SystemStackFlag = 0xfffffffffffffffe;
   pMemoryAddressMask = systemEventTemplatePointer;
-  FUN_1803456e0(systemEventTemplatePointer,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(systemEventTemplatePointer,SystemBufferSize,CharacterCode);
   *pMemoryAddressMask = &SystemMemoryAddressMaskSecondary;
   FUN_180094c20(pMemoryAddressMask + 0xe);
   systemEventTemplatePointer[0x36] = 0;
@@ -212723,7 +212735,7 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t SystemBufferSize
   
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x88,8,3,0xfffffffffffffffe);
   pMemoryAddressMask = PrimaryProcessingStatusFlag;
-  FUN_1803456e0(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
   *pMemoryAddressMask = &SystemMemoryAddressMaskTertiary;
   pMemoryAddressMask[0xe] = SystemBufferSize;
   pMemoryAddressMask[0xf] = 0;
@@ -212780,7 +212792,7 @@ void InitializeSystemDataStructureProcessor(uint64_t CharacterCode, uint64_t Sys
   EventTemplatePointer = (void *)MemoryAllocate(MemoryPoolManager, 0xa0, 8, 3);
   ValidationValue = 0xfffffffffffffffe;
   MemoryMaskPointer = EventTemplatePointer;
-  FUN_1803456e0(EventTemplatePointer, SystemBufferSize, CharacterCode);
+  ProcessSystemStatusAndBufferSize(EventTemplatePointer, SystemBufferSize, CharacterCode);
   *MemoryMaskPointer = &SystemMemoryMaskBuffer;
   SystemContext = MemoryMaskPointer + 0xe;
   *SystemContext = (long long)&ThreadLocalStorageTemplate;
@@ -212830,7 +212842,7 @@ uint64_t * CreateSystemCharacterStatusBuffer(uint64_t CharacterCode, uint64_t Sy
   uint64_t *SystemCharacterStatusBuffer;
   
   SystemCharacterStatusBuffer = (void *)MemoryAllocate(MemoryPoolManager, 0x78, 8, 3, 0xfffffffffffffffe);
-  FUN_1803456e0(SystemCharacterStatusBuffer, SystemBufferSize, CharacterCode);
+  ProcessSystemStatusAndBufferSize(SystemCharacterStatusBuffer, SystemBufferSize, CharacterCode);
   *SystemCharacterStatusBuffer = &SystemCharacterStatusBufferTertiary;
   *(uint32_t *)((long long)SystemCharacterStatusBuffer + 0x74) = 0xdeadbeaf;
   *(uint8_t *)(SystemCharacterStatusBuffer + 0xe) = 0;
@@ -212857,7 +212869,7 @@ uint64_t * CreateSystemCharacterStatusBuffer(uint64_t CharacterCode, uint64_t Sy
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0xa8,8,3);
   FunctionAddress = 0xfffffffffffffffe;
   systemEventTemplatePointer = PrimaryProcessingStatusFlag;
-  FUN_1803456e0(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
   *systemEventTemplatePointer = &SystemEventTemplateDataPrimary;
   *(uint32_t *)(PrimaryProcessingStatusFlag + 0x14) = 0x3f800000;
   PrimaryProcessingStatusFlag[0xe] = 0x4044000000000000;
@@ -212908,7 +212920,7 @@ uint64_t * CreateSystemCharacterStatusBuffer(uint64_t CharacterCode, uint64_t Sy
   DataSize = 0xfffffffffffffffe;
   pMemoryAddressMask = (void *)MemoryAllocate(MemoryPoolManager,0x98,8,3,0xfffffffffffffffe);
   CharacterCodeTablePointer = pMemoryAddressMask;
-  FUN_1803456e0(pMemoryAddressMask,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(pMemoryAddressMask,SystemBufferSize,CharacterCode);
   *CharacterCodePointer = &SystemEventTemplateDataSecondary;
   CharacterCode = CharacterCodeTablePointer + 0xe;
   *CharacterCode = (long long)&ThreadLocalStorageTemplate;
@@ -212961,7 +212973,7 @@ uint64_t * CreateSystemCharacterStatusBuffer(uint64_t CharacterCode, uint64_t Sy
   
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x78,8,3,0xfffffffffffffffe);
   pMemoryAddressMask = PrimaryProcessingStatusFlag;
-  FUN_1803456e0(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
   *pMemoryAddressMask = &SystemEventTemplateDataTertiary;
   *(uint8_t *)(pMemoryAddressMask + 0xe) = 0;
   pSystemPriorityLevel = &SystemNullTemplate;
@@ -213006,7 +213018,7 @@ uint64_t * CreateSystemCharacterStatusBuffer(uint64_t CharacterCode, uint64_t Sy
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0xb8,8,3);
   FunctionAddress = 0xfffffffffffffffe;
   pMemoryAddressMask = PrimaryProcessingStatusFlag;
-  FUN_1803456e0(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
   *pMemoryAddressMask = &SystemEventTemplateDataQuaternary;
   pMemoryAddressMask[0x13] = 0;
   pMemoryAddressMask[0x14] = 0;
@@ -213053,7 +213065,7 @@ uint64_t * CreateSystemCharacterStatusBuffer(uint64_t CharacterCode, uint64_t Sy
   systemEventTemplatePointer = (void *)MemoryAllocate(MemoryPoolManager,0x98,8,3);
   DataSize = 0xfffffffffffffffe;
   CharacterCodeTablePointer = systemEventTemplatePointer;
-  FUN_1803456e0(systemEventTemplatePointer,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(systemEventTemplatePointer,SystemBufferSize,CharacterCode);
   *CharacterCodePointer = &SystemEventTemplateDataQuinary;
   CharacterCode = CharacterCodeTablePointer + 0xf;
   *CharacterCode = (long long)&ThreadLocalStorageTemplate;
@@ -213997,7 +214009,7 @@ LAB_1801807f2:
   pMemoryAddressMask = (void *)MemoryAllocate(MemoryPoolManager,0x150,8,3);
   SystemStackFlag = 0xfffffffffffffffe;
   StringProcessingStatus = MemoryAddressMask;
-  FUN_1803456e0(pMemoryAddressMask,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(pMemoryAddressMask,SystemBufferSize,CharacterCode);
   *StringProcessingStatus = &SystemCharacterStatusBufferTertiary;
   SystemDataTablePointer = StringProcessingStatus + 0x12;
   *SystemDataTablePointer = (long long)&ThreadLocalStorageTemplate;
@@ -214126,7 +214138,7 @@ LAB_1801807f2:
   
   PrimaryProcessingStatusFlag = (void *)MemoryAllocate(MemoryPoolManager,0x88,8,3,0xfffffffffffffffe);
   systemEventTemplatePointer = PrimaryProcessingStatusFlag;
-  FUN_1803456e0(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
+  ProcessSystemStatusAndBufferSize(PrimaryProcessingStatusFlag,SystemBufferSize,CharacterCode);
   *systemEventTemplatePointer = &SystemMemoryAddressMaskSecondary;
   systemEventTemplatePointer[0xf] = 0;
   pSystemPriorityLevel = &SystemNullTemplate;
