@@ -90094,12 +90094,21 @@ void InvokeExceptionHandlerAtOffset360(DataBuffer operationBase,int64_t dataBuff
 
 
 
+/**
+ * @brief 异常上下文处理器调用函数BA30
+ * 
+ * 调用异常上下文处理器，处理系统数据偏移量368处的异常处理逻辑
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ba30
+ */
 void InvokeExceptionHandlerAtOffset368(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x368);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionHandlerContextOffset368);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
@@ -90108,12 +90117,21 @@ void InvokeExceptionHandlerAtOffset368(DataBuffer operationBase,int64_t dataBuff
 
 
 
+/**
+ * @brief 异常上下文处理器调用函数BA50
+ * 
+ * 调用异常上下文处理器，处理系统数据偏移量370处的异常处理逻辑
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ba50
+ */
 void InvokeExceptionHandlerAtOffset370(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x370);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionHandlerContextOffset370);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
@@ -90122,12 +90140,21 @@ void InvokeExceptionHandlerAtOffset370(DataBuffer operationBase,int64_t dataBuff
 
 
 
+/**
+ * @brief 异常上下文处理器调用函数BA70
+ * 
+ * 调用异常上下文处理器，处理系统数据偏移量378处的异常处理逻辑
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ba70
+ */
 void InvokeExceptionHandlerAtOffset378(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x378);
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionHandlerContextOffset378);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
   }
@@ -90136,6 +90163,15 @@ void InvokeExceptionHandlerAtOffset378(DataBuffer operationBase,int64_t dataBuff
 
 
 
+/**
+ * @brief 异常上下文处理器调用函数BA90
+ * 
+ * 调用异常上下文处理器，处理系统浮点数据偏移量380处的异常处理逻辑
+ * 
+ * @param operationBase 操作基础数据
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090ba90
+ */
 void InvokeExceptionHandlerAtOffset380(DataBuffer operationBase,int64_t dataBuffer)
 
 {
