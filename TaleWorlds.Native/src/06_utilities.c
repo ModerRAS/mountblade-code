@@ -90025,7 +90025,18 @@ void Unwind_18090c2e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c2f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统栈展开处理函数：设置内存管理器指针
+ * 
+ * 在系统栈展开过程中设置内存管理器指针到指定位置
+ * 
+ * @param operationBase 操作基础参数，包含栈展开的基本信息
+ * @param dataBuffer 数据缓冲区，包含需要处理的内存管理器指针信息
+ * 
+ * @note 此函数是系统异常处理的一部分，用于设置内存管理器指针
+ * @warning 调用者需要确保参数的有效性
+ */
+void Unwind_SetMemoryManagerPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x78) = &SystemMemoryManagerPointerA;
@@ -90034,7 +90045,18 @@ void Unwind_18090c2f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c300(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统栈展开处理函数：设置默认异常处理器
+ * 
+ * 在系统栈展开过程中设置默认异常处理器到指定位置
+ * 
+ * @param operationBase 操作基础参数，包含栈展开的基本信息
+ * @param dataBuffer 数据缓冲区，包含需要处理的异常处理器信息
+ * 
+ * @note 此函数是系统异常处理的一部分，用于设置默认异常处理器
+ * @warning 调用者需要确保参数的有效性
+ */
+void Unwind_SetDefaultExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + 0x78) + 8) = &SystemDefaultExceptionHandlerB;
@@ -90043,7 +90065,19 @@ void Unwind_18090c300(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c310(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统栈展开处理函数：配置异常处理器上下文
+ * 
+ * 在系统栈展开过程中配置异常处理器上下文，包括临时异常处理器的设置
+ * 和系统状态的清理。此函数负责处理异常处理器的切换和状态重置。
+ * 
+ * @param operationBase 操作基础参数，包含栈展开的基本信息
+ * @param dataBuffer 数据缓冲区，包含需要处理的异常上下文信息
+ * 
+ * @note 此函数是系统异常处理的一部分，用于配置异常处理器上下文
+ * @warning 调用者需要确保参数的有效性，函数可能会终止系统执行
+ */
+void Unwind_ConfigureExceptionHandlerContext(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -90061,7 +90095,18 @@ void Unwind_18090c310(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c320(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统栈展开处理函数：设置备用异常处理器
+ * 
+ * 在系统栈展开过程中设置备用异常处理器到指定位置
+ * 
+ * @param operationBase 操作基础参数，包含栈展开的基本信息
+ * @param dataBuffer 数据缓冲区，包含需要处理的异常处理器信息
+ * 
+ * @note 此函数是系统异常处理的一部分，用于设置备用异常处理器
+ * @warning 调用者需要确保参数的有效性
+ */
+void Unwind_SetAlternateExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0xc0) = &SystemDefaultExceptionHandlerB;
@@ -90070,7 +90115,18 @@ void Unwind_18090c320(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c330(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统栈展开处理函数：清理内存指针标志
+ * 
+ * 在系统栈展开过程中清理内存指针标志，并在需要时销毁基本IOS对象
+ * 
+ * @param operationBase 操作基础参数，包含栈展开的基本信息
+ * @param dataBuffer 数据缓冲区，包含需要处理的内存指针信息
+ * 
+ * @note 此函数是系统异常处理的一部分，用于清理内存指针标志
+ * @warning 调用者需要确保参数的有效性
+ */
+void Unwind_ClearMemoryPointerFlags(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
@@ -90082,10 +90138,21 @@ void Unwind_18090c330(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c360(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统栈展开处理函数：销毁基本IO流对象
+ * 
+ * 在系统栈展开过程中销毁基本IO流对象，释放相关资源
+ * 
+ * @param operationBase 操作基础参数，包含栈展开的基本信息
+ * @param dataBuffer 数据缓冲区，包含需要处理的IO流对象信息
+ * 
+ * @note 此函数是系统异常处理的一部分，用于销毁基本IO流对象
+ * @warning 调用者需要确保参数的有效性
+ */
+void Unwind_DestroyBasicIostream(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-                                      DestroyBasicIostream(*(int64_t *)(dataBuffer + 0x40) + 0x20);
+  DestroyBasicIostream(*(int64_t *)(dataBuffer + 0x40) + 0x20);
   return;
 }
 
