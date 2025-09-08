@@ -63378,7 +63378,7 @@ CleanupHandlerLAB18008755d:
   }
   else {
     ValidationStatus = CoreEngineValidateSystemStatus(&pSystemOperationFlag98);
-    if (ValidationStatus == '\0') goto LAB_18008755d;
+    if (ValidationStatus == '\0') goto NullCharacterCheckComplete;
     SystemEventTemplatePointer = &CoreEngineDataTemplate;
     if (SystemCharacterStatusBufferPrimary != NULL) {
       SystemEventTemplatePointer = SystemCharacterStatusBufferPrimary;
@@ -63386,7 +63386,7 @@ CleanupHandlerLAB18008755d:
     (**(code **)(*ContextHandleSize + 0x10))(OperationBufferSize,SystemEventTemplatePointer);
   }
   MemoryAddressMaskPointer = 1;
-MemoryResetHandlerLAB18008758f:
+MemoryResetHandlerComplete:
   pMemoryOffsetValue = &SystemNullTemplate;
   if (lStack_b0 != 0) {
                     // WARNING: Subroutine does not return
