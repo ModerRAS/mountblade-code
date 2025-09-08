@@ -221877,7 +221877,7 @@ LAB_18018764a:
     SystemStringIndex = CoreEngineSignedValue78;
     if (CoreEngineSignedValue78 != 0) {
       for (; SystemStringIndex != SystemContextValue; SystemStringIndex = SystemStringIndex + 0x40) {
-        FUN_180187950(SystemStringIndex);
+        ProcessSystemStringIndexAndCharacterTableOperation(SystemStringIndex);
       }
       ProcessingStatusFlag = lStack_68 - CoreEngineSignedValue78 & 0xffffffffffffffc0;
       SystemStringIndex = CoreEngineSignedValue78;
@@ -221913,7 +221913,7 @@ LAB_18018764a:
     BufferStatus = CharacterCode[1];
     if (CharacterTablePointer != BufferStatus) {
       do {
-        FUN_180187950(CharacterTablePointer);
+        ProcessSystemStringIndexAndCharacterTableOperation(CharacterTablePointer);
         CharacterTablePointer = CharacterTablePointer + 0x40;
       } while (CharacterTablePointer != BufferStatus);
       CharacterTablePointer = *CharacterCode;
@@ -221935,7 +221935,7 @@ LAB_18018764a:
 
 
 
-87950(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180187950(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+87950(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid ProcessSystemStringIndexAndCharacterTableOperation(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   long long *CharacterCode;
   long long BufferStatus;
@@ -222127,7 +222127,7 @@ LAB_18018764a:
     BufferStatus = CharacterCode[1];
     if (CharacterTablePointer != BufferStatus) {
       do {
-        FUN_180187950(CharacterTablePointer);
+        ProcessSystemStringIndexAndCharacterTableOperation(CharacterTablePointer);
         CharacterTablePointer = CharacterTablePointer + 0x40;
       } while (CharacterTablePointer != BufferStatus);
       CharacterTablePointer = *CharacterCode;
@@ -222792,7 +222792,7 @@ void CoreEngineCleanupDataStructure(uint64_t Parameter1,long long *DataStructure
 {
   if (SystemBufferSize != Utf8SourcePointer) {
     do {
-      FUN_180187950(SystemBufferSize);
+      ProcessSystemStringIndexAndCharacterTableOperation(SystemBufferSize);
       SystemBufferSize = SystemBufferSize + 0x40;
     } while (SystemBufferSize != Utf8SourcePointer);
   }
@@ -223514,7 +223514,7 @@ long long ExpandCharacterStatusBufferAndInsertLargeStructElement(long long *Char
       NewBufferEnd = NewBufferEnd + 0x40;
     }
     for (; OldBufferEnd != NewBufferEnd; OldBufferEnd = OldBufferEnd + 0x40) {
-      FUN_180187950(OldBufferEnd);
+      ProcessSystemStringIndexAndCharacterTableOperation(OldBufferEnd);
     }
   }
   else {
@@ -223526,7 +223526,7 @@ long long ExpandCharacterStatusBufferAndInsertLargeStructElement(long long *Char
     OldBufferEnd = CharacterStatusBuffer[1];
     if (OldBufferStart != OldBufferEnd) {
       do {
-        FUN_180187950(OldBufferStart);
+        ProcessSystemStringIndexAndCharacterTableOperation(OldBufferStart);
         OldBufferStart = OldBufferStart + 0x40;
       } while (OldBufferStart != OldBufferEnd);
       OldBufferStart = *CharacterStatusBuffer;
@@ -224185,7 +224185,7 @@ long long * AllocateAndInitializeCharacterCodeBuffer(long long *CharacterCode,lo
   
   CharacterTablePointer = CharacterCode[1];
   for (BufferStatus = *CharacterCode; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x40) {
-    FUN_180187950(BufferStatus);
+    ProcessSystemStringIndexAndCharacterTableOperation(BufferStatus);
   }
   return;
 }
@@ -289187,4 +289187,22 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define InputDataLength DataInputLength                      // 输入数据长度
 #define AllocatedMemorySize MemoryAllocationSize             // 内存分配大小
 #define SystemDataTablePointer DataTableSystemPointer        // 系统数据表指针
+
+/**
+ * @brief 处理系统字符串索引和字符表操作
+ * 
+ * 该函数负责处理系统字符串索引和字符表操作，包括：
+ * - 系统字符串索引的处理
+ * - 字符表指针的管理
+ * - 缓冲区状态的处理
+ * - 字符编码的验证和转换
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long 处理结果
+ * @note 原始函数名：FUN_180187950
+ */
+#define ProcessSystemStringIndexAndCharacterTableOperation FUN_180187950
 
