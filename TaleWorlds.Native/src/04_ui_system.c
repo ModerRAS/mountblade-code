@@ -15631,9 +15631,9 @@ void UpdateUIElementState(void)
   longlong StackBasePointer;
   char UIStateFlag;
   UIDword AllocationFlags;
-  char UnmodifiedRegister13;
-  longlong EventData;
-  char UnmodifiedRegister15;
+  char PreservedRegister13;
+  longlong UIEventData;
+  char PreservedRegister15;
   float CalculatedFloat;
   float LocalFloatValue8;
   float LocalFloatValue9;
