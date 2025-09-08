@@ -109,7 +109,7 @@ typedef enum {
 
 // UI系统数据变量宏定义
 #define UIGlobalDataRegistry UNK_180956d30
-#define SystemGlobalDataRegistry38 UNK_180956d38
+#define UIGlobalDataRegistry38 UNK_180956d38
 #define UIGlobalDataRegistry30 UNK_180956d30
 
 // UI系统查找表变量宏定义
@@ -85125,93 +85125,132 @@ void ProcessUIDataTransformAndNormalization(longlong uiContext, longlong dataSou
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180716aa0(UIHandle uiContext,int dataSource,int targetBuffer)
-void FUN_180716aa0(UIHandle uiContext,int dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI数据传输操作
+ * 
+ * 该函数负责处理UI系统中的数据传输操作，包括：
+ * - 执行数据加密处理
+ * - 计算数据传输偏移量
+ * - 触发UI渲染更新
+ * 
+ * @param uiContext UI上下文句柄，用于标识UI系统实例
+ * @param dataSource 数据源标识，指定数据来源
+ * @param targetBuffer 目标缓冲区，指定数据目标位置
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数包含加密操作和渲染更新
+ * @note 使用XOR加密算法处理数据安全
+ * @note 执行后触发UI渲染系统更新
+ */
+void ProcessUIDataTransfer(UIHandle uiContext, int dataSource, int targetBuffer)
 
 {
-  UIByte astackUInt58 [32];
-  longlong stackLong38;
-  ulonglong stackUInt30;
+  UIByte encryptedDataBuffer [32];
+  longlong dataOffset;
+  ulonglong encryptionResult;
   
-  stackUInt30 = XorEncryptionKey ^ (ulonglong)astackUInt58;
-  stackLong38 = (longlong)(dataSource * targetBuffer) * 4;
-                     WARNING: Subroutine does not return
+  encryptionResult = XorEncryptionKey ^ (ulonglong)encryptedDataBuffer;
+  dataOffset = (longlong)(dataSource * targetBuffer) * 4;
   ProcessUIRenderingUpdate();
 }
 
 
 
 
- void FUN_180716da0(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
-void FUN_180716da0(longlong uiContext,longlong dataSource,longlong targetBuffer,longlong bufferSize,int resultPointer,
-                  int param_6,int param_7)
+ /**
+ * @brief 处理UI浮点数变换和归一化操作
+ * 
+ * 该函数负责处理UI系统中的浮点数变换和归一化操作，包括：
+ * - 批量处理浮点数数据的归一化
+ * - 处理4元数变换操作
+ * - 执行数据偏移和索引计算
+ * - 管理多层数据处理循环
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源指针，包含要处理的浮点数数据
+ * @param targetBuffer 目标缓冲区指针，存储处理后的结果
+ * @param bufferSize 缓冲区大小指针，包含归一化因子
+ * @param resultPointer 结果指针，指定处理的数据块大小
+ * @param param_6 处理循环的最大迭代次数
+ * @param param_7 数据偏移乘数，用于计算数据位置
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数执行复杂的浮点数变换操作
+ * @note 包含多层嵌套循环处理大量数据
+ * @note 使用归一化因子确保数值稳定性
+ * @note 处理4元数变换（x, y, z, w分量）
+ */
+void ProcessUIFloatTransformAndNormalization(longlong uiContext, longlong dataSource, longlong targetBuffer, 
+                                           longlong bufferSize, int resultPointer, int param_6, int param_7)
 
 {
-  float *pbaseValue;
-  int uiValidationResult;
-  longlong stringCompareIndex;
-  float transformCoeff3;
-  float transformCoeff4;
-  float localFloat6;
-  float *presultFloat;
+  float *sourceDataPtr;
+  int validationStatus;
+  longlong dataIndex;
+  float transformValue1;
+  float transformValue2;
+  float transformValue3;
+  float *resultDataPtr;
   longlong contextOffset;
-  longlong CharacterDataOffset;
-  int processedCount;
-  longlong allocatedMemory1;
-  longlong allocatedMemory2;
-  longlong allocatedMemory3;
-  int processingResult4;
-  int processingResult5;
-  float baseValue6;
+  longlong characterDataOffset;
+  int itemsProcessed;
+  longlong blockCount1;
+  longlong startIndex;
+  longlong endIndex;
+  int innerCounter;
+  int outerCounter;
+  float normalizationFactor;
   
-  processingResult5 = 0;
-  uiValidationResult = *(int *)(uiBufferData + 0x30);
-  stringCompareIndex = *(longlong *)(uiBufferData + 0x20);
-  processedCount = 0;
+  outerCounter = 0;
+  validationStatus = *(int *)(uiBufferData + 0x30);
+  dataIndex = *(longlong *)(uiBufferData + 0x20);
+  itemsProcessed = 0;
   do {
-    allocatedMemory3 = 0;
+    endIndex = 0;
     if (0 < (longlong)resultPointer) {
-      processingResult4 = *(int *)(uiBufferData + 8) * processingResult5;
+      innerCounter = *(int *)(uiBufferData + 8) * outerCounter;
       do {
-        baseValue6 = 1.0 / (*(float *)(bufferSize + (longlong)processingResult4 * 4) + 1e-27);
-        allocatedMemory2 = (longlong)(*(short *)(stringCompareIndex + allocatedMemory3 * 2) * param_7);
-        CharacterDataOffset = (longlong)(*(short *)(stringCompareIndex + 2 + allocatedMemory3 * 2) * param_7);
-        if (allocatedMemory2 < CharacterDataOffset) {
-          if (3 < CharacterDataOffset - allocatedMemory2) {
-            contextOffset = (longlong)processedCount + 1 + allocatedMemory2;
-            allocatedMemory1 = ((CharacterDataOffset - allocatedMemory2) - 4U >> 2) + 1;
-            allocatedMemory2 = allocatedMemory2 + allocatedMemory1 * 4;
-            presultFloat = (float *)(targetBuffer + contextOffset * 4);
+        normalizationFactor = 1.0 / (*(float *)(bufferSize + (longlong)innerCounter * 4) + 1e-27);
+        startIndex = (longlong)(*(short *)(dataIndex + endIndex * 2) * param_7);
+        characterDataOffset = (longlong)(*(short *)(dataIndex + 2 + endIndex * 2) * param_7);
+        if (startIndex < characterDataOffset) {
+          if (3 < characterDataOffset - startIndex) {
+            contextOffset = (longlong)itemsProcessed + 1 + startIndex;
+            blockCount1 = ((characterDataOffset - startIndex) - 4U >> 2) + 1;
+            startIndex = startIndex + blockCount1 * 4;
+            resultDataPtr = (float *)(targetBuffer + contextOffset * 4);
             do {
-              pbaseValue = (float *)((dataSource - targetBuffer) + -4 + (longlong)presultFloat);
-              transformCoeff3 = pbaseValue[1];
-              transformCoeff4 = pbaseValue[2];
-              localFloat6 = pbaseValue[3];
-              presultFloat[-1] = *pbaseValue * baseValue6;
-              *presultFloat = transformCoeff3 * baseValue6;
-              presultFloat[1] = transformCoeff4 * baseValue6;
-              presultFloat[2] = localFloat6 * baseValue6;
-              allocatedMemory1 = allocatedMemory1 + -1;
-              presultFloat = presultFloat + 4;
-            } while (allocatedMemory1 != 0);
+              sourceDataPtr = (float *)((dataSource - targetBuffer) + -4 + (longlong)resultDataPtr);
+              transformValue1 = sourceDataPtr[1];
+              transformValue2 = sourceDataPtr[2];
+              transformValue3 = sourceDataPtr[3];
+              resultDataPtr[-1] = *sourceDataPtr * normalizationFactor;
+              *resultDataPtr = transformValue1 * normalizationFactor;
+              resultDataPtr[1] = transformValue2 * normalizationFactor;
+              resultDataPtr[2] = transformValue3 * normalizationFactor;
+              blockCount1 = blockCount1 + -1;
+              resultDataPtr = resultDataPtr + 4;
+            } while (blockCount1 != 0);
           }
-          if (allocatedMemory2 < CharacterDataOffset) {
-            CharacterDataOffset = CharacterDataOffset - allocatedMemory2;
-            presultFloat = (float *)(targetBuffer + (processedCount + allocatedMemory2) * 4);
+          if (startIndex < characterDataOffset) {
+            characterDataOffset = characterDataOffset - startIndex;
+            resultDataPtr = (float *)(targetBuffer + (itemsProcessed + startIndex) * 4);
             do {
-              *presultFloat = baseValue6 * *(float *)((dataSource - targetBuffer) + -4 + (longlong)(presultFloat + 1));
-              CharacterDataOffset = CharacterDataOffset + -1;
-              presultFloat = presultFloat + 1;
-            } while (CharacterDataOffset != 0);
+              *resultDataPtr = normalizationFactor * *(float *)((dataSource - targetBuffer) + -4 + (longlong)(resultDataPtr + 1));
+              characterDataOffset = characterDataOffset + -1;
+              resultDataPtr = resultDataPtr + 1;
+            } while (characterDataOffset != 0);
           }
         }
-        processingResult4 = processingResult4 + 1;
-        allocatedMemory3 = allocatedMemory3 + 1;
-      } while (allocatedMemory3 < resultPointer);
+        innerCounter = innerCounter + 1;
+        endIndex = endIndex + 1;
+      } while (endIndex < resultPointer);
     }
-    processingResult5 = processingResult5 + 1;
-    processedCount = processedCount + uiValidationResult * param_7;
-  } while (processingResult5 < param_6);
+    outerCounter = outerCounter + 1;
+    itemsProcessed = itemsProcessed + validationStatus * param_7;
+  } while (outerCounter < param_6);
   return;
 }
 
