@@ -308,6 +308,9 @@
 #define ExceptionHandlerMemoryOffset9D0 0x9d0            // 异常处理内存操作偏移量9D0
 #define ExceptionHandlerMemoryOffsetB8 0xb8               // 异常处理内存操作偏移量B8
 
+// 数据缓冲区异常处理上下文偏移量常量
+#define ExceptionHandlerContextDataOffset 0xe0            // 数据缓冲区异常处理上下文偏移量
+
 // 系统状态偏移量常量
 #define SystemStateFlagsOffset 0x54                         // 系统状态标志偏移量
 #define SystemStateResourceCleanupOffset 0xe8              // 系统状态资源清理偏移量
