@@ -497,6 +497,19 @@
 #define ResourceStatusFlagOffset35 0x35                // 资源状态标志偏移量35
 #define SystemRegisterOffset40 0x40                    // 系统寄存器偏移量40
 #define ExceptionHandlerOffset80 0x80                  // 异常处理器偏移量80
+
+// 异常处理器层级重置偏移常量
+#define ExceptionHandlerTempCallbackOffsetDD0 0xdd0     // 异常处理器临时回调偏移量DD0
+#define ExceptionHandlerTempCallbackOffsetDE0 0xde0     // 异常处理器临时回调偏移量DE0
+#define ExceptionHandlerTempCallbackOffsetDC8 0xdc8     // 异常处理器临时回调偏移量DC8
+#define ExceptionHandlerTempCallbackOffsetEE0 0xee0     // 异常处理器临时回调偏移量EE0
+#define ExceptionHandlerTempCallbackOffsetED0 0xed0     // 异常处理器临时回调偏移量ED0
+#define ExceptionHandlerTempCallbackOffsetEB0 0xeb0     // 异常处理器临时回调偏移量EB0
+#define ExceptionHandlerTempCallbackOffsetEB8 0xeb8     // 异常处理器临时回调偏移量EB8
+#define ExceptionHandlerTempCallbackOffsetEC8 0xec8     // 异常处理器临时回调偏移量EC8
+#define ExceptionHandlerTempCallbackOffsetE90 0xe90     // 异常处理器临时回调偏移量E90
+#define ExceptionHandlerTempCallbackOffsetE98 0xe98     // 异常处理器临时回调偏移量E98
+#define ExceptionHandlerTempCallbackOffsetEA8 0xea8     // 异常处理器临时回调偏移量EA8
 #define ExceptionHandlerContextOffset900 0x900        // 异常处理上下文偏移量900
 #define ExceptionHandlerCallbackOffset910 0x910        // 异常处理器回调偏移量910
 #define ExceptionHandlerCleanupOffset8e0 0x8e0          // 异常处理器清理偏移量8e0
@@ -49997,12 +50010,12 @@ void ResetSystemExceptionHandlerHierarchyB0(DataBuffer operationBase,int64_t dat
   *(DataWord *)(exceptionHandlerContext + 0xe00) = 0;
   *(DataBuffer *)(exceptionHandlerContext + 0xde8) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xdc8) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xdd0) != 0) {
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetDD0) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xdd0) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xde0) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xdc8) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetDD0) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetDE0) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetDC8) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -50028,24 +50041,24 @@ void ResetSystemExceptionHandlerHierarchyB1(DataBuffer operationBase,int64_t dat
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x40);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0xee0) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0xee0))(exceptionHandlerContext + 0xed0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + SystemRegisterOffset40);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetEE0) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetEE0))(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetED0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xeb0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xeb8) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetEB0) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetEB8) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xeb8) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xec8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xeb0) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0xe90) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0xe98) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetEB8) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetEC8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetEB0) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE90) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE98) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0xe98) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0xea8) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0xe90) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE98) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetEA8) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempCallbackOffsetE90) = &DefaultExceptionHandlerB;
   *(DataBuffer *)(exceptionHandlerContext + 0xe70) = &TemporaryExceptionHandler;
   if (*(int64_t *)(exceptionHandlerContext + 0xe78) != 0) {
       TerminateSystemE0();
