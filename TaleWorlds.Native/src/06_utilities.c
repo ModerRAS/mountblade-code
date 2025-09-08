@@ -100205,7 +100205,19 @@ void ExecuteMemoryOperationValidationD900(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_18090d940(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作验证函数D940
+ * 
+ * 该函数负责在数据缓冲区偏移量0x1568处执行内存操作验证。
+ * 这是一个内存操作验证函数，用于验证数据的完整性。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存操作信息
+ * 
+ * @note 原始函数名：Unwind_18090d940
+ * @note 这是一个异常展开（unwind）处理函数，用于执行内存操作验证
+ */
+void ExecuteMemoryOperationValidationD940(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x1568,8,2,ValidateDataHandler);
@@ -100214,7 +100226,19 @@ void Unwind_18090d940(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d980(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行内存操作验证函数D980
+ * 
+ * 该函数负责在数据缓冲区偏移量0x1578处执行内存操作验证。
+ * 这是一个内存操作验证函数，用于验证数据的完整性。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存操作信息
+ * 
+ * @note 原始函数名：Unwind_18090d980
+ * @note 这是一个异常展开（unwind）处理函数，用于执行内存操作验证
+ */
+void ExecuteMemoryOperationValidationD980(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x1578,8,2,ValidateDataHandler);
