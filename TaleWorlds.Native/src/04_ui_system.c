@@ -988,7 +988,7 @@ typedef enum {
 #define UISystemStateDataRegistry (void*)0x180958bf0
 #define UISystemResourceData (void*)0x1807693c0
 // UI系统组件数据美化
-#define UIComponentDataBuffer UNK_180770640
+#define UIComponentDataBuffer (void*)0x180770640
 // UI系统字体数据美化
 #define UIFontDataBuffer1 UNK_180786c90
 #define UIFontDataBuffer2 UNK_1807868c0
