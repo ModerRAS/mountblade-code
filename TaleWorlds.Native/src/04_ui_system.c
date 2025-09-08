@@ -80299,76 +80299,87 @@ void ProcessUIMatrixTransformation(float *uiContext,UIHandle dataSource,UIHandle
 
 
 
- void FUN_180711674(UIHandle uiContext,UIHandle dataSource,float *targetBuffer,float *bufferSize)
-void FUN_180711674(UIHandle uiContext,UIHandle dataSource,float *targetBuffer,float *bufferSize)
-
+ /**
+ * @brief UI数据矩阵变换处理函数
+ * 
+ * 该函数负责处理UI系统中的数据矩阵变换，包括：
+ * - 处理UI上下文数据源的变换
+ * - 执行矩阵运算和数据转换
+ * - 管理缓冲区数据
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小指针
+ */
+void ProcessUIDataMatrixTransform(UIHandle uiContext, UIHandle dataSource, float *targetBuffer, float *bufferSize)
 {
-  float floatResult;
-  float localFloat2;
-  float resultValue;
-  float processedFloat;
+  float transformResult;
+  float matrixElement1;
+  float sourceValue1;
+  float processedValue;
   float secondaryValue;
-  float localFloat6;
-  int bufferSize;
-  uint eventTypeCode;
-  float *ContextHandle;
-  float *plocalFloat8;
-  longlong CharacterDataOffset;
-  ulonglong result0;
-  float *EventHandle;
-  float *pfloatResult1;
-  longlong allocatedMemory2;
+  float matrixElement2;
+  int dataCount;
+  uint elementCount;
+  float *matrixPointer;
+  float *transformData;
+  longlong dataOffset;
+  ulonglong iterationCount;
+  float *eventData;
+  float *resultData;
+  longlong memoryOffset;
   
-  eventTypeCode = (bufferSize - 4U >> 2) + 1;
-  result0 = (ulonglong)eventTypeCode;
-  plocalFloat8 = ContextHandle;
-  pfloatResult1 = EventHandle;
+  elementCount = (bufferSize - 4U >> 2) + 1;
+  iterationCount = (ulonglong)elementCount;
+  matrixPointer = transformData;
+  resultData = eventData;
   do {
-    floatResult = *targetBuffer;
-    localFloat2 = *plocalFloat8;
-    resultValue = *bufferSize;
-    processedFloat = *pfloatResult1;
-    pfloatResult1 = pfloatResult1 + 4;
-    secondaryValue = *(float *)((longlong)plocalFloat8 + (longlong)EventHandle + (4 - (longlong)ContextHandle));
-    *plocalFloat8 = resultValue * localFloat2 - processedFloat * floatResult;
-    *targetBuffer = processedFloat * localFloat2 + resultValue * floatResult;
-    floatResult = targetBuffer[-1];
-    localFloat2 = plocalFloat8[1];
-    resultValue = bufferSize[-1];
-    processedFloat = *(float *)((longlong)plocalFloat8 + (longlong)EventHandle + (8 - (longlong)ContextHandle));
-    plocalFloat8[1] = resultValue * localFloat2 - secondaryValue * floatResult;
-    localFloat6 = targetBuffer[-2];
-    targetBuffer[-1] = secondaryValue * localFloat2 + resultValue * floatResult;
-    floatResult = plocalFloat8[2];
-    localFloat2 = bufferSize[-2];
-    plocalFloat8[2] = localFloat2 * floatResult - processedFloat * localFloat6;
-    resultValue = targetBuffer[-3];
-    targetBuffer[-2] = processedFloat * floatResult + localFloat2 * localFloat6;
-    floatResult = plocalFloat8[3];
-    localFloat2 = bufferSize[-3];
+    transformResult = *targetBuffer;
+    matrixElement1 = *matrixPointer;
+    sourceValue1 = *bufferSize;
+    processedValue = *resultData;
+    resultData = resultData + 4;
+    secondaryValue = *(float *)((longlong)matrixPointer + (longlong)eventData + (4 - (longlong)transformData));
+    *matrixPointer = sourceValue1 * matrixElement1 - processedValue * transformResult;
+    *targetBuffer = processedValue * matrixElement1 + sourceValue1 * transformResult;
+    transformResult = targetBuffer[-1];
+    matrixElement1 = matrixPointer[1];
+    sourceValue1 = bufferSize[-1];
+    processedValue = *(float *)((longlong)matrixPointer + (longlong)eventData + (8 - (longlong)transformData));
+    matrixPointer[1] = sourceValue1 * matrixElement1 - secondaryValue * transformResult;
+    matrixElement2 = targetBuffer[-2];
+    targetBuffer[-1] = secondaryValue * matrixElement1 + sourceValue1 * transformResult;
+    transformResult = matrixPointer[2];
+    matrixElement1 = bufferSize[-2];
+    matrixPointer[2] = matrixElement1 * transformResult - processedValue * matrixElement2;
+    sourceValue1 = targetBuffer[-3];
+    targetBuffer[-2] = processedValue * transformResult + matrixElement1 * matrixElement2;
+    transformResult = matrixPointer[3];
+    matrixElement1 = bufferSize[-3];
     bufferSize = bufferSize + -4;
-    processedFloat = *(float *)((longlong)EventHandle + (0xc - (longlong)ContextHandle) + (longlong)plocalFloat8);
-    plocalFloat8[3] = localFloat2 * floatResult - processedFloat * resultValue;
-    plocalFloat8 = plocalFloat8 + 4;
-    targetBuffer[-3] = processedFloat * floatResult + localFloat2 * resultValue;
+    processedValue = *(float *)((longlong)eventData + (0xc - (longlong)transformData) + (longlong)matrixPointer);
+    matrixPointer[3] = matrixElement1 * transformResult - processedValue * sourceValue1;
+    matrixPointer = matrixPointer + 4;
+    targetBuffer[-3] = processedValue * transformResult + matrixElement1 * sourceValue1;
     targetBuffer = targetBuffer + -4;
-    result0 = result0 - 1;
-  } while (result0 != 0);
-  if ((int)(eventTypeCode * 4) < bufferSize) {
-    CharacterDataOffset = (longlong)bufferSize - (longlong)targetBuffer;
-    allocatedMemory2 = (longlong)pfloatResult1 - (longlong)plocalFloat8;
-    result0 = (ulonglong)(bufferSize + eventTypeCode * -4);
+    iterationCount = iterationCount - 1;
+  } while (iterationCount != 0);
+  if ((int)(elementCount * 4) < bufferSize) {
+    dataOffset = (longlong)bufferSize - (longlong)targetBuffer;
+    memoryOffset = (longlong)resultData - (longlong)matrixPointer;
+    iterationCount = (ulonglong)(bufferSize + elementCount * -4);
     do {
-      floatResult = *targetBuffer;
-      localFloat2 = *plocalFloat8;
-      resultValue = *(float *)(CharacterDataOffset + (longlong)targetBuffer);
-      processedFloat = *(float *)(allocatedMemory2 + (longlong)plocalFloat8);
-      *plocalFloat8 = resultValue * localFloat2 - processedFloat * floatResult;
-      plocalFloat8 = plocalFloat8 + 1;
-      *targetBuffer = processedFloat * localFloat2 + resultValue * floatResult;
+      transformResult = *targetBuffer;
+      matrixElement1 = *matrixPointer;
+      sourceValue1 = *(float *)(dataOffset + (longlong)targetBuffer);
+      processedValue = *(float *)(memoryOffset + (longlong)matrixPointer);
+      *matrixPointer = sourceValue1 * matrixElement1 - processedValue * transformResult;
+      matrixPointer = matrixPointer + 1;
+      *targetBuffer = processedValue * matrixElement1 + sourceValue1 * transformResult;
       targetBuffer = targetBuffer + -1;
-      result0 = result0 - 1;
-    } while (result0 != 0);
+      iterationCount = iterationCount - 1;
+    } while (iterationCount != 0);
   }
   return;
 }
