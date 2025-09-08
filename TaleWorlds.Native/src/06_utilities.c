@@ -1347,6 +1347,15 @@
 #define ExceptionHandlerResourceOffset 0x78
 #define ExceptionHandlerMemoryOffset 0x80
 #define ExceptionHandlerSystemOffset 0x88
+
+// 流程控制标签语义化定义
+// 功能：为代码中的跳转标签提供语义化的名称
+#define ValidationFailed ExecuteValidationFailureHandler
+#define ValidationCheckpoint ExecuteValidationCheckpointHandler
+#define ExitHandler ExecuteExitHandler
+#define ErrorHandlingLabel ExecuteErrorHandler
+#define ValidationExitHandler ExecuteValidationExitHandler
+#define ProcessCheckpointParameterRangeCheck ValidateParameterRangeCheckpoint
 #define ExceptionHandlerSecurityOffset 0x90
 #define ExceptionHandlerConfigOffset 0x98
 #define ExceptionHandlerControlOffset 0xa0
@@ -30407,8 +30416,8 @@ DataProcessLabelA:
     }
     validationOutcome = 0;
     if (memoryRegionBase == 0) {
-      validationOutcome = (uint)(localValidationBuffer[0] != '\0');
-      validationStatus = (uint)(localValidationBuffer[0] == '\0');
+      validationOutcome = (uint)(ValidationResultBuffer[0] != '\0');
+      validationStatus = (uint)(ValidationResultBuffer[0] == '\0');
       memoryRegionBase = 0;
     }
     if (memoryRegionBase != 0) {
@@ -85124,7 +85133,7 @@ void InvokeExceptionHandlerContextD0(DataBuffer operationBase,int64_t dataBuffer
  * @note 原始函数名：Unwind_18090ac90
  * @note 处理0x90偏移量的异常处理器上下文
  */
-void InvokeExceptionHandlerContextD0(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerContextE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
