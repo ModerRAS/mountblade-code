@@ -48,6 +48,45 @@
 #define Utf16CharacterValue Utf16Char4                    // UTF-16字符值
 #define PatternIndex PatternIndex                 // 模式索引
 #define StackFrameAddress StackFrameAddressPointer         // 栈帧地址
+
+// 系统上下文偏移量常量
+#define SystemContextStatusOffset 0x10c                    // 系统上下文状态偏移量
+#define SystemContextSecondaryStatusOffset 0x110            // 系统上下文次状态偏移量
+#define SystemContextEventTemplatePointerOffset 0x2d0      // 系统上下文事件模板指针偏移量
+#define SystemContextCharacterDataOffset 0x258             // 系统上下文字符数据偏移量
+#define SystemContextMemoryBlockOffset 0x258               // 系统上下文内存块偏移量
+#define SystemContextValidationOffset 0x2a8                 // 系统上下文验证偏移量
+#define SystemContextChecksumOffset 0x2ac                   // 系统上下文校验和偏移量
+#define SystemContextProcessingStatusOffset 0x2b4           // 系统上下文处理状态偏移量
+#define SystemContextCharacterEncodingOffset 0xfe           // 系统上下文字符编码偏移量
+#define SystemContextEventFlagsOffset 0x100                 // 系统上下文事件标志偏移量
+
+// 系统矩阵变换偏移量常量
+#define SystemMatrixTranslationXOffset 0x120                 // 系统矩阵X平移偏移量
+#define SystemMatrixScaleXOffset 0x124                      // 系统矩阵X缩放偏移量
+#define SystemMatrixRotationXOffset 0x128                   // 系统矩阵X旋转偏移量
+#define SystemMatrixDistanceXOffset 0x130                   // 系统矩阵X距离偏移量
+#define SystemMatrixSkewXOffset 0x134                       // 系统矩阵X偏斜偏移量
+#define SystemMatrixScaleYOffset 0x138                      // 系统矩阵Y缩放偏移量
+#define SystemMatrixTranslationYOffset 0x140                 // 系统矩阵Y平移偏移量
+#define SystemMatrixRotationYOffset 0x144                   // 系统矩阵Y旋转偏移量
+#define SystemMatrixScaleZOffset 0x148                      // 系统矩阵Z缩放偏移量
+#define SystemMatrixDistanceYOffset 0x150                    // 系统矩阵Y距离偏移量
+#define SystemMatrixSkewZOffset 0x154                       // 系统矩阵Z偏斜偏移量
+#define SystemMatrixTranslationZOffset 0x158                 // 系统矩阵Z平移偏移量
+
+// 事件数据结构偏移量常量
+#define EventDataStructureStatusOffset 0x1c                 // 事件数据结构状态偏移量
+#define EventDataStructureSecondaryStatusOffset 0x2c         // 事件数据结构次状态偏移量
+#define EventDataStructureChecksumOffset 0x34               // 事件数据结构校验和偏移量
+#define EventDataStructureValidationOffset 0x54              // 事件数据结构验证偏移量
+#define EventDataStructureSecondaryValidationOffset 0x5c      // 事件数据结构次验证偏移量
+
+// 系统参数偏移量常量
+#define SystemParameterEventFlagsOffset 0x4e                 // 系统参数事件标志偏移量
+#define SystemParameterStatusOffset 0x4c                     // 系统参数状态偏移量
+#define SystemParameterProcessingFlagOffset 0x4d             // 系统参数处理标志偏移量
+#define SystemParameterMemoryAllocationOffset 0x54           // 系统参数内存分配偏移量
 #define SystemStatusByte LowByte                          // 系统状态字节
 #define MemoryBlockStatus IsMemoryBlockEqual              // 内存块状态
 #define Utf16CharacterValue Utf16Char                     // UTF-16字符值
@@ -50000,27 +50039,27 @@ void CoreEngineProcessSystemContext(void
     SystemStatusValue = 0xffffffff;
   }
   else {
-    SystemStatusValue = *(uint32_t *)(SystemContext + 0x10c);
+    SystemStatusValue = *(uint32_t *)(SystemContext + SystemContextStatusOffset);
   }
-  *(uint32_t *)((long long)SystemParameter2 + 0x1c) = SystemStatusValue;
-  if ((*(long long *)(SystemContext + 0x2d0) == 0) ||
-     (*(int *)(*(long long *)(SystemContext + 0x2d0) + 0x14) == 0)) {
+  *(uint32_t *)((long long)SystemParameter2 + EventDataStructureStatusOffset) = SystemStatusValue;
+  if ((*(long long *)(SystemContext + SystemContextEventTemplatePointerOffset) == 0) ||
+     (*(int *)(*(long long *)(SystemContext + SystemContextEventTemplatePointerOffset) + 0x14) == 0)) {
     SystemStatusValue = 0xffffffff;
   }
   else {
-    SystemStatusValue = *(uint32_t *)(SystemContext + 0x110);
+    SystemStatusValue = *(uint32_t *)(SystemContext + SystemContextSecondaryStatusOffset);
   }
   *(uint32_t *)(eventDataStructureHandle + 4) = SystemStatusValue;
-  *(byte *)((long long)SystemParameter2 + 0x4e) = *(byte *)(SystemContext + 0xfe) >> 3 & 1;
+  *(byte *)((long long)SystemParameter2 + SystemParameterEventFlagsOffset) = *(byte *)(SystemContext + SystemContextCharacterEncodingOffset) >> 3 & 1;
   if (*(int *)(SystemContext + 0x108) != -1) {
-    SystemEventTemplatePointer5 = *(uint32_t **)(SystemContext + 0x2d0);
+    SystemEventTemplatePointer5 = *(uint32_t **)(SystemContext + SystemContextEventTemplatePointerOffset);
     SystemStatusValue = SystemEventTemplatePointer5[1];
     SystemChecksum = SystemEventTemplatePointer5[2];
     ProcessingStatusFlag = SystemEventTemplatePointer5[3];
     *(uint32_t *)(eventDataStructureHandle + 5) = *SystemEventTemplatePointer5;
-    *(uint32_t *)((long long)SystemParameter2 + 0x2c) = SystemStatusValue;
+    *(uint32_t *)((long long)SystemParameter2 + EventDataStructureSecondaryStatusOffset) = SystemStatusValue;
     *(uint32_t *)(eventDataStructureHandle + 6) = SystemChecksum;
-    *(uint32_t *)((long long)SystemParameter2 + 0x34) = ProcessingStatusFlag;
+    *(uint32_t *)((long long)SystemParameter2 + EventDataStructureChecksumOffset) = ProcessingStatusFlag;
     MemoryAllocationCounter = *(void *)(SystemEventTemplatePointer5 + 6);
     SystemParameter2[7] = *(void *)(SystemEventTemplatePointer5 + 4);
     SystemParameter2[8] = MemoryAllocationCounter;
@@ -50029,20 +50068,20 @@ void CoreEngineProcessSystemContext(void
        *(uint8_t *)(*(long long *)(SystemContext + 600) + 0x24);
   MemoryBlockIndex3 = *(long long *)(SystemContext + 600);
   if (*(char *)(MemoryBlockIndex3 + 0x24) != '\0') {
-    SystemStatusValue = *(uint32_t *)(SystemContext + 0x2ac);
-    SystemChecksum = *(uint32_t *)(SystemContext + 0x2b0);
-    ProcessingStatusFlag = *(uint32_t *)(SystemContext + 0x2b4);
-    *(uint32_t *)(eventDataStructureHandle + 10) = *(uint32_t *)(SystemContext + 0x2a8);
-    *(uint32_t *)((long long)SystemParameter2 + 0x54) = SystemStatusValue;
+    SystemStatusValue = *(uint32_t *)(SystemContext + SystemContextChecksumOffset);
+    SystemChecksum = *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset - 4);
+    ProcessingStatusFlag = *(uint32_t *)(SystemContext + SystemContextProcessingStatusOffset);
+    *(uint32_t *)(eventDataStructureHandle + 10) = *(uint32_t *)(SystemContext + SystemContextValidationOffset);
+    *(uint32_t *)((long long)SystemParameter2 + EventDataStructureValidationOffset) = SystemStatusValue;
     *(uint32_t *)(eventDataStructureHandle + 0xb) = SystemChecksum;
-    *(uint32_t *)((long long)SystemParameter2 + 0x5c) = ProcessingStatusFlag;
+    *(uint32_t *)((long long)SystemParameter2 + EventDataStructureSecondaryValidationOffset) = ProcessingStatusFlag;
     MemoryBlockIndex3 = *(long long *)(SystemContext + 600);
   }
-  *(bool *)((long long)SystemParameter2 + 0x4c) = *(long long *)(MemoryBlockIndex3 + 0x10) != 0;
-  *(uint8_t *)((long long)SystemParameter2 + 0x4d) = 1;
+  *(bool *)((long long)SystemParameter2 + SystemParameterStatusOffset) = *(long long *)(MemoryBlockIndex3 + 0x10) != 0;
+  *(uint8_t *)((long long)SystemParameter2 + SystemParameterProcessingFlagOffset) = 1;
   if ((*(char *)(StackData190 + 0xc) != '\0') ||
      (0 < *(int *)(*(long long *)(SystemContext + 600) + 0x1c))) {
-    *(uint8_t *)((long long)SystemParameter2 + 0x4d) = 0;
+    *(uint8_t *)((long long)SystemParameter2 + SystemParameterProcessingFlagOffset) = 0;
   }
   if (*(long long *)(StackData178 + 0x28) == 0) {
     SystemCurrentCharacter30 = 0xffffffff;
@@ -50069,30 +50108,30 @@ void CoreEngineProcessSystemContext(void
     TransformMatrixValue9 = FloatValueArray180[9];
     TransformMatrixValue10 = FloatValueArray180[10];
     TransformMatrixValue11 = FloatValueArray180[0xb];
-    MatrixScaleX = *(float *)(SystemContext + 0x124);
-    MatrixTranslationX = *(float *)(SystemContext + 0x120);
-    MatrixRotationX = *(float *)(SystemContext + 0x128);
-    MatrixSkewX = *(float *)(SystemContext + 0x134);
-    MatrixDistanceX = *(float *)(SystemContext + 0x130);
+    MatrixScaleX = *(float *)(SystemContext + SystemMatrixScaleXOffset);
+    MatrixTranslationX = *(float *)(SystemContext + SystemMatrixTranslationXOffset);
+    MatrixRotationX = *(float *)(SystemContext + SystemMatrixRotationXOffset);
+    MatrixSkewX = *(float *)(SystemContext + SystemMatrixSkewXOffset);
+    MatrixDistanceX = *(float *)(SystemContext + SystemMatrixDistanceXOffset);
     MatrixRow1Col1 = MatrixScaleX * TransformMatrixValue4 + MatrixRotationY * BaseFloatValue + MatrixRotationX * TransformMatrixValue8;
     MatrixRow1Col2 = MatrixScaleX * TransformMatrixValue5 + MatrixRotationY * TransformMatrixValue1 + MatrixRotationX * TransformMatrixValue9;
     MatrixRow1Col3 = MatrixScaleX * TransformMatrixValue6 + MatrixRotationY * TransformMatrixValue2 + MatrixRotationX * TransformMatrixValue10;
     MatrixRow1Col4 = MatrixScaleX * TransformMatrixValue7 + MatrixRotationY * TransformMatrixValue3 + MatrixRotationX * TransformMatrixValue11;
-    MatrixScaleY = *(float *)(SystemContext + 0x138);
-    MatrixTranslationY = *(float *)(SystemContext + 0x140);
-    MatrixRotationY = *(float *)(SystemContext + 0x144);
+    MatrixScaleY = *(float *)(SystemContext + SystemMatrixScaleYOffset);
+    MatrixTranslationY = *(float *)(SystemContext + SystemMatrixTranslationYOffset);
+    MatrixRotationY = *(float *)(SystemContext + SystemMatrixRotationYOffset);
     MatrixRow2Col1 = MatrixSkewX * TransformMatrixValue4 + MatrixDistanceX * BaseFloatValue + MatrixScaleY * TransformMatrixValue8;
     MatrixRow2Col2 = MatrixSkewX * TransformMatrixValue5 + MatrixDistanceX * TransformMatrixValue1 + MatrixScaleY * TransformMatrixValue9;
     MatrixRow2Col3 = MatrixSkewX * TransformMatrixValue6 + MatrixDistanceX * TransformMatrixValue2 + MatrixScaleY * TransformMatrixValue10;
     MatrixRow2Col4 = MatrixSkewX * TransformMatrixValue7 + MatrixDistanceX * TransformMatrixValue3 + MatrixScaleY * TransformMatrixValue11;
-    MatrixScaleZ = *(float *)(SystemContext + 0x148);
-    MatrixSkewZ = *(float *)(SystemContext + 0x154);
-    MatrixDistanceY = *(float *)(SystemContext + 0x150);
+    MatrixScaleZ = *(float *)(SystemContext + SystemMatrixScaleZOffset);
+    MatrixSkewZ = *(float *)(SystemContext + SystemMatrixSkewZOffset);
+    MatrixDistanceY = *(float *)(SystemContext + SystemMatrixDistanceYOffset);
     MatrixRow3Col1 = MatrixRotationY * TransformMatrixValue4 + MatrixDistanceY * BaseFloatValue + MatrixScaleZ * TransformMatrixValue8;
     MatrixRow3Col2 = MatrixRotationY * TransformMatrixValue5 + MatrixDistanceY * TransformMatrixValue1 + MatrixScaleZ * TransformMatrixValue9;
     MatrixRow3Col3 = MatrixRotationY * TransformMatrixValue6 + MatrixDistanceY * TransformMatrixValue2 + MatrixScaleZ * TransformMatrixValue10;
     MatrixRow3Col4 = MatrixRotationY * TransformMatrixValue7 + MatrixDistanceY * TransformMatrixValue3 + MatrixScaleZ * TransformMatrixValue11;
-    MatrixTranslationZ = *(float *)(SystemContext + 0x158);
+    MatrixTranslationZ = *(float *)(SystemContext + SystemMatrixTranslationZOffset);
     MatrixRow4Col1 =
          MatrixSkewZ * TransformMatrixValue4 + MatrixDistanceZ * BaseFloatValue + MatrixTranslationZ * TransformMatrixValue8 + FloatValueArray180[0xc];
     MatrixRow4Col2 =
@@ -149958,7 +149997,16 @@ LAB_18012e732:
 
 
 
-e706(voidvoid InitializeSystemValidator(void
+/**
+ * @brief 初始化系统验证器
+ * 
+ * 该函数负责初始化系统的验证组件，包括：
+ * - 设置系统寄存器状态
+ * - 初始化浮点寄存器值
+ * - 配置系统验证参数
+ * - 设置模式匹配状态
+ */
+void InitializeSystemValidator(void)
 {
   int in_EAX;
   long long SystemContext;
@@ -149988,7 +150036,16 @@ LAB_18012e732:
 
 
 
-e810(voidvoid ProcessSystemCleanup(void
+/**
+ * @brief 处理系统清理
+ * 
+ * 该函数负责处理系统的清理操作，包括：
+ * - 清理系统数据注册表
+ * - 释放内存资源
+ * - 重置系统状态
+ * - 执行系统组件清理
+ */
+void ProcessSystemCleanup(void)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -150025,7 +150082,19 @@ e810(voidvoid ProcessSystemCleanup(void
 
 
 
-e910(uint64_t CharacterCode,char SystemBufferSizevoid InitializeSystemComponentsEx(uint64_t CharacterCode,char SystemBufferSize
+/**
+ * @brief 扩展初始化系统组件
+ * 
+ * 该函数负责扩展初始化系统组件，包括：
+ * - 处理字符代码
+ * - 初始化系统缓冲区
+ * - 设置系统数据注册表
+ * - 管理引用计数
+ * 
+ * @param CharacterCode 字符代码，用于标识要初始化的组件
+ * @param SystemBufferSize 系统缓冲区大小，用于分配内存
+ */
+void InitializeSystemComponentsEx(uint64_t CharacterCode, char SystemBufferSize)
 {
   int *ReferenceCountPointer;
   byte *HighBytePointer;
