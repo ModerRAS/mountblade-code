@@ -7118,24 +7118,24 @@ longlong FindAndValidateSystemModule(longlong SystemContext, uint ModuleId, uint
     for (StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + SystemContextStringHashOffset) +
                             ((ulonglong)SystemSecondaryDataPointer % (ulonglong)*(uint *)(SystemContextDataPointer + SystemContextStringHashModuloOffset)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
-      if (SystemSecondaryDataPointer == *StringProcessingResultPointer) goto SecondaryParameterValidationLabel;
+      if (SystemSecondaryDataPointer == *StringProcessingResultPointer) goto SystemParameterValidationSuccessLabel;
     }
     StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + SystemContextStringHashOffset) + *(longlong *)(SystemContextDataPointer + SystemContextStringHashModuloOffset) * 8);
-SecondaryParameterValidationLabel:
-    MemoryCounterValue = *(longlong *)(StringProcessingResultPointer + 2);
-    ModuleInitializationResult = *(longlong *)(MemoryCounterValue + 8);
-    for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)SystemTertiaryDataPointer % (ulonglong)*(uint *)(MemoryCounterValue + 0x10)) * 8);
+SystemParameterValidationSuccessLabel:
+    MemoryCounterValue = *(longlong *)(StringProcessingResultPointer + SystemContextParameterValidationOffset);
+    ModuleInitializationResult = *(longlong *)(MemoryCounterValue + SystemContextModuleInitializationOffset);
+    for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)SystemTertiaryDataPointer % (ulonglong)*(uint *)(MemoryCounterValue + SystemContextMemoryCounterOffset)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
       if (SystemTertiaryDataPointer == *StringProcessingResultPointer) {
-        MemoryCounterValue = *(longlong *)(MemoryCounterValue + 0x10);
-        goto ParameterComparisonSuccessLabel;
+        MemoryCounterValue = *(longlong *)(MemoryCounterValue + SystemContextMemoryCounterOffset);
+        goto SystemParameterComparisonSuccessLabel;
       }
     }
-    MemoryCounterValue = *(longlong *)(MemoryCounterValue + 0x10);
+    MemoryCounterValue = *(longlong *)(MemoryCounterValue + SystemContextMemoryCounterOffset);
     StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + MemoryCounterValue * 8);
-ParameterComparisonSuccessLabel:
-    if ((StringProcessingResultPointer != *(uint **)(ModuleInitializationResult + MemoryCounterValue * 8)) && (*(longlong *)(StringProcessingResultPointer + 2) != 0)) {
-      return *(longlong *)(StringProcessingResultPointer + 2);
+SystemParameterComparisonSuccessLabel:
+    if ((StringProcessingResultPointer != *(uint **)(ModuleInitializationResult + MemoryCounterValue * 8)) && (*(longlong *)(StringProcessingResultPointer + SystemContextParameterValidationOffset) != 0)) {
+      return *(longlong *)(StringProcessingResultPointer + SystemContextParameterValidationOffset);
     }
   }
   ProcessSystemDataResources(SystemResourceTemplateAddress);

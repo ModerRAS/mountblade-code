@@ -125,6 +125,32 @@
  * @note 原始函数名：FUN_18013ce40
  */
 #define ResetCharacterProcessingSystem FUN_18013ce40
+
+/**
+ * @brief 处理字符代码缓冲区分配和数据管理
+ * 
+ * 该函数负责处理字符代码数据的缓冲区分配、数据移动和内存管理。
+ * 
+ * @param CharacterCode 字符代码指针，包含要处理的字符代码数据
+ * @param CharacterCodeSize 字符代码大小指针，指向字符代码的大小信息
+ * @return long long* 返回处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_180150240
+ */
+#define ProcessCharacterCodeBufferAllocationAndDataManagement FUN_180150240
+
+/**
+ * @brief 空操作函数变体
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作，直接返回。
+ * 通常用于占位或作为默认的函数指针。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18015036a
+ */
+#define UtilityNoOperationVariant FUN_18015036a
+
 /**
  * @brief 使用字符代码处理字符数据
  * 
@@ -71745,7 +71771,7 @@ void ExecuteSystemDataCopy(long long targetDataStructure, long long sourceData, 
   long long MemoryBufferC;
   long long BufferStatus3;
   float ContextSecondaryFloat4;
-  long long lStackX_8;
+  long long SystemBufferHandle;
   long long *plStack_80;
   long long CoreEngineSignedValue78;
   uint64_t StackProcessingVariable70;
@@ -71781,8 +71807,8 @@ LAB_180092bbb:
   if (-1 < ArrayIndex) {
     do {
       if (*(char *)(plStack_80[CharacterTablePointer5] + 0x11c38) != '\0') {
-        lStackX_8 = plStack_80[ArrayIndex];
-        if (lStackX_8 != 0) goto LAB_180092c16;
+        SystemBufferHandle = plStack_80[ArrayIndex];
+        if (SystemBufferHandle != 0) goto LAB_180092c16;
         break;
       }
       ArrayIndex = ArrayIndex + -1;
@@ -184542,7 +184568,18 @@ void ProcessCharacterCodeAndUpdateContext(long long CharacterCode)
 
 
 
-5036a(voidvoid FUN_18015036a(void
+/**
+ * @brief 空操作函数变体
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作，直接返回。
+ * 通常用于占位或作为默认的函数指针。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18015036a
+ * @note 这是一个空操作函数，用于占位或默认处理
+ */
+void UtilityNoOperationVariant(void)
 {
   return;
 }
@@ -184681,7 +184718,22 @@ uint64_t * InitializeCharacterCodeProcessingSystem(uint64_t *CharacterCode)
 
 
 
-50560(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180150560(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理字符代码转换和UTF编码操作
+ * 
+ * 该函数负责处理字符代码的转换操作，包括UTF-8到UTF-16的转换、
+ * 系统事件处理和控制台操作。它涉及复杂的内存管理和系统调用。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180150560
+ * @note 这是一个复杂的字符编码转换和系统处理函数
+ */
+void ProcessCharacterCodeConversion(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint Utf16Char;
   long long BufferStatus;
@@ -184817,7 +184869,21 @@ uint64_t* ConfigureSystemContext(uint64_t CharacterCode,uint64_t *CharacterCodeS
 
  (ram,0x000180150a08 (ram,0x000180150a14 (ram,0x000180150a17 (ram,0x0001801509ea
 
-50830(uint64_t CharacterCode,long long SystemBufferSize,long long Utf8SourcePointervoid FUN_180150830(uint64_t CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 处理字符状态缓冲区和字符串比较操作
+ * 
+ * 该函数负责处理字符状态缓冲区的初始化、字符串比较和内存匹配操作。
+ * 它涉及复杂的内存管理和数据处理逻辑。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180150830
+ * @note 这是一个复杂的字符状态处理和字符串比较函数
+ */
+void ProcessCharacterStatusAndStringComparison(uint64_t CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
