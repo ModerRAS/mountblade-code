@@ -88162,6 +88162,8 @@ void ProcessUIFloatTransformAndMatrixCalculation(longlong uiContext,longlong dat
   targetBufferSize = (longlong)(int)targetBuffer;
   componentCounter = 0;
   processedBytesCount = 0;
+  remainingDataSize = targetBufferSize;
+  startDataOffset = processedBytesCount;
   if ((0 < (int)targetBuffer) && (7 < targetBuffer)) {
     bufferAlignmentResult = targetBuffer & 0x80000007;
     if ((int)bufferAlignmentResult < 0) {
