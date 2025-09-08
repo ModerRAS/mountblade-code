@@ -1537,6 +1537,17 @@
 #define StackFrameSecurityCheckOffsetNegativeC -0xc     // 栈帧安全检查负偏移量C
 #define StackFrameDataOffsetNegative44 -0x44            // 栈帧数据负偏移量44
 #define StackFrameDataOffsetNegative3C -0x3c            // 栈帧数据负偏移量3C
+
+// 异常上下文数据偏移量常量
+#define ExceptionContextDataSizeOffset6D8 0x6d8         // 异常上下文数据大小偏移量6D8
+#define ExceptionContextDataCountOffset6DC 0x6dc         // 异常上下文数据计数偏移量6DC
+#define ExceptionContextDataPointerOffset6D0 0x6d0       // 异常上下文数据指针偏移量6D0
+#define ExceptionContextDataSecondaryOffset6D4 0x6d4     // 异常上下文数据次级偏移量6D4
+#define ExceptionContextDataBufferOffset1E0 0x1e0        // 异常上下文数据缓冲区偏移量1E0
+#define ExceptionContextSystemDataOffset78 0x78          // 异常上下文系统数据偏移量78
+#define ExceptionContextMemoryControlOffset150 0x150     // 异常上下文内存控制偏移量150
+#define ExceptionContextMemoryOperationOffset3E0 0x3e0   // 异常上下文内存操作偏移量3E0
+#define ExceptionContextMemoryValidationOffset138 0x138  // 异常上下文内存验证偏移量138
 #define StackFrameDataOffsetNegative34 -0x34            // 栈帧数据负偏移量34
 #define StackFrameDataOffsetNegative2C -0x2c            // 栈帧数据负偏移量2C
 #define StackFrameDataOffsetNegative10 -0x10            // 栈帧数据负偏移量10
@@ -26759,11 +26770,11 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
         if (((((int)operationResult == 0) &&
              (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA1,*(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset116BC)),
              (int)operationResult == 0)) &&
-            (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA2,(uint64_t)*(uint *)(exceptionHandlerContext + 0x6d8),
-                                   (uint64_t)*(uint *)(exceptionHandlerContext + 0x6dc) /
-                                   (uint64_t)*(uint *)(exceptionHandlerContext + 0x6d8),memoryRegionBase), (int)operationResult == 0)) &&
-           (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA3,*(DataWord *)(exceptionHandlerContext + 0x6d0),
-                                  *(DataWord *)(exceptionHandlerContext + 0x1193c),*(DataWord *)(exceptionHandlerContext + 0x6d4)),
+            (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA2,(uint64_t)*(uint *)(exceptionHandlerContext + ExceptionContextDataSizeOffset6D8),
+                                   (uint64_t)*(uint *)(exceptionHandlerContext + ExceptionContextDataCountOffset6DC) /
+                                   (uint64_t)*(uint *)(exceptionHandlerContext + ExceptionContextDataSizeOffset6D8),memoryRegionBase), (int)operationResult == 0)) &&
+           (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA3,*(DataWord *)(exceptionHandlerContext + ExceptionContextDataPointerOffset6D0),
+                                  *(DataWord *)(exceptionHandlerContext + 0x1193c),*(DataWord *)(exceptionHandlerContext + ExceptionContextDataSecondaryOffset6D4)),
            (int)operationResult == 0)) {
           memoryRegionBase = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11668);
           securityCheckResult = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11624);
