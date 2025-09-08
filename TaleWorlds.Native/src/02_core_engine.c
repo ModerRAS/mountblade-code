@@ -182894,7 +182894,26 @@ void ResetSystemEventHandler(void)
  * @note 原始函数名：FUN_18014ece0
  * @note 这是一个复杂的内存管理函数，需要仔细处理内存分配和释放操作
  */
-void FUN_18014ece0(uint64_t *CharacterCode,unsigned long long SystemBufferSize)
+/**
+ * @brief 扩展和管理字符数据内存池
+ * 
+ * 该函数负责扩展和管理字符数据的内存池，主要功能包括：
+ * - 分配新的内存块来扩展字符数据存储容量
+ * - 复制现有的字符数据到新的内存区域
+ * - 初始化新分配的内存块结构
+ * - 清理和释放旧的内存资源
+ * - 更新字符代码指针和内存池状态
+ * 
+ * 该函数是字符处理系统中的核心内存管理函数，确保系统有足够的内存空间
+ * 来处理大量的字符数据，同时保持内存使用的高效性和安全性。
+ * 
+ * @param CharacterCode 字符代码指针数组，包含内存池状态信息
+ * @param SystemBufferSize 系统缓冲区大小，指定需要扩展的内存块数量
+ * 
+ * @note 原始函数名：FUN_18014ece0
+ * @note 该函数会修改CharacterCode数组的内容以反映新的内存池状态
+ */
+void ExpandAndManageCharacterDataMemoryPool(uint64_t *CharacterCode,unsigned long long SystemBufferSize)
 {
   uint Utf16Char;
   uint64_t MemoryAllocationIndex;
