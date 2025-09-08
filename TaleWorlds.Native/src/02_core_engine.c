@@ -202290,6 +202290,7 @@ void FUN_18016c97a(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t 
  * 
  * @note 原始函数名：FUN_18016cacd
  */
+#define ProcessSystemConfigurationAndStringMatching FUN_18016cacd
 void ProcessSystemConfigurationAndStringMatching(void)
 {
   int *ReferenceCountPointer;
@@ -202385,12 +202386,12 @@ void ProcessSystemConfigurationAndStringMatching(void)
   UnicodeCharacterCode = (unsigned long long)*(uint *)(SystemMemoryBlockIndex188 + CharacterTablePointer * 0xc);
   if (*(int *)(SystemMemoryBlockIndex180 + CharacterTablePointer * 0xc) == 4) {
     if (*(int *)(SystemMemoryBlockIndex184 + CharacterTablePointer * 0xc) == 1) {
-      *(uint32_t *)(UnicodeCharacterCode + 0x1628 + SystemConfigurationHandle) = *(uint32_t *)(StringOffset + -8 + LoopIndex * 0xc      ;
+      *(uint32_t *)(UnicodeCharacterCode + 0x1628 + SystemConfigurationHandle) = *(uint32_t *)(StringOffset + -8 + LoopIndex * 0xc);
       *(int *)(SystemStringIndex + 0x1b90) = *(int *)(SystemStringIndex + 0x1b90) + -1;
       return;
     }
     if (*(int *)(SystemMemoryBlockIndex184 + CharacterTablePointer * 0xc) == 2) {
-      *(uint32_t *)(UnicodeCharacterCode + 0x1628 + SystemConfigurationHandle) = *(uint32_t *)(StringOffset + -8 + LoopIndex * 0xc      ;
+      *(uint32_t *)(UnicodeCharacterCode + 0x1628 + SystemConfigurationHandle) = *(uint32_t *)(StringOffset + -8 + LoopIndex * 0xc);
       *(uint32_t *)(UnicodeCharacterCode + 0x162c + SystemStringIndex) = *(uint32_t *)(StringOffset + -4 + LoopIndex * 0xc);
     }
   }
