@@ -29972,7 +29972,7 @@ DataCheckpointB:
       memoryRegionBase = OperateDataO0(*registerContext,StackFrameContext + StackFrameContextOffsetC4,4);
     }
     else {
-      memoryRegionBase = (uint64_t)registerValueEDI;
+      memoryRegionBase = (uint64_t)RegisterContextBackup;
     }
   }
   if ((int)memoryRegionBase != 0) {
@@ -30000,7 +30000,7 @@ DataCheckpointB:
       memoryRegionBase = OperateDataO0(*registerContext,StackFrameContext + 0xcc,4);
     }
     else {
-      memoryRegionBase = (uint64_t)registerValueEDI;
+      memoryRegionBase = (uint64_t)RegisterContextBackup;
     }
   }
   if ((int)memoryRegionBase != 0) {
@@ -30012,7 +30012,7 @@ DataCheckpointB:
       memoryRegionBase = OperateDataO0(*registerContext,StackFrameContext + 0xd0,4);
     }
     else {
-      memoryRegionBase = (uint64_t)registerValueEDI;
+      memoryRegionBase = (uint64_t)RegisterContextBackup;
     }
   }
   if ((int)memoryRegionBase != 0) {
@@ -30033,7 +30033,7 @@ DataCheckpointB:
       operationResult = OperateDataO0(*registerContext,StackFrameContext + 200,4);
     }
     else {
-      operationResult = (uint64_t)registerValueEDI;
+      operationResult = (uint64_t)RegisterContextBackup;
     }
   }
   if ((int)operationResult != 0) {
@@ -36325,7 +36325,7 @@ uint64_t CheckSystemDataIntegrity(void)
       operationResult = OperateDataO0(*registerContext,systemContext + 0xf4,4);
     }
     else {
-      operationResult = (uint64_t)registerValueEDI;
+      operationResult = (uint64_t)RegisterContextBackup;
     }
     if ((int)operationResult == 0) {
       if (*(uint *)(registerContext + 8) < 0x5e) {
@@ -36340,7 +36340,7 @@ uint64_t CheckSystemDataIntegrity(void)
         }
           CleanupSystemResourcesA0();
       }
-      operationResult = (uint64_t)registerValueEDI;
+      operationResult = (uint64_t)RegisterContextBackup;
     }
   }
   return operationResult;
