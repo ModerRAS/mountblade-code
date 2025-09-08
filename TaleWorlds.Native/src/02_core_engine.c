@@ -236975,19 +236975,32 @@ uint32_t ProcessCharacterCodeDataConversionAndSystemStatusUpdate(long long Chara
  */
 uint64_t ProcessCharacterCodeConversionEx(uint64_t CharacterCode, unsigned long long SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
-  uint64_t Utf16Char;
+  uint64_t Utf16CharacterValue;
   
-  Utf16Char = 0xfffffffffffffffe;
+  Utf16CharacterValue = 0xfffffffffffffffe;
   InitializeDataProcessor();
   if ((SystemBufferSize & 1) != 0) {
-    free(CharacterCode,0xd0,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
+    free(CharacterCode, 0xd0, Utf8SourcePointer, Utf16EndPointer, Utf16CharacterValue);
   }
   return CharacterCode;
 }
 
 
 
-long long * FUN_18019c5b0(long long *CharacterCode,long long *CharacterCodeSize
+/**
+ * @brief 处理字符代码缓冲区分配和清理
+ * 
+ * 该函数负责处理字符代码的缓冲区分配和清理操作，包括：
+ * - 处理字符代码的内存分配和释放
+ * - 管理缓冲区分配状态
+ * - 清理和重置缓冲区
+ * - 执行系统特定的清理函数
+ * 
+ * @param CharacterCode 字符代码指针，指向要处理的字符代码
+ * @param CharacterCodeSize 字符代码大小指针，指向字符代码的大小信息
+ * @return long long* 返回处理后的字符代码指针
+ */
+long long * ProcessCharacterCodeBufferAllocationAndCleanup(long long *CharacterCode, long long *CharacterCodeSize)
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
