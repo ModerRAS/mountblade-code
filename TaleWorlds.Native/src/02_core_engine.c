@@ -246608,7 +246608,22 @@ LAB_180204eca:
   *SecondaryProcessingStatusFlag = (unsigned long long)pMemoryAddressMaskPointer;
   SecondaryProcessingStatusFlag[2] = (unsigned long long)(pMemoryAddressMaskPointer + MemoryPoolBlockSize * 2);
   SecondaryProcessingStatusFlag[1] = (unsigned long long)(pMemoryAddressMaskPointer + 2);
-FUN_180204f57:
+/**
+ * @brief 处理系统缓冲区大小和内存块索引管理
+ * 
+ * 该函数负责管理系统缓冲区的大小设置和内存块索引的处理，包括：
+ * - 初始化系统缓冲区大小为-1
+ * - 清零相关内存区域
+ * - 调用内存块索引的清理函数
+ * - 设置缓冲区参数
+ * 
+ * @param SystemBufferSize 系统缓冲区大小数组指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180204f57
+ */
+#define ProcessSystemBufferSizeAndMemoryBlockIndexManagement FUN_180204f57
+ProcessSystemBufferSizeAndMemoryBlockIndexManagement:
   SystemBufferSize[0] = -1;
   SystemBufferSize[1] = -1;
   MemoryBlockIndex = *(long long **)(SystemBufferSize + 4);
@@ -249946,7 +249961,24 @@ ProcessSystemContextFloatAndEncodingConversion:
       } while (ComputedResult < (int)(*(long long *)(SystemDataNode + 0x10) - MemoryBoundaryEnd >> 3));
     }
   }
-FUN_1802090ff:
+/**
+ * @brief 处理浮点数比较和字符串操作
+ * 
+ * 该函数负责处理浮点数比较和字符串操作，包括：
+ * - 浮点数大小比较
+ * - 内存边界端点处理
+ * - 字符串偏移计算
+ * - 字符限制检查
+ * 
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param NullPointerValue 空指针值
+ * @param SystemDataNode 系统数据节点
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1802090ff
+ */
+#define ProcessFloatComparisonAndStringOperations FUN_1802090ff
+ProcessFloatComparisonAndStringOperations:
   if (in_XMM4_Da < SystemBufferSize) {
     MemoryBoundaryEnd = *(long long *)(NullPointerValue + 8);
     ComputedResult = 0;
