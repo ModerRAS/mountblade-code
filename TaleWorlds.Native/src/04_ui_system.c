@@ -350,6 +350,21 @@ typedef enum {
 // UI系统函数宏定义 - 获取UI上下文状态
 #define GetUIContextStatus FUN_18070f57b
 
+// UI系统未知数据指针美化
+#define UIUnknownDataPointer1 UNK_180741cf0
+#define UIUnknownDataPointer2 UNK_180741d00
+#define UIUnknownDataPointer3 UNK_180741ce0
+#define UIUnknownSystemData1 UNK_180958080
+#define UIUnknownSystemData2 UNK_18078b870
+#define UIUnknownSystemData3 UNK_180958bf0
+#define UIUnknownSystemData4 UNK_1807693c0
+#define UIUnknownComponentData UNK_180770640
+#define UIUnknownFontData1 UNK_180786c90
+#define UIUnknownFontData2 UNK_1807868c0
+#define UIUnknownFontData3 UNK_180788fc0
+#define UIUnknownEventData UNK_180747d60
+#define UIUnknownFontManager UNK_180785d90
+
 // UI系统渲染参数美化
 #define renderParam1 stackParam00000048
 #define renderParam2 stackParam00000050
