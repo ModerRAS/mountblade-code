@@ -12943,6 +12943,15 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
  * 验证资源配置，并建立必要的组件连接。初始化过程包括数据验证、资源分配
  * 和组件初始化等步骤。
  * 
+ * 该函数执行以下主要操作：
+ * 1. 查询和检索系统配置数据
+ * 2. 验证模块配置的有效性
+ * 3. 处理游戏消息和事件
+ * 4. 验证系统操作上下文
+ * 5. 设置异常处理器和资源信息
+ * 6. 遍历和配置组件数据
+ * 7. 初始化系统组件并建立连接关系
+ * 
  * @param moduleConfig 模块配置指针，包含模块的配置参数和初始化信息
  * @param moduleData 模块数据指针，包含模块运行时所需的数据结构
  * @return uint64_t 初始化结果状态码：
@@ -12952,6 +12961,10 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
  * 
  * @note 该函数会修改模块数据结构，并在成功时建立组件间的连接关系
  * @warning 初始化失败时可能需要清理已分配的资源
+ * @see QueryAndRetrieveSystemDataA0, ProcessGameMessage, ValidateSystemOperationContextA0, InitializeSystemComponent
+ * 
+ * @since 系统版本 1.0
+ * @security_level 高
  */
 uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
 
@@ -12974,7 +12987,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
   if (initializationStatus == 0) {
     validationContext = (int64_t *)0x0;
     moduleData = validationContext;
-    if (temporaryStackContext != 0) {
+    if (tempStackContext != 0) {
       moduleDataContext = (int64_t *)(temporaryStackContext + -8);
     }
     systemModuleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&temporaryStackContext);
@@ -15482,7 +15495,7 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
 
 {
   uint OperationResult;
-  uint64_t conversionStatus;
+  uint64_t conversionResult;
   int64_t dataPointer;
   DataBuffer systemContextBuffer;
   DataWord operationParams [2];
@@ -15504,19 +15517,19 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
         operationParams[0] = 2;
       }
       operationResult = ExecuteDataConversion(operationHandle,operationParams,*(DataWord *)(contextHandle + SystemContextOperationOffset),systemContextBuffer);
-      conversionStatus = (uint64_t)operationResult;
+      conversionResult = (uint64_t)operationResult;
       if (operationResult == 0) {
-        conversionStatus = 0;
+        conversionResult = 0;
       }
       else if (dataPointer != 0) {
         CleanupConversionResources(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataPointer,&SystemMemoryPoolB,ResourceAllocationSizeE9);
-        return conversionStatus;
+        return conversionResult;
       }
-      return conversionStatus;
+      return conversionResult;
     }
     conversionResult = ComponentDataValidationFailure;
   }
-  return conversionStatus;
+  return conversionResult;
 }
 
 
