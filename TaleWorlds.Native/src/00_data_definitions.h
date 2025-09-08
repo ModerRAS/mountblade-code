@@ -4396,7 +4396,7 @@ Label_ModuleConfigurationStart:
   aPerformanceCounterValue[2] = 0;
   StackParameter4 = 3;
   InitializeGameSession(StackGameSessionBuffer);
-  ProcessGameData((longlong)SystemFrameCounter * 0x238 + GameEngineDataAddress + 0x1598,StackGameSessionBuffer);
+  ProcessGameData((longlong)SystemFrameCounter * 0x238 + GameEngineDataAddress + GameEngineGameDataOffset,StackGameSessionBuffer);
   PerformanceCounterValue = aPerformanceCounterValue;
   if (aPerformanceCounterValue[0] != 0) {
     CleanupSystemResources();
@@ -4964,7 +4964,7 @@ InitializeCoreSystem();
   MemoryIndexValue = SystemConfigurationData;
   ModuleInitializationResult8 = GameEngineDataAddress;
   MemoryAddress4 = *(uint64_t *)(SystemConfigurationData + 0x161c);
-  *(uint64_t *)(GameEngineDataAddress + 0x12d0) = *(uint64_t *)(SystemConfigurationData + 0x1614);
+  *(uint64_t *)(GameEngineDataAddress + GameEngineConfigDataOffset) = *(uint64_t *)(SystemConfigurationData + GameEngineConfigDataBaseOffset);
   *(uint64_t *)(ModuleInitializationResult8 + 0x12d8) = MemoryAddress4;
   MemoryAddress4 = *(uint64_t *)(MemoryIndexValue + 0x162c);
   *(uint64_t *)(ModuleInitializationResult8 + 0x12e0) = *(uint64_t *)(MemoryIndexValue + 0x1624);
@@ -5015,7 +5015,7 @@ InitializeCoreSystem();
    * @note 此函数在网络系统初始化的最后阶段被调用
    */
   FinalizeNetworkSystem();
-  *(uint *)(GameEngineDataAddress + 0x1590) = SystemFrameCounter;
+  *(uint *)(GameEngineDataAddress + GameEngineFrameCounterOffset) = SystemFrameCounter;
   SystemFrameCounter = SystemFrameCounter + 1 & 0x80000001;
   if ((int)SystemFrameCounter < 0) {
     SystemFrameCounter = (SystemFrameCounter - 1 | 0xfffffffe) + 1;
@@ -5028,7 +5028,7 @@ InitializeCoreSystem();
   MemoryAddress4 = SystemModuleContext;
   SystemPointerPointerStack220 = (longlong **)SystemModuleContext;
   SystemModuleContext = *pMemoryAddress5;
-  ModuleInitializationResult8 = *(longlong *)(GameEngineDataAddress + 0x1a08 + (longlong)(int)SystemFrameCounter * 8);
+  ModuleInitializationResult8 = *(longlong *)(GameEngineDataAddress + GameEngineFrameDataArrayOffset + (longlong)(int)SystemFrameCounter * 8);
   if (ModuleInitializationResult8 != 0) {
     MemoryAddress9 = BufferSize0;
     BufferSize2 = BufferSize0;
@@ -5050,7 +5050,7 @@ InitializeCoreSystem();
       CleanupSystemResources();
     }
     *(uint64_t *)(ModuleInitializationResult8 + 8) = 0;
-    pNetworkRequestResult = *(uint8_t **)(GameEngineDataAddress + 0x1a08 + (longlong)(int)SystemFrameCounter * 8);
+    pNetworkRequestResult = *(uint8_t **)(GameEngineDataAddress + GameEngineFrameDataArrayOffset + (longlong)(int)SystemFrameCounter * 8);
     if (pNetworkRequestResult != (uint8_t *)0x0) {
       *pNetworkRequestResult = 0;
       *(uint64_t *)(pNetworkRequestResult + 8) = 0;
@@ -5060,7 +5060,7 @@ InitializeCoreSystem();
       *(uint64_t *)(pNetworkRequestResult + 0x1c) = 0;
       CleanupSystemResources();
     }
-    *(uint64_t *)(GameEngineDataAddress + 0x1a08 + (longlong)(int)SystemFrameCounter * 8) = 0;
+    *(uint64_t *)(GameEngineDataAddress + GameEngineFrameDataArrayOffset + (longlong)(int)SystemFrameCounter * 8) = 0;
     SystemSecondaryDataPointer = StackValidationLimit2;
   }
   FinalizeSystemInitialization();
