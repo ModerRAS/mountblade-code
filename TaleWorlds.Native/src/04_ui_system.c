@@ -438,6 +438,21 @@ typedef enum {
 // UI系统函数宏定义 - UI系统空操作函数
 #define UINoOperationFunction FUN_18072b301
 
+/**
+ * @brief 执行UI矩阵变换和向量计算
+ * 
+ * 该函数负责执行UI系统中的复杂矩阵变换和向量计算，包括：
+ * - 4x4矩阵的乘法运算
+ * - 向量的旋转和缩放变换
+ * - UI元素的坐标变换
+ * - 渲染变换的优化计算
+ * 
+ * 该函数使用SIMD优化的算法来提高UI变换计算的性能。
+ * 
+ * @note 原始函数名：FUN_180711311
+ */
+#define ExecuteUIMatrixTransformationAndVectorCalculation FUN_180711311
+
 // UI系统函数宏定义 - 处理UI数据缓冲区操作
 #define ProcessUIDataBufferOperation FUN_18072b310
 #define ProcessUIResourceUpdate FUN_18069d9e0
