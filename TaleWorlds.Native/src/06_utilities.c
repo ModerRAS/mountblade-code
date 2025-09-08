@@ -2757,6 +2757,10 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 /**
  * @brief 系统状态检查函数
+ * 
+ * 该函数负责检查系统状态，包括系统健康状态、资源使用情况和运行状态。
+ * 它会根据系统状态返回相应的状态码，用于系统监控和故障诊断。
+ * 
  * @note 原始函数名：FUN_1808fc5ac
  */
 #define CheckSystemStatusAndCleanupResources CheckSystemStatusAndHealth
