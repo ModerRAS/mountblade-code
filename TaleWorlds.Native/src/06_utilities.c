@@ -10024,6 +10024,12 @@ uint8_t ThreadSynchronizationData;
 uint8_t SystemPerformanceMetrics;
 // 系统网络管理器
 uint8_t SystemNetworkManager;
+
+// 网络相关偏移量常量
+#define NetworkConnectionContextOffset 0x18
+#define NetworkValidationContextOffset 0x20
+#define NetworkOperationContextOffset 0x1c
+#define NetworkConfigurationOffset 0x14
 // 系统图形管理器
 uint8_t SystemGraphicsManager;
 // 系统音频管理器
@@ -16530,21 +16536,21 @@ void ManageUtilitySystemConnections(int64_t connectionManager,int64_t connection
     operationStatus = ProcessSystemBufferA0(systemContext);
     if (operationStatus < 1) {
       operationStatus = ProcessSystemBufferA1(systemContext);
-      *(uint *)(connectionManager + 0x18) = (uint)(operationStatus < 1);
+      *(uint *)(connectionManager + ConnectionManagerStatusOffset) = (uint)(operationStatus < 1);
     }
     else {
       operationStatus = ProcessSystemBufferA1(systemContext);
       if (operationStatus < 1) {
-        *(DataWord *)(connectionManager + 0x18) = 2;
+        *(DataWord *)(connectionManager + ConnectionManagerStatusOffset) = 2;
       }
       else {
-        operationStatus = ValidateDataIntegrityA0(systemContext,connectionManager + 0x18);
+        operationStatus = ValidateDataIntegrityA0(systemContext,connectionManager + ConnectionManagerStatusOffset);
         if (operationStatus != 0) {
           return;
         }
       }
     }
-    ProcessSystemEventB0(*(DataBuffer *)(connectionFlags + 0x98),connectionManager);
+    ProcessSystemEventB0(*(DataBuffer *)(connectionFlags + ConnectionManagerFlagsOffset),connectionManager);
   }
   return;
 }
@@ -20103,9 +20109,9 @@ void ValidateAndCleanupSystemResources(int64_t systemContext,DataBuffer resource
   int validationStatus;
   
   validationStatus = ValidateNetworkStatusA0(resourceHandle,systemContext + ExceptionHandlerCallbackOffset10);
-  if (((validationStatus == 0) && (validationStatus = ValidateNetworkConnectionA0(resourceHandle,systemContext + 0x18), validationStatus == 0)) &&
-     (validationStatus = ProcessNetworkValidationA0(resourceHandle,systemContext + 0x20,*(DataWord *)(systemContext + 0x18)), validationStatus == 0)) {
-    ExecuteNetworkOperationA0(resourceHandle,systemContext + 0x20 + (int64_t)*(int *)(systemContext + 0x18) * 4);
+  if (((validationStatus == 0) && (validationStatus = ValidateNetworkConnectionA0(resourceHandle,systemContext + NetworkConnectionContextOffset), validationStatus == 0)) &&
+     (validationStatus = ProcessNetworkValidationA0(resourceHandle,systemContext + NetworkValidationContextOffset,*(DataWord *)(systemContext + NetworkConnectionContextOffset)), validationStatus == 0)) {
+    ExecuteNetworkOperationA0(resourceHandle,systemContext + NetworkValidationContextOffset + (int64_t)*(int *)(systemContext + NetworkConnectionContextOffset) * DataBufferElementSize);
   }
   return;
 }
@@ -20179,11 +20185,11 @@ void ValidateResourceAndProcess(int64_t resourceHandle, DataBuffer contextHandle
   
   validationResult = ValidateNetworkStatusA0(contextHandle, resourceHandle + ComponentHandleOffset);
   if ((((validationResult == 0) && 
-        (validationResult = ValidateNetworkConnectionA0(contextHandle, resourceHandle + 0x18), validationResult == 0)) &&
-       (validationResult = ValidateNetworkConfigurationA0(contextHandle, resourceHandle + 0x20, *(DataWord *)(resourceHandle + 0x18)), validationResult == 0))
-      && (validationResult = ExecuteNetworkOperationA0(contextHandle, resourceHandle + 0x20 + (int64_t)*(int *)(resourceHandle + 0x18) * 8),
+        (validationResult = ValidateNetworkConnectionA0(contextHandle, resourceHandle + NetworkConnectionContextOffset), validationResult == 0)) &&
+       (validationResult = ValidateNetworkConfigurationA0(contextHandle, resourceHandle + NetworkValidationContextOffset, *(DataWord *)(resourceHandle + NetworkConnectionContextOffset)), validationResult == 0))
+      && (validationResult = ExecuteNetworkOperationA0(contextHandle, resourceHandle + NetworkValidationContextOffset + (int64_t)*(int *)(resourceHandle + NetworkConnectionContextOffset) * DataBufferElementSize),
          validationResult == 0)) {
-    InitializeNetworkConnectionA0(contextHandle, resourceHandle + 0x1c);
+    InitializeNetworkConnectionA0(contextHandle, resourceHandle + NetworkOperationContextOffset);
   }
   return;
 }
@@ -20254,11 +20260,11 @@ void ValidateContextAndProcess(int64_t contextHandle, DataBuffer validationData)
   
   validationResult = ValidateNetworkConnectionA0(validationData, contextHandle + ComponentHandleOffset);
   if (validationResult == 0) {
-    validationResult = ValidateNetworkConfigurationA0(validationData, contextHandle + 0x18, *(DataWord *)(contextHandle + ComponentHandleOffset));
+    validationResult = ValidateNetworkConfigurationA0(validationData, contextHandle + NetworkConnectionContextOffset, *(DataWord *)(contextHandle + ComponentHandleOffset));
     if (validationResult == 0) {
-      validationResult = ExecuteNetworkOperationA0(validationData, contextHandle + 0x18 + (int64_t)*(int *)(contextHandle + ComponentHandleOffset) * 8);
+      validationResult = ExecuteNetworkOperationA0(validationData, contextHandle + NetworkConnectionContextOffset + (int64_t)*(int *)(contextHandle + ComponentHandleOffset) * DataBufferElementSize);
       if (validationResult == 0) {
-        InitializeNetworkConnectionA0(validationData, contextHandle + 0x14);
+        InitializeNetworkConnectionA0(validationData, contextHandle + NetworkConfigurationOffset);
       }
     }
   }
