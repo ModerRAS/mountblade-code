@@ -77193,17 +77193,17 @@ LAB_18070f928:
         if (isEventProcessingActive == 0xff) {
           counterResult = 0xfe;
         }
-        unmodifiedR15D = unmodifiedR15D + CounterResult;
-        IndexResult = IndexResult + (-1 - CounterResult);
-        stackParam00000070 = unmodifiedR15D;
-      } while (IsEventProcessingActive == 0xff);
+        unmodifiedRegister = unmodifiedRegister + counterResult;
+        indexResult = indexResult + (-1 - counterResult);
+        stackParameter70 = unmodifiedRegister;
+      } while (isEventProcessingActive == 0xff);
     }
-    if ((int)IndexResult < 0) {
+    if ((int)indexResult < 0) {
       return 0xfffffffc;
     }
-    CounterResult = ~(uint)(bVar4 >> 7) & 1;
-    if (CounterResult == 0) {
-      loopCounter = ContextHandle & 0xffffffff;
+    counterResult = ~(uint)(encodingType >> 7) & 1;
+    if (counterResult == 0) {
+      loopCounter = contextHandle & 0xffffffff;
       psVar11 = SourceHandle;
       result2 = IndexResult;
       if (0 < (int)(uVar8 - 1)) {

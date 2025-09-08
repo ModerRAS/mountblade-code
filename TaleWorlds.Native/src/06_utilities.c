@@ -18924,11 +18924,11 @@ DataBuffer ProcessBufferA0(int64_t bufferDescriptor,int64_t systemContext)
   }
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(bufferDescriptor + ExceptionHandlerCallbackOffset10),&bufferSize);
   if ((int)operationResult == 0) {
-    if (CONCAT44(bufferFlags,bufferSize) == 0) {
+    if (MergeHighLowWords(bufferFlags, bufferSize) == 0) {
       dataContext = 0;
     }
     else {
-      dataContext = CONCAT44(bufferFlags,bufferSize) + -8;
+      dataContext = MergeHighLowWords(bufferFlags, bufferSize) - 8;
     }
     *(DataWord *)(dataContext + 0x8c) = *(DataWord *)(bufferDescriptor + 0x18);
       CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),bufferDescriptor);
@@ -19017,7 +19017,7 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  dataHandle = *(int64_t *)(CONCAT44(stackBufferHighPart,stackBufferLowPart) + ExceptionHandlerCallbackOffset10);
+  dataHandle = *(int64_t *)(MergeHighLowWords(stackBufferHighPart, stackBufferLowPart) + ExceptionHandlerCallbackOffset10);
   if (dataHandle == 0) {
     return ResourceNotFoundCode;
   }
