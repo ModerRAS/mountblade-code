@@ -197,6 +197,39 @@
 #define SystemDataHandleOffset 0x14
 #define SystemContextDataOffset 0x50
 #define SystemSecondaryDataOffset 0x44
+
+// 数据处理偏移量常量
+#define DataProcessingStatusOffset 0x34              // 数据处理状态偏移量
+#define DataValidationContextOffset 0x38            // 数据验证上下文偏移量
+#define DataProcessingResultOffset 0x3c             // 数据处理结果偏移量
+#define DataSecurityFlagsOffset 0x30                // 数据安全标志偏移量
+#define DataSecondaryValidationOffset 0x44          // 数据二次验证偏移量
+#define DataPrimaryValidationOffset 0x48           // 数据主要验证偏移量
+#define DataFloatingPointOffset 0x4c               // 数据浮点偏移量
+#define DataAdditionalInfoOffset 0x40              // 数据附加信息偏移量
+#define DataExtendedContextOffset 0x50             // 数据扩展上下文偏移量
+
+// 系统寄存器上下文偏移量常量
+#define RegisterContextDataSizeOffset 0x18          // 寄存器上下文数据大小偏移量
+#define RegisterContextValidationStatusOffset 0x7f  // 寄存器上下文验证状态偏移量
+#define RegisterContextOperationFlagsOffset 0x34    // 寄存器上下文操作标志偏移量
+#define RegisterContextMemoryPointerOffset 0x60    // 寄存器上下文内存指针偏移量
+#define RegisterContextCountOffset 0x18            // 寄存器上下文计数偏移量
+#define RegisterContextDataPointerOffset 0x20       // 寄存器上下文数据指针偏移量
+
+// 系统栈帧偏移量常量
+#define StackFrameValidationOffset 0x77             // 栈帧验证偏移量
+#define StackFrameStatusOffset 0x7f                 // 栈帧状态偏移量
+
+// 数据阈值常量
+#define SystemValidationThreshold0x6f 0x6f          // 系统验证阈值0x6f
+#define SystemValidationThreshold0x70 0x70          // 系统验证阈值0x70
+#define SystemValidationThreshold0x60 0x60          // 系统验证阈值0x60
+#define SystemValidationThreshold0x87 0x87          // 系统验证阈值0x87
+
+// 操作码常量
+#define SystemOperationCode0x1c 0x1c                // 系统操作码0x1c
+#define SystemOperationCode0xd 0xd                  // 系统操作码0xd
 #define SystemTertiaryDataOffset 0x38
 #define SystemContextOffset90 0x90
 #define SystemContextOffset554 0x554
@@ -33238,21 +33271,21 @@ uint64_t ProcessSystemDataD0(void)
   validationOutcome = 0;
   dataFlags = 0;
   memoryRegionBase = validationOutcome;
-  if (0x6f < *(uint *)(registerContext + 8)) {
-    if (*(int *)(registerContext[1] + 0x18) == 0) {
-      memoryRegionBase = OperateDataO0(*registerContext,dataPointer + 0x34,(uint64_t)operationResult);
+  if (SystemValidationThreshold0x6f < *(uint *)(registerContext + 8)) {
+    if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) == 0) {
+      memoryRegionBase = OperateDataO0(*registerContext,dataPointer + DataProcessingStatusOffset,(uint64_t)operationResult);
     }
     else {
-      memoryRegionBase = 0x1c;
+      memoryRegionBase = SystemOperationCode0x1c;
     }
   }
   if ((int)memoryRegionBase != 0) {
     return memoryRegionBase;
   }
   securityCheckResult = dataFlags;
-  if (*(uint *)(registerContext + 8) < 0x70) {
-    if (*(int *)(registerContext[1] + 0x18) != 0) {
-      securityCheckResult = 0x1c;
+  if (*(uint *)(registerContext + 8) < SystemValidationThreshold0x70) {
+    if (*(int *)(registerContext[1] + RegisterContextDataSizeOffset) != 0) {
+      securityCheckResult = SystemOperationCode0x1c;
       goto ProcessCheckpointSystemStateUpdate;
     }
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
