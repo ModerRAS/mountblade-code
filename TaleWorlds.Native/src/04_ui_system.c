@@ -186,6 +186,11 @@ typedef enum {
 #define localChar9 SystemStatus
 #define AccumulatedFloat AnimationTime
 #define localFloat21 AnimationDelta
+#define localFloat26 MinimumBoundsValue
+#define localFloat28 MaximumBoundsValue
+#define localFloat29 CurrentRotationValue
+#define plocalLong7 ColorBufferPointer
+#define plocalLong8 ResourceBufferPointer
 #define ProcessUIRenderOperation FUN_180690580
 #define ProcessUIDataTransfer ProcessUIComponentBlend
 #define InitializeUILayoutSystem FUN_180707a56
