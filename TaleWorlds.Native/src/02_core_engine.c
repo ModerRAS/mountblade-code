@@ -210015,7 +210015,7 @@ void ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode, long long *C
     (*pcStack_70)(&CalculationFunctionAddress,0,0);
   }
   ppDataProcessingStatus = &SystemMessageTemplatePointer;
-  pSystemValue1c8 = &ThreadLocalStorageTemplate;
+  SystemMessageTemplatePointer = &ThreadLocalStorageTemplate;
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)aCoreEngineUnsignedValue208);
 }
@@ -237126,7 +237126,7 @@ LAB_180199fb9:
             pbStack_1e0 = (byte *)0x0;
             uStack_1d0 = uStack_1d0 & 0xffffffff00000000;
             pDataProcessingStatus = &ThreadLocalStorageTemplate;
-            pSystemValue1c8 = &SystemNullTemplate;
+            SystemMessageTemplatePointer = &SystemNullTemplate;
             uStack_1b0 = 0;
             pbStack_1c0 = (byte *)0x0;
             iStack_1b8 = 0;
@@ -237198,14 +237198,14 @@ LAB_18019a10a:
             }
 LAB_18019a129:
             *(int *)(ppppppSystemCharacterStatusBuffer + 8) = StringComparisonResult0 + 1;
-            pSystemValue1c8 = &SystemNullTemplate;
+            SystemMessageTemplatePointer = &SystemNullTemplate;
             if (Utf8OutputPointer != (byte *)0x0) {
                     // WARNING: Subroutine does not return
               CoreEngineFreeSystemMemory(Utf8OutputPointer);
             }
             pbStack_1c0 = (byte *)0x0;
             uStack_1b0 = uStack_1b0 & 0xffffffff00000000;
-            pSystemValue1c8 = &ThreadLocalStorageTemplate;
+            SystemMessageTemplatePointer = &ThreadLocalStorageTemplate;
             CharacterCode2 = (long long *)(MemoryBufferC + 0xb8);
             MemoryBufferC = 0x10;
             do {
