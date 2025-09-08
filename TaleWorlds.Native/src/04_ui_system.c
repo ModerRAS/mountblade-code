@@ -141,6 +141,16 @@ typedef enum {
 #define LAB_EventFocusCheck LAB_180655bdf
 #define LAB_EventSystemInitialize LAB_180655e30
 #define LAB_EventContextSetup LAB_180655d38
+#define LAB_UISystemCleanup LAB_180656abd
+#define LAB_UIResourceRelease LAB_180656d5b
+#define LAB_UIMemoryFree LAB_180656dbb
+#define LAB_UIContextReset LAB_180656df9
+#define LAB_UIStateRestore LAB_180656e11
+#define LAB_UIDataInitialize LAB_180656d07
+#define LAB_UIComponentDestroy LAB_180656e1e
+#define LAB_UIEventComplete LAB_1806572f9
+#define LAB_UIRenderFinish LAB_1806575b7
+#define LAB_UIUpdateComplete LAB_1806575f7
 
  // UI系统函数宏定义 - 获取UI数据
 #define GetUIData GetUIDataValue
@@ -9944,7 +9954,7 @@ void ManageUIElements(longlong *uiContext)
             memoryBlockAddress = componentIndex >> 3;
             if (memoryBlockAddress == 0) {
               memoryBlockAddress = 1;
-LAB_180656abd:
+LAB_UISystemCleanup:
               memoryAllocationPtr = (longlong *)CreateUIContext(UIContextManager,memoryBlockAddress * 8,(UIByte)stackValue60);
             }
             else {
