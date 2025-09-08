@@ -12015,7 +12015,7 @@ void* SystemConfigurationStatus;
 void* MemoryHeapControlData;
 void* ThreadLocalStoragePointer;
 // 系统状态标志
-void* SystemStatusFlag1;
+void* SystemPrimaryStatusFlag;
 // 系统配置表主缓冲区
 void* SystemConfigurationTablePrimaryBuffer;
 // 系统配置表次缓冲区
@@ -12030,17 +12030,17 @@ void* ResourceAllocationTable;
 void* SystemStatusFlags;
 void* MemoryManagementData;
 // 系统配置表A2
-void* SystemConfigurationTableA2;
+void* SystemConfigurationTableTertiaryBuffer;
 // 系统状态表A0
-void* SystemStatusTableA0;
+void* SystemStatusTablePrimary;
 // 系统数据缓冲区A0
-void* SystemDataBufferA0;
+void* SystemDataBufferPrimary;
 // 系统数据缓冲区A1
-void* SystemDataBufferA1;
+void* SystemDataBufferSecondary;
 // 系统配置表A3
-void* SystemConfigurationTableA3;
+void* SystemConfigurationTableQuaternaryBuffer;
 // 系统配置表A4
-void* SystemConfigurationTableA4;
+void* SystemConfigurationTableQuinaryBuffer;
 uint8_t SystemInitializationFlag;
 uint8_t SystemReadyFlag;
 void* SystemConfigurationData;
@@ -12498,7 +12498,7 @@ uint8_t MemoryHeapLockRecursion;
 uint8_t MemoryHeapLockStatistics;
 
 // 系统数据结构初始化函数A0
-uint8_t InitializeSystemDataStructureA0;
+uint8_t SystemDataStructureInitializationFlag;
 uint8_t SystemDataStructurePointer;
 uint8_t SystemDataStructureHandle;
 uint8_t SystemDataConfiguration;
@@ -12510,7 +12510,7 @@ uint8_t SystemDataReference;
 uint8_t SystemDataMetadata;
 
 // 系统数据结构初始化函数A1
-void* InitializeSystemDataStructureA1;
+void* SystemDataStructureSecondaryPointer;
 uint8_t* SystemDataBuffer;
 void* SystemDataAllocator;
 void* SystemDataPool;
@@ -12573,10 +12573,10 @@ void* SystemMemoryPoolDataC;
 void* SystemMemoryPoolDataD;
 
 // 系统资源初始化函数A0
-void* InitializeSystemResourceA0;
+void* SystemResourcePrimaryInitializer;
 
 // 系统资源初始化函数A1
-void* InitializeSystemResourceA1;
+void* SystemResourceSecondaryInitializer;
 void* SystemResourcePoolData;
 uint8_t SystemStatusFlagData;
 void* SystemThreadConfigData;
