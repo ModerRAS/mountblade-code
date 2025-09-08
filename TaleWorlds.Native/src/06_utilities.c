@@ -84933,7 +84933,7 @@ void Unwind_18090ac90(DataBuffer operationBase,int64_t dataBuffer)
  * @note 原始函数名：Unwind_18090acb0
  * @note 处理0x98偏移量的异常处理器上下文
  */
-void Unwind_18090acb0(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerContextF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;

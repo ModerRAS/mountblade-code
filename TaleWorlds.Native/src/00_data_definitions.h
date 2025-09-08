@@ -14031,20 +14031,20 @@ int RegisterSystemNetworkModule(void);
 #define FloatProcessingVarL SystemFloatProcessingVarL
 #define FloatProcessingVarM SystemFloatProcessingVarM
 #define FloatProcessingVarN SystemFloatProcessingVarN
-#define FloatProcessingVarO fVar30
+#define FloatProcessingVarO SystemFloatProcessingVarO
 
 // 浮点指针栈变量
-#define FloatPointerVarA pfVar3
-#define FloatPointerVarB pfVar5
-#define FloatPointerVarC pfVar9
-#define FloatStackVar fStack_cc
-#define FloatStackVarA fStack_268
-#define FloatStackVarB fStack_328
-#define FloatStackVarC fStack_370
+#define FloatPointerVarA SystemFloatPointerVarA
+#define FloatPointerVarB SystemFloatPointerVarB
+#define FloatPointerVarC SystemFloatPointerVarC
+#define FloatStackVar SystemFloatStackVar
+#define FloatStackVarA SystemFloatStackVarA
+#define FloatStackVarB SystemFloatStackVarB
+#define FloatStackVarC SystemFloatStackVarC
 
 // 数组栈变量
-#define FloatArrayStack afStack_2e8
-#define LongArrayStack alStack_30
+#define FloatArrayStack SystemFloatArrayStack
+#define LongArrayStack SystemLongArrayStack
 #define LongArrayStackB alStack_3d0
 
 // 系统栈变量
