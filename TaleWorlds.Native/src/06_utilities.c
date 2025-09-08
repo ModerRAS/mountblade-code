@@ -12970,7 +12970,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
   int64_t tempStackContext;                   // 临时栈上下文
   
   moduleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&tempStackContext);
-  moduleInitializationStatus = (int32_t)systemModuleOperationResult;
+  initializationStatus = (int32_t)moduleOperationResult;
   if (moduleInitializationStatus == 0) {
     baseValidationContext = (int64_t *)0x0;
     moduleDataContext = baseValidationContext;
