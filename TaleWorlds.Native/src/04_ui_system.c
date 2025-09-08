@@ -80158,6 +80158,19 @@ void ProcessUIMatrixTransformation(float *uiContext, UIHandle dataSource, UIHand
 
 
  void ProcessUIMatrixTransformation(float *uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
+/**
+ * @brief UI矩阵变换处理器
+ * 
+ * 执行UI系统中的矩阵变换操作，处理2D/3D变换和旋转计算。
+ * 该函数负责处理UI元素的变换矩阵运算，包括旋转、缩放和平移操作。
+ * 
+ * @param uiContext UI上下文指针，包含变换矩阵和状态信息
+ * @param dataSource 数据源句柄，提供输入数据
+ * @param targetBuffer 目标缓冲区句柄，存储处理结果
+ * @param bufferSize 缓冲区大小，指定处理的数据量
+ * 
+ * @note 原始函数名：FUN_180711576
+ */
 void ProcessUIMatrixTransformation(float *uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
