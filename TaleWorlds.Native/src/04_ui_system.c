@@ -8673,7 +8673,7 @@ void CleanupUIComponentCache(void)
   UIByte stackData;
   undefined *stackPointer1;
   UIWord *stackPointer2;
-  UIDword stackValue1;
+  UIDword renderState;
   UIHandle stackValue2;
   undefined *stackPointer3;
   UIDword *stackPointer4;
@@ -95792,7 +95792,7 @@ void ProcessUIComponentRendering(longlong uiContext,UIHandle dataSource,int targ
     TempInt4 = ReadUIData(dataSource,&UIFunctionResultTableA,8);
   }
   else {
-    TempInt4 = ReadUIData(dataSource,&UNK_1809535e8,8);
+    TempInt4 = ReadUIData(dataSource,&UIFunctionResultTableColor,8);
     TempInt4 = TempInt4 + 2;
   }
   localChar2 = (char)(TempInt4 >> 1);
@@ -95922,7 +95922,7 @@ void FUN_18072292c(longlong uiContext,UIHandle dataSource,int targetBuffer,int b
     TempInt4 = ReadUIData(dataSource,&UIFunctionResultTableA,8);
   }
   else {
-    TempInt4 = ReadUIData(dataSource,&UNK_1809535e8,8);
+    TempInt4 = ReadUIData(dataSource,&UIFunctionResultTableColor,8);
     TempInt4 = TempInt4 + 2;
   }
   localChar2 = (char)(TempInt4 >> 1);
@@ -200099,29 +200099,29 @@ UIHandle FUN_1807894bb(longlong uiContext)
 UIHandle ProcessUIContextHandleAndResourceManager(longlong uiContext)
 
 {
-  int processingResult;
-  ulonglong iterationCount;
-  longlong stringCompareIndex;
-  ulonglong ProcessingStatus;
-  UIHandle loopCounter;
-  char unmodifiedBPL;
-  uint maxProcessingCount;
-  longlong SourceHandle;
-  int localInt7;
-  UIByte eventProcessingCounter;
-  UIHandle preservedRegister12;
-  uint eventProcessingStatus;
-  ulonglong preservedRegister15;
-  UIByte StackData1;
-  UIByte StackData2;
+  int ContextProcessingResult;            // 上下文处理结果
+  ulonglong ResourceIterationCount;       // 资源迭代计数器
+  longlong StringCompareIndex;            // 字符串比较索引
+  ulonglong ContextProcessingStatus;      // 上下文处理状态
+  UIHandle EventLoopCounter;             // 事件循环计数器
+  char BranchFlag;                        // 分支标志
+  uint MaxProcessingCount;                // 最大处理计数器
+  longlong UIContextSourceHandle;         // UI上下文源句柄
+  int MemoryAllocationOffset;             // 内存分配偏移量
+  UIByte EventCounter;                   // 事件计数器
+  UIHandle PreservedContextHandle;        // 保留的上下文句柄
+  uint EventProcessingStatus;             // 事件处理状态
+  ulonglong PreservedSystemFlags;         // 保留的系统标志
+  UIByte StackFlag1;                     // 栈标志1
+  UIByte StackFlag2;                     // 栈标志2
   
-  StackData2 = 1;
-  processingResult = (int)preservedRegister15;
-  localInt7 = processingResult * 8 + 0x10;
-  eventProcessingCounter = (UIByte)preservedRegister12;
-  StackData1 = eventProcessingCounter;
-  stringCompareIndex = FUN_180741e10(*(UIHandle *)(uiContext + 0x1a0),localInt7,&UNK_18095ad40);
-  *(longlong *)(SourceHandle + 0x40) = stringCompareIndex;
+  StackFlag2 = 1;
+  ContextProcessingResult = (int)PreservedSystemFlags;
+  MemoryAllocationOffset = ContextProcessingResult * 8 + 0x10;
+  EventCounter = (UIByte)PreservedContextHandle;
+  StackFlag1 = EventCounter;
+  StringCompareIndex = FUN_180741e10(*(UIHandle *)(uiContext + 0x1a0),MemoryAllocationOffset,&UNK_18095ad40);
+  *(longlong *)(UIContextSourceHandle + 0x40) = StringCompareIndex;
   if (stringCompareIndex != 0) {
     ProcessingStatus = stringCompareIndex + 0xfU & 0xfffffffffffffff0;
     *(ulonglong *)(SourceHandle + 0x20) = ProcessingStatus;

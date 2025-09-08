@@ -216630,33 +216630,33 @@ void InitializeSystemEventTemplateAndMemoryAllocation(uint64_t CharacterCode,uin
   SystemEventTemplatePointer = (void *)MemoryAllocate(MemoryPoolManager,0x178,8,3,0xfffffffffffffffe);
   ConfigureSystemEventTemplateInitialization(SystemEventTemplatePointer,SystemBufferSize,CharacterCode);
   *SystemEventTemplatePointer = &SystemEventTemplateTertiary;
-  CharacterCode = SystemEventTemplatePointer + 0x2a;
-  *CharacterCode = (long long)&ThreadLocalStorageTemplate;
+  EventCharacterCodePointer = SystemEventTemplatePointer + 0x2a;
+  *EventCharacterCodePointer = (long long)&ThreadLocalStorageTemplate;
   SystemEventTemplatePointer[0x2b] = 0;
   *(uint32_t *)(SystemEventTemplatePointer + 0x2c) = 0;
-  *CharacterCode = (long long)&SystemNullTemplate;
+  *EventCharacterCodePointer = (long long)&SystemNullTemplate;
   SystemEventTemplatePointer[0x2d] = 0;
   SystemEventTemplatePointer[0x2b] = 0;
   *(uint32_t *)(SystemEventTemplatePointer + 0x2c) = 0;
   SystemEventTemplatePointer[0x2e] = 0;
-  MemoryBoundaryPointer = CharacterCode;
-  (**(code **)(*CharacterCode + 0x10))(CharacterCode,&CoreEngineDataTemplate);
+  MemoryBoundaryPointer = EventCharacterCodePointer;
+  (**(code **)(*EventCharacterCodePointer + 0x10))(EventCharacterCodePointer,&CoreEngineDataTemplate);
   ContextDataPointer = &SystemNullTemplate;
   ProcessingFlags = 0;
-  pSystemPriorityLevel = NULL;
-  FunctionAddress = 0;
-  pMemoryAddressMaskPointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)pMemoryAddressMaskPointer = 0;
-  pSystemPriorityLevel = pMemoryAddressMaskPointer;
-  MemoryAllocationIndex = GetMemoryAllocationInfo(pMemoryAddressMaskPointer);
+  SystemPriorityLevelPointer = NULL;
+  EventConfigurationFlags = 0;
+  MemoryAddressMaskPointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)MemoryAddressMaskPointer = 0;
+  SystemPriorityLevelPointer = MemoryAddressMaskPointer;
+  MemoryAllocationIndex = GetMemoryAllocationInfo(MemoryAddressMaskPointer);
   ProcessingFlags = CONCAT44(ProcessingFlags.HighPart,MemoryAllocationIndex);
-  *pMemoryAddressMaskPointer = 0x6d614e2068746150;
-  *(uint16_t *)(pMemoryAddressMaskPointer + 1) = 0x65;
-  FunctionAddress = 9;
-  ProcessSystemEventTemplateAndMemoryAllocation(SystemEventTemplatePointer,&ContextDataPointer,CharacterCode,0,CalculatedCodePoint,MemoryBoundaryPointer);
+  *MemoryAddressMaskPointer = 0x6d614e2068746150;
+  *(uint16_t *)(MemoryAddressMaskPointer + 1) = 0x65;
+  EventConfigurationFlags = 9;
+  ProcessSystemEventTemplateAndMemoryAllocation(SystemEventTemplatePointer,&ContextDataPointer,EventCharacterCodePointer,0,CalculatedCodePoint,MemoryBoundaryPointer);
   ContextDataPointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
-  CoreEngineFreeSystemMemory(pMemoryAddressMaskPointer);
+  CoreEngineFreeSystemMemory(MemoryAddressMaskPointer);
 }
 
 
