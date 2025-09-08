@@ -6343,6 +6343,42 @@ const void* const SystemDataTablePointerSecondary = (void*)0x180a064a8;
 #define ProcessSystemDataTablePointerOperation FUN_1800863a0
 
 /**
+ * @brief 处理字符代码缓冲区重置和清理
+ * 
+ * 该函数负责处理字符代码缓冲区的重置和清理操作，包括：
+ * - 重置字符代码缓冲区状态
+ * - 清理无效的字符数据
+ * - 恢复缓冲区到初始状态
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * 
+ * @return void
+ * 
+ * @note 原始函数名：FUN_1801792c0
+ */
+#define ProcessCharacterCodeBufferResetAndCleanup FUN_1801792c0
+
+/**
+ * @brief 处理字符代码转换和验证
+ * 
+ * 该函数负责处理字符代码的转换和验证操作，包括：
+ * - 字符代码的格式转换
+ * - 字符代码的有效性验证
+ * - 转换结果的校验和确认
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @return void
+ * 
+ * @note 原始函数名：FUN_180178650
+ */
+#define ProcessCharacterCodeConversionAndValidation FUN_180178650
+
+/**
  * @brief 处理系统数据注册
  * 
  * 该函数负责处理系统数据的注册和管理
