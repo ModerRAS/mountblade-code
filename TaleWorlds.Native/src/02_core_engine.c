@@ -782,6 +782,19 @@
 
 #define ProcessSystemResourceAllocation ProcessSystemResourceAllocation
 
+// 系统超时处理函数
+#define ProcessTimeoutStorage FUN_18005e770
+// 系统缓冲区清理函数
+#define CleanupSystemBuffer FUN_1800b8500
+// 系统事件处理函数
+#define ProcessSystemEvent FUN_18021e0a0
+// 系统状态处理函数
+#define ProcessSystemStatus FUN_180370550
+// 系统初始化函数
+#define InitializeSystemContext FUN_18021b9c0
+// 系统字符处理函数
+#define ProcessSystemCharacterData FUN_180651d20
+
 // 系统标识符识别函数语义化映射
 #define IdentifySystemIdentifierByPattern FUN_1802252d3
 #define IdentifySystemIdentifierByPatternVariantB FUN_180225317
@@ -1145,6 +1158,10 @@
  * @note 原始函数名：FUN_18016a740
  */
 #define ProcessSystemBufferConfigurationAndDataManagement FUN_18016a740
+
+// 系统内存池管理函数
+// 原始函数名：FUN_180627ce0 - 处理系统内存池分配和管理
+#define ProcessSystemMemoryPoolAllocation FUN_180627ce0
 
 /**
  * @brief 处理系统配置数据和核心引擎值
@@ -198231,7 +198248,21 @@ LAB_180166c0c:
 
 
 
-66dd0(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointervoid FUN_180166dd0(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer
+/**
+ * @brief 系统字符编码转换和处理函数
+ * 
+ * 该函数负责处理系统字符编码的转换和处理，包括UTF-8到UTF-16的转换、
+ * 字符状态管理、内存地址掩码处理等功能。这是核心引擎中的关键字符处理函数。
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_180166dd0
+ */
+uint64_t ProcessSystemCharacterEncodingAndConversion(uint64_t CharacterCode, uint64_t *CharacterCodeSize, uint64_t Utf8SourcePointer, long long *Utf16EndPointer)
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -200428,43 +200459,43 @@ ProcessUtf8ToUtf16CharacterEncodingEx6(long long *CharacterCode,uint64_t *Charac
  */
 void ProcessCharacterEncodingAndSystemBufferConfiguration(uint64_t CharacterCode, long long SystemBufferSize)
 {
-  uint Utf16Char;
+  uint Utf16Character;
   uint32_t MemoryAllocationIndex;
   int MemoryMatchResult;
-  uint MemoryAddressMaskPointer;
-  uint CalculatedCodePoint;
-  uint16_t *SecondaryProcessingStatusFlag;
+  uint MemoryAddressMask;
+  uint UnicodeCodePoint;
+  uint16_t *ProcessingStatusFlag;
   long long MemoryPoolBlockSize;
-  uint8_t *SystemCharacterStatusBufferPointer;
-  void *SystemEventDispatcher;
-  uint16_t *StackTempPointer;
-  uint32_t SystemOperationFlag98;
-  uint64_t SystemOperation90;
+  uint8_t *CharacterStatusBuffer;
+  void *EventDispatcher;
+  uint16_t *TemporaryStackPointer;
+  uint32_t OperationStatusFlag;
+  uint64_t SystemOperationResult;
   void *StackPointer;
-  long long SystemStackRegister60;
+  long long StackRegisterValue;
   uint32_t SystemKeyPointer;
-  uint64_t SystemStackOffset48;
+  uint64_t StackOffsetValue;
   
   SystemStackFlag = 0xfffffffffffffffe;
   if (*(int *)(SystemBufferSize + 0x10) < 1) {
     return;
   }
-  SystemEventDispatcher = &SystemNullTemplate;
-  SystemOperation90 = 0;
-  StackTempPointer = (uint16_t *)0x0;
-  SystemOperationFlag98 = 0;
-  SecondaryProcessingStatusFlag = (uint16_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)SecondaryProcessingStatusFlag = 0;
-  StackTempPointer = SecondaryProcessingStatusFlag;
-  MemoryAllocationIndex = GetMemoryAllocationInfo(SecondaryProcessingStatusFlag);
-  SystemOperation90 = CONCAT44(SystemOperation90.HighPart,MemoryAllocationIndex);
-  *SecondaryProcessingStatusFlag = 0x2023;
-  *(uint8_t *)(SecondaryProcessingStatusFlag + 1) = 0;
-  SystemOperationFlag98 = 2;
-  MemoryPoolBlockSize = FUN_180627ce0(&SystemEventDispatcher,&EnginePointerBuffer,SystemBufferSize);
-  MemoryAddressMaskPointer = 0;
-  SystemCharacterStatusBufferPointer = (uint8_t *)0x0;
-  Utf16Char = *(uint *)(MemoryPoolBlockSize + 0x10);
+  EventDispatcher = &SystemNullTemplate;
+  SystemOperationResult = 0;
+  TemporaryStackPointer = (uint16_t *)0x0;
+  OperationStatusFlag = 0;
+  ProcessingStatusFlag = (uint16_t *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)ProcessingStatusFlag = 0;
+  TemporaryStackPointer = ProcessingStatusFlag;
+  MemoryAllocationIndex = GetMemoryAllocationInfo(ProcessingStatusFlag);
+  SystemOperationResult = CONCAT44(SystemOperationResult.HighPart,MemoryAllocationIndex);
+  *ProcessingStatusFlag = 0x2023;
+  *(uint8_t *)(ProcessingStatusFlag + 1) = 0;
+  OperationStatusFlag = 2;
+  MemoryPoolBlockSize = ProcessSystemMemoryPoolAllocation(&EventDispatcher,&EnginePointerBuffer,SystemBufferSize);
+  MemoryAddressMask = 0;
+  CharacterStatusBuffer = (uint8_t *)0x0;
+  Utf16Character = *(uint *)(MemoryPoolBlockSize + 0x10);
   if (*(long long *)(MemoryPoolBlockSize + 8) == 0) {
 LAB_18016a9e0:
     if (Utf16Char != 0) {
