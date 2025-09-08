@@ -100340,7 +100340,7 @@ float CalculateUIContextCompositeDistance(int *uiContext, int dataSource, int ta
       iterationStep = (short)targetBuffer;
       if (targetBuffer < processingResult4) {
         result = *(uint *)(characterDataOffset + *(longlong *)(&UNK_180956d38 + contextOffset * 8));
-        if ((maxProcessingCount < *(uint *)(characterDataOffset + *(longlong *)(&UNK_180956d30 + contextOffset * 8))) ||
+        if ((maxProcessingCount < *(uint *)(characterDataOffset + *(longlong *)(&UIGlobalDataRegistry + contextOffset * 8))) ||
            (result <= maxProcessingCount)) {
           result0 = 0;
           if (result <= maxProcessingCount) {
