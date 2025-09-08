@@ -85908,49 +85908,49 @@ uint FUN_180718590(int *uiContext,float *dataSource,float *targetBuffer,uint buf
 
 
 
-uint FUN_180718610(void)
+uint ProcessUIRenderTransformation(void)
 
 {
   float baseValue;
   float transformCoeff1;
-  bool bVar3;
-  longlong ContextHandleData;
+  bool isNegativeCross;
+  longlong contextHandleData;
   UIDword bufferSize;
   int localInt5;
-  float *plocalFloat6;
+  float *transformDataPtr;
   uint processingCounter;
-  float *plocalFloat8;
-  longlong CharacterDataOffset;
+  float *contextFloatPtr;
+  longlong characterDataOffset;
   uint result0;
   longlong allocatedMemory2;
-  float *ContextHandle;
-  int ProcessingResult3;
-  uint IndexResult;
-  longlong SourceHandle;
-  longlong TargetHandle;
+  float *contextHandle;
+  int processingResult3;
+  uint indexResult;
+  longlong sourceHandle;
+  longlong targetHandle;
   float *unmodifiedR12;
   int processingResult5;
-  ulonglong TotalResult;
-  float baseValue7;
-  UIDword *pStackData1;
-  UIDword StackData2;
-  float fStack0000000000000040;
-  UIHandle stackParam00000068;
-  int iStack0000000000000080;
-  int iStack0000000000000084;
-  int iStack0000000000000088;
-  int iStack000000000000008c;
-  int iStack0000000000000090;
-  int iStack0000000000000094;
-  UIDword uStack0000000000000100;
-  uint stackParam00000118;
-  int stackParam00000120;
-  UIDword stackParam00000128;
-  UIHandle stackParam00000130;
-  UIDword stackParam00000138;
-  UIHandle stackParam00000140;
-  UIHandle stackParam00000148;
-  UIDword stackParam00000150;
+  ulonglong totalResult;
+  float scaleFactor;
+  UIDword *stackDataPtr;
+  UIDword stackData2;
+  float floatStackParam;
+  UIHandle uiHandleParam;
+  int intParam80;
+  int intParam84;
+  int intParam88;
+  int intParam8c;
+  int intParam90;
+  int intParam94;
+  UIDword uidwordParam100;
+  uint renderFlags;
+  int intParam120;
+  UIDword uidwordParam128;
+  UIHandle uiHandleParam130;
+  UIDword uidwordParam138;
+  UIHandle uiHandleParam140;
+  UIHandle uiHandleParam148;
+  UIDword uidwordParam150;
   ulonglong result1;
   
   fStack0000000000000040 = (float)stackParam00000138;
