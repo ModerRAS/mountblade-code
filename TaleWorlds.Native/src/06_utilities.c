@@ -95870,7 +95870,19 @@ void Unwind_InitializeExceptionHandlerF70(DataBuffer operationBase,int64_t dataB
 
 
 
-void Unwind_18090cf80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置验证数据异常处理器
+ * 
+ * 该函数负责配置验证数据的异常处理器，设置系统临时异常处理器，
+ * 并在必要时终止系统执行和清理资源
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090cf80
+ */
+void Unwind_ConfigureValidationDataExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x2b8) = &SystemTemporaryExceptionHandler;
@@ -95885,7 +95897,18 @@ void Unwind_18090cf80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cf90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理器F90
+ * 
+ * 该函数负责初始化异常处理器的相关功能，设置系统数据缓冲区的异常处理
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090cf90
+ */
+void Unwind_InitializeExceptionHandlerF90(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + SystemDataBufferPointerOffset) != (int64_t *)0x0) {
@@ -95896,7 +95919,18 @@ void Unwind_18090cf90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cfa0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理器FA0
+ * 
+ * 该函数负责初始化异常处理器的相关功能，设置数据缓冲区的异常处理
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090cfa0
+ */
+void Unwind_InitializeExceptionHandlerFA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x3b0) != (int64_t *)0x0) {
@@ -95907,7 +95941,19 @@ void Unwind_18090cfa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cfb0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置系统数据记录异常处理器
+ * 
+ * 该函数负责配置系统数据记录的异常处理器，设置系统临时异常处理器，
+ * 并在必要时终止系统执行和清理资源
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090cfb0
+ */
+void Unwind_ConfigureSystemDataRecordExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x3b8) = &SystemTemporaryExceptionHandler;
@@ -95922,7 +95968,18 @@ void Unwind_18090cfb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cfc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理器FC0
+ * 
+ * 该函数负责初始化异常处理器的相关功能，设置数据缓冲区的异常处理
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090cfc0
+ */
+void Unwind_InitializeExceptionHandlerFC0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 1000) != (int64_t *)0x0) {
@@ -95934,7 +95991,19 @@ void Unwind_18090cfc0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cfd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放验证结果互斥锁
+ * 
+ * 该函数负责释放验证结果相关的互斥锁，处理异常上下文指针，
+ * 并在互斥锁解锁失败时抛出C标准错误
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090cfd0
+ */
+void Unwind_ReleaseValidationResultMutexLock(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int inputParameter;
@@ -95950,7 +96019,19 @@ void Unwind_18090cfd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cfe0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 释放系统上下文互斥锁
+ * 
+ * 该函数负责释放系统上下文相关的互斥锁，处理异常上下文指针，
+ * 并在互斥锁解锁失败时抛出C标准错误
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090cfe0
+ */
+void Unwind_ReleaseSystemContextMutexLock(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int inputParameter;
@@ -95965,7 +96046,18 @@ void Unwind_18090cfe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cff0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理器FF0
+ * 
+ * 该函数负责初始化异常处理器的相关功能，设置系统上下文指针的异常处理
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090cff0
+ */
+void Unwind_InitializeExceptionHandlerFF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + SystemContextPointerOffset90) != (int64_t *)0x0) {
