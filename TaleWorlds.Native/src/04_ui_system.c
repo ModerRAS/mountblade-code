@@ -87763,12 +87763,12 @@ void ProcessUITransformMatrixAndScaling(float uiContext, float dataSource, int t
   float transformCoeff2;
   float transformCoeff3;
   float transformCoeff4;
-  float localFloat6;
-  float resultFloat;
-  float localFloat8;
-  float localFloat9;
-  float baseValue0;
-  float baseValue1;
+  float rotationAngle;
+  float scaleResult;
+  float translationX;
+  float translationY;
+  float baseScaleX;
+  float baseScaleY;
   float *pbaseValue2;
   uint result3;
   longlong allocatedMemory4;
