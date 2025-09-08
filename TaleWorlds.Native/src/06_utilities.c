@@ -297,6 +297,17 @@
 #define ExceptionHandlerContextOffset 0x50
 #define ConfigurationDataOffset 0x3d0
 #define SystemConfigurationBlockSize 0x1a8
+
+// 文件句柄和系统资源常量
+#define FileHandlePointerOffset 0x268
+#define SystemHandlePointerOffset 0x1e8
+#define InvalidHandleValue -1
+
+// 数据指针和标志位常量
+#define DataPointerFlagOffset29 0x29
+#define DataPointerFlagOffset28 0x28
+#define DataContextDataOffset18 0x18
+#define SystemContextCleanupOffset98 0x98
 #define ExceptionContextPrimaryOffset 0x60
 #define ExceptionContextSecondaryOffset 0x78
 #define ExceptionContextTertiaryOffset 0xf0
@@ -15932,8 +15943,8 @@ void ProcessDataSetFlagAndCleanup(int64_t dataContext,int64_t systemContext)
   
   queryStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset10),&dataPointer);
   if (queryStatus == 0) {
-    *(ByteFlag *)(dataPointer + 0x29) = *(ByteFlag *)(dataContext + 0x18);
-      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),dataContext);
+    *(ByteFlag *)(dataPointer + DataPointerFlagOffset29) = *(ByteFlag *)(dataContext + DataContextDataOffset18);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextCleanupOffset98),dataContext);
   }
   return;
 }
@@ -15960,8 +15971,8 @@ void ProcessDataSetFlagAndCleanupVariant(int64_t dataContext,int64_t systemConte
   
   operationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset10),&dataPointer);
   if (operationStatus == 0) {
-    *(ByteFlag *)(dataPointer + 0x28) = *(ByteFlag *)(dataContext + 0x18);
-      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),dataContext);
+    *(ByteFlag *)(dataPointer + DataPointerFlagOffset28) = *(ByteFlag *)(dataContext + DataContextDataOffset18);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextCleanupOffset98),dataContext);
   }
   return;
 }
@@ -78008,9 +78019,9 @@ void SetDefaultExceptionHandlerBToExtendedPosition(DataBuffer operationBase,int6
 void CloseFileHandleAndUpdateResourceCounter(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t *)(dataBuffer + 0x268) != 0) {
+  if (*(int64_t *)(dataBuffer + FileHandlePointerOffset) != 0) {
     fclose();
-    *(DataBuffer *)(dataBuffer + 0x268) = 0;
+    *(DataBuffer *)(dataBuffer + FileHandlePointerOffset) = 0;
     LOCK();
     ResourceCounter = ResourceCounter + -1;
     UNLOCK();
@@ -78040,13 +78051,13 @@ void CloseSystemHandleAndUpdateSecondaryResourceCounter(DataBuffer operationBase
 {
   int64_t *systemHandlePointer;
   
-  systemHandlePointer = (int64_t *)(dataBuffer + 0x1e8);
-  if (*systemHandlePointer != -1) {
+  systemHandlePointer = (int64_t *)(dataBuffer + SystemHandlePointerOffset);
+  if (*systemHandlePointer != InvalidHandleValue) {
     LOCK();
     SecondaryResourceCounter = SecondaryResourceCounter + -1;
     UNLOCK();
     CloseHandle(*systemHandlePointer);
-    *systemHandlePointer = -1;
+    *systemHandlePointer = InvalidHandleValue;
   }
   return;
 }
