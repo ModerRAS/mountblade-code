@@ -88989,8 +88989,19 @@ void ProcessUIDataStream(UIHandle uiContext,UIDword dataSource,UIDword targetBuf
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18071c7f0(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,int resultPointer)
-void FUN_18071c7f0(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,int resultPointer)
+/**
+ * @brief UI系统数据块处理器
+ * 
+ * 该函数处理UI系统中的数据块操作，包括数据加密、缓冲区管理和数据传输。
+ * 主要用于UI系统的数据块处理和安全传输。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区索引
+ * @param bufferSize 缓冲区大小标志
+ * @param resultPointer 结果处理标志
+ */
+void ProcessUIDataBlock(longlong uiContext,UIHandle dataSource,int targetBuffer,int bufferSize,int resultPointer)
 
 {
   char localChar1;
@@ -89130,8 +89141,15 @@ LAB_18071cb6a:
 
 
 
- void FUN_18071cbc0(longlong uiContext)
-void FUN_18071cbc0(longlong uiContext)
+ /**
+ * @brief UI系统内存分配优化器
+ * 
+ * 该函数优化UI系统中的内存分配，根据不同的内存使用情况调整分配策略。
+ * 主要用于UI系统的内存管理和性能优化。
+ * 
+ * @param uiContext UI上下文句柄
+ */
+void OptimizeUIMemoryAllocation(longlong uiContext)
 
 {
   longlong allocatedMemory;
