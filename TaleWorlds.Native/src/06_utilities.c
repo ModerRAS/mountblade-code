@@ -39551,13 +39551,13 @@ void SetDefaultExceptionHandlerAtOffset138(DataBuffer operationBase, int64_t dat
 void SetDefaultExceptionHandlerAtOffset1A0(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
-  *(DataBuffer *)(targetObjectPointer + 0x1a0) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(targetObjectPointer + 0x1a8) != 0) {
+  *(DataBuffer *)(targetObjectPointer + DefaultExceptionHandlerOffset1a0) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(targetObjectPointer + DefaultExceptionHandlerOffset1a8) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(targetObjectPointer + 0x1a8) = 0;
-  *(DataWord *)(targetObjectPointer + 0x1b8) = 0;
-  *(DataBuffer *)(targetObjectPointer + 0x1a0) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(targetObjectPointer + DefaultExceptionHandlerOffset1a8) = 0;
+  *(DataWord *)(targetObjectPointer + DefaultExceptionHandlerOffset1b8) = 0;
+  *(DataBuffer *)(targetObjectPointer + DefaultExceptionHandlerOffset1a0) = &DefaultExceptionHandlerB;
   return;
 }
 
