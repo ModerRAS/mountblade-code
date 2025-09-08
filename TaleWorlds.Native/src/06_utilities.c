@@ -122139,27 +122139,27 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 系统初始化数据缓冲区
 // 功能：存储系统初始化过程中的数据缓冲区
-#define SystemInitializationDataBuffer stack0x00000008
+#define SystemInitializationDataBuffer SystemInitializationStackBuffer
 
 // 内存池数据缓冲区
 // 功能：存储内存池管理过程中的数据缓冲区
-#define MemoryPoolDataBuffer stack0x00000080
+#define MemoryPoolDataBuffer MemoryPoolManagementStackBuffer
 
 // 资源表数据缓冲区
 // 功能：存储资源表管理过程中的数据缓冲区
-#define ResourceTableDataBuffer stack0x00000088
+#define ResourceTableDataBuffer ResourceTableManagementStackBuffer
 
 // 异常处理数据缓冲区
 // 功能：存储异常处理过程中的数据缓冲区
-#define ExceptionHandlingDataBuffer stack0x00000094
+#define ExceptionHandlingDataBuffer ExceptionHandlingManagementStackBuffer
 
 // 线程同步数据缓冲区
 // 功能：存储线程同步过程中的数据缓冲区
-#define ThreadSynchronizationDataBuffer stack0x000000b0
+#define ThreadSynchronizationDataBuffer ThreadSynchronizationManagementStackBuffer
 
 // 系统状态数据缓冲区
 // 功能：存储系统状态管理过程中的数据缓冲区
-#define SystemStatusDataBuffer stack0x000000b8
+#define SystemStatusDataBuffer SystemStatusManagementStackBuffer
 
 // 数据处理临时字
 // 功能：存储数据处理过程中的临时数据字
