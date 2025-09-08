@@ -75344,8 +75344,19 @@ int FUN_18070e140(int uiContext)
 
 
 
- void FUN_18070ee30(longlong *uiContext,longlong dataSource,int targetBuffer,float bufferSize,float *resultPointer)
-void FUN_18070ee30(longlong *uiContext,longlong dataSource,int targetBuffer,float bufferSize,float *resultPointer)
+ /**
+ * 处理UI系统数据 - 对UI系统中的数据进行综合处理
+ * 
+ * 该函数负责对UI系统中的数据进行综合处理，包括数据转换、格式化、
+ * 缓冲区管理等操作。支持多种数据类型的处理和转换。
+ * 
+ * @param uiContext UI上下文指针数组，包含系统状态信息
+ * @param dataSource 数据源标识，指定要处理的数据
+ * @param targetBuffer 目标缓冲区索引，存储处理结果
+ * @param bufferSize 缓冲区大小参数
+ * @param resultPointer 结果指针，用于返回处理结果
+ */
+void ProcessUISystemData(longlong *uiContext,longlong dataSource,int targetBuffer,float bufferSize,float *resultPointer)
 
 {
   float *pfloatResult;
