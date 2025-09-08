@@ -1097,6 +1097,21 @@
 #define ResourceCleanupOffset250 0x250
 #define MemoryReferenceCleanupOffset490 0x490
 #define MemoryReferenceCleanupOffset2F0 0x2f0
+
+// 异常处理器回调相关常量
+#define ExceptionHandlerContextOffsetA0 0xa0
+#define ExceptionHandlerContextOffsetA8 0xa8
+#define ExceptionHandlerCallbackOffset10 0x10
+#define ExceptionHandlerContextFunctionOffset38 0x38
+#define ExceptionContextStatusOffset680 0x680
+#define SystemDataSecondaryOffset188 0x188
+#define MemoryPointerOffset 0x70
+
+// 异常处理数据缓冲区相关常量
+#define ExceptionHandlerDataBufferOffset78 0x78
+#define DataProcessingOffset70 0x70
+#define ExceptionHandlerContextOffset40 0x40
+#define ExceptionHandlerContextDataOffset 0x70
 #define MemoryReferenceCleanupOffset310 0x310
 #define DataBufferOffset104 0x104
 #define DataBufferOffset138 0x138
@@ -25802,37 +25817,37 @@ void ProcessDataTypesA0(void)
   float dataPointerD;                    // 数据指针D - D类型数据的指针
   int64_t systemContext;                 // 系统上下文 - 系统的上下文信息（重复定义）
   uint64_t operationResult3;             // 操作结果3 - 第3个操作结果
-  int64_t contextPointer;
-  DataWord floatResultA;
-  DataWord SystemOperationResult4;
-  DataWord calculatedFloatValue;
-  DataWord normalizedFloatValue;
-  DataWord interpolatedFloatValue;
-  float floatValidationValue;
-  DataWord accumulatedFloatValue;
-  DataWord processedFloatValue;
-  DataWord transformedFloatValue;
-  DataWord secondaryFloatResultA;
-  DataWord tertiaryFloatResultA;
-  DataWord FloatRegisterA;
-  DataWord FloatRegisterB;
-  DataWord SystemOperationResult;
-  char SystemNameBuffer [4];
-  SystemByteType *byteDataBuffer;
-  float floatInputValue;
-  DataWord dataWordInputValue;
-  float FloatValidationValue1;
-  float FloatValidationValue2;
-  float FloatRegisterValue;
-  float FloatComparisonValue;
-  float SystemInputParameter;
-  DataBuffer *ResourceDataPointer;
-  int64_t stackDataBuffer;
-  int64_t stackOperationContext;
-  uint8_t *byteDataBufferSecondary;
-  float floatInputValueSecondary;
-  DataWord dataWordInputValueExtended;
-  DataWord dataWordInputValueExtendedSecondary;
+  int64_t contextPointer;                  // 上下文指针 - 指向上下文信息的指针
+  DataWord floatResultA;                  // 浮点结果A - 第一个浮点计算结果
+  DataWord SystemOperationResult4;         // 系统操作结果4 - 第四个系统操作结果
+  DataWord calculatedFloatValue;          // 计算的浮点值 - 用于存储计算的浮点数值
+  DataWord normalizedFloatValue;          // 标准化的浮点值 - 标准化后的浮点数值
+  DataWord interpolatedFloatValue;         // 插值的浮点值 - 插值计算后的浮点数值
+  float floatValidationValue;             // 浮点验证值 - 用于验证浮点数据
+  DataWord accumulatedFloatValue;         // 累积的浮点值 - 累积计算后的浮点数值
+  DataWord processedFloatValue;            // 处理后的浮点值 - 处理后的浮点数值
+  DataWord transformedFloatValue;          // 变换后的浮点值 - 经过变换的浮点数值
+  DataWord secondaryFloatResultA;          // 次要浮点结果A - 第二个浮点计算结果
+  DataWord tertiaryFloatResultA;           // 第三浮点结果A - 第三个浮点计算结果
+  DataWord FloatRegisterA;                // 浮点寄存器A - 浮点寄存器A的值
+  DataWord FloatRegisterB;                // 浮点寄存器B - 浮点寄存器B的值
+  DataWord SystemOperationResult;         // 系统操作结果 - 系统操作的结果状态
+  char SystemNameBuffer [4];              // 系统名称缓冲区 - 存储系统名称的缓冲区
+  SystemByteType *byteDataBuffer;         // 字节数据缓冲区 - 字节数据的缓冲区指针
+  float floatInputValue;                  // 浮点输入值 - 输入的浮点数值
+  DataWord dataWordInputValue;            // 数据字输入值 - 输入的数据字值
+  float FloatValidationValue1;            // 浮点验证值1 - 第一个浮点验证值
+  float FloatValidationValue2;            // 浮点验证值2 - 第二个浮点验证值
+  float FloatRegisterValue;              // 浮点寄存器值 - 浮点寄存器的值
+  float FloatComparisonValue;            // 浮点比较值 - 用于浮点数比较的值
+  float SystemInputParameter;            // 系统输入参数 - 系统的输入参数
+  DataBuffer *ResourceDataPointer;       // 资源数据指针 - 指向资源数据的指针
+  int64_t stackDataBuffer;               // 栈数据缓冲区 - 栈中的数据缓冲区
+  int64_t stackOperationContext;         // 栈操作上下文 - 栈操作的上下文信息
+  uint8_t *byteDataBufferSecondary;      // 次要字节数据缓冲区 - 第二个字节数据缓冲区
+  float floatInputValueSecondary;        // 次要浮点输入值 - 第二个浮点输入值
+  DataWord dataWordInputValueExtended;   // 扩展的数据字输入值 - 扩展的数据字输入值
+  DataWord dataWordInputValueExtendedSecondary; // 次要扩展数据字输入值 - 第二个扩展数据字输入值
   
   memoryResourcePointer2 = (DataBuffer *)(systemContext + 8);
   StackFloatRegisterA = dataPointerD;

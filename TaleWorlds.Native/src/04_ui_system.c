@@ -20980,8 +20980,8 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
       else {
         transformCoeff29 = *transformMatrix;
         transformCoeff34 = transformMatrix[1];
-        transformCoeff38 = param_6[2];
-        transformScale42 = param_6[3];
+        transformCoeff38 = transformMatrix[2];
+        transformScale42 = transformMatrix[3];
       }
     }
     transformCoeff27 = localFloat60 * transformCoeff29 * 1.0 + localFloat64 * transformCoeff38 * 1.0 + (localFloat66 * transformCoeff34 - localFloat62 * transformScale42);

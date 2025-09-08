@@ -27374,7 +27374,7 @@ void CoreEngineInitializeSystemDataStructures(void
     CoreEngineHandleThreadStatusCheck();
     return;
   }
-  CharacterTablePointer68 = 0xfffffffffffffffe;
+  characterTableIndex = 0xfffffffffffffffe;
   *(void *)(SystemDataTabled0 + 0x2038) = *(void *)(SystemDataTabled0 + 0x2030);
   CharacterStatusBuffer = (uint16_t *)(SystemDataTablePointer + 0x14);
   CharacterTablePointer = 0x100;
