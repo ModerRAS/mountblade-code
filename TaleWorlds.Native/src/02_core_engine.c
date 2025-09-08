@@ -240035,50 +240035,50 @@ void FUN_180202c0d(float *FloatArrayPointer,float *ArraySizePointer,long long It
   float CurrentFloatValue;
   float ProcessedFloatValue;
   
-  UnicodeCodePoint = ProcessingResult - (long long)CharacterCode;
-  while ((0x70 < (long long)(UnicodeCodePoint & 0xfffffffffffffffc) && (0 < Utf8SourcePointer))) {
-    SystemDataRegistry = (long long)SystemBufferSize - (long long)CharacterCode >> 2;
-    if (SystemDataRegistry < 0) {
-      SystemDataRegistry = SystemDataRegistry + 1;
+  ArrayOffset = CalculationResult - (long long)FloatArrayPointer;
+  while ((0x70 < (long long)(ArrayOffset & 0xfffffffffffffffc) && (0 < IterationCount))) {
+    SystemRegisterValue = (long long)SystemBufferSize - (long long)FloatArrayPointer >> 2;
+    if (SystemRegisterValue < 0) {
+      SystemRegisterValue = SystemRegisterValue + 1;
     }
-    FloatOffsetValue = *CharacterCode;
-    SystemContextPrimaryFloat = SystemBufferSize[-1];
-    ContextSecondaryFloat = CharacterCode[SystemDataRegistry >> 1];
-    ProcessedFloatValue8 = FloatOffsetValue;
-    if (FloatOffsetValue < ContextSecondaryFloat) {
-      ProcessedFloatValue8 = ContextSecondaryFloat;
-      ContextSecondaryFloat = FloatOffsetValue;
+    CurrentFloatValue = *FloatArrayPointer;
+    PrimaryContextValue = SystemBufferSize[-1];
+    SecondaryContextValue = FloatArrayPointer[SystemRegisterValue >> 1];
+    ProcessedFloatValue = CurrentFloatValue;
+    if (CurrentFloatValue < SecondaryContextValue) {
+      ProcessedFloatValue = SecondaryContextValue;
+      SecondaryContextValue = CurrentFloatValue;
     }
-    pMatrixTransformMultiplier = SystemBufferSize;
-    FloatProcessingStatusFlag = CharacterCode;
-    if ((SystemContextPrimaryFloat <= ProcessedFloatValue8) && (ProcessedFloatValue8 = ContextSecondaryFloat, ContextSecondaryFloat < SystemContextPrimaryFloat)) {
-      ProcessedFloatValue8 = SystemContextPrimaryFloat;
+    ArrayIterator = SystemBufferSize;
+    ProcessingStatusPointer = FloatArrayPointer;
+    if ((PrimaryContextValue <= ProcessedFloatValue) && (ProcessedFloatValue = SecondaryContextValue, SecondaryContextValue < PrimaryContextValue)) {
+      ProcessedFloatValue = PrimaryContextValue;
     }
     while( true ) {
-      while (FloatOffsetValue < ProcessedFloatValue8) {
-        FloatOffsetValue = pCalculatedDistance[1];
-        FloatProcessingStatusFlag = pCalculatedDistance + 1;
+      while (CurrentFloatValue < ProcessedFloatValue) {
+        CurrentFloatValue = pCalculatedDistance[1];
+        ProcessingStatusPointer = pCalculatedDistance + 1;
       }
-      pMatrixTransformMultiplier = pMatrixTransformMultiplier + -1;
-      SystemContextPrimaryFloat = *pMatrixTransformMultiplier;
-      while (ProcessedFloatValue8 < SystemContextPrimaryFloat) {
-        pMatrixTransformMultiplier = pMatrixTransformMultiplier + -1;
-        SystemContextPrimaryFloat = *pMatrixTransformMultiplier;
+      ArrayIterator = ArrayIterator + -1;
+      PrimaryContextValue = *ArrayIterator;
+      while (ProcessedFloatValue < PrimaryContextValue) {
+        ArrayIterator = ArrayIterator + -1;
+        PrimaryContextValue = *ArrayIterator;
       }
-      if (pMatrixTransformMultiplier <= pCalculatedDistance) break;
-      SystemContextPrimaryFloat = *pCalculatedDistance;
-      *FloatProcessingStatusFlag = *pMatrixTransformMultiplier;
-      *pMatrixTransformMultiplier = SystemContextPrimaryFloat;
-      FloatOffsetValue = pCalculatedDistance[1];
-      FloatProcessingStatusFlag = pCalculatedDistance + 1;
+      if (ArrayIterator <= pCalculatedDistance) break;
+      PrimaryContextValue = *pCalculatedDistance;
+      *ProcessingStatusPointer = *ArrayIterator;
+      *ArrayIterator = PrimaryContextValue;
+      CurrentFloatValue = pCalculatedDistance[1];
+      ProcessingStatusPointer = pCalculatedDistance + 1;
     }
-    Utf8SourcePointer = Utf8SourcePointer + -1;
-    FUN_180202c00(pCalculatedDistance,SystemBufferSize,Utf8SourcePointer,Utf16EndPointer);
-    UnicodeCodePoint = (long long)pCalculatedDistance - (long long)CharacterCode;
+    IterationCount = IterationCount + -1;
+    FUN_180202c00(pCalculatedDistance,SystemBufferSize,IterationCount,ProcessFlag);
+    ArrayOffset = (long long)pCalculatedDistance - (long long)FloatArrayPointer;
     SystemBufferSize = pCalculatedDistance;
   }
-  if (Utf8SourcePointer == 0) {
-    FUN_180202e40(CharacterCode,SystemBufferSize,SystemBufferSize,Utf16EndPointer);
+  if (IterationCount == 0) {
+    FUN_180202e40(FloatArrayPointer,SystemBufferSize,SystemBufferSize,ProcessFlag);
   }
   return;
 }

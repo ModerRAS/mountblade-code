@@ -19987,7 +19987,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
     *(uint32_t *)(AllocatedSystemMemoryPointer + 0xd) = 0xbb80073;
     SystemInterfacePointer = *(void* **)(SystemContextHandle + 400);
     SystemInterfaceFunctionPointer = *(code **)*SystemInterfacePointer;
-    ComputerNameBufferPointer = &SystemMemoryBufferSize;
+    SystemComputerNameBufferPointer = &SystemMemoryBufferSize;
     SystemMemoryBufferSize = AllocatedSystemMemoryPointer;
     (**(code **)(*AllocatedSystemMemoryPointer + VirtualTableInitializeMethodOffset))(AllocatedSystemMemoryPointer);
     (*SystemInterfaceFunctionPointer)(SystemInterfacePointer,&SystemMemoryBufferSize);
@@ -20002,14 +20002,14 @@ void InitializeSystemInfoAndUserEnvironment(void)
     SystemSecondaryStringBuffer = (void* *)0x0;
     SystemInitializationStatusFlag = 0;
     SystemMemoryAllocationOffset = (long long *)ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,0x10);
-    SystemOperationResult = GetComputerNameA(ComputerNameBufferPointer,&SystemMemoryBufferSize);
+    SystemOperationResult = GetComputerNameA(SystemComputerNameBufferPointer,&SystemMemoryBufferSize);
     if (SystemOperationResult == 0) {
       LogSystemError(&SystemStringConstantComputerNameErrorF);
     }
     else {
       if (0xf < ((ulong long)SystemMemoryBufferSize & SystemMaximumUnsigned32BitValue)) goto HandleMemoryBufferOverflow;
-      *(uint8_t *)((long long)ComputerNameBufferPointer + ((ulong long)SystemMemoryBufferSize & SystemMaximumUnsigned32BitValue)) = 0;
-      (**(code **)(SystemGlobalDataPointerPrimary + 0x10))(&SystemGlobalDataPointerPrimary,ComputerNameBufferPointer);
+      *(uint8_t *)((long long)SystemComputerNameBufferPointer + ((ulong long)SystemMemoryBufferSize & SystemMaximumUnsigned32BitValue)) = 0;
+      (**(code **)(SystemGlobalDataPointerPrimary + 0x10))(&SystemGlobalDataPointerPrimary,SystemComputerNameBufferPointer);
     }
     UserNameBufferSize = (long long *)ConcatenatedSystemValue(UserNameBufferSize.HighPart,0x101);
     SystemOperationResult = GetUserNameA(UserNameBuffer,&SystemMemoryBufferSize);
@@ -20160,7 +20160,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
     AllocatedMemoryPointer[LibraryHandlePrimarySlotOffset] = LibraryHandle;
     if (LibraryHandle != 0) goto LibraryHandleLoadedSuccessfully;
     systemGlobalDataPtr = &SystemGlobalDataPointer;
-    if (AlternateBufferPointer != (void* *)0x0) {
+    if (SystemAlternateBufferPointer != (void* *)0x0) {
         SystemCleanupFunction();
     }
   }
@@ -20171,7 +20171,7 @@ LibraryHandleLoadedSuccessfully:
       AllocatedMemoryPointer[LibraryHandleSecondarySlotOffset] = FunctionAddress;
       if (FunctionAddress == 0) {
         systemGlobalDataPtr = &SystemGlobalDataPointer;
-        if (AlternateBufferPointer != (void* *)0x0) {
+        if (SystemAlternateBufferPointer != (void* *)0x0) {
             SystemCleanupFunction();
         }
         goto SymbolInitializationCleanup;
@@ -20184,14 +20184,14 @@ LibraryHandleLoadedSuccessfully:
     SymbolInitializationStatusCode = SymInitialize(SystemCurrentProcessHandle,SymbolSearchPath,1);
     if (SymbolInitializationStatusCode == 0) {
       systemGlobalDataPtr = &SystemGlobalDataPointer;
-      if (AlternateBufferPointer != (void* *)0x0) {
+      if (SystemAlternateBufferPointer != (void* *)0x0) {
           SystemCleanupFunction();
       }
     }
     else {
       *(char *)AllocatedMemoryPointer = SystemStatusActive;
       systemGlobalDataPtr = &SystemGlobalDataPointer;
-      if (AlternateBufferPointer != (void* *)0x0) {
+      if (SystemAlternateBufferPointer != (void* *)0x0) {
           SystemCleanupFunction();
       }
     }
@@ -20548,7 +20548,7 @@ void ProcessSystemStringCopy(long long DestinationBuffer, long long SourceString
     strcpy_s(*(void* *)(DestinationBuffer + SystemStringBufferOffset), (int)StringLengthCounter + 1, (const char *)(SourceString));
     return;
   }
-  ProcessSystemStringAllocation(&SystemMemoryTemplateSeptenary,0x1000,ConfigurationDataPointer);
+  ProcessSystemStringAllocation(&SystemMemoryTemplateSeptenary,0x1000,SystemConfigurationDataPointer);
   *(uint32_t *)(DestinationBuffer + SystemStringLengthOffset) = 0;
   **(uint8_t **)(DestinationBuffer + SystemStringBufferOffset) = 0;
   return;
