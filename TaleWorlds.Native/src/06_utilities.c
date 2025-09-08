@@ -15084,8 +15084,8 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
        ((*(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset) >> ValidationFlagShift & 1) == 0)) {
       DataProcessingFlags = *(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset);
       BitShiftedProcessingFlags = DataProcessingFlags >> ProcessingFlagsShift;
-      if ((bitShiftedProcessingFlags & 1) == 0) {
-        if ((((dataProcessingFlags >> 3 & 1) != 0) && (integerConversionResult = (int)floatProcessingValue, integerConversionResult != IntegerMinValue)) &&
+      if ((BitShiftedProcessingFlags & 1) == 0) {
+        if ((((DataProcessingFlags >> 3 & 1) != 0) && (integerConversionResult = (int)floatProcessingValue, integerConversionResult != IntegerMinValue)) &&
            ((float)integerConversionResult != floatProcessingValue)) {
           vectorRegister.xComponent = floatProcessingValue;
           vectorRegister.yComponent = floatProcessingValue;
