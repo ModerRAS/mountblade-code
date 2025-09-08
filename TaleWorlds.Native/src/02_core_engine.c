@@ -203587,7 +203587,7 @@ uint64_t * InitializeSystemCharacterProcessing(uint64_t *CharacterCode
   long long SearchStartIndex;
   int EncodingValidationResult;
   
-  FUN_180176060(CoreEngineEventInitialized);
+  InitializeCoreEngineEventSystem(CoreEngineEventInitialized);
   MemoryBlockIndex = CoreEngineEventInitialized;
   CharacterTablePointer = CoreEngineEventInitialized + 0x100;
   EncodingValidationResult = _Mtx_lock(CharacterTablePointer);
