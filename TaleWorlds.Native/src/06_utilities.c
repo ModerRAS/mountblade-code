@@ -7937,9 +7937,6 @@ extern void* SystemPrimaryResourceTable;
 // 功能：处理系统参数并执行验证
 #define ProcessSystemParametersWithValidation FUN_180058370
 
-// 原始函数名：FUN_18004b790 - 系统资源处理函数
-// 功能：处理系统资源并执行清理
-#define ProcessSystemResourcesWithCleanup FUN_18004b790
 
 // 原始函数名：ValidateDataIntegrityA0 - 系统数据处理函数
 // 功能：处理系统数据并执行验证
