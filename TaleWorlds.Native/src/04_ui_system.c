@@ -77080,35 +77080,35 @@ LAB_18070fb9d:
 ulonglong ProcessUICharacterEncoding(byte *uiContext,UIHandle dataSource,int targetBuffer)
 
 {
-  byte isCharacterMatch;
-  byte IsEventProcessingActive;
-  short sVar3;
-  byte bVar4;
+  byte characterEncoding;
+  byte isEventProcessingActive;
+  short sourceValue;
+  byte encodingType;
   ulonglong loopCounter;
-  int localInt6;
-  int localInt7;
-  ulonglong ContextHandle;
-  uint uVar8;
-  ulonglong uVar9;
-  short *SourceHandle;
-  uint result0;
-  short *psVar11;
-  uint result2;
-  longlong register10;
-  byte *pisCharacterMatch3;
-  int RegisterPointerD;
-  uint IndexResult;
-  uint CounterResult;
-  int EventHandleD;
-  int unmodifiedR15D;
-  bool in_ZF;
-  int iStackX_20;
-  int stackParam00000070;
-  int stackParam00000080;
-  byte *stackParam00000088;
-  longlong stackParam00000090;
-  int *stackParam000000a0;
-  int *stackParam000000a8;
+  int encodingOffset;
+  int localValue7;
+  ulonglong contextHandle;
+  uint encodingSize;
+  ulonglong resultMultiplier;
+  short *sourceHandle;
+  uint primaryResult;
+  short *secondarySourceHandle;
+  uint secondaryResult;
+  longlong baseRegister;
+  byte *characterPointer;
+  int registerValue;
+  uint indexResult;
+  uint counterResult;
+  int eventHandle;
+  int unmodifiedRegister;
+  bool zeroFlag;
+  int stackValue20;
+  int stackParameter70;
+  int stackParameter80;
+  byte *stackParameter88;
+  longlong stackParameter90;
+  int *stackParameterA0;
+  int *stackParameterA8;
   
   if (in_ZF) {
     return 0xfffffffc;
