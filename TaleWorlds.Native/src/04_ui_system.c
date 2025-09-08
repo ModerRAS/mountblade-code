@@ -184324,11 +184324,12 @@ undefined UIResourceAllocator;
 
  undefined UIResourceManager;
 undefined UIResourceManager;
-undefined DAT_180be34e0;
+// UI系统补充数据表变量语义化定义
+#define DAT_180be34e0 UIDataTable34e0
 
  undefined UIResourceCache;
 undefined UIResourceCache;
-undefined DAT_180be3598;
+#define DAT_180be3598 UIDataTable3598
 
  undefined UIConfigDataPrimary;
 undefined UIConfigDataPrimary;
@@ -184337,11 +184338,12 @@ undefined UIConfigDataPrimary;
 undefined UIConfigDataSecondary;
 undefined UIConfigDataTertiary;
 undefined UIConfigDataQuaternary;
-undefined DAT_180be34e8;
-undefined DAT_180c11740;
-undefined DAT_180be35f0;
-undefined DAT_180be34ec;
-undefined DAT_180be35f8;
+// UI系统配置数据表变量语义化定义
+#define DAT_180be34e8 UIConfigDataTable34e8
+#define DAT_180c11740 UIConfigDataTable11740
+#define DAT_180be35f0 UIConfigDataTable35f0
+#define DAT_180be34ec UIConfigDataTable34ec
+#define DAT_180be35f8 UIConfigDataTable35f8
 undefined DAT_180be3600;
 undefined DAT_180be34f0;
 undefined DAT_180be34f4;
