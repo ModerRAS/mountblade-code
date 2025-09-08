@@ -185615,7 +185615,7 @@ LAB_180152731:
   case 2:
     ppuStack_210 = *(uint32_t ***)(CharacterCode + 0xc0);
     uStack_218 = CONCAT44(uStack_218.HighPart,*(uint32_t *)(CharacterCode + 0xb0));
-    FUN_18029e630(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
+    ProcessSystemDataConversion(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
                   *(uint32_t *)(CharacterCode + 0xa8),*(uint32_t *)(CharacterCode + 0xac));
     (**(code **)(**(long long **)(CharacterCode + 0xc0) + 0x38))();
     break;
