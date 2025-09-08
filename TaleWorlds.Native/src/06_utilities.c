@@ -95826,7 +95826,18 @@ void Unwind_ConfigureTemporaryExceptionHandler(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_18090cf60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 初始化异常处理器F60
+ * 
+ * 该函数负责初始化异常处理器的相关功能，设置验证结果的异常处理
+ * 
+ * @param operationBase 操作基础指针
+ * @param dataBuffer 数据缓冲区指针
+ * @return void
+ * 
+ * @note 原始函数名：Unwind_18090cf60
+ */
+void Unwind_InitializeExceptionHandlerF60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + ValidationResultOffset8) != (int64_t *)0x0) {
