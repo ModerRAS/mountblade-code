@@ -120008,7 +120008,21 @@ void Unwind_180912420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理验证结果偏移异常上下文
+ * 
+ * 该函数负责处理数据缓冲区验证结果偏移量处的异常上下文，执行异常处理操作
+ * 从验证结果偏移量获取异常上下文并进行处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912430
+ * @note 这是一个异常展开（unwind）处理函数，用于处理验证结果偏移量的异常
+ */
+void HandleValidationResultOffsetExceptionContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -120026,7 +120040,21 @@ void Unwind_180912430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x60偏移0x48异常上下文
+ * 
+ * 该函数负责处理数据缓冲区0x60偏移量0x48处的异常上下文，执行异常处理操作
+ * 从0x60偏移量的0x48处获取异常上下文并进行处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912440
+ * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
+ */
+void HandleExceptionContextAtOffset60_48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -120044,7 +120072,21 @@ void Unwind_180912440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x60偏移0x58异常上下文
+ * 
+ * 该函数负责处理数据缓冲区0x60偏移量0x58处的异常上下文，执行异常处理操作
+ * 从0x60偏移量的0x58处获取异常上下文并进行处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912450
+ * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
+ */
+void HandleExceptionContextAtOffset60_58(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -120062,7 +120104,21 @@ void Unwind_180912450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180912460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x60偏移0x68异常上下文
+ * 
+ * 该函数负责处理数据缓冲区0x60偏移量0x68处的异常上下文，执行异常处理操作
+ * 从0x60偏移量的0x68处获取异常上下文并进行处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912460
+ * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
+ */
+void HandleExceptionContextAtOffset60_68(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
