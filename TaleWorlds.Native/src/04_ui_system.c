@@ -191,6 +191,13 @@ typedef enum {
 #define localFloat29 CurrentRotationValue
 #define plocalLong7 ColorBufferPointer
 #define plocalLong8 ResourceBufferPointer
+#define localFloat2 BoundingBoxCheckX
+#define resultValue BoundingBoxCheckResult
+#define processedFloat BoundingBoxCheckY
+#define secondaryValue BoundingBoxCheckZ
+#define localChar8 BoundingBoxValidationFlag
+#define allocatedMemory2 CollisionMemoryAllocation
+#define ProcessingResult3 CollisionProcessingResult
 #define ProcessUIRenderOperation FUN_180690580
 #define ProcessUIDataTransfer ProcessUIComponentBlend
 #define InitializeUILayoutSystem FUN_180707a56
