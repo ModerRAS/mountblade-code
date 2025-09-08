@@ -220936,18 +220936,35 @@ LAB_18018a53f:
 
 
 uint64_t *
-FUN_18018a660(long long *CharacterCode,uint64_t *CharacterCodeSize,long long *Utf8SourcePointer,int *Utf16EndPointer,
+/**
+ * @brief 处理UTF-8到UTF-16字符编码转换和内存管理
+ * 
+ * 该函数负责处理字符编码从UTF-8到UTF-16的转换过程，包括内存块管理、
+ * 边界检查和编码验证。函数会检查不同的内存块状态，并根据需要
+ * 调用相应的编码转换函数。
+ * 
+ * @param CharacterCode 字符代码指针数组，包含编码信息和数据
+ * @param CharacterCodeSize 字符代码大小指针，用于返回转换后的大小
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待转换的数据
+ * @param Utf16EndPointer UTF-16结束指针，指示转换目标的边界
+ * @param AdditionalParameter1 额外参数1，用于传递额外的配置信息
+ * @return uint64_t 返回系统缓冲区大小，用于指示处理结果
+ * 
+ * @note 原始函数名：FUN_18018a660
+ * @warning 该函数涉及复杂的内存管理操作，需要确保所有指针操作的安全性
+ */
+uint64_t ProcessUtf8ToUtf16EncodingWithMemoryManagement(long long *CharacterCode,uint64_t *CharacterCodeSize,long long *Utf8SourcePointer,int *Utf16EndPointer,
              uint64_t AdditionalParameter1
 {
-  int LockResult;
-  int StringComparisonResult;
-  long long *MemoryBlockIndex;
-  int EncodingValidationResult;
-  uint64_t *CharacterCodePointer;
-  long long *MemoryBoundaryPointer;
-  long long *MemoryPoolBlockSizePointer;
-  bool BooleanCurrentCharacter8;
-  uint8_t aProcessingCounter [24];
+  int MemoryLockResult;
+  int EncodingStringComparisonResult;
+  long long *MemoryBlockIterator;
+  int EncodingValidationStatus;
+  uint64_t *CharacterCodeTablePointer;
+  long long *MemoryBlockBoundary;
+  long long *MemoryPoolSizePointer;
+  bool IsCurrentCharacterValid;
+  uint8_t EncodingProcessingBuffer [24];
   
   if (CharacterCode[1] == 0) {
     FUN_18018af30(CharacterCode,SystemBufferSize,1,*CharacterCode);
