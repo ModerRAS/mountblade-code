@@ -194967,7 +194967,25 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *CharacterC
 
 
 
-608ba(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801608ba(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理字符编码和缓冲区转换
+ * 
+ * 该函数负责处理字符编码和缓冲区转换操作，包括：
+ * - 管理Unicode码点
+ * - 处理UTF-8到UTF-16的转换
+ * - 分配和配置处理状态标志
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801608ba
+ */
+#define ProcessCharacterEncodingAndBufferConversion FUN_1801608ba
+
+void ProcessCharacterEncodingAndBufferConversion(uint64_t CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   uint32_t *PrimaryProcessingStatusFlag;
@@ -195003,7 +195021,23 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *CharacterC
 
 
 
-609be(uint64_t CharacterCode,uint64_t SystemBufferSizevoid FUN_1801609be(uint64_t CharacterCode,uint64_t SystemBufferSize
+/**
+ * @brief 处理字符代码和系统缓冲区配置
+ * 
+ * 该函数负责处理字符代码和系统缓冲区配置操作，包括：
+ * - 管理字符代码数据
+ * - 配置系统缓冲区大小
+ * - 处理内存分配和状态管理
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801609be
+ */
+#define ProcessCharacterCodeAndSystemBufferConfiguration FUN_1801609be
+
+void ProcessCharacterCodeAndSystemBufferConfiguration(uint64_t CharacterCode, uint64_t SystemBufferSize)
 {
   uint64_t ProcessingResult;
   uint64_t *NullPointerValue;
@@ -195017,7 +195051,22 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *CharacterC
 
 
 
-609da(unsigned long long CharacterCodevoid FUN_1801609da(unsigned long long CharacterCode
+/**
+ * @brief 处理无符号字符代码验证
+ * 
+ * 该函数负责处理无符号字符代码的验证操作，包括：
+ * - 验证字符代码的有效性
+ * - 管理系统数据节点
+ * - 处理字符限制和边界检查
+ * 
+ * @param CharacterCode 无符号字符代码
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801609da
+ */
+#define ProcessUnsignedCharacterCodeValidation FUN_1801609da
+
+void ProcessUnsignedCharacterCodeValidation(unsigned long long CharacterCode)
 {
   long long PrimaryDataSize;
   uint64_t StackFrameAddressPointer;
