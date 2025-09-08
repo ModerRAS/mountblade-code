@@ -186460,7 +186460,23 @@ uint64_t CleanupSystemMemoryAndReturnCharacterCode(uint64_t CharacterCode,unsign
 
 
 
-538d0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801538d0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * 初始化渲染系统组件
+ * 
+ * 该函数负责初始化渲染系统的各个组件，包括：
+ * - 设置渲染系统组件的内存布局
+ * - 初始化系统组件的配置参数
+ * - 配置渲染系统的线程本地存储
+ * - 设置系统事件处理机制
+ * 
+ * @param CharacterCode 字符代码指针，用于存储渲染系统配置
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_1801538d0
+ */
+void InitializeRenderingSystemComponents(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   FUN_18005b960(CharacterCode + 0x1ea);
   InitializeRenderingSystemComponent(CharacterCode + 0x1dc);
