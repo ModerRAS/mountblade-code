@@ -453,6 +453,21 @@ typedef enum {
  */
 #define ExecuteUIMatrixTransformationAndVectorCalculation FUN_180711311
 
+/**
+ * @brief 处理UI上下文数据和缓冲区操作
+ * 
+ * 该函数负责处理UI上下文的数据和缓冲区操作，包括：
+ * - UI上下文数据的验证和处理
+ * - 缓冲区大小的计算和调整
+ * - 数据源和目标之间的数据传输
+ * - 内存分配和资源管理
+ * 
+ * 该函数确保UI上下文数据的正确性和一致性。
+ * 
+ * @note 原始函数名：FUN_1807123a8
+ */
+#define ProcessUIContextDataAndBufferOperation FUN_1807123a8
+
 // UI系统函数宏定义 - 处理UI数据缓冲区操作
 #define ProcessUIDataBufferOperation FUN_18072b310
 #define ProcessUIResourceUpdate FUN_18069d9e0
@@ -80444,8 +80459,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
 
 
 
- void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bufferSize)
-void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bufferSize)
+ void ProcessUIContextDataAndBufferOperation(float uiContext,longlong dataSource,uint targetBuffer,uint bufferSize)
 
 {
   uint bufferSize;

@@ -199077,7 +199077,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCo
         CharacterStatusBuffer = MemoryAllocationPointer;
       }
       SystemStatusValue = 0x118;
-      pSystemUnsignedValue548 = aMemoryCopyBuffer;
+      MemoryCopyBufferPointer = MemoryCopyBuffer;
       EncodingValidationResult = MultiByteToWideChar(0xfde9,0,CharacterStatusBuffer,0xffffffff);
       if (0x22f < (unsigned long long)((long long)EncodingValidationResult * 2)) {
 LAB_180167a3b:
@@ -199086,43 +199086,43 @@ LAB_180167a3b:
         (*SystemValidationFunction)();
         return;
       }
-      aMemoryCopyBuffer[EncodingValidationResult] = 0;
+      MemoryCopyBuffer[EncodingValidationResult] = 0;
       if (0x22f < (unsigned long long)((long long)(EncodingValidationResult + 1) * 2)) {
         CoreEngineSetupNetworkConnection();
         goto LAB_180167a3b;
       }
-      aMemoryCopyBuffer[EncodingValidationResult + 1] = 0;
-      puStack_4f0 = NULL;
-      lStack_4e8 = CONCAT44(lStack_4e8.HighPart,3);
-      puStack_4e0 = aMemoryCopyBuffer;
-      uStack_4d8 = 0;
-      uStack_4d0 = 0x14;
-      StackUnsigned4Cc = 0;
-      StackUnsigned4C0 = 0;
-      StackUnsigned4C8 = 0;
-      SHFileOperationW(&puStack_4f0);
-      puStack_530 = &SystemNullTemplate;
-      if (puStack_528 != NULL) {
+      MemoryCopyBuffer[EncodingValidationResult + 1] = 0;
+      SystemResourcePointer = NULL;
+      StackMemoryOffset = CONCAT44(StackMemoryOffset.HighPart,3);
+      UnicodeConversionBuffer = MemoryCopyBuffer;
+      StackAddress = 0;
+      UnicodeCharacterValue = 0x14;
+      StackControlFlag = 0;
+      StackDataBufferC0 = 0;
+      StackDataBufferC8 = 0;
+      SHFileOperationW(&SystemResourcePointer);
+      SystemContextPointer = &SystemNullTemplate;
+      if (MemoryAllocationPointer != NULL) {
                     // WARNING: Subroutine does not return
         CoreEngineProcessSystemEvent();
       }
-      puStack_528 = NULL;
-      uStack_518 = uStack_518 & 0xffffffff00000000;
-      puStack_530 = &ThreadLocalStorageTemplate;
+      MemoryAllocationPointer = NULL;
+      StackParameter = StackParameter & 0xffffffff00000000;
+      SystemContextPointer = &ThreadLocalStorageTemplate;
     }
-    uStack_538 = 0;
-    puStack_510 = &SystemNullTemplate;
-    if (SystemTemporaryValue508 != 0) {
+    StackValidationFlag = 0;
+    ThreadLocalStoragePointer = &SystemNullTemplate;
+    if (MemoryBlockOffset != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
-    SystemTemporaryValue508 = 0;
-    uStack_4f8 = uStack_4f8 & 0xffffffff00000000;
-    puStack_510 = &ThreadLocalStorageTemplate;
+    MemoryBlockOffset = 0;
+    StackDataBuffer = StackDataBuffer & 0xffffffff00000000;
+    ThreadLocalStoragePointer = &ThreadLocalStorageTemplate;
   }
-  uStack_538 = 0;
+  StackValidationFlag = 0;
                     // WARNING: Subroutine does not return
-  CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)auStack_568);
+  CoreEngineExecuteUtilityFunction(FunctionAddress ^ (unsigned long long)StackSecurityBuffer);
 }
 
 
