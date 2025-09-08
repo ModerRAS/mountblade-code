@@ -191815,7 +191815,23 @@ void AllocateAndInitializeUtf16CharacterBuffer(long long CharacterCode, long lon
 
 
 
-5bea0(uint64_t *CharacterCode,long long SystemBufferSizevoid FUN_18015bea0(uint64_t *CharacterCode,long long SystemBufferSize
+/**
+ * @brief 执行系统内存边界管理和资源释放
+ * 
+ * 该函数处理系统内存边界的管理和资源的释放。它负责：
+ * - 计算内存边界大小
+ * - 分配新的内存缓冲区
+ * - 初始化系统事件模板
+ * - 执行系统事件处理
+ * - 释放不再需要的资源
+ * 
+ * @param CharacterCode 字符代码指针数组
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18015bea0
+ */
+void ExecuteSystemMemoryBoundaryManagement(uint64_t *CharacterCode,long long SystemBufferSize
 {
   uint64_t *CharacterStatusBuffer;
   void *SystemContext;
