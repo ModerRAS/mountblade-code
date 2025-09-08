@@ -119200,9 +119200,25 @@ void CleanupSystemResourceA7(void)
 /**
  * @brief 执行系统验证和清理操作
  * 
- * 该函数负责执行系统验证和清理操作，包括互斥锁销毁和条件变量销毁
+ * 该函数负责执行系统验证和清理操作，包括内存区域清理、互斥锁销毁、
+ * 条件变量销毁和系统资源释放。此函数是系统关闭过程中的重要组成部分。
+ * 
+ * @details 
+ * 函数执行以下操作：
+ * 1. 检查系统验证活动标志是否已设置
+ * 2. 验证系统终止标志，如果设置则终止系统
+ * 3. 重置系统终止标志
+ * 4. 如果系统验证上下文指针存在，执行以下操作：
+ *    - 清理系统内存区域（偏移量0x360，大小0xcc8）
+ *    - 销毁互斥锁和条件变量
+ *    - 释放系统资源（偏移量0x60）
+ *    - 执行系统清理例程
+ *    - 终止验证上下文
+ * 5. 重置系统验证上下文指针
  * 
  * @note 原始函数名：FUN_180942d30
+ * @warning 如果系统验证终止标志被设置，函数会立即终止系统
+ * @see CleanupSystemMemoryRegion, ReleaseSystemResources, ExecuteSystemCleanupRoutine
  */
 #define ExecuteSystemValidationAndCleanup FUN_180942d30
 
@@ -119231,9 +119247,19 @@ void ExecuteSystemValidationAndCleanup(void)
 /**
  * @brief 执行系统数据清理操作
  * 
- * 该函数负责执行系统数据的清理操作，包括数据缓冲区的清理
+ * 该函数负责执行系统数据的清理操作，包括数据缓冲区的清理和验证。
+ * 当系统数据清理标志被设置时，函数会执行数据缓冲区的清理和验证操作。
+ * 
+ * @details 
+ * 函数执行以下操作：
+ * 1. 检查系统数据清理标志是否已设置
+ * 2. 如果标志已设置，执行以下操作：
+ *    - 调用数据缓冲区清理函数清理系统数据缓冲区指针
+ *    - 调用数据缓冲区验证函数验证系统数据缓冲区指针
  * 
  * @note 原始函数名：FUN_180942e20
+ * @warning 数据清理和验证操作必须按顺序执行，确保数据完整性
+ * @see CleanupDataBuffer, ValidateDataBuffer
  */
 #define ExecuteSystemDataCleanup FUN_180942e20
 
@@ -119248,9 +119274,23 @@ void ExecuteSystemDataCleanup(void)
 /**
  * @brief 清理验证上下文A0
  * 
- * 该函数负责清理验证上下文，释放相关资源
+ * 该函数负责清理验证上下文A0，包括异常处理和系统资源的清理。
+ * 此函数执行复杂的清理操作，包括异常处理器调用和系统终止检查。
+ * 
+ * @details 
+ * 函数执行以下操作：
+ * 1. 保存系统验证上下文指针A0的副本
+ * 2. 检查系统验证清理标志A0是否已设置
+ * 3. 如果标志已设置，执行以下操作：
+ *    - 设置系统验证上下文清理标志A0
+ *    - 重置系统验证上下文指针A0
+ *    - 如果异常上下文指针存在，调用其偏移量0x38处的清理函数
+ *    - 如果系统验证上下文指针A0存在，调用其偏移量0x38处的清理函数
+ *    - 检查系统验证终止标志A0，如果设置则终止系统
  * 
  * @note 原始函数名：FUN_180942e70
+ * @warning 此函数包含复杂的异常处理逻辑，错误的清理顺序可能导致系统不稳定
+ * @see TerminateSystemE0
  */
 #define CleanupValidationContextA0 FUN_180942e70
 
@@ -119271,13 +119311,24 @@ void CleanupValidationContextA0(void)
     if (SystemValidationTerminationFlagA0 != 0) {
         TerminateSystemE0();
     }
+  }
+}
 
 /**
  * @brief 清理验证上下文A1
  * 
- * 该函数负责清理验证上下文，释放相关资源
+ * 该函数负责清理验证上下文A1，执行简单的验证和终止检查。
+ * 此函数是验证上下文清理的简化版本，主要执行系统终止标志的检查。
+ * 
+ * @details 
+ * 函数执行以下操作：
+ * 1. 检查系统验证清理标志A1是否已设置
+ * 2. 如果标志已设置，检查系统验证终止标志A1
+ * 3. 如果终止标志被设置，调用系统终止函数
  * 
  * @note 原始函数名：FUN_180942f00
+ * @warning 如果系统验证终止标志A1被设置，函数会立即终止系统
+ * @see CleanupValidationContextA0, TerminateSystemE0
  */
 #define CleanupValidationContextA1 FUN_180942f00
 

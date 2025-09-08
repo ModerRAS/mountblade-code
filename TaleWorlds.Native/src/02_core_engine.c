@@ -202129,40 +202129,54 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long CharacterCode, uin
 
 
 
-void FUN_18016c97a(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * 处理字符编码转换和系统配置
+ * 
+ * 该函数负责处理字符编码转换和系统配置，包括：
+ * - 字符编码转换处理
+ * - 系统配置初始化
+ * - 内存分配和管理
+ * - 字符状态验证
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ */
+void ProcessCharacterEncodingAndSystemConfiguration(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  uint *CharacterStatusBuffer;
-  int *StringComparisonResultPointer;
-  uint64_t *SystemEventTemplatePointer;
-  uint64_t *MemoryAddressMaskPointer;
-  float MatrixTransformMultiplier;
-  float CalculatedDistance;
-  float FloatOffsetValue;
-  int ComputedResult;
-  void *TemporaryBuffer;
-  long long EncodingConversionResult;
-  uint64_t ProcessedCharacter;
-  char CurrentCharacter;
-  int IntegerValue;
-  long long ProcessingResult;
-  long long LoopIndex;
-  long long CharacterTablePointer;
-  void *SystemCharacterStatusPointer;
-  uint64_t SystemContext;
-  long long SystemConfigurationIterator;
-  uint64_t PatternIndex;
-  uint64_t SystemDataNode;
-  unsigned long long MemoryAllocationHandle;
-  uint32_t Utf16Character;
-  uint64_t RegisterR12Value;
-  uint64_t RegisterR13Value;
-  unsigned long long MemoryAllocationOffset;
-  uint32_t FloatingPointRegisterA;
-  uint32_t unaff_XMM6_Db;
-  uint32_t FloatingPointRegisterC;
-  uint32_t unaff_XMM6_Dd;
-  uint32_t auStackX_20 [2];
-  uint64_t StackProcessingParameter3;
+  uint *CharacterStatusBuffer;                         // 字符状态缓冲区
+  int *StringComparisonResultPointer;                 // 字符串比较结果指针
+  uint64_t *SystemEventTemplatePointer;              // 系统事件模板指针
+  uint64_t *MemoryAddressMaskPointer;                 // 内存地址掩码指针
+  float MatrixTransformMultiplier;                    // 矩阵变换乘数
+  float CalculatedDistance;                           // 计算距离
+  float FloatOffsetValue;                             // 浮点偏移值
+  int ComputedResult;                                 // 计算结果
+  void *TemporaryBuffer;                              // 临时缓冲区
+  long long EncodingConversionResult;                // 编码转换结果
+  uint64_t ProcessedCharacter;                        // 已处理字符
+  char CurrentCharacter;                              // 当前字符
+  int IntegerValue;                                    // 整数值
+  long long ProcessingResult;                         // 处理结果
+  long long LoopIndex;                                 // 循环索引
+  long long CharacterTablePointer;                    // 字符表指针
+  void *SystemCharacterStatusPointer;                 // 系统字符状态指针
+  uint64_t SystemContext;                             // 系统上下文
+  long long SystemConfigurationIterator;              // 系统配置迭代器
+  uint64_t PatternIndex;                               // 模式索引
+  uint64_t SystemDataNode;                            // 系统数据节点
+  unsigned long long MemoryAllocationHandle;          // 内存分配句柄
+  uint32_t Utf16Character;                            // UTF16字符
+  uint64_t RegisterR12Value;                          // R12寄存器值
+  uint64_t RegisterR13Value;                          // R13寄存器值
+  unsigned long long MemoryAllocationOffset;          // 内存分配偏移
+  uint32_t FloatingPointRegisterA;                    // 浮点寄存器A
+  uint32_t unaff_XMM6_Db;                             // XMM6寄存器Db
+  uint32_t FloatingPointRegisterC;                    // 浮点寄存器C
+  uint32_t unaff_XMM6_Dd;                             // XMM6寄存器Dd
+  uint32_t auStackX_20 [2];                           // 栈数组X_20
+  uint64_t StackProcessingParameter3;                 // 栈处理参数3
   
   *(void *)(ProcessingResult + 0x10) = SystemContext;
   *(void *)(ProcessingResult + 0x20) = PatternIndex;
@@ -202427,18 +202441,27 @@ void ProcessSystemConfigurationAndStringMatching(void)
 
 
 
-void FUN_18016cc64(void)
+/**
+ * 初始化系统编码验证器
+ * 
+ * 该函数负责初始化系统编码验证器，包括：
+ * - 系统上下文初始化
+ * - 编码验证状态设置
+ * - 内存分配管理
+ * - 系统事件队列处理
+ */
+void InitializeSystemEncodingValidator(void)
 {
-  int LockResult;
-  long long BufferStatus;
-  long long SearchStartIndex;
-  int EncodingValidationResult;
-  long long AllocatedMemorySize;
-  long long MemoryBoundaryEnd;
-  long long SystemContext;
-  unsigned long long SystemChecksum;
-  uint32_t RegisterR12ValueD;
-  uint64_t RegisterR13Value;
+  int LockResult;                                      // 锁定结果
+  long long BufferStatus;                              // 缓冲区状态
+  long long SearchStartIndex;                          // 搜索起始索引
+  int EncodingValidationResult;                        // 编码验证结果
+  long long AllocatedMemorySize;                       // 已分配内存大小
+  long long MemoryBoundaryEnd;                          // 内存边界结束
+  long long SystemContext;                              // 系统上下文
+  unsigned long long SystemChecksum;                    // 系统校验和
+  uint32_t RegisterR12ValueD;                          // R12寄存器值D
+  uint64_t RegisterR13Value;                            // R13寄存器值
   
   *(bool *)RegisterR13Value =
        *(long long *)(SystemContext + 0x1c98) == *(long long *)(*(long long *)(SystemContext + 0x1af8) + 0x3a8  ;
