@@ -207755,16 +207755,16 @@ void ProcessCharacterEncodingValidationAndMemoryAllocation(long long CharacterCo
   EncodingValidationResult = (int)SystemContextPrimaryFloat2;
   NormalizedParameterValue = SystemContextPrimaryFloat2;
   if ((EncodingValidationResult != -0x80000000) && ((float)EncodingValidationResult != SystemContextPrimaryFloat2)) {
-    aMemoryAllocationIndex.HighPart = SystemContextPrimaryFloat2;
-    aMemoryAllocationIndex.LowPart = SystemContextPrimaryFloat2;
-    aMemoryAllocationIndex.High64Part = 0;
-    MemoryAllocationIndex = movmskps(MemoryAllocationIndex,aMemoryAllocationIndex);
+    MemoryAllocationBuffer.HighPart = SystemContextPrimaryFloat2;
+    MemoryAllocationBuffer.LowPart = SystemContextPrimaryFloat2;
+    MemoryAllocationBuffer.High64Part = 0;
+    MemoryAllocationIndex = movmskps(MemoryAllocationIndex,MemoryAllocationBuffer);
     MemoryAllocationIndex = MemoryAllocationIndex & 1;
     NormalizedParameterValue = (float)(int)(EncodingValidationResult - MemoryAllocationIndex);
   }
   UnicodeCodePoint = 1;
-  if (1 < DataSize) {
-    UnicodeCodePoint = DataSize;
+  if (1 < CharacterDataSize) {
+    UnicodeCodePoint = CharacterDataSize;
   }
   SecondaryFloatValue = (float)(int)UnicodeCodePoint * *(float *)(SystemMemoryManager + 0x17e4);
   EncodingValidationResult = (int)SecondaryFloatValue;
@@ -208081,7 +208081,21 @@ LAB_1801736de:
 
 
 
-7358a(uint64_t CharacterCodevoid FUN_18017358a(uint64_t CharacterCode
+/**
+ * @brief 处理系统字符状态缓冲区控制
+ * 
+ * 该函数负责处理系统字符状态缓冲区的控制操作，包括UTF-16字符处理、
+ * 内存分配和字符状态管理。函数根据不同的条件分支执行相应的处理逻辑。
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * 
+ * @return void 无返回值
+ * 
+ * @note 函数通过ProcessMemoryAllocationHandler进行内存分配
+ * @warning 函数会修改栈帧地址指针处的数据
+ * @see ProcessMemoryAllocationHandler
+ */
+void ProcessSystemCharacterStatusBufferControl(uint64_t CharacterCode)
 {
   unsigned long long Utf16Char;
   char RegisterValueBL;
@@ -208452,7 +208466,19 @@ void TerminateSystemA0(void)
 
 
 
-73ab0(voidvoid FUN_180173ab0(void
+/**
+ * @brief 系统终止处理函数
+ * 
+ * 该函数负责处理系统终止操作，调用核心引擎的终止系统函数。
+ * 这是一个包装函数，用于处理系统的正常终止流程。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 该函数不会返回，会直接终止系统
+ * @warning 调用此函数将导致系统终止
+ * @see CoreEngineTerminateSystem
+ */
+void SystemTerminationHandler(void)
 {
                     // WARNING: Subroutine does not return
   CoreEngineTerminateSystem();

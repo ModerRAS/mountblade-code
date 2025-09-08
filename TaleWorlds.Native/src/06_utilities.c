@@ -88406,7 +88406,20 @@ void ExceptionContextHandler100(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_18090c110
  */
-void Unwind_18090c110(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量300
+ * 
+ * 该函数在数据缓冲区的0x300偏移量处设置默认异常处理器B。
+ * 这是一个简单的异常处理器设置函数，用于异常处理机制的初始化。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090c110
+ * @note 此函数为异常处理机制的一部分，用于初始化异常处理器
+ */
+void SetDefaultExceptionHandlerAtOffset300(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x300) = &DefaultExceptionHandlerB;
@@ -90066,7 +90079,20 @@ void SetDefaultExceptionHandlerAtOffset4D0(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090c650(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量3B0
+ * 
+ * 该函数在数据缓冲区的0x3b0偏移量处设置默认异常处理器B。
+ * 这是一个简单的异常处理器设置函数，用于异常处理机制的初始化。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090c650
+ * @note 此函数为异常处理机制的一部分，用于初始化异常处理器
+ */
+void SetDefaultExceptionHandlerAtOffset3B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x3b0) = &DefaultExceptionHandlerB;
@@ -90075,7 +90101,20 @@ void Unwind_18090c650(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c660(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器到偏移量470
+ * 
+ * 该函数在数据缓冲区的0x470偏移量处设置默认异常处理器B。
+ * 这是一个简单的异常处理器设置函数，用于异常处理机制的初始化。
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含异常处理器上下文信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090c660
+ * @note 此函数为异常处理机制的一部分，用于初始化异常处理器
+ */
+void SetDefaultExceptionHandlerAtOffset470(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x470) = &DefaultExceptionHandlerB;
