@@ -77184,14 +77184,14 @@ LAB_18070f928:
     indexResult = registerValue - 2;
     if ((encodingType & 0x40) != 0) {
       do {
-        if ((int)IndexResult < 1) {
+        if ((int)indexResult < 1) {
           return 0xfffffffc;
         }
-        IsEventProcessingActive = *pisCharacterMatch3;
-        pisCharacterMatch3 = pisCharacterMatch3 + 1;
-        CounterResult = (uint)IsEventProcessingActive;
-        if (IsEventProcessingActive == 0xff) {
-          CounterResult = 0xfe;
+        isEventProcessingActive = *characterPointer;
+        characterPointer = characterPointer + 1;
+        counterResult = (uint)isEventProcessingActive;
+        if (isEventProcessingActive == 0xff) {
+          counterResult = 0xfe;
         }
         unmodifiedR15D = unmodifiedR15D + CounterResult;
         IndexResult = IndexResult + (-1 - CounterResult);

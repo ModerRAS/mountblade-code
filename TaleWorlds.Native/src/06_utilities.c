@@ -737,8 +737,13 @@
 #define FunctionPointerSecondaryOffset 0x288        // 函数指针次偏移量
 
 // 数据合并函数定义
-#define CONCAT44(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
-#define MergeHighLowWords(highPart, lowPart) CONCAT44(highPart, lowPart)
+// 数据类型定义
+typedef uint32_t DataWord;                  // 数据字类型 - 32位无符号整数，用于系统数据交换
+typedef uint32_t DataBuffer;                // 数据缓冲区类型 - 32位无符号整数，用于数据缓冲区操作
+typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号整数，用于栈参数传递
+
+// 高低位字合并宏 - 用于将两个16位值合并为32位
+#define MergeHighLowWords(highPart, lowPart) (((uint64_t)(highPart) << 32) | (uint32_t)(lowPart))
 #define SetBitFlag(mask, condition) ((mask) | ((condition) ? 1 : 0))
 
 // 联合体成员访问宏定义
@@ -1079,10 +1084,12 @@
 #define DataStructureOffset24 0x24                // 数据结构偏移量24
 #define DataStructureOffset28 0x28                 // 数据结构偏移量28
 #define DataStructureOffset29 0x29                 // 数据结构偏移量29
+#define DataStructureDataOffset 0x20              // 数据结构数据偏移量 - 存储结构数据的偏移位置
 
 // 数据处理偏移量常量定义
 #define DataBufferOffset8 8                        // 数据缓冲区偏移量8
 #define DataBufferOffsetC 0xc                      // 数据缓冲区偏移量0xc
+#define DataDescriptorSizeOffset 0x1c               // 数据描述符大小偏移量 - 存储数据大小的偏移位置
 #define DataBufferOffsetE 0xe                      // 数据缓冲区偏移量0xe
 #define DataBufferOffset12 0x12                    // 数据缓冲区偏移量0x12
 #define DataBufferOffset14 0x14                    // 数据缓冲区偏移量0x14
@@ -16657,7 +16664,7 @@ DataBuffer ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
   }
   result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset10),&validationData);
   if ((int)result == 0) {
-    *(DataWord *)(CONCAT44(tempValue,systemDataBuffer) + DATA_STORAGE_BUFFER_OFFSET) = *(DataWord *)(dataContext + DATA_PROCESSING_CONTEXT_OFFSET);
+    *(DataWord *)(MergeHighLowWords(tempValue,systemDataBuffer) + DataStorageBufferOffset) = *(DataWord *)(dataContext + DataProcessingContextOffset);
       CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET),dataContext);
   }
   return result;
@@ -18393,7 +18400,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
   float calculatedFloatValue;
   int64_t stackBuffer;
   
-  stackBuffer = CONCAT44(stackBuffer._4_4_,*(uint *)(DataStructureHandle + 0x20));
+  stackBuffer = MergeHighLowWords(stackBuffer.HighPart,*(uint *)(DataStructureHandle + DataStructureDataOffset));
   if ((*(uint *)(DataStructureHandle + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
@@ -18486,8 +18493,8 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
     return validationStatus;
   }
   processedCount = 0;
-  systemDataFlags = CONCAT44(contextBufferHigh,contextBuffer) - 8;
-  if (CONCAT44(contextBufferHigh,contextBuffer) == 0) {
+  systemDataFlags = MergeHighLowWords(contextBufferHigh, contextBuffer) - 8;
+  if (MergeHighLowWords(contextBufferHigh, contextBuffer) == 0) {
     systemDataFlags = processedCount;
   }
   arraySize = *(int *)(systemDataFlags + 0x28);
@@ -18744,7 +18751,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
   int64_t stackValue;
   
   floatValue = *(float *)(valueContext + 0x18);
-  stackValue = CONCAT44(stackValue._4_4_,floatValue);
+  stackValue = MergeHighLowWords(stackValue.HighPart, floatValue);
   if (((uint)floatValue & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
@@ -18793,7 +18800,7 @@ DataBuffer ValidateAndProcessFloatRange(int64_t rangeContext,int64_t exceptionHa
   int64_t stackValue;
   
   rangeValue = *(float *)(rangeContext + 0x1c);
-  stackValue = CONCAT44(stackValue._4_4_,rangeValue);
+  stackValue = MergeHighLowWords(stackValue.HighPart, rangeValue);
   if (((uint)rangeValue & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
@@ -18864,7 +18871,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
   if (3 < *(uint *)(dataDescriptor + 0x18)) {
     return ComponentDataValidationFailure;
   }
-  transferSize = CONCAT44(transferSize._4_4_,*(uint *)(dataDescriptor + 0x1c));
+  transferSize = MergeHighLowWords(transferSize.HighPart, *(uint *)(dataDescriptor + DataDescriptorSizeOffset));
   if ((*(uint *)(dataDescriptor + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
@@ -23145,7 +23152,7 @@ SecurityValidationLabel:
       do {
         EncryptionIndex = 0;
         EncryptionPointer = &DataEncryptionTable;
-        EncryptionData = CONCAT44(EncryptionData._4_4_,operationFlagA);
+        EncryptionData = MergeHighLowWords(EncryptionData.HighPart, operationFlagA);
         arrayIndex = ValidateDataIntegrityA0(operationBase,&EncryptionPointer);
         if (arrayIndex != 0) GOTO_SecurityCheckFailed;
         calculatedValue = calculatedValue + 1;
