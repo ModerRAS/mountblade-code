@@ -128017,30 +128017,36 @@ void ProcessUIContextDataSource(longlong uiContext, longlong dataSource)
   if (uiContext != 0) {
     InitializeUIContextDataSource(uiContext, 0x11);
   }
-  uiValidationResult = *(int *)(dataSource + 0x20);
-  stringCompareIndex = (longlong)*(int *)(uiBufferData + 0x127e8) * 8 + -8;
-  TempInt4 = *(int *)(uiBufferData + 0x127e8) + -1;
-  *(UIHandle *)((longlong)uiValidationResult * 8 + *(longlong *)(uiBufferData + 0x127e0)) =
-       *(UIHandle *)(*(longlong *)(uiBufferData + 0x127e0) + stringCompareIndex);
-  *(int *)(*(longlong *)((longlong)uiValidationResult * 8 + *(longlong *)(uiBufferData + 0x127e0)) + 0x20) = uiValidationResult;
-  if ((-1 < TempInt4) && (processingResult = *(int *)(uiBufferData + 0x127e8), TempInt4 < processingResult)) {
-    TempInt4 = (processingResult - TempInt4) + -1;
-    if (0 < TempInt4) {
-      stringCompareIndex = *(longlong *)(uiBufferData + 0x127e0) + stringCompareIndex;
-                     WARNING: Subroutine does not return
-      memmove(stringCompareIndex,stringCompareIndex + 8,(longlong)TempInt4 << 3);
+  validationStatus = *(int *)(dataSource + 0x20);
+  compareIndex = (longlong)*(int *)(uiBufferData + 0x127e8) * 8 + -8;
+  tempValue = *(int *)(uiBufferData + 0x127e8) + -1;
+  *(UIHandle *)((longlong)validationStatus * 8 + *(longlong *)(uiBufferData + 0x127e0)) =
+       *(UIHandle *)(*(longlong *)(uiBufferData + 0x127e0) + compareIndex);
+  *(int *)(*(longlong *)((longlong)validationStatus * 8 + *(longlong *)(uiBufferData + 0x127e0)) + 0x20) = validationStatus;
+  
+  // 处理数组移动操作
+  if ((-1 < tempValue) && (processingResult = *(int *)(uiBufferData + 0x127e8), tempValue < processingResult)) {
+    tempValue = (processingResult - tempValue) + -1;
+    if (0 < tempValue) {
+      compareIndex = *(longlong *)(uiBufferData + 0x127e0) + compareIndex;
+      // 移动内存数据（此函数不返回）
+      MoveUIDataArray(compareIndex, compareIndex + 8, (longlong)tempValue << 3);
     }
     *(int *)(uiBufferData + 0x127e8) = processingResult + -1;
   }
+  
+  // 清理UI上下文
   if (uiContext != 0) {
-                     WARNING: Subroutine does not return
-    ProcessUISystemCleanup(uiContext,0x11);
+    // 清理UI系统（此函数不返回）
+    CleanupUISystemContext(uiContext, 0x11);
   }
-  uiValidationResult = FUN_18078a340(0x720,*(UIHandle *)(dataSource + 0x10),
-                        CONCAT71((int7)(int3)((uint)uiValidationResult >> 8),1));
-  if (uiValidationResult == 0) {
-                     WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),dataSource,&UNK_180958000,0x410,1);
+  
+  // 执行验证操作
+  validationStatus = ValidateUIDataOperation(0x720, *(UIHandle *)(dataSource + 0x10),
+                        CONCAT71((int7)(int3)((uint)validationStatus >> 8), 1));
+  if (validationStatus == 0) {
+    // 处理验证失败情况（此函数不返回）
+    HandleUIDataValidationFailure(*(UIHandle *)(GlobalUIHandleTable + 0x1a0), dataSource, &GlobalUIDataBuffer, 0x410, 1);
   }
   return;
 }
@@ -128049,33 +128055,49 @@ void ProcessUIContextDataSource(longlong uiContext, longlong dataSource)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_180744cc0(longlong *uiContext)
+/**
+ * @brief 处理UI上下文事件类型验证
+ * @param uiContext UI上下文指针的指针
+ * @return UIHandle 返回处理结果句柄
+ * 
+ * 该函数验证UI上下文中的事件类型，并根据事件类型执行相应的处理：
+ * - 验证事件类型代码
+ * - 处理无效事件类型
+ * - 执行事件类型相关的清理操作
+ */
+UIHandle ProcessUIContextEventType(longlong *uiContext)
 
 {
   uint result;
-  UIHandle iterationCount;
-  uint EventTypeCode;
+  UIHandle handleCount;
+  uint eventTypeCode;
   
-  EventTypeCode = *(uint *)((longlong)uiContext + 0xc);
-  if ((int)((EventTypeCode ^ (int)EventTypeCode >> 0x1f) - ((int)EventTypeCode >> 0x1f)) < 0) {
+  eventTypeCode = *(uint *)((longlong)uiContext + 0xc);
+  
+  // 验证事件类型代码的有效性
+  if ((int)((eventTypeCode ^ (int)eventTypeCode >> 0x1f) - ((int)eventTypeCode >> 0x1f)) < 0) {
     if (0 < (int)uiContext[1]) {
       return 0x1c;
     }
-    if ((0 < (int)EventTypeCode) && (*uiContext != 0)) {
-                     WARNING: Subroutine does not return
-      FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*uiContext,&UNK_180957f70,0x100,1);
+    if ((0 < (int)eventTypeCode) && (*uiContext != 0)) {
+      // 处理无效事件类型（此函数不返回）
+      HandleInvalidEventType(*(UIHandle *)(GlobalUIHandleTable + 0x1a0), *uiContext, &GlobalUIEventBuffer, 0x100, 1);
     }
     *uiContext = 0;
-    EventTypeCode = 0;
+    eventTypeCode = 0;
     *(UIDword *)((longlong)uiContext + 0xc) = 0;
   }
+  
+  // 重置UI缓冲区数据
   *(UIDword *)(uiBufferData + 1) = 0;
-  result = -EventTypeCode;
-  if (-1 < (int)EventTypeCode) {
-    result = EventTypeCode;
+  result = -eventTypeCode;
+  if (-1 < (int)eventTypeCode) {
+    result = eventTypeCode;
   }
-  if ((0 < (int)result) && (iterationCount = FUN_180747e10(uiContext,0), (int)iterationCount != 0)) {
-    return iterationCount;
+  
+  // 如果结果有效，则获取迭代计数
+  if ((0 < (int)result) && (handleCount = GetUIHandleIterationCount(uiContext, 0), (int)handleCount != 0)) {
+    return handleCount;
   }
   return 0;
 }
