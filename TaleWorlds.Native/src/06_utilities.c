@@ -149,54 +149,54 @@
 #define ResourceManagementOffset80 0x80
 
 // 异常处理器相关偏移量常量
-#define ExceptionHandlerOffset1620 0x1620                 // 异常处理器偏移量1620
-#define ExceptionHandlerOffset1608 0x1608                 // 异常处理器偏移量1608
-#define ExceptionHandlerOffset15e8 0x15e8                 // 异常处理器偏移量15e8
-#define ExceptionHandlerOffset15f0 0x15f0                 // 异常处理器偏移量15f0
-#define ExceptionHandlerOffset1600 0x1600                 // 异常处理器偏移量1600
-#define ExceptionHandlerOffset16b0 0x16b0                 // 异常处理器偏移量16b0
-#define ExceptionHandlerOffset16a0 0x16a0                 // 异常处理器偏移量16a0
-#define ExceptionHandlerOffset1678 0x1678                 // 异常处理器偏移量1678
-#define ExceptionHandlerOffset1680 0x1680                 // 异常处理器偏移量1680
-#define ExceptionHandlerOffset1690 0x1690                 // 异常处理器偏移量1690
-#define ExceptionHandlerOffset1658 0x1658                 // 异常处理器偏移量1658
-#define ExceptionHandlerOffset1660 0x1660                 // 异常处理器偏移量1660
-#define ExceptionHandlerOffset1670 0x1670                 // 异常处理器偏移量1670
-#define ExceptionHandlerOffset1720 0x1720                 // 异常处理器偏移量1720
-#define ExceptionHandlerOffset1710 0x1710                 // 异常处理器偏移量1710
-#define ExceptionHandlerOffset930 0x930                   // 异常处理器偏移量930
-#define ExceptionHandlerOffset318 0x318                   // 异常处理器偏移量318
-#define ExceptionHandlerOffset238 0x238                   // 异常处理器偏移量238
+#define ExceptionHandlerOffset1620 0x1620
+#define ExceptionHandlerOffset1608 0x1608
+#define ExceptionHandlerOffset15e8 0x15e8
+#define ExceptionHandlerOffset15f0 0x15f0
+#define ExceptionHandlerOffset1600 0x1600
+#define ExceptionHandlerOffset16b0 0x16b0
+#define ExceptionHandlerOffset16a0 0x16a0
+#define ExceptionHandlerOffset1678 0x1678
+#define ExceptionHandlerOffset1680 0x1680
+#define ExceptionHandlerOffset1690 0x1690
+#define ExceptionHandlerOffset1658 0x1658
+#define ExceptionHandlerOffset1660 0x1660
+#define ExceptionHandlerOffset1670 0x1670
+#define ExceptionHandlerOffset1720 0x1720
+#define ExceptionHandlerOffset1710 0x1710
+#define ExceptionHandlerOffset930 0x930
+#define ExceptionHandlerOffset318 0x318
+#define ExceptionHandlerOffset238 0x238
 
 // 异常处理数据缓冲区偏移量常量
-#define ExceptionHandlerDataBufferOffset160 0x160         // 异常处理数据缓冲区偏移量160
+#define ExceptionHandlerDataBufferOffset160 0x160
 
 // 数据验证偏移量常量
-#define DataValidationOffset20 0x20                        // 数据验证偏移量20
-#define DataValidationOffset25 0x25                        // 数据验证偏移量25
-#define DataValidationOffsetA8 0xa8                        // 数据验证偏移量A8
-#define DataValidationOffset18 0x18                        // 数据验证偏移量18
+#define DataValidationOffset20 0x20
+#define DataValidationOffset25 0x25
+#define DataValidationOffsetA8 0xa8
+#define DataValidationOffset18 0x18
 
 // 数据结构偏移量常量
-#define DataStructureHandleOffset1C 0x1c                  // 数据结构句柄偏移量1C
-#define DataRecordArraySizeOffset30 0x30                   // 数据记录数组大小偏移量30
-#define DataRangeValueOffset1C 0x1c                        // 数据范围值偏移量1C
-#define DataDescriptorFlagsOffset1C 0x1c                   // 数据描述符标志偏移量1C
-#define DataContextSecondaryOffset8C 0x8c                  // 数据上下文次级偏移量8C
-#define StateValidationFlagOffsetBD 0xbd                    // 状态验证标志偏移量BD
-#define AllocationContextValueOffset14 0x14                 // 分配上下文值偏移量14
-#define MemoryDescriptorPrimaryOffset14 0x14               // 内存描述符主偏移量14
-#define MemoryDescriptorFlagsOffset1C 0x1c                  // 内存描述符标志偏移量1C
-#define ExtendedContextOperationOffsetD0 0xd0              // 扩展上下文操作偏移量D0
-#define ComponentDataStateOffset30 0x30                    // 组件数据状态偏移量30
-#define DataContextOperationOffset24 0x24                   // 数据上下文操作偏移量24
+#define DataStructureHandleOffset1C 0x1c
+#define DataRecordArraySizeOffset30 0x30
+#define DataRangeValueOffset1C 0x1c
+#define DataDescriptorFlagsOffset1C 0x1c
+#define DataContextSecondaryOffset8C 0x8c
+#define StateValidationFlagOffsetBD 0xbd
+#define AllocationContextValueOffset14 0x14
+#define MemoryDescriptorPrimaryOffset14 0x14
+#define MemoryDescriptorFlagsOffset1C 0x1c
+#define ExtendedContextOperationOffsetD0 0xd0
+#define ComponentDataStateOffset30 0x30
+#define DataContextOperationOffset24 0x24
 
 // 浮点数据偏移量常量
-#define FloatDataValidationOffset3C 0x3c                    // 浮点数据验证偏移量3C
+#define FloatDataValidationOffset3C 0x3c
 
 // 系统数据记录偏移量常量
-#define SystemDataRecordOffset10 0x10                      // 系统数据记录偏移量10
-#define SystemDataRecordMultiplier18 0x18                   // 系统数据记录乘数18
+#define SystemDataRecordOffset10 0x10
+#define SystemDataRecordMultiplier18 0x18
 #define SystemStateSecondaryOffset 0x34
 #define SystemStateResultOffset 0x38
 
