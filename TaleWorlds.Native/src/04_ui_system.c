@@ -16662,9 +16662,9 @@ void CleanupUIElementResources(longlong uiContext)
   float floatResult0;
   longlong lStack0000000000000028;
   longlong lStack0000000000000030;
-  UIDword uStack0000000000000038;
-  UIDword uStack0000000000000040;
-  UIDword uStack0000000000000048;
+  UIDword StackData3;
+  UIDword StackData4;
+  UIDword StackHandle1;
   UIDword uStack0000000000000050;
   UIDword uStack0000000000000058;
   UIHandle stackParam00000060;
@@ -16712,9 +16712,9 @@ void CleanupUIElementResources(longlong uiContext)
           lStack0000000000000030 = uiContext + 0x6178;
           uStack0000000000000050 = *(UIDword *)(uiBufferData + 0x40);
           lStack0000000000000028 = uiContext + 0x6150;
-          uStack0000000000000048 = *(UIDword *)(uiBufferData + 0x38);
-          uStack0000000000000040 = 0;
-          uStack0000000000000038 = 0;
+          StackHandle1 = *(UIDword *)(uiBufferData + 0x38);
+          StackData4 = 0;
+          StackData3 = 0;
           puStack0000000000000070 = SourceHandle;
           ProcessUILayoutRendering(pcStack0000000000000088 + -0x1298,&stack0x00000078,
                         *(UIHandle *)(BasePointer + 0x208),localInt7,*SourceHandle);
@@ -73447,7 +73447,7 @@ void FUN_1807079df(UIHandle uiContext,int dataSource)
   float AccumulatedFloat;
   UIDword StackData1;
   UIDword StackData2;
-  UIDword uStack0000000000000038;
+  UIDword StackData3;
   int stackParam00000098;
   int stackParam000000a0;
   UIDword stackParam000000a8;
@@ -73458,7 +73458,7 @@ void FUN_1807079df(UIHandle uiContext,int dataSource)
   
   *(UIHandle *)(RegisterPointer + 0x18) = TargetHandle;
   do {
-    uStack0000000000000038 = stackParam000000b8;
+    StackData3 = stackParam000000b8;
     StackData2 = stackParam000000b0;
     StackData1 = stackParam000000a8;
     FUN_180707df0();
@@ -79633,7 +79633,7 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
   float localFloat24;
   int iStack0000000000000040;
   uint uStack0000000000000044;
-  uint uStack0000000000000048;
+  uint StackHandle1;
   longlong stackParam000001a0;
   longlong stackParam000001a8;
   int stackParam000001c0;
@@ -79643,9 +79643,9 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
   longlong stackParam000001e8;
   int stackParam000001f0;
   
-  uStack0000000000000048 = targetBuffer;
+  StackHandle1 = targetBuffer;
   if ((int)targetBuffer < (int)bufferSize) {
-    uStack0000000000000048 = bufferSize;
+    StackHandle1 = bufferSize;
   }
   result0 = (ulonglong)targetBuffer;
   if ((int)targetBuffer < (int)bufferSize) {
@@ -79666,12 +79666,12 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
   floatResult6 = *(float *)(register10 + (longlong)(int)~uStack0000000000000044 * 4);
   localFloat22 = *(float *)(register10 + (longlong)(int)(-2 - uStack0000000000000044) * 4);
   iStack0000000000000040 = stackParam000001f0;
-  if (((in_XMM1_Da == uiContext) && (uStack0000000000000048 == uStack0000000000000044)) &&
+  if (((in_XMM1_Da == uiContext) && (StackHandle1 == uStack0000000000000044)) &&
      ((int)dataSource == stackParam000001e0)) {
     iStack0000000000000040 = 0;
   }
   if (3 < (longlong)iStack0000000000000040) {
-    EventDataIndex = (longlong)(int)uStack0000000000000048;
+    EventDataIndex = (longlong)(int)StackHandle1;
     CharacterDataOffset = EventDataIndex - (int)uStack0000000000000044;
     ContextHandleData = EventDataIndex * 4 + 8;
     allocatedMemory = (EventDataIndex * 4 + 0xc) - register10;
@@ -79736,7 +79736,7 @@ void FUN_1807123a8(float uiContext,longlong dataSource,uint targetBuffer,uint bu
   }
   ContextHandleData = (longlong)iStack0000000000000040;
   if (allocatedMemory1 < ContextHandleData) {
-    allocatedMemory = (longlong)(int)uStack0000000000000048;
+    allocatedMemory = (longlong)(int)StackHandle1;
     componentIndex = ContextHandleData - allocatedMemory1;
     presultFloat = (float *)(register10 + ((allocatedMemory1 - allocatedMemory) + -1) * 4);
     allocatedMemory1 = allocatedMemory * 4 - register10;
@@ -79814,7 +79814,7 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
   float localFloat24;
   int iStack0000000000000040;
   uint uStack0000000000000044;
-  uint uStack0000000000000048;
+  uint StackHandle1;
   longlong stackParam000001a0;
   longlong stackParam000001a8;
   int stackParam000001c0;
@@ -79824,9 +79824,9 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
   longlong stackParam000001e8;
   int stackParam000001f0;
   
-  uStack0000000000000048 = targetBuffer;
+  StackHandle1 = targetBuffer;
   if (!in_ZF && in_OF == in_SF) {
-    uStack0000000000000048 = bufferSize;
+    StackHandle1 = bufferSize;
   }
   result0 = (ulonglong)targetBuffer;
   if ((int)targetBuffer < (int)bufferSize) {
@@ -79847,12 +79847,12 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
   floatResult6 = *(float *)(register10 + (longlong)(int)~uStack0000000000000044 * 4);
   localFloat22 = *(float *)(register10 + (longlong)(int)(-2 - uStack0000000000000044) * 4);
   iStack0000000000000040 = stackParam000001f0;
-  if (((dataSource == uiContext) && (uStack0000000000000048 == uStack0000000000000044)) &&
+  if (((dataSource == uiContext) && (StackHandle1 == uStack0000000000000044)) &&
      ((int)registerDX == stackParam000001e0)) {
     iStack0000000000000040 = 0;
   }
   if (3 < (longlong)iStack0000000000000040) {
-    EventDataIndex = (longlong)(int)uStack0000000000000048;
+    EventDataIndex = (longlong)(int)StackHandle1;
     CharacterDataOffset = EventDataIndex - (int)uStack0000000000000044;
     ContextHandleData = EventDataIndex * 4 + 8;
     allocatedMemory = (EventDataIndex * 4 + 0xc) - register10;
@@ -79917,7 +79917,7 @@ void FUN_1807123c2(float uiContext,float dataSource,uint targetBuffer,uint buffe
   }
   ContextHandleData = (longlong)iStack0000000000000040;
   if (allocatedMemory1 < ContextHandleData) {
-    allocatedMemory = (longlong)(int)uStack0000000000000048;
+    allocatedMemory = (longlong)(int)StackHandle1;
     componentIndex = ContextHandleData - allocatedMemory1;
     presultFloat = (float *)(register10 + ((allocatedMemory1 - allocatedMemory) + -1) * 4);
     allocatedMemory1 = allocatedMemory * 4 - register10;
@@ -84609,7 +84609,7 @@ uint FUN_180718c67(UIHandle uiContext,longlong dataSource)
   UIDword *pStackData1;
   int iStack0000000000000030;
   float fStack0000000000000038;
-  uint uStack0000000000000040;
+  uint StackData4;
   int iStack0000000000000048;
   UIDword *puStack0000000000000050;
   UIHandle stackParam00000068;
@@ -84667,22 +84667,22 @@ uint FUN_180718c67(UIHandle uiContext,longlong dataSource)
   bVar6 = (byte)iStack0000000000000110;
   bVar8 = (byte)(unmodifiedR13D >> 1);
   if (localInt5 < stackParam00000108 - localInt5) {
-    uStack0000000000000040 = (int)stackParam00000130 >> (bVar6 & 0x1f);
+    StackData4 = (int)stackParam00000130 >> (bVar6 & 0x1f);
     fStack0000000000000038 = (float)iStack0000000000000070 * 3.0517578e-05 * stackParam00000128;
     pStackData1 = (UIDword *)localLong7;
     localInt5 = FUN_180718bd0();
-    uStack0000000000000040 = stackParam00000130;
+    StackData4 = stackParam00000130;
     fStack0000000000000038 = (float)stackParam00000068._4_4_ * 3.0517578e-05 * floatResult;
     pStackData1 = (UIDword *)stackParam00000118;
     ProcessingStatus = FUN_180718bd0();
     ProcessingStatus = ProcessingStatus | localInt5 << (bVar8 & 0x1f);
   }
   else {
-    uStack0000000000000040 = stackParam00000130;
+    StackData4 = stackParam00000130;
     fStack0000000000000038 = (float)stackParam00000068._4_4_ * 3.0517578e-05 * stackParam00000128;
     pStackData1 = (UIDword *)stackParam00000118;
     ProcessingStatus = FUN_180718bd0();
-    uStack0000000000000040 = (int)stackParam00000130 >> (bVar6 & 0x1f);
+    StackData4 = (int)stackParam00000130 >> (bVar6 & 0x1f);
     fStack0000000000000038 = (float)iStack0000000000000070 * 3.0517578e-05 * floatResult;
     pStackData1 = (UIDword *)localLong7;
     localInt5 = FUN_180718bd0();
@@ -88002,9 +88002,9 @@ void FUN_18071ce0f(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
   longlong allocatedMemory0;
   UIByte StackData2;
   UIDword uStack0000000000000034;
-  UIDword uStack0000000000000038;
+  UIDword StackData3;
   UIDword uStack0000000000000044;
-  UIDword uStack0000000000000048;
+  UIDword StackHandle1;
   UIDword uStack000000000000004c;
   UIDword uStack0000000000000054;
   UIDword uStack0000000000000058;
@@ -88014,16 +88014,16 @@ void FUN_18071ce0f(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
   
   *(UIHandle *)(BasePointer + 0x35a0) = registerAX;
   *(UIHandle *)(BasePointer + 0x35a8) = registerAX;
-  uStack0000000000000038 = (UIDword)registerAX;
+  StackData3 = (UIDword)registerAX;
   StackData2 = (UIByte)registerAX;
   bVar4 = *(byte *)(uiContext + 0x1208);
   *(int *)(uiBufferData + 0x1208) = *(int *)(uiBufferData + 0x1208) + 1;
   *(byte *)(uiContext + 0x12aa) = bVar4 & 3;
   allocatedMemory = uiContext + 0x1c1c + (longlong)*(int *)(uiBufferData + 0x11ec) * 4;
   componentIndex = BasePointer + 0x35e0 + (longlong)*(int *)(uiBufferData + 0x11ec) * 4;
-  uStack0000000000000044 = uStack0000000000000038;
-  uStack0000000000000048 = uStack0000000000000038;
-  uStack0000000000000058 = uStack0000000000000038;
+  uStack0000000000000044 = StackData3;
+  StackHandle1 = StackData3;
+  uStack0000000000000058 = StackData3;
   uStack000000000000005c = bufferSize;
   uStack0000000000000068 = dataSource;
   lStack0000000000000070 = allocatedMemory;
@@ -101825,7 +101825,7 @@ void FUN_18072cc1b(void)
   float resultValue3;
   float unmodifiedXMM15_Da;
   int inputString;
-  uint uStack0000000000000048;
+  uint StackHandle1;
   int iStack000000000000004c;
   int iStack0000000000000050;
   int iStack0000000000000054;
@@ -101895,7 +101895,7 @@ void FUN_18072cc1b(void)
       unmodifiedXMM12_Da = resultValue1;
       unmodifiedXMM13_Da = localFloat26;
       inputString = localInt8;
-      uStack0000000000000048 = semaphoreHandle1;
+      StackHandle1 = semaphoreHandle1;
     }
     registerAX = *(longlong *)(BasePointer + -0x38);
     SourceHandle = SourceHandle + 1;
@@ -101916,7 +101916,7 @@ void FUN_18072cc1b(void)
         allocatedMemory9 = *(longlong *)(BasePointer + -0x70);
         puiValidationResult4 = *(int **)(BasePointer + -0x80);
         semaphoreHandle2 = (ulonglong)*(uint *)(BasePointer + 0x2cb0);
-        plocalChar14 = (char *)((int)uStack0000000000000048 + unmodifiedR12);
+        plocalChar14 = (char *)((int)StackHandle1 + unmodifiedR12);
         do {
           localInt8 = *plocalChar14 + inputString;
           if (localInt8 < 0x91) {
@@ -101934,7 +101934,7 @@ void FUN_18072cc1b(void)
         } while (semaphoreHandle2 != 0);
       }
       sVar17 = (short)inputString + -0x10;
-      semaphoreHandle2 = (ulonglong)uStack0000000000000048;
+      semaphoreHandle2 = (ulonglong)StackHandle1;
     }
     else {
       if (iStack000000000000004c == 0xc) {
@@ -101959,7 +101959,7 @@ void FUN_18072cc1b(void)
         }
       }
       uiOperationResult8 = *(int *)(BasePointer + 0x2cb0);
-      uStack0000000000000048 = CONCAT22(unmodified000000b2,EventHandleW);
+      StackHandle1 = CONCAT22(unmodified000000b2,EventHandleW);
       uiOperationResult6 = stackParam00000058;
       if (stackParam00000058 < localInt8 + -2) {
         uiOperationResult6 = localInt8 + -2;
@@ -102037,7 +102037,7 @@ void FUN_18072cc1b(void)
                  ((char)(&UNK_180956e90)[componentIndex0] + uiOperationResult6 <= stackParam00000068)) {
                 unmodifiedXMM7_Da = resultValue3;
                 localInt8 = uiOperationResult6;
-                uStack0000000000000048 = semaphoreHandle1;
+                StackHandle1 = semaphoreHandle1;
               }
               semaphoreHandle1 = semaphoreHandle1 + 1;
               componentIndex0 = componentIndex0 + 1;
@@ -102049,11 +102049,11 @@ void FUN_18072cc1b(void)
         } while (uiOperationResult6 <= localInt7);
       }
       if ((int)*(uint *)(BasePointer + 0x2cb0) < 1) {
-        semaphoreHandle2 = (ulonglong)uStack0000000000000048;
+        semaphoreHandle2 = (ulonglong)StackHandle1;
         sVar17 = (short)localInt8 - (short)stackParam00000058;
       }
       else {
-        semaphoreHandle2 = (ulonglong)(int)uStack0000000000000048;
+        semaphoreHandle2 = (ulonglong)(int)StackHandle1;
         CounterResult = (ulonglong)*(uint *)(BasePointer + 0x2cb0);
         puiValidationResult4 = *(int **)(BasePointer + -0x80);
         plocalChar14 = puStack0000000000000070 + semaphoreHandle2;
@@ -102130,7 +102130,7 @@ void FUN_18072cdb2(float *uiContext,int dataSource,int targetBuffer)
   UIDword unmodifiedXMM9_Db;
   float unmodifiedXMM13_Da;
   float unmodifiedXMM14_Da;
-  uint uStack0000000000000048;
+  uint StackHandle1;
   int iStack000000000000004c;
   int iStack0000000000000050;
   int iStack0000000000000054;
@@ -102162,7 +102162,7 @@ void FUN_18072cdb2(float *uiContext,int dataSource,int targetBuffer)
       } while (result1 != 0);
     }
     sVar14 = (short)targetBuffer + -0x10;
-    _uStack0000000000000048 = _uStack0000000000000048 & 0xffffffff;
+    _StackHandle1 = _StackHandle1 & 0xffffffff;
   }
   else {
     if (iStack000000000000004c == 0xc) {
@@ -102211,7 +102211,7 @@ void FUN_18072cdb2(float *uiContext,int dataSource,int targetBuffer)
     dVar22 = (double)FUN_18072b3a0(*(longlong *)(BasePointer + -0x60) +
                                    (longlong)(iStack000000000000004c * 0x14) * 4,
                                    iStack0000000000000054 * *(int *)(BasePointer + 0x2cb0));
-    uStack0000000000000048 = EventHandleD;
+    StackHandle1 = EventHandleD;
     if (ProcessingResult2 <= localInt5) {
       allocatedMemory9 = CONCAT44(unmodified000000b4,EventHandleD);
       do {
@@ -102263,7 +102263,7 @@ void FUN_18072cdb2(float *uiContext,int dataSource,int targetBuffer)
                ((char)(&UNK_180956e90)[allocatedMemory5] + ProcessingResult2 <= stackParam00000068)) {
               unmodifiedXMM7_Da = localFloat23;
               localInt6 = ProcessingResult2;
-              uStack0000000000000048 = TotalResult;
+              StackHandle1 = TotalResult;
             }
             TotalResult = TotalResult + 1;
             allocatedMemory5 = allocatedMemory5 + 1;
@@ -102275,14 +102275,14 @@ void FUN_18072cdb2(float *uiContext,int dataSource,int targetBuffer)
       } while (ProcessingResult2 <= localInt5);
     }
     if ((int)*(uint *)(BasePointer + 0x2cb0) < 1) {
-      _uStack0000000000000048 = (ulonglong)uStack0000000000000048;
+      _StackHandle1 = (ulonglong)StackHandle1;
       sVar14 = (short)localInt6 - (short)stackParam00000058;
     }
     else {
-      _uStack0000000000000048 = (ulonglong)(int)uStack0000000000000048;
+      _StackHandle1 = (ulonglong)(int)StackHandle1;
       result1 = (ulonglong)*(uint *)(BasePointer + 0x2cb0);
       puiOperationResult8 = *(int **)(BasePointer + -0x80);
-      plocalChar10 = puStack0000000000000070 + _uStack0000000000000048;
+      plocalChar10 = puStack0000000000000070 + _StackHandle1;
       ProcessingResult3 = *(int *)(BasePointer + -0x68);
       do {
         ProcessingResult2 = *plocalChar10 + localInt6;
@@ -102307,7 +102307,7 @@ void FUN_18072cdb2(float *uiContext,int dataSource,int targetBuffer)
     }
   }
   **(short **)(BasePointer + -0x58) = sVar14;
-  **(UIByte **)(BasePointer + -0x50) = (char)_uStack0000000000000048;
+  **(UIByte **)(BasePointer + -0x50) = (char)_StackHandle1;
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(*(ulonglong *)(BasePointer + 0x2b60) ^ (ulonglong)&stack0x00000000);
 }
@@ -108154,7 +108154,7 @@ void FUN_180734dc1(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   UIDword unmodifiedXMM6_Dd;
   UIHandle StackData1;
   int iStack000000000000003c;
-  UIHandle uStack0000000000000040;
+  UIHandle StackData4;
   
   *(UIHandle *)(RegisterPointer + 0x18) = unmodifiedR13;
   *(UIHandle *)(RegisterPointer + -0x38) = unmodifiedR15;
@@ -108164,7 +108164,7 @@ void FUN_180734dc1(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,
   *(UIDword *)(RegisterPointer + -0x3c) = unmodifiedXMM6_Dd;
   StackData1 = uiContext;
   iStack000000000000003c = bufferSize;
-  uStack0000000000000040 = dataSource;
+  StackData4 = dataSource;
   FUN_18072b3a0(dataSource,bufferSize * RegisterValue);
                      WARNING: Subroutine does not return
   memset(BasePointer + 0x1b0,0,0xc0);
@@ -125909,7 +125909,7 @@ UIHandle FUN_18074496d(void)
   longlong *TargetHandle;
   ulonglong ProcessingStatus;
   UIWord StackData2;
-  UIHandle uStack0000000000000040;
+  UIHandle StackData4;
   longlong stackParam00000048;
   UIHandle stackParam00000050;
   longlong stackParam00000058;
@@ -125918,7 +125918,7 @@ UIHandle FUN_18074496d(void)
   char stackParam000000a0;
   
   uiCompareResult = 0;
-  uStack0000000000000040 = 0;
+  StackData4 = 0;
   semaphoreHandle = FUN_180787940();
   if ((int)semaphoreHandle == 0) {
     stackParam00000048 = 0;
@@ -125926,7 +125926,7 @@ UIHandle FUN_18074496d(void)
                       ((longlong *)TargetHandle[4],0xfffffffd,&stack0x00000048);
     if (((int)semaphoreHandle == 0) && (semaphoreHandle = (**(code **)(*TargetHandle + 0x120))(), (int)semaphoreHandle == 0)) {
       ProcessingStatus = CONCAT71((int7)((ulonglong)registerAX >> 8),1);
-      FUN_180759220(uStack0000000000000040,0,&stack0x00000050,0,ProcessingStatus);
+      FUN_180759220(StackData4,0,&stack0x00000050,0,ProcessingStatus);
       func_0x000180766510(stackParam00000050,_StackData2 | 0xfeed0000);
       localChar1 = stackParam000000a0;
       if ((stackParam000000a0 == '\0') &&
@@ -126990,7 +126990,7 @@ ulonglong FUN_180745946(UIDword uiContext,UIDword dataSource)
   longlong unmodifiedR12;
   longlong *EventHandle;
   uint unmodifiedR15D;
-  UIDword uStack0000000000000040;
+  UIDword StackData4;
   longlong *stackParam00000048;
   UIHandle stackParam00000130;
   UIHandle stackParam00000138;
@@ -127029,7 +127029,7 @@ ulonglong FUN_180745946(UIDword uiContext,UIDword dataSource)
   TempInt4 = 0;
   *EventHandle = 0;
   if ((unmodifiedR15D >> 0x10 & 1) != 0) {
-    uStack0000000000000040 = 0;
+    StackData4 = 0;
     if ((char)unmodifiedR15D < '\0') {
       ContextHandleData = FUN_180742050(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x198,&UNK_180958000,0xf59,0);
       if (ContextHandleData == 0) {
@@ -127157,7 +127157,7 @@ ulonglong FUN_180745946(UIDword uiContext,UIDword dataSource)
         (**(code **)(*plocalLong7 + 0xd8))(plocalLong7);
       }
       allocatedMemory0 = plocalLong7[0x21];
-      uStack0000000000000040 = *(UIDword *)((longlong)TargetHandle + 0xd4);
+      StackData4 = *(UIDword *)((longlong)TargetHandle + 0xd4);
       ContextHandleData = allocatedMemory0 + 0x128;
       if (*(int *)(allocatedMemory0 + 0x68) != 0) {
                      WARNING: Subroutine does not return
@@ -127174,7 +127174,7 @@ ulonglong FUN_180745946(UIDword uiContext,UIDword dataSource)
         *(longlong *)(plocalLong7[0x21] + 0x90) = ContextHandleData;
       }
     }
-    LoopCounter = FUN_18076ac40(uStack0000000000000040,plocalLong7[0x21] + 0x10);
+    LoopCounter = FUN_18076ac40(StackData4,plocalLong7[0x21] + 0x10);
     if (LoopCounter == 0) {
       ContextHandleData = *(longlong *)(plocalLong7[0x21] + 0x10);
       uVar9 = *(UIHandle *)(ContextHandleData + 0x168);
@@ -132886,15 +132886,15 @@ UIHandle FUN_18074b8e9(UIWord *uiContext)
 {
   UIHandle result;
   int allocationFlags;
-  undefined *puStack0000000000000040;
-  UIHandle uStack0000000000000048;
+  undefined *pStackData4;
+  UIHandle StackHandle1;
   
   if (1 < allocationFlags) {
     *uiContext = 0x30;
     return 1;
   }
-  puStack0000000000000040 = &UNK_1809fd0a0;
-  uStack0000000000000048 = 0;
+  pStackData4 = &UNK_1809fd0a0;
+  StackHandle1 = 0;
   result = FUN_18076b930();
   return result;
 }
@@ -133106,9 +133106,9 @@ void FUN_18074bc81(UIHandle uiContext,UIDword dataSource,longlong targetBuffer,U
   UIDword unmodifiedR15D;
   UIDword StackData1;
   uint StackData2;
-  uint uStack0000000000000038;
-  uint uStack0000000000000040;
-  uint uStack0000000000000048;
+  uint StackData3;
+  uint StackData4;
+  uint StackHandle1;
   uint uStack0000000000000050;
   UIDword uStack0000000000000068;
   uint uStack0000000000000070;
@@ -133122,9 +133122,9 @@ void FUN_18074bc81(UIHandle uiContext,UIDword dataSource,longlong targetBuffer,U
   *(UIHandle *)(registerAX + -0x18) = TargetHandle;
   uStack0000000000000070 = (uint)*(byte *)(targetBuffer + 0xf);
   uStack0000000000000050 = (uint)isCharacterMatch;
-  uStack0000000000000048 = (uint)*(byte *)(targetBuffer + 10);
-  uStack0000000000000040 = (uint)bVar3;
-  uStack0000000000000038 = (uint)IsEventProcessingActive;
+  StackHandle1 = (uint)*(byte *)(targetBuffer + 10);
+  StackData4 = (uint)bVar3;
+  StackData3 = (uint)IsEventProcessingActive;
   StackData2 = (uint)*(ushort *)(targetBuffer + 6);
   StackData1 = dataSource;
   uStack0000000000000068 = bufferSize;
@@ -137152,10 +137152,10 @@ UIHandle FUN_180750d6b(void)
   longlong EventHandle;
   UIHandle *unmodifiedR15;
   longlong lStack0000000000000030;
-  UIDword uStack0000000000000038;
+  UIDword StackData3;
   UIDword uStack000000000000003c;
   int iStack0000000000000040;
-  UIDword uStack0000000000000048;
+  UIDword StackHandle1;
   UIHandle uStack0000000000000050;
   UIHandle uStack0000000000000058;
   UIHandle uStack0000000000000060;
@@ -137174,9 +137174,9 @@ UIHandle FUN_180750d6b(void)
   }
   *(int *)(SourceHandle + 0x18) = (int)BasePointer;
   lStack0000000000000030 = 0;
-  _uStack0000000000000038 = 0;
+  _StackData3 = 0;
   _iStack0000000000000040 = 0;
-  _uStack0000000000000048 = 0;
+  _StackHandle1 = 0;
   uStack0000000000000050 = 0;
   uStack0000000000000058 = 0;
   uStack0000000000000060 = 0;
@@ -137184,12 +137184,12 @@ UIHandle FUN_180750d6b(void)
                     (SourceHandle[0xc],BasePointer & 0xffffffff,&stack0x00000030);
   if ((int)ProcessingStatus == 0) {
     SourceHandle[6] = lStack0000000000000030;
-    *(UIDword *)(SourceHandle + 5) = uStack0000000000000038;
+    *(UIDword *)(SourceHandle + 5) = StackData3;
     *(UIDword *)(SourceHandle + 0xd) = uStack000000000000003c;
     *(int *)((longlong)SourceHandle + 0x4c) = (int)uStack0000000000000050;
     *(UIDword *)((longlong)SourceHandle + 0x13c) = uStack0000000000000060._4_4_;
     *(int *)(SourceHandle + 10) = (uStack0000000000000050._4_4_ - (int)uStack0000000000000050) + 1;
-    *(UIDword *)((longlong)SourceHandle + 0x44) = uStack0000000000000048;
+    *(UIDword *)((longlong)SourceHandle + 0x44) = StackHandle1;
     *(float *)((longlong)SourceHandle + 0x6c) = (float)iStack0000000000000040;
     (**(code **)(*SourceHandle + 0x138))();
     componentIndex = SourceHandle[0x30];
@@ -155514,7 +155514,7 @@ void FUN_180760e8e(UIDword uiContext)
   ulonglong semaphoreHandle5;
   char cStack0000000000000040;
   uint uStack0000000000000044;
-  uint uStack0000000000000048;
+  uint StackHandle1;
   int iStack000000000000004c;
   int iStack0000000000000050;
   int iStack0000000000000054;
@@ -155695,14 +155695,14 @@ LAB_180761ebf:
                 *(int *)((longlong)colorBufferPointer1 + 0x14) = localInt7;
               }
               if ((semaphoreHandle0 != 0) &&
-                 (((iStack0000000000000054 != 0 || (uStack0000000000000044 < uStack0000000000000048)
+                 (((iStack0000000000000054 != 0 || (uStack0000000000000044 < StackHandle1)
                    ) || ((*(longlong *)(allocatedMemory3 + 0x40) != 0 &&
                          ((int)*(short *)(allocatedMemory3 + 0x3a) != (int)colorBufferPointer1[2])))))) {
                 if (allocatedMemory5 != 0) {
                   allocatedMemory5 = *(longlong *)(allocatedMemory5 + 0x10);
                 }
                      WARNING: Subroutine does not return
-                memset(allocatedMemory5,0,(ulonglong)(uStack0000000000000048 * (int)colorBufferPointer1[2]) << 2);
+                memset(allocatedMemory5,0,(ulonglong)(StackHandle1 * (int)colorBufferPointer1[2]) << 2);
               }
               allocatedMemory6 = 0;
               if ((*(int *)((longlong)colorBufferPointer1 + 0x14) == 1) || (*(int *)(ContextHandle + 0x14c) == 1)) {
@@ -155893,7 +155893,7 @@ LAB_180760f3a:
           memset(BasePointer[-0xf] +
                  (ulonglong)((uStack0000000000000044 + iStack0000000000000054) * localInt7) * 4,0,
                  (ulonglong)
-                 ((uStack0000000000000048 - iStack0000000000000054) - uStack0000000000000044)                  (longlong)localInt7 * 4);
+                 ((StackHandle1 - iStack0000000000000054) - uStack0000000000000044)                  (longlong)localInt7 * 4);
         }
         semaphoreHandle7 = (UIDword)((ulonglong)unmodifiedR13 >> 0x20);
         if ((*(float *)(ContextHandle + 0x1c8) == 1.0) && (*(float *)(ContextHandle + 0x1d4) == 1.0)) {
@@ -155980,7 +155980,7 @@ LAB_180760f3a:
           }
           unmodifiedR13 = 0;
           ptrResult4 = (UIHandle *)BasePointer[-0xe];
-          RegisterValue = uStack0000000000000048;
+          RegisterValue = StackHandle1;
           if (ptrResult4 != (UIHandle *)0x0) {
             localInt7 = *(int *)(ptrResult4 + 1);
             if (0 < localInt7) {
@@ -156163,7 +156163,7 @@ void FUN_18076161b(float uiContext)
   ulonglong stackParam00000020;
   char cStack0000000000000040;
   uint uStack0000000000000044;
-  uint uStack0000000000000048;
+  uint StackHandle1;
   int iStack000000000000004c;
   int iStack0000000000000050;
   int iStack0000000000000054;
@@ -156302,7 +156302,7 @@ void FUN_18076161b(float uiContext)
     if (*(longlong *)(ContextHandle + 0x138) != 0) {
       IndexResult = *(ulonglong *)(*(longlong *)(ContextHandle + 0x138) + 0x10);
     }
-    TempInt4 = FUN_180762e40(semaphoreHandle2,IndexResult,uStack0000000000000048,*(UIDword *)(ContextHandle + 0x148),
+    TempInt4 = FUN_180762e40(semaphoreHandle2,IndexResult,StackHandle1,*(UIDword *)(ContextHandle + 0x148),
                           stackParam00000020);
     if (TempInt4 != 0) {
       if ((IsEventProcessingActive1) && (stringCompareIndex != 0)) {
@@ -156443,14 +156443,14 @@ LAB_180761ebf:
               *(int *)((longlong)colorBufferPointer0 + 0x14) = TempInt4;
             }
             if ((result8 != 0) &&
-               (((iStack0000000000000054 != 0 || (uStack0000000000000044 < uStack0000000000000048))
+               (((iStack0000000000000054 != 0 || (uStack0000000000000044 < StackHandle1))
                 || ((*(longlong *)(CharacterDataOffset + 0x40) != 0 &&
                     ((int)*(short *)(CharacterDataOffset + 0x3a) != (int)colorBufferPointer0[2])))))) {
               if (allocatedMemory1 != 0) {
                 allocatedMemory1 = *(longlong *)(allocatedMemory1 + 0x10);
               }
                      WARNING: Subroutine does not return
-              memset(allocatedMemory1,0,(ulonglong)(uStack0000000000000048 * (int)colorBufferPointer0[2]) << 2);
+              memset(allocatedMemory1,0,(ulonglong)(StackHandle1 * (int)colorBufferPointer0[2]) << 2);
             }
             allocatedMemory2 = 0;
             if ((*(int *)((longlong)colorBufferPointer0 + 0x14) == 1) || (*(int *)(ContextHandle + 0x14c) == 1)) {
@@ -156529,7 +156529,7 @@ void FUN_1807617cf(void)
   float unmodifiedXMM7_Da;
   ulonglong stackParam00000020;
   UIHandle inputString;
-  uint uStack0000000000000048;
+  uint StackHandle1;
   int iStack000000000000004c;
   int iStack0000000000000050;
   int iStack0000000000000054;
@@ -156618,7 +156618,7 @@ void FUN_1807617cf(void)
     if (*(longlong *)(ContextHandle + 0x138) != 0) {
       result1 = *(ulonglong *)(*(longlong *)(ContextHandle + 0x138) + 0x10);
     }
-    uiValidationResult = FUN_180762e40(result7,result1,uStack0000000000000048,*(UIDword *)(ContextHandle + 0x148),
+    uiValidationResult = FUN_180762e40(result7,result1,StackHandle1,*(UIDword *)(ContextHandle + 0x148),
                           stackParam00000020);
     if (uiValidationResult != 0) {
       if ((isCharacterMatch6) && (allocatedMemory != 0)) {
@@ -156759,14 +156759,14 @@ LAB_180761ebf:
               *(int *)((longlong)pallocatedMemory5 + 0x14) = uiValidationResult;
             }
             if ((result3 != 0) &&
-               (((iStack0000000000000054 != 0 || (inputString._4_4_ < uStack0000000000000048))
+               (((iStack0000000000000054 != 0 || (inputString._4_4_ < StackHandle1))
                 || ((*(longlong *)(localLong7 + 0x40) != 0 &&
                     ((int)*(short *)(localLong7 + 0x3a) != (int)pallocatedMemory5[2])))))) {
               if (CharacterDataOffset != 0) {
                 CharacterDataOffset = *(longlong *)(CharacterDataOffset + 0x10);
               }
                      WARNING: Subroutine does not return
-              memset(CharacterDataOffset,0,(ulonglong)(uStack0000000000000048 * (int)pallocatedMemory5[2]) << 2);
+              memset(CharacterDataOffset,0,(ulonglong)(StackHandle1 * (int)pallocatedMemory5[2]) << 2);
             }
             allocatedMemory0 = 0;
             if ((*(int *)((longlong)pallocatedMemory5 + 0x14) == 1) || (*(int *)(ContextHandle + 0x14c) == 1)) {
@@ -178424,9 +178424,9 @@ UIHandle FUN_180775691(void)
   int allocationFlags;
   UIHandle unmodifiedR15;
   UIDword *pStackData1;
-  UIDword uStack0000000000000038;
-  UIDword uStack0000000000000040;
-  UIDword uStack0000000000000048;
+  UIDword StackData3;
+  UIDword StackData4;
+  UIDword StackHandle1;
   int iStack0000000000000058;
   UIHandle stackParam000000a0;
   UIHandle stackParam000000a8;
@@ -178434,12 +178434,12 @@ UIHandle FUN_180775691(void)
   int stackParam000000c0;
   
   if (allocationFlags != 0) {
-    uStack0000000000000048 = *(UIDword *)(ContextHandle + 0x220);
-    uStack0000000000000040 = *(UIDword *)(ContextHandle + 0x228);
+    StackHandle1 = *(UIDword *)(ContextHandle + 0x220);
+    StackData4 = *(UIDword *)(ContextHandle + 0x228);
     iStack0000000000000058 = *(UIDword *)(ContextHandle + 0x26c);
-    uStack0000000000000038 = *(UIDword *)(ContextHandle + 0x230);
+    StackData3 = *(UIDword *)(ContextHandle + 0x230);
     pStackData1 = (UIDword *)(ContextHandle + 0x254);
-    result = FUN_1807762e0(uStack0000000000000038,&stack0x000000a0,&stack0x000000a8,
+    result = FUN_1807762e0(StackData3,&stack0x000000a0,&stack0x000000a8,
                           *(UIHandle *)(ContextHandle + 0x238),ContextHandle + 600);
     BasePointer = stackParam000000a0;
     unmodifiedR15 = stackParam000000a8;
@@ -178451,9 +178451,9 @@ UIHandle FUN_180775691(void)
   }
   if (unmodifiedESI != 0) {
     pStackData1 = (UIDword *)(ContextHandle + 600);
-    uStack0000000000000048 = *(UIDword *)(ContextHandle + 0x228);
-    uStack0000000000000038 = *(UIDword *)(ContextHandle + 0x24c);
-    uStack0000000000000040 = *(UIDword *)(ContextHandle + 0x230);
+    StackHandle1 = *(UIDword *)(ContextHandle + 0x228);
+    StackData3 = *(UIDword *)(ContextHandle + 0x24c);
+    StackData4 = *(UIDword *)(ContextHandle + 0x230);
     iStack0000000000000058 = unmodifiedESI;
     (*(code *)*_DAT_180c0d100)
               (BasePointer,unmodifiedR15,*(UIHandle *)(ContextHandle + 0x238),*pStackData1,
@@ -182925,8 +182925,8 @@ UIHandle FUN_180779df5(UIDword uiContext,ulonglong dataSource)
   longlong unmodifiedR15;
   int iStack0000000000000028;
   UIDword StackData2;
-  UIDword uStack0000000000000038;
-  UIDword *puStack0000000000000040;
+  UIDword StackData3;
+  UIDword *pStackData4;
   UIDword stackParam00000050;
   ulonglong uStack0000000000000060;
   ulonglong uStack0000000000000068;
@@ -183028,10 +183028,10 @@ UIHandle FUN_180779df5(UIDword uiContext,ulonglong dataSource)
     uStack0000000000000068 = dataSource;
     do {
       stackParam000000d8 = 0;
-      puStack0000000000000040 = &stack0x000000d8;
+      pStackData4 = &stack0x000000d8;
       iStack0000000000000028 = EventHandleD;
       StackData2 = unmodifiedR13D;
-      uStack0000000000000038 = EventTypeCode;
+      StackData3 = EventTypeCode;
       FUN_180779270(uiContext,*(longlong *)(unmodifiedR15 + 0x438) +
                             (longlong)(*(int *)(unmodifiedR15 + 0x444) * (int)CounterResult) * 4,ProcessingResult3,
                     *(int *)(unmodifiedR15 + 0x444),*ptrResult4);
@@ -192497,14 +192497,14 @@ void FUN_180785cba(void)
   UIHandle *unmodifiedR13;
   float *EventHandle;
   UIHandle StackData2;
-  UIDword uStack0000000000000038;
+  UIDword StackData3;
   UIHandle uStack000000000000003c;
   UIDword uStack0000000000000044;
   float fStack0000000000000048;
   float fStack000000000000004c;
   
   StackData2 = *unmodifiedR13;
-  uStack0000000000000038 = *(UIDword *)(unmodifiedR13 + 1);
+  StackData3 = *(UIDword *)(unmodifiedR13 + 1);
   uStack000000000000003c = *unmodifiedR12;
   uStack0000000000000044 = *(UIDword *)(unmodifiedR12 + 1);
   fStack0000000000000048 = 1.0;
@@ -194132,7 +194132,7 @@ void FUN_1807873a8(int uiContext,longlong dataSource)
   int ProcessingResult3;
   longlong EventHandle;
   char inputString;
-  uint uStack0000000000000048;
+  uint StackHandle1;
   int iStack000000000000004c;
   longlong stackParam00000060;
   UIHandle stackParam00000068;
@@ -194160,15 +194160,15 @@ void FUN_1807873a8(int uiContext,longlong dataSource)
           do {
             localLong8 = (result0 & 0xffff) * 0x58;
             localInt6 = ProcessingResult3 - result2;
-            if ((int)(uStack0000000000000048 - eventTypeCode) < (int)(ProcessingResult3 - result2)) {
-              localInt6 = uStack0000000000000048 - eventTypeCode;
+            if ((int)(StackHandle1 - eventTypeCode) < (int)(ProcessingResult3 - result2)) {
+              localInt6 = StackHandle1 - eventTypeCode;
             }
             if ((*(char *)(localLong8 + *pEventDataIndex) != '\0') && (*(float *)(pEventDataIndex + 5) == 10.0)) {
               *(UIDword *)(pEventDataIndex + 5) = *(UIDword *)(localLong8 + 0xc + *pEventDataIndex);
             }
             eventTypeCode = (uint)(ushort)((short)eventTypeCode + (short)localInt6);
             result2 = (uint)(ushort)((short)result2 + (short)localInt6);
-            if (eventTypeCode == uStack0000000000000048) {
+            if (eventTypeCode == StackHandle1) {
               eventTypeCode = 0;
               result0 = (longlong)(ulonglong)(((uint)result0 & 0xffff) + 1) %
                        (longlong)iStack000000000000004c & 0xffffffff;
@@ -194204,12 +194204,12 @@ void FUN_1807873a8(int uiContext,longlong dataSource)
     psVar1 = (short *)(*(longlong *)(ContextHandle + 0x48) + 0x127f4);
     *psVar1 = *psVar1 + (short)EventHandle;
     eventTypeCode = (uint)*(ushort *)(*(longlong *)(ContextHandle + 0x48) + 0x127f4);
-    if (uStack0000000000000048 <= eventTypeCode) {
+    if (StackHandle1 <= eventTypeCode) {
       *(short *)(*(longlong *)(ContextHandle + 0x48) + 0x127f4) =
-           (short)(eventTypeCode % uStack0000000000000048);
+           (short)(eventTypeCode % StackHandle1);
       *(short *)(*(longlong *)(ContextHandle + 0x48) + 0x127f2) =
            (short)((int)((uint)*(ushort *)(*(longlong *)(ContextHandle + 0x48) + 0x127f2) +
-                        eventTypeCode / uStack0000000000000048) % iStack000000000000004c);
+                        eventTypeCode / StackHandle1) % iStack000000000000004c);
     }
   }
   if (result0 == 0) {
@@ -198870,7 +198870,7 @@ void FUN_18078ad5d(UIDword uiContext)
   int uiValidationResult;
   UIDword extraout_XMM0_Da;
   UIDword extraout_XMM0_Da_00;
-  UIDword uStack0000000000000048;
+  UIDword StackHandle1;
   UIDword uStack000000000000004c;
   UIDword uStack0000000000000050;
   UIDword uStack0000000000000054;
@@ -198882,7 +198882,7 @@ void FUN_18078ad5d(UIDword uiContext)
   }
   uiOperationResult = FUN_180746460(uiContext,uiValidationResult,0,0);
   if (uiOperationResult == 0) {
-    if ((_uStack0000000000000048 == *(longlong *)(ContextHandle + 0x684)) &&
+    if ((_StackHandle1 == *(longlong *)(ContextHandle + 0x684)) &&
        (_uStack0000000000000050 == *(longlong *)(ContextHandle + 0x68c))) {
       *(int *)(ContextHandle + 0x680) = uiValidationResult;
     }
@@ -198898,7 +198898,7 @@ void FUN_18078ad5d(UIDword uiContext)
         goto LAB_18078adb4;
       }
       *(int *)(ContextHandle + 0x680) = uiValidationResult;
-      *(UIDword *)(ContextHandle + 0x684) = uStack0000000000000048;
+      *(UIDword *)(ContextHandle + 0x684) = StackHandle1;
       *(UIDword *)(ContextHandle + 0x688) = uStack000000000000004c;
       *(UIDword *)(ContextHandle + 0x68c) = uStack0000000000000050;
       *(UIDword *)(ContextHandle + 0x690) = uStack0000000000000054;
@@ -198935,7 +198935,7 @@ void FUN_18078add1(void)
   UIDword allocationFlags;
   UIDword extraout_XMM0_Da;
   UIDword extraout_XMM0_Da_00;
-  UIDword uStack0000000000000048;
+  UIDword StackHandle1;
   UIDword uStack000000000000004c;
   UIDword uStack0000000000000050;
   UIDword uStack0000000000000054;
@@ -198954,7 +198954,7 @@ void FUN_18078add1(void)
     }
   }
   *(UIDword *)(ContextHandle + 0x680) = allocationFlags;
-  *(UIDword *)(ContextHandle + 0x684) = uStack0000000000000048;
+  *(UIDword *)(ContextHandle + 0x684) = StackHandle1;
   *(UIDword *)(ContextHandle + 0x688) = uStack000000000000004c;
   *(UIDword *)(ContextHandle + 0x68c) = uStack0000000000000050;
   *(UIDword *)(ContextHandle + 0x690) = uStack0000000000000054;
@@ -210577,11 +210577,11 @@ UIHandle FUN_180796875(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
   float localFloat8;
   float localFloat9;
   float in_XMM4_Da;
-  uint uStack0000000000000040;
+  uint StackData4;
   uint stackParam00000058;
   uint stackParam00000060;
   
-  uStack0000000000000040 = 0;
+  StackData4 = 0;
   if (register9D == 0) {
     return 0;
   }
@@ -210591,7 +210591,7 @@ UIHandle FUN_180796875(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
     }
     semaphoreHandle = 0;
     if (3 < stackParam00000060) {
-      uiCompareResult = uStack0000000000000040 * stackParam00000060;
+      uiCompareResult = StackData4 * stackParam00000060;
       TempInt4 = 1;
       do {
         if (unmodifiedEBX == 0) {
@@ -210697,7 +210697,7 @@ UIHandle FUN_180796875(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
         else {
           MaxProcessingCount = 0;
         }
-        result = uStack0000000000000040 * stackParam00000060 + semaphoreHandle;
+        result = StackData4 * stackParam00000060 + semaphoreHandle;
         localFloat8 = ABS(*(float *)(register10 + (ulonglong)result * 4));
         localFloat9 = *(float *)(uiContext + 0x218 + (longlong)(int)MaxProcessingCount * 4);
         if (localFloat9 < localFloat8) {
@@ -210713,8 +210713,8 @@ UIHandle FUN_180796875(longlong uiContext,UIHandle dataSource,UIHandle targetBuf
              localFloat8 * *(float *)(register10 + (ulonglong)result * 4);
       } while (semaphoreHandle < stackParam00000060);
     }
-    uStack0000000000000040 = uStack0000000000000040 + 1;
-  } while (uStack0000000000000040 < EventHandleD);
+    StackData4 = StackData4 + 1;
+  } while (StackData4 < EventHandleD);
   return 0;
 }
 
@@ -217839,7 +217839,7 @@ UIHandle FUN_18079e219(void)
   UIDword RegisterValue;
   UIHandle unmodifiedR15;
   ulonglong semaphoreHandle;
-  uint uStack0000000000000038;
+  uint StackData3;
   
   *(UIHandle *)(registerAX + 0x10) = BasePointer;
   result = (ulonglong)allocationFlags;
@@ -217850,7 +217850,7 @@ UIHandle FUN_18079e219(void)
          *(UIDword *)(ContextHandle + 0xc21c);
     *(UIDword *)(*(longlong *)(ContextHandle + 0xc228) + 0x14034 + result) =
          *(UIDword *)(ContextHandle + 0xc238);
-    uStack0000000000000038 = allocationFlags;
+    StackData3 = allocationFlags;
     FUN_1807a0c70(*(longlong *)(ContextHandle + 0xc228) + semaphoreHandle,*(UIDword *)(ContextHandle + 0xc218),
                   RegisterValue,*(UIDword *)(ContextHandle + 0xc220),(float)*(int *)(ContextHandle + 0xc230)
                  );
@@ -226201,7 +226201,7 @@ void FUN_180805689(longlong *uiContext,int dataSource,UIDword *targetBuffer,UIDw
   uint result1;
   longlong *unmodifiedR12;
   ulonglong result2;
-  UIDword uStack0000000000000040;
+  UIDword StackData4;
   UIHandle stackParam00000048;
   UIHandle stackParam00000050;
   
@@ -226233,15 +226233,15 @@ void FUN_180805689(longlong *uiContext,int dataSource,UIDword *targetBuffer,UIDw
       stackParam00000050 = 0x30;
       *(longlong *)(BasePointer + -0x79) = ContextHandleData;
       *(UIHandle *)(BasePointer + -0x71) = 0;
-      _uStack0000000000000040 = (longlong *)0x0;
+      _StackData4 = (longlong *)0x0;
       localInt5 = (**(code **)(**(longlong **)(allocatedMemory + 0x2c0) + 0x28))
                         (*(longlong **)(allocatedMemory + 0x2c0),localLong7,&stack0x00000040);
       if (-1 < localInt5) {
         result2 = BasePointer - 0x71;
-        localInt5 = (**(code **)(*_uStack0000000000000040 + 0x18))
-                          (_uStack0000000000000040,&UNK_18097eeb8,0x17,&stack0x00000048,result2);
+        localInt5 = (**(code **)(*_StackData4 + 0x18))
+                          (_StackData4,&UNK_18097eeb8,0x17,&stack0x00000048,result2);
         if (((localInt5 + 0x80000000U & 0x80000000) != 0) || (localInt5 == -0x7fffbffe)) {
-          (**(code **)(*_uStack0000000000000040 + 0x10))();
+          (**(code **)(*_StackData4 + 0x10))();
           if (localInt5 != -0x7fffbffe) {
             uiContext[4] = *(longlong *)(BasePointer + -0x71);
           }
@@ -226252,8 +226252,8 @@ void FUN_180805689(longlong *uiContext,int dataSource,UIDword *targetBuffer,UIDw
             localInt5 = *SourceHandle;
             *(int *)(BasePointer + -0x65) = localInt5;
             *(UIDword *)(BasePointer + -0x69) = 0x10003;
-            _uStack0000000000000040 =
-                 (longlong *)((ulonglong)_uStack0000000000000040 & 0xffffffff00000000);
+            _StackData4 =
+                 (longlong *)((ulonglong)_StackData4 & 0xffffffff00000000);
             *(int *)(BasePointer + -0x61) = localInt5 * 4;
             localInt5 = (**(code **)(*colorBufferPointer + 0x28))(colorBufferPointer,&stack0x00000040);
             if (-1 < localInt5) {
@@ -226262,7 +226262,7 @@ void FUN_180805689(longlong *uiContext,int dataSource,UIDword *targetBuffer,UIDw
               if (localLong7 != 0) {
                 *(longlong *)(BasePointer + -0x39) = localLong7;
                 *(longlong *)(BasePointer + -0x51) = BasePointer + -0x69;
-                *(UIDword *)(BasePointer + -0x41) = uStack0000000000000040;
+                *(UIDword *)(BasePointer + -0x41) = StackData4;
                 colorBufferPointer = (longlong *)uiContext[4];
                 *(UIHandle *)(BasePointer + -0x31) = 0;
                 *(UIHandle *)(BasePointer + -0x49) = 0x1ffe;
@@ -229463,7 +229463,7 @@ UIHandle FUN_18080a0aa(void)
   int unmodifiedR15D;
   longlong EventDataIndex;
   UIHandle stackParam00000030;
-  UIDword uStack0000000000000038;
+  UIDword StackData3;
   uint uStack000000000000003c;
   uint stackParam00000090;
   int stackParam00000098;
@@ -229507,7 +229507,7 @@ UIHandle FUN_18080a0aa(void)
           if (uiOperationResult == 0) {
             return 0;
           }
-          *(UIDword *)(stackParam000000a8 + ProcessingStatus * 4) = uStack0000000000000038;
+          *(UIDword *)(stackParam000000a8 + ProcessingStatus * 4) = StackData3;
           ProcessingStatus = (ulonglong)((int)ProcessingStatus + 1);
         }
       }
@@ -234814,7 +234814,7 @@ void FUN_18080f83a(longlong uiContext,float *dataSource,int *targetBuffer,longlo
   uint uStackX_24;
   int iStack0000000000000028;
   longlong lStack0000000000000030;
-  UIDword uStack0000000000000038;
+  UIDword StackData3;
   int iStack000000000000003c;
   int iStack0000000000000040;
   uint uStack0000000000000044;
@@ -234869,7 +234869,7 @@ void FUN_18080f83a(longlong uiContext,float *dataSource,int *targetBuffer,longlo
     iStack0000000000000098 = localInt6;
   }
   lStack0000000000000030 = bufferSize;
-  uStack0000000000000038 = bufferSize;
+  StackData3 = bufferSize;
   pfStack0000000000000060 = dataSource;
   lStack0000000000000070 = register10;
   lStack0000000000000078 = uiContext;
@@ -234925,7 +234925,7 @@ void FUN_18080f83a(longlong uiContext,float *dataSource,int *targetBuffer,longlo
               uStackX_20 = 3;
               lStack0000000000000068 = 3;
             }
-            localFloat25 = *(float *)(localLong8 + (longlong)(ProcessingResult2 << ((byte)uStack0000000000000038 & 0x1f))
+            localFloat25 = *(float *)(localLong8 + (longlong)(ProcessingResult2 << ((byte)StackData3 & 0x1f))
                                         * 4);
             uStackX_24 = result8;
             uStack0000000000000044 = result3;
@@ -235112,7 +235112,7 @@ void FUN_18080f83a(longlong uiContext,float *dataSource,int *targetBuffer,longlo
               localLong8 = *(longlong *)(lStack0000000000000030 + 0x58 + result7 * 8);
               uVar9 = 3;
             }
-            localFloat25 = *(float *)(localLong8 + (longlong)(ProcessingResult2 << ((byte)uStack0000000000000038 & 0x1f))
+            localFloat25 = *(float *)(localLong8 + (longlong)(ProcessingResult2 << ((byte)StackData3 & 0x1f))
                                         * 4);
             uStackX_20 = (uint)uVar9;
           }
@@ -235229,7 +235229,7 @@ void FUN_18080f83a(longlong uiContext,float *dataSource,int *targetBuffer,longlo
           result8 = *psemaphoreHandle3;
           result7 = (ulonglong)result8;
           psemaphoreHandle3 = psemaphoreHandle3 + 2;
-          ProcessingResult1 = ProcessingResult1 + ProcessingResult2 << ((byte)uStack0000000000000038 & 0x1f);
+          ProcessingResult1 = ProcessingResult1 + ProcessingResult2 << ((byte)StackData3 & 0x1f);
           uStackX_20 = result3;
           piStack0000000000000058 = puiValidationResult1;
           if (0x179 < ProcessingResult1) break;
@@ -235398,7 +235398,7 @@ void FUN_18080f83a(longlong uiContext,float *dataSource,int *targetBuffer,longlo
             puiValidationResult1 = puiValidationResult1 + 1;
             targetBuffer = targetBuffer + 1;
             localFloat25 = *(float *)(*(longlong *)(bufferSize + 0x70) +
-                               (longlong)(ProcessingResult1 + ProcessingResult2 << ((byte)uStack0000000000000038 & 0x1f))
+                               (longlong)(ProcessingResult1 + ProcessingResult2 << ((byte)StackData3 & 0x1f))
                                * 4);
           }
           result7 = (ulonglong)(result8 - 1);
@@ -235511,7 +235511,7 @@ void FUN_18080f84b(int uiContext,longlong dataSource,int *targetBuffer,longlong 
   uint uStackX_24;
   int iStack0000000000000028;
   longlong lStack0000000000000030;
-  UIDword uStack0000000000000038;
+  UIDword StackData3;
   int iStack000000000000003c;
   int iStack0000000000000040;
   uint uStack0000000000000044;
@@ -235565,7 +235565,7 @@ void FUN_18080f84b(int uiContext,longlong dataSource,int *targetBuffer,longlong 
     iStack0000000000000098 = localInt6;
   }
   lStack0000000000000030 = bufferSize;
-  uStack0000000000000038 = bufferSize;
+  StackData3 = bufferSize;
   lStack0000000000000060 = dataSource;
   lStack0000000000000070 = register10;
   if (*(int *)(bufferSize + 0x10) == 2) {
@@ -235620,7 +235620,7 @@ void FUN_18080f84b(int uiContext,longlong dataSource,int *targetBuffer,longlong 
               uStackX_20 = 3;
               lStack0000000000000068 = 3;
             }
-            localFloat26 = *(float *)(localLong8 + (longlong)(ProcessingResult3 << ((byte)uStack0000000000000038 & 0x1f))
+            localFloat26 = *(float *)(localLong8 + (longlong)(ProcessingResult3 << ((byte)StackData3 & 0x1f))
                                         * 4);
             uStackX_24 = result9;
             uStack0000000000000044 = IndexResult;
@@ -235807,7 +235807,7 @@ void FUN_18080f84b(int uiContext,longlong dataSource,int *targetBuffer,longlong 
               localLong8 = *(longlong *)(lStack0000000000000030 + 0x58 + result8 * 8);
               uVar9 = 3;
             }
-            localFloat26 = *(float *)(localLong8 + (longlong)(ProcessingResult3 << ((byte)uStack0000000000000038 & 0x1f))
+            localFloat26 = *(float *)(localLong8 + (longlong)(ProcessingResult3 << ((byte)StackData3 & 0x1f))
                                         * 4);
             uStackX_20 = (uint)uVar9;
           }
@@ -235924,7 +235924,7 @@ void FUN_18080f84b(int uiContext,longlong dataSource,int *targetBuffer,longlong 
           result9 = *psemaphoreHandle4;
           result8 = (ulonglong)result9;
           psemaphoreHandle4 = psemaphoreHandle4 + 2;
-          ProcessingResult2 = ProcessingResult2 + ProcessingResult3 << ((byte)uStack0000000000000038 & 0x1f);
+          ProcessingResult2 = ProcessingResult2 + ProcessingResult3 << ((byte)StackData3 & 0x1f);
           uStackX_20 = IndexResult;
           piStack0000000000000058 = puiValidationResult2;
           if (0x179 < ProcessingResult2) break;
@@ -236093,7 +236093,7 @@ void FUN_18080f84b(int uiContext,longlong dataSource,int *targetBuffer,longlong 
             puiValidationResult2 = puiValidationResult2 + 1;
             targetBuffer = targetBuffer + 1;
             localFloat26 = *(float *)(*(longlong *)(bufferSize + 0x70) +
-                               (longlong)(ProcessingResult2 + ProcessingResult3 << ((byte)uStack0000000000000038 & 0x1f))
+                               (longlong)(ProcessingResult2 + ProcessingResult3 << ((byte)StackData3 & 0x1f))
                                * 4);
           }
           result8 = (ulonglong)(result9 - 1);
@@ -245098,14 +245098,14 @@ void FUN_18081b40f(UIHandle uiContext)
   longlong ContextHandle;
   UIByte StackData1;
   UIDword StackData2;
-  UIHandle uStack0000000000000038;
+  UIHandle StackData3;
   
-  uStack0000000000000038 = 0;
+  StackData3 = 0;
   StackData2 = 0;
   StackData1 = 0;
   uiOperationResult = FUN_180767c00(uiContext,&UNK_18097fb88,FUN_18081bc60);
   if (uiOperationResult == 0) {
-    uStack0000000000000038 = 0;
+    StackData3 = 0;
     StackData2 = 0;
     StackData1 = 0;
     FUN_180767c00(ContextHandle + 0x180,&UNK_18097fba8,FUN_18081c0c0);
@@ -277586,11 +277586,11 @@ UIHandle FUN_180839c06(void)
   uint uStack000000000000002c;
   uint StackData2;
   uint uStack0000000000000034;
-  uint uStack0000000000000038;
+  uint StackData3;
   uint uStack000000000000003c;
-  uint uStack0000000000000040;
+  uint StackData4;
   uint uStack0000000000000044;
-  uint uStack0000000000000048;
+  uint StackHandle1;
   uint uStack000000000000004c;
   uint uStack0000000000000050;
   uint uStack0000000000000054;
@@ -277606,13 +277606,13 @@ UIHandle FUN_180839c06(void)
     uStackX_24 = uStackX_24 & unmodifiedXMM7_Db;
     StackData1 = StackData1 & unmodifiedXMM7_Dc;
     uStack000000000000002c = uStack000000000000002c & unmodifiedXMM7_Dd;
-    uStack0000000000000040 = uStack0000000000000040 & unmodifiedXMM7_Da;
+    StackData4 = StackData4 & unmodifiedXMM7_Da;
     uStack0000000000000044 = uStack0000000000000044 & unmodifiedXMM7_Db;
-    uStack0000000000000048 = uStack0000000000000048 & unmodifiedXMM7_Dc;
+    StackHandle1 = StackHandle1 & unmodifiedXMM7_Dc;
     uStack000000000000004c = uStack000000000000004c & unmodifiedXMM7_Dd;
     StackData2 = StackData2 & unmodifiedXMM7_Da;
     uStack0000000000000034 = uStack0000000000000034 & unmodifiedXMM7_Db;
-    uStack0000000000000038 = uStack0000000000000038 & unmodifiedXMM7_Dc;
+    StackData3 = StackData3 & unmodifiedXMM7_Dc;
     uStack000000000000003c = uStack000000000000003c & unmodifiedXMM7_Dd;
     uStack0000000000000050 = uStack0000000000000050 & unmodifiedXMM7_Da;
     uStack0000000000000054 = uStack0000000000000054 & unmodifiedXMM7_Db;
@@ -277623,11 +277623,11 @@ UIHandle FUN_180839c06(void)
     ;
     TargetHandle[2] = (float)(int)StackData2 * unmodifiedXMM9_Da + unmodifiedXMM8_Da + TargetHandle[2]
     ;
-    TargetHandle[3] = (float)(int)uStack0000000000000038 * unmodifiedXMM9_Dc + unmodifiedXMM8_Dc + TargetHandle[3]
+    TargetHandle[3] = (float)(int)StackData3 * unmodifiedXMM9_Dc + unmodifiedXMM8_Dc + TargetHandle[3]
     ;
-    TargetHandle[4] = (float)(int)uStack0000000000000040 * unmodifiedXMM9_Da + unmodifiedXMM8_Da + TargetHandle[4]
+    TargetHandle[4] = (float)(int)StackData4 * unmodifiedXMM9_Da + unmodifiedXMM8_Da + TargetHandle[4]
     ;
-    TargetHandle[5] = (float)(int)uStack0000000000000048 * unmodifiedXMM9_Dc + unmodifiedXMM8_Dc + TargetHandle[5]
+    TargetHandle[5] = (float)(int)StackHandle1 * unmodifiedXMM9_Dc + unmodifiedXMM8_Dc + TargetHandle[5]
     ;
     TargetHandle[6] = (float)(int)uStack0000000000000050 * unmodifiedXMM9_Da + unmodifiedXMM8_Da + TargetHandle[6]
     ;
@@ -282304,12 +282304,12 @@ void FUN_18083cd26(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer
   int uiValidationResult;
   int uiCompareResult;
   int RegisterPointerD;
-  UIHandle uStack0000000000000040;
+  UIHandle StackData4;
   UIHandle stackParam00000048;
   code *pcStack0000000000000068;
   
   pcStack0000000000000068 = FUN_18082ed00;
-  uStack0000000000000040 = stackParam00000048;
+  StackData4 = stackParam00000048;
   puiOperationResult = (int *)*targetBuffer;
   uiCompareResult = *(int *)(dataSource + 0x34) >> 1;
   uiValidationResult = puiOperationResult[1];
@@ -282447,12 +282447,12 @@ void FUN_18083cdb6(UIHandle uiContext,longlong dataSource,UIHandle *targetBuffer
   int uiValidationResult;
   int uiCompareResult;
   int RegisterPointerD;
-  UIHandle uStack0000000000000040;
+  UIHandle StackData4;
   UIHandle stackParam00000048;
   code *pcStack0000000000000068;
   
   pcStack0000000000000068 = FUN_18082e800;
-  uStack0000000000000040 = stackParam00000048;
+  StackData4 = stackParam00000048;
   puiOperationResult = (int *)*targetBuffer;
   uiCompareResult = *(int *)(dataSource + 0x34) >> 1;
   uiValidationResult = puiOperationResult[1];
@@ -292210,13 +292210,13 @@ UIHandle FUN_18084b015(UIHandle uiContext,longlong dataSource)
 {
   int uiOperationResult;
   longlong stackParam00000038;
-  UIHandle uStack0000000000000040;
+  UIHandle StackData4;
   UIHandle *stackParam00000048;
   
   if (*(int *)(*(longlong *)(dataSource + 0x98) + 0x200) == 0) {
     return 0;
   }
-  uStack0000000000000040 = 0;
+  StackData4 = 0;
   uiOperationResult = FUN_18088c740(&stack0x00000040);
   if (uiOperationResult == 0) {
     uiOperationResult = FUN_18088dec0(*(UIHandle *)(stackParam00000038 + 0x98),&stack0x00000048,0x10);
@@ -292304,10 +292304,10 @@ void FUN_18084b0db(void)
   int uiOperationResult;
   int uiValidationResult;
   UIDword unmodifiedEBX;
-  UIHandle uStack0000000000000038;
+  UIHandle StackData3;
   longlong inputString;
   
-  uStack0000000000000038 = 0;
+  StackData3 = 0;
   uiOperationResult = func_0x00018088c590(unmodifiedEBX);
   if (uiOperationResult == 0) {
     if ((*(uint *)(inputString + 0x24) >> 1 & 1) == 0) {
@@ -297552,9 +297552,9 @@ void FUN_18084ee9a(void)
   longlong ContextHandle;
   uint StackData1;
   uint StackData2;
-  uint uStack0000000000000038;
-  uint uStack0000000000000040;
-  uint uStack0000000000000048;
+  uint StackData3;
+  uint StackData4;
+  uint StackHandle1;
   uint uStack0000000000000050;
   uint uStack0000000000000058;
   uint uStack0000000000000060;
@@ -297564,10 +297564,10 @@ void FUN_18084ee9a(void)
   uStack0000000000000060 = aresult._14_2_ & 0xff;
   uStack0000000000000058 = aresult._12_4_ >> 8 & 0xff;
   uStack0000000000000050 = aresult._12_4_ & 0xff;
-  uStack0000000000000048 = aresult._11_4_ & 0xff;
+  StackHandle1 = aresult._11_4_ & 0xff;
   uStack0000000000000068 = (uint)aresult[0xf];
-  uStack0000000000000040 = (uint)aresult[10];
-  uStack0000000000000038 = (uint)aresult[9];
+  StackData4 = (uint)aresult[10];
+  StackData3 = (uint)aresult[9];
   StackData2 = (uint)aresult[8];
   StackData1 = (uint)aresult._6_2_;
                      WARNING: Subroutine does not return
@@ -298706,9 +298706,9 @@ int FUN_18084f800(longlong *uiContext)
   bool isCharacterMatch6;
   uint StackData2;
   uint uStack0000000000000034;
-  uint uStack0000000000000038;
+  uint StackData3;
   uint uStack000000000000003c;
-  UIDword uStack0000000000000040;
+  UIDword StackData4;
   UIDword uStack0000000000000044;
   int iStack0000000000000048;
   UIDword uStack000000000000004c;
@@ -298761,7 +298761,7 @@ LAB_18084f88c:
     ptrResult2 = (uint *)((longlong)EventOperationCount * 0x20 + uiContext[8]);
     StackData2 = *ptrResult2;
     uStack0000000000000034 = ptrResult2[1];
-    uStack0000000000000038 = ptrResult2[2];
+    StackData3 = ptrResult2[2];
     uStack000000000000003c = ptrResult2[3];
     isCharacterMatch6 = localLong7 == 0;
     if (isCharacterMatch6) {
@@ -298771,15 +298771,15 @@ LAB_18084f88c:
       CleanupUIContextState();
     }
     EventTypeCode = uStack000000000000003c;
-    ProcessingStatus = uStack0000000000000038;
+    ProcessingStatus = StackData3;
     result = StackData2;
-    CharacterDataOffset = CONCAT44(uStack000000000000003c,uStack0000000000000038);
+    CharacterDataOffset = CONCAT44(uStack000000000000003c,StackData3);
     componentIndex = CONCAT44(uStack0000000000000034,StackData2);
     if (((*(int *)((longlong)uiContext + 0x24) != 0) && ((int)uiContext[1] != 0)) &&
        (ProcessingResult1 = *(int *)(*uiContext +
                          (longlong)
                          (int)((StackData2 ^ uStack0000000000000034 ^
-                                uStack0000000000000038 ^ uStack000000000000003c) &
+                                StackData3 ^ uStack000000000000003c) &
                               (int)uiContext[1] - 1U) * 4), ProcessingResult1 != -1)) {
       do {
         pEventDataIndex = (longlong *)((longlong)ProcessingResult1 * 0x20 + uiContext[2]);
@@ -298848,7 +298848,7 @@ LAB_18084fc83:
   }
   return EventOperationCount;
 joined_r0x00018084fa4e:
-  _uStack0000000000000040 = pallocatedMemory5;
+  _StackData4 = pallocatedMemory5;
   if (EventOperationCount == -1) goto LAB_18084f987;
   ptrResult2 = (uint *)((longlong)EventOperationCount * 0x10 + pEventDataIndex[2]);
   if ((int)pEventDataIndex[1] == 0) {
@@ -298894,12 +298894,12 @@ LAB_18084faac:
   EventOperationCount = -1;
 LAB_18084fb35:
   stackParam00000068 = CONCAT44(uStack0000000000000054,EventOperationCount);
-  uStack0000000000000040 = SUB84(pEventDataIndex,0);
+  StackData4 = SUB84(pEventDataIndex,0);
   uStack0000000000000044 = (UIDword)((ulonglong)pEventDataIndex >> 0x20);
   uStack0000000000000064 = 0xffffffff;
   pallocatedMemory5 = pEventDataIndex;
   iStack0000000000000050 = EventOperationCount;
-  uStack0000000000000058 = uStack0000000000000040;
+  uStack0000000000000058 = StackData4;
   uStack000000000000005c = uStack0000000000000044;
   iStack0000000000000060 = iStack0000000000000048;
   goto joined_r0x00018084fa4e;
@@ -298911,7 +298911,7 @@ LAB_18084fb35:
 LAB_18084f970:
     if (*ptrLocalInt6 != -1) {
       EventOperationCount = ((int *)*pEventDataIndex)[EventOperationCount];
-      pallocatedMemory5 = _uStack0000000000000040;
+      pallocatedMemory5 = _StackData4;
       goto joined_r0x00018084fa4e;
     }
   }
@@ -299203,9 +299203,9 @@ int FUN_18084fce0(longlong *uiContext)
   bool isCharacterMatch6;
   uint StackData2;
   uint uStack0000000000000034;
-  uint uStack0000000000000038;
+  uint StackData3;
   uint uStack000000000000003c;
-  UIDword uStack0000000000000040;
+  UIDword StackData4;
   UIDword uStack0000000000000044;
   int iStack0000000000000048;
   UIDword uStack000000000000004c;
@@ -299258,7 +299258,7 @@ LAB_18084fd6c:
     ptrResult2 = (uint *)((longlong)EventOperationCount * 0x20 + uiContext[8]);
     StackData2 = *ptrResult2;
     uStack0000000000000034 = ptrResult2[1];
-    uStack0000000000000038 = ptrResult2[2];
+    StackData3 = ptrResult2[2];
     uStack000000000000003c = ptrResult2[3];
     isCharacterMatch6 = localLong7 == 0;
     if (isCharacterMatch6) {
@@ -299268,15 +299268,15 @@ LAB_18084fd6c:
       CleanupUIContextState();
     }
     EventTypeCode = uStack000000000000003c;
-    ProcessingStatus = uStack0000000000000038;
+    ProcessingStatus = StackData3;
     result = StackData2;
-    CharacterDataOffset = CONCAT44(uStack000000000000003c,uStack0000000000000038);
+    CharacterDataOffset = CONCAT44(uStack000000000000003c,StackData3);
     componentIndex = CONCAT44(uStack0000000000000034,StackData2);
     if (((*(int *)((longlong)uiContext + 0x24) != 0) && ((int)uiContext[1] != 0)) &&
        (ProcessingResult1 = *(int *)(*uiContext +
                          (longlong)
                          (int)((StackData2 ^ uStack0000000000000034 ^
-                                uStack0000000000000038 ^ uStack000000000000003c) &
+                                StackData3 ^ uStack000000000000003c) &
                               (int)uiContext[1] - 1U) * 4), ProcessingResult1 != -1)) {
       do {
         pEventDataIndex = (longlong *)((longlong)ProcessingResult1 * 0x20 + uiContext[2]);
@@ -299345,7 +299345,7 @@ LAB_180850163:
   }
   return EventOperationCount;
 joined_r0x00018084ff2e:
-  _uStack0000000000000040 = pallocatedMemory5;
+  _StackData4 = pallocatedMemory5;
   if (EventOperationCount == -1) goto LAB_18084fe67;
   ptrResult2 = (uint *)((longlong)EventOperationCount * 0x10 + pEventDataIndex[2]);
   if ((int)pEventDataIndex[1] == 0) {
@@ -299391,12 +299391,12 @@ LAB_18084ff8c:
   EventOperationCount = -1;
 LAB_180850015:
   stackParam00000068 = CONCAT44(uStack0000000000000054,EventOperationCount);
-  uStack0000000000000040 = SUB84(pEventDataIndex,0);
+  StackData4 = SUB84(pEventDataIndex,0);
   uStack0000000000000044 = (UIDword)((ulonglong)pEventDataIndex >> 0x20);
   uStack0000000000000064 = 0xffffffff;
   pallocatedMemory5 = pEventDataIndex;
   iStack0000000000000050 = EventOperationCount;
-  uStack0000000000000058 = uStack0000000000000040;
+  uStack0000000000000058 = StackData4;
   uStack000000000000005c = uStack0000000000000044;
   iStack0000000000000060 = iStack0000000000000048;
   goto joined_r0x00018084ff2e;
@@ -299408,7 +299408,7 @@ LAB_180850015:
 LAB_18084fe50:
     if (*ptrLocalInt6 != -1) {
       EventOperationCount = ((int *)*pEventDataIndex)[EventOperationCount];
-      pallocatedMemory5 = _uStack0000000000000040;
+      pallocatedMemory5 = _StackData4;
       goto joined_r0x00018084ff2e;
     }
   }
@@ -299695,9 +299695,9 @@ int FUN_1808501c0(longlong *uiContext)
   bool isCharacterMatch6;
   uint StackData2;
   uint uStack0000000000000034;
-  uint uStack0000000000000038;
+  uint StackData3;
   uint uStack000000000000003c;
-  UIDword uStack0000000000000040;
+  UIDword StackData4;
   UIDword uStack0000000000000044;
   int iStack0000000000000048;
   UIDword uStack000000000000004c;
@@ -299750,7 +299750,7 @@ LAB_18085024c:
     ptrResult2 = (uint *)((longlong)EventOperationCount * 0x20 + uiContext[8]);
     StackData2 = *ptrResult2;
     uStack0000000000000034 = ptrResult2[1];
-    uStack0000000000000038 = ptrResult2[2];
+    StackData3 = ptrResult2[2];
     uStack000000000000003c = ptrResult2[3];
     isCharacterMatch6 = localLong7 == 0;
     if (isCharacterMatch6) {
@@ -299760,15 +299760,15 @@ LAB_18085024c:
       CleanupUIContextState();
     }
     EventTypeCode = uStack000000000000003c;
-    ProcessingStatus = uStack0000000000000038;
+    ProcessingStatus = StackData3;
     result = StackData2;
-    CharacterDataOffset = CONCAT44(uStack000000000000003c,uStack0000000000000038);
+    CharacterDataOffset = CONCAT44(uStack000000000000003c,StackData3);
     componentIndex = CONCAT44(uStack0000000000000034,StackData2);
     if (((*(int *)((longlong)uiContext + 0x24) != 0) && ((int)uiContext[1] != 0)) &&
        (ProcessingResult1 = *(int *)(*uiContext +
                          (longlong)
                          (int)((StackData2 ^ uStack0000000000000034 ^
-                                uStack0000000000000038 ^ uStack000000000000003c) &
+                                StackData3 ^ uStack000000000000003c) &
                               (int)uiContext[1] - 1U) * 4), ProcessingResult1 != -1)) {
       do {
         pEventDataIndex = (longlong *)((longlong)ProcessingResult1 * 0x20 + uiContext[2]);
@@ -299837,7 +299837,7 @@ LAB_180850643:
   }
   return EventOperationCount;
 joined_r0x00018085040e:
-  _uStack0000000000000040 = pallocatedMemory5;
+  _StackData4 = pallocatedMemory5;
   if (EventOperationCount == -1) goto LAB_180850347;
   ptrResult2 = (uint *)((longlong)EventOperationCount * 0x10 + pEventDataIndex[2]);
   if ((int)pEventDataIndex[1] == 0) {
@@ -299883,12 +299883,12 @@ LAB_18085046c:
   EventOperationCount = -1;
 LAB_1808504f5:
   stackParam00000068 = CONCAT44(uStack0000000000000054,EventOperationCount);
-  uStack0000000000000040 = SUB84(pEventDataIndex,0);
+  StackData4 = SUB84(pEventDataIndex,0);
   uStack0000000000000044 = (UIDword)((ulonglong)pEventDataIndex >> 0x20);
   uStack0000000000000064 = 0xffffffff;
   pallocatedMemory5 = pEventDataIndex;
   iStack0000000000000050 = EventOperationCount;
-  uStack0000000000000058 = uStack0000000000000040;
+  uStack0000000000000058 = StackData4;
   uStack000000000000005c = uStack0000000000000044;
   iStack0000000000000060 = iStack0000000000000048;
   goto joined_r0x00018085040e;
@@ -299900,7 +299900,7 @@ LAB_1808504f5:
 LAB_180850330:
     if (*ptrLocalInt6 != -1) {
       EventOperationCount = ((int *)*pEventDataIndex)[EventOperationCount];
-      pallocatedMemory5 = _uStack0000000000000040;
+      pallocatedMemory5 = _StackData4;
       goto joined_r0x00018085040e;
     }
   }
@@ -300187,9 +300187,9 @@ int FUN_1808506a0(longlong *uiContext)
   bool isCharacterMatch6;
   uint StackData2;
   uint uStack0000000000000034;
-  uint uStack0000000000000038;
+  uint StackData3;
   uint uStack000000000000003c;
-  UIDword uStack0000000000000040;
+  UIDword StackData4;
   UIDword uStack0000000000000044;
   int iStack0000000000000048;
   UIDword uStack000000000000004c;
@@ -300242,7 +300242,7 @@ LAB_18085072c:
     ptrResult2 = (uint *)((longlong)EventOperationCount * 0x20 + uiContext[8]);
     StackData2 = *ptrResult2;
     uStack0000000000000034 = ptrResult2[1];
-    uStack0000000000000038 = ptrResult2[2];
+    StackData3 = ptrResult2[2];
     uStack000000000000003c = ptrResult2[3];
     isCharacterMatch6 = localLong7 == 0;
     if (isCharacterMatch6) {
@@ -300252,15 +300252,15 @@ LAB_18085072c:
       CleanupUIContextState();
     }
     EventTypeCode = uStack000000000000003c;
-    ProcessingStatus = uStack0000000000000038;
+    ProcessingStatus = StackData3;
     result = StackData2;
-    CharacterDataOffset = CONCAT44(uStack000000000000003c,uStack0000000000000038);
+    CharacterDataOffset = CONCAT44(uStack000000000000003c,StackData3);
     componentIndex = CONCAT44(uStack0000000000000034,StackData2);
     if (((*(int *)((longlong)uiContext + 0x24) != 0) && ((int)uiContext[1] != 0)) &&
        (ProcessingResult1 = *(int *)(*uiContext +
                          (longlong)
                          (int)((StackData2 ^ uStack0000000000000034 ^
-                                uStack0000000000000038 ^ uStack000000000000003c) &
+                                StackData3 ^ uStack000000000000003c) &
                               (int)uiContext[1] - 1U) * 4), ProcessingResult1 != -1)) {
       do {
         pEventDataIndex = (longlong *)((longlong)ProcessingResult1 * 0x20 + uiContext[2]);
@@ -300329,7 +300329,7 @@ LAB_180850b23:
   }
   return EventOperationCount;
 joined_r0x0001808508ee:
-  _uStack0000000000000040 = pallocatedMemory5;
+  _StackData4 = pallocatedMemory5;
   if (EventOperationCount == -1) goto LAB_180850827;
   ptrResult2 = (uint *)((longlong)EventOperationCount * 0x10 + pEventDataIndex[2]);
   if ((int)pEventDataIndex[1] == 0) {
@@ -300375,12 +300375,12 @@ LAB_18085094c:
   EventOperationCount = -1;
 LAB_1808509d5:
   stackParam00000068 = CONCAT44(uStack0000000000000054,EventOperationCount);
-  uStack0000000000000040 = SUB84(pEventDataIndex,0);
+  StackData4 = SUB84(pEventDataIndex,0);
   uStack0000000000000044 = (UIDword)((ulonglong)pEventDataIndex >> 0x20);
   uStack0000000000000064 = 0xffffffff;
   pallocatedMemory5 = pEventDataIndex;
   iStack0000000000000050 = EventOperationCount;
-  uStack0000000000000058 = uStack0000000000000040;
+  uStack0000000000000058 = StackData4;
   uStack000000000000005c = uStack0000000000000044;
   iStack0000000000000060 = iStack0000000000000048;
   goto joined_r0x0001808508ee;
@@ -300392,7 +300392,7 @@ LAB_1808509d5:
 LAB_180850810:
     if (*ptrLocalInt6 != -1) {
       EventOperationCount = ((int *)*pEventDataIndex)[EventOperationCount];
-      pallocatedMemory5 = _uStack0000000000000040;
+      pallocatedMemory5 = _StackData4;
       goto joined_r0x0001808508ee;
     }
   }
@@ -301933,11 +301933,11 @@ UIHandle FUN_180851d5f(UIHandle uiContext)
   int uiOperationResult;
   UIHandle semaphoreHandle;
   longlong TargetHandle;
-  UIHandle uStack0000000000000038;
+  UIHandle StackData3;
   
-  uStack0000000000000038 = 0;
+  StackData3 = 0;
   uiOperationResult = FUN_18073c380(uiContext,0xfffffffe);
-  semaphoreHandle = uStack0000000000000038;
+  semaphoreHandle = StackData3;
   if (uiOperationResult != 0) {
     semaphoreHandle = 0;
   }
@@ -303169,7 +303169,7 @@ UIHandle FUN_180852bd2(void)
   int *pProcessingResult2;
   UIHandle *unmodifiedR15;
   UIHandle stackParam00000030;
-  UIHandle uStack0000000000000038;
+  UIHandle StackData3;
   
   if (bufferSize == 0) {
     return 0x1c;
@@ -303191,7 +303191,7 @@ UIHandle FUN_180852bd2(void)
   }
   uiCompareResult = (int)SourceHandle[4];
   if (uiCompareResult == -1) {
-    uStack0000000000000038 = *unmodifiedR15;
+    StackData3 = *unmodifiedR15;
     uiCompareResult = (int)SourceHandle[3];
     result = *(UIHandle *)ContextHandle;
     semaphoreHandle = *(UIHandle *)(ContextHandle + 2);
@@ -303219,7 +303219,7 @@ UIHandle FUN_180852bd2(void)
     *ptrLocal6 = result;
     ptrLocal6[1] = semaphoreHandle;
     ptrLocal6[2] = CONCAT44(stackParam00000030._4_4_,0xffffffff);
-    ptrLocal6[3] = uStack0000000000000038;
+    ptrLocal6[3] = StackData3;
     *(int *)(SourceHandle + 3) = (int)SourceHandle[3] + 1;
   }
   else {
@@ -303418,9 +303418,9 @@ int FUN_180852d79(void)
   bool in_ZF;
   char in_SF;
   char in_OF;
-  uint uStack0000000000000040;
+  uint StackData4;
   uint uStack0000000000000044;
-  uint uStack0000000000000048;
+  uint StackHandle1;
   uint uStack000000000000004c;
   UIHandle *stackParam000000a0;
   UIDword stackParam000000a8;
@@ -303470,9 +303470,9 @@ int FUN_180852d79(void)
   if (!IsValidationComplete) {
     return 0;
   }
-  uStack0000000000000040 = *(uint *)(ptrLocal6 + 5);
+  StackData4 = *(uint *)(ptrLocal6 + 5);
   uStack0000000000000044 = *(uint *)((longlong)ptrLocal6 + 0x2c);
-  uStack0000000000000048 = *(uint *)(ptrLocal6 + 6);
+  StackHandle1 = *(uint *)(ptrLocal6 + 6);
   uStack000000000000004c = *(uint *)((longlong)ptrLocal6 + 0x34);
   allocatedMemory = pallocatedMemory2[5];
   stackParam000000a0 = ptrLocal6;
@@ -303483,7 +303483,7 @@ int FUN_180852d79(void)
   if (EventOperationCount == 0) {
     if ((int)pallocatedMemory2[1] != 0) {
       CharacterDataOffset = (longlong)
-              (int)((uStack0000000000000040 ^ uStack0000000000000044 ^ uStack0000000000000048 ^
+              (int)((StackData4 ^ uStack0000000000000044 ^ StackHandle1 ^
                     uStack000000000000004c) & (int)pallocatedMemory2[1] - 1U);
       pProcessingResult1 = (int *)(*pallocatedMemory2 + CharacterDataOffset * 4);
       EventOperationCount = *(int *)(*pallocatedMemory2 + CharacterDataOffset * 4);
@@ -303492,9 +303492,9 @@ int FUN_180852d79(void)
         do {
           localLong8 = (longlong)EventOperationCount * 0x20;
           if ((*(longlong *)(localLong8 + CharacterDataOffset) ==
-               CONCAT44(uStack0000000000000044,uStack0000000000000040)) &&
+               CONCAT44(uStack0000000000000044,StackData4)) &&
              (*(longlong *)(localLong8 + 8 + CharacterDataOffset) ==
-              CONCAT44(uStack000000000000004c,uStack0000000000000048))) goto FUN_180852f68;
+              CONCAT44(uStack000000000000004c,StackHandle1))) goto FUN_180852f68;
           pProcessingResult1 = (int *)(CharacterDataOffset + 0x10 + localLong8);
           EventOperationCount = *pProcessingResult1;
         } while (EventOperationCount != -1);
@@ -305050,7 +305050,7 @@ UIDword FUN_18085461a(longlong uiContext,ulonglong dataSource,UIDword targetBuff
   longlong ContextHandleData;
   UIHandle *componentContextPtr;
   UIDword MaxProcessingCount;
-  UIDword uStack0000000000000040;
+  UIDword StackData4;
   UIDword uStack0000000000000044;
   UIDword stackParam00000090;
   UIDword stackParam00000098;
@@ -305072,7 +305072,7 @@ UIDword FUN_18085461a(longlong uiContext,ulonglong dataSource,UIDword targetBuff
   else {
     componentContextPtr = (UIHandle *)(uiContext + 0x80);
     ptrLocal3 = (UIHandle *)*componentContextPtr;
-    uStack0000000000000040 = (UIDword)dataSource;
+    StackData4 = (UIDword)dataSource;
     uStack0000000000000044 = (UIDword)(dataSource >> 0x20);
     for (; ptrLocal3 != componentContextPtr; ptrLocal3 = (UIHandle *)*ptrLocal3) {
       if (dataSource < (ulonglong)ptrLocal3[2]) {
@@ -305081,7 +305081,7 @@ UIDword FUN_18085461a(longlong uiContext,ulonglong dataSource,UIDword targetBuff
                  FUN_180741e10(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180984b50,0xbf,0);
         if (componentContextPtr == (UIHandle *)0x0) goto LAB_1808547b7;
         *componentContextPtr = componentContextPtr;
-        *(UIDword *)(componentContextPtr + 2) = uStack0000000000000040;
+        *(UIDword *)(componentContextPtr + 2) = StackData4;
         *(UIDword *)((longlong)componentContextPtr + 0x14) = uStack0000000000000044;
         *(UIDword *)(componentContextPtr + 3) = targetBuffer;
         *(UIDword *)((longlong)componentContextPtr + 0x1c) = bufferSize;
@@ -305104,7 +305104,7 @@ LAB_1808547b7:
     }
     else {
       *ptrLocal3 = ptrLocal3;
-      *(UIDword *)(ptrLocal3 + 2) = uStack0000000000000040;
+      *(UIDword *)(ptrLocal3 + 2) = StackData4;
       *(UIDword *)((longlong)ptrLocal3 + 0x14) = uStack0000000000000044;
       *(UIDword *)(ptrLocal3 + 3) = targetBuffer;
       *(UIDword *)((longlong)ptrLocal3 + 0x1c) = bufferSize;
@@ -312016,9 +312016,9 @@ int FUN_18085a5e5(void)
   UIDword extraout_XMM0_Da;
   ulonglong stackParam00000020;
   int iStack0000000000000040;
-  uint uStack0000000000000048;
+  uint StackHandle1;
   
-  _uStack0000000000000048 = 0;
+  _StackHandle1 = 0;
   *(UIHandle *)(BasePointer + -0x79) = 0;
   ptrLocal9 = (UIDword *)FUN_18084da10();
   *(UIDword *)(BasePointer + -0x71) = *ptrLocal9;
@@ -312026,46 +312026,46 @@ int FUN_18085a5e5(void)
   *(UIHandle *)(BasePointer + -0x69) = 0;
   localInt6 = FUN_180856d20(extraout_XMM0_Da,&stack0x00000048,BasePointer + -0x79);
   if (localInt6 != 0) goto LAB_18085a91b;
-  semaphoreHandle = uStack0000000000000048;
+  semaphoreHandle = StackHandle1;
   TotalResult = 0xffffffff;
   CounterResult = *(uint *)(BasePointer + -0x7d);
   result3 = (uint)SourceHandle;
-  if (result3 < uStack0000000000000048) {
+  if (result3 < StackHandle1) {
 LAB_18085a652:
     eventTypeCode = 0xffffffff;
     if ((ulonglong)(unmodifiedR15 + SourceHandle) < 0x100000000) {
       eventTypeCode = result3 + (int)unmodifiedR15;
     }
-    if (eventTypeCode <= uStack0000000000000048) goto LAB_18085a689;
+    if (eventTypeCode <= StackHandle1) goto LAB_18085a689;
 LAB_18085a66c:
     eventTypeCode = 0xffffffff;
     if ((ulonglong)(SourceHandle + unmodifiedR15) < 0x100000000) {
       eventTypeCode = result3 + (int)unmodifiedR15;
     }
-    if ((uStack0000000000000048 <= eventTypeCode) && (eventTypeCode < CounterResult)) goto LAB_18085a689;
+    if ((StackHandle1 <= eventTypeCode) && (eventTypeCode < CounterResult)) goto LAB_18085a689;
     bVar4 = true;
   }
   else {
     if (result3 < CounterResult) goto LAB_18085a66c;
-    if (result3 <= uStack0000000000000048) goto LAB_18085a652;
+    if (result3 <= StackHandle1) goto LAB_18085a652;
 LAB_18085a689:
     bVar4 = false;
   }
   result3 = (uint)ContextHandle;
   uiCompareResult = (int)EventHandle;
-  if (result3 < uStack0000000000000048) {
+  if (result3 < StackHandle1) {
 LAB_18085a698:
     eventTypeCode = 0xffffffff;
     if ((ulonglong)(EventHandle + ContextHandle) < 0x100000000) {
       eventTypeCode = result3 + uiCompareResult;
     }
-    if (uStack0000000000000048 < eventTypeCode) goto LAB_18085a6ac;
+    if (StackHandle1 < eventTypeCode) goto LAB_18085a6ac;
 LAB_18085a6b0:
     IsValidationComplete = false;
   }
   else {
     if (CounterResult <= result3) {
-      if (result3 <= uStack0000000000000048) goto LAB_18085a698;
+      if (result3 <= StackHandle1) goto LAB_18085a698;
       goto LAB_18085a6b0;
     }
 LAB_18085a6ac:
@@ -312122,7 +312122,7 @@ LAB_18085a7de:
       }
       result1 = (**(code **)(*(longlong *)(allocatedMemory0 + 8) + 0x30))(allocatedMemory0 + 8);
       *(int *)(BasePointer + -0x2d) = iStack0000000000000040;
-      *(UIHandle *)(BasePointer + -0x19) = _uStack0000000000000048;
+      *(UIHandle *)(BasePointer + -0x19) = _StackHandle1;
       *(UIHandle *)(BasePointer + -0x11) = *(UIHandle *)(BasePointer + -0x61);
       *(UIHandle *)(BasePointer + -9) = *(UIHandle *)(BasePointer + -0x59);
       IndexResult = *(UIHandle *)(allocatedMemory7 + 0x160);
@@ -312386,13 +312386,13 @@ longlong FUN_18085ac39(void)
   char unmodifiedSIL;
   longlong TargetHandle;
   float stackParam00000030;
-  uint uStack0000000000000038;
+  uint StackData3;
   
-  uStack0000000000000038 = 0;
+  StackData3 = 0;
   allocatedMemory = FUN_180739a50(*(UIHandle *)(TargetHandle + 0x4c0),&stack0x00000038,0);
   if ((int)allocatedMemory == 0) {
     allocatedMemory = (longlong)
-            ((float)(int)(2 - (uint)(unmodifiedSIL != '\0')) * stackParam00000030             (float)uStack0000000000000038);
+            ((float)(int)(2 - (uint)(unmodifiedSIL != '\0')) * stackParam00000030             (float)StackData3);
   }
   return allocatedMemory;
 }
@@ -323676,8 +323676,8 @@ void FUN_180863d92(void)
   UIHandle *psemaphoreHandle;
   longlong ContextHandle;
   longlong BasePointer;
-  UIHandle uStack0000000000000040;
-  UIHandle uStack0000000000000048;
+  UIHandle StackData4;
+  UIHandle StackHandle1;
   UIHandle uStack0000000000000050;
   UIHandle uStack0000000000000058;
   UIDword uStack0000000000000060;
@@ -323685,8 +323685,8 @@ void FUN_180863d92(void)
   UIDword uStack0000000000000068;
   UIDword uStack000000000000006c;
   
-  uStack0000000000000040 = *(UIHandle *)(BasePointer + -0x5c);
-  uStack0000000000000048 = *(UIHandle *)(BasePointer + -0x54);
+  StackData4 = *(UIHandle *)(BasePointer + -0x5c);
+  StackHandle1 = *(UIHandle *)(BasePointer + -0x54);
   uStack0000000000000050 = *(UIHandle *)(BasePointer + -0x4c);
   uStack0000000000000058 = *(UIHandle *)(BasePointer + -0x44);
   uStack0000000000000060 = *(UIDword *)(BasePointer + -0x3c);
@@ -328937,9 +328937,9 @@ void FUN_1808689a5(void)
   UIHandle BasePointer;
   int unmodifiedESI;
   UIDword unmodified00000034;
-  UIHandle uStack0000000000000040;
+  UIHandle StackData4;
   
-  uStack0000000000000040 = 0;
+  StackData4 = 0;
   uiOperationResult = FUN_18088c740();
   if (((uiOperationResult == 0) && (-1 < unmodifiedESI)) && (unmodifiedESI < *(int *)(ContextHandle + 0x28))) {
     *(UIHandle *)
@@ -343219,12 +343219,12 @@ UIDword FUN_180874b18(void)
 
 {
   longlong BasePointer;
-  UIHandle uStack0000000000000038;
+  UIHandle StackData3;
   
   if (BasePointer == 0) {
     return 0x1c;
   }
-  uStack0000000000000038 = 0x180768417;
+  StackData3 = 0x180768417;
   LeaveCriticalSection();
   return 0;
 }
@@ -354037,9 +354037,9 @@ UIHandle FUN_18087dd92(void)
   UIHandle *unmodifiedR15;
   UIDword StackData2;
   UIDword uStack0000000000000034;
-  UIDword uStack0000000000000038;
+  UIDword StackData3;
   UIDword uStack000000000000003c;
-  UIDword uStack0000000000000040;
+  UIDword StackData4;
   longlong ContextHandleData;
   
   if (bufferSize == 0) {
@@ -354071,9 +354071,9 @@ UIHandle FUN_18087dd92(void)
     StackData2 = 0xffffffff;
     localInt8 = TempInt4 + 1;
     uStack0000000000000034 = (UIDword)*unmodifiedR15;
-    uStack0000000000000038 = (UIDword)((ulonglong)*unmodifiedR15 >> 0x20);
+    StackData3 = (UIDword)((ulonglong)*unmodifiedR15 >> 0x20);
     uStack000000000000003c = (UIDword)unmodifiedR15[1];
-    uStack0000000000000040 = (UIDword)((ulonglong)unmodifiedR15[1] >> 0x20);
+    StackData4 = (UIDword)((ulonglong)unmodifiedR15[1] >> 0x20);
     if (localInt5 < localInt8) {
       ProcessingResult1 = (int)((float)localInt5 * 1.5);
       localInt5 = localInt8;
@@ -354098,8 +354098,8 @@ UIHandle FUN_18087dd92(void)
     ptrResult[1] = EventTypeCode;
     ptrResult = (UIHandle *)(CharacterDataOffset + 0x10 + ContextHandleData * 0x24);
     *ptrResult = CONCAT44(uStack0000000000000034,StackData2);
-    ptrResult[1] = CONCAT44(uStack000000000000003c,uStack0000000000000038);
-    *(UIDword *)(CharacterDataOffset + 0x20 + ContextHandleData * 0x24) = uStack0000000000000040;
+    ptrResult[1] = CONCAT44(uStack000000000000003c,StackData3);
+    *(UIDword *)(CharacterDataOffset + 0x20 + ContextHandleData * 0x24) = StackData4;
     *(int *)(SourceHandle + 3) = (int)SourceHandle[3] + 1;
   }
   else {
@@ -367150,7 +367150,7 @@ void FUN_18088afd0(void)
   longlong *stackParam00000020;
   longlong *plocalLong7;
   longlong inputString;
-  UIDword uStack0000000000000048;
+  UIDword StackHandle1;
   uint uStack000000000000004c;
   int stackParam00000050;
   longlong stackParam00000058;
@@ -367199,7 +367199,7 @@ void FUN_18088afd0(void)
     *(UIHandle *)(BasePointer + 0x13c) = stackParam00000080;
     stackParam00000058 = 0;
     *(UIDword *)(BasePointer + 0x144) = *(UIDword *)(BasePointer + -0x78);
-    *(UIDword *)(BasePointer + 0x14c) = uStack0000000000000048;
+    *(UIDword *)(BasePointer + 0x14c) = StackHandle1;
     *(UIDword *)(BasePointer + 0x148) = *(UIDword *)(BasePointer + -0x74);
     stackParam00000060 = 0;
     inputString = 0;
@@ -377085,12 +377085,12 @@ UIHandle FUN_180893d8f(UIHandle uiContext,UIHandle dataSource)
   longlong ContextHandle;
   longlong SourceHandle;
   float processedFloat;
-  UIDword uStack0000000000000040;
+  UIDword StackData4;
   
-  uStack0000000000000040 = 0;
+  StackData4 = 0;
   semaphoreHandle = FUN_180867600(SourceHandle + 0x60,dataSource,&stack0x00000040);
   if ((int)semaphoreHandle == 0) {
-    stringCompareIndex = func_0x000180867680(SourceHandle + 0x60,uStack0000000000000040);
+    stringCompareIndex = func_0x000180867680(SourceHandle + 0x60,StackData4);
     if ((*(uint *)(stringCompareIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
@@ -377101,7 +377101,7 @@ UIHandle FUN_180893d8f(UIHandle uiContext,UIHandle dataSource)
       processedFloat = floatResult;
     }
     *(float *)(ContextHandle + 0x18) = processedFloat;
-    semaphoreHandle = func_0x000180867960(SourceHandle + 0x60,uStack0000000000000040,processedFloat);
+    semaphoreHandle = func_0x000180867960(SourceHandle + 0x60,StackData4,processedFloat);
     if ((int)semaphoreHandle == 0) {
                      WARNING: Subroutine does not return
       FUN_18088d720(*(UIHandle *)(SourceHandle + 0x98));
@@ -378879,19 +378879,19 @@ UIHandle FUN_180895cf1(longlong uiContext,UIHandle dataSource,longlong targetBuf
   UIHandle *psemaphoreHandle;
   int *TargetHandle;
   longlong register10;
-  UIHandle uStack0000000000000040;
+  UIHandle StackData4;
   
   result = *(UIHandle *)(uiContext + 8 + registerAX * 8);
-  uStack0000000000000040._4_4_ = (int)((ulonglong)result >> 0x20);
-  if (uStack0000000000000040._4_4_ != 0) {
-    *TargetHandle = uStack0000000000000040._4_4_;
+  StackData4._4_4_ = (int)((ulonglong)result >> 0x20);
+  if (StackData4._4_4_ != 0) {
+    *TargetHandle = StackData4._4_4_;
     return 0;
   }
   psemaphoreHandle = (UIHandle *)
            ((longlong)*(int *)(*(longlong *)(register10 + 0x18) + targetBuffer * 0xc) +
            *(longlong *)(register10 + 8));
   if (psemaphoreHandle != (UIHandle *)0x0) {
-    uStack0000000000000040 = result;
+    StackData4 = result;
     (**(code **)*psemaphoreHandle)();
   }
   *TargetHandle = 0;
@@ -386164,7 +386164,7 @@ UIHandle FUN_18089b5a9(int uiContext)
   longlong TargetHandle;
   char stackParam00000030;
   UIHandle stackParam00000038;
-  uint uStack0000000000000040;
+  uint StackData4;
   UIDword uStack0000000000000044;
   
   if (uiContext != 0) {
@@ -386188,18 +386188,18 @@ UIHandle FUN_18089b5a9(int uiContext)
     return 0x1c;
   }
   pallocatedMemory = (longlong *)*ContextHandle;
-  stackParam00000038 = CONCAT44(uStack0000000000000044,uStack0000000000000040);
+  stackParam00000038 = CONCAT44(uStack0000000000000044,StackData4);
   if (*pallocatedMemory == 0) {
     semaphoreHandle = 0x1c;
   }
   else {
     if (pallocatedMemory[2] != 0) {
-      uStack0000000000000040 = 0;
+      StackData4 = 0;
       semaphoreHandle = func_0x00018076a7d0(*pallocatedMemory,&stack0x00000040);
       if ((int)semaphoreHandle != 0) {
         return semaphoreHandle;
       }
-      if ((ulonglong)pallocatedMemory[2] < (ulonglong)uStack0000000000000040 + 1) {
+      if ((ulonglong)pallocatedMemory[2] < (ulonglong)StackData4 + 1) {
         semaphoreHandle = 0x11;
         goto LAB_1808a2e6d;
       }
@@ -386225,22 +386225,22 @@ void FUN_18089b5fc(void)
   longlong *ContextHandle;
   longlong TargetHandle;
   char stackParam00000030;
-  UIHandle uStack0000000000000038;
-  uint uStack0000000000000040;
+  UIHandle StackData3;
+  uint StackData4;
   
   pallocatedMemory = (longlong *)*ContextHandle;
-  uStack0000000000000038 = _uStack0000000000000040;
+  StackData3 = _StackData4;
   if (*pallocatedMemory == 0) {
     uiValidationResult = 0x1c;
   }
   else {
     if (pallocatedMemory[2] != 0) {
-      uStack0000000000000040 = 0;
+      StackData4 = 0;
       uiValidationResult = func_0x00018076a7d0(*pallocatedMemory,&stack0x00000040);
       if (uiValidationResult != 0) {
         return;
       }
-      if ((ulonglong)pallocatedMemory[2] < (ulonglong)uStack0000000000000040 + 1) {
+      if ((ulonglong)pallocatedMemory[2] < (ulonglong)StackData4 + 1) {
         uiValidationResult = 0x11;
         goto LAB_1808a2e6d;
       }
@@ -394044,7 +394044,7 @@ ulonglong FUN_18089f9b3(void)
   uint unmodifiedESI;
   longlong *TargetHandle;
   UIDword stackParam00000030;
-  UIDword uStack0000000000000038;
+  UIDword StackData3;
   UIWord uStack000000000000003c;
   UIWord uStack000000000000003e;
   UIWord stackParam000000a0;
@@ -394066,7 +394066,7 @@ ulonglong FUN_18089f9b3(void)
       semaphoreHandle = unmodifiedESI;
       if ((*(uint *)(TargetHandle + 8) < 0x5a) &&
          (semaphoreHandle = 0x1c, *(uint *)(TargetHandle[1] + 0x18) == unmodifiedESI)) {
-        stackParam00000030 = uStack0000000000000038;
+        stackParam00000030 = StackData3;
         allocatedMemory = *TargetHandle;
         semaphoreHandle = (**(code **)**(UIHandle **)(allocatedMemory + 8))
                           (*(UIHandle **)(allocatedMemory + 8),&stack0x00000030,4);
@@ -394117,7 +394117,7 @@ ulonglong FUN_18089f9f6(void)
   uint unmodifiedESI;
   longlong *TargetHandle;
   UIDword stackParam00000030;
-  UIDword uStack0000000000000038;
+  UIDword StackData3;
   UIWord uStack000000000000003c;
   UIWord uStack000000000000003e;
   UIWord stackParam000000a0;
@@ -394130,7 +394130,7 @@ ulonglong FUN_18089f9f6(void)
     semaphoreHandle = unmodifiedESI;
     if ((*(uint *)(TargetHandle + 8) < 0x5a) &&
        (semaphoreHandle = 0x1c, *(uint *)(TargetHandle[1] + 0x18) == unmodifiedESI)) {
-      stackParam00000030 = uStack0000000000000038;
+      stackParam00000030 = StackData3;
       allocatedMemory = *TargetHandle;
       semaphoreHandle = (**(code **)**(UIHandle **)(allocatedMemory + 8))
                         (*(UIHandle **)(allocatedMemory + 8),&stack0x00000030,4);

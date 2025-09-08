@@ -206,6 +206,20 @@
 #define SystemComponentDataOffset 0x38
 #define SystemComponentStatusOffset 0xe4
 
+// 安全验证操作常量
+#define SecurityValidationPortControl 0x42464542
+#define SecurityValidationRequest 0x42495645
+#define SecurityValidationLmpOperation 0x424c4d50
+#define SecurityValidationMrpOperation 0x424d5250
+#define SecurityValidationPortControlAlt 0x42464550
+#define SecurityValidationPortControlSecurity 0x42464553
+#define SecurityValidationAnsOperation 0x42414e53
+#define SecurityValidationNetworkControl 0x424e4c54
+#define SecurityValidationNetworkRt 0x424e5254
+#define SecurityValidationInputValidation 0x42494157
+#define SecurityValidationDataMemoryControl 0x42444d43
+#define SecurityValidationInputFlagExecute 0x42494645
+
 // 异常处理上下文常量
 #define ExceptionHandlerPointerOffset 0x2b8
 #define ExceptionMemoryRegionOffset 0x80
