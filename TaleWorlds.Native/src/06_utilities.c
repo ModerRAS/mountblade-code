@@ -12440,16 +12440,16 @@ DataBuffer ProcessMemoryFlagUpdate(int64_t memoryConfig)
   int64_t memoryRegionBlock;
   uint64_t memoryUpdateStatus;
   int64_t *memoryRegionIterator;
-  int64_t localMemoryBuffer [4];
+  int64_t MemoryRegionBuffer [4];
   
-  memoryUpdateStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryConfig + MemoryConfigOffset),localMemoryBuffer);
+  memoryUpdateStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryConfig + MemoryConfigOffset),MemoryRegionBuffer);
   if ((int)memoryUpdateStatus == 0) {
-    memoryRegionIterator = *(int64_t **)(localMemoryBuffer[0] + MemoryRegionIteratorOffset);
-    while ((*(int64_t **)(localMemoryBuffer[0] + MemoryRegionIteratorOffset) <= memoryRegionIterator &&
-           (memoryRegionIterator < *(int64_t **)(localMemoryBuffer[0] + MemoryRegionIteratorOffset) + *(int *)(localMemoryBuffer[0] + MemoryRegionBoundOffset)))) {
+    memoryRegionIterator = *(int64_t **)(MemoryRegionBuffer[0] + MemoryRegionIteratorOffset);
+    while ((*(int64_t **)(MemoryRegionBuffer[0] + MemoryRegionIteratorOffset) <= memoryRegionIterator &&
+           (memoryRegionIterator < *(int64_t **)(MemoryRegionBuffer[0] + MemoryRegionIteratorOffset) + *(int *)(MemoryRegionBuffer[0] + MemoryRegionBoundOffset)))) {
       memoryRegionBlock = *memoryRegionIterator;
       memoryRegionIterator = memoryRegionIterator + 1;
-      if ((*(int64_t *)(memoryRegionBlock + MemoryRegionDataBaseOffset) == *(int64_t *)(localMemoryBuffer[0] + MemoryRegionDataReferenceOffset)) &&
+      if ((*(int64_t *)(memoryRegionBlock + MemoryRegionDataBaseOffset) == *(int64_t *)(MemoryRegionBuffer[0] + MemoryRegionDataReferenceOffset)) &&
          (memoryRegionBlock = *(int64_t *)(memoryRegionBlock + MemoryRegionPointerFieldOffset), memoryRegionBlock != 0)) {
         memoryFlagPtr = (uint *)(memoryRegionBlock + SystemStateFlagsExtendedOffset);
         *memoryFlagPtr = *memoryFlagPtr | 4;
@@ -30349,7 +30349,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionHandle
   uint64_t dataFlags;
   uint validationOutcome;
   uint64_t securityCheckResult;
-  char localValidationBuffer [8];
+  char ValidationResultBuffer [8];
   uint stackByteBuffer [2];
   ByteFlag ainputDataWord [32];
   
@@ -30395,7 +30395,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionHandle
     }
     else if (exceptionHandlerContextPointer[2] == 0) {
 DataProcessLabelA:
-      memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,localValidationBuffer,1,1,0);
+      memoryRegionBase = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,ValidationResultBuffer,1,1,0);
     }
     else {
       stackByteBuffer[0] = 0;
