@@ -202263,7 +202263,21 @@ void FUN_18016c97a(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t 
 
 
 
-void FUN_18016cacd(void)
+// 函数: void FUN_18016cacd(void)
+/**
+ * @brief 处理系统配置和字符串匹配操作
+ * 
+ * 该函数负责处理系统配置、字符串匹配、内存分配和事件处理。
+ * 主要功能包括：
+ * - 处理系统配置和字符串长度匹配
+ * - 管理内存分配和引用计数
+ * - 执行矩阵变换计算
+ * - 处理Unicode字符和字符表操作
+ * - 更新系统状态和事件队列
+ * 
+ * @note 原始函数名：FUN_18016cacd
+ */
+void ProcessSystemConfigurationAndStringMatching(void)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
@@ -202273,7 +202287,7 @@ void FUN_18016cacd(void)
   float CalculatedDistance;
   int ProcessIterationCount;
   void *StringProcessingStatus;
-  long long systemLoopCounter;
+  long long SystemLoopCounter;
   uint64_t MemoryAllocationIndex;
   long long SystemStringIndex;
   char CurrentCharacter;
@@ -202281,38 +202295,38 @@ void FUN_18016cacd(void)
   long long LoopIndex;
   long long CharacterTablePointer;
   void *SystemCharacterStatusPointer;
-  long long SystemContext;
+  long long SystemConfigurationContext;
   long long PatternMatchStatus;
-  int RegisterValueEDI;
-  unsigned long long RegisterR12Value;
-  uint64_t RegisterR13Value;
+  int ProcessingIndex;
+  unsigned long long UnicodeCodeValue;
+  uint64_t SystemRegisterValue;
   unsigned long long UnicodeCharacterCode;
-  uint32_t auStackX_20 [2];
+  uint32_t SystemStackBuffer20 [2];
   
-  UnicodeCharacterCode = RegisterR12Value;
+  UnicodeCharacterCode = UnicodeCodeValue;
   do {
     StringLength = *(int *)(PatternIndex + 100);
-    if (StringLength == RegisterValueEDI) {
-      auStackX_20[0] = 5;
-      ProcessSystemConfiguration(SystemContext + 0x1b80,auStackX_20);
-      *(void *)(SystemContext + 0x1718) = 0x3f800000;
-      *(void *)(SystemContext + 0x1720) = 0x3f80000000000000;
+    if (StringLength == ProcessingIndex) {
+      SystemStackBuffer20[0] = 5;
+      ProcessSystemConfiguration(SystemConfigurationContext + 0x1b80, SystemStackBuffer20);
+      *(void *)(SystemConfigurationContext + 0x1718) = 0x3f800000;
+      *(void *)(SystemConfigurationContext + 0x1720) = 0x3f80000000000000;
     }
-    ProcessDataMatchingOperation(RegisterValueEDI);
+    ProcessDataMatchingOperation(ProcessingIndex);
     StringProcessingStatus = *(void **)(*(long long *)(PatternIndex + 0x20) + 8 + UnicodeCharacterCode);
     SystemCharacterStatusPointer = &CoreEngineDataTemplate;
     if (StringProcessingStatus != NULL) {
       SystemCharacterStatusPointer = StringProcessingStatus;
     }
-    CurrentCharacter = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer,StringLength == RegisterValueEDI,0,&stack0x00000090);
+    CurrentCharacter = ValidateSystemDataAndCheckStatus(SystemCharacterStatusPointer, StringLength == ProcessingIndex, 0, &stack0x00000090);
     if (CurrentCharacter != '\0') {
-      *(int *)(PatternIndex + 0x68) = RegisterValueEDI;
+      *(int *)(PatternIndex + 0x68) = ProcessingIndex;
     }
     SystemContext = SystemConfigurationHandle;
     ReferenceCountPointer = (int *)(*(long long *)(SystemConfigurationHandle + 0x1af8) + 0x218);
     *ReferenceCountPointer = *ReferenceCountPointer + -1;
-    if (StringLength == RegisterValueEDI) {
-      if (*(char *)(PatternIndex + 0x70) != (char)RegisterR12Value) {
+    if (StringLength == ProcessingIndex) {
+      if (*(char *)(PatternIndex + 0x70) != (char)UnicodeCodeValue) {
         *(uint8_t *)(*(long long *)(SystemContext + 0x1af8) + 0xb1) = 1;
         StringOffset = *(long long *)(SystemContext + 0x1af8);
         MatrixTransformMultiplier1 = *(float *)(StringOffset + 0x130);
@@ -202323,7 +202337,7 @@ void FUN_18016cacd(void)
         *(uint32_t *)(StringOffset + 0xa0) = 0x3f000000;
         *(float *)(StringOffset + 0x98) =
              (float)(int)((MatrixTransformMultiplier - CalculatedDistance) + MatrixTransformMultiplier1 * 0.5 + *(float *)(StringOffset + 0x90));
-        *(char *)(PatternIndex + 0x70) = (char)RegisterR12Value;
+        *(char *)(PatternIndex + 0x70) = (char)UnicodeCodeValue;
       }
       PrimaryProcessingStatusFlag = (void *               (*(long long *)(SystemContext + 0x1b88) + -0x10 +
                (long long)*(int *)(SystemContext + 0x1b80) * 0x14);
@@ -202335,7 +202349,7 @@ void FUN_18016cacd(void)
       SystemEventTemplatePointer[1] = MemoryAllocationIndex;
       *(int *)(SystemContext + 0x1b80) = *(int *)(SystemContext + 0x1b80) + -1;
     }
-    RegisterValueEDI = RegisterValueEDI + 1;
+    ProcessingIndex = ProcessingIndex + 1;
     UnicodeCharacterCode = UnicodeCharacterCode + 0x20;
   } while ((unsigned long long)(long long)RegisterValueEDI <
            (unsigned long long)(*(long long *)(PatternIndex + 0x28) - *(long long *)(PatternIndex + 0x20) >> 5));
