@@ -193308,12 +193308,12 @@ LAB_1801604e5:
   TemporaryStackValue58 = CharacterLimit[4];
   StackUintValue60 = CharacterLimit[5];
   MemoryAllocationIndex = CharacterLimit[6];
-  iStack00000000000000e0 = LoopCounter;
+  SystemStackInteger224 = LoopCounter;
   FUN_180160af0(ProcessingResult,&InputDataLengthStackBuffer,Utf8SourcePointer,&stack0x000000e0,(long long)CharacterTablePointer);
   *(void *)(StackProcessingParameter0 + 4) = SystemUnsignedValue38;
   *(void *)(StackProcessingParameter0 + 0xc) = StackProcessingVariable40;
   *(void *)(StackProcessingParameter0 + 0x14) = StackProcessingVariable48;
-  *(void *)(StackProcessingParameter0 + 0x1c) = uStack0000000000000050;
+  *(void *)(StackProcessingParameter0 + 0x1c) = SystemStackUnsigned50;
   *(void *)(StackProcessingParameter0 + 0x24) = TemporaryStackValue58;
   *(void *)(StackProcessingParameter0 + 0x2c) = StackUintValue60;
   *(void *)(StackProcessingParameter0 + 0x34) = MemoryAllocationIndex;
@@ -194098,7 +194098,7 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *CharacterC
   long long RegisterR13Value;
   uint64_t *NullPointerValue;
   char cStack0000000000000080;
-  uint uStack0000000000000084;
+  uint SystemStackUnsigned132;
   
   ProcessEngineDataTransfer(CharacterCode,&stack0x00000080,Utf8SourcePointer,Utf16EndPointer,1);
   PrimaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,0x10,*(uint8_t *)(SystemDataNode + 0x2c));
@@ -194106,10 +194106,10 @@ ProcessUtf8ToUtf16EncodingConverter(long long CharacterCode,uint64_t *CharacterC
   PrimaryProcessingStatusFlag[1] = 0;
   *(void *)(PrimaryProcessingStatusFlag + 2) = 0;
   if (cStack0000000000000080 != '\0') {
-    UnicodeCodePoint = MemoryAllocate(MemoryPoolManager,(unsigned long long)uStack0000000000000084 * 8 + 8,8,
+    UnicodeCodePoint = MemoryAllocate(MemoryPoolManager,(unsigned long long)SystemStackUnsigned132 * 8 + 8,8,
                           *(uint8_t *)(SystemDataNode + 0x2c));
                     // WARNING: Subroutine does not return
-    memset(UnicodeCodePoint,0,(unsigned long long)uStack0000000000000084 * 8);
+    memset(UnicodeCodePoint,0,(unsigned long long)SystemStackUnsigned132 * 8);
   }
   *(void *)(PrimaryProcessingStatusFlag + 2) = *(void *)(*(long long *)(SystemDataNode + 8) + RegisterR13Value * 8);
   *(uint32_t **)(*(long long *)(SystemDataNode + 8) + RegisterR13Value * 8) = PrimaryProcessingStatusFlag;
@@ -194510,7 +194510,7 @@ ProcessUtf8ToUtf16ExtendedEncodingConverter(long long CharacterCode,uint64_t *Ch
   long long RegisterR13Value;
   uint64_t *NullPointerValue;
   char cStack0000000000000080;
-  uint uStack0000000000000084;
+  uint SystemStackUnsigned132;
   
   ProcessEngineDataTransfer(CharacterCode,&stack0x00000080,Utf8SourcePointer,Utf16EndPointer,1);
   PrimaryProcessingStatusFlag = (uint32_t *)BufferAllocate(MemoryPoolManager,0x48,*(uint8_t *)(SystemDataNode + 0x2c));
@@ -194525,10 +194525,10 @@ ProcessUtf8ToUtf16ExtendedEncodingConverter(long long CharacterCode,uint64_t *Ch
   *(uint8_t *)(PrimaryProcessingStatusFlag + 0xe) = 0;
   *(void *)(PrimaryProcessingStatusFlag + 0x10) = 0;
   if (cStack0000000000000080 != '\0') {
-    UnicodeCodePoint = MemoryAllocate(MemoryPoolManager,(unsigned long long)uStack0000000000000084 * 8 + 8,8,
+    UnicodeCodePoint = MemoryAllocate(MemoryPoolManager,(unsigned long long)SystemStackUnsigned132 * 8 + 8,8,
                           *(uint8_t *)(SystemDataNode + 0x2c));
                     // WARNING: Subroutine does not return
-    memset(UnicodeCodePoint,0,(unsigned long long)uStack0000000000000084 * 8);
+    memset(UnicodeCodePoint,0,(unsigned long long)SystemStackUnsigned132 * 8);
   }
   *(void *)(PrimaryProcessingStatusFlag + 0x10) = *(void *)(*(long long *)(SystemDataNode + 8) + RegisterR13Value * 8);
   *(uint32_t **)(*(long long *)(SystemDataNode + 8) + RegisterR13Value * 8) = PrimaryProcessingStatusFlag;
@@ -203846,11 +203846,11 @@ void LoadCursorResourceAndSetToDataNode(void)
 {
   long long PrimaryDataSize;
   long long SystemContext;
-  long long lStack0000000000000028;
+  long long SystemStackLong40;
   unsigned long long DataStorageValue;
   
   CharacterTablePointer = *(long long *)(CharacterCode + 0x20);
-  lStack0000000000000028 = CharacterTablePointer + 0x18;
+  SystemStackLong40 = CharacterTablePointer + 0x18;
   FUN_180173720(LoopCounter,*(uint32_t *)(SystemContext + 0x30),*(uint32_t *)(SystemContext + 0x34),
                 *(uint8_t *)(SystemContext + 0x38),CharacterTablePointer + 0x38);
                     // WARNING: Subroutine does not return
@@ -254498,11 +254498,11 @@ unsigned long long ValidateSystemUnicodeConversion(void
   unsigned long long Utf16Char;
   long long SystemContext;
   long long SystemDataNode;
-  long long lStack0000000000000028;
+  long long SystemStackLong40;
   
-  lStack0000000000000028 = SystemContext;
+  SystemStackLong40 = SystemContext;
   if (*(long long *)(SystemDataNode + 8) != 0) {
-    lStack0000000000000028 = *(long long *)(SystemDataNode + 8);
+    SystemStackLong40 = *(long long *)(SystemDataNode + 8);
   }
   Utf16Char = ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,&SystemUnicodeValidationConfig);
   return Utf16Char & 0xffffffffffffff00;
