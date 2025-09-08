@@ -135524,8 +135524,8 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
   StackRegisterParameter3 = AuxiliaryFloatValue11;
   StackRegisterParameter4 = unaff_XMM11_Dc;
   StackRegisterParameter5 = AuxiliaryCalculationFloat10;
-  in_stack_000001f8 = XMM10RegisterC;
-  in_stack_00000210 = SecondaryFloatValue;
+  StackParameterF8 = XMM10RegisterC;
+  StackParameter210 = SecondaryFloatValue;
   in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,FilterInputValue4,*(void *)(StackFrameAddressPointer + 8));
   CharacterTablePointer = *(long long *)(StackFrameAddressPointer + 10);
@@ -136075,8 +136075,8 @@ LAB_18012ac57:
   FilterInputValue2 = (float)(int)FilterInputValue2;
   *(unsigned long long *)(StackFrameAddressPointer + -0xe) = (unsigned long long)(SystemStatusChar != '\0') + 1;
   CharacterTablePointer = SystemConfigurationHandle;
-  in_stack_00000200 = unaff_XMM9_Qa;
-  in_stack_00000208 = unaff_XMM9_Qb;
+  StackParameter200 = unaff_XMM9_Qa;
+  StackParameter208 = unaff_XMM9_Qb;
   if ((((SystemCheckResult == '\0') && ((*(byte *)((long long)SystemParameter2 + 0xc) & 0x42) == 0)) &&
       (*(int *)((long long)SystemParameter2 + 0xc4) < 1)) &&
      (((int)SystemParameter2[0x19] < 1 && ((char)SystemParameter2[0x16] != '\0')))) {
@@ -137167,10 +137167,10 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Syste
   uint32_t StackRegisterParameter3;
   uint32_t StackRegisterParameter4;
   uint32_t StackRegisterParameter5;
-  uint32_t in_stack_000001f8;
-  uint64_t in_stack_00000200;
-  uint64_t in_stack_00000208;
-  uint32_t in_stack_00000210;
+  uint32_t StackParameterF8;
+  uint64_t StackParameter200;
+  uint64_t StackParameter208;
+  uint32_t StackParameter210;
   uint32_t in_stack_00000218;
   
   *(void *)(SystemRegisterR11 + -0x20) = RegisterR12Value;
@@ -137362,8 +137362,8 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Syste
   StackRegisterParameter3 = AuxiliaryFloatValue11;
   StackRegisterParameter4 = unaff_XMM11_Dc;
   StackRegisterParameter5 = AuxiliaryCalculationFloat10;
-  in_stack_000001f8 = XMM10RegisterC;
-  in_stack_00000210 = SecondaryFloatValue;
+  StackParameterF8 = XMM10RegisterC;
+  StackParameter210 = SecondaryFloatValue;
   in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,ScalingFactor,*(void *)(StackFrameAddressPointer + 8));
   LoopIndex = *(long long *)(StackFrameAddressPointer + 10);
@@ -137917,8 +137917,8 @@ LAB_18012ac57:
   FilterInputValue1 = (float)(int)FilterInputValue1;
   *(unsigned long long *)(StackFrameAddressPointer + -0xe) = (unsigned long long)(CharacterStatus2 != '\0') + 1;
   LoopIndex = SystemConfigurationHandle;
-  in_stack_00000200 = unaff_XMM9_Qa;
-  in_stack_00000208 = unaff_XMM9_Qb;
+  StackParameter200 = unaff_XMM9_Qa;
+  StackParameter208 = unaff_XMM9_Qb;
   if ((((SystemCheckResult == '\0') && ((*(byte *)((long long)SystemParameter2 + 0xc) & 0x42) == 0)) &&
       (*(int *)((long long)SystemParameter2 + 0xc4) < 1)) &&
      (((int)SystemParameter2[0x19] < 1 && ((char)SystemParameter2[0x16] != '\0')))) {
@@ -139004,10 +139004,10 @@ void InitializeSystemStringProcessing(void)
   uint32_t StackRegisterParameter3;
   uint32_t StackRegisterParameter4;
   uint32_t StackRegisterParameter5;
-  uint32_t in_stack_000001f8;
-  uint64_t in_stack_00000200;
-  uint64_t in_stack_00000208;
-  uint32_t in_stack_00000210;
+  uint32_t StackParameterF8;
+  uint64_t StackParameter200;
+  uint64_t StackParameter208;
+  uint32_t StackParameter210;
   uint32_t in_stack_00000218;
   
   if (in_ZF) {
@@ -139059,8 +139059,8 @@ void InitializeSystemStringProcessing(void)
   StackRegisterParameter3 = AuxiliaryFloatValue11;
   StackRegisterParameter4 = unaff_XMM11_Dc;
   StackRegisterParameter5 = AuxiliaryCalculationFloat10;
-  in_stack_000001f8 = XMM10RegisterC;
-  in_stack_00000210 = SecondaryFloatValue;
+  StackParameterF8 = XMM10RegisterC;
+  StackParameter210 = SecondaryFloatValue;
   in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,NullPointerD,*(void *)(StackFrameAddressPointer + 8));
   SystemContextValue = *(long long *)(StackFrameAddressPointer + 10);
@@ -139610,8 +139610,8 @@ LAB_18012ac57:
   ContextSecondaryFloat9 = (float)(int)ContextSecondaryFloat9;
   *(unsigned long long *)(StackFrameAddressPointer + -0xe) = (unsigned long long)(CharacterValidationResult != '\0') + 1;
   SystemContextValue = SystemConfigurationHandle;
-  in_stack_00000200 = unaff_XMM9_Qa;
-  in_stack_00000208 = unaff_XMM9_Qb;
+  StackParameter200 = unaff_XMM9_Qa;
+  StackParameter208 = unaff_XMM9_Qb;
   if ((((CharacterStatus2 == '\0') && ((*(byte *)((long long)SystemParameter2 + 0xc) & 0x42) == 0)) &&
       (*(int *)((long long)SystemParameter2 + 0xc4) < 1)) &&
      (((int)SystemParameter2[0x19] < 1 && ((char)SystemParameter2[0x16] != '\0')))) {
@@ -140673,8 +140673,8 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode)
   float StackFloat1;
   float StackSecondaryMatrixTransformValue;
   float SystemParameter2;
-  uint64_t in_stack_00000200;
-  uint64_t in_stack_00000208;
+  uint64_t StackParameter200;
+  uint64_t StackParameter208;
   
   StackFrameAddressPointer[-4] = (float)(in_EAX & 0x3000000);
   ProcessSystemParameterHandler(CharacterCode,NullPointerD);
@@ -142316,10 +142316,10 @@ void ProcessSystemStatusAndValidation(void
   uint32_t StackRegisterParameter3;
   uint32_t StackRegisterParameter4;
   uint32_t StackRegisterParameter5;
-  uint32_t in_stack_000001f8;
-  uint64_t in_stack_00000200;
-  uint64_t in_stack_00000208;
-  uint32_t in_stack_00000210;
+  uint32_t StackParameterF8;
+  uint64_t StackParameter200;
+  uint64_t StackParameter208;
+  uint32_t StackParameter210;
   uint32_t in_stack_00000218;
   
   FilterInputValue0 = SystemParameter2;
@@ -142359,8 +142359,8 @@ void ProcessSystemStatusAndValidation(void
   StackRegisterParameter3 = AuxiliaryFloatValue11;
   StackRegisterParameter4 = unaff_XMM11_Dc;
   StackRegisterParameter5 = AuxiliaryCalculationFloat10;
-  in_stack_000001f8 = XMM10RegisterC;
-  in_stack_00000210 = SecondaryFloatValue;
+  StackParameterF8 = XMM10RegisterC;
+  StackParameter210 = SecondaryFloatValue;
   in_stack_00000218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,NullPointerD,*(void *)(StackFrameAddressPointer + 8));
   SystemContextValue = *(long long *)(StackFrameAddressPointer + 10);
@@ -142910,8 +142910,8 @@ LAB_18012ac57:
   ContextSecondaryFloat7 = (float)(int)ContextSecondaryFloat7;
   *(unsigned long long *)(StackFrameAddressPointer + -0xe) = (unsigned long long)(CharacterValidationResult != '\0') + 1;
   SystemContextValue = SystemConfigurationHandle;
-  in_stack_00000200 = unaff_XMM9_Qa;
-  in_stack_00000208 = unaff_XMM9_Qb;
+  StackParameter200 = unaff_XMM9_Qa;
+  StackParameter208 = unaff_XMM9_Qb;
   if ((((CharacterStatus2 == '\0') && ((*(byte *)((long long)SystemParameter2 + 0xc) & 0x42) == 0)) &&
       (*(int *)((long long)SystemParameter2 + 0xc4) < 1)) &&
      (((int)SystemParameter2[0x19] < 1 && ((char)SystemParameter2[0x16] != '\0')))) {
@@ -143971,8 +143971,8 @@ void ProcessSystemMemoryAllocation(uint64_t CharacterCode,long long SystemBuffer
   float StackFloat1;
   float StackSecondaryMatrixTransformValue;
   float SystemParameter2;
-  uint64_t in_stack_00000200;
-  uint64_t in_stack_00000208;
+  uint64_t StackParameter200;
+  uint64_t StackParameter208;
   
   if (*(char *)(SystemBufferSize + 0xb2) == '\0') {
     if (((*(char *)(SystemBufferSize + 0xb6) == '\0') || (*(int *)(SystemBufferSize + 0xdc) != 0)) ||
