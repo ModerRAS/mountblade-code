@@ -10758,15 +10758,15 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
     componentIndex = *(longlong *)(unmodifiedR12 + 0x88);
     do {
       uiOperationResult8 = uiOperationResult8 + 1;
-      if ((!bVar3) ||
+      if ((!IsGeometryValid) ||
          ((floatResult9 = *(float *)(componentIndex + 4 + allocatedMemory7 * 8), floatResult = *(float *)(componentIndex + allocatedMemory7 * 8),
           floatResult9 = (floatResult9 - *(float *)(componentIndex + 4 + (longlong)(uiOperationResult8 % uiOperationResult2) * 8))                    (localFloat20 - floatResult) -
                    (localFloat21 - floatResult9) * (floatResult - *(float *)(componentIndex + (longlong)(uiOperationResult8 % uiOperationResult2) * 8))
           , floatResult9 <= unmodifiedXMM6_Da && (floatResult9 < unmodifiedXMM6_Da)))) {
-        bVar3 = false;
+        IsGeometryValid = false;
       }
       else {
-        bVar3 = true;
+        IsGeometryValid = true;
       }
       allocatedMemory7 = allocatedMemory7 + 1;
     } while (allocatedMemory7 < lStack0000000000000058);
