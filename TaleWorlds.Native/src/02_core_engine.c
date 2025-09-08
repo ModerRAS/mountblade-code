@@ -712,6 +712,14 @@
 #define ProcessStringValidationStatus FUN_1801189e0           // 处理字符串验证状态
 #define ExtractCharacterFromRenderContext FUN_1802c2560       // 从渲染上下文中提取字符
 #define AllocateMemoryBlockFromRegistry FUN_1802c28d0        // 从注册表分配内存块
+
+// 新增的未美化函数语义化宏定义
+#define ProcessCharacterCodeAndMemoryAllocation FUN_180175700       // 处理字符代码和内存分配
+#define GetSystemDataRegistry FUN_18023a940                        // 获取系统数据注册表
+#define ProcessSystemDataWithRemainingSpace FUN_180220810           // 处理系统数据和剩余空间
+#define ProcessSystemMemoryValidation FUN_1800b2450                 // 处理系统内存验证
+#define ProcessSystemMemoryCleanupEx FUN_180626ee0                  // 处理系统内存清理扩展
+#define ProcessCharacterEncodingFinalization FUN_180179f00          // 处理字符编码最终化
 #define ConvertCharacterToSystemFormat FUN_1800a1e20          // 转换字符为系统格式
 #define GetCharacterFromMemoryBlock FUN_1802c2400            // 从内存块获取字符
 #define ProcessSystemMemoryAddressMask FUN_1801c9bd0               // 处理系统内存地址掩码
@@ -287893,4 +287901,40 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_18016a6c0
  */
 #define ProcessCharacterEncodingConversionAndAddressCalculation FUN_18016a6c0
+
+/**
+ * @brief 处理系统事件初始化和内存管理
+ * 
+ * 该函数负责处理系统事件的初始化操作和内存管理，包括：
+ * - 内存块分配和初始化
+ * - 系统事件模板设置
+ * - 字符状态缓冲区验证
+ * - 系统上下文管理
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801726f0
+ */
+#define ProcessSystemEventInitializationAndMemoryManagement FUN_1801726f0
+
+/**
+ * @brief 处理字符编码验证和内存分配
+ * 
+ * 该函数负责处理字符编码的验证操作和内存分配，包括：
+ * - Unicode码点计算
+ * - 字符数据大小验证
+ * - 内存分配索引计算
+ * - UTF-8到UTF-16编码转换
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180172e23
+ */
+#define ProcessCharacterEncodingValidationAndMemoryAllocation FUN_180172e23
 
