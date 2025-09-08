@@ -917,6 +917,9 @@
 #define IdentifySystemIdentifierByPatternVariantT FUN_1802257a7  // 识别系统标识符模式T (长度3、5、4和特定长度的字符串模式匹配)
 #define IdentifySystemIdentifierByPatternVariantU FUN_1802257e7
 
+// 原始函数名：FUN_180169350 - 核心引擎字符代码处理函数
+#define ProcessCoreEngineCharacterCode FUN_180169350
+
 // 系统内存和线程本地存储管理函数语义化映射
 #define InitializeSystemMemoryAllocatorAndThreadLocalStorage FUN_180162600  // 初始化系统内存分配器和线程本地存储
 #define InitializeSystemCharacterEncodingValidation FUN_1801659e0  // 初始化系统字符编码验证
@@ -199840,7 +199843,20 @@ long long * ProcessCharacterEncodingAndSystemStatusValidation(uint64_t Character
 
 
  (ram,0x000180169be0
-long long FUN_180169350(long long *CharacterCode,long long SystemBufferSize
+/**
+ * @brief 处理核心引擎字符代码
+ * 
+ * 该函数处理核心引擎中的字符代码，包括UTF-16字符转换、
+ * 系统验证和内存管理。函数会遍历字符缓冲区，验证每个字符，
+ * 并根据需要调用相应的系统事件处理函数。
+ * 
+ * @param CharacterCode 字符代码指针，包含需要处理的字符数据
+ * @param SystemBufferSize 系统缓冲区大小，用于确定处理范围
+ * @return long long 返回处理后的系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180169350
+ */
+long long ProcessCoreEngineCharacterCode(long long *CharacterCode,long long SystemBufferSize
 {
   uint32_t Utf16Char;
   char *SystemValidationFunction;
