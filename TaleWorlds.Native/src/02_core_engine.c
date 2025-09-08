@@ -1418,6 +1418,7 @@
 #define fStack_74 StackSecondaryCoordinateY                // 栈次坐标Y
 #define fStack_6c StackTertiaryCoordinateY                 // 栈第三坐标Y
 #define acStack_98 StackCharacterBuffer98                  // 栈字符缓冲区98
+#define acStackX_20 StackCharacterBufferX20                // 栈字符缓冲区X20
 
 #define ProcessSystemResourceAllocation ProcessSystemResourceAllocation
 
