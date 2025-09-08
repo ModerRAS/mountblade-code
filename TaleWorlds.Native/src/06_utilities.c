@@ -87460,7 +87460,7 @@ void ExecuteExceptionHandlerCallbackB7(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090b7f0(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset2F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -87474,7 +87474,7 @@ void Unwind_18090b7f0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b810(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset2E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
