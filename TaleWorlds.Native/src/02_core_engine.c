@@ -199590,10 +199590,10 @@ long long * ProcessCharacterEncodingAndSystemStatusValidation(uint64_t Character
   uint32_t SystemPriorityLevel;
   
   MemoryBlockIndex = _SystemPrimaryProcessingStatusFlag;
-  CoreEngineFinalizeSystemEvent(&CoreEnginePointerBuffer78,Utf8SourcePointer,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe);
-  SystemDataRegistry = FUN_180169350(MemoryBlockIndex,&CoreEnginePointerBuffer78);
-  CoreEnginePointerBuffer78 = &SystemNullTemplate;
-  if (StackProcessingVariableBuffer != (uint8_t *)0x0) {
+  CoreEngineFinalizeSystemEvent(&CoreEngineSystemBuffer,Utf8SourcePointer,Utf8SourcePointer,Utf16EndPointer,0,0xfffffffffffffffe);
+  SystemDataRegistry = FUN_180169350(MemoryBlockIndex,&CoreEngineSystemBuffer);
+  CoreEngineSystemBuffer = &SystemNullTemplate;
+  if (StackProcessingBuffer != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
