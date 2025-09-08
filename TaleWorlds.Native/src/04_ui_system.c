@@ -94029,37 +94029,48 @@ void FUN_1807201ce(void)
 
 
 
- void FUN_1807201f0(void)
-void FUN_1807201f0(void)
+ /**
+ * @brief UI系统数据转换函数
+ * 
+ * 该函数负责处理UI系统中的数据转换操作，包括：
+ * - 浮点数据的转换和处理
+ * - 数据类型的格式转换
+ * - 内存数据的读写操作
+ * - 数据验证和错误处理
+ * 
+ * 该函数是UI数据处理系统的核心组件，确保数据在不同格式间的正确转换。
+ */
+void ProcessUIDataConversionFunction(void)
+void ProcessUIDataConversionFunction(void)
 
 {
-  float *pbaseValue;
-  float *ptransformCoeff1;
-  UIByte aEventTypeCode [16];
-  double dVar4;
+  float *baseValuePointer;
+  float *transformCoeff1Pointer;
+  UIByte eventCodeData [16];
+  double conversionResult;
   float transformCoeff4;
-  float *plocalFloat6;
-  float *presultFloat;
-  float *ptempFloat;
-  float *bufferPointer;
-  float *pbaseValue0;
-  float *baseScaleFactor;
-  longlong allocatedMemory2;
-  longlong allocatedMemory3;
-  longlong allocatedMemory4;
-  longlong allocatedMemory5;
-  uint TotalResult;
+  float *localFloat6Pointer;
+  float *resultFloatPointer;
+  float *tempFloatPointer;
+  float *bufferDataPointer;
+  float *baseValue0Pointer;
+  float *scaleFactorPointer;
+  longlong memoryAllocation2;
+  longlong memoryAllocation3;
+  longlong memoryAllocation4;
+  longlong memoryAllocation5;
+  uint conversionTotalResult;
   ulonglong registerAX;
-  longlong allocatedMemory7;
+  longlong memoryAllocation7;
   uint result8;
-  longlong BasePointer;
-  float *SourceHandle;
-  longlong allocatedMemory9;
-  float *register9;
-  int register10D;
-  longlong EventHandle;
+  longlong basePointer;
+  float *sourceDataPointer;
+  longlong memoryAllocation9;
+  float *register9Pointer;
+  int register10Value;
+  longlong eventHandle;
   longlong preservedRegister15;
-  float AccumulatedFloat;
+  float accumulatedValue;
   float transformCoeff11;
   float transformCoeff12;
   float transformCoeff13;
@@ -94070,14 +94081,14 @@ void FUN_1807201f0(void)
   float transformCoeff18;
   float preservedXMM6;
   float preservedXMM7;
-  float unmodifiedXMM8_Da;
-  float unmodifiedXMM9_Da;
-  float unmodifiedXMM10_Da;
-  uint unmodifiedXMM11_Da;
-  float unmodifiedXMM12_Da;
-  float unmodifiedXMM13_Da;
-  float unmodifiedXMM14_Da;
-  float afStackX_8 [8];
+  float unmodifiedXMM8Value;
+  float unmodifiedXMM9Value;
+  float unmodifiedXMM10Value;
+  uint unmodifiedXMM11Value;
+  float unmodifiedXMM12Value;
+  float unmodifiedXMM13Value;
+  float unmodifiedXMM14Value;
+  float stackXArray [8];
   ulonglong stackParam00000190;
   
   do {
@@ -116030,18 +116041,33 @@ void ReleaseUIMemoryAndExecuteRender(void)
 
 
  void FUN_180738ed0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_180738ed0(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+/**
+ * @brief 处理UI数据加密和内存管理
+ * 
+ * 该函数负责处理UI系统中的数据加密和内存管理操作：
+ * - 执行数据加密操作
+ * - 处理UI数据验证
+ * - 管理内存资源
+ * - 执行数据比较和复制
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @return 处理结果状态码
+ * @note 原始函数名：FUN_180738ed0
+ */
+void ProcessUIDataEncryptionAndMemoryManagement(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
   int processingResult;
   int uiValidationResult;
   int uiCompareResult;
-  UIByte astackUInt178 [32];
-  UIByte *pstackUInt158;
-  longlong stackLong148;
-  UIHandle stackUInt140;
-  UIByte astackUInt138 [256];
-  ulonglong stackUInt38;
+  UIByte encryptionKeyBuffer [32];
+  UIByte *dataBufferPointer;
+  longlong memoryResourceFlag;
+  UIHandle resourceHandle;
+  UIByte validationBuffer [256];
+  ulonglong encryptedTaskParameter;
   
   stackUInt38 = XorEncryptionKey ^ (ulonglong)astackUInt178;
   stackLong148 = 0;
