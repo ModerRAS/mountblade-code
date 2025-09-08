@@ -2587,8 +2587,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 /**
  * @brief 系统操作处理函数
-// 功能：处理系统级操作，包括资源管理和状态控制
-// 系统操作处理函数
+ * 
+ * 处理系统级操作，包括资源管理和状态控制
+ * 
+ * @note 原始函数名：FUN_1800ad6f0
+ */
 #define ProcessSystemOperations FUN_1800ad6f0
 
 // 验证和处理数据函数
