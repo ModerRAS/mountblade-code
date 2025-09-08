@@ -92437,7 +92437,7 @@ void FUN_18071fef0(longlong uiContext,longlong dataSource,float *targetBuffer)
             dVar6 = (double)(longlong)(allocatedMemory8 - (ulonglong)(result9 & 1));
           }
           pbaseValue7 = (float *)(longlong)(int)dVar6;
-          transformCoeff17 = *(float *)(&UNK_180953730 + (longlong)pbaseValue7 * 4);
+          transformCoeff17 = *(float *)(&UIFloatDataTable + (longlong)pbaseValue7 * 4);
           transformCoeff20 = ABS(transformCoeff20) - (float)(int)dVar6 * 0.04;
           transformCoeff16 = ((1.0 - transformCoeff17 * transformCoeff17) * transformCoeff20 * (1.0 - transformCoeff17 * transformCoeff20) + transformCoeff17) * transformCoeff16;
         }
@@ -92542,7 +92542,7 @@ void FUN_18071fef0(longlong uiContext,longlong dataSource,float *targetBuffer)
             dVar6 = (double)(longlong)(componentIndex2 - (ulonglong)(TotalResult & 1));
           }
           pbaseValue7 = (float *)(longlong)(int)dVar6;
-          transformCoeff17 = *(float *)(&UNK_180953730 + (longlong)pbaseValue7 * 4);
+          transformCoeff17 = *(float *)(&UIFloatDataTable + (longlong)pbaseValue7 * 4);
           transformCoeff20 = ABS(transformCoeff20) - (float)(int)dVar6 * 0.04;
           transformCoeff16 = ((1.0 - transformCoeff17 * transformCoeff17) * transformCoeff20 * (1.0 - transformCoeff17 * transformCoeff20) + transformCoeff17) * transformCoeff16;
         }
@@ -93740,7 +93740,7 @@ void FUN_180721650(longlong uiContext,uint dataSource,int targetBuffer,uint buff
   uiCompareResult = 0;
   if ((resultPointer * 2 < (int)dataSource) && (param_6 != 0)) {
     localFloat9 = (float)(int)dataSource /
-            (float)(int)(*(int *)(&UNK_180954194 + (longlong)param_6 * 4) * resultPointer + dataSource);
+            (float)(int)(*(int *)(&UIFloatDataArray + (longlong)param_6 * 4) * resultPointer + dataSource);
     localFloat9 = localFloat9 * localFloat9 * 0.5;
     loopCounter = cosf(localFloat9 * 1.5707964);
     maxProcessingCount = cosf((1.0 - localFloat9) * 1.5707964);
@@ -95016,7 +95016,7 @@ void FUN_180722340(UIHandle uiContext,UIDword *dataSource)
 {
   UIDword result;
   
-  result = ReadUIData(uiContext,&UNK_18095362c,8);
+  result = ReadUIData(uiContext,&UIContextDataTable,8);
   *dataSource = result;
   return;
 }
@@ -95110,9 +95110,9 @@ UIDword ProcessUIFontValidation(longlong uiContext,int dataSource,UIHandle targe
     return result;
   }
   if (dataSource == 8) {
-    ptrLocal3 = &UNK_180954818;
+    ptrLocal3 = &UIStatusPointer3;
     if (*(int *)(uiBufferData + 0x914) != 4) {
-      ptrLocal3 = &UNK_180954814;
+      ptrLocal3 = &UIStatusPointer1;
     }
     *(undefined **)(uiContext + 0x958) = ptrLocal3;
     uiValidationResult = *(int *)(uiBufferData + 0x90c);

@@ -1267,6 +1267,31 @@
 #define SystemConfigurationValueOffset24 0x24
 #define SystemDataFlagsOffset1C 0x1c
 
+// 异常数据指针相关偏移量常量
+#define ExceptionDataPointerOffset 0x218
+#define ExceptionDataContextOffset40 0x40
+#define ExceptionHandlerContextOffsetC0 0xc0
+#define ExceptionHandlerContextOffset1C 0x1c
+#define ExceptionHandlerContextOffset24 0x24
+#define ExceptionHandlerContextOffset58 0x58
+#define ExceptionHandlerContextOffset60 0x60
+#define ExceptionHandlerContextOffset70 0x70
+#define ExceptionHandlerContextOffset94 0x94
+#define ExceptionHandlerContextOffsetA0 0xa0
+#define ExceptionHandlerContextOffsetA8 0xa8
+#define ExceptionHandlerContextOffsetAC 0xac
+#define ExceptionHandlerContextOffsetB0 0xb0
+
+// 系统资源管理相关偏移量常量
+#define SystemResourceManagementOffset10 0x10
+#define SystemResourceCounterOffset24 0x24
+
+// 内存块大小常量
+#define MemoryBlockSize50 0x50
+
+// 系统状态检查相关常量
+#define SystemStatusFlagE 0xe
+
 // 系统数据传输处理函数
 /**
  * @brief 系统数据传输处理器
@@ -23460,8 +23485,8 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
     systemContextBuffer = *systemContext;
     operationResult = (int)destinationContext[3];
     iterationCount = operationResult + 1;
-    statusCounter = (int)*(uint *)((int64_t)destinationContext + 0x1c) >> 0x1f;
-    operationStatus = (*(uint *)((int64_t)destinationContext + 0x1c) ^ statusCounter) - statusCounter;
+    statusCounter = (int)*(uint *)((int64_t)destinationContext + ExceptionHandlerContextOffset1C) >> 0x1f;
+    operationStatus = (*(uint *)((int64_t)destinationContext + ExceptionHandlerContextOffset1C) ^ statusCounter) - statusCounter;
     if (operationStatus < iterationCount) {
       primaryInputParameter = (int)((float)operationStatus * 1.5);
       operationStatus = iterationCount;
@@ -23492,7 +23517,7 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
     *(DataBuffer *)(securityCheckResultPointer + 2) = *systemContext;
   }
   *resourceReferencePointer = operationResult;
-  *(int *)((int64_t)destinationContext + 0x24) = *(int *)((int64_t)destinationContext + 0x24) + 1;
+  *(int *)((int64_t)destinationContext + ExceptionHandlerContextOffset24) = *(int *)((int64_t)destinationContext + ExceptionHandlerContextOffset24) + 1;
   return 0;
 }
 
@@ -41182,8 +41207,8 @@ void ResetExceptionState(DataBuffer ExceptionContext, int64_t ExceptionDataConte
   int64_t memoryBlockOffset;
   uint64_t baseAddress;
   
-  // 获取异常数据指针（使用0x40偏移量）
-  dataPointer = *(DataBuffer **)(*(int64_t *)(ExceptionDataContext + 0x40) + 0x218);
+  // 获取异常数据指针
+  dataPointer = *(DataBuffer **)(*(int64_t *)(ExceptionDataContext + ExceptionDataContextOffset40) + ExceptionDataPointerOffset);
   if (dataPointer == (DataBuffer *)0x0) {
     return;
   }
@@ -41191,11 +41216,11 @@ void ResetExceptionState(DataBuffer ExceptionContext, int64_t ExceptionDataConte
   // 计算基地址和偏移量
   baseAddress = (uint64_t)dataPointer & MemoryRegionMask;
   if (baseAddress != 0) {
-    memoryBlockOffset = baseAddress + ResourceManagementOffset80 + ((int64_t)dataPointer - baseAddress >> 0x10) * 0x50;
+    memoryBlockOffset = baseAddress + ResourceManagementOffset80 + ((int64_t)dataPointer - baseAddress >> 0x10) * MemoryBlockSize50;
     memoryBlockOffset = memoryBlockOffset - (uint64_t)*(uint *)(memoryBlockOffset + MemoryOffsetAdjustment);
     
     // 检查是否为异常列表且状态标志为0
-    if ((*(void ***)(baseAddress + 0x70) == &ExceptionList) && (*(char *)(memoryBlockOffset + 0xe) == '\0')) {
+    if ((*(void ***)(baseAddress + ExceptionHandlerContextOffset70) == &ExceptionList) && (*(char *)(memoryBlockOffset + SystemStatusFlagE) == '\0')) {
       // 更新指针链表
       *dataPointer = *(DataBuffer *)(memoryBlockOffset + SystemDataParameterOffset20);
       *(DataBuffer **)(memoryBlockOffset + SystemDataParameterOffset20) = dataPointer;
@@ -41210,7 +41235,7 @@ void ResetExceptionState(DataBuffer ExceptionContext, int64_t ExceptionDataConte
     }
     else {
       // 调用异常处理函数
-      ManageMemory(baseAddress,SetBitFlag(MemoryManagementFlagMask,*(void ***)(baseAddress + 0x70) == &ExceptionList),
+      ManageMemory(baseAddress,SetBitFlag(MemoryManagementFlagMask,*(void ***)(baseAddress + ExceptionHandlerContextOffset70) == &ExceptionList),
                           dataPointer,baseAddress,SystemCleanupFlagAlternative);
     }
   }
