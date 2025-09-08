@@ -83252,51 +83252,51 @@ uint CalculateUIInterpolationCoefficients(longlong uiContext,int dataSource,uint
     iterationControl = iterationControl + -1;
     processedValue = calculationResult;
   } while (iterationControl != 0);
-  processingResult4 = 0;
-  bVar6 = false;
-  uStackX_10 = (uint)iterationCount2;
-  if (dataSource < (int)(uint)iterationCount2) {
-    pProcessingResult2 = (int *)(iterationCount1 * 4 + resultPointer);
-    iterationCount2 = (ulonglong)(targetBuffer - dataSource);
+  processedValue = 0;
+  hasComparisonResult = false;
+  outputValue = (uint)sourceIteration;
+  if (dataSource < (int)(uint)sourceIteration) {
+    resultDataPointer = (int *)(targetIteration * 4 + resultPointer);
+    sourceIteration = (ulonglong)(targetBuffer - dataSource);
     do {
-      puiCompareResult = (int *)((longlong)pProcessingResult2 + (param_6 - resultPointer) + -4);
-      pProcessingResult2 = pProcessingResult2 + -1;
-      processingResult6 = (*puiCompareResult * ProcessingResult1 >> 6) + *pProcessingResult2;
-      if ((*(int *)((longlong)pProcessingResult2 + (param_7 - resultPointer)) <= processingResult6) || (bVar6)) {
-        bVar6 = true;
-        processingResult9 = processingResult6;
+      comparisonResultPointer = (int *)((longlong)resultDataPointer + (maximumDistance - resultPointer) + -4);
+      resultDataPointer = resultDataPointer + -1;
+      iterationResult = (*comparisonResultPointer * accumulatedResult >> 6) + *resultDataPointer;
+      if ((*(int *)((longlong)resultDataPointer + (referenceOffset1 - resultPointer)) <= iterationResult) || (hasComparisonResult)) {
+        hasComparisonResult = true;
+        optimizedResult = iterationResult;
       }
       else {
-        processingResult9 = ProcessingResult3;
-        if (processingResult6 < ProcessingResult3) {
-          processingResult9 = 0;
+        optimizedResult = thresholdResult;
+        if (iterationResult < thresholdResult) {
+          optimizedResult = 0;
         }
       }
-      processingResult6 = *(int *)((longlong)pProcessingResult2 + (param_8 - resultPointer));
-      if (processingResult9 < processingResult6) {
-        processingResult6 = processingResult9;
+      iterationResult = *(int *)((longlong)resultDataPointer + (referenceOffset2 - resultPointer));
+      if (optimizedResult < iterationResult) {
+        iterationResult = optimizedResult;
       }
-      processingResult4 = processingResult4 + processingResult6;
-      *(int *)((uiContext6 - resultPointer) + (longlong)pProcessingResult2) = processingResult6;
-      iterationCount2 = iterationCount2 - 1;
-      uStackX_10 = targetBuffer;
-    } while (iterationCount2 != 0);
+      processedValue = processedValue + iterationResult;
+      *(int *)((contextPointer6 - resultPointer) + (longlong)resultDataPointer) = iterationResult;
+      sourceIteration = sourceIteration - 1;
+      outputValue = targetBuffer;
+    } while (sourceIteration != 0);
   }
-  stackInt98 = uStackX_10 - 1;
-  contextOffset = (longlong)stackInt98;
-  if (bufferSize < stackInt98) {
-    iterationCount2 = iterationCount1;
+  stackValue98 = outputValue - 1;
+  currentOffset = (longlong)stackValue98;
+  if (bufferSize < stackValue98) {
+    sourceIteration = targetIteration;
     do {
-      componentIndex3 = *(longlong *)(uiBufferData + 0x20);
-      localInt7 = (int)*(short *)(CounterResult * 2 + componentIndex3);
-      processingResult9 = (int)*(short *)(componentIndex3 + iterationCount2 * 2);
-      result7 = processingResult9 - localInt7;
-      iterationCount0 = (uint)(param_9 - processingResult4) / result7;
-      pProcessingResult2 = (int *)(uiContext6 + contextOffset * 4);
-      processingResult6 = (int)*(short *)(componentIndex3 + contextOffset * 2);
-      ProcessingResult1 = *pProcessingResult2;
-      processingResult9 = processingResult9 - processingResult6;
-      processingResult6 = ((localInt7 - result7 * iterationCount0) - processingResult6) + (param_9 - processingResult4);
+      componentOffset = *(longlong *)(uiBufferData + 0x20);
+      calculationResult = (int)*(short *)(sourceCounter * 2 + componentOffset);
+      optimizedResult = (int)*(short *)(componentOffset + sourceIteration * 2);
+      finalResult = optimizedResult - calculationResult;
+      loopCounter = (uint)(thresholdValue - processedValue) / finalResult;
+      resultDataPointer = (int *)(contextPointer6 + currentOffset * 4);
+      iterationResult = (int)*(short *)(componentOffset + currentOffset * 2);
+      accumulatedResult = *resultDataPointer;
+      optimizedResult = optimizedResult - iterationResult;
+      iterationResult = ((calculationResult - finalResult * loopCounter) - iterationResult) + (thresholdValue - processedValue);
       if (processingResult6 < 1) {
         processingResult6 = 0;
       }
@@ -84152,13 +84152,13 @@ void ProcessUIEventDataCompression(int *uiContext,uint *dataSource,UIHandle targ
   uint iterationCount3;
   uint uStackX_8;
   
-  processedCount = *uiContext;
-  allocatedMemory = *(longlong *)(uiBufferData + 2);
+  totalProcessedCount = *uiContext;
+  memoryAllocation = *(longlong *)(uiBufferData + 2);
   result3 = 0;
   iterationCount3 = 0;
   processingResult5 = uiContext[4];
-  iterationCount = *(UIHandle *)(uiContext + 8);
-  EventTypeCode = *(UIHandle *)(uiContext + 0xc);
+  eventIterationCount = *(UIHandle *)(uiContext + 8);
+  eventTypeCode = *(UIHandle *)(uiContext + 0xc);
   uStackX_8 = 0;
   localInt8 = (int)*(short *)(*(longlong *)(allocatedMemory + 0x40) + (longlong)processingResult5 * 2) + param_9 * 8;
   if ((uiContext0 == 0) || (localInt5 = 0x10, resultPointer != 2)) {
