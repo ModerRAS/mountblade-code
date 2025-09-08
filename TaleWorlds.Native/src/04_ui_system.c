@@ -84504,25 +84504,45 @@ void ProcessUIContextUpdate(UIHandle uiContext,int dataSource,int targetBuffer)
 
 
 
- void FUN_1807163d0(longlong uiContext,longlong dataSource,float *targetBuffer,longlong bufferSize,int resultPointer,
-void FUN_1807163d0(longlong uiContext,longlong dataSource,float *targetBuffer,longlong bufferSize,int resultPointer,
-                  int param_6,int param_7,int param_8,int param_9)
+ /**
+ * @brief 处理UI数据变换和计算
+ * 
+ * 该函数负责处理UI数据的复杂变换和计算操作，包括：
+ * - 组件索引的计算和验证
+ * - 浮点数据的批量处理
+ * - 指数变换和颜色调整
+ * - 内存缓冲区的初始化和操作
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6（可能为步长）
+ * @param param_7 参数7（可能为乘数）
+ * @param param_8 参数8（可能为除数）
+ * @param param_9 参数9（可能为标志位）
+ * 
+ * @note 原始函数名：FUN_1807163d0
+ */
+void ProcessUIDataTransform(longlong uiContext,longlong dataSource,float *targetBuffer,longlong bufferSize,int resultPointer,
+                          int param_6,int param_7,int param_8,int param_9)
 
 {
-  short sVar1;
+  short componentCount;
   longlong componentIndex;
-  int uiCompareResult;
-  int TempInt4;
-  int localInt5;
-  ulonglong maxProcessingCount;
-  float *presultFloat;
-  float *plocalFloat8;
-  int localInt9;
-  float *pbaseValue0;
-  int ProcessingResult1;
-  longlong allocatedMemory2;
-  float baseValue3;
-  double dVar14;
+  int compareResult;
+  int tempValue;
+  int iterationCount;
+  ulonglong processingLimit;
+  float *resultPointer;
+  float *sourcePointer;
+  int calculatedValue;
+  float *basePointer;
+  int processingResult;
+  longlong memoryOffset;
+  float transformValue;
+  double exponentialResult;
   
   componentIndex = *(longlong *)(uiBufferData + 0x20);
   ProcessingResult1 = *(int *)(uiBufferData + 0x30) * param_7;
