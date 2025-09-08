@@ -200138,7 +200138,7 @@ int ValidateUIContextAndProcessDataSource(longlong *uiContext, longlong *dataSou
               *(int *)((longlong)uiContext + 0x14) = *(int *)((longlong)uiContext + 0x14) + 1;
               validationResult = 0;
             }
-            goto LAB_18078a1be;
+            goto ValidationCompleteLabel;
           }
           break;
         }
@@ -200147,7 +200147,7 @@ int ValidateUIContextAndProcessDataSource(longlong *uiContext, longlong *dataSou
       validationResult = 0x1e;
     }
   }
-LAB_18078a1be:
+ValidationCompleteLabel:
   if ((isValidationComplete) && (allocatedMemory != 0)) {
                      WARNING: Subroutine does not return
     ProcessUISystemCleanup(allocatedMemory, maxValidationSize);
@@ -200228,7 +200228,7 @@ int ValidateUIHandleAndProcessDataSource(UIHandle *uiContext, longlong *dataSour
               *(int *)((longlong)uiContext + 0x14) = *(int *)((longlong)uiContext + 0x14) + 1;
               validationResult = 0;
             }
-            goto LAB_18078a1be;
+            goto ValidationCompleteLabel;
           }
           break;
         }
@@ -200237,7 +200237,7 @@ int ValidateUIHandleAndProcessDataSource(UIHandle *uiContext, longlong *dataSour
       validationResult = 0x1e;
     }
   }
-LAB_18078a1be:
+ValidationCompleteLabel:
   if ((isValidationComplete) && (basePointer != 0)) {
                      WARNING: Subroutine does not return
     ProcessUISystemCleanup();
