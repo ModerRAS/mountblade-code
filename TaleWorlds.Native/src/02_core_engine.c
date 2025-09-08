@@ -282992,4 +282992,165 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define ProcessSystemCharacterDataInitializationEx FUN_1801570c0
 
+/**
+ * @brief 处理系统字符数据分配和配置
+ * 
+ * 该函数负责处理系统字符数据的分配和配置。
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return long long* 处理结果指针
+ * 
+ * @note 原始函数名：FUN_1801582f0
+ */
+#define ProcessSystemCharacterDataAllocationAndConfiguration FUN_1801582f0
+
+/**
+ * @brief 处理系统字符编码验证
+ * 
+ * 该函数负责处理系统字符编码的验证操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801584c0
+ */
+#define ProcessSystemCharacterEncodingValidation FUN_1801584c0
+
+/**
+ * @brief 处理系统字符数据和管理
+ * 
+ * 该函数负责处理系统字符数据和管理。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180158780
+ */
+#define ProcessSystemCharacterDataAndManagement FUN_180158780
+
+/**
+ * @brief 处理系统字符代码和缓冲区管理
+ * 
+ * 该函数负责处理系统字符代码和缓冲区管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return long long* 处理结果指针
+ * 
+ * @note 原始函数名：FUN_180158990
+ */
+#define ProcessSystemCharacterCodeAndBufferManagement FUN_180158990
+
+/**
+ * @brief 处理系统字符编码和大小管理
+ * 
+ * 该函数负责处理系统字符编码和大小管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180158e10
+ */
+#define ProcessSystemCharacterEncodingAndSizeManagement FUN_180158e10
+
+/**
+ * @brief 处理系统字符编码和内存管理
+ * 
+ * 该函数负责处理系统字符编码和内存管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180158f40
+ */
+#define ProcessSystemCharacterEncodingAndMemoryManagement FUN_180158f40
+
+/**
+ * @brief 处理系统字符代码和指针管理
+ * 
+ * 该函数负责处理系统字符代码和指针管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long* 处理结果指针
+ * 
+ * @note 原始函数名：FUN_180159210
+ */
+#define ProcessSystemCharacterCodeAndPointerManagement FUN_180159210
+
+/**
+ * @brief 处理字符代码转换和缓冲区管理
+ * 
+ * 该函数负责处理字符代码转换和缓冲区管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801592f0
+ */
+#define ProcessCharacterCodeConversionAndBufferManagement FUN_1801592f0
+
+/**
+ * @brief 处理字符编码转换和内存管理
+ * 
+ * 该函数负责处理字符编码转换和内存管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801594d0
+ */
+#define ProcessCharacterEncodingConversionAndMemoryManagement FUN_1801594d0
+
+/**
+ * @brief 处理系统字符数据和大小管理
+ * 
+ * 该函数负责处理系统字符数据和大小管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801595d0
+ */
+#define ProcessSystemCharacterDataAndSizeManagement FUN_1801595d0
+
+/**
+ * @brief 重置系统字符数据处理
+ * 
+ * 该函数负责重置系统字符数据处理。
+ * 
+ * @note 原始函数名：FUN_1801598f0
+ */
+#define ResetSystemCharacterDataProcessing FUN_1801598f0
+
+/**
+ * @brief 处理系统字符编码和缓冲区配置
+ * 
+ * 该函数负责处理系统字符编码和缓冲区配置。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18015a900
+ */
+#define ProcessSystemCharacterEncodingAndBufferConfiguration FUN_18015a900
+
 
