@@ -113,10 +113,10 @@ typedef enum {
 #define UIGlobalDataRegistry30 UNK_180956d30
 
 // UI系统查找表变量宏定义
-#define UILookupTablePrimary UNK_180954690
+#define UIPrimaryLookupTable UNK_180954690
 #define UILookupTableIndex UNK_180954728
-#define UILookupTableSecondary UNK_1809545f0
-#define UILookupTableTertiary UNK_180954550
+#define UISecondaryLookupTable UNK_1809545f0
+#define UITertiaryLookupTable UNK_180954550
 #define UILookupTableQuaternary UNK_1809544b0
 
 // UI系统函数宏定义 - 计算UI事件距离
@@ -99897,7 +99897,7 @@ float FUN_180727db0(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
       EventDataIndex = (longlong)(int)result0;
       sVar11 = (short)result0;
       if ((int)result0 < (int)result3) {
-        result2 = *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d38 + EventDataIndex * 8));
+        result2 = *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry38 + EventDataIndex * 8));
         if ((targetBuffer < *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + EventDataIndex * 8))) ||
            (result2 <= targetBuffer)) {
           processingCounter = 0;
@@ -100012,7 +100012,7 @@ float FUN_180727db6(int uiContext,ulonglong dataSource,uint targetBuffer,int *bu
       EventDataIndex = (longlong)(int)result0;
       sVar11 = (short)result0;
       if ((int)result0 < (int)result3) {
-        result2 = *(uint *)(ContextHandleData + *(longlong *)(&UNK_180956d38 + EventDataIndex * 8));
+        result2 = *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry38 + EventDataIndex * 8));
         if ((targetBuffer < *(uint *)(ContextHandleData + *(longlong *)(&UIGlobalDataRegistry + EventDataIndex * 8))) ||
            (result2 <= targetBuffer)) {
           processingCounter = 0;
@@ -100378,7 +100378,7 @@ float CalculateUIContextCompositeDistance(int *uiContext, int dataSource, int ta
       processingResult4 = (int)counterResult;
       iterationStep = (short)targetBuffer;
       if (targetBuffer < processingResult4) {
-        result = *(uint *)(characterDataOffset + *(longlong *)(&UNK_180956d38 + contextOffset * 8));
+        result = *(uint *)(characterDataOffset + *(longlong *)(&UIGlobalDataRegistry38 + contextOffset * 8));
         if ((maxProcessingCount < *(uint *)(characterDataOffset + *(longlong *)(&UIGlobalDataRegistry + contextOffset * 8))) ||
            (result <= maxProcessingCount)) {
           result0 = 0;
@@ -100518,7 +100518,7 @@ void FUN_180728050(longlong uiContext,int dataSource,int targetBuffer,longlong *
       if (processingResult4 <= localInt6 + 1) {
         ProcessingResult3 = localInt6;
       }
-      CounterResult = CounterResult + *(int *)(*(longlong *)(&UNK_180956d38 + (longlong)uiCompareResult * 8) + 4 +
+      CounterResult = CounterResult + *(int *)(*(longlong *)(&UIGlobalDataRegistry38 + (longlong)uiCompareResult * 8) + 4 +
                                 (longlong)ProcessingResult3 * 4);
     }
     ProcessingResult3 = processingResult4;
