@@ -104279,7 +104279,7 @@ void FUN_18072b930(longlong uiContext,longlong dataSource,int targetBuffer,ulong
     stackInt148 = 0x22;
     localInt7 = (int)(char)(&UNK_180956e8c)[param_6];
     plocalChar10 = &UNK_180956f18 + (longlong)param_6 * 8;
-    componentHandle = &UNK_180956e90;
+    componentHandle = &UIComponentDataTable180956e90;
   }
   else {
     localInt7 = 0xc;
@@ -104519,7 +104519,7 @@ void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int b
     stackInte4 = 0x22;
     localInt8 = (int)(char)(&UNK_180956e8c)[param_6];
     plocalChar13 = &UNK_180956f18 + (longlong)param_6 * 8;
-    renderDataPointer = &UNK_180956e90;
+    renderDataPointer = &UIComponentDataTable180956e90;
   }
   else {
     localInt8 = 0xc;
@@ -105430,7 +105430,7 @@ void FUN_18072cc1b(void)
                     iStack0000000000000054,processingResult8);
       transformCoeff17 = (float)localInt8;
       if (processingResult8 == 4) {
-        puStack0000000000000070 = &UNK_180956e90;
+        puStack0000000000000070 = &UIComponentDataTable180956e90;
         allocatedMemory9 = 0x22;
         processingResult8 = (int)(char)(&UNK_180956e8c)[iStack0000000000000050];
       }
@@ -105490,7 +105490,7 @@ void FUN_18072cc1b(void)
                 transformCoeff23 = (1.0 - (float)(int)iterationCount1 * (0.05 / transformCoeff17))                          (float)((dVar30 + dVar30) / dVar32);
               }
               if ((preservedXMM7 < transformCoeff23) &&
-                 ((char)(&UNK_180956e90)[componentIndex0] + processingResult6 <= stackParam00000068)) {
+                 ((char)(&UIComponentDataTable180956e90)[componentIndex0] + processingResult6 <= stackParam00000068)) {
                 preservedXMM7 = transformCoeff23;
                 localInt8 = processingResult6;
                 StackHandle1 = iterationCount1;
@@ -105655,7 +105655,7 @@ void FUN_18072cdb2(float *uiContext,int dataSource,int targetBuffer)
                   iStack0000000000000054,ProcessingResult3);
     transformCoeff11 = (float)loopCounter;
     if (ProcessingResult3 == 4) {
-      puStack0000000000000070 = &UNK_180956e90;
+      puStack0000000000000070 = &UIComponentDataTable180956e90;
       componentIndex0 = 0x22;
       ProcessingResult3 = (int)(char)(&UNK_180956e8c)[iStack0000000000000050];
     }
@@ -105716,7 +105716,7 @@ void FUN_18072cdb2(float *uiContext,int dataSource,int targetBuffer)
               transformCoeff13 = (1.0 - (float)(int)TotalResult * (0.05 / transformCoeff11))                        (float)((dVar24 + dVar24) / dVar25);
             }
             if ((preservedXMM7 < transformCoeff13) &&
-               ((char)(&UNK_180956e90)[allocatedMemory5] + ProcessingResult2 <= stackParam00000068)) {
+               ((char)(&UIComponentDataTable180956e90)[allocatedMemory5] + ProcessingResult2 <= stackParam00000068)) {
               preservedXMM7 = transformCoeff13;
               loopCounter = ProcessingResult2;
               StackHandle1 = TotalResult;
@@ -110852,7 +110852,7 @@ void FUN_1807342b0(short uiContext,char dataSource,int *targetBuffer,int bufferS
     }
   }
   else if (resultPointer == 4) {
-    ptrLocal6 = &UNK_180956e90;
+    ptrLocal6 = &UIComponentDataTable180956e90;
     CharacterDataOffset = 0x22;
   }
   else {
@@ -199922,7 +199922,23 @@ UIHandle FUN_180788fe0(longlong uiContext)
 
 
 
-UIHandle FUN_180789122(void)
+/**
+ * @brief UI事件处理器清理函数D0
+ * 
+ * 该函数负责清理UI事件处理器的相关资源，包括：
+ * 1. 清理事件处理器的内存分配
+ * 2. 释放事件数据相关的资源
+ * 3. 重置事件处理器的状态
+ * 4. 确保所有事件处理器都被正确清理
+ * 
+ * @return 清理结果状态码：
+ *         - 0: 清理成功
+ *         - 非0值: 具体的错误代码
+ * 
+ * @note 原始函数名：FUN_180789122
+ * @warning 清理过程中会释放所有事件处理器资源，调用后需要重新初始化
+ */
+UIHandle CleanupUIEventHandlersD0(void)
 
 {
   UIHandle *ptrResult;
