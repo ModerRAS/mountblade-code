@@ -310,6 +310,8 @@
 
 // 数据缓冲区异常处理上下文偏移量常量
 #define ExceptionHandlerContextDataOffset 0xe0            // 数据缓冲区异常处理上下文偏移量
+#define ExceptionHandlerMemoryOffsetEE8 0xee8            // 异常处理内存操作偏移量EE8
+#define ExceptionHandlerMemoryOffsetF20 0xf20            // 异常处理内存操作偏移量F20
 
 // 系统状态偏移量常量
 #define SystemStateFlagsOffset 0x54                         // 系统状态标志偏移量
@@ -100188,7 +100190,10 @@ void ExecuteSystemMemoryOperationAndCleanupDEA0(DataBuffer operationBase, int64_
  */
 void ExecuteSystemMemoryOperationAndCleanupDEC0(DataBuffer operationBase, int64_t dataBuffer)
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0xf20, 0x20, 0x1d, CleanupResourceHandler);
+  int64_t exceptionHandlerContext;
+  
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextDataOffset);
+  ExecuteMemoryOperation(exceptionHandlerContext + ExceptionHandlerMemoryOffsetF20, 0x20, 0x1d, CleanupResourceHandler);
   return;
 }
 
