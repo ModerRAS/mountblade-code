@@ -289,6 +289,18 @@ typedef enum {
 #define CalculateUIRenderDataWeightedSum FUN_18070737d
 
 /**
+ * @brief 处理UI数据矩阵变换
+ * 
+ * 该函数负责处理UI系统中的数据矩阵变换，包括：
+ * - 处理UI上下文数据源的变换
+ * - 执行矩阵运算和数据转换
+ * - 管理缓冲区数据
+ * 
+ * @note 原始函数名：FUN_180711674
+ */
+#define ProcessUIDataMatrixTransform FUN_180711674
+
+/**
  * @brief 处理UI渲染数据变换
  * 
  * 该函数负责处理UI渲染数据的各种变换，包括：
