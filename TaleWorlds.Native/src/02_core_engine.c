@@ -215263,7 +215263,15 @@ void ProcessCharacterCodeAndSystemContextManagement(long long CharacterCode
  * @note 原始函数名：FUN_18017b36c
  */
 #define EmptyPlaceholderFunction FUN_18017b36c
-void FUN_18017b36c(void
+/**
+ * @brief 系统初始化完成函数
+ * 
+ * 该函数负责系统初始化完成后的清理和设置工作。
+ * 当前实现为空函数，可能是为将来的扩展预留的接口。
+ * 
+ * @note 原始函数名：FUN_18017b36c
+ */
+void CompleteSystemInitialization(void)
 {
   return;
 }
@@ -227825,7 +227833,19 @@ ProcessCharacterEncodingAndSystemBufferConfiguration(uint64_t *CharacterCode,lon
  * @note 原始函数名：FUN_18018ee00
  */
 #define ProcessSystemEventTemplateAndMemoryManagement FUN_18018ee00
-void FUN_18018ee00(void
+/**
+ * @brief 核心引擎系统初始化和字符处理
+ * 
+ * 该函数负责核心引擎的系统初始化和字符数据处理，主要功能包括：
+ * - 系统内存管理和缓冲区分配
+ * - 字符状态缓冲区的初始化和管理
+ * - 系统事件模板的处理
+ * - 字符编码转换和数据处理
+ * - 系统资源的管理和清理
+ * 
+ * @note 原始函数名：FUN_18018ee00
+ */
+void InitializeCoreEngineSystemAndProcessCharacters(void)
 {
   uint64_t *CharacterStatusBuffer;
   uint MemoryAllocationIndex;
