@@ -200056,7 +200056,7 @@ void ProcessCharacterEncodingAndSystemBufferConfiguration(uint64_t CharacterCode
   uint32_t SystemOperationFlag98;
   uint64_t SystemOperation90;
   void *StackPointer;
-  long long lStack_60;
+  long long SystemStackRegister60;
   uint32_t SystemKeyPointer;
   uint64_t SystemStackOffset48;
   
