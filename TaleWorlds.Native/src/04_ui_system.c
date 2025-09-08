@@ -81919,8 +81919,23 @@ void ProcessUIFloatDataTransform(longlong uiContext,float *dataSource,longlong t
 
 
 
- void FUN_180712cdf(longlong uiContext,float *dataSource,UIHandle targetBuffer,int bufferSize)
-void FUN_180712cdf(longlong uiContext,float *dataSource,UIHandle targetBuffer,int bufferSize)
+ /**
+ * @brief UI浮点数据变换处理器
+ * 
+ * 该函数处理UI系统中的浮点数据变换操作，主要用于：
+ * - 对浮点数据数组进行线性变换
+ * - 应用变换系数到数据源
+ * - 将结果写入目标缓冲区
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 源数据浮点数组指针
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180712cdf
+ */
+void ProcessUIFloatDataTransform(longlong uiContext,float *dataSource,UIHandle targetBuffer,int bufferSize)
+void ProcessUIFloatDataTransform(longlong uiContext,float *dataSource,UIHandle targetBuffer,int bufferSize)
 
 {
   float baseValue;
