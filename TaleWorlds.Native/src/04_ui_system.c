@@ -15620,7 +15620,7 @@ void UpdateUIElementState(void)
 
 {
   longlong MemoryAllocation;
-  undefined3 SemaphoreHandle;
+  undefined3 UICriticalSectionHandle;
   float *ResultPointer;
   int TemporalCounter;
   int LocalIndex;
@@ -96434,7 +96434,7 @@ void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int t
             eventProcessingCounter = (ulonglong)result3;
             if (0 < (int)result3) {
               do {
-                sVar2 = ReadUIData(uiContext,&UNK_1809535b0,8);
+                sVar2 = ReadUIData(uiContext,&UIComponentStateTable,8);
                 sVar6 = sVar2 + sVar6 * 2;
                 eventProcessingCounter = eventProcessingCounter - 1;
               } while (eventProcessingCounter != 0);
