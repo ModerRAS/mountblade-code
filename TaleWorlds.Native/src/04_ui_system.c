@@ -100208,34 +100208,34 @@ void ProcessUIElementIndex(longlong uiContext,float *dataSource)
   short contextArray2 [16];
   ulonglong encryptionKey;
   
-  stackUInt28 = XorEncryptionKey ^ (ulonglong)astackUInt88;
-  FUN_180733080(uiContext,asStack_68);
-  TempInt4 = 0;
+  encryptionKey = XorEncryptionKey ^ (ulonglong)encryptionBuffer;
+  FUN_180733080(uiContext,contextArray1);
+  elementCount = 0;
   if (0 < *(int *)(uiBufferData + 0x121c)) {
-    pContextFirstValue = asStack_68;
-    ptransformCoeff1 = dataSource;
-    localInt5 = TempInt4;
+    contextDataPtr = contextArray1;
+    transformCoeffPtr = dataSource;
+    currentIndex = elementCount;
     do {
-      sVar1 = *pContextFirstValue;
-      pContextFirstValue = pContextFirstValue + 1;
+      elementValue = *contextDataPtr;
+      contextDataPtr = contextDataPtr + 1;
       uiElementIndex = uiElementIndex + 1;
-      *ptransformCoeff1 = (float)(int)sVar1 * 0.00024414063;
-      ptransformCoeff1 = ptransformCoeff1 + 1;
-    } while (localInt5 < *(int *)(uiBufferData + 0x121c));
+      *transformCoeffPtr = (float)(int)elementValue * 0.00024414063;
+      transformCoeffPtr = transformCoeffPtr + 1;
+    } while (currentIndex < *(int *)(uiBufferData + 0x121c));
     if (0 < *(int *)(uiBufferData + 0x121c)) {
-      pContextFirstValue = asStack_48;
-      ptransformCoeff1 = dataSource + 0x10;
+      contextDataPtr = contextArray2;
+      transformCoeffPtr = dataSource + 0x10;
       do {
-        sVar1 = *pContextFirstValue;
-        pContextFirstValue = pContextFirstValue + 1;
-        TempInt4 = TempInt4 + 1;
-        *ptransformCoeff1 = (float)(int)sVar1 * 0.00024414063;
-        ptransformCoeff1 = ptransformCoeff1 + 1;
-      } while (TempInt4 < *(int *)(uiBufferData + 0x121c));
+        elementValue = *contextDataPtr;
+        contextDataPtr = contextDataPtr + 1;
+        elementCount = elementCount + 1;
+        *transformCoeffPtr = (float)(int)elementValue * 0.00024414063;
+        transformCoeffPtr = transformCoeffPtr + 1;
+      } while (elementCount < *(int *)(uiBufferData + 0x121c));
     }
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackUInt28 ^ (ulonglong)astackUInt88);
+  ExecuteUIRenderTask(encryptionKey ^ (ulonglong)encryptionBuffer);
 }
 
 
