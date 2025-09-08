@@ -817,6 +817,9 @@
 #define RegisterContextSecondaryOffset 0x10
 #define RegisterContextTertiaryOffset 0x18
 #define RegisterContextQuaternaryOffset 0x20
+
+// 资源管理器偏移量常量
+#define ResourceReferenceManagerOffset330 0x330              // 资源引用计数管理器偏移量
 #define RegisterContextQuinaryOffset 0x28
 #define RegisterContextSenaryOffset 0x30
 #define RegisterContextSeptenaryOffset 0x38
@@ -100015,7 +100018,7 @@ void ManageResourceReferenceCountB0(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x330);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + ResourceReferenceManagerOffset330);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }

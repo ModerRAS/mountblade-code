@@ -90747,20 +90747,20 @@ void FUN_18071ce0f(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,
   stackData70 = allocatedMemory;
   FUN_180724e90(uiContext + 0x10,uiContext + 0x13f2,*(UIDword *)(uiBufferData + 0x11e4));
   loopCounter = *(int *)(uiBufferData + 0x11e4) + -1;
-  allocatedMemory0 = (longlong)(*(int *)(uiBufferData + 0x11dc) * 5);
+  allocatedMemorySize = (longlong)(*(int *)(uiBufferData + 0x11dc) * 5);
   contextOffset = (longlong)loopCounter;
   if (-1 < loopCounter) {
     if (2 < contextOffset) {
-      psVar7 = (short *)(uiContext + 0x13f0 + contextOffset * 2);
-      bufferPointer = (float *)(allocatedMemory + (allocatedMemory0 + -3 + contextOffset) * 4);
+      componentPointer = (short *)(uiContext + 0x13f0 + contextOffset * 2);
+      bufferPointer = (float *)(allocatedMemory + (allocatedMemorySize + -3 + contextOffset) * 4);
       do {
-        stringCompareIndex = allocatedMemory0 + contextOffset;
+        stringCompareIndex = allocatedMemorySize + contextOffset;
         contextOffset = contextOffset + -4;
-        *(float *)(allocatedMemory + stringCompareIndex * 4) = (float)(int)psVar7[1];
-        *(float *)(allocatedMemory + -4 + stringCompareIndex * 4) = (float)(int)*psVar7;
-        bufferPointer[1] = (float)(int)psVar7[-1];
-        *bufferPointer = (float)(int)psVar7[-2];
-        psVar7 = psVar7 + -4;
+        *(float *)(allocatedMemory + stringCompareIndex * 4) = (float)(int)componentPointer[1];
+        *(float *)(allocatedMemory + -4 + stringCompareIndex * 4) = (float)(int)*componentPointer;
+        bufferPointer[1] = (float)(int)componentPointer[-1];
+        *bufferPointer = (float)(int)componentPointer[-2];
+        componentPointer = componentPointer + -4;
         bufferPointer = bufferPointer + -4;
       } while (2 < contextOffset);
     }
