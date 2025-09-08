@@ -11169,7 +11169,7 @@ ProcessUIElementTransform(longlong *uiContext,float *transformData,float *target
   clipMinZ = sourceX * depthY + minX * depthX + depthZ * maxY;
   scaleX = sourceX * matrixRow2_Y + minX * matrixRow2_X + matrixRow2_Z * maxY;
   clipFar = sourceX * matrixRow2_W + minX * matrixRow2_W + matrixRow2_W * maxY;
-  clipMaxX = sourceY * projMatrix_1_1 + minY * fStack_118 + matrixRow3_Z * scaleY;
+  clipMaxX = sourceY * projMatrix_1_1 + minY * transformX + matrixRow3_Z * scaleY;
   clipMaxY = sourceY * depthY + minY * depthX + depthZ * scaleY;
   minX = sourceY * matrixRow2_Y + minY * matrixRow2_X + matrixRow2_Z * scaleY;
   clipMinX = sourceY * matrixRow2_W + minY * matrixRow2_W + matrixRow2_W * scaleY;
