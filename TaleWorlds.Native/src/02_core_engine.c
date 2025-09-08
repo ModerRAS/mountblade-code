@@ -171,7 +171,11 @@
 #define ReferenceCountPointer5 ReferenceCountPointer5          // 引用计数指针5
 #define StringComparisonResultPointer0 StringComparisonResultPointer0 // 字符串比较结果指针0
 #define SystemStackPointer190 SystemStackPointer190            // 系统栈指针190
-#define LoopCounterVariable LoopCounterVariable                          // 循环计数器变量
+#define LoopCounterVariable lStack_158                          // 循环计数器变量
+#define SystemMemoryAllocationBlock128 SystemMemoryAllocationBlock128             // 系统内存分配块128
+#define SystemMemoryAllocationBlock298 SystemMemoryAllocationBlock298             // 系统内存分配块298
+#define SystemMemoryAllocationBlock260 pplStack_260             // 系统内存分配块260
+#define SystemMemoryAllocationBlock258 pplStack_258             // 系统内存分配块258
 
 // 系统栈变量语义化映射
 #define SystemStackUnsigned110 uStack_110                  // 系统栈无符号110
@@ -3374,6 +3378,12 @@
  * @note 原始函数名：FUN_180204b50
  */
 #define ProcessFloatingPointCharacterCodeAndEncoding FUN_180204b50
+* @note 原始函数名：FUN_1802eb9a0
+#define ProcessSystemMemoryAllocationAndValidation FUN_1802eb9a0
+* @note 原始函数名：FUN_180753860
+#define ValidateSystemDataProcessingFlags FUN_180753860
+* @note 原始函数名：FUN_18022d2c0
+#define GetCharacterCodeAtPosition FUN_18022d2c0
 
 /**
  * @brief 处理系统状态和编码
@@ -71842,7 +71852,7 @@ void InitializeSystemMemoryManager(void
   uint8_t auStack_158 [32];
   uint64_t SystemStackOffset138;
   long long *pSystemMemoryAllocationBlock;
-  long long **pplStack_128;
+  long long **SystemMemoryAllocationBlock128;
   void *ThreadLocalStorageBuffer;
   uint32_t *CoreEnginePointerBuffer110;
   uint32_t ProcessingCounter;
@@ -71974,10 +71984,10 @@ void InitializeSystemMemoryManager(void
     if (uStack_138 != (long long *)0x0) {
       (**(code **)(*uStack_138 + 0x38))();
     }
-    pplStack_128 = *(long long ***)(*MemoryPoolBlockSizePointer + 0x96a8);
+    SystemMemoryAllocationBlock128 = *(long long ***)(*MemoryPoolBlockSizePointer + 0x96a8);
     *(void *)(*MemoryPoolBlockSizePointer + 0x96a8) = 0;
-    if (pplStack_128 != (long long **)0x0) {
-      (*(code *)(*pplStack_128)[7])();
+    if (SystemMemoryAllocationBlock128 != (long long **)0x0) {
+      (*(code *)(*SystemMemoryAllocationBlock128)[7])();
     }
     IntegerValue = *(int *)(DataTable180C8AA08 + 0x30c);
     if (LockResult != 0) {
@@ -72021,7 +72031,7 @@ void InitializeSystemMemoryManager(void
     DataSize = TimeoutValueStorage;
     if ((*(int *)(SystemConfigData + 0x3f0) == 0) &&
        (CharacterCode1 = *(long long **)(CoreEngineSystemContext + 0x60), CharacterCode1 != (long long *)0x0)) {
-      pplStack_128 = &pSystemMemoryAllocationBlock;
+      SystemMemoryAllocationBlock128 = &pSystemMemoryAllocationBlock;
       pSystemMemoryAllocationBlock = CharacterCode1;
       (**(code **)(*CharacterCode1 + 0x28))();
       ProcessDataSizeAllocation(DataSize,&pSystemMemoryAllocationBlock,0);
@@ -72111,7 +72121,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
   byte HighByte5;
   unsigned long long MemoryAllocationIndexAdditional;
   uint8_t aSystemValue2b8 [32];
-  long long **pplStack_298;
+  long long **SystemMemoryAllocationBlock298;
   long long *plStack_290;
   uint32_t aEventCurrentCharacter [2];
   long long *pSystemEventFlag0;
@@ -72180,15 +72190,15 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
   CharacterCode3 = (long long *)SystemMemoryManager[0x30e];
   BufferIndex = SystemMemoryManager[0x30d];
   if ((long long)CharacterCode3 - BufferIndex >> 3 != 0) {
-    pplStack_298 = (long long **)0x0;
+    SystemMemoryAllocationBlock298 = (long long **)0x0;
     do {
-      if ((*(long long *)((long long)pplStack_298 + BufferIndex) == 0) ||
+      if ((*(long long *)((long long)SystemMemoryAllocationBlock298 + BufferIndex) == 0) ||
          (CharacterCode3 = (long long *)MemoryBoundaryPointer[0x30e],
-         *(int *)(*(long long *)((long long)pplStack_298 + BufferIndex) + 8) == 1)) {
+         *(int *)(*(long long *)((long long)SystemMemoryAllocationBlock298 + BufferIndex) + 8) == 1)) {
         CharacterCode8 = (long long *)MemoryBoundaryPointer[0x30d];
         BufferIndex = (long long)CharacterCode3 - (long long)CharacterCode8 >> 3;
         if ((BufferIndex != 0) &&
-           (pCharacterCode7 = pplStack_298, StringComparisonResult2 = StringComparisonResult4, (unsigned long long)(long long)StringComparisonResult4 < BufferIndex - 1U)) {
+           (pCharacterCode7 = SystemMemoryAllocationBlock298, StringComparisonResult2 = StringComparisonResult4, (unsigned long long)(long long)StringComparisonResult4 < BufferIndex - 1U)) {
           do {
             CharacterCode3 = *(long long **)((long long)(pCharacterCode7 + 1) + (long long)CharacterCode8);
             if (CharacterCode3 != (long long *)0x0) {
@@ -72281,7 +72291,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
       }
       else {
         StringComparisonResult4 = StringComparisonResult4 + 1;
-        pplStack_298 = pplStack_298 + 1;
+        SystemMemoryAllocationBlock298 = SystemMemoryAllocationBlock298 + 1;
       }
       BufferIndex = MemoryBoundaryPointer[0x30d];
       CharacterCode = (long long)CharacterCode3 - BufferIndex >> 3;
@@ -72292,7 +72302,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
   if ((char)MemoryBoundaryPointer[0x2fd] == '\0') {
     if ((CoreEngineEventHandler != 0) &&
        (CharacterCode3 = *(long long **)(CoreEngineEventHandler + 0x220), CharacterCode3 != (long long *)0x0)) {
-      pplStack_298 = &plStack_268;
+      SystemMemoryAllocationBlock298 = &plStack_268;
       plStack_268 = CharacterCode3;
       (**(code **)(*CharacterCode3 + 0x28))();
       ProcessPerformanceCounter(BufferIndex,&plStack_268);
@@ -72335,7 +72345,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
     BufferIndex = TimeoutValueStorage;
     if ((CoreEngineEventHandler != 0) &&
        (CharacterCode3 = *(long long **)(CoreEngineEventHandler + 0x220), CharacterCode3 != (long long *)0x0)) {
-      pplStack_298 = &pSystemEventFlag0;
+      SystemMemoryAllocationBlock298 = &pSystemEventFlag0;
       pSystemEventFlag0 = CharacterCode3;
       (**(code **)(*CharacterCode3 + 0x28))();
       ProcessPerformanceCounter(BufferIndex,&pSystemEventFlag0);
@@ -72364,7 +72374,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
     BufferIndex = TimeoutValueStorage;
     if ((CoreEngineEventHandler != 0) &&
        (CharacterCode3 = *(long long **)(CoreEngineEventHandler + 0x228), CharacterCode3 != (long long *)0x0)) {
-      pplStack_298 = &plStack_278;
+      SystemMemoryAllocationBlock298 = &plStack_278;
       plStack_278 = CharacterCode3;
       (**(code **)(*CharacterCode3 + 0x28))();
       ProcessDataSizeAllocation(BufferIndex,&plStack_278,0);
@@ -72399,7 +72409,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
         BufferIndex = *(long long *)(MemoryAllocationIndexAdditional + BufferIndex);
         CharacterCode3 = *(long long **)(BufferIndex + 0x1b0);
         if (CharacterCode3 != (long long *)0x0) {
-          pplStack_298 = &plStack_270;
+          SystemMemoryAllocationBlock298 = &plStack_270;
           plStack_270 = CharacterCode3;
           (**(code **)(*CharacterCode3 + 0x28))();
           ProcessDataSizeAllocation(CharacterTablePointer,&plStack_270,0);
@@ -72672,7 +72682,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
     __Throw_C_error_std__YAXH_Z(StringComparisonResult4);
   }
   SystemStatusCode = MemoryAllocate(MemoryPoolManager,0xe0,8,3);
-  pplStack_298 = (long long **)&SystemUnsignedValue1A0;
+  SystemMemoryAllocationBlock298 = (long long **)&SystemUnsignedValue1A0;
   puStack_190 = &SystemMemoryManagerTemplate;
   pProcessingStatus = &SystemAllocatorTemplate;
   uStack_1b0.LowPart = (uint32_t)BufferIndex;
@@ -234904,7 +234914,7 @@ void CompressSystemCharacterData(long long CharacterCode,long long *CharacterCod
     }
     else {
       FUN_1802ed990(LoopCounter,1);
-      FUN_1802eb9a0(LoopCounter,SystemBufferSize,0,0,1,AdditionalParameter1);
+      ProcessSystemMemoryAllocationAndValidation(LoopCounter,SystemBufferSize,0,0,1,AdditionalParameter1);
     }
     StringComparisonResult = FUN_1802ed190(SystemBufferSize,7);
     if (StringComparisonResult != 0) {
@@ -234986,7 +234996,7 @@ unsigned long long FUN_180198b90(long long CharacterCode,long long *CharacterCod
   }
   else {
     SecondaryUnsignedStorage = 0;
-    FUN_1802eb9a0(BufferStatus,MemoryBoundaryEnd,0,*(long long *)(BufferStatus + 0x20) == CharacterCode,AdditionalParameter2,0x16);
+    ProcessSystemMemoryAllocationAndValidation(BufferStatus,MemoryBoundaryEnd,0,*(long long *)(BufferStatus + 0x20) == CharacterCode,AdditionalParameter2,0x16);
   }
   FUN_1802eaec0(*CharacterCodeSize,CharacterCode,Utf8SourcePointer,Utf16EndPointer,AdditionalParameter1,SecondaryUnsignedStorage & 0xffffff00,
                 AdditionalParameter2,0xffffffff,SystemStatusCode);
@@ -259029,7 +259039,7 @@ LAB_180216e0c:
   uStack_18 = EncodingDecodingKey ^ (unsigned long long)auStack_158;
   lStack_128 = 0;
   StringComparisonResult = FUN_180754f10(LoopCounter,&DataProcessingFlags,&lStack_128);
-  if (((StringComparisonResult != 0) || (StringComparisonResult = FUN_180753860(DataProcessingFlags), StringComparisonResult != 0)) &&
+  if (((StringComparisonResult != 0) || (StringComparisonResult = ValidateSystemDataProcessingFlags(DataProcessingFlags), StringComparisonResult != 0)) &&
      ((*(byte *)(SystemCharacterStatusBufferPointerB + 0x10) & 0x80) != 0)) {
     memoryAllocationBuffer = auStack_118;
     auStack_118[0] = 0;
@@ -262839,7 +262849,7 @@ FUN_18021f7f0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8Sou
   uint8_t auStack_158 [32];
   long long *plStack_138;
   long long *pSystemMemoryAllocationBlock;
-  long long **pplStack_128;
+  long long **SystemMemoryAllocationBlock128;
   uint64_t DataProcessingFlags;
   long long *pSystemTemporaryValue118;
   void *pProcessingCounter;
@@ -262906,7 +262916,7 @@ FUN_18021f7f0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8Sou
   pSystemFlagA = aOperationStatus;
   aOperationStatus[0] = 0;
   SystemFlagB = 0x16;
-  pplStack_128 = (long long **)SystemContextPtr;
+  SystemMemoryAllocationBlock128 = (long long **)SystemContextPtr;
   strcpy_s(aOperationStatus,0x80,&SystemStringConfigTemplate);
   *SystemContextPtr = (long long)&DataNodeTemplateA;
   *SystemContextPtr = (long long)&DataNodeTemplateB;
@@ -262929,7 +262939,7 @@ FUN_18021f7f0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8Sou
   }
   pProcessingCounter = &ThreadLocalStorageTemplate;
   MemoryAllocationIndex = *(void *)(CharacterCode + 0x1d50);
-  pplStack_128 = &plStack_138;
+  SystemMemoryAllocationBlock128 = &plStack_138;
   plStack_138 = MemoryBlockIndex;
   (**(code **)(*MemoryBlockIndex + 0x28))(MemoryBlockIndex);
   AllocateSystemMemoryResources(MemoryAllocationIndex,&plStack_138);
@@ -282274,8 +282284,8 @@ uint GetMemoryAllocationStatus(long long CharacterCode,long long *CharacterCodeS
     do {
       AllocatedMemorySize = *BufferAllocationStatus;
       if (((AllocatedMemorySize != 0) &&
-          (((CurrentCharacter = FUN_18022d2c0(CharacterCode,0), CurrentCharacter == '\0' || ((UnicodeCodePoint & 0xfffffff9) != 0)           || (UnicodeCodePoint == 6)))) &&
-         ((((CurrentCharacter = FUN_18022d2c0(CharacterCode,1), CurrentCharacter == '\0' ||
+          (((CurrentCharacter = GetCharacterCodeAtPosition(CharacterCode,0), CurrentCharacter == '\0' || ((UnicodeCodePoint & 0xfffffff9) != 0)           || (UnicodeCodePoint == 6)))) &&
+         ((((CurrentCharacter = GetCharacterCodeAtPosition(CharacterCode,1), CurrentCharacter == '\0' ||
             ((UnicodeCodePoint - 1 & 0xfffffffd) != 0)) && (*(int *)(AllocatedMemorySize + 0x380) != 2)) &&
           ((*(int *)(*BufferAllocationStatus + 0x380) != 3 && (*(long long *)(*BufferAllocationStatus + 0xa8) != 0)))))) {
         MemoryAddressMaskPointer = MemoryAddressMaskPointer + 1;
