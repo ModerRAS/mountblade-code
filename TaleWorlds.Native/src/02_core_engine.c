@@ -185355,7 +185355,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
     MemoryBlockListHead = plStack_180;
     if (*(char *)(CoreEngineSystemContext + 0x12e7) != '\0') {
       SystemDataRegistry = *(long long *)(CoreEngineRenderContext + 0x1cd8);
-      MemoryBlockListHead = (long long *)FUN_1802c28d0(SystemDataRegistry + 0x7f20);
+      MemoryBlockListHead = (long long *)AllocateMemoryBlockFromRegistry(SystemDataRegistry + 0x7f20);
       plStack_180 = MemoryBlockListHead;
       (**(code **)(*MemoryBlockListHead + 0x10))(MemoryBlockListHead,&SystemBufferPointer);
       plStack_1b0 = MemoryBlockListHead;
