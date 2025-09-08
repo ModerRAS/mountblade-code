@@ -249824,7 +249824,25 @@ LAB_180208d4a:
         } while (EncodingValidationResult < (int)(*(long long *)(StringLength + 4) - BufferStatus >> 3));
       }
     }
-FUN_1802090ff:
+/**
+ * @brief 处理系统上下文浮点数和编码转换
+ * 
+ * 该函数负责处理系统上下文中的浮点数运算和编码转换，包括：
+ * - 系统上下文主浮点数验证
+ * - 缓冲区状态检查
+ * - 编码转换结果处理
+ * - UTF-8到UTF-16转换
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1802090ff
+ */
+#define ProcessSystemContextFloatAndEncodingConversion FUN_1802090ff
+ProcessSystemContextFloatAndEncodingConversion:
     if (0.0 < SystemContextPrimaryFloat2) {
       BufferStatus = *(long long *)(pComputedResult + 2);
       EncodingValidationResult = 0;
