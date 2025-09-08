@@ -393,9 +393,9 @@ typedef enum {
  * - 渲染状态更新
  * - 渲染数据准备
  * 
- * @note 原始函数名：FUN_180707200
+ * @note 原始函数名：ProcessUIDataRegisterOperation
  */
-#define ProcessUIRendering FUN_180707200
+#define ProcessUIRendering ProcessUIDataRegisterOperation
 
  // UI系统函数宏定义 - 处理UI渲染缓冲区
 /**
@@ -802,6 +802,25 @@ typedef enum {
 // UI系统函数宏定义 - 获取UI上下文状态
 #define GetUIContextStatus FUN_18070f57b
 
+// UI系统字体渲染相关函数
+#define InitializeUIFontRendering FUN_1807224d0
+#define ProcessUIFontValidation FUN_180722540
+#define ProcessUIResourceAllocation FUN_18070f310
+#define ProcessUIComponentRendering FUN_180722910
+#define ProcessUIBufferOperation FUN_1808fd200
+#define ProcessUIMemoryManagement FUN_18071fb70
+#define ProcessUIDataRegisterOperation FUN_180707200
+#define ProcessUIComponentFinalization FUN_180722cf0
+
+// UI系统操作函数
+#define UINoOperation FUN_1807104af
+#define UIEmptyOperation2 FUN_1807104b7
+#define ProcessUIFloatParameterCalculation FUN_180712943
+#define ProcessUIIntegerParameterOperation FUN_180712b71
+#define ProcessUIFloatDataOperation FUN_180712c50
+#define ProcessUIFloatDataValidation FUN_180712cdf
+#define ProcessUIFloatDataProcessing FUN_180712e3f
+
 // UI系统数据指针美化
 #define UIDataBufferPointer UNK_180741cf0
 #define UIResourceTablePointer UNK_180741d00
@@ -1105,7 +1124,7 @@ typedef enum {
 #define ProcessUIFontValidation ProcessUIFontDataTransfer
 #define FUN_1807226f0 ConfigureUIFontParameters
 #define ProcessUIComponentRendering ValidateUIFontRenderingContext
-#define FUN_180722cf0 ProcessUIFontShaderConfiguration
+#define ProcessUIComponentFinalization ProcessUIFontShaderConfiguration
 #define FUN_180722f80 AcquireUIFontResourceHandle
 
  处理UI渲染数据
@@ -78493,7 +78512,7 @@ LAB_1807100a5:
 
 
 
- void FUN_1807104af(void)
+ void UINoOperation(void)
 void UINoOperation(void)
 
 {
@@ -78503,7 +78522,7 @@ void UINoOperation(void)
 
 
 
- void FUN_1807104b7(void)
+ void UIEmptyOperation2(void)
 void UIEmptyOperation2(void)
 
 {
@@ -78796,7 +78815,7 @@ LAB_180710f7f:
                 processingResult6 = ProcessingResult2;
               }
               ProcessUIComponentRendering((longlong)ProcessingResult1 * 0x10c0 + uiContext,stackUInt318,uiValidationResult3,1,processingResult6);
-              FUN_180722cf0(stackUInt318,astackUInt2c8,(int)threadLocalStorageFlag2[-1],(int)*threadLocalStorageFlag2,
+              ProcessUIComponentFinalization(stackUInt318,astackUInt2c8,(int)threadLocalStorageFlag2[-1],(int)*threadLocalStorageFlag2,
                             *(UIDword *)(threadLocalStorageFlag2 + -0x1ce));
               processingResult6 = pstackInt328[1];
             }
@@ -80828,7 +80847,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
       }
     }
     else {
-      FUN_180707200(uiContext + (longlong)localInt9 * 4,dataSource + (longlong)localInt9 * 4,result2,
+      ProcessUIDataRegisterOperation(uiContext + (longlong)localInt9 * 4,dataSource + (longlong)localInt9 * 4,result2,
                     resultPointer - localInt9,localFloat21,localFloat22,localFloat23);
     }
   }
@@ -81005,7 +81024,7 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
     }
   }
   else {
-    FUN_180707200(RegisterPointer + (longlong)localInt8 * 4,register10 + (longlong)localInt8 * 4,result0,
+    ProcessUIDataRegisterOperation(RegisterPointer + (longlong)localInt8 * 4,register10 + (longlong)localInt8 * 4,result0,
                   stackParam000001c0 - localInt8,FloatValue1);
   }
   return;
@@ -81203,7 +81222,7 @@ void ProcessUIFloatData(float uiContext,float dataSource,uint targetBuffer,uint 
     }
   }
   else {
-    FUN_180707200(RegisterPointer + (longlong)localInt8 * 4,register10 + (longlong)localInt8 * 4,result0,
+    ProcessUIDataRegisterOperation(RegisterPointer + (longlong)localInt8 * 4,register10 + (longlong)localInt8 * 4,result0,
                   stackParam000001c0 - localInt8,FloatValue1);
   }
   return;
@@ -81387,7 +81406,7 @@ void ProcessUILongData(float uiContext,UIHandle dataSource,longlong targetBuffer
     }
   }
   else {
-    FUN_180707200(RegisterPointer + (longlong)unmodifiedEBX * 4,register10 + (longlong)unmodifiedEBX * 4,targetBuffer,
+    ProcessUIDataRegisterOperation(RegisterPointer + (longlong)unmodifiedEBX * 4,register10 + (longlong)unmodifiedEBX * 4,targetBuffer,
                   stackParam000001c0 - unmodifiedEBX);
   }
   return;
@@ -81566,7 +81585,7 @@ void ProcessUITransformCalculation(longlong uiContext,longlong dataSource,UIHand
     }
   }
   else {
-    FUN_180707200(stackParam000001a0 + (longlong)(int)loopCounter * 4,
+    ProcessUIDataRegisterOperation(stackParam000001a0 + (longlong)(int)loopCounter * 4,
                   stackParam000001a8 + (longlong)(int)loopCounter * 4,(longlong)iStack0000000000000044,
                   stackParam000001c0 - loopCounter);
   }
@@ -81576,8 +81595,8 @@ void ProcessUITransformCalculation(longlong uiContext,longlong dataSource,UIHand
 
 
 
- void FUN_180712943(float uiContext,UIHandle dataSource,float targetBuffer,longlong bufferSize)
-void FUN_180712943(float uiContext,UIHandle dataSource,float targetBuffer,longlong bufferSize)
+ void ProcessUIFloatParameterCalculation(float uiContext,UIHandle dataSource,float targetBuffer,longlong bufferSize)
+void ProcessUIFloatParameterCalculation(float uiContext,UIHandle dataSource,float targetBuffer,longlong bufferSize)
 
 {
   float floatResult;
@@ -81644,7 +81663,7 @@ void FUN_180712943(float uiContext,UIHandle dataSource,float targetBuffer,longlo
     }
   }
   else {
-    FUN_180707200(RegisterPointer + (longlong)unmodifiedEBX * 4,register10 + (longlong)unmodifiedEBX * 4,targetBuffer,
+    ProcessUIDataRegisterOperation(RegisterPointer + (longlong)unmodifiedEBX * 4,register10 + (longlong)unmodifiedEBX * 4,targetBuffer,
                   stackParam000001c0 - unmodifiedEBX);
   }
   return;
@@ -81746,8 +81765,8 @@ void ProcessUIData(longlong uiContext,int *dataSource,int targetBuffer,int buffe
 
 
 
- void FUN_180712b71(int uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
-void FUN_180712b71(int uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
+ void ProcessUIIntegerParameterOperation(int uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
+void ProcessUIIntegerParameterOperation(int uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
 
 {
   int processingResult;
@@ -94588,8 +94607,8 @@ LAB_180722ca8:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180722cf0(UIHandle uiContext,longlong dataSource,int targetBuffer,UIDword bufferSize,int resultPointer)
-void FUN_180722cf0(UIHandle uiContext,longlong dataSource,int targetBuffer,UIDword bufferSize,int resultPointer)
+ void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int targetBuffer,UIDword bufferSize,int resultPointer)
+void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int targetBuffer,UIDword bufferSize,int resultPointer)
 
 {
   UIHandle *ptrResult;
