@@ -160755,15 +160755,15 @@ void ConfigureSystemRenderingParameters(void)
         RenderingStackFloat30 = (float)(int)SystemContextPrimaryFloat3;
         RenderingStackFloat11c = *(float *)(StackFrameAddressPointer + 0x234);
         if (BaseFloatValue <= *(float *)(StackFrameAddressPointer + 0x234)) {
-          fStack000000000000011c = BaseFloatValue;
+          RenderingStackFloat11c = BaseFloatValue;
         }
-        StackProcessingVariable34 = SystemContextPrimaryFloat2 + 1.0;
+        RenderingFloatParameter34 = SystemContextPrimaryFloat2 + 1.0;
         if (SystemContextPrimaryFloat2 + 1.0 <= *(float *)(StackFrameAddressPointer + 0x22c)) {
-          StackProcessingVariable34 = *(float *)(StackFrameAddressPointer + 0x22c);
+          RenderingFloatParameter34 = *(float *)(StackFrameAddressPointer + 0x22c);
         }
-        fStack0000000000000118 = fStack0000000000000030;
+        RenderingStackFloat118 = RenderingStackFloat30;
         MemoryAllocationIndex = ValidateSystemData(&SecondaryDataBuffer);
-        AllocateMemoryAndConfigure(*(void *)(StackFrameAddressPointer + 0x2e8),&SystemStackBuffer,&stack0x00000118,MemoryAllocationIndex,
+        AllocateMemoryAndConfigure(*(void *)(StackFrameAddressPointer + 0x2e8),&SystemStackBuffer,&RenderingStackFloat118,MemoryAllocationIndex,
                       0x3f800000);
         MemoryBoundaryEnd = SystemConfigurationHandle;
         StringLength = ComputedResult;
@@ -160783,7 +160783,7 @@ void ConfigureSystemRenderingParameters(void)
       }
       *(uint8_t *)((long long)SystemContext + 9) = 1;
       RemainingSpace = StringLength + -1;
-      in_stack_00000110 = 1;
+      RenderingProcessingFlags110 = 1;
       StringOffset = *(long long *)(*(long long *)(MemoryBoundaryEnd + 0x1af8) + 0x210);
       SystemContextPrimaryFloat2 = ((*(float *)(MemoryBoundaryEnd + 0x118) - *(float *)(MemoryBoundaryEnd + 0x1b48)) + 4.0) -
                *(float *)(*(long long *)(MemoryBoundaryEnd + 0x1af8) + 0x40);

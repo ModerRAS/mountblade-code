@@ -5638,23 +5638,23 @@
 // 工具函数宏定义
 // 数据验证和处理函数A0
 // 功能：验证输入数据并执行相应的处理操作
-#define ValidateAndProcessInputDataA0 FUN_180896140
+#define ValidateAndProcessInputDataA0 ValidateInputDataAndExecuteProcessing
 
 // 数据块处理函数A0
 // 功能：处理数据块并返回处理结果
-#define ProcessDataBlockA0 FUN_180896800
+#define ProcessDataBlockA0 ProcessDataBlockAndReturnResult
 
 // 数据验证函数A0
 // 功能：验证数据的有效性并返回验证结果
-#define ValidateDataBlockA0 FUN_180896830
+#define ValidateDataBlockA0 ValidateDataBlockAndReturnValidationResult
 
 // 系统配置处理函数A0
 // 功能：处理系统配置并返回处理结果
-#define ProcessSystemConfigurationA0 FUN_180898d84
+#define ProcessSystemConfigurationA0 ProcessSystemConfigurationAndReturnResult
 
 // 系统状态获取函数A0
 // 功能：获取系统状态并返回状态信息
-#define GetSystemStateA0 FUN_180898e56
+#define GetSystemStateA0 GetSystemStateAndReturnStatusInfo
 
 // 配置验证函数A0
 // 功能：验证配置的有效性并返回验证结果
@@ -5670,7 +5670,7 @@
 
 // 配置验证函数A1
 // 功能：验证配置的有效性并返回验证结果
-#define ValidateConfigurationA1 FUN_180898f40
+#define ValidateConfigurationA1 ValidateConfigurationAndReturnValidationResult
 
 // 系统验证数据表A8
 // 功能：存储系统验证相关的第八级数据表和验证规则
