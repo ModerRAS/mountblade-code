@@ -1053,6 +1053,9 @@ typedef enum {
 #define UIFloatDataTable UNK_180953730
 #define UIFloatDataArray UNK_180954194
 
+// UI系统事件处理数据表美化
+#define UIEventProcessingDataTable UNK_180954740
+
 // UI系统上下文美化
 #define UIContextDataTable UNK_18095362c
 #define renderParam2 stackParam00000050
@@ -91376,15 +91379,31 @@ void ProcessUIRenderingUpdateTask(longlong uiContext, int dataSource)
 
 
 
- void FUN_18071e580(float *uiContext,UIHandle dataSource,int targetBuffer)
-void FUN_18071e580(float *uiContext,UIHandle dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI变换矩阵计算
+ * 
+ * 该函数负责处理UI元素的变换矩阵计算，主要功能包括：
+ * - 计算4x4变换矩阵的旋转和平移操作
+ * - 处理浮点数变换系数的计算
+ * - 应用0.70710677系数进行矩阵变换
+ * - 管理UI元素的坐标变换和旋转
+ * 
+ * @param uiContext UI上下文指针，包含变换矩阵数据
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区大小
+ * 
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_18071e580
+ */
+void ProcessUITransformMatrixCalculation(float *uiContext,UIHandle dataSource,int targetBuffer)
 
 {
   float baseValue;
   float transformCoeff1;
-  uint EventTypeCode;
-  float *ptransformCoeff3;
-  int localInt5;
+  uint eventProcessingCode;
+  float *transformMatrixPtr;
+  int matrixElementSize;
   ulonglong maxProcessingCount;
   float resultFloat;
   float tempFloat;
@@ -97607,7 +97626,7 @@ void FUN_180724090(UIHandle uiContext,longlong dataSource,int targetBuffer,short
           result = EventTypeCode;
         }
         contextHandleData = 0;
-        stackUInt28 = (&UNK_180954740)
+        stackUInt28 = (&UIEventProcessingDataTable)
                     [(ulonglong)result + (longlong)((short)(bufferSize * 2 + resultPointer) * 7)];
         do {
           if (0 < *(short *)(dataSource + contextHandleData * 2)) {
@@ -97695,7 +97714,7 @@ void FUN_180724170(UIHandle uiContext,longlong dataSource,int targetBuffer,short
           result = iterationCount;
         }
         stringCompareIndex = 0;
-        stackUInt28 = (&UNK_180954740)
+        stackUInt28 = (&UIEventProcessingDataTable)
                     [(ulonglong)result + (longlong)((short)(bufferSize * 2 + resultPointer) * 7)];
         do {
           if (*(char *)(stringCompareIndex + dataSource) != '\0') {
