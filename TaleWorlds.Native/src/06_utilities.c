@@ -216,6 +216,18 @@
 // 内存操作常量
 #define MemoryOperationMask -0x565dff77
 
+// 寄存器上下文常量（扩展）
+#define RegisterContextOperationFlagsOffset 0x2c
+#define RegisterContextValidationStatusOffset 0x28
+#define RegisterContextMemoryPointerOffset 0x20
+
+// 内存管理器常量
+#define SystemMemoryManagerOffset1a0 0x1a0
+
+// 系统操作常量
+#define ValidationIncrementStep 1
+#define BitShiftForMemoryCalculation 3
+
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
 #define SystemComponentDataOffset 0x38
@@ -16291,9 +16303,9 @@ void ResetUtilitySystemToInitialState(void)
   if (resourceValidationStatus != 0) {
     return;
   }
-  operationFlags = (int)*(uint *)(registerContext + 0x2c) >> 0x1f;
-  memoryAllocationResult = (*(uint *)(registerContext + 0x2c) ^ operationFlags) - operationFlags;
-  resourceValidationStatus = *(int *)(registerContext + 0x28) + 1;
+  operationFlags = (int)*(uint *)(registerContext + RegisterContextOperationFlagsOffset) >> 0x1f;
+  memoryAllocationResult = (*(uint *)(registerContext + RegisterContextOperationFlagsOffset) ^ operationFlags) - operationFlags;
+  resourceValidationStatus = *(int *)(registerContext + RegisterContextValidationStatusOffset) + ValidationIncrementStep;
   if (memoryAllocationResult < resourceValidationStatus) {
     memoryAllocationResult = (int)((float)memoryAllocationResult * ComponentCapacityGrowthFactor);
     if (resourceValidationStatus <= memoryAllocationResult) {

@@ -72418,40 +72418,40 @@ LAB_180706f57:
     }
     if (0 < processingResult) {
                      WARNING: Subroutine does not return
-      memmove(pbVar4,*(UIHandle *)(uiContext + (longlong)dataSource * 8 + 8),(longlong)*(short *)pisCharacterMatch
+      memmove(dataBuffer,*(UIHandle *)(uiContext + (longlong)dataSource * 8 + 8),(longlong)*(short *)eventMatchPointer
              );
     }
-    if (stackParam000000a0 != 0) {
-      CounterResult = (longlong)(stackParam00000088 + stackParam00000090) - (longlong)pbVar4;
-      if (stackParam00000088 + stackParam00000090 < pbVar4) {
-        CounterResult = IndexResult;
+    if (stackParameterA0 != 0) {
+      counterResult = (longlong)(stackParameter88 + stackParameter90) - (longlong)dataBuffer;
+      if (stackParameter88 + stackParameter90 < dataBuffer) {
+        counterResult = indexResult;
       }
-      if (CounterResult != 0) {
-        for (; CounterResult != 0; CounterResult = CounterResult - 1) {
-          *pbVar4 = 0;
-          pbVar4 = pbVar4 + 1;
+      if (counterResult != 0) {
+        for (; counterResult != 0; counterResult = counterResult - 1) {
+          *dataBuffer = 0;
+          dataBuffer = dataBuffer + 1;
         }
       }
     }
   }
   else {
-    if (ProcessingResult1 != 2) {
-      pbVar4 = RegisterPointer;
-      if (ProcessingResult1 < 3) goto LAB_180706e76;
+    if (processingResult != 2) {
+      dataBuffer = registerPointer;
+      if (processingResult < 3) goto LAB_180706e76;
       goto LAB_180706e88;
     }
-    sVar2 = *(short *)pisCharacterMatch;
-    if (*(short *)(pisCharacterMatch + 2) == sVar2) {
-      uVar9 = EventOperationCount + sVar2 * 2 + 1;
-      LoopCounter = (ulonglong)uVar9;
-      if ((int)uVar9 <= stackParam00000090) {
-        *RegisterPointer = *EventHandle & 0xfd | 1;
-        pbVar4 = RegisterPointer + 1;
+    eventCode = *(short *)eventMatchPointer;
+    if (*(short *)(eventMatchPointer + 2) == eventCode) {
+      eventIndex = operationCount + eventCode * 2 + 1;
+      eventCounter = (ulonglong)eventIndex;
+      if ((int)eventIndex <= stackParameter90) {
+        *registerPointer = *eventQueuePointer & 0xfd | 1;
+        dataBuffer = registerPointer + 1;
         goto LAB_180706e76;
       }
     }
     else {
-      uVar9 = EventOperationCount + (int)*(short *)(pisCharacterMatch + 2) + (0xfb < sVar2) + 2 + (int)sVar2;
+      eventIndex = operationCount + (int)*(short *)(eventMatchPointer + 2) + (0xfb < eventCode) + 2 + (int)eventCode;
       LoopCounter = (ulonglong)uVar9;
       if ((int)uVar9 <= stackParam00000090) {
         *RegisterPointer = *EventHandle & 0xfe | 2;
