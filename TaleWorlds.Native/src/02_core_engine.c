@@ -11254,35 +11254,51 @@ void InitializeCoreEngineDataStructure(void) {
   void *CreatedSystemNode;                 // 新创建的系统节点
   void (*SystemNodeInitializer)(void);     // 系统节点初始化函数指针
   
+  // 获取引擎系统上下文和根节点
   EngineSystemContext = (long long *)CoreEngineGetSystemHandle();
   SystemRootNode = (void *)*EngineSystemContext;
+  
+  // 检查系统节点初始化状态并获取初始化函数
   SystemNodeInitializedFlag = *(char *)((long long)SystemRootNode[1] + SystemNodeStatusOffset);
   SystemNodeInitializer = CoreEngineGetDataInitializer();
+  
+  // 初始化遍历和搜索节点
   SystemTraversalNode = SystemRootNode;
   SystemSearchNode = (void *)SystemRootNode[1];
+  
+  // 遍历系统节点链表，查找合适的插入位置
   while (SystemNodeInitializedFlag == '\0') {
+    // 比较节点数据以确定插入位置
     DataComparisonResult = memcmp(SystemSearchNode + SystemNodeHeaderSize, &SystemComparisonDataPrimary, SystemDataStructureSize);
     if (DataComparisonResult < 0) {
+      // 向左子树移动
       SystemNextNodeInChain = (void *)SystemSearchNode[2];
       SystemSearchNode = SystemTraversalNode;
     }
     else {
+      // 向右子树移动
       SystemNextNodeInChain = (void *)*SystemSearchNode;
     }
     SystemTraversalNode = SystemSearchNode;
     SystemSearchNode = SystemNextNodeInChain;
     SystemNodeInitializedFlag = *(char *)((long long)SystemNextNodeInChain + SystemNodeStatusOffset);
   }
+  
+  // 检查是否需要创建新的系统节点
   if ((SystemTraversalNode == SystemRootNode) || (DataComparisonResult = memcmp(&SystemComparisonDataPrimary, SystemTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), DataComparisonResult < 0)) {
+    // 分配内存并创建新的系统节点
     SystemMemoryOffset = CoreEngineAllocateMemory(EngineSystemContext);
     CoreEngineSetupDataStructure(EngineSystemContext, &CreatedSystemNode, SystemTraversalNode, SystemMemoryOffset + SystemMemoryAllocationOffset, SystemMemoryOffset);
     SystemTraversalNode = CreatedSystemNode;
   }
-  SystemTraversalNode[6] = SystemNodeIdentifierPrimary;
-  SystemTraversalNode[7] = SystemNodeIdentifierSecondary;
-  SystemTraversalNode[8] = &SystemDataTemplateRendering;
-  SystemTraversalNode[9] = 0;
-  SystemTraversalNode[10] = SystemNodeInitializer;
+  
+  // 配置系统节点的标识符和数据模板
+  SystemTraversalNode[6] = SystemNodeIdentifierPrimary;        // 设置主标识符
+  SystemTraversalNode[7] = SystemNodeIdentifierSecondary;      // 设置次标识符
+  SystemTraversalNode[8] = &SystemDataTemplateRendering;      // 设置渲染数据模板
+  SystemTraversalNode[9] = 0;                                  // 清空保留字段
+  SystemTraversalNode[10] = SystemNodeInitializer;            // 设置初始化函数指针
+  
   return;
 }
 
@@ -11310,46 +11326,62 @@ void InitializeCoreEngineDataStructure(void) {
  * @return void 无返回值
  */
 void InitializeCoreEngineRenderingSystem(void) {
-  char RenderingNodeInitializedFlag;
-  void *RenderingRootNode;
-  int RenderingDataComparisonResult;
-  long long *RenderingEngineSystemContext;
-  long long RenderingMemoryOffset;
-  void *RenderingSearchNode;
-  void *RenderingTraversalNode;
-  void *RenderingNextNodeInChain;
-  void *CreatedRenderingNode;
-  void (*RenderingInitializationCallback)(void);
+  bool IsRenderingNodeInitialized;           // 渲染节点初始化状态标志
+  void *RenderingSystemRootNode;              // 渲染系统根节点指针
+  int RenderingDataComparisonResult;         // 渲染数据比较结果
+  long long *RenderingEngineSystemContext;    // 渲染引擎系统上下文指针
+  long long RenderingMemoryOffset;            // 渲染系统内存偏移量
+  void *RenderingSearchNode;                  // 渲染系统搜索节点指针
+  void *RenderingTraversalNode;               // 渲染系统遍历节点指针
+  void *RenderingNextNodeInChain;             // 渲染系统链表中的下一个节点
+  void *CreatedRenderingNode;                 // 新创建的渲染系统节点
+  void (*RenderingInitializationCallback)(void); // 渲染系统初始化回调函数指针
   
+  // 获取渲染引擎系统上下文和根节点
   RenderingEngineSystemContext = (long long *)CoreEngineGetSystemHandle();
-  RenderingRootNode = (void *)*RenderingEngineSystemContext;
-  RenderingNodeInitializedFlag = *(char *)((long long)RenderingRootNode[1] + SystemNodeStatusOffset);
+  RenderingSystemRootNode = (void *)*RenderingEngineSystemContext;
+  
+  // 检查渲染节点初始化状态并获取初始化回调
+  IsRenderingNodeInitialized = *(char *)((long long)RenderingSystemRootNode[1] + SystemNodeStatusOffset);
   RenderingInitializationCallback = CoreEngineGetRenderingInitializer();
-  RenderingTraversalNode = RenderingRootNode;
-  RenderingSearchNode = (void *)RenderingRootNode[1];
-  while (RenderingNodeInitializedFlag == '\0') {
+  
+  // 初始化遍历和搜索节点
+  RenderingTraversalNode = RenderingSystemRootNode;
+  RenderingSearchNode = (void *)RenderingSystemRootNode[1];
+  
+  // 遍历渲染系统节点链表，查找合适的插入位置
+  while (IsRenderingNodeInitialized == '\0') {
+    // 比较渲染节点数据以确定插入位置
     RenderingDataComparisonResult = memcmp(RenderingSearchNode + SystemNodeHeaderSize, &SystemComparisonDataSecondary, SystemDataStructureSize);
     if (RenderingDataComparisonResult < 0) {
+      // 向左子树移动
       RenderingNextNodeInChain = (void *)RenderingSearchNode[2];
       RenderingSearchNode = RenderingTraversalNode;
     }
     else {
+      // 向右子树移动
       RenderingNextNodeInChain = (void *)*RenderingSearchNode;
     }
     RenderingTraversalNode = RenderingSearchNode;
     RenderingSearchNode = RenderingNextNodeInChain;
-    RenderingNodeInitializedFlag = *(char *)((long long)RenderingNextNodeInChain + SystemNodeStatusOffset);
+    IsRenderingNodeInitialized = *(char *)((long long)RenderingNextNodeInChain + SystemNodeStatusOffset);
   }
-  if ((RenderingTraversalNode == RenderingRootNode) || (RenderingDataComparisonResult = memcmp(&SystemComparisonDataSecondary, RenderingTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), RenderingDataComparisonResult < 0)) {
+  
+  // 检查是否需要创建新的渲染系统节点
+  if ((RenderingTraversalNode == RenderingSystemRootNode) || (RenderingDataComparisonResult = memcmp(&SystemComparisonDataSecondary, RenderingTraversalNode + SystemNodeHeaderSize, SystemDataStructureSize), RenderingDataComparisonResult < 0)) {
+    // 分配内存并创建新的渲染节点
     RenderingMemoryOffset = CoreEngineAllocateMemory(RenderingEngineSystemContext);
     CoreEngineSetupDataStructure(RenderingEngineSystemContext, &CreatedRenderingNode, RenderingTraversalNode, RenderingMemoryOffset + SystemMemoryAllocationOffset, RenderingMemoryOffset);
     RenderingTraversalNode = CreatedRenderingNode;
   }
-  RenderingTraversalNode[6] = SystemNodeIdentifierTertiary;
-  RenderingTraversalNode[7] = SystemNodeIdentifierQuaternary;
-  RenderingTraversalNode[8] = &SystemDataTemplatePhysics;
-  RenderingTraversalNode[9] = 1;
-  RenderingTraversalNode[10] = RenderingInitializationCallback;
+  
+  // 配置渲染系统节点的标识符和数据模板
+  RenderingTraversalNode[6] = SystemNodeIdentifierTertiary;      // 设置第三级标识符
+  RenderingTraversalNode[7] = SystemNodeIdentifierQuaternary;    // 设置第四级标识符
+  RenderingTraversalNode[8] = &SystemDataTemplatePhysics;       // 设置物理系统数据模板
+  RenderingTraversalNode[9] = 1;                                 // 设置渲染系统启用标志
+  RenderingTraversalNode[10] = RenderingInitializationCallback; // 设置初始化回调函数
+  
   return;
 }
 

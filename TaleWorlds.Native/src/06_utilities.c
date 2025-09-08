@@ -80126,11 +80126,11 @@ void SetDefaultExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 void UnlockSystemMutexAndHandleErrorA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0xe8));
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(dataBuffer + 0xe8));
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
   return;
 }
@@ -80149,11 +80149,11 @@ void SetDefaultExceptionHandlerAtOffset1D0A0(DataBuffer operationBase,int64_t da
 void SetExceptionDataTablePointersA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  DataBuffer *exceptionDataBuffer;
+  DataBuffer *exceptionDataTablePointer;
   
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xe0);
-  *exceptionDataBuffer = &ExceptionDataTable3;
-  *exceptionDataBuffer = &ExceptionDataTable6;
+  exceptionDataTablePointer = *(DataBuffer **)(dataBuffer + 0xe0);
+  *exceptionDataTablePointer = &ExceptionDataTable3;
+  *exceptionDataTablePointer = &ExceptionDataTable6;
   return;
 }
 
