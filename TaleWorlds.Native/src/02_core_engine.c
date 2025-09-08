@@ -275,6 +275,23 @@
  * @note 原始函数名：FUN_18015c190
  */
 #define ProcessSystemEventAndMemoryAllocation FUN_18015c190
+
+/**
+ * @brief 处理字符内存分配和缓冲区管理
+ * 
+ * 该函数负责处理字符编码转换过程中的内存分配和缓冲区管理，
+ * 包括字符代码的存储、内存边界检查和缓冲区状态管理。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2
+ * @return uint64_t* 返回处理结果的指针
+ * @note 原始函数名：FUN_18018af30
+ */
+#define ProcessCharacterMemoryAllocationAndBufferManagement FUN_18018af30
 #define ExecuteSystemCharacterEncodingCleanup FUN_18014ccf0 // 执行系统字符编码清理和资源释放
 #define ManageSystemBufferSize FUN_18014d6f0                    // 管理UTF-8缓冲区大小
 #define ConvertUtf16Encoding FUN_180183e30                    // 转换UTF-16编码
@@ -194488,7 +194505,22 @@ LAB_1801606a8:
 
 
 
-605f0(uint64_t CharacterCode,long long SystemBufferSize,long long Utf8SourcePointervoid FUN_1801605f0(uint64_t CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer
+/**
+ * @brief 执行字符代码数据处理
+ * 
+ * 该函数负责处理字符代码数据的操作，包括：
+ * - 验证内存分配索引
+ * - 处理系统上下文数据
+ * - 管理内存边界和缓冲区
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801605f0
+ */
+#define ExecuteCharacterCodeDataProcessing FUN_1801605f0
 {
   float *pSystemContextPrimaryFloat;
   uint MemoryAllocationIndex;
@@ -222426,7 +222458,7 @@ MemoryCleanupAndReturn:
 
 
 uint64_t *
-FUN_18018af30(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer,
+ProcessCharacterMemoryAllocationAndBufferManagement(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer,
              uint64_t AdditionalParameter1,long long *AdditionalParameter2
 {
   char CurrentCharacter;
