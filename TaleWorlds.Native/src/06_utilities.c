@@ -1058,6 +1058,8 @@
 #define DataOperationTypeTIFE 0x54494645    // "TIFE" - 类型检查操作
 #define DataOperationTypeTIVE 0x54495645    // "TIVE" - 类型验证操作
 #define DataOperationTypeBDMC 0x42444d43    // "BDMC" - 备用身份管理操作
+#define DataOperationTypeBIFE 0x42494645    // "BIFE" - 备用类型检查操作
+#define DataOperationTypeBIVE 0x42495645    // "BIVE" - 备用类型验证操作
 #define ExceptionHandlerTertiaryOffset168 0x168
 #define ExceptionContextPrimaryOffset 0x60
 #define ExceptionContextSecondaryOffset 0x78
@@ -39877,9 +39879,9 @@ DataBuffer ExecuteDataCleanupA1(int64_t operationBase,DataBuffer *dataBuffer)
   ByteFlag ainputDataWord [32];
   ByteFlag SecurityValidationBufferA [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,0x5453494c,0x54494645);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,DataOperationTypeSIL,DataOperationTypeTIFE);
   if (((int)systemDataBuffer == 0) &&
-     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,0x42494645,0), (int)systemDataBuffer == 0)) {
+     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,DataOperationTypeBIFE,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
@@ -39986,9 +39988,9 @@ DataBuffer ProcessDataCacheA1(int64_t operationBase,DataBuffer *dataBuffer)
   ByteFlag ainputDataWord [32];
   ByteFlag SecurityValidationBufferA [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,0x5453494c,0x54495645);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,DataOperationTypeSIL,DataOperationTypeTIVE);
   if (((int)systemDataBuffer == 0) &&
-     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,0x42495645,0), (int)systemDataBuffer == 0)) {
+     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,DataOperationTypeBIVE,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
