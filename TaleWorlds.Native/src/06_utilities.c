@@ -23721,11 +23721,11 @@ DataBuffer ValidateParameters(int64_t *contextPointer,int validationCount)
     return 0x26;
   }
 DataTransferLabel:
-  if ((0 < *(int *)((int64_t)contextPointer + 0xc)) && (*contextPointer != 0)) {
+  if ((0 < *(int *)((int64_t)contextPointer + ContextValidationCountOffsetC)) && (*contextPointer != 0)) {
       ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*contextPointer,&SystemMemoryPoolB,0x100,1);
   }
   *contextPointer = allocatedMemory;
-  *(int *)((int64_t)contextPointer + 0xc) = validationCount;
+  *(int *)((int64_t)contextPointer + ContextValidationCountOffsetC) = validationCount;
   return 0;
 }
 
@@ -23745,11 +23745,11 @@ DataBuffer ProcessInputData(DataBuffer inputData,int processingMode)
   allocatedMemory = 0;
   if (processingMode == 0) {
 DataTransferLabel:
-    if ((0 < *(int *)((int64_t)contextPointer + 0xc)) && (*contextPointer != 0)) {
+    if ((0 < *(int *)((int64_t)contextPointer + ContextValidationCountOffsetC)) && (*contextPointer != 0)) {
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*contextPointer,&SystemMemoryPoolB,0x100,1);
     }
     *contextPointer = allocatedMemory;
-    *(int *)((int64_t)contextPointer + 0xc) = processingMode;
+    *(int *)((int64_t)contextPointer + ContextValidationCountOffsetC) = processingMode;
     return 0;
   }
   if (inputData * 0xc - 1U < MaxSafeBufferSize) {
