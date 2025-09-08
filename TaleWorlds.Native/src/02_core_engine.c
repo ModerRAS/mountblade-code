@@ -47,6 +47,23 @@
 #define UnicodeCodePoint CalculatedCodePoint              // Unicode码点
 #define MemoryAddressHandler LAB_18013b999                // 内存地址处理器
 
+// 寄存器变量语义化宏定义
+#define RegisterRCX in_RCX                                // RCX寄存器（主参数寄存器）
+#define RegisterEAX in_EAX                                // EAX寄存器（累加器）
+#define RegisterAL in_AL                                  // AL寄存器（低8位累加器）
+#define RegisterECX in_ECX                                // ECX寄存器（计数寄存器）
+#define RegisterR10 SystemRegisterR10                     // R10寄存器（系统寄存器10）
+#define FloatXMM4 in_XMM4_Da                              // XMM4寄存器（浮点数4）
+#define FloatXMM5 in_XMM5_Da                              // XMM5寄存器（浮点数5）
+
+// 字符状态变量语义化宏定义
+#define SystemControlFlag ControlFlag120                   // 系统控制标志120
+#define SystemValidationFlag ValidationFlag119             // 系统验证标志119
+#define StackProcessingFlagX StackFlagX10                  // 栈处理标志X10
+#define CurrentSystemCharacter6 CurrentCharacter6         // 当前系统字符6
+#define CurrentSystemCharacter4 CurrentCharacter4         // 当前系统字符4
+#define CharacterProcessingStatus2 CharacterStatus2       // 字符处理状态2
+
 // 栈变量语义化宏定义
 #define StackPointer88 pcStack_88                          // 栈指针88
 #define CharacterBuffer80 CharacterBuffer80               // 字符缓冲区80
@@ -342,6 +359,10 @@
 #define ProcessUtf8ToUtf16ConversionComplete FUN_18016f9f0  // 完整UTF-8到UTF-16转换处理
 
 // 缺失的函数定义
+#define ProcessSystemConfigurationValidation FUN_180099430      // 处理系统配置验证
+#define ProcessRenderContextCleanup FUN_1800a3f00               // 处理渲染上下文清理
+#define ExecuteSystemDebugOperation FUN_1801c6120               // 执行系统调试操作
+#define ProcessSystemConfigurationCheck FUN_1801c9940          // 处理系统配置检查
 #define ProcessCharacterCodeWithSecondaryPointer FUN_18014f6a0  // 处理字符代码和二级指针
 #define ProcessCharacterCodeWithPrimaryPointer FUN_18014f660  // 处理字符代码和主指针
 #define ProcessSystemMemoryBlockSetup FUN_18014f3f0          // 处理系统内存块设置
@@ -185422,7 +185443,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
     if (*pSystemValidationChar == '\0') {
       pSystemValidationChar = SystemStringCurrentCharacter;
     }
-    FUN_180099430(CoreEngineConfigFlag[1],pSystemValidationChar);
+    ProcessSystemConfiguration(CoreEngineConfigFlag[1],pSystemValidationChar);
     SystemConfigurationHandle = pCharacterStatusBuffer;
     InputDataLength = _Mtx_unlock(0x180c91970);
     if (InputDataLength != 0) {
