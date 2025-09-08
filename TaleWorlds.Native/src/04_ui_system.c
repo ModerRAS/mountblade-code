@@ -87769,28 +87769,28 @@ void ProcessUITransformMatrixAndScaling(float uiContext, float dataSource, int t
   float translationY;
   float baseScaleX;
   float baseScaleY;
-  float *pbaseValue2;
-  uint result3;
-  longlong allocatedMemory4;
-  longlong registerDX;
-  longlong allocatedMemory5;
-  longlong ContextHandle;
-  uint TotalResult;
-  longlong SourceHandle;
-  longlong TargetHandle;
-  longlong allocatedMemory7;
-  float FloatValue1;
-  float FloatValue2;
-  float in_XMM4_Da;
-  float unmodifiedXMM6_Da;
-  float unmodifiedXMM8_Da;
-  float unmodifiedXMM8_Db;
-  float unmodifiedXMM8_Dc;
-  float unmodifiedXMM8_Dd;
+  float *sourceDataPtr;
+  uint alignmentResult;
+  longlong memoryOffset;
+  longlong dataIndex;
+  longlong loopCounter;
+  longlong contextHandle;
+  uint totalElements;
+  longlong sourceDataSize;
+  longlong targetDataSize;
+  longlong tempMemory;
+  float transformValue1;
+  float transformValue2;
+  float contextScale;
+  float baseTransform;
+  float transformScaleX;
+  float transformScaleY;
+  float transformScaleZ;
+  float transformScaleW;
   
-  uiContext = in_XMM4_Da / uiContext;
+  uiContext = contextScale / uiContext;
   bufferSize = bufferSize / SQRT(dataSource);
-  TotalResult = (uint)SourceHandle;
+  totalElements = (uint)sourceDataSize;
   if ((0 < (int)TotalResult) && (7 < TotalResult)) {
     result3 = TotalResult & 0x80000007;
     if ((int)result3 < 0) {
