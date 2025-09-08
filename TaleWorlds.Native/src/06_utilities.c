@@ -93772,17 +93772,17 @@ void ProcessExceptionHandlingAndResourceManagementCA70(DataBuffer operationBase,
 
 
 /**
- * @brief 在偏移量0x540处设置默认异常处理器
+ * @brief 设置系统默认异常处理器B
  * 
- * 该函数在数据缓冲区的偏移量0x540处设置默认异常处理器B。
- * 这是一个简单的异常处理器配置函数。
+ * 该函数将系统默认异常处理器B的地址存储到数据缓冲区的指定偏移量处。
+ * 这是异常处理系统初始化的一部分。
  * 
- * @param operationBase 操作基址（DataBuffer类型）
- * @param dataBuffer 数据缓冲区指针
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理相关信息
  * 
  * @note 原始函数名：Unwind_18090ca80
  */
-void Unwind_18090ca80(DataBuffer operationBase,int64_t dataBuffer)
+void SetSystemDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x540) = &SystemDefaultExceptionHandlerB;
@@ -93947,7 +93947,15 @@ void Unwind_18090cae0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090caf0(void)
+/**
+ * @brief 系统资源计数器递减并执行系统函数
+ * 
+ * 该函数递减系统资源计数器，并调用系统函数表中偏移量0x20处的函数指针。
+ * 这是系统资源管理中的标准清理流程。
+ * 
+ * @note 原始函数名：Unwind_18090caf0
+ */
+void DecrementSystemResourceCounterAndExecuteFunctionA(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
