@@ -87578,8 +87578,23 @@ void UINoOperationHandler(void)
 
 
 
- void FUN_1807197a0(longlong uiContext,longlong dataSource,float targetBuffer,uint bufferSize)
-void FUN_1807197a0(longlong uiContext,longlong dataSource,float targetBuffer,uint bufferSize)
+ /**
+ * @brief UI组件内存偏移计算函数
+ * 
+ * 计算UI组件的内存偏移量和变换参数。
+ * 该函数负责：
+ * 1. 计算UI组件在内存中的偏移量
+ * 2. 处理浮点变换系数
+ * 3. 管理组件的内存分配和索引
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @note 原始函数名：FUN_1807197a0
+ * @warning 该函数涉及复杂的浮点运算和内存操作
+ */
+void CalculateUIComponentMemoryOffset(longlong uiContext,longlong dataSource,float targetBuffer,uint bufferSize)
 
 {
   float *pbaseValue;
@@ -90137,8 +90152,21 @@ void ProcessUIRenderingParameters(void)
 
 
 
- void FUN_18071cd40(longlong uiContext)
-void FUN_18071cd40(longlong uiContext)
+ /**
+ * @brief UI上下文事件分发处理函数
+ * 
+ * 处理UI上下文的事件分发和状态管理。
+ * 该函数负责：
+ * 1. 根据UI上下文状态调用相应的处理函数
+ * 2. 管理UI缓冲区数据和状态标志
+ * 3. 处理UI事件的分发和计数
+ * 
+ * @param uiContext UI上下文句柄，包含UI状态和事件信息
+ * @note 原始函数名：FUN_18071cd40
+ * @warning 该函数修改UI上下文的状态标志
+ * @see UIFunctionDispatchTable
+ */
+void ProcessUIContextEventDispatch(longlong uiContext)
 
 {
   (**(code **)(&UIFunctionDispatchTable + (ulonglong)(*(uint *)(uiContext + 0x13ec) & 7) * 8))

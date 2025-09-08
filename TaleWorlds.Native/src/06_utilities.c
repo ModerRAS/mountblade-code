@@ -29368,7 +29368,7 @@ void ProcessSystemDataItem(int64_t SystemContext, DataWord *DataItemPointer)
        (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + ExceptionHandlerCallbackOffset10), inputParameter == 0)))) &&
      (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0x11), inputParameter == 0)) {
     if ((DataItemPointer[1] & 0x100) != 0) {
-      parameterBuffer[0] = DataItemPointer[0x12];
+      parameterBuffer[0] = DataItemPointer[SecurityCheckOffset12];
       inputParameter = (**(FunctionPointer**)**(DataBuffer **)(SystemContext + 8))
                         (*(DataBuffer **)(SystemContext + 8),parameterBuffer,4);
       if (inputParameter != 0) {
