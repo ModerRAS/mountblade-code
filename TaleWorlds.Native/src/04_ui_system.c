@@ -1072,6 +1072,9 @@ typedef enum {
 #define UpdateUIElementPosition UpdateUIElementPositionInternal
 #define ProcessUITransformData ProcessUITransformDataInternal
 
+// UI系统函数宏定义 - 原始数据变换处理器
+#define ProcessUITransformDataOriginal FUN_18071a480
+
 // UI系统变量名美化宏定义
 // 向量处理结果变量
 #define aresult9 VectorResult9
