@@ -100029,11 +100029,21 @@ void SetupTemporaryExceptionHandlerAndCleanupSystem(DataBuffer operationBase, in
 
 
 
-void Unwind_18090ed60(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 执行异常处理回调函数
+ * 
+ * 该函数检查数据缓冲区中的异常处理上下文指针，
+ * 如果存在有效的异常处理器，则调用相应的回调函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ */
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase, int64_t dataBuffer)
 {
+  // 检查异常处理上下文指针是否有效
   if (*(int64_t **)(dataBuffer + 0xf8) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xf8) + 0x38))();
+    // 调用异常处理回调函数（偏移量0x38处存储的是函数指针）
+    (**(FunctionPointer**)(**(int64_t **)(dataBuffer + 0xf8) + ExceptionHandlerContextFunctionOffset38))();
   }
   return;
 }
