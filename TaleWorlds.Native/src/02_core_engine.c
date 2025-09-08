@@ -184375,7 +184375,17 @@ void InitializeSystemDataNodeAndMemory(void)
 
 
 
-502ec(long long CharacterCodevoid FUN_1801502ec(long long CharacterCode
+/**
+ * @brief 处理字符代码和系统上下文更新函数
+ * 
+ * 该函数负责处理字符代码数据，更新系统上下文信息，并管理相关的内存操作。
+ * 它根据字符代码和系统数据节点的关系，执行不同的内存移动和上下文更新操作。
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * 
+ * @note 原始函数名：FUN_1801502ec
+ */
+void ProcessCharacterCodeAndUpdateContext(long long CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
