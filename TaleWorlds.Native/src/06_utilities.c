@@ -1057,6 +1057,10 @@
 #define SystemConfigurationValueOffset24 0x24
 #define SystemDataFlagsOffset1C 0x1c
 
+// 系统数据传输处理函数
+// 原始函数名：FUN_180062300 - 系统数据传输处理器
+#define ProcessSystemDataTransferWithValidation FUN_180062300
+
 // 数据操作类型常量
 #define DataOperationTypeSIL 0x5453494c    // "SIL" - 系统完整性检查操作
 #define DataOperationTypeTNVE 0x544e5645   // "TNVE" - 数据验证操作
@@ -21903,7 +21907,7 @@ DataBuffer ResetSystemStateDX0(int64_t systemContext)
   
   // 获取验证上下文
   exceptionHandlerContext = (int64_t *)(systemContext + 8);
-  validationCounter = *(uint *)(systemContext + 0x14);
+  validationCounter = *(uint *)(systemContext + SystemValidationCounterOffset14);
   
   // 验证数据完整性
   if ((int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f)) < 0) {
