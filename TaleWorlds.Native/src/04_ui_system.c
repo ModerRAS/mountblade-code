@@ -100043,109 +100043,135 @@ float CalculateUIVectorDistanceAndTargetBuffer(UIHandle uiContext, UIHandle data
   float resultFloat;
   float localFloat8;
   
-  result = (int)CONCAT62(in_register_00000092,register10W) * 2 + 1;
+  result = (int)CONCAT62(in_register_00000092, register10W) * 2 + 1;
   if (result <= register8D) {
     unmodifiedEBP = result;
   }
-  ProcessingStatus = register8D - unmodifiedEBP;
-  maxProcessingCount = ProcessingStatus + 1 >> 1;
-  sVar5 = (short)maxProcessingCount;
+  processingStatus = register8D - unmodifiedEBP;
+  maxProcessingCount = processingStatus + 1 >> 1;
+  processingCounter = (short)maxProcessingCount;
   if (maxProcessingCount != 0) {
-    ProcessingStatus = (uint)(ushort)((short)ProcessingStatus + sVar5 * -2 + 1);
+    processingStatus = (uint)(ushort)((short)processingStatus + processingCounter * -2 + 1);
   }
-  EventTypeCode = (register8D < result) - 1;
-  uiValidationResult = (int)(short)((EventTypeCode - sVar5) + register10W ^ EventTypeCode);
-  *SourceHandle = uiValidationResult;
+  eventTypeCode = (register8D < result) - 1;
+  uiValidationResult = (int)(short)((eventTypeCode - processingCounter) + register10W ^ eventTypeCode);
+  *sourceHandle = uiValidationResult;
   resultFloat = (float)uiValidationResult;
-  uiValidationResult = (int)(short)(sVar5 + -(short)ProcessingStatus ^ -(short)ProcessingStatus);
-  SourceHandle[1] = uiValidationResult;
+  uiValidationResult = (int)(short)(processingCounter + -(short)processingStatus ^ -(short)processingStatus);
+  sourceHandle[1] = uiValidationResult;
   localFloat8 = (float)uiValidationResult;
   return resultFloat * resultFloat + targetBuffer + localFloat8 * localFloat8;
 }
 
 
 
-float FUN_180727f4b(uint uiContext,UIHandle dataSource,float targetBuffer,short bufferSize)
-
+/**
+ * @brief 计算UI缓冲区大小相关的向量距离
+ * 
+ * 该函数计算UI上下文和数据源之间的向量距离，考虑缓冲区大小参数。
+ * 用于UI元素的布局计算和大小相关的距离度量。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区值
+ * @param bufferSize 缓冲区大小
+ * @return float 计算结果（考虑缓冲区大小的向量距离值）
+ * 
+ * @note 原始函数名：FUN_180727f4b
+ */
+float CalculateUIVectorDistanceWithBufferSize(uint uiContext, UIHandle dataSource, float targetBuffer, short bufferSize)
 {
   int processingResult;
   ushort iterationCount;
-  int *SourceHandle;
+  int *sourceHandle;
   uint register8D;
-  ushort EventTypeCode;
+  ushort eventTypeCode;
   short register10W;
   short RegisterPointerW;
   float transformCoeff3;
   float transformCoeff4;
   
-  EventTypeCode = -(bufferSize + RegisterPointerW * -2 + 1);
+  eventTypeCode = -(bufferSize + RegisterPointerW * -2 + 1);
   iterationCount = (register8D < uiContext) - 1;
   processingResult = (int)(short)((iterationCount - RegisterPointerW) + register10W ^ iterationCount);
-  *SourceHandle = processingResult;
+  *sourceHandle = processingResult;
   transformCoeff3 = (float)processingResult;
-  processingResult = (int)(short)(RegisterPointerW + EventTypeCode ^ EventTypeCode);
-  SourceHandle[1] = processingResult;
+  processingResult = (int)(short)(RegisterPointerW + eventTypeCode ^ eventTypeCode);
+  sourceHandle[1] = processingResult;
   transformCoeff4 = (float)processingResult;
   return transformCoeff3 * transformCoeff3 + targetBuffer + transformCoeff4 * transformCoeff4;
 }
 
 
 
-float FUN_180727fc0(int *uiContext,int dataSource,int targetBuffer,UIHandle bufferSize)
-
+/**
+ * @brief 计算UI上下文的复合距离值
+ * 
+ * 该函数计算UI上下文、数据源和目标缓冲区之间的复合距离值，
+ * 考虑组件索引和内存分配等因素。用于复杂的UI布局计算。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小句柄
+ * @return float 计算结果（复合距离值）
+ * 
+ * @note 原始函数名：FUN_180727fc0
+ */
+float CalculateUIContextCompositeDistance(int *uiContext, int dataSource, int targetBuffer, UIHandle bufferSize)
 {
   uint result;
   longlong componentIndex;
-  short sVar3;
-  int TempInt4;
+  short processingStep;
+  int tempInt4;
   int localInt5;
   uint maxProcessingCount;
   ushort processingCounter;
   longlong contextOffset;
-  longlong CharacterDataOffset;
+  longlong characterDataOffset;
   uint result0;
-  int ProcessingResult1;
-  short sVar12;
+  int processingResult1;
+  short iterationStep;
   uint result3;
   int processingResult4;
-  ulonglong CounterResult;
-  longlong *pallocatedMemory6;
+  ulonglong counterResult;
+  longlong *allocatedMemoryPointer;
   float baseValue7;
-  float FloatValue1;
-  float FloatValue2;
+  float floatValue1;
+  float floatValue2;
   
   processingResult4 = targetBuffer + 1;
-  ProcessingResult1 = processingResult4;
+  processingResult1 = processingResult4;
   if (dataSource < processingResult4) {
-    ProcessingResult1 = dataSource;
+    processingResult1 = dataSource;
   }
   if (processingResult4 < dataSource) {
     processingResult4 = dataSource;
   }
-  TempInt4 = targetBuffer;
+  tempInt4 = targetBuffer;
   if (dataSource < targetBuffer) {
-    TempInt4 = dataSource;
+    tempInt4 = dataSource;
   }
   localInt5 = targetBuffer;
   if (targetBuffer < dataSource) {
     localInt5 = dataSource;
   }
-  maxProcessingCount = FUN_18070f540(bufferSize,*(int *)(*(longlong *)(&UNK_180956d30 + (longlong)TempInt4 * 8) +
+  maxProcessingCount = FUN_18070f540(bufferSize,*(int *)(*(longlong *)(&UNK_180956d30 + (longlong)tempInt4 * 8) +
                                         (longlong)localInt5 * 4) +
-                                *(int *)(*(longlong *)(&UNK_180956d30 + (longlong)ProcessingResult1 * 8) +
+                                *(int *)(*(longlong *)(&UNK_180956d30 + (longlong)processingResult1 * 8) +
                                         (longlong)processingResult4 * 4));
-  CounterResult = (ulonglong)dataSource;
-  FloatValue2 = 0.0;
+  counterResult = (ulonglong)dataSource;
+  floatValue2 = 0.0;
   if (2 < dataSource) {
-    CharacterDataOffset = CounterResult * 4;
-    pallocatedMemory6 = (longlong *)(&UNK_180956d30 + CounterResult * 8);
+    characterDataOffset = counterResult * 4;
+    allocatedMemoryPointer = (longlong *)(&UNK_180956d30 + counterResult * 8);
     do {
       contextOffset = (longlong)targetBuffer;
-      processingResult4 = (int)CounterResult;
-      sVar12 = (short)targetBuffer;
+      processingResult4 = (int)counterResult;
+      iterationStep = (short)targetBuffer;
       if (targetBuffer < processingResult4) {
-        result = *(uint *)(CharacterDataOffset + *(longlong *)(&UNK_180956d38 + contextOffset * 8));
-        if ((maxProcessingCount < *(uint *)(CharacterDataOffset + *(longlong *)(&UNK_180956d30 + contextOffset * 8))) ||
+        result = *(uint *)(characterDataOffset + *(longlong *)(&UNK_180956d38 + contextOffset * 8));
+        if ((maxProcessingCount < *(uint *)(characterDataOffset + *(longlong *)(&UNK_180956d30 + contextOffset * 8))) ||
            (result <= maxProcessingCount)) {
           result0 = 0;
           if (result <= maxProcessingCount) {
@@ -100154,18 +100180,18 @@ float FUN_180727fc0(int *uiContext,int dataSource,int targetBuffer,UIHandle buff
           do {
             targetBuffer = targetBuffer + -1;
           } while (maxProcessingCount - result0 <
-                   *(uint *)(CharacterDataOffset + *(longlong *)(&UNK_180956d30 + (longlong)targetBuffer * 8)));
+                   *(uint *)(characterDataOffset + *(longlong *)(&UNK_180956d30 + (longlong)targetBuffer * 8)));
           processingCounter = (maxProcessingCount < result) - 1;
-          sVar3 = processingCounter - (short)targetBuffer;
+          processingStep = processingCounter - (short)targetBuffer;
           maxProcessingCount = (maxProcessingCount - result0) -
-                  *(uint *)(CharacterDataOffset + *(longlong *)(&UNK_180956d30 + (longlong)targetBuffer * 8));
+                  *(uint *)(characterDataOffset + *(longlong *)(&UNK_180956d30 + (longlong)targetBuffer * 8));
           goto LAB_180727edb;
         }
-        maxProcessingCount = maxProcessingCount - *(uint *)(CharacterDataOffset + *(longlong *)(&UNK_180956d30 + contextOffset * 8));
-        ProcessingResult1 = 0;
+        maxProcessingCount = maxProcessingCount - *(uint *)(characterDataOffset + *(longlong *)(&UNK_180956d30 + contextOffset * 8));
+        processingResult1 = 0;
       }
       else {
-        componentIndex = *pallocatedMemory6;
+        componentIndex = *allocatedMemoryPointer;
         result = *(uint *)(componentIndex + 4 + contextOffset * 4);
         result0 = 0;
         if (result <= maxProcessingCount) {
