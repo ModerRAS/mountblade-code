@@ -81987,18 +81987,18 @@ void ProcessUIFloatDataTransform(longlong uiContext,float *dataSource,UIHandle t
     transformCoeffPointer = transformCoeffPointer + 4;
     processingCounter = processingCounter - 1;
     transformCoeff6 = resultValue;
-    unmodifiedXMM7_Da = localFloat8;
-    unmodifiedXMM8_Da = localFloat9;
-    unmodifiedXMM9_Da = baseValue0;
-  } while (ProcessingStatus != 0);
-  if ((int)(EventTypeCode * 4) < bufferSize) {
-    ptransformCoeff4 = (float *)(RegisterPointer + (longlong)(int)(EventTypeCode * 4) * 4);
-    ProcessingStatus = (ulonglong)(bufferSize + EventTypeCode * -4);
-    localFloat6 = resultFloat;
-    baseValue = localFloat8;
-    transformCoeff1 = baseValue0;
+    transformCoeff7 = tempFloat8;
+    transformCoeff8 = tempFloat9;
+    transformCoeff9 = sourceValue0;
+  } while (processingCounter != 0);
+  if ((int)(elementCount * 4) < bufferSize) {
+    transformCoeffPointer = (float *)(basePointer + (longlong)(int)(elementCount * 4) * 4);
+    processingCounter = (ulonglong)(bufferSize + elementCount * -4);
+    tempFloat6 = resultValue;
+    baseValue = tempFloat8;
+    transformCoeff1 = sourceValue0;
     do {
-      baseValue0 = unmodifiedXMM10_Da;
+      sourceValue0 = transformCoeff10;
       localFloat8 = transformCoeff1;
       resultFloat = localFloat9;
       localFloat9 = baseValue;
