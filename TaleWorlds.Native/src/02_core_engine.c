@@ -216,6 +216,12 @@
 #define StackValidationFlagD8 StackValidationFlagD8                 // 栈验证标志D8
 #define StackValidationFlag49 StackValidationFlag49                 // 栈验证标志49
 
+// 系统事件和标志变量定义
+#define SystemEventCurrentCharacter aEventCurrentCharacter      // 系统事件当前字符
+#define SystemUintBuffer238 aSystemUintBuffer238                // 系统无符号缓冲区238
+#define SystemOperation90 aSystemOperation90                     // 系统操作90
+#define SystemFlagH aSystemFlagH                                 // 系统标志H
+
 // FUN_函数语义化宏定义
 /**
  * @brief 重置字符处理系统
@@ -65822,13 +65828,13 @@ void InitializeCoreEngineSystemConfiguration(uint64_t engineConfig,long long sou
   code *CharacterPointer;
   long long MemoryPoolBlockSize;
   long long secondaryLoopCounter;
-  uint8_t aEventCurrentCharacter [32];
+  uint8_t SystemEventCurrentCharacter [32];
   void *pMemoryCopyBuffer;
   uint64_t *DataBufferPointer;
   uint32_t BufferCurrentCharacter;
   long long lStack_248;
   long long lStack_240;
-  uint8_t aSystemUintBuffer238 [16];
+  uint8_t SystemUintBuffer238 [16];
   code *pcStack_228;
   code *pcStack_220;
   uint32_t uStack_218;
