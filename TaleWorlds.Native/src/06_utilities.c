@@ -119892,7 +119892,21 @@ void CleanupExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer, Dat
 
 
 
-void Unwind_180912350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理0x48偏移0x8异常上下文
+ * 
+ * 该函数负责处理数据缓冲区0x48偏移量0x8处的异常上下文，执行异常处理操作
+ * 从0x48偏移量的0x8处获取异常上下文并进行处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912350
+ * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
+ */
+void HandleExceptionContextAtOffset48_8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -119911,13 +119925,20 @@ void Unwind_180912350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 /**
- * @brief 异常上下文清理函数A2
+ * @brief 处理0x40偏移0x38异常上下文
  * 
- * 该函数负责清理异常上下文，处理异常数据缓冲区。
+ * 该函数负责处理数据缓冲区0x40偏移量0x38处的异常上下文，执行异常处理操作
+ * 从0x40偏移量的0x38处获取异常上下文并进行处理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
  * 
  * @note 原始函数名：Unwind_180912360
+ * @note 这是一个异常展开（unwind）处理函数，用于处理特定偏移量的异常
  */
-void Unwind_180912360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void HandleExceptionContextAtOffset40_38(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
