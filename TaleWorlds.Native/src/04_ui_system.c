@@ -82096,31 +82096,47 @@ void ProcessUIContextDataTransform(UIHandle uiContext, float *dataSource, int ta
 
 
  void FUN_180712f20(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIDword bufferSize,
-void FUN_180712f20(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIDword bufferSize,
-                  int resultPointer)
+/**
+ * @brief UI数据缓冲区批量处理器
+ * 
+ * 该函数处理UI系统中的数据缓冲区批量操作，主要用于：
+ * - 批量处理UI数据缓冲区
+ * - 执行数据转换和验证
+ * - 管理数据缓冲区的生命周期
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 源数据缓冲区指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * 
+ * @note 原始函数名：FUN_180712f20
+ */
+void ProcessUIDataBufferBatch(UIHandle uiContext,longlong dataSource,longlong targetBuffer,UIDword bufferSize,
+                             int resultPointer)
 
 {
-  uint result;
-  UIDword *piterationCount;
-  longlong stringCompareIndex;
-  int TempInt4;
+  uint elementCount;
+  UIDword *iterationPointer;
+  longlong dataOffset;
+  int processedSize;
   ulonglong loopCounter;
   UIDword maxProcessingCount;
-  UIByte astackUInt88 [32];
-  longlong stackLong68;
-  UIHandle stackUInt60;
-  UIHandle stackUInt58;
-  ulonglong stackUInt50;
+  UIByte tempBuffer [32];
+  longlong targetBufferCopy;
+  UIHandle tempHandle60;
+  UIHandle tempHandle58;
+  ulonglong encryptedValue;
   
-  stackUInt50 = XorEncryptionKey ^ (ulonglong)astackUInt88;
-  TempInt4 = 0;
-  stackLong68 = targetBuffer;
+  encryptedValue = XorEncryptionKey ^ (ulonglong)tempBuffer;
+  processedSize = 0;
+  targetBufferCopy = targetBuffer;
   if (0 < resultPointer + -3) {
-    result = (resultPointer - 4U >> 2) + 1;
-    loopCounter = (ulonglong)result;
-    TempInt4 = result * 4;
-    piterationCount = (UIDword *)(targetBuffer + 8);
-    stringCompareIndex = dataSource;
+    elementCount = (resultPointer - 4U >> 2) + 1;
+    loopCounter = (ulonglong)elementCount;
+    processedSize = elementCount * 4;
+    iterationPointer = (UIDword *)(targetBuffer + 8);
+    dataOffset = dataSource;
     do {
       stackUInt60 = 0;
       stackUInt58 = 0;
