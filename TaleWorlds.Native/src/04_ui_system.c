@@ -184241,12 +184241,13 @@ undefined UIResourceCleanupHandler;
 #define UNK_18095b4ec UIRenderFlagB4ec
 #define UNK_18095b4f4 UIRenderFlagB4f4
 #define UNK_18095b4f8 UIRenderFlagB4f8
-undefined UNK_18095b580;
-undefined UNK_18095b6b8;
-undefined UNK_18095b780;
-undefined UNK_18095b5f8;
-undefined UNK_18095b638;
-undefined UNK_18095b678;
+// UI系统资源管理变量语义化定义
+#define UNK_18095b580 UIResourcePointerB580
+#define UNK_18095b6b8 UIResourcePointerB6b8
+#define UNK_18095b780 UIResourcePointerB780
+#define UNK_18095b5f8 UIResourcePointerB5f8
+#define UNK_18095b638 UIResourcePointerB638
+#define UNK_18095b678 UIResourcePointerB678
 undefined UIResourceAllocator;
 undefined UIResourceManager;
 undefined UIResourceCache;
@@ -184255,8 +184256,9 @@ undefined UIConfigDataSecondary;
 undefined DAT_180be2df8;
 undefined DAT_180be2ee8;
 undefined UIStateDataPrimary;
-undefined UNK_18095bc58;
-undefined UNK_18095be50;
+// UI系统配置数据变量语义化定义
+#define UNK_18095bc58 UIConfigDataBc58
+#define UNK_18095be50 UIConfigDataBe50
 
  简化实现：UI系统渲染函数
  原本实现：可能包含更复杂的渲染逻辑

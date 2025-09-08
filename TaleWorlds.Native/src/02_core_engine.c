@@ -221817,7 +221817,15 @@ void InitializeCharacterTablePointer(void)
 
 
 
-871f0(uint64_t CharacterCode,uint64_t *CharacterCodeSizevoid FUN_1801871f0(uint64_t CharacterCode,uint64_t *CharacterCodeSize
+/**
+ * @brief 处理字符编码转换和内存管理
+ * 
+ * 对字符编码进行转换处理，管理相关内存缓冲区，处理字符串比较和内存释放
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ */
+void ProcessCharacterEncodingAndMemoryManagement(uint64_t CharacterCode, uint64_t *CharacterCodeSize)
 {
   byte *CurrentBytePointer;
   int StringComparisonResult;
@@ -221890,7 +221898,7 @@ LAB_18018728e:
       TemporaryBuffer = TemporaryBuffer + 1;
     } while (TemporaryBuffer != *(uint64_t **)(SystemBufferStatusA + 0x20));
   }
-  FUN_180187390(MemoryBoundaryEnd,&SystemBufferSecondary);
+  ProcessSystemMemoryAndValidation(MemoryBoundaryEnd,&SystemBufferSecondary);
   *CharacterCodeSize = &SystemNullTemplate;
   if (SystemBufferSize[1] == 0) {
     SystemBufferSize[1] = 0;
