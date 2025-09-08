@@ -325,9 +325,35 @@ typedef enum {
 #define blendFactorStack stack0x00000040
 
 // UI系统函数宏定义补充
-#define ValidateUIContext ValidateUIContext
-#define ProcessUIComponent ProcessUIComponent
-#define ProcessUIComponentOpacity ProcessUIComponentOpacity
+/**
+ * @brief 验证UI上下文的有效性
+ * 
+ * 该函数检查UI上下文的状态，确保其处于可用状态。
+ * 验证包括内存完整性、状态标志和资源可用性检查。
+ * 
+ * @note 原始函数名：func_0x000180069ee0
+ */
+#define ValidateUIContext func_0x000180069ee0
+
+/**
+ * @brief 处理UI组件
+ * 
+ * 该函数负责处理UI组件的渲染、事件响应和状态更新。
+ * 它是UI系统的核心处理函数，确保组件正常工作。
+ * 
+ * @note 原始函数名：func_0x0001807673f0
+ */
+#define ProcessUIComponent func_0x0001807673f0
+
+/**
+ * @brief 处理UI组件透明度
+ * 
+ * 该函数专门处理UI组件的透明度设置和计算，
+ * 支持alpha混合和透明度动画效果。
+ * 
+ * @note 原始函数名：func_0x0001807673c0
+ */
+#define ProcessUIComponentOpacity func_0x0001807673c0
 #define ProcessUIRenderOpacity FUN_180785c10
 
 // UI系统函数宏定义 - 处理UI事件调度
@@ -2529,22 +2555,22 @@ void* UIGestureCoordinates;
  验证UI上下文的有效性和完整性
   ContextHandlePtr 上下文指针
   验证结果
-  原始函数名: func_0x0001806673d0
- #define ValidateUIContext func_0x0001806673d0
+  原始函数名: ValidateUIContext
+ #define ValidateUIContext ValidateUIContext
 
  初始化UI纹理
  初始化UI系统的纹理资源
   texturePtr 纹理指针
  *   *    初始化的纹理指针
-  原始函数名: func_0x0001800f8f10
- #define InitializeUITexture func_0x0001800f8f10
+  原始函数名: InitializeUITexture
+ #define InitializeUITexture InitializeUITexture
 
  处理UI信号量操作
  处理UI系统的信号量操作，用于线程同步
   semaphorePtr 信号量指针
  *   *    操作结果
-  原始函数名: func_0x000180085850
- #define ProcessUISemaphoreOperation func_0x000180085850
+  原始函数名: ProcessUISemaphoreOperation
+ #define ProcessUISemaphoreOperation ProcessUISemaphoreOperation
 
  更新UI组件数据
  更新UI组件的数据
@@ -2670,7 +2696,7 @@ void* UIGestureCoordinates;
  UI系统func函数宏定义
 #define CleanupUIContext CleanupUIContext
 #define ResetUISystemState ResetUISystemState
-#define ReleaseUIResourceHandle func_0x00018066e940
+#define ReleaseUIResourceHandle ReleaseUIResourceHandle
 
  清理UI系统临界区资源
  清理UI系统的临界区资源，包括释放临界区对象和相关内存
@@ -25245,9 +25271,9 @@ UIHandle ValidateUIComponentState(longlong uiContext,longlong *dataSource)
   ptrResult = (uint *)*dataSource;
   if ((ptrResult != (uint *)0x0) && (*(int *)(uiBufferData + 0x1a8) == 0)) {
     EventDataIndex = *(longlong *)(uiBufferData + 0x1b0) + 0x12c0;
-    uiValidationResult = func_0x00018066f280(EventDataIndex,3);
-    uiCompareResult = func_0x00018066f280(EventDataIndex,2);
-    TempInt4 = func_0x00018066f280(EventDataIndex,1);
+    uiValidationResult = ValidateUIEventData(EventDataIndex,3);
+    uiCompareResult = ValidateUIEventData(EventDataIndex,2);
+    TempInt4 = ValidateUIEventData(EventDataIndex,1);
     *ptrResult = (uint)(TempInt4 != 0) | -(uint)(uiCompareResult != 0) & 2 | -(uint)(uiValidationResult != 0) & 4;
     return 0;
   }
@@ -25266,9 +25292,9 @@ UIHandle CheckUIComponentAvailability(longlong uiContext)
   uint *EventHandle;
   
   ContextHandleData = *(longlong *)(uiBufferData + 0x1b0) + 0x12c0;
-  uiOperationResult = func_0x00018066f280(ContextHandleData,3);
-  uiValidationResult = func_0x00018066f280(ContextHandleData,2);
-  uiCompareResult = func_0x00018066f280(ContextHandleData,1);
+  uiOperationResult = ValidateUIEventData(ContextHandleData,3);
+  uiValidationResult = ValidateUIEventData(ContextHandleData,2);
+  uiCompareResult = ValidateUIEventData(ContextHandleData,1);
   *EventHandle = (uint)(uiCompareResult != 0) | -(uint)(uiValidationResult != 0) & 2 | -(uint)(uiOperationResult != 0) & 4;
   return 0;
 }
@@ -25289,9 +25315,9 @@ UIHandle InitializeUIComponentInstance(longlong uiContext)
   UIHandle *ptrResult;
   longlong componentIndex;
   
-  func_0x00018066d6e0();
-  func_0x00018066e220();
-  func_0x00018066e360();
+  InitializeUIEventSystem();
+  ProcessUIEventQueue();
+  FinalizeUIEventProcessing();
   if (*(longlong *)(uiBufferData + 0x30) == 0) {
     componentIndex = AllocateUIMemory(1);
     *(longlong *)(uiBufferData + 0x30) = componentIndex;
@@ -25614,7 +25640,7 @@ void InitializeUIComponentSystem(void)
             bufferPtr[1] = MaxProcessingCount;
             bufferPtr[2] = eventTypeCode;
             bufferPtr[3] = uVar8;
-            func_0x00018066e370((longlong)ProcessingResult1 * 0x12a0 + *(longlong *)(allocatedMemory0 + 0x43e0));
+            ProcessUIComponentArray((longlong)ProcessingResult1 * 0x12a0 + *(longlong *)(allocatedMemory0 + 0x43e0));
             ProcessingResult1 = ProcessingResult1 + 1;
             allocatedMemory2 = allocatedMemory2 + 0x12a0;
           } while (ProcessingResult1 < *(int *)(allocatedMemory0 + 0x4390));
@@ -27190,10 +27216,10 @@ LAB_18066e704:
   if (*(int *)(uiContext + 0xb90) != 0) {
     CleanupUISystemResources(uiContext + 0xb00);
   }
-  func_0x00018066e940(*(UIHandle *)(uiContext + 0xb98));
+  ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0xb98));
   *(UIHandle *)(uiContext + 0xb98) = 0;
-  func_0x00018066e940(*(UIHandle *)(uiContext + 0x1958));
-  func_0x00018066e940(*(UIHandle *)(uiContext + 0xbe8));
+  ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x1958));
+  ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0xbe8));
   *(UIHandle *)(uiContext + 0x1958) = 0;
   *(UIHandle *)(uiContext + 0xbe8) = 0;
   return;
@@ -27223,10 +27249,10 @@ LAB_18066e704:
   if (*(int *)(uiContext + 0xb90) != 0) {
     CleanupUISystemResources(uiContext + 0xb00);
   }
-  func_0x00018066e940(*(UIHandle *)(uiContext + 0xb98));
+  ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0xb98));
   *(UIHandle *)(uiContext + 0xb98) = 0;
-  func_0x00018066e940(*(UIHandle *)(uiContext + 0x1958));
-  func_0x00018066e940(*(UIHandle *)(uiContext + 0xbe8));
+  ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x1958));
+  ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0xbe8));
   *(UIHandle *)(uiContext + 0x1958) = 0;
   *(UIHandle *)(uiContext + 0xbe8) = 0;
   return;
@@ -27414,7 +27440,7 @@ ulonglong UIMemoryAllocateAligned(longlong alignmentSize,longlong allocationSize
  void InitializeUISystemCoreComponents(void)
 {
   if (g_uiSystemInitialized == 0) {
-    func_0x00018066e220();
+    ProcessUIEventQueue();
     func_0x00018069c2d0();
     g_uiSystemInitialized = 1;
   }
@@ -27618,7 +27644,7 @@ void InitializeUIEventQueue(void)
     }
     ReleaseUIResourceHandle(resourceHandle);
     ThunkUIMemoryCleanup(resourceHandle + 0x12c0);
-    func_0x00018066e940(resourceHandle);
+    ReleaseUIResourceHandle(resourceHandle);
   }
   return 0;
 }
@@ -30268,13 +30294,13 @@ void ReleaseUIResourceHandle(longlong uiContext)
     if (*(longlong *)(uiBufferData + 0x4400) != 0) {
       CloseHandle();
     }
-    func_0x00018066e940(*(UIHandle *)(uiContext + 0x43f0));
+    ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x43f0));
     *(UIHandle *)(uiContext + 0x43f0) = 0;
-    func_0x00018066e940(*(UIHandle *)(uiContext + 0x43f8));
+    ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x43f8));
     *(UIHandle *)(uiContext + 0x43f8) = 0;
-    func_0x00018066e940(*(UIHandle *)(uiContext + 0x43e0));
+    ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x43e0));
     *(UIHandle *)(uiContext + 0x43e0) = 0;
-    func_0x00018066e940(*(UIHandle *)(uiContext + 0x43e8));
+    ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x43e8));
     *(UIHandle *)(uiContext + 0x43e8) = 0;
   }
   return;
@@ -30327,13 +30353,13 @@ void ValidateUIResourceHandle(longlong uiContext)
   if (*(longlong *)(ContextHandle + 0x4400) != 0) {
     CloseHandle();
   }
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43f0));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43f0));
   *(UIHandle *)(ContextHandle + 0x43f0) = 0;
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43f8));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43f8));
   *(UIHandle *)(ContextHandle + 0x43f8) = 0;
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43e0));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43e0));
   *(UIHandle *)(ContextHandle + 0x43e0) = 0;
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43e8));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43e8));
   *(UIHandle *)(ContextHandle + 0x43e8) = 0;
   return;
 }
@@ -30387,13 +30413,13 @@ void UpdateUIResourceStatus(longlong uiContext)
   if (*(longlong *)(ContextHandle + 0x4400) != 0) {
     CloseHandle();
   }
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43f0));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43f0));
   *(ulonglong *)(ContextHandle + 0x43f0) = BasePointer;
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43f8));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43f8));
   *(ulonglong *)(ContextHandle + 0x43f8) = BasePointer;
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43e0));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43e0));
   *(ulonglong *)(ContextHandle + 0x43e0) = BasePointer;
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43e8));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43e8));
   *(ulonglong *)(ContextHandle + 0x43e8) = BasePointer;
   return;
 }
@@ -30411,13 +30437,13 @@ void InitializeUIResourceManager(void)
   UIHandle BasePointer;
   
   CloseHandle();
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43f0));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43f0));
   *(UIHandle *)(ContextHandle + 0x43f0) = BasePointer;
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43f8));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43f8));
   *(UIHandle *)(ContextHandle + 0x43f8) = BasePointer;
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43e0));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43e0));
   *(UIHandle *)(ContextHandle + 0x43e0) = BasePointer;
-  func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43e8));
+  ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43e8));
   *(UIHandle *)(ContextHandle + 0x43e8) = BasePointer;
   return;
 }
@@ -31294,78 +31320,78 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   
   stringCompareIndex = (longlong)dataSource;
   if (*(int *)(uiBufferData + 0x4380) != 0) {
-    func_0x00018066e940(*(UIHandle *)(uiContext + 0x43a8));
+    ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x43a8));
     componentIndex = 0;
     *(UIHandle *)(uiContext + 0x43a8) = 0;
     if (*(longlong *)(uiBufferData + 0x43b0) != 0) {
       allocatedMemory = componentIndex;
       if (0 < stringCompareIndex) {
         do {
-          func_0x00018066e940(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43b0) + allocatedMemory * 8));
+          ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43b0) + allocatedMemory * 8));
           *(UIHandle *)(*(longlong *)(uiBufferData + 0x43b0) + allocatedMemory * 8) = 0;
           allocatedMemory = allocatedMemory + 1;
         } while (allocatedMemory < stringCompareIndex);
       }
-      func_0x00018066e940(*(UIHandle *)(uiContext + 0x43b0));
+      ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x43b0));
       *(UIHandle *)(uiContext + 0x43b0) = 0;
     }
     if (*(longlong *)(uiBufferData + 0x43b8) != 0) {
       allocatedMemory = componentIndex;
       if (0 < stringCompareIndex) {
         do {
-          func_0x00018066e940(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43b8) + allocatedMemory * 8));
+          ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43b8) + allocatedMemory * 8));
           *(UIHandle *)(*(longlong *)(uiBufferData + 0x43b8) + allocatedMemory * 8) = 0;
           allocatedMemory = allocatedMemory + 1;
         } while (allocatedMemory < stringCompareIndex);
       }
-      func_0x00018066e940(*(UIHandle *)(uiContext + 0x43b8));
+      ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x43b8));
       *(UIHandle *)(uiContext + 0x43b8) = 0;
     }
     if (*(longlong *)(uiBufferData + 0x43c0) != 0) {
       allocatedMemory = componentIndex;
       if (0 < stringCompareIndex) {
         do {
-          func_0x00018066e940(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43c0) + allocatedMemory * 8));
+          ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43c0) + allocatedMemory * 8));
           *(UIHandle *)(*(longlong *)(uiBufferData + 0x43c0) + allocatedMemory * 8) = 0;
           allocatedMemory = allocatedMemory + 1;
         } while (allocatedMemory < stringCompareIndex);
       }
-      func_0x00018066e940(*(UIHandle *)(uiContext + 0x43c0));
+      ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x43c0));
       *(UIHandle *)(uiContext + 0x43c0) = 0;
     }
     if (*(longlong *)(uiBufferData + 0x43c8) != 0) {
       allocatedMemory = componentIndex;
       if (0 < stringCompareIndex) {
         do {
-          func_0x00018066e940(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43c8) + allocatedMemory * 8));
+          ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43c8) + allocatedMemory * 8));
           *(UIHandle *)(*(longlong *)(uiBufferData + 0x43c8) + allocatedMemory * 8) = 0;
           allocatedMemory = allocatedMemory + 1;
         } while (allocatedMemory < stringCompareIndex);
       }
-      func_0x00018066e940(*(UIHandle *)(uiContext + 0x43c8));
+      ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x43c8));
       *(UIHandle *)(uiContext + 0x43c8) = 0;
     }
     if (*(longlong *)(uiBufferData + 0x43d0) != 0) {
       allocatedMemory = componentIndex;
       if (0 < stringCompareIndex) {
         do {
-          func_0x00018066e940(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43d0) + allocatedMemory * 8));
+          ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43d0) + allocatedMemory * 8));
           *(UIHandle *)(*(longlong *)(uiBufferData + 0x43d0) + allocatedMemory * 8) = 0;
           allocatedMemory = allocatedMemory + 1;
         } while (allocatedMemory < stringCompareIndex);
       }
-      func_0x00018066e940(*(UIHandle *)(uiContext + 0x43d0));
+      ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x43d0));
       *(UIHandle *)(uiContext + 0x43d0) = 0;
     }
     if (*(longlong *)(uiBufferData + 0x43d8) != 0) {
       if (0 < stringCompareIndex) {
         do {
-          func_0x00018066e940(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43d8) + componentIndex * 8));
+          ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(uiBufferData + 0x43d8) + componentIndex * 8));
           *(UIHandle *)(*(longlong *)(uiBufferData + 0x43d8) + componentIndex * 8) = 0;
           componentIndex = componentIndex + 1;
         } while (componentIndex < stringCompareIndex);
       }
-      func_0x00018066e940(*(UIHandle *)(uiContext + 0x43d8));
+      ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x43d8));
       *(UIHandle *)(uiContext + 0x43d8) = 0;
     }
   }
@@ -31395,78 +31421,78 @@ void ProcessUIComponentEvent(longlong uiContext,uint dataSource,UIDword targetBu
   longlong componentIndex;
   longlong TargetHandle;
   
-  func_0x00018066e940();
+  ReleaseUIResourceHandle();
   componentIndex = 0;
   *(UIHandle *)(ContextHandle + 0x43a8) = 0;
   if (*(longlong *)(ContextHandle + 0x43b0) != 0) {
     allocatedMemory = componentIndex;
     if (0 < TargetHandle) {
       do {
-        func_0x00018066e940(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43b0) + allocatedMemory * 8));
+        ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43b0) + allocatedMemory * 8));
         *(UIHandle *)(*(longlong *)(ContextHandle + 0x43b0) + allocatedMemory * 8) = 0;
         allocatedMemory = allocatedMemory + 1;
       } while (allocatedMemory < TargetHandle);
     }
-    func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43b0));
+    ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43b0));
     *(UIHandle *)(ContextHandle + 0x43b0) = 0;
   }
   if (*(longlong *)(ContextHandle + 0x43b8) != 0) {
     allocatedMemory = componentIndex;
     if (0 < TargetHandle) {
       do {
-        func_0x00018066e940(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43b8) + allocatedMemory * 8));
+        ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43b8) + allocatedMemory * 8));
         *(UIHandle *)(*(longlong *)(ContextHandle + 0x43b8) + allocatedMemory * 8) = 0;
         allocatedMemory = allocatedMemory + 1;
       } while (allocatedMemory < TargetHandle);
     }
-    func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43b8));
+    ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43b8));
     *(UIHandle *)(ContextHandle + 0x43b8) = 0;
   }
   if (*(longlong *)(ContextHandle + 0x43c0) != 0) {
     allocatedMemory = componentIndex;
     if (0 < TargetHandle) {
       do {
-        func_0x00018066e940(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43c0) + allocatedMemory * 8));
+        ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43c0) + allocatedMemory * 8));
         *(UIHandle *)(*(longlong *)(ContextHandle + 0x43c0) + allocatedMemory * 8) = 0;
         allocatedMemory = allocatedMemory + 1;
       } while (allocatedMemory < TargetHandle);
     }
-    func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43c0));
+    ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43c0));
     *(UIHandle *)(ContextHandle + 0x43c0) = 0;
   }
   if (*(longlong *)(ContextHandle + 0x43c8) != 0) {
     allocatedMemory = componentIndex;
     if (0 < TargetHandle) {
       do {
-        func_0x00018066e940(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43c8) + allocatedMemory * 8));
+        ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43c8) + allocatedMemory * 8));
         *(UIHandle *)(*(longlong *)(ContextHandle + 0x43c8) + allocatedMemory * 8) = 0;
         allocatedMemory = allocatedMemory + 1;
       } while (allocatedMemory < TargetHandle);
     }
-    func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43c8));
+    ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43c8));
     *(UIHandle *)(ContextHandle + 0x43c8) = 0;
   }
   if (*(longlong *)(ContextHandle + 0x43d0) != 0) {
     allocatedMemory = componentIndex;
     if (0 < TargetHandle) {
       do {
-        func_0x00018066e940(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43d0) + allocatedMemory * 8));
+        ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43d0) + allocatedMemory * 8));
         *(UIHandle *)(*(longlong *)(ContextHandle + 0x43d0) + allocatedMemory * 8) = 0;
         allocatedMemory = allocatedMemory + 1;
       } while (allocatedMemory < TargetHandle);
     }
-    func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43d0));
+    ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43d0));
     *(UIHandle *)(ContextHandle + 0x43d0) = 0;
   }
   if (*(longlong *)(ContextHandle + 0x43d8) != 0) {
     if (0 < TargetHandle) {
       do {
-        func_0x00018066e940(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43d8) + componentIndex * 8));
+        ReleaseUIResourceHandle(*(UIHandle *)(*(longlong *)(ContextHandle + 0x43d8) + componentIndex * 8));
         *(UIHandle *)(*(longlong *)(ContextHandle + 0x43d8) + componentIndex * 8) = 0;
         componentIndex = componentIndex + 1;
       } while (componentIndex < TargetHandle);
     }
-    func_0x00018066e940(*(UIHandle *)(ContextHandle + 0x43d8));
+    ReleaseUIResourceHandle(*(UIHandle *)(ContextHandle + 0x43d8));
     *(UIHandle *)(ContextHandle + 0x43d8) = 0;
   }
   return;
@@ -61310,7 +61336,7 @@ void ProcessUIFilterOperation(void)
 {
   if (uiContext != 0) {
     if (0 < *(int *)(uiBufferData + 0x60)) {
-      func_0x00018066e940(*(UIHandle *)(uiContext + 0x58));
+      ReleaseUIResourceHandle(*(UIHandle *)(uiContext + 0x58));
     }
                      WARNING: Subroutine does not return
     memset(uiContext,0,0x90);
@@ -61331,7 +61357,7 @@ void ProcessUIFilterOperation(void)
 {
   if (resourceObject != NULL) {
     if (0 < *(int *)(resourceObject + 0x60)) {
-      func_0x00018066e940(*(uint64_t *)(resourceObject + 0x58));
+      ReleaseUIResourceHandle(*(uint64_t *)(resourceObject + 0x58));
     }
     memset(resourceObject, 0, 0x90);
   }
@@ -78094,17 +78120,21 @@ LAB_180710a34:
 
 
 
- void FUN_180710fc0(longlong uiContext)
-void FUN_180710fc0(longlong uiContext)
+ /**
+ * @brief 初始化UI上下文数据和缓冲区
+ * @param uiContext UI上下文指针
+ * @note 执行两次初始化操作，然后重置UI句柄和缓冲区数据
+ */
+void InitializeUIContextAndBuffers(longlong uiContext)
 
 {
-  longlong allocatedMemory;
+  longlong initializationCounter;
   
-  allocatedMemory = 2;
+  initializationCounter = 2;
   do {
     FUN_1807224d0();
-    allocatedMemory = allocatedMemory + -1;
-  } while (allocatedMemory != 0);
+    initializationCounter = initializationCounter + -1;
+  } while (initializationCounter != 0);
   *(UIHandle *)(uiContext + 0x2180) = 0;
   *(UIDword *)(uiBufferData + 0x2188) = 0;
   *(UIDword *)(uiBufferData + 0x2194) = 0;
