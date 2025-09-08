@@ -130665,7 +130665,18 @@ void ProcessSystemEventQueue(void)
  * 该函数负责管理系统事件队列的终结、内存分配的清理以及系统组件的初始化。
  * 它处理系统上下文中的各种状态标志和内存引用计数。
  * 
+ * @details 函数执行流程：
+ * 1. 检查处理结果和系统上下文的有效性
+ * 2. 验证浮点数计算结果的精度
+ * 3. 处理系统事件队列的终结
+ * 4. 初始化系统组件
+ * 5. 处理系统配置和字符编码
+ * 6. 清理和重置系统状态
+ * 
  * @note 原始函数名：FUN_18012747d
+ * @note CharacterProcessingValue变量用于字符处理操作，但在当前实现中未使用
+ * 
+ * @return void 无返回值
  */
 void ProcessSystemEventQueueAndMemoryAllocation(void)
 {
@@ -130862,7 +130873,18 @@ void ProcessSystemEventQueueAndMemoryAllocation(void)
  * 该函数负责管理系统内存块的分配、释放和验证。通过复杂的算法
  * 确保内存使用的效率和安全性，包括内存边界检查和数据完整性验证。
  * 
+ * @details 函数执行流程：
+ * 1. 计算字符串偏移量和内存块索引
+ * 2. 验证内存块的状态和浮点数值
+ * 3. 检查系统数据注册表的有效性
+ * 4. 处理模式索引和字符串长度验证
+ * 5. 执行内存块的复制和清理操作
+ * 6. 更新系统状态和内存引用计数
+ * 
  * @note 原始函数名：FUN_180127648
+ * @note CharacterProcessingValue变量用于字符处理操作，但在当前实现中未使用
+ * 
+ * @return void 无返回值
  */
 #define ProcessSystemMemoryBlock FUN_180127648
 void ProcessSystemMemoryBlock(void)
@@ -130980,7 +131002,18 @@ void ProcessSystemMemoryBlock(void)
  * 该函数负责管理系统内存的引用计数，包括内存块的分配、释放和计数管理。
  * 它会检查内存池的状态，更新引用计数，并在必要时重新分配内存。
  * 
+ * @details 函数执行流程：
+ * 1. 获取引用计数指针和内存池块大小
+ * 2. 设置字符编码相关的内存块数据
+ * 3. 检查剩余空间并执行必要的重新分配
+ * 4. 计算验证结果并处理引用计数
+ * 5. 更新引用计数指针的值
+ * 6. 执行系统清理和最终化操作
+ * 
  * @note 原始函数名：FUN_18012770c
+ * @note CharacterProcessingValue变量用于字符处理操作，但在当前实现中未使用
+ * 
+ * @return void 无返回值
  */
 void SystemMemoryReferenceCountManager(void)
 {
