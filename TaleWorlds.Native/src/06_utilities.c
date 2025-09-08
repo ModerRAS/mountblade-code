@@ -88523,7 +88523,23 @@ void ProcessExceptionHandlersAndTerminateSystem(DataBuffer operationBase,int64_t
 
 
 
-void Unwind_18090c140(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理内存资源清理和异常处理
+ * 
+ * 该函数处理内存资源的引用计数管理，包括：
+ * - 检查内存资源指针的有效性
+ * - 计算内存块的偏移量
+ * - 管理资源引用计数
+ * - 在引用计数为0时触发异常处理
+ * 
+ * @param operationBase 操作基址，用于系统操作
+ * @param dataBuffer 数据缓冲区，包含内存资源管理信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090c140
+ * @note 此函数为内存管理和异常处理机制的一部分
+ */
+void ProcessMemoryResourceCleanup(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
