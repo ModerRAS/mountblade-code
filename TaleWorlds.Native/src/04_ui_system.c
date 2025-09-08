@@ -104386,9 +104386,32 @@ void ProcessUIComponentDataTransformation(longlong uiContext,longlong dataSource
 
 
 
- void FUN_18072b9d4(UIHandle uiContext,UIHandle dataSource,int targetBuffer,ulonglong bufferSize,
-void FUN_18072b9d4(UIHandle uiContext,UIHandle dataSource,int targetBuffer,ulonglong bufferSize,
-                  UIHandle resultPointer,ulonglong param_6,UIHandle param_7,longlong param_8)
+ /**
+ * @brief 处理UI渲染数据更新和缓冲区管理
+ * 
+ * 该函数负责处理UI系统中的渲染数据更新操作，包括缓冲区管理、
+ * 数据处理、以及组件状态的更新。函数使用复杂的内存操作来处理
+ * 大量的UI数据，确保渲染系统的正确运行。
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源句柄，包含待处理的输入数据
+ * @param targetBuffer 目标缓冲区参数，用于数据处理
+ * @param bufferSize 缓冲区大小，控制处理的数据量
+ * @param resultPointer 结果指针句柄，用于存储处理结果
+ * @param param_6 处理参数，用于控制数据处理流程
+ * @param param_7 UI数据句柄，包含组件相关的数据信息
+ * @param param_8 上下文参数，用于处理上下文相关信息
+ * 
+ * @note 该函数是UI渲染系统的核心组件，涉及复杂的内存操作和数据处理
+ * @warning 函数执行过程中会进行大量的内存分配和数据复制操作
+ * @see ProcessUIComponentDataTransformation, ExecuteUIRenderTask
+ */
+// UI渲染数据更新处理函数
+// 原始函数名: FUN_18072b9d4
+#define ProcessUIRenderDataUpdate FUN_18072b9d4
+
+void ProcessUIRenderDataUpdate(UIHandle uiContext,UIHandle dataSource,int targetBuffer,ulonglong bufferSize,
+                               UIHandle resultPointer,ulonglong processingParameter,UIHandle uiDataHandle,longlong contextParameter)
 
 {
   char localChar1;
