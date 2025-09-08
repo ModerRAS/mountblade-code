@@ -2810,13 +2810,13 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 #define ValidateSystemContextA0 FUN_1808af280
 
 /**
- * @brief 数据数组处理函数A0
+ * @brief 数据数组处理函数B0
  * 
- * 处理数据数组A0，负责数据数组的处理、验证和管理
+ * 处理数据数组B0，负责数据数组的处理、验证和管理
  * 
  * @note 原始函数名：FUN_1808acb90
  */
-#define ProcessDataArrayA0 FUN_1808acb90
+#define ProcessDataArrayWithSecurityCheck FUN_1808acb90
 
 /**
  * @brief 数据初始化函数A0
@@ -5116,7 +5116,7 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 
 // 原始函数名：FUN_180893e69 - 状态更新函数A0
 // 功能：更新系统状态
-#define UpdateSystemStatusA0 FUN_180893e69
+// 注意：此函数在前面已经定义过
 
 // 原始函数名：FUN_180893e94 - 配置加载函数A0
 // 功能：加载系统配置
