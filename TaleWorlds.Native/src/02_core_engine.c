@@ -10234,16 +10234,16 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
  * @note 初始化过程中会创建系统节点并建立数据结构
  */
 void InitializeCoreEngineDataStructure(void) {
-  char IsSystemNodeInitialized;
-  void *SystemRootNodePointer;
-  int NodeDataComparisonResult;
-  long long *CoreEngineSystemContext;
-  void *SystemTraversalPointer;
-  void *SystemSearchPointer;
-  void *SystemNextChainPointer;
-  long long AllocatedMemoryOffset;
-  void *NewSystemNode;
-  void (*SystemInitializationCallback)(void);
+  char SystemNodeInitializedFlag;
+  void *SystemRootNode;
+  int DataComparisonResult;
+  long long *EngineSystemContext;
+  void *SystemTraversalNode;
+  void *SystemSearchNode;
+  void *SystemNextNodeInChain;
+  long long SystemMemoryOffset;
+  void *CreatedSystemNode;
+  void (*SystemNodeInitializer)(void);
   
   EngineSystemContext = (long long *)CoreEngineGetSystemHandle();
   SystemRootNode = (void *)*EngineSystemContext;

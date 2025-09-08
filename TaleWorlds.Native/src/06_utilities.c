@@ -308,6 +308,26 @@
 #define DataPointerFlagOffset28 0x28
 #define DataContextDataOffset18 0x18
 #define SystemContextCleanupOffset98 0x98
+
+// 数据缓冲区扩展偏移常量
+#define DataBufferExtendedOffset2E8 0x2e8
+#define DataBufferSecondaryOffset2C 0x2c
+#define DataBufferTertiaryOffset34 0x34
+#define DataBufferQuaternaryOffset4D0 0x4d0
+#define DataBufferQuinaryOffset774 0x774
+
+// 异常上下文扩展偏移常量
+#define ExceptionContextExtendedOffset1193C 0x1193c
+#define ExceptionContextExtendedOffset6D4 0x6d4
+#define ExceptionContextExtendedOffset11610 0x11610
+#define ExceptionContextExtendedOffset11614 0x11614
+#define ExceptionContextExtendedOffset11654 0x11654
+#define ExceptionContextExtendedOffset11658 0x11658
+
+// 数据上下文状态偏移常量
+#define DataContextStatusOffset204 0x204
+#define DataContextStatusOffset208 0x208
+#define DataContextPrimaryOffset14 0x14
 #define ExceptionContextPrimaryOffset 0x60
 #define ExceptionContextSecondaryOffset 0x78
 #define ExceptionContextTertiaryOffset 0xf0
