@@ -75453,26 +75453,26 @@ void ProcessUISystemData(longlong *uiContext,longlong dataSource,int targetBuffe
 void ProcessUITransformMatrix(UIHandle uiContext, longlong dataSource, UIHandle targetBuffer, float *bufferSize)
 
 {
-  float *pfloatResult;
+  float *transformResult;
   longlong componentIndex;
-  longlong stringCompareIndex;
-  longlong ContextHandleData;
-  float *psecondaryValue;
-  float *plocalFloat6;
-  longlong localLong7;
-  longlong TargetHandle;
-  longlong register10;
-  longlong RegisterPointer;
-  float localFloat8;
-  float localFloat9;
-  float in_XMM4_Da;
-  float floatResult0;
-  float floatResult1;
-  float floatResult2;
-  float unmodifiedXMM6_Da;
-  float unmodifiedXMM7_Da;
-  float unmodifiedXMM8_Da;
-  float unmodifiedXMM9_Da;
+  longlong iterationCount;
+  longlong contextData;
+  float *sourceDataPtr;
+  float *targetDataPtr;
+  longlong offsetValue;
+  longlong targetHandle;
+  longlong sourceHandle;
+  longlong registerPointer;
+  float transformScaleX;
+  float transformScaleY;
+  float rotationAngle;
+  float matrixValue1;
+  float matrixValue2;
+  float matrixValue3;
+  float translationX;
+  float translationY;
+  float scaleUniform;
+  float rotationCosine;
   
   psecondaryValue = (float *)(dataSource + 8);
   localLong7 = register10 - TargetHandle;
@@ -279458,7 +279458,7 @@ void FUN_18083b050(longlong uiContext,UIHandle dataSource,int targetBuffer,UIHan
   UIByte aIndexResult [32];
   
   aeventTypeCode = UIEventTypeCodeVector;
-  aMaxProcessingCount = _DAT_180981440;
+  aMaxProcessingCount = UIEventProcessingVector;
   CharacterDataOffset = (longlong)targetBuffer * 4 - (longlong)resultPointer;
   pauVar8 = (UIByte (*) [32])(*resultPointer + ((longlong)targetBuffer >> 1) * 4);
   do {
@@ -280069,7 +280069,7 @@ void FUN_18083b3d0(UIByte (*uiContext) [32])
   aLoopCounter._24_4_ = asemaphoreHandle._24_4_ * 1.0 + aresult._24_4_;
   aLoopCounter._28_4_ = processedFloat + aresult._28_4_;
   aresult = vperm2f128_avx(aeventTypeCode,aeventTypeCode,0);
-  aEventTypeCode = vpermilps_avx(aLoopCounter,_DAT_180981440);
+  aEventTypeCode = vpermilps_avx(aLoopCounter,UIEventProcessingVector);
   asemaphoreHandle = vperm2f128_avx(aeventTypeCode,aeventTypeCode,0x11);
   auVar8._0_4_ = aresult._0_4_ * -1.0 + asemaphoreHandle._0_4_;
   auVar8._4_4_ = aresult._4_4_ * -1.0 + asemaphoreHandle._4_4_;
