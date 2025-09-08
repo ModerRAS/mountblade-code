@@ -211978,49 +211978,49 @@ LAB_180177d26:
  */
 void ProcessCharacterEncodingAndMemoryPoolManagement(uint64_t CharacterCode, long long SystemBufferSize)
 {
-  uint64_t *CharacterStatusBuffer;
-  byte SystemHighByte;
-  bool IsHighByteSet;
-  uint64_t *MemoryAddressMaskPointer;
-  int RemainingSpace;
-  long long MemoryBoundaryEnd;
-  long long MemoryPoolBlockSize;
-  void *NextNode;
-  byte *ByteBufferPointer9;
-  uint MemoryAllocationIndex;
-  void *SystemCharacterStatusBuffer;
-  long long *CharacterCode2;
-  long long DataSize13;
-  long long LoopIndex;
-  uint64_t Utf16ConversionContext;
-  long long MemoryAllocationOffset;
-  long long *CharacterCode7;
-  uint8_t auStack_8c8 [32];
-  void *puStack_8a8;
-  uint8_t *puStack_8a0;
-  uint32_t uStack_898;
-  unsigned long long uStack_890;
-  long long *plStack_888;
-  void **pSystemEventPointer0;
-  void *puStack_878;
-  long long lStack_870;
-  uint32_t uStack_860;
-  long long lStack_858;
-  uint64_t uStack_850;
-  long long lStack_848;
-  uint8_t auStack_838 [2048];
-  unsigned long long FunctionAddress;
+  uint64_t *CharacterStatusBuffer;                  // 字符状态缓冲区指针
+  byte SystemHighByte;                              // 系统高位字节
+  bool IsHighByteSet;                               // 高位字节设置标志
+  uint64_t *MemoryAddressMaskPointer;              // 内存地址掩码指针
+  int RemainingSpace;                               // 剩余空间
+  long long MemoryBoundaryEnd;                      // 内存边界结束位置
+  long long MemoryPoolBlockSize;                    // 内存池块大小
+  void *NextNode;                                   // 下一个节点指针
+  byte *ByteBufferPointer9;                         // 字节缓冲区指针9
+  uint MemoryAllocationIndex;                       // 内存分配索引
+  void *SystemCharacterStatusBuffer;                // 系统字符状态缓冲区
+  long long *SecondaryCharacterCodePointer;         // 次要字符代码指针
+  long long CharacterDataSize;                      // 字符数据大小
+  long long LoopIndex;                              // 循环索引
+  uint64_t Utf16ConversionContext;                 // UTF16转换上下文
+  long long MemoryAllocationOffset;                 // 内存分配偏移量
+  long long *PrimaryCharacterCodePointer;          // 主要字符代码指针
+  uint8_t SystemSecurityValidationBuffer [32];     // 系统安全验证缓冲区
+  void *SystemContextPointer;                       // 系统上下文指针
+  uint8_t *Utf8DataBufferPointer;                   // UTF8数据缓冲区指针
+  uint32_t SystemOperationCode;                     // 系统操作代码
+  unsigned long long SystemDataAddress;              // 系统数据地址
+  long long *SystemTablePointer;                    // 系统表指针
+  void **SystemEventPointerArray;                  // 系统事件指针数组
+  void *SecondarySystemContextPointer;              // 次要系统上下文指针
+  long long SystemMemoryOffset870;                  // 系统内存偏移量870
+  uint32_t SystemStatusFlag860;                     // 系统状态标志860
+  long long SystemMemoryOffset858;                  // 系统内存偏移量858
+  uint64_t SystemStackParameter850;                  // 系统栈参数850
+  long long SystemMemoryOffset848;                  // 系统内存偏移量848
+  uint8_t CharacterDataBuffer [2048];               // 字符数据缓冲区
+  unsigned long long EncodedFunctionAddress;        // 编码后的函数地址
   
-  uStack_850 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)auStack_8c8;
-  CharacterCode7 = *(long long **)(CoreEngineEventInitialized + 0xc0);
-  CharacterCode2 = *(long long **)(CoreEngineEventInitialized + 200);
-  plStack_888 = CharacterCode2;
-  if (CharacterCode7 != CharacterCode2) {
+  SystemStackParameter850 = 0xfffffffffffffffe;
+  EncodedFunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemSecurityValidationBuffer;
+  PrimaryCharacterCodePointer = *(long long **)(CoreEngineEventInitialized + 0xc0);
+  SecondaryCharacterCodePointer = *(long long **)(CoreEngineEventInitialized + 200);
+  SystemTablePointer = SecondaryCharacterCodePointer;
+  if (PrimaryCharacterCodePointer != SecondaryCharacterCodePointer) {
     do {
-      SystemDataTablePointer = *CharacterCode7;
+      SystemDataTablePointer = *PrimaryCharacterCodePointer;
       LoopIndex = SystemDataTablePointer + 8;
-      lStack_848 = LoopIndex;
+      SystemMemoryOffset848 = LoopIndex;
       RemainingSpace = _Mtx_lock(LoopIndex);
       if (RemainingSpace != 0) {
         __Throw_C_error_std__YAXH_Z(RemainingSpace);
@@ -212184,42 +212184,54 @@ LAB_1801780ed:
 
 
 
-781f0(uint64_t CharacterCode,uint64_t *CharacterCodeSize,int Utf8SourcePointervoid FUN_1801781f0(uint64_t CharacterCode,uint64_t *CharacterCodeSize,int Utf8SourcePointer
+/**
+ * @brief 处理字符代码大小和UTF-8源数据的系统函数
+ * 
+ * 该函数负责处理字符代码的大小计算和UTF-8源数据的验证，
+ * 包括系统数据注册、编码转换和缓冲区管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_1801781f0
+ */
+void ProcessCharacterCodeSizeAndUtf8SourceData(uint64_t CharacterCode, uint64_t *CharacterCodeSize, int Utf8SourcePointer)
 {
-  long long PrimaryDataSize;
-  long long BufferStatus;
-  uint64_t UnicodeCodePoint;
-  long long SystemDataRegistry;
-  long long *AllocatedMemorySizePointer;
-  int ValidationResult;
-  uint32_t SystemChecksum;
-  int ComputedResult;
-  void *TemporaryBuffer;
-  long long EncodingConversionResult;
-  uint8_t auStack_968 [32];
-  uint64_t SystemUnsignedValue948;
-  long long **pplStack_940;
-  void *puStack_938;
-  long long lStack_930;
-  uint32_t uStack_928;
-  unsigned long long uStack_920;
-  long long *plStack_918;
-  uint64_t *puStack_910;
-  uint64_t SystemOperation908;
-  long long SystemTemporaryValue900;
-  uint64_t *puStack_8f8;
-  void *puStack_8e8;
-  void *puStack_8e0;
-  int iStack_8d8;
-  uint8_t auStack_8d0 [136];
-  uint8_t auStack_848 [2048];
-  unsigned long long SystemStackFlag;
+  long long PrimaryDataSize;                          // 主要数据大小
+  long long BufferStatus;                             // 缓冲区状态
+  uint64_t UnicodeCodePoint;                          // Unicode码点
+  long long SystemDataRegistry;                        // 系统数据注册表
+  long long *AllocatedMemorySizePointer;              // 分配的内存大小指针
+  int ValidationResult;                              // 验证结果
+  uint32_t SystemChecksum;                            // 系统校验和
+  int ComputedResult;                                // 计算结果
+  void *TemporaryBuffer;                              // 临时缓冲区
+  long long EncodingConversionResult;                 // 编码转换结果
+  uint8_t SystemSecurityValidationBuffer968 [32];     // 系统安全验证缓冲区968
+  uint64_t SystemUnsignedValue948;                    // 系统无符号值948
+  long long **SystemTablePointer940;                  // 系统表指针940
+  void *SystemContextPointer938;                      // 系统上下文指针938
+  long long SystemMemoryOffset930;                    // 系统内存偏移量930
+  uint32_t SystemStatusFlag928;                       // 系统状态标志928
+  unsigned long long SystemDataAddress920;            // 系统数据地址920
+  long long *SystemMemoryPointer918;                  // 系统内存指针918
+  uint64_t *SystemBufferPointer910;                   // 系统缓冲区指针910
+  uint64_t SystemOperationCode908;                    // 系统操作代码908
+  long long SystemTemporaryValue900;                   // 系统临时值900
+  uint64_t *SystemDataPointer8f8;                     // 系统数据指针8f8
+  void *SystemContextPointer8e8;                      // 系统上下文指针8e8
+  void *SystemDataBuffer8e0;                          // 系统数据缓冲区8e0
+  int SystemInteger8d8;                               // 系统整数8d8
+  uint8_t SystemDataBuffer8d0 [136];                  // 系统数据缓冲区8d0
+  uint8_t CharacterProcessingBuffer848 [2048];        // 字符处理缓冲区848
+  unsigned long long SystemStackValidationFlag;       // 系统栈验证标志
   
   SystemDataRegistry = CoreEngineEventInitialized;
-  SystemOperation908 = 0xfffffffffffffffe;
-  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)auStack_968;
+  SystemOperationCode908 = 0xfffffffffffffffe;
+  SystemStackValidationFlag = EncodingDecodingKey ^ (unsigned long long)SystemSecurityValidationBuffer968;
   ComputedResult = (int)(*(long long *)(CoreEngineEventInitialized + 200) - *(long long *)(CoreEngineEventInitialized + 0xc0) >> 3);
-  puStack_910 = SystemBufferSize;
+  SystemBufferPointer910 = SystemBufferSize;
   if (0 < ComputedResult) {
     EncodingConversionResult = 0;
     do {
@@ -213228,7 +213240,15 @@ Label_MemoryComparison_Handle:
 
 
 
-79b7a(voidvoid FUN_180179b7a(void
+/**
+ * @brief 系统数据分配和初始化函数
+ * 
+ * 该函数负责分配系统数据节点内存，并进行初始化设置
+ * 包括模式索引设置和内存分配标志配置
+ * 
+ * @note 原始函数名：FUN_180179b7a
+ */
+void AllocateSystemDataNodeAndInitialize(void)
 {
   long long PrimaryDataSize;
   uint32_t *PatternIndex;
@@ -213245,7 +213265,15 @@ Label_MemoryComparison_Handle:
 
 
 
-79b91(voidvoid FUN_180179b91(void
+/**
+ * @brief 系统数据节点分配函数变体1
+ * 
+ * 该函数是系统数据节点分配的变体实现，功能与AllocateSystemDataNodeAndInitialize相同
+ * 用于不同的系统初始化路径
+ * 
+ * @note 原始函数名：FUN_180179b91
+ */
+void AllocateSystemDataNodeVariant1(void)
 {
   long long PrimaryDataSize;
   uint32_t *PatternIndex;
@@ -213262,7 +213290,15 @@ Label_MemoryComparison_Handle:
 
 
 
-79b95(voidvoid FUN_180179b95(void
+/**
+ * @brief 系统数据节点分配函数变体2
+ * 
+ * 该函数是系统数据节点分配的另一个变体实现，功能与前面两个函数相同
+ * 用于不同的系统初始化路径
+ * 
+ * @note 原始函数名：FUN_180179b95
+ */
+void AllocateSystemDataNodeVariant2(void)
 {
   long long PrimaryDataSize;
   uint32_t *PatternIndex;
@@ -213278,7 +213314,15 @@ Label_MemoryComparison_Handle:
 
 
 
-79bd8(voidvoid FUN_180179bd8(void
+/**
+ * @brief 系统上下文设置函数
+ * 
+ * 该函数负责设置系统上下文中的字符限制值
+ * 是一个简单的系统配置函数
+ * 
+ * @note 原始函数名：FUN_180179bd8
+ */
+void SetSystemContextCharacterLimit(void)
 {
   uint64_t SystemContext;
   uint64_t *CharacterLimit;
