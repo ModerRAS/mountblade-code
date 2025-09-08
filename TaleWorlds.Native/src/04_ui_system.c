@@ -99980,23 +99980,37 @@ LAB_180727edb:
 
 
 
-float FUN_180727dd3(UIHandle uiContext,UIHandle dataSource,float targetBuffer)
+/**
+ * @brief 处理UI事件数据的距离计算和验证
+ * 
+ * 该函数负责处理UI系统中的事件数据，包括事件数据的读取、验证和距离计算。
+ * 它会根据传入的UI上下文和数据源，计算事件数据之间的距离，并返回计算结果。
+ * 
+ * @param uiContext UI上下文句柄，标识当前的UI环境
+ * @param dataSource 数据源句柄，包含要处理的事件数据
+ * @param targetBuffer 目标缓冲区，用于存储计算结果
+ * @return float 返回计算的距离值，用于UI事件处理和布局计算
+ * 
+ * @note 原始函数名：FUN_180727dd3
+ * @warning 该函数涉及复杂的指针操作和数据验证，错误处理可能导致UI系统异常
+ */
+float CalculateUIEventDistance(UIHandle uiContext, UIHandle dataSource, float targetBuffer)
 
 {
-  longlong allocatedMemory;
-  short sVar2;
+  longlong AllocatedMemoryData;
+  short ContextDataIndex2;
   ushort EventTypeCode;
   longlong ContextHandleData;
   longlong EventDataIndex;
   uint unmodifiedEBP;
   uint *SourceHandle;
-  uint *ptrLocal6;
-  uint register8D;
-  uint processingCounter;
-  uint uVar8;
-  int register10D;
-  int localInt9;
-  short sVar10;
+  uint *EventDataBuffer;
+  uint ContextRegister8;
+  uint EventProcessingCounter;
+  uint EventDataValue;
+  int ContextRegister10;
+  int LocalIntIndex;
+  short ContextDataIndex;
   int ProcessingResult1;
   uint result2;
   ulonglong RegisterPointer;
@@ -100007,7 +100021,7 @@ float FUN_180727dd3(UIHandle uiContext,UIHandle dataSource,float targetBuffer)
   EventDataIndex = RegisterPointer * 4;
   ContextDataArray3 = (longlong *)(&SystemGlobalDataRegistry + RegisterPointer * 8);
   do {
-    ptrLocal6 = SourceHandle;
+    EventDataBuffer = SourceHandle;
     ContextHandleData = (longlong)ContextRegister10;
     ProcessingResult1 = (int)RegisterPointer;
     ContextDataIndex = (short)ContextRegister10;
@@ -100051,41 +100065,41 @@ float FUN_180727dd3(UIHandle uiContext,UIHandle dataSource,float targetBuffer)
       else {
         EventDataResult = *(uint *)(AllocatedMemoryData + ContextHandleData * 4);
         while (EventProcessingCounter < EventDataResult) {
-          register10D = register10D + -1;
-          result2 = *(uint *)(allocatedMemory + (longlong)register10D * 4);
+          ContextRegister10 = ContextRegister10 + -1;
+          EventDataResult = *(uint *)(AllocatedMemoryData + (longlong)ContextRegister10 * 4);
         }
       }
-      EventTypeCode = (register8D < uVar8) - 1;
-      sVar2 = EventTypeCode - (short)register10D;
-      register8D = processingCounter - result2;
+      EventTypeCode = (ContextRegister8 < EventDataValue) - 1;
+      ContextDataIndex2 = EventTypeCode - (short)ContextRegister10;
+      ContextRegister8 = EventProcessingCounter - EventDataResult;
 LAB_180727edb:
-      uVar8 = (uint)(short)(sVar2 + sVar10 ^ EventTypeCode);
-      vectorComponentX = (float)(int)uVar8;
+      EventDataValue = (uint)(short)(ContextDataIndex2 + ContextDataIndex ^ EventTypeCode);
+      vectorComponentX = (float)(int)EventDataValue;
       targetBuffer = targetBuffer + vectorComponentX * vectorComponentX;
     }
-    *ptrLocal6 = uVar8;
+    *EventDataBuffer = EventDataValue;
     RegisterPointer = (ulonglong)(ProcessingResult1 - 1U);
-    pallocatedMemory3 = pallocatedMemory3 + -1;
+    ContextDataArray3 = ContextDataArray3 + -1;
     EventDataIndex = EventDataIndex + -4;
-    SourceHandle = ptrLocal6 + 1;
+    SourceHandle = EventDataBuffer + 1;
     if ((int)(ProcessingResult1 - 1U) < 3) {
-      uVar8 = register10D * 2 + 1;
-      if (uVar8 <= register8D) {
-        unmodifiedEBP = uVar8;
+      EventDataValue = ContextRegister10 * 2 + 1;
+      if (EventDataValue <= ContextRegister8) {
+        unmodifiedEBP = EventDataValue;
       }
-      processingCounter = register8D - unmodifiedEBP;
-      result2 = processingCounter + 1 >> 1;
-      sVar10 = (short)result2;
-      if (result2 != 0) {
-        processingCounter = (uint)(ushort)((short)processingCounter + sVar10 * -2 + 1);
+      EventProcessingCounter = ContextRegister8 - unmodifiedEBP;
+      EventDataResult = EventProcessingCounter + 1 >> 1;
+      ContextDataIndex = (short)EventDataResult;
+      if (EventDataResult != 0) {
+        EventProcessingCounter = (uint)(ushort)((short)EventProcessingCounter + ContextDataIndex * -2 + 1);
       }
-      EventTypeCode = (register8D < uVar8) - 1;
-      uVar8 = (uint)(short)((EventTypeCode - sVar10) + (short)register10D ^ EventTypeCode);
-      ptrLocal6[1] = uVar8;
-      vectorComponentX = (float)(int)uVar8;
-      uVar8 = (uint)(short)(sVar10 + -(short)processingCounter ^ -(short)processingCounter);
-      ptrLocal6[2] = uVar8;
-      baseValue5 = (float)(int)uVar8;
+      EventTypeCode = (ContextRegister8 < EventDataValue) - 1;
+      EventDataValue = (uint)(short)((EventTypeCode - ContextDataIndex) + (short)ContextRegister10 ^ EventTypeCode);
+      EventDataBuffer[1] = EventDataValue;
+      vectorComponentX = (float)(int)EventDataValue;
+      EventDataValue = (uint)(short)(ContextDataIndex + -(short)EventProcessingCounter ^ -(short)EventProcessingCounter);
+      ptrLocal6[2] = EventDataValue;
+      baseValue5 = (float)(int)EventDataValue;
       return vectorComponentX * vectorComponentX + targetBuffer + baseValue5 * baseValue5;
     }
   } while( true );

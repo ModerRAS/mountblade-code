@@ -22259,7 +22259,7 @@ DataBuffer UtilityNoOperationK(void)
     if (((allocatedMemoryBlock <= InputAccumulator) || ((int)registerContext[3] != InputAccumulator)) || ((int)registerContext[4] != -1)) {
       return ResourceInvalidErrorCode;
     }
-    operationResult = (int)*(uint *)((int64_t)registerContext + 0x1c) >> 0x1f;
+    operationResult = (int)*(uint *)((int64_t)registerContext + DataOperationOffset1C) >> 0x1f;
     if (((int)((*(uint *)((int64_t)registerContext + 0x1c) ^ operationResult) - operationResult) < allocatedMemoryBlock) &&
        (operationResult = CheckSystemDataA0(registerContext + 2,allocatedMemoryBlock), (int)operationResult != 0)) {
       return operationResult;
@@ -95270,7 +95270,7 @@ void Unwind_InitializeExceptionHandlerCE20(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090ce30(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_InitializeExceptionHandlerCE30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + MemoryBlockSizeOffset) != (int64_t *)0x0) {
@@ -95291,7 +95291,7 @@ void Unwind_18090ce30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ce40(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_InitializeExceptionHandlerCE40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + ValidationResultOffset8) != (int64_t *)0x0) {
@@ -95312,7 +95312,7 @@ void Unwind_18090ce40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ce50(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_InitializeExceptionHandlerCE50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + SystemDataBufferPointerOffset) != (int64_t *)0x0) {
@@ -120108,7 +120108,20 @@ void InitializeExceptionHandler7F0(DataBuffer operationBase, int64_t dataBuffer,
 
 
 
-void Unwind_180912800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器初始化函数800
+ * 
+ * 该函数用于初始化异常处理器，从指定偏移量获取异常处理上下文并处理系统异常
+ * 使用偏移量0x58获取异常处理上下文，回调偏移量为0x8
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_180912800
+ */
+void InitializeExceptionHandler800(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -120116,7 +120129,7 @@ void Unwind_180912800(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + ExceptionHandlerContextCallbackOffset8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
