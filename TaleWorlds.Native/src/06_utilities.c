@@ -198,6 +198,9 @@
 #define DataBufferOffset2D8 0x2d8
 #define DataBufferOffset2E8 0x2e8
 
+// 内存操作常量
+#define MemoryOperationMask -0x565dff77
+
 // 系统组件常量定义
 #define SystemComponentContextOffset 0x48
 #define SystemComponentDataOffset 0x38
@@ -28293,7 +28296,7 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
   validationResult = (char)InputAccumulator + -0x57 + carryFlag;
   memoryRegionBase = CONCAT31(dataFlags,validationResult);
   *(DataWord *)CONCAT44(AddressRegister,memoryRegionBase) = memoryRegionBase;
-  *(uint *)(operationBase + -0x565dff77) = *(uint *)(operationBase + -0x565dff77) & StackFrameRegister;
+  *(uint *)(operationBase + MemoryOperationMask) = *(uint *)(operationBase + MemoryOperationMask) & StackFrameRegister;
   *(DataWord *)CONCAT44(AddressRegister,memoryRegionBase) = memoryRegionBase;
   StackIntegerPointerD = dataBuffer;
   *(DataWord *)CONCAT44(AddressRegister,memoryRegionBase) = memoryRegionBase;
@@ -64857,6 +64860,18 @@ void DecrementResourceReferenceCountAtOffsetD8(DataBuffer operationBase,int64_t 
 
 
 
+/**
+ * @brief 清理异常处理资源
+ * 
+ * 该函数负责清理异常处理相关的资源，包括内存块和引用计数。
+ * 它会检查资源指针的有效性，计算内存偏移量，并在引用计数归零时
+ * 调用异常处理函数。这是异常处理机制中的重要组成部分。
+ * 
+ * @param ExceptionContext 异常上下文参数（未使用）
+ * @param ResourcePointer 资源指针参数，包含需要清理的资源信息
+ * 
+ * @note 原始函数名：Unwind_180906d50
+ */
 void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePointer)
 
 {
@@ -64911,21 +64926,21 @@ void ReleaseExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
   int64_t BlockOffset;
   uint64_t MemoryAddress;
   
-  MemoryBlock = *(DataBuffer **)(ResourcePointer + 0xa8);
+  MemoryBlock = *(DataBuffer **)(ResourcePointer + ExceptionResourcePointerOffsetA8);
   if (MemoryBlock == (DataBuffer *)0x0) {
     return;
   }
   
-  MemoryAddress = (uint64_t)MemoryBlock & SystemCleanupFlagffc00000;
+  MemoryAddress = (uint64_t)MemoryBlock & SystemMemoryPageAlignmentMask;
   if (MemoryAddress != 0) {
-    BlockOffset = MemoryAddress + 0x80 + ((int64_t)MemoryBlock - MemoryAddress >> 0x10) * 0x50;
-    BlockOffset = BlockOffset - (uint64_t)*(uint *)(BlockOffset + 4);
+    BlockOffset = MemoryAddress + MemoryBaseOffset + ((int64_t)MemoryBlock - MemoryAddress >> 0x10) * ExceptionMemoryBlockMultiplier;
+    BlockOffset = BlockOffset - (uint64_t)*(uint *)(BlockOffset + MemoryOffsetAdjustment);
     
     // 检查异常列表和内存块状态
-    if ((*(void ***)(MemoryAddress + 0x70) == &ExceptionList) && (*(char *)(BlockOffset + 0xe) == '\0')) {
-      *MemoryBlock = *(DataBuffer *)(BlockOffset + 0x20);
-      *(DataBuffer **)(BlockOffset + 0x20) = MemoryBlock;
-      ReferenceCount = (int *)(BlockOffset + 0x18);
+    if ((*(void ***)(MemoryAddress + ExceptionMemoryRegionOffset70) == &ExceptionList) && (*(char *)(BlockOffset + ExceptionHandlerPointerOffsetE) == '\0')) {
+      *MemoryBlock = *(DataBuffer *)(BlockOffset + MemoryDataOffset);
+      *(DataBuffer **)(BlockOffset + MemoryDataOffset) = MemoryBlock;
+      ReferenceCount = (int *)(BlockOffset + MemoryReferenceOffset);
       *ReferenceCount = *ReferenceCount + -1;
       if (*ReferenceCount == 0) {
         HandleExceptionE0();
