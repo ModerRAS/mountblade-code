@@ -9998,17 +9998,32 @@ void* UtilitySystemConfigBufferB;
 void ConfigureUtilitySystemBufferB;           // 配置工具系统缓冲区B
 void* UtilitySystemConfigBufferC;
 
-// 函数: void ConfigureUtilitySystemBufferC();
-#define ConfigureUtilitySystemBufferC FUN_180942930
-void ConfigureUtilitySystemBufferC;           // 配置工具系统缓冲区C
+/**
+ * @brief 配置工具系统缓冲区C
+ * 
+ * 配置工具系统的第三个缓冲区，设置缓冲区参数和内存分配
+ * 
+ * @note 原始函数名: FUN_180942930
+ */
+void ConfigureUtilitySystemBufferC(void);           // 配置工具系统缓冲区C
 
-// 函数: void ProcessUtilitySystemData();
-#define ProcessUtilitySystemData FUN_180942a20
-void ProcessUtilitySystemData;                // 处理工具系统数据
+/**
+ * @brief 处理工具系统数据
+ * 
+ * 处理工具系统的核心数据，包括数据验证、转换和存储操作
+ * 
+ * @note 原始函数名: FUN_180942a20
+ */
+void ProcessUtilitySystemData(void);                // 处理工具系统数据
 
-// 函数: void ValidateUtilitySystemData();
-#define ValidateUtilitySystemData FUN_1809429f0
-void ValidateUtilitySystemData;               // 验证工具系统数据
+/**
+ * @brief 验证工具系统数据
+ * 
+ * 验证工具系统的数据完整性和有效性，确保数据符合系统要求
+ * 
+ * @note 原始函数名: FUN_1809429f0
+ */
+void ValidateUtilitySystemData(void);               // 验证工具系统数据
 void* UtilitySystemValidateData1;
 void* UtilitySystemValidateDataPointer1;
 void* UtilitySystemValidateData2;
@@ -10022,17 +10037,27 @@ void* UtilitySystemProcessData2;
 void* UtilitySystemProcessData3;
 void* UtilitySystemProcessData4;
 
-// 函数: void ConfigureUtilitySystemCallbacks();
-#define ConfigureUtilitySystemCallbacks FUN_180942a60
-void ConfigureUtilitySystemCallbacks;         // 配置工具系统回调函数
+/**
+ * @brief 配置工具系统回调函数
+ * 
+ * 设置工具系统的各种回调函数，包括事件处理、状态更新等回调
+ * 
+ * @note 原始函数名: FUN_180942a60
+ */
+void ConfigureUtilitySystemCallbacks(void);         // 配置工具系统回调函数
 void* UtilitySystemCallbackData1;
 void* UtilitySystemCallbackData2;
 void* UtilitySystemCallbackData3;
 void* UtilitySystemCallbackData4;
 
-// 函数: void SetupUtilitySystemConfiguration();
-#define SetupUtilitySystemConfiguration FUN_180942a80
-void SetupUtilitySystemConfiguration;          // 设置工具系统配置
+/**
+ * @brief 设置工具系统配置
+ * 
+ * 初始化和配置工具系统的各种参数，包括内存分配、线程设置等
+ * 
+ * @note 原始函数名: FUN_180942a80
+ */
+void SetupUtilitySystemConfiguration(void);          // 设置工具系统配置
 void* UtilitySystemConfigData1;
 uint8_t UtilitySystemConfigStatus1;
 void* UtilitySystemConfigData2;
@@ -10041,41 +10066,75 @@ void* UtilitySystemThreadData1;
 void* UtilitySystemThreadData2;
 void* UtilitySystemThreadData3;
 
-// 函数: void ProcessUtilitySystemFlags();
-#define ProcessUtilitySystemFlags FUN_180942fa0
-void ProcessUtilitySystemFlags;               // 处理工具系统标志
+/**
+ * @brief 处理工具系统标志
+ * 
+ * 处理工具系统的各种状态标志，包括系统状态、错误状态等
+ * 
+ * @note 原始函数名: FUN_180942fa0
+ */
+void ProcessUtilitySystemFlags(void);               // 处理工具系统标志
 void* UtilitySystemFlagData1;
 void* UtilitySystemFlagData2;
 void* UtilitySystemFlagData3;
 void* UtilitySystemFlagData4;
 
-// 函数: void ValidateUtilitySystemFlags();
-#define ValidateUtilitySystemFlags FUN_180942fc0
-void ValidateUtilitySystemFlags;               // 验证工具系统标志
+/**
+ * @brief 验证工具系统标志
+ * 
+ * 验证工具系统标志的有效性和一致性，确保系统状态正确
+ * 
+ * @note 原始函数名: FUN_180942fc0
+ */
+void ValidateUtilitySystemFlags(void);               // 验证工具系统标志
 void* UtilitySystemCleanupData1;
 uint8_t UtilitySystemCleanupStatus1;
 
-// 原始函数名：FUN_180943070 - 工具系统本地数据初始化函数
-#define InitializeUtilitySystemLocalData FUN_180943070
-uint8_t InitializeUtilitySystemLocalData;
+/**
+ * @brief 初始化工具系统本地数据
+ * 
+ * 初始化工具系统的本地数据结构，设置初始状态和默认值
+ * 
+ * @note 原始函数名: FUN_180943070
+ * @return uint8_t 初始化结果状态码
+ */
+uint8_t InitializeUtilitySystemLocalData(void);
 uint8_t UtilitySystemLocalData1;
 uint8_t UtilitySystemLocalStatus1;
 uint8_t UtilitySystemLocalData2;
 uint8_t UtilitySystemLocalStatus2;
 
-// 原始函数名：FUN_180943140 - 工具系统存储配置函数
-#define ConfigureUtilitySystemStorage FUN_180943140
-uint8_t ConfigureUtilitySystemStorage;
+/**
+ * @brief 配置工具系统存储
+ * 
+ * 配置工具系统的存储参数，包括内存分配、缓存设置等
+ * 
+ * @note 原始函数名: FUN_180943140
+ * @return uint8_t 配置结果状态码
+ */
+uint8_t ConfigureUtilitySystemStorage(void);
 
-// 原始函数名：FUN_180943160 - 工具系统存储验证函数
-#define ValidateUtilitySystemStorage FUN_180943160
-uint8_t ValidateUtilitySystemStorage;
+/**
+ * @brief 验证工具系统存储
+ * 
+ * 验证工具系统存储配置的有效性和完整性
+ * 
+ * @note 原始函数名: FUN_180943160
+ * @return uint8_t 验证结果状态码
+ */
+uint8_t ValidateUtilitySystemStorage(void);
 uint8_t UtilitySystemStorageData1;
 uint8_t UtilitySystemStorageData2;
 
-// 原始函数名：FUN_180943180 - 工具系统存储处理函数
-#define ProcessUtilitySystemStorage FUN_180943180
-uint8_t ProcessUtilitySystemStorage;
+/**
+ * @brief 处理工具系统存储
+ * 
+ * 处理工具系统的存储操作，包括数据读写、缓存管理等
+ * 
+ * @note 原始函数名: FUN_180943180
+ * @return uint8_t 处理结果状态码
+ */
+uint8_t ProcessUtilitySystemStorage(void);
 uint8_t UtilitySystemStorageData3;
 uint8_t UtilitySystemStorageData4;
 uint8_t UtilitySystemStorageData5;
@@ -10084,11 +10143,15 @@ uint8_t UtilitySystemStorageData7;
 uint8_t UtilitySystemStorageStatus1;
 uint8_t UtilitySystemStorageStatus2;
 
-// 原始函数名：FUN_1809431a0 - 线程本地存储初始化函数A8
-#define InitializeThreadLocalStorageA8 FUN_1809431a0
-
-// 函数: void* InitializeThreadLocalStorageA8;
-void* InitializeThreadLocalStorageA8;
+/**
+ * @brief 初始化线程本地存储A8
+ * 
+ * 初始化第八个线程本地存储区域，设置线程特定的数据存储
+ * 
+ * @note 原始函数名: FUN_1809431a0
+ * @return void* 初始化的线程本地存储指针
+ */
+void* InitializeThreadLocalStorageA8(void);
 uint32_t _tls_index;
 void *ThreadLocalStoragePointer;
 void* SystemMemoryControlFlag;
