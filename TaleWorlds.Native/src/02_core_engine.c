@@ -12574,7 +12574,7 @@ int InitializeSystemProcessingStatusFlags(void)
  * 该函数负责初始化和管理网络状态监控器，用于监控网络连接状态。
  * 包括状态的检测、报告、记录和处理机制。
  */
-void CoreEngineInitializeNetworkStatusMonitor(void
+void CoreEngineInitializeNetworkStatusMonitor(void)
 {
   char NetworkMonitorStatusFlag;
   void *MonitorPoolPointer;

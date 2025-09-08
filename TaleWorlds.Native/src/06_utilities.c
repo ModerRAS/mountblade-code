@@ -25028,7 +25028,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               SystemContextOffsetData58 = *(DataWord *)(dataContext + 0x58);
               SystemContextOffsetData5C = *(DataWord *)(dataContext + 0x5c);
               SystemContextOffsetData60 = *(DataWord *)(dataContext + 0x60);
-              SystemSecurityValidationDataQ = *(DataWord *)(dataContext + SecurityValidationDataOffset100);
+              SystemSystemSecurityValidationDataQ = *(DataWord *)(dataContext + SecurityValidationDataOffset100);
               SystemStackDataWordI = StackDataWordA;
               iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferD);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
@@ -126865,7 +126865,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 安全验证数据字Q
 // 功能：存储数据上下文偏移100处的安全验证数据
-#define SecurityValidationDataQ uStack_f8
+#define SystemSecurityValidationDataQ uStack_f8
 
 // 安全验证数据字R
 // 功能：存储安全验证的主要数据字
