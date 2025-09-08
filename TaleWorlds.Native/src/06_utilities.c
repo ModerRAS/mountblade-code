@@ -2212,7 +2212,19 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 
 /**
  * @brief 内存访问处理函数
+ * 
+ * 该函数负责处理内存访问操作，包括内存读取、写入、验证和保护。
+ * 它会确保内存访问的安全性和有效性，防止内存越界和非法访问。
+ * 
+ * @param memoryAddress 内存地址，指定要访问的内存位置
+ * @param accessType 访问类型，指定是读取还是写入操作
+ * @param dataSize 数据大小，指定要访问的数据长度
+ * @return 访问结果状态码：
+ *         - 0: 访问成功
+ *         - 非0值: 访问失败或错误代码
+ * 
  * @note 原始函数名：FUN_1803f33b0
+ * @warning 非法内存访问可能会导致系统崩溃，需要确保访问参数的有效性
  */
 #define ProcessMemoryAccessAndValidate FUN_1803f33b0
 
