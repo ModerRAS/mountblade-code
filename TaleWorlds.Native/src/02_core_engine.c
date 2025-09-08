@@ -186147,10 +186147,10 @@ code_r0x000180151fd7:
     UNLOCK();
     break;
   case 0x25:
-    FUN_180206cb0(SystemStringIndex,*(void *)(CharacterCode + 0xa0));
+    ProcessSystemStringWithHandle(SystemStringIndex,*(void *)(CharacterCode + 0xa0));
     break;
   case 0x26:
-    FUN_180206cb0(SystemStringIndex,*(void *)(*(long long *)(CharacterCode + 0xa0) + 0x18));
+    ProcessSystemStringWithHandle(SystemStringIndex,*(void *)(*(long long *)(CharacterCode + 0xa0) + 0x18));
     *(void *)(*(long long *)(CharacterCode + 0xa0) + 0x18) = 0;
     LOCK();
     ReferenceCountPointer = (int *)(*(long long *)(CharacterCode + 0xa0) + 0x10);
@@ -221459,14 +221459,14 @@ ProcessCharacterStringComparison(long long *CharacterCode,uint64_t *CharacterCod
   uint MemoryAllocationIndex;
   unsigned long long ProcessedCharacter;
   long long *SystemContextRegister;
-  unsigned long long aStackProcessingVariable70 [3];
+  unsigned long long StackProcessingBuffer [3];
   unsigned long long BufferOffset;
   unsigned long long SystemKeyPointer;
   unsigned long long SystemStackFlag;
   unsigned long long SystemPriorityLevel;
   uint64_t FunctionAddress;
   
-  aStackProcessingVariable70[1] = 0xfffffffffffffffe;
+  StackProcessingBuffer[1] = 0xfffffffffffffffe;
   MemoryAllocationIndex = 1;
   StringProcessingStatus = (void *)((void *)*CharacterCode)[1];
   StringProcessingStatus = (void *)*CharacterCode;
@@ -221514,7 +221514,7 @@ ProcessCharacterStringComparison(long long *CharacterCode,uint64_t *CharacterCod
       if (Utf16Char < MemoryAllocationIndex) {
         ProcessedCharacter = Utf16Char;
       }
-      aStackProcessingVariable70[2] = Utf16Char;
+      StackProcessingBuffer[2] = Utf16Char;
       BufferOffset = MemoryAllocationIndex;
       CalculatedCodePoint = memcmp(pStringOffset,StringProcessingStatus,ProcessedCharacter);
       if (CalculatedCodePoint == 0) {
@@ -221581,7 +221581,7 @@ LAB_18018ad63:
   if (Utf16Char < MemoryAllocationIndex) {
     ProcessedCharacter = Utf16Char;
   }
-  aStackProcessingVariable70[0] = MemoryAllocationIndex;
+  StackProcessingBuffer[0] = MemoryAllocationIndex;
   SystemPriorityLevel = Utf16Char;
   ValidationResult = memcmp(pStringOffset,Utf16EndPointer,ProcessedCharacter);
   if (ValidationResult == 0) {
@@ -221598,7 +221598,7 @@ LAB_18018aebc:
     }
   }
   else if (-1 < ValidationResult) goto LAB_18018aebc;
-  StringProcessingStatus = (void *)FUN_18018aa30(SystemContextRegister,aStackProcessingVariable70,MemoryAllocationIndex,StringProcessingStatus);
+  StringProcessingStatus = (void *)FUN_18018aa30(SystemContextRegister,StackProcessingBuffer,MemoryAllocationIndex,StringProcessingStatus);
   *CharacterCodeSize = *StringProcessingStatus;
   *(uint8_t *)(SystemBufferSize + 1) = 1;
   return SystemBufferSize;
