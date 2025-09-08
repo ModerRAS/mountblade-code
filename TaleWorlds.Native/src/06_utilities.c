@@ -94006,7 +94006,22 @@ void DecrementSystemResourceCounterAndExecuteFunctionA(void)
 
 
 
-void Unwind_18090cb00(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文资源释放和数据验证（B00版本）
+ * 
+ * 该函数是异常处理系统的重要组成部分，负责在异常发生时进行资源清理。
+ * 它会检查数据缓冲区状态，管理资源迭代器，处理异常上下文，
+ * 并验证数据缓冲区的完整性。最后会设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_18090cb00
+ * @warning 此函数为异常处理系统的一部分，应在异常发生时由系统自动调用
+ * 
+ * @see ProcessSystemOperationsA0, ValidateDataBufferA2, SystemDefaultExceptionHandlerB
+ */
+void ProcessExceptionContextResourceReleaseB00(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
