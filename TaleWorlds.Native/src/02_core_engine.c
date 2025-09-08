@@ -1407,7 +1407,7 @@
 #define uStack_170 StackUnsignedValue170                     // 栈无符号值170
 #define uStack_16c StackUnsignedValue16c                     // 栈无符号值16c
 #define fStack_8f8 StackTemporaryFloatValue                // 栈临时浮点值
-#define fStack_70 StackCalculationBuffer                   // 栈计算缓冲区
+#define fStack_70 StackSecondaryCoordinateY                // 栈次坐标Y
 
 // 新增栈变量语义化宏定义
 #define fStack_88 StackPrimaryCoordinateX                  // 栈主坐标X
@@ -1417,7 +1417,6 @@
 #define fStack_78 StackPrimaryCoordinateY                  // 栈主坐标Y
 #define fStack_74 StackSecondaryCoordinateY                // 栈次坐标Y
 #define fStack_6c StackTertiaryCoordinateY                 // 栈第三坐标Y
-#define fStack_70 StackSecondaryCoordinateY                // 栈次坐标Y (重定义)
 #define acStack_98 StackCharacterBuffer98                  // 栈字符缓冲区98
 
 #define ProcessSystemResourceAllocation ProcessSystemResourceAllocation
