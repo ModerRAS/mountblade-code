@@ -146,6 +146,23 @@
 #define ResourceCountOffset 0x20                          // 资源计数偏移量
 #define SystemResourceDataBufferSize 0x100               // 系统资源数据缓冲区大小
 
+// 数据缓冲区通用偏移量常量
+#define DataBufferContextOffset 0x14                    // 数据缓冲区上下文偏移量
+#define DataBufferProcessingOffset 0x1c                  // 数据缓冲区处理偏移量
+#define DataBufferValidationOffset 0x30                  // 数据缓冲区验证偏移量
+#define DataBufferStatusOffset 0x48                      // 数据缓冲区状态偏移量
+#define DataBufferFlagsOffset 0x68                        // 数据缓冲区标志偏移量
+#define DataBufferDataOffset 0x70                         // 数据缓冲区数据偏移量
+#define DataBufferSecondaryOffset 0x78                   // 数据缓冲区次级偏移量
+#define DataBufferFloatDataOffset 0x84                   // 数据缓冲区浮点数据偏移量
+#define DataBufferEventOffset 0x98                        // 数据缓冲区事件偏移量
+#define DataBufferControlOffset 0xc0                     // 数据缓冲区控制偏移量
+#define DataBufferManagementOffset 0xe0                   // 数据缓冲区管理偏移量
+#define DataBufferSecondaryManagementOffset 0xe8          // 数据缓冲区次级管理偏移量
+#define DataBufferOperationContextOffset 0x60             // 数据缓冲区操作上下文偏移量
+#define DataBufferExceptionContextOffset 0x82            // 数据缓冲区异常上下文偏移量
+#define DataBufferSecondaryExceptionContextOffset 0x8a   // 数据缓冲区次级异常上下文偏移量
+
 // 系统栈和资源管理常量
 #define SystemStackFrameAdjustment 8                      // 系统栈帧调整
 #define SystemResourceEntrySize 0x18                       // 系统资源条目大小
@@ -23447,7 +23464,7 @@ SecurityValidationLabel:
     }
     if (operationStatus != 0) GOTO_SecurityCheckFailed;
     dataProcessingBufferA = *(uint *)(dataBuffer + ExceptionHandlerCallbackOffset10);
-    dataProcessingBufferB = *(DataWord *)(dataBuffer + 0x14);
+    dataProcessingBufferB = *(DataWord *)(dataBuffer + DataBufferContextOffset);
     dataProcessingBufferC = *(int *)(dataBuffer + FloatValueOffset);
     dataProcessingBufferD = *(DataWord *)(dataBuffer + 0x1c);
     processingIterationIndex = 0;
@@ -24442,7 +24459,7 @@ void ProcessDataTypesA0(void)
   DataWord calculatedFloatValue;
   DataWord normalizedFloatValue;
   DataWord interpolatedFloatValue;
-  float validationFloatValue;
+  float floatValidationValue;
   DataWord accumulatedFloatValue;
   DataWord processedFloatValue;
   DataWord transformedFloatValue;
