@@ -70943,7 +70943,7 @@ void ReleaseSystemDataStructure(unsigned long long targetDataStructure
   long long *plStack_1f8;
   long long *plStack_1f0;
   long long *plStack_1e8;
-  long long *plStack_1e0;
+  long long *SystemStackPointer480;
   long long *plStack_1d8;
   long long *plStack_1d0;
   long long *plStack_1c8;
@@ -185542,7 +185542,7 @@ void ProcessCharacterEncodingAndMemoryAllocation(long long CharacterCode)
   long long *SystemPointer200;
   uint32_t uStack_1f8;
   long long *plStack_1e8;
-  long long *plStack_1e0;
+  long long *SystemStackPointer480;
   long long lStack_1d8;
   uint32_t *SystemPointerBuffer1d0;
   int iStack_1c8;
@@ -233609,7 +233609,7 @@ LAB_18019a44a:
   long long *plStack_1f8;
   long long *plStack_1f0;
   long long *plStack_1e8;
-  long long *plStack_1e0;
+  long long *SystemStackPointer480;
   long long *plStack_1d8;
   long long *plStack_1d0;
   long long *plStack_1c8;
