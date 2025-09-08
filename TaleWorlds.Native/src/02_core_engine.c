@@ -1070,6 +1070,22 @@
 #define ProcessSystemCalculationFunctionAddress FUN_180169c30
 
 /**
+ * @brief 处理系统字符编码和数据管理
+ * 
+ * 该函数负责处理系统字符编码和数据管理，包括：
+ * - 管理字符代码指针
+ * - 处理栈指针和数据
+ * - 管理字符编码状态
+ * 
+ * @param CharacterCode 字符代码
+ * @param StackPointer 栈指针
+ * @return int 返回处理结果
+ * 
+ * @note 原始函数名：FUN_1801624e0
+ */
+#define ProcessSystemCharacterEncodingAndDataManagement FUN_1801624e0
+
+/**
  * @brief 处理系统配置数据和核心引擎值
  * 
  * 该函数负责处理系统配置数据和核心引擎值的操作。
@@ -196428,7 +196444,7 @@ uint64_t * ProcessCharacterEncodingAndStatusValidation(long long CharacterCode,u
           *(uint32_t *)(SystemBufferSize + 2) = 0x1a;
           return SystemBufferSize;
         }
-        FUN_1801624e0(CharacterCode,&StackTempPointer);
+        ProcessSystemCharacterEncodingAndDataManagement(CharacterCode,&StackTempPointer);
         CoreEngineFinalizeSystemEvent(&pCalculationFunctionAddress,Utf8SourcePointer);
         ProcessSystemCalculationFunctionAddress(&EncodingBuffer);
         pCalculationFunctionAddress = (void *)&SystemNullTemplate;
