@@ -126,6 +126,12 @@
 // 异常处理器状态常量
 #define ExceptionHandlerMinimumResourceCount 1             // 异常处理器最小资源计数
 #define ExceptionHandlerStateOffset 0x58                   // 异常处理器状态偏移量
+
+// 系统资源验证栈常量
+#define SystemResourceValidationStackAdjustment 8           // 系统资源验证栈调整
+#define SystemResourceValidationArraySizeOffset 0x28        // 系统资源验证数组大小偏移量
+#define SystemResourceValidationArrayPointerOffset 0x20    // 系统资源验证数组指针偏移量
+#define SystemResourceValidationContextOffset 0x18         // 系统资源验证上下文偏移量
 #define ExceptionHandlerHierarchyB0_CleanupStateOffsetDF0 0xdf0  // 清理状态偏移量DF0
 #define ExceptionHandlerHierarchyB0_CleanupOffsetE00 0xe00       // 清理偏移量E00
 #define ExceptionHandlerHierarchyB0_TempCallbackOffsetDC8 0xdc8 // 临时回调偏移量DC8
@@ -17377,15 +17383,15 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
   uint64_t entryOffset;
   int64_t systemContextBuffer;
   
-  if (resourceContext + 0x1c == 0) {
-    return ComponentDataValidationFailure;
+  if (resourceContext + ResourceValidationContextOffset == 0) {
+    return SystemComponentDataValidationFailure;
   }
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + ExceptionHandlerCallbackOffset10), &systemContextBuffer);
   if ((int)operationResult == 0) {
     baseOffset = 0;
     adjustedStackPointer = baseOffset;
     if (systemContextBuffer != 0) {
-      adjustedStackPointer = systemContextBuffer - 8;
+      adjustedStackPointer = systemContextBuffer - SystemStackFrameAdjustment;
     }
     entryOffset = baseOffset;
     if (0 < *(int *)(adjustedStackPointer + SystemDataArraySizeOffset)) {
@@ -17393,9 +17399,9 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
         listEntry = *(int64_t *)(adjustedStackPointer + SystemDataArrayPointerOffset) + entryOffset;
         memoryResourcePointer = *(int64_t *)(listEntry + ExceptionHandlerCallbackOffset10);
         if (memoryResourcePointer == 0) {
-          return ResourceNotFoundCode;
+          return SystemResourceNotFoundCode;
         }
-        if (*(int *)(memoryResourcePointer + ResourceCountOffset) < 1) {
+        if (*(int *)(memoryResourcePointer + ResourceCountOffset) < ExceptionHandlerMinimumResourceCount) {
           resourceData = &SystemResourceDataBuffer;
         }
         else {
@@ -17412,10 +17418,10 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
         }
         iterationCounter = (int)baseOffset + 1;
         baseOffset = (uint64_t)iterationCounter;
-        entryOffset = entryOffset + 0x18;
+        entryOffset = entryOffset + SystemResourceEntrySize;
       } while ((int)iterationCounter < *(int *)(adjustedStackPointer + SystemDataArraySizeOffset));
     }
-    operationResult = 0x4a;
+    operationResult = SystemResourceValidationSuccess;
   }
   return operationResult;
 }
@@ -17451,17 +17457,17 @@ DataBuffer ProcessSystemResourceValidationWithStack(void)
   dataFlags = 0;
   securityCheckResult = dataFlags;
   if (systemParameter != 0) {
-    securityCheckResult = systemParameter - 8;
+    securityCheckResult = systemParameter - SystemResourceValidationStackAdjustment;
   }
   dataOffset = dataFlags;
-  if (0 < *(int *)(securityCheckResult + 0x28)) {
+  if (0 < *(int *)(securityCheckResult + SystemResourceValidationArraySizeOffset)) {
     do {
-      memoryResourcePointer = *(int64_t *)(securityCheckResult + 0x20) + dataOffset;
+      memoryResourcePointer = *(int64_t *)(securityCheckResult + SystemResourceValidationArrayPointerOffset) + dataOffset;
       exceptionHandlerContext = *(int64_t *)(memoryResourcePointer + ExceptionHandlerCallbackOffset10);
       if (exceptionHandlerContext == 0) {
-        return ResourceNotFoundCode;
+        return SystemResourceNotFoundCode;
       }
-      if (*(int *)(exceptionHandlerContext + 0x58) < 1) {
+      if (*(int *)(exceptionHandlerContext + ExceptionHandlerStateOffset) < ExceptionHandlerMinimumResourceCount) {
         memoryRegionBase = &SystemResourceDataBuffer;
       }
       else {
@@ -17469,7 +17475,7 @@ DataBuffer ProcessSystemResourceValidationWithStack(void)
       }
       operationResult = ValidateResourceDataIntegrityA0(memoryRegionBase);
       if (operationResult == 0) {
-        validationStatus = ValidateAndProcessSystemResourceA0(memoryResourcePointer,systemContext + 0x18);
+        validationStatus = ValidateAndProcessSystemResourceA0(memoryResourcePointer,systemContext + SystemResourceValidationContextOffset);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -17478,8 +17484,8 @@ DataBuffer ProcessSystemResourceValidationWithStack(void)
       }
       operationResult = (int)dataFlags + 1;
       dataFlags = (uint64_t)operationResult;
-      dataOffset = dataOffset + 0x18;
-    } while ((int)operationResult < *(int *)(securityCheckResult + 0x28));
+      dataOffset = dataOffset + SystemResourceEntrySize;
+    } while ((int)operationResult < *(int *)(securityCheckResult + SystemResourceValidationArraySizeOffset));
   }
   return OperationSuccessCode;
 }

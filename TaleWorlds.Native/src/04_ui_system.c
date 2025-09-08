@@ -837,6 +837,35 @@ typedef enum {
 #define ProcessUIRenderState ProcessUIRenderStateInternal
 #define UpdateUIElementPosition UpdateUIElementPositionInternal
 #define ProcessUITransformData ProcessUITransformDataInternal
+
+// UI系统变量名美化宏定义
+// 向量处理结果变量
+#define aresult9 VectorResult9
+#define aresult21 VectorResult21
+#define aiterationCount2 IterationCountVector2
+#define aProcessingStatus ProcessingStatusVector
+#define aProcessingStatus0 ProcessingStatusVector0
+#define aProcessingStatus1 ProcessingStatusVector1
+#define aProcessingStatus8 ProcessingStatusVector8
+#define aProcessingStatus9 ProcessingStatusVector9
+#define aloopCounter LoopCounterVector
+#define aloopCounter6 LoopCounterVector6
+#define aloopCounter7 LoopCounterVector7
+#define auVar8 UnsignedVector8
+#define auVar9 UnsignedVector9
+#define auVar80 UnsignedVector80
+#define auVar81 UnsignedVector81
+#define auVar82 UnsignedVector82
+#define auVar83 UnsignedVector83
+#define sVar122 SignedValue122
+#define sVar132 SignedValue132
+#define sVar133 SignedValue133
+#define sVar134 SignedValue134
+#define sVar135 SignedValue135
+#define sVar136 SignedValue136
+#define sVar137 SignedValue137
+#define sVar138 SignedValue138
+#define Var77 Variable77
 #define ApplyUITransformEffects ApplyUITransformEffectsInternal
 
 #define UpdateUIRenderBuffer UpdateUIRenderBufferInternal
