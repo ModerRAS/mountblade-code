@@ -14585,55 +14585,61 @@ LAB_18065a765:
 
 
 
- void UpdateUIElementState(void)
+ /**
+ * @brief 更新UI元素状态
+ * 
+ * 更新UI元素的状态信息，处理位置、旋转和变换数据
+ * 
+ * @note 此函数处理UI元素的几何变换和状态更新
+ */
 void UpdateUIElementState(void)
 
 {
-  longlong allocatedMemory;
-  undefined3 semaphoreHandle;
-  float *presultValue;
-  int TempInt4;
-  int localInt5;
-  UIHandle ContextHandle;
-  longlong BasePointer;
-  char localChar6;
-  UIDword allocationFlags;
-  char unmodifiedR13B;
-  longlong EventHandle;
-  char unmodifiedR15B;
-  float resultFloat;
-  float localFloat8;
-  float localFloat9;
-  float floatResult0;
-  float floatResult1;
-  float floatResult2;
-  float floatResult3;
-  float vectorComponentX;
-  float floatResult5;
-  UIByte aTotalResult [16];
-  float floatResult7;
-  float FloatValue1;
-  float unmodifiedXMM6_Da;
-  float unmodifiedXMM7_Da;
-  float unmodifiedXMM8_Da;
-  float unmodifiedXMM9_Da;
-  float unmodifiedXMM11_Da;
-  float unmodifiedXMM12_Da;
-  float FloatValue2;
-  float AccumulatedFloat;
-  float unmodifiedXMM13_Da;
-  float unmodifiedXMM14_Da;
-  float unmodifiedXMM15_Da;
-  char cStack0000000000000030;
-  float fStack0000000000000034;
-  float inputString;
-  float fStack0000000000000054;
-  float fStack000000000000005c;
-  float fStack000000000000006c;
-  float fStack0000000000000074;
-  float fStack000000000000007c;
-  float afStack_60e8 [6200];
-  UIHandle stackUInt8;
+  longlong MemoryAllocation;
+  undefined3 SemaphoreHandle;
+  float *ResultPointer;
+  int TemporalCounter;
+  int LocalIndex;
+  UIHandle UIContext;
+  longlong StackBasePointer;
+  char LocalFlag;
+  UIDword AllocationFlags;
+  char UnmodifiedRegister13;
+  longlong EventData;
+  char UnmodifiedRegister15;
+  float CalculatedFloat;
+  float LocalFloatValue8;
+  float LocalFloatValue9;
+  float IntermediateResult0;
+  float IntermediateResult1;
+  float IntermediateResult2;
+  float IntermediateResult3;
+  float VectorComponentX;
+  float IntermediateResult5;
+  UIByte TotalResult [16];
+  float IntermediateResult7;
+  float ProcessedValue1;
+  float RegisterXMM6;
+  float RegisterXMM7;
+  float RegisterXMM8;
+  float RegisterXMM9;
+  float RegisterXMM11;
+  float RegisterXMM12;
+  float ProcessedValue2;
+  float AccumulatedValue;
+  float RegisterXMM13;
+  float RegisterXMM14;
+  float RegisterXMM15;
+  char StackPadding30;
+  float StackFloat34;
+  float InputParameter;
+  float StackFloat54;
+  float StackFloat5c;
+  float StackFloat6c;
+  float StackFloat74;
+  float StackFloat7c;
+  float LocalBufferArray [6200];
+  UIHandle StackHandle;
   
   *(float *)(EventHandle + 0x4c) = unmodifiedXMM6_Da;
   resultFloat = (float)ContextHandle;
@@ -76592,7 +76598,7 @@ LAB_18070fb9d:
 
 
 
-int FUN_18070fb8e(void)
+int ProcessUIDataCalculation(void)
 
 {
   longlong allocatedMemory;
