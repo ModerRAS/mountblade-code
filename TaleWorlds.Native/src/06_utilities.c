@@ -118997,6 +118997,12 @@ void CleanupSystemResourceA6(void)
  */
 #define CleanupSystemResourceA7 FUN_180942ce0
 
+/**
+ * @brief 清理系统资源A7
+ * 
+ * 该函数负责清理系统资源A7，包括线程清理操作
+ * 当SystemResourceCleanupFlagA7标志被设置时，执行相应的清理操作
+ */
 void CleanupSystemResourceA7(void)
 {
   if (SystemResourceCleanupFlagA7 != '\0') {
@@ -119348,7 +119354,7 @@ void CleanupThreadMutex(void)
 
 // 函数: void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,DataBuffer OperationType,DataBuffer Flags)
 // 功能：处理工具系统数据，执行数据操作和清理
-// 参数：SystemHandle-系统句柄，DataPointer-数据指针，OperationType-操作类型，Flags-标志位
+// 参数：systemHandle-系统句柄，dataPointer-数据指针，operationType-操作类型，flags-标志位
 // 返回值：无
 void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,DataBuffer OperationType,DataBuffer Flags)
 
