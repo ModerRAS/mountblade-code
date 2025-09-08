@@ -74774,8 +74774,20 @@ void ProcessUIEventAndDataSource(longlong uiContext,UIHandle *dataSource,int tar
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18070ba50(longlong *uiContext,int dataSource,UIDword targetBuffer)
-void FUN_18070ba50(longlong *uiContext,int dataSource,UIDword targetBuffer)
+ /**
+ * @brief 处理UI系统信号量和上下文数据
+ * 
+ * 该函数负责处理UI系统的信号量操作、上下文数据管理和事件处理。
+ * 它执行复杂的内存操作、数据同步和系统状态管理，确保UI系统
+ * 的正确运行和资源管理。
+ * 
+ * @param uiContext UI上下文指针，包含系统状态和资源信息
+ * @param dataSource 数据源标识符，用于数据访问和处理
+ * @param targetBuffer 目标缓冲区，用于存储处理结果
+ * 
+ * @note 原始函数名: FUN_18070ba50
+ */
+void ProcessUISystemSemaphoreAndContext(longlong *uiContext,int dataSource,UIDword targetBuffer)
 
 {
   int uiOperationResult;
