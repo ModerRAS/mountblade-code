@@ -88633,7 +88633,7 @@ void InvokeExceptionHandlerAtOffset60Second(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_18090bf70(DataBuffer operationBase,int64_t dataBuffer)
+void PerformSystemCleanupAndInvokeHandlersAtOffset38(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -88657,7 +88657,7 @@ void Unwind_18090bf70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bf80(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x40) != (int64_t *)0x0) {
@@ -88668,7 +88668,7 @@ void Unwind_18090bf80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bf90(DataBuffer operationBase,int64_t dataBuffer)
+void InitializeSystemAndInvokeHandlerAtOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   InitializeSystemResourcesI0();
