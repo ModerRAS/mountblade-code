@@ -14067,17 +14067,17 @@ int RegisterSystemNetworkModule(void);
 #define ComplexPointerStackH ppppppuStackX_10
 
 // 临时数据栈变量
-#define TemporaryDataStack uStack_2e0
-#define TemporaryDataStackB uStack_2e8
-#define TemporaryDataStackC uStack_28c
-#define TemporaryDataStackD uStack_288
-#define TemporaryDataStackE uStack_284
-#define TemporaryDataStackF uStack_280
-#define TemporaryDataStackG uStack_27c
-#define TemporaryDataStackH uStack_298
-#define TemporaryDataStackI uStack_2a4
-#define TemporaryDataStackJ uStack_2a0
-#define TemporaryDataStackK uStack_29c
-#define TemporaryDataStackL uStack_2d0
+#define TemporaryDataStack SystemContextStackPointer
+#define TemporaryDataStackB NetworkBufferStackPointer
+#define TemporaryDataStackC SecurityValidationStackPointer
+#define TemporaryDataStackD MemoryManagementStackPointer
+#define TemporaryDataStackE ExceptionHandlingStackPointer
+#define TemporaryDataStackF ThreadSynchronizationStackPointer
+#define TemporaryDataStackG ResourceAllocationStackPointer
+#define TemporaryDataStackH PerformanceMonitoringStackPointer
+#define TemporaryDataStackI DataProcessingStackPointer
+#define TemporaryDataStackJ ConfigurationManagementStackPointer
+#define TemporaryDataStackK SystemStateStackPointer
+#define TemporaryDataStackL CleanupOperationStackPointer
 
 #endif // DATA_DEFINITIONS_H
