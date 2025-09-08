@@ -20695,9 +20695,9 @@ DataBuffer SaveSystemConfigurationA0(int64_t configHandle,int64_t systemContext)
       validatedValue = inputValue;
     }
     *(float *)(configHandle + ExceptionHandlerCallbackOffset10) = validatedValue;
-    operationResult = ValidateOperationRangeA0(systemContext + 0x60,securityBuffer[0],validatedValue);
+    operationResult = ValidateOperationRangeA0(systemContext + SystemContextOperationOffset60,securityBuffer[0],validatedValue);
     if ((int)operationResult == 0) {
-      memoryRegionBase = (DataBuffer *)ProcessSystemDataA0(systemContext + 0x60,validationBuffer,securityBuffer[0]);
+      memoryRegionBase = (DataBuffer *)ProcessSystemDataA0(systemContext + SystemContextOperationOffset60,validationBuffer,securityBuffer[0]);
       *(DataBuffer *)(configHandle + SystemDataSecondaryOffset18) = *memoryRegionBase;
         CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextOffset98),configHandle);
     }
@@ -20751,9 +20751,9 @@ DataBuffer ValidateSystemConfigurationA0(void)
     secondFloatValue = firstFloatValue;
   }
   *(float *)(registerContext + ExceptionHandlerCallbackOffset10) = secondFloatValue;
-  validationStatus = ValidateOperationRangeA0(systemContext + 0x60,operationParameter,secondFloatValue);
+  validationStatus = ValidateOperationRangeA0(systemContext + SystemContextOperationOffset60,operationParameter,secondFloatValue);
   if ((int)validationStatus == 0) {
-    memoryRegionBase = (DataBuffer *)ProcessSystemDataA0(systemConfigurationContext + 0x60,&stackBufferMidAddress,DataProcessingOffset);
+    memoryRegionBase = (DataBuffer *)ProcessSystemDataA0(systemConfigurationContext + SystemContextOperationOffset60,&stackBufferMidAddress,DataProcessingOffset);
     *(DataBuffer *)(registerContext + SystemDataSecondaryOffset18) = *memoryRegionBase;
       CleanupSystemEventA0(*(DataBuffer *)(systemConfigurationContext + SystemManagementOffset98));
   }
@@ -20784,9 +20784,9 @@ void ProcessFloatRangeValidation(void)
     processedValue = currentValue;
   }
   *(float *)(contextPointer + ExceptionHandlerCallbackOffset10) = processedValue;
-  validationStatus = ValidateFloatValue(systemHandle + 0x60,DataProcessingOffset,processedValue);
+  validationStatus = ValidateFloatValue(systemHandle + SystemContextOperationOffset60,DataProcessingOffset,processedValue);
   if (validationStatus == 0) {
-    resultPointer = (DataBuffer *)ProcessFloatData(systemHandle + 0x60,&stackBufferMidAddress,DataProcessingOffset);
+    resultPointer = (DataBuffer *)ProcessFloatData(systemHandle + SystemContextOperationOffset60,&stackBufferMidAddress,DataProcessingOffset);
     *(DataBuffer *)(contextPointer + SystemDataSecondaryOffset18) = *resultPointer;
       ExecuteCriticalOperation(*(DataBuffer *)(systemHandle + SystemManagementOffset98));
   }
@@ -20819,11 +20819,11 @@ DataBuffer InitializeSystemB0(int64_t systemContext,int64_t operationContext)
   operationFlags[0] = 0;
   operationResult = ExecuteSystemDataProcessingA0(operationContext,systemContext + SystemDataParameterOffset20,operationBuffer);
   if ((int)operationResult == 0) {
-    memoryBlockOffset = GetOperationRangeDataA0(operationContext + 0x60,operationBuffer[0]);
+    memoryBlockOffset = GetOperationRangeDataA0(operationContext + SystemContextOperationOffset60,operationBuffer[0]);
     if ((*(uint *)(memoryBlockOffset + SystemDataValidationOffset34) >> 4 & 1) != 0) {
       return ComponentDataValidationFailure;
     }
-    operationResult = ProcessDataValidationA0(memoryBlockOffset,operationBase + 0xa0,operationBase + ExceptionHandlerCallbackOffset10);
+    operationResult = ProcessDataValidationA0(memoryBlockOffset,operationBase + SystemContextDataOffsetA0,operationBase + ExceptionHandlerCallbackOffset10);
     if ((int)operationResult == 0) {
       comparisonValue = *(float *)(operationBase + ExceptionHandlerCallbackOffset10);
       if ((comparisonValue < *(float *)(memoryBlockOffset + SystemFloatDataOffset38)) ||
@@ -20864,7 +20864,7 @@ DataBuffer CleanupSystemB0(void)
   if ((*(uint *)(dataContext + SystemDataValidationOffset34) >> 4 & 1) != 0) {
     return ComponentDataValidationFailure;
   }
-  validationStatus = ProcessDataValidationA0(dataContext,DestinationContext + 0xa0,DestinationContext + ExceptionHandlerCallbackOffset10);
+  validationStatus = ProcessDataValidationA0(dataContext,DestinationContext + SystemContextDataOffsetA0,DestinationContext + ExceptionHandlerCallbackOffset10);
   if ((int)validationStatus == 0) {
     floatValue = *(float *)(DestinationContext + ExceptionHandlerCallbackOffset10);
     if ((floatValue < *(float *)(dataContext + DataValidationTertiaryOffset)) ||
@@ -20872,7 +20872,7 @@ DataBuffer CleanupSystemB0(void)
       validationStatus = 0x1c;
     }
     else {
-      validationStatus = ValidateOperationRangeA0(systemContext + 0x60,operationParameter);
+      validationStatus = ValidateOperationRangeA0(systemContext + SystemContextOperationOffset60,operationParameter);
       if ((int)validationStatus == 0) {
         memoryRegionBase = (DataBuffer *)
                  ProcessSystemDataA0(systemContext + 0x60,&systemDataBuffer,operationParameter);
