@@ -97047,6 +97047,21 @@ void Unwind_18090ddb0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 执行系统内存操作（偏移量40）
+ * 
+ * 该函数在指定偏移量（0x40）处执行系统内存操作。
+ * 它会调用ExecuteMemoryOperation函数，使用预定义的参数进行内存处理。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含内存操作参数
+ * 
+ * @note 原始函数名：Unwind_18090dde0
+ * @note 使用偏移量0x40获取内存操作参数
+ * @note 调用ProcessMemoryOperationA1作为处理函数
+ * 
+ * @see ExecuteMemoryOperation, ProcessMemoryOperationA1
+ */
 void Unwind_18090dde0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -97056,6 +97071,17 @@ void Unwind_18090dde0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁互斥锁对象，释放相关的系统资源。
+ * 它调用_Mtx_destroy_in_situ函数来执行实际的销毁操作。
+ * 
+ * @note 原始函数名：Unwind_18090de10
+ * @note 该函数是系统清理过程的一部分
+ * 
+ * @see _Mtx_destroy_in_situ
+ */
 void Unwind_18090de10(void)
 
 {
@@ -97065,6 +97091,21 @@ void Unwind_18090de10(void)
 
 
 
+/**
+ * @brief 调用异常处理器（偏移量E0）
+ * 
+ * 该函数在数据缓冲区偏移量0xE0处检查是否存在有效的异常处理器，
+ * 如果存在则调用该异常处理器的函数指针（偏移量0x38）。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * 
+ * @note 原始函数名：Unwind_18090de20
+ * @note 使用偏移量0xE0访问异常处理器指针
+ * @note 函数指针位于偏移量0x38处
+ * 
+ * @see InvokeExceptionHandlerContextAtOffsetE0
+ */
 void Unwind_18090de20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -97076,6 +97117,22 @@ void Unwind_18090de20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 调用异常处理器上下文（偏移量E0）
+ * 
+ * 该函数在数据缓冲区偏移量0xE0处获取异常处理器上下文指针，
+ * 并调用该上下文中偏移量0x38处的函数指针。这是异常处理机制中的
+ * 一个关键函数，用于执行特定上下文相关的异常处理操作。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090de30
+ * @note 使用ExceptionHandlerCallbackOffset10常量定义偏移量
+ * @note 函数指针位于偏移量ExceptionHandlerHandlerContextFunctionOffset38处
+ * 
+ * @see InvokeExceptionHandlerAtOffsetE0
+ */
 void Unwind_18090de30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -97090,6 +97147,22 @@ void Unwind_18090de30(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 清理内存资源（偏移量E0）
+ * 
+ * 该函数负责清理数据缓冲区偏移量0xE0处的内存资源。
+ * 它会检查内存资源指针的有效性，计算内存区域基址，并递减引用计数。
+ * 如果引用计数归零，则调用异常处理函数。
+ * 
+ * @param operationBase 操作基础数据（未使用）
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090de40
+ * @note 使用偏移量0xE0访问内存资源指针
+ * @note 函数指针位于偏移量0x20处
+ * 
+ * @see CleanupMemoryResourceReferenceCountAtOffset2F0
+ */
 void Unwind_18090de40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
