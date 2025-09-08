@@ -29030,9 +29030,10 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
   float *floatDataPointer;
   int operationStatus;
   float normalizedValue;
-  BytePair stackBufferX [4];
+  BytePair stackDataBuffer [4];
+  BytePair systemDataBufferArray [1];
   
-  systemDataBufferX[0] = CONCAT11(systemDataBufferX[0]._1_1_,*(ByteFlag *)(dataBuffer + DataBufferOffset104));
+  systemDataBufferArray[0] = CONCAT11(systemDataBufferArray[0]._1_1_,*(ByteFlag *)(dataBuffer + DataBufferOffset104));
   systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),stackBufferX,1);
   if ((int)systemDataBuffer == 0) {
     operationStatus = 0;
