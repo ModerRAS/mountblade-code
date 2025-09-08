@@ -200161,7 +200161,7 @@ void ConvertUtf8ToUtf16AndManageSystemBuffer(uint64_t CharacterCode, long long S
   unsigned long long MemoryOffsetValue;
   uint32_t aStackProcessingValue [2];
   void *EncodingBuffer;
-  long long lStack_58;
+  long long SystemStackRegister58;
   uint SystemKeyPointer;
   uint64_t SystemStackOffset48;
   

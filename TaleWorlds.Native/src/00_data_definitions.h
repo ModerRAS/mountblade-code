@@ -14000,7 +14000,7 @@ int RegisterSystemNetworkModule(void);
 // =============================================================================
 
 // 性能计数器相关栈变量
-#define PerformanceCounterStackPointer plStack_2f8
+#define PerformanceCounterStackPointer SystemPerformanceCounterStack
 #define StackCounterRegister plStack_68
 
 // 内存管理相关栈变量
