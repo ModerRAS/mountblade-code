@@ -112,6 +112,13 @@ typedef enum {
 #define SystemGlobalDataRegistry38 UNK_180956d38
 #define SystemGlobalDataRegistry30 UNK_180956d30
 
+// UI系统查找表变量宏定义
+#define UILookupTablePrimary UNK_180954690
+#define UILookupTableIndex UNK_180954728
+#define UILookupTableSecondary UNK_1809545f0
+#define UILookupTableTertiary UNK_180954550
+#define UILookupTableQuaternary UNK_1809544b0
+
 // UI系统函数宏定义 - 计算UI事件距离
 #define CalculateUIEventDistance FUN_180727dd3
 
@@ -114478,61 +114485,85 @@ ExecuteCleanupAndRenderTask:
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180738dad(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_180738dad(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ /**
+ * @brief UI上下文数据处理和缓冲区管理函数
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * 
+ * 该函数处理UI上下文的数据操作和缓冲区管理：
+ * - 上下文句柄管理
+ * - 数据验证和缓冲区操作
+ * - 事件处理和资源管理
+ * - 渲染任务执行
+ * 
+ * @return 处理结果状态码
+ */
+void ProcessUIContextAndBufferData(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer)
+void ProcessUIContextAndBufferData(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer)
 
 {
-  int processingResult;
-  int uiValidationResult;
-  int uiCompareResult;
-  UIHandle ContextHandle;
-  UIHandle BasePointer;
-  longlong RegisterPointer;
-  UIHandle EventHandle;
-  longlong lStack0000000000000030;
-  UIHandle stackParam00000038;
-  ulonglong stackParam00000140;
+  int contextOperationResult;
+  int dataValidationResult;
+  int bufferCompareResult;
+  UIHandle contextHandle;
+  UIHandle basePointer;
+  longlong registerPointer;
+  UIHandle eventHandle;
+  longlong resourceCleanupFlag;
+  UIHandle operationHandle;
+  ulonglong renderTaskParameter;
   
-  *(UIHandle *)(RegisterPointer + -0x10) = ContextHandle;
-  *(UIHandle *)(RegisterPointer + -0x18) = BasePointer;
-  *(UIHandle *)(RegisterPointer + -0x28) = EventHandle;
-  lStack0000000000000030 = 0;
-  processingResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
-  if (processingResult == 0) {
-    processingResult = func_0x0001807455d0(stackParam00000038,dataSource,targetBuffer);
-    if (processingResult == 0) goto FUN_180738e7f;
+  *(UIHandle *)(registerPointer + -0x10) = contextHandle;
+  *(UIHandle *)(registerPointer + -0x18) = basePointer;
+  *(UIHandle *)(registerPointer + -0x28) = eventHandle;
+  resourceCleanupFlag = 0;
+  contextOperationResult = FUN_180749e60(uiContext,&stack0x00000038,&stack0x00000030);
+  if (contextOperationResult == 0) {
+    contextOperationResult = func_0x0001807455d0(operationHandle,dataSource,targetBuffer);
+    if (contextOperationResult == 0) goto ExecuteCleanupAndRenderTask;
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    uiValidationResult = FUN_18074b880(&stack0x00000040,0x100,dataSource);
-    uiCompareResult = FUN_18074b880(&stack0x00000040 + uiValidationResult,0x100 - uiValidationResult,&UIBufferControlData);
-    func_0x00018074bda0(&stack0x00000040 + (uiValidationResult + uiCompareResult),0x100 - (uiValidationResult + uiCompareResult),targetBuffer);
+    dataValidationResult = FUN_18074b880(&stack0x00000040,0x100,dataSource);
+    bufferCompareResult = FUN_18074b880(&stack0x00000040 + dataValidationResult,0x100 - dataValidationResult,&UIBufferControlData);
+    func_0x00018074bda0(&stack0x00000040 + (dataValidationResult + bufferCompareResult),0x100 - (dataValidationResult + bufferCompareResult),targetBuffer);
                      WARNING: Subroutine does not return
-    FUN_180749ef0(processingResult,1,uiContext,&UNK_180957488,&stack0x00000040);
+    FUN_180749ef0(contextOperationResult,1,uiContext,&UNK_180957488,&stack0x00000040);
   }
-FUN_180738e7f:
-  if (lStack0000000000000030 != 0) {
+ExecuteCleanupAndRenderTask:
+  if (resourceCleanupFlag != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000140 ^ (ulonglong)&stack0x00000000);
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
- void FUN_180738e07(void)
-void FUN_180738e07(void)
+ /**
+ * @brief UI缓冲区数据处理函数
+ * 
+ * 该函数处理UI系统中的缓冲区数据操作：
+ * - 数据验证和比较
+ * - 缓冲区控制数据管理
+ * - 数据处理结果反馈
+ * 
+ * @return 处理结果状态码
+ */
+void ProcessUIBufferDataValidation(void)
+void ProcessUIBufferDataValidation(void)
 
 {
-  int processingResult;
-  int uiValidationResult;
-  UIDword unmodifiedESI;
+  int dataProcessingResult;
+  int validationStatus;
+  UIDword preservedRegisterESI;
   
-  processingResult = FUN_18074b880(&stack0x00000040,0x100);
-  uiValidationResult = FUN_18074b880(&stack0x00000040 + processingResult,0x100 - processingResult,&UIBufferControlData);
-  func_0x00018074bda0(&stack0x00000040 + (processingResult + uiValidationResult),0x100 - (processingResult + uiValidationResult));
+  dataProcessingResult = FUN_18074b880(&stack0x00000040,0x100);
+  validationStatus = FUN_18074b880(&stack0x00000040 + dataProcessingResult,0x100 - dataProcessingResult,&UIBufferControlData);
+  func_0x00018074bda0(&stack0x00000040 + (dataProcessingResult + validationStatus),0x100 - (dataProcessingResult + validationStatus));
                      WARNING: Subroutine does not return
-  FUN_180749ef0(unmodifiedESI,1);
+  FUN_180749ef0(preservedRegisterESI,1);
 }
 
 
