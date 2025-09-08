@@ -25662,7 +25662,7 @@ void ProcessDataTypesA0(void)
               resourceValidationStatus = ValidateDataIntegrityA0(StackInputParameterB,&StackInputParameterC);
               if (resourceValidationStatus != 0) GOTO_SecurityTerminationA2;
             }
-            floatDataPointer = (float *)(contextPointer + 0x94);
+            floatDataPointer = (float *)(contextPointer + ContextFloatDataPointerOffset94);
             floatLoopCounter = dataPointerD;
             do {
               floatCurrentValue = *floatDataPointer;
@@ -25863,7 +25863,7 @@ ValidateDataSecurity:
         operationResult = *(DataWord *)(contextPointer + 0x4c);
         dataFlags = *(DataWord *)(contextPointer + 0x50);
         validationOutcome = *(DataWord *)(contextPointer + 0x54);
-        StackFrameContext[-0xe] = &SystemSecurityCheckReference;
+        StackFrameContext[StackFrameSecurityCheckOffsetNegativeE] = &SystemSecurityCheckReference;
         StackFrameContext[-0xb] = systemDataBuffer7;
         StackFrameContext[-10] = systemDataBuffer6;
         *(float *)(StackFrameContext + -0xd) = dataPointerD;
@@ -25908,7 +25908,7 @@ ValidateDataSecurity:
           resourceValidationStatus = ValidateDataIntegrityA0(StackInputParameterB,&StackInputParameterC);
           if (resourceValidationStatus != 0) GOTO_SecurityTerminationA1;
         }
-        floatArrayPointer = (float *)(contextPointer + 0x94);
+        floatArrayPointer = (float *)(contextPointer + ContextFloatDataPointerOffset94);
         loopCounterFloat = dataPointerD;
         do {
           floatValidationValue = *floatArrayPointer;
