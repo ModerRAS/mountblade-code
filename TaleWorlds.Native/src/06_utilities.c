@@ -247,6 +247,15 @@
 
 // 系统资源偏移常量
 #define SystemResourceOffset88 0x88
+
+// 异常处理器回调偏移常量
+#define ExceptionHandlerCallbackOffset68 0x68
+#define ExceptionHandlerCallbackDataOffset58 0x58
+#define ExceptionHandlerCallbackOffset400 0x190
+#define ExceptionHandlerCallbackDataOffset180 0x180
+#define ExceptionHandlerCleanupOffset160 0x160
+#define ExceptionHandlerCleanupStateOffset168 0x168
+#define ExceptionHandlerCleanupFlagOffset178 0x178
 #define SystemResourceOffset18 0x18
 #define SystemResourceOffsetD0 0xd0
 #define SystemResourceOffset1c 0x1c
@@ -48997,9 +49006,9 @@ void ExceptionHandlerA47(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
 {
   FunctionPointer *exceptionHandlerCallback;
   
-  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x88) + 0x68);
+  exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + ExceptionHandlerContextSecondaryOffset) + ExceptionHandlerCallbackOffset68);
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x88) + 0x58,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + ExceptionHandlerContextSecondaryOffset) + ExceptionHandlerCallbackDataOffset58,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
