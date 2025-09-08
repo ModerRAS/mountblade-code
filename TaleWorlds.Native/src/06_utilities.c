@@ -64994,8 +64994,8 @@ void ResetSystemEventState(void)
     return;
   }
   encryptionShiftBits = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
-            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameterAddress);
+                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
+            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameterAddress);
   return;
 }
 

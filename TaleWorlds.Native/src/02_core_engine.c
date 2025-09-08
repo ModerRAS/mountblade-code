@@ -215029,7 +215029,24 @@ long long * ProcessCharacterCodeBufferAndDataManagement(long long *CharacterCode
 
 
 
-7b259(long long CharacterCode,long long *CharacterCodeSizevoid FUN_18017b259(long long CharacterCode,long long *CharacterCodeSize
+// 函数: void FUN_18017b259(long long CharacterCode,long long *CharacterCodeSize)
+/**
+ * @brief 处理系统数据和内存边界管理
+ * 
+ * 该函数负责处理系统数据、内存边界管理和资源分配。
+ * 主要功能包括：
+ * - 管理系统数据和内存边界
+ * - 处理缓冲区状态和搜索操作
+ * - 执行内存分配和数据验证
+ * - 管理系统上下文和内存偏移
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param CharacterCodeSize 字符代码大小指针
+ * 
+ * @note 原始函数名：FUN_18017b259
+ */
+#define ProcessSystemDataAndMemoryBoundaryManagement FUN_18017b259
+void ProcessSystemDataAndMemoryBoundaryManagement(long long CharacterCode,long long *CharacterCodeSize
 {
   long long PrimaryDataSize;
   long long BufferStatus;

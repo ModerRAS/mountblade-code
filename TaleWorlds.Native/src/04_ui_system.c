@@ -82285,8 +82285,29 @@ void ProcessUIContextBatchOperation(UIDword uiContext,UIHandle dataSource,longlo
 
 
 
- void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,int *resultPointer)
-void FUN_180713020(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,int *resultPointer)
+ // 原始函数名：FUN_180713020 - UI数据变换计算器
+#define TransformUIDataCoordinates FUN_180713020
+
+/**
+ * @brief 变换UI数据坐标
+ * 
+ * 该函数负责UI系统中数据坐标的变换计算，包括：
+ * - 处理基础值和变换系数
+ * - 计算向量分量和变换结果
+ * - 管理坐标变换的精度和范围
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数在UI坐标变换和渲染时被调用
+ * @note 负责维护坐标变换的数学计算
+ */
+void TransformUIDataCoordinates(longlong uiContext,longlong dataSource,int targetBuffer,int bufferSize,int *resultPointer)
 
 {
   float *pbaseValue;
