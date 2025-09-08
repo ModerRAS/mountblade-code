@@ -5229,10 +5229,10 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 // 功能：加密数据并返回加密结果
 #define EncryptDataAndReturnResult FUN_1809424a0
 
-// 全局指针设置函数B系列语义化宏定义
-// 原始函数名：FUN_180941820 - 全局指针设置函数B1
-// 功能：设置全局数据指针B1到指定地址
-#define SetGlobalDataPointerB1 FUN_180941820
+// 系统配置函数B系列语义化宏定义
+// 原始函数名：FUN_180941820 - 系统配置加载函数B1
+// 功能：加载系统配置B1并返回加载结果
+#define LoadSystemConfigurationB1 FUN_180941820
 
 // 原始函数名：FUN_180941840 - 全局指针设置函数B2
 // 功能：设置全局数据指针B2到指定地址
