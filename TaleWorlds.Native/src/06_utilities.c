@@ -105,6 +105,20 @@
 #define DataValidationOffsetA8 0xa8                        // 数据验证偏移量A8
 #define DataValidationOffset18 0x18                        // 数据验证偏移量18
 
+// 数据结构偏移量常量
+#define DataStructureHandleOffset1C 0x1c                  // 数据结构句柄偏移量1C
+#define DataRecordArraySizeOffset30 0x30                   // 数据记录数组大小偏移量30
+#define DataRangeValueOffset1C 0x1c                        // 数据范围值偏移量1C
+#define DataDescriptorFlagsOffset1C 0x1c                   // 数据描述符标志偏移量1C
+#define DataContextSecondaryOffset8C 0x8c                  // 数据上下文次级偏移量8C
+#define StateValidationFlagOffsetBD 0xbd                    // 状态验证标志偏移量BD
+#define AllocationContextValueOffset14 0x14                 // 分配上下文值偏移量14
+#define MemoryDescriptorPrimaryOffset14 0x14               // 内存描述符主偏移量14
+#define MemoryDescriptorFlagsOffset1C 0x1c                  // 内存描述符标志偏移量1C
+#define ExtendedContextOperationOffsetD0 0xd0              // 扩展上下文操作偏移量D0
+#define ComponentDataStateOffset30 0x30                    // 组件数据状态偏移量30
+#define DataContextOperationOffset24 0x24                   // 数据上下文操作偏移量24
+
 // 浮点数据偏移量常量
 #define FloatDataValidationOffset3C 0x3c                    // 浮点数据验证偏移量3C
 
@@ -18839,7 +18853,7 @@ DataBuffer ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Pr
     }
     *(float *)(ResourceDescriptor + SystemDataParameterOffset20) = calculatedFloatValue;
     *(float *)(dataStructurePointer + 4) = calculatedFloatValue;
-    validationStatus = ValidateAndProcessSystemResourceA0(dataStructurePointer,DataStructureHandle + 0x1c);
+    validationStatus = ValidateAndProcessSystemResourceA0(dataStructurePointer,DataStructureHandle + DataStructureHandleOffset1C);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
@@ -18929,7 +18943,7 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
         if (dataRecordIndex == 0) {
           return ResourceNotFoundCode;
         }
-        if (*(int *)(dataRecordIndex + 0x30) != 0) {
+        if (*(int *)(dataRecordIndex + DataRecordArraySizeOffset30) != 0) {
           return ComponentDataValidationFailure;
         }
         rangeMinValue = *(float *)(dataRecordIndex + DataValidationOffset38);
@@ -19030,7 +19044,7 @@ DataBuffer GetSystemStatusA0(void)
         if (dataNodePointer == 0) {
           return ResourceNotFoundCode;
         }
-        if (*(uint *)(dataNodePointer + 0x30) != arrayIterationCounter) {
+        if (*(uint *)(dataNodePointer + DataRecordArraySizeOffset30) != arrayIterationCounter) {
           return ComponentDataValidationFailure;
         }
         resultValue = *(float *)(dataNodePointer + SystemFloatDataOffset38);
@@ -19208,7 +19222,7 @@ DataBuffer ValidateAndProcessFloatRange(int64_t rangeContext,int64_t exceptionHa
   int64_t resultPointer;
   int64_t stackValue;
   
-  rangeValue = *(float *)(rangeContext + 0x1c);
+  rangeValue = *(float *)(rangeContext + DataRangeValueOffset1C);
   stackValue = MergeHighLowWords(stackValue.HighPart, rangeValue);
   if (((uint)rangeValue & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
@@ -19281,7 +19295,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
     return ComponentDataValidationFailure;
   }
   transferSize = MergeHighLowWords(transferSize.HighPart, *(uint *)(dataDescriptor + DataDescriptorSizeOffset));
-  if ((*(uint *)(dataDescriptor + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
+  if ((*(uint *)(dataDescriptor + DataDescriptorFlagsOffset1C) & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
   operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataDescriptor + ExceptionHandlerCallbackOffset10));
@@ -28273,7 +28287,7 @@ void ValidateSystemDataIntegrity(void)
   int inputParameter;
   int64_t registerContext;
   int64_t DestinationContext;
-  DataWord InputParam30;
+  DataWord SystemValidationParameter;
   
   inputParameter = CheckSystemStatusAndReturnO0();
   if (inputParameter == 0) {
@@ -35540,7 +35554,7 @@ DataBuffer GetSystemStatusA2(void)
   int64_t dataContext;
   DataBuffer validationStatus;
   int64_t *registerContext;
-  DataWord InputParam30;
+  DataWord SystemValidationParameter;
   int64_t operationResult;
   int SystemStatusFlag;
   unsigned int SystemStatusValue;
@@ -39036,7 +39050,7 @@ uint64_t ValidateSystemContextAndProcessData(void)
   int64_t systemStackFramePointer;
   uint RegisterContextValue;
   int64_t *DestinationContext;
-  DataWord InputParam30;
+  DataWord SystemValidationParameter;
   DataWord ValidationDataBuffer;
   BytePair FirstBytePair;
   BytePair SecondBytePair;
@@ -39116,7 +39130,7 @@ uint64_t ManageMemoryAndValidatePointers(void)
   int64_t systemStackFramePointer;
   uint RegisterContextValue;
   int64_t *DestinationContext;
-  DataWord InputParam30;
+  DataWord SystemValidationParameter;
   DataWord ValidationDataBuffer;
   BytePair FirstBytePair;
   BytePair SecondBytePair;
