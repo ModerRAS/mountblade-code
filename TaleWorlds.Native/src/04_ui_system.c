@@ -200032,26 +200032,38 @@ void FUN_18078aa4e(void)
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_18078aa60(longlong uiContext)
+/**
+ * @brief UI资源句柄初始化函数
+ * 
+ * 初始化UI资源句柄，包括句柄分配、上下文设置、数据配置等操作。
+ * 该函数负责创建和管理UI系统中的资源句柄，确保资源能够正确分配和初始化。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态和配置信息
+ * @return UIHandle 初始化后的资源句柄，失败时返回错误代码
+ * 
+ * @note 原始函数名：FUN_18078aa60
+ * @warning 该函数涉及复杂的资源管理，需要确保传入的uiContext有效
+ */
+UIHandle InitializeUIResourceHandle(longlong uiContext)
 
 {
-  uint *ptrResult;
-  UIHandle *piterationCount;
-  longlong stringCompareIndex;
-  longlong ContextHandleData;
-  UIHandle loopCounter;
-  UIDword stackUInt58;
-  UIDword stackUInt54;
-  UIDword stackUInt50;
-  UIByte stackUInt4c;
-  UIHandle stackUInt48;
-  UIHandle stackUInt40;
-  UIHandle stackUInt38;
-  UIHandle stackUInt30;
-  UIDword *pstackUInt28;
-  UIHandle stackUInt20;
-  UIHandle stackUInt18;
-  UIHandle stackUInt10;
+  uint *resourceFlagPointer;
+  UIHandle *iterationResultPointer;
+  longlong stringComparisonResult;
+  longlong contextHandleData;
+  UIHandle operationResult;
+  UIDword uiBufferData;
+  UIDword allocationFlags;
+  UIDoword operationFlags;
+  UIByte initializationFlag;
+  UIHandle resourceHandleA;
+  UIHandle resourceHandleB;
+  UIHandle resourceHandleC;
+  UIHandle resourceHandleD;
+  UIDword *dataPointer;
+  UIHandle resourceHandleE;
+  UIHandle resourceHandleF;
+  UIHandle resourceHandleG;
   
   stackUInt58 = *(UIDword *)(uiBufferData + 0x6d8);
   ContextHandleData = 0;
