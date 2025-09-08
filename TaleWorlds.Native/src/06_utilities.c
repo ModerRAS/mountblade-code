@@ -20042,7 +20042,7 @@ DataBuffer ValidateSystemB0(int64_t exceptionHandlerContext,int64_t systemContex
   if ((int)ValidationResult == 0) {
     // 设置系统参数并执行清理操作
     *(DataWord *)(MergeHighLowWords(StackParameterC, floatValidationParameter) + DataStructureOffset18) = *(DataWord *)(exceptionHandlerContext + DataStructureOffset18);
-      CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98), exceptionHandlerContext);
+      CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextManagementOffset), exceptionHandlerContext);
   }
   return ValidationResult;
 }
@@ -76887,6 +76887,19 @@ void DestroyBasicOstreamOnException(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 在偏移量0x40处设置内存基地址
+ * 
+ * 该函数从数据缓冲区的0x40偏移量处获取内存块偏移量，
+ * 并在计算后的内存区域设置系统内存基地址。
+ * 如果满足特定条件，还会更新数据上下文和相关指针。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存块信息
+ * 
+ * @note 原始函数名：Unwind_180908f30
+ * @note 内存管理：设置内存基地址并管理相关指针
+ */
 void SetupMemoryBaseAddressAtOffset40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
