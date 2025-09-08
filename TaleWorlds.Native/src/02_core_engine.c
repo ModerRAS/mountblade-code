@@ -246972,7 +246972,7 @@ void ProcessSystemRenderDataAndConfigureSecondary(long long *CharacterCode,int *
     SystemContextPtr = *(long long **)(CharacterTablePointer + 0x8400);
     InputDataLength = (**(code **)(*SystemContextPtr + 0x70)                      (SystemContextPtr,*(void *)(BufferStatus + 0x10),0,4,0,auStack_18,0,0xfffffffffffffffe);
     if (MemoryMatchResult < 0) {
-      FUN_180220810(InputDataLength,&SystemMutexLock);
+      ProcessSystemDataWithRemainingSpace(InputDataLength,&SystemMutexLock);
     }
     *(void *)(AdditionalParameter1 + 8) = auStack_18[0];
     SystemContextPtr = (long long *)FUN_1800e81f0();
