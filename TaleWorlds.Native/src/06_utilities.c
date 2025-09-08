@@ -95528,7 +95528,19 @@ void InitializeExceptionHandlerContext(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_18090ced0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常处理器上下文指针CED0
+ * 
+ * 该函数负责调用系统浮点数据偏移量0x58处的异常处理器上下文指针。
+ * 这是一个简单的异常处理器调用函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090ced0
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常处理器上下文指针
+ */
+void InvokeExceptionHandlerContextCED0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -95542,7 +95554,19 @@ void Unwind_18090ced0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cee0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用异常处理器上下文指针CEE0
+ * 
+ * 该函数负责调用数据缓冲区偏移量0x350处的异常处理器上下文指针。
+ * 这是一个简单的异常处理器调用函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090cee0
+ * @note 这是一个异常展开（unwind）处理函数，用于调用异常处理器上下文指针
+ */
+void InvokeExceptionHandlerContextCEE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x350) != (int64_t *)0x0) {
