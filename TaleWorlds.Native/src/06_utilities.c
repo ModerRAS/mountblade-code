@@ -26414,14 +26414,25 @@ DataWord QuerySystemStatusWithValidation(void)
 // 原始函数名：FUN_180898d31 - 数据处理函数F2
 // 功能：处理输入数据并返回32位结果
 #define ProcessDataWithOutput FUN_180898d31
+/**
+ * @brief 处理数据并返回输出结果
+ * 
+ * 该函数处理输入数据并生成输出结果，主要执行数据转换和计算操作。
+ * 
+ * @param inputDataBuffer 输入数据缓冲区，包含待处理的数据
+ * @param outputResult 输出结果指针，用于存储处理结果
+ * @return 处理状态码，0表示成功，其他值表示错误码
+ * 
+ * @note 原始函数名：FUN_180898d31
+ */
 DataWord ProcessDataWithOutput(DataBuffer inputDataBuffer,int *outputResult)
 
 {
-  DataWord dataPointerD;
-  int contextPointerD;
+  DataWord resultData;
+  int contextIndex;
   
-  *dataBuffer = contextPointerD + 1;
-  return dataPointerD;
+  *outputResult = contextIndex + 1;
+  return resultData;
 }
 
 
@@ -26518,31 +26529,31 @@ DataBuffer ProcessDataBufferA0(DataBuffer DataBufferHandle,int DataBufferSize)
   
   // 初始化目标数据缓冲区为空
   TargetDataBuffer = (BytePair *)0x0;
-  if (registerValueEDI == 0) {
+  if (DataBufferSize == 0) {
 ValidationCheckpointA:
-    if ((0 < *(int *)((int64_t)registerContext + 0xc)) && (*registerContext != 0)) {
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*registerContext,&SystemMemoryPoolB,0x100,1);
+    if ((0 < *(int *)((int64_t)DataBufferHandle + 0xc)) && (*DataBufferHandle != 0)) {
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*DataBufferHandle,&SystemMemoryPoolB,0x100,1);
     }
-    *registerContext = (int64_t)validationStatusPointer;
-    *(int *)((int64_t)registerContext + 0xc) = registerValueEDI;
+    *DataBufferHandle = (int64_t)TargetDataBuffer;
+    *(int *)((int64_t)DataBufferHandle + 0xc) = DataBufferSize;
     return 0;
   }
-  if (dataBuffer * 3 - 1U < MaxSafeBufferSize) {
-    validationStatusPointer = (BytePair *)
-             AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),dataBuffer * 3,&SystemMemoryPoolB,0xf4,0
+  if (DataBufferSize * 3 - 1U < MaxSafeBufferSize) {
+    TargetDataBuffer = (BytePair *)
+             AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),DataBufferSize * 3,&SystemMemoryPoolB,0xf4,0
                           );
-    if (validationStatusPointer != (BytePair *)0x0) {
-      inputParameter = (int)registerContext[1];
-      calculatedIndex = (int64_t)inputParameter;
-      if ((inputParameter != 0) && (dataContext = *registerContext, 0 < inputParameter)) {
-        operationResult = validationStatusPointer;
+    if (TargetDataBuffer != (BytePair *)0x0) {
+      DataItemCount = (int)DataBufferHandle[1];
+      LoopCounter = (int64_t)DataItemCount;
+      if ((DataItemCount != 0) && (SourceDataPointer = *DataBufferHandle, 0 < DataItemCount)) {
+        DataCopyPointer = TargetDataBuffer;
         do {
-          *operationResult = *(BytePair *)((dataContext - (int64_t)validationStatusPointer) + (int64_t)operationResult);
-          *(ByteFlag *)(operationResult + 1) =
-               *(ByteFlag *)((dataContext - (int64_t)validationStatusPointer) + 2 + (int64_t)operationResult);
-          operationResult = (BytePair *)((int64_t)operationResult + 3);
-          calculatedIndex = calculatedIndex + -1;
-        } while (calculatedIndex != 0);
+          *DataCopyPointer = *(BytePair *)((SourceDataPointer - (int64_t)TargetDataBuffer) + (int64_t)DataCopyPointer);
+          *(ByteFlag *)(DataCopyPointer + 1) =
+               *(ByteFlag *)((SourceDataPointer - (int64_t)TargetDataBuffer) + 2 + (int64_t)DataCopyPointer);
+          DataCopyPointer = (BytePair *)((int64_t)DataCopyPointer + 3);
+          LoopCounter = LoopCounter + -1;
+        } while (LoopCounter != 0);
       }
       goto ProcessCheckpointMemoryAllocation;
     }
@@ -26552,6 +26563,15 @@ ValidationCheckpointA:
 
 
 
+/**
+ * @brief 返回固定状态码
+ * 
+ * 该函数返回固定的错误状态码0x26，用于表示内存分配失败或其他系统错误。
+ * 
+ * @return 固定状态码0x26，表示内存分配失败或系统错误
+ * 
+ * @note 原始函数名：FUN_180898d56
+ */
 DataBuffer ReturnFixedStatusCodeA0(void)
 
 {
@@ -26560,34 +26580,57 @@ DataBuffer ReturnFixedStatusCodeA0(void)
 
 
 
+/**
+ * @brief 验证数据块状态A0
+ * 
+ * 该函数验证数据块的状态，检查操作基础的有效性，并调用相应的函数指针进行验证。
+ * 
+ * @param operationBase 操作基础指针，包含函数指针和操作信息
+ * @param dataBuffer 数据缓冲区指针，包含待验证的数据
+ * @return 验证结果，0表示成功，其他值表示错误码
+ * 
+ * @note 原始函数名：FUN_180898d5e
+ */
 DataBuffer ValidateDataBlockStatusA0(int64_t *operationBase,DataWord *dataBuffer)
 
 {
-  DataBuffer systemDataBuffer;
+  DataBuffer validationResult;
   DataWord parameterBuffer [8];
   
   if (*(int *)(operationBase[1] + 0x18) != 0) {
     return ResourceInvalidErrorCode;
   }
   parameterBuffer[0] = *dataBuffer;
-  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + OperationBaseOffset8))(*(DataBuffer **)(*operationBase + OperationBaseOffset8),parameterBuffer,4);
-  return systemDataBuffer;
+  validationResult = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + OperationBaseOffset8))(*(DataBuffer **)(*operationBase + OperationBaseOffset8),parameterBuffer,4);
+  return validationResult;
 }
 
 
 
+/**
+ * @brief 验证数据块状态A1
+ * 
+ * 该函数验证数据块的状态，检查操作基础的有效性，并调用相应的函数指针进行验证。
+ * 与A0版本功能相同，但可能在不同的上下文中使用。
+ * 
+ * @param operationBase 操作基础指针，包含函数指针和操作信息
+ * @param dataBuffer 数据缓冲区指针，包含待验证的数据
+ * @return 验证结果，0表示成功，其他值表示错误码
+ * 
+ * @note 原始函数名：FUN_180898d79
+ */
 DataBuffer ValidateDataBlockStatusA1(int64_t *operationBase,DataWord *dataBuffer)
 
 {
-  DataBuffer systemDataBuffer;
+  DataBuffer validationResult;
   DataWord parameterBuffer [8];
   
   if (*(int *)(operationBase[1] + 0x18) != 0) {
     return ResourceInvalidErrorCode;
   }
   parameterBuffer[0] = *dataBuffer;
-  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + OperationBaseOffset8))(*(DataBuffer **)(*operationBase + OperationBaseOffset8),parameterBuffer,4);
-  return systemDataBuffer;
+  validationResult = (**(FunctionPointer**)**(DataBuffer **)(*operationBase + OperationBaseOffset8))(*(DataBuffer **)(*operationBase + OperationBaseOffset8),parameterBuffer,4);
+  return validationResult;
 }
 
 
