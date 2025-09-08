@@ -384,6 +384,9 @@
 #define ProcessUtf8ToUtf16ConversionBuffered FUN_18016f5d0  // 缓冲UTF-8到UTF-16转换处理
 #define ProcessUtf8CharacterEncoding FUN_18016f680          // UTF-8字符编码处理
 #define ProcessUtf8ToUtf16ConversionFinal FUN_18016f720    // 最终UTF-8到UTF-16转换处理
+
+// 字符代码内存分配和验证函数
+#define ProcessCharacterCodeMemoryAllocationAndValidation FUN_180158990 // 处理字符代码内存分配和验证
 #define ProcessUtf8CharacterAdvancedEncoding FUN_18016f7d0  // 高级UTF-8字符编码处理
 #define ProcessUtf8ToUtf16ConversionComplete FUN_18016f9f0  // 完整UTF-8到UTF-16转换处理
 
