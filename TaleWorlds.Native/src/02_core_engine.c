@@ -542,6 +542,19 @@
 #define AllocateMemoryBlockFromRegistry FUN_1802c28d0        // 从注册表分配内存块
 #define ConvertCharacterToSystemFormat FUN_1800a1e20          // 转换字符为系统格式
 #define GetCharacterFromMemoryBlock FUN_1802c2400            // 从内存块获取字符
+#define ProcessSystemMemoryAddressMask FUN_1801c9bd0               // 处理系统内存地址掩码
+#define ProcessSystemMemoryAddressValidation FUN_1801ca670         // 处理系统内存地址验证
+#define ProcessCharacterEncodingConversionEx FUN_18016a6c0       // 处理字符编码转换扩展
+#define ProcessSystemDataStatusUpdate FUN_18016d200                // 处理系统数据状态更新
+#define SetupThreadLocalStorageData FUN_1808fcf5c                  // 设置线程本地存储数据
+#define AllocateSystemDataRegistry FUN_180169350                   // 分配系统数据注册表
+#define ProcessSystemEventBufferCleanup FUN_1806272a0              // 处理系统事件缓冲区清理
+#define ProcessSystemMemoryAllocation FUN_18005d190                // 处理系统内存分配
+#define ProcessCharacterDataBufferAllocation FUN_18016d400         // 处理字符数据缓冲区分配
+#define ProcessCharacterMemoryAllocation FUN_18016cff0             // 处理字符内存分配
+#define AllocateSystemProcessingMemory FUN_180629b30               // 分配系统处理内存
+#define InitializeSystemProcessingMemory FUN_180629c00             // 初始化系统处理内存
+#define ProcessCharacterCodeFinalization FUN_18016afc0             // 处理字符代码最终化
 #define ValidateCharacterPair FUN_1800c6910                    // 验证字符对
 #define ProcessSystemConfiguration FUN_180099430               // 处理系统配置
 #define ExecuteSystemCleanup FUN_180127860                     // 执行系统清理
@@ -199033,7 +199046,7 @@ ProcessUtf8ToUtf16CharacterEncodingStage5(uint64_t CharacterCode,uint64_t *Chara
   if (PrimaryProcessingStatusFlag != NULL) {
     SecondaryProcessingStatusFlag = PrimaryProcessingStatusFlag;
   }
-  FUN_1801c9bd0(ppMemoryAddressMaskPointer,SecondaryProcessingStatusFlag);
+  ProcessSystemMemoryAddressMask(ppMemoryAddressMaskPointer,SecondaryProcessingStatusFlag);
   *CharacterCodeSize = &ThreadLocalStorageTemplate;
   SystemBufferSize[1] = 0;
   *(uint32_t *)(SystemBufferSize + 2) = 0;
