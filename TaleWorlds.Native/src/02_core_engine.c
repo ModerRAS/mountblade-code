@@ -215969,12 +215969,12 @@ long long * ProcessSystemContextAndMemoryAllocation(long long *CharacterCode,uin
       pStringOffset = pStringOffset + 1;
     } while (pStringOffset != *(long long **)(SystemDataRegistry + 0x140));
   }
-  FUN_1800b3cc0(SystemDataRegistry);
-  FUN_1800d7810();
-  FUN_1800f08a0();
-  FUN_1800c1a80();
-  FUN_180092820();
-  FUN_1800d7810();
+  ReleaseSystemMemoryRegistry(SystemDataRegistry);
+  ResetSystemDataPointers();
+  CleanupSystemEventHandlers();
+  CleanupSystemMemoryBuffers();
+  ValidateSystemConfiguration();
+  ResetSystemDataPointers();
   SystemDataRegistry = SystemMemoryManagerPointer;
   pStringOffset = *(long long **)(SystemMemoryManagerPointer + 0x138);
   if (pStringOffset != *(long long **)(SystemMemoryManagerPointer + 0x140)) {
