@@ -126200,4 +126200,7 @@ uint8_t SystemExceptionHandlerStateTable;
 // 原始函数名：Unwind_18090c320 - 异常处理完成函数C320
 // 功能：完成异常处理，清理异常处理资源
 #define FinalizeExceptionProcessingC320 Unwind_18090c320
+
+// 原始函数名：Unwind_18090a130 - 系统资源验证函数130
+// 功能：验证系统资源的有效性和完整性，确保资源处于可用状态
 #define ValidateSystemResources130 Unwind_18090a130
