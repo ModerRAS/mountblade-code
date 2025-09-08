@@ -18105,7 +18105,7 @@ DataBuffer ValidateAndProcessFloatingPointNumber(int64_t DataHandle, int64_t Con
                 return ResourceNotFoundCode;
             }
             // 检查数据状态标志位
-            if ((*(byte *)(ValuePointer + 0x34) & 0x11) != 0) {
+            if ((*(byte *)(ValuePointer + ValidationStatusOffset34) & SystemValidationFlagMask11) != 0) {
                 return ComponentDataValidationFailure;
             }
             // 执行数据验证操作
@@ -18153,7 +18153,7 @@ DataBuffer QuerySystemStatusE0(void)
   if (dataContext == 0) {
     return ResourceNotFoundCode;
   }
-  if ((*(byte *)(dataContext + 0x34) & 0x11) != 0) {
+  if ((*(byte *)(dataContext + ValidationStatusOffset34) & SystemValidationFlagMask11) != 0) {
     return ComponentDataValidationFailure;
   }
   validationStatus = ProcessDataValidationA0(dataContext,DestinationContext + DataValidationPrimaryOffset,DestinationContext + DataValidationSecondaryOffset);
@@ -18187,7 +18187,7 @@ DataBuffer InitializeSystemE0(void)
   if (dataContext == 0) {
     return ResourceNotFoundCode;
   }
-  if ((*(byte *)(dataContext + 0x34) & 0x11) != 0) {
+  if ((*(byte *)(dataContext + ValidationStatusOffset34) & SystemValidationFlagMask11) != 0) {
     return ComponentDataValidationFailure;
   }
   validationStatus = ProcessDataValidationA0(dataContext,DestinationContext + DataValidationPrimaryOffset,DestinationContext + DataValidationSecondaryOffset);

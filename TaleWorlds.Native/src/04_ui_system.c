@@ -29213,23 +29213,23 @@ void SetUIRenderingParameters(longlong uiContext,longlong dataSource,int targetB
       }
       else {
         *(longlong *)(dataSource + 0xf18) =
-             *(longlong *)(*(longlong *)(uiBufferData + 0x43b0) + stackLong168 * 8) + 0x20;
+             *(longlong *)(*(longlong *)(uiBufferData + 0x43b0) + AnimationStateValue * 8) + 0x20;
         *(longlong *)(dataSource + 0xf20) =
-             *(longlong *)(*(longlong *)(uiBufferData + 0x43b8) + stackLong168 * 8) + 0x10;
+             *(longlong *)(*(longlong *)(uiBufferData + 0x43b8) + AnimationStateValue * 8) + 0x10;
         *(longlong *)(dataSource + 0xf28) =
-             *(longlong *)(*(longlong *)(uiBufferData + 0x43c0) + stackLong168 * 8) + 0x10;
+             *(longlong *)(*(longlong *)(uiBufferData + 0x43c0) + AnimationStateValue * 8) + 0x10;
         *(UIHandle *)(dataSource + 0xf30) =
-             *(UIHandle *)(*(longlong *)(uiBufferData + 0x43c8) + stackLong168 * 8);
+             *(UIHandle *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8);
         *(UIHandle *)(dataSource + 0xf38) =
-             *(UIHandle *)(*(longlong *)(uiBufferData + 0x43d0) + stackLong168 * 8);
+             *(UIHandle *)(*(longlong *)(uiBufferData + 0x43d0) + AnimationStateValue * 8);
         *(UIHandle *)(dataSource + 0xf40) =
-             *(UIHandle *)(*(longlong *)(uiBufferData + 0x43d8) + stackLong168 * 8);
+             *(UIHandle *)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8);
         *(UIDword *)(dataSource + 0xf48) = 1;
         *(UIDword *)(dataSource + 0xf4c) = 1;
       }
       result7 = 0;
       if (0 < *(int *)(uiBufferData + 0x1e78)) {
-        stackLong128 = 0x10;
+        RenderContextSize = 0x10;
         stackInt14c = 0;
         stackLong130 = 0x20;
         do {
@@ -29290,17 +29290,17 @@ LAB_18066fdc2:
               result1 = ptrResult[2];
               result2 = ptrResult[3];
               piterationCount = (UIDword *)
-                       (*(longlong *)(*(longlong *)(uiBufferData + 0x43b0) + 8 + stackLong168 * 8) +
+                       (*(longlong *)(*(longlong *)(uiBufferData + 0x43b0) + 8 + AnimationStateValue * 8) +
                        stackLong130);
               *piterationCount = *ptrResult;
               piterationCount[1] = result0;
               piterationCount[2] = result1;
               piterationCount[3] = result2;
               *(UIHandle *)
-               (stackLong128 + *(longlong *)(*(longlong *)(uiBufferData + 0x43b8) + 8 + stackLong168 * 8)) =
+               (RenderContextSize + *(longlong *)(*(longlong *)(uiBufferData + 0x43b8) + 8 + AnimationStateValue * 8)) =
                    *(UIHandle *)(stackUInt118 * 7 + *(longlong *)(dataSource + 0xeb0));
               *(UIHandle *)
-               (stackLong128 + *(longlong *)(*(longlong *)(uiBufferData + 0x43c0) + 8 + stackLong168 * 8)) =
+               (RenderContextSize + *(longlong *)(*(longlong *)(uiBufferData + 0x43c0) + 8 + AnimationStateValue * 8)) =
                    *(UIHandle *)(stackUInt118 * 7 + *(longlong *)(dataSource + 0xeb8));
             }
             if ((result7 != *(int *)(uiBufferData + 0x1e78) - 1U) &&
@@ -29310,54 +29310,54 @@ LAB_18066fdc2:
               do {
                 allocatedMemory6 = componentIndex0 + stackUInt120;
                 *(UIByte *)
-                 (allocatedMemory8 + *(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + stackLong168 * 8)) =
+                 (allocatedMemory8 + *(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8)) =
                      *(UIByte *)
                       (componentIndex0 + stackUInt120 * -2 + 0xf + *(longlong *)(dataSource + 0xea8));
                 *(UIByte *)
-                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + stackLong168 * 8) + 1 + allocatedMemory8) =
+                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8) + 1 + allocatedMemory8) =
                      *(UIByte *)((*(longlong *)(dataSource + 0xea8) + componentIndex0 + 0xf) - stackUInt120);
                 stringCompareIndex = componentIndex0 + 0xf;
                 componentIndex0 = componentIndex0 + stackUInt120 * 4;
                 *(UIByte *)
-                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + stackLong168 * 8) + 2 + allocatedMemory8) =
+                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8) + 2 + allocatedMemory8) =
                      *(UIByte *)(stringCompareIndex + *(longlong *)(dataSource + 0xea8));
                 *(UIByte *)
-                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + stackLong168 * 8) + 3 + allocatedMemory8) =
+                 (*(longlong *)(*(longlong *)(uiBufferData + 0x43c8) + AnimationStateValue * 8) + 3 + allocatedMemory8) =
                      *(UIByte *)(allocatedMemory6 + 0xf + *(longlong *)(dataSource + 0xea8));
                 allocatedMemory8 = allocatedMemory8 + 4;
               } while (allocatedMemory8 < 0x10);
-              **(UIByte **)(*(longlong *)(uiBufferData + 0x43d0) + stackLong168 * 8) =
+              **(UIByte **)(*(longlong *)(uiBufferData + 0x43d0) + AnimationStateValue * 8) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb0) + 7);
-              **(UIByte **)(*(longlong *)(uiBufferData + 0x43d8) + stackLong168 * 8) =
+              **(UIByte **)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb8) + 7);
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + stackLong168 * 8) + 1) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + AnimationStateValue * 8) + 1) =
                    *(UIByte *)(stackUInt118 + 7 + *(longlong *)(dataSource + 0xeb0));
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + stackLong168 * 8) + 1) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) + 1) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb8) + 7 + stackUInt118);
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + stackLong168 * 8) + 2) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + AnimationStateValue * 8) + 2) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb0) + 7 + stackUInt118 * 2);
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + stackLong168 * 8) + 2) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) + 2) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb8) + 7 + stackUInt118 * 2);
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + stackLong168 * 8) + 3) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + AnimationStateValue * 8) + 3) =
                    *(UIByte *)(stackUInt118 * 3 + 7 + *(longlong *)(dataSource + 0xeb0));
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + stackLong168 * 8) + 3) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) + 3) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb8) + 7 + stackUInt118 * 3);
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + stackLong168 * 8) + 4) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + AnimationStateValue * 8) + 4) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb0) + 7 + stackUInt118 * 4);
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + stackLong168 * 8) + 4) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) + 4) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb8) + 7 + stackUInt118 * 4);
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + stackLong168 * 8) + 5) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + AnimationStateValue * 8) + 5) =
                    *(UIByte *)(stackUInt118 * 5 + 7 + *(longlong *)(dataSource + 0xeb0));
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + stackLong168 * 8) + 5) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) + 5) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb8) + 7 + stackUInt118 * 5);
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + stackLong168 * 8) + 6) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + AnimationStateValue * 8) + 6) =
                    *(UIByte *)(stackUInt118 * 6 + 7 + *(longlong *)(dataSource + 0xeb0));
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + stackLong168 * 8) + 6) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) + 6) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb8) + 7 + stackUInt118 * 6);
               iterationCount2 = (ulonglong)stackUInt13c;
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + stackLong168 * 8) + 7) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d0) + AnimationStateValue * 8) + 7) =
                    *(UIByte *)(stackUInt118 * 7 + 7 + *(longlong *)(dataSource + 0xeb0));
-              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + stackLong168 * 8) + 7) =
+              *(UIByte *)(*(longlong *)(*(longlong *)(uiBufferData + 0x43d8) + AnimationStateValue * 8) + 7) =
                    *(UIByte *)(*(longlong *)(dataSource + 0xeb8) + 7 + stackUInt118 * 7);
             }
             iterationCount3 = (uint)bVar4;
@@ -29384,7 +29384,7 @@ LAB_18066fdc2:
                   RenderUITextInternal(*(UIHandle *)(dataSource + 0xea8),*(UIHandle *)(dataSource + 0xeb0),
                                 *(UIHandle *)(dataSource + 0xeb8),iterationCount2 & 0xffffffff);
                 }
-                if (0 < stackLong168) {
+                if (0 < AnimationStateValue) {
                   pstackLong170 = &stackLongd8;
                   stackUInt178 = result3;
                   RenderUIImageInternal(*(UIHandle *)(dataSource + 0xea8),*(UIHandle *)(dataSource + 0xeb0),
@@ -29407,7 +29407,7 @@ LAB_18066fdc2:
                   RenderUISliderInternal(*(UIHandle *)(dataSource + 0xea8),iterationCount2 & 0xffffffff,
                                 ((longlong)(int)iterationCount3 + 0x40) * 0x10 + componentIndex0);
                 }
-                if (0 < stackLong168) {
+                if (0 < AnimationStateValue) {
                   func_0x00018001c10b(*(UIHandle *)(dataSource + 0xea8),iterationCount2 & 0xffffffff,
                                       (longlong)(int)iterationCount3 * 0x10 + componentIndex0);
                 }
@@ -29425,7 +29425,7 @@ LAB_18066fdc2:
           *(longlong *)(dataSource + 0xf00) = *(longlong *)(dataSource + 0xf00) + 0x4c;
           *(longlong *)(dataSource + 0xf50) = *(longlong *)(dataSource + 0xf50) + 9;
           stackLong130 = stackLong130 + 0x10;
-          stackLong128 = stackLong128 + 8;
+          RenderContextSize = RenderContextSize + 8;
           iterationCount1 = (ulonglong)(int)iterationCount2;
         } while ((int)result7 < *(int *)(uiBufferData + 0x1e78));
         iterationCount1 = (ulonglong)(int)iterationCount2;
@@ -29439,12 +29439,12 @@ LAB_18066fdc2:
         localInt5 = *pstackInte8;
         allocatedMemory8 = (longlong)((localInt5 >> 1) + 0x10);
         do {
-          allocatedMemory6 = *(longlong *)(*(longlong *)(uiBufferData + 0x43b0) + 8 + stackLong168 * 8) +
+          allocatedMemory6 = *(longlong *)(*(longlong *)(uiBufferData + 0x43b0) + 8 + AnimationStateValue * 8) +
                    (longlong)(localInt5 + 0x20);
           *(UIByte *)(allocatedMemory6 + componentIndex0) = *(UIByte *)(allocatedMemory6 + -1);
-          allocatedMemory6 = *(longlong *)(*(longlong *)(uiBufferData + 0x43b8) + 8 + stackLong168 * 8) + allocatedMemory8;
+          allocatedMemory6 = *(longlong *)(*(longlong *)(uiBufferData + 0x43b8) + 8 + AnimationStateValue * 8) + allocatedMemory8;
           *(UIByte *)(allocatedMemory6 + componentIndex0) = *(UIByte *)(allocatedMemory6 + -1);
-          allocatedMemory6 = *(longlong *)(*(longlong *)(uiBufferData + 0x43c0) + 8 + stackLong168 * 8) + allocatedMemory8;
+          allocatedMemory6 = *(longlong *)(*(longlong *)(uiBufferData + 0x43c0) + 8 + AnimationStateValue * 8) + allocatedMemory8;
           *(UIByte *)(allocatedMemory6 + componentIndex0) = *(UIByte *)(allocatedMemory6 + -1);
           componentIndex0 = componentIndex0 + 1;
         } while (componentIndex0 < 4);
@@ -63920,7 +63920,7 @@ void ProcessUIDataSource(UIHandle uiContext,longlong dataSource)
   int stackInt134;
   int stackInt130;
   int stackInt12c;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong stackLong120;
   longlong stackLong118;
   longlong stackLong110;
@@ -63974,7 +63974,7 @@ void ProcessUIDataSource(UIHandle uiContext,longlong dataSource)
   allocatedMemory3 = *(longlong *)(allocatedMemory7 + 0x40);
   localLong8 = *(longlong *)(allocatedMemory7 + 0x48);
   *(UIDword *)(uiBufferData + 0xf10) = 0;
-  stackLong128 = localLong8;
+  RenderContextSize = localLong8;
   stackLong120 = localLong8;
   stackLong118 = allocatedMemory3;
   stackLong110 = CharacterDataOffset;
@@ -64110,15 +64110,15 @@ void ProcessUIDataSource(UIHandle uiContext,longlong dataSource)
       func_0x00018069cbd0(stackLongb8,*(longlong *)(uiBufferData + 0xea8) + 0x10,
                           *(longlong *)(uiBufferData + 0xeb0) + 8,*(longlong *)(uiBufferData + 0xeb8) + 8);
       allocatedMemory2 = stackLonge8;
-      localLong8 = stackLong128;
+      localLong8 = RenderContextSize;
       *(longlong *)(uiBufferData + 0xf00) = *(longlong *)(uiBufferData + 0xf00) + 0x4c;
       *(UIDword *)(uiBufferData + 0xf10) = 1;
       if (*(int *)(uiBufferData + 0x2be0) == 0) {
         if (0 < processingResult6) {
-          ProcessUIRenderData(allocatedMemory7,CharacterDataOffset,allocatedMemory3,stackLong128);
+          ProcessUIRenderData(allocatedMemory7,CharacterDataOffset,allocatedMemory3,RenderContextSize);
           allocatedMemory3 = allocatedMemory3 + stackInt12c;
           CharacterDataOffset = CharacterDataOffset + stackInt130;
-          stackLong128 = localLong8 + stackInt12c;
+          RenderContextSize = localLong8 + stackInt12c;
           stackLonge0 = CharacterDataOffset;
           stackLongd8 = allocatedMemory3;
         }
@@ -64134,12 +64134,12 @@ void ProcessUIDataSource(UIHandle uiContext,longlong dataSource)
         else {
           UpdateUIRenderState(allocatedMemory,stackLonge8,processingResult6 + -1,stackInt138);
         }
-        localLong8 = stackLong128;
+        localLong8 = RenderContextSize;
         if (1 < processingResult6) {
-          ProcessUIRenderData(allocatedMemory7,CharacterDataOffset,allocatedMemory3,stackLong128);
+          ProcessUIRenderData(allocatedMemory7,CharacterDataOffset,allocatedMemory3,RenderContextSize);
           allocatedMemory3 = allocatedMemory3 + stackInt12c;
           CharacterDataOffset = CharacterDataOffset + stackInt130;
-          stackLong128 = localLong8 + stackInt12c;
+          RenderContextSize = localLong8 + stackInt12c;
           stackLonge0 = CharacterDataOffset;
           stackLongd8 = allocatedMemory3;
         }
@@ -64152,7 +64152,7 @@ void ProcessUIDataSource(UIHandle uiContext,longlong dataSource)
       stackInt100 = stackInt100 + stackInt130;
       stackIntf8 = stackIntf8 + -0x80;
       stackIntfc = stackIntfc + stackInt12c;
-      localLong8 = stackLong128;
+      localLong8 = RenderContextSize;
       processingResult6 = stackIntf4;
     } while (stackInt104 < *(int *)(uiBufferData + 0x1e74));
   }
@@ -102164,7 +102164,7 @@ void FUN_18072b930(longlong uiContext,longlong dataSource,int targetBuffer,ulong
   ulonglong stackUInt140;
   longlong stackLong138;
   longlong stackLong130;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIDword astackUInt118 [22];
   UIDword astackUIntc0 [26];
   ulonglong stackUInt58;
@@ -102187,7 +102187,7 @@ void FUN_18072b930(longlong uiContext,longlong dataSource,int targetBuffer,ulong
   dataSource = dataSource + (longlong)(int)(stackUInt144 * 4) * 4;
   if (0 < (int)resultPointer) {
     stackLong130 = (longlong)(int)stackUInt144 << 2;
-    stackLong128 = (longlong)targetBuffer;
+    RenderContextSize = (longlong)targetBuffer;
     localInt7 = 0;
     ptrResult4 = (UIDword *)(uiContext + 8);
     stackUInt140 = (ulonglong)resultPointer;
@@ -102197,7 +102197,7 @@ void FUN_18072b930(longlong uiContext,longlong dataSource,int targetBuffer,ulong
       allocatedMemory1 = 0;
       stackInt158 = ((int)plocalChar10[1] - (int)*plocalChar10) + 1;
       stackUInt150 = param_7;
-      FUN_180712f20(dataSource,dataSource + (stringCompareIndex + stackLong128) * -4,astackUIntc0 + 2,bufferSize);
+      FUN_180712f20(dataSource,dataSource + (stringCompareIndex + RenderContextSize) * -4,astackUIntc0 + 2,bufferSize);
       if (CharacterDataOffset <= stringCompareIndex) {
         ContextHandleData = stringCompareIndex - CharacterDataOffset;
         if (3 < ContextHandleData + 1) {
@@ -114373,14 +114373,14 @@ void FUN_180739350(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180745f70(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_1807393ea;
@@ -114392,7 +114392,7 @@ void FUN_180739350(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957538);
   }
 LAB_1807393ea:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -114415,14 +114415,14 @@ void FUN_180739420(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   UIByte astackUInt198 [32];
   UIByte *pstackUInt178;
   UIHandle stackUInt170;
-  longlong stackLong168;
+  longlong AnimationStateValue;
   UIHandle stackUInt160;
   UIByte astackUInt158 [256];
   ulonglong stackUInt58;
   
   stackUInt58 = XorEncryptionKey ^ (ulonglong)astackUInt198;
-  stackLong168 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt160,&stackLong168);
+  AnimationStateValue = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt160,&AnimationStateValue);
   if (processingResult == 0) {
     stackUInt170 = param_6;
     pstackUInt178 = (UIByte *)resultPointer;
@@ -114450,7 +114450,7 @@ void FUN_180739420(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957378);
   }
 FUN_1807395df:
-  if (stackLong168 != 0) {
+  if (AnimationStateValue != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -114742,14 +114742,14 @@ void FUN_1807397c0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_1807460d0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073985a;
@@ -114761,7 +114761,7 @@ void FUN_1807397c0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957228);
   }
 LAB_18073985a:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -115320,14 +115320,14 @@ void FUN_180739ec0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180746440(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_180739f5a;
@@ -115339,7 +115339,7 @@ void FUN_180739ec0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957170);
   }
 LAB_180739f5a:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -115514,14 +115514,14 @@ void FUN_18073a2c0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_1807466e0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073a35a;
@@ -115533,7 +115533,7 @@ void FUN_18073a2c0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957128);
   }
 LAB_18073a35a:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -115688,14 +115688,14 @@ void FUN_18073a4c0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180746840(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073a55a;
@@ -115707,7 +115707,7 @@ void FUN_18073a4c0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957110);
   }
 LAB_18073a55a:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -116210,14 +116210,14 @@ void FUN_18073aab0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180746bd0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073ab4a;
@@ -116229,7 +116229,7 @@ void FUN_18073aab0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_1809573d8);
   }
 LAB_18073ab4a:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -116942,14 +116942,14 @@ void FUN_18073b310(UIHandle uiContext,UIDword dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180748290(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073b3a8;
@@ -116961,7 +116961,7 @@ void FUN_18073b310(UIHandle uiContext,UIDword dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957598);
   }
 LAB_18073b3a8:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -117115,18 +117115,18 @@ void FUN_18073b520(UIHandle uiContext)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
-    if (stackLong128 == 0) {
+    if (RenderContextSize == 0) {
 LAB_18073b573:
-      stackLong128 = 0;
+      RenderContextSize = 0;
     }
     else {
       processingResult = ReleaseUIMemoryResource();
@@ -117142,7 +117142,7 @@ LAB_18073b573:
     FUN_180749ef0(processingResult,1,uiContext,&UNK_1809570e8);
   }
 LAB_18073b5be:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -117165,14 +117165,14 @@ void FUN_18073b5f0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
   UIByte astackUInt198 [32];
   UIByte *pstackUInt178;
   UIHandle stackUInt170;
-  longlong stackLong168;
+  longlong AnimationStateValue;
   UIHandle stackUInt160;
   UIByte astackUInt158 [256];
   ulonglong stackUInt58;
   
   stackUInt58 = XorEncryptionKey ^ (ulonglong)astackUInt198;
-  stackLong168 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt160,&stackLong168);
+  AnimationStateValue = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt160,&AnimationStateValue);
   if (processingResult == 0) {
     stackUInt170 = param_6;
     pstackUInt178 = (UIByte *)resultPointer;
@@ -117200,7 +117200,7 @@ void FUN_18073b5f0(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,U
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957358);
   }
 FUN_18073b7af:
-  if (stackLong168 != 0) {
+  if (AnimationStateValue != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -117344,14 +117344,14 @@ void FUN_18073b810(UIHandle uiContext,UIDword dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180748b20(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073b8a8;
@@ -117363,7 +117363,7 @@ void FUN_18073b810(UIHandle uiContext,UIDword dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957338);
   }
 LAB_18073b8a8:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -117382,14 +117382,14 @@ void FUN_18073b8e0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180748b40(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073b97a;
@@ -117401,7 +117401,7 @@ void FUN_18073b8e0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957208);
   }
 LAB_18073b97a:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -117693,14 +117693,14 @@ void FUN_18073bc20(UIHandle uiContext,UIDword dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180748dd0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073bcb8;
@@ -117712,7 +117712,7 @@ void FUN_18073bc20(UIHandle uiContext,UIDword dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957158);
   }
 LAB_18073bcb8:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -117731,14 +117731,14 @@ void FUN_18073bcf0(UIHandle uiContext,UIDword dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180748ea0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073bd88;
@@ -117750,7 +117750,7 @@ void FUN_18073bcf0(UIHandle uiContext,UIDword dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_1809570f8);
   }
 LAB_18073bd88:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -117769,14 +117769,14 @@ void FUN_18073bdc0(UIHandle uiContext,UIDword dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180748ee0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073be58;
@@ -117788,7 +117788,7 @@ void FUN_18073bdc0(UIHandle uiContext,UIDword dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957188);
   }
 LAB_18073be58:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -117807,14 +117807,14 @@ void FUN_18073be90(UIHandle uiContext,UIDword dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_1807498f0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073bf28;
@@ -117826,7 +117826,7 @@ void FUN_18073be90(UIHandle uiContext,UIDword dataSource)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957260);
   }
 LAB_18073bf28:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -117845,14 +117845,14 @@ void FUN_18073bf60(UIHandle uiContext)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180749e60(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180749e60(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = ThunkUIBufferOperation(stackUInt120);
     if (processingResult == 0) goto LAB_18073bfe2;
@@ -117864,7 +117864,7 @@ void FUN_18073bf60(UIHandle uiContext)
     FUN_180749ef0(processingResult,1,uiContext,&UNK_180957310);
   }
 LAB_18073bfe2:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -118162,14 +118162,14 @@ void FUN_18073c2a0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x40))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073c33b;
@@ -118181,7 +118181,7 @@ void FUN_18073c2a0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_1809576a0);
   }
 LAB_18073c33b:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -118711,14 +118711,14 @@ void FUN_18073c8d0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x98))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073c96e;
@@ -118730,7 +118730,7 @@ void FUN_18073c8d0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_180957758);
   }
 LAB_18073c96e:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -118749,14 +118749,14 @@ void FUN_18073c9b0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x18))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073ca4b;
@@ -118768,7 +118768,7 @@ void FUN_18073c9b0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_180957620);
   }
 LAB_18073ca4b:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -118787,14 +118787,14 @@ void FUN_18073ca90(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x50))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073cb2b;
@@ -118806,7 +118806,7 @@ void FUN_18073ca90(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_1809576e0);
   }
 LAB_18073cb2b:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -118854,14 +118854,14 @@ void FUN_18073cc30(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x38))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073cccb;
@@ -118873,7 +118873,7 @@ void FUN_18073cc30(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_180957680);
   }
 LAB_18073cccb:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -118892,7 +118892,7 @@ void FUN_18073cd10(UIHandle uiContext,UIByte *dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
@@ -118901,8 +118901,8 @@ void FUN_18073cd10(UIHandle uiContext,UIByte *dataSource)
   if (dataSource != (UIByte *)0x0) {
     *dataSource = 0;
   }
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0xa8))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073cdb6;
@@ -118914,7 +118914,7 @@ void FUN_18073cd10(UIHandle uiContext,UIByte *dataSource)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_180957770);
   }
 LAB_18073cdb6:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -118933,14 +118933,14 @@ void FUN_18073cdf0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x118))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073ce8e;
@@ -118952,7 +118952,7 @@ void FUN_18073cdf0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_1809578b0);
   }
 LAB_18073ce8e:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -119754,14 +119754,14 @@ void FUN_18073d6e0(UIHandle uiContext,UIDword dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x90))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073d77c;
@@ -119773,7 +119773,7 @@ void FUN_18073d6e0(UIHandle uiContext,UIDword dataSource)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_180957740);
   }
 LAB_18073d77c:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -119792,14 +119792,14 @@ void FUN_18073d7c0(UIHandle uiContext,UIByte dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x58))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073d85d;
@@ -119811,7 +119811,7 @@ void FUN_18073d7c0(UIHandle uiContext,UIByte dataSource)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_180957700);
   }
 LAB_18073d85d:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -119830,14 +119830,14 @@ void FUN_18073d8a0(UIHandle uiContext,UIByte dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x10))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073d93d;
@@ -119849,7 +119849,7 @@ void FUN_18073d8a0(UIHandle uiContext,UIByte dataSource)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_180957600);
   }
 LAB_18073d93d:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -120086,14 +120086,14 @@ void FUN_18073dc80(UIHandle uiContext,UIByte dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x30))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073dd1d;
@@ -120105,7 +120105,7 @@ void FUN_18073dc80(UIHandle uiContext,UIByte dataSource)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_180957660);
   }
 LAB_18073dd1d:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -120124,14 +120124,14 @@ void FUN_18073dd60(UIHandle uiContext)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = func_0x00018074fb10(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 8))();
     if (processingResult == 0) goto LAB_18073dde3;
@@ -120143,7 +120143,7 @@ void FUN_18073dd60(UIHandle uiContext)
     FUN_180749ef0(processingResult,4,uiContext,&UNK_1809575e8);
   }
 LAB_18073dde3:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -120655,15 +120655,15 @@ void FUN_18073e470(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong *apstackLong128 [2];
+  longlong *apRenderContextSize [2];
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  processingResult = FUN_180752c80(uiContext,apstackLong128,0);
+  processingResult = FUN_180752c80(uiContext,apRenderContextSize,0);
   if (processingResult == 0) {
-    if (((int)apstackLong128[0][0x22] == 0) || ((int)apstackLong128[0][0x22] == 7)) {
-      processingResult = (**(code **)(*apstackLong128[0] + 0x120))(apstackLong128[0],dataSource);
+    if (((int)apRenderContextSize[0][0x22] == 0) || ((int)apRenderContextSize[0][0x22] == 7)) {
+      processingResult = (**(code **)(*apRenderContextSize[0] + 0x120))(apRenderContextSize[0],dataSource);
       if (processingResult == 0) goto LAB_18073e512;
     }
     else {
@@ -121127,21 +121127,21 @@ void FUN_18073ebd0(UIHandle uiContext)
   int uiValidationResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong *apstackLong128 [2];
+  longlong *apRenderContextSize [2];
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  uiValidationResult = FUN_180752c80(uiContext,apstackLong128,0);
+  uiValidationResult = FUN_180752c80(uiContext,apRenderContextSize,0);
   if (uiValidationResult == 0) {
-    allocatedMemory = apstackLong128[0][0x1b];
+    allocatedMemory = apRenderContextSize[0][0x1b];
     if (allocatedMemory == 0) {
       uiValidationResult = 0x1c;
     }
     else {
       uiValidationResult = FUN_180743c40(allocatedMemory);
       if (uiValidationResult == 0) {
-        uiValidationResult = (**(code **)(*apstackLong128[0] + 0x18))(apstackLong128[0],1);
+        uiValidationResult = (**(code **)(*apRenderContextSize[0] + 0x18))(apRenderContextSize[0],1);
         ReleaseUIMemoryResource(allocatedMemory);
       }
       if (uiValidationResult == 0) goto LAB_18073ec81;
@@ -121322,17 +121322,17 @@ void FUN_18073ee30(UIHandle uiContext,UIDword dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong *pstackLong128;
+  longlong *pRenderContextSize;
   longlong stackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
   stackLong120 = 0;
-  processingResult = FUN_180752c80(uiContext,&pstackLong128,&stackLong120);
+  processingResult = FUN_180752c80(uiContext,&pRenderContextSize,&stackLong120);
   if (processingResult == 0) {
-    if (((int)pstackLong128[0x22] == 0) || ((int)pstackLong128[0x22] == 7)) {
-      processingResult = (**(code **)(*pstackLong128 + 0x118))(pstackLong128,dataSource);
+    if (((int)pRenderContextSize[0x22] == 0) || ((int)pRenderContextSize[0x22] == 7)) {
+      processingResult = (**(code **)(*pRenderContextSize + 0x118))(pRenderContextSize,dataSource);
       if (processingResult == 0) goto LAB_18073eef2;
     }
     else {
@@ -121863,14 +121863,14 @@ void FUN_18073f4a0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180754f10(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180754f10(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180753560(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073f53a;
@@ -121882,7 +121882,7 @@ void FUN_18073f4a0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,3,uiContext,&UNK_180957ad0);
   }
 LAB_18073f53a:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -121901,14 +121901,14 @@ void FUN_18073f570(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180754f10(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180754f10(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180753580(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073f60a;
@@ -121920,7 +121920,7 @@ void FUN_18073f570(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,3,uiContext,&UNK_180957a78);
   }
 LAB_18073f60a:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -121939,14 +121939,14 @@ void FUN_18073f640(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180754f10(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180754f10(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180753600(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073f6da;
@@ -121958,7 +121958,7 @@ void FUN_18073f640(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,3,uiContext,&UNK_180957ab0);
   }
 LAB_18073f6da:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -121977,14 +121977,14 @@ void FUN_18073f710(UIHandle uiContext)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180754f10(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180754f10(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FreeUIMemory(stackUInt120);
     if (processingResult == 0) goto LAB_18073f792;
@@ -121996,7 +121996,7 @@ void FUN_18073f710(UIHandle uiContext)
     FUN_180749ef0(processingResult,3,uiContext,&UNK_180957a48);
   }
 LAB_18073f792:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -122015,14 +122015,14 @@ void FUN_18073f8b0(UIHandle uiContext,UIHandle *dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180758ed0(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180758ed0(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180756200(stackUInt120,dataSource);
   }
@@ -122035,7 +122035,7 @@ void FUN_18073f8b0(UIHandle uiContext,UIHandle *dataSource)
                      WARNING: Subroutine does not return
     FUN_180749ef0(processingResult,2,uiContext,&UNK_180957ba8);
   }
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -122054,7 +122054,7 @@ void FUN_18073f990(UIHandle uiContext,UIDword *dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
@@ -122063,8 +122063,8 @@ void FUN_18073f990(UIHandle uiContext,UIDword *dataSource)
   if (dataSource != (UIDword *)0x0) {
     *dataSource = 0;
   }
-  stackLong128 = 0;
-  processingResult = FUN_180758ed0(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180758ed0(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180756330(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073fa2f;
@@ -122076,7 +122076,7 @@ void FUN_18073f990(UIHandle uiContext,UIDword *dataSource)
     FUN_180749ef0(processingResult,2,uiContext,&UNK_180957be0);
   }
 LAB_18073fa2f:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -122237,7 +122237,7 @@ void FUN_18073fbb0(UIHandle uiContext,UIByte *dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
@@ -122246,8 +122246,8 @@ void FUN_18073fbb0(UIHandle uiContext,UIByte *dataSource)
   if (dataSource != (UIByte *)0x0) {
     *dataSource = 0;
   }
-  stackLong128 = 0;
-  processingResult = FUN_180758ed0(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180758ed0(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x1f0))(pstackLong120,dataSource);
     if (processingResult == 0) goto LAB_18073fc56;
@@ -122259,7 +122259,7 @@ void FUN_18073fbb0(UIHandle uiContext,UIByte *dataSource)
     FUN_180749ef0(processingResult,2,uiContext,&UNK_180957b90);
   }
 LAB_18073fc56:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -122278,14 +122278,14 @@ void FUN_18073fc90(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180758ed0(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180758ed0(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180756fe0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073fd2a;
@@ -122297,7 +122297,7 @@ void FUN_18073fc90(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,2,uiContext,&UNK_180957b70);
   }
 LAB_18073fd2a:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -122316,14 +122316,14 @@ void FUN_18073fd60(UIHandle uiContext,UIDword dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180758ed0(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180758ed0(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x000180757530(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073fdf8;
@@ -122335,7 +122335,7 @@ void FUN_18073fd60(UIHandle uiContext,UIDword dataSource)
     FUN_180749ef0(processingResult,2,uiContext,&UNK_180957bc8);
   }
 LAB_18073fdf8:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -122491,14 +122491,14 @@ void FUN_18073ff60(UIHandle uiContext,UIDword dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180758ed0(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180758ed0(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x0001807580b0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18073fff8;
@@ -122510,7 +122510,7 @@ void FUN_18073ff60(UIHandle uiContext,UIDword dataSource)
     FUN_180749ef0(processingResult,2,uiContext,&UNK_180957b28);
   }
 LAB_18073fff8:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -122848,14 +122848,14 @@ void FUN_180740410(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180763070(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x00018075e640(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_1807404aa;
@@ -122867,7 +122867,7 @@ void FUN_180740410(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,7,uiContext,&UNK_180957d78);
   }
 LAB_1807404aa:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -123330,14 +123330,14 @@ void FUN_180740c00(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180763070(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x00018075f440(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_180740c9a;
@@ -123349,7 +123349,7 @@ void FUN_180740c00(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,7,uiContext,&UNK_180957d68);
   }
 LAB_180740c9a:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -123397,14 +123397,14 @@ void FUN_180740d90(UIHandle uiContext)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180763070(uiContext,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180763070(uiContext,&pstackLong120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = (**(code **)(*pstackLong120 + 0x10))();
     if (processingResult == 0) goto LAB_180740e13;
@@ -123416,7 +123416,7 @@ void FUN_180740d90(UIHandle uiContext)
     FUN_180749ef0(processingResult,7,uiContext,&UNK_180957bf8);
   }
 LAB_180740e13:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -123435,14 +123435,14 @@ void FUN_180740e50(UIHandle uiContext)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180763070(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_1807603e0(stackUInt120);
     if (processingResult == 0) goto LAB_180740ed2;
@@ -123454,7 +123454,7 @@ void FUN_180740e50(UIHandle uiContext)
     FUN_180749ef0(processingResult,7,uiContext,&UNK_180957c80);
   }
 LAB_180740ed2:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -123473,14 +123473,14 @@ void FUN_180740f10(UIHandle uiContext,UIByte dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180763070(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = FUN_180762070(stackUInt120,dataSource,1);
     if (processingResult == 0) goto LAB_180740faf;
@@ -123492,7 +123492,7 @@ void FUN_180740f10(UIHandle uiContext,UIByte dataSource)
     FUN_180749ef0(processingResult,7,uiContext,&UNK_180957c48);
   }
 LAB_180740faf:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -123511,14 +123511,14 @@ void FUN_180740ff0(UIHandle uiContext,UIByte dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180763070(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x0001807621a0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18074108c;
@@ -123530,7 +123530,7 @@ void FUN_180740ff0(UIHandle uiContext,UIByte dataSource)
     FUN_180749ef0(processingResult,7,uiContext,&UNK_180957c58);
   }
 LAB_18074108c:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -123549,14 +123549,14 @@ void FUN_1807410d0(UIHandle uiContext,UIHandle dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   UIHandle stackUInt120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  processingResult = FUN_180763070(uiContext,&stackUInt120,&stackLong128);
+  RenderContextSize = 0;
+  processingResult = FUN_180763070(uiContext,&stackUInt120,&RenderContextSize);
   if (processingResult == 0) {
     processingResult = func_0x0001807621e0(stackUInt120,dataSource);
     if (processingResult == 0) goto LAB_18074116a;
@@ -123568,7 +123568,7 @@ void FUN_1807410d0(UIHandle uiContext,UIHandle dataSource)
     FUN_180749ef0(processingResult,7,uiContext,&UNK_180957c90);
   }
 LAB_18074116a:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
@@ -189058,7 +189058,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
   UIDword stackUInt140;
   uint stackUInt138;
   longlong stackLong130;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong stackLong120;
   ulonglong stackUInt118;
   longlong stackLong110;
@@ -189068,7 +189068,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
   
   stackUInt88 = XorEncryptionKey ^ (ulonglong)astackUInt198;
   stackUInt138 = bufferSize;
-  stackLong128 = targetBuffer;
+  RenderContextSize = targetBuffer;
   stackLong110 = dataSource;
   if (dataSource != 0) {
     stackLong120 = dataSource;
@@ -189234,7 +189234,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
           afStack_108[0] = 0.0;
           result = dataSource + (ulonglong)eventTypeCode * 4;
           pfloatResult6 = (float *)((ulonglong)eventTypeCode * 4 + allocatedMemory7);
-          iterationCount = stackLong128 + (ulonglong)eventTypeCode * 4;
+          iterationCount = RenderContextSize + (ulonglong)eventTypeCode * 4;
           if (0 < (int)resultPointer) {
             result1 = result3;
             CounterResult = result3;
@@ -189386,7 +189386,7 @@ void FUN_18077f380(longlong uiContext,longlong dataSource,longlong targetBuffer,
       do {
         localInt6 = (int)result3;
         eventTypeCode = localInt6 * resultPointer;
-        allocatedMemory8 = stackLong128 + (ulonglong)eventTypeCode * 4;
+        allocatedMemory8 = RenderContextSize + (ulonglong)eventTypeCode * 4;
         if (0 < (int)resultPointer) {
           stackLong130 = (longlong)afStack_108 - uiContext;
           pfloatResult6 = (float *)(uiContext + 0x22c);
@@ -202513,7 +202513,7 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,UIHandle *targetBuffer
   UIByte astackUInt1a8 [32];
   UIDword stackUInt188;
   longlong astackLong178 [2];
-  longlong *pstackLong168;
+  longlong *pAnimationStateValue;
   undefined *pstackUInt160;
   UIHandle stackUInt158;
   longlong stackLong150;
@@ -202525,7 +202525,7 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,UIHandle *targetBuffer
   UIDword stackUInt134;
   UIDword stackUInt130;
   UIDword stackUInt12c;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong stackLong120;
   longlong stackLong118;
   longlong stackLong110;
@@ -202582,7 +202582,7 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,UIHandle *targetBuffer
       *pEventDataIndex = (longlong)pEventDataIndex;
       pContextHandleData[0x43] = 0;
       pEventDataIndex = (longlong *)func_0x00018076e530();
-      pstackLong168 = (longlong *)*pEventDataIndex;
+      pAnimationStateValue = (longlong *)*pEventDataIndex;
       stackUInt158 = pEventDataIndex[2];
       stackLong150 = pEventDataIndex[3];
       stackUInt148 = (UIDword)pEventDataIndex[4];
@@ -202596,42 +202596,42 @@ void FUN_18078cae0(longlong uiContext,longlong dataSource,UIHandle *targetBuffer
       if (targetBuffer == (UIHandle *)(uiContext + 0x116e0)) {
         result = (ulonglong)stackUInt158 >> 0x20;
         stackUInt158 = CONCAT44((int)result,0x2b8);
-        pContextHandleData = &stackLong128;
-        stackLong128 = *pstackLong168;
-        stackLong120 = pstackLong168[1];
-        stackLong118 = pstackLong168[2];
-        stackLong110 = pstackLong168[3];
-        stackLong108 = pstackLong168[4];
-        stackLongf8 = pstackLong168[6];
-        stackLongf0 = pstackLong168[7];
-        stackLonge8 = pstackLong168[8];
-        stackLonge0 = pstackLong168[9];
-        stackLongd8 = pstackLong168[10];
-        stackLongd0 = pstackLong168[0xb];
-        stackLongc8 = pstackLong168[0xc];
-        stackLongc0 = pstackLong168[0xd];
-        stackLongb8 = pstackLong168[0xe];
-        stackLongb0 = pstackLong168[0xf];
-        stackLonga8 = pstackLong168[0x10];
-        stackLonga0 = pstackLong168[0x11];
-        stackLong98 = pstackLong168[0x12];
-        stackLong90 = pstackLong168[0x13];
-        stackLong88 = pstackLong168[0x14];
-        stackLong80 = pstackLong168[0x15];
-        stackUInt78 = (UIDword)pstackLong168[0x16];
-        stackUInt74 = *(UIDword *)((longlong)pstackLong168 + 0xb4);
-        stackUInt70 = (UIDword)pstackLong168[0x17];
-        stackUInt6c = *(UIDword *)((longlong)pstackLong168 + 0xbc);
-        stackUInt68 = (UIDword)pstackLong168[0x18];
-        stackUInt64 = *(UIDword *)((longlong)pstackLong168 + 0xc4);
-        stackUInt60 = (UIDword)pstackLong168[0x19];
-        stackUInt5c = *(UIDword *)((longlong)pstackLong168 + 0xcc);
-        stackLong58 = pstackLong168[0x1a];
-        stackUInt100 = pstackLong168[5] & 0xffffffff;
+        pContextHandleData = &RenderContextSize;
+        RenderContextSize = *pAnimationStateValue;
+        stackLong120 = pAnimationStateValue[1];
+        stackLong118 = pAnimationStateValue[2];
+        stackLong110 = pAnimationStateValue[3];
+        stackLong108 = pAnimationStateValue[4];
+        stackLongf8 = pAnimationStateValue[6];
+        stackLongf0 = pAnimationStateValue[7];
+        stackLonge8 = pAnimationStateValue[8];
+        stackLonge0 = pAnimationStateValue[9];
+        stackLongd8 = pAnimationStateValue[10];
+        stackLongd0 = pAnimationStateValue[0xb];
+        stackLongc8 = pAnimationStateValue[0xc];
+        stackLongc0 = pAnimationStateValue[0xd];
+        stackLongb8 = pAnimationStateValue[0xe];
+        stackLongb0 = pAnimationStateValue[0xf];
+        stackLonga8 = pAnimationStateValue[0x10];
+        stackLonga0 = pAnimationStateValue[0x11];
+        stackLong98 = pAnimationStateValue[0x12];
+        stackLong90 = pAnimationStateValue[0x13];
+        stackLong88 = pAnimationStateValue[0x14];
+        stackLong80 = pAnimationStateValue[0x15];
+        stackUInt78 = (UIDword)pAnimationStateValue[0x16];
+        stackUInt74 = *(UIDword *)((longlong)pAnimationStateValue + 0xb4);
+        stackUInt70 = (UIDword)pAnimationStateValue[0x17];
+        stackUInt6c = *(UIDword *)((longlong)pAnimationStateValue + 0xbc);
+        stackUInt68 = (UIDword)pAnimationStateValue[0x18];
+        stackUInt64 = *(UIDword *)((longlong)pAnimationStateValue + 0xc4);
+        stackUInt60 = (UIDword)pAnimationStateValue[0x19];
+        stackUInt5c = *(UIDword *)((longlong)pAnimationStateValue + 0xcc);
+        stackLong58 = pAnimationStateValue[0x1a];
+        stackUInt100 = pAnimationStateValue[5] & 0xffffffff;
       }
       stackUInt188 = CONCAT31(stackUInt188._1_3_,1);
       pstackUInt160 = &UNK_18095af28;
-      uiValidationResult = ProcessUIDataTransfer(uiContext,&pstackLong168,pContextHandleData,astackLong178);
+      uiValidationResult = ProcessUIDataTransfer(uiContext,&pAnimationStateValue,pContextHandleData,astackLong178);
       pEventDataIndex = pContextHandleData;
       if (uiValidationResult == 0) {
         pContextHandleData[0xe] = astackLong178[0];
@@ -289562,7 +289562,7 @@ void FUN_180845520(UIHandle uiContext,UIHandle *dataSource)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong astackLong128 [2];
+  longlong aRenderContextSize [2];
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
@@ -289572,9 +289572,9 @@ void FUN_180845520(UIHandle uiContext,UIHandle *dataSource)
   }
   else {
     *dataSource = 0;
-    processingResult = func_0x00018088c590(uiContext,astackLong128);
+    processingResult = func_0x00018088c590(uiContext,aRenderContextSize);
     if (processingResult == 0) {
-      *dataSource = *(UIHandle *)(astackLong128[0] + 0x78);
+      *dataSource = *(UIHandle *)(aRenderContextSize[0] + 0x78);
       goto LAB_1808455bc;
     }
   }
@@ -289799,7 +289799,7 @@ void FUN_180845ef0(ulonglong uiContext,uint *dataSource)
   UIByte *pstackUInt148;
   UIHandle stackUInt138;
   longlong stackLong130;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong stackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
@@ -289818,17 +289818,17 @@ void FUN_180845ef0(ulonglong uiContext,uint *dataSource)
   *dataSource = 0;
   stackUInt138 = 0;
   stackLong130 = 0;
-  stackLong128 = 0;
+  RenderContextSize = 0;
   processingResult = func_0x00018088c590(0,&stackLong130);
   if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,stackLong130), processingResult == 0)) &&
      (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong120), processingResult == 0)) {
-    stackLong128 = *(longlong *)(stackLong120 + 8);
+    RenderContextSize = *(longlong *)(stackLong120 + 8);
   }
   else if (processingResult != 0) {
                      WARNING: Subroutine does not return
     FUN_18088c790(&stackUInt138);
   }
-  componentIndex = FUN_18083fbf0(*(UIHandle *)(stackLong130 + 800),stackLong128 + 0x30);
+  componentIndex = FUN_18083fbf0(*(UIHandle *)(stackLong130 + 800),RenderContextSize + 0x30);
   if (componentIndex != 0) {
     ptrLocal3 = (uint *)FUN_18084cde0(componentIndex,&stackLong120);
     *dataSource = *ptrLocal3 / 0x30;
@@ -290031,7 +290031,7 @@ void FUN_1808464f0(ulonglong uiContext,UIDword *dataSource)
   UIByte *pstackUInt148;
   UIHandle stackUInt138;
   UIHandle stackUInt130;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong stackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
@@ -290050,17 +290050,17 @@ void FUN_1808464f0(ulonglong uiContext,UIDword *dataSource)
   *dataSource = 0;
   stackUInt138 = 0;
   stackUInt130 = 0;
-  stackLong128 = 0;
+  RenderContextSize = 0;
   processingResult = func_0x00018088c590(0,&stackUInt130);
   if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,stackUInt130), processingResult == 0)) &&
      (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong120), processingResult == 0)) {
-    stackLong128 = *(longlong *)(stackLong120 + 8);
+    RenderContextSize = *(longlong *)(stackLong120 + 8);
   }
   else if (processingResult != 0) {
                      WARNING: Subroutine does not return
     FUN_18088c790(&stackUInt138);
   }
-  *dataSource = *(UIDword *)(stackLong128 + 0x88);
+  *dataSource = *(UIDword *)(RenderContextSize + 0x88);
                      WARNING: Subroutine does not return
   FUN_18088c790(&stackUInt138);
 }
@@ -290080,7 +290080,7 @@ void FUN_180846610(ulonglong uiContext,UIByte *dataSource,int targetBuffer,UIDwo
   UIDword *pstackUInt188;
   UIHandle stackUInt178;
   UIHandle stackUInt170;
-  longlong stackLong168;
+  longlong AnimationStateValue;
   longlong stackLong160;
   UIDword stackUInt158;
   UIDword stackUInt154;
@@ -290097,22 +290097,22 @@ void FUN_180846610(ulonglong uiContext,UIByte *dataSource,int targetBuffer,UIDwo
     *bufferSize = 0;
   }
   if (((dataSource != (UIByte *)0x0) || (targetBuffer == 0)) && (-1 < targetBuffer)) {
-    stackLong168 = 0;
+    AnimationStateValue = 0;
     stackUInt178 = 0;
     stackUInt170 = 0;
     processingResult = func_0x00018088c590(0,&stackUInt170);
     if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt178,stackUInt170), processingResult == 0)) &&
        (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong160), processingResult == 0)) {
-      stackLong168 = *(longlong *)(stackLong160 + 8);
+      AnimationStateValue = *(longlong *)(stackLong160 + 8);
     }
     else if (processingResult != 0) {
                      WARNING: Subroutine does not return
       FUN_18088c790(&stackUInt178);
     }
-    stackUInt158 = *(UIDword *)(stackLong168 + 0x10);
-    stackUInt154 = *(UIDword *)(stackLong168 + 0x14);
-    stackUInt150 = *(UIDword *)(stackLong168 + 0x18);
-    stackUInt14c = *(UIDword *)(stackLong168 + 0x1c);
+    stackUInt158 = *(UIDword *)(AnimationStateValue + 0x10);
+    stackUInt154 = *(UIDword *)(AnimationStateValue + 0x14);
+    stackUInt150 = *(UIDword *)(AnimationStateValue + 0x18);
+    stackUInt14c = *(UIDword *)(AnimationStateValue + 0x1c);
     pstackUInt188 = bufferSize;
     FUN_180882160(stackUInt170,&stackUInt158,dataSource,targetBuffer);
                      WARNING: Subroutine does not return
@@ -290505,7 +290505,7 @@ void FUN_180846fe0(ulonglong uiContext,UIHandle *dataSource)
   UIByte *pstackUInt148;
   UIHandle stackUInt138;
   UIHandle stackUInt130;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong stackLong120;
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
@@ -290524,17 +290524,17 @@ void FUN_180846fe0(ulonglong uiContext,UIHandle *dataSource)
   *dataSource = 0;
   stackUInt138 = 0;
   stackUInt130 = 0;
-  stackLong128 = 0;
+  RenderContextSize = 0;
   processingResult = func_0x00018088c590(0,&stackUInt130);
   if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,stackUInt130), processingResult == 0)) &&
      (processingResult = func_0x00018088c530(uiContext & 0xffffffff,&stackLong120), processingResult == 0)) {
-    stackLong128 = *(longlong *)(stackLong120 + 8);
+    RenderContextSize = *(longlong *)(stackLong120 + 8);
   }
   else if (processingResult != 0) {
                      WARNING: Subroutine does not return
     FUN_18088c790(&stackUInt138);
   }
-  *dataSource = *(UIHandle *)(*(longlong *)(stackLong128 + 0xd0) + 0x38);
+  *dataSource = *(UIHandle *)(*(longlong *)(RenderContextSize + 0xd0) + 0x38);
                      WARNING: Subroutine does not return
   FUN_18088c790(&stackUInt138);
 }
@@ -291271,7 +291271,7 @@ void FUN_180848090(ulonglong uiContext,longlong dataSource,UIDword targetBuffer,
   UIByte *pstackUInt188;
   UIDword stackUInt178;
   UIHandle stackUInt170;
-  longlong stackLong168;
+  longlong AnimationStateValue;
   UIHandle *pstackUInt160;
   UIByte astackUInt158 [256];
   ulonglong stackUInt58;
@@ -291297,9 +291297,9 @@ void FUN_180848090(ulonglong uiContext,longlong dataSource,UIDword targetBuffer,
     FUN_180749ef0(0x1f,0xb,uiContext,&UNK_180982570);
   }
   stackUInt170 = 0;
-  uiCompareResult = func_0x00018088c590(uiContext & 0xffffffff,&stackLong168);
+  uiCompareResult = func_0x00018088c590(uiContext & 0xffffffff,&AnimationStateValue);
   if (uiCompareResult == 0) {
-    if ((*(uint *)(stackLong168 + 0x24) >> 1 & 1) == 0) goto LAB_180848132;
+    if ((*(uint *)(AnimationStateValue + 0x24) >> 1 & 1) == 0) goto LAB_180848132;
     TempInt4 = FUN_18088c740(&stackUInt170);
     if (TempInt4 == 0) goto LAB_18084820e;
   }
@@ -291308,7 +291308,7 @@ LAB_18084820e:
     TempInt4 = uiCompareResult;
   }
   if ((TempInt4 == 0) &&
-     (uiCompareResult = FUN_18088dec0(*(UIHandle *)(stackLong168 + 0x98),&pstackUInt160,0x218), uiCompareResult == 0)) {
+     (uiCompareResult = FUN_18088dec0(*(UIHandle *)(AnimationStateValue + 0x98),&pstackUInt160,0x218), uiCompareResult == 0)) {
     *pstackUInt160 = &UNK_180982508;
     *(UIDword *)(pstackUInt160 + 2) = 0;
     *(UIDword *)(pstackUInt160 + 1) = 0x218;
@@ -292910,16 +292910,16 @@ void FUN_180849bb0(UIHandle uiContext,UIHandle dataSource,UIDword targetBuffer,U
   int processingResult;
   int uiValidationResult;
   UIByte astackUInt198 [48];
-  longlong stackLong168;
+  longlong AnimationStateValue;
   UIHandle *pstackUInt160;
   UIHandle astackUInt158 [34];
   ulonglong stackUInt48;
   
   stackUInt48 = XorEncryptionKey ^ (ulonglong)astackUInt198;
   astackUInt158[0] = 0;
-  processingResult = func_0x00018088c590(uiContext,&stackLong168);
+  processingResult = func_0x00018088c590(uiContext,&AnimationStateValue);
   if (processingResult == 0) {
-    if ((*(uint *)(stackLong168 + 0x24) >> 1 & 1) == 0) goto LAB_180849c81;
+    if ((*(uint *)(AnimationStateValue + 0x24) >> 1 & 1) == 0) goto LAB_180849c81;
     uiValidationResult = FUN_18088c740(astackUInt158);
     if (uiValidationResult == 0) goto LAB_180849c22;
   }
@@ -292928,14 +292928,14 @@ LAB_180849c22:
     uiValidationResult = processingResult;
   }
   if ((uiValidationResult == 0) &&
-     (processingResult = FUN_18088dec0(*(UIHandle *)(stackLong168 + 0x98),&pstackUInt160,0x28), processingResult == 0)) {
+     (processingResult = FUN_18088dec0(*(UIHandle *)(AnimationStateValue + 0x98),&pstackUInt160,0x28), processingResult == 0)) {
     *pstackUInt160 = &UNK_180983e88;
     *(UIDword *)(pstackUInt160 + 1) = 0x28;
     *(UIDword *)(pstackUInt160 + 4) = targetBuffer;
     *(int *)(pstackUInt160 + 2) = (int)uiContext;
     pstackUInt160[3] = dataSource;
     *(UIByte *)((longlong)pstackUInt160 + 0x24) = bufferSize;
-    func_0x00018088e0d0(*(UIHandle *)(stackLong168 + 0x98));
+    func_0x00018088e0d0(*(UIHandle *)(AnimationStateValue + 0x98));
   }
 LAB_180849c81:
                      WARNING: Subroutine does not return
@@ -293241,21 +293241,21 @@ void FUN_18084a680(UIDword uiContext,UIHandle dataSource)
   UIByte astackUInt168 [48];
   UIHandle stackUInt138;
   UIHandle stackUInt130;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong astackLong120 [33];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt168;
-  stackLong128 = 0;
+  RenderContextSize = 0;
   stackUInt138 = 0;
   stackUInt130 = 0;
   processingResult = func_0x00018088c590(0,&stackUInt130);
   if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,stackUInt130), processingResult == 0)) &&
      (processingResult = func_0x00018088c530(uiContext,astackLong120), processingResult == 0)) {
-    stackLong128 = *(longlong *)(astackLong120[0] + 8);
+    RenderContextSize = *(longlong *)(astackLong120[0] + 8);
   }
   else if (processingResult != 0) goto LAB_18084a719;
-  *(UIHandle *)(*(longlong *)(stackLong128 + 0xd0) + 0x38) = dataSource;
+  *(UIHandle *)(*(longlong *)(RenderContextSize + 0xd0) + 0x38) = dataSource;
 LAB_18084a719:
                      WARNING: Subroutine does not return
   FUN_18088c790(&stackUInt138);
@@ -293274,26 +293274,26 @@ void FUN_18084a7a0(UIDword uiContext,UIHandle dataSource)
   UIByte astackUInt168 [48];
   UIHandle stackUInt138;
   UIHandle stackUInt130;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong astackLong120 [33];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt168;
-  stackLong128 = 0;
+  RenderContextSize = 0;
   stackUInt138 = 0;
   stackUInt130 = 0;
   processingResult = func_0x00018088c590(0,&stackUInt130);
   if (((processingResult == 0) && (processingResult = FUN_18088c740(&stackUInt138,stackUInt130), processingResult == 0)) &&
      (processingResult = func_0x00018088c530(uiContext,astackLong120), processingResult == 0)) {
     if (astackLong120[0] == 0) {
-      stackLong128 = astackLong120[0];
+      RenderContextSize = astackLong120[0];
     }
     else {
-      stackLong128 = astackLong120[0] + -8;
+      RenderContextSize = astackLong120[0] + -8;
     }
   }
   else if (processingResult != 0) goto LAB_18084a83e;
-  *(UIHandle *)(stackLong128 + 0x30) = dataSource;
+  *(UIHandle *)(RenderContextSize + 0x30) = dataSource;
 LAB_18084a83e:
                      WARNING: Subroutine does not return
   FUN_18088c790(&stackUInt138);
@@ -293878,19 +293878,19 @@ void FUN_18084b410(UIHandle uiContext)
   int processingResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong astackLong128 [2];
+  longlong aRenderContextSize [2];
   UIByte astackUInt118 [256];
   ulonglong stackUInt18;
   
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  processingResult = func_0x00018088c590(uiContext,astackLong128);
-  if ((processingResult == 0) && ((*(uint *)(astackLong128[0] + 0x24) >> 1 & 1) == 0)) {
+  processingResult = func_0x00018088c590(uiContext,aRenderContextSize);
+  if ((processingResult == 0) && ((*(uint *)(aRenderContextSize[0] + 0x24) >> 1 & 1) == 0)) {
     processingResult = 0x4b;
 LAB_18084b46d:
     if (processingResult == 0) goto LAB_18084b4a9;
   }
   else if (processingResult == 0) {
-    processingResult = FUN_18088e220(*(UIHandle *)(astackLong128[0] + 0x98));
+    processingResult = FUN_18088e220(*(UIHandle *)(aRenderContextSize[0] + 0x98));
     if (processingResult == 0) goto LAB_18084b4a9;
     goto LAB_18084b46d;
   }
@@ -301833,7 +301833,7 @@ void FUN_180850b70(UIHandle *uiContext,UIHandle dataSource,longlong targetBuffer
   ulonglong result9;
   longlong *colorBufferPointer0;
   UIByte astackUInt148 [32];
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   longlong *pstackLong118;
   longlong stackLong110;
@@ -301885,7 +301885,7 @@ void FUN_180850b70(UIHandle *uiContext,UIHandle dataSource,longlong targetBuffer
   CharacterDataOffset = FUN_180851c50(uiContext[1],dataSource,IndexResult);
   if (CharacterDataOffset != 0) goto LAB_180851437;
   pstackLong118 = (longlong *)0x0;
-  stackLong128 = targetBuffer;
+  RenderContextSize = targetBuffer;
   localInt5 = FUN_1808bc2e0(uiContext[2],&pstackLong118,localLong8,IndexResult);
   if (localInt5 != 0) goto LAB_180851437;
   stackLonge0 = uiContext[2];
@@ -302053,7 +302053,7 @@ LAB_180850eb0:
             allocatedMemory6 = pstackUInta8[2];
             EventTypeCode = (**(code **)(*pstackLong118 + 0x20))(pstackLong118);
             pstackLong120 = &stackLong110;
-            stackLong128 = CONCAT44(stackLong128._4_4_,*(UIDword *)(localLong8 + result9 * 4));
+            RenderContextSize = CONCAT44(RenderContextSize._4_4_,*(UIDword *)(localLong8 + result9 * 4));
             localInt7 = FUN_1808b4570(allocatedMemory6 + 0x388,(longlong)(int)result0 * 0x10 + CharacterDataOffset,stackLongc0,
                                   EventTypeCode);
             allocatedMemory3 = stackLongb0;
@@ -302093,7 +302093,7 @@ LAB_180850eb0:
               allocatedMemory6 = pstackUInta8[2];
               EventTypeCode = (**(code **)(*pstackLong118 + 0x20))(pstackLong118);
               pstackLong120 = &stackLong110;
-              stackLong128 = CONCAT44(stackLong128._4_4_,*(UIDword *)(localLong8 + result9 * 4));
+              RenderContextSize = CONCAT44(RenderContextSize._4_4_,*(UIDword *)(localLong8 + result9 * 4));
               localInt5 = FUN_1808b4570(allocatedMemory6 + 0x388,(longlong)(int)result0 * 0x10 + CharacterDataOffset,stackLongc0,
                                     EventTypeCode);
               allocatedMemory3 = stackLongb0;
@@ -305088,7 +305088,7 @@ void FUN_180853230(longlong uiContext)
   int uiValidationResult;
   UIByte astackUInt158 [32];
   UIByte *pstackUInt138;
-  longlong stackLong128;
+  longlong RenderContextSize;
   longlong *pstackLong120;
   UIByte astackUInt118 [232];
   UIHandle stackUInt30;
@@ -305101,8 +305101,8 @@ void FUN_180853230(longlong uiContext)
   }
   result = *(UIHandle *)(uiContext + 0x78);
   stackUInt18 = XorEncryptionKey ^ (ulonglong)astackUInt158;
-  stackLong128 = 0;
-  uiValidationResult = func_0x00018074fb10(result,&pstackLong120,&stackLong128);
+  RenderContextSize = 0;
+  uiValidationResult = func_0x00018074fb10(result,&pstackLong120,&RenderContextSize);
   if (uiValidationResult == 0) {
     uiValidationResult = (**(code **)(*pstackLong120 + 0x10))(pstackLong120,1);
     if (uiValidationResult == 0) goto LAB_18073d93d;
@@ -305114,7 +305114,7 @@ void FUN_180853230(longlong uiContext)
     FUN_180749ef0(uiValidationResult,4,result,&UNK_180957600);
   }
 LAB_18073d93d:
-  if (stackLong128 != 0) {
+  if (RenderContextSize != 0) {
     ReleaseUIMemoryResource();
   }
                      WARNING: Subroutine does not return
