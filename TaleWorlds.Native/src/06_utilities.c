@@ -1794,6 +1794,15 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 #define ExceptionHandlerTempOffset1e38 0x1e38               // 异常处理器临时偏移量1e38
 #define ExceptionHandlerStateOffset1e40 0x1e40              // 异常处理器状态偏移量1e40
 #define ExceptionHandlerStatusOffset1e50 0x1e50             // 异常处理器状态偏移量1e50
+// 异常处理器1f00系列偏移量常量
+#define ExceptionHandlerCallbackOffset1f00 0x1f00            // 异常处理器回调偏移量1f00
+#define ExceptionHandlerCallbackParamOffset1ef0 0x1ef0      // 异常处理器回调参数偏移量1ef0
+#define ExceptionHandlerTempOffset1ec8 0x1ec8               // 异常处理器临时偏移量1ec8
+#define ExceptionHandlerStateOffset1ed0 0x1ed0              // 异常处理器状态偏移量1ed0
+#define ExceptionHandlerStatusOffset1ee0 0x1ee0             // 异常处理器状态偏移量1ee0
+#define ExceptionHandlerTempOffset1ea8 0x1ea8               // 异常处理器临时偏移量1ea8
+#define ExceptionHandlerStateOffset1eb0 0x1eb0              // 异常处理器状态偏移量1eb0
+#define ExceptionHandlerStatusOffset1ec0 0x1ec0             // 异常处理器状态偏移量1ec0
 
 // 异常处理器函数指针偏移量常量
 #define ExceptionHandlerFunctionPointerOffset1220 0x1220    // 异常处理器函数指针偏移量1220
@@ -5208,17 +5217,17 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 // 功能：在0x2e0偏移处设置默认异常处理器B
 #define SetDefaultExceptionHandlerM Unwind_180909ae0
 
-// 原始函数名：FUN_180942460 - 全局指针设置函数A39
-// 功能：设置全局数据指针A39到指定地址
-#define SetGlobalDataPointerA39 FUN_180942460
+// 原始函数名：FUN_180942460 - 数据压缩函数A1
+// 功能：压缩数据并返回压缩结果
+#define CompressDataAndReturnResult FUN_180942460
 
-// 原始函数名：FUN_180942480 - 全局指针设置函数A40
-// 功能：设置全局数据指针A40到指定地址
-#define SetGlobalDataPointerA40 FUN_180942480
+// 原始函数名：FUN_180942480 - 数据解压缩函数A1
+// 功能：解压缩数据并返回解压缩结果
+#define DecompressDataAndReturnResult FUN_180942480
 
-// 原始函数名：FUN_1809424a0 - 全局指针设置函数A41
-// 功能：设置全局数据指针A41到指定地址
-#define SetGlobalDataPointerA41 FUN_1809424a0
+// 原始函数名：FUN_1809424a0 - 数据加密函数A1
+// 功能：加密数据并返回加密结果
+#define EncryptDataAndReturnResult FUN_1809424a0
 
 // 全局指针设置函数B系列语义化宏定义
 // 原始函数名：FUN_180941820 - 全局指针设置函数B1
@@ -110279,29 +110288,29 @@ void DualExceptionContextCleanupHandler(DataBuffer operationBase,int64_t dataBuf
  * 
  * @note 原始函数名：Unwind_180910d80
  */
-void DualExceptionContextCleanupHandlerB(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void DualExceptionContextCleanupHandlerB(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  if (*(FunctionPointer**)(exceptionHandlerContext + 0x1e90) != (code *)0x0) {
-    (**(FunctionPointer**)(exceptionHandlerContext + 0x1e90))(exceptionHandlerContext + 0x1e80,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerCallbackOffset1e90) != (code *)0x0) {
+    (**(FunctionPointer**)(exceptionHandlerContext + ExceptionHandlerCallbackOffset1e90))(exceptionHandlerContext + ExceptionHandlerCallbackParamOffset1e80, 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1e58) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1e60) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset1e58) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerStateOffset1e60) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1e60) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x1e70) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1e58) = &DefaultExceptionHandlerB;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1e38) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x1e40) != 0) {
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerStateOffset1e60) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerStatusOffset1e70) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset1e58) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset1e38) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerStateOffset1e40) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x1e40) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x1e50) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x1e38) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerStateOffset1e40) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerStatusOffset1e50) = 0;
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerTempOffset1e38) = &DefaultExceptionHandlerB;
   return;
 }
 
