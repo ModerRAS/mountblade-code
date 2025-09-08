@@ -201997,8 +201997,13 @@ UIHandle FUN_18078ac65(UIHandle uiContext)
 
 
  void FUN_18078acd5(void)
-void FUN_18078acd5(void)
-
+/**
+ * @brief 执行UI系统初始化检查
+ * 
+ * 调用UI系统初始化检查函数，确保UI系统处于正确的初始化状态。
+ * 这个函数通常在系统启动或重置时调用。
+ */
+void ExecuteUIInitializationCheck(void)
 {
   FUN_1807869c0();
   return;
