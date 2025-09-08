@@ -5168,61 +5168,127 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define SetEmergencyExceptionHandler FUN_1809427f0
 
-// 原始函数名：FUN_180942810 - 设置系统异常处理器
-// 功能：设置系统异常处理器
+/**
+ * @brief 设置系统异常处理器
+ * 
+ * 配置和设置系统的异常处理器，负责处理系统运行时的异常情况
+ * 
+ * @note 原始函数名：FUN_180942810
+ */
 #define SetSystemExceptionHandler FUN_180942810
 
-// 原始函数名：FUN_180943020 - 销毁互斥锁A
-// 功能：销毁互斥锁A，释放相关资源
+/**
+ * @brief 销毁互斥锁A
+ * 
+ * 销毁互斥锁A并释放相关资源，确保系统资源的正确清理
+ * 
+ * @note 原始函数名：FUN_180943020
+ */
 #define DestroyMutexA FUN_180943020
 
-// 原始函数名：FUN_180943040 - 销毁互斥锁B
-// 功能：销毁互斥锁B，释放相关资源
+/**
+ * @brief 销毁互斥锁B
+ * 
+ * 销毁互斥锁B并释放相关资源，确保系统资源的正确清理
+ * 
+ * @note 原始函数名：FUN_180943040
+ */
 #define DestroyMutexB FUN_180943040
 
-// 原始函数名：FUN_180943070 - 销毁互斥锁C
-// 功能：销毁互斥锁C，释放相关资源
+/**
+ * @brief 销毁互斥锁C
+ * 
+ * 销毁互斥锁C并释放相关资源，确保系统资源的正确清理
+ * 
+ * @note 原始函数名：FUN_180943070
+ */
 #define DestroyMutexC FUN_180943070
 
-// 原始函数名：CleanupResourceHandler - 资源清理处理函数
-// 功能：清理和释放系统资源
+/**
+ * @brief 资源清理处理函数
+ * 
+ * 清理和释放系统资源，确保系统资源的正确回收和释放
+ * 
+ * @note 原始函数名：CleanupResourceHandler
+ */
 #define CleanupResourceHandler CleanupResourceHandler
 
-// 原始函数名：ValidateDataHandler - 数据验证处理函数
-// 功能：验证数据的有效性和完整性
+/**
+ * @brief 数据验证处理函数
+ * 
+ * 验证数据的有效性和完整性，确保数据符合预期的格式和范围
+ * 
+ * @note 原始函数名：ValidateDataHandler
+ */
 #define ValidateDataHandler ValidateDataHandler
 
-// 原始函数名：CleanupBufferHandler - 缓冲区清理处理函数
-// 功能：清理数据缓冲区，释放内存资源
+/**
+ * @brief 缓冲区清理处理函数
+ * 
+ * 清理数据缓冲区，释放内存资源，防止内存泄漏
+ * 
+ * @note 原始函数名：CleanupBufferHandler
+ */
 #define CleanupBufferHandler CleanupBufferHandler
 
 
 
 
-// 原始函数名：FUN_180943090 - 线程本地存储初始化函数A3
-// 功能：初始化线程本地存储A3
+/**
+ * @brief 线程本地存储初始化函数A3
+ * 
+ * 初始化线程本地存储A3，为线程提供独立的存储空间
+ * 
+ * @note 原始函数名：FUN_180943090
+ */
 #define InitializeThreadLocalStorageA3 FUN_180943090
 
-// 原始函数名：FUN_1809430b0 - 线程本地存储初始化函数A4
-// 功能：初始化线程本地存储A4
+/**
+ * @brief 线程本地存储初始化函数A4
+ * 
+ * 初始化线程本地存储A4，为线程提供独立的存储空间
+ * 
+ * @note 原始函数名：FUN_1809430b0
+ */
 #define InitializeThreadLocalStorageA4 FUN_1809430b0
 
 // Unwind函数语义化宏定义
-// 异常处理回调函数A0
-// 功能：处理异常情况的回调函数，在系统异常时被调用
+
+/**
+ * @brief 异常处理回调函数A0
+ * 
+ * 处理异常情况的回调函数，在系统异常时被调用
+ * 
+ * @note 原始函数名：ExceptionHandlerCallbackA0
+ */
 #define ExceptionHandlerCallbackA0 ExceptionHandlerCallbackA0
 
-// 异常处理回调函数A1
-// 功能：处理异常情况的回调函数，在系统异常时被调用
+/**
+ * @brief 异常处理回调函数A1
+ * 
+ * 处理异常情况的回调函数，在系统异常时被调用
+ * 
+ * @note 原始函数名：ExceptionHandlerCallbackA1
+ */
 #define ExceptionHandlerCallbackA1 ExceptionHandlerCallbackA1
 
-// 异常处理回调函数A2
-// 功能：处理异常情况的回调函数，在系统异常时被调用
+/**
+ * @brief 异常处理回调函数A2
+ * 
+ * 处理异常情况的回调函数，在系统异常时被调用
+ * 
+ * @note 原始函数名：ExceptionHandlerCallbackA2
+ */
 #define ExceptionHandlerCallbackA2 ExceptionHandlerCallbackA2
 
-// 原始函数名：Unwind_180901fe0 - 异常处理回调函数A3
-// 功能：处理异常情况的回调函数，在系统异常时被调用
-#define ExceptionHandlerCallbackA3 ExceptionHandlerCallbackA3
+/**
+ * @brief 异常处理回调函数A3
+ * 
+ * 处理异常情况的回调函数，在系统异常时被调用
+ * 
+ * @note 原始函数名：Unwind_180901fe0
+ */
+#define ExceptionHandlerCallbackA3 Unwind_180901fe0
 
 // 原始函数名：Unwind_180902010 - 异常处理回调函数A4
 // 功能：处理异常情况的回调函数，在系统异常时被调用
