@@ -117618,7 +117618,7 @@ void Unwind_ExceptionContextCleanupC3(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117648,7 +117648,7 @@ void Unwind_ExceptionContextCleanupC4(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataSecondaryOffset18);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117678,7 +117678,7 @@ void Unwind_ExceptionContextCleanupC5(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemParameterValidationOffset28);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117708,7 +117708,7 @@ void Unwind_ExceptionContextCleanupC6(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x68);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117738,7 +117738,7 @@ void Unwind_ExceptionContextCleanupC7(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x78);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117768,7 +117768,7 @@ void Unwind_ExceptionContextCleanupC8(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x88);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117798,7 +117798,7 @@ void Unwind_ExceptionContextCleanupC9(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0xa0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117890,7 +117890,7 @@ void Unwind_180911c30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1538);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117908,14 +117908,14 @@ void Unwind_180911c40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + ExceptionHandlerOffset1620);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + ExceptionHandlerOffset1608);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117933,7 +117933,7 @@ void Unwind_180911c60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1aa8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117951,7 +117951,7 @@ void Unwind_180911c80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1ab8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117969,7 +117969,7 @@ void Unwind_180911ca0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1ac8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -117987,7 +117987,7 @@ void Unwind_180911cc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1ad8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118005,7 +118005,7 @@ void Unwind_180911ce0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1ae8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118023,7 +118023,7 @@ void Unwind_180911d00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1b88);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118041,7 +118041,7 @@ void Unwind_180911d20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1b98);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118059,7 +118059,7 @@ void Unwind_180911d40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1ba8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118077,7 +118077,7 @@ void Unwind_180911d60(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1bb8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118095,7 +118095,7 @@ void Unwind_180911d80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1bc8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118113,7 +118113,7 @@ void Unwind_180911da0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1c70);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118131,7 +118131,7 @@ void Unwind_180911dc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1e50);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118182,7 +118182,7 @@ void CleanupSystemResourceTableAndHandleExceptions(DataBuffer operationBase, int
          (memoryBlockOffset = *(int64_t *)((int64_t)resourceIndex * 0x60 + *(int64_t *)(resourceTableBase + 0x1e68) + 8),
          memoryBlockOffset != 0)) {
         if (ExceptionContextPtr != 0) {
-          *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+          *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
         }
           HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
       }
@@ -118196,7 +118196,7 @@ void CleanupSystemResourceTableAndHandleExceptions(DataBuffer operationBase, int
     resourceReferenceCount[0] = 0;
     resourceReferenceCount[1] = 0;
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
@@ -118206,7 +118206,7 @@ void CleanupSystemResourceTableAndHandleExceptions(DataBuffer operationBase, int
     memoryBlockOffset = *(int64_t *)(resourceTableBase + 0x1e78);
     if (memoryBlockOffset != 0) {
       if (ExceptionContextPtr != 0) {
-        *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+        *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
       }
         HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
     }
@@ -118215,13 +118215,13 @@ void CleanupSystemResourceTableAndHandleExceptions(DataBuffer operationBase, int
       return;
     }
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(resourceTableBase, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
   *(DataBuffer *)(resourceTableBase + 0x1e60) = 0;
   if (ExceptionContextPtr != 0) {
-    *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+    *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
   }
     HandleSystemException(memoryBlockOffset, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
 }
@@ -118254,7 +118254,7 @@ void ProcessExceptionHandlerContextCleanup(DataBuffer operationBase, int64_t dat
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1e90);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
@@ -118289,7 +118289,7 @@ void ProcessExceptionHandlerContextCleanupVariant(DataBuffer operationBase, int6
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x1ea0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
@@ -118333,7 +118333,7 @@ void CleanupMultiLevelExceptionContexts(DataBuffer operationBase, int64_t dataBu
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1ed8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
@@ -118342,7 +118342,7 @@ void CleanupMultiLevelExceptionContexts(DataBuffer operationBase, int64_t dataBu
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1ec8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
@@ -118351,7 +118351,7 @@ void CleanupMultiLevelExceptionContexts(DataBuffer operationBase, int64_t dataBu
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1eb8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
   }
@@ -118398,7 +118398,7 @@ void CleanupAdvancedExceptionHandlersAndResetSystem(DataBuffer operationBase, in
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d68);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
@@ -118407,7 +118407,7 @@ void CleanupAdvancedExceptionHandlersAndResetSystem(DataBuffer operationBase, in
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d58);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
@@ -118416,7 +118416,7 @@ void CleanupAdvancedExceptionHandlersAndResetSystem(DataBuffer operationBase, in
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d48);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
@@ -118455,7 +118455,7 @@ void CleanupSystemLevelExceptionHandlerContext(DataBuffer operationBase, int64_t
   if (exceptionHandlerContext != 0) {
     // 更新异常上下文引用计数
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
     // 执行系统级异常处理清理
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, SystemCleanupFlagAlternative);
@@ -118474,7 +118474,7 @@ void Unwind_180911ea0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x2e10);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118492,7 +118492,7 @@ void Unwind_180911ec0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x2e20);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118510,7 +118510,7 @@ void Unwind_180911ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x2e30);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118528,7 +118528,7 @@ void Unwind_180911f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x2e50);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118556,7 +118556,7 @@ void Unwind_180911f50(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78) + 200);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118574,7 +118574,7 @@ void Unwind_180911f70(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78) + 0xe0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118592,7 +118592,7 @@ void Unwind_180911f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78) + 8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118617,7 +118617,7 @@ void Unwind_180911fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78) + SystemDataSecondaryOffset18);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118642,7 +118642,7 @@ void Unwind_180911fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + SystemDataBufferOffset80) + 8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118660,7 +118660,7 @@ void Unwind_180911fc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78) + ExceptionHandlerCallbackOffset10);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118678,7 +118678,7 @@ void Unwind_180911fd0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78) + SystemDataParameterOffset20);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118696,7 +118696,7 @@ void Unwind_180911fe0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78) + 0x30);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118838,7 +118838,7 @@ void HandleDataBufferExceptionAtOffset40(DataBuffer operationBase,int64_t dataBu
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 200);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118856,7 +118856,7 @@ void HandleDataBufferExceptionAtOffsetE0(DataBuffer operationBase,int64_t dataBu
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0xe0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118875,7 +118875,7 @@ void HandleDataBufferExceptionAtOffset080(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + ExceptionHandlerCallbackOffset10);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118894,7 +118894,7 @@ void HandleDataBufferExceptionAtOffset090(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataParameterOffset20);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118913,7 +118913,7 @@ void HandleDataBufferExceptionAtOffset0a0(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ResourceIteratorOffset) + SystemDataOffset30);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118932,7 +118932,7 @@ void HandleDataBufferExceptionAtOffset0b0(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + SystemContextPointerOffset90);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118951,7 +118951,7 @@ void HandleDataBufferExceptionAtOffset0d0(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0xc0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118970,7 +118970,7 @@ void HandleDataBufferExceptionAtOffset0f0(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0xd0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -118989,7 +118989,7 @@ void HandleDataBufferExceptionAtOffset110(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0xe0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119008,7 +119008,7 @@ void HandleDataBufferExceptionAtOffset130(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + 0xf0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119027,7 +119027,7 @@ void HandleDataBufferExceptionAtOffset150(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 0x1530);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119046,7 +119046,7 @@ void HandleDataBufferExceptionAtOffset170(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119067,35 +119067,35 @@ void HandleDataBufferExceptionAtOffset180(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1f0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1e0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1d0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1c0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 400);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119114,7 +119114,7 @@ void HandleDataBufferExceptionAtOffset1a0(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x220);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119133,7 +119133,7 @@ void HandleDataBufferExceptionAtOffset1c0(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + SystemDataStatusOffset0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119152,7 +119152,7 @@ void HandleDataBufferExceptionAtOffset1e0(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + DataProcessingOffset70) + 0x2d0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119176,49 +119176,49 @@ void HandleDataBufferExceptionAtOffset200(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x390);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x378);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x368);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x358);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x318);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x308);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2f8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
@@ -119237,7 +119237,7 @@ void HandleDataBufferExceptionAtOffset220(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemContextPointerOffset90);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119256,7 +119256,7 @@ void HandleDataBufferExceptionAtOffset240(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0xc0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119274,7 +119274,7 @@ void Unwind_180912260(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0xd0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119306,7 +119306,7 @@ void ProcessExceptionContextAtOffsetF0(DataBuffer operationBase,int64_t dataBuff
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0xf0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119341,35 +119341,35 @@ void ProcessMultipleExceptionContexts(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1f0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1e0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1d0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x1c0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 400);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119401,7 +119401,7 @@ void ProcessExceptionContextAtOffset220(DataBuffer operationBase,int64_t dataBuf
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x220);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119433,7 +119433,7 @@ void ProcessExceptionContextAtOffset2C0(DataBuffer operationBase,int64_t dataBuf
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + SystemContextPointerOffset) + ExceptionContextOffset2C0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119465,7 +119465,7 @@ void ProcessExceptionContextAtOffset2D0(DataBuffer operationBase,int64_t dataBuf
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + SystemContextPointerOffset) + ExceptionContextOffset2D0);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119504,7 +119504,7 @@ void CleanupExceptionHandlerChainA0(DataBuffer operationBase, int64_t dataBuffer
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x390);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
@@ -119513,7 +119513,7 @@ void CleanupExceptionHandlerChainA0(DataBuffer operationBase, int64_t dataBuffer
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x378);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
@@ -119522,35 +119522,35 @@ void CleanupExceptionHandlerChainA0(DataBuffer operationBase, int64_t dataBuffer
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x368);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x358);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x318);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x308);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   exceptionHandlerContext = *(int64_t *)(dataContext + 0x2f8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
@@ -119580,7 +119580,7 @@ void CleanupExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer, Dat
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x48) + SystemFloatDataOffset38);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119598,7 +119598,7 @@ void Unwind_180912350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x48) + 8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119623,7 +119623,7 @@ void Unwind_180912360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemFloatDataOffset38);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119674,7 +119674,7 @@ void Unwind_180912400(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + SystemDataBufferOffset200) + 8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119692,7 +119692,7 @@ void Unwind_180912410(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + SystemDataBufferOffset200) + SystemDataSecondaryOffset18);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119710,7 +119710,7 @@ void Unwind_180912420(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + SystemDataBufferOffset200) + SystemParameterValidationOffset28);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119728,7 +119728,7 @@ void Unwind_180912430(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ValidationResultOffset) + 8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119746,7 +119746,7 @@ void Unwind_180912440(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x48);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119764,7 +119764,7 @@ void Unwind_180912450(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x58);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119782,7 +119782,7 @@ void Unwind_180912460(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60) + 0x68);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119857,7 +119857,7 @@ void HandleExceptionContextAtOffset60_4d0(DataBuffer operationBase,int64_t dataB
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119887,7 +119887,7 @@ void HandleExceptionContextAtOffset60(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset60);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119912,7 +119912,7 @@ void Unwind_1809124f0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(exceptionHandlerContext + SystemParameterValidationOffset28);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
@@ -119944,7 +119944,7 @@ void HandleExceptionContextAtOffset58(DataBuffer operationBase,int64_t dataBuffe
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + SystemParameterValidationOffset28);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -119975,7 +119975,7 @@ void HandleExceptionContextAtOffset50VariantA(DataBuffer operationBase,int64_t d
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemParameterValidationOffset28);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120006,7 +120006,7 @@ void HandleExceptionContextAtOffset50VariantB(DataBuffer operationBase,int64_t d
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120037,7 +120037,7 @@ void HandleExceptionContextAtOffset50VariantC(DataBuffer operationBase,int64_t d
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + SystemDataSecondaryOffset18);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120055,7 +120055,7 @@ void Unwind_180912540(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset50) + 8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120083,7 +120083,7 @@ void Unwind_180912580(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x48) + SystemParameterValidationOffset28);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120116,7 +120116,7 @@ void HandleMultipleExceptionContextsAndCleanup(DataBuffer operationBase,int64_t 
   if (exceptionHandlerContext != 0) {
     *(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset50) = 0;
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120124,7 +120124,7 @@ void HandleMultipleExceptionContextsAndCleanup(DataBuffer operationBase,int64_t 
   if (exceptionHandlerContext != 0) {
     *(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40) = 0;
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120132,14 +120132,14 @@ void HandleMultipleExceptionContextsAndCleanup(DataBuffer operationBase,int64_t 
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x48);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120173,7 +120173,7 @@ void HandleExceptionContextReferenceCountDecrementSimplified(DataBuffer operatio
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset48);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120205,7 +120205,7 @@ void HandleExceptionContextReferenceCountDecrement(DataBuffer operationBase,int6
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120237,7 +120237,7 @@ void HandleIndirectExceptionContextReferenceCountDecrement(DataBuffer operationB
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffsetC0) + 8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120336,7 +120336,7 @@ void HandleIndirectExceptionContextReferenceCountDecrementB(DataBuffer operation
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0xa8) + 8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120376,7 +120376,7 @@ void Unwind_1809126a0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + MemoryPointerOffset) + SystemParameterValidationOffset28);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120433,7 +120433,7 @@ void Unwind_180912770(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x30);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
@@ -120469,7 +120469,7 @@ void ResetSystemExceptionHandler(DataBuffer operationBase, int64_t dataBuffer, D
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x1c8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
@@ -120505,7 +120505,7 @@ void HandleDataValidationException(DataBuffer operationBase, int64_t dataBuffer,
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0xb8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
@@ -120541,7 +120541,7 @@ void CleanupSystemDataBufferA0(DataBuffer operationBase, int64_t dataBuffer, Dat
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0xb8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
@@ -120577,7 +120577,7 @@ void CleanupSystemExceptionHandler(DataBuffer operationBase, int64_t dataBuffer,
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x1c8);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
@@ -120614,7 +120614,7 @@ void InitializeExceptionHandler7C0(DataBuffer operationBase, int64_t dataBuffer,
   exceptionHandlerContext = *(int64_t *)(exceptionHandlerContext + SystemParameterValidationOffset28);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,operationResult);
   }
@@ -120667,7 +120667,7 @@ void InitializeExceptionHandler7E0(DataBuffer operationBase, int64_t dataBuffer,
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemDataSecondaryOffset18);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
-      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
+      *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
     }
       HandleSystemException(exceptionHandlerContext,ExceptionDataPointer,operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   }
