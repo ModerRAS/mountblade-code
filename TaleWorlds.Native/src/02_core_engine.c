@@ -820,6 +820,7 @@
 #define ProcessLoopCounterWithParameters FUN_180323d00          // 处理循环计数器和参数
 #define ProcessCharacterTableMemoryOperation FUN_18033ad00      // 处理字符表内存操作
 #define ProcessCharacterTableUpdate FUN_1803336f0             // 处理字符表更新
+#define ProcessSystemContextWithFloatParameters FUN_180321e80  // 处理系统上下文和浮点参数
 
 // 渲染上下文处理函数
 #define ProcessRenderContextWithUnsignedValue FUN_1800a43c0     // 处理渲染上下文和无符号值
@@ -204196,7 +204197,7 @@ uint64_t ProcessUtf8CharacterEncodingWithMemoryAllocation(uint64_t CharacterCode
       ProcessCharacterTableWithValidation(CharacterTablePointer);
     }
     if ((unsigned long long)MemoryAllocationIndex < *(long long *)(CharacterTablePointer + 0x160) - 2U) {
-      FUN_180323d00(LoopCounter,4,2);
+      ProcessLoopCounterWithParameters(LoopCounter,4,2);
       *(void *)(ThreadLocalStorageData + 0x158) = 0xffffffffffffffff;
       *(void *)(ThreadLocalStorageData + 0xb0) = 0;
       *(uint32_t *)(ThreadLocalStorageData + 0xb8) = 0;
@@ -204204,15 +204205,15 @@ uint64_t ProcessUtf8CharacterEncodingWithMemoryAllocation(uint64_t CharacterCode
       if (InputDataLength != 0) {
         __Throw_C_error_std__YAXH_Z(InputDataLength);
       }
-      FUN_18033ad00(CharacterTablePointer + 0x3a8);
+      ProcessCharacterTableMemoryOperation(CharacterTablePointer + 0x3a8);
       InputDataLength = _Mtx_unlock(CharacterTablePointer + 0x3d8);
       if (InputDataLength != 0) {
         __Throw_C_error_std__YAXH_Z(InputDataLength);
       }
       *(long long *)(CharacterTablePointer + 0x150) = (long long)(int)MemoryAllocationIndex;
-      FUN_1803336f0(CharacterTablePointer);
+      ProcessCharacterTableUpdate(CharacterTablePointer);
       *(uint32_t *)(ThreadLocalStorageData + 0x144) = 0;
-      FUN_180323d00(LoopCounter,10);
+      ProcessLoopCounterWithParameters(LoopCounter,10);
     }
     pMemoryAddressMaskPointer = SystemCharacterStatusBufferSecondary;
   }
