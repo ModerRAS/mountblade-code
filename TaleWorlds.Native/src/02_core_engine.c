@@ -200202,7 +200202,7 @@ long long * ProcessSystemCalculationFunctionAddress(long long *CharacterCode,lon
   uint8_t *SystemValidationPointer;
   uint SystemStackFlag;
   uint32_t SystemPriorityLevel;
-  uint32_t uStack_3c;
+  uint32_t StringProcessingIndex;
   
   *CharacterCode = 0;
   CharacterCode[1] = 0;
@@ -200219,7 +200219,7 @@ long long * ProcessSystemCalculationFunctionAddress(long long *CharacterCode,lon
       pBufferOffset = &SystemNullTemplate;
       SystemPriorityLevel = 0;
       SystemValidationPointer = (uint8_t *)0x0;
-      uStack_3c = 0;
+      StringProcessingIndex = 0;
       SystemStackFlag = 0;
       CurrentCharacter = *StringCodeBuffer;
       CharacterCodeTablePointer = StringProcessingStatus;
