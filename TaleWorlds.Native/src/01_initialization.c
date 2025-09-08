@@ -25947,7 +25947,6 @@ void CleanupSystemResources(long long ResourceHandle)
 
 
 
-// 函数: 系统队列清理器 - 清理系统队列中的所有项目
 /**
  * @brief 系统队列清理器
  * 
@@ -25956,8 +25955,15 @@ void CleanupSystemResources(long long ResourceHandle)
  * 
  * @param QueueHeader 队列头指针，指向需要清理的队列头部
  * 
- * 该函数会遍历队列中的所有项目，调用队列处理器处理每个项目
- * 最后确保系统资源被正确清理
+ * @details 函数执行流程：
+ * 1. 获取队列的结束位置（QueueHeader[1]）
+ * 2. 从队列头开始遍历，逐个处理队列项目
+ * 3. 每个项目调用ProcessSystemQueueItem进行处理
+ * 4. 项目大小为SystemQueueItemSize（0x18字节）
+ * 5. 最后调用SystemCleanupFunction进行系统清理
+ * 
+ * @note 如果队列为空（QueueHeader为0），则直接返回
+ * @note 队列项目大小由SystemQueueItemSize常量定义
  */
 void CleanupSystemQueue(long long *QueueHeader)
 

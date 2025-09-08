@@ -7817,6 +7817,16 @@ const void* const SystemProcessingStatusFlagC = (void*)0x180a068d0;
  */
 #define ProcessStringCopyOperation FUN_180136f60
 
+/**
+ * @brief 分配并初始化内存池块
+ * 
+ * 该函数负责分配和初始化内存池块，包括内存池管理
+ * 和数据结构初始化操作
+ * 
+ * @note 原始函数名：FUN_1801580f0
+ */
+#define AllocateAndInitializeMemoryPoolBlock FUN_1801580f0
+
 // 字符编码相关函数 (调用次数: 11次)
 /**
  * @brief 处理字符编码转换
@@ -189740,13 +189750,21 @@ ReleaseMemoryPool(long long *CharacterCode,long long *CharacterCodeSize,uint64_t
 
 
 
-long long * FUN_1801582f0(uint64_t CharacterCode,long long *CharacterCodeSize,long long Utf8SourcePointer
+/**
+ * @brief 处理字符编码缓冲区验证和随机数生成
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @return 系统缓冲区指针
+ * @note 该函数处理字符编码验证，使用随机数生成器进行过滤计算
+ */
+long long * ProcessCharacterEncodingBufferValidation(uint64_t CharacterCode,long long *CharacterCodeSize,long long Utf8SourcePointer
 {
-  long long *CharacterCode;
-  long long BufferStatus;
-  float CalculatedFilterValue;
-  float MatrixTransformMultiplier1;
-  long long *pPerformanceCounterValue;
+  long long *CharacterCodePointer;
+  long long BufferValidationStatus;
+  float FilterCalculatedValue;
+  float MatrixTransformValue;
+  long long *PerformanceCounterPointer;
   
   CalculatedFilterValue = *(float *)(Utf8SourcePointer + 0x40);
   RandomSeedValue = RandomSeedValue << 0xd ^ RandomSeedValue;
@@ -253501,7 +253519,7 @@ LAB_180214378:
           ProcessingStatus = 0;
           cStack_180 = OperationStatus;
           cStack_178 = OperationStatus;
-          MemoryPoolBlockSizePointer = (long long *)FUN_1801580f0(CharacterCode,&pLocalDataStructure160,&SystemDataBufferPointerPrimary,*SystemDataTablePointer + 0x18);
+          MemoryPoolBlockSizePointer = (long long *)AllocateAndInitializeMemoryPoolBlock(CharacterCode,&pLocalDataStructure160,&SystemDataBufferPointerPrimary,*SystemDataTablePointer + 0x18);
           CharacterTablePointer = *MemoryPoolBlockSizePointer;
           *MemoryPoolBlockSizePointer = 0;
           plStack_158 = (long long *)*SystemDataTablePointer;
