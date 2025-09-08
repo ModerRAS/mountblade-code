@@ -6649,28 +6649,28 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
       TotalColorCount = (uint64_t)BatchProcessingCounter * 4;
       ProcessedColorElements = BatchProcessingCounter * 4;
       do {
-        red_component = input_buffer + 3;
-        temp_float = *input_buffer;
-        green_component = input_buffer + 6;
-        blue_component = input_buffer + 7;
-        alpha_component = input_buffer + 5;
-        brightness_component = input_buffer + 9;
-        contrast_component = input_buffer + 10;
-        saturation_component = input_buffer + 4;
-        hue_component = input_buffer + 1;
-        lightness_component = input_buffer + 2;
-        chroma_component = input_buffer + 8;
-        gamma_component = input_buffer + 0xb;
-        input_buffer = input_buffer + 0xc;
-        luminance_sum = luminance_sum + (double)*red_component * 0.2126 + (double)temp_float * 0.2126 +
-                          (double)*green_component * 0.2126 + (double)*brightness_component * 0.2126 +
-                          (double)*contrast_component * 0.7152 +
-                          (double)*blue_component * 0.7152 + (double)*saturation_component * 0.7152 +
-                          (double)*hue_component * 0.7152 +
-                          (double)*alpha_component * 0.0722 + (double)*lightness_component * 0.0722 +
-                          (double)*chroma_component * 0.0722 + (double)*gamma_component * 0.0722;
-        remaining_elements = remaining_elements - 1;
-      } while (remaining_elements != 0);
+        ColorComponentRed = InputColorBuffer + 3;
+        TemporaryColorValue = *InputColorBuffer;
+        ColorComponentGreen = InputColorBuffer + 6;
+        ColorComponentBlue = InputColorBuffer + 7;
+        ColorComponentAlpha = InputColorBuffer + 5;
+        ColorComponentBrightness = InputColorBuffer + 9;
+        ColorComponentContrast = InputColorBuffer + 10;
+        ColorComponentSaturation = InputColorBuffer + 4;
+        ColorComponentHue = InputColorBuffer + 1;
+        ColorComponentLightness = InputColorBuffer + 2;
+        ColorComponentChroma = InputColorBuffer + 8;
+        ColorComponentGamma = InputColorBuffer + 0xb;
+        InputColorBuffer = InputColorBuffer + 0xc;
+        LuminanceAccumulator = LuminanceAccumulator + (double)*ColorComponentRed * 0.2126 + (double)TemporaryColorValue * 0.2126 +
+                          (double)*ColorComponentGreen * 0.2126 + (double)*ColorComponentBrightness * 0.2126 +
+                          (double)*ColorComponentContrast * 0.7152 +
+                          (double)*ColorComponentBlue * 0.7152 + (double)*ColorComponentSaturation * 0.7152 +
+                          (double)*ColorComponentHue * 0.7152 +
+                          (double)*ColorComponentAlpha * 0.0722 + (double)*ColorComponentLightness * 0.0722 +
+                          (double)*ColorComponentChroma * 0.0722 + (double)*ColorComponentGamma * 0.0722;
+        RemainingColorElements = RemainingColorElements - 1;
+      } while (RemainingColorElements != 0);
     }
     
     // 处理剩余的元素

@@ -181354,7 +181354,7 @@ void ProcessCharacterCodeAndUtf8SourceConversion(long long *CharacterCode,float 
     CharacterCode = CharacterCode + 8;
     ppSystemInitializationMode = SystemCharacterStatusPointerReference;
     plStack_2e0 = CharacterCode;
-    FUN_18014e330(CharacterCode,SystemCharacterStatusPointerReference);
+    ProcessCharacterWithDataPointer(CharacterCode,SystemCharacterStatusPointerReference);
     pSystemValue2b8 = &SystemHandlerTemplatePrimary;
     pSystemValue2b0 = aSystemUnsignedValue2A0;
     SystemValue2a8 = 0;
@@ -183181,7 +183181,7 @@ void ProcessSystemDataNodeCleanup(void)
 
 
 
-4f0e5(uint64_t CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointervoid FUN_18014f0e5(uint64_t CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer
+void ProcessCharacterCodeWithValidation(uint64_t CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
