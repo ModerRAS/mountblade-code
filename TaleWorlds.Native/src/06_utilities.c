@@ -29228,7 +29228,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
                       operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                         (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                       if (operationResult == 0) {
-                        stackDataBuffer = CONCAT44(stackDataBuffer.lowWord,dataBuffer[0x6f]);
+                        stackDataBuffer = CONCAT44(stackDataBuffer.lowWord,dataBuffer[StackDataLowWordOffset6F]);
                         operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                           (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,4);
                         if (operationResult == 0) {
