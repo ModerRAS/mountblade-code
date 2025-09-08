@@ -114,6 +114,11 @@
 #define ExceptionStatusMaskClearBit2 0xfffffffd
 #define SystemResourceDataOffset38 0x38
 
+// 资源清理相关偏移量常量
+#define ExceptionDataBufferOffsetE8 0xe8
+#define MemoryResourcePointerOffsetE0 0xe0
+#define ResourcePointerStepSize 4
+
 // 数据处理相关偏移量常量
 #define DataProcessingOffset70 0x70
 #define DataProcessingOffset84 0x84
@@ -64093,11 +64098,11 @@ void ExecuteResourceCleanup(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   DataBuffer validationStatus;
   
   validationStatus = SystemCleanupFlagAlternative;
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0xe8);
-  for (memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0xe0); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + 4) {
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + ExceptionDataBufferOffsetE8);
+  for (memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourcePointerOffsetE0); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + ResourcePointerStepSize) {
     (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
-  if (*(int64_t *)(dataBuffer + 0xe0) == 0) {
+  if (*(int64_t *)(dataBuffer + MemoryResourcePointerOffsetE0) == 0) {
     return;
   }
     TerminateSystemExecutionAndCleanupResources();

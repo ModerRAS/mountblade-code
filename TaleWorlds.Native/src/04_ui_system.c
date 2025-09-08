@@ -4822,9 +4822,9 @@ UIHandle UIRenderState;
  UI系统绘制调用
 UIHandle UIDrawCall;
  UI系统管道状态
-undefined UIPipelineState;
+UIHandle UIPipelineState;
  UI系统描述符集
-undefined UIDescriptorSet;
+UIHandle UIDescriptorSet;
  UI系统常量缓冲区
 undefined UIConstantBuffer;
  UI系统采样器
