@@ -152,6 +152,32 @@
 #define UtilityNoOperationVariant FUN_18015036a
 
 /**
+ * @brief 分配并初始化系统数据结构
+ * 
+ * 该函数用于分配和初始化系统数据结构，根据源数据结构的标志位
+ * 决定是否需要释放内存。主要用于系统资源的动态管理。
+ * 
+ * @param CharacterCode 目标数据结构指针，用于存储初始化后的系统数据
+ * @param SystemBufferSize 源数据结构，包含分配标志和相关信息
+ * @return 返回初始化后的目标数据结构指针
+ * 
+ * @note 原始函数名：FUN_180150ab0
+ */
+#define AllocateAndInitializeSystemDataStructure FUN_180150ab0
+
+/**
+ * @brief 处理字符状态验证和内存管理
+ * 
+ * 该函数负责处理字符状态验证、内存管理和系统数据操作。
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180150ae0
+ */
+#define ProcessCharacterStatusValidationAndMemoryManagement FUN_180150ae0
+
+/**
  * @brief 使用字符代码处理字符数据
  * 
  * 该函数负责根据字符代码处理字符数据，主要功能包括：
@@ -71815,9 +71841,9 @@ LAB_180092bbb:
       CharacterTablePointer5 = CharacterTablePointer5 + -1;
     } while (-1 < CharacterTablePointer5);
   }
-  lStackX_8 = SystemBufferSize;
+  SystemBufferHandle = SystemBufferSize;
 LAB_180092c16:
-  ArrayIndex = _Mtx_lock(lStackX_8 + 0x11a50);
+  ArrayIndex = _Mtx_lock(SystemBufferHandle + 0x11a50);
   if (ArrayIndex != 0) {
     __Throw_C_error_std__YAXH_Z(ArrayIndex);
   }
@@ -71830,12 +71856,12 @@ LAB_180092c16:
   CharacterStatusBuffer8 = CharacterStatusBuffer7;
   if ((*(long long *)(StringIndexCounter + 0x180) - CharacterTablePointer5) / 0x50 != 0) {
     do {
-      if (*(unsigned long long *)(lStackX_8 + 0x11bd0) < *(unsigned long long *)(lStackX_8 + 0x11bd8)) {
-        *(unsigned long long *)(lStackX_8 + 0x11bd0) = *(unsigned long long *)(lStackX_8 + 0x11bd0) + 0x50;
+      if (*(unsigned long long *)(SystemBufferHandle + 0x11bd0) < *(unsigned long long *)(SystemBufferHandle + 0x11bd8)) {
+        *(unsigned long long *)(SystemBufferHandle + 0x11bd0) = *(unsigned long long *)(SystemBufferHandle + 0x11bd0) + 0x50;
         InitializeSystemBufferAllocation();
       }
       else {
-        ProcessSystemMemoryAllocation(lStackX_8 + 0x11bc8,(long long)SystemCharacterStatusBuffer * 0x50 + CharacterTablePointer5);
+        ProcessSystemMemoryAllocation(SystemBufferHandle + 0x11bc8,(long long)SystemCharacterStatusBuffer * 0x50 + CharacterTablePointer5);
       }
       SystemMemoryAllocationResult = (int)CharacterStatusBuffer8 + 1;
       CharacterTablePointer5 = *(long long *)(StringIndexCounter + 0x178);
@@ -184988,7 +185014,7 @@ void ProcessCharacterStatusAndStringComparison(uint64_t CharacterCode,long long 
  * @param SystemBufferSize 源数据结构，包含分配标志和相关信息
  * @return 返回初始化后的目标数据结构指针
  */
-uint64_t * FUN_180150ab0(uint64_t *CharacterCode,unsigned long long SystemBufferSize
+uint64_t * AllocateAndInitializeSystemDataStructure(uint64_t *CharacterCode,unsigned long long SystemBufferSize
 {
   *CharacterCode = &SystemSecondaryDataStructure;
   if ((SystemBufferSize & 1) != 0) {
@@ -185001,7 +185027,19 @@ uint64_t * FUN_180150ab0(uint64_t *CharacterCode,unsigned long long SystemBuffer
 
 
 
-50ae0(long long CharacterCodevoid FUN_180150ae0(long long CharacterCode
+/**
+ * @brief 处理字符状态验证和内存管理
+ * 
+ * 该函数负责处理字符状态验证、内存管理和系统数据操作。
+ * 它涉及复杂的内存分配、数据验证和字符串处理操作。
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180150ae0
+ * @note 该函数涉及复杂的字符状态处理和内存管理操作
+ */
+void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode)
 {
   void **pCharacterStatusBuffer;
   char SystemCheckResult;
