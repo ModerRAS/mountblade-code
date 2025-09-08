@@ -194733,7 +194733,24 @@ void UtilityNoOperationEmpty(void)
 
 
 
-606bb(float CharacterCode,long long SystemBufferSize,unsigned long long Utf8SourcePointervoid FUN_1801606bb(float CharacterCode,long long SystemBufferSize,unsigned long long Utf8SourcePointer
+/**
+ * @brief 处理带UTF-8源指针的浮点字符代码转换
+ * 
+ * 该函数负责处理带UTF-8源指针的浮点字符代码转换操作，包括：
+ * - 验证内存分配索引
+ * - 处理系统上下文浮点数据
+ * - 管理UTF-8源指针的字符转换
+ * 
+ * @param CharacterCode 字符代码（浮点值）
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801606bb
+ */
+#define ProcessFloatCharacterCodeConversionWithUtf8Pointer FUN_1801606bb
+
+void ProcessFloatCharacterCodeConversionWithUtf8Pointer(float CharacterCode, long long SystemBufferSize, unsigned long long Utf8SourcePointer)
 {
   float *pSystemContextPrimaryFloat;
   uint MemoryAllocationIndex;
