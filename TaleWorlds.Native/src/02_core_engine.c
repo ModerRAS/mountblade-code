@@ -27948,12 +27948,12 @@ void ProcessEngineSystemEventQueue(void
   int EventStackValuef8;
   void *EventStackPointerf0;
   uint8_t *EventStackPointere8;
-  uint32_t EventStackValuee0;
-  unsigned long long EventStackValued8;
-  void *EventStackPointerd0;
-  long long EventStackValuec8;
-  int EventStackValuec0;
-  uint32_t EventStackValueb8;
+  uint32_t EventStatusFlags;
+  unsigned long long EventTimeoutDuration;
+  void *EventContextPointer;
+  long long EventProcessData;
+  int EventOperationCode;
+  uint32_t EventValidationResult;
   long long *EventStackPointera8;
   long long EventStackValuea0;
   void *EventStackPointer98;
@@ -37913,34 +37913,34 @@ void ProcessCoreEngineDataValidationAndManagement(uint64_t CharacterCode
   long long stackMemoryOffset328;
   int stackIndex320;
   unsigned long long stackVariable318;
-  uint32_t stackFlag310;
+  uint32_t SystemStatusFlag;
   void *DataBufferPointer308;
-  void *stackPointer300;
-  uint32_t stackFlag2f8;
-  unsigned long long stackVariable2f0;
-  void *stackPointer2e8;
-  void *stackPointer2e0;
-  uint32_t stackFlag2d8;
+  void *SystemStackPointer300;
+  uint32_t MemoryAllocationFlag;
+  unsigned long long StackSize2f0;
+  void *StackPointer2e8;
+  void *StackPointer2e0;
+  uint32_t ProcessingFlag2d8;
   unsigned long long stackVariable2d0;
   unsigned long long stackVariable2c8;
   void *stackPointer2c0;
   uint64_t stackVariable2b8;
-  uint32_t stackFlag2b0;
-  unsigned long long stackVariable2a8;
-  void *stackPointer2a0;
-  char *characterStringPointer;
-  int stackIndex290;
-  uint32_t stackFlag288;
-  uint64_t stackVariable280;
-  long long stackMemoryOffset278;
-  long long stackMemoryOffset268;
-  uint64_t *stackPointer260;
-  uint64_t *stackPointer258;
-  uint64_t stackVariable250;
-  uint32_t stackFlag248;
-  void *stackPointer240;
+  uint32_t ValidationFlag2b0;
+  unsigned long long StackVariable2a8;
+  void *StackPointer2a0;
+  char *CharacterStringPointer;
+  int StringIndex290;
+  uint32_t BufferFlag288;
+  uint64_t SystemDataValue280;
+  long long MemoryOffset278;
+  long long MemoryOffset268;
+  uint64_t *SystemDataPointer260;
+  uint64_t *SystemDataPointer258;
+  uint64_t SystemDataValue250;
+  uint32_t DataProcessingFlag248;
+  void *StackPointer240;
   long long SystemMemoryOffset238;
-  uint32_t stackFlag228;
+  uint32_t SecurityFlag228;
   uint64_t *dataNodePointer220;
   uint64_t *dataReferencePointer218;
   uint64_t dataValue210;
@@ -192011,14 +192011,31 @@ MemoryBoundaryCalculationComplete:
 
 
 
-long long FUN_18015c0a0(long long *CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer
+/**
+ * @brief 处理UTF-8字符编码和系统事件
+ * 
+ * 该函数根据UTF-8源指针的不同值执行不同的字符编码处理操作：
+ * - 当指针为3时：返回系统字符编码表地址
+ * - 当指针为4时：返回当前字符码
+ * - 当指针为0时：如果字符码不为0，则处理系统事件
+ * - 当指针为1时：分配内存并创建系统事件模板
+ * - 当指针为2时：复制字符码并重置字符码大小
+ * 
+ * @param CharacterCode 字符码指针
+ * @param CharacterCodeSize 字符码大小指针
+ * @param Utf8SourcePointer UTF-8源指针，决定处理模式
+ * @return 处理结果或系统地址
+ * 
+ * @note 原始函数名：FUN_18015c0a0
+ */
+long long ProcessUtf8CharacterEncodingAndSystemEvent(long long *CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t MemoryAllocationIndex;
   uint64_t *SystemEventTemplatePointer;
   
   if (Utf8SourcePointer == 3) {
-    return 0x180c00930;
+    return SystemCharacterEncodingTableAddress;
   }
   if (Utf8SourcePointer == 4) {
     return *CharacterCode;
