@@ -80923,25 +80923,25 @@ void ProcessUIComponentData(longlong uiContext,longlong dataSource,uint targetBu
 void ProcessUIFloatData(float uiContext,float dataSource,uint targetBuffer,uint bufferSize)
 
 {
-  uint bufferSize;
+  uint bufferSizeParam;
   longlong allocatedMemory;
   longlong componentIndex;
   longlong stringCompareIndex;
-  longlong ContextHandleData;
-  longlong EventDataIndex;
-  longlong ContextHandleData;
+  longlong contextHandleData;
+  longlong eventDataIndex;
+  longlong contextHandleDataCopy;
   longlong registerDX;
-  float *presultFloat;
-  int localInt8;
-  longlong ContextHandle;
-  longlong CharacterDataOffset;
-  ulonglong result0;
-  longlong allocatedMemory1;
-  longlong register10;
-  longlong RegisterPointer;
-  bool in_ZF;
-  char in_SF;
-  char in_OF;
+  float *resultFloatPointer;
+  int localValue8;
+  longlong contextHandle;
+  longlong characterDataOffset;
+  ulonglong primaryResult;
+  longlong allocatedMemoryCopy;
+  longlong baseRegister;
+  longlong registerPointer;
+  bool zeroFlag;
+  char signFlag;
+  char overflowFlag;
   float floatResult2;
   float floatResult3;
   float vectorComponentX;
