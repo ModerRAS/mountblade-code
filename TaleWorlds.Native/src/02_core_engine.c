@@ -367,6 +367,11 @@
 #define ProcessCharacterCodeWithPrimaryPointer FUN_18014f660  // 处理字符代码和主指针
 #define ProcessSystemMemoryBlockSetup FUN_18014f3f0          // 处理系统内存块设置
 #define ProcessCharacterCodeWithBufferPointer FUN_18014f520   // 处理字符代码和缓冲区指针
+
+// 新增的FUN_函数语义化定义
+#define ProcessSystemDataBufferConfiguration FUN_1802a8080     // 处理系统数据缓冲区配置
+#define ReleaseSystemMemoryResources FUN_18006f4c0             // 释放系统内存资源
+#define ProcessRenderContextDataUpdate FUN_18029ef00           // 处理渲染上下文数据更新
 /**
  * @brief 处理系统内存管理
  * 
@@ -185920,8 +185925,8 @@ code_r0x000180151fd7:
         SystemStatusCode = SystemStatusCode - 1;
       } while (SystemStatusCode != 0);
     }
-    FUN_1802a8080(*(void *)(CharacterCode + 0xb0),&lStack_a8,*(uint32_t *)(CharacterCode + 0xb8));
-    FUN_18006f4c0(*(void *)(CharacterCode + 0xb0));
+    ProcessSystemDataBufferConfiguration(*(void *)(CharacterCode + 0xb0),&lStack_a8,*(uint32_t *)(CharacterCode + 0xb8));
+    ReleaseSystemMemoryResources(*(void *)(CharacterCode + 0xb0));
     *(void *)(CharacterCode + 0xb0) = 0;
     if (SystemOperationFlag98._1_1_ == '\0') {
       if (((char)SystemOperationFlag98 == '\0') && (lStack_a8 != 0)) {
