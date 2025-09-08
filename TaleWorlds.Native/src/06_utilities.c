@@ -14086,19 +14086,24 @@ void SystemReturnEmptyFunction(void)
  * @return DataBuffer 验证结果状态，成功返回0，失败返回相应的错误代码
  * 
  * @note 原始函数名：ValidateResourceAccessChain
- * @see QueryAndRetrieveSystemDataA0
- */
-/**
- * @brief 验证资源访问链
+ * @see QueryAndRetrieveSystemDataA0, ReleaseResource
  * 
- * 该函数负责验证资源访问链的完整性和有效性。它会检查资源访问路径是否正确，
- * 确保资源可以被安全地访问。函数会查询系统数据来获取访问链信息，并进行验证。
+ * @details
+ * 该函数执行以下步骤：
+ * 1. 使用QueryAndRetrieveSystemDataA0查询系统数据获取访问链信息
+ * 2. 调整访问链指针（如果非零则减去8字节）
+ * 3. 验证访问链中的资源句柄是否有效
+ * 4. 如果验证通过，释放相关资源
  * 
- * @param resourceHandle 资源句柄，用于标识要验证的资源
- * @return DataBuffer 验证结果状态，成功返回0，失败返回相应的错误代码
+ * @warning
+ * - 如果访问链中的资源句柄无效，函数会返回错误代码
+ * - 如果验证通过，函数会自动释放相关资源
  * 
- * @note 原始函数名：ValidateResourceAccessChain
- * @see QueryAndRetrieveSystemDataA0
+ * @security
+ * 该函数包含安全检查机制，确保资源访问的安全性：
+ * - 验证资源句柄的有效性
+ * - 检查访问链的完整性
+ * - 确保资源释放操作的安全性
  */
 DataBuffer ValidateResourceAccessChain(int64_t resourceHandle)
 
@@ -14135,13 +14140,28 @@ DataBuffer ValidateResourceAccessChain(int64_t resourceHandle)
  * @brief 验证资源句柄并释放资源
  * 
  * 该函数负责验证资源句柄的有效性，并在验证通过后释放相关资源。
- * 资源句柄通过RAX寄存器传递，函数会检查句柄的有效性，然后执行资源释放操作。
+ * 资源句柄通过系统寄存器传递，函数会检查句柄的有效性，然后执行资源释放操作。
  * 
  * @return DataWord 验证结果，成功返回0x1c，失败时调用资源释放函数
  * 
  * @note 原始函数名：ValidateResourceHandleAndRelease
- * @note 资源句柄通过RAX寄存器传递
+ * @note 资源句柄通过系统寄存器传递
  * @warning 失败时会调用资源释放函数，可能导致进程终止
+ * 
+ * @details
+ * 该函数执行以下步骤：
+ * 1. 检查资源句柄是否为空，如果为空则设置内存资源指针为0
+ * 2. 如果资源句柄非空，计算调整后的指针地址（减去8字节）
+ * 3. 验证调整后指针处的资源句柄是否有效
+ * 4. 如果验证通过，调用ReleaseResource函数释放资源
+ * 
+ * @security
+ * 该函数包含安全检查机制：
+ * - 验证资源句柄的有效性
+ * - 确保内存地址计算的安全性
+ * - 防止空指针访问
+ * 
+ * @see ReleaseResource, ResourceInvalidErrorCode
  */
 DataWord ValidateResourceHandleAndRelease(void)
 
@@ -14175,7 +14195,25 @@ DataWord ValidateResourceHandleAndRelease(void)
  * @note 此函数不会返回，会直接调用资源释放函数终止进程
  * @warning 此函数用于处理严重的内存错误，调用后进程将终止
  * 
- * @see ReleaseResource
+ * @details
+ * 该函数是系统错误处理机制的重要组成部分，用于处理以下情况：
+ * - 内存访问违规
+ * - 内存分配失败
+ * - 内存损坏检测
+ * - 其他严重的内存系统错误
+ * 
+ * 函数执行流程：
+ * 1. 检测到内存错误条件
+ * 2. 调用ReleaseResource()函数释放系统资源
+ * 3. 安全终止进程执行
+ * 
+ * @security
+ * 该函数是系统安全机制的关键部分：
+ * - 防止内存损坏扩散
+ * - 确保系统资源被正确释放
+ * - 提供安全的进程终止机制
+ * 
+ * @see ReleaseResource, TerminateProcessWithSecurityError
  */
 void TerminateProcessWithMemoryError(void)
 {
