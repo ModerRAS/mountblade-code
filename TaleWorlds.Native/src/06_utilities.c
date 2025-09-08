@@ -29947,17 +29947,25 @@ void UtilityNoOperationC(void)
 
 // 函数: uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer)
 // 
-// 验证并处理数据块
-// 对输入的数据块进行验证和处理，确保数据完整性和安全性
-// 
-// 参数:
-//   dataContext - 数据上下文指针，包含处理所需的环境信息
-//   dataBuffer - 数据缓冲区指针，指向待处理的数据块
-// 
-// 返回值:
-//   uint64_t - 操作结果状态码，0表示成功，非0表示错误码
-// 
-// 原始函数名: FUN_18089b2a0
+/**
+ * @brief 验证并处理数据块
+ * 
+ * 该函数对输入的数据块进行多层次的验证和处理，确保数据完整性和安全性。
+ * 函数会执行资源数据提取、安全验证、端口控制验证等一系列操作。
+ * 
+ * @param dataContext 数据上下文指针，包含处理所需的环境信息
+ * @param dataBuffer 数据缓冲区指针，指向待处理的数据块
+ * @return uint64_t 操作结果状态码，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名: FUN_18089b2a0
+ * 
+ * 处理流程：
+ * 1. 从系统资源中提取四个资源数据值
+ * 2. 执行安全验证，使用验证码0x4c525443
+ * 3. 验证端口控制请求
+ * 4. 根据数据大小选择不同的处理路径
+ * 5. 执行数据块处理和端口控制操作
+ */
 uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer)
 
 {
