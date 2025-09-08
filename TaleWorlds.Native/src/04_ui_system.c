@@ -83593,8 +83593,36 @@ LAB_18071500a:
 
 
 
- void FUN_1807152b0(longlong uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer,
-void FUN_1807152b0(longlong uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer,
+ /**
+ * @brief 处理UI系统数据传输
+ * 
+ * 该函数负责处理UI系统中的数据传输，包括：
+ * - 多个UI上下文之间的数据传输
+ * - 数据源和目标缓冲区的管理
+ * - 缓冲区大小的动态调整
+ * - 结果数据的存储和返回
+ * 
+ * 该函数用于优化UI系统数据传输的性能。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数6
+ * @param param_7 额外参数7
+ * @param param_8 额外参数8
+ * @param param_9 额外参数9
+ * @param uiContext0 UI上下文0
+ * @param uiContext1 UI上下文1
+ * @param uiContext2 UI上下文2
+ * @param uiContext3 UI上下文3
+ * @param uiContext4 UI上下文4
+ * 
+ * @note 原始函数名：FUN_1807152b0
+ */
+void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer,
+void ProcessUIDataTransfer(longlong uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer,
                   int param_6,int param_7,int param_8,longlong param_9,longlong uiContext0,
                   longlong uiContext1,longlong uiContext2,uint uiContext3,UIDword uiContext4)
 
