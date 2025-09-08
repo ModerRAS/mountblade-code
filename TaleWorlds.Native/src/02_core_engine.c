@@ -185361,11 +185361,11 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
       plStack_1b0 = MemoryBlockListHead;
       ProcessSystemContextAllocation(SystemDataRegistry + 0x7fe8 + (long long)*(int *)(SystemDataRegistry + 0x8088) * 0x20,&plStack_1b0);
       Utf16Character = MemoryAllocate(MemoryPoolManager,0x70,8,3);
-      SystemDataRegistry = FUN_1800a1e20(Utf16Character);
+      SystemDataRegistry = ConvertCharacterToSystemFormat(Utf16Character);
       MemoryBlockListHead[0xb] = SystemDataRegistry;
-      Utf16Character = FUN_1802c2400(MemoryBlockListHead);
+      Utf16Character = GetCharacterFromMemoryBlock(MemoryBlockListHead);
     }
-    SystemCheckResult = FUN_1800c6910(Utf16Character,CharacterCode);
+    SystemCheckResult = ValidateCharacterPair(Utf16Character,CharacterCode);
     if (*(char *)(CoreEngineSystemContext + 0x12e7) != '\0') {
       SystemDataRegistry = *(long long *)(CoreEngineRenderContext + 0x1cd8);
       ProcessSystemMemoryBlockManagement(MemoryBlockListHead);
