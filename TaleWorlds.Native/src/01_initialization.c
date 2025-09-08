@@ -8305,8 +8305,8 @@ void InitializeSystemCacheManager(void)
   char NodeActiveFlag;
   void** SystemDataTable;
   int SystemIdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long SystemCurrentOperationTimestamp;
+  int64_t* MemorySystemDataPointer;
+  int64_t SystemCurrentOperationTimestamp;
   void** RootNodeReference;
   void** CurrentNodePointer;
   void** NextNodePointer;
@@ -8363,8 +8363,8 @@ void InitializeSystemLogManager(void)
   char NodeActiveFlag;
   void** SystemDataTable;
   int SystemIdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long SystemCurrentOperationTimestamp;
+  int64_t* MemorySystemDataPointer;
+  int64_t SystemCurrentOperationTimestamp;
   void** RootNodeReference;
   void** CurrentNodePointer;
   void** NextNodePointer;
