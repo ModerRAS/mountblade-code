@@ -99,6 +99,36 @@
 #define SystemDataValidationOffset 0x28
 #define SystemStatePrimaryOffset 0x30
 
+// 内存资源释放相关偏移量常量
+#define MemoryResourceReleaseOffset30 0x30                 // 内存资源释放偏移量30
+#define MemoryResourceReleaseOffset50 0x50                 // 内存资源释放偏移量50
+#define MemoryResourceReleaseOffset70 0x70                 // 内存资源释放偏移量70
+#define MemoryResourceReleaseOffset90 0x90                 // 内存资源释放偏移量90
+#define MemoryResourceReleaseOffsetB0 0xb0                 // 内存资源释放偏移量B0
+#define MemoryResourceReleaseOffsetD0 0xd0                 // 内存资源释放偏移量D0
+#define MemoryResourceReleaseOffsetF0 0xf0                 // 内存资源释放偏移量F0
+#define MemoryResourceReleaseOffset110 0x110               // 内存资源释放偏移量110
+#define MemoryResourceReleaseOffset130 0x130               // 内存资源释放偏移量130
+
+// 数据处理相关偏移量常量
+#define DataProcessingOffset70 0x70                        // 数据处理偏移量70
+#define DataProcessingOffset84 0x84                        // 数据处理偏移量84
+#define DataProcessingOffset66 0x66                        // 数据处理偏移量66
+#define DataProcessingOffset67 0x67                        // 数据处理偏移量67
+#define DataProcessingOffset72 0x72                        // 数据处理偏移量72
+#define DataProcessingOffset74 0x74                        // 数据处理偏移量74
+
+// 系统状态检查偏移量常量
+#define SystemStatusCheckOffset14c 0x14c                    // 系统状态检查偏移量14c
+#define SystemStatusCheckOffset254 0x254                    // 系统状态检查偏移量254
+#define SystemStatusCheckOffset260 0x260                    // 系统状态检查偏移量260
+#define SystemStatusCheckOffset270 0x270                    // 系统状态检查偏移量270
+#define SystemStatusCheckOffset44 0x44                     // 系统状态检查偏移量44
+#define SystemStatusCheckOffset24 0x24                     // 系统状态检查偏移量24
+#define SystemStatusCheckOffset48 0x48                     // 系统状态检查偏移量48
+#define SystemStatusCheckOffset150 0x150                   // 系统状态检查偏移量150
+#define SystemStatusCheckOffset268 0x268                   // 系统状态检查偏移量268
+
 // 数据验证偏移量常量
 #define DataValidationOffset20 0x20                        // 数据验证偏移量20
 #define DataValidationOffset25 0x25                        // 数据验证偏移量25
@@ -66113,7 +66143,7 @@ void CleanupResourceReferenceCount6c90(DataBuffer operationBase, int64_t dataBuf
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x30);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourceReleaseOffset30);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -66755,7 +66785,7 @@ void CleanupSystemResourceE0(DataBuffer operationBase, int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x30);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourceReleaseOffset30);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -67008,7 +67038,7 @@ void CleanupSystemResourceA1(DataBuffer operationBase,int64_t dataBuffer)
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x30);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourceReleaseOffset30);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -110060,7 +110090,7 @@ void ReleaseMemoryResourceAtOffset30(DataBuffer operationBase,int64_t dataBuffer
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x30);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourceReleaseOffset30);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
@@ -110108,7 +110138,7 @@ void ReleaseMemoryResourceAtOffset30Variant(DataBuffer operationBase,int64_t dat
   int64_t memoryBlockOffset;
   uint64_t memoryRegionBase;
   
-  memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x30);
+  memoryResourcePointer = *(DataBuffer **)(dataBuffer + MemoryResourceReleaseOffset30);
   if (memoryResourcePointer == (DataBuffer *)0x0) {
     return;
   }
