@@ -19291,9 +19291,9 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
     else {
       processResult = ExecuteSystemValidationA0(operationContext,dataContext + 0x24);
       if ((processResult == 0) &&
-         (processResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x24),&localStackBuffer), processResult == 0)) {
-        if (*(int *)(localStackBuffer + 0x30) == 1) {
-          *(DataWord *)(localStackBuffer + 0x30) = 2;
+         (processResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x24),&DataStateBuffer), processResult == 0)) {
+        if (*(int *)(DataStateBuffer + 0x30) == 1) {
+          *(DataWord *)(DataStateBuffer + 0x30) = 2;
         }
           CleanupSystemEventA0(*(DataBuffer *)(operationContext + 0x98),dataContext);
       }
