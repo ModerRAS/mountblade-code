@@ -215232,7 +215232,15 @@ void ProcessCharacterCodeAndSystemContextManagement(long long CharacterCode
 
 
 
-7b36c(voidvoid FUN_18017b36c(void
+/**
+ * @brief 空函数，用于占位或调试
+ * 
+ * 该函数是一个空函数，可能用于占位或调试目的。
+ * 
+ * @note 原始函数名：FUN_18017b36c
+ */
+#define EmptyPlaceholderFunction FUN_18017b36c
+void FUN_18017b36c(void
 {
   return;
 }
@@ -215240,7 +215248,23 @@ void ProcessCharacterCodeAndSystemContextManagement(long long CharacterCode
 
 
 
-7b380(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18017b380(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-16到UTF-8编码转换
+ * 
+ * 该函数负责处理UTF-16到UTF-8的编码转换操作，主要功能包括：
+ * - 调用UTF-16到UTF-8的主处理函数
+ * - 处理字符代码和系统缓冲区
+ * - 管理源指针和结束指针
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18017b380
+ */
+#define ProcessUtf16ToUtf8EncodingConversion FUN_18017b380
+void FUN_18017b380(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   ConvertUtf16ToUtf8MainProcessor(CharacterCode,*(void *)(CharacterCode + 0x10),Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
   return;
@@ -215526,6 +215550,24 @@ long long * FUN_18017b5e0(long long CharacterCode,long long SystemBufferSize,lon
 
 
 
+/**
+ * @brief 处理字符代码遍历和内存管理
+ * 
+ * 该函数负责处理字符代码遍历和内存管理操作，主要功能包括：
+ * - 遍历字符代码链表并处理每个节点
+ * - 管理UTF-8源指针的更新
+ * - 执行字符代码的清理和释放操作
+ * - 处理系统缓冲区的遍历和更新
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @return 返回处理后的UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_18017b680
+ */
+#define ProcessCharacterCodeTraversalAndMemoryManagement FUN_18017b680
 long long * FUN_18017b680(long long *CharacterCode,long long *CharacterCodeSize,long long *Utf8SourcePointer
 {
   long long *CharacterCode;

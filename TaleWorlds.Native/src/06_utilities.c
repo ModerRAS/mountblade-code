@@ -30089,18 +30089,25 @@ uint64_t ProcessDataWithValidation(void)
 
 
 
-// 函数: uint64_t ProcessDataStream(void)
-// 
-// 数据流处理函数
-// 处理数据流，包括数据验证、处理和结果返回
-// 
-// 参数:
-//   无 (使用全局寄存器状态)
-// 
-// 返回值:
-//   uint64_t - 处理结果状态码
-// 
-// 原始函数名: FUN_18089b31f
+/**
+ * @brief 数据流处理函数
+ * 
+ * 该函数处理数据流，包括数据验证、处理和结果返回。
+ * 函数使用全局寄存器状态进行操作，执行数据元素处理和数据块处理。
+ * 
+ * @return uint64_t 处理结果状态码，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名: FUN_18089b31f
+ * 
+ * 处理流程：
+ * 1. 执行数据元素处理操作（4字节、2字节、2字节、8字节）
+ * 2. 验证处理结果
+ * 3. 执行数据块处理操作
+ * 4. 根据处理结果执行数据流处理操作
+ * 5. 返回最终的处理状态
+ * 
+ * @warning 该函数依赖全局寄存器状态，调用前需确保寄存器状态正确
+ */
 uint64_t ProcessDataStream(void)
 
 {
@@ -30112,12 +30119,12 @@ uint64_t ProcessDataStream(void)
   uint64_t dataLength;
   ByteFlag dataElementBuffer [4];
   ByteFlag dataSizeBuffer [2];
-  ByteFlag tempBuffer3 [2];
+  ByteFlag thirdTempBuffer [2];
   
   dataHandle = *dataBuffer;
-  operationResult = ProcessDataElement(dataHandle, tempBuffer1, 4);
-  if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, tempBuffer2, 2), (int)operationResult == 0)) &&
-     (operationResult = ProcessDataElement(dataHandle, tempBuffer3, 2), (int)operationResult == 0)) {
+  operationResult = ProcessDataElement(dataHandle, firstTempBuffer, 4);
+  if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, secondTempBuffer, 2), (int)operationResult == 0)) &&
+     (operationResult = ProcessDataElement(dataHandle, thirdTempBuffer, 2), (int)operationResult == 0)) {
     operationResult = ProcessDataElement(dataHandle, &systemContextBuffer, 8);
   }
   if ((int)operationResult != 0) {
