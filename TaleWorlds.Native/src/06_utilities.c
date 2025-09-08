@@ -119,6 +119,13 @@
 #define MemoryResourcePointerOffsetE0 0xe0
 #define ResourcePointerStepSize 4
 
+// 系统状态验证相关偏移量常量
+#define SystemStatusValidationOffset82 0x82
+#define SystemStatusValidationOffset8A 0x8a
+#define ExceptionHandlerDataBufferOffset78 0x78
+#define ExceptionHandlerDataOffset30 0x30
+#define SystemStatusDataOffset48 0x48
+
 // 数据处理相关偏移量常量
 #define DataProcessingOffset70 0x70
 #define DataProcessingOffset84 0x84
@@ -64171,14 +64178,14 @@ void ManageMemoryReferenceCount(DataBuffer operationBase,int64_t dataBuffer)
 void ValidateSystemStatus(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  if (*(int64_t *)(dataBuffer + 0x82) != 0) {
+  if (*(int64_t *)(dataBuffer + SystemStatusValidationOffset82) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0x82) = 0;
-  if (*(int64_t *)(dataBuffer + 0x8a) != 0) {
+  *(DataBuffer *)(dataBuffer + SystemStatusValidationOffset82) = 0;
+  if (*(int64_t *)(dataBuffer + SystemStatusValidationOffset8A) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0x8a) = 0;
+  *(DataBuffer *)(dataBuffer + SystemStatusValidationOffset8A) = 0;
   if (*(int64_t *)(dataBuffer + DataProcessingOffset70) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
@@ -64188,13 +64195,13 @@ void ValidateSystemStatus(DataBuffer operationBase,int64_t dataBuffer)
   }
   *(DataBuffer *)(dataBuffer + ExceptionHandlerDataBufferOffset78) = 0;
   ProcessSystemOperationA0();
-  *(DataBuffer *)(dataBuffer + 0x30) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + SystemFloatDataOffset38) != 0) {
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerDataOffset30) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(dataBuffer + SystemResourceDataOffset38) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + SystemFloatDataOffset38) = 0;
-  *(DataWord *)(dataBuffer + 0x48) = 0;
-  *(DataBuffer *)(dataBuffer + 0x30) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + SystemResourceDataOffset38) = 0;
+  *(DataWord *)(dataBuffer + SystemStatusDataOffset48) = 0;
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerDataOffset30) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
