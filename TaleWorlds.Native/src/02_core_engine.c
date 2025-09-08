@@ -527,6 +527,9 @@
 #define LabelDataSizeValidation LAB_1800721e1                 // 数据大小验证标签
 #define LabelMemoryAddressValidation LAB_1800729bd            // 内存地址验证标签
 
+// 系统标志配置标签
+#define LabelSystemFlagConfiguration LAB_18016c134            // 系统标志配置标签
+
 // 浮点变量语义化映射
 #define FloatOffsetValue PrimaryFloatCoefficient              // 主浮点系数
 #define MatrixTransformMultiplier SecondaryFloatCoefficient            // 次浮点系数  
@@ -200111,7 +200114,7 @@ void ProcessCharacterEncodingAndSystemContext(long long ***CharacterCode,long lo
         SystemFlagF.HighPart = 0x3f800000;
         SystemFlagG = 0x3f800000;
         if (*(int *)(SystemConfigurationIterator + (long long)ppBufferIndex) == 4) {
-LAB_18016c134:
+LabelSystemFlagConfiguration:
           SystemFlagF.HighPart = 0x3ecccccd;
           SystemFlagG = 0x3ecccccd;
         }
@@ -200122,7 +200125,7 @@ LAB_18016c134:
             CharacterStatusBuffer5 = ConfigurationString;
           }
           StringOffset = strstr(CharacterStatusBuffer5,&SystemEventBufferPrimary);
-          if (StringOffset != 0) goto LAB_18016c134;
+          if (StringOffset != 0) goto LabelSystemFlagConfiguration;
           StringLength = *(int *)(SystemConfigurationIterator + (long long)ppBufferIndex);
           if (StringLength == 3) {
             SystemFlagF.HighPart = 0x3f47ae14;
