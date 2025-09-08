@@ -17733,7 +17733,7 @@ void ExecuteSecurityValidation(int64_t securityContext, int64_t operationDescrip
   uint64_t stackGuardValue;
   
   // 初始化栈保护值
-  stackGuardValue = exceptionEncryptionKey ^ (uint64_t)securityValidationBuffer;
+  stackGuardValue = ExceptionEncryptionKeyValue ^ (uint64_t)securityValidationBuffer;
   
   // 查询并检索系统数据
   queryStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(securityContext + SystemContextHandleOffset), &systemCtx);
@@ -17817,7 +17817,7 @@ void ExecuteSecurityValidation(void)
   uint64_t stackGuardValue;
   ByteFlag stackBuffer [40];
   
-  stackGuardValue = exceptionEncryptionKey ^ (uint64_t)stackBuffer;
+  stackGuardValue = ExceptionEncryptionKeyValue ^ (uint64_t)stackBuffer;
     ExecuteSecurityCheck(stackGuardValue);
 }
 
@@ -18818,7 +18818,7 @@ void InitializeResourceContext(int64_t contextDescriptor, DataBuffer initializat
   DataBuffer optionsCopy;
   uint64_t securityToken;
   
-  securityToken = exceptionEncryptionKey ^ (uint64_t)resourceBuffer;
+  securityToken = ExceptionEncryptionKeyValue ^ (uint64_t)resourceBuffer;
   optionsCopy = initializationOptions;
   initializationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextDescriptor + ExceptionHandlerCallbackOffset10),resourceBuffer);
   if (initializationStatus == 0) {
@@ -20468,7 +20468,7 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
   ByteFlag systemConfigBuffer [40];
   uint64_t securityCheckValue;
   
-  securityCheckValue = exceptionEncryptionKey ^ (uint64_t)encryptionKeyBuffer;
+  securityCheckValue = ExceptionEncryptionKeyValue ^ (uint64_t)encryptionKeyBuffer;
   exceptionHandlerContextPointer = *(int64_t **)(operationBase + OperationBaseOffset800);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     colorDataWord = *dataBuffer;
@@ -20588,7 +20588,7 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
   uint stackGreenComponentLowWord;
   uint stackSecurityGuard;
   
-  securityCheckValueA = exceptionEncryptionKey ^ (uint64_t)stackSecurityGuard;
+  securityCheckValueA = ExceptionEncryptionKeyValue ^ (uint64_t)stackSecurityGuard;
   exceptionHandlerContextPointer = *(int64_t **)(operationContext + 800);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     inputDataWord = *operationFlags;
@@ -20701,7 +20701,7 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
   ByteFlag systemConfigBuffer [40];
   uint64_t securityCheckValue;
   
-  securityCheckValue = exceptionEncryptionKey ^ (uint64_t)encryptionKeyBuffer;
+  securityCheckValue = ExceptionEncryptionKeyValue ^ (uint64_t)encryptionKeyBuffer;
   exceptionHandlerContextPointer = *(int64_t **)(operationBase + OperationBaseOffset800);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     colorDataWord = *dataBuffer;
@@ -21527,7 +21527,7 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
   int64_t *stackIntegerPointerC;            // 栈整数指针C
   
   // 初始化安全校验和
-  dataSecurityChecksum = exceptionEncryptionKey ^ (uint64_t)securityValidationBuffer;
+  dataSecurityChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)securityValidationBuffer;
   // 初始化系统状态变量
   currentRecordIndex = *(int *)(systemContext + 0xac);
   recordIterationCount = (int64_t)currentRecordIndex;
@@ -23222,7 +23222,7 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   ByteFlag DataBufferA [520];
   uint64_t colorProcessingData;
   
-  colorProcessingData = exceptionEncryptionKey ^ (uint64_t)PrimaryEncryptionKeyBuffer;
+  colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)PrimaryEncryptionKeyBuffer;
   LoopCounter = 0;
   if (operationFlagA != 0) {
     operationStatus = *(int *)(dataBuffer + OperationStatusOffset);
@@ -23878,7 +23878,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
   ByteFlag DataBufferB [512];
   uint64_t EncryptionKeyXorResult;
   
-  EncryptionKeyXorResult = exceptionEncryptionKey ^ (uint64_t)SecondaryEncryptionKeyBuffer;
+  EncryptionKeyXorResult = ExceptionEncryptionKeyValue ^ (uint64_t)SecondaryEncryptionKeyBuffer;
   exceptionHandlerContext = operationBase[4];
   if (((char)exceptionHandlerContext != '\0') || (operationResult = ValidateSystemDataA0(operationBase,1), operationResult == 0)) {
     operationResult = (**(FunctionPointer**)(*dataBuffer + ExceptionHandlerCallbackOffset10))(dataBuffer,DataBufferB,0x200);
