@@ -29094,40 +29094,40 @@ void SetUIRenderingParameters(longlong uiContext,longlong dataSource,int targetB
   QuinaryUIComponent = *(UIHandle *)(allocatedMemory8 + 0x40);
   SenaryUIComponent = *(UIHandle *)(allocatedMemory8 + 0x48);
   RenderFlagArray[3] = *(UIDword *)(allocatedMemory8 + 0x88);
-  stackLong100 = *(longlong *)(stackLonge0 + 0x38);
-  stackLongf8 = *(longlong *)(stackLonge0 + 0x40);
-  stackLongf0 = *(longlong *)(stackLonge0 + 0x48);
+  RenderMemoryBase = *(longlong *)(RenderDataOffset + 0x38);
+  RenderMemoryOffset = *(longlong *)(RenderDataOffset + 0x40);
+  RenderBufferSize = *(longlong )(RenderDataOffset + 0x48);
   *(uint *)(dataSource + 0xf10) = (uint)(targetBuffer != 0);
-  stackInt15c = targetBuffer;
+  RenderSubIterationCount = targetBuffer;
   if (targetBuffer < *(int *)(uiBufferData + 0x1e74)) {
-    stackUInt120 = iterationCount1;
-    stackUInt118 = result9;
+    RenderHandleValue = iterationCount1;
+    RenderStateValue = result9;
     iterationCount2 = iterationCount1;
     do {
-      stackInt134 = stackInt15c;
+      RenderChunkIndex = RenderSubIterationCount;
       *(longlong *)(dataSource + 0xfb8) =
-           ((longlong)(stackInt15c % stackInt138) + 0x15c) * 0x30 + uiContext;
-      if (stackInt15c < 1) {
-        pstackInt110 = &stackInt144;
+           ((longlong)(RenderSubIterationCount % RenderPhaseIndex) + 0x15c) * 0x30 + uiContext;
+      if (RenderSubIterationCount < 1) {
+        RenderValidationPointer = &RenderPassIndex;
       }
       else {
-        pstackInt110 = (int *)(*(longlong *)(uiBufferData + 0x43a8) + (longlong)(stackInt15c + -1) * 4);
+        RenderValidationPointer = (int *)(*(longlong *)(uiBufferData + 0x43a8) + (longlong)(RenderSubIterationCount + -1) * 4);
       }
-      stackLong168 = (longlong)stackInt15c;
-      pstackInt108 = (int *)(*(longlong *)(uiBufferData + 0x43a8) + stackLong168 * 4);
+      AnimationStateValue = (longlong)RenderSubIterationCount;
+      RenderStatusPointer = (int *)(*(longlong *)(uiBufferData + 0x43a8) + AnimationStateValue * 4);
       *(UIHandle *)(dataSource + 0xf50) = *(UIHandle *)(uiContext + 0x2c18);
       ptrLocal6 = *(UIHandle **)(dataSource + 0xf58);
-      stackInt154 = stackInt15c * (int)iterationCount2 * 0x10;
-      stackInt150 = stackInt15c * (int)result9 * 8;
+      RenderSegmentIndex = RenderSubIterationCount * (int)iterationCount2 * 0x10;
+      RenderBatchIndex = RenderSubIterationCount * (int)result9 * 8;
       *ptrLocal6 = 0;
       *(UIByte *)(ptrLocal6 + 1) = 0;
       *(UIDword *)(dataSource + 0xf14) = 0;
-      *(int *)(dataSource + 0xf8c) = stackInt15c * -0x80;
-      *(int *)(dataSource + 0xf90) = ((*(int *)(uiBufferData + 0x1e74) - stackInt15c) + -1) * 0x80;
+      *(int )(dataSource + 0xf8c) = RenderSubIterationCount * -0x80;
+      *(int *)(dataSource + 0xf90) = ((*(int *)(uiBufferData + 0x1e74) - RenderSubIterationCount) + -1) * 0x80;
       if (*(int *)(uiBufferData + 0x2be0) == 0) {
-        *(longlong *)(dataSource + 0xf18) = stackInt154 + stackLong100;
-        *(longlong *)(dataSource + 0xf20) = stackLongf8 + stackInt150;
-        *(longlong *)(dataSource + 0xf28) = stackLongf0 + stackInt150;
+        *(longlong *)(dataSource + 0xf18) = RenderSegmentIndex + RenderMemoryBase;
+        *(longlong )(dataSource + 0xf20) = RenderMemoryOffset + RenderBatchIndex;
+        *(longlong )(dataSource + 0xf28) = RenderBufferSize + RenderBatchIndex;
         *(longlong *)(dataSource + 0xf30) = *(longlong *)(dataSource + 0xf18) + -1;
         *(longlong *)(dataSource + 0xf38) = *(longlong *)(dataSource + 0xf20) + -1;
         peventTypeCode = *(UIByte **)(dataSource + 0xf38);
