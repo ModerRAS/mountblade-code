@@ -27414,12 +27414,12 @@ void CoreEngineInitializeSystemDataStructures(void
     (*(code *)(*MemoryAllocationBlock)[7])(MemoryAllocationBlock);
   }
   SystemDataTablePointer = *(long long *)(SystemMemoryManager + 0x18) - *(long long *)(SystemMemoryManager + 0x10);
-  ValidationResult = SystemStatusCode;
+  ValidationResult = systemStatus;
   if (SystemDataTablePointer / 0x1c != 0) {
     do {
       ProcessMemoryAllocationHandler(SystemDataTablePointer,ValidationResult * 0x1c + *(long long *)(SystemMemoryManager + 0x10));
-      ProcessedCharacter = (int)SystemStatusCode + 1;
-      SystemStatusCode = (unsigned long long)ProcessedCharacter;
+      ProcessedCharacter = (int)systemStatus + 1;
+      systemStatus = (unsigned long long)ProcessedCharacter;
       SystemDataTablePointer = *(long long *)(SystemMemoryManager + 0x18) - *(long long *)(SystemMemoryManager + 0x10);
       ValidationResult = (long long)(int)ProcessedCharacter;
     } while ((unsigned long long)(long long)(int)ProcessedCharacter < (unsigned long long)(SystemDataTablePointer / 0x1c));
