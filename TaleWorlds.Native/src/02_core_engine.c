@@ -282522,4 +282522,151 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
 #define ConfigHandlerLAB180087418 LAB_180087418
 #define CleanupHandlerLAB18008755d LAB_18008755d
 
+// 新增的FUN_函数语义化宏定义
+/**
+ * @brief 处理字符代码和二级指针
+ * 
+ * 该函数负责处理字符代码与二级指针的关系，进行内存分配和管理。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_18014f6a0
+ */
+#define ProcessCharacterCodeWithSecondaryPointer FUN_18014f6a0
+
+/**
+ * @brief 处理字符代码和主指针
+ * 
+ * 该函数负责处理字符代码与主指针的关系，进行内存分配和管理。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_18014f660
+ */
+#define ProcessCharacterCodeWithPrimaryPointer FUN_18014f660
+
+/**
+ * @brief 处理字符代码和处理指针
+ * 
+ * 该函数负责处理字符代码与处理指针的关系，进行内存分配和管理。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long* 处理结果指针
+ * 
+ * @note 原始函数名：FUN_18014f840
+ */
+#define ProcessCharacterCodeWithProcessingPointer FUN_18014f840
+
+/**
+ * @brief 处理系统字符状态和缓冲区大小
+ * 
+ * 该函数负责处理系统字符状态和缓冲区大小的关系。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_1801596c0
+ */
+#define ProcessSystemCharacterStatusAndBufferSize FUN_1801596c0
+
+/**
+ * @brief 处理系统字符状态和缓冲区大小扩展
+ * 
+ * 该函数负责处理系统字符状态和缓冲区大小的扩展关系。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180159730
+ */
+#define ProcessSystemCharacterStatusAndBufferSizeEx FUN_180159730
+
+/**
+ * @brief 处理系统字符状态和缓冲区大小高级
+ * 
+ * 该函数负责处理系统字符状态和缓冲区大小的高级关系。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_1801597a0
+ */
+#define ProcessSystemCharacterStatusAndBufferSizeAdvanced FUN_1801597a0
+
+/**
+ * @brief 处理系统内存管理
+ * 
+ * 该函数负责处理系统内存管理操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_18015c0a0
+ */
+#define ProcessSystemMemoryManagement FUN_18015c0a0
+
+/**
+ * @brief 处理系统内存分配扩展
+ * 
+ * 该函数负责处理系统内存分配的扩展操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_18015c190
+ */
+#define ProcessSystemMemoryAllocationEx FUN_18015c190
+
+/**
+ * @brief 获取系统字符缓冲区大小
+ * 
+ * 该函数负责获取系统字符缓冲区的大小。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return uint64_t 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18015c270
+ */
+#define GetSystemCharacterBufferSize FUN_18015c270
+
+/**
+ * @brief 获取系统字符缓冲区大小扩展
+ * 
+ * 该函数负责获取系统字符缓冲区大小的扩展信息。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18015c320
+ */
+#define GetSystemCharacterBufferSizeEx FUN_18015c320
+
 

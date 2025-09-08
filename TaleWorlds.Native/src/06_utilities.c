@@ -219,6 +219,10 @@
 #define SecurityValidationInputValidation 0x42494157
 #define SecurityValidationDataMemoryControl 0x42444d43
 #define SecurityValidationInputFlagExecute 0x42494645
+#define SecurityValidationFfcOperation 0x46464542
+#define SecurityValidationFfcOperationAlt 0x46464550
+#define SecurityValidationFfcOperationSecurity 0x46464553
+#define SecurityValidationFfcOperationRequest 0x46464353
 
 // 异常处理上下文常量
 #define ExceptionHandlerPointerOffset 0x2b8
@@ -28439,7 +28443,7 @@ DataBuffer ProcessDataCacheA0(int64_t operationBase,DataBuffer *dataBuffer)
   ByteFlag dataBufferA [32];
   ByteFlag dataBufferB [48];
   
-  systemDataBuffer = ValidatePortControlRequest(dataBuffer,systemBufferA,1,0x46464542);
+  systemDataBuffer = ValidatePortControlRequest(dataBuffer,systemBufferA,1,SecurityValidationFfcOperation);
   if (((((int)systemDataBuffer == 0) &&
        (systemDataBuffer = ValidatePortControlRequest(dataBuffer,acolorDataWord,0,0x42464542), (int)systemDataBuffer == 0)) &&
       (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset10), (int)systemDataBuffer == 0)) &&
@@ -34080,7 +34084,7 @@ uint64_t QuerySystemDataD(int64_t operationBase,DataBuffer *dataBuffer)
   ByteFlag inputDataBuffer [32];
   ByteFlag securityValidationBuffer [32];
   
-  operationResult = ExecuteSecurityValidation(dataBuffer,securityValidationBuffer,1,0x46464550);
+  operationResult = ExecuteSecurityValidation(dataBuffer,securityValidationBuffer,1,SecurityValidationFfcOperationAlt);
   if (((((int)operationResult != 0) ||
        (operationResult = ExecuteSecurityValidation(dataBuffer,inputDataBuffer,0,0x42464550), (int)operationResult != 0)) ||
       (operationResult = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset10), (int)operationResult != 0)) ||
