@@ -82188,7 +82188,7 @@ void ProcessUIDataBufferBatch(UIHandle uiContext,longlong dataSource,longlong ta
     do {
       tempHandle60 = 0;
       tempHandle58 = 0;
-      FUN_1807074b0(uiContext,dataOffset,&tempHandle60,bufferSize);
+      ProcessUIRenderDataTransform(uiContext,dataOffset,&tempHandle60,bufferSize);
       dataOffset = dataOffset + 0x10;
       iterationPointer[-2] = (UIDword)tempHandle60;
       iterationPointer[-1] = tempHandle60._4_4_;
@@ -82256,7 +82256,7 @@ void ProcessUIDataBatch(UIHandle uiContext,longlong dataSource,longlong targetBu
   do {
     _StackData1 = 0;
     _StackData2 = 0;
-    FUN_1807074b0(0,dataSource,&stack0x00000028,EventHandleD);
+    ProcessUIRenderDataTransform(0,dataSource,&stack0x00000028,EventHandleD);
     dataSource = dataSource + 0x10;
     ptrLocal3[-2] = StackData1;
     ptrLocal3[-1] = uStack000000000000002c;
