@@ -76048,12 +76048,12 @@ uint ProcessUIResourceAllocation(longlong *uiContext,uint dataSource)
   uint allocationId;
   int bitShiftCount;
   
-  uVar8 = *(uint *)(uiContext + 4);
-  LoopCounter = dataSource - 1;
-  uVar9 = *(uint *)((longlong)uiContext + 0x24);
-  ProcessingResult1 = 0x1f;
-  if (LoopCounter != 0) {
-    for (; LoopCounter >> ProcessingResult1 == 0; ProcessingResult1 = ProcessingResult1 + -1) {
+  contextValue1 = *(uint *)(uiContext + 4);
+  allocationCounter = dataSource - 1;
+  contextValue2 = *(uint *)((longlong)uiContext + 0x24);
+  bitShiftCount = 0x1f;
+  if (allocationCounter != 0) {
+    for (; allocationCounter >> bitShiftCount == 0; bitShiftCount = bitShiftCount + -1) {
     }
   }
   if (ProcessingResult1 + 1 < 9) {
@@ -77238,41 +77238,41 @@ void NormalizeUIFloatData(UIHandle uiContext, uint dataSource, int targetBuffer)
     characterDataOffset = eventHandle;
     do {
       localFloat23 = *register10;
-      pfloatResult0 = (float *)(allocatedMemory9 + (longlong)register10);
+      floatResultPtr0 = (float *)(allocatedMemory9 + (longlong)register10);
       localInt7 = 0;
       if (3 < unmodifiedR13D) {
-        ProcessingResult3 = uiValidationResult0 * 2;
+        processingResult3 = uiValidationResult0 * 2;
         do {
-          TempInt4 = uiValidationResult0 * -2 + ProcessingResult3;
-          localFloat21 = pfloatResult0[TempInt4] * localFloat23;
+          tempInt = uiValidationResult0 * -2 + processingResult3;
+          localFloat21 = floatResultPtr0[tempInt] * localFloat23;
           if (0.0 <= localFloat21) goto LAB_18070ff9b;
-          pfloatResult0[TempInt4] = (localFloat21 + 1.0) * pfloatResult0[TempInt4];
-          localFloat21 = pfloatResult0[ProcessingResult3 - uiValidationResult0] * localFloat23;
+          floatResultPtr0[tempInt] = (localFloat21 + 1.0) * floatResultPtr0[tempInt];
+          localFloat21 = floatResultPtr0[processingResult3 - uiValidationResult0] * localFloat23;
           if (0.0 <= localFloat21) goto LAB_18070ff9b;
-          pfloatResult0[ProcessingResult3 - uiValidationResult0] = (localFloat21 + 1.0) * pfloatResult0[ProcessingResult3 - uiValidationResult0];
-          localFloat21 = pfloatResult0[ProcessingResult3] * localFloat23;
+          floatResultPtr0[processingResult3 - uiValidationResult0] = (localFloat21 + 1.0) * floatResultPtr0[processingResult3 - uiValidationResult0];
+          localFloat21 = floatResultPtr0[processingResult3] * localFloat23;
           if (0.0 <= localFloat21) goto LAB_18070ff9b;
-          pfloatResult0[ProcessingResult3] = (localFloat21 + 1.0) * pfloatResult0[ProcessingResult3];
-          TempInt4 = ProcessingResult3 + uiValidationResult0;
-          localFloat21 = pfloatResult0[TempInt4] * localFloat23;
+          floatResultPtr0[processingResult3] = (localFloat21 + 1.0) * floatResultPtr0[processingResult3];
+          tempInt = processingResult3 + uiValidationResult0;
+          localFloat21 = floatResultPtr0[tempInt] * localFloat23;
           if (0.0 <= localFloat21) goto LAB_18070ff9b;
           localInt7 = localInt7 + 4;
-          ProcessingResult3 = ProcessingResult3 + uiValidationResult0 * 4;
-          pfloatResult0[TempInt4] = (localFloat21 + 1.0) * pfloatResult0[TempInt4];
+          processingResult3 = processingResult3 + uiValidationResult0 * 4;
+          floatResultPtr0[tempInt] = (localFloat21 + 1.0) * floatResultPtr0[tempInt];
         } while (localInt7 < unmodifiedR13D + -3);
       }
       if (localInt7 < unmodifiedR13D) {
-        ProcessingResult3 = localInt7 * uiValidationResult0;
+        processingResult3 = localInt7 * uiValidationResult0;
         do {
-          localFloat21 = pfloatResult0[ProcessingResult3] * localFloat23;
+          localFloat21 = floatResultPtr0[processingResult3] * localFloat23;
           if (0.0 <= localFloat21) break;
           localInt7 = localInt7 + 1;
-          pfloatResult0[ProcessingResult3] = (localFloat21 + 1.0) * pfloatResult0[ProcessingResult3];
-          ProcessingResult3 = ProcessingResult3 + uiValidationResult0;
+          floatResultPtr0[processingResult3] = (localFloat21 + 1.0) * floatResultPtr0[processingResult3];
+          processingResult3 = processingResult3 + uiValidationResult0;
         } while (localInt7 < unmodifiedR13D);
       }
 LAB_18070ff9b:
-      localFloat23 = *pfloatResult0;
+      localFloat23 = *floatResultPtr0;
       localInt7 = 0;
       do {
         ProcessingResult3 = localInt7;
