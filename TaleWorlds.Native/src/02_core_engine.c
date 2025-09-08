@@ -200471,7 +200471,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx6(long long *CharacterCode,uint64_t *Charac
 
 
 
-6a890(long long *CharacterCodevoid FUN_18016a890(long long *CharacterCode
+void FUN_18016a890(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -202080,7 +202080,7 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long CharacterCode, uin
 
 
 
-6c97a(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18016c97a(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer
+void FUN_18016c97a(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint *CharacterStatusBuffer;
   int *StringComparisonResultPointer;
@@ -202251,7 +202251,7 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long CharacterCode, uin
 
 
 
-6cacd(voidvoid FUN_18016cacd(void
+void FUN_18016cacd(void)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
