@@ -90026,7 +90026,24 @@ int CalculateAndValidateUINumericValue(uint uiContext,uint dataSource,int target
 
 
  void FUN_18071b790(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
-void FUN_18071b790(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+/**
+ * @brief UI缓冲区数据对齐和加密处理函数
+ * 
+ * 该函数负责处理UI缓冲区的数据对齐和加密操作，主要功能包括：
+ * - 执行数据对齐操作，确保缓冲区数据按照16字节边界对齐
+ * - 处理XOR加密解密操作，保护数据安全性
+ * - 管理缓冲区大小和迭代计数
+ * - 调用底层UI缓冲区操作函数
+ * - 处理栈参数和内存布局
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小句柄
+ * 
+ * @note 原始函数名：FUN_18071b790
+ */
+void ProcessUIBufferAlignmentAndEncryption(UIHandle uiContext,longlong dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {
   ulonglong result;
