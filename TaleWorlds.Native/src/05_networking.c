@@ -1184,22 +1184,23 @@ uint32_t ProcessNetworkArrayData(int64_t NetworkContextArray, uint32_t ArrayInde
 /**
  * @brief 关闭网络连接
  * 
- * 关闭网络连接，释放相关资源
+ * 关闭网络连接并释放相关资源。该函数执行以下操作：
+ * 1. 验证连接上下文的有效性
+ * 2. 验证连接标志的有效性
+ * 3. 根据验证结果执行连接关闭操作
+ * 4. 返回操作状态码
  * 
- * @param NetworkConnectionContext 网络连接上下文指针
- * @param ConnectionFlags 连接标志
- * @return uint32_t 关闭结果句柄，0表示成功，其他值表示错误码
+ * @param NetworkConnectionContext 网络连接上下文指针，包含连接状态和资源信息
+ * @param ConnectionFlags 连接标志，用于控制关闭行为（如强制关闭、优雅关闭等）
+ * @return uint32_t 关闭操作结果：
+ *         - NetworkValidationSuccess (0): 连接关闭成功
+ *         - NetworkValidationFailure (1): 验证失败或关闭操作失败
+ *         - 其他错误码: 具体的错误类型
+ * 
+ * @note 该函数会验证输入参数的有效性，确保不会对无效连接执行操作
+ * @see InitializeNetworkConnection, ValidateNetworkConnectionStatus
  */
-/**
- * @brief 关闭网络连接
- * 
- * 关闭网络连接，释放相关资源
- * 
- * @param NetworkConnectionContext 网络连接上下文指针
- * @param ConnectionFlags 连接标志
- * @return uint32_t 关闭结果，0表示成功，其他值表示错误码
- */
-uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags)
+uint32_t CloseNetworkConnection(int64_t NetworkConnectionContext, uint32_t ConnectionFlags)
 {
   // 连接关闭处理变量
   uint32_t ConnectionCloseResult;                         // 连接关闭结果状态
