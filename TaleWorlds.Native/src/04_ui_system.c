@@ -17050,7 +17050,7 @@ void ProcessUIAnimation(longlong uiContext,float dataSource,UIHandle targetBuffe
   int localInt5;
   float localFloat6;
   float resultFloat;
-  UIDword uVar8;
+  UIDword NormalizedFloatValue;
   float localFloat9;
   float floatResult0;
   float floatResult1;
@@ -17296,10 +17296,10 @@ LAB_18065d55b:
     localFloat6 = 0.0;
   }
   if ((localInt5 == 1) || ((*(int *)(uiBufferData + 0x14) == 1 && (*(float *)(uiContext + 0x2c) != 1.0)))) {
-    uVar8 = fmodf(dataSource / *(float *)(*(longlong *)
+    NormalizedFloatValue = fmodf(dataSource / *(float *)(*(longlong *)
                                         (*(longlong *)(uiBufferData + 0xc78) + 8 + (longlong)localInt5 * 0x30
                                         ) + 0x188) + *(float *)(uiContext + 0x44),0x3f800000);
-    *(UIDword *)(uiBufferData + 0x44) = uVar8;
+    *(UIDword *)(uiBufferData + 0x44) = NormalizedFloatValue;
   }
   else {
     *(UIDword *)(uiBufferData + 0x44) = 0;
@@ -17317,8 +17317,8 @@ LAB_18065d55b:
     floatResult1 = floatResult1 + *(float *)(uiContext + 0x40);
     *(float *)(uiContext + 0x40) = floatResult1;
     if (1.0 < floatResult1) {
-      uVar8 = fmodf(floatResult1,0x3f800000);
-      *(UIDword *)(uiBufferData + 0x40) = uVar8;
+      NormalizedFloatValue = fmodf(floatResult1,0x3f800000);
+      *(UIDword *)(uiBufferData + 0x40) = NormalizedFloatValue;
     }
   }
   if ((0.0 < *(float *)(uiContext + 0x38)) || (0.0 < *(float *)(uiContext + 0x34))) {
