@@ -10068,7 +10068,7 @@ void ManageUIElements(longlong *uiContext)
     uint uiQueueSize = 0;
     uint uiListSize = 3;
     (**(code **)(*UIActiveContext + 0x18))(UIActiveContext,&uiComponentQueue);
-    result = uiComponentQueue;
+    UIHandle *uiProcessedQueue = uiComponentQueue;
     uiBufferPointer = uiComponentProcessor;
     colorBufferPtr = uiActiveElement;
     if ((longlong)stackPointer50 - (longlong)stackPointer58 >> 5 != 0) {

@@ -410,7 +410,9 @@
 #define SystemFloatDataOffset380 0x380                        // 系统浮点数据偏移量380
 
 // 资源管理偏移量常量
+#define ResourceCounterOffset250 0x250                         // 资源计数器偏移量250
 #define ResourceCounterOffset2B0 0x2b0                         // 资源计数器偏移量2B0
+#define ExceptionHandlerPointerOffset240 0x240                // 异常处理器指针偏移量240
 #define ExceptionHandlerContextOffset600 0x600                // 异常处理器上下文偏移量600
 #define SystemDataParameterOffset20 0x20                      // 系统数据参数偏移量20
 #define ExceptionHandlerPointerOffset2A0 0x2a0                // 异常处理器指针偏移量2A0
