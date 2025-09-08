@@ -240010,17 +240010,30 @@ LAB_180201f5b:
 
 
 
-void FUN_180202c0d(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
+/**
+ * @brief 处理浮点数组的快速排序操作
+ * 
+ * 该函数实现了一个复杂的浮点数组排序算法，类似于快速排序的变种
+ * 通过迭代方式对数组进行分区和排序操作
+ * 
+ * @param FloatArrayPointer - 浮点数组指针
+ * @param ArraySizePointer - 数组大小指针  
+ * @param IterationCount - 迭代计数
+ * @param ProcessFlag - 处理标志
+ * 
+ * @note 原始函数名：FUN_180202c0d
+ */
+void FUN_180202c0d(float *FloatArrayPointer,float *ArraySizePointer,long long IterationCount,uint8_t ProcessFlag)
 {
-  float SystemContextPrimaryFloat;
-  float ContextSecondaryFloat;
-  long long ProcessingResult;
-  unsigned long long UnicodeCodePoint;
-  long long SystemDataRegistry;
-  float *pMatrixTransformMultiplier;
-  float *FloatProcessingStatusFlag;
-  float FloatOffsetValue;
-  float ProcessedFloatValue8;
+  float PrimaryContextValue;
+  float SecondaryContextValue;
+  long long CalculationResult;
+  unsigned long long ArrayOffset;
+  long long SystemRegisterValue;
+  float *ArrayIterator;
+  float *ProcessingStatusPointer;
+  float CurrentFloatValue;
+  float ProcessedFloatValue;
   
   UnicodeCodePoint = ProcessingResult - (long long)CharacterCode;
   while ((0x70 < (long long)(UnicodeCodePoint & 0xfffffffffffffffc) && (0 < Utf8SourcePointer))) {
