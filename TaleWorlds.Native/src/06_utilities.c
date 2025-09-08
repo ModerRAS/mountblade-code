@@ -22493,9 +22493,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
   securityCheckResult = *(uint *)(operationBase + OperationBaseOffset6C);
   dataFlags = 0;
   arrayIndex = 0;
-  if ((securityCheckResult >> 0x1a & 1) == 0) goto ProcessCheckpointSecurityCheck;
-  if ((securityCheckResult & 1) == 0) {
-    systemContextPointer = (int64_t *)(operationBase + 0x70);
+  if ((securityCheckResult >> SecurityCheckBitMask26 & SecurityCheckBitMask1) == 0) goto ProcessCheckpointSecurityCheck;
+  if ((securityCheckResult & SecurityCheckBitMask1) == 0) {
+    systemContextPointer = (int64_t *)(operationBase + SystemContextPointerOffset70);
     memoryOperationCounter = 0;
     loopCounterInput = 0;
     stackUIntBuffer[0] = 0;
@@ -22513,75 +22513,75 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
           loopCounterInput = (int)loopCounter;
           resourceIterator = exceptionHandlerContextPointer[2];
           exceptionContextIndex = (int64_t)stackIntBuffer[0];
-          arrayIndex = *(int *)(resourceIterator + 8 + exceptionContextIndex * 0x10);
-          if (arrayIndex == 2) {
-            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10),&stackValidationValue);
+          arrayIndex = *(int *)(resourceIterator + ArrayDataOffset8 + exceptionContextIndex * ArrayIterationStepSize);
+          if (arrayIndex == SystemResourceIndex2) {
+            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize),&stackValidationValue);
             validationStatus = stackValidationValue;
             exceptionHandlerContextPointer = systemContextPointer;
             if ((arrayIndex == 0) &&
                (arrayIndex = PerformSystemValidationCheck(stackValidationValue), exceptionHandlerContextPointer = stackValidationPointer, 0 < arrayIndex)) {
               do {
-                dataProcessingWordB = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
+                dataProcessingWordB = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
                 dataProcessingWordA = 0;
                 dataValidationContext = &SystemValidationDataTableA0;
-                DoubleValidateAndExecuteOperation(dataValidationContext,*(DataBuffer *)(operationBase + 0x58));
+                DoubleValidateAndExecuteOperation(dataValidationContext,*(DataBuffer *)(operationBase + ValidationDataOffset58));
                 arrayIndex = PerformSystemValidationCheck(validationStatus);
               } while (0 < arrayIndex);
               dataFlags = (uint64_t)stackUIntBuffer[0];
               exceptionHandlerContextPointer = systemContextPointer;
             }
           }
-          else if (arrayIndex == 3) {
-            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10),stackByteBuffer);
+          else if (arrayIndex == SystemResourceIndex4) {
+            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize),stackByteBuffer);
             exceptionHandlerContextPointer = systemContextPointer;
             if (arrayIndex == 0) {
               systemResourceDataPointer = &SystemValidationDataTableA1;
-              StackResourceData = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
+              StackResourceData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
               StackResourceOffset = 0;
               StackResourceFlag = 1;
-              ProcessSystemDataA2(systemResourceDataPointer,*(DataBuffer *)(operationBase + 0x58));
+              ProcessSystemDataA2(systemResourceDataPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               systemValidationDataPointer = &SystemValidationDataTableA2;
-              StackValidationData = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
+              StackValidationData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
               StackValidationOffset = 0;
-              ValidateAndExecuteOperationA0(systemValidationDataPointer,*(DataBuffer *)(operationBase + 0x58));
+              ValidateAndExecuteOperationA0(systemValidationDataPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               exceptionHandlerContextPointer = systemContextPointer;
             }
           }
           else if (arrayIndex == 5) {
-            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10),validationBuffer1);
+            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize),validationBuffer1);
             exceptionHandlerContextPointer = systemContextPointer;
             if (arrayIndex == 0) {
               StackValidationPointer = &SystemValidationDataTableA3;
-              StackBufferData = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
+              StackBufferData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
               StackBufferOffset = 0;
               StackBufferFlag = 0x3f800000;
-              ValidateDataIntegrityA1(&StackValidationPointer,*(DataBuffer *)(operationBase + 0x58));
+              ValidateDataIntegrityA1(&StackValidationPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               StackDataPointer = &SystemValidationDataTableA4;
-              StackProcessingData = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
+              StackProcessingData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
               StackProcessingOffset = 0;
               StackProcessingFlag = 0;
-              ProcessDataBlockA0(&StackDataPointer,*(DataBuffer *)(operationBase + 0x58));
+              ProcessDataBlockA0(&StackDataPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               StackEventPointer = &SystemValidationDataTableA5;
-              StackEventData = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
+              StackEventData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
               StackEventOffset = 0;
               StackEventFlag = StackEventFlag & 0xffffff00;
-              ProcessDataSetFlagA0(&StackEventPointer,*(DataBuffer *)(operationBase + 0x58));
+              ProcessDataSetFlagA0(&StackEventPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               StackSystemPointer = &SystemValidationDataTableA6;
-              StackSystemData = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
+              StackSystemData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
               StackSystemOffset = 0;
-              ProcessSystemEventA0(&StackSystemPointer,*(DataBuffer *)(operationBase + 0x58));
+              ProcessSystemEventA0(&StackSystemPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               exceptionHandlerContextPointer = systemContextPointer;
             }
           }
           else if (arrayIndex == 6) {
-            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10),validationBuffer2);
+            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize),validationBuffer2);
             exceptionHandlerContextPointer = systemContextPointer;
             if (arrayIndex == 0) {
               StackSecurityPointer = &SystemValidationDataTableA7;
-              StackSecurityData = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
+              StackSecurityData = *(DataWord *)(resourceIterator + ArrayDataOffsetC + exceptionContextIndex * ArrayIterationStepSize);
               StackSecurityOffset = 0;
               StackSecurityFlag = 0x3f800000;
-              ValidateSystemA0(&StackSecurityPointer,*(DataBuffer *)(operationBase + 0x58));
+              ValidateSystemA0(&StackSecurityPointer,*(DataBuffer *)(operationBase + ValidationDataOffset58));
               exceptionHandlerContextPointer = systemContextPointer;
             }
           }
@@ -124895,6 +124895,19 @@ uint8_t SystemExceptionHandlerStateTable;
 #define SetDefaultExceptionHandlerAtOffset3C0 Unwind_18090c120
 #define ProcessExceptionHandlersAndTerminateSystem Unwind_18090c130
 #define ProcessMemoryResourceCleanup Unwind_18090c140
+
+// 异常处理器回调函数系列 - 基于不同偏移量的异常上下文调用
+#define ExecuteExceptionHandlerCallbackAtOffset3B8 Unwind_18090b310
+#define ExecuteExceptionHandlerCallbackAtOffset3C0 Unwind_18090b330
+#define ExecuteExceptionHandlerCallbackAtOffset3C8 Unwind_18090b350
+#define ExecuteExceptionHandlerCallbackAtOffset3D0 Unwind_18090b370
+#define ExecuteExceptionHandlerCallbackAtOffset3D8 Unwind_18090b390
+#define ExecuteExceptionHandlerCallbackAtOffset3E0 Unwind_18090b3b0
+#define ExecuteExceptionHandlerCallbackAtOffset3E8 Unwind_18090b3d0
+#define ExecuteExceptionHandlerCallbackAtOffset3F0 Unwind_18090b3f0
+#define ExecuteExceptionHandlerCallbackAtOffset3F8 Unwind_18090b410
+#define ExecuteExceptionHandlerCallbackAtOffset400 Unwind_18090b430
+#define ExecuteExceptionHandlerCallbackAtOffset408 Unwind_18090b450
 
 // 系统资源表清理和异常处理函数
 #define CleanupSystemResourceTableAndHandleExceptions Unwind_180911de0
