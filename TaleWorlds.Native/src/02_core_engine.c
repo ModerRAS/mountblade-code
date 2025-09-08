@@ -303,6 +303,9 @@
 #define ProcessUtf8BufferFinalization FUN_180137f90          // 处理UTF-8缓冲区最终化
 #define ValidateSystemConfiguration FUN_18012eff0              // 验证系统配置
 #define ProcessCharacterCode FUN_180174340                 // 处理UTF-8输入缓冲区
+#define ProcessCharacterEncodingAndDataValidation FUN_180170380 // 处理字符编码和数据验证
+#define ProcessCharacterEncodingAndMemoryPoolOperations FUN_180170700 // 处理字符编码和内存池操作
+#define ProcessCharacterBufferResetAndCleanup FUN_180170900 // 处理字符缓冲区重置和清理
 #define ManageMemoryReferenceCount FUN_18014c7d0            // 管理内存引用计数和资源释放
 #define CalculateAndUpdateMemoryPoolSize FUN_18014c9e0      // 计算和更新系统内存池大小
 
@@ -204997,7 +205000,7 @@ void ProcessSystemMemoryDataCopy(unsigned long long CharacterCode,unsigned long 
     Utf16ConversionContext = Utf16EndPointer;
     if (((long long)(SystemDataOffset & 0xffffffffffffffe0) < 0x381) || (Utf8SourcePointer < 1)) {
       if (Utf8SourcePointer == 0) {
-        FUN_180170380(CharacterCode,SystemBufferSize,SystemBufferSize,DataSize,Utf16ConversionContext,PrimaryReturnCode);
+        ProcessCharacterEncodingAndDataValidation(CharacterCode,SystemBufferSize,SystemBufferSize,DataSize,Utf16ConversionContext,PrimaryReturnCode);
       }
       return;
     }
