@@ -219674,7 +219674,17 @@ LAB_180184089:
 
 
 
-842a0(uint32_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_1801842a0(uint32_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 异步回调处理函数
+ * 
+ * 处理异步操作的回调，包括字符编码转换和内存管理
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ */
+void ProcessAsyncCallback(uint32_t CharacterCode, long long *CharacterCodeSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long *CharacterCode;
   long long *SystemRegisterPointerX10;
@@ -256763,21 +256773,43 @@ LAB_1801571ef:
 
 
 
-uint32_t FUN_180212e40(long long CharacterCode
+/**
+ * @brief 处理字符编码数据
+ * 
+ * 处理字符编码相关的数据，返回系统寄存器标志缓冲区的第一个值
+ * 
+ * @param CharacterCode 字符代码，包含需要处理的字符信息
+ * 
+ * @return 返回系统寄存器标志缓冲区的第一个值
+ * 
+ * @note 原始函数名：FUN_180212e40
+ */
+uint32_t ProcessCharacterEncodingData(long long CharacterCode)
 {
   uint32_t SystemRegisterFlagBuffer [8];
   
-  FUN_18073a2c0(*(void *)(CharacterCode + SecondaryProcessingStatusOffset),SystemRegisterFlagBuffer);
+  ExecuteCharacterEncodingDataOperation(*(void *)(CharacterCode + SecondaryProcessingStatusOffset),SystemRegisterFlagBuffer);
   return SystemRegisterFlagBuffer[0];
 }
 
 
 
-uint32_t FUN_180212e60(long long CharacterCode
+/**
+ * @brief 验证字符编码数据
+ * 
+ * 验证字符编码相关的数据，返回系统寄存器标志缓冲区的第一个值
+ * 
+ * @param CharacterCode 字符代码，包含需要验证的字符信息
+ * 
+ * @return 返回系统寄存器标志缓冲区的第一个值
+ * 
+ * @note 原始函数名：FUN_180212e60
+ */
+uint32_t ValidateCharacterEncodingData(long long CharacterCode)
 {
   uint32_t SystemRegisterFlagBuffer [8];
   
-  FUN_180739ec0(*(void *)(CharacterCode + SecondaryProcessingStatusOffset),SystemRegisterFlagBuffer);
+  ExecuteCharacterEncodingValidationOperation(*(void *)(CharacterCode + SecondaryProcessingStatusOffset),SystemRegisterFlagBuffer);
   return SystemRegisterFlagBuffer[0];
 }
 
@@ -256785,39 +256817,67 @@ uint32_t FUN_180212e60(long long CharacterCode
 
 
 
-12e80(uint64_t CharacterCode,uint64_t SystemBufferSizevoid FUN_180212e80(uint64_t CharacterCode,uint64_t SystemBufferSize
+/**
+ * @brief 处理字符编码缓冲区
+ * 
+ * 处理字符编码相关的缓冲区操作，包括内存分配和数据初始化
+ * 
+ * @param CharacterCode 字符代码，包含需要处理的字符信息
+ * @param SystemBufferSize 系统缓冲区大小，指定缓冲区的容量
+ * 
+ * @note 原始函数名：FUN_180212e80
+ */
+void ProcessCharacterEncodingBuffer(uint64_t CharacterCode, uint64_t SystemBufferSize)
 {
-  uint8_t auStack_4f8 [64];
-  uint32_t uStack_4b8;
-  uint64_t uStack_470;
-  uint64_t uStack_468;
-  uint8_t auStack_448 [1024];
+  uint8_t SystemSecurityBuffer [64];
+  uint32_t ProcessingStatus;
+  uint64_t SystemControlFlag;
+  uint64_t BufferSize;
+  uint8_t DataProcessingBuffer [1024];
   unsigned long long SystemStackFlag;
   
-  uStack_470 = 0xfffffffffffffffe;
-  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)auStack_4f8;
-  uStack_4b8 = 0;
-  uStack_468 = SystemBufferSize;
+  SystemControlFlag = 0xfffffffffffffffe;
+  SystemStackFlag = EncodingDecodingKey ^ (unsigned long long)SystemSecurityBuffer;
+  ProcessingStatus = 0;
+  BufferSize = SystemBufferSize;
                     // WARNING: Subroutine does not return
-  memset(auStack_448,0,0x400);
+  memset(DataProcessingBuffer,0,0x400);
 }
 
 
 
 
-132a0(long long CharacterCodevoid FUN_1802132a0(long long CharacterCode
+/**
+ * @brief 执行字符编码验证操作
+ * 
+ * 执行字符编码的验证操作，包括系统寄存器标志的设置和验证
+ * 
+ * @param CharacterCode 字符代码，包含需要验证的字符信息
+ * 
+ * @note 原始函数名：FUN_1802132a0
+ */
+void ExecuteCharacterEncodingValidation(long long CharacterCode)
 {
   uint8_t SystemRegisterFlagBuffer [32];
   
-  FUN_18073bc20(*(void *)(CharacterCode + SecondaryProcessingStatusOffset));
-  FUN_180739ec0(*(void *)(CharacterCode + SecondaryProcessingStatusOffset),SystemRegisterFlagBuffer);
+  ExecuteCharacterEncodingValidationOperation(*(void *)(CharacterCode + SecondaryProcessingStatusOffset));
+  ExecuteCharacterEncodingValidationOperation(*(void *)(CharacterCode + SecondaryProcessingStatusOffset),SystemRegisterFlagBuffer);
   return;
 }
 
 
 
 
-132d0(long long CharacterCodevoid FUN_1802132d0(long long CharacterCode
+/**
+ * @brief 清理字符编码缓冲区
+ * 
+ * 清理字符编码相关的缓冲区，包括互斥锁操作和内存释放
+ * 
+ * @param CharacterCode 字符代码，包含需要清理的字符信息
+ * 
+ * @note 原始函数名：FUN_1802132d0
+ */
+void CleanupCharacterEncodingBuffer(long long CharacterCode)
 {
   int LockResult;
   long long BufferStatus;
@@ -256830,17 +256890,17 @@ uint32_t FUN_180212e60(long long CharacterCode
   if (*(long long *)(CharacterCode + 0x380) - *(long long *)(CharacterCode + 0x378) >> 3 != 0) {
     BufferStatus = 0;
     do {
-      FUN_18084b2f0(*(void *)(BufferStatus + *(long long *)(CharacterCode + 0x378)));
+      ExecuteBufferCleanupOperation(*(void *)(BufferStatus + *(long long *)(CharacterCode + 0x378)));
       IntegerValue = IntegerValue + 1;
       BufferStatus = BufferStatus + 8;
     } while ((unsigned long long)(long long)IntegerValue <
              (unsigned long long)(*(long long *)(CharacterCode + 0x380) - *(long long *)(CharacterCode + 0x378) >> 3));
   }
-  FUN_18084b380(*(void *)(CharacterCode + 0x368));
-  FUN_180849360(*(void *)(CharacterCode + 0x368));
+  ExecuteBufferFinalizationOperation(*(void *)(CharacterCode + 0x368));
+  ExecuteBufferReleaseOperation(*(void *)(CharacterCode + 0x368));
   *(void *)(CharacterCode + 0x380) = *(void *)(CharacterCode + 0x378);
   *(void *)(CharacterCode + 0x3c0) = *(void *)(CharacterCode + 0x3b8);
-  FUN_180218120(CharacterCode + 0x398);
+  ExecuteSystemConfigurationOperation(CharacterCode + 0x398);
   *(void *)(CharacterCode + SecondaryProcessingStatusOffset) = 0;
   *(void *)(CharacterCode + 0x368) = 0;
   LockResult = _Mtx_unlock(CharacterCode + 0x318);
@@ -256852,23 +256912,41 @@ uint32_t FUN_180212e60(long long CharacterCode
 
 
 
-long long FUN_1802133e0(void
+/**
+ * @brief 获取系统状态值
+ * 
+ * 获取系统的状态值，通过栈整数数组和处理配置标志进行计算
+ * 
+ * @return 返回系统状态值
+ * 
+ * @note 原始函数名：FUN_1802133e0
+ */
+long long GetSystemStatusValue(void)
 {
   int StackIntegerArray [2];
-  uint8_t aStackProcessingConfigurationFlag [16];
+  uint8_t ProcessingConfigurationFlag [16];
   
-  FUN_180738630(StackIntegerArray,aStackProcessingConfigurationFlag,1);
+  ExecuteSystemStatusOperation(StackIntegerArray,ProcessingConfigurationFlag,1);
   return (long long)StackIntegerArray[0];
 }
 
 
 
-long long FUN_180213410(void
+/**
+ * @brief 获取系统配置值
+ * 
+ * 获取系统的配置值，通过处理配置标志和栈整数数组进行计算
+ * 
+ * @return 返回系统配置值
+ * 
+ * @note 原始函数名：FUN_180213410
+ */
+long long GetSystemConfigurationValue(void)
 {
   int StackIntegerArray [2];
-  uint8_t aStackProcessingConfigurationFlag [16];
+  uint8_t ProcessingConfigurationFlag [16];
   
-  FUN_180738630(aStackProcessingConfigurationFlag,StackIntegerArray,1);
+  ExecuteSystemConfigurationOperation(ProcessingConfigurationFlag,StackIntegerArray,1);
   return (long long)StackIntegerArray[0];
 }
 

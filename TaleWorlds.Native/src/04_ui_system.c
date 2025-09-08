@@ -84719,60 +84719,60 @@ void ClearUIBufferMemory(void)
   
   if (0 < targetBuffer) {
     dataSource = dataSource >> 1;
-    ProcessingResult1 = 0;
+    processingResult = 0;
     do {
-      localInt8 = 0;
+      loopCounter = 0;
       if (3 < dataSource) {
-        EventDataIndex = (longlong)(ProcessingResult1 + targetBuffer * 3);
-        CharacterDataOffset = (longlong)(ProcessingResult1 + targetBuffer * 4);
-        allocatedMemory3 = (ProcessingResult1 + targetBuffer) - EventDataIndex;
-        presultFloat = (float *)(uiContext + CharacterDataOffset * 4);
-        allocatedMemory2 = (ProcessingResult1 + targetBuffer * 5) - EventDataIndex;
-        ptransformCoeff3 = (float *)(uiContext + EventDataIndex * 4);
-        allocatedMemory4 = (ProcessingResult1 + targetBuffer * 2) - CharacterDataOffset;
-        EventDataIndex = (targetBuffer * 7 + ProcessingResult1) - EventDataIndex;
-        ContextHandleData = (ProcessingResult1 + targetBuffer * 6) - CharacterDataOffset;
-        EventTypeCode = (dataSource - 4U >> 2) + 1;
-        result0 = (ulonglong)EventTypeCode;
-        localInt8 = EventTypeCode * 4;
+        eventDataIndex = (longlong)(processingResult + targetBuffer * 3);
+        characterDataOffset = (longlong)(processingResult + targetBuffer * 4);
+        memoryOffset3 = (processingResult + targetBuffer) - eventDataIndex;
+        resultFloat = (float *)(uiContext + characterDataOffset * 4);
+        memoryOffset2 = (processingResult + targetBuffer * 5) - eventDataIndex;
+        transformCoeff3 = (float *)(uiContext + eventDataIndex * 4);
+        memoryOffset4 = (processingResult + targetBuffer * 2) - characterDataOffset;
+        eventDataIndex = (targetBuffer * 7 + processingResult) - eventDataIndex;
+        contextHandleData = (processingResult + targetBuffer * 6) - characterDataOffset;
+        eventTypeCode = (dataSource - 4U >> 2) + 1;
+        transformResult = (ulonglong)eventTypeCode;
+        loopCounter = eventTypeCode * 4;
         do {
-          baseValue = ptransformCoeff3[allocatedMemory3];
-          transformCoeff1 = presultFloat[ProcessingResult1 - CharacterDataOffset];
-          presultFloat[ProcessingResult1 - CharacterDataOffset] = baseValue * 0.70710677 + transformCoeff1 * 0.70710677;
-          ptransformCoeff3[allocatedMemory3] = transformCoeff1 * 0.70710677 - baseValue * 0.70710677;
-          baseValue = *ptransformCoeff3;
-          transformCoeff1 = presultFloat[allocatedMemory4];
-          presultFloat[allocatedMemory4] = baseValue * 0.70710677 + transformCoeff1 * 0.70710677;
-          *ptransformCoeff3 = transformCoeff1 * 0.70710677 - baseValue * 0.70710677;
-          baseValue = ptransformCoeff3[allocatedMemory2];
-          transformCoeff1 = *presultFloat;
-          *presultFloat = baseValue * 0.70710677 + transformCoeff1 * 0.70710677;
-          ptransformCoeff3[allocatedMemory2] = transformCoeff1 * 0.70710677 - baseValue * 0.70710677;
-          baseValue = ptransformCoeff3[EventDataIndex];
-          transformCoeff1 = presultFloat[ContextHandleData];
-          presultFloat[ContextHandleData] = baseValue * 0.70710677 + transformCoeff1 * 0.70710677;
-          presultFloat = presultFloat + targetBuffer * 8;
-          ptransformCoeff3[EventDataIndex] = transformCoeff1 * 0.70710677 - baseValue * 0.70710677;
-          ptransformCoeff3 = ptransformCoeff3 + targetBuffer * 8;
-          result0 = result0 - 1;
-        } while (result0 != 0);
+          baseValue = transformCoeff3[memoryOffset3];
+          transformCoeff1 = resultFloat[processingResult - characterDataOffset];
+          resultFloat[processingResult - characterDataOffset] = baseValue * 0.70710677 + transformCoeff1 * 0.70710677;
+          transformCoeff3[memoryOffset3] = transformCoeff1 * 0.70710677 - baseValue * 0.70710677;
+          baseValue = *transformCoeff3;
+          transformCoeff1 = resultFloat[memoryOffset4];
+          resultFloat[memoryOffset4] = baseValue * 0.70710677 + transformCoeff1 * 0.70710677;
+          *transformCoeff3 = transformCoeff1 * 0.70710677 - baseValue * 0.70710677;
+          baseValue = transformCoeff3[memoryOffset2];
+          transformCoeff1 = *resultFloat;
+          *resultFloat = baseValue * 0.70710677 + transformCoeff1 * 0.70710677;
+          transformCoeff3[memoryOffset2] = transformCoeff1 * 0.70710677 - baseValue * 0.70710677;
+          baseValue = transformCoeff3[eventDataIndex];
+          transformCoeff1 = resultFloat[contextHandleData];
+          resultFloat[contextHandleData] = baseValue * 0.70710677 + transformCoeff1 * 0.70710677;
+          resultFloat = resultFloat + targetBuffer * 8;
+          transformCoeff3[eventDataIndex] = transformCoeff1 * 0.70710677 - baseValue * 0.70710677;
+          transformCoeff3 = transformCoeff3 + targetBuffer * 8;
+          transformResult = transformResult - 1;
+        } while (transformResult != 0);
       }
-      if (localInt8 < dataSource) {
-        presultFloat = (float *)(uiContext + (longlong)(ProcessingResult1 + localInt8 * targetBuffer * 2) * 4);
-        result0 = (ulonglong)(uint)(dataSource - localInt8);
-        ptransformCoeff3 = (float *)(uiContext + (longlong)((localInt8 * 2 + 1) * targetBuffer + ProcessingResult1) * 4);
+      if (loopCounter < dataSource) {
+        resultFloat = (float *)(uiContext + (longlong)(processingResult + loopCounter * targetBuffer * 2) * 4);
+        transformResult = (ulonglong)(uint)(dataSource - loopCounter);
+        transformCoeff3 = (float *)(uiContext + (longlong)((loopCounter * 2 + 1) * targetBuffer + processingResult) * 4);
         do {
-          baseValue = *ptransformCoeff3;
-          transformCoeff1 = *presultFloat;
-          *presultFloat = baseValue * 0.70710677 + transformCoeff1 * 0.70710677;
-          presultFloat = presultFloat + targetBuffer * 2;
-          *ptransformCoeff3 = transformCoeff1 * 0.70710677 - baseValue * 0.70710677;
-          ptransformCoeff3 = ptransformCoeff3 + targetBuffer * 2;
-          result0 = result0 - 1;
-        } while (result0 != 0);
+          baseValue = *transformCoeff3;
+          transformCoeff1 = *resultFloat;
+          *resultFloat = baseValue * 0.70710677 + transformCoeff1 * 0.70710677;
+          resultFloat = resultFloat + targetBuffer * 2;
+          *transformCoeff3 = transformCoeff1 * 0.70710677 - baseValue * 0.70710677;
+          transformCoeff3 = transformCoeff3 + targetBuffer * 2;
+          transformResult = transformResult - 1;
+        } while (transformResult != 0);
       }
-      ProcessingResult1 = ProcessingResult1 + 1;
-    } while (ProcessingResult1 < targetBuffer);
+      processingResult = processingResult + 1;
+    } while (processingResult < targetBuffer);
   }
   return;
 }
