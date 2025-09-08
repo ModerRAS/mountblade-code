@@ -10771,7 +10771,7 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
       allocatedMemory7 = allocatedMemory7 + 1;
     } while (allocatedMemory7 < lStack0000000000000058);
   }
-  if (bVar3) {
+  if (IsGeometryValid) {
     if (*(char *)(unmodifiedRBP + 0x48) == '\0') {
       if ((unmodifiedXMM6_Da < unmodifiedXMM9_Da * unmodifiedXMM8_Da) ||
          ((localFloat21 = unmodifiedXMM8_Da - unmodifiedXMM9_Da, -1e-05 < localFloat21 && (localFloat21 < 1e-05)))) {
@@ -13881,10 +13881,10 @@ void RenderUIElement(UIHandle uiContext,uint dataSource,uint targetBuffer,UIHand
   floatResult6 = unmodifiedR14[0x185d];
   if (((unmodifiedR14[0x10] == unmodifiedXMM6_Da) || (unmodifiedR14[0x10] == 0.5)) || (floatResult6 <= unmodifiedXMM6_Da))
   {
-    bVar3 = false;
+    IsRotationValid = false;
   }
   else {
-    bVar3 = true;
+    IsRotationValid = true;
   }
   stackUInt8 = 0x1806599e0;
   floatResult2 = (float)atan2f(*(uint *)(*(longlong *)(unmodifiedR12 + 0x10) + 0x80) ^ targetBuffer,
@@ -13930,14 +13930,14 @@ LAB_180659a1a:
       || (unmodifiedXMM6_Da == unmodifiedR14[6])) ||
      ((ABS(unmodifiedR14[0xb] - unmodifiedR14[0xc]) < 0.5 && (ABS(unmodifiedR14[0xb] - unmodifiedR14[0xd]) < 0.5))))
   {
-    if (((bVar3) && ((unmodifiedXMM6_Da == unmodifiedR14[2] && (unmodifiedXMM6_Da == unmodifiedR14[3])))) ||
+    if (((IsRotationValid) && ((unmodifiedXMM6_Da == unmodifiedR14[2] && (unmodifiedXMM6_Da == unmodifiedR14[3])))) ||
        ((unmodifiedR14[0x14] = unmodifiedR13D, param_8._0_4_ = unmodifiedXMM6_Da,
         unmodifiedXMM6_Da <= fStack0000000000000038 &&
         (param_8._0_4_ = unmodifiedXMM8_Da, fStack0000000000000038 <= unmodifiedXMM6_Da))))
     goto LAB_180659b1a;
   }
   else {
-    bVar3 = true;
+    IsRotationValid = true;
     unmodifiedR14[0x14] = 1.0;
 LAB_180659b1a:
     if (((unmodifiedR15B == '\0') ||
@@ -13967,7 +13967,7 @@ LAB_180659b1a:
     }
     unmodifiedR14[0x10] = floatResult2;
   }
-  if ((bVar3) && (0 < (int)unmodifiedR14[0x18])) {
+  if ((IsRotationValid) && (0 < (int)unmodifiedR14[0x18])) {
     psecondaryValue = unmodifiedR14 + 0x1b;
     result0 = (ulonglong)(uint)unmodifiedR14[0x18];
     floatResult6 = unmodifiedXMM6_Da;
