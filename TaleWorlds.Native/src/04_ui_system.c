@@ -1028,6 +1028,11 @@ typedef enum {
 #define FUN_180712541 ProcessUIDataSource
 #define FUN_180712943 ProcessUIFloatCalculation
 #define FUN_180712bf0 InitializeUIEmptyOperationAdvanced
+#define FUN_180716572 ClearUIBufferMemory
+#define FUN_180716f10 ProcessUIContextDataAndSystemConfiguration
+#define FUN_180718590 ProcessUIFloatDataTransformationAndScaling
+#define FUN_180718a8d GetUIRenderFlagsAndStatus
+#define FUN_180718bd0 ProcessUIContextDataAndMemoryManagement
 #define ProcessUIDataOperation ProcessUIDataOperation
 #define FUN_180712cdf ProcessUIDataBuffer
 #define FUN_180712e3f ProcessUIDataStream
@@ -86224,22 +86229,38 @@ uint ProcessUIRenderTransformation(void)
 
 
 
-UIDword FUN_180718a8d(void)
+/**
+ * @brief 获取UI渲染标志和状态
+ * 
+ * 该函数负责获取UI系统中的渲染标志和状态信息，包括：
+ * - 检查UI渲染系统的当前状态
+ * - 处理事件类型和处理计数器
+ * - 管理渲染上下文和句柄数据
+ * - 返回渲染相关的标志位信息
+ * 
+ * @param 无参数
+ * @return UIDword 返回UI渲染标志和状态信息
+ * 
+ * @note 此函数在UI渲染管线中被频繁调用
+ * @note 根据不同的处理状态返回不同的标志位
+ * @note 使用复杂的上下文管理机制
+ */
+UIDword GetUIRenderFlagsAndStatus(void)
 
 {
   longlong allocatedMemory;
-  uint *piterationCount;
-  uint EventTypeCode;
-  longlong ContextHandleData;
+  uint *iterationCountPointer;
+  uint eventTypeCode;
+  longlong contextHandleData;
   uint loopCounter;
   ulonglong maxProcessingCount;
   longlong localLong7;
-  longlong ContextHandle;
-  UIDword unmodifiedEBP;
+  longlong contextHandle;
+  UIDword stackFramePointer;
   uint eventProcessingCounter;
-  longlong SourceHandle;
-  ulonglong unmodifiedR15;
-  int stackParam00000080;
+  longlong sourceHandle;
+  ulonglong registerR15;
+  int stackParameter80;
   
   eventProcessingCounter = (uint)SourceHandle;
   if (eventProcessingCounter != 2) {
@@ -200041,44 +200062,55 @@ UIHandle FUN_18078a09f(void)
 
 
 
-int FUN_18078a0c0(longlong *uiContext,longlong *dataSource,char targetBuffer)
-
+/**
+ * @brief 验证UI上下文并处理数据源
+ * 
+ * 该函数验证UI上下文的有效性，处理数据源，并执行相关的数据操作。
+ * 包括内存分配验证、数据源检查、上下文偏移处理等。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区
+ * @return 处理结果状态码，0表示成功，其他值表示错误
+ * @note 原始函数名: FUN_18078a0c0
+ */
+int ValidateUIContextAndProcessDataSource(longlong *uiContext, longlong *dataSource, char targetBuffer)
 {
   longlong allocatedMemory;
   longlong *colorBufferPointer;
-  longlong *pstringCompareIndex;
-  longlong ContextHandleData;
-  bool IsValidationComplete;
-  int localInt6;
+  longlong *stringCompareIndex;
+  longlong contextHandleData;
+  bool isValidationComplete;
+  int validationResult;
   char validationFlag;
-  longlong *pcontextOffset;
-  int localInt9;
+  longlong *contextOffset;
+  int maxValidationSize;
   
-  localInt6 = (int)uiContext[3];
+  validationResult = (int)uiContext[3];
   allocatedMemory = *uiContext;
-  localInt9 = 0x16;
-  if (-1 < localInt6) {
-    localInt9 = localInt6;
+  maxValidationSize = 0x16;
+  if (-1 < validationResult) {
+    maxValidationSize = validationResult;
   }
-  IsValidationComplete = false;
+  isValidationComplete = false;
   if (allocatedMemory == 0) {
-    localInt6 = 0x43;
+    validationResult = 0x43;
   }
   else if (dataSource == (longlong *)0x0) {
-    localInt6 = 0x1f;
+    validationResult = 0x1f;
   }
   else {
     validationFlag = '\0';
-    if (-1 < localInt6) {
+    if (-1 < validationResult) {
       validationFlag = targetBuffer;
     }
     if ((validationFlag != '\0') && (allocatedMemory != 0)) {
-      func_0x000180743c20(allocatedMemory,localInt9);
-      IsValidationComplete = true;
+      func_0x000180743c20(allocatedMemory, maxValidationSize);
+      isValidationComplete = true;
     }
     colorBufferPointer = uiContext + 6;
     if ((((longlong *)*colorBufferPointer != colorBufferPointer) || ((longlong *)uiContext[7] != colorBufferPointer)) ||
-       (localInt6 = FUN_180789e60(uiContext), localInt6 == 0)) {
+       (validationResult = FUN_180789e60(uiContext), validationResult == 0)) {
       colorBufferPointer = (longlong *)*colorBufferPointer;
       *(longlong *)colorBufferPointer[1] = *colorBufferPointer;
       *(longlong *)(*colorBufferPointer + 8) = colorBufferPointer[1];

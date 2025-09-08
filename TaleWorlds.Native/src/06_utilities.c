@@ -20006,33 +20006,33 @@ DataBuffer ValidateSystemConfigurationA0(void)
 void InitializeResourceContext(int64_t contextDescriptor, DataBuffer initializationOptions)
 
 {
-  int initializationStatus;
-  int64_t resourceCount;
-  uint64_t allocationSize;
-  bool isNullPointer;
-  int64_t resourceBuffer [3];
-  int64_t resourceDataPointer;
-  DataBuffer optionsCopy;
-  uint64_t securityToken;
+  int systemInitializationStatus;
+  int64_t totalResourceCount;
+  uint64_t memoryAllocationSize;
+  bool isResourcePointerNull;
+  int64_t resourceManagementBuffer [3];
+  int64_t resourceDataStoragePointer;
+  DataBuffer initializationOptionsCopy;
+  uint64_t securityValidationToken;
   
-  securityToken = ExceptionEncryptionKeyValue ^ (uint64_t)resourceBuffer;
-  optionsCopy = initializationOptions;
-  initializationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextDescriptor + ExceptionHandlerCallbackOffset10),resourceBuffer);
-  if (initializationStatus == 0) {
-    isNullPointer = resourceBuffer[0] == 0;
-    resourceBuffer[0] = resourceBuffer[0] + -8;
-    if (isNullPointer) {
-      resourceBuffer[0] = 0;
+  securityValidationToken = ExceptionEncryptionKeyValue ^ (uint64_t)resourceManagementBuffer;
+  initializationOptionsCopy = initializationOptions;
+  systemInitializationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextDescriptor + ExceptionHandlerCallbackOffset10),resourceManagementBuffer);
+  if (systemInitializationStatus == 0) {
+    isResourcePointerNull = resourceManagementBuffer[0] == 0;
+    resourceManagementBuffer[0] = resourceManagementBuffer[0] + -8;
+    if (isResourcePointerNull) {
+      resourceManagementBuffer[0] = 0;
     }
-    resourceCount = (int64_t)*(int *)(contextDescriptor + SystemDataSecondaryOffset18);
-    allocationSize = resourceCount * 4 + MemoryAlignmentPadding;
-    resourceDataPointer = contextDescriptor + SystemDataParameterOffset20 + resourceCount * 8;
-    if (allocationSize <= (uint64_t)(resourceCount * 4)) {
-      allocationSize = AllocationAlignmentMask;
+    totalResourceCount = (int64_t)*(int *)(contextDescriptor + SystemDataSecondaryOffset18);
+    memoryAllocationSize = totalResourceCount * 4 + MemoryAlignmentPadding;
+    resourceDataStoragePointer = contextDescriptor + SystemDataParameterOffset20 + totalResourceCount * 8;
+    if (memoryAllocationSize <= (uint64_t)(totalResourceCount * 4)) {
+      memoryAllocationSize = AllocationAlignmentMask;
     }
-      AllocateSystemResourcesA0(resourceCount,allocationSize & AllocationAlignmentMask);
+      AllocateSystemResourcesA0(totalResourceCount,memoryAllocationSize & AllocationAlignmentMask);
   }
-    ExecuteSecurityCheck(securityToken ^ (uint64_t)resourceBuffer);
+    ExecuteSecurityCheck(securityValidationToken ^ (uint64_t)resourceManagementBuffer);
 }
 
 
@@ -25208,7 +25208,9 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   ByteFlag ExceptionDataBufferA [136];
   uint64_t colorProcessingData;
   
+  // 安全验证：计算颜色处理数据的加密值
   colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)TertiaryEncryptionKeyBuffer;
+  // 获取数据上下文指针
   dataContext = *(int64_t *)(dataBuffer + SystemDataBufferOffset80);
   exceptionHandlerContext4 = 0;
   SystemValidationWordA = 0;
@@ -25217,18 +25219,24 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
     bufferPointer = exceptionHandlerContext4;
   }
   ProcessingLongIntegerB = dataBuffer;
+  // 验证并处理系统资源
   iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&SystemValidationWordA);
   if (iterationCount == 0) {
+    // 初始化异常缓冲区和资源验证
     exceptionBuffer6 = (DataBuffer *)(dataBuffer + 8);
     SystemResourceValidationWord = 0;
     SystemResourcePointerBuffer = exceptionBuffer6;
+    // 执行异常缓冲区操作
     bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + 8))(exceptionBuffer6);
+    // 验证系统资源完整性
     iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&SystemResourceValidationWord);
     if (iterationCount == 0) {
+      // 初始化安全验证相关变量
       SystemSecurityValidationWord = 0;
       StackPointerBufferC = &DataValidationErrorBase;
       SystemConfigurationWord = StackDataWordA;
       SystemOperationStatusWord = SystemResourceValidationWord;
+      // 验证数据完整性
       iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferC);
       if (iterationCount == 0) {
         StackLongIntegerA = (int64_t)*(int *)(dataContext + SystemParameterValidationOffset28);
