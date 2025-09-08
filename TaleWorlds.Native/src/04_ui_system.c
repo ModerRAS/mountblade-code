@@ -9082,7 +9082,7 @@ LAB_EventProcessingContinue:
       }
       if (*pcStack_48 == 'z') {
         localChar1 = pcStack_48[1];
-LAB_180655e30:
+LAB_EventSystemInitialize:
         if (localChar1 == '\0') {
           processingCounter = 0xc;
           goto LAB_EventHandlerReturn;
@@ -9108,7 +9108,7 @@ LAB_180655e30:
     else {
       if (stackInt40 == 10) {
         ptrLocal6 = &UIStringTable_HeaderFont;
-        goto LAB_180655d38;
+        goto LAB_EventContextSetup;
       }
       if (stackInt40 == 0xd) {
         uiCompareResult = strcmp(pcStack_48,&UIStringTable_SubtitleFont);
