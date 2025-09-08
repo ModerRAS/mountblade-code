@@ -82147,18 +82147,18 @@ void ProcessUIDataBufferBatch(UIHandle uiContext,longlong dataSource,longlong ta
       *iterationPointer = (UIDword)tempHandle58;
       iterationPointer[1] = tempHandle58._4_4_;
       loopCounter = loopCounter - 1;
-      piterationCount = piterationCount + 4;
+      iterationPointer = iterationPointer + 4;
     } while (loopCounter != 0);
   }
-  if (TempInt4 < resultPointer) {
-    dataSource = (longlong)TempInt4 * 4 + dataSource;
-    piterationCount = (UIDword *)(stackLong68 + (longlong)TempInt4 * 4);
-    loopCounter = (ulonglong)(uint)(resultPointer - TempInt4);
+  if (processedSize < resultPointer) {
+    dataSource = (longlong)processedSize * 4 + dataSource;
+    iterationPointer = (UIDword *)(targetBufferCopy + (longlong)processedSize * 4);
+    loopCounter = (ulonglong)(uint)(resultPointer - processedSize);
     do {
       maxProcessingCount = FUN_1807070a0(uiContext,dataSource,bufferSize);
       dataSource = dataSource + 4;
-      *piterationCount = maxProcessingCount;
-      piterationCount = piterationCount + 1;
+      *iterationPointer = maxProcessingCount;
+      iterationPointer = iterationPointer + 1;
       loopCounter = loopCounter - 1;
     } while (loopCounter != 0);
   }
