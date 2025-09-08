@@ -6021,9 +6021,20 @@ void UIEmptyFunction(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessUIParameters(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize,
-void ProcessUIParameters(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,longlong bufferSize,
-                  UIHandle resultPointer)
+ /**
+ * @brief 处理UI参数
+ * 
+ * 处理UI系统的各种参数，包括上下文、数据源、目标缓冲区等。
+ * 执行必要的加密和渲染操作。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ */
+void ProcessUIParameters(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, longlong bufferSize,
+                         UIHandle resultPointer)
 
 {
   ulonglong *processingResult;
