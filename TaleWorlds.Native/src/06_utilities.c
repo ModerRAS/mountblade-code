@@ -90303,7 +90303,18 @@ void ExecuteExceptionHandlerCallbackAtOffset80(DataBuffer operationBase,int64_t 
 
 
 
-void Unwind_18090c3e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据缓冲区处理器A2（70偏移量）
+ * 
+ * 该函数负责处理数据缓冲区，从0x70偏移量处获取数据缓冲区指针
+ * 并调用数据缓冲区处理函数A2进行数据处理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c3e0
+ */
+void ProcessDataBufferA2AtOffset70(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ProcessDataBufferA2(*(int64_t *)(dataBuffer + 0x70) + 0x80);
