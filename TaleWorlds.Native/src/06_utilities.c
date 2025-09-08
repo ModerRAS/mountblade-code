@@ -57,29 +57,29 @@
 #define ExceptionMemoryBlockMultiplier 0x50
 #define MemoryManagementFlagMask 0xff000000
 
-// 内存资源偏移量常量定义
-#define MemoryResourcePointerOffset120 0x120              // 内存资源指针偏移量120
-#define MemoryResourcePointerOffset130 0x130              // 内存资源指针偏移量130
-#define MemoryResourcePointerOffset118 0x118              // 内存资源指针偏移量118
-#define ExceptionHandlerContextPointerRangeStart 0xf8      // 异常处理上下文指针范围起始
-#define ExceptionHandlerContextPointerRangeEnd 0x100      // 异常处理上下文指针范围结束
+// 内存资源偏移量常量
+#define MemoryResourcePointerOffset120 0x120
+#define MemoryResourcePointerOffset130 0x130
+#define MemoryResourcePointerOffset118 0x118
+#define ExceptionHandlerContextPointerRangeStart 0xf8
+#define ExceptionHandlerContextPointerRangeEnd 0x100
 
 // 内存资源管理常量
-#define MemoryResourceManagementOffset 0x70                // 内存资源管理偏移量
-#define MemoryResourcePointerOffset 0x2d0                 // 内存资源指针偏移量
-#define MemoryBlockShift 0x10                             // 内存块位移量
-#define MemoryManagementFlagMask 0xff000000               // 内存管理标志掩码
+#define MemoryResourceManagementOffset 0x70
+#define MemoryResourcePointerOffset 0x2d0
+#define MemoryBlockShift 0x10
+#define MemoryManagementFlagMask 0xff000000
 
 // 异常处理器管理常量
-#define ExceptionHandlerContextDataOffset 0x70            // 异常处理上下文数据偏移量
-#define ExceptionHandlerStatusValidationOffset 0x1d8       // 异常处理器状态验证偏移量
-#define ExceptionHandlerContextCallbackOffset 0x1b8         // 异常处理上下文回调偏移量
-#define ExceptionHandlerContextFunctionOffset38 0x38        // 异常处理上下文函数偏移量38
+#define ExceptionHandlerContextDataOffset 0x70
+#define ExceptionHandlerStatusValidationOffset 0x1d8
+#define ExceptionHandlerContextCallbackOffset 0x1b8
+#define ExceptionHandlerContextFunctionOffset38 0x38
 
 // 默认异常处理器位置常量
-#define DefaultExceptionHandlerB_Position1_Offset 0x168     // 默认异常处理器B位置1偏移量
-#define DefaultExceptionHandlerB_Position2_Offset 0x1d8     // 默认异常处理器B位置2偏移量
-#define DefaultExceptionHandlerB_Position3_Offset 0x248     // 默认异常处理器B位置3偏移量
+#define DefaultExceptionHandlerB_Position1_Offset 0x168
+#define DefaultExceptionHandlerB_Position2_Offset 0x1d8
+#define DefaultExceptionHandlerB_Position3_Offset 0x248
 
 // 寄存器上下文偏移量常量
 #define RegisterContextDataPointerOffset 0x20
@@ -96,57 +96,57 @@
 #define SystemStatePrimaryOffset 0x30
 
 // 内存资源释放相关偏移量常量
-#define MemoryResourceReleaseOffset30 0x30                 // 内存资源释放偏移量30
-#define MemoryResourceReleaseOffset50 0x50                 // 内存资源释放偏移量50
-#define MemoryResourceReleaseOffset70 0x70                 // 内存资源释放偏移量70
-#define MemoryResourceReleaseOffset90 0x90                 // 内存资源释放偏移量90
-#define MemoryResourceReleaseOffsetB0 0xb0                 // 内存资源释放偏移量B0
-#define MemoryResourceReleaseOffsetD0 0xd0                 // 内存资源释放偏移量D0
-#define MemoryResourceReleaseOffsetF0 0xf0                 // 内存资源释放偏移量F0
-#define MemoryResourceReleaseOffset110 0x110               // 内存资源释放偏移量110
-#define MemoryResourceReleaseOffset130 0x130               // 内存资源释放偏移量130
+#define MemoryResourceReleaseOffset30 0x30
+#define MemoryResourceReleaseOffset50 0x50
+#define MemoryResourceReleaseOffset70 0x70
+#define MemoryResourceReleaseOffset90 0x90
+#define MemoryResourceReleaseOffsetB0 0xb0
+#define MemoryResourceReleaseOffsetD0 0xd0
+#define MemoryResourceReleaseOffsetF0 0xf0
+#define MemoryResourceReleaseOffset110 0x110
+#define MemoryResourceReleaseOffset130 0x130
 
 // 数据处理相关偏移量常量
-#define DataProcessingOffset70 0x70                        // 数据处理偏移量70
-#define DataProcessingOffset84 0x84                        // 数据处理偏移量84
-#define DataProcessingOffset66 0x66                        // 数据处理偏移量66
-#define DataProcessingOffset67 0x67                        // 数据处理偏移量67
-#define DataProcessingOffset72 0x72                        // 数据处理偏移量72
-#define DataProcessingOffset74 0x74                        // 数据处理偏移量74
+#define DataProcessingOffset70 0x70
+#define DataProcessingOffset84 0x84
+#define DataProcessingOffset66 0x66
+#define DataProcessingOffset67 0x67
+#define DataProcessingOffset72 0x72
+#define DataProcessingOffset74 0x74
 
 // 系统状态检查偏移量常量
-#define SystemStatusCheckOffset14c 0x14c                    // 系统状态检查偏移量14c
-#define SystemStatusCheckOffset254 0x254                    // 系统状态检查偏移量254
-#define SystemStatusCheckOffset260 0x260                    // 系统状态检查偏移量260
-#define SystemStatusCheckOffset270 0x270                    // 系统状态检查偏移量270
-#define SystemStatusCheckOffset44 0x44                     // 系统状态检查偏移量44
-#define SystemStatusCheckOffset24 0x24                     // 系统状态检查偏移量24
-#define SystemStatusCheckOffset48 0x48                     // 系统状态检查偏移量48
-#define SystemStatusCheckOffset150 0x150                   // 系统状态检查偏移量150
+#define SystemStatusCheckOffset14c 0x14c
+#define SystemStatusCheckOffset254 0x254
+#define SystemStatusCheckOffset260 0x260
+#define SystemStatusCheckOffset270 0x270
+#define SystemStatusCheckOffset44 0x44
+#define SystemStatusCheckOffset24 0x24
+#define SystemStatusCheckOffset48 0x48
+#define SystemStatusCheckOffset150 0x150
 
 // 异常上下文资源管理偏移量常量
-#define ResourceCounterOffset130 0x130                      // 资源计数器偏移量130
-#define ResourceIteratorTableOffset1CD8 0x1cd8              // 资源迭代器表偏移量1CD8
-#define ResourceValidationOffset12E3 0x12e3                 // 资源验证偏移量12E3
-#define ResourceValidationOffset12DD 0x12dd                 // 资源验证偏移量12DD
-#define ExceptionContextReferenceCountOffset 0x3a8          // 异常上下文引用计数偏移量
-#define ResourceManagementOffset80D8 0x80d8                // 资源管理偏移量80D8
-#define ResourceManagementOffset8088 0x8088                // 资源管理偏移量8088
-#define ResourceManagementOffset80B0 0x80b0                // 资源管理偏移量80B0
-#define MemoryBlockOffset200 200                            // 内存块偏移量200
-#define MemoryBlockOffsetD0 0xd0                            // 内存块偏移量D0
-#define SystemResourceBaseOffset7F20 0x7f20                 // 系统资源基地址偏移量7F20
-#define ResourceValidationFlagOffset60 0x60                 // 资源验证标志偏移量60
-#define ExceptionHandlerPointerOffset120 0x120             // 异常处理器指针偏移量120
-#define ExceptionHandlerPointerOffset7F0 0x7f0             // 异常处理器指针偏移量7F0
-#define SystemStatusCheckOffset268 0x268                   // 系统状态检查偏移量268
+#define ResourceCounterOffset130 0x130
+#define ResourceIteratorTableOffset1CD8 0x1cd8
+#define ResourceValidationOffset12E3 0x12e3
+#define ResourceValidationOffset12DD 0x12dd
+#define ExceptionContextReferenceCountOffset 0x3a8
+#define ResourceManagementOffset80D8 0x80d8
+#define ResourceManagementOffset8088 0x8088
+#define ResourceManagementOffset80B0 0x80b0
+#define MemoryBlockOffset200 200
+#define MemoryBlockOffsetD0 0xd0
+#define SystemResourceBaseOffset7F20 0x7f20
+#define ResourceValidationFlagOffset60 0x60
+#define ExceptionHandlerPointerOffset120 0x120
+#define ExceptionHandlerPointerOffset7F0 0x7f0
+#define SystemStatusCheckOffset268 0x268
 
 // 系统回调相关偏移量常量
-#define SystemCallbackTableOffset 0xb0                      // 系统回调表偏移量
+#define SystemCallbackTableOffset 0xb0
 
 // 资源管理相关偏移量常量
-#define ResourceManagementOffset1d8 0x1d8                   // 资源管理偏移量1d8
-#define ResourceManagementOffset80 0x80                     // 资源管理偏移量80
+#define ResourceManagementOffset1d8 0x1d8
+#define ResourceManagementOffset80 0x80
 
 // 异常处理器相关偏移量常量
 #define ExceptionHandlerOffset1620 0x1620                 // 异常处理器偏移量1620
