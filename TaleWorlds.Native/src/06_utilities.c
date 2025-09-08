@@ -18223,7 +18223,7 @@ DataBuffer ValidateParametersE0(DataWord parameterFlags)
   if ((int)validationResult == 0) {
     floatValue = *(float *)(dataPointer + VectorComponentWOffset);
     if ((*(float *)(contextHandle + ValidationStatusOffset38) <= floatValue) &&
-       (floatValue < *(float *)(contextHandle + 0x3c) || floatValue == *(float *)(contextHandle + 0x3c))) {
+       (floatValue < *(float *)(contextHandle + ValidationStatusOffset3c) || floatValue == *(float *)(contextHandle + ValidationStatusOffset3c))) {
       validationResult = *(DataBuffer *)(basePointer + 0x98);
       *(float *)(stackPointer + 4) = floatValue;
         CleanupSystemEventA0(validationResult);
