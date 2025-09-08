@@ -94863,10 +94863,20 @@ void SetDefaultExceptionHandlerAtOffset7e0(DataBuffer operationBase, int64_t dat
 
 
 
-void Unwind_18090ccc0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器设置函数CCC0
+ * 
+ * 设置默认异常处理器到指定偏移量0x840处
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090ccc0
+ */
+void SetDefaultExceptionHandlerAtOffset840(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + DataProcessingOffset840) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + ExceptionHandlerDataOffset840) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
