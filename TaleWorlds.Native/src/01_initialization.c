@@ -72097,106 +72097,104 @@ void* CalculateRotationTransform(long long TransformContext, uint RotationBits)
 void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
 
 {
-  float temporaryFloat1;
-  float temporaryFloat2;
-  float temporaryFloat3;
-  long long matrixPointer;
-  ulong long bitValue;
-  ulong long maxBits;
-  uint ReversedBits;
-  uint CurrentBit;
-  long long endRow;
-  int CurrentRow;
-  int RowIndex;
-  uint LookupIndex;
-  ulong long targetRow;
-  long long startRowValue;
-  long long contextData;
-  ulong long targetIndex;
-  uint BitCount;
-  uint halfRangeValue;
-  ulong long fourthRow;
-  float sineValue;
-  float cosineValue;
-  float angleValue;
-  float resultValue;
-  float scaleValue;
-  uint stackParameter;
+  float ScaleFactor;
+  long long MatrixDataPointer;
+  ulong long BitValue;
+  ulong long MaximumBits;
+  uint ReversedBitOrder;
+  uint CurrentBitValue;
+  long long EndRowIndex;
+  int CurrentRowIndex;
+  int RowProcessingIndex;
+  uint LookupTableIndex;
+  ulong long TargetRowIndex;
+  long long StartRowValue;
+  long long ContextDataPointer;
+  ulong long TargetDataIndex;
+  uint BitCounter;
+  uint HalfRangeValue;
+  ulong long FourthRowIndex;
+  float SineValue;
+  float CosineValue;
+  float AngleValue;
+  float ResultValue;
+  float NormalizationScale;
+  uint StackParameterSize;
   
-  ResourceHash = (ulong long)SystemResourceIndex;
+  uint ResourceHashValue = (ulong long)SystemResourceIndex;
   do {
-    SystemOperationResult = 0;
-    if (0 < (int)AdditionalParameter) {
-      SystemInitializationStatus = (ulong long)AdditionalParameter;
+    uint OperationResult = 0;
+    if (0 < (int)ProcessingParameter) {
+      ulong long InitializationStatus = (ulong long)ProcessingParameter;
       do {
-        CurrentThreadIdentifier = (long long)SystemOperationResult / (long long)(int)systemResourceCounterD & SystemMaximumUnsigned32BitValue;
-        ThreadContext = 0;
-        SystemProcessingResult = SystemResourceIndex;
+        long long ThreadIdentifier = (long long)OperationResult / (long long)(int)SystemResourceCounter & SystemMaximumUnsigned32BitValue;
+        long long ThreadProcessingContext = 0;
+        uint ResourceProcessingIndex = SystemResourceIndex;
         if (SystemResourceIndex != 0) {
           do {
-            SystemOperationCode = (uint)CurrentThreadIdentifier;
-            CurrentThreadIdentifier = CurrentThreadIdentifier >> 1;
-            ThreadContext = ThreadContext * 2 | SystemOperationCode & 1;
-            SystemProcessingResult = SystemProcessingResult - 1;
-          } while (SystemProcessingResult != 0);
+            uint OperationCode = (uint)ThreadIdentifier;
+            ThreadIdentifier = ThreadIdentifier >> 1;
+            ThreadProcessingContext = ThreadProcessingContext * 2 | OperationCode & 1;
+            ResourceProcessingIndex = ResourceProcessingIndex - 1;
+          } while (ResourceProcessingIndex != 0);
         }
-        SystemProcessingResult = (uint)((float)(int)ThreadContext * FrequencyScaleFactor * 32768.0);
-        if ((int)SystemProcessingResult < 0) {
-          SystemProcessingResult = -SystemProcessingResult;
+        uint ProcessingResult = (uint)((float)(int)ThreadProcessingContext * FrequencyScaleFactor * 32768.0);
+        if ((int)ProcessingResult < 0) {
+          ProcessingResult = -ProcessingResult;
         }
-        SystemProcessingResult = SystemProcessingResult & SINE_LOOKUP_TABLE_SIZE;
-        CurrentThreadIdentifier = (ulong long)SystemProcessingResult;
-        SystemOperationCode = SystemProcessingResult >> QUADRANT_SHIFT_BITS;
-        if (SystemProcessingResult >> QUADRANT_SHIFT_BITS == 0) {
-          ResultValue2 = *(float *)(in_R11 + 0x4cc + CurrentThreadIdentifier * 4);
+        ProcessingResult = ProcessingResult & SINE_LOOKUP_TABLE_SIZE;
+        ulong long TableIndex = (ulong long)ProcessingResult;
+        uint QuadrantValue = ProcessingResult >> QUADRANT_SHIFT_BITS;
+        if (ProcessingResult >> QUADRANT_SHIFT_BITS == 0) {
+          float SineResultValue = *(float *)(in_R11 + 0x4cc + TableIndex * 4);
         }
-        else if (SystemOperationCode == 1) {
-          ResultValue2 = -*(float *)(in_R11 + (0x4132 - (ulong long)SystemProcessingResult) * 4);
+        else if (QuadrantValue == 1) {
+          float SineResultValue = -*(float *)(in_R11 + (0x4132 - (ulong long)ProcessingResult) * 4);
         }
-        else if (SystemOperationCode == 2) {
-          ResultValue2 = -*(float *)(in_R11 + -0xfb34 + CurrentThreadIdentifier * 4);
+        else if (QuadrantValue == 2) {
+          float SineResultValue = -*(float *)(in_R11 + -0xfb34 + TableIndex * 4);
         }
-        else if (SystemOperationCode == 3) {
-          ResultValue2 = *(float *)(in_R11 + (SystemSineTableReferenceOffset - CurrentThreadIdentifier) * 4);
-        }
-        else {
-          ResultValue2 = 0.0;
-        }
-        SystemProcessingResult = (uint)(((float)(int)ThreadContext * FrequencyScaleFactor - 0.25) * 32768.0);
-        if ((int)SystemProcessingResult < 0) {
-          SystemProcessingResult = -SystemProcessingResult;
-        }
-        SystemProcessingResult = SystemProcessingResult & SINE_LOOKUP_TABLE_SIZE;
-        CurrentThreadIdentifier = (ulong long)SystemProcessingResult;
-        ThreadContext = SystemProcessingResult >> QUADRANT_SHIFT_BITS;
-        if (SystemProcessingResult >> QUADRANT_SHIFT_BITS == 0) {
-          ResultValue1 = *(float *)(in_R11 + 0x4cc + CurrentThreadIdentifier * 4);
-        }
-        else if (ThreadContext == 1) {
-          ResultValue1 = -*(float *)(in_R11 + (0x4132 - (ulong long)SystemProcessingResult) * 4);
-        }
-        else if (ThreadContext == 2) {
-          ResultValue1 = -*(float *)(in_R11 + -0xfb34 + CurrentThreadIdentifier * 4);
-        }
-        else if (ThreadContext == 3) {
-          ResultValue1 = *(float *)(in_R11 + (SystemSineTableReferenceOffset - CurrentThreadIdentifier) * 4);
+        else if (QuadrantValue == 3) {
+          float SineResultValue = *(float *)(in_R11 + (SystemSineTableReferenceOffset - TableIndex) * 4);
         }
         else {
-          ResultValue1 = 0.0;
+          float SineResultValue = 0.0;
         }
-        ResourceDataLocation = (long long)SystemOperationResult;
-        resourceCounter = (long long)(int)(SystemOperationResult + systemResourceCounterD);
-        ResultValue1 = -ResultValue1;
-        if (ResourceDataLocation < resourceCounter) {
-          SystemInitializationState = SystemOperationResult;
-          if (3 < resourceCounter - ResourceDataLocation) {
-            SystemProcessingResult = SystemOperationResult + systemResourceCounterD + 3;
-            SystemInitializationState = SystemOperationResult + ((int)(((resourceCounter + -3) - ResourceDataLocation) - 1U >> 2) + 1) * 4;
+        ProcessingResult = (uint)(((float)(int)ThreadProcessingContext * FrequencyScaleFactor - 0.25) * 32768.0);
+        if ((int)ProcessingResult < 0) {
+          ProcessingResult = -ProcessingResult;
+        }
+        ProcessingResult = ProcessingResult & SINE_LOOKUP_TABLE_SIZE;
+        TableIndex = (ulong long)ProcessingResult;
+        uint ThreadQuadrant = ProcessingResult >> QUADRANT_SHIFT_BITS;
+        if (ProcessingResult >> QUADRANT_SHIFT_BITS == 0) {
+          float CosineResultValue = *(float *)(in_R11 + 0x4cc + TableIndex * 4);
+        }
+        else if (ThreadQuadrant == 1) {
+          float CosineResultValue = -*(float *)(in_R11 + (0x4132 - (ulong long)ProcessingResult) * 4);
+        }
+        else if (ThreadQuadrant == 2) {
+          float CosineResultValue = -*(float *)(in_R11 + -0xfb34 + TableIndex * 4);
+        }
+        else if (ThreadQuadrant == 3) {
+          float CosineResultValue = *(float *)(in_R11 + (SystemSineTableReferenceOffset - TableIndex) * 4);
+        }
+        else {
+          float CosineResultValue = 0.0;
+        }
+        long long ResourceDataLocation = (long long)OperationResult;
+        long long ResourceCounter = (long long)(int)(OperationResult + systemResourceCounterD);
+        float CosineResultValue = -CosineResultValue;
+        if (ResourceDataLocation < ResourceCounter) {
+          ulong long InitializationState = OperationResult;
+          if (3 < ResourceCounter - ResourceDataLocation) {
+            uint ProcessingStatus = OperationResult + systemResourceCounterD + 3;
+            InitializationState = OperationResult + ((int)(((ResourceCounter + -3) - ResourceDataLocation) - 1U >> 2) + 1) * 4;
             do {
-              SystemInitializationStatusFlags = (ulong long)SystemProcessingResult;
-              SystemProcessBufferPtr = *(long long *)(in_R11 + TransformContextDataOffset);
-              SystemInitializationStatus = (ulong long)(SystemProcessingResult - 1);
-              CurrentThreadIdentifier = (ulong long)(SystemProcessingResult - 2);
+              ulong long StatusFlags = (ulong long)ProcessingStatus;
+              long long ProcessBufferPointer = *(long long *)(in_R11 + TransformContextDataOffset);
+              InitializationState = (ulong long)(ProcessingStatus - 1);
+              ulong long ThreadIdentifier = (ulong long)(ProcessingStatus - 2);
               ThreadContext = SystemProcessingResult - 3;
               MagnitudeSquared = *(float *)(SystemProcessingBufferPointer + 4 + (ulong long)ThreadContext * 8);
               MatrixElement1 = *(float *)(SystemProcessingBufferPointer + (ulong long)ThreadContext * 8);

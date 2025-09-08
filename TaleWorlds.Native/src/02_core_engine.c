@@ -250089,7 +250089,7 @@ LAB_180209e40:
                     else {
                       CharacterPointer = (char *)CharacterStatusBuffer3[2];
                     }
-                    if (CharacterPointer == StringCodeBuffer + -0x180a03a83) {
+                    if (CharacterPointer == StringCodeBuffer + -(long long)SystemStringTemplateOffset) {
                       CharacterPointer = CharacterPointer + (long long)SystemStringCurrentCharacter;
                       if (CharacterPointer <= SystemStringCurrentCharacter) {
 LAB_180209f34:
@@ -250155,7 +250155,7 @@ LAB_180209f34:
                       else {
                         CharacterPointer = (char *)CharacterStatusBuffer3[2];
                       }
-                      if (CharacterPointer == StringCodeBuffer + -0x180a03a83) {
+                      if (CharacterPointer == StringCodeBuffer + -(long long)SystemStringTemplateOffset) {
                         CharacterPointer = SystemStringCurrentCharacter + (long long)CharacterPointer;
                         if (CharacterPointer <= SystemStringCurrentCharacter) {
 LAB_18020a094:
@@ -250221,7 +250221,7 @@ LAB_18020a094:
                         else {
                           CharacterPointer = (char *)CharacterStatusBuffer3[2];
                         }
-                        if (CharacterPointer == StringCodeBuffer + -0x180a03a83) {
+                        if (CharacterPointer == StringCodeBuffer + -(long long)SystemStringTemplateOffset) {
                           CharacterPointer = CharacterPointer + (long long)SystemStringCurrentCharacter;
                           if (CharacterPointer <= SystemStringCurrentCharacter) {
 LAB_18020a1f4:
