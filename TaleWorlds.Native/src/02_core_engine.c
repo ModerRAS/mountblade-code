@@ -6057,6 +6057,18 @@ const void* const SystemCallbackFunctionPointerErrorEvent = (void*)0x180156080;
 // 原始函数名：FUN_1800b32c0 - 系统事件处理和指针管理函数
 #define ProcessSystemEventAndManagePointer FUN_1800b32c0
 
+// 原始函数名：FUN_18016a890 - 系统字符表清理和内存管理函数
+#define CleanupSystemCharacterTableAndMemory FUN_18016a890
+
+// 原始函数名：FUN_18016c97a - 字符编码数据处理和缓冲区管理函数
+#define ProcessCharacterEncodingDataAndBufferManagement FUN_18016c97a
+
+// 原始函数名：FUN_18016cacd - 系统引用计数管理函数
+#define ManageSystemReferenceCount FUN_18016cacd
+
+// 原始函数名：FUN_18016cc64 - 系统缓冲区状态检查函数
+#define CheckSystemBufferStatus FUN_18016cc64
+
 // 原始函数名：FUN_1800b30d0 - 内存管理器状态处理和编码函数
 #define ProcessMemoryManagerStatusAndEncode FUN_1800b30d0
 
@@ -202363,7 +202375,7 @@ void FUN_18016cacd(void)
 
 
 
-6cc64(voidvoid FUN_18016cc64(void
+void FUN_18016cc64(void)
 {
   int LockResult;
   long long BufferStatus;
@@ -202429,7 +202441,7 @@ void FUN_18016cacd(void)
  */
 #define ProcessSystemBufferSizeAndCharacterCodeOperations FUN_18016cccb
 
-6cccb(long long CharacterCode,long long SystemBufferSizevoid FUN_18016cccb(long long CharacterCode,long long SystemBufferSize
+void FUN_18016cccb(long long CharacterCode,long long SystemBufferSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -202481,7 +202493,7 @@ void FUN_18016cacd(void)
  */
 #define ProcessUtf8ToUtf16ConversionDataUpdate FUN_18016cd1d
 
-6cd1d(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointervoid FUN_18016cd1d(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer
+void FUN_18016cd1d(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer)
 {
   int LockResult;
   long long ProcessingResult;
