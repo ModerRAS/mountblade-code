@@ -183632,7 +183632,21 @@ long long ProcessUtf8EncodingStream(long long *CharacterCode, long long *Charact
 
 
 
-uint64_t * FUN_18014f980(uint64_t *CharacterCode,uint8_t *CharacterCodeSize,unsigned long long *Utf8SourcePointer
+/**
+ * @brief 查找并验证字符代码表中的UTF-8字符
+ * 
+ * 该函数在字符代码表中查找指定的UTF-8字符，进行复杂的验证和比较操作。
+ * 它遍历字符代码表，比较Unicode码点、浮点数值和字符属性，以确定字符是否匹配。
+ * 
+ * @param CharacterCode 字符代码指针数组
+ * @param CharacterCodeSize 字符代码大小指针（输出参数）
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @return uint64_t* 找到的字符代码表指针，或NULL如果未找到
+ * 
+ * @note 原始函数名：FUN_18014f980
+ * @note 这是一个复杂的字符查找和验证函数，包含多层比较和验证逻辑
+ */
+uint64_t * FindAndValidateUtf8CharacterInCodeTable(uint64_t *CharacterCode,uint8_t *CharacterCodeSize,unsigned long long *Utf8SourcePointer)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;

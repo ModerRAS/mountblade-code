@@ -16314,26 +16314,26 @@ void ResetUtilitySystemToInitialState(void)
     if (resourceValidationStatus < 8) {
       resourceValidationStatus = 8;
     }
-    if (resourceValidationStatus < *(int *)(registerContext + 0x28)) goto ErrorHandlingLabel;
+    if (resourceValidationStatus < *(int *)(registerContext + RegisterContextValidationStatusOffset)) goto ErrorHandlingLabel;
     if (resourceValidationStatus != 0) {
       if (MaximumMemoryBufferSize < resourceValidationStatus * 8 - 1U) goto ErrorHandlingLabel;
       memoryBufferPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),resourceValidationStatus * 8,&SystemMemoryPoolB,0xf4,0)
       ;
       if (memoryBufferPointer == 0) goto ErrorHandlingLabel;
-      if (*(int *)(registerContext + 0x28) != 0) {
-          memcpy(memoryBufferPointer,*(DataBuffer *)(registerContext + 0x20),(int64_t)*(int *)(registerContext + 0x28) << 3);
+      if (*(int *)(registerContext + RegisterContextValidationStatusOffset) != 0) {
+          memcpy(memoryBufferPointer,*(DataBuffer *)(registerContext + RegisterContextMemoryPointerOffset),(int64_t)*(int *)(registerContext + RegisterContextValidationStatusOffset) << BitShiftForMemoryCalculation);
       }
     }
-    if ((0 < *(int *)(registerContext + 0x2c)) && (*(int64_t *)(registerContext + 0x20) != 0)) {
-        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(registerContext + 0x20),
+    if ((0 < *(int *)(registerContext + RegisterContextOperationFlagsOffset)) && (*(int64_t *)(registerContext + RegisterContextMemoryPointerOffset) != 0)) {
+        ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*(int64_t *)(registerContext + RegisterContextMemoryPointerOffset),
                     &SystemMemoryPoolB,0x100,1);
     }
-    *(int64_t *)(registerContext + 0x20) = memoryBlockOffset;
-    *(int *)(registerContext + 0x2c) = validationCount;
+    *(int64_t *)(registerContext + RegisterContextMemoryPointerOffset) = memoryBlockOffset;
+    *(int *)(registerContext + RegisterContextOperationFlagsOffset) = validationCount;
   }
-  *(DataBuffer *)(*(int64_t *)(registerContext + 0x20) + (int64_t)*(int *)(registerContext + 0x28) * 8) =
+  *(DataBuffer *)(*(int64_t *)(registerContext + RegisterContextMemoryPointerOffset) + (int64_t)*(int *)(registerContext + RegisterContextValidationStatusOffset) * 8) =
        dataSize;
-  *(int *)(registerContext + 0x28) = *(int *)(registerContext + 0x28) + 1;
+  *(int *)(registerContext + RegisterContextValidationStatusOffset) = *(int *)(registerContext + RegisterContextValidationStatusOffset) + ValidationIncrementStep;
 SystemCleanupLabel:
     CleanupSystemEventA0(*(DataBuffer *)(systemContext + SYSTEM_MANAGEMENT_CONTEXT_OFFSET));
 }
@@ -16362,7 +16362,6 @@ void ValidateUtilityConfiguration(int configId,int validationFlags)
   int64_t registerContext;
   int64_t systemContext;
   int operationResult;
-  int64_t systemContext;
   DataBuffer systemParameter;
   
   operationResult = configId + 1;

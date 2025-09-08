@@ -72452,12 +72452,12 @@ LAB_180706f57:
     }
     else {
       eventIndex = operationCount + (int)*(short *)(eventMatchPointer + 2) + (0xfb < eventCode) + 2 + (int)eventCode;
-      LoopCounter = (ulonglong)uVar9;
-      if ((int)uVar9 <= stackParam00000090) {
-        *RegisterPointer = *EventHandle & 0xfe | 2;
-        EventOperationCount = func_0x00018070f790((int)*(short *)pisCharacterMatch,RegisterPointer + 1);
-        pbVar4 = RegisterPointer + 1 + EventOperationCount;
-        RegisterPointer = stackParam00000088;
+      eventCounter = (ulonglong)eventIndex;
+      if ((int)eventIndex <= stackParameter90) {
+        *registerPointer = *eventQueuePointer & 0xfe | 2;
+        operationCount = func_0x00018070f790((int)*(short *)eventMatchPointer,registerPointer + 1);
+        dataBuffer = registerPointer + 1 + operationCount;
+        registerPointer = stackParameter88;
         goto LAB_180706e76;
       }
     }
