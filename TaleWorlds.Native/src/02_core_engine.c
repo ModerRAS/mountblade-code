@@ -211110,7 +211110,7 @@ LAB_180176cb5:
     if (ProcessedCharacter != 0) {
       ConfigurationString = &StackProcessingValue;
       do {
-        DataSize = FUN_1801760d0(CharacterCode,MemoryBlockListHead,UnicodeCodePoint,*(uint32_t *)ConfigurationString);
+        DataSize = ProcessCharacterCodeAndEncoding(CharacterCode,MemoryBlockListHead,UnicodeCodePoint,*(uint32_t *)ConfigurationString);
         StringComparisonResult = (**(code **)(*MemoryBlockListHead + 0x128))(MemoryBlockListHead,UnicodeCodePoint,DataSize);
         if (StringComparisonResult != 0) {
           ProcessSystemMemoryCleanupEx(&SystemEventBufferSecondary);
@@ -280304,7 +280304,22 @@ long long FUN_18022ac3f(void
 
 
 
-float * FUN_18022b050(long long CharacterCode,float *CharacterCodeSize,int Utf8SourcePointer,long long Utf16EndPointer
+/**
+ * @brief 处理字符编码转换和矩阵变换计算
+ * 
+ * 该函数负责处理Unicode字符编码转换，并执行相关的矩阵变换计算。
+ * 主要用于字符编码系统的数据转换和变换矩阵的计算。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return float* 返回处理后的系统缓冲区指针
+ * 
+ * @note 原始函数名：FUN_18022b050
+ * @note 这是一个简化实现，保留了原始代码的核心逻辑
+ */
+float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,float *CharacterCodeSize,int Utf8SourcePointer,long long Utf16EndPointer)
 {
   float *pSystemContextPrimaryFloat;
   void *SystemContext;
