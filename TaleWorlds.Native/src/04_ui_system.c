@@ -10065,18 +10065,18 @@ void InitializeUIComponent(longlong component_id, longlong parent_id, UIHandle t
       ProcessingCounter = 0;
       DataBufferPointer = (UIByte *)0x0;
       OperationResult = 0;
-      AllocateUIBuffer(&pstackUInt50,*(UIDword *)(ProcessingStatus + 0x10 + stringCompareIndex));
-      uiOperationResult = *(int *)(ProcessingStatus + 0x10 + stringCompareIndex);
-      if (uiOperationResult != 0) {
+      AllocateUIBuffer(&BufferPointer,*(UIDword *)(ProcessingStatus + 0x10 + stringCompareIndex));
+      OperationResult = *(int *)(ProcessingStatus + 0x10 + stringCompareIndex);
+      if (OperationResult != 0) {
                      WARNING: Subroutine does not return
-        memcpy(pstackUInt48,*(UIHandle *)(ProcessingStatus + 8 + stringCompareIndex),uiOperationResult + 1,bufferSize,eventTypeCode);
+        memcpy(DataBufferPointer,*(UIHandle *)(ProcessingStatus + 8 + stringCompareIndex),OperationResult + 1,bufferSize,eventTypeCode);
       }
       if (*(longlong *)(ProcessingStatus + 8 + stringCompareIndex) != 0) {
-        stackInt40 = 0;
-        if (pstackUInt48 != (UIByte *)0x0) {
-          *pstackUInt48 = 0;
+        OperationResult = 0;
+        if (DataBufferPointer != (UIByte *)0x0) {
+          *DataBufferPointer = 0;
         }
-        stackUInt38 = stackUInt38 & 0xffffffff;
+        ProcessingCounter = ProcessingCounter & 0xffffffff;
       }
       psemaphoreHandle = *(UIHandle **)(dataSource + 8);
       if (psemaphoreHandle < *(UIHandle **)(dataSource + 0x10)) {
@@ -10088,12 +10088,12 @@ void InitializeUIComponent(longlong component_id, longlong parent_id, UIHandle t
         psemaphoreHandle[3] = 0;
         psemaphoreHandle[1] = 0;
         *(UIDword *)(psemaphoreHandle + 2) = 0;
-        AllocateUIBuffer(psemaphoreHandle,stackInt40);
-        if (stackInt40 != 0) {
+        AllocateUIBuffer(psemaphoreHandle,OperationResult);
+        if (OperationResult != 0) {
                      WARNING: Subroutine does not return
-          memcpy(psemaphoreHandle[1],pstackUInt48,stackInt40 + 1,bufferSize,eventTypeCode);
+          memcpy(psemaphoreHandle[1],DataBufferPointer,OperationResult + 1,bufferSize,eventTypeCode);
         }
-        if (pstackUInt48 != (UIByte *)0x0) {
+        if (DataBufferPointer != (UIByte *)0x0) {
           *(UIDword *)(psemaphoreHandle + 2) = 0;
           if ((UIByte *)psemaphoreHandle[1] != (UIByte *)0x0) {
             *(UIByte *)psemaphoreHandle[1] = 0;
