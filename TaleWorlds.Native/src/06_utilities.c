@@ -57465,7 +57465,7 @@ void CleanupExceptionResourcesA1(DataBuffer operationBase, int64_t dataBuffer, D
   DataBuffer validationStatus;
   
   validationStatus = SystemCleanupFlagAlternative;
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + DataBufferIntegrityOffset150);
   for (memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset148); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + 4) {
     (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer, 0, operationFlagA, operationFlagB, validationStatus);
   }
@@ -57708,7 +57708,7 @@ void SetupExceptionHandlerAtOffset1F0(DataBuffer operationBase,int64_t dataBuffe
   DataBuffer validationStatus;
   
   validationStatus = SystemCleanupFlagAlternative;
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + DataBufferIntegrityOffset150);
   for (memoryResourcePointer = *(DataBuffer **)(dataBuffer + DataBufferOffset148); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + 4) {
     (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,0,operationFlagA,operationFlagB,validationStatus);
   }
@@ -58149,7 +58149,7 @@ void SetupTemporaryExceptionHandlerAndValidate(DataBuffer operationBase,int64_t 
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + DataBufferIntegrityOffset150);
   *exceptionDataBuffer = &SystemTemporaryExceptionHandler;
   if (exceptionDataBuffer[1] != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -104471,7 +104471,7 @@ void InitializeExceptionDataTablePointers(DataBuffer operationBase, int64_t data
   DataBuffer *exceptionDataBuffer;
   
   // 获取异常数据缓冲区指针
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
+  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + DataBufferIntegrityOffset150);
   
   // 初始化异常数据表指针（注意：第二个赋值会覆盖第一个）
   *exceptionDataBuffer = &ExceptionDataTable3;
