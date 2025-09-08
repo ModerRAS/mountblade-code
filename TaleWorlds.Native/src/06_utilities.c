@@ -83501,7 +83501,24 @@ void ExceptionHandlerC8(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a950(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源释放和引用计数管理函数A
+ * 
+ * 该函数负责在异常处理过程中释放内存资源并管理引用计数。
+ * 主要功能包括：
+ * - 从数据缓冲区获取内存块偏移量
+ * - 验证内存资源指针的有效性
+ * - 计算内存区域基地址
+ * - 更新资源引用计数
+ * - 当引用计数为0时调用异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a950
+ * @note 这是一个异常处理展开函数，用于清理资源
+ */
+void ReleaseMemoryResourceAndManageReferenceCountA(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -83539,7 +83556,25 @@ void Unwind_18090a950(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090a960(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源释放和引用计数管理函数B
+ * 
+ * 该函数负责在异常处理过程中释放内存资源并管理引用计数。
+ * 与函数A类似，但从不同的偏移量(0x50)获取内存块信息。
+ * 主要功能包括：
+ * - 从数据缓冲区获取内存块偏移量
+ * - 验证内存资源指针的有效性
+ * - 计算内存区域基地址
+ * - 更新资源引用计数
+ * - 当引用计数为0时调用异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090a960
+ * @note 这是一个异常处理展开函数，用于清理资源
+ */
+void ReleaseMemoryResourceAndManageReferenceCountB(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
