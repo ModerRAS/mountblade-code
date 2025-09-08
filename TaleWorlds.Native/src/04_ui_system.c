@@ -177432,11 +177432,11 @@ UIHandle FUN_180771a50(longlong uiContext,UIHandle *dataSource,longlong *targetB
       *(UIHandle *)(stringCompareIndex + 0x408) = dataSource[0x1c];
       *(UIHandle *)(stringCompareIndex + 0x410) = iterationCount;
       *(UIHandle *)(stringCompareIndex + 0x48) = *(UIHandle *)(uiContext + 0x398);
-      *(undefined **)(stringCompareIndex + 0x10) = &UNK_180786c90;
-      *(undefined **)(stringCompareIndex + 0x30) = &UNK_1807868c0;
-      *(undefined **)(stringCompareIndex + 0x38) = &UNK_180788fc0;
+      *(undefined **)(stringCompareIndex + 0x10) = &UIFontDataBuffer1;
+      *(undefined **)(stringCompareIndex + 0x30) = &UIFontDataBuffer2;
+      *(undefined **)(stringCompareIndex + 0x38) = &UIFontDataBuffer3;
       *(code **)(stringCompareIndex + 0x18) = FUN_180747d20;
-      *(undefined **)(stringCompareIndex + 0x20) = &UNK_180747d60;
+      *(undefined **)(stringCompareIndex + 0x20) = &UIEventDataBuffer;
       *(code **)(stringCompareIndex + 0x28) = _guard_check_icall;
       *targetBuffer = stringCompareIndex;
       return 0;
