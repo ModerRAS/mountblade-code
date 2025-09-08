@@ -94977,11 +94977,11 @@ void ConfigureSystemDataStructureOffset070(long long CharacterCode, uint32_t Sys
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;
-  uint32_t auStackX_10 [6];
+  uint32_t SystemParameterBuffer [6];
   
   if ((*(long long *)(CharacterCode + 0x1100) != 0) &&
-     (auStackX_10[0] = SystemBufferSize, CurrentCharacter = (**(code **)(CharacterCode + 0x1108))(auStackX_10),
-     SystemBufferSize = auStackX_10[0], CurrentCharacter == '\0')) {
+     (SystemParameterBuffer[0] = SystemBufferSize, CurrentCharacter = (**(code **)(CharacterCode + 0x1108))(SystemParameterBuffer),
+     SystemBufferSize = SystemParameterBuffer[0], CurrentCharacter == '\0')) {
     if (CoreEngineThreadStatus == '\0') {
       PrimaryProcessingStatusFlag = &CoreEngineDataTemplate;
       if (*(void **)(CharacterCode + 0x10b0) != NULL) {
