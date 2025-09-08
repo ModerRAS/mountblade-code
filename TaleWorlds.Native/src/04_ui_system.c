@@ -183068,7 +183068,7 @@ undefined UIResourceAllocator;
 undefined UIResourceManager;
 undefined UIResourceCache;
 undefined UIConfigDataPrimary;
-undefined DAT_180be2d08;
+undefined UIConfigDataSecondary;
 undefined DAT_180be2df8;
 undefined DAT_180be2ee8;
 undefined UNK_18095a524;
