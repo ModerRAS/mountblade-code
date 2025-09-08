@@ -202332,7 +202332,18 @@ LAB_18016f158:
 
 
 
-uint64_t FUN_18016f240(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
+/**
+ * 处理字符代码包装器1
+ * 原始函数名: FUN_18016f240
+ * 
+ * 包装器函数，调用底层字符处理函数。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return uint64_t 返回字符代码指针
+ */
+uint64_t ProcessCharacterCodeWrapper1(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer
 {
   FUN_180166580(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
