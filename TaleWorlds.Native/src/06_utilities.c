@@ -100237,7 +100237,18 @@ void ExecuteExceptionHandlerCallbackC8(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090ec90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器C9
+ * 
+ * 该函数负责处理异常上下文，在指定偏移处执行异常处理器的回调函数
+ * 主要用于异常处理过程中的回调执行
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ec90
+ */
+void ExecuteExceptionHandlerCallbackC9(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x90) != (int64_t *)0x0) {
@@ -100248,7 +100259,18 @@ void Unwind_18090ec90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090eca0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 数据验证标志处理器CA0
+ * 
+ * 该函数负责处理数据验证标志，当特定标志位被设置时，清除该标志
+ * 并执行数据验证处理器的回调函数
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090eca0
+ */
+void ProcessDataValidationFlagCA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0xd0) & 1) != 0) {
