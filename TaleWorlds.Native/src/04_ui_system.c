@@ -867,6 +867,9 @@ typedef enum {
 #define blendFactorStack stack0x00000040
 
 // UI系统函数宏定义补充
+
+// UI系统变量名美化补充
+#define bVar41 IsComponentValid
 /**
  * @brief 验证UI上下文的有效性
  * 
@@ -22631,7 +22634,7 @@ LAB_180663a5e:
               localChar34 = localChar26;
               do {
                 localChar8 = *(char *)((longlong)localChar36 + 0x100 + param_6);
-                bVar41 = *(int *)((longlong)localChar36 * 0x1b0 + 0x110 + *(longlong *)(param_6 + 0x140))
+                IsComponentValid = *(int *)((longlong)ComponentContextIndex * 0x1b0 + 0x110 + *(longlong *)(param_6 + 0x140))
                          < 0;
                 EventTypeCode0 = EventTypeCode9;
                 if (bVar41) {

@@ -34140,8 +34140,8 @@ ValidationLabelB:
         *exceptionDataBuffer4 = *exceptionDataBuffer5;
         exceptionDataBuffer4[1] = validationOutcome;
         *(DataWord *)(exceptionDataBuffer4 + 2) = *(DataWord *)(exceptionDataBuffer5 + 2);
-        primaryFloatResult = *(float *)((int64_t)exceptionDataBuffer5 + 0x14) + *(float *)(exceptionDataBuffer5 + 2);
-        *(float *)((int64_t)exceptionDataBuffer4 + 0x14) = primaryFloatResult;
+        calculatedResultValue = *(float *)((int64_t)exceptionDataBuffer5 + 0x14) + *(float *)(exceptionDataBuffer5 + 2);
+        *(float *)((int64_t)exceptionDataBuffer4 + 0x14) = calculatedResultValue;
         *(ByteFlag *)(exceptionDataBuffer4 + 3) = 1;
         inputParameter8 = *(int *)(StackFrameContext + -0x21);
         exceptionDataBuffer4 = *(DataBuffer **)(StackFrameContext + -0x29);
@@ -34684,7 +34684,7 @@ uint64_t ProcessSystemDataD0(void)
   uint securityCheckResult;
   int64_t dataPointer;
   uint systemSecurityContext;
-  float primaryFloatResult;
+  float calculatedResultValue;
   float calculatedFloatValue;
   float normalizedFloatValue;
   float interpolatedFloatValue;
