@@ -185939,7 +185939,7 @@ code_r0x000180151fd7:
     }
     break;
   case 0x18:
-    FUN_18029ef00(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0));
+    ProcessRenderContextDataUpdate(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0));
     break;
   case 0x19:
     if (*(int *)(SystemConfigData + 0x3f0) == 0) {
@@ -186010,7 +186010,7 @@ code_r0x000180151fd7:
         *(double *)(LoopIndex + 0x1518) = TimeDifferenceInSeconds1 * 0.001;
       }
     }
-    FUN_18006f4c0(*(void *)(CharacterCode + 0xa8));
+    ReleaseSystemMemoryResources(*(void *)(CharacterCode + 0xa8));
     *(void *)(CharacterCode + 0xa8) = 0;
     break;
   case 0x1b:
