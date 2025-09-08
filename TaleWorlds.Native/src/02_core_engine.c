@@ -205199,17 +205199,17 @@ LAB_18017023b:
  * 
  * @note 原始函数名：FUN_180170380
  */
-void ProcessCharacterEncodingAndMemoryPoolManagement(long long CharacterCode,unsigned long long SystemBufferSize,unsigned long long Utf8SourcePointer,uint8_t Utf16EndPointer)
+void ProcessCharacterEncodingAndMemoryPoolManagement(long long OriginalCharacterCode,unsigned long long SystemBufferSize,unsigned long long Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
-  long long *CharacterCode;
+  long long *CharacterCodePointer;
   byte SystemHighByte;
   bool IsHighByteSet;
   byte *ValidationBytePointer;
   uint CalculatedCodePoint;
   long long MemoryBoundaryEnd;
   long long *MemoryPoolBlockSizePointer;
-  long long secondaryLoopCounter;
-  long long systemLoopCounter;
+  long long SecondaryLoopCounter;
+  long long SystemLoopCounter;
   uint64_t MemoryAllocationIndex;
   void *EncodingBuffer;
   long long SystemStackRegister58;
@@ -205217,34 +205217,34 @@ void ProcessCharacterEncodingAndMemoryPoolManagement(long long CharacterCode,uns
   long long CoreEngineSignedValue48;
   
   MemoryAllocationIndex = 0xfffffffffffffffe;
-  StringOffset = (long long)(SystemBufferSize - CharacterCode) >> 5;
+  StringOffset = (long long)(SystemBufferSize - OriginalCharacterCode) >> 5;
   if (1 < StringOffset) {
     MemoryBoundaryEnd = (StringOffset + -2 >> 1) + 1;
-    MemoryPoolBlockSizePointer = (long long *)(CharacterCode + 8 + MemoryBoundaryEnd * 0x20);
+    MemoryPoolBlockSizePointer = (long long *)(OriginalCharacterCode + 8 + MemoryBoundaryEnd * 0x20);
     do {
       MemoryBoundaryEnd = MemoryBoundaryEnd + -1;
-      CharacterCode = MemoryPoolBlockSizePointer + -4;
+      CharacterCodePointer = MemoryPoolBlockSizePointer + -4;
       EncodingBuffer = &SystemNullTemplate;
       SystemKeyPointer = (uint32_t)MemoryPoolBlockSizePointer[-3];
-      SystemStackRegister58 = *CharacterCode;
+      SystemStackRegister58 = *CharacterCodePointer;
       CoreEngineSignedValue48 = MemoryPoolBlockSizePointer[-2];
       *(uint32_t *)(MemoryPoolBlockSizePointer + -3) = 0;
-      *CharacterCode = 0;
+      *CharacterCodePointer = 0;
       MemoryPoolBlockSizePointer[-2] = 0;
-      ProcessCharacterEncodingAndMemoryPoolOperations(CharacterCode,MemoryBoundaryEnd,StringOffset,MemoryBoundaryEnd,&EncodingBuffer,Utf16EndPointer,MemoryAllocationIndex);
+      ProcessCharacterEncodingAndMemoryPoolOperations(CharacterCodePointer,MemoryBoundaryEnd,StringOffset,MemoryBoundaryEnd,&EncodingBuffer,Utf16EndPointer,MemoryAllocationIndex);
       EncodingBuffer = &SystemNullTemplate;
       if (SystemStackRegister58 != 0) {
                     // WARNING: Subroutine does not return
         CoreEngineProcessSystemEvent();
       }
-      MemoryPoolBlockSizePointer = CharacterCode;
+      MemoryPoolBlockSizePointer = CharacterCodePointer;
     } while (MemoryBoundaryEnd != 0);
   }
   if (SystemBufferSize < Utf8SourcePointer) {
     MemoryPoolBlockSizePointer = (long long *)(SystemBufferSize + 8);
     MemoryBoundaryEnd = ((Utf8SourcePointer - SystemBufferSize) - 1 >> 5) + 1;
     do {
-      if (*(int *)(CharacterCode + 0x10) == 0) {
+      if (*(int *)(OriginalCharacterCode + 0x10) == 0) {
         LowByte = false;
       }
       else if ((int)MemoryPoolBlockSizePointer[1] == 0) {
