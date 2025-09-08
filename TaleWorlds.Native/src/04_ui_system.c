@@ -237063,7 +237063,7 @@ LAB_180811331:
 
 
 UIHandle
-FUN_180811500(longlong uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,longlong resultPointer)
+ProcessUIMemoryManagement(longlong uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,longlong resultPointer)
 
 {
   int uiOperationResult;

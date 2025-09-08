@@ -182915,14 +182915,14 @@ void ResetSystemEventHandler(void)
  */
 void ExpandAndManageCharacterDataMemoryPool(uint64_t *CharacterCode,unsigned long long SystemBufferSize)
 {
-  uint Utf16Char;
-  uint64_t MemoryAllocationIndex;
-  long long *MemoryBlockIndex;
+  uint Utf16CharacterValue;
+  uint64_t MemoryAllocationCounter;
+  long long *NewMemoryBlockPointer;
   long long SystemDataRegistry;
   long long *AllocatedMemorySizePointer;
   long long *MemoryBoundaryPointer;
   long long *MemoryPoolBlockSizePointer;
-  unsigned long long ProcessingStatusFlag;
+  unsigned long long ProcessingLoopCounter;
   long long *StringDataPointer;
   long long EncodingConversionResult;
   uint64_t *SystemCharacterStatusBuffer;
@@ -182939,16 +182939,16 @@ void ExpandAndManageCharacterDataMemoryPool(uint64_t *CharacterCode,unsigned lon
     if (SystemStatusCode < SystemDataRegistry + SystemBufferSize) {
       SystemStatusCode = SystemDataRegistry + SystemBufferSize;
     }
-    MemoryBlockIndex = (long long *)0x0;
+    NewMemoryBlockPointer = (long long *)0x0;
     if (SystemStatusCode != 0) {
-      MemoryBlockIndex = (long long *               BufferAllocate(MemoryPoolManager,SystemStatusCode * 0x38,*(uint8_t *)(CharacterCode + 3),
+      NewMemoryBlockPointer = (long long *               BufferAllocate(MemoryPoolManager,SystemStatusCode * 0x38,*(uint8_t *)(CharacterCode + 3),
                              0x4924924924924925,0xfffffffffffffffe);
       MemoryBoundaryPointer = (long long *)CharacterCode[1];
       MemoryPoolBlockSizePointer = (long long *)*CharacterCode;
     }
-    pStringOffset = MemoryBlockIndex;
+    StringDataPointer = NewMemoryBlockPointer;
     if (MemoryPoolBlockSizePointer != MemoryBoundaryPointer) {
-      SystemDataRegistry = (long long)MemoryBlockIndex - (long long)MemoryPoolBlockSizePointer;
+      SystemDataRegistry = (long long)NewMemoryBlockPointer - (long long)MemoryPoolBlockSizePointer;
       MemoryPoolBlockSizePointer = MemoryPoolBlockSizePointer + 4;
       do {
         *pStringOffset = MemoryPoolBlockSizePointer[-4];
