@@ -20048,32 +20048,32 @@ DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
   DataWord MemoryOffsetTertiary;
   DataWord MemoryFlags;
   
-  memoryOffsetPrimary = *(DataWord *)(memoryDescriptor + ExceptionHandlerCallbackOffset10);
-  memoryOffsetSecondary = *(DataWord *)(memoryDescriptor + MemoryDescriptorPrimaryOffset14);
-  memoryOffsetTertiary = *(DataWord *)(memoryDescriptor + SystemDataSecondaryOffset18);
-  memoryFlags = *(DataWord *)(memoryDescriptor + MemoryDescriptorFlagsOffset1C);
-  exceptionHandlerContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
-                    (*(int64_t **)(systemContext + 800),&memoryOffsetPrimary,1);
-  if ((exceptionHandlerContext == 0) || (*(int64_t *)(exceptionHandlerContext + ValidationContextResourceOffset) == 0)) {
+  MemoryOffsetPrimary = *(DataWord *)(memoryDescriptor + ExceptionHandlerCallbackOffset10);
+  MemoryOffsetSecondary = *(DataWord *)(memoryDescriptor + MemoryDescriptorPrimaryOffset14);
+  MemoryOffsetTertiary = *(DataWord *)(memoryDescriptor + SystemDataSecondaryOffset18);
+  MemoryFlags = *(DataWord *)(memoryDescriptor + MemoryDescriptorFlagsOffset1C);
+  ExceptionHandlerContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
+                    (*(int64_t **)(systemContext + 800),&MemoryOffsetPrimary,1);
+  if ((ExceptionHandlerContext == 0) || (*(int64_t *)(ExceptionHandlerContext + ValidationContextResourceOffset) == 0)) {
     return OperationSuccessCode;
   }
-  operationResult = ValidateAndProcessSystemResourceA0(*(int64_t *)(exceptionHandlerContext + ValidationContextResourceOffset),memoryDescriptor + SystemDataParameterOffset20);
-  if ((int)operationResult != 0) {
-    return operationResult;
+  OperationResult = ValidateAndProcessSystemResourceA0(*(int64_t *)(ExceptionHandlerContext + ValidationContextResourceOffset),memoryDescriptor + SystemDataParameterOffset20);
+  if ((int)OperationResult != 0) {
+    return OperationResult;
   }
-  exceptionHandlerContext = *(int64_t *)(systemContext + SystemManagementOffset98);
-  if (*(int *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset0) != 0) {
-    if (((*(int *)(exceptionHandlerContext + SystemConfigPrimaryOffset) == 0) && (*(int *)(exceptionHandlerContext + SystemConfigSecondaryOffset) == 0)) ||
+  ExceptionHandlerContext = *(int64_t *)(systemContext + SystemManagementOffset98);
+  if (*(int *)(ExceptionHandlerContext + ExceptionHandlerContextDataOffset0) != 0) {
+    if (((*(int *)(ExceptionHandlerContext + SystemConfigPrimaryOffset) == 0) && (*(int *)(ExceptionHandlerContext + SystemConfigSecondaryOffset) == 0)) ||
        (InitializeSystemContextA0(&stackBufferSmall),
-       *(int64_t *)((int64_t)*(int *)(exceptionHandlerContext + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress) != 0)) {
+       *(int64_t *)((int64_t)*(int *)(ExceptionHandlerContext + ThreadLocalStorageOffset) * 8 + ThreadLocalStorageBaseAddress) != 0)) {
       *(uint *)(memoryDescriptor + 8) = *(int *)(memoryDescriptor + 8) + MemoryAlignmentValue & MemoryAlignmentMaskValue;
-      operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(exceptionHandlerContext + SystemConfigTertiaryOffset));
+      OperationResult = GetSystemCurrentStateA0(*(DataBuffer *)(ExceptionHandlerContext + SystemConfigTertiaryOffset));
     }
     else {
-      operationResult = ProcessSystemDataEC0(exceptionHandlerContext,memoryDescriptor);
+      OperationResult = ProcessSystemDataEC0(ExceptionHandlerContext,memoryDescriptor);
     }
-    if ((int)operationResult != 0) {
-      return operationResult;
+    if ((int)OperationResult != 0) {
+      return OperationResult;
     }
   }
   return 0;
@@ -20164,34 +20164,34 @@ void ProcessAlternativeContextValidation(int64_t contextHandle,int64_t operation
 int ValidateAndProcessSystemOperation(int64_t systemContext,int64_t operationContext)
 
 {
-  int operationResult;
-  int64_t allocatedMemory;
-  int64_t operationData;
+  int OperationResult;
+  int64_t AllocatedMemory;
+  int64_t OperationData;
   
   if ((((*(int64_t *)(systemContext + SystemContextValidationOffset) != 0) && (*(int64_t *)(systemContext + SystemContextOperationOffset) != 0)) &&
       (*(int64_t *)(systemContext + SystemContextDataOffset) != 0)) && (*(int64_t *)(systemContext + SystemContextResourceOffset) != 0)) {
     if (*(int *)(systemContext + SystemContextSizeOffset) < 1) {
-      operationResult = ValidateSystemOperation(operationContext,systemContext + SystemContextConfigOffset);
-      if ((operationResult == OperationSuccess) &&
-         (operationResult = ProcessOperationData(*(DataWord *)(systemContext + SystemContextConfigOffset),&operationData), operationResult == OperationSuccess)) {
-        if (*(int *)(operationData + OperationDataContextOffset) == OperationDataProcessed) {
-          *(DataWord *)(operationData + OperationDataContextOffset) = OperationDataComplete;
+      OperationResult = ValidateSystemOperation(operationContext,systemContext + SystemContextConfigOffset);
+      if ((OperationResult == OperationSuccess) &&
+         (OperationResult = ProcessOperationData(*(DataWord *)(systemContext + SystemContextConfigOffset),&OperationData), OperationResult == OperationSuccess)) {
+        if (*(int *)(OperationData + OperationDataContextOffset) == OperationDataProcessed) {
+          *(DataWord *)(OperationData + OperationDataContextOffset) = OperationDataComplete;
         }
           ExecuteCriticalOperation(*(DataBuffer *)(operationContext + OperationContextBufferOffset),systemContext);
       }
     }
     else if (*(int64_t *)(systemContext + SystemContextHandleOffset) == 0) {
-      operationResult = OperationInvalidParameter;
+      OperationResult = OperationInvalidParameter;
     }
     else {
-      allocatedMemory = AllocateSystemMemory(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset),*(int *)(systemContext + SystemContextSizeOffset),
+      AllocatedMemory = AllocateSystemMemory(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset),*(int *)(systemContext + SystemContextSizeOffset),
                             &SystemMemoryPoolC,SystemMemoryAllocationFlag,0,0,1);
-      if (allocatedMemory != 0) {
-          memcpy(allocatedMemory,*(DataBuffer *)(systemContext + SystemContextHandleOffset),(int64_t)*(int *)(systemContext + SystemContextSizeOffset));
+      if (AllocatedMemory != 0) {
+          memcpy(AllocatedMemory,*(DataBuffer *)(systemContext + SystemContextHandleOffset),(int64_t)*(int *)(systemContext + SystemContextSizeOffset));
       }
-      operationResult = OperationMemoryError;
+      OperationResult = OperationMemoryError;
     }
-    return operationResult;
+    return OperationResult;
   }
   return OperationInvalidParameter;
 }
