@@ -72246,33 +72246,33 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
           if (ResourceDataLocation < ResourceCounter) {
             uint ProcessingIndex = InitializationState + systemResourceCounterD;
             do {
-              CurrentThreadIdentifier = (ulong long)SystemProcessingResult;
-              SystemProcessBufferPtr = *(long long *)(in_R11 + TransformContextDataOffset);
-              MagnitudeSquared = *(float *)(SystemProcessingBufferPointer + CurrentThreadIdentifier * 8);
-              MatrixElement1 = *(float *)(SystemProcessingBufferPointer + 4 + CurrentThreadIdentifier * 8);
-              MatrixElement2 = *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8);
-              MatrixElement3 = *(float *)(SystemProcessingBufferPointer + 4 + ResourceDataLocation * 8);
-              InterpolationFactorV = MagnitudeSquared * ResultValue2 - MatrixElement1 * ResultValue1;
-              MagnitudeSquared = MatrixElement1 * ResultValue2 + MagnitudeSquared * ResultValue1;
-              *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8) = InterpolationFactorV + MatrixElement2;
-              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 4 + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
+              ulong long TargetIndex = (ulong long)ProcessingIndex;
+              long long BufferPointer = *(long long *)(in_R11 + TransformContextDataOffset);
+              float MagnitudeSquaredValue = *(float *)(BufferPointer + TargetIndex * 8);
+              float MatrixElementFirst = *(float *)(BufferPointer + 4 + TargetIndex * 8);
+              float MatrixElementSecond = *(float *)(BufferPointer + ResourceDataLocation * 8);
+              float MatrixElementThird = *(float *)(BufferPointer + 4 + ResourceDataLocation * 8);
+              float InterpolationResult = MagnitudeSquaredValue * SineResultValue - MatrixElementFirst * CosineResultValue;
+              MagnitudeSquaredValue = MatrixElementFirst * SineResultValue + MagnitudeSquaredValue * CosineResultValue;
+              *(float *)(BufferPointer + ResourceDataLocation * 8) = InterpolationResult + MatrixElementSecond;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 4 + ResourceDataLocation * 8) = MagnitudeSquaredValue + MatrixElementThird;
               ResourceDataLocation = ResourceDataLocation + 1;
-              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + CurrentThreadIdentifier * 8) = MatrixElement2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 4 + CurrentThreadIdentifier * 8) = MatrixElement3 - MagnitudeSquared;
-              SystemProcessingResult = SystemProcessingResult + 1;
-            } while (ResourceDataLocation < resourceCounter);
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + TargetIndex * 8) = MatrixElementSecond - InterpolationResult;
+              *(float *)(*(long long *)(in_R11 + TransformContextDataOffset) + 4 + TargetIndex * 8) = MatrixElementThird - MagnitudeSquaredValue;
+              ProcessingIndex = ProcessingIndex + 1;
+            } while (ResourceDataLocation < ResourceCounter);
           }
         }
-        SystemOperationResult = SystemOperationResult + systemResourceCounterD * 2;
-        SystemInitializationStatus = SystemInitializationStatus - 1;
-        AdditionalParameter = stackParameter;
-      } while (SystemInitializationStatus != 0);
+        OperationResult = OperationResult + systemResourceCounterD * 2;
+        InitializationStatus = InitializationStatus - 1;
+        ProcessingParameter = StackParameterSize;
+      } while (InitializationStatus != 0);
     }
-    AdditionalParameter = AdditionalParameter * 2;
+    ProcessingParameter = ProcessingParameter * 2;
     systemResourceCounterD = systemResourceCounterD >> 1;
-    ResourceHash = ResourceHash - 1;
-    stackParameter = AdditionalParameter;
-  } while (ResourceHash != 0);
+    ResourceHashValue = ResourceHashValue - 1;
+    StackParameterSize = ProcessingParameter;
+  } while (ResourceHashValue != 0);
   return 0;
 }
 
