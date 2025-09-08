@@ -166,7 +166,7 @@
 #define StackValidationFlag100 &stack0x00000100               // 栈验证标志100
 #define StackValidationFlag118 &stack0x00000118               // 栈验证标志118
 #define StackFloatValue5c StackFloatValue5c             // 栈浮点值5c
-#define StackValidationFlag20 &stack0x00000020                 // 栈验证标志20
+#define StackValidationFlag20 StackValidationFlag20                 // 栈验证标志20
 #define StackValidationFlagD8 &stack0x000000d8                 // 栈验证标志D8
 #define StackValidationFlag49 &stack0x00000049                 // 栈验证标志49
 
@@ -103621,7 +103621,7 @@ uint8_t ProcessSystemCharacterDataAndValidateMemory(void
     if (OperationStatus != '\0') {
       pMemoryAddressMaskPointer = SystemParameter2;
     }
-    OperationStatus = ValidateSystemDataAndCheckStatus(pMemoryAddressMaskPointer,RemainingSpace == StringComparisonResult,0,&stack0x00000020);
+    OperationStatus = ValidateSystemDataAndCheckStatus(pMemoryAddressMaskPointer,RemainingSpace == StringComparisonResult,0,StackValidationFlag20);
     if (OperationStatus != '\0') {
       RegisterR12ValueB = 1;
       *CharacterLimit = RemainingSpace;
@@ -148480,7 +148480,7 @@ void SetCharacterEncodingConversionParameters(uint32_t CharacterCode, long long 
   
   BufferStatus = SystemConfigurationHandle;
   Utf16Char = *(uint *)(ProcessingResult + 8 + SystemBufferSize * 4);
-  ProcessSystemConfiguration2(SystemConfigurationHandle + 0x1b90,&stack0x00000020,Utf8SourcePointer,Utf16EndPointer,CharacterCode);
+  ProcessSystemConfiguration2(SystemConfigurationHandle + 0x1b90,StackValidationFlag20,Utf8SourcePointer,Utf16EndPointer,CharacterCode);
   *(uint32_t *)((unsigned long long)Utf16Char + 0x1628 + BufferStatus) = FloatingPointRegisterA;
   return;
 }
@@ -148562,7 +148562,7 @@ void ProcessUtf8ToUtf16CharacterConversion(uint32_t CharacterCode, uint64_t Syst
   CharacterTablePointer = SystemConfigurationHandle;
   MemoryAllocationIndex = (unsigned long long)*(uint *)(ProcessingResult + 8 + Utf8SourcePointer * 4);
   StackParameterStorage28 = *(uint32_t *)(MemoryAllocationIndex + 0x162c + SystemConfigurationHandle);
-  ProcessSystemConfiguration2(SystemConfigurationHandle + 0x1b90,&stack0x00000020,Utf8SourcePointer,Utf16EndPointer,CharacterCode);
+  ProcessSystemConfiguration2(SystemConfigurationHandle + 0x1b90,StackValidationFlag20,Utf8SourcePointer,Utf16EndPointer,CharacterCode);
   *(void *)(MemoryAllocationIndex + 0x1628 + CharacterTablePointer) = *PatternIndex;
   return;
 }
@@ -149333,7 +149333,7 @@ e4f6(uint64_t CharacterCode,uint64_t SystemBufferSize,uint8_t Utf8SourcePointer,
            (SystemContextPrimaryFloat < *(float *)(AllocatedMemorySize + 0x234))) &&
           (*(float *)(AllocatedMemorySize + 0x228) <= SecondaryFloatValue && SecondaryFloatValue != *(float *)(AllocatedMemorySize + 0x228))) &&
          (ContextSecondaryFloat < *(float *)(AllocatedMemorySize + 0x230))) || (*(char *)(SystemRegisterR11 + 0x2e38) != '\0')) &&
-       (CharacterValidationResult = ValidateAndProcessSystemFlags(&stack0x00000020,&EmergencyStackBuffer,1), CharacterValidationResult != '\0')) {
+       (CharacterValidationResult = ValidateAndProcessSystemFlags(StackValidationFlag20,&EmergencyStackBuffer,1), CharacterValidationResult != '\0')) {
       *(uint *)(SystemDataRegistry + 0x148) = *(uint *)(SystemDataRegistry + 0x148) | 1;
     }
   }
@@ -153990,7 +153990,7 @@ void ProcessUtf8CharacterEncodingAndBuffer(int CharacterCode,float *CharacterCod
       fStack0000000000000028 = SystemBufferSize[2];
       fStack000000000000002c = SystemBufferSize[3];
       if ((*(int *)(MemoryPoolBlockSize + 0x1cfc) == *(int *)(*(long long *)(MemoryPoolBlockSize + 0x1af8) + 0x16c)) &&
-         (OperationStatus = ProcessSystemFloatData(pValidationResult,&stack0x00000020,MemoryPoolBlockSize,*(long long *)(MemoryPoolBlockSize + 0x1af8),*CharacterCodeSize
+         (OperationStatus = ProcessSystemFloatData(pValidationResult,StackValidationFlag20,MemoryPoolBlockSize,*(long long *)(MemoryPoolBlockSize + 0x1af8),*CharacterCodeSize
                                ), OperationStatus != '\0')) {
         *pValidationResult = in_R8D;
         *(long long *)(pValidationResult + 2) = SystemContext;
@@ -154019,7 +154019,7 @@ void ProcessUtf8CharacterEncodingAndBuffer(int CharacterCode,float *CharacterCod
         fStack0000000000000028 = SystemBufferSize[2];
         fStack000000000000002c = SystemBufferSize[3];
         if ((*(int *)(MemoryPoolBlockSize + 0x1cfc) == *(int *)(*(long long *)(MemoryPoolBlockSize + 0x1af8) + 0x16c)) &&
-           (OperationStatus = ProcessSystemFloatData(MemoryPoolBlockSize + 0x1d68,&stack0x00000020,NormalizedParameterValue,
+           (OperationStatus = ProcessSystemFloatData(MemoryPoolBlockSize + 0x1d68,StackValidationFlag20,NormalizedParameterValue,
                                   *(long long *)(MemoryPoolBlockSize + 0x1af8),*CharacterCodeSize), OperationStatus != '\0')) {
           *(int *)(MemoryPoolBlockSize + 0x1d68) = in_R8D;
           *(long long *)(MemoryPoolBlockSize + 0x1d70) = SystemContext;
@@ -154078,7 +154078,7 @@ void ProcessUtf8CharacterAndInputBuffer(uint CharacterCode,uint32_t *CharacterCo
     fStack0000000000000028 = (float)SystemBufferSize[2];
     fStack000000000000002c = (float)SystemBufferSize[3];
     if ((*(int *)(Utf8SourcePointer + 0x1cfc) == *(int *)(*(long long *)(Utf8SourcePointer + 0x1af8) + 0x16c)) &&
-       (OperationStatus = ProcessSystemFloatData(pValidationResult,&stack0x00000020,Utf8SourcePointer,*(long long *)(Utf8SourcePointer + 0x1af8),
+       (OperationStatus = ProcessSystemFloatData(pValidationResult,StackValidationFlag20,Utf8SourcePointer,*(long long *)(Utf8SourcePointer + 0x1af8),
                               *CharacterCodeSize), OperationStatus != '\0')) {
       *pValidationResult = RegisterEBPValue;
       *(long long *)(pValidationResult + 2) = SystemContext;
@@ -154107,7 +154107,7 @@ void ProcessUtf8CharacterAndInputBuffer(uint CharacterCode,uint32_t *CharacterCo
       fStack0000000000000028 = SystemDataNode[2];
       fStack000000000000002c = SystemDataNode[3];
       if ((*(int *)(Utf8SourcePointer + 0x1cfc) == *(int *)(*(long long *)(Utf8SourcePointer + 0x1af8) + 0x16c)) &&
-         (OperationStatus = ProcessSystemFloatData(Utf8SourcePointer + 0x1d68,&stack0x00000020,ProcessedFloatValue8,
+         (OperationStatus = ProcessSystemFloatData(Utf8SourcePointer + 0x1d68,StackValidationFlag20,ProcessedFloatValue8,
                                 *(long long *)(Utf8SourcePointer + 0x1af8),*SystemDataNode), OperationStatus != '\0')) {
         *(int *)(Utf8SourcePointer + 0x1d68) = RegisterEBPValue;
         *(long long *)(Utf8SourcePointer + 0x1d70) = SystemContext;
@@ -154172,7 +154172,7 @@ void ProcessUtf8DataEncodingAndSourcePointer(uint64_t CharacterCode,uint64_t Sys
       fStack0000000000000028 = SystemDataNode[2];
       fStack000000000000002c = SystemDataNode[3];
       if ((*(int *)(Utf8SourcePointer + 0x1cfc) == *(int *)(*(long long *)(Utf8SourcePointer + 0x1af8) + 0x16c)) &&
-         (SystemContextValidationFlag = ProcessSystemFloatData(Utf8SourcePointer + 0x1d68,&stack0x00000020,FloatOffsetValue,
+         (SystemContextValidationFlag = ProcessSystemFloatData(Utf8SourcePointer + 0x1d68,StackValidationFlag20,FloatOffsetValue,
                                 *(long long *)(Utf8SourcePointer + 0x1af8),*SystemDataNode), SystemContextValidationFlag != '\0')) {
         *(int *)(Utf8SourcePointer + 0x1d68) = RegisterEBPValue;
         *(long long *)(Utf8SourcePointer + 0x1d70) = SystemContext;
@@ -156939,7 +156939,7 @@ void ConvertUtf8ToUtf16Encoding1EB(long long CharacterCode,uint64_t SystemBuffer
     fStack0000000000000028 = ProcessedFloatValue8 + PrimaryFloatValue;
     fStack000000000000002c = fStack0000000000000084 + SecondaryFloatValue;
     ProcessedFloatValue8 = ProcessedFloatValue8 + NormalizedParameterValue;
-    ProcessSystemDataTableAndFloatValue(*(void *)(*(long long *)(SystemRegisterR10 + 2) + 0x398),&stack0x00000020,ProcessedFloatValue8,
+    ProcessSystemDataTableAndFloatValue(*(void *)(*(long long *)(SystemRegisterR10 + 2) + 0x398),StackValidationFlag20,ProcessedFloatValue8,
                         fStack0000000000000084 + ContextSecondaryFloat + FilterInputValue,ProcessedFloatValue8);
   }
   *(bool *)(Utf16EndPointer + 0x1b3c) = *(int *)(Utf16EndPointer + 0x1b2c) != 0;
@@ -159284,7 +159284,7 @@ void CoreEngineProcessSystemFloatFilter(void)
   *(uint8_t *)(SystemDataNode + 0x1c14) = 1;
   SystemContextPrimaryFloat = *(float *)(SystemDataNode + 0x162c);
   ContextSecondaryFloat = *(float *)(SystemDataNode + 0x1630);
-  ProcessSystemConfiguration2(SystemDataNode + 0x1b90,&stack0x00000020);
+  ProcessSystemConfiguration2(SystemDataNode + 0x1b90,StackValidationFlag20);
   *(float *)(SystemDataNode + 0x162c) = SystemContextPrimaryFloat + SystemContextPrimaryFloat;
   *(float *)(SystemDataNode + 0x1630) = ContextSecondaryFloat + ContextSecondaryFloat;
   InitializeSystemCharacterStatusBuffer(SystemDataTablePointer60,0,0xc1347);
@@ -159417,7 +159417,7 @@ void CoreEngineProcessSystemFloatValidator(void)
   *(uint8_t *)(SystemDataNode + 0x1c14) = 1;
   SystemContextPrimaryFloat = *(float *)(SystemDataNode + 0x162c);
   ContextSecondaryFloat = *(float *)(SystemDataNode + 0x1630);
-  ProcessSystemConfiguration2(SystemDataNode + 0x1b90,&stack0x00000020);
+  ProcessSystemConfiguration2(SystemDataNode + 0x1b90,StackValidationFlag20);
   *(float *)(SystemDataNode + 0x162c) = SystemContextPrimaryFloat + SystemContextPrimaryFloat;
   *(float *)(SystemDataNode + 0x1630) = ContextSecondaryFloat + ContextSecondaryFloat;
   InitializeSystemCharacterStatusBuffer(SystemDataTablePointer60,0,0xc1347);
