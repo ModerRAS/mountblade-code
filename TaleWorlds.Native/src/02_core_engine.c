@@ -184335,7 +184335,15 @@ void ProcessCharacterCodeAndMemoryBuffer(long long CharacterCode, long long *Cha
 
 
 
-5028d(voidvoid FUN_18015028d(void
+/**
+ * @brief 系统数据节点初始化和内存分配函数
+ * 
+ * 该函数负责初始化系统数据节点，分配必要的内存空间，并设置相关的系统上下文。
+ * 它根据系统数据节点的大小进行内存分配，并配置相应的系统状态。
+ * 
+ * @note 原始函数名：FUN_18015028d
+ */
+void InitializeSystemDataNodeAndMemory(void)
 {
   long long PrimaryDataSize;
   long long *SystemContext;
