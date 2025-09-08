@@ -4989,7 +4989,17 @@ void InitializeSystemMemoryAllocator(void)
  * 初始化游戏引擎的资源池，设置资源管理和分配的基础设施。
  * 该函数负责创建资源池的基本结构，为系统资源的存储和管理做准备。
  * 
+ * @details 函数执行流程：
+ * 1. 获取系统根表和根节点引用
+ * 2. 遍历节点链表，查找合适的插入位置
+ * 3. 比较节点标识符以确定插入点
+ * 4. 如果需要，分配内存创建新节点
+ * 5. 设置节点标识符、数据指针和回调函数
+ * 6. 配置节点状态标志
+ * 
  * @note 该函数在系统初始化阶段被调用，用于建立资源管理的基础
+ * @note 使用 SystemDataTemplateSecurityManager 作为比较模板
+ * @note 节点创建后会设置网络管理器作为数据节点
  */
 void InitializeSystemResourcePool(void)
 
@@ -5046,7 +5056,17 @@ void InitializeSystemResourcePool(void)
  * 初始化游戏引擎的配置管理器，设置系统配置的基础设施。
  * 该函数负责创建配置管理的基本结构，为系统配置的存储和管理做准备。
  * 
+ * @details 函数执行流程：
+ * 1. 获取系统根表和根节点引用
+ * 2. 遍历节点链表，查找合适的插入位置
+ * 3. 比较节点标识符以确定插入点
+ * 4. 如果需要，分配内存创建新节点
+ * 5. 设置节点标识符、数据指针和回调函数
+ * 6. 配置节点状态标志
+ * 
  * @note 该函数在系统初始化阶段被调用，用于建立配置管理的基础
+ * @note 使用 SystemDataTemplateConfigurationManager 作为比较模板
+ * @note 节点创建后会设置输入控制器作为数据节点
  */
 void InitializeSystemConfigurationManager(void)
 {
@@ -19947,11 +19967,11 @@ void InitializeSystemInfoAndUserEnvironment(void)
   long long** ApplicationPointerArray[3];
   uint8_t SystemCoreDataProcessingBuffer[272];
   uint8_t SystemSecurityBuffer[32];
-  unsigned long long SystemEncryptionKey;
+  unsigned long long SystemSecurityEncryptionKey;
   
-  SystemStackFlag = SystemInvalidHandleTemplate;
-  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (unsigned long long)SystemSecurityEncryptionBuffer;
-  GameControllerStatusFlag = 0;
+  SystemStackCleanupFlag = SystemInvalidHandleTemplate;
+  SystemSecurityEncryptionKeyValue = SystemEncryptionKeyTemplate ^ (unsigned long long)SystemSecurityEncryptionBuffer;
+  GameControllerInitializationStatus = 0;
   if (*(char *)(SystemContextManagerPointer + SystemContextManagerStatusOffset) == '\0') {
     InitializeGameController(&SystemGameControllerBuffer);
     (**(code **)(**(long long **)(SystemGlobalStatusFlags + 0x2b0) + 0x98))
@@ -19959,45 +19979,45 @@ void InitializeSystemInfoAndUserEnvironment(void)
     StartInputSystem();
     SystemContextHandle = SystemContextManagerPointer;
     SystemMemoryAllocationSize = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3);
-    AllocatedMemoryPointer = (long long *)AllocateSystemMemory(SystemMemoryAllocationSize,8,SystemContextHandle);
-    MemoryBlockPointer = AllocatedMemoryPointer;
-    if (AllocatedMemoryPointer != (long long *)0x0) {
-      (**(code **)(*AllocatedMemoryPointer + VirtualTableInitializeMethodOffset))(AllocatedMemoryPointer);
+    AllocatedSystemMemoryPointer = (long long *)AllocateSystemMemory(SystemMemoryAllocationSize,8,SystemContextHandle);
+    SystemMemoryBlockPointer = AllocatedSystemMemoryPointer;
+    if (AllocatedSystemMemoryPointer != (long long *)0x0) {
+      (**(code **)(*AllocatedSystemMemoryPointer + VirtualTableInitializeMethodOffset))(AllocatedSystemMemoryPointer);
     }
-    *(uint32_t *)(AllocatedMemoryPointer + 0xd) = 0xbb80073;
+    *(uint32_t *)(AllocatedSystemMemoryPointer + 0xd) = 0xbb80073;
     SystemInterfacePointer = *(void* **)(SystemContextHandle + 400);
-    InterfaceFunctionPointer = *(code **)*SystemInterfacePointer;
-    ComputerNameBufferPointer = &MemoryBufferCapacityValue;
-    MemoryBufferCapacityValue = AllocatedMemoryPointer;
-    (**(code **)(*AllocatedMemoryPointer + VirtualTableInitializeMethodOffset))(AllocatedMemoryPointer);
-    (*InterfaceFunctionPointer)(SystemInterfacePointer,&MemoryBufferCapacityValue);
-    (**(code **)(*AllocatedMemoryPointer + VirtualTableCleanupMethodOffset))(AllocatedMemoryPointer);
+    SystemInterfaceFunctionPointer = *(code **)*SystemInterfacePointer;
+    ComputerNameBufferPointer = &SystemMemoryBufferSize;
+    SystemMemoryBufferSize = AllocatedSystemMemoryPointer;
+    (**(code **)(*AllocatedSystemMemoryPointer + VirtualTableInitializeMethodOffset))(AllocatedSystemMemoryPointer);
+    (*SystemInterfaceFunctionPointer)(SystemInterfacePointer,&SystemMemoryBufferSize);
+    (**(code **)(*AllocatedSystemMemoryPointer + VirtualTableCleanupMethodOffset))(AllocatedSystemMemoryPointer);
     ConfigureInputSystem();
-    SystemGlobalDataPointerPtr = &SystemGlobalDataPointer;
-    GlobalDataFlags = 0;
+    SystemGlobalDataPointerPrimary = &SystemGlobalDataPointer;
+    SystemGlobalDataFlagsPrimary = 0;
     SystemPrimaryStringBuffer = (void* *)0x0;
-    SystemDataProcessingFlag = 0;
-    SystemGlobalDataPointerPtrSecondary = &SystemGlobalDataPointer;
-    GlobalDataFlagsSecondary = 0;
+    SystemDataProcessingStatusFlag = 0;
+    SystemGlobalDataPointerSecondary = &SystemGlobalDataPointer;
+    SystemGlobalDataFlagsSecondary = 0;
     SystemSecondaryStringBuffer = (void* *)0x0;
     SystemInitializationStatusFlag = 0;
     SystemMemoryAllocationOffset = (long long *)ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,0x10);
-    OperationResult = GetComputerNameA(ComputerNameBufferPointer,&MemoryBufferCapacityValue);
-    if (OperationResult == 0) {
+    SystemOperationResult = GetComputerNameA(ComputerNameBufferPointer,&SystemMemoryBufferSize);
+    if (SystemOperationResult == 0) {
       LogSystemError(&SystemStringConstantComputerNameErrorF);
     }
     else {
-      if (0xf < ((ulong long)MemoryBufferCapacityValue & SystemMaximumUnsigned32BitValue)) goto HandleMemoryBufferOverflow;
-      *(uint8_t *)((long long)ComputerNameBufferPointer + ((ulong long)MemoryBufferCapacityValue & SystemMaximumUnsigned32BitValue)) = 0;
-      (**(code **)(SystemGlobalDataPointerPtr + 0x10))(&SystemGlobalDataPointerPtr,ComputerNameBufferPointer);
+      if (0xf < ((ulong long)SystemMemoryBufferSize & SystemMaximumUnsigned32BitValue)) goto HandleMemoryBufferOverflow;
+      *(uint8_t *)((long long)ComputerNameBufferPointer + ((ulong long)SystemMemoryBufferSize & SystemMaximumUnsigned32BitValue)) = 0;
+      (**(code **)(SystemGlobalDataPointerPrimary + 0x10))(&SystemGlobalDataPointerPrimary,ComputerNameBufferPointer);
     }
-    UserNameBufferCapacityValue = (long long *)ConcatenatedSystemValue(UserNameBufferCapacityValue.HighPart,0x101);
-    OperationResult = GetUserNameA(UserNameBuffer,&MemoryBufferCapacityValue);
-    if (OperationResult == 0) {
+    UserNameBufferSize = (long long *)ConcatenatedSystemValue(UserNameBufferSize.HighPart,0x101);
+    SystemOperationResult = GetUserNameA(UserNameBuffer,&SystemMemoryBufferSize);
+    if (SystemOperationResult == 0) {
       LogSystemError(&SystemStringConstantUserNameErrorG);
     }
     else {
-      if (0x100 < ((ulong long)MemoryBufferCapacityValue & SystemMaximumUnsigned32BitValue)) {
+      if (0x100 < ((ulong long)SystemMemoryBufferSize & SystemMaximumUnsigned32BitValue)) {
         ProcessSystemEvent();
 HandleMemoryBufferOverflow:
         ProcessSystemEvent();
@@ -20005,8 +20025,8 @@ HandleMemoryBufferOverflow:
         (*ExceptionHandlerFunction)();
         return;
       }
-      UserNameBuffer[(ulong long)MemoryBufferCapacityValue & SystemMaximumUnsigned32BitValue] = 0;
-      (**(code **)(SystemSecondaryGlobalDataReferencePtr + 0x10))(&SystemSecondaryGlobalDataReferencePtr,UserNameBuffer);
+      UserNameBuffer[(ulong long)SystemMemoryBufferSize & SystemMaximumUnsigned32BitValue] = 0;
+      (**(code **)(SystemGlobalDataPointerSecondary + 0x10))(&SystemGlobalDataPointerSecondary,UserNameBuffer);
     }
     SystemStringTemplatePointer = &SystemStringTemplate;
     if (SystemTertiaryStringBuffer != (void* *)0x0) {
@@ -20016,46 +20036,46 @@ HandleMemoryBufferOverflow:
     if (SystemPrimaryStringBuffer != (void* *)0x0) {
       SystemStringTemplatePointer = SystemPrimaryStringBuffer;
     }
-    SystemConfigurationTemplatePtr = &SystemConfigurationTemplatePrimary;
+    SystemConfigurationTemplatePointer = &SystemConfigurationTemplatePrimary;
     SystemManagerSetFlags(SystemContextManagerPointer,5,SystemMaxHandleValue,4);
-    SystemMemoryTemplatePtr = &SystemMemoryTemplateQuinary;
+    SystemMemoryTemplatePointer = &SystemMemoryTemplateQuinary;
     SystemTemporaryBuffer = SystemSecurityBuffer;
-    CalculationFlags = 0;
+    SystemCalculationFlags = 0;
     SystemSecurityBuffer[0] = 0;
-    GameControllerStatusFlag = 2;
-    InitializeGameSettings(&SystemMemoryTemplatePtr,&SystemDataBufferTemplateNonary,0x130a7);
+    GameControllerConfigurationStatus = 2;
+    InitializeGameSettings(&SystemMemoryTemplatePointer,&SystemDataBufferTemplateNonary,0x130a7);
     SystemStringTemplatePointer = &SystemStringTemplate;
     if (SystemTemporaryBuffer != (void* *)0x0) {
       SystemStringTemplatePointer = SystemTemporaryBuffer;
     }
-    SystemConfigurationTemplatePtr = &SystemConfigurationTemplateSecondary;
+    SystemConfigurationTemplatePointer = &SystemConfigurationTemplateSecondary;
     SystemManagerSetFlags(SystemContextManagerPointer,5,SystemMaxHandleValue,4);
-    GameControllerStatusFlag = 0;
-    SystemMemoryTemplatePtr = &SystemMemoryAllocatorPointer;
-    SystemGlobalDataPointerPtrSecondary = &SystemGlobalDataPointer;
+    GameControllerInitializationStatus = 0;
+    SystemMemoryTemplatePointer = &SystemMemoryAllocatorPointer;
+    SystemGlobalDataPointerSecondary = &SystemGlobalDataPointer;
     if (SystemTertiaryStringBuffer != (void* *)0x0) {
         SystemCleanupFunction();
     }
     SystemSecondaryStringBuffer = (void* *)0x0;
-    GlobalDataFlagsSecondary = GlobalDataFlagsSecondary & SystemMemoryAlignmentMask;
-    SystemGlobalDataPointerPtrSecondary = &SystemMemoryAllocatorPointer;
-    SystemGlobalDataPointerPtr = &SystemGlobalDataPointer;
+    SystemGlobalDataFlagsSecondary = SystemGlobalDataFlagsSecondary & SystemMemoryAlignmentMask;
+    SystemGlobalDataPointerSecondary = &SystemMemoryAllocatorPointer;
+    SystemGlobalDataPointerPrimary = &SystemGlobalDataPointer;
     if (SystemPrimaryStringBuffer != (void* *)0x0) {
         SystemCleanupFunction();
     }
     SystemPrimaryStringBuffer = (void* *)0x0;
-    GlobalDataFlags = GlobalDataFlags & SystemMemoryAlignmentMask;
-    SystemGlobalDataPointerPtr = &SystemMemoryAllocatorPointer;
+    SystemGlobalDataFlagsPrimary = SystemGlobalDataFlagsPrimary & SystemMemoryAlignmentMask;
+    SystemGlobalDataPointerPrimary = &SystemMemoryAllocatorPointer;
     SystemGameControllerBuffer = &SystemGlobalDataPointer;
-    if (StackCleanupFlag != 0) {
+    if (SystemStackCleanupFlag != 0) {
         SystemCleanupFunction();
     }
-    StackCleanupFlag = 0;
-    SecondaryCalculationFlags = 0;
+    SystemStackCleanupFlag = 0;
+    SystemSecondaryCalculationFlags = 0;
     SystemGameControllerBuffer = &SystemMemoryAllocatorPointer;
   }
-  GameControllerStatusFlag = 0;
-    ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)SystemSecurityEncryptionBuffer);
+  GameControllerInitializationStatus = 0;
+    ValidateSystemChecksum(SystemSecurityEncryptionKeyValue ^ (ulong long)SystemSecurityEncryptionBuffer);
 }
 
 

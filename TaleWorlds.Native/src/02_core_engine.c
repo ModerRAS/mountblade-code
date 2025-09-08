@@ -160665,9 +160665,9 @@ void HandleCharacterEncodingBufferExpansion(long long CharacterCode
  * 
  * 这是一个核心引擎函数，用于确保渲染系统的正确初始化和配置。
  */
-void ConfigureSystemRenderingParameters(void
+void ConfigureSystemRenderingParameters(void)
 {
-  uint32_t *RenderingCharacterStatusBuffer;
+  uint32_t *CharacterStatusBuffer;
   uint32_t RenderingMemoryIndex;
   long long RenderingMemoryOffset;
   int RenderingValidationResult;
@@ -160679,23 +160679,23 @@ void ConfigureSystemRenderingParameters(void
   int RenderingProcessIterationCount;
   int RenderingComputedResult;
   long long RenderingLoopCounter;
-  float RenderingParameter1;
-  float RenderingParameter2;
-  float RenderingParameter3;
-  float RenderingParameter4;
+  float PrimaryRenderingParameter;
+  float SecondaryRenderingParameter;
+  float TertiaryRenderingParameter;
+  float QuaternaryRenderingParameter;
   float RenderingFloatRegisterX7;
   float RenderingStackFloat30;
   float RenderingStackFloat34;
   float RenderingStackFloat38;
   float RenderingStackFloat3c;
   float RenderingStackFloat40;
-  uint32_t RenderingStackUint48;
-  uint32_t RenderingStackUint4c;
-  uint32_t RenderingStackUint50;
+  uint32_t RenderingStackData48;
+  uint32_t RenderingStackData4c;
+  uint32_t CharacterStatusValue50;
   float RenderingStackFloatValue54;
-  char RenderingStackChar100;
-  char RenderingStackChar108;
-  uint8_t RenderingStackProcessingFlags110;
+  char RenderingValidationFlag100;
+  char RenderingValidationFlag108;
+  uint8_t RenderingProcessingFlags110;
   float RenderingStackFloat118;
   float RenderingStackFloat11c;
   
@@ -160715,8 +160715,8 @@ void ConfigureSystemRenderingParameters(void
       SystemContextPrimaryFloat3 = (*(float *)(MemoryBlockIndex + 0x18) - *(float *)(MemoryBlockIndex + 0x14)) *
                *(float *)((long long)ComputedResult * 0x1c + *(long long *)(MemoryBlockIndex + 0x38)) +
                *(float *)(MemoryBlockIndex + 0x14) + *(float *)(StackFrameAddressPointer + 0x40);
-      fStack0000000000000040 = SystemContextPrimaryFloat3 + 4.0;
-      StackProcessingVariable38 = SystemContextPrimaryFloat3 - 4.0;
+      RenderingFloatUpperBound40 = SystemContextPrimaryFloat3 + 4.0;
+      RenderingFloatLowerBound38 = SystemContextPrimaryFloat3 - 4.0;
       if (*(int *)(MemoryBoundaryEnd + 0x1b2c) == EncodingValidationResult) {
         *(int *)(MemoryBoundaryEnd + 0x1b34) = EncodingValidationResult;
       }
@@ -160724,19 +160724,19 @@ void ConfigureSystemRenderingParameters(void
         *(uint8_t *)(MemoryBoundaryEnd + 0x1b3f) = 1;
       }
       MemoryBlockIndex = *(long long *)(MemoryBoundaryEnd + 0x1af8);
-      StackProcessingVariable3c = SystemContextPrimaryFloat2;
+      RenderingFloatThreshold3c = SystemContextPrimaryFloat2;
       if (((((*(float *)(MemoryBlockIndex + 0x22c) <= BaseFloatValue &&
-              BaseFloatValue != *(float *)(MemoryBlockIndex + 0x22c)) && (SystemContextPrimaryFloat2 < *(float *)(MemoryBlockIndex + 0x234))           && (*(float *)(MemoryBlockIndex + 0x228) <= fStack0000000000000040 &&
-               fStack0000000000000040 != *(float *)(MemoryBlockIndex + 0x228))) &&
-          (StackProcessingVariable38 < *(float *)(MemoryBlockIndex + 0x230))) ||
+              BaseFloatValue != *(float *)(MemoryBlockIndex + 0x22c)) && (SystemContextPrimaryFloat2 < *(float *)(MemoryBlockIndex + 0x234))           && (*(float *)(MemoryBlockIndex + 0x228) <= RenderingFloatUpperBound40 &&
+               RenderingFloatUpperBound40 != *(float *)(MemoryBlockIndex + 0x228))) &&
+          (RenderingFloatLowerBound38 < *(float *)(MemoryBlockIndex + 0x230))) ||
          (((EncodingValidationResult != 0 && (EncodingValidationResult == *(int *)(MemoryBoundaryEnd + 0x1b2c))) ||
           (*(char *)(MemoryBoundaryEnd + 0x2e38) != '\0')))) {
-        in_stack_00000108 = '\0';
-        in_stack_00000100 = '\0';
+        RenderingValidationFlag108 = '\0';
+        RenderingValidationFlag100 = '\0';
         if ((((*(byte *)(SystemContext + 1) & 2) == 0) &&
-            ((ProcessSystemParameters(&SystemChecksumStackBuffer,EncodingValidationResult,&stack0x00000108,&stack0x00000100,0),
-             in_stack_00000108 != '\0' || (in_stack_00000100 != '\0')))) &&
-           (*(uint32_t *)(RegisterR13Value + 0x1dcc) = 4, in_stack_00000100 != '\0')) {
+            ((ProcessSystemParameters(&SystemChecksumStackBuffer,EncodingValidationResult,&RenderingValidationFlag108,&RenderingValidationFlag100,0),
+             RenderingValidationFlag108 != '\0' || (RenderingValidationFlag100 != '\0')))) &&
+           (*(uint32_t *)(RegisterR13Value + 0x1dcc) = 4, RenderingValidationFlag100 != '\0')) {
           MemoryBlockIndex = 0x1d;
           ComputedResult = RemainingSpace;
           if ((*(byte *)(*(long long *)(SystemContext + 0xe) + 8 + StringOffset) & 2) != 0) {
@@ -160744,16 +160744,16 @@ void ConfigureSystemRenderingParameters(void
           }
         }
         else {
-          MemoryBlockIndex = (unsigned long long)(in_stack_00000108 != '\0') + 0x1b;
+          MemoryBlockIndex = (unsigned long long)(RenderingValidationFlag108 != '\0') + 0x1b;
           ComputedResult = StringLength;
         }
         CharacterStatusBuffer = (uint32_t *)(MemoryBoundaryEnd + 0x1628 + (MemoryBlockIndex + 10) * 0x10);
-        StackProcessingVariable48 = *CharacterStatusBuffer;
-        StackValue4c = CharacterStatusBuffer[1];
-        uStack0000000000000050 = CharacterStatusBuffer[2];
-        StackFloatValue54 = (float)CharacterStatusBuffer[3] * *(float *)(MemoryBoundaryEnd + 0x1628);
-        fStack0000000000000030 = (float)(int)SystemContextPrimaryFloat3;
-        fStack000000000000011c = *(float *)(StackFrameAddressPointer + 0x234);
+        RenderingStackData48 = *CharacterStatusBuffer;
+        RenderingStackData4c = CharacterStatusBuffer[1];
+        CharacterStatusValue50 = CharacterStatusBuffer[2];
+        RenderingStackFloatValue54 = (float)CharacterStatusBuffer[3] * *(float *)(MemoryBoundaryEnd + 0x1628);
+        RenderingStackFloat30 = (float)(int)SystemContextPrimaryFloat3;
+        RenderingStackFloat11c = *(float *)(StackFrameAddressPointer + 0x234);
         if (BaseFloatValue <= *(float *)(StackFrameAddressPointer + 0x234)) {
           fStack000000000000011c = BaseFloatValue;
         }
