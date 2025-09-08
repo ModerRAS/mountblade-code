@@ -6040,7 +6040,7 @@ void ProcessUIParameters(UIHandle uiContext, UIHandle dataSource, UIHandle targe
   ulonglong *processingResult;
   char *threadLocalStorageFlag;
   uint8_t uiTempBuffer [32];
-   UI渲染状态变量
+  // UI渲染状态变量
   uint64_t uiRenderStateValue1;
   uint64_t uiRenderStateValue2;
   uint8_t uiRenderDataBuffer [512];
@@ -6068,12 +6068,16 @@ void ProcessUIParameters(UIHandle uiContext, UIHandle dataSource, UIHandle targe
 
 
 
-  设置UI系统状态
- 设置UI系统的状态信息，包括线程本地标志和资源管理器
- * 主要用于UI系统的状态初始化和更新
-  uiContext UI上下文指针
-  原始函数名: SetUIState
- void SetUIState(longlong uiContext)
+  /**
+ * @brief 设置UI系统状态
+ * 
+ * 设置UI系统的状态信息，包括线程本地标志和资源管理器。
+ * 主要用于UI系统的状态初始化和更新。
+ * 
+ * @param uiContext UI上下文指针
+ * 
+ * @note 原始函数名: SetUIState
+ */
 void SetUIState(longlong uiContext)
 
 {
