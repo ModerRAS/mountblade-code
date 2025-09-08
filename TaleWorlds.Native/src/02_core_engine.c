@@ -223770,7 +223770,7 @@ LAB_18018baff:
 
 
 uint64_t *
-FUN_18018be60(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
+ProcessCharacterEncodingConversionAndStatusManagement(long long CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long *Utf16EndPointer,
              unsigned long long AdditionalParameter1
 {
   uint64_t *CharacterStatusBuffer;
@@ -224511,7 +224511,7 @@ LAB_18018cbeb:
 
 
 uint64_t *
-FUN_18018cc00(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer
+ProcessSystemCharacterEncodingConversion(uint64_t *CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,long long Utf16EndPointer
 {
   byte StringComparisonByte;
   bool HighByte;
