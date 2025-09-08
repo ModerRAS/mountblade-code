@@ -49519,15 +49519,15 @@ void* ConfigureResourceManager(void* SystemResourceManager,ulong long Configurat
 void CleanupSystemResourceManagerArray(long long SystemResourceManager)
 
 {
-  long long arrayIndex;
-  void** systemDataTable;
-  ulong long arraySize;
-  ulong long currentIndex;
+  long long resourceArrayBaseAddress;
+  void** resourcePointer;
+  ulong long resourceArraySize;
+  ulong long resourceIndex;
   
-  resourceArraySize = *(ulong long *)(ResourceManagerHandle + 0x10);
-  arrayIndex = *(long long *)(SystemResourceManager + 8);
-  currentIndex = 0;
-  if (arraySize != 0) {
+  resourceArraySize = *(ulong long *)(SystemResourceManager + 0x10);
+  resourceArrayBaseAddress = *(long long *)(SystemResourceManager + 8);
+  resourceIndex = 0;
+  if (resourceArraySize != 0) {
     do {
       resourcePointer = *(void* **)(resourceArrayBaseAddress + resourceIndex * 8);
       if (resourcePointer != (void* *)0x0) {
@@ -49537,10 +49537,10 @@ void CleanupSystemResourceManagerArray(long long SystemResourceManager)
       *(void* **)(resourceArrayBaseAddress + resourceIndex * 8) = (void**)0;
       resourceIndex = resourceIndex + 1;
     } while (resourceIndex < resourceArraySize);
-    resourceArraySize = *(ulong long *)(ResourceManagerHandle + 0x10);
+    resourceArraySize = *(ulong long *)(SystemResourceManager + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
-  if ((1 < resourceArraySize) && (*(long long *)(ResourceManagerHandle + 8) != 0)) {
+  if ((1 < resourceArraySize) && (*(long long *)(SystemResourceManager + 8) != 0)) {
       SystemCleanupFunction();
   }
   return;
