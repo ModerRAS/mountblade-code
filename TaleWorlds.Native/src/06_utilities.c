@@ -100111,42 +100111,82 @@ void ExecuteExceptionHandlerCallbackViaIndirectPointer(DataBuffer operationBase,
 
 
 
-void Unwind_18090ed90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 执行带有操作标志的异常处理回调函数
+ * 
+ * 该函数从数据缓冲区中获取异常处理回调函数指针，
+ * 并使用指定的操作标志和系统清理标志调用该回调函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给回调函数）
+ */
+void ExecuteExceptionHandlerCallbackWithFlags(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   FunctionPointer *exceptionHandlerCallback;
   
+  // 从数据缓冲区获取异常处理回调函数指针
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x178) + ExceptionHandlerCallbackOffset10);
+  
+  // 检查回调函数指针是否有效
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x178),0,0,operationFlagB,SystemCleanupFlagAlternative);
+    // 调用异常处理回调函数，传递相关参数
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x178), 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-void Unwind_18090eda0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 从备用缓冲区执行异常处理回调函数
+ * 
+ * 该函数从数据缓冲区的备用位置（0x150偏移量）获取异常处理回调函数指针，
+ * 并使用指定的操作标志和系统清理标志调用该回调函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B（传递给回调函数）
+ */
+void ExecuteExceptionHandlerCallbackFromAlternateBuffer(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
   FunctionPointer *exceptionHandlerCallback;
   
+  // 从数据缓冲区的备用位置获取异常处理回调函数指针
   exceptionHandlerCallback = *(FunctionPointer**)(*(int64_t *)(dataBuffer + 0x150) + ExceptionHandlerCallbackOffset10);
+  
+  // 检查回调函数指针是否有效
   if (exceptionHandlerCallback != (FunctionPointer *)0x0) {
-    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x150),0,0,operationFlagB,SystemCleanupFlagAlternative);
+    // 调用异常处理回调函数，传递相关参数
+    (*exceptionHandlerCallback)(*(int64_t *)(dataBuffer + 0x150), 0, 0, operationFlagB, SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-void Unwind_18090edb0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 初始化异常数据表指针
+ * 
+ * 该函数负责初始化异常数据表指针，将指定的异常数据表地址
+ * 设置到数据缓冲区的相应位置。这里依次设置了两个异常数据表。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常数据表指针信息
+ */
+void InitializeExceptionDataTablePointers(DataBuffer operationBase, int64_t dataBuffer)
 {
   DataBuffer *exceptionDataBuffer;
   
+  // 获取异常数据缓冲区指针
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x150);
+  
+  // 初始化异常数据表指针（注意：第二个赋值会覆盖第一个）
   *exceptionDataBuffer = &ExceptionDataTable3;
   *exceptionDataBuffer = &ExceptionDataTable6;
+  
   return;
 }
 
