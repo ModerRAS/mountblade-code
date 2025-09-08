@@ -102250,7 +102250,7 @@ void SystemMemoryOperationHandlerDA40(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_18090da60(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_CleanupMemoryResourceAtOffset230(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + SystemParameterValidationOffset2810,0x248,2,ProcessMemoryOperationA0,SystemCleanupFlagAlternative);
@@ -102259,7 +102259,7 @@ void Unwind_18090da60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090da80(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_CleanupMemoryResourceAtOffset250(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -102273,7 +102273,7 @@ void Unwind_18090da80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090daa0(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_CleanupMemoryResourceAtOffset270(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x3d38,0x488,2,ProcessMemoryOperationA3,SystemCleanupFlagAlternative);
@@ -102282,7 +102282,7 @@ void Unwind_18090daa0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090dac0(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_CleanupMemoryResourceAtOffset290(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 18000,0x908,2,ProcessMemoryOperationA4,SystemCleanupFlagAlternative);
@@ -102291,7 +102291,7 @@ void Unwind_18090dac0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090dae0(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_CleanupMemoryResourceAtOffset2B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x5868,0x908,2,ProcessMemoryOperationA4,SystemCleanupFlagAlternative);
@@ -102300,7 +102300,7 @@ void Unwind_18090dae0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090db00(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_CleanupMemoryResourceAtOffset2D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x6a80,0x50,2,ProcessMemoryOperationA2,SystemCleanupFlagAlternative);
@@ -102309,7 +102309,7 @@ void Unwind_18090db00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090db20(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_CleanupMemoryResourceAtOffset2F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40) + 0x6b28,0x488,2,ProcessMemoryOperationA3,SystemCleanupFlagAlternative);
@@ -102564,7 +102564,7 @@ void ProcessExceptionContextData(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090dd20(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_CleanupMemoryResourceAtOffset390(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40),0x488,2,ProcessMemoryOperationA3);
@@ -102573,7 +102573,7 @@ void Unwind_18090dd20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090dd50(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_CleanupMemoryResourceAtOffset3B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset40),0x248,2,ProcessMemoryOperationA0);
