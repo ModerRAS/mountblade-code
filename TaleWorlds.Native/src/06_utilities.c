@@ -30166,12 +30166,12 @@ DataBuffer CleanupDataResourcesA0(void)
   }
   else {
     if (dataContext[2] != 0) {
-      dataProcessingOffset = 0;
+      processingOffset = 0;
       validationStatus = AllocateMemory(*dataContext,&StackDataBufferD);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      if ((uint64_t)dataContext[2] < (uint64_t)DataProcessingOffset + 1) {
+      if ((uint64_t)dataContext[2] < (uint64_t)processingOffset + 1) {
         validationStatus = 0x11;
         goto ProcessCheckpointDataFlowControl;
       }
@@ -30180,7 +30180,7 @@ DataBuffer CleanupDataResourcesA0(void)
   }
 ProcessCheckpointDataFlowControl:
   if ((int)validationStatus == 0) {
-    *(bool *)(DestinationContext + 0x7c) = stackCharBuffer != (char)validationStatus;
+    *(bool *)(DestinationContext + 0x7c) = stackBuffer != (char)validationStatus;
   }
   return validationStatus;
 }
