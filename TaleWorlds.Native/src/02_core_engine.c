@@ -190830,56 +190830,56 @@ void TerminateSystemProcess(void)
  */
 void ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer)
 {
-  uint64_t Utf16Char;
-  long long BufferStatus;
-  int MemoryMatchResult;
-  long long SystemDataRegistry;
-  uint32_t auStackX_10 [2];
-  uint64_t aStackProcessingConfigurationFlag [2];
-  uint32_t CalculatedCodePoint;
-  uint64_t DataSize;
-  uint32_t SystemOperationFlag98;
+  uint64_t Utf16CharacterValue;
+  long long StringLengthStatus;
+  int MemoryValidationResult;
+  long long StringIndexCounter;
+  uint32_t StackInitializationBuffer [2];
+  uint64_t StackProcessingConfiguration [2];
+  uint32_t UnicodeCodePoint;
+  uint64_t ProcessedDataSize;
+  uint32_t SystemOperationStatus98;
   uint32_t SystemUnsignedValue94;
-  void *pCalculationFunctionAddress;
-  long long CoreEngineSignedValue78;
-  uint StackProcessingVariable70;
-  uint32_t *aEncodingBuffer [2];
-  code *pcStack_50;
-  void *ContextDataPointer;
+  void *EncodingFunctionPointer;
+  long long CoreEngineMemoryOffset78;
+  uint StackMemoryAddress70;
+  uint32_t *EncodingBufferArray [2];
+  code *ErrorHandlingPointer;
+  void *ValidationContextPointer;
   
-  Utf16Char = SystemMemoryManager;
-  DataSize = 0xfffffffffffffffe;
-  auStackX_10[0] = 0;
-  aStackProcessingConfigurationFlag[0] = Utf8SourcePointer;
-  FUN_1801595d0(CharacterCode,&pCalculationFunctionAddress);
-  CalculatedCodePoint = 1;
-  BufferStatus = -1;
+  Utf16CharacterValue = SystemMemoryManager;
+  ProcessedDataSize = 0xfffffffffffffffe;
+  StackInitializationBuffer[0] = 0;
+  StackProcessingConfiguration[0] = Utf8SourcePointer;
+  FUN_1801595d0(CharacterCode,&EncodingFunctionPointer);
+  UnicodeCodePoint = 1;
+  StringLengthStatus = -1;
   do {
-    SystemDataRegistry = BufferStatus;
-    BufferStatus = SystemDataRegistry + 1;
-  } while ((&SystemStringConstant)[SystemDataRegistry] != '\0');
-  InputDataLength = (int)(SystemDataRegistry + 1);
+    StringIndexCounter = StringLengthStatus;
+    StringLengthStatus = StringIndexCounter + 1;
+  } while ((&SystemStringConstant)[StringIndexCounter] != '\0');
+  InputDataLength = (int)(StringIndexCounter + 1);
   if (InputDataLength < 1) {
-    pcStack_50 = FUN_18015c0a0;
-    ContextDataPointer = &SystemValidationBufferSecondary;
-    aEncodingBuffer[0] = (uint32_t *)MemoryAllocate(MemoryPoolManager,0x18,8,MemoryAllocationFlags);
-    SystemOperationFlag98 = (uint32_t)Utf16Char;
-    SystemUnsignedValue94 = (uint32_t)((unsigned long long)Utf16Char >> 0x20);
-    *aEncodingBuffer[0] = SystemOperationFlag98;
-    aEncodingBuffer[0][1] = SystemUnsignedValue94;
-    *(uint32_t **)(aEncodingBuffer[0] + 2) = auStackX_10;
-    *(uint64_t **)(aEncodingBuffer[0] + 4) = aStackProcessingConfigurationFlag;
-    FUN_18015b810(SystemOperationFlag98,0,4,1,0xffffffffffffffff,aEncodingBuffer,CalculatedCodePoint,DataSize);
-    pCalculationFunctionAddress = &SystemNullTemplate;
-    if (CoreEngineSignedValue78 == 0) {
+    ErrorHandlingPointer = FUN_18015c0a0;
+    ValidationContextPointer = &SystemValidationBufferSecondary;
+    EncodingBufferArray[0] = (uint32_t *)MemoryAllocate(MemoryPoolManager,0x18,8,MemoryAllocationFlags);
+    SystemOperationStatus98 = (uint32_t)Utf16CharacterValue;
+    SystemUnsignedValue94 = (uint32_t)((unsigned long long)Utf16CharacterValue >> 0x20);
+    *EncodingBufferArray[0] = SystemOperationStatus98;
+    EncodingBufferArray[0][1] = SystemUnsignedValue94;
+    *(uint32_t **)(EncodingBufferArray[0] + 2) = StackInitializationBuffer;
+    *(uint64_t **)(EncodingBufferArray[0] + 4) = StackProcessingConfiguration;
+    FUN_18015b810(SystemOperationStatus98,0,4,1,0xffffffffffffffff,EncodingBufferArray,UnicodeCodePoint,ProcessedDataSize);
+    EncodingFunctionPointer = &SystemNullTemplate;
+    if (CoreEngineMemoryOffset78 == 0) {
       return;
     }
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
   }
-  CoreEngineProcessSystemEvent(&pCalculationFunctionAddress,StackProcessingVariable70 + InputDataLength);
+  CoreEngineProcessSystemEvent(&EncodingFunctionPointer,StackMemoryAddress70 + InputDataLength);
                     // WARNING: Subroutine does not return
-  memcpy((unsigned long long)StackProcessingVariable70 + CoreEngineSignedValue78,&SystemCurrentCharacterPrimary,(long long)((int)SystemDataRegistry + 2));
+  memcpy((unsigned long long)StackMemoryAddress70 + CoreEngineMemoryOffset78,&SystemCurrentCharacterPrimary,(long long)((int)StringIndexCounter + 2));
 }
 
 
