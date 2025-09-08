@@ -60068,6 +60068,27 @@ void CleanupExceptionHandlerResources(DataBuffer operationBase,int64_t dataBuffe
 
 
 
+/**
+ * @brief 在展开过程中清理异常处理器
+ * 
+ * 该函数负责在异常展开（unwind）过程中清理异常处理器资源。它会遍历所有注册的异常处理器，
+ * 重置它们的指针，并确保在清理过程中不会出现资源泄漏。这个函数通常在异常处理机制的
+ * 清理阶段被调用。
+ * 
+ * 处理流程：
+ * 1. 从展开上下文中获取内存块偏移量
+ * 2. 遍历所有异常处理器
+ * 3. 重置每个异常处理器的指针为默认值
+ * 4. 清理内存区域并验证清理结果
+ * 
+ * @param exceptionContext 异常上下文数据缓冲区
+ * @param unwindContext 展开上下文，包含需要清理的异常处理器信息
+ * 
+ * @note 该函数使用0x48和0x10等偏移量进行内存访问
+ * @note 如果在清理过程中发现任何异常状态，会调用系统终止函数
+ * @warning 确保传入的上下文参数有效，否则可能导致系统崩溃
+ * @see TerminateSystemE0, DefaultExceptionHandlerB
+ */
 void CleanupExceptionHandlersDuringUnwind(DataBuffer exceptionContext, int64_t unwindContext)
 
 {
@@ -60102,6 +60123,28 @@ void CleanupExceptionHandlersDuringUnwind(DataBuffer exceptionContext, int64_t u
 
 
 
+/**
+ * @brief 在展开过程中清理线程本地存储
+ * 
+ * 该函数负责在异常展开过程中清理线程本地存储（Thread Local Storage, TLS）资源。
+ * 它会验证和清理线程相关的资源，包括引用计数、验证标志和内存区域。这个函数确保
+ * 在线程结束或异常展开时，所有相关的本地存储资源都被正确释放。
+ * 
+ * 处理流程：
+ * 1. 从线程上下文中获取上下文指针
+ * 2. 验证状态指针的有效性并执行回调函数
+ * 3. 检查异常处理器状态并执行必要的清理
+ * 4. 遍历资源迭代器并验证每个资源的标志
+ * 5. 处理数据标志和内存区域引用计数
+ * 
+ * @param exceptionContext 异常上下文数据缓冲区
+ * @param threadContext 线程上下文，包含需要清理的线程本地存储信息
+ * 
+ * @note 该函数使用0x48、0x141、0x138等偏移量进行内存访问
+ * @note 如果在任何验证步骤中发现异常状态，会调用系统终止函数
+ * @warning 确保传入的线程上下文有效，否则可能导致内存访问错误
+ * @see TerminateSystemE0, ExceptionList, MemoryRegionMask
+ */
 void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t threadContext)
 
 {
