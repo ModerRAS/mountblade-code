@@ -29034,7 +29034,7 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
   BytePair systemDataBufferArray [1];
   
   systemDataBufferArray[0] = CONCAT11(systemDataBufferArray[0]._1_1_,*(ByteFlag *)(dataBuffer + DataBufferOffset104));
-  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),stackBufferX,1);
+  systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))(*(DataBuffer **)(operationBase + OperationBaseOffset8),stackDataBuffer,1);
   if ((int)systemDataBuffer == 0) {
     operationStatus = 0;
     if (0 < *(short *)(dataBuffer + DataBufferOffset104)) {
