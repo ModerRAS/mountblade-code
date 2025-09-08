@@ -206037,7 +206037,7 @@ void ProcessCharacterEncodingStatusAndWindowOperations(long long CharacterCode)
     SystemDataRegistry = *(long long *)(CharacterCode + 0x20);
     CoreEngineSignedValue48 = SystemDataRegistry + 0x38;
     MemoryOperationStatus = SystemDataRegistry + 0x18;
-    FUN_180173720(SystemDataRegistry,*(uint32_t *)(CharacterCode + 0x30),*(uint32_t *)(CharacterCode + 0x34),
+    ProcessSystemCharacterBuffer(SystemDataRegistry,*(uint32_t *)(CharacterCode + 0x30),*(uint32_t *)(CharacterCode + 0x34),
                   *(uint8_t *)(CharacterCode + 0x38));
                     // WARNING: Subroutine does not return
     CoreEngineExecuteUtilityFunction(EncodedOperationKey ^ (unsigned long long)SystemValidationBuffer);
