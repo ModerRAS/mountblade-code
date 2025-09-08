@@ -23103,7 +23103,7 @@ void QueryAndRetrieveSystemData(int64_t dataStructure, int searchIndex, DataBuff
   dataPointer = (int *)(**(FunctionPointer**)(*(int64_t *)
                                 ((int64_t)
                                  *(int *)(*(int64_t *)(dataStructure + SystemDataSecondaryOffset18) + (int64_t)searchIndex * 0xc) +
-                                *(int64_t *)(dataStructure + DataStructurePointerOffset8)) + 0x50))();
+                                *(int64_t *)(dataStructure + DataStructurePointerOffset8)) + DataStructureCallbackOffset50))();
   if (dataPointer == (int *)0x0) {
     targetValue = 0;
   }
