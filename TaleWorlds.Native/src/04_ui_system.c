@@ -5923,6 +5923,30 @@ UIHandle GetUIStatusFlag(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
+/**
+ * @brief 处理UI系统事件的核心函数
+ * 
+ * 该函数是UI事件处理系统的核心，负责处理各种UI事件，包括：
+ * - 用户输入事件（鼠标、键盘、触摸等）
+ * - 系统事件（窗口状态变化、系统消息等）
+ * - UI组件内部事件（状态变化、动画事件等）
+ * 
+ * 函数根据事件处理器的类型和上下文，选择合适的处理方式：
+ * - 直接调用事件处理器函数
+ * - 通过线程本地存储和渲染系统处理
+ * - 处理标准输入输出流事件
+ * 
+ * @param eventHandler 事件处理器函数指针，指向处理事件的函数
+ * @param eventContext 事件上下文句柄，标识事件发生的上下文环境
+ * @param eventData 主要事件数据，包含事件的核心信息
+ * @param additionalData 附加事件数据，提供事件的额外信息
+ * 
+ * @return void 无返回值
+ * 
+ * @note 该函数支持多种事件处理模式，包括直接调用和线程安全处理
+ * @note 会检查事件处理器是否为标准输入输出流，并进行特殊处理
+ * @note 使用线程本地存储来确保线程安全的事件处理
+ */
 void HandleUIEvent(code *eventHandler,UIHandle eventContext,longlong eventData,UIHandle additionalData)
 
 {
@@ -92586,14 +92610,33 @@ void FUN_18071fc11(void)
 
 
 
- void FUN_18071feb5(void)
-void FUN_18071feb5(void)
+ // UI渲染任务执行器
+// 原始函数名：FUN_18071feb5 - UI渲染任务执行器
+#define UIRenderTaskExecutor FUN_18071feb5
+
+/**
+ * @brief UI渲染任务执行器
+ * 
+ * 该函数负责执行UI渲染任务，主要功能包括：
+ * - 接收渲染任务参数
+ * - 执行UI渲染操作
+ * - 调用渲染系统核心函数
+ * 
+ * 该函数是一个不返回的函数，执行后会直接进入渲染系统。
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数不会返回，执行后直接进入渲染系统
+ * @note 使用栈参数进行渲染任务配置
+ * @note 是UI渲染流程的核心执行函数
+ */
+void UIRenderTaskExecutor(void)
 
 {
-  ulonglong stackParam00000060;
+  ulonglong renderTaskParameter;
   
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(stackParam00000060 ^ (ulonglong)&stack0x00000000);
+  // 执行UI渲染任务（此函数不会返回）
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
