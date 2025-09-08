@@ -12971,9 +12971,9 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
   
   moduleOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&tempStackContext);
   initializationStatus = (int32_t)moduleOperationResult;
-  if (moduleInitializationStatus == 0) {
-    baseValidationContext = (int64_t *)0x0;
-    moduleDataContext = baseValidationContext;
+  if (initializationStatus == 0) {
+    validationContext = (int64_t *)0x0;
+    moduleData = validationContext;
     if (temporaryStackContext != 0) {
       moduleDataContext = (int64_t *)(temporaryStackContext + -8);
     }
@@ -15514,7 +15514,7 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
       }
       return conversionStatus;
     }
-    conversionStatus = 0x1f;
+    conversionResult = ComponentDataValidationFailure;
   }
   return conversionStatus;
 }
