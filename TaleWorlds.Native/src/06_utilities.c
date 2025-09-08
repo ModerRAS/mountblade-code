@@ -924,7 +924,7 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 #define DataProcessingContextOffset 0x14             // 数据处理上下文偏移量
 #define DataProcessingResultOffset 0x20              // 数据处理结果偏移量
 #define DataProcessingStatusOffset 0x2c              // 数据处理状态偏移量
-#define DataProcessingFlagsOffset 0x38                // 数据处理标志偏移量
+#define dataProcessingStatusOffset 0x38                // 数据处理标志偏移量
 #define DataProcessingHandlerOffset 0x50              // 数据处理处理器偏移量
 
 // 资源操作相关偏移量常量定义
@@ -6117,7 +6117,7 @@ void* ExceptionDataTableAddress;
 
 // 异常加密密钥变量
 // 功能：存储异常处理的加密密钥信息
-extern uint64_t ExceptionEncryptionKeyValue;
+extern uint64_t exceptionEncryptionKey;
 
 // 异常偏移量变量
 // 功能：存储异常处理的偏移量信息
@@ -12088,8 +12088,8 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   uint8_t SecurityValidationBuffer[SecurityValidationBufferSize];  // 安全验证缓冲区
   int64_t SystemContextArray[2];           // 系统上下文数组
   uint8_t *DataProcessingBuffer;           // 数据处理缓冲区指针
-  int32_t ResourceProcessingLoopCounter;    // 资源处理循环计数器
-  uint32_t DataProcessingFlags;             // 数据处理标志
+  int32_t resourceProcessingCounter;    // 资源处理循环计数器
+  uint32_t dataProcessingStatus;             // 数据处理标志
   uint8_t WorkingDataBuffer[WorkingDataBufferSize];  // 工作数据缓冲区
   
   // 初始化操作状态
@@ -12097,14 +12097,14 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   ResourceIdentifier = 0;
   ResourceArrayIterator = 0;
   ProcessedResourceCount = 0;
-  ResourceProcessingLoopCounter = 0;
-  DataProcessingFlags = 0;
+  resourceProcessingCounter = 0;
+  dataProcessingStatus = 0;
   
   // 栈保护变量
-  uint64_t StackGuardValue;
+  uint64_t stackSecurityGuard;
   
   // 执行栈保护检查，防止栈溢出攻击
-  StackGuardValue = ExceptionEncryptionKeyValue ^ (uint64_t)SecurityValidationBuffer;
+  stackSecurityGuard = exceptionEncryptionKey ^ (uint64_t)SecurityValidationBuffer;
   
   // 查询和检索系统数据，获取系统上下文信息
   OperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ObjectHandle + ComponentHandleOffset), SystemContextArray);
@@ -12114,8 +12114,8 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
     // 初始化数据处理缓冲区和标志
     DataProcessingBuffer = WorkingDataBuffer;
     ProcessedResourceCount = 0;
-    ResourceProcessingLoopCounter = 0;
-    DataProcessingFlags = ProcessingFlagMask;
+    resourceProcessingCounter = 0;
+    dataProcessingStatus = ProcessingFlagMask;
     
     // 执行核心功能处理
     OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + DataConfigurationOffset), *(int64_t *)(SystemContextArray[0] + SystemContextOffset),
@@ -12124,7 +12124,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
     // 处理执行结果
     if (OperationStatus == SystemSuccessStatus) {
       // 如果有资源需要处理，遍历资源列表
-      if (0 < ResourceProcessingLoopCounter) {
+      if (0 < resourceProcessingCounter) {
         ResourceArrayIterator = 0;
         do {
           // 获取资源标识符
@@ -12138,7 +12138,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
           // 更新计数器和偏移量
           ProcessedResourceCount = ProcessedResourceCount + 1;
           ResourceArrayIterator = ResourceArrayIterator + ResourceHandleSize;
-        } while (ProcessedResourceCount < ResourceProcessingLoopCounter);
+        } while (ProcessedResourceCount < resourceProcessingCounter);
       }
       // 清理内存缓冲区
       CleanupMemory(&DataProcessingBuffer);
@@ -12149,7 +12149,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
     }
   }
   // 执行最终的安全验证检查
-  ExecuteSecurityCheck(StackGuardValue ^ (uint64_t)SecurityValidationBuffer);
+  ExecuteSecurityCheck(stackSecurityGuard ^ (uint64_t)SecurityValidationBuffer);
 }
 
 
@@ -17732,7 +17732,7 @@ void ExecuteSecurityValidation(int64_t securityContext, int64_t operationDescrip
   uint64_t stackGuardValue;
   
   // 初始化栈保护值
-  stackGuardValue = ExceptionEncryptionKeyValue ^ (uint64_t)securityValidationBuffer;
+  stackGuardValue = exceptionEncryptionKey ^ (uint64_t)securityValidationBuffer;
   
   // 查询并检索系统数据
   queryStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(securityContext + SystemContextHandleOffset), &systemCtx);
@@ -17816,7 +17816,7 @@ void ExecuteSecurityValidation(void)
   uint64_t stackGuardValue;
   ByteFlag stackBuffer [40];
   
-  stackGuardValue = ExceptionEncryptionKeyValue ^ (uint64_t)stackBuffer;
+  stackGuardValue = exceptionEncryptionKey ^ (uint64_t)stackBuffer;
     ExecuteSecurityCheck(stackGuardValue);
 }
 
@@ -18817,7 +18817,7 @@ void InitializeResourceContext(int64_t contextDescriptor, DataBuffer initializat
   DataBuffer optionsCopy;
   uint64_t securityToken;
   
-  securityToken = ExceptionEncryptionKeyValue ^ (uint64_t)resourceBuffer;
+  securityToken = exceptionEncryptionKey ^ (uint64_t)resourceBuffer;
   optionsCopy = initializationOptions;
   initializationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextDescriptor + ExceptionHandlerCallbackOffset10),resourceBuffer);
   if (initializationStatus == 0) {
@@ -20467,7 +20467,7 @@ void ExecuteUtilityDataValidation(int64_t exceptionHandlerContext,DataWord *vali
   ByteFlag systemConfigBuffer [40];
   uint64_t securityCheckValue;
   
-  securityCheckValue = ExceptionEncryptionKeyValue ^ (uint64_t)encryptionKeyBuffer;
+  securityCheckValue = exceptionEncryptionKey ^ (uint64_t)encryptionKeyBuffer;
   exceptionHandlerContextPointer = *(int64_t **)(operationBase + OperationBaseOffset800);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     colorDataWord = *dataBuffer;
@@ -20587,7 +20587,7 @@ void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operation
   uint stackGreenComponentLowWord;
   uint stackSecurityGuard;
   
-  securityCheckValueA = ExceptionEncryptionKeyValue ^ (uint64_t)stackSecurityGuard;
+  securityCheckValueA = exceptionEncryptionKey ^ (uint64_t)stackSecurityGuard;
   exceptionHandlerContextPointer = *(int64_t **)(operationContext + 800);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     inputDataWord = *operationFlags;
@@ -20700,7 +20700,7 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
   ByteFlag systemConfigBuffer [40];
   uint64_t securityCheckValue;
   
-  securityCheckValue = ExceptionEncryptionKeyValue ^ (uint64_t)encryptionKeyBuffer;
+  securityCheckValue = exceptionEncryptionKey ^ (uint64_t)encryptionKeyBuffer;
   exceptionHandlerContextPointer = *(int64_t **)(operationBase + OperationBaseOffset800);
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     colorDataWord = *dataBuffer;
@@ -21526,7 +21526,7 @@ void ProcessUtilitySystemData(int64_t systemContext, ByteFlag *dataBuffer, int *
   int64_t *stackIntegerPointerC;            // 栈整数指针C
   
   // 初始化安全校验和
-  dataSecurityChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)securityValidationBuffer;
+  dataSecurityChecksum = exceptionEncryptionKey ^ (uint64_t)securityValidationBuffer;
   // 初始化系统状态变量
   currentRecordIndex = *(int *)(systemContext + 0xac);
   recordIterationCount = (int64_t)currentRecordIndex;
@@ -23221,7 +23221,7 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   ByteFlag DataBufferA [520];
   uint64_t colorProcessingData;
   
-  colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)PrimaryEncryptionKeyBuffer;
+  colorProcessingData = exceptionEncryptionKey ^ (uint64_t)PrimaryEncryptionKeyBuffer;
   LoopCounter = 0;
   if (operationFlagA != 0) {
     operationStatus = *(int *)(dataBuffer + OperationStatusOffset);
@@ -23864,7 +23864,7 @@ void ExecuteSecurityCheckJumpA0(void)
  * 
  * @warning 此函数涉及复杂的加密和验证操作
  * @note 原始函数名：FUN_180897520
- * @see ValidateSystemDataA0, ProcessData, ExceptionEncryptionKeyValue
+ * @see ValidateSystemDataA0, ProcessData, exceptionEncryptionKey
  */
 #define ProcessDataPointerOperationsA0 FUN_180897520
 
@@ -23877,7 +23877,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
   ByteFlag DataBufferB [512];
   uint64_t EncryptionKeyXorResult;
   
-  EncryptionKeyXorResult = ExceptionEncryptionKeyValue ^ (uint64_t)SecondaryEncryptionKeyBuffer;
+  EncryptionKeyXorResult = exceptionEncryptionKey ^ (uint64_t)SecondaryEncryptionKeyBuffer;
   exceptionHandlerContext = operationBase[4];
   if (((char)exceptionHandlerContext != '\0') || (operationResult = ValidateSystemDataA0(operationBase,1), operationResult == 0)) {
     operationResult = (**(FunctionPointer**)(*dataBuffer + ExceptionHandlerCallbackOffset10))(dataBuffer,DataBufferB,0x200);
@@ -24018,7 +24018,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   ByteFlag ExceptionDataBufferA [136];
   uint64_t colorProcessingData;
   
-  colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)TertiaryEncryptionKeyBuffer;
+  colorProcessingData = exceptionEncryptionKey ^ (uint64_t)TertiaryEncryptionKeyBuffer;
   dataContext = *(int64_t *)(dataBuffer + 0x80);
   exceptionHandlerContext4 = 0;
   SystemValidationWordA = 0;
@@ -25034,7 +25034,7 @@ void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,u
   DataWord StackDataWordAM;
   DataWord StackDataWordAN;
   
-  securityToken = ExceptionEncryptionKeyValue ^ (uint64_t)securityBuffer;
+  securityToken = exceptionEncryptionKey ^ (uint64_t)securityBuffer;
   processCount = 0;
   resourceIndex = 0;
   do {
@@ -25163,7 +25163,7 @@ void ProcessSecureDataA0(int64_t *contextPointer, DataBuffer dataSource, DataBuf
   uint64_t securityValidationChecksum;                            // 安全验证校验和
   
   // 计算安全验证校验和，用于数据完整性验证
-  securityValidationChecksum = ExceptionEncryptionKeyValue ^ (uint64_t)securityKeyBuffer;
+  securityValidationChecksum = exceptionEncryptionKey ^ (uint64_t)securityKeyBuffer;
   encryptedSecurityParam1 = securityParam1;
   encryptedSecurityParam2 = securityParam2;
   
@@ -25391,7 +25391,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   // 美化后的变量名
   uint64_t securityValidationValue;
   
-  securityValidationValue = ExceptionEncryptionKeyValue ^ (uint64_t)securityBuffer;
+  securityValidationValue = exceptionEncryptionKey ^ (uint64_t)securityBuffer;
   nullPointer = (int64_t *)0x0;
   contextProcessingArray300[1] = 0;
   operationResult = InitializeBufferA0(contextProcessingArray300 + 1,dataContext[1]);
@@ -39899,9 +39899,9 @@ void ExceptionUnwindHandlerA17(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBits = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
-            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameter);
+  encryptionShiftBits = (byte)exceptionEncryptionKey & 0x3f;
+                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
+            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameter);
   return;
 }
 
@@ -39933,9 +39933,9 @@ void ExceptionHandlerA0(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
+                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -64992,9 +64992,9 @@ void ResetSystemEventState(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBits = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
-            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameterAddress);
+  encryptionShiftBits = (byte)exceptionEncryptionKey & 0x3f;
+                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBits |
+            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBits))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -67422,9 +67422,9 @@ void ResetSystemStatusFlag(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
+                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -72563,9 +72563,9 @@ void ResetSystemStatusFlags(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
+                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -76335,9 +76335,9 @@ void ResetExceptionStatusAndTriggerEvent(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
+                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -83556,9 +83556,9 @@ void ResetExceptionStatusFlags(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
+                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
@@ -98642,7 +98642,21 @@ void Unwind_18090dfe0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e000(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器资源管理函数E000
+ * 
+ * 该函数管理异常处理器的资源清理和内存释放，包括：
+ * - 执行多个系统清理函数
+ * - 处理内存资源的引用计数
+ * - 管理异常列表和内存块
+ * - 执行系统终止操作
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_18090e000
+ */
+void ManageExceptionHandlerResourcesE000(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -98692,7 +98706,20 @@ void Unwind_18090e000(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e020(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器上下文调用函数E020
+ * 
+ * 该函数负责调用异常处理器上下文中的特定函数，主要用于：
+ * - 获取异常处理器上下文指针
+ * - 执行上下文中的清理函数
+ * - 处理异常处理完成后的操作
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * 
+ * @note 原始函数名：Unwind_18090e020
+ */
+void ExecuteExceptionHandlerCleanupE020(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -117489,9 +117516,9 @@ void HandleResourceCleanupExceptionAtOffset7d0(void)
                           ResetEvent(ExceptionEventHandle);
     return;
   }
-  encryptionShiftBitCount = (byte)ExceptionEncryptionKeyValue & 0x3f;
-                          (*(code *)((ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
-            (ExceptionEncryptionKeyValue ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
+  encryptionShiftBitCount = (byte)exceptionEncryptionKey & 0x3f;
+                          (*(code *)((exceptionEncryptionKey ^ ExceptionOffsetDataValue) >> encryptionShiftBitCount |
+            (exceptionEncryptionKey ^ ExceptionOffsetDataValue) << 0x40 - encryptionShiftBitCount))(ExceptionProcessParameterAddress);
   return;
 }
 
