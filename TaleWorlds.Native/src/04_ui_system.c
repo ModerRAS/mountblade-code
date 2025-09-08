@@ -300018,16 +300018,25 @@ void ProcessUIMemoryAllocationHandler(void)
 
 
 
-UIDword FUN_18084f53e(void)
+/**
+ * @brief UI系统临界区资源释放器
+ * 
+ * 该函数负责释放UI系统的临界区资源，确保线程安全。
+ * 根据基础指针的状态决定返回值，并执行相应的清理操作。
+ * 
+ * @return UIDword 操作状态码，0x1c表示无操作，0表示成功释放
+ * @note 原始函数名：FUN_18084f53e
+ */
+UIDword ReleaseUICriticalSectionResource(void)
 
 {
   longlong BasePointer;
-  UIHandle StackData1;
+  UIHandle ResourceHandle;
   
   if (BasePointer == 0) {
     return 0x1c;
   }
-  StackData1 = 0x180768417;
+  ResourceHandle = 0x180768417;
   LeaveCriticalSection();
   return 0;
 }
