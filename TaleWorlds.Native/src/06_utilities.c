@@ -294,7 +294,8 @@
 #define DataBufferExceptionContextOffset 0x82            // 数据缓冲区异常上下文偏移量
 #define DataBufferSecondaryExceptionContextOffset 0x8a   // 数据缓冲区次级异常上下文偏移量
 
-// 异常处理回调函数偏移量常量
+// 异常处理器回调偏移量常量
+#define ExceptionHandlerCallbackOffset10 0x10                   // 异常处理器回调偏移量10
 #define ExceptionHandlerCallbackOffsetED0 0xed0           // 异常处理回调函数偏移量ED0
 #define ExceptionHandlerCallbackOffsetEB8 0xeb8           // 异常处理回调函数偏移量EB8
 #define ExceptionHandlerCallbackOffsetEB0 0xeb0           // 异常处理回调函数偏移量EB0
@@ -1118,6 +1119,17 @@
 #define DestinationContextOffset58 0x58                    // 目标上下文偏移量58
 #define SystemContextPointerOffset90 0x90                 // 系统上下文指针偏移量90
 #define SystemValidationOffset790 0x790                  // 系统验证偏移量790
+#define DataProcessingBufferOffsetNegative78 -0x78         // 数据处理缓冲区负偏移量78
+#define StackFrameContextOffsetNegative10 -0x10            // 栈帧上下文负偏移量10
+#define StackFrameContextOffsetNegative68 -0x68            // 栈帧上下文负偏移量68
+#define StackFrameContextOffsetNegative80 -0x80            // 栈帧上下文负偏移量80
+#define StackFrameContextOffsetNegative54 -0x54            // 栈帧上下文负偏移量54
+#define StackFrameContextOffsetNegative70 -0x70            // 栈帧上下文负偏移量70
+#define StackFrameContextOffsetNegative64 -0x64            // 栈帧上下文负偏移量64
+#define SystemDataSecondaryOffset18 0x18                  // 系统数据二级偏移量18
+#define SystemDataFunctionOffset50 0x50                   // 系统数据函数偏移量50
+#define ArrayIndexMultiplier 0xc                           // 数组索引乘数
+#define SystemDataTableOffset8 8                            // 系统数据表偏移量8
 #define ExceptionHandlerTempCallbackOffsetEC8 0xec8     // 异常处理器临时回调偏移量EC8
 #define ExceptionHandlerTempCallbackOffsetE90 0xe90     // 异常处理器临时回调偏移量E90
 #define ExceptionHandlerTempCallbackOffsetE98 0xe98     // 异常处理器临时回调偏移量E98
@@ -21389,7 +21401,7 @@ void ExecuteSecurityValidationOperation(uint64_t securityContext)
   securityContextHandle = (**(FunctionPointer**)(systemHandler + FunctionPointerSecondaryOffset))();
   if (securityContextHandle == 0) {
       InitializeSystemBufferA0(&stackBufferHighAddress,0x27,&SystemBufferConfiguration,contextValue & SystemCleanupFlag,
-                  contextValue._4_2_);
+                  contextValue.LowPart);
   }
   if (**(int **)(securityContextHandle + ResourceValidationOffset) == 0) {
     validationResult = ValidateSystemConfigurationA0(*(DataWord *)(systemData + SystemDataSecondaryOffset18));
@@ -22521,7 +22533,7 @@ void ExecuteSecurityCheck(void)
   ByteFlag stackBuffer [40];
   
   securityContext = GetSecurityContext();
-    ExecuteSecurityCheck(*(uint64_t *)(securityContext + 0x5f0) ^ (uint64_t)stackBuffer);
+    ExecuteSecurityCheck(*(uint64_t *)(securityContext + SecurityContextValidationOffset5F0) ^ (uint64_t)stackBuffer);
 }
 
 
@@ -23356,7 +23368,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
   ByteFlag operationStatusByte;
   ByteFlag validationBuffer1 [8];
   ByteFlag validationBuffer2 [8];
-  ByteFlag validationBuffer3 [40];
+  ByteFlag extendedValidationBuffer [40];
   DataWord *stackDataPointerInput;
   DataWord *systemResourceDataPointer;
   DataWord *systemValidationDataPointer;
@@ -23477,7 +23489,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
           }
           else if ((arrayIndex == 7) &&
                   (arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10),
-                                               validationBuffer3), exceptionHandlerContextPointer = stackValidationPointer, arrayIndex == 0)) {
+                                               validationBuffer), exceptionHandlerContextPointer = stackValidationPointer, arrayIndex == 0)) {
             operationResult = *(DataWord *)(resourceIterator + 0xc + exceptionContextIndex * 0x10);
             allocatedMemoryBlock = (int)dataFlags + 1;
             arrayIndex = loopCounterInput;
@@ -23650,7 +23662,7 @@ ResourceCleanupLabel:
     if ((*(uint *)(operationBase + OperationBaseOffset6C) >> 0x18 & 1) == 0) {
       if ((*(int *)(operationBase + 0xb0) == -1) || (*(int *)(operationBase + 0xac) <= *(int *)(operationBase + 0xb0))
          ) {
-        stackDataBuffer[0] = CONCAT31(stackDataBuffer[0]._1_3_,1);
+        stackDataBuffer[0] = CONCAT31(stackDataBuffer[0].HighPart,1);
         stackUIntBuffer[0] = 0;
         do {
           dataFlags = ProcessSystemDataA1(operationBase,stackDataBuffer,stackUIntBuffer);
@@ -26149,7 +26161,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   uint arrayIndexStackData;
   ByteFlag flagStackData;
   ByteFlag dataTransferBufferA [512];
-  uint64_t securityValidationStack38;
+  uint64_t SystemSecurityValidationData;
   
   // 美化后的变量名
   uint64_t securityValidationValue;
@@ -26752,12 +26764,12 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
     if (outputBuffer != (DataWord *)0x0) {
       dataItemPointer = (DataWord *)(dataContext[2] + (int64_t)itemIndex * 0x10);
       processingResult = dataItemPointer[1];
-      fieldData2 = dataItemPointer[2];
-      fieldData3 = dataItemPointer[3];
+      DataItemFieldData2 = dataItemPointer[2];
+      DataItemFieldData3 = dataItemPointer[3];
       *outputBuffer = *dataItemPointer;
       outputBuffer[1] = processingResult;
-      outputBuffer[2] = fieldData2;
-      outputBuffer[3] = fieldData3;
+      outputBuffer[2] = DataItemFieldData2;
+      outputBuffer[3] = DataItemFieldData3;
     }
     totalProcessedLength = 0;
     currentBufferOffset = 0;
@@ -30568,7 +30580,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
   secondResourceDataValue = memoryResourcePointer[1];
   thirdResourceDataValue = memoryResourcePointer[2];
   fourthResourceDataValue = memoryResourcePointer[3];
-  validationStatus = ExecuteSecurityValidation(dataBuffer,SecurityValidationBufferA,0,0x4c525443);
+  validationStatus = ExecuteSecurityValidation(dataBuffer,securityValidationBuffer,0,0x4c525443);
   if ((((int)validationStatus == 0) && (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset10), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(dataBuffer,operationBase + SystemDataParameterOffset20), (int)validationStatus == 0)) {
     memoryRegionBase = SystemOperationCode0x1c;
@@ -30596,7 +30608,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
         }
         if ((*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) &&
            (memoryRegionBase = OperateDataO0(*dataBuffer,operationBase + 0x40,4), memoryRegionBase == 0)) {
-            ExecutePortControlOperation(dataBuffer,SecurityValidationBufferA);
+            ExecutePortControlOperation(dataBuffer,securityValidationBuffer);
         }
       }
       return (uint64_t)memoryRegionBase;
@@ -31289,9 +31301,9 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
   uint flagBuffer[2];
   uint operationCounter[2];
   
-  systemDataBuffer = ExecuteSecurityValidation(dataBuffer,ainputDataWord,1,0x54495645);
+  systemDataBuffer = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,1,0x54495645);
   if (((((int)systemDataBuffer == 0) &&
-       (systemDataBuffer = ExecuteSecurityValidation(dataBuffer,validationBuffer3,0,0x42495645), (int)systemDataBuffer == 0)) &&
+       (systemDataBuffer = ExecuteSecurityValidation(dataBuffer,validationBuffer,0,0x42495645), (int)systemDataBuffer == 0)) &&
       (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset10), (int)systemDataBuffer == 0)) &&
      (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + 0xd8), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
@@ -31324,7 +31336,7 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
             systemStatusUnion[0] = systemStatusUnion[0] & -validationStatus;
           } while (operationResult < (int)memoryRegionBase);
         }
-          ExecutePortControlOperation(dataBuffer,validationBuffer3);
+          ExecutePortControlOperation(dataBuffer,validationBuffer);
       }
     }
   }
@@ -31407,9 +31419,9 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *exceptionHandle
   uint64_t securityCheckResult;
   char ValidationResultBuffer [8];
   uint stackByteBuffer [2];
-  ByteFlag ainputDataWord [32];
+  ByteFlag inputValidationBuffer [32];
   
-  operationResult = ExecuteSecurityValidation(exceptionHandlerContext,ainputDataWord,0,0x54534e49);
+  operationResult = ExecuteSecurityValidation(exceptionHandlerContext,inputValidationBuffer,0,0x54534e49);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -31544,7 +31556,7 @@ DataProcessLabelA:
             if ((int)dataFlags == 0) {
               if (*(uint *)(dataBuffer + 8) < 0x82) {
 SystemCleanupAndExit:
-                  ExecutePortControlOperation(dataBuffer,ainputDataWord);
+                  ExecutePortControlOperation(dataBuffer,inputValidationBuffer);
               }
               dataFlags = securityCheckResult;
               if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
@@ -32076,9 +32088,9 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
   uint validationOutcome;
   uint securityValidationBuffer [2];
   uint stackByteBuffer [2];
-  ByteFlag ainputDataWord [32];
+  ByteFlag inputValidationBuffer [32];
   
-  arrayIndex = ExecuteSecurityValidation(dataBuffer,ainputDataWord,0,0x2050414d);
+  arrayIndex = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,0,0x2050414d);
   if ((arrayIndex == 0) && (arrayIndex = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset10), arrayIndex == 0)) {
     stackByteBuffer[0] = 0;
     arrayIndex = ExecuteDataValidationOperation(*dataBuffer,stackByteBuffer);
@@ -32119,7 +32131,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
             securityValidationBuffer[0] = securityValidationBuffer[0] & -dataFlags;
           } while (arrayIndex < (int)validationOutcome);
         }
-          ExecutePortControlOperation(dataBuffer,ainputDataWord);
+          ExecutePortControlOperation(dataBuffer,inputValidationBuffer);
       }
     }
   }
@@ -32808,7 +32820,7 @@ ValidationLabelD:
   if (operationResult != 0) {
     return (uint64_t)operationResult;
   }
-    ExecutePortControlOperation(dataBuffer,validationBuffer3);
+    ExecutePortControlOperation(dataBuffer,validationBuffer);
 }
 
 
@@ -33339,8 +33351,8 @@ ValidationLabelD:
 uint64_t ValidateAndProcessSystemOperations(DataBuffer SystemContext)
 
 {
-  DataWord validationData1;
-  DataWord validationData2;
+  DataWord SystemValidationData1;
+  DataWord SystemValidationData2;
   DataWord validationStatus;
   float floatValue1;
   float floatValue2;
@@ -35379,9 +35391,9 @@ uint64_t GetSystemMemoryBaseAddress(int64_t operationBase,int64_t *dataBuffer)
   bool validationFlag;
   uint memoryAllocationBuffer[2];
   uint stackByteBuffer [2];
-  ByteFlag ainputDataWord [32];
+  ByteFlag inputValidationBuffer [32];
   
-  operationResult = ExecuteSecurityValidation(dataBuffer,ainputDataWord,0,0x54534c50);
+  operationResult = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,0,0x54534c50);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -35486,7 +35498,7 @@ ValidationErrorHandler3:
     *(DataWord *)(operationBase + ExceptionHandlerCallbackOffset10) = 3;
   }
 ValidationExitHandler:
-    ExecutePortControlOperation(dataBuffer,ainputDataWord);
+    ExecutePortControlOperation(dataBuffer,inputValidationBuffer);
 }
 
 
@@ -35767,7 +35779,7 @@ uint64_t QuerySystemDataD(int64_t operationBase,DataBuffer *dataBuffer)
       operationResult = (uint64_t)systemDataBuffer;
     }
     if ((int)operationResult == 0) {
-        ExecutePortControlOperation(dataBuffer,ainputDataWord);
+        ExecutePortControlOperation(dataBuffer,inputValidationBuffer);
     }
   }
   return operationResult;
@@ -36999,14 +37011,14 @@ DataBuffer ProcessDataStreamA1(int64_t operationBase,DataBuffer *dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
-  ByteFlag ainputDataWord [32];
-  ByteFlag SecurityValidationBufferA [32];
+  ByteFlag inputValidationBuffer [32];
+  ByteFlag securityValidationBuffer [32];
   
   if ((0x87 < *(uint *)(dataBuffer + 8)) &&
-     (systemDataBuffer = ExecuteSecurityValidation(dataBuffer,SecurityValidationBufferA,1,0x46464353), (int)systemDataBuffer != 0)) {
+     (systemDataBuffer = ExecuteSecurityValidation(dataBuffer,securityValidationBuffer,1,0x46464353), (int)systemDataBuffer != 0)) {
     return systemDataBuffer;
   }
-  systemDataBuffer = ExecuteSecurityValidation(dataBuffer,ainputDataWord,0,0x46454353);
+  systemDataBuffer = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,0,0x46454353);
   if (((int)systemDataBuffer == 0) && (systemDataBuffer = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset10), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
@@ -37031,7 +37043,7 @@ DataBuffer ProcessDataStreamA1(int64_t operationBase,DataBuffer *dataBuffer)
         systemDataBuffer = 0x1c;
       }
       if ((int)systemDataBuffer == 0) {
-          ExecutePortControlOperation(dataBuffer,ainputDataWord);
+          ExecutePortControlOperation(dataBuffer,inputValidationBuffer);
       }
     }
   }
@@ -37060,15 +37072,15 @@ uint64_t ValidatePortControlOperation(int64_t operationBase,int64_t *dataBuffer)
   uint64_t validationOutcome;
   uint systemStatusUnion [2];
   uint stackByteBuffer [2];
-  ByteFlag validationBuffer3 [32];
-  ByteFlag ainputDataWord [32];
+  ByteFlag standardValidationBuffer [32];
+  ByteFlag inputValidationBuffer [32];
   uint64_t operationResult;
   
-  operationResult = ExecuteSecurityValidation(dataBuffer,ainputDataWord,1,0x50414e53);
+  operationResult = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,1,0x50414e53);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  operationResult = ExecuteSecurityValidation(dataBuffer,validationBuffer3,0,0x42414e53);
+  operationResult = ExecuteSecurityValidation(dataBuffer,validationBuffer,0,0x42414e53);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -37156,7 +37168,7 @@ ValidationCompleteHandler2:
         operationResult = (uint64_t)validationStatus;
       }
       if ((int)operationResult == 0) {
-          ExecutePortControlOperation(dataBuffer,validationBuffer3);
+          ExecutePortControlOperation(dataBuffer,validationBuffer);
       }
     }
   }
@@ -38741,12 +38753,12 @@ DataBuffer ProcessDataCollectionA1(int64_t operationBase,DataBuffer *dataBuffer)
 {
   DataBuffer systemDataBuffer;
   DataBuffer operationResult;
-  ByteFlag ainputDataWord [32];
-  ByteFlag SecurityValidationBufferA [32];
+  ByteFlag inputValidationBuffer [32];
+  ByteFlag securityValidationBuffer [32];
   
-  operationResult = ExecuteSecurityValidation(dataBuffer,SecurityValidationBufferA,1,0x54494157);
+  operationResult = ExecuteSecurityValidation(dataBuffer,securityValidationBuffer,1,0x54494157);
   if (((((int)operationResult == 0) &&
-       (operationResult = ExecuteSecurityValidation(dataBuffer,ainputDataWord,0,0x42494157), (int)operationResult == 0)) &&
+       (operationResult = ExecuteSecurityValidation(dataBuffer,inputValidationBuffer,0,0x42494157), (int)operationResult == 0)) &&
       (operationResult = ValidatePortControlRequest(dataBuffer,operationBase + ExceptionHandlerCallbackOffset10), (int)operationResult == 0)) &&
      ((0x45 < *(uint *)(dataBuffer + 8) ||
       (operationResult = ValidateSystemDataStructure(dataBuffer,operationBase + 0xd8), (int)operationResult == 0)))) {
@@ -38760,7 +38772,7 @@ DataBuffer ProcessDataCollectionA1(int64_t operationBase,DataBuffer *dataBuffer)
       operationResult = OperateDataO0(systemDataBuffer,operationBase + 0xe4,8);
     }
     if ((int)operationResult == 0) {
-        ExecutePortControlOperation(dataBuffer,ainputDataWord);
+        ExecutePortControlOperation(dataBuffer,inputValidationBuffer);
     }
   }
   return operationResult;
@@ -38938,12 +38950,12 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
 {
   DataBuffer systemDataBuffer;
   DataWord systemStatusUnion [2];
-  ByteFlag validationBuffer3 [64];
-  ByteFlag SecurityValidationBufferA [32];
+  ByteFlag largeValidationBuffer [64];
+  ByteFlag securityValidationBuffer [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,DataOperationTypeSIL,DataOperationTypeFFEB);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,securityValidationBuffer,1,DataOperationTypeSIL,DataOperationTypeFFEB);
   if (((int)systemDataBuffer == 0) &&
-     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,validationBuffer3,0,DataOperationTypeBFEB,0), (int)systemDataBuffer == 0)) {
+     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,validationBuffer,0,DataOperationTypeBFEB,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) == 0) {
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + ExceptionHandlerCallbackOffset10);
       if (((int)systemDataBuffer == 0) &&
@@ -39066,7 +39078,7 @@ DataBuffer ProcessComplexDataStructureA1(int64_t operationBase,int64_t *dataBuff
                             (*(DataBuffer **)(*dataBuffer + 8),systemStatusUnion,4);
           if (((int)systemDataBuffer == 0) &&
              (systemDataBuffer = ValidateDataFormatStructure(dataBuffer,operationBase + 0x40,0x3d), (int)systemDataBuffer == 0)) {
-              ExecuteSystemCleanupRoutine(dataBuffer,validationBuffer3);
+              ExecuteSystemCleanupRoutine(dataBuffer,validationBuffer);
           }
         }
         else {
@@ -39403,12 +39415,12 @@ DataBuffer ProcessDataConversionA1(int64_t operationBase,int64_t *dataBuffer)
 {
   DataBuffer systemDataBuffer;
   DataWord systemStatusUnion [4];
-  ByteFlag ainputDataWord [32];
-  ByteFlag SecurityValidationBufferA [32];
+  ByteFlag inputValidationBuffer [32];
+  ByteFlag securityValidationBuffer [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,DataOperationTypeSIL,DataOperationTypeIDMC);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,securityValidationBuffer,1,DataOperationTypeSIL,DataOperationTypeIDMC);
   if (((int)systemDataBuffer == 0) &&
-     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,DataOperationTypeBDMC,0), (int)systemDataBuffer == 0)) {
+     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,inputValidationBuffer,0,DataOperationTypeBDMC,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
@@ -39427,7 +39439,7 @@ DataBuffer ProcessDataConversionA1(int64_t operationBase,int64_t *dataBuffer)
         systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0xdc);
         if (((int)systemDataBuffer == 0) &&
            (systemDataBuffer = ProcessDataSecurityValidation(dataBuffer,operationBase + 0xec,0x80), (int)systemDataBuffer == 0)) {
-            ExecuteSystemCleanupRoutine(dataBuffer,ainputDataWord);
+            ExecuteSystemCleanupRoutine(dataBuffer,inputValidationBuffer);
         }
       }
     }
@@ -39872,9 +39884,9 @@ DataBuffer ValidateDataSynchronizationA1(int64_t operationBase,DataBuffer *dataB
 
 {
   DataBuffer systemDataBuffer;
-  ByteFlag SecurityValidationBufferA [32];
+  ByteFlag securityValidationBuffer [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,0,0x56525543,0);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,securityValidationBuffer,0,0x56525543,0);
   if ((int)systemDataBuffer == 0) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
@@ -39887,7 +39899,7 @@ DataBuffer ValidateDataSynchronizationA1(int64_t operationBase,DataBuffer *dataB
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + SystemDataParameterOffset20);
       if (((int)systemDataBuffer == 0) && (systemDataBuffer = ProcessDataValidationWithFlags(dataBuffer,operationBase + 0x30,1,0), (int)systemDataBuffer == 0))
       {
-          ExecuteSystemCleanupRoutine(dataBuffer,SecurityValidationBufferA);
+          ExecuteSystemCleanupRoutine(dataBuffer,securityValidationBuffer);
       }
     }
   }
@@ -39900,12 +39912,12 @@ DataBuffer ExecuteDataCleanupA1(int64_t operationBase,DataBuffer *dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
-  ByteFlag ainputDataWord [32];
-  ByteFlag SecurityValidationBufferA [32];
+  ByteFlag inputValidationBuffer [32];
+  ByteFlag securityValidationBuffer [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,DataOperationTypeSIL,DataOperationTypeTIFE);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,securityValidationBuffer,1,DataOperationTypeSIL,DataOperationTypeTIFE);
   if (((int)systemDataBuffer == 0) &&
-     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,DataOperationTypeBIFE,0), (int)systemDataBuffer == 0)) {
+     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,inputValidationBuffer,0,DataOperationTypeBIFE,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
@@ -39916,7 +39928,7 @@ DataBuffer ExecuteDataCleanupA1(int64_t operationBase,DataBuffer *dataBuffer)
       }
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0xd8);
       if ((int)systemDataBuffer == 0) {
-          ExecuteSystemCleanupRoutine(dataBuffer,ainputDataWord);
+          ExecuteSystemCleanupRoutine(dataBuffer,inputValidationBuffer);
       }
     }
   }
@@ -40009,12 +40021,12 @@ DataBuffer ProcessDataCacheA1(int64_t operationBase,DataBuffer *dataBuffer)
 
 {
   DataBuffer systemDataBuffer;
-  ByteFlag ainputDataWord [32];
-  ByteFlag SecurityValidationBufferA [32];
+  ByteFlag inputValidationBuffer [32];
+  ByteFlag securityValidationBuffer [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,DataOperationTypeSIL,DataOperationTypeTIVE);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,securityValidationBuffer,1,DataOperationTypeSIL,DataOperationTypeTIVE);
   if (((int)systemDataBuffer == 0) &&
-     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,DataOperationTypeBIVE,0), (int)systemDataBuffer == 0)) {
+     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,inputValidationBuffer,0,DataOperationTypeBIVE,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
@@ -40026,7 +40038,7 @@ DataBuffer ProcessDataCacheA1(int64_t operationBase,DataBuffer *dataBuffer)
       systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0xd8);
       if ((((int)systemDataBuffer == 0) && (systemDataBuffer = CheckDataIntegrity(dataBuffer,operationBase + 0xf8), (int)systemDataBuffer == 0)) &&
          (systemDataBuffer = ExecuteDataSecurityOperation(dataBuffer,operationBase + 0xe8,1,operationBase), (int)systemDataBuffer == 0)) {
-          ExecuteSystemCleanupRoutine(dataBuffer,ainputDataWord);
+          ExecuteSystemCleanupRoutine(dataBuffer,inputValidationBuffer);
       }
     }
   }
@@ -40042,32 +40054,32 @@ DataBuffer ProcessDataCacheA1(int64_t operationBase,DataBuffer *dataBuffer)
  * 根据不同的条件执行不同的清理操作
  * 
  * @param systemContext 系统上下文，包含系统状态和配置信息
- * @param cacheBufferPtr 缓存缓冲区指针，指向待清理的数据缓存
+ * @param cacheBufferPointer 缓存缓冲区指针，指向待清理的数据缓存
  * 
  * @return DataBuffer 返回清理后的数据缓冲区
  * 
  * @note 原始函数名：Unwind_180911440
  */
-DataBuffer CleanupDataCacheA1(DataBuffer systemContext,int64_t cacheBufferPtr)
+DataBuffer CleanupDataCacheA1(DataBuffer systemContext,int64_t cacheBufferPointer)
 
 {
   DataBuffer resultBuffer;
   ByteFlag securityValidationBuffer [32];
   
-  if (*(uint *)(cacheBufferPtr + 0x40) < 0x31) {
-    resultBuffer = ProcessDataConversionOperation(systemContext,cacheBufferPtr,DataOperationTypeTNVE);
+  if (*(uint *)(cacheBufferPointer + 0x40) < 0x31) {
+    resultBuffer = ProcessDataConversionOperation(systemContext,cacheBufferPointer,DataOperationTypeTNVE);
     if ((int)resultBuffer == 0) {
       resultBuffer = 0;
     }
   }
   else {
-    resultBuffer = ExecuteDataBufferOperation(cacheBufferPtr,securityValidationBuffer,1,DataOperationTypeSIL,DataOperationTypeTNVE);
+    resultBuffer = ExecuteDataBufferOperation(cacheBufferPointer,securityValidationBuffer,1,DataOperationTypeSIL,DataOperationTypeTNVE);
     if ((int)resultBuffer == 0) {
-      resultBuffer = ProcessDataConversionOperation(systemContext,cacheBufferPtr,DataOperationTypeBTVE);
+      resultBuffer = ProcessDataConversionOperation(systemContext,cacheBufferPointer,DataOperationTypeBTVE);
       if ((int)resultBuffer == 0) {
-        resultBuffer = ValidateSystemMemoryAccess(systemContext,cacheBufferPtr);
+        resultBuffer = ValidateSystemMemoryAccess(systemContext,cacheBufferPointer);
         if ((int)resultBuffer == 0) {
-            ExecuteSystemCleanupRoutine(cacheBufferPtr,securityValidationBuffer);
+            ExecuteSystemCleanupRoutine(cacheBufferPointer,securityValidationBuffer);
         }
       }
     }
@@ -125690,7 +125702,7 @@ uint8_t SystemExceptionHandlerStateTable;
 // 栈变量语义化宏定义
 // 原始变量名：auStack_28 - 安全验证缓冲区A
 // 功能：用于安全验证操作的数据缓冲区
-#define SecurityValidationBufferA auStack_28
+#define securityValidationBuffer auStack_28
 
 // 原始变量名：auStack_80 - 安全验证缓冲区B
 // 功能：用于安全验证操作的数据缓冲区
