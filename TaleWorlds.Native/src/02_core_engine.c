@@ -240051,11 +240051,11 @@ LAB_180201f5b:
  * @param FloatArrayPointer - 浮点数组指针
  * @param ArraySizePointer - 数组大小指针  
  * @param IterationCount - 迭代计数
- * @param ProcessFlag - 处理标志
+ * @param ProcessFlag 处理标志，用于控制排序算法的行为模式
  * 
  * @note 原始函数名：FUN_180202c0d
  */
-void FUN_180202c0d(float *FloatArrayPointer,float *ArraySizePointer,long long IterationCount,uint8_t ProcessFlag)
+void ProcessFloatArrayQuickSort(float *FloatArrayPointer,float *ArraySizePointer,long long IterationCount,uint8_t ProcessFlag)
 {
   float PrimaryContextValue;
   float SecondaryContextValue;

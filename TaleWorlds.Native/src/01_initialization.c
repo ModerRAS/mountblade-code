@@ -24597,7 +24597,7 @@ void InitializeSystemDataCleaner(void)
   SystemCode = 0;
   SystemOperationFlags = 0;
   if (SystemMaxOperationCount != 0) {
-    LocalSystemOffset = 0;
+    LoggerIteratorOffset = 0;
     SystemThreadFlags = 0;
     do {
       initializationStatusFlag = encryptionKeyBuffer[SystemThreadFlags];
@@ -24624,7 +24624,7 @@ void InitializeSystemDataCleaner(void)
   ProcessSystemQueue(ResourceHashEntryPointer + 1,HashTablePointer);
   pathStringPointer = (char *)ResourceHashEntryPointer[2];
   if (*pathStringPointer != '\0') {
-    LocalSystemOffset = 0;
+    LoggerIteratorOffset = 0;
     do {
       SystemThreadFlags = strchr(&SystemStringConstantF,(int)pathStringPointer[LocalSystemOffset]);
       if (SystemThreadFlags != 0) {
@@ -38994,33 +38994,33 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
   LoggerProcessingCounter = 0;
   PrimaryResourceHandle = (long long *)(SystemResourceManager + 8);
   if (*(long long *)(SystemResourceManager + 0x10) - *PrimaryResourceHandle >> 3 != 0) {
-    LocalSystemOffset = 0;
+    LoggerIteratorOffset = 0;
     do {
-      ManageSystemThreads(*(void* )(*PrimaryResourceHandle + LocalSystemOffset));
+      ManageSystemThreads(*(void* )(*PrimaryResourceHandle + LoggerIteratorOffset));
       LoggerProcessingCounter = LoggerProcessingCounter + 1;
-      LocalSystemOffset = LocalSystemOffset + 8;
+      LoggerIteratorOffset = LoggerIteratorOffset + 8;
     } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - *PrimaryResourceHandle >> 3))
     ;
   }
   LoggerProcessingCounter = 0;
   resourcePoolPointer = (long long *)(SystemResourceManager + 0x28);
   if (*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - *resourcePoolPointer >> 3 != 0) {
-    LocalSystemOffset = 0;
+    LoggerIteratorOffset = 0;
     do {
       ManageSystemThreads(*(void* )(*resourcePoolPointer + LocalSystemOffset));
       LoggerProcessingCounter = LoggerProcessingCounter + 1;
-      LocalSystemOffset = LocalSystemOffset + 8;
+      LoggerIteratorOffset = LoggerIteratorOffset + 8;
     } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - *resourcePoolPointer >> 3))
     ;
   }
   LoggerProcessingCounter = 0;
   SystemResourceOffsetPointer = (long long *)(SystemResourceManager + 0x48);
   if (*(long long *)(SystemResourceManager + 0x50) - *SystemResourceOffsetPointer >> 3 != 0) {
-    LocalSystemOffset = 0;
+    LoggerIteratorOffset = 0;
     do {
       ManageSystemThreads(*(void* )(*SystemResourceOffsetPointer + LocalSystemOffset));
       LoggerProcessingCounter = LoggerProcessingCounter + 1;
-      LocalSystemOffset = LocalSystemOffset + 8;
+      LoggerIteratorOffset = LoggerIteratorOffset + 8;
     } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + 0x50) - *SystemResourceOffsetPointer >> 3))
     ;
   }
@@ -44635,7 +44635,7 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
       LOCK();
       resourceCreationFlags = (ulong long)SystemReferenceCounterStorage;
       UNLOCK();
-      LocalSystemOffset = 0;
+      LoggerIteratorOffset = 0;
       resourceEntryPointer = stackParameterB;
       HashTablePointer = pStackConfigurationParameter;
       SystemReferenceCounterStorage = SystemReferenceCounterStorage - 1;
@@ -64434,7 +64434,7 @@ uint8_t GetSystemResourceState(void)
   long long SystemCurrentOperationTimestamp;
   
   systemIndex = 0;
-  LocalSystemOffset = 0;
+  LoggerIteratorOffset = 0;
   do {
     while ((*(char *)(*(long long *)(MemoryBlockAddress + 0x1e0) + 0x15 + LocalSystemOffset) == '\x02' ||
            (*(char *)(*(long long *)(MemoryBlockAddress + 0x1e0) + 0x15 + LocalSystemOffset) == '\x01'))) {
