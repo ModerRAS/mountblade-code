@@ -81810,29 +81810,39 @@ void UIEmptyOperation3(void)
 
 
 
- void FUN_180712c50(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize,float *resultPointer)
-void FUN_180712c50(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize,float *resultPointer)
-
+ /**
+ * @brief 处理UI上下文中的浮点数数据变换
+ * 
+ * 该函数对UI上下文中的浮点数数据进行复杂的矩阵变换处理，
+ * 主要用于UI元素的渲染和变换计算。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 输入数据源数组（至少5个浮点数）
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针（至少5个浮点数）
+ */
+void ProcessUIFloatDataTransform(longlong uiContext,float *dataSource,longlong targetBuffer,int bufferSize,float *resultPointer)
 {
-  float floatResult;
-  float localFloat2;
-  float resultValue;
-  float processedFloat;
-  float secondaryValue;
-  uint MaxProcessingCount;
-  ulonglong eventTypeCode;
-  longlong localLong8;
-  float *plocalFloat9;
-  int EventOperationCount;
-  float floatResult1;
-  float floatResult2;
-  float floatResult3;
+  float baseValue;
+  float transformCoeff1;
+  float transformCoeff2;
+  float transformCoeff3;
+  float transformCoeff4;
+  uint maxProcessingCount;
+  ulonglong processingCounter;
+  longlong contextOffset;
+  float *bufferPointer;
+  int processedCount;
+  float resultCoeff1;
+  float resultCoeff2;
+  float resultCoeff3;
   float vectorComponentX;
-  float floatResult5;
-  float floatResult6;
-  float floatResult7;
-  float FloatValue1;
-  float FloatValue2;
+  float resultCoeff5;
+  float resultCoeff6;
+  float resultCoeff7;
+  float finalValue1;
+  float finalValue2;
   
   EventOperationCount = 0;
   floatResult = *dataSource;
