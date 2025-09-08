@@ -12512,7 +12512,7 @@ void CoreEngineInitializeNetworkDataSynchronizer(void)
  */
 void CoreEngineInitializeNetworkConfigManager(void)
 {
-  void *NetworkConfigParameter;
+  void *NetworkConfigTemplatePointer;
   void *NetworkConfigHandler;
   char *NetworkConfigBuffer;
   int NetworkConfigBufferSize;
@@ -12522,7 +12522,8 @@ void CoreEngineInitializeNetworkConfigManager(void)
   NetworkConfigBuffer = NetworkConfigCharacterStatusBuffer;
   NetworkConfigCharacterStatusBuffer[0] = 0;
   NetworkConfigBufferSize = 8;
-  strcpy_s(NetworkConfigCharacterStatusBuffer,0x80,&NetworkConfigurationTemplatePrimary,NetworkConfigParameter,0xfffffffffffffffe);
+  NetworkConfigTemplatePointer = &NetworkConfigurationTemplatePrimary;
+  strcpy_s(NetworkConfigCharacterStatusBuffer,0x80,NetworkConfigTemplatePointer,0xfffffffffffffffe);
   NetworkConfigPrimaryHandler = CoreEngineSetupNetworkConfig(&NetworkConfigHandler);
   return;
 }
