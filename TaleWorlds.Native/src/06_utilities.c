@@ -95270,6 +95270,17 @@ void Unwind_InitializeExceptionHandlerCE20(DataBuffer operationBase,int64_t data
 
 
 
+/**
+ * @brief 异常处理器初始化函数CE30
+ * 
+ * 该函数初始化异常处理器，执行指定偏移量的回调函数，设置临时异常处理器，
+ * 清理状态标志，并最终设置默认异常处理器。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
+ * 
+ * @note 原始函数名：Unwind_18090ce30
+ */
 void Unwind_InitializeExceptionHandlerCE30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -97591,7 +97602,7 @@ void CleanupMemoryResourceAtOffset190(DataBuffer operationBase,int64_t dataBuffe
 
 
 
-void Unwind_18090d280(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_ProcessExceptionContextD280(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -97627,7 +97638,7 @@ void Unwind_18090d280(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d290(DataBuffer operationBase,int64_t dataBuffer)
+void Unwind_ProcessExceptionContextD290(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;

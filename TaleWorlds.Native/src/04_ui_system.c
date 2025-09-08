@@ -107,6 +107,14 @@ typedef enum {
 #define ProcessUIEventDataCompression FUN_180715830
 #define ValidateUISystem ValidateUISystemIntegrity
 
+// UI系统数据变量宏定义
+#define SystemGlobalDataRegistry UNK_180956d30
+#define SystemGlobalDataRegistry38 UNK_180956d38
+#define SystemGlobalDataRegistry30 UNK_180956d30
+
+// UI系统函数宏定义 - 计算UI事件距离
+#define CalculateUIEventDistance FUN_180727dd3
+
  // UI系统函数宏定义 - 获取UI数据
 #define GetUIData GetUIDataValue
 
@@ -100098,7 +100106,7 @@ LAB_180727edb:
       EventDataBuffer[1] = EventDataValue;
       vectorComponentX = (float)(int)EventDataValue;
       EventDataValue = (uint)(short)(ContextDataIndex + -(short)EventProcessingCounter ^ -(short)EventProcessingCounter);
-      ptrLocal6[2] = EventDataValue;
+      EventDataBuffer[2] = EventDataValue;
       baseValue5 = (float)(int)EventDataValue;
       return vectorComponentX * vectorComponentX + targetBuffer + baseValue5 * baseValue5;
     }
