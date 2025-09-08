@@ -6068,24 +6068,24 @@ void UpdateUIConditions(int *uiContext)
       return;
     }
     combinedPathBuffer[stringLength] = '\0';
-    if ((combinedPathBuffer[0] == '\0') || (stringCacheResult = strstr(&UIStringCache,combinedPathBuffer), stringCacheResult != 0)) {
+    if ((combinedPathBuffer[0] == '\0') || (cacheSearchResult = strstr(&UIStringCache,combinedPathBuffer), cacheSearchResult != 0)) {
       *uiContext = 1;
     }
     else {
-      stringCacheResult = strstr(&DefaultUIStringCache,combinedPathBuffer);
-      if (stringCacheResult == 0) {
+      cacheSearchResult = strstr(&DefaultUIStringCache,combinedPathBuffer);
+      if (cacheSearchResult == 0) {
         stringPointers[0] = combinedPathBuffer;
         numericValue = strtol(combinedPathBuffer,stringPointers,10);
         if (uiContext[2] == 8) {
-          unitCharacter = *stringPointers[0];
-          if (unitCharacter == 'K') {
+          unitConversionChar = *stringPointers[0];
+          if (unitConversionChar == 'K') {
             stringPointers[0] = stringPointers[0] + 1;
           }
-          else if (unitCharacter == 'M') {
+          else if (unitConversionChar == 'M') {
             numericValue = numericValue << 10;
             stringPointers[0] = stringPointers[0] + 1;
           }
-          else if (unitCharacter == 'G') {
+          else if (unitConversionChar == 'G') {
             numericValue = numericValue << 0x14;
             stringPointers[0] = stringPointers[0] + 1;
           }
@@ -81345,8 +81345,26 @@ void ProcessUILongData(float uiContext,UIHandle dataSource,longlong targetBuffer
 
 
 
- void FUN_180712541(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
-void FUN_180712541(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
+ /**
+ * @brief 处理UI数据变换计算
+ * 
+ * 该函数负责处理UI系统的数据变换计算，包括：
+ * - 浮点数据的数学变换操作
+ * - 矩阵变换和坐标计算
+ * - 数据缓冲区的处理和更新
+ * - 循环处理多个数据元素
+ * 
+ * 该函数是UI系统中进行复杂数学计算的核心组件，用于处理UI元素的变换、
+ * 缩放、旋转等操作，确保UI元素能够正确显示和交互。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180712541
+ */
+void ProcessUITransformCalculation(longlong uiContext,longlong dataSource,UIHandle targetBuffer,longlong bufferSize)
 
 {
   longlong allocatedMemory;
