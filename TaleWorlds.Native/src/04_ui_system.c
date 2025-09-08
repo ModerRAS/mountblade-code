@@ -88822,7 +88822,18 @@ void FUN_18071bfe0(UIHandle uiContext,char *dataSource)
 
 
 
-UIHandle FUN_18071c1b0(longlong uiContext,int dataSource)
+/**
+ * @brief UI系统数据处理参数验证器
+ * 
+ * 该函数验证UI系统中的数据处理参数，确保数据源的有效性，
+ * 并根据不同的数据源类型选择合适的缓冲区进行处理。
+ * 主要用于UI系统的数据预处理和参数验证。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源参数
+ * @return UIHandle 处理结果句柄，成功返回0，失败返回错误代码
+ */
+UIHandle ValidateUIDataProcessingParameters(longlong uiContext,int dataSource)
 
 {
   int processingResult;
@@ -88871,7 +88882,18 @@ UIHandle FUN_18071c1b0(longlong uiContext,int dataSource)
 
 
 
-UIHandle FUN_18071c23f(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
+/**
+ * @brief UI坐标数据转换器
+ * 
+ * 该函数处理UI系统中的坐标数据转换，根据不同的数据源和目标缓冲区，
+ * 计算并转换坐标数据。主要用于UI元素的坐标计算和位置调整。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区地址
+ * @return UIHandle 转换结果句柄，成功返回0
+ */
+UIHandle ConvertUICoordinateData(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 
 {
   int processingResult;
@@ -88907,8 +88929,20 @@ UIHandle FUN_18071c23f(UIHandle uiContext,longlong dataSource,longlong targetBuf
 
 
  void FUN_18071c290(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,longlong bufferSize,
-void FUN_18071c290(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,longlong bufferSize,
-                  int resultPointer)
+/**
+ * @brief UI系统数据流处理器
+ * 
+ * 该函数处理UI系统中的数据流，包括数据验证、缓冲区管理和状态更新。
+ * 主要用于UI系统的大规模数据处理和流式操作。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区标识符
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ */
+void ProcessUIDataStream(UIHandle uiContext,UIDword dataSource,UIDword targetBuffer,longlong bufferSize,
+                         int resultPointer)
 
 {
   ulonglong result;
