@@ -2771,7 +2771,7 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
  * 
  * @note 原始函数名：FUN_1808a54c0
  */
-#define ProcessSystemStatusA0 FUN_1808a54c0
+#define ProcessSystemStatusWithValidation FUN_1808a54c0
 
 /**
  * @brief 系统参数验证函数A0
@@ -2780,7 +2780,7 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
  * 
  * @note 原始函数名：FUN_180883750
  */
-#define ValidateSystemParametersA0 FUN_180883750
+#define ValidateSystemParametersWithSecurityCheck FUN_180883750
 
 /**
  * @brief 系统数据处理函数A0
@@ -2798,7 +2798,7 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
  * 
  * @note 原始函数名：FUN_1808af8b0
  */
-#define ValidateSystemStatusA0 FUN_1808af8b0
+#define ValidateSystemStatusWithIntegrityCheck FUN_1808af8b0
 
 /**
  * @brief 系统上下文验证函数A0
@@ -3063,7 +3063,7 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
  * 
  * @note 原始函数名：FUN_180893e69
  */
-#define UpdateSystemStatusA0 FUN_180893e69
+#define UpdateSystemStatusWithValidation FUN_180893e69
 
 /**
  * @brief 带安全检查的数据块处理
@@ -3194,7 +3194,7 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
  * 
  * @note 原始函数名：FUN_180898e56
  */
-#define ReturnFixedStatusA0 FUN_180898e56
+#define ReturnFixedValidationStatus FUN_180898e56
 
 /**
  * @brief 验证数据块状态A0

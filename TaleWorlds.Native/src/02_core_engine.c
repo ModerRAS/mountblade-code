@@ -118561,9 +118561,9 @@ uint8_t ProcessUtf16EncodingAndConversion(float CharacterCode,float SystemBuffer
   bool ValidationSuccessFlag;
   float ContextSecondaryFloat1;
   float ContextSecondaryFloat2;
-  uint64_t extraout_XMM0_Qa;
-  uint64_t extraout_XMM0_Qa_00;
-  uint64_t extraout_XMM0_Qa_01;
+  uint64_t VectorCalculationResultA;
+  uint64_t VectorCalculationResultB;
+  uint64_t VectorCalculationResultC;
   uint64_t InputDataLength;
   float FloatingPointRegisterA;
   float SecondaryFloatValue;
