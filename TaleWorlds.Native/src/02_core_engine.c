@@ -266,6 +266,36 @@
  */
 #define ProcessCharacterStatusValidationAndMemoryManagement FUN_180150ae0
 
+/**
+ * @brief 计算内存边界和内存池块大小
+ * 
+ * 该函数负责计算系统数据表的内存边界和内存池块大小，
+ * 用于内存管理和边界检查操作。
+ * 
+ * @note 原始函数名：FUN_1802e5300
+ */
+#define CalculateMemoryBoundaryAndPoolSize FUN_1802e5300
+
+/**
+ * @brief 处理系统栈缓冲区初始化和配置
+ * 
+ * 该函数负责初始化和配置系统栈缓冲区，
+ * 处理系统配置和栈管理操作。
+ * 
+ * @note 原始函数名：FUN_1802e5050
+ */
+#define InitializeSystemStackBuffer FUN_1802e5050
+
+/**
+ * @brief 处理内存地址掩码和缓冲区状态
+ * 
+ * 该函数负责处理内存地址掩码的计算和缓冲区状态管理，
+ * 用于内存访问控制和地址转换操作。
+ * 
+ * @note 原始函数名：FUN_180179480
+ */
+#define ProcessMemoryAddressMaskAndBufferStatus FUN_180179480
+
 // 系统字符编码转换和处理函数宏定义
 // 系统窗口和UI处理函数
 #define ProcessSystemWindowAndUIInitialization FUN_180173c40    // 系统窗口和UI初始化处理
@@ -55471,7 +55501,7 @@ void ProcessDataStructureValidation(long long *CharacterCode
     }
     CharacterTablePointer = *CharacterCode;
     if (CharacterTablePointer != 0) {
-      if ((*(uint *)(*(long long *)(CharacterTablePointer + 0x20) + 0x100) >> 6 & 1) != 0) goto LAB_1800802aa;
+      if ((*(uint *)(*(long long *)(CharacterTablePointer + 0x20) + 0x100) >> 6 & 1) != 0) goto ErrorHandlerLAB1800802aa;
       LOCK();
       *(int *)(CharacterTablePointer + 0x14) = *(int *)(CharacterTablePointer + 0x14) + 1;
       UNLOCK();
@@ -211765,7 +211795,7 @@ LAB_180177d26:
       if (RemainingSpace != 0) {
         __Throw_C_error_std__YAXH_Z(RemainingSpace);
       }
-      MemoryBoundaryEnd = FUN_1802e5300(SystemDataTablePointer,SystemBufferSize);
+      MemoryBoundaryEnd = CalculateMemoryBoundaryAndPoolSize(SystemDataTablePointer,SystemBufferSize);
       if (MemoryBoundaryEnd == 0) {
         SystemCharacterStatusBuffer = &CoreEngineDataTemplate;
         if (*(void **)(SystemBufferSize + 8) != NULL) {
@@ -211796,7 +211826,7 @@ LAB_180177d26:
         if ((*(long long *)(SystemBufferSize + 8) != 0) && (uStack_898 = 0, puStack_8a0 != (uint8_t *)0x0)        {
           *puStack_8a0 = 0;
         }
-        MemoryPoolBlockSize = FUN_1802e5300(SystemDataTablePointer,&puStack_8a8);
+        MemoryPoolBlockSize = CalculateMemoryBoundaryAndPoolSize(SystemDataTablePointer,&puStack_8a8);
         if (MemoryPoolBlockSize == 0) {
           CoreEngineExecuteSystemEvent(&puStack_878,&puStack_8a8);
           CharacterStatusBuffer = (void *)(SystemDataTablePointer + 0x150);
@@ -211975,7 +212005,7 @@ LAB_1801780ed:
       puStack_8e0 = auStack_8d0;
       iStack_8d8 = 0;
       auStack_8d0[0] = 0;
-      FUN_1802e5050(&puStack_8e8,&SystemStackBufferPrimary,puStack_910);
+      InitializeSystemStackBuffer(&puStack_8e8,&SystemStackBufferPrimary,puStack_910);
       puStack_938 = &SystemNullTemplate;
       uStack_920 = 0;
       lStack_930 = 0;
@@ -286552,11 +286582,11 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define ValidateCharacterEncodingData FUN_180130ae3
 
-// LAB_标签语义化宏定义
-#define ErrorHandlerLAB1800802aa LAB_1800802aa
-#define ValidationHandlerLAB180082720 LAB_180082720
-#define DataProcessorLAB180086316 LAB_180086316
-#define BufferHandlerLAB18008642b LAB_18008642b
+// 错误处理标签语义化宏定义
+#define ErrorHandlerLAB1800802aa LAB_1800802aa                    // 错误处理标签
+#define ValidationHandlerLAB180082720 LAB_180082720                // 验证处理标签
+#define DataProcessorLAB180086316 LAB_180086316                   // 数据处理标签
+#define BufferHandlerLAB18008642b LAB_18008642b                    // 缓冲区处理标签
 #define SystemHandlerLAB180087337 LAB_180087337
 #define MemoryHandlerLAB1800872f7 LAB_1800872f7
 #define StatusHandlerLAB18008733a LAB_18008733a
