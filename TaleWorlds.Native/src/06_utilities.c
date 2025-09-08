@@ -12346,8 +12346,8 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   ResourceIdentifier = 0;
   ResourceArrayIterator = 0;
   ProcessedResourceCount = 0;
-  resourceProcessingLoopCounter = 0;
-  dataProcessingFlags = 0;
+  ResourceProcessingLoopCounter = 0;
+  DataProcessingFlags = 0;
   
   // 栈保护变量
   uint64_t stackSecurityGuard;
