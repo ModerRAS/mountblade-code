@@ -119,6 +119,13 @@
 #define MemoryResourcePointerOffsetE0 0xe0
 #define ResourcePointerStepSize 4
 
+// 异常处理器偏移量常量
+#define ExceptionHandlerPrimaryOffset2D68 0x2d68
+#define ExceptionHandlerSecondaryOffset2D58 0x2d58
+#define ExceptionHandlerTertiaryOffset2D48 0x2d48
+#define ExceptionHandlerSystemLevelOffset2DD8 0x2dd8
+#define ExceptionHandlerHighLevelOffset1EB8 0x1eb8
+
 // 系统状态验证相关偏移量常量
 #define SystemStatusValidationOffset82 0x82
 #define SystemStatusValidationOffset8A 0x8a
@@ -119998,8 +120005,8 @@ void CleanupAdvancedExceptionHandlersAndResetSystem(DataBuffer operationBase, in
   // 重置系统状态到初始状态
   InitializeSystemState();
   
-  // 清理第一级高级异常处理器上下文（偏移量0x2d68）
-  exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d68);
+  // 清理第一级高级异常处理器上下文
+  exceptionHandlerContext = *(int64_t *)(dataContext + ExceptionHandlerPrimaryOffset2D68);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
@@ -120007,8 +120014,8 @@ void CleanupAdvancedExceptionHandlersAndResetSystem(DataBuffer operationBase, in
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   
-  // 清理第二级高级异常处理器上下文（偏移量0x2d58）
-  exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d58);
+  // 清理第二级高级异常处理器上下文
+  exceptionHandlerContext = *(int64_t *)(dataContext + ExceptionHandlerSecondaryOffset2D58);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
@@ -120016,8 +120023,8 @@ void CleanupAdvancedExceptionHandlersAndResetSystem(DataBuffer operationBase, in
     HandleSystemException(exceptionHandlerContext, ExceptionDataPointer, operationFlagA, operationFlagB, validationStatus);
   }
   
-  // 清理第三级高级异常处理器上下文（偏移量0x2d48）
-  exceptionHandlerContext = *(int64_t *)(dataContext + 0x2d48);
+  // 清理第三级高级异常处理器上下文
+  exceptionHandlerContext = *(int64_t *)(dataContext + ExceptionHandlerTertiaryOffset2D48);
   if (exceptionHandlerContext != 0) {
     if (ExceptionContextPtr != 0) {
       *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) = *(int *)(ExceptionContextPtr + ExceptionContextReferenceCountOffset) + -1;
