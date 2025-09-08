@@ -254599,7 +254599,20 @@ long long FUN_18020dd10(long long *CharacterCode,long long *CharacterCodeSize,in
 
 
 
-uint64_t FUN_18020e370(uint64_t CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 系统字符代码处理和内存管理函数
+ * 
+ * 该函数负责处理系统字符代码，根据系统缓冲区大小进行内存管理操作。
+ * 如果缓冲区大小为奇数，则释放指定的内存块。
+ * 
+ * @param CharacterCode 字符代码，用于标识要处理的字符
+ * @param SystemBufferSize 系统缓冲区大小，用于判断是否需要内存操作
+ * @return uint64_t 返回处理后的字符代码
+ * 
+ * @note 原始函数名：FUN_18020e370
+ * @note 这是一个简化实现，仅包含基本的内存管理逻辑
+ */
+uint64_t ProcessSystemCharacterCodeAndManageMemory(uint64_t CharacterCode,unsigned long long SystemBufferSize)
 {
   InitializeSystemContext();
   if ((SystemBufferSize & 1) != 0) {
@@ -255003,36 +255016,52 @@ void ProcessCharacterCodeAndCharacterEncodingConversion(uint64_t *CharacterCode,
 
 
 
-uint64_t FUN_18020eae0(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 系统字符编码处理和性能监控函数
+ * 
+ * 该函数负责处理系统字符编码，包括系统配置验证、性能计数器处理
+ * 和资源管理。函数会等待系统对象，验证系统配置，并根据验证结果
+ * 执行相应的处理逻辑。
+ * 
+ * @param CharacterCode 字符代码，用于标识要处理的字符
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t 返回Unicode码点或处理状态标志
+ * 
+ * @note 原始函数名：FUN_18020eae0
+ * @note 函数涉及系统对象等待、配置验证和性能计数器处理
+ */
+uint64_t ProcessSystemCharacterEncodingAndPerformanceMonitoring(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  long long *CharacterCode;
-  char SystemCheckResult;
+  long long *ProcessedCharacterCode;
+  char SystemValidationResult;
   uint64_t UnicodeCodePoint;
-  long long *SystemContextRegister;
-  long long *SystemRegisterPointerX10;
-  long long **PerformanceFrequencyDoublePointer;
+  long long *SystemContextData;
+  long long *SystemRegisterPointer;
+  long long **PerformanceCounterPointer;
   
-  SystemContextRegister = (long long *)0x0;
+  SystemContextData = (long long *)0x0;
   WaitForSingleObject(**(uint64_t **)(CharacterCode + 0x1f0),1,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
-  SystemCheckResult = ValidateSystemConfiguration(*(void *)(CharacterCode + 0x60),CharacterCode + 0x78,&SystemContextRegister);
-  CharacterCode = SystemContextRegister;
+  SystemValidationResult = ValidateSystemConfiguration(*(void *)(CharacterCode + 0x60),CharacterCode + 0x78,&SystemContextData);
+  ProcessedCharacterCode = SystemContextData;
   UnicodeCodePoint = TimeoutValueStorage;
-  if (SystemCheckResult != '\0') {
-    if (((unsigned long long)SystemContextRegister[3] >> (*(unsigned long long *)(CharacterCode + 0x50) & 0x3f) & 1) != 0) {
-      (**(code **)(*SystemContextRegister + 0x60))(SystemContextRegister);
-      (**(code **)(*CharacterCode + 0x70))(CharacterCode);
+  if (SystemValidationResult != '\0') {
+    if (((unsigned long long)SystemContextData[3] >> (*(unsigned long long *)(ProcessedCharacterCode + 0x50) & 0x3f) & 1) != 0) {
+      (**(code **)(*SystemContextData + 0x60))(SystemContextData);
+      (**(code **)(*ProcessedCharacterCode + 0x70))(ProcessedCharacterCode);
       UnicodeCodePoint = 1;
-      goto LAB_18020eb6e;
+      goto SystemCleanupLabel;
     }
-    PerformanceFrequencyDoublePointer = &SystemRegisterPointerX10;
-    SystemRegisterPointerX10 = SystemContextRegister;
-    (**(code **)(*SystemContextRegister + 0x28))();
-    ProcessPerformanceCounter(UnicodeCodePoint,&SystemRegisterPointerX10);
+    PerformanceCounterPointer = &SystemRegisterPointer;
+    SystemRegisterPointer = SystemContextData;
+    (**(code **)(*SystemContextData + 0x28))();
+    ProcessPerformanceCounter(UnicodeCodePoint,&SystemRegisterPointer);
   }
   UnicodeCodePoint = 0;
-LAB_18020eb6e:
-  if (CharacterCode != (long long *)0x0) {
-    (**(code **)(*CharacterCode + 0x38))(CharacterCode);
+SystemCleanupLabel:
+  if (ProcessedCharacterCode != (long long *)0x0) {
+    (**(code **)(*ProcessedCharacterCode + 0x38))(ProcessedCharacterCode);
   }
   return UnicodeCodePoint;
 }

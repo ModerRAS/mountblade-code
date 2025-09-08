@@ -24550,7 +24550,7 @@ void ProcessDataTypesA0(void)
   DataWord FloatRegisterA;
   DataWord FloatRegisterB;
   DataWord SystemOperationResult;
-  char systemNameBufferX [4];
+  char SystemNameBuffer [4];
   SystemByteType *byteDataBuffer;
   float floatInputValue;
   DataWord dataWordInputValue;
@@ -24617,10 +24617,10 @@ void ProcessDataTypesA0(void)
       }
       systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
       systemDataBuffer6 = (**(FunctionPointer**)*memoryResourcePointer2)(memoryResourcePointer2);
-      resourceValidationStatus = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,systemNameBufferX);
+      resourceValidationStatus = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,SystemNameBuffer);
       if (resourceValidationStatus == 0) {
         operationResult4 = calculatedFloatValue;
-        if (systemNameBufferX[0] != '\0') {
+        if (SystemNameBuffer[0] != '\0') {
           systemDataBuffer7 = InitializeSystem();
           resourceValidationStatus = memcmp(contextPointer + SystemFloatDataOffset38,systemDataBuffer7,0x30);
           operationResult4 = normalizedFloatValue;
@@ -24811,10 +24811,10 @@ ValidateDataSecurity:
   DataWord FloatRegisterA;
   DataWord FloatRegisterB;
   DataWord SystemOperationResult;
-  char systemNameBufferX [4];
-  uint8_t *InputParam28;
-  float InputParam30;
-  DataWord InputParam38;
+  char SystemNameBuffer [4];
+  uint8_t *InputValidationBuffer;
+  float InputProcessingValue;
+  DataWord InputDataParameter;
   float StackFloatRegisterB;
   float StackFloatRegisterC;
   DataBuffer ProcessedFloatValue;
@@ -24822,8 +24822,8 @@ ValidateDataSecurity:
   DataBuffer *StackInputParameterD;
   int64_t StackLoopCounter;
   int64_t stackOperationContext;
-  DataWord InputParam1A0;
-  DataWord InputParam1A8;
+  DataWord ExtendedInputParameterA;
+  DataWord ExtendedInputParameterB;
   
   if (0 < inputAccumulatorRegister) {
     operationResult2 = (uint64_t)(uint)dataPointerD;
@@ -24863,10 +24863,10 @@ ValidateDataSecurity:
   }
   systemDataBuffer7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
   systemDataBuffer6 = (**(FunctionPointer**)*FloatRegisterR12)(FloatRegisterR12);
-  resourceValidationStatus = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,systemNameBufferX);
+  resourceValidationStatus = ProcessDataOperationA7(systemDataBuffer6,systemDataBuffer7,SystemNameBuffer);
   if (resourceValidationStatus == 0) {
     operationResult3 = floatResultA;
-    if (systemNameBufferX[0] != '\0') {
+    if (SystemNameBuffer[0] != '\0') {
       systemDataBuffer7 = InitializeSystem();
       resourceValidationStatus = memcmp(contextPointer + SystemFloatDataOffset38,systemDataBuffer7,0x30);
       operationResult3 = calculatedFloatValue;
@@ -124187,7 +124187,7 @@ uint8_t SystemExceptionHandlerStateTable;
 // 栈变量宏定义 - 美化acStack变量
 // 栈系统状态
 // 功能：存储系统状态的栈变量
-#define StackSystemStatus systemNameBufferX
+#define StackSystemStatus SystemNameBuffer
 
 // 栈变量宏定义 - 美化stack0x变量
 // 栈数据缓冲区D
