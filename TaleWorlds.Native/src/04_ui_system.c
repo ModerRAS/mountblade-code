@@ -104277,8 +104277,8 @@ void FUN_18072b930(longlong uiContext,longlong dataSource,int targetBuffer,ulong
   stackUInt144 = (uint)bufferSize;
   if (resultPointer == 4) {
     stackInt148 = 0x22;
-    localInt7 = (int)(char)(&UNK_180956e8c)[param_6];
-    plocalChar10 = &UNK_180956f18 + (longlong)param_6 * 8;
+    localInt7 = (int)(char)(&UIComponentSizeTable180956e8c)[param_6];
+    plocalChar10 = &UIComponentOffsetTable180956f18 + (longlong)param_6 * 8;
     componentHandle = &UIComponentDataTable180956e90;
   }
   else {
@@ -104517,8 +104517,8 @@ void FUN_18072bbd0(longlong uiContext,longlong dataSource,int targetBuffer,int b
   result8 = (ulonglong)resultPointer;
   if (resultPointer == 4) {
     stackInte4 = 0x22;
-    localInt8 = (int)(char)(&UNK_180956e8c)[param_6];
-    plocalChar13 = &UNK_180956f18 + (longlong)param_6 * 8;
+    localInt8 = (int)(char)(&UIComponentSizeTable180956e8c)[param_6];
+    plocalChar13 = &UIComponentOffsetTable180956f18 + (longlong)param_6 * 8;
     renderDataPointer = &UIComponentDataTable180956e90;
   }
   else {
@@ -105432,7 +105432,7 @@ void FUN_18072cc1b(void)
       if (processingResult8 == 4) {
         puStack0000000000000070 = &UIComponentDataTable180956e90;
         allocatedMemory9 = 0x22;
-        processingResult8 = (int)(char)(&UNK_180956e8c)[iStack0000000000000050];
+        processingResult8 = (int)(char)(&UIComponentSizeTable180956e8c)[iStack0000000000000050];
       }
       else {
         processingResult8 = 0xc;
@@ -105657,7 +105657,7 @@ void FUN_18072cdb2(float *uiContext,int dataSource,int targetBuffer)
     if (ProcessingResult3 == 4) {
       puStack0000000000000070 = &UIComponentDataTable180956e90;
       componentIndex0 = 0x22;
-      ProcessingResult3 = (int)(char)(&UNK_180956e8c)[iStack0000000000000050];
+      ProcessingResult3 = (int)(char)(&UIComponentSizeTable180956e8c)[iStack0000000000000050];
     }
     else {
       ProcessingResult3 = 0xc;
@@ -199960,7 +199960,23 @@ UIHandle CleanupUIEventHandlersD0(void)
 
 
 
-UIHandle FUN_18078913f(void)
+/**
+ * @brief UI事件处理器清理函数E0
+ * 
+ * 该函数负责清理UI事件处理器的相关资源，包括：
+ * 1. 清理事件处理器的内存分配
+ * 2. 释放事件数据相关的资源
+ * 3. 重置事件处理器的状态
+ * 4. 确保所有事件处理器都被正确清理
+ * 
+ * @return 清理结果状态码：
+ *         - 0: 清理成功
+ *         - 非0值: 具体的错误代码
+ * 
+ * @note 原始函数名：FUN_18078913f
+ * @warning 清理过程中会释放所有事件处理器资源，调用后需要重新初始化
+ */
+UIHandle CleanupUIEventHandlersE0(void)
 
 {
   longlong contextHandle;
