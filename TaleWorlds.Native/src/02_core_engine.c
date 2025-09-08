@@ -275934,7 +275934,7 @@ long long FUN_180226240(long long CharacterCode
 
 
 uint64_t *
-FUN_1802263b0(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+CleanupCharacterCodeTableAndResources(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   
@@ -275954,7 +275954,7 @@ FUN_1802263b0(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64
 
 
 
-uint64_t * FUN_180226430(uint64_t *CharacterCode
+uint64_t * InitializeCharacterCodeTableData(uint64_t *CharacterCode
 {
   long long PrimaryDataSize;
   void *SystemContext;
@@ -280261,7 +280261,7 @@ uint64_t * FUN_18022a720(uint64_t *CharacterCode,uint64_t *CharacterCodeSize
 
 
 uint64_t *
-FUN_18022a810(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+InitializeSystemMemoryBlockTemplate(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   *CharacterCode = &SystemMemoryBlockTemplate;
   CharacterCode[2] = &ThreadLocalStorageTemplate;
