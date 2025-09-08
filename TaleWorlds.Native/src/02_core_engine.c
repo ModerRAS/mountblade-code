@@ -188821,10 +188821,10 @@ LAB_180156f4e:
     *(uint8_t *)(CalculatedCodePoint + 0x20) = FunctionAddress;
   }
   else {
-    FUN_18015bea0(MemoryBoundaryPointer + 0x28,&pBufferOffset);
+    ProcessMemoryBoundaryManagement(MemoryBoundaryPointer + 0x28,&pBufferOffset);
   }
 LAB_180156f96:
-  FUN_180159820();
+  ProcessMemoryBoundaryManagementEx();
   if (0 < *(int *)(SystemBufferSize + 0x10)) {
     CoreEngineProcessSystemEvent(&CoreEnginePointerBuffer78,StackProcessingValue + *(int *)(SystemBufferSize + 0x10));
                     // WARNING: Subroutine does not return
@@ -188859,7 +188859,7 @@ LAB_180156f96:
   if (LockResult != 0) {
     __Throw_C_error_std__YAXH_Z(LockResult);
   }
-  FUN_18015b450(CharacterCode + 0x30);
+  ExecuteSystemResourceRelease(CharacterCode + 0x30);
   LockResult = _Mtx_unlock(CharacterCode + 0xd0);
   if (LockResult != 0) {
     __Throw_C_error_std__YAXH_Z(LockResult);
@@ -188919,7 +188919,7 @@ LAB_180156f96:
       pValidationResult[5] = 0;
       if ((char)SystemRegisterPointerX10 != '\0') {
         ProcessedCharacter = MemoryAllocationIndex % ((unsigned long long)SystemRegisterPointerX10 >> 0x20);
-        FUN_18015bdc0(CharacterCode + 6);
+        ExecuteCharacterDataCleanup(CharacterCode + 6);
       }
       *(void *)(pValidationResult + 4) = *(void *)(CharacterCode[7] + ProcessedCharacter * 8);
       *(int **)(CharacterCode[7] + ProcessedCharacter * 8) = pValidationResult;
@@ -252236,7 +252236,7 @@ uint64_t FUN_180212170(uint64_t CharacterCode,unsigned long long SystemBufferSiz
       pValidationResult[5] = 0;
       if ((char)SystemRegisterPointerX10 != '\0') {
         ProcessedCharacter = MemoryAllocationIndex % ((unsigned long long)SystemRegisterPointerX10 >> 0x20);
-        FUN_18015bdc0(CharacterCode + 6);
+        ExecuteCharacterDataCleanup(CharacterCode + 6);
       }
       *(void *)(pValidationResult + 4) = *(void *)(CharacterCode[7] + ProcessedCharacter * 8);
       *(int **)(CharacterCode[7] + ProcessedCharacter * 8) = pValidationResult;
