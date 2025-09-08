@@ -25543,11 +25543,11 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
           securityCheckResult = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11624);
           validationOutcome = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11620);
           dataFlags = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset1161C);
-          operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA4,*(DataWord *)(exceptionHandlerContext + 0x1160c),
-                                *(DataWord *)(exceptionHandlerContext + 0x11610),*(DataWord *)(exceptionHandlerContext + 0x11614),
-                                *(DataWord *)(exceptionHandlerContext + 0x11618),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
+          operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA4,*(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset1160C),
+                                *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11610),*(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11614),
+                                *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11618),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
           if (((int)operationResult == 0) &&
-             (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA5,*(DataWord *)(exceptionHandlerContext + 0x11628),
+             (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA5,*(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11628),
                                     (double)*(float *)(exceptionHandlerContext + 0x11640),
                                     *(DataWord *)(exceptionHandlerContext + 0x11644),
                                     *(DataWord *)(exceptionHandlerContext + 0x1164c),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase),
