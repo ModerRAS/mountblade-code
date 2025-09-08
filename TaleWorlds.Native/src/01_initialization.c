@@ -38999,7 +38999,7 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
       ManageSystemThreads(*(void* )(*PrimaryResourceHandle + LoggerIteratorOffset));
       LoggerProcessingCounter = LoggerProcessingCounter + 1;
       LoggerIteratorOffset = LoggerIteratorOffset + 8;
-    } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - *PrimaryResourceHandle >> 3))
+    } while ((ulong long)(long long)LoggerProcessingCounter < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - *PrimaryResourceHandle >> 3))
     ;
   }
   LoggerProcessingCounter = 0;
@@ -39010,7 +39010,7 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
       ManageSystemThreads(*(void* )(*resourcePoolPointer + LocalSystemOffset));
       LoggerProcessingCounter = LoggerProcessingCounter + 1;
       LoggerIteratorOffset = LoggerIteratorOffset + 8;
-    } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - *resourcePoolPointer >> 3))
+    } while ((ulong long)(long long)LoggerProcessingCounter < (ulong long)(*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - *resourcePoolPointer >> 3))
     ;
   }
   LoggerProcessingCounter = 0;
@@ -39021,7 +39021,7 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
       ManageSystemThreads(*(void* )(*SystemResourceOffsetPointer + LocalSystemOffset));
       LoggerProcessingCounter = LoggerProcessingCounter + 1;
       LoggerIteratorOffset = LoggerIteratorOffset + 8;
-    } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + 0x50) - *SystemResourceOffsetPointer >> 3))
+    } while ((ulong long)(long long)LoggerProcessingCounter < (ulong long)(*(long long )(SystemResourceManager + 0x50) - *SystemResourceOffsetPointer >> 3))
     ;
   }
   LoggerProcessingCounter = 0;
