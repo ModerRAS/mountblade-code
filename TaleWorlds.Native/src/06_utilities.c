@@ -50294,7 +50294,20 @@ void SystemExceptionHandlerType8(DataBuffer operationBase,int64_t dataBuffer,Dat
 
 
 
-void ExceptionHandlerA9(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统异常处理器类型9 - 轻量级异常状态管理器
+ * 
+ * 该函数是一个轻量级的异常处理器，主要负责：
+ * 1. 从数据缓冲区获取异常处理上下文（使用0x50偏移）
+ * 2. 设置临时异常处理器并检查清理状态
+ * 3. 如果需要清理，则终止系统执行并清理资源
+ * 4. 重置状态标志并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @note 原始函数名：ExceptionHandlerA9
+ */
+void SystemExceptionHandlerType9(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -50873,7 +50886,23 @@ void ValidateContextExceptionHandlerA3(DataBuffer operationBase, int64_t dataBuf
  * 
  * @note 原始函数名：Unwind_180903c60
  */
-void ExceptionHandlerA42(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器类型42 - 管理级异常回调处理器（使用0x80偏移）
+ * 
+ * 该函数负责处理系统异常，执行以下操作：
+ * 1. 从数据缓冲区获取异常处理上下文（使用0x80偏移）
+ * 2. 如果存在回调函数，则调用异常处理回调（使用0x990偏移）
+ * 3. 设置临时异常处理器并检查清理状态
+ * 4. 如果需要清理，则终止系统执行并清理资源
+ * 5. 重置状态标志并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * @note 原始函数名：ExceptionHandlerA42
+ */
+void SystemExceptionHandlerType42(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -50915,7 +50944,23 @@ void ExceptionHandlerA42(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
  * 
  * @note 原始函数名：Unwind_180903c80
  */
-void ExceptionHandlerA43(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器类型43 - 高级管理异常回调处理器（使用0x80偏移）
+ * 
+ * 该函数负责处理系统异常，执行以下操作：
+ * 1. 从数据缓冲区获取异常处理上下文（使用0x80偏移）
+ * 2. 如果存在回调函数，则调用异常处理回调（使用0xa08偏移）
+ * 3. 设置临时异常处理器并检查清理状态
+ * 4. 如果需要清理，则终止系统执行并清理资源
+ * 5. 重置状态标志并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * @note 原始函数名：ExceptionHandlerA43
+ */
+void SystemExceptionHandlerType43(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -50957,7 +51002,23 @@ void ExceptionHandlerA43(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
  * 
  * @note 原始函数名：Unwind_180903ca0
  */
-void ExceptionHandlerA44(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器类型44 - 系统核心异常回调处理器（使用0x80偏移）
+ * 
+ * 该函数负责处理系统异常，执行以下操作：
+ * 1. 从数据缓冲区获取异常处理上下文（使用0x80偏移）
+ * 2. 如果存在回调函数，则调用异常处理回调（使用0xa80偏移）
+ * 3. 设置临时异常处理器并检查清理状态
+ * 4. 如果需要清理，则终止系统执行并清理资源
+ * 5. 重置状态标志并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * @note 原始函数名：ExceptionHandlerA44
+ */
+void SystemExceptionHandlerType44(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -50997,7 +51058,20 @@ void ExceptionHandlerA44(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
  * 
  * @note 原始函数名：Unwind_180903cc0
  */
-void ExceptionHandlerA45(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统异常处理器类型45 - 轻量级异常状态管理器（使用0x88偏移）
+ * 
+ * 该函数是一个轻量级的异常处理器，主要负责：
+ * 1. 从数据缓冲区获取异常处理上下文（使用0x88偏移）
+ * 2. 设置临时异常处理器并检查清理状态
+ * 3. 如果需要清理，则终止系统执行并清理资源
+ * 4. 重置状态标志并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @note 原始函数名：ExceptionHandlerA45
+ */
+void SystemExceptionHandlerType45(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -51027,7 +51101,21 @@ void ExceptionHandlerA45(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180903cd0
  */
-void ExceptionHandlerA46(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统异常处理器类型46 - 浮点数据异常状态管理器（使用0x88偏移）
+ * 
+ * 该函数是一个专门处理浮点数据异常的处理器，主要负责：
+ * 1. 从数据缓冲区获取异常处理上下文（使用0x88偏移）
+ * 2. 设置临时异常处理器到0x30偏移位置
+ * 3. 检查浮点数据状态标志（0x38偏移）
+ * 4. 如果需要清理，则终止系统执行并清理资源
+ * 5. 重置状态标志并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @note 原始函数名：ExceptionHandlerA46
+ */
+void SystemExceptionHandlerType46(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -51058,7 +51146,21 @@ void ExceptionHandlerA46(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @note 原始函数名：Unwind_180903ce0
  */
-void ExceptionHandlerA47(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器类型47 - 次级上下文回调异常处理器
+ * 
+ * 该函数是一个简化的异常处理器，主要负责：
+ * 1. 从次级异常处理上下文中获取回调函数指针（使用0x68偏移）
+ * 2. 如果回调函数存在，则调用该函数处理异常（使用0x58偏移的回调数据）
+ * 3. 直接返回，不进行额外的状态管理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * @note 原始函数名：ExceptionHandlerA47
+ */
+void SystemExceptionHandlerType47(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -51086,7 +51188,23 @@ void ExceptionHandlerA47(DataBuffer operationBase,int64_t dataBuffer,DataBuffer 
  * 
  * @note 原始函数名：Unwind_180903cf0
  */
-void ExceptionHandlerA48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器类型48 - 高级清理回调异常处理器
+ * 
+ * 该函数负责处理系统异常，执行以下操作：
+ * 1. 从数据缓冲区获取异常处理上下文（使用0x40偏移）
+ * 2. 如果存在回调函数，则调用异常处理回调（使用0x400偏移）
+ * 3. 设置临时异常处理器并检查清理状态（使用0x168偏移）
+ * 4. 如果需要清理，则终止系统执行并清理资源
+ * 5. 重置状态标志并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * @note 原始函数名：ExceptionHandlerA48
+ */
+void SystemExceptionHandlerType48(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -52562,7 +52680,23 @@ void SetupAndCleanupExceptionHandlersA3(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void ExceptionHandlerA74(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器类型74 - 高级函数指针异常处理器
+ * 
+ * 该函数负责处理系统异常，执行以下操作：
+ * 1. 从数据缓冲区获取异常处理上下文（使用0x40偏移）
+ * 2. 如果存在回调函数，则调用异常处理回调（使用0x1290偏移）
+ * 3. 设置临时异常处理器并检查清理状态（使用0x1260偏移）
+ * 4. 如果需要清理，则终止系统执行并清理资源
+ * 5. 重置状态标志并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * @note 原始函数名：ExceptionHandlerA74
+ */
+void SystemExceptionHandlerType74(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
