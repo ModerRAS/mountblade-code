@@ -88677,7 +88677,30 @@ void ProcessUIContextData(longlong uiContext,int dataSource,int targetBuffer,int
 
 
 
-int FUN_18071a480(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
+/**
+ * @brief UI数据变换处理器
+ * 
+ * 处理UI系统中的数据变换和插值计算，包括浮点数据处理、边界检查、
+ * 变换系数应用和结果验证等功能。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源索引
+ * @param targetBuffer 目标缓冲区索引
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果数据指针
+ * @param param_6 处理参数6
+ * @param param_7 处理参数7
+ * @param param_8 处理参数8
+ * @param param_9 处理参数9
+ * @param uiContext0 UI上下文参数0
+ * @param uiContext1 UI上下文参数1
+ * @param uiContext2 UI上下文参数2
+ * @param uiContext3 UI上下文参数3
+ * @param uiContext4 UI上下文参数4（浮点）
+ * @param uiContext5 UI上下文参数5
+ * @return 处理结果，通常为变换后的数据或错误码
+ */
+int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
                  int param_6,int param_7,longlong param_8,longlong param_9,longlong uiContext0,
                  int uiContext1,int uiContext2,int uiContext3,float uiContext4,int uiContext5)
 
@@ -88686,25 +88709,25 @@ int FUN_18071a480(longlong uiContext,int dataSource,int targetBuffer,longlong bu
   int uiValidationResult;
   longlong stringCompareIndex;
   float transformCoeff3;
-  int localInt5;
+  int transformOffset;
   int loopCounter;
   uint processingCounter;
-  int localInt8;
-  int localInt9;
+  int enableTransform;
+  int bitCount;
   longlong allocatedMemory0;
   longlong allocatedMemory1;
-  int ProcessingResult2;
-  int ProcessingResult3;
-  float *pvectorComponentX;
-  float baseValue5;
-  float baseValue6;
-  UIByte aresult7 [16];
-  float FloatValue1;
-  float FloatValue2;
+  int dataSourceIndex;
+  int processingResult;
+  float *transformVector;
+  float minValue;
+  float maxValue;
+  UIByte conversionResult [16];
+  float sourceValue;
+  float targetValue;
   float AccumulatedFloat;
   float transformCoeff11;
-  int stackIntd8;
-  float afStack_d0 [38];
+  int errorCount;
+  float transformVectorArray [38];
   
   localInt8 = uiContext3;
   stringCompareIndex = uiContext0;
