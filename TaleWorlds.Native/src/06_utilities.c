@@ -2135,6 +2135,13 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define TemporaryExceptionHandlerReferenceOffset 0x40              // 临时异常处理器引用偏移量
 #define DefaultExceptionHandlerBReferenceOffset 0xd0               // 默认异常处理器B引用偏移量
 
+// 异常处理器相关偏移量常量
+#define ExceptionHandlerContextOffset100 0x100                    // 异常处理上下文偏移量100
+#define ExceptionHandlerContextOffset108 0x108                    // 异常处理上下文偏移量108
+#define ExceptionHandlerContextOffset110 0x110                    // 异常处理上下文偏移量110
+#define ExceptionHandlerContextOffset118 0x118                    // 异常处理上下文偏移量118
+#define ExceptionHandlerContextOffset160 0x160                    // 异常处理上下文偏移量160
+
 // 内存对齐和掩码常量
 #define MemoryAlignmentPadding 0xf
 #define MemoryAlignmentMask 0xfffffff0
@@ -29442,8 +29449,8 @@ DataBuffer ExecuteSystemCheckA0(void)
   BytePair StackValueBuffer;
   
   OperationStatus = 0;
-  if (0 < *(short *)(SystemContext + 0x104)) {
-    SystemFloatPointer = (float *)(SystemContext + 0x84);
+  if (0 < *(short *)(SystemContext + FloatDataArraySizeOffset)) {
+    SystemFloatPointer = (float *)(SystemContext + FloatDataPointerOffset84);
     do {
       NormalizedValue = SystemFloatPointer[-0x20] * 0.25;
       if (0.0 <= NormalizedValue) {
@@ -42388,13 +42395,13 @@ void ExceptionRecoveryHandlerB7(DataBuffer operationBase,int64_t dataBuffer,Data
 void ExceptionRecoveryHandlerB8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x100) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + 0x108) != 0) {
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset100) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset108) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0x108) = 0;
-  *(DataWord *)(dataBuffer + 0x118) = 0;
-  *(DataBuffer *)(dataBuffer + 0x100) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset108) = 0;
+  *(DataWord *)(dataBuffer + ExceptionHandlerContextOffset118) = 0;
+  *(DataBuffer *)(dataBuffer + ExceptionHandlerContextOffset100) = &SystemDefaultExceptionHandlerB;
   return;
 }
 

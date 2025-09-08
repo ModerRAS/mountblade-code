@@ -2456,6 +2456,13 @@ void* UIGestureCoordinates;
  * @see ProcessUIDataTransfer
  */
 #define ProcessUIDataTransfer FUN_180675e28
+
+/**
+ * @note 原始函数名：FUN_18075f8e0 - UI资源释放函数
+ * 释放UI上下文中的资源，包括引用计数管理和内存清理
+ */
+#define ReleaseUIResource FUN_18075f8e0
+
 /**
  * @brief UI系统数据转换函数
  * 

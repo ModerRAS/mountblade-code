@@ -144997,28 +144997,28 @@ LAB_18012b510:
       StackFrameAddressPointer[-0x1d] = ScalingFactor * *(float *)(CharacterTablePointer6 + 0x1628);
       ProcessingStatusFlag = ValidateSystemData(StackFrameAddressPointer + -0x20);
       SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,FilterInputValue4);
-      ProcessSystemDataAndConfigure(SystemStatusCode,StackFrameAddressPointer + -8,StackFrameAddressPointer + -6,ProcessingStatusFlag,SystemParameter1);
+      ProcessSystemDataAndConfigure(SystemStatusCode,MemoryContextPointer + -8,MemoryContextPointer + -6,ProcessingStatusFlag,SystemParameter1);
       CharacterTablePointer6 = SystemConfigurationHandle;
       SystemMemoryAllocationResult = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
-      FilterInputValue4 = *(float *)(PatternIndex + 0x1668);
-      if ((AuxiliaryFloat13 < FilterInputValue4) &&
-         (StackFrameAddressPointer[-5] <
+      RenderingParameter4 = *(float *)(PatternIndex + 0x1668);
+      if ((AuxiliaryFloat13 < RenderingParameter4) &&
+         (MemoryContextPointer[-5] <
           *(float *)(SystemParameter2 + 0x4c) + *(float *)(SystemParameter2 + 0x44))) {
         SystemStatusCode = *(void *)(SystemParameter2 + 0x2e8);
-        FilterInputValue1 = *(float *)(SystemConfigurationHandle + 0x171c);
-        FilterInputValue2 = *(float *)(SystemConfigurationHandle + 0x1720);
+        RenderingParameter1 = *(float *)(SystemConfigurationHandle + 0x171c);
+        RenderingParameter2 = *(float *)(SystemConfigurationHandle + 0x1720);
         ScalingFactor = *(float *)(SystemConfigurationHandle + 0x1724);
-        StackFrameAddressPointer[-0x20] = *(float *)(SystemConfigurationHandle + 0x1718);
-        StackFrameAddressPointer[-0x1f] = FilterInputValue1;
-        StackFrameAddressPointer[-0x1e] = FilterInputValue2;
-        StackFrameAddressPointer[-0x1d] = ScalingFactor;
-        StackFrameAddressPointer[-0x1d] = ScalingFactor * *(float *)(CharacterTablePointer6 + 0x1628);
-        ProcessingStatusFlag = ValidateSystemData(StackFrameAddressPointer + -0x20);
-        *(void *)(StackFrameAddressPointer + -0x18) = *(void *)(StackFrameAddressPointer + -6);
-        StackFrameAddressPointer[0x11] = StackFrameAddressPointer[-5];
-        StackFrameAddressPointer[0x10] = StackFrameAddressPointer[-8];
-        SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,FilterInputValue4);
-        AllocateMemoryAndConfigure(SystemStatusCode,StackFrameAddressPointer + 0x10,StackFrameAddressPointer + -0x18,ProcessingStatusFlag,SystemParameter1);
+        MemoryContextPointer[-0x20] = *(float *)(SystemConfigurationHandle + 0x1718);
+        MemoryContextPointer[-0x1f] = RenderingParameter1;
+        MemoryContextPointer[-0x1e] = RenderingParameter2;
+        MemoryContextPointer[-0x1d] = ScalingFactor;
+        MemoryContextPointer[-0x1d] = ScalingFactor * *(float *)(CharacterTablePointer6 + 0x1628);
+        ProcessingStatusFlag = ValidateSystemData(MemoryContextPointer + -0x20);
+        *(void *)(MemoryContextPointer + -0x18) = *(void *)(MemoryContextPointer + -6);
+        MemoryContextPointer[0x11] = MemoryContextPointer[-5];
+        MemoryContextPointer[0x10] = MemoryContextPointer[-8];
+        SystemParameter1 = (void *)CONCAT44(SystemMemoryAllocationResult,RenderingParameter4);
+        AllocateMemoryAndConfigure(SystemStatusCode,MemoryContextPointer + 0x10,MemoryContextPointer + -0x18,ProcessingStatusFlag,SystemParameter1);
       }
     }
     SystemMemoryAllocationResult = (uint32_t)((unsigned long long)SystemParameter1 >> 0x20);
