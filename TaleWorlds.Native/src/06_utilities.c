@@ -2605,8 +2605,11 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 
 /**
  * @brief 验证和执行操作函数A1
-// 功能：验证操作参数的有效性并执行相应的系统操作
-// 验证和执行操作函数
+ * 
+ * 验证操作参数的有效性并执行相应的系统操作
+ * 
+ * @note 原始函数名：FUN_18005d560
+ */
 #define ValidateAndExecuteOperationsA1 FUN_18005d560
 
 // 系统组件初始化函数
