@@ -193304,7 +193304,7 @@ LAB_1801604e5:
   SystemUnsignedValue38 = *CharacterLimit;
   StackProcessingVariable40 = CharacterLimit[1];
   StackProcessingVariable48 = CharacterLimit[2];
-  uStack0000000000000050 = CharacterLimit[3];
+  SystemStackUnsigned50 = CharacterLimit[3];
   TemporaryStackValue58 = CharacterLimit[4];
   StackUintValue60 = CharacterLimit[5];
   MemoryAllocationIndex = CharacterLimit[6];
