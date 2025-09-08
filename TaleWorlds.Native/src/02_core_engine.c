@@ -207945,7 +207945,21 @@ LAB_1801736de:
 
 
 
-73499(float CharacterCodevoid FUN_180173499(float CharacterCode
+/**
+ * @brief 处理字符数据变换和内存分配
+ * 
+ * 该函数负责处理字符数据的变换操作和内存分配管理。函数根据零标志寄存器的状态
+ * 执行不同的处理路径，包括矩阵变换计算和系统数据管理。
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要处理的字符
+ * 
+ * @return void 无返回值
+ * 
+ * @note 该函数根据零标志寄存器状态执行不同的处理逻辑
+ * @warning 函数会修改栈帧地址指针处的数据
+ * @see ProcessMemoryAllocationHandler
+ */
+void ProcessCharacterDataTransformationAndMemoryAllocation(float CharacterCode)
 {
   uint64_t Utf16Char;
   ushort MemoryAllocationIndex;

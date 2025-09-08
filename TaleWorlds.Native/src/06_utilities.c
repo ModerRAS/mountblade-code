@@ -85343,7 +85343,21 @@ void InvokeExceptionHandlerContextAtOffset290(DataBuffer operationBase,int64_t d
 
 
 
-void Unwind_18090af50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器回调函数AF50
+ * 
+ * 该函数处理异常上下文回调，从0x50偏移量的0x298处获取异常上下文指针
+ * 并执行相应的回调函数。该函数是异常处理系统的重要组成部分，
+ * 负责在特定异常情况下执行预定义的处理逻辑。
+ * 
+ * @param operationBase 操作基地址，用于系统上下文管理
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息和上下文数据
+ * 
+ * @note 原始函数名：Unwind_18090af50
+ * @note 该函数从数据缓冲区的0x50偏移量处获取异常上下文指针，
+ *       然后在0x298偏移量处执行回调函数处理异常情况。
+ */
+void ExecuteExceptionHandlerCallbackAF50(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
