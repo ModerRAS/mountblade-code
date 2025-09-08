@@ -1292,6 +1292,20 @@
 // 系统状态检查相关常量
 #define SystemStatusFlagE 0xe
 
+// 操作基础相关偏移量常量
+#define OperationBaseOffset58 0x58
+#define OperationBaseOffset60 0x60
+#define OperationBaseOffset70 0x70
+#define OperationBaseOffset94 0x94
+#define OperationBaseOffsetA0 0xa0
+#define OperationBaseOffsetA8 0xa8
+#define OperationBaseOffsetAC 0xac
+#define OperationBaseOffsetB0 0xb0
+#define OperationBaseOffset98 0x98
+
+// 系统管理相关偏移量常量
+#define SystemManagementOffset98 0x98
+
 // 系统数据传输处理函数
 /**
  * @brief 系统数据传输处理器
@@ -23550,8 +23564,8 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer inputDataBlock,DataWord valida
     systemContextBuffer = *systemContextPointer;
     currentBufferSize = *(int *)(destinationContext + SystemDataSecondaryOffset18);
     requiredElementIndex = currentBufferSize + 1;
-    DataProcessingFlags = (int)*(uint *)(destinationContext + 0x1c) >> 0x1f;
-    currentElementCount = (*(uint *)(destinationContext + 0x1c) ^ DataProcessingFlags) - DataProcessingFlags;
+    DataProcessingFlags = (int)*(uint *)(destinationContext + ExceptionHandlerContextOffset1C) >> 0x1f;
+    currentElementCount = (*(uint *)(destinationContext + ExceptionHandlerContextOffset1C) ^ DataProcessingFlags) - DataProcessingFlags;
     if (currentElementCount < requiredElementIndex) {
       calculatedBufferSize = (int)((float)currentElementCount * 1.5);
       currentElementCount = requiredElementIndex;
@@ -23564,7 +23578,7 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer inputDataBlock,DataWord valida
       else if (calculatedBufferSize < requiredElementIndex) {
         calculatedBufferSize = requiredElementIndex;
       }
-      operationResult = CheckSystemDataA0(destinationContext + 0x10, calculatedBufferSize);
+      operationResult = CheckSystemDataA0(destinationContext + SystemResourceManagementOffset10, calculatedBufferSize);
       if ((int)operationResult != 0) {
         return operationResult;
       }
@@ -23583,7 +23597,7 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer inputDataBlock,DataWord valida
     *(DataBuffer *)(operationResult + 2) = *systemContextPointer;
   }
   *registerContextPointer = currentBufferSize;
-  *(int *)(destinationContext + 0x24) = *(int *)(destinationContext + 0x24) + 1;
+  *(int *)(destinationContext + ExceptionHandlerContextOffset24) = *(int *)(destinationContext + ExceptionHandlerContextOffset24) + 1;
   return 0;
 }
 
@@ -23637,7 +23651,7 @@ DataBuffer ValidateAndProcessResourceAllocation(int minimumSize,int requestedSiz
   if (requestedSize < minimumSize) {
     requestedSize = minimumSize;
   }
-  allocationResult = AllocateSystemResource(systemContext + 0x10,requestedSize);
+  allocationResult = AllocateSystemResource(systemContext + SystemResourceManagementOffset10,requestedSize);
   if ((int)allocationResult == 0) {
     allocatedMemoryPointer = (DataBuffer *)
              ((int64_t)*(int *)(systemContext + SystemDataSecondaryOffset18) * 0x10 + *(int64_t *)(systemContext + ExceptionHandlerCallbackOffset10));
@@ -24184,7 +24198,7 @@ MemoryAllocationLabel:
         SecurityCheckValue = SecurityCheckValue & ZeroValue;
         systemContextPointer = (int64_t *)&SystemConfigurationDataTable;
         arrayIndexBuffer[0] = *(int *)(dataFlags + resourceIterator * 4);
-        ResetSystemStateA1(&systemContextPointer,*(DataBuffer *)(operationBase + 0x58));
+        ResetSystemStateA1(&systemContextPointer,*(DataBuffer *)(operationBase + OperationBaseOffset58));
         resourceIterator = resourceIterator + -1;
       } while (-1 < resourceIterator);
     }
@@ -24232,22 +24246,22 @@ ProcessCompleteLabel:
       loopCounter = (uint64_t)securityCheckResult;
     } while ((int)securityCheckResult < *(int *)(operationBase + SystemDataParameterOffset20));
   }
-  arrayIndex = ReleaseSystemResourceDJ0(operationBase + 0x70);
+  arrayIndex = ReleaseSystemResourceDJ0(operationBase + OperationBaseOffset70);
   if ((arrayIndex == 0) && (arrayIndex = ResetSystemStatusA0(operationBase + ResourceManagementOffset80), arrayIndex == 0)) {
     *(DataWord *)(operationBase + SystemContextPointerOffset90) = SystemCleanupFlag;
-    *(DataWord *)(operationBase + 0x94) = 0;
+    *(DataWord *)(operationBase + OperationBaseOffset94) = 0;
   }
   *(uint *)(operationBase + OperationBaseOffset6C) = *(uint *)(operationBase + OperationBaseOffset6C) & 0xfbffffff;
   securityCheckResult = *(uint *)(operationBase + OperationBaseOffset6C);
 ResourceCleanupLabel:
   if ((securityCheckResult >> 0x19 & 1) != 0) {
-    resourceIterator = *(int64_t *)(operationBase + 0xa0);
-    dataFlags = ProcessDataBufferA0(*(DataBuffer *)(operationBase + 0x60),operationBase + 0xa0,0);
+    resourceIterator = *(int64_t *)(operationBase + OperationBaseOffsetA0);
+    dataFlags = ProcessDataBufferA0(*(DataBuffer *)(operationBase + OperationBaseOffset60),operationBase + OperationBaseOffsetA0,0);
     if ((int)dataFlags != 0) {
       return dataFlags;
     }
     if ((*(uint *)(operationBase + OperationBaseOffset6C) >> 0x18 & 1) == 0) {
-      if ((*(int *)(operationBase + 0xb0) == -1) || (*(int *)(operationBase + 0xac) <= *(int *)(operationBase + 0xb0))
+      if ((*(int *)(operationBase + OperationBaseOffsetB0) == -1) || (*(int *)(operationBase + OperationBaseOffsetAC) <= *(int *)(operationBase + OperationBaseOffsetB0))
          ) {
         stackDataBuffer[0] = CONCAT31(stackDataBuffer[0].HighPart,1);
         stackUIntBuffer[0] = 0;
@@ -24259,15 +24273,15 @@ ResourceCleanupLabel:
         } while ((char)stackDataBuffer[0] != (char)dataFlags);
       }
       else {
-        *(DataBuffer *)(operationBase + 0xa8) = 0;
+        *(DataBuffer *)(operationBase + OperationBaseOffsetA8) = 0;
         *(uint *)(operationBase + OperationBaseOffset6C) = *(uint *)(operationBase + OperationBaseOffset6C) | 0x6000000;
         *(DataBuffer *)(operationBase + SystemManagementOffset98) = 0;
-        *(DataBuffer *)(operationBase + 0xa0) = 0;
+        *(DataBuffer *)(operationBase + OperationBaseOffsetA0) = 0;
       }
     }
     else if ((*(int64_t *)(operationBase + SystemManagementOffset98) != 0) && (resourceIterator != 0)) {
       *(int64_t *)(operationBase + SystemManagementOffset98) =
-           (*(int64_t *)(operationBase + SystemManagementOffset98) - resourceIterator) + *(int64_t *)(operationBase + 0xa0);
+           (*(int64_t *)(operationBase + SystemManagementOffset98) - resourceIterator) + *(int64_t *)(operationBase + OperationBaseOffsetA0);
     }
   }
   return 0;
