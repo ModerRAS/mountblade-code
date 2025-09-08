@@ -88606,30 +88606,30 @@ void ProcessUIContextData(longlong uiContext,int dataSource,int targetBuffer,int
   longlong stringCompareIndex;
   longlong contextHandleData;
   longlong EventDataIndex;
-  UIDword stackUInt128;
-  int stackInt124;
-  int stackInt120;
-  longlong stackLong118;
-  UIDword stackUInt110;
-  int stackInt10c;
-  int stackInt108;
-  ulonglong stackUIntd8;
+  UIDword validationFlag;
+  int tempInt124;
+  int tempInt120;
+  longlong tempLong118;
+  UIDword tempUInt110;
+  int tempInt10c;
+  int calculatedWeight;
+  ulonglong encryptionKey;
   
-  stackUIntd8 = XorEncryptionKey ^ (ulonglong)&stackUInt128;
-  stackInt10c = 0;
+  encryptionKey = XorEncryptionKey ^ (ulonglong)&validationFlag;
+  tempInt10c = 0;
   stringCompareIndex = (longlong)dataSource;
-  stackUInt110 = 0;
+  tempUInt110 = 0;
   if ((uiContext3 != 0) ||
      (((uiContext5 == 0 && (processingResult = (targetBuffer - dataSource) * uiContext0, (float)(processingResult * 2) < *uiContext4))
       && (processingResult < uiContext2)))) {
-    stackUInt128 = 1;
+    validationFlag = 1;
   }
   else {
-    stackUInt128 = 0;
+    validationFlag = 0;
   }
   processingResult = 0;
   EventDataIndex = (longlong)bufferSize;
-  stackInt108 = (int)(((float)param_7 * *uiContext4 * (float)uiContext6) / (float)(uiContext0 << 9));
+  calculatedWeight = (int)(((float)param_7 * *uiContext4 * (float)uiContext6) / (float)(uiContext0 << 9));
   componentIndex = uiContext;
   do {
     if (stringCompareIndex < EventDataIndex) {
@@ -89031,8 +89031,38 @@ UIDword FUN_18071a8ff(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffe
 
 
  void FUN_18071a930(longlong uiContext,uint dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
-void FUN_18071a930(longlong uiContext,uint dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
-                  longlong param_6,longlong param_7,int param_8,UIHandle param_9,int uiContext0)
+// 原始函数名：FUN_18071a930 - UI上下文数据高级处理器
+#define AdvancedProcessUIContextData FUN_18071a930
+
+/**
+ * @brief 高级处理UI上下文数据
+ * 
+ * 该函数负责高级处理UI上下文中的数据，包括：
+ * - 处理复杂的UI数据转换和计算
+ * - 管理浮点数数据和事件处理状态
+ * - 处理上下文句柄和数据比较
+ * - 管理事件处理的最大计数和状态
+ * - 处理各种参数和缓冲区操作
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7
+ * @param param_8 参数8
+ * @param param_9 参数9（UI句柄）
+ * @param uiContext0 UI上下文参数0
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数在UI系统需要处理复杂数据时被调用
+ * @note 包含复杂的数据处理和状态管理逻辑
+ * @note 负责确保UI数据的正确处理和转换
+ */
+void AdvancedProcessUIContextData(longlong uiContext,uint dataSource,int targetBuffer,longlong bufferSize,longlong resultPointer,
+                                 longlong param_6,longlong param_7,int param_8,UIHandle param_9,int uiContext0)
 
 {
   float *pbaseValue;

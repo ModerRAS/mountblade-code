@@ -77889,7 +77889,7 @@ void ExecuteExceptionHandlerCallbackOffset88(DataBuffer operationBase,int64_t da
  * @param operationBase 操作基址（未使用）
  * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
  */
-void ExecuteExceptionHandlerCallbackOffset30_28(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerCallbackAtOffset30_28(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -77912,7 +77912,7 @@ void ExecuteExceptionHandlerCallbackOffset30_28(DataBuffer operationBase,int64_t
  * @param operationBase 操作基址（未使用）
  * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
  */
-void ExecuteExceptionHandlerCallbackOffset30_20(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerCallbackAtOffset30_20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -78223,7 +78223,7 @@ void ExecuteExceptionHandlerCallbackOffset78(DataBuffer operationBase,int64_t da
  * @param operationBase 操作基址（未使用）
  * @param dataBuffer 数据缓冲区指针，包含异常处理上下文
  */
-void ExecuteExceptionHandlerCallbackOffset1B8_20(DataBuffer operationBase,int64_t dataBuffer)
+void ExecuteExceptionHandlerCallbackAtOffset1B8_20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100465,7 +100465,7 @@ void ManageMemoryResourceReferenceCount490(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090d4a0(DataBuffer operationBase,int64_t dataBuffer)
+void SystemMemoryResourceHandlerD4A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -100501,7 +100501,7 @@ void Unwind_18090d4a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d4b0(DataBuffer operationBase,int64_t dataBuffer)
+void SystemMemoryResourceHandlerD4B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -100582,7 +100582,7 @@ void ManageResourceReferenceCountA0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d4d0(DataBuffer operationBase,int64_t dataBuffer)
+void SystemMemoryResourceHandlerD4D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -120020,7 +120020,7 @@ void SystemExceptionHandlerUnwind110EC0(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180911ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void SystemExceptionHandlerUnwind110EE0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -120038,7 +120038,7 @@ void Unwind_180911ee0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180911f00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+void SystemExceptionHandlerUnwind110F00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
