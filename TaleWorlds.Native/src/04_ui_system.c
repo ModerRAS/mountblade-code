@@ -11910,7 +11910,7 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
   float fStack0000000000000034;
   float fStack0000000000000040;
   float fStack0000000000000044;
-  longlong stackParam00000050;
+  longlong EventHandlePointer;
   UIDword uStack0000000000000060;
   UIDword uStack0000000000000064;
   UIDword uStack0000000000000068;
@@ -11937,7 +11937,7 @@ UIHandle InitializeUIElementContext(longlong *uiContext)
     BasePointer[-0x15] = 3.4028235e+38;
     FloatValue1 = unmodifiedXMM10_Da;
     FloatValue2 = unmodifiedXMM10_Da;
-    stackParam00000050 = EventHandle;
+    EventHandlePointer = EventHandle;
     do {
       uStack0000000000000060 = *(UIDword *)((unmodifiedR15 - allocatedMemory5) + -4 + (longlong)pbaseValue0);
       uStack0000000000000064 = *(UIDword *)((unmodifiedR15 - allocatedMemory5) + (longlong)pbaseValue0);
