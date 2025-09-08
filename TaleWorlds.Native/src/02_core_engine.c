@@ -215273,7 +215273,19 @@ void FUN_18017b380(long long CharacterCode,uint64_t SystemBufferSize,uint64_t Ut
 
 
 
-7b3a0(long long *CharacterCodevoid FUN_18017b3a0(long long *CharacterCode
+/**
+ * @brief 处理字符代码指针操作
+ * 
+ * 该函数负责处理字符代码指针的操作，主要功能包括：
+ * - 管理字符代码指针的访问和操作
+ * - 处理字符代码相关的系统操作
+ * 
+ * @param CharacterCode 字符代码指针
+ * 
+ * @note 原始函数名：FUN_18017b3a0
+ */
+#define ProcessCharacterCodePointerOperations FUN_18017b3a0
+void FUN_18017b3a0(long long *CharacterCode
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -227778,7 +227790,19 @@ ProcessCharacterEncodingAndSystemBufferConfiguration(uint64_t *CharacterCode,lon
 
 
 
-8ee00(voidvoid FUN_18018ee00(void
+/**
+ * @brief 处理系统事件模板和内存管理
+ * 
+ * 该函数负责处理系统事件模板和内存管理操作，主要功能包括：
+ * - 管理字符状态缓冲区和内存分配
+ * - 处理系统事件模板指针
+ * - 管理内存地址掩码和字符代码指针
+ * - 处理数据大小和内存池块大小
+ * 
+ * @note 原始函数名：FUN_18018ee00
+ */
+#define ProcessSystemEventTemplateAndMemoryManagement FUN_18018ee00
+void FUN_18018ee00(void
 {
   uint64_t *CharacterStatusBuffer;
   uint MemoryAllocationIndex;
