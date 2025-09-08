@@ -306,6 +306,26 @@
  */
 #define AllocateCharacterCodeTableAndEventTemplate FUN_180179770
 
+/**
+ * @brief 处理系统事件和字符编码转换
+ * 
+ * 该函数负责处理系统事件的触发和字符编码转换操作，
+ * 用于系统事件管理和编码处理。
+ * 
+ * @note 原始函数名：FUN_18066ba00
+ */
+#define ProcessSystemEventAndCharacterEncoding FUN_18066ba00
+
+/**
+ * @brief 处理数据偏移量和栈操作
+ * 
+ * 该函数负责处理数据偏移量的计算和栈操作，
+ * 用于数据访问和内存管理。
+ * 
+ * @note 原始函数名：FUN_1800863a0
+ */
+#define ProcessDataOffsetAndStackOperation FUN_1800863a0
+
 // 系统字符编码转换和处理函数宏定义
 // 系统窗口和UI处理函数
 #define ProcessSystemWindowAndUIInitialization FUN_180173c40    // 系统窗口和UI初始化处理
@@ -4468,6 +4488,24 @@ const void* const SystemMemoryAddressQuinary = (void*)0x180a0ac88;
 
 // 核心引擎系统常量定义
 void* const StringComparisonResultTableSystem = (void*)0x18098d698;
+void* const SystemStringConstantDefault = (void*)0x180d48d24;
+void* const SystemStringConstantSecondary = (void*)0x180d48d28;
+void* const SystemStringConstantTertiary = (void*)0x180d48d2c;
+void* const SystemStringConstantQuaternary = (void*)0x180d48d30;
+void* const SystemStringConstantQuinary = (void*)0x180d48d34;
+void* const SystemStringConstantSenary = (void*)0x180d48d38;
+void* const SystemStringConstantSeptenary = (void*)0x180d48d3c;
+void* const SystemStringConstantOctonary = (void*)0x180d48d40;
+void* const SystemStringConstantNonary = (void*)0x180d48d44;
+void* const SystemStringConstantDenary = (void*)0x180d48d48;
+void* const SystemStringTemplateOffset = (void*)0x180a03a83;
+void* const SystemStringTemplateSecondary = (void*)0x180a03a87;
+void* const SystemStringTemplateTertiary = (void*)0x180a03a8b;
+void* const SystemStringTemplateQuaternary = (void*)0x180a03a8f;
+void* const SystemStatusFlagPrimary = (void*)0x180a03a93;
+void* const SystemStatusFlagSecondary = (void*)0x180a03a97;
+void* const SystemStatusFlagTertiary = (void*)0x180a03a9b;
+void* const SystemStatusFlagQuaternary = (void*)0x180a03a9f;
 void* const SystemDataRegistrySystem = (void*)0x180c86878;
 void* const DataSegmentBaseAddressSystem = (void*)0x180be0000;
 void* const PrimaryProcessingStatusFlagSystem = (void*)0x180c868f8;
@@ -86153,13 +86191,13 @@ void ProcessSystemDataConversion(long long *CharacterCode,long long *CharacterCo
   SystemDataTablePointer = SystemBufferSize[1];
   StringProcessingIndex = 0;
   if (PrimaryProcessingStatusFlag == (uint8_t *)0x0) {
-    StringProcessingStatus = (uint8_t *)0x180d48d24;
+    StringProcessingStatus = (uint8_t *)SystemStringConstantDefault;
   }
   else {
     StringProcessingIndex = Utf8SourcePointer[2];
     TertiaryNode = PrimaryStatusBlock;
   }
-  CharacterStatusBuffer = (uint8_t *)0x180d48d24;
+  CharacterStatusBuffer = (uint8_t *)SystemStringConstantDefault;
   StackProcessingVariable68 = MemoryBlockIndex;
   StackProcessingVariable60 = SystemDataTablePointer;
   if (PrimaryProcessingStatusFlag != (uint8_t *)0x0) {
@@ -86207,12 +86245,12 @@ void ProcessSystemDataConversion(long long *CharacterCode,long long *CharacterCo
     StackProcessingVariable68 = *CharacterCodeSize;
     StackProcessingVariable60 = SystemBufferSize[1];
     if (MemoryBlockIndex == 0) {
-      StringProcessingIndex = 0x180d48d24;
-      SystemDataTablePointer = 0x180d48d24;
+      StringProcessingIndex = (long long)SystemStringConstantDefault;
+      SystemDataTablePointer = (long long)SystemStringConstantDefault;
     }
     else {
       StringProcessingIndex = Utf8SourcePointer[3] + MemoryBlockIndex;
-      SystemDataTablePointer = 0x180d48d24;
+      SystemDataTablePointer = (long long)SystemStringConstantDefault;
       if (MemoryBlockIndex != 0) {
         SystemDataTablePointer = MemoryBlockIndex;
       }
@@ -86233,14 +86271,14 @@ LAB_18009fe7d:
       StackProcessingVariable68 = *CharacterCodeSize;
       StackProcessingVariable60 = SystemBufferSize[1];
       if (MemoryBlockIndex == 0) {
-        SystemDataTablePointer = 0x180d48d24;
+        SystemDataTablePointer = (long long)SystemStringConstantDefault;
       }
       else {
         StringProcessingIndex = *(long long *)(SystemDataRegistry + 0x18);
         SystemDataTablePointer = MemoryBlockIndex;
       }
       StringProcessingIndex = StringProcessingIndex + SystemDataTablePointer;
-      SystemDataTablePointer = 0x180d48d24;
+      SystemDataTablePointer = (long long)SystemStringConstantDefault;
       if (MemoryBlockIndex != 0) {
         SystemDataTablePointer = MemoryBlockIndex;
       }
@@ -86307,14 +86345,14 @@ LAB_18009fe7d:
   SystemStringIndex = *CharacterCodeSize;
   MemoryBlockIndex = SystemBufferSize[1];
   if (PrimaryProcessingStatusFlag == (uint8_t *)0x0) {
-    StringProcessingStatus = (uint8_t *)0x180d48d24;
+    StringProcessingStatus = (uint8_t *)SystemStringConstantDefault;
     SystemDataTablePointer = 0;
   }
   else {
     SystemDataTablePointer = Utf8SourcePointer[2];
     TertiaryNode = PrimaryStatusBlock;
   }
-  CharacterStatusBuffer = (uint8_t *)0x180d48d24;
+  CharacterStatusBuffer = (uint8_t *)SystemStringConstantDefault;
   StackProcessingVariable68 = StringProcessingIndex;
   StackProcessingVariable60 = MemoryBlockIndex;
   if (PrimaryProcessingStatusFlag != (uint8_t *)0x0) {
@@ -212300,7 +212338,7 @@ unsigned long long ProcessUnicodeCharacterConversion(long long CharacterCode,lon
         CharacterCodeTablePointer = (void *)*CharacterCodePointer;
         MemoryBoundaryEndPointer = StackPointer38;
       }
-      FUN_1800863a0(CharacterCodeTablePointer + 5,&SystemStackOffset28);
+      ProcessDataOffsetAndStackOperation(CharacterCodeTablePointer + 5,&SystemStackOffset28);
     }
     (**(code **)(*MemoryBoundaryEndPointer + 0x28))(MemoryBoundaryEndPointer,&SystemSecondaryCharacterStatusBuffer,7,&SystemConfigurationData);
   }
@@ -212436,7 +212474,7 @@ LAB_18017931c:
   if (SystemEventTemplatePointer != CharacterStatusBuffer) {
     *(long long *)(CharacterCode + 0x28) = *(long long *)(CharacterCode + 0x28) + -1;
     GetNextMemoryBlockIndex(SystemEventTemplatePointer);
-    FUN_18066ba00(SystemEventTemplatePointer,CharacterStatusBuffer,Utf8SourcePointer,Utf16EndPointer,SystemChecksum);
+    ProcessSystemEventAndCharacterEncoding(SystemEventTemplatePointer,CharacterStatusBuffer,Utf8SourcePointer,Utf16EndPointer,SystemChecksum);
     if (SystemEventTemplatePointer[5] != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
@@ -225077,7 +225115,7 @@ long long * FUN_18018c160(long long *CharacterCode,uint64_t *CharacterCodeSize
     if (SystemContextRegister != CharacterCode) {
       CharacterCode[4] = CharacterCode[4] + -1;
       GetNextMemoryBlockIndex(SystemContextRegister);
-      ProcessingStatusFlag = FUN_18066ba00(MemoryPoolBlockSizePointer,CharacterCode);
+      ProcessingStatusFlag = ProcessSystemEventAndCharacterEncoding(MemoryPoolBlockSizePointer,CharacterCode);
       FUN_180058830(ProcessingStatusFlag,MemoryPoolBlockSizePointer);
     }
     *CharacterCodeSize = &SystemNullTemplate;
@@ -258770,7 +258808,7 @@ LAB_180216e0c:
   }
   *(long long *)(CharacterCode + 0x2f0) = *(long long *)(CharacterCode + 0x2f0) + -1;
   GetNextMemoryBlockIndex(AllocatedMemorySize);
-  FUN_18066ba00(AllocatedMemorySize,EncodingConversionResult);
+  ProcessSystemEventAndCharacterEncoding(AllocatedMemorySize,EncodingConversionResult);
   if (AllocatedMemorySize != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineFreeSystemMemory(AllocatedMemorySize);
