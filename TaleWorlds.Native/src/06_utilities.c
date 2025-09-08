@@ -611,6 +611,9 @@
 #define COMPONENT_ACTIVE_OFFSET 0x4e0            // 组件活动状态偏移量
 #define COMPONENT_COMMAND_OFFSET 0x368           // 组件命令偏移量
 
+// 系统状态偏移量常量
+#define SystemContextStatusOffset98 0x98              // 系统上下文状态偏移量98
+
 // 模块偏移量常量定义
 #define MODULE_PRIMARY_CONFIG_OFFSET 0x18       // 模块主配置偏移量
 #define MODULE_SECONDARY_CONFIG_OFFSET 0x10     // 模块次配置偏移量
@@ -9967,19 +9970,19 @@ void* SystemDataBufferMemoryPool[4];      // 内存池指针数组（AEF0, AEF8,
 #define ProcessUtilitySystemConfiguration FUN_1809427d0
 void* ProcessUtilitySystemConfiguration;
 void* UtilitySystemValidationPointerExceptionContext;
-void* SystemDataBufferB310;
-void* SystemDataBufferB318;
-void* SystemDataBufferB320;
-void* SystemDataBufferB328;
+void* SystemDataBufferValidationPrimaryContext;
+void* SystemDataBufferValidationSecondaryContext;
+void* SystemDataBufferValidationTertiaryContext;
+void* SystemDataBufferValidationQuaternaryContext;
 void* UtilitySystemValidationPointerSecurityContext;
 
 // 函数: void* ValidateUtilitySystemState;
 #define ValidateUtilitySystemState FUN_1809427f0
 void* ValidateUtilitySystemState;
-void* SystemDataBufferB730;
-void* SystemDataBufferB738;
-void* SystemDataBufferB740;
-void* SystemDataBufferB748;
+void* SystemDataBufferSystemPrimaryContext;
+void* SystemDataBufferSystemSecondaryContext;
+void* SystemDataBufferSystemTertiaryContext;
+void* SystemDataBufferSystemQuaternaryContext;
 void* UtilitySystemValidationPointerSystemContext;
 
 // 函数: void InitializeUtilitySystemBuffers();
@@ -10171,14 +10174,14 @@ void* MemoryHeapControlData;
 void* ThreadLocalStoragePointer;
 // 系统状态标志
 void* SystemStatusFlag1;
-// 系统配置表A0
-void* SystemConfigurationTableA0;
-// 系统配置表A1
-void* SystemConfigurationTableA1;
-// 系统数据指针A0
-void* SystemDataPointerA0;
-// 系统数据指针A1
-void* SystemDataPointerA1;
+// 系统配置表主缓冲区
+void* SystemConfigurationTablePrimaryBuffer;
+// 系统配置表次缓冲区
+void* SystemConfigurationTableSecondaryBuffer;
+// 系统数据指针主缓冲区
+void* SystemDataPointerPrimaryBuffer;
+// 系统数据指针次缓冲区
+void* SystemDataPointerSecondaryBuffer;
 void* ExceptionHandlerTable;
 void* SecurityValidationData;
 void* ResourceAllocationTable;
@@ -17121,7 +17124,7 @@ DataBuffer ProcessSystemResourceValidationWithStack(void)
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        validationStatus = ProcessSystemEventB0(*(DataBuffer *)(StackFrameContext + 0x98));
+        validationStatus = ProcessSystemEventB0(*(DataBuffer *)(StackFrameContext + SystemContextStatusOffset98));
         return validationStatus;
       }
       operationResult = (int)dataFlags + 1;
@@ -17724,13 +17727,13 @@ DataBuffer ValidateAndProcessFloatingPointNumber(int64_t DataHandle, int64_t Con
                 return ComponentDataValidationFailure;
             }
             // 执行数据验证操作
-            ValidationStatus = ValidateDataRangeAndFlags(ValuePointer, DataHandle + 0x25, DataHandle + 0x20);
+            ValidationStatus = ValidateDataRangeAndFlags(ValuePointer, DataHandle + DataValidationPrimaryOffset, DataHandle + DataValidationSecondaryOffset);
             if ((int)ValidationStatus == 0) {
-                InputValue = *(float *)(DataHandle + 0x20);
+                InputValue = *(float *)(DataHandle + DataValidationSecondaryOffset);
                 // 验证浮点数范围
-                if ((*(float *)(ValuePointer + 0x38) <= InputValue) &&
-                   (InputValue < *(float *)(ValuePointer + 0x3c) || InputValue == *(float *)(ValuePointer + 0x3c))) {
-                    ValidationStatus = *(DataBuffer *)(ContextHandle + 0x98);
+                if ((*(float *)(ValuePointer + DataValidationTertiaryOffset) <= InputValue) &&
+                   (InputValue < *(float *)(ValuePointer + DataValidationQuaternaryOffset) || InputValue == *(float *)(ValuePointer + DataValidationQuaternaryOffset))) {
+                    ValidationStatus = *(DataBuffer *)(ContextHandle + SystemContextStatusOffset98);
                     *(float *)(ContextBuffer + 4) = InputValue;
                     // 执行系统上下文操作
                     ExecuteSystemContextOperation(ValidationStatus, DataHandle);
@@ -17771,12 +17774,12 @@ DataBuffer QuerySystemStatusE0(void)
   if ((*(byte *)(dataContext + 0x34) & 0x11) != 0) {
     return ComponentDataValidationFailure;
   }
-  validationStatus = ProcessDataValidationA0(dataContext,DestinationContext + 0x25,DestinationContext + 0x20);
+  validationStatus = ProcessDataValidationA0(dataContext,DestinationContext + DataValidationPrimaryOffset,DestinationContext + DataValidationSecondaryOffset);
   if ((int)validationStatus == 0) {
-    inputValue = *(float *)(DestinationContext + 0x20);
-    if ((*(float *)(dataContext + 0x38) <= inputValue) &&
-       (inputValue < *(float *)(dataContext + 0x3c) || inputValue == *(float *)(dataContext + 0x3c))) {
-      validationStatus = *(DataBuffer *)(StackFrameContext + 0x98);
+    inputValue = *(float *)(DestinationContext + DataValidationSecondaryOffset);
+    if ((*(float *)(dataContext + DataValidationTertiaryOffset) <= inputValue) &&
+       (inputValue < *(float *)(dataContext + DataValidationQuaternaryOffset) || inputValue == *(float *)(dataContext + DataValidationQuaternaryOffset))) {
+      validationStatus = *(DataBuffer *)(StackFrameContext + SystemContextStatusOffset98);
       *(float *)(DataProcessingOffset + 4) = inputValue;
         CleanupSystemEventA0(validationStatus);
     }
@@ -17805,12 +17808,12 @@ DataBuffer InitializeSystemE0(void)
   if ((*(byte *)(dataContext + 0x34) & 0x11) != 0) {
     return ComponentDataValidationFailure;
   }
-  validationStatus = ProcessDataValidationA0(dataContext,DestinationContext + 0x25,DestinationContext + 0x20);
+  validationStatus = ProcessDataValidationA0(dataContext,DestinationContext + DataValidationPrimaryOffset,DestinationContext + DataValidationSecondaryOffset);
   if ((int)validationStatus == 0) {
-    inputValue = *(float *)(DestinationContext + 0x20);
-    if ((*(float *)(dataContext + 0x38) <= inputValue) &&
-       (inputValue < *(float *)(dataContext + 0x3c) || inputValue == *(float *)(dataContext + 0x3c))) {
-      validationStatus = *(DataBuffer *)(StackFrameContext + 0x98);
+    inputValue = *(float *)(DestinationContext + DataValidationSecondaryOffset);
+    if ((*(float *)(dataContext + DataValidationTertiaryOffset) <= inputValue) &&
+       (inputValue < *(float *)(dataContext + DataValidationQuaternaryOffset) || inputValue == *(float *)(dataContext + DataValidationQuaternaryOffset))) {
+      validationStatus = *(DataBuffer *)(StackFrameContext + SystemContextStatusOffset98);
       *(float *)(DataProcessingOffset + 4) = inputValue;
         CleanupSystemEventA0(validationStatus);
     }
@@ -19442,9 +19445,9 @@ DataBuffer ValidateSystemConfigurationA0(void)
     return ComponentDataValidationFailure;
   }
   firstFloatValue = *(float *)(registerContext + ExceptionHandlerCallbackOffset10);
-  secondFloatValue = *(float *)(dataContext + 0x38);
-  if ((*(float *)(dataContext + 0x38) <= firstFloatValue) &&
-     (secondFloatValue = *(float *)(dataContext + 0x3c), firstFloatValue <= *(float *)(dataContext + 0x3c))) {
+  secondFloatValue = *(float *)(dataContext + DataValidationTertiaryOffset);
+  if ((*(float *)(dataContext + DataValidationTertiaryOffset) <= firstFloatValue) &&
+     (secondFloatValue = *(float *)(dataContext + DataValidationQuaternaryOffset), firstFloatValue <= *(float *)(dataContext + DataValidationQuaternaryOffset))) {
     secondFloatValue = firstFloatValue;
   }
   *(float *)(registerContext + ExceptionHandlerCallbackOffset10) = secondFloatValue;
@@ -19564,8 +19567,8 @@ DataBuffer CleanupSystemB0(void)
   validationStatus = ProcessDataValidationA0(dataContext,DestinationContext + 0xa0,DestinationContext + ExceptionHandlerCallbackOffset10);
   if ((int)validationStatus == 0) {
     floatValue = *(float *)(DestinationContext + ExceptionHandlerCallbackOffset10);
-    if ((floatValue < *(float *)(dataContext + 0x38)) ||
-       (*(float *)(dataContext + 0x3c) <= floatValue && floatValue != *(float *)(dataContext + 0x3c))) {
+    if ((floatValue < *(float *)(dataContext + DataValidationTertiaryOffset)) ||
+       (*(float *)(dataContext + DataValidationQuaternaryOffset) <= floatValue && floatValue != *(float *)(dataContext + DataValidationQuaternaryOffset))) {
       validationStatus = 0x1c;
     }
     else {
