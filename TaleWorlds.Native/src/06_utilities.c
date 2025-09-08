@@ -107,6 +107,25 @@
 #define ExceptionHandlerHierarchyB0_CallbackOffsetE20 0xe20     // 回调函数偏移量E20
 #define ExceptionHandlerHierarchyB0_CallbackParamOffsetE10 0xe10 // 回调参数偏移量E10
 #define ExceptionHandlerHierarchyB0_TempCallbackOffsetDE8 0xde8 // 临时回调偏移量DE8
+
+// 资源验证和执行常量
+#define ResourceValidationContextOffset 0x1c              // 资源验证上下文偏移量
+#define ResourceDataSecondaryOffset 0x18                  // 资源数据次级偏移量
+#define ResourceCallbackDataOffset 0x1c                   // 资源回调数据偏移量
+#define ResourceDataBufferOffset 0x20                     // 资源数据缓冲区偏移量
+#define ResourceCountOffset 0x20                          // 资源计数偏移量
+#define SystemResourceDataBufferSize 0x100               // 系统资源数据缓冲区大小
+
+// 系统栈和资源管理常量
+#define SystemStackFrameAdjustment 8                      // 系统栈帧调整
+#define SystemResourceEntrySize 0x18                       // 系统资源条目大小
+#define SystemResourceValidationSuccess 0x4a               // 系统资源验证成功
+#define SystemResourceNotFoundCode 0x1e                   // 系统资源未找到代码
+#define SystemComponentDataValidationFailure 0x1f          // 系统组件数据验证失败
+
+// 异常处理器状态常量
+#define ExceptionHandlerMinimumResourceCount 1             // 异常处理器最小资源计数
+#define ExceptionHandlerStateOffset 0x58                   // 异常处理器状态偏移量
 #define ExceptionHandlerHierarchyB0_CleanupStateOffsetDF0 0xdf0  // 清理状态偏移量DF0
 #define ExceptionHandlerHierarchyB0_CleanupOffsetE00 0xe00       // 清理偏移量E00
 #define ExceptionHandlerHierarchyB0_TempCallbackOffsetDC8 0xdc8 // 临时回调偏移量DC8
