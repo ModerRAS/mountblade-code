@@ -7953,30 +7953,30 @@ void SetupUIMemoryAllocator(void)
   textureSemaphoreHandle = allocatedTextureBuffer;
   bufferOffset = (ulonglong)textureBufferSize;
   textureDataBuffer = (UIDword *)((longlong)allocatedTextureBuffer + bufferOffset);
-  ptextureData[3] = 0x654e746f;
-  *(UIDword *)((longlong)pallocatedTextureBuffer + bufferOffset + 0x10) = 0x6c642e74;
-  *(UIWord *)((longlong)pallocatedTextureBuffer + bufferOffset + 0x14) = 0x6c;
+  textureDataBuffer[3] = 0x654e746f;
+  *(UIDword *)((longlong)allocatedTextureBuffer + bufferOffset + 0x10) = 0x6c642e74;
+  *(UIWord *)((longlong)allocatedTextureBuffer + bufferOffset + 0x14) = 0x6c;
   textureBufferSize = 0x15;
-  ptextureData = (UIDword *)&UIDefaultDataBuffer;
-  if (pallocatedTextureBuffer != (UIDword *)0x0) {
-    ptextureData = pallocatedTextureBuffer;
+  textureDataBuffer = (UIDword *)&UIDefaultDataBuffer;
+  if (allocatedTextureBuffer != (UIDword *)0x0) {
+    textureDataBuffer = allocatedTextureBuffer;
   }
-  monoAssemblyResult = mono_domain_assembly_open(UIMonoDomainInstance,ptextureData);
-  pprimaryUIBuffer = &PrimaryUIBuffer;
-  if (psemaphoreHandle != (UIDword *)0x0) {
+  monoAssemblyResult = mono_domain_assembly_open(UIMonoDomainInstance,textureDataBuffer);
+  primaryUIBufferPtr = &PrimaryUIBuffer;
+  if (textureSemaphoreHandle != (UIDword *)0x0) {
                      WARNING: Subroutine does not return
-    DestroyUIComponent(psemaphoreHandle);
+    DestroyUIComponent(textureSemaphoreHandle);
   }
-  pallocatedTextureBuffer = (UIDword *)0x0;
+  allocatedTextureBuffer = (UIDword *)0x0;
   encryptedBufferOffset = encryptedBufferOffset & 0xffffffff00000000;
-  pprimaryUIBuffer = &SecondaryUIBuffer;
-  *pallocatedMemory = monoAssemblyResult;
+  primaryUIBufferPtr = &SecondaryUIBuffer;
+  *monoAssemblyMemory = monoAssemblyResult;
   if (monoAssemblyResult == 0) {
     RegisterUIEvent(&UIEventUnregisterHandler,&UIEventUnregisterData);
-    monoAssemblyResult = *pallocatedMemory;
+    monoAssemblyResult = *monoAssemblyMemory;
   }
   monoAssemblyResult = mono_assembly_get_image(monoAssemblyResult);
-  pallocatedMemory[1] = monoAssemblyResult;
+  monoAssemblyMemory[1] = monoAssemblyResult;
   if (monoAssemblyResult == 0) {
     RegisterUIEvent(&UIEventClearHandler);
   }

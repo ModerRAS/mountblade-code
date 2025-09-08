@@ -119635,10 +119635,6 @@ void SetDefaultExceptionHandlerA3(void)
 
 
 
-/**
- * @brief 配置异常处理器B
- * @details 设置默认异常处理器B到全局变量中
- */
 void ConfigureExceptionHandlerB(void)
 
 {
@@ -119713,20 +119709,6 @@ void ReleaseReferenceCounter(void)
 
 
 
-9428a2(void)
-/**
- * @brief 释放系统引用计数
- * 
- * 该函数用于管理系统资源的引用计数释放。它会递减引用计数，
- * 并在计数器达到1时执行相应的清理回调函数。
- * 
- * 功能说明：
- * 1. 获取引用计数器指针并递减计数
- * 2. 当引用计数为1时，执行主清理回调
- * 3. 检查操作结果计数器，为1时执行二次清理回调
- * 
- * @note 原始函数名：FUN_1809428a2
- */
 void ReleaseSystemReferenceCount(void)
 
 {
