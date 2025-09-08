@@ -14023,14 +14023,14 @@ int RegisterSystemNetworkModule(void);
 #define FloatProcessingVarD SystemFloatProcessingVarD
 #define FloatProcessingVarE SystemFloatProcessingVarE
 #define FloatProcessingVarF SystemFloatProcessingVarF
-#define FloatProcessingVarG fVar18
-#define FloatProcessingVarH fVar20
-#define FloatProcessingVarI fVar21
-#define FloatProcessingVarJ fVar25
-#define FloatProcessingVarK fVar26
-#define FloatProcessingVarL fVar27
-#define FloatProcessingVarM fVar28
-#define FloatProcessingVarN fVar29
+#define FloatProcessingVarG SystemFloatProcessingVarG
+#define FloatProcessingVarH SystemFloatProcessingVarH
+#define FloatProcessingVarI SystemFloatProcessingVarI
+#define FloatProcessingVarJ SystemFloatProcessingVarJ
+#define FloatProcessingVarK SystemFloatProcessingVarK
+#define FloatProcessingVarL SystemFloatProcessingVarL
+#define FloatProcessingVarM SystemFloatProcessingVarM
+#define FloatProcessingVarN SystemFloatProcessingVarN
 #define FloatProcessingVarO fVar30
 
 // 浮点指针栈变量
