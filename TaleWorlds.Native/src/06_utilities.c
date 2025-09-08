@@ -22410,13 +22410,13 @@ MemoryCopyLabel:
   }
   else {
     if (characterFlag == '\x06') {
-      characterFlag = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + 0x58));
+      characterFlag = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + OperationBaseOffset58));
       if (characterFlag == '\0') goto MemoryCopyLabel;
       *dataPointer = 0;
       goto ValidationSuccessLabel;
     }
     if (characterFlag == '\a') {
-      characterFlag = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + 0x58));
+      characterFlag = ValidateSystemConfiguration(*(DataBuffer *)(operationBase + OperationBaseOffset58));
       if (characterFlag == '\0') {
         if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(DestinationContext + 0x58) + SystemContextPointerOffset90) + 0x790) +
                     0x1c8) != 0) {
@@ -99854,7 +99854,7 @@ void Unwind_18090dde0(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @see _Mtx_destroy_in_situ
  */
-void Unwind_18090de10(void)
+void DestroySystemMutexDE10(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -99878,7 +99878,7 @@ void Unwind_18090de10(void)
  * 
  * @see InvokeExceptionHandlerContextAtOffsetE0
  */
-void Unwind_18090de20(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffsetE0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0xe0) != (int64_t *)0x0) {
