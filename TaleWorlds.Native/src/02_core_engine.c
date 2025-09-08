@@ -200136,7 +200136,24 @@ LAB_18016aa7a:
 
 
 
-6ae30(uint64_t CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18016ae30(uint64_t CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理UTF-8到UTF-16编码转换和系统缓冲区管理
+ * 
+ * 该函数负责处理UTF-8到UTF-16的编码转换以及系统缓冲区的管理，包括：
+ * - 内存分配和缓冲区初始化
+ * - UTF-8和UTF-16编码转换
+ * - 系统状态标志管理
+ * - 字符编码数据验证
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016ae30
+ */
+void ConvertUtf8ToUtf16AndManageSystemBuffer(uint64_t CharacterCode, long long SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   uint Utf16Char;
   uint32_t *PrimaryProcessingStatusFlag;
