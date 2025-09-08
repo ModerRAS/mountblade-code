@@ -10037,6 +10037,7 @@ uint8_t SystemNetworkManager;
 #define RequestContextStateOffset 0x50
 #define ComponentDataCounterOffset 0xc
 #define ExceptionHandlerContextPointerOffset 8
+#define ComponentDataItemSize 0xc
 // 系统图形管理器
 uint8_t SystemGraphicsManager;
 // 系统音频管理器
@@ -20428,7 +20429,7 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
   itemCount = (int)componentContext[1];
   if (itemCount < 0) {
     // 清理负数项的数据内存
-    memset(*componentContext + (int64_t)itemCount * 0xc,0,(uint64_t)(uint)-itemCount * 0xc);
+    memset(*componentContext + (int64_t)itemCount * ComponentDataItemSize,0,(uint64_t)(uint)-itemCount * ComponentDataItemSize);
   }
   
   // 重置组件状态标志
