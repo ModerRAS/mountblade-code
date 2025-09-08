@@ -6602,11 +6602,21 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
  * @return 处理成功返回1，失败返回0
  */
 /**
- * 标准化颜色亮度值
- * 对输入的颜色数据进行亮度标准化处理，支持两种颜色格式（0x20和0x21）
+ * @brief 标准化颜色亮度值
+ * 
+ * 该函数对输入的颜色数据进行亮度标准化处理，支持两种颜色格式：
+ * - 0x20格式：12字节颜色数据格式
+ * - 0x21格式：16字节颜色数据格式
+ * 
+ * 函数通过计算颜色分量的加权平均值来确定亮度，然后对每个颜色分量
+ * 应用标准化系数，确保颜色数据的一致性和正确性。
  * 
  * @param color_data 颜色数据指针，包含颜色格式信息和颜色值数组
- * @return 标准化成功返回1，失败返回0
+ * @return uint8_t 标准化成功返回1，失败返回0
+ * 
+ * @note 该函数使用批量处理技术提高性能，支持4个元素一批的处理方式
+ * @note 亮度计算使用标准的颜色权重：红色0.2126，绿色0.7152，蓝色0.0722
+ * @see ColorComponentRed, ColorComponentGreen, ColorComponentBlue
  */
 uint8_t NormalizeColorLuminance(uint64_t *color_data)
 {
@@ -6701,31 +6711,31 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
         *OutputColorBuffer = (float)((double)*OutputColorBuffer * LuminanceAccumulator);
         OutputColorBuffer[1] = (float)((double)OutputColorBuffer[1] * LuminanceAccumulator);
         OutputColorBuffer[2] = (float)((double)OutputColorBuffer[2] * LuminanceAccumulator);
-        output_buffer[3] = (float)((double)output_buffer[3] * luminance_sum);
-        output_buffer[4] = (float)((double)output_buffer[4] * luminance_sum);
-        output_buffer[5] = (float)((double)output_buffer[5] * luminance_sum);
-        output_buffer[6] = (float)((double)output_buffer[6] * luminance_sum);
-        output_buffer[7] = (float)((double)output_buffer[7] * luminance_sum);
-        output_buffer[8] = (float)((double)output_buffer[8] * luminance_sum);
-        output_buffer[9] = (float)((double)output_buffer[9] * luminance_sum);
-        output_buffer[10] = (float)((double)output_buffer[10] * luminance_sum);
-        output_buffer[0xb] = (float)((double)output_buffer[0xb] * luminance_sum);
-        output_buffer = output_buffer + 0xc;
-        remaining_elements = remaining_elements - 1;
-      } while (remaining_elements != 0);
+        OutputColorBuffer[3] = (float)((double)OutputColorBuffer[3] * LuminanceAccumulator);
+        OutputColorBuffer[4] = (float)((double)OutputColorBuffer[4] * LuminanceAccumulator);
+        OutputColorBuffer[5] = (float)((double)OutputColorBuffer[5] * LuminanceAccumulator);
+        OutputColorBuffer[6] = (float)((double)OutputColorBuffer[6] * LuminanceAccumulator);
+        OutputColorBuffer[7] = (float)((double)OutputColorBuffer[7] * LuminanceAccumulator);
+        OutputColorBuffer[8] = (float)((double)OutputColorBuffer[8] * LuminanceAccumulator);
+        OutputColorBuffer[9] = (float)((double)OutputColorBuffer[9] * LuminanceAccumulator);
+        OutputColorBuffer[10] = (float)((double)OutputColorBuffer[10] * LuminanceAccumulator);
+        OutputColorBuffer[11] = (float)((double)OutputColorBuffer[11] * LuminanceAccumulator);
+        OutputColorBuffer = OutputColorBuffer + 0xc;
+        RemainingColorElements = RemainingColorElements - 1;
+      } while (RemainingColorElements != 0);
     }
     
     // 处理剩余元素的标准化
-    if (batch_processed_elements < total_elements) {
-      output_buffer = output_buffer + 2;
-      remaining_elements = (uint64_t)(uint32_t)(total_elements - batch_processed_elements);
+    if (BatchProcessedElements < TotalColorElements) {
+      OutputColorBuffer = OutputColorBuffer + 2;
+      RemainingColorElements = (uint64_t)(uint32_t)(TotalColorElements - BatchProcessedElements);
       do {
-        output_buffer[-2] = (float)((double)output_buffer[-2] * luminance_sum);
-        output_buffer[-1] = (float)((double)output_buffer[-1] * luminance_sum);
-        *output_buffer = (float)((double)*output_buffer * luminance_sum);
-        output_buffer = output_buffer + 3;
-        remaining_elements = remaining_elements - 1;
-      } while (remaining_elements != 0);
+        OutputColorBuffer[-2] = (float)((double)OutputColorBuffer[-2] * LuminanceAccumulator);
+        OutputColorBuffer[-1] = (float)((double)OutputColorBuffer[-1] * LuminanceAccumulator);
+        *OutputColorBuffer = (float)((double)*OutputColorBuffer * LuminanceAccumulator);
+        OutputColorBuffer = OutputColorBuffer + 3;
+        RemainingColorElements = RemainingColorElements - 1;
+      } while (RemainingColorElements != 0);
     }
   }
   else {
