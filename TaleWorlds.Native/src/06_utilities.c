@@ -447,6 +447,14 @@
 
 // 事件处理器配置常量
 #define EventHandlerConfigOffset18 0x18
+
+// 高级组件处理器偏移常量
+#define AdvancedComponentProcessorOffsetD8 0xd8
+#define AdvancedComponentProcessorOffsetF8 0xf8
+
+// 数据处理上下文偏移常量
+#define DataProcessingContextOffsetC8 0xc8
+#define DataProcessingContextOffsetE8 0xe8
 #define EventHandlerConfigOffset1c 0x1c
 #define EventHandlerConfigOffset2c 0x2c
 
@@ -115033,33 +115041,75 @@ void Unwind_StatusFlagCleanupD(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180911a20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理默认异常处理器A20
+ * 
+ * 该函数负责处理位于0x30偏移量的默认异常处理器，如果存在则调用它。
+ * 这是异常处理机制的重要组成部分，用于系统异常恢复。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给异常处理器
+ * 
+ * @note 原始函数名：Unwind_180911a20
+ * @note 这是异常展开（unwind）处理函数，用于调用默认异常处理器
+ */
+void ProcessDefaultExceptionHandlerA20(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + 0x30) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x30))(dataBuffer + MemoryPointerOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(dataBuffer + DefaultExceptionHandlerOffset30) != (code *)0x0) {
+    (**(FunctionPointer**)(dataBuffer + DefaultExceptionHandlerOffset30))(dataBuffer + MemoryPointerOffset,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-void Unwind_180911a30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理系统操作数据处理器A30
+ * 
+ * 该函数负责处理位于0x98偏移量的系统操作数据处理器，如果存在则调用它。
+ * 这是系统数据处理机制的重要组成部分，用于系统操作时的数据处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含系统操作处理器信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给系统操作处理器
+ * 
+ * @note 原始函数名：Unwind_180911a30
+ * @note 这是系统操作处理函数，用于调用系统操作数据处理器
+ */
+void ProcessSystemOperationDataProcessorA30(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + 0x98) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x98))(dataBuffer + 0x88,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(dataBuffer + SystemOperationDataOffset98) != (code *)0x0) {
+    (**(FunctionPointer**)(dataBuffer + SystemOperationDataOffset98))(dataBuffer + 0x88,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
 
 
 
-void Unwind_180911a40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理扩展组件数据处理器A40
+ * 
+ * 该函数负责处理位于0xb8偏移量的扩展组件数据处理器，如果存在则调用它。
+ * 这是系统扩展组件处理机制的重要组成部分，用于扩展组件的数据处理。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含扩展组件处理器信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给扩展组件处理器
+ * 
+ * @note 原始函数名：Unwind_180911a40
+ * @note 这是扩展组件处理函数，用于调用扩展组件数据处理器
+ */
+void ProcessExtendedComponentDataProcessorA40(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + 0xb8) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0xb8))(dataBuffer + 0xa8,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(dataBuffer + ResourceCleanupOffset190) != (code *)0x0) {
+    (**(FunctionPointer**)(dataBuffer + ResourceCleanupOffset190))(dataBuffer + 0xa8,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
