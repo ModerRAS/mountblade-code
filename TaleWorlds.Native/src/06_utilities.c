@@ -402,6 +402,9 @@
 #define DataOperationOffset58 0x58                           // 数据操作偏移量58
 #define DataOperationOffset5c 0x5c                           // 数据操作偏移量5c
 #define DataOperationOffset60 0x60                           // 数据操作偏移量60
+#define DataOperationOffset70 0x70                           // 数据操作偏移量70
+#define DataOperationOffset78 0x78                           // 数据操作偏移量78
+#define DataOperationOffset94 0x94                           // 数据操作偏移量94
 #define SystemDataBufferOffset80 0x80                        // 系统数据缓冲区偏移量80
 #define DataContextOffset48 0x48                             // 数据上下文偏移量48
 #define DataContextOffset4c 0x4c                             // 数据上下文偏移量4c
@@ -22808,9 +22811,9 @@ DataBuffer ValidateAndProcessDataFlags(int64_t dataContext,int operationIndex,ui
   if (validationFlags != (uint *)0x0) {
     flagValue = *validationFlags;
     if (flagValue != 0) {
-      if (((*(int *)(dataContext + 0x94) != 0) && (*(int *)(dataContext + 0x78) != 0)) &&
-         (hashIndex = *(int *)(*(int64_t *)(dataContext + 0x70) +
-                          (int64_t)(int)(*(int *)(dataContext + 0x78) - 1U & flagValue) * 4), hashIndex != -1))
+      if (((*(int *)(dataContext + DataOperationOffset94) != 0) && (*(int *)(dataContext + DataOperationOffset78) != 0)) &&
+         (hashIndex = *(int *)(*(int64_t *)(dataContext + DataOperationOffset70) +
+                          (int64_t)(int)(*(int *)(dataContext + DataOperationOffset78) - 1U & flagValue) * 4), hashIndex != -1))
       {
         tablePointer = *(int64_t *)(dataContext + ResourceManagementOffset80);
         do {
@@ -25029,15 +25032,15 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
             if (iterationCount != 0) {
               SystemConfigurationDataBuffer = *(DataBuffer *)(dataContext + SystemFloatDataOffset38);
               SystemOperationDataBuffer = *(DataBuffer *)(dataContext + SystemDataOffset40);
-              SystemConfigurationDataWordJ = *(DataWord *)(dataContext + 0x48);
-              SystemConfigurationDataWordK = *(DataWord *)(dataContext + 0x4c);
-              SystemConfigurationDataWordL = *(DataWord *)(dataContext + 0x50);
-              SystemContextOffsetData54 = *(DataWord *)(dataContext + 0x54);
+              SystemConfigurationDataWordJ = *(DataWord *)(dataContext + DataOperationOffset48);
+              SystemConfigurationDataWordK = *(DataWord *)(dataContext + DataOperationOffset4c);
+              SystemConfigurationDataWordL = *(DataWord *)(dataContext + DataOperationOffset50);
+              SystemContextOffsetData54 = *(DataWord *)(dataContext + DataOperationOffset54);
               StackPointerBufferD = &SystemSecurityCheckReference;
               SystemResetDataWordH = 0;
-              SystemContextOffsetData58 = *(DataWord *)(dataContext + 0x58);
-              SystemContextOffsetData5C = *(DataWord *)(dataContext + 0x5c);
-              SystemContextOffsetData60 = *(DataWord *)(dataContext + 0x60);
+              SystemContextOffsetData58 = *(DataWord *)(dataContext + DataOperationOffset58);
+              SystemContextOffsetData5C = *(DataWord *)(dataContext + DataOperationOffset5c);
+              SystemContextOffsetData60 = *(DataWord *)(dataContext + DataOperationOffset60);
               SystemSystemSecurityValidationDataQ = *(DataWord *)(dataContext + SecurityValidationDataOffset100);
               SystemStackDataWordI = StackDataWordA;
               iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferD);
@@ -25065,7 +25068,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
                 if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               loopCounter = 0.0;
-              floatArrayPointer = (float *)(dataContext + 0x94);
+              floatArrayPointer = (float *)(dataContext + DataOperationOffset94);
               do {
                 if (*floatArrayPointer != 0.0) {
                   SystemTemporaryDataWordC = StackDataWordA;
@@ -54756,16 +54759,19 @@ void DestroyConditionFromBufferOnException(DataBuffer operationBase,int64_t data
 
 
 /**
- * @brief 异常处理器初始化函数E1 - 简化实现
+ * @brief 初始化异常处理器E1和E2
  * 
- * 该函数负责初始化异常处理器，设置临时和默认异常处理器
+ * 该函数负责初始化异常处理器E1和E2，设置临时和默认异常处理器。
+ * 首先设置E1处理器的临时和默认处理器，然后设置E2处理器的临时和默认处理器。
+ * 如果处理器状态不为零，则终止系统执行并清理资源。
  * 
- * @param operationBase 操作基础数据
- * @param dataBuffer 数据缓冲区
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文信息
  * 
  * @note 原始函数名：Unwind_180904810
+ * @note 这是一个异常展开（unwind）处理函数，用于初始化异常处理器E1和E2
  */
-void Unwind_InitializeExceptionHandlerE1(DataBuffer operationBase, int64_t dataBuffer)
+void InitializeExceptionHandlersE1AndE2(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -91215,17 +91221,18 @@ void ReleaseMemoryResourceC2e0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 系统栈展开处理函数：设置内存管理器指针
+ * @brief 设置内存管理器指针
  * 
- * 在系统栈展开过程中设置内存管理器指针到指定位置
+ * 在系统栈展开过程中设置内存管理器指针到指定位置。
+ * 该函数将系统内存管理器指针A设置到数据缓冲区的指定偏移量处。
  * 
- * @param operationBase 操作基础参数，包含栈展开的基本信息
- * @param dataBuffer 数据缓冲区，包含需要处理的内存管理器指针信息
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存管理器指针信息
  * 
- * @note 此函数是系统异常处理的一部分，用于设置内存管理器指针
- * @warning 调用者需要确保参数的有效性
+ * @note 原始函数名：Unwind_180904830
+ * @note 这是一个异常展开（unwind）处理函数，用于设置内存管理器指针
  */
-void Unwind_SetMemoryManagerPointer(DataBuffer operationBase,int64_t dataBuffer)
+void SetMemoryManagerPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + ExceptionHandlerDataBufferOffset78) = &SystemMemoryManagerPointerA;
@@ -91235,17 +91242,18 @@ void Unwind_SetMemoryManagerPointer(DataBuffer operationBase,int64_t dataBuffer)
 
 
 /**
- * @brief 系统栈展开处理函数：设置默认异常处理器
+ * @brief 设置默认异常处理器
  * 
- * 在系统栈展开过程中设置默认异常处理器到指定位置
+ * 在系统栈展开过程中设置默认异常处理器到指定位置。
+ * 该函数将系统默认异常处理器B设置到数据缓冲区的指定偏移量处。
  * 
- * @param operationBase 操作基础参数，包含栈展开的基本信息
- * @param dataBuffer 数据缓冲区，包含需要处理的异常处理器信息
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
  * 
- * @note 此函数是系统异常处理的一部分，用于设置默认异常处理器
- * @warning 调用者需要确保参数的有效性
+ * @note 原始函数名：Unwind_180904840
+ * @note 这是一个异常展开（unwind）处理函数，用于设置默认异常处理器
  */
-void Unwind_SetDefaultExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
+void SetDefaultExceptionHandler(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerDataBufferOffset78) + 8) = &SystemDefaultExceptionHandlerB;
