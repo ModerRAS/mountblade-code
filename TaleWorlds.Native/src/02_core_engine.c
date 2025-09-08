@@ -251827,25 +251827,25 @@ LAB_18020c2f3:
               }
               PreviousContextPointer = SystemDataTablePointer + 1;
               StackParameter108 = SystemDataTablePointer;
-              plStack_100 = SystemDataTablePointer + 1;
-              FUN_1802e8c60(SystemDataRegistry,&plStack_108);
-              pSystemStackRegisterFlagB0 = NULL;
+              StackParameter100 = SystemDataTablePointer + 1;
+              FUN_1802e8c60(SystemDataRegistry, &StackParameter108);
+              SystemStackRegisterFlagB0 = NULL;
               SystemEventDispatcher = NULL;
               StringProcessingStatus = NULL;
               StackTempPointer = NULL;
               SystemOperationFlag98 = 3;
-              IntegerValue4 = 0;
+              EntryValidationResult = 0;
               CharacterStatusBuffer9 = NULL;
-              if ((long long)plStack_100 - (long long)plStack_108 >> 3 != 0) {
+              if ((long long)StackParameter100 - (long long)StackParameter108 >> 3 != 0) {
                 CoreEngineSignedValueC8 = 0;
-                SystemDataTablePointer = plStack_108;
+                SystemDataTablePointer = StackParameter108;
                 SystemCharacterStatusBuffer = NULL;
-                CharacterCode3 = plStack_100;
+                CharacterCodeTableEntry = StackParameter100;
                 CharacterStatusBuffer8 = CharacterStatusBuffer9;
                 do {
                   SystemDataRegistry = *(long long *)((long long)SystemDataTablePointer + CoreEngineSignedValueC8);
                   SystemTemporaryValueD0 = 0;
-                  CoreEngineSignedValue70 = (long long                              (int)(*(long long *)(SystemDataRegistry + 0xf8) - *(long long *)(SystemDataRegistry + 0xf0) >> 3);
+                  CoreEngineSignedValue70 = (long long)(int)(*(long long *)(SystemDataRegistry + 0xf8) - *(long long *)(SystemDataRegistry + 0xf0) >> 3);
                   TemporaryBuffer = SystemCharacterStatusBuffer;
                   CharacterStatusBuffer9 = CharacterStatusBuffer8;
                   if (0 < CoreEngineSignedValue70) {
@@ -251855,28 +251855,28 @@ LAB_18020c2f3:
                          SystemDataTablePointer == (long long *)0x0)) {
                         SystemDataTablePointer = *(long long **)(*(long long *)(SystemDataRegistry + 0xf0) + SystemTemporaryValueD0 * 8);
                       }
-                      StringComparisonResult0 = (**(code **)(*SystemDataTablePointer + 0x98))(SystemDataTablePointer);
+                      StringComparisonResultSecondary = (**(code **)(*SystemDataTablePointer + 0x98))(SystemDataTablePointer);
                       TemporaryBuffer = SystemCharacterStatusBuffer;
                       CharacterStatusBuffer9 = CharacterStatusBuffer8;
-                      if (StringComparisonResult0 == 0) {
+                      if (StringComparisonResultSecondary == 0) {
                         if (CharacterStatusBuffer8 < StringProcessingStatus) {
                           CharacterStatusBuffer9 = CharacterStatusBuffer8 + 4;
                           SystemEventDispatcher = CharacterStatusBuffer9;
-                          CoreEngineExecuteSystemEvent(CharacterStatusBuffer8,SystemDataTablePointer + 0x3e);
+                          CoreEngineExecuteSystemEvent(CharacterStatusBuffer8, SystemDataTablePointer + 0x3e);
                         }
                         else {
                           MemoryBlockIndex = (long long)CharacterStatusBuffer8 - (long long)SystemCharacterStatusBuffer >> 5;
                           if (MemoryBlockIndex == 0) {
                             MemoryBlockIndex = 1;
 LAB_18020c64c:
-                            TemporaryBuffer = (void *)BufferAllocate(MemoryPoolManager,MemoryBlockIndex << 5,3);
+                            TemporaryBuffer = (void *)BufferAllocate(MemoryPoolManager, MemoryBlockIndex << 5, 3);
                           }
                           else {
                             MemoryBlockIndex = MemoryBlockIndex * 2;
                             if (MemoryBlockIndex != 0) goto LAB_18020c64c;
                             TemporaryBuffer = NULL;
                           }
-                          SystemConfigurationIterator = CoreEngineCopyMemoryBuffer(SystemCharacterStatusBuffer,CharacterStatusBuffer8,TemporaryBuffer);
+                          SystemConfigurationIterator = CoreEngineCopyMemoryBuffer(SystemCharacterStatusBuffer, CharacterStatusBuffer8, TemporaryBuffer);
                           CoreEngineExecuteSystemEvent(SystemConfigurationIterator,SystemDataTablePointer + 0x3e);
                           CharacterStatusBuffer9 = (void *)(SystemConfigurationIterator + 0x20);
                           for (StringProcessingStatus = SystemCharacterStatusBuffer; StringProcessingStatus != CharacterStatusBuffer8; StringProcessingStatus = StringProcessingStatus + 4) {
