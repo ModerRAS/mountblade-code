@@ -220005,22 +220005,44 @@ long long * AllocateAndInitializeCharacterCodeBuffer(long long *CharacterCode,lo
 
 
 
+/**
+ * @brief UTF-8到UTF-16字符编码转换器
+ * 
+ * 该函数负责将UTF-8编码的字符数据转换为UTF-16编码格式，主要功能包括：
+ * - 解析UTF-8字符编码并验证其有效性
+ * - 执行UTF-8到UTF-16的编码转换
+ * - 管理内存缓冲区和数据块操作
+ * - 处理字符编码转换过程中的错误情况
+ * - 维护字符编码状态和转换上下文
+ * 
+ * 该函数是TaleWorlds引擎字符处理系统的核心组件，用于处理游戏中的
+ * 多语言文本显示和国际化支持。
+ * 
+ * @param CharacterCode 字符代码指针数组
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @return uint64_t 返回系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18018a1c0
+ */
 uint64_t *
-FUN_18018a1c0(long long *CharacterCode,uint64_t *CharacterCodeSize,long long *Utf8SourcePointer,uint64_t *Utf16EndPointer,
-             uint64_t AdditionalParameter1
+ConvertUtf8ToUtf16Encoding(long long *CharacterCode,uint64_t *CharacterCodeSize,long long *Utf8SourcePointer,uint64_t *Utf16EndPointer,
+                         uint64_t AdditionalParameter1
 {
-  unsigned long long Utf16Char;
-  long long BufferStatus;
-  int MemoryMatchResult;
+  uint64_t Utf16CharacterCode;
+  int64_t BufferStatus;
+  int MemoryComparisonResult;
   uint64_t *MemoryAddressMask;
-  long long *AllocatedMemorySizePointer;
-  long long *MemoryBoundaryPointer;
-  long long *MemoryPoolBlockSizePointer;
-  unsigned long long ProcessingStatusFlag;
-  unsigned long long MemoryAllocationLoopCounter;
-  unsigned long long Utf16Char;
-  bool BooleanVariable11;
-  unsigned long long aFunctionAddress [2];
+  int64_t *AllocatedMemorySize;
+  int64_t *MemoryBoundary;
+  int64_t *MemoryPoolBlockSize;
+  uint64_t ProcessingStatus;
+  uint64_t MemoryAllocationCounter;
+  uint64_t Utf16CharCode;
+  bool IsValidMemoryBlock;
+  uint64_t FunctionAddressArray[2];
   
   if (CharacterCode[1] == 0) {
     FUN_18018aa30(CharacterCode,SystemBufferSize,1,*CharacterCode);

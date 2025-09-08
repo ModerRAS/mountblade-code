@@ -265,13 +265,29 @@ typedef enum {
 // UI系统函数宏定义 - 处理UI上下文事件循环
 #define ProcessUIContextEventLoop FUN_18078c0dd
 
-// UI系统常量定义
-#define UIContextFlagsOffset 0x11840
-#define UIEventFlagMask 0x400
-#define UIContextDataOffset 0x11670
-#define UIEventQueueOffset 0x11678
-#define UIEventCounterOffset 0x116b4
-#define UIContextStatusOffset 0x6b0
+// UI系统函数宏定义 - 处理UI数据编码
+#define ProcessUIDataEncoding FUN_180706d32
+
+// UI系统函数宏定义 - 处理UI浮点变换
+#define ProcessUIFloatTransformation FUN_180707b03
+
+// UI系统函数宏定义 - 处理UI句柄变换
+#define ProcessUIHandleTransformation FUN_180707d35
+
+// UI系统函数宏定义 - 处理UI目标缓冲区
+#define ProcessUITargetBuffer FUN_18070e140
+
+// UI系统函数宏定义 - 处理UI系统数据
+#define ProcessUISystemData FUN_18070ee30
+
+// UI系统函数宏定义 - 处理UI系统数据扩展
+#define ProcessUISystemDataExtended FUN_18070ee86
+
+// UI系统函数宏定义 - 处理UI系统数据高级
+#define ProcessUISystemDataAdvanced FUN_18070efdd
+
+// UI系统函数宏定义 - 处理UI浮点运算
+#define ProcessUIFloatCalculation FUN_18070f860
 #define UIComponentListOffset 0x12758
 #define UIComponentDataOffset 0x11080
 #define UIRenderQueueOffset 0x12438
