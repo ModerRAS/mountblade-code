@@ -200115,7 +200115,7 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
   UIByte ComponentDataBuffer [48];
   ulonglong EncryptionKey;
   
-  stackUInt70 = XorEncryptionKey ^ (ulonglong)astackUInt188;
+  EncryptionKey = XorEncryptionKey ^ (ulonglong)EncryptionBuffer;
   if (*(char *)(uiContext + 8) != '\0') {
     if ((*(code **)(uiContext + 0x11838) != (code *)0x0) &&
        ((*(uint *)(uiContext + 0x11840) & 0x400) != 0)) {
