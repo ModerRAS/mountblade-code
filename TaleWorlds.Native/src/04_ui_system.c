@@ -233430,7 +233430,7 @@ void FUN_18080e0e0(longlong uiContext,longlong dataSource,int *targetBuffer)
         if (stackInt858 < 3) {
           stackInt858 = uiOperationResult;
         }
-        FUN_180815ca0(uiContext,dataSource,ptrLocal3,uiOperationResult);
+        ValidateUIRenderData(uiContext,dataSource,ptrLocal3,uiOperationResult);
         if (dataSource != 0) {
           dataSource = dataSource + (longlong)(*(int *)(*(longlong *)(uiBufferData + 8) + 0xc) << 5) * 2;
         }
@@ -233465,7 +233465,7 @@ void FUN_18080e131(void)
     FUN_18080dae0();
     allocatedMemory = 3;
     do {
-      FUN_180815ca0();
+      ValidateUIRenderData();
       if (TargetHandle != 0) {
         TargetHandle = TargetHandle + (longlong)(*(int *)(*(longlong *)(BasePointer + 8) + 0xc) << 5) * 2;
       }
@@ -239479,7 +239479,7 @@ UIHandle FUN_180815c89(void)
 
 
 UIHandle
-FUN_180815ca0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,UIDword resultPointer)
+ValidateUIRenderData(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,UIDword resultPointer)
 
 {
   int *puiOperationResult;
@@ -239522,7 +239522,7 @@ FUN_180815ca0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
                       localLong7 + targetBuffer);
       }
       if (dataSource != 0) {
-        FUN_180815ea0(uiContext,stringCompareIndex,localInt5,resultPointer,ContextHandleData);
+        ProcessUIRenderTransformMatrix(uiContext,stringCompareIndex,localInt5,resultPointer,ContextHandleData);
       }
       localLong7 = localLong7 + 0x900;
       allocatedMemory0 = allocatedMemory0 + 0x200;
@@ -239582,7 +239582,7 @@ UIHandle FUN_180815d01(int uiContext,longlong dataSource,UIHandle targetBuffer,u
       componentIndex = lStack0000000000000030 * 4;
     }
     if (dataSource != 0) {
-      FUN_180815ea0();
+      ProcessUIRenderTransformMatrix();
       dataSource = stackParam00000098;
     }
     stringCompareIndex = stringCompareIndex + 0x900;
@@ -239606,7 +239606,7 @@ UIHandle FUN_180815e8e(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 UIHandle
-FUN_180815ea0(UIHandle uiContext,float *dataSource,int targetBuffer,int bufferSize,UIWord *resultPointer)
+ProcessUIRenderTransformMatrix(UIHandle uiContext,float *dataSource,int targetBuffer,int bufferSize,UIWord *resultPointer)
 
 {
   UIWord result;
@@ -241807,7 +241807,7 @@ LAB_18081843e:
             }
             func_0x0001808311d0(dataSource + 0x210);
             *(longlong *)(dataSource + 0x78) = *(longlong *)(dataSource + 0x78) + (longlong)uiValidationResult;
-            if ((uiValidationResult < allocatedMemory1) && (uiValidationResult = FUN_180819980(uiContext,dataSource,0,1,1), uiValidationResult < 1)) {
+            if ((uiValidationResult < allocatedMemory1) && (uiValidationResult = ProcessUIDataBufferOperation(uiContext,dataSource,0,1,1), uiValidationResult < 1)) {
               MaxProcessingCount = FUN_180818bd0(dataSource);
               *(UIHandle *)(dataSource + 0x78) = MaxProcessingCount;
             }
@@ -241932,7 +241932,7 @@ LAB_18081843e:
             }
             func_0x0001808311d0(SourceHandle + 0x210);
             *(longlong *)(SourceHandle + 0x78) = *(longlong *)(SourceHandle + 0x78) + (longlong)uiValidationResult;
-            if ((uiValidationResult < allocatedMemory1) && (uiValidationResult = FUN_180819980(), uiValidationResult < 1)) {
+            if ((uiValidationResult < allocatedMemory1) && (uiValidationResult = ProcessUIDataBufferOperation(), uiValidationResult < 1)) {
               LoopCounter = FUN_180818bd0();
               *(UIHandle *)(SourceHandle + 0x78) = LoopCounter;
             }
@@ -243549,7 +243549,7 @@ LAB_18081942d:
           goto LAB_18081942d;
         }
       }
-      LoopCounter = FUN_180819980(uiContext,dataSource,0,1,1);
+      LoopCounter = ProcessUIDataBufferOperation(uiContext,dataSource,0,1,1);
       if ((int)LoopCounter == -2) {
         return 0;
       }
@@ -243780,7 +243780,7 @@ void FUN_180819940(UIHandle uiContext,longlong dataSource)
 
 
 UIHandle
-FUN_180819980(UIHandle uiContext,longlong dataSource,UIByte *targetBuffer,int bufferSize,int resultPointer)
+ProcessUIDataBufferOperation(UIHandle uiContext,longlong dataSource,UIByte *targetBuffer,int bufferSize,int resultPointer)
 
 {
   uint result;
@@ -244522,7 +244522,7 @@ LAB_18081a964:
 
 
 UIHandle
-FUN_18081a9c0(uint *uiContext,short *dataSource,int targetBuffer,uint bufferSize,int resultPointer,int param_6)
+ValidateUIComponentState(uint *uiContext,short *dataSource,int targetBuffer,uint bufferSize,int resultPointer,int param_6)
 
 {
   uint *ptrResult;

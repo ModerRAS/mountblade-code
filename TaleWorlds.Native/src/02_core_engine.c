@@ -182951,35 +182951,35 @@ void ExpandAndManageCharacterDataMemoryPool(uint64_t *CharacterCode,unsigned lon
       SystemDataRegistry = (long long)NewMemoryBlockPointer - (long long)MemoryPoolBlockSizePointer;
       MemoryPoolBlockSizePointer = MemoryPoolBlockSizePointer + 4;
       do {
-        *pStringOffset = MemoryPoolBlockSizePointer[-4];
+        *StringDataPointer = MemoryPoolBlockSizePointer[-4];
         *(long long *)(SystemDataRegistry + -0x18 + (long long)MemoryPoolBlockSizePointer) = MemoryPoolBlockSizePointer[-3];
         *(int *)(SystemDataRegistry + -0x10 + (long long)MemoryPoolBlockSizePointer) = (int)MemoryPoolBlockSizePointer[-2];
         SystemCharacterStatusBuffer = (void *)((long long)MemoryPoolBlockSizePointer + SystemDataRegistry + -8);
         EncodingConversionResult = *MemoryPoolBlockSizePointer - MemoryPoolBlockSizePointer[-1] >> 3;
-        Utf16Char = *(uint *)(MemoryPoolBlockSizePointer + 2);
-        *(uint *)(SystemDataRegistry + 0x10 + (long long)MemoryPoolBlockSizePointer) = Utf16Char;
+        Utf16CharacterValue = *(uint *)(MemoryPoolBlockSizePointer + 2);
+        *(uint *)(SystemDataRegistry + 0x10 + (long long)MemoryPoolBlockSizePointer) = Utf16CharacterValue;
         MemoryBlockListHead = (long long *)0x0;
         if (EncodingConversionResult != 0) {
-          MemoryBlockListHead = (long long *)BufferAllocate(MemoryPoolManager,EncodingConversionResult * 8,Utf16Char & 0xff);
+          MemoryBlockListHead = (long long *)BufferAllocate(MemoryPoolManager,EncodingConversionResult * 8,Utf16CharacterValue & 0xff);
         }
         *SystemCharacterStatusBuffer = MemoryBlockListHead;
         *(long long **)(SystemDataRegistry + (long long)MemoryPoolBlockSizePointer) = MemoryBlockListHead;
         *(long long **)(SystemDataRegistry + 8 + (long long)MemoryPoolBlockSizePointer) = MemoryBlockListHead + EncodingConversionResult;
-        MemoryAllocationIndex = *SystemCharacterStatusBuffer;
+        MemoryAllocationCounter = *SystemCharacterStatusBuffer;
         EncodingConversionResult = MemoryPoolBlockSizePointer[-1];
         if (EncodingConversionResult != *MemoryPoolBlockSizePointer) {
                     // WARNING: Subroutine does not return
-          memmove(MemoryAllocationIndex,EncodingConversionResult,*MemoryPoolBlockSizePointer - EncodingConversionResult);
+          memmove(MemoryAllocationCounter,EncodingConversionResult,*MemoryPoolBlockSizePointer - EncodingConversionResult);
         }
-        *(void *)(SystemDataRegistry + (long long)MemoryPoolBlockSizePointer) = MemoryAllocationIndex;
-        pStringOffset = pStringOffset + 7;
+        *(void *)(SystemDataRegistry + (long long)MemoryPoolBlockSizePointer) = MemoryAllocationCounter;
+        StringDataPointer = StringDataPointer + 7;
         MemoryBlockListHead = MemoryPoolBlockSizePointer + 3;
         MemoryPoolBlockSizePointer = MemoryPoolBlockSizePointer + 7;
       } while (MemoryBlockListHead != MemoryBoundaryPointer);
     }
     if (SystemBufferSize != 0) {
-      MemoryBoundaryPointer = pStringOffset + 4;
-      ProcessingStatusFlag = SystemBufferSize;
+      MemoryBoundaryPointer = StringDataPointer + 4;
+      ProcessingLoopCounter = SystemBufferSize;
       do {
         MemoryBoundaryPointer[-4] = 0;
         MemoryBoundaryPointer[-3] = 0;
@@ -182990,8 +182990,8 @@ void ExpandAndManageCharacterDataMemoryPool(uint64_t *CharacterCode,unsigned lon
         MemoryBoundaryPointer[1] = 0;
         *(uint32_t *)(MemoryBoundaryPointer + 2) = 3;
         MemoryBoundaryPointer = MemoryBoundaryPointer + 7;
-        ProcessingStatusFlag = ProcessingStatusFlag - 1;
-      } while (ProcessingStatusFlag != 0);
+        ProcessingLoopCounter = ProcessingLoopCounter - 1;
+      } while (ProcessingLoopCounter != 0);
     }
     MemoryBoundaryPointer = (long long *)CharacterCode[1];
     MemoryPoolBlockSizePointer = (long long *)*CharacterCode;
@@ -183014,9 +183014,9 @@ void ExpandAndManageCharacterDataMemoryPool(uint64_t *CharacterCode,unsigned lon
                     // WARNING: Subroutine does not return
       CoreEngineFreeSystemMemory(MemoryPoolBlockSizePointer);
     }
-    *CharacterCode = MemoryBlockIndex;
-    CharacterCode[1] = pStringOffset + SystemBufferSize * 7;
-    CharacterCode[2] = MemoryBlockIndex + SystemStatusCode * 7;
+    *CharacterCode = NewMemoryBlockPointer;
+    CharacterCode[1] = StringDataPointer + SystemBufferSize * 7;
+    CharacterCode[2] = NewMemoryBlockPointer + SystemStatusCode * 7;
   }
   else {
     if (SystemBufferSize != 0) {
@@ -183067,7 +183067,7 @@ void ExpandAndManageCharacterDataMemoryPool(uint64_t *CharacterCode,unsigned lon
  * @note 原始函数名：FUN_18014eff0
  * @note 这是一个系统清理函数，用于释放字符处理过程中分配的资源
  */
-void FUN_18014eff0(long long *CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer)
+void ProcessCharacterCodeWithUtf8Conversion(long long *CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer)
 {
   unsigned long long Utf16Char;
   unsigned long long MemoryAllocationIndex;
@@ -183089,7 +183089,7 @@ void FUN_18014eff0(long long *CharacterCode,long long SystemBufferSize,long long
     SystemDataRegistry = *CharacterCode;
     if (SystemDataRegistry != AllocatedMemorySize) {
       do {
-        FUN_18014c7d0(SystemDataRegistry);
+        ManageMemoryReferenceCount(SystemDataRegistry);
         SystemDataRegistry = SystemDataRegistry + 0x88;
       } while (SystemDataRegistry != AllocatedMemorySize);
       SystemDataRegistry = *CharacterCode;
@@ -183115,7 +183115,7 @@ void FUN_18014eff0(long long *CharacterCode,long long SystemBufferSize,long long
       SystemDataRegistry = ProcessCharacterEncodingPointer(SystemBufferSize,Utf8SourcePointer);
       MemoryBlockIndex = CharacterCode[1];
       for (AllocatedMemorySize = SystemDataRegistry; AllocatedMemorySize != MemoryBlockIndex; AllocatedMemorySize = AllocatedMemorySize + 0x88) {
-        FUN_18014c7d0(AllocatedMemorySize);
+        ManageMemoryReferenceCount(AllocatedMemorySize);
       }
       CharacterCode[1] = SystemDataRegistry;
     }
@@ -183143,7 +183143,7 @@ void FUN_18014eff0(long long *CharacterCode,long long SystemBufferSize,long long
  * @note 原始函数名：FUN_18014f059
  * @note 这是一个系统状态检查函数，用于维护系统的稳定运行
  */
-void FUN_18014f059(void)
+void ProcessSystemDataNodeCleanup(void)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -183162,7 +183162,7 @@ void FUN_18014f059(void)
   MemoryBlockIndex = *SystemDataNode;
   if (MemoryBlockIndex != CharacterTablePointer) {
     do {
-      FUN_18014c7d0(MemoryBlockIndex);
+      ManageMemoryReferenceCount(MemoryBlockIndex);
       MemoryBlockIndex = MemoryBlockIndex + 0x88;
     } while (MemoryBlockIndex != CharacterTablePointer);
     MemoryBlockIndex = *SystemDataNode;
@@ -183204,7 +183204,7 @@ void FUN_18014f059(void)
     CharacterTablePointer = ProcessCharacterEncodingPointer();
     BufferStatus = *(long long *)(DestinationIndex + 8);
     for (SystemDataRegistry = LoopCounter; SystemDataRegistry != BufferStatus; SystemDataRegistry = SystemDataRegistry + 0x88) {
-      FUN_18014c7d0(SystemDataRegistry);
+      ManageMemoryReferenceCount(SystemDataRegistry);
     }
     *(long long *)(SystemDataNode + 8) = LoopCounter;
   }

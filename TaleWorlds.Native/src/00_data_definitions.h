@@ -6610,43 +6610,44 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
  */
 uint8_t NormalizeColorLuminance(uint64_t *color_data)
 {
-  float *red_component;
-  float *green_component;
-  float *blue_component;
-  float *alpha_component;
-  float *brightness_component;
-  float *contrast_component;
-  float *saturation_component;
-  float *hue_component;
-  float *lightness_component;
-  float *chroma_component;
-  float *gamma_component;
+  float *ColorComponentRed;
+  float *ColorComponentGreen;
+  float *ColorComponentBlue;
+  float *ColorComponentAlpha;
+  float *ColorComponentBrightness;
+  float *ColorComponentContrast;
+  float *ColorComponentSaturation;
+  float *ColorComponentHue;
+  float *ColorComponentLightness;
+  float *ColorComponentChroma;
+  float *ColorComponentGamma;
+  float NormalizedColorValue;
   float TemporaryColorValue;
-  uint32_t batch_loop_counter;
-  float *output_buffer;
-  float *input_buffer;
-  int total_elements;
-  int processed_elements;
-  int batch_processed_elements;
-  uint64_t remaining_elements;
-  int64_t element_count;
-  double luminance_sum;
+  uint32_t BatchProcessingCounter;
+  float *OutputColorBuffer;
+  float *InputColorBuffer;
+  int TotalColorElements;
+  int ProcessedColorElements;
+  int BatchProcessedElements;
+  uint64_t RemainingColorElements;
+  int64_t TotalColorCount;
+  double LuminanceAccumulator;
   // 处理0x20格式（12字节格式）的颜色数据
   if (*(int *)((int64_t)color_data + 0x54) == 0x20) {
-    output_buffer = (float *)*color_data;
-    batch_processed_elements = 0;
-    luminance_sum = 0.0;
-    element_count = 0;
-    processed_elements = 0;
-    total_elements = (int)((uint64_t)color_data[1] / 0xc);
-    input_buffer = output_buffer;
+    OutputColorBuffer = (float *)*color_data;
+    BatchProcessedElements = 0;
+    LuminanceAccumulator = 0.0;
+    TotalColorCount = 0;
+    ProcessedColorElements = 0;
+    TotalColorElements = (int)((uint64_t)color_data[1] / 0xc);
+    InputColorBuffer = OutputColorBuffer;
     
     // 批量处理4个元素以提高性能
-    if (3 < total_elements) {
-      batch_loop_counter = (total_elements - 4U >> 2) + 1;
-      remaining_elements = (uint64_t)batch_loop_counter;
-      element_count = (uint64_t)batch_loop_counter * 4;
-      processed_elements = batch_loop_counter * 4;
+    if (3 < TotalColorElements) {
+      BatchProcessingCounter = (TotalColorElements - 4U >> 2) + 1;
+      RemainingColorElements = (uint64_t)BatchProcessingCounter;
+      TotalColorCount = (uint64_t)BatchProcessingCounter * 4;
+      ProcessedColorElements = BatchProcessingCounter * 4;
       do {
         red_component = input_buffer + 3;
         temp_float = *input_buffer;
