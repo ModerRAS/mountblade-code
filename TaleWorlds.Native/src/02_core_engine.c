@@ -250057,7 +250057,24 @@ ProcessFloatComparisonAndStringOperations:
 
 
 
-09052(uint64_t CharacterCode,uint64_t SystemBufferSize,float Utf8SourcePointer,float Utf16EndPointervoid FUN_180209052(uint64_t CharacterCode,uint64_t SystemBufferSize,float Utf8SourcePointer,float Utf16EndPointer
+/**
+ * @brief 处理浮点数比较和字符串操作
+ * 
+ * 该函数负责处理浮点数比较和字符串操作，包括：
+ * - 浮点数大小比较
+ * - 内存边界端点处理
+ * - 字符串偏移计算
+ * - 字符限制检查
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180209052
+ */
+void ProcessFloatComparisonAndStringOperations(uint64_t CharacterCode, uint64_t SystemBufferSize, float Utf8SourcePointer, float Utf16EndPointer)
 {
   float SystemContextPrimaryFloat;
   int StringComparisonResult;
@@ -250229,7 +250246,16 @@ void ProcessFloatCalculationAndArrayOperations(void)
 
 
 
-091bf(voidvoid FUN_1802091bf(void
+/**
+ * @brief 空函数 - 系统保留函数
+ * 
+ * 该函数是一个空函数，可能用于系统保留或占位符。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1802091bf
+ */
+void SystemReservedEmptyFunction1(void)
 {
   return;
 }
