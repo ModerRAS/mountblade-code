@@ -100028,6 +100028,30 @@ void ConfigureSystemMemoryFlags(void)
 
 
 
+/**
+ * @brief 处理系统数据并配置参数
+ * 
+ * 该函数负责处理系统数据并配置相关参数，主要功能包括：
+ * - 系统内存分配和引用计数管理
+ * - 矩阵变换和浮点数计算
+ * - 系统缓冲区处理和验证
+ * - 字符编码转换和处理
+ * - 系统配置和状态管理
+ * 
+ * @param CharacterCode 字符代码指针，用于字符编码处理
+ * @param CharacterCodeSize 字符代码大小指针，用于存储字符代码的大小信息
+ * @param Utf8SourcePointer UTF-8源指针，指向UTF-8编码的源数据
+ * @param Utf16EndPointer UTF-16结束指针，标记UTF-16数据的结束位置
+ * @param AdditionalParameter1 额外参数1，用于传递额外的处理信息
+ * @param AdditionalParameter2 额外参数2，用于传递浮点数参数数组
+ * @param AdditionalParameter3 额外参数3，用于传递浮点数参数数组
+ * 
+ * @return unsigned long long 返回处理结果，包含状态码和处理标志
+ * 
+ * @note 该函数涉及复杂的内存管理和矩阵计算操作
+ * @warning 函数内部使用了大量的系统级内存操作，需要谨慎处理
+ * @see ProcessSystemEvent, ValidateSystemDataAndProcessOperation, ProcessSystemBuffer
+ */
 unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCode,float *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer,
                        char AdditionalParameter1,float *AdditionalParameter2,float *AdditionalParameter3
 {
@@ -203556,7 +203580,7 @@ uint64_t ProcessSystemContextWithBuffers(uint64_t CharacterCode,uint64_t SystemB
  * @param CharacterCode 系统上下文指针
  * @return 初始化后的系统上下文指针
  */
-uint64_t * FUN_18016e1a0(uint64_t *CharacterCode
+uint64_t * InitializeSystemCharacterProcessing(uint64_t *CharacterCode
 {
   long long PrimaryDataSize;
   void *SystemContext;
@@ -203704,7 +203728,7 @@ ValidateAndProcessUtf8Encoding(uint64_t *CharacterCode,uint64_t SystemBufferSize
  */
 uint64_t ProcessUtf8CharacterEncodingState(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer)
 {
-  FUN_1801681e0(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
+  ProcessCharacterEncodingConversionBasic(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
@@ -203724,7 +203748,7 @@ uint64_t ProcessUtf8CharacterEncodingState(uint64_t CharacterCode,uint64_t Syste
  */
 uint64_t ProcessUtf8CharacterEncodingConversion(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer)
 {
-  FUN_180167f80(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
+  ProcessCharacterEncodingConversionAdvanced(CharacterCode,CharacterCode,Utf8SourcePointer,Utf8SourcePointer,0,0xfffffffffffffffe);
   return CharacterCode;
 }
 
