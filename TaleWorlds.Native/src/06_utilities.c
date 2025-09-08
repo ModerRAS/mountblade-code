@@ -110209,7 +110209,24 @@ void ConfigureExceptionHandlerInUnwind(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_1809101e0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文回调函数的异常处理器
+ * 
+ * 该函数负责在异常上下文中执行多个回调函数。主要功能包括：
+ * - 获取异常处理器上下文
+ * - 检查并执行异常上下文状态回调函数
+ * - 检查并执行多个不同偏移量的回调函数
+ * - 确保所有相关的回调函数都被正确调用
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809101e0
+ * @note 这是一个异常展开（unwind）处理函数，用于执行异常上下文回调函数
+ */
+#define ExecuteExceptionContextCallbacksInUnwind Unwind_1809101e0
+
+void ExecuteExceptionContextCallbacksInUnwind(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -110616,7 +110633,26 @@ void ExecuteExceptionCallbacksAtOffsetD0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_180910300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理内存资源指针循环的异常处理器
+ * 
+ * 该函数负责在异常上下文中循环处理内存资源指针。主要功能包括：
+ * - 获取异常数据缓冲区和内存资源指针
+ * - 遍历内存资源指针数组，调用每个资源指针的处理函数
+ * - 传递操作标志和验证状态给处理函数
+ * - 检查数据缓冲区状态，必要时终止系统执行
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于控制处理流程
+ * @param operationFlagB 操作标志B，用于控制处理流程
+ * 
+ * @note 原始函数名：Unwind_180910300
+ * @note 这是一个异常展开（unwind）处理函数，用于处理内存资源指针循环
+ */
+#define ProcessMemoryResourcePointerLoopInUnwind Unwind_180910300
+
+void ProcessMemoryResourcePointerLoopInUnwind(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -110636,7 +110672,27 @@ void Unwind_180910300(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910310(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 处理验证状态指针循环的异常处理器
+ * 
+ * 该函数负责在异常上下文中循环处理验证状态指针。主要功能包括：
+ * - 获取数据上下文和异常数据缓冲区
+ * - 设置内存区域基础地址
+ * - 遍历验证状态指针数组，调用每个指针的处理函数
+ * - 传递操作标志和内存区域基础地址给处理函数
+ * - 检查数据上下文状态，必要时终止系统执行
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * @param operationFlagA 操作标志A，用于控制处理流程
+ * @param operationFlagB 操作标志B，用于控制处理流程
+ * 
+ * @note 原始函数名：Unwind_180910310
+ * @note 这是一个异常展开（unwind）处理函数，用于处理验证状态指针循环
+ */
+#define ProcessValidationStatusPointerLoopInUnwind Unwind_180910310
+
+void ProcessValidationStatusPointerLoopInUnwind(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -110658,7 +110714,24 @@ void Unwind_180910310(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_180910320(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理内存资源引用计数的异常处理器
+ * 
+ * 该函数负责在异常上下文中处理内存资源引用计数。主要功能包括：
+ * - 获取内存资源指针和资源引用计数
+ * - 计算内存区域基础地址和内存块偏移量
+ * - 执行内存引用计数相关的计算和验证
+ * - 确保内存资源的正确管理和释放
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180910320
+ * @note 这是一个异常展开（unwind）处理函数，用于处理内存资源引用计数
+ */
+#define ProcessMemoryResourceReferenceCountInUnwind Unwind_180910320
+
+void ProcessMemoryResourceReferenceCountInUnwind(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;

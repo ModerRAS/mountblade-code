@@ -100371,7 +100371,7 @@ float CalculateUIContextCompositeDistance(int *uiContext, int dataSource, int ta
         if (result0 < *(uint *)(CharacterDataOffset + componentIndex)) {
           do {
             targetBuffer = ProcessingResult1 + -1;
-            result3 = *(uint *)(CharacterDataOffset + *(longlong *)(&UNK_180956d30 + (longlong)targetBuffer * 8));
+            result3 = *(uint *)(CharacterDataOffset + *(longlong *)(&UIGlobalDataRegistry + (longlong)targetBuffer * 8));
             ProcessingResult1 = targetBuffer;
           } while (result0 < result3);
         }
@@ -100468,7 +100468,7 @@ void FUN_180728050(longlong uiContext,int dataSource,int targetBuffer,longlong *
       TempInt4 = localInt6;
     }
     result2 = *ptrLocal8;
-    CounterResult = CounterResult + *(int *)(*(longlong *)(&UNK_180956d30 + (longlong)uiCompareResult * 8) +
+    CounterResult = CounterResult + *(int *)(*(longlong *)(&UIGlobalDataRegistry + (longlong)uiCompareResult * 8) +
                               (longlong)TempInt4 * 4);
     localInt6 = localInt6 + ((result2 ^ (int)result2 >> 0x1f) - ((int)result2 >> 0x1f));
     if ((int)result2 < 0) {
@@ -100491,8 +100491,8 @@ void FUN_180728050(longlong uiContext,int dataSource,int targetBuffer,longlong *
   if (targetBuffer < dataSource) {
     targetBuffer = dataSource;
   }
-  uVar9 = *(int *)(*(longlong *)(&UNK_180956d30 + (longlong)localInt7 * 8) + (longlong)targetBuffer * 4) +
-          *(int *)(*(longlong *)(&UNK_180956d30 + (longlong)ProcessingResult1 * 8) + (longlong)processingResult6 * 4);
+  uVar9 = *(int *)(*(longlong *)(&UIGlobalDataRegistry + (longlong)localInt7 * 8) + (longlong)targetBuffer * 4) +
+          *(int *)(*(longlong *)(&UIGlobalDataRegistry + (longlong)ProcessingResult1 * 8) + (longlong)processingResult6 * 4);
   result2 = *(uint *)(bufferSize + 4);
   result0 = uVar9 - 1;
   processingResult6 = 0x1f;
