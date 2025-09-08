@@ -83888,29 +83888,29 @@ void CleanupUIRenderer(void)
 
 
 
-int FUN_180715670(uint uiContext,uint dataSource)
+int CompareUIContextValues(uint uiContext,uint dataSource)
 
 {
-  int processingResult;
-  int uiValidationResult;
-  int uiCompareResult;
-  int TempInt4;
+  int contextBitLength;
+  int sourceBitLength;
+  int contextNormalizedValue;
+  int sourceNormalizedValue;
   
-  processingResult = 0x1f;
+  contextBitLength = 0x1f;
   if (uiContext != 0) {
-    for (; uiContext >> processingResult == 0; processingResult = processingResult + -1) {
+    for (; uiContext >> contextBitLength == 0; contextBitLength = contextBitLength + -1) {
     }
   }
-  uiValidationResult = 0x1f;
+  sourceBitLength = 0x1f;
   if (dataSource != 0) {
-    for (; dataSource >> uiValidationResult == 0; uiValidationResult = uiValidationResult + -1) {
+    for (; dataSource >> sourceBitLength == 0; sourceBitLength = sourceBitLength + -1) {
     }
   }
-  TempInt4 = (int)(short)((short)dataSource << (0xfU - (char)(uiValidationResult + 1) & 0x1f));
-  uiCompareResult = (int)(short)((short)uiContext << (0xfU - (char)(processingResult + 1) & 0x1f));
-  return ((processingResult + 1) - (uiValidationResult + 1)) * 0x800 +
-         (((short)((short)(uiCompareResult * -0xa25 + 0x4000 >> 0xf) + 0x1efc) * uiCompareResult + 0x4000 >> 0xf) -
-         ((short)((short)(TempInt4 * -0xa25 + 0x4000 >> 0xf) + 0x1efc) * TempInt4 + 0x4000 >> 0xf));
+  sourceNormalizedValue = (int)(short)((short)dataSource << (0xfU - (char)(sourceBitLength + 1) & 0x1f));
+  contextNormalizedValue = (int)(short)((short)uiContext << (0xfU - (char)(contextBitLength + 1) & 0x1f));
+  return ((contextBitLength + 1) - (sourceBitLength + 1)) * 0x800 +
+         (((short)((short)(contextNormalizedValue * -0xa25 + 0x4000 >> 0xf) + 0x1efc) * contextNormalizedValue + 0x4000 >> 0xf) -
+         ((short)((short)(sourceNormalizedValue * -0xa25 + 0x4000 >> 0xf) + 0x1efc) * sourceNormalizedValue + 0x4000 >> 0xf));
 }
 
 
