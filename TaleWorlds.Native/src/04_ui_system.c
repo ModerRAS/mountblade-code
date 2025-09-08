@@ -77954,9 +77954,29 @@ void UIEmptyOperation2(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180710510(longlong uiContext,int *dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
-void FUN_180710510(longlong uiContext,int *dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
-                  UIHandle param_6,UIHandle param_7)
+ /**
+ * @brief UI数据初始化处理函数
+ * 
+ * 该函数负责初始化和处理UI系统中的数据，包括：
+ * - 初始化UI数据缓冲区
+ * - 处理数据源和目标缓冲区
+ * - 管理UI事件和信号量
+ * - 验证和处理UI操作结果
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针数组
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 参数6（UI句柄）
+ * @param param_7 参数7（UI句柄）
+ * 
+ * @note 此函数是UI系统初始化过程中的核心函数
+ * @note 函数会处理多种UI数据类型和事件
+ * @note 包含复杂的内存管理和数据验证逻辑
+ */
+void ProcessUIDataInitialization(longlong uiContext,int *dataSource,int targetBuffer,int bufferSize,UIHandle resultPointer,
+                                  UIHandle param_6,UIHandle param_7)
 
 {
   UIDword result;
@@ -78299,9 +78319,28 @@ void InitializeUIContextAndBuffers(longlong uiContext)
 
 
 
- void FUN_180711020(int *uiContext,float *dataSource,float *targetBuffer,float *bufferSize,int resultPointer,int param_6
-void FUN_180711020(int *uiContext,float *dataSource,float *targetBuffer,float *bufferSize,int resultPointer,int param_6
-                  ,int param_7)
+ /**
+ * @brief UI浮点数据处理器
+ * 
+ * 该函数负责处理UI系统中的浮点数据，包括：
+ * - 处理浮点数据源和目标缓冲区
+ * - 执行浮点运算和数据转换
+ * - 管理UI组件的浮点属性
+ * - 处理浮点数据的内存分配
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 浮点数据源指针
+ * @param targetBuffer 目标浮点缓冲区
+ * @param bufferSize 缓冲区大小（浮点数）
+ * @param resultPointer 结果指针
+ * @param param_6 参数6
+ * @param param_7 参数7
+ * 
+ * @note 此函数专门处理UI系统中的浮点数据运算
+ * @note 包含复杂的浮点运算和内存管理逻辑
+ */
+void ProcessUIFloatData(int *uiContext,float *dataSource,float *targetBuffer,float *bufferSize,int resultPointer,int param_6
+                       ,int param_7)
 
 {
   float floatResult;

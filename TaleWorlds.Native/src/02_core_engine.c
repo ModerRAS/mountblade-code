@@ -27602,7 +27602,7 @@ FloatProcessingComplete: // 原始标签：LAB_180052ce3，FloatProcessingComple
       SystemStatusCode = (uint)MemoryAddressMaskPointer;
       Utf16Char = (long long)(int)Utf16Char % (long long)(int)SystemStatusCode;
       SystemChecksum = (uint)Utf16Char;
-      CalculatedCodePoint = Utf16Char & 0xffffffff;
+      CalculatedCodePoint = Utf16CharacterValue & 0xffffffff;
       Utf16Char = MemoryAddressMaskPointer;
     }
     ValidationResult = (int)ProcessedCharacter / (int)SystemStatusCode;
@@ -49398,7 +49398,7 @@ void CoreEngineProcessSystemContext(void
     pMemoryAddressMaskPointer2 = pMemoryAddressMaskPointer2 + 2;
   } while ((long long)(FunctionPointer7 + (-0x808 - (long long)systemEventTemplatePtr6)) <= (long long)UnicodeCharacterValue);
   SystemEventTemplatePointer8 = (void *            (*(long long *              ((long long)*(int *)(systemEventTablePointer + 0x1210) * 0x908 + systemEventTablePointer + 8 +
-              UnicodeCharacterValue * 8) + (unsigned long long)(Utf16Char - (Utf16Char & 0xfffffe00)) * 0x60);
+              UnicodeCharacterValue * 8) + (unsigned long long)(Utf16Char - (Utf16CharacterValue & 0xfffffe00)) * 0x60);
   MemoryBlockIndex3 = SystemContext;
   eventDataStructureHandle = SystemEventTemplatePointer8;
   if ((*(byte *)(SystemContext + 0xfd) & 0x20) == 0) {
@@ -115794,7 +115794,7 @@ unsigned long long ProcessSystemDataStructureHandler(int *CharacterCode,char *Ch
     StackFloat124 = -3.4028235e+38;
     SystemCallProcessFloatData(&StackFloat130,(unsigned long long)StatusCode,0);
     Utf16Char = SystemCallSystemCleanup();
-    return Utf16Char & 0xffffffffffffff00;
+    return Utf16CharacterValue & 0xffffffffffffff00;
   }
   SecondaryProcessingStatusFlag = (uint *)((unsigned long long)SystemCheckResult & 0xffffffffffffff00);
   SystemCallProcessFloatData(&StackFloatX8,SystemBufferSize);
@@ -121005,7 +121005,7 @@ uint64_t ConvertUtf8FourByteSequenceF0(uint64_t CharacterCode,long long SystemBu
         ((*(byte *)(SystemBufferSize + 3) & 0xc0) == 0x80)) &&
        (Utf16Char = (Utf16EndPointer & 7) * 0x40000 + (*(byte *)(SystemBufferSize + 2) & 0x3f) * 0x40 +
                 (*(byte *)(SystemBufferSize + 1) & 0x3f) * 0x1000 + (*(byte *)(SystemBufferSize + 3) & 0x3f),
-       (Utf16Char & 0xfffff800) != 0xd800)) {
+       (Utf16CharacterValue & 0xfffff800) != 0xd800)) {
       *SystemRegisterR10 = Utf16Char;
     }
   }
@@ -121036,7 +121036,7 @@ uint64_t ConvertUtf8FourByteSequenceF4(uint64_t CharacterCode,long long SystemBu
      ((((*(byte *)(SystemBufferSize + 2) & 0xc0) == 0x80 && ((*(byte *)(SystemBufferSize + 3) & 0xc0) == 0x80)) &&
       (Utf16Char = (Utf16EndPointer & 7) * 0x40000 + (*(byte *)(SystemBufferSize + 2) & 0x3f) * 0x40 +
                (*(byte *)(SystemBufferSize + 1) & 0x3f) * 0x1000 + (*(byte *)(SystemBufferSize + 3) & 0x3f),
-      (Utf16Char & 0xfffff800) != 0xd800)))) {
+      (Utf16CharacterValue & 0xfffff800) != 0xd800)))) {
     *SystemRegisterR10 = Utf16Char;
   }
   return 4;
@@ -169193,7 +169193,7 @@ LAB_18013b872:
           }
           Utf16Char = *(uint *)((long long)CharacterCode + 0xc);
           *(uint *)((long long)CharacterCode + 0xc) = Utf16Char | 0x1010002;
-          ProcessedCharacter = Utf16Char & 0xfffffffe | 0x1010002;
+          ProcessedCharacter = Utf16CharacterValue & 0xfffffffe | 0x1010002;
           if ((*(byte *)(StringOffset + 0xa0) & 0x40) != 0) {
             ProcessedCharacter = Utf16Char | 0x1010003;
           }
@@ -169363,7 +169363,7 @@ LAB_18013b872:
           }
           Utf16Char = *(uint *)((long long)SystemContext + 0xc);
           *(uint *)((long long)SystemContext + 0xc) = Utf16Char | 0x1010002;
-          SystemMemoryAllocationResult = Utf16Char & 0xfffffffe | 0x1010002;
+          SystemMemoryAllocationResult = Utf16CharacterValue & 0xfffffffe | 0x1010002;
           if ((*(byte *)(MemoryPoolBlockSize + 0xa0) & 0x40) != 0) {
             SystemMemoryAllocationResult = Utf16Char | 0x1010003;
           }
@@ -169557,7 +169557,7 @@ LAB_18013b872:
           }
           Utf16Char = *(uint *)((long long)SystemContext + 0xc);
           *(uint *)((long long)SystemContext + 0xc) = Utf16Char | 0x1010002;
-          SystemMemoryAllocationResult = Utf16Char & 0xfffffffe | 0x1010002;
+          SystemMemoryAllocationResult = Utf16CharacterValue & 0xfffffffe | 0x1010002;
           if ((*(byte *)(MemoryPoolBlockSize + 0xa0) & 0x40) != 0) {
             SystemMemoryAllocationResult = Utf16Char | 0x1010003;
           }
@@ -169710,7 +169710,7 @@ void ValidateCharacterEncodingSystemConfiguration(void)
         }
         Utf16Char = *(uint *)((long long)SystemContext + 0xc);
         *(uint *)((long long)SystemContext + 0xc) = Utf16Char | 0x1010002;
-        SystemChecksum = Utf16Char & 0xfffffffe | 0x1010002;
+        SystemChecksum = Utf16CharacterValue & 0xfffffffe | 0x1010002;
         if ((*(byte *)(PatternIndex + 0xa0) & 0x40) != 0) {
           SystemChecksum = Utf16Char | 0x1010003;
         }
@@ -169810,7 +169810,7 @@ void ProcessCharacterCodeUtf16Conversion(long long CharacterCode)
     }
     Utf16Char = *(uint *)((long long)SystemContext + 0xc);
     *(uint *)((long long)SystemContext + 0xc) = Utf16Char | 0x1010002;
-    SystemChecksum = Utf16Char & 0xfffffffe | 0x1010002;
+    SystemChecksum = Utf16CharacterValue & 0xfffffffe | 0x1010002;
     if ((*(byte *)(PatternIndex + 0xa0) & 0x40) != 0) {
       SystemChecksum = Utf16Char | 0x1010003;
     }
@@ -169906,7 +169906,7 @@ void InitializeSystemMemoryAndCharacterEncoding(void)
     }
     Utf16Char = *(uint *)((long long)SystemContext + 0xc);
     *(uint *)((long long)SystemContext + 0xc) = Utf16Char | 0x1010002;
-    SystemChecksum = Utf16Char & 0xfffffffe | 0x1010002;
+    SystemChecksum = Utf16CharacterValue & 0xfffffffe | 0x1010002;
     if ((*(byte *)(PatternIndex + 0xa0) & 0x40) != 0) {
       SystemChecksum = Utf16Char | 0x1010003;
     }
@@ -181127,7 +181127,7 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *CharacterCode,long lon
   MemoryBlockHandle = 0;
   PatternMatchStatus = SearchStartIndex;
   if (SystemDataRegistry != 0) {
-    BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 8,Utf16Char & 0xff,Utf16EndPointer,0xfffffffffffffffe);
+    BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 8,Utf16CharacterValue & 0xff,Utf16EndPointer,0xfffffffffffffffe);
   }
   *CharacterCode = BufferStatus;
   CharacterCode[1] = BufferStatus;
@@ -181144,7 +181144,7 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *CharacterCode,long lon
   *(uint *)(CharacterCode + 8) = Utf16Char;
   PatternMatchStatus = SearchStartIndex;
   if (SystemDataRegistry != 0) {
-    BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry << 4,Utf16Char & 0xff,Utf16EndPointer,CalculatedCodePoint);
+    BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry << 4,Utf16CharacterValue & 0xff,Utf16EndPointer,CalculatedCodePoint);
   }
   CharacterCode[5] = BufferStatus;
   CharacterCode[6] = BufferStatus;
@@ -181158,7 +181158,7 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *CharacterCode,long lon
     *(uint *)(CharacterCode + 0xc) = Utf16Char;
     PatternMatchStatus = SearchStartIndex;
     if (SystemDataRegistry != 0) {
-      BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 4,Utf16Char & 0xff,Utf16EndPointer,CalculatedCodePoint);
+      BufferStatus = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 4,Utf16CharacterValue & 0xff,Utf16EndPointer,CalculatedCodePoint);
     }
     CharacterCode[9] = BufferStatus;
     CharacterCode[10] = BufferStatus;
@@ -181172,7 +181172,7 @@ long long * ProcessUtf8ToUtf16BufferConversion(long long *CharacterCode,long lon
       Utf16Char = *(uint *)(SystemBufferSize + 0x10);
       *(uint *)(CharacterCode + 0x10) = Utf16Char;
       if (BufferStatus != 0) {
-        MemoryBlockIndex = BufferAllocate(MemoryPoolManager,BufferStatus * 0x18,Utf16Char & 0xff,Utf16EndPointer,CalculatedCodePoint);
+        MemoryBlockIndex = BufferAllocate(MemoryPoolManager,BufferStatus * 0x18,Utf16CharacterValue & 0xff,Utf16EndPointer,CalculatedCodePoint);
       }
       CharacterCode[0xd] = MemoryBlockIndex;
       CharacterCode[0xe] = MemoryBlockIndex;
@@ -199309,10 +199309,10 @@ long long InitializeCharacterCodeProcessingAndSystemBufferManagement(long long C
   MemoryBlockHandle = 0;
   AllocatedMemorySize = (SystemDataRegistry >> 2) - (SystemDataRegistry >> 0x3f);
   Utf16CharacterValue = *(uint *)(SystemBufferSize + 0x38);
-  *(uint *)(CharacterCode + 0x38) = Utf16Char;
+  *(uint *)(CharacterCode + 0x38) = Utf16CharacterValue;
   SystemDataRegistry = MemoryBlockIndex;
   if (AllocatedMemorySize != 0) {
-    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16Char & 0xff);
+    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CharacterValue & 0xff);
   }
   *(long long *)(CharacterCode + 0x20) = SystemDataRegistry;
   *(long long *)(CharacterCode + 0x28) = SystemDataRegistry;
@@ -199351,7 +199351,7 @@ long long InitializeCharacterCodeProcessingAndSystemBufferManagement(long long C
   *(uint *)(CharacterCode + 400) = Utf16Char;
   SystemDataRegistry = MemoryBlockIndex;
   if (AllocatedMemorySize != 0) {
-    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16Char & 0xff);
+    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CharacterValue & 0xff);
   }
   *(long long *)(CharacterCode + 0x178) = SystemDataRegistry;
   *(long long *)(CharacterCode + 0x180) = SystemDataRegistry;
@@ -199387,7 +199387,7 @@ long long InitializeCharacterCodeProcessingAndSystemBufferManagement(long long C
   *(uint *)(CharacterCode + 0x4a8) = Utf16Char;
   SystemDataRegistry = MemoryBlockIndex;
   if (AllocatedMemorySize != 0) {
-    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16Char & 0xff);
+    SystemDataRegistry = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CharacterValue & 0xff);
   }
   *(long long *)(CharacterCode + 0x490) = SystemDataRegistry;
   *(long long *)(CharacterCode + 0x498) = SystemDataRegistry;
@@ -199425,7 +199425,7 @@ long long InitializeCharacterCodeProcessingAndSystemBufferManagement(long long C
   Utf16Char = *(uint *)(SystemBufferSize + 0x10d0);
   *(uint *)(CharacterCode + 0x10d0) = Utf16Char;
   if (SystemDataRegistry != 0) {
-    MemoryBlockIndex = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 0x98,Utf16Char & 0xff);
+    MemoryBlockIndex = BufferAllocate(MemoryPoolManager,SystemDataRegistry * 0x98,Utf16CharacterValue & 0xff);
   }
   *(long long *)(CharacterCode + 0x10b8) = MemoryBlockIndex;
   *(long long *)(CharacterCode + 0x10c0) = MemoryBlockIndex;
@@ -212947,7 +212947,7 @@ long long * FUN_18017b070(long long *CharacterCode,long long *CharacterCodeSize,
   AllocatedMemorySize = 0;
   SystemDataRegistry = AllocatedMemorySize;
   if (MemoryBoundaryEnd != 0) {
-    SystemDataRegistry = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 8,Utf16Char & 0xff,Utf16EndPointer,SystemMemoryAllocationResult);
+    SystemDataRegistry = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 8,Utf16CharacterValue & 0xff,Utf16EndPointer,SystemMemoryAllocationResult);
   }
   CharacterCode[1] = SystemDataRegistry;
   CharacterCode[2] = SystemDataRegistry;
@@ -212968,7 +212968,7 @@ long long * FUN_18017b070(long long *CharacterCode,long long *CharacterCodeSize,
   *(uint *)(CharacterCode + 8) = Utf16Char;
   SystemDataRegistry = AllocatedMemorySize;
   if (MemoryBoundaryEnd != 0) {
-    SystemDataRegistry = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd << 6,Utf16Char & 0xff,Utf16EndPointer,SystemMemoryAllocationResult);
+    SystemDataRegistry = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd << 6,Utf16CharacterValue & 0xff,Utf16EndPointer,SystemMemoryAllocationResult);
   }
   CharacterCode[5] = SystemDataRegistry;
   CharacterCode[6] = SystemDataRegistry;
@@ -212984,7 +212984,7 @@ long long * FUN_18017b070(long long *CharacterCode,long long *CharacterCodeSize,
   Utf16Char = *(uint *)(SystemBufferSize + 0xc);
   *(uint *)(CharacterCode + 0xc) = Utf16Char;
   if (SystemDataRegistry != 0) {
-    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,SystemDataRegistry << 4,Utf16Char & 0xff,Utf16EndPointer,SystemMemoryAllocationResult);
+    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,SystemDataRegistry << 4,Utf16CharacterValue & 0xff,Utf16EndPointer,SystemMemoryAllocationResult);
   }
   CharacterCode[9] = AllocatedMemorySize;
   CharacterCode[10] = AllocatedMemorySize;
@@ -248198,7 +248198,7 @@ long long * ProcessCharacterCodeBoundaryAndMemoryAllocation(long long *Character
       MemoryPoolBlockSize = 0;
     }
     else {
-      MemoryPoolBlockSize = BufferAllocate(MemoryPoolManager,SystemDataTablePointer * 0xc,Utf16Char & 0xff);
+      MemoryPoolBlockSize = BufferAllocate(MemoryPoolManager,SystemDataTablePointer * 0xc,Utf16CharacterValue & 0xff);
     }
     MemoryBoundaryPointer[0xb] = MemoryPoolBlockSize;
     MemoryBoundaryPointer[0xc] = MemoryPoolBlockSize;
@@ -248382,7 +248382,7 @@ long long * InitializeCharacterCodeAndDataStructure(long long *CharacterCode,lon
     AllocatedMemorySize = 0;
   }
   else {
-    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0xc,Utf16Char & 0xff,Utf16EndPointer,SystemChecksum);
+    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0xc,Utf16CharacterValue & 0xff,Utf16EndPointer,SystemChecksum);
   }
   CharacterCode[0xb] = AllocatedMemorySize;
   CharacterCode[0xc] = AllocatedMemorySize;
@@ -248453,7 +248453,7 @@ long long * FUN_180209980(long long *CharacterCode,long long *CharacterCodeSize,
         AllocatedMemorySize = 0;
       }
       else {
-        AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0xc,Utf16Char & 0xff);
+        AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0xc,Utf16CharacterValue & 0xff);
       }
       Utf16EndPointer[0xb] = AllocatedMemorySize;
       Utf16EndPointer[0xc] = AllocatedMemorySize;
@@ -253185,7 +253185,7 @@ long long * FUN_1802117b0(long long CharacterCode,long long *CharacterCodeSize,u
   Utf16Char = *(uint *)(CharacterCode + 0x3b0);
   *(uint *)(SystemBufferSize + 3) = Utf16Char;
   if (AllocatedMemorySize != 0) {
-    MemoryBlockIndex = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16Char & 0xff,Utf16EndPointer,0,0xfffffffffffffffe);
+    MemoryBlockIndex = BufferAllocate(MemoryPoolManager,AllocatedMemorySize * 0x98,Utf16CharacterValue & 0xff,Utf16EndPointer,0,0xfffffffffffffffe);
   }
   *CharacterCodeSize = MemoryBlockIndex;
   SystemBufferSize[1] = MemoryBlockIndex;
@@ -256190,7 +256190,7 @@ unsigned long long ValidateSystemUnicodeConversion(void
     SystemStackLong40 = *(long long *)(SystemDataNode + 8);
   }
   Utf16Char = ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,&SystemUnicodeValidationConfig);
-  return Utf16Char & 0xffffffffffffff00;
+  return Utf16CharacterValue & 0xffffffffffffff00;
 }
 
 
@@ -256528,7 +256528,7 @@ unsigned long long GetSystemUtf16Char(void
     StackDataTemplate = *(void **)(SystemDataNode + 8);
   }
   Utf16Char = ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,&SystemUtf16ConversionConfig);
-  return Utf16Char & 0xffffffffffffff00;
+  return Utf16CharacterValue & 0xffffffffffffff00;
 }
 
 
@@ -256720,7 +256720,7 @@ unsigned long long ValidateSystemUtf16Configuration(void
   unsigned long long Utf16Char;
   
   Utf16Char = ValidateSystemConfiguration(SystemConfigHandle,0,0x1000000000000,3,SystemConfigurationTemplateSenary);
-  return Utf16Char & 0xffffffffffffff00;
+  return Utf16CharacterValue & 0xffffffffffffff00;
 }
 
 
@@ -257858,7 +257858,7 @@ LAB_180216e0c:
   MemoryBoundaryEnd = (BufferStatus - SystemDataTablePointer) / 0x26 + (BufferStatus - SystemDataTablePointer >> 0x3f);
   MemoryBoundaryEnd = (MemoryBoundaryEnd >> 2) - (MemoryBoundaryEnd >> 0x3f);
   if (MemoryBoundaryEnd != 0) {
-    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0x98,Utf16Char & 0xff,Utf16EndPointer,0xfffffffffffffffe,0,0,0,
+    AllocatedMemorySize = BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd * 0x98,Utf16CharacterValue & 0xff,Utf16EndPointer,0xfffffffffffffffe,0,0,0,
                           Utf16Char);
   }
   MemoryBoundaryEnd = MemoryBoundaryEnd * 0x98 + AllocatedMemorySize;
@@ -274136,7 +274136,7 @@ uint64_t * FUN_180226430(uint64_t *CharacterCode
   SystemUintBuffer238 = 0;
   pOperationStatus = SystemBufferSize;
   Utf16Char = (*SystemFunctionPointerA)(1,&SystemUnknownProcessingStatusFlagI,&SystemUintBuffer240);
-  if ((Utf16Char & 0xfff00000) != 0xbad00000) {
+  if ((Utf16CharacterValue & 0xfff00000) != 0xbad00000) {
                     // WARNING: Subroutine does not return
     memset(auStack_218,0,0x200);
   }
@@ -281494,7 +281494,7 @@ void ProcessCharacterCodeHash(unsigned long long *CharacterCode,long long System
   }
   if (*(long long *)(SystemBufferSize + 200) != 0) {
     Utf16Char = *(unsigned long long *)(*(long long *)(SystemBufferSize + 200) + 0x278);
-    Utf16Char = (MemoryAllocationIndex ^ (((((((Utf16Char >> 8 & 0xff ^ (Utf16Char & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3                           * 0x100000001b3 ^ Utf16Char >> 0x10 & 0xff) * 0x100000001b3 ^
+    Utf16Char = (MemoryAllocationIndex ^ (((((((Utf16Char >> 8 & 0xff ^ (Utf16CharacterValue & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3                           * 0x100000001b3 ^ Utf16Char >> 0x10 & 0xff) * 0x100000001b3 ^
                          Utf16Char >> 0x18 & 0xff) * 0x100000001b3 ^ Utf16Char >> 0x20 & 0xff) *
                         0x100000001b3 ^ Utf16Char >> 0x28 & 0xff) * 0x100000001b3 ^ Utf16Char >> 0x30 & 0xff
                       ) * 0x100000001b3 ^ Utf16Char >> 0x38) * 0x100000001b3) * -0x622015f714c7d297;
@@ -281504,7 +281504,7 @@ void ProcessCharacterCodeHash(unsigned long long *CharacterCode,long long System
   }
   if (*(long long *)(SystemBufferSize + 0xd8) != 0) {
     Utf16Char = *(unsigned long long *)(*(long long *)(SystemBufferSize + 0xd8) + 0x278);
-    Utf16Char = (MemoryAllocationIndex ^ (((((((Utf16Char >> 8 & 0xff ^ (Utf16Char & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3                           * 0x100000001b3 ^ Utf16Char >> 0x10 & 0xff) * 0x100000001b3 ^
+    Utf16Char = (MemoryAllocationIndex ^ (((((((Utf16Char >> 8 & 0xff ^ (Utf16CharacterValue & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3                           * 0x100000001b3 ^ Utf16Char >> 0x10 & 0xff) * 0x100000001b3 ^
                          Utf16Char >> 0x18 & 0xff) * 0x100000001b3 ^ Utf16Char >> 0x20 & 0xff) *
                         0x100000001b3 ^ Utf16Char >> 0x28 & 0xff) * 0x100000001b3 ^ Utf16Char >> 0x30 & 0xff
                       ) * 0x100000001b3 ^ Utf16Char >> 0x38) * 0x100000001b3) * -0x622015f714c7d297;
