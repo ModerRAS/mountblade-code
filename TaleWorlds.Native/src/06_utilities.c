@@ -2540,12 +2540,22 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define ValidateSystemParametersAndConfig FUN_180047e40
 
-// 原始函数名：ProcessSystemDataA0 - 系统数据处理函数A0
+/**
+ * @brief 系统数据处理函数A0
+ * 
+ * 处理系统数据，包括数据的读取、验证和转换操作
+ * 
+ * @note 原始函数名：ProcessSystemDataA0
+ */
 #define ProcessSystemDataA0 ProcessSystemDataPrimary
 
-// 系统上下文验证函数A0
-// 功能：验证系统上下文的有效性和完整性
-// 系统上下文验证函数
+/**
+ * @brief 系统上下文验证函数A0
+ * 
+ * 验证系统上下文的有效性和完整性，确保上下文数据的正确性
+ * 
+ * @note 原始函数名：FUN_180090b80
+ */
 #define ValidateSystemContextA0 FUN_180090b80
 
 // 数据数组处理函数A0
