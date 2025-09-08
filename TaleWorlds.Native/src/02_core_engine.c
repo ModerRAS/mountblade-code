@@ -50006,15 +50006,19 @@ SystemBufferValidationError:
 
 
  /**
- * @brief 处理核心引擎系统上下文
+ * @brief 处理核心引擎系统上下文和事件管理
  * 
  * 该函数负责处理核心引擎的系统上下文，包括：
- * - 系统事件表的管理和访问
+ * - 系统事件表的动态分配和管理
  * - 内存分配和缓冲区管理
  * - 系统状态和配置的处理
  * - 事件数据结构的初始化和配置
+ * - Unicode字符编码处理
+ * - 系统事件模板的创建和维护
+ * - 矩阵变换和坐标系统处理
  * 
- * @note 原始函数名可能是逆向工程生成的，更具语义的名称
+ * @note 原始函数名：CoreEngineProcessSystemContext
+ * @note 这是一个复杂的系统级函数，涉及多个子系统的协调
  */
 void CoreEngineProcessSystemContext(void
 {
@@ -50106,11 +50110,25 @@ void CoreEngineProcessSystemContext(void
   uint64_t stackData188;  // 栈数据188，用于存储数据
   long long stackMemoryAddress190;  // 栈内存地址190，用于存储地址
   
-  // 美化后的栈变量名称
+  // 美化后的栈变量名称 - 系统事件处理
   long long systemEventTablePointer;  // 系统事件表指针
   unsigned long long originalAllocatedMemorySize;  // 原始内存分配大小
   uint64_t *eventDataStructureHandle;  // 事件数据结构指针
   long long systemContextMemoryAddress178;  // 系统上下文内存地址178
+  
+  // 美化后的临时变量名称
+  uint32_t encodingValidationResult;  // 编码验证结果
+  long long allocatedMemoryBlock;  // 分配的内存块
+  bool isMemoryBlockEmpty;  // 内存块是否为空
+  uint64_t currentUnicodeValue;  // 当前Unicode值
+  char *functionPointer;  // 函数指针
+  uint32_t *memoryAddressPointer;  // 内存地址指针
+  
+  // 美化后的系统状态变量
+  uint32_t systemStatusValue;  // 系统状态值
+  uint32_t systemChecksum;  // 系统校验和
+  uint32_t processingStatusFlag;  // 处理状态标志
+  uint32_t *systemEventTemplatePointer;  // 系统事件模板指针
   
   if (!ZeroFlagValidation) {
     ProcessCharacterCode();
@@ -50127,29 +50145,29 @@ void CoreEngineProcessSystemContext(void
   pMemoryAddressMaskPointer2 = systemEventTemplatePtr6 + (UnicodeCharacterValue + 1) * 2;
   originalAllocatedMemorySize = UnicodeCharacterValue;
   do {
-    EncodingValidationResult0 = (int)MemoryAddressMaskPointer1;
+    encodingValidationResult = (int)MemoryAddressMaskPointer1;
     if (*(long long *)pMemoryAddressMaskPointer2 == 0) {
-      MemoryBlockIndex3 = BufferAllocate(MemoryPoolManager,0xc000,0x25);
+      allocatedMemoryBlock = BufferAllocate(MemoryPoolManager,0xc000,0x25);
       LOCK();
-      IsMemoryBlockEmpty = *(long long *)(systemEventTemplatePtr6 + (long long)EncodingValidationResult0 * 2 + 2) == 0;
-      if (IsMemoryBlockEmpty) {
-        *(long long *)(systemEventTemplatePtr6 + (long long)EncodingValidationResult0 * 2 + 2) = MemoryBlockIndex3;
+      isMemoryBlockEmpty = *(long long *)(systemEventTemplatePtr6 + (long long)encodingValidationResult * 2 + 2) == 0;
+      if (isMemoryBlockEmpty) {
+        *(long long *)(systemEventTemplatePtr6 + (long long)encodingValidationResult * 2 + 2) = allocatedMemoryBlock;
       }
       UNLOCK();
-      if (IsMemoryBlockEmpty) {
-        InitializeSystemMemoryBlock(systemEventTemplatePtr6,EncodingValidationResult0 << 9);
+      if (isMemoryBlockEmpty) {
+        InitializeSystemMemoryBlock(systemEventTemplatePtr6,encodingValidationResult << 9);
         LOCK();
-        *(uint8_t *)((long long)systemEventTemplatePtr6 + (long long)EncodingValidationResult0 + 0x808) = 0;
+        *(uint8_t *)((long long)systemEventTemplatePtr6 + (long long)encodingValidationResult + 0x808) = 0;
         UNLOCK();
-        UnicodeCharacterValue = originalAllocatedMemorySize;
+        currentUnicodeValue = originalAllocatedMemorySize;
       }
       else {
-        if (MemoryBlockIndex3 != 0) {
+        if (allocatedMemoryBlock != 0) {
                     // WARNING: Subroutine does not return
           CoreEngineProcessSystemEvent();
         }
         do {
-          UnicodeCharacterValue = originalAllocatedMemorySize;
+          currentUnicodeValue = originalAllocatedMemorySize;
         } while (*FunctionPointer7 != '\0');
       }
     }
@@ -50157,15 +50175,15 @@ void CoreEngineProcessSystemContext(void
       do {
       } while (*FunctionPointer7 != '\0');
     }
-    FunctionPointer7 = FunctionPointer7 + 1;
-    MemoryAddressMaskPointer1 = (unsigned long long)(EncodingValidationResult0 + 1);
-    pMemoryAddressMaskPointer2 = pMemoryAddressMaskPointer2 + 2;
-  } while ((long long)(FunctionPointer7 + (-0x808 - (long long)systemEventTemplatePtr6)) <= (long long)UnicodeCharacterValue);
+    functionPointer = FunctionPointer7 + 1;
+    MemoryAddressMaskPointer1 = (unsigned long long)(encodingValidationResult + 1);
+    memoryAddressPointer = pMemoryAddressMaskPointer2 + 2;
+  } while ((long long)(functionPointer + (-0x808 - (long long)systemEventTemplatePtr6)) <= (long long)currentUnicodeValue);
   // 获取系统事件模板指针
-  SystemEventTemplatePointer8 = (void *            (*(long long *              ((long long)*(int *)(systemEventTablePointer + 0x1210) * 0x908 + systemEventTablePointer + 8 +
-              UnicodeCharacterValue * 8) + (unsigned long long)(Utf16Char - (Utf16CharacterValue & 0xfffffe00)) * 0x60);
-  MemoryBlockIndex3 = SystemContext;
-  eventDataStructureHandle = SystemEventTemplatePointer8;
+  systemEventTemplatePointer = (void *            (*(long long *              ((long long)*(int *)(systemEventTablePointer + 0x1210) * 0x908 + systemEventTablePointer + 8 +
+              currentUnicodeValue * 8) + (unsigned long long)(Utf16Char - (Utf16CharacterValue & 0xfffffe00)) * 0x60);
+  long long systemContextData = SystemContext;
+  eventDataStructureHandle = systemEventTemplatePointer;
   
   // 检查系统上下文标志并获取内存块数据
   if ((*(byte *)(SystemContext + 0xfd) & 0x20) == 0) {
