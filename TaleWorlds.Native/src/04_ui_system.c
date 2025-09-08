@@ -862,7 +862,7 @@ typedef enum {
 #define ProcessUILookupTableSearch FUN_180724250
 #define InitializeUILookupTable FUN_180724237
 // UI系统数据写入函数美化
-#define WriteUIDataToBuffer FUN_1807054a0
+#define WriteUIDataToBuffer WriteUIDataToBuffer
 
 // UI系统渲染参数美化
 #define renderParam1 stackParam00000048
@@ -88224,7 +88224,7 @@ int FUN_18071a480(longlong uiContext,int dataSource,int targetBuffer,longlong bu
               localInt8 = -1;
             }
             param_7 = localInt8;
-            FUN_1807054a0(stringCompareIndex,localInt8 >> 0x1f ^ localInt8 * 2,&UiStateBuffer,2);
+            WriteUIDataToBuffer(stringCompareIndex,localInt8 >> 0x1f ^ localInt8 * 2,&UiStateBuffer,2);
             localInt8 = uiContext5;
           }
         }
@@ -88398,7 +88398,7 @@ int FUN_18071a56f(int uiContext,UIHandle dataSource,int targetBuffer,int bufferS
             TempInt4 = -1;
           }
           iStack0000000000000130 = TempInt4;
-          FUN_1807054a0(result2,TempInt4 >> 0x1f ^ TempInt4 * 2,&UiStateBuffer,2);
+          WriteUIDataToBuffer(result2,TempInt4 >> 0x1f ^ TempInt4 * 2,&UiStateBuffer,2);
           RegisterPointer = stackParam00000118;
           targetBuffer = stackParam00000128;
           register10D = stackParam00000108;
@@ -89193,11 +89193,11 @@ void FUN_18071bfe0(UIHandle uiContext,char *dataSource)
 {
   longlong allocatedMemory;
   
-  FUN_1807054a0(uiContext,dataSource[2] * 5 + (int)dataSource[5],&UiControlData,8);
+  WriteUIDataToBuffer(uiContext,dataSource[2] * 5 + (int)dataSource[5],&UiControlData,8);
   allocatedMemory = 2;
   do {
-    FUN_1807054a0(uiContext,(int)*dataSource,&UIDataBufferA,8);
-    FUN_1807054a0(uiContext,(int)dataSource[1],&UIDataBufferB,8);
+    WriteUIDataToBuffer(uiContext,(int)*dataSource,&UIDataBufferA,8);
+    WriteUIDataToBuffer(uiContext,(int)dataSource[1],&UIDataBufferB,8);
     dataSource = dataSource + 3;
     allocatedMemory = allocatedMemory + -1;
   } while (allocatedMemory != 0);
@@ -89421,28 +89421,28 @@ void ProcessUIDataBlock(longlong uiContext,UIHandle dataSource,int targetBuffer,
     processedCount = processedCount + -2;
     ptrResult2 = &UIFunctionResultTableB;
   }
-  FUN_1807054a0(dataSource,processedCount,ptrResult2,8);
+  WriteUIDataToBuffer(dataSource,processedCount,ptrResult2,8);
   loopCounter = (uint)*plocalChar9;
   if (resultPointer == 2) {
     ptrResult2 = &UIFunctionResultTableC;
   }
   else {
-    FUN_1807054a0(dataSource,(int)loopCounter >> 3,&UIFunctionResultTableC + (longlong)plocalChar9[0x1d] * 8,8);
+    WriteUIDataToBuffer(dataSource,(int)loopCounter >> 3,&UIFunctionResultTableC + (longlong)plocalChar9[0x1d] * 8,8);
     ptrResult2 = &UIFunctionResultTableD;
     loopCounter = (int)*plocalChar9 & 7;
   }
-  FUN_1807054a0(dataSource,loopCounter,ptrResult2,8);
+  WriteUIDataToBuffer(dataSource,loopCounter,ptrResult2,8);
   processedCount = 1;
   plocalChar8 = plocalChar9;
   if (1 < *(int *)(uiBufferData + 0x11e0)) {
     do {
-      FUN_1807054a0(dataSource,(int)plocalChar8[1],&UIShaderUniformTable,8);
+      WriteUIDataToBuffer(dataSource,(int)plocalChar8[1],&UIShaderUniformTable,8);
       processedCount = processedCount + 1;
       plocalChar8 = plocalChar8 + 1;
     } while (processedCount < *(int *)(uiBufferData + 0x11e0));
   }
   plocalChar8 = plocalChar9 + 8;
-  FUN_1807054a0(dataSource,(int)*plocalChar8,
+  WriteUIDataToBuffer(dataSource,(int)*plocalChar8,
                 (longlong)(((int)plocalChar9[0x1d] >> 1) * (int)**(short **)(uiContext + 0x1258)) +
                 *(longlong *)(*(short **)(uiContext + 0x1258) + 0xc),8);
   FUN_1807248c0(asStack_68,astackUInt78,*(UIHandle *)(uiContext + 0x1258),(int)*plocalChar8);
@@ -89457,7 +89457,7 @@ void ProcessUIDataBlock(longlong uiContext,UIHandle dataSource,int targetBuffer,
       ptrResult2 = (undefined *)((longlong)*psVar11 + *(longlong *)(ContextHandleData + 0x30));
       if (localChar1 < '\x04') {
         if (localChar1 < -3) {
-          FUN_1807054a0(dataSource,0,ptrResult2,8);
+          WriteUIDataToBuffer(dataSource,0,ptrResult2,8);
           ptrResult2 = &UIFunctionResultTableE;
           localInt6 = -4 - *plocalChar7;
         }
@@ -89466,11 +89466,11 @@ void ProcessUIDataBlock(longlong uiContext,UIHandle dataSource,int targetBuffer,
         }
       }
       else {
-        FUN_1807054a0(dataSource,8,ptrResult2,8);
+        WriteUIDataToBuffer(dataSource,8,ptrResult2,8);
         ptrResult2 = &UIFunctionResultTableE;
         localInt6 = *plocalChar7 + -4;
       }
-      FUN_1807054a0(dataSource,localInt6,ptrResult2,8);
+      WriteUIDataToBuffer(dataSource,localInt6,ptrResult2,8);
       ContextHandleData = *(longlong *)(uiBufferData + 0x1258);
       ProcessingResult3 = ProcessingResult3 + 1;
       psVar11 = psVar11 + 1;
@@ -89478,7 +89478,7 @@ void ProcessUIDataBlock(longlong uiContext,UIHandle dataSource,int targetBuffer,
     } while (ProcessingResult3 < *(short *)(ContextHandleData + 2));
   }
   if (*(int *)(uiBufferData + 0x11e0) == 4) {
-    FUN_1807054a0(dataSource,(int)plocalChar9[0x1f],&UIFunctionResultTableF,8);
+    WriteUIDataToBuffer(dataSource,(int)plocalChar9[0x1f],&UIFunctionResultTableF,8);
   }
   if (plocalChar9[0x1d] != '\x02') goto LAB_18071cb6a;
   if ((resultPointer == 2) && (*(int *)(uiBufferData + 0x1690) == 2)) {
@@ -89488,7 +89488,7 @@ void ProcessUIDataBlock(longlong uiContext,UIHandle dataSource,int targetBuffer,
     if (0x13 < loopCounter) {
       ProcessingResult3 = 0;
     }
-    FUN_1807054a0(dataSource,ProcessingResult3,&UIAnimationDataTable,8);
+    WriteUIDataToBuffer(dataSource,ProcessingResult3,&UIAnimationDataTable,8);
     if (0x13 < loopCounter) goto LAB_18071ca80;
   }
   else {
@@ -89496,28 +89496,28 @@ LAB_18071ca80:
     sVar2 = *(short *)(plocalChar9 + 0x1a);
     ProcessingResult3 = *(int *)(uiBufferData + 0x11dc) >> 1;
     EventTypeCode = (longlong)(int)sVar2 / (longlong)ProcessingResult3;
-    FUN_1807054a0(dataSource,EventTypeCode & 0xffffffff,&UIFunctionResultTableH,8);
-    FUN_1807054a0(dataSource,(int)sVar2 - (int)(short)ProcessingResult3 * (int)(short)EventTypeCode,
+    WriteUIDataToBuffer(dataSource,EventTypeCode & 0xffffffff,&UIFunctionResultTableH,8);
+    WriteUIDataToBuffer(dataSource,(int)sVar2 - (int)(short)ProcessingResult3 * (int)(short)EventTypeCode,
                   *(UIHandle *)(uiContext + 0x1248),8);
   }
   *(UIWord *)(uiContext + 0x1694) = *(UIWord *)(plocalChar9 + 0x1a);
-  FUN_1807054a0(dataSource,(int)plocalChar9[0x1c],*(UIHandle *)(uiContext + 0x1250),8);
-  FUN_1807054a0(dataSource,(int)plocalChar9[0x20],&UIFunctionResultTableI,8);
+  WriteUIDataToBuffer(dataSource,(int)plocalChar9[0x1c],*(UIHandle *)(uiContext + 0x1250),8);
+  WriteUIDataToBuffer(dataSource,(int)plocalChar9[0x20],&UIFunctionResultTableI,8);
   if (0 < *(int *)(uiBufferData + 0x11e0)) {
     plocalChar8 = plocalChar9 + 4;
     do {
-      FUN_1807054a0(dataSource,(int)*plocalChar8,
+      WriteUIDataToBuffer(dataSource,(int)*plocalChar8,
                     *(UIHandle *)(&UIFunctionResultTableJ + (longlong)plocalChar9[0x20] * 8),8);
       processedCount = processedCount + 1;
       plocalChar8 = plocalChar8 + 1;
     } while (processedCount < *(int *)(uiBufferData + 0x11e0));
   }
   if (resultPointer == 0) {
-    FUN_1807054a0(dataSource,(int)plocalChar9[0x21],&UIStateDataTable,8);
+    WriteUIDataToBuffer(dataSource,(int)plocalChar9[0x21],&UIStateDataTable,8);
   }
 LAB_18071cb6a:
   *(int *)(uiBufferData + 0x1690) = (int)plocalChar9[0x1d];
-  FUN_1807054a0(dataSource,(int)plocalChar9[0x22],&UIFunctionResultTableL,8);
+  WriteUIDataToBuffer(dataSource,(int)plocalChar9[0x22],&UIFunctionResultTableL,8);
                      WARNING: Subroutine does not return
   ExecuteUIRenderTask(stackUInt48 ^ (ulonglong)astackUInt98);
 }
@@ -96495,7 +96495,7 @@ void FUN_180724170(UIHandle uiContext,longlong dataSource,int targetBuffer,short
                     [(ulonglong)result + (longlong)((short)(bufferSize * 2 + resultPointer) * 7)];
         do {
           if (*(char *)(stringCompareIndex + dataSource) != '\0') {
-            FUN_1807054a0(uiContext,((int)*(char *)(stringCompareIndex + dataSource) >> 7) + 1,&stackUInt28,8);
+            WriteUIDataToBuffer(uiContext,((int)*(char *)(stringCompareIndex + dataSource) >> 7) + 1,&stackUInt28,8);
           }
           stringCompareIndex = stringCompareIndex + 1;
         } while (stringCompareIndex < 0x10);
@@ -96526,7 +96526,7 @@ void FUN_1807241b8(void)
       allocatedMemory = 0;
       do {
         if (*(char *)(allocatedMemory + TargetHandle) != '\0') {
-          FUN_1807054a0();
+          WriteUIDataToBuffer();
         }
         allocatedMemory = allocatedMemory + 1;
       } while (allocatedMemory < 0x10);
@@ -96723,50 +96723,50 @@ void FUN_1807245b0(UIHandle uiContext,int *dataSource)
   uiValidationResult = localInt8 + localInt5;
   TempInt4 = uiValidationResult + processingResult + ProcessingResult1;
   if (0 < TempInt4) {
-    FUN_1807054a0(uiContext,ProcessingResult1,&UILookupTablePrimary + (byte)(&UILookupTableIndex)[TempInt4],8);
+    WriteUIDataToBuffer(uiContext,ProcessingResult1,&UILookupTablePrimary + (byte)(&UILookupTableIndex)[TempInt4],8);
   }
   TempInt4 = ProcessingResult2 + localInt6;
   if (0 < ProcessingResult1) {
-    FUN_1807054a0(uiContext,TempInt4,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[ProcessingResult1],8);
+    WriteUIDataToBuffer(uiContext,TempInt4,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[ProcessingResult1],8);
   }
   if (0 < TempInt4) {
-    FUN_1807054a0(uiContext,ProcessingResult2,&UNK_180954550 + (byte)(&UILookupTableIndex)[TempInt4],8);
+    WriteUIDataToBuffer(uiContext,ProcessingResult2,&UNK_180954550 + (byte)(&UILookupTableIndex)[TempInt4],8);
   }
   if (0 < ProcessingResult2) {
-    FUN_1807054a0(uiContext,*dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[ProcessingResult2],8);
+    WriteUIDataToBuffer(uiContext,*dataSource,&UNK_1809544b0 + (byte)(&UILookupTableIndex)[ProcessingResult2],8);
   }
   if (0 < localInt6) {
-    FUN_1807054a0(uiContext,dataSource[2],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt6],8);
+    WriteUIDataToBuffer(uiContext,dataSource[2],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt6],8);
   }
   if (0 < localInt7 + processedCount) {
-    FUN_1807054a0(uiContext,processedCount,&UNK_180954550 + (byte)(&UILookupTableIndex)[localInt7 + processedCount],8);
+    WriteUIDataToBuffer(uiContext,processedCount,&UNK_180954550 + (byte)(&UILookupTableIndex)[localInt7 + processedCount],8);
   }
   if (0 < processedCount) {
-    FUN_1807054a0(uiContext,dataSource[4],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[processedCount],8);
+    WriteUIDataToBuffer(uiContext,dataSource[4],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[processedCount],8);
   }
   if (0 < localInt7) {
-    FUN_1807054a0(uiContext,dataSource[6],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt7],8);
+    WriteUIDataToBuffer(uiContext,dataSource[6],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt7],8);
   }
   if (0 < uiValidationResult + processingResult) {
-    FUN_1807054a0(uiContext,processingResult,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[uiValidationResult + processingResult],8);
+    WriteUIDataToBuffer(uiContext,processingResult,&UILookupTableSecondary + (byte)(&UILookupTableIndex)[uiValidationResult + processingResult],8);
   }
   if (0 < processingResult) {
-    FUN_1807054a0(uiContext,uiCompareResult,&UNK_180954550 + (byte)(&UILookupTableIndex)[processingResult],8);
+    WriteUIDataToBuffer(uiContext,uiCompareResult,&UNK_180954550 + (byte)(&UILookupTableIndex)[processingResult],8);
   }
   if (0 < uiCompareResult) {
-    FUN_1807054a0(uiContext,dataSource[8],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[uiCompareResult],8);
+    WriteUIDataToBuffer(uiContext,dataSource[8],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[uiCompareResult],8);
   }
   if (0 < localInt9) {
-    FUN_1807054a0(uiContext,dataSource[10],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt9],8);
+    WriteUIDataToBuffer(uiContext,dataSource[10],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt9],8);
   }
   if (0 < uiValidationResult) {
-    FUN_1807054a0(uiContext,localInt5,&UNK_180954550 + (byte)(&UILookupTableIndex)[uiValidationResult],8);
+    WriteUIDataToBuffer(uiContext,localInt5,&UNK_180954550 + (byte)(&UILookupTableIndex)[uiValidationResult],8);
   }
   if (0 < localInt5) {
-    FUN_1807054a0(uiContext,dataSource[0xc],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt5],8);
+    WriteUIDataToBuffer(uiContext,dataSource[0xc],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt5],8);
   }
   if (0 < localInt8) {
-    FUN_1807054a0(uiContext,dataSource[0xe],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt8],8);
+    WriteUIDataToBuffer(uiContext,dataSource[0xe],&UNK_1809544b0 + (byte)(&UILookupTableIndex)[localInt8],8);
   }
   return;
 }
