@@ -83997,7 +83997,18 @@ void CleanupResourceFlagBit0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090aae0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器并设置临时异常处理器
+ * 
+ * 该函数负责在指定偏移量处配置异常处理器，设置临时异常处理器，
+ * 清理现有处理器状态，并设置默认异常处理器B。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090aae0
+ */
+void ConfigureExceptionHandlerAtOffset98(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x98) = &TemporaryExceptionHandler;
@@ -84012,7 +84023,18 @@ void Unwind_18090aae0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090aaf0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理资源处理器状态
+ * 
+ * 该函数检查指定标志位，如果设置了资源清理标志，则清除该标志
+ * 并调用资源清理处理器进行资源释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含资源状态信息
+ * 
+ * @note 原始函数名：Unwind_18090aaf0
+ */
+void CleanupResourceHandlerState(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x60) & 1) != 0) {
@@ -84024,7 +84046,18 @@ void Unwind_18090aaf0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ab20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 验证数据并清理状态标志
+ * 
+ * 该函数检查数据验证标志位，如果设置了验证标志，则清除该标志
+ * 并调用数据验证函数进行数据验证。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含数据状态信息
+ * 
+ * @note 原始函数名：Unwind_18090ab20
+ */
+void ValidateDataAndClearStateFlag(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x60) & 2) != 0) {
@@ -84036,7 +84069,18 @@ void Unwind_18090ab20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ab50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理内存资源并重置标志
+ * 
+ * 该函数检查内存资源标志位，如果设置了资源标志，则清除该标志
+ * 并调用资源清理处理器进行内存资源释放。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含内存资源状态信息
+ * 
+ * @note 原始函数名：Unwind_18090ab50
+ */
+void CleanupMemoryResourceAndResetFlag(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 1) != 0) {
@@ -100019,70 +100063,148 @@ void ConfigureExceptionHandlerA0(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x78);
-  *(DataBuffer *)(exceptionHandlerContext + 0x28) = &TemporaryExceptionHandler;
-  if (*(int64_t *)(exceptionHandlerContext + 0x30) != 0) {
+  // 获取异常处理上下文
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset78);
+  
+  // 设置临时异常处理器
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerSlotOffset40) = &TemporaryExceptionHandler;
+  
+  // 检查并清理现有异常处理器
+  if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerCleanupOffset48) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(exceptionHandlerContext + 0x30) = 0;
-  *(DataWord *)(exceptionHandlerContext + 0x40) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 0x28) = &DefaultExceptionHandlerB;
+  
+  // 重置异常处理器状态
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCleanupOffset48) = 0;
+  *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset) = 0;
+  
+  // 设置默认异常处理器B
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerSlotOffset40) = &DefaultExceptionHandlerB;
+  
   return;
 }
 
 
 
-void Unwind_18090f150(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器函数A1
+ * 
+ * 该函数负责配置异常处理器，设置临时异常处理器，清理现有处理器状态，
+ * 并设置默认异常处理器B。这是一个系统级的异常处理配置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f150
+ */
+void ConfigureExceptionHandlerA1(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
   
+  // 获取异常处理上下文
   exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset80);
-  *(DataBuffer *)(exceptionHandlerContext + 8) = &TemporaryExceptionHandler;
+  
+  // 设置临时异常处理器
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerPrimarySlotOffset8) = &TemporaryExceptionHandler;
+  
+  // 检查并清理现有异常处理器
   if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) != 0) {
       TerminateSystemE0();
   }
+  
+  // 重置异常处理器状态
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) = 0;
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 8) = &DefaultExceptionHandlerB;
+  
+  // 设置默认异常处理器B
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerPrimarySlotOffset8) = &DefaultExceptionHandlerB;
+  
   return;
 }
 
 
 
-void Unwind_18090f160(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器函数A2
+ * 
+ * 该函数负责配置异常处理器，设置临时异常处理器，清理现有处理器状态，
+ * 并设置默认异常处理器B。这是一个系统级的异常处理配置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f160
+ */
+void ConfigureExceptionHandlerA2(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
   
-  exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x78);
-  *(DataBuffer *)(exceptionHandlerContext + 8) = &TemporaryExceptionHandler;
+  // 获取异常处理上下文
+  exceptionHandlerContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset78);
+  
+  // 设置临时异常处理器
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerPrimarySlotOffset8) = &TemporaryExceptionHandler;
+  
+  // 检查并清理现有异常处理器
   if (*(int64_t *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) != 0) {
       TerminateSystemE0();
   }
+  
+  // 重置异常处理器状态
   *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) = 0;
   *(DataWord *)(exceptionHandlerContext + ExceptionHandlerContextDataOffset) = 0;
-  *(DataBuffer *)(exceptionHandlerContext + 8) = &DefaultExceptionHandlerB;
+  
+  // 设置默认异常处理器B
+  *(DataBuffer *)(exceptionHandlerContext + ExceptionHandlerPrimarySlotOffset8) = &DefaultExceptionHandlerB;
+  
   return;
 }
 
 
 
-void Unwind_18090f170(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器函数A3
+ * 
+ * 该函数负责配置异常处理器，设置临时异常处理器，清理现有处理器状态，
+ * 并设置默认异常处理器B。这是一个系统级的异常处理配置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f170
+ */
+void ConfigureExceptionHandlerA3(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + 0x28);
+  // 获取异常处理上下文指针
+  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + ExceptionHandlerFunctionOffset40);
+  
+  // 如果异常处理上下文指针有效，则执行异常处理函数
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
+    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerFunctionOffset56))();
   }
+  
   return;
 }
 
 
 
-void Unwind_18090f180(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 配置异常处理器函数A4
+ * 
+ * 该函数负责配置异常处理器，获取异常处理上下文指针，
+ * 并执行相关的异常处理操作。这是一个系统级的异常处理配置函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090f180
+ */
+void ConfigureExceptionHandlerA4(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
