@@ -120020,6 +120020,168 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
  */
 #define ExecuteExceptionHandlerA2 Unwind_180910090
 
+/**
+ * @brief 执行异常处理器A3
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ac30
+ */
+#define ExecuteExceptionHandlerA3 Unwind_18090ac30
+
+/**
+ * @brief 执行异常处理器A4
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ac40
+ */
+#define ExecuteExceptionHandlerA4 Unwind_18090ac40
+
+/**
+ * @brief 执行异常处理器A5
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ac50
+ */
+#define ExecuteExceptionHandlerA5 Unwind_18090ac50
+
+/**
+ * @brief 执行异常处理器A6
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ac70
+ */
+#define ExecuteExceptionHandlerA6 Unwind_18090ac70
+
+/**
+ * @brief 执行异常处理器A7
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ac90
+ */
+#define ExecuteExceptionHandlerA7 Unwind_18090ac90
+
+/**
+ * @brief 执行异常处理器A8
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090acb0
+ */
+#define ExecuteExceptionHandlerA8 Unwind_18090acb0
+
+/**
+ * @brief 执行异常处理器A9
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090acd0
+ */
+#define ExecuteExceptionHandlerA9 Unwind_18090acd0
+
+/**
+ * @brief 执行异常处理器A10
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090acf0
+ */
+#define ExecuteExceptionHandlerA10 Unwind_18090acf0
+
+/**
+ * @brief 执行异常处理器A11
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ad10
+ */
+#define ExecuteExceptionHandlerA11 Unwind_18090ad10
+
+/**
+ * @brief 执行异常处理器A12
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ad30
+ */
+#define ExecuteExceptionHandlerA12 Unwind_18090ad30
+
+/**
+ * @brief 执行异常处理器A13
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ad50
+ */
+#define ExecuteExceptionHandlerA13 Unwind_18090ad50
+
+/**
+ * @brief 执行异常处理器A14
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ad70
+ */
+#define ExecuteExceptionHandlerA14 Unwind_18090ad70
+
+/**
+ * @brief 执行异常处理器A15
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ad90
+ */
+#define ExecuteExceptionHandlerA15 Unwind_18090ad90
+
+/**
+ * @brief 执行异常处理器A16
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090adb0
+ */
+#define ExecuteExceptionHandlerA16 Unwind_18090adb0
+
+/**
+ * @brief 执行异常处理器A17
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090add0
+ */
+#define ExecuteExceptionHandlerA17 Unwind_18090add0
+
+/**
+ * @brief 执行异常处理器A18
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090adf0
+ */
+#define ExecuteExceptionHandlerA18 Unwind_18090adf0
+
+/**
+ * @brief 执行异常处理器A19
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ae30
+ */
+#define ExecuteExceptionHandlerA19 Unwind_18090ae30
+
+/**
+ * @brief 执行异常处理器A20
+ * 
+ * 该函数用于执行异常处理器，调用特定的函数指针进行异常处理
+ * 
+ * @note 原始函数名：Unwind_18090ae70
+ */
+#define ExecuteExceptionHandlerA20 Unwind_18090ae70
+
 // 系统安全验证标志变量已声明为实际变量，无需#define定义
 // 数据验证缓冲区和系统数据缓冲区变量已声明为实际变量，无需#define定义
 // 数据验证和系统缓冲区变量

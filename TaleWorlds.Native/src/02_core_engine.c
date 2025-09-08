@@ -190882,7 +190882,7 @@ void ProcessCharacterEncodingAndBufferManagement(uint64_t CharacterCode, uint64_
   ProcessedDataSize = 0xfffffffffffffffe;
   StackInitializationBuffer[0] = 0;
   StackProcessingConfiguration[0] = Utf8SourcePointer;
-  FUN_1801595d0(CharacterCode,&EncodingFunctionPointer);
+  ProcessSystemCharacterEncoding(CharacterCode,&EncodingFunctionPointer);
   UnicodeCodePoint = 1;
   StringLengthStatus = -1;
   do {
@@ -190971,7 +190971,7 @@ void ProcessCharacterCodeMemoryAllocationAndReferenceCount(long long *CharacterC
       }
       StackIntegerArray[0] = 0;
       StringComparisonResult = *(int *)CharacterCode[1];
-      FUN_1801595d0(0,&StackTempPointer);
+      ProcessSystemCharacterEncoding(0,&StackTempPointer);
       MemoryBlockIndex = *(long long *)(&SystemStringComparisonResultTable + (long long)StringComparisonResult * 8);
       if (MemoryBlockIndex != 0) {
         AllocatedMemorySize = -1;
@@ -195110,7 +195110,7 @@ UpdateSystemStatus(uint64_t *CharacterCode,uint64_t SystemBufferSize,long long *
       *(uint32_t *)((unsigned long long)Utf16Char + BufferStatus) = 0x20736920;
       *(uint8_t *)((uint32_t *)((unsigned long long)Utf16Char + BufferStatus) + 1) = 0;
       *(int *)(CharacterCode + 2) = IntegerValue9 + 0xd;
-      DataSize = FUN_1800af9f0(CoreEngineMemoryContext,&ContextDataPointer,&EnginePointerBuffer,Utf16EndPointer,ProcessedCharacter);
+      DataSize = ProcessSystemDataAndContext(CoreEngineMemoryContext,&ContextDataPointer,&EnginePointerBuffer,Utf16EndPointer,ProcessedCharacter);
       FUN_180628320(CharacterCode,DataSize);
       ContextDataPointer = &SystemNullTemplate;
       if (MemoryOperationStatus != 0) {
