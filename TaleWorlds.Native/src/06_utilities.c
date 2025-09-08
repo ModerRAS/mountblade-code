@@ -22008,14 +22008,14 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
   }
   
   // 最终安全检查和清理
-  if ((0 < *(int *)((int64_t)componentContext + 0xc)) && (*componentContext != 0)) {
+  if ((0 < *(int *)((int64_t)componentContext + ComponentContextCapacityOffset)) && (*componentContext != 0)) {
     // 调用安全清理函数
     ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset1a0),*componentContext,&SystemMemoryPoolB,0x100,1);
   }
   
   // 完成组件初始化
   *componentContext = 0;
-  *(DataWord *)((int64_t)componentContext + 0xc) = 0;
+  *(DataWord *)((int64_t)componentContext + ComponentContextCapacityOffset) = 0;
   return 0; // 初始化成功
 }
 
@@ -22133,7 +22133,7 @@ DataBuffer ConfigureSystemParameterDK0(int64_t *parameterContext)
   uint validationCounter;
   
   // 获取验证计数器
-  validationCounter = *(uint *)((int64_t)parameterContext + 0xc);
+  validationCounter = *(uint *)((int64_t)parameterContext + ParameterContextFlagsOffset);
   
   // 验证数据完整性
   if ((int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f)) < 0) {
