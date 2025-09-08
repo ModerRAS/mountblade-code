@@ -26,6 +26,11 @@
 #define ProcessedFloatValueOffset 0x378                    // 处理浮点值偏移量
 #define NormalizedParameterOffset 900                       // 归一化参数偏移量
 
+// 浮点数常量定义
+#define FloatMaximumValue 3.4028235e+38f
+#define FloatLargeValue 1e+08f
+#define FloatNegativeLargeValue -1e+08f
+
 // 系统节点和内存管理常量
 #define SystemNodeHeaderSize 4                              // 系统节点头大小
 #define SystemNodeStatusOffset 0                            // 系统节点状态偏移量
@@ -46925,20 +46930,20 @@ float * ProcessFloatBoundaryCalculation(float *CharacterCode
   }
   if ((*(long long *)(FloatProcessingStatusFlag + 0x84) != 0) && (((uint)FloatDataStructure[0x40] & 0x80) == 0)) {
     pFloatBoundaryMin = CharacterCode + 0x9d;
-    pFloatBoundaryMin[0] = 1e+08;
-    pFloatBoundaryMin[1] = 1e+08;
-    CharacterCode[0x9f] = 1e+08;
-    CharacterCode[0xa0] = 3.4028235e+38;
-    CharacterCode[0xa1] = -1e+08;
-    CharacterCode[0xa2] = -1e+08;
-    CharacterCode[0xa3] = -1e+08;
-    CharacterCode[0xa4] = 3.4028235e+38;
+    pFloatBoundaryMin[0] = FloatLargeValue;
+    pFloatBoundaryMin[1] = FloatLargeValue;
+    CharacterCode[0x9f] = FloatLargeValue;
+    CharacterCode[0xa0] = FloatMaximumValue;
+    CharacterCode[0xa1] = FloatNegativeLargeValue;
+    CharacterCode[0xa2] = FloatNegativeLargeValue;
+    CharacterCode[0xa3] = FloatNegativeLargeValue;
+    CharacterCode[0xa4] = FloatMaximumValue;
     iterationCounter = 0;
     CharacterCode[0xa9] = 0.0;
     CharacterCode[0xa5] = 0.0;
     CharacterCode[0xa6] = 0.0;
     CharacterCode[0xa7] = 0.0;
-    CharacterCode[0xa8] = 3.4028235e+38;
+    CharacterCode[0xa8] = FloatMaximumValue;
     SystemOperation90 = 0;
     StackFloatValue98 = FloatProcessingStatusFlag;
     ProcessSystemStackData(&StackFloatValue98);
@@ -47038,7 +47043,7 @@ float * ProcessFloatBoundaryCalculation(float *CharacterCode
       CharacterCode[0xa5] = (CharacterCode[0xa1] + *pSystemContextPrimaryFloat) * 0.5;
       CharacterCode[0xa6] = (CharacterCode[0xa2] + CharacterCode[0x9e]) * 0.5;
       CharacterCode[0xa7] = (CharacterCode[0xa3] + CharacterCode[0x9f]) * 0.5;
-      CharacterCode[0xa8] = 3.4028235e+38;
+      CharacterCode[0xa8] = FloatMaximumValue;
       PrimaryFloatValue = 0.0;
       ProcessingStatusFlag = (unsigned long long)*(uint *)(SystemCurrentCharacterPointer + 0x10);
       if (0 < (int)*(uint *)(SystemCurrentCharacterPointer + 0x10)) {
@@ -53177,7 +53182,7 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
     CharacterCode[0xa5] = 0.0;
     CharacterCode[0xa6] = 0.0;
     CharacterCode[0xa7] = 0.0;
-    CharacterCode[0xa8] = 3.4028235e+38;
+    CharacterCode[0xa8] = FloatMaximumValue;
     SystemOperation90 = 0;
     pMatrixElementM = pFloatOffsetValue;
     ProcessSystemStackData(&pMatrixElementM);
@@ -53274,7 +53279,7 @@ float *ProcessFloatDataBoundaryCalculation(float *FloatDataStructure)
       CharacterCode[0xa5] = (CharacterCode[0xa1] + *pSystemContextPrimaryFloat) * 0.5;
       CharacterCode[0xa6] = (CharacterCode[0xa2] + CharacterCode[0x9e]) * 0.5;
       CharacterCode[0xa7] = (CharacterCode[0xa3] + CharacterCode[0x9f]) * 0.5;
-      CharacterCode[0xa8] = 3.4028235e+38;
+      CharacterCode[0xa8] = FloatMaximumValue;
       CalculatedDistance = 0.0;
       SystemMemoryAllocationResult = (unsigned long long)*(uint *)(SystemCurrentCharacterPointer + 0x10);
       if (0 < (int)*(uint *)(SystemCurrentCharacterPointer + 0x10)) {
