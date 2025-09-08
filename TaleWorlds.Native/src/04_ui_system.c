@@ -73043,7 +73043,7 @@ void ProcessUIRenderBuffer(longlong uiContext,float *dataSource,longlong targetB
 
 
 
- void FUN_18070737d(float *uiContext,float *dataSource,longlong targetBuffer)
+ void CalculateUIRenderDataWeightedSum(float *uiContext,float *dataSource,longlong targetBuffer)
 /**
  * 计算UI渲染数据的加权累加和
  * 用于UI系统中的渲染数据预处理，可能涉及矩阵变换或向量计算

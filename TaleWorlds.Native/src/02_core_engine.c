@@ -1054,6 +1054,22 @@
 #define ProcessVectorRegisterData FUN_180103970
 
 /**
+ * @brief 处理系统计算函数地址
+ * 
+ * 该函数负责处理系统计算函数地址，包括：
+ * - 获取函数地址指针
+ * - 处理系统缓冲区大小
+ * - 管理计算函数的调用
+ * 
+ * @param FunctionAddress 函数地址指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return long long* 返回计算结果指针
+ * 
+ * @note 原始函数名：FUN_180169c30
+ */
+#define ProcessSystemCalculationFunctionAddress FUN_180169c30
+
+/**
  * @brief 处理系统配置数据和核心引擎值
  * 
  * 该函数负责处理系统配置数据和核心引擎值的操作。
