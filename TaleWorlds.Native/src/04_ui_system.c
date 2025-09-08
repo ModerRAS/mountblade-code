@@ -12336,7 +12336,7 @@ void SetUIComponentOpacity(longlong *component_data, float opacity)
   uint EventTypeCode;
   ulonglong ProcessingStatus;
   float transformCoeff4;
-  float localFloat6;
+  float inverseSqrtValue;
   UIByte aprocessingCounter [16];
   float fStackX_8;
   float fStackX_c;
@@ -300100,8 +300100,19 @@ UIHandle ProcessUIFloatDataTransformation(longlong uiContext)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18084edf0(longlong uiContext)
-void FUN_18084edf0(longlong uiContext)
+ /**
+ * @brief 处理UI复杂事件和数据
+ * 
+ * 该函数执行以下操作：
+ * - 处理UI事件和数据
+ * - 执行加密和解密操作
+ * - 管理UI状态和上下文
+ * 
+ * @param uiContext UI上下文句柄
+ * 
+ * @note 原始函数名：FUN_18084edf0
+ */
+void ProcessUIComplexEventAndDataHandling(longlong uiContext)
 
 {
   UIByte aresult [16];
