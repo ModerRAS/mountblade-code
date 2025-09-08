@@ -206,16 +206,16 @@ typedef enum {
 #define InitializeUILayoutSystem InitializeUILayoutSystemHandler
 
  // UI系统函数宏定义 - 验证UI布局
-#define ValidateUILayout FUN_180707a74
+#define ValidateUILayout ValidateUILayoutStructure
 
  // UI系统函数宏定义 - 处理UI输入
-#define ProcessUIInput FUN_180707df0
+#define ProcessUIInput ProcessUIInputHandler
 
  // UI系统函数宏定义 - 处理UI焦点
-#define ProcessUIFocus FUN_18070b610
+#define ProcessUIFocus ProcessUIFocusManager
 
  // UI系统函数宏定义 - 更新UI焦点状态
-#define UpdateUIFocusState FUN_18070b660
+#define UpdateUIFocusState UpdateUIFocusSystemState
 
  // UI系统函数宏定义 - 处理UI焦点事件
 #define ProcessUIFocusEvent FUN_18070b6a0
