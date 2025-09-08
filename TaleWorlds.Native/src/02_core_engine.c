@@ -279504,7 +279504,22 @@ void ProcessCharacterCodeAndCharacterEncodingConversion(uint32_t *CharacterCode,
 
 
 
-28ce0(uint32_t *CharacterCode,long long SystemBufferSize,uint Utf8SourcePointervoid FUN_180228ce0(uint32_t *CharacterCode,long long SystemBufferSize,uint Utf8SourcePointer
+/**
+ * @brief 字符编码处理和缓冲区管理函数
+ * 
+ * 该函数负责处理字符编码和管理缓冲区数据，包括：
+ * - 字符代码验证和转换
+ * - 缓冲区边界检查和内存管理
+ * - Unicode码点计算和处理
+ * - 系统状态更新和错误处理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * 
+ * @note 原始函数名：FUN_180228ce0
+ */
+void ProcessCharacterEncodingAndBufferManagement(uint32_t *CharacterCode, long long SystemBufferSize, uint Utf8SourcePointer)
 {
   uint64_t *CharacterStatusBuffer;
   byte *HighBytePointer;
@@ -279929,7 +279944,21 @@ LAB_1802294ca:
 
 
 
-uint8_t * FUN_1802295e0(uint8_t *CharacterCode
+/**
+ * @brief 字符代码结构初始化函数
+ * 
+ * 该函数负责初始化字符代码数据结构，包括：
+ * - 设置线程本地存储模板
+ * - 初始化系统配置处理器
+ * - 配置字符缓冲区和状态指针
+ * - 设置浮点数默认值和状态标志
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return 初始化后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_1802295e0
+ */
+uint8_t * InitializeCharacterCodeStructure(uint8_t *CharacterCode)
 {
   *(void **)(CharacterCode + 8) = &ThreadLocalStorageTemplate;
   *(void *)(CharacterCode + 0x10) = 0;
