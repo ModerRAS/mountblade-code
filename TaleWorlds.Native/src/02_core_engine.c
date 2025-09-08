@@ -221170,7 +221170,24 @@ void CleanupSystemStackData(uint64_t CharacterCode,long long SystemBufferSize)
 
 
 uint64_t *
-FUN_18018aa30(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer,
+/**
+ * @brief 处理字符编码转换的内存分配和状态管理
+ * 
+ * 该函数负责处理字符编码转换过程中的内存分配、状态管理和数据结构维护。
+ * 函数会检查字符代码的有效性，管理内存分配，并处理各种边界条件。
+ * 
+ * @param CharacterCode 字符代码指针数组，包含编码信息和数据
+ * @param CharacterCodeSize 字符代码大小指针，用于返回转换后的大小
+ * @param Utf8SourcePointer UTF-8源数据指针，指向待转换的数据
+ * @param Utf16EndPointer UTF-16结束指针，指示转换目标的边界
+ * @param AdditionalParameter1 额外参数1，用于传递额外的配置信息
+ * @param AdditionalParameter2 额外参数2，用于传递额外的配置信息
+ * @return void* 返回处理结果指针，包含状态信息或错误代码
+ * 
+ * @note 原始函数名：FUN_18018aa30
+ * @warning 该函数涉及复杂的内存管理操作，需要确保所有指针操作的安全性
+ */
+void *ProcessCharacterEncodingMemoryAllocationAndStatusManagement(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer,
              uint64_t AdditionalParameter1,long long *AdditionalParameter2
 {
   char CurrentCharacter;
