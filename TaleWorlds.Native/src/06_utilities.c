@@ -25552,10 +25552,10 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
                                     *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11644),
                                     *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset1164C),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase),
              (int)operationResult == 0)) {
-            dataFlags = *(DataWord *)(exceptionHandlerContext + 0x11660);
-            operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA6,(double)*(float *)(exceptionHandlerContext + 0x11650),
-                                  *(DataWord *)(exceptionHandlerContext + 0x11654),*(DataWord *)(exceptionHandlerContext + 0x11658),
-                                  *(DataWord *)(exceptionHandlerContext + 0x1165c),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
+            dataFlags = *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11660);
+            operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA6,(double)*(float *)(exceptionHandlerContext + ExceptionContextExtendedOffset11650),
+                                  *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11654),*(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset11658),
+                                  *(DataWord *)(exceptionHandlerContext + ExceptionContextExtendedOffset1165C),dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
             if ((int)operationResult == 0) {
               operationResult = *(DataWord *)(memoryBlockOffset + ExceptionHandlerCallbackOffset10);
               operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA7,*(DataWord *)(memoryBlockOffset + 4),
