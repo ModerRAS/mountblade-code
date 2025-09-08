@@ -438,6 +438,61 @@
 #define ProcessCharacterCodeFinalization FUN_18016afc0
 
 /**
+ * @brief 初始化字符变换数据
+ * 
+ * 初始化字符变换相关的数据和参数设置。
+ * 
+ * @param CharacterTransformData 字符变换数据指针
+ * 
+ * @note 原始函数名：FUN_18022ebe0
+ */
+#define InitializeCharacterTransformationData FUN_18022ebe0
+
+/**
+ * @brief 字符代码内存管理
+ * 
+ * 管理字符代码的内存资源，根据系统缓冲区大小决定是否释放内存。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return uint64_t 返回处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_18022b980
+ */
+#define ManageCharacterCodeMemory FUN_18022b980
+
+/**
+ * @brief 初始化字符代码系统配置
+ * 
+ * 初始化字符代码系统的配置参数和内存块。
+ * 
+ * @param CharacterCode 字符代码指针
+ * 
+ * @note 原始函数名：FUN_18022b9c0
+ */
+#define InitializeCharacterCodeSystemConfiguration FUN_18022b9c0
+
+/**
+ * @brief 初始化系统内存回调配置
+ * 
+ * 初始化系统内存的回调配置和内存块分配。
+ * 
+ * @param CharacterCode 字符代码指针
+ * 
+ * @note 原始函数名：FUN_18022ba00
+ */
+#define InitializeSystemMemoryCallbackConfiguration FUN_18022ba00
+
+/**
+ * @brief 执行系统初始化
+ * 
+ * 执行系统的初始化操作和参数设置。
+ * 
+ * @note 原始函数名：FUN_18022ba40
+ */
+#define PerformSystemInitialization FUN_18022ba40
+
+/**
  * @brief 系统缓冲区验证和数据处理
  * 
  * 验证系统缓冲区并处理相关数据，返回字符验证结果。
