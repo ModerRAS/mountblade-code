@@ -2594,12 +2594,17 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
  */
 #define ProcessSystemOperations FUN_1800ad6f0
 
-// 验证和处理数据函数
-// 功能：验证数据的有效性并执行相应的数据处理操作
-// 数据验证和处理函数
+/**
+ * @brief 验证和处理数据函数
+ * 
+ * 验证数据的有效性并执行相应的数据处理操作
+ * 
+ * @note 原始函数名：FUN_1800f74f0
+ */
 #define ValidateAndProcessData FUN_1800f74f0
 
-// 验证和执行操作函数A1
+/**
+ * @brief 验证和执行操作函数A1
 // 功能：验证操作参数的有效性并执行相应的系统操作
 // 验证和执行操作函数
 #define ValidateAndExecuteOperationsA1 FUN_18005d560
