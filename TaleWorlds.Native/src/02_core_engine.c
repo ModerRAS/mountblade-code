@@ -458,6 +458,8 @@
 #define ProcessSystemMemoryBlockManagement FUN_1802c24b0       // 处理系统内存块管理
 #define ProcessSystemValueUpdate FUN_1802c2ac0                  // 处理系统值更新
 #define ProcessSystemCharacterEncoding FUN_18029ad30           // 处理系统字符编码
+#define ProcessSystemDataEncoding FUN_18029de40                 // 处理系统数据编码
+#define ProcessSystemEventConfiguration FUN_1802c22a0           // 处理系统事件配置
 #define IdentifySystemIdentifierByPatternVariantN FUN_180225627
 
 // 系统变量语义化映射
@@ -185340,7 +185342,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
       ProcessSystemMemoryBlockManagement(MemoryBlockListHead);
       *(long long *)(SystemDataRegistry + 0x80b0 + (long long)*(int *)(SystemDataRegistry + 0x8088) * 8) = MemoryBlockListHead[0xb];
     }
-    FUN_1802c2ac0(&CoreEngineValue148);
+    ProcessSystemValueUpdate(&CoreEngineValue148);
     if (SystemCheckResult == '\0') {
       Sleep(1);
     }
@@ -185353,11 +185355,11 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
       *(long long *)(*(long long *)(CoreEngineRenderContext + 0x121e0) + 0x340) =
            (long long)*(int *)(CoreEngineSystemContext + 0x224);
     }
-    FUN_18029ad30(Utf16Character,0,SystemDataRegistry);
+    ProcessSystemCharacterEncoding(Utf16Character,0,SystemDataRegistry);
     SystemDataRegistry = CoreEngineRenderContext;
     *(void *)(*(long long *)(CoreEngineRenderContext + 0x1cd8) + 0x83f0) = 0;
-    FUN_18029de40(*(void *)(SystemDataRegistry + 0x1cd8),1);
-    FUN_1802c22a0(aStackProcessingVariable1B8,&SystemEventConfigurationSecondary);
+    ProcessSystemDataEncoding(*(void *)(SystemDataRegistry + 0x1cd8),1);
+    ProcessSystemEventConfiguration(aStackProcessingVariable1B8,&SystemEventConfigurationSecondary);
     CharacterStatusBuffer2 = (void *)*CoreEngineConfigFlag;
     InputDataLength = _Mtx_lock(0x180c91970);
     if (InputDataLength != 0) {
@@ -186278,7 +186280,19 @@ void ProcessCharacterEncodingTableAndBufferStatus(long long *CharacterCode)
 
 
 
-52ae0(long long *CharacterCodevoid FUN_180152ae0(long long *CharacterCode
+/**
+ * @brief 处理字符代码表小步迭代的函数
+ * 
+ * 此函数负责以较小的步长（0x40字节）迭代处理字符代码表中的数据。
+ * 它是字符编码处理系统中的优化迭代器组件，适用于需要更细粒度控制的场景。
+ * 
+ * @param CharacterCode 字符代码指针，指向要处理的字符代码数据
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180152ae0
+ * @warning 此函数涉及系统级别的字符编码表操作
+ */
+void ProcessCharacterCodeTableIterationSmallStep(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -186327,7 +186341,7 @@ void Process64BitCharacterEncodingTable(uint64_t *CharacterCode)
 
 
 
-52b60(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180152b60(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void ProcessUtf16CharacterEncoding(uint64_t CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint32_t Utf16Char;
   uint32_t *PrimaryProcessingStatusFlag;
