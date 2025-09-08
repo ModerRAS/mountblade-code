@@ -72,19 +72,19 @@ typedef enum {
 #define UISystemMemoryManagerFallbackPtr (code *)&UISystemMemoryManagerFallbackFunction
 #define UISystemMemoryManagerAdvancedFallbackPtr (code *)&UISystemMemoryManagerAdvancedFallbackFunction
 
-#define ProcessUIDataWrite FUN_180705180
+#define ProcessUIDataWrite WriteUIDataToBuffer
 
- #define InitializeUIContext FUN_180705210
+ #define InitializeUIContext InitializeUIContextSystem
 
- #define ProcessUIDataRead FUN_1807054a0
+ #define ProcessUIDataRead ReadUIDataFromBuffer
 
- #define UpdateUIState FUN_180705530
+ #define UpdateUIState UpdateUIComponentState
 
  // // UI系统函数宏定义 - 处理UI缓冲区操作
-#define ProcessUIBufferOperation FUN_180705545
+#define ProcessUIBufferOperation ProcessUIBufferDataOperation
 
  // UI系统函数宏定义 - 验证UI系统
-#define ValidateUISystem FUN_180705616
+#define ValidateUISystem ValidateUISystemIntegrity
 
  // UI系统函数宏定义 - 获取UI数据
 #define GetUIData FUN_1807056b0
