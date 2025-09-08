@@ -222545,7 +222545,17 @@ void ProcessCharacterTableAndInitialization(long long *CharacterCode, uint64_t S
 
 
 
-87dd0(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180187dd0(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 验证和清理字符表内存
+ * 
+ * 验证字符表指针的有效性，检查Unicode码点范围，并清理相关内存
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ */
+void ValidateAndCleanupCharacterTableMemory(long long *CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -222574,7 +222584,17 @@ void ProcessCharacterTableAndInitialization(long long *CharacterCode, uint64_t S
 
 
 
-87e50(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_180187e50(long long *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+/**
+ * @brief 处理字符表上下文和内存管理
+ * 
+ * 管理字符表上下文指针，处理缓冲区分配和释放，设置循环计数器
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ */
+void ProcessCharacterTableContextAndMemoryManagement(long long *CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
@@ -222588,7 +222608,7 @@ void ProcessCharacterTableAndInitialization(long long *CharacterCode, uint64_t S
   MemoryBlockIndex = LoopCounter;
   if (*(char *)((long long)SystemContextPtr + SystemNodeStatusOffset) == '\0') {
     do {
-      FUN_1801885a0(CharacterCode,SystemContextPtr[2],Utf8SourcePointer,Utf16EndPointer,CalculatedCodePoint);
+      ProcessCharacterCodeAndValidation(CharacterCode,SystemContextPtr[2],Utf8SourcePointer,Utf16EndPointer,CalculatedCodePoint);
       BufferAllocationStatus = (long long *)*SystemContextPtr;
       free(SystemContextPtr,0x28);
       SystemContextPtr = BufferAllocationStatus;
