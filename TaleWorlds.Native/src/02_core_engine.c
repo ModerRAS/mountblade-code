@@ -1,5 +1,27 @@
 #include "TaleWorlds.Native.Split.h"
 
+// C++标准库函数语义化宏定义
+#define DestroyBasicStreambuf __0__basic_streambuf_DU__char_traits_D_std___std__IEAA_XZ
+#define InitializeBasicStreambuf __Init___basic_streambuf_DU__char_traits_D_std___std__IEAAXXZ
+#define GetLocaleFromBasicStreambuf _getloc___basic_streambuf_DU__char_traits_D_std___std__QEBA_AVlocale_2_XZ
+#define CheckCodecvtBaseAlwaysNoConversion _always_noconv_codecvt_base_std__QEBA_NXZ
+#define OpenFileWithStandardIO __Fiopen_std__YAPEAU_iobuf__PEB_WHH_Z
+#define IncrementStreambufGetPointer __Gninc___basic_streambuf_DU__char_traits_D_std___std__IEAAPEADXZ
+#define GetStreambufCharacters _xsgetn___basic_streambuf_DU__char_traits_D_std___std__MEAA_JPEAD_J_Z
+#define PutStreambufCharacters _xsputn___basic_streambuf_DU__char_traits_D_std___std__MEAA_JPEBD_J_Z
+#define DestroyBasicIos __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ
+#define DestroyBasicOstream __0__basic_ostream_DU__char_traits_D_std___std__IEAA_XZ
+#define DestroyBasicStreambufFinal __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ
+#define DestroyBasicOstreamFinal __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ
+#define DestroyBasicIosFinal __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ
+#define InitializeBasicIos __0__basic_ios_DU__char_traits_D_std___std__IEAA_XZ
+#define InitializeBasicOstream __0__basic_ostream_DU__char_traits_D_std___std__QEAA_PEAV__basic_streambuf_DU__char_traits_D_std___1__N_Z
+#define SetIosState _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
+#define ClearIosState _clear___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
+#define GetIstreamLine _getline___basic_istream_DU__char_traits_D_std___std__QEAAAEAV12_PEAD_J_Z
+#define DestroyBasicIostreamFinal __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ
+#define InitializeBasicIostream __0__basic_iostream_DU__char_traits_D_std___std__QEAA_PEAV__basic_streambuf_DU__char_traits_D_std___1__Z
+
 // 系统状态缓冲区控制常量
 #define SystemCharacterStatusBufferControlConstant 0x180d49440
 #define CharacterCodeTableBaseOffset 0x2003d0
@@ -85318,11 +85340,11 @@ uint64_t * Initialize64BitUnsignedIntegerDataStructure(uint64_t *CharacterCode
  */
 uint64_t * Configure64BitUnsignedIntegerDataStructure(uint64_t *CharacterCode
 {
-  __0__basic_streambuf_DU__char_traits_D_std___std__IEAA_XZ();
+  DestroyBasicStreambuf();
   *CharacterCode = &RenderConfigDataA;
   *(uint8_t *)((long long)CharacterCode + 0x7c) = 0;
   *(uint8_t *)((long long)CharacterCode + 0x71) = 0;
-  __Init___basic_streambuf_DU__char_traits_D_std___std__IEAAXXZ();
+  InitializeBasicStreambuf();
   CharacterCode[0x10] = 0;
   *(void *)((long long)CharacterCode + 0x74) = SystemDataHandlerTemplate;
   CharacterCode[0xd] = 0;
@@ -85351,16 +85373,16 @@ long long ProcessSystemDataStreamInitialization(long long CharacterCode,uint64_t
   long long *plStack_18;
   
   if (*(long long *)(CharacterCode + 0x80) == 0) {
-    BufferStatus = __Fiopen_std__YAPEAU_iobuf__PEB_WHH_Z(SystemBufferSize,Utf8SourcePointer,0x40,SystemBufferSize,0xfffffffffffffffe);
+    BufferStatus = OpenFileWithStandardIO(SystemBufferSize,Utf8SourcePointer,0x40,SystemBufferSize,0xfffffffffffffffe);
     if (BufferStatus != 0) {
       ProcessSystemDataAndConfigureBuffer(CharacterCode,BufferStatus,1);
-      UnicodeCodePoint = _getloc___basic_streambuf_DU__char_traits_D_std___std__QEBA_AVlocale_2_XZ
+      UnicodeCodePoint = GetLocaleFromBasicStreambuf
                         (CharacterCode,aProcessingCounter);
       UnicodeCodePoint = ProcessSystemDataAndCalculateAllocation(UnicodeCodePoint);
-      CurrentCharacter = _always_noconv_codecvt_base_std__QEBA_NXZ(UnicodeCodePoint);
+      CurrentCharacter = CheckCodecvtBaseAlwaysNoConversion(UnicodeCodePoint);
       if (CurrentCharacter == '\0') {
         *(void *)(CharacterCode + 0x68) = UnicodeCodePoint;
-        __Init___basic_streambuf_DU__char_traits_D_std___std__IEAAXXZ(CharacterCode);
+        InitializeBasicStreambuf(CharacterCode);
       }
       else {
         *(void *)(CharacterCode + 0x68) = 0;
@@ -85956,7 +85978,7 @@ void ProcessSystemDataStreamSync(long long CharacterCode
     }
   }
   else {
-    __Gninc___basic_streambuf_DU__char_traits_D_std___std__IEAAPEADXZ(CharacterCode);
+    IncrementStreambufGetPointer(CharacterCode);
   }
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)SystemOperationBuffer);

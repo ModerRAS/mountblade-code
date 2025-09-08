@@ -89619,76 +89619,103 @@ void FUN_18071b080(longlong uiContext,int dataSource,int targetBuffer,longlong b
 
 
 
- void FUN_18071b0a2(void)
-void FUN_18071b0a2(void)
+ // 原始函数名：FUN_18071b0a2 - UI元素数据批量处理器
+#define ProcessUIElementDataBatch FUN_18071b0a2
+
+/**
+ * @brief 批量处理UI元素数据
+ * 
+ * 该函数负责批量处理UI元素的数据更新和操作，主要功能包括：
+ * - 批量更新UI元素的数据状态
+ * - 处理UI元素的验证和比较结果
+ * - 管理UI元素的上下文和句柄
+ * - 处理浮点数数据的计算和更新
+ * - 管理寄存器保存和恢复
+ * 
+ * @note 原始函数名：FUN_18071b0a2
+ * @note 此函数处理UI元素的批量数据操作
+ * @note 包含复杂的寄存器管理和数据处理逻辑
+ */
+void ProcessUIElementDataBatch(void)
 
 {
-  int processingResult;
-  longlong registerAX;
-  int uiValidationResult;
-  UIHandle contextHandle;
-  int *puiCompareResult;
-  longlong BasePointer;
-  longlong contextHandleData;
-  ulonglong SourceHandle;
-  int localInt5;
-  UIHandle TargetHandle;
-  longlong contextHandleData;
-  UIHandle preservedRegister12;
-  UIHandle preservedRegister13;
-  longlong EventHandle;
-  longlong preservedRegister15;
-  UIDword preservedXMM6;
-  UIDword unmodifiedXMM6_Db;
-  UIDword unmodifiedXMM6_Dc;
-  UIDword unmodifiedXMM6_Dd;
-  UIDword preservedXMM7;
-  UIDword unmodifiedXMM7_Db;
-  UIDword unmodifiedXMM7_Dc;
-  UIDword unmodifiedXMM7_Dd;
-  longlong stackParam00000090;
-  UIHandle stackParam00000098;
-  int maxAllocations;
+  int DataProcessingResult;
+  longlong RegisterContext;
+  int UIValidationResult;
+  UIHandle ContextHandle;
+  int *UIComparisonPointer;
+  longlong BaseContextPointer;
+  longlong ContextDataOffset;
+  ulonglong DataSourceHandle;
+  int ElementIterationCount;
+  UIHandle TargetResourceHandle;
+  longlong ContextHandleDuplicate;
+  UIHandle PreservedRegister12;
+  UIHandle PreservedRegister13;
+  longlong EventDataHandle;
+  longlong PreservedRegister15;
+  UIDword PreservedXMM6;
+  UIDword PreservedXMM6_PartB;
+  UIDword PreservedXMM6_PartC;
+  UIDword PreservedXMM6_PartD;
+  UIDword PreservedXMM7;
+  UIDword PreservedXMM7_PartB;
+  UIDword PreservedXMM7_PartC;
+  UIDword PreservedXMM7_PartD;
+  longlong StackParameter90;
+  UIHandle StackParameter98;
+  int MaximumAllocationCount;
   
-  *(UIHandle *)(registerAX + 8) = contextHandle;
-  contextHandleData = BasePointer - SourceHandle;
-  *(UIHandle *)(registerAX + 0x10) = TargetHandle;
-  *(UIHandle *)(registerAX + 0x18) = preservedRegister12;
-  *(UIHandle *)(registerAX + -0x28) = preservedRegister13;
-  *(UIDword *)(registerAX + -0x38) = preservedXMM6;
-  *(UIDword *)(registerAX + -0x34) = unmodifiedXMM6_Db;
-  *(UIDword *)(registerAX + -0x30) = unmodifiedXMM6_Dc;
-  *(UIDword *)(registerAX + -0x2c) = unmodifiedXMM6_Dd;
-  *(UIDword *)(registerAX + -0x48) = preservedXMM7;
-  *(UIDword *)(registerAX + -0x44) = unmodifiedXMM7_Db;
-  *(UIDword *)(registerAX + -0x40) = unmodifiedXMM7_Dc;
-  *(UIDword *)(registerAX + -0x3c) = unmodifiedXMM7_Dd;
-  puiCompareResult = (int *)(stackParam00000090 + SourceHandle * 4);
+  *(UIHandle *)(RegisterContext + 8) = ContextHandle;
+  ContextDataOffset = BaseContextPointer - DataSourceHandle;
+  *(UIHandle *)(RegisterContext + 0x10) = TargetResourceHandle;
+  *(UIHandle *)(RegisterContext + 0x18) = PreservedRegister12;
+  *(UIHandle *)(RegisterContext + -0x28) = PreservedRegister13;
+  *(UIDword *)(RegisterContext + -0x38) = PreservedXMM6;
+  *(UIDword *)(RegisterContext + -0x34) = PreservedXMM6_PartB;
+  *(UIDword *)(RegisterContext + -0x30) = PreservedXMM6_PartC;
+  *(UIDword *)(RegisterContext + -0x2c) = PreservedXMM6_PartD;
+  *(UIDword *)(RegisterContext + -0x48) = PreservedXMM7;
+  *(UIDword *)(RegisterContext + -0x44) = PreservedXMM7_PartB;
+  *(UIDword *)(RegisterContext + -0x40) = PreservedXMM7_PartC;
+  *(UIDword *)(RegisterContext + -0x3c) = PreservedXMM7_PartD;
+  UIComparisonPointer = (int *)(StackParameter90 + DataSourceHandle * 4);
   do {
-    if (0 < *puiCompareResult) {
-      uiElementIndex = 0;
+    if (0 < *UIComparisonPointer) {
+      ElementIterationCount = 0;
       do {
-        processingResult = UpdateUIElementData(stackParam00000098,*puiCompareResult);
-        uiValidationResult = *(int *)(preservedRegister15 + 8) * localInt5;
-        uiElementIndex = uiElementIndex + 1;
-        contextHandleData = (longlong)(uiValidationResult + (int)SourceHandle);
-        *(float *)(EventHandle + contextHandleData * 4) =
-             ((float)(1 << (0xeU - (char)*puiCompareResult & 0x1f)) * ((float)processingResult + 0.5) * 6.1035156e-05 +
-             *(float *)(EventHandle + contextHandleData * 4)) - 0.5;
-      } while (localInt5 < maxAllocations);
+        DataProcessingResult = UpdateUIElementData(StackParameter98,*UIComparisonPointer);
+        UIValidationResult = *(int *)(PreservedRegister15 + 8) * ElementIterationCount;
+        ElementIterationCount = ElementIterationCount + 1;
+        ContextDataOffset = (longlong)(UIValidationResult + (int)DataSourceHandle);
+        *(float *)(EventDataHandle + ContextDataOffset * 4) =
+             ((float)(1 << (0xeU - (char)*UIComparisonPointer & 0x1f)) * ((float)DataProcessingResult + 0.5) * 6.1035156e-05 +
+             *(float *)(EventDataHandle + ContextDataOffset * 4)) - 0.5;
+      } while (ElementIterationCount < MaximumAllocationCount);
     }
-    SourceHandle = (ulonglong)((int)SourceHandle + 1);
-    puiCompareResult = puiCompareResult + 1;
-    contextHandleData = contextHandleData + -1;
-  } while (contextHandleData != 0);
+    DataSourceHandle = (ulonglong)((int)DataSourceHandle + 1);
+    UIComparisonPointer = UIComparisonPointer + 1;
+    ContextDataOffset = ContextDataOffset + -1;
+  } while (ContextDataOffset != 0);
   return;
 }
 
 
 
 
- void FUN_18071b182(void)
-void FUN_18071b182(void)
+ // 原始函数名：FUN_18071b182 - UI系统空操作函数
+#define PerformUINoOperation FUN_18071b182
+
+/**
+ * @brief UI系统空操作函数
+ * 
+ * 该函数是一个空操作函数，用于UI系统中的占位或默认处理。
+ * 它不执行任何实际操作，直接返回。
+ * 
+ * @note 原始函数名：FUN_18071b182
+ * @note 此函数在UI系统中用作空操作或默认处理
+ */
+void PerformUINoOperation(void)
 
 {
   return;
@@ -89697,8 +89724,26 @@ void FUN_18071b182(void)
 
 
 
- void FUN_18071b190(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
-void FUN_18071b190(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
+ // 原始函数名：FUN_18071b190 - UI数据内存复制处理器
+#define CopyUIDataMemoryBlock FUN_18071b190
+
+/**
+ * @brief 复制UI数据内存块
+ * 
+ * 该函数负责复制UI数据的内存块，主要功能包括：
+ * - 计算源数据和目标数据的偏移量
+ * - 执行内存复制操作
+ * - 处理UI缓冲区数据的批量复制
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * @param dataSource 数据源句柄，指向要复制的数据
+ * @param targetBuffer 目标缓冲区，用于存储复制的数据
+ * 
+ * @note 原始函数名：FUN_18071b190
+ * @note 此函数不返回，执行复制操作后直接终止
+ * @note 使用memcpy进行高效的内存块复制
+ */
+void CopyUIDataMemoryBlock(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 {
                      WARNING: Subroutine does not return
@@ -89709,8 +89754,25 @@ void FUN_18071b190(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer)
 
 
 
- void FUN_18071b320(UIHandle uiContext)
-void FUN_18071b320(UIHandle uiContext)
+ // 原始函数名：FUN_18071b320 - UI上下文内存清零处理器
+#define ClearUIContextMemory FUN_18071b320
+
+/**
+ * @brief 清零UI上下文内存
+ * 
+ * 该函数负责清零UI上下文的内存区域，主要功能包括：
+ * - 将UI上下文内存区域全部清零
+ * - 重置UI系统的状态和配置
+ * - 确保UI上下文处于干净的初始状态
+ * 
+ * @param uiContext UI上下文句柄，指向要清零的内存区域
+ * 
+ * @note 原始函数名：FUN_18071b320
+ * @note 此函数不返回，执行清零操作后直接终止
+ * @note 清零的内存大小为0x130字节
+ * @note 使用memset进行高效的内存清零操作
+ */
+void ClearUIContextMemory(UIHandle uiContext)
 
 {
                      WARNING: Subroutine does not return
@@ -89719,17 +89781,41 @@ void FUN_18071b320(UIHandle uiContext)
 
 
 
-int FUN_18071b660(uint uiContext,uint dataSource,int targetBuffer)
+// 原始函数名：FUN_18071b660 - UI数值计算和验证处理器
+#define CalculateAndValidateUINumericValue FUN_18071b660
+
+/**
+ * @brief 计算和验证UI数值
+ * 
+ * 该函数负责计算和验证UI系统的数值，主要功能包括：
+ * - 计算数值的绝对值和位操作
+ * - 处理数值的移位和位计算
+ * - 执行复杂的数值验证和范围检查
+ * - 处理数值的溢出和边界情况
+ * 
+ * @param uiContext UI上下文值，用于计算的基础参数
+ * @param dataSource 数据源值，用于计算的输入参数
+ * @param targetBuffer 目标缓冲区参数，用于验证的参考值
+ * 
+ * @return 计算和验证结果：
+ *         - 成功：返回计算后的数值
+ *         - 失败：返回错误代码或边界值
+ * 
+ * @note 原始函数名：FUN_18071b660
+ * @note 此函数包含复杂的位操作和数值计算逻辑
+ * @note 用于UI系统的数值验证和处理
+ */
+int CalculateAndValidateUINumericValue(uint uiContext,uint dataSource,int targetBuffer)
 
 {
-  uint result;
-  byte IsEventProcessingActive;
-  int uiCompareResult;
-  longlong contextHandleData;
-  int localInt5;
-  int loopCounter;
-  int localInt7;
-  int localInt8;
+  uint CalculatedResult;
+  byte ShiftBitCount;
+  int ValidationCompareResult;
+  longlong DivisionContext;
+  int MultiplierOperand;
+  int BitScanLoopCounter;
+  int ShiftAmount;
+  int ShiftedResult;
   
   result = (uiContext ^ (int)uiContext >> 0x1f) - ((int)uiContext >> 0x1f);
   if (result == 0) {
