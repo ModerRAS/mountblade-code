@@ -123838,7 +123838,7 @@ void ProcessUtf8CharacterEncodingWithDistance(uint64_t CharacterCode, float *Cha
       StringOffset = *(long long *)(RegisterR13Value + 0x38);
       pSystemContextPrimaryFloat = (float *)(*(long long *)(RegisterR13Value + 0x68) + -0x10 +
                         (long long)*(int *)(RegisterR13Value + 0x60) * 0x10);
-      MatrixTransformMultiplier1 = *pSystemContextPrimaryFloat;
+      MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
       MatrixTransformMultiplier = pSystemContextPrimaryFloat[1];
       CalculatedDistance = pSystemContextPrimaryFloat[2];
       FloatOffsetValue = pSystemContextPrimaryFloat[3];
@@ -157134,7 +157134,7 @@ void ProcessSystemValidationFDB(void)
   }
   else {
     pSystemContextPrimaryFloat = (float *)(BufferStatus + MemoryBlockIndex * 0x10);
-    MatrixTransformMultiplier1 = *pSystemContextPrimaryFloat;
+    MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
     MatrixTransformMultiplier = pSystemContextPrimaryFloat[1];
     CalculatedDistance = pSystemContextPrimaryFloat[2];
     FloatOffsetValue = pSystemContextPrimaryFloat[3];
@@ -280463,11 +280463,11 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
     ContextSecondaryFloat1 = CharacterContextFloatPtr[3];
     CurrentCharacter0 = *(char *)(CharacterTableIndex + 0x100 + Utf16EndPointer);
     if (-1 < CurrentCharacter0) {
-      while (CurrentCharacter0 != IntegerValue9) {
+      while (CurrentCharacter0 != SystemRegister) {
         CharacterTableIndex = (long long)CurrentCharacter0;
         CurrentCharacter0 = *(char *)(CharacterTableIndex + 0x100 + Utf16EndPointer);
         CharacterContextFloatPtr = (float *)(CharacterCode + (CharacterTableIndex + 0x82) * 0x10);
-        MatrixTransformMultiplier1 = *pSystemContextPrimaryFloat;
+        MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
         MatrixTransformMultiplier = pSystemContextPrimaryFloat[1];
         CalculatedDistance = pSystemContextPrimaryFloat[2];
         FloatOffsetValue = pSystemContextPrimaryFloat[3];
@@ -280491,7 +280491,7 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
       }
       if ((-1 < CurrentCharacter0) && (CurrentCharacter0 == IntegerValue9)) {
         pSystemContextPrimaryFloat = (float *)(CharacterCode + (long long)CurrentCharacter0 * 0x10);
-        MatrixTransformMultiplier1 = *pSystemContextPrimaryFloat;
+        MatrixTransformMultiplier1 = *CharacterContextFloatPtr;
         MatrixTransformMultiplier = pSystemContextPrimaryFloat[1];
         CalculatedDistance = pSystemContextPrimaryFloat[2];
         FloatOffsetValue = pSystemContextPrimaryFloat[3];
