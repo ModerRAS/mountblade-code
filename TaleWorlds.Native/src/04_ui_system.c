@@ -3140,6 +3140,13 @@ void* UIGestureCoordinates;
  原始函数名: FUN_18072aa30
 #define ProcessUIBufferOperations FUN_18072aa30
 
+ UI系统事件循环处理器
+ 处理UI系统的事件循环，包括事件的分发、处理和状态更新。
+ 用于UI事件系统的核心循环处理。
+ 
+ 原始函数名: FUN_18074a970
+#define ProcessUIEventLoop FUN_18074a970
+
  UI系统主渲染器函数
  原始函数名: FUN_180694010
 #define ProcessUIMainRenderer FUN_180694010

@@ -208794,7 +208794,24 @@ uint64_t *
 
 
 
-unsigned long long FUN_180174770(long long *CharacterCode
+/**
+ * @brief 处理字符编码和线程优先级管理
+ * 
+ * 该函数负责处理字符编码和线程优先级管理，包括：
+ * - 当前字符处理
+ * - 字符串比较操作
+ * - Unicode代码点处理
+ * - 线程优先级设置
+ * - 系统堆栈管理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return unsigned long long 返回内存偏移值
+ * 
+ * @note 原始函数名：FUN_180174770
+ */
+#define ProcessCharacterEncodingAndThreadPriorityManagement FUN_180174770
+
+unsigned long long ProcessCharacterEncodingAndThreadPriorityManagement(long long *CharacterCode
 {
   char CurrentCharacter;
   int StringComparisonResult;
