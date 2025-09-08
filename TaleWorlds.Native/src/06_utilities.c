@@ -86421,17 +86421,20 @@ void ExecuteExceptionHandlerCallbackA3(DataBuffer operationBase, int64_t dataBuf
 
 
 
-void Unwind_18090b3f0(DataBuffer operationBase,int64_t dataBuffer)
-
-{
-  int64_t *exceptionHandlerContextPointer;
-  
-  exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x3f0);
-  if (exceptionHandlerContextPointer != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*exceptionHandlerContextPointer + ExceptionHandlerContextFunctionOffset38))();
-  }
-  return;
-}
+/**
+ * @brief 异常处理器回调函数A4
+ * 
+ * 该函数负责在偏移量0x3f0处获取异常上下文处理器指针，
+ * 并调用该上下文中的异常处理函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090b3f0
+ * @warning 确保传入的dataBuffer参数有效，否则可能导致内存访问错误
+ */
+void ExecuteExceptionHandlerCallbackA4(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
