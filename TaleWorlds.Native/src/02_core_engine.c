@@ -12608,8 +12608,8 @@ void CoreEngineInitializeNetworkStatusMonitor(void)
     NetworkMonitorStatusFlag = *(char *)((long long)NextMonitorNode + SystemNodeStatusOffset);
   }
   if ((CurrentMonitorNode == MonitorPoolPointer) || (ComparisonResult = memcmp(&SystemMonitorComparisonData,CurrentMonitorNode + 4,0x10), ComparisonResult < 0)) {
-    MemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
-    CoreEngineSetupNetworkStatusMonitor(SystemHandle,&NewMonitorPointer,CurrentMonitorNode,MemoryOffset + SystemMemoryAllocationOffset,MemoryOffset);
+    long long NetworkMonitorMemoryOffset = CoreEngineAllocateNetworkMemory(SystemHandle);
+    CoreEngineSetupNetworkStatusMonitor(SystemHandle,&NewMonitorPointer,CurrentMonitorNode,NetworkMonitorMemoryOffset + SystemMemoryAllocationOffset,NetworkMonitorMemoryOffset);
     CurrentMonitorNode = NewMonitorPointer;
   }
   CurrentMonitorNode[6] = SystemNetworkMonitorIdentifierPrimary;
@@ -12637,7 +12637,7 @@ void CoreEngineInitializePhysicsConfig(void)
   uint64_t *ConnectionPoolPointer;
   int ComparisonResult;
   int64_t *SystemHandle;
-  int64_t MemoryOffset;
+  int64_t PhysicsConnectionMemoryOffset;
   uint64_t *PreviousConnection;
   uint64_t *CurrentConnection;
   uint64_t *NextConnection;
