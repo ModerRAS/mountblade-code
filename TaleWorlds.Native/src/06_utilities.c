@@ -19351,51 +19351,63 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
 
 
 
-// 浮点数验证和处理函数A2
+/**
+ * @brief 验证并处理浮点数数据A2
+ * 
+ * 该函数负责验证浮点数数据的有效性，处理INF和NaN值，执行数据范围检查和更新操作。
+ * 此函数用于处理系统中的浮点数数据，确保数据的有效性和一致性。
+ * 
+ * @param dataParameter 数据参数，包含要验证的浮点数数据
+ * @param contextParameter 上下文参数，包含系统上下文信息
+ * @return DataBuffer 验证结果状态码，成功返回0，失败返回相应错误码
+ * 
+ * @note 原始函数名：ValidateAndProcessFloatingPointNumberA2
+ * @warning 该函数包含复杂的浮点数验证逻辑，确保输入数据的有效性
+ */
 DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t contextParameter)
 
 {
-  float floatValue;
-  int64_t dataContext;
-  int64_t memoryBlockOffset;
-  DataBuffer memoryRegionBase;
-  int64_t arrayIndex;
-  int64_t systemContext;
-  int operationResultBuffer [2];
-  int64_t queryContextBuffer;
+  float FloatValue;
+  int64_t DataContext;
+  int64_t MemoryBlockOffset;
+  DataBuffer ValidationResult;
+  int64_t ArrayIndex;
+  int64_t SystemContext;
+  int OperationResultBuffer [2];
+  int64_t StackBuffer;
   
   if (dataParameter + SystemParameterValidationOffset28 != 0) {
-    memoryRegionBase = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataParameter + ExceptionHandlerCallbackOffset10),&stackBuffer);
-    if ((int)memoryRegionBase != 0) {
-      return memoryRegionBase;
+    ValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataParameter + ExceptionHandlerCallbackOffset10),&StackBuffer);
+    if ((int)ValidationResult != 0) {
+      return ValidationResult;
     }
-    systemContext = stackBuffer;
-    if (stackBuffer != 0) {
-      systemContext = stackBuffer + -8;
+    SystemContext = StackBuffer;
+    if (StackBuffer != 0) {
+      SystemContext = StackBuffer + -8;
     }
-    dataContext = *(int64_t *)(systemContext + SystemDataSecondaryOffset18);
-    if (dataContext == 0) {
+    DataContext = *(int64_t *)(SystemContext + SystemDataSecondaryOffset18);
+    if (DataContext == 0) {
       return ResourceNotFoundCode;
     }
-    operationResult[0] = 0;
-    memoryRegionBase = ExecuteSystemOperationA0(contextParameter,systemContext,dataParameter + SystemParameterValidationOffset28,operationResult);
-    if ((int)memoryRegionBase != 0) {
-      return memoryRegionBase;
+    OperationResultBuffer[0] = 0;
+    ValidationResult = ExecuteSystemOperationA0(contextParameter,SystemContext,dataParameter + SystemParameterValidationOffset28,OperationResultBuffer);
+    if ((int)ValidationResult != 0) {
+      return ValidationResult;
     }
-    arrayIndex = (int64_t)operationResult[0];
-    systemContext = *(int64_t *)(systemContext + SystemDataParameterOffset20);
-    memoryBlockOffset = *(int64_t *)(systemContext + SystemDataRecordOffset10 + arrayIndex * SystemDataRecordMultiplier18);
-    if ((*(SystemByteType *)(memoryBlockOffset + SystemDataValidationOffset34) & 0x11) == 0) {
-      memoryRegionBase = ProcessDataValidationA0(memoryBlockOffset,dataParameter + DataValidationOffsetA8,dataParameter + DataValidationOffset18);
-      if ((int)memoryRegionBase != 0) {
-        return memoryRegionBase;
+    ArrayIndex = (int64_t)OperationResultBuffer[0];
+    SystemContext = *(int64_t *)(SystemContext + SystemDataParameterOffset20);
+    MemoryBlockOffset = *(int64_t *)(SystemContext + SystemDataRecordOffset10 + ArrayIndex * SystemDataRecordMultiplier18);
+    if ((*(SystemByteType *)(MemoryBlockOffset + SystemDataValidationOffset34) & 0x11) == 0) {
+      ValidationResult = ProcessDataValidationA0(MemoryBlockOffset,dataParameter + DataValidationOffsetA8,dataParameter + DataValidationOffset18);
+      if ((int)ValidationResult != 0) {
+        return ValidationResult;
       }
-      floatValue = *(float *)(dataParameter + SystemDataSecondaryOffset18);
-      if ((*(float *)(memoryBlockOffset + SystemFloatDataOffset38) <= floatValue) &&
-         (floatValue < *(float *)(memoryBlockOffset + FloatDataValidationOffset3C) || floatValue == *(float *)(memoryBlockOffset + FloatDataValidationOffset3C))) {
-        dataContext = *(int64_t *)(dataContext + SystemContextPointerOffset90);
-        *(float *)(systemContext + 4 + arrayIndex * SystemDataRecordMultiplier) = floatValue;
-        *(DataBuffer *)(dataParameter + SystemDataParameterOffset20) = *(DataBuffer *)(dataContext + (int64_t)operationResult[0] * 8);
+      FloatValue = *(float *)(dataParameter + SystemDataSecondaryOffset18);
+      if ((*(float *)(MemoryBlockOffset + SystemFloatDataOffset38) <= FloatValue) &&
+         (FloatValue < *(float *)(MemoryBlockOffset + FloatDataValidationOffset3C) || FloatValue == *(float *)(MemoryBlockOffset + FloatDataValidationOffset3C))) {
+        DataContext = *(int64_t *)(dataParameter + SystemContextPointerOffset90);
+        *(float *)(SystemContext + 4 + ArrayIndex * SystemDataRecordMultiplier) = FloatValue;
+        *(DataBuffer *)(dataParameter + SystemDataParameterOffset20) = *(DataBuffer *)(DataContext + (int64_t)OperationResultBuffer[0] * 8);
           CleanupSystemEventA0(*(DataBuffer *)(contextParameter + SystemManagementOffset98),dataParameter);
       }
       return ResourceInvalidErrorCode;
@@ -100063,7 +100075,22 @@ void ProcessExceptionHandlerContextLoopD650(DataBuffer operationBase,int64_t dat
 
 
 
-void Unwind_18090d660(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理异常上下文资源和回调函数
+ * 
+ * 该函数负责清理异常处理上下文中的各种资源和回调函数。
+ * 主要功能包括：
+ * - 调用异常上下文中的回调函数（ED0、EB8、EB0偏移量）
+ * - 执行内存清理操作（EC0、EA0、E90、E80偏移量）
+ * - 清理大块内存资源（C28、9D0、B8偏移量）
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d660
+ * @note 这是一个异常展开（unwind）处理函数，用于清理异常处理资源
+ */
+void CleanupExceptionHandlerContextAndResources(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
