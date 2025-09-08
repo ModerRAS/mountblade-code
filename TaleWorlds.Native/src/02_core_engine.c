@@ -185665,11 +185665,11 @@ LAB_180152731:
     SystemPointer208 = (long long *)CONCAT44(SystemPointer208.HighPart,*(uint32_t *)(CharacterCode + 0xb4));
     ppuStack_210 = *(uint32_t ***)(CharacterCode + 0xa8);
     uStack_218 = CONCAT44(uStack_218.HighPart,*(uint32_t *)(CharacterCode + 0xc4));
-    FUN_18029e450(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
+    ProcessSystemDataFormatting(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
                   *(uint32_t *)(CharacterCode + 0xc0),*(uint32_t *)(CharacterCode + 0xbc));
     break;
   case 6:
-    FUN_18029e500(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
+    ProcessSystemDataValidation(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
                   *(void *)(CharacterCode + 0xa8));
     (**(code **)(**(long long **)(CharacterCode + 0xa0) + 0x38))();
     (**(code **)(**(long long **)(CharacterCode + 0xa8) + 0x38))();
