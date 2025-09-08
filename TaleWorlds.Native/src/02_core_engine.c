@@ -100090,7 +100090,7 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCo
     MatrixElementE = MatrixElementC + *CharacterCodeSize + SystemContextPrimaryFloat4 * 2.0;
     MatrixElementF = SystemBufferSize[1] + MatrixElementD + MatrixTransformResult.HighPart * 2.0;
     MatrixElementJ = MatrixElementH + SystemBufferSize[1];
-    SystemFlagG = CONCAT44(MatrixElementF - MatrixElementD,MatrixElementE - MatrixElementC);
+    MatrixTransformResult = CONCAT44(MatrixElementF - MatrixElementD,MatrixElementE - MatrixElementC);
     ProcessSystemBuffer(&SystemFlagG,0);
     SystemStatusCode = ValidateSystemData(&MatrixElementC,ComputedResult,0);
     if ((char)SystemStatusCode != '\0') {
