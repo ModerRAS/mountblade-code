@@ -95728,7 +95728,22 @@ void CleanupResourceDC0(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_InitializeExceptionHandlerCDF0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数CDF0
+ * 
+ * 初始化异常处理器的相关资源，设置异常处理上下文。
+ * 该函数负责：
+ * 1. 初始化异常处理器的状态
+ * 2. 设置异常处理上下文
+ * 3. 配置异常处理相关的内存区域
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理配置信息
+ * 
+ * @note 原始函数名：Unwind_InitializeExceptionHandlerCDF0
+ * @note 这是一个异常展开（unwind）处理函数，用于初始化异常处理器
+ */
+void InitializeExceptionHandlerCDF0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x178) != (int64_t *)0x0) {
@@ -95816,7 +95831,22 @@ void ProcessExceptionContextCE10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_InitializeExceptionHandlerCE20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数CE20
+ * 
+ * 初始化异常处理器的相关资源，设置异常处理上下文。
+ * 该函数负责：
+ * 1. 初始化异常处理器的状态
+ * 2. 设置异常处理上下文
+ * 3. 配置异常处理相关的内存区域
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理配置信息
+ * 
+ * @note 原始函数名：Unwind_InitializeExceptionHandlerCE20
+ * @note 这是一个异常展开（unwind）处理函数，用于初始化异常处理器
+ */
+void InitializeExceptionHandlerCE20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -95851,7 +95881,22 @@ void Unwind_InitializeExceptionHandlerCE20(DataBuffer operationBase,int64_t data
  * 
  * @note 原始函数名：Unwind_18090ce30
  */
-void Unwind_InitializeExceptionHandlerCE30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数CE30
+ * 
+ * 初始化异常处理器的相关资源，设置异常处理上下文。
+ * 该函数负责：
+ * 1. 初始化异常处理器的状态
+ * 2. 设置异常处理上下文
+ * 3. 配置异常处理相关的内存区域
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理配置信息
+ * 
+ * @note 原始函数名：Unwind_InitializeExceptionHandlerCE30
+ * @note 这是一个异常展开（unwind）处理函数，用于初始化异常处理器
+ */
+void InitializeExceptionHandlerCE30(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + MemoryBlockSizeOffset) != (int64_t *)0x0) {
@@ -95872,7 +95917,22 @@ void Unwind_InitializeExceptionHandlerCE30(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_InitializeExceptionHandlerCE40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数CE40
+ * 
+ * 初始化异常处理器的相关资源，设置异常处理上下文。
+ * 该函数负责：
+ * 1. 初始化异常处理器的状态
+ * 2. 设置异常处理上下文
+ * 3. 配置异常处理相关的内存区域
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理配置信息
+ * 
+ * @note 原始函数名：Unwind_InitializeExceptionHandlerCE40
+ * @note 这是一个异常展开（unwind）处理函数，用于初始化异常处理器
+ */
+void InitializeExceptionHandlerCE40(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + ValidationResultOffset8) != (int64_t *)0x0) {
@@ -98901,7 +98961,23 @@ void ManageMemoryResourceReferenceCount300(DataBuffer operationBase,int64_t data
 
 
 
-void Unwind_18090d310(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理器310
+ * 
+ * 管理内存资源的引用计数，处理资源的释放和清理。
+ * 该函数负责：
+ * 1. 检查内存资源指针的有效性
+ * 2. 计算内存区域的基地址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d310
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
+ */
+void ManageMemoryResourceReferenceCount310(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -99032,7 +99108,23 @@ void Unwind_18090d350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090d360(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理器360
+ * 
+ * 管理内存资源的引用计数，处理资源的释放和清理。
+ * 该函数负责：
+ * 1. 检查内存资源指针的有效性
+ * 2. 计算内存区域的基地址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d360
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
+ */
+void ManageMemoryResourceReferenceCount360(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -99068,7 +99160,23 @@ void Unwind_18090d360(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d370(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理器370
+ * 
+ * 管理内存资源的引用计数，处理资源的释放和清理。
+ * 该函数负责：
+ * 1. 检查内存资源指针的有效性
+ * 2. 计算内存区域的基地址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d370
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
+ */
+void ManageMemoryResourceReferenceCount370(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -99104,7 +99212,23 @@ void Unwind_18090d370(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d380(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理器380
+ * 
+ * 管理内存资源的引用计数，处理资源的释放和清理。
+ * 该函数负责：
+ * 1. 检查内存资源指针的有效性
+ * 2. 计算内存区域的基地址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d380
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
+ */
+void ManageMemoryResourceReferenceCount380(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -99140,7 +99264,23 @@ void Unwind_18090d380(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d390(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理器390
+ * 
+ * 管理内存资源的引用计数，处理资源的释放和清理。
+ * 该函数负责：
+ * 1. 检查内存资源指针的有效性
+ * 2. 计算内存区域的基地址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d390
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
+ */
+void ManageMemoryResourceReferenceCount390(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -99176,7 +99316,23 @@ void Unwind_18090d390(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d3a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理器3A0
+ * 
+ * 管理内存资源的引用计数，处理资源的释放和清理。
+ * 该函数负责：
+ * 1. 检查内存资源指针的有效性
+ * 2. 计算内存区域的基地址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d3a0
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
+ */
+void ManageMemoryResourceReferenceCount3A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -99212,7 +99368,23 @@ void Unwind_18090d3a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d3b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理器3B0
+ * 
+ * 管理内存资源的引用计数，处理资源的释放和清理。
+ * 该函数负责：
+ * 1. 检查内存资源指针的有效性
+ * 2. 计算内存区域的基地址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d3b0
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
+ */
+void ManageMemoryResourceReferenceCount3B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -99248,7 +99420,23 @@ void Unwind_18090d3b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d3c0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理器3C0
+ * 
+ * 管理内存资源的引用计数，处理资源的释放和清理。
+ * 该函数负责：
+ * 1. 检查内存资源指针的有效性
+ * 2. 计算内存区域的基地址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d3c0
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
+ */
+void ManageMemoryResourceReferenceCount3C0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -99300,7 +99488,23 @@ void Unwind_18090d3c0(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @see CleanupMemoryResourceReferenceCountAtOffset310A, CleanupMemoryResourceReferenceCountAtOffset310B
  */
-void Unwind_18090d3d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理器3D0
+ * 
+ * 管理内存资源的引用计数，处理资源的释放和清理。
+ * 该函数负责：
+ * 1. 检查内存资源指针的有效性
+ * 2. 计算内存区域的基地址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d3d0
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
+ */
+void ManageMemoryResourceReferenceCount3D0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;

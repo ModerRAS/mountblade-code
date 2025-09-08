@@ -111,8 +111,8 @@ typedef enum {
 #define TransformUIDataB4C FUN_180719b4c
 
 // UI系统数据变量宏定义
-#define UIGlobalDataRegistry UNK_180956d30
-#define UIGlobalDataRegistry38 UNK_180956d38
+#define UIGlobalDataRegistry UISystemGlobalDataRegistry
+#define UIGlobalDataRegistry38 UISystemGlobalDataRegistryExtended
 #define UIGlobalDataRegistry30 UNK_180956d30
 
 // UI系统查找表变量宏定义
@@ -10531,32 +10531,32 @@ ProcessUIModulePath(UIHandle module_handle, UIHandle path_buffer, UIHandle targe
   uint result;
   UIHandle iterationCount;
   longlong stringCompareIndex;
-  undefined *apuStackX_10 [3];
-  undefined *pstackUInt30;
-  longlong stackLong28;
-  uint stackUInt20;
+  UIHandle *moduleResourceArray [3];
+  UIHandle *bufferPointer;
+  longlong pathStringPointer;
+  uint pathStringLength;
   
-  OperateUIBuffer(&pstackUInt30,uiContext,targetBuffer,bufferSize,0xfffffffffffffffe);
+  OperateUIBuffer(&bufferPointer,uiContext,targetBuffer,bufferSize,0xfffffffffffffffe);
   result = 0;
-  if (stackUInt20 != 0) {
+  if (pathStringLength != 0) {
     stringCompareIndex = 0;
     do {
-      if ((byte)(*(char *)(stackLong28 + stringCompareIndex) + 0xbfU) < 0x1a) {
-        *(char *)(stackLong28 + stringCompareIndex) = *(char *)(stackLong28 + stringCompareIndex) + ' ';
+      if ((byte)(*(char *)(pathStringPointer + stringCompareIndex) + 0xbfU) < 0x1a) {
+        *(char *)(pathStringPointer + stringCompareIndex) = *(char *)(pathStringPointer + stringCompareIndex) + ' ';
       }
       result = result + 1;
       stringCompareIndex = stringCompareIndex + 1;
-    } while (result < stackUInt20);
+    } while (result < pathStringLength);
   }
-  RegisterUIComponent(result,apuStackX_10,&pstackUInt30);
-  if (apuStackX_10[0] == &UIDefaultResourceBuffer) {
+  RegisterUIComponent(result,moduleResourceArray,&bufferPointer);
+  if (moduleResourceArray[0] == &UIDefaultResourceBuffer) {
     iterationCount = 0;
   }
   else {
-    iterationCount = *(UIHandle *)(apuStackX_10[0] + 0x40);
+    iterationCount = *(UIHandle *)(moduleResourceArray[0] + 0x40);
   }
-  pstackUInt30 = &PrimaryUIBuffer;
-  if (stackLong28 != 0) {
+  bufferPointer = &PrimaryUIBuffer;
+  if (pathStringPointer != 0) {
                      WARNING: Subroutine does not return
     DestroyUIComponent();
   }
@@ -10590,27 +10590,26 @@ UIHandle * FindUIModuleByPath(UIHandle path_length, UIHandle *path_buffer, longl
   byte *pathCharacterPtr;
   uint characterCode;
   int characterDifference;
-  longlong ContextHandleData;
-  UIHandle *eventCodePtr;
+  longlong pathOffset;
+  UIHandle *resourceManagerPtr;
   UIHandle *modulePathPtr;
-  UIHandle *resultPtr;
-  UIHandle *resultPtr;
+  UIHandle *searchResultPtr;
   
   if (UIResourceManagerHandle != (UIHandle *)0x0) {
-    eventCodePtr = UIResourceManagerHandle;
-    resultPtr = (UIHandle *)&UIDefaultResourceBuffer;
+    resourceManagerPtr = UIResourceManagerHandle;
+    searchResultPtr = (UIHandle *)&UIDefaultResourceBuffer;
     do {
       if (*(int *)(targetBuffer + 0x10) == 0) {
-        modulePathPtr = (UIHandle *)eventCodePtr[1];
+        modulePathPtr = (UIHandle *)resourceManagerPtr[1];
         isPathMatching = false;
       }
       else {
-        if (*(int *)(eventCodePtr + 6) == 0) {
+        if (*(int *)(resourceManagerPtr + 6) == 0) {
           isPathMatching = true;
         }
         else {
           pathCharacterPtr = *(byte **)(targetBuffer + 8);
-          ContextHandleData = eventCodePtr[5] - (longlong)pathCharacterPtr;
+          pathOffset = resourceManagerPtr[5] - (longlong)pathCharacterPtr;
           do {
             characterCode = (uint)pathCharacterPtr[ContextHandleData];
             characterDifference = *pathCharacterPtr - characterCode;
@@ -95164,13 +95163,13 @@ UIDword ProcessUIFontValidation(longlong uiContext,int dataSource,UIHandle targe
     result = 10;
   }
   else {
-    ptrLocal3 = &UNK_180954b30;
+    ptrLocal3 = &UIStatusPointer6;
     result = 0x10;
   }
   *(UIDword *)(uiBufferData + 0x924) = result;
   *(undefined **)(uiContext + 0xac0) = ptrLocal3;
   if (dataSource == 0x10) {
-    ptrLocal3 = &UNK_1809535d8;
+    ptrLocal3 = &UIStatusPointer7;
   }
   else if (dataSource == 0xc) {
     ptrLocal3 = &UNK_1809535c4;
