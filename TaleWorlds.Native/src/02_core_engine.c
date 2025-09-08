@@ -280424,7 +280424,7 @@ float * ProcessCharacterEncodingAndMatrixTransformation(long long CharacterCode,
   float ContextSecondaryFloat3;
   
   UnicodeCodePoint = *(unsigned long long *)(CharacterCode + 0x800);
-  SystemDataTablePointer = (long long)(char)Utf8SourcePointer;
+  CharacterTableIndex = (long long)(char)Utf8SourcePointer;
   if (((*(unsigned long long *)(CharacterCode + 0x810) & UnicodeCodePoint) != 0) &&
      ((*(unsigned long long *)(SystemDataTablePointer * 0x1b0 + 0xe0 + *(long long *)(Utf16EndPointer + 0x140)) & UnicodeCodePoint) != 0)) {
     MatchCounter = -1;
