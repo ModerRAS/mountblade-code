@@ -100349,11 +100349,11 @@ float CalculateUIContextCompositeDistance(int *uiContext, int dataSource, int ta
           do {
             targetBuffer = targetBuffer + -1;
           } while (maxProcessingCount - result0 <
-                   *(uint *)(characterDataOffset + *(longlong *)(&UNK_180956d30 + (longlong)targetBuffer * 8)));
+                   *(uint *)(characterDataOffset + *(longlong *)(&UIGlobalDataRegistry + (longlong)targetBuffer * 8)));
           processingCounter = (maxProcessingCount < result) - 1;
           processingStep = processingCounter - (short)targetBuffer;
           maxProcessingCount = (maxProcessingCount - result0) -
-                  *(uint *)(characterDataOffset + *(longlong *)(&UNK_180956d30 + (longlong)targetBuffer * 8));
+                  *(uint *)(characterDataOffset + *(longlong *)(&UIGlobalDataRegistry + (longlong)targetBuffer * 8));
           goto LAB_180727edb;
         }
         maxProcessingCount = maxProcessingCount - *(uint *)(characterDataOffset + *(longlong *)(&UNK_180956d30 + contextOffset * 8));

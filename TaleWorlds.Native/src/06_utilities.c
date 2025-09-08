@@ -15945,18 +15945,32 @@ int CheckUtilityPermissionG0(uint32_t permissionFlags)
 
 
 
-// 函数: DataBuffer GetUtilityStatusSuccess(void)
-// 功能：获取工具状态成功标识，返回0表示操作成功
+/**
+ * @brief 获取工具状态成功标识
+ * 
+ * 该函数用于获取工具系统的成功状态标识，表示操作成功完成。
+ * 
+ * @return DataBuffer 成功状态码，返回0表示操作成功
+ * 
+ * @note 原始函数名：GetUtilityStatusSuccess
+ */
 DataBuffer GetUtilityStatusSuccess(void)
 
 {
-  return 0;
+  return OperationSuccessCode;
 }
 
 
 
-// 函数: DataBuffer GetUtilityStatusError(void)
-// 功能：获取工具状态错误标识，返回0x1f表示操作失败
+/**
+ * @brief 获取工具状态错误标识
+ * 
+ * 该函数用于获取工具系统的错误状态标识，表示操作失败。
+ * 
+ * @return DataBuffer 错误状态码，返回ComponentDataValidationFailure表示操作失败
+ * 
+ * @note 原始函数名：GetUtilityStatusError
+ */
 DataBuffer GetUtilityStatusError(void)
 
 {
