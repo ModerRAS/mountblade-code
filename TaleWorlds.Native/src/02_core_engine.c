@@ -191601,14 +191601,14 @@ void CleanupSystemMemoryBlocksAndReleaseResources(void)
   uint64_t NullPointerValue;
   
   do {
-    MemoryBlockIndex = *(long long *)(CharacterLimit + SystemDataNode * 8);
+    MemoryBlockIndex = *(long long *)(DataArrayLimit + SystemDataNodeIndex * 8);
     if (MemoryBlockIndex != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineFreeSystemMemory(MemoryBlockIndex);
     }
-    *(void *)(CharacterLimit + SystemDataNode * 8) = NullPointerValue;
-    SystemDataNode = SystemDataNode + 1;
-  } while (SystemDataNode < PatternIndex);
+    *(void *)(DataArrayLimit + SystemDataNodeIndex * 8) = NullPointerValue;
+    SystemDataNodeIndex = SystemDataNodeIndex + 1;
+  } while (SystemDataNodeIndex < PatternIndex);
   *(void *)(StackFrameAddressPointer + 0x18) = NullPointerValue;
   if ((1 < *(unsigned long long *)(StackFrameAddressPointer + 0x10)) &&
      (PrimaryProcessingStatusFlag = *(uint64_t **)(StackFrameAddressPointer + 8), PrimaryProcessingStatusFlag != NULL)) {

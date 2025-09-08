@@ -100002,7 +100002,22 @@ void Unwind_18090ef50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ef60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理函数
+ * 
+ * 该函数管理系统内存资源的引用计数，处理内存块的释放和清理。
+ * 主要功能包括：
+ * - 获取内存资源指针和内存区域基址
+ * - 计算内存块偏移量并验证内存状态
+ * - 更新资源引用计数，当计数为0时触发异常处理
+ * - 管理内存资源的生命周期和清理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ef60
+ */
+void ManageMemoryResourceReferenceCount(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -100038,7 +100053,21 @@ void Unwind_18090ef60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ef70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器调用函数
+ * 
+ * 该函数用于调用异常上下文中的处理器函数。
+ * 主要功能包括：
+ * - 从数据缓冲区中获取异常上下文指针
+ * - 验证上下文指针的有效性
+ * - 调用上下文中指定偏移量处的处理器函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ef70
+ */
+void InvokeExceptionHandlerContext(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100052,7 +100081,23 @@ void Unwind_18090ef70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ef80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调函数调用器
+ * 
+ * 该函数调用指定的异常处理器回调函数，传递相关参数。
+ * 主要功能包括：
+ * - 获取异常处理器回调函数指针
+ * - 验证回调函数的有效性
+ * - 调用回调函数并传递必要的参数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090ef80
+ */
+void InvokeExceptionHandlerCallback(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -100066,7 +100111,20 @@ void Unwind_18090ef80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090ef90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统内存操作执行器
+ * 
+ * 该函数执行系统内存操作，调用内存操作函数进行系统清理。
+ * 主要功能包括：
+ * - 从数据缓冲区获取内存操作参数
+ * - 调用内存操作函数执行清理任务
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ef90
+ */
+void ExecuteSystemMemoryOperation(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x70) + 0x30,0x30,0xe,CleanupSystemDataA0);
@@ -100075,7 +100133,23 @@ void Unwind_18090ef90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090efc0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 数据缓冲区处理器
+ * 
+ * 该函数处理数据缓冲区中的数据，调用数据处理函数进行操作。
+ * 主要功能包括：
+ * - 从数据缓冲区获取处理参数
+ * - 调用数据处理函数处理数据
+ * - 传递操作标志和清理标志
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ * 
+ * @note 原始函数名：Unwind_18090efc0
+ */
+void ProcessDataBufferWithFlags(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
   ProcessDataBufferA3(*(int64_t *)(dataBuffer + 0x70) + 0x2d0,
@@ -104375,57 +104449,53 @@ void CleanupExceptionMemoryBlocksA4(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910080(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常处理器回调函数序列
+ * 
+ * 该函数遍历异常处理器上下文中的多个回调函数指针，并依次执行这些回调函数。
+ * 函数检查从0x50到0x8的多个偏移量位置的回调函数指针，如果指针非空则调用对应的回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器上下文信息
+ * 
+ * @note 原始函数名：Unwind_180910080
+ * @note 检查多个偏移量的回调函数指针：0x68, 0x60, 0x58, 0x50, 0x48, 0x40, 0x38, 0x30, 0x28, 0x20, 0x18, 0x10, 0x8
+ * @note 每个回调函数都在0x38偏移量处
+ */
+void ExecuteExceptionHandlerCallbacks(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
+  FunctionPointer** callbackPointer;
+  int callbackOffset;
   
   exceptionHandlerContext = *(int64_t *)(dataBuffer + 0x50);
-  if (*(int64_t **)(exceptionHandlerContext + 0x68) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x68) + 0x38))();
+  
+  // 遍历多个偏移量的回调函数指针并执行
+  for (callbackOffset = 0x68; callbackOffset >= 8; callbackOffset -= 8) {
+    callbackPointer = *(FunctionPointer***)(exceptionHandlerContext + callbackOffset);
+    if (callbackPointer != (FunctionPointer**)0x0) {
+      (**(callbackPointer + 0x38))();
+    }
   }
-  if (*(int64_t **)(exceptionHandlerContext + 0x60) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x60) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x58) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x58) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x50) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x50) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x48) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x48) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x40) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x40) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x38) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x38) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x30) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x30) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x28) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x28) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + ExceptionHandlerContextDataOffset) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + ExceptionHandlerContextDataOffset) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 0x18) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 0x18) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + ExceptionHandlerCallbackOffset10) + 0x38))();
-  }
-  if (*(int64_t **)(exceptionHandlerContext + 8) != (int64_t *)0x0) {
-    (**(FunctionPointer**)(**(int64_t **)(exceptionHandlerContext + 8) + 0x38))();
-  }
+  
   return;
 }
 
 
 
-void Unwind_180910090(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到0x88偏移量
+ * 
+ * 该函数在异常展开过程中设置默认异常处理器B到数据缓冲区的0x88偏移量位置。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_180910090
+ * @note 设置0x88偏移量的默认异常处理器
+ */
+void SetDefaultExceptionHandlerAtOffset88(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   **(DataBuffer **)(dataBuffer + 0x88) = &DefaultExceptionHandlerB;
@@ -104434,7 +104504,19 @@ void Unwind_180910090(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809100a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B到异常上下文0x20偏移量
+ * 
+ * 该函数在异常展开过程中设置默认异常处理器B到异常上下文的0x20偏移量位置。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809100a0
+ * @note 通过ExceptionHandlerContextOffset58获取异常上下文
+ * @note 在异常上下文的0x20偏移量设置默认异常处理器
+ */
+void SetDefaultExceptionHandlerAtContextOffset20(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(*(int64_t *)(dataBuffer + ExceptionHandlerContextOffset58) + 0x20) = &DefaultExceptionHandlerB;
