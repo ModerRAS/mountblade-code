@@ -215480,6 +215480,24 @@ void ProcessSystemDataValidationAndCharacterEncoding(long long *CharacterCode,lo
 
 
 
+/**
+ * @brief 处理内存块索引和缓冲区分配
+ * 
+ * 该函数负责处理内存块索引和缓冲区分配操作，主要功能包括：
+ * - 计算内存块索引并遍历内存块
+ * - 处理字符代码和缓冲区分配状态
+ * - 执行内存块清理和释放操作
+ * - 管理UTF-8源指针的更新
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @return 返回处理后的UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_18017b5e0
+ */
+#define ProcessMemoryBlockIndexAndBufferAllocation FUN_18017b5e0
 long long * FUN_18017b5e0(long long CharacterCode,long long SystemBufferSize,long long *Utf8SourcePointer
 {
   long long *CharacterCode;
