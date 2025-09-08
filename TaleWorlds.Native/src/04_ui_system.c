@@ -1417,6 +1417,19 @@ void* UpdateUISystemFunction;
 void* RenderUISystemFunction;
  UI渲染目标
 void* UIRenderTarget;
+
+// UI系统数据处理函数
+#define FUN_180707df0 ProcessUIDataWithContext
+#define FUN_180707a56 InitializeUIDataProcessor
+#define FUN_1807075c0 ProcessUIAnimationData
+#define FUN_18070e250 AcquireUISemaphoreHandle
+#define FUN_18070ba50 ProcessUIComponentEvent
+#define FUN_18070e950 ProcessUIRenderDataWithTransform
+#define FUN_18070f310 GetUIElementCount
+#define FUN_18070f540 SetUIElementState
+#define FUN_18070f360 UpdateUIElementData
+#define FUN_18070ee30 ProcessUIDataTransferWithOffset
+
  UI显示缓冲区
 void* UIDisplayBuffer;
  UI视口设置
