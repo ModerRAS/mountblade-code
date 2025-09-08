@@ -19555,7 +19555,7 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
   float inputValue;
   int64_t dataPointer;
   DataBuffer result;
-  float rangeValue;
+  float maximumRangeValue;
   int64_t systemContextBuffer;
   int64_t queryBuffer [2];
   
@@ -19586,13 +19586,13 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
         return ComponentDataValidationFailure;
       }
       inputValue = *(float *)(contextPointer + FloatingPointDataOffset20);
-      rangeValue = *(float *)(dataPointer + FloatingPointDataOffset38);
+      maximumRangeValue = *(float *)(dataPointer + FloatingPointDataOffset38);
       if ((*(float *)(dataPointer + FloatingPointDataOffset38) <= inputValue) &&
-         (rangeValue = *(float *)(dataPointer + FloatingPointDataOffset3c), inputValue <= *(float *)(dataPointer + FloatingPointDataOffset3c))) {
-        rangeValue = inputValue;
+         (maximumRangeValue = *(float *)(dataPointer + FloatingPointDataOffset3c), inputValue <= *(float *)(dataPointer + FloatingPointDataOffset3c))) {
+        maximumRangeValue = inputValue;
       }
-      *(float *)(contextPointer + FloatingPointDataOffset20) = rangeValue;
-      *(float *)(systemContextBuffer + 4) = rangeValue;
+      *(float *)(contextPointer + FloatingPointDataOffset20) = maximumRangeValue;
+      *(float *)(systemContextBuffer + 4) = maximumRangeValue;
         UpdateSystemFloatingPointValue(*(DataBuffer *)(systemDataPointer + SystemResourceOffset98),contextPointer);
     }
   }
@@ -102378,7 +102378,18 @@ void CleanupMemoryResourceAtOffset7620(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090dba0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 清理内存资源偏移量0x48
+ * 
+ * 该函数负责在异常处理过程中清理指定偏移量0x48处的内存资源
+ * 执行内存操作以释放资源并确保系统稳定性
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090dba0
+ */
+void CleanupMemoryResourceAtOffset48(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x248,2,ProcessMemoryOperationA0);
