@@ -251706,39 +251706,39 @@ LAB_18020c1b3:
               }
             }
             else if (StringComparisonResult == 0) goto LAB_18020c15e;
-            StringComparisonResult0 = StringComparisonResult0 + 1;
+            StringComparisonResultSecondary = StringComparisonResultSecondary + 1;
             SystemDataRegistry = SystemDataRegistry + 8;
             MemoryBlockIndex = GetPreviousMemoryBlockIndex(MemoryBoundaryEnd);
             MemoryBlockIndex = *(long long *)(*(long long *)(MemoryBlockIndex + 0x28) + SystemConfigurationIterator * 8);
-          } while ((unsigned long long)(long long)StringComparisonResult0 <
+          } while ((unsigned long long)(long long)StringComparisonResultSecondary <
                    (unsigned long long)(*(long long *)(MemoryBlockIndex + 0x30) - *(long long *)(MemoryBlockIndex + 0x28) >> 3));
         }
         SystemConfigurationIterator = SystemConfigurationIterator + 1;
-        SystemDataRegistry = lStack_d8;
-      } while (SystemConfigurationIterator < IntegerValue4);
+        SystemDataRegistry = StackParameterD8;
+      } while (SystemConfigurationIterator < EntryValidationResult);
     }
     MemoryBoundaryEnd = GetPreviousMemoryBlockIndex(MemoryBoundaryEnd);
-    HighByte1 = MemoryBoundaryEnd == *(long long *)(SystemDataRegistry + 8);
+    SystemValidationFlag = MemoryBoundaryEnd == *(long long *)(SystemDataRegistry + 8);
   }
   SystemTemporaryValue90 = 0;
-  lStack_88 = 0;
+  StackParameter88 = 0;
   CalculationFunctionAddress = 0;
   StackProcessingUnsignedValue78 = 3;
-  ProcessSystemContextAllocation(&SystemTemporaryValue90,&lStackX_18);
-  FUN_1802e8c60(Utf8SourcePointer,&SystemTemporaryValue90);
-  pBufferInitializationFlag = NULL;
-  pDataProcessingFlags = NULL;
+  ProcessSystemContextAllocation(&SystemTemporaryValue90, &StackParameter18);
+  FUN_1802e8c60(Utf8SourcePointer, &SystemTemporaryValue90);
+  BufferInitializationFlag = NULL;
+  DataProcessingFlags = NULL;
   CharacterStatusBuffer9 = NULL;
-  IntegerValue4 = 0;
-  if (lStack_88 - SystemTemporaryValue90 >> 3 != 0) {
-    uStackX_20 = 0;
+  EntryValidationResult = 0;
+  if (StackParameter88 - SystemTemporaryValue90 >> 3 != 0) {
+    StackParameter20 = 0;
     MemoryBoundaryEnd = SystemTemporaryValue90;
-    MemoryBlockIndex = lStack_88;
+    MemoryBlockIndex = StackParameter88;
     do {
-      SystemDataRegistry = *(long long *)(uStackX_20 + MemoryBoundaryEnd);
+      SystemDataRegistry = *(long long *)(StackParameter20 + MemoryBoundaryEnd);
       SystemConfigurationIterator = 0;
-      StringComparisonResult0 = (int)(*(long long *)(SystemDataRegistry + 0xf8) - *(long long *)(SystemDataRegistry + 0xf0) >> 3);
-      if (0 < StringComparisonResult0) {
+      StringComparisonResultSecondary = (int)(*(long long *)(SystemDataRegistry + 0xf8) - *(long long *)(SystemDataRegistry + 0xf0) >> 3);
+      if (0 < StringComparisonResultSecondary) {
         do {
           if ((-1 < *(char *)(SystemDataRegistry + 0x2e8)) ||
              (SystemDataTablePointer = *(long long **)(*(long long *)(SystemDataRegistry + 0xb0) + SystemConfigurationIterator * 8),
@@ -251747,34 +251747,34 @@ LAB_18020c1b3:
           }
           StringComparisonResult = (**(code **)(*SystemDataTablePointer + 0x98))(SystemDataTablePointer);
           if (StringComparisonResult == 0) {
-            if (pDataProcessingFlags < CharacterStatusBuffer9) {
-              CoreEngineExecuteSystemEvent(pDataProcessingFlags,SystemDataTablePointer + 0x3e);
-              pDataProcessingFlags = pDataProcessingFlags + 4;
+            if (DataProcessingFlags < CharacterStatusBuffer9) {
+              CoreEngineExecuteSystemEvent(DataProcessingFlags, SystemDataTablePointer + 0x3e);
+              DataProcessingFlags = DataProcessingFlags + 4;
             }
             else {
-              MemoryBoundaryEnd = (long long)pDataProcessingFlags - (long long)pBufferInitializationFlag >> 5;
+              MemoryBoundaryEnd = (long long)DataProcessingFlags - (long long)BufferInitializationFlag >> 5;
               if (MemoryBoundaryEnd == 0) {
                 MemoryBoundaryEnd = 1;
 LAB_18020c2f3:
-                StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager,MemoryBoundaryEnd << 5,3);
+                StringProcessingStatus = (void *)BufferAllocate(MemoryPoolManager, MemoryBoundaryEnd << 5, 3);
               }
               else {
                 MemoryBoundaryEnd = MemoryBoundaryEnd * 2;
                 if (MemoryBoundaryEnd != 0) goto LAB_18020c2f3;
                 StringProcessingStatus = NULL;
               }
-              MemoryBlockIndex = CoreEngineCopyMemoryBuffer(pBufferInitializationFlag,pDataProcessingFlags,StringProcessingStatus);
-              CoreEngineExecuteSystemEvent(MemoryBlockIndex,SystemDataTablePointer + 0x3e);
-              for (CharacterStatusBuffer9 = pBufferInitializationFlag; CharacterStatusBuffer9 != pDataProcessingFlags; CharacterStatusBuffer9 = CharacterStatusBuffer9 + 4) {
-                (**(code **)*CharacterStatusBuffer9)(CharacterStatusBuffer9,0);
+              MemoryBlockIndex = CoreEngineCopyMemoryBuffer(BufferInitializationFlag, DataProcessingFlags, StringProcessingStatus);
+              CoreEngineExecuteSystemEvent(MemoryBlockIndex, SystemDataTablePointer + 0x3e);
+              for (CharacterStatusBuffer9 = BufferInitializationFlag; CharacterStatusBuffer9 != DataProcessingFlags; CharacterStatusBuffer9 = CharacterStatusBuffer9 + 4) {
+                (**(code **)*CharacterStatusBuffer9)(CharacterStatusBuffer9, 0);
               }
-              if (pBufferInitializationFlag != NULL) {
+              if (BufferInitializationFlag != NULL) {
                     // WARNING: Subroutine does not return
-                CoreEngineFreeSystemMemory(pBufferInitializationFlag);
+                CoreEngineFreeSystemMemory(BufferInitializationFlag);
               }
               CharacterStatusBuffer9 = StringProcessingStatus + MemoryBoundaryEnd * 4;
-              pBufferInitializationFlag = StringProcessingStatus;
-              pDataProcessingFlags = (void *)(MemoryBlockIndex + 0x20);
+              BufferInitializationFlag = StringProcessingStatus;
+              DataProcessingFlags = (void *)(MemoryBlockIndex + 0x20);
             }
           }
           SystemConfigurationIterator = SystemConfigurationIterator + 1;
