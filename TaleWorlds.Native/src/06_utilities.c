@@ -22686,7 +22686,7 @@ DataBuffer UtilityNoOperationK(void)
       return ResourceInvalidErrorCode;
     }
     operationResult = (int)*(uint *)((int64_t)registerContext + DataOperationOffset1C) >> 0x1f;
-    if (((int)((*(uint *)((int64_t)registerContext + 0x1c) ^ operationResult) - operationResult) < allocatedMemoryBlock) &&
+    if (((int)((*(uint *)((int64_t)registerContext + RegisterContextDataOffset1C) ^ operationResult) - operationResult) < allocatedMemoryBlock) &&
        (operationResult = CheckSystemDataA0(registerContext + 2,allocatedMemoryBlock), (int)operationResult != 0)) {
       return operationResult;
     }
@@ -22969,7 +22969,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
       *(int64_t *)(dataIterator + SystemManagementOffset98) = systemDataBuffer;
     }
     dataType = (int64_t)floatValue + arrayIndex < dataOffset - systemDataBuffer;
-    if ((*(SystemByteType *)(dataIterator + 0x6c) & 2) != 0) {
+    if ((*(SystemByteType *)(dataIterator + DataIteratorStatusOffset6C) & 2) != 0) {
       dataType = typeCheck;
     }
     if (*(int64_t *)(DestinationContext + 0xc0) != 0) {
