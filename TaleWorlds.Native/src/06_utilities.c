@@ -163,6 +163,12 @@
 #define DataBufferExceptionContextOffset 0x82            // 数据缓冲区异常上下文偏移量
 #define DataBufferSecondaryExceptionContextOffset 0x8a   // 数据缓冲区次级异常上下文偏移量
 
+// 系统状态偏移量常量
+#define SystemStateFlagsOffset 0x54                         // 系统状态标志偏移量
+#define SystemStateResourceCleanupOffset 0xe8              // 系统状态资源清理偏移量
+#define SystemStateFirstBitFlag 1                           // 系统状态第一位标志
+#define SystemStateFirstBitMask 0xfffffffe                  // 系统状态第一位掩码
+
 // 系统栈和资源管理常量
 #define SystemStackFrameAdjustment 8                      // 系统栈帧调整
 #define SystemResourceEntrySize 0x18                       // 系统资源条目大小
@@ -62900,22 +62906,24 @@ void SetDefaultExceptionHandlerB(DataBuffer exceptionHandler,int64_t systemConte
 
 
 /**
- * @brief 清理偏移量128处的异常状态
+ * @brief 清理系统异常状态标志位
  * 
- * 该函数负责清理系统状态中偏移量为128的异常状态，清除相应的标志位
- * 并释放相关资源。当检测到第1位标志被设置时，执行清理操作。
+ * 该函数负责清理系统状态中的异常状态标志位，当检测到异常状态标志
+ * 被设置时，会清除相应的标志位并释放相关资源。这是一个关键的异常
+ * 状态管理函数，确保系统能够正确地从异常状态中恢复。
  * 
- * @param exceptionContext 异常上下文指针
- * @param systemState 系统状态指针，包含需要清理的状态信息
+ * @param exceptionContext 异常上下文指针，用于异常处理和状态管理
+ * @param systemState 系统状态指针，包含需要清理的状态信息和标志位
  * 
  * @note 原始函数名：Unwind_180906360
+ * @note 处理系统状态偏移量0x54处的标志位和偏移量0xe8处的资源清理
  */
 void CleanupExceptionAtOffset128(DataBuffer exceptionContext,int64_t systemState)
 
 {
-  if ((*(uint *)(systemState + 0x54) & 1) != 0) {
-    *(uint *)(systemState + 0x54) = *(uint *)(systemState + 0x54) & 0xfffffffe;
-    CleanupResourceHandler(systemState + 0xe8);
+  if ((*(uint *)(systemState + SystemStateFlagsOffset) & SystemStateFirstBitFlag) != 0) {
+    *(uint *)(systemState + SystemStateFlagsOffset) = *(uint *)(systemState + SystemStateFlagsOffset) & SystemStateFirstBitMask;
+    CleanupResourceHandler(systemState + SystemStateResourceCleanupOffset);
   }
   return;
 }
