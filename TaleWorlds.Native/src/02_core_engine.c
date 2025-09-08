@@ -19992,7 +19992,7 @@ void CoreEngineInitializeDataStreamManager(void
 
 
 
- void CoreEngineInitializeThreadBuffer(voidvoid CoreEngineInitializeThreadBuffer(void
+ void CoreEngineInitializeThreadBuffer(void)
 {
   char CharacterStatusBuffer;
   EngineContext *SystemContext;
@@ -20404,7 +20404,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
 
 
- void CoreEngineInitializeThreadStack(voidvoid CoreEngineInitializeThreadStack(void
+ void CoreEngineInitializeThreadStack(void)
 {
   char CurrentCharacter;
   void *SystemContext;
@@ -20452,7 +20452,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
 
 
- void CoreEngineInitializeThreadHeap(voidvoid CoreEngineInitializeThreadHeap(void
+ void CoreEngineInitializeThreadHeap(void)
 {
   char CharacterStatusBuffer;
   EngineContext *SystemContext;

@@ -104525,7 +104525,22 @@ void SetDefaultExceptionHandlerAtContextOffset20(DataBuffer operationBase,int64_
 
 
 
-void Unwind_1809100b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器回调函数
+ * 
+ * 该函数在异常展开过程中执行异常上下文处理器回调函数。
+ * 通过数据缓冲区的0x70偏移量获取异常上下文，然后从0x98偏移量获取处理器指针，
+ * 如果处理器指针非空，则执行其0x38偏移量的回调函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809100b0
+ * @note 通过0x70偏移量获取异常上下文
+ * @note 通过0x98偏移量获取处理器指针
+ * @note 执行处理器0x38偏移量的回调函数
+ */
+void ExecuteExceptionHandlerCallback(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -104539,24 +104554,45 @@ void Unwind_1809100b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_1809100d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 遍历内存块并执行回调函数
+ * 
+ * 该函数在异常展开过程中遍历内存块链表，对每个内存块执行相应的回调函数。
+ * 从数据缓冲区的0x40偏移量获取数据上下文和异常处理器上下文，然后遍历内存块链表，
+ * 对每个内存块的回调函数指针执行回调。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含内存块链表信息
+ * 
+ * @note 原始函数名：Unwind_1809100d0
+ * @note 通过0x40偏移量获取数据上下文
+ * @note 通过ExceptionHandlerCallbackOffset10获取异常处理器上下文
+ * @note 遍历步长为0x18的内存块链表
+ * @note 如果数据上下文为空则调用TerminateSystemE0()
+ */
+void TraverseMemoryBlocksAndExecuteCallbacks(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
   int64_t *dataContext;
   int64_t memoryBlockOffset;
+  FunctionPointer** callbackPointer;
   
   dataContext = (int64_t *)(*(int64_t *)(dataBuffer + 0x40) + 8);
   exceptionHandlerContext = *(int64_t *)(*(int64_t *)(dataBuffer + 0x40) + ExceptionHandlerCallbackOffset10);
+  
+  // 遍历内存块链表并执行回调函数
   for (memoryBlockOffset = *dataContext; memoryBlockOffset != exceptionHandlerContext; memoryBlockOffset = memoryBlockOffset + 0x18) {
-    if (*(int64_t **)(memoryBlockOffset + 8) != (int64_t *)0x0) {
-      (**(FunctionPointer**)(**(int64_t **)(memoryBlockOffset + 8) + 0x38))();
+    callbackPointer = *(FunctionPointer***)(memoryBlockOffset + 8);
+    if (callbackPointer != (FunctionPointer**)0x0) {
+      (**(callbackPointer + 0x38))();
     }
   }
+  
   if (*dataContext == 0) {
     return;
   }
-    TerminateSystemE0();
+  TerminateSystemE0();
 }
 
 
