@@ -185218,7 +185218,7 @@ void ProcessCharacterStatusValidationAndMemoryManagement(long long CharacterCode
             *(long long *)(MemoryBoundaryEnd * 0x20 + 0x7fe8 + SystemDataRegistry) >> 3 != 0) {
           do {
             MemoryBoundaryEnd = *(long long *                     (pSystemValidationChar + *(long long *                                ((long long)*(int *)(SystemDataRegistry + 0x8088) * 0x20 + 0x7fe8 + SystemDataRegistry));
-            FUN_18029f070(*(void *)(CoreEngineRenderContext + 0x1cd8),MemoryBoundaryEnd);
+            ProcessSystemMemoryBoundaryCheck(*(void *)(CoreEngineRenderContext + 0x1cd8),MemoryBoundaryEnd);
             *(uint16_t *)(MemoryBoundaryEnd + 0x60) = 0;
             Utf16ConversionContext = (int)CurrentCharacter6 + 1;
             MatchCounter = *(int *)(SystemDataRegistry + 0x8088);
@@ -186184,7 +186184,7 @@ void ProcessCharacterEncodingPointerAndSystemState(long long *CharacterCode)
 
 
 
-52a00(long long *CharacterCodevoid FUN_180152a00(long long *CharacterCode
+void ProcessCharacterCodeTableIteration(long long *CharacterCode)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
