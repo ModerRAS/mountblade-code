@@ -126,12 +126,12 @@ typedef enum {
 #define CalculateUIEventDistance CalculateUIComponentEventDistanceDD3
 
 // UI系统函数宏定义 - 处理UI组件事件
-#define ProcessUIComponentEvent FUN_1808b5de0
-#define ProcessUIComponentState FUN_18073d7c0
-#define ValidateUIComponentState FUN_180853e80
-#define CheckUIComponentCondition FUN_180853120
-#define UpdateUIComponentState FUN_18073d8a0
-#define ValidateUIComponentEvent FUN_180853fc0
+#define ProcessUIComponentEvent ProcessUIComponentEventHandlingDE0
+#define ProcessUIComponentState ProcessUIComponentStateManagement7C0
+#define ValidateUIComponentState ValidateUIComponentStateIntegrityE80
+#define CheckUIComponentCondition CheckUIComponentConditionValidation120
+#define UpdateUIComponentState UpdateUIComponentStateData8A0
+#define ValidateUIComponentEvent ValidateUIComponentEventHandlingFC0
 
 // UI系统函数宏定义 - 处理UI上下文管理
 #define InitializeUIContext FUN_180789cd9
