@@ -401,6 +401,10 @@
 #define ProcessCharacterCodeWithPrimaryPointer FUN_18014f660  // 处理字符代码和主指针
 #define ProcessSystemMemoryBlockSetup FUN_18014f3f0          // 处理系统内存块设置
 #define ProcessCharacterCodeWithBufferPointer FUN_18014f520   // 处理字符代码和缓冲区指针
+#define ProcessCharacterCodeWithMemoryManagement FUN_1801596c0     // 处理带内存管理的字符代码
+#define ProcessCharacterCodeWithSystemValidation FUN_180159730     // 处理带系统验证的字符代码
+#define ProcessCharacterCodeWithAdvancedValidation FUN_1801597a0   // 处理带高级验证的字符代码
+#define ProcessCharacterCodeWithBufferManagement FUN_18015acc0    // 处理带缓冲区管理的字符代码
 
 // 新发现的FUN_函数语义化宏定义
 #define ProcessSystemValidationAndCleanup FUN_1800ae520         // 处理系统验证和清理
