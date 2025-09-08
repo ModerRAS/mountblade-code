@@ -407,6 +407,12 @@
 #define ExecuteSystemResourceRelease FUN_18015b450               // 执行系统资源释放
 #define ProcessMemoryBoundaryManagement FUN_18015bea0            // 处理内存边界管理
 #define ExecuteSystemFinalCleanup FUN_180159870                    // 执行系统最终清理
+#define ProcessSystemDataFinalization FUN_180156e40                 // 处理系统数据最终化
+#define ProcessMemoryBoundaryManagementEx FUN_180159820            // 处理内存边界管理扩展
+#define ProcessCharacterResourceRelease FUN_1801570c0               // 处理字符资源释放
+#define ExecuteCharacterDataCleanup FUN_18015bdc0                    // 执行字符数据清理
+#define ExecuteSystemResourceOptimization FUN_18015b4f0             // 执行系统资源优化
+#define ProcessSystemMemoryBlockRelease FUN_180057830               // 处理系统内存块释放
 
 // 新增的FUN_函数语义化定义
 #define ProcessSystemDataBufferConfiguration FUN_1802a8080     // 处理系统数据缓冲区配置
