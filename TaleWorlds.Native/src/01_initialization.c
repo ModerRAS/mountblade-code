@@ -226,6 +226,17 @@
 #define ThreadLocalStorageOffset            0x1c  // 线程本地存储偏移量
 #define ThreadStackSize                     0x28  // 线程栈大小
 #define ThreadSecondaryOffset               0x60  // 线程次要偏移量
+#define ThreadMutexHandleOffset             0x48  // 线程互斥量句柄偏移量
+
+// 系统节点相关偏移量
+#define SystemNodeStatusOffset              0x98  // 系统节点状态偏移量
+#define SystemNodeMutexHandleOffset         0x48  // 系统节点互斥量句柄偏移量
+
+// 节点配置相关偏移量
+#define NodeConfigurationCallbackOffset     0x18  // 节点配置回调偏移量
+#define NodeConfigurationFunctionOffset     0x1a  // 节点配置函数偏移量
+#define NodeConfigurationParameterOffset    0x14  // 节点配置参数偏移量
+#define NodeConfigurationErrorStringOffset  0x4   // 节点配置错误字符串偏移量
 
 // 系统配置偏移量
 #define SystemConfigurationDataOffset       0x198 // 系统配置数据偏移量
@@ -20976,23 +20987,23 @@ uint64_t WaitForSystemNodeReady(long long SystemNodePointer, uint64_t TimeoutPar
   bool WaitFlag;
   
   WaitTimeout = SystemInvalidHandleTemplate;
-  MutexHandle = SystemNodePointer + 0x48;
+  MutexHandle = SystemNodePointer + SystemNodeMutexHandleOffset;
   MutexLockResult = _Mtx_lock();
   if (MutexLockResult != 0) {
     ThrowSystemError(MutexLockResult);
   }
   WaitFlag = true;
-  if (*(char *)(SystemNodePointer + 0x98) != SystemStatusActive) {
-    char NodeStatus = *(char *)(SystemNodePointer + 0x98);
+  if (*(char *)(SystemNodePointer + SystemNodeStatusOffset) != SystemStatusActive) {
+    char NodeStatus = *(char *)(SystemNodePointer + SystemNodeStatusOffset);
     while (SystemNodeReady == false) {
       MutexLockResult = _Cnd_wait(SystemNodePointer,MutexHandle,ConditionVariable,SyncFlag,WaitTimeout,MutexHandle,WaitFlag);
       if (MutexLockResult != 0) {
         ThrowSystemError(MutexLockResult);
       }
-      NodeStatus = *(char *)(SystemNodePointer + 0x98);
+      NodeStatus = *(char *)(SystemNodePointer + SystemNodeStatusOffset);
     }
   }
-  *(char *)(SystemNodePointer + 0x98) = 0;
+  *(char *)(SystemNodePointer + SystemNodeStatusOffset) = 0;
   MutexLockResult = _Mtx_unlock(MutexHandle);
   if (MutexLockResult != 0) {
     ThrowSystemError(MutexLockResult);

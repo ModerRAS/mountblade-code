@@ -10676,6 +10676,19 @@ const void* const SystemDataBufferPointerDuovigintenary = (void*)0x180a10c10;
 #define ExecuteSystemFinalization FUN_180202cf9
 
 /**
+ * @brief 处理系统字符编码高级操作
+ * 
+ * 该函数负责处理系统字符编码的高级操作，包括数据管理、
+ * 缓冲区分配和编码验证
+ * 
+ * @param CharacterCode - 字符代码
+ * @param SystemBufferSize - 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180158f40
+ */
+#define ProcessSystemCharacterEncodingAdvanced FUN_180158f40
+
+/**
  * @brief 初始化核心引擎数据结构
  * 
  * 该函数负责初始化核心引擎的数据结构，包括节点创建、内存分配和数据初始化。
@@ -190235,7 +190248,7 @@ void ProcessSystemCharacterEncodingAndSizeManagement(uint64_t CharacterCode,long
 
 
 
-58f40(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_180158f40(uint64_t CharacterCode,long long SystemBufferSize
+void ProcessSystemCharacterEncodingAdvanced(uint64_t CharacterCode,long long SystemBufferSize)
 {
   long long PrimaryDataSize;
   long long *BufferAllocationStatus;
