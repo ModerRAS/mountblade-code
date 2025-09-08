@@ -198678,7 +198678,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
     pCalculationFunctionAddress = NULL;
     StackProcessingVariable70 = (unsigned long long)StackProcessingVariable70.HighPart << 0x20;
     SystemEventPointer = &ThreadLocalStorageTemplate;
-    FUN_18020ccb0(0,*Utf16EndPointer,*Utf16EndPointer + 0x20,&ContextDataPointer);
+    ProcessUtf16EncodingConversion(0,*Utf16EndPointer,*Utf16EndPointer + 0x20,&ContextDataPointer);
     CharacterStatusBuffer = pSystemPriorityLevel;
     for (pMemoryAddressMaskPointer = ContextDataPointer; pMemoryAddressMaskPointer != CharacterStatusBuffer; pMemoryAddressMaskPointer = pMemoryAddressMaskPointer + 4) {
       (**(code **)*pMemoryAddressMaskPointer)(pMemoryAddressMaskPointer,0);
@@ -198754,7 +198754,7 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
   FunctionAddress = EncodingDecodingKey ^ (unsigned long long)auStack_568;
   uStack_538 = 0;
   if (Utf8SourcePointer[1] - *Utf8SourcePointer >> 5 != 0) {
-    AllocatedMemorySize = FUN_1800baa80(&puStack_4f0);
+    AllocatedMemorySize = AllocateSystemMemoryBuffer(&puStack_4f0);
     puStack_530 = &SystemNullTemplate;
     uStack_518 = 0;
     puStack_528 = NULL;
@@ -286551,6 +286551,15 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_1800baa80
  */
 #define AllocateSystemMemoryBuffer FUN_1800baa80
+
+/**
+ * @brief UTF-16编码转换和上下文处理
+ * 
+ * 该函数负责处理UTF-16编码转换和上下文相关的操作
+ * 
+ * @note 原始函数名：FUN_18020ccb0
+ */
+#define ProcessUtf16EncodingConversion FUN_18020ccb0
 
 /**
  * @brief 处理内存地址掩码操作
