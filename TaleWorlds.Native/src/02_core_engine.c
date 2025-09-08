@@ -289620,3 +289620,193 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define ProcessSystemStringIndexAndCharacterTableOperation FUN_180187950
 
+// 高频调用FUN_函数语义化宏定义
+/**
+ * @brief 数据表处理和查询函数
+ * 
+ * 该函数负责处理系统数据表的查询和操作，根据输入的参数
+ * 在数据表中查找或处理相应的数据项。
+ * 
+ * @param DataTablePointer 数据表指针
+ * @param ResultPointer 结果指针，用于存储处理结果
+ * @return 处理状态或结果
+ * @note 原始函数名：FUN_1800b88d0
+ * @note 该函数在代码中被高频调用，是核心数据表处理函数
+ */
+#define ProcessDataTableQueryAndOperation FUN_1800b88d0
+
+/**
+ * @brief 系统状态管理和更新函数
+ * 
+ * 该函数负责管理系统状态的更新和维护，包括系统配置、
+ * 运行状态和性能参数的管理。
+ * 
+ * @param SystemContext 系统上下文指针
+ * @param StatusFlags 状态标志
+ * @return 更新后的系统状态
+ * @note 原始函数名：FUN_1800d7810
+ * @note 该函数负责系统核心状态的管理
+ */
+#define ManageSystemStatusAndUpdate FUN_1800d7810
+
+/**
+ * @brief 系统功能执行函数
+ * 
+ * 该函数负责执行系统的核心功能，根据当前系统状态
+ * 和输入参数执行相应的系统操作。
+ * 
+ * @param SystemParameters 系统参数指针
+ * @param OperationCode 操作代码
+ * @return 执行结果
+ * @note 原始函数名：FUN_1800f08a0
+ */
+#define ExecuteSystemCoreFunction FUN_1800f08a0
+
+/**
+ * @brief 系统组件处理函数
+ * 
+ * 该函数负责处理系统组件的初始化、配置和管理，
+ * 确保各个系统组件正常工作。
+ * 
+ * @param ComponentPointer 组件指针
+ * @param ConfigurationData 配置数据
+ * @return 处理状态
+ * @note 原始函数名：FUN_1800c1a80
+ */
+#define ProcessSystemComponentManagement FUN_1800c1a80
+
+/**
+ * @brief 系统操作执行函数
+ * 
+ * 该函数负责执行各种系统操作，包括内存操作、
+ * 数据处理和系统调用等。
+ * 
+ * @param OperationParameters 操作参数
+ * @param SystemContext 系统上下文
+ * @return 操作结果
+ * @note 原始函数名：FUN_180092820
+ */
+#define ExecuteSystemOperations FUN_180092820
+
+/**
+ * @brief 系统事件处理函数
+ * 
+ * 该函数负责处理系统事件，包括事件分发、处理和回调。
+ * 
+ * @param EventData 事件数据指针
+ * @param EventHandler 事件处理器
+ * @return 事件处理结果
+ * @note 原始函数名：FUN_1803624e0
+ */
+#define HandleSystemEventProcessing FUN_1803624e0
+
+/**
+ * @brief 内存地址掩码处理函数
+ * 
+ * 该函数负责处理内存地址的掩码操作，用于内存地址的
+ * 计算和转换。
+ * 
+ * @param MemoryAddress 内存地址
+ * @param MaskValue 掩码值
+ * @return 处理后的内存地址
+ * @note 原始函数名：FUN_180094c20
+ */
+#define ProcessMemoryAddressMaskOperation FUN_180094c20
+
+/**
+ * @brief 系统初始化函数
+ * 
+ * 该函数负责系统的初始化工作，包括系统组件的初始化、
+ * 配置加载和状态设置。
+ * 
+ * @param InitializationParameters 初始化参数
+ * @return 初始化结果
+ * @note 原始函数名：FUN_1801c93c0
+ */
+#define InitializeSystemComponentsA0 FUN_1801c93c0
+
+/**
+ * @brief 字符串偏移处理函数
+ * 
+ * 该函数负责处理字符串的偏移计算和地址操作。
+ * 
+ * @param StringPointer 字符串指针
+ * @param OffsetValue 偏移值
+ * @return 处理后的字符串地址
+ * @note 原始函数名：FUN_1800ab6f0
+ */
+#define ProcessStringOffsetCalculation FUN_1800ab6f0
+
+/**
+ * @brief 核心引擎内存处理函数
+ * 
+ * 该函数负责核心引擎的内存管理和处理操作。
+ * 
+ * @param MemoryPointer 内存指针
+ * @param OperationType 操作类型
+ * @return 内存处理结果
+ * @note 原始函数名：FUN_1800a3880
+ */
+#define ProcessCoreEngineMemoryOperation FUN_1800a3880
+
+/**
+ * @brief 字符串处理函数
+ * 
+ * 该函数负责系统字符串的处理操作，包括字符串的复制、
+ * 转换和验证。
+ * 
+ * @param StringData 字符串数据
+ * @param ProcessingFlags 处理标志
+ * @return 字符串处理结果
+ * @note 原始函数名：FUN_18029ae20
+ */
+#define ProcessSystemStringOperations FUN_18029ae20
+
+/**
+ * @brief 数据处理函数
+ * 
+ * 该函数负责系统数据的处理和转换操作。
+ * 
+ * @param DataPointer 数据指针
+ * @param ProcessingParameters 处理参数
+ * @return 数据处理结果
+ * @note 原始函数名：FUN_18029de40
+ */
+#define ProcessSystemDataOperations FUN_18029de40
+
+/**
+ * @brief 渲染相关函数
+ * 
+ * 该函数负责渲染相关的处理操作。
+ * 
+ * @param RenderingParameters 渲染参数
+ * @param ContextData 上下文数据
+ * @return 渲染处理结果
+ * @note 原始函数名：FUN_18029c8a0
+ */
+#define ProcessRenderingOperations FUN_18029c8a0
+
+/**
+ * @brief 系统数据注册函数
+ * 
+ * 该函数负责系统数据的注册和管理操作。
+ * 
+ * @param DataRegistry 数据注册表
+ * @param RegistrationData 注册数据
+ * @return 注册结果
+ * @note 原始函数名：FUN_1802ab0c0
+ */
+#define RegisterSystemDataAndManagement FUN_1802ab0c0
+
+/**
+ * @brief 系统数据清理函数
+ * 
+ * 该函数负责系统数据的清理和释放操作。
+ * 
+ * @param DataPointer 数据指针
+ * @param CleanupFlags 清理标志
+ * @return 清理结果
+ * @note 原始函数名：FUN_1800b3cc0
+ */
+#define CleanupSystemDataAndResources FUN_1800b3cc0
+
