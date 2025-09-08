@@ -126107,17 +126107,44 @@ uint8_t SystemExceptionHandlerStateTable;
  */
 #define ResumeSystemComponents ResumeSystemComponentsAndExecuteRecoverySequence
 
-// 原始函数名：Unwind_180909610 - 系统重启动函数
-// 功能：重启系统组件，执行重启流程
-#define RestartSystemComponents Unwind_180909610
+/**
+ * @brief 系统重启函数
+ * 
+ * 重启系统组件，执行重启流程，先停止系统组件然后重新启动
+ * 
+ * @param restartParameters 重启参数结构体
+ * @param componentFlags 组件重启标志位
+ * @return 重启结果，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：Unwind_180909610
+ */
+#define RestartSystemComponents RestartSystemComponentsAndExecuteRestartSequence
 
-// 原始函数名：Unwind_180909620 - 系统销毁函数
-// 功能：销毁系统组件，执行销毁流程
-#define DestroySystemComponents Unwind_180909620
+/**
+ * @brief 系统销毁函数
+ * 
+ * 销毁系统组件，执行销毁流程，完全释放系统组件占用的所有资源
+ * 
+ * @param destructionParameters 销毁参数结构体
+ * @param componentFlags 组件销毁标志位
+ * @return 销毁结果，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：Unwind_180909620
+ */
+#define DestroySystemComponents DestroySystemComponentsAndExecuteDestructionSequence
 
-// 原始函数名：Unwind_180909630 - 系统清理函数
-// 功能：清理系统组件，执行清理流程
-#define CleanupSystemComponents Unwind_180909630
+/**
+ * @brief 系统清理函数
+ * 
+ * 清理系统组件，执行清理流程，清理系统组件产生的临时数据和状态
+ * 
+ * @param cleanupParameters 清理参数结构体
+ * @param componentFlags 组件清理标志位
+ * @return 清理结果，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：Unwind_180909630
+ */
+#define CleanupSystemComponents CleanupSystemComponentsAndExecuteCleanupSequence
 
 // 数据缓冲区管理函数定义
 // 原始函数名：Unwind_180910680 - 数据缓冲区销毁函数A0
