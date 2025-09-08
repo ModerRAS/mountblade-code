@@ -294,6 +294,20 @@
 #define DataBufferExceptionContextOffset 0x82            // 数据缓冲区异常上下文偏移量
 #define DataBufferSecondaryExceptionContextOffset 0x8a   // 数据缓冲区次级异常上下文偏移量
 
+// 异常处理回调函数偏移量常量
+#define ExceptionHandlerCallbackOffsetED0 0xed0           // 异常处理回调函数偏移量ED0
+#define ExceptionHandlerCallbackOffsetEB8 0xeb8           // 异常处理回调函数偏移量EB8
+#define ExceptionHandlerCallbackOffsetEB0 0xeb0           // 异常处理回调函数偏移量EB0
+
+// 异常处理内存操作偏移量常量
+#define ExceptionHandlerMemoryOffsetEC0 0xec0             // 异常处理内存操作偏移量EC0
+#define ExceptionHandlerMemoryOffsetEA0 0xea0             // 异常处理内存操作偏移量EA0
+#define ExceptionHandlerMemoryOffsetE90 0xe90             // 异常处理内存操作偏移量E90
+#define ExceptionHandlerMemoryOffsetE80 0xe80             // 异常处理内存操作偏移量E80
+#define ExceptionHandlerMemoryOffsetC28 0xc28            // 异常处理内存操作偏移量C28
+#define ExceptionHandlerMemoryOffset9D0 0x9d0            // 异常处理内存操作偏移量9D0
+#define ExceptionHandlerMemoryOffsetB8 0xb8               // 异常处理内存操作偏移量B8
+
 // 系统状态偏移量常量
 #define SystemStateFlagsOffset 0x54                         // 系统状态标志偏移量
 #define SystemStateResourceCleanupOffset 0xe8              // 系统状态资源清理偏移量
