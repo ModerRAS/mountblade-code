@@ -161513,6 +161513,9 @@ void InitializeSystemStateAndMemoryManagement(void
   uint8_t ByteProcessBuffer;
   float CalculationBuffer1;
   float CalculationBuffer2;
+  char StackValidationFlag1;
+  char StackValidationFlag2;
+  char SystemProcessingFlag;
   
   SystemMemoryAllocationResult = (unsigned long long)(CharacterTablePointer + 0x1b);
   MemoryPoolBlockSize = SystemConfigurationHandle;
@@ -161540,8 +161543,8 @@ void InitializeSystemStateAndMemoryManagement(void
           fStack0000000000000040 != *(float *)(AllocatedMemorySize + 0x228))) &&
         (StackProcessingVariable38 < *(float *)(AllocatedMemorySize + 0x230))) ||
        (((ValidationResult != 0 && (ValidationResult == *(int *)(MemoryPoolBlockSize + 0x1b2c))) || (*(char *)(MemoryPoolBlockSize + 0x2e38) != '\0')       )) {
-      in_stack_00000108 = '\0';
-      in_stack_00000100 = '\0';
+      StackValidationFlag1 = '\0';
+      StackValidationFlag2 = '\0';
       if ((((*(byte *)(SystemContext + 1) & 2) == 0) &&
           ((ProcessSystemParameters(&SystemChecksumStackBuffer,ValidationResult,&stack0x00000108,&stack0x00000100,0),
            in_stack_00000108 != '\0' || (in_stack_00000100 != '\0')))) &&
@@ -161704,8 +161707,8 @@ void ProcessSystemCharacterAndStatusManagement(void
         (StackProcessingVariable38 < *(float *)(AllocatedMemorySize + 0x230))) ||
        (((ValidationResult != 0 && (ValidationResult == *(int *)(SystemDataNode + 0x1b2c))) ||
         (*(char *)(SystemDataNode + 0x2e38) != '\0')))) {
-      in_stack_00000108 = '\0';
-      in_stack_00000100 = '\0';
+      StackValidationFlag1 = '\0';
+      StackValidationFlag2 = '\0';
       if ((((*(byte *)(SystemContext + 1) & 2) == 0) &&
           ((ProcessSystemParameters(&SystemChecksumStackBuffer,ValidationResult,&stack0x00000108,&stack0x00000100,0),
            in_stack_00000108 != '\0' || (in_stack_00000100 != '\0')))) &&
