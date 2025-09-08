@@ -124,8 +124,8 @@ typedef enum {
 // UI系统函数宏定义 - 数据变换处理
 #define TransformUIDataB4C TransformUIDataStructureB4C
 #define ProcessUIDataTransformationAndValidation ValidateAndTransformUIData
-#define ProcessUIRenderingUpdateAndDataHandling FUN_180727610
-#define ProcessUIDataTransformation FUN_18072e9a0
+#define ProcessUIRenderingUpdateAndDataHandling UpdateUIRenderingAndData
+#define ProcessUIDataTransformation TransformUIDataStructure
 #define ProcessUIEventUpdate FUN_1807270a0
 #define ProcessUIBufferAllocation FUN_18072eb00
 #define ProcessUIValueCalculation FUN_18072e720
