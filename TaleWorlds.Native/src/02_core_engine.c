@@ -447,6 +447,14 @@
 #define IdentifySystemIdentifierByPatternVariantK FUN_180225577
 #define IdentifySystemIdentifierByPatternVariantL FUN_1802255a3
 #define IdentifySystemIdentifierByPatternVariantM FUN_1802255e7
+
+// 事件处理相关函数语义化映射
+#define ProcessCharacterCodeEventHandling FUN_180315fe0        // 处理字符代码事件
+#define ProcessCharacterCodeFinalization FUN_180310b50         // 处理字符代码最终化
+#define ProcessSystemDataStructureAccess FUN_18009b220         // 处理系统数据结构访问
+#define ProcessCharacterStatusValidation FUN_18024c080         // 处理字符状态验证
+#define ProcessSystemFloatValueUpdate FUN_180632f00           // 处理系统浮点值更新
+#define ProcessSystemMemoryBoundaryCheck FUN_18029f070         // 处理系统内存边界检查
 #define IdentifySystemIdentifierByPatternVariantN FUN_180225627
 
 // 系统变量语义化映射
@@ -184673,7 +184681,7 @@ void ProcessCharacterCodeEvent(uint64_t CharacterCode)
   long long EventDataSize;
   
   CharacterTablePointer = CoreEngineEventHandler;
-  FUN_180315fe0(CoreEngineEventHandler + 8,*(uint32_t *)(CoreEngineEventHandler + 0x230),CharacterCode);
+  ProcessCharacterCodeEventHandling(CoreEngineEventHandler + 8,*(uint32_t *)(CoreEngineEventHandler + 0x230),CharacterCode);
   *(int *)(CharacterTablePointer + 0x230) = *(int *)(CharacterTablePointer + 0x230) + 1;
   return;
 }
@@ -186274,7 +186282,19 @@ void ProcessCharacterEncodingTableAndBufferStatus(long long *CharacterCode)
 
 
 
-52b00(uint64_t *CharacterCodevoid FUN_180152b00(uint64_t *CharacterCode
+/**
+ * @brief 处理64位字符编码表的包装函数
+ * 
+ * 此函数是处理64位字符编码表的包装函数，调用核心处理函数
+ * 来完成字符编码表和缓冲区状态的管理。
+ * 
+ * @param CharacterCode 64位字符编码指针，指向要处理的字符编码数据
+ * @return 无返回值
+ * 
+ * @note 原始函数名：FUN_180152b00
+ * @warning 此函数调用其他系统函数进行处理
+ */
+void Process64BitCharacterEncodingTable(uint64_t *CharacterCode)
 {
   FUN_180152a80();
   *CharacterCode = &SystemNullTemplate;
