@@ -1130,6 +1130,11 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 #define DataValidationOffset38 0x38                     // 数据验证偏移量38
 #define DataValidationOffset18 0x18                     // 数据验证偏移量18
 
+// 异常恢复相关偏移量常量定义
+#define ExceptionRecoveryHandlerOffset78 0x78           // 异常恢复处理器偏移量78
+#define ExceptionRecoveryHandlerOffset80 0x80           // 异常恢复处理器偏移量80
+#define ExceptionRecoveryHandlerOffset90 0x90           // 异常恢复处理器偏移量90
+
 // 数据处理相关偏移量常量定义
 #define DataProcessingFlagValue 3                      // 数据处理标志值
 #define DataProcessingArrayMultiplier 4                 // 数据处理数组乘数
@@ -18811,7 +18816,7 @@ DataBuffer ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemCon
           return ComponentDataValidationFailure;
         }
         rangeMinValue = *(float *)(dataRecordIndex + DataValidationOffset38);
-        if ((*(float *)(dataRecordIndex + 0x38) <= currentValue) &&
+        if ((*(float *)(dataRecordIndex + DataValidationOffset38) <= currentValue) &&
            (rangeMaxValue = *(float *)(dataRecordIndex + DataValidationOffset3C), currentValue <= *(float *)(dataRecordIndex + DataValidationOffset3C))) {
           rangeMaxValue = currentValue;
         }
@@ -19245,7 +19250,7 @@ void ActivateUtilitySystemState(int64_t systemHandle,int64_t operationContext)
     if (statePointer != 0) {
       statePointer = statePointer + -8;
     }
-    *(int *)(statePointer + 0x84) = *(int *)(statePointer + 0x84) + 1;
+    *(int *)(statePointer + SystemConfigPrimaryOffset) = *(int *)(statePointer + SystemConfigPrimaryOffset) + 1;
     *(ByteFlag *)(statePointer + 0xbd) = 1;
       CleanupSystemEventA0(*(DataBuffer *)(operationContext + 0x98),systemHandle);
   }
@@ -19276,7 +19281,7 @@ void DeactivateUtilitySystemState(int64_t systemHandle,int64_t operationContext)
     if (statePointer != 0) {
       statePointer = statePointer + -8;
     }
-    *(int *)(statePointer + 0x84) = *(int *)(statePointer + 0x84) + 1;
+    *(int *)(statePointer + SystemConfigPrimaryOffset) = *(int *)(statePointer + SystemConfigPrimaryOffset) + 1;
     *(ByteFlag *)(statePointer + 0xbd) = 0;
       CleanupSystemEventA0(*(DataBuffer *)(operationContext + 0x98),systemHandle);
   }
@@ -41006,13 +41011,13 @@ void ExceptionRecoveryHandlerB0(DataBuffer operationBase,int64_t dataBuffer)
 void ExceptionRecoveryHandlerB1(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(DataBuffer *)(dataBuffer + 0x78) = &SystemTemporaryExceptionHandler;
-  if (*(int64_t *)(dataBuffer + 0x80) != 0) {
+  *(DataBuffer *)(dataBuffer + ExceptionRecoveryHandlerOffset78) = &SystemTemporaryExceptionHandler;
+  if (*(int64_t *)(dataBuffer + ExceptionRecoveryHandlerOffset80) != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  *(DataBuffer *)(dataBuffer + 0x80) = 0;
-  *(DataWord *)(dataBuffer + 0x90) = 0;
-  *(DataBuffer *)(dataBuffer + 0x78) = &SystemDefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + ExceptionRecoveryHandlerOffset80) = 0;
+  *(DataWord *)(dataBuffer + ExceptionRecoveryHandlerOffset90) = 0;
+  *(DataBuffer *)(dataBuffer + ExceptionRecoveryHandlerOffset78) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
