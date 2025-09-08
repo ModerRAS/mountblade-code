@@ -266,7 +266,7 @@
 
 // 核心引擎数据处理变量语义化宏定义
 #define BufferInitializationPointerArray BufferInitializationPointerArray // 缓冲区初始化指针数组
-#define ProcessingStatusFlagPointer9 PrimaryProcessingStatusFlag9  // 处理状态标志指针9
+#define ProcessingStatusFlagPointer9 ProcessingStatusFlagPointer9  // 处理状态标志指针9
 #define SystemEventTemplatePointer5 SystemEventTemplatePointer5    // 系统事件模板指针5
 #define ProcessingStatusFlagPointer6 PrimaryProcessingStatusFlag6  // 处理状态标志指针6
 
@@ -49899,16 +49899,16 @@ SystemBufferValidationError:
             *(uint32_t *)(BufferInitializationPointerArray[0] + 4) = InputDataLength;
             *(byte *)((long long)BufferInitializationPointerArray[0] + 0x4e) = *(byte *)(CharacterCode + 0xfe) >> 3 & 1;
             if (*(int *)(CharacterCode + 0x108) != -1) {
-              PrimaryProcessingStatusFlag9 = *(uint32_t **)(CharacterCode + 0x2d0);
-              InputDataLength = PrimaryProcessingStatusFlag9[1];
-              SystemChecksum = PrimaryProcessingStatusFlag9[2];
-              ProcessingStatusFlag = PrimaryProcessingStatusFlag9[3];
-              *(uint32_t *)(BufferInitializationPointerArray[0] + 5) = *PrimaryProcessingStatusFlag9;
+              ProcessingStatusFlagPointer9 = *(uint32_t **)(CharacterCode + 0x2d0);
+              InputDataLength = ProcessingStatusFlagPointer9[1];
+              SystemChecksum = ProcessingStatusFlagPointer9[2];
+              ProcessingStatusFlag = ProcessingStatusFlagPointer9[3];
+              *(uint32_t *)(BufferInitializationPointerArray[0] + 5) = *ProcessingStatusFlagPointer9;
               *(uint32_t *)((long long)BufferInitializationPointerArray[0] + 0x2c) = InputDataLength;
               *(uint32_t *)(BufferInitializationPointerArray[0] + 6) = SystemChecksum;
               *(uint32_t *)((long long)BufferInitializationPointerArray[0] + 0x34) = ProcessingStatusFlag;
-              MemoryAllocationBase = *(void *)(PrimaryProcessingStatusFlag9 + 6);
-              BufferInitializationPointerArray[0][7] = *(void *)(PrimaryProcessingStatusFlag9 + 4);
+              MemoryAllocationBase = *(void *)(ProcessingStatusFlagPointer9 + 6);
+              BufferInitializationPointerArray[0][7] = *(void *)(ProcessingStatusFlagPointer9 + 4);
               BufferInitializationPointerArray[0][8] = MemoryAllocationBase;
             }
             *(uint8_t *)((long long)BufferInitializationPointerArray[0] + 0x4f) =
@@ -49932,15 +49932,15 @@ SystemBufferValidationError:
             }
             if (*(uint **)(TemporaryBuffer + 10) == (uint *)0x0) {
               StackArray138[0] = 0xffffffff;
-              PrimaryProcessingStatusFlag9 = StackArray138;
+              ProcessingStatusFlagPointer9 = StackArray138;
               SystemEventTemplatePointer5 = TemporaryBuffer;
             }
             else {
               SystemRegisterFlagBuffer[0] = 0xffffffff;
-              PrimaryProcessingStatusFlag9 = SystemRegisterFlagBuffer;
+              ProcessingStatusFlagPointer9 = SystemRegisterFlagBuffer;
               SystemEventTemplatePointer5 = *(uint **)(TemporaryBuffer + 10);
             }
-            ProcessSystemEventTemplate(SystemEventTemplatePointer5 + 0xce2,PrimaryProcessingStatusFlag9,BufferInitializationPointerArray);
+            ProcessSystemEventTemplate(SystemEventTemplatePointer5 + 0xce2,ProcessingStatusFlagPointer9,BufferInitializationPointerArray);
             Utf8SourcePointer = FloatParameterArray;
             Utf16EndPointer = PerformanceCounterValue;
           }
@@ -54661,7 +54661,7 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   int *StringComparisonResultPointer6;
   int StringComparisonResult7;
   unsigned long long MemoryAllocationIndex8;
-  uint32_t *PrimaryProcessingStatusFlag9;
+  uint32_t *ProcessingStatusFlagPointer9;
   unsigned long long UnicodeCodePoint0;
   long long MemoryBlockIndex1;
   uint *SystemEventTemplatePointer2;
@@ -54758,11 +54758,11 @@ void ProcessCoreEngineResourceData(long long ResourceDataHandle
   SystemStackValue118 = 3;
   ProcessCoreEngineBuffer(&DataProcessingBuffer,MemoryAllocationIndex8);
   MemoryAddressMaskPointer1 = MemoryAllocationIndex8;
-  PrimaryProcessingStatusFlag9 = DataProcessingBuffer;
+  ProcessingStatusFlagPointer9 = DataProcessingBuffer;
   if (0 < MatchCounter) {
     for (; MemoryAddressMaskPointer1 != 0; MemoryAddressMaskPointer1 = MemoryAddressMaskPointer1 - 1) {
-      *PrimaryProcessingStatusFlag9 = 1;
-      PrimaryProcessingStatusFlag9 = PrimaryProcessingStatusFlag9 + 1;
+      *ProcessingStatusFlagPointer9 = 1;
+      ProcessingStatusFlagPointer9 = ProcessingStatusFlagPointer9 + 1;
     }
   }
   StackDataBuffer150 = ZEXT816(0);
@@ -65215,7 +65215,7 @@ void InitializeSystemCharacterStatusBuffer(uint64_t *CharacterCode
   uint MemoryAllocationIndexAdditional;
   uint64_t *PrimaryProcessingStatusFlag7;
   long long *BufferAllocationStatus8;
-  void *PrimaryProcessingStatusFlag9;
+  void *ProcessingStatusFlagPointer9;
   uint64_t *SystemEventTemplatePointer0;
   uint8_t auStack_5d8 [32];
   void *puStack_5b8;
@@ -65561,11 +65561,11 @@ LAB_18008ae5a:
           if (CoreEnginePointerBuffer390 != NULL) {
             ProcessingStatusPointer = CoreEnginePointerBuffer390;
           }
-          PrimaryProcessingStatusFlag9 = &CoreEngineDataTemplate;
+          ProcessingStatusFlagPointer9 = &CoreEngineDataTemplate;
           if (puStack_430 != NULL) {
-            PrimaryProcessingStatusFlag9 = puStack_430;
+            ProcessingStatusFlagPointer9 = puStack_430;
           }
-          ProcessSystemContextConfiguration(&puStack_558,&SystemConfigurationTemplatePrimary,PrimaryProcessingStatusFlag9,ProcessingStatusPointer);
+          ProcessSystemContextConfiguration(&puStack_558,&SystemConfigurationTemplatePrimary,ProcessingStatusFlagPointer9,ProcessingStatusPointer);
           puStack_438 = &SystemNullTemplate;
           if (puStack_430 != NULL) {
                     // WARNING: Subroutine does not return
