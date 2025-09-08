@@ -99999,15 +99999,30 @@ void Unwind_18090ed40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ed50(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 设置临时异常处理器并清理系统状态
+ * 
+ * 该函数负责在异常处理上下文中设置临时异常处理器，
+ * 清理系统状态，并在完成后恢复默认异常处理器。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含异常处理上下文信息
+ */
+void SetupTemporaryExceptionHandlerAndCleanupSystem(DataBuffer operationBase, int64_t dataBuffer)
 {
+  // 设置临时异常处理器到数据缓冲区的指定偏移量
   *(DataBuffer *)(dataBuffer + 200) = &TemporaryExceptionHandler;
+  
+  // 检查系统终止标志，如果存在则调用系统终止函数
   if (*(int64_t *)(dataBuffer + 0xd0) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(dataBuffer + 0xd0) = 0;
+  
+  // 清理系统状态标志
+  *(int64_t *)(dataBuffer + 0xd0) = 0;
   *(DataWord *)(dataBuffer + 0xe0) = 0;
+  
+  // 恢复默认异常处理器
   *(DataBuffer *)(dataBuffer + 200) = &DefaultExceptionHandlerB;
   return;
 }
