@@ -357,7 +357,34 @@
 #define DestinationContextDataOffset50 0x50                  // 目标上下文数据偏移量
 
 // 操作基础数据偏移量常量
+#define OperationBaseDataOffset77 0x77                        // 操作基础数据偏移量77
+#define OperationBaseDataOffset76 0x76                        // 操作基础数据偏移量76
+#define OperationBaseDataOffset78 0x78                        // 操作基础数据偏移量78
+
+// 异常数据缓冲区索引常量
+#define ExceptionDataBufferIndexE 0xe                         // 异常数据缓冲区索引E
+#define ExceptionDataBufferIndex18 0x18                       // 异常数据缓冲区索引18
+#define ExceptionDataBufferIndex19 0x19                       // 异常数据缓冲区索引19
+#define ExceptionDataBufferIndex12 0x12                       // 异常数据缓冲区索引12
+#define ExceptionDataBufferIndex14 0x14                       // 异常数据缓冲区索引14
+#define ExceptionDataBufferIndexD 0xd                         // 异常数据缓冲区索引D
+
+// 系统安全检查偏移量常量
+#define SecurityCheckOffset12 0x12                            // 安全检查偏移量12
+
+// 浮点数据归一化常量
+#define FloatNormalizationFactor 0.25                         // 浮点数归一化因子
+#define FloatNormalizationOffset -0x20                         // 浮点数归一化偏移量
+
+// 异常处理器回调偏移量常量
+#define ExceptionHandlerCallbackOffset8 8                      // 异常处理器回调偏移量8
 #define OperationBaseDataOffset50 0x50                       // 操作基础数据偏移量
+
+// 数据处理操作偏移量常量
+#define DataProcessingOperationOffsetD8 0xd8                  // 数据处理操作偏移量D8
+#define DataProcessingOperationOffsetDC 0xdc                  // 数据处理操作偏移量DC
+#define DataProcessingOperationOffsetEC 0xec                  // 数据处理操作偏移量EC
+#define DataProcessingOperationOffset80 0x80                  // 数据处理操作偏移量80
 
 // 上下文指针偏移量常量
 #define ContextPointerOffset50 0x50                          // 上下文指针偏移量
@@ -29440,7 +29467,7 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
     if (0 < *(short *)(dataBuffer + DataBufferOffset104)) {
       floatDataPointer = (float *)(dataBuffer + DataProcessingOffset84);
       do {
-        normalizedValue = floatDataPointer[-0x20] * 0.25;
+        normalizedValue = floatDataPointer[FloatNormalizationOffset] * FloatNormalizationFactor;
         if (0.0 <= normalizedValue) {
           if (1.0 <= normalizedValue) {
             normalizedValue = 1.0;
@@ -40004,16 +40031,16 @@ DataBuffer ProcessDataConversionA1(int64_t operationBase,int64_t *dataBuffer)
       if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
         return ResourceInvalidErrorCode;
       }
-      systemStatusUnion[0] = *(DataWord *)(operationBase + 0xd8);
+      systemStatusUnion[0] = *(DataWord *)(operationBase + DataProcessingOperationOffsetD8);
       systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(*dataBuffer + 8))
                         (*(DataBuffer **)(*dataBuffer + 8),systemStatusUnion,4);
       if ((int)systemDataBuffer == 0) {
         if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
           return ResourceInvalidErrorCode;
         }
-        systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + 0xdc);
+        systemDataBuffer = ProcessDataPointerA0(*dataBuffer,operationBase + DataProcessingOperationOffsetDC);
         if (((int)systemDataBuffer == 0) &&
-           (systemDataBuffer = ProcessDataSecurityValidation(dataBuffer,operationBase + 0xec,0x80), (int)systemDataBuffer == 0)) {
+           (systemDataBuffer = ProcessDataSecurityValidation(dataBuffer,operationBase + DataProcessingOperationOffsetEC,DataProcessingOperationOffset80), (int)systemDataBuffer == 0)) {
             ExecuteSystemCleanupRoutine(dataBuffer,inputValidationBuffer);
         }
       }
@@ -45553,7 +45580,7 @@ void CleanupThreadContext(DataBuffer operationBase,int64_t dataBuffer,DataBuffer
     _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
     _Mtx_destroy_in_situ();
     UpdateSystemStatusA0();
-    if (exceptionDataBuffer[0xe] != 0) {
+    if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
       *(DataBuffer *)(exceptionDataBuffer[0xe] + ExceptionHandlerCallbackOffset10) = 0;
       *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
     }
@@ -48594,13 +48621,13 @@ void InitializeExceptionHandler(DataBuffer contextHandle,int64_t contextOffset,D
   
   exceptionDataBuffer = *(DataBuffer **)(contextOffset + 0x40);
   *exceptionDataBuffer = &DefaultExceptionHandlerC;
-  exceptionDataBuffer[0x18] = &SystemTemporaryExceptionHandler;
-  if (exceptionDataBuffer[0x19] != 0) {
+  exceptionDataBuffer[ExceptionDataBufferIndex18] = &SystemTemporaryExceptionHandler;
+  if (exceptionDataBuffer[ExceptionDataBufferIndex19] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  exceptionDataBuffer[0x19] = 0;
+  exceptionDataBuffer[ExceptionDataBufferIndex19] = 0;
   *(DataWord *)(exceptionDataBuffer + 0x1b) = 0;
-  exceptionDataBuffer[0x18] = &SystemDefaultExceptionHandlerB;
+  exceptionDataBuffer[ExceptionDataBufferIndex18] = &SystemDefaultExceptionHandlerB;
   ProcessExceptionData(exceptionDataBuffer + 0x12,exceptionDataBuffer[0x14],operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   if (exceptionDataBuffer[0xd] != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -49059,13 +49086,13 @@ void CleanupExceptionDataA0(DataBuffer operationBase,int64_t dataBuffer,DataBuff
   
   exceptionDataBuffer = *(DataBuffer **)(dataBuffer + SystemDataBufferOffset80);
   *exceptionDataBuffer = &DefaultExceptionHandlerC;
-  exceptionDataBuffer[0x18] = &SystemTemporaryExceptionHandler;
-  if (exceptionDataBuffer[0x19] != 0) {
+  exceptionDataBuffer[ExceptionDataBufferIndex18] = &SystemTemporaryExceptionHandler;
+  if (exceptionDataBuffer[ExceptionDataBufferIndex19] != 0) {
       TerminateSystemExecutionAndCleanupResources();
   }
-  exceptionDataBuffer[0x19] = 0;
+  exceptionDataBuffer[ExceptionDataBufferIndex19] = 0;
   *(DataWord *)(exceptionDataBuffer + 0x1b) = 0;
-  exceptionDataBuffer[0x18] = &SystemDefaultExceptionHandlerB;
+  exceptionDataBuffer[ExceptionDataBufferIndex18] = &SystemDefaultExceptionHandlerB;
   ProcessExceptionData(exceptionDataBuffer + 0x12,exceptionDataBuffer[0x14],operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   if (exceptionDataBuffer[0xd] != 0) {
       TerminateSystemExecutionAndCleanupResources();
@@ -56445,7 +56472,7 @@ void ExceptionDataProcessorA0(DataBuffer operationBase,int64_t dataBuffer,DataBu
     _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
     _Mtx_destroy_in_situ();
     UpdateSystemStatusA0();
-    if (exceptionDataBuffer[0xe] != 0) {
+    if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
       *(DataBuffer *)(exceptionDataBuffer[0xe] + ExceptionHandlerCallbackOffset10) = 0;
       *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
     }
@@ -56564,7 +56591,7 @@ void SetExceptionHandlerAf0(DataBuffer operationBase,int64_t dataBuffer,DataBuff
     _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
     _Mtx_destroy_in_situ();
     UpdateSystemStatusA0();
-    if (exceptionDataBuffer[0xe] != 0) {
+    if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
       *(DataBuffer *)(exceptionDataBuffer[0xe] + ExceptionHandlerCallbackOffset10) = 0;
       *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
     }
@@ -57007,7 +57034,7 @@ void ProcessExceptionDataBufferE40(DataBuffer operationBase,int64_t dataBuffer,D
     _Cnd_destroy_in_situ(exceptionDataBuffer + 0x2a);
     _Mtx_destroy_in_situ();
     UpdateSystemStatusA0();
-    if (exceptionDataBuffer[0xe] != 0) {
+    if (exceptionDataBuffer[ExceptionDataBufferIndexE] != 0) {
       *(DataBuffer *)(exceptionDataBuffer[0xe] + ExceptionHandlerCallbackOffset10) = 0;
       *(ByteFlag *)(exceptionDataBuffer[0xe] + 8) = 1;
     }
