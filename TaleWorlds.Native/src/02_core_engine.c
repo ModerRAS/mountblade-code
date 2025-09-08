@@ -413,6 +413,10 @@
 #define ExecuteCharacterDataCleanup FUN_18015bdc0                    // 执行字符数据清理
 #define ExecuteSystemResourceOptimization FUN_18015b4f0             // 执行系统资源优化
 #define ProcessSystemMemoryBlockRelease FUN_180057830               // 处理系统内存块释放
+#define ExecuteSystemContextCleanup FUN_180048980                     // 执行系统上下文清理
+#define ProcessSystemCharacterStatusUpdate FUN_180628380             // 处理系统字符状态更新
+#define ProcessSystemBufferStatusManagement FUN_18015b6b0             // 处理系统缓冲区状态管理
+#define ExecuteSystemOperationProcessing FUN_1801582f0               // 执行系统操作处理
 
 // 新增的FUN_函数语义化定义
 #define ProcessSystemDataBufferConfiguration FUN_1802a8080     // 处理系统数据缓冲区配置
@@ -188937,7 +188941,7 @@ LAB_1801571ef:
     } while ((unsigned long long)(long long)(int)ProcessingStatusFlag < (unsigned long long)CharacterCode[9]);
   }
   CharacterCode = CharacterCode + 6;
-  FUN_18015b450(CharacterCode);
+  ExecuteSystemResourceRelease(CharacterCode);
   MemoryBlockIndex = CharacterCode + 0x2d;
   SystemContextPtr = (long long *)CharacterCode[0x2e];
   MemoryPoolBlockSizePointer = (long long *)*MemoryBlockIndex;
@@ -188960,16 +188964,16 @@ LAB_1801571ef:
     CharacterCode[0x4a] = 0;
   }
   SystemRegisterPointerX10 = CharacterCode + 0x44;
-  FUN_18015b4f0();
+  ExecuteSystemResourceOptimization();
   if ((long long *)CharacterCode[0x3d] != (long long *)0x0) {
     (**(code **)(*(long long *)CharacterCode[0x3d] + 0x38))();
   }
   SystemRegisterPointerX10 = MemoryBlockIndex;
-  FUN_180057830(MemoryBlockIndex);
+  ProcessSystemMemoryBlockRelease(MemoryBlockIndex);
   SystemRegisterPointerX10 = CharacterCode + 0x28;
-  FUN_180048980();
+  ExecuteSystemContextCleanup();
   SystemRegisterPointerX10 = CharacterCode + 0x24;
-  FUN_180048980();
+  ExecuteSystemContextCleanup();
   SystemRegisterPointerX10 = BufferAllocationStatus;
   _Mtx_destroy_in_situ(BufferAllocationStatus);
   SystemRegisterPointerX10 = CharacterCode + 0x16;
@@ -188980,7 +188984,7 @@ LAB_1801571ef:
   SystemRegisterPointerX10 = CharacterCode + 0xc;
   _Mtx_destroy_in_situ();
   SystemRegisterPointerX10 = CharacterCode;
-  FUN_18015b450(CharacterCode);
+  ExecuteSystemResourceRelease(CharacterCode);
   if ((1 < (unsigned long long)CharacterCode[8]) && (CharacterCode[7] != 0)) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
@@ -251763,7 +251767,7 @@ long long FUN_18020fa10(long long CharacterCode,long long SystemBufferSize
 
 11720(uint64_t *CharacterCodevoid FUN_180211720(uint64_t *CharacterCode
 {
-  FUN_180048980();
+  ExecuteSystemContextCleanup();
   *CharacterCode = &SystemNullTemplate;
   if (CharacterCode[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -252184,7 +252188,7 @@ uint64_t FUN_180212170(uint64_t CharacterCode,unsigned long long SystemBufferSiz
     CoreEngineProcessSystemEvent();
   }
   SystemRegisterPointerX10 = CharacterCode + 0x7b;
-  FUN_180048980();
+  ExecuteSystemContextCleanup();
   SystemRegisterPointerX10 = CharacterCode + 0x77;
   if (*SystemRegisterPointerX10 != 0) {
                     // WARNING: Subroutine does not return
@@ -252254,7 +252258,7 @@ LAB_1801571ef:
     } while ((unsigned long long)(long long)(int)ProcessingStatusFlag < (unsigned long long)CharacterCode[9]);
   }
   CharacterCode = CharacterCode + 6;
-  FUN_18015b450(CharacterCode);
+  ExecuteSystemResourceRelease(CharacterCode);
   MemoryBlockIndex = CharacterCode + 0x2d;
   SystemContextPtr = (long long *)CharacterCode[0x2e];
   MemoryPoolBlockSizePointer = (long long *)*MemoryBlockIndex;
@@ -252277,16 +252281,16 @@ LAB_1801571ef:
     CharacterCode[0x4a] = 0;
   }
   SystemRegisterPointerX10 = CharacterCode + 0x44;
-  FUN_18015b4f0();
+  ExecuteSystemResourceOptimization();
   if ((long long *)CharacterCode[0x3d] != (long long *)0x0) {
     (**(code **)(*(long long *)CharacterCode[0x3d] + 0x38))();
   }
   SystemRegisterPointerX10 = MemoryBlockIndex;
-  FUN_180057830(MemoryBlockIndex);
+  ProcessSystemMemoryBlockRelease(MemoryBlockIndex);
   SystemRegisterPointerX10 = CharacterCode + 0x28;
-  FUN_180048980();
+  ExecuteSystemContextCleanup();
   SystemRegisterPointerX10 = CharacterCode + 0x24;
-  FUN_180048980();
+  ExecuteSystemContextCleanup();
   SystemRegisterPointerX10 = BufferAllocationStatus;
   _Mtx_destroy_in_situ(BufferAllocationStatus);
   SystemRegisterPointerX10 = CharacterCode + 0x16;
@@ -252297,7 +252301,7 @@ LAB_1801571ef:
   SystemRegisterPointerX10 = CharacterCode + 0xc;
   _Mtx_destroy_in_situ();
   SystemRegisterPointerX10 = CharacterCode;
-  FUN_18015b450(CharacterCode);
+  ExecuteSystemResourceRelease(CharacterCode);
   if ((1 < (unsigned long long)CharacterCode[8]) && (CharacterCode[7] != 0)) {
                     // WARNING: Subroutine does not return
     CoreEngineProcessSystemEvent();
@@ -258350,7 +258354,7 @@ uint64_t FUN_18021a590(uint64_t CharacterCode,unsigned long long SystemBufferSiz
   uint64_t Utf16Char;
   
   Utf16Char = 0xfffffffffffffffe;
-  FUN_180048980();
+  ExecuteSystemContextCleanup();
   ProcessThreadLocalStorageSetup();
   FUN_1801570c0(CharacterCode);
   if ((SystemBufferSize & 1) != 0) {

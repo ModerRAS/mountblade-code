@@ -20040,7 +20040,7 @@ HandleMemoryBufferOverflow:
     SystemManagerSetFlags(SystemContextManagerPointer,5,SystemMaxHandleValue,4);
     SystemMemoryTemplatePointer = &SystemMemoryTemplateQuinary;
     SystemTemporaryBuffer = SystemSecurityBuffer;
-    SystemCalculationFlags = 0;
+    SystemLoggerProcessingCounter = 0;
     SystemSecurityBuffer[0] = 0;
     GameControllerConfigurationStatus = 2;
     InitializeGameSettings(&SystemMemoryTemplatePointer,&SystemDataBufferTemplateNonary,0x130a7);
@@ -20071,7 +20071,7 @@ HandleMemoryBufferOverflow:
         SystemCleanupFunction();
     }
     SystemStackCleanupFlag = 0;
-    SystemSecondaryCalculationFlags = 0;
+    SystemSecondaryLoggerProcessingCounter = 0;
     SystemGameControllerBuffer = &SystemMemoryAllocatorPointer;
   }
   GameControllerInitializationStatus = 0;
@@ -38982,49 +38982,49 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
   long long *SystemResourceOffsetPointer;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
-  int CalculationFlags;
-  long long LocalDataIndex;
+  long long LoggerProcessingCounter;
+  long long LoggerIteratorOffset;
   
-  LocalSystemOffset = SystemMemoryPoolTemplate;
+  LoggerIteratorOffset = SystemMemoryPoolTemplate;
   if (*(code **)(SystemMemoryPoolTemplate + 0x20) != (code *)0x0) {
     (**(code **)(SystemMemoryPoolTemplate + 0x20))(SystemMemoryPoolTemplate + 0x10,0,0,ConfigurationFlag,InvalidHandleValue);
   }
-  *(void* *)(LocalSystemOffset + 0x20) = 0;
-  *(code **)(LocalSystemOffset + 0x28) = _guard_check_icall;
-  CalculationFlags = 0;
+  *(void* )(LoggerIteratorOffset + 0x20) = 0;
+  *(code **)(LoggerIteratorOffset + 0x28) = _guard_check_icall;
+  LoggerProcessingCounter = 0;
   PrimaryResourceHandle = (long long *)(SystemResourceManager + 8);
   if (*(long long *)(SystemResourceManager + 0x10) - *PrimaryResourceHandle >> 3 != 0) {
     LocalSystemOffset = 0;
     do {
       ManageSystemThreads(*(void* )(*PrimaryResourceHandle + LocalSystemOffset));
-      CalculationFlags = CalculationFlags + 1;
+      LoggerProcessingCounter = LoggerProcessingCounter + 1;
       LocalSystemOffset = LocalSystemOffset + 8;
     } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - *PrimaryResourceHandle >> 3))
     ;
   }
-  CalculationFlags = 0;
+  LoggerProcessingCounter = 0;
   resourcePoolPointer = (long long *)(SystemResourceManager + 0x28);
   if (*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - *resourcePoolPointer >> 3 != 0) {
     LocalSystemOffset = 0;
     do {
       ManageSystemThreads(*(void* )(*resourcePoolPointer + LocalSystemOffset));
-      CalculationFlags = CalculationFlags + 1;
+      LoggerProcessingCounter = LoggerProcessingCounter + 1;
       LocalSystemOffset = LocalSystemOffset + 8;
     } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - *resourcePoolPointer >> 3))
     ;
   }
-  CalculationFlags = 0;
+  LoggerProcessingCounter = 0;
   SystemResourceOffsetPointer = (long long *)(SystemResourceManager + 0x48);
   if (*(long long *)(SystemResourceManager + 0x50) - *SystemResourceOffsetPointer >> 3 != 0) {
     LocalSystemOffset = 0;
     do {
       ManageSystemThreads(*(void* )(*SystemResourceOffsetPointer + LocalSystemOffset));
-      CalculationFlags = CalculationFlags + 1;
+      LoggerProcessingCounter = LoggerProcessingCounter + 1;
       LocalSystemOffset = LocalSystemOffset + 8;
     } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + 0x50) - *SystemResourceOffsetPointer >> 3))
     ;
   }
-  CalculationFlags = 0;
+  LoggerProcessingCounter = 0;
   LocalSystemOffset = *PrimaryResourceHandle;
   if (*(long long *)(SystemResourceManager + 0x10) - LocalSystemOffset >> 3 != 0) {
     localDataIndex = 0;
@@ -39038,12 +39038,12 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
         }
       }
       *(void* *)(localDataIndex + *PrimaryResourceHandle) = 0;
-      CalculationFlags = CalculationFlags + 1;
+      LoggerProcessingCounter = LoggerProcessingCounter + 1;
       localDataIndex = localDataIndex + 8;
       LocalSystemOffset = *PrimaryResourceHandle;
     } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - LocalSystemOffset >> 3));
   }
-  CalculationFlags = 0;
+  LoggerProcessingCounter = 0;
   LocalSystemOffset = *resourcePoolPointer;
   if (*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - LocalSystemOffset >> 3 != 0) {
     localDataIndex = 0;
@@ -39057,12 +39057,12 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
         }
       }
       *(void* *)(localDataIndex + *resourcePoolPointer) = 0;
-      CalculationFlags = CalculationFlags + 1;
+      LoggerProcessingCounter = LoggerProcessingCounter + 1;
       localDataIndex = localDataIndex + 8;
       LocalSystemOffset = *resourcePoolPointer;
     } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + SystemResourceManagerOffset0x30) - LocalSystemOffset >> 3));
   }
-  CalculationFlags = 0;
+  LoggerProcessingCounter = 0;
   LocalSystemOffset = *SystemResourceOffsetPointer;
   if (*(long long *)(SystemResourceManager + 0x50) - LocalSystemOffset >> 3 != 0) {
     localDataIndex = 0;
@@ -39076,7 +39076,7 @@ void InitializeSystemLogger(long long SystemResourceManager,void* ConfigurationD
         }
       }
       *(void* *)(localDataIndex + *SystemResourceOffsetPointer) = 0;
-      CalculationFlags = CalculationFlags + 1;
+      LoggerProcessingCounter = LoggerProcessingCounter + 1;
       localDataIndex = localDataIndex + 8;
       LocalSystemOffset = *SystemResourceOffsetPointer;
     } while ((ulong long)(long long)CalculationFlags < (ulong long)(*(long long *)(SystemResourceManager + 0x50) - LocalSystemOffset >> 3));
@@ -58701,7 +58701,7 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
          (SystemResourceManager[0x36] != 0)) {
         resourcePoolPointer = (long long *)AllocateSystemResourcePool();
       }
-      CalculationFlags = 0;
+      LoggerProcessingCounter = 0;
       if (resourcePoolPointer == SystemResourceManager) {
         SecondaryResourceHandle = (long long *)0x0;
         SystemStackBuffer2[0] = 0;
@@ -68231,7 +68231,7 @@ void ProcessSystemResourceDataBuffer(long long SystemResourceManager,long long *
   if (0 < *(int *)(SystemResourceManager + 0x60)) {
     do {
       ProcessSystemResourceAllocation((long long)CalculationFlags * 0x5c + *(long long *)(SystemResourceManager + 0x68),ConfigurationDataPointer);
-      CalculationFlags = CalculationFlags + 1;
+      LoggerProcessingCounter = LoggerProcessingCounter + 1;
     } while (CalculationFlags < *(int *)(SystemResourceManager + 0x60));
     SystemHashNodeData = (uint32_t *)ConfigurationDataPointer[1];
   }
