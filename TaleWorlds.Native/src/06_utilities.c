@@ -120031,7 +120031,18 @@ void HandleSystemExceptionAtOffset110EC0(DataBuffer operationBase,int64_t dataBu
 
 
 
-void SystemExceptionHandlerUnwind110EE0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器110EE0
+ * 
+ * 该函数负责处理系统异常，从0x2e30偏移量处获取异常上下文，
+ * 并调用相应的异常处理函数。同时管理异常上下文的引用计数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void HandleSystemExceptionAtOffset110EE0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -120049,7 +120060,18 @@ void SystemExceptionHandlerUnwind110EE0(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void SystemExceptionHandlerUnwind110F00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器110F00
+ * 
+ * 该函数负责处理系统异常，从0x2e50偏移量处获取异常上下文，
+ * 并调用相应的异常处理函数。同时管理异常上下文的引用计数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @param operationFlagA 操作标志A
+ * @param operationFlagB 操作标志B
+ */
+void HandleSystemExceptionAtOffset110F00(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -120066,7 +120088,16 @@ void SystemExceptionHandlerUnwind110F00(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_180911f20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 系统调用保护检查函数180911f20
+ * 
+ * 该函数执行系统调用保护检查，验证调用的安全性和完整性。
+ * 使用_guard_check_icall函数来验证间接调用的目标地址。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含验证所需的数据
+ */
+void ValidateSystemCallProtection(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   _guard_check_icall(*(DataBuffer *)(dataBuffer + ValidationResultOffset),**(ByteFlag **)(dataBuffer + 0x88),
