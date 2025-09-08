@@ -13049,6 +13049,7 @@ LAB_18065a765:
 {
   char localChar1;
   bool IsEventProcessingActive;
+  bool IsRotationValid;
   int uiCompareResult;
   UIHandle registerAX;
   longlong contextData;

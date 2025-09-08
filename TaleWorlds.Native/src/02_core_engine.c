@@ -184087,27 +184087,53 @@ void ProcessCharacterCodeEvent(uint64_t CharacterCode)
  * @param CharacterCode 目标数据结构指针，用于存储初始化后的系统数据
  * @return 返回初始化后的目标数据结构指针
  */
-uint64_t * FUN_1801504b0(uint64_t *CharacterCode
+/**
+ * @brief 初始化字符代码处理系统
+ * 
+ * 该函数负责初始化字符代码处理系统的核心数据结构，包括：
+ * - 设置主数据结构和次数据结构指针
+ * - 初始化系统事件处理器
+ * - 清理系统状态标志
+ * - 执行必要的事件处理回调
+ * 
+ * 该函数是字符处理系统初始化过程的一部分，确保系统处于正确的初始状态。
+ * 
+ * @param CharacterCode 字符代码指针，用于存储系统初始化后的状态
+ * @return 返回初始化后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_1801504b0
+ */
+uint64_t * InitializeCharacterCodeProcessingSystem(uint64_t *CharacterCode)
 {
-  long long *CharacterCode;
+  long long *SystemDataPointer;
   
+  // 设置主数据结构和次数据结构
   *CharacterCode = &SystemPrimaryDataStructure;
   CharacterCode[1] = &SystemSecondaryDataStructure;
+  
+  // 初始化系统状态
   CharacterCode[2] = 0;
   CharacterCode[0x44] = 0;
   CharacterCode[0x45] = 0;
+  
+  // 设置事件处理器
   CoreEngineEventHandler = CharacterCode;
   *(uint32_t *)(CharacterCode + 0x46) = 0;
-  CharacterCode = (long long *)CharacterCode[0x44];
+  
+  // 处理第一个系统状态
+  SystemDataPointer = (long long *)CharacterCode[0x44];
   CharacterCode[0x44] = 0;
-  if (CharacterCode != (long long *)0x0) {
-    (**(code **)(*CharacterCode + 0x38))();
+  if (SystemDataPointer != (long long *)0x0) {
+    (**(code **)(*SystemDataPointer + 0x38))();
   }
-  CharacterCode = (long long *)CharacterCode[0x45];
+  
+  // 处理第二个系统状态
+  SystemDataPointer = (long long *)CharacterCode[0x45];
   CharacterCode[0x45] = 0;
-  if (CharacterCode != (long long *)0x0) {
-    (**(code **)(*CharacterCode + 0x38))();
+  if (SystemDataPointer != (long long *)0x0) {
+    (**(code **)(*SystemDataPointer + 0x38))();
   }
+  
   return CharacterCode;
 }
 
