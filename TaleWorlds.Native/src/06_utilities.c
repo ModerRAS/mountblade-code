@@ -22474,7 +22474,7 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer inputDataBlock,DataWord valida
   int requiredElementIndex;                // 需要的元素索引
   DataWord *operationDataPointer;          // 操作数据指针
   // 数据处理和计算变量
-  uint dataProcessingFlags;                 // 数据处理标志
+  uint DataProcessingFlags;                 // 数据处理标志
   int calculatedBufferSize;                 // 计算的缓冲区大小
   int *registerContextPointer;             // 寄存器上下文指针
   int currentBufferSize;                   // 当前缓冲区大小
@@ -22488,8 +22488,8 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer inputDataBlock,DataWord valida
     systemContextBuffer = *systemContextPointer;
     currentBufferSize = *(int *)(destinationContext + SystemDataSecondaryOffset18);
     requiredElementIndex = currentBufferSize + 1;
-    dataProcessingFlags = (int)*(uint *)(destinationContext + 0x1c) >> 0x1f;
-    currentElementCount = (*(uint *)(destinationContext + 0x1c) ^ dataProcessingFlags) - dataProcessingFlags;
+    DataProcessingFlags = (int)*(uint *)(destinationContext + 0x1c) >> 0x1f;
+    currentElementCount = (*(uint *)(destinationContext + 0x1c) ^ DataProcessingFlags) - DataProcessingFlags;
     if (currentElementCount < requiredElementIndex) {
       calculatedBufferSize = (int)((float)currentElementCount * 1.5);
       currentElementCount = requiredElementIndex;
