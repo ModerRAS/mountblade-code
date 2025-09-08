@@ -118679,7 +118679,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float CharacterCode,float SystemBuffer
     ContextSecondaryFloat4 = *pSystemFloatValue;
     ValidationSuccessFlag = SystemParameter2 == CharacterLimit;
     CurrentCharacter6 = SystemParameter2;
-    InputDataLength = extraout_XMM0_Qa;
+    InputDataLength = VectorCalculationResult;
     if (ValidationSuccessFlag) {
       if (SystemParameter2 < CurrentCharacter) {
         IntegerValue = ValidateSystemDataEx(&DataStackBuffer);
@@ -118687,7 +118687,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float CharacterCode,float SystemBuffer
         pSystemFloatValue = (float *)ProcessFloatAndSystemConfiguration(*(void *)(NullPointerValue + 0x19f0),&TertiaryDataBuffer,
                                          *(uint32_t *)(NullPointerValue + 0x19f8));
         ContextSecondaryFloat4 = *pSystemFloatValue;
-        InputDataLength = extraout_XMM0_Qa_00;
+        InputDataLength = VectorCalculationResult_00;
       }
       ValidationSuccessFlag = CurrentCharacter6 == CharacterLimit;
     }
@@ -118698,7 +118698,7 @@ uint8_t ProcessUtf16EncodingAndConversion(float CharacterCode,float SystemBuffer
         pSystemFloatValue = (float *)ProcessFloatAndSystemConfiguration(*(void *)(NullPointerValue + 0x19f0),&TertiaryDataBuffer,
                                          *(uint32_t *)(NullPointerValue + 0x19f8));
         ContextSecondaryFloat4 = ContextSecondaryFloat4 - *pSystemFloatValue;
-        InputDataLength = extraout_XMM0_Qa_01;
+        InputDataLength = VectorCalculationResult_01;
       } while (CharacterLimit < CurrentCharacter6);
     }
     ValidateSystemDataStructure(InputDataLength,&DataTransferStackBuffer,&InputDataLengthStackBuffer);
@@ -120507,7 +120507,7 @@ LAB_18011f1e4:
     MatrixTransformMultiplier1 = (float)ProcessSystemFloatEx(CharacterCode,*PatternIndex);
     IntegerValue = ProcessValidationCheck(ValidationResultFlag2);
     SystemBufferSize = 0x3f800000;
-    CharacterCode = extraout_XMM0_Qa;
+    CharacterCode = VectorCalculationResult;
     if (IntegerValue < 1) {
       if (((-100.0 <= (double)CONCAT44(FloatRegisterX7_Hi,BaseFloatValue)) &&
           ((double)CONCAT44(FloatRegisterX7_Hi,BaseFloatValue) < 100.0 ||
@@ -135526,7 +135526,7 @@ void ProcessUtf8CharacterEncodingAndValidation(uint64_t CharacterCode, uint64_t 
   StackRegisterParameter5 = AuxiliaryCalculationFloat10;
   StackParameterF8 = XMM10RegisterC;
   StackParameter210 = SecondaryFloatValue;
-  in_stack_00000218 = XMM8RegisterC;
+  StackParameter218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,FilterInputValue4,*(void *)(StackFrameAddressPointer + 8));
   CharacterTablePointer = *(long long *)(StackFrameAddressPointer + 10);
   StackFrameAddressPointer[0x20] = -3.4028235e+38;
@@ -137171,7 +137171,7 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Syste
   uint64_t StackParameter200;
   uint64_t StackParameter208;
   uint32_t StackParameter210;
-  uint32_t in_stack_00000218;
+  uint32_t StackParameter218;
   
   *(void *)(SystemRegisterR11 + -0x20) = RegisterR12Value;
   *(void *)(SystemRegisterR11 + -0x28) = RegisterR13Value;
@@ -137364,7 +137364,7 @@ void ProcessSystemStringEncodingConversion(uint64_t CharacterCode,uint64_t Syste
   StackRegisterParameter5 = AuxiliaryCalculationFloat10;
   StackParameterF8 = XMM10RegisterC;
   StackParameter210 = SecondaryFloatValue;
-  in_stack_00000218 = XMM8RegisterC;
+  StackParameter218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,ScalingFactor,*(void *)(StackFrameAddressPointer + 8));
   LoopIndex = *(long long *)(StackFrameAddressPointer + 10);
   StackFrameAddressPointer[0x20] = -3.4028235e+38;
@@ -139008,7 +139008,7 @@ void InitializeSystemStringProcessing(void)
   uint64_t StackParameter200;
   uint64_t StackParameter208;
   uint32_t StackParameter210;
-  uint32_t in_stack_00000218;
+  uint32_t StackParameter218;
   
   if (in_ZF) {
     ContextSecondaryFloat9 = StackFrameAddressPointer[-0x10];
@@ -139061,7 +139061,7 @@ void InitializeSystemStringProcessing(void)
   StackRegisterParameter5 = AuxiliaryCalculationFloat10;
   StackParameterF8 = XMM10RegisterC;
   StackParameter210 = SecondaryFloatValue;
-  in_stack_00000218 = XMM8RegisterC;
+  StackParameter218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,NullPointerD,*(void *)(StackFrameAddressPointer + 8));
   SystemContextValue = *(long long *)(StackFrameAddressPointer + 10);
   StackFrameAddressPointer[0x20] = -3.4028235e+38;
@@ -142320,7 +142320,7 @@ void ProcessSystemStatusAndValidation(void
   uint64_t StackParameter200;
   uint64_t StackParameter208;
   uint32_t StackParameter210;
-  uint32_t in_stack_00000218;
+  uint32_t StackParameter218;
   
   FilterInputValue0 = SystemParameter2;
   ContextSecondaryFloat7 = StackFrameAddressPointer[-0x10];
@@ -142361,7 +142361,7 @@ void ProcessSystemStatusAndValidation(void
   StackRegisterParameter5 = AuxiliaryCalculationFloat10;
   StackParameterF8 = XMM10RegisterC;
   StackParameter210 = SecondaryFloatValue;
-  in_stack_00000218 = XMM8RegisterC;
+  StackParameter218 = XMM8RegisterC;
   ProcessSystemParameterHandler(SystemParameter2,NullPointerD,*(void *)(StackFrameAddressPointer + 8));
   SystemContextValue = *(long long *)(StackFrameAddressPointer + 10);
   StackFrameAddressPointer[0x20] = -3.4028235e+38;
@@ -153322,7 +153322,7 @@ void ProcessCharacterEncodingConversion(long long CharacterCode)
   unsigned long long ValidationResult;
   int IntegerValue4;
   unsigned long long Utf16ConversionContext;
-  uint64_t extraout_XMM0_Qa;
+  uint64_t VectorCalculationResult;
   uint64_t SystemRegisterFlag;
   
   AllocatedMemorySize = SystemConfigurationHandle;
@@ -153369,7 +153369,7 @@ void ProcessCharacterEncodingConversion(long long CharacterCode)
     }
     CharacterValidationResult = CheckSystemOperationStatus();
     if (CharacterValidationResult != '\0') {
-      TemporaryBuffer = (uint32_t *               ProcessUtf8ToUtf16CharacterEncoding(extraout_XMM0_Qa,*(uint32_t *)(CharacterCode + 8),CharacterCode + 0x40,
+      TemporaryBuffer = (uint32_t *               ProcessUtf8ToUtf16CharacterEncoding(VectorCalculationResult,*(uint32_t *)(CharacterCode + 8),CharacterCode + 0x40,
                              CharacterCode + 0x48,0);
       *(uint32_t **)(CharacterCode + 0x28) = TemporaryBuffer;
       goto LAB_180130c8e;
@@ -153382,7 +153382,7 @@ void ProcessCharacterEncodingConversion(long long CharacterCode)
         *(float *)(SystemConfigurationHandle + 0x11c) == -256000.0)) {
       if ((*(long long *)(CharacterCode + 0x28) != 0) &&
          (*(long long *)(*(long long *)(CharacterCode + 0x28) + 0x78) == CharacterCode)) {
-        ProcessingStatusFlag = ProcessUtf8ToUtf16CharacterEncoding(extraout_XMM0_Qa,*(uint32_t *)(CharacterCode + 8),CharacterCode + 0x40,
+        ProcessingStatusFlag = ProcessUtf8ToUtf16CharacterEncoding(VectorCalculationResult,*(uint32_t *)(CharacterCode + 8),CharacterCode + 0x40,
                               CharacterCode + 0x48,0);
         *(void *)(CharacterCode + 0x28) = ProcessingStatusFlag;
       }
@@ -153392,7 +153392,7 @@ void ProcessCharacterEncodingConversion(long long CharacterCode)
     TemporaryBuffer = *(uint32_t **)(CharacterCode + 0x28);
     if (TemporaryBuffer != (uint32_t *)0x0) {
       if ((CharacterCode == *(long long *)(TemporaryBuffer + 0x1e)) && (*(int *)(AllocatedMemorySize + 0x1b2c) == 0)) {
-        ConfigureSystemEx(extraout_XMM0_Qa,**(uint64_t **)(AllocatedMemorySize + 0x1c70));
+        ConfigureSystemEx(VectorCalculationResult,**(uint64_t **)(AllocatedMemorySize + 0x1c70));
         TemporaryBuffer = *(uint32_t **)(CharacterCode + 0x28);
       }
       goto LAB_180130c8e;
@@ -153521,13 +153521,13 @@ void ValidateCharacterEncodingData(uint64_t CharacterCode)
   unsigned long long ProcessedCharacter;
   long long SystemDataNode;
   long long CharacterLimit;
-  uint64_t extraout_XMM0_Qa;
-  uint64_t extraout_XMM0_Qa_00;
-  uint64_t extraout_XMM0_Qa_01;
-  uint64_t extraout_XMM0_Qa_02;
-  uint64_t extraout_XMM0_Qa_03;
-  uint64_t extraout_XMM0_Qa_04;
-  uint64_t extraout_XMM0_Qa_05;
+  uint64_t VectorCalculationResult;
+  uint64_t VectorCalculationResult_00;
+  uint64_t VectorCalculationResult_01;
+  uint64_t VectorCalculationResult_02;
+  uint64_t VectorCalculationResult_03;
+  uint64_t VectorCalculationResult_04;
+  uint64_t VectorCalculationResult_05;
   float StackFloatValue60;
   float TemporaryFloat2;
   
@@ -153544,7 +153544,7 @@ void ValidateCharacterEncodingData(uint64_t CharacterCode)
        *(long long *)(in_RCX + 0x28) = AllocatedMemorySize, AllocatedMemorySize == 0)))) && (*(int *)(in_RCX + 0x30) != 0)) {
     AllocatedMemorySize = GetSystemMemoryPoolBlockSize();
     *(long long *)(SystemContext + 0x28) = AllocatedMemorySize;
-    CharacterCode = extraout_XMM0_Qa;
+    CharacterCode = VectorCalculationResult;
     if (AllocatedMemorySize == 0) {
       CharacterCode = 0x7f7fffff;
       if ((*(float *)(SystemContext + 0x34) != 3.4028235e+38) &&
@@ -153552,7 +153552,7 @@ void ValidateCharacterEncodingData(uint64_t CharacterCode)
         DataSize = ProcessUtf8ToUtf16CharacterEncoding(0x7f7fffff,*(uint32_t *)(SystemContext + 8),(float *)(SystemContext + 0x34),
                               SystemContext + 0x48);
         *(void *)(SystemContext + 0x28) = DataSize;
-        CharacterCode = extraout_XMM0_Qa_00;
+        CharacterCode = VectorCalculationResult_00;
       }
     }
   }
@@ -153560,7 +153560,7 @@ void ValidateCharacterEncodingData(uint64_t CharacterCode)
     AllocatedMemorySize = GetMemoryPoolBlockSize(*(uint32_t *)(SystemDataNode + 0x1c3c));
     *(long long *)(SystemContext + 0x28) = AllocatedMemorySize;
     *(uint32_t *)(SystemContext + 0x30) = *(uint32_t *)(SystemDataNode + 0x1c3c);
-    CharacterCode = extraout_XMM0_Qa_01;
+    CharacterCode = VectorCalculationResult_01;
     goto LAB_180130c8e;
   }
   if ((RegisterEBPValue & 0x11000000) == 0) {
@@ -153570,13 +153570,13 @@ void ValidateCharacterEncodingData(uint64_t CharacterCode)
     }
     OperationStatus = CheckSystemOperationStatus();
     if (OperationStatus != '\0') {
-      AllocatedMemorySize = ProcessUtf8ToUtf16CharacterEncoding(extraout_XMM0_Qa_02,*(uint32_t *)(SystemContext + 8),SystemContext + 0x40,
+      AllocatedMemorySize = ProcessUtf8ToUtf16CharacterEncoding(VectorCalculationResult_02,*(uint32_t *)(SystemContext + 8),SystemContext + 0x40,
                             SystemContext + 0x48);
       *(long long *)(SystemContext + 0x28) = AllocatedMemorySize;
-      CharacterCode = extraout_XMM0_Qa_03;
+      CharacterCode = VectorCalculationResult_03;
       goto LAB_180130c8e;
     }
-    CharacterCode = extraout_XMM0_Qa_02;
+    CharacterCode = VectorCalculationResult_02;
     if ((((*(long long *)(SystemDataNode + 0x1b78) != 0) &&
          (*(long long *)(*(long long *)(SystemDataNode + 0x1b78) + 0x3a0) == SystemContext)) &&
         (-256000.0 < *(float *)(SystemConfigurationHandle + 0x118) ||
@@ -153585,10 +153585,10 @@ void ValidateCharacterEncodingData(uint64_t CharacterCode)
         *(float *)(SystemConfigurationHandle + 0x11c) == -256000.0)) {
       if ((*(long long *)(SystemContext + 0x28) != 0) &&
          (*(long long *)(*(long long *)(SystemContext + 0x28) + 0x78) == SystemContext)) {
-        DataSize = ProcessUtf8ToUtf16CharacterEncoding(extraout_XMM0_Qa_02,*(uint32_t *)(SystemContext + 8),SystemContext + 0x40,
+        DataSize = ProcessUtf8ToUtf16CharacterEncoding(VectorCalculationResult_02,*(uint32_t *)(SystemContext + 8),SystemContext + 0x40,
                               SystemContext + 0x48);
         *(void *)(SystemContext + 0x28) = DataSize;
-        CharacterCode = extraout_XMM0_Qa_04;
+        CharacterCode = VectorCalculationResult_04;
       }
       long long AllocatedMemorySize = *(long long *)(SystemContext + 0x28);
       goto LAB_180130c8e;
@@ -153596,7 +153596,7 @@ void ValidateCharacterEncodingData(uint64_t CharacterCode)
     long long AllocatedMemorySize = *(long long *)(SystemContext + 0x28);
     if (AllocatedMemorySize != 0) {
       if ((SystemContext == *(long long *)(AllocatedMemorySize + 0x78)) && (*(int *)(SystemDataNode + 0x1b2c) == ArrayIndex)) {
-        CharacterCode = ConfigureSystemEx(extraout_XMM0_Qa_02,**(uint64_t **)(SystemDataNode + 0x1c70));
+        CharacterCode = ConfigureSystemEx(VectorCalculationResult_02,**(uint64_t **)(SystemDataNode + 0x1c70));
         long long AllocatedMemorySize = *(long long *)(SystemContext + 0x28);
       }
       goto LAB_180130c8e;
@@ -153630,7 +153630,7 @@ LAB_180130c8e:
           (*(int *)(SystemDataNode + 0x1a90) <= *(int *)(AllocatedMemorySize + 0x54))) || (!StringComparisonByte)) {
         OperationStatus = ConfigureSystemEx(CharacterCode,**(uint64_t **)(SystemDataNode + 0x1c70));
         if (OperationStatus == '\0') {
-          DataSize = ProcessUtf8ToUtf16CharacterEncoding(extraout_XMM0_Qa_05,*(uint32_t *)(SystemContext + 8),SystemContext + 0x40,
+          DataSize = ProcessUtf8ToUtf16CharacterEncoding(VectorCalculationResult_05,*(uint32_t *)(SystemContext + 8),SystemContext + 0x40,
                                 SystemContext + 0x48,4);
           *(void *)(SystemContext + 0x28) = DataSize;
         }
@@ -170143,7 +170143,7 @@ void InitializeUtf8CharacterProcessingSystem(void)
   long long SystemDataNode;
   byte ProcessingByte4;
   long long CharacterLimit;
-  uint64_t extraout_XMM0_Qa;
+  uint64_t VectorCalculationResult;
   uint8_t *StackProcessingParameter58;
   char FunctionReturnValue;
   
@@ -170153,7 +170153,7 @@ void InitializeUtf8CharacterProcessingSystem(void)
   if ((*(int *)(SystemContext + 0x83) != LoopCounter) && (MemoryPoolBlockSize == 0)) {
     MemoryPoolBlockSize = FindSystemData(*(void *)(SystemDataNode + 0x2df8),*(uint32_t *)(SystemContext + 0x83));
     if (MemoryPoolBlockSize == 0) {
-      MemoryPoolBlockSize = GetStringProcessingStatus(extraout_XMM0_Qa,*(uint32_t *)(SystemContext + 0x83));
+      MemoryPoolBlockSize = GetStringProcessingStatus(VectorCalculationResult,*(uint32_t *)(SystemContext + 0x83));
       if (FunctionReturnValue != CurrentCharacter1) {
         *(uint32_t *)(MemoryPoolBlockSize + 0x88) = *(uint32_t *)(SystemDataNode + 0x1a90);
       }
@@ -170314,7 +170314,7 @@ void ProcessCharacterCodeUtf8Encoding(long long CharacterCode)
   long long SystemDataNode;
   byte ProcessingByte4;
   long long CharacterLimit;
-  uint64_t extraout_XMM0_Qa;
+  uint64_t VectorCalculationResult;
   uint8_t *StackProcessingParameter58;
   char cStack0000000000000060;
   
@@ -170347,7 +170347,7 @@ void ProcessCharacterCodeUtf8Encoding(long long CharacterCode)
   if ((*(int *)(SystemContext + 0x83) != 0) && (MemoryPoolBlockSize == 0)) {
     MemoryPoolBlockSize = FindSystemData(*(void *)(SystemDataNode + 0x2df8),*(uint32_t *)(SystemContext + 0x83));
     if (MemoryPoolBlockSize == 0) {
-      MemoryPoolBlockSize = GetStringProcessingStatus(extraout_XMM0_Qa,*(uint32_t *)(SystemContext + 0x83));
+      MemoryPoolBlockSize = GetStringProcessingStatus(VectorCalculationResult,*(uint32_t *)(SystemContext + 0x83));
       if (cStack0000000000000060 != '\0') {
         *(uint32_t *)(MemoryPoolBlockSize + 0x88) = *(uint32_t *)(SystemDataNode + 0x1a90);
       }
@@ -173605,7 +173605,7 @@ void ProcessCharacterEncodingAndStringFormatting(uint64_t CharacterCode)
   uint64_t *RegisterR12Value;
   int *CharacterLimit;
   long long NullPointerValue;
-  uint64_t extraout_XMM0_Qa;
+  uint64_t VectorCalculationResult;
   uint64_t Utf16ConversionContext;
   
   Utf16Char4 = StackFrameAddressPointer & 0xffffffff;
@@ -173667,7 +173667,7 @@ void ProcessCharacterEncodingAndStringFormatting(uint64_t CharacterCode)
           if (SystemDataTablePointer != 0) {
             SystemContextValue = SystemDataTablePointer;
           }
-          Utf16ConversionContext = ProcessStringFormattingOperation(extraout_XMM0_Qa,StringFormatMain,*RegisterR12Value,SystemContextValue);
+          Utf16ConversionContext = ProcessStringFormattingOperation(VectorCalculationResult,StringFormatMain,*RegisterR12Value,SystemContextValue);
           SystemOperationResult = *(int *)(Utf16Char4 + 0x24 + AllocatedMemorySize);
           if ((IntegerValue9 != 0) && (IntegerValue9 != 0x11111111)) {
             Utf16ConversionContext = ProcessStringFormattingOperation(Utf16ConversionContext,&SystemDataTableSexagesimal,(int)*(float *)(Utf16Char4 + 0x1c + AllocatedMemorySize),
@@ -173837,7 +173837,7 @@ void ProcessSystemBufferSizeAndCharacterCodeManagement(uint64_t CharacterCode, u
   long long RegisterR13Value;
   int *CharacterLimit;
   long long NullPointerValue;
-  uint64_t extraout_XMM0_Qa;
+  uint64_t VectorCalculationResult;
   uint64_t SystemStatusCode;
   unsigned long long ValidationResult;
   
@@ -173883,7 +173883,7 @@ code_r0x00018013d378:
                 if (SystemDataTablePointer != 0) {
                   EncodingConversionResult = SystemDataTablePointer;
                 }
-                SystemStatusCode = ProcessStringFormattingOperation(extraout_XMM0_Qa,StringFormatMain,*RegisterR12Value,EncodingConversionResult);
+                SystemStatusCode = ProcessStringFormattingOperation(VectorCalculationResult,StringFormatMain,*RegisterR12Value,EncodingConversionResult);
                 SystemOperationResult = *(int *)(SystemChecksum + 0x24 + SystemDataRegistry);
                 if ((IntegerValue9 != 0) && (IntegerValue9 != 0x11111111)) {
                   SystemStatusCode = ProcessStringFormattingOperation(SystemStatusCode,&SystemDataTableSexagesimal,(int)*(float *)(SystemChecksum + 0x1c + SystemDataRegistry                                         ,(int)*(float *)(SystemChecksum + 0x20 + SystemDataRegistry));
@@ -207691,7 +207691,7 @@ void ValidateSystemCharacterData(long long CharacterCode, uint64_t SystemBufferS
   int IntegerValue5;
   int IntegerValue6;
   uint64_t UnicodeCharacterCode;
-  uint64_t extraout_XMM0_Qa;
+  uint64_t VectorCalculationResult;
   float SystemContextPrimaryFloat8;
   uint8_t aUtf16Character [16];
   float ContextSecondaryFloat0;
@@ -207816,7 +207816,7 @@ void ValidateSystemCharacterData(long long CharacterCode, uint64_t SystemBufferS
               auStack_858[0] = 0;
               iStack_848 = IntegerValue5;
               iStack_844 = IntegerValue6;
-              ProcessMemoryAllocationHandler(extraout_XMM0_Qa,auStack_858);
+              ProcessMemoryAllocationHandler(VectorCalculationResult,auStack_858);
             }
           }
           *(uint32_t *)(CharacterCode + 0xa0) = auStack_8a8[0];
@@ -218638,7 +218638,7 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode,long long SystemBuf
   unsigned long long Utf16Character;
   unsigned long long MemoryAllocationOffset;
   float ContextSecondaryFloat1;
-  uint64_t extraout_XMM0_Qa;
+  uint64_t VectorCalculationResult;
   uint64_t extraout_XMM0_Qb;
   uint32_t MemoryAllocationIndex8;
   uint8_t aMemoryAllocationOffset [16];
@@ -218777,12 +218777,12 @@ void ProcessSystemCharacterValidation(uint64_t CharacterCode,long long SystemBuf
         else if (ComputedResult == 9) {
           MemoryAllocationIndex = FUN_180181d80(CharacterCode,0x20,PrimaryReturnCode,IntegerValue9,UnicodeCodePoint0);
           aMemoryAllocationOffset._8_4_ = (int)extraout_XMM0_Qb;
-          aMemoryAllocationOffset.Low64Part = extraout_XMM0_Qa;
+          aMemoryAllocationOffset.Low64Part = VectorCalculationResult;
           aMemoryAllocationOffset.High32Part = (int)((unsigned long long)extraout_XMM0_Qb >> 0x20);
           aInputDataLength._4_12_ = aMemoryAllocationOffset._4_12_;
-          aInputDataLength.LowPart = ((float)extraout_XMM0_Qa + ContextSecondaryFloat9) * 5.0;
+          aInputDataLength.LowPart = ((float)VectorCalculationResult + ContextSecondaryFloat9) * 5.0;
           SystemOperationResult = (int)aInputDataLength.LowPart;
-          MemoryAllocationIndex8 = (uint32_t)((unsigned long long)extraout_XMM0_Qa >> 0x20);
+          MemoryAllocationIndex8 = (uint32_t)((unsigned long long)VectorCalculationResult >> 0x20);
           aMemoryAllocationIndexSecondary.Low64Part = aInputDataLength.Low64Part;
           if (aInputDataLength.LowPart <= 0.0) {
             if ((IntegerValue9 != -0x80000000) && ((float)IntegerValue9 != aInputDataLength.LowPart)) {
@@ -238400,8 +238400,8 @@ long long * ProcessCharacterCodeBufferAllocationAndCleanup(long long *CharacterC
   long long EncodingConversionResult;
   long long SystemStringIndex;
   long long SystemContextValue;
-  uint64_t extraout_XMM0_Qa;
-  uint64_t extraout_XMM0_Qa_00;
+  uint64_t VectorCalculationResult;
+  uint64_t VectorCalculationResult_00;
   float SystemContextPrimaryFloat3;
   float SystemContextPrimaryFloat4;
   float PrimaryScalingFactor;
@@ -238657,7 +238657,7 @@ long long * ProcessCharacterCodeBufferAllocationAndCleanup(long long *CharacterC
         *(uint *)(EncodingConversionResult + 0x314) = Utf16Char & *(uint *)(SystemBufferSize + 0x1c4);
         CharacterValidationResult = FUN_1800d6260(ProcessingStatusFlag,SystemBufferSize,EncodingConversionResult,0,MemoryAddressMaskPointer,ProcessingStatusFlag,0);
         if (CharacterValidationResult == '\0') {
-          FUN_1800df980(extraout_XMM0_Qa,EncodingConversionResult,SystemBufferSize);
+          FUN_1800df980(VectorCalculationResult,EncodingConversionResult,SystemBufferSize);
           *(long long *)(SystemBufferSize + 0x34e0) = EncodingConversionResult;
         }
         else {
@@ -238679,7 +238679,7 @@ long long * ProcessCharacterCodeBufferAllocationAndCleanup(long long *CharacterC
         *(uint *)(SystemStringIndex + 0x314) = Utf16Char & *(uint *)(SystemBufferSize + 0x1c4);
         CharacterValidationResult = FUN_1800d6260(ProcessingStatusFlag,SystemBufferSize,SystemStringIndex,0,MemoryAddressMaskPointer,ProcessingStatusFlag,0);
         if (CharacterValidationResult == '\0') {
-          FUN_1800df980(extraout_XMM0_Qa_00,SystemStringIndex,SystemBufferSize);
+          FUN_1800df980(VectorCalculationResult_00,SystemStringIndex,SystemBufferSize);
           *(long long *)(SystemBufferSize + 0x34d8) = SystemStringIndex;
         }
         else {
@@ -248990,8 +248990,8 @@ void ProcessSystemCharacterStream(uint64_t CharacterCode,long long *CharacterCod
   uint *PrimaryProcessingStatusFlag7;
   bool HighByte8;
   float ContextSecondaryFloat9;
-  uint64_t extraout_XMM0_Qa;
-  uint64_t extraout_XMM0_Qa_00;
+  uint64_t VectorCalculationResult;
+  uint64_t VectorCalculationResult_00;
   float FilterInputValue0;
   unsigned long long uStackX_10;
   uint StackProcessingValue;
@@ -249195,9 +249195,9 @@ void ProcessSystemCharacterStream(uint64_t CharacterCode,long long *CharacterCod
                       Utf16Character = StackProcessingValue;
                       goto LAB_180208aa2;
                     }
-                    CharacterTablePointer6 = FUN_1801ef620(extraout_XMM0_Qa,EncodingConversionResult,SystemDataTablePointer);
+                    CharacterTablePointer6 = FUN_1801ef620(VectorCalculationResult,EncodingConversionResult,SystemDataTablePointer);
                     UnicodeCharacterCode = *(uint32_t *)(CharacterTablePointer6 + 0x2c);
-                    CharacterTablePointer6 = FUN_1801efdb0(extraout_XMM0_Qa_00,SystemDataTablePointer);
+                    CharacterTablePointer6 = FUN_1801efdb0(VectorCalculationResult_00,SystemDataTablePointer);
                     StringComparisonResult1 = *(int *)(CharacterTablePointer6 + 0x18);
                   }
                   MemoryAllocationIndex = *(uint32_t *)(CharacterTablePointer6 + 0x24);
@@ -249384,8 +249384,8 @@ void InitializeSystemCharacterHandler(uint64_t CharacterCode,uint64_t SystemBuff
   unsigned long long CharacterLimit;
   uint *PrimaryProcessingStatusFlag4;
   bool HighByte5;
-  uint64_t extraout_XMM0_Qa;
-  uint64_t extraout_XMM0_Qa_00;
+  uint64_t VectorCalculationResult;
+  uint64_t VectorCalculationResult_00;
   unsigned long long MemoryAllocationIndexAdditional;
   unsigned long long MemoryAllocationIndex7;
   long long lStack0000000000000058;
@@ -249428,9 +249428,9 @@ void InitializeSystemCharacterHandler(uint64_t CharacterCode,uint64_t SystemBuff
                 MemoryAllocationHandle = (uint)AdditionalParameter2;
                 goto LAB_180208aa2;
               }
-              LoopIndex = FUN_1801ef620(extraout_XMM0_Qa,StringOffset,SystemDataRegistry);
+              LoopIndex = FUN_1801ef620(VectorCalculationResult,StringOffset,SystemDataRegistry);
               PrimaryReturnCode = *(uint32_t *)(LoopIndex + 0x2c);
-              LoopIndex = FUN_1801efdb0(extraout_XMM0_Qa_00,SystemDataRegistry);
+              LoopIndex = FUN_1801efdb0(VectorCalculationResult_00,SystemDataRegistry);
               StringComparisonResult0 = *(int *)(LoopIndex + 0x18);
             }
             MemoryAllocationIndex = *(uint32_t *)(LoopIndex + 0x24);
