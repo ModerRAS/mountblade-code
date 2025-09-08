@@ -123,15 +123,15 @@ typedef enum {
 #define CalculateUIEventDistance FUN_180727dd3
 
 // UI系统标签宏定义 - 事件处理相关
-#define LAB_EventTypeStringCompare LAB_180655402
-#define LAB_EventTypeValidationCheck LAB_1806553fb
-#define LAB_EventStringComparison LAB_1806554a0
-#define LAB_EventHandlerReturn LAB_180655685
-#define LAB_EventProcessingContinue LAB_1806559dc
-#define LAB_EventValidationFailed LAB_180655683
-#define LAB_EventStringCompare LAB_180655a80
-#define LAB_EventFocusCheck LAB_180655afa
-#define LAB_EventValidationCheck LAB_1806554f3
+#define LAB_EventTypeStringCompare LAB_EventTypeStringCompare
+#define LAB_EventTypeValidationCheck LAB_EventTypeValidationCheck
+#define LAB_EventStringComparison LAB_EventStringComparison
+#define LAB_EventHandlerReturn LAB_EventHandlerReturn
+#define LAB_EventProcessingContinue LAB_EventProcessingContinue
+#define LAB_EventValidationFailed LAB_EventValidationFailed
+#define LAB_EventStringCompare LAB_EventStringCompare
+#define LAB_EventFocusCheck LAB_EventFocusCheck
+#define LAB_EventValidationCheck LAB_EventValidationCheck
 #define LAB_EventProcessingComplete LAB_180655598
 #define LAB_EventComponentCheck LAB_1806555a6
 #define LAB_EventTypeHandler LAB_18065555e
@@ -139,7 +139,7 @@ typedef enum {
 #define LAB_EventDataProcess LAB_1806557d3
 #define LAB_EventResultReturn LAB_180655bea
 #define LAB_EventFocusCheck LAB_180655bdf
-#define LAB_EventSystemInitialize LAB_180655e30
+#define LAB_EventSystemInitialize LAB_EventSystemInitialize
 #define LAB_EventContextSetup LAB_180655d38
 #define LAB_UISystemCleanup LAB_180656abd
 #define LAB_UIResourceRelease LAB_180656d5b
@@ -9086,7 +9086,7 @@ LAB_EventProcessingContinue:
         if (stringLength == 0x11) {
           uiCompareResult = strcmp(eventStringPtr,&UIEventTypeButtonHold);
           EventProcessingResult = uiCompareResult == 0;
-          goto LAB_1806559dc;
+          goto LAB_EventProcessingContinue;
         }
       }
     }
@@ -9135,13 +9135,13 @@ LAB_EventSystemInitialize:
       if (stackInt40 == 0xd) {
         uiCompareResult = strcmp(pcStack_48,&UIStringTable_SubtitleFont);
         IsFontMatchFound = uiCompareResult == 0;
-        goto LAB_180655afa;
+        goto LAB_EventFocusCheck;
       }
     }
   }
   else if (stackInt20 == 0x12) {
     uiCompareResult = strcmp(stackLong28,&UIStringTable_BodyFont);
-    if (uiCompareResult == 0) goto LAB_180655911;
+    if (uiCompareResult == 0) goto LAB_ComparisonResultCheck;
     uiCompareResult = strcmp(EventDataIndex,&UIStringTable_SmallFont);
     if (((uiCompareResult == 0) && (stackInt40 == 1)) && ((*pcStack_48 != 'x' || (pcStack_48[1] != '\0')))) {
       if ((*pcStack_48 == 'y') && (pcStack_48[1] == '\0')) {
@@ -9154,7 +9154,7 @@ LAB_EventSystemInitialize:
       }
       if (*pcStack_48 == 'w') {
         localChar1 = pcStack_48[1];
-        goto LAB_180655e30;
+        goto LAB_EventSystemInitialize;
       }
     }
   }
@@ -86819,8 +86819,7 @@ uint FUN_180718dab(longlong uiContext)
 
 
 
- void FUN_180718e92(void)
-void FUN_180718e92(void)
+ void UINoOperationHandler(void)
 
 {
   return;
