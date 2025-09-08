@@ -16374,17 +16374,17 @@ LAB_18065a765:
           *(float *)(EventHandle + 0x6174) = resultFloat * *(float *)(EventHandle + 0x6174);
         }
       }
-      param_9 = param_9 - param_7;
+      transformValue = transformValue - dataValue;
       uiContext0._4_4_ =
            (((((float)uiContext0 + (float)uiContext1) * param_8 + uiContext0._4_4_) - uiContext1._4_4_) -
            uiContext2) - uiContext0._4_4_;
-      resultFloat = param_9 * param_9 + uiContext0._4_4_ * uiContext0._4_4_;
+      resultFloat = transformValue * transformValue + uiContext0._4_4_ * uiContext0._4_4_;
       result = (undefined3)((uint)allocationFlags >> 8);
       resultFloat = (float)CONCAT31(result,resultFloat <= 1.1754944e-38) * 1.1754944e-38 + resultFloat;
       aresult2 = rsqrtss(ZEXT416((uint)resultFloat),ZEXT416((uint)resultFloat));
       localFloat6 = aresult2._0_4_;
       resultFloat = localFloat6 * 0.5 * (3.0 - resultFloat * localFloat6 * localFloat6);
-      fStack000000000000003c = resultFloat * param_9;
+      fStack000000000000003c = resultFloat * transformValue;
       resultFloat = resultFloat * uiContext0._4_4_;
       if ((float)((uint)(resultFloat * *(float *)(EventHandle + 0x6178) +
                         fStack000000000000003c * *(float *)(EventHandle + 0x617c)) & in_XMM5_Da) <=
@@ -16630,7 +16630,7 @@ LAB_18065a765:
           *(float *)(EventHandle + 0x6174) = localFloat6 * *(float *)(EventHandle + 0x6174);
         }
       }
-      param_9 = param_9 - param_7;
+      transformValue = transformValue - dataValue;
       uiContext0._4_4_ =
            (((((float)uiContext0 + (float)uiContext1) * param_8 + uiContext0._4_4_) - uiContext1._4_4_) -
            uiContext2) - uiContext0._4_4_;
@@ -16904,7 +16904,7 @@ void HandleUICollisionDetection(longlong uiContext, longlong dataSource, longlon
   transformCoeff29 = *(float *)(uiContext + 0x6150);
   stackLong188 = *(longlong *)(dataSource + 0x208);
   pstackUInt138 = resultPointer;
-  pcStack_180 = param_6;
+  contextPointer = contextFlag;
   stackLong158 = 2;
   fStack_198 = ((transformCoeff29 * 6.0 - 15.0) * transformCoeff29 + 10.0) * transformCoeff29 * transformCoeff29 * transformCoeff29;
   transformCoeff29 = (1.0 - (fStack_198 + *(float *)(uiContext + 0x6174))) * bufferSize;
@@ -16976,11 +16976,11 @@ void HandleUICollisionDetection(longlong uiContext, longlong dataSource, longlon
       allocatedMemory7 = allocatedMemory7 + -1;
     } while (allocatedMemory7 != 0);
     ptransformCoeff11 = afStack_130;
-    allocatedMemory2 = (longlong)resultPointer - (longlong)param_6;
+    allocatedMemory2 = (longlong)resultPointer - (longlong)contextFlag;
     allocatedMemory7 = -0x1334;
     allocatedMemory6 = 0x1328;
     stackLong140 = 2;
-    pcStack_148 = param_6;
+    contextPointer2 = contextFlag;
     stackUInt178 = allocatedMemory2;
     do {
       transformCoeff29 = *ptransformCoeff11;
@@ -87878,40 +87878,53 @@ UIByte ProcessUIEventDataTransformation(int uiContext,int dataSource,float targe
 
 
 
-uint FUN_1807196d4(int uiContext,UIHandle dataSource,uint targetBuffer,uint bufferSize)
-
+/**
+ * @brief UI缓冲区大小计算函数
+ * 
+ * 该函数根据UI上下文、数据源和目标缓冲区参数计算并调整缓冲区大小。
+ * 主要用于UI系统的内存管理和资源分配优化。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return uint 调整后的缓冲区大小
+ * 
+ * @note 原始函数名：FUN_1807196d4
+ */
+uint CalculateUIBufferSize(int uiContext, UIHandle dataSource, uint targetBuffer, uint bufferSize)
 {
   int processingResult;
-  uint register10D;
-  int RegisterPointerD;
+  uint registerValue10D;
+  int registerPointerD;
   uint preservedRegister13D;
   int eventHandle;
-  longlong stackParam00000080;
-  int *stackParam00000090;
-  int stackParam00000098;
+  longlong stackOffset80;
+  int *stackOffset90;
+  int stackOffset98;
   int *maxAllocations;
-  uint *stackParam000000a8;
+  uint *stackOffsetA8;
   
   if (preservedRegister13D != 0) {
-    preservedRegister13D = preservedRegister13D / (uint)(((uiContext - *(int *)(stackParam00000080 + 8)) + 4) * RegisterPointerD);
+    preservedRegister13D = preservedRegister13D / (uint)(((uiContext - *(int *)(stackOffset80 + 8)) + 4) * registerPointerD);
   }
   processingResult = (int)(*maxAllocations + preservedRegister13D) >> 1;
   *maxAllocations = processingResult;
-  if (*stackParam000000a8 == targetBuffer) {
+  if (*stackOffsetA8 == targetBuffer) {
     processingResult = processingResult + 4;
   }
-  else if (*stackParam000000a8 == 0) {
+  else if (*stackOffsetA8 == 0) {
     processingResult = processingResult + -4;
   }
   if (processingResult < 0x17) {
-    *stackParam000000a8 = (uint)(0x12 < processingResult);
+    *stackOffsetA8 = (uint)(0x12 < processingResult);
   }
   else {
-    *stackParam000000a8 = targetBuffer;
+    *stackOffsetA8 = targetBuffer;
   }
-  processingResult = (int)(register10D / bufferSize + *stackParam00000090) >> 1;
-  *stackParam00000090 = processingResult;
-  processingResult = (processingResult + 0x96) * 3 + stackParam00000098 * -0x80 >> 2;
+  processingResult = (int)(registerValue10D / bufferSize + *stackOffset90) >> 1;
+  *stackOffset90 = processingResult;
+  processingResult = (processingResult + 0x96) * 3 + stackOffset98 * -0x80 >> 2;
   if (processingResult < 0x50) {
     targetBuffer = 3;
   }
@@ -200017,51 +200030,92 @@ UIHandle FUN_180788e60(longlong uiContext,longlong dataSource)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180788f20(longlong uiContext)
-void FUN_180788f20(longlong uiContext)
+ /**
+ * @brief UI上下文清理函数
+ * 
+ * 该函数负责清理UI上下文的相关资源，包括：
+ * 1. 调用上下文中的清理函数指针
+ * 2. 释放UI上下文占用的内存资源
+ * 3. 重置上下文状态
+ * 
+ * @param UIContext UI上下文句柄，指向需要清理的UI上下文
+ * 
+ * @note 原始函数名：FUN_180788f20
+ * @warning 此函数不会返回，调用后会直接跳转到资源释放函数
+ */
+void CleanupUIContext(void *UIContext)
 
 {
-  if (*(code **)(uiContext + 0x368) != (UIFunctionPtr *)0x0) {
-    (**(code **)(uiContext + 0x368))(uiContext + 8);
+  if (*(void **)(UIContext + 0x368) != (void *)0x0) {
+    (**(void **)(UIContext + 0x368))(UIContext + 8);
   }
-                     WARNING: Subroutine does not return
-  FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),uiContext,&UNK_18095ac80,0x56,1);
+  ReleaseUIResource(*(UIHandle *)(SystemGlobalDataRegistry + 0x1a0), UIContext, &SystemEventHandlerData, 0x56, 1);
 }
 
 
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-UIHandle FUN_180788f70(longlong *uiContext)
+/**
+ * @brief UI资源句柄验证函数
+ * 
+ * 验证UI资源句柄的有效性，如果句柄有效则释放相关资源
+ * 
+ * @param UIContextPointer UI上下文指针的指针，指向需要验证的UI上下文
+ * @return UIHandle 返回值：
+ *         - 0: 句柄无效或释放成功
+ *         - 其他值: 保留用于错误代码
+ * 
+ * @note 原始函数名：FUN_180788f70
+ * @warning 此函数不会返回，如果句柄有效会直接跳转到资源释放函数
+ */
+UIHandle ValidateAndReleaseUIResourceHandle(void **UIContextPointer)
 
 {
-  if (*uiContext != 0) {
-                     WARNING: Subroutine does not return
-    FUN_180742250(*(UIHandle *)(_DAT_180be12f0 + 0x1a0),*uiContext,&UNK_18095ac80,0x76f,1);
+  if (*UIContextPointer != 0) {
+    ReleaseUIResource(*(UIHandle *)(SystemGlobalDataRegistry + 0x1a0), *UIContextPointer, &SystemEventHandlerData, 0x76f, 1);
   }
   return 0;
 }
 
 
 
-UIHandle FUN_180788fe0(longlong uiContext)
+/**
+ * @brief UI事件处理和资源管理函数
+ * 
+ * 该函数负责处理UI系统中的事件处理和资源管理，包括：
+ * 1. 初始化事件处理参数和状态
+ * 2. 重置UI缓冲区的状态标志
+ * 3. 处理不同类型的事件处理器调用
+ * 4. 管理事件处理器的资源分配和释放
+ * 5. 验证事件处理的有效性
+ * 
+ * @param UIContext UI上下文句柄，包含UI系统的状态和配置信息
+ * @return UIHandle 事件处理结果：
+ *         - 0: 事件处理完成或失败
+ *         - 非0值: 事件类型码或错误代码
+ * 
+ * @note 原始函数名：FUN_180788fe0
+ * @warning 此函数涉及复杂的内存管理和事件处理逻辑
+ */
+UIHandle ProcessUIEventsAndManageResources(void *UIContext)
 
 {
-  longlong allocatedMemory;
-  UIHandle *piterationCount;
+  void *AllocatedMemory;
+  UIHandle *EventIterator;
   UIHandle EventTypeCode;
-  UIHandle *bufferPtr;
-  UIDword auStackX_8 [2];
-  UIDword auStackX_10 [2];
-  UIDword bufferValidation [4];
-  UIHandle stackParamffffffffffffffa8;
-  uint loopCounter;
-  UIHandle stackParamffffffffffffffb0;
-  uint7 processingCounter;
-  ulonglong maxProcessingCount;
-  UIHandle stackParamffffffffffffffb8;
-  uint eventProcessingStatus;
-  ulonglong eventProcessingCounter;
+  UIHandle *BufferPointer;
+  UIDword StackBuffer8 [2];
+  UIDword StackBuffer10 [2];
+  UIDword BufferValidation [4];
+  UIHandle StackParameterA8;
+  uint LoopCounter;
+  UIHandle StackParameterB0;
+  uint8_t ProcessingCounter;
+  uint64_t MaxProcessingCount;
+  UIHandle StackParameterB8;
+  uint EventProcessingStatus;
+  uint64_t EventProcessingCounter;
   
   loopCounter = (uint)((ulonglong)stackParamffffffffffffffa8 >> 0x20);
   eventProcessingStatus = (uint)((ulonglong)stackParamffffffffffffffb8 >> 0x20);
