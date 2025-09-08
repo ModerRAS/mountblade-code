@@ -7114,13 +7114,13 @@ longlong FindAndValidateSystemModule(longlong SystemContext, uint ModuleId, uint
     ProcessSystemConfigurationTemplate(GetSystemDataResources);
     ValidateSystemConfigurationData(&SystemConfigurationValidationResult2);
   }
-  if ((ulonglong)SystemTertiaryDataPointer <= *(ulonglong *)(SystemContextDataPointer + 0x160)) {
-    for (StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + 0x9f8) +
-                            ((ulonglong)SystemSecondaryDataPointer % (ulonglong)*(uint *)(SystemContextDataPointer + 0xa00)) * 8);
+  if ((ulonglong)SystemTertiaryDataPointer <= *(ulonglong *)(SystemContextDataPointer + SystemContextTertiaryDataBoundOffset)) {
+    for (StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + SystemContextStringHashOffset) +
+                            ((ulonglong)SystemSecondaryDataPointer % (ulonglong)*(uint *)(SystemContextDataPointer + SystemContextStringHashModuloOffset)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
       if (SystemSecondaryDataPointer == *StringProcessingResultPointer) goto SecondaryParameterValidationLabel;
     }
-    StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + 0x9f8) + *(longlong *)(SystemContextDataPointer + 0xa00) * 8);
+    StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + SystemContextStringHashOffset) + *(longlong *)(SystemContextDataPointer + SystemContextStringHashModuloOffset) * 8);
 SecondaryParameterValidationLabel:
     MemoryCounterValue = *(longlong *)(StringProcessingResultPointer + 2);
     ModuleInitializationResult = *(longlong *)(MemoryCounterValue + 8);
