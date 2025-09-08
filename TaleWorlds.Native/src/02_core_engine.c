@@ -257,6 +257,24 @@
 #define ProcessCharacterCode FUN_180174340                 // 处理UTF-8输入缓冲区
 #define ManageMemoryReferenceCount FUN_18014c7d0            // 管理内存引用计数和资源释放
 #define CalculateAndUpdateMemoryPoolSize FUN_18014c9e0      // 计算和更新系统内存池大小
+
+/**
+ * @brief 处理系统事件和内存分配
+ * 
+ * 该函数根据不同的操作码处理系统事件和内存分配：
+ * - 操作码3：返回系统事件模板地址
+ * - 操作码4：返回字符代码指针
+ * - 操作码0：处理系统事件（如果字符代码非空）
+ * - 操作码1：分配内存并复制系统事件模板
+ * - 操作码2：复制字符代码并清空大小
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer 操作码/源指针
+ * @return long long 返回处理结果
+ * @note 原始函数名：FUN_18015c190
+ */
+#define ProcessSystemEventAndMemoryAllocation FUN_18015c190
 #define ExecuteSystemCharacterEncodingCleanup FUN_18014ccf0 // 执行系统字符编码清理和资源释放
 #define ManageSystemBufferSize FUN_18014d6f0                    // 管理UTF-8缓冲区大小
 #define ConvertUtf16Encoding FUN_180183e30                    // 转换UTF-16编码
@@ -267,6 +285,127 @@
 #define ProcessCharacterValidationEx FUN_180139060             // 处理字符验证扩展
 #define ProcessPerformanceCounterUpdate FUN_180138fc0          // 处理性能计数器更新
 #define ProcessFloatValueConversion FUN_18011ce30              // 处理浮点值转换
+
+/**
+ * @brief 执行系统内存清理操作
+ * 
+ * 该函数负责执行系统内存的清理操作，释放不再使用的系统资源。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180320050
+ */
+#define ExecuteSystemMemoryCleanup FUN_180320050
+
+/**
+ * @brief 处理字符代码表项操作
+ * 
+ * 该函数负责处理字符代码表的各种操作，包括字符代码的设置、
+ * 获取和验证功能。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CodeType 字符代码类型标识
+ * @param StackPointer 栈指针，用于临时数据存储
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801601c0
+ */
+#define ProcessCharacterCodeTableOperation FUN_1801601c0
+
+/**
+ * @brief 转换UTF16到UTF8编码
+ * 
+ * 该函数负责将UTF16编码的字符数据转换为UTF8编码格式。
+ * 
+ * @param CharacterCode UTF16输入缓冲区指针
+ * @param CharacterCodeSize UTF16缓冲区大小指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @return long long 转换结果状态码
+ * 
+ * @note 原始函数名：FUN_18015c190
+ */
+#define ConvertUtf16ToUtf8Encoding FUN_18015c190
+
+/**
+ * @brief 处理字符代码数据初始化
+ * 
+ * 该函数负责初始化字符代码数据结构和相关参数。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801601a0
+ */
+#define InitializeCharacterCodeData FUN_1801601a0
+
+/**
+ * @brief 处理字符代码数据验证和转换
+ * 
+ * 该函数负责验证字符代码数据的有效性并执行必要的转换操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160341
+ */
+#define ValidateAndConvertCharacterCodeData FUN_180160341
+
+/**
+ * @brief 执行字符代码数据处理
+ * 
+ * 该函数负责执行字符代码数据的处理操作，包括数据转换和验证。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801605f0
+ */
+#define ExecuteCharacterCodeDataProcessing FUN_1801605f0
+
+/**
+ * @brief 执行字符代码数据清理
+ * 
+ * 该函数负责清理字符代码数据和相关资源。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801605c8
+ */
+#define CleanupCharacterCodeData FUN_1801605c8
+
+/**
+ * @brief 处理浮点字符代码转换
+ * 
+ * 该函数负责处理浮点类型的字符代码转换操作。
+ * 
+ * @param CharacterCode 浮点字符代码值
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016060f
+ */
+#define ProcessFloatCharacterCodeConversion FUN_18016060f
+
+/**
+ * @brief 处理字符代码高级操作
+ * 
+ * 该函数负责处理字符代码的高级操作，包括复杂的数据处理和转换。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param DataBuffer 数据缓冲区指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @param SecondaryBuffer 二级缓冲区指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160af0
+ */
+#define ProcessCharacterCodeAdvancedOperation FUN_180160af0
 #define ProcessCharacterCodeLookup FUN_180138e60               // 处理字符代码查找
 #define ProcessCharacterDataProcessing FUN_18011cf80           // 处理字符数据处理
 #define ProcessSystemEventEx FUN_18011d200                       // 处理系统事件扩展
@@ -192252,7 +192391,7 @@ long long ProcessUtf8CharacterEncodingAndSystemEvent(long long *CharacterCode,lo
 
 
 
-long long FUN_18015c190(long long *CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer
+long long ConvertUtf16ToUtf8Encoding(long long *CharacterCode,long long *CharacterCodeSize,int Utf8SourcePointer
 {
   uint64_t *CharacterStatusBuffer;
   uint64_t MemoryAllocationIndex;
@@ -192305,7 +192444,7 @@ long long FUN_18015c190(long long *CharacterCode,long long *CharacterCodeSize,in
  */
 uint64_t ReleaseSystemBufferMemory(uint64_t CharacterCode,unsigned long long SystemBufferSize)
 {
-  FUN_180320050();
+  ExecuteSystemMemoryCleanup();
   if ((SystemBufferSize & 1) != 0) {
     free(CharacterCode,0x60);
   }
@@ -192367,7 +192506,7 @@ uint64_t ReleaseSystemBufferMemoryWithParams(uint64_t CharacterCode,unsigned lon
   uint64_t Utf16Char;
   
   Utf16Char = 0xfffffffffffffffe;
-  FUN_180320050();
+  ExecuteSystemMemoryCleanup();
   if ((SystemBufferSize & 1) != 0) {
     free(CharacterCode,0x60,Utf8SourcePointer,Utf16EndPointer,Utf16Char);
   }
@@ -192605,19 +192744,19 @@ void InitializeSystemPriorityAndFlagConfiguration(long long CharacterCode)
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 1;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,10,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,10,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0x2d;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 1;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0xb,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xb,auStack_dd0);
   SystemPriorityLevel = 0x32000000e0;
   ProcessingFlags = 1;
   lStack_df8._0_1_ = 1;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x54,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x54,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x38;
   SystemPriorityLevel.HighPart = 0x32;
   FunctionAddress.LowPart = 0xe0;
@@ -192625,159 +192764,159 @@ void InitializeSystemPriorityAndFlagConfiguration(long long CharacterCode)
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 1;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x55,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x55,auStack_dd0);
   ProcessingFlags = CONCAT44(ProcessingFlags.HighPart,0xd2);
   SystemPriorityLevel = CONCAT44(SystemPriorityLevel.HighPart,1);
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&ProcessingFlags,&SystemPriorityLevel,1);
-  FUN_1801601c0(CharacterCode,0xc,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xc,auStack_dd0);
   SystemPriorityLevel = 0x2600000025;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,8,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,8,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0x24;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x10,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x10,auStack_dd0);
   SystemPriorityLevel = 0x1e0000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0,auStack_dd0);
   SystemPriorityLevel = 0x2e0000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,3,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,3,auStack_dd0);
   SystemPriorityLevel = 0x1e00000038;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0xd,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xd,auStack_dd0);
   SystemPriorityLevel = 0x2f0000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0xbd,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xbd,auStack_dd0);
   SystemPriorityLevel = 0x140000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x11,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x11,auStack_dd0);
   SystemPriorityLevel = 0x180000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x12,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x12,auStack_dd0);
   SystemPriorityLevel = 0x1100000038;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x13,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x13,auStack_dd0);
   SystemPriorityLevel = 0x2600000038;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x14,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x14,auStack_dd0);
   SystemPriorityLevel = 0x1f00000038;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x15,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x15,auStack_dd0);
   SystemPriorityLevel = 0x2f00000038;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x1a,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x1a,auStack_dd0);
   SystemPriorityLevel = 0x2000000038;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x1c,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x1c,auStack_dd0);
   SystemPriorityLevel = 0x2a00000038;
   FunctionAddress.LowPart = 0x20;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x1f,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x1f,auStack_dd0);
   SystemPriorityLevel = 0x2c0000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,2,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,2,auStack_dd0);
   SystemPriorityLevel = 0x150000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,1,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,1,auStack_dd0);
   SystemPriorityLevel = 0x2a0000001d;
   FunctionAddress.LowPart = 0x1f;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x16,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x16,auStack_dd0);
   SystemPriorityLevel = 0xf0000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x23,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x23,auStack_dd0);
   SystemPriorityLevel = 0x30000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x24,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x24,auStack_dd0);
   SystemPriorityLevel = 0x2a0000001d;
   FunctionAddress.LowPart = 0x52;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x25,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x25,auStack_dd0);
   SystemPriorityLevel = 0x1d0000002a;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x26,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x26,auStack_dd0);
   SystemPriorityLevel = 0x570000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0xc4,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xc4,auStack_dd0);
   SystemPriorityLevel = 0x390000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x30,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x30,auStack_dd0);
   SystemPriorityLevel = 0x2a0000001d;
   FunctionAddress.LowPart = 0x39;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x31,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x31,auStack_dd0);
   SystemPriorityLevel = 0x170000001d;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x39,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x39,auStack_dd0);
   SystemPriorityLevel = 0x1000000038;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,4,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,4,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress = CONCAT44(FunctionAddress.HighPart,0x18);
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 1;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x3a,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x3a,auStack_dd0);
   ProcessingFlags = 0x380000001d;
   StackValidationFlag28 = 0x2a;
   uStack_24 = 0x18;
@@ -192785,26 +192924,26 @@ void InitializeSystemPriorityAndFlagConfiguration(long long CharacterCode)
   FunctionAddress = 0x100000000;
   lStack_df8._0_1_ = 1;
   ProcessSystemPriorityAndFlags(auStack_dd0,&ProcessingFlags,&SystemPriorityLevel,4);
-  FUN_1801601c0(CharacterCode,0x3b,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x3b,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0x16;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x3c,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x3c,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress = CONCAT44(FunctionAddress.HighPart,0x19);
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x3d,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x3d,auStack_dd0);
   SystemPriorityLevel = 0x420000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x3e,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x3e,auStack_dd0);
   ProcessingFlags = 0x380000001d;
   StackValidationFlag28 = 0x2a;
   uStack_24 = 0xc9;
@@ -192812,7 +192951,7 @@ void InitializeSystemPriorityAndFlagConfiguration(long long CharacterCode)
   FunctionAddress = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&ProcessingFlags,&SystemPriorityLevel,4);
-  FUN_1801601c0(CharacterCode,0x3f,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x3f,auStack_dd0);
   ProcessingFlags = 0x380000001d;
   StackValidationFlag28 = 0x2a;
   uStack_24 = 0xd1;
@@ -192820,55 +192959,55 @@ void InitializeSystemPriorityAndFlagConfiguration(long long CharacterCode)
   FunctionAddress = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&ProcessingFlags,&SystemPriorityLevel,4);
-  FUN_1801601c0(CharacterCode,0x40,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x40,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0xc9;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x41,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x41,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0xd1;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x42,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x42,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0xcf;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x43,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x43,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x44,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x44,auStack_dd0);
   SystemPriorityLevel = 0x100000002a;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x45,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x45,auStack_dd0);
   SystemPriorityLevel = 0x300000002a;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x47,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x47,auStack_dd0);
   SystemPriorityLevel = 0x2f0000002a;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x48,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x48,auStack_dd0);
   SystemPriorityLevel = 0x2a00000038;
   FunctionAddress = CONCAT44(FunctionAddress.HighPart,0x1e);
   ProcessingFlags = 0;
   StackValidationFlag28 = 2;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x49,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x49,auStack_dd0);
   ProcessingFlags = 0x2a0000001d;
   StackValidationFlag28 = 0x1e;
   uStack_24 = 0x10;
@@ -192876,71 +193015,71 @@ void InitializeSystemPriorityAndFlagConfiguration(long long CharacterCode)
   FunctionAddress = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&ProcessingFlags,&SystemPriorityLevel,4);
-  FUN_1801601c0(CharacterCode,0x4a,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x4a,auStack_dd0);
   SystemPriorityLevel = 0xf3000000f9;
   ProcessingFlags = 0x200000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x4b,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x4b,auStack_dd0);
   SystemPriorityLevel = 0x20000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x19,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x19,auStack_dd0);
   SystemPriorityLevel = 0x1e0000001d;
   FunctionAddress.LowPart = 0x10;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,5,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,5,auStack_dd0);
   SystemPriorityLevel = 0xf0000000f9;
   ProcessingFlags = 0x200000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,6,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,6,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress = CONCAT44(FunctionAddress.HighPart,0x30);
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x4c,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x4c,auStack_dd0);
   SystemPriorityLevel = 0x430000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x4d,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x4d,auStack_dd0);
   SystemPriorityLevel = 0x4e0000002a;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x4e,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x4e,auStack_dd0);
   SystemPriorityLevel = 0x4a0000002a;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x4f,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x4f,auStack_dd0);
   SystemPriorityLevel = 0x210000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x50,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x50,auStack_dd0);
   SystemPriorityLevel = 0x290000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x52,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x52,auStack_dd0);
   SystemPriorityLevel = 0x2900000038;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x51,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x51,auStack_dd0);
   SystemPriorityLevel = 0x300000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x58,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x58,auStack_dd0);
   ProcessingFlags = 0x380000001d;
   StackValidationFlag28 = 0x2a;
   uStack_24 = 0x13;
@@ -192948,198 +193087,198 @@ void InitializeSystemPriorityAndFlagConfiguration(long long CharacterCode)
   FunctionAddress = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&ProcessingFlags,&SystemPriorityLevel,4);
-  FUN_1801601c0(CharacterCode,9,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,9,auStack_dd0);
   SystemPriorityLevel = 0xd0000001d;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x5e,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x5e,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0x13;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,7,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,7,auStack_dd0);
   SystemPriorityLevel = 0x3100000038;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x17,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x17,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0x22;
   ProcessingFlags = 0;
   StackValidationFlag28 = 2;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x53,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x53,auStack_dd0);
   SystemPriorityLevel = 0xc80000002a;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x2e,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x2e,auStack_dd0);
   SystemPriorityLevel = 0xd00000002a;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x2f,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x2f,auStack_dd0);
   SystemPriorityLevel = 0x1f0000002a;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x62,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x62,auStack_dd0);
   SystemPriorityLevel = 0x2c0000002a;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x67,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x67,auStack_dd0);
   SystemPriorityLevel = 0x320000001d;
   ProcessingFlags = 0x200000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x27,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x27,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x1d;
   SystemPriorityLevel.HighPart = 0xd2;
   ProcessingFlags.LowPart = 0;
   ProcessingFlags.HighPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x60,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x60,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x2c;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x2a,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x2a,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x2d;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x2b,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x2b,auStack_dd0);
   SystemPriorityLevel = CONCAT44(SystemPriorityLevel.HighPart,0x2f);
   ProcessingFlags = (unsigned long long)ProcessingFlags.HighPart << 0x20;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x2c,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x2c,auStack_dd0);
   SystemPriorityLevel = 0x4d0000002f;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x2d,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x2d,auStack_dd0);
   SystemPriorityLevel = 0x4f000000d1;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x28,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x28,auStack_dd0);
   SystemPriorityLevel = 0x50000000d1;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x29,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x29,auStack_dd0);
   SystemPriorityLevel = 0x5200000031;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x59,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x59,auStack_dd0);
   SystemPriorityLevel = 0x4f00000031;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x5a,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x5a,auStack_dd0);
   SystemPriorityLevel = 0x5000000031;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x5b,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x5b,auStack_dd0);
   SystemPriorityLevel = 0x5100000031;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x5c,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x5c,auStack_dd0);
   SystemPriorityLevel = 0x4b00000031;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x5d,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x5d,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0x32;
   ProcessingFlags = 0;
   StackValidationFlag28 = 2;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x5f,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x5f,auStack_dd0);
   SystemPriorityLevel = 0xb0000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x65,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x65,auStack_dd0);
   SystemPriorityLevel = 0xa0000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x66,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x66,auStack_dd0);
   SystemPriorityLevel = 0x190000002a;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x18,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x18,auStack_dd0);
   SystemPriorityLevel = 0x140000002a;
   ProcessingFlags = 0x200000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,99,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,99,auStack_dd0);
   SystemPriorityLevel = 0xf1000000f9;
   ProcessingFlags = 0x200000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,100,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,100,auStack_dd0);
   SystemPriorityLevel = 0xcb0000001d;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x13f,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x13f,auStack_dd0);
   SystemPriorityLevel = 0xcd0000001d;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x140,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x140,auStack_dd0);
   SystemPriorityLevel = 0xc80000001d;
   ProcessingFlags = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0x141,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x141,auStack_dd0);
   SystemPriorityLevel = 0x2a0000001d;
   FunctionAddress.LowPart = 0xcb;
   ProcessingFlags = 0;
   StackValidationFlag28 = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x142,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x142,auStack_dd0);
   SystemPriorityLevel = 0xe20000001d;
   ProcessingFlags = 0x100000000;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,2);
-  FUN_1801601c0(CharacterCode,0xc1,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xc1,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0x41;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x68,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x68,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0x42;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x6a,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x6a,auStack_dd0);
   SystemPriorityLevel = 0x380000001d;
   FunctionAddress.LowPart = 0x43;
   ProcessingFlags = 0;
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x6b,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x6b,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x1d;
   SystemPriorityLevel.HighPart = 0x38;
   FunctionAddress = CONCAT44(FunctionAddress.HighPart,0x44);
@@ -193147,407 +193286,407 @@ void InitializeSystemPriorityAndFlagConfiguration(long long CharacterCode)
   StackValidationFlag28 = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,3);
-  FUN_1801601c0(CharacterCode,0x6c,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x6c,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x52;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x6d,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x6d,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x4f;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x6e,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x6e,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x51;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x6f,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x6f,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x4c;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x70,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x70,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x47;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x71,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x71,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x49;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x72,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x72,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x52;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x73,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x73,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x4f;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x74,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x74,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x51;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x75,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x75,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x4c;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x76,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x76,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x47;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x77,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x77,auStack_dd0);
   SystemPriorityLevel.LowPart = 0x49;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x78,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x78,auStack_dd0);
   SystemPriorityLevel.LowPart = 0xb;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x79,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x79,auStack_dd0);
   SystemPriorityLevel.LowPart = 2;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x7a,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x7a,auStack_dd0);
   SystemPriorityLevel.LowPart = 3;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x7b,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x7b,auStack_dd0);
   SystemPriorityLevel.LowPart = 4;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x7c,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x7c,auStack_dd0);
   SystemPriorityLevel.LowPart = 5;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x7d,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x7d,auStack_dd0);
   SystemPriorityLevel.LowPart = 6;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x7e,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x7e,auStack_dd0);
   SystemPriorityLevel.LowPart = 7;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_dd0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x7f,auStack_dd0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x7f,auStack_dd0);
   SystemPriorityLevel.LowPart = 8;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_d28,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x80,auStack_d28);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x80,auStack_d28);
   SystemPriorityLevel.LowPart = 9;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_cf0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x81,auStack_cf0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x81,auStack_cf0);
   SystemPriorityLevel.LowPart = 10;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_cb8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x82,auStack_cb8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x82,auStack_cb8);
   SystemPriorityLevel.LowPart = 0x3b;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aSystemFlagH0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x83,aSystemFlagH0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x83,aSystemFlagH0);
   SystemPriorityLevel.LowPart = 0x3c;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_c48,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x84,auStack_c48);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x84,auStack_c48);
   SystemPriorityLevel.LowPart = 0x3d;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_c10,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x85,auStack_c10);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x85,auStack_c10);
   SystemPriorityLevel.LowPart = 0x3e;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_bd8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x86,auStack_bd8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x86,auStack_bd8);
   SystemPriorityLevel.LowPart = 0x40;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_ba0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x87,auStack_ba0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x87,auStack_ba0);
   SystemPriorityLevel.LowPart = 0x41;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_b68,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x88,auStack_b68);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x88,auStack_b68);
   SystemPriorityLevel.LowPart = 0x42;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_b30,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x89,auStack_b30);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x89,auStack_b30);
   SystemPriorityLevel.LowPart = 0x43;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aStackCharacterValueAf8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x8a,aStackCharacterValueAf8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x8a,aStackCharacterValueAf8);
   SystemPriorityLevel.LowPart = 0x44;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aStackCharacterValueAc0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x8b,aStackCharacterValueAc0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x8b,aStackCharacterValueAc0);
   SystemPriorityLevel.LowPart = 0x57;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aCoreEngineValueA88,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x8c,aCoreEngineValueA88);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x8c,aCoreEngineValueA88);
   SystemPriorityLevel.LowPart = 0x15;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aStackCharacterValueA50,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x8d,aStackCharacterValueA50);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x8d,aStackCharacterValueA50);
   SystemPriorityLevel.LowPart = 0x1e;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aStackCharacterValueA18,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x8e,aStackCharacterValueA18);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x8e,aStackCharacterValueA18);
   SystemPriorityLevel.LowPart = 0x21;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_9e0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x8f,auStack_9e0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x8f,auStack_9e0);
   SystemPriorityLevel.LowPart = 0x30;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_9a8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x90,auStack_9a8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x90,auStack_9a8);
   SystemPriorityLevel.LowPart = 0x31;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_970,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x91,auStack_970);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x91,auStack_970);
   SystemPriorityLevel.LowPart = 0x2e;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_938,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x92,auStack_938);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x92,auStack_938);
   SystemPriorityLevel.LowPart = 0x12;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aSystemOperation900,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x93,aSystemOperation900);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x93,aSystemOperation900);
   SystemPriorityLevel.LowPart = 0x24;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_8c8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x94,auStack_8c8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x94,auStack_8c8);
   SystemPriorityLevel.LowPart = 0x10;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_890,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x95,auStack_890);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x95,auStack_890);
   SystemPriorityLevel.LowPart = 0x23;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_858,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x96,auStack_858);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x96,auStack_858);
   SystemPriorityLevel.LowPart = 0x11;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_820,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x97,auStack_820);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x97,auStack_820);
   SystemPriorityLevel.LowPart = 0x1f;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_7e8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x98,auStack_7e8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x98,auStack_7e8);
   SystemPriorityLevel.LowPart = 0x16;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_7b0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x99,auStack_7b0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x99,auStack_7b0);
   SystemPriorityLevel.LowPart = 0x13;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_778,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xc6,auStack_778);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xc6,auStack_778);
   SystemPriorityLevel.LowPart = 0x13;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_740,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xc5,auStack_740);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xc5,auStack_740);
   SystemPriorityLevel.LowPart = 0x39;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aStackProcessingVariable708,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x9a,aStackProcessingVariable708);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x9a,aStackProcessingVariable708);
   SystemPriorityLevel.LowPart = 200;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_6d0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xab,auStack_6d0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xab,auStack_6d0);
   SystemPriorityLevel.LowPart = 0xcb;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_698,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xac,auStack_698);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xac,auStack_698);
   SystemPriorityLevel.LowPart = 0xd0;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aStackData660,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xad,aStackData660);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xad,aStackData660);
   SystemPriorityLevel.LowPart = 0xcd;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_628,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xae,auStack_628);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xae,auStack_628);
   SystemPriorityLevel.LowPart = 0x48;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_5f0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xb3,auStack_5f0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xb3,auStack_5f0);
   SystemPriorityLevel.LowPart = 0x50;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_5b8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xb5,auStack_5b8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xb5,auStack_5b8);
   SystemPriorityLevel.LowPart = 0x4b;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aBufferOffset0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xb7,aBufferOffset0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xb7,aBufferOffset0);
   SystemPriorityLevel.LowPart = 0x4d;
   ProcessingFlags.LowPart = 1;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aSystemUnsignedValue548,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xb9,aSystemUnsignedValue548);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xb9,aSystemUnsignedValue548);
   SystemPriorityLevel.LowPart = 200;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_510,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xb0,auStack_510);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xb0,auStack_510);
   SystemPriorityLevel.LowPart = 0xd0;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_4d8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xb1,auStack_4d8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xb1,auStack_4d8);
   SystemPriorityLevel.LowPart = 0xcd;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_4a0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xb2,auStack_4a0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xb2,auStack_4a0);
   SystemPriorityLevel.LowPart = 0xcb;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_468,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xaf,auStack_468);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xaf,auStack_468);
   SystemPriorityLevel.LowPart = 0x32;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_430,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x9b,auStack_430);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x9b,auStack_430);
   SystemPriorityLevel.LowPart = 0x22;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_3f8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x9c,auStack_3f8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x9c,auStack_3f8);
   SystemPriorityLevel.LowPart = 0x16;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_3c0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x9d,auStack_3c0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x9d,auStack_3c0);
   SystemPriorityLevel.LowPart = 0x31;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aFunctionAddress8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x9e,aFunctionAddress8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x9e,aFunctionAddress8);
   SystemPriorityLevel.LowPart = 0x30;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_350,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0x9f,auStack_350);
+  ProcessCharacterCodeTableOperation(CharacterCode,0x9f,auStack_350);
   SystemPriorityLevel.LowPart = 0x14;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aCoreEngineUnsignedValue318,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xa0,aCoreEngineUnsignedValue318);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xa0,aCoreEngineUnsignedValue318);
   SystemPriorityLevel.LowPart = 0x25;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_2e0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xa1,auStack_2e0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xa1,auStack_2e0);
   SystemPriorityLevel.LowPart = 0x15;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aSystemValue2a8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xa2,aSystemValue2a8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xa2,aSystemValue2a8);
   SystemPriorityLevel.LowPart = 0x2e;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_270,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xa3,auStack_270);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xa3,auStack_270);
   SystemPriorityLevel.LowPart = 0x10;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aSystemUintBuffer238,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xa4,aSystemUintBuffer238);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xa4,aSystemUintBuffer238);
   SystemPriorityLevel.LowPart = 0x12;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aProcessingCounter0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xa5,aProcessingCounter0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xa5,aProcessingCounter0);
   SystemPriorityLevel.LowPart = 0x21;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aSystemValue1c8,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xa6,aSystemValue1c8);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xa6,aSystemValue1c8);
   SystemPriorityLevel.LowPart = 0x11;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_190,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xa7,auStack_190);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xa7,auStack_190);
   SystemPriorityLevel.LowPart = 0x1e;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_158,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xa8,auStack_158);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xa8,auStack_158);
   SystemPriorityLevel.LowPart = 0x1f;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aDataProcessingFlags,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xa9,aDataProcessingFlags);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xa9,aDataProcessingFlags);
   SystemPriorityLevel.LowPart = 0x20;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(SystemFlagBuffer,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xaa,SystemFlagBuffer);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xaa,SystemFlagBuffer);
   SystemPriorityLevel.LowPart = 0x48;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aSystemStackRegisterFlagB0,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xb4,aSystemStackRegisterFlagB0);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xb4,aSystemStackRegisterFlagB0);
   SystemPriorityLevel.LowPart = 0x50;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(aStackProcessingUnsignedValue78,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xb6,aStackProcessingUnsignedValue78);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xb6,aStackProcessingUnsignedValue78);
   SystemPriorityLevel.LowPart = 0x4b;
   ProcessingFlags.LowPart = 0;
   lStack_df8._0_1_ = 0;
   ProcessSystemPriorityAndFlags(auStack_d98,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xb8,auStack_d98);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xb8,auStack_d98);
   SystemPriorityLevel = CONCAT44(SystemPriorityLevel.HighPart,0x4d);
   ProcessingFlags = (unsigned long long)ProcessingFlags.HighPart << 0x20;
   lStack_df8 = (unsigned long long)lStack_df8.FullPart << 8;
   ProcessSystemPriorityAndFlags(auStack_d60,&SystemPriorityLevel,&ProcessingFlags,1);
-  FUN_1801601c0(CharacterCode,0xba,auStack_d60);
+  ProcessCharacterCodeTableOperation(CharacterCode,0xba,auStack_d60);
                     // WARNING: Subroutine does not return
   CoreEngineExecuteUtilityFunction(uStack_18 ^ (unsigned long long)auStack_e18);
 }
@@ -193608,7 +193747,7 @@ void ProcessCharacterCodeValidation(long long CharacterCode)
 
 
 
-601a0(long long CharacterCodevoid FUN_1801601a0(long long CharacterCode
+601a0(long long CharacterCodevoid InitializeCharacterCodeData(long long CharacterCode
 {
   int *ReferenceCountPointer;
   long long BufferStatus;
@@ -193870,7 +194009,7 @@ LAB_1801604e5:
 
 
 
-60341(long long CharacterCode,uint64_t SystemBufferSize,int *Utf8SourcePointervoid FUN_180160341(long long CharacterCode,uint64_t SystemBufferSize,int *Utf8SourcePointer
+60341(long long CharacterCode,uint64_t SystemBufferSize,int *Utf8SourcePointervoid ValidateAndConvertCharacterCodeData(long long CharacterCode,uint64_t SystemBufferSize,int *Utf8SourcePointer
 {
   long long *CharacterCode;
   uint64_t MemoryAllocationIndex;
