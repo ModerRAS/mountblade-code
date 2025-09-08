@@ -237002,51 +237002,51 @@ uint64_t ProcessCharacterCodeConversionEx(uint64_t CharacterCode, unsigned long 
  */
 long long * ProcessCharacterCodeBufferAllocationAndCleanup(long long *CharacterCode, long long *CharacterCodeSize)
 {
-  long long *CharacterCode;
+  long long *CurrentCharacterCode;
   long long *BufferAllocationStatus;
   
-  CharacterCode = (long long *)*CharacterCodeSize;
-  if (CharacterCode != (long long *)0x0) {
-    (**(code **)(*CharacterCode + 0x28))(CharacterCode);
+  CurrentCharacterCode = (long long *)*CharacterCodeSize;
+  if (CurrentCharacterCode != (long long *)0x0) {
+    (**(code **)(*CurrentCharacterCode + 0x28))(CurrentCharacterCode);
   }
   BufferAllocationStatus = (long long *)*CharacterCode;
-  *CharacterCode = (long long)CharacterCode;
+  *CharacterCode = (long long)CurrentCharacterCode;
   if (BufferAllocationStatus != (long long *)0x0) {
     (**(code **)(*BufferAllocationStatus + 0x38))();
   }
-  CharacterCode = (long long *)SystemBufferSize[1];
-  if (CharacterCode != (long long *)0x0) {
-    (**(code **)(*CharacterCode + 0x28))(CharacterCode);
+  CurrentCharacterCode = (long long *)SystemBufferSize[1];
+  if (CurrentCharacterCode != (long long *)0x0) {
+    (**(code **)(*CurrentCharacterCode + 0x28))(CurrentCharacterCode);
   }
-  BufferAllocationStatus = (long long *)CharacterCode[1];
-  CharacterCode[1] = (long long)CharacterCode;
+  BufferAllocationStatus = (long long *)CurrentCharacterCode[1];
+  CurrentCharacterCode[1] = (long long)CurrentCharacterCode;
   if (BufferAllocationStatus != (long long *)0x0) {
     (**(code **)(*BufferAllocationStatus + 0x38))();
   }
-  CharacterCode = (long long *)SystemBufferSize[2];
-  if (CharacterCode != (long long *)0x0) {
-    (**(code **)(*CharacterCode + 0x28))(CharacterCode);
+  CurrentCharacterCode = (long long *)SystemBufferSize[2];
+  if (CurrentCharacterCode != (long long *)0x0) {
+    (**(code **)(*CurrentCharacterCode + 0x28))(CurrentCharacterCode);
   }
-  BufferAllocationStatus = (long long *)CharacterCode[2];
-  CharacterCode[2] = (long long)CharacterCode;
+  BufferAllocationStatus = (long long *)CurrentCharacterCode[2];
+  CurrentCharacterCode[2] = (long long)CurrentCharacterCode;
   if (BufferAllocationStatus != (long long *)0x0) {
     (**(code **)(*BufferAllocationStatus + 0x38))();
   }
-  CharacterCode = (long long *)SystemBufferSize[3];
-  if (CharacterCode != (long long *)0x0) {
-    (**(code **)(*CharacterCode + 0x28))(CharacterCode);
+  CurrentCharacterCode = (long long *)SystemBufferSize[3];
+  if (CurrentCharacterCode != (long long *)0x0) {
+    (**(code **)(*CurrentCharacterCode + 0x28))(CurrentCharacterCode);
   }
   BufferAllocationStatus = (long long *)CharacterCode[3];
-  CharacterCode[3] = (long long)CharacterCode;
+  CharacterCode[3] = (long long)CurrentCharacterCode;
   if (BufferAllocationStatus != (long long *)0x0) {
     (**(code **)(*BufferAllocationStatus + 0x38))();
   }
-  CharacterCode = (long long *)SystemBufferSize[4];
-  if (CharacterCode != (long long *)0x0) {
-    (**(code **)(*CharacterCode + 0x28))(CharacterCode);
+  CurrentCharacterCode = (long long *)SystemBufferSize[4];
+  if (CurrentCharacterCode != (long long *)0x0) {
+    (**(code **)(*CurrentCharacterCode + 0x28))(CurrentCharacterCode);
   }
-  BufferAllocationStatus = (long long *)CharacterCode[4];
-  CharacterCode[4] = (long long)CharacterCode;
+  BufferAllocationStatus = (long long *)CurrentCharacterCode[4];
+  CurrentCharacterCode[4] = (long long)CurrentCharacterCode;
   if (BufferAllocationStatus != (long long *)0x0) {
     (**(code **)(*BufferAllocationStatus + 0x38))();
   }
