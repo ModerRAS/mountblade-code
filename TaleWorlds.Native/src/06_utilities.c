@@ -84908,7 +84908,7 @@ void InvokeExceptionHandlerContextA0(DataBuffer operationBase,int64_t dataBuffer
  * @note 原始函数名：Unwind_18090ac40
  * @note 处理0x78偏移量的异常处理器上下文
  */
-void Unwind_18090ac40(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerContextB0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -84986,7 +84986,7 @@ void InvokeExceptionHandlerContextD0(DataBuffer operationBase,int64_t dataBuffer
  * @note 原始函数名：Unwind_18090ac90
  * @note 处理0x90偏移量的异常处理器上下文
  */
-void Unwind_18090ac90(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerContextD0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
