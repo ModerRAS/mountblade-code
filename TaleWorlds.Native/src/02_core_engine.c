@@ -198959,124 +198959,124 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCo
   uint32_t ProcessingStatusFlag;
   unsigned long long MemoryAllocationLoopCounter;
   void *CharacterStatusBuffer;
-  uint8_t auStack_568 [32];
-  uint16_t *pSystemUnsignedValue548;
-  uint32_t SystemUnsignedValue540;
-  uint32_t uStack_538;
-  void *puStack_530;
-  void *puStack_528;
-  uint uStack_520;
-  uint64_t uStack_518;
-  void *puStack_510;
-  long long SystemTemporaryValue508;
-  uint SystemKeyPointer0;
-  uint64_t uStack_4f8;
-  void *puStack_4f0;
-  long long lStack_4e8;
-  uint16_t *puStack_4e0;
-  uint64_t uStack_4d8;
-  uint16_t uStack_4d0;
-  uint32_t StackUnsigned4Cc;
-  uint64_t StackUnsigned4C8;
-  uint64_t StackUnsigned4C0;
-  void *puStack_4b8;
-  long long lStack_4b0;
-  uint32_t uStack_4a0;
-  uint64_t uStack_498;
-  void *aContextDataPointer8 [68];
-  uint16_t aMemoryCopyBuffer [280];
+  uint8_t StackSecurityBuffer [32];
+  uint16_t *MemoryCopyBufferPointer;
+  uint32_t SystemStatusValue;
+  uint32_t StackValidationFlag;
+  void *SystemContextPointer;
+  void *MemoryAllocationPointer;
+  uint StackOperationCode;
+  uint64_t StackParameter;
+  void *ThreadLocalStoragePointer;
+  long long MemoryBlockOffset;
+  uint SystemKeyIndex;
+  uint64_t StackDataBuffer;
+  void *SystemResourcePointer;
+  long long StackMemoryOffset;
+  uint16_t *UnicodeConversionBuffer;
+  uint64_t StackAddress;
+  uint16_t UnicodeCharacterValue;
+  uint32_t StackControlFlag;
+  uint64_t StackDataBufferC8;
+  uint64_t StackDataBufferC0;
+  void *SystemResourcePointerB8;
+  long long SystemMemoryOffsetB0;
+  uint32_t StackOperationFlagA0;
+  uint64_t StackParameter498;
+  void *ContextDataPointerArray [68];
+  uint16_t MemoryCopyBuffer [280];
   unsigned long long FunctionAddress;
   
-  uStack_498 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)auStack_568;
-  uStack_538 = 0;
+  StackParameter498 = 0xfffffffffffffffe;
+  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)StackSecurityBuffer;
+  StackValidationFlag = 0;
   if (Utf8SourcePointer[1] - *Utf8SourcePointer >> 5 != 0) {
-    AllocatedMemorySize = AllocateSystemMemoryBuffer(&puStack_4f0);
-    puStack_530 = &SystemNullTemplate;
-    uStack_518 = 0;
-    puStack_528 = NULL;
-    uStack_520 = 0;
-    uStack_538 = 1;
+    AllocatedMemorySize = AllocateSystemMemoryBuffer(&SystemResourcePointer);
+    SystemContextPointer = &SystemNullTemplate;
+    StackParameter = 0;
+    MemoryAllocationPointer = NULL;
+    StackOperationCode = 0;
+    StackValidationFlag = 1;
     Utf16Char = *(uint *)(AllocatedMemorySize + 0x10);
     SystemMemoryAllocationResult = (unsigned long long)Utf16Char;
     if (*(long long *)(AllocatedMemorySize + 8) != 0) {
-      CoreEngineProcessSystemEvent(&puStack_530,SystemMemoryAllocationResult);
+      CoreEngineProcessSystemEvent(&SystemContextPointer,SystemMemoryAllocationResult);
     }
     if (Utf16Char != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(puStack_528,*(void *)(AllocatedMemorySize + 8),SystemMemoryAllocationResult);
+      memcpy(MemoryAllocationPointer,*(void *)(AllocatedMemorySize + 8),SystemMemoryAllocationResult);
     }
-    if (puStack_528 != NULL) {
-      *(uint8_t *)(SystemMemoryAllocationResult + (long long)puStack_528) = 0;
+    if (MemoryAllocationPointer != NULL) {
+      *(uint8_t *)(SystemMemoryAllocationResult + (long long)MemoryAllocationPointer) = 0;
     }
-    uStack_518 = CONCAT44(*(uint32_t *)(AllocatedMemorySize + 0x1c),(uint32_t)uStack_518);
-    uStack_520 = Utf16Char;
-    CoreEngineProcessSystemEvent(&puStack_530,0xf);
-    SecondaryProcessingStatusFlag = (uint32_t *)((unsigned long long)uStack_520 + (long long)puStack_528);
+    StackParameter = CONCAT44(*(uint32_t *)(AllocatedMemorySize + 0x1c),(uint32_t)StackParameter);
+    StackOperationCode = Utf16Char;
+    CoreEngineProcessSystemEvent(&SystemContextPointer,0xf);
+    SecondaryProcessingStatusFlag = (uint32_t *)((unsigned long long)StackOperationCode + (long long)MemoryAllocationPointer);
     *SecondaryProcessingStatusFlag = 0x72726554;
     SecondaryProcessingStatusFlag[1] = 0x536e6961;
     SecondaryProcessingStatusFlag[2] = 0x65646168;
     SecondaryProcessingStatusFlag[3] = 0x2f7372;
-    uStack_520 = 0xf;
-    AllocatedMemorySize = ConvertUtf8ToUtf16CharacterEncoding(&puStack_530,&puStack_4b8,*Utf8SourcePointer);
-    puStack_510 = &SystemNullTemplate;
-    uStack_4f8 = 0;
-    SystemTemporaryValue508 = 0;
-    SystemKeyPointer0 = 0;
-    uStack_538 = 3;
+    StackOperationCode = 0xf;
+    AllocatedMemorySize = ConvertUtf8ToUtf16CharacterEncoding(&SystemContextPointer,&SystemResourcePointerB8,*Utf8SourcePointer);
+    ThreadLocalStoragePointer = &SystemNullTemplate;
+    StackDataBuffer = 0;
+    MemoryBlockOffset = 0;
+    SystemKeyIndex = 0;
+    StackValidationFlag = 3;
     Utf16Char = *(uint *)(AllocatedMemorySize + 0x10);
     SystemMemoryAllocationResult = (unsigned long long)Utf16Char;
     if (*(long long *)(AllocatedMemorySize + 8) != 0) {
-      CoreEngineProcessSystemEvent(&puStack_510,SystemMemoryAllocationResult);
+      CoreEngineProcessSystemEvent(&ThreadLocalStoragePointer,SystemMemoryAllocationResult);
     }
     if (Utf16Char != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(SystemTemporaryValue508,*(void *)(AllocatedMemorySize + 8),SystemMemoryAllocationResult);
+      memcpy(MemoryBlockOffset,*(void *)(AllocatedMemorySize + 8),SystemMemoryAllocationResult);
     }
-    if (SystemTemporaryValue508 != 0) {
-      *(uint8_t *)(SystemMemoryAllocationResult + SystemTemporaryValue508) = 0;
+    if (MemoryBlockOffset != 0) {
+      *(uint8_t *)(SystemMemoryAllocationResult + MemoryBlockOffset) = 0;
     }
-    uStack_4f8 = CONCAT44(*(uint32_t *)(AllocatedMemorySize + 0x1c),(uint32_t)uStack_4f8);
+    StackDataBuffer = CONCAT44(*(uint32_t *)(AllocatedMemorySize + 0x1c),(uint32_t)StackDataBuffer);
     ProcessingStatusFlag = 1;
-    SystemKeyPointer0 = Utf16Char;
-    CoreEngineProcessSystemEvent(&puStack_510,1);
-    *(uint16_t *)((unsigned long long)SystemKeyPointer0 + SystemTemporaryValue508) = 0x2f;
-    puStack_4b8 = &SystemNullTemplate;
-    SystemKeyPointer0 = ProcessingStatusFlag;
-    if (lStack_4b0 != 0) {
+    SystemKeyIndex = Utf16Char;
+    CoreEngineProcessSystemEvent(&ThreadLocalStoragePointer,1);
+    *(uint16_t *)((unsigned long long)SystemKeyIndex + MemoryBlockOffset) = 0x2f;
+    SystemResourcePointerB8 = &SystemNullTemplate;
+    SystemKeyIndex = ProcessingStatusFlag;
+    if (SystemMemoryOffsetB0 != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
-    lStack_4b0 = 0;
-    uStack_4a0 = 0;
-    puStack_4b8 = &ThreadLocalStorageTemplate;
-    uStack_538 = 2;
-    puStack_530 = &SystemNullTemplate;
-    if (puStack_528 != NULL) {
+    SystemMemoryOffsetB0 = 0;
+    StackOperationFlagA0 = 0;
+    SystemResourcePointerB8 = &ThreadLocalStorageTemplate;
+    StackValidationFlag = 2;
+    SystemContextPointer = &SystemNullTemplate;
+    if (MemoryAllocationPointer != NULL) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
-    puStack_528 = NULL;
-    uStack_518 = uStack_518 & 0xffffffff00000000;
-    puStack_530 = &ThreadLocalStorageTemplate;
-    puStack_4f0 = &SystemNullTemplate;
-    if (lStack_4e8 != 0) {
+    MemoryAllocationPointer = NULL;
+    StackParameter = StackParameter & 0xffffffff00000000;
+    SystemContextPointer = &ThreadLocalStorageTemplate;
+    SystemResourcePointer = &SystemNullTemplate;
+    if (StackMemoryOffset != 0) {
                     // WARNING: Subroutine does not return
       CoreEngineProcessSystemEvent();
     }
-    lStack_4e8 = 0;
-    uStack_4d8 = (unsigned long long)uStack_4d8.HighPart << 0x20;
-    puStack_4f0 = &ThreadLocalStorageTemplate;
-    OperationStatus = CoreEngineValidateSystemStatus(&puStack_510);
+    StackMemoryOffset = 0;
+    StackAddress = (unsigned long long)StackAddress.HighPart << 0x20;
+    SystemResourcePointer = &ThreadLocalStorageTemplate;
+    OperationStatus = CoreEngineValidateSystemStatus(&ThreadLocalStoragePointer);
     if (OperationStatus != '\0') {
-      SystemChecksum = ProcessMemoryAllocation(aContextDataPointer8,&puStack_510);
-      CoreEngineFinalizeSystemEvent(&puStack_530,SystemChecksum);
-      aContextDataPointer8[0] = &ThreadLocalStorageTemplate;
+      SystemChecksum = ProcessMemoryAllocation(ContextDataPointerArray,&ThreadLocalStoragePointer);
+      CoreEngineFinalizeSystemEvent(&SystemContextPointer,SystemChecksum);
+      ContextDataPointerArray[0] = &ThreadLocalStorageTemplate;
       CharacterStatusBuffer = &CoreEngineDataTemplate;
-      if (puStack_528 != NULL) {
-        CharacterStatusBuffer = puStack_528;
+      if (MemoryAllocationPointer != NULL) {
+        CharacterStatusBuffer = MemoryAllocationPointer;
       }
-      SystemUnsignedValue540 = 0x118;
+      SystemStatusValue = 0x118;
       pSystemUnsignedValue548 = aMemoryCopyBuffer;
       EncodingValidationResult = MultiByteToWideChar(0xfde9,0,CharacterStatusBuffer,0xffffffff);
       if (0x22f < (unsigned long long)((long long)EncodingValidationResult * 2)) {
