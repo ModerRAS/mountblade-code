@@ -229909,8 +229909,21 @@ LAB_180193b87:
 
 
 
+/**
+ * @brief 处理字符代码编码转换
+ * 
+ * 该函数负责处理字符代码的编码转换操作，包括UTF-8和UTF-16之间的转换。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 转换后的字符指针
+ * 
+ * @note 原始函数名：FUN_180193adc
+ */
 uint64_t *
-FUN_180193adc(uint64_t CharacterCode,long long SystemBufferSize,uint64_t *Utf8SourcePointer,uint64_t *Utf16EndPointer
+ProcessCharacterCodeEncodingConversion(uint64_t CharacterCode,long long SystemBufferSize,uint64_t *Utf8SourcePointer,uint64_t *Utf16EndPointer
 {
   byte StringComparisonByte;
   bool HighByte;
