@@ -10001,8 +10001,18 @@ UIDword * CreateUIComponentInstance(UIDword *componentData)
 
 
 
- 清理UI组件内存并重置指针
-UIHandle * CleanupUIComponent(UIHandle *componentPtr,ulonglong cleanupFlags,UIHandle targetBuffer,UIHandle bufferSize)
+ /**
+ * @brief 清理UI组件内存并重置指针
+ * 
+ * 该函数负责清理UI组件的内存，重置相关指针，并根据清理标志释放内存。
+ * 
+ * @param componentPtr UI组件指针
+ * @param cleanupFlags 清理标志，指定清理的方式
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return UIHandle* 清理后的组件指针
+ */
+UIHandle * CleanupUIComponentMemoryAndResetPointers(UIHandle *componentPtr,ulonglong cleanupFlags,UIHandle targetBuffer,UIHandle bufferSize)
 
 {
   componentPtr[2] = &PrimaryUIBuffer;
@@ -10025,8 +10035,18 @@ UIHandle * CleanupUIComponent(UIHandle *componentPtr,ulonglong cleanupFlags,UIHa
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
- 执行UI组件方法并清理资源
-UIDword ExecuteUIMethodAndCleanup(longlong componentPtr,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+ /**
+ * @brief 执行UI组件方法并清理资源
+ * 
+ * 该函数负责执行UI组件的方法，并在执行完成后清理相关资源。
+ * 
+ * @param componentPtr 组件指针
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ * @return UIDword 方法执行结果
+ */
+UIDword ExecuteUIMethodAndCleanupResources(longlong componentPtr,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {
   UIDword methodResult;
@@ -10046,8 +10066,17 @@ UIDword ExecuteUIMethodAndCleanup(longlong componentPtr,UIHandle dataSource,UIHa
 
 
 
- void UIBufferDataCopy(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
-void UIBufferDataCopy(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+ /**
+ * @brief 复制UI缓冲区数据
+ * 
+ * 该函数负责复制UI缓冲区的数据，包括内存分配、数据传输和缓冲区管理。
+ * 
+ * @param uiContext UI上下文
+ * @param dataSource 数据源
+ * @param targetBuffer 目标缓冲区
+ * @param bufferSize 缓冲区大小
+ */
+void CopyUIBufferData(longlong uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
 
 {
   ulonglong result;
@@ -10084,8 +10113,15 @@ void UIBufferDataCopy(longlong uiContext,UIHandle dataSource,UIHandle targetBuff
 
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
- 创建并初始化UI字符串缓冲区
-UIHandle * CreateUIStringBuffer(longlong stringPtr)
+ /**
+ * @brief 创建并初始化UI字符串缓冲区
+ * 
+ * 该函数负责创建UI字符串缓冲区，分配内存并进行初始化设置。
+ * 
+ * @param stringPtr 字符串指针
+ * @return UIHandle* 创建的字符串缓冲区指针
+ */
+UIHandle * CreateAndInitializeUIStringBuffer(longlong stringPtr)
 
 {
   UIHandle *stringBuffer;
@@ -20880,7 +20916,7 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
     stackUInt170 = CONCAT44(transformCoeff44,vectorComponentX);
     if (0.001 <= resultPointer) {
       if (resultPointer <= 0.999) {
-        localFloat61 = param_6[2] * transformCoeff38;
+        localFloat61 = transformMatrix[2] * transformCoeff38;
         localFloat63 = param_6[3] * transformScale42;
         stackUIntf8 = 0xbf800000;
         stackUIntf4 = 0xbf800000;
