@@ -194714,7 +194714,18 @@ LAB_1801606a8:
 
 
 
-606b9(voidvoid FUN_1801606b9(void
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801606b9
+ */
+#define UtilityNoOperationEmpty FUN_1801606b9
+
+void UtilityNoOperationEmpty(void)
 {
   return;
 }
