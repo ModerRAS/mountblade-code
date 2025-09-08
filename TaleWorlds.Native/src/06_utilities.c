@@ -2058,20 +2058,33 @@
 #define GetSystemSecurityStatus GetSystemSecurityStatus
 
 /**
- * @brief 内存操作执行函数
+ * @brief 执行内存操作和验证
  * 
- * 执行内存相关的操作
+ * 执行内存相关的操作，包括内存分配、访问验证和状态检查
+ * 
+ * @param memoryContext 内存上下文，包含内存管理相关信息
+ * @param operationFlag 操作标志，指定要执行的内存操作类型
+ * @param validationFlag 验证标志，用于内存访问验证
+ * 
+ * @return 操作结果状态码，0表示成功，非0表示错误
  * 
  * @note 原始函数名：FUN_1808fc8a8
+ * @note 此函数负责底层的内存操作和验证
  */
-#define ExecuteMemoryOperation FUN_1808fc8a8
+#define ExecuteMemoryOperationAndValidation FUN_1808fc8a8
 
 /**
- * @brief 系统内存初始化函数A0
+ * @brief 初始化系统内存池A0
  * 
  * 初始化系统内存A0模块，设置内存分配器和内存池
  * 
+ * @param systemContext 系统上下文，包含系统初始化参数
+ * @param memoryPoolSize 内存池大小，指定要分配的内存空间
+ * 
+ * @return 初始化结果状态码，0表示成功，非0表示错误
+ * 
  * @note 原始函数名：FUN_180046860
+ * @note 此函数负责系统内存池的初始化和配置
  */
 #define InitializeSystemMemoryPoolA0 FUN_180046860
 
@@ -120051,19 +120064,19 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始变量名：uStack_28c - 栈数据字W
 // 功能：存储异常上下文标志数据字
-#define ContextDataWordW StackExceptionContextFlag1
+#define StackExceptionContextFlag1 uStack_28c
 
 // 原始变量名：uStack_288 - 栈数据字X
 // 功能：存储异常上下文标志数据字
-#define ContextDataWordX StackExceptionContextFlag2
+#define StackExceptionContextFlag2 uStack_288
 
 // 原始变量名：uStack_284 - 栈数据字Y
 // 功能：存储异常上下文数据字
-#define ContextDataWordY StackExceptionContextData9
+#define StackExceptionContextData9 uStack_284
 
 // 原始变量名：uStack_280 - 栈数据字Z
 // 功能：存储异常上下文数据字
-#define ContextDataWordZ StackExceptionContextData10
+#define StackExceptionContextData10 uStack_280
 
 // 数据传输缓冲区A
 // 功能：存储数据传输过程中的缓冲区
