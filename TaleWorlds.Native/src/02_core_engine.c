@@ -154,17 +154,21 @@
 #define StackProcessingValueA8 CoreEngineValueA8            // 栈处理值A8
 
 // 新增栈变量语义化宏定义
-#define StackFloatValue30 StackFloatValue30             // 栈浮点值30
-#define StackFloatValue40 StackFloatValue40             // 栈浮点值40
-#define StackFloatValue48 StackFloatValue48             // 栈浮点值48
-#define StackFloatValue58 StackFloatValue58             // 栈浮点值58
-#define StackFloatValue7c StackFloatValue7c             // 栈浮点值7c
-#define StackFloatValue118 StackFloatValue118            // 栈浮点值118
-#define StackFloatValue11c StackFloatValue11c            // 栈浮点值11c
-#define StackUnsignedValue50 StackUnsignedValue50           // 栈无符号值50
-#define StackValidationFlag8 StackValidationFlag8                 // 栈验证标志8
-#define StackValidationFlag100 StackValidationFlag100               // 栈验证标志100
-#define StackValidationFlag118 StackValidationFlag118               // 栈验证标志118
+#define StackFloatValue30 fStack0000000000000030             // 栈浮点值30
+#define StackFloatValue40 fStack0000000000000040             // 栈浮点值40
+#define StackFloatValue48 fStack0000000000000048             // 栈浮点值48
+#define StackFloatValue58 fStack0000000000000058             // 栈浮点值58
+#define StackFloatValue7c fStack000000000000007c             // 栈浮点值7c
+#define StackFloatValue118 fStack0000000000000118            // 栈浮点值118
+#define StackFloatValue11c fStack000000000000011c            // 栈浮点值11c
+#define StackUnsignedValue50 uStack0000000000000050           // 栈无符号值50
+#define StackValidationFlag8 &stack0x00000108                 // 栈验证标志8
+#define StackValidationFlag100 &stack0x00000100               // 栈验证标志100
+#define StackValidationFlag118 &stack0x00000118               // 栈验证标志118
+#define StackFloatValue5c StackFloatValue5c             // 栈浮点值5c
+#define StackValidationFlag20 &stack0x00000020                 // 栈验证标志20
+#define StackValidationFlagD8 &stack0x000000d8                 // 栈验证标志D8
+#define StackValidationFlag49 &stack0x00000049                 // 栈验证标志49
 
 // FUN_函数语义化宏定义
 /**
@@ -113231,7 +113235,7 @@ void SetupIntegerDataNetwork(uint64_t CharacterCode,char *CharacterCodeSize,uint
             ContextSecondaryFloat4 = ContextSecondaryFloat6;
           }
           SystemParameter1 =
-               *(float *)(StackFrameAddressPointer + 0xb0) * fStack000000000000005c + *(float *)(StackFrameAddressPointer + 0xa0);
+               *(float *)(StackFrameAddressPointer + 0xb0) * StackFloatValue5c + *(float *)(StackFrameAddressPointer + 0xa0);
           TemporaryFloatStack44 = DataStorageValue * SystemContextPrimaryFloat8 + StackFloatValue54;
           SystemParameter2 = *(float *)(StackFrameAddressPointer + 0xb0) * ContextSecondaryFloat0 + *(float *)(StackFrameAddressPointer + 0xa0);
           AllocateMemoryAndConfigure(*(void *)(*(long long *)(StackFrameAddressPointer + -0x80) + 0x2e8),&MemoryAllocationStackBuffer,
@@ -113469,7 +113473,7 @@ void SystemDataProcessor(void)
           SecondaryFloatValue = SystemFloatValue;
         }
         StackFloat1 =
-             *(float *)(StackFrameAddressPointer + 0xb0) * fStack000000000000005c + *(float *)(StackFrameAddressPointer + 0xa0);
+             *(float *)(StackFrameAddressPointer + 0xb0) * StackFloatValue5c + *(float *)(StackFrameAddressPointer + 0xa0);
         TemporaryFloatStack44 = StackFloatValue50 * SystemContextPrimaryFloat6 + StackFloatValue54;
         SystemParameter2 = *(float *)(StackFrameAddressPointer + 0xb0) * ContextSecondaryFloat1 + *(float *)(StackFrameAddressPointer + 0xa0);
         AllocateMemoryAndConfigure(*(void *)(*(long long *)(StackFrameAddressPointer + -0x80) + 0x2e8),&MemoryAllocationStackBuffer,
