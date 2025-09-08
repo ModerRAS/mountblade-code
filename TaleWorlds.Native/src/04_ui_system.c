@@ -9989,15 +9989,15 @@ LAB_180656abd:
           iterationCount2 = (int)result3 + 1;
           result3 = (ulonglong)iterationCount2;
           result7 = result7 + 1;
-        } while (iterationCount2 < stackUInta8);
+        } while (iterationCount2 < StackPointerA8);
       }
-      pisCharacterMatch8 = UIResourceManagerHandle;
+      CharacterComparisonResult = UIResourceManagerHandle;
       if (UIResourceManagerHandle == (byte *)0x0) {
 LAB_180656d5b:
-        pisCharacterMatch1 = &UIDefaultResourceBuffer;
+        CharacterComparisonPointer = &UIDefaultResourceBuffer;
         ResourceIterator = UIResourceManagerHandle;
-        while (ResourcePointer = pisCharacterMatch1, ResourceIterator != (byte *)0x0) {
-          if (stackUInta8 == 0) {
+        while (ResourcePointer = CharacterComparisonPointer, ResourceIterator != (byte *)0x0) {
+          if (StackPointerA8 == 0) {
             ShouldSkipResourceValidation = false;
             ResourceNamePointer = *(byte **)(ResourceIterator + 8);
           }
@@ -10006,13 +10006,13 @@ LAB_180656d5b:
               ShouldSkipResourceValidation = true;
             }
             else {
-              pisCharacterMatch1 = pbStack_b0;
+              CharacterComparisonPointer = StackPointerB0;
               do {
-                ResourceNamePointer = pisCharacterMatch1 + (*(longlong *)(ResourceIterator + 0x28) - (longlong)pbStack_b0);
-                iterationCount2 = (uint)*pisCharacterMatch1 - (uint)*ResourceNamePointer;
-                pisCharacterMatch8 = (byte *)(ulonglong)iterationCount2;
+                ResourceNamePointer = CharacterComparisonPointer + (*(longlong *)(ResourceIterator + 0x28) - (longlong)StackPointerB0);
+                iterationCount2 = (uint)*CharacterComparisonPointer - (uint)*ResourceNamePointer;
+                CharacterComparisonResult = (byte *)(ulonglong)iterationCount2;
                 if (iterationCount2 != 0) break;
-                pisCharacterMatch1 = pisCharacterMatch1 + 1;
+                CharacterComparisonPointer = CharacterComparisonPointer + 1;
               } while (*ResourceNamePointer != 0);
               ShouldSkipResourceValidation = 0 < (int)iterationCount2;
               if ((int)iterationCount2 < 1) {
@@ -10023,21 +10023,21 @@ LAB_180656d5b:
             ResourceNamePointer = *(byte **)ResourceIterator;
           }
 LAB_180656dbb:
-          pisCharacterMatch1 = ResourceIterator;
+          CharacterComparisonPointer = ResourceIterator;
           ResourceIterator = ResourceNamePointer;
           if (ShouldSkipResourceValidation) {
-            pisCharacterMatch1 = ResourcePointer;
+            CharacterComparisonPointer = ResourcePointer;
           }
         }
         if (ResourcePointer == &UIDefaultResourceBuffer) {
 LAB_180656df9:
-          ComponentResult = (UIHandle *)ProcessUIComponentEx(&pstackUIntb8,&plStackX_8,pisCharacterMatch8,ResourcePointer,&pstackUIntb8);
+          ComponentResult = (UIHandle *)ProcessUIComponentEx(&StackPointerB8,&StackPointerX8,CharacterComparisonResult,ResourcePointer,&StackPointerB8);
           ResourcePointer = (byte *)*ComponentResult;
         }
         else if (*(int *)(ResourcePointer + 0x30) != 0) {
-          if (stackUInta8 != 0) {
+          if (StackPointerA8 != 0) {
             ResourceDataPointer = *(byte **)(ResourcePointer + 0x28);
-            ResourceDataOffset = (longlong)pbStack_b0 - (longlong)ResourceDataPointer;
+            ResourceDataOffset = (longlong)StackPointerB0 - (longlong)ResourceDataPointer;
             do {
               CharacterComparePointer = ResourceDataPointer + ResourceDataOffset;
               CharacterCompareResult = (uint)*ResourceDataPointer - (uint)*CharacterComparePointer;
@@ -20008,10 +20008,10 @@ void UpdateUIComponentRendering(longlong uiContext,UIHandle dataSource,UIHandle 
   uiContext9 输出缓冲区
  @return 无返回值
 void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong targetBuffer,float bufferSize,float resultPointer,
-                             float *param_6,UIByte param_7,UIHandle param_8,float param_9,
-                             UIDword uiContext0,UIByte uiContext1,UIHandle uiContext2,float uiContext3,
-                             UIDword uiContext4,UIByte uiContext5,UIHandle uiContext6,UIByte uiContext7,
-                             UIByte uiContext8,float *uiContext9)
+                             float *renderTransformParam,UIByte blendMode,UIHandle textureHandle,float animationTime,
+                             UIDword renderTarget,UIByte clipMode,UIHandle shaderParam,float depthValue,
+                             UIDword stencilParam,UIByte lightingMode,UIHandle effectParam,UIByte postProcessEffect,
+                             UIByte outputMode,float *outputBuffer)
 
 {
   longlong allocatedMemory;
@@ -20078,25 +20078,25 @@ void ExecuteComplexUIRendering(longlong uiContext,longlong dataSource,longlong t
   float transformCoeff47;
   float transformCoeff48;
   float transformCoeff49;
-  float localFloat60;
-  float localFloat61;
-  float localFloat62;
-  float localFloat63;
-  float localFloat64;
-  float localFloat65;
-  float localFloat66;
-  float localFloat67;
-  float localFloat68;
-  UIByte astackUInt1b8 [32];
-  float *pfStack_198;
-  UIDword stackUInt190;
-  UIByte astackUInt188 [8];
-  float fStack_180;
-  float fStack_17c;
-  UIHandle stackUInt178;
-  UIHandle stackUInt170;
-  float fStack_168;
-  float fStack_164;
+  float matrixElement00;
+  float matrixElement01;
+  float matrixElement02;
+  float matrixElement03;
+  float matrixElement10;
+  float matrixElement11;
+  float matrixElement12;
+  float matrixElement13;
+  float matrixElement20;
+  UIByte transformMatrixBuffer [32];
+  float *vertexDataPointer;
+  UIDword renderStateFlags;
+  UIByte stencilDataBuffer [8];
+  float depthValue;
+  float transparencyValue;
+  UIHandle textureArrayIndex;
+  UIHandle shaderProgramIndex;
+  float animationPhase;
+  float renderTime;
   float fStack_160;
   UIByte astackUInt158 [8];
   float fStack_150;
