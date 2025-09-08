@@ -89220,8 +89220,15 @@ LAB_18071cd2d:
 
 
 
- void FUN_18071cbe0(longlong uiContext)
-void FUN_18071cbe0(longlong uiContext)
+ /**
+ * @brief UI系统缓冲区大小计算器
+ * 
+ * 该函数计算UI系统中的缓冲区大小，根据不同的使用情况调整缓冲区配置。
+ * 主要用于UI系统的缓冲区管理和内存优化。
+ * 
+ * @param uiContext UI上下文句柄
+ */
+void CalculateUIBufferSize(longlong uiContext)
 
 {
   short sVar1;
