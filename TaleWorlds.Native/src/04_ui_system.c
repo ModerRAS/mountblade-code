@@ -101019,19 +101019,19 @@ void ProcessUIContextData(ulonglong uiContext,UIHandle dataSource,UIHandle targe
   UIByte iterationCountBuffer8 [16];
   UIByte iterationCountBuffer9 [16];
   
-  astackUInt60[4] = XorEncryptionKey ^ (ulonglong)astackUInt2a8;
-  TotalResult = 0;
-  result3 = TotalResult;
+  stackUIntArray60[4] = XorEncryptionKey ^ (ulonglong)stackUIntBuffer2a8;
+  totalOperationResult = 0;
+  iterationResult = totalOperationResult;
   if (0 < param_9 * 0x19) {
     do {
-      afStack_258[0] = *(float *)(param_6 + result3 * 4) * 131072.0;
-      astackInt1f8[result3] = (int)ROUND(afStack_258[0]);
-      result3 = result3 + 1;
-    } while ((longlong)result3 < (longlong)(param_9 * 0x19));
+      floatStackArray258[0] = *(float *)(param_6 + iterationResult * 4) * 131072.0;
+      intStackArray1f8[iterationResult] = (int)ROUND(floatStackArray258[0]);
+      iterationResult = iterationResult + 1;
+    } while ((longlong)iterationResult < (longlong)(param_9 * 0x19));
   }
   maxProcessingCount = param_9 * 5;
-  allocatedMemory5 = (longlong)(int)maxProcessingCount;
-  result3 = TotalResult;
+  memoryAllocation5 = (longlong)(int)maxProcessingCount;
+  iterationResult = totalOperationResult;
   if (0 < (int)maxProcessingCount) {
     do {
       afStack_258[0] = *(float *)(param_7 + result3 * 4) * 131072.0;
