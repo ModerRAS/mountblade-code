@@ -25034,14 +25034,14 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
           }
-          iterationCount = ConvertDataFormatA2(dataContext,&InputFloatValueC,0);
+          iterationCount = ConvertDataFormatA2(dataContext,&SystemInputFloatValueC,0);
           if (iterationCount == 0) {
-            if (InputFloatValueC != 1.0) {
-              InputFloatValueA = InputFloatValueC;
-              StackPointerBufferI = &FloatingPointValidationErrorA;
-              TemporaryDataWordC = StackDataWordA;
-              TemporaryDataWordB = 0;
-              iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferI);
+            if (SystemInputFloatValueC != 1.0) {
+              SystemInputFloatValueA = SystemInputFloatValueC;
+              SystemStackPointerBufferI = &FloatingPointValidationErrorA;
+              SystemTemporaryDataWordC = StackDataWordA;
+              SystemTemporaryDataWordB = 0;
+              iterationCount = ValidateDataIntegrityA0(operationBase,&SystemStackPointerBufferI);
               if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
             iterationCount = ValidateDataA3(dataContext,StackFloatArrayA,0);
@@ -25222,11 +25222,11 @@ void ProcessDataTypesA0(void)
   exceptionHandlerContext5 = (*(code *)*inputAccumulatorRegister)(memoryResourcePointer2);
   resourceValidationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(exceptionHandlerContext5 + 0xd0),&validationBuffer);
   if (resourceValidationStatus == 0) {
-    errorHandlingBuffer = &DataValidationErrorBase;
+    systemErrorHandlingBuffer = &DataValidationErrorBase;
     *(DataWord *)(StackFrameContext + -0xf) = SystemOperationResult;
     *(float *)(StackFrameContext + -0x10) = StackFloatRegisterA;
     outputParameter = dataPointerD;
-    resourceValidationStatus = ValidateDataIntegrityA0(floatResultA,&errorHandlingBuffer);
+    resourceValidationStatus = ValidateDataIntegrityA0(floatResultA,&systemErrorHandlingBuffer);
     if (resourceValidationStatus == 0) {
       dataSize = (int64_t)*(int *)(contextPointer + SystemParameterValidationOffset28);
       if (0 < dataSize) {
@@ -30037,9 +30037,9 @@ uint64_t ProcessBinaryDataA0(void)
       default:
         return ResourceInvalidErrorCode;
       case 0x10:
-        errorHandlingBuffer = DestinationContext[1];
+        systemErrorHandlingBuffer = DestinationContext[1];
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
-                          (*(DataBuffer **)(systemContext + 8),&errorHandlingBuffer,4);
+                          (*(DataBuffer **)(systemContext + 8),&systemErrorHandlingBuffer,4);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
