@@ -56275,7 +56275,7 @@ void ProcessDataStructureConfiguration(int *CharacterCode,long long SystemBuffer
 
 
 
- void ProcessIntegerDataConversion(int *CharacterCode,long long *CharacterCodeSizevoid ProcessIntegerDataConversion(int *CharacterCode,long long *CharacterCodeSize
+ void ProcessIntegerDataConversion(int *CharacterCode,long long *CharacterCodeSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -101739,7 +101739,7 @@ unsigned long long ProcessSystemDataStructureConfiguration(char *CharacterCode, 
 
 
 
-1c30(float CharacterCode,uint64_t *CharacterCodeSizevoid ProcessStackProcessingConfigurationFlag(float CharacterCode,uint64_t *CharacterCodeSize
+void ProcessStackProcessingConfigurationFlag(float CharacterCode,uint64_t *CharacterCodeSize)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -115623,7 +115623,7 @@ LAB_18011b77c:
 
 
 
-bac0(long long CharacterCode,byte *CharacterCodeSizevoid ValidateIntegerDataShader(long long CharacterCode,byte *CharacterCodeSize
+void ValidateIntegerDataShader(long long CharacterCode,byte *CharacterCodeSize)
 {
   byte StringComparisonByte;
   byte *HighBytePointer;
