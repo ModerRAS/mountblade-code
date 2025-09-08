@@ -199077,14 +199077,14 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCo
   void *SystemResourceDataPointerB8;
   long long SystemMemoryOffsetB0;
   uint32_t SystemStackOperationFlagA0;
-  uint64_t StackParameter498;
+  uint64_t SystemStackParameter498;
   void *ContextDataPointerArray [68];
-  uint16_t MemoryCopyBuffer [280];
-  unsigned long long FunctionAddress;
+  uint16_t MemoryCopyDataBuffer [280];
+  unsigned long long SystemFunctionAddress;
   
-  StackParameter498 = 0xfffffffffffffffe;
-  FunctionAddress = EncodingDecodingKey ^ (unsigned long long)StackSecurityBuffer;
-  StackValidationFlag = 0;
+  SystemStackParameter498 = 0xfffffffffffffffe;
+  SystemFunctionAddress = EncodingDecodingKey ^ (unsigned long long)SystemSecurityValidationBuffer;
+  SystemStackValidationFlag = 0;
   if (Utf8SourcePointer[1] - *Utf8SourcePointer >> 5 != 0) {
     AllocatedMemorySize = AllocateSystemMemoryBuffer(&SystemResourcePointer);
     SystemContextPointer = &SystemNullTemplate;
