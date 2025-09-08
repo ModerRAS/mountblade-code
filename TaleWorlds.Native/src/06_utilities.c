@@ -50178,7 +50178,23 @@ void SystemExceptionHandlerType5(DataBuffer operationBase,int64_t dataBuffer,Dat
 
 
 
-void ExceptionHandlerA6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器类型6 - 处理高级管理异常回调和管理清理状态
+ * 
+ * 该函数负责处理系统异常，执行以下操作：
+ * 1. 从数据缓冲区获取异常处理上下文
+ * 2. 如果存在回调函数，则调用异常处理回调（使用0xa08偏移）
+ * 3. 设置临时异常处理器并检查清理状态
+ * 4. 如果需要清理，则终止系统执行并清理资源
+ * 5. 重置状态标志并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * @note 原始函数名：ExceptionHandlerA6
+ */
+void SystemExceptionHandlerType6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -50206,7 +50222,23 @@ void ExceptionHandlerA6(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
 
 
 
-void ExceptionHandlerA7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器类型7 - 处理系统核心异常回调和管理清理状态
+ * 
+ * 该函数负责处理系统异常，执行以下操作：
+ * 1. 从数据缓冲区获取异常处理上下文
+ * 2. 如果存在回调函数，则调用异常处理回调（使用0xa80偏移）
+ * 3. 设置临时异常处理器并检查清理状态
+ * 4. 如果需要清理，则终止系统执行并清理资源
+ * 5. 重置状态标志并设置默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * @note 原始函数名：ExceptionHandlerA7
+ */
+void SystemExceptionHandlerType7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   int64_t exceptionHandlerContext;
@@ -50234,7 +50266,21 @@ void ExceptionHandlerA7(DataBuffer operationBase,int64_t dataBuffer,DataBuffer o
 
 
 
-void ExceptionHandlerA8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 系统异常处理器类型8 - 简化回调异常处理器
+ * 
+ * 该函数是一个简化的异常处理器，主要负责：
+ * 1. 从异常处理上下文中获取回调函数指针
+ * 2. 如果回调函数存在，则调用该函数处理异常
+ * 3. 直接返回，不进行额外的状态管理
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * @note 原始函数名：ExceptionHandlerA8
+ */
+void SystemExceptionHandlerType8(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
