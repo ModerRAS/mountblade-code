@@ -77204,14 +77204,14 @@ LAB_18070f928:
     counterResult = ~(uint)(encodingType >> 7) & 1;
     if (counterResult == 0) {
       loopCounter = contextHandle & 0xffffffff;
-      psVar11 = SourceHandle;
-      result2 = IndexResult;
-      if (0 < (int)(uVar8 - 1)) {
+      secondarySourceHandle = sourceHandle;
+      secondaryResult = indexResult;
+      if (0 < (int)(encodingSize - 1)) {
         do {
-          localInt6 = func_0x0001807104d0(pisCharacterMatch3,IndexResult,SourceHandle + (int)loopCounter);
-          sVar3 = *psVar11;
-          IndexResult = IndexResult - localInt6;
-          if (sVar3 < 0) {
+          encodingOffset = func_0x0001807104d0(characterPointer,indexResult,sourceHandle + (int)loopCounter);
+          sourceValue = *secondarySourceHandle;
+          indexResult = indexResult - encodingOffset;
+          if (sourceValue < 0) {
             return 0xfffffffc;
           }
           if ((int)IndexResult < (int)sVar3) {
