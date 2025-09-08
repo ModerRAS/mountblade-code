@@ -129724,18 +129724,66 @@ uint8_t SystemExceptionHandlerStateTable;
 #define MemoryResourcePointerOffset210 0x210
 #define MemoryPointerTableOffset70 0x70
 
-// 原始函数名：Unwind_18090d2b0 - 内存资源释放函数D2B0
-// 功能：释放内存资源，管理资源引用计数，处理异常情况
+/**
+ * @brief 内存资源释放函数D2B0
+ * 
+ * 释放系统中的内存资源，管理资源引用计数，处理异常情况。
+ * 该函数负责：
+ * 1. 释放指定的内存资源
+ * 2. 管理资源引用计数
+ * 3. 处理资源释放过程中的异常情况
+ * 4. 验证资源释放的完整性
+ * 
+ * @note 原始函数名：Unwind_18090d2b0
+ * @warning 资源释放操作必须在适当的上下文中进行
+ * @see ReleaseMemoryResourceD2C0, ReleaseMemoryResourceD2D0
+ */
 #define ReleaseMemoryResourceD2B0 Unwind_18090d2b0
 
-// 原始函数名：Unwind_18090d2c0 - 内存资源释放函数D2C0
-// 功能：释放内存资源，管理资源引用计数，处理异常情况
+/**
+ * @brief 内存资源释放函数D2C0
+ * 
+ * 释放系统中的内存资源，管理资源引用计数，处理异常情况。
+ * 该函数负责：
+ * 1. 释放指定的内存资源
+ * 2. 管理资源引用计数
+ * 3. 处理资源释放过程中的异常情况
+ * 4. 验证资源释放的完整性
+ * 
+ * @note 原始函数名：Unwind_18090d2c0
+ * @warning 资源释放操作必须在适当的上下文中进行
+ * @see ReleaseMemoryResourceD2B0, ReleaseMemoryResourceD2D0
+ */
 #define ReleaseMemoryResourceD2C0 Unwind_18090d2c0
 
-// 原始函数名：Unwind_18090d2d0 - 内存资源释放函数D2D0
-// 功能：释放内存资源，管理资源引用计数，处理异常情况
+/**
+ * @brief 内存资源释放函数D2D0
+ * 
+ * 释放系统中的内存资源，管理资源引用计数，处理异常情况。
+ * 该函数负责：
+ * 1. 释放指定的内存资源
+ * 2. 管理资源引用计数
+ * 3. 处理资源释放过程中的异常情况
+ * 4. 验证资源释放的完整性
+ * 
+ * @note 原始函数名：Unwind_18090d2d0
+ * @warning 资源释放操作必须在适当的上下文中进行
+ * @see ReleaseMemoryResourceD2B0, ReleaseMemoryResourceD2C0
+ */
 #define ReleaseMemoryResourceD2D0 Unwind_18090d2d0
 
-// 原始函数名：Unwind_18090d2e0 - 内存资源释放函数D2E0
-// 功能：释放内存资源，管理资源引用计数，处理异常情况
+/**
+ * @brief 内存资源释放函数D2E0
+ * 
+ * 释放系统中的内存资源，管理资源引用计数，处理异常情况。
+ * 该函数负责：
+ * 1. 释放指定的内存资源
+ * 2. 管理资源引用计数
+ * 3. 处理资源释放过程中的异常情况
+ * 4. 验证资源释放的完整性
+ * 
+ * @note 原始函数名：Unwind_18090d2e0
+ * @warning 资源释放操作必须在适当的上下文中进行
+ * @see ReleaseMemoryResourceD2B0, ReleaseMemoryResourceD2C0
+ */
 #define ReleaseMemoryResourceD2E0 Unwind_18090d2e0
