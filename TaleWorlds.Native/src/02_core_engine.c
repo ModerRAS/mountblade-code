@@ -185995,7 +185995,7 @@ code_r0x000180151fd7:
           }
           if (SystemCheckResult0 != '\0') break;
           MemoryAllocationIndex = GetSystemSystemDataRegistry(TimeoutValueStorage);
-          FUN_18020ee40(MemoryAllocationIndex);
+          ProcessMemoryAllocationIndex(MemoryAllocationIndex);
         }
       }
       StringLength = _Mtx_unlock(SystemStringIndex);
@@ -186061,7 +186061,7 @@ code_r0x000180151fd7:
     DataProcessingFlags = *(uint32_t *)(CharacterCode + 200);
     SystemUnsignedValue11C = *(uint32_t *)(CharacterCode + 0xcc);
     uStack_118 = *(void *)(CharacterCode + 0xd0);
-    FUN_1800a43c0(CoreEngineRenderContext,&CoreEngineUnsignedValue,*(void *)(CharacterCode + 0xd8));
+    ProcessRenderContextWithUnsignedValue(CoreEngineRenderContext,&CoreEngineUnsignedValue,*(void *)(CharacterCode + 0xd8));
     (**(code **)(**(long long **)(CharacterCode + 0xd8) + 0x38))();
     break;
   case 0x1d:
@@ -186071,7 +186071,7 @@ code_r0x000180151fd7:
     uStack_18c = *(uint32_t *)(CharacterCode + 0xac);
     ProcessingStatus = *(void *)(CharacterCode + 0xb0);
     SystemUnsignedValue180 = *(uint32_t *)(CharacterCode + 0xb8);
-    FUN_1800a4c50(CoreEngineRenderContext,&StackProcessingVariable,*(void *)(CharacterCode + 0xc0));
+    ProcessRenderContextWithStackVariable(CoreEngineRenderContext,&StackProcessingVariable,*(void *)(CharacterCode + 0xc0));
     break;
   case 0x1e:
   case 0x29:
@@ -186090,7 +186090,7 @@ code_r0x000180151fd7:
     break;
   case 0x20:
     MemoryBlockListHead = *(long long **)(CharacterCode + 0xa0);
-    FUN_18031a020(&SystemStackPointer480,MemoryBlockListHead[0x22],*(uint32_t *)(CharacterCode + 0xb0));
+    AllocateSystemMemoryBlockWithId(&SystemStackPointer480,MemoryBlockListHead[0x22],*(uint32_t *)(CharacterCode + 0xb0));
     MemoryBlockIndex = SystemStackPointer480;
     plStack_1b8 = SystemStackPointer480;
     if (SystemStackPointer480 != (long long *)0x0) {
@@ -186132,14 +186132,14 @@ code_r0x000180151fd7:
     }
     break;
   case 0x22:
-    FUN_18031ce00(*(void *)(CharacterCode + 0xa0),*(void *)(CharacterCode + 0xa8));
-    FUN_18031d820(*(void *)(CharacterCode + 0xa0),*(void *)(CharacterCode + 0xa8));
+    ProcessCharacterCodeDataPair(*(void *)(CharacterCode + 0xa0),*(void *)(CharacterCode + 0xa8));
+    ProcessCharacterCodeDataAdvanced(*(void *)(CharacterCode + 0xa0),*(void *)(CharacterCode + 0xa8));
     break;
   case 0x23:
-    FUN_180205470(SystemStringIndex,*(void *)(CharacterCode + 0xa0));
+    ProcessSystemStringWithIdentifier(SystemStringIndex,*(void *)(CharacterCode + 0xa0));
     break;
   case 0x24:
-    FUN_180205470(SystemStringIndex,*(void *)(*(long long *)(CharacterCode + 0xa0) + 0x18));
+    ProcessSystemStringWithIdentifier(SystemStringIndex,*(void *)(*(long long *)(CharacterCode + 0xa0) + 0x18));
     *(void *)(*(long long *)(CharacterCode + 0xa0) + 0x18) = 0;
     LOCK();
     ReferenceCountPointer = (int *)(*(long long *)(CharacterCode + 0xa0) + 0x14);
@@ -191094,7 +191094,7 @@ SetupSystemEnvironment(unsigned long long CharacterCode,uint64_t SystemBufferSiz
 
 
 
-5b450(long long CharacterCodevoid FUN_18015b450(long long CharacterCode
+void ReleaseSystemMemoryAndCleanup(long long CharacterCode)
 {
   unsigned long long Utf16Char;
   long long BufferStatus;
@@ -221429,8 +221429,22 @@ LAB_18018ac29:
 
 
 
+/**
+ * 字符串处理和比较函数
+ * 
+ * 该函数处理字符代码和字符串比较操作，主要用于UTF-8到UTF-16的转换过程中的
+ * 字符串匹配和处理。函数通过遍历系统节点，比较字符数据，并根据比较结果
+ * 进行相应的处理。
+ * 
+ * @param CharacterCode 字符代码指针数组
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @return 处理后的系统缓冲区指针
+ */
 uint64_t *
-FUN_18018ac60(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer,
+ProcessCharacterStringComparison(long long *CharacterCode,uint64_t *CharacterCodeSize,char Utf8SourcePointer,uint64_t *Utf16EndPointer,
              long long AdditionalParameter1
 {
   unsigned long long Utf16Char;
