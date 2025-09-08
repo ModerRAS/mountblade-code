@@ -25389,13 +25389,13 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   int64_t contextProcessingBuffer [2];
   ByteFlag dataStackBuffer2f0 [8];
   DataBuffer validationStackBuffer2e8 [2];
-  uint8_t *pointerStackBuffer2d8;
-  DataWord validationStackData2d0;
-  float floatStackValue2c8;
+  uint8_t *pointerStackBuffer;
+  DataWord validationStackData;
+  float floatStackValue;
   uint calculatedResultStackValue;
-  DataWord flagStackData2c0;
-  DataWord flagStackData2bc;
-  DataWord flagStackData2b8;
+  DataWord flagStackDataA;
+  DataWord flagStackDataB;
+  DataWord flagStackDataC;
   DataBuffer resourceStackData2b4;
   DataBuffer resourceStackData2ac;
   DataWord resultStackData2a4;
@@ -25470,8 +25470,8 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
       if (0 < operationResult) {
         do {
           currentResource = dataContext[1];
-          validationStackData2d0 = 0;
-          pointerStackBuffer2d8 = &ValidationStackPointer;
+          validationStackData = 0;
+          pointerStackBuffer = &ValidationStackPointer;
           processedValue = SUB84(resourceIterator,0);
           exceptionHandlerContextPointer = (int64_t *)(exceptionHandlerContext5 + 0xe0 + (int64_t)exceptionHandlerContextPointer0);
           exceptionHandlerContext1 = *exceptionHandlerContextPointer;
@@ -25496,7 +25496,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           }
           exceptionHandlerContext5 = operationBase[4];
           SecurityValidationData = exceptionHandlerContext1 == 0;
-          floatStackValue2c8 = ValidationFloatValue8;
+          floatStackValue = ValidationFloatValue8;
           if (((char)exceptionHandlerContext5 == '\0') &&
              (iterationCount = ValidateSystemDataA0(operationBase,SetBitFlag((uint7)(uint3)(ExceptionHandlerData >> 8),1)), iterationCount != 0
              )) goto ProcessCheckpointBufferValidation;
