@@ -221927,19 +221927,19 @@ uint64_t ProcessUtf8ToUtf16EncodingWithMemoryManagement(long long *CharacterCode
   uint8_t EncodingProcessingBuffer [24];
   
   if (CharacterCode[1] == 0) {
-    FUN_18018af30(CharacterCode,SystemBufferSize,1,*CharacterCode);
+    ProcessCharacterMemoryAllocationAndBufferManagement(CharacterCode,SystemBufferSize,1,*CharacterCode);
   }
   else {
     MemoryBlockIterator = (long long *)*CharacterCode;
     if (Utf8SourcePointer == (long long *)*MemoryBlockIterator) {
       if (*Utf16EndPointer < *(int *)((long long)Utf8SourcePointer + 0x1c)) {
-        FUN_18018af30(CharacterCode,SystemBufferSize,1,Utf8SourcePointer);
+        ProcessCharacterMemoryAllocationAndBufferManagement(CharacterCode,SystemBufferSize,1,Utf8SourcePointer);
         return SystemBufferSize;
       }
     }
     else if (Utf8SourcePointer == MemoryBlockIterator) {
       if (*(int *)(MemoryBlockIterator[2] + 0x1c) < *Utf16EndPointer) {
-        FUN_18018af30(CharacterCode,SystemBufferSize,0);
+        ProcessCharacterMemoryAllocationAndBufferManagement(CharacterCode,SystemBufferSize,0);
         return SystemBufferSize;
       }
     }
@@ -221975,10 +221975,10 @@ uint64_t ProcessUtf8ToUtf16EncodingWithMemoryManagement(long long *CharacterCode
         EncodingValidationStatus = *Utf16EndPointer;
         if (*(int *)((long long)MemoryBlockBoundary + 0x1c) < EncodingValidationStatus) {
           if (*(char *)(MemoryBlockBoundary[2] + SystemNodeStatusOffset) != '\0') {
-            FUN_18018af30(CharacterCode,SystemBufferSize,0);
+            ProcessCharacterMemoryAllocationAndBufferManagement(CharacterCode,SystemBufferSize,0);
             return SystemBufferSize;
           }
-          FUN_18018af30(CharacterCode,SystemBufferSize,1,Utf8SourcePointer);
+          ProcessCharacterMemoryAllocationAndBufferManagement(CharacterCode,SystemBufferSize,1,Utf8SourcePointer);
           return SystemBufferSize;
         }
         IsSystemContextValidationResult = SBORROW4(*(int *)((long long)Utf8SourcePointer + 0x1c),EncodingValidationStatus);
