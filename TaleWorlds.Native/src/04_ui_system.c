@@ -95322,111 +95322,123 @@ FUN_180723131:
 
 
 
- void FUN_180723082(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
-void FUN_180723082(UIHandle uiContext,UIHandle dataSource,int targetBuffer)
+ /**
+ * @brief 处理UI上下文数据缓冲区管理
+ * 
+ * 该函数负责管理UI系统的上下文数据缓冲区，包括：
+ * - 处理上下文数据的状态更新
+ * - 管理数据缓冲区的读写操作
+ * - 执行事件类型代码的处理
+ * - 维护循环计数器和处理状态
+ * 
+ * @param uiContext UI上下文指针，包含系统的状态信息
+ * @param dataSource 数据源参数，控制数据处理的流向
+ * @param targetBuffer 目标缓冲区参数，指定数据处理的目标位置
+ */
+void ProcessUIContextDataBufferManagement(UIHandle uiContext, UIHandle dataSource, int targetBuffer)
 
 {
-  longlong *pallocatedMemory;
-  char localChar2;
-  uint EventTypeCode;
-  int bufferSize;
-  int TempInt4;
-  int localInt5;
-  uint *ContextHandle;
-  longlong *TargetHandle;
-  uint maxProcessingCount;
-  uint processingCounter;
-  uint uVar8;
-  int localInt9;
-  int register10D;
+  longlong *MemoryAllocationPointer;
+  char SignExtensionChar;
+  uint EventStatusCode;
+  int BufferSize;
+  int TempValue4;
+  int TempValue5;
+  uint *ContextDataPointer;
+  longlong *TargetDataPointer;
+  uint MaxProcessingCount;
+  uint ProcessingCounter;
+  uint TempValue8;
+  int TempValue9;
+  int RegisterValue10;
   int RegisterPointerD;
   
-  EventTypeCode = register10D >> 0x1f;
-  localInt5 = 1;
-  uVar8 = EventTypeCode + bufferSize ^ EventTypeCode;
-  maxProcessingCount = (0x7fe0 - targetBuffer) * (0x4000 - RegisterPointerD);
-  processingCounter = maxProcessingCount >> 0xf;
-  if (maxProcessingCount >> 0xf != 0) {
+  EventStatusCode = RegisterValue10 >> 0x1f;
+  TempValue5 = 1;
+  TempValue8 = EventStatusCode + BufferSize ^ EventStatusCode;
+  MaxProcessingCount = (0x7fe0 - targetBuffer) * (0x4000 - RegisterPointerD);
+  ProcessingCounter = MaxProcessingCount >> 0xf;
+  if (MaxProcessingCount >> 0xf != 0) {
     do {
-      if ((int)uVar8 <= localInt5) break;
-      targetBuffer = targetBuffer + 2 + processingCounter * 2;
+      if ((int)TempValue8 <= TempValue5) break;
+      targetBuffer = targetBuffer + 2 + ProcessingCounter * 2;
       uiElementIndex = uiElementIndex + 1;
-      maxProcessingCount = processingCounter * 2 * RegisterPointerD;
-      processingCounter = maxProcessingCount >> 0xf;
-    } while (maxProcessingCount >> 0xf != 0);
-    if (processingCounter != 0) {
-      processingCounter = processingCounter + 1;
-      targetBuffer = targetBuffer + (~EventTypeCode & processingCounter);
+      MaxProcessingCount = ProcessingCounter * 2 * RegisterPointerD;
+      ProcessingCounter = MaxProcessingCount >> 0xf;
+    } while (MaxProcessingCount >> 0xf != 0);
+    if (ProcessingCounter != 0) {
+      ProcessingCounter = ProcessingCounter + 1;
+      targetBuffer = targetBuffer + (~EventStatusCode & ProcessingCounter);
       goto LAB_18072312c;
     }
   }
-  localInt9 = uVar8 - localInt5;
-  TempInt4 = ((int)((0x8000 - EventTypeCode) - targetBuffer) >> 1) + -1;
-  if (TempInt4 <= localInt9) {
-    localInt9 = TempInt4;
+  TempValue9 = TempValue8 - TempValue5;
+  TempValue4 = ((int)((0x8000 - EventStatusCode) - targetBuffer) >> 1) + -1;
+  if (TempValue4 <= TempValue9) {
+    TempValue9 = TempValue4;
   }
-  targetBuffer = targetBuffer + EventTypeCode + 1 + localInt9 * 2;
-  processingCounter = 0x8000U - targetBuffer;
+  targetBuffer = targetBuffer + EventStatusCode + 1 + TempValue9 * 2;
+  ProcessingCounter = 0x8000U - targetBuffer;
   if (1 < 0x8000U - targetBuffer) {
-    processingCounter = 1;
+    ProcessingCounter = 1;
   }
-  *ContextHandle = localInt9 + localInt5 + EventTypeCode ^ EventTypeCode;
+  *ContextDataPointer = TempValue9 + TempValue5 + EventStatusCode ^ EventStatusCode;
 LAB_18072312c:
-  EventTypeCode = *(uint *)(TargetHandle + 4);
-  maxProcessingCount = EventTypeCode >> 0xf;
+  EventStatusCode = *(uint *)(TargetDataPointer + 4);
+  MaxProcessingCount = EventStatusCode >> 0xf;
   if (targetBuffer == 0) {
-    *(uint *)(TargetHandle + 4) = EventTypeCode - (0x8000 - (processingCounter + targetBuffer)) * maxProcessingCount;
+    *(uint *)(TargetDataPointer + 4) = EventStatusCode - (0x8000 - (ProcessingCounter + targetBuffer)) * MaxProcessingCount;
   }
   else {
-    *(int *)((longlong)TargetHandle + 0x24) =
-         *(int *)((longlong)TargetHandle + 0x24) + (EventTypeCode - (0x8000 - targetBuffer) * maxProcessingCount);
-    *(uint *)(TargetHandle + 4) = ((processingCounter + targetBuffer) - targetBuffer) * maxProcessingCount;
+    *(int *)((longlong)TargetDataPointer + 0x24) =
+         *(int *)((longlong)TargetDataPointer + 0x24) + (EventStatusCode - (0x8000 - targetBuffer) * MaxProcessingCount);
+    *(uint *)(TargetDataPointer + 4) = ((ProcessingCounter + targetBuffer) - targetBuffer) * MaxProcessingCount;
   }
-  if (*(uint *)(TargetHandle + 4) < 0x800001) {
-    processingCounter = *(uint *)((longlong)TargetHandle + 0x24);
+  if (*(uint *)(TargetDataPointer + 4) < 0x800001) {
+    ProcessingCounter = *(uint *)((longlong)TargetDataPointer + 0x24);
     do {
-      if (processingCounter >> 0x17 == 0xff) {
-        *(int *)(TargetHandle + 5) = (int)TargetHandle[5] + 1;
+      if (ProcessingCounter >> 0x17 == 0xff) {
+        *(int *)(TargetDataPointer + 5) = (int)TargetDataPointer[5] + 1;
       }
       else {
-        localChar2 = (char)((int)processingCounter >> 0x1f);
-        if (-1 < *(int *)((longlong)TargetHandle + 0x2c)) {
-          if (*(int *)((longlong)TargetHandle + 0xc) + *(uint *)((longlong)TargetHandle + 0x1c) <
-              *(uint *)(TargetHandle + 1)) {
-            *(char *)((ulonglong)*(uint *)((longlong)TargetHandle + 0x1c) + *TargetHandle) =
-                 (char)*(int *)((longlong)TargetHandle + 0x2c) - localChar2;
-            *(int *)((longlong)TargetHandle + 0x1c) = *(int *)((longlong)TargetHandle + 0x1c) + 1;
-            EventTypeCode = 0;
+        SignExtensionChar = (char)((int)ProcessingCounter >> 0x1f);
+        if (-1 < *(int *)((longlong)TargetDataPointer + 0x2c)) {
+          if (*(int *)((longlong)TargetDataPointer + 0xc) + *(uint *)((longlong)TargetDataPointer + 0x1c) <
+              *(uint *)(TargetDataPointer + 1)) {
+            *(char *)((ulonglong)*(uint *)((longlong)TargetDataPointer + 0x1c) + *TargetDataPointer) =
+                 (char)*(int *)((longlong)TargetDataPointer + 0x2c) - SignExtensionChar;
+            *(int *)((longlong)TargetDataPointer + 0x1c) = *(int *)((longlong)TargetDataPointer + 0x1c) + 1;
+            EventStatusCode = 0;
           }
           else {
-            EventTypeCode = 0xffffffff;
+            EventStatusCode = 0xffffffff;
           }
-          *(uint *)(TargetHandle + 6) = *(uint *)(TargetHandle + 6) | EventTypeCode;
+          *(uint *)(TargetDataPointer + 6) = *(uint *)(TargetDataPointer + 6) | EventStatusCode;
         }
-        if ((int)TargetHandle[5] != 0) {
-          EventTypeCode = *(uint *)((longlong)TargetHandle + 0x1c);
+        if ((int)TargetDataPointer[5] != 0) {
+          EventStatusCode = *(uint *)((longlong)TargetDataPointer + 0x1c);
           do {
-            if (*(int *)((longlong)TargetHandle + 0xc) + EventTypeCode < *(uint *)(TargetHandle + 1)) {
-              *(char *)((ulonglong)EventTypeCode + *TargetHandle) = -1 - localChar2;
-              *(int *)((longlong)TargetHandle + 0x1c) = *(int *)((longlong)TargetHandle + 0x1c) + 1;
-              EventTypeCode = *(uint *)((longlong)TargetHandle + 0x1c);
-              maxProcessingCount = 0;
+            if (*(int *)((longlong)TargetDataPointer + 0xc) + EventStatusCode < *(uint *)(TargetDataPointer + 1)) {
+              *(char *)((ulonglong)EventStatusCode + *TargetDataPointer) = -1 - SignExtensionChar;
+              *(int *)((longlong)TargetDataPointer + 0x1c) = *(int *)((longlong)TargetDataPointer + 0x1c) + 1;
+              EventStatusCode = *(uint *)((longlong)TargetDataPointer + 0x1c);
+              MaxProcessingCount = 0;
             }
             else {
-              maxProcessingCount = 0xffffffff;
+              MaxProcessingCount = 0xffffffff;
             }
-            *(uint *)(TargetHandle + 6) = *(uint *)(TargetHandle + 6) | maxProcessingCount;
-            pallocatedMemory = TargetHandle + 5;
-            *(int *)pallocatedMemory = (int)*pallocatedMemory + -1;
-          } while ((int)*pallocatedMemory != 0);
+            *(uint *)(TargetDataPointer + 6) = *(uint *)(TargetDataPointer + 6) | MaxProcessingCount;
+            MemoryAllocationPointer = TargetDataPointer + 5;
+            *(int *)MemoryAllocationPointer = (int)*MemoryAllocationPointer + -1;
+          } while ((int)*MemoryAllocationPointer != 0);
         }
-        *(uint *)((longlong)TargetHandle + 0x2c) = processingCounter >> 0x17 & 0xff;
+        *(uint *)((longlong)TargetDataPointer + 0x2c) = ProcessingCounter >> 0x17 & 0xff;
       }
-      *(int *)(TargetHandle + 4) = (int)TargetHandle[4] << 8;
-      *(int *)(TargetHandle + 3) = (int)TargetHandle[3] + 8;
-      processingCounter = (*(uint *)((longlong)TargetHandle + 0x24) & 0x7fffff) << 8;
-      *(uint *)((longlong)TargetHandle + 0x24) = processingCounter;
-    } while (*(uint *)(TargetHandle + 4) < 0x800001);
+      *(int *)(TargetDataPointer + 4) = (int)TargetDataPointer[4] << 8;
+      *(int *)(TargetDataPointer + 3) = (int)TargetDataPointer[3] + 8;
+      ProcessingCounter = (*(uint *)((longlong)TargetDataPointer + 0x24) & 0x7fffff) << 8;
+      *(uint *)((longlong)TargetDataPointer + 0x24) = ProcessingCounter;
+    } while (*(uint *)(TargetDataPointer + 4) < 0x800001);
   }
   return;
 }
@@ -100002,19 +100014,31 @@ LAB_180727edb:
 
 
 
-float FUN_180727f29(UIHandle uiContext,UIHandle dataSource,float targetBuffer)
-
+/**
+ * @brief 计算UI向量距离和目标缓冲区值
+ * 
+ * 该函数计算UI上下文和数据源之间的向量距离，并返回与目标缓冲区的组合值。
+ * 主要用于UI元素的位置计算和距离度量。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源句柄
+ * @param targetBuffer 目标缓冲区值
+ * @return float 计算结果（向量距离平方和与目标缓冲区的组合值）
+ * 
+ * @note 原始函数名：FUN_180727f29
+ */
+float CalculateUIVectorDistanceAndTargetBuffer(UIHandle uiContext, UIHandle dataSource, float targetBuffer)
 {
   uint result;
   int uiValidationResult;
-  ushort EventTypeCode;
+  ushort eventTypeCode;
   uint unmodifiedEBP;
-  int *SourceHandle;
+  int *sourceHandle;
   uint register8D;
-  uint ProcessingStatus;
+  uint processingStatus;
   short register10W;
   undefined6 in_register_00000092;
-  short sVar5;
+  short processingCounter;
   uint maxProcessingCount;
   float resultFloat;
   float localFloat8;
