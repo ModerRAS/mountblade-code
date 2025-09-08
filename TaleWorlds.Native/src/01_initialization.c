@@ -25984,7 +25984,24 @@ void CleanupSystemQueue(long long *QueueHeader)
 
 
 
-// 函数: void SystemDataStructureProcess(long long* SystemResourceManager)
+/**
+ * @brief 系统数据结构处理器
+ * 
+ * 该函数负责处理系统资源管理器中的数据结构，遍历资源池并执行
+ * 每个资源的虚函数表中的方法。主要用于系统资源的统一处理
+ * 和清理工作。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，包含资源池信息
+ * 
+ * @details 函数执行流程：
+ * 1. 获取主资源句柄（SystemResourceManager[1]）
+ * 2. 遍历资源池中的每个资源指针
+ * 3. 对于非空资源，调用其虚函数表中的方法（偏移量0x38）
+ * 4. 最后调用SystemCleanupFunction进行系统清理
+ * 
+ * @note 虚函数表偏移量由SystemQueueVirtualTableOffset常量定义
+ * @note 如果资源管理器为空，则直接返回
+ */
 void SystemDataStructureProcess(long long* SystemResourceManager)
 
 {

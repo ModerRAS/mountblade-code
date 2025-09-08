@@ -50134,7 +50134,9 @@ void ProcessSystemRenderParametersAndStatus(void
 
 
 
-81e0(long long CharacterCode/**
+}
+
+/**
  * @brief 处理目标数据结构的内存管理
  * 
  * 该函数负责处理目标数据结构的内存管理操作，包括：
