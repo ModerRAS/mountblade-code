@@ -120043,11 +120043,11 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始变量名：uStack_2e0 - 栈数据字U
 // 功能：存储浮点数据处理过程中的临时数据字
-#define ContextDataWordU StackFloatProcessingData
+#define StackFloatProcessingTempData uStack_2e0
 
 // 原始变量名：uStack_2e8 - 栈数据字V
 // 功能：存储数据验证过程中的临时数据字
-#define ContextDataWordV StackDataValidationTemp2
+#define StackDataValidationTemp2 uStack_2e8
 
 // 原始变量名：uStack_28c - 栈数据字W
 // 功能：存储异常上下文标志数据字
