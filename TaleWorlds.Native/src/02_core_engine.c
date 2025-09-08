@@ -25814,21 +25814,21 @@ void CoreEngineSearchAndReplaceString(void* TargetString,void* SearchString,void
   long long SearchResult;
   long long SearchLength;
   long long ReplacementLength;
-  uint8_t StackDataBuffer1 [32];
-  uint64_t StackDataBuffer2;
+  uint8_t PrimarySearchBuffer [32];
+  uint64_t SearchResultBuffer;
   void *PrimaryStackPointer;
   uint8_t *SecondaryStackPointer;
-  uint32_t StackDataBuffer3;
-  uint8_t StackDataBuffer4 [72];
+  uint32_t StringLengthCounter;
+  uint8_t ReplacementBuffer [72];
   uint64_t EncodedValue;
   
-  StackDataBuffer2 = 0xfffffffffffffffe;
-  EncodedValue = EncodingDecodingKey ^ (uint64_t)StackDataBuffer1;
+  SearchResultBuffer = 0xfffffffffffffffe;
+  EncodedValue = EncodingDecodingKey ^ (uint64_t)PrimarySearchBuffer;
   PrimaryStackPointer = &ThreadLocalStorageDataTemplate;
-  SecondaryStackPointer = StackDataBuffer4;
-  StackDataBuffer3 = 0;
-  StackDataBuffer4[0] = 0;
-  StringSearchResult = strstr(*(void **)(TargetString + 8));
+  SecondaryStackPointer = ReplacementBuffer;
+  StringLengthCounter = 0;
+  ReplacementBuffer[0] = 0;
+  SearchResult = strstr(*(void **)(TargetString + 8));
   if (SearchResult != 0) {
     SearchLength = -1;
     ReplacementLength = -1;
