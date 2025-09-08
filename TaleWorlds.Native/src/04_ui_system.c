@@ -75639,8 +75639,8 @@ LAB_18070e0f9:
     stackInt128 = stackInt1a8;
   }
   if ((dataSource == 0) || ((int)targetBuffer < 2)) {
-    FUN_18070ba50(uiContext,stackInt1a4,stackInt19c);
-    FUN_18070e950(astackLonga8,stackLongb0,stackInt1a4,stackInt190,
+    ProcessUIComponentEvent(uiContext,stackInt1a4,stackInt19c);
+    ProcessUIRenderDataWithTransform(astackLonga8,stackLongb0,stackInt1a4,stackInt190,
                   *(UIDword *)((longlong)uiContext + 0x14),localLong8 + 0x10,uiContext + 0xb,param_7);
     MaxProcessingCount = (longlong)resultPointer % (longlong)*(int *)((longlong)uiContext + 0x14) & 0xffffffff;
     goto LAB_18070e0f9;
