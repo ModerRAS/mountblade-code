@@ -22366,18 +22366,18 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
     floatValue = *(float *)(allocatedMemoryBlock + SystemDataSecondaryOffset18);
     normalizedValue = floatValue;
     if (itemCount != -1) {
-      normalizedValue = *(float *)(systemContext + 0xb4);
+      normalizedValue = *(float *)(systemContext + SystemContextOffsetB4);
       itemCount = -1;
-      *(DataWord *)(systemContext + 0xb0) = SystemCleanupFlag;
-      *(DataWord *)(systemContext + 0xb4) = NegativeZeroFloat;
+      *(DataWord *)(systemContext + SystemContextOffsetB0) = SystemCleanupFlag;
+      *(DataWord *)(systemContext + SystemContextOffsetB4) = NegativeZeroFloat;
     }
-    *(float *)(systemContext + 0xa8) = floatValue;
+    *(float *)(systemContext + SystemContextOffsetA8) = floatValue;
     arrayIndex = 0;
-    floatValue = (float)*(uint *)(systemContext + 0x68) * floatValue;
+    floatValue = (float)*(uint *)(systemContext + SystemContextOffset68) * floatValue;
     if ((9.223372e+18 <= floatValue) && (floatValue = floatValue - 9.223372e+18, floatValue < 9.223372e+18)) {
       arrayIndex = InvalidMemoryOffset;
     }
-    dataOffset = *(int64_t *)(systemContext + 0xa0);
+    dataOffset = *(int64_t *)(systemContext + SystemContextOffsetA0);
     systemDataBuffer = *(int64_t *)(systemContext + SystemManagementOffset98);
     if (systemDataBuffer == 0) {
       normalizedValue = (float)*(uint *)(systemContext + 0x68) * normalizedValue;
