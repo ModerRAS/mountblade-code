@@ -10055,8 +10055,8 @@ void ManageUIElements(longlong *uiContext)
   if (uiContext != (longlong *)0x0) {
     (**(code **)(*uiContext + 8))();
   }
-  stackPointer78 = (longlong *)0x0;
-  stackPointer70 = (longlong *)0x0;
+  longlong *uiElementPtr = (longlong *)0x0;
+  longlong *uiColorBuffer = (longlong *)0x0;
   iterationCount = 0;
   stackPointer68 = (longlong *)0x0;
   stackValue60 = 3;
