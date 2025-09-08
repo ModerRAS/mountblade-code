@@ -20499,7 +20499,7 @@ void CoreEngineInitializeNetworkConnectionPoolDataProcessor(void
 
 
 
- void CoreEngineInitializeThreadPerformanceCounters(voidvoid CoreEngineInitializeThreadPerformanceCounters(void
+ void CoreEngineInitializeThreadPerformanceCounters(void)
 {
   char CurrentCharacter;
   void *SystemContext;
