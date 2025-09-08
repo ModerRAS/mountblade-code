@@ -79998,7 +79998,7 @@ void ProcessExceptionDataA2(DataBuffer operationBase, int64_t dataBuffer, DataBu
 void ProcessExceptionDataA3(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
-  ProcessExceptionData(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
+  ProcessExceptionData(*(int64_t *)(dataBuffer + ExceptionDataBufferOffset48),*(DataBuffer *)(*(int64_t *)(dataBuffer + ExceptionDataBufferOffset48) + ExceptionHandlerCallbackOffset10),
                 operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   return;
 }
@@ -80021,7 +80021,7 @@ void ProcessExceptionDataA3(DataBuffer operationBase, int64_t dataBuffer, DataBu
 void ProcessExceptionDataA4(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 
 {
-  ProcessExceptionData(*(int64_t *)(dataBuffer + 0x48),*(DataBuffer *)(*(int64_t *)(dataBuffer + 0x48) + ExceptionHandlerCallbackOffset10),
+  ProcessExceptionData(*(int64_t *)(dataBuffer + ExceptionDataBufferOffset48),*(DataBuffer *)(*(int64_t *)(dataBuffer + ExceptionDataBufferOffset48) + ExceptionHandlerCallbackOffset10),
                 operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   return;
 }
