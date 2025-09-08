@@ -198710,7 +198710,20 @@ ProcessUtf8ToUtf16CharacterEncodingMemoryAllocation(uint64_t CharacterCode,uint6
 
 
 
-676b0(uint64_t CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePointervoid FUN_1801676b0(uint64_t CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePointer
+// 函数: void FUN_1801676b0(uint64_t CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePointer)
+/**
+ * @brief 处理UTF-8到UTF-16的字符编码转换和内存分配
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，包括内存分配、
+ * 数据验证和系统缓冲区管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_1801676b0
+ */
+void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePointer)
 {
   uint Utf16Char;
   code *SystemValidationFunction;
@@ -286560,6 +286573,20 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  * @note 原始函数名：FUN_18020ccb0
  */
 #define ProcessUtf16EncodingConversion FUN_18020ccb0
+
+/**
+ * @brief 处理UTF-8到UTF-16的字符编码转换和内存分配
+ * 
+ * 该函数负责处理UTF-8到UTF-16的字符编码转换，包括内存分配、
+ * 数据验证和系统缓冲区管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_1801676b0
+ */
+#define ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation FUN_1801676b0
 
 /**
  * @brief 处理内存地址掩码操作
