@@ -117,7 +117,7 @@ typedef enum {
 #define UILookupTableIndex UNK_180954728
 #define UISecondaryLookupTable UNK_1809545f0
 #define UITertiaryLookupTable UNK_180954550
-#define UILookupTableQuaternary UNK_1809544b0
+#define UIQuaternaryLookupTable UNK_1809544b0
 
 // UI系统函数宏定义 - 计算UI事件距离
 #define CalculateUIEventDistance FUN_180727dd3
