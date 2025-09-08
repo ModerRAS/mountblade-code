@@ -297,6 +297,7 @@
 #define ProcessCharacterCodeValidationAndMemoryManagement FUN_18013d36b  // 处理字符代码验证和内存管理
 #define ProcessSystemBufferSizeAndCharacterCodeManagement FUN_18013d378  // 处理UTF-8缓冲区大小和字符代码管理
 #define ProcessCharacterCodeAndStringComparison FUN_18013d387  // 处理字符代码和字符串比较
+#define ProcessCharacterEncodingAndBufferManagement FUN_18015a900  // 处理字符编码转换和系统缓冲区管理
 #define ProcessCharacterCodeConversionEx FUN_18019c560            // 处理字符代码转换扩展
 #define ProcessCharacterCodeValidationEx FUN_18019c5b0            // 处理字符代码验证扩展
 #define ProcessCharacterEncodingData FUN_180212e40                // 处理字符编码数据

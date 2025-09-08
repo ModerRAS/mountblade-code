@@ -85069,12 +85069,27 @@ void ExecuteExceptionHandlerCallbackA2(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090aff0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行函数A3
+ * 
+ * 在0x2f0偏移处执行异常处理器回调函数，处理异常清理操作。
+ * 该函数通过特定偏移处的异常处理上下文指针调用相应的回调函数。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区，包含异常处理上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090aff0
+ * @note 该函数是异常处理器回调函数的变体，使用0x2f0偏移量。
+ */
+void ExecuteExceptionHandlerCallbackA3(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
   
+  // 获取0x2f0偏移处的异常处理上下文指针
   exceptionHandlerContextPointer = *(int64_t **)(*(int64_t *)(dataBuffer + 0x50) + 0x2f0);
+  
+  // 如果上下文指针有效，则执行回调函数
   if (exceptionHandlerContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*exceptionHandlerContextPointer + 0x38))();
   }
