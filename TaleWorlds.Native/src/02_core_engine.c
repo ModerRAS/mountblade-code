@@ -213426,7 +213426,21 @@ LAB_180179d1f:
 
 
 
-79d80(long long CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer,char Utf16EndPointer,int *AdditionalParameter1void FUN_180179d80(long long CharacterCode,uint64_t SystemBufferSize,long long Utf8SourcePointer,char Utf16EndPointer,int *AdditionalParameter1
+/**
+ * @brief 带参数的系统数据分配函数
+ * 
+ * 该函数根据输入参数分配系统数据内存，并进行条件判断
+ * 用于不同条件下的内存分配策略
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * @param Utf16EndPointer UTF16结束指针
+ * @param AdditionalParameter1 额外的参数指针
+ * 
+ * @note 原始函数名：FUN_180179d80
+ */
+void AllocateSystemDataWithParameters(long long CharacterCode, uint64_t SystemBufferSize, long long Utf8SourcePointer, char Utf16EndPointer, int *AdditionalParameter1)
 {
   long long PrimaryDataSize;
   uint32_t MemoryAllocationIndex;
@@ -213447,7 +213461,19 @@ LAB_180179d1f:
 
 
 
-79e40(uint64_t *CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePointervoid FUN_180179e40(uint64_t *CharacterCode,uint64_t SystemBufferSize,long long *Utf8SourcePointer
+/**
+ * @brief 字符编码数据复制函数
+ * 
+ * 该函数负责将字符编码数据从源位置复制到目标位置
+ * 是一个内存复制操作
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF8源数据指针
+ * 
+ * @note 原始函数名：FUN_180179e40
+ */
+void CopyCharacterEncodingData(uint64_t *CharacterCode, uint64_t SystemBufferSize, long long *Utf8SourcePointer)
 {
                     // WARNING: Subroutine does not return
   memcpy(*(void *)(*Utf8SourcePointer + 0x18),*CharacterCode,CharacterCode[2]);
@@ -213455,7 +213481,18 @@ LAB_180179d1f:
 
 
 
-uint64_t * FUN_180179ec0(uint64_t *CharacterCode,unsigned long long SystemBufferSize
+/**
+ * @brief 系统上下文缓冲区设置函数
+ * 
+ * 该函数负责设置系统上下文缓冲区，并根据条件进行内存释放
+ * 
+ * @param CharacterCode 字符编码数据指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return 返回字符编码数据指针
+ * 
+ * @note 原始函数名：FUN_180179ec0
+ */
+uint64_t * SetSystemContextBuffer(uint64_t *CharacterCode, unsigned long long SystemBufferSize)
 {
   *CharacterCode = &SystemContextBufferSecondary;
   if ((SystemBufferSize & 1) != 0) {

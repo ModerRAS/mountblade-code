@@ -23913,30 +23913,30 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   float *floatValuePointer;
   DataBuffer *exceptionDataBuffer6;
   ByteFlag TertiaryEncryptionKeyBuffer [32];
-  DataWord TemporaryDataWordA;
+  DataWord SystemValidationWordA;
   char ValidationCharBuffer [4];
-  uint8_t *TemporaryPointerBufferA;
-  DataWord TemporaryDataWordB;
-  DataWord TemporaryDataWordC;
+  uint8_t *SystemProcessingPointerA;
+  DataWord SystemValidationWordB;
+  DataWord SystemValidationWordC;
   float InputFloatValueA;
   float InputFloatValueB;
-  DataWord TemporaryDataWordD;
+  DataWord SystemResourceValidationWord;
   float InputFloatValueC;
   float FloatProcessingArray [2];
-  DataBuffer *TemporaryPointerBufferB;
+  DataBuffer *SystemResourcePointerBuffer;
   int64_t ProcessingLongIntegerA;
   int64_t ProcessingLongIntegerB;
-  uint8_t *TemporaryPointerBufferC;
-  DataWord TemporaryDataWordE;
-  DataWord TemporaryDataWordF;
-  DataWord TemporaryDataWordG;
-  uint8_t *TemporaryPointerBufferD;
-  DataWord TemporaryDataWordH;
-  DataWord TemporaryDataWordI;
-  DataBuffer TemporaryDataBufferA;
-  DataBuffer TemporaryDataBufferB;
-  DataWord TemporaryDataWordJ;
-  DataWord TemporaryDataWordK;
+  uint8_t *SystemDataTransferPointer;
+  DataWord SystemSecurityValidationWord;
+  DataWord SystemOperationStatusWord;
+  DataWord SystemConfigurationWord;
+  uint8_t *SystemMemoryManagementPointer;
+  DataWord SystemCleanupStatusWord;
+  DataWord SystemInitializationWord;
+  DataBuffer SystemTemporaryDataBufferA;
+  DataBuffer SystemTemporaryDataBufferB;
+  DataWord SystemDataValidationWord;
+  DataWord SystemOperationResultWord;
   DataWord TemporaryDataWordL;
   DataWord ContextOffsetData54;
   DataWord ContextOffsetData58;
@@ -23955,24 +23955,24 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
   colorProcessingData = ExceptionEncryptionKeyValue ^ (uint64_t)TertiaryEncryptionKeyBuffer;
   dataContext = *(int64_t *)(dataBuffer + 0x80);
   exceptionHandlerContext4 = 0;
-  TemporaryDataWordA = 0;
+  SystemValidationWordA = 0;
   bufferPointer = dataContext + 8;
   if (dataContext == 0) {
     bufferPointer = exceptionHandlerContext4;
   }
   ProcessingLongIntegerB = dataBuffer;
-  iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&TemporaryDataWordA);
+  iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&SystemValidationWordA);
   if (iterationCount == 0) {
     exceptionDataBuffer6 = (DataBuffer *)(dataBuffer + 8);
-    TemporaryDataWordD = 0;
-    TemporaryPointerBufferB = exceptionDataBuffer6;
+    SystemResourceValidationWord = 0;
+    SystemResourcePointerBuffer = exceptionDataBuffer6;
     bufferPointer = (*(code *)**(DataBuffer **)(dataBuffer + 8))(exceptionDataBuffer6);
-    iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&TemporaryDataWordD);
+    iterationCount = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(bufferPointer + 0xd0),&SystemResourceValidationWord);
     if (iterationCount == 0) {
-      TemporaryDataWordE = 0;
+      SystemSecurityValidationWord = 0;
       StackPointerBufferC = &DataValidationErrorBase;
-      TemporaryDataWordG = StackDataWordA;
-      TemporaryDataWordF = TemporaryDataWordD;
+      SystemConfigurationWord = StackDataWordA;
+      SystemOperationStatusWord = SystemResourceValidationWord;
       iterationCount = ValidateDataIntegrityA0(operationBase,&StackPointerBufferC);
       if (iterationCount == 0) {
         StackLongIntegerA = (int64_t)*(int *)(dataContext + 0x28);
@@ -24015,8 +24015,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t exceptionHandlerConte
             systemDataBuffer1 = InitializeSystem();
             iterationCount = memcmp(dataContext + 0x38,systemDataBuffer1,0x30);
             if (iterationCount != 0) {
-              StackDataBufferA = *(DataBuffer *)(dataContext + 0x38);
-              StackDataBufferB = *(DataBuffer *)(dataContext + SystemDataOffset40);
+              SystemConfigurationDataBuffer = *(DataBuffer *)(dataContext + 0x38);
+              SystemOperationDataBuffer = *(DataBuffer *)(dataContext + SystemDataOffset40);
               TemporaryDataWordJ = *(DataWord *)(dataContext + 0x48);
               TemporaryDataWordK = *(DataWord *)(dataContext + 0x4c);
               TemporaryDataWordL = *(DataWord *)(dataContext + 0x50);
@@ -25001,7 +25001,7 @@ OperationFailedLabel:
           primaryDataBuffer = 0;
           dataContext = operationBase[4];
           pResourceManagementData = &SystemProcessingBuffer;
-          secondaryDataBuffer = StackDataBufferA[0];
+          secondaryDataBuffer = SystemConfigurationDataBuffer[0];
           if (((char)dataContext == '\0') && (operationStatus = ValidateSystemDataA0(operationBase,1), operationStatus != 0))
           goto ProcessCheckpointResourceValidation;
           operationStatus = (**(FunctionPointer**)(pResourceManagementData + ExceptionHandlerCallbackOffset10))(&pResourceManagementData,DataTransferBufferA,0x200);
@@ -25824,57 +25824,57 @@ DataBuffer
 // 参数：SearchContext - 搜索上下文，SearchKeyPointer - 搜索键值指针，ProcessData - 处理数据
 //      SearchFlags - 搜索标志，AdditionalData - 附加数据
 // 返回值：成功返回处理结果，失败返回0x4a
-DataBuffer BinarySearchAndProcessData(int64_t SearchContext,uint *SearchKeyPointer,DataBuffer ProcessData,DataWord SearchFlags,DataBuffer AdditionalData)
+DataBuffer BinarySearchAndProcessData(int64_t searchContext,uint *searchKeyPointer,DataBuffer processData,DataWord searchFlags,DataBuffer additionalData)
 
 {
-  uint TargetSearchValue;
-  int64_t DataArrayPointer;
-  int ComparisonResult;
-  int MatchResult;
-  DataBuffer ProcessingResult;
-  uint *CurrentItemPointer;
-  int MiddleIndex;
-  int LeftBoundary;
-  int RightBoundary;
+  uint targetSearchValue;
+  int64_t dataArrayPointer;
+  int comparisonResult;
+  int matchResult;
+  DataBuffer processingResult;
+  uint *currentItemPointer;
+  int middleIndex;
+  int leftBoundary;
+  int rightBoundary;
   
-  LeftBoundary = 0;
-  RightBoundary = *(int *)(SearchContext + 0x18) + -1;
-  if (-1 < RightBoundary) {
-    DataArrayPointer = *(int64_t *)(SearchContext + ExceptionHandlerCallbackOffset10);
-    TargetSearchValue = *SearchKeyPointer;
+  leftBoundary = 0;
+  rightBoundary = *(int *)(searchContext + 0x18) + -1;
+  if (-1 < rightBoundary) {
+    dataArrayPointer = *(int64_t *)(searchContext + ExceptionHandlerCallbackOffset10);
+    targetSearchValue = *searchKeyPointer;
     do {
-      MiddleIndex = RightBoundary + LeftBoundary >> 1;
-      CurrentItemPointer = (uint *)((int64_t)MiddleIndex * 0x10 + DataArrayPointer);
-      if (TargetSearchValue == *CurrentItemPointer) {
-        MatchResult = (uint)(ushort)SearchKeyPointer[1] - (uint)(ushort)CurrentItemPointer[1];
-        if ((MatchResult == 0) &&
-           (MatchResult = (uint)*(ushort *)((int64_t)SearchKeyPointer + 6) -
-                    (uint)*(ushort *)((int64_t)CurrentItemPointer + 6), MatchResult == 0)) {
-          MatchResult = memcmp(SearchKeyPointer + 2,CurrentItemPointer + 2,8);
+      middleIndex = rightBoundary + leftBoundary >> 1;
+      currentItemPointer = (uint *)((int64_t)middleIndex * 0x10 + dataArrayPointer);
+      if (targetSearchValue == *currentItemPointer) {
+        matchResult = (uint)(ushort)searchKeyPointer[1] - (uint)(ushort)currentItemPointer[1];
+        if ((matchResult == 0) &&
+           (matchResult = (uint)*(ushort *)((int64_t)searchKeyPointer + 6) -
+                    (uint)*(ushort *)((int64_t)currentItemPointer + 6), matchResult == 0)) {
+          matchResult = memcmp(searchKeyPointer + 2,currentItemPointer + 2,8);
         }
       }
       else {
-        MatchResult = 1;
-        if (TargetSearchValue < *CurrentItemPointer) {
-          MatchResult = -1;
+        matchResult = 1;
+        if (targetSearchValue < *currentItemPointer) {
+          matchResult = -1;
         }
       }
-      if (MatchResult == 0) {
-        if (MiddleIndex < 0) {
+      if (matchResult == 0) {
+        if (middleIndex < 0) {
           return OperationSuccessCode;
         }
-        ProcessingResult = ProcessDataItem(SearchContext,MiddleIndex,0,ProcessData,SearchFlags,AdditionalData);
-        return ProcessingResult;
+        processingResult = ProcessDataItem(searchContext,middleIndex,0,processData,searchFlags,additionalData);
+        return processingResult;
       }
-      ComparisonResult = MiddleIndex + -1;
-      if (-1 < MatchResult) {
-        ComparisonResult = RightBoundary;
+      comparisonResult = middleIndex + -1;
+      if (-1 < matchResult) {
+        comparisonResult = rightBoundary;
       }
-      RightBoundary = ComparisonResult;
-      if (-1 < MatchResult) {
-        LeftBoundary = MiddleIndex + 1;
+      rightBoundary = comparisonResult;
+      if (-1 < matchResult) {
+        leftBoundary = middleIndex + 1;
       }
-    } while (LeftBoundary <= RightBoundary);
+    } while (leftBoundary <= rightBoundary);
   }
   return OperationSuccessCode;
 }
@@ -25905,8 +25905,8 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
   ByteFlag charValue;
   uint dataBufferValue;
   uint32_t nodeDescriptorArray;
-  DataWord fieldData2;
-  DataWord fieldData3;
+  DataWord secondaryFieldData;
+  DataWord tertiaryFieldData;
   uint currentNodeIndex;
   int stringDataLength;
   int copyDataLength;
