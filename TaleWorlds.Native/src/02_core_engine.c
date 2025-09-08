@@ -199778,7 +199778,7 @@ long long * ProcessCharacterEncodingAndSystemStatusValidation(uint64_t Character
   }
   else {
     CalculatedCodePoint = ProcessCharacterEncodingAndStatusValidation(SystemDataRegistry,&pBufferOffset,Utf8SourcePointer,Utf16EndPointer,1);
-    FUN_18005d190(SystemBufferSize,CalculatedCodePoint);
+    ProcessSystemMemoryAllocation(SystemBufferSize,CalculatedCodePoint);
     pBufferOffset = &SystemNullTemplate;
     if (SystemTemporaryValue50 != 0) {
                     // WARNING: Subroutine does not return
@@ -200109,50 +200109,64 @@ LAB_180169e1e:
 
 
 
-long long * FUN_180169f60(uint64_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer
+/**
+ * 处理系统字符代码并进行验证
+ * 
+ * 该函数负责处理字符代码并执行系统验证操作，包括：
+ * - 字符代码的处理和验证
+ * - 系统上下文的管理
+ * - 内存分配和清理
+ * - 字符编码转换
+ * 
+ * @param CharacterCode 输入的字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF8源指针
+ * @return 处理后的系统缓冲区指针
+ */
+long long * ProcessSystemCharacterCodeWithValidation(uint64_t CharacterCode,long long *CharacterCodeSize,uint64_t Utf8SourcePointer
 {
-  uint64_t *CharacterStatusBuffer;
-  uint64_t MemoryAllocationIndex;
-  long long SearchStartIndex;
-  long long **pSystemContextPtr;
-  long long AllocatedMemorySize;
-  long long MemoryBoundaryEnd;
-  unsigned long long SystemChecksum;
-  uint ProcessingStatusFlag;
-  long long *pStringOffset;
-  int ArrayIndex;
-  uint64_t *SystemCharacterStatusBuffer;
-  long long *CharacterCode2;
-  long long *CharacterCode3;
-  unsigned long long Utf16Char4;
-  long long *SystemContextRegister;
-  uint uStackX_20;
-  void *ThreadLocalStorageBuffer;
-  uint8_t *CoreEnginePointerBuffer110;
-  uint ProcessingCounter;
-  unsigned long long SystemFlagA;
-  void *pSystemFlagB;
-  long long lStack_f0;
-  unsigned long long ErrorCode;
-  uint64_t SystemFlagE;
-  uint32_t SystemFlagF;
-  void *pSystemFlagG;
-  long long CoreEngineSignedValueC8;
-  uint CoreEngineValueC0;
-  uint64_t MemoryOffsetValue;
-  long long *plStack_b0;
-  long long *plStack_a8;
-  long long *pCoreEngineSignedValueA0;
-  uint32_t SystemOperationFlag98;
-  void *pSystemOperation90;
-  long long lStack_88;
-  uint CalculationFunctionAddress;
-  unsigned long long StackProcessingUnsignedValue78;
-  unsigned long long StackProcessingVariable70;
-  void *StackPointer;
-  long long lStack_60;
-  uint32_t SystemKeyPointer;
-  uint64_t SystemStackOffset48;
+  uint64_t *CharacterStatusBuffer;                    // 字符状态缓冲区
+  uint64_t MemoryAllocationIndex;                    // 内存分配索引
+  long long SearchStartIndex;                         // 搜索起始索引
+  long long **pSystemContextPtr;                      // 系统上下文指针
+  long long AllocatedMemorySize;                      // 已分配内存大小
+  long long MemoryBoundaryEnd;                        // 内存边界结束
+  unsigned long long SystemChecksum;                  // 系统校验和
+  uint ProcessingStatusFlag;                          // 处理状态标志
+  long long *pStringOffset;                           // 字符串偏移指针
+  int ArrayIndex;                                     // 数组索引
+  uint64_t *SystemCharacterStatusBuffer;              // 系统字符状态缓冲区
+  long long *CharacterCode2;                          // 字符代码2
+  long long *CharacterCode3;                          // 字符代码3
+  unsigned long long Utf16Char4;                      // UTF16字符4
+  long long *SystemContextRegister;                  // 系统上下文寄存器
+  uint uStackX_20;                                    // 栈变量X_20
+  void *ThreadLocalStorageBuffer;                    // 线程本地存储缓冲区
+  uint8_t *CoreEnginePointerBuffer110;               // 核心引擎指针缓冲区110
+  uint ProcessingCounter;                             // 处理计数器
+  unsigned long long SystemFlagA;                     // 系统标志A
+  void *pSystemFlagB;                                // 系统标志B指针
+  long long lStack_f0;                                // 栈变量f0
+  unsigned long long ErrorCode;                       // 错误代码
+  uint64_t SystemFlagE;                               // 系统标志E
+  uint32_t SystemFlagF;                               // 系统标志F
+  void *pSystemFlagG;                                // 系统标志G指针
+  long long CoreEngineSignedValueC8;                  // 核心引擎有符号值C8
+  uint CoreEngineValueC0;                             // 核心引擎值C0
+  uint64_t MemoryOffsetValue;                         // 内存偏移值
+  long long *plStack_b0;                              // 栈指针b0
+  long long *plStack_a8;                              // 栈指针a8
+  long long *pCoreEngineSignedValueA0;                // 核心引擎有符号值A0指针
+  uint32_t SystemOperationFlag98;                     // 系统操作标志98
+  void *pSystemOperation90;                          // 系统操作90指针
+  long long lStack_88;                                // 栈变量88
+  uint CalculationFunctionAddress;                    // 计算函数地址
+  unsigned long long StackProcessingUnsignedValue78;  // 栈处理无符号值78
+  unsigned long long StackProcessingVariable70;      // 栈处理变量70
+  void *StackPointer;                                // 栈指针
+  long long lStack_60;                                // 栈变量60
+  uint32_t SystemKeyPointer;                         // 系统密钥指针
+  uint64_t SystemStackOffset48;                      // 系统栈偏移48
   
   MemoryAllocationIndex = _SystemPrimaryProcessingStatusFlag;
   SystemStackFlag = 0xfffffffffffffffe;
@@ -200249,7 +200263,7 @@ LAB_18016a086:
     plStack_a8 = (long long *)0x0;
     pCoreEngineSignedValueA0 = (long long *)0x0;
     SystemOperationFlag98 = 3;
-    pSystemContextPtr = (long long **)FUN_180161f80(MemoryBlockIndex,&EnginePointerBuffer,&pSystemOperation90);
+    pSystemContextPtr = (long long **)AllocateSystemContextAndInitialize(MemoryBlockIndex,&EnginePointerBuffer,&pSystemOperation90);
     SystemContextRegister = (long long *)0x0;
     pStringOffset = CharacterCode2;
     if (&plStack_b0 != pSystemContextPtr) {
@@ -200318,7 +200332,7 @@ LAB_18016a086:
           CoreEngineProcessSystemEvent(&pSystemFlagB,1);
           *(uint16_t *)((ErrorCode & 0xffffffff) + lStack_f0) = 0x2e;
           ErrorCode = CONCAT44(ErrorCode.HighPart,1);
-          MemoryBlockIndex = FUN_180627ce0(&pSystemFlagB,&EnginePointerBuffer,*SystemContextRegister);
+          MemoryBlockIndex = ExecuteSystemContextValidation(&pSystemFlagB,&EnginePointerBuffer,*SystemContextRegister);
           if (CoreEnginePointerBuffer110 != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
             CoreEngineProcessSystemEvent();
@@ -200406,7 +200420,7 @@ LAB_18016a555:
       CoreEngineProcessSystemEvent();
     }
   }
-  FUN_18016d200(*CharacterCodeSize,SystemBufferSize[1],0);
+  ProcessCharacterEncodingValidation(*CharacterCodeSize,SystemBufferSize[1],0);
   pSystemOperation90 = &SystemNullTemplate;
   if (SystemCurrentCharacterPointer != 0) {
                     // WARNING: Subroutine does not return
@@ -200488,7 +200502,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx6(long long *CharacterCode,uint64_t *Charac
   }
   else {
     Utf16Char = CoreEngineGetSystemContext();
-    FUN_180627d90(Utf16Char,SystemBufferSize,*(uint32_t *)*CharacterCode);
+    ExecuteCharacterEncodingOperation(Utf16Char,SystemBufferSize,*(uint32_t *)*CharacterCode);
   }
   return SystemBufferSize;
 }
@@ -200496,10 +200510,20 @@ ProcessUtf8ToUtf16CharacterEncodingEx6(long long *CharacterCode,uint64_t *Charac
 
 
 
-void FUN_18016a890(long long *CharacterCode)
+/**
+ * 清理字符代码缓冲区
+ * 
+ * 该函数负责清理字符代码缓冲区，包括：
+ * - 释放缓冲区内存
+ * - 重置缓冲区状态
+ * - 清理字符表指针
+ * 
+ * @param CharacterCode 字符代码指针
+ */
+void CleanupCharacterCodeBuffer(long long *CharacterCode)
 {
-  long long PrimaryDataSize;
-  long long BufferStatus;
+  long long PrimaryDataSize;                            // 主要数据大小
+  long long BufferStatus;                               // 缓冲区状态
   
   CharacterTablePointer = CharacterCode[1];
   for (BufferStatus = *CharacterCode; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x28) {

@@ -119119,9 +119119,19 @@ void CleanupSystemResourceA4(void)
 /**
  * @brief 清理系统资源A5
  * 
- * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 该函数负责清理系统资源A5，执行系统清理操作并调用资源特定的清理回调函数。
+ * 此函数主要用于系统关闭时的资源释放工作，确保资源被正确清理。
+ * 
+ * @details 
+ * 函数执行以下操作：
+ * 1. 检查系统资源清理标志A5是否已设置
+ * 2. 如果标志已设置，执行系统清理操作A0
+ * 3. 检查系统资源指针A4是否存在
+ * 4. 如果指针存在，调用位于指针偏移量0x38处的清理回调函数
  * 
  * @note 原始函数名：FUN_180942c50
+ * @warning 如果资源指针A4存在但回调函数调用失败，可能导致资源泄漏
+ * @see ExecuteSystemCleanupA0, CleanupSystemResourceA4, CleanupSystemResourceA6
  */
 #define CleanupSystemResourceA5 FUN_180942c50
 
@@ -119138,9 +119148,18 @@ void CleanupSystemResourceA5(void)
 /**
  * @brief 清理系统资源A6
  * 
- * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 该函数负责清理系统资源A6，释放内存资源并重置资源指针。
+ * 此函数使用内存资源释放函数A1来释放系统资源指针A5指向的内存。
+ * 
+ * @details 
+ * 函数执行以下操作：
+ * 1. 检查系统资源清理标志A6是否已设置
+ * 2. 如果标志已设置，调用内存资源释放函数A1释放资源指针A5
+ * 3. 将资源指针A5重置为0，防止悬空指针
  * 
  * @note 原始函数名：FUN_180942cb0
+ * @warning 释放内存后必须将指针重置为0，否则可能导致悬空指针问题
+ * @see ReleaseMemoryResourceA1, CleanupSystemResourceA5, CleanupSystemResourceA7
  */
 #define CleanupSystemResourceA6 FUN_180942cb0
 
@@ -119155,18 +119174,21 @@ void CleanupSystemResourceA6(void)
 /**
  * @brief 清理系统资源A7
  * 
- * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 该函数负责清理系统资源A7，主要执行线程相关的清理操作。
+ * 当系统资源清理标志A7被设置时，函数会调用两个线程清理函数来确保线程资源被正确释放。
+ * 
+ * @details 
+ * 函数执行以下操作：
+ * 1. 检查系统资源清理标志A7是否已设置
+ * 2. 如果标志已设置，执行线程清理操作A0（全局线程清理）
+ * 3. 执行线程清理操作A1，传入系统资源数据缓冲区A0作为参数
  * 
  * @note 原始函数名：FUN_180942ce0
+ * @warning 线程清理操作必须在系统关闭前正确执行，否则可能导致线程资源泄漏
+ * @see ExecuteThreadCleanupA0, ExecuteThreadCleanupA1, CleanupSystemResourceA6
  */
 #define CleanupSystemResourceA7 FUN_180942ce0
 
-/**
- * @brief 清理系统资源A7
- * 
- * 该函数负责清理系统资源A7，包括线程清理操作
- * 当SystemResourceCleanupFlagA7标志被设置时，执行相应的清理操作
- */
 void CleanupSystemResourceA7(void)
 {
   if (SystemResourceCleanupFlagA7 != '\0') {
