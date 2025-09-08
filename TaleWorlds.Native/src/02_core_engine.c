@@ -215568,12 +215568,12 @@ void ProcessSystemDataValidationAndCharacterEncoding(long long *CharacterCode,lo
   else {
     UnicodeCodePoint = CharacterCode[1] - *CharacterCode >> 3;
     if (UnicodeCodePoint < SystemChecksum) {
-      FUN_18017b5e0(SystemBufferSize,SystemBufferSize + UnicodeCodePoint);
-      BufferStatus = FUN_18017b680(SystemBufferSize + UnicodeCodePoint,Utf8SourcePointer,CharacterCode[1]);
+      ProcessMemoryBlockIndexAndBufferAllocation(SystemBufferSize,SystemBufferSize + UnicodeCodePoint);
+      BufferStatus = (long long)ProcessCharacterCodeTraversalAndMemoryManagement((long long *)(SystemBufferSize + UnicodeCodePoint),(long long *)(SystemBufferSize + UnicodeCodePoint),(long long *)Utf8SourcePointer);
       CharacterCode[1] = BufferStatus;
     }
     else {
-      SystemContextPtr = (long long *)FUN_18017b5e0(SystemBufferSize,Utf8SourcePointer);
+      SystemContextPtr = (long long *)ProcessMemoryBlockIndexAndBufferAllocation(SystemBufferSize,(long long)Utf8SourcePointer);
       CharacterCode = (long long *)CharacterCode[1];
       for (MemoryBlockListHead = SystemContextPtr; MemoryBlockListHead != CharacterCode; MemoryBlockListHead = MemoryBlockListHead + 1) {
         if ((long long *)*MemoryBlockListHead != (long long *)0x0) {
@@ -215685,12 +215685,12 @@ void ProcessCharacterCodeMemoryAllocationAndAddressMaskOperations(long long Char
   
   MemoryAllocationIndex = *(long long *)(CharacterCode + 8) - Utf8SourcePointer >> 3;
   if (MemoryAllocationIndex < CharacterLimit) {
-    FUN_18017b5e0();
+    ProcessMemoryBlockIndexAndBufferAllocation(0,0);
     MemoryAddressMaskPointer = FUN_18017b680(SystemBufferSize + MemoryAllocationIndex * 8);
     *(void *)(PatternIndex + 8) = MemoryAddressMaskPointer;
   }
   else {
-    MemoryBlockIndex = (long long *)FUN_18017b5e0();
+    MemoryBlockIndex = (long long *)ProcessMemoryBlockIndexAndBufferAllocation(0,0);
     CharacterCode = *(long long **)(PatternIndex + 8);
     for (MemoryBlockListHead = MemoryBlockIndex; MemoryBlockListHead != CharacterCode; MemoryBlockListHead = MemoryBlockListHead + 1) {
       if ((long long *)*MemoryBlockListHead != (long long *)0x0) {
@@ -215722,7 +215722,7 @@ void ProcessCharacterCodeMemoryAllocationAndAddressMaskOperations(long long Char
  * @note 原始函数名：FUN_18017b5e0
  */
 #define ProcessMemoryBlockIndexAndBufferAllocation FUN_18017b5e0
-long long * FUN_18017b5e0(long long CharacterCode,long long SystemBufferSize,long long *Utf8SourcePointer
+long long * ProcessMemoryBlockIndexAndBufferAllocation(long long CharacterCode,long long SystemBufferSize,long long *Utf8SourcePointer
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
@@ -215768,7 +215768,7 @@ long long * FUN_18017b5e0(long long CharacterCode,long long SystemBufferSize,lon
  * @note 原始函数名：FUN_18017b680
  */
 #define ProcessCharacterCodeTraversalAndMemoryManagement FUN_18017b680
-long long * FUN_18017b680(long long *CharacterCode,long long *CharacterCodeSize,long long *Utf8SourcePointer
+long long * ProcessCharacterCodeTraversalAndMemoryManagement(long long *CharacterCode,long long *CharacterCodeSize,long long *Utf8SourcePointer
 {
   long long *CharacterCode;
   

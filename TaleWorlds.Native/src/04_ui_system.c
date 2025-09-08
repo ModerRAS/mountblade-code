@@ -20092,20 +20092,20 @@ float CalculateUIGradientInterpolation(void)
   interpolationFactor = *(float *)(transformData + 0xc);
   gradientRangeStart = *(float *)(transformData + 0x10);
   gradientRangeEnd = interpolationFactor;
-  if (transformCoeff4 < unmodifiedXMM8_Da) {
-    transformCoeff3 = -transformCoeff2;
-    transformCoeff2 = -transformCoeff4;
+  if (interpolationFactor < minimumThreshold) {
+    gradientRangeEnd = -gradientRangeStart;
+    gradientRangeStart = -interpolationFactor;
   }
-  transformCoeff4 = (unmodifiedXMM6_Da - transformCoeff3) / (transformCoeff2 - transformCoeff3);
-  if (transformCoeff4 <= 1.0) {
-    if (transformCoeff4 <= unmodifiedXMM8_Da) {
-      transformCoeff4 = unmodifiedXMM8_Da;
+  interpolationFactor = (currentInputValue - gradientRangeEnd) / (gradientRangeStart - gradientRangeEnd);
+  if (interpolationFactor <= 1.0) {
+    if (interpolationFactor <= minimumThreshold) {
+      interpolationFactor = minimumThreshold;
     }
   }
   else {
-    transformCoeff4 = SQRT(transformCoeff4);
+    interpolationFactor = SQRT(interpolationFactor);
   }
-  return (unmodifiedXMM7_Da - baseValue) * transformCoeff4 + baseValue;
+  return (targetOutputValue - targetOutputValue) * interpolationFactor + targetOutputValue;
 }
 
 
@@ -86958,22 +86958,39 @@ uint ProcessUIEventDataCompressionAndValidation(UIHandle uiContext, longlong dat
     ProcessingStatus = ProcessingStatus | eventIterationCount << (EventProcessingStatus & 0x1f);
   }
   else {
-    StackData4 = stackParam00000130;
-    fStack0000000000000038 = (float)stackParam00000068._4_4_ * 3.0517578e-05 * stackParam00000128;
-    pStackData1 = (UIDword *)stackParam00000118;
+    compressedData = eventStatusFlags;
+    scaleFactor = (float)uiComponentHandle._4_4_ * 3.0517578e-05 * compressionFactor;
+    eventDataBuffer = (UIDword *)targetDataPointer;
     ProcessingStatus = FUN_180718bd0();
-    StackData4 = (int)stackParam00000130 >> (bVar6 & 0x1f);
-    fStack0000000000000038 = (float)iStack0000000000000070 * 3.0517578e-05 * baseValue;
-    pStackData1 = (UIDword *)localLong7;
-    localInt5 = FUN_180718bd0();
-    ProcessingStatus = localInt5 << (EventProcessingStatus & 0x1f) | ProcessingStatus;
+    compressedData = (int)eventStatusFlags >> (validationFlag & 0x1f);
+    scaleFactor = (float)eventDataSize * 3.0517578e-05 * baseValue;
+    eventDataBuffer = (UIDword *)tempDataPointer;
+    eventIterationCount = FUN_180718bd0();
+    ProcessingStatus = eventIterationCount << (EventProcessingStatus & 0x1f) | ProcessingStatus;
   }
   return ProcessingStatus;
 }
 
 
 
-uint FUN_180718dab(longlong uiContext)
+/**
+ * @brief 处理UI系统的事件状态更新
+ * 
+ * 该函数负责处理UI系统中的事件状态更新操作，包括：
+ * - 更新UI事件的状态标志
+ * - 处理事件相关的浮点数运算
+ * - 管理事件数据缓冲区
+ * - 计算事件处理的状态码
+ * 
+ * @param uiContext UI上下文指针，包含UI系统的状态信息
+ * 
+ * @return uint 事件状态更新结果码
+ * 
+ * @note 原始函数名：FUN_180718dab
+ * @note 此函数在UI状态管理系统中被广泛使用
+ * @note 支持多种事件状态的处理和更新
+ */
+uint ProcessUIEventStateUpdate(longlong uiContext)
 
 {
   uint result;
