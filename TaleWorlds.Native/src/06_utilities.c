@@ -1057,6 +1057,7 @@
 #define DataOperationTypeIDMC 0x49444d43    // "IDMC" - 身份管理操作
 #define DataOperationTypeTIFE 0x54494645    // "TIFE" - 类型检查操作
 #define DataOperationTypeTIVE 0x54495645    // "TIVE" - 类型验证操作
+#define DataOperationTypeBDMC 0x42444d43    // "BDMC" - 备用身份管理操作
 #define ExceptionHandlerTertiaryOffset168 0x168
 #define ExceptionContextPrimaryOffset 0x60
 #define ExceptionContextSecondaryOffset 0x78
@@ -39379,9 +39380,9 @@ DataBuffer ProcessDataConversionA1(int64_t operationBase,int64_t *dataBuffer)
   ByteFlag ainputDataWord [32];
   ByteFlag SecurityValidationBufferA [32];
   
-  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,0x5453494c,0x49444d43);
+  systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,SecurityValidationBufferA,1,DataOperationTypeSIL,DataOperationTypeIDMC);
   if (((int)systemDataBuffer == 0) &&
-     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,0x42444d43,0), (int)systemDataBuffer == 0)) {
+     (systemDataBuffer = ExecuteDataBufferOperation(dataBuffer,ainputDataWord,0,DataOperationTypeBDMC,0), (int)systemDataBuffer == 0)) {
     if (*(int *)(dataBuffer[1] + SystemDataSecondaryOffset18) != 0) {
       return ResourceInvalidErrorCode;
     }
@@ -40028,15 +40029,15 @@ DataBuffer CleanupDataCacheA1(DataBuffer systemContext,int64_t cacheBufferPtr)
   ByteFlag securityValidationBuffer [32];
   
   if (*(uint *)(cacheBufferPtr + 0x40) < 0x31) {
-    resultBuffer = ProcessDataConversionOperation(systemContext,cacheBufferPtr,0x544e5645);
+    resultBuffer = ProcessDataConversionOperation(systemContext,cacheBufferPtr,DataOperationTypeTNVE);
     if ((int)resultBuffer == 0) {
       resultBuffer = 0;
     }
   }
   else {
-    resultBuffer = ExecuteDataBufferOperation(cacheBufferPtr,securityValidationBuffer,1,0x5453494c,0x544e5645);
+    resultBuffer = ExecuteDataBufferOperation(cacheBufferPtr,securityValidationBuffer,1,DataOperationTypeSIL,DataOperationTypeTNVE);
     if ((int)resultBuffer == 0) {
-      resultBuffer = ProcessDataConversionOperation(systemContext,cacheBufferPtr,0x42545645);
+      resultBuffer = ProcessDataConversionOperation(systemContext,cacheBufferPtr,DataOperationTypeBTVE);
       if ((int)resultBuffer == 0) {
         resultBuffer = ValidateSystemMemoryAccess(systemContext,cacheBufferPtr);
         if ((int)resultBuffer == 0) {
