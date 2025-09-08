@@ -81927,22 +81927,22 @@ void FUN_180712f20(UIHandle uiContext,longlong dataSource,longlong targetBuffer,
 void ProcessUIDataBatch(UIHandle uiContext,longlong dataSource,longlong targetBuffer)
 
 {
-  int uiOperationResult;
-  uint bufferSize;
-  uint semaphoreHandle;
-  UIDword *ptrLocal3;
-  int unmodifiedESI;
-  longlong ContextHandleData;
-  longlong unmodifiedR13;
-  UIDword EventHandleD;
-  ulonglong LoopCounter;
-  UIDword MaxProcessingCount;
-  longlong lStackX_20;
-  UIDword StackData1;
-  UIDword uStack000000000000002c;
-  UIDword StackData2;
-  UIDword uStack0000000000000034;
-  ulonglong stackParam00000038;
+  int processingResult;
+  uint dataChunkSize;
+  uint iterationCount;
+  UIDword *dataBufferPtr;
+  int maxIterations;
+  longlong contextData;
+  longlong baseAddress;
+  UIDword eventHandle;
+  ulonglong loopCounter;
+  UIDword processingLimit;
+  longlong stackOffset;
+  UIDword stackData1;
+  UIDword stackData2;
+  UIDword stackData3;
+  UIDword stackData4;
+  ulonglong renderTaskParam;
   
   semaphoreHandle = (bufferSize >> 2) + 1;
   LoopCounter = (ulonglong)semaphoreHandle;
