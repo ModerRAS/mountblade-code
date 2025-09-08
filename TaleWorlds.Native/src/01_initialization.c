@@ -49490,20 +49490,20 @@ void CleanupSystemResourceManagerArray(long long SystemResourceManager)
   ulong long arraySize;
   ulong long currentIndex;
   
-  arraySize = *(ulong long *)(SystemResourceManager + 0x10);
+  resourceArraySize = *(ulong long *)(ResourceManagerHandle + 0x10);
   arrayIndex = *(long long *)(SystemResourceManager + 8);
   currentIndex = 0;
   if (arraySize != 0) {
     do {
-      resourcePointer = *(void* **)(arrayIndex + currentIndex * 8);
+      resourcePointer = *(void* **)(resourceArrayBaseAddress + resourceIndex * 8);
       if (resourcePointer != (void* *)0x0) {
         *resourcePointer = &SystemMemoryAllocatorPointer;
           SystemCleanupFunction();
       }
-      *(void* *)(arrayIndex + currentIndex * 8) = 0;
-      currentIndex = currentIndex + 1;
-    } while (currentIndex < arraySize);
-    arraySize = *(ulong long *)(SystemResourceManager + 0x10);
+      *(void* **)(resourceArrayBaseAddress + resourceIndex * 8) = (void**)0;
+      resourceIndex = resourceIndex + 1;
+    } while (resourceIndex < resourceArraySize);
+    resourceArraySize = *(ulong long *)(ResourceManagerHandle + 0x10);
   }
   *(void* *)(SystemResourceManager + 0x18) = 0;
   if ((1 < arraySize) && (*(long long *)(SystemResourceManager + 8) != 0)) {
@@ -49521,34 +49521,35 @@ void CleanupSystemResourceManagerArray(long long SystemResourceManager)
  * 该函数负责重置系统资源指针数组，将所有指针重置为系统内存分配器引用，
  * 并执行必要的清理操作。主要用于系统资源的重置和初始化。
  * 
- * @param SystemResourceManager 系统资源指针，指向需要重置的资源数据结构
+ * @param ResourceManagerHandle 系统资源管理器句柄，指向需要重置的资源数据结构
  * 
- 06bd80：ResetSystemResourceManagerArray
+ * @note 原始函数名：ResetSystemResourceManagerArray
+ * @note 地址：06bd80
  */
-void ResetSystemResourceManagerArray(long long SystemResourceManager)
+void ResetSystemResourceManagerArray(long long ResourceManagerHandle)
 
 {
-  long long arrayIndex;
-  void** systemDataTable;
-  ulong long arraySize;
-  ulong long currentIndex;
+  long long resourceArrayBaseAddress;
+  void** resourcePointer;
+  ulong long resourceArraySize;
+  ulong long resourceIndex;
   
-  arraySize = *(ulong long *)(SystemResourceManager + 0x10);
-  arrayIndex = *(long long *)(SystemResourceManager + 8);
-  currentIndex = 0;
-  if (arraySize != 0) {
+  resourceArraySize = *(ulong long *)(ResourceManagerHandle + 0x10);
+  resourceArrayBaseAddress = *(long long *)(ResourceManagerHandle + 8);
+  resourceIndex = 0;
+  if (resourceArraySize != 0) {
     do {
-      resourcePointer = *(void* **)(arrayIndex + currentIndex * 8);
+      resourcePointer = *(void* **)(resourceArrayBaseAddress + resourceIndex * 8);
       if (resourcePointer != (void* *)0x0) {
         *resourcePointer = &SystemMemoryAllocatorPointer;
           SystemCleanupFunction();
       }
-      *(void* *)(arrayIndex + currentIndex * 8) = 0;
-      currentIndex = currentIndex + 1;
-    } while (currentIndex < arraySize);
-    arraySize = *(ulong long *)(SystemResourceManager + 0x10);
+      *(void* **)(resourceArrayBaseAddress + resourceIndex * 8) = (void**)0;
+      resourceIndex = resourceIndex + 1;
+    } while (resourceIndex < resourceArraySize);
+    resourceArraySize = *(ulong long *)(ResourceManagerHandle + 0x10);
   }
-  *(void* )(SystemResourceManager + 0x18) = 0;
+  *(void* **)(ResourceManagerHandle + 0x18) = (void**)0;
   if ((1 < arraySize) && (*(long long *)(SystemResourceManager + 8) != 0)) {
       SystemCleanupFunction();
   }

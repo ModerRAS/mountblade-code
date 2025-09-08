@@ -72065,8 +72065,8 @@ void SetDefaultExceptionHandlerAE0(DataBuffer operationBase,int64_t dataBuffer)
 void ExecuteExceptionHandlerCallbackAF0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + 0x260) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x260))(dataBuffer + 0x250,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset260) != (code *)0x0) {
+    (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset260))(dataBuffer + ExceptionHandlerContextOffset250,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -72089,7 +72089,7 @@ void ExecuteExceptionHandlerCallbackB00(DataBuffer operationBase, int64_t dataBu
 
 {
   if (*(FunctionPointer**)(dataBuffer + ValidationResultOffset0) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + ValidationResultOffset0))(dataBuffer + 0x270,0,0,operationFlagB,SystemCleanupFlagAlternative);
+    (**(FunctionPointer**)(dataBuffer + ValidationResultOffset0))(dataBuffer + ExceptionHandlerContextOffset270,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
@@ -72111,8 +72111,8 @@ void ExecuteExceptionHandlerCallbackB00(DataBuffer operationBase, int64_t dataBu
 void ExecuteExceptionHandlerCallbackB10(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + 0x2a0) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x2a0))(dataBuffer + 0x290,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset2a0) != (code *)0x0) {
+    (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset2a0))(dataBuffer + ExceptionHandlerContextOffset290,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
