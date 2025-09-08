@@ -880,6 +880,17 @@
 // 字符处理和内存分配标签
 #define ProcessCharacterAllocationWithValidation LAB_180179a0a     // 处理带验证的字符分配
 
+// 新增的字符编码处理函数
+#define ProcessCharacterEncodingWithMultipleParameters FUN_180170380 // 处理带多参数的字符编码
+#define ProcessCharacterEncodingWithMemoryBoundaries FUN_180170700  // 处理带内存边界的字符编码
+#define ProcessMemoryAllocationWithCharacterData FUN_18005d190     // 处理带字符数据的内存分配
+#define ProcessCharacterCodeWithStatusBuffer FUN_180174340         // 处理带状态缓冲区的字符代码
+#define ProcessCharacterStatusWithValidation FUN_180174150          // 处理带验证的字符状态
+#define ProcessCharacterLoopWithMultipleParameters FUN_1801727d0   // 处理带多参数的字符循环
+#define ProcessCharacterConversionWithUtf16 FUN_1801720a0         // 处理带UTF16的字符转换
+#define ProcessSystemMemoryManager FUN_180093af0                   // 处理系统内存管理器
+#define ProcessCharacterDataWithCodePointer FUN_180173470          // 处理带代码指针的字符数据
+
 /**
  * @brief 处理系统内存管理
  * 
@@ -207360,7 +207371,7 @@ void ValidateSystemCharacterData(long long CharacterCode, uint64_t SystemBufferS
             ChangeDisplaySettingsA(0,0);
             UnicodeCharacterCode = ProcessSystemMemoryContext(CoreEngineMemoryContext,0);
             uStack_8b8 = uStack_8b8 & 0xffffff00;
-            FUN_180055000(UnicodeCharacterCode,(int)*(float *)(SystemMemoryManager + 0x17ec),
+            ProcessUnicodeCharacter(UnicodeCharacterCode,(int)*(float *)(SystemMemoryManager + 0x17ec),
                                 (int)*(float *)(SystemMemoryManager + 0x17f0));
             *(uint8_t *)(CharacterCode + 0x3c) = 1;
           }
