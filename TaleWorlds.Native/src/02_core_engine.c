@@ -63254,12 +63254,12 @@ MemoryHandlerLAB1800872f7:
             if (HighByte != OperationResult) break;
             ValidationBytePointer = ValidationBytePointer + 1;
           } while (OperationResult != 0);
-          if ((int)(HighByte - OperationResult) < 1) goto OperationResultCheckLAB18008733a;
+          if ((int)(HighByte - OperationResult) < 1) goto BufferValidationComplete;
         }
-        goto LAB_180087337;
+        goto BufferValidationStart;
       }
     }
-StatusHandlerLAB18008733a:
+StatusHandlerComplete:
     SystemTemplatePointer = &SystemNullTemplate;
     if (pbStack_48 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
@@ -63321,7 +63321,7 @@ ConfigHandlerLAB180087418:
   else {
     BufferStatus = *(long long *)(*CoreEngineSystemContext + 0x888);
     if ((unsigned long long)(*(long long *)(*CoreEngineSystemContext + 0x890) - BufferStatus >> 5) <=
-        (unsigned long long)(long long)ContextHandle) goto LAB_180087418;
+        (unsigned long long)(long long)ContextHandle) goto ContextHandleValidationComplete;
     BufferStatus = (long long)ContextHandle * 0x20 + BufferStatus;
   }
   CoreEngineExecuteSystemEvent(&BufferOffset,BufferStatus);

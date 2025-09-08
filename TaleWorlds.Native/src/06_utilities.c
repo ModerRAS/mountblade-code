@@ -247,6 +247,9 @@
 #define StackDataLowWordOffset6F 0x6f
 
 // 大型数据缓冲区偏移量常量
+#define DataBufferHashEntrySize 0x10
+#define DataBufferPointerStep 0x4
+#define MinimumAllocationSize 4
 #define DataBufferValidationOffset14C 0x14c
 #define DataBufferStatusOffset254 0x254
 #define DataBufferConfigOffset260 0x260
@@ -23576,13 +23579,13 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searc
           return operationResult;
         }
       }
-      dataFlagsPointer = (DataBuffer *)((int64_t)(int)operationBase[3] * 0x10 + operationBase[2]);
+      dataFlagsPointer = (DataBuffer *)((int64_t)(int)operationBase[3] * DataBufferHashEntrySize + operationBase[2]);
       *dataFlagsPointer = CONCAT44(SystemCleanupFlag,systemDataBuffer);
       dataFlagsPointer[1] = systemMemoryBase;
       *(int *)(operationBase + 3) = (int)operationBase[3] + 1;
     }
     else {
-      hashChainPointer = (uint *)((int64_t)operationResult * 0x10 + operationBase[2]);
+      hashChainPointer = (uint *)((int64_t)operationResult * DataBufferHashEntrySize + operationBase[2]);
       *(uint *)(operationBase + 4) = hashChainPointer[1];
       hashChainPointer[1] = SystemCleanupFlag;
       *hashChainPointer = *dataTableBuffer;
@@ -24691,9 +24694,9 @@ DataBuffer ValidateAndProcessDataOperation(int64_t operationContext,DataBuffer i
 
 // 原始函数名：FUN_180896c60 - 数据缓冲区处理函数A1
 // 功能：处理复杂的数据缓冲区，包括多种数据类型的验证和转换
-#define ProcessComplexDataBufferA1 FUN_180896c60
+#define ProcessComplexDataBufferWithValidation FUN_180896c60
 
-void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, uint operationFlags, char validationType)
+void ProcessComplexDataBufferWithValidation(DataBuffer systemHandle, int64_t dataContext, uint operationFlags, char validationType)
 
 {
   int64_t exceptionHandlerContext;
@@ -131230,62 +131233,160 @@ uint8_t SystemExceptionHandlerStateTable;
 // 功能：调用异常处理器，处理异常上下文
 #define InvokeExceptionHandlerAtOffset1418 Unwind_18090dfa0
 
-// 原始函数名：Unwind_18090dfc0 - 异常处理器调用函数DFC0
-// 功能：调用异常处理器，处理异常上下文
+/**
+ * @brief 异常处理器调用函数（偏移量1430）
+ * 
+ * 调用异常处理器，处理异常上下文，确保异常处理的正确执行。
+ * 该函数负责调用异常处理器，处理异常上下文的相关操作。
+ * 
+ * @note 原始函数名：Unwind_18090dfc0
+ * @warning 异常处理器调用必须在异常处理上下文中进行
+ */
 #define InvokeExceptionHandlerAtOffset1430 Unwind_18090dfc0
 #define ValidateExceptionHandlerC240 Unwind_18090c240
 
-// 原始函数名：Unwind_18090c260 - 异常处理器设置函数C260
-// 功能：设置异常处理器，配置异常处理参数和标志
-#define SetupExceptionHandlerC260 Unwind_18090c260
+/**
+ * @brief 异常处理器设置函数
+ * 
+ * 设置异常处理器，配置异常处理参数和标志，确保异常处理的正确设置。
+ * 该函数负责设置异常处理器，配置异常处理的参数和标志。
+ * 
+ * @note 原始函数名：Unwind_18090c260
+ * @warning 异常处理器设置必须在异常处理上下文中进行
+ */
+#define SetupExceptionHandlerParameters Unwind_18090c260
 
-// 原始函数名：Unwind_18090c270 - 异常上下文初始化函数C270
-// 功能：初始化异常上下文，设置异常处理环境
-#define InitializeExceptionContextC270 Unwind_18090c270
+/**
+ * @brief 异常上下文初始化函数
+ * 
+ * 初始化异常上下文，设置异常处理环境，确保异常处理的正确初始化。
+ * 该函数负责初始化异常处理的上下文，设置异常处理的环境。
+ * 
+ * @note 原始函数名：Unwind_18090c270
+ * @warning 异常上下文初始化必须在异常处理上下文中进行
+ */
+#define InitializeExceptionContextEnvironment Unwind_18090c270
 
-// 原始函数名：Unwind_18090c280 - 异常处理器执行函数C280
-// 功能：执行异常处理器，处理异常事件和错误
-#define ExecuteExceptionHandlerC280 Unwind_18090c280
+/**
+ * @brief 异常处理器执行函数
+ * 
+ * 执行异常处理器，处理异常事件和错误，确保异常的正确处理。
+ * 该函数负责执行异常处理器，处理异常事件和错误情况。
+ * 
+ * @note 原始函数名：Unwind_18090c280
+ * @warning 异常处理器执行必须在异常处理上下文中进行
+ */
+#define ExecuteExceptionHandlerForEvents Unwind_18090c280
 
-// 原始函数名：Unwind_18090c290 - 异常处理配置函数C290
-// 功能：配置异常处理参数，设置异常处理选项
-#define ConfigureExceptionProcessingC290 Unwind_18090c290
+/**
+ * @brief 异常处理配置函数
+ * 
+ * 配置异常处理参数，设置异常处理选项，确保异常处理的正确配置。
+ * 该函数负责配置异常处理的参数，设置异常处理的选项。
+ * 
+ * @note 原始函数名：Unwind_18090c290
+ * @warning 异常处理配置必须在异常处理上下文中进行
+ */
+#define ConfigureExceptionProcessingParameters Unwind_18090c290
 
-// 原始函数名：Unwind_18090c2a0 - 异常处理管理函数C2A0
-// 功能：管理异常处理流程，协调异常处理操作
-#define ManageExceptionProcessingC2A0 Unwind_18090c2a0
+/**
+ * @brief 异常处理管理函数
+ * 
+ * 管理异常处理流程，协调异常处理操作，确保异常处理的正确执行。
+ * 该函数负责协调异常处理的各个步骤，管理异常处理的流程。
+ * 
+ * @note 原始函数名：Unwind_18090c2a0
+ * @warning 异常处理管理必须在异常处理上下文中进行
+ */
+#define ManageExceptionProcessingFlow Unwind_18090c2a0
 
-// 原始函数名：Unwind_18090c2b0 - 异常状态检查函数C2B0
-// 功能：检查异常状态，验证异常处理的有效性
-#define CheckExceptionStateC2B0 Unwind_18090c2b0
+/**
+ * @brief 异常状态验证函数
+ * 
+ * 验证异常处理状态的有效性，确保异常处理机制正常运行。
+ * 该函数负责检查异常状态的完整性，验证异常处理的有效性。
+ * 
+ * @note 原始函数名：Unwind_18090c2b0
+ * @warning 异常状态验证必须在异常处理上下文中进行
+ */
+#define ValidateExceptionState Unwind_18090c2b0
 
-// 原始函数名：Unwind_18090c2c0 - 异常数据验证函数C2C0
-// 功能：验证异常数据，检查异常处理的完整性
-#define ValidateExceptionDataC2C0 Unwind_18090c2c0
+/**
+ * @brief 异常数据完整性验证函数
+ * 
+ * 验证异常数据的完整性，确保异常处理数据的准确性和一致性。
+ * 该函数负责检查异常数据的结构完整性，验证数据的有效性。
+ * 
+ * @note 原始函数名：Unwind_18090c2c0
+ * @warning 异常数据验证必须在异常处理上下文中进行
+ */
+#define ValidateExceptionDataIntegrity Unwind_18090c2c0
 
-// 原始函数名：Unwind_18090c2d0 - 异常资源管理函数C2D0
-// 功能：管理异常资源，分配和释放异常处理资源
-#define ManageExceptionResourcesC2D0 Unwind_18090c2d0
+/**
+ * @brief 异常资源管理函数
+ * 
+ * 管理异常处理过程中的资源分配和释放，确保资源的有效利用。
+ * 该函数负责分配和释放异常处理资源，管理资源生命周期。
+ * 
+ * @note 原始函数名：Unwind_18090c2d0
+ * @warning 资源管理操作必须在异常处理上下文中进行
+ */
+#define ManageExceptionProcessingResources Unwind_18090c2d0
 
-// 原始函数名：Unwind_18090c2e0 - 异常处理器清理函数C2E0
-// 功能：清理异常处理器，重置异常处理状态
-#define CleanupExceptionHandlerC2E0 Unwind_18090c2e0
+/**
+ * @brief 异常处理器清理函数
+ * 
+ * 清理异常处理器，重置异常处理状态，确保系统能够正常恢复。
+ * 该函数负责清理异常处理器的状态，重置处理器的状态标志。
+ * 
+ * @note 原始函数名：Unwind_18090c2e0
+ * @warning 异常处理器清理必须在异常处理上下文中进行
+ */
+#define CleanupExceptionHandlerState Unwind_18090c2e0
 
-// 原始函数名：Unwind_18090c2f0 - 异常上下文清理函数C2F0
-// 功能：清理异常上下文，释放异常处理资源
-#define CleanupExceptionContextC2F0 Unwind_18090c2f0
+/**
+ * @brief 异常上下文清理函数
+ * 
+ * 清理异常处理上下文，释放异常处理资源，确保系统能够正常恢复。
+ * 该函数负责清理异常处理的上下文信息，释放相关的系统资源。
+ * 
+ * @note 原始函数名：Unwind_18090c2f0
+ * @warning 异常上下文清理必须在异常处理上下文中进行
+ */
+#define CleanupExceptionContextResources Unwind_18090c2f0
 
-// 原始函数名：Unwind_18090c300 - 异常处理重置函数C300
-// 功能：重置异常处理状态，清理异常处理上下文
-#define ResetExceptionProcessingC300 Unwind_18090c300
+/**
+ * @brief 异常处理重置函数
+ * 
+ * 重置异常处理状态，清理异常处理上下文，确保系统能够正常恢复。
+ * 该函数负责重置异常处理的状态标志，清理相关的上下文信息。
+ * 
+ * @note 原始函数名：Unwind_18090c300
+ * @warning 异常处理重置必须在异常处理上下文中进行
+ */
+#define ResetExceptionProcessingState Unwind_18090c300
 
-// 原始函数名：Unwind_18090c310 - 异常处理器终止函数C310
-// 功能：终止异常处理器，完成异常处理流程
-#define TerminateExceptionHandlerC310 Unwind_18090c310
+/**
+ * @brief 异常处理器终止函数
+ * 
+ * 终止异常处理器，完成异常处理流程，确保系统能够正常恢复。
+ * 该函数负责终止异常处理器的执行，完成异常处理流程。
+ * 
+ * @note 原始函数名：Unwind_18090c310
+ * @warning 异常处理器终止必须在异常处理上下文中进行
+ */
+#define TerminateExceptionHandlerExecution Unwind_18090c310
 
-// 原始函数名：Unwind_18090c320 - 异常处理完成函数C320
-// 功能：完成异常处理，清理异常处理资源
-#define FinalizeExceptionProcessingC320 Unwind_18090c320
+/**
+ * @brief 异常处理完成函数
+ * 
+ * 完成异常处理流程，清理异常处理资源，确保系统能够正常恢复。
+ * 该函数负责完成异常处理的最后步骤，清理相关的系统资源。
+ * 
+ * @note 原始函数名：Unwind_18090c320
+ * @warning 异常处理完成必须在异常处理上下文中进行
+ */
+#define FinalizeExceptionProcessingComplete Unwind_18090c320
 
 // 内存资源管理相关偏移量常量
 #define MemoryResourcePointerOffset1D0 0x1d0
@@ -131294,7 +131395,7 @@ uint8_t SystemExceptionHandlerStateTable;
 #define MemoryPointerTableOffset70 0x70
 
 /**
- * @brief 内存资源释放函数D2B0
+ * @brief 内存资源释放函数（偏移量D2B0）
  * 
  * 释放系统中的内存资源，管理资源引用计数，处理异常情况。
  * 该函数负责：
@@ -131305,12 +131406,12 @@ uint8_t SystemExceptionHandlerStateTable;
  * 
  * @note 原始函数名：Unwind_18090d2b0
  * @warning 资源释放操作必须在适当的上下文中进行
- * @see ReleaseMemoryResourceD2C0, ReleaseMemoryResourceD2D0
+ * @see ReleaseMemoryResourceAtOffsetD2C0, ReleaseMemoryResourceAtOffsetD2D0
  */
-#define ReleaseMemoryResourceD2B0 Unwind_18090d2b0
+#define ReleaseMemoryResourceAtOffsetD2B0 Unwind_18090d2b0
 
 /**
- * @brief 内存资源释放函数D2C0
+ * @brief 内存资源释放函数（偏移量D2C0）
  * 
  * 释放系统中的内存资源，管理资源引用计数，处理异常情况。
  * 该函数负责：
@@ -131321,12 +131422,12 @@ uint8_t SystemExceptionHandlerStateTable;
  * 
  * @note 原始函数名：Unwind_18090d2c0
  * @warning 资源释放操作必须在适当的上下文中进行
- * @see ReleaseMemoryResourceD2B0, ReleaseMemoryResourceD2D0
+ * @see ReleaseMemoryResourceAtOffsetD2B0, ReleaseMemoryResourceAtOffsetD2D0
  */
-#define ReleaseMemoryResourceD2C0 Unwind_18090d2c0
+#define ReleaseMemoryResourceAtOffsetD2C0 Unwind_18090d2c0
 
 /**
- * @brief 内存资源释放函数D2D0
+ * @brief 内存资源释放函数（偏移量D2D0）
  * 
  * 释放系统中的内存资源，管理资源引用计数，处理异常情况。
  * 该函数负责：
@@ -131337,12 +131438,12 @@ uint8_t SystemExceptionHandlerStateTable;
  * 
  * @note 原始函数名：Unwind_18090d2d0
  * @warning 资源释放操作必须在适当的上下文中进行
- * @see ReleaseMemoryResourceD2B0, ReleaseMemoryResourceD2C0
+ * @see ReleaseMemoryResourceAtOffsetD2B0, ReleaseMemoryResourceAtOffsetD2C0
  */
-#define ReleaseMemoryResourceD2D0 Unwind_18090d2d0
+#define ReleaseMemoryResourceAtOffsetD2D0 Unwind_18090d2d0
 
 /**
- * @brief 内存资源释放函数D2E0
+ * @brief 内存资源释放函数（偏移量D2E0）
  * 
  * 释放系统中的内存资源，管理资源引用计数，处理异常情况。
  * 该函数负责：
@@ -131353,6 +131454,6 @@ uint8_t SystemExceptionHandlerStateTable;
  * 
  * @note 原始函数名：Unwind_18090d2e0
  * @warning 资源释放操作必须在适当的上下文中进行
- * @see ReleaseMemoryResourceD2B0, ReleaseMemoryResourceD2C0
+ * @see ReleaseMemoryResourceAtOffsetD2B0, ReleaseMemoryResourceAtOffsetD2C0
  */
-#define ReleaseMemoryResourceD2E0 Unwind_18090d2e0
+#define ReleaseMemoryResourceAtOffsetD2E0 Unwind_18090d2e0

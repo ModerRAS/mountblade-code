@@ -6195,24 +6195,53 @@ void ProcessUIParameters(UIHandle uiContext, UIHandle dataSource, UIHandle targe
  * 
  * @note 原始函数名: SetUIState
  */
+/**
+ * @brief 设置UI系统状态
+ * 
+ * 根据给定的UI上下文设置UI系统的状态。该函数负责管理UI系统的状态转换，
+ * 包括处理线程本地存储、资源管理和渲染请求。
+ * 
+ * @param uiContext UI上下文句柄，用于标识特定的UI实例或状态
+ * 
+ * 功能说明：
+ * - 检查线程本地存储标志，避免重复处理
+ * - 获取UI资源管理器并执行格式化操作
+ * - 处理UI渲染请求
+ * - 执行UI渲染任务
+ * 
+ * @note 此函数涉及线程本地存储操作，确保在多线程环境下的安全性
+ * @warning 函数中的ExecuteUIRenderTask调用不会返回，需确保调用上下文正确
+ * @see GetUIResourceManager, ProcessUIRenderRequest, ExecuteUIRenderTask
+ */
 void SetUIState(longlong uiContext)
 
 {
-  longlong registerAX;
-  ulonglong *processingResult;
-  char *threadLocalStorageFlag;
-  ulonglong uiStackParam;
+  longlong threadLocalStorageBase;
+  ulonglong *resourceManagerHandle;
+  char *threadProcessingFlag;
+  ulonglong renderTaskParameter;
   
-  threadLocalStorageFlag = (char *)(*(longlong *)(registerAX + uiContext * 8) + 8);
-  if (*threadLocalStorageFlag == '\0') {
-    *threadLocalStorageFlag = '\x01';
-    processingResult = (ulonglong *)GetUIResourceManager();
-    __stdio_common_vsprintf(*processingResult | 2,UIStackRenderContext,0x1ff);
-    *threadLocalStorageFlag = '\0';
+  // 获取线程本地存储标志指针
+  threadProcessingFlag = (char *)(*(longlong *)(threadLocalStorageBase + uiContext * 8) + 8);
+  
+  // 检查是否正在处理中，避免重复执行
+  if (*threadProcessingFlag == '\0') {
+    *threadProcessingFlag = '\x01';  // 设置处理标志
+    
+    // 获取UI资源管理器句柄
+    resourceManagerHandle = (ulonglong *)GetUIResourceManager();
+    
+    // 执行格式化操作，准备渲染上下文
+    __stdio_common_vsprintf(*resourceManagerHandle | 2, UIStackRenderContext, 0x1ff);
+    
+    *threadProcessingFlag = '\0';  // 清除处理标志
+    
+    // 处理UI渲染请求
     ProcessUIRenderRequest();
   }
-                     WARNING: Subroutine does not return
-  ExecuteUIRenderTask(uiStackParam ^ (ulonglong)UIStackBufferBase);
+  
+  // 执行UI渲染任务（此调用不会返回）
+  ExecuteUIRenderTask(renderTaskParameter ^ (ulonglong)UIStackBufferBase);
 }
 
 
@@ -6250,13 +6279,34 @@ void ProcessUIInitialization(void)
  * 
   该函数通过SubmitUIRenderJob提交渲染任务到渲染队列
   原始函数名: RenderUIComponent
- void RenderUIComponent(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+ /**
+ * @brief 渲染UI组件
+ * 
+ * 将UI组件渲染到指定的目标缓冲区。该函数负责将UI组件的数据源信息
+ * 传递给渲染系统，并在目标缓冲区中生成最终的渲染结果。
+ * 
+ * @param uiContext UI上下文，包含渲染所需的UI系统状态信息
+ * @param dataSource 数据源，包含UI组件的渲染数据
+ * @param targetBuffer 目标缓冲区，用于存储渲染结果
+ * @param bufferSize 缓冲区大小，指定渲染结果的最大尺寸
+ * 
+ * @return void 无返回值
+ * 
+ * @note 该函数通过SubmitUIRenderJob提交渲染任务到渲染队列
+ * @note 原始函数名: RenderUIComponent
+ * @see SubmitUIRenderJob
+ */
+void RenderUIComponent(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, UIHandle bufferSize)
 
 {
-  UIHandle bufferSizeParameter;
+  UIHandle renderBufferSize;
   
-  bufferSizeParameter = bufferSize;
-  SubmitUIRenderJob(uiContext,dataSource,0,targetBuffer,&bufferSizeParameter);
+  // 设置渲染缓冲区大小参数
+  renderBufferSize = bufferSize;
+  
+  // 提交UI渲染作业到渲染队列
+  SubmitUIRenderJob(uiContext, dataSource, 0, targetBuffer, &renderBufferSize);
+  
   return;
 }
 
@@ -6277,22 +6327,46 @@ void ProcessUIInitialization(void)
   该函数会自动检查和初始化UI渲染器
   如果渲染器实例可用，会通过SubmitUIRenderJob提交更新任务
   原始函数名: UpdateUIComponent
- void UpdateUIComponent(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuffer,UIHandle bufferSize)
+ /**
+ * @brief 更新UI组件
+ * 
+ * 更新UI组件的状态和内容。该函数会检查渲染器是否已初始化，
+ * 如果未初始化则先初始化渲染器，然后提交更新任务到渲染队列。
+ * 
+ * @param uiContext UI上下文，包含更新所需的UI系统状态信息
+ * @param dataSource 数据源，包含UI组件的更新数据
+ * @param targetBuffer 目标缓冲区，用于存储更新结果
+ * @param bufferSize 缓冲区大小，指定更新结果的最大尺寸
+ * 
+ * @return void 无返回值
+ * 
+ * @note 该函数会自动检查和初始化UI渲染器
+ * @note 如果渲染器实例可用，会通过SubmitUIRenderJob提交更新任务
+ * @note 原始函数名: UpdateUIComponent
+ * @see InitializeUIRenderer, SubmitUIRenderJob
+ */
+void UpdateUIComponent(UIHandle uiContext, UIHandle dataSource, UIHandle targetBuffer, UIHandle bufferSize)
 
 {
-  UIHandle dataSourceParameter;
-  UIHandle bufferValidation;
-  UIHandle bufferSizeParameter;
+  UIHandle renderDataSource;
+  UIHandle targetRenderBuffer;
+  UIHandle renderBufferSize;
   
-  dataSourceParameter = dataSource;
-  bufferValidation = targetBuffer;
-  bufferSizeParameter = bufferSize;
+  // 设置渲染参数
+  renderDataSource = dataSource;
+  targetRenderBuffer = targetBuffer;
+  renderBufferSize = bufferSize;
+  
+  // 检查渲染器是否已初始化，如未初始化则进行初始化
   if (RendererInitialized == 0) {
     InitializeUIRenderer(&UIRendererInstance);
   }
+  
+  // 如果渲染器实例可用，提交更新任务到渲染队列
   if (RendererInstance != 0) {
-    SubmitUIRenderJob(0,0,&UIRenderJobQueue,uiContext,&dataSourceParameter);
+    SubmitUIRenderJob(0, 0, &UIRenderJobQueue, uiContext, &renderDataSource);
   }
+  
   return;
 }
 
@@ -17403,7 +17477,7 @@ void HandleUICollisionDetection(longlong uiContext, longlong dataSource, longlon
       stackLong140 = stackLong140 + -1;
     } while (stackLong140 != 0);
     stackLong140 = 0;
-    param_6 = pcStack_180;
+    contextFlag = contextPointer;
   }
   allocatedMemory2 = stackLong190;
   allocatedMemory7 = -0x1334;
