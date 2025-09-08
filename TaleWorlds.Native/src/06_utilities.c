@@ -100000,17 +100000,31 @@ void Unwind_18090e9b0(void)
 
 
 
-void Unwind_18090e9c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 内存资源批量清理和异常处理函数
+ * 
+ * 该函数负责遍历内存资源指针列表，对每个资源调用清理函数，
+ * 并在清理完成后检查是否需要终止系统。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含资源指针信息
+ * @param operationFlagA 操作标志A，传递给资源清理函数
+ * @param operationFlagB 操作标志B，传递给资源清理函数
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090e9c0
+ * @warning 确保传入的dataBuffer参数有效，否则可能导致内存访问错误
+ */
+void CleanupMemoryResourcesBatch(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
-  DataBuffer *exceptionDataBuffer;
-  DataBuffer *memoryResourcePointer;
-  DataBuffer validationStatus;
+  DataBuffer *resourceCleanupEndPointer;
+  DataBuffer *currentResourcePointer;
+  DataBuffer cleanupValidationStatus;
   
-  validationStatus = SystemCleanupFlagAlternative;
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x40);
-  for (memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x38); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + 4) {
-    (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,0,operationFlagA,operationFlagB,validationStatus);
+  cleanupValidationStatus = SystemCleanupFlagAlternative;
+  resourceCleanupEndPointer = *(DataBuffer **)(dataBuffer + 0x40);
+  for (currentResourcePointer = *(DataBuffer **)(dataBuffer + 0x38); currentResourcePointer != resourceCleanupEndPointer; currentResourcePointer = currentResourcePointer + 4) {
+    (**(FunctionPointer**)*currentResourcePointer)(currentResourcePointer, 0, operationFlagA, operationFlagB, cleanupValidationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x38) == 0) {
     return;
@@ -100020,17 +100034,31 @@ void Unwind_18090e9c0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090e9d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
-
+/**
+ * @brief 内存资源批量清理和异常处理函数（变体B）
+ * 
+ * 该函数负责遍历内存资源指针列表，对每个资源调用清理函数，
+ * 并在清理完成后检查是否需要终止系统。这是第一个清理函数的变体版本。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针，包含资源指针信息
+ * @param operationFlagA 操作标志A，传递给资源清理函数
+ * @param operationFlagB 操作标志B，传递给资源清理函数
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090e9d0
+ * @warning 确保传入的dataBuffer参数有效，否则可能导致内存访问错误
+ */
+void CleanupMemoryResourcesBatchVariantB(DataBuffer operationBase, int64_t dataBuffer, DataBuffer operationFlagA, DataBuffer operationFlagB)
 {
-  DataBuffer *exceptionDataBuffer;
-  DataBuffer *memoryResourcePointer;
-  DataBuffer validationStatus;
+  DataBuffer *resourceCleanupEndPointer;
+  DataBuffer *currentResourcePointer;
+  DataBuffer cleanupValidationStatus;
   
-  validationStatus = SystemCleanupFlagAlternative;
-  exceptionDataBuffer = *(DataBuffer **)(dataBuffer + 0x40);
-  for (memoryResourcePointer = *(DataBuffer **)(dataBuffer + 0x38); memoryResourcePointer != exceptionDataBuffer; memoryResourcePointer = memoryResourcePointer + 4) {
-    (**(FunctionPointer**)*memoryResourcePointer)(memoryResourcePointer,0,operationFlagA,operationFlagB,validationStatus);
+  cleanupValidationStatus = SystemCleanupFlagAlternative;
+  resourceCleanupEndPointer = *(DataBuffer **)(dataBuffer + 0x40);
+  for (currentResourcePointer = *(DataBuffer **)(dataBuffer + 0x38); currentResourcePointer != resourceCleanupEndPointer; currentResourcePointer = currentResourcePointer + 4) {
+    (**(FunctionPointer**)*currentResourcePointer)(currentResourcePointer, 0, operationFlagA, operationFlagB, cleanupValidationStatus);
   }
   if (*(int64_t *)(dataBuffer + 0x38) == 0) {
     return;
@@ -100040,8 +100068,20 @@ void Unwind_18090e9d0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
-void Unwind_18090e9e0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 清理资源处理器标志位2的异常处理函数
+ * 
+ * 该函数负责检查数据缓冲区的标志位2（值为2），如果该位被设置，
+ * 则清除该位并调用资源清理处理器处理偏移量200处的资源。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090e9e0
+ * @warning 确保传入的dataBuffer参数有效，否则可能导致内存访问错误
+ */
+void CleanupResourceFlag2Handler(DataBuffer operationBase, int64_t dataBuffer)
 {
   if ((*(uint *)(dataBuffer + 0x30) & 2) != 0) {
     *(uint *)(dataBuffer + 0x30) = *(uint *)(dataBuffer + 0x30) & 0xfffffffd;
