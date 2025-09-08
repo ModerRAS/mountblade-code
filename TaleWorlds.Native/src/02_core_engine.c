@@ -893,6 +893,16 @@
 #define ProcessCharacterConversionWithUtf16 FUN_1801720a0         // 处理带UTF16的字符转换
 #define ProcessSystemMemoryManager FUN_180093af0                   // 处理系统内存管理器
 #define ProcessCharacterDataWithCodePointer FUN_180173470          // 处理带代码指针的字符数据
+#define ExecuteSystemInitialization FUN_180171610                  // 执行系统初始化
+#define ProcessCharacterTableWithOffset FUN_1801712c0              // 处理带偏移量的字符表
+#define ProcessMemoryBlockWithCharacterTable FUN_18006d0b0          // 处理带字符表的内存块
+#define ProcessMemoryBlockWithSystemValue FUN_18006d6c0            // 处理带系统值的内存块
+#define ProcessSystemCharacterEncodingWithBufferSize FUN_180175700 // 处理带缓冲区大小的系统字符编码
+#define ProcessSystemDataWithRemainingSpace FUN_180220810          // 处理带剩余空间的系统数据
+#define InitializeSystemDataRegistry FUN_18023a940                  // 初始化系统数据注册表
+#define ProcessSystemMemoryWithValidation FUN_1800b2450             // 处理带验证的系统内存
+#define ProcessSystemMemoryValidation FUN_180626ee0                // 处理系统内存验证
+#define ProcessCharacterCodeWithUtf8Conversion FUN_180179f00       // 处理带UTF8转换的字符代码
 
 /**
  * @brief 处理系统内存管理
@@ -205172,7 +205182,7 @@ LAB_18017023b:
 
 
 
-70380(long long CharacterCode,unsigned long long SystemBufferSize,unsigned long long Utf8SourcePointer,uint8_t Utf16EndPointervoid FUN_180170380(long long CharacterCode,unsigned long long SystemBufferSize,unsigned long long Utf8SourcePointer,uint8_t Utf16EndPointer
+void FUN_180170380(long long CharacterCode,unsigned long long SystemBufferSize,unsigned long long Utf8SourcePointer,uint8_t Utf16EndPointer
 {
   long long *CharacterCode;
   byte SystemHighByte;
@@ -205609,7 +205619,7 @@ void ProcessCharacterEncodingConversionAndValidation(uint64_t CharacterCode,uint
       *(void *)(MemoryAllocationIndex + 0x68) = CalculationFunctionAddress;
     }
     else {
-      FUN_180174150(CharacterStatusBuffer,&pErrorCode);
+      ProcessCharacterStatusWithValidation(CharacterStatusBuffer,&pErrorCode);
     }
     ProcessingCounter = &pErrorCode;
     pErrorCode = &ThreadLocalStorageTemplate;
@@ -205648,7 +205658,7 @@ void ProcessWindowMessageAndCharacterTableOperations(uint64_t CharacterCode,uint
     DefWindowProcW(CharacterCode,SystemBufferSize,Utf8SourcePointer,Utf16EndPointer);
   }
   else {
-    FUN_1801727d0(LoopCounter,CharacterCode,SystemBufferSize,Utf8SourcePointer,Utf16EndPointer);
+    ProcessCharacterLoopWithMultipleParameters(LoopCounter,CharacterCode,SystemBufferSize,Utf8SourcePointer,Utf16EndPointer);
   }
   return;
 }
