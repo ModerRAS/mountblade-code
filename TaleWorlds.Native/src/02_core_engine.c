@@ -718,6 +718,9 @@
 #define ProcessSystemCharacterConversion FUN_1806281a0            // 处理系统字符转换
 #define ProcessSystemCharacterDataValidation FUN_18005d190        // 处理系统字符数据验证
 #define ProcessSystemCharacterBufferOperation FUN_18015b810      // 处理系统字符缓冲区操作
+#define ProcessSystemCharacterEncodingWithParameters FUN_1801597a0 // 处理带参数的系统字符编码
+#define ConfigureSystemCharacterDataStructure FUN_18015acc0      // 配置系统字符数据结构
+#define ProcessSystemMemoryPoolAllocation FUN_1806f8750          // 处理系统内存池分配
 
 /**
  * @brief 处理系统缓冲区大小和核心引擎值
@@ -190747,7 +190750,7 @@ long long ConfigureSystemCharacterDataStructureTemplate(uint64_t CharacterCode, 
 
 
 
-long long FUN_1801597a0(uint64_t CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+long long ProcessSystemCharacterEncodingWithParameters(uint64_t CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   uint64_t *CharacterStatusBuffer;
   int StringComparisonResult;
@@ -191031,7 +191034,7 @@ void ProcessCharacterCodeMemoryAllocationAndReferenceCount(long long *CharacterC
 
 
 
-unsigned long long FUN_18015acc0(long long *CharacterCode,int SystemBufferSize,int Utf8SourcePointer
+unsigned long long ConfigureSystemCharacterDataStructure(long long *CharacterCode,int SystemBufferSize,int Utf8SourcePointer
 {
   int LockResult;
   long long BufferStatus;
@@ -191235,7 +191238,7 @@ LAB_18015b087:
       SecondaryProcessingStatusFlag = pBufferOffset;
     } while (StringOffset < SystemDataTablePointer);
   }
-  MemoryAllocationIndex = FUN_1806f8750(*(void *)(ThreadLocalStorageData + 0x250),pBufferOffset,
+  MemoryAllocationIndex = ProcessSystemMemoryPoolAllocation(*(void *)(ThreadLocalStorageData + 0x250),pBufferOffset,
                         (unsigned long long)(long long)Utf8SourcePointer >> 1 & 0xffffffff,Utf16EndPointer,RemainingSpace * 6);
   *AdditionalParameter1 = MemoryAllocationIndex;
   if (pBufferOffset == (uint16_t *)0x0) {
@@ -195342,7 +195345,7 @@ ValidateSystemState(uint64_t *CharacterCode,uint64_t SystemBufferSize,long long 
     *(uint32_t *)((unsigned long long)Utf16Char + BufferStatus) = 0x20736920;
     *(uint8_t *)((uint32_t *)((unsigned long long)Utf16Char + BufferStatus) + 1) = 0;
     *(int *)(CharacterCode + 2) = ValidationResult + 0xd;
-    BufferStatus = FUN_1800af9f0(SystemConfigData,&ContextDataPointer,&EnginePointerBuffer);
+    BufferStatus = ProcessSystemDataAndContext(SystemConfigData,&ContextDataPointer,&EnginePointerBuffer);
     if (0 < *(int *)(BufferStatus + 0x10)) {
       CoreEngineProcessSystemEvent(CharacterCode,*(int *)(CharacterCode + 2) + *(int *)(BufferStatus + 0x10));
                     // WARNING: Subroutine does not return
@@ -196285,7 +196288,7 @@ InitializeUtf8ToUtf16StringConversion(uint64_t CharacterCode,uint64_t *Character
   
   UnicodeCodePoint = 0xfffffffffffffffe;
   MemoryAllocationIndex = 0;
-  FUN_18004e7a0();
+  ExecuteSystemCleanupOperation();
   *CharacterCodeSize = &ThreadLocalStorageTemplate;
   SystemBufferSize[1] = 0;
   *(uint32_t *)(SystemBufferSize + 2) = 0;
