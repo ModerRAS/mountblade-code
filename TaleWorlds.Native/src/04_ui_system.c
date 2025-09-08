@@ -134,12 +134,12 @@ typedef enum {
 #define ValidateUIComponentEvent ValidateUIComponentEventHandlingFC0
 
 // UI系统函数宏定义 - 处理UI上下文管理
-#define InitializeUIContext FUN_180789cd9
-#define ProcessUIContextAllocation FUN_180789cf0
-#define ValidateUIContextData FUN_180789e60
-#define AllocateUIResource FUN_180742250
-#define ReleaseUIMemory FUN_180768380
-#define GetUIContextHandle FUN_180742050
+#define InitializeUIContext InitializeUIContextSystemCD9
+#define ProcessUIContextAllocation ProcessUIContextMemoryAllocationCF0
+#define ValidateUIContextData ValidateUIContextDataIntegrityE60
+#define AllocateUIResource AllocateUIResourceMemory250
+#define ReleaseUIMemory ReleaseUIMemoryResources380
+#define GetUIContextHandle GetUIContextSystemHandle050
 
 // UI系统标签宏定义 - 事件处理相关
 #define LAB_EventTypeStringCompare LAB_EventTypeStringCompare
@@ -152,24 +152,24 @@ typedef enum {
 #define LAB_EventFocusCheck LAB_EventFocusCheck
 #define LAB_EventValidationCheck LAB_EventValidationCheck
 #define LAB_EventProcessingComplete LAB_EventProcessingComplete
-#define LAB_EventComponentCheck LAB_1806555a6
-#define LAB_EventTypeHandler LAB_18065555e
-#define LAB_EventStringMatch LAB_180655761
-#define LAB_EventDataProcess LAB_1806557d3
-#define LAB_EventResultReturn LAB_180655bea
-#define LAB_EventFocusCheck LAB_180655bdf
+#define LAB_EventComponentCheck LAB_EventComponentValidationCheck
+#define LAB_EventTypeHandler LAB_EventTypeHandlerRoutine
+#define LAB_EventStringMatch LAB_EventStringComparisonMatch
+#define LAB_EventDataProcess LAB_EventDataProcessingRoutine
+#define LAB_EventResultReturn LAB_EventResultReturnHandler
+#define LAB_EventFocusCheck LAB_EventFocusValidationCheck
 #define LAB_EventSystemInitialize LAB_EventSystemInitialize
-#define LAB_EventContextSetup LAB_180655d38
-#define LAB_UISystemCleanup LAB_180656abd
-#define LAB_UIResourceRelease LAB_180656d5b
-#define LAB_UIMemoryFree LAB_180656dbb
-#define LAB_UIContextReset LAB_180656df9
-#define LAB_UIStateRestore LAB_180656e11
-#define LAB_UIDataInitialize LAB_180656d07
-#define LAB_UIComponentDestroy LAB_180656e1e
-#define LAB_UIEventComplete LAB_1806572f9
-#define LAB_UIRenderFinish LAB_1806575b7
-#define LAB_UIUpdateComplete LAB_1806575f7
+#define LAB_EventContextSetup LAB_EventContextInitializationSetup
+#define LAB_UISystemCleanup LAB_UISystemCleanupRoutine
+#define LAB_UIResourceRelease LAB_UIResourceReleaseHandler
+#define LAB_UIMemoryFree LAB_UIMemoryFreeRoutine
+#define LAB_UIContextReset LAB_UIContextResetHandler
+#define LAB_UIStateRestore LAB_UIStateRestoreRoutine
+#define LAB_UIDataInitialize LAB_UIDataInitializationRoutine
+#define LAB_UIComponentDestroy LAB_UIComponentDestructionHandler
+#define LAB_UIEventComplete LAB_UIEventCompletionHandler
+#define LAB_UIRenderFinish LAB_UIRenderFinishRoutine
+#define LAB_UIUpdateComplete LAB_UIUpdateCompletionHandler
 
  // UI系统函数宏定义 - 获取UI数据
 #define GetUIData GetUIDataValue
