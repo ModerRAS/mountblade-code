@@ -397,6 +397,16 @@
 #define ProcessSystemMemoryBlockSetup FUN_18014f3f0          // 处理系统内存块设置
 #define ProcessCharacterCodeWithBufferPointer FUN_18014f520   // 处理字符代码和缓冲区指针
 
+// 新发现的FUN_函数语义化宏定义
+#define ProcessSystemValidationAndCleanup FUN_1800ae520         // 处理系统验证和清理
+#define ExecuteSystemMemoryCleanup FUN_1801538d0                // 执行系统内存清理
+#define InitializeSystemComponent FUN_18005b960                  // 初始化系统组件
+#define ConfigureSystemRenderingParameters FUN_1806faf00         // 配置系统渲染参数
+#define ProcessCharacterDataFinalization FUN_180157050           // 处理字符数据最终化
+#define ManageSystemBufferAllocation FUN_18015c2b0               // 管理系统缓冲区分配
+#define ExecuteSystemResourceRelease FUN_18015b450               // 执行系统资源释放
+#define ProcessMemoryBoundaryManagement FUN_18015bea0            // 处理内存边界管理
+
 // 新增的FUN_函数语义化定义
 #define ProcessSystemDataBufferConfiguration FUN_1802a8080     // 处理系统数据缓冲区配置
 
@@ -77115,13 +77125,13 @@ void ProcessSystemConfigurationHandle(uint64_t *CharacterCode
   long long EncodingConversionResult;
   long long SystemStringIndex;
   float fStackX_10;
-  float fStackX_14;
+  float StackVerticalOffset;
   
   MemoryBlockIndex = SystemDataTabled0;
-  fStackX_10 = (float)*(void *)(SystemMemoryManager + 0x17ec);
-  fStackX_14 = (float)((unsigned long long)*(void *)(SystemMemoryManager + 0x17ec) >> 0x20);
-  *CharacterCode = CONCAT44(fStackX_14 * *(float *)(SystemMemoryManager + 0x17e4),
-                      fStackX_10 * *(float *)(SystemMemoryManager + 0x17e0));
+  StackHorizontalOffset = (float)*(void *)(SystemMemoryManager + 0x17ec);
+  StackVerticalOffset = (float)((unsigned long long)*(void *)(SystemMemoryManager + 0x17ec) >> 0x20);
+  *CharacterCode = CONCAT44(StackVerticalOffset * *(float *)(SystemMemoryManager + 0x17e4),
+                      StackHorizontalOffset * *(float *)(SystemMemoryManager + 0x17e0));
   *(float *)(CharacterCode + 1) =
        (float)*(int *)(*(long long *)(MemoryBlockIndex + 0x2010) + 0x74) /
        *(float *)(*(long long *)(MemoryBlockIndex + 0x2010) + 0xc);
@@ -186507,7 +186517,7 @@ void ProcessUtf16CharacterEncoding(uint64_t CharacterCode,uint64_t SystemBufferS
   PrimaryProcessingStatusFlag[3] = 0x6e692065;
   *(uint16_t *)(PrimaryProcessingStatusFlag + 4) = 0x69;
   SystemPriorityLevel = 0x11;
-  FUN_1800ae520(CharacterCode,&SystemValidationPointer);
+  ProcessSystemValidationAndCleanup(CharacterCode,&SystemValidationPointer);
   SystemTemplatePointer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
   CoreEngineFreeSystemMemory(PrimaryProcessingStatusFlag);
@@ -186517,7 +186527,7 @@ void ProcessUtf16CharacterEncoding(uint64_t CharacterCode,uint64_t SystemBufferS
 
 uint64_t CleanupSystemMemoryAndReturnCharacterCode(uint64_t CharacterCode,unsigned long long SystemBufferSize
 {
-  FUN_1801538d0();
+  ExecuteSystemMemoryCleanup();
   if ((SystemBufferSize & 1) != 0) {
     free(CharacterCode,0x1010);
   }
@@ -186545,7 +186555,7 @@ uint64_t CleanupSystemMemoryAndReturnCharacterCode(uint64_t CharacterCode,unsign
  */
 void InitializeRenderingSystemComponents(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
-  FUN_18005b960(CharacterCode + 0x1ea);
+  InitializeSystemComponent(CharacterCode + 0x1ea);
   InitializeRenderingSystemComponent(CharacterCode + 0x1dc);
   InitializeRenderingSystemComponent(CharacterCode + 0x1ce);
   InitializeRenderingSystemComponent(CharacterCode + 0x1c0);
