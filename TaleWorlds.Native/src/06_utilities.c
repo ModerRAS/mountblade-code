@@ -39530,9 +39530,9 @@ void SetDefaultExceptionHandlerAtOffset138(DataBuffer operationBase, int64_t dat
   if (*(int64_t *)(dataBuffer + DefaultExceptionHandlerOffset140) != 0) {
       TerminateSystemE0();
   }
-  *(DataBuffer *)(dataBuffer + DataBufferOffset140) = 0;
-  *(DataWord *)(dataBuffer + 0x150) = 0;
-  *(DataBuffer *)(dataBuffer + DataBufferOffset138) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(dataBuffer + DefaultExceptionHandlerOffset140) = 0;
+  *(DataWord *)(dataBuffer + DefaultExceptionHandlerOffset150) = 0;
+  *(DataBuffer *)(dataBuffer + DefaultExceptionHandlerOffset138) = &DefaultExceptionHandlerB;
   return;
 }
 
