@@ -196893,7 +196893,7 @@ LAB_180162130:
 
 
 
-void FUN_180162220(long long CharacterCode,long long SystemBufferSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer)
+void ProcessMultiByteCharacter(long long CharacterCode,long long SystemBufferSize,uint64_t *Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   uint64_t Utf16Char;
   long long BufferStatus;
@@ -196989,7 +196989,7 @@ LAB_180162395:
         }
         SystemStackFlag = SystemStackFlag & 0xffffffff;
       }
-      FUN_180162220(Utf16Char,SystemBufferSize,&EncodingBuffer);
+      ProcessMultiByteCharacter(Utf16Char,SystemBufferSize,&EncodingBuffer);
       CalculatedCodePoint = (int)UnicodeCodePoint + 1;
       MemoryAddressMaskPointer = MemoryAddressMaskPointer + 8;
       BufferStatus = *(long long *)(CharacterCode + 0x28);
@@ -200133,7 +200133,7 @@ ProcessUtf8ToUtf16CharacterEncodingEx5(uint64_t *CharacterCode,uint64_t *Charact
   Utf16Char = *CharacterCode;
   MemoryAllocationIndex = CoreEngineGetSystemContext();
   MemoryAllocationIndex = CoreEngineExecuteSystemEvent(aStackValidationFlag28,MemoryAllocationIndex);
-  FUN_180162220(Utf16Char,SystemBufferSize,MemoryAllocationIndex,Utf16EndPointer,UnicodeCodePoint,MemoryAddressMaskPointer);
+  ProcessMultiByteCharacter(Utf16Char,SystemBufferSize,MemoryAllocationIndex,Utf16EndPointer,UnicodeCodePoint,MemoryAddressMaskPointer);
   return SystemBufferSize;
 }
 
@@ -285874,4 +285874,34 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define ProcessCharacterEncodingAndSystemBufferConfiguration FUN_18018e7e0
 
+/**
+ * @brief 初始化系统字符编码转换器和内存分配器
+ * 
+ * 该函数负责初始化系统字符编码转换器和内存分配器，包括：
+ * - 分配UTF-16字符内存
+ * - 初始化内存地址掩码
+ * - 设置系统状态标志
+ * - 创建系统上下文
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180162600
+ */
+#define InitializeSystemCharacterEncodingConverterAndMemoryAllocator FUN_180162600
+
+/**
+ * @brief 处理系统内存分配和数据结构管理
+ * 
+ * 该函数负责处理系统内存分配和数据结构管理，包括：
+ * - 管理内存分配器状态
+ * - 处理数据结构指针
+ * - 执行系统资源管理
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801659e0
+ */
+#define ProcessSystemMemoryAllocationAndDataStructureManagement FUN_1801659e0
 
