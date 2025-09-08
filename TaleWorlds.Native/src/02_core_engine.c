@@ -202825,7 +202825,7 @@ long long * FUN_18016cdb0(long long *CharacterCode
 
 
 
-6cef0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18016cef0(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+void ConvertCharacterEncodingWithValidation(uint64_t *CharacterCode,uint64_t SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
 {
   long long *CharacterCode;
   uint MemoryAllocationIndex;
