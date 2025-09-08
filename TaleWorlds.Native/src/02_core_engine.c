@@ -211965,7 +211965,18 @@ LAB_180177d26:
 
 
 
-77da0(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_180177da0(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * @brief 处理字符编码和内存池管理的核心系统函数
+ * 
+ * 该函数负责处理字符编码转换、内存池管理和系统缓冲区分配。
+ * 函数会遍历字符代码表，进行内存边界计算和池块大小管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_180177da0
+ */
+void ProcessCharacterEncodingAndMemoryPoolManagement(uint64_t CharacterCode, long long SystemBufferSize)
 {
   uint64_t *CharacterStatusBuffer;
   byte SystemHighByte;

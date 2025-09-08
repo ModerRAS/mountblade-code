@@ -13417,41 +13417,41 @@ uint64_t ProcessBatchDataOperations(int64_t batchDataDescriptor)
 uint64_t ProcessUtilitySystemInitialization(void)
 
 {
-  int64_t resourceHandle;
-  int32_t entryIndex;
-  int64_t systemContext;
-  uint64_t operationResult;
-  uint32_t *dataPointer;
-  uint64_t baseAddress;
-  int64_t registryPointer;
-  uint32_t iterationCount;
-  uint64_t loopCounter;
-  int64_t offsetDelta;
+  int64_t systemResourceHandle;
+  int32_t registryEntryIndex;
+  int64_t systemContextPointer;
+  uint64_t validationResult;
+  uint32_t *dataElementPointer;
+  uint64_t memoryBaseAddress;
+  int64_t systemRegistryPointer;
+  uint32_t iterationCounter;
+  uint64_t loopControlVariable;
+  int64_t addressOffsetDelta;
   
-  loopCounter = 0;
-  baseAddress = systemContext - 8;
-  if (systemContext == 0) {
-    baseAddress = loopCounter;
+  loopControlVariable = 0;
+  memoryBaseAddress = systemContextPointer - 8;
+  if (systemContextPointer == 0) {
+    memoryBaseAddress = loopControlVariable;
   }
-  dataPointer = (DataWord *)(registryPointer + DataPointerOffset + (int64_t)*(int *)(registryPointer + ArrayCountOffset) * 4);
-  if (0 < *(int *)(registryPointer + ArrayCountOffset)) {
-    offsetDelta = (registryPointer + ArrayDataOffset) - (int64_t)dataPointer;
+  dataElementPointer = (DataWord *)(systemRegistryPointer + DataPointerOffset + (int64_t)*(int *)(systemRegistryPointer + ArrayCountOffset) * 4);
+  if (0 < *(int *)(systemRegistryPointer + ArrayCountOffset)) {
+    addressOffsetDelta = (systemRegistryPointer + ArrayDataOffset) - (int64_t)dataElementPointer;
     do {
-      entryIndex = *(int *)(offsetDelta + (int64_t)dataPointer);
-      if (entryIndex != -1) {
-        resourceHandle = *(int64_t *)(baseAddress + DataPointerOffset) + (int64_t)entryIndex * ArrayElementSize;
-        if ((resourceHandle == 0) || (resourceHandle = *(int64_t *)(resourceHandle + 8), resourceHandle == 0)) {
+      registryEntryIndex = *(int *)(addressOffsetDelta + (int64_t)dataElementPointer);
+      if (registryEntryIndex != -1) {
+        systemResourceHandle = *(int64_t *)(memoryBaseAddress + DataPointerOffset) + (int64_t)registryEntryIndex * ArrayElementSize;
+        if ((systemResourceHandle == 0) || (systemResourceHandle = *(int64_t *)(systemResourceHandle + 8), systemResourceHandle == 0)) {
           return ResourceInvalidErrorCode;
         }
-        operationResult = ProcessFloatingPointDataValidationA0(resourceHandle,*dataPointer,0);
-        if ((int)operationResult != 0) {
-          return operationResult;
+        validationResult = ProcessFloatingPointDataValidationA0(systemResourceHandle,*dataElementPointer,0);
+        if ((int)validationResult != 0) {
+          return validationResult;
         }
       }
-      iterationCount = (int)loopCounter + 1;
-      loopCounter = (uint64_t)iterationCount;
-      dataPointer = dataPointer + 1;
-    } while ((int)iterationCount < *(int *)(registryPointer + ArrayCountOffset));
+      iterationCounter = (int)loopControlVariable + 1;
+      loopControlVariable = (uint64_t)iterationCounter;
+      dataElementPointer = dataElementPointer + 1;
+    } while ((int)iterationCounter < *(int *)(systemRegistryPointer + ArrayCountOffset));
   }
   return 0;
 }
@@ -14698,53 +14698,53 @@ DataBuffer ProcessFloatDataResource(int64_t resourceHandle)
 
 {
   int64_t dataContextPointer;
-  uint ResourceFlags;
-  uint SystemStatus;
-  uint64_t operationResult;
+  uint resourceProcessingFlags;
+  uint systemOperationStatus;
+  uint64_t validationResult;
   DataBuffer *dataArrayPointer;
   DataBuffer *dataIterator;
-  int IntegerConversionValue;
-  float floatDataValue;
+  int integerConversionResult;
+  float floatProcessingValue;
   ByteFlag vectorRegisterData [16];
   int64_t stackTempValue;
-  uint ProcessingFlags;
-  uint BitShiftedFlags;
+  uint dataProcessingFlags;
+  uint bitShiftedProcessingFlags;
   DataBuffer vectorRegister;
-  uint MaskResult;
+  uint maskOperationResult;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
-  if ((int)operationResult != 0) {
-    return operationResult;
+  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   dataContextPointer = *(int64_t *)(stackTempValue + 8);
   if (dataContextPointer != 0) {
-    floatDataValue = *(float *)(resourceHandle + FloatDataOffset);
+    floatProcessingValue = *(float *)(resourceHandle + FloatDataOffset);
     for (dataIterator = *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset);
         (*(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) <= dataIterator &&
         (dataIterator < *(DataBuffer **)(dataContextPointer + ExceptionHandlerContextArrayOffset) + *(int *)(dataContextPointer + ExceptionHandlerContextDataOffset))); dataIterator = dataIterator + 1) {
-      operationResult = ProcessFloatingPointDataValidationA0(*dataIterator,floatDataValue,0);
-      if ((int)operationResult != 0) {
-        return operationResult;
+      validationResult = ProcessFloatingPointDataValidationA0(*dataIterator,floatProcessingValue,0);
+      if ((int)validationResult != 0) {
+        return validationResult;
       }
     }
     if ((*(char *)(dataContextPointer + StatusRegisterOffset) == '\0') ||
        ((*(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset) >> ValidationFlagShift & 1) == 0)) {
-      processingFlags = *(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset);
-      bitShiftedFlags = processingFlags >> ProcessingFlagsShift;
-      if ((bitShiftedFlags & 1) == 0) {
-        if ((((processingFlags >> 3 & 1) != 0) && (integerConversionValue = (int)floatDataValue, integerConversionValue != IntegerMinValue)) &&
-           ((float)integerConversionValue != floatDataValue)) {
-          vectorRegister.xComponent = floatDataValue;
-          vectorRegister.yComponent = floatDataValue;
+      dataProcessingFlags = *(uint *)(*(int64_t *)(dataContextPointer + ExceptionHandlerContextOffset) + StatusRegisterOffset);
+      bitShiftedProcessingFlags = dataProcessingFlags >> ProcessingFlagsShift;
+      if ((bitShiftedProcessingFlags & 1) == 0) {
+        if ((((dataProcessingFlags >> 3 & 1) != 0) && (integerConversionResult = (int)floatProcessingValue, integerConversionResult != IntegerMinValue)) &&
+           ((float)integerConversionResult != floatProcessingValue)) {
+          vectorRegister.xComponent = floatProcessingValue;
+          vectorRegister.yComponent = floatProcessingValue;
           vectorRegister.zComponent = 0;
-          maskResult = movmskps(bitShiftedFlags,vectorRegister);
-          floatDataValue = (float)(int)(integerConversionValue - (maskResult & 1));
+          maskOperationResult = movmskps(bitShiftedProcessingFlags,vectorRegister);
+          floatProcessingValue = (float)(int)(integerConversionResult - (maskOperationResult & 1));
         }
-        floatDataValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(dataContextPointer + DataContextOffset),floatDataValue);
+        floatProcessingValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(dataContextPointer + DataContextOffset),floatProcessingValue);
         if (((*(char *)(dataContextPointer + SecondaryValidationOffset) == '\0') ||
             ((*(uint *)(*(int64_t *)(dataContextPointer + DataContextOffset) + VectorComponentOffset34) >> 1 & 1) == 0)) &&
-           (floatDataValue != *(float *)(dataContextPointer + DataValidationOffset))) {
-          *(float *)(dataContextPointer + DataValidationOffset) = floatDataValue;
+           (floatProcessingValue != *(float *)(dataContextPointer + DataValidationOffset))) {
+          *(float *)(dataContextPointer + DataValidationOffset) = floatProcessingValue;
           UpdateValidationContextA0(dataContextPointer);
           *(ByteFlag *)(dataContextPointer + ValidationFlagOffset) = 0;
         }
@@ -15010,18 +15010,18 @@ DataBuffer GetUtilityStatusError(void)
 void ValidateAndProcessUtilityData(int64_t dataContext,int64_t systemContext)
 
 {
-  int validationResult;
+  int dataValidationResult;
   
-  validationResult = ValidateSystemDataA1(*(DataBuffer *)(systemContext + SystemContextValidationOffset),*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset10),
+  dataValidationResult = ValidateSystemDataA1(*(DataBuffer *)(systemContext + SystemContextValidationOffset),*(DataWord *)(dataContext + ExceptionHandlerCallbackOffset10),
                         dataContext + SystemDataHandleOffset,dataContext + SystemOperationDataOffset,dataContext + SystemOperationRequestOffset,dataContext + SystemTertiaryDataOffset);
-  if ((validationResult == 0) &&
-     (validationResult = ValidateDataAndReturnA0((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * DataProcessingMultiplier +
-                                  *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,dataContext + SystemDataHandleOffset), validationResult == 0)
+  if ((dataValidationResult == 0) &&
+     (dataValidationResult = ValidateDataAndReturnA0((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * DataProcessingMultiplier +
+                                  *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,dataContext + SystemDataHandleOffset), dataValidationResult == 0)
      ) {
     if ((*(char *)(dataContext + SystemContextDataOffset) != '\0') &&
-       (validationResult = ValidateDataAndReturnA1((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * DataProcessingMultiplier +
+       (dataValidationResult = ValidateDataAndReturnA1((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * DataProcessingMultiplier +
                                     *(int64_t *)(systemContext + SystemContextOffset90) + SystemContextOffset554,dataContext + SystemSecondaryDataOffset),
-       validationResult != 0)) {
+       dataValidationResult != 0)) {
       return;
     }
     ProcessDataAndExecute((int64_t)*(int *)(dataContext + ExceptionHandlerCallbackOffset10) * DataProcessingMultiplier +
