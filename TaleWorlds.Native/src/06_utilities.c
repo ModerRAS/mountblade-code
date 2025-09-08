@@ -147,6 +147,30 @@
 #define ExceptionHandlerCleanupOffsetD70 0xd70            // 异常处理器清理偏移量
 
 // 异常处理器层级B0偏移量常量
+#define ExceptionHandlerLayerB0_BaseOffset 0xb0               // 异常处理器层级B0基础偏移量
+
+// 数据操作偏移量常量
+#define DataOperationOffsetA4 0xa4                            // 数据操作偏移量A4
+#define DataOperationOffset94 0x94                            // 数据操作偏移量94
+#define DataOperationOffset30 0x30                            // 数据操作偏移量30
+#define DataOperationOffset1C 0x1c                            // 数据操作偏移量1C
+#define DataOperationOffset24 0x24                            // 数据操作偏移量24
+#define DataOperationOffset10 0x10                            // 数据操作偏移量10
+
+// 系统管理偏移量常量
+#define SystemManagementOffset98 0x98                          // 系统管理偏移量98
+#define SystemConfigPrimaryOffset 0x0                         // 系统配置主偏移量
+#define SystemConfigSecondaryOffset 0x4                       // 系统配置次级偏移量
+
+// 执行上下文偏移量常量
+#define ExecutionContextOffset250 0x250                      // 执行上下文偏移量250
+#define ExecutionContextOffset2E0 0x2e0                      // 执行上下文偏移量2E0
+
+// 异常数据缓冲区偏移量常量
+#define ExceptionDataBufferOffset10 0x10                      // 异常数据缓冲区偏移量10
+
+// 栈操作偏移量常量
+#define StackOperationOffset8 0x8                             // 栈操作偏移量8
 #define ExceptionHandlerHierarchyB0_DataBufferOffset40 0x40     // 数据缓冲区偏移量40
 #define ExceptionHandlerHierarchyB0_CallbackOffsetE20 0xe20     // 回调函数偏移量E20
 #define ExceptionHandlerHierarchyB0_CallbackParamOffsetE10 0xe10 // 回调参数偏移量E10
@@ -19328,7 +19352,7 @@ RangeValidationSuccess:
   else {
     memoryBlockOffset = LocalStackOffset + -8;
   }
-  *(DataWord *)(memoryBlockOffset + 0xa4 + (int64_t)*(int *)(operationBase + SystemDataSecondaryOffset18) * 4) =
+  *(DataWord *)(memoryBlockOffset + DataOperationOffsetA4 + (int64_t)*(int *)(operationBase + SystemDataSecondaryOffset18) * 4) =
        *(DataWord *)(resourceDescriptor + ResourceDescriptorValidationOffset);
   memoryBlockOffset = *(int64_t *)(dataBuffer + SystemManagementOffset98);
   if ((*(int *)(memoryBlockOffset + SystemConfigPrimaryOffset) != 0) || (*(int *)(memoryBlockOffset + SystemConfigSecondaryOffset) != 0)) {
@@ -19377,7 +19401,7 @@ DataBuffer ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
   else {
     dataContext = transferSize + -8;
   }
-  *(DataWord *)(dataContext + 0x94 + (int64_t)*(int *)(dataDescriptor + SystemDataSecondaryOffset18) * 4) =
+  *(DataWord *)(dataContext + DataOperationOffset94 + (int64_t)*(int *)(dataDescriptor + SystemDataSecondaryOffset18) * 4) =
        *(DataWord *)(resourceDescriptor + ResourceDescriptorValidationOffset);
   dataContext = *(int64_t *)(systemContext + SystemManagementOffset98);
   if ((*(int *)(dataContext + SystemConfigPrimaryOffset) != 0) || (*(int *)(dataContext + SystemConfigSecondaryOffset) != 0)) {
@@ -19791,7 +19815,7 @@ void ValidateContextAndUpdateState(int64_t contextHandle,int64_t operationHandle
     validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&ComponentDataBuffer);
     if (validationResult == 0) {
       if (*(int *)(ComponentDataBuffer + ComponentDataStateOffset30) == 1) {
-        *(DataWord *)(ComponentDataBuffer + 0x30) = 2;
+        *(DataWord *)(ComponentDataBuffer + DataOperationOffset30) = 2;
       }
         CleanupSystemEventA0(*(DataBuffer *)(operationHandle + SystemManagementOffset98),contextHandle);
     }
@@ -19815,7 +19839,7 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
   int64_t allocatedBuffer;
   int64_t DataStateBuffer;
   
-  dataState = *(uint *)(dataContext + 0x1c);
+  dataState = *(uint *)(dataContext + DataOperationOffset1C);
   if ((((dataState != 1) || ((*(SystemByteType *)(dataContext + ExceptionHandlerCallbackOffset10) & 0x1f) == 0)) && (0 < *(int *)(dataContext + SystemDataSecondaryOffset18))
       ) && (dataState < 2)) {
     if (dataState == 0) {
@@ -19827,11 +19851,11 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
       processResult = 0x26;
     }
     else {
-      processResult = ExecuteSystemValidationA0(operationContext,dataContext + 0x24);
+      processResult = ExecuteSystemValidationA0(operationContext,dataContext + DataOperationOffset24);
       if ((processResult == 0) &&
-         (processResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x24),&DataStateBuffer), processResult == 0)) {
-        if (*(int *)(DataStateBuffer + 0x30) == 1) {
-          *(DataWord *)(DataStateBuffer + 0x30) = 2;
+         (processResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + DataOperationOffset24),&DataStateBuffer), processResult == 0)) {
+        if (*(int *)(DataStateBuffer + DataOperationOffset30) == 1) {
+          *(DataWord *)(DataStateBuffer + DataOperationOffset30) = 2;
         }
           CleanupSystemEventA0(*(DataBuffer *)(operationContext + SystemManagementOffset98),dataContext);
       }
@@ -19869,10 +19893,10 @@ int ProcessDataByCondition(DataBuffer inputCondition,DataBuffer dataSize)
   else {
     operationResult = ExecuteSystemValidationA0();
     if ((operationResult == 0) &&
-       (operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + 0x24),&systemContextBuffer), operationResult == 0)
+       (operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + DataOperationOffset24),&systemContextBuffer), operationResult == 0)
        ) {
-      if (*(int *)(systemContextBuffer + 0x30) == 1) {
-        *(DataWord *)(systemContextBuffer + 0x30) = 2;
+      if (*(int *)(systemContextBuffer + DataOperationOffset30) == 1) {
+        *(DataWord *)(systemContextBuffer + DataOperationOffset30) = 2;
       }
         CleanupSystemEventA0(*(DataBuffer *)(resourceHandle + SystemManagementOffset98));
     }
