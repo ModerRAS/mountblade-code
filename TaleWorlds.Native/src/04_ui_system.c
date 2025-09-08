@@ -73428,93 +73428,106 @@ void ProcessUIEventData(int uiContext,UIHandle dataSource,UIHandle targetBuffer,
 
 
 
- void FUN_1807079df(UIHandle uiContext,int dataSource)
-void FUN_1807079df(UIHandle uiContext,int dataSource)
+ /**
+ * @brief 处理UI事件调度和数据源管理
+ * 
+ * 该函数负责处理UI事件的调度和数据源的管理。它执行以下操作：
+ * - 处理UI事件分发
+ * - 管理数据源索引
+ * - 更新UI上下文状态
+ * - 处理事件队列
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源索引
+ * 
+ * @note 原始函数名：FUN_1807079df
+ */
+void ProcessUIEventDispatchAndDataSourceManagement(UIHandle uiContext, int dataSource)
 
 {
-  ulonglong result;
-  UIHandle *psemaphoreHandle;
-  UIHandle EventTypeCode;
-  int TempInt4;
-  int localInt5;
-  longlong ContextHandleData;
-  longlong localLong7;
-  float *plocalFloat8;
-  int localInt9;
-  ulonglong result0;
-  int unmodifiedEBX;
-  int ProcessingResult1;
-  longlong BasePointer;
-  int ProcessingResult2;
-  UIHandle TargetHandle;
-  int ProcessingResult3;
-  ulonglong IndexResult;
-  uint CounterResult;
-  longlong RegisterPointer;
-  bool IsMatchFound;
-  float FloatValue1;
-  float FloatValue2;
-  float AccumulatedFloat;
-  UIDword StackData1;
-  UIDword StackData2;
-  UIDword StackData3;
-  int stackParam00000098;
-  int stackParam000000a0;
-  UIDword stackParam000000a8;
-  UIDword stackParam000000b0;
-  UIDword stackParam000000b8;
-  UIHandle *stackParam000000d8;
-  ulonglong TotalResult;
+  ulonglong operationResult;
+  UIHandle *semaphoreHandle;
+  UIHandle eventTypeCode;
+  int temporaryInt4;
+  int localProcessingInt5;
+  longlong contextHandleData;
+  longlong localDataOffset;
+  float *localFloatPointer;
+  int localResultInt9;
+  ulonglong previousResult;
+  int iterationCounter;
+  int processingResult1;
+  longlong baseMemoryPointer;
+  int processingResult2;
+  UIHandle targetHandle;
+  int processingResult3;
+  ulonglong indexResult;
+  uint counterResult;
+  longlong registerPointer;
+  bool isMatchFound;
+  float floatValue1;
+  float floatValue2;
+  float accumulatedFloat;
+  UIDword stackData1;
+  UIDword stackData2;
+  UIDword stackData3;
+  int stackParameter98;
+  int stackParameterA0;
+  UIDword stackParameterA8;
+  UIDword stackParameterB0;
+  UIDword stackParameterB8;
+  UIHandle *stackParameterD8;
+  ulonglong totalResult;
   
-  *(UIHandle *)(RegisterPointer + 0x18) = TargetHandle;
+  *(UIHandle *)(registerPointer + 0x18) = targetHandle;
   do {
-    StackData3 = stackParam000000b8;
-    StackData2 = stackParam000000b0;
-    StackData1 = stackParam000000a8;
-    FUN_180707df0();
-    unmodifiedEBX = unmodifiedEBX - ((dataSource >> 4) - (dataSource >> 0x1f));
-  } while (0 < unmodifiedEBX);
-  *(int *)(BasePointer + 0x1d1c) = stackParam00000098 - stackParam000000a0;
-  *(UIDword *)stackParam000000d8 = 0;
-  localInt9 = *(int *)(BasePointer + 0x2054);
-  localInt5 = *(int *)(BasePointer + 0x2050);
-  TempInt4 = localInt5 - localInt9;
-  ProcessingResult2 = TempInt4 + 100;
-  if (-1 < TempInt4) {
-    ProcessingResult2 = TempInt4;
+    stackData3 = stackParameterB8;
+    stackData2 = stackParameterB0;
+    stackData1 = stackParameterA8;
+    ProcessUIDataRenderOperation();
+    iterationCounter = iterationCounter - ((dataSource >> 4) - (dataSource >> 0x1f));
+  } while (0 < iterationCounter);
+  *(int *)(baseMemoryPointer + 0x1d1c) = stackParameter98 - stackParameterA0;
+  *(UIDword *)stackParameterD8 = 0;
+  localResultInt9 = *(int *)(baseMemoryPointer + 0x2054);
+  localProcessingInt5 = *(int *)(baseMemoryPointer + 0x2050);
+  temporaryInt4 = localProcessingInt5 - localResultInt9;
+  processingResult2 = temporaryInt4 + 100;
+  if (-1 < temporaryInt4) {
+    processingResult2 = temporaryInt4;
   }
-  IndexResult = 0;
-  TempInt4 = 0;
-  if (((*(int *)(BasePointer + 8) / 0x32 < stackParam000000a0) && (localInt9 != localInt5)) &&
-     (localInt9 = localInt9 + 1, localInt9 == 100)) {
-    localInt9 = 0;
+  indexResult = 0;
+  temporaryInt4 = 0;
+  if (((*(int *)(baseMemoryPointer + 8) / 0x32 < stackParameterA0) && (localResultInt9 != localProcessingInt5)) &&
+     (localResultInt9 = localResultInt9 + 1, localResultInt9 == 100)) {
+    localResultInt9 = 0;
   }
-  ProcessingResult1 = 1;
-  ProcessingResult3 = localInt9 + -1;
-  if (localInt9 != localInt5) {
-    ProcessingResult3 = localInt9;
+  processingResult1 = 1;
+  processingResult3 = localResultInt9 + -1;
+  if (localResultInt9 != localProcessingInt5) {
+    processingResult3 = localResultInt9;
   }
-  if (ProcessingResult3 < 0) {
-    ProcessingResult3 = 99;
+  if (processingResult3 < 0) {
+    processingResult3 = 99;
   }
-  result0 = (ulonglong)ProcessingResult3;
-  ContextHandleData = result0 * 0x38;
-  psemaphoreHandle = (UIHandle *)(ContextHandleData + 0x206c + BasePointer);
-  EventTypeCode = psemaphoreHandle[1];
-  *stackParam000000d8 = *psemaphoreHandle;
-  stackParam000000d8[1] = EventTypeCode;
-  psemaphoreHandle = (UIHandle *)(ContextHandleData + 0x207c + BasePointer);
-  EventTypeCode = psemaphoreHandle[1];
-  stackParam000000d8[2] = *psemaphoreHandle;
-  stackParam000000d8[3] = EventTypeCode;
-  psemaphoreHandle = (UIHandle *)(ContextHandleData + 0x208c + BasePointer);
-  EventTypeCode = psemaphoreHandle[1];
-  stackParam000000d8[4] = *psemaphoreHandle;
-  stackParam000000d8[5] = EventTypeCode;
-  stackParam000000d8[6] = *(UIHandle *)(ContextHandleData + 0x209c + BasePointer);
-  AccumulatedFloat = *(float *)((longlong)stackParam000000d8 + 4);
-  TotalResult = IndexResult;
-  FloatValue1 = AccumulatedFloat;
+  previousResult = (ulonglong)processingResult3;
+  contextHandleData = previousResult * 0x38;
+  semaphoreHandle = (UIHandle *)(contextHandleData + 0x206c + baseMemoryPointer);
+  eventTypeCode = semaphoreHandle[1];
+  *stackParameterD8 = *semaphoreHandle;
+  stackParameterD8[1] = eventTypeCode;
+  semaphoreHandle = (UIHandle *)(contextHandleData + 0x207c + baseMemoryPointer);
+  eventTypeCode = semaphoreHandle[1];
+  stackParameterD8[2] = *semaphoreHandle;
+  stackParameterD8[3] = eventTypeCode;
+  semaphoreHandle = (UIHandle *)(contextHandleData + 0x208c + baseMemoryPointer);
+  eventTypeCode = semaphoreHandle[1];
+  stackParameterD8[4] = *semaphoreHandle;
+  stackParameterD8[5] = eventTypeCode;
+  stackParameterD8[6] = *(UIHandle *)(contextHandleData + 0x209c + baseMemoryPointer);
+  accumulatedFloat = *(float *)((longlong)stackParameterD8 + 4);
+  totalResult = indexResult;
+  floatValue1 = accumulatedFloat;
   do {
     IsMatchFound = result0 != 99;
     result = result0 + 1;
