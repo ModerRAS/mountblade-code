@@ -75576,7 +75576,21 @@ void ProcessUITransformMatrix(UIHandle uiContext, longlong dataSource, UIHandle 
 
 
 
- void ProcessUIFloatBufferData(UIHandle uiContext, longlong dataSource, UIHandle targetBuffer, float *bufferSize)
+ /**
+ * @brief 处理UI浮点数缓冲区数据
+ * 
+ * 对UI系统中的浮点数缓冲区数据进行处理和转换。该函数接收浮点数数据，
+ * 应用各种偏移量和缩放因子，然后将处理后的数据写入目标缓冲区。
+ * 主要用于UI数据的预处理和格式转换。
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源地址
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小指针
+ * 
+ * @note 原始函数名: FUN_18070efdd
+ */
+void ProcessUIFloatBufferData(UIHandle uiContext, longlong dataSource, UIHandle targetBuffer, float *bufferSize)
 
 {
   float *pfloatResult;
@@ -76677,41 +76691,54 @@ int ProcessUIDataCalculation(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_18070fc20(longlong uiContext,int dataSource,int targetBuffer,float *bufferSize)
-void FUN_18070fc20(longlong uiContext,int dataSource,int targetBuffer,float *bufferSize)
+ /**
+ * @brief 处理UI矩阵裁剪操作
+ * 
+ * 对UI系统中的矩阵数据进行裁剪操作，将浮点数值限制在指定范围内（-2.0到2.0）。
+ * 该函数处理大量浮点数数据，进行批量裁剪操作，确保数据在有效范围内。
+ * 主要用于UI渲染前的数据预处理。
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源大小
+ * @param targetBuffer 目标缓冲区大小
+ * @param bufferSize 缓冲区指针
+ * 
+ * @note 原始函数名: FUN_18070fc20
+ */
+void ProcessUIMatrixClampOperation(longlong uiContext, int dataSource, int targetBuffer, float *bufferSize)
 
 {
-  bool isCharacterMatch;
-  UIByte asemaphoreHandle [16];
-  UIByte aEventTypeCode [16];
-  int TempInt4;
-  UIByte (*paLoopCounter) [16];
-  uint MaxProcessingCount;
-  int localInt7;
-  longlong localLong8;
-  float *plocalFloat9;
-  float *pfloatResult0;
-  uint result1;
-  int ProcessingResult2;
-  longlong allocatedMemory3;
-  longlong allocatedMemory4;
-  int uiOperationResult5;
-  int uiOperationResult6;
-  ulonglong result7;
-  int uiOperationResult8;
-  longlong allocatedMemory9;
-  float AccumulatedFloat;
-  float localFloat21;
-  float localFloat22;
-  float localFloat23;
-  float localFloat24;
-  UIByte asemaphoreHandle5 [16];
-  float *pfStackX_20;
-  longlong stackLonga8;
+  bool isValidOperation;
+  UIByte minBoundsVector [16];
+  UIByte maxBoundsVector [16];
+  int matrixOffset;
+  UIByte (*processingPointer) [16];
+  uint processCount;
+  int operationIndex;
+  longlong loopCounter;
+  float *matrixData;
+  float *resultData;
+  uint totalElements;
+  int processingStep;
+  longlong tempMemory1;
+  longlong tempMemory2;
+  int operationResult1;
+  int operationResult2;
+  ulonglong elementCounter;
+  int operationResult3;
+  longlong dataBuffer;
+  float accumulatedValue;
+  float clampedValue1;
+  float clampedValue2;
+  float clampedValue3;
+  float clampedValue4;
+  UIByte clampedVector [16];
+  float *bufferPointer;
+  longlong resultAddress;
   
-  aEventTypeCode = _DAT_180a401b0;
-  asemaphoreHandle = _DAT_18094ed40;
-  allocatedMemory9 = (longlong)targetBuffer;
+  maxBoundsVector = _DAT_180a401b0;
+  minBoundsVector = _DAT_18094ed40;
+  dataBuffer = (longlong)targetBuffer;
   if ((((0 < targetBuffer) && (0 < dataSource)) && (uiContext != 0)) && (bufferSize != (float *)0x0)) {
     result1 = dataSource * targetBuffer;
     uiOperationResult5 = 0;
@@ -77695,7 +77722,7 @@ void UINoOperation(void)
 
 
  void FUN_1807104b7(void)
-void FUN_1807104b7(void)
+void UIEmptyOperation2(void)
 
 {
   return;
@@ -180992,7 +181019,7 @@ UIHandle FUN_180778f30(longlong *uiContext,int dataSource,UIDword *targetBuffer,
 
 
 UIHandle
-FUN_180778fa0(longlong *uiContext,int dataSource,longlong *targetBuffer,UIDword *bufferSize,longlong resultPointer)
+ProcessUIResourceAllocation(longlong *uiContext,int dataSource,longlong *targetBuffer,UIDword *bufferSize,longlong resultPointer)
 
 {
   if (dataSource != 2) {
@@ -184606,7 +184633,7 @@ void FUN_18077b2c0(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 UIHandle
-FUN_18077b410(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,int resultPointer)
+ExecuteUIRenderPipeline(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,int resultPointer)
 
 {
   float floatResult;
@@ -185855,7 +185882,7 @@ UIHandle FUN_18077cd81(void)
 
 
 UIHandle
-FUN_18077cdb0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,int resultPointer)
+ProcessUIRenderBuffer(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,int resultPointer)
 
 {
   float floatResult;
@@ -185877,7 +185904,7 @@ FUN_18077cdb0(longlong uiContext,longlong dataSource,longlong targetBuffer,uint 
           memcpy(targetBuffer,dataSource,(ulonglong)bufferSize * stringCompareIndex * 4);
         }
         if (*(float *)(uiContext + 0x218) < *(float *)(uiContext + 0x21c)) {
-          semaphoreHandle = FUN_18077b410(uiContext,dataSource,targetBuffer,bufferSize,resultPointer);
+          semaphoreHandle = ExecuteUIRenderPipeline(uiContext,dataSource,targetBuffer,bufferSize,resultPointer);
           return semaphoreHandle;
         }
                      WARNING: Subroutine does not return
@@ -185919,7 +185946,7 @@ LAB_18077cebf:
         }
       }
       FUN_18077d1a0(uiContext,processedFloat,secondaryValue);
-      FUN_18077b410(uiContext,dataSource,targetBuffer,1,resultPointer);
+      ExecuteUIRenderPipeline(uiContext,dataSource,targetBuffer,1,resultPointer);
       dataSource = dataSource + stringCompareIndex * 4;
       targetBuffer = targetBuffer + stringCompareIndex * 4;
       bufferSize = bufferSize - 1;
@@ -188923,7 +188950,7 @@ UIHandle FUN_180780d10(longlong *uiContext)
 
 
 UIHandle
-FUN_180780d60(longlong *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer)
+ValidateUIRenderContext(longlong *uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer)
 
 {
   longlong allocatedMemory;
@@ -188959,7 +188986,7 @@ FUN_180780d60(longlong *uiContext,longlong dataSource,longlong targetBuffer,int 
 
 
 UIByte
-FUN_180780eb0(UIHandle uiContext,float dataSource,float targetBuffer,float bufferSize,float *resultPointer)
+ProcessUIRenderTransform(UIHandle uiContext,float dataSource,float targetBuffer,float bufferSize,float *resultPointer)
 
 {
   float floatResult;
@@ -189097,7 +189124,7 @@ byte FUN_1807810c0(longlong uiContext,float *dataSource)
         *bufferPtr = eventTypeCode;
         uiOperationResult = *(int *)(uiBufferData + 0x818);
         eventTypeCode = powf(0x41200000,((-6e+06 / (dataSource[4] * *dataSource)) * localFloat6 - localFloat8) * 0.05);
-        IsEventProcessingActive = FUN_180780eb0(uiContext,eventTypeCode,dataSource[3],(float)uiOperationResult,afStackX_8);
+        IsEventProcessingActive = ProcessUIRenderTransform(uiContext,eventTypeCode,dataSource[3],(float)uiOperationResult,afStackX_8);
         IsValidationComplete = IsValidationComplete | IsEventProcessingActive;
         bufferPtr[-0x6f] = 1.0 - afStackX_8[0];
       }
@@ -189136,7 +189163,7 @@ byte FUN_180781117(longlong uiContext)
       *bufferPtr = LoopCounter;
       uiValidationResult = *(int *)(SourceHandle + 0x818);
       LoopCounter = powf(0x41200000,((-6e+06 / (TargetHandle[4] * *TargetHandle)) * floatResult - localFloat6) * 0.05);
-      bVar3 = FUN_180780eb0(LoopCounter,LoopCounter,TargetHandle[3],(float)uiValidationResult,&stack0x000000e0);
+      bVar3 = ProcessUIRenderTransform(LoopCounter,LoopCounter,TargetHandle[3],(float)uiValidationResult,&stack0x000000e0);
       EventHandleB = EventHandleB | bVar3;
       localFloat6 = 1.0 - stackParam000000e0;
       bufferPtr[-0x6f] = localFloat6;
@@ -189204,7 +189231,7 @@ byte FUN_1807812d0(longlong uiContext,float *dataSource)
         *bufferPtr = MaxProcessingCount;
         uiOperationResult = *(int *)(uiBufferData + 0x818);
         MaxProcessingCount = powf();
-        IsEventProcessingActive = FUN_180780eb0(uiContext,MaxProcessingCount,dataSource[3],(float)uiOperationResult,&stack0x00000008);
+        IsEventProcessingActive = ProcessUIRenderTransform(uiContext,MaxProcessingCount,dataSource[3],(float)uiOperationResult,&stack0x00000008);
         IsValidationComplete = IsValidationComplete | IsEventProcessingActive;
         bufferPtr[-0x6f] = 1.0 - unmodifiedEBX;
       }
@@ -189354,7 +189381,7 @@ void FUN_180781630(longlong uiContext,longlong dataSource)
     *(float *)(dataSource + 0x24) = floatResult;
   }
   *(UIDword *)(uiBufferData + 0x80c) = *(UIDword *)(dataSource + 0x24);
-  FUN_180780eb0(floatResult,0x3f5765ac,*(UIDword *)(dataSource + 0x24));
+  ProcessUIRenderTransform(floatResult,0x3f5765ac,*(UIDword *)(dataSource + 0x24));
   *(float *)(uiContext + 0x238) = 1.0 - uStackX_8;
   return;
 }
