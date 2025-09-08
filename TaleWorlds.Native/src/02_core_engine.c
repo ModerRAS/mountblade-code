@@ -762,6 +762,21 @@
 #define ProcessMemoryReferenceCountAndReleaseResources FUN_18015b574
 
 /**
+ * @brief 处理系统缓冲区回调函数调用
+ * 
+ * 该函数负责检查并调用系统缓冲区的回调函数，包括：
+ * - 验证系统缓冲区中的回调函数指针
+ * - 执行回调函数调用
+ * - 处理函数调用后的返回
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18015c3b0
+ */
+#define ProcessSystemBufferCallback FUN_18015c3b0
+
+/**
  * @brief 处理系统配置数据和核心引擎值
  * 
  * 该函数负责处理系统配置数据和核心引擎值的操作。
@@ -5419,6 +5434,70 @@ const void* const SystemDataTablePointerSecondary = (void*)0x180a064a8;
  * @note 原始函数名：FUN_18013f220
  */
 #define GetSystemContextPointer FUN_18013f220
+
+/**
+ * @brief 处理系统数据表指针操作
+ * 
+ * 该函数负责处理系统数据表指针的操作和验证
+ * 
+ * @param DataTablePointer 数据表指针
+ * @param StackPointer 栈指针
+ * @note 原始函数名：FUN_1800863a0
+ */
+#define ProcessSystemDataTablePointerOperation FUN_1800863a0
+
+/**
+ * @brief 处理系统数据注册
+ * 
+ * 该函数负责处理系统数据的注册和管理
+ * 
+ * @return long long 返回系统数据注册结果
+ * @note 原始函数名：FUN_180085e10
+ */
+#define ProcessSystemDataRegistration FUN_180085e10
+
+/**
+ * @brief 处理系统状态标志
+ * 
+ * 该函数负责处理系统状态标志的更新和验证
+ * 
+ * @param ProcessingStatusFlag 处理状态标志
+ * @return long long 返回更新后的状态标志
+ * @note 原始函数名：FUN_180084ea0
+ */
+#define ProcessSystemStatusFlag FUN_180084ea0
+
+/**
+ * @brief 处理系统内存数据复制
+ * 
+ * 该函数负责处理系统内存数据的复制操作
+ * 
+ * @param SourcePointer 源指针
+ * @param DestinationPointer 目标指针
+ * @note 原始函数名：FUN_180080810
+ */
+#define ProcessSystemMemoryDataCopy FUN_180080810
+
+/**
+ * @brief 处理系统浮点数据操作
+ * 
+ * 该函数负责处理系统浮点数据的操作和计算
+ * 
+ * @param SystemUnsignedValue 系统无符号值
+ * @param FloatStackPointer 浮点栈指针
+ * @note 原始函数名：FUN_180083b20
+ */
+#define ProcessSystemFloatDataOperation FUN_180083b20
+
+/**
+ * @brief 初始化系统事件管理器
+ * 
+ * 该函数负责初始化系统事件管理器和配置
+ * 
+ * @note 原始函数名：FUN_18008ea80
+ */
+#define InitializeSystemEventManager FUN_18008ea80
+
 const void* const SystemDataTablePointerTertiary = (void*)0x180a064b0;
 const void* const SystemDataTablePointerQuaternary = (void*)0x180a064c0;
 const void* const SystemDataTablePointerQuinary = (void*)0x180a064d0;
@@ -192283,7 +192362,20 @@ uint64_t ReleaseSystemBufferMemoryWithParams(uint64_t CharacterCode,unsigned lon
 
 
 
-5c3b0(uint64_t CharacterCode,long long SystemBufferSizevoid FUN_18015c3b0(uint64_t CharacterCode,long long SystemBufferSize
+/**
+ * @brief 处理系统缓冲区回调函数调用
+ * 
+ * 该函数负责检查并调用系统缓冲区的回调函数，包括：
+ * - 验证系统缓冲区中的回调函数指针
+ * - 执行回调函数调用
+ * - 处理函数调用后的返回
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * 
+ * @note 原始函数名：FUN_18015c3b0
+ */
+void ProcessSystemBufferCallback(uint64_t CharacterCode, long long SystemBufferSize)
 {
   if (*(code **)(SystemBufferSize + 0x10) != (code *)0x0) {
                     // WARNING: Could not recover jumptable at 0x00018015c3da. Too many branches
@@ -192298,7 +192390,20 @@ uint64_t ReleaseSystemBufferMemoryWithParams(uint64_t CharacterCode,unsigned lon
 
 
 
-5c450(long long CharacterCodevoid FUN_18015c450(long long CharacterCode
+/**
+ * @brief 初始化系统优先级和标志配置
+ * 
+ * 该函数负责初始化系统的优先级管理和标志配置，包括：
+ * - 设置系统优先级级别和对应的处理标志
+ * - 配置字符编码和转换参数
+ * - 初始化系统数据结构和缓冲区
+ * - 调用字符编码处理函数进行批量配置
+ * 
+ * @param CharacterCode 字符代码参数，用于标识要配置的字符类型
+ * 
+ * @note 原始函数名：FUN_18015c450
+ */
+void InitializeSystemPriorityAndFlagConfiguration(long long CharacterCode)
 {
   long long PrimaryDataSize;
   uint8_t auStack_e18 [32];
