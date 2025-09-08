@@ -200117,16 +200117,30 @@ UIHandle FUN_18078971b(void)
 
 
 
-UIHandle FUN_18078978e(void)
-
+/**
+ * @brief 获取UI组件类型标识符
+ * 
+ * 返回一个固定的UI组件类型标识符，用于标识特定类型的UI组件。
+ * 这个函数通常用于UI组件注册和类型识别。
+ * 
+ * @return UIHandle 返回UI组件类型标识符(0x26)
+ */
+UIHandle GetUIComponentTypeIdentifier(void)
 {
   return 0x26;
 }
 
 
 
-UIHandle FUN_180789798(void)
-
+/**
+ * @brief 获取UI布局类型标识符
+ * 
+ * 返回一个固定的UI布局类型标识符，用于标识特定类型的UI布局。
+ * 这个函数通常用于UI布局管理和类型识别。
+ * 
+ * @return UIHandle 返回UI布局类型标识符(0x1f)
+ */
+UIHandle GetUILayoutTypeIdentifier(void)
 {
   return 0x1f;
 }
