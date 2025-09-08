@@ -30010,7 +30010,7 @@ uint64_t ProcessBinaryDataA0(void)
   int basePointer;
   int64_t systemContext;
   uint *DestinationContext;
-  DataBuffer inputRegisterR9;
+  DataBuffer systemInputRegisterR9;
   DataWord floatResultA;
   uint operationCounter;
   unsigned int stackOperationStatus;
