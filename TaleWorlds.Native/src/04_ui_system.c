@@ -72392,31 +72392,31 @@ LAB_180706f57:
         registerPointer[1] = statusFlag | 0x40;
         processingStep = (operationCount + -1) / 0xff;
         if (0 < processingStep) {
-          pisCharacterMatch2 = pbVar4;
-          for (localLong8 = (longlong)localInt7; localLong8 != 0; localLong8 = localLong8 + -1) {
-            *pisCharacterMatch2 = 0xff;
-            pisCharacterMatch2 = pisCharacterMatch2 + 1;
+          validationPointer = dataBuffer;
+          for (memoryOffset = (longlong)processingStep; memoryOffset != 0; memoryOffset = memoryOffset + -1) {
+            *validationPointer = 0xff;
+            validationPointer = validationPointer + 1;
           }
-          pbVar4 = pbVar4 + localInt7;
+          dataBuffer = dataBuffer + processingStep;
         }
-        *pbVar4 = (char)EventOperationCount + -1 + (char)localInt7;
-        pbVar4 = pbVar4 + 1;
-        uVar9 = uVar9 + EventOperationCount;
+        *dataBuffer = (char)operationCount + -1 + (char)processingStep;
+        dataBuffer = dataBuffer + 1;
+        eventIndex = eventIndex + operationCount;
       }
-      LoopCounter = (ulonglong)uVar9;
-      if ((bVar3) && (CounterResult = IndexResult, 0 < ProcessingResult1 + -1)) {
+      eventCounter = (ulonglong)eventIndex;
+      if ((isEventValid) && (counterResult = indexResult, 0 < processingResult + -1)) {
         do {
-          EventOperationCount = func_0x00018070f790((int)*(short *)(pisCharacterMatch + CounterResult * 2),pbVar4);
-          CounterResult = CounterResult + 1;
-          pbVar4 = pbVar4 + EventOperationCount;
-        } while ((longlong)CounterResult < (longlong)(ProcessingResult1 + -1));
+          operationCount = func_0x00018070f790((int)*(short *)(eventMatchPointer + counterResult * 2),dataBuffer);
+          counterResult = counterResult + 1;
+          dataBuffer = dataBuffer + operationCount;
+        } while ((longlong)counterResult < (longlong)(processingResult + -1));
       }
     }
-    if (stackParam00000098 != 0) {
-      EventOperationCount = func_0x00018070f790((int)*(short *)(pisCharacterMatch + allocatedMemory3 * 2 + -2),pbVar4);
-      pbVar4 = pbVar4 + EventOperationCount;
+    if (stackParameter98 != 0) {
+      operationCount = func_0x00018070f790((int)*(short *)(eventMatchPointer + allocationSize * 2 + -2),dataBuffer);
+      dataBuffer = dataBuffer + operationCount;
     }
-    if (0 < ProcessingResult1) {
+    if (0 < processingResult) {
                      WARNING: Subroutine does not return
       memmove(pbVar4,*(UIHandle *)(uiContext + (longlong)dataSource * 8 + 8),(longlong)*(short *)pisCharacterMatch
              );
