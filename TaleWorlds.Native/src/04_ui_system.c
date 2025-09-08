@@ -92809,7 +92809,15 @@ void ProcessUIMemoryManagement(longlong uiContext,float *dataSource)
 
 
 
- void ProcessUITransformCoefficients(void)
+ /**
+ * @brief 处理UI变换系数
+ * 
+ * 该函数负责处理UI元素的变换系数，包括缩放、旋转和平移等变换计算。
+ * 主要用于UI渲染前的数据预处理。
+ * 
+ * @note 原始函数名：FUN_18071fc11
+ */
+void ProcessUITransformCoefficients(void)
 void ProcessUITransformCoefficients(void)
 
 {
