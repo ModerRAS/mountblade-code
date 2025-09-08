@@ -98888,7 +98888,24 @@ void ReleaseMemoryResourceD2E0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d2f0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存资源引用计数管理器2F0
+ * 
+ * 管理内存资源的引用计数，处理资源的释放和清理。
+ * 该函数负责：
+ * 1. 检查内存资源指针的有效性
+ * 2. 计算内存区域的基地址
+ * 3. 管理资源引用计数
+ * 4. 在引用计数为0时处理异常
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含内存资源信息
+ * 
+ * @note 原始函数名：Unwind_18090d2f0
+ * @note 这是一个异常展开（unwind）处理函数，用于管理内存资源的生命周期
+ * @note 与ManageMemoryResourceReferenceCount300函数相似，但使用不同的偏移量（0x210）
+ */
+void ManageMemoryResourceReferenceCount2F0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -99109,7 +99126,25 @@ void CallExceptionHandlerCallbackAtOffsetA80(DataBuffer operationBase,int64_t da
 
 
 
-void Unwind_18090d350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
+/**
+ * @brief 异常处理器回调执行器350
+ * 
+ * 执行异常处理器回调函数，用于处理异常情况下的系统操作。
+ * 该函数负责：
+ * 1. 获取异常处理器回调函数指针
+ * 2. 验证回调函数的有效性
+ * 3. 执行异常处理回调
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理信息
+ * @param operationFlagA 操作标志A（未使用）
+ * @param operationFlagB 操作标志B，传递给回调函数
+ * 
+ * @note 原始函数名：Unwind_18090d350
+ * @note 这是一个异常展开（unwind）处理函数，用于执行异常处理回调
+ * @note operationFlagA参数在函数中未被使用
+ */
+void ExecuteExceptionHandlerCallback350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
   FunctionPointer *exceptionHandlerCallback;
@@ -99571,7 +99606,7 @@ void ManageMemoryResourceReferenceCount3D0(DataBuffer operationBase,int64_t data
  * 
  * @see CleanupMemoryResourceReferenceCountAtOffset2F0, CleanupMemoryResourceReferenceCountAtOffset310B
  */
-void Unwind_18090d3e0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupMemoryResourceReferenceCountAtOffset310(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -99623,7 +99658,7 @@ void Unwind_18090d3e0(DataBuffer operationBase,int64_t dataBuffer)
  * 
  * @see CleanupMemoryResourceReferenceCountAtOffset2F0, CleanupMemoryResourceReferenceCountAtOffset310A
  */
-void Unwind_18090d3f0(DataBuffer operationBase,int64_t dataBuffer)
+void CleanupMemoryResourceReferenceCountAtOffset310B(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
