@@ -94065,7 +94065,21 @@ void ProcessExceptionContextResourceReleaseB00(DataBuffer operationBase, int64_t
 
 
 
-void Unwind_18090cb10(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理器（B10版本）
+ * 
+ * 该函数是一个简单的异常处理器设置函数，负责在数据缓冲区的指定位置
+ * 设置默认异常处理器。这是异常处理系统的基础设置函数之一。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090cb10
+ * @warning 此函数为异常处理系统的一部分，用于初始化异常处理器
+ * 
+ * @see SystemDefaultExceptionHandlerB
+ */
+void SetupExceptionHandlerB10(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + DataProcessingOffset660) = &SystemDefaultExceptionHandlerB;
@@ -94075,7 +94089,22 @@ void Unwind_18090cb10(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cb20(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文资源释放和数据验证（B20版本）
+ * 
+ * 该函数是异常处理系统的重要组成部分，负责在异常发生时进行资源清理。
+ * 它会检查数据缓冲区状态，管理资源迭代器，处理异常上下文，
+ * 并验证数据缓冲区的完整性。最后会设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_18090cb20
+ * @warning 此函数为异常处理系统的一部分，应在异常发生时由系统自动调用
+ * 
+ * @see ProcessSystemOperationsA0, ValidateDataBufferA2, SystemDefaultExceptionHandlerB
+ */
+void ProcessExceptionContextResourceReleaseB20(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -94119,7 +94148,21 @@ void Unwind_18090cb20(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cb30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理器（B30版本）
+ * 
+ * 该函数是一个简单的异常处理器设置函数，负责在数据缓冲区的指定位置
+ * 设置默认异常处理器。这是异常处理系统的基础设置函数之一。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090cb30
+ * @warning 此函数为异常处理系统的一部分，用于初始化异常处理器
+ * 
+ * @see SystemDefaultExceptionHandlerB
+ */
+void SetupExceptionHandlerB30(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x6c0) = &SystemDefaultExceptionHandlerB;
@@ -94187,7 +94230,15 @@ void CleanupExceptionContextAndResourceIterator(DataBuffer operationBase, int64_
 
 
 
-void Unwind_18090cb50(void)
+/**
+ * @brief 系统资源计数器递减并执行系统函数（B50版本）
+ * 
+ * 该函数递减系统资源计数器，并调用系统函数表中偏移量0x20处的函数指针。
+ * 这是系统资源管理中的标准清理流程。
+ * 
+ * @note 原始函数名：Unwind_18090cb50
+ */
+void DecrementSystemResourceCounterAndExecuteFunctionB50(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -94198,7 +94249,22 @@ void Unwind_18090cb50(void)
 
 
 
-void Unwind_18090cb60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文资源释放和数据验证（B60版本）
+ * 
+ * 该函数是异常处理系统的重要组成部分，负责在异常发生时进行资源清理。
+ * 它会检查数据缓冲区状态，管理资源迭代器，处理异常上下文，
+ * 并验证数据缓冲区的完整性。最后会设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_18090cb60
+ * @warning 此函数为异常处理系统的一部分，应在异常发生时由系统自动调用
+ * 
+ * @see ProcessSystemOperationsA0, ValidateDataBufferA2, SystemDefaultExceptionHandlerB
+ */
+void ProcessExceptionContextResourceReleaseB60(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -94404,7 +94470,22 @@ void DecrementSystemResourceCounterAndCleanupC0(void)
 
 
 
-void Unwind_18090cbd0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文资源释放和数据验证（BD0版本）
+ * 
+ * 该函数是异常处理系统的重要组成部分，负责在异常发生时进行资源清理。
+ * 它会检查数据缓冲区状态，管理资源迭代器，处理异常上下文，
+ * 并验证数据缓冲区的完整性。最后会设置默认异常处理器。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常处理相关信息
+ * 
+ * @note 原始函数名：Unwind_18090cbd0
+ * @warning 此函数为异常处理系统的一部分，应在异常发生时由系统自动调用
+ * 
+ * @see ProcessSystemOperationsA0, ValidateDataBufferA2, SystemDefaultExceptionHandlerB
+ */
+void ProcessExceptionContextResourceReleaseBD0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -94448,7 +94529,21 @@ void Unwind_18090cbd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cbe0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置异常处理器（BE0版本）
+ * 
+ * 该函数是一个简单的异常处理器设置函数，负责在数据缓冲区的指定位置
+ * 设置默认异常处理器。这是异常处理系统的基础设置函数之一。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_18090cbe0
+ * @warning 此函数为异常处理系统的一部分，用于初始化异常处理器
+ * 
+ * @see SystemDefaultExceptionHandlerB
+ */
+void SetupExceptionHandlerBE0(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x7e0) = &SystemDefaultExceptionHandlerB;
@@ -99905,25 +100000,55 @@ void Unwind_18090dc00(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090dc30(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理器DC30
+ * 
+ * 执行指定偏移量的内存操作，处理数据缓冲区的内存管理
+ * 
+ * @param operationBase 操作基址，用于指定操作的基础位置
+ * @param dataBuffer 数据缓冲区，包含要处理的数据
+ * 
+ * @note 原始函数名：Unwind_18090dc30
+ */
+void ExecuteMemoryOperationAtOffset488(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x488,2,ProcessMemoryOperationA3);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48), 0x488, 2, ProcessMemoryOperationA3);
   return;
 }
 
 
 
-void Unwind_18090dc60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理器DC60
+ * 
+ * 执行指定偏移量的内存操作，处理数据缓冲区的内存管理
+ * 
+ * @param operationBase 操作基址，用于指定操作的基础位置
+ * @param dataBuffer 数据缓冲区，包含要处理的数据
+ * 
+ * @note 原始函数名：Unwind_18090dc60
+ */
+void ExecuteMemoryOperationAtOffset908(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48),0x908,2,ProcessMemoryOperationA4);
+  ExecuteMemoryOperation(*(DataBuffer *)(dataBuffer + 0x48), 0x908, 2, ProcessMemoryOperationA4);
   return;
 }
 
 
 
-void Unwind_18090dc90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器DC90
+ * 
+ * 处理异常上下文指针，调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基址，用于指定操作的基础位置
+ * @param dataBuffer 数据缓冲区，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090dc90
+ */
+void ProcessExceptionContextHandler(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -99937,10 +100062,20 @@ void Unwind_18090dc90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090dca0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 内存操作处理器DCA0
+ * 
+ * 执行指定偏移量的内存操作，处理数据缓冲区的内存管理
+ * 
+ * @param operationBase 操作基址，用于指定操作的基础位置
+ * @param dataBuffer 数据缓冲区，包含要处理的数据
+ * 
+ * @note 原始函数名：Unwind_18090dca0
+ */
+void ExecuteMemoryOperationAtOffset18(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x48) + 8,0x18,2,ProcessMemoryOperationA5);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0x48) + 8, 0x18, 2, ProcessMemoryOperationA5);
   return;
 }
 

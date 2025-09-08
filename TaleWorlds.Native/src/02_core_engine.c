@@ -64238,7 +64238,7 @@ unsigned long long SystemContextDataManager(long long *CharacterCode,uint64_t Sy
   CharacterCode2 = *(long long **)(StringOffset + 0x58);
   SystemContextPtr = CharacterCodeTablePointer;
   if (CharacterCode2 == (long long *)0x0) {
-LAB_1800892ba:
+MemoryBlockListHeadAssignment:
     MemoryBlockListHead = CharacterCodeTablePointer;
   }
   else {
@@ -199583,21 +199583,21 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCo
     MemoryBlockOffset = 0;
     SystemKeyIndex = 0;
     StackValidationFlag = 3;
-    Utf16Char = *(uint *)(AllocatedMemorySize + 0x10);
-    SystemMemoryAllocationResult = (unsigned long long)Utf16Char;
-    if (*(long long *)(AllocatedMemorySize + 8) != 0) {
+    ConvertedUtf16Char = *(uint *)(AllocatedMemoryBuffer + 0x10);
+    SystemMemoryAllocationResult = (unsigned long long)ConvertedUtf16Char;
+    if (*(long long *)(AllocatedMemoryBuffer + 8) != 0) {
       CoreEngineProcessSystemEvent(&ThreadLocalStoragePointer,SystemMemoryAllocationResult);
     }
-    if (Utf16Char != 0) {
+    if (ConvertedUtf16Char != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(MemoryBlockOffset,*(void *)(AllocatedMemorySize + 8),SystemMemoryAllocationResult);
+      memcpy(MemoryBlockOffset,*(void *)(AllocatedMemoryBuffer + 8),SystemMemoryAllocationResult);
     }
     if (MemoryBlockOffset != 0) {
       *(uint8_t *)(SystemMemoryAllocationResult + MemoryBlockOffset) = 0;
     }
-    StackDataBuffer = CONCAT44(*(uint32_t *)(AllocatedMemorySize + 0x1c),(uint32_t)StackDataBuffer);
+    StackDataBuffer = CONCAT44(*(uint32_t *)(AllocatedMemoryBuffer + 0x1c),(uint32_t)StackDataBuffer);
     ProcessingStatusFlag = 1;
-    SystemKeyIndex = Utf16Char;
+    SystemKeyIndex = ConvertedUtf16Char;
     CoreEngineProcessSystemEvent(&ThreadLocalStoragePointer,1);
     *(uint16_t *)((unsigned long long)SystemKeyIndex + MemoryBlockOffset) = 0x2f;
     SystemResourcePointerB8 = &SystemNullTemplate;
@@ -199639,7 +199639,7 @@ void ProcessUtf8ToUtf16CharacterEncodingAndMemoryAllocation(uint64_t CharacterCo
       MemoryCopyBufferPointer = MemoryCopyBuffer;
       EncodingValidationResult = MultiByteToWideChar(0xfde9,0,CharacterStatusBuffer,0xffffffff);
       if (0x22f < (unsigned long long)((long long)EncodingValidationResult * 2)) {
-LAB_180167a3b:
+SystemMemoryValidationError:
         CoreEngineSetupNetworkConnection();
         SystemValidationFunction = (code *)swi(3);
         (*SystemValidationFunction)();
