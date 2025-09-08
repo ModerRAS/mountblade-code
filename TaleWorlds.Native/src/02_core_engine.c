@@ -800,6 +800,11 @@
 #define ProcessCharacterBufferReset FUN_180149bd0             // 处理字符缓冲区重置
 #define ProcessSystemDataAllocation FUN_18014ebb6             // 处理系统数据分配
 #define fStackX_24 SecondaryTransformComponent             // 次变换组件
+#define lStackX_10 StackLongValue10                         // 栈长整型值10
+#define uStackX_20 StackUnsignedValue20                     // 栈无符号值20
+#define SystemDataTablePointerA8_3 SystemDataTablePointerA8_3     // 系统数据表指针A8_3
+#define SystemDataTablePointer90_2 SystemDataTablePointer90_2     // 系统数据表指针90_2
+#define SystemDataTablePointerB8_3 SystemDataTablePointerB8_3     // 系统数据表指针B8_3
 #define fStack_48 StackPrimaryFloat                        // 栈主浮点值
 #define fStack_44 StackSecondaryFloat                      // 栈次浮点值
 #define fStack_40 StackTertiaryFloat                       // 栈第三浮点值
