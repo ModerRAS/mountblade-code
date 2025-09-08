@@ -282669,4 +282669,327 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define GetSystemCharacterBufferSizeEx FUN_18015c320
 
+/**
+ * @brief 处理系统事件和字符代码
+ * 
+ * 该函数负责处理系统事件和字符代码的关系。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_1801607a0
+ */
+#define ProcessSystemEventAndCharacterCode FUN_1801607a0
+
+/**
+ * @brief 处理字符代码和内存分配
+ * 
+ * 该函数负责处理字符代码和内存分配的关系。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180150560
+ */
+#define ProcessCharacterCodeAndMemoryAllocation FUN_180150560
+
+/**
+ * @brief 处理字符代码和系统缓冲区
+ * 
+ * 该函数负责处理字符代码和系统缓冲区的关系。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void* 处理结果指针
+ * 
+ * @note 原始函数名：FUN_180150ab0
+ */
+#define ProcessCharacterCodeAndSystemBuffer FUN_180150ab0
+
+/**
+ * @brief 处理系统字符状态
+ * 
+ * 该函数负责处理系统字符状态。
+ * 
+ * @param CharacterCode 字符代码
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180150ae0
+ */
+#define ProcessSystemCharacterStatus FUN_180150ae0
+
+/**
+ * @brief 处理系统字符数据交换
+ * 
+ * 该函数负责处理系统字符数据的交换操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180152870
+ */
+#define ProcessSystemCharacterDataExchange FUN_180152870
+
+/**
+ * @brief 处理系统字符状态验证
+ * 
+ * 该函数负责处理系统字符状态的验证操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_1801528b0
+ */
+#define ProcessSystemCharacterStatusValidation FUN_1801528b0
+
+/**
+ * @brief 处理系统字符数据初始化
+ * 
+ * 该函数负责处理系统字符数据的初始化操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180152990
+ */
+#define ProcessSystemCharacterDataInitialization FUN_180152990
+
+/**
+ * @brief 处理系统字符数据配置
+ * 
+ * 该函数负责处理系统字符数据的配置操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180152a00
+ */
+#define ProcessSystemCharacterDataConfiguration FUN_180152a00
+
+/**
+ * @brief 处理系统字符数据验证扩展
+ * 
+ * 该函数负责处理系统字符数据验证的扩展操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180152a20
+ */
+#define ProcessSystemCharacterDataValidationEx FUN_180152a20
+
+/**
+ * @brief 处理系统字符数据管理
+ * 
+ * 该函数负责处理系统字符数据的管理操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180152a80
+ */
+#define ProcessSystemCharacterDataManagement FUN_180152a80
+
+/**
+ * @brief 处理系统字符数据优化
+ * 
+ * 该函数负责处理系统字符数据的优化操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180152ae0
+ */
+#define ProcessSystemCharacterDataOptimization FUN_180152ae0
+
+/**
+ * @brief 处理系统字符数据转换
+ * 
+ * 该函数负责处理系统字符数据的转换操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180152b00
+ */
+#define ProcessSystemCharacterDataConversion FUN_180152b00
+
+/**
+ * @brief 处理字符编码转换和缓冲区管理
+ * 
+ * 该函数负责处理字符编码转换和缓冲区管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180152b60
+ */
+#define ProcessCharacterEncodingConversionAndBufferManagement FUN_180152b60
+
+/**
+ * @brief 处理系统数据验证和缓冲区管理
+ * 
+ * 该函数负责处理系统数据验证和缓冲区管理。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801538d0
+ */
+#define ProcessSystemDataValidationAndBufferManagement FUN_1801538d0
+
+/**
+ * @brief 处理系统字符状态清理
+ * 
+ * 该函数负责处理系统字符状态的清理操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180153c60
+ */
+#define ProcessSystemCharacterStatusCleanup FUN_180153c60
+
+/**
+ * @brief 处理系统字符数据和缓冲区管理
+ * 
+ * 该函数负责处理系统字符数据和缓冲区管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180153d40
+ */
+#define ProcessSystemCharacterDataAndBufferManagement FUN_180153d40
+
+/**
+ * @brief 处理系统字符数据和内存管理
+ * 
+ * 该函数负责处理系统字符数据和内存管理。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180156300
+ */
+#define ProcessSystemCharacterDataAndMemoryManagement FUN_180156300
+
+/**
+ * @brief 处理系统字符状态重置
+ * 
+ * 该函数负责处理系统字符状态的重置操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180156b60
+ */
+#define ProcessSystemCharacterStatusReset FUN_180156b60
+
+/**
+ * @brief 处理系统字符状态初始化
+ * 
+ * 该函数负责处理系统字符状态的初始化操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180156ba0
+ */
+#define ProcessSystemCharacterStatusInitialization FUN_180156ba0
+
+/**
+ * @brief 处理系统字符状态配置
+ * 
+ * 该函数负责处理系统字符状态的配置操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180156bc0
+ */
+#define ProcessSystemCharacterStatusConfiguration FUN_180156bc0
+
+/**
+ * @brief 处理系统字符状态更新
+ * 
+ * 该函数负责处理系统字符状态的更新操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180156c00
+ */
+#define ProcessSystemCharacterStatusUpdate FUN_180156c00
+
+/**
+ * @brief 处理字符编码和缓冲区分配
+ * 
+ * 该函数负责处理字符编码和缓冲区分配。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180156c20
+ */
+#define ProcessCharacterEncodingAndBufferAllocation FUN_180156c20
+
+/**
+ * @brief 处理字符编码和内存管理
+ * 
+ * 该函数负责处理字符编码和内存管理。
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180156e40
+ */
+#define ProcessCharacterEncodingAndMemoryManagement FUN_180156e40
+
+/**
+ * @brief 处理系统字符数据释放
+ * 
+ * 该函数负责处理系统字符数据的释放操作。
+ * 
+ * @param CharacterCode 字符代码
+ * @return long long 处理结果
+ * 
+ * @note 原始函数名：FUN_180157050
+ */
+#define ProcessSystemCharacterDataRelease FUN_180157050
+
+/**
+ * @brief 处理系统字符数据初始化扩展
+ * 
+ * 该函数负责处理系统字符数据初始化的扩展操作。
+ * 
+ * @param CharacterCode 字符代码指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_1801570c0
+ */
+#define ProcessSystemCharacterDataInitializationEx FUN_1801570c0
+
 
