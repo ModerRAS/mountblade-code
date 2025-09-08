@@ -7941,15 +7941,15 @@ void SetupUIMemoryAllocator(void)
   UIHandle memoryAlignmentFlag;
   ulonglong xorKeyOffset;
   
-  pallocatedMemory = UIMonoAssemblyHandle;
+  monoAssemblyMemory = UIMonoAssemblyHandle;
   memoryAlignmentFlag = 0xfffffffffffffffe;
   xorKeyOffset = XorEncryptionKey ^ (ulonglong)encryptionKeyBuffer;
   bufferPadding = 0;
-  pprimaryUIBuffer = &PrimaryUIBuffer;
+  primaryUIBufferPtr = &PrimaryUIBuffer;
   encryptedBufferOffset = 0;
-  pallocatedTextureBuffer = (UIDword *)0x0;
+  allocatedTextureBuffer = (UIDword *)0x0;
   textureBufferSize = 0;
-  AllocateUIBuffer(&pprimaryUIBuffer,0x15);
+  AllocateUIBuffer(&primaryUIBufferPtr,0x15);
   psemaphoreHandle = pallocatedTextureBuffer;
   bufferOffset = (ulonglong)textureBufferSize;
   ptextureData = (UIDword *)((longlong)pallocatedTextureBuffer + bufferOffset);
