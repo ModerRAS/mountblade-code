@@ -2222,7 +2222,19 @@ void* UIGestureCoordinates;
  UNK_18097fd48 - UI渲染缓冲区指针H
 #define UIRenderBufferPointerH UNK_18097fd48
 
- UI系统未知函数表宏定义
+// UI系统全局处理器指针宏定义
+#define UIGlobalDataTransformationProcessor _DAT_180d4a788
+#define UIGlobalDataConversionProcessor _DAT_180d4a740
+#define UIGlobalResourceValidationProcessor _DAT_180d4a700
+#define UIGlobalOperationProcessorType2 _DAT_180d4a6e0
+#define UIGlobalOperationProcessorTypeB _DAT_180d4a6b8
+#define UIGlobalOperationProcessorTypeD _DAT_180d4a968
+#define UIGlobalOperationProcessorTypeF _DAT_180d4a948
+#define UIGlobalOperationProcessorTypeH _DAT_180d4a920
+#define UIGlobalOperationProcessorTypeJ _DAT_180d4a8f0
+#define UIGlobalOperationProcessorTypeL _DAT_180d4a8d0
+
+// UI系统未知函数表宏定义
 #define UIUnknownFunctionTable1 UIUnknownFunctionTable1
 #define UIUnknownFunctionTable2 UIUnknownFunctionTable2
 #define UIUnknownFunctionTable3 UIUnknownFunctionTable3
@@ -89272,7 +89284,24 @@ int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int 
 
 
 
-UIDword FUN_18071a8ff(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,int bufferSize)
+/**
+ * @brief UI事件句柄管理器
+ * 
+ * 该函数负责管理UI事件句柄的分配和返回，主要功能包括：
+ * - 根据缓冲区大小决定事件句柄的分配策略
+ * - 返回合适的UI事件句柄值
+ * - 处理简单的事件句柄逻辑
+ * 
+ * @param uiContext UI上下文句柄
+ * @param dataSource 数据源标识符
+ * @param targetBuffer 目标缓冲区句柄
+ * @param bufferSize 缓冲区大小，用于决定事件句柄分配策略
+ * @return UIDword 返回处理后的UI事件句柄
+ * 
+ * @note 原始函数名：FUN_18071a8ff
+ * @note 这是一个简化的事件句柄管理函数
+ */
+UIDword ManageUIEventHandle(UIHandle uiContext,UIDword dataSource,UIHandle targetBuffer,int bufferSize)
 
 {
   UIDword eventHandle;
