@@ -719,16 +719,20 @@ typedef enum {
 #define UIDataBufferPointer UNK_180741cf0
 #define UIResourceTablePointer UNK_180741d00
 #define UIContextDataPointer UNK_180741ce0
-#define UIUnknownSystemData1 UNK_180958080
-#define UIUnknownSystemData2 UNK_18078b870
-#define UIUnknownSystemData3 UNK_180958bf0
-#define UIUnknownSystemData4 UNK_1807693c0
-#define UIUnknownComponentData UNK_180770640
-#define UIUnknownFontData1 UNK_180786c90
-#define UIUnknownFontData2 UNK_1807868c0
-#define UIUnknownFontData3 UNK_180788fc0
-#define UIUnknownEventData UNK_180747d60
-#define UIUnknownFontManager UNK_180785d90
+// UI系统全局数据美化
+#define UISystemGlobalData UNK_180958080
+#define UISystemConfigurationData UNK_18078b870
+#define UISystemStateData UNK_180958bf0
+#define UISystemResourceData UNK_1807693c0
+// UI系统组件数据美化
+#define UIComponentDataBuffer UNK_180770640
+// UI系统字体数据美化
+#define UIFontDataBuffer1 UNK_180786c90
+#define UIFontDataBuffer2 UNK_1807868c0
+#define UIFontDataBuffer3 UNK_180788fc0
+// UI系统事件和字体管理器美化
+#define UIEventDataBuffer UNK_180747d60
+#define UIFontManagerData UNK_180785d90
 
 // UI系统渲染参数美化
 #define renderParam1 stackParam00000048
@@ -1331,7 +1335,7 @@ void* UIAnimationSystem;
  原始函数名：GetUIStringCompareIndex - 字符串比较索引函数
 #define GetUIStringCompareIndex GetUIStringCompareIndex
 
- 原始函数名：UNK_18095af38 - UI字符串常量
+ // UI系统字符串常量美化
 #define UIStringConstant UNK_18095af38
 
  原始函数名：ValidateUIContext - UI上下文验证函数
@@ -1716,13 +1720,13 @@ void* UIGestureCoordinates;
 #define UIDataConversionConstant _DAT_180a401b0
 #define UIXOREncryptionKey _DAT_180a40580
 
- // UI系统渲染参数表宏定义
-#define UIRenderParameterTable0 UNK_18094e25c
-#define UIRenderParameterTable1 UNK_18094e26c
-#define UIRenderParameterTable2 UNK_18094e270
-#define UIRenderParameterTable3 UNK_18094e274
-#define UIRenderParameterTable4 UNK_18094e27c
-#define UIRenderParameterTable5 UNK_18094e280
+ // UI系统渲染参数表美化
+#define UIRenderParameterTransformMatrix UNK_18094e25c
+#define UIRenderParameterColorData UNK_18094e26c
+#define UIRenderParameterShaderUniforms UNK_18094e270
+#define UIRenderParameterTextureData UNK_18094e274
+#define UIRenderParameterViewportData UNK_18094e27c
+#define UIRenderParameterLightingData UNK_18094e280
 
  // UI系统数据缓冲区宏定义
 #define UIDataBufferA UNK_1809535b4

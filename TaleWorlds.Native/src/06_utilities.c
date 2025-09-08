@@ -590,6 +590,11 @@
 #define MemoryPointerOffset8 0x8                       // 内存指针偏移量8
 #define ExceptionHandlerConfigOffset278 0x278          // 异常处理器配置偏移量278
 #define MemoryAllocationSecurityOffset 0x19            // 内存分配安全偏移量
+#define ResourceDataSecondaryOffset 0x1c               // 资源数据次级偏移量
+#define FloatingPointDataOffset38 0x38                 // 浮点数据偏移量38
+#define FloatingPointDataOffset3c 0x3c                 // 浮点数据偏移量3c
+#define FloatingPointDataOffset28 0x28                 // 浮点数据偏移量28
+#define FloatingPointDataOffset2c 0x2c                 // 浮点数据偏移量2c
 #define ExceptionHandlerConfigOffset250 0x250          // 异常处理器配置偏移量250
 #define ExceptionHandlerConfigOffset128 0x128          // 异常处理器配置偏移量128
 #define ExceptionHandlerConfigOffset130 0x130          // 异常处理器配置偏移量130
@@ -17289,9 +17294,9 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
         else {
           resourceData = *(uint8_t **)(memoryResourcePointer + ResourceDataBufferOffset);
         }
-        validationStatus = ValidateResourceDataIntegrityA0(resourceData, resourceContext + 0x1c);
+        validationStatus = ValidateResourceDataIntegrityA0(resourceData, resourceContext + ResourceDataSecondaryOffset);
         if (validationStatus == 0) {
-          operationResult = ValidateAndProcessSystemResourceA0(listEntry, resourceContext + 0x18);
+          operationResult = ValidateAndProcessSystemResourceA0(listEntry, resourceContext + ResourceCallbackDataOffset);
           if ((int)operationResult != 0) {
             return operationResult;
           }
@@ -17659,15 +17664,15 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   dataBufferPtr = 0;
   tertiaryInfinityFlag = 0;
   quaternaryInfinityFlag = tertiaryInfinityFlag;
-  if ((*(uint *)(dataPtr + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
+  if ((*(uint *)(dataPtr + FloatingPointDataOffset20) & FloatInfinityValue) == FloatInfinityValue) {
     quaternaryInfinityFlag = 0x1d;
   }
   primaryInfinityFlag = tertiaryInfinityFlag;
-  if ((*(uint *)(dataPtr + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
+  if ((*(uint *)(dataPtr + FloatingPointDataOffset1c) & FloatInfinityValue) == FloatInfinityValue) {
     primaryInfinityFlag = 0x1d;
   }
   secondaryInfinityFlag = tertiaryInfinityFlag;
-  if ((*(uint *)(dataPtr + 0x18) & FloatInfinityValue) == FloatInfinityValue) {
+  if ((*(uint *)(dataPtr + FloatingPointDataOffset18) & FloatInfinityValue) == FloatInfinityValue) {
     secondaryInfinityFlag = 0x1d;
   }
   if ((quaternaryInfinityFlag != 0 || componentXInfinityFlag != 0) || componentYInfinityFlag != 0) {
