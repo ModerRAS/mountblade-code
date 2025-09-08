@@ -152249,7 +152249,23 @@ FUN_18075ece0(longlong uiContext,uint dataSource,int targetBuffer,uint *bufferSi
 
 
 
-ulonglong FUN_18075ef40(longlong uiContext,int dataSource,ulonglong *targetBuffer,ulonglong *bufferSize,
+/**
+ * @brief 处理UI事件队列和状态更新
+ * 
+ * 处理UI系统中的事件队列，更新UI状态，并管理事件处理流程。
+ * 该函数负责遍历事件队列，处理每个事件，并更新相应的UI状态。
+ * 
+ * @param uiContext UI上下文指针，包含UI系统状态信息
+ * @param dataSource 数据源标识，指定要处理的数据源
+ * @param targetBuffer 目标缓冲区指针，用于存储处理结果
+ * @param bufferSize 缓冲区大小指针，用于控制处理范围
+ * @param resultPointer 结果指针，用于返回处理状态
+ * @param param_6 参数标志，控制处理行为
+ * @return 处理的事件数量或状态码
+ * 
+ * @note 原始函数名: FUN_18075ef40
+ */
+ulonglong ProcessUIEventQueue(longlong uiContext,int dataSource,ulonglong *targetBuffer,ulonglong *bufferSize,
                        char resultPointer,char param_6)
 
 {
