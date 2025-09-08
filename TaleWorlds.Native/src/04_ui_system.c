@@ -16428,9 +16428,26 @@ void ProcessUIInputEvents(void)
  WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void HandleUICollisionDetection(longlong uiContext,longlong dataSource,longlong targetBuffer,float bufferSize,
-void HandleUICollisionDetection(longlong uiContext,longlong dataSource,longlong targetBuffer,float bufferSize,
-                  UIByte *resultPointer,char *param_6)
+ /**
+ * @brief UI碰撞检测处理器
+ * 
+ * 该函数处理UI系统中的碰撞检测，包括：
+ * - 碰撞数据的计算和优化
+ * - 空间分割和边界检查
+ * - 碰撞响应和事件生成
+ * - 性能优化和内存管理
+ * 
+ * @param uiContext UI上下文指针
+ * @param dataSource 数据源指针
+ * @param targetBuffer 目标缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param resultPointer 结果指针
+ * @param param_6 额外参数
+ * 
+ * @note 原始函数名：HandleUICollisionDetection
+ */
+void HandleUICollisionDetection(longlong uiContext, longlong dataSource, longlong targetBuffer, float bufferSize,
+                  UIByte *resultPointer, char *param_6)
 
 {
   float *pbaseValue;
