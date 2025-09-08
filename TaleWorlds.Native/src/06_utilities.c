@@ -197,6 +197,22 @@
 #define DataBufferFloatDataOffset 0x84                   // 数据缓冲区浮点数据偏移量
 #define DataBufferEventOffset 0x98                        // 数据缓冲区事件偏移量
 #define DataBufferControlOffset 0xc0                     // 数据缓冲区控制偏移量
+
+// 系统操作上下文偏移量常量
+#define SystemOperationContextOffset60 0x60              // 系统操作上下文偏移量60
+#define SystemDataSecondaryOffset18 0x18                 // 系统数据次级偏移量18
+#define SystemDataValidationOffset34 0x34                // 系统数据验证偏移量34
+#define SystemDataBufferPointerOffset 0x1a8              // 系统数据缓冲区指针偏移量
+#define SystemDataStatusOffset0 0x2e0                    // 系统数据状态偏移量0
+#define SystemDataStatusOffset8 0x2a8                    // 系统数据状态偏移量8
+#define SystemDataProcessingFlagsOffset 0x2f8            // 系统数据处理标志偏移量
+#define SystemParameterValidationOffset280 0x280        // 系统参数验证偏移量280
+#define SystemParameterValidationOffset288 0x288        // 系统参数验证偏移量288
+
+// 异常处理上下文偏移量常量
+#define ExceptionHandlerContextOffset40 0x40             // 异常处理上下文偏移量40
+#define ExceptionContextDataOffset1C0 0x1c0              // 异常上下文数据偏移量1C0
+#define SystemDataRecordOffset3c0 0x3c0                  // 系统数据记录偏移量3C0
 #define DataBufferManagementOffset 0xe0                   // 数据缓冲区管理偏移量
 #define DataBufferSecondaryManagementOffset 0xe8          // 数据缓冲区次级管理偏移量
 #define DataBufferOperationContextOffset 0x60             // 数据缓冲区操作上下文偏移量
@@ -19983,7 +19999,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t dataContext,int64_t operationCon
   systemContextBuffer[0] = 0;
   operationResult = ProcessSystemDataTransferA0(operationContext + SystemContextOffset60,dataContext + ExceptionDataBufferOffset10,systemContextBuffer);
   if ((int)operationResult == 0) {
-    rangeData = GetOperationRangeDataA0(operationContext + 0x60,systemContextBuffer[0]);
+    rangeData = GetOperationRangeDataA0(operationContext + SystemOperationContextOffset60,systemContextBuffer[0]);
     if ((*(uint *)(rangeData + SystemDataValidationOffset34) >> 4 & 1) != 0) {
       return ComponentDataValidationFailure;
     }
@@ -19995,7 +20011,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t dataContext,int64_t operationCon
       maxValue = inputValue;
     }
     *(float *)(dataContext + SystemDataSecondaryOffset18) = maxValue;
-    operationResult = ValidateOperationRangeA0(operationContext + 0x60,systemContextBuffer[0],maxValue);
+    operationResult = ValidateOperationRangeA0(operationContext + SystemOperationContextOffset60,systemContextBuffer[0],maxValue);
     if ((int)operationResult == 0) {
         CleanupSystemEventA0(*(DataBuffer *)(operationContext + SystemManagementOffset98),dataContext);
     }
@@ -20021,9 +20037,9 @@ uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
   uint32_t stackDataBuffer;
   
   stackBuffer = 0;
-  operationResult = ProcessSystemDataTransferA0(systemHandle + 0x60,dataHandle,&stackDataBuffer);
+  operationResult = ProcessSystemDataTransferA0(systemHandle + SystemOperationContextOffset60,dataHandle,&stackDataBuffer);
   if ((int)operationResult == 0) {
-    memoryBlockOffset = GetOperationRangeDataA0(systemHandle + 0x60,stackBuffer);
+    memoryBlockOffset = GetOperationRangeDataA0(systemHandle + SystemOperationContextOffset60,stackBuffer);
     if ((*(uint *)(memoryBlockOffset + SystemDataValidationOffset34) >> 4 & 1) != 0) {
       return ComponentDataValidationFailure;
     }
@@ -20034,7 +20050,7 @@ uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
       rangeMax = inputValue;
     }
     *(float *)(registerContext + SystemDataSecondaryOffset18) = rangeMax;
-    operationResult = ValidateOperationRangeA0(systemHandle + 0x60,stackBuffer,rangeMax);
+    operationResult = ValidateOperationRangeA0(systemHandle + SystemOperationContextOffset60,stackBuffer,rangeMax);
     if ((int)operationResult == 0) {
         CleanupSystemEventA0(*(DataBuffer *)(systemHandle + SystemManagementOffset98),systemHandle);
     }
@@ -20074,7 +20090,7 @@ void ProcessFloatComparisonAndValidation(void)
     rangeValue = inputValue;
   }
   *(float *)(registerContext + SystemDataSecondaryOffset18) = rangeValue;
-  operationResult = ValidateOperationRangeA0(systemContext + 0x60,stackParameter,rangeValue);
+  operationResult = ValidateOperationRangeA0(systemContext + SystemOperationContextOffset60,stackParameter,rangeValue);
   if (operationResult == 0) {
       CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextOffset98),systemContext);
   }
@@ -20093,7 +20109,7 @@ DataBuffer ProcessEventA0(int64_t eventContext,int64_t systemContext)
   DataWord eventDataBuffer [2];
   
   eventDataBuffer[0] = 0;
-  operationResult = ProcessSystemDataTransferA0(systemContext + 0x60,eventContext + 0x10,eventDataBuffer);
+  operationResult = ProcessSystemDataTransferA0(systemContext + SystemOperationContextOffset60,eventContext + 0x10,eventDataBuffer);
   if ((int)operationResult == 0) {
     dataRangeOffset = GetOperationRangeDataA0(systemContext + 0x60,eventDataBuffer[0]);
     if ((*(uint *)(dataRangeOffset + SystemDataValidationOffset34) >> 4 & 1) != 0) {
@@ -23227,7 +23243,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t securityContext)
           do {
             if (*(int *)(*exceptionHandlerContextPointer + resourceIterator * 4) != -1) {
               stackIndexBuffer[0] = *(int *)(*exceptionHandlerContextPointer + (int64_t)arrayIterationIndex * 4);
-              goto ProcessCheckpointDataFlow;
+              goto DataFlowValidationCheckpoint;
             }
             arrayIterationIndex = arrayIterationIndex + 1;
             resourceIterator = resourceIterator + 1;
@@ -30045,7 +30061,7 @@ DataCheckpointB:
     exceptionHandlerContextPointer = (int64_t *)*registerContext;
     if (*exceptionHandlerContextPointer != 0) {
       if (exceptionHandlerContextPointer[2] == 0) {
-MemoryCheckpointA:
+MemoryValidationCheckpoint:
         RegisterContextBackup = ValidateDataAndReturnStatusO3(*exceptionHandlerContextPointer,&StackDataBufferI,RegisterContextValue,4,0);
       }
       else {
@@ -30087,11 +30103,11 @@ MemoryCheckpointA:
     *(uint *)(StackFrameContext + 0xd4) = RegisterContextValue;
     dataFlags = validationOutcome;
   }
-MemoryCheckpointB:
+ResourceCleanupCheckpoint:
   if (dataFlags == 0) {
       CleanupSystemResourcesA0();
   }
-MemoryCheckpointC:
+FunctionExitCheckpoint:
   return (uint64_t)dataFlags;
 }
 
