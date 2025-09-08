@@ -69306,21 +69306,6 @@ LAB_18069fefd:
 /**
  * @brief 获取UI组件状态
  * 
- * 该函数从指定的UI上下文和数据源中获取组件状态信息：
- * - 读取组件状态标志
- * - 验证数据源有效性
- * - 返回状态码
- * - 处理异常情况
- * 
- * @param uiContext UI上下文指针
- * @param dataSource 数据源指针
- * @return 组件状态码
- * @note 原始函数名: FUN_18069ff30
- */
-uint FUN_18069ff30(longlong uiContext,UIByte *dataSource)
-/**
- * @brief 获取UI组件状态
- * 
  * 根据UI上下文和数据源获取UI组件的状态信息，包括组件的激活状态、
  * 可见性状态、交互状态等。该函数通过查找状态表和验证数据源来
  * 确定组件的当前状态。
@@ -69328,8 +69313,6 @@ uint FUN_18069ff30(longlong uiContext,UIByte *dataSource)
  * @param uiContext UI上下文指针，包含状态查询所需的上下文信息
  * @param dataSource 数据源指针，包含组件状态数据
  * @return 组件状态值，成功返回有效状态码，失败返回0
- * 
- * @note 原始函数名: FUN_18069ff30
  */
 uint GetUIComponentStatus(longlong uiContext,UIByte *dataSource)
 
