@@ -191580,16 +191580,24 @@ void CleanupSystemDataBuffer(long long CharacterCode)
 
 
 
-5b520(voidvoid FUN_18015b520(void
+/**
+ * @brief 清理系统内存块和释放资源
+ * 
+ * 遍历系统数据节点，释放所有分配的内存块，清理指针引用，
+ * 并处理引用计数和异常情况。这是一个系统级的内存清理函数。
+ * 
+ * @note 原始函数名：FUN_18015b520
+ */
+void CleanupSystemMemoryBlocksAndReleaseResources(void)
 {
   int *ReferenceCountPointer;
   void *SystemContext;
   long long SearchStartIndex;
   long long StackFrameAddressPointer;
   unsigned long long PatternMatchStatus;
-  unsigned long long SystemDataNode;
+  unsigned long long SystemDataNodeIndex;
   unsigned long long MemoryOffsetValue;
-  long long CharacterLimit;
+  long long DataArrayLimit;
   uint64_t NullPointerValue;
   
   do {
