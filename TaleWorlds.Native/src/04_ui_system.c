@@ -300047,7 +300047,7 @@ UIHandle FUN_18084ec60(longlong uiContext)
   UIHandle EventTypeCode;
   
   if (*(char *)(*(longlong *)(uiBufferData + 0x40) + 0x74) == '\0') {
-    if ((*(longlong *)(uiBufferData + 0x60) == 0) || (localChar2 = FUN_180853120(), localChar2 == '\0')) {
+    if ((*(longlong *)(uiBufferData + 0x60) == 0) || (localChar2 = CheckUIComponentCondition(), localChar2 == '\0')) {
       localChar2 = '\0';
     }
     else {
@@ -300066,10 +300066,10 @@ UIHandle FUN_18084ec60(longlong uiContext)
   else {
     EventTypeCode = 1;
   }
-  FUN_18073d8a0(*(UIHandle *)(uiContext + 0x78),EventTypeCode);
+  UpdateUIComponentState(*(UIHandle *)(uiContext + 0x78),EventTypeCode);
   for (ptrResult = *(UIHandle **)(uiContext + 0x50);
       (ptrResult != (UIHandle *)(uiContext + 0x50) &&
-      (FUN_180853fc0(ptrResult[2],EventTypeCode), ptrResult != (UIHandle *)(uiContext + 0x50)));
+      (ValidateUIComponentEvent(ptrResult[2],EventTypeCode), ptrResult != (UIHandle *)(uiContext + 0x50)));
       ptrResult = (UIHandle *)*ptrResult) {
   }
   return 0;
