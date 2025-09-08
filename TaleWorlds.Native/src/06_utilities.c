@@ -17567,18 +17567,18 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
       if (dataPointer == 0) {
         return ResourceNotFoundCode;
       }
-      if ((*(byte *)(dataPointer + 0x34) & 0x11) != 0) {
+      if ((*(byte *)(dataPointer + FloatingPointDataOffset34) & 0x11) != 0) {
         return ComponentDataValidationFailure;
       }
-      inputValue = *(float *)(contextPointer + 0x20);
-      rangeValue = *(float *)(dataPointer + 0x38);
-      if ((*(float *)(dataPointer + 0x38) <= inputValue) &&
-         (rangeValue = *(float *)(dataPointer + 0x3c), inputValue <= *(float *)(dataPointer + 0x3c))) {
+      inputValue = *(float *)(contextPointer + FloatingPointDataOffset20);
+      rangeValue = *(float *)(dataPointer + FloatingPointDataOffset38);
+      if ((*(float *)(dataPointer + FloatingPointDataOffset38) <= inputValue) &&
+         (rangeValue = *(float *)(dataPointer + FloatingPointDataOffset3c), inputValue <= *(float *)(dataPointer + FloatingPointDataOffset3c))) {
         rangeValue = inputValue;
       }
-      *(float *)(contextPointer + 0x20) = rangeValue;
+      *(float *)(contextPointer + FloatingPointDataOffset20) = rangeValue;
       *(float *)(systemContextBuffer + 4) = rangeValue;
-        UpdateSystemFloatingPointValue(*(DataBuffer *)(systemDataPointer + 0x98),contextPointer);
+        UpdateSystemFloatingPointValue(*(DataBuffer *)(systemDataPointer + SystemResourceOffset98),contextPointer);
     }
   }
   return result;
