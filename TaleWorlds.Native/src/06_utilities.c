@@ -1707,6 +1707,50 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define DataContextOffset20 0x20                       // 数据上下文偏移量20
 #define DataContextOffset2c 0x2c                       // 数据上下文偏移量2c
 #define DataContextOffset38 0x38                       // 数据上下文偏移量38
+#define ExceptionHandlerContextOffset100 0x100         // 异常处理上下文偏移量100
+#define ExceptionHandlerContextOffset108 0x108         // 异常处理上下文偏移量108
+#define ExceptionHandlerContextOffset110 0x110         // 异常处理上下文偏移量110
+#define ExceptionHandlerContextOffset118 0x118         // 异常处理上下文偏移量118
+#define ExceptionHandlerContextOffset120 0x120         // 异常处理上下文偏移量120
+#define ExceptionHandlerContextOffset128 0x128         // 异常处理上下文偏移量128
+#define ExceptionHandlerContextOffset130 0x130         // 异常处理上下文偏移量130
+#define ExceptionHandlerContextOffset140 0x140         // 异常处理上下文偏移量140
+#define ExceptionHandlerContextOffset150 0x150         // 异常处理上下文偏移量150
+#define ExceptionHandlerContextOffset160 0x160         // 异常处理上下文偏移量160
+#define ExceptionHandlerContextOffset168 0x168         // 异常处理上下文偏移量168
+#define ExceptionHandlerContextOffset170 0x170         // 异常处理上下文偏移量170
+#define ExceptionHandlerContextOffset178 0x178         // 异常处理上下文偏移量178
+#define ExceptionHandlerContextOffset1b0 0x1b0         // 异常处理上下文偏移量1b0
+#define ExceptionHandlerContextOffset1b8 0x1b8         // 异常处理上下文偏移量1b8
+#define ExceptionHandlerContextOffset1c0 0x1c0         // 异常处理上下文偏移量1c0
+#define ExceptionHandlerContextOffset1c8 0x1c8         // 异常处理上下文偏移量1c8
+#define ExceptionHandlerContextOffset1d0 0x1d0         // 异常处理上下文偏移量1d0
+#define ExceptionHandlerContextOffset1e0 0x1e0         // 异常处理上下文偏移量1e0
+#define ExceptionHandlerContextOffset1e8 0x1e8         // 异常处理上下文偏移量1e8
+#define ExceptionHandlerContextOffset1f0 0x1f0         // 异常处理上下文偏移量1f0
+#define ExceptionHandlerContextOffset1f8 0x1f8         // 异常处理上下文偏移量1f8
+#define ExceptionHandlerContextOffset210 0x210         // 异常处理上下文偏移量210
+#define ExceptionHandlerContextOffset218 0x218         // 异常处理上下文偏移量218
+#define ExceptionHandlerContextOffset240 0x240         // 异常处理上下文偏移量240
+#define ExceptionHandlerContextOffset250 0x250         // 异常处理上下文偏移量250
+#define ExceptionHandlerContextOffset260 0x260         // 异常处理上下文偏移量260
+#define ExceptionHandlerContextOffset270 0x270         // 异常处理上下文偏移量270
+#define ExceptionHandlerContextOffset290 0x290         // 异常处理上下文偏移量290
+#define ExceptionHandlerContextOffset298 0x298         // 异常处理上下文偏移量298
+#define ExceptionHandlerContextOffset2a0 0x2a0         // 异常处理上下文偏移量2a0
+#define ExceptionHandlerContextOffset2b0 0x2b0         // 异常处理上下文偏移量2b0
+#define ExceptionHandlerContextOffset2e0 0x2e0         // 异常处理上下文偏移量2e0
+#define ExceptionHandlerContextOffset2e8 0x2e8         // 异常处理上下文偏移量2e8
+#define ExceptionHandlerContextOffset2f0 0x2f0         // 异常处理上下文偏移量2f0
+#define ExceptionHandlerContextOffset2f8 0x2f8         // 异常处理上下文偏移量2f8
+#define ExceptionHandlerContextOffset308 0x308         // 异常处理上下文偏移量308
+#define ExceptionHandlerContextOffset360 0x360         // 异常处理上下文偏移量360
+#define ExceptionHandlerContextOffset390 0x390         // 异常处理上下文偏移量390
+#define ExceptionHandlerContextOffset480 0x480         // 异常处理上下文偏移量480
+#define ExceptionHandlerContextOffset4b0 0x4b0         // 异常处理上下文偏移量4b0
+#define ExceptionHandlerContextOffset5d0 0x5d0         // 异常处理上下文偏移量5d0
+#define ExceptionHandlerMemoryOffsetE80 0xe8           // 异常处理内存偏移量E80
+#define ExceptionHandlerMemoryOffsetF80 0xf8           // 异常处理内存偏移量F80
 #define DataContextOffset44 0x44                  // 数据上下文偏移量44
 #define DataContextOffset50 0x50                  // 数据上下文偏移量50
 #define DataContextOffset68 0x68                  // 数据上下文偏移量68
@@ -71861,7 +71905,7 @@ void ExecuteExceptionHandlerCallbacksA70(DataBuffer operationBase,int64_t dataBu
 void ExecuteExceptionHandlerCallbacksA80(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  ProcessExceptionData(dataBuffer + 0xe8,*(DataBuffer *)(dataBuffer + 0xf8),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
+  ProcessExceptionData(dataBuffer + ExceptionHandlerMemoryOffsetE80,*(DataBuffer *)(dataBuffer + ExceptionHandlerMemoryOffsetF80),operationFlagA,operationFlagB,SystemCleanupFlagAlternative);
   return;
 }
 
@@ -71910,7 +71954,7 @@ void ManageResourceReferenceCountA90(DataBuffer operationBase,int64_t dataBuffer
 void ManageExceptionContextAA0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  **(DataBuffer **)(dataBuffer + 0x178) = &SystemDefaultExceptionHandlerB;
+  **(DataBuffer **)(dataBuffer + ExceptionHandlerContextOffset178) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -71932,8 +71976,8 @@ void ManageExceptionContextAA0(DataBuffer operationBase,int64_t dataBuffer)
 void ExecuteExceptionHandlerCallbacksAB0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
-  if (*(FunctionPointer**)(dataBuffer + 0x1c0) != (code *)0x0) {
-    (**(FunctionPointer**)(dataBuffer + 0x1c0))(dataBuffer + 0x1b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
+  if (*(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1c0) != (code *)0x0) {
+    (**(FunctionPointer**)(dataBuffer + ExceptionHandlerContextOffset1c0))(dataBuffer + ExceptionHandlerContextOffset1b0,0,0,operationFlagB,SystemCleanupFlagAlternative);
   }
   return;
 }
