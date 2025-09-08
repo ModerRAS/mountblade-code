@@ -86452,8 +86452,20 @@ void Unwind_18090b410(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090b430(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 异常处理器回调函数A5
+ * 
+ * 该函数负责在偏移量0x400处获取异常上下文处理器指针，
+ * 并调用该上下文中的异常处理函数。
+ * 
+ * @param operationBase 操作基址（DataBuffer类型）
+ * @param dataBuffer 数据缓冲区指针
+ * @return 无返回值
+ * 
+ * @note 原始函数名：Unwind_18090b430
+ * @warning 确保传入的dataBuffer参数有效，否则可能导致内存访问错误
+ */
+void ExecuteExceptionHandlerCallbackA5(DataBuffer operationBase, int64_t dataBuffer)
 {
   int64_t *exceptionHandlerContextPointer;
   
