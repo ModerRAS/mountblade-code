@@ -126016,33 +126016,96 @@ uint8_t SystemExceptionHandlerStateTable;
  */
 #define CheckSystemHealth CheckSystemHealthAndValidateIntegrity
 
-// 原始函数名：Unwind_180909520 - 系统状态更新函数
-// 功能：更新系统状态，同步系统信息
-#define UpdateSystemState Unwind_180909520
+/**
+ * @brief 系统状态更新函数
+ * 
+ * 更新系统状态，同步系统信息，确保系统状态的一致性和准确性
+ * 
+ * @param systemContext 系统上下文指针
+ * @param newState 新的系统状态数据
+ * @return 状态更新结果，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：Unwind_180909520
+ */
+#define UpdateSystemState UpdateSystemStateAndSynchronizeInformation
 
-// 原始函数名：Unwind_180909530 - 系统配置验证函数
-// 功能：验证系统配置，确保配置正确性
-#define ValidateSystemConfiguration Unwind_180909530
+/**
+ * @brief 系统配置验证函数
+ * 
+ * 验证系统配置，确保配置正确性，检查配置参数的有效性和一致性
+ * 
+ * @param configurationData 配置数据指针
+ * @param validationFlags 验证标志位
+ * @return 验证结果，0表示配置有效，非0表示配置存在问题
+ * 
+ * @note 原始函数名：Unwind_180909530
+ */
+#define ValidateSystemConfiguration ValidateSystemConfigurationAndEnsureCorrectness
 
-// 原始函数名：Unwind_180909540 - 系统初始化函数
-// 功能：初始化系统组件，设置系统状态
-#define InitializeSystemComponents Unwind_180909540
+/**
+ * @brief 系统初始化函数
+ * 
+ * 初始化系统组件，设置系统状态，为系统运行准备必要的环境和资源
+ * 
+ * @param initializationParameters 初始化参数结构体
+ * @param componentFlags 组件初始化标志位
+ * @return 初始化结果，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：Unwind_180909540
+ */
+#define InitializeSystemComponents InitializeSystemComponentsAndSetState
 
-// 原始函数名：Unwind_180909550 - 系统启动函数
-// 功能：启动系统组件，执行启动流程
-#define StartSystemComponents Unwind_180909550
+/**
+ * @brief 系统启动函数
+ * 
+ * 启动系统组件，执行启动流程，按照预定的启动序列激活各个系统组件
+ * 
+ * @param startupParameters 启动参数结构体
+ * @param componentSequence 组件启动序列
+ * @return 启动结果，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：Unwind_180909550
+ */
+#define StartSystemComponents StartSystemComponentsAndExecuteStartupSequence
 
-// 原始函数名：Unwind_1809095c0 - 系统停止函数
-// 功能：停止系统组件，执行停止流程
-#define StopSystemComponents Unwind_1809095c0
+/**
+ * @brief 系统停止函数
+ * 
+ * 停止系统组件，执行停止流程，按照安全停止序列关闭各个系统组件
+ * 
+ * @param shutdownParameters 关闭参数结构体
+ * @param componentFlags 组件关闭标志位
+ * @return 停止结果，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：Unwind_1809095c0
+ */
+#define StopSystemComponents StopSystemComponentsAndExecuteShutdownSequence
 
-// 原始函数名：Unwind_1809095d0 - 系统暂停函数
-// 功能：暂停系统组件，执行暂停流程
-#define PauseSystemComponents Unwind_1809095d0
+/**
+ * @brief 系统暂停函数
+ * 
+ * 暂停系统组件，执行暂停流程，临时停止系统组件的运行但保持其状态
+ * 
+ * @param pauseParameters 暂停参数结构体
+ * @param componentFlags 组件暂停标志位
+ * @return 暂停结果，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：Unwind_1809095d0
+ */
+#define PauseSystemComponents PauseSystemComponentsAndExecutePauseSequence
 
-// 原始函数名：Unwind_180909600 - 系统恢复函数
-// 功能：恢复系统组件，执行恢复流程
-#define ResumeSystemComponents Unwind_180909600
+/**
+ * @brief 系统恢复函数
+ * 
+ * 恢复系统组件，执行恢复流程，从暂停状态重新激活系统组件的运行
+ * 
+ * @param resumeParameters 恢复参数结构体
+ * @param componentFlags 组件恢复标志位
+ * @return 恢复结果，0表示成功，非0表示失败
+ * 
+ * @note 原始函数名：Unwind_180909600
+ */
+#define ResumeSystemComponents ResumeSystemComponentsAndExecuteRecoverySequence
 
 // 原始函数名：Unwind_180909610 - 系统重启动函数
 // 功能：重启系统组件，执行重启流程
