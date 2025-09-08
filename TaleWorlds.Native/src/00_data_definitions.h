@@ -3316,7 +3316,7 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
   stringLength = -1;
   do {
     stringLength = stringLength + 1;
-  } while (*(char *)(SystemContextPointer + LongCounter) != '\0');
+  } while (*(char *)(SystemContextPointer + MemoryCounterValue) != '\0');
   MemoryAddress = (uint)stringLength;
   if (0x1fff < MemoryAddress) {
     MemoryAddress = 0x1fff;
@@ -4030,7 +4030,7 @@ SystemReadyLabel:
 DataTransferOperationReadyLabel:
     BufferSize7 = 0;
   }
-  SystemModuleInitialize(LongAddress,ModuleInitializationResult0,StringSearchResult,BufferSize7);
+  SystemModuleInitialize(MemoryAddressPointer,ModuleInitializationResult0,StringSearchResult,BufferSize7);
   while( true ) {
     BufferSize8 = (ulonglong)(LoopCounterValue + 1);
     BufferSize1 = BufferSize1 + 1;
@@ -4096,15 +4096,15 @@ Label_MemoryOperationComplete:
     SystemBufferValidate(pMemoryAddress3);
   }
   ProcessGameData(SystemRuntimeConfigData,&SystemDataTransferBuffer,&SystemStringTransferBuffer);
-  LongAddress = SystemRuntimeConfigData + 0x90;
+  MemoryAddressPointer = SystemRuntimeConfigData + 0x90;
   SystemDataPointer = MemoryAllocateEx(SystemMemoryAllocationPointer,64,*(uint8_t *)(SystemRuntimeConfigData + 0xb8));
   SystemDataConfigure(SystemDataPointer + 0x20,&SystemDataTransferBuffer);
-  StringSearchResult = CalculateGameLogic(LongAddress,StringProcessingBuffer,SystemDataPointer + 0x20);
+  StringSearchResult = CalculateGameLogic(MemoryAddressPointer,StringProcessingBuffer,SystemDataPointer + 0x20);
   if (StringProcessingBuffer[0] == '\0') {
     ProcessGamePhysics(PhysicsProcessorOutput,SystemDataPointer);
     goto Label_MemoryOperationComplete;
   }
-  if (StringSearchResult != LongAddress) {
+  if (StringSearchResult != MemoryAddressPointer) {
     if (*(int *)(StringSearchResult + 0x30) == 0) {
 Label_CharacterValidationStart:
       BufferSize7 = 1;
@@ -4124,7 +4124,7 @@ Label_CharacterValidationStart:
   }
   BufferSize7 = 0;
 Label_CharacterValidationComplete:
-  SystemModuleInitialize(SystemDataPointer,StringSearchResult,LongAddress,BufferSize7);
+  SystemModuleInitialize(SystemDataPointer,StringSearchResult,MemoryAddressPointer,BufferSize7);
 }
     SystemRenderingEnabled = 1;
     IntegerError = _Cnd_broadcast(SystemConditionVariableAddress);
@@ -4138,30 +4138,30 @@ Label_CharacterValidationComplete:
     InitializeGameEngine(SystemEngineInitializationAddress);
   }
   *(uint32_t *)(SystemStatusRegister + 4) = 0;
-  if (*(char *)(LongData + 0x1ee) == '\0') {
-    (**(code **)(**(longlong **)(LongData + 0x2b0) + 0xe0))();
-    *(int *)(LongData + 0x224) = *(int *)(LongData + 0x224) + 1;
+  if (*(char *)(MemoryDataPointer + 0x1ee) == '\0') {
+    (**(code **)(**(longlong **)(MemoryDataPointer + 0x2b0) + 0xe0))();
+    *(int *)(MemoryDataPointer + 0x224) = *(int *)(MemoryDataPointer + 0x224) + 1;
     if (*(int *)(SystemPerformanceData + 0xe0) == 0) {
-      if (*(char *)(LongData + 0x264) == '\0') {
+      if (*(char *)(MemoryDataPointer + 0x264) == '\0') {
         IntegerError = 10;
         if (10 < *(int *)(SystemPerformanceData + 0xbd0)) {
           IntegerError = *(int *)(SystemPerformanceData + 0xbd0);
         }
-        FloatCalculationResult = (float)*(double *)(LongData + 0x208);
-        if (1.0 / (float)IntegerError <= (float)*(double *)(LongData + 0x208)) {
+        FloatCalculationResult = (float)*(double *)(MemoryDataPointer + 0x208);
+        if (1.0 / (float)IntegerError <= (float)*(double *)(MemoryDataPointer + 0x208)) {
           FloatCalculationResult = 1.0 / (float)IntegerError;
         }
       }
       else {
-        FloatCalculationResult = *(float *)(LongData + 0x268);
+        FloatCalculationResult = *(float *)(MemoryDataPointer + 0x268);
       }
-      *(float *)(LongData + 0x220) = FloatCalculationResult;
+      *(float *)(MemoryDataPointer + 0x220) = FloatCalculationResult;
     }
     else {
-      *(uint32_t *)(LongData + 0x220) = SystemFloatOneThirdValue;
+      *(uint32_t *)(MemoryDataPointer + 0x220) = SystemFloatOneThirdValue;
       FloatCalculationResult = 0.033333335;
     }
-    ProcessInputEvent(LongData,FloatCalculationResult);
+    ProcessInputEvent(MemoryDataPointer,FloatCalculationResult);
     MemoryAllocationResult = MemoryManagerDataAddress;
     if ((NetworkModuleDataAddress != 0) &&
        (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
@@ -4199,10 +4199,10 @@ Label_CharacterValidationComplete:
       }
     }
     else {
-      if (*(char *)(LongData + 0x22c) != '\0') {
+      if (*(char *)(MemoryDataPointer + 0x22c) != '\0') {
         InitializeNetworkStack();
       }
-      *(uint32_t *)(LongData + 0x228) = *(uint32_t *)(LongData + 0x224);
+      *(uint32_t *)(MemoryDataPointer + 0x228) = *(uint32_t *)(MemoryDataPointer + 0x224);
       StartNetworkService();
       ConfigureNetworkSettings();
     }
@@ -4211,26 +4211,26 @@ Label_CharacterValidationComplete:
     FrameCounter = FrameCounter + 1;
     DoubleFrame = DoubleDelta - LastFrameTimestamp;
     if (1.0 < DoubleFrame) {
-      *(float *)(LongData + 500) = (float)((double)FrameCounter / DoubleFrame);
+      *(float *)(MemoryDataPointer + 500) = (float)((double)FrameCounter / DoubleFrame);
       FrameCounter = 0;
       LastFrameTimestamp = DoubleDelta;
-      *(float *)(LongData + 0x1f8) = (float)(1000.0 / *(double *)(LongData + 0x70));
+      *(float *)(MemoryDataPointer + 0x1f8) = (float)(1000.0 / *(double *)(MemoryDataPointer + 0x70));
     }
     if (0.0 < *(double *)(GameEngineDataAddress + 0x1510)) {
-      ProcessGameLogic(LongData,(float)*(double *)(GameEngineDataAddress + 0x1510));
+      ProcessGameLogic(MemoryDataPointer,(float)*(double *)(GameEngineDataAddress + 0x1510));
     }
-    if (*(char *)(LongData + 0x1ee) == '\0') {
-      FloatCalculationResult = *(float *)(LongData + 0x200);
-      DoubleDelta = *(double *)(LongData + 0x218);
+    if (*(char *)(MemoryDataPointer + 0x1ee) == '\0') {
+      FloatCalculationResult = *(float *)(MemoryDataPointer + 0x200);
+      DoubleDelta = *(double *)(MemoryDataPointer + 0x218);
       do {
         QueryPerformanceCounter(&PerformanceCounterTimeout);
       } while ((double)PerformanceCounterTimeout * PerformanceCounterFactor < (double)FloatCalculationResult + DoubleDelta);
       QueryPerformanceCounter(&PerformanceCounterCurrent);
       LongOffset = PerformanceCounterCurrent - LastPerformanceCounter;
       LastPerformanceCounter = PerformanceCounterCurrent;
-      *(double *)(LongData + 0x208) = (double)LongOffset * PerformanceCounterFactor;
+      *(double *)(MemoryDataPointer + 0x208) = (double)LongOffset * PerformanceCounterFactor;
       QueryPerformanceCounter(&PerformanceCounterFinal);
-      *(double *)(LongData + 0x218) = (double)PerformanceCounterFinal * PerformanceCounterFactor;
+      *(double *)(MemoryDataPointer + 0x218) = (double)PerformanceCounterFinal * PerformanceCounterFactor;
     }
   }
   return;
@@ -4247,30 +4247,30 @@ Label_CharacterValidationComplete:
     InitializeGameEngine(SystemEngineInitializationAddress);
   }
   *(uint32_t *)(SystemStatusRegister + 4) = 0;
-  if (*(char *)(SystemParameterPointer + 0x1ee) == '\0') {
-    (**(code **)(**(longlong **)(SystemParameterPointer + 0x2b0) + 0xe0))();
-    *(int *)(SystemParameterPointer + 0x224) = *(int *)(SystemParameterPointer + 0x224) + 1;
+  if (*(char *)(SystemContextDataPointer + 0x1ee) == '\0') {
+    (**(code **)(**(longlong **)(SystemContextDataPointer + 0x2b0) + 0xe0))();
+    *(int *)(SystemContextDataPointer + 0x224) = *(int *)(SystemContextDataPointer + 0x224) + 1;
     if (*(int *)(SystemPerformanceData + 0xe0) == 0) {
-      if (*(char *)(SystemParameterPointer + 0x264) == '\0') {
+      if (*(char *)(SystemContextDataPointer + 0x264) == '\0') {
         LoopCounterValue = 10;
         if (10 < *(int *)(SystemPerformanceData + 0xbd0)) {
           LoopCounterValue = *(int *)(SystemPerformanceData + 0xbd0);
         }
-        FloatValue = (float)*(double *)(SystemParameterPointer + 0x208);
-        if (1.0 / (float)LoopCounterValue <= (float)*(double *)(SystemParameterPointer + 0x208)) {
+        FloatValue = (float)*(double *)(SystemContextDataPointer + 0x208);
+        if (1.0 / (float)LoopCounterValue <= (float)*(double *)(SystemContextDataPointer + 0x208)) {
           FloatValue = 1.0 / (float)LoopCounterValue;
         }
       }
       else {
-        FloatValue = *(float *)(SystemParameterPointer + 0x268);
+        FloatValue = *(float *)(SystemContextDataPointer + 0x268);
       }
-      *(float *)(SystemParameterPointer + 0x220) = FloatValue;
+      *(float *)(SystemContextDataPointer + 0x220) = FloatValue;
     }
     else {
-      *(uint32_t *)(SystemParameterPointer + 0x220) = SystemFloatOneThirdValue;
+      *(uint32_t *)(SystemContextDataPointer + 0x220) = SystemFloatOneThirdValue;
       FloatValue = 0.033333335;
     }
-    ProcessInputEvent(SystemParameterPointer,FloatValue);
+    ProcessInputEvent(SystemContextDataPointer,FloatValue);
     MemoryAllocationResult = MemoryManagerDataAddress;
     if ((NetworkModuleDataAddress != 0) &&
        (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
@@ -4308,10 +4308,10 @@ Label_CharacterValidationComplete:
       }
     }
     else {
-      if (*(char *)(SystemParameterPointer + 0x22c) != '\0') {
+      if (*(char *)(SystemContextDataPointer + 0x22c) != '\0') {
         InitializeNetworkStack();
       }
-      *(uint32_t *)(SystemParameterPointer + 0x228) = *(uint32_t *)(SystemParameterPointer + 0x224);
+      *(uint32_t *)(SystemContextDataPointer + 0x228) = *(uint32_t *)(SystemContextDataPointer + 0x224);
       StartNetworkService();
       ConfigureNetworkSettings();
     }
@@ -4320,39 +4320,39 @@ Label_CharacterValidationComplete:
     FrameCounter = FrameCounter + 1;
     DoubleDelta = DoubleTime - LastFrameTimestamp;
     if (1.0 < DoubleDelta) {
-      *(float *)(SystemParameterPointer + 500) = (float)((double)FrameCounter / DoubleDelta);
+      *(float *)(SystemContextDataPointer + 500) = (float)((double)FrameCounter / DoubleDelta);
       FrameCounter = 0;
       LastFrameTimestamp = DoubleTime;
-      *(float *)(SystemParameterPointer + 0x1f8) = (float)(1000.0 / *(double *)(SystemParameterPointer + 0x70));
+      *(float *)(SystemContextDataPointer + 0x1f8) = (float)(1000.0 / *(double *)(SystemContextDataPointer + 0x70));
     }
     if (0.0 < *(double *)(GameEngineDataAddress + 0x1510)) {
-      ProcessGameLogic(SystemParameterPointer,(float)*(double *)(GameEngineDataAddress + 0x1510));
+      ProcessGameLogic(SystemContextDataPointer,(float)*(double *)(GameEngineDataAddress + 0x1510));
     }
-    if (*(char *)(SystemParameterPointer + 0x1ee) == '\0') {
-      FloatValue = *(float *)(SystemParameterPointer + 0x200);
-      DoubleTime = *(double *)(SystemParameterPointer + 0x218);
+    if (*(char *)(SystemContextDataPointer + 0x1ee) == '\0') {
+      FloatValue = *(float *)(SystemContextDataPointer + 0x200);
+      DoubleTime = *(double *)(SystemContextDataPointer + 0x218);
       do {
         QueryPerformanceCounter(&PerformanceCounterTimeout);
       } while ((double)PerformanceCounterTimeout * PerformanceCounterFactor < (double)FloatValue + DoubleTime);
       QueryPerformanceCounter(&PerformanceCounterCurrent);
       SystemStateValue = PerformanceCounterCurrent - LastPerformanceCounter;
       LastPerformanceCounter = PerformanceCounterCurrent;
-      *(double *)(SystemParameterPointer + 0x208) = (double)SystemStateValue * PerformanceCounterFactor;
+      *(double *)(SystemContextDataPointer + 0x208) = (double)SystemStateValue * PerformanceCounterFactor;
       QueryPerformanceCounter(&PerformanceCounterFinal);
-      *(double *)(SystemParameterPointer + 0x218) = (double)PerformanceCounterFinal * PerformanceCounterFactor;
+      *(double *)(SystemContextDataPointer + 0x218) = (double)PerformanceCounterFinal * PerformanceCounterFactor;
     }
   }
   return;
 }
     SystemThreadStatus = SystemThreadStatus == '\0';
   }
-  LongAddress = 0xe0;
+  MemoryAddressPointer = 0xe0;
   PointerValue = SystemModuleData;
   do {
     PointerValue = PointerValue + 0x18;
     *PointerValue = 1;
-    LongAddress = LongAddress + -1;
-  } while (LongAddress != 0);
+    MemoryAddressPointer = MemoryAddressPointer + -1;
+  } while (MemoryAddressPointer != 0);
 Label_ModuleConfigurationStart:
   pUnsignedValue = (uint64_t *)SystemModulePointer[1];
   IntegerResult = _Mtx_lock(SystemMutexAddressA);
@@ -4519,15 +4519,15 @@ Label_ModuleConfigurationStart:
     }
   }
   *SystemPrimaryStatusFlag = FloatResult;
-  LongAddress = (longlong)*(int *)(SystemModuleConfigData + 0x1d40) * 0xd0;
-  ModuleInitializationResult2 = *(longlong *)(LongAddress + 0xb0 + *(longlong *)(SystemModuleConfigData + 0x1d20));
+  MemoryAddressPointer = (longlong)*(int *)(SystemModuleConfigData + 0x1d40) * 0xd0;
+  ModuleInitializationResult2 = *(longlong *)(MemoryAddressPointer + 0xb0 + *(longlong *)(SystemModuleConfigData + 0x1d20));
   FloatTemp = (float)ModuleInitializationResult2;
   if (ModuleInitializationResult2 < 0) {
     FloatTemp = FloatTemp + 1.8446744e+19;
   }
   if (FloatTemp * 8.5830686e-07 < (float)*(int *)(FrameTimingDataStructure + 4)) {
     *(float *)(FrameTimingDataStructure + 0x10) = FloatResult + *(float *)(FrameTimingDataStructure + 0x10);
-    FloatResult = (float)fmodf(LongAddress,0x3f800000);
+    FloatResult = (float)fmodf(MemoryAddressPointer,0x3f800000);
     if (0.5 < FloatResult) {
       StackSystemPointer = &SystemNullPointer;
       StackProcessIdentifier = 0;
@@ -4566,25 +4566,25 @@ Label_ModuleConfigurationStart:
   StackCounter48 = pModuleInitializationResult4;
   InitializeNetworkSystem();
   FinalizeNetworkSystem();
-  if (((*(int *)(SystemParameterPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
+  if (((*(int *)(SystemContextDataPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
      (BooleanCheck = (**(code **)(*SystemModuleCallbackTable + 0x28))(), BooleanCheck != '\0')) {
     (**(code **)(NetworkModuleDataAddress + 0x98))();
   }
-  (**(code **)(**(longlong **)(SystemParameterPointer + 0x2b0) + 0x30))(*(longlong **)(SystemParameterPointer + 0x2b0),SystemSecondaryParameter);
-  if (((*(int *)(SystemParameterPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
+  (**(code **)(**(longlong **)(SystemContextDataPointer + 0x2b0) + 0x30))(*(longlong **)(SystemContextDataPointer + 0x2b0),SystemSecondaryDataPointer);
+  if (((*(int *)(SystemContextDataPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
      (BooleanCheck = (**(code **)(*SystemModuleCallbackTable + 0x28))(), BooleanCheck != '\0')) {
     (*(code *)SystemModuleCallbackTable[7])();
   }
-  if (((*(int *)(SystemParameterPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
+  if (((*(int *)(SystemContextDataPointer + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
      (BooleanCheck = (**(code **)(*SystemModuleCallbackTable + 0x28))(), BooleanCheck != '\0')) {
-    *(uint64_t *)(*(longlong *)(SystemParameterPointer + 0x3c0) + 0x18) =
-         *(uint64_t *)(*(longlong *)(SystemParameterPointer + 0x3c0) + 0x10);
+    *(uint64_t *)(*(longlong *)(SystemContextDataPointer + 0x3c0) + 0x18) =
+         *(uint64_t *)(*(longlong *)(SystemContextDataPointer + 0x3c0) + 0x10);
     pModuleInitializationResult4 = (longlong *)(SystemModuleData + 0x2030);
     MemoryAddress3 = MemoryAddress1;
     if (*(longlong *)(SystemModuleData + 0x2038) - *pModuleInitializationResult4 >> 2 != 0) {
       do {
         StackCounter2f0 = *(uint32_t *)(MemoryAddress3 + *pModuleInitializationResult4);
-        ModuleInitializationResult2 = *(longlong *)(SystemParameterPointer + 0x3c0) + 0x10;
+        ModuleInitializationResult2 = *(longlong *)(SystemContextDataPointer + 0x3c0) + 0x10;
         SetModuleParameter(ModuleInitializationResult2,&StackCounter2f0);
         SetModuleParameter(ModuleInitializationResult2,(longlong)&StackCounter2f0 + 1);
         SetModuleParameter(ModuleInitializationResult2,(longlong)&StackCounter2f0 + 2);
@@ -4598,8 +4598,8 @@ Label_ModuleConfigurationStart:
     }
     (**(code **)(NetworkModuleDataAddress + 0xa8))();
   }
-  (**(code **)(**(longlong **)(SystemParameterPointer + 0x2b0) + 0x38))(*(longlong **)(SystemParameterPointer + 0x2b0),SystemSecondaryParameter);
-  (**(code **)(**(longlong **)(SystemParameterPointer + 0x2b0) + 0x40))(*(longlong **)(SystemParameterPointer + 0x2b0),SystemSecondaryParameter);
+  (**(code **)(**(longlong **)(SystemContextDataPointer + 0x2b0) + 0x38))(*(longlong **)(SystemContextDataPointer + 0x2b0),SystemSecondaryDataPointer);
+  (**(code **)(**(longlong **)(SystemContextDataPointer + 0x2b0) + 0x40))(*(longlong **)(SystemContextDataPointer + 0x2b0),SystemSecondaryDataPointer);
   InitializeGlobalState();
   if (SystemInitializationFlag != '\0') {
     StackSystemPointer = &SystemNullPointer;
@@ -4649,7 +4649,7 @@ Label_ModuleConfigurationStart:
  * 初始化内存缓冲区
  * 将内存缓冲区的特定位置设置为0，并在偏移量0x46处设置为3
  * 
- * @param SystemParameterPointer 要初始化的内存缓冲区指针
+ * @param SystemContextDataPointer 要初始化的内存缓冲区指针
  * @return 返回初始化后的内存缓冲区指针
  */
 uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
@@ -4664,30 +4664,30 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
     SystemDataBufferStatus = 0;
   }
   do {
-    LongIndex = LongLoop + 1;
+    MemoryIndexValue = LongLoop + 1;
     pNetworkRequestStatus = (char *)(LongLoop + 0x180c82871);
-    LongLoop = LongIndex;
+    LongLoop = MemoryIndexValue;
   } while (*pNetworkRequestStatus != '\0');
-  if (LongIndex != 0) {
-    fwrite(&SystemFileWriteBuffer,1,1,LongData);
-    fwrite(&SystemStringDataBufferB,LongIndex,1,LongData);
+  if (MemoryIndexValue != 0) {
+    fwrite(&SystemFileWriteBuffer,1,1,MemoryDataPointer);
+    fwrite(&SystemStringDataBufferB,MemoryIndexValue,1,MemoryDataPointer);
     CleanupSystemResources(0);
   }
-  if (LongData != 0) {
-    fclose(LongData);
+  if (MemoryDataPointer != 0) {
+    fclose(MemoryDataPointer);
     SystemStackValue64 = 0;
     LOCK();
     SystemReferenceCounter = SystemReferenceCounter + -1;
     UNLOCK();
-    LongData = 0;
+    MemoryDataPointer = 0;
   }
   pStackCounter4 = &SystemNullPointer;
   if (SystemResourceBuffer == (void *)0x0) {
     SystemResourceBuffer = (void *)0x0;
     StackCounter5 = 0;
     pStackCounter4 = &SystemBufferTemplate;
-    if (LongData != 0) {
-      fclose(LongData);
+    if (MemoryDataPointer != 0) {
+      fclose(MemoryDataPointer);
       LOCK();
       SystemReferenceCounter = SystemReferenceCounter + -1;
       UNLOCK();
@@ -4734,10 +4734,10 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
  * 处理内存分配操作
  * 根据参数条件执行内存分配或释放操作
  * 
- * @param SystemParameterPointer 内存地址指针
- * @param SystemSecondaryParameter 控制标志位
- * @param SystemTertiaryParameter 内存参数3
- * @param SystemQuaternaryParameter 内存参数4
+ * @param SystemContextDataPointer 内存地址指针
+ * @param SystemSecondaryDataPointer 控制标志位
+ * @param SystemTertiaryDataPointer 内存参数3
+ * @param SystemQuaternaryDataPointer 内存参数4
  * @return 返回处理后的内存地址指针
  */
 uint64_t *
@@ -4794,12 +4794,12 @@ uint HandleMutexOperations(void)
   int LoopCounter;
   longlong LoopCounter;
   if (SystemNetworkManager != 0) {
-    LongCounter = SystemNetworkManager + 0x110;
-    LoopCounter = _Mtx_lock(LongCounter);
+    MemoryCounterValue = SystemNetworkManager + 0x110;
+    LoopCounter = _Mtx_lock(MemoryCounterValue);
     if (LoopCounter != 0) {
       __Throw_C_error_std__YAXH_Z(LoopCounter);
     }
-    in_EAX = _Mtx_unlock(LongCounter);
+    in_EAX = _Mtx_unlock(MemoryCounterValue);
     if (in_EAX != 0) {
       in_EAX = __Throw_C_error_std__YAXH_Z(in_EAX);
     }
@@ -4808,7 +4808,7 @@ uint HandleMutexOperations(void)
 }
       SystemStringBuffer = 0;
       SystemNetworkStatusFlag = 0;
-      strcpy_s(&SystemStringBuffer,128,&SystemConstantStringPrimary,SystemQuaternaryParameter,MemoryAddress);
+      strcpy_s(&SystemStringBuffer,128,&SystemConstantStringPrimary,SystemQuaternaryDataPointer,MemoryAddress);
       InitializeSystemCallback(SystemCallbackHandler);
       ConfigureSystemData(&SystemConfigBuffer);
       return &SystemReturnBuffer;
@@ -4817,7 +4817,7 @@ uint HandleMutexOperations(void)
   return &SystemReturnBuffer;
 }
     SystemInitializationFlag = '\x01';
-    SystemBufferInitialize(SystemParameterPointer,CONCAT71((int7)((ulonglong)StringProcessingResultPointer >> 8),1));
+    SystemBufferInitialize(SystemContextDataPointer,CONCAT71((int7)((ulonglong)StringProcessingResultPointer >> 8),1));
   }
   SystemSecurityCheck(StackCounter5 ^ (ulonglong)aStackStringLength);
 }
@@ -4935,42 +4935,42 @@ InitializeCoreSystem();
     FinalizeModuleInitialization(ModuleInitializationResult6);
     *(uint8_t *)(ModuleInitializationResult6 + 0xf18) = 0;
   }
-  LongIndex = SystemConfigurationData;
+  MemoryIndexValue = SystemConfigurationData;
   ModuleInitializationResult8 = GameEngineDataAddress;
   MemoryAddress4 = *(uint64_t *)(SystemConfigurationData + 0x161c);
   *(uint64_t *)(GameEngineDataAddress + 0x12d0) = *(uint64_t *)(SystemConfigurationData + 0x1614);
   *(uint64_t *)(ModuleInitializationResult8 + 0x12d8) = MemoryAddress4;
-  MemoryAddress4 = *(uint64_t *)(LongIndex + 0x162c);
-  *(uint64_t *)(ModuleInitializationResult8 + 0x12e0) = *(uint64_t *)(LongIndex + 0x1624);
+  MemoryAddress4 = *(uint64_t *)(MemoryIndexValue + 0x162c);
+  *(uint64_t *)(ModuleInitializationResult8 + 0x12e0) = *(uint64_t *)(MemoryIndexValue + 0x1624);
   *(uint64_t *)(ModuleInitializationResult8 + 0x12e8) = MemoryAddress4;
-  MemoryAddress4 = *(uint64_t *)(LongIndex + 0x163c);
-  *(uint64_t *)(ModuleInitializationResult8 + 0x12f0) = *(uint64_t *)(LongIndex + 0x1634);
+  MemoryAddress4 = *(uint64_t *)(MemoryIndexValue + 0x163c);
+  *(uint64_t *)(ModuleInitializationResult8 + 0x12f0) = *(uint64_t *)(MemoryIndexValue + 0x1634);
   *(uint64_t *)(ModuleInitializationResult8 + 0x12f8) = MemoryAddress4;
-  MemoryAddress4 = *(uint64_t *)(LongIndex + 0x164c);
-  *(uint64_t *)(ModuleInitializationResult8 + 0x1300) = *(uint64_t *)(LongIndex + 0x1644);
+  MemoryAddress4 = *(uint64_t *)(MemoryIndexValue + 0x164c);
+  *(uint64_t *)(ModuleInitializationResult8 + 0x1300) = *(uint64_t *)(MemoryIndexValue + 0x1644);
   *(uint64_t *)(ModuleInitializationResult8 + 0x1308) = MemoryAddress4;
-  MemoryAddress4 = *(uint64_t *)(LongIndex + 0x165c);
-  *(uint64_t *)(ModuleInitializationResult8 + 0x1310) = *(uint64_t *)(LongIndex + 0x1654);
+  MemoryAddress4 = *(uint64_t *)(MemoryIndexValue + 0x165c);
+  *(uint64_t *)(ModuleInitializationResult8 + 0x1310) = *(uint64_t *)(MemoryIndexValue + 0x1654);
   *(uint64_t *)(ModuleInitializationResult8 + 0x1318) = MemoryAddress4;
-  MemoryAddress4 = *(uint64_t *)(LongIndex + 0x166c);
-  *(uint64_t *)(ModuleInitializationResult8 + 0x1320) = *(uint64_t *)(LongIndex + 0x1664);
+  MemoryAddress4 = *(uint64_t *)(MemoryIndexValue + 0x166c);
+  *(uint64_t *)(ModuleInitializationResult8 + 0x1320) = *(uint64_t *)(MemoryIndexValue + 0x1664);
   *(uint64_t *)(ModuleInitializationResult8 + 0x1328) = MemoryAddress4;
-  BufferSize4 = *(uint32_t *)(LongIndex + 0x1678);
-  MemoryAddress0 = *(uint32_t *)(LongIndex + 0x167c);
-  MemoryAddress1 = *(uint32_t *)(LongIndex + 0x1680);
-  *(uint32_t *)(ModuleInitializationResult8 + 0x1330) = *(uint32_t *)(LongIndex + 0x1674);
+  BufferSize4 = *(uint32_t *)(MemoryIndexValue + 0x1678);
+  MemoryAddress0 = *(uint32_t *)(MemoryIndexValue + 0x167c);
+  MemoryAddress1 = *(uint32_t *)(MemoryIndexValue + 0x1680);
+  *(uint32_t *)(ModuleInitializationResult8 + 0x1330) = *(uint32_t *)(MemoryIndexValue + 0x1674);
   *(uint32_t *)(ModuleInitializationResult8 + 0x1334) = BufferSize4;
   *(uint32_t *)(ModuleInitializationResult8 + 0x1338) = MemoryAddress0;
   *(uint32_t *)(ModuleInitializationResult8 + 0x133c) = MemoryAddress1;
-  BufferSize4 = *(uint32_t *)(LongIndex + 0x1688);
-  MemoryAddress0 = *(uint32_t *)(LongIndex + 0x168c);
-  MemoryAddress1 = *(uint32_t *)(LongIndex + 0x1690);
-  *(uint32_t *)(ModuleInitializationResult8 + 0x1340) = *(uint32_t *)(LongIndex + 0x1684);
+  BufferSize4 = *(uint32_t *)(MemoryIndexValue + 0x1688);
+  MemoryAddress0 = *(uint32_t *)(MemoryIndexValue + 0x168c);
+  MemoryAddress1 = *(uint32_t *)(MemoryIndexValue + 0x1690);
+  *(uint32_t *)(ModuleInitializationResult8 + 0x1340) = *(uint32_t *)(MemoryIndexValue + 0x1684);
   *(uint32_t *)(ModuleInitializationResult8 + 0x1344) = BufferSize4;
   *(uint32_t *)(ModuleInitializationResult8 + 0x1348) = MemoryAddress0;
   *(uint32_t *)(ModuleInitializationResult8 + 0x134c) = MemoryAddress1;
-  *(uint16_t *)(LongIndex + 0x1637) = 0;
-  *(uint8_t *)(LongIndex + 0x162c) = 0;
+  *(uint16_t *)(MemoryIndexValue + 0x1637) = 0;
+  *(uint8_t *)(MemoryIndexValue + 0x162c) = 0;
   /**
    * @brief 初始化网络系统
    * 
@@ -5009,10 +5009,10 @@ InitializeCoreSystem();
     if (0 < *(int *)(ModuleInitializationResult8 + 0x10)) {
       do {
         ValidateSystemBuffer(*(uint64_t *)(BufferSize2 + *(longlong *)(ModuleInitializationResult8 + 8)));
-        LongIndex = *(longlong *)(*(longlong *)(ModuleInitializationResult8 + 8) + BufferSize2);
-        if (LongIndex != 0) {
-          ReleaseSystemMemory(LongIndex);
-          SystemBufferValidate(LongIndex);
+        MemoryIndexValue = *(longlong *)(*(longlong *)(ModuleInitializationResult8 + 8) + BufferSize2);
+        if (MemoryIndexValue != 0) {
+          ReleaseSystemMemory(MemoryIndexValue);
+          SystemBufferValidate(MemoryIndexValue);
         }
         *(uint64_t *)(*(longlong *)(ModuleInitializationResult8 + 8) + BufferSize2) = 0;
         BufferSize1 = (int)MemoryAddress9 + 1;
@@ -5035,7 +5035,7 @@ InitializeCoreSystem();
       CleanupSystemResources();
     }
     *(uint64_t *)(GameEngineDataAddress + 0x1a08 + (longlong)(int)SystemFrameCounter * 8) = 0;
-    SystemSecondaryParameter = StackValidationLimit2;
+    SystemSecondaryDataPointer = StackValidationLimit2;
   }
   FinalizeSystemInitialization();
   SystemModuleContext = MemoryAddress4;
@@ -5084,7 +5084,7 @@ Label_ModuleInitializationComplete:
   StackCounter58 = 0;
   aStackCounter50[0] = 0;
   SystemOperationCode = 0x19;
-  SystemSecondaryParameterCopy = SystemSecondaryParameter;
+  SystemSecondaryDataPointerCopy = SystemSecondaryDataPointer;
   StackPointerArray = (longlong **)AllocateSystemMemory(SystemMemoryAllocator,32,8,3);
   *StackPointerArray = (longlong *)&SystemBufferTemplate;
   StackPointerArray[1] = (longlong *)0x0;
@@ -5127,7 +5127,7 @@ Label_ModuleInitializationComplete:
   SystemStackDataEnd = 0;
   SystemStackAlignment = 0;
   SystemStackAlignmentValue = 3;
-  ProcessGameDataStructure(GameEngineDataAddress,SystemSecondaryParameter,&SystemStackDataStart);
+  ProcessGameDataStructure(GameEngineDataAddress,SystemSecondaryDataPointer,&SystemStackDataStart);
   ModuleDataPointer = SystemStackDataStart;
   ModuleResult = SystemStackDataEnd;
   MemoryAddress = BufferSize0;
@@ -5186,15 +5186,15 @@ Label_ModuleInitializationComplete:
 }
     SystemShutdownFlag = '\0';
   }
-  GlobalSystemDataPointer = LongValue;
+  GlobalSystemDataPointer = MemoryAddressValue;
   (**(code **)(SystemDataBasePointer + 0x18))(0);
-  if (pLongValue != (longlong *)0x0) {
-    (**(code **)(*pLongValue + 8))(pLongValue);
+  if (pMemoryAddressValue != (longlong *)0x0) {
+    (**(code **)(*pMemoryAddressValue + 8))(pMemoryAddressValue);
   }
-  SystemContextData = *(uint64_t **)(*SystemParameterPointer + 0x18);
+  SystemContextData = *(uint64_t **)(*SystemContextDataPointer + 0x18);
   pcVar3 = *(code **)*SystemContextData;
   SystemStackPointerArray = &SystemStackPointer;
-  SystemStackPointer = *(longlong **)(*SystemParameterPointer + 0x10);
+  SystemStackPointer = *(longlong **)(*SystemContextDataPointer + 0x10);
   if (SystemStackPointer != (longlong *)0x0) {
     (**(code **)(*SystemStackPointer + 0x28))();
   }
@@ -5203,7 +5203,7 @@ Label_ModuleInitializationComplete:
 }
       SystemMemoryPoolData = 0;
       SystemMemoryPoolSize = 6;
-      strcpy_s(&SystemMemoryPoolData,64,&SystemMemoryTemplate,SystemQuaternaryParameter,MemoryAddress);
+      strcpy_s(&SystemMemoryPoolData,64,&SystemMemoryTemplate,SystemQuaternaryDataPointer,MemoryAddress);
       SystemMemoryPoolPointer1 = &SystemMemoryPool;
       SystemMemoryPoolDataPointer1 = &SystemMemoryPoolData1;
       SystemMemoryPoolData1 = 0;
@@ -5223,20 +5223,20 @@ Label_ModuleInitializationComplete:
       ValidateSystemConfigurationData(&SystemConfigurationDataTable);
     }
   }
-  return &SystemDataStructureArray + (longlong)SystemParameterPointer * 0x58;
+  return &SystemDataStructureArray + (longlong)SystemContextDataPointer * 0x58;
 }
   SystemThreadStatus = SystemThreadStatus == '\0';
-  *SystemParameterPointer = &SystemBufferTemplate;
-  SystemParameterPointer[1] = 0;
-  *(uint32_t *)(SystemParameterPointer + 2) = 0;
-  *SystemParameterPointer = &SystemNullPointer;
-  SystemParameterPointer[3] = 0;
-  SystemParameterPointer[1] = 0;
-  *(uint32_t *)(SystemParameterPointer + 2) = 0;
-  SystemBufferCopy(SystemParameterPointer,3,SystemTertiaryParameter,SystemQuaternaryParameter,0,SystemMutexFlags);
-  *(uint32_t *)SystemParameterPointer[1] = 0x2e6b4f;
-  *(uint32_t *)(SystemParameterPointer + 2) = 3;
-  return SystemParameterPointer;
+  *SystemContextDataPointer = &SystemBufferTemplate;
+  SystemContextDataPointer[1] = 0;
+  *(uint32_t *)(SystemContextDataPointer + 2) = 0;
+  *SystemContextDataPointer = &SystemNullPointer;
+  SystemContextDataPointer[3] = 0;
+  SystemContextDataPointer[1] = 0;
+  *(uint32_t *)(SystemContextDataPointer + 2) = 0;
+  SystemBufferCopy(SystemContextDataPointer,3,SystemTertiaryDataPointer,SystemQuaternaryDataPointer,0,SystemMutexFlags);
+  *(uint32_t *)SystemContextDataPointer[1] = 0x2e6b4f;
+  *(uint32_t *)(SystemContextDataPointer + 2) = 3;
+  return SystemContextDataPointer;
 }
 /**
  * @brief 内存区域清理和数据迁移函数
@@ -5255,31 +5255,31 @@ longlong ProcessMemoryRegionCleanupAndDataMigration(longlong StartAddress, longl
   uint64_t *SystemContextData;
   longlong IndexValue;
   longlong DataValue;
-  LongValue = SystemSecondaryParameter - SystemParameterPointer >> 5;
-  if (0 < LongValue) {
-    LongIndex = SystemTertiaryParameter - SystemSecondaryParameter;
-    SystemTertiaryParameter = SystemTertiaryParameter + LongValue * -0x20;
-    SystemContextData = (uint64_t *)(SystemSecondaryParameter + 8);
+  MemoryAddressValue = SystemSecondaryDataPointer - SystemContextDataPointer >> 5;
+  if (0 < MemoryAddressValue) {
+    MemoryIndexValue = SystemTertiaryDataPointer - SystemSecondaryDataPointer;
+    SystemTertiaryDataPointer = SystemTertiaryDataPointer + MemoryAddressValue * -0x20;
+    SystemContextData = (uint64_t *)(SystemSecondaryDataPointer + 8);
     do {
       pMemoryAddress = SystemContextData + -4;
-      if (*(longlong *)(LongIndex + -0x20 + (longlong)SystemContextData) != 0) {
+      if (*(longlong *)(MemoryIndexValue + -0x20 + (longlong)SystemContextData) != 0) {
         CleanupSystemResources();
       }
-      *(uint64_t *)(LongIndex + 0x10 + (longlong)pMemoryAddress) = 0;
-      LongValue = LongValue + -1;
-      *(uint64_t *)(LongIndex + (longlong)pMemoryAddress) = 0;
-      *(uint32_t *)(LongIndex + 8 + (longlong)pMemoryAddress) = 0;
-      *(uint32_t *)(LongIndex + 8 + (longlong)pMemoryAddress) = *(uint32_t *)(SystemContextData + -3);
-      *(uint64_t *)(LongIndex + (longlong)pMemoryAddress) = *pMemoryAddress;
-      *(uint32_t *)(LongIndex + 0x14 + (longlong)pMemoryAddress) = *(uint32_t *)((longlong)SystemContextData + -0xc);
-      *(uint32_t *)(LongIndex + 0x10 + (longlong)pMemoryAddress) = *(uint32_t *)(SystemContextData + -2);
+      *(uint64_t *)(MemoryIndexValue + 0x10 + (longlong)pMemoryAddress) = 0;
+      MemoryAddressValue = MemoryAddressValue + -1;
+      *(uint64_t *)(MemoryIndexValue + (longlong)pMemoryAddress) = 0;
+      *(uint32_t *)(MemoryIndexValue + 8 + (longlong)pMemoryAddress) = 0;
+      *(uint32_t *)(MemoryIndexValue + 8 + (longlong)pMemoryAddress) = *(uint32_t *)(SystemContextData + -3);
+      *(uint64_t *)(MemoryIndexValue + (longlong)pMemoryAddress) = *pMemoryAddress;
+      *(uint32_t *)(MemoryIndexValue + 0x14 + (longlong)pMemoryAddress) = *(uint32_t *)((longlong)SystemContextData + -0xc);
+      *(uint32_t *)(MemoryIndexValue + 0x10 + (longlong)pMemoryAddress) = *(uint32_t *)(SystemContextData + -2);
       *(uint32_t *)(SystemContextData + -3) = 0;
       *pMemoryAddress = 0;
       SystemContextData[-2] = 0;
       SystemContextData = pMemoryAddress;
-    } while (0 < LongValue);
+    } while (0 < MemoryAddressValue);
   }
-  return SystemTertiaryParameter;
+  return SystemTertiaryDataPointer;
 }
 /**
  * @brief 批量内存清理和资源释放函数
@@ -5299,28 +5299,28 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
   uint64_t *StringProcessingResultPointer;
   longlong StackFramePointer;
   longlong LoopCounterRegister;
-  SystemTertiaryParameter = SystemTertiaryParameter - SystemSecondaryParameter;
-  LongCounter = LoopCounterRegister * -0x20;
-  StringProcessingResultPointer = (uint64_t *)(SystemSecondaryParameter + 8);
+  SystemTertiaryDataPointer = SystemTertiaryDataPointer - SystemSecondaryDataPointer;
+  MemoryCounterValue = LoopCounterRegister * -0x20;
+  StringProcessingResultPointer = (uint64_t *)(SystemSecondaryDataPointer + 8);
   do {
     pMemoryAddress = StringProcessingResultPointer + -4;
-    if (*(longlong *)(SystemTertiaryParameter + -0x20 + (longlong)StringProcessingResultPointer) != 0) {
+    if (*(longlong *)(SystemTertiaryDataPointer + -0x20 + (longlong)StringProcessingResultPointer) != 0) {
       CleanupSystemResources();
     }
-    *(uint64_t *)(SystemTertiaryParameter + 0x10 + (longlong)pMemoryAddress) = 0;
+    *(uint64_t *)(SystemTertiaryDataPointer + 0x10 + (longlong)pMemoryAddress) = 0;
     LoopCounterRegister = LoopCounterRegister + -1;
-    *(uint64_t *)(SystemTertiaryParameter + (longlong)pMemoryAddress) = 0;
-    *(uint32_t *)(SystemTertiaryParameter + 8 + (longlong)pMemoryAddress) = 0;
-    *(uint32_t *)(SystemTertiaryParameter + 8 + (longlong)pMemoryAddress) = *(uint32_t *)(StringProcessingResultPointer + -3);
-    *(uint64_t *)(SystemTertiaryParameter + (longlong)pMemoryAddress) = *pMemoryAddress;
-    *(uint32_t *)(SystemTertiaryParameter + 0x14 + (longlong)pMemoryAddress) = *(uint32_t *)((longlong)StringProcessingResultPointer + -0xc);
-    *(uint32_t *)(SystemTertiaryParameter + 0x10 + (longlong)pMemoryAddress) = *(uint32_t *)(StringProcessingResultPointer + -2);
+    *(uint64_t *)(SystemTertiaryDataPointer + (longlong)pMemoryAddress) = 0;
+    *(uint32_t *)(SystemTertiaryDataPointer + 8 + (longlong)pMemoryAddress) = 0;
+    *(uint32_t *)(SystemTertiaryDataPointer + 8 + (longlong)pMemoryAddress) = *(uint32_t *)(StringProcessingResultPointer + -3);
+    *(uint64_t *)(SystemTertiaryDataPointer + (longlong)pMemoryAddress) = *pMemoryAddress;
+    *(uint32_t *)(SystemTertiaryDataPointer + 0x14 + (longlong)pMemoryAddress) = *(uint32_t *)((longlong)StringProcessingResultPointer + -0xc);
+    *(uint32_t *)(SystemTertiaryDataPointer + 0x10 + (longlong)pMemoryAddress) = *(uint32_t *)(StringProcessingResultPointer + -2);
     *(uint32_t *)(StringProcessingResultPointer + -3) = 0;
     *pMemoryAddress = 0;
     StringProcessingResultPointer[-2] = 0;
     StringProcessingResultPointer = pMemoryAddress;
   } while (0 < LoopCounterRegister);
-  return StackFramePointer + LongCounter;
+  return StackFramePointer + MemoryCounterValue;
 }
       SystemMemoryInitialized = SystemMemoryInitialized == '\0';
     }
@@ -5405,12 +5405,12 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
        (0 < (int)(((longlong)in_RCX[0xb6] - (longlong)in_RCX[0xb5]) / 0xc))) {
       CleanupSystemMemoryBuffers(in_RCX + 0x4cf);
       while( true ) {
-        pppLongIndex = *in_RCX[0x4ce];
-        if (pppLongIndex == (longlong ***)&SystemGlobalDataPointer) {
+        pppMemoryIndexValue = *in_RCX[0x4ce];
+        if (pppMemoryIndexValue == (longlong ***)&SystemGlobalDataPointer) {
           systemValidationResult = *(char *)(in_RCX[0x4ce] + 2) != '\0';
         }
         else {
-          systemValidationResult = (*(code *)pppLongIndex[0xd])();
+          systemValidationResult = (*(code *)pppMemoryIndexValue[0xd])();
         }
         UnsignedSize = MemoryManagerDataAddress;
         if (systemValidationResult != '\0') break;
@@ -5511,35 +5511,35 @@ uint64_t* InitializeSystemBufferTemplate(uint64_t *BufferTemplate, longlong Data
   uint64_t *SystemContextData;
   uint32_t *StringProcessingResultPointer;
   uint32_t NetworkRequestResult;
-  *SystemParameterPointer = &SystemBufferTemplate;
-  SystemParameterPointer[1] = 0;
-  *(uint32_t *)(SystemParameterPointer + 2) = 0;
-  *SystemParameterPointer = &SystemNullPointer;
-  SystemParameterPointer[3] = 0;
-  SystemParameterPointer[1] = 0;
-  *(uint32_t *)(SystemParameterPointer + 2) = 0;
-  SystemBufferCopy(SystemParameterPointer,9,SystemTertiaryParameter,SystemQuaternaryParameter,0,SystemMutexFlags);
-  SystemContextData = (uint64_t *)SystemParameterPointer[1];
+  *SystemContextDataPointer = &SystemBufferTemplate;
+  SystemContextDataPointer[1] = 0;
+  *(uint32_t *)(SystemContextDataPointer + 2) = 0;
+  *SystemContextDataPointer = &SystemNullPointer;
+  SystemContextDataPointer[3] = 0;
+  SystemContextDataPointer[1] = 0;
+  *(uint32_t *)(SystemContextDataPointer + 2) = 0;
+  SystemBufferCopy(SystemContextDataPointer,9,SystemTertiaryDataPointer,SystemQuaternaryDataPointer,0,SystemMutexFlags);
+  SystemContextData = (uint64_t *)SystemContextDataPointer[1];
   *SystemContextData = 0x6a624f656e656353;
   *(uint16_t *)(SystemContextData + 1) = 0x2f;
-  *(uint32_t *)(SystemParameterPointer + 2) = 9;
+  *(uint32_t *)(SystemContextDataPointer + 2) = 9;
   NetworkRequestResult = 1;
-  LoopCounter = *(int *)(SystemParameterPointer + 2);
-  if (0 < *(int *)(SystemSecondaryParameter + 0x10)) {
-    SystemBufferCopy(SystemParameterPointer,LoopCounter + *(int *)(SystemSecondaryParameter + 0x10));
-    memcpy((ulonglong)*(uint *)(SystemParameterPointer + 2) + SystemParameterPointer[1],*(uint64_t *)(SystemSecondaryParameter + 8),
-           (longlong)(*(int *)(SystemSecondaryParameter + 0x10) + 1),SystemQuaternaryParameter,NetworkRequestResult);
+  LoopCounter = *(int *)(SystemContextDataPointer + 2);
+  if (0 < *(int *)(SystemSecondaryDataPointer + 0x10)) {
+    SystemBufferCopy(SystemContextDataPointer,LoopCounter + *(int *)(SystemSecondaryDataPointer + 0x10));
+    memcpy((ulonglong)*(uint *)(SystemContextDataPointer + 2) + SystemContextDataPointer[1],*(uint64_t *)(SystemSecondaryDataPointer + 8),
+           (longlong)(*(int *)(SystemSecondaryDataPointer + 0x10) + 1),SystemQuaternaryDataPointer,NetworkRequestResult);
   }
-  SystemBufferCopy(SystemParameterPointer,LoopCounter + 6);
-  StringProcessingResultPointer = (uint32_t *)((ulonglong)*(uint *)(SystemParameterPointer + 2) + SystemParameterPointer[1]);
+  SystemBufferCopy(SystemContextDataPointer,LoopCounter + 6);
+  StringProcessingResultPointer = (uint32_t *)((ulonglong)*(uint *)(SystemContextDataPointer + 2) + SystemContextDataPointer[1]);
   *StringProcessingResultPointer = 0x6563732f;
   *(uint16_t *)(StringProcessingResultPointer + 1) = 0x656e;
   *(uint8_t *)((longlong)StringProcessingResultPointer + 6) = 0;
-  *(int *)(SystemParameterPointer + 2) = LoopCounter + 6;
-  SystemBufferCopy(SystemParameterPointer,LoopCounter + 0xd);
-  *(uint64_t *)((ulonglong)*(uint *)(SystemParameterPointer + 2) + SystemParameterPointer[1]) = 0x656e656373782e;
-  *(int *)(SystemParameterPointer + 2) = LoopCounter + 0xd;
-  return SystemParameterPointer;
+  *(int *)(SystemContextDataPointer + 2) = LoopCounter + 6;
+  SystemBufferCopy(SystemContextDataPointer,LoopCounter + 0xd);
+  *(uint64_t *)((ulonglong)*(uint *)(SystemContextDataPointer + 2) + SystemContextDataPointer[1]) = 0x656e656373782e;
+  *(int *)(SystemContextDataPointer + 2) = LoopCounter + 0xd;
+  return SystemContextDataPointer;
 }
   SystemModuleStatus = 1;
   StackParameter10 = 3;
@@ -5768,9 +5768,9 @@ SystemMemoryPoolValidationSuccessLabel:
       StringIndex1 = StringIndex1 + 1;
       ppppppSystemStackPointer = (longlong *******)CONCAT44(ppppppSystemStackPointer._4_4_,StringIndex1);
       pModuleInitializationResult3 = SystemEngineContext;
-      SystemTertiaryParameter = SystemMultiLevelPointer;
+      SystemTertiaryDataPointer = SystemMultiLevelPointer;
       ModuleInitializationResult9 = lStack_a8;
-      SystemQuaternaryParameter = SystemUnionParameter;
+      SystemQuaternaryDataPointer = SystemUnionParameter;
     } while (StringIndex1 < (int)SystemDataPointer);
   }
   SystemOperationCounter = 3;
@@ -5863,7 +5863,7 @@ SystemMemoryPoolValidationSuccessLabel:
   uStack_168 = 0;
   MemoryAddress0 = AllocateSystemMemory(SystemMemoryAllocator,0x150,8,3);
   pppppppuStackX_18 = (uint64_t *******)&pppppuStack_d0;
-  MemoryAddress1 = SystemDataConfigure(&pppppuStack_d0,SystemQuaternaryParameter);
+  MemoryAddress1 = SystemDataConfigure(&pppppuStack_d0,SystemQuaternaryDataPointer);
   ppppppSystemStackPointer = (longlong *******)&ppppppplStack_108;
   uStack_ef = 0;
   uStack_eb = 0;
@@ -5877,22 +5877,22 @@ SystemMemoryPoolValidationSuccessLabel:
   if (ppppppSystemBufferPointer128 != (uint64_t *******)0x0) {
     ppppppplStack_f8 =
          (longlong *******)CreateSystemMemoryContext(&ppppppplStack_108,ppppppSystemBufferPointer128,&ppppppplStack_108);
-    pppppppLongValue = (longlong *******)*ppppppplStack_f8;
+    pppppppMemoryAddressValue = (longlong *******)*ppppppplStack_f8;
     ppppppplStack_108 = ppppppplStack_f8;
-    while (pppppppLongIndex = pppppppLongValue, pppppppLongIndex != (longlong *******)0x0) {
-      ppppppplStack_108 = pppppppLongIndex;
-      pppppppLongValue = (longlong *******)*pppppppLongIndex;
+    while (pppppppMemoryIndexValue = pppppppMemoryAddressValue, pppppppMemoryIndexValue != (longlong *******)0x0) {
+      ppppppplStack_108 = pppppppMemoryIndexValue;
+      pppppppMemoryAddressValue = (longlong *******)*pppppppMemoryIndexValue;
     }
-    pppppppLongValue = (longlong *******)ppppppplStack_f8[1];
+    pppppppMemoryAddressValue = (longlong *******)ppppppplStack_f8[1];
     pppppppStringProcessingCompleteFlag = ppppppplStack_f8;
-    while (pppppppLongIndex = pppppppLongValue, pppppppLongIndex != (longlong *******)0x0) {
-      pppppppStringProcessingCompleteFlag = pppppppLongIndex;
-      pppppppLongValue = (longlong *******)pppppppLongIndex[1];
+    while (pppppppMemoryIndexValue = pppppppMemoryAddressValue, pppppppMemoryIndexValue != (longlong *******)0x0) {
+      pppppppStringProcessingCompleteFlag = pppppppMemoryIndexValue;
+      pppppppMemoryAddressValue = (longlong *******)pppppppMemoryIndexValue[1];
     }
     uStack_e8 = uStack_118;
   }
   ppppppMemoryAddress2 = (uint64_t ******)
-                 InitializeSystemMemoryContext(MemoryAddress0,&ppppppplStack_108,MemoryAddress1,pppppppuStackX_10,SystemTertiaryParameter);
+                 InitializeSystemMemoryContext(MemoryAddress0,&ppppppplStack_108,MemoryAddress1,pppppppuStackX_10,SystemTertiaryDataPointer);
   if (ppppppMemoryAddress2 != (uint64_t ******)0x0) {
     pppppppuStackX_18 = (uint64_t *******)ppppppMemoryAddress2;
     (*(code *)(*ppppppMemoryAddress2)[5])(ppppppMemoryAddress2);
@@ -5934,7 +5934,7 @@ SystemMemoryPoolValidationSuccessLabel:
       }
       ModuleInitializationResult0 = (longlong)LoopCounter1 << 4;
       do {
-        if ((int)(fVar12 - 12582912.0) <= (int)pLongAddress) {
+        if ((int)(fVar12 - 12582912.0) <= (int)pMemoryAddressPointer) {
           SystemOperationCounter = 0;
           return pSystemStateValue;
         }
@@ -5968,7 +5968,7 @@ SystemMemoryPoolValidationSuccessLabel:
             UNLOCK();
             SystemStateDataPointer = MemoryAddress;
             if (0 < IntegerResult) {
-              pLongAddress = (longlong *)(ulonglong)(uint)((int)pLongAddress + IntegerResult);
+              pMemoryAddressPointer = (longlong *)(ulonglong)(uint)((int)pMemoryAddressPointer + IntegerResult);
               pSystemStateValue = SystemStateDataTable + (longlong)LoopCounter1 * 2 + 2;
               if (pSystemStateValue < SystemStateDataEndPointer) {
                 memmove(SystemStateDataTable + (longlong)LoopCounter1 * 2,pSystemStateValue,
@@ -6001,7 +6001,7 @@ SystemMemoryAllocationLabel:
       }
       else {
         LongOffset = LongOffset * 2;
-        pSystemStateValue = pLongAddress;
+        pSystemStateValue = pMemoryAddressPointer;
         if (LongOffset != 0) goto SystemMemoryAllocationLabel;
       }
       if (SystemStateDataTable != SystemStateDataEndPointer) {
@@ -6024,34 +6024,34 @@ SystemMemoryAllocationLabel:
       SystemOperationCounter = 0;
       return;
     }
-    LongValue = *(longlong *)(LongLoop + SystemStateDataTable);
-    if ((*(int *)(LongValue + 0xe0) == 2) && (*(int *)(LongValue + 0xd8) == 0)) {
+    MemoryAddressValue = *(longlong *)(LongLoop + SystemStateDataTable);
+    if ((*(int *)(MemoryAddressValue + 0xe0) == 2) && (*(int *)(MemoryAddressValue + 0xd8) == 0)) {
       LOCK();
-      IsResourceAvailable = *(int *)(LongValue + 0xd8) == 0;
+      IsResourceAvailable = *(int *)(MemoryAddressValue + 0xd8) == 0;
       if (IsResourceAvailable) {
-        *(int *)(LongValue + 0xd8) = -1;
+        *(int *)(MemoryAddressValue + 0xd8) = -1;
       }
       UNLOCK();
       if (IsResourceAvailable) {
-        *(uint8_t *)(LongValue + 0xdc) = 0;
-        ProcessSystemMemoryValidation(LongValue + 0xe8);
-        StringProcessingResult = *(uint64_t *)(LongValue + 0x88);
-        StringIndex = *(int *)(LongValue + 0x80);
-        *(uint64_t *)(LongValue + 0x88) = SystemRegister12;
-        UnsignedValue = (uint32_t)SystemRegister12;
-        *(uint32_t *)(LongValue + 0x80) = UnsignedValue;
-        *(uint32_t *)(LongValue + 0xe0) = UnsignedValue;
-        *(uint32_t *)(LongValue + 0xd8) = UnsignedValue;
+        *(uint8_t *)(MemoryAddressValue + 0xdc) = 0;
+        ProcessSystemMemoryValidation(MemoryAddressValue + 0xe8);
+        StringProcessingResult = *(uint64_t *)(MemoryAddressValue + 0x88);
+        StringIndex = *(int *)(MemoryAddressValue + 0x80);
+        *(uint64_t *)(MemoryAddressValue + 0x88) = SystemContextRegister;
+        UnsignedValue = (uint32_t)SystemContextRegister;
+        *(uint32_t *)(MemoryAddressValue + 0x80) = UnsignedValue;
+        *(uint32_t *)(MemoryAddressValue + 0xe0) = UnsignedValue;
+        *(uint32_t *)(MemoryAddressValue + 0xd8) = UnsignedValue;
         ValidateMemoryAllocationResult(StringProcessingResult);
         LOCK();
         SystemStateDataPointer = SystemStateDataPointer - StringIndex;
         UNLOCK();
         if (0 < StringIndex) {
           SystemBasePointer = SystemBasePointer + StringIndex;
-          LongValue = (longlong)SystemIndexRegister * 0x10 + SystemStateDataTable;
-          MemoryAddress = LongValue + 0x10;
+          MemoryAddressValue = (longlong)SystemIndexRegister * 0x10 + SystemStateDataTable;
+          MemoryAddress = MemoryAddressValue + 0x10;
           if (MemoryAddress < SystemStateDataEndPointer) {
-            memmove(LongValue,MemoryAddress,SystemStateDataEndPointer - MemoryAddress);
+            memmove(MemoryAddressValue,MemoryAddress,SystemStateDataEndPointer - MemoryAddress);
           }
           SystemStateDataEndPointer = SystemStateDataEndPointer - 0x10;
         }
@@ -6071,7 +6071,7 @@ SystemMemoryAllocationLabel:
         InitializeSystemModuleConfiguration(auStack_258,&SystemConfigPrimary,&SystemConfigSecondary,&SystemConfigTertiary);
         OutputDebugStringA(auStack_258);
       }
-      FloatCalculationResult = (float)modff((float)(int)(*(ushort *)((longlong)SystemParameterPointer + 0x5e) - 1) *
+      FloatCalculationResult = (float)modff((float)(int)(*(ushort *)((longlong)SystemContextDataPointer + 0x5e) - 1) *
                             SystemUnionData._4_4_,&StackProcessingBuffer1);
       FloatResult = (float)modff();
       FloatInterpolationResult298 = (FloatSourceValue28c - FloatInterpolationResult298) * FloatResult + FloatInterpolationResult298;
@@ -6089,16 +6089,16 @@ SystemMemoryAllocationLabel:
       FloatTemp = (float)StackProcessingBuffer1;
       FloatCalculationResult = (float)StackProcessingBuffer1;
     }
-    *SystemSecondaryParameter = FloatTemp;
-    SystemSecondaryParameter[1] = fVar16;
-    SystemSecondaryParameter[2] = FloatCalculationResult;
-    SystemSecondaryParameter[3] = 1.0;
+    *SystemSecondaryDataPointer = FloatTemp;
+    SystemSecondaryDataPointer[1] = fVar16;
+    SystemSecondaryDataPointer[2] = FloatCalculationResult;
+    SystemSecondaryDataPointer[3] = 1.0;
     break;
   case 0x16:
-    iStack_2c8 = SystemQuaternaryParameter;
-    ProcessModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
+    iStack_2c8 = SystemQuaternaryDataPointer;
+    ProcessModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
 code_r0x0001802a14f5:
-    *SystemSecondaryParameter = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
+    *SystemSecondaryDataPointer = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
     CharValue = (byte)StackProcessingBuffer1;
 code_r0x0001802a151f:
     fVar16 = 0.003921569;
@@ -6106,42 +6106,42 @@ code_r0x0001802a151f:
     StringProcessingResult = (ushort)CharValue;
     NetworkRequestResult = (ushort)StackProcessingBuffer1._3_1_;
 code_r0x0001802a1528:
-    SystemSecondaryParameter[1] = (float)MemoryAllocationResult * fVar16;
-    SystemSecondaryParameter[2] = (float)StringProcessingResult * fVar16;
-    SystemSecondaryParameter[3] = (float)NetworkRequestResult * fVar16;
+    SystemSecondaryDataPointer[1] = (float)MemoryAllocationResult * fVar16;
+    SystemSecondaryDataPointer[2] = (float)StringProcessingResult * fVar16;
+    SystemSecondaryDataPointer[3] = (float)NetworkRequestResult * fVar16;
     break;
   case 0x1e:
-    iStack_2c8 = SystemQuaternaryParameter;
-    pUnsignedIndex = (uint16_t *)GetModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
+    iStack_2c8 = SystemQuaternaryDataPointer;
+    pUnsignedIndex = (uint16_t *)GetModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
     fVar16 = (float)ConvertToFloatValue(pUnsignedIndex[2]);
     FloatTemp = (float)ConvertToFloatValue(pUnsignedIndex[1]);
     FloatCalculationResult = (float)ConvertToFloatValue(*pUnsignedIndex);
     FloatResult = (float)ConvertToFloatValue(pUnsignedIndex[3]);
-    SystemSecondaryParameter[3] = FloatResult;
-    *SystemSecondaryParameter = FloatCalculationResult;
-    SystemSecondaryParameter[1] = FloatTemp;
-    SystemSecondaryParameter[2] = fVar16;
+    SystemSecondaryDataPointer[3] = FloatResult;
+    *SystemSecondaryDataPointer = FloatCalculationResult;
+    SystemSecondaryDataPointer[1] = FloatTemp;
+    SystemSecondaryDataPointer[2] = fVar16;
     break;
   case 0x20:
-    iStack_2c8 = SystemQuaternaryParameter;
-    ValidateModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
-    *SystemSecondaryParameter = (float)StackProcessingBuffer1;
-    SystemSecondaryParameter[2] = (float)uStack_2a8;
+    iStack_2c8 = SystemQuaternaryDataPointer;
+    ValidateModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
+    *SystemSecondaryDataPointer = (float)StackProcessingBuffer1;
+    SystemSecondaryDataPointer[2] = (float)uStack_2a8;
 code_r0x0001802a1ad1:
-    SystemSecondaryParameter[3] = 1.0;
+    SystemSecondaryDataPointer[3] = 1.0;
     fVar16 = StackProcessingBuffer1._4_4_;
 code_r0x0001802a1ade:
-    SystemSecondaryParameter[1] = fVar16;
+    SystemSecondaryDataPointer[1] = fVar16;
     break;
   case 0x21:
-    if (SystemQuaternaryParameter == 0) {
-      LoopCounter1 = *(ushort *)((longlong)SystemParameterPointer + 0x5e) - 1;
-      LoopCounter3 = *(ushort *)((longlong)SystemParameterPointer + 0x5c) - 1;
-      SystemUnionData._0_4_ = (float)SystemTertiaryParameter;
+    if (SystemQuaternaryDataPointer == 0) {
+      LoopCounter1 = *(ushort *)((longlong)SystemContextDataPointer + 0x5e) - 1;
+      LoopCounter3 = *(ushort *)((longlong)SystemContextDataPointer + 0x5c) - 1;
+      SystemUnionData._0_4_ = (float)SystemTertiaryDataPointer;
       if ((int)((float)LoopCounter3 * (float)SystemUnionData) <= LoopCounter3) {
         LoopCounter3 = (int)((float)LoopCounter3 * (float)SystemUnionData);
       }
-      SystemUnionData._4_4_ = (float)((ulonglong)SystemTertiaryParameter >> 0x20);
+      SystemUnionData._4_4_ = (float)((ulonglong)SystemTertiaryDataPointer >> 0x20);
       if ((int)((float)LoopCounter1 * SystemUnionData._4_4_) <= LoopCounter1) {
         LoopCounter1 = (int)((float)LoopCounter1 * SystemUnionData._4_4_);
       }
@@ -6154,82 +6154,82 @@ code_r0x0001802a1ade:
         LoopCounter1 = LoopCounter3;
       }
       pUnsignedSize = (uint64_t *)
-               ((longlong)(int)(IntegerError * (uint)*(ushort *)((longlong)SystemParameterPointer + 0x5c) + LoopCounter1) * 0x10
-               + *SystemParameterPointer);
+               ((longlong)(int)(IntegerError * (uint)*(ushort *)((longlong)SystemContextDataPointer + 0x5c) + LoopCounter1) * 0x10
+               + *SystemContextDataPointer);
       BufferSize = pUnsignedSize[1];
-      *(uint64_t *)SystemSecondaryParameter = *pUnsignedSize;
-      *(uint64_t *)(SystemSecondaryParameter + 2) = BufferSize;
+      *(uint64_t *)SystemSecondaryDataPointer = *pUnsignedSize;
+      *(uint64_t *)(SystemSecondaryDataPointer + 2) = BufferSize;
     }
-    else if (SystemQuaternaryParameter == 1) {
-      ConfigureModuleInitializationSettings(SystemParameterPointer,&uStackX_18,SystemTertiaryParameter,&FloatInterpolationResult298);
-      fVar16 = (float)modff((float)(int)(*(ushort *)((longlong)SystemParameterPointer + 0x5e) - 1) *
+    else if (SystemQuaternaryDataPointer == 1) {
+      ConfigureModuleInitializationSettings(SystemContextDataPointer,&uStackX_18,SystemTertiaryDataPointer,&FloatInterpolationResult298);
+      fVar16 = (float)modff((float)(int)(*(ushort *)((longlong)SystemContextDataPointer + 0x5e) - 1) *
                             SystemUnionData._4_4_,&StackProcessingBuffer1);
       FloatTemp = (float)modff();
       FloatInterpolationResult298 = (FloatSourceValue288 - FloatInterpolationResult298) * FloatTemp + FloatInterpolationResult298;
       FloatInterpolationResult294 = (FloatSourceValue284 - FloatInterpolationResult294) * FloatTemp + FloatInterpolationResult294;
       FloatInterpolationResult290 = (fStack_280 - FloatInterpolationResult290) * FloatTemp + FloatInterpolationResult290;
-      *SystemSecondaryParameter = (((fStack_268 - FloatTargetValue278) * FloatTemp + FloatTargetValue278) - FloatInterpolationResult298) * fVar16 +
+      *SystemSecondaryDataPointer = (((fStack_268 - FloatTargetValue278) * FloatTemp + FloatTargetValue278) - FloatInterpolationResult298) * fVar16 +
                  FloatInterpolationResult298;
-      SystemSecondaryParameter[1] = (((FloatBaseValue264 - FloatTargetValue274) * FloatTemp + FloatTargetValue274) - FloatInterpolationResult294) * fVar16 +
+      SystemSecondaryDataPointer[1] = (((FloatBaseValue264 - FloatTargetValue274) * FloatTemp + FloatTargetValue274) - FloatInterpolationResult294) * fVar16 +
                    FloatInterpolationResult294;
-      SystemSecondaryParameter[2] = (((FloatBaseValue260 - FloatTargetValue270) * FloatTemp + FloatTargetValue270) - FloatInterpolationResult290) * fVar16 +
+      SystemSecondaryDataPointer[2] = (((FloatBaseValue260 - FloatTargetValue270) * FloatTemp + FloatTargetValue270) - FloatInterpolationResult290) * fVar16 +
                    FloatInterpolationResult290;
-      SystemSecondaryParameter[3] = 3.4028235e+38;
+      SystemSecondaryDataPointer[3] = 3.4028235e+38;
     }
     else {
       StackProcessingBuffer = 0;
       uStack_2a8 = 0;
-      SystemSecondaryParameter[0] = 0.0;
-      SystemSecondaryParameter[1] = 0.0;
-      SystemSecondaryParameter[2] = 0.0;
-      SystemSecondaryParameter[3] = 0.0;
+      SystemSecondaryDataPointer[0] = 0.0;
+      SystemSecondaryDataPointer[1] = 0.0;
+      SystemSecondaryDataPointer[2] = 0.0;
+      SystemSecondaryDataPointer[3] = 0.0;
     }
     break;
   case 0x27:
-    iStack_2c8 = SystemQuaternaryParameter;
-    ProcessModuleConfigurationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
+    iStack_2c8 = SystemQuaternaryDataPointer;
+    ProcessModuleConfigurationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
     fVar16 = 1.5259022e-05;
-    *SystemSecondaryParameter = (float)(ushort)StackProcessingBuffer1 * 1.5259022e-05;
+    *SystemSecondaryDataPointer = (float)(ushort)StackProcessingBuffer1 * 1.5259022e-05;
     SecondaryParameterResult = (uint)StackProcessingBuffer1._2_2_;
     MemoryAllocationResult = StackProcessingBuffer1._4_2_;
     goto code_r0x0001802a16a1;
   case 0x28:
-    iStack_2c8 = SystemQuaternaryParameter;
-    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
+    iStack_2c8 = SystemQuaternaryDataPointer;
+    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
     fVar16 = 0.003921569;
-    *SystemSecondaryParameter = (float)(byte)StackProcessingBuffer1 * 0.003921569;
+    *SystemSecondaryDataPointer = (float)(byte)StackProcessingBuffer1 * 0.003921569;
     SecondaryParameterResult = (uint)StackProcessingBuffer1._1_1_;
     MemoryAllocationResult = (ushort)StackProcessingBuffer1._2_1_;
     goto code_r0x0001802a16a1;
   case 0x29:
-    iStack_2c8 = SystemQuaternaryParameter;
-    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
+    iStack_2c8 = SystemQuaternaryDataPointer;
+    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,SystemContextDataPointer,&SystemUnionData);
 code_r0x0001802a1677:
     fVar16 = 0.003921569;
-    *SystemSecondaryParameter = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
+    *SystemSecondaryDataPointer = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
     SecondaryParameterResult = (uint)((ulonglong)StackProcessingBuffer1 >> 8) & 0xff;
     MemoryAllocationResult = (ushort)(byte)StackProcessingBuffer1;
 code_r0x0001802a16a1:
-    SystemSecondaryParameter[3] = 1.0;
-    SystemSecondaryParameter[2] = (float)MemoryAllocationResult * fVar16;
-    SystemSecondaryParameter[1] = (float)SecondaryParameterResult * fVar16;
+    SystemSecondaryDataPointer[3] = 1.0;
+    SystemSecondaryDataPointer[2] = (float)MemoryAllocationResult * fVar16;
+    SystemSecondaryDataPointer[1] = (float)SecondaryParameterResult * fVar16;
     break;
   case 0x2b:
-    iStack_2c8 = SystemQuaternaryParameter;
-    ProcessModuleSystemData(ModuleInitializationResult0,abStack_2b8,SystemParameterPointer,&SystemUnionData);
-    SystemSecondaryParameter[1] = 0.0;
-    SystemSecondaryParameter[2] = 0.0;
-    SystemSecondaryParameter[3] = 0.0;
-    *SystemSecondaryParameter = (float)abStack_2b8[0];
+    iStack_2c8 = SystemQuaternaryDataPointer;
+    ProcessModuleSystemData(ModuleInitializationResult0,abStack_2b8,SystemContextDataPointer,&SystemUnionData);
+    SystemSecondaryDataPointer[1] = 0.0;
+    SystemSecondaryDataPointer[2] = 0.0;
+    SystemSecondaryDataPointer[3] = 0.0;
+    *SystemSecondaryDataPointer = (float)abStack_2b8[0];
     break;
   case 0x2c:
-    MemoryAllocationResult = GetModuleMemoryAllocation(ModuleInitializationResult0,SystemParameterPointer,&SystemUnionData);
+    MemoryAllocationResult = GetModuleMemoryAllocation(ModuleInitializationResult0,SystemContextDataPointer,&SystemUnionData);
     fVar16 = (float)MemoryAllocationResult;
 code_r0x0001802a1829:
-    *SystemSecondaryParameter = fVar16;
-    SystemSecondaryParameter[1] = 1.0;
-    SystemSecondaryParameter[2] = 1.0;
-    SystemSecondaryParameter[3] = 1.0;
+    *SystemSecondaryDataPointer = fVar16;
+    SystemSecondaryDataPointer[1] = 1.0;
+    SystemSecondaryDataPointer[2] = 1.0;
+    SystemSecondaryDataPointer[3] = 1.0;
   }
 SystemSecurityValidationRoutine:
   SystemSecurityCheck(StackCounter3 ^ (ulonglong)auStack_2e8);
@@ -6286,7 +6286,7 @@ SystemSecurityValidationRoutine:
       }
       goto SystemConfigurationCompletionLabel;
     }
-    MemoryAllocationResult = CreateSystemMemoryPool(&StackMemoryPointer,SystemParameterPointer);
+    MemoryAllocationResult = CreateSystemMemoryPool(&StackMemoryPointer,SystemContextDataPointer);
     SystemBufferInitialize(MemoryAllocationResult,1);
     StackMemoryPointer = &SystemNullPointer;
     if (puStack_260 != (void *)0x0) {
@@ -6295,12 +6295,12 @@ SystemSecurityValidationRoutine:
     puStack_260 = (void *)0x0;
     uStack_250 = 0;
     StackMemoryPointer = &SystemBufferTemplate;
-    LongData = *SystemSecondaryParameter;
-    MemoryAddress = *(uint16_t *)((longlong)SystemSecondaryParameter + 0x5e);
-    BufferSize = *(uint16_t *)((longlong)SystemSecondaryParameter + 0x5c);
+    MemoryDataPointer = *SystemSecondaryDataPointer;
+    MemoryAddress = *(uint16_t *)((longlong)SystemSecondaryDataPointer + 0x5e);
+    BufferSize = *(uint16_t *)((longlong)SystemSecondaryDataPointer + 0x5c);
     pUnsignedValue = &SystemConstantStringPrimary;
-    if (*(void **)(SystemParameterPointer + 8) != (void *)0x0) {
-      pUnsignedValue = *(void **)(SystemParameterPointer + 8);
+    if (*(void **)(SystemContextDataPointer + 8) != (void *)0x0) {
+      pUnsignedValue = *(void **)(SystemContextDataPointer + 8);
     }
     IntegerResult = fopen_s(&StackMemoryPointer,pUnsignedValue,&SystemFileOpenMode);
     puStack_260 = StackMemoryPointer;
@@ -6310,8 +6310,8 @@ SystemSecurityValidationRoutine:
     StackMemoryPointer = &SystemDefaultFilePointer;
     if (puStack_260 == (void *)0x0) goto SystemFilePointerCleanupLabel;
     pUnsignedValue = puStack_260;
-    if (LongData != 0) {
-      lStack_278 = LongData;
+    if (MemoryDataPointer != 0) {
+      lStack_278 = MemoryDataPointer;
       ProcessSystemBufferData(&StackMemoryPointer,BufferSize,MemoryAddress,IntegerCounter);
       pUnsignedValue = puStack_260;
     }
@@ -6326,31 +6326,31 @@ SystemFilePointerCleanupLabel:
         OutputDebugStringA(aStackLoopLimit);
       }
       pUnsignedValue = &SystemConstantStringPrimary;
-      if (*(void **)(SystemParameterPointer + 8) != (void *)0x0) {
-        pUnsignedValue = *(void **)(SystemParameterPointer + 8);
+      if (*(void **)(SystemContextDataPointer + 8) != (void *)0x0) {
+        pUnsignedValue = *(void **)(SystemContextDataPointer + 8);
       }
       InitializeSystemDataProcessing(SystemDataProcessorPrimary,&SystemConfigOctonary,pUnsignedValue);
     }
   }
-  moduleConfigurationStatus = ProcessModuleConfigurationValidation(SystemTertiaryParameter);
+  moduleConfigurationStatus = ProcessModuleConfigurationValidation(SystemTertiaryDataPointer);
   if (moduleConfigurationStatus == '\0') {
     pUnsignedValue = &SystemConstantStringPrimary;
-    if (*(void **)(SystemParameterPointer + 8) != (void *)0x0) {
-      pUnsignedValue = *(void **)(SystemParameterPointer + 8);
+    if (*(void **)(SystemContextDataPointer + 8) != (void *)0x0) {
+      pUnsignedValue = *(void **)(SystemContextDataPointer + 8);
     }
     ProcessSystemStringAllocation(&SystemConfigNonary,pUnsignedValue);
   }
   else {
-    *(uint64_t *)(SystemTertiaryParameter + 0x14) = 0;
-    *(uint64_t *)(SystemTertiaryParameter + 0x1c) = 0;
-    *(uint64_t *)(SystemTertiaryParameter + 0x24) = 0;
-    *(uint64_t *)(SystemTertiaryParameter + 0x2c) = 0;
-    *(uint64_t *)(SystemTertiaryParameter + 0x34) = 0;
-    *(uint64_t *)(SystemTertiaryParameter + 0x3c) = 0;
-    *(uint64_t *)(SystemTertiaryParameter + 0x44) = 0;
-    *(uint64_t *)(SystemTertiaryParameter + 0x4c) = 0;
-    NetworkRequestResult = ProcessNetworkRequest(*(uint32_t *)(SystemTertiaryParameter + 0x54));
-    strcpy_s(SystemTertiaryParameter + 0x14,64,NetworkRequestResult);
+    *(uint64_t *)(SystemTertiaryDataPointer + 0x14) = 0;
+    *(uint64_t *)(SystemTertiaryDataPointer + 0x1c) = 0;
+    *(uint64_t *)(SystemTertiaryDataPointer + 0x24) = 0;
+    *(uint64_t *)(SystemTertiaryDataPointer + 0x2c) = 0;
+    *(uint64_t *)(SystemTertiaryDataPointer + 0x34) = 0;
+    *(uint64_t *)(SystemTertiaryDataPointer + 0x3c) = 0;
+    *(uint64_t *)(SystemTertiaryDataPointer + 0x44) = 0;
+    *(uint64_t *)(SystemTertiaryDataPointer + 0x4c) = 0;
+    NetworkRequestResult = ProcessNetworkRequest(*(uint32_t *)(SystemTertiaryDataPointer + 0x54));
+    strcpy_s(SystemTertiaryDataPointer + 0x14,64,NetworkRequestResult);
   }
 SystemMemoryContextFinalizationLabel:
   FinalizeSystemMemoryContext(auStack_260);
@@ -6381,42 +6381,42 @@ bool ValidateSystemParameters(uint64_t *ParameterArray)
   int LoopCounter;
   uint64_t BufferSize;
   uint64_t StringProcessingResult;
-  LoopCounter = *(int *)((longlong)SystemParameterPointer + 0x54);
+  LoopCounter = *(int *)((longlong)SystemContextDataPointer + 0x54);
   if (LoopCounter == 0x27) {
-    if (SystemParameterPointer[1] == 0) {
+    if (SystemContextDataPointer[1] == 0) {
       BufferSize = 0;
       StringProcessingResult = 0;
     }
     else {
-      BufferSize = MemoryAllocateEx(SystemMemoryAllocator,SystemParameterPointer[1],3);
-      StringProcessingResult = SystemParameterPointer[1];
+      BufferSize = MemoryAllocateEx(SystemMemoryAllocator,SystemContextDataPointer[1],3);
+      StringProcessingResult = SystemContextDataPointer[1];
     }
-    memcpy(BufferSize,*SystemParameterPointer,StringProcessingResult);
+    memcpy(BufferSize,*SystemContextDataPointer,StringProcessingResult);
   }
   if (LoopCounter != 0x28) {
     if (LoopCounter == 0x29) {
-      if (SystemParameterPointer[1] == 0) {
+      if (SystemContextDataPointer[1] == 0) {
         BufferSize = 0;
         StringProcessingResult = 0;
       }
       else {
-        BufferSize = MemoryAllocateEx(SystemMemoryAllocator,SystemParameterPointer[1],3);
-        StringProcessingResult = SystemParameterPointer[1];
+        BufferSize = MemoryAllocateEx(SystemMemoryAllocator,SystemContextDataPointer[1],3);
+        StringProcessingResult = SystemContextDataPointer[1];
       }
-      memcpy(BufferSize,*SystemParameterPointer,StringProcessingResult);
+      memcpy(BufferSize,*SystemContextDataPointer,StringProcessingResult);
     }
-    LoopCounter = GetSystemLoopCounter(*(uint32_t *)((longlong)SystemParameterPointer + 0x54));
+    LoopCounter = GetSystemLoopCounter(*(uint32_t *)((longlong)SystemContextDataPointer + 0x54));
     return LoopCounter != 0;
   }
-  if (SystemParameterPointer[1] == 0) {
+  if (SystemContextDataPointer[1] == 0) {
     BufferSize = 0;
     StringProcessingResult = 0;
   }
   else {
-    BufferSize = MemoryAllocateEx(SystemMemoryAllocator,SystemParameterPointer[1],3);
-    StringProcessingResult = SystemParameterPointer[1];
+    BufferSize = MemoryAllocateEx(SystemMemoryAllocator,SystemContextDataPointer[1],3);
+    StringProcessingResult = SystemContextDataPointer[1];
   }
-  memcpy(BufferSize,*SystemParameterPointer,StringProcessingResult);
+  memcpy(BufferSize,*SystemContextDataPointer,StringProcessingResult);
 }
 /**
  * @brief 数据处理和转换函数
@@ -6444,11 +6444,11 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
   float FloatValue;
   float FloatCalculationResult;
   float FloatResult;
-  switch(*(int *)((longlong)SystemParameterPointer + 0x54) + -1) {
+  switch(*(int *)((longlong)SystemContextDataPointer + 0x54) + -1) {
   case 0:
   case 1:
-    ColorDataPointer = (byte *)*SystemParameterPointer;
-    ColorProcessingPointer = (float *)((ulonglong)SystemParameterPointer[1] >> 2);
+    ColorDataPointer = (byte *)*SystemContextDataPointer;
+    ColorProcessingPointer = (float *)((ulonglong)SystemContextDataPointer[1] >> 2);
     if (0 < (int)ColorProcessingPointer) {
       UnsignedIndex = (ulonglong)ColorProcessingPointer & 0xffffffff;
       do {
@@ -6472,8 +6472,8 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
   default:
     return 0;
   case 8:
-    PointerValue = (ushort *)*SystemParameterPointer;
-    ColorProcessingPointer = (float *)((ulonglong)SystemParameterPointer[1] >> 3);
+    PointerValue = (ushort *)*SystemContextDataPointer;
+    ColorProcessingPointer = (float *)((ulonglong)SystemContextDataPointer[1] >> 3);
     if (0 < (int)ColorProcessingPointer) {
       UnsignedIndex = (ulonglong)ColorProcessingPointer & 0xffffffff;
       do {
@@ -6495,9 +6495,9 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     }
     break;
   case 0x1f:
-    ColorProcessingPointer = (float *)*SystemParameterPointer;
-    if (0 < (int)((ulonglong)SystemParameterPointer[1] / 0xc)) {
-      UnsignedIndex = (ulonglong)SystemParameterPointer[1] / 0xc & 0xffffffff;
+    ColorProcessingPointer = (float *)*SystemContextDataPointer;
+    if (0 < (int)((ulonglong)SystemContextDataPointer[1] / 0xc)) {
+      UnsignedIndex = (ulonglong)SystemContextDataPointer[1] / 0xc & 0xffffffff;
       do {
         FloatValue = (*ColorProcessingPointer + *ColorProcessingPointer) - 1.0;
         FloatCalculationResult = (ColorProcessingPointer[1] + ColorProcessingPointer[1]) - 1.0;
@@ -6516,8 +6516,8 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     }
     break;
   case 0x20:
-    UnsignedIndex = SystemParameterPointer[1];
-    SecondaryColorProcessingPointer = (float *)*SystemParameterPointer;
+    UnsignedIndex = SystemContextDataPointer[1];
+    SecondaryColorProcessingPointer = (float *)*SystemContextDataPointer;
     ColorProcessingPointer = (float *)(UnsignedIndex >> 4);
     if (0 < (int)ColorProcessingPointer) {
       MemoryAllocationResult = (ulonglong)ColorProcessingPointer & 0xffffffff;
@@ -6539,11 +6539,11 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     }
     break;
   case 0x26:
-    PointerValue = (ushort *)*SystemParameterPointer;
+    PointerValue = (ushort *)*SystemContextDataPointer;
     aMemoryAddress._8_8_ = 0;
-    aMemoryAddress._0_8_ = SystemParameterPointer[1];
+    aMemoryAddress._0_8_ = SystemContextDataPointer[1];
     ColorProcessingPointer = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * aMemoryAddress,0);
-    UnsignedIndex = (ulonglong)SystemParameterPointer[1] / 6;
+    UnsignedIndex = (ulonglong)SystemContextDataPointer[1] / 6;
     if (0 < (int)UnsignedIndex) {
       UnsignedIndex = UnsignedIndex & 0xffffffff;
       do {
@@ -6566,11 +6566,11 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
     break;
   case 0x27:
   case 0x28:
-    ColorDataPointer = (byte *)*SystemParameterPointer;
+    ColorDataPointer = (byte *)*SystemContextDataPointer;
     aMemoryAddress2._8_8_ = 0;
-    aMemoryAddress2._0_8_ = SystemParameterPointer[1];
+    aMemoryAddress2._0_8_ = SystemContextDataPointer[1];
     ColorProcessingPointer = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * aMemoryAddress2,0);
-    UnsignedIndex = (ulonglong)SystemParameterPointer[1] / 3;
+    UnsignedIndex = (ulonglong)SystemContextDataPointer[1] / 3;
     if (0 < (int)UnsignedIndex) {
       UnsignedIndex = UnsignedIndex & 0xffffffff;
       do {
@@ -6868,8 +6868,8 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
       }
       pUnsignedValue = (uint *)&SystemDataBufferPointer;
       if (UnsignedIndex < (ulonglong)
-                  ((*(longlong *)(SystemTertiaryParameter + 0x1c) - *(longlong *)(SystemTertiaryParameter + 0x1a)) / 0xb0)) {
-        pUnsignedValue = (uint *)(MemoryAddress2 + *(longlong *)(SystemTertiaryParameter + 0x1a));
+                  ((*(longlong *)(SystemTertiaryDataPointer + 0x1c) - *(longlong *)(SystemTertiaryDataPointer + 0x1a)) / 0xb0)) {
+        pUnsignedValue = (uint *)(MemoryAddress2 + *(longlong *)(SystemTertiaryDataPointer + 0x1a));
       }
       if ((*(int *)(ModuleInitializationResult0 + 0x48) < _SystemConfigurationValidationResult) &&
          (ValidateSystemConfigurationTemplate(&SystemConfigurationValidationResult), _SystemConfigurationValidationResult == -1)) {
@@ -6887,8 +6887,8 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
       }
       PointerValue = &SystemDataBufferPointer;
       if (UnsignedIndex < (ulonglong)
-                  ((*(longlong *)(SystemSecondaryParameter + 0x1c) - *(longlong *)(SystemSecondaryParameter + 0x1a)) / 0xb0)) {
-        PointerValue = (void *)(MemoryAddress2 + *(longlong *)(SystemSecondaryParameter + 0x1a));
+                  ((*(longlong *)(SystemSecondaryDataPointer + 0x1c) - *(longlong *)(SystemSecondaryDataPointer + 0x1a)) / 0xb0)) {
+        PointerValue = (void *)(MemoryAddress2 + *(longlong *)(SystemSecondaryDataPointer + 0x1a));
       }
       if ((((0.0001 <= ABS(*(float *)(PointerValue + 0x14) - (float)pUnsignedValue[5])) ||
            (0.0001 <= ABS(*(float *)(PointerValue + 0x18) - (float)pUnsignedValue[6]))) ||
@@ -6899,7 +6899,7 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
            (0.0001 <= ABS(*(float *)(PointerValue + 0x28) - (float)pUnsignedValue[10]))))))) {
         *pUnsignedValue = *pUnsignedValue | 8;
       }
-      StringProcessingResult = ProcessStringDataValidation(SystemParameterPointer,PointerValue + 0x88,pUnsignedValue + 0x22);
+      StringProcessingResult = ProcessStringDataValidation(SystemContextDataPointer,PointerValue + 0x88,pUnsignedValue + 0x22);
       UnsignedIndex = UnsignedIndex + 1;
       MemoryAddress2 = MemoryAddress2 + 0xb0;
       MemoryAddress1 = MemoryAddress1 - 1;
@@ -6909,7 +6909,7 @@ StringProcessingComplete:
   return StringProcessingResult & SystemBufferSizeMask;
 }
 MutexUnlockHandler:
-    StringIndex = _Mtx_unlock(SystemParameterPointer + 0x3d8);
+    StringIndex = _Mtx_unlock(SystemContextDataPointer + 0x3d8);
     if (StringIndex != 0) {
       __Throw_C_error_std__YAXH_Z(StringIndex);
     }
@@ -6919,7 +6919,7 @@ NetworkRequestDefaultHandler:
     NetworkRequestResult = 1;
     goto NetworkRequestComplete;
   }
-  *SystemSecondaryParameter = (longlong)pLongLoop;
+  *SystemSecondaryDataPointer = (longlong)pLongLoop;
 NetworkRequestComplete:
 code_r0x000180329ed1:
   stackBufferByteValue = (byte)SystemArrayBuffer[0];
@@ -6956,9 +6956,9 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   uint8_t aStackCounter3 [32];
   StackParameter2 = SystemMutexFlags;
   MemoryAllocationResult = 0;
-  ValidationStatusByte = *(byte *)(SystemTertiaryParameter + 2);
-  if ((SystemQuaternaryParameter >> 1 & 1) != 0) {
-    InitializeSystemDataProcessing(SystemDataProcessorSecondary,&pPerformanceCounterFinal,SystemTertiaryParameter + 0x14,1);
+  ValidationStatusByte = *(byte *)(SystemTertiaryDataPointer + 2);
+  if ((SystemQuaternaryDataPointer >> 1 & 1) != 0) {
+    InitializeSystemDataProcessing(SystemDataProcessorSecondary,&pPerformanceCounterFinal,SystemTertiaryDataPointer + 0x14,1);
     pNetworkRequestResult = (uint64_t *)CreateNetworkRequestContext();
     ProcessNetworkRequestData(*pNetworkRequestResult,&SystemMemoryPointer2);
     if (pPerformanceCounterCurrent != (longlong *)0x0) {
@@ -6966,8 +6966,8 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     }
     ProcessNetworkRequestValidation(SystemMemoryPointer2,&pPerformanceCounterFinal);
     *(uint *)(SystemMemoryPointer2 + 0x20) = *(uint *)(SystemMemoryPointer2 + 0x20) | 0x40000000;
-    SystemArrayBuffer[0] = *SystemTertiaryParameter;
-    pModuleInitializationResult = (longlong *)(SystemParameterPointer + 0x3d8);
+    SystemArrayBuffer[0] = *SystemTertiaryDataPointer;
+    pModuleInitializationResult = (longlong *)(SystemContextDataPointer + 0x3d8);
     pPerformanceCounterCurrent = pModuleInitializationResult;
     IntegerCounter = _Mtx_lock(pModuleInitializationResult);
     if (IntegerCounter != 0) {
@@ -6977,20 +6977,20 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     MemoryPointerArray = (longlong *)CreateMemoryPointerArray(MemoryAllocationResult);
     pplStack_68 = (longlong **)CONCAT44(pplStack_68._4_4_,SystemArrayBuffer[0]);
     plStack_60 = MemoryPointerArray;
-    ProcessSystemMemoryConfiguration(SystemParameterPointer + 0x3a8,aStackCounter3,&pplStack_68);
+    ProcessSystemMemoryConfiguration(SystemContextDataPointer + 0x3a8,aStackCounter3,&pplStack_68);
     IntegerCounter = _Mtx_unlock(pModuleInitializationResult);
     if (IntegerCounter != 0) {
       __Throw_C_error_std__YAXH_Z(IntegerCounter);
     }
-    *SystemSecondaryParameter = (longlong)MemoryPointerArray;
-    MemoryAllocationResult = *(uint64_t *)(SystemParameterPointer + 0x2d8);
+    *SystemSecondaryDataPointer = (longlong)MemoryPointerArray;
+    MemoryAllocationResult = *(uint64_t *)(SystemContextDataPointer + 0x2d8);
     pplStack_68 = &pPerformanceCounterCurrent;
     pPerformanceCounterCurrent = MemoryPointerArray;
     if (MemoryPointerArray != (longlong *)0x0) {
       (ExecuteMemoryFunction28)(MemoryPointerArray);
     }
     InitializeMemoryAllocationContext(MemoryAllocationResult,&pPerformanceCounterCurrent);
-    *(int *)(SystemParameterPointer + 0xb0) = *(int *)(SystemParameterPointer + 0xb0) + 1;
+    *(int *)(SystemContextDataPointer + 0xb0) = *(int *)(SystemContextDataPointer + 0xb0) + 1;
     MemoryAllocationResult = 1;
     if (SystemMemoryPointer2 != (longlong *)0x0) {
       (**(code **)(*SystemMemoryPointer2 + 0x38))();
@@ -6999,33 +6999,33 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
       (**(code **)(*pPerformanceCounterFinal + 0x38))();
     }
   }
-  if ((SystemQuaternaryParameter >> 2 & 1) == 0) {
-    if (((SystemQuaternaryParameter >> 1 & 1) == 0) && ((ValidationStatusByte & 1) != 0)) {
-      SystemStateValue = GetSystemStateValue(SystemParameterPointer,*SystemTertiaryParameter);
-      *SystemSecondaryParameter = SystemStateValue;
+  if ((SystemQuaternaryDataPointer >> 2 & 1) == 0) {
+    if (((SystemQuaternaryDataPointer >> 1 & 1) == 0) && ((ValidationStatusByte & 1) != 0)) {
+      SystemStateValue = GetSystemStateValue(SystemContextDataPointer,*SystemTertiaryDataPointer);
+      *SystemSecondaryDataPointer = SystemStateValue;
       MemoryAllocationResult = 1;
     }
   }
   else {
-    SystemArrayBuffer[0] = *SystemTertiaryParameter;
-    SystemStateValue = GetSystemStateValue(SystemParameterPointer);
+    SystemArrayBuffer[0] = *SystemTertiaryDataPointer;
+    SystemStateValue = GetSystemStateValue(SystemContextDataPointer);
     if (SystemStateValue == 0) {
-      *SystemSecondaryParameter = 0;
+      *SystemSecondaryDataPointer = 0;
       MemoryAllocationResult = 1;
     }
     else {
-      pModuleInitializationResult = (longlong *)(SystemParameterPointer + 0x3d8);
+      pModuleInitializationResult = (longlong *)(SystemContextDataPointer + 0x3d8);
       SystemMemoryPointerArray2 = pModuleInitializationResult;
       IntegerCounter = _Mtx_lock(pModuleInitializationResult);
       if (IntegerCounter != 0) {
         __Throw_C_error_std__YAXH_Z(IntegerCounter);
       }
-      ProcessSystemMemoryValidation(SystemParameterPointer + 0x3a8,SystemArrayBuffer);
+      ProcessSystemMemoryValidation(SystemContextDataPointer + 0x3a8,SystemArrayBuffer);
       IntegerCounter = _Mtx_unlock(pModuleInitializationResult);
       if (IntegerCounter != 0) {
         __Throw_C_error_std__YAXH_Z(IntegerCounter);
       }
-      *SystemSecondaryParameter = SystemStateValue;
+      *SystemSecondaryDataPointer = SystemStateValue;
       *(uint8_t *)(SystemStateValue + 0x39) = 1;
       MemoryAllocationResult = 1;
     }
@@ -7037,41 +7037,41 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     ProcessSystemConfigurationTemplate(GetSystemConfigurationTemplate);
     ValidateSystemConfigurationData(&SystemConfigDataStructure);
   }
-  StringIndex = _Mtx_lock(SystemParameterPointer + 0x6e8);
+  StringIndex = _Mtx_lock(SystemContextDataPointer + 0x6e8);
   if (StringIndex != 0) {
     __Throw_C_error_std__YAXH_Z(StringIndex);
   }
-  if ((ulonglong)SystemTertiaryParameter <= *(ulonglong *)(SystemParameterPointer + 0x160)) {
-    for (StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemParameterPointer + 0x6c0) +
-                            ((ulonglong)SystemSecondaryParameter % (ulonglong)*(uint *)(SystemParameterPointer + 0x6c8)) * 8);
+  if ((ulonglong)SystemTertiaryDataPointer <= *(ulonglong *)(SystemContextDataPointer + 0x160)) {
+    for (StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + 0x6c0) +
+                            ((ulonglong)SystemSecondaryDataPointer % (ulonglong)*(uint *)(SystemContextDataPointer + 0x6c8)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
-      if (SystemSecondaryParameter == *StringProcessingResultPointer) goto SystemStringProcessingFoundLabel;
+      if (SystemSecondaryDataPointer == *StringProcessingResultPointer) goto SystemStringProcessingFoundLabel;
     }
-    StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemParameterPointer + 0x6c0) + *(longlong *)(SystemParameterPointer + 0x6c8) * 8);
+    StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + 0x6c0) + *(longlong *)(SystemContextDataPointer + 0x6c8) * 8);
 SystemStringProcessingFoundLabel:
-    LongValue = *(longlong *)(StringProcessingResultPointer + 2);
-    ModuleInitializationResult = *(longlong *)(LongValue + 8);
-    for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)SystemTertiaryParameter % (ulonglong)*(uint *)(LongValue + 0x10)) * 8);
+    MemoryAddressValue = *(longlong *)(StringProcessingResultPointer + 2);
+    ModuleInitializationResult = *(longlong *)(MemoryAddressValue + 8);
+    for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)SystemTertiaryDataPointer % (ulonglong)*(uint *)(MemoryAddressValue + 0x10)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
-      if (SystemTertiaryParameter == *StringProcessingResultPointer) {
-        LongValue = *(longlong *)(LongValue + 0x10);
+      if (SystemTertiaryDataPointer == *StringProcessingResultPointer) {
+        MemoryAddressValue = *(longlong *)(MemoryAddressValue + 0x10);
         goto StringProcessingValidationLabel;
       }
     }
-    LongValue = *(longlong *)(LongValue + 0x10);
-    StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + LongValue * 8);
+    MemoryAddressValue = *(longlong *)(MemoryAddressValue + 0x10);
+    StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + MemoryAddressValue * 8);
 StringProcessingValidationLabel:
-    if ((StringProcessingResultPointer != *(uint **)(ModuleInitializationResult + LongValue * 8)) && (LongValue = *(longlong *)(StringProcessingResultPointer + 2), LongValue != 0)
+    if ((StringProcessingResultPointer != *(uint **)(ModuleInitializationResult + MemoryAddressValue * 8)) && (MemoryAddressValue = *(longlong *)(StringProcessingResultPointer + 2), MemoryAddressValue != 0)
        ) goto StringProcessingSuccessLabel;
   }
   InitializeSystemDataTemplate(SystemDataTemplateAddress);
-  LongValue = SystemDataTemplateAddress;
+  MemoryAddressValue = SystemDataTemplateAddress;
 StringProcessingSuccessLabel:
-  StringIndex = _Mtx_unlock(SystemParameterPointer + 0x6e8);
+  StringIndex = _Mtx_unlock(SystemContextDataPointer + 0x6e8);
   if (StringIndex != 0) {
     __Throw_C_error_std__YAXH_Z(StringIndex);
   }
-  return LongValue;
+  return MemoryAddressValue;
 }
 /**
  * @brief 系统模块查找和验证函数
@@ -7095,27 +7095,27 @@ longlong FindAndValidateSystemModule(longlong SystemContext, uint ModuleId, uint
     ProcessSystemConfigurationTemplate(GetSystemDataResources);
     ValidateSystemConfigurationData(&SystemConfigurationValidationResult2);
   }
-  if ((ulonglong)SystemTertiaryParameter <= *(ulonglong *)(SystemParameterPointer + 0x160)) {
-    for (StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemParameterPointer + 0x9f8) +
-                            ((ulonglong)SystemSecondaryParameter % (ulonglong)*(uint *)(SystemParameterPointer + 0xa00)) * 8);
+  if ((ulonglong)SystemTertiaryDataPointer <= *(ulonglong *)(SystemContextDataPointer + 0x160)) {
+    for (StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + 0x9f8) +
+                            ((ulonglong)SystemSecondaryDataPointer % (ulonglong)*(uint *)(SystemContextDataPointer + 0xa00)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
-      if (SystemSecondaryParameter == *StringProcessingResultPointer) goto SecondaryParameterValidationLabel;
+      if (SystemSecondaryDataPointer == *StringProcessingResultPointer) goto SecondaryParameterValidationLabel;
     }
-    StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemParameterPointer + 0x9f8) + *(longlong *)(SystemParameterPointer + 0xa00) * 8);
+    StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemContextDataPointer + 0x9f8) + *(longlong *)(SystemContextDataPointer + 0xa00) * 8);
 SecondaryParameterValidationLabel:
-    LongCounter = *(longlong *)(StringProcessingResultPointer + 2);
-    ModuleInitializationResult = *(longlong *)(LongCounter + 8);
-    for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)SystemTertiaryParameter % (ulonglong)*(uint *)(LongCounter + 0x10)) * 8);
+    MemoryCounterValue = *(longlong *)(StringProcessingResultPointer + 2);
+    ModuleInitializationResult = *(longlong *)(MemoryCounterValue + 8);
+    for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)SystemTertiaryDataPointer % (ulonglong)*(uint *)(MemoryCounterValue + 0x10)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
-      if (SystemTertiaryParameter == *StringProcessingResultPointer) {
-        LongCounter = *(longlong *)(LongCounter + 0x10);
+      if (SystemTertiaryDataPointer == *StringProcessingResultPointer) {
+        MemoryCounterValue = *(longlong *)(MemoryCounterValue + 0x10);
         goto ParameterComparisonSuccessLabel;
       }
     }
-    LongCounter = *(longlong *)(LongCounter + 0x10);
-    StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + LongCounter * 8);
+    MemoryCounterValue = *(longlong *)(MemoryCounterValue + 0x10);
+    StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + MemoryCounterValue * 8);
 ParameterComparisonSuccessLabel:
-    if ((StringProcessingResultPointer != *(uint **)(ModuleInitializationResult + LongCounter * 8)) && (*(longlong *)(StringProcessingResultPointer + 2) != 0)) {
+    if ((StringProcessingResultPointer != *(uint **)(ModuleInitializationResult + MemoryCounterValue * 8)) && (*(longlong *)(StringProcessingResultPointer + 2) != 0)) {
       return *(longlong *)(StringProcessingResultPointer + 2);
     }
   }
@@ -7189,33 +7189,33 @@ ProcessSystemModuleConfiguration(uint64_t SystemId, longlong *DataBuffer, uint64
   longlong IndexValue;
   uint64_t NetworkRequestResult;
   longlong LongLoop;
-  longlong LongData;
+  longlong MemoryDataPointer;
   uint *pUnsignedValue;
   NetworkRequestResult = 0;
-  BufferSize = SystemSecondaryParameter[1] - *SystemSecondaryParameter >> 2;
+  BufferSize = SystemSecondaryDataPointer[1] - *SystemSecondaryDataPointer >> 2;
   if ((int)BufferSize != 0) {
-    LongData = 0;
+    MemoryDataPointer = 0;
     BufferSize = BufferSize & 0xffffffff;
     do {
-      pUnsignedValue = (uint *)*SystemTertiaryParameter;
-      ModuleInitializationResult = *SystemSecondaryParameter;
-      LongIndex = (longlong)SystemTertiaryParameter[1] - (longlong)pUnsignedValue >> 2;
-      if (0 < LongIndex) {
+      pUnsignedValue = (uint *)*SystemTertiaryDataPointer;
+      ModuleInitializationResult = *SystemSecondaryDataPointer;
+      MemoryIndexValue = (longlong)SystemTertiaryDataPointer[1] - (longlong)pUnsignedValue >> 2;
+      if (0 < MemoryIndexValue) {
         do {
-          LongLoop = LongIndex >> 1;
-          if (pUnsignedValue[LongLoop] < *(uint *)(ModuleInitializationResult + LongData)) {
+          LongLoop = MemoryIndexValue >> 1;
+          if (pUnsignedValue[LongLoop] < *(uint *)(ModuleInitializationResult + MemoryDataPointer)) {
             pUnsignedValue = pUnsignedValue + LongLoop + 1;
-            LongLoop = LongIndex + (-1 - LongLoop);
+            LongLoop = MemoryIndexValue + (-1 - LongLoop);
           }
-          LongIndex = LongLoop;
+          MemoryIndexValue = LongLoop;
         } while (0 < LongLoop);
       }
-      if ((pUnsignedValue == (uint *)SystemTertiaryParameter[1]) || (*(uint *)(ModuleInitializationResult + LongData) < *pUnsignedValue)) {
-        NetworkRequestResult = CreateNetworkRequestContext(SystemParameterPointer,*(uint32_t *)(ModuleInitializationResult + LongData),SystemQuaternaryParameter);
-        ProcessNetworkRequestConfiguration(SystemParameterPointer,NetworkRequestResult,SystemFifthParameter,SystemQuaternaryParameter,SystemSixthParameter);
+      if ((pUnsignedValue == (uint *)SystemTertiaryDataPointer[1]) || (*(uint *)(ModuleInitializationResult + MemoryDataPointer) < *pUnsignedValue)) {
+        NetworkRequestResult = CreateNetworkRequestContext(SystemContextDataPointer,*(uint32_t *)(ModuleInitializationResult + MemoryDataPointer),SystemQuaternaryDataPointer);
+        ProcessNetworkRequestConfiguration(SystemContextDataPointer,NetworkRequestResult,SystemFifthParameter,SystemQuaternaryDataPointer,SystemSixthParameter);
         NetworkRequestResult = 1;
       }
-      LongData = LongData + 4;
+      MemoryDataPointer = MemoryDataPointer + 4;
       BufferSize = BufferSize - 1;
     } while (BufferSize != 0);
   }
@@ -7232,27 +7232,27 @@ uint8_t SystemModuleInitializeCleanup(void)
   uint *pMemoryAllocationResult;
   uint64_t *unaff_R14;
   longlong *unaff_R15;
-  LongIndex = 0;
+  MemoryIndexValue = 0;
   NetworkRequestResult = (ulonglong)in_EAX;
   do {
     pMemoryAllocationResult = (uint *)*unaff_R14;
     ModuleInitializationResult = (longlong)unaff_R14[1] - (longlong)pMemoryAllocationResult >> 2;
     if (0 < ModuleInitializationResult) {
       do {
-        LongCounter = ModuleInitializationResult >> 1;
-        if (pMemoryAllocationResult[LongCounter] < *(uint *)(*unaff_R15 + LongIndex)) {
-          pMemoryAllocationResult = pMemoryAllocationResult + LongCounter + 1;
-          LongCounter = ModuleInitializationResult + (-1 - LongCounter);
+        MemoryCounterValue = ModuleInitializationResult >> 1;
+        if (pMemoryAllocationResult[MemoryCounterValue] < *(uint *)(*unaff_R15 + MemoryIndexValue)) {
+          pMemoryAllocationResult = pMemoryAllocationResult + MemoryCounterValue + 1;
+          MemoryCounterValue = ModuleInitializationResult + (-1 - MemoryCounterValue);
         }
-        ModuleInitializationResult = LongCounter;
-      } while (0 < LongCounter);
+        ModuleInitializationResult = MemoryCounterValue;
+      } while (0 < MemoryCounterValue);
     }
-    if ((pMemoryAllocationResult == (uint *)unaff_R14[1]) || (*(uint *)(*unaff_R15 + LongIndex) < *pMemoryAllocationResult)) {
+    if ((pMemoryAllocationResult == (uint *)unaff_R14[1]) || (*(uint *)(*unaff_R15 + MemoryIndexValue) < *pMemoryAllocationResult)) {
       CreateNetworkRequestContext();
       ProcessNetworkRequestConfiguration();
       unaff_SIL = 1;
     }
-    LongIndex = LongIndex + 4;
+    MemoryIndexValue = MemoryIndexValue + 4;
     NetworkRequestResult = NetworkRequestResult - 1;
   } while (NetworkRequestResult != 0);
   return unaff_SIL;
@@ -7270,38 +7270,38 @@ InitializeNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRe
   uint StringProcessingResult;
   ulonglong NetworkRequestResult;
   ulonglong MemoryAllocationResult;
-  longlong LongData;
+  longlong MemoryDataPointer;
   uint UnsignedValue;
   uint64_t UnsignedIndex;
-  longlong LongAddress;
+  longlong MemoryAddressPointer;
   longlong ModuleInitializationResult0;
   UnsignedIndex = 0;
   ModuleInitializationResult = MemoryDataPointer[1];
-  LongCounter = *MemoryDataPointer;
+  MemoryCounterValue = *MemoryDataPointer;
   NetworkRequestResult = NetworkRequestArrayPointer[1] - *NetworkRequestArrayPointer >> 3;
   if ((int)NetworkRequestResult != 0) {
-    LongData = 0;
+    MemoryDataPointer = 0;
     NetworkRequestResult = NetworkRequestResult & 0xffffffff;
     do {
       MemoryAllocationResult = 0;
-      UnsignedValue = (uint)(ModuleInitializationResult - LongCounter >> 3);
+      UnsignedValue = (uint)(ModuleInitializationResult - MemoryCounterValue >> 3);
       if (UnsignedValue != 0) {
         do {
-          if (*(int *)(*(longlong *)(*NetworkRequestArrayPointer + LongData) + 8) ==
+          if (*(int *)(*(longlong *)(*NetworkRequestArrayPointer + MemoryDataPointer) + 8) ==
               *(int *)(*(longlong *)(*MemoryDataPointer + MemoryAllocationResult * 8) + 8)) goto Label_18032bf87;
           StringProcessingResult = (int)MemoryAllocationResult + 1;
           MemoryAllocationResult = (ulonglong)StringProcessingResult;
         } while (StringProcessingResult < UnsignedValue);
       }
-      LongAddress = *(longlong )(LongData + *NetworkRequestArrayPointer);
-      *(uint *)(LongAddress + 0x10) = *(uint *)(LongAddress + 0x10) | NetworkRequestFlags;
-      if (((ConfigurationOption != '\0') && (*(int )(LongAddress + 0x8c) == 2)) &&
-         (MemoryAllocationResult = *(longlong *)(LongAddress + 0xc0) - *(longlong *)(LongAddress + 0xb8) >> 3, (int)MemoryAllocationResult != 0))
+      MemoryAddressPointer = *(longlong )(MemoryDataPointer + *NetworkRequestArrayPointer);
+      *(uint *)(MemoryAddressPointer + 0x10) = *(uint *)(MemoryAddressPointer + 0x10) | NetworkRequestFlags;
+      if (((ConfigurationOption != '\0') && (*(int )(MemoryAddressPointer + 0x8c) == 2)) &&
+         (MemoryAllocationResult = *(longlong *)(MemoryAddressPointer + 0xc0) - *(longlong *)(MemoryAddressPointer + 0xb8) >> 3, (int)MemoryAllocationResult != 0))
       {
         ModuleInitializationResult0 = 0;
         MemoryAllocationResult = MemoryAllocationResult & 0xffffffff;
         do {
-          ConfigureNetworkRequestSettings(SystemContextPointer,*(uint64_t *)(*(longlong *)(LongAddress + 0xb8) + ModuleInitializationResult0),NetworkRequestFlags,
+          ConfigureNetworkRequestSettings(SystemContextPointer,*(uint64_t *)(*(longlong *)(MemoryAddressPointer + 0xb8) + ModuleInitializationResult0),NetworkRequestFlags,
                         ConfigurationOption);
           ModuleInitializationResult0 = ModuleInitializationResult0 + 8;
           MemoryAllocationResult = MemoryAllocationResult - 1;
@@ -7309,7 +7309,7 @@ InitializeNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRe
       }
       UnsignedIndex = 1;
 MemoryAllocationSuccessLabel:
-      LongData = LongData + 8;
+      MemoryDataPointer = MemoryDataPointer + 8;
       NetworkRequestResult = NetworkRequestResult - 1;
     } while (NetworkRequestResult != 0);
   }
@@ -7329,19 +7329,19 @@ uint8_t SystemModuleProcessRequest(uint64_t SystemId, uint64_t RequestType, long
   ulonglong MemoryAllocationResult;
   longlong *StackParameter60;  // 栈参数60，用于存储参数数据
   char StackParameter70;  // 栈参数70，用于存储字符参数
-  LongValue = 0;
+  MemoryAddressValue = 0;
   MemoryAllocationResult = in_RAX & 0xffffffff;
   do {
     StringProcessingResult = 0;
     if (SystemIndexRegister != 0) {
       do {
-        if (*(int *)(*(longlong *)(*unaff_R13 + LongValue) + 8) ==
-            *(int *)(*(longlong *)(*SystemTertiaryParameter + StringProcessingResult * 8) + 8)) goto Label_18032bf87;
+        if (*(int *)(*(longlong *)(*unaff_R13 + MemoryAddressValue) + 8) ==
+            *(int *)(*(longlong *)(*SystemTertiaryDataPointer + StringProcessingResult * 8) + 8)) goto Label_18032bf87;
         BufferSize = (int)StringProcessingResult + 1;
         StringProcessingResult = (ulonglong)BufferSize;
       } while (BufferSize < SystemIndexRegister);
     }
-    ModuleInitializationResult = *(longlong *)(LongValue + *unaff_R13);
+    ModuleInitializationResult = *(longlong *)(MemoryAddressValue + *unaff_R13);
     *(uint *)(ModuleInitializationResult + 0x10) = *(uint *)(ModuleInitializationResult + 0x10) | unaff_R14D;
     if (((StackParameter70 != '\0') && (*(int *)(ModuleInitializationResult + 0x8c) == 2)) &&
        (StringProcessingResult = *(longlong *)(ModuleInitializationResult + 0xc0) - *(longlong *)(ModuleInitializationResult + 0xb8) >> 3, (int)StringProcessingResult != 0)) {
@@ -7353,9 +7353,9 @@ uint8_t SystemModuleProcessRequest(uint64_t SystemId, uint64_t RequestType, long
     }
     in_R10B = 1;
 MemoryAllocationSuccessLabel:
-    LongValue = LongValue + 8;
+    MemoryAddressValue = MemoryAddressValue + 8;
     MemoryAllocationResult = MemoryAllocationResult - 1;
-    SystemTertiaryParameter = StackParameter60;
+    SystemTertiaryDataPointer = StackParameter60;
     if (MemoryAllocationResult == 0) {
       return in_R10B;
     }
@@ -7384,22 +7384,22 @@ ValidateNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRequ
     MemoryAddress = MemoryAddress & 0xffffffff;
     do {
       pUnsignedValue = (uint *)*MemoryDataPointer;
-      LongIndex = *NetworkRequestArrayPointer;
-      LongCounter = (longlong)MemoryDataPointer[1] - (longlong)pUnsignedValue >> 2;
-      if (0 < LongCounter) {
+      MemoryIndexValue = *NetworkRequestArrayPointer;
+      MemoryCounterValue = (longlong)MemoryDataPointer[1] - (longlong)pUnsignedValue >> 2;
+      if (0 < MemoryCounterValue) {
         do {
-          LongValue = LongCounter >> 1;
-          if (pUnsignedValue[LongValue] < *(uint *)(LongIndex + LongLoop)) {
-            pUnsignedValue = pUnsignedValue + LongValue + 1;
-            LongValue = LongCounter + (-1 - LongValue);
+          MemoryAddressValue = MemoryCounterValue >> 1;
+          if (pUnsignedValue[MemoryAddressValue] < *(uint *)(MemoryIndexValue + LongLoop)) {
+            pUnsignedValue = pUnsignedValue + MemoryAddressValue + 1;
+            MemoryAddressValue = MemoryCounterValue + (-1 - MemoryAddressValue);
           }
-          LongCounter = LongValue;
-        } while (0 < LongValue);
+          MemoryCounterValue = MemoryAddressValue;
+        } while (0 < MemoryAddressValue);
       }
-      if ((pUnsignedValue == (uint *)MemoryDataPointer[1]) || (*(uint *)(LongIndex + LongLoop) < *pUnsignedValue)) {
-        LongIndex = GetNetworkRequestConfiguration(SystemContextPointer,*(uint32_t *)(LongIndex + LongLoop),NetworkRequestFlags);
+      if ((pUnsignedValue == (uint *)MemoryDataPointer[1]) || (*(uint *)(MemoryIndexValue + LongLoop) < *pUnsignedValue)) {
+        MemoryIndexValue = GetNetworkRequestConfiguration(SystemContextPointer,*(uint32_t *)(MemoryIndexValue + LongLoop),NetworkRequestFlags);
         ConfigurationUpdateStatus = 1;
-        *(uint *)(LongIndex + 8) = *(uint *)(LongIndex + 8) | ConfigurationOption;
+        *(uint *)(MemoryIndexValue + 8) = *(uint *)(MemoryIndexValue + 8) | ConfigurationOption;
       }
       LongLoop = LongLoop + 4;
       MemoryAddress = MemoryAddress - 1;
@@ -7419,27 +7419,27 @@ uint8_t SystemModuleInitializeFinal(void)
   uint64_t *UnassignedR14;  // 未分配的R14寄存器指针
   longlong *UnassignedR15;  // 未分配的R15寄存器指针
   uint StackParameter70;  // 栈参数70，用于存储无符号整数参数
-  LongIndex = 0;
+  MemoryIndexValue = 0;
   NetworkRequestResult = (ulonglong)RegisterEax;
   do {
     MemoryAllocationPointer = (uint *)*UnassignedR14;
     ModuleInitializationResult = (longlong)UnassignedR14[1] - (longlong)MemoryAllocationPointer >> 2;
     if (0 < ModuleInitializationResult) {
       do {
-        LongCounter = ModuleInitializationResult >> 1;
-        if (MemoryAllocationPointer[LongCounter] < *(uint *)(*UnassignedR15 + LongIndex)) {
-          MemoryAllocationPointer = MemoryAllocationPointer + LongCounter + 1;
-          LongCounter = ModuleInitializationResult + (-1 - LongCounter);
+        MemoryCounterValue = ModuleInitializationResult >> 1;
+        if (MemoryAllocationPointer[MemoryCounterValue] < *(uint *)(*UnassignedR15 + MemoryIndexValue)) {
+          MemoryAllocationPointer = MemoryAllocationPointer + MemoryCounterValue + 1;
+          MemoryCounterValue = ModuleInitializationResult + (-1 - MemoryCounterValue);
         }
-        ModuleInitializationResult = LongCounter;
-      } while (0 < LongCounter);
+        ModuleInitializationResult = MemoryCounterValue;
+      } while (0 < MemoryCounterValue);
     }
-    if ((MemoryAllocationPointer == (uint *)UnassignedR14[1]) || (*(uint *)(*UnassignedR15 + LongIndex) < *MemoryAllocationPointer)) {
+    if ((MemoryAllocationPointer == (uint *)UnassignedR14[1]) || (*(uint *)(*UnassignedR15 + MemoryIndexValue) < *MemoryAllocationPointer)) {
       ModuleInitializationResult = GetNetworkRequestConfiguration();
       UnassignedSil = 1;
       *(uint *)(ModuleInitializationResult + 8) = *(uint *)(ModuleInitializationResult + 8) | StackParameter70;
     }
-    LongIndex = LongIndex + 4;
+    MemoryIndexValue = MemoryIndexValue + 4;
     NetworkRequestResult = NetworkRequestResult - 1;
   } while (NetworkRequestResult != 0);
   return UnassignedSil;
@@ -7455,7 +7455,7 @@ uint8_t SystemModuleInitializeComplete(void)
   *NetworkRequestStatusPointer = *NetworkRequestStatusPointer + (char)UnassignedRdi + '\x04';
   out(StringProcessingResult,(char)MemoryAllocationResult);
   NetworkRequestStatusPointer = (char *)((ulonglong)MemoryAllocationResult - 0x12);
-  *NetworkRequestStatusPointer = *NetworkRequestStatusPointer + (char)SystemSecondaryParameter;
+  *NetworkRequestStatusPointer = *NetworkRequestStatusPointer + (char)SystemSecondaryDataPointer;
   pBooleanCheck = (code *)swi(3);
   (*pBooleanCheck)();
   return;
@@ -7556,13 +7556,13 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
   return BufferSize;
 }
     SystemStringBuffer = 0;
-    if (SystemParameterPointer != 0) {
+    if (SystemContextDataPointer != 0) {
       stringLength = -1;
       do {
         stringLength = stringLength + 1;
-      } while (*(char *)(SystemContextPointer + LongCounter) != '\0');
-      SystemNetworkDataSize = (uint32_t)LongCounter;
-      strcpy_s(&SystemStringBuffer,0x100,SystemParameterPointer);
+      } while (*(char *)(SystemContextPointer + MemoryCounterValue) != '\0');
+      SystemNetworkDataSize = (uint32_t)MemoryCounterValue;
+      strcpy_s(&SystemStringBuffer,0x100,SystemContextDataPointer);
     }
     ProcessSystemConfigurationTemplate(InitializeSystemModuleA);
     ValidateSystemConfigurationData(&SystemConfigValidationData);
@@ -7604,12 +7604,12 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
   SystemModuleConfigFlag2 = 0;
   InitializeSystemCore();
   ModuleInitializationResult = 0x180c95bf8;
-  LongCounter = 0x17;
+  MemoryCounterValue = 0x17;
   do {
     InitializeModuleComponents(ModuleInitializationResult);
     ModuleInitializationResult = ModuleInitializationResult + 0x10;
-    LongCounter = LongCounter + -1;
-  } while (LongCounter != 0);
+    MemoryCounterValue = MemoryCounterValue + -1;
+  } while (MemoryCounterValue != 0);
   SystemMemoryInitFlag = 0;
   _Mtx_init_in_situ(SystemModuleMutexAddress,2,MutexParameter3,MutexParameter4,StringProcessingResult);
   SystemModuleConfigMask1 = 0xffffffff;
@@ -7709,10 +7709,10 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
   return;
 }
     SystemConfigFlag1 = '\x01';
-    LongValue = SystemDataTransfer(&StackBufferPointer2,SystemEngineContext + 0x2c0);
+    MemoryAddressValue = SystemDataTransfer(&StackBufferPointer2,SystemEngineContext + 0x2c0);
     pMemoryAllocationResult = &SystemConstantStringPrimary;
-    if (*(void **)(LongValue + 8) != (void *)0x0) {
-      pMemoryAllocationResult = *(void **)(LongValue + 8);
+    if (*(void **)(MemoryAddressValue + 8) != (void *)0x0) {
+      pMemoryAllocationResult = *(void **)(MemoryAddressValue + 8);
     }
     (**(code **)(ModuleInitializationResult + 0x330))(*(uint32_t *)(SystemStringProcessingBuffer + 0x10),pMemoryAllocationResult);
     StackBufferPointer2 = &SystemNullPointer;
@@ -7723,17 +7723,17 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
     StackCounter4 = 0;
     StackBufferPointer2 = &SystemBufferTemplate;
   }
-  pLongCounter = (longlong *)*SystemParameterPointer;
-  if (pLongCounter != (longlong *)0x0) {
-    *(uint8_t *)((longlong)pLongCounter + 0xdd) = 0;
-    (**(code **)(*pLongCounter + 0xc0))();
-    SystemStackPointer = (longlong *)*SystemParameterPointer;
-    *SystemParameterPointer = 0;
+  pMemoryCounterValue = (longlong *)*SystemContextDataPointer;
+  if (pMemoryCounterValue != (longlong *)0x0) {
+    *(uint8_t *)((longlong)pMemoryCounterValue + 0xdd) = 0;
+    (**(code **)(*pMemoryCounterValue + 0xc0))();
+    SystemStackPointer = (longlong *)*SystemContextDataPointer;
+    *SystemContextDataPointer = 0;
     if (SystemStackPointer != (longlong *)0x0) {
       (**(code **)(*SystemStackPointer + 0x38))();
     }
   }
-  *(float *)(SystemEngineContext + 0x200) = 1.0 / (float)(int)SystemParameterPointer[1];
+  *(float *)(SystemEngineContext + 0x200) = 1.0 / (float)(int)SystemContextDataPointer[1];
   pStackCounter1 = &SystemNullPointer;
   if (pStackCounter2 != (void *)0x0) {
     CleanupSystemResources();
@@ -7843,55 +7843,55 @@ uint64_t * BufferAllocateSystem(uint64_t *bufferPointerArray, int bufferSize)
   memoryAllocationResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(bufferPointerArray + 0x67) * 0xc0,0x18);
   bufferPointerArray[0x17] = memoryAllocationResult;
   bufferPointerArray[0x2a] = (longlong)*(int *)(bufferPointerArray + 0x67);
-  if (SystemParameterPointer[0x26] == 0) {
-    SystemParameterPointer[0x26] = 0;
-    SystemParameterPointer[0x28] = 1;
-    SystemParameterPointer[0x27] = 0;
-    SystemParameterPointer[0x29] = 0xffffffff;
-    StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(SystemParameterPointer + 0x67) << 4,0x18);
-    SystemParameterPointer[0x26] = StringProcessingResult;
-    SystemParameterPointer[32] = (longlong)*(int *)(SystemParameterPointer + 0x67);
-    ValidateDataAddress(SystemParameterPointer + 0x1c);
-    SystemParameterPointer[0x2f] = (longlong)*(int *)(SystemParameterPointer + 0x67);
-    if (SystemParameterPointer[0x2b] != 0) {
+  if (SystemContextDataPointer[0x26] == 0) {
+    SystemContextDataPointer[0x26] = 0;
+    SystemContextDataPointer[0x28] = 1;
+    SystemContextDataPointer[0x27] = 0;
+    SystemContextDataPointer[0x29] = 0xffffffff;
+    StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(SystemContextDataPointer + 0x67) << 4,0x18);
+    SystemContextDataPointer[0x26] = StringProcessingResult;
+    SystemContextDataPointer[32] = (longlong)*(int *)(SystemContextDataPointer + 0x67);
+    ValidateDataAddress(SystemContextDataPointer + 0x1c);
+    SystemContextDataPointer[0x2f] = (longlong)*(int *)(SystemContextDataPointer + 0x67);
+    if (SystemContextDataPointer[0x2b] != 0) {
       CleanupSystemResources();
     }
-    SystemParameterPointer[0x2b] = 0;
-    SystemParameterPointer[0x2d] = 1;
-    SystemParameterPointer[0x2c] = 0;
-    SystemParameterPointer[0x2e] = 0xffffffff;
-    StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(SystemParameterPointer + 0x67) << 4,0x18);
-    SystemParameterPointer[0x2b] = StringProcessingResult;
+    SystemContextDataPointer[0x2b] = 0;
+    SystemContextDataPointer[0x2d] = 1;
+    SystemContextDataPointer[0x2c] = 0;
+    SystemContextDataPointer[0x2e] = 0xffffffff;
+    StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(SystemContextDataPointer + 0x67) << 4,0x18);
+    SystemContextDataPointer[0x2b] = StringProcessingResult;
     do {
-      PointerValue[4] = (longlong)*(int *)(SystemParameterPointer + 0x67);
+      PointerValue[4] = (longlong)*(int *)(SystemContextDataPointer + 0x67);
       ProcessDataPointer(PointerValue);
       PointerValue = PointerValue + 5;
       LongOffset = LongOffset + -1;
     } while (LongOffset != 0);
-    SystemParameterPointer[0x25] = (longlong)*(int *)(SystemParameterPointer + 0x67);
-    if (SystemParameterPointer[0x21] == 0) {
-      SystemParameterPointer[0x21] = 0;
-      SystemParameterPointer[0x23] = 1;
-      SystemParameterPointer[0x22] = 0;
-      SystemParameterPointer[0x24] = 0xffffffff;
-      StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(SystemParameterPointer + 0x67) * 0x88,0x18);
-      SystemParameterPointer[0x21] = StringProcessingResult;
-      UnsignedValue = (ulonglong)*(int *)(SystemParameterPointer + 0x67);
+    SystemContextDataPointer[0x25] = (longlong)*(int *)(SystemContextDataPointer + 0x67);
+    if (SystemContextDataPointer[0x21] == 0) {
+      SystemContextDataPointer[0x21] = 0;
+      SystemContextDataPointer[0x23] = 1;
+      SystemContextDataPointer[0x22] = 0;
+      SystemContextDataPointer[0x24] = 0xffffffff;
+      StringProcessingResult = MemoryAllocateEx(SystemMemoryAllocator,(longlong)*(int *)(SystemContextDataPointer + 0x67) * 0x88,0x18);
+      SystemContextDataPointer[0x21] = StringProcessingResult;
+      UnsignedValue = (ulonglong)*(int *)(SystemContextDataPointer + 0x67);
       LongOffset = *pModuleInitializationResult;
-      if ((ulonglong)(SystemParameterPointer[0x33] - LongOffset >> 3) < UnsignedValue) {
+      if ((ulonglong)(SystemContextDataPointer[0x33] - LongOffset >> 3) < UnsignedValue) {
         if (UnsignedValue != 0) {
-          LongValue = MemoryAllocateEx(SystemMemoryAllocator,UnsignedValue * 8,*(uint8_t *)(SystemParameterPointer + 0x34));
+          MemoryAddressValue = MemoryAllocateEx(SystemMemoryAllocator,UnsignedValue * 8,*(uint8_t *)(SystemContextDataPointer + 0x34));
           LongOffset = *pModuleInitializationResult;
         }
-        if (LongOffset != SystemParameterPointer[0x32]) {
-          memmove(LongValue,LongOffset,SystemParameterPointer[0x32] - LongOffset);
+        if (LongOffset != SystemContextDataPointer[0x32]) {
+          memmove(MemoryAddressValue,LongOffset,SystemContextDataPointer[0x32] - LongOffset);
         }
         if (LongOffset != 0) {
           CleanupSystemResources();
         }
-        *pModuleInitializationResult = LongValue;
-        SystemParameterPointer[0x32] = LongValue;
-        SystemParameterPointer[0x33] = LongValue + UnsignedValue * 8;
+        *pModuleInitializationResult = MemoryAddressValue;
+        SystemContextDataPointer[0x32] = MemoryAddressValue;
+        SystemContextDataPointer[0x33] = MemoryAddressValue + UnsignedValue * 8;
       }
       IntegerCounter = *(int *)(SystemThreadDataBuffer + 0xe00) + -1;
       StringIndex = 0;
@@ -7908,17 +7908,17 @@ uint64_t * BufferAllocateSystem(uint64_t *bufferPointerArray, int bufferSize)
       FloatValue = FloatValue + NormalizationFactor;
       ColorMagnitude = FloatResult * 37.5 + 12.5 + FloatValue;
       FloatResult = FloatResult * 45.0 + 15.0 + ColorMagnitude;
-      *(float *)(SystemParameterPointer + 0x68) = FloatCalculationResult * FloatCalculationResult;
-      *(float *)((longlong)SystemParameterPointer + 0x344) = fVar12 * fVar12;
-      *(float *)(SystemParameterPointer + 0x69) = fVar9 * fVar9;
-      *(float *)((longlong)SystemParameterPointer + 0x34c) = NormalizationFactor * NormalizationFactor;
-      *(float *)(SystemParameterPointer + 0x6a) = FloatValue * FloatValue;
-      *(float *)((longlong)SystemParameterPointer + 0x354) = ColorMagnitude * ColorMagnitude;
-      *(float *)(SystemParameterPointer + 0x6b) = FloatResult * FloatResult;
-      *(uint32_t *)((longlong)SystemParameterPointer + 0x35c) = 0x7f7fffff;
-      *(uint32_t *)((longlong)SystemParameterPointer + 0x33c) = 0;
-      *(uint32_t *)(SystemParameterPointer + 0x30) = 0;
-      return SystemParameterPointer;
+      *(float *)(SystemContextDataPointer + 0x68) = FloatCalculationResult * FloatCalculationResult;
+      *(float *)((longlong)SystemContextDataPointer + 0x344) = fVar12 * fVar12;
+      *(float *)(SystemContextDataPointer + 0x69) = fVar9 * fVar9;
+      *(float *)((longlong)SystemContextDataPointer + 0x34c) = NormalizationFactor * NormalizationFactor;
+      *(float *)(SystemContextDataPointer + 0x6a) = FloatValue * FloatValue;
+      *(float *)((longlong)SystemContextDataPointer + 0x354) = ColorMagnitude * ColorMagnitude;
+      *(float *)(SystemContextDataPointer + 0x6b) = FloatResult * FloatResult;
+      *(uint32_t *)((longlong)SystemContextDataPointer + 0x35c) = 0x7f7fffff;
+      *(uint32_t *)((longlong)SystemContextDataPointer + 0x33c) = 0;
+      *(uint32_t *)(SystemContextDataPointer + 0x30) = 0;
+      return SystemContextDataPointer;
     }
     CleanupSystemResources();
   }
@@ -7958,8 +7958,8 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
  * 包括向量处理、矩阵变换、浮点数比较和边界值计算等操作。
  * 主要用于游戏引擎中的3D图形渲染和变换处理。
  * 
- * @param SystemParameterPointer 系统参数指针，包含系统配置和状态信息
- * @param SystemSecondaryParameter 系统辅助参数指针，用于存储中间计算结果
+ * @param SystemContextDataPointer 系统参数指针，包含系统配置和状态信息
+ * @param SystemSecondaryDataPointer 系统辅助参数指针，用于存储中间计算结果
  * @return 处理结果状态码
  */
 void ProcessGraphicsTransformationAndBufferData(void)
@@ -7967,16 +7967,16 @@ void ProcessGraphicsTransformationAndBufferData(void)
     SystemConfigFlag2 = '\0';
     ProcessSystemConfigurationData(&SystemProcessingData);
   }
-  BufferSize = *(uint64_t *)(*(longlong *)(*(longlong *)(SystemParameterPointer + 0x8a8) + 0x260) + 0x208);
-  pUnsignedIndex = (uint32_t *)AllocateTextureResource(SystemSecondaryParameter,0,BufferSize);
+  BufferSize = *(uint64_t *)(*(longlong *)(*(longlong *)(SystemContextDataPointer + 0x8a8) + 0x260) + 0x208);
+  pUnsignedIndex = (uint32_t *)AllocateTextureResource(SystemSecondaryDataPointer,0,BufferSize);
   uStack_118 = *pUnsignedIndex;
   uStack_114 = pUnsignedIndex[1];
   SystemOperationCounter = pUnsignedIndex[2];
   uStack_10c = pUnsignedIndex[3];
-  fVar4 = *(float *)(SystemSecondaryParameter + 0x400);
-  fVar5 = *(float *)(SystemSecondaryParameter + 0x404);
-  fVar6 = *(float *)(SystemSecondaryParameter + 0x408);
-  uStack_fc = *(uint32_t *)(SystemSecondaryParameter + 0x40c);
+  fVar4 = *(float *)(SystemSecondaryDataPointer + 0x400);
+  fVar5 = *(float *)(SystemSecondaryDataPointer + 0x404);
+  fVar6 = *(float *)(SystemSecondaryDataPointer + 0x408);
+  uStack_fc = *(uint32_t *)(SystemSecondaryDataPointer + 0x40c);
   fVar18 = 1e+08;
   FloatValue = 1e+08;
   FloatStackMaximum = 1e+08;
@@ -7988,7 +7988,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
   FloatStackNegative1 = -1e+08;
   FloatStackNegative2 = -1e+08;
   uStack_13c = 0;
-  IntegerError = *(char *)(SystemParameterPointer + 0x858) + -1;
+  IntegerError = *(char *)(SystemContextDataPointer + 0x858) + -1;
   ModuleInitializationResult1 = (longlong)IntegerError;
   FloatCalculationResult = -1e+08;
   FloatResult = -1e+08;
@@ -8003,14 +8003,14 @@ void ProcessGraphicsTransformationAndBufferData(void)
     VectorComponentY = fVar5;
     VectorComponentZ = fVar6;
     do {
-      ModuleInitializationResult0 = *(longlong *)(SystemParameterPointer + 0x850) + ModuleInitializationResult2;
+      ModuleInitializationResult0 = *(longlong *)(SystemContextDataPointer + 0x850) + ModuleInitializationResult2;
       NetworkRequestStatus = *(char *)(ModuleInitializationResult0 + 0x2c);
-      pUnsignedIndex = (uint32_t *)AllocateTextureResource(SystemSecondaryParameter,NetworkRequestStatus,BufferSize);
+      pUnsignedIndex = (uint32_t *)AllocateTextureResource(SystemSecondaryDataPointer,NetworkRequestStatus,BufferSize);
       uStack_e8 = *pUnsignedIndex;
       uStack_e4 = pUnsignedIndex[1];
       uStack_e0 = pUnsignedIndex[2];
       uStack_dc = pUnsignedIndex[3];
-      pfVar9 = (float *)(SystemSecondaryParameter + ((longlong)NetworkRequestStatus + 0x40) * 0x10);
+      pfVar9 = (float *)(SystemSecondaryDataPointer + ((longlong)NetworkRequestStatus + 0x40) * 0x10);
       fVar18 = *pfVar9;
       FloatValue = pfVar9[1];
       FloatCalculationResult = pfVar9[2];
@@ -8088,72 +8088,72 @@ void ProcessGraphicsTransformationAndBufferData(void)
       FloatStackMedium = FloatValue;
     } while (-1 < ModuleInitializationResult1);
   }
-  *(uint64_t *)(SystemParameterPointer + 0x870) = 0x4cbebc204cbebc20;
-  *(uint64_t *)(SystemParameterPointer + 0x878) = 0x7f7fffff4cbebc20;
-  *(uint64_t *)(SystemParameterPointer + 0x880) = 0xccbebc20ccbebc20;
-  *(uint64_t *)(SystemParameterPointer + 0x888) = 0x7f7fffffccbebc20;
+  *(uint64_t *)(SystemContextDataPointer + 0x870) = 0x4cbebc204cbebc20;
+  *(uint64_t *)(SystemContextDataPointer + 0x878) = 0x7f7fffff4cbebc20;
+  *(uint64_t *)(SystemContextDataPointer + 0x880) = 0xccbebc20ccbebc20;
+  *(uint64_t *)(SystemContextDataPointer + 0x888) = 0x7f7fffffccbebc20;
   ModuleInitializationResult1 = 0;
-  *(uint32_t *)(SystemParameterPointer + 0x8a0) = 0;
-  *(uint64_t *)(SystemParameterPointer + 0x890) = 0;
-  *(uint64_t *)(SystemParameterPointer + 0x898) = 0x7f7fffff00000000;
+  *(uint32_t *)(SystemContextDataPointer + 0x8a0) = 0;
+  *(uint64_t *)(SystemContextDataPointer + 0x890) = 0;
+  *(uint64_t *)(SystemContextDataPointer + 0x898) = 0x7f7fffff00000000;
   FloatStoredResult198 = fVar18;
-  if (*(float *)(SystemParameterPointer + 0x870) < fVar18) {
-    FloatStoredResult198 = *(float *)(SystemParameterPointer + 0x870);
+  if (*(float *)(SystemContextDataPointer + 0x870) < fVar18) {
+    FloatStoredResult198 = *(float *)(SystemContextDataPointer + 0x870);
   }
   FloatStoredResult194 = FloatValue;
-  if (*(float *)(SystemParameterPointer + 0x874) < FloatValue) {
-    FloatStoredResult194 = *(float *)(SystemParameterPointer + 0x874);
+  if (*(float *)(SystemContextDataPointer + 0x874) < FloatValue) {
+    FloatStoredResult194 = *(float *)(SystemContextDataPointer + 0x874);
   }
   FloatStoredResult190 = FloatStackMaximum;
-  if (*(float *)(SystemParameterPointer + 0x878) < FloatStackMaximum) {
-    FloatStoredResult190 = *(float *)(SystemParameterPointer + 0x878);
+  if (*(float *)(SystemContextDataPointer + 0x878) < FloatStackMaximum) {
+    FloatStoredResult190 = *(float *)(SystemContextDataPointer + 0x878);
   }
-  *(ulonglong *)(SystemParameterPointer + 0x870) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
-  *(ulonglong *)(SystemParameterPointer + 0x878) = CONCAT44(StackCounter5c,FloatStoredResult190);
+  *(ulonglong *)(SystemContextDataPointer + 0x870) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(SystemContextDataPointer + 0x878) = CONCAT44(StackCounter5c,FloatStoredResult190);
   FloatStoredResult198 = fVar18;
-  if (fVar18 < *(float *)(SystemParameterPointer + 0x880)) {
-    FloatStoredResult198 = *(float *)(SystemParameterPointer + 0x880);
+  if (fVar18 < *(float *)(SystemContextDataPointer + 0x880)) {
+    FloatStoredResult198 = *(float *)(SystemContextDataPointer + 0x880);
   }
   FloatStoredResult194 = FloatValue;
-  if (FloatValue < *(float *)(SystemParameterPointer + 0x884)) {
-    FloatStoredResult194 = *(float *)(SystemParameterPointer + 0x884);
+  if (FloatValue < *(float *)(SystemContextDataPointer + 0x884)) {
+    FloatStoredResult194 = *(float *)(SystemContextDataPointer + 0x884);
   }
   FloatStoredResult190 = FloatStackMaximum;
-  if (FloatStackMaximum < *(float *)(SystemParameterPointer + 0x888)) {
-    FloatStoredResult190 = *(float *)(SystemParameterPointer + 0x888);
+  if (FloatStackMaximum < *(float *)(SystemContextDataPointer + 0x888)) {
+    FloatStoredResult190 = *(float *)(SystemContextDataPointer + 0x888);
   }
-  *(ulonglong *)(SystemParameterPointer + 0x880) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
-  *(ulonglong *)(SystemParameterPointer + 0x888) = CONCAT44(StackCounter5c,FloatStoredResult190);
+  *(ulonglong *)(SystemContextDataPointer + 0x880) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(SystemContextDataPointer + 0x888) = CONCAT44(StackCounter5c,FloatStoredResult190);
   FloatStoredResult198 = FloatCalculationResult;
-  if (*(float *)(SystemParameterPointer + 0x870) < FloatCalculationResult) {
-    FloatStoredResult198 = *(float *)(SystemParameterPointer + 0x870);
+  if (*(float *)(SystemContextDataPointer + 0x870) < FloatCalculationResult) {
+    FloatStoredResult198 = *(float *)(SystemContextDataPointer + 0x870);
   }
   FloatStoredResult194 = FloatResult;
-  if (*(float *)(SystemParameterPointer + 0x874) < FloatResult) {
-    FloatStoredResult194 = *(float *)(SystemParameterPointer + 0x874);
+  if (*(float *)(SystemContextDataPointer + 0x874) < FloatResult) {
+    FloatStoredResult194 = *(float *)(SystemContextDataPointer + 0x874);
   }
   FloatStoredResult190 = fVar16;
-  if (*(float *)(SystemParameterPointer + 0x878) < fVar16) {
-    FloatStoredResult190 = *(float *)(SystemParameterPointer + 0x878);
+  if (*(float *)(SystemContextDataPointer + 0x878) < fVar16) {
+    FloatStoredResult190 = *(float *)(SystemContextDataPointer + 0x878);
   }
-  *(ulonglong *)(SystemParameterPointer + 0x870) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
-  *(ulonglong *)(SystemParameterPointer + 0x878) = CONCAT44(StackCounter5c,FloatStoredResult190);
+  *(ulonglong *)(SystemContextDataPointer + 0x870) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(SystemContextDataPointer + 0x878) = CONCAT44(StackCounter5c,FloatStoredResult190);
   FloatStoredResult198 = FloatCalculationResult;
-  if (FloatCalculationResult < *(float *)(SystemParameterPointer + 0x880)) {
-    FloatStoredResult198 = *(float *)(SystemParameterPointer + 0x880);
+  if (FloatCalculationResult < *(float *)(SystemContextDataPointer + 0x880)) {
+    FloatStoredResult198 = *(float *)(SystemContextDataPointer + 0x880);
   }
   FloatStoredResult194 = FloatResult;
-  if (FloatResult < *(float *)(SystemParameterPointer + 0x884)) {
-    FloatStoredResult194 = *(float *)(SystemParameterPointer + 0x884);
+  if (FloatResult < *(float *)(SystemContextDataPointer + 0x884)) {
+    FloatStoredResult194 = *(float *)(SystemContextDataPointer + 0x884);
   }
   FloatStoredResult190 = fVar16;
-  if (fVar16 < *(float *)(SystemParameterPointer + 0x888)) {
-    FloatStoredResult190 = *(float *)(SystemParameterPointer + 0x888);
+  if (fVar16 < *(float *)(SystemContextDataPointer + 0x888)) {
+    FloatStoredResult190 = *(float *)(SystemContextDataPointer + 0x888);
   }
-  *(ulonglong *)(SystemParameterPointer + 0x880) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
-  *(ulonglong *)(SystemParameterPointer + 0x888) = CONCAT44(StackCounter5c,FloatStoredResult190);
-  if (*(longlong *)(SystemParameterPointer + 0x8a8) != 0) {
-    ModuleInitializationResult1 = *(longlong *)(*(longlong *)(SystemParameterPointer + 0x8a8) + 0x260);
+  *(ulonglong *)(SystemContextDataPointer + 0x880) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(SystemContextDataPointer + 0x888) = CONCAT44(StackCounter5c,FloatStoredResult190);
+  if (*(longlong *)(SystemContextDataPointer + 0x8a8) != 0) {
+    ModuleInitializationResult1 = *(longlong *)(*(longlong *)(SystemContextDataPointer + 0x8a8) + 0x260);
   }
   *(float *)(ModuleInitializationResult1 + 0x218) = fVar18;
   *(float *)(ModuleInitializationResult1 + 0x21c) = FloatValue;
@@ -8163,8 +8163,8 @@ void ProcessGraphicsTransformationAndBufferData(void)
   *(float *)(ModuleInitializationResult1 + 0x22c) = FloatResult;
   *(float *)(ModuleInitializationResult1 + 0x230) = fVar16;
   *(uint32_t *)(ModuleInitializationResult1 + 0x234) = MemoryAddress7;
-  pfVar9 = *(float **)(SystemParameterPointer + 0x860);
-  if ((pfVar9 != (float *)0x0) && (*(longlong *)(SystemParameterPointer + 0x868) != 0)) {
+  pfVar9 = *(float **)(SystemContextDataPointer + 0x860);
+  if ((pfVar9 != (float *)0x0) && (*(longlong *)(SystemContextDataPointer + 0x868) != 0)) {
     if ((pfVar9[4] <= FloatCalculationResult && FloatCalculationResult != pfVar9[4]) ||
        ((pfVar9[5] <= FloatResult && FloatResult != pfVar9[5] || (pfVar9[6] <= fVar16 && fVar16 != pfVar9[6]))
        )) {
@@ -8172,7 +8172,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
       } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
-      pfVar3 = *(float **)(SystemParameterPointer + 0x860);
+      pfVar3 = *(float **)(SystemContextDataPointer + 0x860);
       FloatStoredResult198 = FloatCalculationResult;
       if (*pfVar3 < FloatCalculationResult) {
         FloatStoredResult198 = *pfVar3;
@@ -8208,7 +8208,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
       } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
-      pfVar9 = *(float **)(SystemParameterPointer + 0x860);
+      pfVar9 = *(float **)(SystemContextDataPointer + 0x860);
       FloatStoredResult198 = fVar18;
       if (*pfVar9 < fVar18) {
         FloatStoredResult198 = *pfVar9;
@@ -8239,7 +8239,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
       *(ulonglong *)(pfVar9 + 6) = CONCAT44(StackCounter5c,FloatStoredResult190);
       SystemConfigFlag2 = '\0';
     }
-    pfVar9 = *(float **)(SystemParameterPointer + 0x868);
+    pfVar9 = *(float **)(SystemContextDataPointer + 0x868);
     if (((pfVar9[4] <= FloatCalculationResult && FloatCalculationResult != pfVar9[4]) ||
         (pfVar9[5] <= FloatResult && FloatResult != pfVar9[5])) ||
        (pfVar9[6] <= fVar16 && fVar16 != pfVar9[6])) {
@@ -8247,7 +8247,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
       } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
-      pfVar3 = *(float **)(SystemParameterPointer + 0x868);
+      pfVar3 = *(float **)(SystemContextDataPointer + 0x868);
       FloatStoredResult198 = FloatCalculationResult;
       if (*pfVar3 < FloatCalculationResult) {
         FloatStoredResult198 = *pfVar3;
@@ -8283,7 +8283,7 @@ void ProcessGraphicsTransformationAndBufferData(void)
       } while (SystemConfigFlag2 != '\0');
       LOCK();
       UNLOCK();
-      pfVar9 = *(float **)(SystemParameterPointer + 0x868);
+      pfVar9 = *(float **)(SystemContextDataPointer + 0x868);
       FloatStoredResult198 = fVar18;
       if (*pfVar9 < fVar18) {
         FloatStoredResult198 = *pfVar9;
@@ -8327,9 +8327,9 @@ void ProcessGraphicsTransformationAndBufferData(void)
     (*UNRECOVERED_JUMPTABLE)(SystemModuleCallbackTable,&SystemConfigDataBuffer3);
     return;
   }
-  if (-1 < SystemParameterPointer) {
-    if (SystemParameterPointer < (int)((SystemModuleConfigOffset3 - SystemModuleConfigIndex3) / 0x68)) {
-      (*UNRECOVERED_JUMPTABLE)(SystemModuleCallbackTable,(longlong)SystemParameterPointer * 0x68 + SystemModuleConfigIndex3);
+  if (-1 < SystemContextDataPointer) {
+    if (SystemContextDataPointer < (int)((SystemModuleConfigOffset3 - SystemModuleConfigIndex3) / 0x68)) {
+      (*UNRECOVERED_JUMPTABLE)(SystemModuleCallbackTable,(longlong)SystemContextDataPointer * 0x68 + SystemModuleConfigIndex3);
       return;
     }
   }
@@ -8353,10 +8353,10 @@ void ProcessGraphicsTransformationAndBufferData(void)
  * 系统数据批处理函数
  * 批量处理系统数据，提高数据处理效率
  * 
- * @param SystemParameterPointer 数据处理参数1，指定数据源
- * @param SystemSecondaryParameter 数据处理参数2，指定处理方式
- * @param SystemTertiaryParameter 数据处理参数3，指定缓冲区大小
- * @param SystemQuaternaryParameter 数据处理参数4，指定处理选项
+ * @param SystemContextDataPointer 数据处理参数1，指定数据源
+ * @param SystemSecondaryDataPointer 数据处理参数2，指定处理方式
+ * @param SystemTertiaryDataPointer 数据处理参数3，指定缓冲区大小
+ * @param SystemQuaternaryDataPointer 数据处理参数4，指定处理选项
  * @return 处理成功返回0，失败返回-1
  */
 int SystemDataProcessBatch(uint64_t SystemContextPointer,uint64_t BufferSizeParameter,uint64_t MemoryAddressParameter,uint64_t ProcessingFlags)
@@ -8369,18 +8369,18 @@ int SystemDataProcessBatch(uint64_t SystemContextPointer,uint64_t BufferSizePara
   longlong StackBufferLong;
   int StackBufferInteger;
   InitializeSystemBuffer(&StackBufferPointer,SystemContextPointer,MemoryAddressParameter,ProcessingFlags,SystemMutexFlags);
-  LongIndex = StackBufferLong;
+  MemoryIndexValue = StackBufferLong;
   if (StackBufferInteger == 0x10) {
     IterationCounter = strcmp(StackBufferLong,&NetworkLoginRequestString);
     if (IterationCounter == 0) goto NetworkLoginRequestHandler;
-    IterationCounter = strcmp(LongIndex,&NetworkAuthRequestString);
+    IterationCounter = strcmp(MemoryIndexValue,&NetworkAuthRequestString);
     if (IterationCounter == 0) {
       IterationCounter = 100;
       goto NetworkRequestProcessingComplete;
     }
     NetworkResponseData = &NetworkSuccessResponse;
 LoopExitLabel:
-    IterationCounter = strcmp(LongIndex,NetworkResponseData);
+    IterationCounter = strcmp(MemoryIndexValue,NetworkResponseData);
     if (IterationCounter != 0) {
 LoopConditionLabel:
       IterationCounter = 0;
@@ -8395,13 +8395,13 @@ LoopConditionLabel:
         goto NetworkRequestProcessingComplete;
       }
 NetworkVerifyRequestHandler:
-      IterationCounter = strcmp(LongIndex,&NetworkVerifyRequestString);
+      IterationCounter = strcmp(MemoryIndexValue,&NetworkVerifyRequestString);
       if (IterationCounter == 0) {
         IterationCounter = 0xb0;
         goto NetworkRequestProcessingComplete;
       }
 NetworkValidateRequestHandler:
-      IterationCounter = strcmp(LongIndex,&NetworkValidateRequestString);
+      IterationCounter = strcmp(MemoryIndexValue,&NetworkValidateRequestString);
       if (IterationCounter == 0) {
         IterationCounter = 0xd4;
         goto NetworkRequestProcessingComplete;
@@ -8431,13 +8431,13 @@ NetworkDisconnectRequestHandler:
         goto NetworkRequestProcessingComplete;
       }
 NetworkSystemDataHandler:
-      IterationCounter = strcmp(LongIndex,&SystemNetworkConfigData5);
+      IterationCounter = strcmp(MemoryIndexValue,&SystemNetworkConfigData5);
       if (IterationCounter == 0) {
         IterationCounter = 0x18;
         goto NetworkRequestProcessingComplete;
       }
 NetworkValidationHandler6:
-      IterationCounter = strcmp(LongIndex,&NetworkLoginRequestString);
+      IterationCounter = strcmp(MemoryIndexValue,&NetworkLoginRequestString);
       if (IterationCounter == 0) {
         IterationCounter = 0x554;
         goto NetworkRequestProcessingComplete;
@@ -8468,7 +8468,7 @@ NetworkValidationHandler6:
         goto NetworkRequestProcessingComplete;
       }
 NetworkAuthRequestHandler:
-      IterationCounter = strcmp(LongIndex,&NetworkVerifyRequestString);
+      IterationCounter = strcmp(MemoryIndexValue,&NetworkVerifyRequestString);
       if (IterationCounter == 0) {
         IterationCounter = 1;
         goto NetworkRequestProcessingComplete;
@@ -8482,7 +8482,7 @@ NetworkAuthRequestHandler:
         goto NetworkRequestProcessingComplete;
       }
 NetworkConfigData2Handler:
-      IterationCounter = strcmp(LongIndex,&NetworkValidateRequestString);
+      IterationCounter = strcmp(MemoryIndexValue,&NetworkValidateRequestString);
       if (IterationCounter == 0) {
         IterationCounter = 4;
         goto NetworkRequestProcessingComplete;
@@ -8499,22 +8499,22 @@ NetworkValidationHandler5:
         goto NetworkRequestProcessingComplete;
       }
 NetworkConnectRequestHandler:
-      IterationCounter = strcmp(LongIndex,&SystemValidationSecondary);
+      IterationCounter = strcmp(MemoryIndexValue,&SystemValidationSecondary);
       if (IterationCounter == 0) {
         IterationCounter = 0x568;
         goto NetworkRequestProcessingComplete;
       }
-      IterationCounter = strcmp(LongIndex,&SystemValidationCore);
+      IterationCounter = strcmp(MemoryIndexValue,&SystemValidationCore);
       if (IterationCounter == 0) {
         IterationCounter = 16;
         goto NetworkRequestProcessingComplete;
       }
-      IterationCounter = strcmp(LongIndex,&NetworkSuccessResponse);
+      IterationCounter = strcmp(MemoryIndexValue,&NetworkSuccessResponse);
       if (IterationCounter == 0) {
         IterationCounter = 0x28;
         goto NetworkRequestProcessingComplete;
       }
-      IterationCounter = strcmp(LongIndex,&NetworkLoginResponseData);
+      IterationCounter = strcmp(MemoryIndexValue,&NetworkLoginResponseData);
       if (IterationCounter == 0) {
         IterationCounter = 0x40;
         goto NetworkRequestProcessingComplete;
@@ -8522,12 +8522,12 @@ NetworkConnectRequestHandler:
       goto NetworkValidationFailureHandler;
     }
     if (SystemInputCharacter == 4) {
-      LongIndex = 0;
+      MemoryIndexValue = 0;
       do {
-        LongCounter = LongIndex + 1;
-        if (*(char *)(lStack_28 + LongIndex) != (&SystemValidationData)[LongIndex]) goto NetworkValidationFailureHandler;
-        LongIndex = LongCounter;
-      } while (LongCounter != 5);
+        MemoryCounterValue = MemoryIndexValue + 1;
+        if (*(char *)(lStack_28 + MemoryIndexValue) != (&SystemValidationData)[MemoryIndexValue]) goto NetworkValidationFailureHandler;
+        MemoryIndexValue = MemoryCounterValue;
+      } while (MemoryCounterValue != 5);
       LoopCounter = 200;
       goto NetworkRequestProcessingComplete;
     }
@@ -8550,7 +8550,7 @@ NetworkConnectRequestHandler:
 NetworkValidationHandler4:
         pNetworkRequestResult = &NetworkRequestResultValidate;
       NetworkRequestValidationComplete:
-        LoopCounter = strcmp(LongIndex,pNetworkRequestResult);
+        LoopCounter = strcmp(MemoryIndexValue,pNetworkRequestResult);
         if (LoopCounter == 0) {
         NetworkRequestSuccessHandler:
           LoopCounter = 0xc;
@@ -8578,9 +8578,9 @@ NetworkValidationHandler4:
             if (iStack_20 == 0x16) goto NetworkConnectRequestHandler;
             if (iStack_20 == 0x18) {
               LoopCounter = strcmp(lStack_28,&SystemValidationSenary);
-              if ((LoopCounter == 0) || (LoopCounter = strcmp(LongIndex,&SystemValidationSeptenary), LoopCounter == 0))
+              if ((LoopCounter == 0) || (LoopCounter = strcmp(MemoryIndexValue,&SystemValidationSeptenary), LoopCounter == 0))
               goto Label_180608fce;
-              LoopCounter = strcmp(LongIndex,&SystemValidationOctonary);
+              LoopCounter = strcmp(MemoryIndexValue,&SystemValidationOctonary);
               if (LoopCounter != 0) {
                 pNetworkRequestResult = &NetworkRequestResultVerify;
                 goto NetworkConfigResponseHandler;
@@ -8588,13 +8588,13 @@ NetworkValidationHandler4:
               goto NetworkLoginRequestHandler;
             }
             if (iStack_20 == 7) {
-              LongIndex = 0;
+              MemoryIndexValue = 0;
               do {
-                LongCounter = LongIndex;
-                if (*(char *)(lStack_28 + LongCounter) != (&SystemValidationNonary)[LongCounter]) goto NetworkValidationFailureHandler;
-                LongIndex = LongCounter + 1;
-              } while (LongCounter + 1 != 8);
-              LoopCounter = (int)LongCounter + -6;
+                MemoryCounterValue = MemoryIndexValue;
+                if (*(char *)(lStack_28 + MemoryCounterValue) != (&SystemValidationNonary)[MemoryCounterValue]) goto NetworkValidationFailureHandler;
+                MemoryIndexValue = MemoryCounterValue + 1;
+              } while (MemoryCounterValue + 1 != 8);
+              LoopCounter = (int)MemoryCounterValue + -6;
               goto NetworkRequestProcessingComplete;
             }
             if (iStack_20 == 0xc) {
@@ -8604,12 +8604,12 @@ NetworkValidationHandler4:
                 goto NetworkRequestProcessingComplete;
               }
 NetworkValidationHandler7:
-              LoopCounter = strcmp(LongIndex,&NetworkRequestResultConnect);
+              LoopCounter = strcmp(MemoryIndexValue,&NetworkRequestResultConnect);
               if (LoopCounter == 0) {
                 LoopCounter = 4;
                 goto NetworkRequestProcessingComplete;
               }
-              LoopCounter = strcmp(LongIndex,&NetworkRequestResultDefault);
+              LoopCounter = strcmp(MemoryIndexValue,&NetworkRequestResultDefault);
               if (LoopCounter == 0) {
                 LoopCounter = 8;
                 goto NetworkRequestProcessingComplete;
@@ -8619,12 +8619,12 @@ NetworkValidationHandler7:
             if (iStack_20 == 0x1a) goto NetworkSystemDataHandler;
             if (iStack_20 == 3) {
               LoopCounter = 4;
-              LongIndex = 0;
+              MemoryIndexValue = 0;
               do {
-                LongCounter = LongIndex + 1;
-                if (*(char *)(lStack_28 + LongIndex) != (&SystemValidationCore)[LongIndex]) goto NetworkValidationFailureHandler;
-                LongIndex = LongCounter;
-              } while (LongCounter != 4);
+                MemoryCounterValue = MemoryIndexValue + 1;
+                if (*(char *)(lStack_28 + MemoryIndexValue) != (&SystemValidationCore)[MemoryIndexValue]) goto NetworkValidationFailureHandler;
+                MemoryIndexValue = MemoryCounterValue;
+              } while (MemoryCounterValue != 4);
               goto NetworkRequestProcessingComplete;
             }
             if (iStack_20 == 0xf) goto NetworkSecondaryAuthHandler;
@@ -8635,7 +8635,7 @@ NetworkValidationHandler7:
                 goto NetworkRequestProcessingComplete;
               }
       NetworkAuthenticationHandler:
-              LoopCounter = strcmp(LongIndex,&NetworkRequestResultAuth);
+              LoopCounter = strcmp(MemoryIndexValue,&NetworkRequestResultAuth);
               if (LoopCounter == 0) {
                 LoopCounter = 0x18;
                 goto NetworkRequestProcessingComplete;
@@ -8657,13 +8657,13 @@ NetworkValidationHandler7:
                 goto NetworkRequestProcessingComplete;
               }
 NetworkValidationHandler1:
-              LoopCounter = strcmp(LongIndex,&NetworkRequestResultSecondary);
+              LoopCounter = strcmp(MemoryIndexValue,&NetworkRequestResultSecondary);
               if (LoopCounter == 0) {
                 LoopCounter = 4;
                 goto NetworkRequestProcessingComplete;
               }
 NetworkValidationHandler3:
-              LoopCounter = strcmp(LongIndex,&NetworkRequestResultTertiary);
+              LoopCounter = strcmp(MemoryIndexValue,&NetworkRequestResultTertiary);
               if (LoopCounter == 0) {
                 LoopCounter = 4;
                 goto NetworkRequestProcessingComplete;
@@ -8673,7 +8673,7 @@ NetworkValidationHandler3:
               if (iStack_20 == 0x11) {
                 LoopCounter = strcmp(lStack_28,&SystemValidationTerdenary);
                 if (LoopCounter == 0) goto NetworkLoginRequestHandler;
-                LoopCounter = strcmp(LongIndex,&NetworkRequestResultQuaternary);
+                LoopCounter = strcmp(MemoryIndexValue,&NetworkRequestResultQuaternary);
                 if (LoopCounter == 0) {
                   LoopCounter = 0xa0;
                   goto NetworkRequestProcessingComplete;
@@ -8703,19 +8703,19 @@ NetworkValidationHandler3:
             goto NetworkRequestProcessingComplete;
           }
 NetworkSecondaryAuthHandler:
-          LoopCounter = strcmp(LongIndex,&SystemValidationQuinary);
+          LoopCounter = strcmp(MemoryIndexValue,&SystemValidationQuinary);
           if (LoopCounter == 0) {
             LoopCounter = 0x2028;
             goto NetworkRequestProcessingComplete;
           }
 NetworkTertiaryAuthHandler:
-          LoopCounter = strcmp(LongIndex,&NetworkRequestResultQuinary);
+          LoopCounter = strcmp(MemoryIndexValue,&NetworkRequestResultQuinary);
           if (LoopCounter == 0) {
             LoopCounter = 4;
             goto NetworkRequestProcessingComplete;
           }
 NetworkValidationHandler2:
-          LoopCounter = strcmp(LongIndex,&NetworkRequestResultSenary);
+          LoopCounter = strcmp(MemoryIndexValue,&NetworkRequestResultSenary);
           if (LoopCounter == 0) {
             LoopCounter = 0x50;
             goto NetworkRequestProcessingComplete;
@@ -8729,12 +8729,12 @@ NetworkValidationHandler2:
       LoopCounter = 1;
       goto NetworkRequestProcessingComplete;
     }
-    LoopCounter = strcmp(LongIndex,&SystemValidationSenary);
+    LoopCounter = strcmp(MemoryIndexValue,&SystemValidationSenary);
     if (LoopCounter == 0) {
       LoopCounter = 3;
       goto NetworkRequestProcessingComplete;
     }
-    LoopCounter = strcmp(LongIndex,&SystemValidationOctonary);
+    LoopCounter = strcmp(MemoryIndexValue,&SystemValidationOctonary);
     if (LoopCounter != 0) {
       pNetworkRequestResult = &NetworkRequestResultDefault;
       goto NetworkConfigResponseHandler;
@@ -8757,8 +8757,8 @@ ProcessSystemConfiguration(uint64_t SystemContextPointer,uint64_t ConfigurationS
   uint64_t StringProcessingResult;
   uint8_t aStackParameter1 [32];
   uint8_t aStackCounter4 [40];
-  InitializeSystemBuffer(aStackCounter4,SystemParameterPointer,SystemTertiaryParameter,SystemQuaternaryParameter,SystemMutexFlags);
-  InitializeSystemBuffer(aStackParameter1,SystemSecondaryParameter);
+  InitializeSystemBuffer(aStackCounter4,SystemContextDataPointer,SystemTertiaryDataPointer,SystemQuaternaryDataPointer,SystemMutexFlags);
+  InitializeSystemBuffer(aStackParameter1,SystemSecondaryDataPointer);
   NetworkRequestStatus = ProcessNetworkRequest(aStackCounter4,&NetworkRequestStringConnect,1);
   if (NetworkRequestStatus == '\0') {
     NetworkRequestStatus = ProcessNetworkRequest(aStackCounter4,&NetworkRequestStringAuth,1);
@@ -10349,21 +10349,21 @@ NetworkRequestProcessingComplete:
   SystemModuleConfigFlag14 = 0;
   GetSystemConfigurationTemplate(GetSystemConfigurationTemplate);
   ProcessSystemConfigurationData(&SystemDataConfigurationBuffer);
-  LongValue = 0;
+  MemoryAddressValue = 0;
   SystemConfigFunctionPointer1 = GetSystemConfigurationData;
   SystemContextData = (uint32_t *)&SystemModuleConfigDataBuffer;
-  LongIndex = 0x16;
+  MemoryIndexValue = 0x16;
   do {
     if (SystemContextData[1] == 0) {
       ProcessBufferSize(SystemContextData);
     }
-    if (LongValue != 2) {
+    if (MemoryAddressValue != 2) {
       HandleSystemConfigurationData(&SystemDatabaseConfiguration,*(uint64_t *)(SystemContextData + 4),*SystemContextData);
     }
-    LongValue = LongValue + 1;
+    MemoryAddressValue = MemoryAddressValue + 1;
     SystemContextData = SystemContextData + 6;
-    LongIndex = LongIndex + -1;
-  } while (LongIndex != 0);
+    MemoryIndexValue = MemoryIndexValue + -1;
+  } while (MemoryIndexValue != 0);
   if (SystemMemoryConfigFlag1 == 0) {
     ProcessBufferSize(&SystemMemoryConfigBuffer1);
   }
@@ -10403,22 +10403,22 @@ bool SystemCompareStringData(longlong StringDataPointer1,longlong StringDataPoin
   int IntegerCounter;
   longlong DataValue;
   char *pBooleanFlag;
-  LongValue = -1;
+  MemoryAddressValue = -1;
   do {
-    LongValue = LongValue + 1;
-  } while (*(char *)(SystemSecondaryParameter + LongValue) != '\0');
-  IntegerCounter = *(int *)(SystemParameterPointer + 0x10);
-  if (IntegerCounter == (int)LongValue) {
+    MemoryAddressValue = MemoryAddressValue + 1;
+  } while (*(char *)(SystemSecondaryDataPointer + MemoryAddressValue) != '\0');
+  IntegerCounter = *(int *)(SystemContextDataPointer + 0x10);
+  if (IntegerCounter == (int)MemoryAddressValue) {
     if (IntegerCounter != 0) {
-      pBooleanFlag = *(char **)(SystemParameterPointer + 8);
-      if (SystemTertiaryParameter == '\0') {
-        IntegerCounter = _stricmp(pBooleanFlag,SystemSecondaryParameter);
+      pBooleanFlag = *(char **)(SystemContextDataPointer + 8);
+      if (SystemTertiaryDataPointer == '\0') {
+        IntegerCounter = _stricmp(pBooleanFlag,SystemSecondaryDataPointer);
         return IntegerCounter == 0;
       }
-      SystemSecondaryParameter = SystemSecondaryParameter - (longlong)pBooleanFlag;
+      SystemSecondaryDataPointer = SystemSecondaryDataPointer - (longlong)pBooleanFlag;
       do {
         NetworkRequestStatus = *pBooleanFlag;
-        BooleanCheck = pBooleanFlag[SystemSecondaryParameter];
+        BooleanCheck = pBooleanFlag[SystemSecondaryDataPointer];
         if (NetworkRequestStatus != BooleanCheck) break;
         pBooleanFlag = pBooleanFlag + 1;
       } while (BooleanCheck != '\0');
@@ -10428,7 +10428,7 @@ bool SystemCompareStringData(longlong StringDataPointer1,longlong StringDataPoin
   else if (IntegerCounter != 0) {
     return false;
   }
-  if ((int)LongValue != 0) {
+  if ((int)MemoryAddressValue != 0) {
     return false;
   }
   return true;
@@ -10437,7 +10437,7 @@ bool SystemCompareStringData(longlong StringDataPointer1,longlong StringDataPoin
  * 系统数据比较函数
  * 比较系统数据的有效性和完整性
  * 
- * @param SystemParameterPointer 要比较的数据指针
+ * @param SystemContextDataPointer 要比较的数据指针
  * @return 比较成功返回true，失败返回false
  */
 int SystemDataCompare(longlong DataStructurePointer)
@@ -10483,8 +10483,8 @@ NetworkDataBufferHandler:
  * 系统数据比较功能函数
  * 比较两个系统数据块的内容和结构
  * 
- * @param SystemParameterPointer 第一个数据块的指针
- * @param SystemSecondaryParameter 第二个数据块的指针
+ * @param SystemContextDataPointer 第一个数据块的指针
+ * @param SystemSecondaryDataPointer 第二个数据块的指针
  * @return 比较结果，相等返回0，不相等返回非零值
  */
 int SystemDataCompareFunction(longlong DataStructurePointer1,longlong DataStructurePointer2)
@@ -10494,27 +10494,27 @@ int SystemDataCompareFunction(longlong DataStructurePointer1,longlong DataStruct
   int IntegerCounter;
   longlong DataValue;
   ulonglong MemoryAllocationResult;
-  LoopCounter = *(int *)(SystemSecondaryParameter + 0x10);
-  IntegerCounter = *(int *)(SystemParameterPointer + 0x10) - LoopCounter;
+  LoopCounter = *(int *)(SystemSecondaryDataPointer + 0x10);
+  IntegerCounter = *(int *)(SystemContextDataPointer + 0x10) - LoopCounter;
   if (-1 < IntegerCounter) {
-    LongValue = (longlong)IntegerCounter;
+    MemoryAddressValue = (longlong)IntegerCounter;
     do {
       MemoryAllocationResult = 0;
-      LongCounter = 0;
+      MemoryCounterValue = 0;
       if (0 < LoopCounter) {
         do {
-          if (*(char *)(*(longlong *)(SystemParameterPointer + 8) + LongValue + LongCounter) !=
-              *(char *)(MemoryAllocationResult + *(longlong *)(SystemSecondaryParameter + 8))) break;
+          if (*(char *)(*(longlong *)(SystemContextDataPointer + 8) + MemoryAddressValue + MemoryCounterValue) !=
+              *(char *)(MemoryAllocationResult + *(longlong *)(SystemSecondaryDataPointer + 8))) break;
           MemoryAllocationResult = (ulonglong)((int)MemoryAllocationResult + 1);
           stringLength = stringLength + 1;
-        } while (LongCounter < LoopCounter);
+        } while (MemoryCounterValue < LoopCounter);
       }
       if ((int)MemoryAllocationResult == LoopCounter) {
         return IntegerCounter;
       }
       IntegerCounter = IntegerCounter + -1;
-      LongValue = LongValue + -1;
-    } while (-1 < LongValue);
+      MemoryAddressValue = MemoryAddressValue + -1;
+    } while (-1 < MemoryAddressValue);
   }
   return -1;
 }
@@ -10571,20 +10571,20 @@ uint64_t * SystemDataProcess(longlong DataStructurePointer,uint64_t *BufferPoint
   StackCounter3 = 0xe;
   ModuleInitializationResult0 = -1;
   StackParameter1._0_4_ = StringProcessingResult;
-  if (SystemParameterPointer != 0) {
+  if (SystemContextDataPointer != 0) {
     do {
-      LongAddress = ModuleInitializationResult0;
-      ModuleInitializationResult0 = LongAddress + 1;
-    } while (*(char *)(ModuleInitializationResult0 + SystemParameterPointer) != '\0');
+      MemoryAddressPointer = ModuleInitializationResult0;
+      ModuleInitializationResult0 = MemoryAddressPointer + 1;
+    } while (*(char *)(ModuleInitializationResult0 + SystemContextDataPointer) != '\0');
     if (0 < (int)ModuleInitializationResult0) {
-      IntegerStatus = (int)LongAddress;
+      IntegerStatus = (int)MemoryAddressPointer;
       if ((IntegerStatus != -0xf) && (StringProcessingResult < IntegerStatus + 0x10U)) {
         StackParameter4 = 0x13;
         pMemoryAllocationResult = (uint64_t *)MemoryCopyEx(SystemMemoryAllocator,pMemoryAllocationResult,IntegerStatus + 0x10U,0x10);
         pStackCounter2 = pMemoryAllocationResult;
         StackParameter1._0_4_ = MemoryValidateEx(pMemoryAllocationResult);
       }
-      memcpy((uint8_t *)((longlong)pMemoryAllocationResult + 0xe),SystemParameterPointer,(longlong)(IntegerStatus + 2));
+      memcpy((uint8_t *)((longlong)pMemoryAllocationResult + 0xe),SystemContextDataPointer,(longlong)(IntegerStatus + 2));
     }
   }
   if (pMemoryAllocationResult == (uint64_t *)0x0) {
@@ -10607,10 +10607,10 @@ Label_18062e327:
   InitializeSystemModuleConfiguration(acStack_40,&SystemModuleConfiguration,IntegerStatus);
   ModuleInitializationResult0 = -1;
   do {
-    LongAddress = ModuleInitializationResult0;
-    ModuleInitializationResult0 = LongAddress + 1;
-  } while (acStack_40[LongAddress + 1] != '\0');
-  IntegerStatus = (int)(LongAddress + 1);
+    MemoryAddressPointer = ModuleInitializationResult0;
+    ModuleInitializationResult0 = MemoryAddressPointer + 1;
+  } while (acStack_40[MemoryAddressPointer + 1] != '\0');
+  IntegerStatus = (int)(MemoryAddressPointer + 1);
   if (IntegerStatus < 1) {
     if (SystemConfigFlag5 != '\0') {
       _Exit(5);
@@ -10642,7 +10642,7 @@ Label_18062e327:
     StackParameter1._0_4_ = MemoryValidateEx(pMemoryAllocationResult);
   }
 Label_18062e3f0:
-  memcpy(pMemoryAllocationResult + 3,acStack_40,(longlong)((int)LongAddress + 2));
+  memcpy(pMemoryAllocationResult + 3,acStack_40,(longlong)((int)MemoryAddressPointer + 2));
 }
 /**
  * @brief 处理系统字符串数据
@@ -10685,7 +10685,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   char *pNetworkRequestStatus8;
   char *pNetworkRequestStatus9;
   char *pBooleanCheck0;
-  longlong LongCounter1;
+  longlong MemoryCounterValue1;
   char *pBooleanCheck2;
   void *StackPointerBuffer320;
   void *StackPointerBuffer312;
@@ -10725,15 +10725,15 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   uStack_d8 = SystemSeventhParameter;
   StackPointerBuffer = SystemEighthParameter;
   piStack_78 = SystemNinthParameter;
-  StackDataPointer = SystemParameterPointer0;
-  pStackParameter1 = SystemParameterPointer0;
+  StackDataPointer = SystemContextDataPointer0;
+  pStackParameter1 = SystemContextDataPointer0;
   puStack_118 = &SystemNullPointer;
   uStack_100 = 0;
   pSystemOperationCounter = (void *)0x0;
   uStack_108 = 0;
-  pcStack_70 = SystemTertiaryParameter;
-  StackCounter1 = SystemSecondaryParameter;
-  LongOffset = ProcessNetworkRequest(&puStack_f8,SystemQuaternaryParameter,SystemParameterPointer,SystemFifthParameter);
+  pcStack_70 = SystemTertiaryDataPointer;
+  StackCounter1 = SystemSecondaryDataPointer;
+  LongOffset = ProcessNetworkRequest(&puStack_f8,SystemQuaternaryDataPointer,SystemContextDataPointer,SystemFifthParameter);
   uStack_108 = *(uint32_t *)(LongOffset + 0x10);
   pSystemOperationCounter = *(void **)(LongOffset + 8);
   uStack_100 = *(ulonglong *)(LongOffset + 0x18);
@@ -10767,7 +10767,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
       }
       AllocateSystemMemory(&SystemMemorySecondaryBuffer,pMemoryAddress3);
       IntegerCounter = *SystemNinthParameter;
-      LongCounter1 = (longlong)IntegerCounter * 0x3088 + lStack_d0;
+      MemoryCounterValue1 = (longlong)IntegerCounter * 0x3088 + lStack_d0;
       pMemoryAddress3 = &SystemConstantStringPrimary;
       if (*(void **)(LongOffset + 8) != (void *)0x0) {
         pMemoryAddress3 = *(void **)(LongOffset + 8);
@@ -10806,7 +10806,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
       if (StackPointerBuffer312 != (void *)0x0) {
         pMemoryAddress3 = StackPointerBuffer312;
       }
-      HandleMemoryOperation(pMemoryAddress3,LongCounter1,(longlong)IntegerCounter * 0x20 + SystemSeventhParameter);
+      HandleMemoryOperation(pMemoryAddress3,MemoryCounterValue1,(longlong)IntegerCounter * 0x20 + SystemSeventhParameter);
       puStack_140 = &SystemNullPointer;
       if (pNetworkRequestResult != (void *)0x0) {
         SystemBufferValidate(pNetworkRequestResult);
@@ -10818,7 +10818,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
       IntegerCounter = *piStack_78 + 1;
       *piStack_78 = IntegerCounter;
       SystemSeventhParameter = uStack_d8;
-      SystemTertiaryParameter = pcStack_70;
+      SystemTertiaryDataPointer = pcStack_70;
       SystemSixthParameter = lStack_d0;
       SystemNinthParameter = piStack_78;
     } while (LongOffset != SystemFifthParameter[1]);
@@ -10858,12 +10858,12 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
 Label_18062e835:
       *StackPointerBuffer = pNetworkRequestStatus8;
       if (pNetworkRequestStatus8 != (char *)0x0) {
-        if (SystemTertiaryParameter == (char *)0x0) {
+        if (SystemTertiaryDataPointer == (char *)0x0) {
           pNetworkRequestStatus9 = *(char **)(pNetworkRequestStatus8 + 0x30);
         }
         else {
-          NetworkRequestStatus = *SystemTertiaryParameter;
-          pBooleanCheck0 = SystemTertiaryParameter;
+          NetworkRequestStatus = *SystemTertiaryDataPointer;
+          pBooleanCheck0 = SystemTertiaryDataPointer;
           while (NetworkRequestStatus != '\0') {
             pBooleanCheck0 = pBooleanCheck0 + 1;
             NetworkRequestStatus = *pBooleanCheck0;
@@ -10878,11 +10878,11 @@ Label_18062e835:
             else {
               pcVar9 = *(char **)(pNetworkRequestStatus8 + 0x10);
             }
-            if (pcVar9 == pBooleanCheck0 + -(longlong)SystemTertiaryParameter) {
+            if (pcVar9 == pBooleanCheck0 + -(longlong)SystemTertiaryDataPointer) {
               pcVar9 = pcVar9 + (longlong)pNetworkRequestStatus4;
               pNetworkRequestStatus9 = pNetworkRequestStatus8;
               if (pcVar9 <= pNetworkRequestStatus4) break;
-              LongOffset = (longlong)SystemTertiaryParameter - (longlong)pNetworkRequestStatus4;
+              LongOffset = (longlong)SystemTertiaryDataPointer - (longlong)pNetworkRequestStatus4;
               while (*pNetworkRequestStatus4 == pNetworkRequestStatus4[LongOffset]) {
                 pNetworkRequestStatus4 = pNetworkRequestStatus4 + 1;
                 if (pcVar9 <= pNetworkRequestStatus4) goto Label_18062e8bc;
@@ -10928,14 +10928,14 @@ Label_18062e8bc:
           StackMemoryFlag = 0x14;
           *(uint8_t *)(pMemoryAddress1 + 5) = 0;
           uStack_a8 = (ulonglong)UnsignedValue;
-          if (SystemTertiaryParameter != (char *)0x0) {
+          if (SystemTertiaryDataPointer != (char *)0x0) {
             LongOffset = -1;
             do {
-              LongCounter1 = LongOffset;
-              LongOffset = LongCounter1 + 1;
-            } while (SystemTertiaryParameter[LongOffset] != '\0');
+              MemoryCounterValue1 = LongOffset;
+              LongOffset = MemoryCounterValue1 + 1;
+            } while (SystemTertiaryDataPointer[LongOffset] != '\0');
             if (0 < (int)LongOffset) {
-              IntegerCounter = (int)LongCounter1;
+              IntegerCounter = (int)MemoryCounterValue1;
               if ((IntegerCounter != -0x15) && (UnsignedValue < IntegerCounter + 0x16U)) {
                 pMemoryAddress1 = (uint32_t *)
                           MemoryCopyEx(SystemMemoryAllocator,pMemoryAddress1,IntegerCounter + 0x16U,16,0x13);
@@ -10943,7 +10943,7 @@ Label_18062e8bc:
                 memoryValidationResult = MemoryValidateEx(pMemoryAddress1);
                 uStack_a8 = CONCAT44(uStack_a8._4_4_,memoryValidationResult);
               }
-              memcpy(pMemoryAddress1 + 5,SystemTertiaryParameter,(longlong)(IntegerCounter + 2));
+              memcpy(pMemoryAddress1 + 5,SystemTertiaryDataPointer,(longlong)(IntegerCounter + 2));
             }
           }
           pMemoryAddress2 = (uint8_t *)0x0;
@@ -10984,7 +10984,7 @@ Label_18062e8bc:
       IntegerCounter = (int)StackPointerBuffer288 + 1;
       StackPointerBuffer288 = (longlong *)CONCAT44(StackPointerBuffer288._4_4_,IntegerCounter);
       SystemSixthParameter = SystemSixthParameter + 0x3088;
-      SystemTertiaryParameter = pcStack_70;
+      SystemTertiaryDataPointer = pcStack_70;
       lStack_d0 = SystemSixthParameter;
     } while (IntegerCounter < *SystemNinthParameter);
   }
@@ -11042,13 +11042,13 @@ char * SystemStringProcessBuffer(uint64_t SystemContextPointer,uint64_t BufferSi
   StackParameter1 = SystemMutexFlags;
   puStack_40 = SystemSeventhParameter;
   pNetworkRequestStatus4 = (char *)0x0;
-  StackBufferPointer2 = SystemTertiaryParameter;
+  StackBufferPointer2 = SystemTertiaryDataPointer;
   LongLoop = InitializeSystemComponents(SystemSeventhParameter,&puStack_d0);
   pMemoryAddress0 = &SystemConstantStringPrimary;
   if (*(void **)(LongLoop + 8) != (void *)0x0) {
     pMemoryAddress0 = *(void **)(LongLoop + 8);
   }
-  HandleMemoryOperation(pMemoryAddress0,SystemQuaternaryParameter,SystemFifthParameter);
+  HandleMemoryOperation(pMemoryAddress0,SystemQuaternaryDataPointer,SystemFifthParameter);
   puStack_d0 = &SystemNullPointer;
   if (StackDataPointer != (uint32_t *)0x0) {
     CleanupSystemResources();
@@ -11061,7 +11061,7 @@ char * SystemStringProcessBuffer(uint64_t SystemContextPointer,uint64_t BufferSi
     pNetworkRequestStatus3 = StringPointer;
     StringPointer = pNetworkRequestStatus3 + 1;
   } while (*StringPointer != '\0');
-  for (StringPointer = *(char **)(SystemQuaternaryParameter + 0x30); pNetworkRequestStatus1 = pNetworkRequestStatus4, StringPointer != (char *)0x0;
+  for (StringPointer = *(char **)(SystemQuaternaryDataPointer + 0x30); pNetworkRequestStatus1 = pNetworkRequestStatus4, StringPointer != (char *)0x0;
       StringPointer = *(char **)(StringPointer + 0x58)) {
     pcVar9 = *(char **)StringPointer;
     if (pcVar9 == (char *)0x0) {
@@ -11195,13 +11195,13 @@ Label_18062eece:
     NetworkRequestResult = ProcessNetworkResponse(pNetworkRequestStatus1,&NetworkResponseProcessingBuffer1);
     pNetworkRequestStatus4 = (char *)(ulonglong)NetworkRequestResult;
   }
-  *SystemTertiaryParameter = &SystemNullPointer;
-  if (SystemTertiaryParameter[1] != 0) {
+  *SystemTertiaryDataPointer = &SystemNullPointer;
+  if (SystemTertiaryDataPointer[1] != 0) {
     CleanupSystemResources();
   }
-  SystemTertiaryParameter[1] = 0;
-  *(uint32_t *)(SystemTertiaryParameter + 3) = 0;
-  *SystemTertiaryParameter = &SystemBufferTemplate;
+  SystemTertiaryDataPointer[1] = 0;
+  *(uint32_t *)(SystemTertiaryDataPointer + 3) = 0;
+  *SystemTertiaryDataPointer = &SystemBufferTemplate;
   *SystemSeventhParameter = &SystemNullPointer;
   if (SystemSeventhParameter[1] != 0) {
     CleanupSystemResources();
@@ -11218,7 +11218,7 @@ longlong SystemMemoryAllocateBuffer(longlong MemorySizeParameter,longlong Alignm
   char *pcVar3;
   char *pcVar4;
   char *pBooleanFlag;
-  longlong LongData;
+  longlong MemoryDataPointer;
   uint64_t *pUnsignedValue;
   char *pcVar8;
   uint64_t *pUnsignedSize;
@@ -11237,15 +11237,15 @@ longlong SystemMemoryAllocateBuffer(longlong MemorySizeParameter,longlong Alignm
   uint64_t SecurityKey38;
   MemoryAddress4 = SystemMutexFlags;
   pNetworkRequestStatus1 = (char *)0x0;
-  ProcessSystemModuleData(SystemQuaternaryParameter);
-  ProcessSystemCommand(SystemParameterPointer,SystemTertiaryParameter);
+  ProcessSystemModuleData(SystemQuaternaryDataPointer);
+  ProcessSystemCommand(SystemContextDataPointer,SystemTertiaryDataPointer);
   MemoryAddress3 = 1;
   pNetworkRequestStatus0 = "base";
   do {
     pcVar8 = pNetworkRequestStatus0;
     pNetworkRequestStatus0 = pcVar8 + 1;
   } while (*pNetworkRequestStatus0 != '\0');
-  for (pNetworkRequestStatus0 = *(char **)(SystemSecondaryParameter + 0x30); pcVar4 = pNetworkRequestStatus1, pNetworkRequestStatus0 != (char *)0x0;
+  for (pNetworkRequestStatus0 = *(char **)(SystemSecondaryDataPointer + 0x30); pcVar4 = pNetworkRequestStatus1, pNetworkRequestStatus0 != (char *)0x0;
       pNetworkRequestStatus0 = *(char **)(pNetworkRequestStatus0 + 0x58)) {
     pBooleanFlag = *(char **)pNetworkRequestStatus0;
     if (pBooleanFlag == (char *)0x0) {
@@ -11259,8 +11259,8 @@ longlong SystemMemoryAllocateBuffer(longlong MemorySizeParameter,longlong Alignm
       pcVar3 = pcVar3 + (longlong)pBooleanFlag;
       pcVar4 = pNetworkRequestStatus0;
       if (pcVar3 <= pBooleanFlag) break;
-      LongData = (longlong)&SystemNetworkDataBuffer3 - (longlong)pBooleanFlag;
-      while (*pBooleanFlag == pBooleanFlag[LongData]) {
+      MemoryDataPointer = (longlong)&SystemNetworkDataBuffer3 - (longlong)pBooleanFlag;
+      while (*pBooleanFlag == pBooleanFlag[MemoryDataPointer]) {
         pBooleanFlag = pBooleanFlag + 1;
         if (pcVar3 <= pBooleanFlag) goto Label_18062f2b6;
       }
@@ -11275,7 +11275,7 @@ Label_18062f2b6:
   pUnsignedValue = *(uint64_t **)(pcVar4 + 0x30);
   do {
     if (pUnsignedValue == (uint64_t *)0x0) {
-      return SystemParameterPointer;
+      return SystemContextDataPointer;
     }
     pNetworkRequestStatus0 = (char *)*pUnsignedValue;
     if (pNetworkRequestStatus0 == (char *)0x0) {
@@ -11288,8 +11288,8 @@ Label_18062f2b6:
     if (pcVar4 == pcVar8 + -0x180a0794b) {
       pcVar4 = pNetworkRequestStatus0 + (longlong)pcVar4;
       if (pcVar4 <= pNetworkRequestStatus0) break;
-      LongData = (longlong)&NetworkResponseProcessingBuffer2 - (longlong)pNetworkRequestStatus0;
-      while (*pNetworkRequestStatus0 == pNetworkRequestStatus0[LongData]) {
+      MemoryDataPointer = (longlong)&NetworkResponseProcessingBuffer2 - (longlong)pNetworkRequestStatus0;
+      while (*pNetworkRequestStatus0 == pNetworkRequestStatus0[MemoryDataPointer]) {
         pNetworkRequestStatus0 = pNetworkRequestStatus0 + 1;
         if (pcVar4 <= pNetworkRequestStatus0) goto Label_18062f340;
       }
@@ -11320,31 +11320,31 @@ Label_18062f340:
       pcVar4 = pcVar4 + (longlong)pNetworkRequestStatus0;
       if (pcVar4 <= pNetworkRequestStatus0) {
 Label_18062f3b3:
-        LongData = 0x180d48d24;
+        MemoryDataPointer = 0x180d48d24;
         if (pUnsignedSize[1] != 0) {
-          LongData = pUnsignedSize[1];
+          MemoryDataPointer = pUnsignedSize[1];
         }
-        ProcessSystemCall(&pStackParameter1,LongData,pcVar4,pUnsignedSize,MemoryAddress3,MemoryAddress4);
+        ProcessSystemCall(&pStackParameter1,MemoryDataPointer,pcVar4,pUnsignedSize,MemoryAddress3,MemoryAddress4);
         break;
       }
-      LongData = (longlong)&NetworkResponseProcessingBuffer3 - (longlong)pNetworkRequestStatus0;
-      while (*pNetworkRequestStatus0 == pNetworkRequestStatus0[LongData]) {
+      MemoryDataPointer = (longlong)&NetworkResponseProcessingBuffer3 - (longlong)pNetworkRequestStatus0;
+      while (*pNetworkRequestStatus0 == pNetworkRequestStatus0[MemoryDataPointer]) {
         pNetworkRequestStatus0 = pNetworkRequestStatus0 + 1;
         if (pcVar4 <= pNetworkRequestStatus0) goto Label_18062f3b3;
       }
     }
   }
-  if (iStack_40 == *(int *)(SystemParameterPointer + 0x10)) {
+  if (iStack_40 == *(int *)(SystemContextDataPointer + 0x10)) {
     if (iStack_40 == 0) {
 Label_18062f41e:
-      if (*(int *)(SystemParameterPointer + 0x10) != 0) goto Label_18062f426;
+      if (*(int *)(SystemContextDataPointer + 0x10) != 0) goto Label_18062f426;
       CharValue2 = true;
     }
     else {
       pNetworkRequestStatus0 = pcStack_48;
       do {
         NetworkRequestStatus = *pNetworkRequestStatus0;
-        BooleanCheck = pNetworkRequestStatus0[*(longlong *)(SystemParameterPointer + 8) - (longlong)pcStack_48];
+        BooleanCheck = pNetworkRequestStatus0[*(longlong *)(SystemContextDataPointer + 8) - (longlong)pcStack_48];
         if (NetworkRequestStatus != BooleanCheck) break;
         pNetworkRequestStatus0 = pNetworkRequestStatus0 + 1;
       } while (BooleanCheck != '\0');
@@ -11380,23 +11380,23 @@ Label_18062f426:
         pcVar4 = pcVar4 + (longlong)pNetworkRequestStatus0;
         if (pcVar4 <= pNetworkRequestStatus0) {
 Label_18062f4a5:
-          LongData = 0x180d48d24;
+          MemoryDataPointer = 0x180d48d24;
           if (pUnsignedSize[1] != 0) {
-            LongData = pUnsignedSize[1];
+            MemoryDataPointer = pUnsignedSize[1];
           }
-          ProcessSystemCall(&pStackParameter2,LongData);
+          ProcessSystemCall(&pStackParameter2,MemoryDataPointer);
           break;
         }
-        LongData = (longlong)&SystemNetworkDataBuffer5 - (longlong)pNetworkRequestStatus0;
-        while (*pNetworkRequestStatus0 == pNetworkRequestStatus0[LongData]) {
+        MemoryDataPointer = (longlong)&SystemNetworkDataBuffer5 - (longlong)pNetworkRequestStatus0;
+        while (*pNetworkRequestStatus0 == pNetworkRequestStatus0[MemoryDataPointer]) {
           pNetworkRequestStatus0 = pNetworkRequestStatus0 + 1;
           if (pcVar4 <= pNetworkRequestStatus0) goto Label_18062f4a5;
         }
       }
     }
-    pUnsignedSize = *(uint64_t **)(SystemQuaternaryParameter + 8);
-    if (pUnsignedSize < *(uint64_t **)(SystemQuaternaryParameter + 0x10)) {
-      *(uint64_t **)(SystemQuaternaryParameter + 8) = pUnsignedSize + 4;
+    pUnsignedSize = *(uint64_t **)(SystemQuaternaryDataPointer + 8);
+    if (pUnsignedSize < *(uint64_t **)(SystemQuaternaryDataPointer + 0x10)) {
+      *(uint64_t **)(SystemQuaternaryDataPointer + 8) = pUnsignedSize + 4;
       *pUnsignedSize = &SystemBufferTemplate;
       pUnsignedSize[1] = 0;
       *(uint32_t *)(pUnsignedSize + 2) = 0;
@@ -11417,7 +11417,7 @@ Label_18062f4a5:
       }
     }
     else {
-      ProcessSystemMemoryAllocation(SystemQuaternaryParameter,&pStackParameter2);
+      ProcessSystemMemoryAllocation(SystemQuaternaryDataPointer,&pStackParameter2);
     }
     pStackParameter2 = &SystemNullPointer;
     if (lStack_68 != 0) {
@@ -11433,15 +11433,15 @@ Label_18062f4a5:
     CleanupSystemResources();
   }
   if (pUnsignedValue == (uint64_t *)0x0) {
-    return SystemParameterPointer;
+    return SystemContextDataPointer;
   }
   goto Label_18062f340;
 }
   SystemConfigFlag4 = 0;
   if (NetworkRequestStatus != '\0') {
-    ProcessSystemStringAllocation(&SystemStringAllocationBuffer,SystemParameterPointer);
+    ProcessSystemStringAllocation(&SystemStringAllocationBuffer,SystemContextDataPointer);
   }
-  if (LongIndex != -1) {
+  if (MemoryIndexValue != -1) {
     LOCK();
     SystemConfigDataSize4 = SystemConfigDataSize4 + -1;
     UNLOCK();
@@ -11466,20 +11466,20 @@ int SystemBufferValidateData(uint64_t BufferPointer,char *ValidationString)
   longlong LongLoop;
   char *pcVar6;
   int IntegerError;
-  StringProcessingResultPointer = (uint64_t *)ProcessSystemNetworkData(SystemParameterPointer,SystemSecondaryParameter,0);
+  StringProcessingResultPointer = (uint64_t *)ProcessSystemNetworkData(SystemContextDataPointer,SystemSecondaryDataPointer,0);
   IntegerError = 0;
   if (StringProcessingResultPointer == (uint64_t *)0x0) {
     return 0;
   }
-  while (IntegerError = IntegerError + 1, SystemSecondaryParameter == (char *)0x0) {
+  while (IntegerError = IntegerError + 1, SystemSecondaryDataPointer == (char *)0x0) {
     StringProcessingResultPointer = (uint64_t *)StringProcessingResultPointer[0xb];
 Label_18063182e:
     if (StringProcessingResultPointer == (uint64_t *)0x0) {
       return IntegerError;
     }
   }
-  BooleanCheck = *SystemSecondaryParameter;
-  pcVar6 = SystemSecondaryParameter;
+  BooleanCheck = *SystemSecondaryDataPointer;
+  pcVar6 = SystemSecondaryDataPointer;
   while (BooleanCheck != '\0') {
     pcVar6 = pcVar6 + 1;
     BooleanCheck = *pcVar6;
@@ -11497,10 +11497,10 @@ Label_18063182e:
     else {
       LongLoop = StringProcessingResultPointer[2];
     }
-    if (LongLoop == (longlong)pcVar6 - (longlong)SystemSecondaryParameter) {
+    if (LongLoop == (longlong)pcVar6 - (longlong)SystemSecondaryDataPointer) {
       pNetworkRequestStatus = pcVar4 + LongLoop;
       if (pNetworkRequestStatus <= pcVar4) goto Label_18063182e;
-      LongLoop = (longlong)SystemSecondaryParameter - (longlong)pcVar4;
+      LongLoop = (longlong)SystemSecondaryDataPointer - (longlong)pcVar4;
       while (*pcVar4 == pcVar4[LongLoop]) {
         pcVar4 = pcVar4 + 1;
         if (pNetworkRequestStatus <= pcVar4) goto Label_18063182e;
@@ -11522,9 +11522,9 @@ int SystemBufferProcessData(uint64_t BufferId, uint64_t ProcessData, uint64_t *R
   char *pBooleanFlag;
   int in_R11D;
   while (in_R11D = in_R11D + 1, SystemResultBuffer == (char *)0x0) {
-    SystemTertiaryParameter = (uint64_t *)SystemTertiaryParameter[0xb];
+    SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
 Label_18063182e:
-    if (SystemTertiaryParameter == (uint64_t *)0x0) {
+    if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
       return in_R11D;
     }
   }
@@ -11534,30 +11534,30 @@ Label_18063182e:
     pBooleanFlag = pBooleanFlag + 1;
     BooleanCheck = *pBooleanFlag;
   }
-  SystemTertiaryParameter = (uint64_t *)SystemTertiaryParameter[0xb];
-  if (SystemTertiaryParameter == (uint64_t *)0x0) {
+  SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
+  if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
     return in_R11D;
   }
   do {
-    pcVar3 = (char *)*SystemTertiaryParameter;
+    pcVar3 = (char *)*SystemTertiaryDataPointer;
     if (pcVar3 == (char *)0x0) {
-      LongValue = 0;
+      MemoryAddressValue = 0;
       pcVar3 = (char *)0x180d48d24;
     }
     else {
-      LongValue = SystemTertiaryParameter[2];
+      MemoryAddressValue = SystemTertiaryDataPointer[2];
     }
-    if (LongValue == (longlong)pBooleanFlag - (longlong)SystemResultBuffer) {
-      pNetworkRequestStatus = pcVar3 + LongValue;
+    if (MemoryAddressValue == (longlong)pBooleanFlag - (longlong)SystemResultBuffer) {
+      pNetworkRequestStatus = pcVar3 + MemoryAddressValue;
       if (pNetworkRequestStatus <= pcVar3) goto Label_18063182e;
-      LongValue = (longlong)SystemResultBuffer - (longlong)pcVar3;
-      while (*pcVar3 == pcVar3[LongValue]) {
+      MemoryAddressValue = (longlong)SystemResultBuffer - (longlong)pcVar3;
+      while (*pcVar3 == pcVar3[MemoryAddressValue]) {
         pcVar3 = pcVar3 + 1;
         if (pNetworkRequestStatus <= pcVar3) goto Label_18063182e;
       }
     }
-    SystemTertiaryParameter = (uint64_t *)SystemTertiaryParameter[0xb];
-    if (SystemTertiaryParameter == (uint64_t *)0x0) {
+    SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
+    if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
       return in_R11D;
     }
   } while( true );
@@ -11573,9 +11573,9 @@ int SystemBufferVerifyData(uint64_t BufferId, uint64_t VerifyData, uint64_t *Res
   char *pBooleanFlag;
   int in_R11D;
   do {
-    SystemTertiaryParameter = (uint64_t *)SystemTertiaryParameter[0xb];
+    SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
 Label_18063182e:
-    if (SystemTertiaryParameter == (uint64_t *)0x0) {
+    if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
       return in_R11D;
     }
     in_R11D = in_R11D + 1;
@@ -11586,30 +11586,30 @@ Label_18063182e:
     pBooleanFlag = pBooleanFlag + 1;
     BooleanCheck = *pBooleanFlag;
   }
-  SystemTertiaryParameter = (uint64_t *)SystemTertiaryParameter[0xb];
-  if (SystemTertiaryParameter == (uint64_t *)0x0) {
+  SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
+  if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
     return in_R11D;
   }
   do {
-    if ((char *)*SystemTertiaryParameter == (char *)0x0) {
-      LongValue = 0;
+    if ((char *)*SystemTertiaryDataPointer == (char *)0x0) {
+      MemoryAddressValue = 0;
       pcVar3 = SystemContextPointer;
     }
     else {
-      LongValue = SystemTertiaryParameter[2];
-      pcVar3 = (char *)*SystemTertiaryParameter;
+      MemoryAddressValue = SystemTertiaryDataPointer[2];
+      pcVar3 = (char *)*SystemTertiaryDataPointer;
     }
-    if (LongValue == (longlong)pBooleanFlag - (longlong)SystemResultBuffer) {
-      pNetworkRequestStatus = pcVar3 + LongValue;
+    if (MemoryAddressValue == (longlong)pBooleanFlag - (longlong)SystemResultBuffer) {
+      pNetworkRequestStatus = pcVar3 + MemoryAddressValue;
       if (pNetworkRequestStatus <= pcVar3) goto Label_18063182e;
-      LongValue = (longlong)SystemResultBuffer - (longlong)pcVar3;
-      while (*pcVar3 == pcVar3[LongValue]) {
+      MemoryAddressValue = (longlong)SystemResultBuffer - (longlong)pcVar3;
+      while (*pcVar3 == pcVar3[MemoryAddressValue]) {
         pcVar3 = pcVar3 + 1;
         if (pNetworkRequestStatus <= pcVar3) goto Label_18063182e;
       }
     }
-    SystemTertiaryParameter = (uint64_t *)SystemTertiaryParameter[0xb];
-    if (SystemTertiaryParameter == (uint64_t *)0x0) {
+    SystemTertiaryDataPointer = (uint64_t *)SystemTertiaryDataPointer[0xb];
+    if (SystemTertiaryDataPointer == (uint64_t *)0x0) {
       return in_R11D;
     }
   } while( true );
@@ -11633,16 +11633,16 @@ longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong 
   if (ModuleInitializationResult == 0) {
     return 0;
   }
-  LongValue = 0x180d48d24;
+  MemoryAddressValue = 0x180d48d24;
   if (*(longlong *)(ModuleInitializationResult + 8) != 0) {
-    LongValue = *(longlong *)(ModuleInitializationResult + 8);
+    MemoryAddressValue = *(longlong *)(ModuleInitializationResult + 8);
   }
-  InitializeSystemBuffer(&pStackCounter4,LongValue);
+  InitializeSystemBuffer(&pStackCounter4,MemoryAddressValue);
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
-      LongCounter = strchr(&SystemStringProcessingBuffer,(int)pcStack_28[ModuleInitializationResult]);
-      if (LongCounter != 0) {
+      MemoryCounterValue = strchr(&SystemStringProcessingBuffer,(int)pcStack_28[ModuleInitializationResult]);
+      if (MemoryCounterValue != 0) {
         pcStack_28[ModuleInitializationResult] = ' ';
       }
       ModuleInitializationResult = ModuleInitializationResult + 1;
@@ -11652,12 +11652,12 @@ longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong 
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&SystemMemoryAllocationBufferPrimary,SystemTertiaryParameter,SystemTertiaryParameter + 4,MemoryAllocationResult);
+  ProcessMemoryAllocation(pcVar3,&SystemMemoryAllocationBufferPrimary,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4,MemoryAllocationResult);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
   }
-  return LongValue;
+  return MemoryAddressValue;
 }
 longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong configData)
 {
@@ -11671,16 +11671,16 @@ longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong confi
   if (ModuleInitializationResult == 0) {
     return 0;
   }
-  LongValue = 0x180d48d24;
+  MemoryAddressValue = 0x180d48d24;
   if (*(longlong *)(ModuleInitializationResult + 8) != 0) {
-    LongValue = *(longlong *)(ModuleInitializationResult + 8);
+    MemoryAddressValue = *(longlong *)(ModuleInitializationResult + 8);
   }
-  InitializeSystemBuffer(&pStackCounter4,LongValue);
+  InitializeSystemBuffer(&pStackCounter4,MemoryAddressValue);
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
-      LongCounter = strchr(&SystemMemoryProcessingBuffer,(int)pcStack_28[ModuleInitializationResult]);
-      if (LongCounter != 0) {
+      MemoryCounterValue = strchr(&SystemMemoryProcessingBuffer,(int)pcStack_28[ModuleInitializationResult]);
+      if (MemoryCounterValue != 0) {
         pcStack_28[ModuleInitializationResult] = ' ';
       }
       ModuleInitializationResult = ModuleInitializationResult + 1;
@@ -11690,12 +11690,12 @@ longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong confi
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigA,SystemTertiaryParameter,SystemTertiaryParameter + 4,SystemTertiaryParameter + 8);
+  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigA,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4,SystemTertiaryDataPointer + 8);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
   }
-  return LongValue;
+  return MemoryAddressValue;
 }
 longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong configData, uint64_t flags)
 {
@@ -11705,20 +11705,20 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
   longlong DataValue;
   void *pStackCounter4;
   char *pcStack_28;
-  ModuleInitializationResult = ProcessSystemInitializationData(SystemParameterPointer,&SystemInitializationDataBuffer,SystemTertiaryParameter,SystemQuaternaryParameter,SystemMutexFlags);
+  ModuleInitializationResult = ProcessSystemInitializationData(SystemContextDataPointer,&SystemInitializationDataBuffer,SystemTertiaryDataPointer,SystemQuaternaryDataPointer,SystemMutexFlags);
   if (ModuleInitializationResult == 0) {
     return 0;
   }
-  LongValue = 0x180d48d24;
+  MemoryAddressValue = 0x180d48d24;
   if (*(longlong *)(ModuleInitializationResult + 8) != 0) {
-    LongValue = *(longlong *)(ModuleInitializationResult + 8);
+    MemoryAddressValue = *(longlong *)(ModuleInitializationResult + 8);
   }
-  InitializeSystemBuffer(&pStackCounter4,LongValue);
+  InitializeSystemBuffer(&pStackCounter4,MemoryAddressValue);
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
-      LongCounter = strchr(&SystemMemoryManagementBuffer,(int)pcStack_28[ModuleInitializationResult]);
-      if (LongCounter != 0) {
+      MemoryCounterValue = strchr(&SystemMemoryManagementBuffer,(int)pcStack_28[ModuleInitializationResult]);
+      if (MemoryCounterValue != 0) {
         pcStack_28[ModuleInitializationResult] = ' ';
       }
       ModuleInitializationResult = ModuleInitializationResult + 1;
@@ -11728,12 +11728,12 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigB,SystemTertiaryParameter,SystemTertiaryParameter + 4);
+  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigB,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
   }
-  return LongValue;
+  return MemoryAddressValue;
 }
 longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong configData)
 {
@@ -11746,33 +11746,33 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
   void *pStackCounter4;
   char *pcStack_28;
   memoryValidationResult = SystemMutexFlags;
-  LongCounter = ProcessSystemInitializationData();
-  if (LongCounter == 0) {
+  MemoryCounterValue = ProcessSystemInitializationData();
+  if (MemoryCounterValue == 0) {
     return 0;
   }
   LongLoop = 0x180d48d24;
-  if (*(longlong *)(LongCounter + 8) != 0) {
-    LongLoop = *(longlong *)(LongCounter + 8);
+  if (*(longlong *)(MemoryCounterValue + 8) != 0) {
+    LongLoop = *(longlong *)(MemoryCounterValue + 8);
   }
   InitializeSystemBuffer(&pStackCounter4,LongLoop);
   if (*pcStack_28 != '\0') {
-    LongCounter = 0;
+    MemoryCounterValue = 0;
     do {
-      LongIndex = strchr(&SystemMemoryProcessingBuffer,(int)pcStack_28[LongCounter]);
-      if (LongIndex != 0) {
-        pcStack_28[LongCounter] = ' ';
+      MemoryIndexValue = strchr(&SystemMemoryProcessingBuffer,(int)pcStack_28[MemoryCounterValue]);
+      if (MemoryIndexValue != 0) {
+        pcStack_28[MemoryCounterValue] = ' ';
       }
       stringLength = stringLength + 1;
-    } while (pcStack_28[LongCounter] != '\0');
+    } while (pcStack_28[MemoryCounterValue] != '\0');
   }
   pcVar4 = "";
   if (pcStack_28 != (char *)0x0) {
     pcVar4 = pcStack_28;
   }
-  LoopCounter = ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigC,SystemTertiaryParameter,SystemTertiaryParameter + 4,SystemTertiaryParameter + 8,
-                        (uint32_t *)(SystemTertiaryParameter + 0xc),ConsoleWindowHandle);
+  LoopCounter = ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigC,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4,SystemTertiaryDataPointer + 8,
+                        (uint32_t *)(SystemTertiaryDataPointer + 0xc),ConsoleWindowHandle);
   if (LoopCounter == 3) {
-    *(uint32_t *)(SystemTertiaryParameter + 0xc) = SystemFloatOneValue;
+    *(uint32_t *)(SystemTertiaryDataPointer + 0xc) = SystemFloatOneValue;
   }
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
@@ -11790,20 +11790,20 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
   void *pStackCounter4;
   char *pcStack_28;
   MemoryAllocationResult = SystemMutexFlags;
-  ModuleInitializationResult = ProcessSystemInitializationData(SystemParameterPointer,&SystemInitializationBuffer1);
+  ModuleInitializationResult = ProcessSystemInitializationData(SystemContextDataPointer,&SystemInitializationBuffer1);
   if (ModuleInitializationResult == 0) {
     return 0;
   }
-  LongValue = 0x180d48d24;
+  MemoryAddressValue = 0x180d48d24;
   if (*(longlong *)(ModuleInitializationResult + 8) != 0) {
-    LongValue = *(longlong *)(ModuleInitializationResult + 8);
+    MemoryAddressValue = *(longlong *)(ModuleInitializationResult + 8);
   }
-  InitializeSystemBuffer(&pStackCounter4,LongValue);
+  InitializeSystemBuffer(&pStackCounter4,MemoryAddressValue);
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
-      LongCounter = strchr(&SystemMemoryManagementBuffer,(int)pcStack_28[ModuleInitializationResult]);
-      if (LongCounter != 0) {
+      MemoryCounterValue = strchr(&SystemMemoryManagementBuffer,(int)pcStack_28[ModuleInitializationResult]);
+      if (MemoryCounterValue != 0) {
         pcStack_28[ModuleInitializationResult] = ' ';
       }
       ModuleInitializationResult = ModuleInitializationResult + 1;
@@ -11813,12 +11813,12 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
   if (pcStack_28 != (char *)0x0) {
     pcVar3 = pcStack_28;
   }
-  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigC,SystemTertiaryParameter + 4,SystemTertiaryParameter + 8,SystemTertiaryParameter + 0xc,SystemTertiaryParameter,MemoryAllocationResult);
+  ProcessMemoryAllocation(pcVar3,&MemoryAllocationConfigC,SystemTertiaryDataPointer + 4,SystemTertiaryDataPointer + 8,SystemTertiaryDataPointer + 0xc,SystemTertiaryDataPointer,MemoryAllocationResult);
   pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
   }
-  return LongValue;
+  return MemoryAddressValue;
 }
 longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong configData)
 {
@@ -11829,19 +11829,19 @@ longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong c
   longlong LongLoop;
   void *pStackCounter4;
   char *pcStack_28;
-  LongCounter = ProcessSystemInitializationData();
-  if (LongCounter != 0) {
-    pModuleInitializationResult = (longlong *)(LongCounter + 8);
-    LongCounter = 0x180d48d24;
+  MemoryCounterValue = ProcessSystemInitializationData();
+  if (MemoryCounterValue != 0) {
+    pModuleInitializationResult = (longlong *)(MemoryCounterValue + 8);
+    MemoryCounterValue = 0x180d48d24;
     if (*pModuleInitializationResult != 0) {
-      LongCounter = *pModuleInitializationResult;
+      MemoryCounterValue = *pModuleInitializationResult;
     }
-    InitializeSystemBuffer(&pStackCounter4,LongCounter);
+    InitializeSystemBuffer(&pStackCounter4,MemoryCounterValue);
     if (*pcStack_28 != '\0') {
       LongLoop = 0;
       do {
-        LongIndex = strchr(&SystemMemoryManagementBuffer,(int)pcStack_28[LongLoop]);
-        if (LongIndex != 0) {
+        MemoryIndexValue = strchr(&SystemMemoryManagementBuffer,(int)pcStack_28[LongLoop]);
+        if (MemoryIndexValue != 0) {
           pcStack_28[LongLoop] = ' ';
         }
         LongLoop = LongLoop + 1;
@@ -11851,14 +11851,14 @@ longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong c
     if (pcStack_28 != (char *)0x0) {
       pcVar4 = pcStack_28;
     }
-    ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigD,SystemTertiaryParameter,SystemTertiaryParameter + 4,SystemTertiaryParameter + 8,SystemTertiaryParameter + 0x10,
-                  SystemTertiaryParameter + 0x14,SystemTertiaryParameter + 0x18,SystemTertiaryParameter + 0x20,SystemTertiaryParameter + 0x24,SystemTertiaryParameter + 0x28);
+    ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigD,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4,SystemTertiaryDataPointer + 8,SystemTertiaryDataPointer + 0x10,
+                  SystemTertiaryDataPointer + 0x14,SystemTertiaryDataPointer + 0x18,SystemTertiaryDataPointer + 0x20,SystemTertiaryDataPointer + 0x24,SystemTertiaryDataPointer + 0x28);
     pStackCounter4 = &SystemNullPointer;
     if (pcStack_28 != (char *)0x0) {
       CleanupSystemResources();
     }
   }
-  return LongCounter;
+  return MemoryCounterValue;
 }
 longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong configData)
 {
@@ -11871,19 +11871,19 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
   void *pStackCounter3;
   char *pcStack_50;
   memoryValidationResult = SystemMutexFlags;
-  LongCounter = ProcessSystemInitializationData();
-  if (LongCounter != 0) {
-    pModuleInitializationResult = (longlong *)(LongCounter + 8);
-    LongCounter = 0x180d48d24;
+  MemoryCounterValue = ProcessSystemInitializationData();
+  if (MemoryCounterValue != 0) {
+    pModuleInitializationResult = (longlong *)(MemoryCounterValue + 8);
+    MemoryCounterValue = 0x180d48d24;
     if (*pModuleInitializationResult != 0) {
-      LongCounter = *pModuleInitializationResult;
+      MemoryCounterValue = *pModuleInitializationResult;
     }
-    InitializeSystemBuffer(&pStackCounter3,LongCounter);
+    InitializeSystemBuffer(&pStackCounter3,MemoryCounterValue);
     if (*pcStack_50 != '\0') {
       LongLoop = 0;
       do {
-        LongIndex = strchr(&SystemMemoryManagementBuffer,(int)pcStack_50[LongLoop]);
-        if (LongIndex != 0) {
+        MemoryIndexValue = strchr(&SystemMemoryManagementBuffer,(int)pcStack_50[LongLoop]);
+        if (MemoryIndexValue != 0) {
           pcStack_50[LongLoop] = ' ';
         }
         LongLoop = LongLoop + 1;
@@ -11893,16 +11893,16 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
     if (pcStack_50 != (char *)0x0) {
       pcVar4 = pcStack_50;
     }
-    ProcessMemoryAllocation(pcVar4,&SystemMemoryAllocationBuffer,SystemTertiaryParameter,SystemTertiaryParameter + 4,SystemTertiaryParameter + 8,SystemTertiaryParameter + 0xc,SystemTertiaryParameter + 0x10
-                  ,SystemTertiaryParameter + 0x14,SystemTertiaryParameter + 0x18,SystemTertiaryParameter + 0x1c,SystemTertiaryParameter + 0x20,SystemTertiaryParameter + 0x24,
-                  SystemTertiaryParameter + 0x28,SystemTertiaryParameter + 0x2c,SystemTertiaryParameter + 0x30,SystemTertiaryParameter + 0x34,SystemTertiaryParameter + 0x38,
-                  SystemTertiaryParameter + 0x3c,LongCounter,ConsoleWindowHandle);
+    ProcessMemoryAllocation(pcVar4,&SystemMemoryAllocationBuffer,SystemTertiaryDataPointer,SystemTertiaryDataPointer + 4,SystemTertiaryDataPointer + 8,SystemTertiaryDataPointer + 0xc,SystemTertiaryDataPointer + 0x10
+                  ,SystemTertiaryDataPointer + 0x14,SystemTertiaryDataPointer + 0x18,SystemTertiaryDataPointer + 0x1c,SystemTertiaryDataPointer + 0x20,SystemTertiaryDataPointer + 0x24,
+                  SystemTertiaryDataPointer + 0x28,SystemTertiaryDataPointer + 0x2c,SystemTertiaryDataPointer + 0x30,SystemTertiaryDataPointer + 0x34,SystemTertiaryDataPointer + 0x38,
+                  SystemTertiaryDataPointer + 0x3c,MemoryCounterValue,ConsoleWindowHandle);
     pStackCounter3 = &SystemNullPointer;
     if (pcStack_50 != (char *)0x0) {
       CleanupSystemResources();
     }
   }
-  return LongCounter;
+  return MemoryCounterValue;
 }
 longlong SystemBufferOperate(uint64_t bufferId, uint64_t operateData, uint64_t *resultData)
 {
@@ -11911,17 +11911,17 @@ longlong SystemBufferOperate(uint64_t bufferId, uint64_t operateData, uint64_t *
   uint64_t *StringProcessingResultPointer;
   longlong DataValue;
   uint8_t aStackCounter5 [16];
-  LongCounter = ProcessSystemInitializationData();
-  if (LongCounter != 0) {
-    LongValue = 0x180d48d24;
-    if (*(longlong *)(LongCounter + 8) != 0) {
-      LongValue = *(longlong *)(LongCounter + 8);
+  MemoryCounterValue = ProcessSystemInitializationData();
+  if (MemoryCounterValue != 0) {
+    MemoryAddressValue = 0x180d48d24;
+    if (*(longlong *)(MemoryCounterValue + 8) != 0) {
+      MemoryAddressValue = *(longlong *)(MemoryCounterValue + 8);
     }
-    StringProcessingResultPointer = (uint64_t *)ProcessStringData(aStackCounter5,LongValue);
+    StringProcessingResultPointer = (uint64_t *)ProcessStringData(aStackCounter5,MemoryAddressValue);
     MemoryAddress = StringProcessingResultPointer[1];
-    *SystemTertiaryParameter = *StringProcessingResultPointer;
-    SystemTertiaryParameter[1] = MemoryAddress;
-    return LongValue;
+    *SystemTertiaryDataPointer = *StringProcessingResultPointer;
+    SystemTertiaryDataPointer[1] = MemoryAddress;
+    return MemoryAddressValue;
   }
   return 0;
 }
@@ -11935,7 +11935,7 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   uint8_t SystemByteArray [8];
   StringProcessingResult = 0x180d48d24;
   if (!in_ZF) {
-    StringProcessingResult = SystemParameterPointer;
+    StringProcessingResult = SystemContextDataPointer;
   }
   SystemContextData = (uint64_t *)ProcessStringData(SystemByteArray,StringProcessingResult);
   MemoryAddress = SystemContextData[1];
@@ -11946,21 +11946,21 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   SystemModuleConfigFlag14 = 0;
   GetSystemConfigurationTemplate(GetSystemConfigurationTemplate);
   ProcessSystemConfigurationData(&SystemDataConfigurationBuffer);
-  LongIndex = 0;
+  MemoryIndexValue = 0;
   SystemConfigFunctionPointer1 = GetSystemConfigurationData;
   pMemoryAddress = (uint32_t *)&SystemModuleConfigDataBuffer;
-  LongCounter = 0x16;
+  MemoryCounterValue = 0x16;
   do {
     if (pMemoryAddress[1] == 0) {
       ProcessBufferSize(pMemoryAddress);
     }
-    if (LongIndex != 2) {
+    if (MemoryIndexValue != 2) {
       HandleSystemConfigurationData(&SystemDatabaseConfiguration,*(uint64_t *)(pMemoryAddress + 4),*pMemoryAddress);
     }
-    LongIndex = LongIndex + 1;
+    MemoryIndexValue = MemoryIndexValue + 1;
     pMemoryAddress = pMemoryAddress + 6;
-    LongCounter = LongCounter + -1;
-  } while (LongCounter != 0);
+    MemoryCounterValue = MemoryCounterValue + -1;
+  } while (MemoryCounterValue != 0);
   if (SystemMemoryConfigFlag1 == 0) {
     ProcessBufferSize(&SystemMemoryConfigBuffer1);
   }
@@ -11995,11 +11995,11 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   InitializeSystemModules();
   HandleSystemConfigurationData(&SystemConfigDataHandle,0);
   FinalizeSystemInitialization();
-  pLongIndex = (longlong *)GetSystemModuleInfo();
-  if ((void *)(*pLongIndex + 0x3d8) == &SystemModuleDataBuffer) {
+  pMemoryIndexValue = (longlong *)GetSystemModuleInfo();
+  if ((void *)(*pMemoryIndexValue + 0x3d8) == &SystemModuleDataBuffer) {
     memset(&SystemModuleDataBuffer,0,0x240);
   }
-  memset((void *)(*pLongIndex + 0x3d8),0,0x240);
+  memset((void *)(*pMemoryIndexValue + 0x3d8),0,0x240);
 }
   SystemConfigFlag9 = 1;
   FlsSetValue(SystemConfigBufferSize1,0);
@@ -12041,12 +12041,12 @@ uint32_t SystemGetDeviceParameter(int deviceId)
   stringLength = -1;
   do {
     stringLength = stringLength + 1;
-  } while (*(char *)(SystemContextPointer + LongCounter) != '\0');
+  } while (*(char *)(SystemContextPointer + MemoryCounterValue) != '\0');
   MemoryAddress = (uint)stringLength;
   if (0x1fff < MemoryAddress) {
     MemoryAddress = 0x1fff;
   }
-  memcpy(&SystemConfigurationDataBuffer,SystemParameterPointer,(longlong)(int)MemoryAddress);
+  memcpy(&SystemConfigurationDataBuffer,SystemContextDataPointer,(longlong)(int)MemoryAddress);
 }
   SystemConfigFlag10 = 0;
   return;
@@ -12083,61 +12083,61 @@ longlong SystemMemoryFree(longlong *memoryPtr)
   longlong LoopCounter;
   longlong IndexValue;
   ulonglong NetworkRequestResult;
-  LongCounter = MemoryValidateEx();
-  LongIndex = SystemInitializationCounter;
+  MemoryCounterValue = MemoryValidateEx();
+  MemoryIndexValue = SystemInitializationCounter;
   LOCK();
-  LongCounter = SystemInitializationCounter - LongCounter;
-  SystemInitializationCounter = LongCounter;
+  MemoryCounterValue = SystemInitializationCounter - MemoryCounterValue;
+  SystemInitializationCounter = MemoryCounterValue;
   UNLOCK();
   if (memoryPtr == (longlong *)0x0) {
-    return LongIndex;
+    return MemoryIndexValue;
   }
   NetworkRequestResult = (ulonglong)memoryPtr & 0xffffffffffc00000;
   if (NetworkRequestResult != 0) {
-    LongCounter = NetworkRequestResult + 0x80 + ((longlong)memoryPtr - NetworkRequestResult >> 0x10) * 0x50;
-    LongCounter = LongCounter - (ulonglong)*(uint *)(LongCounter + 4);
-    if ((*(void ***)(NetworkRequestResult + 0x70) == &ExceptionList) && (*(char *)(LongCounter + 0xe) == '\0')) {
-      LongIndex = *(longlong *)(LongCounter + 0x20);
-      *memoryPtr = LongIndex;
-      *(longlong **)(LongCounter + 0x20) = memoryPtr;
-      pLoopCounter = (int *)(LongCounter + 0x18);
+    MemoryCounterValue = NetworkRequestResult + 0x80 + ((longlong)memoryPtr - NetworkRequestResult >> 0x10) * 0x50;
+    MemoryCounterValue = MemoryCounterValue - (ulonglong)*(uint *)(MemoryCounterValue + 4);
+    if ((*(void ***)(NetworkRequestResult + 0x70) == &ExceptionList) && (*(char *)(MemoryCounterValue + 0xe) == '\0')) {
+      MemoryIndexValue = *(longlong *)(MemoryCounterValue + 0x20);
+      *memoryPtr = MemoryIndexValue;
+      *(longlong **)(MemoryCounterValue + 0x20) = memoryPtr;
+      pLoopCounter = (int *)(MemoryCounterValue + 0x18);
       *pLoopCounter = *pLoopCounter + -1;
       if (*pLoopCounter == 0) {
-        LongIndex = GetSystemStatus();
-        return LongIndex;
+        MemoryIndexValue = GetSystemStatus();
+        return MemoryIndexValue;
       }
     }
     else {
-      LongIndex = ProcessNetworkRequestData(NetworkRequestResult,CONCAT71(0xff000000,
+      MemoryIndexValue = ProcessNetworkRequestData(NetworkRequestResult,CONCAT71(0xff000000,
                                                  *(void ***)(NetworkRequestResult + 0x70) == &ExceptionList),
                                   memoryPtr,NetworkRequestResult,SystemMutexFlags);
     }
   }
-  return LongIndex;
+  return MemoryIndexValue;
 }
       SystemInitializationFlag = '\x01';
-      SystemParameterPointer = uStack_378;
+      SystemContextDataPointer = uStack_378;
     }
     pfVar3 = afStack_2e8;
-    LongData = 0;
-    LongAddress = 32;
+    MemoryDataPointer = 0;
+    MemoryAddressPointer = 32;
     SystemStateValue = 32;
     do {
-      fVar28 = SystemFifthParameter * *(float *)(LongData + 0x180d4a0a8);
-      ColorComponentA = SystemFifthParameter * *(float *)(LongData + 0x180d4a0a4);
-      fVar30 = SystemFifthParameter * *(float *)(LongData + 0x180d4a0a0);
-      fVar20 = fVar30 * *SystemTertiaryParameter + ColorComponentA * SystemTertiaryParameter[4] + fVar28 * SystemTertiaryParameter[8] + SystemTertiaryParameter[0xc];
-      fVar21 = fVar30 * SystemTertiaryParameter[1] + ColorComponentA * SystemTertiaryParameter[5] + fVar28 * SystemTertiaryParameter[9] + SystemTertiaryParameter[0xd];
-      ColorComponentG = fVar30 * SystemTertiaryParameter[2] + ColorComponentA * SystemTertiaryParameter[6] + fVar28 * SystemTertiaryParameter[10] + SystemTertiaryParameter[0xe];
-      ColorComponentA = fVar30 * SystemTertiaryParameter[3] + ColorComponentA * SystemTertiaryParameter[7] + fVar28 * SystemTertiaryParameter[0xb] + SystemTertiaryParameter[0xf];
-      *(float *)((longlong)afStack_2e8 + LongData) = fVar20;
-      *(float *)((longlong)afStack_2e8 + LongData + 4) = fVar21;
-      *(float *)((longlong)&uStack_2e0 + LongData) = ColorComponentG;
-      *(float *)((longlong)&uStack_2e0 + LongData + 4) = ColorComponentA;
-      if (SystemSecondaryParameter != 0) {
+      fVar28 = SystemFifthParameter * *(float *)(MemoryDataPointer + 0x180d4a0a8);
+      ColorComponentA = SystemFifthParameter * *(float *)(MemoryDataPointer + 0x180d4a0a4);
+      fVar30 = SystemFifthParameter * *(float *)(MemoryDataPointer + 0x180d4a0a0);
+      fVar20 = fVar30 * *SystemTertiaryDataPointer + ColorComponentA * SystemTertiaryDataPointer[4] + fVar28 * SystemTertiaryDataPointer[8] + SystemTertiaryDataPointer[0xc];
+      fVar21 = fVar30 * SystemTertiaryDataPointer[1] + ColorComponentA * SystemTertiaryDataPointer[5] + fVar28 * SystemTertiaryDataPointer[9] + SystemTertiaryDataPointer[0xd];
+      ColorComponentG = fVar30 * SystemTertiaryDataPointer[2] + ColorComponentA * SystemTertiaryDataPointer[6] + fVar28 * SystemTertiaryDataPointer[10] + SystemTertiaryDataPointer[0xe];
+      ColorComponentA = fVar30 * SystemTertiaryDataPointer[3] + ColorComponentA * SystemTertiaryDataPointer[7] + fVar28 * SystemTertiaryDataPointer[0xb] + SystemTertiaryDataPointer[0xf];
+      *(float *)((longlong)afStack_2e8 + MemoryDataPointer) = fVar20;
+      *(float *)((longlong)afStack_2e8 + MemoryDataPointer + 4) = fVar21;
+      *(float *)((longlong)&uStack_2e0 + MemoryDataPointer) = ColorComponentG;
+      *(float *)((longlong)&uStack_2e0 + MemoryDataPointer + 4) = ColorComponentA;
+      if (SystemSecondaryDataPointer != 0) {
         uStack_378 = uStack_378 & SystemMemoryAlignmentMask;
-        if (*(longlong *)(SystemSecondaryParameter + 0x2908) == 0) {
-          ProcessParameterValidation(SystemSecondaryParameter,pfVar3,0x31b189,&uStack_378);
+        if (*(longlong *)(SystemSecondaryDataPointer + 0x2908) == 0) {
+          ProcessParameterValidation(SystemSecondaryDataPointer,pfVar3,0x31b189,&uStack_378);
           fVar20 = (float)uStack_378;
         }
         else {
@@ -12151,27 +12151,27 @@ longlong SystemMemoryFree(longlong *memoryPtr)
           uStack_360 = CONCAT44(ColorComponentA,ColorComponentG);
           SecurityKey380 = CONCAT31(SecurityKey380._1_3_,1);
           SecurityKey388 = 0;
-          ProcessSystemParameters(SystemSecondaryParameter,&uStack_368,0,auStack_358);
+          ProcessSystemParameters(SystemSecondaryDataPointer,&uStack_368,0,auStack_358);
           fVar20 = fStack_328;
           if (cStack_324 == '\0') {
             fVar20 = 0.0;
           }
         }
-        *(float *)((longlong)&uStack_2e0 + LongData) = fVar20 + 0.01;
+        *(float *)((longlong)&uStack_2e0 + MemoryDataPointer) = fVar20 + 0.01;
       }
       pfVar3 = pfVar3 + 4;
-      LongData = LongData + 0x10;
+      MemoryDataPointer = MemoryDataPointer + 0x10;
       SystemStateValue = SystemStateValue + -1;
     } while (SystemStateValue != 0);
-    fVar20 = SystemTertiaryParameter[0xe];
-    fVar21 = SystemTertiaryParameter[0xd];
-    ColorComponentG = SystemTertiaryParameter[0xc];
-    ColorComponentA = SystemTertiaryParameter[9];
-    fVar28 = SystemTertiaryParameter[8];
-    fVar30 = SystemTertiaryParameter[10];
+    fVar20 = SystemTertiaryDataPointer[0xe];
+    fVar21 = SystemTertiaryDataPointer[0xd];
+    ColorComponentG = SystemTertiaryDataPointer[0xc];
+    ColorComponentA = SystemTertiaryDataPointer[9];
+    fVar28 = SystemTertiaryDataPointer[8];
+    fVar30 = SystemTertiaryDataPointer[10];
     uStack_36c = 0x7f7fffff;
     pfVar3 = afStack_2e8;
-    LongData = 32;
+    MemoryDataPointer = 32;
     do {
       fVar26 = pfVar3[2] - fVar20;
       fVar27 = pfVar3[1] - fVar21;
@@ -12193,15 +12193,15 @@ longlong SystemMemoryFree(longlong *memoryPtr)
       pfVar3[2] = fStack_370;
       pfVar3[3] = 3.4028235e+38;
       pfVar3 = pfVar3 + 4;
-      LongData = LongData + -1;
-    } while (LongData != 0);
-    if (SystemSecondaryParameter != 0) {
+      MemoryDataPointer = MemoryDataPointer + -1;
+    } while (MemoryDataPointer != 0);
+    if (SystemSecondaryDataPointer != 0) {
       pfVar3 = (float *)&uStack_2e0;
       pfVar5 = afStack_2e8;
       do {
         uStack_378 = uStack_378 & SystemMemoryAlignmentMask;
-        if (*(longlong *)(SystemSecondaryParameter + 0x2908) == 0) {
-          ProcessParameterValidation(SystemSecondaryParameter,pfVar5,0x31b189,&uStack_378);
+        if (*(longlong *)(SystemSecondaryDataPointer + 0x2908) == 0) {
+          ProcessParameterValidation(SystemSecondaryDataPointer,pfVar5,0x31b189,&uStack_378);
           fVar20 = (float)uStack_378;
         }
         else {
@@ -12215,7 +12215,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
           uStack_360 = *(uint64_t *)pfVar3;
           SecurityKey380 = CONCAT31(SecurityKey380._1_3_,1);
           SecurityKey388 = 0;
-          ProcessSystemParameters(SystemSecondaryParameter,&uStack_368,0,auStack_358);
+          ProcessSystemParameters(SystemSecondaryDataPointer,&uStack_368,0,auStack_358);
           fVar20 = fStack_328;
           if (cStack_324 == '\0') {
             fVar20 = 0.0;
@@ -12224,32 +12224,32 @@ longlong SystemMemoryFree(longlong *memoryPtr)
         *pfVar3 = fVar20 + 0.01;
         pfVar5 = pfVar5 + 4;
         pfVar3 = pfVar3 + 4;
-        LongAddress = LongAddress + -1;
-      } while (LongAddress != 0);
+        MemoryAddressPointer = MemoryAddressPointer + -1;
+      } while (MemoryAddressPointer != 0);
     }
     NetworkRequestResult = 0;
-    LongData = 0;
+    MemoryDataPointer = 0;
     do {
       SystemStateValue = 0;
       if (NetworkRequestResult != 0x1f) {
-        SystemStateValue = LongData + 1;
+        SystemStateValue = MemoryDataPointer + 1;
       }
-      if (((SystemParameterPointer2 == '\0') || ((NetworkRequestResult & 1) != 0)) &&
+      if (((SystemContextDataPointer2 == '\0') || ((NetworkRequestResult & 1) != 0)) &&
          (NetworkRequestStatus = CalculateSystemValue((double)((float)(int)NetworkRequestResult * 0.19634955),SUB84((double)SystemSixthParameter,0),
                                 (double)SystemSeventhParameter), NetworkRequestStatus != '\0')) {
-        fStack_370 = *(float *)(&uStack_2e0 + SystemStateValue * 2) - *(float *)(&uStack_2e0 + LongData * 2);
-        uStack_378 = CONCAT44(afStack_2e8[SystemStateValue * 4 + 1] - afStack_2e8[LongData * 4 + 1],
-                              afStack_2e8[SystemStateValue * 4] - afStack_2e8[LongData * 4]);
+        fStack_370 = *(float *)(&uStack_2e0 + SystemStateValue * 2) - *(float *)(&uStack_2e0 + MemoryDataPointer * 2);
+        uStack_378 = CONCAT44(afStack_2e8[SystemStateValue * 4 + 1] - afStack_2e8[MemoryDataPointer * 4 + 1],
+                              afStack_2e8[SystemStateValue * 4] - afStack_2e8[MemoryDataPointer * 4]);
         uStack_36c = 0x7f7fffff;
         SecurityKey380 = 0;
-        SecurityKey388 = CONCAT31(SecurityKey388._1_3_,SystemParameterPointer1);
-        ProcessSystemValidation(SystemParameterPointer,afStack_2e8 + LongData * 4,&uStack_378,SystemEighthParameter);
+        SecurityKey388 = CONCAT31(SecurityKey388._1_3_,SystemContextDataPointer1);
+        ProcessSystemValidation(SystemContextDataPointer,afStack_2e8 + MemoryDataPointer * 4,&uStack_378,SystemEighthParameter);
       }
       NetworkRequestResult = NetworkRequestResult + 1;
-      LongData = LongData + 1;
+      MemoryDataPointer = MemoryDataPointer + 1;
     } while ((int)NetworkRequestResult < 0x20);
   }
-  StringIndex = _Mtx_unlock(SystemParameterPointer);
+  StringIndex = _Mtx_unlock(SystemContextDataPointer);
   if (StringIndex != 0) {
     __Throw_C_error_std__YAXH_Z(StringIndex);
   }
@@ -12257,7 +12257,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
 }
                     NetworkRequestStatusCounter = NetworkRequestStatusCounter + NetworkRequestStatus2;
                     if (NetworkRequestStatusCounter != '\0' && ValidationStatusByte7 == NetworkRequestStatusCounter < '\0') {
-                      out((short)SystemSecondaryParameter,LoopCounter1);
+                      out((short)SystemSecondaryDataPointer,LoopCounter1);
                       halt_baddata();
                     }
                     in_OF = SCARRY1((char)*SystemContextPointer,NetworkRequestStatus4);
@@ -12282,7 +12282,7 @@ Label_180768051:
             in_RAX = (int *)CONCAT71((int7)((ulonglong)in_RAX >> 8),NetworkRequestStatus0 + NetworkRequestStatus4);
 Label_180768028_1:
             pStringIndex = (int *)(((ulonglong)in_RAX & SystemAddressAlignment32Mask) - 0x75);
-            *pStringIndex = *pStringIndex + (int)SystemParameterPointer;
+            *pStringIndex = *pStringIndex + (int)SystemContextDataPointer;
             *(int *)(((ulonglong)in_RAX & SystemAddressAlignment32Mask) - 0x17ffffff) = (int)SystemContextData3;
             halt_baddata();
           }
@@ -12290,20 +12290,20 @@ Label_180768028_1:
       }
     }
   }
-  SystemQuaternaryParameter = 0x266;
+  SystemQuaternaryDataPointer = 0x266;
   *(uint8_t *)((longlong)register0x00000020 + 0x20) = 1;
 Label_18076802d:
   UnsignedValue = *(uint64_t *)(pNetworkRequestStatus3 + 0x1a0);
   *(uint8_t **)((longlong)register0x00000020 + -8) = &Label_180768039;
-  ProcessSystemOperation(UnsignedValue,pNetworkRequestStatus5,SystemTertiaryParameter,SystemQuaternaryParameter);
+  ProcessSystemOperation(UnsignedValue,pNetworkRequestStatus5,SystemTertiaryDataPointer,SystemQuaternaryDataPointer);
 }
     SystemConfigurationStatusFlag = '\x01';
   }
-  if (SystemTertiaryParameter != (int *)0x0) {
-    *SystemTertiaryParameter = ((SystemSecondaryParameter + 1) / 2) * 0x48d0;
+  if (SystemTertiaryDataPointer != (int *)0x0) {
+    *SystemTertiaryDataPointer = ((SystemSecondaryDataPointer + 1) / 2) * 0x48d0;
   }
-  if (SystemQuaternaryParameter != (uint32_t *)0x0) {
-    *SystemQuaternaryParameter = 0x480;
+  if (SystemQuaternaryDataPointer != (uint32_t *)0x0) {
+    *SystemQuaternaryDataPointer = 0x480;
   }
   return 0;
 }
@@ -12404,7 +12404,7 @@ uint64_t SystemDataInitialize(int initFlags)
   pLoopCounter2 = (int *)0x180be5774;
   SecondaryColorProcessingPointer = (float *)SystemColorProcessingStartAddress;
   SystemConfigurationDataAddress = SystemColorProcessingStartAddress;
-  SystemParameterPointer = -SystemParameterPointer;
+  SystemContextDataPointer = -SystemContextDataPointer;
   LoopCounter8 = 2;
   LoopCounter7 = 0x100;
   ModuleInitializationResult5 = 0x140;
@@ -12412,7 +12412,7 @@ uint64_t SystemDataInitialize(int initFlags)
   do {
     MemoryAddress6 = MemoryAddress3;
     if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
-      ColorComponentA = (float)pLoopCounter2[-1] * 1.5258789e-05 * (float)SystemParameterPointer;
+      ColorComponentA = (float)pLoopCounter2[-1] * 1.5258789e-05 * (float)SystemContextDataPointer;
       *SecondaryColorProcessingPointer = ColorComponentA;
       SecondaryColorProcessingPointer[16] = ColorComponentA;
     }
@@ -12420,9 +12420,9 @@ uint64_t SystemDataInitialize(int initFlags)
     if (((byte)MemoryAddress6 & 0x1f) != 0x1f) {
       pfVar5 = SecondaryColorProcessingPointer;
     }
-    LoopCounterValue = -SystemParameterPointer;
+    LoopCounterValue = -SystemContextDataPointer;
     if (((byte)MemoryAddress6 & 0x3f) != 0x3f) {
-      LoopCounterValue = SystemParameterPointer;
+      LoopCounterValue = SystemContextDataPointer;
     }
     if (pfVar5 + 0x20 < (float *)SystemColorProcessingEndAddress) {
       ColorComponentA = (float)*pLoopCounter2 * 1.5258789e-05 * (float)LoopCounterValue;
@@ -12435,26 +12435,26 @@ uint64_t SystemDataInitialize(int initFlags)
     if ((CharValue - 1 & 0x3f) != 0x3f) {
       StringIndex = LoopCounterValue;
     }
-    LongValue = -0xefc;
+    MemoryAddressValue = -0xefc;
     if (MemoryAddress3 != 0x1f) {
-      LongValue = 0x100;
+      MemoryAddressValue = 0x100;
     }
-    SecondaryColorProcessingPointer = (float *)(LongValue + (longlong)pfVar5);
+    SecondaryColorProcessingPointer = (float *)(MemoryAddressValue + (longlong)pfVar5);
     if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
-      LongValue = -0xebc;
+      MemoryAddressValue = -0xebc;
       if (MemoryAddress3 != 0x1f) {
-        LongValue = ModuleInitializationResult5;
+        MemoryAddressValue = ModuleInitializationResult5;
       }
       ColorComponentA = (float)pLoopCounter2[1] * 1.5258789e-05 * (float)StringIndex;
       *SecondaryColorProcessingPointer = ColorComponentA;
-      *(float *)(LongValue + (longlong)pfVar5) = ColorComponentA;
+      *(float *)(MemoryAddressValue + (longlong)pfVar5) = ColorComponentA;
     }
     if ((CharValue & 0x1f) == 0x1f) {
-      LongValue = -0x1ef8;
+      MemoryAddressValue = -0x1ef8;
       if (MemoryAddress3 != 0x1f) {
-        LongValue = -0xefc;
+        MemoryAddressValue = -0xefc;
       }
-      SecondaryColorProcessingPointer = (float *)(LongValue + (longlong)pfVar5);
+      SecondaryColorProcessingPointer = (float *)(MemoryAddressValue + (longlong)pfVar5);
     }
     LoopCounterValue = -StringIndex;
     if ((CharValue & 0x3f) != 0x3f) {
@@ -12466,30 +12466,30 @@ uint64_t SystemDataInitialize(int initFlags)
       SecondaryColorProcessingPointer[0x30] = ColorComponentA;
     }
     MemoryAddress3 = LoopCounter8 + 1U & 0x1f;
-    LongValue = -0xefc;
+    MemoryAddressValue = -0xefc;
     StringIndex = -LoopCounterValue;
     if (((byte)(LoopCounter8 + 1U) & 0x3f) != 0x3f) {
       StringIndex = LoopCounterValue;
     }
     if (MemoryAddress3 != 0x1f) {
-      LongValue = 0x100;
+      MemoryAddressValue = 0x100;
     }
-    pfVar5 = (float *)(LongValue + (longlong)SecondaryColorProcessingPointer);
+    pfVar5 = (float *)(MemoryAddressValue + (longlong)SecondaryColorProcessingPointer);
     if (pfVar5 < (float *)SystemColorProcessingEndAddress) {
-      LongValue = -0xebc;
+      MemoryAddressValue = -0xebc;
       if (MemoryAddress3 != 0x1f) {
-        LongValue = ModuleInitializationResult5;
+        MemoryAddressValue = ModuleInitializationResult5;
       }
       ColorComponentA = (float)pLoopCounter2[3] * 1.5258789e-05 * (float)StringIndex;
       *pfVar5 = ColorComponentA;
-      *(float *)(LongValue + (longlong)SecondaryColorProcessingPointer) = ColorComponentA;
+      *(float *)(MemoryAddressValue + (longlong)SecondaryColorProcessingPointer) = ColorComponentA;
     }
     if ((CharValue + 2 & 0x1f) == 0x1f) {
-      LongValue = -0x1ef8;
+      MemoryAddressValue = -0x1ef8;
       if (MemoryAddress3 != 0x1f) {
-        LongValue = -0xefc;
+        MemoryAddressValue = -0xefc;
       }
-      pfVar5 = (float *)(LongValue + (longlong)SecondaryColorProcessingPointer);
+      pfVar5 = (float *)(MemoryAddressValue + (longlong)SecondaryColorProcessingPointer);
     }
     LoopCounterValue = -StringIndex;
     if ((CharValue + 2 & 0x3f) != 0x3f) {
@@ -12501,30 +12501,30 @@ uint64_t SystemDataInitialize(int initFlags)
       pfVar5[0x30] = ColorComponentA;
     }
     MemoryAddress3 = LoopCounter8 + 3U & 0x1f;
-    LongValue = -0xefc;
+    MemoryAddressValue = -0xefc;
     StringIndex = -LoopCounterValue;
     if (((byte)(LoopCounter8 + 3U) & 0x3f) != 0x3f) {
       StringIndex = LoopCounterValue;
     }
     if (MemoryAddress3 != 0x1f) {
-      LongValue = 0x100;
+      MemoryAddressValue = 0x100;
     }
-    SecondaryColorProcessingPointer = (float *)(LongValue + (longlong)pfVar5);
+    SecondaryColorProcessingPointer = (float *)(MemoryAddressValue + (longlong)pfVar5);
     if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
-      LongValue = -0xebc;
+      MemoryAddressValue = -0xebc;
       if (MemoryAddress3 != 0x1f) {
-        LongValue = ModuleInitializationResult5;
+        MemoryAddressValue = ModuleInitializationResult5;
       }
       ColorComponentA = (float)pLoopCounter2[5] * 1.5258789e-05 * (float)StringIndex;
       *SecondaryColorProcessingPointer = ColorComponentA;
-      *(float *)(LongValue + (longlong)pfVar5) = ColorComponentA;
+      *(float *)(MemoryAddressValue + (longlong)pfVar5) = ColorComponentA;
     }
     if ((CharValue + 4 & 0x1f) == 0x1f) {
-      LongValue = -0x1ef8;
+      MemoryAddressValue = -0x1ef8;
       if (MemoryAddress3 != 0x1f) {
-        LongValue = -0xefc;
+        MemoryAddressValue = -0xefc;
       }
-      SecondaryColorProcessingPointer = (float *)(LongValue + (longlong)pfVar5);
+      SecondaryColorProcessingPointer = (float *)(MemoryAddressValue + (longlong)pfVar5);
     }
     LoopCounterValue = -StringIndex;
     if ((CharValue + 4 & 0x3f) != 0x3f) {
@@ -12535,16 +12535,16 @@ uint64_t SystemDataInitialize(int initFlags)
       SecondaryColorProcessingPointer[32] = ColorComponentA;
       SecondaryColorProcessingPointer[0x30] = ColorComponentA;
     }
-    SystemParameterPointer = -LoopCounterValue;
+    SystemContextDataPointer = -LoopCounterValue;
     if ((CharValue + 5 & 0x3f) != 0x3f) {
-      SystemParameterPointer = LoopCounterValue;
+      SystemContextDataPointer = LoopCounterValue;
     }
-    LongValue = -0xefc;
+    MemoryAddressValue = -0xefc;
     if ((CharValue + 5 & 0x1f) != 0x1f) {
-      LongValue = 0x100;
+      MemoryAddressValue = 0x100;
     }
     MemoryAddress3 = MemoryAddress6 + 8;
-    SecondaryColorProcessingPointer = (float *)(LongValue + (longlong)SecondaryColorProcessingPointer);
+    SecondaryColorProcessingPointer = (float *)(MemoryAddressValue + (longlong)SecondaryColorProcessingPointer);
     LoopCounter8 = LoopCounter8 + 8;
     pLoopCounter2 = pLoopCounter2 + 8;
   } while (LoopCounter8 < 0x102);
@@ -12555,7 +12555,7 @@ uint64_t SystemDataInitialize(int initFlags)
       LoopCounter7 = (0x3f - (0x1fc - MemoryAddress3 >> 2)) * 4;
       do {
         if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
-          ColorComponentA = (float)pLoopCounter2[2] * 1.5258789e-05 * (float)SystemParameterPointer;
+          ColorComponentA = (float)pLoopCounter2[2] * 1.5258789e-05 * (float)SystemContextDataPointer;
           *SecondaryColorProcessingPointer = ColorComponentA;
           SecondaryColorProcessingPointer[16] = ColorComponentA;
         }
@@ -12571,9 +12571,9 @@ uint64_t SystemDataInitialize(int initFlags)
         if ((int)StringProcessingResult < 0) {
           StringProcessingResult = (StringProcessingResult - 1 | 0xffffffc0) + 1;
         }
-        LoopCounter8 = -SystemParameterPointer;
+        LoopCounter8 = -SystemContextDataPointer;
         if (StringProcessingResult != 0x3f) {
-          LoopCounter8 = SystemParameterPointer;
+          LoopCounter8 = SystemContextDataPointer;
         }
         if (pfVar5 + 0x20 < (float *)SystemColorProcessingEndAddress) {
           ColorComponentA = (float)pLoopCounter2[1] * 1.5258789e-05 * (float)LoopCounter8;
@@ -12592,30 +12592,30 @@ uint64_t SystemDataInitialize(int initFlags)
         if (UnsignedIndex != 0x3f) {
           LoopCounterValue = LoopCounter8;
         }
-        LongValue = -0xefc;
+        MemoryAddressValue = -0xefc;
         if (StringProcessingResult != 0x1f) {
-          LongValue = 0x100;
+          MemoryAddressValue = 0x100;
         }
-        SecondaryColorProcessingPointer = (float *)(LongValue + (longlong)pfVar5);
+        SecondaryColorProcessingPointer = (float *)(MemoryAddressValue + (longlong)pfVar5);
         if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
-          LongValue = -0xebc;
+          MemoryAddressValue = -0xebc;
           if (StringProcessingResult != 0x1f) {
-            LongValue = ModuleInitializationResult5;
+            MemoryAddressValue = ModuleInitializationResult5;
           }
           ColorComponentA = (float)*pLoopCounter2 * 1.5258789e-05 * (float)LoopCounterValue;
           *SecondaryColorProcessingPointer = ColorComponentA;
-          *(float *)(LongValue + (longlong)pfVar5) = ColorComponentA;
+          *(float *)(MemoryAddressValue + (longlong)pfVar5) = ColorComponentA;
         }
         UnsignedIndex = MemoryAddress6 & 0x8000001f;
         if ((int)UnsignedIndex < 0) {
           UnsignedIndex = (UnsignedIndex - 1 | 0xffffffe0) + 1;
         }
         if (UnsignedIndex == 0x1f) {
-          LongValue = -0x1ef8;
+          MemoryAddressValue = -0x1ef8;
           if (StringProcessingResult != 0x1f) {
-            LongValue = -0xefc;
+            MemoryAddressValue = -0xefc;
           }
-          SecondaryColorProcessingPointer = (float *)(LongValue + (longlong)pfVar5);
+          SecondaryColorProcessingPointer = (float *)(MemoryAddressValue + (longlong)pfVar5);
         }
         StringProcessingResult = MemoryAddress6 & 0x8000003f;
         if ((int)StringProcessingResult < 0) {
@@ -12634,20 +12634,20 @@ uint64_t SystemDataInitialize(int initFlags)
         if ((int)StringProcessingResult < 0) {
           StringProcessingResult = (StringProcessingResult - 1 | 0xffffffc0) + 1;
         }
-        SystemParameterPointer = -LoopCounter8;
+        SystemContextDataPointer = -LoopCounter8;
         if (StringProcessingResult != 0x3f) {
-          SystemParameterPointer = LoopCounter8;
+          SystemContextDataPointer = LoopCounter8;
         }
         StringProcessingResult = MemoryAddress6 + 1 & 0x8000001f;
         if ((int)StringProcessingResult < 0) {
           StringProcessingResult = (StringProcessingResult - 1 | 0xffffffe0) + 1;
         }
-        LongValue = -0xefc;
+        MemoryAddressValue = -0xefc;
         if (StringProcessingResult != 0x1f) {
-          LongValue = 0x100;
+          MemoryAddressValue = 0x100;
         }
         pLoopCounter2 = pLoopCounter2 + -4;
-        SecondaryColorProcessingPointer = (float *)(LongValue + (longlong)SecondaryColorProcessingPointer);
+        SecondaryColorProcessingPointer = (float *)(MemoryAddressValue + (longlong)SecondaryColorProcessingPointer);
         MemoryAddress3 = MemoryAddress3 + 4;
         MemoryAddress6 = MemoryAddress6 + 4;
       } while ((int)MemoryAddress6 < 0x1ff);
@@ -12656,7 +12656,7 @@ uint64_t SystemDataInitialize(int initFlags)
       pLoopCounter2 = (int *)((longlong)LoopCounter7 * 4 + 0x180be5770);
       do {
         if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
-          ColorComponentA = (float)*pLoopCounter2 * 1.5258789e-05 * (float)SystemParameterPointer;
+          ColorComponentA = (float)*pLoopCounter2 * 1.5258789e-05 * (float)SystemContextDataPointer;
           *SecondaryColorProcessingPointer = ColorComponentA;
           SecondaryColorProcessingPointer[16] = ColorComponentA;
         }
@@ -12675,11 +12675,11 @@ uint64_t SystemDataInitialize(int initFlags)
         pLoopCounter2 = pLoopCounter2 + -1;
         MemoryAddress3 = MemoryAddress3 + 1;
         SecondaryColorProcessingPointer = pfVar5 + 0x20;
-        LoopCounter8 = -SystemParameterPointer;
+        LoopCounter8 = -SystemContextDataPointer;
         if (MemoryAddress6 != 0x3f) {
-          LoopCounter8 = SystemParameterPointer;
+          LoopCounter8 = SystemContextDataPointer;
         }
-        SystemParameterPointer = LoopCounter8;
+        SystemContextDataPointer = LoopCounter8;
       } while ((int)MemoryAddress3 < 0x200);
     }
   }
@@ -12708,19 +12708,19 @@ uint64_t SystemDataInitialize(int initFlags)
         *(uint32_t *)(SystemResultBuffer + 0x1c4) = 0x480;
       }
       UnsignedValue = iStack0000000000000030 + 5U & 0xfffffffe;
-      if (((SystemRegister12D & 0x4000) == 0) ||
+      if (((SystemContextRegisterD & 0x4000) == 0) ||
          ((*(uint *)(*(longlong *)(SystemResultBuffer + 0x170) + 0x194) & 1) == 0)) {
-        LongData = *(longlong *)(SystemResultBuffer + 8);
-        if (*(int *)(LongData + 0x14) == -1) {
-          *(uint32_t *)(LongData + 0x18) = 0xffffffff;
+        MemoryDataPointer = *(longlong *)(SystemResultBuffer + 8);
+        if (*(int *)(MemoryDataPointer + 0x14) == -1) {
+          *(uint32_t *)(MemoryDataPointer + 0x18) = 0xffffffff;
         }
         else if (*(char *)(SystemResultBuffer + 0x23c) == (char)unaff_R15) {
-          *(uint *)(LongData + 0x18) =
-               ((*(int *)(LongData + 0x14) + -1 + UnsignedValue) / UnsignedValue + 1) * *(int *)(SystemResultBuffer + 0x1c4);
+          *(uint *)(MemoryDataPointer + 0x18) =
+               ((*(int *)(MemoryDataPointer + 0x14) + -1 + UnsignedValue) / UnsignedValue + 1) * *(int *)(SystemResultBuffer + 0x1c4);
           *(uint *)(SystemResultBuffer + 0x2c) = *(uint *)(SystemResultBuffer + 0x2c) & 0xfffffffe;
         }
         else {
-          *(uint *)(LongData + 0x18) = *SystemContextData * 0x480;
+          *(uint *)(MemoryDataPointer + 0x18) = *SystemContextData * 0x480;
         }
         goto Label_1807c2ec7;
       }
@@ -12747,10 +12747,10 @@ Label_1807c2a3c:
       if (*SystemContextData <= (uint)unaff_R15) {
         UnsignedSize = *SystemContextData + 1000;
         *SystemContextData = UnsignedSize;
-        LongData = ProcessNetworkData(*(uint64_t *)(SystemNetworkDataBuffer + 0x1a0),
+        MemoryDataPointer = ProcessNetworkData(*(uint64_t *)(SystemNetworkDataBuffer + 0x1a0),
                               *(uint64_t *)(SystemResultBuffer + 0x1d0),UnsignedSize * 4,&SystemNetworkBufferHandle,0x113);
-        *(longlong *)(SystemResultBuffer + 0x1d0) = LongData;
-        if (LongData == 0) goto Label_1807c2a43;
+        *(longlong *)(SystemResultBuffer + 0x1d0) = MemoryDataPointer;
+        if (MemoryDataPointer == 0) goto Label_1807c2a43;
       }
       UnsignedIndex = unaff_R15 & 0xffffffff;
       unaff_R15 = (ulonglong)((uint)unaff_R15 + 1);
@@ -12781,7 +12781,7 @@ Label_1807c2ec7:
         *(int *)(*(longlong *)(SystemResultBuffer + 8) + 0x14) = IntegerResult - *(int *)(SystemResultBuffer + 0x110);
       }
     }
-    if ((*(longlong *)(SystemResultBuffer + 0x1d0) != 0) && ((SystemRegister12D & 0x4000) == 0)) {
+    if ((*(longlong *)(SystemResultBuffer + 0x1d0) != 0) && ((SystemContextRegisterD & 0x4000) == 0)) {
       ProcessSystemOperation(*(uint64_t *)(SystemNetworkDataBuffer + 0x1a0),*(longlong *)(SystemResultBuffer + 0x1d0),
                     &SystemNetworkBufferHandle,0x282,1);
     }
@@ -12936,17 +12936,17 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
   uint8_t NetworkPacketBuffer [16];
   NetworkOperationResult = *(uint64_t *)(NetworkContextPointer + 0x28);
   pNetworkRequestResult = (uint32_t *)GetStringProcessingResult();
-  LongCounter = *TimeoutParameter;
+  MemoryCounterValue = *TimeoutParameter;
   UnsignedSize = *pNetworkRequestResult;
-  NetworkDataLength = LongCounter;
+  NetworkDataLength = MemoryCounterValue;
   if ((*(uint *)(OperationType + 0x1c) >> 1 & 1) != 0) {
     NetworkDataLength = *RequestDataPointer;
-    SystemStateValue = LongCounter - NetworkDataLength;
+    SystemStateValue = MemoryCounterValue - NetworkDataLength;
     NetworkOperationResult = *(uint64_t *)(NetworkContextPointer + 0x30);
     if (-1 < SystemStateValue) {
       if (SystemStateValue < 1) {
         UnsignedSize = 0;
-        NetworkDataLength = LongCounter;
+        NetworkDataLength = MemoryCounterValue;
       }
       else {
         MemoryAddress = *(uint *)(*(longlong *)(*(longlong *)(NetworkContextPointer + 0x38) + 8) + 0x774);
@@ -12957,7 +12957,7 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
           SystemStateValue = 0xffffffff;
         }
         UnsignedSize = (uint32_t)SystemStateValue;
-        NetworkDataLength = LongCounter;
+        NetworkDataLength = MemoryCounterValue;
       }
     }
   }
@@ -13146,33 +13146,33 @@ int SystemAudioProcessData(uint32_t AudioBufferPointer,byte *AudioDataPointer)
   if (SystemProcessingEnabledFlag == '\0') {
     return -0x7f6dfffb;
   }
-  if (SystemSecondaryParameter == (byte *)0x0) {
+  if (SystemSecondaryDataPointer == (byte *)0x0) {
     return -0x7f6dffff;
   }
   StringIndex = GetLoopCounter();
   if (StringIndex != 0) {
     return -0x7f6dff01;
   }
-  StringIndex = GetStringIndex(SystemParameterPointer);
+  StringIndex = GetStringIndex(SystemContextDataPointer);
   if (StringIndex < 0) {
     ClearSystemBuffer();
     return -0x7f6dfffd;
   }
-  LongIndex = GetMemoryIndex(SystemParameterPointer,0);
-  if (LongIndex != 0) {
-    NetworkRequestStatus = GetNetworkStatus(*(uint16_t *)(LongIndex + 2),*(uint16_t *)(LongIndex + 4));
-    if ((((NetworkRequestStatus == '\0') && (*SystemSecondaryParameter < 0xd)) && (SystemSecondaryParameter[1] < 0xd)) && (SystemSecondaryParameter[2] < 0xd)) {
+  MemoryIndexValue = GetMemoryIndex(SystemContextDataPointer,0);
+  if (MemoryIndexValue != 0) {
+    NetworkRequestStatus = GetNetworkStatus(*(uint16_t *)(MemoryIndexValue + 2),*(uint16_t *)(MemoryIndexValue + 4));
+    if ((((NetworkRequestStatus == '\0') && (*SystemSecondaryDataPointer < 0xd)) && (SystemSecondaryDataPointer[1] < 0xd)) && (SystemSecondaryDataPointer[2] < 0xd)) {
       ClearSystemBuffer();
       return -0x7f6dfffa;
     }
-    StringIndex = ProcessStringIndex(SystemParameterPointer,SystemSecondaryParameter);
+    StringIndex = ProcessStringIndex(SystemContextDataPointer,SystemSecondaryDataPointer);
     if (-1 < StringIndex) {
-      *(byte *)(LongIndex + 0x23e8) = *SystemSecondaryParameter;
-      *(byte *)(LongIndex + 0x23e9) = SystemSecondaryParameter[1];
-      *(byte *)(LongIndex + 0x23ea) = SystemSecondaryParameter[2];
-      *(byte *)(LongIndex + 0x23ec) = *SystemSecondaryParameter;
-      *(byte *)(LongIndex + 0x23ed) = SystemSecondaryParameter[1];
-      *(byte *)(LongIndex + 0x23ee) = SystemSecondaryParameter[2];
+      *(byte *)(MemoryIndexValue + 0x23e8) = *SystemSecondaryDataPointer;
+      *(byte *)(MemoryIndexValue + 0x23e9) = SystemSecondaryDataPointer[1];
+      *(byte *)(MemoryIndexValue + 0x23ea) = SystemSecondaryDataPointer[2];
+      *(byte *)(MemoryIndexValue + 0x23ec) = *SystemSecondaryDataPointer;
+      *(byte *)(MemoryIndexValue + 0x23ed) = SystemSecondaryDataPointer[1];
+      *(byte *)(MemoryIndexValue + 0x23ee) = SystemSecondaryDataPointer[2];
       ClearSystemBuffer();
       return StringIndex;
     }
@@ -13187,21 +13187,21 @@ int SystemAudioGetStatus(void)
   longlong IndexValue;
   byte *SystemResultBuffer;
   uint32_t unaff_ESI;
-  LongIndex = GetMemoryIndex(unaff_ESI);
-  if (LongIndex != 0) {
-    NetworkRequestStatus = GetNetworkStatus(*(uint16_t *)(LongIndex + 2),*(uint16_t *)(LongIndex + 4));
+  MemoryIndexValue = GetMemoryIndex(unaff_ESI);
+  if (MemoryIndexValue != 0) {
+    NetworkRequestStatus = GetNetworkStatus(*(uint16_t *)(MemoryIndexValue + 2),*(uint16_t *)(MemoryIndexValue + 4));
     if ((((NetworkRequestStatus == '\0') && (*SystemResultBuffer < 0xd)) && (SystemResultBuffer[1] < 0xd)) && (SystemResultBuffer[2] < 0xd)) {
       ClearSystemBuffer();
       return -0x7f6dfffa;
     }
     StringIndex = ProcessStringIndex(unaff_ESI);
     if (-1 < StringIndex) {
-      *(byte *)(LongIndex + 0x23e8) = *SystemResultBuffer;
-      *(byte *)(LongIndex + 0x23e9) = SystemResultBuffer[1];
-      *(byte *)(LongIndex + 0x23ea) = SystemResultBuffer[2];
-      *(byte *)(LongIndex + 0x23ec) = *SystemResultBuffer;
-      *(byte *)(LongIndex + 0x23ed) = SystemResultBuffer[1];
-      *(byte *)(LongIndex + 0x23ee) = SystemResultBuffer[2];
+      *(byte *)(MemoryIndexValue + 0x23e8) = *SystemResultBuffer;
+      *(byte *)(MemoryIndexValue + 0x23e9) = SystemResultBuffer[1];
+      *(byte *)(MemoryIndexValue + 0x23ea) = SystemResultBuffer[2];
+      *(byte *)(MemoryIndexValue + 0x23ec) = *SystemResultBuffer;
+      *(byte *)(MemoryIndexValue + 0x23ed) = SystemResultBuffer[1];
+      *(byte *)(MemoryIndexValue + 0x23ee) = SystemResultBuffer[2];
       ClearSystemBuffer();
       return StringIndex;
     }
@@ -13235,14 +13235,14 @@ uint64_t SystemAudioGetDevice(void)
   return 0x809200ff;
 }
           SystemCharacterCounter = CharValue;
-          *SystemSecondaryParameter = IntegerCounter;
-          *(int *)(LongValue + 0x10) = IntegerCounter;
-          *(int *)(LongValue + 0x18) = IntegerCounter;
-          ProcessLongValue(LongValue);
+          *SystemSecondaryDataPointer = IntegerCounter;
+          *(int *)(MemoryAddressValue + 0x10) = IntegerCounter;
+          *(int *)(MemoryAddressValue + 0x18) = IntegerCounter;
+          ProcessMemoryAddressValue(MemoryAddressValue);
           return 0;
         }
-        LongValue = LongValue + 0x2408;
-      } while (LongValue < 0x180c58840);
+        MemoryAddressValue = MemoryAddressValue + 0x2408;
+      } while (MemoryAddressValue < 0x180c58840);
       return 0x8001002d;
     }
   }
@@ -13252,10 +13252,10 @@ uint64_t SystemAudioGetDevice(void)
   }
   IntegerCounter = (uint)CharValue * 0x100 + IntegerCounter;
   SystemCharacterCounter = CharValue;
-  *SystemSecondaryParameter = IntegerCounter;
+  *SystemSecondaryDataPointer = IntegerCounter;
   *pStringIndex = IntegerCounter;
   pStringIndex[2] = IntegerCounter;
-  ProcessLongValue(pStringIndex + -4);
+  ProcessMemoryAddressValue(pStringIndex + -4);
   return 0;
 }
 longlong SystemGetTimeCounter(void)
@@ -13288,22 +13288,22 @@ uint SystemProcessTimer(longlong TimerContextPointer,int TimerIntervalParameter,
   BitMask = 0;
   IntegerCounter = 0;
   IntegerResult = IntegerCounter;
-  if (0 < SystemTertiaryParameter) {
+  if (0 < SystemTertiaryDataPointer) {
     do {
-      ValidationStatusByte = (byte)SystemSecondaryParameter & 7;
-      IntegerResult = SystemSecondaryParameter;
-      if (SystemSecondaryParameter < 0) {
-        IntegerResult = SystemSecondaryParameter + 7;
+      ValidationStatusByte = (byte)SystemSecondaryDataPointer & 7;
+      IntegerResult = SystemSecondaryDataPointer;
+      if (SystemSecondaryDataPointer < 0) {
+        IntegerResult = SystemSecondaryDataPointer + 7;
         ValidationStatusByte = ValidationStatusByte - 8;
       }
-      SystemSecondaryParameter = SystemSecondaryParameter + 1;
-      BitMask = *(byte *)((IntegerResult >> 3) + SystemParameterPointer) >> (ValidationStatusByte & 0x1f) & 1;
+      SystemSecondaryDataPointer = SystemSecondaryDataPointer + 1;
+      BitMask = *(byte *)((IntegerResult >> 3) + SystemContextDataPointer) >> (ValidationStatusByte & 0x1f) & 1;
       IntegerResult = IntegerCounter + 1;
       MemoryAllocationResult = MemoryAllocationResult | BitMask << ((byte)IntegerCounter & 0x1f);
       IntegerCounter = IntegerResult;
-    } while (IntegerResult < SystemTertiaryParameter);
+    } while (IntegerResult < SystemTertiaryDataPointer);
   }
-  if (((SystemQuaternaryParameter != '\0') && (BitMask != 0)) && (IntegerResult < 0x20)) {
+  if (((SystemQuaternaryDataPointer != '\0') && (BitMask != 0)) && (IntegerResult < 0x20)) {
     ValidationStatusByte = (byte)IntegerResult & 0x1f;
     BitMask = 1 << ValidationStatusByte | 1U >> 0x20 - ValidationStatusByte;
     MemoryAddress = (ulonglong)(0x20 - IntegerResult);
@@ -13334,12 +13334,12 @@ uint32_t SystemProcessAudioData(byte AudioFormatParameter,byte *AudioDataPointer
   uint *pMemoryAddress;
   byte ValidationStatusByte;
   uint StringProcessingResult;
-  SystemTertiaryParameter = SystemTertiaryParameter + -4;
-  pMemoryAddress = (uint *)(SystemSecondaryParameter + SystemTertiaryParameter);
-  StringProcessingResult = *(uint *)(&SystemHashTable + (ulonglong)(byte)~SystemParameterPointer * 4) ^ 0xffffff;
-  for (; 0 < SystemTertiaryParameter; SystemTertiaryParameter = SystemTertiaryParameter + -1) {
-    ValidationStatusByte = *SystemSecondaryParameter;
-    SystemSecondaryParameter = SystemSecondaryParameter + 1;
+  SystemTertiaryDataPointer = SystemTertiaryDataPointer + -4;
+  pMemoryAddress = (uint *)(SystemSecondaryDataPointer + SystemTertiaryDataPointer);
+  StringProcessingResult = *(uint *)(&SystemHashTable + (ulonglong)(byte)~SystemContextDataPointer * 4) ^ 0xffffff;
+  for (; 0 < SystemTertiaryDataPointer; SystemTertiaryDataPointer = SystemTertiaryDataPointer + -1) {
+    ValidationStatusByte = *SystemSecondaryDataPointer;
+    SystemSecondaryDataPointer = SystemSecondaryDataPointer + 1;
     StringProcessingResult = *(uint *)(&SystemHashTable + (ulonglong)(byte)(ValidationStatusByte ^ (byte)StringProcessingResult) * 4) ^ StringProcessingResult >> 8;
   }
   return CONCAT31((int3)(~StringProcessingResult >> 8),*pMemoryAddress != ~StringProcessingResult);
@@ -13369,37 +13369,37 @@ float * SystemProcessAudioBuffer(float *InputBufferPointer,float *OutputBufferPo
   float InputSample6;
   float InputSample7;
   float InputSample8;
-  InputSample1 = *SystemTertiaryParameter;
-  InputSample2 = SystemParameterPointer[3];
-  InputSample3 = SystemParameterPointer[1];
-  InputSample4 = *SystemParameterPointer;
-  InputSample5 = SystemTertiaryParameter[1];
-  InputSample6 = SystemParameterPointer[2];
-  InputSample7 = SystemTertiaryParameter[2];
-  InputSample8 = SystemTertiaryParameter[3];
-  *SystemSecondaryParameter = (InputSample4 * InputSample8 + InputSample1 * InputSample2 + InputSample3 * InputSample7) - InputSample6 * InputSample5;
-  SystemSecondaryParameter[1] = (InputSample3 * InputSample8 + InputSample5 * InputSample2 + InputSample6 * InputSample1) - InputSample7 * InputSample4;
-  SystemSecondaryParameter[3] = ((InputSample8 * InputSample2 - InputSample4 * InputSample1) - InputSample5 * InputSample3) - InputSample6 * InputSample7;
-  SystemSecondaryParameter[2] = (InputSample6 * InputSample8 + InputSample7 * InputSample2 + InputSample5 * InputSample4) - InputSample3 * InputSample1;
-  return SystemSecondaryParameter;
+  InputSample1 = *SystemTertiaryDataPointer;
+  InputSample2 = SystemContextDataPointer[3];
+  InputSample3 = SystemContextDataPointer[1];
+  InputSample4 = *SystemContextDataPointer;
+  InputSample5 = SystemTertiaryDataPointer[1];
+  InputSample6 = SystemContextDataPointer[2];
+  InputSample7 = SystemTertiaryDataPointer[2];
+  InputSample8 = SystemTertiaryDataPointer[3];
+  *SystemSecondaryDataPointer = (InputSample4 * InputSample8 + InputSample1 * InputSample2 + InputSample3 * InputSample7) - InputSample6 * InputSample5;
+  SystemSecondaryDataPointer[1] = (InputSample3 * InputSample8 + InputSample5 * InputSample2 + InputSample6 * InputSample1) - InputSample7 * InputSample4;
+  SystemSecondaryDataPointer[3] = ((InputSample8 * InputSample2 - InputSample4 * InputSample1) - InputSample5 * InputSample3) - InputSample6 * InputSample7;
+  SystemSecondaryDataPointer[2] = (InputSample6 * InputSample8 + InputSample7 * InputSample2 + InputSample5 * InputSample4) - InputSample3 * InputSample1;
+  return SystemSecondaryDataPointer;
 }
 uint64_t SystemAudioGetFormat(uint64_t AudioContextPointer,uint32_t *FormatParameterPointer)
 {
   int64_t ModuleInitializationResult;
-  ModuleInitializationResult = GetMemoryIndex(SystemParameterPointer,0);
+  ModuleInitializationResult = GetMemoryIndex(SystemContextDataPointer,0);
   if (ModuleInitializationResult != 0) {
-    *SystemSecondaryParameter = *(uint32_t *)(ModuleInitializationResult + 100);
+    *SystemSecondaryDataPointer = *(uint32_t *)(ModuleInitializationResult + 100);
     return 0;
   }
   return 0x8001002d;
 }
       SystemStringTerminator = '\0';
       if (SystemModuleHandle == 0) {
-        LongData = GetSystemData(&SystemDataQueryName);
-        if (LongData != 0) {
-          SystemStateValue = LoadLibraryExW(LongData,0,0);
+        MemoryDataPointer = GetSystemData(&SystemDataQueryName);
+        if (MemoryDataPointer != 0) {
+          SystemStateValue = LoadLibraryExW(MemoryDataPointer,0,0);
         }
-        LocalFree(LongData);
+        LocalFree(MemoryDataPointer);
         SystemModuleHandle = SystemStateValue;
         if (SystemStateValue == 0) goto SystemValidationHandler;
       }
@@ -13445,7 +13445,7 @@ uint64_t SystemAudioGetFormat(uint64_t AudioContextPointer,uint32_t *FormatParam
       }
     }
     if (SystemDebugFlag == '\0') {
-      SetLastError(SystemSecondaryParameter & 0xffffffff);
+      SetLastError(SystemSecondaryDataPointer & 0xffffffff);
       goto Label_1808fa963;
     }
   }
@@ -13460,70 +13460,70 @@ SystemValidationHandler:
       }
       SystemBooleanFlag2 = SystemBooleanFlag1 == '\0';
       if (FileSystemHandle == 0) {
-        LongValue = _wfsopen(SystemParameterPointer,&SystemFileOpenMode,0x40);
-        if (LongValue == 0) {
-          ProcessSystemBuffer(&SystemBufferName1,0xc1,&SystemBufferName2,&SystemBufferName3,SystemParameterPointer);
+        MemoryAddressValue = _wfsopen(SystemContextDataPointer,&SystemFileOpenMode,0x40);
+        if (MemoryAddressValue == 0) {
+          ProcessSystemBuffer(&SystemBufferName1,0xc1,&SystemBufferName2,&SystemBufferName3,SystemContextDataPointer);
           CharValue0 = false;
         }
         else {
-          fclose(LongValue);
-          HandleSystemOperation(&SystemBufferName1,200,&SystemBufferName2,&SystemBufferName4,SystemParameterPointer);
-          LongData = _wcsdup(SystemParameterPointer);
-          LongValue = -1;
-          if (LongData != 0) {
+          fclose(MemoryAddressValue);
+          HandleSystemOperation(&SystemBufferName1,200,&SystemBufferName2,&SystemBufferName4,SystemContextDataPointer);
+          MemoryDataPointer = _wcsdup(SystemContextDataPointer);
+          MemoryAddressValue = -1;
+          if (MemoryDataPointer != 0) {
             do {
-              SystemStateValue = LongValue;
-              LongValue = SystemStateValue + 1;
-            } while (*(short *)(SystemParameterPointer + 2 + SystemStateValue * 2) != 0);
-            LongValue = SystemStateValue;
+              SystemStateValue = MemoryAddressValue;
+              MemoryAddressValue = SystemStateValue + 1;
+            } while (*(short *)(SystemContextDataPointer + 2 + SystemStateValue * 2) != 0);
+            MemoryAddressValue = SystemStateValue;
             while( true ) {
-              LongAddress = 0;
-              if (((LongValue == 0) || (PathCharacter = *(short *)(LongData + LongValue * 2), LongAddress = 0, PathCharacter == 0x2f)
-                  ) || (LongAddress = 0, PathCharacter == 0x5c)) goto Label_1808fbdeb;
+              MemoryAddressPointer = 0;
+              if (((MemoryAddressValue == 0) || (PathCharacter = *(short *)(MemoryDataPointer + MemoryAddressValue * 2), MemoryAddressPointer = 0, PathCharacter == 0x2f)
+                  ) || (MemoryAddressPointer = 0, PathCharacter == 0x5c)) goto Label_1808fbdeb;
               if (PathCharacter == 0x2e) break;
-              LongValue = LongValue + -1;
+              MemoryAddressValue = MemoryAddressValue + -1;
             }
-            *(uint16_t *)(LongData + LongValue * 2) = 0;
-            LongAddress = LongData + 2 + LongValue * 2;
+            *(uint16_t *)(MemoryDataPointer + MemoryAddressValue * 2) = 0;
+            MemoryAddressPointer = MemoryDataPointer + 2 + MemoryAddressValue * 2;
 Label_1808fbdeb:
             SystemStateValue = SystemStateValue + 9;
-            LongValue = malloc(SystemStateValue * 2);
-            if (LongValue == 0) {
-              free(LongData);
+            MemoryAddressValue = malloc(SystemStateValue * 2);
+            if (MemoryAddressValue == 0) {
+              free(MemoryDataPointer);
               return false;
             }
             IntegerCounter = 1;
-            LongCounter = FileSystemHandle;
+            MemoryCounterValue = FileSystemHandle;
             do {
-              FileSystemHandle = LongCounter;
-              if (LongAddress == 0) {
-                ExecuteSystemCommand(LongValue,SystemStateValue,&SystemCommandName1,LongData,IntegerCounter);
+              FileSystemHandle = MemoryCounterValue;
+              if (MemoryAddressPointer == 0) {
+                ExecuteSystemCommand(MemoryAddressValue,SystemStateValue,&SystemCommandName1,MemoryDataPointer,IntegerCounter);
               }
               else {
-                ExecuteSystemCommand(LongValue,SystemStateValue,&SystemCommandName2,LongData,IntegerCounter,LongAddress);
+                ExecuteSystemCommand(MemoryAddressValue,SystemStateValue,&SystemCommandName2,MemoryDataPointer,IntegerCounter,MemoryAddressPointer);
               }
-              FileSystemHandle = _wfsopen(LongValue,pUnsignedIndex,0x20);
+              FileSystemHandle = _wfsopen(MemoryAddressValue,pUnsignedIndex,0x20);
               if (FileSystemHandle != 0) {
                 pUnsignedIndex = &SystemIndexName1;
                 MemoryAllocationResult = 0xeb;
-                SystemParameterPointer = LongValue;
+                SystemContextDataPointer = MemoryAddressValue;
                 goto Label_1808fbebe;
               }
               IntegerCounter = IntegerCounter + 1;
-              LongCounter = 0;
+              MemoryCounterValue = 0;
             } while (IntegerCounter < 9);
             pUnsignedIndex = &SystemIndexName2;
             MemoryAllocationResult = 0xef;
 Label_1808fbebe:
-            ProcessSystemBuffer(&SystemBufferPointer,MemoryAllocationResult,&SystemBufferPointer,pUnsignedIndex,SystemParameterPointer);
-            free(LongData);
-            free(LongValue);
+            ProcessSystemBuffer(&SystemBufferPointer,MemoryAllocationResult,&SystemBufferPointer,pUnsignedIndex,SystemContextDataPointer);
+            free(MemoryDataPointer);
+            free(MemoryAddressValue);
           }
           CharValue0 = FileSystemHandle != 0;
         }
       }
       else {
-        ProcessSystemBuffer(&SystemBufferPointer,0xb4,&SystemBufferPointer,&SystemCommandBuffer01,SystemParameterPointer);
+        ProcessSystemBuffer(&SystemBufferPointer,0xb4,&SystemBufferPointer,&SystemCommandBuffer01,SystemContextDataPointer);
         CharValue0 = true;
       }
       return CharValue0;
@@ -13542,11 +13542,11 @@ bool SystemAudioIsInitialized(void)
   uint64_t memoryValidationResult;
   longlong SystemStateValue;
   longlong PathCharacterOffset;
-  longlong LongAddress;
+  longlong MemoryAddressPointer;
   char unaff_SIL;
   longlong SystemContextPointer;
   short RegisterValue;
-  longlong SystemRegister12;
+  longlong SystemContextRegister;
   void *pMemoryAddress1;
   bool CharValue2;
   uint FileSystemParameter;
@@ -13557,7 +13557,7 @@ bool SystemAudioIsInitialized(void)
     LongLoop = -1;
     do {
       LongLoop = LongLoop + 1;
-      RegisterValue = (short)SystemRegister12;
+      RegisterValue = (short)SystemContextRegister;
     } while (*(short *)(SystemContextPointer + LongLoop * 2) != RegisterValue);
     if (LongLoop != 0) {
       pMemoryAddress1 = &SystemCommandBuffer02;
@@ -13565,9 +13565,9 @@ bool SystemAudioIsInitialized(void)
         pMemoryAddress1 = &SystemCommandBuffer03;
       }
       FileSystemHandle = _wfsopen();
-      if ((1 < FileSystemStatusCounter) && ((uint)SystemRegister12 < FileSystemParameter)) {
+      if ((1 < FileSystemStatusCounter) && ((uint)SystemContextRegister < FileSystemParameter)) {
         ConsoleWindowHandle = GetConsoleWindow();
-        ProcessIdParameter = (uint)SystemRegister12;
+        ProcessIdParameter = (uint)SystemContextRegister;
         GetWindowThreadProcessId(ConsoleWindowHandle,&ProcessIdBuffer);
         StringProcessingResult = GetCurrentProcessId();
         if (StringProcessingResult != ProcessIdParameter) {
@@ -13576,8 +13576,8 @@ bool SystemAudioIsInitialized(void)
           SetConsoleTitleA(&SystemConsoleTitle);
         }
       }
-      FileSystemValidationFlag = FileSystemOperationFlag == (char)SystemRegister12;
-      if (FileSystemHandle == SystemRegister12) {
+      FileSystemValidationFlag = FileSystemOperationFlag == (char)SystemContextRegister;
+      if (FileSystemHandle == SystemContextRegister) {
         LongLoop = _wfsopen();
         if (LongLoop == 0) {
           ProcessSystemBuffer(&SystemBufferPointer,0xc1,&SystemBufferPointer,&SystemCommandBuffer04);
@@ -13590,12 +13590,12 @@ bool SystemAudioIsInitialized(void)
           LongLoop = -1;
           if (SystemStateValue != 0) {
             do {
-              LongAddress = LongLoop;
-              LongLoop = LongAddress + 1;
-              PathCharacterOffset = LongAddress;
-            } while (*(short *)(SystemContextPointer + 2 + LongAddress * 2) != RegisterValue);
+              MemoryAddressPointer = LongLoop;
+              LongLoop = MemoryAddressPointer + 1;
+              PathCharacterOffset = MemoryAddressPointer;
+            } while (*(short *)(SystemContextPointer + 2 + MemoryAddressPointer * 2) != RegisterValue);
             while( true ) {
-              LongLoop = SystemRegister12;
+              LongLoop = SystemContextRegister;
               if (((PathCharacterOffset == 0) || (PathCharacter = *(short *)(SystemStateValue + PathCharacterOffset * 2), PathCharacter == 0x2f)) ||
                  (PathCharacter == 0x5c)) goto Label_1808fbdeb;
               if (PathCharacter == 0x2e) break;
@@ -13604,21 +13604,21 @@ bool SystemAudioIsInitialized(void)
             *(short *)(SystemStateValue + PathCharacterOffset * 2) = RegisterValue;
             LongLoop = SystemStateValue + 2 + PathCharacterOffset * 2;
 Label_1808fbdeb:
-            LongAddress = LongAddress + 9;
-            PathBufferPointer = malloc(LongAddress * 2);
+            MemoryAddressPointer = MemoryAddressPointer + 9;
+            PathBufferPointer = malloc(MemoryAddressPointer * 2);
             if (PathBufferPointer == 0) {
               free(SystemStateValue);
               return false;
             }
             IntegerResult = 1;
-            LongCounter = FileSystemHandle;
+            MemoryCounterValue = FileSystemHandle;
             do {
-              FileSystemHandle = LongCounter;
+              FileSystemHandle = MemoryCounterValue;
               if (LongLoop == 0) {
-                ExecuteSystemCommand(PathBufferPointer,LongAddress,&SystemCommandBuffer05,SystemStateValue,IntegerResult);
+                ExecuteSystemCommand(PathBufferPointer,MemoryAddressPointer,&SystemCommandBuffer05,SystemStateValue,IntegerResult);
               }
               else {
-                ExecuteSystemCommand(PathBufferPointer,LongAddress,&SystemCommandBuffer06,SystemStateValue,IntegerResult);
+                ExecuteSystemCommand(PathBufferPointer,MemoryAddressPointer,&SystemCommandBuffer06,SystemStateValue,IntegerResult);
               }
               FileSystemHandle = _wfsopen(PathBufferPointer,pMemoryAddress1,0x20);
               if (FileSystemHandle != 0) {
@@ -13627,7 +13627,7 @@ Label_1808fbdeb:
                 goto Label_1808fbebe;
               }
               IntegerResult = IntegerResult + 1;
-              LongCounter = 0;
+              MemoryCounterValue = 0;
             } while (IntegerResult < 9);
             pMemoryAddress1 = &SystemCommandBuffer08;
             SystemBufferParameter = 0xef;
@@ -13636,7 +13636,7 @@ Label_1808fbebe:
             free(SystemStateValue);
             free(PathBufferPointer);
           }
-          CharValue2 = FileSystemHandle != SystemRegister12;
+          CharValue2 = FileSystemHandle != SystemContextRegister;
         }
       }
       else {
@@ -13646,7 +13646,7 @@ Label_1808fbebe:
       return CharValue2;
     }
   }
-  FileSystemValidationFlag = FileSystemOperationFlag == (char)SystemRegister12;
+  FileSystemValidationFlag = FileSystemOperationFlag == (char)SystemContextRegister;
   return true;
 }
 bool SystemAudioIsPlaying(void)
@@ -13661,67 +13661,67 @@ bool SystemAudioIsPlaying(void)
   longlong SystemStateValue;
   longlong SystemContextPointer;
   void *pUnsignedIndex;
-  longlong SystemRegister12;
-  longlong LongAddress;
+  longlong SystemContextRegister;
+  longlong MemoryAddressPointer;
   fclose();
   HandleSystemOperation(&SystemBufferName1,200,&SystemBufferName2,&SystemBufferName4);
-  LongIndex = _wcsdup();
-  if (LongIndex != 0) {
+  MemoryIndexValue = _wcsdup();
+  if (MemoryIndexValue != 0) {
     do {
       SystemStateValue = SystemResultBuffer;
       SystemResultBuffer = SystemStateValue + 1;
-      LongValue = SystemStateValue;
-    } while (*(short *)(SystemContextPointer + 2 + SystemStateValue * 2) != (short)SystemRegister12);
+      MemoryAddressValue = SystemStateValue;
+    } while (*(short *)(SystemContextPointer + 2 + SystemStateValue * 2) != (short)SystemContextRegister);
     while( true ) {
-      LongAddress = SystemRegister12;
-      if (((LongValue == 0) || (PathCharacter = *(short *)(LongIndex + LongValue * 2), PathCharacter == 0x2f)) ||
+      MemoryAddressPointer = SystemContextRegister;
+      if (((MemoryAddressValue == 0) || (PathCharacter = *(short *)(MemoryIndexValue + MemoryAddressValue * 2), PathCharacter == 0x2f)) ||
          (PathCharacter == 0x5c)) goto Label_1808fbdeb;
       if (PathCharacter == 0x2e) break;
-      LongValue = LongValue + -1;
+      MemoryAddressValue = MemoryAddressValue + -1;
     }
-    *(short *)(LongIndex + LongValue * 2) = (short)SystemRegister12;
-    LongAddress = LongIndex + 2 + LongValue * 2;
+    *(short *)(MemoryIndexValue + MemoryAddressValue * 2) = (short)SystemContextRegister;
+    MemoryAddressPointer = MemoryIndexValue + 2 + MemoryAddressValue * 2;
 Label_1808fbdeb:
     SystemStateValue = SystemStateValue + 9;
-    LongValue = malloc(SystemStateValue * 2);
-    if (LongValue == 0) {
-      free(LongIndex);
+    MemoryAddressValue = malloc(SystemStateValue * 2);
+    if (MemoryAddressValue == 0) {
+      free(MemoryIndexValue);
       return false;
     }
     LoopCounterValue = 1;
-    LongCounter = FileSystemHandle;
+    MemoryCounterValue = FileSystemHandle;
     do {
-      FileSystemHandle = LongCounter;
-      if (LongAddress == 0) {
-        ExecuteSystemCommand(LongValue,SystemStateValue,&SystemCommandName1,LongIndex,LoopCounterValue);
+      FileSystemHandle = MemoryCounterValue;
+      if (MemoryAddressPointer == 0) {
+        ExecuteSystemCommand(MemoryAddressValue,SystemStateValue,&SystemCommandName1,MemoryIndexValue,LoopCounterValue);
       }
       else {
-        ExecuteSystemCommand(LongValue,SystemStateValue,&SystemCommandName2,LongIndex,LoopCounterValue);
+        ExecuteSystemCommand(MemoryAddressValue,SystemStateValue,&SystemCommandName2,MemoryIndexValue,LoopCounterValue);
       }
-      FileSystemHandle = _wfsopen(LongValue);
+      FileSystemHandle = _wfsopen(MemoryAddressValue);
       if (FileSystemHandle != 0) {
         pUnsignedIndex = &SystemIndexName1;
         MemoryAllocationResult = 0xeb;
         goto Label_1808fbebe;
       }
       LoopCounterValue = LoopCounterValue + 1;
-      LongCounter = 0;
+      MemoryCounterValue = 0;
     } while (LoopCounterValue < 9);
     pUnsignedIndex = &SystemIndexName2;
     MemoryAllocationResult = 0xef;
 Label_1808fbebe:
     ProcessSystemBuffer(&SystemBufferPointer,MemoryAllocationResult,&SystemBufferPointer,pUnsignedIndex);
-    free(LongIndex);
-    free(LongValue);
+    free(MemoryIndexValue);
+    free(MemoryAddressValue);
   }
-  return FileSystemHandle != SystemRegister12;
+  return FileSystemHandle != SystemContextRegister;
 }
-  FileSystemValidationFlag = FileSystemOperationFlag == SystemRegister12B;
+  FileSystemValidationFlag = FileSystemOperationFlag == SystemContextRegisterB;
   return 1;
 }
     SystemStringProcessingFlag = '\x01';
-    wcscpy_s(aStackLoopLimit,0x104,SystemParameterPointer);
-    if ((SystemStringProcessingFlag != '\0') && (wcscat_s(aStackLoopLimit,0x104,SystemSecondaryParameter), SystemStringProcessingFlag != '\0')) {
+    wcscpy_s(aStackLoopLimit,0x104,SystemContextDataPointer);
+    if ((SystemStringProcessingFlag != '\0') && (wcscat_s(aStackLoopLimit,0x104,SystemSecondaryDataPointer), SystemStringProcessingFlag != '\0')) {
       FinalizeSystemOperation(aStackLoopLimit,0);
     }
     _set_invalid_parameter_handler(MemoryAddress);
@@ -13759,14 +13759,14 @@ uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
   int IntegerCounter;
   uint64_t NetworkRequestResult;
   if (SystemInitializationCompleteFlag == '\0') {
-    if (1 < SystemParameterPointer) {
+    if (1 < SystemContextDataPointer) {
       ProcessSystemCleanup(5);
       pNetworkRequestStatus = (code *)swi(3);
       NetworkRequestResult = (*pNetworkRequestStatus)();
       return NetworkRequestResult;
     }
     IntegerCounter = GetValidationStatus();
-    if ((IntegerCounter == 0) || (SystemParameterPointer != 0)) {
+    if ((IntegerCounter == 0) || (SystemContextDataPointer != 0)) {
       ValidationStatusByte = 0x40 - ((byte)SystemSecurityMask & 0x3f) & 0x3f;
       SystemInitializationBuffer = (0xffffffffffffffffU >> ValidationStatusByte | -1L << 0x40 - ValidationStatusByte) ^ SystemSecurityMask;
       SystemInitializationBuffer = SystemInitializationBuffer;
@@ -13791,7 +13791,7 @@ uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
  * 该函数负责计算内存地址的映射关系，遍历映像节头表来找到指定地址
  * 对应的物理地址和虚拟地址映射。主要用于内存管理和地址转换。
  * 
- * @param SystemParameterPointer 输入的内存地址参数
+ * @param SystemContextDataPointer 输入的内存地址参数
  * @return 计算后的内存地址映射结果
  * 
  * @note 此函数处理PE文件格式的节头映射

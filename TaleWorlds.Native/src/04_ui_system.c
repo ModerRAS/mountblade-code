@@ -130728,19 +130728,19 @@ void ThunkUIBufferOperation(longlong uiContext)
   if (*(char *)(uiContext + 8) != '\0') {
     if ((*(code **)(uiContext + 0x11838) != (code *)0x0) &&
        ((*(uint *)(uiContext + 0x11840) & 0x400) != 0)) {
-      pfStack_168 = *(float **)(uiContext + 0x11670);
+      ColorPointer = *(float **)(uiContext + 0x11670);
       (**(code **)(uiContext + 0x11838))(uiContext,0x400,0,0);
     }
     FUN_180772cd0(uiContext + 0x11678);
     if (*(int *)(uiBufferData + 0x116b4) == 0) {
       FUN_180768b70(uiContext + 0x116b4);
     }
-    FUN_180768b70(&stackUInt14c);
-    uVar8 = stackUInt14c;
-    if (*(uint *)(uiContext + 0x116b4) <= stackUInt14c) {
-      uVar8 = stackUInt14c - *(int *)(uiBufferData + 0x116b4);
+    FUN_180768b70(&RenderFlags);
+    BufferSize = RenderFlags;
+    if (*(uint *)(uiContext + 0x116b4) <= RenderFlags) {
+      BufferSize = RenderFlags - *(int *)(uiBufferData + 0x116b4);
     }
-    *(uint *)(uiContext + 0x116b4) = stackUInt14c;
+    *(uint *)(uiContext + 0x116b4) = RenderFlags;
     if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (localInt5 = func_0x000180069ee0(), localInt5 == 0)) {
       ptrResult = (UIHandle *)(uiContext + 0x12758);
       ptrLocal3 = (UIHandle *)*ptrResult;
@@ -130835,7 +130835,7 @@ LAB_18078c477:
      (localInt5 = FUN_1807499f0(uiContext), localInt5 != 0x39)) {
     if (localInt5 != 0) goto FUN_18078c746;
     if (*(char *)(uiContext + 0x6a8) != '\0') {
-      pfStack_168 = *(float **)(uiContext + 0x11670);
+      ColorPointer = *(float **)(uiContext + 0x11670);
       *(UIByte *)(uiContext + 0x6a8) = 0;
       (**(code **)(uiContext + 0x11838))(uiContext,0x1000,0,0);
     }
@@ -200119,19 +200119,19 @@ void ProcessUIContextEventLoop(longlong uiContext, char dataSource)
   if (*(char *)(uiContext + 8) != '\0') {
     if ((*(code **)(uiContext + 0x11838) != (code *)0x0) &&
        ((*(uint *)(uiContext + 0x11840) & 0x400) != 0)) {
-      pfStack_168 = *(float **)(uiContext + 0x11670);
+      ColorPointer = *(float **)(uiContext + 0x11670);
       (**(code **)(uiContext + 0x11838))(uiContext,0x400,0,0);
     }
     FUN_180772cd0(uiContext + 0x11678);
     if (*(int *)(uiBufferData + 0x116b4) == 0) {
       FUN_180768b70(uiContext + 0x116b4);
     }
-    FUN_180768b70(&stackUInt14c);
-    uVar8 = stackUInt14c;
-    if (*(uint *)(uiContext + 0x116b4) <= stackUInt14c) {
-      uVar8 = stackUInt14c - *(int *)(uiBufferData + 0x116b4);
+    FUN_180768b70(&RenderFlags);
+    BufferSize = RenderFlags;
+    if (*(uint *)(uiContext + 0x116b4) <= RenderFlags) {
+      BufferSize = RenderFlags - *(int *)(uiBufferData + 0x116b4);
     }
-    *(uint *)(uiContext + 0x116b4) = stackUInt14c;
+    *(uint *)(uiContext + 0x116b4) = RenderFlags;
     if ((*(longlong *)(uiBufferData + 0x6b0) == 0) || (localInt5 = func_0x000180069ee0(), localInt5 == 0)) {
       ptrResult = (UIHandle *)(uiContext + 0x12758);
       ptrLocal3 = (UIHandle *)*ptrResult;
@@ -200226,7 +200226,7 @@ LAB_18078c477:
       (localInt5 = FUN_1807499f0(uiContext), localInt5 != 0x39)))) {
     if (localInt5 != 0) goto FUN_18078c746;
     if (*(char *)(uiContext + 0x6a8) != '\0') {
-      pfStack_168 = *(float **)(uiContext + 0x11670);
+      ColorPointer = *(float **)(uiContext + 0x11670);
       *(UIByte *)(uiContext + 0x6a8) = 0;
       (**(code **)(uiContext + 0x11838))(uiContext,0x1000,0,0);
     }
