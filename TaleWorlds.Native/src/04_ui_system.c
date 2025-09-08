@@ -860,7 +860,9 @@ typedef enum {
 
 // UI系统查找函数美化
 #define ProcessUILookupTableSearch FUN_180724250
-#define InitializeUILookupTable InitializeUILookupTable
+#define InitializeUILookupTable FUN_180724237
+// UI系统数据写入函数美化
+#define WriteUIDataToBuffer FUN_1807054a0
 
 // UI系统渲染参数美化
 #define renderParam1 stackParam00000048
@@ -95217,7 +95219,7 @@ void ProcessUIComponentFinalization(UIHandle uiContext,longlong dataSource,int t
         ptrResult[3] = 0;
       }
       else {
-        FUN_180724250(ptrResult,uiContext);
+        ProcessUILookupTableSearch(ptrResult,uiContext);
       }
       loopCounter = (int)uVar8 + 1;
       uVar8 = (ulonglong)loopCounter;
@@ -96548,8 +96550,8 @@ void InitializeUILookupTable(void)
 
 
 
- void FUN_180724250(short *uiContext,UIHandle dataSource,int targetBuffer)
-void FUN_180724250(short *uiContext,UIHandle dataSource,int targetBuffer)
+ void ProcessUILookupTableSearch(short *uiContext,UIHandle dataSource,int targetBuffer)
+void ProcessUILookupTableSearch(short *uiContext,UIHandle dataSource,int targetBuffer)
 
 {
   short sVar1;
