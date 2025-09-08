@@ -27791,33 +27791,42 @@ SecurityCheckpointB:
 
 
 
-// 验证数据并进行安全检查
+/**
+ * @brief 验证数据并进行安全检查
+ * 
+ * 对输入的数据句柄进行安全性验证，确保数据完整性和安全性。
+ * 该函数执行内存分配验证和数据块验证，确保数据处理的安全性。
+ * 
+ * @param dataHandle 数据句柄指针，包含待验证的数据
+ * @param resultBuffer 结果缓冲区指针，用于存储验证结果
+ * @return void 无返回值
+ */
 void ValidateDataWithSecurityCheck(int64_t *dataHandle,DataWord *resultBuffer)
 
 {
-  int validationResult;
+  int validationStatus;
   unsigned int sizeDataBuffer [2];
   DataWord dataBuffer [4];
   
   if (*dataHandle == 0) {
-    validationResult = 0x1c;
+    validationStatus = 0x1c;
   }
   else {
     if (dataHandle[2] != 0) {
       sizeBuffer[0] = 0;
-      validationResult = AllocateMemory(*dataHandle,sizeBuffer);
-      if (validationResult != 0) {
+      validationStatus = AllocateMemory(*dataHandle,sizeBuffer);
+      if (validationStatus != 0) {
         return;
       }
       if ((uint64_t)dataHandle[2] < (uint64_t)sizeBuffer[0] + 4) {
-        validationResult = 0x11;
-        goto ErrorHandlingCheckpoint;
+        validationStatus = 0x11;
+        goto ValidationErrorHandlingCheckpoint;
       }
     }
-    validationResult = ValidateDataAndReturnStatusO3(*dataHandle,dataBuffer,1,4,0);
+    validationStatus = ValidateDataAndReturnStatusO3(*dataHandle,dataBuffer,1,4,0);
   }
-ValidationResultCheckpoint:
-  if (validationResult == 0) {
+ValidationStatusCheckpoint:
+  if (validationStatus == 0) {
     *resultBuffer = dataBuffer[0];
   }
   return;
@@ -27825,69 +27834,89 @@ ValidationResultCheckpoint:
 
 
 
+/**
+ * @brief 处理复杂数据结构A0
+ * 
+ * 对复杂的数据结构进行处理，包括内存分配、数据验证和多段数据处理。
+ * 该函数实现了对复杂数据结构的完整处理流程，确保数据的完整性和安全性。
+ * 
+ * @param operationBase 操作基础指针，包含系统配置和状态信息
+ * @param dataBuffer 数据缓冲区指针，包含待处理的数据
+ * @return DataBuffer 处理结果状态码，0表示成功，非0表示错误
+ */
 DataBuffer ProcessComplexDataStructureA0(int64_t *operationBase,int64_t *dataBuffer)
 
 {
-  DataBuffer systemDataBuffer;
-  int operationResult;
-  int stackIndexBuffer [2];
+  DataBuffer processingStatus;
+  int operationIndex;
+  int processingIndexBuffer [2];
   unsigned int stackUIntBuffer [2];
   
-  operationResult = 0;
-  stackIndexBuffer[0] = 0;
+  operationIndex = 0;
+  processingIndexBuffer[0] = 0;
   if (*operationBase == 0) {
-    systemDataBuffer = 0x1c;
+    processingStatus = 0x1c;
   }
   else {
     if (operationBase[2] != 0) {
       stackUIntBuffer[0] = 0;
-      systemDataBuffer = AllocateMemory(*operationBase,stackUIntBuffer);
-      if ((int)systemDataBuffer != 0) {
-        return systemDataBuffer;
+      processingStatus = AllocateMemory(*operationBase,stackUIntBuffer);
+      if ((int)processingStatus != 0) {
+        return processingStatus;
       }
       if ((uint64_t)operationBase[2] < (uint64_t)stackUIntBuffer[0] + 4) {
-        systemDataBuffer = 0x11;
-        goto ProcessDataCheckpoint;
+        processingStatus = 0x11;
+        goto DataProcessingCheckpoint;
       }
     }
-    systemDataBuffer = ValidateDataAndReturnStatusO3(*operationBase,stackIndexBuffer,1,4,0);
+    processingStatus = ValidateDataAndReturnStatusO3(*operationBase,processingIndexBuffer,1,4,0);
   }
-SystemDataValidationCheckpoint:
-  if ((int)systemDataBuffer == 0) {
-    if (stackIndexBuffer[0] < 0) {
+SystemValidationCheckpoint:
+  if ((int)processingStatus == 0) {
+    if (processingIndexBuffer[0] < 0) {
       return 0xd;
     }
-    systemDataBuffer = ProcessDataOperationO0(dataBuffer,stackIndexBuffer[0]);
-    if ((int)systemDataBuffer == 0) {
-      if (0 < stackIndexBuffer[0]) {
+    processingStatus = ProcessDataOperationO0(dataBuffer,processingIndexBuffer[0]);
+    if ((int)processingStatus == 0) {
+      if (0 < processingIndexBuffer[0]) {
         do {
-          systemDataBuffer = ProcessMultiSegmentDataA0(operationBase,*dataBuffer + (int64_t)operationResult * 0x14);
-          if ((int)systemDataBuffer != 0) {
-            return systemDataBuffer;
+          processingStatus = ProcessMultiSegmentDataA0(operationBase,*dataBuffer + (int64_t)operationIndex * 0x14);
+          if ((int)processingStatus != 0) {
+            return processingStatus;
           }
-          operationResult = operationResult + 1;
-        } while (operationResult < stackIndexBuffer[0]);
+          operationIndex = operationIndex + 1;
+        } while (operationIndex < processingIndexBuffer[0]);
       }
-      systemDataBuffer = 0;
+      processingStatus = 0;
     }
   }
-  return systemDataBuffer;
+  return processingStatus;
 }
 
 
 
+/**
+ * @brief 验证数据格式A0
+ * 
+ * 对数据格式进行验证，确保数据格式符合系统要求。
+ * 该函数通过验证系统内存块来确认数据格式的正确性。
+ * 
+ * @param systemContext 系统上下文，包含系统状态信息
+ * @param dataBuffer 数据缓冲区指针，包含待验证的数据
+ * @return DataBuffer 验证结果状态码，0表示成功，非0表示错误
+ */
 DataBuffer ValidateDataFormatA0(DataBuffer systemContext,DataWord *dataBuffer)
 
 {
-  DataBuffer validationResult;
+  DataBuffer validationStatus;
   
-  validationResult = ValidateSystemMemoryBlock(systemContext,dataBuffer,4);
-  if (((int)validationResult == 0) && 
-      (validationResult = ValidateSystemMemoryBlock(systemContext,dataBuffer + 1,4), (int)validationResult == 0x11)) {
+  validationStatus = ValidateSystemMemoryBlock(systemContext,dataBuffer,4);
+  if (((int)validationStatus == 0) && 
+      (validationStatus = ValidateSystemMemoryBlock(systemContext,dataBuffer + 1,4), (int)validationStatus == 0x11)) {
     dataBuffer[1] = *dataBuffer;
     return 0;
   }
-  return validationResult;
+  return validationStatus;
 }
 
 
@@ -93487,7 +93516,7 @@ void ManageExceptionContextResourcesCA40(DataBuffer operationBase,int64_t dataBu
  * 
  * @note 原始函数名：Unwind_18090ca50
  */
-void Unwind_18090ca50(void)
+void DecrementSystemResourceCounterAndExecuteFunctionA0(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -93506,7 +93535,15 @@ void Unwind_18090ca50(void)
  * 
  * @note 原始函数名：Unwind_18090ca60
  */
-void Unwind_18090ca60(void)
+/**
+ * @brief 系统资源计数器递减并执行函数A1
+ * 
+ * 该函数递减系统资源计数器，并调用系统函数表中偏移量0x20处的函数指针。
+ * 这是系统资源管理中的标准清理流程，与A0函数功能相同。
+ * 
+ * @note 原始函数名：Unwind_18090ca60
+ */
+void DecrementSystemResourceCounterAndExecuteFunctionA1(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
