@@ -188921,7 +188921,7 @@ void ProcessCharacterDataFinalization(long long CharacterCode)
 
 
 
-570c0(uint64_t *CharacterCodevoid FUN_1801570c0(uint64_t *CharacterCode
+void ProcessCharacterResourceRelease(uint64_t *CharacterCode)
 {
   long long *CharacterCode;
   long long *BufferAllocationStatus;
@@ -240075,7 +240075,19 @@ void ProcessCharacterEncodingAndAllocation(long long CharacterCode)
 
 
 
-02c00(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointervoid FUN_180202c00(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer
+/**
+ * @brief 处理浮点数组的排序和转换操作
+ * 
+ * 该函数处理浮点数组的排序、转换和内存管理操作
+ * 
+ * @param CharacterCode - 字符编码指针
+ * @param CharacterCodeSize - 字符编码大小指针
+ * @param Utf8SourcePointer - UTF-8源指针
+ * @param Utf16EndPointer - UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180202c00
+ */
+void ProcessFloatArraySortingAndConversion(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -240324,7 +240336,19 @@ void ExecuteSystemFinalization(void)
 
 
 
-02d20(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointervoid FUN_180202d20(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer
+/**
+ * @brief 处理浮点数组的高级排序和转换操作
+ * 
+ * 该函数处理浮点数组的高级排序、转换和内存管理操作
+ * 
+ * @param CharacterCode - 字符编码指针
+ * @param CharacterCodeSize - 字符编码大小指针
+ * @param Utf8SourcePointer - UTF-8源指针
+ * @param Utf16EndPointer - UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180202d20
+ */
+void ProcessAdvancedFloatArraySorting(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
@@ -240386,7 +240410,19 @@ void ExecuteSystemFinalization(void)
 
 
 
-02d2d(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointervoid FUN_180202d2d(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer
+/**
+ * @brief 处理浮点数组的优化排序和转换操作
+ * 
+ * 该函数处理浮点数组的优化排序、转换和内存管理操作
+ * 
+ * @param CharacterCode - 字符编码指针
+ * @param CharacterCodeSize - 字符编码大小指针
+ * @param Utf8SourcePointer - UTF-8源指针
+ * @param Utf16EndPointer - UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_180202d2d
+ */
+void ProcessOptimizedFloatArraySorting(float *CharacterCode,float *CharacterCodeSize,long long Utf8SourcePointer,uint8_t Utf16EndPointer)
 {
   float SystemContextPrimaryFloat;
   float ContextSecondaryFloat;
