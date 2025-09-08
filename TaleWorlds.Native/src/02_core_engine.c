@@ -211616,7 +211616,27 @@ LAB_180176cb5:
 
 
 
-long long FUN_180177c00(long long CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: long long FUN_180177c00(long long CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理内存边界和系统上下文验证
+ * 
+ * 该函数负责处理内存边界检查和系统上下文验证，主要功能包括：
+ * - 遍历内存边界指针
+ * - 处理系统数据注册表
+ * - 验证系统上下文状态
+ * - 执行内存分配和释放操作
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @return 处理结果，成功返回0，失败返回其他值
+ * 
+ * @note 原始函数名：FUN_180177c00
+ */
+#define ProcessMemoryBoundaryAndSystemContextValidation FUN_180177c00
+long long ProcessMemoryBoundaryAndSystemContextValidation(long long CharacterCode,long long SystemBufferSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   char CurrentCharacter;
   char SystemCheckResult;
@@ -212078,7 +212098,7 @@ LAB_1801780ed:
     *(uint16_t *)(SystemEventTemplatePointer + 1) = 0x6472;
     *(uint8_t *)((long long)SystemEventTemplatePointer + 10) = 0;
     ProcessingCounter = 10;
-    MemoryAddressMaskPointer = FUN_180177c00(LoopCounter,&LocalProcessingStatusFlag);
+    MemoryAddressMaskPointer = ProcessMemoryBoundaryAndSystemContextValidation(LoopCounter,&LocalProcessingStatusFlag);
     *(void *)(ThreadLocalStorageData + 0xf0) = MemoryAddressMaskPointer;
     LocalProcessingStatusFlag = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
