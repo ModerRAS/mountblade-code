@@ -2369,12 +2369,33 @@ typedef uint32_t StackParameter;            // 栈参数类型 - 32位无符号�
 // 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA12 Unwind_180909ec0
 // 原始函数名：Unwind_180909ee0 - 销毁互斥锁清理函数A13
+/**
+ * @brief 销毁互斥锁清理函数A13
+ * 
+ * 该函数负责销毁互斥锁，清理线程同步资源
+ * 
+ * @note 原始函数名：Unwind_180909ee0
+ */
 // 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA13 Unwind_180909ee0
 // 原始函数名：Unwind_180909f00 - 销毁互斥锁清理函数A14
+/**
+ * @brief 销毁互斥锁清理函数A14
+ * 
+ * 该函数负责销毁互斥锁，清理线程同步资源
+ * 
+ * @note 原始函数名：Unwind_180909f00
+ */
 // 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA14 Unwind_180909f00
 // 原始函数名：Unwind_180909f20 - 系统上下文清理函数A15
+/**
+ * @brief 系统上下文清理函数A15
+ * 
+ * 该函数负责清理系统上下文，释放相关资源
+ * 
+ * @note 原始函数名：Unwind_180909f20
+ */
 // 功能：清理系统上下文，释放相关资源
 #define CleanupSystemContextA15 Unwind_180909f20
 // 原始函数名：Unwind_180909f40 - 系统上下文清理函数A16
@@ -122977,12 +122998,33 @@ int SynchronizeDataEQ0(void *dataSource, void *dataTarget);
 // 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA12 Unwind_180909ec0
 // 原始函数名：Unwind_180909ee0 - 销毁互斥锁清理函数A13
+/**
+ * @brief 销毁互斥锁清理函数A13
+ * 
+ * 该函数负责销毁互斥锁，清理线程同步资源
+ * 
+ * @note 原始函数名：Unwind_180909ee0
+ */
 // 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA13 Unwind_180909ee0
 // 原始函数名：Unwind_180909f00 - 销毁互斥锁清理函数A14
+/**
+ * @brief 销毁互斥锁清理函数A14
+ * 
+ * 该函数负责销毁互斥锁，清理线程同步资源
+ * 
+ * @note 原始函数名：Unwind_180909f00
+ */
 // 功能：销毁互斥锁，清理线程同步资源
 #define DestroyMutexCleanupA14 Unwind_180909f00
 // 原始函数名：Unwind_180909f20 - 系统上下文清理函数A15
+/**
+ * @brief 系统上下文清理函数A15
+ * 
+ * 该函数负责清理系统上下文，释放相关资源
+ * 
+ * @note 原始函数名：Unwind_180909f20
+ */
 // 功能：清理系统上下文，释放相关资源
 #define CleanupSystemContextA15 Unwind_180909f20
 // 原始函数名：Unwind_180909f40 - 系统上下文清理函数A16
