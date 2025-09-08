@@ -100112,7 +100112,17 @@ void ExecuteSystemResourceCleanupFunctionCallVariantA(DataBuffer operationBase,i
 
 
 
-void Unwind_18090e980(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置临时异常处理器并清理状态（变体A）
+ * 
+ * 该函数在数据缓冲区中设置临时异常处理器，清理相关状态标志，
+ * 并在必要时终止系统运行
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e980
+ */
+void SetTemporaryExceptionHandlerAndCleanupStateVariantA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0xf8) = &TemporaryExceptionHandler;
@@ -100127,7 +100137,16 @@ void Unwind_18090e980(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e990(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统资源清理函数调用（变体B）
+ * 
+ * 该函数检查数据缓冲区偏移量0x128处的系统资源指针，并在资源存在时执行清理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e990
+ */
+void ExecuteSystemResourceCleanupFunctionCallVariantB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x128) != (int64_t *)0x0) {
@@ -100138,7 +100157,16 @@ void Unwind_18090e990(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e9a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 设置默认异常处理器B
+ * 
+ * 该函数在数据缓冲区偏移量800处设置默认异常处理器B
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e9a0
+ */
+void SetDefaultExceptionHandlerB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 800) = &DefaultExceptionHandlerB;
@@ -100148,7 +100176,14 @@ void Unwind_18090e9a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e9b0(void)
+/**
+ * @brief 递减系统资源计数器并执行函数
+ * 
+ * 该函数递减系统资源计数器，并调用系统函数表中的函数
+ * 
+ * @note 原始函数名：Unwind_18090e9b0
+ */
+void DecrementSystemResourceCounterAndExecuteFunction(void)
 
 {
   SystemResourceCounter = SystemResourceCounter + -1;
@@ -115004,6 +115039,13 @@ void Unwind_180911f90(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 异常上下文清理函数A0
+ * 
+ * 该函数负责清理异常上下文，处理异常数据缓冲区。
+ * 
+ * @note 原始函数名：Unwind_180911fa0
+ */
 void Unwind_180911fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -115022,6 +115064,13 @@ void Unwind_180911fa0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 异常上下文清理函数A1
+ * 
+ * 该函数负责清理异常上下文，处理异常数据缓冲区。
+ * 
+ * @note 原始函数名：Unwind_180911fb0
+ */
 void Unwind_180911fb0(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {
@@ -115996,6 +116045,13 @@ void Unwind_180912350(DataBuffer operationBase,int64_t dataBuffer,DataBuffer ope
 
 
 
+/**
+ * @brief 异常上下文清理函数A2
+ * 
+ * 该函数负责清理异常上下文，处理异常数据缓冲区。
+ * 
+ * @note 原始函数名：Unwind_180912360
+ */
 void Unwind_180912360(DataBuffer operationBase,int64_t dataBuffer,DataBuffer operationFlagA,DataBuffer operationFlagB)
 
 {

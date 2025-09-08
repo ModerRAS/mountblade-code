@@ -7950,9 +7950,9 @@ void SetupUIMemoryAllocator(void)
   allocatedTextureBuffer = (UIDword *)0x0;
   textureBufferSize = 0;
   AllocateUIBuffer(&primaryUIBufferPtr,0x15);
-  psemaphoreHandle = pallocatedTextureBuffer;
+  textureSemaphoreHandle = allocatedTextureBuffer;
   bufferOffset = (ulonglong)textureBufferSize;
-  ptextureData = (UIDword *)((longlong)pallocatedTextureBuffer + bufferOffset);
+  textureDataBuffer = (UIDword *)((longlong)allocatedTextureBuffer + bufferOffset);
   ptextureData[3] = 0x654e746f;
   *(UIDword *)((longlong)pallocatedTextureBuffer + bufferOffset + 0x10) = 0x6c642e74;
   *(UIWord *)((longlong)pallocatedTextureBuffer + bufferOffset + 0x14) = 0x6c;
