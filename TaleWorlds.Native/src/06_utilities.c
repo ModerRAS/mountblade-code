@@ -90772,7 +90772,21 @@ void DecrementSystemResourceCounterAndCallFunction(void)
 
 
 
-void Unwind_18090c490(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器配置函数C490
+ * 
+ * 配置异常处理器上下文和资源管理器，包括：
+ * - 检查系统资源状态和异常处理标志
+ * - 设置异常处理器上下文指针
+ * - 验证数据缓冲区的有效性
+ * - 配置默认异常处理器
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理配置信息
+ * 
+ * @note 原始函数名：Unwind_18090c490
+ */
+void ConfigureExceptionHandlerC490(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
