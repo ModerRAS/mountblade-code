@@ -259,6 +259,11 @@
 #define ProcessSystemDataTable FUN_180627ce0                     // 处理系统数据表
 #define ReleaseSystemBufferMemory FUN_18015c270                  // 释放系统缓冲区内存
 #define ReleaseSystemBufferMemoryWithParams FUN_18015c320         // 释放系统缓冲区内存（带参数）
+#define ProcessCharacterCodeReferenceCount FUN_18016bb80          // 处理字符代码引用计数
+#define ProcessCharacterCodeWrapper1 FUN_18016f240                // 处理字符代码包装器1
+#define ProcessCharacterCodeWrapper2 FUN_18016f2c0                // 处理字符代码包装器2
+#define ProcessCharacterCodeWrapper3 FUN_18016f340                // 处理字符代码包装器3
+#define ProcessCharacterCodeWrapper4 FUN_18016f3c0                // 处理字符代码包装器4
 #define InitializeCharacterCodePointer FUN_180184700              // 初始化字符代码指针
 #define ProcessCharacterCodeBufferData FUN_1801899b0                // 处理字符代码缓冲区数据
 #define ProcessCharacterCodeDataConversion FUN_180189aa0            // 处理字符代码数据转换
@@ -188020,7 +188025,7 @@ LAB_1801545d1:
 void ProcessUtf8ToUtf16ConversionWithMemoryManagement(long long *CharacterCode, uint64_t SystemBufferSize, uint64_t Utf8SourcePointer, uint64_t Utf16EndPointer)
 {
   char CurrentCharacter;
-  int StringComparisonResult;
+  int MutexLockResult;
   int MemoryMatchResult;
   uint32_t *MemoryAddressMaskPointer;
   uint32_t *CharacterCodePointer;
@@ -188061,7 +188066,7 @@ void ProcessUtf8ToUtf16ConversionWithMemoryManagement(long long *CharacterCode, 
   EnginePointerBuffer = (uint32_t *)0x0;
   EncodingBuffer = (uint32_t *)0x0;
   BufferOffset = 3;
-  StringComparisonResult = _Mtx_lock(CharacterCode + 0xc);
+  MutexLockResult = _Mtx_lock(CharacterCode + 0xc);
   if (StringComparisonResult != 0) {
     __Throw_C_error_std__YAXH_Z(StringComparisonResult);
   }
