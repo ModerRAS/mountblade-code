@@ -30204,15 +30204,15 @@ DataBuffer ResetDataProcessorA1(void)
   int64_t *dataContext;
   DataBuffer validationStatus;
   int64_t *registerContext;
-  char registerBPL;
-  int64_t DestinationContext;
-  uint dataProcessingOffset;
+  char stackValidationFlag;
+  int64_t destinationContext;
+  uint processingOffset;
   
   exceptionHandlerContext = *registerContext;
-  validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 0x60);
-  if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 100,2), (int)validationStatus == 0)) &&
-     (validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 0x66,2), (int)validationStatus == 0)) {
-    validationStatus = OperateDataO0(exceptionHandlerContext,DestinationContext + 0x68,8);
+  validationStatus = OperateDataO0(exceptionHandlerContext,destinationContext + 0x60);
+  if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(exceptionHandlerContext,destinationContext + 100,2), (int)validationStatus == 0)) &&
+     (validationStatus = OperateDataO0(exceptionHandlerContext,destinationContext + 0x66,2), (int)validationStatus == 0)) {
+    validationStatus = OperateDataO0(exceptionHandlerContext,destinationContext + 0x68,8);
   }
   if ((int)validationStatus != 0) {
     return validationStatus;
@@ -30229,12 +30229,12 @@ DataBuffer ResetDataProcessorA1(void)
   }
   else {
     if (dataContext[2] != 0) {
-      dataProcessingOffset = 0;
+      processingOffset = 0;
       validationStatus = AllocateMemory(*dataContext,&StackDataBufferD);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      if ((uint64_t)dataContext[2] < (uint64_t)DataProcessingOffset + 1) {
+      if ((uint64_t)dataContext[2] < (uint64_t)processingOffset + 1) {
         validationStatus = 0x11;
         goto ProcessCheckpointDataFlowControl;
       }
@@ -30243,7 +30243,7 @@ DataBuffer ResetDataProcessorA1(void)
   }
 ProcessCheckpointDataFlowControl:
   if ((int)validationStatus == 0) {
-    *(bool *)(DestinationContext + 0x7c) = registerBPL != (char)validationStatus;
+    *(bool *)(destinationContext + 0x7c) = stackValidationFlag != (char)validationStatus;
   }
   return validationStatus;
 }
