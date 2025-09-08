@@ -264,6 +264,12 @@
 #define SystemFlagA aSystemFlagA                                 // 系统标志A
 #define SystemEventFlag8 aSystemEventFlag8                       // 系统事件标志8
 
+// 核心引擎数据处理变量语义化宏定义
+#define BufferInitializationPointerArray apBufferInitializationFlag // 缓冲区初始化指针数组
+#define ProcessingStatusFlagPointer9 PrimaryProcessingStatusFlag9  // 处理状态标志指针9
+#define SystemEventTemplatePointer5 SystemEventTemplatePointer5    // 系统事件模板指针5
+#define ProcessingStatusFlagPointer6 PrimaryProcessingStatusFlag6  // 处理状态标志指针6
+
 // FUN_函数语义化宏定义
 /**
  * @brief 重置字符处理系统
@@ -49680,7 +49686,7 @@ unsigned long long ProcessSystemEventAndDataStructure(long long CharacterCode,ui
   long long PerformanceCounterValue;
   uint32_t StackArray138 [2];
   unsigned long long TemporaryFlag;
-  uint64_t *apBufferInitializationFlag [2];
+  uint64_t *BufferInitializationPointerArray [2];
   long long SystemTemporaryValue118;
   uint64_t ProcessingCounter;
   uint64_t SystemFlagA;
