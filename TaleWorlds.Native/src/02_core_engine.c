@@ -231369,7 +231369,19 @@ FUN_1801952e0(uint64_t *CharacterCode,unsigned long long SystemBufferSize,uint64
 
 
 
-uint64_t FUN_180195330(long long CharacterCode,int SystemBufferSize,int Utf8SourcePointer
+/**
+ * @brief 查找并比较系统数据节点
+ * 
+ * 该函数负责在系统中查找并比较数据节点，用于数据管理和索引操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @param Utf8SourcePointer UTF-8源指针
+ * @return 查找比较结果
+ * 
+ * @note 原始函数名：FUN_180195330
+ */
+uint64_t FindAndCompareSystemDataNode(long long CharacterCode,int SystemBufferSize,int Utf8SourcePointer)
 {
   long long PrimaryDataSize;
   int *StringComparisonResultPointer;
