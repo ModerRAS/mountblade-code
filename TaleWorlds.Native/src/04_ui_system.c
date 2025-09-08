@@ -83916,20 +83916,19 @@ int CompareUIContextValues(uint uiContext,uint dataSource)
 
 
 
- void FUN_180715720(longlong uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer,
-void FUN_180715720(longlong uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer,
+ void ProcessUIBufferData(longlong uiContext,longlong dataSource,longlong targetBuffer,int bufferSize,int resultPointer,
                   byte param_6)
 
 {
   longlong allocatedMemory;
   int uiValidationResult;
-  short *psVar3;
-  int TempInt4;
-  short *psVar5;
-  int localInt6;
-  int localInt7;
-  int localInt8;
-  float localFloat9;
+  short *dataPointer;
+  int bufferIndex;
+  short *dataIterator;
+  int rowOffset;
+  int columnCounter;
+  int rowIndex;
+  float calculatedValue;
   
   psVar3 = *(short **)(uiContext + 0x20);
   localInt8 = 0;
