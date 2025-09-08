@@ -7929,13 +7929,13 @@ void SetupUIMemoryAllocator(void)
   UIDword *textureDataBuffer;
   ulonglong bufferOffset;
   UIByte encryptionKeyBuffer [32];
-  undefined *pprimaryUIBuffer;
-  UIDword *pallocatedTextureBuffer;
+  undefined *primaryUIBufferPtr;
+  UIDword *allocatedTextureBuffer;
   uint textureBufferSize;
   ulonglong encryptedBufferOffset;
   UIDword bufferPadding;
-  undefined *pstackPointer90;
-  UIHandle *pstackPointer88;
+  undefined *stackPointer90;
+  UIHandle *stackPointer88;
   UIDword stackValue80;
   UIHandle stackValue78;
   UIHandle memoryAlignmentFlag;

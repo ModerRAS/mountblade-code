@@ -100069,7 +100069,16 @@ void SetTemporaryExceptionHandlerAndCleanupState(DataBuffer operationBase,int64_
 
 
 
-void Unwind_18090e960(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行异常上下文处理器调用（变体B）
+ * 
+ * 该函数从验证结果的偏移量0x58处获取异常上下文指针，并调用相应的异常处理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e960
+ */
+void ExecuteExceptionHandlerContextCallVariantB(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100083,7 +100092,16 @@ void Unwind_18090e960(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090e970(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统资源清理函数调用（变体A）
+ * 
+ * 该函数检查数据缓冲区偏移量0xf0处的系统资源指针，并在资源存在时执行清理函数
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * @note 原始函数名：Unwind_18090e970
+ */
+void ExecuteSystemResourceCleanupFunctionCallVariantA(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0xf0) != (int64_t *)0x0) {
