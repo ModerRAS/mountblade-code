@@ -92098,6 +92098,8 @@ void UIEmptyOperationProcessor(void)
 // UI渲染数据变换处理函数
 // 原始函数名: FUN_18071f270
 #define ProcessUIRenderDataTransformation FUN_18071f270
+// 原始函数名：FUN_18071f2ed - UI渲染数据变换处理器
+#define ProcessUIRenderDataTransformationAdvanced FUN_18071f2ed
 
 void ProcessUIRenderDataTransformation(longlong uiContext,longlong dataSource,longlong targetBuffer,uint bufferSize,uint resultPointer,
                                        int processingParameter)

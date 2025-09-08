@@ -305,6 +305,16 @@
 
 // 系统事件和标志变量定义
 #define SystemEventValidationStatus aEventValidationStatus      // 系统事件当前字符
+
+// 循环和计数变量语义化宏定义
+#define LoopIterationCounter LoopIndex                             // 循环迭代计数器 - 循环索引
+#define LockOperationResult0 StringComparisonResult               // 锁操作结果0 - 字符串比较结果
+
+// 系统数据结构语义化宏定义
+#define SystemMemoryBuffer SystemDataMemory                       // 系统内存缓冲区 - 系统数据内存
+#define MemoryPoolManager MemoryAllocator                         // 内存池管理器 - 内存分配器
+#define SystemConfigurationHandle SystemConfigHandle               // 系统配置句柄 - 系统配置句柄
+#define MemoryBoundaryEnd MemoryEndAddress                        // 内存边界结束 - 内存结束地址
 #define SystemUintBuffer238 aSystemUintBuffer238                // 系统无符号缓冲区238
 #define SystemOperation90 aSystemOperation90                     // 系统操作90
 #define SystemFlagH aSystemFlagH                                 // 系统标志H
