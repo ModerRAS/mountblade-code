@@ -23647,27 +23647,27 @@ void ProcessFloatingPointDataA0(void)
         operationResult = *(DataWord *)(exceptionHandlerDataPointer + 0x18);
         dataFlags = *(DataWord *)(exceptionHandlerDataPointer + 0x1c);
         *(DataWord *)(StackFrameContext + -0x78) = 0;
-        *(int *)(StackFrameContext + -0x68) = loopCounter;
+        *(int *)(StackFrameContext + -0x68) = processingLoopCounter;
         *(uint8_t **)(StackFrameContext + -0x80) = &SystemDataTableReference;
-        loopCounter = loopCounter + 1;
+        processingLoopCounter = processingLoopCounter + 1;
         *(DataWord *)(StackFrameContext + -0x54) = SystemOperationResult;
         *(DataWord *)(StackFrameContext + -0x70) = basePointer;
         *(DataWord *)(StackFrameContext + -100) = validationStatus;
         *(DataWord *)(StackFrameContext + -0x60) = memoryRegionBase;
         *(DataWord *)(StackFrameContext + -0x5c) = operationResult;
         *(DataWord *)(StackFrameContext + -0x58) = dataFlags;
-        calculatedSize = ValidateDataIntegrityA0(validationStatus,StackFrameContext + -0x80);
-        if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&NormalizedParameterValue), calculatedSize != 0))
+        validationSizeResult = ValidateDataIntegrityA0(validationStatus,StackFrameContext + -0x80);
+        if ((validationSizeResult != 0) || (validationSizeResult = SynchronizeDataEQ0(dataContext,&NormalizedParameterValue), validationSizeResult != 0))
         goto ProcessCheckpointSizeValidation;
-        floatValue = NormalizedParameterValue;
+        processedFloatValue = NormalizedParameterValue;
         if (NormalizedParameterValue != 1.0) {
           ProcessedFloatValue = NormalizedParameterValue;
           ValidationDataBuffer = &SystemValidationDataTableA3;
           DataProcessingOffset = SystemOperationResult;
-          operationResult = calculatedSize;
-          calculatedSize = ValidateDataIntegrityA0(NormalizedParameterValue,&ValidationDataBuffer);
-          floatValue = floatResultA;
-          if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
+          operationResult = validationSizeResult;
+          validationSizeResult = ValidateDataIntegrityA0(NormalizedParameterValue,&ValidationDataBuffer);
+          processedFloatValue = floatResultA;
+          if (validationSizeResult != 0) goto ProcessCheckpointSizeValidation;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           operationResult = 0;
