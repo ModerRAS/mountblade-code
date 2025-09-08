@@ -60129,12 +60129,12 @@ void CleanupThreadSyncAndExceptionResources(DataBuffer operationBase, int64_t da
   calculatedIndex = *(int64_t *)(resourceIterator + ExceptionHandlerContextF0Offset);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + ValidationFlagOffset3541);
-    calculatedIndex = *(int64_t *)(calculatedIndex + 0x3538);
+    calculatedIndex = *(int64_t *)(calculatedIndex + ValidationContextOffset3538);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
     }
   }
-  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0xe0);
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusPointerE0Offset);
   if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
@@ -60518,12 +60518,12 @@ void CleanupThreadContextWithMemoryManagementB(DataBuffer operationBase,int64_t 
   calculatedIndex = *(int64_t *)(resourceIterator + ExceptionHandlerContextF0Offset);
   while (calculatedIndex != 0) {
     validationFlag = (char *)(calculatedIndex + ValidationFlagOffset3541);
-    calculatedIndex = *(int64_t *)(calculatedIndex + 0x3538);
+    calculatedIndex = *(int64_t *)(calculatedIndex + ValidationContextOffset3538);
     if (*validationFlag != '\0') {
         TerminateSystemE0();
     }
   }
-  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0xe0);
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + ValidationStatusPointerE0Offset);
   if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
