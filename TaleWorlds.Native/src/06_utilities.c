@@ -191,6 +191,15 @@
 #define ComponentDataStateOffset30 0x30
 #define DataContextOperationOffset24 0x24
 
+// 组件和参数上下文偏移量常量
+#define ComponentContextCapacityOffset 0xc
+#define ParameterContextFlagsOffset 0xc
+#define BufferContextSizeOffset 0xc
+
+// 数据处理偏移量常量
+#define ProcessedDataOffset72 0x72
+#define ProcessedDataOffset74 0x74
+
 // 浮点数据偏移量常量
 #define FloatDataValidationOffset3C 0x3c
 
@@ -20207,34 +20216,34 @@ int ValidateAndProcessSystemOperation(int64_t systemContext,int64_t operationCon
 int ValidateAndProcessDataOperation(int64_t dataContext,DataBuffer operationFlags)
 
 {
-  int validationResult;
-  int64_t allocatedBuffer;
-  int64_t contextHandle;
-  int64_t resourceHandle;
-  int64_t systemContextBuffer;
+  int ValidationResult;
+  int64_t AllocatedBuffer;
+  int64_t ContextHandle;
+  int64_t ResourceHandle;
+  int64_t SystemContextBuffer;
   
   if ((int)operationFlags < 1) {
-    validationResult = ExecuteSystemValidationA0();
-    if ((validationResult == OperationSuccess) &&
-       (validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + SystemContextConfigOffset),&systemContextBuffer), validationResult == OperationSuccess)
+    ValidationResult = ExecuteSystemValidationA0();
+    if ((ValidationResult == OperationSuccess) &&
+       (ValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(ContextHandle + SystemContextConfigOffset),&SystemContextBuffer), ValidationResult == OperationSuccess)
        ) {
-      if (*(int *)(systemContextBuffer + OperationDataContextOffset) == OperationDataProcessed) {
-        *(DataWord *)(systemContextBuffer + OperationDataContextOffset) = OperationDataComplete;
+      if (*(int *)(SystemContextBuffer + OperationDataContextOffset) == OperationDataProcessed) {
+        *(DataWord *)(SystemContextBuffer + OperationDataContextOffset) = OperationDataComplete;
       }
-        CleanupSystemEventA0(*(DataBuffer *)(resourceHandle + OperationContextBufferOffset));
+        CleanupSystemEventA0(*(DataBuffer *)(ResourceHandle + OperationContextBufferOffset));
     }
   }
   else if (*(int64_t *)(dataContext + SystemContextHandleOffset) == 0) {
-    validationResult = OperationInvalidParameter;
+    ValidationResult = OperationInvalidParameter;
   }
   else {
-    allocatedBuffer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset),operationFlags,&SystemMemoryPoolC,SystemMemoryAllocationFlag,0);
-    if (allocatedBuffer != 0) {
-        memcpy(allocatedBuffer,*(DataBuffer *)(contextHandle + SystemContextHandleOffset),(int64_t)*(int *)(contextHandle + SystemContextSizeOffset));
+    AllocatedBuffer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + SystemMemoryManagerOffset),operationFlags,&SystemMemoryPoolC,SystemMemoryAllocationFlag,0);
+    if (AllocatedBuffer != 0) {
+        memcpy(AllocatedBuffer,*(DataBuffer *)(ContextHandle + SystemContextHandleOffset),(int64_t)*(int *)(ContextHandle + SystemContextSizeOffset));
     }
-    validationResult = OperationMemoryError;
+    ValidationResult = OperationMemoryError;
   }
-  return validationResult;
+  return ValidationResult;
 }
 
 
@@ -29217,7 +29226,7 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
                           operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                             (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                           if (operationResult == 0) {
-                            processedData = *(DataBuffer *)(dataBuffer + 0x72);
+                            processedData = *(DataBuffer *)(dataBuffer + ProcessedDataOffset72);
                             operationResult = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
                                               (*(DataBuffer **)(operationBase + OperationBaseOffset8),&stackDataBuffer,8);
                             if (operationResult == 0) {
