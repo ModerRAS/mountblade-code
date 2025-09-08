@@ -7982,12 +7982,12 @@ void SetupUIMemoryAllocator(void)
   }
   stackPointer90 = &PrimaryUIBuffer;
   stackValue78 = 0;
-  pstackPointer88 = (UIHandle *)0x0;
+  stackPointer88 = (UIHandle *)0x0;
   stackValue80 = 0;
-  pstringBuffer = (UIHandle *)CreateUIContext(UIContextManager,0x10,0x13);
-  *(UIByte *)pstringBuffer = 0;
-  pstackPointer88 = pstringBuffer;
-  textureFormatFlag = ConfigureUIComponent(pstringBuffer);
+  stringBufferHandle = (UIHandle *)CreateUIContext(UIContextManager,0x10,0x13);
+  *(UIByte *)stringBufferHandle = 0;
+  stackPointer88 = stringBufferHandle;
+  textureFormatFlag = ConfigureUIComponent(stringBufferHandle);
   stackValue78 = CONCAT44(stackValue78._4_4_,textureFormatFlag);
   *pstringBuffer = 0x6c6c6f72746e6f43;
   *(UIWord *)(pstringBuffer + 1) = 0x7265;
