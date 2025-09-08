@@ -48982,14 +48982,14 @@ void HandleSystemDataStructureConfigurationAndInitialization(long long *ContextH
  */
 void ValidateAndUpdateBufferConfiguration(long long ContextHandle,long long *ContextHandleSize
 {
-  byte bufferValidationStatus;
-  long long BufferStatus;
-  uint8_t UnicodeCodePoint;
-  byte bufferModeFlag;
-  uint bufferValidationValue;
-  long long MemoryBoundaryEnd;
-  long long *MemoryPoolBlockSizePointer;
-  byte ConfigurationFlags;
+  byte SystemValidationStatus;
+  long long SystemBufferHandle;
+  uint8_t SystemEncodingFlag;
+  byte SystemModeFlag;
+  uint SystemValidationResult;
+  long long PoolIterationIndex;
+  long long *MemoryPoolIterator;
+  byte SystemConfigurationFlags;
   
   if (*ContextHandleSize != *(long long *)(ContextHandle + 0x1b8)) {
     if (*(char *)(ContextHandle + 0xb1) != '\0') {
@@ -48997,36 +48997,36 @@ void ValidateAndUpdateBufferConfiguration(long long ContextHandle,long long *Con
       CoreEngineTerminateSystem();
     }
     ProcessSystemDataStructure(ContextHandle + 0x1b8);
-    BufferStatus = *(long long *)(ContextHandle + 0x1b8);
-    if (BufferStatus != 0) {
-      MemoryBoundaryEnd = 0;
-      ConfigurationFlags = 0;
-      bufferValidationStatus = *(byte *)(ContextHandle + 0xfd);
-      bufferModeFlag = (byte)((uint)*(uint32_t *)(*(long long *)(BufferStatus + 0x1e0) + 0x1588) >> 0x1b) << 7;
-      *(byte *)(ContextHandle + 0xfd) = bufferModeFlag | bufferValidationStatus & 0x7f;
-      bufferValidationValue = *(uint *)(BufferStatus + 0x138) & 0x3000;
-      if (bufferValidationValue == 0x1000) {
+    SystemBufferHandle = *(long long *)(ContextHandle + 0x1b8);
+    if (SystemBufferHandle != 0) {
+      PoolIterationIndex = 0;
+      SystemConfigurationFlags = 0;
+      SystemValidationStatus = *(byte *)(ContextHandle + 0xfd);
+      SystemModeFlag = (byte)((uint)*(uint32_t *)(*(long long *)(SystemBufferHandle + 0x1e0) + 0x1588) >> 0x1b) << 7;
+      *(byte *)(ContextHandle + 0xfd) = SystemModeFlag | SystemValidationStatus & 0x7f;
+      SystemValidationResult = *(uint *)(SystemBufferHandle + 0x138) & 0x3000;
+      if (SystemValidationResult == 0x1000) {
         *(uint8_t *)(ContextHandle + 0xf7) = 1;
       }
       else {
-        UnicodeCodePoint = 0;
-        if (bufferValidationValue == 0x2000) {
-          UnicodeCodePoint = 2;
+        SystemEncodingFlag = 0;
+        if (SystemValidationResult == 0x2000) {
+          SystemEncodingFlag = 2;
         }
-        *(uint8_t *)(ContextHandle + 0xf7) = UnicodeCodePoint;
+        *(uint8_t *)(ContextHandle + 0xf7) = SystemEncodingFlag;
       }
-      ConfigurationFlags = ConfigurationFlags | bufferValidationStatus & 0x77;
-      *(byte *)(ContextHandle + 0xfd) = ConfigurationFlags;
-      MemoryPoolBlockSizePointer = (long long *)(BufferStatus + 0xb8);
+      SystemConfigurationFlags = SystemConfigurationFlags | SystemValidationStatus & 0x77;
+      *(byte *)(ContextHandle + 0xfd) = SystemConfigurationFlags;
+      MemoryPoolIterator = (long long *)(SystemBufferHandle + 0xb8);
       do {
-        if (0xf < MemoryBoundaryEnd) break;
-        if ((*MemoryPoolBlockSizePointer != 0) && (*(int *)(*MemoryPoolBlockSizePointer + 0x36c) != 0)) {
-          ConfigurationFlags = ConfigurationFlags | 8;
-          *(byte *)(ContextHandle + 0xfd) = ConfigurationFlags;
+        if (0xf < PoolIterationIndex) break;
+        if ((*MemoryPoolIterator != 0) && (*(int *)(*MemoryPoolIterator + 0x36c) != 0)) {
+          SystemConfigurationFlags = SystemConfigurationFlags | 8;
+          *(byte *)(ContextHandle + 0xfd) = SystemConfigurationFlags;
         }
-        MemoryBoundaryEnd = MemoryBoundaryEnd + 1;
-        MemoryPoolBlockSizePointer = MemoryPoolBlockSizePointer + 1;
-      } while ((ConfigurationFlags & 8) == 0);
+        PoolIterationIndex = PoolIterationIndex + 1;
+        MemoryPoolIterator = MemoryPoolIterator + 1;
+      } while ((SystemConfigurationFlags & 8) == 0);
       FinalizeTargetDataProcessing(ContextHandle);
     }
   }
@@ -49075,27 +49075,27 @@ void AtomicIncrementReferenceCount(long long ContextHandle
  */
 void UnlockSystemDataStructure(long long ContextHandle
 {
-  char *ValidationStatus;
-  long long *BufferAllocationStatus;
-  int MemoryMatchResult;
+  char *SystemValidationPointer;
+  long long *BufferAllocationHandle;
+  int MemoryComparisonResult;
   bool IsResourceLocked;
-  bool systemLockFlag;
+  bool SystemLockStatus;
   
-  InputDataLength = _Mtx_lock(0x180c91910);
-  if (InputDataLength != 0) {
-    __Throw_C_error_std__YAXH_Z(InputDataLength);
+  int LockOperationResult = _Mtx_lock(0x180c91910);
+  if (LockOperationResult != 0) {
+    __Throw_C_error_std__YAXH_Z(LockOperationResult);
   }
-  SystemValidationStatus = (char *)(ContextHandle + 0xfc);
-  *ValidationStatus = *ValidationStatus + -1;
-  if (*ValidationStatus == '\0') {
+  SystemValidationPointer = (char *)(ContextHandle + 0xfc);
+  *SystemValidationPointer = *SystemValidationPointer + -1;
+  if (*SystemValidationPointer == '\0') {
     while( true ) {
       LOCK();
-      systemLockFlag = *(char *)(ContextHandle + 0xec) == '\0';
-      if (systemLockFlag) {
+      SystemLockStatus = *(char *)(ContextHandle + 0xec) == '\0';
+      if (SystemLockStatus) {
         *(char *)(ContextHandle + 0xec) = '\x01';
       }
       UNLOCK();
-      if (systemLockFlag) break;
+      if (SystemLockStatus) break;
       Sleep();
     }
     while (*(int *)(ContextHandle + 0xe8) != 0) {
@@ -49105,10 +49105,10 @@ void UnlockSystemDataStructure(long long ContextHandle
          (ValidateFloatProcessingStatusFlag(ContextHandle), *(char *)(ContextHandle + 0xfc) == '\0')) &&
         (*(char *)(ContextHandle + 0xf4) == '\0')) &&
        (((*(byte *)(ContextHandle + 0xfd) & 0x20) == 0 || ((*(byte *)(ContextHandle + 0xfe) & 1) == 0)))) {
-      BufferAllocationStatus = *(long long **)(ContextHandle + 0x210);
+      BufferAllocationHandle = *(long long **)(ContextHandle + 0x210);
       *(void *)(ContextHandle + 0x210) = 0;
-      if (BufferAllocationStatus != (long long *)0x0) {
-        (**(code **)(*BufferAllocationStatus + 0x38))();
+      if (BufferAllocationHandle != (long long *)0x0) {
+        (**(code **)(*BufferAllocationHandle + 0x38))();
       }
     }
     LOCK();
@@ -49117,9 +49117,9 @@ void UnlockSystemDataStructure(long long ContextHandle
     }
     UNLOCK();
   }
-  InputDataLength = _Mtx_unlock(0x180c91910);
-  if (InputDataLength != 0) {
-    __Throw_C_error_std__YAXH_Z(InputDataLength);
+  LockOperationResult = _Mtx_unlock(0x180c91910);
+  if (LockOperationResult != 0) {
+    __Throw_C_error_std__YAXH_Z(LockOperationResult);
   }
   return;
 }
