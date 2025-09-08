@@ -1029,7 +1029,7 @@ typedef enum {
 #define UIStatusPointer4 (void*)0x1809547f0
 
 // UI系统附加状态指针美化
-#define UIStatusPointer5 UNK_1809553a0
+#define UIStatusPointer5 (void*)0x1809553a0
 #define UIStatusPointer6 UNK_180954b30
 #define UIStatusPointer7 UNK_1809535d8
 #define UIStatusPointer8 UNK_1809535c4
