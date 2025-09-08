@@ -90867,11 +90867,11 @@ void InitializeUIComponentData(longlong uiContext,UIHandle dataSource,UIHandle t
   UIHandle StackHandleData2;
   longlong StackLongData;
   
-  *(UIHandle *)(basePointer + 0x35a0) = componentHandle;
-  *(UIHandle *)(basePointer + 0x35a8) = componentHandle;
-  stackData3 = (UIDword)componentHandle;
-  stackData2 = (UIByte)componentHandle;
-  contextFlags = *(byte *)(uiContext + 0x1208);
+  *(UIHandle *)(BasePointer + 0x35a0) = ComponentHandle;
+  *(UIHandle *)(BasePointer + 0x35a8) = ComponentHandle;
+  StackDwordData2 = (UIDword)ComponentHandle;
+  StackByteData = (UIByte)ComponentHandle;
+  ContextFlags = *(UIByte *)(uiContext + 0x1208);
   *(int *)(uiBufferData + 0x1208) = *(int *)(uiBufferData + 0x1208) + 1;
   *(byte *)(uiContext + 0x12aa) = contextFlags & 3;
   allocatedMemory = uiContext + 0x1c1c + (longlong)*(int *)(uiBufferData + 0x11ec) * 4;
