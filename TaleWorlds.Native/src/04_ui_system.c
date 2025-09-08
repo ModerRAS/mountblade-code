@@ -2515,15 +2515,15 @@ void* UIGestureCoordinates;
  创建UI系统的资源，用于资源管理和分配
   param1 参数1
  *   *    创建的资源指针
-  原始函数名: func_0x00018022b490
- #define CreateUIResource func_0x00018022b490
+  原始函数名: CreateUIResource
+ #define CreateUIResource CreateUIResource
 
  处理UI系统配置
  处理UI系统的配置信息，用于系统初始化和设置
   configPtr 配置指针
  *    配置处理结果
-  原始函数名: func_0x0001803812e0
- #define ProcessUIConfiguration func_0x0001803812e0
+  原始函数名: ProcessUIConfiguration
+ #define ProcessUIConfiguration ProcessUIConfiguration
 
  验证UI上下文
  验证UI上下文的有效性和完整性
