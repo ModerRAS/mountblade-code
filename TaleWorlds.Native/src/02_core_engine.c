@@ -185677,7 +185677,7 @@ LAB_180152731:
   case 7:
     ppuStack_210 = (uint32_t **)CONCAT44(ppuStack_210.HighPart,*(uint32_t *)(CharacterCode + 0xb8));
     uStack_218 = CONCAT44(uStack_218.HighPart,*(uint32_t *)(CharacterCode + 0xb4));
-    FUN_18029e570(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
+    ProcessRenderContextValidation(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
                   *(void *)(CharacterCode + 0xa8),*(uint32_t *)(CharacterCode + 0xb0));
     (**(code **)(**(long long **)(CharacterCode + 0xa0) + 0x38))();
     (**(code **)(**(long long **)(CharacterCode + 0xa8) + 0x38))();
@@ -185685,19 +185685,19 @@ LAB_180152731:
   case 8:
     ppuStack_210 = (uint32_t **)CONCAT71(ppuStack_210.FullPart,*(int *)(CharacterCode + 0xb0) != 0);
     uStack_218 = CONCAT44(uStack_218.HighPart,*(uint32_t *)(CharacterCode + 0xac));
-    FUN_18029ea30(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
+    ProcessRenderContextFinalization(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
                   *(uint32_t *)(CharacterCode + 0xa8),
                   *(void *)(*(long long *)(CharacterCode + 0xc0) + 0x10));
     (**(code **)(**(long long **)(CharacterCode + 0xc0) + 0x38))();
     break;
   case 9:
-    FUN_18029ead0(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
+    ProcessRenderContextSynchronization(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
                   *(void *)(*(long long *)(CharacterCode + 0xa8) + 0x10),
                   *(uint32_t *)(CharacterCode + 0xb0));
     (**(code **)(**(long long **)(CharacterCode + 0xa8) + 0x38))();
     break;
   case 10:
-    FUN_18029ead0(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
+    ProcessRenderContextSynchronization(*(void *)(CoreEngineRenderContext + 0x1cd8),*(void *)(CharacterCode + 0xa0),
                   *(void *)(CharacterCode + 0xa8),*(uint32_t *)(CharacterCode + 0xb0));
     break;
   case 0xb:
@@ -185709,7 +185709,7 @@ LAB_180152731:
     uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
     StringLength = (**(code **)(*MemoryBlockListHead + 0x70))(MemoryBlockListHead,*(void *)(SystemStringIndex + 0x10),0,4);
     if (StringLength < 0) {
-      FUN_180220810(StringLength,&SystemMutexLock);
+      ProcessStringWithMutexLock(StringLength,&SystemMutexLock);
     }
     StringLength = *(int *)(CharacterCode + 0xb8);
     if (0 < StringLength) {
@@ -185735,7 +185735,7 @@ LAB_180152731:
     uStack_218 = (unsigned long long)uStack_218.HighPart << 0x20;
     StringLength = (**(code **)(*MemoryBlockListHead + 0x70))(MemoryBlockListHead,*(void *)(SystemStringIndex + 0x10),0,4);
     if (StringLength < 0) {
-      FUN_180220810(StringLength,&SystemMutexLock);
+      ProcessStringWithMutexLock(StringLength,&SystemMutexLock);
     }
     SystemStatusCode = *(unsigned long long *)(CharacterCode + 0xb8) >> 6;
     StringLength = (int)(*(unsigned long long *)(CharacterCode + 0xb0) >> 6);
@@ -185869,7 +185869,7 @@ code_r0x000180151fd7:
     UNLOCK();
     break;
   case 0x14:
-    FUN_180152870(*(void *)(CharacterCode + 0xa0));
+    ProcessCharacterDataWithValidation(*(void *)(CharacterCode + 0xa0));
     break;
   case 0x15:
     ppuStack_210 = *(uint32_t ***)(CharacterCode + 200);
@@ -275762,7 +275762,7 @@ LAB_1802297eb:
 
 
 
-29b30(long long *CharacterCode,unsigned long long SystemBufferSizevoid FUN_180229b30(long long *CharacterCode,unsigned long long SystemBufferSize
+29b30(long long *CharacterCode,unsigned long long SystemBufferSizevoid ProcessCharacterCodeData(long long *CharacterCode,unsigned long long SystemBufferSize
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
