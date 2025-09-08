@@ -26799,9 +26799,9 @@ DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
                                     *(DataWord *)(memoryBlockOffset + 8),*(DataWord *)(memoryBlockOffset + 0xc),operationResult,
                                     dataFlags,validationOutcome,securityCheckResult,memoryRegionBase);
               if ((((int)operationResult == 0) &&
-                  (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA8,*(DataWord *)(exceptionHandlerContext + 0x1e0),
+                  (operationResult = ProcessDataBlockWithConfigurationA0(operationBase,&DataConfigurationTableA8,*(DataWord *)(exceptionHandlerContext + ExceptionContextDataBufferOffset1E0),
                                          *(DataWord *)(operationBase[1] + SystemDataParameterOffset20),
-                                         *(DataWord *)(exceptionHandlerContext + 0x78),operationResult,dataFlags,validationOutcome,securityCheckResult,memoryRegionBase
+                                         *(DataWord *)(exceptionHandlerContext + ExceptionContextSystemDataOffset78),operationResult,dataFlags,validationOutcome,securityCheckResult,memoryRegionBase
                                         ), (int)operationResult == 0)) &&
                  ((operationResult = (**(FunctionPointer**)(*operationBase + OperationBaseOffset8))(operationBase,&DataProcessingConfigurationTableA1), (int)operationResult == 0 &&
                   (((*(uint *)(operationBase + 3) & 2) != 0 ||

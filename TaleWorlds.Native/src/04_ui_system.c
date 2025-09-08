@@ -92520,7 +92520,16 @@ void FUN_18071f88a(float uiContext,UIHandle dataSource,UIHandle targetBuffer,int
 
 
 
- void ExecuteUIRenderTaskWrapper(void)
+ /**
+ * @brief 执行UI渲染任务的包装函数
+ * 
+ * 该函数作为UI渲染任务的包装器，负责执行实际的渲染任务。
+ * 这是一个不返回的函数，调用后将直接进入渲染流程。
+ * 
+ * @note 原始函数名：FUN_18071fb3f
+ * @warning 此函数不返回，会直接执行渲染任务
+ */
+void ExecuteUIRenderTaskWrapper(void)
 void ExecuteUIRenderTaskWrapper(void)
 
 {
@@ -92800,8 +92809,8 @@ void ProcessUIMemoryManagement(longlong uiContext,float *dataSource)
 
 
 
- void FUN_18071fc11(void)
-void FUN_18071fc11(void)
+ void ProcessUITransformCoefficients(void)
+void ProcessUITransformCoefficients(void)
 
 {
   float *pbaseValue;
