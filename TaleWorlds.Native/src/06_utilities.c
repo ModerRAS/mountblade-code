@@ -110073,7 +110073,23 @@ void Unwind_180910130(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_180910150(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理系统操作循环的异常处理器
+ * 
+ * 该函数负责在异常上下文中循环处理系统操作。主要功能包括：
+ * - 获取数据上下文和异常处理器上下文
+ * - 遍历内存块偏移量数组，调用系统操作处理函数
+ * - 检查数据上下文是否为空，若为空则返回，否则终止系统执行
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_180910150
+ * @note 这是一个异常展开（unwind）处理函数，用于批量处理系统操作
+ */
+#define ProcessSystemOperationsInExceptionHandlerLoop Unwind_180910150
+
+void ProcessSystemOperationsInExceptionHandlerLoop(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
