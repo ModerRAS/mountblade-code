@@ -211825,7 +211825,7 @@ LAB_180178010:
 LAB_180178030:
             if (*(int *)(MemoryPoolBlockSize + 0x30) == 0) {
 LAB_180178104:
-              FUN_18008ea80();
+              InitializeSystemEventManager();
               pSystemEventPointer0 = &puStack_878;
               puStack_878 = &SystemNullTemplate;
               if (lStack_870 != 0) {
