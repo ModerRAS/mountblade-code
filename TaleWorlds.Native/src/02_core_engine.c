@@ -207727,20 +207727,20 @@ void ProcessUnicodeCharacterAndMemoryManagement(void
 
 
 
-72e23(long long CharacterCode,uint64_t SystemBufferSize,int Utf8SourcePointer,int Utf16EndPointervoid FUN_180172e23(long long CharacterCode,uint64_t SystemBufferSize,int Utf8SourcePointer,int Utf16EndPointer
+void ProcessCharacterEncodingValidationAndMemoryAllocation(long long CharacterCode,uint64_t SystemBufferSize,int Utf8SourcePointer,int Utf16EndPointer
 {
-  int LockResult;
+  int SystemLockResult;
   uint MemoryAllocationIndex;
   uint UnicodeCodePoint;
   int EncodingValidationResult;
   unsigned long long CalculatedCodePoint;
-  long long StackFrameAddressPointer;
+  long long StackFrameAddress;
   long long PatternMatchStatus;
-  uint DataSize;
+  uint CharacterDataSize;
   float FloatOffsetValue;
-  uint8_t aProcessingStatusFlag [16];
+  uint8_t ProcessingStatusBuffer [16];
   float NormalizedParameterValue;
-  uint8_t aMemoryAllocationIndex [16];
+  uint8_t MemoryAllocationBuffer [16];
   float SecondaryFloatValue;
   float SystemContextPrimaryFloat2;
   

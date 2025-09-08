@@ -535,6 +535,12 @@
 #define ExceptionHandlerCallbackOffset910 0x910        // 异常处理器回调偏移量910
 #define ExceptionHandlerCleanupOffset8e0 0x8e0          // 异常处理器清理偏移量8e0
 #define ExceptionHandlerStateOffset8e8 0x8e8          // 异常处理器状态偏移量8e8
+#define MemoryPointerOffset8 0x8                       // 内存指针偏移量8
+#define ExceptionHandlerConfigOffset278 0x278          // 异常处理器配置偏移量278
+#define ExceptionHandlerConfigOffset250 0x250          // 异常处理器配置偏移量250
+#define ExceptionHandlerConfigOffset128 0x128          // 异常处理器配置偏移量128
+#define ExceptionHandlerConfigOffset130 0x130          // 异常处理器配置偏移量130
+#define DataBufferOffset140 0x140                      // 数据缓冲区偏移量140
 #define ExceptionHandlerFlagOffset8f8 0x8f8            // 异常处理器标志偏移量8f8
 #define ExceptionHandlerSecondaryOffset8c0 0x8c0       // 异常处理器次级偏移量8c0
 #define ExceptionHandlerSecondaryStateOffset8c8 0x8c8 // 异常处理器次级状态偏移量8c8
