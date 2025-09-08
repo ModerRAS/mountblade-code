@@ -199581,12 +199581,12 @@ long long * ProcessCharacterEncodingAndSystemStatusValidation(uint64_t Character
   long long SystemDataRegistry;
   uint64_t CalculatedCodePoint;
   void *SecondaryProcessingStatusFlag;
-  void *CoreEnginePointerBuffer78;
-  uint8_t *StackProcessingVariableBuffer;
+  void *CoreEngineSystemBuffer;
+  uint8_t *StackProcessingBuffer;
   uint32_t StackProcessingValue;
-  uint64_t StackProcessingUnsignedValue60;
-  void *pBufferOffset;
-  long long SystemTemporaryValue50;
+  uint64_t StackProcessingUnsignedValue;
+  void *BufferOffsetPointer;
+  long long SystemTemporaryValue;
   uint32_t SystemPriorityLevel;
   
   MemoryBlockIndex = _SystemPrimaryProcessingStatusFlag;
