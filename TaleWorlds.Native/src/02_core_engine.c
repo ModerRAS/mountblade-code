@@ -214049,7 +214049,7 @@ void ProcessUtf16EncodingAndSystemEventAlt(long long CharacterCode, uint64_t Sys
  * 
  * @note 原始函数名：FUN_18017a2c0
  */
-void ProcessSystemContextAndUtf8Size(uint64_t *CharacterCode,long long *CharacterCodeSize
+void ProcessSystemContextAndUtf8Size(uint64_t *CharacterCode,long long *CharacterCodeSize)
 {
   unsigned long long *CharacterStatusBuffer;
   int *StringComparisonResultPointer;
