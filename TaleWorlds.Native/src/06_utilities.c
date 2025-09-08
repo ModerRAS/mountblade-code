@@ -100008,26 +100008,56 @@ void Unwind_18090de80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090dea0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 执行系统内存操作和清理
+ * 
+ * 该函数执行系统内存操作，处理资源清理和异常处理。
+ * 它通过调用ExecuteMemoryOperation函数来执行特定的内存操作。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090dea0
+ * @note 系统内存操作和资源清理函数系列
+ */
+void ExecuteSystemMemoryOperationAndCleanupDEA0(DataBuffer operationBase, int64_t dataBuffer)
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0xee8,0x18,2,ProcessMemoryOperationA5,SystemCleanupFlagAlternative);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0xee8, 0x18, 2, ProcessMemoryOperationA5, SystemCleanupFlagAlternative);
   return;
 }
 
 
 
-void Unwind_18090dec0(DataBuffer operationBase,int64_t dataBuffer)
-
+/**
+ * @brief 执行系统内存操作和清理
+ * 
+ * 该函数执行系统内存操作，处理资源清理和异常处理。
+ * 它通过调用ExecuteMemoryOperation函数来执行特定的内存操作。
+ * 
+ * @param operationBase 操作基础缓冲区
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090dec0
+ * @note 系统内存操作和资源清理函数系列
+ */
+void ExecuteSystemMemoryOperationAndCleanupDEC0(DataBuffer operationBase, int64_t dataBuffer)
 {
-  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0xf20,0x20,0x1d,CleanupResourceHandler);
+  ExecuteMemoryOperation(*(int64_t *)(dataBuffer + 0xe0) + 0xf20, 0x20, 0x1d, CleanupResourceHandler);
   return;
 }
 
 
 
-void Unwind_18090df00(void)
-
+/**
+ * @brief 销毁系统互斥锁并释放资源
+ * 
+ * 该函数销毁系统互斥锁，释放系统资源。
+ * 它通过调用_Mtx_destroy_in_situ函数来销毁互斥锁。
+ * 
+ * @note 原始函数名：Unwind_18090df00
+ * @note 系统互斥锁销毁函数
+ */
+void DestroySystemMutexAndReleaseResourcesDF00(void)
 {
   _Mtx_destroy_in_situ();
   return;
