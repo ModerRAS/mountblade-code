@@ -5471,18 +5471,18 @@ UIHandle GetUIStatusFlag(void)
         BlendedVector1._4_4_ = SourceVector2._4_4_ + SourceVector1._4_4_ + 2 >> ShiftVector;
         BlendedVector1._8_4_ = SourceVector2._8_4_ + SourceVector1._8_4_ + 2 >> ShiftVector;
         BlendedVector1._12_4_ = SourceVector2._12_4_ + SourceVector1._12_4_ + 2 >> ShiftVector;
-        BlendedVector2 = pshuflw(ZEXT416(*sourcePointer),BlendedVector1,0xd8);
+        BlendedVector2 = pshuflw(ZEXT416(*SourcePointer),BlendedVector1,0xd8);
         BlendedVector2 = pshufhw(SourceVector1,BlendedVector2,0xd8);
-        pixelValue = *(uint *)(sourceOffset + 4 + (longlong)sourcePointer);
-        BlendResult._4_4_ = SourceVector._8_4_;
-        BlendResult._0_4_ = SourceVector._0_4_;
-        BlendResult._8_4_ = SourceVector._4_4_;
-        BlendResult._12_4_ = SourceVector._12_4_;
+        PixelValue = *(uint *)(SourceOffset + 4 + (longlong)SourcePointer);
+        BlendResult._4_4_ = SourceVector1._8_4_;
+        BlendResult._0_4_ = SourceVector1._0_4_;
+        BlendResult._8_4_ = SourceVector1._4_4_;
+        BlendResult._12_4_ = SourceVector1._12_4_;
         BlendResult = BlendResult & DataBitmask;
-        redChannelValue = BlendResult._0_2_;
-        greenChannelValue = BlendResult._2_2_;
-        blueChannelValue = BlendResult._4_2_;
-        alphaChannelValue = BlendResult._6_2_;
+        RedChannelValue = BlendResult._0_2_;
+        GreenChannelValue = BlendResult._2_2_;
+        BlueChannelValue = BlendResult._4_2_;
+        AlphaChannelValue = BlendResult._6_2_;
         ColorBlendVector._0_4_ =
              CONCAT13((0 < alphaChannelValue) * (alphaChannelValue < 0x100) * BlendResult[6] - (0xff < alphaChannelValue),
                       CONCAT12((0 < blueChannelValue) * (blueChannelValue < 0x100) * BlendResult[4] - (0xff < blueChannelValue),
@@ -72488,22 +72488,22 @@ LAB_1807053b0:
  void ProcessUIRenderData(longlong *uiContext,int dataSource,int targetBuffer,byte bufferSize)
 
 {
-  longlong *pallocatedMemory;
-  char localChar2;
-  uint EventTypeCode;
-  int TempInt4;
+  longlong *allocatedMemoryPointer;
+  char signExtensionChar;
+  uint eventProcessingCode;
+  int bitShiftValue;
   uint loopCounter;
   uint maxProcessingCount;
   
   maxProcessingCount = *(uint *)(uiContext + 4);
   loopCounter = maxProcessingCount >> (bufferSize & 0x1f);
-  TempInt4 = 1 << (bufferSize & 0x1f);
+  bitShiftValue = 1 << (bufferSize & 0x1f);
   if (dataSource == 0) {
-    *(uint *)(uiContext + 4) = maxProcessingCount - (TempInt4 - targetBuffer) * loopCounter;
+    *(uint *)(uiContext + 4) = maxProcessingCount - (bitShiftValue - targetBuffer) * loopCounter;
   }
   else {
     *(int *)((longlong)uiContext + 0x24) =
-         *(int *)((longlong)uiContext + 0x24) + (maxProcessingCount - (TempInt4 - dataSource) * loopCounter);
+         *(int *)((longlong)uiContext + 0x24) + (maxProcessingCount - (bitShiftValue - dataSource) * loopCounter);
     *(uint *)(uiContext + 4) = (targetBuffer - dataSource) * loopCounter;
   }
   if (*(uint *)(uiContext + 4) < 0x800001) {
@@ -87738,11 +87738,27 @@ void CalculateUIComponentMemoryOffset(longlong uiContext,longlong dataSource,flo
 
 
 
- void FUN_18071985a(float uiContext,float dataSource,int targetBuffer,float bufferSize)
-void FUN_18071985a(float uiContext,float dataSource,int targetBuffer,float bufferSize)
+ /**
+ * @brief 处理UI变换矩阵和缩放操作
+ * 
+ * 该函数负责处理UI元素的变换矩阵计算和缩放操作，主要功能包括：
+ * - 计算UI元素的变换矩阵系数
+ * - 应用缩放变换到UI元素
+ * - 处理不同类型的变换数据
+ * - 批量处理多个UI元素的变换
+ * 
+ * @param uiContext UI上下文，包含变换参数
+ * @param dataSource 数据源，包含原始变换数据
+ * @param targetBuffer 目标缓冲区，存储变换结果
+ * @param bufferSize 缓冲区大小，控制变换范围
+ * 
+ * @note 原始函数名：FUN_18071985a
+ * @warning 此函数包含复杂的矩阵运算和内存操作
+ */
+void ProcessUITransformMatrixAndScaling(float uiContext, float dataSource, int targetBuffer, float bufferSize)
 
 {
-  float *pbaseValue;
+  float *transformMatrixPtr;
   float transformCoeff1;
   float transformCoeff2;
   float transformCoeff3;
