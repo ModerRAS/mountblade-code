@@ -182893,7 +182893,23 @@ void FUN_18014eff0(long long *CharacterCode,long long SystemBufferSize,long long
 
 
 
-4f059(voidvoid FUN_18014f059(void
+/**
+ * @brief 系统状态检查和缓冲区管理函数
+ * 
+ * 该函数负责系统状态的检查和缓冲区管理操作，主要功能包括：
+ * - 检查系统栈帧地址和状态
+ * - 管理系统数据节点和缓冲区状态
+ * - 处理系统搜索和索引操作
+ * - 验证系统数据的完整性
+ * 
+ * 该函数用于确保系统状态的正确性和数据的一致性。
+ * 
+ * @return 系统状态检查结果
+ * 
+ * @note 原始函数名：FUN_18014f059
+ * @note 这是一个系统状态检查函数，用于维护系统的稳定运行
+ */
+void FUN_18014f059(void)
 {
   long long PrimaryDataSize;
   long long BufferStatus;
