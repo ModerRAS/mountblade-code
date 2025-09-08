@@ -72564,33 +72564,33 @@ int ValidateUIDataAndProcessBufferOperation(UIHandle uiContext,UIHandle dataSour
 float CalculateUIFloatDataTransformation(longlong uiContext,float *dataSource,int targetBuffer)
 
 {
-  float *pfloatResult;
-  float *plocalFloat2;
-  float *presultValue;
-  float *pprocessedFloat;
-  float *psecondaryValue;
-  float localFloat6;
-  float *presultFloat;
-  float *plocalFloat8;
-  uint uVar9;
-  float *pfloatResult0;
-  ulonglong result1;
-  int ProcessingResult2;
-  longlong allocatedMemory3;
-  longlong allocatedMemory4;
-  longlong allocatedMemory5;
-  longlong allocatedMemory6;
-  float floatResult7;
-  float FloatValue1;
-  float FloatValue2;
-  float AccumulatedFloat;
+  float *transformResultPointer;
+  float *secondaryDataPointer;
+  float *primaryDataPointer;
+  float *processedDataPointer;
+  float *auxiliaryDataPointer;
+  float intermediateValue;
+  float *resultDataPointer;
+  float *finalDataPointer;
+  uint transformationFlags;
+  float *initialDataPointer;
+  ulonglong processingStatus;
+  int operationResult;
+  longlong memoryAllocation1;
+  longlong bufferOffset;
+  longlong memoryAllocation3;
+  longlong memoryAllocation4;
+  float transformationResult;
+  float initialValue;
+  float finalValue;
+  float accumulatedValue;
   
-  allocatedMemory4 = (longlong)targetBuffer;
-  ProcessingResult2 = 0;
-  floatResult7 = 0.0;
-  FloatValue1 = 0.0;
-  FloatValue2 = 0.0;
-  AccumulatedFloat = 0.0;
+  bufferOffset = (longlong)targetBuffer;
+  operationResult = 0;
+  transformationResult = 0.0;
+  initialValue = 0.0;
+  finalValue = 0.0;
+  accumulatedValue = 0.0;
   if (0 < targetBuffer + -3) {
     uVar9 = (targetBuffer - 4U >> 2) + 1;
     result1 = (ulonglong)uVar9;
