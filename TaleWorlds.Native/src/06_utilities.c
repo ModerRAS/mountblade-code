@@ -34214,7 +34214,7 @@ ValidationLabelD:
   if (securityCheckResult != 0) {
     return (uint64_t)securityCheckResult;
   }
-    ExecutePortControlOperation(primaryFloatResult,StackFrameContext + -9);
+    ExecutePortControlOperation(calculatedResultValue,StackFrameContext + -9);
 }
 
 
