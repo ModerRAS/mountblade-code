@@ -972,7 +972,7 @@ typedef enum {
 #define ProcessUIFloatDataProcessing FUN_180712e3f
 
 // UI系统数据指针美化
-#define UIDataBufferRegistryPointer UNK_180741cf0
+#define UIDataBufferRegistryPointer (void*)0x180741cf0
 #define UIResourceTableRegistryPointer UNK_180741d00
 #define UIContextDataPointer UNK_180741ce0
 // UI系统全局数据美化
@@ -86814,7 +86814,25 @@ ulonglong ProcessComplexUIEvent(int *uiContext,longlong dataSource,int targetBuf
 
 
 
-uint FUN_180718c67(UIHandle uiContext,longlong dataSource)
+/**
+ * @brief 处理UI事件数据的压缩和验证
+ * 
+ * 该函数负责处理UI系统中的事件数据压缩和验证操作，包括：
+ * - 对事件数据进行压缩处理
+ * - 验证事件数据的完整性
+ * - 处理事件状态和标志位
+ * - 管理事件相关的内存缓冲区
+ * 
+ * @param uiContext UI上下文句柄，包含UI系统的状态信息
+ * @param dataSource 数据源句柄，提供事件处理所需的数据
+ * 
+ * @return uint 处理状态码，表示事件处理的完成状态
+ * 
+ * @note 原始函数名：FUN_180718c67
+ * @note 此函数在UI事件处理系统中被广泛使用
+ * @note 使用位操作和状态标志进行事件验证
+ */
+uint ProcessUIEventDataCompressionAndValidation(UIHandle uiContext, longlong dataSource)
 
 {
   float baseValue;
@@ -89352,33 +89370,42 @@ void ProcessUIMemoryAllocation(longlong uiContext,int dataSource,int targetBuffe
 
 
 
- void FUN_18071ad94(float uiContext)
-void FUN_18071ad94(float uiContext)
+ /**
+ * @brief 处理UI变换系数计算
+ * 
+ * 该函数根据UI上下文和资源分配情况，计算并更新UI变换系数。
+ * 它涉及多个步骤的迭代计算，包括资源分配、数据读取和浮点运算。
+ * 
+ * @param uiContext UI上下文浮点参数
+ * @note 原始函数名：FUN_18071ad94
+ */
+void ProcessUITransformCoefficients(float uiContext)
+void ProcessUITransformCoefficients(float uiContext)
 
 {
   float baseValue;
   uint iterationCount;
   int uiCompareResult;
-  longlong ContextHandleData;
-  longlong ContextHandle;
-  float *ptransformCoeff4;
-  int localInt6;
+  longlong contextHandleData;
+  longlong contextHandle;
+  float *transformCoeffPointer;
+  int loopCounter;
   int allocationFlags;
-  longlong unmodifiedR12;
-  longlong unmodifiedR13;
-  int EventHandleD;
-  longlong unmodifiedR15;
+  longlong preservedRegister12;
+  longlong preservedRegister13;
+  int eventHandle;
+  longlong preservedRegister15;
   float resultFloat;
-  float localFloat8;
-  float unmodifiedXMM6_Da;
-  float unmodifiedXMM7_Da;
-  float afStackX_20 [2];
-  int stackParam000000a0;
-  int stackParam000000c0;
+  float tempFloat;
+  float preservedXMM6;
+  float preservedXMM7;
+  float transformCoeffArray [2];
+  int maxIterations;
+  int maxAllocations;
   
   do {
-    ptransformCoeff4 = afStackX_20;
-    localInt6 = 0;
+    transformCoeffPointer = transformCoeffArray;
+    loopCounter = 0;
     do {
       uiCompareResult = 0x1f;
       if (*(uint *)(ContextHandle + 0x20) != 0) {
@@ -197547,7 +197574,7 @@ LAB_180787df9:
  
  WARNING: Control flow encountered bad instruction data
 
-int FUN_180787e40(longlong uiContext,UIDword dataSource,longlong *targetBuffer,longlong *bufferSize)
+int ProcessUICharacterValidation(longlong uiContext,UIDword dataSource,longlong *targetBuffer,longlong *bufferSize)
 
 {
   byte *pisCharacterMatch;
@@ -197578,12 +197605,12 @@ int FUN_180787e40(longlong uiContext,UIDword dataSource,longlong *targetBuffer,l
   UIByte *ptrResult5;
   
   allocatedMemory6 = 0xc700787a;
-  ptrLocal8 = (UIByte *)register0x00000020;
+  ptrLocal8 = (UIByte *)DataRegister;
   if (in_PF) {
     pisCharacterMatch = (byte *)(registerAX + -0x77);
     *pisCharacterMatch = *pisCharacterMatch >> 4 | *pisCharacterMatch << 4;
 InputValidationCheck:
-    register0x00000020 = (BADSPACEBASE *)ptrLocal8;
+    DataRegister = (BADSPACEBASE *)ptrLocal8;
     *(UIHandle *)((longlong)register0x00000020 + 0x20) = *(UIHandle *)(SourceHandle + 0x11670);
     *(UIHandle *)((longlong)register0x00000020 + -8) = 0x180787ecf;
     (*register10)(SourceHandle,0x20,0);
