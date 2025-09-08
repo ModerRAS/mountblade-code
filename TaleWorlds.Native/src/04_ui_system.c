@@ -1010,8 +1010,8 @@ typedef enum {
 // 新增的UI系统函数美化定义
 // UI系统数据处理函数
 #define ProcessUIContextDataWithHandle ProcessUIContextDataWithHandle
-#define FUN_180710510 ProcessUIContextWithSemaphore
-#define FUN_180711020 ProcessUIFloatDataConversion
+#define ProcessUIContextWithSemaphore ProcessUIContextWithSemaphore
+#define ProcessUIFloatDataConversion ProcessUIFloatDataConversion
 #define FUN_180711037 ProcessUIFloatDataSimplified
 #define FUN_18071103e ProcessUIFloatDataWithHandle
 #define FUN_180711311 InitializeUIEmptyOperation
