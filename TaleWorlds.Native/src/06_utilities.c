@@ -100117,7 +100117,18 @@ void ExecuteExceptionHandlerCallbackC3(DataBuffer operationBase,int64_t dataBuff
 
 
 
-void Unwind_18090ec40(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器C4
+ * 
+ * 该函数负责处理异常上下文，包括异常处理器的重置和状态管理
+ * 主要用于异常处理过程中的上下文管理和清理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ec40
+ */
+void ProcessExceptionContextC4(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -100135,7 +100146,18 @@ void Unwind_18090ec40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ec50(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器C5
+ * 
+ * 该函数负责处理异常上下文，通过指针访问执行异常处理器的回调函数
+ * 主要用于异常处理过程中的回调执行和指针管理
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ec50
+ */
+void ProcessExceptionContextC5(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -100149,7 +100171,18 @@ void Unwind_18090ec50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ec60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器C6
+ * 
+ * 该函数负责处理异常上下文，在指定偏移处执行异常处理器的回调函数
+ * 主要用于异常处理过程中的回调执行
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ec60
+ */
+void ExecuteExceptionHandlerCallbackC6(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x1a8) != (int64_t *)0x0) {
@@ -100160,7 +100193,18 @@ void Unwind_18090ec60(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ec70(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常上下文处理器C7
+ * 
+ * 该函数负责处理异常上下文，在指定偏移处执行异常处理器的回调函数
+ * 主要用于异常处理过程中的回调执行
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090ec70
+ */
+void ExecuteExceptionHandlerCallbackC7(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((int64_t *)**(int64_t **)(dataBuffer + 0x1a0) != (int64_t *)0x0) {
