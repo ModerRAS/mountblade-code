@@ -284285,4 +284285,34 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define ProcessSystemCharacterEncodingAndBufferConfiguration FUN_18015a900
 
+/**
+ * @brief 处理浮点数据矩阵变换
+ * 
+ * 该函数负责处理浮点数据的矩阵变换操作，包括：
+ * - 计算矩阵变换系数
+ * - 处理浮点数据的缩放和偏移
+ * - 执行数据变换和插值计算
+ * 
+ * @param CharacterCode 浮点数据指针
+ * @param CharacterCodeSize 数据大小指针
+ * @param Utf8SourcePointer 源数据指针
+ * @param Utf16EndPointer 结束指针
+ * @note 原始函数名：FUN_180202c0d
+ */
+#define ProcessFloatDataMatrixTransformation FUN_180202c0d
+
+/**
+ * @brief 处理浮点数据搜索和排序
+ * 
+ * 该函数负责处理浮点数据的搜索和排序操作，包括：
+ * - 在浮点数据数组中搜索特定值
+ * - 执行数据的排序和重组
+ * - 计算数据的索引和位置
+ * 
+ * @param CharacterCode 浮点数据指针
+ * @param CharacterCodeSize 数据大小指针
+ * @note 原始函数名：FUN_180202c2d
+ */
+#define ProcessFloatDataSearchAndSorting FUN_180202c2d
+
 
