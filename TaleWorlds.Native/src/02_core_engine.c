@@ -195625,7 +195625,20 @@ void ProcessCharacterCodeBuffer(uint64_t CharacterCode,uint64_t SystemBufferSize
 
 
 
-60c8a(unsigned long long CharacterCodevoid FUN_180160c8a(unsigned long long CharacterCode
+/**
+ * @brief 处理Unicode字符
+ * 
+ * 该函数负责处理Unicode字符，包括：
+ * - 解析Unicode字符编码
+ * - 管理字符数据节点
+ * - 处理系统寄存器状态
+ * 
+ * @param CharacterCode Unicode字符代码
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160c8a
+ */
+void ProcessUnicodeCharacter(unsigned long long CharacterCode)
 {
   long long PrimaryDataSize;
   uint64_t StackFrameAddressPointer;
@@ -195654,7 +195667,19 @@ void ProcessCharacterCodeBuffer(uint64_t CharacterCode,uint64_t SystemBufferSize
 
 
 
-60cb0(voidvoid FUN_180160cb0(void
+/**
+ * @brief 清理系统缓冲区
+ * 
+ * 该函数负责清理系统缓冲区，包括：
+ * - 释放内存资源
+ * - 清理数据节点
+ * - 重置系统寄存器状态
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_180160cb0
+ */
+void CleanupSystemBuffer(void)
 {
   long long PrimaryDataSize;
   long long SystemDataNode;
