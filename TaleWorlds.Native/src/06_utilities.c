@@ -95409,7 +95409,17 @@ void ProcessExceptionContextCE70(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ce80(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行系统回调函数
+ * 
+ * 该函数负责执行系统回调，通过数据缓冲区中的函数指针进行调用
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含回调函数指针信息
+ * 
+ * @note 原始函数名：Unwind_18090ce80
+ */
+void ExecuteSystemCallbackFunction(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + DataBufferOffset140) != (int64_t *)0x0) {
@@ -95420,7 +95430,17 @@ void Unwind_18090ce80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090ce90(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置异常处理器
+ * 
+ * 该函数负责重置异常处理器，设置临时异常处理器并清理系统状态
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含异常处理器状态信息
+ * 
+ * @note 原始函数名：Unwind_18090ce90
+ */
+void ResetExceptionHandler(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + DataBufferOffset148) = &SystemTemporaryExceptionHandler;
@@ -95435,7 +95455,17 @@ void Unwind_18090ce90(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090cea0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 执行高级系统回调函数
+ * 
+ * 该函数负责执行高级系统回调，通过数据缓冲区中的高级函数指针进行调用
+ * 
+ * @param operationBase 操作基址
+ * @param dataBuffer 数据缓冲区，包含高级回调函数指针信息
+ * 
+ * @note 原始函数名：Unwind_18090cea0
+ */
+void ExecuteAdvancedSystemCallback(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x178) != (int64_t *)0x0) {
@@ -107748,7 +107778,18 @@ void ProcessDataArrayAtOffset0B(DataBuffer operationBase, int64_t dataBuffer)
 
 
 
-void Unwind_18090fb60(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理数据数组A0 - 偏移量0x0
+ * 
+ * 该函数调用ProcessDataArrayA0函数处理数据缓冲区偏移量0x0处的数据数组。
+ * 这是一个简单的数据处理函数，用于处理验证结果数据。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含要处理的数据数组
+ * 
+ * @note 原始函数名：Unwind_18090fb60
+ */
+void ProcessDataArrayAtOffset0C(DataBuffer operationBase, int64_t dataBuffer)
 
 {
   ProcessDataArrayA0(dataBuffer + ValidationResultOffset0);
