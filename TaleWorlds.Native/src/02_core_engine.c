@@ -214459,15 +214459,15 @@ void ProcessSystemContextDataEncoding(long long CharacterCode,long long *Charact
   }
   plStack_a8 = BufferAllocationStatus;
   if (&CoreEngineUnsignedValueA0 != Utf8SourcePointer) {
-    FUN_18017b480(&CoreEngineUnsignedValueA0,*Utf8SourcePointer,Utf8SourcePointer[1]);
+    ProcessSystemDataValidationAndCharacterEncoding(&CoreEngineUnsignedValueA0,*Utf8SourcePointer,Utf8SourcePointer[1]);
   }
-  FUN_18017b240(&CalculationFunctionAddress,Utf16EndPointer);
+  ProcessCharacterCodeBufferAndDataManagement(&CalculationFunctionAddress,Utf16EndPointer);
   FUN_180150240(&StackProcessingUnsignedValue60,AdditionalParameter1);
   ProcessingStatusFlag = *(unsigned long long *)(CharacterCode + 0x68);
   EncodingConversionResult = 1;
   if (ProcessingStatusFlag < *(unsigned long long *)(CharacterCode + 0x70)) {
     *(unsigned long long *)(CharacterCode + 0x68) = ProcessingStatusFlag + 0x68;
-    FUN_18017b070(ProcessingStatusFlag,&plStack_a8);
+    ProcessSystemBufferAllocationAndMemoryManagement(ProcessingStatusFlag,&plStack_a8);
   }
   else {
     StringOffset = *(long long *)(CharacterCode + 0x60);
@@ -214477,9 +214477,9 @@ void ProcessSystemContextDataEncoding(long long CharacterCode,long long *Charact
       ProcessingStatusFlag = *(unsigned long long *)(CharacterCode + 0x68);
       StringOffset = *(long long *)(CharacterCode + 0x60);
     }
-    FUN_18017b6e0(&SystemContextRegister,StringOffset,ProcessingStatusFlag,MemoryBlockIndex);
+    ProcessSystemContextAndMemoryAllocation(&SystemContextRegister,StringOffset,ProcessingStatusFlag,MemoryBlockIndex);
     BufferAllocationStatus = SystemContextRegister;
-    FUN_18017b070(SystemContextRegister,&plStack_a8);
+    ProcessSystemBufferAllocationAndMemoryManagement(SystemContextRegister,&plStack_a8);
     SystemContextRegister = BufferAllocationStatus + 0xd;
     StringOffset = *(long long *)(CharacterCode + 0x68);
     MemoryPoolBlockSize = *(long long *)(CharacterCode + 0x60);
@@ -214827,7 +214827,7 @@ void CleanupSystemDataTable(long long *CharacterCode
       }
       return;
     }
-    FUN_18017b400(AllocatedMemorySize,*SystemEventTemplatePointer);
+    ProcessSystemMemoryAllocationAndEventHandling(AllocatedMemorySize,*SystemEventTemplatePointer);
     if ((long long *)SystemEventTemplatePointer[4] != (long long *)0x0) {
       (**(code **)(*(long long *)SystemEventTemplatePointer[4] + 0x38))();
     }
@@ -215109,7 +215109,21 @@ void ProcessSystemDataAndMemoryBoundaryManagement(long long CharacterCode,long l
 
 
 
-7b28d(voidvoid FUN_18017b28d(void
+// 函数: void FUN_18017b28d(void)
+/**
+ * @brief 处理系统数据节点和内存分配
+ * 
+ * 该函数负责处理系统数据节点分配和内存管理操作。
+ * 主要功能包括：
+ * - 分配系统数据节点内存
+ * - 处理栈帧地址和模式匹配
+ * - 执行数据移动和系统事件处理
+ * - 管理系统上下文和循环计数器
+ * 
+ * @note 原始函数名：FUN_18017b28d
+ */
+#define ProcessSystemDataNodeAndMemoryAllocation FUN_18017b28d
+void ProcessSystemDataNodeAndMemoryAllocation(void
 {
   long long PrimaryDataSize;
   long long *SystemContext;
@@ -215141,7 +215155,23 @@ void ProcessSystemDataAndMemoryBoundaryManagement(long long CharacterCode,long l
 
 
 
-7b2ed(long long CharacterCodevoid FUN_18017b2ed(long long CharacterCode
+// 函数: void FUN_18017b2ed(long long CharacterCode)
+/**
+ * @brief 处理字符代码和系统上下文管理
+ * 
+ * 该函数负责处理字符代码和系统上下文管理操作。
+ * 主要功能包括：
+ * - 管理字符代码和缓冲区状态
+ * - 处理系统上下文和栈帧地址
+ * - 执行模式匹配和Unicode处理
+ * - 管理系统数据节点和内存分配
+ * 
+ * @param CharacterCode 字符代码参数
+ * 
+ * @note 原始函数名：FUN_18017b2ed
+ */
+#define ProcessCharacterCodeAndSystemContextManagement FUN_18017b2ed
+void ProcessCharacterCodeAndSystemContextManagement(long long CharacterCode
 {
   long long PrimaryDataSize;
   long long BufferStatus;
@@ -215214,10 +215244,29 @@ void ProcessSystemDataAndMemoryBoundaryManagement(long long CharacterCode,long l
 
 
 
-7b400(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointervoid FUN_18017b400(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+// 函数: void FUN_18017b400(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer)
+/**
+ * @brief 处理系统内存分配和事件处理
+ * 
+ * 该函数负责处理系统内存分配和事件处理操作。
+ * 主要功能包括：
+ * - 管理系统缓冲区和内存分配
+ * - 处理事件回调函数
+ * - 执行系统内存清理
+ * - 管理系统资源释放
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @note 原始函数名：FUN_18017b400
+ */
+#define ProcessSystemMemoryAllocationAndEventHandling FUN_18017b400
+void ProcessSystemMemoryAllocationAndEventHandling(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
   if (SystemBufferSize != NULL) {
-    FUN_18017b400(CharacterCode,*CharacterCodeSize,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
+    ProcessSystemMemoryAllocationAndEventHandling(CharacterCode,*CharacterCodeSize,Utf8SourcePointer,Utf16EndPointer,0xfffffffffffffffe);
     if ((long long *)SystemBufferSize[4] != (long long *)0x0) {
       (**(code **)(*(long long *)SystemBufferSize[4] + 0x38))();
     }
@@ -215231,7 +215280,25 @@ void ProcessSystemDataAndMemoryBoundaryManagement(long long CharacterCode,long l
 
 
 
-7b480(long long *CharacterCode,long long *CharacterCodeSize,long long *Utf8SourcePointervoid FUN_18017b480(long long *CharacterCode,long long *CharacterCodeSize,long long *Utf8SourcePointer
+// 函数: void FUN_18017b480(long long *CharacterCode,long long *CharacterCodeSize,long long *Utf8SourcePointer)
+/**
+ * @brief 处理系统数据验证和字符编码
+ * 
+ * 该函数负责处理系统数据验证和字符编码操作。
+ * 主要功能包括：
+ * - 验证系统数据和内存边界
+ * - 处理字符编码和Unicode码点
+ * - 管理内存块列表和分配
+ * - 执行系统校验和计算
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * 
+ * @note 原始函数名：FUN_18017b480
+ */
+#define ProcessSystemDataValidationAndCharacterEncoding FUN_18017b480
+void ProcessSystemDataValidationAndCharacterEncoding(long long *CharacterCode,long long *CharacterCodeSize,long long *Utf8SourcePointer
 {
   long long *CharacterCode;
   long long BufferStatus;
@@ -215437,7 +215504,28 @@ long long * FUN_18017b680(long long *CharacterCode,long long *CharacterCodeSize,
 
 
 
-long long * FUN_18017b6e0(long long *CharacterCode,uint32_t *CharacterCodeSize,uint32_t *Utf8SourcePointer,long long Utf16EndPointer
+// 函数: long long * FUN_18017b6e0(long long *CharacterCode,uint32_t *CharacterCodeSize,uint32_t *Utf8SourcePointer,long long Utf16EndPointer)
+/**
+ * @brief 处理系统上下文和内存分配
+ * 
+ * 该函数负责处理系统上下文、内存分配和数据结构管理。
+ * 主要功能包括：
+ * - 管理字符代码和字符状态缓冲区
+ * - 处理内存地址掩码和码点计算
+ * - 执行数据交换和内存管理
+ * - 处理Unicode码点和系统状态
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * 
+ * @return 返回处理后的字符代码指针
+ * 
+ * @note 原始函数名：FUN_18017b6e0
+ */
+#define ProcessSystemContextAndMemoryAllocation FUN_18017b6e0
+long long * ProcessSystemContextAndMemoryAllocation(long long *CharacterCode,uint32_t *CharacterCodeSize,uint32_t *Utf8SourcePointer,long long Utf16EndPointer
 {
   uint64_t *CharacterStatusBuffer;
   uint32_t *PrimaryProcessingStatusFlag;
