@@ -4628,10 +4628,27 @@ ulonglong CalculateUICompositeLayoutOffset(longlong layoutContext,uint layoutTyp
  */
 int CalculateUIRenderBufferSize(void);
 
- 计算UI纹理内存偏移量
+ /**
+ * @brief 计算UI纹理内存偏移量
+ * 
+ * 计算UI纹理数据在内存中的偏移量，用于纹理映射和渲染操作。
+ * 
+ * @return longlong 纹理内存偏移量
+ */
 longlong CalculateUITextureMemoryOffset(void);
 
- 计算UI元素布局参数
+ /**
+ * @brief 计算UI元素布局参数
+ * 
+ * 根据布局上下文和类型计算UI元素的布局参数，包括位置、大小和排列方式。
+ * 
+ * @param layoutContext 布局上下文指针
+ * @param layoutType 布局类型
+ * @param layoutData 布局数据指针
+ * @param layoutFlags 布局标志
+ * @param layoutResults 布局结果输出指针
+ * @return longlong 布局计算结果
+ */
 longlong CalculateUIElementLayoutParameters(longlong layoutContext,int layoutType,longlong layoutData,int layoutFlags,uint *layoutResults);
 
  计算UI复杂布局参数
