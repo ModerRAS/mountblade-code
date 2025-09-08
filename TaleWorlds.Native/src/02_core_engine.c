@@ -203256,7 +203256,7 @@ void ProcessSystemConfigurationAndStringMatching(void)
       *(void *)(SystemConfigurationContext + SystemMatrixTransformOffset3) = SystemMatrixTransformValue2;
     }
     ProcessDataMatchingOperation(ProcessingIndex);
-    StringProcessingStatus = *(void **)(*(long long *)(PatternIndex + 0x20) + 8 + UnicodeCharacterCode);
+    StringProcessingStatus = *(void **)(*(long long *)(PatternIndex + SystemStringDataOffset) + SystemStringPointerOffset + UnicodeCharacterCode);
     SystemCharacterStatusPointer = &CoreEngineDataTemplate;
     if (StringProcessingStatus != NULL) {
       SystemCharacterStatusPointer = StringProcessingStatus;
