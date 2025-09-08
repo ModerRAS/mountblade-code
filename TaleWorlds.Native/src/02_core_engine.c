@@ -231749,14 +231749,27 @@ LAB_180195376:
 
 
 
+/**
+ * @brief 初始化系统配置和线程本地存储
+ * 
+ * 该函数负责初始化系统配置处理器和线程本地存储模板，设置系统缓冲区参数。
+ * 
+ * @param CharacterCode 字符代码
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @return uint64_t* 系统缓冲区指针
+ * 
+ * @note 原始函数名：FUN_1801953d0
+ */
 uint64_t *
-FUN_1801953d0(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
+InitializeSystemConfigurationAndThreadLocalStorage(uint64_t CharacterCode,uint64_t *CharacterCodeSize,uint64_t Utf8SourcePointer,uint64_t Utf16EndPointer
 {
-  *CharacterCodeSize = &ThreadLocalStorageTemplate;
+  *CharacterCodeSize = (uint64_t)&ThreadLocalStorageTemplate;
   SystemBufferSize[1] = 0;
   *(uint32_t *)(SystemBufferSize + 2) = 0;
-  *CharacterCodeSize = &SystemConfigurationHandler;
-  SystemBufferSize[1] = SystemBufferSize + 3;
+  *CharacterCodeSize = (uint64_t)&SystemConfigurationHandler;
+  SystemBufferSize[1] = (uint64_t)(SystemBufferSize + 3);
   *(uint8_t *)(SystemBufferSize + 3) = 0;
   *(uint32_t *)(SystemBufferSize + 2) = 8;
   strcpy_s(SystemBufferSize[1],0x80,&SystemStringConfigurationTemplate,Utf16EndPointer,0,0xfffffffffffffffe);

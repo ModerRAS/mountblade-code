@@ -3099,6 +3099,47 @@ void* UIGestureCoordinates;
  原始函数名: FUN_180691db0
 #define InitializeUIStateUpdater FUN_180691db0
 
+ UI系统资源信号量管理器
+ 管理UI系统中的资源信号量，包括信号量的获取、释放和同步操作。
+ 用于UI资源的线程安全访问和并发控制。
+ 
+ 原始函数名: FUN_180899ef0
+#define ManageUIResourceSemaphore FUN_180899ef0
+
+ UI系统事件类型编码器
+ 获取UI系统的事件类型编码，用于事件分类和处理。
+ 
+ 原始函数名: FUN_180898e70
+#define GetUIEventTypeCode FUN_180898e70
+
+ UI系统错误处理器
+ 处理UI系统的严重错误，包括系统崩溃和异常恢复。
+ 该函数不会返回，用于处理不可恢复的系统错误。
+ 
+ 原始函数名: FUN_1808de000
+#define HandleUISystemFatalError FUN_1808de000
+
+ UI系统信号量错误处理器
+ 处理UI系统信号量相关的严重错误，包括信号量获取失败和同步错误。
+ 该函数不会返回，用于处理不可恢复的信号量错误。
+ 
+ 原始函数名: FUN_1808fd200
+#define HandleUISemaphoreFatalError FUN_1808fd200
+
+ UI系统数据转换器
+ 转换UI系统的数据格式，包括字符串数据的编码转换和缓冲区操作。
+ 用于UI数据的预处理和格式化。
+ 
+ 原始函数名: FUN_18072a9c0
+#define ConvertUIDataFormat FUN_18072a9c0
+
+ UI系统缓冲区处理器
+ 处理UI系统的缓冲区操作，包括数据读取、写入和缓冲区管理。
+ 用于UI数据的高效传输和处理。
+ 
+ 原始函数名: FUN_18072aa30
+#define ProcessUIBufferOperations FUN_18072aa30
+
  UI系统主渲染器函数
  原始函数名: FUN_180694010
 #define ProcessUIMainRenderer FUN_180694010
