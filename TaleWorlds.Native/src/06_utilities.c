@@ -19353,7 +19353,7 @@ DataBuffer ProcessBufferA0(int64_t bufferDescriptor,int64_t systemContext)
     else {
       dataContext = MergeHighLowWords(bufferFlags, bufferSize) - 8;
     }
-    *(DataWord *)(dataContext + 0x8c) = *(DataWord *)(bufferDescriptor + SystemDataSecondaryOffset18);
+    *(DataWord *)(dataContext + DataContextSecondaryOffset8C) = *(DataWord *)(bufferDescriptor + SystemDataSecondaryOffset18);
       CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextOffset98),bufferDescriptor);
   }
   return operationResult;
@@ -19382,7 +19382,7 @@ void ActivateUtilitySystemState(int64_t systemHandle,int64_t operationContext)
       statePointer = statePointer + -8;
     }
     *(int *)(statePointer + SystemConfigPrimaryOffset) = *(int *)(statePointer + SystemConfigPrimaryOffset) + 1;
-    *(ByteFlag *)(statePointer + 0xbd) = 1;
+    *(ByteFlag *)(statePointer + StateValidationFlagOffsetBD) = 1;
       CleanupSystemEventA0(*(DataBuffer *)(operationContext + SystemManagementOffset98),systemHandle);
   }
   return;
@@ -19413,7 +19413,7 @@ void DeactivateUtilitySystemState(int64_t systemHandle,int64_t operationContext)
       statePointer = statePointer + -8;
     }
     *(int *)(statePointer + SystemConfigPrimaryOffset) = *(int *)(statePointer + SystemConfigPrimaryOffset) + 1;
-    *(ByteFlag *)(statePointer + 0xbd) = 0;
+    *(ByteFlag *)(statePointer + StateValidationFlagOffsetBD) = 0;
       CleanupSystemEventA0(*(DataBuffer *)(operationContext + SystemManagementOffset98),systemHandle);
   }
   return;
@@ -19432,7 +19432,7 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
   uint stackBufferLowPart;
   DataWord stackBufferHighPart;
   
-  stackBufferLowPart = *(uint *)(allocationContext + 0x14);
+  stackBufferLowPart = *(uint *)(allocationContext + AllocationContextValueOffset14);
   if ((stackBufferLowPart & FloatInfinityValue) == FloatInfinityValue) {
     return SystemFloatDataInvalid;
   }
@@ -19447,13 +19447,13 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
   if ((*(SystemByteType *)(dataHandle + SystemDataValidationOffset34) & 0x11) != 0) {
     return ComponentDataValidationFailure;
   }
-  inputValue = *(float *)(allocationContext + 0x14);
+  inputValue = *(float *)(allocationContext + AllocationContextValueOffset14);
   rangeValue = *(float *)(dataHandle + SystemFloatDataOffset38);
   if ((*(float *)(dataHandle + SystemFloatDataOffset38) <= inputValue) &&
      (rangeValue = *(float *)(dataHandle + SystemDataRecordOffset3c), inputValue <= *(float *)(dataHandle + SystemDataRecordOffset3c))) {
     rangeValue = inputValue;
   }
-  *(float *)(allocationContext + 0x14) = rangeValue;
+  *(float *)(allocationContext + AllocationContextValueOffset14) = rangeValue;
   *(float *)(CONCAT44(stackBufferHighPart,stackBufferLowPart) + 4) = rangeValue;
     CleanupSystemEventA0(*(DataBuffer *)(systemContext + SystemContextOffset98),allocationContext);
 }
