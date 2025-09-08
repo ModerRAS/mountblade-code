@@ -28936,8 +28936,8 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   if (isSystemConfigured) {
     scaleFactorX = (float)CalculateExponentialBase2(SystemNodeManagerPointer,contextParameter,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
     if (*(char *)(SystemResourceManager + 0x22d) == '\0') {
-      SystemMemoryPointer = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8);
-      if ((*(int *)(SystemMemoryPointer + 0x48) < SystemDataValuePrimary) &&
+      ThreadLocalStorageDataAddress = *(uint64_t *)((uint64_t)ThreadLocalStorageBasePointer + (uint64_t)__tls_index * 8);
+      if ((*(int *)(ThreadLocalStorageDataAddress + 0x48) < SystemDataValuePrimary) &&
          (CheckSystemDataAvailability(&SystemDataValuePrimary), SystemDataValuePrimary == -1)) {
         SystemDataValueSecondary = ConfigurationDataPointer;
         InitializeSystemDataPointer(&SystemDataValuePrimary);
@@ -28960,7 +28960,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
       if (calculationResult2 <= (float)((int)InterpolationFactorEpsilon + SystemResourceCounterDecrement)) {
         ScaleFactorY = CalculationResultSecondary;
       }
-      if ((*(int *)(SystemMemoryPointer + 0x48) < SystemDataValueTertiary) &&
+      if ((*(int *)(ThreadLocalStorageDataAddress + 0x48) < SystemDataValueTertiary) &&
          (CheckSystemDataAvailability(&SystemDataValueTertiary), SystemDataValueTertiary == -1)) {
         SystemDataValueQuaternary = scaleFactorY;
         InitializeSystemDataPointer(&SystemDataValueTertiary);
