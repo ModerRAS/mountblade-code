@@ -214755,7 +214755,7 @@ void CleanupSystemDataTable(long long *CharacterCode
           pPreviousContextPointer = (long long **)*CharacterCode;
           OperationStatus = (uint32_t)CharacterCode[1];
           uStack_ec = *(uint32_t *)((long long)CharacterCode + 0xc);
-          FUN_180235ca0(&plStack_138,*(void *)((long long)CharacterCodeTablePointer + (long long)plStack_e0),
+          ProcessRenderDataPrimary(&plStack_138,*(void *)((long long)CharacterCodeTablePointer + (long long)plStack_e0),
                         plStack_c0 + (long long)MemoryBoundaryPointer * 8,0xff,&pPreviousContextPointer,1,0,0,1);
           ValidationResult = (int)CharacterCodeData + 1;
           MemoryBoundaryPointer = (long long *)(long long)(int)ValidationResult;
