@@ -17092,7 +17092,7 @@ void UtilityProcessResourceRequest(int64_t resourceHandle,int64_t requestContext
   if (operationStatus == 0) {
     operationStatus = InitializeSystemBufferA0(systemContext);
     if (operationStatus == 0) {
-        CleanupSystemEventA0(*(DataBuffer *)(requestContext + 0x98),resourceHandle);
+        CleanupSystemEventA0(*(DataBuffer *)(requestContext + SystemEventOffset),resourceHandle);
     }
   }
   return;
@@ -17129,7 +17129,7 @@ void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
   
   validationStatus = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + ComponentHandleOffset), systemContextBuffer);
   if (validationStatus == 0) {
-      CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
+      CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + SystemEventOffset), contextHandle);
   }
   return;
 }
@@ -17169,7 +17169,7 @@ void DoubleValidateAndExecuteOperation(void* contextHandle, void* operationData)
   if (primaryValidationStatus == 0) {
     primaryValidationStatus = ValidateSystemDataIntegrityA0(systemValidationData);
     if (primaryValidationStatus == 0) {
-        CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
+        CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + SystemEventOffset), contextHandle);
     }
   }
   return;
@@ -17198,9 +17198,9 @@ DataBuffer ConfigureUtilityDataA0(int64_t configPointer,int64_t dataPointer)
     if (*(int64_t *)(systemStackPointer + ExceptionHandlerCallbackOffset10) == 0) {
       return ResourceAccessDenied;
     }
-    *(DataBuffer *)(configPointer + 0x18) =
+    *(DataBuffer *)(configPointer + SystemDataArrayPointerOffset) =
          *(DataBuffer *)(*(int64_t *)(*(int64_t *)(systemStackPointer + ExceptionHandlerCallbackOffset10) + ExceptionHandlerTableOffset) + ExceptionHandlerDataOffset);
-    configurationStatus = ProcessSystemEventB0(*(DataBuffer *)(dataPointer + 0x98),configPointer);
+    configurationStatus = ProcessSystemEventB0(*(DataBuffer *)(dataPointer + SystemEventOffset),configPointer);
   }
   return configurationStatus;
 }
@@ -17231,7 +17231,7 @@ DataBuffer ConfigureUtilityDataA1(int64_t configPointer,int64_t dataPointer)
     configurationStatus = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(*(int64_t *)(systemStackPointer + 0x18) + 0xd0),
                                 configPointer + 0x18);
     if ((int)configurationStatus == 0) {
-      configurationStatus = ProcessSystemEventB0(*(DataBuffer *)(dataPointer + 0x98),configPointer);
+      configurationStatus = ProcessSystemEventB0(*(DataBuffer *)(dataPointer + SystemEventOffset),configPointer);
     }
   }
   return configurationStatus;
@@ -17294,7 +17294,7 @@ DataBuffer ProcessResourceValidationAndExecution(int64_t resourceContext, int64_
           if ((int)operationResult != 0) {
             return operationResult;
           }
-          operationResult = ProcessSystemEventB0(*(DataBuffer *)(executionContext + 0x98), resourceContext);
+          operationResult = ProcessSystemEventB0(*(DataBuffer *)(executionContext + SystemEventOffset), resourceContext);
           return operationResult;
         }
         iterationCounter = (int)baseOffset + 1;
