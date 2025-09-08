@@ -33,6 +33,12 @@
 #define SystemMemoryAllocationOffset 0x20                   // 系统内存分配偏移量
 #define NetworkMemoryAllocationOffset 0x20                  // 网络内存分配偏移量
 
+// 数据链接结构偏移量常量
+#define DataLinkValidationFunctionOffset 0x68               // 数据链接验证函数偏移量
+#define DataLinkInitializerOffset 0x28                      // 数据链接初始化器偏移量
+#define DataLinkCleanupOffset 0x38                          // 数据链接清理偏移量
+#define DataLinkCallbackOffset 0x60                         // 数据链接回调偏移量
+
 // 变量名语义化宏定义
 #define Utf16CharacterValue Utf16Char4                    // UTF-16字符值
 #define PatternIndex PatternIndex                 // 模式索引
@@ -21510,7 +21516,7 @@ void InitializeSystemDataLinkage(long long systemContext)
       NodeValidationFlag = (char)DataLinkedListHead[2] != '\0';
     }
     else {
-      NodeValidationFlag = (**(code **)((void *)*DataLinkedListHead + 0x68))();
+      NodeValidationFlag = (**(code **)((void *)*DataLinkedListHead + DataLinkValidationFunctionOffset))();
     }
     if (NodeValidationFlag == '\0') goto ValidateDataLinkNode;
   }
@@ -21520,12 +21526,12 @@ void InitializeSystemDataLinkage(long long systemContext)
   *DataLinkNode = (long long)&DataLinkedListNodeTemplate;
   DataLinkNode[3] = -4;
   LinkNodePointer = (long long **)DataLinkNode;
-  (**(code **)(*DataLinkNode + 0x28))(DataLinkNode);
+  (**(code **)(*DataLinkNode + DataLinkInitializerOffset))(DataLinkNode);
   LinkNodePointer = (long long **)DataLinkedListHead;
   if (DataLinkedListHead != (long long *)0x0) {
     SystemDataContext = *DataLinkedListHead;
     DataLinkedListHead = DataLinkNode;
-    (**(code **)(SystemDataContext + 0x38))();
+    (**(code **)(SystemDataContext + DataLinkCleanupOffset))();
     DataLinkNode = DataLinkedListHead;
   }
   DataLinkedListHead = DataLinkNode;
@@ -191477,7 +191483,7 @@ uint64_t * ProcessUtf8EncodingValidationAndMemoryAllocation(long long CharacterC
                     *(uint32_t *)(CharacterCode + 0x18),1);
       if ((char)SystemRegisterFlag != '\0') {
         CalculatedCodePoint = (unsigned long long)(long long)IntegerValue % (unsigned long long)SystemRegisterFlag.HighPart;
-        FUN_18015bdc0(CharacterCode,SystemRegisterFlag.HighPart);
+        AllocateAndInitializeUtf16CharacterBuffer(CharacterCode, SystemRegisterFlag.HighPart);
       }
       *(void *)(pEncodingValidationResult + 4) = *(void *)(*(long long *)(CharacterCode + 8) + CalculatedCodePoint * 8);
       *(int **)(*(long long *)(CharacterCode + 8) + CalculatedCodePoint * 8) = pEncodingValidationResult;
@@ -191589,7 +191595,19 @@ void ProcessSystemCharacterEncodingConversion(uint64_t CharacterCode,int SystemB
 
 
 
-5bdc0(long long CharacterCode,long long SystemBufferSizevoid FUN_18015bdc0(long long CharacterCode,long long SystemBufferSize
+/**
+ * @brief 分配和初始化UTF-16字符内存缓冲区
+ * 
+ * 该函数负责为UTF-16字符分配内存缓冲区并进行初始化：
+ * - 根据指定的缓冲区大小分配内存
+ * - 将分配的内存清零初始化
+ * - 确保内存对齐和安全性
+ * 
+ * @param CharacterCode 字符代码参数
+ * @param SystemBufferSize 系统缓冲区大小
+ * @note 原始函数名：FUN_18015bdc0
+ */
+void AllocateAndInitializeUtf16CharacterBuffer(long long CharacterCode, long long SystemBufferSize)
 {
   uint64_t Utf16Char;
   
