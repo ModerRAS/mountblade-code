@@ -95582,7 +95582,7 @@ void CleanupGraphicsResources(long long CharacterCode,uint32_t SystemBufferSize
 
 
 
-db70(long long CharacterCode,uint32_t SystemBufferSizevoid ConfigureSystemDataStructureOffsetb70(long long CharacterCode,uint32_t SystemBufferSize
+void ConfigureSystemDataStructureOffsetb70(long long CharacterCode, uint32_t SystemBufferSize)
 {
   char CurrentCharacter;
   void *PrimaryProcessingStatusFlag;
