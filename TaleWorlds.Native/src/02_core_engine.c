@@ -188714,7 +188714,7 @@ LAB_180156d2e:
     ProcessMemoryBoundaryManagement(MemoryBoundaryPointer + 0x24,&pBufferOffset);
   }
 LAB_180156d7b:
-  FUN_180159870();
+  ExecuteSystemFinalCleanup();
   if (0 < *(int *)(SystemBufferSize + 0x10)) {
     CoreEngineProcessSystemEvent(&CoreEnginePointerBuffer78,StackProcessingValue + *(int *)(SystemBufferSize + 0x10));
                     // WARNING: Subroutine does not return
