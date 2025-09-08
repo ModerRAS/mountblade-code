@@ -4337,7 +4337,6 @@
 
 // 安全检查包装函数B
 // 功能：包装安全检查函数，执行系统状态验证和安全性检查
-// 原始函数名：FUN_180894bf5
 #define ExecuteSecurityCheckWrapperB FUN_180894bf5
 
 /**
@@ -4346,7 +4345,7 @@
  * 该函数执行系统的安全检查操作，确保系统在安全状态下运行。
  * 这是一个关键的安全函数，执行后程序不会返回。
  * 
- * @note 原始函数名：FUN_180895b89
+ * @note 系统安全检查核心函数
  * @note 这是系统安全机制的重要组成部分
  */
 #define ExecuteSecurityCheck FUN_180895b89
@@ -121926,28 +121925,28 @@ uint8_t SystemExceptionHandlerStateTable;
 #define StackDataBufferI StackDataBufferI
 
 // 栈数据缓冲区J
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferJ stack0x00000008
+// 功能：存储系统配置数据的栈变量
+#define StackDataBufferJ SystemConfigurationDataBuffer
 
 // 栈数据缓冲区K
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferK stack0x00000088
+// 功能：存储资源管理数据的栈变量
+#define StackDataBufferK ResourceManagementDataBuffer
 
 // 栈数据缓冲区L
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferL stack0x00000080
+// 功能：存储内存池数据的栈变量
+#define StackDataBufferL MemoryPoolManagementDataBuffer
 
 // 栈数据缓冲区M
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferM stack0x00000094
+// 功能：存储异常处理数据的栈变量
+#define StackDataBufferM ExceptionHandlingManagementDataBuffer
 
 // 栈数据缓冲区N
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferN stack0x000000b8
+// 功能：存储线程同步数据的栈变量
+#define StackDataBufferN ThreadSynchronizationManagementDataBuffer
 
 // 栈数据缓冲区O
-// 功能：存储数据缓冲区的栈变量
-#define StackDataBufferO stack0x000000b0
+// 功能：存储系统状态数据的栈变量
+#define StackDataBufferO SystemStatusManagementDataBuffer
 
 // 栈变量宏定义 - 美化更多栈变量
 // 栈浮点数组A
