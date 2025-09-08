@@ -2160,6 +2160,7 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define SystemStateFlagShift 7                                  // 系统状态标志位移量 - 系统状态标志位的位移量
 #define FloatValidationMask 0x7f800000                         // 浮点数验证掩码 - 用于验证浮点数有效性的位掩码
 #define IntegerMinValue -0x80000000                              // 整数最小值 - 32位有符号整数的最小值
+#define MaximumFloatingPointRangeValue 256.0                     // 最大浮点数范围值 - 浮点数范围验证的上限值
 
 // 数据处理相关常量
 #define DataConfigurationOffset 0x10                             // 数据配置偏移量 - 数据配置信息的存储位置
@@ -20300,7 +20301,7 @@ DataBuffer ValidateAndProcessFloatRange(int64_t rangeContext,int64_t exceptionHa
   }
   switch(*(DataWord *)(rangeContext + SystemDataSecondaryOffset18)) {
   case 0:
-    if ((0.0 <= floatingPointRangeValue) && (floatingPointRangeValue <= 256.0)) goto RangeValidationSuccess;
+    if ((0.0 <= floatingPointRangeValue) && (floatingPointRangeValue <= MaximumFloatingPointRangeValue)) goto RangeValidationSuccess;
     goto RangeValidationFailureWithNegativeValue;
   case 1:
   case 2:
@@ -24935,7 +24936,7 @@ void ProcessFloatingPointDataA0(void)
         processingLoopCounter = processingLoopCounter + 1;
         *(DataWord *)(StackFrameContext + -0x54) = SystemOperationResult;
         *(DataWord *)(StackFrameContext + -0x70) = basePointer;
-        *(DataWord *)(StackFrameContext + -100) = validationStatus;
+        *(DataWord *)(StackFrameContext + -0x64) = validationStatus;
         *(DataWord *)(StackFrameContext + -0x60) = memoryRegionBase;
         *(DataWord *)(StackFrameContext + -0x5c) = operationResult;
         *(DataWord *)(StackFrameContext + -0x58) = dataFlags;
@@ -24988,7 +24989,7 @@ void ProcessFloatingPointDataA0(void)
         loopCounter = loopCounter + 1;
         *(DataWord *)(StackFrameContext + -0x54) = SystemOperationResult;
         *(DataWord *)(StackFrameContext + -0x70) = basePointer;
-        *(DataWord *)(StackFrameContext + -100) = validationStatus;
+        *(DataWord *)(StackFrameContext + -0x64) = validationStatus;
         *(DataWord *)(StackFrameContext + -0x60) = memoryRegionBase;
         *(DataWord *)(StackFrameContext + -0x5c) = operationResult;
         *(DataWord *)(StackFrameContext + -0x58) = dataFlags;
@@ -25041,7 +25042,7 @@ void ProcessFloatingPointDataA0(void)
         loopCounter = loopCounter + 1;
         *(DataWord *)(StackFrameContext + -0x54) = SystemOperationResult;
         *(DataWord *)(StackFrameContext + -0x70) = basePointer;
-        *(DataWord *)(StackFrameContext + -100) = validationStatus;
+        *(DataWord *)(StackFrameContext + -0x64) = validationStatus;
         *(DataWord *)(StackFrameContext + -0x60) = memoryRegionBase;
         *(DataWord *)(StackFrameContext + -0x5c) = operationResult;
         *(DataWord *)(StackFrameContext + -0x58) = dataFlags;
@@ -25094,7 +25095,7 @@ void ProcessFloatingPointDataA0(void)
         loopCounter = loopCounter + 1;
         *(DataWord *)(StackFrameContext + -0x54) = SystemOperationResult;
         *(DataWord *)(StackFrameContext + -0x70) = basePointer;
-        *(DataWord *)(StackFrameContext + -100) = validationStatus;
+        *(DataWord *)(StackFrameContext + -0x64) = validationStatus;
         *(DataWord *)(StackFrameContext + -0x60) = memoryRegionBase;
         *(DataWord *)(StackFrameContext + -0x5c) = operationResult;
         *(DataWord *)(StackFrameContext + -0x58) = dataFlags;
@@ -25150,7 +25151,7 @@ void ProcessFloatingPointDataA0(void)
         calculatedSize = calculatedSize + 1;
         *(DataWord *)(StackFrameContext + -0x54) = SystemOperationResult;
         *(DataWord *)(StackFrameContext + -0x70) = basePointer;
-        *(DataWord *)(StackFrameContext + -100) = validationStatus;
+        *(DataWord *)(StackFrameContext + -0x64) = validationStatus;
         *(DataWord *)(StackFrameContext + -0x60) = memoryRegionBase;
         *(DataWord *)(StackFrameContext + -0x5c) = operationResult;
         *(DataWord *)(StackFrameContext + -0x58) = dataFlags;
@@ -45909,7 +45910,7 @@ void CleanupClassMemoryOnException(DataBuffer operationBase,int64_t dataBuffer)
   dataContext = *(int64_t *)(dataBuffer + ExceptionHandlerContextOffset40);
   validationStatus = SystemCleanupFlagAlternative;
   *(int64_t *)(dataContext + 0x15d8) =
-       *(int64_t *)(&SystemConfigurationTable + (int64_t)*(int *)(dataContext + 0x15e0) * 8) + -100000;
+       *(int64_t *)(&SystemConfigurationTable + (int64_t)*(int *)(dataContext + 0x15e0) * 8) + -0x186a0;
   ValidateSystemConfigurationA0((int64_t *)(dataContext + 0x8b0));
   *(DataWord *)(dataContext + 0x15e8) = 0;
   exceptionHandlerContextPointer = *(int64_t **)(dataContext + DataContextCallbackOffset);
@@ -76053,7 +76054,7 @@ void CleanupExceptionResourcesA2(DataBuffer exceptionContext,int64_t unwindInfo)
   contextBase = *(int64_t *)(unwindInfo + 0x50);
   cleanupFlag = SystemCleanupFlagAlternative;
   *(int64_t *)(contextBase + 0x15d8) =
-       *(int64_t *)(&ExceptionDataTable1 + (int64_t)*(int *)(contextBase + 0x15e0) * 8) + -100000;
+       *(int64_t *)(&ExceptionDataTable1 + (int64_t)*(int *)(contextBase + 0x15e0) * 8) + -0x186a0;
   ValidateSystemContextA0((int64_t *)(contextBase + 0x8b0));
   *(DataWord *)(contextBase + 0x15e8) = 0;
   memoryResourcePointer = *(int64_t **)(contextBase + 0x15d0);
@@ -123318,7 +123319,7 @@ void SetGlobalDataPointerB6(void)
 
 
 
-// 异常处理器设置函数A0 - 设置默认异常处理器B到全局地址0x180bf6680
+// 异常处理器设置函数A0 - 设置默认异常处理器B到全局异常处理器指针A7
 // 原始函数名：FUN_1809418e0
 void SetDefaultExceptionHandlerA0(void)
 
@@ -123331,7 +123332,7 @@ void SetDefaultExceptionHandlerA0(void)
 
 
 
-// 异常处理器设置函数B0 - 设置默认异常处理器B到全局地址0x180bf66b0
+// 异常处理器设置函数B0 - 设置默认异常处理器B到全局异常处理器指针A8
 // 原始函数名：FUN_180941900
 void SetDefaultExceptionHandlerB0(void)
 
