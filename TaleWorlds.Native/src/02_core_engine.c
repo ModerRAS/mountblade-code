@@ -217035,23 +217035,23 @@ void ManageUtf8EncodingMemory(uint64_t CharacterCode,uint64_t SystemBufferSize
   *(uint32_t *)(SystemEventTemplatePointer + 0x3d) = 0x3f800000;
   *(uint32_t *)((long long)SystemEventTemplatePointer + 0x1ec) = 0x3f800000;
   *(uint8_t *)(SystemEventTemplatePointer + 0x3e) = 0;
-  pCoreEngineUnsignedValue208 = &SystemNullTemplate;
-  uStack_1f0 = 0;
-  UnsignedProcessingStatusFlag = NULL;
-  uStack_1f8 = 0;
-  pMemoryAddressMaskPointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
-  *(uint8_t *)pMemoryAddressMaskPointer = 0;
-  UnsignedProcessingStatusFlag = pMemoryAddressMaskPointer;
-  MemoryAllocationIndex = GetMemoryAllocationInfo(pMemoryAddressMaskPointer);
-  uStack_1f0 = CONCAT44(uStack_1f0.HighPart,MemoryAllocationIndex);
-  *pMemoryAddressMaskPointer = 0x7267654428564f46;
-  *(uint32_t *)(pMemoryAddressMaskPointer + 1) = 0x29736565;
-  *(uint8_t *)((long long)pMemoryAddressMaskPointer + 0xc) = 0;
-  uStack_1f8 = 0xc;
-  ProcessSystemEventTemplateAndMemoryAllocation(SystemEventTemplatePointer,&pCoreEngineUnsignedValue208,SystemEventTemplatePointer + 0x37,1);
-  pCoreEngineUnsignedValue208 = &SystemNullTemplate;
+  CoreEngineDataBuffer = &SystemNullTemplate;
+  StackProcessingOffset = 0;
+  ProcessingStatusFlag = NULL;
+  StackValidationFlag = 0;
+  MemoryAddressMaskPointer = (void *)BufferAllocate(MemoryPoolManager,0x10,0x13);
+  *(uint8_t *)MemoryAddressMaskPointer = 0;
+  ProcessingStatusFlag = MemoryAddressMaskPointer;
+  MemoryAllocationIndex = GetMemoryAllocationInfo(MemoryAddressMaskPointer);
+  StackProcessingOffset = CONCAT44(StackProcessingOffset.HighPart,MemoryAllocationIndex);
+  *MemoryAddressMaskPointer = 0x7267654428564f46;
+  *(uint32_t *)(MemoryAddressMaskPointer + 1) = 0x29736565;
+  *(uint8_t *)((long long)MemoryAddressMaskPointer + 0xc) = 0;
+  StackValidationFlag = 0xc;
+  ProcessSystemEventTemplateAndMemoryAllocation(SystemEventTemplatePointer,&CoreEngineDataBuffer,SystemEventTemplatePointer + 0x37,1);
+  CoreEngineDataBuffer = &SystemNullTemplate;
                     // WARNING: Subroutine does not return
-  CoreEngineFreeSystemMemory(pMemoryAddressMaskPointer);
+  CoreEngineFreeSystemMemory(MemoryAddressMaskPointer);
 }
 
 
