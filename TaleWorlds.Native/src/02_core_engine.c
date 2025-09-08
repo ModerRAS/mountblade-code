@@ -202325,6 +202325,23 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long CharacterCode, uin
 
 
 
+/**
+ * @brief 处理系统缓冲区大小和字符代码数据操作
+ * 
+ * 该函数负责处理系统缓冲区大小和字符代码相关的数据操作，包括：
+ * - 从系统配置中读取数据大小信息
+ * - 管理系统事件队列
+ * - 处理内存块索引和数据注册
+ * - 根据不同的状态标志更新系统数据
+ * 
+ * @param CharacterCode 字符代码，用于标识特定的数据操作
+ * @param SystemBufferSize 系统缓冲区大小指针，包含系统配置信息
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016cccb
+ */
+#define ProcessSystemBufferSizeAndCharacterCodeOperations FUN_18016cccb
+
 6cccb(long long CharacterCode,long long SystemBufferSizevoid FUN_18016cccb(long long CharacterCode,long long SystemBufferSize
 {
   long long PrimaryDataSize;
@@ -202358,6 +202375,24 @@ void ProcessCharacterEncodingAndSystemConfiguration(long long CharacterCode, uin
 
 
 
+
+/**
+ * @brief 处理UTF-8到UTF-16编码转换的数据更新
+ * 
+ * 该函数负责处理UTF-8到UTF-16编码转换过程中的数据更新，包括：
+ * - 根据不同的处理状态更新UTF-16数据
+ * - 管理字符代码和缓冲区大小的计数
+ * - 处理数据转换后的内存管理
+ * 
+ * @param CharacterCode 字符代码，用于标识特定的数据操作
+ * @param SystemBufferSize 系统缓冲区大小，用于数据转换
+ * @param Utf8SourcePointer UTF-8源数据指针
+ * @param Utf16EndPointer UTF-16目标数据指针
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18016cd1d
+ */
+#define ProcessUtf8ToUtf16ConversionDataUpdate FUN_18016cd1d
 
 6cd1d(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointervoid FUN_18016cd1d(long long CharacterCode,long long SystemBufferSize,long long Utf8SourcePointer,long long Utf16EndPointer
 {
