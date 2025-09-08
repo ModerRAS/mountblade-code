@@ -1836,6 +1836,19 @@
  */
 #define ManageSystemMemory ControlSystemMemoryAndResources
 
+// 数据操作函数系列 - 内存读写操作
+// 功能：执行数据缓冲区的读写操作，支持不同大小的数据块
+#define OperateDataO0 ReadDataFromBuffer
+#define OperateDataO1 WriteDataToBuffer  
+#define OperateDataO2 ReadDataWithValidation
+#define OperateDataO3 WriteDataWithValidation
+#define OperateDataO4 ReadDataWithSecurityCheck
+#define OperateDataO5 WriteDataWithSecurityCheck
+#define OperateDataO6 ReadDataWithEncryption
+#define OperateDataO7 WriteDataWithEncryption
+#define OperateDataO8 ReadDataWithCompression
+#define OperateDataO9 WriteDataWithCompression
+
 /**
  * @brief 系统资源清理函数
  * 
@@ -12308,10 +12321,10 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
       }
       while( true ) {
         if (contextDataContext == exceptionHandlerContextPointer) {
-          *(int64_t **)(localStackMemoryContext + MODULE_COMPONENT_OFFSET) = moduleDataContext;
-          ExecuteSystemDataProcessing(localStackMemoryContext,moduleDataContext);
-          moduleDataContext[2] = localStackMemoryContext;
-          systemModuleOperationResult = InitializeSystemComponent(localStackMemoryContext);
+          *(int64_t **)(StackMemoryContext + MODULE_COMPONENT_OFFSET) = moduleDataContext;
+          ExecuteSystemDataProcessing(StackMemoryContext,moduleDataContext);
+          moduleDataContext[2] = StackMemoryContext;
+          systemModuleOperationResult = InitializeSystemComponent(StackMemoryContext);
           if ((int32_t)systemModuleOperationResult == 0) {
             return 0;
           }
@@ -17679,11 +17692,11 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     return ComponentDataValidationFailure;
   }
   componentZInfinityFlag = 0;
-  if ((*(uint *)(dataPtr + 0x2c) & FloatInfinityValue) == FloatInfinityValue) {
+  if ((*(uint *)(dataPtr + FloatingPointDataOffset2c) & FloatInfinityValue) == FloatInfinityValue) {
     componentWInfinityFlag = 0x1d;
   }
   componentXInfinityFlag = componentZInfinityFlag;
-  if ((*(uint *)(dataPtr + 0x28) & FloatInfinityValue) == FloatInfinityValue) {
+  if ((*(uint *)(dataPtr + FloatingPointDataOffset28) & FloatInfinityValue) == FloatInfinityValue) {
     primaryInfinityFlag = 0x1d;
   }
   componentYInfinityFlag = componentZInfinityFlag;
