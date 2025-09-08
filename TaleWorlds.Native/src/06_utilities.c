@@ -23674,9 +23674,9 @@ void ProcessFloatingPointDataA0(void)
           ValidationDataBuffer = &SystemValidationDataTableA4;
           DataProcessingOffset = SystemOperationResult;
           FloatProcessingValue = (float)CONCAT31(FloatProcessingValue._1_3_,1);
-          calculatedSize = ValidateDataIntegrityA0(floatValue,&ValidationDataBuffer);
-          floatValue = calculatedFloatValue;
-          if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
+          validationSizeResult = ValidateDataIntegrityA0(processedFloatValue,&ValidationDataBuffer);
+          processedFloatValue = calculatedFloatValue;
+          if (validationSizeResult != 0) goto ProcessCheckpointSizeValidation;
         }
         if (*(char *)(dataContext + 0x29) != '\0') {
           operationResult = 0;
