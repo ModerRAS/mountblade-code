@@ -91749,9 +91749,9 @@ void ProcessUITransformMatrix(float *uiContext,longlong dataSource,longlong targ
         baseValue6 = uiContext[0x12];
         FloatValue1 = uiContext[0x16];
         uiContext[0x12] = (baseValue7 - uiContext[0x17]) + AccumulatedFloat;
-        uiContext[0x13] = FloatValue2 - (baseValue6 - FloatValue1);
+        uiContext[0x13] = FloatValue2 - (rotationValue1 - FloatValue1);
         uiContext[0x16] = AccumulatedFloat - (baseValue7 - uiContext[0x17]);
-        uiContext[0x17] = (baseValue6 - FloatValue1) + FloatValue2;
+        uiContext[0x17] = (rotationValue1 - FloatValue1) + FloatValue2;
         FloatValue2 = uiContext[0x19] - uiContext[0x1d];
         AccumulatedFloat = uiContext[0x18] - uiContext[0x1c];
         baseValue7 = uiContext[0x1c] + uiContext[0x18];
@@ -200038,7 +200038,23 @@ UIHandle CleanupUIEventHandlersA0(longlong uiContext)
 
 
 
-UIHandle FUN_180789205(void)
+/**
+ * @brief UI事件处理器清理函数A5
+ * 
+ * 该函数负责清理UI事件处理器的相关资源，包括：
+ * 1. 清理事件处理器的内存分配
+ * 2. 释放事件数据相关的资源
+ * 3. 重置事件处理器的状态
+ * 4. 确保所有事件处理器都被正确清理
+ * 
+ * @return 清理结果状态码：
+ *         - 0: 清理成功
+ *         - 非0值: 具体的错误代码
+ * 
+ * @note 原始函数名：FUN_180789205
+ * @warning 清理过程中会释放所有事件处理器资源，调用后需要重新初始化
+ */
+UIHandle CleanupUIEventHandlersA5(void)
 
 {
   longlong allocatedMemory;
@@ -200076,7 +200092,23 @@ UIHandle FUN_180789205(void)
 
 
 
-UIHandle FUN_180789221(void)
+/**
+ * @brief UI事件处理器清理函数B5
+ * 
+ * 该函数负责清理UI事件处理器的相关资源，包括：
+ * 1. 清理事件处理器的内存分配
+ * 2. 释放事件数据相关的资源
+ * 3. 重置事件处理器的状态
+ * 4. 确保所有事件处理器都被正确清理
+ * 
+ * @return 清理结果状态码：
+ *         - 0: 清理成功
+ *         - 非0值: 具体的错误代码
+ * 
+ * @note 原始函数名：FUN_180789221
+ * @warning 清理过程中会释放所有事件处理器资源，调用后需要重新初始化
+ */
+UIHandle CleanupUIEventHandlersB5(void)
 
 {
   int processingResult;
