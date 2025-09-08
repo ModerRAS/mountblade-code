@@ -25755,10 +25755,10 @@ void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,u
   DataWord statusFlags;
   DataWord operationParam;
   int stackIndex;
-  DataWord resourceData1;
-  DataWord resourceData2;
-  DataWord resourceData3;
-  DataWord resourceData4;
+  DataWord SystemResourceEntryData1;
+  DataWord SystemResourceEntryData2;
+  DataWord SystemResourceEntryData3;
+  DataWord SystemResourceEntryData4;
   DataWord validationFlags;
   DataBuffer processingBuffer [64];
   uint64_t securityToken;
@@ -25786,10 +25786,10 @@ void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,u
 OperationFailedLabel:
           ExecuteSecurityCheck(securityToken ^ (uint64_t)securityBuffer);
       }
-      resourceData1 = *(DataWord *)(resourceEntry + ExceptionHandlerCallbackOffset10);
-      resourceData2 = *(DataWord *)(resourceEntry + 0x14);
-      resourceData3 = *(DataWord *)(resourceEntry + SystemDataSecondaryOffset18);
-      resourceData4 = *(DataWord *)(resourceEntry + 0x1c);
+      SystemResourceEntryData1 = *(DataWord *)(resourceEntry + ExceptionHandlerCallbackOffset10);
+      SystemResourceEntryData2 = *(DataWord *)(resourceEntry + ResourceEntryDataOffset14);
+      SystemResourceEntryData3 = *(DataWord *)(resourceEntry + SystemDataSecondaryOffset18);
+      SystemResourceEntryData4 = *(DataWord *)(resourceEntry + ResourceEntryDataOffset1c);
       statusFlags = 0;
       validationResult = processCount + 1;
       callbackPointer = &SystemCallbackHandlerTable;
