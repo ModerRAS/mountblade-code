@@ -12104,6 +12104,26 @@ uint8_t SystemResourceManagementTable;
  * 
  * @see QueryAndRetrieveSystemDataA0, ExecuteCoreFunction, ProcessUtilityOperation, ReleaseResource, CleanupMemory
  */
+/**
+ * @brief 处理对象数据并进行验证
+ * 
+ * 该函数负责处理系统对象数据，执行安全验证，并管理相关资源的生命周期。
+ * 它通过系统上下文验证对象的有效性，执行核心功能处理，然后清理相关资源。
+ * 
+ * @param ObjectHandle 对象句柄，用于标识要处理的对象
+ * @param DataContext 数据上下文，包含处理所需的数据配置信息
+ * 
+ * @note 该函数包含栈保护机制，防止栈溢出攻击
+ * @note 函数会自动清理分配的资源，确保系统资源不被泄漏
+ * 
+ * 处理流程：
+ * 1. 初始化变量和栈保护
+ * 2. 查询系统数据并验证上下文
+ * 3. 执行核心功能处理
+ * 4. 遍历并处理资源列表
+ * 5. 清理内存缓冲区
+ * 6. 执行安全验证检查
+ */
 void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 {
   // 资源和操作相关变量
@@ -12116,8 +12136,8 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   uint8_t SecurityValidationBuffer[SecurityValidationBufferSize];  // 安全验证缓冲区
   int64_t SystemContextArray[2];           // 系统上下文数组
   uint8_t *DataProcessingBuffer;           // 数据处理缓冲区指针
-  int32_t resourceProcessingCounter;    // 资源处理循环计数器
-  uint32_t dataProcessingStatus;             // 数据处理标志
+  int32_t resourceProcessingLoopCounter;    // 资源处理循环计数器
+  uint32_t dataProcessingFlags;             // 数据处理标志
   uint8_t WorkingDataBuffer[WorkingDataBufferSize];  // 工作数据缓冲区
   
   // 初始化操作状态
@@ -12125,8 +12145,8 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   ResourceIdentifier = 0;
   ResourceArrayIterator = 0;
   ProcessedResourceCount = 0;
-  resourceProcessingCounter = 0;
-  dataProcessingStatus = 0;
+  resourceProcessingLoopCounter = 0;
+  dataProcessingFlags = 0;
   
   // 栈保护变量
   uint64_t stackSecurityGuard;
@@ -12152,7 +12172,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
     // 处理执行结果
     if (OperationStatus == SystemSuccessStatus) {
       // 如果有资源需要处理，遍历资源列表
-      if (0 < resourceProcessingCounter) {
+      if (0 < resourceProcessingLoopCounter) {
         ResourceArrayIterator = 0;
         do {
           // 获取资源标识符
@@ -12166,7 +12186,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
           // 更新计数器和偏移量
           ProcessedResourceCount = ProcessedResourceCount + 1;
           ResourceArrayIterator = ResourceArrayIterator + ResourceHandleSize;
-        } while (ProcessedResourceCount < resourceProcessingCounter);
+        } while (ProcessedResourceCount < resourceProcessingLoopCounter);
       }
       // 清理内存缓冲区
       CleanupMemory(&DataProcessingBuffer);
@@ -90211,7 +90231,18 @@ void InitializeExceptionHandlerC390(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c3b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器1D8
+ * 
+ * 该函数负责管理系统资源的引用计数，当引用计数降为0时触发异常处理
+ * 主要用于内存管理和资源清理操作，处理0x1d8偏移量处的资源
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c3b0
+ */
+void ManageResourceReferenceCountAtOffset1D8(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
@@ -90247,7 +90278,18 @@ void Unwind_18090c3b0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c3d0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器回调执行器80
+ * 
+ * 该函数负责执行异常处理器的回调函数，从0x80偏移量处获取异常处理上下文
+ * 并调用相应的回调函数来处理异常事件
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090c3d0
+ */
+void ExecuteExceptionHandlerCallbackAtOffset80(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -95046,7 +95088,18 @@ void ManageResourceReferenceCountAtOffset3F0(DataBuffer operationBase,int64_t da
 
 
 
-void Unwind_18090d150(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 资源引用计数管理器270
+ * 
+ * 该函数负责管理系统资源的引用计数，当引用计数降为0时触发异常处理
+ * 主要用于内存管理和资源清理操作，处理0x270偏移量处的资源
+ * 
+ * @param operationBase 操作基础参数
+ * @param dataBuffer 数据缓冲区指针
+ * 
+ * @note 原始函数名：Unwind_18090d150
+ */
+void ManageResourceReferenceCountAtOffset270(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int *resourceReferenceCount;
