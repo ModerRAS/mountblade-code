@@ -100091,11 +100091,11 @@ unsigned long long ProcessSystemDataAndConfigureParameters(long long CharacterCo
     MatrixElementF = SystemBufferSize[1] + MatrixElementD + MatrixTransformResult.HighPart * 2.0;
     MatrixElementJ = MatrixElementH + SystemBufferSize[1];
     MatrixTransformResult = CONCAT44(MatrixElementF - MatrixElementD,MatrixElementE - MatrixElementC);
-    ProcessSystemBuffer(&SystemFlagG,0);
+    ProcessSystemBuffer(&MatrixTransformResult,0);
     SystemStatusCode = ValidateSystemData(&MatrixElementC,ComputedResult,0);
     if ((char)SystemStatusCode != '\0') {
       SystemDataTablePointer = (unsigned long long)ProcessedCharacter << 0x20;
-      isSystemContextNull = ProcessSystemParameters(&MatrixElementC,ComputedResult,&AdditionalParameter1,acStack_d8,SystemDataTablePointer);
+      isSystemContextNull = ProcessSystemParameters(&MatrixElementC,ComputedResult,&AdditionalParameter1,LocalStackBuffer_d8,SystemDataTablePointer);
       MemoryAllocationIndex = (uint32_t)((unsigned long long)SystemDataTablePointer >> 0x20);
       if ((acStack_d8[0] == '\0') || (AdditionalParameter1 == '\0')) {
         SystemDataTablePointer = (unsigned long long)(AdditionalParameter1 != '\0') + 0x15;
