@@ -1059,7 +1059,13 @@
 #define SystemDataFlagsOffset1C 0x1c
 
 // 系统数据传输处理函数
-// 原始函数名：FUN_180062300 - 系统数据传输处理器
+/**
+ * @brief 系统数据传输处理器
+ * 
+ * 该函数负责处理系统数据传输操作，包括数据验证、完整性检查和传输控制
+ * 
+ * @note 原始函数名：FUN_180062300 - 系统数据传输处理器
+ */
 #define ProcessSystemDataTransferWithValidation FUN_180062300
 
 // 数据操作类型常量
@@ -126538,7 +126544,7 @@ uint8_t SystemExceptionHandlerStateTable;
 
 // 原始函数名：Unwind_18090cbe0 - 异常处理器设置函数BE0
 // 功能：设置异常数据缓冲区的默认异常处理器B
-#define SetupExceptionHandlerBE0 Unwind_18090cbe0
+#define SetupExceptionHandlerBE0 SetupExceptionHandlerBE0
 
 // 原始函数名：Unwind_18090cbf0 - 系统资源计数器递减函数BF0
 // 功能：递减系统资源计数器并执行系统函数表操作
