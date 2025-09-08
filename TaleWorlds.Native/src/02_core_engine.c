@@ -200202,7 +200202,7 @@ void ConvertUtf8ToUtf16AndManageSystemBuffer(uint64_t CharacterCode, long long S
     *(void *)(PrimaryProcessingStatusFlag + 4) = 0;
     PrimaryProcessingStatusFlag[6] = 0;
     PrimaryProcessingStatusFlag[6] = 1;
-    *(long long *)(PrimaryProcessingStatusFlag + 4) = lStack_58;
+    *(long long *)(PrimaryProcessingStatusFlag + 4) = SystemStackRegister58;
     PrimaryProcessingStatusFlag[9] = SystemStackFlag.HighPart;
     PrimaryProcessingStatusFlag[8] = (uint32_t)SystemStackFlag;
     SystemKeyPointer = 0;

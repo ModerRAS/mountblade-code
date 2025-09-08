@@ -14019,10 +14019,10 @@ int RegisterSystemNetworkModule(void);
 // 浮点数处理栈变量
 #define FloatProcessingVarA SystemFloatProcessingVarA
 #define FloatProcessingVarB SystemFloatProcessingVarB
-#define FloatProcessingVarC fVar6
-#define FloatProcessingVarD fVar9
-#define FloatProcessingVarE fVar12
-#define FloatProcessingVarF fVar16
+#define FloatProcessingVarC SystemFloatProcessingVarC
+#define FloatProcessingVarD SystemFloatProcessingVarD
+#define FloatProcessingVarE SystemFloatProcessingVarE
+#define FloatProcessingVarF SystemFloatProcessingVarF
 #define FloatProcessingVarG fVar18
 #define FloatProcessingVarH fVar20
 #define FloatProcessingVarI fVar21

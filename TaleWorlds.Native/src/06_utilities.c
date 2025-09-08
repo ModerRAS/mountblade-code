@@ -84881,18 +84881,6 @@ void InvokeExceptionHandlerContextC0(DataBuffer operationBase,int64_t dataBuffer
  * @note 原始函数名：Unwind_18090ac70
  * @note 处理0x88偏移量的异常处理器上下文
  */
-/**
- * @brief 调用异常处理器上下文指针D0
- * 
- * 该函数在异常展开过程中调用特定偏移量的异常处理器上下文指针。
- * 通过数据缓冲区获取异常处理器上下文，并执行相应的处理函数。
- * 
- * @param operationBase 操作基地址
- * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
- * 
- * @note 原始函数名：Unwind_18090ac70
- * @note 处理0x88偏移量的异常处理器上下文
- */
 void InvokeExceptionHandlerContextD0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
