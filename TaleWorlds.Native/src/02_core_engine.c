@@ -284809,4 +284809,25 @@ const void* const SystemStringConstantANSI = (void*)0x180a1318c;
  */
 #define ProcessSystemMemoryAllocationAndDataInitialization FUN_180179a0a
 
+/**
+ * @brief 处理字符代码缓冲区管理和数据验证
+ * 
+ * 该函数负责处理字符代码缓冲区管理和数据验证工作，包括：
+ * - 验证字符代码边界
+ * - 管理内存缓冲区分配
+ * - 处理字符数据链表操作
+ * - 执行系统资源清理
+ * 
+ * @param CharacterCode 字符代码指针
+ * @param CharacterCodeSize 字符代码大小指针
+ * @param Utf8SourcePointer UTF-8源指针
+ * @param Utf16EndPointer UTF-16结束指针
+ * @param AdditionalParameter1 额外参数1
+ * @param AdditionalParameter2 额外参数2
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：FUN_18018af30
+ */
+#define ProcessCharacterCodeBufferManagementAndDataValidation FUN_18018af30
+
 

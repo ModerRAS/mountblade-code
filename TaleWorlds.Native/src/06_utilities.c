@@ -84867,6 +84867,18 @@ void Unwind_18090acd0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 调用异常处理器上下文指针H0
+ * 
+ * 该函数在异常展开过程中调用特定偏移量的异常处理器上下文指针。
+ * 通过数据缓冲区获取异常处理器上下文，并执行相应的处理函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * 
+ * @note 原始函数名：Unwind_18090acf0
+ * @note 处理0xa8偏移量的异常处理器上下文
+ */
 void Unwind_18090acf0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
@@ -84881,6 +84893,18 @@ void Unwind_18090acf0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
+/**
+ * @brief 调用异常处理器上下文指针I0
+ * 
+ * 该函数在异常展开过程中调用特定偏移量的异常处理器上下文指针。
+ * 通过数据缓冲区获取异常处理器上下文，并执行相应的处理函数。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理器信息
+ * 
+ * @note 原始函数名：Unwind_18090ad10
+ * @note 处理0xb8偏移量的异常处理器上下文
+ */
 void Unwind_18090ad10(DataBuffer operationBase,int64_t dataBuffer)
 
 {
