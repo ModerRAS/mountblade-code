@@ -850,6 +850,19 @@ typedef enum {
 #define UIComponentDataOffset 0x11080
 #define UIRenderQueueOffset 0x12438
 
+// UI上下文数据偏移量常量
+#define UIContextBaseDataOffset 0x20                    // UI上下文基础数据偏移量
+#define UIContextByteStatusOffset 0x40                 // UI上下文字节状态偏移量
+#define UIDwordDataOffset 0x44                          // UI双字数据偏移量
+#define UIContextHandleOffset 0x48                      // UI上下文句柄偏移量
+#define UIBufferDataOffset 0x50                         // UI缓冲区数据偏移量
+#define UIContextExtendedDataOffset 0x58                // UI上下文扩展数据偏移量
+#define UIContextAdvancedDataOffset 0x78                // UI上下文高级数据偏移量
+#define UIContextResultHandleOffset 0x98                // UI上下文结果句柄偏移量
+#define UIContextCopyResultOffset 0xa0                  // UI上下文复制结果偏移量
+#define UIContextBufferSizeOffset 0xa8                  // UI上下文缓冲区大小偏移量
+#define UIContextBufferExtraOffset 0xac                 // UI上下文缓冲区额外偏移量
+
 // UI音频数据处理函数变量美化
 #define AudioFormatType isCharacterMatch
 #define AudioEncodingActive IsEventProcessingActive
@@ -1031,7 +1044,7 @@ typedef enum {
 // UI系统附加状态指针美化
 #define UIStatusPointer5 (void*)0x1809553a0
 #define UIStatusPointer6 (void*)0x180954b30
-#define UIStatusPointer7 UNK_1809535d8
+#define UIStatusPointer7 (void*)0x1809535d8
 #define UIStatusPointer8 UNK_1809535c4
 #define UIStatusPointer9 UNK_1809535e8
 #define UIStatusPointer10 UNK_180954788
@@ -6884,18 +6897,30 @@ void CreateUIComponent(UIHandle uiContext,UIHandle dataSource,UIHandle targetBuf
   UIHandle copyResult;
   
   CopyUIData();
-  CopyUIData(uiContext + 0x20,dataSource + 0x20);
-  *(UIByte *)(uiContext + 0x40) = *(UIByte *)(dataSource + 0x40);
-  *(UIDword *)(uiBufferData + 0x44) = *(UIDword *)(dataSource + 0x44);
-  *(UIHandle *)(uiContext + 0x48) = *(UIHandle *)(dataSource + 0x48);
-  *(UIDword *)(uiBufferData + 0x50) = *(UIDword *)(dataSource + 0x50);
-  CopyUIData(uiContext + 0x58,dataSource + 0x58);
-  CopyUIData(uiContext + 0x78,dataSource + 0x78);
-  copyResult = *(UIHandle *)(dataSource + 0xa0);
-  *(UIHandle *)(uiContext + 0x98) = *(UIHandle *)(dataSource + 0x98);
-  *(UIHandle *)(uiContext + 0xa0) = copyResult;
-  *(UIDword *)(uiBufferData + 0xa8) = *(UIDword *)(dataSource + 0xa8);
-  *(UIDword *)(uiBufferData + 0xac) = *(UIDword *)(dataSource + 0xac);
+  // 复制UI基础数据（偏移量0x20）
+  CopyUIData(uiContext + UIContextBaseDataOffset, dataSource + UIContextBaseDataOffset);
+  // 复制UI字节状态数据（偏移量0x40）
+  *(UIByte *)(uiContext + UIContextByteStatusOffset) = *(UIByte *)(dataSource + UIContextByteStatusOffset);
+  // 复制UI双字数据（偏移量0x44）
+  *(UIDword *)(uiBufferData + UIDwordDataOffset) = *(UIDword *)(dataSource + UIDwordDataOffset);
+  // 复制UI句柄数据（偏移量0x48）
+  *(UIHandle *)(uiContext + UIContextHandleOffset) = *(UIHandle *)(dataSource + UIContextHandleOffset);
+  // 复制UI缓冲区数据（偏移量0x50）
+  *(UIDword *)(uiBufferData + UIBufferDataOffset) = *(UIDword *)(dataSource + UIBufferDataOffset);
+  // 复制UI扩展数据（偏移量0x58）
+  CopyUIData(uiContext + UIContextExtendedDataOffset, dataSource + UIContextExtendedDataOffset);
+  // 复制UI高级数据（偏移量0x78）
+  CopyUIData(uiContext + UIContextAdvancedDataOffset, dataSource + UIContextAdvancedDataOffset);
+  // 获取复制结果句柄（偏移量0xa0）
+  copyResult = *(UIHandle *)(dataSource + UIContextCopyResultOffset);
+  // 复制结果句柄（偏移量0x98）
+  *(UIHandle *)(uiContext + UIContextResultHandleOffset) = *(UIHandle *)(dataSource + UIContextResultHandleOffset);
+  // 设置复制结果（偏移量0xa0）
+  *(UIHandle *)(uiContext + UIContextCopyResultOffset) = copyResult;
+  // 复制缓冲区大小数据（偏移量0xa8）
+  *(UIDword *)(uiBufferData + UIContextBufferSizeOffset) = *(UIDword *)(dataSource + UIContextBufferSizeOffset);
+  // 复制缓冲区额外数据（偏移量0xac）
+  *(UIDword *)(uiBufferData + UIContextBufferExtraOffset) = *(UIDword *)(dataSource + UIContextBufferExtraOffset);
   return uiContext;
 }
 
@@ -88986,49 +89011,49 @@ int ProcessUITransformData(longlong uiContext,int dataSource,int targetBuffer,lo
  * @warning 转换过程中会修改原始数据结构
  * @see ProcessUIDataConversion, HandleUIDataBuffer
  */
-int FUN_18071a56f(int uiContext,UIHandle dataSource,int targetBuffer,int bufferSize)
+int ProcessUIDataTransformAndValidation(int uiContext, UIHandle dataSource, int targetBuffer, int bufferSize)
 
 {
   float baseValue;
   int uiValidationResult;
   float transformCoeff2;
-  int TempInt4;
-  uint loopCounter;
+  int tempInt4;
+  uint vectorLoopCounter;
   int loopCounter;
   longlong localLong7;
   longlong contextOffset;
   longlong contextHandle;
-  longlong SourceHandle;
+  longlong sourceHandle;
   int allocationFlags;
   int register10D;
-  longlong RegisterPointer;
+  longlong registerPointer;
   longlong preservedRegister12;
   int localInt9;
   int eventHandle;
   int preservedRegister15D;
   float *pbaseValue0;
   float baseValue1;
-  UIByte aCounterResult [12];
-  UIByte aresult3 [16];
-  UIByte acomponentIndex [16];
+  UIByte counterResult [12];
+  UIByte vectorResult3 [16];
+  UIByte componentIndex [16];
   float baseValue6;
-  UIByte aresult7 [16];
+  UIByte vectorResult7 [16];
   double dVar18;
-  float FloatValue2;
-  float AccumulatedFloat;
+  float floatValue2;
+  float accumulatedFloat;
   float unmodifiedXMM10_Da;
   float unmodifiedXMM14_Da;
-  int iStackX_20;
+  int stackX_20;
   int stackParam00000108;
   int stackParam00000110;
   longlong stackParam00000118;
   longlong stackParam00000120;
   int stackParam00000128;
-  int iStack0000000000000130;
+  int stack0000000000000130;
   longlong stackParam00000138;
   longlong stackParam00000140;
   int stackParam00000150;
-  int iStack0000000000000160;
+  int stack0000000000000160;
   float stackParam00000168;
   int stackParam00000170;
   UIHandle result2;
@@ -95866,20 +95891,20 @@ void ProcessUIComponentRendering(longlong uiContext,UIHandle dataSource,int targ
   *(char *)(uiContext + 0xae5) = localChar2;
   *(byte *)(uiContext + 0xae6) = (byte)TempInt4 & 1;
   if (resultPointer == 2) {
-    result = ReadUIData(dataSource,&UNK_180954788,8);
+    result = ReadUIData(dataSource,&UIFunctionResultTableShader,8);
     *(UIByte *)(uiContext + 0xac8) = result;
   }
   else {
     localChar2 = ReadUIData(dataSource,&UIValidationDataTableA + (longlong)localChar2 * 8,8);
     *(char *)(uiContext + 0xac8) = localChar2 << 3;
-    localChar2 = ReadUIData(dataSource,&UNK_1809535d8,8);
+    localChar2 = ReadUIData(dataSource,&UIFunctionResultTableTexture,8);
     *(char *)(uiContext + 0xac8) = *(char *)(uiContext + 0xac8) + localChar2;
   }
   TempInt4 = 1;
   if (1 < *(int *)(uiBufferData + 0x914)) {
     ptrLocal8 = (UIByte *)(uiContext + 0xac9);
     do {
-      result = ReadUIData(dataSource,&UNK_180954788,8);
+      result = ReadUIData(dataSource,&UIFunctionResultTableShader,8);
       *ptrLocal8 = result;
       ptrLocal8 = ptrLocal8 + 1;
       TempInt4 = TempInt4 + 1;
@@ -95996,20 +96021,20 @@ void FUN_18072292c(longlong uiContext,UIHandle dataSource,int targetBuffer,int b
   *(char *)(uiContext + 0xae5) = localChar2;
   *(byte *)(uiContext + 0xae6) = (byte)TempInt4 & 1;
   if (maxIterations == 2) {
-    result = ReadUIData(dataSource,&UNK_180954788,8);
+    result = ReadUIData(dataSource,&UIFunctionResultTableShader,8);
     *(UIByte *)(uiContext + 0xac8) = result;
   }
   else {
     localChar2 = ReadUIData(dataSource,&UIValidationDataTableA + (longlong)localChar2 * 8,8);
     *(char *)(uiContext + 0xac8) = localChar2 << 3;
-    localChar2 = ReadUIData(dataSource,&UNK_1809535d8,8);
+    localChar2 = ReadUIData(dataSource,&UIFunctionResultTableTexture,8);
     *(char *)(uiContext + 0xac8) = *(char *)(uiContext + 0xac8) + localChar2;
   }
   TempInt4 = 1;
   if (1 < *(int *)(uiBufferData + 0x914)) {
     ptrLocal8 = (UIByte *)(uiContext + 0xac9);
     do {
-      result = ReadUIData(dataSource,&UNK_180954788,8);
+      result = ReadUIData(dataSource,&UIFunctionResultTableShader,8);
       *ptrLocal8 = result;
       ptrLocal8 = ptrLocal8 + 1;
       TempInt4 = TempInt4 + 1;
