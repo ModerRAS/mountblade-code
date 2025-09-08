@@ -206585,7 +206585,24 @@ uint64_t ProcessSystemContextManagement(long long CharacterCode,uint32_t *Charac
 
 
 
-uint8_t FUN_1801720a0(long long CharacterCode,uint32_t SystemBufferSize
+/**
+ * @brief 处理系统资源分配和内存边界管理
+ * 
+ * 该函数负责处理系统资源分配和内存边界管理，包括：
+ * - 字符串比较结果检查
+ * - 内存分配和初始化
+ * - 系统事件模板设置
+ * - 线程安全操作
+ * 
+ * @param CharacterCode 字符代码
+ * @param SystemBufferSize 系统缓冲区大小
+ * @return uint8_t 返回系统状态字节
+ * 
+ * @note 原始函数名：FUN_1801720a0
+ */
+#define ProcessSystemResourceAllocationAndMemoryBoundaryManagement FUN_1801720a0
+
+uint8_t ProcessSystemResourceAllocationAndMemoryBoundaryManagement(long long CharacterCode,uint32_t SystemBufferSize
 {
   uint8_t SystemStatusByte;
   int StringComparisonResult;
@@ -231403,29 +231420,29 @@ ProcessCharacterCodeAllocationAndInitialization(uint64_t CharacterCode,uint64_t 
   long long *CharacterCodeBuffer;
   
   CharacterCodeBuffer = (long long *)MemoryAllocate(MemoryPoolManager,0x70,8,3,0,0xfffffffffffffffe);
-  *CharacterCode = (long long)&DataNodeTemplateA;
-  *CharacterCode = (long long)&DataNodeTemplateB;
-  *(uint32_t *)(CharacterCode + 1) = 0;
-  *CharacterCode = (long long)&SystemDataNodeTemplateSecondary;
-  CharacterCode[2] = 0;
-  *(uint32_t *)(CharacterCode + 3) = 0;
-  CharacterCode[4] = 0;
-  *CharacterCode = (long long)&SystemDataNodeTemplateTertiary;
-  CharacterCode[0xd] = 0;
-  CharacterCode[5] = 0x3f800000;
-  CharacterCode[6] = 0;
-  CharacterCode[7] = 0x3f80000000000000;
-  CharacterCode[8] = 0;
-  *(uint32_t *)(CharacterCode + 9) = 0;
-  *(uint32_t *)((long long)CharacterCode + 0x4c) = 0;
-  *(uint32_t *)(CharacterCode + 10) = 0x3f800000;
-  *(uint32_t *)((long long)CharacterCode + 0x54) = 0;
-  *(uint32_t *)(CharacterCode + 0xb) = 0;
-  *(uint32_t *)((long long)CharacterCode + 0x5c) = 0;
-  *(uint32_t *)(CharacterCode + 0xc) = 0;
-  *(uint32_t *)((long long)CharacterCode + 100) = 0x3f800000;
-  *CharacterCodeSize = CharacterCode;
-  (**(code **)(*CharacterCode + 0x28))();
+  *CharacterCodeBuffer = (long long)&DataNodeTemplateA;
+  *CharacterCodeBuffer = (long long)&DataNodeTemplateB;
+  *(uint32_t *)(CharacterCodeBuffer + 1) = 0;
+  *CharacterCodeBuffer = (long long)&SystemDataNodeTemplateSecondary;
+  CharacterCodeBuffer[2] = 0;
+  *(uint32_t *)(CharacterCodeBuffer + 3) = 0;
+  CharacterCodeBuffer[4] = 0;
+  *CharacterCodeBuffer = (long long)&SystemDataNodeTemplateTertiary;
+  CharacterCodeBuffer[0xd] = 0;
+  CharacterCodeBuffer[5] = 0x3f800000;
+  CharacterCodeBuffer[6] = 0;
+  CharacterCodeBuffer[7] = 0x3f80000000000000;
+  CharacterCodeBuffer[8] = 0;
+  *(uint32_t *)(CharacterCodeBuffer + 9) = 0;
+  *(uint32_t *)((long long)CharacterCodeBuffer + 0x4c) = 0;
+  *(uint32_t *)(CharacterCodeBuffer + 10) = 0x3f800000;
+  *(uint32_t *)((long long)CharacterCodeBuffer + 0x54) = 0;
+  *(uint32_t *)(CharacterCodeBuffer + 0xb) = 0;
+  *(uint32_t *)((long long)CharacterCodeBuffer + 0x5c) = 0;
+  *(uint32_t *)(CharacterCodeBuffer + 0xc) = 0;
+  *(uint32_t *)((long long)CharacterCodeBuffer + 100) = 0x3f800000;
+  *CharacterCodeSize = (uint64_t)CharacterCodeBuffer;
+  (**(code **)(*CharacterCodeBuffer + 0x28))();
   (**(code **)(*(long long *)*CharacterCodeSize + 0x138))((long long *)*CharacterCodeSize,Utf16EndPointer);
   return SystemBufferSize;
 }
