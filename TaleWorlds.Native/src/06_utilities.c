@@ -58197,16 +58197,16 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
   uint statusCounter;
   uint64_t systemDataBuffer1;
   uint64_t systemDataBuffer2;
-  int64_t *stackVariable10;
-  int64_t *stackVariable18;
-  int64_t *stackVariable20;
+  int64_t *systemContextPointer;
+  int64_t *resourceCleanupPointer;
+  int64_t *dataProcessingPointer;
   uint64_t loopCounter;
   
   operationResult = *(DataBuffer **)(dataBuffer + SystemContextPointerOffset);
   *operationResult = &OperationResultBuffer;
   *(ByteFlag *)((int64_t)operationResult + SystemStatusByteOffset) = 1;
   dataContext = operationResult + SystemDataContextOffset;
-  stackVariable20 = dataContext;
+  dataProcessingPointer = dataContext;
   iterationCount = _Mtx_lock(dataContext);
   if (iterationCount != 0) {
     __Throw_C_error_std__YAXH_Z(iterationCount);
@@ -58224,7 +58224,7 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
           break;
         }
       }
-      ConvertDataTypeA0(operationResult + SystemDataTargetOffset,&stackVariable10,(uint64_t)*(uint *)(operationResult + SystemDataBufferSizeOffset),
+      ConvertDataTypeA0(operationResult + SystemDataTargetOffset,&systemContextPointer,(uint64_t)*(uint *)(operationResult + SystemDataBufferSizeOffset),
                     *(DataWord *)(operationResult + SystemDataCapacityOffset),1);
       calculatedValue = (int *)CalculateSystemValue(SystemCalculationBaseAddress,SystemDataDefaultSize,*(ByteFlag *)((int64_t)operationResult + SystemDataValidationOffset));
       *calculatedValue = iterationCount;
@@ -58232,19 +58232,19 @@ void ExecuteSystemDataProcessing(DataBuffer operationBase,int64_t dataBuffer)
       calculatedValue[3] = 0;
       calculatedValue[4] = 0;
       calculatedValue[5] = 0;
-      if ((char)stackVariable10 != '\0') {
-        systemDataBuffer2 = systemDataBuffer1 % ((uint64_t)stackVariable10 >> SystemDataShiftAmount);
+      if ((char)systemContextPointer != '\0') {
+        systemDataBuffer2 = systemDataBuffer1 % ((uint64_t)systemContextPointer >> SystemDataShiftAmount);
         ProcessContextA0(operationResult + SystemContextProcessingOffset);
       }
       *(DataBuffer *)(calculatedValue + SystemDataNextPointerOffset) = *(DataBuffer *)(operationResult[7] + systemDataBuffer2 * 8);
       *(int **)(operationResult[7] + systemDataBuffer2 * 8) = calculatedValue;
       operationResult[9] = operationResult[9] + 1;
 ProcessCheckpointValidationData3:
-      stackVariable18 = *(int64_t **)(calculatedValue + 2);
+      resourceCleanupPointer = *(int64_t **)(calculatedValue + 2);
       calculatedValue[2] = 0;
       calculatedValue[3] = 0;
-      if (stackVariable18 != (int64_t *)0x0) {
-        (**(FunctionPointer**)(*stackVariable18 + SystemFunctionCallbackOffset))();
+      if (resourceCleanupPointer != (int64_t *)0x0) {
+        (**(FunctionPointer**)(*resourceCleanupPointer + SystemFunctionCallbackOffset))();
       }
       statusCounter = iterationCount + 1;
       loopCounter = (uint64_t)statusCounter;
@@ -58274,26 +58274,26 @@ ProcessCheckpointValidationData3:
     free();
     operationResult[SystemOperationOffset] = 0;
   }
-  stackVariable10 = operationResult + SystemMemoryRegionOffset;
+  systemContextPointer = operationResult + SystemMemoryRegionOffset;
   ExecuteSystemOperationA0();
   if ((int64_t *)operationResult[SystemCleanupOffset] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)operationResult[SystemCleanupOffset] + SystemFunctionCallbackOffset))();
   }
-  stackVariable10 = memoryBlockOffset;
+  systemContextPointer = memoryBlockOffset;
   ManageMemoryA0(memoryBlockOffset);
-  stackVariable10 = operationResult + DataConfigurationOffset;
+  systemContextPointer = operationResult + DataConfigurationOffset;
   CleanupResourcesA0();
-  stackVariable10 = operationResult + 0x24;
+  systemContextPointer = operationResult + 0x24;
   CleanupResourcesA0();
-  stackVariable10 = dataContext;
+  systemContextPointer = dataContext;
   _Mtx_destroy_in_situ(dataContext);
-  stackVariable10 = operationResult + SystemValidationOffset;
-  if (*stackVariable10 != 0) {
+  systemContextPointer = operationResult + SystemValidationOffset;
+  if (*systemContextPointer != 0) {
       TerminateSystemE0();
   }
-  stackVariable10 = operationResult + SystemMutexOffset;
+  systemContextPointer = operationResult + SystemMutexOffset;
   _Mtx_destroy_in_situ();
-  stackVariable10 = exceptionHandlerContextPointer;
+  systemContextPointer = exceptionHandlerContextPointer;
   ValidateProcessingA0(exceptionHandlerContextPointer);
   if ((1 < (uint64_t)operationResult[8]) && (operationResult[7] != 0)) {
       TerminateSystemE0();
@@ -59018,16 +59018,16 @@ void FinalizeExceptionHandling950(DataBuffer operationBase,int64_t dataBuffer)
   uint statusCounter;
   uint64_t systemDataBuffer1;
   uint64_t systemDataBuffer2;
-  int64_t *stackVariable10;
-  int64_t *stackVariable18;
-  int64_t *stackVariable20;
+  int64_t *systemContextPointer;
+  int64_t *resourceCleanupPointer;
+  int64_t *dataProcessingPointer;
   uint64_t loopCounter;
   
   operationResult = *(DataBuffer **)(dataBuffer + 0x2e8);
   *operationResult = &OperationResultBuffer;
   *(ByteFlag *)((int64_t)operationResult + 0x162) = 1;
   dataContext = operationResult + 0x1a;
-  stackVariable20 = dataContext;
+  dataProcessingPointer = dataContext;
   iterationCount = _Mtx_lock(dataContext);
   if (iterationCount != 0) {
     __Throw_C_error_std__YAXH_Z(iterationCount);
@@ -59045,7 +59045,7 @@ void FinalizeExceptionHandling950(DataBuffer operationBase,int64_t dataBuffer)
           break;
         }
       }
-      ConvertDataTypeA0(operationResult + 10,&stackVariable10,(uint64_t)*(uint *)(operationResult + 8),
+      ConvertDataTypeA0(operationResult + 10,&systemContextPointer,(uint64_t)*(uint *)(operationResult + 8),
                     *(DataWord *)(operationResult + 9),1);
       calculatedValue = (int *)CalculateSystemValue(SystemCalculationBaseAddress,0x18,*(ByteFlag *)((int64_t)operationResult + 0x5c));
       *calculatedValue = iterationCount;
@@ -59053,19 +59053,19 @@ void FinalizeExceptionHandling950(DataBuffer operationBase,int64_t dataBuffer)
       calculatedValue[3] = 0;
       calculatedValue[4] = 0;
       calculatedValue[5] = 0;
-      if ((char)stackVariable10 != '\0') {
-        systemDataBuffer2 = systemDataBuffer1 % ((uint64_t)stackVariable10 >> 0x20);
+      if ((char)systemContextPointer != '\0') {
+        systemDataBuffer2 = systemDataBuffer1 % ((uint64_t)systemContextPointer >> 0x20);
         ProcessContextA0(operationResult + 6);
       }
       *(DataBuffer *)(calculatedValue + 4) = *(DataBuffer *)(operationResult[7] + systemDataBuffer2 * 8);
       *(int **)(operationResult[7] + systemDataBuffer2 * 8) = calculatedValue;
       operationResult[9] = operationResult[9] + 1;
 ProcessCheckpointValidationData3:
-      stackVariable18 = *(int64_t **)(calculatedValue + 2);
+      resourceCleanupPointer = *(int64_t **)(calculatedValue + 2);
       calculatedValue[2] = 0;
       calculatedValue[3] = 0;
-      if (stackVariable18 != (int64_t *)0x0) {
-        (**(FunctionPointer**)(*stackVariable18 + 0x38))();
+      if (resourceCleanupPointer != (int64_t *)0x0) {
+        (**(FunctionPointer**)(*resourceCleanupPointer + 0x38))();
       }
       statusCounter = iterationCount + 1;
       loopCounter = (uint64_t)statusCounter;
@@ -59095,26 +59095,26 @@ ProcessCheckpointValidationData3:
     free();
     operationResult[0x4a] = 0;
   }
-  stackVariable10 = operationResult + 0x44;
+  systemContextPointer = operationResult + 0x44;
   ExecuteSystemOperationA0();
   if ((int64_t *)operationResult[0x3d] != (int64_t *)0x0) {
     (**(FunctionPointer**)(*(int64_t *)operationResult[0x3d] + 0x38))();
   }
-  stackVariable10 = memoryBlockOffset;
+  systemContextPointer = memoryBlockOffset;
   ManageMemoryA0(memoryBlockOffset);
-  stackVariable10 = operationResult + 0x28;
+  systemContextPointer = operationResult + 0x28;
   CleanupResourcesA0();
-  stackVariable10 = operationResult + 0x24;
+  systemContextPointer = operationResult + 0x24;
   CleanupResourcesA0();
-  stackVariable10 = dataContext;
+  systemContextPointer = dataContext;
   _Mtx_destroy_in_situ(dataContext);
-  stackVariable10 = operationResult + 0x16;
-  if (*stackVariable10 != 0) {
+  systemContextPointer = operationResult + 0x16;
+  if (*systemContextPointer != 0) {
       TerminateSystemE0();
   }
-  stackVariable10 = operationResult + 0xc;
+  systemContextPointer = operationResult + 0xc;
   _Mtx_destroy_in_situ();
-  stackVariable10 = exceptionHandlerContextPointer;
+  systemContextPointer = exceptionHandlerContextPointer;
   ValidateProcessingA0(exceptionHandlerContextPointer);
   if ((1 < (uint64_t)operationResult[8]) && (operationResult[7] != 0)) {
       TerminateSystemE0();
