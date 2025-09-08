@@ -95243,7 +95243,23 @@ void ProcessDataBufferExceptionStateD580(DataBuffer operationBase,int64_t dataBu
 
 
 
-void Unwind_18090d590(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 处理异常上下文和重置异常处理器D590
+ * 
+ * 该函数负责处理异常上下文，包括：
+ * 1. 调用异常上下文中的异常处理器
+ * 2. 设置临时异常处理器
+ * 3. 检查系统终止条件
+ * 4. 清理异常处理状态
+ * 5. 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d590
+ * @note 这是一个异常展开（unwind）处理函数，用于处理异常上下文和重置异常处理器
+ */
+void ProcessExceptionContextAndResetHandlersD590(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -95267,7 +95283,19 @@ void Unwind_18090d590(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d5a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 调用数据缓冲区异常处理器D5A0
+ * 
+ * 该函数负责调用数据缓冲区偏移量0x80处的异常处理器。
+ * 这是一个简单的异常处理器调用函数。
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d5a0
+ * @note 这是一个异常展开（unwind）处理函数，用于调用数据缓冲区异常处理器
+ */
+void InvokeDataBufferExceptionHandlerD5A0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if (*(int64_t **)(dataBuffer + 0x80) != (int64_t *)0x0) {
@@ -95278,7 +95306,22 @@ void Unwind_18090d5a0(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090d5b0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 重置数据缓冲区异常处理器状态D5B0
+ * 
+ * 该函数负责重置数据缓冲区的异常处理器状态，包括：
+ * 1. 设置临时异常处理器
+ * 2. 检查系统终止条件
+ * 3. 清理异常处理状态
+ * 4. 恢复默认异常处理器
+ * 
+ * @param operationBase 操作基础数据缓冲区
+ * @param dataBuffer 数据缓冲区指针，包含异常上下文信息
+ * 
+ * @note 原始函数名：Unwind_18090d5b0
+ * @note 这是一个异常展开（unwind）处理函数，用于重置数据缓冲区异常处理器状态
+ */
+void ResetDataBufferExceptionHandlerStateD5B0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(DataBuffer *)(dataBuffer + 0x88) = &TemporaryExceptionHandler;
