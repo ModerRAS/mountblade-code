@@ -297,6 +297,23 @@
 #define SystemContextSecondaryOffset1c 0x1c
 #define ResourceAccessRequestOffset98 0x98
 #define ResourceDescriptorOffset18 0x18
+#define ValidationStatusOffset34 0x34
+#define ValidationStatusOffset38 0x38
+#define ValidationStatusOffset3c 0x3c
+#define SystemContextOffset90 0x90
+#define SystemContextOffset98 0x98
+#define SystemContextOffsetBc 0xbc
+#define SystemContextOffset84 0x84
+#define SystemContextOffsetBd 0xbd
+#define SystemContextOffsetA0 0xa0
+#define SystemContextOffsetA4 0xa4
+#define SystemContextOffset8c 0x8c
+#define SystemContextOffset14 0x14
+#define SystemContextOffset24 0x24
+#define SystemContextOffset25 0x25
+#define SystemContextOffset28 0x28
+#define SystemContextOffset30 0x30
+#define SystemContextOffset60 0x60
 #define ExceptionHandlerCleanupStateOffset168 0x168
 #define ExceptionHandlerCleanupFlagOffset178 0x178
 #define ExceptionHandlerCleanupStateOffset148 0x148
@@ -88588,7 +88605,7 @@ void Unwind_18090bf40(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bf50(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset60(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;
@@ -88602,7 +88619,7 @@ void Unwind_18090bf50(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090bf60(DataBuffer operationBase,int64_t dataBuffer)
+void InvokeExceptionHandlerAtOffset60Second(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t *exceptionHandlerContextPointer;

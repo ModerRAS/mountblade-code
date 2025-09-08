@@ -684,6 +684,24 @@ typedef enum {
 #define UIComponentDataOffset 0x11080
 #define UIRenderQueueOffset 0x12438
 
+// UI音频数据处理函数变量美化
+#define AudioFormatType isCharacterMatch
+#define AudioEncodingActive IsEventProcessingActive
+#define AudioSampleCount sVar3
+#define AudioProcessingMode bVar4
+#define AudioDataChunkIndex loopCounter
+#define AudioSampleRate localInt6
+#define AudioDataSize localInt7
+#define AudioProcessedBytes uVar8
+#define AudioChannelCount uVar9
+#define AudioChunkCount result0
+#define AudioBytesProcessed result1
+#define AudioSampleBuffer psVar12
+#define AudioDataRemaining result3
+#define AudioDataPointer pisCharacterMatch4
+#define AudioDataCounter CounterResult
+#define AudioStackData uStackX_8
+
 // UI系统变量名美化
 #define uiSystemEventCallback register10
 #define uiEventTimeDelta uStack000000000000003c

@@ -163,6 +163,16 @@
 #define StackFloatValue11c fStack000000000000011c            // 栈浮点值11c
 #define StackUnsignedValue50 uStack0000000000000050           // 栈无符号值50
 
+// 数据缓冲区和引用计数指针语义化宏定义
+#define DataBuffer1E0 pStackDataBuffer1e0                      // 数据缓冲区1E0
+#define MemoryAddressMaskPointer2 paMemoryAddressMaskPointer2   // 内存地址掩码指针2
+#define ReferenceCountPointer3 ReferenceCountPointer3          // 引用计数指针3
+#define ReferenceCountPointer4 ReferenceCountPointer4          // 引用计数指针4
+#define ReferenceCountPointer5 ReferenceCountPointer5          // 引用计数指针5
+#define StringComparisonResultPointer0 StringComparisonResultPointer0 // 字符串比较结果指针0
+#define SystemStackPointer190 SystemStackPointer190            // 系统栈指针190
+#define LoopCounterVariable lStack_158                          // 循环计数器变量
+
 // 系统栈变量语义化映射
 #define SystemStackUnsigned110 uStack_110                  // 系统栈无符号110
 #define SystemStackArray158 auStack_158                     // 系统栈数组158
