@@ -91221,7 +91221,18 @@ void ManageSystemResourceCounter(void)
 
 
 
-void Unwind_18090c580(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器设置函数C580
+ * 
+ * 设置默认异常处理器B到数据缓冲区，用于处理系统异常事件。
+ * 该函数将系统默认异常处理器的地址存储到数据缓冲区的指定位置。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于存储异常处理器地址
+ * 
+ * @note 原始函数名：Unwind_18090c580
+ */
+void SetDefaultExceptionHandlerBToBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x4d0) = &SystemDefaultExceptionHandlerB;
@@ -91231,7 +91242,21 @@ void Unwind_18090c580(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c590(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器验证函数C590
+ * 
+ * 验证异常处理器的状态和配置，包括：
+ * - 检查系统资源状态和异常处理标志
+ * - 设置异常处理器上下文指针
+ * - 验证数据缓冲区的有效性
+ * - 配置异常处理器链
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，包含异常处理配置信息
+ * 
+ * @note 原始函数名：Unwind_18090c590
+ */
+void ValidateExceptionHandlerConfigurationC590(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   int64_t exceptionHandlerContext;
@@ -91275,7 +91300,18 @@ void Unwind_18090c590(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090c5a0(DataBuffer operationBase,int64_t dataBuffer)
+/**
+ * @brief 异常处理器初始化函数C5A0
+ * 
+ * 初始化异常处理器B到数据缓冲区，用于处理系统异常事件。
+ * 该函数将系统默认异常处理器的地址存储到数据缓冲区的指定位置。
+ * 
+ * @param operationBase 操作基地址
+ * @param dataBuffer 数据缓冲区指针，用于存储异常处理器地址
+ * 
+ * @note 原始函数名：Unwind_18090c5a0
+ */
+void InitializeExceptionHandlerBToBuffer(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   *(uint8_t **)(dataBuffer + 0x3b0) = &SystemDefaultExceptionHandlerB;
