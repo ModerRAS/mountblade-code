@@ -33996,9 +33996,9 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer SystemContext)
   DataWord SystemValidationData1;
   DataWord SystemValidationData2;
   DataWord validationStatus;
-  float floatValue1;
-  float floatValue2;
-  float floatValue3;
+  float primaryFloatValue;
+  float secondaryFloatValue;
+  float tertiaryFloatValue;
   DataBuffer validationOutcome;
   uint inputParameter;
   uint securityCheckResult;
@@ -34020,10 +34020,10 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer SystemContext)
   bool validationComplete;
   bool securityValidationPassed;
   float resultFloatValue;
-  float extraFloatValue1;
-  float extraFloatValue2;
-  float extraFloatValue3;
-  float extraFloatValue4;
+  float additionalFloatValue1;
+  float additionalFloatValue2;
+  float additionalFloatValue3;
+  float additionalFloatValue4;
   float computedFloatValue;
   
   // 新增的语义化变量，用于替换原始的Ghidra生成变量名
@@ -34115,7 +34115,7 @@ ValidationLabelB:
       return systemMemoryBuffer;
     }
     inputParameter8 = *(int *)(StackFrameContext + -0x21);
-    primaryFloatResult = interpolatedFloatValue;
+    interpolatedResultValue = interpolatedFloatValue;
     if (inputParameter8 == 0) {
       exceptionDataBuffer4 = *(DataBuffer **)(StackFrameContext + -0x29);
     }
@@ -34126,7 +34126,7 @@ ValidationLabelB:
         systemMemoryBuffer = (uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         inputParameter8 = *(int *)(StackFrameContext + -0x21);
-        primaryFloatResult = validationFloatValue;
+        validationResultValue = validationFloatValue;
       }
       exceptionDataBuffer4 = *(DataBuffer **)(StackFrameContext + -0x29);
       for (exceptionDataBuffer5 = exceptionDataBuffer4; (exceptionDataBuffer4 <= exceptionDataBuffer5 && (exceptionDataBuffer5 < exceptionDataBuffer4 + (int64_t)inputParameter8 * 3));
@@ -40015,37 +40015,40 @@ uint64_t ValidateDataBufferOperation(int64_t operationBase,DataBuffer *dataBuffe
  * @return uint64_t 系统状态码
  */
 uint64_t QuerySystemStatus(void)
-
 {
-  uint systemDataBuffer;
-  uint64_t operationResult;
-  DataBuffer *registerContext;
-  int64_t systemStackFramePointer;
+  uint SystemDataBuffer;
+  uint64_t OperationResult;
+  DataBuffer *RegisterContext;
+  int64_t SystemStackFramePointer;
   char StackDataBufferE;
   
-  operationResult = ExecuteDataBufferOperation();
-  if ((int)operationResult == 0) {
-    if (*(int *)(registerContext[1] + SystemDataSecondaryOffset18) == 0) {
-      systemDataBuffer = ProcessDataPointerA0(*registerContext,StackFrameContext + ExceptionHandlerCallbackOffset10);
-      operationResult = (uint64_t)systemDataBuffer;
-      if ((systemDataBuffer == 0) &&
-         ((StackDataBufferE == '\0' || (operationResult = ValidateDataSecurityContext(StackFrameContext + 0x48), (int)operationResult == 0)))
+  OperationResult = ExecuteDataBufferOperation();
+  if ((int)OperationResult == 0) {
+    if (*(int *)(RegisterContext[1] + SystemDataSecondaryOffset18) == 0) {
+      SystemDataBuffer = ProcessDataPointerA0(*RegisterContext, StackFrameContext + ExceptionHandlerCallbackOffset10);
+      OperationResult = (uint64_t)SystemDataBuffer;
+      if ((SystemDataBuffer == 0) &&
+         ((StackDataBufferE == '\0' || (OperationResult = ValidateDataSecurityContext(StackFrameContext + 0x48), (int)OperationResult == 0)))
          ) {
           ExecuteSystemCleanupRoutine();
       }
     }
     else {
-      operationResult = 0x1c;
+      OperationResult = 0x1c;
     }
   }
-  return operationResult;
+  return OperationResult;
 }
 
 
 
 
+/**
+ * @brief 系统状态验证函数C2
+ * 
+ * 验证系统状态C2，这是一个空函数，可能用于占位或未来扩展
+ */
 void ValidateSystemStateC2(void)
-
 {
   return;
 }
