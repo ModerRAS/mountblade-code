@@ -2141,6 +2141,14 @@ typedef uint8_t ByteFlag;                   // 字节标志类型 - 8位无符�
 #define ExceptionHandlerContextOffset110 0x110                    // 异常处理上下文偏移量110
 #define ExceptionHandlerContextOffset118 0x118                    // 异常处理上下文偏移量118
 #define ExceptionHandlerContextOffset160 0x160                    // 异常处理上下文偏移量160
+#define ExceptionHandlerContextOffset168 0x168                    // 异常处理上下文偏移量168
+#define ExceptionHandlerContextOffset170 0x170                    // 异常处理上下文偏移量170
+#define ExceptionHandlerContextOffset1a0 0x1a0                    // 异常处理上下文偏移量1a0
+#define ExceptionHandlerContextOffset1a8 0x1a8                    // 异常处理上下文偏移量1a8
+#define ExceptionHandlerContextOffset1b0 0x1b0                    // 异常处理上下文偏移量1b0
+#define ExceptionHandlerContextOffset1c0 0x1c0                    // 异常处理上下文偏移量1c0
+#define ExceptionHandlerContextOffset1e8 0x1e8                    // 异常处理上下文偏移量1e8
+#define ExceptionHandlerContextOffset1f0 0x1f0                    // 异常处理上下文偏移量1f0
 
 // 内存对齐和掩码常量
 #define MemoryAlignmentPadding 0xf
