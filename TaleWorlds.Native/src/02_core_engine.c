@@ -185632,7 +185632,7 @@ LAB_180152731:
     if (1 < *(ushort *)(SystemStringIndex + 0x32e)) {
       Utf16Character = (uint)*(ushort *)(SystemStringIndex + 0x32e);
     }
-    SystemStringIndex = FUN_18023a940();
+    SystemStringIndex = GetSystemStringIndex();
     lStack_1d8 = *(long long *)(SystemStringIndex + 8);
     PrimaryReturnCode = (uint)HighByte;
     if ((int)DataSize < (int)(uint)HighByte) {
@@ -185909,7 +185909,7 @@ code_r0x000180151fd7:
     SystemUnsignedValue6C = 0;
     SystemDataValue1 = 0;
     SystemDataValue2 = 0;
-    MemoryAllocationIndex = FUN_18023a940(*(void *)(CoreEngineRenderContext + 0x121e0));
+    MemoryAllocationIndex = GetSystemStringIndex(*(void *)(CoreEngineRenderContext + 0x121e0));
     FUN_1800a5fc0(CoreEngineRenderContext,MemoryAllocationIndex,&lStack_a8);
     if ((((int)SystemUnsignedValue54 == 1) || ((int)SystemUnsignedValue54 - 7U < 2)) && (0 < (int)(CoreEngineUnsignedValueA0 >> 2))) {
       StringProcessingStatus = (uint8_t *)(lStack_a8 + 3);
@@ -186135,7 +186135,7 @@ code_r0x000180151fd7:
     }
     break;
   case 0x2d:
-    MemoryAllocationIndex = FUN_18023a940(*(void *)(CharacterCode + 0xa0));
+    MemoryAllocationIndex = GetSystemStringIndex(*(void *)(CharacterCode + 0xa0));
     FUN_180225ee0(VectorRegisterDa,*(void *)(CharacterCode + 0xa8),*(uint32_t *)(CharacterCode + 0xb0),
                   MemoryAllocationIndex);
     (**(code **)(**(long long **)(CharacterCode + 0xa0) + 0x38))();
