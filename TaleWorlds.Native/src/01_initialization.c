@@ -157,6 +157,54 @@
 #define SystemResourceQuinaryOffset          0x108 // 系统资源第五偏移量
 #define SystemResourceSenaryOffset           0x118 // 系统资源第六偏移量
 #define SystemResourceSeptenaryOffset        0x138 // 系统资源第七偏移量
+
+// 库句柄相关偏移量
+#define LibraryHandlePrimarySlotOffset       0xb   // 库句柄主槽位偏移量
+#define LibraryHandleSecondarySlotOffset     0xc   // 库句柄次槽位偏移量
+#define LibraryHandleAllocationSize         0x68  // 库句柄分配大小
+
+// 符号选项常量
+#define SymbolTableOptionsDefault           0x2017 // 符号表默认选项
+
+// 系统资源管理器偏移量
+#define SystemResourceManagerPrimaryDataOffset   0x16  // 系统资源管理器主数据偏移量
+#define SystemResourceManagerSecondaryDataOffset  0x17  // 系统资源管理器次数据偏移量
+#define SystemResourceManagerTertiaryDataOffset   0x18  // 系统资源管理器第三数据偏移量
+#define SystemResourceManagerStatusOffset        0xf   // 系统资源管理器状态偏移量
+#define SystemResourceManagerMemoryOffset        0x10  // 系统资源管理器内存偏移量
+#define SystemResourceManagerConfigOffset        0x11  // 系统资源管理器配置偏移量
+#define SystemResourceManagerAllocatorOffset     0x1a  // 系统资源管理器分配器偏移量
+#define SystemResourceManagerGlobalDataOffset    0x1b  // 系统资源管理器全局数据偏移量
+#define SystemResourceManagerSecondaryConfigOffset 0x1c  // 系统资源管理器次配置偏移量
+#define SystemResourceManagerTertiaryConfigOffset 0x1d  // 系统资源管理器第三配置偏移量
+#define SystemResourceManagerQuaternaryConfigOffset 0x22  // 系统资源管理器第四配置偏移量
+#define SystemResourceManagerQuinaryConfigOffset  0x23  // 系统资源管理器第五配置偏移量
+#define SystemResourceManagerMemoryPoolOffset   0x29  // 系统资源管理器内存池偏移量
+#define SystemResourceManagerDataBufferOffset   0x2a  // 系统资源管理器数据缓冲区偏移量
+#define SystemResourceManagerGlobalContextOffset 0x2c  // 系统资源管理器全局上下文偏移量
+
+// 配置标志偏移量
+#define ConfigurationFlagDataOffset            0x10  // 配置标志数据偏移量
+#define ConfigurationFlagSecondaryOffset        0x11  // 配置标志次偏移量
+#define ConfigurationFlagTertiaryOffset         0x12  // 配置标志第三偏移量
+#define ConfigurationFlagQuaternaryOffset       0x13  // 配置标志第四偏移量
+#define ConfigurationFlagQuinaryOffset          0x14  // 配置标志第五偏移量
+#define ConfigurationFlagSenaryOffset           0x15  // 配置标志第六偏移量
+#define ConfigurationFlagSeptenaryOffset        0x16  // 配置标志第七偏移量
+#define ConfigurationFlagOctonaryOffset         0x17  // 配置标志第八偏移量
+#define ConfigurationFlagNonaryOffset           0x18  // 配置标志第九偏移量
+#define ConfigurationFlagDenaryOffset           0x1e  // 配置标志第十偏移量
+#define ConfigurationFlagValidationOffset       0x1f  // 配置标志验证偏移量
+#define ConfigurationFlagResourceOffset         0x1c  // 配置标志资源偏移量
+
+// 系统资源管理器扩展偏移量
+#define SystemResourceManagerCleanupOffset      0x5c  // 系统资源管理器清理偏移量
+#define SystemResourceManagerCleanupDataOffset  0x5e  // 系统资源管理器清理数据偏移量
+#define SystemResourceManagerFunctionTableOffset 0x56  // 系统资源管理器函数表偏移量
+#define SystemResourceManagerMemoryBlockOffset   0x11d // 系统资源管理器内存块偏移量
+#define SystemResourceManagerMemoryBlockDataOffset 0x11f // 系统资源管理器内存块数据偏移量
+#define SystemResourceManagerExtensionOffset    0x10b // 系统资源管理器扩展偏移量
+#define SystemResourceManagerExtensionDataOffset 0x10d // 系统资源管理器扩展数据偏移量
 #define SystemResourceOctonaryOffset         0x140 // 系统资源第八偏移量
 #define SystemResourceNonaryOffset           0x144 // 系统资源第九偏移量
 #define SystemResourceDenaryOffset           0x148 // 系统资源第十偏移量
@@ -20064,13 +20112,13 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   StackParameter = SystemInvalidHandleTemplate;
   systemHandle = GetSystemDebugHandle();
   InitializeSystemCore();
-  libraryHandle = (long long *)AllocateSystemMemory(SystemMemoryPoolTemplate,0x68,8,3);
+  libraryHandle = (long long *)AllocateSystemMemory(SystemMemoryPoolTemplate,LibraryHandleAllocationSize,8,3);
   symbolTablePointer = (long long **)(libraryHandle + 1);
   threadLocalDataBuffer = libraryHandle;
   threadManagerPointer = symbolTablePointer;
   InitializeMutex(symbolTablePointer,2);
-  libraryHandle[0xb] = 0;
-  libraryHandle[0xc] = 0;
+  libraryHandle[LibraryHandlePrimarySlotOffset] = 0;
+  libraryHandle[LibraryHandleSecondarySlotOffset] = 0;
   *(void**)libraryHandle = 0;
   SystemLibraryHandleStorage = libraryHandle;
   if ((char)*libraryHandle != '\0') goto SkipLibraryHandleInitialization;
@@ -20079,17 +20127,17 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   if (InitializationResult != 0) {
     ThrowSystemError(InitializationResult);
   }
-  SymSetOptions(0x2017);
+  SymSetOptions(SymbolTableOptionsDefault);
   InitializeSystemLogging(&systemGlobalDataPtr);
   SearchPathTemplate = &SystemStringTemplate;
   if (CustomSearchPath != (void* *)0x0) {
     SearchPathTemplate = CustomSearchPath;
   }
   SymSetSearchPath(SystemCurrentProcessHandle,SearchPathTemplate);
-  LibraryHandle = AllocatedMemoryPointer[0xb];
+  LibraryHandle = AllocatedMemoryPointer[LibraryHandlePrimarySlotOffset];
   if (LibraryHandle == 0) {
     LibraryHandle = LoadLibraryA(&SystemStringConstantLibraryNameH);
-    AllocatedMemoryPointer[0xb] = LibraryHandle;
+    AllocatedMemoryPointer[LibraryHandlePrimarySlotOffset] = LibraryHandle;
     if (LibraryHandle != 0) goto LibraryHandleLoadedSuccessfully;
     systemGlobalDataPtr = &SystemGlobalDataPointer;
     if (AlternateBufferPointer != (void* *)0x0) {
@@ -20098,9 +20146,9 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   }
   else {
 LibraryHandleLoadedSuccessfully:
-    if (AllocatedMemoryPointer[0xc] == 0) {
+    if (AllocatedMemoryPointer[LibraryHandleSecondarySlotOffset] == 0) {
       FunctionAddress = GetProcAddress(LibraryHandle,&SystemStringConstantFunctionNameI);
-      AllocatedMemoryPointer[0xc] = FunctionAddress;
+      AllocatedMemoryPointer[LibraryHandleSecondarySlotOffset] = FunctionAddress;
       if (FunctionAddress == 0) {
         systemGlobalDataPtr = &SystemGlobalDataPointer;
         if (AlternateBufferPointer != (void* *)0x0) {
@@ -22040,9 +22088,9 @@ void* CopySystemDataStructure(void* *SystemResourceManager,void* *sourceDataPoin
   InitializeSystemResourceExtended(SystemResourceManager + 2,sourceDataPointer + 2,copyFlags,additionalParams,InvalidHandleValue);
   *(uint32_t *)(SystemResourceManager + 0x15) = *(uint32_t *)(sourceDataPointer + 0x15);
   *(uint32_t *)((long long)SystemResourceManager + 0xac) = *(uint32_t *)((long long)sourceDataPointer + 0xac);
-  SystemResourceManager[0x16] = sourceDataPointer[0x16];
-  SystemResourceManager[0x17] = sourceDataPointer[0x17];
-  SystemResourceManager[0x18] = sourceDataPointer[0x18];
+  SystemResourceManager[SystemResourceManagerPrimaryDataOffset] = sourceDataPointer[SystemResourceManagerPrimaryDataOffset];
+  SystemResourceManager[SystemResourceManagerSecondaryDataOffset] = sourceDataPointer[SystemResourceManagerSecondaryDataOffset];
+  SystemResourceManager[SystemResourceManagerTertiaryDataOffset] = sourceDataPointer[SystemResourceManagerTertiaryDataOffset];
   *(uint8_t *)(SystemResourceManager + NodeActiveFlagOffset) = *(uint8_t *)(sourceDataPointer + NodeActiveFlagOffset);
   *(uint8_t *)((long long)SystemResourceManager + 0xc9) = *(uint8_t *)((long long)sourceDataPointer + 0xc9);
   *(uint8_t *)((long long)SystemResourceManager + 0xca) = *(uint8_t *)((long long)sourceDataPointer + 0xca);
@@ -26287,32 +26335,32 @@ void* * SystemResourceComplexInitializer(void* *SystemResourceManager)
   *(uint32_t *)(SystemResourceManager + 3) = 0;
   SystemResourceManager[8] = 0;
   SystemResourceManager[9] = 0;
-  SystemResourceManager[0xf] = 0;
-  SystemResourceManager[0x10] = 0;
-  SystemResourceManager[0x11] = 0;
+  SystemResourceManager[SystemResourceManagerStatusOffset] = 0;
+  SystemResourceManager[SystemResourceManagerMemoryOffset] = 0;
+  SystemResourceManager[SystemResourceManagerConfigOffset] = 0;
   *(uint32_t *)(SystemResourceManager + 0x12) = 3;
-  SystemResourceManager[0x17] = &SystemMemoryAllocatorPointer;
-  SystemResourceManager[0x18] = 0;
+  SystemResourceManager[SystemResourceManagerSecondaryDataOffset] = &SystemMemoryAllocatorPointer;
+  SystemResourceManager[SystemResourceManagerTertiaryDataOffset] = 0;
   *(uint32_t *)(SystemResourceManager + NodeActiveFlagOffset) = 0;
-  SystemResourceManager[0x17] = &SystemGlobalDataPointer;
-  SystemResourceManager[0x1a] = 0;
-  SystemResourceManager[0x18] = 0;
+  SystemResourceManager[SystemResourceManagerSecondaryDataOffset] = &SystemGlobalDataPointer;
+  SystemResourceManager[SystemResourceManagerAllocatorOffset] = 0;
+  SystemResourceManager[SystemResourceManagerTertiaryDataOffset] = 0;
   *(uint32_t *)(SystemResourceManager + NodeActiveFlagOffset) = 0;
-  SystemResourceManager[0x1b] = 0;
-  SystemResourceManager[0x1c] = 0;
-  SystemResourceManager[0x1d] = 0;
+  SystemResourceManager[SystemResourceManagerGlobalDataOffset] = 0;
+  SystemResourceManager[SystemResourceManagerSecondaryConfigOffset] = 0;
+  SystemResourceManager[SystemResourceManagerTertiaryConfigOffset] = 0;
   *(uint32_t *)(SystemResourceManager + 0x1e) = 3;
   PrimaryResourceHandle = SystemResourceManager + 0x21;
   *PrimaryResourceHandle = 0;
-  SystemResourceManager[0x22] = 0;
-  SystemResourceManager[0x23] = 0;
+  SystemResourceManager[SystemResourceManagerQuaternaryConfigOffset] = 0;
+  SystemResourceManager[SystemResourceManagerQuinaryConfigOffset] = 0;
   *(uint32_t *)(SystemResourceManager + 0x24) = 3;
-  SystemResourceManager[0x29] = &SystemMemoryAllocatorPointer;
-  SystemResourceManager[0x2a] = 0;
+  SystemResourceManager[SystemResourceManagerMemoryPoolOffset] = &SystemMemoryAllocatorPointer;
+  SystemResourceManager[SystemResourceManagerDataBufferOffset] = 0;
   *(uint32_t *)(SystemResourceManager + 0x2b) = 0;
-  SystemResourceManager[0x29] = &SystemGlobalDataPointer;
-  SystemResourceManager[0x2c] = 0;
-  SystemResourceManager[0x2a] = 0;
+  SystemResourceManager[SystemResourceManagerMemoryPoolOffset] = &SystemGlobalDataPointer;
+  SystemResourceManager[SystemResourceManagerGlobalContextOffset] = 0;
+  SystemResourceManager[SystemResourceManagerDataBufferOffset] = 0;
   *(uint32_t *)(SystemResourceManager + 0x2b) = 0;
   resourcePoolPointer = SystemResourceManager + 0x2e;
   *resourcePoolPointer = (long long)&SystemMemoryAllocatorPointer;
@@ -26731,7 +26779,7 @@ void SystemResourceCleanupManager(long long* SystemResourceManager)
   *(uint32_t *)(SystemResourceManager + 0x6c) = 0;
   SystemResourceManager[0x69] = (long long)&SystemMemoryAllocatorPointer;
   SystemConfigurationCleanupFunction();
-  SystemDataBufferCleanupFunction(SystemResourceManager + 0x5c,SystemResourceManager[0x5e]);
+  SystemDataBufferCleanupFunction(SystemResourceManager + SystemResourceManagerCleanupOffset,SystemResourceManager[SystemResourceManagerCleanupDataOffset]);
   SystemResourceManager[0x58] = (long long)&SystemGlobalDataPointer;
   if (SystemResourceManager[0x59] != 0) {
       SystemCleanupFunction();
@@ -29747,10 +29795,10 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   SystemThreadStackSize.SecondaryField = *(uint *)(SystemThreadFlags + 0x1c);
   ConfigureSystemData(SystemCalculatedBufferPointer,SystemConfigurationData,&pGlobalDataFlags2,&StackVariable148);
   ReleaseSystemResources(SystemCalculatedBufferPointer);
-  (**(code **)(*(long long *)SystemResourceManager[0x56] + 0x138))((long long *)SystemResourceManager[0x56],SystemCalculatedBufferPointer);
+  (**(code **)(*(long long *)SystemResourceManager[SystemResourceManagerFunctionTableOffset] + 0x138))((long long *)SystemResourceManager[SystemResourceManagerFunctionTableOffset],SystemCalculatedBufferPointer);
   SetupSystemProcessingBuffer(SystemCalculatedBufferPointer,0x3d072b02,1);
   RefreshSystemData(SystemCalculatedBufferPointer);
-  (**(code **)(*(long long *)SystemResourceManager[0x56] + 0x140))((long long *)SystemResourceManager[0x56],SystemCalculatedBufferPointer);
+  (**(code **)(*(long long *)SystemResourceManager[SystemResourceManagerFunctionTableOffset] + 0x140))((long long *)SystemResourceManager[SystemResourceManagerFunctionTableOffset],SystemCalculatedBufferPointer);
   Sleep(1000);
   SecondaryGlobalDataFlagsPtr = &SystemGlobalDataPointer;
   if (SystemMemoryPoolHandle != 0) {
@@ -32929,11 +32977,11 @@ void ProcessSystemResourceData(long long* SystemResourceManager,void* Configurat
   SystemResourceManager[0x124] = 0;
   *(uint32_t *)(SystemResourceManager + 0x126) = 0;
   SystemResourceManager[0x123] = (long long)&SystemMemoryAllocatorPointer;
-  ProcessMemoryBlock(SystemResourceManager + 0x11d,SystemResourceManager[0x11f],AdditionalParameter,ConfigurationFlag,ResourceAllocationContext);
+  ProcessMemoryBlock(SystemResourceManager + SystemResourceManagerMemoryBlockOffset,SystemResourceManager[SystemResourceManagerMemoryBlockDataOffset],AdditionalParameter,ConfigurationFlag,ResourceAllocationContext);
   if (SystemResourceManager[0x119] == 0) {
     CleanupSystemMemoryAllocation();
     CleanupSystemMemoryAllocation();
-    ProcessSystemResourceExtension(SystemResourceManager + 0x10b,SystemResourceManager[0x10d]);
+    ProcessSystemResourceExtension(SystemResourceManager + SystemResourceManagerExtensionOffset,SystemResourceManager[SystemResourceManagerExtensionDataOffset]);
     SystemResourceManager[0x87] = (long long)&SystemMemoryAllocatorPointer;
     SystemResourceManager[4] = (long long)&SystemMemoryAllocatorPointer;
     ResourceAllocationContext = SystemInvalidHandleTemplate;
