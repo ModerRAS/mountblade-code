@@ -296,6 +296,16 @@
  */
 #define ProcessMemoryAddressMaskAndBufferStatus FUN_180179480
 
+/**
+ * @brief 处理字符代码表和事件模板分配
+ * 
+ * 该函数负责处理字符代码表的分配和事件模板的管理，
+ * 用于系统字符处理和事件管理操作。
+ * 
+ * @note 原始函数名：FUN_180179770
+ */
+#define AllocateCharacterCodeTableAndEventTemplate FUN_180179770
+
 // 系统字符编码转换和处理函数宏定义
 // 系统窗口和UI处理函数
 #define ProcessSystemWindowAndUIInitialization FUN_180173c40    // 系统窗口和UI初始化处理
@@ -212286,7 +212296,7 @@ unsigned long long ProcessUnicodeCharacterConversion(long long CharacterCode,lon
         }
       }
       if ((CharacterCodeTablePointer == CharacterStatusBuffer) || (MemoryBoundaryEndPointer < (long long *)CharacterCodeTablePointer[4])) {
-        CharacterCodeTablePointer = (void *)FUN_180179770(CharacterStatusBuffer,ProcessingBuffer,CharacterStatusBuffer,CharacterCodeTablePointer,&StackPointer38);
+        CharacterCodeTablePointer = (void *)AllocateCharacterCodeTableAndEventTemplate(CharacterStatusBuffer,ProcessingBuffer,CharacterStatusBuffer,CharacterCodeTablePointer,&StackPointer38);
         CharacterCodeTablePointer = (void *)*CharacterCodePointer;
         MemoryBoundaryEndPointer = StackPointer38;
       }
@@ -212338,7 +212348,7 @@ uint32_t ProcessSystemEventTemplate(void)
       }
     }
     if ((EventTemplatePointer == CharacterStatusBuffer) || (SystemContextData < (long long *)EventTemplatePointer[4])) {
-      EventTemplatePointer = (void *)FUN_180179770(CharacterStatusBuffer,&SystemChecksumStackBuffer,CharacterStatusBuffer,EventTemplatePointer,&SystemStackBuffer);
+      EventTemplatePointer = (void *)AllocateCharacterCodeTableAndEventTemplate(CharacterStatusBuffer,&SystemChecksumStackBuffer,CharacterStatusBuffer,EventTemplatePointer,&SystemStackBuffer);
       EventTemplatePointer = (void *)*EventTemplatePointer;
     }
     FUN_1800863a0(EventTemplatePointer + 5,&DataStackBuffer);
@@ -212537,7 +212547,7 @@ LAB_1801794f5:
     }
     if ((PrimaryProcessingStatusFlag == StringProcessingStatus) || (CharacterCode < (long long *)PrimaryProcessingStatusFlag[4])) {
       pplStack_a8 = &pStackLongValue;
-      PrimaryProcessingStatusFlag = (void *)FUN_180179770(StringProcessingStatus,aStackProcessingUnsignedValue78);
+      PrimaryProcessingStatusFlag = (void *)AllocateCharacterCodeTableAndEventTemplate(StringProcessingStatus,aStackProcessingUnsignedValue78);
       PrimaryProcessingStatusFlag = (void *)*PrimaryProcessingStatusFlag;
       CharacterCode = pStackLongValue;
     }
@@ -212587,7 +212597,7 @@ LAB_1801794f5:
     }
     if ((SystemEventTemplatePointer == StringProcessingStatus) || (CharacterCode < (long long *)SystemEventTemplatePointer[4])) {
       pplStack_a8 = &pStackLongValue;
-      SystemEventTemplatePointer = (void *)FUN_180179770(StringProcessingStatus,aStackProcessingUnsignedValue78);
+      SystemEventTemplatePointer = (void *)AllocateCharacterCodeTableAndEventTemplate(StringProcessingStatus,aStackProcessingUnsignedValue78);
       SystemEventTemplatePointer = (void *)*SystemEventTemplatePointer;
       CharacterCode = pStackLongValue;
     }
@@ -212611,7 +212621,7 @@ LAB_1801794f5:
   SystemOperation90 = StackValidationData;
   if ((pMemoryAddressMaskPointer == StringProcessingStatus) || (CharacterCode < (long long *)pMemoryAddressMaskPointer[4])) {
     pplStack_a8 = &pStackLongValue;
-    pMemoryAddressMaskPointer = (void *)FUN_180179770(StringProcessingStatus,aStackProcessingUnsignedValue78);
+    pMemoryAddressMaskPointer = (void *)AllocateCharacterCodeTableAndEventTemplate(StringProcessingStatus,aStackProcessingUnsignedValue78);
     pMemoryAddressMaskPointer = (void *)*pMemoryAddressMaskPointer;
   }
   FUN_1800863a0(pMemoryAddressMaskPointer + 5,&StackValidationData);
