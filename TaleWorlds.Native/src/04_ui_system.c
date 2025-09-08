@@ -29135,7 +29135,7 @@ void SetUIRenderingParameters(longlong uiContext,longlong dataSource,int targetB
         ptrLocal8 = *(UIByte **)(dataSource + 0xf40);
         *(longlong *)(dataSource + 0xf18) =
              *(longlong *)(dataSource + 0xf18) - (longlong)*(int *)(dataSource + 0xe80);
-        componentIndex0 = 0x10;
+        RenderBufferOffset = 0x10;
         *(longlong *)(dataSource + 0xf20) =
              *(longlong *)(dataSource + 0xf20) - (longlong)*(int *)(dataSource + 0xe94);
         *(longlong *)(dataSource + 0xf28) =

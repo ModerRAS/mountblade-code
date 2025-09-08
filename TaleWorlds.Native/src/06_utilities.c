@@ -88521,7 +88521,7 @@ void ValidateDataHandlerAtMemoryPointer(DataBuffer operationBase,int64_t dataBuf
 
 
 
-void Unwind_18090be80(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateDataHandlerWithFlag2(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + MemoryPointerOffset) & 2) != 0) {
@@ -88533,7 +88533,7 @@ void Unwind_18090be80(DataBuffer operationBase,int64_t dataBuffer)
 
 
 
-void Unwind_18090beb0(DataBuffer operationBase,int64_t dataBuffer)
+void ValidateDataHandlerAtOffset48(DataBuffer operationBase,int64_t dataBuffer)
 
 {
   if ((*(uint *)(dataBuffer + 0x48) & 1) != 0) {
