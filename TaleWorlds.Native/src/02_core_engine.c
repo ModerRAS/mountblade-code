@@ -185610,7 +185610,7 @@ LAB_180152731:
     }
     break;
   case 1:
-    FUN_1800aa220(CoreEngineRenderContext,*(void *)(CharacterCode + 0xa0),*(void *)(CharacterCode + 0xa8));
+    ProcessCharacterEncodingConversion(CoreEngineRenderContext,*(void *)(CharacterCode + 0xa0),*(void *)(CharacterCode + 0xa8));
     break;
   case 2:
     ppuStack_210 = *(uint32_t ***)(CharacterCode + 0xc0);
