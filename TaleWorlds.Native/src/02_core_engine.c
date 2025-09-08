@@ -216615,20 +216615,20 @@ void CopySystemEventDataStructure(uint64_t CharacterCode,uint64_t SystemBufferSi
  */
 void InitializeSystemEventTemplateAndMemoryAllocation(uint64_t CharacterCode,uint64_t SystemBufferSize)
 {
-  long long *CharacterCode;
+  long long *EventCharacterCodePointer;
   uint32_t MemoryAllocationIndex;
   uint64_t *SystemEventTemplatePointer;
   uint64_t *MemoryAddressMaskPointer;
   uint64_t CalculatedCodePoint;
   long long *MemoryBoundaryPointer;
   void *ContextDataPointer;
-  uint64_t *pSystemPriorityLevel;
-  uint32_t FunctionAddress;
+  uint64_t *SystemPriorityLevelPointer;
+  uint32_t EventConfigurationFlags;
   uint64_t ProcessingFlags;
   
   CalculatedCodePoint = 0xfffffffffffffffe;
   SystemEventTemplatePointer = (void *)MemoryAllocate(MemoryPoolManager,0x178,8,3,0xfffffffffffffffe);
-  FUN_1803624e0(SystemEventTemplatePointer,SystemBufferSize,CharacterCode);
+  ConfigureSystemEventTemplateInitialization(SystemEventTemplatePointer,SystemBufferSize,CharacterCode);
   *SystemEventTemplatePointer = &SystemEventTemplateTertiary;
   CharacterCode = SystemEventTemplatePointer + 0x2a;
   *CharacterCode = (long long)&ThreadLocalStorageTemplate;
