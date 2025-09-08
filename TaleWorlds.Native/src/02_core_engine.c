@@ -186292,7 +186292,7 @@ void ProcessCharacterEncodingPointerAndSystemState(long long *CharacterCode)
   
   CharacterTablePointer = CharacterCode[1];
   for (BufferStatus = *CharacterCode; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x98) {
-    FUN_1801528b0(BufferStatus);
+    ProcessBufferStatusValidation(BufferStatus);
   }
   if (*CharacterCode == 0) {
     return;
@@ -186323,7 +186323,7 @@ void ProcessCharacterCodeTableIteration(long long *CharacterCode)
   
   CharacterTablePointer = CharacterCode[1];
   for (BufferStatus = *CharacterCode; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x98) {
-    FUN_1801528b0(BufferStatus);
+    ProcessBufferStatusValidation(BufferStatus);
   }
   if (*CharacterCode == 0) {
     return;
@@ -186349,7 +186349,7 @@ void ProcessCharacterCodeTableIteration(long long *CharacterCode)
  */
 void Process64BitCharacterEncodingPointer(uint64_t *CharacterCode)
 {
-  FUN_180152990();
+  ExecuteSystemProcessingTask();
   *CharacterCode = &SystemNullTemplate;
   if (CharacterCode[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -186383,7 +186383,7 @@ void ProcessCharacterEncodingTableAndBufferStatus(long long *CharacterCode)
   
   CharacterTablePointer = CharacterCode[1];
   for (BufferStatus = *CharacterCode; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x40) {
-    FUN_180152a20(BufferStatus);
+    ProcessBufferStatusAdvanced(BufferStatus);
   }
   if (*CharacterCode == 0) {
     return;
@@ -186414,7 +186414,7 @@ void ProcessCharacterCodeTableIterationSmallStep(long long *CharacterCode)
   
   CharacterTablePointer = CharacterCode[1];
   for (BufferStatus = *CharacterCode; BufferStatus != LoopCounter; BufferStatus = BufferStatus + 0x40) {
-    FUN_180152a20(BufferStatus);
+    ProcessBufferStatusAdvanced(BufferStatus);
   }
   if (*CharacterCode == 0) {
     return;
