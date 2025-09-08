@@ -29049,9 +29049,9 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
         else {
           normalizedValue = 0.0;
         }
-        stackBufferX[0] = (BytePair)(int)(normalizedValue * 65535.0);
+        stackDataBuffer[0] = (BytePair)(int)(normalizedValue * 65535.0);
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                          (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackBufferX,2);
+                          (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackDataBuffer,2);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
@@ -29064,9 +29064,9 @@ DataBuffer ExecuteDataValidationA1(int64_t operationBase,int64_t dataBuffer)
         else {
           normalizedValue = 0.0;
         }
-        stackBufferX[0] = (BytePair)(int)(normalizedValue * 65535.0);
+        stackDataBuffer[0] = (BytePair)(int)(normalizedValue * 65535.0);
         systemDataBuffer = (**(FunctionPointer**)**(DataBuffer **)(operationBase + OperationBaseOffset8))
-                          (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackBufferX,2);
+                          (*(DataBuffer **)(operationBase + OperationBaseOffset8),stackDataBuffer,2);
         if ((int)systemDataBuffer != 0) {
           return systemDataBuffer;
         }
@@ -99999,7 +99999,7 @@ void SetDefaultExceptionHandlerD5D0(DataBuffer operationBase,int64_t dataBuffer)
 void SetDefaultExceptionHandlerD5E0(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0xd8) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + SystemConfigurationOffsetD8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -100040,7 +100040,7 @@ void SetDefaultExceptionHandlerD5F0(DataBuffer operationBase,int64_t dataBuffer)
 void ResetExceptionHandlerToDefaultAtOffset1b8(DataBuffer operationBase, int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x1b8) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + DefaultExceptionHandlerOffset1b8) = &SystemDefaultExceptionHandlerB;
   return;
 }
 
@@ -100061,7 +100061,7 @@ void ResetExceptionHandlerToDefaultAtOffset1b8(DataBuffer operationBase, int64_t
 void SetDefaultExceptionHandlerD610(DataBuffer operationBase,int64_t dataBuffer)
 
 {
-  *(uint8_t **)(dataBuffer + 0x1f0) = &SystemDefaultExceptionHandlerB;
+  *(uint8_t **)(dataBuffer + SystemMemoryCleanupOffset1F0) = &SystemDefaultExceptionHandlerB;
   return;
 }
 

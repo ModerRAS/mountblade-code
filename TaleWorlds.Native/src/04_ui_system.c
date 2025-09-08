@@ -85953,149 +85953,149 @@ uint ProcessUIRenderTransformation(void)
   UIDword uidwordParam150;
   ulonglong result1;
   
-  fStack0000000000000040 = (float)stackParam00000138;
-  pStackData1 = &stack0x00000120;
-  StackData2 = stackParam00000128;
-  IndexResult = (uint)SourceHandle;
-  uStack0000000000000100 = bufferSize;
+  floatStackParam = (float)uidwordParam138;
+  stackDataPtr = (UIDword *)intParam120;
+  stackData2 = uidwordParam128;
+  indexResult = (uint)sourceHandle;
+  uidwordParam100 = bufferSize;
   ProcessUIEventDataCompression();
-  baseValue7 = (float)iStack0000000000000088 * 3.0517578e-05;
-  if (IndexResult == 2) {
+  scaleFactor = (float)intParam88 * 3.0517578e-05;
+  if (indexResult == 2) {
     processingResult5 = 0;
     result0 = 0;
-    if ((_iStack0000000000000090 & 0xffffbfff) != 0) {
+    if ((intParam90 & 0xffffbfff) != 0) {
       processingResult5 = 8;
     }
-    *(int *)(TargetHandle + 0x28) = *(int *)(TargetHandle + 0x28) - (iStack0000000000000094 + processingResult5);
-    plocalFloat8 = ContextHandle;
-    plocalFloat6 = unmodifiedR12;
-    if (0x2000 < iStack0000000000000090) {
-      plocalFloat8 = unmodifiedR12;
-      plocalFloat6 = ContextHandle;
+    *(int *)(targetHandle + 0x28) = *(int *)(targetHandle + 0x28) - (intParam94 + processingResult5);
+    contextFloatPtr = contextHandle;
+    transformDataPtr = unmodifiedR12;
+    if (0x2000 < intParam90) {
+      contextFloatPtr = unmodifiedR12;
+      transformDataPtr = contextHandle;
     }
     if (processingResult5 != 0) {
-      if (stackParam00000118 == 0) {
-        result0 = UpdateUIElementData(stackParam00000068,1);
+      if (renderFlags == 0) {
+        result0 = UpdateUIElementData(uiHandleParam,1);
       }
       else {
-        bVar3 = plocalFloat8[1] * *plocalFloat6 - plocalFloat6[1] * *plocalFloat8 < 0.0;
-        result0 = (uint)bVar3;
-        ProcessUIFloatDataWithHandle(stackParam00000068,bVar3,1);
+        isNegativeCross = contextFloatPtr[1] * *transformDataPtr - transformDataPtr[1] * *contextFloatPtr < 0.0;
+        result0 = (uint)isNegativeCross;
+        ProcessUIFloatDataWithHandle(uiHandleParam,isNegativeCross,1);
       }
     }
     processingResult5 = result0 * -2 + 1;
-    fStack0000000000000040 = 1.0;
-    StackData2 = stackParam00000138;
-    pStackData1 = (UIDword *)stackParam00000130;
-    stackParam00000118 = ProcessUIRenderDataProcessing();
-    *plocalFloat8 = (float)-processingResult5 * plocalFloat6[1];
-    plocalFloat8[1] = (float)processingResult5 * *plocalFloat6;
-    if (*(int *)(TargetHandle + 4) != 0) {
-      *unmodifiedR12 = (float)iStack0000000000000084 * 3.0517578e-05 * *unmodifiedR12;
-      unmodifiedR12[1] = (float)iStack0000000000000084 * 3.0517578e-05 * unmodifiedR12[1];
-      baseValue = *ContextHandle;
-      *ContextHandle = baseValue7 * baseValue;
-      ContextHandle[1] = baseValue7 * ContextHandle[1];
+    floatStackParam = 1.0;
+    stackData2 = uidwordParam138;
+    stackDataPtr = (UIDword *)uiHandleParam130;
+    renderFlags = ProcessUIRenderDataProcessing();
+    *contextFloatPtr = (float)-processingResult5 * transformDataPtr[1];
+    contextFloatPtr[1] = (float)processingResult5 * *transformDataPtr;
+    if (*(int *)(targetHandle + 4) != 0) {
+      *unmodifiedR12 = (float)intParam84 * 3.0517578e-05 * *unmodifiedR12;
+      unmodifiedR12[1] = (float)intParam84 * 3.0517578e-05 * unmodifiedR12[1];
+      baseValue = *contextHandle;
+      *contextHandle = scaleFactor * baseValue;
+      contextHandle[1] = scaleFactor * contextHandle[1];
       transformCoeff1 = *unmodifiedR12;
-      *unmodifiedR12 = transformCoeff1 - baseValue7 * baseValue;
-      *ContextHandle = transformCoeff1 + *ContextHandle;
-      baseValue7 = unmodifiedR12[1];
-      unmodifiedR12[1] = baseValue7 - ContextHandle[1];
-      ContextHandle[1] = baseValue7 + ContextHandle[1];
+      *unmodifiedR12 = transformCoeff1 - scaleFactor * baseValue;
+      *contextHandle = transformCoeff1 + *contextHandle;
+      scaleFactor = unmodifiedR12[1];
+      unmodifiedR12[1] = scaleFactor - contextHandle[1];
+      contextHandle[1] = scaleFactor + contextHandle[1];
     }
   }
   else {
-    localInt5 = (stackParam00000120 - iStack000000000000008c) / 2;
+    localInt5 = (intParam120 - intParam8c) / 2;
     processingResult5 = localInt5;
-    if (stackParam00000120 < localInt5) {
-      processingResult5 = stackParam00000120;
+    if (intParam120 < localInt5) {
+      processingResult5 = intParam120;
     }
-    ProcessingResult3 = 0;
-    if ((-1 < processingResult5) && (ProcessingResult3 = localInt5, stackParam00000120 < localInt5)) {
-      ProcessingResult3 = stackParam00000120;
+    processingResult3 = 0;
+    if ((-1 < processingResult5) && (processingResult3 = localInt5, intParam120 < localInt5)) {
+      processingResult3 = intParam120;
     }
-    *(int *)(TargetHandle + 0x28) = *(int *)(TargetHandle + 0x28) - iStack0000000000000094;
-    uStack0000000000000100 = *(UIDword *)(TargetHandle + 0x28);
-    if (ProcessingResult3 < stackParam00000120 - ProcessingResult3) {
-      StackData2 = stackParam00000138;
-      pStackData1 = (UIDword *)0x0;
-      fStack0000000000000040 = baseValue7;
-      stackParam00000118 = ProcessUIRenderDataProcessing();
-      fStack0000000000000040 = 1.0;
-      pStackData1 = (UIDword *)stackParam00000130;
+    *(int *)(targetHandle + 0x28) = *(int *)(targetHandle + 0x28) - intParam94;
+    uidwordParam100 = *(UIDword *)(targetHandle + 0x28);
+    if (processingResult3 < intParam120 - processingResult3) {
+      stackData2 = uidwordParam138;
+      stackDataPtr = (UIDword *)0x0;
+      floatStackParam = scaleFactor;
+      renderFlags = ProcessUIRenderDataProcessing();
+      floatStackParam = 1.0;
+      stackDataPtr = (UIDword *)uiHandleParam130;
     }
     else {
-      fStack0000000000000040 = 1.0;
-      StackData2 = stackParam00000138;
-      pStackData1 = (UIDword *)stackParam00000130;
-      stackParam00000118 = ProcessUIRenderDataProcessing();
-      pStackData1 = (UIDword *)0x0;
-      fStack0000000000000040 = baseValue7;
+      floatStackParam = 1.0;
+      stackData2 = uidwordParam138;
+      stackDataPtr = (UIDword *)uiHandleParam130;
+      renderFlags = ProcessUIRenderDataProcessing();
+      stackDataPtr = (UIDword *)0x0;
+      floatStackParam = scaleFactor;
     }
-    StackData2 = stackParam00000138;
+    stackData2 = uidwordParam138;
     result0 = ProcessUIRenderDataProcessing();
-    stackParam00000118 = stackParam00000118 | result0;
+    renderFlags = renderFlags | result0;
   }
   result1 = 0;
-  if (*(int *)(TargetHandle + 4) != 0) {
-    if (IndexResult != 2) {
+  if (*(int *)(targetHandle + 4) != 0) {
+    if (indexResult != 2) {
       FUN_1807197a0();
     }
-    if (iStack0000000000000080 != 0) {
+    if (intParam80 != 0) {
       result0 = 0;
-      if ((0 < (int)IndexResult) && (0xf < IndexResult)) {
-        processingCounter = IndexResult & 0x8000000f;
+      if ((0 < (int)indexResult) && (0xf < indexResult)) {
+        processingCounter = indexResult & 0x8000000f;
         if ((int)processingCounter < 0) {
           processingCounter = (processingCounter - 1 | 0xfffffff0) + 1;
         }
-        plocalFloat6 = ContextHandle + 8;
-        TotalResult = result1;
+        transformDataPtr = contextHandle + 8;
+        totalResult = result1;
         do {
           result0 = (int)result1 + 0x10;
           result1 = (ulonglong)result0;
-          TotalResult = TotalResult + 0x10;
-          plocalFloat6[-8] = -plocalFloat6[-8];
-          plocalFloat6[-7] = -plocalFloat6[-7];
-          plocalFloat6[-6] = -plocalFloat6[-6];
-          plocalFloat6[-5] = -plocalFloat6[-5];
-          plocalFloat6[-4] = -plocalFloat6[-4];
-          plocalFloat6[-3] = -plocalFloat6[-3];
-          plocalFloat6[-2] = -plocalFloat6[-2];
-          plocalFloat6[-1] = -plocalFloat6[-1];
-          *plocalFloat6 = -*plocalFloat6;
-          plocalFloat6[1] = -plocalFloat6[1];
-          plocalFloat6[2] = -plocalFloat6[2];
-          plocalFloat6[3] = -plocalFloat6[3];
-          plocalFloat6[4] = -plocalFloat6[4];
-          plocalFloat6[5] = -plocalFloat6[5];
-          plocalFloat6[6] = -plocalFloat6[6];
-          plocalFloat6[7] = -plocalFloat6[7];
-          plocalFloat6 = plocalFloat6 + 0x10;
-        } while ((longlong)TotalResult < (longlong)(int)(IndexResult - processingCounter));
+          totalResult = totalResult + 0x10;
+          transformDataPtr[-8] = -transformDataPtr[-8];
+          transformDataPtr[-7] = -transformDataPtr[-7];
+          transformDataPtr[-6] = -transformDataPtr[-6];
+          transformDataPtr[-5] = -transformDataPtr[-5];
+          transformDataPtr[-4] = -transformDataPtr[-4];
+          transformDataPtr[-3] = -transformDataPtr[-3];
+          transformDataPtr[-2] = -transformDataPtr[-2];
+          transformDataPtr[-1] = -transformDataPtr[-1];
+          *transformDataPtr = -*transformDataPtr;
+          transformDataPtr[1] = -transformDataPtr[1];
+          transformDataPtr[2] = -transformDataPtr[2];
+          transformDataPtr[3] = -transformDataPtr[3];
+          transformDataPtr[4] = -transformDataPtr[4];
+          transformDataPtr[5] = -transformDataPtr[5];
+          transformDataPtr[6] = -transformDataPtr[6];
+          transformDataPtr[7] = -transformDataPtr[7];
+          transformDataPtr = transformDataPtr + 0x10;
+        } while ((longlong)totalResult < (longlong)(int)(indexResult - processingCounter));
       }
-      CharacterDataOffset = (longlong)(int)result0;
-      if (CharacterDataOffset < SourceHandle) {
-        if (3 < SourceHandle - CharacterDataOffset) {
-          ContextHandleData = CharacterDataOffset + 2;
-          allocatedMemory2 = ((SourceHandle - CharacterDataOffset) - 4U >> 2) + 1;
-          CharacterDataOffset = CharacterDataOffset + allocatedMemory2 * 4;
-          plocalFloat6 = ContextHandle + ContextHandleData;
+      characterDataOffset = (longlong)(int)result0;
+      if (characterDataOffset < sourceHandle) {
+        if (3 < sourceHandle - characterDataOffset) {
+          contextHandleData = characterDataOffset + 2;
+          allocatedMemory2 = ((sourceHandle - characterDataOffset) - 4U >> 2) + 1;
+          characterDataOffset = characterDataOffset + allocatedMemory2 * 4;
+          transformDataPtr = contextHandle + contextHandleData;
           do {
-            plocalFloat6[-2] = -plocalFloat6[-2];
-            plocalFloat6[-1] = -plocalFloat6[-1];
-            *plocalFloat6 = -*plocalFloat6;
-            plocalFloat6[1] = -plocalFloat6[1];
+            transformDataPtr[-2] = -transformDataPtr[-2];
+            transformDataPtr[-1] = -transformDataPtr[-1];
+            *transformDataPtr = -*transformDataPtr;
+            transformDataPtr[1] = -transformDataPtr[1];
             allocatedMemory2 = allocatedMemory2 + -1;
-            plocalFloat6 = plocalFloat6 + 4;
+            transformDataPtr = transformDataPtr + 4;
           } while (allocatedMemory2 != 0);
         }
-        for (; CharacterDataOffset < SourceHandle; CharacterDataOffset = CharacterDataOffset + 1) {
-          ContextHandle[CharacterDataOffset] = -ContextHandle[CharacterDataOffset];
+        for (; characterDataOffset < sourceHandle; characterDataOffset = characterDataOffset + 1) {
+          contextHandle[characterDataOffset] = -contextHandle[characterDataOffset];
         }
       }
     }
   }
-  return stackParam00000118;
+  return renderFlags;
 }
 
 
