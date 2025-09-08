@@ -14045,7 +14045,7 @@ int RegisterSystemNetworkModule(void);
 // 数组栈变量
 #define FloatArrayStack SystemFloatArrayStack
 #define LongArrayStack SystemLongArrayStack
-#define LongArrayStackB alStack_3d0
+#define LongArrayStackB SystemLongArrayStackB
 
 // 系统栈变量
 #define SystemStackProcessingBuffer SystemStackVariable_e8
